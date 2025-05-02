@@ -1,196 +1,161 @@
-Return-Path: <devicetree+bounces-173035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A800AA74EF
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:27:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD973AA74FA
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:29:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B7304C7CCE
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:27:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D8E8189097F
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39AFF2571D4;
-	Fri,  2 May 2025 14:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8FDE2566D2;
+	Fri,  2 May 2025 14:29:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="tg5rkCYo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zk/y2DpQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2097.outbound.protection.outlook.com [40.107.103.97])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E36AB2566D5;
-	Fri,  2 May 2025 14:26:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.97
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746195998; cv=fail; b=DSq6VCoVRD+z1tQVggHjJ4zdIlXbTeSfiNK3g74JkcKZ8EfKS3s4b7rbYf1OYZ3pejCpWdu8is0iikSL1aRwT0E4VVh7li5TMsjc8dewDV1drDTugS5NREja3u0J7V2tH8ooz1Oi4yNZJsFQU6ZKoxdDRqcgsZzalezN36NzWKU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746195998; c=relaxed/simple;
-	bh=xbwG7A0CXOvwV9Q76GCPrD0JxCEPUQSiIz1NBC8JlGo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z4/YHAENRAHghgIofX7OVH1L+9zeWsuKUo75dMC4sAfdI+b526FfFPcGW+teimuJHzxH/5kxN6YSzLn03uXzQ3PSjL1sMVowrMk4F+hfPFzxOkwIx2reM2eU+YhLFonIMLltLC+ftMu+WJ+tQFs0V/p0/MYUGW6TONWMwZg42dw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=tg5rkCYo; arc=fail smtp.client-ip=40.107.103.97
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nQBcF7lI7E3/fwsCNdLJ6UrBnJKY81mXfbXtXinp4mdcwnXdbykQHf/rwh88ZsO60P1wTX+bgyLq5UKrn4WHYCOEFBAUf2vemC4N3Q5Zp3EWfNhGcvWdBjNqAw+A+DDbCdJcFRoylR8I541S/kyWnsdeRJEmyEW9MEkgjLgJPeXVS3YFGObE2LOmbeI/imKGQxmEQqlPPFv7TkJv8rTfJBZ+8Hg3gT/uNkyytf69BpyqsJK8Aw+WqUY5+WuZKao3lTrK5BsNLCIPx2PgCMFR4iP+B5serftIwxSeXSl9RNwAyWi8btsNF19ytUsyKQQozW4yxdWa6/JCXMROzhpbQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RSo1FAVwgVeXi/ZxuZBYnfNMEzPQOLloqPgXNBGRqes=;
- b=Y4ugMKf1GycU0rCRvKsYdal52fWK71N49mz/Ekyzm30wo8uCaiMakbOfa+3b3hbfxSk2yiqm0/WlPSI1eLfNYF0Kqj1ZLEcSE/N8qCvIsA5pgn6SgPeYkG2y5qrX7CDcRVx0Rg2kZYQI86ehPjgX3gGz91zy7RRfT7dFtqHvvrCA0oRedaj2P/fzW/YdwVIxKtaCR1/AQjkBAwGSjx58/KpySDr5vRm5+C9vgBn0CCS8RT2z9KJhDzzSiWFZn0UsNJ8Fn5MOAPg8MeW8Z7EPewjtpKqKJDHGKLrDgz2RO2UlwibNP3bh3Ah4NMRroAArZt8JnuXtS6zGfukRPpmHrQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=ti.com smtp.mailfrom=phytec.de; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine header.from=phytec.de;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RSo1FAVwgVeXi/ZxuZBYnfNMEzPQOLloqPgXNBGRqes=;
- b=tg5rkCYo3zV9dhf0MYLSJbilxupWdvUoxn2zxIPsTrJu8ufb5/WVGX0ucX60BPC0ZpciTSqlEZFSDlKYVuQ6ZbpyTE55LixqvND3lObGcuDjq54ARQTTf9Ku/cs0ElS/6Mx3nD3AHRkNUaJnD1J+qhDfVhIyq8Z8+vvaIMf+bMyDHhyxc1mBXdfdTV3nnNCw4q855i68lcedWTGKVNa0/7gwU/HrGGMyH0HfcVKumO0OiKnpT+rY4JGhe9knioI0lOcij6AdU2+OloGnrN/Wjp2T2mntA00x0Jg0b5e5VA6nQw8THoHgmQotQgRviDUFp41hLXCY1Wu9DobFcVikKQ==
-Received: from DUZP191CA0050.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:4fa::23)
- by VI1P195MB0639.EURP195.PROD.OUTLOOK.COM (2603:10a6:800:153::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.23; Fri, 2 May
- 2025 14:26:29 +0000
-Received: from DU6PEPF0000952A.eurprd02.prod.outlook.com
- (2603:10a6:10:4fa:cafe::35) by DUZP191CA0050.outlook.office365.com
- (2603:10a6:10:4fa::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8699.24 via Frontend Transport; Fri,
- 2 May 2025 14:26:29 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Diagnostix.phytec.de (91.26.50.189) by
- DU6PEPF0000952A.mail.protection.outlook.com (10.167.8.11) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8699.20 via Frontend Transport; Fri, 2 May 2025 14:26:29 +0000
-Received: from Florix.phytec.de (172.25.0.13) by Diagnostix.phytec.de
- (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 2 May
- 2025 16:26:28 +0200
-Received: from ls-radium.phytec (172.25.39.17) by Florix.phytec.de
- (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 2 May
- 2025 16:26:25 +0200
-From: Daniel Schultz <d.schultz@phytec.de>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <upstream@lists.phytec.de>, Daniel Schultz <d.schultz@phytec.de>
-Subject: [PATCH 3/3] arm64: dts: ti: k3-am62x-phyboard-lyra-gpio-fan: Update cooling maps
-Date: Fri, 2 May 2025 07:26:06 -0700
-Message-ID: <20250502142606.2840508-3-d.schultz@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250502142606.2840508-1-d.schultz@phytec.de>
-References: <20250502142606.2840508-1-d.schultz@phytec.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BED8254AFB;
+	Fri,  2 May 2025 14:29:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746196161; cv=none; b=eIbDg52+47qlPy7SYDSHGO07echS8CLBGnwfgxHfn/Htbfj2c9Kmgt4x7Am5jvz9AIET/49RgaTqhfBlr+7e2mJwzaIjv6T3+2qnttWqEual1EtTtknlZC8ChMlXQ7VhG6xXkdGogOvcTPkkwDt3c/WiRZ5hCLane3DsnbgZ2is=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746196161; c=relaxed/simple;
+	bh=glgP2H8iltkXz/0itYKcwN3X2MmC22mzZto+Unw1AGw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ly9s3utAtXa8gd6A1UBxC2avSlhjXQMSTVHCmZ+u6ua62zLBgJCmUud77HbnlTsBnIkATo6PJFEuLPMWi8jg4a0Hh+wx4Z5mTzMF41XhSSmufUcsq8yizpoUmCiYL6AjTxX+vndWL76gXhrZTVWVECXjeG7H5KRMNBEdunlsXqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zk/y2DpQ; arc=none smtp.client-ip=209.85.216.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-309d2e8c20cso2837113a91.0;
+        Fri, 02 May 2025 07:29:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746196157; x=1746800957; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=uv62vQqp6Wg2reIArK9ykz+gkyvcDoUeNoaYwXskcxk=;
+        b=Zk/y2DpQ3084WO1fnma3F35iHrHxRUA4l8H+6zd1SGzujCppfg4xAL7jOOx3GcCVLh
+         dfGfTbFi9KkM83m5+8YKG3tbBCb49ryfhlepuAvLnVfK0343cjPVek6VajLcb2VmSYi8
+         yvQa4b0YCst1mjFwzr5j+3Nd1nTfo14MFg2JlJ+lCkXJ6DrNP08LXzqhbNURTQ1QNsqr
+         qLtADPFlR2rJ6+NhFbTmbFVRJsw312oJeDr4r+X55C9Qdc8m+mQoDRKZUiPMHEGKm8Bv
+         MM9PaEb5YSza6UbLqoHT7Dvdwq8Y3nhId+KENFhz0ZNUAQhXVTw337vovrfJ9rN9aCDZ
+         eCbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746196157; x=1746800957;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uv62vQqp6Wg2reIArK9ykz+gkyvcDoUeNoaYwXskcxk=;
+        b=obkj4Ig7C8V1TMeVv2pUHeKK4RZqbDdQ6MdyhzvlgaHg6VuJhgrkhtbP6sd3YyFyGh
+         yJ3owsp4zL4emzqI2/5g3Fj5kS2oR3mZFCtm1fQv9/g2Om0bCKOijSzhkuDzq99+ZjGk
+         5NlpFiktl+3evY0IgMS3wj4z8dNgBDJzlG3LVAx0fFRXrzu6KEfGIPHNs4YYkC0NXgyw
+         xnlqtXyn7qMekCfWczuTpuJ4JkbE8O11ng3RRZ/x9f9raqzNZqw4IgQW9aMS76ljIoW7
+         eX6lYD+hlKB/150mlXLT9VZzjdFtfsCDp5A6u5WFYKtynqp58w70SUKNZTTve7yrO/Ff
+         PBKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUYnAKUODEfmAxPwyRs4KfErhebiky5dqPIxiGrUwnhT81vrTxd4DN5oSc/TodRx52bee3fDLhZV6vmXw==@vger.kernel.org, AJvYcCUut1lmQsUVK+fyiG7LNkl0E///WkEhvh9e5VsevGd/OyR09TY/xS1HVd3/dEc8vGUT50psIoaaqeYA@vger.kernel.org, AJvYcCX20ldXsh86z/Y58jTC+fXhYydEuqGhB80ACUxx21KI2tv2jqqGE5ykENgoHuCxecS57IZ/h7y4TxIbkz5j@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrOG2tFPSnxKTioYLjABPqQFdwsCesGTMfrypoqt68xj9UPWYE
+	OqO4eCBMpbKgk24jBfZshy/mlnSl3bNoPXNWoS5jIjsDiprhgZ9R
+X-Gm-Gg: ASbGncsA/SrvWqIkjabaSS6pBEI2kOO3N/w092k6S8GmDd+cPy6tWUypRaYbnZgE3Aa
+	ysTewtmXS7M3T9csaXg5YWlt3VRu0ibQDJW59LMTsE3tXNPauqmkwCRvtWtcLusECrxAFmIldh8
+	/QCNtCzvQ1v0xmEKWBeXJSnGT7KrV90lIMhnKrmfeDFCyA1AErQzL3L6FMphEshjk2qBbkaOT2I
+	PlutP+brzPfo4UFthmMfKsBnN9089HnUftwAKofE/ddGzEWwcMGGi+bSlDZsOXTKNcvTRcRTqUn
+	jng3iq4/b4fCO12smArGpIvjat4dHSuAVTf3XHj5gdsF7queSxMSMD1gTHSF
+X-Google-Smtp-Source: AGHT+IGcxrpY5FwVcx8yrFraaIa7JOCgeuZA4gWlDNgGNkVeXC5Z1ByWUsBuDYSZ9H3EEoZMid1q1w==
+X-Received: by 2002:a17:90b:55d0:b0:2fe:b907:562f with SMTP id 98e67ed59e1d1-30a4e5ab679mr5576244a91.14.1746196157465;
+        Fri, 02 May 2025 07:29:17 -0700 (PDT)
+Received: from localhost ([2804:30c:4024:1700:8e03:72a4:b895:b221])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-22e1659f8b8sm4747735ad.14.2025.05.02.07.29.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 May 2025 07:29:16 -0700 (PDT)
+Date: Fri, 2 May 2025 11:30:34 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	andy@kernel.org, nuno.sa@analog.com, Michael.Hennerich@analog.com,
+	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+	brgl@bgdev.pl, lgirdwood@gmail.com, broonie@kernel.org,
+	jonath4nns@gmail.com, dlechner@baylibre.com,
+	David Lechner <dlechner@baylire.com>
+Subject: Re: [PATCH v6 07/11] iio: adc: ad7768-1: add multiple scan types to
+ support 16-bits mode
+Message-ID: <aBTXCi0HINcrvXay@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1745605382.git.Jonathan.Santos@analog.com>
+ <0a214d5dfacc3976db71af8a80f9dcf2887fe6cc.1745605382.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Diagnostix.phytec.de (172.25.0.14) To Florix.phytec.de
- (172.25.0.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU6PEPF0000952A:EE_|VI1P195MB0639:EE_
-X-MS-Office365-Filtering-Correlation-Id: 589a9318-5cd9-4ac3-1c8b-08dd8985547a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?WkfpX4iLxgqPCyshAh/JNzk8bUZS1t1L84uu372eaPL1nVqGFbju3gEnyHKJ?=
- =?us-ascii?Q?N+Sj5RVa6AvIOpDSbT3i4CqW9fOuV1CECCHLwRYLyb8hAZRY9lWRHBWzA95j?=
- =?us-ascii?Q?QQ4OsxEMzwV3LhgX+FXt5tBOVa7Qd5qvtwARiy3mMT6iCI7jBUvhPYewuBlO?=
- =?us-ascii?Q?rvi4bHm4+PlyA9/1/tLDJQqHo1n4ClX4/YEFM5COPvOtsSsbUFhrEs7uE7A9?=
- =?us-ascii?Q?Ez2icy9nJTteEL9SkMPKzQxixJge9wBuCy9+m3B90lV2YQXQKs293/O2qSOv?=
- =?us-ascii?Q?YSroavdQAEevRJ84HTY6d7TvOhSKCTPs/3tpNdGWEnm83TLe6n2yagdThqY2?=
- =?us-ascii?Q?xKvFFgxARAwPwRmKbtKyHgYcrKc0yiJ4Wh16llqCxCw8IawEohwh0LyuR40r?=
- =?us-ascii?Q?YCr0S6cfcwXDi98jP0+nfkuerbcsnTPRk9v1QP5BbVD4nXJ3IRSbdBZwFj4V?=
- =?us-ascii?Q?qhSwj919u+5nmvqwuzpSsIlnNfOS3/M4AMzZRfex1+Isaf/G9y5PXb7dYdBr?=
- =?us-ascii?Q?CUHwfmUlNa5EPxVQTdx9NQDd8QIaM+fEPy8BZ9SUIWK3mZwYDlhbCuk0jT7s?=
- =?us-ascii?Q?Qk1oJnfw2O77JUcTB9mHXde8c9RuHBAKH4egzHdR5vPh5kGBPNfm1HzMZn16?=
- =?us-ascii?Q?jb+mr1WzbhmOjiF7l8H/GDO8CaNDTD1PugPjWS67TEuKNwDIYW5iqx6VI4xX?=
- =?us-ascii?Q?Y7LnI0qqGhywJ1OtpiHDMTQ8U96Xk2U/Qps8qtYjKR1aXDp5gaZH1Abc1wqn?=
- =?us-ascii?Q?5bDADI0M0nMHSs7qorgobddmbM0/Pdo2b/CnfFxFPmcF+BPmEqjiPnVWdYqP?=
- =?us-ascii?Q?NjQ157G8MDAJZYXi2Km5VLK+RUB+o9G0K4mHw34NhmL4rpkm12Kr563xorxU?=
- =?us-ascii?Q?arZVNU9zbjRUNVahi77RwwxWj0GNybPjiugdRYYkp015lUFI/uI+eTsASTBN?=
- =?us-ascii?Q?T/zw0sdWQ/6TGby3CJXjpaCXT5aa2xg5euphQuk0HlYkrIwBO2DX2fjzBa0D?=
- =?us-ascii?Q?NCdLDUDlq2AioN4QFWJ6Fa6fpV/UN1w7XlPDHyNmvhZap8LkNVSUEFwiR7qv?=
- =?us-ascii?Q?t06hJVeuuYhER2SVXaO4kTKKbFWdbls43T79VaB1IXTL+cnCdAli3PfKjFSy?=
- =?us-ascii?Q?URWFqwx+QQMg11sj//mlwe4RNT3T3OzrCHzPacaUXSg/3jZJtslH1FiCZaXu?=
- =?us-ascii?Q?eS7EFrdgY8yfl3BDBZ3y+USW3t2YdiBIfXu1kxPV8wf9u8zWHLFnqzGG/oQZ?=
- =?us-ascii?Q?AZYLUI4C7qbva0/2T5gDG9WgIeHKQjaeLiv/v9C9iERYDnjTRnBeo0zmz2P9?=
- =?us-ascii?Q?eLu8cL6QRu1rQhMOXMmLe4NcC/1qdywX25opuvKKltLCvoAVq7AFeDjRGDZB?=
- =?us-ascii?Q?2Uflc6Y7H6JsrOU/PMLzL1TS7+X0VKRjEqnBQDJiKNS1O6HlioMeTpxgtu9d?=
- =?us-ascii?Q?l5Z7ULtJFZ4XKA72Xad6R13Fd9h9OvkWZ7in6hBfSWG4Z5A/ibqLGPpKC7Fa?=
- =?us-ascii?Q?3m2mYMDkTNdLRF9QlQLIX6DrhBe1QSM1nxQ4?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Diagnostix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2025 14:26:29.6724
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 589a9318-5cd9-4ac3-1c8b-08dd8985547a
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Diagnostix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU6PEPF0000952A.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P195MB0639
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0a214d5dfacc3976db71af8a80f9dcf2887fe6cc.1745605382.git.Jonathan.Santos@analog.com>
 
-Rename 'main0_thermal_trip0' to a more descriptive name that
-includes 'fan', as the current name is too generic for a fan control
-trip point.
+Hi Jonathan,
 
-Move the fan to a new cooling map to avoid overwriting the passive
-trip point used for CPU frequency throttling when this overlay is
-enabled. Also, add the fan to the existing cooling map.
+The new adjustable sample rate / precision patch looks good to me.
+My only concern is about one error handling path in the trigger handler function.
+With that sorted out
+Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
 
-Signed-off-by: Daniel Schultz <d.schultz@phytec.de>
----
- .../dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso    | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+On 04/27, Jonathan Santos wrote:
+> When the device is configured to decimation x8, only possible in the
+> sinc5 filter, output data is reduced to 16-bits in order to support
+> 1 MHz of sampling frequency due to clock limitation.
+> 
+> Use multiple scan types feature to enable the driver to switch
+> scan type in runtime, making possible to support both 24-bit and
+> 16-bit resolution.
+> 
+> Reviewed-by: David Lechner <dlechner@baylire.com>
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> ---
+...
+> +enum ad7768_scan_type {
+> +	AD7768_SCAN_TYPE_NORMAL,
+> +	AD7768_SCAN_TYPE_HIGH_SPEED,
+> +};
+> +
+> +static const int ad7768_mclk_div_rates[4] = {
+I think we can omit the 4 constant here
+static const int ad7768_mclk_div_rates[] = {
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso
-index f0b2fd4165a7..1fd0aaff3193 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso
-@@ -33,7 +33,7 @@ AM62X_IOPAD(0x0a4, PIN_OUTPUT, 7) /* (M22) GPMC0_DIR.GPIO0_40 */
- &thermal_zones {
- 	main0_thermal: main0-thermal {
- 		trips {
--			main0_thermal_trip0: main0-thermal-trip {
-+			main0_fan: main0-fan {
- 				temperature = <65000>;  /* millicelsius */
- 				hysteresis = <2000>;    /* millicelsius */
- 				type = "active";
-@@ -42,7 +42,17 @@ main0_thermal_trip0: main0-thermal-trip {
- 
- 		cooling-maps {
- 			map0 {
--				trip = <&main0_thermal_trip0>;
-+				trip = <&main0_alert>;
-+				cooling-device =
-+					<&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+			};
-+
-+			map1 {
-+				trip = <&main0_fan>;
- 				cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
- 			};
- 		};
--- 
-2.25.1
+Probably not a reason for a v7 if the other parts of the series are good.
+> +	16, 8, 4, 2,
+> +};
+> +
+...
+>  
+> @@ -674,9 +722,15 @@ static irqreturn_t ad7768_trigger_handler(int irq, void *p)
+>  	struct iio_poll_func *pf = p;
+>  	struct iio_dev *indio_dev = pf->indio_dev;
+>  	struct ad7768_state *st = iio_priv(indio_dev);
+> +	const struct iio_scan_type *scan_type;
+>  	int ret;
+>  
+> -	ret = spi_read(st->spi, &st->data.scan.chan, 3);
+> +	scan_type = iio_get_current_scan_type(indio_dev, &indio_dev->channels[0]);
+> +	if (IS_ERR(scan_type))
+> +		return PTR_ERR(scan_type);
 
+The IRQ never gets handled if we get an error from iio_get_current_scan_type()?
+Maybe make it jump to out?
+	if (IS_ERR(scan_type))
+		goto out;
+
+> +
+> +	ret = spi_read(st->spi, &st->data.scan.chan,
+> +		       BITS_TO_BYTES(scan_type->realbits));
+>  	if (ret < 0)
+>  		goto out;
+>  
+
+Best regards,
+Marcelo
 
