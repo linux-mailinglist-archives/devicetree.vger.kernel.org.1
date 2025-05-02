@@ -1,138 +1,129 @@
-Return-Path: <devicetree+bounces-172981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17AFCAA71ED
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEE5EAA723C
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:38:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11BB63B8A6B
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:31:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 518AE9C3758
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:38:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F11B248F72;
-	Fri,  2 May 2025 12:31:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73639242D6A;
+	Fri,  2 May 2025 12:38:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TlzZp1/0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cyq9WvAz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48D722D4C5;
-	Fri,  2 May 2025 12:31:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C92182;
+	Fri,  2 May 2025 12:38:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746189080; cv=none; b=oXnzORw4kvLnxIqx1VBm12fb0P0Wc1DhH1TJ6Myu2TIGZqUav7W6HXYqENlOF1jck1ulNuh4DA/SO/tezIFrroreMXOZTqwqwV0kPssVpP4JnFYnE9Nz9WZ1mAaufCL52fOXGYcYnCa9bVii0B3cEwzmTWAyApJlFYWva1CxMyQ=
+	t=1746189498; cv=none; b=c1A0SeC66qpt8gU7aak4LTmNpHpu0WozrGUOy57nbozOdDHh0MICEDYjMWkX4cFO9/nsaiUUIWLBZxpoE727fhpBHsaONeAZdEVPTYx6sPxMnLFmpZ4A7vBAoiYdaO9+Dq9kc6wpZh65dVvJ0RYxKLInMRSqLxni5ywHyZa2mzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746189080; c=relaxed/simple;
-	bh=3G3CkBJ5xwmbD1aL2pXi9Vq8HxzS0MbLhvQFlo4eHDE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=Rc1HVAL6IroCGRLJ9ahgrVnecv2mYBvaTNAdYIA7qlNnN4IIZjfeWDwk69bMBPrqDfnKr3HR8zJKn9UwpnQ23Tan8l20OaR1ftPKBOzZHRTpSxXQiFiwC782jlsFKgIYc0TzGsszlS7PMVm1lvZVpJqyNmDa/XBl49kNzH+QdAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TlzZp1/0; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CF4C843B02;
-	Fri,  2 May 2025 12:31:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746189075;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IVc5PbC2k1qdzHpLeknU2G3KgAO+5ptclccnAPwMI+M=;
-	b=TlzZp1/0oKau46rbcImJXUoZfqTMdboxJb9zF5I+oT4MBM3UKybI43+7j3nTPbAC5Yp1mY
-	29LSG9vQ9szDDM4I0Z6OnEc8/UVUIZu8q7weO0ntfpvOXV9V8+t1W+fI/CvinnTDMPoy5D
-	L9LrATS0cs67BQ8+ByFdZD92EyDAX9WHhOr/s4ZPoMqan5z5GSQa/J4aBf3FCwmEKcrxBr
-	p8QzSm1wQtK9kbA3OTc7Vk0px3qUla+7M5oZ9RcvWVpvfdnOxZ528ejZjI4wvN2AspDwFq
-	fgCnH60HzO9LiKxoVy45e0ihTN6UwwnBzCP01UQGx1biZO9nAXGpdE/UDexZ+w==
+	s=arc-20240116; t=1746189498; c=relaxed/simple;
+	bh=XkAKwcrcu3Kbyc6j3TA7W+HyEBnoC8cpTFtI8G59PAk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V9JeieJZs+iItXQ9cRZG5kl9XcKspxaJNskngsaRGjLmKeBVXS8Rs6F2PqOuh6Pf836tk5xMta8GNPjZwGg8aB6W7sm2UADeiDm7RsA6OtmLZhbD5Q1uQ5Gc4VOX+W4GiWaYrosRC3xoP+TN4eW/nUjorIvYjMG6GN4MNNaZuYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cyq9WvAz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1EABC4CEE4;
+	Fri,  2 May 2025 12:38:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746189496;
+	bh=XkAKwcrcu3Kbyc6j3TA7W+HyEBnoC8cpTFtI8G59PAk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Cyq9WvAzCSi8XgE7tn82RGvlWkpbBBAv0xyFlbV5V5aNWtZ2XxGLOvGlz1/P4yEw3
+	 XE0XyP08vWufSlawXNhQ2tSs64SUdrHg/af5bCABvvR+Gg4VlKPVltVQrmhKyo7adU
+	 WK44zwx4G+CuvJrDKirICcIlbR8/oP5L55bBqSZMd1nDkhacUlhMBn+pbbsS4Zfu/l
+	 k/r+yy2G9zPqKEUavHcVG+GAMfbA4Ew6khVxEoLaVGf2PIgYPuHT/y90G+2jkcbekE
+	 1R8Io2AyK6pS5Mde4xb5V0DMdnZHwKdmVjmydlXfhENQG8iaGQojMtiBZcfPH7CYwa
+	 pRbjeD7+n3jaQ==
+Date: Fri, 2 May 2025 13:38:11 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: watchdog: renesas,wdt: Document RZ/V2N
+ (R9A09G056) support
+Message-ID: <20250502-molasses-provolone-8e03b62cee21@spud>
+References: <20250502120054.47323-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="rtF743oJEpR0T3zD"
+Content-Disposition: inline
+In-Reply-To: <20250502120054.47323-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+
+--rtF743oJEpR0T3zD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 02 May 2025 14:31:13 +0200
-Message-Id: <D9LOD5X8NXF2.2GWBU2IAZESH7@bootlin.com>
-Subject: Re: [PATCH v7 08/11] gpio: max7360: Add MAX7360 gpio support
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
- <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Bartosz Golaszewski"
- <bartosz.golaszewski@linaro.org>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250428-mdb-max7360-support-v7-0-4e0608d0a7ff@bootlin.com>
- <20250428-mdb-max7360-support-v7-8-4e0608d0a7ff@bootlin.com>
- <aBSg2qwNhPqJJRxK@smile.fi.intel.com>
-In-Reply-To: <aBSg2qwNhPqJJRxK@smile.fi.intel.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvjedvgeeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevhffvofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekhfekieeftefhjeetveefudehuddvvdeuvddvudfgfffhveekffethfeuffdtudenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlr
- dhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On Fri May 2, 2025 at 12:39 PM CEST, Andy Shevchenko wrote:
-> On Mon, Apr 28, 2025 at 01:57:26PM +0200, Mathieu Dubois-Briand wrote:
->> +static int max7360_gpio_probe(struct platform_device *pdev)
->> +{
->> +	const struct max7360_gpio_plat_data *plat_data;
->> +	struct gpio_regmap_config gpio_config =3D { };
->> +	struct regmap_irq_chip *irq_chip;
->> +	struct device *dev =3D &pdev->dev;
->> +	struct regmap *regmap;
->> +	unsigned int outconf;
->> +	int ret;
->> +
->> +	regmap =3D dev_get_regmap(dev->parent, NULL);
->> +	if (!regmap)
->> +		return dev_err_probe(dev, -ENODEV, "could not get parent regmap\n");
->> +
->> +	plat_data =3D device_get_match_data(dev);
->> +	if (plat_data->function =3D=3D MAX7360_GPIO_PORT) {
->> +		if (device_property_read_bool(dev, "interrupt-controller")) {
->> +			/*
->> +			 * Port GPIOs with interrupt-controller property: add IRQ
->> +			 * controller.
->> +			 */
->> +			gpio_config.regmap_irq_flags =3D IRQF_ONESHOT | IRQF_SHARED;
->> +			gpio_config.regmap_irq_line =3D
->> +				fwnode_irq_get_byname(dev_fwnode(dev->parent), "inti");
->> +			if (gpio_config.regmap_irq_line < 0)
->> +				return dev_err_probe(dev, gpio_config.regmap_irq_line,
->> +						     "Failed to get IRQ\n");
->
->> +			irq_chip =3D devm_kzalloc(dev, sizeof(*irq_chip), GFP_KERNEL);
->
-> Can this be made static const instead?
->
+On Fri, May 02, 2025 at 01:00:54PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+> Document support for the watchdog IP found on the Renesas RZ/V2N
+> (R9A09G056) SoC. The watchdog IP is identical to that on RZ/V2H(P),
+> so `renesas,r9a09g057-wdt` will be used as a fallback compatible,
+> enabling reuse of the existing driver without changes.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Sorry, I don't think we can. We do have a few data that will vary:
-->name, but above all ->irq_drv_data, as it will point on the regmap of
-the specific device.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> ...
+> ---
+>  Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml =
+b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> index 3e0a8747a357..78874b90c88c 100644
+> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> @@ -76,7 +76,9 @@ properties:
+>            - const: renesas,rcar-gen4-wdt # R-Car Gen4
+> =20
+>        - items:
+> -          - const: renesas,r9a09g047-wdt # RZ/G3E
+> +          - enum:
+> +              - renesas,r9a09g047-wdt # RZ/G3E
+> +              - renesas,r9a09g056-wdt # RZ/V2N
+>            - const: renesas,r9a09g057-wdt # RZ/V2H(P)
+> =20
+>        - const: renesas,r9a09g057-wdt       # RZ/V2H(P)
+> --=20
+> 2.49.0
+>=20
+>=20
 
-OK with all other comments.
+--rtF743oJEpR0T3zD
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Thanks for your review.
-Mathieu
+-----BEGIN PGP SIGNATURE-----
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBS8swAKCRB4tDGHoIJi
+0psNAP4mStyLPceWvsvD4MiviARAn1vin/1+kLywOlH0mLGvDgD+O5hRdJvJDg3m
+g8O81b2C4Qdv0yDk9KQCgt7yvijb8Q8=
+=wR3n
+-----END PGP SIGNATURE-----
 
+--rtF743oJEpR0T3zD--
 
