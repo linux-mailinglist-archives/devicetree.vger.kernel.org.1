@@ -1,112 +1,102 @@
-Return-Path: <devicetree+bounces-173207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66A21AA7C70
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 00:52:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E4F1AA7C83
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 00:56:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF1085A3CD9
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 22:52:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 344751B67683
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 22:56:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC3321CA1E;
-	Fri,  2 May 2025 22:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6BF8221D88;
+	Fri,  2 May 2025 22:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="M4owbPlI"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nnMuuV/u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B26215184
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 22:52:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D1120B81D
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 22:56:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746226368; cv=none; b=MXRXS1KuSooqT5JHrTgUVVFxq0Rl3T4BoSaJP4ZG4FDPOavQ6XW4AbtDOmix1GtMEhb9wuSukfBm1prFhPZgVCnURAgNK0D7pRK+8OMz/XEfFyDDa9uzgbcxWjYAcB7hOeoEJLzLuDOEcsN2MANRplIVImroAGOHH/Ulsxgwq4E=
+	t=1746226566; cv=none; b=bGTNga7SNSKAGcW2Ltqzd/1RKA+sX0/s05E6Ax9FwtGAVrfNVf5qEoCTSr0fOF3wAzsxxNQ0kFCnM1zBtKaUxu9o6EpmduscfkKqF1AJQIlR05YJ1eI7eomqv2n0aBZEFIopIKaC+mV2nFQ1ASWqWsFSkbSwTOleu2MHE/Yf9Bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746226368; c=relaxed/simple;
-	bh=8hZ91w2arLugpliTVJsM/F0LGd3WgsYUoN0l3oJTMVQ=;
+	s=arc-20240116; t=1746226566; c=relaxed/simple;
+	bh=8ztnMAKmbdyNsPGlxL7edxZO62BJYChUmRhguiclIuc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HA1XcPoBmdQdZwbRq28UTYzuQxCMr1em2f2bcQNbgerjBW0o667NuVFGtmObTc6qewxb4sPX76oHaWdVO/LQLVXXAZiHcLriU9cNMeyYMLLJ7Q+I1Q4QCf1NtyjFqnQ8XRFtk7+rj3EP15SNzj9x1FOV+7XN3nTh9da/Qeky6O4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=M4owbPlI; arc=none smtp.client-ip=205.220.180.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=GhgtXjupnMPOSmCHEy9a9Aw8i4XY1W/HA7O49CEG+Cih9UpshYfxs8YoVqNQjSdWdp0+EWPYrfEEFv7RvFRTRiczyvcv49vOnexcSgdCrjbYU5v/F2LdvA4CdmpNRhNC3OFd9BCvAU+ZkoYFQthH6Lga6pIx/4dbHc1bvA44Xzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nnMuuV/u; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 542KAtqO009179
-	for <devicetree@vger.kernel.org>; Fri, 2 May 2025 22:52:45 GMT
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 542KB4Nv023498
+	for <devicetree@vger.kernel.org>; Fri, 2 May 2025 22:56:03 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=IMgAeV6O9mToM6/y5/LWAAK7
-	kKgWJWa/1zV0eFvjo2Y=; b=M4owbPlIx830KWEtD2qzmIOJ0vpdBREmuHVV0IY6
-	lOmcaJO4nb7/TECsPc0QZdXryxi9x/hNOcl3Cw4TD3oZYoJQ4hdIwnp48STQYq8j
-	zfSS4di/0Z2+2lqvJKbNEA6XZDpnVwNXb4saHH0LEj3Ow863SpZfOuTHk2f6K5v9
-	jAAdFf7y5WngmnjBjBoi+oyzVlGBlFz/3KXNQDvTmJSzHZobx3N/tApCA8fnN1ZQ
-	8L09vPreOj5g51+nl6LakGZKFvKJHuUIFsY5l4ftgNToMdKe6bnsfVfuHE7X8BJS
-	jBskEexEF2LjJxy3LKFyx8IaykauLZfwVnOboiq5jx/w6A==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u21k8h-1
+	:references:subject:to; s=qcppdkim1; bh=1bOVgb8M6+D/Cf10VFmMIFoe
+	5eQvQy5G8sTzJf7ev0Q=; b=nnMuuV/ukkrbGhT8RV3E3LdTpcgexym3eyUUA4Pe
+	PB6PEsvGuek01R4Ao3fgmRzWOs6Qqog674w4R6NDeigYetsqsRcsr6D/AMZ6DgKq
+	MARFHQp8u7UsR4pytkuex7dYtswv8Mz/21ytIjPxmJDhPU64/tiIjCetJcCj0nvJ
+	jWyUGe9At2Mfahn5GC3UuhZ40aUi4XsALFgPLQHfCinautOjMg0sTrUeTJW7+blr
+	GLXr9n5OrLCk5ufXn5S8HGNIm1dzi52tpkv5c2Rz1yfZH+J+/9f13a9QmpB0G8og
+	QJrHCBcngKNHZJKH9SdOHcjRznODVtK7KaS/vV/TBI1Tpw==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u4hksu-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 02 May 2025 22:52:45 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-47689dc0f6dso46622461cf.3
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 15:52:44 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 02 May 2025 22:56:02 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c54a6b0c70so238455685a.0
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 15:56:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746226364; x=1746831164;
+        d=1e100.net; s=20230601; t=1746226561; x=1746831361;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IMgAeV6O9mToM6/y5/LWAAK7kKgWJWa/1zV0eFvjo2Y=;
-        b=S3kW7hAYINFFpoIov23SnmDY+iRYp+vh31vDQaXT1qSNdakIVKB4zmOOqDKwrVOFSa
-         aQLlR0lcamZeFw7+X3yTADnCB035jbZvrYM01TJ+YCnK0hZD7/0H6uGUacXcIdzk8gm0
-         XeZetx8+Glm74USssdFckUv1eSLSSjH+T9KLd11sLs6FI9CGZuLEe7znjVVWpd/Q/5l8
-         SGfw4TFbamqK1bFMnubNeg6e5wcy76dviqpR01KCA63kH8yyC1HmaK2wWzgTbDuLpJmd
-         lYprg7ioHot9AZ2YWep++6E2taK/GFSMPJzUvHJAOIomO+5IPYknAVIgoQMK/Rxe2BCQ
-         mauQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXHAQRVtLNzY5ouOJZOVKrn2eaP/5d5MemzX3lrWZK1j2uUq25/5oMAZ17RkdK07bAbMegv4lYvnrqA@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMqDo9PwrEQPsvLYN/xrjuk1QgRSNBFeNHzBBKE2kaHN8araWN
-	4m5HQB3fCviLRXVCcur50NrH1ccKSsLjTKW2iSOCpkn69ffUCJTyh9EuTQyAmB+FGrkGoIC/bHe
-	Lu+W1GXOIFNrNCtDIElmKHWCk8T4W6kg9ekA+QdXSKg6nqUflMb9umcqXbnVI
-X-Gm-Gg: ASbGncvjd+qzmOO5Too4a/NeoRPfM3bK9H2SaDo1ryuz40NQDMBcNL6KsxEemfwmMA6
-	LLX2Kmj4rCFFXYP8WUtAcYjsb2cQxInlJoqEt4iq43NC+y3g5vIV1Rz96cu2ruWbqFSofMGncI9
-	IU+NeJ8VVdBre99QmZrUpC4dR7R8Uezc9JFHzznO+dcKce+voctVQSd2MU4zC4R4MK73HR+nwRt
-	ClB3Z6UF7bAUPzMRJLYzEKGFdU3MqLqk43Ghe9yBtcxHKe0iLWWtzmLu+iKYxn5XGCIhXtpwXTT
-	rsF2f8jIoAMKU8dCaFhJivf9IMO3CmW6nDl+vZIMrVVdzIDY6iQAS6CwL1m1w/RDBoaJ6YjOaG0
+        bh=1bOVgb8M6+D/Cf10VFmMIFoe5eQvQy5G8sTzJf7ev0Q=;
+        b=iHYF8IBKDspKdQ/3/Jxaik1CqGNDO143QZUvTJloVBeJFsFqzwfhsAmtRHJ/e3fLj3
+         qqgx26XmBFHBJOAUTP/5YRoQDeiAo8Jh9FXwJlK933l5vzPKXWfscsV1kVqu6opucTXO
+         fzCOuiG2o4Rs+RWuhjKot8C9MN1GgJ0SymWtzxDN5nbzx6Bxw3/20H7DkvpUu6cffqxb
+         xqtWadqT+T3Rv3tO4KBRGRVbpmWVPm55EVDopfcqDDChA9MzWhXjVoPS3aJqWQOiaCpJ
+         2DiD3Caex/A4rCUAem9XcKH9uKsKi1z8nQQat8pYSAH5OYv63SnNxqA1g1WbHDkYM1Y5
+         EkNg==
+X-Forwarded-Encrypted: i=1; AJvYcCW5ZE1mzx4uL44kIx+uVw1peswYdNn4zW43gKaaGUTyHAMAQMs8un1b3yXXBgpLPm7h96aqw/N1S8f7@vger.kernel.org
+X-Gm-Message-State: AOJu0YybvjX98kzdEavLheyFHBuJhNp8MA6PJqvpym1w2e92HDrqqZ61
+	OPeVix2+kdxQe3mBCwta8+vxTHExIGDOCfh7RTbvew29LqdPaVsKxvCCzfW/THpiAWEQrBjzxQX
+	I9VO1W9DsGEZlm7BW6x5SglOg6kle8XDLi3c/Lvh6Ne2YJq0ysb93OdKMg9TO
+X-Gm-Gg: ASbGncsJBJXkVzC2qbyN5IrZIKVsZLYKQKoSYGlBioLA4KIpOLtiUtwqRXPmKEUItp8
+	qsCO1BBXAev+9AqsbhNfSZp7JyY3Kv2oI+irOnxzIssxEt1eaGoGcu5nggo0sUmrLYppdZwh4Gn
+	4zEccPcH0aHuPBWU7XqJW2pylFkRgeHruyD7oi93wDJMxtltK5VEaRPgJcjO99x1RKuu/HPfIwz
+	1eBFA8mkyGRpHmlAwbaJeWquPGjDD+GPbdstgqxmehdp2pGjB0vXia7ijN98nBBsr/i8GcvLj3S
+	kVHJejbkW4/SM8R49Nve6BvJJTETp9zLY113+CXtTFulGzNMtMn+vA3MWTO3fnE4Z5dvPK6/6d8
 	=
-X-Received: by 2002:a05:622a:244e:b0:476:980c:10a8 with SMTP id d75a77b69052e-48c3163ec05mr85645421cf.21.1746226364188;
-        Fri, 02 May 2025 15:52:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEFAXOcRLf2Z3bspGcZv0cNlael5HGsrydFHbIvTQUjv2j75Z2QZiLIQoy7bHSRAG7G4lj9PQ==
-X-Received: by 2002:a05:622a:244e:b0:476:980c:10a8 with SMTP id d75a77b69052e-48c3163ec05mr85645011cf.21.1746226363828;
-        Fri, 02 May 2025 15:52:43 -0700 (PDT)
+X-Received: by 2002:a05:622a:1924:b0:48a:2122:5047 with SMTP id d75a77b69052e-48c30d80312mr77701901cf.8.1746226561599;
+        Fri, 02 May 2025 15:56:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHT8z6Lg3ovxc73cJTMCXyVkvLsgnAqZM902lh4jo0RicuOeI5EXmmvrbC9puKXeOOVnqrsqg==
+X-Received: by 2002:a05:622a:1924:b0:48a:2122:5047 with SMTP id d75a77b69052e-48c30d80312mr77701501cf.8.1746226561049;
+        Fri, 02 May 2025 15:56:01 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32029306984sm4992161fa.58.2025.05.02.15.52.41
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32029019c4dsm5052961fa.46.2025.05.02.15.55.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 May 2025 15:52:42 -0700 (PDT)
-Date: Sat, 3 May 2025 01:52:40 +0300
+        Fri, 02 May 2025 15:56:00 -0700 (PDT)
+Date: Sat, 3 May 2025 01:55:58 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Dmitry Baryshkov <lumag@kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org,
-        Srinivas Kandagatla <srini@kernel.org>
-Subject: Re: [PATCH v5 19/24] drm/msm/dsi: Add support for SM8750
-Message-ID: <ahx623ttvzd62u4fri6iqguj7mirlf22tvwbu6k2ngxw6hwbcp@oh7mmex5fjmz>
-References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
- <20250430-b4-sm8750-display-v5-19-8cab30c3e4df@linaro.org>
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sc8280xp: Add SLPI
+Message-ID: <rjhuxssogtsxitmocxnlt3im44imyvui5ssc6ptshepxvgo2hv@npmexcs7nqpy>
+References: <20250503-topic-8280_slpi-v1-0-9400a35574f7@oss.qualcomm.com>
+ <20250503-topic-8280_slpi-v1-3-9400a35574f7@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,232 +105,140 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250430-b4-sm8750-display-v5-19-8cab30c3e4df@linaro.org>
-X-Authority-Analysis: v=2.4 cv=G5AcE8k5 c=1 sm=1 tr=0 ts=68154cbd cx=c_pps a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=dt9VzEwgFbYA:10 a=e5mUnYsNAAAA:8 a=KKAkSRfTAAAA:8 a=vPhFULFQeS3k4onP6IoA:9 a=CjuIK1q_8ugA:10
- a=uxP6HrT_eTzRwkO_Te1X:22 a=Vxmtnl_E_bksehYqCbjh:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDE4NyBTYWx0ZWRfX+1MpK4bysyNq nDYW+FN6CjTe4HVjPQlR1Z0Hm94kXECbfUnL4O/ivQGGgPANFDKhZTbFWHc/e3RIn+WmyhHDVOs EViUBje+n9v7S2DYb8gwLcRJ5c5hqjdRlbHI0mtF3z9KqhW3xix7MqHUsNHarMwnLZvXAAF1pZt
- k/0TnATm5l37wIr1lp2hM/6IdhCHtrUYYMz414mnXjkI4EcaD+jgWoI93s7zPq/P0sWba/9BvWm z20NgwXIYFP4YkKN27FgDynfmiyKz/cIAGM/JCBGaWi62egXxD9LDSZdSSu+mnakPo8rNpkwR4x VrXk4hb4Js1LAbt7j1vZdv25SkG5gX3vHopfCngFHYa9OMagIMCRmm42KcyBksFfDZYw+nBBq26
- 1L4/8DTzW2cX6aNlu9BVlWJgr8xG7fcvXkphqVKmuGBjUZQ2uUPnr/T736mL4eWY7ir8qyNM
-X-Proofpoint-GUID: iDjm5ra6Kj5ux5TWcC_dNEEr-EtXRyzV
-X-Proofpoint-ORIG-GUID: iDjm5ra6Kj5ux5TWcC_dNEEr-EtXRyzV
+In-Reply-To: <20250503-topic-8280_slpi-v1-3-9400a35574f7@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: gHGqiAI5Naxv8kfl8HlIscY0R6D1JsWn
+X-Authority-Analysis: v=2.4 cv=Yaq95xRf c=1 sm=1 tr=0 ts=68154d82 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=G4SMBwoHVf5iV8dplL4A:9 a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDE4OCBTYWx0ZWRfX6zJ7NpYSSqE5 GDOhqMtdaF7SAT6+9zc06hieqjOS2+YWVxOvIiLFzpdHJdsuXtIA5jX9YKlknluIcAqg0DUOZwA Dvle7S9CNJkX0dxIganrE5ub+HIwmMK/9lqqUFO6rRBqWIKrBHg9CQwEgR8Ax4LcQugh3vg7YTP
+ 4DF8gSvjxQFvWW0bN6NMBqnQ2h+EM0vFUNHGzGCWW2N6qPumq0WzO5DDVyMdX7y6Zy8LC4FKSqY tWDXBodrqdkWdHIH0fkRemYnaZlN//XFKTyAKLqax3UoqZPcSqpiOf8a0woPNocRQx4ssaeG66u GCn2iL6hxjcYM/ZgYBYcmvbTSk9arS+lBZ4/quSg6WqZZ+5pBHogkMOM/s4NM0TQdP3pKFCF1ym
+ DtFGSqJsP8eLWd+P+gM+bSfIArLY7nWS6t6mNYH4MjiPHqn8xzNH5jF2suhQGss1jVRxhJSC
+X-Proofpoint-GUID: gHGqiAI5Naxv8kfl8HlIscY0R6D1JsWn
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-05-02_05,2025-04-30_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 impostorscore=0 phishscore=0 mlxlogscore=999
- lowpriorityscore=0 adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0
- clxscore=1015 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505020187
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ clxscore=1015 suspectscore=0 bulkscore=0 mlxlogscore=473 malwarescore=0
+ mlxscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0 adultscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505020188
 
-On Wed, Apr 30, 2025 at 03:00:49PM +0200, Krzysztof Kozlowski wrote:
-> Add support for DSI on Qualcomm SM8750 SoC with notable difference:
+On Sat, May 03, 2025 at 12:38:01AM +0200, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> DSI PHY PLLs, the parents of pixel and byte clocks, cannot be used as
-> parents before DSI PHY is configured, the PLLs are prepared and their
-> initial rate is set.  Therefore assigned-clock-parents are not working
-> here and driver is responsible for reparenting clocks with proper
-> procedure: see dsi_clk_init_6g_v2_9().
+> SC8280XP features a SLPI (Sensor Low Power Island) core. Describe it.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Is it still the case? I thought you've said that with the proper flags
-there would be no need to perform this in the driver.
+Have your tried enabling it for X13s? Windows drivers provide
+qcslpi8280.mbn in the qcsubsys_ext_scss8280.cab cabinet.
 
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
 > ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 72 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 72 insertions(+)
 > 
-> Changes in v5:
-> 1. Only reparent byte and pixel clocks while PLLs is prepared. Setting
->    rate works fine with earlier DISP CC patch for enabling their parents
->    during rate change.
-> 
-> Changes in v3:
-> 1. Drop 'struct msm_dsi_config sm8750_dsi_cfg' and use sm8650 one.
-> 
-> SM8750 DSI PHY also needs Dmitry's patch:
-> https://patchwork.freedesktop.org/patch/542000/?series=119177&rev=1
-> (or some other way of correct early setting of the DSI PHY PLL rate)
-> ---
->  drivers/gpu/drm/msm/dsi/dsi.h      |  2 +
->  drivers/gpu/drm/msm/dsi/dsi_cfg.c  | 14 +++++++
->  drivers/gpu/drm/msm/dsi/dsi_cfg.h  |  1 +
->  drivers/gpu/drm/msm/dsi/dsi_host.c | 81 ++++++++++++++++++++++++++++++++++++++
->  4 files changed, 98 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/dsi/dsi.h b/drivers/gpu/drm/msm/dsi/dsi.h
-> index 87496db203d6c7582eadcb74e94eb56a219df292..93c028a122f3a59b1632da76472e0a3e781c6ae8 100644
-> --- a/drivers/gpu/drm/msm/dsi/dsi.h
-> +++ b/drivers/gpu/drm/msm/dsi/dsi.h
-> @@ -98,6 +98,7 @@ int msm_dsi_host_init(struct msm_dsi *msm_dsi);
->  int msm_dsi_runtime_suspend(struct device *dev);
->  int msm_dsi_runtime_resume(struct device *dev);
->  int dsi_link_clk_set_rate_6g(struct msm_dsi_host *msm_host);
-> +int dsi_link_clk_set_rate_6g_v2_9(struct msm_dsi_host *msm_host);
->  int dsi_link_clk_set_rate_v2(struct msm_dsi_host *msm_host);
->  int dsi_link_clk_enable_6g(struct msm_dsi_host *msm_host);
->  int dsi_link_clk_enable_v2(struct msm_dsi_host *msm_host);
-> @@ -115,6 +116,7 @@ int dsi_dma_base_get_6g(struct msm_dsi_host *msm_host, uint64_t *iova);
->  int dsi_dma_base_get_v2(struct msm_dsi_host *msm_host, uint64_t *iova);
->  int dsi_clk_init_v2(struct msm_dsi_host *msm_host);
->  int dsi_clk_init_6g_v2(struct msm_dsi_host *msm_host);
-> +int dsi_clk_init_6g_v2_9(struct msm_dsi_host *msm_host);
->  int dsi_calc_clk_rate_v2(struct msm_dsi_host *msm_host, bool is_bonded_dsi);
->  int dsi_calc_clk_rate_6g(struct msm_dsi_host *msm_host, bool is_bonded_dsi);
->  void msm_dsi_host_snapshot(struct msm_disp_state *disp_state, struct mipi_dsi_host *host);
-> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-> index 7754dcec33d06e3d6eb8a9d55e53f24af073adb9..7f8a8de0897a579a525b466fd01bbcd95454c614 100644
-> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-> @@ -257,6 +257,18 @@ static const struct msm_dsi_host_cfg_ops msm_dsi_6g_v2_host_ops = {
->  	.calc_clk_rate = dsi_calc_clk_rate_6g,
->  };
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 3f9195da90ee898c68296f19dc55bcb3ac73fe29..75ec34bfa729946687c4c35aa9550685cac95a10 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -695,6 +695,11 @@ pil_adsp_mem: adsp-region@86c00000 {
+>  			no-map;
+>  		};
 >  
-> +static const struct msm_dsi_host_cfg_ops msm_dsi_6g_v2_9_host_ops = {
-> +	.link_clk_set_rate = dsi_link_clk_set_rate_6g_v2_9,
-> +	.link_clk_enable = dsi_link_clk_enable_6g,
-> +	.link_clk_disable = dsi_link_clk_disable_6g,
-> +	.clk_init_ver = dsi_clk_init_6g_v2_9,
-> +	.tx_buf_alloc = dsi_tx_buf_alloc_6g,
-> +	.tx_buf_get = dsi_tx_buf_get_6g,
-> +	.tx_buf_put = dsi_tx_buf_put_6g,
-> +	.dma_base_get = dsi_dma_base_get_6g,
-> +	.calc_clk_rate = dsi_calc_clk_rate_6g,
-> +};
+> +		pil_slpi_mem: slpi-region@88c00000 {
+> +			reg = <0 0x88c00000 0 0x1500000>;
+> +			no-map;
+> +		};
 > +
->  static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
->  	{MSM_DSI_VER_MAJOR_V2, MSM_DSI_V2_VER_MINOR_8064,
->  		&apq8064_dsi_cfg, &msm_dsi_v2_host_ops},
-> @@ -300,6 +312,8 @@ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
->  		&sm8550_dsi_cfg, &msm_dsi_6g_v2_host_ops},
->  	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_8_0,
->  		&sm8650_dsi_cfg, &msm_dsi_6g_v2_host_ops},
-> +	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_9_0,
-> +		&sm8650_dsi_cfg, &msm_dsi_6g_v2_9_host_ops},
->  };
+>  		pil_nsp0_mem: cdsp0-region@8a100000 {
+>  			reg = <0 0x8a100000 0 0x1e00000>;
+>  			no-map;
+> @@ -783,6 +788,30 @@ smp2p_nsp1_in: slave-kernel {
+>  		};
+>  	};
 >  
->  const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
-> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-> index 120cb65164c1ba1deb9acb513e5f073bd560c496..859c279afbb0377d16f8406f3e6b083640aff5a1 100644
-> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-> @@ -30,6 +30,7 @@
->  #define MSM_DSI_6G_VER_MINOR_V2_6_0	0x20060000
->  #define MSM_DSI_6G_VER_MINOR_V2_7_0	0x20070000
->  #define MSM_DSI_6G_VER_MINOR_V2_8_0	0x20080000
-> +#define MSM_DSI_6G_VER_MINOR_V2_9_0	0x20090000
+> +	smp2p-slpi {
+> +		compatible = "qcom,smp2p";
+> +		qcom,smem = <481>, <430>;
+> +		interrupts-extended = <&ipcc IPCC_CLIENT_SLPI
+> +					     IPCC_MPROC_SIGNAL_SMP2P
+> +					     IRQ_TYPE_EDGE_RISING>;
+> +		mboxes = <&ipcc IPCC_CLIENT_SLPI
+> +				IPCC_MPROC_SIGNAL_SMP2P>;
+> +
+> +		qcom,local-pid = <0>;
+> +		qcom,remote-pid = <3>;
+> +
+> +		smp2p_slpi_out: master-kernel {
+> +			qcom,entry-name = "master-kernel";
+> +			#qcom,smem-state-cells = <1>;
+> +		};
+> +
+> +		smp2p_slpi_in: slave-kernel {
+> +			qcom,entry-name = "slave-kernel";
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +
+>  	soc: soc@0 {
+>  		compatible = "simple-bus";
+>  		#address-cells = <2>;
+> @@ -2454,6 +2483,49 @@ tcsr: syscon@1fc0000 {
+>  			reg = <0x0 0x01fc0000 0x0 0x30000>;
+>  		};
 >  
->  #define MSM_DSI_V2_VER_MINOR_8064	0x0
->  
-> diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
-> index 4d75529c0e858160761f5eb55db65e5d7565c27b..694ed95897d49c477726a2b0bec1099e75a3ce21 100644
-> --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
-> +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
-> @@ -119,6 +119,15 @@ struct msm_dsi_host {
->  	struct clk *pixel_clk;
->  	struct clk *byte_intf_clk;
->  
-> +	/*
-> +	 * Clocks which needs to be properly parented between DISPCC and DSI PHY
-> +	 * PLL:
-> +	 */
-> +	struct clk *byte_src_clk;
-> +	struct clk *pixel_src_clk;
-> +	struct clk *dsi_pll_byte_clk;
-> +	struct clk *dsi_pll_pixel_clk;
+> +		remoteproc_slpi: remoteproc@2400000 {
+> +			compatible = "qcom,sc8280xp-slpi-pas", "qcom,sm8350-slpi-pas";
+> +			reg = <0 0x02400000 0 0x10000>;
 > +
->  	unsigned long byte_clk_rate;
->  	unsigned long byte_intf_clk_rate;
->  	unsigned long pixel_clk_rate;
-> @@ -269,6 +278,38 @@ int dsi_clk_init_6g_v2(struct msm_dsi_host *msm_host)
->  	return ret;
->  }
->  
-> +int dsi_clk_init_6g_v2_9(struct msm_dsi_host *msm_host)
-> +{
-> +	struct device *dev = &msm_host->pdev->dev;
-> +	int ret;
+> +			interrupts-extended = <&pdc 9 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_slpi_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_slpi_in 1 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_slpi_in 2 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_slpi_in 3 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "wdog",
+> +					  "fatal",
+> +					  "ready",
+> +					  "handover",
+> +					  "stop-ack";
 > +
-> +	ret = dsi_clk_init_6g_v2(msm_host);
-> +	if (ret)
-> +		return ret;
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "xo";
 > +
-> +	msm_host->byte_src_clk = devm_clk_get(dev, "byte_src");
-> +	if (IS_ERR(msm_host->byte_src_clk))
-> +		return dev_err_probe(dev, PTR_ERR(msm_host->byte_src_clk),
-> +				     "can't get byte_src clock\n");
+> +			power-domains = <&rpmhpd SC8280XP_LCX>,
+> +					<&rpmhpd SC8280XP_LMX>;
+> +			power-domain-names = "lcx", "lmx";
 > +
-> +	msm_host->dsi_pll_byte_clk = devm_clk_get(dev, "dsi_pll_byte");
-> +	if (IS_ERR(msm_host->dsi_pll_byte_clk))
-> +		return dev_err_probe(dev, PTR_ERR(msm_host->dsi_pll_byte_clk),
-> +				     "can't get dsi_pll_byte clock\n");
+> +			memory-region = <&pil_slpi_mem>;
 > +
-> +	msm_host->pixel_src_clk = devm_clk_get(dev, "pixel_src");
-> +	if (IS_ERR(msm_host->pixel_src_clk))
-> +		return dev_err_probe(dev, PTR_ERR(msm_host->pixel_src_clk),
-> +				     "can't get pixel_src clock\n");
+> +			qcom,qmp = <&aoss_qmp>;
 > +
-> +	msm_host->dsi_pll_pixel_clk = devm_clk_get(dev, "dsi_pll_pixel");
-> +	if (IS_ERR(msm_host->dsi_pll_pixel_clk))
-> +		return dev_err_probe(dev, PTR_ERR(msm_host->dsi_pll_pixel_clk),
-> +				     "can't get dsi_pll_pixel clock\n");
+> +			qcom,smem-states = <&smp2p_slpi_out 0>;
+> +			qcom,smem-state-names = "stop";
 > +
-> +	return 0;
-> +}
+> +			status = "disabled";
 > +
->  static int dsi_clk_init(struct msm_dsi_host *msm_host)
->  {
->  	struct platform_device *pdev = msm_host->pdev;
-> @@ -370,6 +411,46 @@ int dsi_link_clk_set_rate_6g(struct msm_dsi_host *msm_host)
->  	return 0;
->  }
->  
-> +int dsi_link_clk_set_rate_6g_v2_9(struct msm_dsi_host *msm_host)
-> +{
-> +	struct device *dev = &msm_host->pdev->dev;
-> +	int ret;
+> +			glink-edge {
+> +				interrupts-extended = <&ipcc IPCC_CLIENT_SLPI
+> +							IPCC_MPROC_SIGNAL_GLINK_QMP
+> +							IRQ_TYPE_EDGE_RISING>;
+> +				mboxes = <&ipcc IPCC_CLIENT_SLPI
+> +						IPCC_MPROC_SIGNAL_GLINK_QMP>;
 > +
-> +	/*
-> +	 * DSI PHY PLLs have to be enabled to allow reparenting to them and
-> +	 * setting the rates of pixel/byte clocks.
-> +	 */
-> +	ret = clk_prepare_enable(msm_host->dsi_pll_byte_clk);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to enable dsi_pll_byte: %d\n", ret);
-> +		return ret;
-> +	}
+> +				label = "slpi";
+> +				qcom,remote-pid = <3>;
+
+No fastrpc contexts?
+
+> +			};
+> +		};
 > +
-> +	ret = clk_prepare_enable(msm_host->dsi_pll_pixel_clk);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to enable dsi_pll_byte: %d\n", ret);
-> +		goto out_disable_byte_clk;
-> +	}
-> +
-> +	ret = clk_set_parent(msm_host->byte_src_clk, msm_host->dsi_pll_byte_clk);
-> +	if (ret)
-> +		dev_err(dev, "Failed to parent byte_src -> dsi_pll_byte: %d\n", ret);
-> +
-> +	ret = clk_set_parent(msm_host->pixel_src_clk, msm_host->dsi_pll_pixel_clk);
-> +	if (ret)
-> +		dev_err(dev, "Failed to parent pixel_src -> dsi_pll_pixel: %d\n", ret);
-> +
-> +	clk_disable_unprepare(msm_host->dsi_pll_pixel_clk);
-> +	clk_disable_unprepare(msm_host->dsi_pll_byte_clk);
-> +
-> +	return dsi_link_clk_set_rate_6g(msm_host);
-> +
-> +out_disable_byte_clk:
-> +	clk_disable_unprepare(msm_host->dsi_pll_byte_clk);
-> +
-> +	return ret;
-> +}
-> +
->  int dsi_link_clk_enable_6g(struct msm_dsi_host *msm_host)
->  {
->  	int ret;
+>  		remoteproc_adsp: remoteproc@3000000 {
+>  			compatible = "qcom,sc8280xp-adsp-pas";
+>  			reg = <0 0x03000000 0 0x10000>;
 > 
 > -- 
-> 2.45.2
+> 2.49.0
 > 
 
 -- 
