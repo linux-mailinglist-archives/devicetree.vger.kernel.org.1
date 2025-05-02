@@ -1,157 +1,457 @@
-Return-Path: <devicetree+bounces-172898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC891AA6DFC
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:23:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8D6FAA6E07
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:24:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B60A1BA69FA
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:23:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 675D07AD7DB
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:23:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F1D22F155;
-	Fri,  2 May 2025 09:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8898B22E3E6;
+	Fri,  2 May 2025 09:24:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="a5QT+9Jy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JxbfJ/63"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E7822E3F0;
-	Fri,  2 May 2025 09:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B13822D7AD
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 09:24:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746177796; cv=none; b=oaka13bPlpaWFXY9Jn44oShprG+N8tQrDDOGQFToFc8oGa4AKA9TGORuXZzMWqcQ/O0W/TkWs09VPxZPbMUrh89BkL+BkaZD77fg8Jx8DBsFIdE3o8DiaTRpFolneEiv7IrMBRsncCVenJr/LgnP5MJNEfQQ9yueFM1AzxZ0M30=
+	t=1746177888; cv=none; b=GYBPVu4bo+nzFlDCSeP0429cYl1Ze4pd9mxdFl9DJ7T3Cm6xzecgnKsL94SgpFnEcKoifw5FAX4AlDmUjjWglmbDMW6qoECNyqvqlSXQHcMGaBoVIdW6UBwiD5/TJWASXVNVtxs3Vl1tDRTekW3xRIzHaY1aOIWpCuHuTsMsqcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746177796; c=relaxed/simple;
-	bh=U++3sNlCPeeANu+nz6fN0S33H3Je9z9LoqgHkKhQ0fo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZmZe5PPYBFACz9dpZ2v2Day/o+XHBb0Pd3r8hqe0fNuJUOu9i5ybYyiBhKahN1xvCH3BD5Z9/WimYNItdT6YlADdZtS8708nKSMcdWmgYZjQ78JwagPkq4zmqVlcasf7A2OzVkj33SqS6GZnhLvkJwIvQwcfAXp9tjDszzsXsk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=a5QT+9Jy; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746177795; x=1777713795;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=U++3sNlCPeeANu+nz6fN0S33H3Je9z9LoqgHkKhQ0fo=;
-  b=a5QT+9JyayPJIWIyZ4QHQOG3Oq4QqpMSNncnaPKExBFP3q3+9oPyNwd9
-   p8WBSX9ZaXfrhJRIEqSQOaDW9V2Tfb2hPs4o106dUY4iO0sBIALSI2n6I
-   ndBwrzrZ8toNXCeUb2G01IQrkoobv3a899gwa6auZcKTvT0I4d77wXNbj
-   DJI9cQtxp041Wyv6N1Dc+ytSSb2YHYz+1b8ShgzxKMkyBDAVcSQol0MVO
-   CL4QGURQtzPamlVB69cREzrM+oN5me9cRIuGFS20FffGeo7YOL95ymASH
-   hG2t9dMm34m9ZJNpGyAOAJN0CYY2Gx6lrxMDXtUPS84gZPsf5Xrap+pmm
-   w==;
-X-CSE-ConnectionGUID: bjQcJeg0TyOOGe+RE1dNjw==
-X-CSE-MsgGUID: xRMmoHR8TDSUtOktgOgVDA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11420"; a="47945288"
-X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; 
-   d="scan'208";a="47945288"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2025 02:23:14 -0700
-X-CSE-ConnectionGUID: iiQ1d/qGSoeCjpfWWLMd/Q==
-X-CSE-MsgGUID: vFfdScTFQX6wwFxCDBTG2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; 
-   d="scan'208";a="165662214"
-Received: from smile.fi.intel.com ([10.237.72.55])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2025 02:23:09 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uAmbq-00000002958-17hD;
-	Fri, 02 May 2025 12:23:06 +0300
-Date: Fri, 2 May 2025 12:23:06 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Eason Yang <j2anfernee@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	javier.carrasco.cruz@gmail.com, tgamblin@baylibre.com,
-	olivier.moysan@foss.st.com, alisadariana@gmail.com,
-	gstols@baylibre.com, antoniu.miclaus@analog.com,
-	eblanc@baylibre.com, matteomartelli3@gmail.com,
-	marcelo.schmitt@analog.com, chanh@os.amperecomputing.com,
-	KWLIU@nuvoton.com, yhyang2@nuvoton.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 2/2] iio: adc: add support for Nuvoton NCT7201
-Message-ID: <aBSO-o4OFrXKJ82C@smile.fi.intel.com>
-References: <20250429025505.3278016-1-j2anfernee@gmail.com>
- <20250429025505.3278016-3-j2anfernee@gmail.com>
+	s=arc-20240116; t=1746177888; c=relaxed/simple;
+	bh=girCR832i3VqI4TrWisqlVnPCO94U7GVFtP3RF/fjOg=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=a8q6NPtCO5QIYorMp1gLtj0TmXIfqpcYS+sB/HfdiPAW9LFNwPgBRVMbbGLQm4+hoxluKn0sk+Sw+/SQeFBWazhWINKvmD6mrVdU5BVJG9AjqyCrf5Cb85Ax4ghWd5l3qh2119SA4Xn/anaa4xhGD1AIRtOiAFdCoEQPROV1Tps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JxbfJ/63; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-39c31e4c3e5so1026070f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 02:24:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746177884; x=1746782684; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mQp/QEUsu8zl6paOkwfjHMN7jFZiXU+No55367DtrjQ=;
+        b=JxbfJ/637XtWJA6GpL1lWIECC7g6ojZcCIuhku0BFys4LDOe8fnQ1RATWGIqFMHIKW
+         q+WtGVP6nXdFtGsUo4P0ZsUb0AuJy+S+UINZd4QfriBtY2TlWEo3gIk/1VwfbF/wy7N+
+         BvEWI4m8xSKD3WNzFyfj/B78ODOOFQky4JFGP+J9ge5q2Yaebs+8Rn26/ej4QYW0hKxW
+         GY09bRn/cy8V7g7HSMqM9+XdqMX9Pg/x7NpoIT+RJlYJ6F6tH3lFXSvaHivLqWXeFhyk
+         P0kkJ4+SwQQkY3zrw0X0rSRxeizeG6mO4Lw1y4HDthYrr+iHnmx2skoFOnvYNx/eYtTZ
+         28ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746177884; x=1746782684;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=mQp/QEUsu8zl6paOkwfjHMN7jFZiXU+No55367DtrjQ=;
+        b=efiHVT04DRLGA/+Pzeftj3q2mYlHNSxX4O9YdSh9AHqfTHeR1tM1FqqaK9oWElpNUQ
+         WJR1gpaPlArgkzd/YozqRyEolQ6NKAURKEQVxr82Y/gq3wBKodYyDW1rzrQaksFqi2f9
+         wvNJqcVypjWLLtHG2NfOvfQWvSp57Htme2xMlWR6nEh2u2ju7/7ZvhoMvzMaPst1vmj6
+         cwIHrZTdUINVSrWd+lxemmkRYa/YYrZ7u46Z9eclUdrOuyfP0RAcFCKkeNHn9J/ZY2qF
+         /H9WXo/jhjatpzVwTUyQicUFJkyqIfe8L7hcR1fF1LLw9x7EEnxS7+RS2WiHTzECnQwp
+         T/Cw==
+X-Forwarded-Encrypted: i=1; AJvYcCXb/n85G3qh4IWPMqE0EvQvU7M5a2fiXPdriXR4qMO0nXU3DqjW0X2eo8jkh2NMBXyDpIzsXTuCHL5q@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTQwml/B4TOkSE88xUS8sQZn6yXBaaaWAe+vHiqwCDMbMK2FEl
+	Bgs0UfxYRGMOfoGYsn8sopi6+fGAgVc5h+BqB7d5o40lNkeGw3xljuBkN/gfJ4k=
+X-Gm-Gg: ASbGncuCBa/+sUCGUXh6R7UVwwlNuz71ImS7moW1pMHFE1zpVbzwq4sayfUDglT/r4m
+	/PNBQIsxakG5sgAkVKss9qjOlXiYSw2NfZ/+ujbdnp8cp8u+F7hmOhIZLhXUsyCYCYVBPnoZcMK
+	y0Ljtw5QAVS24YZvB9MXj/BA2H+Bxd33DyRBzQJzUiC8Eldg/GpLGQ5qSHffKbbsJ1WGECnemlB
+	/7ueZyTs5AKfQ6IkMaCLOq9Y9t3GC+mCwuW73OcyXQt5CsCrYS7KPEwXnHHVfYWtNoVNVXxuIS7
+	41x06LfCw4CAWMjH1vhVpue8Wn1x0H2G6F58p/O9huqKLy9s7XzFyQXCFvjgbMNJ1jfiJSK3C1h
+	jK770Dr7bpR+y6Hsk0g==
+X-Google-Smtp-Source: AGHT+IF0RHm7eK8a8pTNdQCeWi4C3StVViogUTshQRuYXPjYI7q3A68CsbQtf6xL5MhXQ3hBSkJp/w==
+X-Received: by 2002:a05:6000:250c:b0:391:2f15:c1f4 with SMTP id ffacd0b85a97d-3a099af1e87mr1536113f8f.55.1746177884297;
+        Fri, 02 May 2025 02:24:44 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:161e:57b7:439b:f09f? ([2a01:e0a:3d9:2080:161e:57b7:439b:f09f])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae7a46sm1580008f8f.44.2025.05.02.02.24.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 May 2025 02:24:43 -0700 (PDT)
+Message-ID: <aef73cdc-d855-4f17-bd76-289b6e26cc14@linaro.org>
+Date: Fri, 2 May 2025 11:24:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250429025505.3278016-3-j2anfernee@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 9/9] serial: qcom-geni: Enable Serial on SA8255p
+ Qualcomm platforms
+To: Praveen Talari <quic_ptalari@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
+ Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
+ quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
+ quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
+References: <20250502031018.1292-1-quic_ptalari@quicinc.com>
+ <20250502031018.1292-10-quic_ptalari@quicinc.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250502031018.1292-10-quic_ptalari@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 29, 2025 at 10:55:05AM +0800, Eason Yang wrote:
-> Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
+On 02/05/2025 05:10, Praveen Talari wrote:
+> The Qualcomm automotive SA8255p SoC relies on firmware to configure
+> platform resources, including clocks, interconnects and TLMM.
+> The driver requests resources operations over SCMI using power
+> and performance protocols.
 > 
-> NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up
-> to 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins
-> for independent alarm signals, and all the threshold values could be set
-> for system protection without any timing delay. It also supports reset
-> input RSTIN# to recover system from a fault condition.
+> The SCMI power protocol enables or disables resources like clocks,
+> interconnect paths, and TLMM (GPIOs) using runtime PM framework APIs,
+> such as resume/suspend, to control power states(on/off).
 > 
-> Currently, only single-edge mode conversion and threshold events are
-> supported.
+> The SCMI performance protocol manages UART baud rates, with each baud
+> rate represented by a performance level. The driver uses the
+> dev_pm_opp_set_level() API to request the desired baud rate by
+> specifying the performance level.
+> 
+> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+> ---
+>   drivers/tty/serial/qcom_geni_serial.c | 150 +++++++++++++++++++++++---
+>   1 file changed, 135 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
+> index 9d698c354510..51036d5c8ea1 100644
+> --- a/drivers/tty/serial/qcom_geni_serial.c
+> +++ b/drivers/tty/serial/qcom_geni_serial.c
+> @@ -11,6 +11,7 @@
+>   #include <linux/irq.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+> +#include <linux/pm_domain.h>
+>   #include <linux/pm_opp.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/pm_runtime.h>
+> @@ -99,10 +100,16 @@
+>   #define DMA_RX_BUF_SIZE		2048
+>   
+>   static DEFINE_IDA(port_ida);
+> +#define DOMAIN_IDX_POWER	0
+> +#define DOMAIN_IDX_PERF		1
+>   
+>   struct qcom_geni_device_data {
+>   	bool console;
+>   	enum geni_se_xfer_mode mode;
+> +	struct dev_pm_domain_attach_data pd_data;
+> +	int (*geni_serial_pwr_rsc_init)(struct uart_port *uport);
+> +	int (*geni_serial_set_rate)(struct uart_port *uport, unsigned long clk_freq);
+> +	int (*geni_serial_switch_power_state)(struct uart_port *uport, bool state);
 
-...
+The geni_serial_ is not needed here, so not need to use "pwr", just use the
+original names:
+resources_init
+set_rate
+power_state
 
-> +static int nct7201_write_event_value(struct iio_dev *indio_dev,
-> +				     const struct iio_chan_spec *chan,
-> +				     enum iio_event_type type,
-> +				     enum iio_event_direction dir,
-> +				     enum iio_event_info info,
-> +				     int val, int val2)
+Neil
+
+>   };
+>   
+>   struct qcom_geni_private_data {
+> @@ -140,6 +147,7 @@ struct qcom_geni_serial_port {
+>   
+>   	struct qcom_geni_private_data private_data;
+>   	const struct qcom_geni_device_data *dev_data;
+> +	struct dev_pm_domain_list *pd_list;
+>   };
+>   
+>   static const struct uart_ops qcom_geni_console_pops;
+> @@ -1331,6 +1339,42 @@ static int geni_serial_set_rate(struct uart_port *uport, unsigned long baud)
+>   	return 0;
+>   }
+>   
+> +static int geni_serial_set_level(struct uart_port *uport, unsigned long baud)
 > +{
-> +	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-> +	int  err;
-
-One space too many.
-
-> +	if (chan->type != IIO_VOLTAGE)
-> +		return -EOPNOTSUPP;
+> +	struct qcom_geni_serial_port *port = to_dev_port(uport);
+> +	struct device *perf_dev = port->pd_list->pd_devs[DOMAIN_IDX_PERF];
 > +
-> +	if (info != IIO_EV_INFO_VALUE)
-> +		return -EOPNOTSUPP;
+> +	/*
+> +	 * The performance protocol sets UART communication
+> +	 * speeds by selecting different performance levels
+> +	 * through the OPP framework.
+> +	 *
+> +	 * Supported perf levels for baudrates in firmware are below
+> +	 * +---------------------+--------------------+
+> +	 * |  Perf level value   |  Baudrate values   |
+> +	 * +---------------------+--------------------+
+> +	 * |      300            |      300           |
+> +	 * |      1200           |      1200          |
+> +	 * |      2400           |      2400          |
+> +	 * |      4800           |      4800          |
+> +	 * |      9600           |      9600          |
+> +	 * |      19200          |      19200         |
+> +	 * |      38400          |      38400         |
+> +	 * |      57600          |      57600         |
+> +	 * |      115200         |      115200        |
+> +	 * |      230400         |      230400        |
+> +	 * |      460800         |      460800        |
+> +	 * |      921600         |      921600        |
+> +	 * |      2000000        |      2000000       |
+> +	 * |      3000000        |      3000000       |
+> +	 * |      3200000        |      3200000       |
+> +	 * |      4000000        |      4000000       |
+> +	 * +---------------------+--------------------+
+> +	 */
 > +
-> +	if (dir == IIO_EV_DIR_FALLING)
-> +		err = regmap_write(chip->regmap16, NCT7201_REG_VIN_LOW_LIMIT(chan->address),
-> +				   FIELD_PREP(NCT7201_REG_VIN_MASK, val));
-> +	else
-> +		err = regmap_write(chip->regmap16, NCT7201_REG_VIN_HIGH_LIMIT(chan->address),
-> +				   FIELD_PREP(NCT7201_REG_VIN_MASK, val));
-> +
-> +	return err;
+> +	return dev_pm_opp_set_level(perf_dev, baud);
 > +}
-
-...
-
-> +	/* Enable Channel */
-
-Channels
-
-> +	if (chip->num_vin_channels <= 8)
-> +		err = regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
-> +				   GENMASK(chip->num_vin_channels - 1, 0));
-
-Why can't you use the value kept in data variable?
-
-> +	else
-> +		err = regmap_bulk_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE,
-> +					&data, sizeof(data));
-> +	if (err)
-> +		return dev_err_probe(dev, err, "Failed to enable channel\n");
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> +
+>   static void qcom_geni_serial_set_termios(struct uart_port *uport,
+>   					 struct ktermios *termios,
+>   					 const struct ktermios *old)
+> @@ -1349,7 +1393,7 @@ static void qcom_geni_serial_set_termios(struct uart_port *uport,
+>   	/* baud rate */
+>   	baud = uart_get_baud_rate(uport, termios, old, 300, 4000000);
+>   
+> -	ret = geni_serial_set_rate(uport, baud);
+> +	ret = port->dev_data->geni_serial_set_rate(uport, baud);
+>   	if (ret) {
+>   		dev_err(port->se.dev,
+>   			"%s: Failed to set baud:%u ret:%d\n",
+> @@ -1640,8 +1684,27 @@ static int geni_serial_resources_on(struct uart_port *uport)
+>   	return 0;
+>   }
+>   
+> -static int geni_serial_resource_init(struct qcom_geni_serial_port *port)
+> +static int geni_serial_resource_state(struct uart_port *uport, bool power_on)
+>   {
+> +	return power_on ? geni_serial_resources_on(uport) : geni_serial_resources_off(uport);
+> +}
+> +
+> +static int geni_serial_pwr_init(struct uart_port *uport)
+> +{
+> +	struct qcom_geni_serial_port *port = to_dev_port(uport);
+> +	int ret;
+> +
+> +	ret = dev_pm_domain_attach_list(port->se.dev,
+> +					&port->dev_data->pd_data, &port->pd_list);
+> +	if (ret <= 0)
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static int geni_serial_resource_init(struct uart_port *uport)
+> +{
+> +	struct qcom_geni_serial_port *port = to_dev_port(uport);
+>   	int ret;
+>   
+>   	port->se.clk = devm_clk_get(port->se.dev, "se");
+> @@ -1680,7 +1743,6 @@ static int geni_serial_resource_init(struct qcom_geni_serial_port *port)
+>   static void qcom_geni_serial_pm(struct uart_port *uport,
+>   		unsigned int new_state, unsigned int old_state)
+>   {
+> -
+>   	/* If we've never been called, treat it as off */
+>   	if (old_state == UART_PM_STATE_UNDEFINED)
+>   		old_state = UART_PM_STATE_OFF;
+> @@ -1774,13 +1836,16 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
+>   	port->se.dev = &pdev->dev;
+>   	port->se.wrapper = dev_get_drvdata(pdev->dev.parent);
+>   
+> -	ret = geni_serial_resource_init(port);
+> +	ret = port->dev_data->geni_serial_pwr_rsc_init(uport);
+>   	if (ret)
+>   		return ret;
+>   
+>   	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> -	if (!res)
+> -		return -EINVAL;
+> +	if (!res) {
+> +		ret = -EINVAL;
+> +		goto error;
+> +	}
+> +
+>   	uport->mapbase = res->start;
+>   
+>   	port->tx_fifo_depth = DEF_FIFO_DEPTH_WORDS;
+> @@ -1790,19 +1855,26 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
+>   	if (!data->console) {
+>   		port->rx_buf = devm_kzalloc(uport->dev,
+>   					    DMA_RX_BUF_SIZE, GFP_KERNEL);
+> -		if (!port->rx_buf)
+> -			return -ENOMEM;
+> +		if (!port->rx_buf) {
+> +			ret = -ENOMEM;
+> +			goto error;
+> +		}
+>   	}
+>   
+>   	port->name = devm_kasprintf(uport->dev, GFP_KERNEL,
+>   			"qcom_geni_serial_%s%d",
+>   			uart_console(uport) ? "console" : "uart", uport->line);
+> -	if (!port->name)
+> -		return -ENOMEM;
+> +	if (!port->name) {
+> +		ret = -ENOMEM;
+> +		goto error;
+> +	}
+>   
+>   	irq = platform_get_irq(pdev, 0);
+> -	if (irq < 0)
+> -		return irq;
+> +	if (irq < 0) {
+> +		ret = irq;
+> +		goto error;
+> +	}
+> +
+>   	uport->irq = irq;
+>   	uport->has_sysrq = IS_ENABLED(CONFIG_SERIAL_QCOM_GENI_CONSOLE);
+>   
+> @@ -1824,7 +1896,7 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
+>   			IRQF_TRIGGER_HIGH, port->name, uport);
+>   	if (ret) {
+>   		dev_err(uport->dev, "Failed to get IRQ ret %d\n", ret);
+> -		return ret;
+> +		goto error;
+>   	}
+>   
+>   	pm_runtime_enable(port->se.dev);
+> @@ -1849,6 +1921,7 @@ static int qcom_geni_serial_probe(struct platform_device *pdev)
+>   
+>   error:
+>   	pm_runtime_disable(port->se.dev);
+> +	dev_pm_domain_detach_list(port->pd_list);
+>   	return ret;
+>   }
+>   
+> @@ -1863,22 +1936,31 @@ static void qcom_geni_serial_remove(struct platform_device *pdev)
+>   	ida_free(&port_ida, uport->line);
+>   	pm_runtime_disable(port->se.dev);
+>   	uart_remove_one_port(drv, &port->uport);
+> +	dev_pm_domain_detach_list(port->pd_list);
+>   }
+>   
+>   static int qcom_geni_serial_runtime_suspend(struct device *dev)
+>   {
+>   	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
+>   	struct uart_port *uport = &port->uport;
+> +	int ret = 0;
+>   
+> -	return geni_serial_resources_off(uport);
+> +	if (port->dev_data->geni_serial_switch_power_state)
+> +		ret = port->dev_data->geni_serial_switch_power_state(uport, false);
+> +
+> +	return ret;
+>   };
+>   
+>   static int qcom_geni_serial_runtime_resume(struct device *dev)
+>   {
+>   	struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
+>   	struct uart_port *uport = &port->uport;
+> +	int ret = 0;
+> +
+> +	if (port->dev_data->geni_serial_switch_power_state)
+> +		ret = port->dev_data->geni_serial_switch_power_state(uport, true);
+>   
+> -	return geni_serial_resources_on(uport);
+> +	return ret;
+>   };
+>   
+>   static int qcom_geni_serial_suspend(struct device *dev)
+> @@ -1916,11 +1998,41 @@ static int qcom_geni_serial_resume(struct device *dev)
+>   static const struct qcom_geni_device_data qcom_geni_console_data = {
+>   	.console = true,
+>   	.mode = GENI_SE_FIFO,
+> +	.geni_serial_pwr_rsc_init = geni_serial_resource_init,
+> +	.geni_serial_set_rate = geni_serial_set_rate,
+> +	.geni_serial_switch_power_state = geni_serial_resource_state,
+>   };
+>   
+>   static const struct qcom_geni_device_data qcom_geni_uart_data = {
+>   	.console = false,
+>   	.mode = GENI_SE_DMA,
+> +	.geni_serial_pwr_rsc_init = geni_serial_resource_init,
+> +	.geni_serial_set_rate = geni_serial_set_rate,
+> +	.geni_serial_switch_power_state = geni_serial_resource_state,
+> +};
+> +
+> +static const struct qcom_geni_device_data sa8255p_qcom_geni_console_data = {
+> +	.console = true,
+> +	.mode = GENI_SE_FIFO,
+> +	.pd_data = {
+> +		.pd_flags = PD_FLAG_DEV_LINK_ON,
+> +		.pd_names = (const char*[]) { "power", "perf" },
+> +		.num_pd_names = 2,
+> +	},
+> +	.geni_serial_pwr_rsc_init = geni_serial_pwr_init,
+> +	.geni_serial_set_rate = geni_serial_set_level,
+> +};
+> +
+> +static const struct qcom_geni_device_data sa8255p_qcom_geni_uart_data = {
+> +	.console = false,
+> +	.mode = GENI_SE_DMA,
+> +	.pd_data = {
+> +		.pd_flags = PD_FLAG_DEV_LINK_ON,
+> +		.pd_names = (const char*[]) { "power", "perf" },
+> +		.num_pd_names = 2,
+> +	},
+> +	.geni_serial_pwr_rsc_init = geni_serial_pwr_init,
+> +	.geni_serial_set_rate = geni_serial_set_level,
+>   };
+>   
+>   static const struct dev_pm_ops qcom_geni_serial_pm_ops = {
+> @@ -1934,10 +2046,18 @@ static const struct of_device_id qcom_geni_serial_match_table[] = {
+>   		.compatible = "qcom,geni-debug-uart",
+>   		.data = &qcom_geni_console_data,
+>   	},
+> +	{
+> +		.compatible = "qcom,sa8255p-geni-debug-uart",
+> +		.data = &sa8255p_qcom_geni_console_data,
+> +	},
+>   	{
+>   		.compatible = "qcom,geni-uart",
+>   		.data = &qcom_geni_uart_data,
+>   	},
+> +	{
+> +		.compatible = "qcom,sa8255p-geni-uart",
+> +		.data = &sa8255p_qcom_geni_uart_data,
+> +	},
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, qcom_geni_serial_match_table);
 
 
