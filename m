@@ -1,144 +1,187 @@
-Return-Path: <devicetree+bounces-173073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CA1CAA75EB
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:25:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5B1AA75FA
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:27:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C912A9E01B1
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:25:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 608329E15FC
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:26:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FBBF2580F7;
-	Fri,  2 May 2025 15:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228562580F1;
+	Fri,  2 May 2025 15:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yFPN4O74"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jmj20tWy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D7C92580C0
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 15:25:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 322DC257AD4;
+	Fri,  2 May 2025 15:26:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746199529; cv=none; b=VIxjElPSyndbZpZY3wY5HSQILxguyJHQ3eXR//ZLmFrAwDkpmbXtGEiIkrCGSIAZyXZHwIKPB5amCGQRy0nN68/hZMey1/Mh200pkwnLG7EXMVmxLfICE0tt3jYJebDHzoJAH7TbB284sqOh37q6gLxwKw5QPgZelv54FPuXy44=
+	t=1746199581; cv=none; b=lA8hvOQVxzlCLQSb618JeekaJLi0UHN93RpEUULoNwgpIJ+F0iGV7WkoPaV7LVjct/uxIibUmKHvyvWoKzf//KcqLiB4r/Z65jXYTEK9B9G5SJcyBFZiABs461NbI3xDs+h7F3xWBL51SSo8b0hi8mrVRYUi/Ji5DVWYQ5bgQ/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746199529; c=relaxed/simple;
-	bh=LugdRThvsGx2CMHigSiJVuGvIK3aWNwVUx/pou6IRSI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=llx2cc3dRuVobmwQlhSusQgsMfbkNnaGG7AS4ame4QWWdff+azBrJUA+SVCp4KrEDqlp0I1AvixeIfo6EuRpaJX7L7M8Xnlpu8iZjizuAqRCS7KWnsgFF+0uO19+oCnfU8QB3Wb86dviTrhwfEfJlslg8Jwa1Uf0CLC/C4WXYWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yFPN4O74; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-224019ad9edso34505435ad.1
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 08:25:27 -0700 (PDT)
+	s=arc-20240116; t=1746199581; c=relaxed/simple;
+	bh=TOFMUxNS2/4TZSVKVnuIHht89nFkd+rBPXsXltpT5Tc=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=iaJeGZG7IuG3FSJ+rzyyM5muflMjnJa7+f4LN/zl8cMZsQIv795FHgj43slKgSkqtckIC1aS+DDmExqLyDHUutu2pAvZEtqaIctVfw5e5fToteKIrDgFn5cFQzx063DKEtDT8EbbFgltQ4WaoCOpnFEPwcqW2kVIU/l0VGYJ8es=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jmj20tWy; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-39c1ef4ae3aso1275981f8f.1;
+        Fri, 02 May 2025 08:26:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746199527; x=1746804327; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=7vtwnUwNKasAWxl8DSVgxrM1mcYEXj9Ayz7aojcassc=;
-        b=yFPN4O74yAhN2NDeW+wVC9rYdR4lG9CLBBiX5oNVpHeJEt5P22eLhLW+Gfg5Pbbqte
-         OAkFhN6gmXl6HqsgtO2aPsZUnSNjSVOAxNOZEBRD+GFOv1X81tzljNv3IbiyC/IAJm/V
-         IvESQwPQDF6IRvT3dZZRp4Beo2kuHRwOkjSdSiyJ55YfDyVbE/Wnlq9wCzJRa+GqD//M
-         H4XZMAEC1DANj+17xJrdk4iglrvnKCWAV5g5oUL8U/sPKFZR32kgMe5EWWXEJByG13em
-         13uUjOY1G4by4U9zBF05Q8lhwpGRKr5lE3LFz11o8NpFWS/hxjEuhS2RsHvaMHygRxZA
-         b6qQ==
+        d=gmail.com; s=20230601; t=1746199576; x=1746804376; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4gHMqjVT46s55Pozie3W8hy9mIfIJmy04WVvupkhU18=;
+        b=jmj20tWy2VIlhBQf1Yxu22iPVgw2vtwUhU8NXCdikoUoO33JDYxjvA23U2SmkCrTIL
+         dTXwkkhObQm+JqlcoGTlElomfPVFf3Fo5KEtr250rviWlw7K1+aWnfrIBrMzWy+2lug2
+         YjXstHGnVtpOsoB6AA12AQUsCsk3l5vyRcu9B6Fz+kQE/ZS4NpkaCFxFCi8P+BfNLUGF
+         Xe6lyh/vV6eAq/NXZ2sBBZ/d0GEPW++KM2/LKW2HH1JQypzZQIefc2N9iQIGhk1eKGdg
+         nX4TIrur5pltZ8xzwhIiZDN98BUC5Wjcw8dPUghE0uqS8R2l768RV313laSzt99DBRYA
+         +mIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746199527; x=1746804327;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7vtwnUwNKasAWxl8DSVgxrM1mcYEXj9Ayz7aojcassc=;
-        b=Hikv5mQmT8N1Oqyt5PL7xGpr43veR7PBtaBtYlVuERGiG1/Q2TsRLXNbRBqzvRAVDQ
-         MRrFoLryqQUvcTpdVWs9bUYfi1Lthd5fFVYrJCD5gWrHtdeaf+s1E9GVWm77D1v8E91D
-         2gt9vpidD+D1cpdl6U1mJPfecd20gjHN8R6n+F2zmQ0CWGAXvElMbZ3uLZKkL/JsDLWt
-         So7HOGMjLSt7EJ2XcgS3/DDHSCKar02HvJ4pcI7ivr0hfagr/40w1E67yKS2zt0He0fN
-         nM5n23CilSBW2oH3eVTWFRrOL27PiE0V2JZa8AUq5pKKS3jDsoIsPGgQE6hH670rPWE3
-         y+JQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWS/FFOHgARYc0gPf3SZKA1UIY8jDhzbzK6PVZuj45oq2Grcm97Ttn9ss58+tbysWuNDdhuPqGsHdmX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEzPbp1LCcPfEBvJThltRqzbzpptiP5lRdgiZh5OMyLjusq50y
-	NA6Mdi0fTmgR2rUgTCUDU1A+qxmi4U3cdA7RvvU/Tsu5AppcGx3dsJ8gxvXHsA==
-X-Gm-Gg: ASbGnctYB5hWFcjnrTzdzsWJAvVwNDJUkPy8ckh7rNP7GrivxpuSwI2iJCx5V4EMtuj
-	mRu4uG9/OOwLqX7IsGFBamF+kmYYtOMRyLaUNla3YmkNpq9YqDNHyv58IfsE/T/I+Cf3RUqB1l/
-	JpeupIJOOlp02twp+dTtInax68YtJ0vfAFF1K8OlCH6K9uOW2DjEM/L28MlOKAgxfNboJEfxz8U
-	0UmYHupDN6Ge1Q74iCAwYN/daGtL62DcFnr0L9lKJAuhkqTfumyTp32pMvhzBGh0gecbViNzXFh
-	Q/1I5J/L3HzjuApP2CCDbcSOekCi1RajprDpE0VTHo9psLwW1cMnfQ==
-X-Google-Smtp-Source: AGHT+IHRKIqAtv7Ls6TzIfJYzOfALtMKzptW9t6NwjhMvUbrkIGXkQiOlsae6Xx1+FVT8dizOUKPfA==
-X-Received: by 2002:a17:902:e54a:b0:224:910:23f0 with SMTP id d9443c01a7336-22e103dd51fmr51268655ad.49.1746199526887;
-        Fri, 02 May 2025 08:25:26 -0700 (PDT)
-Received: from thinkpad ([220.158.156.122])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22e1523205asm8677055ad.241.2025.05.02.08.25.22
+        d=1e100.net; s=20230601; t=1746199576; x=1746804376;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=4gHMqjVT46s55Pozie3W8hy9mIfIJmy04WVvupkhU18=;
+        b=SLXX5C7rVmntdXfRYTFNMP2ZxHI0rILzo8wtLcFnB29n13Gi3XiMs8WvwhS6GL0+rS
+         whw5wquzkfpP73O23tPrLo9vt5wCyTQLYVI8kY0BncBVk8sGr5UjeuZhrFZ2GUk9kuH8
+         DhJ4T2r9W4eUZNNroI0F2TLxV0Fudws2DKeL3EbhZ3pO/S1G24Az2GDYq2IWIugih9MH
+         JpDtS2CynfNCYZEvwNsbv3GKW8gApkH0VyQXWXo5ug7W4XNsvkKcDyQ7qO5jqSUHq02H
+         Nabt5yA9JRPIRoZnN7sk3dCF3NkeW99o2UjdGk4lLy7///0b9uJZHuNXjLAaIxSQBKvM
+         ma+w==
+X-Forwarded-Encrypted: i=1; AJvYcCVBlAf5vlmGpkYkxMo0mDH88uQpp5CP0UuaSmCzxS6rraSXwpclKvm2HONN4rSjJCX70KHqUw6PaoBx@vger.kernel.org, AJvYcCVjiywK4/2I/7vYEFJZ5XfJvRCP5TtTSGlB9bwGZ9f4WY5JY+tlVXSjBEoMviDYum7ZPPsCd7DISJ0y@vger.kernel.org, AJvYcCW99fCVcFp6O8YbKYj6Q2/BrG8ca0dw7IOULewVp0BaWnQLN22JRFLyidWn2JpRNiL8VGi8xkqNwdfKBeFK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtuIpaRSTaI89LXvsPFBhboV1M9uvIw9zelrBsAllgHG1V3sLC
+	yZodr/t9EeT59d9VWXjTWFnFPEYst30X11VaXvV2pzEwPJSgRNkd
+X-Gm-Gg: ASbGncvJu1dxVvRcOPBKLps4ix/P3jUB9t81Ix/NVOBVxsWhzPvv69giRd8V0x0z4oU
+	mTeLKO5fGv7QMKJP56Lsye065/M6AALWPqS5K8QUjg4fAlsBQqcxbbJEd5uzaWouv8ucwhU1/nl
+	6/2dzPCyn8YGQRQe/TqjNb2v/5r+P+WY8MlVXm31YFzqorBQAmCKBuTzUhrAzGBv69LfPfV0Wkg
+	Zo2I6U64jUiuFb6Yj98+/28suVudnRE17NW1otQtTzlp1mmiHY8rmShK97fFbIZDgJLdUuM+4ZB
+	swsw9sZQGjOLwVEvOWQ63yx8Xcl36K/+cBxrtXQU7XDGjc/o6giDJdp/USYbLQe975IYFGBfOoP
+	4oGT/zRuFvTmJ
+X-Google-Smtp-Source: AGHT+IHNWS05xGhNo7XYO5K4ZF3dmLlkeAuJQLxQS55Busa5I9j1z85zKYmNTNx6fVe0V1kyy86myg==
+X-Received: by 2002:a05:6000:1a89:b0:39f:cfc:d520 with SMTP id ffacd0b85a97d-3a09835604bmr2912802f8f.15.1746199576192;
+        Fri, 02 May 2025 08:26:16 -0700 (PDT)
+Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b170b8sm2355945f8f.82.2025.05.02.08.26.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 May 2025 08:25:26 -0700 (PDT)
-Date: Fri, 2 May 2025 20:55:20 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Sai Krishna Musham <sai.krishna.musham@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, cassel@kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	michal.simek@amd.com, bharat.kumar.gogada@amd.com, thippeswamy.havalige@amd.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: amd-mdb: Add `reset-gpios`
- property to example device tree
-Message-ID: <ph5rby7y3jnu4fnbhiojesu6dsnre63vc4hmsjyasajrvurj6g@g6eo7lvjtuax>
-References: <20250429090046.1512000-1-sai.krishna.musham@amd.com>
- <20250429090046.1512000-2-sai.krishna.musham@amd.com>
+        Fri, 02 May 2025 08:26:15 -0700 (PDT)
+Message-ID: <0ebaa8bc80dc8dcbad6b55beb7e9e59d4eac48a4.camel@gmail.com>
+Subject: Re: [PATCH v4 02/10] iio: backend: add support for data alignment
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org, 
+	robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Fri, 02 May 2025 16:26:19 +0100
+In-Reply-To: <20250502085905.24926-3-antoniu.miclaus@analog.com>
+References: <20250502085905.24926-1-antoniu.miclaus@analog.com>
+	 <20250502085905.24926-3-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250429090046.1512000-2-sai.krishna.musham@amd.com>
 
-On Tue, Apr 29, 2025 at 02:30:45PM +0530, Sai Krishna Musham wrote:
-> Add `reset-gpios` property to the example device tree node for
-> GPIO-based handling of the PCIe Root Port (RP) PERST# signal.
-> 
-> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
+On Fri, 2025-05-02 at 11:58 +0300, Antoniu Miclaus wrote:
+> Add backend support for staring the capture synchronization.
+> When activated, it initates a proccess that aligns the sample's most
+> significant bit (MSB) based solely on the captured data, without
+> considering any other external signals.
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
-> Changes in v2:
-> - Update commit message
-> ---
->  Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml b/Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml
-> index 43dc2585c237..e6117d326279 100644
-> --- a/Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml
-> +++ b/Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml
-> @@ -87,6 +87,7 @@ examples:
->    - |
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
->  
->      soc {
->          #address-cells = <2>;
-> @@ -112,6 +113,7 @@ examples:
->              #size-cells = <2>;
->              #interrupt-cells = <1>;
->              device_type = "pci";
-> +            reset-gpios = <&tca6416_u37 7 GPIO_ACTIVE_LOW>;
 
-You should move this property to the PCI bridge node where it belongs to. We
-identified this issue of stuffing bridge specific properties to the controller
-node recently (yeah very late though), but since this controller doesn't have
-any bridge specific properties till now, I'd like it to do the right thing.
+Couple of notes from me...
 
-So please refer the STM32 sereies on how to do it [1][2]. On the driver side,
-you specifically need to implement an equivalent of stm32_pcie_parse_port() in
-that patch that parses the bridge node(s) for these properties.
+> changes in v4:
+> =C2=A0- implement iio_backend_interface_data_align with timeout parameter=
+.
+> =C2=A0drivers/iio/industrialio-backend.c | 14 ++++++++++++++
+> =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 3 +++
+> =C2=A02 files changed, 17 insertions(+)
+>=20
+> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industriali=
+o-
+> backend.c
+> index 038c9e1e2857..b7cbbc7a8fcd 100644
+> --- a/drivers/iio/industrialio-backend.c
+> +++ b/drivers/iio/industrialio-backend.c
+> @@ -796,6 +796,20 @@ int iio_backend_filter_type_set(struct iio_backend *=
+back,
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL_NS_GPL(iio_backend_filter_type_set, "IIO_BACKEND");
+> =C2=A0
+> +/**
+> + * iio_backend_data_align - Perform the data alignment process.
+> + * @back: Backend device
+> + * @timeout: Timeout value.
+> + *
 
-- Mani
+dData align is not a straightforward thing so a description is definitely
+helpful here. Please add one
+> + * RETURNS:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int iio_backend_interface_data_align(struct iio_backend *back, u32 timeo=
+ut)
 
-[1] https://lore.kernel.org/linux-pci/20250423090119.4003700-2-christian.bruel@foss.st.com/
-[2] https://lore.kernel.org/linux-pci/20250423090119.4003700-3-christian.bruel@foss.st.com/
-
--- 
-மணிவண்ணன் சதாசிவம்
+It would be nice to have a suffix in the time parameter. I would do timeout=
+_us.
+We should also document/define what happens if 0 is passed. Should we accep=
+t it?
+Should we block indefinitely? For starters, I would likely not accept 0.
+=20
+> +{
+> +	return iio_backend_op_call(back, interface_data_align, timeout);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(iio_backend_interface_data_align, "IIO_BACKEND");
+> +
+> =C2=A0/**
+> =C2=A0 * iio_backend_ddr_enable - Enable interface DDR (Double Data Rate)=
+ mode
+> =C2=A0 * @back: Backend device
+> diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+> index 5526800f5d4a..452cb2838dad 100644
+> --- a/include/linux/iio/backend.h
+> +++ b/include/linux/iio/backend.h
+> @@ -109,6 +109,7 @@ enum iio_backend_filter_type {
+> =C2=A0 * @debugfs_print_chan_status: Print channel status into a buffer.
+> =C2=A0 * @debugfs_reg_access: Read or write register value of backend.
+> =C2=A0 * @filter_type_set: Set filter type.
+> + * @interface_data_align: Perform the data alignment process.
+> =C2=A0 * @ddr_enable: Enable interface DDR (Double Data Rate) mode.
+> =C2=A0 * @ddr_disable: Disable interface DDR (Double Data Rate) mode.
+> =C2=A0 * @data_stream_enable: Enable data stream.
+> @@ -161,6 +162,7 @@ struct iio_backend_ops {
+> =C2=A0				=C2=A0 unsigned int writeval, unsigned int
+> *readval);
+> =C2=A0	int (*filter_type_set)(struct iio_backend *back,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum iio_backend_filter_typ=
+e type);
+> +	int (*interface_data_align)(struct iio_backend *back, u32 timeout);
+> =C2=A0	int (*ddr_enable)(struct iio_backend *back);
+> =C2=A0	int (*ddr_disable)(struct iio_backend *back);
+> =C2=A0	int (*data_stream_enable)(struct iio_backend *back);
+> @@ -203,6 +205,7 @@ int devm_iio_backend_request_buffer(struct device *de=
+v,
+> =C2=A0				=C2=A0=C2=A0=C2=A0 struct iio_dev *indio_dev);
+> =C2=A0int iio_backend_filter_type_set(struct iio_backend *back,
+> =C2=A0				enum iio_backend_filter_type type);
+> +int iio_backend_interface_data_align(struct iio_backend *back, u32 timeo=
+ut);
+> =C2=A0int iio_backend_ddr_enable(struct iio_backend *back);
+> =C2=A0int iio_backend_ddr_disable(struct iio_backend *back);
+> =C2=A0int iio_backend_data_stream_enable(struct iio_backend *back);
 
