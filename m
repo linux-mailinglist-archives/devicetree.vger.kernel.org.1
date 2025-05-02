@@ -1,157 +1,148 @@
-Return-Path: <devicetree+bounces-173041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37377AA751F
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:38:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C147AA7527
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:40:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FD787B7447
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:36:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77DB517CEB9
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:40:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D76255F40;
-	Fri,  2 May 2025 14:37:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9036F256C75;
+	Fri,  2 May 2025 14:40:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UW+T+1O7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9528533987;
-	Fri,  2 May 2025 14:37:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE792561AA;
+	Fri,  2 May 2025 14:40:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746196677; cv=none; b=WJgobdP2bCbV8S62N1uSyZM/7ji72hrb2cq9OsRGhB9qANvYYWf5aCdhFufe95SufsoqQ0gCkgBlL2gxEU0bUPePvpH1E6712XrZJvCtCu5So2WdD8ZtDD+tBUgU5wk0FkuRNCwxgq+qU8dSUSs952FCSjlkbkqHab3D9oIT/2Y=
+	t=1746196802; cv=none; b=kf2z8QYJ7wX948OgUP+ytMAYUq0viqnqSl4P25CLi5eagwKOCrTUEgS9ViP6yOkVTut0du28rRhIHXYTh4zYCeKW84lkOBswldWtXqGFZzhhogjpNKnRbV+NNtuFWz+AU7MMkhMkj80TyEUSHgUIIB5lA0t4PzBpsTPe3MmzS5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746196677; c=relaxed/simple;
-	bh=vzgrb/q3Hm4MTaMlWwWBlnRqa79jcllS5HRJIz+gNbU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LLwqrBMo0OBao7Cn8119k7d+SkednsoOWlbgRS4IKg+KEqV1IOLkpJInVUj39Ewbw62lkYMQdiAoGxLfS0kMkwF+R4iYCvgV7uDcFT8jkbmhbT8drn2xOcqd9CsJKIQzWRGbg9s3x17k18s70gudoJ/uMt+qWQuYSa8PgMQJTYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-86b9d1f729eso553174241.3;
-        Fri, 02 May 2025 07:37:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746196674; x=1746801474;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=djH4HCkZ8fHRpSMq+w9X5Wtnm+h0rA+LbETzrFeQVdY=;
-        b=Gc9rP+O50iiHtztdtZSTzsVMVlwSfYFoxIqOuNFQeUndKhnmR4CBLJCblkKSqWkKzQ
-         PU345QlBMl8or5rj4kVb3Tifm7pGtFkhyHVHHDmuAIrRO1PmbBwv2uMGZQAiVYu28FP6
-         R4CkBr6pxBb1M2YV38bA6DNvmUjbsLSY6VW3sAMZle2RsqwMBP20SdeyyoyxI37UklCK
-         VXzDakQO/oussCICV/SfVttWTPH61hsnMjRTfJWGwIsrXYxLCgqHSohCabNuZfSlrCPs
-         +EDZs4D2QUn/jbulwIyrUIN4i4i6iz3GDHilBxJTAyUsVqOEmkDwE1wpxkIck686FXWY
-         w4Cw==
-X-Forwarded-Encrypted: i=1; AJvYcCUHm7u2n23WQbJZ1Emw6suF0DGnQCS1HKsHyqlIXx5EgLgRT7B2+TDGdEtKdqXHJRhIiLWat+Ub5YtdArwi@vger.kernel.org, AJvYcCVRhs8qtH+RZpwAWMr+69syT7MBgEOMxvDcQBuGa+40jQFo3JlYJcstX3CAcAh5xV0mGnuovoLzHJsdGDM6Rn9irSo=@vger.kernel.org, AJvYcCWShQwqjU88kbV8PG3tFI0LQBpnvliHL/ixI8Wb7O2J+ju6WikALk8iQxgokTmGbriF4hSaj/1SPnWS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpXLo966OavUZ8lJEZnJbZq9R8KBNgw+xZ7aueDtySf4h6iAQb
-	pbPTOMZXeQsoWykAWQt+HIJ80gI/6MZlIGy9V0GFEXS3BTNBz6qANgj/FXrZ
-X-Gm-Gg: ASbGncvKe5uDVEpwXkMmsBfCYptiqxxTF6ZgOmfmppBRd0rEeobmE0ruJ2DaFbC706c
-	Opv4TAc5fXTQpiQJx5ausZG8pCi5SY48jKWmmt37ykIVsx2kOL2l3RsaFuR4J86hNSnTCVT3Bui
-	eoFrG6QTlmEl0iiQ+/yO49XnJrpQiMvai6xYWYeVgiBsFICeb07pS7rVz6mdU885Ek+HG5JMRlz
-	8jsqUvaAXBLazDy4Uq0vfBfdc84e19b5dyiXu4p0a0/Ql83czwEKKMd4vs4kiZI/yjE6l6R4qV4
-	ncSKyKBC0MDPc7IlCwE6KpcAmJ53hgCdr4FGbhYZIoQcUN7+Tn8x+4cGIBgxmxQqAaov5ZUXciE
-	fmXkrgoIdBoa2lg==
-X-Google-Smtp-Source: AGHT+IERqBXqrt92Awczcok8WHg32ZBmC0GA/7zPOV3ZdcEacFcK+wEzNJ9sIdOSAsHM/PJHGibkPw==
-X-Received: by 2002:a05:6102:80a6:b0:4c4:dead:2f36 with SMTP id ada2fe7eead31-4dafb20efa3mr2370719137.0.1746196674152;
-        Fri, 02 May 2025 07:37:54 -0700 (PDT)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8780affe7c1sm282969241.11.2025.05.02.07.37.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 May 2025 07:37:53 -0700 (PDT)
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4c9b2beb272so517101137.0;
-        Fri, 02 May 2025 07:37:53 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWETlzIR5rv13WR5EZr4aO3SF1zXxom6SYJC/HUmRCecKDl9OP5w3W9yfh2basXa8E8TVPzXgAtbhTb@vger.kernel.org, AJvYcCXReGVuIeTtYQG5u2BLK26uIIsANrtUchGrjce9Fqk9zWd0FoGCSmvY8KBWhUh9Hd1G9PHFq7CXSDIQ6mgFx41CKUw=@vger.kernel.org, AJvYcCXUzLxWLM8XV3Fj3c6sbFn/0/Brq9LKTt0SIcLPc8ZENZZ2wzpBdvyPqdTPo5WxToathDwur9HiUXfN66Q/@vger.kernel.org
-X-Received: by 2002:a05:6102:3ca0:b0:4c3:64bd:5405 with SMTP id
- ada2fe7eead31-4dafb4e491amr2229877137.9.1746196673576; Fri, 02 May 2025
- 07:37:53 -0700 (PDT)
+	s=arc-20240116; t=1746196802; c=relaxed/simple;
+	bh=QsPpiaBLB1aFFmt/jJN2Nv++3refqGj4VMkze5Zx/mY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GOJveoTDEF088SbeBLyGKl1RSLJbAT1WW1UehinijofxFzIgGEnsgAyYTmdJHR1A2WmlnOJKZSr8KB1/l+9GLb5qz3C0KjIzb/WqcGH8ChqAtO287WwYc4FMi294mYBv1FHiJ4pz75QCtBJ4agFxyHamFCC1Ueo/q4BkNyL0YBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UW+T+1O7; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 542DXQl8023283;
+	Fri, 2 May 2025 14:39:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ihUAnzGKyPDiDhSe0ZCJJ88GnAc85VGkvMyX1QaWv7o=; b=UW+T+1O78hQ2Z0Wz
+	tRR1GvCiB/ZVLs/WH2YCC5R9VhRpLVC00wZfKxjp73xIsHaV/HRW+podzmY/Kw8G
+	3ZMJ87riRJIwomHf/EhXaazuOVqDd0dlbRsWYM2EXdJfeDArJvgiyaYHzzxAwTnh
+	Nd8SHnD5SZBNpYCTh+gaWY4I3EDCb2sFI9kZVfca91yO1/OwqNglfzR23PBuU92D
+	fEwM5a3iVx6tud93/Z/Ok4V7x/FxO2S7kFyAd2LAKpmdB29PlYLXks5xq51zV86j
+	3r46hx+jHZaz1mwk42ivn4fxDqwVmO27J/648V8fwf66GrhsNCAHpg63PM7Fg6NY
+	9KM5Eg==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u80kyw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 02 May 2025 14:39:55 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 542Eds6V020371
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 2 May 2025 14:39:54 GMT
+Received: from [10.216.18.87] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 2 May 2025
+ 07:39:47 -0700
+Message-ID: <cc17c3d2-f882-4729-a676-476705a203bc@quicinc.com>
+Date: Fri, 2 May 2025 20:09:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250502124627.69644-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250502124627.69644-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250502124627.69644-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 2 May 2025 16:37:40 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVXeBUah-r0YQsjhvxeja9oMZpLYZHTwxgdi=ezqY=iBw@mail.gmail.com>
-X-Gm-Features: ATxdqUGHGVa5bIvq47sWpJM4d0i9BJCZPMZeIzvLmuPiSn_UaSOHz6YGgg0iKKU
-Message-ID: <CAMuHMdVXeBUah-r0YQsjhvxeja9oMZpLYZHTwxgdi=ezqY=iBw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] clocksource/drivers/renesas-ostm: Enable reprobe
- for all ARM64 SoCs
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Chris Brandt <chris.brandt@renesas.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/9] opp: add new helper API dev_pm_opp_set_level()
+To: Viresh Kumar <viresh.kumar@linaro.org>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby
+	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Viresh Kumar
+	<vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <psodagud@quicinc.com>,
+        <djaggi@quicinc.com>, <quic_msavaliy@quicinc.com>,
+        <quic_vtanuku@quicinc.com>, <quic_arandive@quicinc.com>,
+        <quic_mnaresh@quicinc.com>, <quic_shazhuss@quicinc.com>
+References: <20250502031018.1292-1-quic_ptalari@quicinc.com>
+ <20250502031018.1292-2-quic_ptalari@quicinc.com>
+ <20250502053758.utawzhq6famwenc2@vireshk-i7>
+ <8ba02745-378b-4264-883a-b99764701d0b@quicinc.com>
+ <20250502081402.yjagnnjrfva7u4cb@vireshk-i7>
+ <e1b2029b-2461-4cfc-a6b3-acdf5e01c289@quicinc.com>
+ <CAKohpondRqdfqC3CFSJibL2om8_Bbds8k5Dfu8fcZDksNxQUwg@mail.gmail.com>
+Content-Language: en-US
+From: Praveen Talari <quic_ptalari@quicinc.com>
+In-Reply-To: <CAKohpondRqdfqC3CFSJibL2om8_Bbds8k5Dfu8fcZDksNxQUwg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=Ldc86ifi c=1 sm=1 tr=0 ts=6814d93b cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=B5uisSGkWXMBVcHgxMUA:9 a=QEXdDO2ut3YA:10
+ a=zZCYzV9kfG8A:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: BLC-XjugQWvpu8IIlQHOHrm1McJkrgrl
+X-Proofpoint-ORIG-GUID: BLC-XjugQWvpu8IIlQHOHrm1McJkrgrl
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDExNiBTYWx0ZWRfX7+mQQSkd3Vij kNKshKwPex+efq4MBATgc6zx5ntseOs3rwNAFlnqJSRR3N8wLqihBeNFZa6YP7BwnwP1kyDq+5f oh12CHUkexUllb6CAKrOsXfMp3uW3PQHqyX1ErEiO3IfoyQrPV+zdP6P1GpPuH6bJoH/bnAS2Yi
+ 1UzUhsGPIbBXN+crOaPFtBvTlIFLKPAQ4weTST0s7q3ZId42J9Tk03tlT4lzF0AIjRhu8dhMbeu QXDgVt/VEQd+F7rMcMf5nokFnr59T9teFCB3UilfCDyfOZxBblp8XhvUfK66oic6b8Lvpw/u23F oXCXgv37OVKa82BsSFY0+H+9CzMfcLEMA0Pasw4kGyL+OoqTUGcIG5ggCzq5YX4WvRqJDLHXtcX
+ 00iUnMJ7kX980Xe6KrgsiX3jSsnlqqZBhnXbu/wLFW4QAAGIsSNWgvBnwj4oEFfJ8MhUlW/l
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-02_02,2025-04-30_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 phishscore=0 impostorscore=0 clxscore=1015 spamscore=0
+ bulkscore=0 mlxlogscore=950 malwarescore=0 mlxscore=0 suspectscore=0
+ adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505020116
 
-Hi Prabhakar,
+Hi
 
-On Fri, 2 May 2025 at 14:47, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 5/2/2025 7:41 PM, Viresh Kumar wrote:
+> On Fri, 2 May 2025 at 19:32, Praveen Talari <quic_ptalari@quicinc.com> wrote:
+>> now i can push V4 right and will not face errors on my series w.r.t this
+>> API.
+> Not fully sure what you meant, but you can send a V4 of the series,
+
+i mean one of the patch from series is depended on patch-1, that i have 
+removed from series now
+
+so will i face any issue like kernel bot
+
+Thanks,
+
+Praveen Talari
+
+> without the first patch. Please mention it as an dependency in the
+> cover letter and that it is applied in the OPP tree's linux-next branch.
 >
-> Change the OSTM driver's probe condition to `CONFIG_ARM64` so that the
-> platform driver will defer and reprobe on any ARM64 Renesas SoC once its
-> reset controller is available. Previously, only RZ/G2L and RZ/V2H(P)
-> were covered.
+> The one who applies your series needs to apply the series over the commit
+> in my branch to avoid breakage (if your series is going in 6.16-rc1).
 >
-> By matching on `CONFIG_ARM64`, this avoids adding a new config entry
-> for each future ARM64 Renesas SoC with OSTM IP. RZ/A1 and RZ/A2 (ARM32)
-> are unaffected-they still use OSTM but do not define a resets property,
-> so the deferred reprobe mechanism is unnecessary.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> Hi Geert,
-> I've restored the Reviewed-by tag from v1 with your suggestions applied.
-> I hope you're okay with this.
-> Cheers, Prabhakar
->
-> v1->v2:
-> - Instead of adding config for new SoC, changed the probe condition to
->   `CONFIG_ARM64`.
-> - Updated commit message
-> - Added a Reviewed-by tag from Geert.
-> ---
->  drivers/clocksource/renesas-ostm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/clocksource/renesas-ostm.c b/drivers/clocksource/renesas-ostm.c
-> index 3fcbd02b2483..6a5785f9c9c1 100644
-> --- a/drivers/clocksource/renesas-ostm.c
-> +++ b/drivers/clocksource/renesas-ostm.c
-> @@ -225,7 +225,7 @@ static int __init ostm_init(struct device_node *np)
->
->  TIMER_OF_DECLARE(ostm, "renesas,ostm", ostm_init);
->
-> -#if defined(CONFIG_ARCH_RZG2L) || defined(CONFIG_ARCH_R9A09G057)
-> +#if defined(CONFIG_ARM64)
-
-Sorry, I've just realized RZ/Five also wants this.
-
-"#ifndef CONFIG_ARM"?
-
->  static int __init ostm_probe(struct platform_device *pdev)
->  {
->         struct device *dev = &pdev->dev;
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> --
+> Viresh
 
