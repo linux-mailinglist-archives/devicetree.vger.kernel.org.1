@@ -1,124 +1,112 @@
-Return-Path: <devicetree+bounces-173027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BACBFAA7482
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:10:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C8DBAA7492
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:13:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B6B117B579
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:10:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF4B41B64992
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:12:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799BF255F5A;
-	Fri,  2 May 2025 14:10:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775FF2561AD;
+	Fri,  2 May 2025 14:11:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DMPXCZKV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YD0FCrbz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594B370830;
-	Fri,  2 May 2025 14:10:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97594225417
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 14:11:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746195009; cv=none; b=GDGx2lGt/gJ699sFNaY+MthEsPCMciLfdv1L4r236WZTx86+LS/153l0KwJsogocHB7PQkePUYHyuzrIb04IIO5f6SwoHSTwpkYXiLwco+Rgu+YgLy8NT5bcpKJ+c/ZebBrNrsZaytkq0JLZcU3lutb4wk3nGFkjXRswr9Xh+/4=
+	t=1746195099; cv=none; b=YMGmVEOEYmwSIpGNMftOZu531X1qYVFUvppEatUUsCIJImcey+mDMdAFA/hwTwGn/hIY/vn7PCFsLN3kgzdrhNVSB/hewL2eVhlVB9d+iTd4uOvmjrFw6CgUzZEoPbku4MqABCF7F/llSZN/B/qI3rrDVarRcdInLCGqykLqBOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746195009; c=relaxed/simple;
-	bh=UE+HTAX8L03rDUiOBDCz+RRsBQJY1YMYvIyhl6gQwdo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g+U3Y+zVzXkcTWbLPTnsdJ0+m7sS6JfKlJoBsW4FEM4QUTBQxVSXEP0/7AASVWMpYST/zMtbxM2QXcnDTobHM4+VPuYbzMfGfzaLC2XyML3fhosYTCwswE52aLkjXMk4ON6BCt5yTpuqkcqsiMugU4qUecXtKSSHml+ObkYwtss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DMPXCZKV; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746195007; x=1777731007;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UE+HTAX8L03rDUiOBDCz+RRsBQJY1YMYvIyhl6gQwdo=;
-  b=DMPXCZKVeviF2TeBpBd+ymtNSWBWjyZmsiLA17hQ1YRolwTSCM42v7t1
-   cZQ0zTBz70u+gIgyJdu/F9RrDtjaUKGsy8j4hBaHtft3CtIiFLlJe2yrp
-   BAiSBu4uK5VBJJ9HxLXF1flLFtP3SnQUqIenrgFX41EFyub97I3qR35Yi
-   IMU7DC5zJC+ZAz7UHVmYtPXIhXjI+pnfdZyVbVsyEbtl3Sy3jneWKa4/B
-   8wIcS2e2v1wTejSQYb1I8T+/WVmEByEo0kdxEORhB33iNnplxmlIBxzOp
-   +Sc8z4m9kjTtwuZLhLAkIUpO8Sz/WfsXC25gKMZfGZVChNv/o64jvb2B2
-   w==;
-X-CSE-ConnectionGUID: +k7bcu7mR2KwE9WEbvTW2A==
-X-CSE-MsgGUID: eX9HYA7YQFGfrv/TrEOnrg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11421"; a="48015749"
-X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; 
-   d="scan'208";a="48015749"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2025 07:10:06 -0700
-X-CSE-ConnectionGUID: nfmX4pclRTa5g4djy3denA==
-X-CSE-MsgGUID: dUCN4HZxQXOLbMFp1P4M1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; 
-   d="scan'208";a="134396166"
-Received: from smile.fi.intel.com ([10.237.72.55])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2025 07:10:01 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uAr5S-00000002Dgq-2DDQ;
-	Fri, 02 May 2025 17:09:58 +0300
-Date: Fri, 2 May 2025 17:09:58 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v7 10/11] input: misc: Add support for MAX7360 rotary
-Message-ID: <aBTSNsCupbpAscwA@smile.fi.intel.com>
-References: <20250428-mdb-max7360-support-v7-0-4e0608d0a7ff@bootlin.com>
- <20250428-mdb-max7360-support-v7-10-4e0608d0a7ff@bootlin.com>
- <aBSkCsw3GJ6RHeJV@smile.fi.intel.com>
- <D9LQ7NV1LJM9.F2GF0YEEDFEY@bootlin.com>
+	s=arc-20240116; t=1746195099; c=relaxed/simple;
+	bh=yIxrVkU4SFQ66DwToqGuNlKqd5dY6/8jM/wyRARXfyA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=l2RgJ7BxAh0zbA8rV5U7+L4IeqmRlz+eUU3D2lCbradnCKsV0f7VP0MPp7hyzInU2U1c7r1X624ROon7h1ESheuJfhHMZZRNck2WIk6MIbhECIDAqV52nBlGwL8tDGgbEqBQK1V4HA6pWk7kvIc5qp6prqJ/7g8CexziOZrlTSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YD0FCrbz; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ac339f53df9so439733766b.1
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 07:11:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746195096; x=1746799896; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=yIxrVkU4SFQ66DwToqGuNlKqd5dY6/8jM/wyRARXfyA=;
+        b=YD0FCrbzKXq2+J2x4Rcme2ozK3eFo4u0VIcHUYKLCvz4iNR79O8ClYduTKwRNcyqaw
+         bXfiWU/HISaRQTGl3+5YiTH8Bn+C/UA3AfmXKSAZhQGqC3w2yI7tWHr8Erm2y68sfehE
+         spUNbVK2CCXox3mX3/cjje+6fCpKZ+OFr57nh02U9astSB86upmsB9tQ6Ah7WVJ0gnuB
+         Zk+UoNj2VfPGePA18Gq9mklX40U3NKRmbWrYI93hWENAlxFN1uFh89syUJA295cyrN36
+         Gi7qUZfun+1RCkxTjX0potqKDlk1mwNhLmrdS5btewlFex6spsP2zqpBafPZ2RIKURBm
+         HmGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746195096; x=1746799896;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yIxrVkU4SFQ66DwToqGuNlKqd5dY6/8jM/wyRARXfyA=;
+        b=C1Zi8F6hOe5nycY1gEqB1ehP9YIqbzSP6yKTdsry/OyUOvjoTHLNsS4DdraQx74/Eu
+         z5A+/A9OOGZRamy5jvq0NL2Xt1Zkhtj1Hp3O3lcibCG//BxeEBkrq7PoE1gjER3mDDM8
+         FQ//EfdvuANl4J0GZJlM6sG5u8fF3nuPfQXegnkZO+x8UQxwQ3TNhjMW5GjawLh/KxSO
+         cm5gXqz3VLnCPA6PZ7yVsIZT+y9+z2aXpHhXOqLM9c59RjxrMZrT2oRwNtJdkvGoNrJn
+         T1Ct4gFQcJMJaE+mcafIQk54W6o/upfaR0+ScQFwU9RXsioEqpIMjBW8g8C+1WukaAw4
+         VPIw==
+X-Forwarded-Encrypted: i=1; AJvYcCXrYKdmoiQkQh3QaVqSadBUQQh16Y8jz/nJXwqPDGie0ULKXxnaAdF06q4Z/k+lyDpoUKDYYcOP+Ipx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyq80opg+7nFhrdonPrL1vhWzbSKiMprriw/o062SZmYegcBLdC
+	zlz1lAfi4shoOUcBaQ7DQKsRTAp3bEb11juruCQczEa2xlvs6TMr8GhUihBmeKRxdIjrPX6rAs7
+	emeG9zQfP9G0PBWFTzYKc9lplt6DpgCUEzGwMtg==
+X-Gm-Gg: ASbGnctYCas2BwP2ymyyp+SjY7BtxjU1bhUnXX+awPlJVsTYr5vgV1q4Vi4PvMHGCFp
+	Od87LA0ANQE4yzYJdVftPUWgIPTtwHI/zEmyB84FKNpK/Gqc1xcKEfuSNpCkQcOmmAOBd705V0a
+	0WYbVCfAZEjxVkmlQRi3gOUrg0lm7RcNqp
+X-Google-Smtp-Source: AGHT+IEs1bTD91IQNhCNs2cmGXwwVdvucdgeJR3evc2FFZN3RtZBiPjhHMCBSyUR5aj84pE2Qt2l2g6KYv7IB3kEAbQ=
+X-Received: by 2002:a17:907:74a:b0:acf:15d:2387 with SMTP id
+ a640c23a62f3a-ad17ada7132mr329262566b.19.1746195095856; Fri, 02 May 2025
+ 07:11:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <D9LQ7NV1LJM9.F2GF0YEEDFEY@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250502031018.1292-1-quic_ptalari@quicinc.com>
+ <20250502031018.1292-2-quic_ptalari@quicinc.com> <20250502053758.utawzhq6famwenc2@vireshk-i7>
+ <8ba02745-378b-4264-883a-b99764701d0b@quicinc.com> <20250502081402.yjagnnjrfva7u4cb@vireshk-i7>
+ <e1b2029b-2461-4cfc-a6b3-acdf5e01c289@quicinc.com>
+In-Reply-To: <e1b2029b-2461-4cfc-a6b3-acdf5e01c289@quicinc.com>
+From: Viresh Kumar <viresh.kumar@linaro.org>
+Date: Fri, 2 May 2025 19:41:24 +0530
+X-Gm-Features: ATxdqUFgSe5sdPhV4tcbtGto6wWWIR8JrD77D7tcOXpnzioIpQJVJvx6MOBRrS4
+Message-ID: <CAKohpondRqdfqC3CFSJibL2om8_Bbds8k5Dfu8fcZDksNxQUwg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/9] opp: add new helper API dev_pm_opp_set_level()
+To: Praveen Talari <quic_ptalari@quicinc.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org, psodagud@quicinc.com, 
+	djaggi@quicinc.com, quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com, 
+	quic_arandive@quicinc.com, quic_mnaresh@quicinc.com, 
+	quic_shazhuss@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, May 02, 2025 at 03:58:04PM +0200, Mathieu Dubois-Briand wrote:
-> On Fri May 2, 2025 at 12:52 PM CEST, Andy Shevchenko wrote:
-> > On Mon, Apr 28, 2025 at 01:57:28PM +0200, Mathieu Dubois-Briand wrote:
+On Fri, 2 May 2025 at 19:32, Praveen Talari <quic_ptalari@quicinc.com> wrote:
+> now i can push V4 right and will not face errors on my series w.r.t this
+> API.
 
-...
+Not fully sure what you meant, but you can send a V4 of the series,
+without the first patch. Please mention it as an dependency in the
+cover letter and that it is applied in the OPP tree's linux-next branch.
 
-> >> +				pos = max(0, (int)pos + steps);
-> >
-> > Please, no castings for min()/max()/clamp(). It diminishes the use of those
-> > macros.
-> 
-> Sorry, I'm not sure to get the point. Should I use MIN_T() instead?
+The one who applies your series needs to apply the series over the commit
+in my branch to avoid breakage (if your series is going in 6.16-rc1).
 
-Are the second argument is compile-time constant? I don't think so. Hence no
-use for MIN*()/MAX*(). First of all, try to answer to the Q: Why is the explicit
-casting being used? The second Q: How can it be easily fixed without using _t()
-variants of the macros?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--
+Viresh
 
