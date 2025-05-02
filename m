@@ -1,70 +1,89 @@
-Return-Path: <devicetree+bounces-173072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36015AA75E8
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:25:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CA1CAA75EB
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:25:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22D337ACA08
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:24:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C912A9E01B1
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:25:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFD2257435;
-	Fri,  2 May 2025 15:25:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FBBF2580F7;
+	Fri,  2 May 2025 15:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="U14dUhSc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yFPN4O74"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5B3D2571C7;
-	Fri,  2 May 2025 15:25:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D7C92580C0
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 15:25:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746199526; cv=none; b=XDyC5Zl0krGwrUVYM9JtP9QavPZ+Au6qQknyeWoALTL0MWEd3IrymSZZIIymfxnxlR2PDkV2pcu+ns0OoHp6zCtmadFR95pZll7r8U/zQObTk8ntCBpWdv5j/hSxHphiQZo89YoGbEpsp9Lu8Qwyh+71Ufoi2iOmOMoGzXv4v0c=
+	t=1746199529; cv=none; b=VIxjElPSyndbZpZY3wY5HSQILxguyJHQ3eXR//ZLmFrAwDkpmbXtGEiIkrCGSIAZyXZHwIKPB5amCGQRy0nN68/hZMey1/Mh200pkwnLG7EXMVmxLfICE0tt3jYJebDHzoJAH7TbB284sqOh37q6gLxwKw5QPgZelv54FPuXy44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746199526; c=relaxed/simple;
-	bh=ekfNPCViNS+1/0EDUfNUraJaXJm+PrXPsKL2YYRrFVY=;
+	s=arc-20240116; t=1746199529; c=relaxed/simple;
+	bh=LugdRThvsGx2CMHigSiJVuGvIK3aWNwVUx/pou6IRSI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JkV3u9IDlmenRhHOPE1orCmh5Rs3x9GfoxtvpF3SOojXRta6hvl/yMkYdzjKErFUHy6rkdz+igqXRLcipOn7QdwthKP+QUPUoIAeoreioL7gy/lmOg8g//7UzIYHnO+/w6yQYjfWhZl5ggUWQxYyFWa4Ez3t0GkKMIDg75jyIyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=U14dUhSc; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 180D2353;
-	Fri,  2 May 2025 17:25:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1746199514;
-	bh=ekfNPCViNS+1/0EDUfNUraJaXJm+PrXPsKL2YYRrFVY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U14dUhScriBzlj2ff//LAs2UIgBYiG853o5XoBV9vLcJvNXuOdTWiBBJ/0faqIJwq
-	 CTsbEY9N9sKVvjZu5P4KdegNUi5dFErckMqTMYjVC1x3tIDuND60ETFMe5GYR9rtzS
-	 nH5noXs2e3ifra95E/EjRcnU2HuMdACL9eVXyTUg=
-Date: Fri, 2 May 2025 18:25:13 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Robert Chiras <robert.chiras@nxp.com>,
-	"Guoniu.zhou" <guoniu.zhou@nxp.com>
-Subject: Re: [PATCH v4 03/13] media: nxp: imx8-isi: Remove unused offset in
- mxc_isi_reg and use BIT() macro for mask
-Message-ID: <20250502152513.GG22453@pendragon.ideasonboard.com>
-References: <20250408-8qxp_camera-v4-0-ef695f1b47c4@nxp.com>
- <20250408-8qxp_camera-v4-3-ef695f1b47c4@nxp.com>
- <20250421210655.GM17813@pendragon.ideasonboard.com>
- <aBQXfW6dzdyFI1GN@lizhi-Precision-Tower-5810>
+	 Content-Type:Content-Disposition:In-Reply-To; b=llx2cc3dRuVobmwQlhSusQgsMfbkNnaGG7AS4ame4QWWdff+azBrJUA+SVCp4KrEDqlp0I1AvixeIfo6EuRpaJX7L7M8Xnlpu8iZjizuAqRCS7KWnsgFF+0uO19+oCnfU8QB3Wb86dviTrhwfEfJlslg8Jwa1Uf0CLC/C4WXYWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yFPN4O74; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-224019ad9edso34505435ad.1
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 08:25:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746199527; x=1746804327; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=7vtwnUwNKasAWxl8DSVgxrM1mcYEXj9Ayz7aojcassc=;
+        b=yFPN4O74yAhN2NDeW+wVC9rYdR4lG9CLBBiX5oNVpHeJEt5P22eLhLW+Gfg5Pbbqte
+         OAkFhN6gmXl6HqsgtO2aPsZUnSNjSVOAxNOZEBRD+GFOv1X81tzljNv3IbiyC/IAJm/V
+         IvESQwPQDF6IRvT3dZZRp4Beo2kuHRwOkjSdSiyJ55YfDyVbE/Wnlq9wCzJRa+GqD//M
+         H4XZMAEC1DANj+17xJrdk4iglrvnKCWAV5g5oUL8U/sPKFZR32kgMe5EWWXEJByG13em
+         13uUjOY1G4by4U9zBF05Q8lhwpGRKr5lE3LFz11o8NpFWS/hxjEuhS2RsHvaMHygRxZA
+         b6qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746199527; x=1746804327;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7vtwnUwNKasAWxl8DSVgxrM1mcYEXj9Ayz7aojcassc=;
+        b=Hikv5mQmT8N1Oqyt5PL7xGpr43veR7PBtaBtYlVuERGiG1/Q2TsRLXNbRBqzvRAVDQ
+         MRrFoLryqQUvcTpdVWs9bUYfi1Lthd5fFVYrJCD5gWrHtdeaf+s1E9GVWm77D1v8E91D
+         2gt9vpidD+D1cpdl6U1mJPfecd20gjHN8R6n+F2zmQ0CWGAXvElMbZ3uLZKkL/JsDLWt
+         So7HOGMjLSt7EJ2XcgS3/DDHSCKar02HvJ4pcI7ivr0hfagr/40w1E67yKS2zt0He0fN
+         nM5n23CilSBW2oH3eVTWFRrOL27PiE0V2JZa8AUq5pKKS3jDsoIsPGgQE6hH670rPWE3
+         y+JQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWS/FFOHgARYc0gPf3SZKA1UIY8jDhzbzK6PVZuj45oq2Grcm97Ttn9ss58+tbysWuNDdhuPqGsHdmX@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEzPbp1LCcPfEBvJThltRqzbzpptiP5lRdgiZh5OMyLjusq50y
+	NA6Mdi0fTmgR2rUgTCUDU1A+qxmi4U3cdA7RvvU/Tsu5AppcGx3dsJ8gxvXHsA==
+X-Gm-Gg: ASbGnctYB5hWFcjnrTzdzsWJAvVwNDJUkPy8ckh7rNP7GrivxpuSwI2iJCx5V4EMtuj
+	mRu4uG9/OOwLqX7IsGFBamF+kmYYtOMRyLaUNla3YmkNpq9YqDNHyv58IfsE/T/I+Cf3RUqB1l/
+	JpeupIJOOlp02twp+dTtInax68YtJ0vfAFF1K8OlCH6K9uOW2DjEM/L28MlOKAgxfNboJEfxz8U
+	0UmYHupDN6Ge1Q74iCAwYN/daGtL62DcFnr0L9lKJAuhkqTfumyTp32pMvhzBGh0gecbViNzXFh
+	Q/1I5J/L3HzjuApP2CCDbcSOekCi1RajprDpE0VTHo9psLwW1cMnfQ==
+X-Google-Smtp-Source: AGHT+IHRKIqAtv7Ls6TzIfJYzOfALtMKzptW9t6NwjhMvUbrkIGXkQiOlsae6Xx1+FVT8dizOUKPfA==
+X-Received: by 2002:a17:902:e54a:b0:224:910:23f0 with SMTP id d9443c01a7336-22e103dd51fmr51268655ad.49.1746199526887;
+        Fri, 02 May 2025 08:25:26 -0700 (PDT)
+Received: from thinkpad ([220.158.156.122])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22e1523205asm8677055ad.241.2025.05.02.08.25.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 May 2025 08:25:26 -0700 (PDT)
+Date: Fri, 2 May 2025 20:55:20 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Sai Krishna Musham <sai.krishna.musham@amd.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, cassel@kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	michal.simek@amd.com, bharat.kumar.gogada@amd.com, thippeswamy.havalige@amd.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: amd-mdb: Add `reset-gpios`
+ property to example device tree
+Message-ID: <ph5rby7y3jnu4fnbhiojesu6dsnre63vc4hmsjyasajrvurj6g@g6eo7lvjtuax>
+References: <20250429090046.1512000-1-sai.krishna.musham@amd.com>
+ <20250429090046.1512000-2-sai.krishna.musham@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,105 +92,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aBQXfW6dzdyFI1GN@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250429090046.1512000-2-sai.krishna.musham@amd.com>
 
-On Thu, May 01, 2025 at 08:53:17PM -0400, Frank Li wrote:
-> On Tue, Apr 22, 2025 at 12:06:55AM +0300, Laurent Pinchart wrote:
-> > Hi Frank,
-> >
-> > Thank you for the patch.
-> >
-> > On Tue, Apr 08, 2025 at 05:53:01PM -0400, Frank Li wrote:
-> > > Preserve clarity by removing the unused 'offset' field in struct mxc_isi_reg,
-> > > as it duplicates information already indicated by the mask and remains unused.
-> >
-> > The commit message line length limit is normally 72 characters. I can
-> > reflow when applying if no other change to the series is needed.
+On Tue, Apr 29, 2025 at 02:30:45PM +0530, Sai Krishna Musham wrote:
+> Add `reset-gpios` property to the example device tree node for
+> GPIO-based handling of the PCIe Root Port (RP) PERST# signal.
 > 
-> I remember it is 75 chars. Any document show it is 72. I need correct for
-> the other patches also.
+> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
+> ---
+> Changes in v2:
+> - Update commit message
+> ---
+>  Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml b/Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml
+> index 43dc2585c237..e6117d326279 100644
+> --- a/Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml
+> @@ -87,6 +87,7 @@ examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+>  
+>      soc {
+>          #address-cells = <2>;
+> @@ -112,6 +113,7 @@ examples:
+>              #size-cells = <2>;
+>              #interrupt-cells = <1>;
+>              device_type = "pci";
+> +            reset-gpios = <&tca6416_u37 7 GPIO_ACTIVE_LOW>;
 
-You're absolutely right, I don't know where I got the 72 columns limit
-from. Please ignore my comment.
+You should move this property to the PCI bridge node where it belongs to. We
+identified this issue of stuffing bridge specific properties to the controller
+node recently (yeah very late though), but since this controller doesn't have
+any bridge specific properties till now, I'd like it to do the right thing.
 
-> > >
-> > > Improve readability by replacing hex value masks with the BIT() macro.
-> > >
-> > > No functional change.
-> > >
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> >
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >
-> > > ---
-> > >  .../media/platform/nxp/imx8-isi/imx8-isi-core.c    | 25 +++++++++++-----------
-> > >  .../media/platform/nxp/imx8-isi/imx8-isi-core.h    |  1 -
-> > >  2 files changed, 13 insertions(+), 13 deletions(-)
-> > >
-> > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> > > index 1e79b1211b603..ecfc95882f903 100644
-> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> > > @@ -3,6 +3,7 @@
-> > >   * Copyright 2019-2020 NXP
-> > >   */
-> > >
-> > > +#include <linux/bits.h>
-> > >  #include <linux/clk.h>
-> > >  #include <linux/device.h>
-> > >  #include <linux/errno.h>
-> > > @@ -247,24 +248,24 @@ static void mxc_isi_v4l2_cleanup(struct mxc_isi_dev *isi)
-> > >
-> > >  /* For i.MX8QXP C0 and i.MX8MN ISI IER version */
-> > >  static const struct mxc_isi_ier_reg mxc_imx8_isi_ier_v1 = {
-> > > -	.oflw_y_buf_en = { .offset = 19, .mask = 0x80000  },
-> > > -	.oflw_u_buf_en = { .offset = 21, .mask = 0x200000 },
-> > > -	.oflw_v_buf_en = { .offset = 23, .mask = 0x800000 },
-> > > +	.oflw_y_buf_en = { .mask = BIT(19) },
-> > > +	.oflw_u_buf_en = { .mask = BIT(21) },
-> > > +	.oflw_v_buf_en = { .mask = BIT(23) },
-> > >
-> > > -	.panic_y_buf_en = {.offset = 20, .mask = 0x100000  },
-> > > -	.panic_u_buf_en = {.offset = 22, .mask = 0x400000  },
-> > > -	.panic_v_buf_en = {.offset = 24, .mask = 0x1000000 },
-> > > +	.panic_y_buf_en = { .mask = BIT(20) },
-> > > +	.panic_u_buf_en = { .mask = BIT(22) },
-> > > +	.panic_v_buf_en = { .mask = BIT(24) },
-> > >  };
-> > >
-> > >  /* For i.MX8MP ISI IER version */
-> > >  static const struct mxc_isi_ier_reg mxc_imx8_isi_ier_v2 = {
-> > > -	.oflw_y_buf_en = { .offset = 18, .mask = 0x40000  },
-> > > -	.oflw_u_buf_en = { .offset = 20, .mask = 0x100000 },
-> > > -	.oflw_v_buf_en = { .offset = 22, .mask = 0x400000 },
-> > > +	.oflw_y_buf_en = { .mask = BIT(18) },
-> > > +	.oflw_u_buf_en = { .mask = BIT(20) },
-> > > +	.oflw_v_buf_en = { .mask = BIT(22) },
-> > >
-> > > -	.panic_y_buf_en = {.offset = 19, .mask = 0x80000  },
-> > > -	.panic_u_buf_en = {.offset = 21, .mask = 0x200000 },
-> > > -	.panic_v_buf_en = {.offset = 23, .mask = 0x800000 },
-> > > +	.panic_y_buf_en = { .mask = BIT(19) },
-> > > +	.panic_u_buf_en = { .mask = BIT(21) },
-> > > +	.panic_v_buf_en = { .mask = BIT(23) },
-> > >  };
-> > >
-> > >  /* Panic will assert when the buffers are 50% full */
-> > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> > > index 9c7fe9e5f941f..e7534a80af7b4 100644
-> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> > > @@ -114,7 +114,6 @@ struct mxc_isi_buffer {
-> > >  };
-> > >
-> > >  struct mxc_isi_reg {
-> > > -	u32 offset;
-> > >  	u32 mask;
-> > >  };
-> > >
+So please refer the STM32 sereies on how to do it [1][2]. On the driver side,
+you specifically need to implement an equivalent of stm32_pcie_parse_port() in
+that patch that parses the bridge node(s) for these properties.
+
+- Mani
+
+[1] https://lore.kernel.org/linux-pci/20250423090119.4003700-2-christian.bruel@foss.st.com/
+[2] https://lore.kernel.org/linux-pci/20250423090119.4003700-3-christian.bruel@foss.st.com/
 
 -- 
-Regards,
-
-Laurent Pinchart
+மணிவண்ணன் சதாசிவம்
 
