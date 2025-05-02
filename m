@@ -1,125 +1,150 @@
-Return-Path: <devicetree+bounces-173089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F72AA769E
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:03:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C01E9AA76A0
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:03:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 455113B7F4F
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:01:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2B334C06FE
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:03:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A9625C715;
-	Fri,  2 May 2025 16:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C548B25CC6E;
+	Fri,  2 May 2025 16:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="g+HW2vH9"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="B5azY2Vr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A1F025C6F8;
-	Fri,  2 May 2025 16:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3509325CC76
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 16:02:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746201731; cv=none; b=HnRhCBrEtQx+JStO54bwHMe5rmRs3r1w+O/FWcPNv5+be2o1WyzaIhBN7p4CL/gC+mm6Rq5rcMeSTCFfnNt/v9PpBtxAI7bXnmp1iXso+/blFJo5Ty0vz1sBbIxRMXfm/dEHP6QnQEBRQksutrQpUWerdMrzMpMpdupUAhWzyrc=
+	t=1746201773; cv=none; b=JEg59Qi/eAwhPpaYPhSMIErMvrGkBT/Cr+uVwVezgPAil8BKBvadMF+w11ugKnhixDtpfGYTMzx+rg2U6VBnpaFnF/ahAcj8L1osJvbogiS8tNcHb2+raXbveH2eu/bxdVeaNImn2zO6xp8ScyTKsRcLzM80eNb2D/ylbBKQjxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746201731; c=relaxed/simple;
-	bh=v9KxtRTJu9kJpRHk6H1ZCOWDUTXu4rkJkGVRDnIH5vk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OP1ng3ol+tzcUVLsN2ESZJoB4xoIAxuxFZaktJLksGfh2PWb32rHB3IeQl4mrgG+9SAls1ynjlzSRxSgl1m0tAv+BxKNq/EbIJwUOud8s+7ITRRNF0Bk1iQInQzQIUVNcOksvGVU1Ll7oioOWwPPpkRGpySgTYImVwEkFAMnhoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=g+HW2vH9; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 542G24M2444126
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 2 May 2025 11:02:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746201724;
-	bh=Y1sFmVEx4gXcykMRmXYn9FRQlYWf21/wBfA1y8v8IXM=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=g+HW2vH9aGKBxccZII6OOARqXktgjlKPRZtbVsUNXlb6Xb/HfIi126G0I3bwF/tB/
-	 Ksqmwbt4we8Iz53RgR6PtfFPKM0zq4a96211W+4g6qjvNPDq6W/K8MtIIFD1l29+TI
-	 lXovZpbQNHODSyb5vuu2WWTqACPptE0DJ3UCwJ2A=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 542G23Oc106153
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 2 May 2025 11:02:03 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
- May 2025 11:02:03 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 2 May 2025 11:02:03 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 542G236V085051;
-	Fri, 2 May 2025 11:02:03 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Judith Mendez <jm@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Moteen Shah
-	<m-shah@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am65-main: Add missing taps to sdhci0
-Date: Fri, 2 May 2025 11:02:02 -0500
-Message-ID: <174620171156.3146851.4963787197478116210.b4-ty@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250429173009.33994-1-jm@ti.com>
-References: <20250429173009.33994-1-jm@ti.com>
+	s=arc-20240116; t=1746201773; c=relaxed/simple;
+	bh=nt7pCl0xKFuZMbcsKuarhpz0f9X8gk1jA/yLJS6JUcc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KmxwGdQBBSoaEg9k5hXheG/TdsAGDY2TPbFcP3FEMHkuX/Stzvf5sI/c46kvifbjISbOyUdrm1I7kPT562JE0FsuM1w2dig6fa3iQjjxtGiNNoMOvNReGPcX6ewKyNVRsEI+eV7wpbFzqbaU6dxhlgrtOzPpRtJV5BbLRh9Yb90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=B5azY2Vr; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 542DNoA4021121
+	for <devicetree@vger.kernel.org>; Fri, 2 May 2025 16:02:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1frcGzb8hC2GYxGmVc0gjbhl3/lGMlADlvPYUqYXl2s=; b=B5azY2VrKcqp2fDH
+	NNgpg0OO9B5W60hqqzqsEwm63kQBYjYPSdS+o7RSFap1rpNms/7emM4fRpIuqACG
+	K1vA/G/mavbFcnsWm+vPe2fW387ntQCIKnwZ1yRkXphMgqInW3t0O0eLC+7Z9cy7
+	uKzxSMRF1ZAkMvuN1mL4C35QTScS20khcdabXIHw0UvUduo3FvG21uk3ax2earkR
+	kx+QaMoSQFt9hgrdSBCCit3G7kahqOKWSzW0Jyp4OIcvi68ssphPqPq5Rl5GHjyW
+	UnZ5b/hW9YvmYn8I+NROs9bxTZZT7P1vYjsW8nEasQ2oFfCjC/SJxEy9V81CpAoc
+	TGERRQ==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u8gp37-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 02 May 2025 16:02:51 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b1442e039eeso1407366a12.0
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 09:02:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746201770; x=1746806570;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1frcGzb8hC2GYxGmVc0gjbhl3/lGMlADlvPYUqYXl2s=;
+        b=TAgWa6Xgue4uSUWeNUbDq8q+nJhiLM4D/li7bmq0lmby+FnZlIDgVt8GJFuBdCastN
+         ewajCGYuYOuKnzlvo6ts/rXhLYsOozOyyht3G3XwLgJK7F6mui9jw8VX0WFCZeFpT6TI
+         6oUygIBQIoLH7zKrGD3oGDie/Nh1x0pVXEZynLuWy7TudZP6FdSqKJ90ZnVfPvnZ3rsy
+         kH3fuvHvUZ2o6tgn2dkep/RMG4IQHAf86PXNASH6YaMt42YuCyFXHeN8G1CY2GnFMRWM
+         vDTjJd0IH480OCA6Fnv2rWhg7rBg250OjC8/GE23HTKXVXfK03MbsgHpvMXr8KSZ8mCH
+         +CYA==
+X-Forwarded-Encrypted: i=1; AJvYcCW+EjuhG7jtd/tjupZxcnfeAt9mJkIWmmHiNWhR2eMsTKDVP56KASUEHKFFnN/qU2i1H+OjW6SACFjV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVW6WTusVGWyO6C+p7zAQJOI7lCYT4UkOwAxxMDBA93q0dTiFd
+	cTn5RHytqlz43TfFYb07iLjR5DLojuPdPu444MwJnO9tjC/QTp21Rgj5XfBruntHWpmNsM54YDM
+	iWZZI3r/Wmvgh+mADw0NjDB33x1Fkh9lvt+VVb8Oac2+lW941+gTspmx5Fhnl
+X-Gm-Gg: ASbGncvdZ6K9gITnPc51Ao0DrKcZuEsw4nxvmrtFeIbeplK+sTWPahcS9XBqnGujhqH
+	4FuR8hLlsiHHilLq7Q57TtUn66sD9BYmCpdjCqtvRtbIOm7sNkOJKqiD67qpUAXmRYu8KJYTtIr
+	Bp1vzKa2WWoavHee9Z4jhUAWJrSDVzvd1Wn00VDFHFKcPYhY8uNgQoLJS5rk1WOcuro3zEJyhP4
+	LOeEzay4K/AgWiBmIE6CZZiqaCfPrD6EhFgbjqrkQk5JuWNDmtlhx7lulZVHS/+K2VDft9raNdZ
+	/rrnKJSY0F9KokFa8skUZINXVv1NU0uvK+kDACyInRFTBWqF193m
+X-Received: by 2002:a05:6a20:6f90:b0:1f5:95a7:8159 with SMTP id adf61e73a8af0-20cde952d6cmr4451426637.10.1746201770549;
+        Fri, 02 May 2025 09:02:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG+5DGedS7lQxaiS0zztOhBE3vSAm0Y8qu2C3qMH794u9G4iH73tZO1pQYXwyOinkWDLCtVwQ==
+X-Received: by 2002:a05:6a20:6f90:b0:1f5:95a7:8159 with SMTP id adf61e73a8af0-20cde952d6cmr4451382637.10.1746201770057;
+        Fri, 02 May 2025 09:02:50 -0700 (PDT)
+Received: from [192.168.1.4] ([122.164.87.156])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b1fb3920e67sm952740a12.7.2025.05.02.09.02.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 May 2025 09:02:49 -0700 (PDT)
+Message-ID: <41f0eb29-931d-4aad-ab8a-1cc725e9d30a@oss.qualcomm.com>
+Date: Fri, 2 May 2025 21:32:46 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] watchdog: qcom: add support to read the restart
+ reason from IMEM
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck
+ <linux@roeck-us.net>, bod.linux@nxsw.ie
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20250502-wdt_reset_reason-v3-0-b2dc7ace38ca@oss.qualcomm.com>
+ <20250502-wdt_reset_reason-v3-4-b2dc7ace38ca@oss.qualcomm.com>
+ <ac8837b8-3964-40ec-84a6-e25aa06dda39@kernel.org>
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+In-Reply-To: <ac8837b8-3964-40ec-84a6-e25aa06dda39@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=B7i50PtM c=1 sm=1 tr=0 ts=6814ecab cx=c_pps a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=wj/iefQKNY9P1RSDfSoyGA==:17 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=KK8y6wEurEKhoEb90x8A:9 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-GUID: p6wUApQWkBcXqX9K202vXjR3KON4DCiz
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDEyOCBTYWx0ZWRfX1ndpUn/EJf9K i7Bh/bCtINbGOHEOhH/7UQKGn5Ef/DOxIcc0yGxFf28cUQzTKvuP44jOBgLqTVJS2J3YAz/psab aXOiL32rMKbTfcsA2IzMgCogkd6f8mZrZCC6gI1YRGwJ4YXwuCyNgna5nJYWHitWYqItirH4OPz
+ aHD8Jc4buS0RV5KOcn/+svMOHguC4NygPHQa9daqBwZyBh8T1mygLF76ZvZvz53GXIYZUnt2P8P Z620lxsVQhN7TsHTHyRtcO/KhDkFHgKsngDFkjkQ72u2Ktx0fVj1iS//cjdIyv7ygqiEl2aB9OB FEFwY6kTDMRyaIMndj+hKsEFE/C5jtSuoqhgiIk+KvDFZ8TWnfNW9v51b0zMTilStmu3BgSiAxg
+ 2YsndtOX94/om21vVCkPJGRLWbunvR2Rdyk5oaUHZ+q7YIKQt9btvIVvarLP26zStaN9cxL1
+X-Proofpoint-ORIG-GUID: p6wUApQWkBcXqX9K202vXjR3KON4DCiz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-02_02,2025-04-30_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ priorityscore=1501 bulkscore=0 suspectscore=0 spamscore=0 clxscore=1015
+ mlxscore=0 impostorscore=0 mlxlogscore=905 lowpriorityscore=0
+ malwarescore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505020128
 
-Hi Judith Mendez,
 
-On Tue, 29 Apr 2025 12:30:08 -0500, Judith Mendez wrote:
-> For am65x, add missing ITAPDLYSEL values for Default Speed and High
-> Speed SDR modes to sdhci0 node according to the device datasheet [0].
-> 
-> [0] https://www.ti.com/lit/gpn/am6548
-> 
-> 
+On 5/2/2025 7:03 PM, Krzysztof Kozlowski wrote:
+> On 02/05/2025 15:17, Kathiravan Thirumoorthy wrote:
+>>   
+>> +static int  qcom_wdt_get_restart_reason(struct qcom_wdt *wdt,
+>> +					const struct qcom_wdt_match_data *data)
+>> +{
+>> +	struct regmap *imem;
+>> +	unsigned int val;
+>> +	int ret;
+>> +
+>> +	imem = syscon_regmap_lookup_by_compatible(data->imem_compatible);
+> And how are you handling proper probe ordering? Use phandles and define
+> this as an ABI.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
 
-[1/1] arm64: dts: ti: k3-am65-main: Add missing taps to sdhci0
-      commit: f55c9f087cc2e2252d44ffd9d58def2066fc176e
+Sure, I will follow the Konrad's suggestion.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+> Best regards,
+> Krzysztof
 
