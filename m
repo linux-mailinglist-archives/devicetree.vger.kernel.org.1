@@ -1,186 +1,290 @@
-Return-Path: <devicetree+bounces-173032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28842AA74CD
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:23:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5349AA74E9
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:26:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5B129E80BF
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:22:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B1E54C4EB9
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:26:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C201D255F45;
-	Fri,  2 May 2025 14:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62F83256C66;
+	Fri,  2 May 2025 14:26:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ojt82Pha"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="BzzYZmoF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2134.outbound.protection.outlook.com [40.107.22.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E8B4143748;
-	Fri,  2 May 2025 14:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746195793; cv=none; b=AS6aj5RKwt5x8vXoWSj2g1tJMzRe9I2w0H64WPvTyDsoq4ZS21bh+ConSM39ulvhRS8+25JMyiH1brBl/q0mr8Ya1ZpGrJf4eG2H6XZ2fUjhpY0Q2B2HnNqmVdMtAvbi/8yGFWbkiyLw2/jXloXxnpEUxLWEOC+FgxxFNCZrla8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746195793; c=relaxed/simple;
-	bh=UsaxBUe8wB5EI42mu8sdR9nmZ6AcEsiAMNvnajcq0zY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ClwGchNhgs+KXN/Sn+QO/yK6dwUyh6tWRWSzuihvDPt9048wULSzwgAwhT5Q8FIuvsWfk+vwoo0MrX3VFSt21+SNKlFNpLniA6KTfgGz/R0QveTynHeOZU0WM6mZN6KUOQT+Gei6pcgEgfEJaTjUvBA7i6PJXPvQe89PM6JAyXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Ojt82Pha; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 542CvdOH002845;
-	Fri, 2 May 2025 14:23:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xTyPc5G6qVIUyKQaCQHypXRE2zULlXgjITrHeR77xKA=; b=Ojt82PhaGse7BL1R
-	GqrOBZt3G2T0kcyBvzzdmp1otIU9Gx6/ZCDWj5fy0q/8Sr7jnCbktvoYMGZXGJSo
-	yRq6neE0H8dgbNNhing/Ipi46TuI1U9yGKoKK+ZAPwzVqFSpFswE8KBnorQzvMAg
-	u/bjrwU8NPSeqEDamk+8rOHtNM+S6ZH3av4pgjNQhMM/3vtuAyJ6BYQrsUPU5emA
-	KHUj1euL4ck9W0H+SEzOrIPZLO/pGoMakwGXFgoQmRxKTUtVsiTVGoPv3/2DR8n1
-	XF1vKSNF/k0h9VGNzfOpiq7zIL6dL6eaX4B8nO3l1zKbGB+gg1EyWVL4xtdn7qNV
-	DajxWw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u78na9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 02 May 2025 14:23:06 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 542EN5Hu007249
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 2 May 2025 14:23:05 GMT
-Received: from [10.50.25.148] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 2 May 2025
- 07:22:59 -0700
-Message-ID: <a21e2c36-90a9-0259-2619-25fc47b34ab5@quicinc.com>
-Date: Fri, 2 May 2025 19:52:56 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1772566D3;
+	Fri,  2 May 2025 14:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.134
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746195996; cv=fail; b=NKDy7W+RyGZmVlDEDp8PYz7Xrj1fpyN8EpebQ+XbdWR+5Wtx5PwgTLKNRH/yGnrcQ/TBITcBRsh6jj8242rU0q9kSMYUisB+pEcgYhMTmkZ0P1ky313DceFl24vt1ZyKpu7RcPCXoSEjj/qeBNbrgItYQ1fzFda4hjbC7B5+XWA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746195996; c=relaxed/simple;
+	bh=MO5lR6rRLk5CgQ5uqLmIXWYNsJsarivHN52Ro341JCU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=l6Dpgif4x1QdGx8AK7RevFXpBSF4hMkCHrQBKteSd64XEbJptaZWN/64acDQUdlNHW3CWJZEwjgASWOBGG2zb08hYWQXJGqo7jgSjbL3n40VmgwyQn9yKXC0qFvhydq/JLy2IeBQGZfhJTxq/LTfd90ProBaNozoTYaklIyuczk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=BzzYZmoF; arc=fail smtp.client-ip=40.107.22.134
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wSLKlwuibLklBRghBKaKm3q4/1NJwppOoUt1oDe/MRo8G/Q3WAmEGmhemOVBHDOyap3+Nk80LYCLpMopvi8lMh7H4z/EySD9uVwA/3g4KlEJ0OkPncj7FeNfLI12ASWGShcW7ycqVcEuIFKk4yqgJIN2xk8ceAua0KBvIzn2CDwgxfGIQa/GQl6wMf0Md3YmBYfeKHlAJprXs2DUTZSpyZBzKyozV1fJkPOGWTVLWwT9suFYDMfPp08qt+jQSCZqyN/qjuNnjKcAK+WJoaQ3lCOnnoGJcWtV8ag9Ta5BS0xgF8cGgdBtdS2kEeOWp42EBAe/vMLN2n2lOPokzOtSow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AbH1Xx2Bspbo8b5a07oMy1KXVKdFJV2ljjkhKZ3iIXs=;
+ b=I6o4f1SAeAs1CQKrIgtUmUATQBmA6LZiB7F8Uu82KxTHKBYZcSHPv32V2+Xk+/Tl1gSJdXE3MNyXyFiEBErZHOLgqH0rPnUci31/egJAUGmXp5qS2EarMbOvsWYuDX1R8Tw1WU9CfHLZLDDT6MrWegMAV7Q6SuHW/bcGuLSpZBkIf6qlWWG2lUk/RiytXOpbNJ3kGM5usV7ACUDpAcLcGNyVWdAb+DgX7QHalvDPCnvVprrXOFap77unQ3kp7Ql5eHv0wrpteuIpcMfStgvP2OgGXiRfQ5s1BH44B67qdPnVSCU7+SVbjJzdv36MqH6yxfW0ylK51auZjABKVHu3ug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=ti.com smtp.mailfrom=phytec.de; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine header.from=phytec.de;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AbH1Xx2Bspbo8b5a07oMy1KXVKdFJV2ljjkhKZ3iIXs=;
+ b=BzzYZmoFRNmuRT6d1WPjUnZNtfw8sQk/ToaVJVlnJO3wVQ+TSO0I/x4+/y8NALex4sMdVL4kP/YLrl69k9+l7GBZuS9jwroUjp6INiWTv/DNevSAF7GtB8nsAqFWqVkSZawyOofody4yR8bSP/RlUt+NF+zMPVDDwXsy4CDUOC9DCLJ5QdfmQ/ZeHjmucl8oHrY4BMiWuPfl1kz9I29UZCqUupupZLq/vjv9GRQEX4buQvNMNQTdIiS8WVbovzssqf3ZcaWFCcZtv8z2iAMOv8pbdZiugN1DDmtcnVAMzNXes+2usHnmFhNLHhNbvpaaujXE9C+j8tyf3UEU4iUfIQ==
+Received: from DU6P191CA0072.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:53e::25)
+ by GV1P195MB2551.EURP195.PROD.OUTLOOK.COM (2603:10a6:150:1c5::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.23; Fri, 2 May
+ 2025 14:26:24 +0000
+Received: from DU6PEPF00009529.eurprd02.prod.outlook.com
+ (2603:10a6:10:53e:cafe::c0) by DU6P191CA0072.outlook.office365.com
+ (2603:10a6:10:53e::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.42 via Frontend Transport; Fri,
+ 2 May 2025 14:26:24 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Diagnostix.phytec.de (91.26.50.189) by
+ DU6PEPF00009529.mail.protection.outlook.com (10.167.8.10) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8699.20 via Frontend Transport; Fri, 2 May 2025 14:26:23 +0000
+Received: from Florix.phytec.de (172.25.0.13) by Diagnostix.phytec.de
+ (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 2 May
+ 2025 16:26:22 +0200
+Received: from ls-radium.phytec (172.25.39.17) by Florix.phytec.de
+ (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 2 May
+ 2025 16:26:20 +0200
+From: Daniel Schultz <d.schultz@phytec.de>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <upstream@lists.phytec.de>, Daniel Schultz <d.schultz@phytec.de>
+Subject: [PATCH 1/3] arm64: dts: ti: k3-am62a: Enable CPU freq throttling on thermal alert
+Date: Fri, 2 May 2025 07:26:04 -0700
+Message-ID: <20250502142606.2840508-1-d.schultz@phytec.de>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 13/23] media: iris: Send V4L2_BUF_FLAG_ERROR for
- buffers with 0 filled length
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Stefan Schmidt
-	<stefan.schmidt@linaro.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Rob Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor Dooley" <conor+dt@kernel.org>
-CC: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org>,
-        <20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com>
-References: <20250502-qcom-iris-hevc-vp9-v3-0-552158a10a7d@quicinc.com>
- <20250502-qcom-iris-hevc-vp9-v3-13-552158a10a7d@quicinc.com>
- <f9767d12-a9b4-41f3-bd96-f2b13cea5b86@linaro.org>
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <f9767d12-a9b4-41f3-bd96-f2b13cea5b86@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDExNCBTYWx0ZWRfX1tl9/brMic8Q FrXR6eIsttiSgs4TR0il0+dlLeIrMV35zJkeQJ3bGl0pu/c7EgTneRiyrREHe0lj1obKiyQUMZC 2oPEVBYycIzuSTAauWGtWIrSB7fSPp04spVXZQpfLHDdfsRz6sJVx/il86944FpWBGX9Utv/xqS
- 4m9pjfaiaf3FbUL0Pi0UCWSYPYFNbinPqoFtU0zmQ/+2mYO6cG0L2Q0Qm4RybNqjZ33hV3Xetsa avpr3PLD5lG1GG1h9e+ve4KDeomknAF4pgVj4TEguA1xfEJAuZ9fPjHSFdVJsV1TPKRVTB2Zs/T 2WlWnspi6wCyBYtBgDEH1SadNjNohlwk0qSFaX644mNXO2j4Fmb2Z58H6lL1c+AMrSys+Zf50Un
- n3KQ02zv1PS3adOioV5rfl+KrgZrxC3h9JTM/QZcZHbGJV2SaxrVsSOqTdIFxLaBfwPkMwuA
-X-Proofpoint-GUID: 7CU9QU99cQF3xhLY-L_yW0H6wUkoKMOr
-X-Authority-Analysis: v=2.4 cv=W404VQWk c=1 sm=1 tr=0 ts=6814d54a cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=Q1Ca2Uoc8Cyl_9njguYA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 7CU9QU99cQF3xhLY-L_yW0H6wUkoKMOr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-02_02,2025-04-30_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 bulkscore=0 spamscore=0
- clxscore=1015 phishscore=0 impostorscore=0 mlxlogscore=861 malwarescore=0
- suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505020114
+Content-Type: text/plain
+X-ClientProxiedBy: Diagnostix.phytec.de (172.25.0.14) To Florix.phytec.de
+ (172.25.0.13)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU6PEPF00009529:EE_|GV1P195MB2551:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3a1fea80-b91d-43e1-16d5-08dd898550d8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?0yvAL3ep3pphtDGTtZJOc8T6PuQiQQgdo1SgXuHpUyLHSWqeJbTnGdQ9k0J6?=
+ =?us-ascii?Q?yi1g7Q/v8dNWsfKk9dCdoB98jp44SPQI//7B+8erFvsVi8T/Kou1anQDPe/t?=
+ =?us-ascii?Q?ckKFjzq8nUnX6z7F8qaSae/w4ol3r2UWTEtMbJKtQqKyJFDBpgKTTc2OtzIA?=
+ =?us-ascii?Q?BZp6Fd/bA3FQYDSCOVZLr7cmlG9GB0w/FdS//MD42+eoCzm0PtcmvhRwu3ba?=
+ =?us-ascii?Q?KOsPpMvzsTEbEJi1mIVSRFHXJ16L3abdbgFOSlP2gMX88ld0RbgAS1DHejTS?=
+ =?us-ascii?Q?SrEp/MpTkmsKVClMAXGUliIltkj+eYb1VmItdjMoj2+eZhbCq6l8SP1oTayU?=
+ =?us-ascii?Q?ALAiqPV8/bqN+l775rNjOcf+haLY2HR9CEkbgI7HqYF59gJbjbIQzo3avXOV?=
+ =?us-ascii?Q?mV23z+lB7bjWMjbn2VEtMb42+mkqtjxue/P6rKocTQ81kItbtafPAJMTjF1z?=
+ =?us-ascii?Q?Plowf8fIZ0qrH9XLjxpmHMD7dH3qCfx8uKKZ+WrhVAQeeEgu8Yy2lkwYDJUo?=
+ =?us-ascii?Q?dWwuoDC7TfQUaicWL8QUF3kMSIHavyAS7y9t7lPt2KR0/bd4/HS09cNjuhE3?=
+ =?us-ascii?Q?COceGbajnBSYYC4LFUa2k3XQoqPvxdJXMqraUvsAPDPl7PxVPiVot/EnJbZt?=
+ =?us-ascii?Q?BOylpJFwNSd76MtGAGyn3j0VAtLljRaQjJHTX3aunm9Sr7kjHyRHTHFAEKWC?=
+ =?us-ascii?Q?uwuj+RML1IByVWgpLz8YovJRiEJdCbsEL56+qJOXD9VFzG/jY47UwaR3QG7H?=
+ =?us-ascii?Q?sGzwJZugSjnRnQ3dErmVlD0n9Ms1a9naFYzFdc11cLv8QyW5Y313gfbJcKTf?=
+ =?us-ascii?Q?4EIYxRZxsAxXIUJv8OPGNHDsD1PnQzvfaUNd2w2fdBiKjJzf/KmxDuWIh0fo?=
+ =?us-ascii?Q?y2y4L3g/wNxfkDDdnG78tmsSw0y7UqRWD22T80MWn1G2fOArKWmA575fYgY6?=
+ =?us-ascii?Q?EZ5DkmI0XA2hZJBDH2U9Qafn7Yj8Xm6CjOGFJVUwybBL8wIbbgorYsohPZdc?=
+ =?us-ascii?Q?EEA4o1Qg/AlJoh6Akm6RPrRXuo8FC6I3QOz8u/PP0CLB/Gpcojvj3v/XnXZN?=
+ =?us-ascii?Q?2nJhfzm/BPcAvFxGk3AQpVrOY9nrmgZVmBmkcGjPSYICI5nURjrzyWk5vjos?=
+ =?us-ascii?Q?9HJ/L6jrBFTLvhl0d27k+AgRmhWjesB+aCqjBG35e2ZwIThwMxaKtaYITnlm?=
+ =?us-ascii?Q?Ql4N2hpdjR9J2FtDWwogYrnWLjAvVYSZXstxNrumIdPhQ+Pi6cohmikakhEp?=
+ =?us-ascii?Q?C4Nv04AVJp+MJSVjC6nMiKrpUNzDqTWix4D1PjnyPzIJcHPnkHdkXx9rLegj?=
+ =?us-ascii?Q?1T91R7iH/n1rSvc4ohJLJ6L8viYrF5zdeB1JEfH5PY5uBAE6Bk8r1/h1I/2X?=
+ =?us-ascii?Q?iuCY2MLTGC3tZOjIJv2QDJqwH0foK7J9EffRdsJmIcL6Hfkp1W3rlmC0Yoof?=
+ =?us-ascii?Q?Vt6t0ZNZzoIiBTwWIjEa6QA4LmhZs9+nI8dqxTifm9Gz3+JTPUkofFYHa2xT?=
+ =?us-ascii?Q?KkWvx03Up0FCPlZodQC6V6uEugwcAFPln/QZ?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Diagnostix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2025 14:26:23.5774
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3a1fea80-b91d-43e1-16d5-08dd898550d8
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Diagnostix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU6PEPF00009529.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1P195MB2551
 
+Enable throttling down the CPU frequency when an alert temperature
+threshold (lower than the critical threshold) is reached.
 
+Signed-off-by: Daniel Schultz <d.schultz@phytec.de>
+---
+ arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi | 57 ++++++++++++++++++--
+ arch/arm64/boot/dts/ti/k3-am62a7.dtsi        |  4 ++
+ 2 files changed, 58 insertions(+), 3 deletions(-)
 
-On 5/2/2025 6:19 PM, Bryan O'Donoghue wrote:
-> On 01/05/2025 20:13, Dikshita Agarwal wrote:
->> Firmware sends buffers with 0 filled length which needs to be dropped,
->> to achieve the same, add V4L2_BUF_FLAG_ERROR to such buffers.
->> Also make sure:
->> - These 0 length buffers are not returned as result of flush.
->> - Its not a buffer with LAST flag enabled which will also have 0 filled
->>    length.
->>
->> Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
->> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
->> ---
->>   drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
->> b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
->> index 4488540d1d41..3bb326843a7b 100644
->> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
->> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
->> @@ -378,6 +378,12 @@ static int iris_hfi_gen2_handle_output_buffer(struct
->> iris_inst *inst,
->>         buf->flags = iris_hfi_gen2_get_driver_buffer_flags(inst,
->> hfi_buffer->flags);
->>   +    if (!buf->data_size && inst->state == IRIS_INST_STREAMING &&
->> +        !(hfi_buffer->flags & HFI_BUF_FW_FLAG_LAST) &&
->> +        !(inst->sub_state & IRIS_INST_SUB_DRC)) {
->> +        buf->flags |= V4L2_BUF_FLAG_ERROR;
->> +    }
->> +
->>       return 0;
->>   }
->>  
-> 
-> This is a pretty complex conjunctive clause.
-> 
-> Is it possible for say 1/3 of these logical criteria to be false ?
-> 
-> i.e. if you get to:
-> 
-> 1. buf->data_size && inst->state == IRIS_INST_STREAMING
-This makes sure that the 0 length buffers are not returned as response to
-flush.
-> 2. !(hfi_buffer->flags & HFI_BUF_FW_FLAG_LAST)
-This makes sure that we don't mark the buffer with last flag as error since
-this will be also be a zero length buffer but a valid one.
-> 
-> is it possible to get to
-> 
-> 3. !(inst->sub_state & IRIS_INST_SUB_DRC)
-I can remove this condition as first one captures the essence of this one.
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
+index c7486fb2a5b4..39ff9118b6c4 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
+@@ -12,12 +12,29 @@ main0_thermal: main0-thermal {
+ 		thermal-sensors = <&wkup_vtm0 0>;
+ 
+ 		trips {
++			main0_alert: main0-alert {
++				temperature = <95000>;
++				hysteresis = <2000>;
++				type = "passive";
++			};
++
+ 			main0_crit: main0-crit {
+ 				temperature = <125000>;	/* milliCelsius */
+ 				hysteresis = <2000>;	/* milliCelsius */
+ 				type = "critical";
+ 			};
+ 		};
++
++		cooling-maps {
++			map0 {
++				trip = <&main0_alert>;
++				cooling-device =
++					<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++					<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++					<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++					<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++			};
++		};
+ 	};
+ 
+ 	main1_thermal: main1-thermal {
+@@ -26,25 +43,59 @@ main1_thermal: main1-thermal {
+ 		thermal-sensors = <&wkup_vtm0 1>;
+ 
+ 		trips {
++			main1_alert: main1-alert {
++				temperature = <95000>;
++				hysteresis = <2000>;
++				type = "passive";
++			};
++
+ 			main1_crit: main1-crit {
+ 				temperature = <125000>;	/* milliCelsius */
+ 				hysteresis = <2000>;	/* milliCelsius */
+ 				type = "critical";
+ 			};
+ 		};
++
++		cooling-maps {
++			map0 {
++				trip = <&main1_alert>;
++				cooling-device =
++					<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++					<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++					<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++					<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++			};
++		};
+ 	};
+ 
+ 	main2_thermal: main2-thermal {
+-	       polling-delay-passive = <250>;	/* milliSeconds */
+-	       polling-delay = <500>;		/* milliSeconds */
+-	       thermal-sensors = <&wkup_vtm0 2>;
++		polling-delay-passive = <250>;	/* milliSeconds */
++		polling-delay = <500>;		/* milliSeconds */
++		thermal-sensors = <&wkup_vtm0 2>;
+ 
+ 		trips {
++			main2_alert: main2-alert {
++				temperature = <95000>;
++				hysteresis = <2000>;
++				type = "passive";
++			};
++
+ 			main2_crit: main2-crit {
+ 				temperature = <125000>;	/* milliCelsius */
+ 				hysteresis = <2000>;	/* milliCelsius */
+ 				type = "critical";
+ 			};
+ 		};
++
++		cooling-maps {
++			map0 {
++				trip = <&main2_alert>;
++				cooling-device =
++					<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++					<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++					<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++					<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++			};
++		};
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a7.dtsi b/arch/arm64/boot/dts/ti/k3-am62a7.dtsi
+index 6c99221beb6b..b6e5eee99370 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a7.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62a7.dtsi
+@@ -50,6 +50,7 @@ cpu0: cpu@0 {
+ 			next-level-cache = <&L2_0>;
+ 			operating-points-v2 = <&a53_opp_table>;
+ 			clocks = <&k3_clks 135 0>;
++			#cooling-cells = <2>;
+ 		};
+ 
+ 		cpu1: cpu@1 {
+@@ -66,6 +67,7 @@ cpu1: cpu@1 {
+ 			next-level-cache = <&L2_0>;
+ 			operating-points-v2 = <&a53_opp_table>;
+ 			clocks = <&k3_clks 136 0>;
++			#cooling-cells = <2>;
+ 		};
+ 
+ 		cpu2: cpu@2 {
+@@ -82,6 +84,7 @@ cpu2: cpu@2 {
+ 			next-level-cache = <&L2_0>;
+ 			operating-points-v2 = <&a53_opp_table>;
+ 			clocks = <&k3_clks 137 0>;
++			#cooling-cells = <2>;
+ 		};
+ 
+ 		cpu3: cpu@3 {
+@@ -98,6 +101,7 @@ cpu3: cpu@3 {
+ 			next-level-cache = <&L2_0>;
+ 			operating-points-v2 = <&a53_opp_table>;
+ 			clocks = <&k3_clks 138 0>;
++			#cooling-cells = <2>;
+ 		};
+ 	};
+ 
+-- 
+2.25.1
 
-Thanks,
-Dikshita
-> 
-> ?
-> 
-> This also feels like a bugfix ?
-> 
-> ---
-> bod
 
