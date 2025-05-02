@@ -1,119 +1,140 @@
-Return-Path: <devicetree+bounces-172862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED112AA6BF7
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:48:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE375AA6BFF
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:49:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 605C24A72EF
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 07:48:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64FCE7A78D0
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 07:48:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B26DC253341;
-	Fri,  2 May 2025 07:47:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ACBD267709;
+	Fri,  2 May 2025 07:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QguFhDS1"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rf0WrmKY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B90EBA45;
-	Fri,  2 May 2025 07:47:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6F2121FF22;
+	Fri,  2 May 2025 07:49:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746172068; cv=none; b=kjXVrbSOmtXaxCeuFR+m//RA2FXVNLqUe6y9IEsQMfgBzROHrl2Jf0YSYLugDYGDpGr10uhNoCIoARacJ//aigR1GfhKJkyk3grQ8FdctahblN9iBSipgk1O7H8uwzKcBBVBF3Dwp0YOCVNCrAqnyTUdOy7qSiXYANSMW9jQB5Q=
+	t=1746172148; cv=none; b=uYGxji2XIXkb30O60zgT4evg9fyluUZkv+5MBrWiGEIr867oaC4hHHoO2++s1MqjyzJ0fSOSwyW3arWOjseK5XrkXV+h+bN03et9op37kMW7rpVLBMMIh8NKNZp21KM8pSeNiaBYb9kAcZjgmyLFw8nbtzNP2xn6+M5Bsfj08FY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746172068; c=relaxed/simple;
-	bh=12fU6nHdcWEJMliTffLzTURN5ljUvBtc8NTjS3gHJ9A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tyYFJXpEkGx7jiG+lppZX5CuJiJDUAJF9V/MwDnhnaCu1GzcdbSQ1ZhyuknjB0Lcu6ZvzdqPoDSkq6kRDLGLT566jJJJyElxMLHsvY2BAPn/IPZC/5riUFKS3z769Y+6w0L+Cr6lOPwJz8I6XA2zkSBBLGGsK0rL/Xl1iv5CKOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QguFhDS1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28025C4CEE9;
-	Fri,  2 May 2025 07:47:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746172068;
-	bh=12fU6nHdcWEJMliTffLzTURN5ljUvBtc8NTjS3gHJ9A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QguFhDS1SijzgZrzOMhZv+RnKjscPHxDjWyKHP7eGRatpefK76S/jI/5Ez6Rwzv4l
-	 88J/mvWRPCoPY7XFAh5JVhjWE20ok2CvkMDOWYP9cwdObPJ46SISahG8U+sogHhNE2
-	 xBEITy1y7BIU9OGYqmJSJi34BpI6nI2FUGalfOP1YluWa3gk4lWScFdAKAkJT178qg
-	 u95ttLilCwnL4/oMWEykE7e65kBwUWewZ4rZ2s5+Ng1o0ZcMggWS4aXwAGf1xSkl+B
-	 xd3PJ3wOje53Cghkinm/8kfv3BE/JaVZsEMnF720+XVMc4+lQ0L336wY7yETDc1AFr
-	 8/KCx5fJc955g==
-Date: Fri, 2 May 2025 08:47:43 +0100
-From: Lee Jones <lee@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [GIT PULL] Immutable branch between MFD and Regulator due for the
- v6.16 merge window
-Message-ID: <20250502074743.GC3865826@google.com>
-References: <cover.1744090658.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1746172148; c=relaxed/simple;
+	bh=oYv8bsdem3fGUgaGGpXJVflIaHVCd3b2DUks+2+OuLQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=twuLtycGhRefutJFPfZR6FXong765YC4c3I9Fh5GmB4YrYSwq9jbiKSS7j7Co9g14ssxLkKcc0LeWUCwL4ylh2OmOrEd16AobjSAXXJYWYAsaPsZ9/YIuqTcVqA2XblhQxlurTs/0OqOgdzggP6hmfnCL1ltau5KDk8VUyrojTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rf0WrmKY; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5427mcH2361756
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 2 May 2025 02:48:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746172118;
+	bh=4LqHMCcK2l/V1M+MRFnOp7hwBiMnH0PyGKsakcx8Vu4=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=rf0WrmKYKQOaRfLqXQkErznRX00xbww/2tmuOYEGfDRAOIkoUfW/GrLJDFJ+cPaWx
+	 ViNK9XvI/6X1wNerCLuFqNAyCe+XavbvaEw1qt8c7SvNT4SvtD9VBi0uydqdDmQ7bG
+	 nsWaHdTw8Xs5Q/DaJ8BTA+SWpdWSS/ouSwPI1/lQ=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5427mcsv045384
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 May 2025 02:48:38 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ May 2025 02:48:37 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 May 2025 02:48:37 -0500
+Received: from [172.24.227.193] (devarsh-precision-tower-3620.dhcp.ti.com [172.24.227.193])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5427mWwB079020;
+	Fri, 2 May 2025 02:48:33 -0500
+Message-ID: <6cf6f0f4-6559-4d74-ab69-1ccdf131512d@ti.com>
+Date: Fri, 2 May 2025 13:18:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1744090658.git.mazziesaccount@gmail.com>
+User-Agent: Betterbird (Linux)
+Subject: Re: [PATCH v1 1/4] arm64: dts: ti: k3-am62p5-sk: Add regulator nodes
+ for AM62P
+To: Rishikesh Donadkar <r-donadkar@ti.com>, <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <vaishnav.a@ti.com>, <y-abhilashchandra@ti.com>,
+        <s-jain1@ti.com>, <jai.luthra@linux.dev>,
+        <jai.luthra@ideasonboard.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <imx@lists.linux.dev>
+References: <20250429154133.3377962-1-r-donadkar@ti.com>
+ <20250429154133.3377962-2-r-donadkar@ti.com>
+Content-Language: en-US
+From: Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <20250429154133.3377962-2-r-donadkar@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Enjoy!
+On 29/04/25 21:11, Rishikesh Donadkar wrote:
+> Add regulator node for AM62P-SK
+> 
+> VCC_3V3_MAIN is the output of LM5141-Q1, and it serves as an input to
+> TPS22965DSGT which produces VCC_3V3_SYS [1]
+> 
+> VCC_3V3_SYS servers as vin-supply for peripherals like CSI [1].
+> 
+> Link: https://www.ti.com/lit/zip/sprr487 [1]
+> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
 
-The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
+Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
 
-  Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
+Regards
+Devarsh
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> index c2f55cc5a8ebc..0af33fccb96bf 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> @@ -115,6 +115,28 @@ vddshv_sdio: regulator-3 {
+>  		bootph-all;
+>  	};
+>  
+> +	vcc_3v3_main: regulator-4 {
+> +		/* output of LM5141-Q1 */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_3v3_main";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vmain_pd>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vcc_3v3_sys: regulator-5 {
+> +		/* output of TPS222965DSGT */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_3v3_sys";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc_3v3_main>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+>  	leds {
+>  		compatible = "gpio-leds";
+>  		pinctrl-names = "default";
 
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-regulator-v6.16
-
-for you to fetch changes up to 5d61bb1675ff7662f519ca203b1f8cdc455b9df4:
-
-  MAINTAINERS: Add BD96802 specific header (2025-04-24 14:53:20 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD and Regulator due for the v6.16 merge window
-
-----------------------------------------------------------------
-Matti Vaittinen (14):
-      dt-bindings: regulator: Add ROHM BD96802 PMIC
-      dt-bindings: mfd: Add ROHM BD96802 PMIC
-      dt-bindings: mfd: bd96801: Add ROHM BD96805
-      dt-bindings: mfd: bd96802: Add ROHM BD96806
-      mfd: rohm-bd96801: Add chip info
-      mfd: bd96801: Drop IC name from the regulator IRQ resources
-      regulator: bd96801: Drop IC name from the IRQ resources
-      mfd: rohm-bd96801: Support ROHM BD96802
-      regulator: bd96801: Support ROHM BD96802
-      mfd: bd96801: Support ROHM BD96805
-      regulator: bd96801: Support ROHM BD96805 PMIC
-      mfd: bd96801: Support ROHM BD96806
-      regulator: bd96801: Support ROHM BD96806 PMIC
-      MAINTAINERS: Add BD96802 specific header
-
- .../devicetree/bindings/mfd/rohm,bd96801-pmic.yaml |  10 +-
- .../devicetree/bindings/mfd/rohm,bd96802-pmic.yaml | 101 ++++
- .../bindings/regulator/rohm,bd96802-regulator.yaml |  44 ++
- MAINTAINERS                                        |   1 +
- drivers/mfd/rohm-bd96801.c                         | 565 ++++++++++++++++-----
- drivers/regulator/bd96801-regulator.c              | 455 +++++++++++++++--
- include/linux/mfd/rohm-bd96801.h                   |   2 +
- include/linux/mfd/rohm-bd96802.h                   |  74 +++
- include/linux/mfd/rohm-generic.h                   |   3 +
- 9 files changed, 1073 insertions(+), 182 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml
- create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96802-regulator.yaml
- create mode 100644 include/linux/mfd/rohm-bd96802.h
-
--- 
-Lee Jones [李琼斯]
 
