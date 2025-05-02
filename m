@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-172977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DF63AA71B7
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:27:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E6F4AA71C0
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:28:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02AA54A4D37
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:27:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CA461BC3FF9
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:29:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A3C4252904;
-	Fri,  2 May 2025 12:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D385254AE5;
+	Fri,  2 May 2025 12:28:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qu+snUZf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uZmGfClC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91CE7210185
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 12:27:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F47253925
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 12:28:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746188835; cv=none; b=rD4sxWs5hc9rNLYAvvXVuEWforYJvo1lTxDOuJ3hdi68TqtYAwLTDPEyutcnZgCZTGnmXpMzdcuphYUF9SrmURszKOUAEApY29sSnfho7LjuB7BfrfcZc+iyj6Hd00PABGgFb7hzsDXiRGHMHqp00XDyKPtlt6QmCqgNOxJDAac=
+	t=1746188910; cv=none; b=aSeCHn6F4NiRDIbcdk86vZQvPww1nfJtEZyHCNog0pt6fvEunh1yPxEtCsKKGR3bvInsC68DZMPpZX5VLc/F9380dC+y1jglCdg2rbfiIjpA3yC4Qz3QKaZgHoTYQ3f2yxdVfwbRaJGuRX0B9MxxJ44R8LICKWzBRog5yynt1mU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746188835; c=relaxed/simple;
-	bh=4j0ke6M74LzeHhABdWPG4BsNF7G/ublzVqyQ3s3Ax4Q=;
+	s=arc-20240116; t=1746188910; c=relaxed/simple;
+	bh=uC44g044KcShpYumwGzfPKaaQH0BoggRjBL8awNC4zU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Af/AV9i6b2q6vP+obVYROr/tqqJxeUeXWYsk9EhIO18FabHRJupAY4cuzSIjbTb7CzfAewlhKLkOzqZxFcNiPRDg4c87nxO+ZSyxPQCwpEbk2oOQJbsEeNmFWCMxNpSsgjr7IatIqY3AVmOjyZppB+QJN1NSfAq8UB7cKRnxLAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Qu+snUZf; arc=none smtp.client-ip=209.85.128.46
+	 In-Reply-To:Content-Type; b=ZkTLgvoGf9RcNypZH4a+fbNUaAz16hO/fRimAnfLcVs3825wm1AALyfqtkQdx7IyUmRLFJGYKfxHGoRRDIOc6LBcMi1GhysJ73coBiPIQl5OcIKA2mNpZ8n4rGq2RLwOThb2ETDR/k4glBK5Oz2KLImqyxSsCEgFizmKflcswZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uZmGfClC; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43cfa7e7f54so11527405e9.1
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 05:27:13 -0700 (PDT)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4394a0c65fcso18003795e9.1
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 05:28:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746188832; x=1746793632; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1746188906; x=1746793706; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iiq8j9Pd47tWgmGC+T98j/M88SapfZV3x181EBl9QGk=;
-        b=Qu+snUZfbjtoVHbcYIQkh66FZYcCBl7m5EF3ECu929XCegVlhLstjeSVuXsnOSmYPu
-         uK3OrOwh9X1eM9ft7gxS+vycMgMzSh/yRCFtydnKZNhlCYg9GjpU+W0fJtmadP6ri8lY
-         TX+XpboqoObN+oLy9oMPr/E0kjSbSh1l3ILCcVUCS0BBP1q3/2Ftsk042J6+LvdC/Stw
-         jRUEbok951xF3NkH1LZ1vPc53qli4lt5pHLGAI9cKK/thS2W7PE4d7bBG6CL1HOE8uKt
-         41bb76B8KJXkL03ezEXzv+/BxblbOxKjXTlTc/8J/qK5Rmw8JAoSGzrrpUCaX9BVgrDW
-         13/w==
+        bh=XFKlbhYbOYEqU3Hx7LL1L8k4PnOc/LhcaLrz8KQ4fp4=;
+        b=uZmGfClCc6k6ztUAMU3yvHwOaaFLzKN82E85imeept29LiiO9eOAAWDVECLmx7Ke8+
+         ebT1bKwCSzl9Gnhn9yWL5MlY4rOD0XUUK3YEgEWAq9hSdvjfwOEeZ3ajevZWlAFZX61M
+         3H+RdQMLTwpiGy7la5kLIsNQzANTtf7PxQ+s+X2syiwF0N57IDQzUa2EnbZdrteDDvQo
+         NphFQvpSL5ClWP4cR6F+sF2vLFw3ZvsIAOP7xwkZbF4VLiG57/V/iOC8GE9R2helPMAz
+         ZYsUMcqvYDbQzNoARKoJLINwIi3OPxSJ9tTKU8C/h3u60z086khAjEZurFNo/05+EkpB
+         zSrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746188832; x=1746793632;
+        d=1e100.net; s=20230601; t=1746188906; x=1746793706;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iiq8j9Pd47tWgmGC+T98j/M88SapfZV3x181EBl9QGk=;
-        b=IJJoIhIkI5Glq7nDubhfMN32Fb5hXaoN4l960lGL1xaeqYlNWH/w8BWK3AOljSBvCW
-         DVD5An1Ec2rJDV5i7OSteroMAu+gh8jEghAUJjV69x0HY4TtH2MLeK3vN+KQRtp6lc37
-         QzqYyKvk09xBhLgrRsPA33yPY/m4j4zZsZlzO6eabrntB35hyaPMU3nN9p1xByEfaH08
-         6/O6l1QcJ+Uq+vuQ+rVBwqPD2NYfyTF5P1goELpbmJVxl4j0RYFF7MJBCrphUCJPRZvP
-         XiF7VSfKro5dKWAt6Drr8Q3F+N2QJhPRxzTieoo/2xSVJo5BpOdg/VGov1o/TTgQam6t
-         oqPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWk1kCFbwZ6Ur3eAOYMvWXqv33O2QKGMZGADgO2Xc1M6kDaKqigOL4D4OXbjjkqUDTgbkDzmo2YKlCo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4LjqZqEeURa349YHjNOPIF8I1hqvCcaviw0fxybOA3PPSrx9f
-	GXVclVYWvP/deBRqUJ0QbBm+bPQFLX08GvoAT27FbSkdwrzUYHW5uVclD8DggKw=
-X-Gm-Gg: ASbGncvRP8KAN20n58ER2vffsdYFE5LyPy6H+HoGrHHYVuo+kruw87z2tpDS37g4rG7
-	j0HxOfSMnTbm4nHfaWX103H8etJvNK/h99mNQP+j2WCi7jKVMRDZk8ojzjPM08koTyOwb6ZPSKg
-	f1Gx4a4qE31eoj49dQux978iRksRDeB80cal29mhpQn/niLd9hPbOdnCqHQ7f25BCJCxuh57CYs
-	1GvpfrzeKrVJE0bfdCBc48d0WrMsxlkfLmjc0bQSTD4No2VAxX/0I2nS0jVQziamcoXGvmUMGgx
-	QLTDm4lUV15SeiELQW7mlYHQ1m17fueI2Oq8K1uNHnMth5U6hxIU4kCyNA9lEOcN9Txt3AO76nB
-	dBdG7ZA==
-X-Google-Smtp-Source: AGHT+IGffAlOpctwFrMNNY2tP4nZNI3nScrTpOCK1t0L/nEK+69qoAbndAyafnHVDnbgh0OsuB9ujA==
-X-Received: by 2002:a05:600c:15d3:b0:43c:f3e1:a729 with SMTP id 5b1f17b1804b1-441b72dc612mr34423725e9.12.1746188831814;
-        Fri, 02 May 2025 05:27:11 -0700 (PDT)
+        bh=XFKlbhYbOYEqU3Hx7LL1L8k4PnOc/LhcaLrz8KQ4fp4=;
+        b=eZbZi48Ig+MNFJZemYXvg15c18kqRfNm454w47kwcCd4Gs/TZ+cLaFKxg7npCPoTY1
+         7AzxuKLi2O8+Asr9sSvDc2HiMun3+PoeVbl7WVVlhgsykpg6jT47BqBaSppthUAet4Hz
+         Sk9sqzt5ABxlRjFI8fBtd2+EVt32APF8ZwxUQriuNgudaUD0lFsqq7zvEL9ZQzpCkA6C
+         hY7agxnWerLhXuWr9mTVyrNmhpScAOrF0J161iDh4rjSF7QKAGk65/dawtNn1WGL7+M9
+         qNTrxmuZ/aJb5hS5MSC78f1kI29aRmO7fr9GN7U0ieuf4+uUWnT8vMRGPYPDmyd+E420
+         6qrg==
+X-Forwarded-Encrypted: i=1; AJvYcCUcO47INepWdavILa2PWSjNXVptV50Uo+LpwusTKkapBO2imDaueY/gGp2lrU4vgV8Fxc9TKYlDN2ff@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLJW5Os6Vorw4FM7L8/IuLUPSPSVmjygKUmuEaXy0uo07xhoRi
+	uga46KTUhVcvFfe8skw2ViNVlV54xGCca5BHdAoQGAKUKOLyvGeREfM9aLIECzk=
+X-Gm-Gg: ASbGncuu+yPDJ/fNpSYd4dgYMyW9SlqiLk3d0FkwWsJ4mGohgKMy+GX3yspxHXGkiEn
+	0A3bS1WFwRSksAXJ6rTOASENRlmIwTkIOKDliCCb/HyX5BuYFlXZvOMLZgT6066O6rfhJNhQtgP
+	i9e4KV2cDEQXCFcGf3+s1gYl8afbudjyzScNjUfYP980XVtMUqFTfZJXGz4ZD+9Bhve3K9Jj7QE
+	7wjoXnIiITqjpqjGtlxcAd5ZfvYyzMUeq9A56v7cbEVTmuKJ+M6WdFE40UqcouyihxRBTQivEtX
+	I7i1BOuDlgrJ8RzlbUbkg/hQZKNCtmaykctSSTfPWE929m7Cmiftta7CKm5xz2BCFZ1OoBh9VlY
+	mfnJ57w==
+X-Google-Smtp-Source: AGHT+IEkYYqC5HLJDXAnW5gzwBKk2/Wl+3ak0P8p7yEpFGbDPHanEhrJN2oVaPxj/s406NWQ0lakDw==
+X-Received: by 2002:a05:600c:1f0a:b0:43c:efed:732d with SMTP id 5b1f17b1804b1-441bbec629emr22778825e9.16.1746188905909;
+        Fri, 02 May 2025 05:28:25 -0700 (PDT)
 Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b17017sm2052074f8f.92.2025.05.02.05.27.10
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b8a31695sm43591945e9.40.2025.05.02.05.28.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 May 2025 05:27:11 -0700 (PDT)
-Message-ID: <f9aacef3-eed2-4a0b-a543-b26342c4d3f1@linaro.org>
-Date: Fri, 2 May 2025 13:27:09 +0100
+        Fri, 02 May 2025 05:28:25 -0700 (PDT)
+Message-ID: <b5179740-8717-4e5d-8adf-5f6d3f953fb5@linaro.org>
+Date: Fri, 2 May 2025 13:28:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,8 +82,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/23] media: iris: Remove deprecated property setting
- to firmware
+Subject: Re: [PATCH v3 07/23] media: iris: Fix missing function pointer
+ initialization
 To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
  Vikash Garodia <quic_vgarodia@quicinc.com>,
  Abhinav Kumar <quic_abhinavk@quicinc.com>,
@@ -100,29 +100,43 @@ Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
  20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org,
  20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com, stable@vger.kernel.org
 References: <20250502-qcom-iris-hevc-vp9-v3-0-552158a10a7d@quicinc.com>
- <20250502-qcom-iris-hevc-vp9-v3-6-552158a10a7d@quicinc.com>
+ <20250502-qcom-iris-hevc-vp9-v3-7-552158a10a7d@quicinc.com>
 Content-Language: en-US
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250502-qcom-iris-hevc-vp9-v3-6-552158a10a7d@quicinc.com>
+In-Reply-To: <20250502-qcom-iris-hevc-vp9-v3-7-552158a10a7d@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 01/05/2025 20:13, Dikshita Agarwal wrote:
-> HFI_PROPERTY_CONFIG_VDEC_POST_LOOP_DEBLOCKER is deprecated and no longer
-> supported on current firmware, remove setting the same to firmware.
-
-What about older firmware - what's the effect there ?
-
-> At the same time, remove the check for non-zero number of v4l2 controls
-> as some SOC might not expose any capability which requires v4l2 control.
-
-Please break up patches like this one patch removing your legacy 
-functionality - assuming that makes sense another patch amending your 
-non-zero number of v4l2 controls.
-
-Generally any commit log or patch title that requires "do this and do 
-that" should be broken up @ the and.
-
----
-bod
+> The function pointers responsible for setting firmware properties were
+> never initialized in the instance capability structure, causing it to
+> remain NULL. As a result, the firmware properties were not being set
+> correctly.
+> 
+> Fix this by properly assigning the function pointers from the core
+> capability to the instance capability, ensuring that the properties are
+> correctly applied to the firmware.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 3a19d7b9e08b ("media: iris: implement set properties to firmware during streamon")
+> Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> ---
+>   drivers/media/platform/qcom/iris/iris_ctrls.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/media/platform/qcom/iris/iris_ctrls.c b/drivers/media/platform/qcom/iris/iris_ctrls.c
+> index 915de101fcba..13f5cf0d0e8a 100644
+> --- a/drivers/media/platform/qcom/iris/iris_ctrls.c
+> +++ b/drivers/media/platform/qcom/iris/iris_ctrls.c
+> @@ -157,6 +157,7 @@ void iris_session_init_caps(struct iris_core *core)
+>   		core->inst_fw_caps[cap_id].value = caps[i].value;
+>   		core->inst_fw_caps[cap_id].flags = caps[i].flags;
+>   		core->inst_fw_caps[cap_id].hfi_id = caps[i].hfi_id;
+> +		core->inst_fw_caps[cap_id].set = caps[i].set;
+>   	}
+>   }
+>   
+> 
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
