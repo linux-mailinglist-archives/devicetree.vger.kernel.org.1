@@ -1,268 +1,395 @@
-Return-Path: <devicetree+bounces-173008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24EC0AA73B0
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:32:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0248AA73B7
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:32:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3EAC1C0697D
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 13:29:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C87D3B4F5D
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 13:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69E2A2566F9;
-	Fri,  2 May 2025 13:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5723B255F2A;
+	Fri,  2 May 2025 13:31:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="hxIacMxR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Roylhygy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F382255F5E
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 13:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC760246763
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 13:30:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746192506; cv=none; b=Qxfi0PKNzajHvcDffgjTw/F867iCex74Efz+7qfxq2lCE1pZT6M5IoZUdmEfNjuvOUXgyrREDOVy1LroVLX9RfCWd8oxHiQVN9A2sZlcI3GAIWABq9iz4n3MbtnR/DXIPwL9/DVOCS6nH679+SNOolne2q/wCyYCVrtQZh/kJQA=
+	t=1746192663; cv=none; b=brKN++nZxEbff15CAlhPWGd5Ud5PZ4IZHogd+WdWn6kirstF8afNrS2lrslfU9lsPK/+gQmS0ZCxKKWrjvdNh64mmMKvMXvQGQdPJi7viBXz+aqZ44noQdFBq+o2wifE7pk6CBWYv99za9S1luG3rFPogx6s33ZGQzmILG3FC8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746192506; c=relaxed/simple;
-	bh=/r8suY1Up2Qw3JiT04uRdtjQsRncn+ol5tkKKKi4YvE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TJnGwacp894nfoqSkAc2lqSDazSEbj+yXO8e5WcDrw7GG8VdeYU2MrAoQQKnqpXkp0wOWyvW0+uLeIiDwbzqZiTwUInuM2j9OTRRZcdyM5B/OCC9Hwsyqrl3pLHJiZeCl3A/M0dBEERAVri365fy0yLa9EWPk+lih4P8EtIBzYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=hxIacMxR; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43ce71582e9so12266485e9.1
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 06:28:23 -0700 (PDT)
+	s=arc-20240116; t=1746192663; c=relaxed/simple;
+	bh=xwm4PR4J1pHQYqZeys9NZTAlKNXnL5uO4Imdg9Ky4pY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=hxjR/BNKInq9B77ZBYpYhRJoOJiXPFgqaYtXOj1piwb2mfarngEWXKFySbnJa/drmUD8H+E5sxhRtReHd3Ze8wOI8X/WtHMGbC6T3yPpggPmOpq/SxzfHeGVc7Rfjbjfat2xcYtJD/grRIjXqqS4ww2CoEqjZLRQmuHdN785Gcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Roylhygy; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4394a823036so19276445e9.0
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 06:30:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746192502; x=1746797302; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1RB+4ADJTBxuxoLrq2q5axLDiDnl84yPV2iN1+Z+zwY=;
-        b=hxIacMxRcQs3BG72JPMQqyii5EI/e6GYhTDv1A2ma+k8Uec6HiAp9E+/1Pa/qaCFcl
-         bvEHDhTMYUcoo8jhtn6RsUP70iL0kPdTMFKGTc67m/9lR95nW03w2vPQQyl06V8VRAVD
-         kVWXcA31sMt2vPc/1fUSXfjXhxw4J1pcnB1OLzSdFnPRsLVrTc7sFzFRrQ6q3+8A/OXP
-         l+gbuPwznwVNbYjM222L/HFm+vkj9+bcg7ghhZDc42IB1Pbg3SUc9MXG0AD2VtM9Yddv
-         zA71J5J5OzApLBa/hzRmEiAWs9FMGkDeaX6OZumTnnRgwPnS/VX6vkbcodVPuG6ZeIZO
-         hdgg==
+        d=linaro.org; s=google; t=1746192658; x=1746797458; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=kMgGRFDkxigeVP85QyWg0RWyuUUrnv+plnLqTjbVgnE=;
+        b=RoylhygyyTe0ADYlysBnshjaMzfF89/vsPleULEriFBsLT6XFtVWry35e8ot77cj5F
+         0s5LkAu9aXelg9H21IGKd58wQ3GBOi0gSeZyBo820JM3l4SciRGc+gmfT/SUNBd0j40B
+         ok2vPn7S5GBBZ4wISjYF0bKxd/0SLsFUHGAZ0R4ZFCq0FBoW5vdKHZVIOh5o+9mB4ZNl
+         tCdHomBjpt+yQXrA+m32L2MtL60bnPcco1krO3n8qC3T6XCp9CVUl5FkJMExPrqNTfs/
+         c+WOHhb4vepuyZckvCsAmOy6/Zxcfh/VE/vjIaRk0FSM5UiZFNbqTtVfQLW+ahd38Wid
+         /obQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746192502; x=1746797302;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1RB+4ADJTBxuxoLrq2q5axLDiDnl84yPV2iN1+Z+zwY=;
-        b=YjizHlk0iPs+RiKwcxt7vfxiKAxTHJD3Dfe/3VxSTjAMgbTNTVkaTL3ZKzjOQ4v5j3
-         DmfZ3PzCq+gttrB9FWJO+vzOYBB1zr54lcBGcDN80Cc9xu998YGLj25gg1fEXWeSaGPj
-         p+kdTW5sbeZKb3/V+QiwSR3v278iV/cnD41MkwzftKco/fF5vvL4GF/VJjeKvvasIcNW
-         PXXtSzcBZzIDSGaRciheqTHpaZcNENAS3spbpd8FlmNyyODJy3cssnZ5X4BLJOFp8lTh
-         zqIX6E0RmLMc1BeFgxSqJSQWCThm9ohdu9/xecLDly0Got+c4BxVKj7Q+DfMY59kajp4
-         hpQw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1KquUIDxE7Cok/dmlubSqkwOLEx8GoSXzvQh66LwphOin1gawKyHgAUDLOXlf4sXLlZ8+Gwj/5U+0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMDl22ts3pso74Z+sLdYHxyMh3AboR85KLf35TmY6wu+DJrpl1
-	MwjJ40LlNbV9hkkZNuW1eNVJqUD9KRDyScJdb89da/sjj78hrvt93lNryHnu7Gc=
-X-Gm-Gg: ASbGncst5cOAtWJhGThiL9GJKAkIUi4ohE/QZDNP174MXgGnkseWhAdMENCBQmKZjsR
-	veKzjjXPazVFFt16s7MouoGaiX6SpgfdHUPWwmbjmzxa2a5wcdV9r4eW5Yuqb5ZLG7zx2GN96Rg
-	J6pQ+ECIfa7N2B169f26/4Jem8burVg0vUV7tkPVoCe3LVwKY/758JXv+jkuAxVUsrSvdLvwhA+
-	8DJOGOS5bpfbXWxmIIHZuTGGtb3SMfZ4f1cy27n94xsiYYlqd9Evg5htdriC5iRaNDgTWF5BSZq
-	82yGUoxow+Xa+e/zT1e/2UbOvf78O6HhvnrHPeFxazDt
-X-Google-Smtp-Source: AGHT+IEgIlcfMb/XuKwOYfgMGDYSXZQ5POyf/PBHKjynVwRRRgEBI6ighVhqJv33JiCr+mBDdnCeZw==
-X-Received: by 2002:a05:600c:4fc9:b0:43c:f70a:2af0 with SMTP id 5b1f17b1804b1-441bbedb54emr29454945e9.16.1746192502497;
-        Fri, 02 May 2025 06:28:22 -0700 (PDT)
-Received: from [192.168.0.2] ([87.8.31.78])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b89cc50esm45761065e9.8.2025.05.02.06.28.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 May 2025 06:28:22 -0700 (PDT)
-From: Angelo Dureghello <adureghello@baylibre.com>
-X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Date: Fri, 02 May 2025 15:27:02 +0200
-Subject: [PATCH v2 5/5] iio: adc: ad7606: add gain calibration support
+        d=1e100.net; s=20230601; t=1746192658; x=1746797458;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kMgGRFDkxigeVP85QyWg0RWyuUUrnv+plnLqTjbVgnE=;
+        b=MEuz8HZkeemJOkjLDD5CegddhGHiBDEgcj14gYLjjjqusBcJfuzGAAdD0b/B0VP0pI
+         6Z4ZDNHBNP3Mlqa0C302cvZIbjPjwzw3J3EJ2ctsfg2GDqu+j3wb9F2OKOAtIATJ5n48
+         VgbvHK/j2oQZko3ZR0T82cPK43LPLfw4qOaFC2KSK5+DmTtfFRIX+LM+F3DUdSsYp6uU
+         NGI0hfLkqYwc3CWy5e5A5aG7aD7p82u8kU7yeosYTCAbFbTK48LNGwmDv/KcatTAFwhi
+         PJlQzie11hYWwz4ZRmYz4agysQw7KMg99BvxuBGrdmZ+G8cEGOLRtpm+PwIsKCG14Hwq
+         KFCA==
+X-Forwarded-Encrypted: i=1; AJvYcCXX9IuykDcXLNF0UKt0J1jxcRIadrZVNdR8kzk1iMSBPbkRzxuDPzfVyhScPIQv5LavWHwThgaBYqJk@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdP4NQvr6leEwk5u19VS4BKw0ivDgGqOh0aRzL5R1nSC7j/d/V
+	7aOvi519MH0ipWUPyCHs3sdGQGcJig/2E1m1wVptZIB+af43yxS0/8tBAGMy3bw=
+X-Gm-Gg: ASbGncsiUPt6kD8LEAjhyiG9HUwXrI6Mp4LJ7N7lnYNpS8K2l4dWniXDNhsvuvNfK3w
+	6z/wJjwIw80EUYhLINeplUr5Ex9r6oqcsRKwCR/0fdsxGKA16mJxckbT9/OkF2Yr5Yf+SGK6ejc
+	3A2evfl1DzuhLru3d0BinsDJDHa/FMGRvshp1Ox8EZ48wijMxce5pAyx1P2GxdMm0QwK7MjJEnA
+	ZrJJO6eSbz4EheISm+wQ9z9TtikPv0W/IKyqQaVvwZm1/70G1fKog6+phMYtTYKcQqgmt1fW5oZ
+	zHjzueIfwOVY238Uzjg10hSLo5uoNt+VF+eoy2gQZfqU8Vl1Hl61tNvr/fLFa0WXh67DIwTcvDq
+	YfFRQ
+X-Google-Smtp-Source: AGHT+IEhNV/xlCdMw+Oc2CCiYFqdVlXKZQXVq4z+45X0TW5tIc8xQM22KI6qEwaK6y+ULeuHBJz7Qw==
+X-Received: by 2002:a5d:5887:0:b0:3a0:870d:3152 with SMTP id ffacd0b85a97d-3a099add459mr2377048f8f.33.1746192658015;
+        Fri, 02 May 2025 06:30:58 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a099ae3c1fsm2195661f8f.37.2025.05.02.06.30.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 May 2025 06:30:57 -0700 (PDT)
+Message-ID: <a9f58437-5992-4042-85cd-b9150c4855ff@linaro.org>
+Date: Fri, 2 May 2025 15:30:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250502-wip-bl-ad7606-calibration-v2-5-174bd0af081b@baylibre.com>
-References: <20250502-wip-bl-ad7606-calibration-v2-0-174bd0af081b@baylibre.com>
-In-Reply-To: <20250502-wip-bl-ad7606-calibration-v2-0-174bd0af081b@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- devicetree@vger.kernel.org, Angelo Dureghello <adureghello@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5681;
- i=adureghello@baylibre.com; h=from:subject:message-id;
- bh=vqrUpAxX+9UwYDkass8KUvKkJQRsyw1vKSCquKwrjPg=;
- b=owGbwMvMwCXGf3bn1e/btlsznlZLYsgQOaGeIrHou0jJxfBkGdabri3MKdcclXfeFsx7wWp3d
- uu2up2MHaUsDGJcDLJiiix1iREmobdDpZQXMM6GmcPKBDKEgYtTACaSXMjwh+OlyhGPE+olVkpZ
- S7KbnumenOwyz4WH2WPej406Bxzj3zH84XHz4J63t0kiUYhj5bH5Bzh5N7RyTIwyOLM14kNUndF
- 7dgA=
-X-Developer-Key: i=adureghello@baylibre.com; a=openpgp;
- fpr=703CDFAD8B573EB00850E38366D1CB9419AF3953
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] thermal: Add support for Airoha EN7581 thermal
+ sensor
+To: Christian Marangi <ansuelsmth@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250226003608.8973-1-ansuelsmth@gmail.com>
+ <20250226003608.8973-2-ansuelsmth@gmail.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20250226003608.8973-2-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-From: Angelo Dureghello <adureghello@baylibre.com>
+On 26/02/2025 01:35, Christian Marangi wrote:
+> Add support for Airoha EN7581 thermal sensor. This provide support for
+> reading the CPU or SoC Package sensor and to setup trip points for hot
+> and critical condition. An interrupt is fired to react on this and
+> doesn't require passive poll to read the temperature.
+> 
+> The thermal regs provide a way to read the ADC value from an external
+> register placed in the Chip SCU regs. Monitor will read this value and
+> fire an interrupt if the trip condition configured is reached.
+> 
+> The Thermal Trip and Interrupt logic is conceptually similar to Mediatek
+> LVTS Thermal but differ in register mapping and actual function/bug
+> workaround. The implementation only share some register names but from
+> functionality observation it's very different and used only for the
+> basic function of periodically poll the temp and trip the interrupt.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+> Changes v5:
+> - Add additional info on difference from Mediatek LVTS driver
 
-Add gain calibration support, using resistor values set on devicetree,
-values to be set accordingly with ADC external RFilter, as explained in
-the ad7606c-16 datasheet, rev0, page 37.
+[ ... ]
 
-Usage example in the fdt yaml documentation.
+> +static void airoha_init_thermal_ADC_mode(struct airoha_thermal_priv *priv)
+> +{
+> +	u32 adc_mux, pllrg;
+> +
+> +	/* Save PLLRG current value */
+> +	regmap_read(priv->chip_scu, EN7581_PLLRG_PROTECT, &pllrg);
+> +
+> +	/* Give access to thermal regs */
+> +	regmap_write(priv->chip_scu, EN7581_PLLRG_PROTECT, EN7581_SCU_THERMAL_PROTECT_KEY);
+> +	adc_mux = FIELD_PREP(EN7581_MUX_TADC, EN7581_SCU_THERMAL_MUX_DIODE1);
+> +	regmap_write(priv->chip_scu, EN7581_PWD_TADC, adc_mux);
+> +
+> +	/* Restore PLLRG value on exit */
+> +	regmap_write(priv->chip_scu, EN7581_PLLRG_PROTECT, pllrg);
+> +}
+> +
+> +static int airoha_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+> +{
+> +	struct airoha_thermal_priv *priv = thermal_zone_device_priv(tz);
+> +	int min, max, avg_temp, temp_adc;
+> +	int i;
+> +
+> +	/* Get the starting temp */
+> +	temp_adc = airoha_get_thermal_ADC(priv);
+> +	min = temp_adc;
+> +	max = temp_adc;
+> +	avg_temp = temp_adc;
+> +
+> +	/* Make 5 more measurement and average the temp ADC difference */
+> +	for (i = 0; i < 5; i++) {
+> +		temp_adc = airoha_get_thermal_ADC(priv);
+> +		avg_temp += temp_adc;
+> +		if (temp_adc > max)
+> +			max = temp_adc;
+> +		if (temp_adc < min)
+> +			min = temp_adc;
+> +	}
+> +	avg_temp = avg_temp - max - min;
+> +	avg_temp /= 4;
+> +
+> +	*temp = RAW_TO_TEMP(priv, avg_temp);
+> +	return 0;
+> +}
 
-Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
----
- drivers/iio/adc/ad7606.c | 57 ++++++++++++++++++++++++++++++++++++++++++++++++
- drivers/iio/adc/ad7606.h |  4 ++++
- 2 files changed, 61 insertions(+)
+Does this chip support the averaging with the filtered mode which 
+prevent to do this expensive calls when getting the temperature ?
 
-diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-index 139d8b3f9bb39dd631a71c70539005d719fb5b7b..a167f080e89c8a8d8accaff5904cce31d860edf9 100644
---- a/drivers/iio/adc/ad7606.c
-+++ b/drivers/iio/adc/ad7606.c
-@@ -33,6 +33,10 @@
- 
- #include "ad7606.h"
- 
-+#define AD7606_CALIB_GAIN_MIN	0
-+#define AD7606_CALIB_GAIN_STEP	1024
-+#define AD7606_CALIB_GAIN_MAX	(63 * AD7606_CALIB_GAIN_STEP)
-+
- /*
-  * Scales are computed as 5000/32768 and 10000/32768 respectively,
-  * so that when applied to the raw values they provide mV values.
-@@ -125,6 +129,8 @@ static int ad7609_chan_scale_setup(struct iio_dev *indio_dev,
- 				   struct iio_chan_spec *chan);
- static int ad7616_sw_mode_setup(struct iio_dev *indio_dev);
- static int ad7606b_sw_mode_setup(struct iio_dev *indio_dev);
-+static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev,
-+					struct iio_chan_spec *chan);
- 
- const struct ad7606_chip_info ad7605_4_info = {
- 	.max_samplerate = 300 * KILO,
-@@ -180,6 +186,7 @@ const struct ad7606_chip_info ad7606b_info = {
- 	.scale_setup_cb = ad7606_16bit_chan_scale_setup,
- 	.sw_setup_cb = ad7606b_sw_mode_setup,
- 	.offload_storagebits = 32,
-+	.calib_gain_setup_cb = ad7606_chan_calib_gain_setup,
- 	.calib_offset_avail = ad7606_calib_offset_avail,
- 	.calib_phase_avail = ad7606b_calib_phase_avail,
- };
-@@ -195,6 +202,7 @@ const struct ad7606_chip_info ad7606c_16_info = {
- 	.scale_setup_cb = ad7606c_16bit_chan_scale_setup,
- 	.sw_setup_cb = ad7606b_sw_mode_setup,
- 	.offload_storagebits = 32,
-+	.calib_gain_setup_cb = ad7606_chan_calib_gain_setup,
- 	.calib_offset_avail = ad7606_calib_offset_avail,
- 	.calib_phase_avail = ad7606c_calib_phase_avail,
- };
-@@ -246,6 +254,7 @@ const struct ad7606_chip_info ad7606c_18_info = {
- 	.scale_setup_cb = ad7606c_18bit_chan_scale_setup,
- 	.sw_setup_cb = ad7606b_sw_mode_setup,
- 	.offload_storagebits = 32,
-+	.calib_gain_setup_cb = ad7606_chan_calib_gain_setup,
- 	.calib_offset_avail = ad7606c_18bit_calib_offset_avail,
- 	.calib_phase_avail = ad7606c_calib_phase_avail,
- };
-@@ -357,6 +366,50 @@ static int ad7606_get_chan_config(struct iio_dev *indio_dev, int ch,
- 	return 0;
- }
- 
-+static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev,
-+					struct iio_chan_spec *chan)
-+{
-+	struct ad7606_state *st = iio_priv(indio_dev);
-+	unsigned int num_channels = st->chip_info->num_adc_channels;
-+	struct device *dev = st->dev;
-+	int ret;
-+
-+	device_for_each_child_node_scoped(dev, child) {
-+		int reg, r_gain;
-+
-+		ret = fwnode_property_read_u32(child, "reg", &reg);
-+		if (ret)
-+			return ret;
-+
-+		/* channel number (here) is from 1 to num_channels */
-+		if (reg < 1 || reg > num_channels) {
-+			dev_warn(dev, "invalid ch number (ignoring): %d\n", reg);
-+			continue;
-+		}
-+
-+		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
-+					       &r_gain);
-+		if (ret == -EINVAL)
-+			/* Keep the default register value. */
-+			continue;
-+		if (ret)
-+			return ret;
-+
-+		if (r_gain < AD7606_CALIB_GAIN_MIN ||
-+		    r_gain > AD7606_CALIB_GAIN_MAX)
-+			return dev_err_probe(st->dev, -EINVAL,
-+					     "wrong gain calibration value.");
-+
-+		/* Chan reg is 1-based index. */
-+		ret = st->bops->reg_write(st, AD7606_CALIB_GAIN(reg - 1),
-+					  r_gain / AD7606_CALIB_GAIN_STEP);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int ad7606c_18bit_chan_scale_setup(struct iio_dev *indio_dev,
- 					  struct iio_chan_spec *chan)
- {
-@@ -1410,6 +1463,10 @@ static int ad7606_probe_channels(struct iio_dev *indio_dev)
- 				chan->info_mask_separate_available |=
- 					BIT(IIO_CHAN_INFO_CALIBBIAS) |
- 					BIT(IIO_CHAN_INFO_CALIBCONV_DELAY);
-+				ret = st->chip_info->calib_gain_setup_cb(
-+					indio_dev, chan);
-+				if (ret)
-+					return ret;
- 			}
- 
- 			/*
-diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-index 4c39de36154ffb80dfbb01bb4f812826bdc55967..e9a59d2afafd43e66137599dbd8220cd6b641e61 100644
---- a/drivers/iio/adc/ad7606.h
-+++ b/drivers/iio/adc/ad7606.h
-@@ -50,6 +50,8 @@ struct ad7606_state;
- typedef int (*ad7606_scale_setup_cb_t)(struct iio_dev *indio_dev,
- 				       struct iio_chan_spec *chan);
- typedef int (*ad7606_sw_setup_cb_t)(struct iio_dev *indio_dev);
-+typedef int (*ad7606_calib_gain_setup_cb_t)(struct iio_dev *indio_dev,
-+					    struct iio_chan_spec *chan);
- 
- /**
-  * struct ad7606_chip_info - chip specific information
-@@ -66,6 +68,7 @@ typedef int (*ad7606_sw_setup_cb_t)(struct iio_dev *indio_dev);
-  * @init_delay_ms:	required delay in milliseconds for initialization
-  *			after a restart
-  * @offload_storagebits: storage bits used by the offload hw implementation
-+ * @calib_gain_setup_cb: callback to setup of gain calibration for each channel
-  * @calib_offset_avail: pointer to offset calibration range/limits array
-  * @calib_phase_avail:  pointer to phase calibration range/limits array
-  */
-@@ -81,6 +84,7 @@ struct ad7606_chip_info {
- 	bool				os_req_reset;
- 	unsigned long			init_delay_ms;
- 	u8				offload_storagebits;
-+	ad7606_calib_gain_setup_cb_t	calib_gain_setup_cb;
- 	const int			*calib_offset_avail;
- 	const int			(*calib_phase_avail)[2];
- };
+> +static int airoha_thermal_set_trips(struct thermal_zone_device *tz, int low,
+> +				    int high)
+> +{
+> +	struct airoha_thermal_priv *priv = thermal_zone_device_priv(tz);
+> +
+> +	if (high != INT_MAX) {
+> +		/* Validate high and clamp them a sane value */
+> +		if (high > RAW_TO_TEMP(priv, FIELD_MAX(EN7581_DOUT_TADC_MASK)))
+> +			high = 110000;
+
+There are helpers in minmax.h
+
+> +		/* We offset the high temp of 1°C to trigger correct event */
+> +		writel(TEMP_TO_RAW(priv, high) >> 4,
+> +		       priv->base + EN7581_TEMPOFFSETH);
+> +	}
+> +
+> +	if (low != -INT_MAX) {
+> +		/* Validate low and clamp them to a sane value */
+> +		if (low < RAW_TO_TEMP(priv, 0))
+> +			low = -33000;
+
+Same.
+
+> +		/* We offset the low temp of 1°C to trigger correct event */
+> +		writel(TEMP_TO_RAW(priv, low) >> 4,
+> +		       priv->base + EN7581_TEMPOFFSETL);
+> +	}
+> +
+> +	/* Enable sensor 0 monitor */
+> +	writel(EN7581_SENSE0_EN, priv->base + EN7581_TEMPMONCTL0);
+
+The sensor is enabled in this routine but disabled anywhere else. Should 
+it be enabled in the init routine or in the set_mode callbacks ?
+
+> +	return 0;
+> +}
+> +
+> +static const struct thermal_zone_device_ops thdev_ops = {
+> +	.get_temp = airoha_thermal_get_temp,
+> +	.set_trips = airoha_thermal_set_trips,
+> +};
+> +
+> +static irqreturn_t airoha_thermal_irq(int irq, void *data)
+> +{
+> +	struct airoha_thermal_priv *priv = data;
+> +	enum thermal_notify_event event;
+> +	u32 status;
+> +
+> +	status = readl(priv->base + EN7581_TEMPMONINTSTS);
+> +	switch (status & (EN7581_HOFSINTSTS0 | EN7581_LOFSINTSTS0)) {
+> +	case EN7581_HOFSINTSTS0:
+> +		event = THERMAL_TRIP_VIOLATED;
+> +		break;
+> +	case EN7581_LOFSINTSTS0:
+> +		event = THERMAL_EVENT_UNSPECIFIED;
+> +		break;
+> +	default:
+> +		goto exit;
+
+Is the default case possible ?
+
+> +	}
+> +	thermal_zone_device_update(priv->tz, event);
+> +
+> +exit:
+> +	/* reset interrupt */
+> +	writel(status, priv->base + EN7581_TEMPMONINTSTS);
+
+You may want to the ack the interrupt before calling 
+thermal_zone_device_update() as the underlying code can interact with 
+the driver like calling set_trips. I'm not sure if it has on impact or 
+not but IMO it is a good practice.
+
+> +	return IRQ_HANDLED;
+> +}
+> +
+
+[ ... ]
+
+> +static void airoha_thermal_setup_monitor(struct airoha_thermal_priv *priv)
+> +{
+> +	/* Set measure mode */
+> +	writel(FIELD_PREP(EN7581_MSRCTL0, EN7581_MSRCTL_6SAMPLE_MAX_MIX_AVG4),
+> +	       priv->base + EN7581_TEMPMSRCTL0);
+> +
+> +	/*
+> +	 * Configure ADC valid reading addr
+> +	 * The AHB temp monitor system doesn't have direct access to the
+> +	 * thermal sensor. It does instead work by providing all kind of
+> +	 * address to configure how to access and setup an ADC for the
+> +	 * sensor. EN7581 supports only one sensor hence the
+> +	 * implementation is greatly simplified but the AHB supports
+> +	 * up to 4 different sensor from the same ADC that can be
+> +	 * switched by tuning the ADC mux or wiriting address.
+> +	 *
+> +	 * We set valid instead of volt as we don't enable valid/volt
+> +	 * split reading and AHB read valid addr in such case.
+> +	 */
+> +	writel(priv->scu_adc_res.start + EN7581_DOUT_TADC,
+> +	       priv->base + EN7581_TEMPADCVALIDADDR);
+> +
+> +	/*
+> +	 * Configure valid bit on a fake value of bit 16. The ADC outputs
+> +	 * max of 2 bytes for voltage.
+> +	 */
+> +	writel(FIELD_PREP(EN7581_ADV_RD_VALID_POS, 16),
+> +	       priv->base + EN7581_TEMPADCVALIDMASK);
+> +
+> +	/*
+> +	 * AHB supports max 12 bytes for ADC voltage. Shift the read
+> +	 * value 4 bit to the right. Precision lost by this is minimal
+> +	 * in the order of half a °C and is acceptable in the context
+> +	 * of triggering interrupt in critical condition.
+> +	 */
+> +	writel(FIELD_PREP(EN7581_ADC_VOLTAGE_SHIFT, 4),
+> +	       priv->base + EN7581_TEMPADCVOLTAGESHIFT);
+> +
+> +	/* BUS clock is 300MHz counting unit is 3 * 68.64 * 256 = 52.715us */
+> +	writel(FIELD_PREP(EN7581_PERIOD_UNIT, 3),
+> +	       priv->base + EN7581_TEMPMONCTL1);
+> +
+> +	/*
+> +	 * filt interval is 1 * 52.715us = 52.715us,
+> +	 * sen interval is 379 * 52.715us = 19.97ms
+> +	 */
+> +	writel(FIELD_PREP(EN7581_FILT_INTERVAL, 1) |
+> +	       FIELD_PREP(EN7581_FILT_INTERVAL, 379),
+> +	       priv->base + EN7581_TEMPMONCTL2);
+> +
+> +	/* AHB poll is set to 146 * 68.64 = 10.02us */
+> +	writel(FIELD_PREP(EN7581_ADC_POLL_INTVL, 146),
+> +	       priv->base + EN7581_TEMPAHBPOLL);
+> +}
+
+Thanks for documenting the different steps
+
+> +static int airoha_thermal_probe(struct platform_device *pdev)
+> +{
+> +	struct airoha_thermal_priv *priv;
+> +	struct device_node *chip_scu_np;
+> +	struct device *dev = &pdev->dev;
+> +	int irq, ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+> +
+> +	chip_scu_np = of_parse_phandle(dev->of_node, "airoha,chip-scu", 0);
+> +	if (!chip_scu_np)
+> +		return -EINVAL;
+> +
+> +	priv->chip_scu = syscon_node_to_regmap(chip_scu_np);
+> +	if (IS_ERR(priv->chip_scu))
+> +		return PTR_ERR(priv->chip_scu);
+> +
+> +	of_address_to_resource(chip_scu_np, 0, &priv->scu_adc_res);
+> +	of_node_put(chip_scu_np);
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
+> +					airoha_thermal_irq, IRQF_ONESHOT,
+> +					pdev->name, (void *)priv);
+
+(void *) cast is not needed
+
+> +	if (ret) {
+> +		dev_err(dev, "Can't get interrupt working.\n");
+> +		return ret;
+> +	}
+> +
+> +	airoha_thermal_setup_monitor(priv);
+> +	airoha_thermal_setup_adc_val(dev, priv);
+> +
+> +	/* register of thermal sensor and get info from DT */
+> +	priv->tz = devm_thermal_of_zone_register(dev, 0, priv, &thdev_ops);
+> +	if (IS_ERR(priv->tz)) {
+> +		dev_err(dev, "register thermal zone sensor failed\n");
+> +		return PTR_ERR(priv->tz);
+> +	}
+> +
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	/* Enable LOW and HIGH interrupt */
+> +	writel(EN7581_HOFSINTEN0 | EN7581_LOFSINTEN0,
+> +	       priv->base + EN7581_TEMPMONINT);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id airoha_thermal_match[] = {
+> +	{ .compatible = "airoha,en7581-thermal" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, airoha_thermal_match);
+> +
+> +static struct platform_driver airoha_thermal_driver = {
+> +	.driver = {
+> +		.name = "airoha-thermal",
+> +		.of_match_table = airoha_thermal_match,
+> +	},
+> +	.probe = airoha_thermal_probe,
+> +};
+> +
+> +module_platform_driver(airoha_thermal_driver);
+> +
+> +MODULE_AUTHOR("Christian Marangi <ansuelsmth@gmail.com>");
+> +MODULE_DESCRIPTION("Airoha thermal driver");
+> +MODULE_LICENSE("GPL");
+
 
 -- 
-2.49.0
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
