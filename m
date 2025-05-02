@@ -1,195 +1,177 @@
-Return-Path: <devicetree+bounces-173071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8247AA75DC
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:20:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36015AA75E8
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:25:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2927E168165
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:20:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22D337ACA08
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A19C22571AD;
-	Fri,  2 May 2025 15:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFD2257435;
+	Fri,  2 May 2025 15:25:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NBiPbK5e"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="U14dUhSc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6AFF2DC77E;
-	Fri,  2 May 2025 15:20:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5B3D2571C7;
+	Fri,  2 May 2025 15:25:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746199251; cv=none; b=M7Udiy3xDSuvHnOyd9ZZM/ddcqgHcSPaVB+CQrZ1hk1M5JoxcE92N8CEWNap80g9ugvCh9qwVrvKJB8x21t5dpf1Y6kfhxbgfmsYaSEcvCpCITvo6rjdgY6yPy/XVy1JxPSHeDgcponVN11BOdhOt9q2EBTK5PwrlG/fKCzbD3M=
+	t=1746199526; cv=none; b=XDyC5Zl0krGwrUVYM9JtP9QavPZ+Au6qQknyeWoALTL0MWEd3IrymSZZIIymfxnxlR2PDkV2pcu+ns0OoHp6zCtmadFR95pZll7r8U/zQObTk8ntCBpWdv5j/hSxHphiQZo89YoGbEpsp9Lu8Qwyh+71Ufoi2iOmOMoGzXv4v0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746199251; c=relaxed/simple;
-	bh=gWTxBs0F9UqXJIG0qtujTiPxAtr3572MEERKWgr50PA=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=e1ZIL2ZjNx2SdwokJ2eve5M2GM2kuq7PmALEv/8y8yihOHH7ZCpJJYXs4OxOCtzfYZooIwSN0Ix7d7PZNMfs0RTkjBE0gRS/f83U9fXA5OyQrKHRLzUHsvq6iT1SrikAFUrYWLBWWo6iAPy8m5K3wjGtIC7xECSOmHneI5DVmY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NBiPbK5e; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4394a0c65fcso19808995e9.1;
-        Fri, 02 May 2025 08:20:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746199248; x=1746804048; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MkApf9OF2vt2m7wQ3AVnCZaRmP1pVhUuWGCy8xr055s=;
-        b=NBiPbK5eDnA54YGCh/PXmvdfpZGjAforM0JqGe2MFBIKq3FZmuEAXw3H6Y9i/x5y0S
-         qYyO+XlNzDZDiK7WZtIzVEUgyEpm2e31Ib8rF4sFDcyZ15r1QoZLjunHEc1aJ+77Ihiz
-         R0JcE0zkuWElxrPe48Qq7y7iapT/1ofhPWW9N4j4NNSdkVmCvPKVKjls+s0Of6AYuvtQ
-         w3iD1GKefp3p21h0xjyfrXFNn8NwLwICTyhy9yqAmZKlY6vxJwGMKeNYStjVhtMSVc0D
-         Ph3RC/TEyhkzg4OCfvhsauE5oddi+ngRGGd3BcBolgf25Ta0LlsoylB4iel5JzjPBQXG
-         +dtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746199248; x=1746804048;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=MkApf9OF2vt2m7wQ3AVnCZaRmP1pVhUuWGCy8xr055s=;
-        b=DTzO84PQrsvSMDddxlKyjWijcTfnxo167p5m7/z85XW+tPdUuAOl1To8QMSXqF5ccW
-         +WZ9wGyR4LeuqU98LdvKgMQe+XG+X0BoYfRgb5pMMYFoM+hOuBUHTSi79gtjfSyOD1Lq
-         kcWBIIsQqTue+0XZAp3tFId2T/uzMb5dMmE97sy8lcglC0QC9ll9DoEx8iyiUcTjfwyl
-         LuqD9zIaSF4+YcR2G99VFcbT4K0U7Yyr9AS7+DfRLvcmPRNqhsK8Uyw0qG8SVwc324YE
-         5SPBO9xz0ZOPNNBfp6QXkOb+1FoSaZ2oM0wi0B3I9Y2OMNDf6tgcAlZ4dhoMVY6bQvhP
-         w7pw==
-X-Forwarded-Encrypted: i=1; AJvYcCWvxs+ykt1ywnCEo2cABWJ5MXI5FG0XpRHj1Y6GwccMemPysUG7YdQOS+C+Vct8iWKnCReMODX4H0QR@vger.kernel.org, AJvYcCWyszZs7tDS5N9tLf/eyMdgAkOfebb/t2gsf/ERxkLkCUQ9eJzYgZZYcYZfq2QbEPYQk9I7D/4Eufbaf5cy@vger.kernel.org, AJvYcCXnU0Ti9nqtGmB/cz7D6GXl0QF+Zay3z7Swbl0E61dvoVFT94uKS5jyrfkx70u0OJ3V9WJpv3PMPve7@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRF8yzimcewUAIdK1U9mrXCP1ROiuRaPqdCrWkLvWIlcU1WIKG
-	QOBiRoU91ygHkNpj9HbZ75Icc+Hks+4s73AbacqVwmEYGJb494gC07A1gcXt
-X-Gm-Gg: ASbGnctFPtGQxUOI7pLk6lkmqAMnFyfwE7MveBGU5pSqsjs3SDZZY8rfye7UcpmAyI5
-	qhrGPMLIFwa6u9KV1AnIEdfzBnVqUwPrY2dLdHbmHIcYXreJQkWy4k1pBJ4lXTc4dnqg9dHIRbR
-	A8xWaN5zEPd7jO/KZCQGJRnz8lfcxNuBLtQt5gO/72PC4wwCLxrRPwJLGHkJJR4x7ZUhkU/kPBw
-	pPAwrNe0LvUTkYOnT511jLKxVfhpZTT8IDUQowWhTmpX+SkSFn/v6OYYKWyDDpRapnMmQWa1607
-	LR9hQ8CqBp4CyPHbbKn95A45tWaoZBMGmEfQVs/i2hl37DUDxxtMAB2gJHdpE9k+QlAX6Q3mLlw
-	S6eE9j8L7sScD
-X-Google-Smtp-Source: AGHT+IFeQ5IkqLdaj8y0dWe3uTpBDyz2jlnuUZvXie29cskA3rNqzqhUsNwvdZ63M7av01RuCLAebg==
-X-Received: by 2002:a05:600c:a08d:b0:43c:fc00:f94f with SMTP id 5b1f17b1804b1-441bbf2d127mr26405915e9.23.1746199247685;
-        Fri, 02 May 2025 08:20:47 -0700 (PDT)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441ae3ee26fsm100635405e9.1.2025.05.02.08.20.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 May 2025 08:20:46 -0700 (PDT)
-Message-ID: <44a14b310695b725cdda35226c2e9bf6525b777e.camel@gmail.com>
-Subject: Re: [PATCH v4 05/10] iio: adc: adi-axi-adc: add filter type config
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org, 
-	robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Fri, 02 May 2025 16:20:50 +0100
-In-Reply-To: <20250502085905.24926-6-antoniu.miclaus@analog.com>
-References: <20250502085905.24926-1-antoniu.miclaus@analog.com>
-	 <20250502085905.24926-6-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 
+	s=arc-20240116; t=1746199526; c=relaxed/simple;
+	bh=ekfNPCViNS+1/0EDUfNUraJaXJm+PrXPsKL2YYRrFVY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JkV3u9IDlmenRhHOPE1orCmh5Rs3x9GfoxtvpF3SOojXRta6hvl/yMkYdzjKErFUHy6rkdz+igqXRLcipOn7QdwthKP+QUPUoIAeoreioL7gy/lmOg8g//7UzIYHnO+/w6yQYjfWhZl5ggUWQxYyFWa4Ez3t0GkKMIDg75jyIyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=U14dUhSc; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 180D2353;
+	Fri,  2 May 2025 17:25:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1746199514;
+	bh=ekfNPCViNS+1/0EDUfNUraJaXJm+PrXPsKL2YYRrFVY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U14dUhScriBzlj2ff//LAs2UIgBYiG853o5XoBV9vLcJvNXuOdTWiBBJ/0faqIJwq
+	 CTsbEY9N9sKVvjZu5P4KdegNUi5dFErckMqTMYjVC1x3tIDuND60ETFMe5GYR9rtzS
+	 nH5noXs2e3ifra95E/EjRcnU2HuMdACL9eVXyTUg=
+Date: Fri, 2 May 2025 18:25:13 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Robert Chiras <robert.chiras@nxp.com>,
+	"Guoniu.zhou" <guoniu.zhou@nxp.com>
+Subject: Re: [PATCH v4 03/13] media: nxp: imx8-isi: Remove unused offset in
+ mxc_isi_reg and use BIT() macro for mask
+Message-ID: <20250502152513.GG22453@pendragon.ideasonboard.com>
+References: <20250408-8qxp_camera-v4-0-ef695f1b47c4@nxp.com>
+ <20250408-8qxp_camera-v4-3-ef695f1b47c4@nxp.com>
+ <20250421210655.GM17813@pendragon.ideasonboard.com>
+ <aBQXfW6dzdyFI1GN@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aBQXfW6dzdyFI1GN@lizhi-Precision-Tower-5810>
 
-On Fri, 2025-05-02 at 11:59 +0300, Antoniu Miclaus wrote:
-> Add support for enabling/disabling filter based on the filter type
-> provided.
->=20
-> This feature is specific to the axi ad408x IP core, therefore add new
-> compatible string and corresponding iio_backend_ops.
->=20
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
+On Thu, May 01, 2025 at 08:53:17PM -0400, Frank Li wrote:
+> On Tue, Apr 22, 2025 at 12:06:55AM +0300, Laurent Pinchart wrote:
+> > Hi Frank,
+> >
+> > Thank you for the patch.
+> >
+> > On Tue, Apr 08, 2025 at 05:53:01PM -0400, Frank Li wrote:
+> > > Preserve clarity by removing the unused 'offset' field in struct mxc_isi_reg,
+> > > as it duplicates information already indicated by the mask and remains unused.
+> >
+> > The commit message line length limit is normally 72 characters. I can
+> > reflow when applying if no other change to the series is needed.
+> 
+> I remember it is 75 chars. Any document show it is 72. I need correct for
+> the other patches also.
 
-Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+You're absolutely right, I don't know where I got the 72 columns limit
+from. Please ignore my comment.
 
-> changes in v4:
-> =C2=A0- update commit message to state that the new compatible is added.
-> =C2=A0- checking for max value is done in the iio_backend function.
-> =C2=A0drivers/iio/adc/adi-axi-adc.c | 38 ++++++++++++++++++++++++++++++++=
-+++
-> =C2=A01 file changed, 38 insertions(+)
->=20
-> diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.=
-c
-> index 61ab7dce43be..2a3a6c3f5e59 100644
-> --- a/drivers/iio/adc/adi-axi-adc.c
-> +++ b/drivers/iio/adc/adi-axi-adc.c
-> @@ -52,6 +52,7 @@
-> =C2=A0#define=C2=A0=C2=A0 AXI_AD485X_PACKET_FORMAT_20BIT	0x0
-> =C2=A0#define=C2=A0=C2=A0 AXI_AD485X_PACKET_FORMAT_24BIT	0x1
-> =C2=A0#define=C2=A0=C2=A0 AXI_AD485X_PACKET_FORMAT_32BIT	0x2
-> +#define=C2=A0=C2=A0 AXI_AD408X_CNTRL_3_FILTER_EN_MSK	BIT(0)
-> =C2=A0
-> =C2=A0#define ADI_AXI_ADC_REG_DRP_STATUS		0x0074
-> =C2=A0#define=C2=A0=C2=A0 ADI_AXI_ADC_DRP_LOCKED		BIT(17)
-> @@ -402,6 +403,19 @@ static int axi_adc_ad485x_oversampling_ratio_set(str=
-uct
-> iio_backend *back,
-> =C2=A0	}
-> =C2=A0}
-> =C2=A0
-> +static int axi_adc_ad408x_filter_type_set(struct iio_backend *back,
-> +					=C2=A0 enum iio_backend_filter_type type)
-> +{
-> +	struct adi_axi_adc_state *st =3D iio_backend_get_priv(back);
-> +
-> +	if (type)
-> +		return regmap_set_bits(st->regmap, ADI_AXI_ADC_REG_CNTRL_3,
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AXI_AD408X_CNTRL_3_FILTER_EN_MS=
-K);
-> +
-> +	return regmap_clear_bits(st->regmap, ADI_AXI_ADC_REG_CNTRL_3,
-> +				 AXI_AD408X_CNTRL_3_FILTER_EN_MSK);
-> +}
-> +
-> =C2=A0static struct iio_buffer *axi_adc_request_buffer(struct iio_backend=
- *back,
-> =C2=A0						 struct iio_dev *indio_dev)
-> =C2=A0{
-> @@ -582,6 +596,24 @@ static const struct iio_backend_info axi_ad485x =3D =
-{
-> =C2=A0	.ops =3D &adi_ad485x_ops,
-> =C2=A0};
-> =C2=A0
-> +static const struct iio_backend_ops adi_ad408x_ops =3D {
-> +	.enable =3D axi_adc_enable,
-> +	.disable =3D axi_adc_disable,
-> +	.chan_enable =3D axi_adc_chan_enable,
-> +	.chan_disable =3D axi_adc_chan_disable,
-> +	.request_buffer =3D axi_adc_request_buffer,
-> +	.free_buffer =3D axi_adc_free_buffer,
-> +	.data_sample_trigger =3D axi_adc_data_sample_trigger,
-> +	.filter_type_set =3D axi_adc_ad408x_filter_type_set,
-> +	.debugfs_reg_access =3D iio_backend_debugfs_ptr(axi_adc_reg_access),
-> +	.debugfs_print_chan_status =3D
-> iio_backend_debugfs_ptr(axi_adc_debugfs_print_chan_status),
-> +};
-> +
-> +static const struct iio_backend_info axi_ad408x =3D {
-> +	.name =3D "axi-ad408x",
-> +	.ops =3D &adi_ad408x_ops,
-> +};
-> +
-> =C2=A0static int adi_axi_adc_probe(struct platform_device *pdev)
-> =C2=A0{
-> =C2=A0	struct adi_axi_adc_state *st;
-> @@ -697,9 +729,15 @@ static const struct axi_adc_info adc_ad7606 =3D {
-> =C2=A0	.has_child_nodes =3D true,
-> =C2=A0};
-> =C2=A0
-> +static const struct axi_adc_info adi_axi_ad408x =3D {
-> +	.version =3D ADI_AXI_PCORE_VER(10, 0, 'a'),
-> +	.backend_info =3D &axi_ad408x,
-> +};
-> +
-> =C2=A0/* Match table for of_platform binding */
-> =C2=A0static const struct of_device_id adi_axi_adc_of_match[] =3D {
-> =C2=A0	{ .compatible =3D "adi,axi-adc-10.0.a", .data =3D &adc_generic },
-> +	{ .compatible =3D "adi,axi-ad408x", .data =3D &adi_axi_ad408x },
-> =C2=A0	{ .compatible =3D "adi,axi-ad485x", .data =3D &adi_axi_ad485x },
-> =C2=A0	{ .compatible =3D "adi,axi-ad7606x", .data =3D &adc_ad7606 },
-> =C2=A0	{ /* end of list */ }
+> > >
+> > > Improve readability by replacing hex value masks with the BIT() macro.
+> > >
+> > > No functional change.
+> > >
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> >
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >
+> > > ---
+> > >  .../media/platform/nxp/imx8-isi/imx8-isi-core.c    | 25 +++++++++++-----------
+> > >  .../media/platform/nxp/imx8-isi/imx8-isi-core.h    |  1 -
+> > >  2 files changed, 13 insertions(+), 13 deletions(-)
+> > >
+> > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > index 1e79b1211b603..ecfc95882f903 100644
+> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > @@ -3,6 +3,7 @@
+> > >   * Copyright 2019-2020 NXP
+> > >   */
+> > >
+> > > +#include <linux/bits.h>
+> > >  #include <linux/clk.h>
+> > >  #include <linux/device.h>
+> > >  #include <linux/errno.h>
+> > > @@ -247,24 +248,24 @@ static void mxc_isi_v4l2_cleanup(struct mxc_isi_dev *isi)
+> > >
+> > >  /* For i.MX8QXP C0 and i.MX8MN ISI IER version */
+> > >  static const struct mxc_isi_ier_reg mxc_imx8_isi_ier_v1 = {
+> > > -	.oflw_y_buf_en = { .offset = 19, .mask = 0x80000  },
+> > > -	.oflw_u_buf_en = { .offset = 21, .mask = 0x200000 },
+> > > -	.oflw_v_buf_en = { .offset = 23, .mask = 0x800000 },
+> > > +	.oflw_y_buf_en = { .mask = BIT(19) },
+> > > +	.oflw_u_buf_en = { .mask = BIT(21) },
+> > > +	.oflw_v_buf_en = { .mask = BIT(23) },
+> > >
+> > > -	.panic_y_buf_en = {.offset = 20, .mask = 0x100000  },
+> > > -	.panic_u_buf_en = {.offset = 22, .mask = 0x400000  },
+> > > -	.panic_v_buf_en = {.offset = 24, .mask = 0x1000000 },
+> > > +	.panic_y_buf_en = { .mask = BIT(20) },
+> > > +	.panic_u_buf_en = { .mask = BIT(22) },
+> > > +	.panic_v_buf_en = { .mask = BIT(24) },
+> > >  };
+> > >
+> > >  /* For i.MX8MP ISI IER version */
+> > >  static const struct mxc_isi_ier_reg mxc_imx8_isi_ier_v2 = {
+> > > -	.oflw_y_buf_en = { .offset = 18, .mask = 0x40000  },
+> > > -	.oflw_u_buf_en = { .offset = 20, .mask = 0x100000 },
+> > > -	.oflw_v_buf_en = { .offset = 22, .mask = 0x400000 },
+> > > +	.oflw_y_buf_en = { .mask = BIT(18) },
+> > > +	.oflw_u_buf_en = { .mask = BIT(20) },
+> > > +	.oflw_v_buf_en = { .mask = BIT(22) },
+> > >
+> > > -	.panic_y_buf_en = {.offset = 19, .mask = 0x80000  },
+> > > -	.panic_u_buf_en = {.offset = 21, .mask = 0x200000 },
+> > > -	.panic_v_buf_en = {.offset = 23, .mask = 0x800000 },
+> > > +	.panic_y_buf_en = { .mask = BIT(19) },
+> > > +	.panic_u_buf_en = { .mask = BIT(21) },
+> > > +	.panic_v_buf_en = { .mask = BIT(23) },
+> > >  };
+> > >
+> > >  /* Panic will assert when the buffers are 50% full */
+> > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > index 9c7fe9e5f941f..e7534a80af7b4 100644
+> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > @@ -114,7 +114,6 @@ struct mxc_isi_buffer {
+> > >  };
+> > >
+> > >  struct mxc_isi_reg {
+> > > -	u32 offset;
+> > >  	u32 mask;
+> > >  };
+> > >
+
+-- 
+Regards,
+
+Laurent Pinchart
 
