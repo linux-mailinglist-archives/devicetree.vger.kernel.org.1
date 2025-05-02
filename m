@@ -1,173 +1,111 @@
-Return-Path: <devicetree+bounces-173083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FDAEAA7652
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:44:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A9EAA7667
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:48:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2288A1C01118
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:44:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E551189CC9A
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:48:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240DF257AFD;
-	Fri,  2 May 2025 15:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Se9QEeDW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE6F62571AC;
+	Fri,  2 May 2025 15:48:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC3C23B0;
-	Fri,  2 May 2025 15:44:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBAE626AD9;
+	Fri,  2 May 2025 15:48:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746200664; cv=none; b=Qf9YX9p2XSi0T9ZRtGVZnQrGKDwEH3let9X4KvTSA7N+2BiH5bqEeyMoWNV+n4ROPqZhUEUHa4XFSXv/tcmojQXYOfL0MidqYE5x4k5OJMAv5+Nqbikc2XUlVggvT95rCCGyQ+G/nMlZgCBfKCuCbDad25D7QSZnw3LGjzOc2jc=
+	t=1746200905; cv=none; b=MiXAUuPpTr/ocGTe73MTtcrc1jWgWey5Bmg4ORzecnPuCIR8lXfBj6S8mzO9RDSgXv+NPNJWdgC8dXHYW2YB1lsMYHYcNhUnrio+Ax/oun2vWXn47hSP1uk30FspfxeaIyYJ8TUHuKHhQyLsE9zHBT81t/kY7nmDIf59A4X8/6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746200664; c=relaxed/simple;
-	bh=TQyM6i2rFDdExVbBufTLR1CZrsEvfjOUC4sUoaRycew=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Q2MVq4B7NMN+hbQvE/MHn9swuY6/V/rDUyrjrywrnqdLQzKWxoKdoesP1Yh/UUgbZf8P3WQrobgkb+np4hBXNNNjWumRq3RpVHCUH6iYFLha1gL4KvoDhoU80QRBDOAIarJvS9cd98FxwP4Sg398h/cwHHdR2Hu9vAO5j2jnPGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Se9QEeDW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6643AC4CEE4;
-	Fri,  2 May 2025 15:44:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746200663;
-	bh=TQyM6i2rFDdExVbBufTLR1CZrsEvfjOUC4sUoaRycew=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Se9QEeDW8KgYSQ9jDh6c7/wdzkusrTbzH6sGWkooZjLGlmZwX6y2dBEkMkxMghGjv
-	 OJgc+sJCic+7JYZAavKAu1uJKC3SYUUO7dolJK1e9z1/9Knlcznf6etOrZwIos18k7
-	 aZWE380riKN9qF10lZ8rxaUaXacz752yTalkacvbioGiI4wlTDUEd/5uqRe9USgwWK
-	 zwUn+4mf/O91DCWA0x9f8dm8QrAeNKow9tpTkORxX94nhKbfcEO+/UoVD9+6y8ZTJt
-	 C+KQR/OOReEaflFeT+UjNsyN8CxbY+OqSgOYKm212C5q/z97ky6wIWg8eVtx5VykCt
-	 AFwJkNWugMZcQ==
-Received: from [185.201.63.251] (helo=lobster-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1uAsYi-00Ay9o-Uz;
-	Fri, 02 May 2025 16:44:21 +0100
-Date: Fri, 02 May 2025 16:43:57 +0100
-Message-ID: <87tt6310hu.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 21/22] irqchip/gic-v5: Add GICv5 IWB support
-In-Reply-To: <aBR7bk62H3PEUbfi@lpieralisi>
-References: <20250424-gicv5-host-v2-0-545edcaf012b@kernel.org>
-	<20250424-gicv5-host-v2-21-545edcaf012b@kernel.org>
-	<867c31j20i.wl-maz@kernel.org>
-	<aBIlOrqLtbB5e7B/@lpieralisi>
-	<86y0vgh35t.wl-maz@kernel.org>
-	<aBR7bk62H3PEUbfi@lpieralisi>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1746200905; c=relaxed/simple;
+	bh=GHwfrJaQDWQTfpH0D69gfiO1j3Mm42uDgXjHCcdgIzM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Pzgb1d7OWOChcYiICbkwxDeDoLwSLfTuMZjIBgxvBzVlFc2nOByKzGhpBK+ZTiDrt90DAI3Xm4Ah1uykkqQMHFdsf63oF32C54O50JIo4/0O4TLr2ebc+5XgjJ5pEtkDO7uwv7meq9emQ0XDcI2XPxyhfJrkLiiikVM1NdpvZLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-52934f4fb23so1628093e0c.1;
+        Fri, 02 May 2025 08:48:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746200901; x=1746805701;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x5cT6OocslYtTAyDezvSuTXCPS/khRuahF27WQth0fg=;
+        b=SGFgPLg3cdw3sthVQR21WWOpDXbm9j6bx4IOZQl1jTuS6MbM81ToOM+lF1fSq9xegQ
+         sxDR3woc9ttRMiXdJQbv9AFb99sb3UHI/brDOfGJush3tNPQl9lBiVTXk5reSEyo6qkT
+         Jos83FaV0ojDhf+0wB9tAyU2JdA1bFWsCI4BTIKiHJTMA+eg4rzkjxXS96bQWF5zZqmF
+         iTEH0G6wwVHJ91RPj7/qT2iAGo3mlDtvCb+Z9/dxnClAOy83b48AFpOK/HucE7kDnXLk
+         aFo4R6nvEOf8cFDVLldzfRuVnTxU6u/pDW2Rb/NrxGkmK/ZvAwYOucvUiRc6lwd4Axvu
+         7K5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUuUNQCHYB5pCxF/Rh7rMp6PP9avYDPleMYrAPJ2GtN5+wtRbRjLLQxaotE4te/Nsnpqe7dKeoxDlmQiExPTDYGcqQ=@vger.kernel.org, AJvYcCX1iHFIdgW2f8q1QY9Vap1FSSUQZXe8cat1LCD6J4SyBrLizivOurUhrx2Vc75I3zI78F0pG8SLHYXg@vger.kernel.org, AJvYcCXrX4Sih+5dD+vkpq6n4QmmWO4UAs6Bw9s+wcIyxm8jivdoHlKkha8xlXUsUlDG9k34qIFiNo9kJtevFH98@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpFuL8euWRdTGSfQ9qgijubp7Wm+vf5DNKBxhgAz6fsZQEsqbt
+	+Psd46RD9uFkwX5zbMujByYv770Qgau6Td25TgYok18dQvvJQRGZqvnEMGco
+X-Gm-Gg: ASbGncs81xx/HEI9KKNdp0YCa+/oQQtkuHuzUrO1jpsRML3qCAQpBwRmWWgK80zSnmW
+	vfBaoUT4JNb24oQwNzRmkeNP0WPwCmwMdD3vn7kIpk4fgnsyG3hALcHuCb7Z0dh4XtPy5tR7dPf
+	S3AiHN+d5EKB4LEmfNlh/LBq1jbW7IjuMacNaz28Sn9qjqXXbvyux0YQjTISs+K9UdJtfCiAIah
+	f07aJiYnwdbTF+XnbNJv8AYVof9SV8VB1eMuuaOPOaYHiPIOWD+SKYTwlmUHHYdYRiMhCL79J8s
+	vwW+f7SWQLG/F1LyBIgKa+WMH+KeHg7ACAm5EyIdYKz456JHFTlxZ5OVT61Ng8A52BYcxehHBhq
+	AsOY=
+X-Google-Smtp-Source: AGHT+IH5Pt9cge/DPNMv5KgRxvsp6RZtI0MGMHbls+9RD77UDJJJBhYaearodtLb0Z+phtB7mOgyHg==
+X-Received: by 2002:a05:6122:208c:b0:523:7c70:bc9c with SMTP id 71dfb90a1353d-52aed6d6fcfmr2416745e0c.5.1746200901443;
+        Fri, 02 May 2025 08:48:21 -0700 (PDT)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52ae3ff5ca2sm592789e0c.9.2025.05.02.08.48.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 May 2025 08:48:21 -0700 (PDT)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4c2ffd5d9f5so1470822137.0;
+        Fri, 02 May 2025 08:48:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUAIf4jf/1VD7P8l+o5v37SyuiwzW+/03vIuth9z/jqwHJaXAmLsI32na1oN2SQQipz2rXltcQzMoB0YALh@vger.kernel.org, AJvYcCVQ4zieicj9HjxF9qnhAzJS8GP9UREdOwEP/WwQ8ra8JoloHK60brW6koNcGtOemMCg2dO451vn5KSNLSw0e4TBgdc=@vger.kernel.org, AJvYcCXMr8ACZgnmEcwEsAQlpY1crJOLw73cGQL/k52iBqMLx7Z51pCgbcE4jYQnsKqyZzD6c9BvPgsOr/Xq@vger.kernel.org
+X-Received: by 2002:a05:6102:3310:b0:4bb:9b46:3f6f with SMTP id
+ ada2fe7eead31-4dafb4d1d12mr2476074137.1.1746200900926; Fri, 02 May 2025
+ 08:48:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.201.63.251
-X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, timothy.hayes@arm.com, Liam.Howlett@oracle.com, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+References: <20250424084748.105255-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250424084748.105255-1-krzysztof.kozlowski@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 2 May 2025 17:48:08 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVi+kM+_ZHfPd+4Vc0bfvHiTLhGcJpgOa=OiPFnPFFQTQ@mail.gmail.com>
+X-Gm-Features: ATxdqUEOXNNHtSsK7KqHFI4wUvI8RU1jS7OqWqzaK5JiF3ZWgcPwPzm8QxkxzB4
+Message-ID: <CAMuHMdVi+kM+_ZHfPd+4Vc0bfvHiTLhGcJpgOa=OiPFnPFFQTQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Align wifi node name with bindings
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, 02 May 2025 08:59:42 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> 
-> It looks like the msi_prepare() ITS callback (ie where the its_device is
-> allocated) is called everytime an endpoint device driver requests a
-> wired IRQ through:
-> 
-> gicv5_its_msi_prepare+0x68c/0x6f8
-> its_pmsi_prepare+0x16c/0x1b8
-> __msi_domain_alloc_irqs+0x70/0x448
-> __msi_domain_alloc_irq_at+0xf8/0x194
-> msi_device_domain_alloc_wired+0x88/0x10c
-> irq_create_fwspec_mapping+0x3a0/0x4c0
-> irq_create_of_mapping+0xc0/0xe8
-> of_irq_get+0xa0/0xe4
-> platform_get_irq_optional+0x54/0x1c4
-> platform_get_irq+0x1c/0x50
-> 
-> so it becomes "shared" if multiple IWB wires are requested by endpoint
-> drivers.
+On Thu, 24 Apr 2025 at 10:47, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> Since commit 3c3606793f7e ("dt-bindings: wireless: bcm4329-fmac: Use
+> wireless-controller.yaml schema"), bindings expect 'wifi' as node name:
+>
+>   r8a774a1-beacon-rzg2m-kit.dtb: bcrmf@1: $nodename:0: 'bcrmf@1' does not match '^wifi(@.*)?$'
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Right, I've reproduced on D05 with MBIGEN:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.16.
 
-[    5.505530] Reusing ITT for devID 40000
-[    5.505532] CPU: 36 UID: 0 PID: 557 Comm: (udev-worker) Not tainted 6.15.0-rc4-00079-geef147df4841-dirty #4403 PREEMPT 
-[    5.505535] Hardware name: Huawei Taishan 2280 /D05, BIOS Hisilicon D05 IT21 Nemo 2.0 RC0 04/18/2018
-[    5.505536] Call trace:
-[    5.505537]  show_stack+0x20/0x38 (C)
-[    5.505540]  dump_stack_lvl+0x80/0xf8
-[    5.505543]  dump_stack+0x18/0x28
-[    5.505546]  its_msi_prepare+0xe4/0x1d0
-[    5.505549]  its_pmsi_prepare+0x15c/0x1d0
-[    5.505552]  __msi_domain_alloc_irqs+0x80/0x398
-[    5.505556]  __msi_domain_alloc_irq_at+0x100/0x168
-[    5.505560]  msi_device_domain_alloc_wired+0x9c/0x128
-[    5.505564]  irq_create_fwspec_mapping+0x180/0x388
-[    5.505567]  acpi_irq_get+0xac/0xe8
-[    5.505570]  platform_get_irq_optional+0x1e8/0x208
-[    5.505574]  devm_platform_get_irqs_affinity+0x58/0x298
-[    5.505578]  hisi_sas_v2_interrupt_preinit+0x60/0xb0 [hisi_sas_v2_hw]
-[    5.505582]  hisi_sas_probe+0x164/0x278 [hisi_sas_main]
-[    5.505588]  hisi_sas_v2_probe+0x20/0x38 [hisi_sas_v2_hw]
-[    5.505591]  platform_probe+0x70/0xd0
-[    5.505595]  really_probe+0xc8/0x3a0
-[    5.505598]  __driver_probe_device+0x84/0x170
-[    5.505600]  driver_probe_device+0x44/0x120
-[    5.505603]  __driver_attach+0xfc/0x210
-[    5.505606]  bus_for_each_dev+0x7c/0xe8
-[    5.505608]  driver_attach+0x2c/0x40
-[    5.505611]  bus_add_driver+0x118/0x248
-[    5.505613]  driver_register+0x68/0x138
-[    5.505616]  __platform_driver_register+0x2c/0x40
-[    5.505619]  hisi_sas_v2_driver_init+0x28/0xff8 [hisi_sas_v2_hw]
-[    5.505623]  do_one_initcall+0x4c/0x2c0
-[    5.505626]  do_init_module+0x60/0x230
-[    5.505629]  load_module+0xa64/0xb30
-[    5.505631]  init_module_from_file+0x8c/0xd8
-[    5.505634]  idempotent_init_module+0x1c4/0x2b8
-[    5.505637]  __arm64_sys_finit_module+0x74/0xe8
-[    5.505640]  invoke_syscall+0x50/0x120
-[    5.505642]  el0_svc_common.constprop.0+0x48/0xf0
-[    5.505644]  do_el0_svc+0x24/0x38
-[    5.505646]  el0_svc+0x34/0xf0
-[    5.505650]  el0t_64_sync_handler+0x10c/0x138
-[    5.505654]  el0t_64_sync+0x1ac/0x1b0
-[    5.505681] ID:78 pID:8382 vID:143
+Gr{oetje,eeting}s,
 
-And that a few dozen times.
-
-I'll have a think at how to unfsck this. This was previously avoided
-by (IIRC) populating the domain upfront and letting the domain
-matching code do its job. That behaviour seems to have been lost. On
-the other hand, as long as you don't expect the ITT to *grow*, nothing
-horrible should happen.
-
-But I also get an interesting crash in msi_domain_debig_show(), so
-there is more than just this corner case that is screwed.
-
-	M.
+                        Geert
 
 -- 
-Jazz isn't dead. It just smells funny.
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
