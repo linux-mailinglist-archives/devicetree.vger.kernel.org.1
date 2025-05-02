@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-173147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6DBDAA7955
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 20:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DACAAA7989
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 20:49:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F8293B44B8
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:39:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 947689E0371
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E66B6265608;
-	Fri,  2 May 2025 18:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29E411A83F7;
+	Fri,  2 May 2025 18:49:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iFxzeSBv"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YoH20NMq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C9F6376;
-	Fri,  2 May 2025 18:39:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40718194080;
+	Fri,  2 May 2025 18:48:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746211175; cv=none; b=ZVG6S/Zt1oDd+gWtg2vrPS4Yu9QCM6WgmuS96l3bXFTXq/SGTQPbNUlYbDhfwZayFOELdAz+Ep7Qw82kQNqWoclf8lDGDZIsLszizdX4HypDcF/SFyCT82KOsuZmmpjnwFNNQYIqd44pCckv9kh//vuwC2mTTTr43I73upxnpaQ=
+	t=1746211741; cv=none; b=BWPLk8GR7oqSwC2SWghVfARxVa7kpdtcPYgXg9Z+v+F0lZqte+KKrj5EQ9aIHPA369lVfHsZRhP7Y9IbFG9C/OtpAQCVyZEW8mmFDghjMqe3qkTIbUvOQs3Vcn1YbUrx+88w3Mx3i0mexnjaJl1Sw7aOpgHpHtecFg1WQ3YB1J0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746211175; c=relaxed/simple;
-	bh=rH0hTL/ovF1cYLOsrCSmIfftUclU8Y+oSWIs4cAcA3M=;
+	s=arc-20240116; t=1746211741; c=relaxed/simple;
+	bh=WMD/ZpJXQOOvEeURoC3nrQkO/gBhJRC+agPAI49lcNk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZH0Ncto13o5rnNIm/D3tIM2TESH4wwTz34FrXnJfLwGxTwGx7lX7DTYjVPJ+CIAoxnx4bGxMh0Wnh6V8qekYW0Aki3HZO3gwJVb2TB1+QdyjKeldeBBL5g30jG7yK/6W7TpPm4ai2I1jo0lsAYtHOJbnTvAcNEmc8er8uMnWu8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iFxzeSBv; arc=none smtp.client-ip=192.198.163.16
+	 In-Reply-To:Content-Type; b=ldcEeuzLjsz8o24eOBaZtZq29wWQrKpzxxG/oh0bTDm9Fm1XeGFhuQTAc9VrHMzaWBTQJS9dMSlDcg4pr0LgE6WVGIU4PDq0BVkFLvqLgMyO0dt1aUQLordXWq7Jip7yedtVwQi9SzZ7sgtZ11m5fr0a6+/nA7IkqMWfCCYdci8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YoH20NMq; arc=none smtp.client-ip=192.198.163.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746211174; x=1777747174;
+  t=1746211739; x=1777747739;
   h=message-id:date:mime-version:subject:to:cc:references:
    from:in-reply-to:content-transfer-encoding;
-  bh=rH0hTL/ovF1cYLOsrCSmIfftUclU8Y+oSWIs4cAcA3M=;
-  b=iFxzeSBvJF6QxSfKxd61gsPHr80B/25A1D4xun2yd57dGfLnRC168TYG
-   /V3y48IAQSN52krgepaGG1pw3Dg+BAFjWAiqy6QaXFls0xi+cbTgMQWrj
-   1xj4579aOqh8XrlscyT/fsmHbxxCnLT8K/L1LY3jEj3DkOfUG9ENyr5Ah
-   fabJhempYBTk4h31b5N0tzLtxYTbL8sQM4c7fWdB+1XM5JH3JAtcaNpG4
-   I8tJMaBhxI6NKrKI1VLcY2lkboRh80oK4G4P0ac/nz6bV6R299qMg8Cn+
-   n/a6h0g9aKNLjiIsRPyOZo67NPrJfi2257V1ehr3Le7yW9uOni70mLU+V
-   A==;
-X-CSE-ConnectionGUID: pYwrbHTfRuuwHG8+12MRRQ==
-X-CSE-MsgGUID: 1sbcc46BR2iPqRcOjD0ixA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11421"; a="35518292"
+  bh=WMD/ZpJXQOOvEeURoC3nrQkO/gBhJRC+agPAI49lcNk=;
+  b=YoH20NMqL8UKmMQCNswzeZzJvjsE8mkKmptUZtLcTrzmRSy79cZ2DUqR
+   cqYe5Qxe3/TVXzp9CsftzlkbPGTK92Yn3TY097A7YQ1p3T7aBAM040eBa
+   t+72KRHgSzoJy9cmmUfZhOY/UKnIYBDKZDoFdF1FxxdrG2LyhBw4w3Nox
+   74wB42HkasMe4dEAm2Ve1nSjBlgcJVsj/SgTEU6fs+OGFRclVcsCg5cvL
+   LOTu8wOoW6L07WRLYjg5FdkxSr5Foxcu7AbexSPPizvktbTQySuwyB/tx
+   VpE5LjDIQ/ddne2CFh+pqfGS+R/R7NkkA6JCN0ngFa9qcvrssRsdHZk9C
+   w==;
+X-CSE-ConnectionGUID: k3+o+N20QImciT8L4HWcJw==
+X-CSE-MsgGUID: mvWTFVC2TwGglFWaAa8/TA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11421"; a="35519037"
 X-IronPort-AV: E=Sophos;i="6.15,257,1739865600"; 
-   d="scan'208";a="35518292"
+   d="scan'208";a="35519037"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2025 11:39:33 -0700
-X-CSE-ConnectionGUID: q0hFwjtbQLOO4bDICzglEA==
-X-CSE-MsgGUID: j7CeDysPRziSOaNh1q4L1w==
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2025 11:48:58 -0700
+X-CSE-ConnectionGUID: mLsB7Ke5S/m3fnkWp6UCEw==
+X-CSE-MsgGUID: pwkXt0gzRcWUAVnMnw+7cg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.15,257,1739865600"; 
-   d="scan'208";a="134663550"
+   d="scan'208";a="134664791"
 Received: from bjrankin-mobl3.amr.corp.intel.com (HELO [10.124.220.153]) ([10.124.220.153])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2025 11:39:32 -0700
-Message-ID: <425b4cbc-d36c-42b6-9071-3e0afab91441@intel.com>
-Date: Fri, 2 May 2025 11:39:29 -0700
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2025 11:48:57 -0700
+Message-ID: <c348c507-c06b-4611-87f4-c498e144fa45@intel.com>
+Date: Fri, 2 May 2025 11:48:54 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 13/18] x86/e820: temporarily enable KHO scratch for
- memory below 1M
+Subject: Re: [PATCH v7 14/18] x86/boot: make sure KASLR does not step over KHO
+ preserved memory
 To: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org
 Cc: akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de,
  ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de,
@@ -83,7 +83,7 @@ Cc: akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de,
  saravanak@google.com, skinsburskii@linux.microsoft.com, tglx@linutronix.de,
  thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
 References: <20250501225425.635167-1-changyuanl@google.com>
- <20250501225425.635167-14-changyuanl@google.com>
+ <20250501225425.635167-15-changyuanl@google.com>
 From: Dave Hansen <dave.hansen@intel.com>
 Content-Language: en-US
 Autocrypt: addr=dave.hansen@intel.com; keydata=
@@ -129,24 +129,105 @@ Autocrypt: addr=dave.hansen@intel.com; keydata=
  MTsCeQDdjpgHsj+P2ZDeEKCbma4m6Ez/YWs4+zDm1X8uZDkZcfQlD9NldbKDJEXLIjYWo1PH
  hYepSffIWPyvBMBTW2W5FRjJ4vLRrJSUoEfJuPQ3vW9Y73foyo/qFoURHO48AinGPZ7PC7TF
  vUaNOTjKedrqHkaOcqB185ahG2had0xnFsDPlx5y
-In-Reply-To: <20250501225425.635167-14-changyuanl@google.com>
+In-Reply-To: <20250501225425.635167-15-changyuanl@google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 5/1/25 15:54, Changyuan Lyu wrote:
-> From: Alexander Graf <graf@amazon.com>
-> 
-> KHO kernels are special and use only scratch memory for memblock
-> allocations, but memory below 1M is ignored by kernel after early boot
-> and cannot be naturally marked as scratch.
-> 
-> To allow allocation of the real-mode trampoline and a few (if any) other
-> very early allocations from below 1M forcibly mark the memory below 1M
-> as scratch.
-> 
-> After real mode trampoline is allocated, clear that scratch marking.
+> KHO uses "scratch regions" to bootstrap a kexec'ed kernel. These regions are
+> guaranteed to not have any memory that KHO would preserve.
 
-It's much more clear now, thanks!
+I understand how these changelogs got written. They were written by
+someone thinking *only* about KHO and hacking it into the existing code.
+That's fine and understandable.
 
-Acked-by: Dave Hansen <dave.hansen@linux.intel.com>
+But everyone else is coming at this from the perspective of not knowing
+what scratch memory is.
+
+"Scratch memory" in the KHO world is basically "normal kernel memory" to
+anybody else. So I think it's a disservice to everyone else reading
+these changelogs to act like it's something special.
+
+The thing that *is* special is that KHO kernels don't have a lot of
+"normal kernel memory". At least they're designed to tolerate lots of
+handed-off memory and little "scratch memory"
+
+When you run through these again, could you please try to write these
+changelogs and comments for folks that are not familiar with KHO?
+
+> +/*
+> + * If KHO is active, only process its scratch areas to ensure we are not
+> + * stepping onto preserved memory.
+> + */
+> +#ifdef CONFIG_KEXEC_HANDOVER
+> +static bool process_kho_entries(unsigned long minimum, unsigned long image_size)
+> +{
+
+I thought we agreed to rework this to unconditionally define the
+kho_scratch structures so the #ifdef can go away?
+
+> +	struct kho_scratch *kho_scratch;
+> +	struct setup_data *ptr;
+> +	int i, nr_areas = 0;
+> +
+> +	ptr = (struct setup_data *)boot_params_ptr->hdr.setup_data;
+> +	while (ptr) {
+> +		if (ptr->type == SETUP_KEXEC_KHO) {
+> +			struct kho_data *kho = (struct kho_data *)ptr->data;
+> +
+> +			kho_scratch = (void *)kho->scratch_addr;
+> +			nr_areas = kho->scratch_size / sizeof(*kho_scratch);
+> +
+> +			break;
+> +		}
+> +
+> +		ptr = (struct setup_data *)ptr->next;
+> +	}
+> +
+> +	if (!nr_areas)
+> +		return false;
+> +
+> +	for (i = 0; i < nr_areas; i++) {
+> +		struct kho_scratch *area = &kho_scratch[i];
+> +		struct mem_vector region = {
+> +			.start = area->addr,
+> +			.size = area->size,
+> +		};
+> +
+> +		if (process_mem_region(&region, minimum, image_size))
+> +			break;
+> +	}
+> +
+> +	return true;
+> +}
+> +#else
+> +static inline bool process_kho_entries(unsigned long minimum,
+> +				       unsigned long image_size)
+> +{
+> +	return false;
+> +}
+> +#endif
+> +
+>  static unsigned long find_random_phys_addr(unsigned long minimum,
+>  					   unsigned long image_size)
+>  {
+> @@ -775,7 +824,8 @@ static unsigned long find_random_phys_addr(unsigned long minimum,
+>  		return 0;
+>  	}
+>  
+> -	if (!process_efi_entries(minimum, image_size))
+> +	if (!process_kho_entries(minimum, image_size) &&
+> +	    !process_efi_entries(minimum, image_size))
+>  		process_e820_entries(minimum, image_size);
+>  
+>  	phys_addr = slots_fetch_random();
+
+I made a comment about this in the last round, making this the second
+thing that I've noticed that was not addressed.
+
+Could you please go back through the last round of comments before you
+repost these?
+
+Just to be clear: these are making progress, but they're not OK from the
+x86 side yet.
 
