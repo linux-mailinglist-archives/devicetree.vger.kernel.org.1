@@ -1,144 +1,138 @@
-Return-Path: <devicetree+bounces-172980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D53AA71CD
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:29:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17AFCAA71ED
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:32:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4EC54C0302
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:29:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11BB63B8A6B
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:31:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAEA253938;
-	Fri,  2 May 2025 12:29:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F11B248F72;
+	Fri,  2 May 2025 12:31:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dm6V/Oiv"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TlzZp1/0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26BBC250C08
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 12:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48D722D4C5;
+	Fri,  2 May 2025 12:31:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746188961; cv=none; b=gkfciW2Cuu9jcjK9DfehQq8VAIW6Yj1eIIv98kRL6qwhK+Mvwbd31zQDNV5exJYzoqU/SLqmV+rJss22kJGJ+xdKjSSk5kgIIDZ1xdL5Va/feeB8OXbd1xHC7KPcVzAyPVdBArCf6UqtIu48IRsUgQ6iLorlcsbW1Nu3Wlkvjgs=
+	t=1746189080; cv=none; b=oXnzORw4kvLnxIqx1VBm12fb0P0Wc1DhH1TJ6Myu2TIGZqUav7W6HXYqENlOF1jck1ulNuh4DA/SO/tezIFrroreMXOZTqwqwV0kPssVpP4JnFYnE9Nz9WZ1mAaufCL52fOXGYcYnCa9bVii0B3cEwzmTWAyApJlFYWva1CxMyQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746188961; c=relaxed/simple;
-	bh=zvHa4X0rrQTDwYzkbYkZYw+dLVBDwFqqMgeUnHdOFUs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TTTmJ8Py1TOT2HXvu8ARe6skkOtNP6WvemBpCL8v59qYv4NUHgYgFxoKlsDIfivKbvNbEmv0jxDgWYhHHaDJikkynl5mfa5Rt0cv+6Oh85ebOfwcRlR/HplUz+ZZFayYPwi1tbzvkRjw8IQA28Vd692Ua5yHw8bWefWVkdW/2zs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dm6V/Oiv; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43cfe574976so11634645e9.1
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 05:29:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746188956; x=1746793756; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fPXhl5ABY9Cpe5wfSbh97dWtdpEKAOmViXZEiA/5wSY=;
-        b=dm6V/OivuHe2fp0JRkEb9KUx8oEhQSYiDYQvawtgWI7c8JaKpi2eq82uR6SRS6Hdhe
-         yJMhyNogRRIAMKo+w3cC1XC33lJjYE8c5FA7ntLQ4OWGfvBWfyDm/ZaWePl2oE5uDtbC
-         rO78zoGActrCZqWhCAUxxH7DXxDeQY7y2+L/s+9KqXdsR6o5BXWGAuojQFvRC1GABtGn
-         mECO5WqMsgvIqbTS7IGQsu8ayY3k1hHS98KRUkW0VigALT4sd/CpRUHjbQBL08oBOiA3
-         BKglN8afU86p0DHG4Ex4VIpTOn07i0tSzxySynjyGcrzdWL/v93nVujGoKs7zC24ACri
-         K0ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746188956; x=1746793756;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fPXhl5ABY9Cpe5wfSbh97dWtdpEKAOmViXZEiA/5wSY=;
-        b=sjQMfBlPed+j4StKigw1UTF4WtQPe/esDkqtnCcxB4wMVb5N90JtksBIhwXZSua1ur
-         U1mp6DE0OQ17I3S+A46WOpCuy5HFE+pP7SR3H8GL7I1bsie+qGWPUIxsy9Ob836exyui
-         x1b+EMg0lvb2NBQvmR268rhxThaTUYBGrJHh3N3wxBGqMKu9g8F3d03f2mwyRRYZtfvy
-         E64GZL7+e05flOklU90YR3Wz0wPx3FWXXMpc7tdpF3CRGGiZsCUlizCR3DppklXBMd4K
-         EUUqIEsu/kRZjIIRcaiW6smGrasnOTxKAumIJ3bll6m3C7iQwsyeOufBbOckRS94KO7c
-         WTtA==
-X-Forwarded-Encrypted: i=1; AJvYcCWvZtu/wZhuZdC2YTqQXuBmsOZ1Ofq9aFt9C77qHuzREfYwnDUlu+H16xTs0qiAr1Li8dS/vLzwzM9v@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBF43013S4dvjwMtaTUDHBHqkS4sXTJT0QNzaybwmMRXIIH2yB
-	+9FcFBH9dsZUFNpt6flD4YzPD4b0VHK9W+INEfCccjAXIuPzB3MAtFFo9zEzjcg=
-X-Gm-Gg: ASbGncuzP2gV3jyaCzZNuBCo5guTdC/jx+QMgSJ9POK9/tgIhgVLd27AisbkFyQW1N+
-	tmyFPl5MJ1ejxDH3bMg4ZXlNrnDEDsV7Eq7xMstd8Xv6Q5kyn47k85XD+Bd67lgDgKJ1+IAS7VK
-	0o0xJUIH9mwLcqTWuWHpwm3QEgQj2V18wVOPg8gXWXhtD/yH7PFN3GH+7nr/2ecBCIBsseixK4U
-	0bMcwmfjR2nLEkRcE7unTGaI/iE9y6qmwaCMmiNEFNtImksV6XCpY3crslebCigu0ftKGSBZtcy
-	hYPWPvuUH+reFBWru1gOcry9SgKhMn4nkvgj7j/pN5AZ3T1WOGOgArWo173K309D50+vL6e/EH4
-	BYHR6VQ==
-X-Google-Smtp-Source: AGHT+IEJQc8ArVKhReP08d9VcgU4GcvNbex+0BCVyeNSxBvarnE07Zhzs5sQR2N9SWFhkCNJNsJqEg==
-X-Received: by 2002:a05:600c:5022:b0:43c:e6d1:efe7 with SMTP id 5b1f17b1804b1-441bbf34052mr18854655e9.26.1746188956401;
-        Fri, 02 May 2025 05:29:16 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b0ffcasm2030879f8f.74.2025.05.02.05.29.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 May 2025 05:29:15 -0700 (PDT)
-Message-ID: <b255fec0-216d-42c8-b7ba-cb0cde51e73c@linaro.org>
-Date: Fri, 2 May 2025 13:29:14 +0100
+	s=arc-20240116; t=1746189080; c=relaxed/simple;
+	bh=3G3CkBJ5xwmbD1aL2pXi9Vq8HxzS0MbLhvQFlo4eHDE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=Rc1HVAL6IroCGRLJ9ahgrVnecv2mYBvaTNAdYIA7qlNnN4IIZjfeWDwk69bMBPrqDfnKr3HR8zJKn9UwpnQ23Tan8l20OaR1ftPKBOzZHRTpSxXQiFiwC782jlsFKgIYc0TzGsszlS7PMVm1lvZVpJqyNmDa/XBl49kNzH+QdAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TlzZp1/0; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id CF4C843B02;
+	Fri,  2 May 2025 12:31:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746189075;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IVc5PbC2k1qdzHpLeknU2G3KgAO+5ptclccnAPwMI+M=;
+	b=TlzZp1/0oKau46rbcImJXUoZfqTMdboxJb9zF5I+oT4MBM3UKybI43+7j3nTPbAC5Yp1mY
+	29LSG9vQ9szDDM4I0Z6OnEc8/UVUIZu8q7weO0ntfpvOXV9V8+t1W+fI/CvinnTDMPoy5D
+	L9LrATS0cs67BQ8+ByFdZD92EyDAX9WHhOr/s4ZPoMqan5z5GSQa/J4aBf3FCwmEKcrxBr
+	p8QzSm1wQtK9kbA3OTc7Vk0px3qUla+7M5oZ9RcvWVpvfdnOxZ528ejZjI4wvN2AspDwFq
+	fgCnH60HzO9LiKxoVy45e0ihTN6UwwnBzCP01UQGx1biZO9nAXGpdE/UDexZ+w==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/23] media: iris: Fix typo in depth variable
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Stefan Schmidt <stefan.schmidt@linaro.org>, Hans Verkuil
- <hverkuil@xs4all.nl>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- 20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org,
- 20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com, stable@vger.kernel.org
-References: <20250502-qcom-iris-hevc-vp9-v3-0-552158a10a7d@quicinc.com>
- <20250502-qcom-iris-hevc-vp9-v3-9-552158a10a7d@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250502-qcom-iris-hevc-vp9-v3-9-552158a10a7d@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 02 May 2025 14:31:13 +0200
+Message-Id: <D9LOD5X8NXF2.2GWBU2IAZESH7@bootlin.com>
+Subject: Re: [PATCH v7 08/11] gpio: max7360: Add MAX7360 gpio support
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Bartosz Golaszewski"
+ <bartosz.golaszewski@linaro.org>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
+X-Mailer: aerc 0.19.0-0-gadd9e15e475d
+References: <20250428-mdb-max7360-support-v7-0-4e0608d0a7ff@bootlin.com>
+ <20250428-mdb-max7360-support-v7-8-4e0608d0a7ff@bootlin.com>
+ <aBSg2qwNhPqJJRxK@smile.fi.intel.com>
+In-Reply-To: <aBSg2qwNhPqJJRxK@smile.fi.intel.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvjedvgeeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevhffvofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekhfekieeftefhjeetveefudehuddvvdeuvddvudfgfffhveekffethfeuffdtudenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlr
+ dhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On 01/05/2025 20:13, Dikshita Agarwal wrote:
-> Correct a typo from "dpeth" to "depth".
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 3a19d7b9e08b ("media: iris: implement set properties to firmware during streamon")
-> Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->   drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c b/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
-> index a908b41e2868..802fa62c26eb 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
-> @@ -178,7 +178,7 @@ static int iris_hfi_gen2_set_crop_offsets(struct iris_inst *inst)
->   						  sizeof(u64));
->   }
->   
-> -static int iris_hfi_gen2_set_bit_dpeth(struct iris_inst *inst)
-> +static int iris_hfi_gen2_set_bit_depth(struct iris_inst *inst)
->   {
->   	struct iris_inst_hfi_gen2 *inst_hfi_gen2 = to_iris_inst_hfi_gen2(inst);
->   	u32 port = iris_hfi_gen2_get_port(V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
-> @@ -378,7 +378,7 @@ static int iris_hfi_gen2_session_set_config_params(struct iris_inst *inst, u32 p
->   		{HFI_PROP_BITSTREAM_RESOLUTION,       iris_hfi_gen2_set_bitstream_resolution   },
->   		{HFI_PROP_CROP_OFFSETS,               iris_hfi_gen2_set_crop_offsets           },
->   		{HFI_PROP_CODED_FRAMES,               iris_hfi_gen2_set_coded_frames           },
-> -		{HFI_PROP_LUMA_CHROMA_BIT_DEPTH,      iris_hfi_gen2_set_bit_dpeth              },
-> +		{HFI_PROP_LUMA_CHROMA_BIT_DEPTH,      iris_hfi_gen2_set_bit_depth              },
->   		{HFI_PROP_BUFFER_FW_MIN_OUTPUT_COUNT, iris_hfi_gen2_set_min_output_count       },
->   		{HFI_PROP_PIC_ORDER_CNT_TYPE,         iris_hfi_gen2_set_picture_order_count    },
->   		{HFI_PROP_SIGNAL_COLOR_INFO,          iris_hfi_gen2_set_colorspace             },
-> 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+On Fri May 2, 2025 at 12:39 PM CEST, Andy Shevchenko wrote:
+> On Mon, Apr 28, 2025 at 01:57:26PM +0200, Mathieu Dubois-Briand wrote:
+>> +static int max7360_gpio_probe(struct platform_device *pdev)
+>> +{
+>> +	const struct max7360_gpio_plat_data *plat_data;
+>> +	struct gpio_regmap_config gpio_config =3D { };
+>> +	struct regmap_irq_chip *irq_chip;
+>> +	struct device *dev =3D &pdev->dev;
+>> +	struct regmap *regmap;
+>> +	unsigned int outconf;
+>> +	int ret;
+>> +
+>> +	regmap =3D dev_get_regmap(dev->parent, NULL);
+>> +	if (!regmap)
+>> +		return dev_err_probe(dev, -ENODEV, "could not get parent regmap\n");
+>> +
+>> +	plat_data =3D device_get_match_data(dev);
+>> +	if (plat_data->function =3D=3D MAX7360_GPIO_PORT) {
+>> +		if (device_property_read_bool(dev, "interrupt-controller")) {
+>> +			/*
+>> +			 * Port GPIOs with interrupt-controller property: add IRQ
+>> +			 * controller.
+>> +			 */
+>> +			gpio_config.regmap_irq_flags =3D IRQF_ONESHOT | IRQF_SHARED;
+>> +			gpio_config.regmap_irq_line =3D
+>> +				fwnode_irq_get_byname(dev_fwnode(dev->parent), "inti");
+>> +			if (gpio_config.regmap_irq_line < 0)
+>> +				return dev_err_probe(dev, gpio_config.regmap_irq_line,
+>> +						     "Failed to get IRQ\n");
+>
+>> +			irq_chip =3D devm_kzalloc(dev, sizeof(*irq_chip), GFP_KERNEL);
+>
+> Can this be made static const instead?
+>
+
+Sorry, I don't think we can. We do have a few data that will vary:
+->name, but above all ->irq_drv_data, as it will point on the regmap of
+the specific device.
+
+> ...
+
+OK with all other comments.
+
+Thanks for your review.
+Mathieu
+
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
