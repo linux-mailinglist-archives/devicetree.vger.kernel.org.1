@@ -1,64 +1,40 @@
-Return-Path: <devicetree+bounces-172950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83EB5AA707E
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 13:14:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B73AAA7098
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 13:24:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C6E47A6243
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:12:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 500821BC8353
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:25:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 986A123A99F;
-	Fri,  2 May 2025 11:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="W5idxvhy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9498231841;
+	Fri,  2 May 2025 11:24:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CADCE19D07B;
-	Fri,  2 May 2025 11:13:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC7201E5B62;
+	Fri,  2 May 2025 11:24:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746184437; cv=none; b=HJpMJZy1gB4TtOXz6ExCB87lLVEfvs48R4v/DZm3bjHJ/Cc1r6kG3QMPLPKMeSRquu08bWWCKrrxj195eJIWdpdhVi1/fjlPlEK+IUhOKUjB5UPZskNjDtpufQOmSkVksgZc02CcKl7kqqmf2HHeNvlw/5tw3SH5211ZfgxUDZc=
+	t=1746185091; cv=none; b=BCBuW/q/sIJWWbC1Mpx/7PpkeCIj8Lc5QySZLP5T/McpSY6VtxGgFdRFGSwHCe3xbbvVNA67/eKz85PXwbT6135RYh4uJ6i4idtlS02s6HtVEHuUF7tjKF7+8RbSS5ShZqh8F93JcqK0OHXmLoJyF3Sokm/jxaydq9g2xH6rU0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746184437; c=relaxed/simple;
-	bh=9kHaM+DwGh2R0bvCj57XSgsqksXYbaATpqhrjd3RIio=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Uien6E7Yf/mHDxTVxlz6ZTIMrv1cnyOnaJnViRh5Ho+yX7F5HgM7I1fBjxCbmLRFFkM16PIroHFAVJjfSgRHd0cbeJVdaWg0qr6XL/k78CFyKkdfbQjvAsaE+4MkUIxGbsyc71wmQ8cfnlkbb6z5bh/bh0IKjmYq35STr5/9wqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=W5idxvhy; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 542BDiEq3848530
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 2 May 2025 06:13:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746184424;
-	bh=e+w5Qh2JRjlMFyhkZEHnj7ml/ugQxghiOlkLkqWDVzI=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=W5idxvhyn32t6wedPrduYdssQK5QNiQNVACARTf5WAYDH/BhLh3dbVBMNj/NwP7KM
-	 EwoDxSKVEf4W8FnSoPItBAul40ymbqBUrCRleffoQB9aTk+9bU4/e/qDATBznFViSk
-	 04h4bDSQw6y5r2o4tbHNkK+NMUkf/DUYWNFmO4Dg=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 542BDiT1019558
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 2 May 2025 06:13:44 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
- May 2025 06:13:43 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 2 May 2025 06:13:43 -0500
-Received: from [10.249.134.35] ([10.249.134.35])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 542BDb39062789;
-	Fri, 2 May 2025 06:13:38 -0500
-Message-ID: <87d38b3d-607d-45c3-8f29-70f6c01187db@ti.com>
-Date: Fri, 2 May 2025 16:43:37 +0530
+	s=arc-20240116; t=1746185091; c=relaxed/simple;
+	bh=cKOTqHsBhMM6YjpkOCPn/l8zd9SEgokeFwXnmYii7q0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GgjwZKa0Bl1vi5bz9dng9utGtuupTNtj3fW5L62SKlw+EivobP3YI8PFqrKdJjXJ7JXiffX0Hq2aEeftCpJNi+9Mt7Vs3x/yG1siZOvB86GexIdZd6iWvA4kSjIVJw448TtxwDwlHhr0AzMXOa2Nvd10G8iOg5ZLbnE1VrXg/No=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [192.168.2.35] (unknown [98.97.61.17])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 1FF12B4C2411;
+	Fri,  2 May 2025 13:24:44 +0200 (CEST)
+Message-ID: <d96b2243-0eb8-4596-bbef-7e7f9419d1ed@freeshell.de>
+Date: Fri, 2 May 2025 04:24:43 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,103 +42,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/4] arm64: dts: ti: k3-am62x: Add required voltage
- supplies for TEVI-OV5640
-To: Devarsh Thakkar <devarsht@ti.com>, <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vaishnav.a@ti.com>, <y-abhilashchandra@ti.com>,
-        <s-jain1@ti.com>, <jai.luthra@linux.dev>,
-        <jai.luthra@ideasonboard.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <imx@lists.linux.dev>
-References: <20250429154133.3377962-1-r-donadkar@ti.com>
- <20250429154133.3377962-5-r-donadkar@ti.com>
- <f73d24a6-7da6-4bcc-95ba-9d84b865a7a7@ti.com>
+Subject: Re: [PATCH] riscv: dts: starfive: jh7110-common: use macros for MMC0
+ pins
+To: Icenowy Zheng <uwu@icenowy.me>, Emil Renner Berthing <kernel@esmil.dk>,
+ Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, E Shattow <e@freeshell.de>
+References: <20250424060605.638678-1-uwu@icenowy.me>
 Content-Language: en-US
-From: "Donadkar, Rishikesh" <r-donadkar@ti.com>
-In-Reply-To: <f73d24a6-7da6-4bcc-95ba-9d84b865a7a7@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20250424060605.638678-1-uwu@icenowy.me>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+
+On 4/23/25 23:06, Icenowy Zheng wrote:
+> The pin names of MMC0 pinmux is defined in the pinctrl dt binding header
+> associated with starfive,jh7110-pinctrl .
+> 
+> Include the header file and use these names instead of raw numbers for
+> defining MMC0 pinmux.
+> 
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> ---
+> This is only a prettying commit. The resulting DTB files have the same
+> content with or without this patch (verified by doing sha256sum on
+> arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb).
+> 
+>  .../boot/dts/starfive/jh7110-common.dtsi      | 21 ++++++++++---------
+>  1 file changed, 11 insertions(+), 10 deletions(-)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> index c2f70f5e2918f..a2c72b385a905 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> @@ -8,6 +8,7 @@
+>  #include "jh7110.dtsi"
+>  #include "jh7110-pinfunc.h"
+>  #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/starfive,jh7110-pinctrl.h>
+>  
+>  / {
+>  	aliases {
+> @@ -428,16 +429,16 @@ GPOEN_ENABLE,
+>  		};
+>  
+>  		mmc-pins {
+> -			pinmux = <PINMUX(64, 0)>,
+> -				 <PINMUX(65, 0)>,
+> -				 <PINMUX(66, 0)>,
+> -				 <PINMUX(67, 0)>,
+> -				 <PINMUX(68, 0)>,
+> -				 <PINMUX(69, 0)>,
+> -				 <PINMUX(70, 0)>,
+> -				 <PINMUX(71, 0)>,
+> -				 <PINMUX(72, 0)>,
+> -				 <PINMUX(73, 0)>;
+> +			pinmux = <PINMUX(PAD_SD0_CLK, 0)>,
+> +				 <PINMUX(PAD_SD0_CMD, 0)>,
+> +				 <PINMUX(PAD_SD0_DATA0, 0)>,
+> +				 <PINMUX(PAD_SD0_DATA1, 0)>,
+> +				 <PINMUX(PAD_SD0_DATA2, 0)>,
+> +				 <PINMUX(PAD_SD0_DATA3, 0)>,
+> +				 <PINMUX(PAD_SD0_DATA4, 0)>,
+> +				 <PINMUX(PAD_SD0_DATA5, 0)>,
+> +				 <PINMUX(PAD_SD0_DATA6, 0)>,
+> +				 <PINMUX(PAD_SD0_DATA7, 0)>;
+>  			bias-pull-up;
+>  			drive-strength = <12>;
+>  			input-enable;
+
+Ref:
+https://lore.kernel.org/lkml/ZQ2PR01MB1307BD49C0A49DAD3AA76049E600A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn/
+"[PATCH] riscv: dts: starfive: jh7110-common: Use named definition for
+mmc1 card detect"
+
+Thanks for taking this. Read previous comments from Hal there is yet
+some description in dts/upstream/src/riscv/starfive/jh7110-pinfunc.h
+that needs to change / be improved on.
 
 
-On 02-05-2025 14:37, Devarsh Thakkar wrote:
->
-> On 29/04/25 21:11, Rishikesh Donadkar wrote:
->> The device tree overlay for TEVI-OV5640 requires following voltage
->> supplies:
->>
->> AVDD-supply: Analog voltage supply, 2.8 volts
->> DOVDD-supply: Digital I/O voltage supply, 1.8 volts
->> DVDD-supply: Digital core voltage supply, 1.5 volts
->>
-> I think this contradicts the voltage mentioned in TEVI-OV56540 doc [1]
-> which mention digital voltage as 3.3 volts ?
 
-
-Thank you for pointing out, I will fix it.
-
->
->> Add them in the DT overlay.
->>
-> [1]:
-> https://www.technexion.com/wp-content/uploads/2023/09/product-brief_tevi-ov5640.pdf
->
-> Regards
-> Devarsh
->> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
->> ---
->>   .../dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso  | 32 +++++++++++++++++++
->>   1 file changed, 32 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso
->> index b6bfdfbbdd984..123ab0e5e8dfa 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso
->> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso
->> @@ -15,6 +15,33 @@ clk_ov5640_fixed: ov5640-xclk {
->>   		#clock-cells = <0>;
->>   		clock-frequency = <24000000>;
->>   	};
->> +
->> +	reg_2p8v: regulator-2p8v {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "2P8V";
->> +		regulator-min-microvolt = <2800000>;
->> +		regulator-max-microvolt = <2800000>;
->> +		vin-supply = <&vcc_3v3_sys>;
->> +		regulator-always-on;
->> +	};
->> +
->> +	reg_1p8v: regulator-1p8v {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "1P8V";
->> +		regulator-min-microvolt = <1800000>;
->> +		regulator-max-microvolt = <1800000>;
->> +		vin-supply = <&vcc_3v3_sys>;
->> +		regulator-always-on;
->> +	};
->> +
->> +	reg_1p5v: regulator-1p5v {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "1P5V";
->> +		regulator-min-microvolt = <1500000>;
->> +		regulator-max-microvolt = <1500000>;
->> +		vin-supply = <&vcc_3v3_sys>;
->> +		regulator-always-on;
->> +	};
->>   };
->>   
->>   &main_i2c2 {
->> @@ -40,6 +67,11 @@ ov5640: camera@3c {
->>   
->>   				clocks = <&clk_ov5640_fixed>;
->>   				clock-names = "xclk";
->> +
->> +				AVDD-supply = <&reg_2p8v>;
->> +				DOVDD-supply = <&reg_1p8v>;
->> +				DVDD-supply = <&reg_1p5v>;
->> +
->>   				powerdown-gpios = <&exp1 13 GPIO_ACTIVE_LOW>;
->>   
->>   				port {
+-E
 
