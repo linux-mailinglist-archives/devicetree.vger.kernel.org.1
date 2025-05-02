@@ -1,79 +1,90 @@
-Return-Path: <devicetree+bounces-172907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B842DAA6EDB
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:07:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CF0BAA6EE8
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:10:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E44F617C131
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 10:07:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 602B21BC32F1
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 10:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8502235044;
-	Fri,  2 May 2025 10:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A947238C1D;
+	Fri,  2 May 2025 10:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nHVGh1vr"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SC1Nfr1l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1519A22C35C;
-	Fri,  2 May 2025 10:07:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F0CB22F75D;
+	Fri,  2 May 2025 10:10:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746180472; cv=none; b=aOz3jN0+wxSSMEm1OjXkaLSEbMXRHoKD1V5905VG75/PKO0YYPQkPe663cLWhHrVnSMqszODiKXrXQgg7Xm3XDOUizODGy/BKTYmXsmIEfcFF0ufpK6nA6L8h33yZHFSsSIAXPBtLLxZKV8l5nBuVyJNen/6JnkXyTs+BplZTBk=
+	t=1746180649; cv=none; b=dNcSXqW+ZEGHmfbIUx6mkNvjlSrokWpADYLBFeYEoP4TMBuI/O+Yn76SiLFInq2UJWazupjvSXW/APm+2BbmqO7BeQGiXGirX1uzusTlDEA65aAHlWoB7t2zCtovUEVGAYdZKH8H91zCylACAPds7ZIhxObz3UCJEsPt2b4gJ1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746180472; c=relaxed/simple;
-	bh=e8/ynrXSAkfoRLP48zbKeDqIR8w4XEaL0sjJOL1EGrc=;
+	s=arc-20240116; t=1746180649; c=relaxed/simple;
+	bh=qHAmWPQCH97BfabOz0qFatrzpcgkJenIfkkBV9GeOic=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MZ1q85lJKmXyi1nxBAjKTxL9RYurkq6199t5Z1rD+yNJtfyaczHyJOjad7WTwUtk1bJCQptdJymPz6Zom/8pmHk1I7O5bes1dR2ivSPlVzyusJvDU/ueFv4iaDge+wqoAq0x5l6kEHhGd+lOLXC4yZ1gPUPEW+8NmPtNNwJNzgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nHVGh1vr; arc=none smtp.client-ip=192.198.163.18
+	 Content-Type:Content-Disposition:In-Reply-To; b=AAQs0U1bOetFnF0eZ7JAg2CLzSMo2RTaFPHLaMqdS/H7aKXQp/MgWURyg06M9BVxO+vgxDKMCbpheeT+WJUvjneKt463UHjANb36DmdLvSW2LefsfzWLdEYD6wHChK5UBZpgFu72KqUpZjDPQBjZQw+qeQcQ740zVjQR9pusmA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SC1Nfr1l; arc=none smtp.client-ip=192.198.163.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746180471; x=1777716471;
+  t=1746180648; x=1777716648;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=e8/ynrXSAkfoRLP48zbKeDqIR8w4XEaL0sjJOL1EGrc=;
-  b=nHVGh1vrYNklF81yK9S+e2vLmGLUdjzFZv2uEUGorLc87wtMtOgKLAd8
-   aW8hxwMzcVp19cKFz9z/yiFCsFdIKPkoFBjTauqRu9qnB6C3hKSXMgZZx
-   QQGqPnePMWlkAhkBOVYTXl5nifiJEDQCjZSd8bD9IwBK/JhRAYuxzMcJ5
-   OpdP3z9oRDZo3Ds6/fyBawF3MrTkvF0AHd+EXWTjhFjGqflXsf6GJXC0s
-   uRzcM5iyudegYA/aX2j3RTAiS2xAXLnlt49czSaA9y9/LmJhxjV/hMSh7
-   lubqoW5HBiyIFZm56siJLDxI9qU/HHtAsS2dv7reSOUJpEignaHoT4Zsj
-   w==;
-X-CSE-ConnectionGUID: /I4Hjn47T3u8uo/LiBjd5g==
-X-CSE-MsgGUID: ZYTdp/ADRy2FVTulWWqWxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11420"; a="47119327"
+  bh=qHAmWPQCH97BfabOz0qFatrzpcgkJenIfkkBV9GeOic=;
+  b=SC1Nfr1lIk1fpKRrWJqZ4coZ/J0Xc+u8WLbWVk9O6bkBoXPpOw39q3PY
+   eUrbSRjMh+SO028wLqk2razZwCVGcSnOWaEkpSlTZX9zWcbNVFfwqVxMY
+   SW8jWNscak/QUrEWfNohBdYFg0Fh959ZZTCeL/Q2VU6qSkB9oXQ9s+6IF
+   M0vGp3o8i0+U6vVR6jSx0sKITeAeD4OQZmrpU2ushhDp5jOv9CZ9AHQr+
+   c3KHP9JKni2JzcJUiZk5w8D5NXAfvWtbrFSJPRkSDj3FUJpv6GKy2ncAZ
+   r7pvH2d6Fi5YC4IVYJ/y5pQCE64eLO5WMHD0YQybhx5Gz1DFJ2mX8bY5H
+   A==;
+X-CSE-ConnectionGUID: kVhMJIF1QEyxsPGA7yKxBw==
+X-CSE-MsgGUID: 26H3YNGBTB23FOJAQmvhpQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11420"; a="35479003"
 X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; 
-   d="scan'208";a="47119327"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2025 03:07:50 -0700
-X-CSE-ConnectionGUID: daTlk9jhQiGMA7sg/MUotw==
-X-CSE-MsgGUID: dhWxgGsLT2+k10nN15ebJA==
+   d="scan'208";a="35479003"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2025 03:10:45 -0700
+X-CSE-ConnectionGUID: EtrVkBRvSPmre3d4OtL1QA==
+X-CSE-MsgGUID: QNAdMcJ2TmmGeiGGX74sdQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; 
-   d="scan'208";a="135131130"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 02 May 2025 03:07:47 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uAnJ2-0004ft-1r;
-	Fri, 02 May 2025 10:07:44 +0000
-Date: Fri, 2 May 2025 18:07:39 +0800
-From: kernel test robot <lkp@intel.com>
-To: Paresh Bhagat <p-bhagat@ti.com>, nm@ti.com, vigneshr@ti.com,
-	praneeth@ti.com
-Cc: oe-kbuild-all@lists.linux.dev, kristo@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, khasim@ti.com, v-singh1@ti.com,
-	afd@ti.com
-Subject: Re: [PATCH 3/3] arm64: dts: ti: Add support for AM62D2-EVM
-Message-ID: <202505021704.jOlZOXSq-lkp@intel.com>
-References: <20250501072923.1262414-4-p-bhagat@ti.com>
+   d="scan'208";a="165670463"
+Received: from smile.fi.intel.com ([10.237.72.55])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 May 2025 03:10:40 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uAnLp-000000029iN-09bO;
+	Fri, 02 May 2025 13:10:37 +0300
+Date: Fri, 2 May 2025 13:10:36 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: mathieu.dubois-briand@bootlin.com
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v7 02/11] mfd: Add max7360 support
+Message-ID: <aBSaHL8sbLrGyEzw@smile.fi.intel.com>
+References: <20250428-mdb-max7360-support-v7-0-4e0608d0a7ff@bootlin.com>
+ <20250428-mdb-max7360-support-v7-2-4e0608d0a7ff@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,47 +93,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250501072923.1262414-4-p-bhagat@ti.com>
+In-Reply-To: <20250428-mdb-max7360-support-v7-2-4e0608d0a7ff@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Paresh,
+On Mon, Apr 28, 2025 at 01:57:20PM +0200, mathieu.dubois-briand@bootlin.com wrote:
+> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> 
+> Add core driver to support MAX7360 i2c chip, multi function device
+> with keypad, GPIO, PWM, GPO and rotary encoder submodules.
 
-kernel test robot noticed the following build errors:
+...
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.15-rc4 next-20250501]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +static int max7360_mask_irqs(struct regmap *regmap)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Paresh-Bhagat/dt-bindings-arm-ti-Add-bindings-for-AM62D2-SoC/20250501-153150
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250501072923.1262414-4-p-bhagat%40ti.com
-patch subject: [PATCH 3/3] arm64: dts: ti: Add support for AM62D2-EVM
-config: arm64-randconfig-053-20250502 (https://download.01.org/0day-ci/archive/20250502/202505021704.jOlZOXSq-lkp@intel.com/config)
-compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
-dtschema version: 2025.3.dev21+ge6ea659
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250502/202505021704.jOlZOXSq-lkp@intel.com/reproduce)
+So, AFAICS this is used only at probe stage...
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505021704.jOlZOXSq-lkp@intel.com/
+> +{
+> +	struct device *dev = regmap_get_device(regmap);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	/*
+> +	 * GPIO/PWM interrupts are not masked on reset: as the MAX7360 "INTI"
+> +	 * interrupt line is shared between GPIOs and rotary encoder, this could
+> +	 * result in repeated spurious interrupts on the rotary encoder driver
+> +	 * if the GPIO driver is not loaded. Mask them now to avoid this
+> +	 * situation.
+> +	 */
+> +	for (unsigned int i = 0; i < MAX7360_PORT_PWM_COUNT; i++) {
+> +		ret = regmap_write_bits(regmap, MAX7360_REG_PWMCFG(i),
+> +					MAX7360_PORT_CFG_INTERRUPT_MASK,
+> +					MAX7360_PORT_CFG_INTERRUPT_MASK);
+> +		if (ret) {
+> +			dev_err(dev, "Failed to write max7360 port configuration");
+> +			return ret;
 
-All errors (new ones prefixed by >>):
+...if it's the case, use return dev_err_probe(...) here...
 
->> arch/arm64/boot/dts/ti/k3-am62d2-evm.dts:15:10: fatal error: 'k3-timesync-router.h' file not found
-      15 | #include "k3-timesync-router.h"
-         |          ^~~~~~~~~~~~~~~~~~~~~~
-   1 error generated.
+> +		}
+> +	}
+> +
+> +	/* Read GPIO in register, to ACK any pending IRQ. */
+> +	ret = regmap_read(regmap, MAX7360_REG_GPIOIN, &val);
+> +	if (ret)
+> +		dev_err(dev, "Failed to read gpio values: %d\n", ret);
+> +
+> +	return ret;
 
+...and here.
 
-vim +15 arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
-
-    14	
-  > 15	#include "k3-timesync-router.h"
-    16	
+> +}
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With Best Regards,
+Andy Shevchenko
+
+
 
