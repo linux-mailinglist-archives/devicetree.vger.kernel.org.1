@@ -1,120 +1,152 @@
-Return-Path: <devicetree+bounces-173189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 926D0AA7BF2
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 00:05:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B15AAA7BFA
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 00:06:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E406498621E
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 22:04:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CAF09A136D
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 22:05:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 443DA215162;
-	Fri,  2 May 2025 22:03:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D83420F09B;
+	Fri,  2 May 2025 22:04:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NgkpgE85"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zlv1tpFF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A62A522F740;
-	Fri,  2 May 2025 22:03:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC661FC10E;
+	Fri,  2 May 2025 22:04:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746223427; cv=none; b=uNXCiAxfc5rsKn70xRfKqt+h8TFEHHf+ApSaPcD0V/dRqJ3BN24Sh8jJh6J0lExV7shA35YYV0RE7tMQgSAZy1NKZvyp/nq20WpuSW1WTKMDvZfZkcD4ygYuuC3gRWrk/8k4n9WInIzIyzfXtPeLnjbeeyZld7BTX8g6gnj/ZUg=
+	t=1746223485; cv=none; b=q5wmzYYPDV/j1IBN9Z09w4sE2c1gG1+eHNscS4DfHYjU+W8DbgGAjaomORvPGcX6kI4KN/F49EMavrUrEwxyll1KnUwr+SrmqDUM3RaqlF9+LpGJGTvFHQPRpVL54qkKEDIzobBVYyR99CVEaAjd6KHVyKt2KUIAHEdfefZ8GYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746223427; c=relaxed/simple;
-	bh=Thwd6MRSD2RM8Smfp+f5EyrRhOVVFoHe54Jbtp3CDxM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eTIRVzGdzR8mOwaAK3ofh40eEul1Q7s1EvuqRjNv5el8GXU78k8N/AvkpSIBozBtFLhrMXnttCAdAQBPjnImgRhEwoIV6Yef83p0hopT6Hd4sQ2R+TLzWHg/oLHfbRyiCzbUwgS6nbsKlTd5iDuzodQIUYYSOPZ9118BH3XrUyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NgkpgE85; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 542M3QPm500003
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 2 May 2025 17:03:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746223407;
-	bh=FWlZZog+xI4b0spP/ZWdcQgjKse3LrOk/NzAyoIs+g4=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=NgkpgE85LmgxDPGUOQ4c1US2Bzx6r52tZBPlEg39wzMR6Xj4ByW3GY6nN8cGIbm3C
-	 RaV9icf/mujTY4OIoqroZMf70zZQxnZPOsEn2rahanBqh4LtKyWeWxxNATE7px4/6b
-	 EMjUbphvVo782Al0UCFjusL8ay7GYIqukAYzDuws=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 542M3Q07031676
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 2 May 2025 17:03:26 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
- May 2025 17:03:26 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 2 May 2025 17:03:26 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 542M3PC4006849;
-	Fri, 2 May 2025 17:03:26 -0500
-From: Judith Mendez <jm@ti.com>
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Hari
- Nagalla <hnagalla@ti.com>,
-        Beleswar Padhi <b-padhi@ti.com>,
-        Markus
- Schneider-Pargmann <msp@baylibre.com>,
-        Andrew Davis <afd@ti.com>, Devarsh
- Thakkar <devarsht@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v8 10/11] arm64: dts: ti: k3-am62a7-sk: Reserve main_rti4 for C7x DSP
-Date: Fri, 2 May 2025 17:03:24 -0500
-Message-ID: <20250502220325.3230653-11-jm@ti.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250502220325.3230653-1-jm@ti.com>
-References: <20250502220325.3230653-1-jm@ti.com>
+	s=arc-20240116; t=1746223485; c=relaxed/simple;
+	bh=dRIhoysQGSyJs2hdqVmcNTx/4yoP6dvGtwt8OZlsnmY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=N4a3BwVa93XqIB60T93N0dXYJ+pM4D4neE2K6/yX7/+OR01rnwRws6KPbJZrM2evZ6fdlPJhTWvlH56fjKPpYU/Piz5ERY/G/XoirI/9x9wGh8yYIOyCDaZCujF96wJqxT6+VZm5WTdQ007Rn/Ve41C3I2lhkPIkiY83R7cueA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zlv1tpFF; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-22c336fcdaaso32228405ad.3;
+        Fri, 02 May 2025 15:04:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746223483; x=1746828283; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7affcrby2vNkam9EwwwwjCrmVQatX9FyWXaqSRxB4wg=;
+        b=Zlv1tpFFX9VWAQRfCpXK7Y3pQJWJL5Vd/E+g4ARGEYNsdaAc1koUJNlxfeIejCyj8B
+         4zj1ui+/URmGsdHnXNjdCYIepQitM83iSv/HkW1nSjyRDinZ4at7jVM37M9LSv6rkZzQ
+         1P3eN1dTw6PvYoIj+gCoL8gv+7/Hhe0NpXvYZRlNA7N0JQC7dNo+Zlw0WLLsO3mkjyvN
+         2kSIv/7M/yNbxTLxsCSoKPOFtE6Hyouv2pI530tzbZJAdJpBc3HaLuRskdzYIlRNKD2L
+         W40LHltKsGYsXup8Y2etbm2uxQsrpK74f2YH7G1pwyny7jgVjWX3Aph7pD5nW6TgCQny
+         DWAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746223483; x=1746828283;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7affcrby2vNkam9EwwwwjCrmVQatX9FyWXaqSRxB4wg=;
+        b=hwUOu9dOY+ZiQ4+cZaZKqHAbTdqC0zDoGxgv92ZEpPWIGpyXr+j410octqsTsetUSR
+         4WQAvOZZ2QryFVZlRm8n2WSeSyE8FvIojudJNaOEPHXOokPz8pdlCPY8iXLTiMCEqQjo
+         TpyR9AS4XwvUAGkph4b3fC2y8lRZ4nbmdSMTxuO64Xf/SHanZqJ4UhHxC6ATSBYwk8Z8
+         5oLQUDv6hMQJbx+YYgtlX1+UQ85dadMxsBSqn/Ps4JEokzZuK0lHDawTT0Ue+hKSOkd/
+         ytFUymohkKvqRR7499wJQIUZCrK1rn1AvjuEpfNC0DNrF5iersIYf0pguRPROUYeJbq4
+         4zhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV9I2Vahpw0suqUNFuMe5abKWnFTGM1mcWgx9e1hTkKd6OEkFprEXXwJ0KSzJSNvs1YuYasf7fJieF5zc4=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0EJxeOyERxsBzgjRT7H7dUB0InkRlT/63rMw7d/PFuZwh20bl
+	pzjTK87/VpMTrQG838o+8JN0IuR9piR0wGS1RzJ85Bveu3ZVXCO3
+X-Gm-Gg: ASbGncslh4hSkPz8oujER0VLjC4q+p7Glsfx5vcEsKSeLVjCMZXdtJ/2ub9QmGfg7kr
+	p2Wdglh06qsFbBEn8XqljsjFF+v+1iMdHwepYhXlqxrxZnEXxMr6DPA/OvM8e9B7WdhoEZKfzA6
+	jvsoK7BuQI1QTjQNFhvETDyCN/azyVN9c6XVvAewdxN4nQ85stK3X+alqJnIQLDgZEw0ULHD/lS
+	E8BZlo6G2ax0HDelVsIe7RyRsC8nXArjjad0fzVRmo2k2yZmEREs6q2epax3w5vGypa00UfOwKs
+	yOuKchR4dzJJi54TvdxwYcZwIIlNuVvWkDXpBhP+erKwGB16K9aq
+X-Google-Smtp-Source: AGHT+IFSEK0BFBWq98gRMREk3vYKHwod79qnzPoBE27xjeSvNK9HzGZJPObIMMGJCWFIuUJZRuoBrw==
+X-Received: by 2002:a17:902:d481:b0:224:10a2:cae1 with SMTP id d9443c01a7336-22e1038971bmr54216585ad.37.1746223482750;
+        Fri, 02 May 2025 15:04:42 -0700 (PDT)
+Received: from NB-GIGA003.letovo.school ([5.194.95.139])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b1fb3c48ac4sm1301153a12.55.2025.05.02.15.04.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 May 2025 15:04:42 -0700 (PDT)
+From: Alexey Charkov <alchark@gmail.com>
+Subject: [PATCH v2 0/3] ARM: vt8500: Add runtime SoC version identification
+Date: Sat, 03 May 2025 02:04:22 +0400
+Message-Id: <20250503-wmt-soc-driver-v2-0-8c774ad84d47@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGZBFWgC/3XMyw6CMBCF4Vchs3YMDBeNK9/DsKDtFCYRSlpSN
+ aTvbmXv8j/J+XYI7IUD3IodPEcJ4pYcdCpAT8MyMorJDVRSWzZU42veMDiNxktkj4apM91FmYY
+ t5NPq2cr7AB997knC5vzn8GP1W/9SscISlbkqW1NLlab7OA/yPGs3Q59S+gIa5icqrAAAAA==
+X-Change-ID: 20250423-wmt-soc-driver-de26d67bd4ef
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746223484; l=2281;
+ i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
+ bh=dRIhoysQGSyJs2hdqVmcNTx/4yoP6dvGtwt8OZlsnmY=;
+ b=ydF//7uFMmST3aeLF7U0I+Vqit9hRbYNg2pIAe0z+Xv3le8sthrn9K5pHbECZQOCAaTfImeb8
+ ZvWJxWgSWskBfPA29c6mH7vKgaUStaCZmF+EhDKv5JYHfKfPihGIPNx
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
 
-From: Hari Nagalla <hnagalla@ti.com>
+VIA/WonderMedia SoCs have a chip ID register, which is helpful for
+selecting support for correct sets of hardware quirks at runtime, add
+code for it.
 
-The main rti4 watchdog timer is used by the C7x DSP, so reserve the
-timer in the linux device tree.
+This will enable the use of SOC bus match tables in individual drivers,
+allowing for finer grained feature selection where device trees might
+not provide full information about what the hardware expects (such as
+with non-user-visible SoC revisions having different behavior within
+the same user-visible SoC version).
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-Signed-off-by: Judith Mendez <jm@ti.com>
-Reviewed-by: Andrew Davis <afd@ti.com>
+This series intentionally omits the updates to MAINTAINERS, as there
+are multiple VT8500 related submissions this cycle which may go via
+different trees (and cause pain in sequencing the merges). It will be
+updated separately in a single pass to cover everything VT8500 related.
+
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
 ---
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+Changes in v2:
+- Moved the DT binding under hwinfo directory
+- Changed the compatible string to be based on SoC version
+- Reworked the driver into a platform one, and switched to devm_ functions
+  (all of the above - thanks Krzysztof)
+- Link to v1: https://lore.kernel.org/r/20250423-wmt-soc-driver-v1-0-bd8bf32521c2@gmail.com
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index f811911c1325..1e9fe997868e 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -870,3 +870,8 @@ &c7x_0 {
- 			<&c7x_0_memory_region>;
- 	status = "okay";
- };
-+
-+/* main_rti4 is used by C7x DSP */
-+&main_rti4 {
-+	status = "reserved";
-+};
+---
+Alexey Charkov (3):
+      dt-bindings: soc: Add VIA/WonderMedia SoC identification
+      soc: Add VIA/WonderMedia SoC identification driver
+      ARM: dts: vt8500: add DT nodes for the system config ID register
+
+ .../bindings/hwinfo/via,vt8500-scc-id.yaml         |  37 ++++++
+ arch/arm/boot/dts/vt8500/vt8500.dtsi               |   5 +
+ arch/arm/boot/dts/vt8500/wm8505.dtsi               |   5 +
+ arch/arm/boot/dts/vt8500/wm8650.dtsi               |   5 +
+ arch/arm/boot/dts/vt8500/wm8750.dtsi               |   5 +
+ arch/arm/boot/dts/vt8500/wm8850.dtsi               |   5 +
+ drivers/soc/Kconfig                                |   1 +
+ drivers/soc/Makefile                               |   1 +
+ drivers/soc/vt8500/Kconfig                         |  20 ++++
+ drivers/soc/vt8500/Makefile                        |   2 +
+ drivers/soc/vt8500/wmt-socinfo.c                   | 125 +++++++++++++++++++++
+ 11 files changed, 211 insertions(+)
+---
+base-commit: 37ff6e9a2ce321b7932d3987701757fb4d87b0e6
+change-id: 20250423-wmt-soc-driver-de26d67bd4ef
+
+Best regards,
 -- 
-2.49.0
+Alexey Charkov <alchark@gmail.com>
 
 
