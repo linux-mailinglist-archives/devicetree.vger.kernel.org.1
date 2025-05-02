@@ -1,244 +1,162 @@
-Return-Path: <devicetree+bounces-173156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 434F0AA7A11
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 21:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50B51AA7A3E
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 21:31:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBE771894756
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 19:11:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D0B318802D8
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 19:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322421EFFBB;
-	Fri,  2 May 2025 19:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D2BC1EB1A9;
+	Fri,  2 May 2025 19:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="OA0iz9a6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kOkfOJei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2118.outbound.protection.outlook.com [40.107.21.118])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56BB31EF372;
-	Fri,  2 May 2025 19:11:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.118
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746213098; cv=fail; b=fHnosaEdJFogX+xmXgt3dAUHRH6diJwUfXZnw95QNXRH+Q+pNhgM5DkVuW1x1pVmt9aMUft9pH964udusyMfzbdf3QvJKI+FdWHar04trKGDaKxnwbU/8VPLDLPfAD9A0e8Mtyeabw/g4PVIARl3PCzO+K5XrQCLfk9HR8a2DTw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746213098; c=relaxed/simple;
-	bh=BGJRUhV/Z6oBgfiel5wBEWwfcUdTFEabyE2G2biB64o=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=cjrSYp6qsivIsyhFU6CU9BXEXCQ8mzMUkcYs5RzznhBF07i+fhXFGvWX5bdcHb8YVdXt44cMp3JfyPNwfPC8GYIIPOzvLql5q5Q9sPQS3w/xLw7JJmlUy9OqEZGGu3tz2Yhn/cYR+BJS3y165rE/6viAWxeJUBTIZbV56+1UOkA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=OA0iz9a6; arc=fail smtp.client-ip=40.107.21.118
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wMFGZcxobBimCafrs+JwV3wwoLfGUuSMkkDMsFqlvfz9B1vq5dIAdln51EFOZzCHkkR+Dw2XfHNp7ZwwABfidOjlXImCLZHNmG3XhviDbSXiouOq0gUMeHrJLWFXRJmt0h1GshLC5e777ZvzgBjzVIMptydmbB/kC0HkboSiK5S7/PXB9UCy+1cuQ1z52zqB6lud11GrchWRGBGU2MnTrBa5ZEuGgfvWRXq1k4jXoFQ/2GFw6NKlYLpF83wETh4PgKW0hbS2HPPw6XEnU+Pfk6IeEONWhqIlIplxzHv24FIWVBARacBzNdW4n11qINipWkKPmBU1yaMKJAVL+kRc9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qIL8d+5n87mtFb/O0Y5E69DnqKIGpEnlsfPOdevCSxg=;
- b=spiRDXk6Yj8VoVHr4YrK4hL9YMRk7Fj2h6h2MD4w3dnyUU8cCQQDk4pkVA80MqepkR0osUbQc3ZzSxFV1yY4lI56uResm7kJKgEGlpwhQPaSYHXUxzmwO9m5fYORAbN+E8zcjzoqRaxx5/c/BYYlPpigwiCNCp+nKaweQaJSbX+MlCv0HOEFU1tesJgkzqGm08mjiMk7hOPYNs6mn234PTNln82aLrpzfGJOcpmnPyrV9Kat1cBd2v8ZgTZPJTWUXMTXa4No91g+jDWeu0SikeJMRbkmB+ZAk8RV0CHOIq88lSVA/ZKL1PO+FPtnC4RMCBasWWRiduPBj3JtZ8+JVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.de; dmarc=pass action=none header.from=phytec.de;
- dkim=pass header.d=phytec.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qIL8d+5n87mtFb/O0Y5E69DnqKIGpEnlsfPOdevCSxg=;
- b=OA0iz9a6ehXZrvKhgNvNrkXEeBNCl/lvc12EeGTXepgbwG4qP4fB8h+16+Ytw/h04y5wG81/TylNfgsqG7nk7QQVMeQMFogsLcruonEbpPc3VKasS8qYdxfRbywn4otXwYQNnWXSh2L2EnvcdOJpBX9BNvcYZZlMKBkRaTqEzVakCsp6u7xFJvelwIMXCa3K1JqEukfynJPdXJd+HONRRha0k8DsImUwrOr1tilKSfsperrkxSet5wnVbbZbOmc492PiCH9XDUs71b7gvVEs4flmk1mmbDoD4vixrFGYgDqotM3hDT2e+kvzFti0pHxzE/7ZBwMOiFTeOFRRxKiylw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.de;
-Received: from VI0P195MB2484.EURP195.PROD.OUTLOOK.COM (2603:10a6:800:248::6)
- by GV2P195MB2064.EURP195.PROD.OUTLOOK.COM (2603:10a6:150:b1::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.33; Fri, 2 May
- 2025 19:11:26 +0000
-Received: from VI0P195MB2484.EURP195.PROD.OUTLOOK.COM
- ([fe80::24f:8371:2871:5981]) by VI0P195MB2484.EURP195.PROD.OUTLOOK.COM
- ([fe80::24f:8371:2871:5981%4]) with mapi id 15.20.8699.019; Fri, 2 May 2025
- 19:11:26 +0000
-Message-ID: <9964aeaa-0169-4596-a33d-c56bdb6edae3@phytec.de>
-Date: Fri, 2 May 2025 21:11:16 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am62a: Set Critical Temp. to 105C
-To: Nishanth Menon <nm@ti.com>
-Cc: vigneshr@ti.com, kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- upstream@lists.phytec.de
-References: <20250502142606.2840508-1-d.schultz@phytec.de>
- <20250502142606.2840508-2-d.schultz@phytec.de>
- <20250502144934.t6hjiwp2f64ovb34@deeply>
-Content-Language: en-US
-From: Daniel Schultz <d.schultz@phytec.de>
-In-Reply-To: <20250502144934.t6hjiwp2f64ovb34@deeply>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2837D2DC78C;
+	Fri,  2 May 2025 19:31:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746214291; cv=none; b=cx+vKxJEqJI1EXonnrDbkXxjAlMQR7A1HNUozPt3rVaGQLVlfsWYgTMhNYOwGgMYLfUTklv3AhMnwGM77ZKLrIRMsWDJqs5Ol/MYiktZl8OkjbqZmwe+CZ/Ow58/Ds8qvwx/D7Q48+nElorY3ztVsb0sJr2+i+TjcxHqyfUlPB8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746214291; c=relaxed/simple;
+	bh=M5hI8igvUh0TJ227AgSlnOH2SgqlqQg9EBsxC0vnAG0=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=GJS6qg44zw9Fn7ltCiBSC9ZmBS96bZ6IsuKDfuJEPKTaqC1Z4oirkvcCFuowrTSO2nnBkdxPwal6u7Keb+zQlt258bLVvVGg4h0AqQ4aYbqEtcolZOAl65Rw95lNVVfZkYYCPAN0vCB766xsnrAqVpQ8r7av1btYJS/LqXMNscU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kOkfOJei; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5853DC4CEE4;
+	Fri,  2 May 2025 19:31:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746214290;
+	bh=M5hI8igvUh0TJ227AgSlnOH2SgqlqQg9EBsxC0vnAG0=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=kOkfOJeiVHTOyVqOJ+strKRh1AI1dqd8XRTs68spQ6Z5fyslISqXUm6tB13300tJt
+	 uNbqQwrKftoWK01j40VkWbcDo667egy2Qv8URS3YzanZKLV06UjvEjvBItt35w+rLD
+	 pYQWr0nAgA4GLypZxtY6h0tGaD5an2ZqIE7JtBprxwmMsxjlIMp/VY0HIC1luyvsBj
+	 8vLYKpxIX5BzBMlBQ6/e9It7LQ0BzH5PflQztEnTNX+ZxsqoI3d/FQHl4eY3wu4Szp
+	 82nF3IaeGsUVFGPqv4PpLBUi1+JOlTCz0TpY1Z6rQNRo4DS0K5D7udAD921qp8a4vz
+	 0MQ/ff9ranQ9Q==
+Date: Fri, 02 May 2025 14:31:28 -0500
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR03CA0332.namprd03.prod.outlook.com
- (2603:10b6:303:dc::7) To VI0P195MB2484.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:800:248::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI0P195MB2484:EE_|GV2P195MB2064:EE_
-X-MS-Office365-Filtering-Correlation-Id: bb870327-1554-4bd1-2176-08dd89ad229d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|10070799003;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?VEdFRWZZMURXR1dEdEhvUEZTNjZST3U3aW5CQkpsUS9QK2M2SFZyUnF6UnR0?=
- =?utf-8?B?bHNYa01ibmU5d3ZGSEFueTBkVFZxaVFmZG1IMjRsY3lnOVZZYVJKOEFHZWN0?=
- =?utf-8?B?TVpnZUVZZjNNTENXWHF2REJVMkxxT01PTnd3SEpsVWlDditzNldDNjF6R3V4?=
- =?utf-8?B?RklqWS8ybGlMc0toSXJBMm1RWWovQkFob1JGOXRqUmZ5YWpmaGphNE8yY05y?=
- =?utf-8?B?Ymd0SWg0TmF3dDYwaGRSNTVFUFZlMEtaMFlOZW1neUVNR1Z6ZGMzbkNSU2NO?=
- =?utf-8?B?UUdGYXBiQXBHa0pvUTUyVFhrVEs2NjV4NFhVUmZ0c0hMSThoT0t6c2NwNkhQ?=
- =?utf-8?B?c1BaMnNKdW40M2psNFRVVXR5NldGeFg4WitSQUhmU2VHcVRxbTF3YlRZUHFQ?=
- =?utf-8?B?NGZSYXBpd045Z2VQVXNGNUhwbzBaamxFU0VHZjdxNnVxYWdDSGtXSlZpZm9T?=
- =?utf-8?B?djROLytsRnVWSWhEdjBhSU1BVW54bXZWZGhJalhWcDBTZldCRW41UGdXWEtV?=
- =?utf-8?B?Z3lVYUFZZ1NtODNjVitSditIVFFvTkUwY1lQRWlac1JmSkhkSzhuZ0JIKzhl?=
- =?utf-8?B?MmJWTm10MmZQN2ZreGlTYVJaYVl1dkxzTGd1Y0l0QzkrMkpIeWxENUhLbXV4?=
- =?utf-8?B?b0h6RHZZNG5OL0wreWNSTy9TcXlUQklmTWJUNkFWdnEybHcvb05neklxdS9l?=
- =?utf-8?B?NDYzeVdoVEFNeHFOUnlYZ0ZPZlkyejdrd1cvVXZ3VU8xdWorZm1vbGJFYURK?=
- =?utf-8?B?Y3R6NSsxZXhZUnY1M1B4S3JKWUo5NjIyVC8xb2xWcmp6SWljVlRsYjVPSjdi?=
- =?utf-8?B?L240RWcyZXdRNlY1VDVsOU56ZEtpWDJObTg2UXpLMURtQnZtZFJESmpTdkVx?=
- =?utf-8?B?NC80WTcycS9LN3hpeHllN0t0dUozNFpmenZUTnRVdmZ6VTVkNTIvdGhTenkw?=
- =?utf-8?B?RUV2cVdZeDI5MitzcG5iUUVKNGEzam05aW8vUUluTkxJMDVyalhEMlBQVndY?=
- =?utf-8?B?UDdEZm45ZXh1clpDRmkwV05iN2YrbkJkZ0hJWmJPbEJqVzR2VE1ES2dVVmdL?=
- =?utf-8?B?YnRBM2lpT0pOZ0lvYVJrZFJlanlGUWF6RElTdXNRWG1JUGZqYkRaeTRqUHJH?=
- =?utf-8?B?SUYvTEtiMC9RNkdqZ1NXZ2RYQUpodjM0M3BHOHk0MUZZNHhDTXZIa0p2bWNM?=
- =?utf-8?B?L3JiRVo1bmpvNjJjZitUOUhaeWRTSE81L3lKWW1qYXNCTlFIZnZNNzFraEZ4?=
- =?utf-8?B?ZjRYekRueUdldGxsZzBUcjFqTytWY05Bcmx1YmhXWnZsV3VZVk0xUG9FUjVr?=
- =?utf-8?B?SDJiYWtQTnY2NXRHY29wTUcwNWsydUJ3QTdCNW9oRXF1TTlaVHpyVmdVc1NS?=
- =?utf-8?B?VWUxUEttYUgrSWkwdVg0ay81bTlscitZWmVGTEtveWZMU0hzaUZrUkM4ZzEr?=
- =?utf-8?B?eXNCcXd2N1Rwa2kzYmR3QnFNOTRJVXNUWWZweGFFa3hvRTQ5MXQvbGQ2bHVF?=
- =?utf-8?B?SkxpU0k0VVpoQ0Y5cEl0UE0rSGFOYktoM1FIY3pkVDROL25qaE5PVnpTdlpZ?=
- =?utf-8?B?UndWYm82R0lFKzNvOWo3d3hRcllYSERFbWhmc2p2bFBZcm9rVWVGWjFOSEha?=
- =?utf-8?B?UXVZMnNtdFhYazBtbWFwY1B6Q0NOZjAzdTFYcFJ6REc3TkZzRlZwMFNQeWk0?=
- =?utf-8?B?N2g0WDhMNHdzUEorOWloVmRPL0t0Ujlqd1ozRFAyV1Q2TlVoTVNITVdIL1Ny?=
- =?utf-8?B?eUg1bEllcm53S05sTzFFZGVYa1k4ZE5XanI1YjRxL3ZoV1ZGekh2bWxpeDg5?=
- =?utf-8?B?bHdhRXYyb0diQndxM1ROSldOMExCYXdQT2h6UWNOVnJueE1GMytQaC9XWUZW?=
- =?utf-8?B?YzhycE9PNVAydmZKWnl5K0l6VlRaMTM3Q3Y5cmZmd0YxL0FZcTdlRTVDeHBC?=
- =?utf-8?Q?4dbb4b3iVvI=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0P195MB2484.EURP195.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(10070799003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Znh4dDdrRnIwRUN0M2lBV1RLblllWHVQUGRvc1NmZHJXMjNTcXhwenpoWUlz?=
- =?utf-8?B?YU44Y3dKNmFQVTJHcUd4NVluRzZramRieGpjMkhUek50T2FtMndCdm9sV24y?=
- =?utf-8?B?ZnNVbmhYQ1NIU1crUkZNdWRIQ0JjdHNBTW95NWlrZG5lQjNka1VLclQ3S3pm?=
- =?utf-8?B?ZzJ4c1ZJUEVpY0ZBdFgvTGpYK2hjY0VZMWdtTDh0WldmV3QreVluemZNdXFR?=
- =?utf-8?B?QmJZN0dYY2xXTndaQ1N3RlN3azFVK0J2Ty9tbWJHK1l0NGM5Q2VUZkN1UVdw?=
- =?utf-8?B?OFhoM3FKTWFibGRoM0pqcExUWmpncnR2RnVIUmx0aFZFS3hzZVJORFd5Qklv?=
- =?utf-8?B?UzdBQ2dhK0c3Z0Izajh6czJLZFhsNDJRV3BaR3lWNHlNaDhtZlFuRCtjNHlv?=
- =?utf-8?B?VldLdVhBaWZVSzNrcU9sNlRqTURXRGJHWXVpVitJSFJxVWZsOHdRZEZEV2FG?=
- =?utf-8?B?RVpBdGRoTnpmZkV0cUk5OE1KVCtENW5EbUFDSm1vNGNid3A1SkZLNlkrZTR0?=
- =?utf-8?B?UGQ4bW4rNVJYRnZpNFlFa2wzWlhYMFV0S0lpYlRzeGZhZnBYSFFPVFd1Sm5Q?=
- =?utf-8?B?ZStQaW1zZFViSGVPbnptampTbXZhMEt2NWhZY2lPb3ovb2pkUURURVRwc09Z?=
- =?utf-8?B?ZXd5OEdGUmJERDg3bWdSK0lVL0NSNEUzOTlrZTg5ZTlOc21JbzB1OU80YUx1?=
- =?utf-8?B?Y24zNzk3cTd1T1o1NDhJTGs0elVXdW9acGNCYWFlZ1RKWUVCRi9UK0E4RTAz?=
- =?utf-8?B?d283NkpjVEkxWXdDaS9RVXZhS0JIZGxoT0Y5ZXBaeUlCYXRLZW5xQzV2UGFI?=
- =?utf-8?B?RXpUZUtFa1ZxYVh5bUZpR1RsSUl1bVNtT1RXSkxCOVJHMFQwd051TnM4L2k5?=
- =?utf-8?B?K1hJUGd2c0hXakwwMm95RVZQam9MMU1OaW9wK0l4TDlTTmpLenV6MHNNZFgw?=
- =?utf-8?B?dHVTM3R3eHpNajFJT1plcG5MS0dFMFhybDZFYk0xRDFUSE0ySi8yZHNJSzAr?=
- =?utf-8?B?WVp3SUZuYUkvc1ZpUkc1RXNEWHl1dDJsUk9SeDFDY25ZejdJWDhIU1cxdlFj?=
- =?utf-8?B?TTlpMkhsZXpLaTR4UEZaM0xaZkpwR0Nqb3pLQkxaSm5ocUp4L2hUMzRLZ2Fx?=
- =?utf-8?B?TWdWdXdJSmdrUUphK2VzeHM0azdiY3BMSTR2bUdRSjFzK2MwUGNhQldyZlJ0?=
- =?utf-8?B?ei90M2g4WWExcmgyWFJzTGtDTnpyYzVaRWsrRTh1WWZ4Rld3cXhFRGVRdUFk?=
- =?utf-8?B?bFZ2cnNYSFRmQTFqNkJTQXJKaHRFWHEweTFqRUJYb2hPeVhsVUZkQ2orOEcw?=
- =?utf-8?B?R2pzaHhIeVk5TUttUHExbmZiWTZ0Q2E1Vi9HeUJuVXkxZWgyWHlIRWVRdThm?=
- =?utf-8?B?UmpGUmlEdy9iNG9EcEtWdXlCMHRwUjJlVVM3eWFnYzJBNVlVeDc1Tkx5b2d1?=
- =?utf-8?B?KzlzUUlDelRhMGdKbFh3ejI5M09scGpKUTJxNXdtSGVUek9CNmtwOEEyNHdt?=
- =?utf-8?B?WGJIbWZpcnNOdXVuVzVMSGs4M3lsVEpuV1A2VXovZXd5U1Q2UUhybFQzSzNo?=
- =?utf-8?B?L2poeC9SMCs4c0RCcFpMYjVPOHhCZmhzWnZ5ajg1QW5RcVRjMWRJYlBsVkpO?=
- =?utf-8?B?RVZ0bThJRWdvd3YxTFlreEt0NzdwYU9iaWRTRmIySlZsOUdxNFkwUldQajdM?=
- =?utf-8?B?dmJXOGwwZVFtelZxVlNPai8vUEVoY2x5MlNLam9yT1J0bEtSWVVLUnZubHFM?=
- =?utf-8?B?cTErR3UrY04vVVZtQWV2d1N5QXNkY1ZMeGlOZDhhc1hlZ1V0ZTY1Zlpvb3JH?=
- =?utf-8?B?NEgzdSs0Z0hiYVFtaE0rclBtUmZJMXJjQ3JKY1ZJb3djL3Rhd0RSTHgwZURC?=
- =?utf-8?B?VEpwOVNWR2k4dUtmU0IwNzJVRDJZZngxWTZNQmlGZnpVM3BxK0lPWElUbGhu?=
- =?utf-8?B?QzJaRjRjUktkUnJRdmxhK1FKY01HdDRxUHQwWk84Zk42UVNMbUNlUS9Qd2pG?=
- =?utf-8?B?UmxBOUNjOGFaS3pWRGVQTTdEN2EvOVEwb3I4akNnT2RET3ZxcFRBeHNHY3dR?=
- =?utf-8?B?enVWQ0pEN2E1Y01Ba095eWFjTTNpWituQXBMclFjTGk4WVg1cEhBTWhuTjdK?=
- =?utf-8?B?dDNnSTB3dWxWUDZyRlRnN25aVUJJRHlmYjBoWEhFbndFdCtSdmlTc2pSa3dV?=
- =?utf-8?Q?xrisI8ch87u2obxtvFHbT5a9nP4un/vZ79b9zRJn1IKj?=
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb870327-1554-4bd1-2176-08dd89ad229d
-X-MS-Exchange-CrossTenant-AuthSource: VI0P195MB2484.EURP195.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2025 19:11:26.2938
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rw5Z6noalR3IihMqkLUL31t74g9+TH0jhAQfWdhgrOf9EDsiakScxJbC3GV8/iTGByZkuqWrgrJoje1zd7rCuQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2P195MB2064
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
+ Konrad Dybcio <konradybcio@kernel.org>, Lee Jones <lee@kernel.org>, 
+ linux-kernel@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>, 
+ Luo Jie <quic_luoj@quicinc.com>
+To: George Moussalem <george.moussalem@outlook.com>
+In-Reply-To: <20250502-ipq5018-cmn-pll-v1-0-27902c1c4071@outlook.com>
+References: <20250502-ipq5018-cmn-pll-v1-0-27902c1c4071@outlook.com>
+Message-Id: <174621422446.2300145.5789096612500039953.robh@kernel.org>
+Subject: Re: [PATCH 0/6] Add CMN PLL clock controller support for IPQ5018
 
 
-On 5/2/25 16:49, Nishanth Menon wrote:
-> On 07:26-20250502, Daniel Schultz wrote:
->> The AM62Ax SoC supports two temperature ranges:
->> * A: -40 to 105C - Extended Industrial
->> * I: -40 to 125C - Automotive
->>
->> By default, use the lower limit (105 °C) so that any AM62A running
->> in Extended Industrial mode will shut down safely before overheating.
->>
->> If the bootloader detects an Automotive-grade device, it should
->> override this and raise the critical trip point to 125 °C.
->>
->> Signed-off-by: Daniel Schultz <d.schultz@phytec.de>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi | 6 +++---
->>   1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
->> index 39ff9118b6c4..40dcb9bab965 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
-> Why not create a separate header for industrial grade and rename this as
-> automotive grade and let the board file pick the right grade used on the
-> board?
+On Fri, 02 May 2025 14:15:42 +0400, George Moussalem wrote:
+> The CMN PLL block of IPQ5018 supplies output clocks for XO at 24 MHZ,
+> sleep at 32KHZ, and the ethernet block at 50MHZ.
+> 
+> This patch series extends the CMN PLL driver to support IPQ5018.
+> It also adds the SoC specific header file to export the CMN PLL
+> output clock specifiers for IPQ5018. The new table of output
+> clocks is added for the CMN PLL of IPQ5018, which is acquired
+> from the device according to the compatible.
+> 
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> ---
+> George Moussalem (6):
+>       dt-bindings: clock: qcom: Add CMN PLL support for IPQ5018 SoC
+>       clk: qcom: ipq5018: mark XO clock as critical
+>       clk: qcom: ipq-cmn-pll: Add IPQ5018 SoC support
+>       dt-bindings: mfd: qcom,tcsr: Add compatible for IPQ5018
+>       arm64: dts: ipq5018: Add CMN PLL node
+>       arm64: dts: qcom: Update IPQ5018 xo_board_clk to use fixed factor clock
+> 
+>  .../bindings/clock/qcom,ipq9574-cmn-pll.yaml       | 11 +++-
+>  .../devicetree/bindings/mfd/qcom,tcsr.yaml         |  1 +
+>  arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts     |  3 +-
+>  .../dts/qcom/ipq5018-tplink-archer-ax55-v1.dts     |  3 +-
+>  arch/arm64/boot/dts/qcom/ipq5018.dtsi              | 40 +++++++++++-
+>  drivers/clk/qcom/gcc-ipq5018.c                     |  2 +-
+>  drivers/clk/qcom/ipq-cmn-pll.c                     | 72 ++++++++++++++++++----
+>  include/dt-bindings/clock/qcom,ipq5018-cmn-pll.h   | 16 +++++
+>  8 files changed, 129 insertions(+), 19 deletions(-)
+> ---
+> base-commit: 8a2d53ce3c5f82683ad3df9a9a55822816fe64e7
+> change-id: 20250501-ipq5018-cmn-pll-8e517de873f8
+> prerequisite-change-id: 20250411-qcom_ipq5424_cmnpll-960a8f597033:v2
+> prerequisite-patch-id: dc3949e10baf58f8c28d24bb3ffd347a78a1a2ee
+> prerequisite-patch-id: da645619780de3186a3cccf25beedd4fefab36df
+> prerequisite-patch-id: 4b5d81954f1f43d450a775bcabc1a18429933aaa
+> prerequisite-patch-id: 541f835fb279f83e6eb2405c531bd7da9aacf4bd
+> 
+> Best regards,
+> --
+> George Moussalem <george.moussalem@outlook.com>
+> 
+> 
+> 
 
-Mostly because I copied this from 10e7bfd8114c207ac and with the most 
-recent temperature fixups in U-Boot, we also have the missing bootloader 
-logic.
 
-I would also prefer an out-of-the-box solution for that.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-- Daniel
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
->
->> @@ -19,7 +19,7 @@ main0_alert: main0-alert {
->>   			};
->>   
->>   			main0_crit: main0-crit {
->> -				temperature = <125000>;	/* milliCelsius */
->> +				temperature = <105000>;	/* milliCelsius */
->>   				hysteresis = <2000>;	/* milliCelsius */
->>   				type = "critical";
->>   			};
->> @@ -50,7 +50,7 @@ main1_alert: main1-alert {
->>   			};
->>   
->>   			main1_crit: main1-crit {
->> -				temperature = <125000>;	/* milliCelsius */
->> +				temperature = <105000>;	/* milliCelsius */
->>   				hysteresis = <2000>;	/* milliCelsius */
->>   				type = "critical";
->>   			};
->> @@ -81,7 +81,7 @@ main2_alert: main2-alert {
->>   			};
->>   
->>   			main2_crit: main2-crit {
->> -				temperature = <125000>;	/* milliCelsius */
->> +				temperature = <105000>;	/* milliCelsius */
->>   				hysteresis = <2000>;	/* milliCelsius */
->>   				type = "critical";
->>   			};
->> -- 
->> 2.25.1
->>
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: using specified base-commit 8a2d53ce3c5f82683ad3df9a9a55822816fe64e7
+ Deps: looking for dependencies matching 4 patch-ids
+ Deps: Applying prerequisite patch: [PATCH v2 1/4] dt-bindings: clock: qcom: Add CMN PLL support for IPQ5424 SoC
+ Deps: Applying prerequisite patch: [PATCH v2 2/4] clk: qcom: cmnpll: Add IPQ5424 SoC support
+ Deps: Applying prerequisite patch: [PATCH v2 3/4] arm64: dts: ipq5424: Add CMN PLL node
+ Deps: Applying prerequisite patch: [PATCH v2 4/4] arm64: dts: qcom: Update IPQ5424 xo_board to use fixed factor clock
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250502-ipq5018-cmn-pll-v1-0-27902c1c4071@outlook.com:
+
+arch/arm64/boot/dts/qcom/ipq9574-rdp454.dtb: clock-controller@9b000 (qcom,ipq9574-cmn-pll): 'reg' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/qcom,ipq9574-cmn-pll.yaml#
+arch/arm64/boot/dts/qcom/ipq5424-rdp466.dtb: clock-controller@9b000 (qcom,ipq5424-cmn-pll): 'reg' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/qcom,ipq9574-cmn-pll.yaml#
+arch/arm64/boot/dts/qcom/ipq9574-rdp433.dtb: clock-controller@9b000 (qcom,ipq9574-cmn-pll): 'reg' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/qcom,ipq9574-cmn-pll.yaml#
+arch/arm64/boot/dts/qcom/ipq9574-rdp453.dtb: clock-controller@9b000 (qcom,ipq9574-cmn-pll): 'reg' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/qcom,ipq9574-cmn-pll.yaml#
+arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dtb: clock-controller@9b000 (qcom,ipq5018-cmn-pll): 'reg' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/qcom,ipq9574-cmn-pll.yaml#
+arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dtb: clock-controller@9b000 (qcom,ipq5018-cmn-pll): 'reg' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/qcom,ipq9574-cmn-pll.yaml#
+arch/arm64/boot/dts/qcom/ipq9574-rdp449.dtb: clock-controller@9b000 (qcom,ipq9574-cmn-pll): 'reg' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/qcom,ipq9574-cmn-pll.yaml#
+arch/arm64/boot/dts/qcom/ipq9574-rdp418.dtb: clock-controller@9b000 (qcom,ipq9574-cmn-pll): 'reg' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/clock/qcom,ipq9574-cmn-pll.yaml#
+
+
+
+
+
 
