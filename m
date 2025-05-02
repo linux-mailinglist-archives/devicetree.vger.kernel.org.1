@@ -1,110 +1,195 @@
-Return-Path: <devicetree+bounces-173070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFB96AA75B5
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:11:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8247AA75DC
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:20:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 572DD3A57F9
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:10:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2927E168165
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:20:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57112566FA;
-	Fri,  2 May 2025 15:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A19C22571AD;
+	Fri,  2 May 2025 15:20:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NBiPbK5e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C46F43169;
-	Fri,  2 May 2025 15:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6AFF2DC77E;
+	Fri,  2 May 2025 15:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746198671; cv=none; b=ZVhI8XZ/qckcW3CTFw9viugvNp9A1tP3+oSGcM+DIDZ9+4lWc9T5fQVYj4pcHTiCsQX2xC0s169FB7K6UhFu9etOtAusJptQeJuJF8aCPePeq1D1skmZDV29rfQQwVAsHz4iQYjRahczCbT99KwEtJ1F6+UvKhQ2jc3S1ZBTJ5Q=
+	t=1746199251; cv=none; b=M7Udiy3xDSuvHnOyd9ZZM/ddcqgHcSPaVB+CQrZ1hk1M5JoxcE92N8CEWNap80g9ugvCh9qwVrvKJB8x21t5dpf1Y6kfhxbgfmsYaSEcvCpCITvo6rjdgY6yPy/XVy1JxPSHeDgcponVN11BOdhOt9q2EBTK5PwrlG/fKCzbD3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746198671; c=relaxed/simple;
-	bh=40JeNHNEb+0/1kOGsGh6QbFV63AUgF+Ha24E0dW5Bxo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Nhr930QGGNfvOB+KpuywV7L6CW3rT6CMjFw7pLnmyl6ly1P/PNTdqKpQYiEV/ieVGZ1iFD7DvWf+GAfaureLOwZiq2V7jYRqn6xAXOoiWCX2sawfmc/p7dO5/E7LC0qM1az4BFmqZLKOsBnrDRh2u0Z1UqQpDHg4Fa1i61vXufs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1746199251; c=relaxed/simple;
+	bh=gWTxBs0F9UqXJIG0qtujTiPxAtr3572MEERKWgr50PA=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=e1ZIL2ZjNx2SdwokJ2eve5M2GM2kuq7PmALEv/8y8yihOHH7ZCpJJYXs4OxOCtzfYZooIwSN0Ix7d7PZNMfs0RTkjBE0gRS/f83U9fXA5OyQrKHRLzUHsvq6iT1SrikAFUrYWLBWWo6iAPy8m5K3wjGtIC7xECSOmHneI5DVmY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NBiPbK5e; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-6e900a7ce55so38596386d6.3;
-        Fri, 02 May 2025 08:11:09 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4394a0c65fcso19808995e9.1;
+        Fri, 02 May 2025 08:20:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746199248; x=1746804048; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MkApf9OF2vt2m7wQ3AVnCZaRmP1pVhUuWGCy8xr055s=;
+        b=NBiPbK5eDnA54YGCh/PXmvdfpZGjAforM0JqGe2MFBIKq3FZmuEAXw3H6Y9i/x5y0S
+         qYyO+XlNzDZDiK7WZtIzVEUgyEpm2e31Ib8rF4sFDcyZ15r1QoZLjunHEc1aJ+77Ihiz
+         R0JcE0zkuWElxrPe48Qq7y7iapT/1ofhPWW9N4j4NNSdkVmCvPKVKjls+s0Of6AYuvtQ
+         w3iD1GKefp3p21h0xjyfrXFNn8NwLwICTyhy9yqAmZKlY6vxJwGMKeNYStjVhtMSVc0D
+         Ph3RC/TEyhkzg4OCfvhsauE5oddi+ngRGGd3BcBolgf25Ta0LlsoylB4iel5JzjPBQXG
+         +dtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746198668; x=1746803468;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mBMlYgAr4idopqw8FHOyo6jY6lAwdQtSa8L+QC88eKo=;
-        b=bOBn7KTErtVECRjyTvQWEAXejhTLImGhffoVwYs8wKyTTJoMKRed+0Ffo4hPVLhxGk
-         I/boHhbg7wmcnN81RO0pFUXM7CUCiBZY4g6KDry0TILYbybsdXRT6/rqRPK9TVX88Nte
-         O2e1vdm11QwrmQmFr5nJmVoAhJJbfokrD5Q7hHFIfpmGfH9YbBpTKVZzhRR1WdEAjNey
-         JdpKDcKuheZcnRPDmFaL6Ke5Px1ewSCQB9snve9efb2hZYgX0/nH52ckHvPb4IKwYMIo
-         6/iwLeasCsVgIZo6B9EwnyJQL61ocBB7iaqjoe9i7pSC9QoXt+ywGsAN9fHPw0tiTAfs
-         vJjw==
-X-Forwarded-Encrypted: i=1; AJvYcCUs4QNdH2HFWT+IJx6sZuw6KrUmUVZNfo/zJkVooe3epq8J98ymba+H8PjU3mBAJ1XH6M2dCreVR7+0E97OEjKB+wo=@vger.kernel.org, AJvYcCVAcx9zytGNYVXlC/KmprLdhhhsdxwoNtEGnGcJpEsFuAx1Kq3D3uqL3D1zzkhG4MOKuWEuhfnDYmb3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwyOCyB/M5TfBXfjx2egtJ711fluG47ywr9P1KanT3vqTrVcG6t
-	abl8RPWxuHzcO+HttqBUR6O8Xchcn5RAs0NTFA7uX0WOOgJdCe3gBg9bxmOn
-X-Gm-Gg: ASbGncvM+h8PR5/HtYbWCd+/8WTchjsfVYjnKg2cz+jG+UNIAlf56Wfr2MDtF+9bUA5
-	0KbvaoBAnicnsvDBMBRu6hbwHWyr+fNJzVj176vu3FIovZN1saLKG2rAhhyC7kEj2o88hhkQtua
-	9QCA/CXngbleFWL+/U6CIC83vMjrZ+ukNQ1Q15+5DQYERIdPZF1aSCBXbj4SxntWpAlwlv0/fYh
-	BC1hZ+7bUeHzMnQFeU1I2yYpZwSb5TZJ3YR/az4Ttpb6rCatALkS/+VvGlCCphtoS0Ixn5WAZ/D
-	ICjgUptNFtEGGTQMoBnBgJmQ7Qh4uwo1BGKGCyVJS/++dDhsrB9FncGQAdrlKNOTmWsLmigQy5N
-	qOdk=
-X-Google-Smtp-Source: AGHT+IFEMw41PDQ5OgWJqi+mFVbuqYhrWSw+Ume15XNPs6n46FIi2TXZ8g7sHaAB5RCC2Oxf3aoRSQ==
-X-Received: by 2002:a05:6214:1d07:b0:6f2:c81f:9ef0 with SMTP id 6a1803df08f44-6f5155ef74bmr61119616d6.28.1746198668404;
-        Fri, 02 May 2025 08:11:08 -0700 (PDT)
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com. [209.85.219.46])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f50f3b070asm19240256d6.10.2025.05.02.08.11.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 May 2025 08:11:08 -0700 (PDT)
-Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-6e900a7ce55so38596036d6.3;
-        Fri, 02 May 2025 08:11:07 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW8UNIJoae1ldPW1t3DTUZdEB4omK8wWgctciw4al536hRZ0NeAymKC8STKCJk+8fnKuEwxCnR9Un56aUvumevqFpg=@vger.kernel.org, AJvYcCXJ0kJLUBRzzvEuojdApHvMfTg4S9tHte48Keifn9TyWak7yyHIwLlBptiztrbRlU7y7viMbzCwLppW@vger.kernel.org
-X-Received: by 2002:ad4:5ba2:0:b0:6e8:90eb:e591 with SMTP id
- 6a1803df08f44-6f51538e09fmr47555066d6.24.1746198667716; Fri, 02 May 2025
- 08:11:07 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1746199248; x=1746804048;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=MkApf9OF2vt2m7wQ3AVnCZaRmP1pVhUuWGCy8xr055s=;
+        b=DTzO84PQrsvSMDddxlKyjWijcTfnxo167p5m7/z85XW+tPdUuAOl1To8QMSXqF5ccW
+         +WZ9wGyR4LeuqU98LdvKgMQe+XG+X0BoYfRgb5pMMYFoM+hOuBUHTSi79gtjfSyOD1Lq
+         kcWBIIsQqTue+0XZAp3tFId2T/uzMb5dMmE97sy8lcglC0QC9ll9DoEx8iyiUcTjfwyl
+         LuqD9zIaSF4+YcR2G99VFcbT4K0U7Yyr9AS7+DfRLvcmPRNqhsK8Uyw0qG8SVwc324YE
+         5SPBO9xz0ZOPNNBfp6QXkOb+1FoSaZ2oM0wi0B3I9Y2OMNDf6tgcAlZ4dhoMVY6bQvhP
+         w7pw==
+X-Forwarded-Encrypted: i=1; AJvYcCWvxs+ykt1ywnCEo2cABWJ5MXI5FG0XpRHj1Y6GwccMemPysUG7YdQOS+C+Vct8iWKnCReMODX4H0QR@vger.kernel.org, AJvYcCWyszZs7tDS5N9tLf/eyMdgAkOfebb/t2gsf/ERxkLkCUQ9eJzYgZZYcYZfq2QbEPYQk9I7D/4Eufbaf5cy@vger.kernel.org, AJvYcCXnU0Ti9nqtGmB/cz7D6GXl0QF+Zay3z7Swbl0E61dvoVFT94uKS5jyrfkx70u0OJ3V9WJpv3PMPve7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRF8yzimcewUAIdK1U9mrXCP1ROiuRaPqdCrWkLvWIlcU1WIKG
+	QOBiRoU91ygHkNpj9HbZ75Icc+Hks+4s73AbacqVwmEYGJb494gC07A1gcXt
+X-Gm-Gg: ASbGnctFPtGQxUOI7pLk6lkmqAMnFyfwE7MveBGU5pSqsjs3SDZZY8rfye7UcpmAyI5
+	qhrGPMLIFwa6u9KV1AnIEdfzBnVqUwPrY2dLdHbmHIcYXreJQkWy4k1pBJ4lXTc4dnqg9dHIRbR
+	A8xWaN5zEPd7jO/KZCQGJRnz8lfcxNuBLtQt5gO/72PC4wwCLxrRPwJLGHkJJR4x7ZUhkU/kPBw
+	pPAwrNe0LvUTkYOnT511jLKxVfhpZTT8IDUQowWhTmpX+SkSFn/v6OYYKWyDDpRapnMmQWa1607
+	LR9hQ8CqBp4CyPHbbKn95A45tWaoZBMGmEfQVs/i2hl37DUDxxtMAB2gJHdpE9k+QlAX6Q3mLlw
+	S6eE9j8L7sScD
+X-Google-Smtp-Source: AGHT+IFeQ5IkqLdaj8y0dWe3uTpBDyz2jlnuUZvXie29cskA3rNqzqhUsNwvdZ63M7av01RuCLAebg==
+X-Received: by 2002:a05:600c:a08d:b0:43c:fc00:f94f with SMTP id 5b1f17b1804b1-441bbf2d127mr26405915e9.23.1746199247685;
+        Fri, 02 May 2025 08:20:47 -0700 (PDT)
+Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441ae3ee26fsm100635405e9.1.2025.05.02.08.20.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 May 2025 08:20:46 -0700 (PDT)
+Message-ID: <44a14b310695b725cdda35226c2e9bf6525b777e.camel@gmail.com>
+Subject: Re: [PATCH v4 05/10] iio: adc: adi-axi-adc: add filter type config
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org, 
+	robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Fri, 02 May 2025 16:20:50 +0100
+In-Reply-To: <20250502085905.24926-6-antoniu.miclaus@analog.com>
+References: <20250502085905.24926-1-antoniu.miclaus@analog.com>
+	 <20250502085905.24926-6-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250424054050.28310-1-biju.das.jz@bp.renesas.com> <20250424054050.28310-4-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250424054050.28310-4-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 2 May 2025 17:10:56 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXMgwWTMy89G=jPzNJ-mDP4OmHNUWChLQED+wUUS7vPsA@mail.gmail.com>
-X-Gm-Features: ATxdqUEaxbA3BilD6_NKpKWBGwFKT-VDi88CMlB5b9RfgHeFzDASg2uVW40z2Xc
-Message-ID: <CAMuHMdXMgwWTMy89G=jPzNJ-mDP4OmHNUWChLQED+wUUS7vPsA@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: renesas: rzg2l-smarc: Enable GPT on
- carrier board
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 24 Apr 2025 at 07:41, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> The GPT4 IOs are available on the carrier board's PMOD0 connector (J1).
-> Enable the GPT on the carrier board by adding the GPT pinmux and node on
-> the carrier board dtsi file.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Fri, 2025-05-02 at 11:59 +0300, Antoniu Miclaus wrote:
+> Add support for enabling/disabling filter based on the filter type
+> provided.
+>=20
+> This feature is specific to the axi ad408x IP core, therefore add new
+> compatible string and corresponding iio_backend_ops.
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.16.
+Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> changes in v4:
+> =C2=A0- update commit message to state that the new compatible is added.
+> =C2=A0- checking for max value is done in the iio_backend function.
+> =C2=A0drivers/iio/adc/adi-axi-adc.c | 38 ++++++++++++++++++++++++++++++++=
++++
+> =C2=A01 file changed, 38 insertions(+)
+>=20
+> diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.=
+c
+> index 61ab7dce43be..2a3a6c3f5e59 100644
+> --- a/drivers/iio/adc/adi-axi-adc.c
+> +++ b/drivers/iio/adc/adi-axi-adc.c
+> @@ -52,6 +52,7 @@
+> =C2=A0#define=C2=A0=C2=A0 AXI_AD485X_PACKET_FORMAT_20BIT	0x0
+> =C2=A0#define=C2=A0=C2=A0 AXI_AD485X_PACKET_FORMAT_24BIT	0x1
+> =C2=A0#define=C2=A0=C2=A0 AXI_AD485X_PACKET_FORMAT_32BIT	0x2
+> +#define=C2=A0=C2=A0 AXI_AD408X_CNTRL_3_FILTER_EN_MSK	BIT(0)
+> =C2=A0
+> =C2=A0#define ADI_AXI_ADC_REG_DRP_STATUS		0x0074
+> =C2=A0#define=C2=A0=C2=A0 ADI_AXI_ADC_DRP_LOCKED		BIT(17)
+> @@ -402,6 +403,19 @@ static int axi_adc_ad485x_oversampling_ratio_set(str=
+uct
+> iio_backend *back,
+> =C2=A0	}
+> =C2=A0}
+> =C2=A0
+> +static int axi_adc_ad408x_filter_type_set(struct iio_backend *back,
+> +					=C2=A0 enum iio_backend_filter_type type)
+> +{
+> +	struct adi_axi_adc_state *st =3D iio_backend_get_priv(back);
+> +
+> +	if (type)
+> +		return regmap_set_bits(st->regmap, ADI_AXI_ADC_REG_CNTRL_3,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 AXI_AD408X_CNTRL_3_FILTER_EN_MS=
+K);
+> +
+> +	return regmap_clear_bits(st->regmap, ADI_AXI_ADC_REG_CNTRL_3,
+> +				 AXI_AD408X_CNTRL_3_FILTER_EN_MSK);
+> +}
+> +
+> =C2=A0static struct iio_buffer *axi_adc_request_buffer(struct iio_backend=
+ *back,
+> =C2=A0						 struct iio_dev *indio_dev)
+> =C2=A0{
+> @@ -582,6 +596,24 @@ static const struct iio_backend_info axi_ad485x =3D =
+{
+> =C2=A0	.ops =3D &adi_ad485x_ops,
+> =C2=A0};
+> =C2=A0
+> +static const struct iio_backend_ops adi_ad408x_ops =3D {
+> +	.enable =3D axi_adc_enable,
+> +	.disable =3D axi_adc_disable,
+> +	.chan_enable =3D axi_adc_chan_enable,
+> +	.chan_disable =3D axi_adc_chan_disable,
+> +	.request_buffer =3D axi_adc_request_buffer,
+> +	.free_buffer =3D axi_adc_free_buffer,
+> +	.data_sample_trigger =3D axi_adc_data_sample_trigger,
+> +	.filter_type_set =3D axi_adc_ad408x_filter_type_set,
+> +	.debugfs_reg_access =3D iio_backend_debugfs_ptr(axi_adc_reg_access),
+> +	.debugfs_print_chan_status =3D
+> iio_backend_debugfs_ptr(axi_adc_debugfs_print_chan_status),
+> +};
+> +
+> +static const struct iio_backend_info axi_ad408x =3D {
+> +	.name =3D "axi-ad408x",
+> +	.ops =3D &adi_ad408x_ops,
+> +};
+> +
+> =C2=A0static int adi_axi_adc_probe(struct platform_device *pdev)
+> =C2=A0{
+> =C2=A0	struct adi_axi_adc_state *st;
+> @@ -697,9 +729,15 @@ static const struct axi_adc_info adc_ad7606 =3D {
+> =C2=A0	.has_child_nodes =3D true,
+> =C2=A0};
+> =C2=A0
+> +static const struct axi_adc_info adi_axi_ad408x =3D {
+> +	.version =3D ADI_AXI_PCORE_VER(10, 0, 'a'),
+> +	.backend_info =3D &axi_ad408x,
+> +};
+> +
+> =C2=A0/* Match table for of_platform binding */
+> =C2=A0static const struct of_device_id adi_axi_adc_of_match[] =3D {
+> =C2=A0	{ .compatible =3D "adi,axi-adc-10.0.a", .data =3D &adc_generic },
+> +	{ .compatible =3D "adi,axi-ad408x", .data =3D &adi_axi_ad408x },
+> =C2=A0	{ .compatible =3D "adi,axi-ad485x", .data =3D &adi_axi_ad485x },
+> =C2=A0	{ .compatible =3D "adi,axi-ad7606x", .data =3D &adc_ad7606 },
+> =C2=A0	{ /* end of list */ }
 
