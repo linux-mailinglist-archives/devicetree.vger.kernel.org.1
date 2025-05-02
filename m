@@ -1,311 +1,293 @@
-Return-Path: <devicetree+bounces-172834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2F82AA69AC
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 06:08:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D7CAA69E2
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 06:42:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21C8B3AAC65
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 04:08:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D07131BA5C41
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 04:42:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0945719B5A7;
-	Fri,  2 May 2025 04:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA901A5B87;
+	Fri,  2 May 2025 04:42:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="eWZXNHDV"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lD93qQm0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazolkn19013076.outbound.protection.outlook.com [52.103.20.76])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C2128F1;
-	Fri,  2 May 2025 04:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.20.76
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746158915; cv=fail; b=o/cz3wFUeT+v0ea3fZxYDXHj1Pr9+UVAyuH8JhoIYjAMn2Ag/VheiTkOvdIbKsJbZxXJtt7NLHZAx3Agz14ZIzv7vn1bC/+H2NeBnZqRYOMcYFynLpU0NodpcE7kKi2Blk34qrK7YquBIJXjKvVXGuBMhBu7rUwBs0Lvo7ULfZw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746158915; c=relaxed/simple;
-	bh=Ipd9emE2DQhrjGPD935THLYkgfSDo7Nimw286XrRBKs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ueWW5HIEXvGUndmJZ6NM/gJnp+ddFDZ+NF8Uev6T4uO1mdPNdtQYJBb67WuQN6zWuqUV4J6EGbZ5QY9aCbtWFsoUYQCAwNLFoIkCuIgoWKh5Da/evnu9qZ5TNeBcHRDk0Ml9VwBj1WcXUpnwInjnYQoujgPLVNVy1oXCQSfWzos=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=eWZXNHDV; arc=fail smtp.client-ip=52.103.20.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Vn3rGm9y/N4U74MNXXYBdOVLIZEb4mr907ETC9IMArepvR2PRIbARTNhxAvYtnwjtcF3HbtgpVWaEFEyZWrlNa1bC1d1aaxGbv77necOEZyDPvOpxkcRzFYOZN5CsDX0UPYJ6PF96A/nW0DN1QnpxfH+rsTN7DO0jpJMv0YFtYETXDJdlpTUEKGFY3zbHH0hY9Wgbg/2NDHvZiwRt+4jR3fxV+3eiUGofI0JkKnTmyUW40UMbmAJZ8MxYzq791ciAVqybz/wWKwxJ2LPDGEYl8r+Z4cBTIunmptocmtBnZxWBmFgyG3/WV8yfbTxv77dnZIE4Y+5tYtPuVNdsKx1CQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CuldBf2vD5Ueodak/LG2QmCsYGRG6HHCVDQXm91jIsw=;
- b=FpU8BfZEOO0F6V5YiVQGF2LRaWMlUbZXle9TPOi5URrdPK1hRypoWW3RGCG7dqE8s49/sfojsvOmXniFFXqqf0tGJYKaaFNrwcqOtsW0P0I0NAZvcZYjDlBqzM/5YtWPfyhCyTi+cnCRmyOt19el0AdKXvvR2uObyofZ8vbOJszbxREYbPRyRSfWRIVK5X1xfnDoNMae6jRQB3vGP8NyX1tsG8UPjbGAHT9PQY0ql1lBQkNf2AQMdJQUQZQgXdYCU62R+ulpuFosJ/gnfIVQ9OIVZP27N3YZZLys96oL0+/yXDKJdGE/UHPYTdpcuVYhSOjrzT7dpc1uCCpJ6g0lzA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CuldBf2vD5Ueodak/LG2QmCsYGRG6HHCVDQXm91jIsw=;
- b=eWZXNHDVpmt5XKAJWuAi18ktp4f1T4SyxSImd/IhB6zJ+m0Vt0RduWlP8nG9tCZOgARvz1vI2mEs8empbKsDCwFgUTgho708LNkVDc8N6IOuoUg9Ft/HEanwmK4d3h+L1P56Izj4aKEmoBBRVOruJmcKm9kNF7AOFuorOqTAxz1Ky4OsgCPANjiIOOBrsx5BQf7N+EPME83DKMDC7TtG/GasmHzrfQQ9PKPLMMDBms6NwUbXH/p9Eq8cH2pntv2j0U4oCcgAaXv6AtOwUTgcJrYU9KB02kLuRd+7QZU27VsNgdZ5sP5PEGe1vQt1Cbj/r2qXlM2uOgidu5QHc3oDIg==
-Received: from BN7PR02MB4148.namprd02.prod.outlook.com (2603:10b6:406:f6::17)
- by PH0PR02MB8646.namprd02.prod.outlook.com (2603:10b6:510:10e::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.23; Fri, 2 May
- 2025 04:08:29 +0000
-Received: from BN7PR02MB4148.namprd02.prod.outlook.com
- ([fe80::1c3a:f677:7a85:4911]) by BN7PR02MB4148.namprd02.prod.outlook.com
- ([fe80::1c3a:f677:7a85:4911%4]) with mapi id 15.20.8699.010; Fri, 2 May 2025
- 04:08:29 +0000
-From: Michael Kelley <mhklinux@outlook.com>
-To: Roman Kisel <romank@linux.microsoft.com>, "arnd@arndb.de" <arnd@arndb.de>,
-	"bhelgaas@google.com" <bhelgaas@google.com>, "bp@alien8.de" <bp@alien8.de>,
-	"catalin.marinas@arm.com" <catalin.marinas@arm.com>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "dave.hansen@linux.intel.com"
-	<dave.hansen@linux.intel.com>, "decui@microsoft.com" <decui@microsoft.com>,
-	"haiyangz@microsoft.com" <haiyangz@microsoft.com>, "hpa@zytor.com"
-	<hpa@zytor.com>, "joey.gouly@arm.com" <joey.gouly@arm.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "kw@linux.com" <kw@linux.com>,
-	"kys@microsoft.com" <kys@microsoft.com>, "lenb@kernel.org" <lenb@kernel.org>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-	"mark.rutland@arm.com" <mark.rutland@arm.com>, "maz@kernel.org"
-	<maz@kernel.org>, "mingo@redhat.com" <mingo@redhat.com>,
-	"oliver.upton@linux.dev" <oliver.upton@linux.dev>, "rafael@kernel.org"
-	<rafael@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
-	"ssengar@linux.microsoft.com" <ssengar@linux.microsoft.com>,
-	"sudeep.holla@arm.com" <sudeep.holla@arm.com>, "suzuki.poulose@arm.com"
-	<suzuki.poulose@arm.com>, "tglx@linutronix.de" <tglx@linutronix.de>,
-	"wei.liu@kernel.org" <wei.liu@kernel.org>, "will@kernel.org"
-	<will@kernel.org>, "yuzenghui@huawei.com" <yuzenghui@huawei.com>,
-	"linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "kvmarm@lists.linux.dev"
-	<kvmarm@lists.linux.dev>, "linux-acpi@vger.kernel.org"
-	<linux-acpi@vger.kernel.org>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "linux-arch@vger.kernel.org"
-	<linux-arch@vger.kernel.org>, "x86@kernel.org" <x86@kernel.org>
-CC: "apais@microsoft.com" <apais@microsoft.com>, "benhill@microsoft.com"
-	<benhill@microsoft.com>, "bperkins@microsoft.com" <bperkins@microsoft.com>,
-	"sunilmut@microsoft.com" <sunilmut@microsoft.com>
-Subject: RE: [PATCH hyperv-next v9 11/11] PCI: hv: Get vPCI MSI IRQ domain
- from DeviceTree
-Thread-Topic: [PATCH hyperv-next v9 11/11] PCI: hv: Get vPCI MSI IRQ domain
- from DeviceTree
-Thread-Index: AQHbuIIGiFt9aynoMUK6tNHuTgnFP7O+vmPw
-Date: Fri, 2 May 2025 04:08:28 +0000
-Message-ID:
- <BN7PR02MB4148C37D53E84A5BBAB999F8D48D2@BN7PR02MB4148.namprd02.prod.outlook.com>
-References: <20250428210742.435282-1-romank@linux.microsoft.com>
- <20250428210742.435282-12-romank@linux.microsoft.com>
-In-Reply-To: <20250428210742.435282-12-romank@linux.microsoft.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN7PR02MB4148:EE_|PH0PR02MB8646:EE_
-x-ms-office365-filtering-correlation-id: c55fbe45-7705-4e35-b193-08dd892efe75
-x-microsoft-antispam:
- BCL:0;ARA:14566002|15080799006|8060799006|8062599003|19110799003|461199028|440099028|3412199025|12091999003|41001999003|102099032;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?sSGUMc6YxWe/gGiDo/aCfkMIiUef44vfc9FclxLJQHXfSbBtmZsuTacZRfcu?=
- =?us-ascii?Q?Tlor6MzFACnecpewPUF9Fnk3tRrjZCRJmzDyqMWyUCqk2Aj+ox9OHns3NW1o?=
- =?us-ascii?Q?53IsCUOF9mz35ehNTNy18a57nOp3304CnStDwYaSQZrVbAnL4UVEnYlfb8zm?=
- =?us-ascii?Q?WyeHQN4Vr+D18ha5riwGmYFzcVlvY2GX7Lvi1VVtl+TRszkNy8DK12tVjRAQ?=
- =?us-ascii?Q?9uUYKaSQ6/cJuf2BeaV2KjeO0bVsClFnbLjCE41ErDtg3Di4NxHnfkPGKVMV?=
- =?us-ascii?Q?7FxvpCHmezQsE6hnjcNr56em84Jgfdw3KYWpoQvvIMdqtRsKUdfeQcxB9at3?=
- =?us-ascii?Q?3PrrANkfhU+mX/z5n6hWCaVOPNNC3DSdpNh+JnsZokx3s7OFXluQG5gh3+uM?=
- =?us-ascii?Q?l7cm0dF//gSDL+eXsq68VJLfLSeDe8l6ErOPDjxBuhROBylXVeOVozyq+4bk?=
- =?us-ascii?Q?CM6A5xrd9aVcOPCrOL8+ckX4yRRbyUDu/IWQDzQu84+/RmcnkArfvn6dc8zO?=
- =?us-ascii?Q?5mmGex+RsPZEDHpCTDct8imSG2ysrnM6hGGiQbO7gbC0LW+kpaYqov0lq3uU?=
- =?us-ascii?Q?fRfPywUn/lVDULzxIMZpl5IOLr4kVcjlhoAlnEhlyCD+rmjVZeXOan6/BTCQ?=
- =?us-ascii?Q?nC9fS9SJ0nGzhC2yr8A/Do3cKKrCGMEz7oKQOhdgb01kXBWljv2f/8cIhJ+l?=
- =?us-ascii?Q?i0ciKrZrJed9AmvtUqH9rRbJeaGEUaxYHWzTCOmNg/JmY1MQ+D+95DjpC/p6?=
- =?us-ascii?Q?x0iutfTOL/mEKHtsd6Lw3G2PGUV5v3mgmX3XyBWCg7Cre2gpksiEv43sfDzt?=
- =?us-ascii?Q?1twuQthkifLV/fiV+WNQx1sN9UaGSjxJfXqixIYNZLqWz426Lyy6euUWIPqo?=
- =?us-ascii?Q?f6CED9VW7ex6kg5xdmePcIZa8dHwdKnn8OuqWVJPZKiDxdDWzZcj7hIAr6Oj?=
- =?us-ascii?Q?JDdRhh9/9l6+Q0htxKk6CeSQHvi6zMLJXB0QfkImImgFXvXrPZVToomyJl31?=
- =?us-ascii?Q?aaIosr/DSGdz/EwrrnyIIpiPxj0wMa1eCD3+6mKz+V8Vd+gjAFnwYwcg19OT?=
- =?us-ascii?Q?jQxwrhP6Jmi88dLh8QK0gmpr+/LgA/5nSb3ZlhOucJgnznbRFDQPgc7r0fw4?=
- =?us-ascii?Q?nq4sjw0OG04W+hSDYQjcmECZwOfB0xsZzg=3D=3D?=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?4fiNAP8E1MuxVkSOBa3fhp3BgBsy5xnHDXRhcLoTd0LgzkZM+ImrVyKYJEj7?=
- =?us-ascii?Q?rMmZd1blnzCqYX9hwTJFt5CFK98VfGzUu/NRfmlw8SwMEQILn1sPxQl/3ohV?=
- =?us-ascii?Q?ej0ZD9eplRpDgZdZ8dQ1SQEg6nyzLmPcqrf+9u96Kuz4HuJKVwxGCoC/dUS9?=
- =?us-ascii?Q?Ih4FrTlDoFVcrhPe10tJbAINiIa2WYrOTE7aOBr5Gp0yikNfG7xXqey8PZIa?=
- =?us-ascii?Q?PaE1UzUYgEvroMv/9WlzoEzm5JOxa0ow1ejl63Mh1gzzdrVdG0xTAxOYcC9I?=
- =?us-ascii?Q?KaCisKIUlzhlzsoyqtpULwqxhggz7meMse1Mq6mtM/Nbfm9tS2EBeXaId4we?=
- =?us-ascii?Q?mZ0Q6ZHUusuWwpwZ4QWPjiZ/v4fXlL5uI+/JBcoJaOxxB6ws9QKhz6YwK9Rr?=
- =?us-ascii?Q?F7vlaklA6TIcHPQEUYmdMgnhJ8f14BkBLcIukccrqmZbWTJwXm9kUXaqD9rN?=
- =?us-ascii?Q?udO+YFDNzVr8MQ+WDpiuDrNsLjNsX/VGXHnQbFs3VuBcUD3GSYHitD8F12w1?=
- =?us-ascii?Q?vk6Ivf46c968OxfcDJoFzyBoPLzgjAifR6skV0jcK8STbw7UABBUxS3gS+gz?=
- =?us-ascii?Q?k//NsiksAo/r0pYJeNOMHMpOXXPG/EDVEHzTWNL6O12d1lrGaDtX8BNWFvNN?=
- =?us-ascii?Q?UyhqJyLAOIERjSFr21YtJCXw3C04UpuKgcStXPqXbHoQNsASoxfZHB8V/U/8?=
- =?us-ascii?Q?fnw7jc5zsVJ6ARodvo1HKCnaavih0Gv20X58HWiGYMQpNOQ8rROp+T2Y8sHr?=
- =?us-ascii?Q?uB27OmUEYIYUrVBWFKfp4Jzwx889hACUi4+122bvg0HibrP7BF42BTicWoiv?=
- =?us-ascii?Q?yV3jigcMARK0Af5tYnU4Bz3jCLsoCKkT+i9Y/0smb7vjTOUqxvUz9J0JU5Id?=
- =?us-ascii?Q?W4P4hnvzrXnjj+YqUB1dbY9DpmtT4Tg68+31C9p6UBI0QlrUyJ1jMwnbymIL?=
- =?us-ascii?Q?ugVXLRLNgoZC9SNbhHJOOTzwU/ygOzN3w5nLGWWyoHvJNl8RMgqFjQ5Wyndv?=
- =?us-ascii?Q?2lvXzN++gyNJ7cbbJIjZdkCLtgywPmiqadlKBHd1PNpSb4JLxDjYv6OItfKC?=
- =?us-ascii?Q?yMM3GYSNBUuzi/7hDsXvDZbGBy0pqmp9mGZvNEn3U7UswEaxB5HEGAJx+NI4?=
- =?us-ascii?Q?1LC4fSM251eACl4Q+QTGThZ9mlzbvmnZW9VTnMs1k/8uFOC1jLBnhh/JqSui?=
- =?us-ascii?Q?7pxXY2f4YnO8gwiylxXopk2lfXUPOeF0YwzKILJCVwgmxenP9EM12wTjnOQ?=
- =?us-ascii?Q?=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CE8F1A3154
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 04:42:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746160933; cv=none; b=hU8xNmG4RCQ9qtaj7Ff2qqnqxF8HEyye5G++8sOAGUksDBw76TOfM4qK7Zkb1iBw79fu4X5bN69aNe/i3LwQCKccP2FGKf8kRuFGxwjrH219En/kb5QIdLO2PkBQeQJBxoTyTbF8GnDuFlkoMzz1ZmiCC6/iAgRbbNR3mXeDkQs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746160933; c=relaxed/simple;
+	bh=AS5GCwcO4Mg8AL75Z9J2FHBKkN5+JSl/LX+VBO7oJqQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Krb6jFlUmBlMGdijcO9rCSjYTjp5levExNvqvgv9aVApKVhjwr8ejFponGIo/CMSV3jG0SRXGUin4K1qrbkKjPjx4/sWM4ZimwXY4oIzjpyf12PeiOE0RJUKs+I6W4laccyWiBxtCGEYa2nw3SLHC0r4UW4rBr88vlAJVtIXeU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lD93qQm0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5421NLYq017267
+	for <devicetree@vger.kernel.org>; Fri, 2 May 2025 04:42:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7j5UxYN6C9Dd6qHXGE97a7YLEYkg4By51iUOqA+ylAQ=; b=lD93qQm0lfGtQu2b
+	Qol+d3LR4qo4+nRMOn5UzV0/SgDWNud83Pb+Tb1RKqYAJjqowwungs3q4s2MUfb6
+	7PXzNa05DwwAk2Rj1KaQsViGT+LbFMTslw56wXt5S4ADZssd0iVNijqc72MCH2l6
+	30Ndlv6aAvcHhBga9oSw6ybxw3mAwHQpEIpS1CiwVdJO29HkpbWoihIBbqjIwyKC
+	UBZ30zVcfnRHVBUtSNVVIBEI6fDQvOe3F6REV3Q6NwDIuRC03LCduxDPZfxwG8Cu
+	n1Int1HTfaIThrO4uv7x/l7f9t2By+WhIdTJpAy3ufJ9pyI+4lyiGiJNNFzybgLG
+	wm+Kow==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u3y5xq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 02 May 2025 04:42:10 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7375e2642b4so1211415b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 01 May 2025 21:42:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746160929; x=1746765729;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7j5UxYN6C9Dd6qHXGE97a7YLEYkg4By51iUOqA+ylAQ=;
+        b=Xjy2NhQPdEwPwg0MyCt3uSZaGVhqON5W2jSatdGN6pNpPK+mLZm+mhN5tUffAfLN+P
+         g6rnWjVi2zhBkRHmKw3URJY/syeSvu1sBlHy08tnD0NkqZzqFmj2wbjWpUonyfJSFEkq
+         k2YgnIf/y958ej0V0qF+JbmF1z7fkxbQckRe2T5mQbMz2ym3LfHy/AzhmUFHtIMvPUc6
+         zu0NNvL+GuHfZuPKC+ZE0HYuifCdovccnD8MwPqgyLf+FZi/mmt3ExKqa0f3sbxp6lNz
+         h/ja5LoPfCMCbGZHBTrViGfuhPsjmy+7yxAeNIgki/ZaTSqZ5I+B8kASvSeweLzaoIFv
+         gRqw==
+X-Forwarded-Encrypted: i=1; AJvYcCVyHh0qoYy1WsgbendPtszrScd30CEp0oA4f9DEYj8ldETe/7mfT1kWXdt/Zn8gs7rDA8lHoeZI0S5b@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywty/U6yFLkvfqelCgqhX54OLXDkkffKoL1koh5/s8kBnsUySkl
+	+74/GF+Uf36j2M68vJ/QXWdj+7uUZSI8cM6KExC+j3U7o9bPuLF0QPB4lzWNcDppJnf3I4CpboT
+	FZELUAXnDcHS10Wwp7EK9+GtM8bi/exGOyjVtm6ekVqRCh9ZvR1tS4/CHiwwl
+X-Gm-Gg: ASbGncvFVJQ6HpXeydmi1xH0BEvrkXE6Mwf2fjgCuYxgOyz34zlZF/DoPc6bRst+G7g
+	iVeGa68SJX7pvdsOdRBKjT8UDvhNgXLqKfSglP+whLavhVgj+rXy0KU06gpQuEs+EtTcWJLNqu6
+	MFxcJpl9UrNHi6ey1DXuehlPkDvLmF2O4QlkZDJcxZF4PxssqnJaoye5RIUmzOA+sHTdfcNst3d
+	pxkDDYF9d29F0cxvaaqtDVLH6Z52sHn8VvoSHspBza7iGqaT6NRRhZKBnpXYt00SwaTo7aD4cdK
+	I+GE65UN+B+pLZu/kEvnyk5HljrF30o528db3LdYsWuPeb030I73
+X-Received: by 2002:a05:6a00:4294:b0:736:6ecd:8e32 with SMTP id d2e1a72fcca58-74058b23ef3mr1866199b3a.21.1746160928681;
+        Thu, 01 May 2025 21:42:08 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGBQrj67WLhBG3Hq96DBg+5Opa1dABnH/Q1s+TspcF/KflEqOJ5Mrv0bnI/pESCH+hoqmXB/g==
+X-Received: by 2002:a05:6a00:4294:b0:736:6ecd:8e32 with SMTP id d2e1a72fcca58-74058b23ef3mr1866183b3a.21.1746160928305;
+        Thu, 01 May 2025 21:42:08 -0700 (PDT)
+Received: from [10.151.37.217] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74059021483sm590790b3a.93.2025.05.01.21.42.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 May 2025 21:42:07 -0700 (PDT)
+Message-ID: <09579b2c-f312-4c8a-b57a-b240204cd733@oss.qualcomm.com>
+Date: Fri, 2 May 2025 10:12:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN7PR02MB4148.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: c55fbe45-7705-4e35-b193-08dd892efe75
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 May 2025 04:08:28.6901
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB8646
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] watchdog: qcom: add support to read the restart
+ reason from IMEM
+Content-Language: en-US
+To: Bryan O'Donoghue <bod.linux@nxsw.ie>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck
+ <linux@roeck-us.net>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20250416-wdt_reset_reason-v2-0-c65bba312914@oss.qualcomm.com>
+ <20250416-wdt_reset_reason-v2-5-c65bba312914@oss.qualcomm.com>
+ <ebd4790b-e7aa-45b1-b7d7-9d1b331ee842@nxsw.ie>
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+In-Reply-To: <ebd4790b-e7aa-45b1-b7d7-9d1b331ee842@nxsw.ie>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=Bv6dwZX5 c=1 sm=1 tr=0 ts=68144d22 cx=c_pps a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=Amq28VNnWxlBxfWyqssA:9 a=QEXdDO2ut3YA:10
+ a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-GUID: 8SyrzpS_dgz78RG-q22cuMoCio3VJnbd
+X-Proofpoint-ORIG-GUID: 8SyrzpS_dgz78RG-q22cuMoCio3VJnbd
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDAzNCBTYWx0ZWRfX8hCOW4e5cK5A 7n2kCkXLRq+9WpkRxodqzRG2P8XCLKks+RwVD4D31XQ2L6oWs8jk3dXxuyewwm6XzieoP33+rfM LZgkIu8httIl/0LrK5aQ64N9eSzokLAkOIrYmnNkLqG4rupXYxPHo63AnTwPJky2hM64EL7LbXa
+ AQO0ytCNIOHBLu8ox4cjXRFb66OjGUfEFMDlRJGbNxut8IpeRvyYxcOkW49sIKiOxeai7vZCPk7 QKgu0FqunNiZeK0iKA6lNwUNQ/5qO1MKi69sek8VPNXlROy+ANiOd5f8zWW0IPLnVrlFRknU+Nb g1mWm0WNVXmLOvdFXyyNuM5EuH1TBJkx4nsO4gaBJc/SgXmw//7in3kCKjBa5H+52NliM9UWsB5
+ svNLQDclwUmvh3F7qR49VZlPuEjD9Gj/i7ycta46fcL5IXY42KSKSHntz4hkfFm/W8ewwPyX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-01_06,2025-04-24_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
+ mlxlogscore=999 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505020034
 
-From: Roman Kisel <romank@linux.microsoft.com> Sent: Monday, April 28, 2025=
- 2:08 PM
->=20
-> The hyperv-pci driver uses ACPI for MSI IRQ domain configuration on
-> arm64. It won't be able to do that in the VTL mode where only DeviceTree
-> can be used.
->=20
-> Update the hyperv-pci driver to get vPCI MSI IRQ domain in the DeviceTree
-> case, too.
->=20
-> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
 
-Reviewed-by: Michael Kelley <mhklinux@outlook.com>
+On 5/1/2025 5:31 AM, Bryan O'Donoghue wrote:
+> On 16/04/2025 09:29, Kathiravan Thirumoorthy wrote:
+>> When the system boots up after a watchdog reset, the EXPIRED_STATUS bit
+>> in the WDT_STS register is cleared. To identify if the system was restarted
+>> due to WDT expiry, bootloaders update the information in the IMEM region.
+>> Update the driver to read the restart reason from IMEM and populate the
+>> bootstatus accordingly.
+> Which bootloaders ?
+>
+> Do you mean bootrom or one of the subsequent phase bootloaders ?
 
-> ---
->  drivers/pci/controller/pci-hyperv.c | 70 ++++++++++++++++++++++++++---
->  1 file changed, 64 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/pci/controller/pci-hyperv.c b/drivers/pci/controller=
-/pci-hyperv.c
-> index 6084b38bdda1..a48524d2a1eb 100644
-> --- a/drivers/pci/controller/pci-hyperv.c
-> +++ b/drivers/pci/controller/pci-hyperv.c
-> @@ -50,6 +50,7 @@
->  #include <linux/irqdomain.h>
->  #include <linux/acpi.h>
->  #include <linux/sizes.h>
-> +#include <linux/of_irq.h>
->  #include <asm/mshyperv.h>
->=20
->  /*
-> @@ -817,9 +818,17 @@ static int hv_pci_vec_irq_gic_domain_alloc(struct ir=
-q_domain
-> *domain,
->  	int ret;
->=20
->  	fwspec.fwnode =3D domain->parent->fwnode;
-> -	fwspec.param_count =3D 2;
-> -	fwspec.param[0] =3D hwirq;
-> -	fwspec.param[1] =3D IRQ_TYPE_EDGE_RISING;
-> +	if (is_of_node(fwspec.fwnode)) {
-> +		/* SPI lines for OF translations start at offset 32 */
-> +		fwspec.param_count =3D 3;
-> +		fwspec.param[0] =3D 0;
-> +		fwspec.param[1] =3D hwirq - 32;
-> +		fwspec.param[2] =3D IRQ_TYPE_EDGE_RISING;
-> +	} else {
-> +		fwspec.param_count =3D 2;
-> +		fwspec.param[0] =3D hwirq;
-> +		fwspec.param[1] =3D IRQ_TYPE_EDGE_RISING;
-> +	}
->=20
->  	ret =3D irq_domain_alloc_irqs_parent(domain, virq, 1, &fwspec);
->  	if (ret)
-> @@ -887,10 +896,44 @@ static const struct irq_domain_ops hv_pci_domain_op=
-s =3D {
->  	.activate =3D hv_pci_vec_irq_domain_activate,
->  };
->=20
-> +#ifdef CONFIG_OF
-> +
-> +static struct irq_domain *hv_pci_of_irq_domain_parent(void)
-> +{
-> +	struct device_node *parent;
-> +	struct irq_domain *domain;
-> +
-> +	parent =3D of_irq_find_parent(hv_get_vmbus_root_device()->of_node);
-> +	if (!parent)
-> +		return NULL;
-> +	domain =3D irq_find_host(parent);
-> +	of_node_put(parent);
-> +
-> +	return domain;
-> +}
-> +
-> +#endif
-> +
-> +#ifdef CONFIG_ACPI
-> +
-> +static struct irq_domain *hv_pci_acpi_irq_domain_parent(void)
-> +{
-> +	acpi_gsi_domain_disp_fn gsi_domain_disp_fn;
-> +
-> +	gsi_domain_disp_fn =3D acpi_get_gsi_dispatcher();
-> +	if (!gsi_domain_disp_fn)
-> +		return NULL;
-> +	return irq_find_matching_fwnode(gsi_domain_disp_fn(0),
-> +				     DOMAIN_BUS_ANY);
-> +}
-> +
-> +#endif
-> +
->  static int hv_pci_irqchip_init(void)
->  {
->  	static struct hv_pci_chip_data *chip_data;
->  	struct fwnode_handle *fn =3D NULL;
-> +	struct irq_domain *irq_domain_parent =3D NULL;
->  	int ret =3D -ENOMEM;
->=20
->  	chip_data =3D kzalloc(sizeof(*chip_data), GFP_KERNEL);
-> @@ -907,9 +950,24 @@ static int hv_pci_irqchip_init(void)
->  	 * way to ensure that all the corresponding devices are also gone and
->  	 * no interrupts will be generated.
->  	 */
-> -	hv_msi_gic_irq_domain =3D acpi_irq_create_hierarchy(0, HV_PCI_MSI_SPI_N=
-R,
-> -							  fn, &hv_pci_domain_ops,
-> -							  chip_data);
-> +#ifdef CONFIG_ACPI
-> +	if (!acpi_disabled)
-> +		irq_domain_parent =3D hv_pci_acpi_irq_domain_parent();
-> +#endif
-> +#ifdef CONFIG_OF
-> +	if (!irq_domain_parent)
-> +		irq_domain_parent =3D hv_pci_of_irq_domain_parent();
-> +#endif
-> +	if (!irq_domain_parent) {
-> +		WARN_ONCE(1, "Invalid firmware configuration for VMBus
-> interrupts\n");
-> +		ret =3D -EINVAL;
-> +		goto free_chip;
-> +	}
-> +
-> +	hv_msi_gic_irq_domain =3D irq_domain_create_hierarchy(irq_domain_parent=
-, 0,
-> +		HV_PCI_MSI_SPI_NR,
-> +		fn, &hv_pci_domain_ops,
-> +		chip_data);
->=20
->  	if (!hv_msi_gic_irq_domain) {
->  		pr_err("Failed to create Hyper-V arm64 vPCI MSI IRQ domain\n");
-> --
-> 2.43.0
->=20
 
+It is updated by the XBL. I shall mention it explicitly.
+
+
+>
+> Please be specific about which bootloader populates this data i.e. if I
+> switch my bootloader to u-boot do I loose the added flag ?
+>
+>> For backward compatibility, keep the EXPIRED_STATUS bit check. Add a new
+>> function qcom_wdt_get_restart_reason() to read the restart reason from
+>> IMEM.
+>>
+>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+> What I'd really love to see here is an example of reading out the data
+> from sysfs.
+>
+> How do I as a user/consumer of this new functionality parse the new data
+> it provides ?
+>
+> Ideally do this in the commit log and recommend doing it in the cover
+> letter to, as people don't always read both when commenting on patches.
+
+
+Sure, will mention the sysfs path and its output in the commit log and 
+cover letter.
+
+
+>
+>> ---
+>> Changes in v2:
+>> 	- Use the syscon API to access the IMEM region
+>> 	- Handle the error cases returned by qcom_wdt_get_restart_reason
+>> 	- Define device specific data to retrieve the IMEM compatible,
+>> 	  offset and the value for non secure WDT, which allows to
+>> 	  extend the support for other SoCs
+>> ---
+>>    drivers/watchdog/qcom-wdt.c | 47 +++++++++++++++++++++++++++++++++++++++++++--
+>>    1 file changed, 45 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/watchdog/qcom-wdt.c b/drivers/watchdog/qcom-wdt.c
+>> index 006f9c61aa64fd2b4ee9db493aeb54c8fafac818..94ba9ec9907a19854cd45a94f8da17d6e6eb33bc 100644
+>> --- a/drivers/watchdog/qcom-wdt.c
+>> +++ b/drivers/watchdog/qcom-wdt.c
+>> @@ -7,9 +7,11 @@
+>>    #include <linux/interrupt.h>
+>>    #include <linux/io.h>
+>>    #include <linux/kernel.h>
+>> +#include <linux/mfd/syscon.h>
+>>    #include <linux/module.h>
+>>    #include <linux/of.h>
+>>    #include <linux/platform_device.h>
+>> +#include <linux/regmap.h>
+>>    #include <linux/watchdog.h>
+>>
+>>    enum wdt_reg {
+>> @@ -39,6 +41,9 @@ static const u32 reg_offset_data_kpss[] = {
+>>    };
+>>
+>>    struct qcom_wdt_match_data {
+>> +	const char *compatible;
+>> +	unsigned int restart_reason_offset;
+>> +	unsigned int non_secure_wdt_val;
+>>    	const u32 *offset;
+>>    	bool pretimeout;
+>>    	u32 max_tick_count;
+>> @@ -175,6 +180,15 @@ static const struct watchdog_info qcom_wdt_pt_info = {
+>>    	.identity	= KBUILD_MODNAME,
+>>    };
+>>
+>> +static const struct qcom_wdt_match_data match_data_ipq5424 = {
+>> +	.compatible = "qcom,ipq5424-imem",
+>> +	.restart_reason_offset = 0x7b0,
+>> +	.non_secure_wdt_val = 0x5,
+>> +	.offset = reg_offset_data_kpss,
+>> +	.pretimeout = true,
+>> +	.max_tick_count = 0xFFFFFU,
+>> +};
+>> +
+> You should separate the addition of your compatibles and their
+> descriptor tables from generic functional extensions.
+>
+> i.e. add the compat string and the above table in a subsequent patch.
+
+
+Got it. Will split the patch into 2.
+
+
+>
+>>    static const struct qcom_wdt_match_data match_data_apcs_tmr = {
+>>    	.offset = reg_offset_data_apcs_tmr,
+>>    	.pretimeout = false,
+>> @@ -187,6 +201,29 @@ static const struct qcom_wdt_match_data match_data_kpss = {
+>>    	.max_tick_count = 0xFFFFFU,
+>>    };
+>>
+>> +static int  qcom_wdt_get_restart_reason(struct qcom_wdt *wdt,
+>> +					const struct qcom_wdt_match_data *data)
+>> +{
+>> +	struct regmap *imem;
+>> +	unsigned int val;
+>> +	int ret;
+>> +
+>> +	imem = syscon_regmap_lookup_by_compatible(data->compatible);
+>> +	if (IS_ERR(imem))
+>> +		return PTR_ERR(imem);
+>> +
+>> +	ret = regmap_read(imem, data->restart_reason_offset, &val);
+>> +	if (ret) {
+>> +		dev_err(wdt->wdd.parent, "failed to read the restart reason info\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	if (val == data->non_secure_wdt_val)
+>> +		wdt->wdd.bootstatus = WDIOF_CARDRESET;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>    static int qcom_wdt_probe(struct platform_device *pdev)
+>>    {
+>>    	struct device *dev = &pdev->dev;
+>> @@ -267,8 +304,13 @@ static int qcom_wdt_probe(struct platform_device *pdev)
+>>    	wdt->wdd.parent = dev;
+>>    	wdt->layout = data->offset;
+>>
+>> -	if (readl(wdt_addr(wdt, WDT_STS)) & 1)
+>> -		wdt->wdd.bootstatus = WDIOF_CARDRESET;
+>> +	ret = qcom_wdt_get_restart_reason(wdt, data);
+>> +	if (ret == -ENODEV) {
+>> +		if (readl(wdt_addr(wdt, WDT_STS)) & 1)
+>> +			wdt->wdd.bootstatus = WDIOF_CARDRESET;
+>> +	} else if (ret) {
+>> +		return ret;
+>> +	}
+>>
+>>    	/*
+>>    	 * If 'timeout-sec' unspecified in devicetree, assume a 30 second
+>> @@ -322,6 +364,7 @@ static const struct dev_pm_ops qcom_wdt_pm_ops = {
+>>    };
+>>
+>>    static const struct of_device_id qcom_wdt_of_table[] = {
+>> +	{ .compatible = "qcom,apss-wdt-ipq5424", .data = &match_data_ipq5424 },
+>>    	{ .compatible = "qcom,kpss-timer", .data = &match_data_apcs_tmr },
+>>    	{ .compatible = "qcom,scss-timer", .data = &match_data_apcs_tmr },
+>>    	{ .compatible = "qcom,kpss-wdt", .data = &match_data_kpss },
+>>
+>> --
+>> 2.34.1
+>>
+>>
 
