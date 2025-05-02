@@ -1,79 +1,87 @@
-Return-Path: <devicetree+bounces-172920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04D30AA6F8A
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:27:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96ECDAA6F9C
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:30:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 935771BC4B19
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 10:27:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EADD04A5F6E
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 10:30:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C19B123BF96;
-	Fri,  2 May 2025 10:27:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6689123C4FB;
+	Fri,  2 May 2025 10:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d4pfQHOf"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="l1Gai6KP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 240C9205AB9;
-	Fri,  2 May 2025 10:27:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA8D205AB9
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 10:29:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746181654; cv=none; b=bDu8GucgP2xTiJlJHnfCHQgNOu/zNJM5ThcxQLP62aigz4ATaWESImUjuGW435PPL2hUy4ukrehY6p92oFNN5I6FvLFHi4UGm1ChyH612ZwSgm5F/GvT81QmDJZP99HJwIehV4QXTWUIlfMYdSzgL0MmlzsAxmepAl8zNTHwzaI=
+	t=1746181801; cv=none; b=fy3dG1tL32C77QHlyInOx+d1cAOGQ9qhsNfYCQs3dPTNTbRMjKQJRlhFXEVkSPkFAR8V3bNaXt6lpsGrFfYRqbFl6U+4t/adl4ZnaSiESt0yZ5GzX57dxUvYwz/F7LfOYhM7A8supblNEpaxyRv40/PpuvBcnzIovpwLyUTtwFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746181654; c=relaxed/simple;
-	bh=xuh/WQteY3swVTua4deDZ/uDNCLp8v2XD3HQD6/BtE0=;
+	s=arc-20240116; t=1746181801; c=relaxed/simple;
+	bh=i7lDDRucUlwhNKwX/fbh3u9h2y2t42fMvoTgrZxh8fY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=THW+2BP8fd76jipsx+N78r8sSSBeUF6uo4yCbGXLG2m6oJA+zm8kerBMgRUQ/MXYz0bsR4A6AZeTdY75Gd8CjIvOzswFf2scteA7lCQT5F825ZnV6GtV2fzpCemOOafNQa4m3rxlP9QeR6TQ9mMOLz+A1lOQOdZmbM2YCJYI+90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d4pfQHOf; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-736bfa487c3so1772039b3a.1;
-        Fri, 02 May 2025 03:27:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746181652; x=1746786452; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CNSvtlzeetqRmQ7Ywh5GEVTUEx1QnVbPGZ+bGVXhHy8=;
-        b=d4pfQHOfzek0y1P46WXU0CTtHx3Xsga3aK4eeVn9vtsOqXgWzjeF/miY3nvpT5ungq
-         ObpdgaGXJvGTHG92rUQfBijhI1V//PAEA8ydxk6Mg0n1ZxqIchy3U9VDnNy8SZW21Reg
-         rI1QdXYQLtPaIltJiEcjCd1mgJ2yieUV1ucq1qO9sNdFoBDAKkQoGru22rW3n66iqiMC
-         8KBnkPlF2z79y9E9oB+BxAT9Fu95XFWO0uFXdgU0OxC6qrZ+yDP25Z+NVT2xe4w29UlX
-         a0/7arP1GYsqwsGkq24YIUFGcrN6lIXSByTDKYXuuD97Il1TvxNUkl7CRrDGNXyonzt2
-         EpXQ==
+	 In-Reply-To:Content-Type; b=EifgVQg7gYXQKKBDF7CZULJFGTo/ki000jK4N71dA5V05kRT5Cki/5FzEguuyITCvlCJXfXEbIsJjF0HI+JgF8CIbwJsUW7/jcCQFiHuQ2jazq7vTymKSI6V4CIdrM3fhmaHIwUWPF7Vp9x86m/rOfmGuT5hXOFVB8TeZP26GKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=l1Gai6KP; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5421NJYB001886
+	for <devicetree@vger.kernel.org>; Fri, 2 May 2025 10:29:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4Dn7fvn/GQzMSROH7cCLUoBJLbxJJYWAddOeCioJDak=; b=l1Gai6KPbjpr7o5J
+	Hr3ZMqRKavmSUhCNa2QUgclx25l+PA+ZDkUUwmSv/bpX6CkpPUdOCmNuFbM3jLYC
+	nqpoJL86ruqNcxZs3JGPm9deAxexS9Xuy/SV9HuXQWQiG5uKQyWKapWrxJ9QFpPy
+	ZDY+c8jG6YBlQf0eAiKPYzR1BuKr+MIF3yr+uJWajlMla4WlMMXx5H8FrpB60d/o
+	DMn/q2rqb0V274gBVqH+aO3DM+MeXx7sxSUBkBlErL/wDKT3NrcPbwxWaMJZ3IsL
+	UpbjTuMX519ima7NKU+H61fuSuCDhSqyCV4AWspkRQWHx0ClM5WPYbBCYscuTzKO
+	4DtUhQ==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u2g0r8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 02 May 2025 10:29:58 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6e8ff8c9dcfso5444436d6.3
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 03:29:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746181652; x=1746786452;
+        d=1e100.net; s=20230601; t=1746181798; x=1746786598;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CNSvtlzeetqRmQ7Ywh5GEVTUEx1QnVbPGZ+bGVXhHy8=;
-        b=kOFMBRut5wJR/7tb7v0x6rgyei6SyWqJrsCFpTxLSQfjQTldssJHCBSmYQYAvs06PS
-         amZgZrxP+WetfD8+5Lnc+hkJ4ihC30xFViPdQP3ReqVTuJsJeoZ7sDR/yKxdrJVfphjD
-         pMhwxrjCRdmUhUi+gR+AB/TdsWO2maEdq4VdlCHPGDeZCRQZwT+jJI6Qc00p0Ly+kgTy
-         Cs0K7NuYupyweYTrY86y5lxooRFHXTTpbFhhsQ8lWVu14TE0qox2gzv8YzmGugQN4Upq
-         njUW1xvBjrF8Kf5qw5j44RuZZgmGQavBDtEzOXy3Fl8TLY+FLnxtAxFNjyenu8Axsuyi
-         NZWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUCvNzWNaKcU5v7+WoTvPMk8U3Q4s2HUIbY3+Z5vwNrRhXIbhJ3vI0VF5y8I333y1mCJPkiLz6apEpK@vger.kernel.org, AJvYcCVP2nxUsl+ZuQ9E818Zs9kOL6gw3EFLRZd5QkipPDfcbTSUuosEe1oF7sVoQ9BEXUABzlOe/qvWsrBYQtKv@vger.kernel.org, AJvYcCWXHiocfWFzHd18ElXH9Z1hfTSBvA9qTKE1zbQnSyqi0QRiqDau+8kKdhI6EFx9soTqRvTENFmLPVNwY5w=@vger.kernel.org, AJvYcCWbuna1HGBbZyh1s0fqYOSZtiwx9iV0CI7VK1emZz0KYIiHmu522Z4JUBRzMXTmCsUB5g8xmSRvo0S3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6FHhMdMmum64d2QwwM8KOQagR0Oudd2F8nuKxoIMLAMScZ4+2
-	awA6QGgsCcLZeo3W8DLmIu4tBT1llVHQKK/ud4/aYcUBcFFhq2d4
-X-Gm-Gg: ASbGncuOOoQ3BTOGCkPs2RtcoU3/R+7qaqo5mku1ewG288OpByiHp5EIrYvCNV0iaU4
-	CF9wA1IFtdk8lt1yFuU5hBTATWOru7gWa5Nthqt3JZU3w85NLFtJdL4zDoNlQ0djaD3Vq6PdTBd
-	DqqQRaYTU34OcJIF2mxgXq9BTbfC0OUZGF03VGIjYKGY8aCkcXUiz0vDmzMEyVb1CK//iEqt5Qx
-	jFcpp/0IzqjzPTLNRWFwrKJ7uzi5EDPY1kgdJUV6j9idCduaJN5NnhqPU1OYKxZkdjtUS8OtjSS
-	lK9soMMo/fzQ7Dt8PARtVVbIFW19drRtkbn0UcMeevmTZJo0aK5DbILfEtH+gOJ5
-X-Google-Smtp-Source: AGHT+IH5mCb+cEBdztEih9506vzOUTqRr88cZ2G3trTZ0ka/+m7/OCK70IqiZJqOrbDvGQvjY/2Wqg==
-X-Received: by 2002:a17:90b:2dd2:b0:301:c5cb:7b13 with SMTP id 98e67ed59e1d1-30a4e55f5c3mr3438353a91.3.1746181652132;
-        Fri, 02 May 2025 03:27:32 -0700 (PDT)
-Received: from [192.168.1.5] ([182.69.11.114])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30a347723basm5283950a91.24.2025.05.02.03.27.28
+        bh=4Dn7fvn/GQzMSROH7cCLUoBJLbxJJYWAddOeCioJDak=;
+        b=O0laWdr9MabY1Wnr2uWQj87nCbLbD1f2o5s99wqYuWADyYVxj3zrsuHMGE4KWhDto+
+         1U2WN/nH1FkQOj8P37+PSOpKhljwpvJF26e0YAvo5kMVWClBEYbWe2b9sBJ9/k26egME
+         B1dmh218URVDK08Q1GMg6rdAPEgUgHqQ4m5J1ieRo2irxr+b+QQtRcaN16AdC2oHTJ5S
+         I9YXKh7UPYGoz3u8lnSC6Uo5SOh7rjLWNDtBZLg2gcP5bzJS+PAinybB4Sxqe5/W4FK4
+         PY/XIaXkGlYNp2Dg0jewY+RQxy8XIFqn5+CwI4dfTh3z335iaVTtghKkZ3F/Tc4kW6pO
+         G+3g==
+X-Forwarded-Encrypted: i=1; AJvYcCUgZpVAxqspy3/R9aPpq1KmvmwOFmPHWna83Lx65WQhxv24woECsbjXCseSMvRSe3/FdtxPoCzMbE3+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPzD3d4HhwZJ+P4yeZZcpxbFOY9L9cMQkF6VDfUvbiHnA4PPSp
+	EruwVnfPzE8SMJYTcEh3qV/MnCy7ipPWUkYOUuuTqsF4NUKjxoI8OGr28RPnVxOhRdGFLTsIPfq
+	ph0mLaHNG2JI55AsHYuBswMLTsF+IZWzMkWppkgIq11mFjkInlhogNZxcNF2O
+X-Gm-Gg: ASbGncvEQhSm7Eqer4woF1DX/wl++3jqwK2hJZW9MQfajnZfDIqS+0lL0VeyArbgbC+
+	Boh9Itg9EZjBjJHSoVSebLLhSstuOuW8kZvcARAJ5OXqp8T2Kza12ReOho5gwD3g1ypfAPd3jc/
+	7nLx1uIKb06Oq/ItyR5SHAX+njaooiB5oyFsHDzE2te4i9LelkomHJLxoEfW4loVqXCbo9ZeM8K
+	qs5EmBZCUFTahaDN1D7LjaHTFT+52Wh2wCMEHxnp3U8XnxdAISU3NEjuhwXkdR2+/8VGpjADZ4X
+	DVu20PPZUy0zg1VZrtQKelw7BdU4dikqwPqCtsp7+o1TykkU+woALJI+vjFzAgB0F5o=
+X-Received: by 2002:ac8:7f8f:0:b0:472:15be:54ad with SMTP id d75a77b69052e-48c32ebec71mr11930181cf.14.1746181797950;
+        Fri, 02 May 2025 03:29:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IExpZCizKsiNGnAZGjO17fHH8yFM+oPe1mErUD+l8Dx92sb7vZcW1igq+h+lNhd+1RWdEMubQ==
+X-Received: by 2002:ac8:7f8f:0:b0:472:15be:54ad with SMTP id d75a77b69052e-48c32ebec71mr11930041cf.14.1746181797657;
+        Fri, 02 May 2025 03:29:57 -0700 (PDT)
+Received: from [192.168.65.113] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad18914731dsm29461266b.28.2025.05.02.03.29.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 May 2025 03:27:31 -0700 (PDT)
-Message-ID: <a701201e-c888-40e5-a57b-45ea0416af31@gmail.com>
-Date: Fri, 2 May 2025 15:57:24 +0530
+        Fri, 02 May 2025 03:29:57 -0700 (PDT)
+Message-ID: <1435b068-3bb9-4285-8399-81fc278152c4@oss.qualcomm.com>
+Date: Fri, 2 May 2025 12:29:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,177 +89,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: dma: convert text based binding to json
- schema
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250501-nvidea-dma-v1-1-a29187f574ba@gmail.com>
- <20250502-lush-resolute-cheetah-a8ceee@kuoka>
+Subject: Re: [PATCH 2/6] clk: qcom: ipq5018: mark XO clock as critical
+To: george.moussalem@outlook.com, Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
+        Lee Jones <lee@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250502-ipq5018-cmn-pll-v1-0-27902c1c4071@outlook.com>
+ <20250502-ipq5018-cmn-pll-v1-2-27902c1c4071@outlook.com>
 Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <20250502-lush-resolute-cheetah-a8ceee@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250502-ipq5018-cmn-pll-v1-2-27902c1c4071@outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: sAnFylpf_37JPY3vIUt3c24hbWgc-l41
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDA4MiBTYWx0ZWRfX0wnlRmrtq2fM +O4qOzKWPQusDQGaV5kgAfKYIBP/fgX1AnKp6H9+7fnapqtI+i8A/vmsvQyxrbpcMkTNAv4LAF1 awaq6mXnNQTL4Ky0VdCexq3whfmVefC5HhL3f1/Z2mwRdI3FSlJ+xyzDFXeGpGNeEaIwOaE/OEX
+ /OkT/NtQOJms8cgK8ggdUS2oElics/mmZZnyODulaz4K2/nsm/tu1KFnfW5HHK5PBX2k0BQrgNq 3m0CYDrqzWBg19/a+PQX8shHmw+9qD+Cpje9a7j2kFIRj99MF6fWrqoTZAJM5c1fYIdFiYGGn5+ xPSkKU2AmIBUZ/9+yB9TWdOUH7jFyBLheJTkrPUBLECW+MHoZPLlfsn3hh1l73v0/5KulOIx8TK
+ P50ru9JBWQ+Yax2+OmdYC0rMjirBrSLNXki/O/I75KWCvrfbpJu7/td/T8TnT2FJUyYe7gZn
+X-Authority-Analysis: v=2.4 cv=b5qy4sGx c=1 sm=1 tr=0 ts=68149ea6 cx=c_pps a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=UqCG9HQmAAAA:8 a=N5ds6sLAiLYF8mbRe1EA:9 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10
+ a=1HOtulTD9v-eNWfpl4qZ:22
+X-Proofpoint-ORIG-GUID: sAnFylpf_37JPY3vIUt3c24hbWgc-l41
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-01_06,2025-04-30_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=988 phishscore=0
+ mlxscore=0 impostorscore=0 malwarescore=0 spamscore=0 adultscore=0
+ lowpriorityscore=0 suspectscore=0 bulkscore=0 priorityscore=1501
+ clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505020082
 
+On 5/2/25 12:15 PM, George Moussalem via B4 Relay wrote:
+> From: George Moussalem <george.moussalem@outlook.com>
+> 
+> The XO clock must not be disabled, so let's add the CLK_IS_CRITICAL
+> flag to avoid the kernel trying to disable the XO clock (when parenting
+> it under the CMN PLL reference clock), else the kernel will panic and
+> the following message will appear in the kernel logs:
 
-On 02-05-2025 13:28, Krzysztof Kozlowski wrote:
-> On Thu, May 01, 2025 at 01:12:36PM GMT, Charan Pedumuru wrote:
->> Update text binding to YAML.
->> Changes during conversion:
->> - Add a fallback for "nvidia,tegra30-apbdma" as it is
->>    compatible with the IP core on "nvidia,tegra20-apbdma".
->> - Update examples and include appropriate file directives to resolve
->>    errors identified by `dt_binding_check` and `dtbs_check`.
->>
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
->
-> Missing final nvidia,tegra20-apbdma prefix.
+Remove the struct definition for this clock (and the assignment in
+blah_blah_clks[]) and replace it with:
 
+qcom_branch_set_clk_en(regmap, 0x30030); /* GCC_XO_CLK */
 
-Sure, will update that accordingly.
-
-
->
->
->> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
->> ---
->>   .../bindings/dma/nvidia,tegra20-apbdma.txt         | 44 -----------
->>   .../bindings/dma/nvidia,tegra20-apbdma.yaml        | 90 ++++++++++++++++++++++
->>   2 files changed, 90 insertions(+), 44 deletions(-)
->>
-> ...
->
->> +$id: http://devicetree.org/schemas/dma/nvidia,tegra20-apbdma.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: NVIDIA Tegra APB DMA Controller
->> +
->> +description: |
-> Do not need '|' unless you need to preserve formatting.
->
->> +  The NVIDIA Tegra APB DMA controller is a hardware component that
->> +  enables direct memory access (DMA) on Tegra systems. It facilitates
->> +  data transfer between I/O devices and main memory without constant
->> +  CPU intervention.
->> +
->> +maintainers:
->> +  - Jonathan Hunter <jonathanh@nvidia.com>
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - const: nvidia,tegra20-apbdma
->> +      - items:
->> +          - const: nvidia,tegra30-apbdma
->> +          - const: nvidia,tegra20-apbdma
->> +
->> +  "#dma-cells":
->> +    description:
->> +      Must be <1>. This dictates the length of DMA specifiers
->> +      in client node's dmas properties.
-> Drop description, you are not telling here anything new except
-> explaining basically DT syntax.
->
->> +    const: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  reg:
->> +    maxItems: 1
-> reg is the second property. Old binding even had it correct.
->
->> +
->> +  interrupts:
->> +    description:
->> +      Should contain all of the per-channel DMA interrupts in
->> +      ascending order with respect to the DMA channel index.
->> +    minItems: 1
->> +    maxItems: 32
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  reset-names:
->> +    const: dma
->> +
->> +required:
->> +  - compatible
->> +  - reg
-> And here the order is correct...
->
->> +  - interrupts
->> +  - clocks
-> But here different. Keep the same order as in properties.
->
->> +  - resets
->> +  - reset-names
->> +  - "#dma-cells"
->> +
-> missing allOf: to dma-controller
-
-
-The reason, I didn't include dma-controller is the pattern under 
-$nodename in dma-controller is not matching with the pattern present in 
-dts files.
-
-So, I excluded it.
-
-
->
->> +additionalProperties: false
-> unevaluatedProperties instead. Just open any other DMA binding.
-
-
-sure.
-
-
->
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> You included this...
-
-
-I checked the other DMA binding from nvidia, they included the same 
-header file. I can change it to irq.h, if required
-
-
->
->> +    #include <dt-bindings/reset/tegra186-reset.h>
->> +    dma@6000a000 {
-> Doesn't look like correct name. Schema requires specific name.
-
-
-The dt_binding_check is successful when I included allOf to 
-dma-controller and used dma-controller@600 as node name, but when I was 
-checking for dtb, the pattern is not matching with the one
-
-inside dma-controller, so I removed allOf and changed the node name in 
-examples according to the node present inside the dts file.
-
-
->
->> +        compatible = "nvidia,tegra30-apbdma", "nvidia,tegra20-apbdma";
->> +        reg = <0x6000a000 0x1200>;
->> +        interrupts = <0 136 0x04>,
-> ... so use it.
->
-> Best regards,
-> Krzysztof
->
--- 
-Best Regards,
-Charan.
-
+Konrad
 
