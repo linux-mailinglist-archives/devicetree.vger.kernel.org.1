@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-173059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D78CAA758E
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:07:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AFABAA7596
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:08:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB4663B0E4E
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:06:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EFE33BCDC9
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:07:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8FC325742B;
-	Fri,  2 May 2025 15:06:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BC025A2D1;
+	Fri,  2 May 2025 15:07:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C4E225742C
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 15:06:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99655259C8B
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 15:07:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746198400; cv=none; b=fDU3s1FXthIZ4brZuVRYe+U0nLKUPvtwcQ7xm+fWMXRlpzhoNbAJrTtrUcYJ+AX3DLbXoRIuSuA6T6WIoG8aOtXf1v4FNMS8fch3zYmfgzdCxH3UZ6yMxfnIAHqeBSAV+4AphQxC+D6t7oQ/eTHOd6IsTJa1MYjh3Jfz3+Lk1kI=
+	t=1746198429; cv=none; b=fjJr1iRfz16j1w4mtoqXZpi6v8WBWoIm5BWkfoRcMtg14QuW0pcI685fI4AdfaW87TN5fF/5il1smnejRzUvgFXuwAqown5hx9QUaOZ1QdCpInOfghYZvxbr5qiMj8Of1o2I/6mdkwrsnWijyG5gJyldsUqMOT2zaS39Vf7Uj4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746198400; c=relaxed/simple;
-	bh=t3WGRy0nmVFVXwowyiOyQFmOVYaG/7lhAXIm1oIKIYk=;
+	s=arc-20240116; t=1746198429; c=relaxed/simple;
+	bh=TeltxFsbUfWoGKzVcntQrAOxj0LPJuGeu35YD90asLs=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=oRCc63J1+RT73myaIvksSE0TyH/zaF8gjXYE2htrExO9Noe7yYZz20dnSHNAdDTUhyLRhRpnhH9/kugLE3qlgBKpddOGbFz27NAC60zr9bnBzRD7LVMlp/rr1o9ANcOBaL7DdoYo99K9gD+e9mqhlfQEJx40aah8dCtpoB60d9Q=
+	 MIME-Version; b=pGPFcDce8asnEFsTPEtOUoKa5y09WvKfa5WI2WuuUEGksHyoGWzSzLFYhUolCnVbbTvlpLva6pBwNbIr7/tYuwBHf3laz7kapkpFIv60PFtR6RNf+OETJuDHbw3TgSET7kgta+CFjQ4BLs9mZEEWBjb1ZtJpfvZXTmxku4Vwo/Q=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1uAry0-0004HG-9b; Fri, 02 May 2025 17:06:20 +0200
+	id 1uAryS-0004HG-57; Fri, 02 May 2025 17:06:48 +0200
 From: Marco Felsch <m.felsch@pengutronix.de>
 To: nicolas.dufresne@collabora.com,
 	benjamin.gaignard@collabora.com,
@@ -57,9 +57,9 @@ Cc: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	Michael Tretter <m.tretter@pengutronix.de>
-Subject: [RFC PATCH 02/11] media: uapi: add documentation for the V4L2 H.264 stateless encoding API
-Date: Fri,  2 May 2025 17:05:05 +0200
-Message-Id: <20250502150513.4169098-3-m.felsch@pengutronix.de>
+Subject: [RFC PATCH 03/11] media: uapi: add nal unit header fields to encode_params
+Date: Fri,  2 May 2025 17:05:06 +0200
+Message-Id: <20250502150513.4169098-4-m.felsch@pengutronix.de>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250502150513.4169098-1-m.felsch@pengutronix.de>
 References: <20250502150513.4169098-1-m.felsch@pengutronix.de>
@@ -77,86 +77,59 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 From: Michael Tretter <m.tretter@pengutronix.de>
 
-Document the parameters that are passed to the stateless encoding API
-since they need to be filled by user space and knowing what the
-parameters do helps when filling it.
+The VEPU540 and VEPU580 may prepare the NAL unit headers in the coded
+params. These values have to be provided by user space and be written
+into the hardware registers.
+
+Furthermore, nal_ref_idc indicates if a picture will be used as
+reference and is a hint to the driver, if it needs to keep the
+reconstructed buffer or not.
 
 Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 ---
- include/uapi/linux/v4l2-controls.h | 46 ++++++++++++++++++++++++++++--
- 1 file changed, 44 insertions(+), 2 deletions(-)
+ include/uapi/linux/v4l2-controls.h | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
 diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-index 4f6b37513edc..670f822ee758 100644
+index 670f822ee758..a8df393c9ead 100644
 --- a/include/uapi/linux/v4l2-controls.h
 +++ b/include/uapi/linux/v4l2-controls.h
-@@ -1696,6 +1696,32 @@ struct v4l2_ctrl_h264_decode_params {
+@@ -1694,6 +1694,9 @@ struct v4l2_ctrl_h264_decode_params {
+ 	__u32 flags;
+ };
  
++#define V4L2_H264_NAL_CODED_SLICE_NON_IDR_PIC	1
++#define V4L2_H264_NAL_CODED_SLICE_IDR_PIC	5
++
  #define V4L2_CID_STATELESS_H264_ENCODE_PARAMS	(V4L2_CID_CODEC_STATELESS_BASE + 8)
  
-+/**
-+ * struct v4l2_ctrl_h264_encode_params - H264 encoding parameters
-+ *
-+ * @slice_type: selects slice type. Set to one of V4L2_H264_SLICE_TYPE_{}
-+ * @pic_parameter_set_id: identifies the picture parameter set that is referred to
-+ * in the slice header. The value shall be in the range of 0 to 255, inclusive.
-+ * @frame_num: an identifier for pictures.
-+ * @idr_pic_id: identifies an IDR picture.
-+ * @cabac_init_idc: index for determining the initialization table used in the
-+ * initialization process for context variables. The value of cabac_init_idc
-+ * shall be in the range of 0 to 2, inclusive.
-+ * @disable_deblocking_filter_idc: specifies whether the operation of the
-+ * deblocking filter shall be disabled across some block edges of the slice and
-+ * specifies for which edges the filtering is disabled.
-+ * @slice_alpha_c0_offset_div2: offset used in accessing the alpha and tC0
-+ * deblocking filter tables for filtering operations controlled by the macroblocks
-+ * within the slice.
-+ * @slice_beta_offset_div2: offset used in accessing the beta deblocking filter
-+ * table for filtering operations controlled by the macroblocks within the slice.
-+ * @slice_size_mb_rows: number of macroblock rows in a slice.
-+ * @pic_init_qp_minus26: initial value minus 26 of luma qp for each slice.
-+ * @chroma_qp_index_offset: offset that shall be added to qp luma for addressing the
-+ * table of qp chroma values for the Cb chroma component.
-+ * @flags: combination of V4L2_H264_ENCODE_FLAG_{} flags.
-+ * @reference_ts: timestamp of the V4L2 buffer to use as reference
-+ */
- struct v4l2_ctrl_h264_encode_params {
- 	/* Slice parameters */
+ /**
+@@ -1719,6 +1722,8 @@ struct v4l2_ctrl_h264_decode_params {
+  * @pic_init_qp_minus26: initial value minus 26 of luma qp for each slice.
+  * @chroma_qp_index_offset: offset that shall be added to qp luma for addressing the
+  * table of qp chroma values for the Cb chroma component.
++ * @nal_ref_idc: nal_ref_idc for the header of the generated NAL unit
++ * @nal_unit_type: one of the V4L2_H264_NAL_CODED_SLICE_{} values
+  * @flags: combination of V4L2_H264_ENCODE_FLAG_{} flags.
+  * @reference_ts: timestamp of the V4L2 buffer to use as reference
+  */
+@@ -1751,6 +1756,16 @@ struct v4l2_ctrl_h264_encode_params {
  
-@@ -1710,8 +1736,16 @@ struct v4l2_ctrl_h264_encode_params {
+ 	__u32 flags; /* V4L2_H264_ENCODE_FLAG_ */
  
- 	__s32 slice_size_mb_rows;
- 
--	/* PPS parameters */
--
 +	/*
-+	 * PPS parameters
-+	 *
-+	 * TODO Duplicating the PPS in the encode_params may not be necessary,
-+	 * if the PPS are set via separate control. Otherwise, it may be useful
-+	 * to just use struct v4l2_ctrl_h264_pps here.
-+	 *
-+	 * Needs to be consistent with the values set in the PPS referenced by
-+	 * pic_parameter_set_id.
++	 * If nal_ref_idc is 0, the NAL unit won't be used as reference by
++	 * later NAL units. Any other value indicates that the NAL unit may be
++	 * used as reference.
 +	 */
- 	__s8 pic_init_qp_minus26;
- 	__s8 chroma_qp_index_offset;
++	__u8 nal_ref_idc;
++
++	/* TODO Can we infer the nal_unit_type from the slice_type? */
++	__u8 nal_unit_type;
++
+ 	/* Reference */
  
-@@ -1728,6 +1762,14 @@ struct v4l2_ctrl_h264_encode_params {
- 
- #define V4L2_CID_STATELESS_H264_ENCODE_RC	(V4L2_CID_CODEC_STATELESS_BASE + 9)
- 
-+/**
-+ * struct v4l2_ctrl_h264_encode_rc
-+ *
-+ * @qp: quantization parameter for the currently encoded slice
-+ *
-+ * TODO Setting the QP is enough for implementing const QP, but probably the
-+ * entire rate control mechanism has to be reworked.
-+ */
- struct v4l2_ctrl_h264_encode_rc {
- 	__u32 qp;
- 	__u32 qp_min;
+ 	__u64 reference_ts;
 -- 
 2.39.5
 
