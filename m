@@ -1,180 +1,122 @@
-Return-Path: <devicetree+bounces-173107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2604AAA7719
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:20:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B0EAAA773B
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:26:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 892133ACFEC
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:20:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43B12189E172
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:26:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB7525E450;
-	Fri,  2 May 2025 16:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A706625E46B;
+	Fri,  2 May 2025 16:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UOzNlvQK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lGSX/eJq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25CE625D544
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 16:20:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF3EA25B660;
+	Fri,  2 May 2025 16:26:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746202810; cv=none; b=hTgBg9auW3ICZwZnEj+Tqv5yLvKxrrkBV/0/qvpTds9aFPYgDHpoW1k1rDX2xFAm8LWIhGZ9uW6ML5DsM/APd7q+sQDDBX3bkuWy0qhq8uKV28GCYokvdeaCeMGhZl8bva32UCbyaSk152uw00BkKV/df0ibBNOn06xnpELdEgE=
+	t=1746203175; cv=none; b=lCATRy07C/Kot85pkrtrwwtkRUDdtzqaFC0vULw3JRCJzCLLVG10yUaNv4CMmzXxj1a+tTcMote1u4ro2GB06lW3dpaad4G757dTI7Gi7pnQbSB16QuUeZe7Odnqx0Zqq6aAwyIVAJbG7XbekGCR9CruzhFrRYYte9xeRovechg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746202810; c=relaxed/simple;
-	bh=3EjapqU+jeTaOQ/Z8/xEhQVRbPLYwk7rw/gB+eafJ+I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Du44zzwppGowHZTPmVYMQr4zw3GcJAzrqWoyXYeTrrmac4wiRYyT1Dn/0eSlY3+0xT2wMCAp1QyjUCML9pFOsh48gsg++A3gJ7Cia+1sirPVKGWffHvLyhcpL0Mgckwvj6cSY1M+d/AAKpJLfpwwvE9PUSqhqZvJIBNwM5xrn3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UOzNlvQK; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43cf628cb14so22996785e9.1
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 09:20:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746202805; x=1746807605; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=L/bz9fn1ApK8ehph3J3EWQJlOEkbeXH0IsSy7vj7uAo=;
-        b=UOzNlvQK6EQQdCcXpcWTbDPQQgfrI7dZfCSxX3OgKJJpmTEkcFnK4YPLVo+4H9gZfd
-         QsgrEx5ZwEUpo2OIC4J4htyyD/KSwamS0s1PorXa0ukd4K7tR3dv7ih+F+ZNATGyvGl4
-         2udlan8EWKJReejqKvmM+cG1eaGbCBEmnhATlDv92ApR543E0IBxcWcYLGqaNr+6h8am
-         YOY/kFcA8zV14H7pHcij/ypFeup7tGfWi5qgtf3QqKD7rWpximN8Ruw8j6VTYoC6cGrs
-         MUPj3GM02DCFDpTslLpZeSOGKY2IxGNPs1/BIT8IEMEXL+mEKPMuHT2s0/Kl+XW5baRP
-         zCXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746202805; x=1746807605;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L/bz9fn1ApK8ehph3J3EWQJlOEkbeXH0IsSy7vj7uAo=;
-        b=LrmzawBHga0/KljeHbW9c+/kC8eAoFI4DuP9mNvrjNOaPujoG/TjhdjnxyO1/NMG8W
-         JcSQWb4yAfMEeAZd4QdDN2OevOpfGuZJOHuZ/mTUxGmQTdWQ/0U74NaTKHUGGcF2VN3C
-         uTXCXEPVULcbmzyOJCrZtqCaAz1WDRGmrCoYm9jaypnddxX9bwiwJHcaLEqUqp76z8A1
-         ULuFhm8gQOOJ4wu+hHopIPjhpfTVa4w5+gpyM4/eDKlSluObuf+m1yJhp+1KQB0BaniD
-         hLkj7XOp8UvU91bTTO5aK6OEOg2ol9EQPutKYWI1U9JAb7gVmxzt2/ZVu1vQ8BDMIwRj
-         Egmw==
-X-Forwarded-Encrypted: i=1; AJvYcCUfM/fULD8WtnkMo71zPffabtMACgG7ObvAOpEC2rTlDGcyOSscLZ1yxPRc5smrTLKjC5GpgmgQtQDi@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlGAlAAF4jsbZKP/bu3ul26SVs9ZFkQZQR9Zs+pi3awi7NZW4I
-	tgFQrABpg0EyH8SHQXtr9TOlZ6U0kY0YXjMOQqytDKKlZC02DHqETqDnMUoiX04=
-X-Gm-Gg: ASbGncsxyi8sqqzN1eczpV8rWTzDJFPkuLvo898CYaUo0A0ZA165s9nbh21AM/4ziSN
-	ML4vbjZ0V1q/v2+Gv6FoyTIs4+XbfVJMat21YjaEW7igfniN1iu0hmZ8B28VVjwvilNnNijF7EM
-	bDsrzZipROngu0E2Dr9K91VnGUKSWmRmmIe96bKQsdddQVcMK2BagKKV0p+uk/jvWCGQzVLLNrv
-	pmoaKoW620BvNMSa1dJuCbpBTeDAK9iikjqOEN1KIqfxQfkocBsGYL+V+EdxazUOASSTVT9vRYb
-	/AWRer2Xkg5+PKQKl2b4LDKvyQux10qdIfsl3i09q9LFJITmvt5vtpKbUMkGEaps+biyqdwiJ8I
-	IX0L6sg==
-X-Google-Smtp-Source: AGHT+IHxteQF1bGkHCKmd6Y1/yMn23d0yEys+sIe42jqect0CeKlrVJkCO/XXn6oUIOdI381iLRBwg==
-X-Received: by 2002:a05:600c:8711:b0:439:5f04:4f8d with SMTP id 5b1f17b1804b1-441bb88d42emr29490745e9.12.1746202805361;
-        Fri, 02 May 2025 09:20:05 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b8a31576sm48340455e9.37.2025.05.02.09.20.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 May 2025 09:20:04 -0700 (PDT)
-Message-ID: <68aa8c09-233e-4997-b2f8-7db4cd411351@linaro.org>
-Date: Fri, 2 May 2025 17:20:02 +0100
+	s=arc-20240116; t=1746203175; c=relaxed/simple;
+	bh=QdXQZfyK9Q/Y2syUfh81RYqcZmYpOsj5BKFumKCCMEU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=A5knSEijL4RuyJ+XO5c+NVa02jor5gzKCstKPSs0vULDEG4jUOnJTaJtGZ1szS1dJc7PlmzWrVGK2XwaRe39dHw7u1eco0sPy9x5voS0bsGEP2x8+gYNGhwPyjScX0S3ozaMsAsYvStwHB9Xiw4rnMJGW6hS6YWkQGZiL8UNp40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lGSX/eJq; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 542GPksi448850
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 2 May 2025 11:25:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746203146;
+	bh=cXXwc+BZ8KcRkIsM6RvYG2rxmbTcNTOCT+vESd/p1rM=;
+	h=From:To:CC:Subject:Date;
+	b=lGSX/eJqSCiEaXcRdyFM2oHAYVHEE0nHJKYD2fBr2ld3IshaWm6uMH7yjUAXL5w0J
+	 v8dsj/kRGZ4PM+Gu3Og36DwMjU7pY0u3RSGG319byw0q4NflZiSUuRV0aUV7ho6gFn
+	 0Yrt3SAw2pEL25qrutdaQJ4gED0gLoBcABs5a2OY=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 542GPk5q031008
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 May 2025 11:25:46 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ May 2025 11:25:45 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 May 2025 11:25:45 -0500
+Received: from ws.dhcp.ti.com (ws.dhcp.ti.com [10.24.69.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 542GPex6028994;
+	Fri, 2 May 2025 11:25:41 -0500
+From: Rishikesh Donadkar <r-donadkar@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <vaishnav.a@ti.com>, <devarsht@ti.com>,
+        <y-abhilashchandra@ti.com>, <s-jain1@ti.com>, <jai.luthra@linux.dev>,
+        <jai.luthra@ideasonboard.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <imx@lists.linux.dev>, <r-donadkar@ti.com>
+Subject: [PATCH v2 0/4] Fix dtbs_check warnings in sensor overlays
+Date: Fri, 2 May 2025 21:55:35 +0530
+Message-ID: <20250502162539.322091-1-r-donadkar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 18/23] media: iris: Add a comment to explain usage of
- MBPS
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Stefan Schmidt <stefan.schmidt@linaro.org>, Hans Verkuil
- <hverkuil@xs4all.nl>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- 20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org,
- 20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com
-References: <20250502-qcom-iris-hevc-vp9-v3-0-552158a10a7d@quicinc.com>
- <20250502-qcom-iris-hevc-vp9-v3-18-552158a10a7d@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250502-qcom-iris-hevc-vp9-v3-18-552158a10a7d@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 01/05/2025 20:13, Dikshita Agarwal wrote:
-> Add a comment to explain usage of MBPS and define a macro for 8K
-> resolution for better readability
-> 
-> Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->   drivers/media/platform/qcom/iris/iris_platform_common.h | 2 ++
->   drivers/media/platform/qcom/iris/iris_platform_gen2.c   | 4 ++--
->   drivers/media/platform/qcom/iris/iris_platform_sm8250.c | 2 +-
->   3 files changed, 5 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> index 1dab276431c7..3e0ae87526a0 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> @@ -21,6 +21,7 @@ struct iris_inst;
->   #define DEFAULT_MAX_HOST_BUF_COUNT		64
->   #define DEFAULT_MAX_HOST_BURST_BUF_COUNT	256
->   #define DEFAULT_FPS				30
-> +#define NUM_MBS_8K				((8192 * 4352) / 256)
->   
->   enum stage_type {
->   	STAGE_1 = 1,
-> @@ -172,6 +173,7 @@ struct iris_platform_data {
->   	struct ubwc_config_data *ubwc_config;
->   	u32 num_vpp_pipe;
->   	u32 max_session_count;
-> +	/* max number of macroblocks per frame supported */
->   	u32 max_core_mbpf;
->   	const u32 *input_config_params;
->   	unsigned int input_config_params_size;
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_gen2.c b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> index 1e69ba15db0f..deb7037e8e86 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> @@ -248,7 +248,7 @@ struct iris_platform_data sm8550_data = {
->   	.ubwc_config = &ubwc_config_sm8550,
->   	.num_vpp_pipe = 4,
->   	.max_session_count = 16,
-> -	.max_core_mbpf = ((8192 * 4352) / 256) * 2,
-> +	.max_core_mbpf = NUM_MBS_8K * 2,
->   	.input_config_params =
->   		sm8550_vdec_input_config_params,
->   	.input_config_params_size =
-> @@ -308,7 +308,7 @@ struct iris_platform_data sm8650_data = {
->   	.ubwc_config = &ubwc_config_sm8550,
->   	.num_vpp_pipe = 4,
->   	.max_session_count = 16,
-> -	.max_core_mbpf = ((8192 * 4352) / 256) * 2,
-> +	.max_core_mbpf = NUM_MBS_8K * 2,
->   	.input_config_params =
->   		sm8550_vdec_input_config_params,
->   	.input_config_params_size =
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8250.c b/drivers/media/platform/qcom/iris/iris_platform_sm8250.c
-> index 543fa2661539..8183e4e95fa4 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_sm8250.c
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_sm8250.c
-> @@ -127,7 +127,7 @@ struct iris_platform_data sm8250_data = {
->   	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
->   	.num_vpp_pipe = 4,
->   	.max_session_count = 16,
-> -	.max_core_mbpf = (8192 * 4352) / 256,
-> +	.max_core_mbpf = NUM_MBS_8K,
->   	.input_config_params =
->   		sm8250_vdec_input_config_param_default,
->   	.input_config_params_size =
-> 
+Fix the follwoing dtbs_check warnings
+https://gist.github.com/Rishikesh-D/ba0876a26e35c3b9662c75563b8b77ce
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Test Logs:
+am62a7 + imx219 : https://gist.github.com/Rishikesh-D/f32d6a0ec3cbb0f9f4f29254239d3cd2
+am62a7 + tevi-ov5640 : https://gist.github.com/Rishikesh-D/21aad1db1487b884c22527d6e1432ae7
+am62a7 + ov5640 : https://gist.github.com/Rishikesh-D/da4489f1813e90d840fa5ca91df5923e
+
+am62p5 + imx219 : https://gist.github.com/Rishikesh-D/f75ac40f999fd996495f8962772761ae
+am62p5 + tevi-ov5640 : https://gist.github.com/Rishikesh-D/9d117779a5373e7d6faa2db59501746f
+am62p5 + ov5640 : https://gist.github.com/Rishikesh-D/70f426c89154cfeb6292081623581a98
+
+am625 + imx219 : https://gist.github.com/Rishikesh-D/b93542292ce22e498b1039309c60fae8
+am625 + tevi-ov5640 : https://gist.github.com/Rishikesh-D/62d63e3a2bbf6761cc64457d70021bb1
+am625 + ov5640 : https://gist.github.com/Rishikesh-D/b3e799671675d00363c3ceac00f8977f
+
+---
+Changes in v2:
+- Change the Digital core volatge to 3.3 v as mentioned in the TEVI docs
+- Add links to data-sheet in the commit message
+- Carry forward Reviewed-by tags
+
+- Link to (v1): 
+https://lore.kernel.org/all/20250429154133.3377962-1-r-donadkar@ti.com/#t
+
+Rishikesh Donadkar (4):
+  arm64: dts: ti: k3-am62p5-sk: Add regulator nodes for AM62P
+  arm64: dts: ti: k3-am62x: Add required voltage supplies for IMX219
+  arm64: dts: ti: k3-am62x: Add required voltage supplies for OV5640
+  arm64: dts: ti: k3-am62x: Add required voltage supplies for
+    TEVI-OV5640
+
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       | 22 +++++++++++++
+ .../boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso  | 31 ++++++++++++++++++
+ .../boot/dts/ti/k3-am62x-sk-csi2-ov5640.dtso  | 32 +++++++++++++++++++
+ .../dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso  | 32 +++++++++++++++++++
+ 4 files changed, 117 insertions(+)
+
+-- 
+2.34.1
+
 
