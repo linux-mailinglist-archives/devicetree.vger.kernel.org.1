@@ -1,188 +1,143 @@
-Return-Path: <devicetree+bounces-173047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7600AA753D
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:45:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D11DBAA7554
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:49:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 952431BC83AE
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:45:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2EF5C7A477A
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68728256C9F;
-	Fri,  2 May 2025 14:45:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 836F924DFF3;
+	Fri,  2 May 2025 14:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="K9Hva6v3"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YINDoVXX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650742571B9
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 14:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F20A156C63;
+	Fri,  2 May 2025 14:49:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746197110; cv=none; b=liwZ6sNfrOiPoL692bEzXnieT4Zw/z0YeV87AFDayKkZSHII3F0Sv+Qa7sb39dq58YShWJW0U9EokwP6lQ/U87q87z+FITtsdhQGmTralmRnPsmTx8tD8Bs9zeBvNm5ySLZN0Y/EGMVNVbVsN1Ggs4GX2sMoB57w9PdimnReXVQ=
+	t=1746197390; cv=none; b=DJvEpaFqAI6VOyJf9hUNr4fA0DHzqFR9heFWlr1Hox89O4k1b/R0bOA7Yp8DK+sOcW8zptUV55Kb9dFpoWqftF5YYMR13ERbMdAg2PRvaGHhG5X52DiuzWP9O8Nn0p3lEpqxq9tDj9DImcCmQLEgMGYnbvgWWxTuB1/F2zM146Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746197110; c=relaxed/simple;
-	bh=gIgjvlu9Lh4W9hA+25IQzvCi050+ERk+c0blFLwFmgo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L80DvadDHEeud2KbWbt/7pqCYUfpA3C/kM+GsQTc2SkmerRzbmXr4/wkAowv0C/h+p3j2+NLdiEVvciZ6OuuMDnEycP4UJk9QsvxSZH68pfX1VNkARh6f1JxtG7oC3KCjyFjtaOazYj8v6C0jKi9PKIDyD+yJdRYLxh7U/wLTLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=K9Hva6v3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 542EB1vN022951
-	for <devicetree@vger.kernel.org>; Fri, 2 May 2025 14:45:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=GKFBa6/zgrJ4k2F40/J4HmeH
-	gWpS8VMAWbzSckv2X6M=; b=K9Hva6v3NyHFI7Yaru/1727jojyJSiREBT3xLhVg
-	S/zkcXVacbQeJtlZgnCr9nj5cTx6G4m613rnV2WFyDDremtRxd/YdvQuCrNSy2Q5
-	mAb6lCJUmjzDzXDjy1fDB55xpqyhIz1Qdd2Jgk2sBd9wOwZ6N4Z4hJpWOG+diKNf
-	/MnaSnHlLniVGNxUXhXRjrv1O/qVhFY0U7pV4qkzggOlKv8zJxvg+IeqNZ4YW+Qg
-	x13Cl/XF+hfInKPc6qlC/Ol+xk3RVM7VIuRlnCvQ2pw9XGyLly9cDRPUU4NnHaoB
-	4E7uWMmqtiQj2Y6TzhRvs4sayQ8t71TKbMelQM93YqxKDg==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u80mj6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 02 May 2025 14:45:07 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c0c1025adbso442250785a.1
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 07:45:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746197106; x=1746801906;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GKFBa6/zgrJ4k2F40/J4HmeHgWpS8VMAWbzSckv2X6M=;
-        b=QfBat/VMoErYND21y826GCtrQ8xeCRKUlljZq/Ro6GPUDNaNqeTi9oXAOmqEqQgpTu
-         s7uzC8iyhtL9M7MjJjgkKj6cDmMimypyLGGZDka42STss92xz7pFZl1iev7MONfVqpWo
-         qx3iCM+r6/+a0FycfcR5u7X0eXmd1qGM4qyexRk9jDQdPZHtutYcVdUZaC6kHUNyrCZB
-         KFMkA0QxNv+dM7o8Y5w1cufucNGWCVegyIR1B807/cuEKauSETXVisnkJOJXOQm5HaaW
-         qOjoB7kgQ55zDhufYpYwA59bKQOODeTyCe1KV88tF16sfVRQPJOONowtr6KkHczPGFzh
-         h9Gg==
-X-Forwarded-Encrypted: i=1; AJvYcCUxTQLL/+PcYVklzIhre0pF25M0rRwgFbeZ2M+0MbiZLTHqtdVe1/09j8W3HU9A3JnsWTe4e+1x3sna@vger.kernel.org
-X-Gm-Message-State: AOJu0YzH07E+uLdTqm7XTXevD2gTRtgWqga8vU0f/gAT828e6xJTcy+k
-	kHPMI7jQTEmGI02RFnQXSXRSRX6Crc3sZc36DJhJCjL68/Jggo9O1ynZdukY9EnQxnu2mCfhCCG
-	DGPwZawAPy87klMK6VsAJoTZsFSgE0a/hhqhxhWM7FWj0Zh3VUaa+lwlvfvVk
-X-Gm-Gg: ASbGncsF2MEXC1XIjuz8ar/pWjfuAqZ35JsYr26x200fjJcrRYiBPrQuPOH8Vn53B1C
-	FMXWr6CfglisGTa76qR3QCbVVN/4uM5F9e28z7kF/vn0U3HeX3gygVP7etvZGnhPwSunuKdCEx5
-	4RzqqbglSBn/4/0hBMnXXZvwbEzf8cclTXAne2iHbx6whXkJ+LpBwCpaKCzae7B0eEvzA4P6e/P
-	xg2qFEs5vKvVt+/E5n2/UvnC7suhm0zj8r/m8PH0z6DUfvB0i8DfUGB6l2vbkV7jZMi1Arlp9wj
-	Fm1ACrg2bER/y9aCMGKekiXrsTV1h3BRcPHCzjxBjuyR6X7GH3S6FfJ+mXvW007AdQqS66teI30
-	=
-X-Received: by 2002:a05:620a:248a:b0:7c5:544e:2ccf with SMTP id af79cd13be357-7cad5ba79femr368389685a.57.1746197106213;
-        Fri, 02 May 2025 07:45:06 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFnTvg9+ZU86kpvNrwYxGXjpp9+8gfF9cru46QLku/mHRjHUI/CT9RbX1jXkEXwADoj3azjNA==
-X-Received: by 2002:a05:620a:248a:b0:7c5:544e:2ccf with SMTP id af79cd13be357-7cad5ba79femr368384285a.57.1746197105730;
-        Fri, 02 May 2025 07:45:05 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32029306984sm3560131fa.58.2025.05.02.07.45.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 May 2025 07:45:04 -0700 (PDT)
-Date: Fri, 2 May 2025 17:45:03 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: george.moussalem@outlook.com
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
-        Lee Jones <lee@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: Update IPQ5018 xo_board_clk to use
- fixed factor clock
-Message-ID: <frlw5n2fxu5wxrlaahiuwlgaeg4rsqk7ushpcgvc2q4mzorrzf@e4axknhir4el>
-References: <20250502-ipq5018-cmn-pll-v1-0-27902c1c4071@outlook.com>
- <20250502-ipq5018-cmn-pll-v1-6-27902c1c4071@outlook.com>
+	s=arc-20240116; t=1746197390; c=relaxed/simple;
+	bh=WdSkY0SFbzKaDrAB0hKsDpkwOWOA9GGQwzYI390I1AI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O6sShvNBnFTvXvzzhKl45u3q5EpLldejTAHCo+hz/xxZmKLPDkvlyywDJkz+aLVw8nxBhi3FEA7v0vgEQmSc+nTf4nLRiBA1y8bGOjPD/TMzhgy9iEX5mCTbneBXlkofigxEAOAYj3TZv3CtlZqhraY34klS/ZVxp59j0nKK6Z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YINDoVXX; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 542EnZlG253461
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 2 May 2025 09:49:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746197375;
+	bh=i4/jusf2Aa0zeSOt4O3iLnwmJBt0CRJJuL2eBj1uMhU=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=YINDoVXXjJDbV7erQnWP0Gty7XaKwMtMNJ94QIn2McScwhf7BP2GRa57kfacI13DO
+	 eBYLoRDgRqzEigr7YH4WULQroKOHjtNR0LQscKx4Bqa3u1L3jkOX1KlCVRGJUgK8H3
+	 b038iefF/rnE2UtIwTagAUce/CG3rNoEMcq1ZWTk=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 542EnZ3a064657
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 May 2025 09:49:35 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ May 2025 09:49:34 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 May 2025 09:49:34 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 542EnYM0003137;
+	Fri, 2 May 2025 09:49:34 -0500
+Date: Fri, 2 May 2025 09:49:34 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Daniel Schultz <d.schultz@phytec.de>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
+Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am62a: Set Critical Temp. to 105C
+Message-ID: <20250502144934.t6hjiwp2f64ovb34@deeply>
+References: <20250502142606.2840508-1-d.schultz@phytec.de>
+ <20250502142606.2840508-2-d.schultz@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20250502-ipq5018-cmn-pll-v1-6-27902c1c4071@outlook.com>
-X-Authority-Analysis: v=2.4 cv=Ldc86ifi c=1 sm=1 tr=0 ts=6814da73 cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=dt9VzEwgFbYA:10 a=UqCG9HQmAAAA:8 a=dROWWaiHUd5sXOo7F1MA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: c4wWpp7X607r4GROj6xsW3-cG2Zfs9x7
-X-Proofpoint-ORIG-GUID: c4wWpp7X607r4GROj6xsW3-cG2Zfs9x7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDExNyBTYWx0ZWRfX7LJYuDJutqoq WqhDdzMUGBJFAzulXMaKpEOPmFmCYP6yT08JdjXFKIDe42Gfw1YTGNPcYtRtBtcyQNCaIL4Gn5+ IlILgtxb+iYf64ueaT4M/G6lhsNaA91yE+8IEQdJ0nzDGr9Zv76BRNjlU9o9toLwmLTcAOY/On7
- l4dDRqQK7HWDBOQ3nVCEqh1EW9fvelpG4BDLq8TeptwtfN12vTaqDH72aRNKfTMTehN8vwGo3Iv PjNADyRXfZKdtSETB9N9eU4UFPoin4Oy6pWTHzb1PJ/JP0fkptxEir3wMtmKLrlNbMmUVHq7Ap1 7xrz5GtzxZtULmbTgYUvFl+Ga9IIzNAGJYz6I6lyo9/qe4xDfXx+lnRU9SpRTBWeTPi1sGV8zzu
- 0190Omr9r+o+shRTnjDQxuqgHWpRLmauR6QTUaBNdc7LLisK9T5smvpWPCNWUuIINLAly6lE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-02_02,2025-04-30_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 phishscore=0 impostorscore=0 clxscore=1015 spamscore=0
- bulkscore=0 mlxlogscore=911 malwarescore=0 mlxscore=0 suspectscore=0
- adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505020117
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250502142606.2840508-2-d.schultz@phytec.de>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, May 02, 2025 at 02:15:48PM +0400, George Moussalem via B4 Relay wrote:
-> From: George Moussalem <george.moussalem@outlook.com>
+On 07:26-20250502, Daniel Schultz wrote:
+> The AM62Ax SoC supports two temperature ranges:
+> * A: -40 to 105C - Extended Industrial
+> * I: -40 to 125C - Automotive
 > 
-> The xo_board_clk is fixed to 24 MHZ, which is routed from WiFi output
-> clock 96 MHZ (also being the reference clock of CMN PLL) divided by 4
-> to the analog block routing channel.
+> By default, use the lower limit (105 °C) so that any AM62A running
+> in Extended Industrial mode will shut down safely before overheating.
 > 
-> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> If the bootloader detects an Automotive-grade device, it should
+> override this and raise the critical trip point to 125 °C.
+> 
+> Signed-off-by: Daniel Schultz <d.schultz@phytec.de>
 > ---
->  arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts             | 3 ++-
->  arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts | 3 ++-
->  arch/arm64/boot/dts/qcom/ipq5018.dtsi                      | 3 ++-
->  3 files changed, 6 insertions(+), 3 deletions(-)
+>  arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-> index 8460b538eb6a3e2d6b971bd9637309809e0c0f0c..abb629678c023a2eb387ebf229f6dd1c30133b19 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-> @@ -80,5 +80,6 @@ &usbphy0 {
->  };
->  
->  &xo_board_clk {
-> -	clock-frequency = <24000000>;
-> +	clock-div = <4>;
-> +	clock-mult = <1>;
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts b/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
-> index 5bb021cb29cd39cb95035bfac1bdbc976439838b..7a25af57749c8e8c9a6a185437886b04b0d99e8e 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
-> @@ -124,5 +124,6 @@ uart_pins: uart-pins-state {
->  };
->  
->  &xo_board_clk {
-> -	clock-frequency = <24000000>;
-> +	clock-div = <4>;
-> +	clock-mult = <1>;
->  };
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
+> index 39ff9118b6c4..40dcb9bab965 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
 
-Is the divider a part of the SoC? If so, please move these values to the SoC dtsi file.
+Why not create a separate header for industrial grade and rename this as
+automotive grade and let the board file pick the right grade used on the
+board?
 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> index 78368600ba44825b38f737a6d7837a80dc32efb6..7e40f80e4795de25d55b5a19c1beb98e5abcdef3 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> @@ -31,7 +31,8 @@ sleep_clk: sleep-clk {
->  		};
+> @@ -19,7 +19,7 @@ main0_alert: main0-alert {
+>  			};
 >  
->  		xo_board_clk: xo-board-clk {
-> -			compatible = "fixed-clock";
-> +			compatible = "fixed-factor-clock";
-> +			clocks = <&ref_96mhz_clk>;
->  			#clock-cells = <0>;
->  		};
+>  			main0_crit: main0-crit {
+> -				temperature = <125000>;	/* milliCelsius */
+> +				temperature = <105000>;	/* milliCelsius */
+>  				hysteresis = <2000>;	/* milliCelsius */
+>  				type = "critical";
+>  			};
+> @@ -50,7 +50,7 @@ main1_alert: main1-alert {
+>  			};
 >  
-> 
+>  			main1_crit: main1-crit {
+> -				temperature = <125000>;	/* milliCelsius */
+> +				temperature = <105000>;	/* milliCelsius */
+>  				hysteresis = <2000>;	/* milliCelsius */
+>  				type = "critical";
+>  			};
+> @@ -81,7 +81,7 @@ main2_alert: main2-alert {
+>  			};
+>  
+>  			main2_crit: main2-crit {
+> -				temperature = <125000>;	/* milliCelsius */
+> +				temperature = <105000>;	/* milliCelsius */
+>  				hysteresis = <2000>;	/* milliCelsius */
+>  				type = "critical";
+>  			};
 > -- 
-> 2.49.0
-> 
+> 2.25.1
 > 
 
 -- 
-With best wishes
-Dmitry
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
