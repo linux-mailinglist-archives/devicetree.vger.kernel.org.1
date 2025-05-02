@@ -1,76 +1,100 @@
-Return-Path: <devicetree+bounces-173112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55A9AA7741
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:27:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C8B1AA7737
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:25:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 043F69A5A61
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:26:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2A03189D0EE
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F591266B4D;
-	Fri,  2 May 2025 16:26:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66A6225DD05;
+	Fri,  2 May 2025 16:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wGI3abTR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QwwFaPTs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 956A82609F7;
-	Fri,  2 May 2025 16:26:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5A0725D203;
+	Fri,  2 May 2025 16:25:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746203178; cv=none; b=movj9e15uMjscOe1VdpYjGnFo8/hyGYL3xfKteF5RJcRFvZ+UxfL/+p34oTTkx61SpPwmM8bfMz0dAnT5cLHO8njNZJl4qjKkz9kbgB8Mq2LLLOB3QAjOEzPxv9yzSSWDP//KkgwCkDlBfd09sGDRWvE0PQXhCWpr/mIIW+P8co=
+	t=1746203148; cv=none; b=g+8ZGF/6Ztwo+YeqMiCy69CFiH0Tck/v1NtytCrVhxs+TZu9/ktTUxO6sweGK4iQQwra8S911+WvP9Zdn2L4w7v/r0DLuF8OHH0JtHUBD4LBm2h/iehlezmjGINT2NtvpMlRpvy6AJ+haqI0rYdx0KGeiKqNgtFvOLpBtIf75g0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746203178; c=relaxed/simple;
-	bh=4iNIEE4y/RQ1nYh8BrYUSolMwW26mY5tQJXNooGYbEU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FR12OzM0Xp8omOY/Cb1b3xwRbQawkUt7BNXg9riGfPz1aUxD4FFxf488nYp+9JN25++i5DofbrjGCSpCEBRXzn8WR2+tr9px7aNsLbPHuBjRo+ESbUvcbRCB7nuNtHKO3f91QsKGJr8GRSm7enTQ+DMVj6B6WllyYsIL/yIoqCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wGI3abTR; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 542GQ6C8448894
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 2 May 2025 11:26:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746203166;
-	bh=Of8g9618ZH89TKBMPSTzOkja8KKZL8ustRn0kzQjYOk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=wGI3abTR6DKUQtt4nY2aOSJN/ERwB1KBUFTS1GQ4km61wcjfW5Z+pY4OnQ5q+RHr5
-	 rFO2X68plwNxfMS1OHCOdr4s+X0xHeHlBuzh1yYjtJxEpLDDiB6NbzejFT3PPtblQb
-	 6K1PWJlN26uLLtEjXeF7GpqE+1l3rx7r16NPQAnc=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 542GQ63b031257
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 2 May 2025 11:26:06 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
- May 2025 11:26:05 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 2 May 2025 11:26:05 -0500
-Received: from ws.dhcp.ti.com (ws.dhcp.ti.com [10.24.69.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 542GPexA028994;
-	Fri, 2 May 2025 11:26:01 -0500
-From: Rishikesh Donadkar <r-donadkar@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vaishnav.a@ti.com>, <devarsht@ti.com>,
-        <y-abhilashchandra@ti.com>, <s-jain1@ti.com>, <jai.luthra@linux.dev>,
-        <jai.luthra@ideasonboard.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <imx@lists.linux.dev>, <r-donadkar@ti.com>
-Subject: [PATCH v2 4/4] arm64: dts: ti: k3-am62x: Add required voltage supplies for TEVI-OV5640
-Date: Fri, 2 May 2025 21:55:39 +0530
-Message-ID: <20250502162539.322091-5-r-donadkar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250502162539.322091-1-r-donadkar@ti.com>
-References: <20250502162539.322091-1-r-donadkar@ti.com>
+	s=arc-20240116; t=1746203148; c=relaxed/simple;
+	bh=EwSbdHBERTd6pqQh+LltY3oY+RPjN0l9A0253wmAGy8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IkSdeJVD+SiYEc4S1VKAEaotJGHstfNcsmZDOLDZZe5V6/nAeO3dLg9IG1uJ5/rhoUaaYsWNZQU+9zY2gliMhQAVVJl4lJpAiz2gZMLV/IbEJw+V/tW40InhgQjgY1Ka8/0G/eLbkNIQpn8+Kvyjwl01foNC3ApyNaiEGPvcQ8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QwwFaPTs; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43cfe63c592so20490865e9.2;
+        Fri, 02 May 2025 09:25:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746203144; x=1746807944; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7ypXhiXFKasOWjLnzpie9p05fyvGjmZ0NHkZ8L97MCI=;
+        b=QwwFaPTs1AZiuGiy2pVA5gWhXBJ2houocBCPVMiYrZMgYDixNXl1OgUkYsgoEfAyqa
+         RL/EtPsiW86mO6Pq6xvCxcI8Uq3JlgcyxPEZm54ohgqrFKo4kSMaagLrtv/z2JS280x6
+         LHbFy6fyyLLZHE/tDpLOdySYtAj/AGwNDlbKRafFWTUZECOf2KH3MKCFM1eeo1H6hzri
+         YMZ3uqB4hAvuOpuAaDYFvJ6wc4d/IBh6v83uE/+XsLKMgQ3DgzAkyjEBpD3yjbqqwHMb
+         SojQgCfMnncM8IoFoXYlrownZre/sIM+kY4PdBYzuOYzO4tXnCnsP9a+zSprZzuKyK7t
+         oS6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746203144; x=1746807944;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7ypXhiXFKasOWjLnzpie9p05fyvGjmZ0NHkZ8L97MCI=;
+        b=E7hzF/jbd6IswebG7ao/bIXFr2rzBJJmw0Z24nVG39Rzhh/6ei7s6tqfi/Xs5ytzFR
+         dCKeT+jyjnhFM1qjSVdkvClyL9qLMmlqpbmUqix6K7YrUQXYnCHoBTBpe8dLMM+VoCzg
+         EXplQqlBRkJARHtKvwZaL6v/qbqHRKjhZHqAuuUw/GszvRLIlGZSEALoxWzfLb5Nl5wL
+         MmrejanzzCJsp3OyF2ti0iMn4HQxVGOoeXvgBdTVPb9MDvzi0kxnex6oby6tYPGv1i0h
+         MXzOX28CBbjpoaVnNCHftbuoKzvVU/BCBxV9NUtV2ovwKN+YMuY6QxvtyP/KmCQOk13U
+         oCpg==
+X-Forwarded-Encrypted: i=1; AJvYcCW/hOnR5XuP1KWO3TveFzC8nDQ7TJZCqi8sruU0TFgd7fmj4+68XwhuSCeF5zgyIrpUD3N4rpFsVcs7n+k=@vger.kernel.org, AJvYcCWe8FMupF9Ravr4CPCKQJ4qDtoomydudrcUS/gcexUnpI+KE6skcig/NZwmXBD2Moe4XRfm5G9GYwlJxT1u/S2birM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVIVPKU+xUFCm6je8eyzaQrMdoCtcCSnmeRHnOc50yIc/y1j3S
+	+ESzVPv0yHpuui5hPcnZrVAfTSrFkZyHwsXRBMZbdgW3b2sUZoTL
+X-Gm-Gg: ASbGnctJfKPp6JkrYkiPUd8EtTLL8nTYhUskO6fZ+4gscmz8N93jQz3iZ0dUI2FTFZ5
+	nQriNMDW2SSU0vn0nL5D05Ceqw3ZLn7Qa63SiG/Za6oyIUZirDUIhpRrLLRuuKSdoHcwACuS4xd
+	ifPG1nVM/uS7gasDbxRU4KYFPs8HYqreziJ+haPNV6PQB//PcR8rmrJL3R17pv/Sc6oN2yu6AzH
+	vdJ/b79u9fbPTNlqK3GE9b507Tv4ecyXCAvHnsoCKkac4/3d8tcRR5MoXFP/mo6J6GciRThOR0R
+	EhebYoPLDUrT2tGgsY3zERecmnKv1ATj7sM+i1b2G3Y1DgOM5CeozxKEwtgeb990BroZDSmVBMI
+	=
+X-Google-Smtp-Source: AGHT+IFFsOh+qCz1DNQRSPc2jp6Jl7hwz2Aj4ZvAdyl2rsdrq6cb6FbqWgbdu3F6VxLaspCW/NR+IQ==
+X-Received: by 2002:a05:600c:1d95:b0:43c:ec97:75db with SMTP id 5b1f17b1804b1-441bbec2288mr29723645e9.11.1746203143605;
+        Fri, 02 May 2025 09:25:43 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:10cf:e432:b2b:bf99])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b8a2874asm48584405e9.26.2025.05.02.09.25.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 May 2025 09:25:43 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] dt-bindings: gpu: mali-bifrost: Add compatible for RZ/V2N SoC
+Date: Fri,  2 May 2025 17:25:40 +0100
+Message-ID: <20250502162540.165962-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,75 +102,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-The device tree overlay for TEVI-OV5640 requires following voltage
-supplies as mentioned in the power section [1]
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-AVDD-supply: Analog voltage supply, 2.8 volts
-DOVDD-supply: Digital I/O voltage supply, 1.8 volts
-DVDD-supply: Digital core voltage supply, 3.3 volts
+Add a compatible string for the Renesas RZ/V2N SoC variants that include a
+Mali-G31 GPU. These variants share the same restrictions on interrupts,
+clocks, and power domains as the RZ/G2L SoC, so extend the existing schema
+validation accordingly.
 
-Add them in the DT overlay.
-
-Link: https://www.technexion.com/wp-content/uploads/2023/09/product-brief_tevi-ov5640.pdf
-Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- .../dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso  | 32 +++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso
-index b6bfdfbbdd984..fe3bc29632fa9 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso
-@@ -15,6 +15,33 @@ clk_ov5640_fixed: ov5640-xclk {
- 		#clock-cells = <0>;
- 		clock-frequency = <24000000>;
- 	};
-+
-+	reg_2p8v: regulator-2p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "2P8V";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&vcc_3v3_sys>;
-+		regulator-always-on;
-+	};
-+
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1P8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3_sys>;
-+		regulator-always-on;
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3P3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_3v3_sys>;
-+		regulator-always-on;
-+	};
- };
- 
- &main_i2c2 {
-@@ -40,6 +67,11 @@ ov5640: camera@3c {
- 
- 				clocks = <&clk_ov5640_fixed>;
- 				clock-names = "xclk";
-+
-+				AVDD-supply = <&reg_2p8v>;
-+				DOVDD-supply = <&reg_1p8v>;
-+				DVDD-supply = <&reg_3p3v>;
-+
- 				powerdown-gpios = <&exp1 13 GPIO_ACTIVE_LOW>;
- 
- 				port {
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+index 019bd28a29f1..3297ed160ebc 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+@@ -25,6 +25,7 @@ properties:
+               - realtek,rtd1619-mali
+               - renesas,r9a07g044-mali
+               - renesas,r9a07g054-mali
++              - renesas,r9a09g056-mali
+               - renesas,r9a09g057-mali
+               - rockchip,px30-mali
+               - rockchip,rk3562-mali
+@@ -145,6 +146,7 @@ allOf:
+             enum:
+               - renesas,r9a07g044-mali
+               - renesas,r9a07g054-mali
++              - renesas,r9a09g056-mali
+               - renesas,r9a09g057-mali
+     then:
+       properties:
 -- 
-2.34.1
+2.49.0
 
 
