@@ -1,127 +1,142 @@
-Return-Path: <devicetree+bounces-173142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F4BAA78C3
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 19:42:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8027AAA78F7
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 19:59:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D19E31BA5B16
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:42:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FB943ADDEA
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 948C125CC4E;
-	Fri,  2 May 2025 17:41:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="MdQ2XScY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6005B2609EC;
+	Fri,  2 May 2025 17:59:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2A3B255E30
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 17:41:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D20256C61;
+	Fri,  2 May 2025 17:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746207714; cv=none; b=FrB+HHA8xQvu2HDJYP0qaOU7WxMfXr2/+/nkd/NwXAXevBnXGqDGNZI8BtL4Zn6MJ79aYcOyplhasYcdinyICaJTWbbQLcmHj7GEsYvPP7mU+VGxb7wmS95rzPYj3vj0rceLjJ3SZHYqjmgKwDrsGXdPNTbbNcUQq3em6PK+oAY=
+	t=1746208750; cv=none; b=cC1c2gPO/98+67m/DkDYtrbNwcMqmnDa+2xyAUWSaKzJu2Gr8lZapgcc1zULQhb+kx/6Aiq6rIrVO0IH0Oyp+401IrXVTETg7g+4Di7aRLz7gzM/bGwqVOeH1astU+N8oX9YCclKDvWUgdyHyEY8/5WuZAeRbf4E+8EbVxB023Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746207714; c=relaxed/simple;
-	bh=eLz7obv35w/u/cKxEql/UTAbQvGopYBPWu2O23zJfFE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=PxWUobkeHFq71SCUR1xGpKL7rp54LdtpMDhxyNaZ6B6qRybJD7ROppyIFqmuGbdrfN4NT7DPtHDhdIL+1+5CAeAGgo+pefhXWA7ThWyoqcjKRhzkCPxmyPyXyKGljcg8hbJhHSf6KCYIWfxHLl2yIMcXuwjuSKev6hPJhQ+GDFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=MdQ2XScY; arc=none smtp.client-ip=91.218.175.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <7590d7af-e8c3-48cd-aba2-10af4d9d909d@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1746207700;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Xff4owWgDUIlVTdiJE9nAsinQN/NlojnRKLTslMQN8U=;
-	b=MdQ2XScY0YuJgRON9Ye4a2dZ6lrHOCp7JQsLUQSjuXZectNoGme+AUXVBqAz/bLAUi84rn
-	tYk3cMji0ERwL3QX6FL0n8Dtm2D4cGvlptE8Tm+HJDb0EKSUXLT3/UAE5lO/SrfbPWesYm
-	LxlvBaN08D7jjeD+fd2fPTrHOxfw2sQ=
-Date: Fri, 2 May 2025 13:41:32 -0400
+	s=arc-20240116; t=1746208750; c=relaxed/simple;
+	bh=MNs/AuayvBr1yC2U1RFW8MoN4KC1V3GKWSl7FAhXADs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JbP4RnYvQREST+tO1UR9t2UOb2DrgkTJl3vJ8QHlDfT6YSNAu177dC7Hlz+b1sAMsHbeXth29dBE97rQ5dr2HBxibM/OJgUsFtH4iSLYIBGLhTYgN7bx+SDzXPNYbPf9PbKt6Lqhh+b4n/2QlIPnysb1J7XuvMa/pdNCX5Wf9c0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-525b44b7720so648788e0c.0;
+        Fri, 02 May 2025 10:59:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746208745; x=1746813545;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+utF3dlTOxTPPaTvo29QMKNLxKu2c5QOiBUT+LYD4Fc=;
+        b=giZL60yHcLhVEFxGu3HyLARB1I0OI9rT97u7Ot4KUS8zPkEcPAeXd+DMEDebRwDyEQ
+         l+swm8+YyqlOV4IXHmSt7E/lhOQPPWiFO4VQKNqobZtwEw7fIQiIFmM9gY13GX0MIokE
+         LSG/Rkxqsy1t7k/hDun0RcnYsnRopEUV55LDyiWicxCaGD8EKjxACKK7zyjc1k1Y2Uj0
+         /JK15qdbzCzTl9FgJTtPaamHCDTeaj8IdyAYUHrUAPmOrZCqK//S0ibCKGVO2dzR2OOn
+         c5U4LnvLqImfVt+l1V8c211YHeACk62LPltVXDA748IJaqdBzLZtaT37ZV1ySmssASeg
+         DrSA==
+X-Forwarded-Encrypted: i=1; AJvYcCUR5WTqb435RswqpeK7TJHF8TDXTWxL6LBMU2np5ViX2qYnoEeeNHA7vkIRxj8g2fksS1jq3HJjGx3zQ/ngSUFiBmE=@vger.kernel.org, AJvYcCVA+quwPbMEVSuXz9EtOx3BshD7W3m9TTCBrYUhOOX7ueyMBBK4+/pBff2fhT2WrOQP3LxF71X6UrQ/@vger.kernel.org, AJvYcCWd872d2kHoYKlhUoCmWWYB4uSfVTzXC/eRLSG7cWG7WFxZBMOmlBB7cER55BS3C/EV9icTJsIBXbN6@vger.kernel.org, AJvYcCXwZYAXvjKCQslju6hOSCIRxvUG2U/+ZTNVJ8pvIVALYUMAJd6FTWyma5alws40M5mwHvbdlb4dnT8gHV8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoPWZX81cw2hZXKQOBDmezfzbPY+w3JlVFZYhvIba4Mf7fPUTU
+	eEB90I2YRtZLF1fLSVg6BUJmWoMZd804HiqjDrS6NemvAO4Szf+zP23iuhke
+X-Gm-Gg: ASbGncsbjwBNiMZ/YIx3WjfcdvRRBKHdTeYqEf+2XQU07kw45ddk6Z0Yt7NXMTuQNu1
+	/LxU2/Bb4w2IjsnprGQTG/qJ6SDPG7OoPx62juO/yXKj0thXFMQ1LOT4lxlXKwbXKumjUrJEAS0
+	dogaPR6J1C8SxAYEhhVQkGxR1vDhrxDx9WP4r8e2rvrPDNZnhP0KLPkTH1ZFDtdvz3bko7vPSiP
+	zspE1mBEypo51E+vTUnQtg0FsxIjFhP3IEBJ1cAneIRy8VLatkmAY6nC5TgOYZ8CCmpvXdJaMHJ
+	Z+RYVCe8dncNCX3s+gn6Ef3/4ASOE8SAOwHDdz+pLUE06JBq4XkJ6QxOiMdEG+CYm5UK3+9o6SN
+	nJqM=
+X-Google-Smtp-Source: AGHT+IG6LKO2K35DHJ7AiT3Z2kSL4oPzMH8/EbvC8k/joE/9xpXcgA6azLkzhshd6YVoHQet8nX+ug==
+X-Received: by 2002:a05:6122:659c:b0:529:2644:9118 with SMTP id 71dfb90a1353d-52aed7bf7camr2910730e0c.9.1746208745506;
+        Fri, 02 May 2025 10:59:05 -0700 (PDT)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52ae419fbd3sm591770e0c.30.2025.05.02.10.59.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 May 2025 10:59:04 -0700 (PDT)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-877fd121274so471060241.1;
+        Fri, 02 May 2025 10:59:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU5b+L63Wd1Fi3JnbwsiXDY8we9SCBlklA9EGM80rF+X1TXjDNBQP8SNY5T3aFLWRWh7f0x7396CQKk@vger.kernel.org, AJvYcCUS48kjyeBNYdkRGiwykEEArgKPcNFotYW4iAC8XCyjPYnrg562VqaJWie2RKrv5zSNjJc2xDvVG2I7@vger.kernel.org, AJvYcCWFIp28XKT9Qn5SQ6ioODf24yb0natuEO0oqMdNjJFCMpx7ugPYOUkqpt/bE/F1IKueTYaOa7SVcgjRSdg=@vger.kernel.org, AJvYcCXpahORTzV5qsyKlu3xcW2KpSiQhnftqehMByHXBUM8uoVjuGruLeYCjHyt9rwlwAj5zoW93C/E0rWjtTSO7ZorZJw=@vger.kernel.org
+X-Received: by 2002:a05:6102:149a:b0:4c3:43e:5227 with SMTP id
+ ada2fe7eead31-4dafb51b280mr3550151137.9.1746208744099; Fri, 02 May 2025
+ 10:59:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [net-next PATCH v3 00/11] Add PCS core support
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, upstream@airoha.com,
- Christian Marangi <ansuelsmth@gmail.com>, linux-kernel@vger.kernel.org,
- Kory Maincent <kory.maincent@bootlin.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Clark Wang <xiaoning.wang@nxp.com>,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Claudiu Manoil <claudiu.manoil@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
- Ioana Ciornei <ioana.ciornei@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
- Joyce Ooi <joyce.ooi@intel.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Madalin Bucur <madalin.bucur@nxp.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Michal Simek <michal.simek@amd.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
- Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Robert Hancock <robert.hancock@calian.com>,
- Saravana Kannan <saravanak@google.com>, UNGLinuxDriver@microchip.com,
- Vladimir Oltean <vladimir.oltean@nxp.com>, Wei Fang <wei.fang@nxp.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20250415193323.2794214-1-sean.anderson@linux.dev>
- <aADzVrN1yb6UOcLh@shell.armlinux.org.uk>
- <13357f38-f27f-45b5-8c6a-9a7aca41156f@linux.dev>
- <aAEdQVd5Wn7EaxXp@shell.armlinux.org.uk>
- <8d6c8f72-a8bd-43a8-b1e6-a20cafddf804@linux.dev>
-Content-Language: en-US
-In-Reply-To: <8d6c8f72-a8bd-43a8-b1e6-a20cafddf804@linux.dev>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+References: <871ptq4blr.wl-kuninori.morimoto.gx@renesas.com> <87plha2wzr.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87plha2wzr.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 2 May 2025 19:58:51 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVAS-jBVzKR5MnK=ByT7kcdXi1EU9czAvXc7NvC37qy1w@mail.gmail.com>
+X-Gm-Features: ATxdqUGplgwl97XrZjgiSV8k9sw-zEBQpP9eLbgU5d5tWrTao28xjeMcuuYb4zY
+Message-ID: <CAMuHMdVAS-jBVzKR5MnK=ByT7kcdXi1EU9czAvXc7NvC37qy1w@mail.gmail.com>
+Subject: Re: [PATCH v4 8/9] arm64: dts: renesas: sparrow hawk: Add MSIOF Sound support
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
+	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-sound@vger.kernel.org, 
+	linux-spi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Russell,
+Hi Morimoto-san,
 
-On 4/17/25 11:29, Sean Anderson wrote:
-> On 4/17/25 11:24, Russell King (Oracle) wrote:
->> On Thu, Apr 17, 2025 at 10:22:09AM -0400, Sean Anderson wrote:
->>> Hi Russell,
->>> 
->>> On 4/17/25 08:25, Russell King (Oracle) wrote:
->>> > On Tue, Apr 15, 2025 at 03:33:12PM -0400, Sean Anderson wrote:
->>> >> This series adds support for creating PCSs as devices on a bus with a
->>> >> driver (patch 3). As initial users,
->>> > 
->>> > As per previous, unless I respond (this response not included) then I
->>> > haven't had time to look at it - and today is total ratshit so, not
->>> > today.
->>> 
->>> Sorry if I resent this too soon. I had another look at the request for
->>> #pcs-cells [1], and determined that a simpler approach would be
->>> possible. So I wanted to resend with that change since it would let me
->>> drop the fwnode_property_get_reference_optional_args patches.
->> 
->> Please can you send them as RFC so I don't feel the pressure to say
->> something before they get merged (remember, non-RFC patches to netdev
->> get queued up in patchwork for merging.)
-> 
-> This series is marked "changes requested" in patchwork, so I don't think
-> it should get merged automatically. I won't send a v4 until you've had a
-> chance to review it.
+On Fri, 18 Apr 2025 at 01:23, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> Sparrow Hawk has Headset (CONN3) AUX_IN (CONN4) for Sound input/output
+> which is using MSIOF. Support it.
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-Any chance you could review this series in the next week or so? I would
-like to send v4 in time to be reviewed before net-next closes later this
-month.
+Thanks for your patch!
 
---Sean
+> --- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+
+> @@ -603,6 +655,52 @@ sd_uhs_pins: sd-uhs {
+>                 function = "mmc";
+>                 power-source = <1800>;
+>         };
+> +
+> +       /* Page 30 / Audio_Codec */
+> +       msiof1_pins: sound {
+> +               groups = "msiof1_clk", "msiof1_sync", "msiof1_txd", "msiof1_rxd";
+> +               function = "msiof1";
+> +       };
+> +
+> +       /* Page 30 / Audio_Codec */
+> +       sound_clk_pins: sound-clk {
+> +               groups = "audio_clkin", "audio_clkout";
+> +               function = "audio_clk";
+> +       };
+> +};
+> +
+> +&audio_clkin {
+> +       clock-frequency = <24576000>;
+> +};
+
+Please keep the nodes sorted (by node name).
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.16, with the sorting fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
