@@ -1,132 +1,221 @@
-Return-Path: <devicetree+bounces-172975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7490AA71A5
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:22:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93ECAAA71AF
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:24:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8DC8189353C
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:22:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29AC23AB1FB
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B92D02522A5;
-	Fri,  2 May 2025 12:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B7E246785;
+	Fri,  2 May 2025 12:24:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZYvtdJzm"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vkO3agk7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C711723C4EF
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 12:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91338210185;
+	Fri,  2 May 2025 12:24:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746188557; cv=none; b=Q1qgIqvouurx9hMTOxGNIGSD2UpcmAEcwshK1MMN9Aok7dyPObJMTmtgFXgbsaaD/yA1x8gaKz+qC5QpsDPFDDvBsoBBRmQgnHsNQPcQsNwG+emuJJ4OFacvuDUT4UsSsdkKoU4WLye37EOsN80Hl43Ca3+jbggWHN1lu8LstGE=
+	t=1746188672; cv=none; b=S5wTPT3DRSwJy0yh+/vHMv+cJRqAfxvAvlFeFIKdsyPgk0mjNbZqC/ffICEueiJrUO9rEzKj+seaDebmyw42PgYMCe6xNwIKYWCvi9Pc7w1B7ySrfu2CBvipYcgayQ15p4bstt5qNco7BkiP+a3I2WOu18rGnbmktl5EegVuPNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746188557; c=relaxed/simple;
-	bh=GKN/zeU/yMVetfdzvS9ozuLJj3zYNqyKb2B/40dRc0k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FBshHbDbj8eB0V30h5e6dp4sAEwKVMrkehWF7mrhJVVa+9au1t1kzzkJ8/ezNKiV+siuLW0YFy7F0Vcv4DojG5PiY5AvsHeXXR6RFMDY6daJiXuuhrmTlsIz4kbpwZROPc/Ogf1DYM1C0MGfQbCqrf61AEuQNcXY+iMZGBTEqF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZYvtdJzm; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43ce70f9afbso15661405e9.0
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 05:22:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746188554; x=1746793354; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AGAl7iJZhzrMd/4At9r/NfBVUJdFKiTG2vzkbY4stpw=;
-        b=ZYvtdJzmbGavJoWIl8GcdrkE7MzoQoyYflFbCUpnPBoAwR96tZlBipxnOcbMduh6sN
-         XEWe19C79yIVGr9uskUSyvhEmW3keesVD1YRXJsRx2FopQ96c1XijWeEig/h1uM8lcy6
-         1rNWvL99zJHUYRYDelqfjl4Vxj5GEMW0tws7hVfDyNjfVaAPBTHXpcUebceRFrU2exG6
-         B82es7vxpWeWuxSQWogaCCRhwhAsS8wQU8QtzwZXAYDAViD20oK9F07wguV+F6tYoiAT
-         nt+efd9rGjwP8w8WnJNcN0rbkXI0BzGpSfxrIM5Q5BgnSnLWSPBeNip19V4tx1Dc+BRX
-         tkmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746188554; x=1746793354;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AGAl7iJZhzrMd/4At9r/NfBVUJdFKiTG2vzkbY4stpw=;
-        b=DzA275xnbjR4RraQNNqx/kvzNVyCFM84BqWxznlWpY5mrV3T1FhohS9Q9alEIvBjGV
-         pirriBgdzkdj3ueBvkdHykgs9zJeNcgcP8CIf0RWZibxfDQ13/Ypz9zREqTgzheVELlX
-         G9YdLQ/CVfKJOsz6142QiLoC3A0mytoLeCxb11zY09z6+NbO9tgjwhZhhSOC7EyFZVt/
-         u9asp+wE/AzzohIJyvs3LF/LUUpWkxJLOXEYSfCCgCADsBONPXURb/ZCoTl6z4E1DiD0
-         fZaE9Jk3pyPc0jx7zGVchL6oXV0gXqqt+yUDCE4U7IpsnR5h0gZ8jAU6J4/y2CLV9Akr
-         8Vvw==
-X-Forwarded-Encrypted: i=1; AJvYcCWfST4YZ15Mxh3RGoPMZ4y9xWo0SHHrAoLbjvzlOlvw4mJQmqBrrv79ADQUyhJuQv50fBguTKCoUcnh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1OYhVjJU/p7+spi5iXIJTGowTue1zayxsCOVCe+rv0mQqWRft
-	31t4LRjx/zivwvmPfdy1SKr8+LgjBn0l4BBOBtDjhkjDfVcO0lcBj0TrIvgnYes=
-X-Gm-Gg: ASbGnctXui4kppW1rD5N/RWk3DdwsuiFkccU9v8dSJp27ce7BKWyTu3PMVQ6e/wBldC
-	bkv0eGldKkqp57HgCDQOEofo8kPI8CVEGW3lmR6JEFIUBCuZP2Zr3gntcE9kh2IETHwbgxjLvxh
-	aLs+EeyYxiny33oY+ArFg6xAVj3xbbD/uAP9bC/tjS3lyunae7iFkdTE4CeXH37lGunF5w9udec
-	7VjGYdPc1qWtamLzF0FuocvSzk9g95MqHU2Ys+km+iS3BNrKS7WpoEuCL3sX5CYTaE+/S+7pZlc
-	TOWgtnBDmZEe/b7XyVj5ugUiDr6EksA8qMd/h4H5lRta5RPB0p4aSJRYt+fnSTj8dEcbULnfLbA
-	8bvSfMYFK/caHhL+J
-X-Google-Smtp-Source: AGHT+IGAup8pZea6zJCXydbst81V1n8k/rAt9qOxSfiYhbAH8b2I5VdLjLvIPf6UJhHnoRz5UGJn7Q==
-X-Received: by 2002:a05:600c:820a:b0:43d:7588:6688 with SMTP id 5b1f17b1804b1-441bbeb30aemr25881475e9.12.1746188554115;
-        Fri, 02 May 2025 05:22:34 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2af4546sm90036325e9.22.2025.05.02.05.22.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 May 2025 05:22:33 -0700 (PDT)
-Message-ID: <250cdec3-1437-4c45-aab1-0428218b9437@linaro.org>
-Date: Fri, 2 May 2025 13:22:32 +0100
+	s=arc-20240116; t=1746188672; c=relaxed/simple;
+	bh=mA3KD3PUVorrTg8pUSETBIodjsOseISzTYIY4e13tCk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oayxoiIO27vkvqe+T19fpQ90B8fcxgwzxCnzTItm7G2UDp0zCwh5Qc62LbD3RdD5ujoY7KQ9lxW9dQkRuM+OIB7bNsT++XjKIu628bvDI8UrRGu41exssBmjkrJCRdpTatQX8vFsQQ9kMP9MbZPaDv53nFTPlyapQF9SU1+snVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vkO3agk7; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 542CONHa232051
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 2 May 2025 07:24:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746188663;
+	bh=bsBaMgMVIV9pKDtfbcIi9RmwwVkkoMKgBlMiHOfLv1Y=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=vkO3agk7QcCFUTpwrspnqF8oDSO+Cal/siWBnUaqwoyqqczU1JamHNddCNatrrGNe
+	 UCBZDonb7rFCBKae4Tx0yfqCjXeiehMWwHY6oQw4WCc4iUhQXVpZzBvswdBxVUJY+A
+	 zUFHoVAH3QPOd4lBWjoYByMXs5zHuZU5aVTz4Y8g=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 542CON7K007231
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 May 2025 07:24:23 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ May 2025 07:24:23 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 May 2025 07:24:23 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 542CONdL009817;
+	Fri, 2 May 2025 07:24:23 -0500
+Date: Fri, 2 May 2025 07:24:23 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Judith Mendez <jm@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hari Nagalla
+	<hnagalla@ti.com>,
+        Beleswar Padhi <b-padhi@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62-main: Add PRUSS-M node
+Message-ID: <20250502122423.weyvgng4s4zcjdxh@document>
+References: <20250430144343.972234-1-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/23] media: iris: Prevent HFI queue writes when core
- is in deinit state
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Stefan Schmidt <stefan.schmidt@linaro.org>, Hans Verkuil
- <hverkuil@xs4all.nl>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- 20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org,
- 20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com, stable@vger.kernel.org
-References: <20250502-qcom-iris-hevc-vp9-v3-0-552158a10a7d@quicinc.com>
- <20250502-qcom-iris-hevc-vp9-v3-5-552158a10a7d@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250502-qcom-iris-hevc-vp9-v3-5-552158a10a7d@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250430144343.972234-1-jm@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 01/05/2025 20:13, Dikshita Agarwal wrote:
-> -	if (core->state == IRIS_CORE_ERROR)
-> +	if (core->state == IRIS_CORE_ERROR || core->state == IRIS_CORE_DEINIT)
->   		return -EINVAL;
+On 09:43-20250430, Judith Mendez wrote:
+> From: Kishon Vijay Abraham I <kishon@ti.com>
+> 
+> Add the DT node for the PRUSS-M processor subsystem that is present
+> on the K3 AM62x SoCs. The K3 AM62x family of SoC has one PRUSS-M
+> instance and it has two Programmable Real-Time Units (PRU0 and PRU1).
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> [ Judith: Fix pruss_iclk id for pruss_coreclk_mux ]
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+> Changelog:
+> - drop internal tags
+> - rebase against ti-k3-dts-next
+> - fix header
+> 
+> Link to v1:
+> https://lore.kernel.org/linux-devicetree/20250108222048.818835-1-jm@ti.com/
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 90 ++++++++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index 7d355aa73ea2..ee53e663b5bd 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -1079,6 +1079,96 @@ dphy0: phy@30110000 {
+>  		status = "disabled";
+>  	};
+>  
+> +	pruss: pruss@30040000 {
+> +		compatible = "ti,am625-pruss";
+> +		reg = <0x00 0x30040000 0x00 0x80000>;
+> +		power-domains = <&k3_pds 81 TI_SCI_PD_EXCLUSIVE>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x0 0x00 0x30040000 0x80000>;
 
-Instead of checking for 2/3 of the states why not just check for the 1/3 ?
+Should this not be default disabled? pruss needs pinmux to operate
+correctly, right?
 
-enum iris_core_state {
-         IRIS_CORE_DEINIT,
-         IRIS_CORE_INIT,
-         IRIS_CORE_ERROR,
-};
+> +
+> +		pruss_mem: memories@0 {
+> +			reg = <0x0 0x2000>,
+> +			      <0x2000 0x2000>,
+> +			      <0x10000 0x10000>;
+> +			reg-names = "dram0", "dram1", "shrdram2";
+> +		};
+> +
+> +		pruss_cfg: cfg@26000 {
+> +			compatible = "ti,pruss-cfg", "syscon";
+> +			reg = <0x26000 0x200>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0x26000 0x2000>;
+> +
+> +			clocks {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				pruss_coreclk_mux: coreclk-mux@3c {
+> +					reg = <0x3c>;
+> +					#clock-cells = <0>;
+> +					clocks = <&k3_clks 81 0>,  /* pruss_core_clk */
+> +						 <&k3_clks 81 14>; /* pruss_iclk */
+> +					assigned-clocks = <&pruss_coreclk_mux>;
+> +					assigned-clock-parents = <&k3_clks 81 14>;
+> +				};
+> +
+> +				pruss_iepclk_mux: iepclk-mux@30 {
+> +					reg = <0x30>;
+> +					#clock-cells = <0>;
+> +					clocks = <&k3_clks 81 3>,	/* pruss_iep_clk */
+> +						 <&pruss_coreclk_mux>;	/* pruss_coreclk_mux */
+> +					assigned-clocks = <&pruss_iepclk_mux>;
+> +					assigned-clock-parents = <&pruss_coreclk_mux>;
+> +				};
+> +			};
+> +		};
+> +
+> +		pruss_intc: interrupt-controller@20000 {
+> +			compatible = "ti,pruss-intc";
+> +			reg = <0x20000 0x2000>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <3>;
+> +			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "host_intr0", "host_intr1",
+> +					  "host_intr2", "host_intr3",
+> +					  "host_intr4", "host_intr5",
+> +					  "host_intr6", "host_intr7";
+> +		};
+> +
+> +		pru0: pru@34000 {
+> +			compatible = "ti,am625-pru";
+> +			reg = <0x34000 0x3000>,
+> +			      <0x22000 0x100>,
+> +			      <0x22400 0x100>;
+> +			reg-names = "iram", "control", "debug";
+> +			firmware-name = "am62x-pru0-fw";
+> +			interrupt-parent = <&pruss_intc>;
+> +			interrupts = <16 2 2>;
+> +			interrupt-names = "vring";
+> +		};
+> +
+> +		pru1: pru@38000 {
+> +			compatible = "ti,am625-pru";
+> +			reg = <0x38000 0x3000>,
+> +			      <0x24000 0x100>,
+> +			      <0x24400 0x100>;
+> +			reg-names = "iram", "control", "debug";
+> +			firmware-name = "am62x-pru1-fw";
+> +			interrupt-parent = <&pruss_intc>;
+> +			interrupts = <18 3 3>;
+> +			interrupt-names = "vring";
+> +		};
+> +	};
+> +
+>  	gpmc0: memory-controller@3b000000 {
+>  		compatible = "ti,am64-gpmc";
+>  		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
+> -- 
+> 2.49.0
+> 
+> 
 
-if (core->state != IRIS_CORE_INIT)
-	return -EINVAL;
-
-Cleaner and more explicit - declaring the state you must be in, as 
-opposed to a list of states you should not be in.
-
-Assuming you accept that suggested change:
-
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
