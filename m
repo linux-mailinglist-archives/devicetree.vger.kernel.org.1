@@ -1,86 +1,301 @@
-Return-Path: <devicetree+bounces-172900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECF64AA6E0C
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:25:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 425D9AA6E1A
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:29:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6011B462578
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:25:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBF393B2217
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E6D22D7B3;
-	Fri,  2 May 2025 09:25:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 467D622DF91;
+	Fri,  2 May 2025 09:28:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pMYtrvdz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PIL1LPM3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1FD522D78B;
-	Fri,  2 May 2025 09:25:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DFDE22CBD9
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 09:28:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746177920; cv=none; b=oyXqNXJVzqp+vR7mrghG4s/VAsjaS9xyx/MwmdOpzvnBM2u726IyoXF6fIOyVgEE79BQAYl5IweINxyhZCsoHHcCqG/VnvebWWrrMfsTAFh7dk4yInuGTemyddzT2nBHlFALevomTbHD3SGZRGIwkHvQlfd57DEg3PuD28ap9ZA=
+	t=1746178138; cv=none; b=TmXOzoLYmzkSFeXeXyXZigOAR7pDN5WEdRvW4JM69DIBLDCfkK0EBbJEridXiqzOWiGMQMtB3tUA6q525IGHpK5hu1y8V77Iqp9AeVweHAAUBjOvIM8W4xyriBAgT7r82bDauokbGgulsiyJYRn3wW7rL33Gp9ZJv99ylXXPlII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746177920; c=relaxed/simple;
-	bh=6q6hCP/w+PMu5oMDcYrXYJBpy4Q+Ne5Kza1OqgsuBZY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YET4A+gDQcpfTwgClB/q5blW/GzL8+HdygioT4/Q7/mATp4tVWFlouH/lK2QTlrgtx0UmDdtQUs6eJiTWOxkbK7f9FyzNZE9txcJ4GUwVsdmfVolA2V4SDEv5bbpUWZOIyluwC6uH89WWo6boT7s+fz/tQppBvjshUqoBvP0Bsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pMYtrvdz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E52B3C4CEE4;
-	Fri,  2 May 2025 09:25:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746177920;
-	bh=6q6hCP/w+PMu5oMDcYrXYJBpy4Q+Ne5Kza1OqgsuBZY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=pMYtrvdzA59Nxhg7pLZBk751ciPkwbE6G2BV+L426NiTNOaEqwqUC11Fg9UNTwo7Z
-	 wI95b6iO0KWel8FW0t6P49QbIm0Gvb6vevwKueo2XpE6NI3nSwLUUnkuWCTSi55b/H
-	 wA6EiCEXEwke/uIh9TRXhI6P4fQiP3cLqAuuAHrraqT1e19ykZqO/XH1/6SwUpPGS+
-	 k0rjMMmSlx9C9hRaCGNIsTm8AVzCVY0JvxGHS9vilZT2srvaLMTWcDOlFP2V8Pbyoi
-	 vbiiWo3Vo5hEkxubhoYXgJJK7MULd3cWGMyk5HBlHTiDeBD+dXL0hbw6bGPUyyZZ5U
-	 oLpw41AIgs1uQ==
-Date: Fri, 2 May 2025 10:25:10 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- andy@kernel.org, dlechner@baylibre.com, matthias.bgg@gmail.com,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- krzk+dt@kernel.org, nuno.sa@analog.com, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, zhiyong.tao@mediatek.com, kernel@collabora.com
-Subject: Re: [PATCH] dt-bindings: iio: adc: Add compatible for Dimensity
- 1200 MT6893
-Message-ID: <20250502102510.05a37520@jic23-huawei>
-In-Reply-To: <174527153072.2973088.9157423165074778113.robh@kernel.org>
-References: <20250416120235.147889-1-angelogioacchino.delregno@collabora.com>
-	<174527153072.2973088.9157423165074778113.robh@kernel.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1746178138; c=relaxed/simple;
+	bh=MU5VnR8gfGuokKSR1cu55mBiw3QOCSy7dOGMpt+nFvU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=B9UT2hwgTLL9IQonXT+EqkOMDbXClm0tAuPzRqVcl3n5PRnI+6OkUcqlGvaULA6fL5QsVPwHQQefYB72TNOmrzIouILjSBQ2obGNqCG5uDeJ6E+xpgnPu+BdZcL2g3AvOs8OeQiX+kRdDiF1XnFc/6sKFLB8YIAupQeB3Fvw0Bc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PIL1LPM3; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43cf05f0c3eso9641495e9.0
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 02:28:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746178134; x=1746782934; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ViRvzjaLcZLigmLks7GcF1ISnVvCf8CLyjzMf6xzHz8=;
+        b=PIL1LPM3CMCjd1O4DpA9B/NAZRAJ+LYuHwbXGejBp1WzL3ZB/lxOIiRP94SjHbnAoA
+         I5v10LVQQUmnKQUV/mdVco01MbwN7xDT4x0FeGlA6N9v/nYvf+RjrJhxLEkvpXnBU8sj
+         g2KHOTR0GngDTCk1xU8jb1jAZHVxvlmQ4cO0qabdXW5Zlr8oMZ1X2lmlRS6JnrqicOUt
+         1FmJG2FaPZgrzgTQQKV4WK8Xp+7vcgEosL4wUCiZrj+6FXLekyXKBxTZ9KjKlLRr9Yek
+         ayjND4cQDd3PoHW8BSiWJ0xyXJXyjf3KmEVcmwWK694KLeck/Ku2/u+UVuAlTwvx8bRB
+         ZdLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746178134; x=1746782934;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ViRvzjaLcZLigmLks7GcF1ISnVvCf8CLyjzMf6xzHz8=;
+        b=q4vUWoRxYvwHSoAPmWuOcVIVsXkCF8vFjtF7FE/+4hLd54A2aXTjD+UNhDPpdV+xv2
+         Z7s1MWSWJpehnsZhUh28prua7/7iLZl7jpLjjJfxPyP30xXZzrktx95Gcvv1xS9+BzPT
+         60ICZKG9oL15nGegmEuWKyATDC8FZ70arhOyoP/J5XcxtUm4P02vwtzxNteaTfDf9LEN
+         I3maXDh785rkUWCkYwo86c8bx06LgtuiDQ28bue1Hj0djoGhJdEJQxm8yEhNZtRmpsJx
+         DyubvzPdytO9lKRNBl50oCWB2gNuHchGOcqXG32dru2rY5qJYW3vVLXgv2DuOohDN8Rr
+         VIdw==
+X-Forwarded-Encrypted: i=1; AJvYcCUXmClOya72umskohdXmq6dNz5MooVMcxVzNw2t9i3akxCaphdDYgldSvxdgPvpF+xRW3TZTiiLXwrT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxP2xYbwHimV8GWieVea8aUrhAPuDKj/cYOAMiiqCMEPgMLGQBG
+	PZOWxKz1IcCUItFtl9EHO5C9iwj9jbMyEME/dLqsC4xMu4Kn6dKaSt3riXa4hy0=
+X-Gm-Gg: ASbGncso6DDVRBMpXc9l/uAqml++SdOBHcIxk90zfWPR/u1kWioI3f6x4HGOzs89HiV
+	ZnrRCHxo/xDDcm3KI73GsEqW/vDtfNC9Olv3EGPWFHyEAXy0sem0TuhJdAhon12NGuPnGiSaksM
+	dFl8LeerM05kjKjy4WXXFln6KDDL3LUDQJbOzLu4XVAzKvKBquX+ttGLn/u68NAwyFWFmz9vQbI
+	ZJ7Y6l5p5ZoEkFNFf9egtFvoUiRVr0xv9zl8QcObHMV4XKIn3sfD3MIGP7dVTB5V3G8RYbFKbcO
+	jSHeLsS50S8LROWNTxJzO/5cAT9x2yfEgrZ8onDt5SKgJcVgYf3l90wmbVE3m73teTYTS/lFWho
+	Rffvzom+QRPjcb3gMOw==
+X-Google-Smtp-Source: AGHT+IFdzpFCq/AKM2M60tLarPzfNzRS71t1Qx6ljZBZ9X1pkBARCiAgk24b8LF0h/i54NmkF0IPyQ==
+X-Received: by 2002:a05:600c:1d27:b0:43d:77c5:9c1a with SMTP id 5b1f17b1804b1-441bbea0d54mr15155615e9.4.1746178134562;
+        Fri, 02 May 2025 02:28:54 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:161e:57b7:439b:f09f? ([2a01:e0a:3d9:2080:161e:57b7:439b:f09f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b89d150fsm38137425e9.15.2025.05.02.02.28.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 May 2025 02:28:54 -0700 (PDT)
+Message-ID: <9bf9b71f-e7d6-40ac-9fe8-a8396db0870e@linaro.org>
+Date: Fri, 2 May 2025 11:28:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 4/9] soc: qcom: geni-se: Enable QUPs on SA8255p
+ Qualcomm platforms
+To: Praveen Talari <quic_ptalari@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
+ Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
+ quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
+ quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
+References: <20250502031018.1292-1-quic_ptalari@quicinc.com>
+ <20250502031018.1292-5-quic_ptalari@quicinc.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250502031018.1292-5-quic_ptalari@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Mon, 21 Apr 2025 16:38:51 -0500
-"Rob Herring (Arm)" <robh@kernel.org> wrote:
-
-> On Wed, 16 Apr 2025 14:02:35 +0200, AngeloGioacchino Del Regno wrote:
-> > Add a compatible for the Dimensity 1200 (MT6893) SoC; The AUXADC
-> > IP in this chip is fully compatible with the one found in MT8173.
-> > 
-> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > ---
-> >  .../devicetree/bindings/iio/adc/mediatek,mt2701-auxadc.yaml      | 1 +
-> >  1 file changed, 1 insertion(+)
-> >   
+On 02/05/2025 05:10, Praveen Talari wrote:
+> On the sa8255p platform, resources such as clocks,interconnects
+> and TLMM (GPIO) configurations are managed by firmware.
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Introduce a platform data function callback to distinguish whether
+> resource control is performed by firmware or directly by the driver
+> in linux.
 > 
+> The refactor ensures clear differentiation of resource
+> management mechanisms, improving maintainability and flexibility
+> in handling platform-specific configurations.
+> 
+> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+> 
+> v1 -> v2
+> - changed datatype of i from int to unsigned int as per comment.
+> ---
+>   drivers/soc/qcom/qcom-geni-se.c | 77 +++++++++++++++++++++------------
+>   1 file changed, 49 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+> index 4cb959106efa..0e3658b09603 100644
+> --- a/drivers/soc/qcom/qcom-geni-se.c
+> +++ b/drivers/soc/qcom/qcom-geni-se.c
+> @@ -105,6 +105,8 @@ struct geni_wrapper {
+>   struct geni_se_desc {
+>   	unsigned int num_clks;
+>   	const char * const *clks;
+> +	int (*geni_se_rsc_init)(struct geni_wrapper *wrapper,
+> +				const struct geni_se_desc *desc);
+>   };
+>   
+>   static const char * const icc_path_names[] = {"qup-core", "qup-config",
+> @@ -891,10 +893,44 @@ int geni_icc_disable(struct geni_se *se)
+>   }
+>   EXPORT_SYMBOL_GPL(geni_icc_disable);
+>   
+> +static int geni_se_resource_init(struct geni_wrapper *wrapper,
+> +				 const struct geni_se_desc *desc)
+> +{
+> +	struct device *dev = wrapper->dev;
+> +	int ret;
+> +	unsigned int i;
+> +
+> +	wrapper->num_clks = min_t(unsigned int, desc->num_clks, MAX_CLKS);
+> +
+> +	for (i = 0; i < wrapper->num_clks; ++i)
+> +		wrapper->clks[i].id = desc->clks[i];
+> +
+> +	ret = of_count_phandle_with_args(dev->of_node, "clocks", "#clock-cells");
+> +	if (ret < 0) {
+> +		dev_err(dev, "invalid clocks property at %pOF\n", dev->of_node);
+> +		return ret;
+> +	}
+> +
+> +	if (ret < wrapper->num_clks) {
+> +		dev_err(dev, "invalid clocks count at %pOF, expected %d entries\n",
+> +			dev->of_node, wrapper->num_clks);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
+> +	if (ret) {
+> +		dev_err(dev, "Err getting clks %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>   static int geni_se_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct geni_wrapper *wrapper;
+> +	const struct geni_se_desc *desc;
+>   	int ret;
+>   
+>   	wrapper = devm_kzalloc(dev, sizeof(*wrapper), GFP_KERNEL);
+> @@ -906,36 +942,12 @@ static int geni_se_probe(struct platform_device *pdev)
+>   	if (IS_ERR(wrapper->base))
+>   		return PTR_ERR(wrapper->base);
+>   
+> -	if (!has_acpi_companion(&pdev->dev)) {
+> -		const struct geni_se_desc *desc;
+> -		int i;
+> -
+> -		desc = device_get_match_data(&pdev->dev);
+> -		if (!desc)
+> -			return -EINVAL;
+> -
+> -		wrapper->num_clks = min_t(unsigned int, desc->num_clks, MAX_CLKS);
+> -
+> -		for (i = 0; i < wrapper->num_clks; ++i)
+> -			wrapper->clks[i].id = desc->clks[i];
+> -
+> -		ret = of_count_phandle_with_args(dev->of_node, "clocks", "#clock-cells");
+> -		if (ret < 0) {
+> -			dev_err(dev, "invalid clocks property at %pOF\n", dev->of_node);
+> -			return ret;
+> -		}
+> +	desc = device_get_match_data(&pdev->dev);
+>   
+> -		if (ret < wrapper->num_clks) {
+> -			dev_err(dev, "invalid clocks count at %pOF, expected %d entries\n",
+> -				dev->of_node, wrapper->num_clks);
+> +	if (!has_acpi_companion(&pdev->dev) && desc->geni_se_rsc_init) {
+> +		ret = desc->geni_se_rsc_init(wrapper, desc);
+> +		if (ret)
+>   			return -EINVAL;
+> -		}
+> -
+> -		ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
+> -		if (ret) {
+> -			dev_err(dev, "Err getting clks %d\n", ret);
+> -			return ret;
+> -		}
+>   	}
+>   
+>   	dev_set_drvdata(dev, wrapper);
+> @@ -951,6 +963,13 @@ static const char * const qup_clks[] = {
+>   static const struct geni_se_desc qup_desc = {
+>   	.clks = qup_clks,
+>   	.num_clks = ARRAY_SIZE(qup_clks),
+> +	.geni_se_rsc_init = geni_se_resource_init,
+> +};
+> +
+> +static const struct geni_se_desc sa8255p_qup_desc = {
+> +	.clks = NULL,
+> +	.num_clks = 0,
+> +	.geni_se_rsc_init = NULL,
 
-Applied.
+Just don't specify it, it will be NULL by default, same for the other fields aswell.
+
+Just declare an empty struct instead, maybe add a comment if you want the reader
+to understand there's no clocks for this instance type.
+
+Another much simpler way to implement this would be to just check for num_clks
+along !has_acpi_companion(&pdev->dev) like:
+
+if (!has_acpi_companion(&pdev->dev) && desc->num_clks) {
+
+}
+
+And you're done.
+
+Neil
+
+>   };
+>   
+>   static const char * const i2c_master_hub_clks[] = {
+> @@ -960,11 +979,13 @@ static const char * const i2c_master_hub_clks[] = {
+>   static const struct geni_se_desc i2c_master_hub_desc = {
+>   	.clks = i2c_master_hub_clks,
+>   	.num_clks = ARRAY_SIZE(i2c_master_hub_clks),
+> +	.geni_se_rsc_init = geni_se_resource_init,
+>   };
+>   
+>   static const struct of_device_id geni_se_dt_match[] = {
+>   	{ .compatible = "qcom,geni-se-qup", .data = &qup_desc },
+>   	{ .compatible = "qcom,geni-se-i2c-master-hub", .data = &i2c_master_hub_desc },
+> +	{ .compatible = "qcom,sa8255p-geni-se-qup", .data = &sa8255p_qup_desc },
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, geni_se_dt_match);
+
 
