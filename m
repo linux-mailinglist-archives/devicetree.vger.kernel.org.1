@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-173061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79DE7AA759D
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:08:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C28B2AA759B
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:08:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28F521BA2707
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:08:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AECD4E3DD1
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:08:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75BA525B1ED;
-	Fri,  2 May 2025 15:07:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE072571BA;
+	Fri,  2 May 2025 15:07:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E83BB2571D6
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 15:07:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA31F25A656
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 15:07:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746198431; cv=none; b=F0qd2vhdcaIcCzeUw8hu9Dy87NxdL3gFIfgN+s2oi8vPp9O05GK2ipEuoWhStg4WNLMG9Jo+cAWsw8PSjhgPFUEsodAD0Eo+T1wDAtrpHVxz6AxMNFcryUI/iTbsbYkAOVIBLZY9UCH1oBw/234LvwzAceeEgRjLMlztjYGRbhE=
+	t=1746198432; cv=none; b=oss0FsFdUvZOJJlQCkUIskFazgHA3xNz6Lb5SUHf2LSHkTMk91Vrz2PXV99GSEgwOi6RbwEf4XOI1hogRoLv3Y83scAuN+VrVzswKanAJCzonNdbiyu3DpXdhNyXdVmgVwiwzHDg/AYk62lNzfCUPZigAeG0MDggCkUySLbmL6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746198431; c=relaxed/simple;
-	bh=Gzby+9GIxIVi1tD1qQglYZ8H1Y8eSr5Pr6g3ipujJ1c=;
+	s=arc-20240116; t=1746198432; c=relaxed/simple;
+	bh=4I5ncqc13Tx+0R1xSNDg//ufDhWKUwTsuW4d2FefrDY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Rhch93DlTPggt4j0+opz7+0BDB3Q6IeiHa/v36WHKhijiBTsWBig+2+/ME9RYdf0W1KnB2cJXcXcWhm8IiYpDydjKOjBKN83xquaSWBiHzf4J+M+nhKfTOevoJacWp4zv1igPaIkdGirq9EQJlFvGN8fbj1Mn5Pl+rjGwlIq6Pg=
+	 MIME-Version; b=S0Prty0xdlNCEx905/JM6If1b+kiryGPoMM1OarILW9BK2zst+2Md0rcMuC82jGFuYGSmPVa8wuuSNIkYE4syDtU/7ivcg87HXOmlFPwFxtT/fogPAzwzEnOEV+U7ouo20e6Hy7EYNr6dnkMnRibErylw/yCCAVjbnlEZbMVw14=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1uAryU-0004HG-7G; Fri, 02 May 2025 17:06:50 +0200
+	id 1uAryV-0004HG-Ix; Fri, 02 May 2025 17:06:51 +0200
 From: Marco Felsch <m.felsch@pengutronix.de>
 To: nicolas.dufresne@collabora.com,
 	benjamin.gaignard@collabora.com,
@@ -55,11 +55,10 @@ Cc: linux-kernel@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Michael Tretter <m.tretter@pengutronix.de>
-Subject: [RFC PATCH 04/11] media: uapi: add more V4L2_H264_ENCODE_FLAGs
-Date: Fri,  2 May 2025 17:05:07 +0200
-Message-Id: <20250502150513.4169098-5-m.felsch@pengutronix.de>
+	devicetree@vger.kernel.org
+Subject: [RFC PATCH 05/11] arm64: dts: imx8mp: drop gpcv2 vpu power-domains and clocks
+Date: Fri,  2 May 2025 17:05:08 +0200
+Message-Id: <20250502150513.4169098-6-m.felsch@pengutronix.de>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250502150513.4169098-1-m.felsch@pengutronix.de>
 References: <20250502150513.4169098-1-m.felsch@pengutronix.de>
@@ -75,31 +74,44 @@ X-SA-Exim-Mail-From: m.felsch@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Michael Tretter <m.tretter@pengutronix.de>
+The GPCv2 G1, G2 and VC8000E power-domain don't need to reference the
+VPUMIX power-domain nor their module clocks since the power and reset
+handling is done by the VPUMIX blkctrl driver.
 
-The encode flags may be written into the slice header by the hardware
-encoder. User space decides if the flags are set and which features are
-used, but the driver has to write it into the registers.
-
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
- include/uapi/linux/v4l2-controls.h | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 7 -------
+ 1 file changed, 7 deletions(-)
 
-diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-index a8df393c9ead..152b6b0cfe78 100644
---- a/include/uapi/linux/v4l2-controls.h
-+++ b/include/uapi/linux/v4l2-controls.h
-@@ -1774,6 +1774,9 @@ struct v4l2_ctrl_h264_encode_params {
- #define V4L2_H264_ENCODE_FLAG_ENTROPY_CODING_MODE	0x01
- #define V4L2_H264_ENCODE_FLAG_TRANSFORM_8X8_MODE	0x02
- #define V4L2_H264_ENCODE_FLAG_CONSTRAINED_INTRA_PRED	0x04
-+#define V4L2_H264_ENCODE_FLAG_NUM_REF_IDX_OVERRIDE	0x08
-+#define V4L2_H264_ENCODE_FLAG_NO_OUTPUT_OF_PRIOR_PICS	0x10
-+#define V4L2_H264_ENCODE_FLAG_LONG_TERM_REFERENCE	0x20
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index e0d3b8cba221..cf9b6c487bd5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -879,24 +879,17 @@ pgc_mediamix: power-domain@10 {
  
- #define V4L2_CID_STATELESS_H264_ENCODE_RC	(V4L2_CID_CODEC_STATELESS_BASE + 9)
+ 					pgc_vpu_g1: power-domain@11 {
+ 						#power-domain-cells = <0>;
+-						power-domains = <&pgc_vpumix>;
+ 						reg = <IMX8MP_POWER_DOMAIN_VPU_G1>;
+-						clocks = <&clk IMX8MP_CLK_VPU_G1_ROOT>;
+ 					};
  
+ 					pgc_vpu_g2: power-domain@12 {
+ 						#power-domain-cells = <0>;
+-						power-domains = <&pgc_vpumix>;
+ 						reg = <IMX8MP_POWER_DOMAIN_VPU_G2>;
+-						clocks = <&clk IMX8MP_CLK_VPU_G2_ROOT>;
+-
+ 					};
+ 
+ 					pgc_vpu_vc8000e: power-domain@13 {
+ 						#power-domain-cells = <0>;
+-						power-domains = <&pgc_vpumix>;
+ 						reg = <IMX8MP_POWER_DOMAIN_VPU_VC8000E>;
+-						clocks = <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
+ 					};
+ 
+ 					pgc_hdmimix: power-domain@14 {
 -- 
 2.39.5
 
