@@ -1,232 +1,134 @@
-Return-Path: <devicetree+bounces-173043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABB82AA752F
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:41:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F4AAA7534
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:43:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BF301BC83CE
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:41:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A8E61BC3389
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 14:43:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF61256C99;
-	Fri,  2 May 2025 14:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B22A2566E8;
+	Fri,  2 May 2025 14:43:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="MvHs98x1"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QJIOLxi0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BADB2566E8
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 14:41:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1108D22A4EF;
+	Fri,  2 May 2025 14:43:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746196864; cv=none; b=BE2jewPnsqxB8cUzznR88eBk1v03XYphJV+t77AejhBYiI2jUdBxUS0+JwjSM4NHIrFGLcE6EU1TwTE9YL1gqIwnWV+KvTgHY47ilsP1BEVKK5sBQ/Ae2yhJDsE7DGaXyYd9+AIVaFYJ0COjwzXq3abzx9FXgbPcpB065Wn3BJY=
+	t=1746197011; cv=none; b=RXy75eTj1J1rPteb+3LQkLgBiu6pdgPep4FBXE5fDodmXWghatqIkMnv2eoBm9k0O2cj7LcGQtp6f+VXqfHRRzqvrsulrEhbnKAeS5x0AexaCUFyASeCEY/K33vz0fzUzlHDbRSaX/EjXSblQLZDxjN2127QrzcQ5LsTNJqnfIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746196864; c=relaxed/simple;
-	bh=Tv6HyzmGJHSD/3jqNQZ3cseZiIAIPOloz1oNSkSj0GU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WD8DC/BiEL0kQKd9pRu3FD49gb/MmU2f1/YY/QFyYfu8YEIPxjGxTVOwcHQSGfb2TGmR2YkzeiP74fH+JtZcSXNWHIDda9oFofbHgXJNJYhXp01/+E4jPad5ZzVq4gKPvtHMkuSyOYbVwCW1U7KKIl7nR1cryyC4rK5MOwYKfBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=MvHs98x1; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-73c17c770a7so3135813b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 07:41:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1746196861; x=1746801661; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZqSQ6cuTeraDQ8N7HfPQ2TAxBQWFkOvwWI2baSiTiQ=;
-        b=MvHs98x1Tsbh4d+iBx23CEITqW57QqwJOojThs2KMheFpshIwXBDg3bZjPxcVxQ/bs
-         gmvaXmLdSP8fcOhzpN+IYrfkppYSFcfegnT4e3D/ev/fHDsZtdqWh+nudhroMlNgqcE4
-         DsC51/sfLwtYS1jLTR/MFHQohci53OcX4Fahf4tv4XgNjBM3K3AKmvAL1rn/rJHbQQLB
-         ETDKHzsRqTT31Q1w0okpkAuHuqlTVGf7WPsAASz4Fsqg7YTNkLl00s+tG15EtWRnqEYB
-         DA/vBaWG40OSq9lfUP76h0oJpzEjFuD8gfVqmiqbDQOL/IWMwR1T+hozv3B+t+6n7EWZ
-         k8bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746196861; x=1746801661;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZqSQ6cuTeraDQ8N7HfPQ2TAxBQWFkOvwWI2baSiTiQ=;
-        b=XqlgCE5DEzGFqQoPFgZIbWpgegVYpQfsCqQTQTTAm+hzxlQs73U71skvFeWSyvyOQm
-         hwMyix0gHlASXeNkJbRab1R6auyG2HJioS61X4SVLb8+o1ZUn6IyvVWSnKpBhMHIsPZ3
-         2epKIJsiuo4rknzr7hAsMw7R1FvKvK3w2uH0AmXzqT0+u0vsY020CX/nWINXj8XO1uAu
-         ncCu05wrJleaVen6NvYIJhGFXPsBY1Og/qOhnpjIuJTgkszmWRs8UVFxKo5Wusz8SSpM
-         1dEZE6DXBzUi2bGFcRCQqE88XSSUV+BPls+aXJd6/1Ur4/0mZIhhxovhNr7Iw7xhGibb
-         qI7Q==
-X-Gm-Message-State: AOJu0YzGmyAoQ45lrqvrjiBZjR7xC7RchWBq4ARc2Gei99HQWykEUOnA
-	OM1kqa9NtdsqlP3hsAofL+yYk7ODI2EFj2CloGkZNpDPCbPzVOTCrGknxjDr0w==
-X-Gm-Gg: ASbGncsXlzuf8RylACu8So8O2jJgs+1CetDVjkbl16k2/i9eentJuMCp844yY+OXMX/
-	JUgwNZ6nDsjNAerhqUUkwN4+BmbCcZrOOXXhmQM4ZbFBN91MMSw3t4JfTUF+JZ6/CA7TMMDzyCA
-	rbLFbRQoRDb9lxJfMO7c3PCV5kcUZJJLGirIclwfknVxklgT0k5Wq1Eae3ggrkYf+QvyLjzKNRS
-	aPlHfb/YTDIy4vQDok/YKfl+AjeS1rRaT8Gklb3MoGGsxsOEISfRt207cNCNnPGJDN073ZoGGnv
-	nURt9P0h7sEW0Lxy/uwCwNcZrgtvtk9M7xhS7pPUYWDkUkk=
-X-Google-Smtp-Source: AGHT+IEtNO1S2XSGAqA6MP+nWqL/WOdbZtcPPBhn8RFLoa3FFCT6OIsXczFLrLap3mpMNQ1kAbXmuQ==
-X-Received: by 2002:a05:6a21:920d:b0:1f5:6c94:2cc9 with SMTP id adf61e73a8af0-20cdee3dad1mr4920841637.22.1746196860531;
-        Fri, 02 May 2025 07:41:00 -0700 (PDT)
-Received: from [172.16.116.85] ([103.15.228.94])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-740590a5bfesm1663820b3a.171.2025.05.02.07.40.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 May 2025 07:40:59 -0700 (PDT)
-Message-ID: <dba95e76-3d60-41ef-b98c-5aedee808dd9@beagleboard.org>
-Date: Fri, 2 May 2025 20:10:41 +0530
+	s=arc-20240116; t=1746197011; c=relaxed/simple;
+	bh=WsWmfgRUsAUKnzHtIz42wX0Xmlkcwu4wsLOii8++LRU=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=n1AGTUgX0uU7bpwDKTULqm7vl6sgZA+/efv1Yddt/20Du7KZvHXliIlynM+fEgIO6MX8m+9s/pHeStnT8iMB5bSeZBqcyetq9VMkr1h4vNgPDGm/TUA7AAQasn8x9m1e1EFpmkOov4vD+QulvD6zHhf2JE1oM3q0aQUUvRnDJL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QJIOLxi0; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 542EhMb9251096
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 2 May 2025 09:43:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746197002;
+	bh=XFn+hOnf9zq0L8ZJbLyMTxETpp+UGQGS34ngpAHtMqk=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=QJIOLxi0PCJS5/mK9FB9i8TCyvAefymLc3sInip4s6z9dWd3JQ0VWNrgrdSA43RrV
+	 WHVg4oTb003UUoLPdIPVjvwocTqCaLYRvuC5RaZT4rghhSXbmu5lc7hPknfW/uSOcy
+	 dQd8GsjzdtAKgtHn4RRxw1FCnRCM1w8n3GBVQGrM=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 542EhM0j037209
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 May 2025 09:43:22 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ May 2025 09:43:21 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 May 2025 09:43:21 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 542EhLV6127656;
+	Fri, 2 May 2025 09:43:21 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Judith Mendez <jm@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Moteen Shah
+	<m-shah@ti.com>,
+        Udit Kumar <u-kumar1@ti.com>
+Subject: Re: [PATCH v3 0/3] Misc MMC updates
+Date: Fri, 2 May 2025 09:43:19 -0500
+Message-ID: <174619698064.3122712.13100882645410277717.b4-ty@ti.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20250429151454.4160506-1-jm@ti.com>
+References: <20250429151454.4160506-1-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/7] of: overlay: Add export_symbols_name in
- of_overlay_fdt_apply() parameters
-To: Herve Codina <herve.codina@bootlin.com>,
- David Gibson <david@gibson.dropbear.id.au>, Andrew Davis <afd@ti.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Saravana Kannan <saravanak@google.com>
-Cc: devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org,
- linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20250430125154.195498-1-herve.codina@bootlin.com>
- <20250430125154.195498-6-herve.codina@bootlin.com>
-Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <20250430125154.195498-6-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 4/30/25 18:21, Herve Codina wrote:
+Hi Judith Mendez,
 
-> In order to prepare the introduction of the export symbols node
-> handling, add a export_symbols_name parameter in of_overlay_fdt_apply().
->
-> The export_symbols_name is the name of the export symbols subnode
-> available in the base node that will be used by the resolver to handle
-> export symbols resolution.
->
-> Having the name of the subnode in parameters instead of the subnode
-> itself avoids the use of an export symbol node that is not directly
-> related to the base node.
->
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> Tested-by: Ayush Singh <ayush@beagleboard.org>
-> ---
->   drivers/misc/lan966x_pci.c    | 3 ++-
->   drivers/of/of_kunit_helpers.c | 2 +-
->   drivers/of/overlay.c          | 7 ++++++-
->   drivers/of/unittest.c         | 4 ++--
->   include/linux/of.h            | 6 ++++--
->   5 files changed, 15 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/misc/lan966x_pci.c b/drivers/misc/lan966x_pci.c
-> index 9c79b58137e5..f05cb040ec69 100644
-> --- a/drivers/misc/lan966x_pci.c
-> +++ b/drivers/misc/lan966x_pci.c
-> @@ -128,7 +128,8 @@ static int lan966x_pci_load_overlay(struct lan966x_pci *data)
->   	u32 dtbo_size = __dtbo_lan966x_pci_end - __dtbo_lan966x_pci_begin;
->   	void *dtbo_start = __dtbo_lan966x_pci_begin;
->   
-> -	return of_overlay_fdt_apply(dtbo_start, dtbo_size, &data->ovcs_id, dev_of_node(data->dev));
-> +	return of_overlay_fdt_apply(dtbo_start, dtbo_size, &data->ovcs_id,
-> +				    dev_of_node(data->dev), NULL);
->   }
->   
->   static void lan966x_pci_unload_overlay(struct lan966x_pci *data)
-> diff --git a/drivers/of/of_kunit_helpers.c b/drivers/of/of_kunit_helpers.c
-> index 7b3ed5a382aa..476b43474168 100644
-> --- a/drivers/of/of_kunit_helpers.c
-> +++ b/drivers/of/of_kunit_helpers.c
-> @@ -56,7 +56,7 @@ int of_overlay_fdt_apply_kunit(struct kunit *test, void *overlay_fdt,
->   		return -ENOMEM;
->   
->   	ret = of_overlay_fdt_apply(overlay_fdt, overlay_fdt_size,
-> -				   ovcs_id, NULL);
-> +				   ovcs_id, NULL, NULL);
->   	if (ret)
->   		return ret;
->   
-> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-> index aa1b97e634aa..73ff38c41de2 100644
-> --- a/drivers/of/overlay.c
-> +++ b/drivers/of/overlay.c
-> @@ -968,6 +968,10 @@ static int of_overlay_apply(struct overlay_changeset *ovcs,
->    * @overlay_fdt_size:	number of bytes in @overlay_fdt
->    * @ret_ovcs_id:	pointer for returning created changeset id
->    * @base:		pointer for the target node to apply overlay
-> + * @export_symbols_name:
-> + *			Name of the export symbol subnode of the @base node to
-> + *			provide extra symbols. Those extra symbols are used in
-> + *			the overlay symbols resolution.
->    *
->    * Creates and applies an overlay changeset.
->    *
-> @@ -983,7 +987,8 @@ static int of_overlay_apply(struct overlay_changeset *ovcs,
->    */
->   
->   int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
-> -			 int *ret_ovcs_id, const struct device_node *base)
-> +			 int *ret_ovcs_id, const struct device_node *base,
-> +			 const char *export_symbols_name)
+On Tue, 29 Apr 2025 10:14:51 -0500, Judith Mendez wrote:
+> This patch series includes updates for eMMC and SD nodes across
+> Sitara K3 SoC boards:
+> 
+> Add boot phase flag to MMC nodes and dependency nodes to support SD and
+> eMMC boot.
+> Add non-removable flag to eMMC nodes to void having to redetect
+> eMMC after suspend/resume.
+> Remove disable-wp for eMMC nodes since property is specific to SD.
+> 
+> [...]
 
-Do we really need the export-symbols node name to be configurable?
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
+[1/3] arm64: dts: ti: k3-am6*: Add boot phase flag to support MMC boot
+      commit: db3cd905b8c8cd40f15a34e30a225704bb8a2fcb
+[2/3] arm64: dts: ti: k3-am62*: Add non-removable flag for eMMC
+      commit: d16e7d34352c4107a81888e9aab4ea4748076e70
+[3/3] arm64: dts: ti: k3-am6*: Remove disable-wp for eMMC
+      commit: ef839ba8142f14513ba396a033110526b7008096
 
->   {
->   	void *new_fdt;
->   	void *new_fdt_align;
-> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> index 658690fd6980..11091b0176e0 100644
-> --- a/drivers/of/unittest.c
-> +++ b/drivers/of/unittest.c
-> @@ -3858,7 +3858,7 @@ static int __init overlay_data_apply(const char *overlay_name, int *ovcs_id)
->   		pr_err("no overlay data for %s\n", overlay_name);
->   
->   	ret = of_overlay_fdt_apply(info->dtbo_begin, size, &info->ovcs_id,
-> -				   NULL);
-> +				   NULL, NULL);
->   	if (ovcs_id)
->   		*ovcs_id = info->ovcs_id;
->   	if (ret < 0)
-> @@ -4198,7 +4198,7 @@ static int testdrv_probe(struct pci_dev *pdev, const struct pci_device_id *id)
->   	}
->   
->   	size = info->dtbo_end - info->dtbo_begin;
-> -	ret = of_overlay_fdt_apply(info->dtbo_begin, size, &ovcs_id, dn);
-> +	ret = of_overlay_fdt_apply(info->dtbo_begin, size, &ovcs_id, dn, NULL);
->   	of_node_put(dn);
->   	if (ret)
->   		return ret;
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index a62154aeda1b..d8e0dd210e09 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -1749,7 +1749,8 @@ struct of_overlay_notify_data {
->   #ifdef CONFIG_OF_OVERLAY
->   
->   int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
-> -			 int *ovcs_id, const struct device_node *target_base);
-> +			 int *ovcs_id, const struct device_node *target_base,
-> +			 const char *export_symbols_name);
->   int of_overlay_remove(int *ovcs_id);
->   int of_overlay_remove_all(void);
->   
-> @@ -1759,7 +1760,8 @@ int of_overlay_notifier_unregister(struct notifier_block *nb);
->   #else
->   
->   static inline int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
-> -				       int *ovcs_id, const struct device_node *target_base)
-> +				       int *ovcs_id, const struct device_node *target_base,
-> +				       const char *export_symbols_name)
->   {
->   	return -ENOTSUPP;
->   }
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-Ayush Singh
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
 
