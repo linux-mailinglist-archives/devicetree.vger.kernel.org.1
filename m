@@ -1,245 +1,182 @@
-Return-Path: <devicetree+bounces-173086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8271EAA7686
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:58:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD5D1AA7698
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:02:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBE2F17ABC0
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:58:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF37A1890A25
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4CB25A351;
-	Fri,  2 May 2025 15:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B9A525CC76;
+	Fri,  2 May 2025 16:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="s2GAqAeM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aB/aR1F1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6DD259CA7;
-	Fri,  2 May 2025 15:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC5125C818
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 16:01:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746201480; cv=none; b=m870OkvHvZg77kDRK2E+BgRseUW+wOX66iyeHsnGyzs8vyiCf8b3rG3cYVy622sLIf+LgbphxIMKYzsuyhUh5VJMAwjO3x8p5mB47DKDgxbVEGntiNTv2cgnZeYAWDIATJKKGkBcU8LbO3lt0ZWUcY5lpiiRemKp8vnEhtG6lis=
+	t=1746201695; cv=none; b=qrpGcUZq2ul63BKAXzk79iewWl2+h3Tm5NHvt6T8LJ/C5xn9ic0Pq24kiLGcTqmmCgKXWia/J4Axnkw5my7iKjepNUkIwuRcy2jVAfFUqToTWTQqoURNh+pgxpgo/nB9z3IwdwQUWE4B3W2C7dT7uNPBeF6XacPRDPDHVbubzXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746201480; c=relaxed/simple;
-	bh=8QYuu7fU5WUIXfLa2awfgrXyGtQ8swMWYYVzxECzPEw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D03PFSh4B34DGsaXDTREOMxKAB3DDE9Jz1gxSR1FruBLcjZ9OVlBD2AE8IfL/zZNc6zvt5kotvQiWV2t93BkRogPXH6Sip+G/BkwVSvlVZgYbcHdx1q8k47dXrfV4AW5q8WTokyXjVbWOfgtXw4Zjt8zbQKOrzYPsTdV73zuvmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=s2GAqAeM; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AFE20353;
-	Fri,  2 May 2025 17:57:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1746201468;
-	bh=8QYuu7fU5WUIXfLa2awfgrXyGtQ8swMWYYVzxECzPEw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s2GAqAeMwGyk87qn58OiHrgsgvDI9wlMCxw6tM5KORPioPIiY1cmhZ4Y0rEEV43Rk
-	 ZHjsi56wlLzk/opQb+UNzFOMac7F4k2CqiXSQp2+Qt3+cGTHMzV5Jn+a0EtAh9nzzb
-	 R52QvJGHsjKV22hApy2kl1o8bPbbX+ATTa2Iy05k=
-Date: Fri, 2 May 2025 18:57:47 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Robert Chiras <robert.chiras@nxp.com>,
-	"Guoniu.zhou" <guoniu.zhou@nxp.com>
-Subject: Re: [PATCH v4 04/13] media: nxp: imx8-isi: Use
- devm_clk_bulk_get_all() to fetch clocks
-Message-ID: <20250502155747.GB20093@pendragon.ideasonboard.com>
-References: <20250408-8qxp_camera-v4-0-ef695f1b47c4@nxp.com>
- <20250408-8qxp_camera-v4-4-ef695f1b47c4@nxp.com>
- <20250421211438.GN17813@pendragon.ideasonboard.com>
- <aBQZjFsExJh2uRfK@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1746201695; c=relaxed/simple;
+	bh=oEvN69p8sBgWkmJUdXqCwtQw+r14F79DPd3s+SqCWqE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pPSYwaGXH75vPRGjR3QiYAn82QT5AkXY27UAhesVr21tOVtg7l/VKUiLaV/SoZSxd8Cl7HJ/Q6KQ9M+lXnIj2tx/Fm6TxXfHbtiNwB4YMkZ4hDO+pxnMXhjPhQBryKlIni3uQsp0KCgXRyP8g5sNqy53tj4Ui3x9hzlnZ5N+vHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aB/aR1F1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 542Cd1qZ016233
+	for <devicetree@vger.kernel.org>; Fri, 2 May 2025 16:01:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YoReAk4HgTq2VsfM4ooMcOtk4AFKsH6ALJtlrQXG0fM=; b=aB/aR1F10eANzjIY
+	sR/ixTlWHd0ANoXvrWUHjtGL5eEj6dlk2O/HnenQs91SuOQ1HXgsQVQTjrL+ZmcJ
+	DbT8YyFZ5lfpBVEQ2tcW1OjZn8zRX1GnnnHrBBPjhxTazhNz5rkRsnozaGIAbNFa
+	PVUtrTTQLlrB8dY2lqWBWenm2pSph9wRFx74NSpFCDAkU82dYF9wMgBk5yDdUf19
+	gAfChMax23Dtdy948wf98TVgZumjMKbpJaRwP2ygd8CV6eklO3W6OUs2XYFAtibs
+	3ghT6Uie0Gz1zxDj/3rxRU82exkvGe/HwYUuNVGLAbANKYP3KW1ravUBveUz3yaT
+	F58p9Q==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6u4guaw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 02 May 2025 16:01:31 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-22650077995so34534215ad.3
+        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 09:01:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746201691; x=1746806491;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YoReAk4HgTq2VsfM4ooMcOtk4AFKsH6ALJtlrQXG0fM=;
+        b=o15CE/XfYntPUUp053EYet2SK6Ye7ASg6+5iH/yjUXynr9AsDBDYtDeEqKnUGHXiLK
+         IHoT7j6R0um60eKlu++RaFspat0Y0mpwlfYJadQyko1uC9PVrEqR+yGi/kfQ0dJPCeqn
+         UHJr4iM36IQNxniaY/GxU+/L5G2m8jJk/wDXnlJZalvjMZgqz5c47vwwlikIwQTBqO8U
+         O7+bqmprrh4VqmL/T6JHUXEu39Yiqs8CWZDOz9HaFlcck19NUcmlTs6kTU/p+GqQCyIg
+         FAIhZT+8m/RUVREc2yanAWWmA+bw8ziLwuY7DIlwyl1WZQ38vvmfIGaK3gYEXPD42cXY
+         spmA==
+X-Forwarded-Encrypted: i=1; AJvYcCWuCU11Gdr/+B2cHDATf0IMBw5nIsFq854SbLHN2GxBbOSTuJpirnjY/aU9FY9F/+Ph5vAlUaWrLcGy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1W2PjxKKifQwLhV2OGS/8gThHa284ZeZI/mb3P8bp0U9dd03R
+	NphGt71tPSyW56K1gEK0ZaQbWHKYQ2Zaqu29O2L2U5nO1OgqMG34hYY3Jy7bfYWyNNUNF8jdQ/C
+	a1OxWHi+oCztZkBF8+2c4I1VvWVWIXR7d5bELVOuiZSpcCM7oDU8DOW2lARMe
+X-Gm-Gg: ASbGncs3e/WhXhEDgLsFfZ8hY5oj3qs2eYwpCzHHJ+EptkfUbqXaIelfqBGIaQSswuR
+	grb2iq0x/MFH2H1Zfjf8gsc/DAgAjI4jVhmN6GsNRkhoLJgQ+7MLaStTNOum9oj8K3X+gLNrdGn
+	4JA/ykXy6C+ZWo7kQNeoHjl5/ExS+deQTqheJsug8BEvGwHWsHB6T9eIgwW+Q5/gsMQFui8ED3K
+	OC99r8FBEklvbShnfWagkl7SKl8djHZItuRjiuapdnhKGObXCI7eeXNOXVKByTmaD+fZZiTu35B
+	8H7dZ4Aj7nefMSYS/y2uZz/2IlEP2WYcjC29cldeHlLR9zbk0VM5
+X-Received: by 2002:a17:903:3b86:b0:223:65a9:ab86 with SMTP id d9443c01a7336-22e1031f4b8mr53003015ad.12.1746201690565;
+        Fri, 02 May 2025 09:01:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IErV0e0vKI/fgoke9Y2Vn/UmFB0sglBHDOVAnYcG02t9Gkratp9oD7qJCWDutzkAvG97npa/Q==
+X-Received: by 2002:a17:903:3b86:b0:223:65a9:ab86 with SMTP id d9443c01a7336-22e1031f4b8mr53002545ad.12.1746201690057;
+        Fri, 02 May 2025 09:01:30 -0700 (PDT)
+Received: from [192.168.1.4] ([122.164.87.156])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b1fb3920e67sm952740a12.7.2025.05.02.09.01.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 May 2025 09:01:29 -0700 (PDT)
+Message-ID: <6d8f31ed-daaf-4ba2-9e84-227ab798ec5a@oss.qualcomm.com>
+Date: Fri, 2 May 2025 21:31:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aBQZjFsExJh2uRfK@lizhi-Precision-Tower-5810>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] watchdog: qcom: introduce the device data for
+ IPQ5424 watchdog device
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck
+ <linux@roeck-us.net>, bod.linux@nxsw.ie,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20250502-wdt_reset_reason-v3-0-b2dc7ace38ca@oss.qualcomm.com>
+ <20250502-wdt_reset_reason-v3-3-b2dc7ace38ca@oss.qualcomm.com>
+ <4fvlhcztwqw3sp4wb32rbvdra5ativo5zypeokpglzezkmjfmy@vogadyshroix>
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+In-Reply-To: <4fvlhcztwqw3sp4wb32rbvdra5ativo5zypeokpglzezkmjfmy@vogadyshroix>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: M5r2rF6Hef-4EfKxSnlVQF9Bi8DPsbLW
+X-Authority-Analysis: v=2.4 cv=Yaq95xRf c=1 sm=1 tr=0 ts=6814ec5b cx=c_pps a=JL+w9abYAAE89/QcEU+0QA==:117 a=wj/iefQKNY9P1RSDfSoyGA==:17 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=--xdvnZNnXTZpBI9SIwA:9 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDEyOCBTYWx0ZWRfX0WX6H7sfMLF9 whphM6Q0xxbOGrkhyDVFC3Vo0cPeX+laLHlOaYriETmh4UqjBglvJMbIqbNRT9d1MaExvb0H6cc +7bhr6msP0fS1VV44tT67tXxdMuC/Nt+2DtA1ng4BOzqR7UVMNjgpN46HYKKbtqPwxgtGOslms9
+ a3eZFg/kPZKdyKxTamD29DqOg7UhTQ9XQDWtTOdhXTSoM87SaRvPpHHh8vUfOVxHu/LQf3E09Uv AFT/fkQtcl1XlOgkAdsLnvtDcOM3AvbvSQ1bc26zHNYTIzByBS+mfAzt4Avja2oBjuBDoLpyyGt ROWOYcbnPkWsMA+djnYHXxYuGR7dzmKGd1zmirGQktXozIJrMD+AjF46NjDaXyK7WsjsCYjhMCH
+ 7Qwa3hIBogK5hv0iXH34nT79o+8QGtavaw7FunjVE8/AYRHhxffTnqwnZQK3XeJ/Is+wnVVT
+X-Proofpoint-GUID: M5r2rF6Hef-4EfKxSnlVQF9Bi8DPsbLW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-02_02,2025-04-30_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ clxscore=1015 suspectscore=0 bulkscore=0 mlxlogscore=999 malwarescore=0
+ mlxscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0 adultscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505020128
 
-Hi Frank,
 
-On Thu, May 01, 2025 at 09:02:04PM -0400, Frank Li wrote:
-> On Tue, Apr 22, 2025 at 12:14:38AM +0300, Laurent Pinchart wrote:
-> > On Tue, Apr 08, 2025 at 05:53:02PM -0400, Frank Li wrote:
-> > > Use devm_clk_bulk_get_all() helper to simplify clock handle code.
-> > >
-> > > No functional changes intended.
-> > >
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  .../media/platform/nxp/imx8-isi/imx8-isi-core.c    | 46 +++-------------------
-> > >  .../media/platform/nxp/imx8-isi/imx8-isi-core.h    |  3 +-
-> > >  2 files changed, 6 insertions(+), 43 deletions(-)
-> > >
-> > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> > > index ecfc95882f903..015350c6f2784 100644
-> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> > > @@ -275,11 +275,6 @@ static const struct mxc_isi_set_thd mxc_imx8_isi_thd_v1 = {
-> > >  	.panic_set_thd_v = { .mask = 0xf0000, .offset = 16, .threshold = 0x7 },
-> > >  };
-> > >
-> > > -static const struct clk_bulk_data mxc_imx8mn_clks[] = {
-> > > -	{ .id = "axi" },
-> > > -	{ .id = "apb" },
-> > > -};
-> > > -
-> > >  static const struct mxc_isi_plat_data mxc_imx8mn_data = {
-> > >  	.model			= MXC_ISI_IMX8MN,
-> > >  	.num_ports		= 1,
-> > > @@ -287,8 +282,6 @@ static const struct mxc_isi_plat_data mxc_imx8mn_data = {
-> > >  	.reg_offset		= 0,
-> > >  	.ier_reg		= &mxc_imx8_isi_ier_v1,
-> > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> > > -	.clks			= mxc_imx8mn_clks,
-> > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
-> > >  	.buf_active_reverse	= false,
-> > >  	.gasket_ops		= &mxc_imx8_gasket_ops,
-> > >  	.has_36bit_dma		= false,
-> > > @@ -301,8 +294,6 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
-> > >  	.reg_offset		= 0x2000,
-> > >  	.ier_reg		= &mxc_imx8_isi_ier_v2,
-> > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> > > -	.clks			= mxc_imx8mn_clks,
-> > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
-> > >  	.buf_active_reverse	= true,
-> > >  	.gasket_ops		= &mxc_imx8_gasket_ops,
-> > >  	.has_36bit_dma		= true,
-> > > @@ -315,8 +306,6 @@ static const struct mxc_isi_plat_data mxc_imx8ulp_data = {
-> > >  	.reg_offset		= 0x0,
-> > >  	.ier_reg		= &mxc_imx8_isi_ier_v2,
-> > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> > > -	.clks			= mxc_imx8mn_clks,
-> > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
-> > >  	.buf_active_reverse	= true,
-> > >  	.has_36bit_dma		= false,
-> > >  };
-> > > @@ -328,8 +317,6 @@ static const struct mxc_isi_plat_data mxc_imx93_data = {
-> > >  	.reg_offset		= 0,
-> > >  	.ier_reg		= &mxc_imx8_isi_ier_v2,
-> > >  	.set_thd		= &mxc_imx8_isi_thd_v1,
-> > > -	.clks			= mxc_imx8mn_clks,
-> > > -	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
-> > >  	.buf_active_reverse	= true,
-> > >  	.gasket_ops		= &mxc_imx93_gasket_ops,
-> > >  	.has_36bit_dma		= false,
-> > > @@ -386,7 +373,7 @@ static int mxc_isi_runtime_suspend(struct device *dev)
-> > >  {
-> > >  	struct mxc_isi_dev *isi = dev_get_drvdata(dev);
-> > >
-> > > -	clk_bulk_disable_unprepare(isi->pdata->num_clks, isi->clks);
-> > > +	clk_bulk_disable_unprepare(isi->num_clks, isi->clks);
-> > >
-> > >  	return 0;
-> > >  }
-> > > @@ -396,7 +383,7 @@ static int mxc_isi_runtime_resume(struct device *dev)
-> > >  	struct mxc_isi_dev *isi = dev_get_drvdata(dev);
-> > >  	int ret;
-> > >
-> > > -	ret = clk_bulk_prepare_enable(isi->pdata->num_clks, isi->clks);
-> > > +	ret = clk_bulk_prepare_enable(isi->num_clks, isi->clks);
-> > >  	if (ret) {
-> > >  		dev_err(dev, "Failed to enable clocks (%d)\n", ret);
-> > >  		return ret;
-> > > @@ -414,27 +401,6 @@ static const struct dev_pm_ops mxc_isi_pm_ops = {
-> > >   * Probe, remove & driver
-> > >   */
-> > >
-> > > -static int mxc_isi_clk_get(struct mxc_isi_dev *isi)
-> > > -{
-> > > -	unsigned int size = isi->pdata->num_clks
-> > > -			  * sizeof(*isi->clks);
-> > > -	int ret;
-> > > -
-> > > -	isi->clks = devm_kmemdup(isi->dev, isi->pdata->clks, size, GFP_KERNEL);
-> > > -	if (!isi->clks)
-> > > -		return -ENOMEM;
-> > > -
-> > > -	ret = devm_clk_bulk_get(isi->dev, isi->pdata->num_clks,
-> > > -				isi->clks);
-> > > -	if (ret < 0) {
-> > > -		dev_err(isi->dev, "Failed to acquire clocks: %d\n",
-> > > -			ret);
-> > > -		return ret;
-> > > -	}
-> > > -
-> > > -	return 0;
-> > > -}
-> > > -
-> > >  static int mxc_isi_probe(struct platform_device *pdev)
-> > >  {
-> > >  	struct device *dev = &pdev->dev;
-> > > @@ -457,11 +423,9 @@ static int mxc_isi_probe(struct platform_device *pdev)
-> > >  	if (!isi->pipes)
-> > >  		return -ENOMEM;
-> > >
-> > > -	ret = mxc_isi_clk_get(isi);
-> > > -	if (ret < 0) {
-> > > -		dev_err(dev, "Failed to get clocks\n");
-> > > -		return ret;
-> > > -	}
-> > > +	isi->num_clks = devm_clk_bulk_get_all(dev, &isi->clks);
-> >
-> > This prevents validating that the DT contains the expected clocks, which
-> > could cause hard to debug issues. Isn't it a problem ?
-> 
-> It is checked by dt-binding. Now no warning by DTB_CHECK under arm64 freecale.
-> CHECK_DTB should be enough to find expected clocks.
+On 5/2/2025 8:23 PM, Dmitry Baryshkov wrote:
+> On Fri, May 02, 2025 at 06:47:51PM +0530, Kathiravan Thirumoorthy wrote:
+>> To retrieve the restart reason from IMEM, certain device specific data
+>> like IMEM compatible to lookup, location of IMEM to read, etc should be
+>> defined. To achieve that, introduce the separate device data for IPQ5424
+>> and add the required details subsequently.
+>>
+>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+>> ---
+>> Changes in v3:
+>> 	- New patch
+>> ---
+>>   drivers/watchdog/qcom-wdt.c | 7 +++++++
+>>   1 file changed, 7 insertions(+)
+>>
+>> diff --git a/drivers/watchdog/qcom-wdt.c b/drivers/watchdog/qcom-wdt.c
+>> index 006f9c61aa64fd2b4ee9db493aeb54c8fafac818..dfaac5995c84c1f377023e6e62770c5548528a4c 100644
+>> --- a/drivers/watchdog/qcom-wdt.c
+>> +++ b/drivers/watchdog/qcom-wdt.c
+>> @@ -181,6 +181,12 @@ static const struct qcom_wdt_match_data match_data_apcs_tmr = {
+>>   	.max_tick_count = 0x10000000U,
+>>   };
+>>   
+>> +static const struct qcom_wdt_match_data match_data_ipq5424 = {
+>> +	.offset = reg_offset_data_kpss,
+>> +	.pretimeout = true,
+>> +	.max_tick_count = 0xFFFFFU,
+>> +};
+>> +
+>>   static const struct qcom_wdt_match_data match_data_kpss = {
+>>   	.offset = reg_offset_data_kpss,
+>>   	.pretimeout = true,
+>> @@ -322,6 +328,7 @@ static const struct dev_pm_ops qcom_wdt_pm_ops = {
+>>   };
+>>   
+>>   static const struct of_device_id qcom_wdt_of_table[] = {
+>> +	{ .compatible = "qcom,apss-wdt-ipq5424", .data = &match_data_ipq5424 },
+> Shouldn't it be qcom,ipq5424-apss-wdt ?
 
-Yes, the DTB check will catch issues at build time, but the driver will
-not enforce that. I'm not sure if there's a clear policy here, and if
-ensuring at runtime in drivers that the expected clocks are present is
-considered as a good practice by the DT maintainers. Rob, Krzysztof,
-Conor, do you have an opinion ?
 
-> > > +	if (isi->num_clks < 0)
-> > > +		return dev_err_probe(dev, isi->num_clks, "Failed to get clocks\n");
-> > >
-> > >  	isi->regs = devm_platform_ioremap_resource(pdev, 0);
-> > >  	if (IS_ERR(isi->regs)) {
-> > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> > > index e7534a80af7b4..bd3cfe5fbe063 100644
-> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> > > @@ -169,8 +169,6 @@ struct mxc_isi_plat_data {
-> > >  	const struct mxc_isi_ier_reg  *ier_reg;
-> > >  	const struct mxc_isi_set_thd *set_thd;
-> > >  	const struct mxc_gasket_ops *gasket_ops;
-> > > -	const struct clk_bulk_data *clks;
-> > > -	unsigned int num_clks;
-> > >  	bool buf_active_reverse;
-> > >  	bool has_36bit_dma;
-> > >  };
-> > > @@ -282,6 +280,7 @@ struct mxc_isi_dev {
-> > >
-> > >  	void __iomem			*regs;
-> > >  	struct clk_bulk_data		*clks;
-> > > +	int				num_clks;
-> > >  	struct regmap			*gasket;
-> > >
-> > >  	struct mxc_isi_crossbar		crossbar;
+Currently, the compatible string is "qcom,apss-wdt-ipq5424". So used as 
+it is.
 
--- 
-Regards,
 
-Laurent Pinchart
+>
+>>   	{ .compatible = "qcom,kpss-timer", .data = &match_data_apcs_tmr },
+>>   	{ .compatible = "qcom,scss-timer", .data = &match_data_apcs_tmr },
+>>   	{ .compatible = "qcom,kpss-wdt", .data = &match_data_kpss },
+>>
+>> -- 
+>> 2.34.1
+>>
 
