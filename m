@@ -1,188 +1,158 @@
-Return-Path: <devicetree+bounces-172996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E08AA7322
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:15:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F00D9AA732E
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:17:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3027985718
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 13:15:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54E4D4E113B
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 13:17:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E83E7253F34;
-	Fri,  2 May 2025 13:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2A3225419;
+	Fri,  2 May 2025 13:17:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="O5G5HHbz"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hCDXlrcm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D0B254AEE;
-	Fri,  2 May 2025 13:15:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5391632F2;
+	Fri,  2 May 2025 13:17:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746191740; cv=none; b=gCDNwDSMQFDRnoBsSWuK2Eev1yR7WA+1njYAV3OzoDT1MxAGLlzkFTuxac0TolHfGgXxmu3/PagZv/D1t4XnI5wLSPq560UUCbL0LvpDbnxkaaksERpQ2aEedhtS91Z5KCeIJP0f2vcv/J1y+Daq9CEqD1YRz+gh7eGmYzIxZ08=
+	t=1746191859; cv=none; b=UqrwedvJcd2pgTt71JQ0600CcPjU36KCFrW6wtAi4f0UOsJqWP0E8ZbFQ2dOR7hPhKy0yQP4GVSD8cUiNWN0s8W81/OTkGB0bjanICqiLoevZ0UmdHpFsrz390P4qSHRaAfl+V7v0oI2Q/oqheyPBe89sv3kzN9aGgoQO1lO/VA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746191740; c=relaxed/simple;
-	bh=l6dshRg5SKm0QLRKQuxCti2pObhOW2+5/X5aezlQtn4=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=YbNhF34w1KvmCM6Y8Sj9bljKpwGVCB3+0y7U+rjXrsHnGFfWgD/NzRmbTbEPCDE4vjIwhvI6iUR71yWae9jitGkGSE6khgFDpWkzzktWQyJoknrwTngoIyJIdf7/QRsbRD2e7Wx6nCDuxC/EEeTNeSSXO0R99TDuAxGcmdcjOjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=O5G5HHbz; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A42D342D83;
-	Fri,  2 May 2025 13:15:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746191735;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/cWrrSzsINQ9rqSRtPa0XHYsGuJCfe/yw3Uo+Rflj8o=;
-	b=O5G5HHbzdiyCDRrMoU+aw7ZBqMRBKXzSsfUjAAfQPQ1+teUClCIlU0hM7XiPYgSMuWtcSv
-	ZAtvBsdD9LbydbSkhzcjJ7POGOkT3tF6E9Is3cIOoZtWfNoG0uLRVZovjqgRWuLkeFNPn5
-	RI00CWNdB6j9h/5KDkmIMsDtPcrv0UdzzyhIEuwRbTAS3yhdoboxlLDs/MN7zi6jI+xXtU
-	ws0UEFArTni5kS28UBGVenAuWEcKdevmY0+fnmozxZW8nAt677Z+n0Is3LDhj/t+aEwHkK
-	KIHtTF30vz9WSM9lS3LlqshenE4d6av3tHgEiFU8S6zSHnLb1JSe9Xa39cfHoA==
+	s=arc-20240116; t=1746191859; c=relaxed/simple;
+	bh=Zz5tEQSp2nyOEYwbhv7kdI9iSPvJ55sNnhWZna4qC2w=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=P8MkEBaLgMLr+vEjtIArxBfijir4UNR0idK8EA/Ehk1+UXWYVb9wyA061AP5vQqk3CU8vaOMQyI+rrB1vWkvMXlLLY1X6zx6yc9hvmdtJYILXP+AlVENXRaqo55ctC+nOP39TuYqi2q5yONxhuU+9anq8PLTS5MBAKeDpUXh8lE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hCDXlrcm; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1746191854;
+	bh=Zz5tEQSp2nyOEYwbhv7kdI9iSPvJ55sNnhWZna4qC2w=;
+	h=From:Date:Subject:To:Cc:From;
+	b=hCDXlrcmQCqkshuy5FbnW+qRrOFZcVDu6heaJSZluW0SfEA6nVRnwRupgEfTwLdvR
+	 RiEMt3lZ6jBB2kN4j2PEuWn+FRBPmf7r/iGqbGWVn6/paZ2GGQDUo9jhzG/n4L9SCp
+	 CsVXjrI5qNc4EOWAAZoI1mRA1PXLD9r0TCiI2abgvunQte40Wr7+bYB5sco/REv2gR
+	 RkI3RGB0syVPa3SvjGVHiCZ3Oh50yjscHWJAoUDTnVFOtSw6Yj1YoCniYHeAFrj/zS
+	 CR19i3tuKEJragLwX3lH/eBEE4NNqSO4Of1J7PVIKJ+A0uKopB6ki28Lxx1YOc/dtI
+	 bOmSmt/IrjbMA==
+Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4D16117E05D9;
+	Fri,  2 May 2025 15:17:33 +0200 (CEST)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Date: Fri, 02 May 2025 15:17:19 +0200
+Subject: [PATCH v2] arm64: dts: mediatek: mt8390-genio-common: Set ssusb2
+ default dual role mode to host
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 02 May 2025 15:15:34 +0200
-Message-Id: <D9LPB49CQJDW.3VMFI0TFGV7K2@bootlin.com>
-Subject: Re: [PATCH v7 09/11] input: keyboard: Add support for MAX7360
- keypad
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
- <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250428-mdb-max7360-support-v7-0-4e0608d0a7ff@bootlin.com>
- <20250428-mdb-max7360-support-v7-9-4e0608d0a7ff@bootlin.com>
- <aBSii0rHox72GM5Y@smile.fi.intel.com>
-In-Reply-To: <aBSii0rHox72GM5Y@smile.fi.intel.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvjedvheehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevhffvofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekhfekieeftefhjeetveefudehuddvvdeuvddvudfgfffhveekffethfeuffdtudenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlr
- dhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250502-mtk-genio-510-700-fix-bt-detection-v2-1-870aa2145480@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAN7FFGgC/42OTQ6CMBCFr0Jm7Zj+QDCuvIdh0ZYBGoFqWwmGc
+ HdruYDLN5nvfW+DQN5SgGuxgafFBuvmFMSpADOouSe0bcogmKiYFBec4gN7mq3DijOsGcPOrqg
+ jthTJxISjqDk32mgtqIRU9PSUfrLk3hzZ0+udXPE4glaB0LhpsvFazLRGzL6KCfgBgw3R+U8eu
+ fBMHHsk/2fPwpGjLEkJ03FZd/Jm3Dgq7bw6Jyk0+75/AbbVXZsJAQAA
+X-Change-ID: 20250328-mtk-genio-510-700-fix-bt-detection-2711cbcbb2e4
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746191853; l=3055;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=Zz5tEQSp2nyOEYwbhv7kdI9iSPvJ55sNnhWZna4qC2w=;
+ b=qvb9qzrAn2vsXJAvQj69b8+UXVaTVio8Hm708kWHhI+mQMfO873wEv5CANPz4boCtv+vMqzJe
+ NQj6VshybcQBcF7urOCeUk+8teXSTkam9xVVHVUA68fS/MkMnCa3y7e
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-On Fri May 2, 2025 at 12:46 PM CEST, Andy Shevchenko wrote:
-> On Mon, Apr 28, 2025 at 01:57:27PM +0200, Mathieu Dubois-Briand wrote:
->> Add driver for Maxim Integrated MAX7360 keypad controller, providing
->> support for up to 64 keys, with a matrix of 8 columns and 8 rows.
->
-> ...
->
->> +static irqreturn_t max7360_keypad_irq(int irq, void *data)
->> +{
->> +	struct max7360_keypad *max7360_keypad =3D data;
->> +	struct device *dev =3D max7360_keypad->input->dev.parent;
->> +	unsigned int val;
->> +	unsigned int row, col;
->> +	unsigned int release;
->> +	unsigned int code;
->> +	int error;
->> +
->> +	do {
->> +		error =3D regmap_read(max7360_keypad->regmap, MAX7360_REG_KEYFIFO, &v=
-al);
->> +		if (error) {
->> +			dev_err(dev, "Failed to read max7360 FIFO");
->> +			return IRQ_NONE;
->> +		}
->> +
->> +		/* FIFO overflow: ignore it and get next event. */
->> +		if (val =3D=3D MAX7360_FIFO_OVERFLOW)
->> +			dev_warn(dev, "max7360 FIFO overflow");
->
-> If many events are missing this will flood the logs, perhaps _ratelimited=
-() ?
->
->> +	} while (val =3D=3D MAX7360_FIFO_OVERFLOW);
->
-> regmap_read_poll_timeout() ?
->
+On the Mediatek Genio 510-EVK and 700-EVK boards, ssusb2 controller is
+one but has two ports: one is routed to the M.2 slot, the other is on
+the RPi header who does support full OTG.
+Since Mediatek Genio 700-EVK USB support was added, dual role mode
+property is set to otg for ssusb2. This config prevents the M.2
+Wifi/Bluetooth module, present on those boards and exposing Bluetooth
+as an USB device to be properly detected at startup as the default role
+is device.
+To keep the OTG functionality and make the M.2 module be detected at
+the same time, add role-switch-default-mode property set to host and
+also fix the polarity of GPIO associated to the USB connector, so the
+ssusb2 controller role is properly set to host when the other port is
+unused.
 
-OK, I can try something like:
+Fixes: 1afaeca17238 ("arm64: dts: mediatek: mt8390-genio-700: Add USB, TypeC Controller, MUX")
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+I've tested this patch on Mediatek Genio 510-EVK board with a kernel
+based on linux-next (tag: next-20250502).
+---
+Changes in v2:
+- Remove dr_mode property change and add role-switch-default-mode one
+  instead, as suggested by AngeloGioacchino Del Regno
+- Fix USB connector GPIO polarity
+- Reword comment in ssusb2 node to match v2 fix
+- Reword commit message and title
+- Rebase on linux-next (tag: next-20250502)
+- Link to v1: https://lore.kernel.org/r/20250331-mtk-genio-510-700-fix-bt-detection-v1-1-34ea2cf137f3@collabora.com
+---
+ arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-+       error =3D regmap_read(max7360_keypad->regmap, MAX7360_REG_KEYFIFO, =
-&val);
-+
-+       /* FIFO overflow: ignore it and get next event. */
-+       if (!error && (val =3D=3D MAX7360_FIFO_OVERFLOW)) {
-+               dev_warn(dev, "max7360 FIFO overflow");
-+               error =3D regmap_read_poll_timeout(max7360_keypad->regmap, =
-MAX7360_REG_KEYFIFO,
-+                                                val, val !=3D MAX7360_FIFO=
-_OVERFLOW, 0, 0);
-+       }
-+
-+       if (error) {
-+               dev_err(dev, "Failed to read max7360 FIFO");
-+               return IRQ_NONE;
-+       }
-+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+index 127764c4d6be81767ef534a7cb228989f471b3bd..aa8dd12a84ea9d8e0e879067c45f59563455b077 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+@@ -1333,8 +1333,18 @@ xhci_ss_ep: endpoint {
+ };
+ 
+ &ssusb2 {
++	/*
++	 * the ssusb2 controller is one but we got two ports : one is routed
++	 * to the M.2 slot, the other is on the RPi header who does support
++	 * full OTG.
++	 * As the controller is shared between them, the role switch default
++	 * mode is set to host to make any peripheral inserted in the M.2
++	 * slot (i.e BT/WIFI module) be detected when the other port is
++	 * unused.
++	 */
+ 	dr_mode = "otg";
+ 	maximum-speed = "high-speed";
++	role-switch-default-mode = "host";
+ 	usb-role-switch;
+ 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+ 	wakeup-source;
+@@ -1345,7 +1355,7 @@ &ssusb2 {
+ 	connector {
+ 		compatible = "gpio-usb-b-connector", "usb-b-connector";
+ 		type = "micro";
+-		id-gpios = <&pio 89 GPIO_ACTIVE_HIGH>;
++		id-gpios = <&pio 89 GPIO_ACTIVE_LOW>;
+ 		vbus-supply = <&usb_p2_vbus>;
+ 	};
+ };
 
-Sleep_us is 0 as we are in the IRQ handler, but I'm not sure about
-timeout_us. We could set one to make sure we are not stuck in the IRQ
-handler, but the IRQ would fire again right after we return. I will stay
-with 0 for now.
+---
+base-commit: 1c51b1ba38c07e4f999802eb708bf798dd5f5d1b
+change-id: 20250328-mtk-genio-510-700-fix-bt-detection-2711cbcbb2e4
 
-Also, the "max7360 FIFO overflow" message would be shown at most once
-per IRQ, so probably no need for dev_warn_ratelimited().
-
->> +	if (val =3D=3D MAX7360_FIFO_EMPTY) {
->> +		dev_dbg(dev, "Got a spurious interrupt");
->> +
->> +		return IRQ_NONE;
->> +	}
->> +
->> +	row =3D FIELD_GET(MAX7360_FIFO_ROW, val);
->> +	col =3D FIELD_GET(MAX7360_FIFO_COL, val);
->> +	release =3D val & MAX7360_FIFO_RELEASE;
->> +
->> +	code =3D MATRIX_SCAN_CODE(row, col, MAX7360_ROW_SHIFT);
->> +
->> +	dev_dbg(dev, "key[%d:%d] %s\n", row, col, release ? "release" : "press=
-");
->> +
->> +	input_event(max7360_keypad->input, EV_MSC, MSC_SCAN, code);
->> +	input_report_key(max7360_keypad->input, max7360_keypad->keycodes[code]=
-, !release);
->> +	input_sync(max7360_keypad->input);
->> +
->> +	return IRQ_HANDLED;
->> +}
->
-> ...
->
-
-OK with other comments.
-
-Thanks for your review.
-Mathieu
-
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards,
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
 
