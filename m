@@ -1,146 +1,155 @@
-Return-Path: <devicetree+bounces-173091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC82DAA76A7
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:04:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31410AA76B0
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:05:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 476459E0214
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:04:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB04D189B570
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:06:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0218C25D1F8;
-	Fri,  2 May 2025 16:04:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EAC025D1E1;
+	Fri,  2 May 2025 16:05:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IP5oh0e/"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BAtiocXK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6887925D1E7;
-	Fri,  2 May 2025 16:04:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490FD146A68;
+	Fri,  2 May 2025 16:05:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746201860; cv=none; b=d9q7dtQ8mFjsfE0HeQOU8sqAemdDC3x2c0VkGRlHhnMV7p6QbXNjd7M2eFDad1tSGqBDaZnD8XP/ZG5shsH4UWQxdyx0Q/8k/YzK6ntA7nTVBy9omrq/FH8OC1ohd1xrgn2iZewCqYlkJJVOU3hLmHHunyKpHTOhjC0pB8k+w98=
+	t=1746201950; cv=none; b=oGLyl39CS/kjh3T1gj7GjbQHIKCMyJwjEm5qCsrXnnh7Wj1Wn2BfFphtpHTOgQa1qBIAQhRWvN2su6jKMK3ItGlXDL1S/dT2927eaCMVJhZQsUpkPLcZqHifXjxiV0RLFJ/7UkGJ4cxjN89to5EB54zLGF1U9IdxLL2r6DrrpI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746201860; c=relaxed/simple;
-	bh=gwXN3uKkZvpWrE6+FvlOwjYwomgnhHuJFP/82khwbdI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f48uTnIGgKvDSwcLWepBexAhadE4QcgFEc91ZYzyVWruGi5EW7fH6wntt1qUzq0nV1jNYzd+36WCO1RcG5D+afndGXxSAgB3E1MEvrQKKmFDben4ZCdVkZiGmCmpxig8+nexYvPnzDPBLwffzIBYSeZ4XGMUYhIY5LBs2lpGcr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IP5oh0e/; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9B348AF;
-	Fri,  2 May 2025 18:04:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1746201849;
-	bh=gwXN3uKkZvpWrE6+FvlOwjYwomgnhHuJFP/82khwbdI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IP5oh0e/+b5cd/A+M+O7BEm452PpzvvWGaOoOugaHEXe7aFfXRrvmKWZart6lZxYU
-	 bSdrhAfFu3vMbOFaLsYxkXhuDiy42BLBXLtTJqEl2jraJduviw005hEHkCEPW3mZyc
-	 Pn2DmelSm2H7aDV7m55cSF3iEfxlSNLEifjGBWIA=
-Date: Fri, 2 May 2025 19:04:08 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Keguang Zhang <keguang.zhang@gmail.com>, linux-mips@vger.kernel.org,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [bug report] mtd: rawnand: Add Loongson-1 NAND Controller Driver
-Message-ID: <20250502160408.GC15945@pendragon.ideasonboard.com>
-References: <aBR535RZZT-sa6QZ@stanley.mountain>
+	s=arc-20240116; t=1746201950; c=relaxed/simple;
+	bh=CW6howZuFs3OlyeVpRliyRH+sBNaJRlS2y4cpHK+3rk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UPj1S9zFPbb5bT1Kw/KHlaJdtfcHAQmeIVaEqfWtgrPXMdTdNrcHXuZFxckjwK3MKLei7NFGDa/7otsX+KC1OXKrVFDLm38Oq6B9WV/Y5Kv25c7zdeAG8ZZ5BA9ywycgDZIBHtSIkze0tL44k7tzVvCHoE4dUA+XCBMqiLwSrHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BAtiocXK; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 542G5fEZ3900136
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 2 May 2025 11:05:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746201942;
+	bh=aIIlIfkYSdL5Az0Twy2pxwPEBxkLM4iI1QPUDLeCG60=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=BAtiocXKCBJG7TvNW41q6P3Nk4zNUXGQ/cFhwRZqIOI0LqSqloen/q91Q3sr9EwB7
+	 2+wwQ+TeI5Qbk2o1lHvYC+H/rx7Q1W4SR0B4ZT7gPraKSBTKpncTqhvw3hNxmnMuMo
+	 Kbo5u1nfSeX3MHuc0W2eXI68BNL5NfdNAua8SjZc=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 542G5fbl084000
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 May 2025 11:05:41 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ May 2025 11:05:41 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 May 2025 11:05:41 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 542G5fc0090643;
+	Fri, 2 May 2025 11:05:41 -0500
+Date: Fri, 2 May 2025 11:05:41 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Paresh Bhagat <p-bhagat@ti.com>
+CC: <vigneshr@ti.com>, <praneeth@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <khasim@ti.com>, <v-singh1@ti.com>,
+        <afd@ti.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: ti: Add bindings for AM62D2 SoC
+Message-ID: <20250502160541.azhzbnmghrkory7h@cleaver>
+References: <20250502153915.734932-1-p-bhagat@ti.com>
+ <20250502153915.734932-2-p-bhagat@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <aBR535RZZT-sa6QZ@stanley.mountain>
+In-Reply-To: <20250502153915.734932-2-p-bhagat@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, May 02, 2025 at 10:53:03AM +0300, Dan Carpenter wrote:
-> Hello Keguang Zhang,
+On 21:09-20250502, Paresh Bhagat wrote:
+> The AM62D2 SoC belongs to the K3 Multicore SoC architecture with DSP core
+> targeted for applications needing high-performance Digital Signal
+> Processing. It is used in applications like automotive audio systems,
+> professional sound equipment, radar and radio for aerospace, sonar in
+> marine devices, and ultrasound in medical imaging. It also supports
+> precise signal analysis in test and measurement tools.
 > 
-> Commit d2d10ede04b1 ("mtd: rawnand: Add Loongson-1 NAND Controller
-> Driver") from Mar 20, 2025 (linux-next), leads to the following
-> Smatch static checker warning:
+> Some highlights of AM62D2 SoC are:
 > 
-> 	drivers/mtd/nand/raw/loongson1-nand-controller.c:730 ls1x_nand_chip_init()
-> 	warn: inconsistent refcounting 'chip_np->kobj.kref.refcount.refs.counter':
+> * Quad-Cortex-A53s (running up to 1.4GHz) in a single cluster. Dual/Single
+>   core variants are provided in the same package to allow HW compatible
+>   designs.
+> * One Device manager Cortex-R5F for system power and resource management,
+>   and one Cortex-R5F for Functional Safety or general-purpose usage.
+> * DSP with Matrix Multiplication Accelerator(MMA) (up to 2 TOPS) based on
+>   single core C7x.
+> * 3x Multichannel Audio Serial Ports (McASP) Up to 4/6/16 Serial Data Pins
+>   which can Transmit and Receive Clocks up to 50MHz, with multi-channel I2S
+>   and TDM Audio inputs and outputs.
+> * Integrated Giga-bit Ethernet switch supporting up to a total of two
+>   external ports with TSN capable to enable audio networking features such
+>   as, Ethernet Audio Video Bridging (eAVB) and Dante.
+> * 9xUARTs, 5xSPI, 6xI2C, 2xUSB2, 3xCAN-FD, 3x eMMC and SD, OSPI memory
+>   controller, 1x CSI-RX-4L for Camera, eCAP/eQEP, ePWM, among other
+>   peripherals.
+> * Dedicated Centralized Hardware Security Module with support for secure
+>   boot, debug security and crypto acceleration and trusted execution
+>   environment.
+> * One 32 bit DDR Subsystem that supports LPDDR4, DDR4 memory types.
+> * Low power mode support: Partial IO support for CAN/GPIO/UART wakeup.
 > 
-> drivers/mtd/nand/raw/loongson1-nand-controller.c
->     690 static int ls1x_nand_chip_init(struct ls1x_nand_host *host)
->     691 {
->     692         struct device *dev = host->dev;
->     693         int nchips = of_get_child_count(dev->of_node);
->     694         struct device_node *chip_np;
->     695         struct nand_chip *chip = &host->chip;
->     696         struct mtd_info *mtd = nand_to_mtd(chip);
->     697         int ret;
->     698 
->     699         if (nchips != 1)
->     700                 return dev_err_probe(dev, -EINVAL, "Currently one NAND chip supported\n");
->     701 
->     702         chip_np = of_get_next_child(dev->of_node, NULL);
+> This adds dt bindings for TI's AM62D2 family of devices.
 > 
+> More details about the SoCs can be found in the Technical Reference Manual:
+> https://www.ti.com/lit/pdf/sprujd4
 > 
-> The of_get_next_child() function drops the reference on the current
-> child.  That's probably not what we want to happen.  This is similar to
-> a discussion we were having earlier about of_find_node_by_name().
+> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
 
-The current child here is NULL, so I don't think there's an issue.
+Looking at the board patch in the series, this is am62p5 ? what is the
+difference? If there is a difference, why is there no dtsi
+file for am62d?
 
-> Then it takes a reference to the new child.
-
-*That* causes issues that you outlined below.
-
+> ---
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
->     703         if (!chip_np)
->     704                 return dev_err_probe(dev, -ENODEV, "failed to get child node for NAND chip\n");
->     705 
->     706         chip->controller = &host->controller;
->     707         chip->options = NAND_NO_SUBPAGE_WRITE | NAND_USES_DMA | NAND_BROKEN_XD;
->     708         chip->buf_align = 16;
->     709         nand_set_controller_data(chip, host);
->     710         nand_set_flash_node(chip, chip_np);
->     711         if (!mtd->name)
->     712                 return dev_err_probe(dev, -EINVAL, "Missing MTD label\n");
+> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> index a6d9fd0bcaba..bac821d63cf1 100644
+> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> @@ -31,6 +31,12 @@ properties:
+>            - const: phytec,am62a-phycore-som
+>            - const: ti,am62a7
+>  
+> +      - description: K3 AM62D2 SoC and Boards
+> +        items:
+> +          - enum:
+> +              - ti,am62d2-evm
+> +          - const: ti,am62d2
+> +
+>        - description: K3 AM62P5 SoC and Boards
+>          items:
+>            - enum:
+> -- 
+> 2.34.1
 > 
-> of_node_put(chip_np) before returning.
-> 
->     713 
->     714         mtd->dev.parent = dev;
->     715         mtd->owner = THIS_MODULE;
->     716 
->     717         ret = nand_scan(chip, 1);
->     718         if (ret) {
->     719                 of_node_put(chip_np);
->     720                 return dev_err_probe(dev, ret, "failed to scan NAND chip\n");
->     721         }
->     722 
->     723         ret = mtd_device_register(mtd, NULL, 0);
->     724         if (ret) {
->     725                 nand_cleanup(chip);
->     726                 of_node_put(chip_np);
->     727                 return dev_err_probe(dev, ret, "failed to register MTD device\n");
->     728         }
->     729 
-> 
-> I think we want to call of_node_put(chip_np) before returning on the
-> success path as well?
-
-I would instead declare the chip_np variable as
-
-	struct device_node *chip_np __free(of_node_put) = NULL;
-
-and drop all the of_node_put(chip_np) calls.
-
-> --> 730         return 0;
->     731 }
 
 -- 
 Regards,
-
-Laurent Pinchart
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
