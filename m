@@ -1,327 +1,234 @@
-Return-Path: <devicetree+bounces-172936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DE74AA7022
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 12:56:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4409AA703A
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 13:04:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C59E8984A30
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 10:55:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 315BD9C0F94
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:04:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E196623C500;
-	Fri,  2 May 2025 10:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7309C246778;
+	Fri,  2 May 2025 11:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="qo5DK0TA"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="fuUWkhG6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD41179D2;
-	Fri,  2 May 2025 10:55:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746183358; cv=none; b=EmemVpO4v+0Kh5zuUXm864rOwW4AqufNJJMKmGcGNTPsj0+5IDn986Ub5pAcHO9GAevae92iJihf16MSWG3BesLfEt6OD9OAtnCbAObqAAuS6oOLd6+UZIC/FZCTZiVlT/kgBNPgUb+q0G1AByiu+7zSpbsNRqY7+ryccWcVgGo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746183358; c=relaxed/simple;
-	bh=FKFQ3o4adD4pJo/xKyy4pzEDYns9z6DkTgf6Cclzkb8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=izZK6440DzD17GEU/LIHkCqsc2iM+UvS948aMQrAjAEhAKO4y45qmX//LaZQRzN1b2uyON5pDPVy8vNAzPbu41Ti71QpQtRgmqs2iBpSHdpGN0TBmQwQRd7/lvMtT6ER/2vgZvs3imteEMskAqLUNqESAeHpZIobIz18JDFFC2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=qo5DK0TA; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E26DB353;
-	Fri,  2 May 2025 12:55:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1746183346;
-	bh=FKFQ3o4adD4pJo/xKyy4pzEDYns9z6DkTgf6Cclzkb8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qo5DK0TAIVY1OTE1tjC0nVQD9EYrahEh6468c+jEtIOOzUtyWzJPHtgt3GP8DAk5Q
-	 57eNP3Rr7Twv//oWBpxteKsFvoGUTFWD14Ulhj7oPKJFL5ziqgYeclySgF5dfZc0We
-	 ZIkLqvTlDqOha6+J8v06USfM3nxO/7slrqugcNX0=
-Message-ID: <ed82e498-b3af-46f6-97ce-3a2f47872935@ideasonboard.com>
-Date: Fri, 2 May 2025 13:55:50 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482A8243964;
+	Fri,  2 May 2025 11:04:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746183858; cv=pass; b=nP12n6mT9d1oIYtbfgbII4Tq8Mc9tqVGYGBySYzWGA55UCVCurJJKkrEW6OgJbnzwk7aNBff0jiLybwJwb+P8fUqs3Nl5VZAH8S+A01acoTGwyXBR1aBH6KAiux8a+jrNqRN3SLLVz1deeiTx9fQ5ovRhvcenLnygEpW4jsMEas=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746183858; c=relaxed/simple;
+	bh=Zmtcot/QVRE5ELx+WBpsBAaP5yyL3OntftNJoA5r0Xo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KSGbNz7QGKjr5vl4moBPjslv6PWNXGxmnaiJy14HHs6IOJyR/zIHtLP1kn/WxsFaxfIFrNTaV2xk10Gjv0ykPdP/2BWzmqJlKbLA2ViOms6vmmieshFTj0Y8l/pJ5ZKFh9CMD6mUb9dxlpGBZqQjEUe/bqYrB7GPFZ0Vn+gqllE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=fuUWkhG6; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1746183806; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=hqZQsz3qHpAQw9kbQ/VDExRHIS0uQ0GKxpszv/6YpryNiRVV8zyVa9XvhPXkzBGLekDZtUYFQYigjuJzUi5sN5bGZrfq339f7TtP7WMSq5e1+tBmF9Shjp4PBWwK2VoEOfVWfhrafBLtaqmwmcOKvnp1AaozL48dOoiCHk6oycs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1746183806; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=x/rmusHHaLusTdd7+fM9t0D0DHwPL9qRbBIoqcANwzk=; 
+	b=hzm2jG3cDEcDv+X9Nb5v/P0FPC1GGoOxgCQMcvd/JXrkXKAQxd6pJu5QpltsydqjheCFktODgUGCUCw7JjB6DPwP094dTp0JnROg8wXeVe8/NSqZKQXCyUP9KeSl6JkDuvGADZdiSeMUvuCJcl3buT7E8wdlL5BzLA5+4A1wtxI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1746183806;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=x/rmusHHaLusTdd7+fM9t0D0DHwPL9qRbBIoqcANwzk=;
+	b=fuUWkhG6X8l9y8cc5kTVpYO/kvNQw6lMmLjCDz7t/ko5W3+brjovf1Y2i5Bw41M7
+	A+X3gmlw0odIdQKmbmGh8JqNJBPrUhTgopXWK2tEId54nkLUVAsW2OgLvIeh8ytquoV
+	j7ZDE8TAVdy9Oai8NNPr3ZX4snmsEUaeoLabI8uI=
+Received: by mx.zohomail.com with SMTPS id 1746183803976136.65023538001685;
+	Fri, 2 May 2025 04:03:23 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v3 00/10] Add RK3576 SAI Audio Controller Support
+Date: Fri, 02 May 2025 13:03:06 +0200
+Message-Id: <20250502-rk3576-sai-v3-0-376cef19dd7c@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] drm/tidss: Update infrastructure to support K3 DSS
- cut-down versions
-To: Devarsh Thakkar <devarsht@ti.com>
-Cc: praneeth@ti.com, vigneshr@ti.com, aradhya.bhatia@linux.dev,
- s-jain1@ti.com, r-donadkar@ti.com, j-choudhary@ti.com, h-shenoy@ti.com,
- jyri.sarha@iki.fi, airlied@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
- simona@ffwll.ch, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-References: <20250429143656.3252877-1-devarsht@ti.com>
- <20250429143656.3252877-3-devarsht@ti.com>
- <f729c0d6-45a0-4610-b22b-92c03f534bf7@ideasonboard.com>
- <1f8c43cd-8c26-4e42-b144-b91f5ffc2e2e@ti.com>
- <88993439-bfdc-418c-95c6-d6d8bdb5b87f@ideasonboard.com>
- <466254e9-145f-4839-9451-a5f282ff02e9@ti.com>
- <ce831f65-67d0-4f4c-9f08-3014b1d00dc0@ideasonboard.com>
- <ca008cb0-bec6-4b10-b6b5-0f29648f76c0@ti.com>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <ca008cb0-bec6-4b10-b6b5-0f29648f76c0@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGqmFGgC/23O0Q6CIBTG8VdxXEc7AiJ21Xu0LpCOyVIpMFdzv
+ nuEF63W5cf2+x9mEtBbDGSXzcTjZIN1Qxx8kxHT6uGM1J7iJgxYARwK6i+8KCUN2lJTKgTBQVU
+ KSQRXj419pNjhuG6Pt3tsjusjqXVAalzf23GXDfgYaeoWwMgbtDaMzj/TZ6Y8iX93p5wClQKla
+ ZTkWOm9cV2na+f1NsZTamIfLnL44ixyI4UExYWskf/yZVleJbSQaBgBAAA=
+X-Change-ID: 20250305-rk3576-sai-c78e0430898e
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Sugar Zhang <sugar.zhang@rock-chips.com>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
 
-Hi,
+This series adds support for Rockchip's Serial Audio Interface (SAI)
+controller, found on SoCs such as the RK3576. The SAI is a flexible
+controller IP that allows both transmitting and receiving digital audio
+in the I2S, TDM and PCM formats. Instances of this controller are used
+both for externally exposed audio interfaces, as well as for audio on
+video interfaces such as HDMI.
 
-On 02/05/2025 13:47, Devarsh Thakkar wrote:
-> Hi Tomi,
-> 
-> Thanks for the quick revert.
-> 
-> On 02/05/25 13:37, Tomi Valkeinen wrote:
->> Hi,
->>
->> On 02/05/2025 10:06, Devarsh Thakkar wrote:
->>> Hi Tomi
->>>
->>> Thanks for quick comments.
->>>
->>> On 30/04/25 23:12, Tomi Valkeinen wrote:
->>>> On 30/04/2025 19:37, Devarsh Thakkar wrote:
->>>>> Hi Tomi
->>>>>
->>>>> Thanks for the review.
->>>>>
->>>>> <snip>
->>>>>>>      @@ -2025,7 +2101,7 @@ int dispc_plane_check(struct dispc_device
->>>>>>> *dispc, u32 hw_plane,
->>>>>>>                    const struct drm_plane_state *state,
->>>>>>>                    u32 hw_videoport)
->>>>>>>      {
->>>>>>> -    bool lite = dispc->feat->vid_lite[hw_plane];
->>>>>>> +    bool lite = dispc->feat->vid_info[hw_plane].is_lite;
->>>>>>
->>>>>> I don't think this is correct. You can't access the vid_info[] with
->>>>>> the
->>>>>> hw-id.
->>>>>
->>>>> I don't think hw_id is getting passed to hw_plane here. The
->>>>> dispc_plane_check is called from tidss_plane_atomic_check which passes
->>>>> hw_plane as tplane->hw_plane_id and this index starts from actually
->>>>> instantiated planes i.e. from 0 and are contiguous as these are
->>>>
->>>> Well, if tplane->hw_plane_id is not the HW plane id (i.e. it's misnamed
->>>> now), and tidss_plane.c calls dispc_plane_enable() with tplane-
->>>>> hw_plane_id as the hw_plane parameter, which is used as a HW plane
->>>> ID... Then... One of these is wrong, no?
->>>>
->>>
->>> As mentioned here [1], dispc_plane_enable acts on VID_* registers which
->>> are only mapped per the instantiated/actual pipes present in the SoC, so
->>> the indexing always starts from 0 and we need not worry about skipping
->>> un-instantiated planes.
->>>
->>> So hw_plane_id -> Index of only instantiated planes starting from 0
->>> hw_id -> Hardware Index taking into account instantiated +
->>> un-instantiated/skipped planes main used for common0/1 region registers
->>> dealing with VID planes.
->>>
->>>
->>> For e.g. for AM62L which includes VIDL pipe
->>> hw_plane_id -> 0
->>> hw_id -> 1
->>>
->>>
->>>>> populated from vid_order array (hw_plane_id =
->>>>> feat->vid_order[tidss->num_planes];) and not the hw_id index.
->>>>>
->>>>> So for e.g. for AM62L even though hw_id is 1 for VIDL hw_plane is
->>>>> getting passed as 0 and that's how it is able to access the first and
->>>>> only member of vid_info struct and read the properties correctly and
->>>>> function properly as seen in test logs [1].
->>>>
->>>> If for AM62L the tplane->hw_plane_id is 0, the the dispc_plane_enable()
->>>> call would enable the wrong plane, wouldn't it?
->>>>
->>>> But even if it all works, I think this highlights how confusing it is...
->>>>
->>>>>
->>>>>>
->>>>>>>          u32 fourcc = state->fb->format->format;
->>>>>>>          bool need_scaling = state->src_w >> 16 != state->crtc_w ||
->>>>>>>              state->src_h >> 16 != state->crtc_h;
->>>>>>> @@ -2096,7 +2172,7 @@ void dispc_plane_setup(struct dispc_device
->>>>>>> *dispc, u32 hw_plane,
->>>>>>>                     const struct drm_plane_state *state,
->>>>>>>                     u32 hw_videoport)
->>>>>>>      {
->>>>>>> -    bool lite = dispc->feat->vid_lite[hw_plane];
->>>>>>> +    bool lite = dispc->feat->vid_info[hw_plane].is_lite;
->>>>>>
->>>>>> Here too.
->>>>>
->>>>> Here also hw_plane is getting passed as 0 and not the hw_id which is 1
->>>>> for AM62L.
->>>>>
->>>>>>
->>>>>>>          u32 fourcc = state->fb->format->format;
->>>>>>>          u16 cpp = state->fb->format->cpp[0];
->>>>>>>          u32 fb_width = state->fb->pitches[0] / cpp;
->>>>>>> @@ -2210,7 +2286,7 @@ static void dispc_k2g_plane_init(struct
->>>>>>> dispc_device *dispc)
->>>>>>>          /* MFLAG_START = MFLAGNORMALSTARTMODE */
->>>>>>>          REG_FLD_MOD(dispc, DISPC_GLOBAL_MFLAG_ATTRIBUTE, 0, 6, 6);
->>>>>>>      -    for (hw_plane = 0; hw_plane < dispc->feat->num_planes;
->>>>>>> hw_plane++) {
->>>>>>> +    for (hw_plane = 0; hw_plane < dispc->feat->num_vids;
->>>>>>> hw_plane++) {
->>>>>>>              u32 size = dispc_vid_get_fifo_size(dispc, hw_plane);
->>>>>>>              u32 thr_low, thr_high;
->>>>>>>              u32 mflag_low, mflag_high;
->>>>>>> @@ -2226,7 +2302,7 @@ static void dispc_k2g_plane_init(struct
->>>>>>> dispc_device *dispc)
->>>>>>>                dev_dbg(dispc->dev,
->>>>>>>                  "%s: bufsize %u, buf_threshold %u/%u, mflag threshold
->>>>>>> %u/%u preload %u\n",
->>>>>>> -            dispc->feat->vid_name[hw_plane],
->>>>>>> +            dispc->feat->vid_info[hw_plane].name,
->>>>>>
->>>>>> Here hw_plane is not actually the hw-id (anymore), but elsewhere in
->>>>>> this
->>>>>> function it is used as a hw-id, which is no longer correct.
->>>>>
->>>>> For accessing vid_info hw_plane needs to be used which is the index of
->>>>> actually instantiated planes and I see it as correctly being passed for
->>>>> AM62L too. hw_id is only for dispc_k3_vid* functions where we need to
->>>>> skip the not-instantiated vid regions by adding the offset per the
->>>>> hw_id
->>>>> index.
->>>>
->>>> Hmm, sorry, I don't follow. If we use the same variable, hw_plane, to
->>>> access the vid_info[], and as a parameter to functions that take
->>>> hw_plane, e.g., dispc_vid_set_buf_threshold(), isn't one of those uses
->>>> wrong?
->>>>
->>>> Oh, wait... I think I see it now. For some functions using the hw_id as
->>>> the hw_plane parameter is fine, as they access the VID's registers by
->>>> just using, e.g. dispc_vid_write(), which gets the address correctly
->>>> from dispc->base_vid[hw_plane], as that one is indexed from 0 to
->>>> num_vids.
->>>>
->>>
->>> Yes exactly.
->>>
->>>> But some functions use registers that have bits based on the hw_id (like
->>>> dispc_k3_vid_write_irqstatus), and then we use the hw_id for the
->>>> hw_plane parameter. If that function were to also write a vid register,
->>>> using the passed hw_plane, it wouldn't work, but I guess we don't do
->>>> that.
->>>>
->>>
->>> Yes, hw_id is only for dispc_k3_vid* functions dealing with common
->>> region registers that play with VID pipes.
->>>
->>>> It feels broken... We can't have 'hw_plane' that's sometimes the HW id
->>>> (i.e. 1 for AM62L), and sometimes the driver's index (i.e. 0 for AM62L).
->>>>
->>>
->>> Sorry I don't follow, what exactly is broken here. hw_plane is for
->>> instantiated planes present in SoC used in context of VID* register
->>> space while doing reg writess and hw_id is the plane hardware index
->>> w.r.t larger K3 family i.e used in context for common register space.
->>
->> We have, as an example, these two functions:
->>
->> void dispc_plane_enable(struct dispc_device *dispc, u32 hw_plane, bool
->> enable)
->>
->> static void dispc_k3_vid_write_irqstatus(struct dispc_device *dispc, u32
->> hw_plane, dispc_irq_t vidstat)
->>
->> When the caller calls these functions on AM62L, what does it provide in
->> 'hw_plane' when it wants to enable the first plane of write the
->> irqstatus for the first plane?
-> 
-> It uses hw_id i.e. 1 for all vid irqstatus related registers since it is
-> accessing am65x common region register space which has vid on idx0 which
-> we want to skip for am62l.
-> 
-> For dispc_plane_enable(), the caller uses
->> 0, for dispc_k3_vid_write_irqstatus(), the caller uses 1...
-> 
-> Yes above is correct, and I think that's how it is supposed to be.
+Patch 1, 2, 3 and 4 do some preparatory work in the clock bindings and
+clock controller. The RK3576 has the SAI0 through SAI4 output mclks as
+well as the FSPI0 and FSPI1 clocks gated behind some GRF register
+writes. The RK3588 had this for its I2S audio clocks as well, but got
+away with not caring about it in mainline because the clocks were
+ungated by default.  This is no longer the case with RK3576: the SAI
+mclks need to be ungated before they can be used. Note the absence of
+the FSPI clks: they're ungated by default, so we're in no hurry to deal
+with them in this series.
 
-No it's not. Both functions have "hw_plane" parameter, yet they require 
-a different value to be used even when referring to the same plane.
+To sum those up: we need to introduce a new clock branch type, and also
+rework the rockchip clock code to deal with multiple separate GRF
+regmaps.
 
->> With a quick look at the code, changing the callers to pass the "old
->> style" hw_plane as the parameter to those irq functions, and the
->> functions internally get the hw_id, would solve most of the problems.
-> 
-> I don't follow above, hw_plane has 0 so it should not be used for
-> programming irq related functions which expect idx 1 as explained above.
+NB: checkpatch.pl seems to trip over patch 2 in some way that seems like
+a combination of the diff being too clever and at the same time too
+stupid.
 
-We have various functions in tidss_dispc.c that have hw_plane as a 
-parameter. But the caller is supposed to know that for some functions 
-hw_plane is a plane index from 0, and for some it's the hw_id from 
-vid_info[].
+Patch 5 and 6 are boring devicetree changes to add the nodes, including
+an hdmi_sound node in the SoC tree which can be enabled by individual
+boards that enable HDMI.
 
->> There's still dispc_k3_set_irqenable() which manages 'main_disable' and
->> needs the hw_id, but maybe that's fine, even if a bit confusing.
->>
-> 
-> I still feel there is no inherent bug here, but let me know if you want
-> me to put some debug prints or get register dump so that we can double
-> confirm.
+Patch 7 and 8 enable analog audio and HDMI audio respectively on the
+ArmSoM Sige5 board. Patch 8 goes into some schematic-derived knowledge
+about where the audio signal can actually be tapped into in order to
+test analog audio.
 
-I'm not saying there's a bug. I'm saying it's bad code and will cause 
-confusion and bugs in the future.
+Patch 9 enables the driver in the arm64 defconfig, as the RK3576 is
+supported in mainline, so its drivers should be enabled in the
+defconfig.
 
-  Tomi
+Patch 10 does the same for the codec driver.
+
+To test analog audio on the Sige5, I both soldered to the output 2
+testpads, as well as fashioned a cable to plug into the headphone
+header. I do have the necessary materials to to make more such cables,
+so if you have a Sige5 and want to test this but don't happen to sit on
+a pile of 03SUR-32S cables, then you may contact me off-list to request
+I send you such a cable from Switzerland, and I'll see what I can do.
+
+HDMI audio is now enabled in this series.
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Changes in v3:
+- Fix auxiliary GRF patch on RK3388 and RV1126, which were
+  unintentionally broken previously because I didn't build 32-bit ARM
+  platforms. Thanks to Heiko for noticing!
+- Drop "ASoC: dt-bindings: add schema for rockchip SAI controllers" as
+  it was applied already
+- Drop "ASoC: rockchip: add Serial Audio Interface (SAI) driver" as it
+  was applied already
+- Add codec driver defconfig patch
+- Link to v2: https://lore.kernel.org/r/20250410-rk3576-sai-v2-0-c64608346be3@collabora.com
+
+Changes in v2:
+- split rockchip clk changes into 3 separate patches, all of which
+  build on their own
+- driver: expand Kconfig symbol help text to make checkpatch shut up
+- driver: remove runtime PM debug messages, as they were redundant
+- driver: move of_defice_id table and MODULE_DEVICE_TABLE to be above
+  the platform_driver struct and below the probe function, as is done in
+  many other drivers
+- driver: drop of_match_ptr
+- driver: drop MODULE_ALIAS
+- driver: remove the confusing hclk disable comment in the probe
+  function
+- driver: remove quirks handling, which only existed for
+  rockchip,always-on purposes. Downstream does not appear to need this
+  quirk for any sai implementations. It can always be added back later
+  when the problem, if there is any, is better understood.
+- driver: fix hw_params when the number of requested channels is lower
+  than twice the number of lanes in non-TDM mode. Without this, playing
+  back stereo audio on an 8-channel SAI would fail to set the hw_params
+- driver: when in I2S TDM mode, set the XFER delay to 1 aka half a cycle
+  This makes the output waveform line up with both what RK3568 I2S-TDM
+  and the TI TAS6424 codec describe as correct TDM'd I2S in their
+  datasheets, namely that on the first rising SCLK pulse after LRCK is
+  high, there's audio data ready.
+- driver: treat set_tdm_slot with 0 slots as disabling TDM. This lines
+  up with what the function documentation for ASoC core's
+  snd_soc_dai_set_tdm_slot says it'll do if it's called with 0 slots,
+  but in practice that function seems broken because it'll just pass
+  the signed number of slots to the unsigned parameter of the mask
+  generation function, which treats 0 slots as an error, making the
+  caller snd_soc_dai_set_tdm_slot function bail out before ever
+  giving any driver set_tdm_slot callback the 0 slot number. If that
+  ever gets fixed (I hacked around it to test it), then our driver will
+  be able to turn off TDM mode at runtime.
+- ASoC bindings: rename bindings file from rockchip,sai.yaml to
+  rockchip,rk3576-sai.yaml
+- ASoC bindings: remove extraneous blank line
+- ASoC bindings: change resets property to use an items listing
+- ASoC bindings: fix rockchip,sai-(t|r)x-route property constraints
+- ASoC bindings: remove rockchip,always-on
+- RK3576 dts: add tx/rx-route to all internal SAI nodes. This is needed
+  because they all can do either 8CH TX, 8CH TXRX or 8CH RX, and an
+  absent route property is understood to be just 2CH if the direction is
+  present.
+- RK3576 dts: add hdmi_sound node
+- Sige5 dts: enable hdmi_sound
+- Now based on v6.15-rc1
+- Link to v1: https://lore.kernel.org/r/20250305-rk3576-sai-v1-0-64e6cf863e9a@collabora.com
+
+---
+Nicolas Frattaroli (10):
+      dt-bindings: clock: rk3576: add IOC gated clocks
+      clk: rockchip: introduce auxiliary GRFs
+      clk: rockchip: introduce GRF gates
+      clk: rockchip: add GATE_GRFs for SAI MCLKOUT to rk3576
+      arm64: dts: rockchip: Add RK3576 SAI nodes
+      arm64: dts: rockchip: Add RK3576 HDMI audio
+      arm64: dts: rockchip: Add analog audio on RK3576 Sige5
+      arm64: dts: rockchip: Enable HDMI audio on Sige5
+      arm64: defconfig: Enable Rockchip SAI
+      arm64: defconfig: enable ES8328 and ES8328_I2C
+
+ .../boot/dts/rockchip/rk3576-armsom-sige5.dts      |  64 ++++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi           | 217 +++++++++++++++++++++
+ arch/arm64/configs/defconfig                       |   3 +
+ drivers/clk/rockchip/Makefile                      |   1 +
+ drivers/clk/rockchip/clk-rk3288.c                  |   2 +-
+ drivers/clk/rockchip/clk-rk3328.c                  |   6 +-
+ drivers/clk/rockchip/clk-rk3568.c                  |   2 +-
+ drivers/clk/rockchip/clk-rk3576.c                  |  59 +++++-
+ drivers/clk/rockchip/clk-rv1126.c                  |   2 +-
+ drivers/clk/rockchip/clk.c                         |  24 ++-
+ drivers/clk/rockchip/clk.h                         |  49 ++++-
+ drivers/clk/rockchip/gate-grf.c                    | 105 ++++++++++
+ include/dt-bindings/clock/rockchip,rk3576-cru.h    |  10 +
+ 13 files changed, 526 insertions(+), 18 deletions(-)
+---
+base-commit: 1c51b1ba38c07e4f999802eb708bf798dd5f5d1b
+change-id: 20250305-rk3576-sai-c78e0430898e
+
+Best regards,
+-- 
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
 
