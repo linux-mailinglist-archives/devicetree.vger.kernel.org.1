@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-173062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28B2AA759B
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:08:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B457AA75A6
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 17:09:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AECD4E3DD1
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:08:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD9DF9C0996
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 15:08:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE072571BA;
-	Fri,  2 May 2025 15:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D32A25D911;
+	Fri,  2 May 2025 15:07:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA31F25A656
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 15:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECFC425C6E1
+	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 15:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746198432; cv=none; b=oss0FsFdUvZOJJlQCkUIskFazgHA3xNz6Lb5SUHf2LSHkTMk91Vrz2PXV99GSEgwOi6RbwEf4XOI1hogRoLv3Y83scAuN+VrVzswKanAJCzonNdbiyu3DpXdhNyXdVmgVwiwzHDg/AYk62lNzfCUPZigAeG0MDggCkUySLbmL6s=
+	t=1746198435; cv=none; b=nQAPWPfKLy8yPtm4dwBzu27Jhgs3JbslLjhmCQyuguPQ8L1PJiTcZKNY3rFivGfVWEhVYuza+Xfr3qsypPasHepNOwrTyRwt2/Ur1qDQ9TgMzXlzLsE7n7AwwGz6qB+gJybXHeby/r/+1N+EblUSUH0ALvIk3O3TH9+uj6uU23M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746198432; c=relaxed/simple;
-	bh=4I5ncqc13Tx+0R1xSNDg//ufDhWKUwTsuW4d2FefrDY=;
+	s=arc-20240116; t=1746198435; c=relaxed/simple;
+	bh=atJG60kAXi/Am38RCOYS79y/7Gt7+4/Ysm4ZYNtBfa0=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=S0Prty0xdlNCEx905/JM6If1b+kiryGPoMM1OarILW9BK2zst+2Md0rcMuC82jGFuYGSmPVa8wuuSNIkYE4syDtU/7ivcg87HXOmlFPwFxtT/fogPAzwzEnOEV+U7ouo20e6Hy7EYNr6dnkMnRibErylw/yCCAVjbnlEZbMVw14=
+	 MIME-Version; b=CzfN0qx+zJRDyABFNJcp76p8sGDbTtA3Xr3wLSPN2MdBkin2rGER+r/QKdFEWlL+CyIIvWr6bIIS28gWupdxAOS4UOIxYWZRnkqlVewgyWjM6jVyc6QsljXOFH28Po3uCRQDFZGD5mca5g8phc9oN1zgU/CRcksUozQNM6ZPtbQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1uAryV-0004HG-Ix; Fri, 02 May 2025 17:06:51 +0200
+	id 1uAryY-0004HG-1O; Fri, 02 May 2025 17:06:54 +0200
 From: Marco Felsch <m.felsch@pengutronix.de>
 To: nicolas.dufresne@collabora.com,
 	benjamin.gaignard@collabora.com,
@@ -56,9 +56,9 @@ Cc: linux-kernel@vger.kernel.org,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [RFC PATCH 05/11] arm64: dts: imx8mp: drop gpcv2 vpu power-domains and clocks
-Date: Fri,  2 May 2025 17:05:08 +0200
-Message-Id: <20250502150513.4169098-6-m.felsch@pengutronix.de>
+Subject: [RFC PATCH 06/11] arm64: dts: imx8mp: add VC8000E encoder node
+Date: Fri,  2 May 2025 17:05:09 +0200
+Message-Id: <20250502150513.4169098-7-m.felsch@pengutronix.de>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250502150513.4169098-1-m.felsch@pengutronix.de>
 References: <20250502150513.4169098-1-m.felsch@pengutronix.de>
@@ -74,44 +74,36 @@ X-SA-Exim-Mail-From: m.felsch@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The GPCv2 G1, G2 and VC8000E power-domain don't need to reference the
-VPUMIX power-domain nor their module clocks since the power and reset
-handling is done by the VPUMIX blkctrl driver.
+Add support for the Versilicon VC8000E multi-codec stateless encoder.
+The IP integrated on the i.MX8MP supports H.264 and H.265 encoding.
 
 Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 7 -------
- 1 file changed, 7 deletions(-)
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index e0d3b8cba221..cf9b6c487bd5 100644
+index cf9b6c487bd5..97b09b647ec7 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -879,24 +879,17 @@ pgc_mediamix: power-domain@10 {
+@@ -2267,6 +2267,17 @@ vpu_g2: video-codec@38310000 {
+ 			power-domains = <&vpumix_blk_ctrl IMX8MP_VPUBLK_PD_G2>;
+ 		};
  
- 					pgc_vpu_g1: power-domain@11 {
- 						#power-domain-cells = <0>;
--						power-domains = <&pgc_vpumix>;
- 						reg = <IMX8MP_POWER_DOMAIN_VPU_G1>;
--						clocks = <&clk IMX8MP_CLK_VPU_G1_ROOT>;
- 					};
- 
- 					pgc_vpu_g2: power-domain@12 {
- 						#power-domain-cells = <0>;
--						power-domains = <&pgc_vpumix>;
- 						reg = <IMX8MP_POWER_DOMAIN_VPU_G2>;
--						clocks = <&clk IMX8MP_CLK_VPU_G2_ROOT>;
--
- 					};
- 
- 					pgc_vpu_vc8000e: power-domain@13 {
- 						#power-domain-cells = <0>;
--						power-domains = <&pgc_vpumix>;
- 						reg = <IMX8MP_POWER_DOMAIN_VPU_VC8000E>;
--						clocks = <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
- 					};
- 
- 					pgc_hdmimix: power-domain@14 {
++		vpu_vc8000e: video-codec@38320000 {
++			compatible = "nxp,imx8mp-vpu-vc8000e";
++			reg = <0x38320000 0x10000>;
++			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
++			assigned-clocks = <&clk IMX8MP_CLK_VPU_VC8000E>;
++			assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>;
++			assigned-clock-rates = <400000000>;
++			power-domains = <&vpumix_blk_ctrl IMX8MP_VPUBLK_PD_VC8000E>;
++		};
++
+ 		vpumix_blk_ctrl: blk-ctrl@38330000 {
+ 			compatible = "fsl,imx8mp-vpu-blk-ctrl", "syscon";
+ 			reg = <0x38330000 0x100>;
 -- 
 2.39.5
 
