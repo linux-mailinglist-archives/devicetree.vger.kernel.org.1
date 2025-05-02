@@ -1,135 +1,155 @@
-Return-Path: <devicetree+bounces-173124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D37CAA77C3
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:53:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4722FAA77C9
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:54:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 898791C202B1
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:53:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B49F1C06C6A
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:53:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F89C25A2DA;
-	Fri,  2 May 2025 16:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C004268FD5;
+	Fri,  2 May 2025 16:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tcxL93Dc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dOgNXoes"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D8C225DCF8
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 16:52:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7CC7268C48;
+	Fri,  2 May 2025 16:53:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746204760; cv=none; b=tS9GH/DdjkpJAyjs+VyES2ie02pgVmBfMHFBeda/n2k05VBHL1KBj7fPXU2nGDrvxtLV9vFJb7etfdiOrj/ZrnrFa4krVVKtqssC7dL9GMRGISwfTLEWe+MjmkaQVFOc/eNQImQL5h8S3cP7ARxLsd8bmh40UG6JuddmhXGYk5o=
+	t=1746204789; cv=none; b=jKkkByB0+GncdLn4+1OQIzECEP/MbgBTan4QEQVWS4DrOlhGvQTMrI0rSiwJ5WuOdtPvxksRK7ZWZbF8oRLvTc6Yq4hD61PMo6ZYCXw++y6V6yJ1SixUZuAzVP3eIwTuqFHXnjiuUam6dojHbyGOqoMqLBjgcSQW5ZXCZOjPYGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746204760; c=relaxed/simple;
-	bh=flHVlpeehR7TCw0XEm8yjU/UxT+hrKH/vgqJ1V8edzk=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=d16eLfgiy3yD5xrKBj6epS8XctmTQ5sOBxHJukQbEbLfHks9WfhGBXfaXEE6zBXvNaIXMOMNB/Sn+MKcVjKjdaCRN7nKPy0zDS1gInV4l1DbRQh5s25xQQHS0WQaaz/qywqxWWrjiwWJnKVd5ltRxJq6nnU1LgjhVsPi3VAY5Ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tcxL93Dc; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-736aa9d0f2aso3250196b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 09:52:38 -0700 (PDT)
+	s=arc-20240116; t=1746204789; c=relaxed/simple;
+	bh=g4VUCjRthehjpe2xs+A0+SCTnyPwxFun1Jy7XN11WVI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oc3gdVhSlHMCvDCqzweePL9pMqe9wg9OvQjR3nprWDRomw119LGCnHr4Aq3kRKR7jAwZ5DyFzQ38wvRMFao7HNRVC62j3EnUjbnA5jy5jc4g5Ob6c5mapep0IA+D4io5FzdqNqGFwQfNtr+tBxpI3VkNj5cEE9kXbcc6/qL/3OQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dOgNXoes; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-30820167b47so2379962a91.0;
+        Fri, 02 May 2025 09:53:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746204757; x=1746809557; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zwVDzOur7RIZgOEAv6FVzTh6NPuuDPam1fW7Dewd/Po=;
-        b=tcxL93DcEyiiBor9vEoz5e+S1Nb9dV7yIbabQGjxv41EQSMoBuxPMzlCQ2n/Lr0unZ
-         VWf5oejvbN927QA9YSaXldmXY5NBM0iLopNipVlGhzph23DvjbQbAkOT6gziGEQQFJfJ
-         Qwx6/llt/mQEUWIbJW9ln86ho2mSnzHQQ1aLO8dzd25DTj9uvzUkKnSOvsGyFUxBZ4qk
-         ScstrHj3pq4phwpwR+kLollQE3qAxRvNPWr+BbXwdKlD+EphBHsHX8IVkPJ0SpfBmEfQ
-         1dDc5EooL1aG34sjVl3ZfOEs3swtHVFINAvICXylR03yjBBr/4wVZabNsaJ3arFXrXLa
-         Li/Q==
+        d=gmail.com; s=20230601; t=1746204787; x=1746809587; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n7UI2Y6MBJpdKB31fdutcaWyVKKdFp08Cn0ReKUGIo8=;
+        b=dOgNXoesIB7QCjUEDBpYQWErykfMD1g+l+5wlV8mz5rwY07rXOdkWQupPxvqpmDtKZ
+         QgPL3uBMQ/b+tuFTeSh+X8uWHJZoeX4F69JTQ9FCzhBs4HykOo+TtdQwqRsjatYFw6LJ
+         oCL5QVoIJTUF/pA61gYKzw3pCbAShLl24kppM+29Rnp4oWdSS1xMdP8z8/YF6QEiJy0O
+         zKGAHN+dSvX2hk07RYy7jqo12DeJiTUL3ZciGex2dO1wFm6zFwHNn1hyLvfW7CmEYoW8
+         N5353EAokrXt0t/kmrXCCC+oY2JySDtJGnDq7KWU8L/9Sos6DQP0cdBhhV9mEyxhYLqn
+         tskg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746204757; x=1746809557;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zwVDzOur7RIZgOEAv6FVzTh6NPuuDPam1fW7Dewd/Po=;
-        b=D/51fDC25sGH9h4Xe6RG8FwoBbwdXEEak2tmHZoaQz0ueVmAh/fYepsfQAXJUrp3eX
-         a+ehkgMOn+oMF41l5NC4aUWwBVMrPk+pFI21PRvc36z+kDUYncOgMIOfr3wh3avTonPc
-         fKvOiFgYsMBa/gQZ8vcOaxhelozo6s756BOknqy6YP1LyDgq/lM7kdEABTC3d51pyhLh
-         reQp6zxZ8tid2MK2pIwkBnehlLnoUJu9EHFK1kv3hQvH2uOQU5y+arRPhATDjBUm/OOM
-         HG0jUKFgH0GHVnt660mcA0cz6rR93tOLZwLUhTggaGi/CtE8ZMagj9g018e/KroisjKN
-         ByXg==
-X-Forwarded-Encrypted: i=1; AJvYcCWXHUkGTv5FW9PpUAy++L9JhFNmhcNCVdttL/+mlTA93LHFLqsgJD70BWSjQgcBd5wQmWGBaXpNd2b2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3YA3OfTvLiAqE4iNmfY1Q8vaYya3DT4aH7YVZ5gyqup4kltvB
-	ay2bD0WbSYx6qmctxqL2MWO3Ec65i9N/YWusnojptTbiMYPpGyCVp13kbZTAfgY=
-X-Gm-Gg: ASbGncvnkqYX94xPILdeKh3xcAwQNQDyRpj8R4GxdgceKe7Ak3sD+5//oHqXj4icZ+C
-	g+mqW+PgC0JfDULc2XNAZxsyU6DYDpD+JP9TaTPUT9iVrx9FC3uOegq+ckUIwjK7D3E7X9sVPnu
-	iOHfS0lIMKC3EAJMiJHsMrdYsM5g/aNf5NdodYHfHQkvIspaXUcVpCzJBmtH+FT8634SS6vAYuN
-	q7M5k3Z/xNeQGMmojZt0N1ovLFse03bHK2mhujHQ1pwEWUEU9qaWmGZYwS4/vfZv6yJY0q8nR4d
-	c3ufr0BUP51zJurAZ6acGtJVdBlMh0iKdb95ZTI=
-X-Google-Smtp-Source: AGHT+IHL853QtPBvn6TRtsHQJ/I0TV+kdjSuCmTaYdabOIhgtftYO0dyIOU2uqAMhP2Xe4dVkYjrRw==
-X-Received: by 2002:aa7:9306:0:b0:73e:1e21:b653 with SMTP id d2e1a72fcca58-740672b165dmr5326b3a.5.1746204757544;
-        Fri, 02 May 2025 09:52:37 -0700 (PDT)
-Received: from localhost ([97.126.182.119])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b1fb3b56007sm1009841a12.17.2025.05.02.09.52.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 May 2025 09:52:37 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Sukrut Bellary
- <sbellary@baylibre.com>
-Cc: Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
- Tony Lindgren <tony@atomide.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Nishanth Menon <nm@ti.com>, Aaro Koskinen
- <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, Roger
- Quadros <rogerq@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Santosh
- Shilimkar <ssantosh@kernel.org>, Bajjuri Praneeth <praneeth@ti.com>,
- Raghavendra Vignesh <vigneshr@ti.com>, Bin Liu <b-liu@ti.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pm@vger.kernel.org
-Subject: Re: [PATCH 0/4] PM: TI: AM335x: PM STANDBY fixes
-In-Reply-To: <CAPDyKFrM7Qn2YtQKY+vCHP32Z_Ly-ECt=SU9EGojFu1ShktUpQ@mail.gmail.com>
-References: <20250318230042.3138542-1-sbellary@baylibre.com>
- <7h34efy1yb.fsf@baylibre.com>
- <CAPDyKFrM7Qn2YtQKY+vCHP32Z_Ly-ECt=SU9EGojFu1ShktUpQ@mail.gmail.com>
-Date: Fri, 02 May 2025 09:52:36 -0700
-Message-ID: <7hldrfuf8r.fsf@baylibre.com>
+        d=1e100.net; s=20230601; t=1746204787; x=1746809587;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n7UI2Y6MBJpdKB31fdutcaWyVKKdFp08Cn0ReKUGIo8=;
+        b=Tx+8MJkQAaE1RVnle+xe8NSyi8jBdQJyZaMEq0G8hh4iAPFEXVsGYrGrQX/K7i1CRi
+         u9+9d6vEKfIOeN1hf15EG1XGMH7Kxn6/i2f2nwx6oaaGXnd5Bfw5xNeke1FeCzBiBem9
+         EGz0QmMfF4Gnp72hwRWkyJf97cs5uL7cqIPmgqK+k9tdLGKmsyDNiuZvppZaOgXXL2W1
+         Le18q4jZbhw3MPWcjcnQHsqe3A1o5bj6khUW9Fcwu//RuEknPgtA3kE3TW+Qiy0nP46e
+         s8xQtuk7ny0bPd76Blm+EZScVu2B1p2SorGWiAvgmsvlD/pPropz8b7IIIv0qMqmU6Oz
+         b1FQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUqNMEPC2HX4byDJ9hlLwTyl5Pd/AxndIlz2fqyO1yLn2suXz2hz1IVo7DWtAm7gyAlWVxQAPlAK3C7GRc=@vger.kernel.org, AJvYcCWvgfmQr4u1KisA8EUUlfdd1FzcMxQDSuQY7ERGUX+h0nrc6D+QgZBA8fcJYJ3wmt0GQdDAnJgjObvp@vger.kernel.org, AJvYcCXnwHVj9emEcuX6eoQ8eAmupTCEWdh+A/FgU70TbL0ukUAOST159qm1U3iUEhT7lBK3BmJ41QLgsJdZt2Hg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwF53Glky94WkKAFS3rc5sejXOl4WG85HVWGXCfFIT1n1eKbQgP
+	+wNXwoIdX1SrGsWRP1EJMgijNAs+yezhcZ+lTwOfX9S9zbgOyzVyexPgbeB1wMf3gJ5SzdHk/R5
+	LMRXyYyKUVK/R0UWWnXhDgIidJlroNLDATQ0=
+X-Gm-Gg: ASbGncsW5RuElAGMECInupXQRnTEBKa+hl2x1kk4Dedyc3dPAieaX12hIVtZMQKAaEr
+	/jCQoRlt/+Xe0z/jv4j5Cn+N4tYnwvw2oe2WxEPq1hvaniXaay+oVt0Pkb5XJ4iKa7sltQIKrKb
+	Fpu5FfRzVLXTIdbEgDzkPY/g==
+X-Google-Smtp-Source: AGHT+IHGTYOtyWFxjXS9Ul06M6JVtewP0QqLDSWygChMn5nReUMS9WxVTU7k4hPxbBaUObqwnTWe5V/cpuVhKJnX2Y4=
+X-Received: by 2002:a17:90b:254d:b0:302:fc48:4f0a with SMTP id
+ 98e67ed59e1d1-30a4e04c98dmr5766332a91.0.1746204787157; Fri, 02 May 2025
+ 09:53:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20250502150513.4169098-1-m.felsch@pengutronix.de> <20250502150513.4169098-8-m.felsch@pengutronix.de>
+In-Reply-To: <20250502150513.4169098-8-m.felsch@pengutronix.de>
+From: Adam Ford <aford173@gmail.com>
+Date: Fri, 2 May 2025 11:52:55 -0500
+X-Gm-Features: ATxdqUE-GbFHdhVzbDY9mw-AkKfv1gk9sfEHekiKJv7IfKQ5yld-yg7UXiz-NTw
+Message-ID: <CAHCN7x+Lu9momgX3Vwp+Yu+Tet5Q=k2vCL83SMLuad24SDchEg@mail.gmail.com>
+Subject: Re: [RFC PATCH 07/11] arm64: dts: imx8mp: fix VPU_BUS clock setting
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: nicolas.dufresne@collabora.com, benjamin.gaignard@collabora.com, 
+	p.zabel@pengutronix.de, mchehab@kernel.org, shawnguo@kernel.org, 
+	Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de, festevam@gmail.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, paulk@sys-base.io, 
+	hverkuil@xs4all.nl, laurent.pinchart@ideasonboard.com, 
+	sebastian.fricke@collabora.com, ming.qian@nxp.com, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Ulf Hansson <ulf.hansson@linaro.org> writes:
-
-> On Fri, 11 Apr 2025 at 02:30, Kevin Hilman <khilman@baylibre.com> wrote:
->>
->> Sukrut Bellary <sbellary@baylibre.com> writes:
->>
->> > This patch series fixes the Power management issues on TI's am335x soc.
->> >
->> > on AM335x, the wakeup doesn't work in the case of STANDBY.
->>
->> This series is specifically targetted at the AM335x EVM (which I don't
->> have to test), so I'd appreciate getting any test reports for this
->> before I queue it up.
->>
->> For AM335x, I currently only have the ICEv2 and Beaglebone Black,
->> neithor of which support suspend resume with RTC wake AFAICT.  If they
->> do, please enlighten me. :)
->>
->> I was able to do a basic boot test on the 2 boards I have with this
->> series applied on top of v6.15-rc1 and basic boot still works, but I was
->> not able to test the PM path that's being changed here, so any tests on
->> AM3 platforms that actually use this path are appreciated.
->>
->> Kevin
+On Fri, May 2, 2025 at 10:10=E2=80=AFAM Marco Felsch <m.felsch@pengutronix.=
+de> wrote:
 >
-> Is the pmdomain patch(3) ready to be applied here? Please let me know
-> if you want me to pick it up.
+> The VPU_PLL clock must be set before the VPU_BUS clock which is derived
+> from the VPU_PLL clock else the VPU_BUS clock is 300MHz and not 600MHz.
+>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
+dts/freescale/imx8mp.dtsi
+> index 97b09b647ec7..7f4bdefb3480 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -2289,8 +2289,8 @@ vpumix_blk_ctrl: blk-ctrl@38330000 {
+>                                  <&clk IMX8MP_CLK_VPU_G2_ROOT>,
+>                                  <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
+>                         clock-names =3D "g1", "g2", "vc8000e";
+> -                       assigned-clocks =3D <&clk IMX8MP_CLK_VPU_BUS>, <&=
+clk IMX8MP_VPU_PLL>;
+> -                       assigned-clock-parents =3D <&clk IMX8MP_VPU_PLL_O=
+UT>;
+> +                       assigned-clocks =3D <&clk IMX8MP_VPU_PLL>, <&clk =
+IMX8MP_CLK_VPU_BUS>;
+> +                       assigned-clock-parents =3D <0>, <&clk IMX8MP_VPU_=
+PLL_OUT>;
+>                         assigned-clock-rates =3D <600000000>, <600000000>=
+;
 
-Not yet, I have some concerns so I'd like to see more testing on the
-actual hardware, which I don't have (yet, but it's on the way).
+I think there was a move to make the default be overdrive [1]  and [2]
+and use a 'nominal' device tree for those who are not in overdrive
+mode.  According to the TRM, the VPU_BUS_CLK_ROOT, the nominal is
+600MHz and the overdrive is 800MHz.  Based on that, I wonder if the
+values here should be 800MHz and if we should add the nominal values
+of 600MHz to the imx8m-nominal.dtsi file.
 
-Kevin
+adam
+
+>                         interconnects =3D <&noc IMX8MP_ICM_VPU_G1 &noc IM=
+X8MP_ICN_VIDEO>,
+>                                         <&noc IMX8MP_ICM_VPU_G2 &noc IMX8=
+MP_ICN_VIDEO>,
 
 
+[1] - https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/c=
+ommit/arch/arm64/boot/dts/freescale/imx8mp.dtsi?h=3Dnext-20250502&id=3D9f75=
+95b3e5ae0ead20a74a5f2a8f0434b3254ac5
+
+[2] - https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/c=
+ommit/arch/arm64/boot/dts/freescale/imx8mp-nominal.dtsi?h=3Dnext-20250502&i=
+d=3D4b98bf3bff7353d94824c4d874ff2d7f38acc49a
+
+> --
+> 2.39.5
+>
+>
 
