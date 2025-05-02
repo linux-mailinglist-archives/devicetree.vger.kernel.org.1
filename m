@@ -1,226 +1,172 @@
-Return-Path: <devicetree+bounces-173100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71DBAAA76DE
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:14:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A705AA7710
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:18:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0D493BAB5C
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:14:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 088493A7947
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:17:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 489BE25D55B;
-	Fri,  2 May 2025 16:14:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B7525E458;
+	Fri,  2 May 2025 16:16:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="tpA9/6dG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WICHQwMH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2015.outbound.protection.outlook.com [40.92.41.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71CA425D53A;
-	Fri,  2 May 2025 16:14:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.41.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746202480; cv=fail; b=YmPyd8G5JTYhNH4o4kD6iex/02RIpcdJBZsVUeElUcj487qs+uAOAHt56szQiFBTA0x7rFoSb8Dj6Nx8JuTBj6l0AtdTsIeaVXUPIOuuNzLl8apfpAl2HPG2smT5BPe1SyIivA3csYkd72mi75Ozpfzzmtki05U7jPyAc/IDtQ0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746202480; c=relaxed/simple;
-	bh=lIW1keRrT8hkoUBrA2Q1nQNZ/46FVT1KhW/V1hcqzh8=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=R8l2Gbidj8o61PeMm4nIrg2wNw4NBMWlEqPw/JlYQPZFVlvoFSSd8+qm6iCsRpoRcQqmVO7Oa2Rdrbz0hmPuRNqIYOHfS+7Lc+kPxfZgQoX2nOmq9w0MiJjeOzYSOUVLFCYSNdkiJQXxE60I/0gISTw89ikqOtKWXAH1PxsNvOQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=tpA9/6dG; arc=fail smtp.client-ip=40.92.41.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mvLAoi5fSZuTeU9poTTwVpxxlklliQC/WqQ4p87C+T+w4WX5fgekiS82dSaazn4SZtUQxQ2gkjUB+JVrXT/0PNRsZUUxPs6mbVAi3b4X5YV/En1w+0j7NABBrOntyarbBXDhUj2dOZ4JaT+nWLoyUTxhDlFm0jn2QwMFK1UkgcM6WGCsWw5BQ6ex6ScXY8ejty/3gWuB04goP5LKw2RnZG3B+Iv2UC1oyvJpL496Sg3n+urpRad48QF0kHubIyHdpg3xnm8+rl8755D60j1mpUuxHxenyP4wR1uHnDhHljNylZ1/onpxtAxhUnTccGKV3eHHX68ZJ3QBssQzuBi+gg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Upetl6nSU1V7NevJc4nHYusQXk3GHMAntmSECxNL9wE=;
- b=FY8iwzvgT3E14Z1xUUFa9Wf2uyIppHEB0TF0wqaUvaX/+JySpKWvOdfvy9rR8Uu5qt/lSoXt8dK33QcBDgwYGSKFjLdaFuKkpSTr+szfcOcsYWoVAe3q4rWBJjTIDzusrp5uNkbnA02fIr57C9/Ixi63/IQ/OWfPOwOMlDxldhltxeFfblaqhe94tYL/p9TtlDhw3qjkj7IZRXY0k2lhGVnjbvXCnaXkuGXfCq2lv9htYbrs114fVByIEMvIuTPFktYaZUnkMTk12raE6DkGvE9PXnnhCiI2ULe/gUicTjWezCfJFF/5ctar2auU5BNJwSTlKt1PILiitT3tHJvdlw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Upetl6nSU1V7NevJc4nHYusQXk3GHMAntmSECxNL9wE=;
- b=tpA9/6dG3pzPRkHhKF6ySrz2CkUZeu0jOUxZVlvTzd2zdfcZiq+vHbS3r3dFLxM84trsJ1ze9rDkE8TTDL7+wrHYsgxBVw7br5dolZeynF6Pbjuq2svopxTIK89WHCv15ethJBVQFWfqV5P8wTvirhTMe0Gcs6SdwDrk1zSJuQMV6nXwfo+/aAi35+eOoEtUbftov6/Nq5AF2yMaDVK8+a1FGzYke6DbkrAI/votoUuVIp72gUff/cYIVo3ZAsjdV6GqP93+2VYCbJ6/FbsCCue2g6Acvw3ZRXsDFJ0GBR0TTUSpita5KiltEixP/8+WL49qTyoahQSCtIagbplIKg==
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
- by SN7PR19MB6587.namprd19.prod.outlook.com (2603:10b6:806:271::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.20; Fri, 2 May
- 2025 16:14:35 +0000
-Received: from DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
- ([fe80::e0c2:5b31:534:4305%4]) with mapi id 15.20.8699.021; Fri, 2 May 2025
- 16:14:35 +0000
-Message-ID:
- <DS7PR19MB8883AFFD49C5E9EA39B55E7B9D8D2@DS7PR19MB8883.namprd19.prod.outlook.com>
-Date: Fri, 2 May 2025 20:14:25 +0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: clock: qcom: Add CMN PLL support for
- IPQ5018 SoC
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
- Lee Jones <lee@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250502-ipq5018-cmn-pll-v1-0-27902c1c4071@outlook.com>
- <20250502-ipq5018-cmn-pll-v1-1-27902c1c4071@outlook.com>
- <20250502141730.GA1259057-robh@kernel.org>
-Content-Language: en-US
-From: George Moussalem <george.moussalem@outlook.com>
-In-Reply-To: <20250502141730.GA1259057-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DX1P273CA0035.AREP273.PROD.OUTLOOK.COM
- (2603:1086:300:20::22) To DS7PR19MB8883.namprd19.prod.outlook.com
- (2603:10b6:8:253::16)
-X-Microsoft-Original-Message-ID:
- <017cfcd8-b6ac-486d-ab9d-2a2b086ce227@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A02825D20C;
+	Fri,  2 May 2025 16:16:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746202595; cv=none; b=lmx8wEOWUXSYhNhndZqvhBKYrTN0EBRP4ybi2E+TWeTE22Vnm8zU1rB7EoUP27CiGpiM3bV0w2g8YU2+EjJWItPNPEbaOmwez/D/aaMZfkRQ+RYwQpqv7l1aoTH3MkRdkga6m+sXZoUBO8s2Bivd8eWiTq1NeFtJiLZdVeqVWGM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746202595; c=relaxed/simple;
+	bh=xwC6411AfiwsXF+xKeK2uSxZOyw8ub8uJR3YfkdNtZE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eLPxnRT/5qQUZzLotxhf892i7F3Itoo44TuZYNRvKuLZxYvtIskW5AgNhQ5eSGK4EfILRwdc+ifVx+GXfNy4V5f5wbOOF0XaekPWPs1pAM1ztgJH6Q8+uOsXfFpGqMEgZQYefxUTtScnIT7blxHCwsOwg7NjSWTB49W18Uq0eks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WICHQwMH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F1CBC4CEEE;
+	Fri,  2 May 2025 16:16:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746202593;
+	bh=xwC6411AfiwsXF+xKeK2uSxZOyw8ub8uJR3YfkdNtZE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WICHQwMHh8mziGfE3MnSXM7TplK/5s5V8q+aRYbe873PjgIONvAo17lkduRnc8jru
+	 ZO+lqp/4AbgnSR70Ul7HCAC3tvxEFlrifqebho9WhdRO0hU2BlHaFDFPWeCI74ohty
+	 ghT4u1zX9+bNaJEVqiOaTlL7mlHIOT8ksh+da+tanLDu3Zf3jzDeYuiMIElldDwafQ
+	 lmiiGSKx6LJYSPHnFcCnD8wfZz44oT9BZP1GYVEY9Z8kgjldnPeiP7D+oxbFdUAlBr
+	 /fNkoBWhgU6x/TS98kM3c7bE3MdK0LzseVFu0jPL4DJUOKENyiRAZ/eLadyh2AyFQS
+	 nnqwVkyEeANoA==
+Date: Fri, 2 May 2025 18:16:25 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Marc Zyngier <maz@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 21/22] irqchip/gic-v5: Add GICv5 IWB support
+Message-ID: <aBTv2cLX4rOQxl+L@lpieralisi>
+References: <20250424-gicv5-host-v2-0-545edcaf012b@kernel.org>
+ <20250424-gicv5-host-v2-21-545edcaf012b@kernel.org>
+ <867c31j20i.wl-maz@kernel.org>
+ <aBIlOrqLtbB5e7B/@lpieralisi>
+ <86y0vgh35t.wl-maz@kernel.org>
+ <aBR7bk62H3PEUbfi@lpieralisi>
+ <87tt6310hu.wl-maz@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|SN7PR19MB6587:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c48c398-b0a7-4354-d676-08dd89946db4
-X-MS-Exchange-SLBlob-MailProps:
-	Vs63Iqe4sQlVobdhjoRt/HQUSkoYJhJhf4HU624keHtHHaBvjjYhq4Z3phjCXrpqtnKJcoonekfL0kYYOBNDoX60/b3njTZNgqE4IY90nMj6J3gySbIL8XmuOSU9HUHrHSXD1y6HpIYhn17wgownwgw/dgKTh1n6wT4my06yl2hE46yDBfApCfVsTYMk9ZawxR98Hr7uxQdACwOAO4AMVRMZRxDKQprMw3GDJCmJ1zCMSYR55KcYt79o/+0zy5NZ1JzZNa6p0v7zdhTgaC9jkBvCAbRDSDWgOOrG1kzdscRxceug8Bf0QgOXl5ePM2mlLFKgAdx1ZPtpQVhujOJG9AxDJVms9zPEZT5lxL0DI1r78bkISM4dA12icwkYOeYyMa3d87Md8wN7zLq5a7512JGHnqknTYKCZIT34AUaSFtePM1oRH3dudYcRIGhpRCtyxqXB5XUUB0faYjzbMcRiVWwPwZ8RIxkXY214cunFSF/0KJZ+ZGDRRWGD/LuD7jIA19IOk8MdVmIX5hs3I7aFdXbX3P5rsH+3rHbVTGNv+rjkZFO9CzjZ1D+yp4M286SIV1o6j0fSP0NlphX7K5p9p63miufNTgSH2+kDhzpZJ9eqR8qtW0batnPjaeVOmyXA0RtXW1T723mfNsJWNyPnWB8gVxeAQbspiYTIl6rzoa6woZ+rVYiKTMIwLTF28ZCLk1p6gOtmw0mTxSeICFnY5iMl9++9QrqcRzR+P9PRRs=
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|6090799003|5072599009|461199028|8060799006|19110799003|7092599003|15080799006|3412199025|440099028;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?NTliZXBzR1c4SWZRR3JwWWVRdXhnTUlZRDNCeUMzd3pIMkJ6Q3p5aVhPemtS?=
- =?utf-8?B?TFVlR2VkdE5GYW1lS0IxRzVDNVUrdXhPdjhkLzJTckQwNlhDSEFGdENKeHky?=
- =?utf-8?B?ZnlOdGI3VWJxSzhyT3ZkNlZDNFA3SHZxYW5DbVlCS0p0bithVkJxdVA2RXZ1?=
- =?utf-8?B?ZDBHOVVHQ1Exd1NGRStUYVM2VGRLU3NZbitTa29aNVVIRkVGNHovcjVkSTln?=
- =?utf-8?B?dW9tSUY1QjE3OWxvazBZbVBqUWZHZDJxMS9OKzVyTVJuTW5KTnFpOWgxSzAr?=
- =?utf-8?B?N2pSTDVWcDN5SU1HNDZnbnQ4UVBrb1hqV3JFWitOY3hHWjdZcEpSRDZZNjhE?=
- =?utf-8?B?ejhZZk12bENoZENsY0VrcWZBaTZlV2pjajRYWGFiT3ZhRnc4dFdCcHV6Mmo3?=
- =?utf-8?B?NWJjMm1BV2Jld0FldmlldVJiMUNOYkp6Z3REUDF6bXZiUnRNZnV5V1lHSlNx?=
- =?utf-8?B?TGhvdjhtQXZTSjN3VGsvQkpRNjJBdXJ4SW82SDBwdndlUlB2b3hJR01kNDdo?=
- =?utf-8?B?MHltSTVPRGFsaHpIUEh4OVpBeE5IaVJha2VvY1FYVWpqVEl4VE05dGJDL0Jh?=
- =?utf-8?B?bU9UVnJneXNSRFpIWE9lTm1HbTc2aXRNM3FyTnE0aHc0WS9BMURZeVJwbXZE?=
- =?utf-8?B?Ym9LQlFxZWpvVnhUZkcwbmwrQS9zNmtIeWFzMktFRjBFaVp1ZmVpejI0YU8r?=
- =?utf-8?B?ZmViVmRlSzhySGlsRlFUbFBkUnlGRmIwV2lkSG1Gdi9tM3F0VUJuQVpmanlk?=
- =?utf-8?B?Y1RLQXBGVzJ4VWx2R0xibHcxVGJScW5yYXdUdE9UbHhLNjQrNFkxa0oyRGU3?=
- =?utf-8?B?SFJ6bEtyYktpUFJRblNlcmo5bkN3MGZYSlRyNjE1MkZzaVZvRHJyUlBCZHEr?=
- =?utf-8?B?RGw1Si84L0k2a3VvdDFvTk4yamdNUUFwSHVBOTRzOWlUcUJic2ZHTmtHYjF2?=
- =?utf-8?B?ZWE3czJqbWlpT0ZjdlY0ZTMyRWlDYUxlbVZycWd0bVhSRDJ5enlObHdtc3Zw?=
- =?utf-8?B?UWw1MkVlMVVNZlV3bTR2bk5ZaEhwSzh4eitCWjBYd0w0S2N0eWpXcTlNVXo1?=
- =?utf-8?B?aWkxS1BobGpRbU1YOUtaRjQwdE85ZjdRMDhqWVhnaGFKQjJNSHFvYk1hQ3RQ?=
- =?utf-8?B?K2tUVHdEWm02Y28wRHI1N1JpOWZnTWNJMFljb0hwL2hHdm5DbVplOHJLZ2cx?=
- =?utf-8?B?UHdKVTJNZUVNZGxpSU5CbWNtUmd1bTYzbGNEclJXdHowQlZ6K0dQTTFJUmhG?=
- =?utf-8?B?cnYzUzBRRVJFMXgxSUQ0NVBSaHVkcS9TdERvU0kycDV1YzJieWZOcnRlZElG?=
- =?utf-8?B?TmxmRUsyZEtveXE3WTFtbGZmekREcnpBWWg3QVY3MDBNVTJESWN3Y2xjY0Fz?=
- =?utf-8?B?YWdWQnNZVGFVNjlFYXlWN1dLWmlqNUNuNjMrdWp5VE9LRWorTGNOaFQzUC8v?=
- =?utf-8?B?YzJEQjIyTVc2SzFCTEpxeDg3NFdwMHIvenl2YjhTUWtQbkgwQUVTSzh1ZmJV?=
- =?utf-8?Q?Refdm3fnrpAO2ETrG3ThqYmuccn?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?T2xSMHd1R0x5RDdRQ01xZG5peFNTUmFEUXpMUEloa2dmRGZwUGZBVHVkWGtZ?=
- =?utf-8?B?VDRVYTExbE5wTXlKbytzcUlFR3ROY21CTm53WGMvcjB3d0x5azlYd0tFaEZu?=
- =?utf-8?B?NGJTOWhnY2F5c0hKSUhYOWlqRzRRNmxTV3p1aVY4eGJtdXZnamJxam1iY1VZ?=
- =?utf-8?B?UDJnWEcwWnlCSXBXNmFiMlR5WDV5LzNrR3Bsd0hWYTZnUjFTNXhEaXpYSXgz?=
- =?utf-8?B?R1VMd2JtWVVLYVgxcDBzZXpXa2FOTUtZdzlBUGFoRXdMc2FZbk1MdVU5Uncy?=
- =?utf-8?B?SFpjVVVXRUhXNTRsTDZML29scmdXcVJQVEQ4c1NucGtmWDk1WndzU0dYeEtY?=
- =?utf-8?B?OHFhY3BYV2R4VjhLOXB5bm8rOFhMZ3daMmJ2cHdEK2V1QzAza3BoYVZjcXI3?=
- =?utf-8?B?dklJeStXS21OZXZEcS8wamFNQUJjME1ROTNHTWFEWkRtN2tUcHpXcThCWFR4?=
- =?utf-8?B?amVkdElWcndCeU1LY3hNZnZlSExJeG5tZGtDanI1SWk4VFJtaDJOVEdpUFQ5?=
- =?utf-8?B?QSsxNmUwVmwyV09DK0t3RDRsam1TWEY1U2s0NDBJWWlQVmR1N3pPVGszZGZr?=
- =?utf-8?B?dXlDaGNqMy8yVUd6ZXpDaFJHdUx1MzVWZW5BR1RRdHhSa2VKMnY2b0NLMUh5?=
- =?utf-8?B?Zm92RGhNU0JlbFFaWDJSM1ViM3Bid2RGeXY1RnoyV3ZRWFRLVzJNcHZ3U0hF?=
- =?utf-8?B?aGlCd2c3aW1VT1AvaDNqS2JkOVFOa1VxRVUzSTdKU2dhNW5mK1VHbHE5M1ZI?=
- =?utf-8?B?YWhjS242RWRyeURQMEdQcnl3a1RscE1mOEkyTm95NkFkM3pmdE96bXgvVzF2?=
- =?utf-8?B?bG9jb0pqUmprSTZZRzlFdjFwSEl3MHJiZVN6YmlHWW9hODI5SVdmY0YxNXpa?=
- =?utf-8?B?a3AyWjhsSWZDYWJya0N1RGU3QVVRekpmcnNmUGlzckt1RzhkL21wbm1FWmVk?=
- =?utf-8?B?VDNVVEZrZlUzL0RkcnlRNzVQRTZSOGRPUzZUMUI0T3FOeXp6bHVtNE5XUzhZ?=
- =?utf-8?B?T2ZvRm5Tby92U1hkLys4YWlpUFJzR3FxWTEzQjZ3djVNRWIraHV3MlhrTW41?=
- =?utf-8?B?MGk0MVRTZFM5L1pPVkFlUE1pbGNRM3lVWk5FRmRubUJmR3dENW5HTTYvbUNN?=
- =?utf-8?B?UUd1ZllYNnR0ZzRnRk9PSVV3eFFmcGpoaXdzWjFSUmZnOUNEaTU2Y0dFaU1W?=
- =?utf-8?B?UmtXMk1yY0hzVUZEMHFwVnNWbHgrZzJORTlmQ091MWZvWktXNXo1V0d2V1RS?=
- =?utf-8?B?T2F5dHBycWxEZlhWNkVEUVFvNjJ5SXhQWjBvNG1WLzFOdUcrMmk5Wnd1T2c3?=
- =?utf-8?B?cEJSUFkvM014c0g2dHk3RjVxVkpNUUVEZGxTYVlsSCtvNUN2QnJZMDFmUE50?=
- =?utf-8?B?MDRxK0NXSS80YU1CTkxYb05QcUs2dEhUb0NTYjVVbUN1WE1SV0g5Q2RUVXY0?=
- =?utf-8?B?TWVJbGFPWVliV0IrSzRDZXhYMWl6SDZoQU9sSmdEeWtid3hrMnVna3FEVXZw?=
- =?utf-8?B?RjNqQmgvZjdqVXBzYmFiZEFubWZ4Vk9WWUJGbVBDaUpuUUpLSjNIY0Zic1d1?=
- =?utf-8?B?UEJEZFFtU0N4MlZQRHpESldSSy96aHZnVUFnV1c4eSt4eERkVHVPbzRBZ0hW?=
- =?utf-8?B?RlJtR0FBVzRmcTcvaEFJM2FSZ0RaU3hJOVhvdWcyZmhLWDNGWEdjYWpqUTRZ?=
- =?utf-8?Q?Q6RAn0b9FggAEN3WbPsw?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c48c398-b0a7-4354-d676-08dd89946db4
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2025 16:14:35.1769
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR19MB6587
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87tt6310hu.wl-maz@kernel.org>
 
-
-
-On 5/2/25 18:17, Rob Herring wrote:
-> On Fri, May 02, 2025 at 02:15:43PM +0400, George Moussalem wrote:
->> The CMN PLL block in the IPQ5018 SoC takes 96 MHZ as the reference
->> input clock. Its output clocks are the XO (24Mhz), sleep (32Khz), and
->> ethernet (50Mhz) clocks.
->>
->> Unlike IPQ9574, the CMN PLL to the ethernet block needs to be enabled
->> first in IPQ5018. Hence, add optional phandle to TCSR register space
->> and offset to do so.
->>
->> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
->> ---
->>   .../devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml  | 11 ++++++++---
->>   include/dt-bindings/clock/qcom,ipq5018-cmn-pll.h         | 16 ++++++++++++++++
->>   2 files changed, 24 insertions(+), 3 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml
->> index cb6e09f4247f4b25105b25f4ae746c0b3ef47616..25006d65d30e20ef8e1f43537bcf3dca65bae73d 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml
->> @@ -24,12 +24,10 @@ description:
->>   properties:
->>     compatible:
->>       enum:
->> +      - qcom,ipq5018-cmn-pll
->>         - qcom,ipq5424-cmn-pll
->>         - qcom,ipq9574-cmn-pll
->>   
->> -  reg:
->> -    maxItems: 1
->> -
->>     clocks:
->>       items:
->>         - description: The reference clock. The supported clock rates include
->> @@ -50,6 +48,13 @@ properties:
->>     "#clock-cells":
->>       const: 1
->>   
->> +  qcom,cmn-pll-eth-enable:
->> +    description: Register in TCSR to enable CMN PLL to ethernet
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    items:
->> +        - description: phandle of TCSR syscon
->> +        - description: offset of TCSR register to enable CMN PLL to ethernet
+On Fri, May 02, 2025 at 04:43:57PM +0100, Marc Zyngier wrote:
+> On Fri, 02 May 2025 08:59:42 +0100,
+> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+> > 
+> > It looks like the msi_prepare() ITS callback (ie where the its_device is
+> > allocated) is called everytime an endpoint device driver requests a
+> > wired IRQ through:
+> > 
+> > gicv5_its_msi_prepare+0x68c/0x6f8
+> > its_pmsi_prepare+0x16c/0x1b8
+> > __msi_domain_alloc_irqs+0x70/0x448
+> > __msi_domain_alloc_irq_at+0xf8/0x194
+> > msi_device_domain_alloc_wired+0x88/0x10c
+> > irq_create_fwspec_mapping+0x3a0/0x4c0
+> > irq_create_of_mapping+0xc0/0xe8
+> > of_irq_get+0xa0/0xe4
+> > platform_get_irq_optional+0x54/0x1c4
+> > platform_get_irq+0x1c/0x50
+> > 
+> > so it becomes "shared" if multiple IWB wires are requested by endpoint
+> > drivers.
 > 
-> items:
->    - items:
->        - description: phandle of TCSR syscon
->        - description: offset of TCSR register to enable CMN PLL to ethernet
+> Right, I've reproduced on D05 with MBIGEN:
 > 
-Fixed in next version, and validated by make dt_binding_check 
-DT_SCHEMA_FILES=qcom,ipq9574-cmn-pll.yaml
+> [    5.505530] Reusing ITT for devID 40000
+> [    5.505532] CPU: 36 UID: 0 PID: 557 Comm: (udev-worker) Not tainted 6.15.0-rc4-00079-geef147df4841-dirty #4403 PREEMPT 
+> [    5.505535] Hardware name: Huawei Taishan 2280 /D05, BIOS Hisilicon D05 IT21 Nemo 2.0 RC0 04/18/2018
+> [    5.505536] Call trace:
+> [    5.505537]  show_stack+0x20/0x38 (C)
+> [    5.505540]  dump_stack_lvl+0x80/0xf8
+> [    5.505543]  dump_stack+0x18/0x28
+> [    5.505546]  its_msi_prepare+0xe4/0x1d0
+> [    5.505549]  its_pmsi_prepare+0x15c/0x1d0
+> [    5.505552]  __msi_domain_alloc_irqs+0x80/0x398
+> [    5.505556]  __msi_domain_alloc_irq_at+0x100/0x168
+> [    5.505560]  msi_device_domain_alloc_wired+0x9c/0x128
+> [    5.505564]  irq_create_fwspec_mapping+0x180/0x388
+> [    5.505567]  acpi_irq_get+0xac/0xe8
+> [    5.505570]  platform_get_irq_optional+0x1e8/0x208
+> [    5.505574]  devm_platform_get_irqs_affinity+0x58/0x298
+> [    5.505578]  hisi_sas_v2_interrupt_preinit+0x60/0xb0 [hisi_sas_v2_hw]
+> [    5.505582]  hisi_sas_probe+0x164/0x278 [hisi_sas_main]
+> [    5.505588]  hisi_sas_v2_probe+0x20/0x38 [hisi_sas_v2_hw]
+> [    5.505591]  platform_probe+0x70/0xd0
+> [    5.505595]  really_probe+0xc8/0x3a0
+> [    5.505598]  __driver_probe_device+0x84/0x170
+> [    5.505600]  driver_probe_device+0x44/0x120
+> [    5.505603]  __driver_attach+0xfc/0x210
+> [    5.505606]  bus_for_each_dev+0x7c/0xe8
+> [    5.505608]  driver_attach+0x2c/0x40
+> [    5.505611]  bus_add_driver+0x118/0x248
+> [    5.505613]  driver_register+0x68/0x138
+> [    5.505616]  __platform_driver_register+0x2c/0x40
+> [    5.505619]  hisi_sas_v2_driver_init+0x28/0xff8 [hisi_sas_v2_hw]
+> [    5.505623]  do_one_initcall+0x4c/0x2c0
+> [    5.505626]  do_init_module+0x60/0x230
+> [    5.505629]  load_module+0xa64/0xb30
+> [    5.505631]  init_module_from_file+0x8c/0xd8
+> [    5.505634]  idempotent_init_module+0x1c4/0x2b8
+> [    5.505637]  __arm64_sys_finit_module+0x74/0xe8
+> [    5.505640]  invoke_syscall+0x50/0x120
+> [    5.505642]  el0_svc_common.constprop.0+0x48/0xf0
+> [    5.505644]  do_el0_svc+0x24/0x38
+> [    5.505646]  el0_svc+0x34/0xf0
+> [    5.505650]  el0t_64_sync_handler+0x10c/0x138
+> [    5.505654]  el0t_64_sync+0x1ac/0x1b0
+> [    5.505681] ID:78 pID:8382 vID:143
+> 
+> And that a few dozen times.
+
+Yep that matches my expectations, thanks a lot for testing it.
+
+> I'll have a think at how to unfsck this. This was previously avoided
+> by (IIRC) populating the domain upfront and letting the domain
+> matching code do its job. That behaviour seems to have been lost. On
+> the other hand, as long as you don't expect the ITT to *grow*, nothing
+> horrible should happen.
+
+Yes - I can remove the "shared" ITS device flag but should keep the
+logic preventing an ITS device with same deviceID to be allocated
+if found.
+
+> But I also get an interesting crash in msi_domain_debig_show(), so
+> there is more than just this corner case that is screwed.
+
+That I can try on my side too to try to help you untangle it.
+
+Possibly this was introduced when the MBIgen switched to MSI parent
+with 752e021f5b9b ? It is pure speculation at this stage just noticed
+that's a point in time where the domain code changed.
+
+Is MBIgen the only example of an IC relying on the ITS as MSI parent ?
 
 Thanks,
-George
-
+Lorenzo
 
