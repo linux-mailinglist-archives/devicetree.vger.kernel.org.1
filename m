@@ -1,95 +1,91 @@
-Return-Path: <devicetree+bounces-173169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA4E8AA7B0B
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 22:42:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 184D5AA7B21
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 22:56:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEFE1984DD0
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 20:41:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB4FF4E34BC
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 20:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC91220127A;
-	Fri,  2 May 2025 20:41:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0669200BB2;
+	Fri,  2 May 2025 20:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bYoZQyrT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mk8mjhKT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0BB1FF1B3
-	for <devicetree@vger.kernel.org>; Fri,  2 May 2025 20:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE2821D90DF;
+	Fri,  2 May 2025 20:55:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746218519; cv=none; b=PUIkzPtu4diRab2IPQkWOxa1t7codns1QY6POkv73n7pa8GJ4SUdRM1jV91Fg4vpekSIBJzaiwYCEroCu8QbH0seO7AJWkfztvERwipG4NcwXNBdLK5vfLcBOrNcYZA1CIMrDc0B1YrOHkMqFS1LPL9BHQqiErjjDJw2srzBlEY=
+	t=1746219340; cv=none; b=OzKdZUdhMOChqbQlQBrJpyb829+cWNI3MeTJxa9PnP/EZJIncCpWllWF8kJh+7vsuxcE/85mAu31yzJx0+ILRjSRcEovwDfASGOx6woNrUkIs8ybhInR5JFYXYn4EICZOLSID4twNk7oBSLNg2ecTQBcYPdj0Xj6lg3jzSsDK0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746218519; c=relaxed/simple;
-	bh=Gor5eZeOe95pbDOvaRNjo/pq9TyKVg+UU7vzl4dpmTg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=shR5/vP4rT73ndWE3LUCvBBNWyz8l3j18vLckos6MzY0BYpM3iZSQRrd0pE5ASzofrHUehHpQWodC4aWJkvjXQ4R7mDUq5FAfMGSuDm8ltl+CYHG26V6JO2CiYTSbXNFuoEt9KEnvK5Vpn+tR1bg8Xp75vzmO63jYhg8RUzkAUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bYoZQyrT; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-54b0da81302so352694e87.3
-        for <devicetree@vger.kernel.org>; Fri, 02 May 2025 13:41:57 -0700 (PDT)
+	s=arc-20240116; t=1746219340; c=relaxed/simple;
+	bh=PR3SQ2n/Joo4f0tjdIatGVPhytTBC5rTKfPKzKHMJpM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gbFPXUAEv1lnR1+GywRIpZqjOKPxQw/MeX4alckQn8pwifBuVfWfDx7oJrIRLSExSF4Q8kvXJBdn/ZaThH2Mr9AWCyCvvUhlKmro10miUmq3knBu2KFlnn9F5GTsKAjWZbfIl/GXgQa6U8E8mWPrIdKR5+/g0oY4AutFRKcw0qE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mk8mjhKT; arc=none smtp.client-ip=209.85.219.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6f0cfbe2042so32232126d6.1;
+        Fri, 02 May 2025 13:55:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746218516; x=1746823316; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Vh/HB4YndctfR9aIAkHgSZCg6hCNtQ3fblG9H0OCQvc=;
-        b=bYoZQyrTCvS0D/jHFsU22HGwlfzc5QrwHl8a7Nh8c1c0mEEzJMbztDxxKPofSlbw1o
-         WemgjDhlDBEMjFID/VyAvpdZ33sh+OOvg5sTMrO5dvaDrzQYYe/3O5BSMUxnvQbDpldD
-         wX+W6j68Q1eJHrfMdIvgMVw12xABsfPGDRzRj4scJjh82QX0wzJHpERtHxeN29+mjZMq
-         Sa4GLBXb/hBLrhF0AfsLBAwob5ACFEJLch+jqD6NsRyB/g2IPftJotoM8Sh5Rd/o8/Oq
-         fcjGoE5tlDjykGdKXzHzYUXeCok1FCafvAiPnby1NCRrIXeGwNLCeVsXzsWzzLxLtiRQ
-         HmWw==
+        d=gmail.com; s=20230601; t=1746219338; x=1746824138; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PR3SQ2n/Joo4f0tjdIatGVPhytTBC5rTKfPKzKHMJpM=;
+        b=mk8mjhKTeZ0+IPc/IBqsJF67+RRHvU9xbDxrF3hZ3mrkx9FxZZJJRuGC7IncalH3Sl
+         3XzULacOdg+89Xb014gGxk72/5sOO/xIsDNaGL7oExq3OiZ42WTwIu4MkuoSbNmLpAsy
+         k34NM6gQbdC1Eb8MCiLLbbXGduzh7TES5SFDZGJ/5HstB4L1L/XmVT/D+bOo6Bd5OQCa
+         o2w5Z821goO+9xShYvwZLdjdzoUr4mILbIr/YNq4tlKf6s8thud/jnFVv9zB31RBQNTd
+         WUV5D2rT6QZyXt+llx0lotdoNzTWzXcDpv/FQxEd1HOfY8yv1cmKPjQxtqFtzr/2wrN9
+         HaeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746218516; x=1746823316;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Vh/HB4YndctfR9aIAkHgSZCg6hCNtQ3fblG9H0OCQvc=;
-        b=qXlIVG1cJsIo0FLyjZ/LqaqDRqndIYIbUJ0a0gfrSI83TWtf+C1RUyay02W0JGZ7Td
-         tpsQV1oUyEVfK+3lSBOGMvNDljn73fI6vxI3yN6b03N6ns51lEb0XYMmGaRC942qvCxm
-         PauoQfo9lEhwxjePiqUyYtzdYGDSEqT3XwIBzBLa4uqKeF3RWiZS247CrmxMMhgkU9gD
-         C0xjZ9gS+Qd2au8BiFDEK/fOu3qtb76zd3r63dZckP3mCdfjV2FDm4fZ4bMgg+uV6MTH
-         Ya3E8t4VBtWuyvoNCbxnuNsw8diW5MLa9JsLhOiO+cV2xhIjVYb/a1tcId/IIrLSrGs/
-         oFag==
-X-Forwarded-Encrypted: i=1; AJvYcCVk6zGQRK0O0eji1s72SvNBrhbKeqxhIx0tbH8IsfeaQlyxdhZWs9Qu4AcDzqsoU7oXvYob8xy3EFB/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvqjHxBI9WnVsw4KJuD7ATBAhadrxpN22VAjBBDgHOHO5L/33J
-	aEpw5vCiU6gvfwsiTIFoXklu3II70oxwMuDCggBJhdtc30ElAA2qFI5Q+GFy1Qo=
-X-Gm-Gg: ASbGnct3vfeZfcSgboLQcMFYz+vrHnkUjLUaq49rUnV7BWH0tGm7LDwNrGMcq7aAr1D
-	oUTjTK4wvfSpGwTOSubIMdMMNSvgM/HQCKoTG4N2Ov0lZuP00TbSFUfw5WPOhR+EcuPCqduJ9Gk
-	jy+UG5GoeIvicfU0RolPtMUMuDSINbfYg6+U7OTNuvukuQwrI5NExn8tyH/pODaVk1XCSHWnTwx
-	DoZrTHZtN0BpPHtJwrgwULq3taHWe5G6QO0I9kHl3XNtVHfmFF74ZYfot5KdcBGW6+9+X8VcjIq
-	Z5Cvij4avIrAJKcIP6Odz5gR2ccKhBF7yZ0UqHVuJ4F2rd0CwULTc8yiJ/TeZOBPC6y8hxkCill
-	4399oPyITu6JrSd1PaktYqer9Kmx3Qw==
-X-Google-Smtp-Source: AGHT+IEvl+Xcmxwi3YlwZ0zrf65PyUadsBHWXJ9yXMntXt5u3cTRlzR9GC1W0M0Y15MOFSmh90ma5w==
-X-Received: by 2002:a05:651c:146d:b0:308:e803:119b with SMTP id 38308e7fff4ca-320c3afdda4mr4623881fa.1.1746218516348;
-        Fri, 02 May 2025 13:41:56 -0700 (PDT)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32029017825sm4675301fa.40.2025.05.02.13.41.55
+        d=1e100.net; s=20230601; t=1746219338; x=1746824138;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PR3SQ2n/Joo4f0tjdIatGVPhytTBC5rTKfPKzKHMJpM=;
+        b=JHniWS025ILKuFF/w+vXmjc3nAap3yPBBGmywWMOHsowqKTj6KAYy3+uqbGJfr3z7n
+         UZ+kmm8yoBTFJJgumMDPY8Ym5s5qAZkiEFr9Zb3YRpK9BUL/Mk0yLSZ4jRDHIJFTIP/2
+         lfvQ/2/c6V7DeosxNwarxwci5rbGfGB9q9xCCQrsK5RnmJhNsHZQS/UGY4mtrR6bV5J+
+         bSx/nXVlBKLc3p5XEKi6p4vtPJYjW0rnR7PlDkEhFTOIeb1BDYc+L8fmLEq5RnjlqjGe
+         pUc9qpya+wil8XvjfUMl6GViOMy8Ct3lwv/HD7eSYGIn94wtmVQRNA2vU0AENaYJSoSn
+         4alw==
+X-Forwarded-Encrypted: i=1; AJvYcCUZEkFQ+wK+ZvFXACTpZQulH+mFQhgsE+Q20Suhke0Gh4PcYoQI8GbEyQgkMmB/8ku4BxnPg2KsLxVo@vger.kernel.org, AJvYcCUxABS7SVMps67s9qvU+VFrBJwz3X0d6D2+2jut2Fl/RZCOGxJmLgVRADdq81MIXtaYfisd/bnwrOB7W3a9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRuPgswG5TsxgewTv4r5RtHlMbdCLWJ8Q1eGJ81zSTACjT6j2v
+	RWXM+U5KGmOZY06q6NJD0J1vehORdAN8q/ecLA+lcP+eySl8J4hr
+X-Gm-Gg: ASbGnct1Y5aQ8jg1uwPDbjm5fiU9OkS456Sod8Nc4dJOfri/iz+a78lAr2T191yFWd+
+	B5Jq9W4gNNWnzAvsKJv4ufKMxXJFo+VnVB85YfXyxNqO2ZuQoLM1U78oS9ubD78N217PhGQAJxk
+	tZgvcwXKezSeGhcaeTdPn96JKpsJpzXQKMUxrGMHK0Jc14m9NhRQMprbpn9LOMOYwx5E5hHLSt3
+	Sgzjb3NMUSquMElsAsxddUgGC8yGEOx2lPVskU28fqmbXGV0iKS1TvyH1JMcGOIFF8POktaLMti
+	sZwwA8RqP5UtTug3QDhjikJhqOr+SGlN/aDzGk4RdDJ8IUKyPBTs
+X-Google-Smtp-Source: AGHT+IGhSrEvyii3iCaUEnI1ury80sSSWAUDqJmSFWGySZCyG+UuPVblXaYsIftJReV0Y5/BXthobg==
+X-Received: by 2002:a05:6214:20e6:b0:6f5:dad:5a60 with SMTP id 6a1803df08f44-6f515264f21mr72860706d6.3.1746219337829;
+        Fri, 02 May 2025 13:55:37 -0700 (PDT)
+Received: from localhost.localdomain ([216.237.233.165])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f50f3d2844sm23129936d6.56.2025.05.02.13.55.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 May 2025 13:41:56 -0700 (PDT)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: media: qcom,x1e80100-camss: Remove clock-lanes port property
-Date: Fri,  2 May 2025 23:41:42 +0300
-Message-ID: <20250502204142.2064496-4-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250502204142.2064496-1-vladimir.zapolskiy@linaro.org>
-References: <20250502204142.2064496-1-vladimir.zapolskiy@linaro.org>
+        Fri, 02 May 2025 13:55:37 -0700 (PDT)
+From: John Clark <inindev@gmail.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	nicolas.frattaroli@collabora.com,
+	detlev.casanova@collabora.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	John Clark <inindev@gmail.com>
+Subject: [PATCH v1 0/3] Add Luckfox Omni3576 Carrier Board support for RK3576
+Date: Fri,  2 May 2025 16:55:30 -0400
+Message-Id: <20250502205533.51744-1-inindev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,48 +94,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Since clock lanes under CSIPHY are hard-wired and non-selectable,
-it makes sense to remove this port property.
+This series adds device tree support for the Luckfox Omni3576 Carrier Board
+with Core3576 Module, developed by Shenzhen Luckfox Technology Co., Ltd., based
+on the Rockchip RK3576 SoC. The board supports various peripherals, with this
+initial implementation enabling essential functionality for booting Linux and
+basic connectivity.
 
-The change follows the same logic as found in commit 336136e197e2
-("media: dt-bindings: media: camss: Remove clock-lane property").
+Supported and tested features (on Linux 6.15-rc4):
+- UART: Serial console operational.
+- SD card: Mounts and reads/writes successfully.
+- PCIe: NVMe SSD detected via lspci.
+- Ethernet 0: Functional with RGMII PHY.
+- USB: Host ports detect devices.
+- RTC: Timekeeping and wake-up tested.
+- LED: Heartbeat trigger works.
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- .../devicetree/bindings/media/qcom,x1e80100-camss.yaml       | 5 -----
- 1 file changed, 5 deletions(-)
+Disabled features:
+- eMMC: Not populated on the tested board; believed to be functional but disabled.
+- HDMI: Disabled due to mainline driver maturity issues (basic 1080p output works; audio and 4K untested).
+- Ethernet 1: Disabled as it does not come up, possibly due to PHY configuration or driver issues.
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-index 2e7455bd75ec..c101e42f22ac 100644
---- a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-@@ -146,9 +146,6 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                maxItems: 1
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
-@@ -159,7 +156,6 @@ properties:
-                   - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
- required:
-@@ -362,7 +358,6 @@ examples:
-                 port@0 {
-                     reg = <0>;
-                     csiphy_ep0: endpoint {
--                        clock-lanes = <7>;
-                         data-lanes = <0 1>;
-                         remote-endpoint = <&sensor_ep>;
-                     };
--- 
-2.45.2
+Patch 1: Add luckfox vendor prefix for Shenzhen Luckfox Technology Co., Ltd.
+Patch 2: Add luckfox,omni3576 binding to rockchip.yaml
+Patch 3: Add rk3576-luckfox-omni3576.dts and Makefile update
 
+The new DTS is covered by the existing ROCKCHIP ARCHITECTURE entry in MAINTAINERS.
+
+I am aware of ongoing RK3576 upstreaming efforts (e.g., by Collabora) and
+welcome feedback or collaboration to align with mainline driver development.
+
+Signed-off-by: John Clark <inindev@gmail.com>
 
