@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-172841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40070AA6AE4
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 08:49:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04C92AA6B31
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:02:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01BA71BA6346
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 06:49:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BFBE17414A
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 07:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F67226659E;
-	Fri,  2 May 2025 06:49:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97AAE266EF9;
+	Fri,  2 May 2025 07:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nOdlXVlj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mVzAz7NO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B5C725334E;
-	Fri,  2 May 2025 06:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E261EC4;
+	Fri,  2 May 2025 07:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746168575; cv=none; b=r3kKzzSoh0m5z+wlZQpUsFg+Jh594rKcpTP4Htv1l/TtobgHWznrpqiL72y2LR66g+TxI00mEIgZRGg81T1iAofGm+xsZ38ErStiKheMHzyGBzMdiUqTago5E700pB0RiyZMUS989hj3NLihEN70aJVmoXTTMJIesz5Vv3nZoro=
+	t=1746169322; cv=none; b=UCsVvW3e3R2bd8sA+rG6+cwdG4CCm4bkcmYNS9iG5bjcUShI3491YrONxzRWcvHLROdKPqceZ78VSYHTl4zY9TRJoBnnaJmwMVqXivqvjmjkTJUB6t7aAcIvabVwi22xVqqcnl1J7fbMrpbtqjV8hdU/FCuNwAQL+KcLG9gAzQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746168575; c=relaxed/simple;
-	bh=dGN47Ro0uCC5XKy5XSVOiQ3yspkfGNTo/e6V7ceLXaM=;
+	s=arc-20240116; t=1746169322; c=relaxed/simple;
+	bh=PqKFG0JGTq4eNIheoo3AmOMJYkd1B6YTqiR8CVnXhYk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u01p2ZRH3MOMKiL3NRCQs+Bfhlh5Xa4zzd2rOzqo7Ug5M97rObsut8Yvqvd+ooDVXymAV1JQQxLphymJu2DlHAPzEgtb8NCqiiABl/4ezHCm3TFBgCXx4ir5NO0PQjfcB4XMwo2HWWTzzyfxV1FbN6133iPonPg7ZKn5w51gMG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nOdlXVlj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2426C4CEE9;
-	Fri,  2 May 2025 06:49:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=msIyGUv34/LBSNSIp6mo4JmNyrPqH/+MJwWsl99oMPPiRqj02sPwGZM89ZX5Js8whW96oxXUMURJgBboNLSl6TrA1QPK0hhuwLgDtbHR2zg8HYll0lLBgH5l5VJSdV+BORKZKA0D4QI5cKgPR+tIGjsUuIT8S5As/x+PFgLWuPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mVzAz7NO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA19BC4CEE4;
+	Fri,  2 May 2025 07:02:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746168574;
-	bh=dGN47Ro0uCC5XKy5XSVOiQ3yspkfGNTo/e6V7ceLXaM=;
+	s=k20201202; t=1746169322;
+	bh=PqKFG0JGTq4eNIheoo3AmOMJYkd1B6YTqiR8CVnXhYk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nOdlXVlj6Mr8GAmMPUz8LF9bG6SShA5teaal1jii2B0jV8mFN62oycgZdQ4iU3nQj
-	 lQ6of1M/LarZpeL20NNCiCJo/c/5KsrGOcXBBKkUdAhCKHJYp6wDnGrgAHf84MaAuN
-	 PiuS84nALY9rlxgniXgZS6Mgx3GkTC4MGamNJ6ILr5xuOAusRNooj2bU0hkIehS7tO
-	 G+OburuoHQaSMbGi8UxsAbwwXhwv3r/7xCvKtlRKIr+AWexvqKNH5BRK3VhcIwsiRT
-	 A6NDamwQyyn2S3HGTTiEOaG5l/xcD3c+B9pYezYKNFKXgngD1QGJpjUwr6jrn4AnhX
-	 NqkLk9ymDM0UA==
-Date: Fri, 2 May 2025 08:49:31 +0200
+	b=mVzAz7NOcx1ADL3FUVTSgq3yUEZzwYx7NJwUzsmRXywuZZfgaqRVVnbjTYnCBWn/+
+	 ozbIFqkDfjOl4d3Rl+/Pp3ome9P5BtNz48awS8Hj+qfRGFbCrGJ74DTNvSaNx1bZ2P
+	 t00t1/SwcM+Ir/whEIsspwLv4L0IolBjsDtpE/RIvY27YsVbbAzRkzcR6Nb5Bjub0k
+	 7ZVTqC2pJ+5WH2BD/BUAT4eKVKVMvUnrztaNJcMa3Azyezp5xJ69v5vl0bw93YrOZZ
+	 f6q0IPkxDDt0w2bQefK1iHmui6miOEE9S7u8wb739OslNMv4OgZDdNoEZIwPp/8ADm
+	 J4mmDCmDZ2d0Q==
+Date: Fri, 2 May 2025 09:01:59 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: clock: Add Qualcomm SC8180X Camera
- clock controller
-Message-ID: <20250502-pink-chamois-of-expression-0dc36f@kuoka>
-References: <20250430-sc8180x-camcc-support-v2-0-6bbb514f467c@quicinc.com>
- <20250430-sc8180x-camcc-support-v2-2-6bbb514f467c@quicinc.com>
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: add bindings for QIXIS CPLD
+Message-ID: <20250502-meticulous-bulky-wildebeest-c1a8b6@kuoka>
+References: <20250430153634.2971736-1-ioana.ciornei@nxp.com>
+ <20250430153634.2971736-2-ioana.ciornei@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,35 +60,111 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250430-sc8180x-camcc-support-v2-2-6bbb514f467c@quicinc.com>
+In-Reply-To: <20250430153634.2971736-2-ioana.ciornei@nxp.com>
 
-On Wed, Apr 30, 2025 at 04:08:56PM GMT, Satya Priya Kakitapalli wrote:
-> +  clocks:
-> +    items:
-> +      - description: Camera AHB clock from GCC
-> +      - description: Board XO source
-> +      - description: Sleep clock source
+On Wed, Apr 30, 2025 at 06:36:29PM GMT, Ioana Ciornei wrote:
+> This adds device tree bindings for the board management controller -
+> QIXIS CPLD - found on some Layerscape based boards such as LX2160A-RDB,
+> LX2160AQDS, LS1028AQDS etc.
+> 
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> ---
+>  .../bindings/mfd/fsl,qixis-i2c.yaml           | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/fsl,qixis-i2c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/fsl,qixis-i2c.yaml b/Documentation/devicetree/bindings/mfd/fsl,qixis-i2c.yaml
+> new file mode 100644
+> index 000000000000..562878050916
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/fsl,qixis-i2c.yaml
+
+Filename matching compatible.
+
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/fsl,qixis-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +  power-domains:
-> +    maxItems: 1
+> +title: NXP's QIXIS CPLD board management controller
+> +
+> +maintainers:
+> +  - Ioana Ciornei <ioana.ciornei@nxp.com>
+> +
+> +description: |
+> +  The board management controller found on some Layerscape boards contains
+> +  different IP blocks like GPIO controllers, interrupt controllers, reg-muxes
+> +  etc.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,lx2160a-qds-qixis-i2c
+> +      - fsl,lx2162a-qds-qixis-i2c
+> +      - fsl,ls1028a-qds-qixis-i2c
+
+Keep alphabetical order.
+
+What is actual device name? I2C? Is this an I2C controller or device?
+
+> +
+> +  reg:
 > +    description:
-> +      A phandle and PM domain specifier for the MMCX power domain.
-> +
-> +  required-opps:
+> +      I2C device address.
+
+This says device, so i2c in compatible is wrong.
+
+Anyway drop description, redundant.
+
+
 > +    maxItems: 1
-> +    description:
-> +      A phandle to an OPP node describing required MMCX performance point.
 > +
-> +allOf:
+> +  "#address-cells":
+> +    const: 1
 
-allOf: block goes after required: block. See example-schema or other
-bindings.
+Why?
 
-Now I really wonder what did you take as an example, because none of the
-files have such order, and this suggest you base your code on something
-old or wrong.
+> +
+> +  "#size-cells":
+> +    const: 0
 
-> +  - $ref: qcom,gcc.yaml#
+Why? Drop cells.
+
+> +
+> +  mux-controller:
+> +    $ref: /schemas/mux/reg-mux.yaml#
+> +
+> +required:
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - compatible
+> +  - reg
+
+Keep same order as in properties
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        qixis@66 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +            compatible = "fsl,lx2160a-qds-qixis-i2c";
+> +            reg = <0x66>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+
+So were do you use address/size cells?
 
 Best regards,
 Krzysztof
