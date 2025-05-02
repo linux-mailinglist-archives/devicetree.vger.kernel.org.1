@@ -1,78 +1,53 @@
-Return-Path: <devicetree+bounces-173096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9637AA76C7
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:10:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 644B1AA76D6
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 18:13:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AEB0986E6A
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:10:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B8DD18972C7
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 16:13:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C76525DD11;
-	Fri,  2 May 2025 16:10:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="trImmTPt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069D725C70E;
+	Fri,  2 May 2025 16:13:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F0CE25DCE6;
-	Fri,  2 May 2025 16:10:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825F62580EA;
+	Fri,  2 May 2025 16:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746202227; cv=none; b=c5hU2VObf4Nz/WziIGar5yD2+/69CUwmwoBtcBsHLGisk9L5iyzgFXbDBXVKn1IlTnbJ8SqdIhfA2an19pBUV9xH9QL+cwc3rzWtCSbyJBoZaZSFLLN/7JBBGOkc9+xHRb56uUE7ZJjoOuoHUEkqgibhE5tE+CerlxYUKNlpPic=
+	t=1746202388; cv=none; b=DBRwEk4fmvAoMP6zH+doRzvr3vGuqK3/syvSCFbeFvaEf0br1LVjmLlv8pxEQSVvaszEQIcYaat5UmT8hcf+GQJO3NZUO1z5cOK77jLkSb1qEVlxqxr98nNU1NvQ3pm1CLcrqnW+iKG2zVp8sykh18QFXfPZm8a5qJAnN7m1RG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746202227; c=relaxed/simple;
-	bh=T+l6OVVT45tzMYV8TY6DeZg93MwIQ0gaakx3sxA0rT0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JDlFknauf9MszawiQYMXIX9aF4V85N5oDvpzmV9mu6m+UY1iNmyDXAEU/Kf6uS/tVKJE77m7tHCC++eJY1L9RH3j8oPwUK+zRFYdqN8NqhueqrOLlCJYwtC8dYG1mxvl/zgzTVz99RPGajRE2PlUgGAPUxtaadlFr0sRRK2pK+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=trImmTPt; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1746202226; x=1777738226;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=T+l6OVVT45tzMYV8TY6DeZg93MwIQ0gaakx3sxA0rT0=;
-  b=trImmTPt7bgIQUB/3DbtdppW+BJ/MVMhb8leQBbwl+/Ia2eFM00Q0wag
-   VZTskIhexeY0PmGdUVW9k48t5irlV1IADg0XK0Ia8ZaCxiw+D/wqXCGOD
-   FpxVcztv2XouAXug//MRF83GiogGEPbdNXaJovX5LV/oKUJlKuNia+N2+
-   ZKYTSBTf4dZnpO4o1JGStuoz15vp67syiMpfWgDcc4GhN1maNyCuX55UJ
-   mUsm2sbxOgRzeNrCnKlgts4VXRxATT8QchuowgG9MXD0Mmk1auWqN5/6g
-   JtsNNJpc3stvoiOS2Jkz9vHWY5HY9QA/2J+jyOemi1QXsvf+j5qw1b4r9
-   g==;
-X-CSE-ConnectionGUID: JuVaQLK6ReSI1JeiqIMSGg==
-X-CSE-MsgGUID: 6LSpReV7RC+S7xg2a8j0Gw==
-X-IronPort-AV: E=Sophos;i="6.15,256,1739862000"; 
-   d="scan'208";a="272519113"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 May 2025 09:10:03 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Fri, 2 May 2025 09:09:33 -0700
-Received: from ryan-Precision-3630-Tower.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.44 via Frontend Transport; Fri, 2 May 2025 09:09:33 -0700
-From: <Ryan.Wanner@microchip.com>
-To: <radu_nicolae.pirea@upb.ro>, <richard.genoud@bootlin.com>,
-	<gregkh@linuxfoundation.org>, <jirislaby@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>
-CC: <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<inux-arm-kernel@lists.infradead.org>, Dharma Balasubiramani
-	<dharma.b@microchip.com>
-Subject: [RESEND PATCH v6 1/1] dt-bindings: serial: atmel,at91-usart: add microchip,sama7d65-usart
-Date: Fri, 2 May 2025 09:10:00 -0700
-Message-ID: <ba19dff5c20bd022cf5391ac909a85ab5e1797b4.1746201835.git.Ryan.Wanner@microchip.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1746201835.git.Ryan.Wanner@microchip.com>
-References: <cover.1746201835.git.Ryan.Wanner@microchip.com>
+	s=arc-20240116; t=1746202388; c=relaxed/simple;
+	bh=O42FzXmVIrNxY2NIxyW0vI1kl2XusvAI3zplmRlwZ5U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sMPCYWZAkUGeABedxXuyC6Xavf/mnSb4DYtYbh+prmuEo/php5YLymQxGiEFvAgDathRejc/X2JmX7siF30AkOC2k45jfyuXf4OOGVaDIBmgzJltZTUa2kZiGZ8/a0m6C3pnh5mlwa8PMcBAdxc577ZUzZtXN3K1O0B4g19dl6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Zpwp058kKz6M4Tp;
+	Sat,  3 May 2025 00:08:40 +0800 (CST)
+Received: from frapeml500003.china.huawei.com (unknown [7.182.85.28])
+	by mail.maildlp.com (Postfix) with ESMTPS id EB3491402F8;
+	Sat,  3 May 2025 00:13:03 +0800 (CST)
+Received: from a2303103017.china.huawei.com (10.47.77.180) by
+ frapeml500003.china.huawei.com (7.182.85.28) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 2 May 2025 18:13:03 +0200
+From: Alireza Sanaee <alireza.sanaee@huawei.com>
+To: <devicetree@vger.kernel.org>
+CC: <robh@kernel.org>, <jonathan.cameron@huawei.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linuxarm@huawei.com>, <mark.rutland@arm.com>,
+	<shameerali.kolothum.thodi@huawei.com>
+Subject: [PATCH v2 0/6] DT: Enable sharing resources for SMT threads
+Date: Fri, 2 May 2025 17:12:54 +0100
+Message-ID: <20250502161300.1411-1-alireza.sanaee@huawei.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,31 +56,73 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-ClientProxiedBy: lhrpeml100011.china.huawei.com (7.191.174.247) To
+ frapeml500003.china.huawei.com (7.182.85.28)
 
-From: Dharma Balasubiramani <dharma.b@microchip.com>
+This patchset allows for sharing resources between SMT threads in the
+device tree (DT).
 
-Add SAMA7D65 USART compatible to DT bindings documentation.
+WHY? Given the current use of the DT, it is not possible to share L1
+caches, as well as other resources such as clock among SMT threads.
+However, DT spec in section Section 3.8.1 [1], describes how SMT threads
+can be described in the reg array, this is how PowerPC describes SMT
+threads in DT.
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
----
- Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml | 1 +
- 1 file changed, 1 insertion(+)
+CHALLENGE: Given discussions with the community [2], it was apparent
+that it is not straightforward to implement this, since cpu-maps must
+point to a particular CPU node in DT [3], Section 2.1. However, it is
+not only the cpu-map but also there other nodes that point to cpu nodes
+which indeed need care and changes.
 
-diff --git a/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
-index f466c38518c4..087a8926f8b4 100644
---- a/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
-+++ b/Documentation/devicetree/bindings/serial/atmel,at91-usart.yaml
-@@ -26,6 +26,7 @@ properties:
-           - enum:
-               - microchip,sam9x60-usart
-               - microchip,sam9x7-usart
-+              - microchip,sama7d65-usart
-           - const: atmel,at91sam9260-usart
-       - items:
-           - const: microchip,sam9x60-dbgu
+SOLUTION: This led to more discussions on what the solution should look
+like and based on recent conversations we ended up with the following
+approach [4].
+
+core0 {
+  thread0 {
+    cpu = <&cpu0 0>;
+  };
+  thread1 {
+    cpu = <&cpu0 1>;
+  };
+};
+
+In this layout, first parameter is the phandle to cpu-node and second
+index would be the local-thread index in the reg array available in the
+cpu-node reg property.
+
+[1] https://github.com/devicetree-org/devicetree-specification/releases/download/v0.4/devicetree-specification-v0.4.pdf
+[2] https://lore.kernel.org/linux-arm-kernel/Z4FJZPRg75YIUR2l@J2N7QTR9R3/
+[3] https://www.kernel.org/doc/Documentation/devicetree/bindings/cpu/cpu-topology.txt
+[4] https://lore.kernel.org/devicetree-spec/CAL_JsqK1yqRLD9B+G7UUp=D8K++mXHq0Rmv=1i6DL_jXyZwXAw@mail.gmail.com/
+
+PRIOR VERSIONs:
+   [V1] https://lore.kernel.org/all/20250422084340.457-1-alireza.sanaee@huawei.com/
+
+CHANGE LOG:
+    V1 -> V2:
+        * Address Rob's comments.
+            ** Re-order patches.
+            ** Fix bugs.
+        * Remove #cpu-cells property
+
+Alireza Sanaee (6):
+  of: add infra for finding CPU id from phandle
+  arch_topology: update CPU map to use the new API
+  coresight: cti: Use of_cpu_phandle_to_id for grabbing CPU id
+  coresight: Use of_cpu_phandle_to_id for grabbing CPU id
+  arm64: of: handle multiple threads in ARM cpu node
+  of: of_cpu_phandle_to_id to support SMT threads
+
+ arch/arm64/kernel/smp.c                       | 74 ++++++++++---------
+ drivers/base/arch_topology.c                  | 12 +--
+ .../coresight/coresight-cti-platform.c        | 15 +---
+ .../hwtracing/coresight/coresight-platform.c  | 14 +---
+ drivers/of/cpu.c                              | 51 +++++++++++++
+ include/linux/of.h                            |  8 ++
+ 6 files changed, 111 insertions(+), 63 deletions(-)
+
 -- 
-2.43.0
+2.34.1
 
 
