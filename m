@@ -1,196 +1,152 @@
-Return-Path: <devicetree+bounces-173179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8FF5AA7BBC
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 23:56:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B845AA7BEE
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 00:04:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3C663A534A
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 21:55:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 339E0460492
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 22:04:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4060C20F079;
-	Fri,  2 May 2025 21:56:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72BDF21FF50;
+	Fri,  2 May 2025 22:03:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gUXrmiFY"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="p4GEp0W5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A6A20E005;
-	Fri,  2 May 2025 21:56:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A24FC21ABB8;
+	Fri,  2 May 2025 22:03:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746222974; cv=none; b=TjnbYdZ6yYTWpY8aYu0B1MfBArQF+xwgD9Sf+7vFZZnJUW5gvjhJ8+KXeknDTOFXk3lhiBuGQIfHvySQ0jAqwtqlIrsvK1t+QmAnLv5+M+8LDK9ckOpqKu7BAjpzCs00ijTs6867rx/qCkNODtmNGuNt5l4sYyJI7nto0oNJq54=
+	t=1746223421; cv=none; b=IUKZqTwxnhKN9NSbNQxshyXmsXdS8v/FyuS9qpC1GA7TJth5cUElbU9S+vMgqt1bd2lnDU2VCrvg7YfXi2BX4usE7/cxj6zWtaut4bf80+PKm1UR7WnXADEXmanEpdxhu8/t+SNlGx1vJ9mByt2+rvIOj8HFlSgNmUPWqS3Jf7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746222974; c=relaxed/simple;
-	bh=RFMMW0zo3tJcBelMhJ5cpUBwQWvY1hxI2Mtm6NmWcEw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Kdis0lDyHv2M21k9efkteTFU3rV/ljqXf443TA2SNr35Ejlx937KrPPqeaVtfigFMJjreuPRbM95i6I75ohMsp9QRhpnUKwxOo+QSZ9z4y3aJuaV4xkWNIILApJSLiNax9hPpUeudCh/UlHAmEMXppjymhEuXJO4refEfbvay+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gUXrmiFY; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-39ee623fe64so2393002f8f.1;
-        Fri, 02 May 2025 14:56:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746222971; x=1746827771; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bIvPqFh1bSmMO8wWItITLD+unYaVgvsJbSEKAGTEleY=;
-        b=gUXrmiFYwayzopLe2aQj9eEY0pvJbXnk8bi0u+oC2Q9eEuX9rIoEXtLothMPvN8+qH
-         Jq88LawCuND0UlZQv/TNDVWfL32q5fF/zPYUhR9uWP2V8Km4lSp9pwyULIihLhgl3mu4
-         1quC4FvL210A9rgp8TG4K+x/fSegOB8UWJg87Lz86POQKGAeCCKEhb82uAU4p0cq5LFz
-         GQvld2TJtha6GJspe37PVmW3jZ76sA6Bqkjjd+B1V7ymCz3wE7eViYGABMo1GQT4Jgou
-         XECd+b8uDONU1aPmzVRnZ5pSwjA2kQL1O+dhpsHa94aVQrHT4qrD7wAH26YwlawBQR/y
-         ET3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746222971; x=1746827771;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bIvPqFh1bSmMO8wWItITLD+unYaVgvsJbSEKAGTEleY=;
-        b=vY7kV4g0DEoGQ/K3LVwbKWllE5LM0iaWmB4mDpfQu2z1fPJH9vvhsjSCVXYKAASBRa
-         A0XZCTB8Dwrx8MTZX4no/0V1WP6OMVH/TdHqZSrIsf061Lp3Qp7/A+LfR9GrxaTApFvz
-         23IfiUmjbc1bzAh3k9mwN2IZhV1B5Twtv1JPbKfTDVsyR5PsS1cjrlrxPhrVSP0PG5MF
-         jBfaL7goCDtZhBNxDUjS6u3c1smqZ4C7H1vnyAl/LyZ1MtXQptIv9HiT9nIJY+CtPbRZ
-         v5u7/pGc+6hVmMrfZDKz04oiNQkNrbZKnS342J0uCc6/R4n5UQn0b0jtuVclKKuTDAGC
-         dbgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZJ3dfrzz3vIAWp0Om6EUy5GSThNWKCQG5eZAvfjHX8ab8J21BgH6LHCXWYy3EPlPe0I4qpG1MItQR@vger.kernel.org, AJvYcCX4IGB/m08HsyCmO94+IPMCrvWu8pAHxh3KvrF5YfwXs70koe0D7IzvCPGgY79SBIYdef2UDUgsZMf+nro7@vger.kernel.org, AJvYcCXcbGgy5fXgTdyL9kePpd/33btghfprHYfJxnS1TXHKRTmGimf0+hweB2X1Dis6q+1oE4oSip/Skj9iSRUmAVyznao=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYSlhb7KDy0v8Jh9p2rdTC84hz1Cav6G0RIe28lgNJkZMnlV9f
-	oGow/rKcAijTRbnFqVsj6/8EhAHyFHvr8HU7NlamwIXhBdWjo1f40oLM3dN+n3weiK93iiPQ/eb
-	O+Dt6zsV3ownPy3tkC9PydwkO3i4=
-X-Gm-Gg: ASbGncs84gajTh1QTENp17mqiI+qPUlYdgE4N//Lnk7RYObVzYZwcfz43fsM2S18Ncy
-	4eBoDCeaVm6IW4zpSQFM0KEyT5gUeLrDnSFlip+enhXvwrkEj0fLmlGgFBlr0HE4WN5KbPye2RS
-	v7/s3zO5QKGKiRtwbBtG4UGP/Y0vAVjqRCxA==
-X-Google-Smtp-Source: AGHT+IFl+MRsV9J9nUptoXNbXZiIMrW6eP7y6f3wW7mfpaU2h2XmONvIp5/7UcNAkL9ozkcXMiTtg4dCMT3oBCA84EE=
-X-Received: by 2002:a5d:47a6:0:b0:39f:b604:4691 with SMTP id
- ffacd0b85a97d-3a09cf6af9emr452963f8f.58.1746222970638; Fri, 02 May 2025
- 14:56:10 -0700 (PDT)
+	s=arc-20240116; t=1746223421; c=relaxed/simple;
+	bh=fzpVxiVk50759r0LoIAFVoi5K5GRukO1dEjh6MZA/wI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ou/vLYvbKXlNnbcwJD8NRFRKFj+ADNL4yfOHsKaW8DoLqYJEofscMsVnNT1UZJzoxFZyppG8pMcpseI9CM0nOpCk0mwlp//Y2aT95IAU8KDIVY4cnjDYYmZkBMKhMCr5w19AIKUO1xjd6euvqii+RF1a6q269cooC6TCRiOMb04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=p4GEp0W5; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 542M3QWT3963046
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 2 May 2025 17:03:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746223406;
+	bh=vkUi52T6idU7ApyxJA+rNgpSxXBLD/aJ8NYR/101WVA=;
+	h=From:To:CC:Subject:Date;
+	b=p4GEp0W5f02R4e1HvHiWiedRjGiQdS7JrKhfH/4OKTlSIyjque7amxdPJN0lpagJP
+	 DmeLPBbsTMg8ugQFpAMJd5QO4YcR8wwf16RkXC7ZFu4a2x/gDIyJPxCnHI7Wfr8YHD
+	 hRZAPWm7zxcahY7LLhXuMqoc/rFoiqRGGgScBFow=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 542M3QfP004715
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 May 2025 17:03:26 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ May 2025 17:03:25 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 May 2025 17:03:25 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 542M3PBs006849;
+	Fri, 2 May 2025 17:03:25 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Hari
+ Nagalla <hnagalla@ti.com>,
+        Beleswar Padhi <b-padhi@ti.com>,
+        Markus
+ Schneider-Pargmann <msp@baylibre.com>,
+        Andrew Davis <afd@ti.com>, Devarsh
+ Thakkar <devarsht@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v8 00/11] Add R5F and C7xv device nodes
+Date: Fri, 2 May 2025 17:03:14 -0500
+Message-ID: <20250502220325.3230653-1-jm@ti.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250502124627.69644-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250502124627.69644-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdVXeBUah-r0YQsjhvxeja9oMZpLYZHTwxgdi=ezqY=iBw@mail.gmail.com>
- <CA+V-a8v5HHZUfhKhy-jasC5vKdL6MYBCnnVZ71rdtQOv5Tn-Sw@mail.gmail.com> <CAMuHMdWJ+Qcmj3aCEsd5Ydr9qn4hsr013w_ffjzj=jhtS9YFtQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdWJ+Qcmj3aCEsd5Ydr9qn4hsr013w_ffjzj=jhtS9YFtQ@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 2 May 2025 22:55:44 +0100
-X-Gm-Features: ATxdqUE8T1Mu-5AOrIjt5lex4I3-3FPgX7a_P5_IZCEHoJrMGwqdxjz8WFgR-To
-Message-ID: <CA+V-a8tsjXVirSK8_Jnx6MQpkSPbxfiri_8b4-gU8hoKfVBZgw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] clocksource/drivers/renesas-ostm: Enable reprobe
- for all ARM64 SoCs
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Chris Brandt <chris.brandt@renesas.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Geert,
+For am62x and am62ax devices, this patch series adds device nodes
+for the R5F subsystem and C7xv DSP subsystem found in their
+respective voltage domain, based on the device TRMs [0][1].
 
-On Fri, May 2, 2025 at 6:36=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
->
-> Hi Prabhakar,
->
-> On Fri, 2 May 2025 at 18:10, Lad, Prabhakar <prabhakar.csengg@gmail.com> =
-wrote:
-> > On Fri, May 2, 2025 at 3:37=E2=80=AFPM Geert Uytterhoeven <geert@linux-=
-m68k.org> wrote:
-> > > On Fri, 2 May 2025 at 14:47, Prabhakar <prabhakar.csengg@gmail.com> w=
-rote:
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Change the OSTM driver's probe condition to `CONFIG_ARM64` so that =
-the
-> > > > platform driver will defer and reprobe on any ARM64 Renesas SoC onc=
-e its
-> > > > reset controller is available. Previously, only RZ/G2L and RZ/V2H(P=
-)
-> > > > were covered.
-> > > >
-> > > > By matching on `CONFIG_ARM64`, this avoids adding a new config entr=
-y
-> > > > for each future ARM64 Renesas SoC with OSTM IP. RZ/A1 and RZ/A2 (AR=
-M32)
-> > > > are unaffected-they still use OSTM but do not define a resets prope=
-rty,
-> > > > so the deferred reprobe mechanism is unnecessary.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.c=
-om>
-> > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > > ---
-> > > > Hi Geert,
-> > > > I've restored the Reviewed-by tag from v1 with your suggestions app=
-lied.
-> > > > I hope you're okay with this.
-> > > > Cheers, Prabhakar
-> > > >
-> > > > v1->v2:
-> > > > - Instead of adding config for new SoC, changed the probe condition=
- to
-> > > >   `CONFIG_ARM64`.
-> > > > - Updated commit message
-> > > > - Added a Reviewed-by tag from Geert.
-> > > > ---
-> > > >  drivers/clocksource/renesas-ostm.c | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/drivers/clocksource/renesas-ostm.c b/drivers/clocksour=
-ce/renesas-ostm.c
-> > > > index 3fcbd02b2483..6a5785f9c9c1 100644
-> > > > --- a/drivers/clocksource/renesas-ostm.c
-> > > > +++ b/drivers/clocksource/renesas-ostm.c
-> > > > @@ -225,7 +225,7 @@ static int __init ostm_init(struct device_node =
-*np)
-> > > >
-> > > >  TIMER_OF_DECLARE(ostm, "renesas,ostm", ostm_init);
-> > > >
-> > > > -#if defined(CONFIG_ARCH_RZG2L) || defined(CONFIG_ARCH_R9A09G057)
-> > > > +#if defined(CONFIG_ARM64)
-> > >
-> > > Sorry, I've just realized RZ/Five also wants this.
-> > >
-> > Ouch, I missed that too.
-> >
-> > > "#ifndef CONFIG_ARM"?
-> > >
-> > Im wondering will it harm if we have it enabled for ARM too (I dont
-> > have RZ/Ax to test it)?
->
-> ISTR it caused issues on RZ/Ax.
->
-> Oh right, and those got fixed by commit 37385c0772a4fc6b
-> ("clocksource/drivers/renesas-ostm: Avoid reprobe after successful
-> early probe") in v6.10. So I think it is safe to drop the #ifdef
-> check instead of extending it.
->
-Thanks for the confirmation. I'll drop the ifdef checks and send a v3 for t=
-his.
+This patch series also includes patches for enabling IPC for am62x SK,
+am62ax SK, and am62px SK by reserving memory and binding the mailbox
+assignments for each remote core.
 
-> FTR, with the platform probe enabled, and 37385c0772a4fc6b reverted:
->
->     /soc/timer@e803b000: used for clock events
->     genirq: Flags mismatch irq 16. 00215201 (timer@e803c000) vs.
-> 00215201 (timer@e803c000)
->     Failed to request irq 16 for /soc/timer@e803c000
->     renesas_ostm e803c000.timer: probe with driver renesas_ostm failed
-> with error -16
->
-Cheers,
-Prabhakar
+Also reserve timers used by C7x DSP for am62ax SK board and timers used
+by MCU FW for AM642 SK and EVM boards as per firmware requirements.
+
+Changes since v7:
+- Rebase against next
+- add Andrew's review tags
+
+Links
+v7: https://lore.kernel.org/linux-devicetree/20250415153147.1844076-1-jm@ti.com
+v6: https://lore.kernel.org/linux-devicetree/20250405001518.1315273-1-jm@ti.com/
+v5: https://lore.kernel.org/linux-devicetree/20250210221530.1234009-1-jm@ti.com/
+v4: https://lore.kernel.org/linux-devicetree/20250206235200.3128163-1-jm@ti.com/
+v3: https://lore.kernel.org/linux-devicetree/20250204011641.1523561-1-jm@ti.com/
+v2: https://lore.kernel.org/linux-devicetree/20250131214611.3288742-1-jm@ti.com/
+v1: https://lore.kernel.org/linux-devicetree/20250127221631.3974583-1-jm@ti.com/
+
+[0] https://www.ti.com/lit/pdf/spruj16
+[1] https://www.ti.com/lit/pdf/spruiv7
+[2] https://lore.kernel.org/linux-devicetree/04e77daf-e775-44fa-82bf-8b6ebf73bcef@ti.com/
+[3] https://lore.kernel.org/linux-devicetree/4740c3f8-5051-4e25-af91-b45735ffef31@ti.com/
+
+Devarsh Thakkar (3):
+  arm64: dts: ti: k3-am62a-wakeup: Add R5F device node
+  arm64: dts: ti: k3-am62a7-sk: Enable IPC with remote processors
+  arm64: dts: ti: k3-am62p5-sk: Enable IPC with remote processors
+
+Hari Nagalla (6):
+  arm64: dts: ti: k3-am62-wakeup: Add wakeup R5F node
+  arm64: dts: ti: k3-am62a-mcu: Add R5F remote proc node
+  arm64: dts: ti: k3-am62x-sk-common: Enable IPC with remote processors
+  arm64: dts: ti: k3-am62a7-sk: Reserve main_timer2 for C7x DSP
+  arm64: dts: ti: k3-am62a7-sk: Reserve main_rti4 for C7x DSP
+  arm64: dts: ti: k3-am64: Reserve timers used by MCU FW
+
+Jai Luthra (1):
+  arm64: dts: ti: k3-am62a-main: Add C7xv device node
+
+Judith Mendez (1):
+  arm64: dts: ti: k3-am62: Add ATCM and BTCM cbass ranges
+
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi    |  25 +++++
+ arch/arm64/boot/dts/ti/k3-am62.dtsi           |   8 +-
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     |  12 ++
+ arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi      |  25 +++++
+ arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi   |  25 +++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       | 106 +++++++++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  50 ++++++++-
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  34 +++++-
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  20 ++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        |  20 ++++
+ 10 files changed, 306 insertions(+), 19 deletions(-)
+
+-- 
+2.49.0
+
 
