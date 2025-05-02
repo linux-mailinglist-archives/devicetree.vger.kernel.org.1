@@ -1,112 +1,151 @@
-Return-Path: <devicetree+bounces-172953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D47DAA70B0
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 13:36:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAEC3AA70B6
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 13:37:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EBC637A7BAE
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:34:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DB8F3B4AE0
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 11:36:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2F922D785;
-	Fri,  2 May 2025 11:36:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F2223C4EF;
+	Fri,  2 May 2025 11:37:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="puzm0WPU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c9LNTIy8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5BD1BEF77;
-	Fri,  2 May 2025 11:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429D21BEF77;
+	Fri,  2 May 2025 11:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746185762; cv=none; b=IHjqMqB+Q40FtFNIjnnSnzFanS4A24FG+NrwCHv/rz0GDJa7NeJg2zjHhC/tsMdzI5YvwGTRya81yNdeRhyAlsF0TDYxqbP9//m/CSDA4v7kRRHL+DJ4AI+llMzeMACdeC6lYrV9yB7CnBNJxPC8TT4i7M/lXBYVpOa3NJugUTA=
+	t=1746185832; cv=none; b=u/4KZ0sXcPZst9QKvT2+Mm4I7524fwmARlTzAkPSltoWcsV54dc2wmo8kiiyzHxIU9iGys4OdFjvKpwlJ4MZqAMhKPZp6MVTFjsPW9XydNUnD7KnxNtmy4AjK3rPaGBEYD6qjoWi2Wpme/IyOR43hCYRjlb4nnUEUu1avOtDZbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746185762; c=relaxed/simple;
-	bh=IC+tFmMgGc8gy+XWT7MuumYI16SywRq+USGzBe2YkhM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=UjgXgAPI47W8SBALaZlqZmsMoJHMJpK4uWMPPm+GbjIpts6tZTtbgsRw7B48JZTdCGi8jwAMLSDK8jBxImIvVqd8GXcNmRN1HL0RYKd6EzU5I4ykGql3AYhzKGnUj+A/UKP0L+S5PzAz0OODtvkPbV5QAOkptvxqqgZBwU318FU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=puzm0WPU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0716EC4CEEB;
-	Fri,  2 May 2025 11:36:00 +0000 (UTC)
+	s=arc-20240116; t=1746185832; c=relaxed/simple;
+	bh=zDHyIMpBkliiANGkCUwk/FgZr9BdMK5VPVDur9GvegY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zhmkz6Z+s7EV9Vt3AF9pQnMsEtftBqON1SCABTWEyuhyNlKYrWBoffwXzfIdS3GP5Vibol/bzjMzeB/HADYFw8X/nvkHfcsussV3ZNWfvvpxozJZ16HfzpBqB5HrLz85c8zlwEX0zDQ7JPCeYLii816S2t6Jk3LEOsmGlxiUIxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c9LNTIy8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11F8EC4CEE4;
+	Fri,  2 May 2025 11:37:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746185761;
-	bh=IC+tFmMgGc8gy+XWT7MuumYI16SywRq+USGzBe2YkhM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=puzm0WPUFl9KxGEZ1hy/8EHzZGrBQnl7zP3MluGp7vWlEzgGjHjRRCji2j1GWnfkh
-	 R549rpDu2xN/MlxXHxKTemfaBYIKQi9IeEpRfwq8B9kXEG1L7l5eHMiK5CLF0q9WcO
-	 v9+usY+wk8Fo7Mz6JRzsnSUZfoiwiPTXKFOsuFQSeHpCZ5tfExInO+ABBc064vgA7L
-	 9+ZvnLJ8SOcjOijeqTDD0lbzy5vyYThlnA6ktDzc8tWovDVkWf0F4xTxZANnLF7/CB
-	 P1G8at6YADbYBZxPrlYBaPgJ4ia44RGMEMmzQ62lUL0MaEk7kmL9938qph/IKfZDWV
-	 xgnBrTlXCQJsQ==
-Date: Fri, 02 May 2025 06:35:59 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1746185831;
+	bh=zDHyIMpBkliiANGkCUwk/FgZr9BdMK5VPVDur9GvegY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=c9LNTIy8WsnWrwq4CV1KEuI+FQH/CfVm6OxRlRFyKzpfTIb19kZhCx2ePlIWy5y4V
+	 7f8yuzeE9qRtghbhKALSFgD9FjSCo7qpQMnR0ptx1I+ahC4Gl5DHJYWwiiM3ETBIa7
+	 fm962uXizMcDqsypE9zmUm7YokNZNf24R3auusmlQGGhxg5cEL/7bD0Q1zwbVCKgJM
+	 TuuPUnWYsWt7X5ao9wiTYzSAJXezUurt33ErJUpvAWrEaffxMjDxmtFp1PVyAwBLCQ
+	 NoCkvsQnw6pwmhnCiQUSuu4AhAlv6phOOhwf9JtCp5K1bjyaRyGNc7dqown+zZ+PgW
+	 9+UV7tDWnYjDg==
+Message-ID: <d4d91f3c-731f-44a8-8f08-1979f335b074@kernel.org>
+Date: Fri, 2 May 2025 13:37:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, linux-clk@vger.kernel.org, 
- Konrad Dybcio <konradybcio@kernel.org>, Luo Jie <quic_luoj@quicinc.com>, 
- devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>
-To: George Moussalem <george.moussalem@outlook.com>
-In-Reply-To: <20250502-ipq5018-cmn-pll-v1-1-27902c1c4071@outlook.com>
-References: <20250502-ipq5018-cmn-pll-v1-0-27902c1c4071@outlook.com>
- <20250502-ipq5018-cmn-pll-v1-1-27902c1c4071@outlook.com>
-Message-Id: <174618575948.666955.12764440519077221270.robh@kernel.org>
-Subject: Re: [PATCH 1/6] dt-bindings: clock: qcom: Add CMN PLL support for
- IPQ5018 SoC
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: dma: convert text based binding to json
+ schema
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250501-nvidea-dma-v1-1-a29187f574ba@gmail.com>
+ <20250502-lush-resolute-cheetah-a8ceee@kuoka>
+ <a701201e-c888-40e5-a57b-45ea0416af31@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <a701201e-c888-40e5-a57b-45ea0416af31@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 02/05/2025 12:27, Charan Pedumuru wrote:
+>>> +    maxItems: 1
+>>> +
+>>> +  reset-names:
+>>> +    const: dma
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>> And here the order is correct...
+>>
 
-On Fri, 02 May 2025 14:15:43 +0400, George Moussalem wrote:
-> The CMN PLL block in the IPQ5018 SoC takes 96 MHZ as the reference
-> input clock. Its output clocks are the XO (24Mhz), sleep (32Khz), and
-> ethernet (50Mhz) clocks.
+Fix your email program, because it re-wraps or removes line breaks in
+each quote. It is making conversation unnecessarily less readable.
+
+>>> +  - interrupts
+>>> +  - clocks
+>> But here different. Keep the same order as in properties.
+>>
+>>> +  - resets
+>>> +  - reset-names
+>>> +  - "#dma-cells"
+>>> +
+>> missing allOf: to dma-controller
 > 
-> Unlike IPQ9574, the CMN PLL to the ethernet block needs to be enabled
-> first in IPQ5018. Hence, add optional phandle to TCSR register space
-> and offset to do so.
 > 
-> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
-> ---
->  .../devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml  | 11 ++++++++---
->  include/dt-bindings/clock/qcom,ipq5018-cmn-pll.h         | 16 ++++++++++++++++
->  2 files changed, 24 insertions(+), 3 deletions(-)
+> The reason, I didn't include dma-controller is the pattern under 
+> $nodename in dma-controller is not matching with the pattern present in 
+> dts files.
 > 
+> So, I excluded it.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Then the DTS has to be changed.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml:55:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.example.dtb: clock-controller@9b000 (qcom,ipq9574-cmn-pll): 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/clock/qcom,ipq9574-cmn-pll.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250502-ipq5018-cmn-pll-v1-1-27902c1c4071@outlook.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+Krzysztof
 
