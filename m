@@ -1,202 +1,154 @@
-Return-Path: <devicetree+bounces-172851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-172852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CA6DAA6BC6
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:38:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 918FDAA6BD1
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 09:43:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C8273B0740
-	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 07:37:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B26C0162D36
+	for <lists+devicetree@lfdr.de>; Fri,  2 May 2025 07:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40462676E9;
-	Fri,  2 May 2025 07:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C43C42676E1;
+	Fri,  2 May 2025 07:43:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RbORFC7n"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BuzIrCyx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1319C253324;
-	Fri,  2 May 2025 07:37:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 093EC2AF14;
+	Fri,  2 May 2025 07:43:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746171472; cv=none; b=l1EVdFpdAo9ma7N2EemxvemRSn8lIiqXBDzXNGLZ0mwLJ+rsnhg0QheG+wOyZA+jWECbnOmsGRgvWimToKU13QvXrkcHPyU5pfQg/UZ631jyIcaT9UQmPL9Y5VW7/D01Xyk4TuLzFCKuNbZdc4Ah6IaJ6x3ky4tFKpAGrKNcuN0=
+	t=1746171833; cv=none; b=B2pyKGP8KskKriMR4CjiYsOmAeBho4U1T12mPmyGg7ebCBmzM9rVM1DByKUtsEz6fYjpnBasGH/8XE+sr0gpIm9HPnFUjXPe7cOYGaHI8Q4jRSefzMvyOu3Zy0PePmzS4peRl/R0xk3VyosT72eNowW+jDpG/6p0EGz1KA2T70Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746171472; c=relaxed/simple;
-	bh=agbvgyrGl+TBT7C8n1D5AKZSi7AVfqShVIdXyQcDkH8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=llk6B1gKukcguYMtt6XlTR7CeT3IKCywgCjFRJYguq6tQjxiIB4tE0d8Jm2Q+1LLVty4Nt6ZKgx3K7X8Bp7DQeN2MrvQeNgdnO9lWYNNNtGkWNpyag0CNtg9fI34xY8ccmhoFteW7B32cpNdbc6AdyuX+0KDxckP23qXznUuGZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RbORFC7n; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5421NHse015251;
-	Fri, 2 May 2025 07:37:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zu+Hb+CVAoyO+KdtfrNp2BOt+4pQRVp0db4DBgtZrDw=; b=RbORFC7n9ev7V8Ds
-	e3NkpkSqtpboc/9zNQLxn2UnyGg+dXeLe8zBaqbT9pN6Mt1KQN86JnkT/wfb5e6K
-	9YV7v9CcFC+JyZ//o3HZuXxC/xetVW4C3gELV+Cv+xhJJqih58iDwF/V8CtgMGzr
-	vCzLwJmRZAsqcNCnc5UDFFzNZXh2t2ZxE2mSqLD+YINUNLaPNi/bxDHjxLmwoRh+
-	SFnirsRqWbiJbde3K7pbhj+Ev/F3oGNFg+wbzIGRDNVcYN1wFmbqTf5t98cy9nhI
-	s+y2W3L8qtal39rELrFoQ+SAWD05atXWr2ekQCZhqgp86p+cVmzzJOSVb40RQpGH
-	a8MaDg==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46b6uayfmq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 02 May 2025 07:37:44 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5427bhPv001222
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 2 May 2025 07:37:43 GMT
-Received: from [10.216.18.87] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 2 May 2025
- 00:37:36 -0700
-Message-ID: <e72aeda8-035d-4144-a9ce-ae276bca87bf@quicinc.com>
-Date: Fri, 2 May 2025 13:07:33 +0530
+	s=arc-20240116; t=1746171833; c=relaxed/simple;
+	bh=AurAdpqZJOgAuhQNXdhBCA1aC+raKZNxPlCuKktdOCU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=mWNTYRmJgu0iTaL0kszmfA/2epp7wm9prfPs1xS+eh9PSUaOlKkPZj4+2rZnRNPusX+2Ex8notW0LP4m2JonNzCyyW8LKIjN6ycXIOUwJixk8ySW/d0SoTW6CE5Ad7Vd0BAXvaqEGGxQmhFUv+8Xp9KKxh6Z+45BGKfZ52Lx5DM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BuzIrCyx; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-39c13fa05ebso935753f8f.0;
+        Fri, 02 May 2025 00:43:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746171830; x=1746776630; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=VgEF1dupp2sZXnl1NWHmmeZuFKwcbBSuM3goZum9iOI=;
+        b=BuzIrCyxZumupwElboR0BiQIQDPZu5vsYg/mJN1KtJFZj3gVhqmidFonXUjl6Tq2Ac
+         P2+6DhnNQeZ1Ec8CotFqJceJzpC+3OV3+pXm4o0Vypsu+QWAVKZHFTYSq9oEB41yXuna
+         5Og+jIYx6tRkINaHUsZZ3WNNwqLarInuF2UrSEuOqrTY9XU92xqUOMMavfzynOq2YqqB
+         EDtUHBeRZiZIWQF9mPskC4mVeJcxjHlYCCBVCuKBGewt2sEXoBfW3Yxa+4mt9J6ZxIiG
+         URuvLnAvuyGAOvVIsBfFOeHKnPWdBy+kG89ACPTO0vhmT63lqYuXygd1k7s2gtkRerCq
+         oguw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746171830; x=1746776630;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VgEF1dupp2sZXnl1NWHmmeZuFKwcbBSuM3goZum9iOI=;
+        b=D4hPhvtLNE783eNU/Y4jF9nFBfuKhQRsxLUWg620wkaI+fX0mm5EZWvYX0IBdSeTmo
+         oiHcXvs7JNnyag08sI5wl1ZHbsp5BTx69DskiCZFQN75aJ21jpDSXDCDQ+/E3r5wnJ9J
+         8Ke0pxfBHP+2NNuQpvbSgNGQT9/WdioUQM7vU8HqNqfx4Cb12hWZ7TLVFerzxkrqrCrm
+         H6FtRV6ks6j2xsVSPzrHQ4PidAWm0mCqRYBdRT2uEVcVIQx3Vdy7Ja3Q0ZNBRZC4cGMx
+         qJkleV8UoT+T8/OaP4OC/LcrWl1eITA+LEtI2+CJ08YQFz25uY2x6IJ9H6gnmOaO4jCj
+         GAtA==
+X-Forwarded-Encrypted: i=1; AJvYcCWFCALOJ+o2S00O9V6UldJIkX1nOnWamsUhnDUwi4BSrwhNhtX7vVqmMgP+gumn/J/bvjeIeFBOa/pp@vger.kernel.org, AJvYcCXOuObCwPHwJUp4kqcxnFzXlO7AyVsenN/w92tkV++AqLDxk8pkqjA1UTWqspbuGKrvM0MmqpSMUwTU9doD@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCVsRYpx3Oi/aMLNeuGxOoyqu99uQu67wCS/hRRNd7NnvO1b5N
+	t6rROagBbtmDKDF6uKg0yxj+o7cHTa6kQl3fB3JSGatt4EVcU14P
+X-Gm-Gg: ASbGnctyBxDD/O/dJIQa2h3jiBjMNFkRXxOXkk3qgNzhMO2HEdDGn2ds2J8INZ5XhEl
+	r9ogkoQc2s9UMq3kt0/uAaX+MaLZczNAY/gJs271wth9u65Vy0GAdMtgIA29X1FakoY////KPJ8
+	NNBdXUdd+A1CfAQRLLp7JvMADu0WayP3t9vcB/OiGWqwmEBG5X56OXQDGgo6eWo4uRpxxtFqo+0
+	XkoQ3bRZGyY2D1HMUzf4JesQrrZ8ng6GatAficzE493dGRcP5mY0pfL7gzrtzJTW5YqNN5So9xO
+	WExV5Mdd1AdynLeqd9gb+ipHVl8yq8zwZX5IGpAjiA4XKwc3sRx39qz2+zLPm8pf2JlNNAgKvIF
+	1J0/AawFgCK7t
+X-Google-Smtp-Source: AGHT+IEVlGWe5bnkllgQDbFGzP/LMlSyYggyuiL66DNILjRtZZNWHfrgLksBUfB2j72HpkmuXCKJxQ==
+X-Received: by 2002:a5d:64a6:0:b0:39c:1257:c96e with SMTP id ffacd0b85a97d-3a099af11f5mr1052986f8f.58.1746171830150;
+        Fri, 02 May 2025 00:43:50 -0700 (PDT)
+Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae3cfbsm1349079f8f.40.2025.05.02.00.43.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 May 2025 00:43:49 -0700 (PDT)
+Message-ID: <29d79f863bd0352fa0e3fca36ba5cc007f467eff.camel@gmail.com>
+Subject: Re: [PATCH 3/5] iio: adc: ad7606: add offset and phase calibration
+ support
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Angelo Dureghello	
+ <adureghello@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, Nuno
+ =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>, Andy Shevchenko
+ <andy@kernel.org>, Lars-Peter Clausen	 <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Date: Fri, 02 May 2025 08:43:55 +0100
+In-Reply-To: <b4598086-e188-4dca-b060-0dd82fc79c02@baylibre.com>
+References: 
+	<20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com>
+	 <20250429-wip-bl-ad7606-calibration-v1-3-eb4d4821b172@baylibre.com>
+	 <d273fa78cb3986da5249bd800dd25c4c0bcfde7e.camel@gmail.com>
+	 <9c02b2bd-dabf-4818-8adf-83c9127946d1@baylibre.com>
+	 <b4598086-e188-4dca-b060-0dd82fc79c02@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/9] opp: add new helper API dev_pm_opp_set_level()
-To: Viresh Kumar <viresh.kumar@linaro.org>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby
-	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Viresh Kumar
-	<vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd
-	<sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <psodagud@quicinc.com>,
-        <djaggi@quicinc.com>, <quic_msavaliy@quicinc.com>,
-        <quic_vtanuku@quicinc.com>, <quic_arandive@quicinc.com>,
-        <quic_mnaresh@quicinc.com>, <quic_shazhuss@quicinc.com>
-References: <20250502031018.1292-1-quic_ptalari@quicinc.com>
- <20250502031018.1292-2-quic_ptalari@quicinc.com>
- <20250502053758.utawzhq6famwenc2@vireshk-i7>
-Content-Language: en-US
-From: Praveen Talari <quic_ptalari@quicinc.com>
-In-Reply-To: <20250502053758.utawzhq6famwenc2@vireshk-i7>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8LF-cETM9CLSq0X51y9q-pef9javSjYK
-X-Authority-Analysis: v=2.4 cv=KtlN2XWN c=1 sm=1 tr=0 ts=68147649 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=pLippShZzUuVUgE2s9MA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 8LF-cETM9CLSq0X51y9q-pef9javSjYK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAyMDA1OCBTYWx0ZWRfX2J7kak+qqEEN QoVKYFamX0DMmsWDVCNTcPGHFbFxUr2uC/RTJv8R5MDfTl9UoaVDE38mdYm47bVY5WBNv4LHpt7 RuiIFAIt7zZnBMfc+ZqDEi6XhMuWXD3r7KhOh0b1C+xv1d7YFmOGOnbhRbFCnSHPZhkroaPJdk7
- e8YexEs5iG+4Kl8blHloQjKK5560KSJbQvA9FSvJSdE8xfB2IcUoxjltISqJYFBYx1/MB8ANicT jT9Hd27cqETDnriK4kL1h0vJnLzL4idYUmwTRYB/PK5caDl2pNVYfX3mDp/zWmwxHqsXoGeH14n GHSlFNeGbSj22p9eQ2X1jPUjd4FJ95l4iIqK5ZUQ4xZDN1jPI4/s5t2UuLcmUUoHrMR0tvHoLK4
- op5YZWmY3lV25yUe6uXKnFCrZkczlmgeDKq75iZBx/4nRpZFT9iQlf6z5VHKxLoZI8VrL3JQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-01_06,2025-04-30_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- lowpriorityscore=0 phishscore=0 adultscore=0 priorityscore=1501
- malwarescore=0 mlxscore=0 bulkscore=0 mlxlogscore=999 spamscore=0
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505020058
 
-Hi Viresh
+On Wed, 2025-04-30 at 13:33 -0500, David Lechner wrote:
+> On 4/30/25 11:14 AM, David Lechner wrote:
+> > On 4/30/25 10:36 AM, Nuno S=C3=A1 wrote:
+> > > On Tue, 2025-04-29 at 15:06 +0200, Angelo Dureghello wrote:
+> > > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > > >=20
+> > > >=20
+>=20
+> ...
+>=20
+> > > > +
+> > > > +	val +=3D start_val;
+> > >=20
+> > > Shouldn't this be val -=3D start_val?
+> > >=20
+> > > I also don't think we have any strict rules in the ABI for units for =
+these
+> > > kind
+> > > of interfaces so using "raw" values is easier. But FWIW, I think we c=
+ould
+> > > have
+> > > this in mv (would naturally depend on scale)=20
+> > >=20
+> > > - Nuno S=C3=A1
+> > >=20
+> >=20
+> > From testing, it seems to be working as expected for me, so I think thi=
+s is
+> > correct. The register value is not signed. 0x80 is no offset.
+> >=20
+>=20
+> Heh, you are actually quite right. Even though it working correctly, it i=
+s
+> because the value that gets written to the register is val & 0xFF, so add=
+ing
+> or subtracting here basically has the same effect. But subtracting is the=
+ more
+> logical way to do it. (I tested it that way too just to be 100% sure.)
 
-Thank you for review.
+Yeps, when testing it i realized that the current form just gives the corre=
+ct
+value in the 2 LSB so I assumed we were doing something to cast way the inv=
+alid
+bits.
 
-On 5/2/2025 11:07 AM, Viresh Kumar wrote:
-> On 02-05-25, 08:40, Praveen Talari wrote:
->> To configure a device to a specific performance level, consumer drivers
->> currently need to determine the OPP based on the exact level and then
->> set it, resulting in code duplication across drivers.
->>
->> The new helper API, dev_pm_opp_set_level(), addresses this issue by
->> providing a streamlined method for consumer drivers to find and set the
->> OPP based on the desired performance level, thereby eliminating
->> redundancy.
->>
->> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
->>
->> v2 -> v3
->> - moved function defination to pm_opp.h from core.c with inline
->> - updated return value with IS_ERR(opp)
->>
->> v1 -> v2
->> - reorder sequence of tags in commit text
-> As Trilok mentioned, this is not the right place for this.
->
->> ---
->>   include/linux/pm_opp.h | 27 +++++++++++++++++++++++++++
->>   1 file changed, 27 insertions(+)
->>
->> diff --git a/include/linux/pm_opp.h b/include/linux/pm_opp.h
->> index e7b5c602c92f..31ed8a7b554e 100644
->> --- a/include/linux/pm_opp.h
->> +++ b/include/linux/pm_opp.h
->> @@ -197,6 +197,28 @@ int dev_pm_opp_get_sharing_cpus(struct device *cpu_dev, struct cpumask *cpumask)
->>   void dev_pm_opp_remove_table(struct device *dev);
->>   void dev_pm_opp_cpumask_remove_table(const struct cpumask *cpumask);
->>   int dev_pm_opp_sync_regulators(struct device *dev);
->> +
->> +/*
->> + * dev_pm_opp_set_level() - Configure device for a level
->> + * @dev: device for which we do this operation
->> + * @level: level to set to
->> + *
->> + * Return: 0 on success, a non-zero value if there is an error otherwise.
->> + */
-> No need of these for simple wrappers.
->
->> +static inline int dev_pm_opp_set_level(struct device *dev, unsigned int level)
->> +{
->> +	struct dev_pm_opp *opp = dev_pm_opp_find_level_exact(dev, level);
->> +	int ret;
->> +
->> +	if (IS_ERR(opp))
->> +		return IS_ERR(opp);
-> IS_ERR is wrong here, should be PTR_ERR.
->
->> +
->> +	ret = dev_pm_opp_set_opp(dev, opp);
->> +	dev_pm_opp_put(opp);
->> +
->> +	return ret;
->> +}
->> +
->>   #else
->>   static inline struct opp_table *dev_pm_opp_get_opp_table(struct device *dev)
->>   {
->> @@ -461,6 +483,11 @@ static inline int dev_pm_opp_sync_regulators(struct device *dev)
->>   	return -EOPNOTSUPP;
->>   }
->>   
->> +static inline int dev_pm_opp_set_level(struct device *dev, unsigned int level)
->> +{
->> +	return -EOPNOTSUPP;
->> +}
->> +
-> No need of these too for such wrappers. And then this isn't rebased
-How come? i have synced  linux-next today itself and pushed from it, 
-even i didn't face any issue.
-Let me know how/where rebased i.e linux-next or linux?
-> over latest changes in the OPP core.
->
-> I modified it and applied the below version to my tree now.
->
+To be more pedantic, I think subtracting is the *correct* way :)
+
+- Nuno S=C3=A1
 
