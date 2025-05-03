@@ -1,102 +1,113 @@
-Return-Path: <devicetree+bounces-173369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EF6CAA82B9
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 22:26:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAFFDAA82C7
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 22:33:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D37D17FE98
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 20:26:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA8821B617FC
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 20:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD78527F73D;
-	Sat,  3 May 2025 20:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 191D019E819;
+	Sat,  3 May 2025 20:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="N/Gvo6ce"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vQ7YSeyc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24A1927EC73;
-	Sat,  3 May 2025 20:25:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF7C01CD0C;
+	Sat,  3 May 2025 20:33:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746303961; cv=none; b=a84kMQDQwW8xoC4J7aF6l+kdpoYaEdxJ4dsjST+dBUkEL03G4rWNhbiOi09OiRjyGdeSOtapYXgcOeiy/ewZ5fhmtrSLwlixMWa6eBkePtd7LMmBfcSIB8qfiNA4OzyganK0MzWGp/xrbMdFh2tEusfDmCQ5tcX0ZMdECrxzqRU=
+	t=1746304402; cv=none; b=B9PqjWlsnOr9R7AJ9CPUptaayf4LTf31jp/fdhISdiX2IpRSu/oXuss6nYhTAF++ciiEJYvsOQZTDTlpyin3AgPDy1jbi0RRQf7dZyVVXFm/002q0YaEkpBRbGKs7me4TbNd+EdRBBrKXBvxtZbkI72rCEqHeSl3yPxaFGdIL8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746303961; c=relaxed/simple;
-	bh=owz8DP30aBL4Cb+/NhxKmJiyIbN++4jRBJBchTV0SQc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VwWNPyRxCxPH2QyoYVs1CkyAirtvmTh4qlNbxl9aOM3Ev9kmi8du9W06AZVCuHzpjnRQfZIE+IwFTTUwvFQj5Izgc6eK4yoImjxmfNRUeaPqm/ACqwLI3+tLMKCul/WfqJUjIfdLAehmmT84CgU3E5tPCieSVQt3eFrAdrRlxxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=N/Gvo6ce; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=lga6kFdr3u+n9jlLKuJOINjzsumkmfm93NFpKPSgd9c=; b=N/Gvo6ceZw8btkaMJCTek7akSv
-	plO7MojJVgzAQOYQo93lrI0fcdD4o8mC3pFuKk5pV/EDe0j8vTCF5Yimpobd+SoYvtBeY8PITABSz
-	HH1d85LjWxue3EvwgVjKjmxrEESsY0xPGsG2MlpRMdcO0Pt/SnHM3Cn8t5PjXsj6bUOvPPgsoCnqT
-	+8XaA5H3+XB3Y3X/74sOpL5CXljkD7DSJOiNN/LSB7MY7uU+Gz+XO/bmQPc19YxHGtXiKOJpFJNU0
-	K8NjotymPLswtJb89acLB21atO1XZl/LMaWdG+Hfm2a4Dn/LrzsTP5N+zF8jmvURK1FcUY8b489MK
-	iPQn5QWw==;
-Received: from i53875bbc.versanet.de ([83.135.91.188] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uBJQp-0001s2-E7; Sat, 03 May 2025 22:25:55 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: heiko@sntech.de
-Cc: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 3/3] clk: rockchip: rk3036: mark ddrphy as critical
-Date: Sat,  3 May 2025 22:25:31 +0200
-Message-ID: <20250503202532.992033-4-heiko@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250503202532.992033-1-heiko@sntech.de>
-References: <20250503202532.992033-1-heiko@sntech.de>
+	s=arc-20240116; t=1746304402; c=relaxed/simple;
+	bh=lzIwPmqPMdz3XojcJkKNZG+joQBPqTC3+fqltwxxtFQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=D+aF0nKrzZfOnkagcepyYW9eTUKLXx1o4uZ0ltRGn+1iBgJsWoUe8p9LO6pO2AalFpLuyCjlf5bjcqE88NB7b/EkmHNV1LkBMgzcvkAQDbJDYHoQxzf0HSXCQMoOW0hQw9yGV4qgKWREbO0c7x9YcgII37LtaX06LLHw20AdfYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vQ7YSeyc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A15BC4CEE3;
+	Sat,  3 May 2025 20:33:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746304401;
+	bh=lzIwPmqPMdz3XojcJkKNZG+joQBPqTC3+fqltwxxtFQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=vQ7YSeycPSASlx4k6K6opncdc46F2A6XnMD8LkzQ8Qn8O5iGgrJ8IpAH87+kUlPwx
+	 /zBmQ5JQzrWoPKSKgj935gVZVLdNCo3Au4HBhVtfCGKWFi/HpLuK6MJlb4b4KpAKVm
+	 yLZW1j4gRYNUOlWC0IL0+u7ee40wKdAvmHzZaO2BOY6/1f8ia9pQWhc7traWGLhibv
+	 E9mwYR8R03GvBVDJ6uqc0PH4SzRxFH9M71zOTYuaFK9TpkK7206ZcrQEsh4LZPVlag
+	 viOSBDMfMjlxFj0k29M9jlatfoU1/AS1blG1L7YQ+05JWE/lEeK9ZPbtIQx+nqDZNK
+	 4jXC06ppAY2cQ==
+Date: Sat, 03 May 2025 15:33:19 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-hyperv@vger.kernel.org, 
+ Ricardo Neri <ricardo.neri@intel.com>, 
+ "Ravi V. Shankar" <ravi.v.shankar@intel.com>, Wei Liu <wei.liu@kernel.org>, 
+ linux-acpi@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Dexuan Cui <decui@microsoft.com>, linux-kernel@vger.kernel.org, 
+ x86@kernel.org, "K. Y. Srinivasan" <kys@microsoft.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Saurabh Sengar <ssengar@linux.microsoft.com>, Chris Oo <cho@microsoft.com>, 
+ "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>, 
+ Haiyang Zhang <haiyangz@microsoft.com>, 
+ Michael Kelley <mhklinux@outlook.com>
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+In-Reply-To: <20250503191515.24041-5-ricardo.neri-calderon@linux.intel.com>
+References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
+ <20250503191515.24041-5-ricardo.neri-calderon@linux.intel.com>
+Message-Id: <174630439938.1202156.1298422301463941407.robh@kernel.org>
+Subject: Re: [PATCH v3 04/13] dt-bindings: x86: Add CPU bindings for x86
 
-The ddrphy is supplied by the dpll, but due to the limited number of PLLs
-on the rk3036, the dpll also is used for other periperhals, like the GPU.
 
-So it happened, when the Lima driver turned off the gpu clock, this in
-turn also disabled the dpll and thus the ram.
+On Sat, 03 May 2025 12:15:06 -0700, Ricardo Neri wrote:
+> Add bindings for CPUs in x86 architecture. Start by defining the `reg` and
+> `enable-method` properties and their relationship to x86 APIC ID and the
+> available mechanisms to boot secondary CPUs.
+> 
+> Start defining bindings for Intel processors. Bindings for other vendors
+> can be added later as needed.
+> 
+> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+> ---
+>  .../devicetree/bindings/x86/cpus.yaml         | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/x86/cpus.yaml
+> 
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- drivers/clk/rockchip/clk-rk3036.c | 1 +
- 1 file changed, 1 insertion(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/drivers/clk/rockchip/clk-rk3036.c b/drivers/clk/rockchip/clk-rk3036.c
-index 41c71bb25171..df9330958c83 100644
---- a/drivers/clk/rockchip/clk-rk3036.c
-+++ b/drivers/clk/rockchip/clk-rk3036.c
-@@ -435,6 +435,7 @@ static const char *const rk3036_critical_clocks[] __initconst = {
- 	"hclk_peri",
- 	"pclk_peri",
- 	"pclk_ddrupctl",
-+	"ddrphy",
- };
- 
- static void __init rk3036_clk_init(struct device_node *np)
--- 
-2.47.2
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/x86/cpus.example.dtb: cpus: cpu@0: 'cache-level' is a required property
+	from schema $id: http://devicetree.org/schemas/cpus.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250503191515.24041-5-ricardo.neri-calderon@linux.intel.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
