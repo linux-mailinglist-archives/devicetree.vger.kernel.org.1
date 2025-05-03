@@ -1,134 +1,172 @@
-Return-Path: <devicetree+bounces-173343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9900BAA818D
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 18:09:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C6BAA81D1
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 19:21:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F1A7189F480
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 16:10:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CF775A4DE8
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 17:21:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A7B2798E7;
-	Sat,  3 May 2025 16:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1611827B4F8;
+	Sat,  3 May 2025 17:21:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ljhpZSAH"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R2gKFMkr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C37B6156236;
-	Sat,  3 May 2025 16:09:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F99A18801A
+	for <devicetree@vger.kernel.org>; Sat,  3 May 2025 17:21:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746288584; cv=none; b=QUduvDMQenOMpzv8d7eRc7+xlrZOM3B5AndH4sREt5jgbp8wsfL1F34APN5cjXMDRvWlL2Ahmq+3pPxFCqUVqHUBocNt0fyogQXUMTPC1sTcxbkSXMmsBog0KCxD+DXR9L6lpoQnKR3kxwU5Fq/NWZsE9q9WL1k/RuaL2hVrHwk=
+	t=1746292905; cv=none; b=ZUxMx9Kum8bAmI8Jy4klp6oZ4Irkpin8UYYSAFE5LIQAl8T7WYAfUclIvAubO8uU4ZYItzunSkcAMCJ5iDM5iFwmL6lmgRhHASitNEExUvzBPTvNBevmVfNz+IWJuHnYeTlM9nVhnlUvljCpwvdQdeWhMtSpjkcSACoB8NC8S50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746288584; c=relaxed/simple;
-	bh=jrq4vPTyneDMCKioU8U1Yk7Vo+EMEjGhQXFLs/D/VTs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QmwJv6mOVMzK2xxgI7pwyZTY07rewmEcx6z+x00+MBEYz+H1zTg2fx+VO3ykn5wH/1T36xguZ1zBmUe9Dx4RPYDSUEkfkOfxfIYRWNN7hTgwwQVMOhyOa17y4BaGLjwY31xvjPJzYvIS34skTcKCJ3WrWwVpj3WRDi3f0YVui28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ljhpZSAH; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1746288574;
-	bh=jrq4vPTyneDMCKioU8U1Yk7Vo+EMEjGhQXFLs/D/VTs=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=ljhpZSAH6dYvmut0LqTm5qrtzlSefwMJ8U07C1aGLlSv7xnBo/UFnQa7iURJbE4OE
-	 ODt5lZzbrezinGOLquWQ6Q4Cpxvfi6SWvEj/P1g1mlIH7lWdR76gKttln81jckRzHY
-	 kBrxwTrYfdBj25xW7cbH3JXugCLdhr42ZM7iAvYTy3b+yOjvnRSmSrHUGUI8tXWGQA
-	 GHVPIGHqN6adawaAbTbtoJUYomh+BcoQj96HMnDs8L9kJDBQ50t9aIEV5Yq499X5XN
-	 CP/lhjlgJ5Oel439sMhQ0jlzpJ4z7Jv17PtD9rV7RXN9rBy9RRnq6rwCbmIBRrBKo3
-	 Ay41LYFap9Bfg==
-Received: from [IPv6:2606:6d00:15:ec4::5ac] (unknown [IPv6:2606:6d00:15:ec4::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F3C5717E03BF;
-	Sat,  3 May 2025 18:09:31 +0200 (CEST)
-Message-ID: <1b204ed7bc63373f52973b96af68e64e24be8cde.camel@collabora.com>
-Subject: Re: [PATCH v3 13/23] media: iris: Send V4L2_BUF_FLAG_ERROR for
- buffers with 0 filled length
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>, Vikash Garodia	
- <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Mauro Carvalho Chehab	 <mchehab@kernel.org>, Stefan Schmidt
- <stefan.schmidt@linaro.org>, Hans Verkuil	 <hverkuil@xs4all.nl>, Bjorn
- Andersson <andersson@kernel.org>, Konrad Dybcio	 <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Dmitry Baryshkov	
- <dmitry.baryshkov@oss.qualcomm.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, 	linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, 
-	20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org, 
-	20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com
-Date: Sat, 03 May 2025 12:09:30 -0400
-In-Reply-To: <20250502-qcom-iris-hevc-vp9-v3-13-552158a10a7d@quicinc.com>
-References: <20250502-qcom-iris-hevc-vp9-v3-0-552158a10a7d@quicinc.com>
-	 <20250502-qcom-iris-hevc-vp9-v3-13-552158a10a7d@quicinc.com>
-Organization: Collabora Canada
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.56.1 (3.56.1-1.fc42) 
+	s=arc-20240116; t=1746292905; c=relaxed/simple;
+	bh=FkqPTKKa1BYfGmOPnQ1QkH3rInAfKUq2BRkp0CBjjRs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NHzTmTDncVniyI8C7N2igaxRM7aSJJ08HTAs7cVbF6+7v+jmGP0IJKA/JXIyI2VGoi/Q6z3O0rLP7JgI9sT2kM3yI9XYoYty43G0k0uLP8bFtTlcKP0MYMNKBbaQQIAyOwe3xpw09mamnMgdysqD7yOMLgT2s12FqsSXaTX+4jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R2gKFMkr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 543CSOYu007671
+	for <devicetree@vger.kernel.org>; Sat, 3 May 2025 17:21:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=CUPi73K0M4K8c3dJhvQF7DaH
+	PF0crJym+waMYMfinqQ=; b=R2gKFMkrIBVeDakGd1qOJMFM1lsPaCsuL1Ou/N7k
+	51cL4eIgHohEQVKhFQ/5k6V7LxXGxChYmtnHfIYctDgt0tWTcXArYUH9RlPy1Uwo
+	cFq1yr3ge9eHVBNkx+jDCWSnXMWKMygsyc39vVaLEtwcpK6fKiN74YbKkPLZ2PI2
+	MNdvXiWIdIkAUU/JlSAICZoKdeRthpFkQ1N87LhHxURqHGww/6EtHslqsi4SMimD
+	51Nlf4JveqRfxvTDfYT38w+qJPfhIYarKLqVIs+c0HqrwYFP30oTmx+sTqhdhfRn
+	+g0ZuUf4U4rutQMYjTa+VGo28MQ/KvEQ3PL1ZVKleE6BUw==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46d9ep1152-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 03 May 2025 17:21:41 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-476900d10caso76590431cf.0
+        for <devicetree@vger.kernel.org>; Sat, 03 May 2025 10:21:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746292900; x=1746897700;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CUPi73K0M4K8c3dJhvQF7DaHPF0crJym+waMYMfinqQ=;
+        b=IRj8JYGXRFTIlAnOd+wfiWqea0Y37g7OHK3CXfc8l3AvHxsBSBPZJeyp5xDkhRIU6g
+         ku8Q6uFz84jVdX1r08SkUeCPPMCtGUqUYB1MhRyQz8kGMpxAvgh1oQGfjbZbYivnHdw2
+         MpJQskazW4569+zAjAauufj5FrUU/spC0uSvNHwFHNb8gyQR4M153wOjGZiU1oO3/jSH
+         SJQfD/AnY1uQN7yFLO76gsQMUMFk0DmG/pidV1cWbdW/y56RCKBw/PtJJDVsq9ykrLey
+         F0OPa1ICKW5n/mx5xOLekt5pFaal82qdlzG6XSWReAnWcah86LX/41ymhGNcHarCQIqS
+         Dguw==
+X-Forwarded-Encrypted: i=1; AJvYcCVQ1rb9cGr8G3litJUzHnGq40l867pGfpPfbwPFZxfAFxSN134XJHlkRD0JWbDVm7ElzGh+FAgrvo8N@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvfbGVtfPwMbXRrZAerd+em/l5B+YVHcnhwLhwQEZwMh1fxj5+
+	CIeaxOq3GhrGy9jRZz1lQ/IYWQVsMw5sop/pl06nhs/ZHjYSIVEV7D2K8JGyhH9jv38tMBb63ew
+	VF50pcLidJy+GBrjyCOb0OSoqhpHAlia3G/DHr52KkL6zriaOaV4MkPy9xnJS
+X-Gm-Gg: ASbGncs80nGTXA+OOTpnpeOZbdyqBj+bdSWxdpFCOCBoj7f3V4z5YtZfIZ1flMYgRKO
+	XzokrKpjw6qh6Xs+lqRuj3lyCjmGwGgvDcm+ErKTLZJlNFh/KeJxjgOBodkByQewmlV7L1cSgNf
+	VtbOgziWCeLf8Uw3/AjNoEzP7yJKpuhrryw0b0qT0TKFcQxRAYPc63k6yoJ7RSpQ+O1XG4ATEaa
+	+tNK2w5FkzwWXwij2FBiduf3RjrS1Ex0pxCqaCzkiOOWXIBHXkLkGdgdmc9uDC2RxW1Kh2zqpBV
+	gNAsWh/norUuyMYCOfSex3g9y5oul5JQ/PRPK3hbU0wNTfvpjZ6A3FMZEZHz0Dr0viaiLhy+Jow
+	=
+X-Received: by 2002:ac8:7dc2:0:b0:47a:eade:95eb with SMTP id d75a77b69052e-48e00f625abmr15879671cf.40.1746292900333;
+        Sat, 03 May 2025 10:21:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGmoBZgMqriscERLtLJYJxOOTXkywtkwOsXpQzulxWIgQLOXUAe46ItjymMZEGDMLwcrBNHcw==
+X-Received: by 2002:ac8:7dc2:0:b0:47a:eade:95eb with SMTP id d75a77b69052e-48e00f625abmr15879411cf.40.1746292899907;
+        Sat, 03 May 2025 10:21:39 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94f22a8sm878183e87.176.2025.05.03.10.21.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 03 May 2025 10:21:38 -0700 (PDT)
+Date: Sat, 3 May 2025 20:21:37 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andi.shyti@kernel.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.or,
+        andersson@kernel.org, konradybcio@kernel.org, johan+linaro@kernel.org,
+        dianders@chromium.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
+        quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com
+Subject: Re: [PATCH v3 6/9] soc: qcom: geni-se: Add support to load QUP SE
+ Firmware via Linux subsystem
+Message-ID: <vpm4ee4bjuqje7zrpay3pllvcghh547yce4nbqgbeujgdbu3lk@fahrgwfjbrzy>
+References: <20250303124349.3474185-1-quic_vdadhani@quicinc.com>
+ <20250303124349.3474185-7-quic_vdadhani@quicinc.com>
+ <58f46660-a17a-4e20-981a-53cad7320e5a@oss.qualcomm.com>
+ <9cc6bdf8-ba4c-4561-962a-74ceb09b72a8@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9cc6bdf8-ba4c-4561-962a-74ceb09b72a8@quicinc.com>
+X-Authority-Analysis: v=2.4 cv=EOUG00ZC c=1 sm=1 tr=0 ts=681650a5 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=vrWCv2ldUtsF7w5ASE0A:9 a=CjuIK1q_8ugA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: tiyJ5Xfpn5-_6TlY5eKS3ByhR3uaKmfp
+X-Proofpoint-GUID: tiyJ5Xfpn5-_6TlY5eKS3ByhR3uaKmfp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTAzMDE1OSBTYWx0ZWRfX4DyKLoMj3sBa
+ KlZc942M/D1jMRysWzPjLgEFJhCfib/rVRfuH6CboPQOShcW/jVGmHk0skyJwV8xFF3qUrpHyTw
+ MP4LYX5MOpkNMR1LKXxMsZw9wtORbQxDOD6U5z5LoMID41A4ei3pANWsDHjPXh5g2ZBaq+9X9+v
+ owoLZxeW69bi6c0Klq2DNe4CrHUT6B2Rav7Jy1nVt/z34hhGKkfxN7Iak3ugpJZr9GHFZtVJg3k
+ aQH95ySi8tUZUckEYFXhjDOydNjW42HygaqYUWGZkc+e6wMNbwOkOi+XLVdwCGyTOqsvaebvXt7
+ WrEIBoO2IOkEwjWEYAyJSHdbyrJOg4XYccH4pgkwD3pWh8y4hWhx2HvPR+OlbQe/AiRhBKH0oqn
+ 1NiVL7e1FPpZP9dy4GFZpSg42X7OC233CxY1G+b0k0dPnaDbreXYt2eNqFWioZ8KywjqkGI+
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-03_07,2025-04-30_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 impostorscore=0 spamscore=0 lowpriorityscore=0
+ bulkscore=0 phishscore=0 suspectscore=0 mlxlogscore=999 mlxscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2504070000 definitions=main-2505030159
 
-Hi Dikshita,
-
-Le vendredi 02 mai 2025 à 00:43 +0530, Dikshita Agarwal a écrit :
-> Firmware sends buffers with 0 filled length which needs to be dropped,
-> to achieve the same, add V4L2_BUF_FLAG_ERROR to such buffers.
-> Also make sure:
-> - These 0 length buffers are not returned as result of flush.
-> - Its not a buffer with LAST flag enabled which will also have 0 filled
->   length.
-
-This message is quite vague, is this about capture or output buffers ?
-If its output buffers that don't produce capture, I don't see why they
-have to be flagged as errors, or why the payload size matter. Then, if
-its about assigned capture buffers that did not get used in the end, you
-should put them back in the queue instead of returning them to user
-space.
-
-Returning a capture buffers to userspace should only be used if a frame
-could not be produced. That imply copying the cookie timestamp from the
-src buffers into the capture buffer. Please make sure you don't endup
-returning fake erorrs to userspace, which may lead to some frame
-metadata being dropped erroneously.
-
-Nicolas
-
+On Sat, May 03, 2025 at 04:47:52PM +0530, Viken Dadhaniya wrote:
 > 
-> Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
-> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->  drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c | 6 ++++++
->  1 file changed, 6 insertions(+)
 > 
-> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> index 4488540d1d41..3bb326843a7b 100644
-> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> @@ -378,6 +378,12 @@ static int iris_hfi_gen2_handle_output_buffer(struct iris_inst *inst,
->  
->  	buf->flags = iris_hfi_gen2_get_driver_buffer_flags(inst, hfi_buffer->flags);
->  
-> +	if (!buf->data_size && inst->state == IRIS_INST_STREAMING &&
-> +	    !(hfi_buffer->flags & HFI_BUF_FW_FLAG_LAST) &&
-> +	    !(inst->sub_state & IRIS_INST_SUB_DRC)) {
-> +		buf->flags |= V4L2_BUF_FLAG_ERROR;
-> +	}
-> +
->  	return 0;
->  }
->  
+> On 3/8/2025 11:36 PM, Konrad Dybcio wrote:
+> > On 3.03.2025 1:43 PM, Viken Dadhaniya wrote:
+> > > Load the firmware to QUP SE based on the 'firmware-name' property specified
+> > > in devicetree. Populate Serial engine and base address details in the probe
+> > > function of the protocol driver and pass to firmware load routine.
+> > > 
+> > > Skip the firmware loading if the firmware is already loaded in Serial
+> > > Engine's firmware memory area.
+> > > 
+> > > Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> > > Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> > > Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+> > > ---
+> > 
+> > [...]
+> > 
+> > > +		break;
+> > > +
+> > > +	default:
+> > > +		dev_err(rsc->se->dev, "invalid se mode: %d\n", rsc->mode);
+> > > +		return -EINVAL;
+> > 
+> > I wouldn't expect this to ever fail..
+> 
+> Yes, that's correct. But including a default case helps handle unexpected or
+> invalid input gracefully.
+> 
+> Please let me know if you would like me to remove it.
+
+If you are asking for additional comments, please refrain from sending
+the next iteration until you actally resolve all the open questions.
+
+-- 
+With best wishes
+Dmitry
 
