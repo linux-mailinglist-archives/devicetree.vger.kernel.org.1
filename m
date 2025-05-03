@@ -1,133 +1,125 @@
-Return-Path: <devicetree+bounces-173345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B47AA8201
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 20:48:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51FCDAA820D
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 21:05:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4363F5A451A
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 18:47:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB7A017DF79
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 19:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD5D1B4F1F;
-	Sat,  3 May 2025 18:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A39227E1DC;
+	Sat,  3 May 2025 19:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d63Y/juU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MEMEcdOt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F001624E9;
-	Sat,  3 May 2025 18:48:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2252DC789;
+	Sat,  3 May 2025 19:05:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746298091; cv=none; b=IoaIa/Fb7XxQGU9RGysaEPMEVJ0uhevJwmvJU+1t1TVozyeahulvR3SPuYYgROxssMfQhLD6OqsWtgbYY0lTvOR4Um5DNsk61twdM4caPQfelOMVILVIfhwhkk0g3DKKhfZNT7301pib6Bnp3P5TCkajn+QYqqKffxJW0mNkA44=
+	t=1746299119; cv=none; b=NZpbrGPXJy8JibtxgCn4nw7bgqHa7+b2sxb2oi4TABrbA3ieaSX5kuXS0uLg2OJM+3IcVVX4ksYXdjy1V+jBEru0eVUe9wZP4JuirAzNzIG/8aAqDVFngdxgo+xzIvGZ4dQWSxv2iwPj9G3PmELPsiIOqPPp2tchP6H/GHMbyAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746298091; c=relaxed/simple;
-	bh=xlYQ163hDkhmgErY25mBm19wcr2Qj8fSb7MgLR0tv58=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZVQLEcIoBJ+3ZDSM3tMG+Z+Jgjlwr82UBme99zpSL6Rt2bKS81yAAd0KS/C/kxJMXG69rOEe3MSDR9PJmVwk3nReMhKeCjUd+UkgEpChEr00POR78jJmhSy1q4FGVJibdL6AuEGyxPubSCV0j3fGJcf4uGDStlEIPAoUt0gWTco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d63Y/juU; arc=none smtp.client-ip=209.85.210.169
+	s=arc-20240116; t=1746299119; c=relaxed/simple;
+	bh=tr+YPjJXjPoj3o9dY995qlT2B0azd5JGRRRMV8X1HGQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AVq46DQRij3X1pMo/R/ByeuQuTG8QQ/FjstknG42ik4vQtN8TX+c1CBfqzHwM0za+4KEDwY7YAPuNaZ2wuhplLWyMAqQ60xbRbbm0aSmmzGz5KXyo4Eygdslf/nB7fNpshoVwL3XQ5AuCQrrvVOAOp9/oj0cIVYMKuKSIteaG0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MEMEcdOt; arc=none smtp.client-ip=209.85.215.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-736b98acaadso3087059b3a.1;
-        Sat, 03 May 2025 11:48:09 -0700 (PDT)
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-b1fb650bdf7so991687a12.1;
+        Sat, 03 May 2025 12:05:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746298089; x=1746902889; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sHcRbppvMSqwRwoxXB969N7KQ0/ugOZSO5ywUwJYXKs=;
-        b=d63Y/juUi9Cm9PtHd4aF3DLVg8uT2BXdiPt+PM5JM6bfc2QALSvpvAwA9lVfqytjiT
-         26eiMb6iJt+CureazS7PDvFU0FyW+kg2ui82bW7W0l+gseTCV0DHwbYYywJnlwNudx3e
-         NpCOVo6cclcMHtvp/qIkcuqqnesJidzUaHMfuZO35UALSYsyAlRE4nGPiGLxdiWJy+99
-         ehCsrzeFEIApCV+jBhE5TIxUJZ3fHOnAAGcsUbbsXh5D8idgtxmJH6jl3TjqOGvQVPzO
-         Tukk4JaOML1cXO80SfATrBHf3yrMbP6k1xANtG+vtIKb38OAFTMM4AMygQC90tTZRfCE
-         iFDQ==
+        d=gmail.com; s=20230601; t=1746299117; x=1746903917; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=H1SOPVK3jq+ETNPgBzdZyyatrwVeYL4czc8WtcGbAVo=;
+        b=MEMEcdOtjJzt0crofWe4fWY3sogn6XnzQmTur7rLRKBDiR7hpZxZnaNMG1jlEi5AxZ
+         SJELVy8473fLnZ5PAU8/ZhEHkitDLa+xPC6V/aRCRzeqllezX//QGpe3p9g0P8lsIM7b
+         v2v7Thmh8cyjYliWWWsW1RswSDLrf8YwtmELO3js1s9+w6r++LnXleUYzP8QVZrlmNmF
+         Se/+GqMgLGSsS4dZJE4D4kRNMLMI9FoOBtXcmkNUiqJEa74gz5GA5d1adTPS4VOpmlJb
+         f0ZV31BN2oz2HxDcnV5I93JRrujJ7FGKc4tQlxrNoF/EuY1C+XwEMx3DubjFOO9NFGLA
+         54mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746298089; x=1746902889;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sHcRbppvMSqwRwoxXB969N7KQ0/ugOZSO5ywUwJYXKs=;
-        b=v7Ca7Ks/0fvaIyLDmcfbXg0ceh/1+RarYXkB58plrA9qfqy7w3xtlXJzdUprakJNCd
-         I2cqXq/yitW+UqfSbw6hK9/P79AXPirEatO1w+8YUOq+RIYgdLSO1F5/Xu6y0Nuqd8Wm
-         4hTf7WQamUWKPuX5p/QXBOzWYsbQZ2bXmWopUKBu8ERIT6wxqzKKk7alSFokVCerNv9K
-         gzNW7GDwiJF8+YI+rnk1yx5B+vUxss7QXHzGL+/FQQKnq1SmdbgpaejMv1xwaCwnODBi
-         QaJ3rlr+y2wMWa9z2EZenp8uJbADPEfnqVTSvNcf1H6mjozthsPNhrF0tEj9tkBU31Gt
-         j0JQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV364Q+/WS6IuQBgCXbCXS4bSUhVIzcv/X0gTxvR5jf6c7iaPJ6wzIrnU5OqW8o4BvM1EIPvcmTuH9y@vger.kernel.org, AJvYcCVhZYSRB1eg+VVBPE2DgyKYYX5Cfsq0Sj7A9J6/vjWrDe1JmOUbttAqytwMk6AlTmLG9dAFmNIiSqXi@vger.kernel.org, AJvYcCWjuWD4SDItuywdMnO8sVyy16uu4CAyaMU+pLEb/aB0x1XIcatyaepsVeemBXhS2r7xiGwROQSQkaJjhxve@vger.kernel.org
-X-Gm-Message-State: AOJu0Yws+GUUzphC74aZGRUQVU9h6nb67tppm74azkR4BefybJw6kQEt
-	u0iRNLi5K6MOpHFh2qxL0HzixewAm32oAYK54vhMJ8yhlf+3psMn2J0Mgw2rBMw=
-X-Gm-Gg: ASbGncsS/aTh+GVKcxFhvow5ZbeJIxHqK9jSwwpQqxXcOdTrJA4nYROkgbj6aiY6oFG
-	ZxZuYMdcQfWy8EH0MjdlfPkbVPELGhduG4Ka4H91s+AHfZ8zgZCBbrg1sU3zMjP09MNqwNT1QsL
-	7UWum2COEQrF9owi/XzJI9miBLtUQNqi9vlTSRDIK3G+orgZdmmRG0DeSKhiCCdKnxaVzYgFOWx
-	AATN5NLZPvR9gmdEGhxn55b2ksaDTZd3yTykSM6iLvAdCk2tywKKlHUTuZiJlZmIIjJXRArFvwv
-	OJsgueV5W8NcP35LjvqyVS0+QsGLHIoVaKfwtwntURk/JNUCEO4Szg7K1fwm7gU=
-X-Google-Smtp-Source: AGHT+IG2f1e9Py8jCTDXwkqqSY2yZJE6TllMJro+MRSjHOeE+mcN8PlGZPLKgZBKTD5cuy1QpjDSLQ==
-X-Received: by 2002:a05:6a00:8087:b0:73d:ff02:8d83 with SMTP id d2e1a72fcca58-7406729efa7mr5644475b3a.3.1746298089035;
-        Sat, 03 May 2025 11:48:09 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1746299117; x=1746903917;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=H1SOPVK3jq+ETNPgBzdZyyatrwVeYL4czc8WtcGbAVo=;
+        b=JH8IFNV21i48cBajrfQP5PWoicHVrax6WwcjW35rqusdHjBLnwwDzWFnOKpBWvAHcl
+         MLb5JZblAFbfr4Q2WxLlYl4U+Qxp8laabVX0ArcAFEMxd+2F7+y69Inb4UMPtUTUq5KV
+         xBrHvszE0729uaxtZF7uDTjoE+LyvvxtdXucOz6rtiWbVySZtHyLeUGBuyf/mS+H6Mgw
+         C7htf1GwqQJcb7mwhrJIWrjtggJyspxTY/IrwPcfS6iF8ghndtgyBhKc03I8iFhT6Cmr
+         HWIwakt6Ia0LxZUZ3XdQsGVZXa3zp750hFf6icFwjUkH9UpCFeg4SmXjTpaLI7ajP9SC
+         +f7A==
+X-Forwarded-Encrypted: i=1; AJvYcCWRQ8gTYKtkPek6sKnBfK8gClhnzAMteVj7yoIYeyzV6mHo18LWEz6Rq8uWWtW1Japa9HfDBTgqI0Ft@vger.kernel.org, AJvYcCX9M02iThSfbdIGAWRZSFgUo+hY1WrD8ugSy8ngzIrezmX/WsGUUuL+NE5HikL8Zjgw9oPXXvgFal+QY8CL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3dzNjcFg3vbRcurZNjEDBjDnhKqY1RW7QPqp9zH8z+smUO6dA
+	c13c1BA8gKCygs9gM5+FDuhd1FyYPqVd/J2e5qqrp7A1yb2liObT
+X-Gm-Gg: ASbGnctNk335otBqJKf0THrQIAT/8Qe4Rk8B+ZD9v97HR31FmnTt15qwQ5asrzdi3Qi
+	nPJO+bwkRaMAuRRfY8+nkSwWyJqEzWd29Pik5e91wJPX6iicX7NLDNFiMXmAS/Ck2pmoMrnkOpt
+	6AbLbD9WjUx5Z5Afzbad4ITCFoNOP47wMztlJzMy8RIoi9jFFG+UJM7CeFLPclDLVMKtzH6a6jn
+	woGzoBj8CeaFoxx0J5sSV0GCDt4hF6Qfe9VL5X/X4Ifs2ILApFOWI2ujfjxUA2XhjUb41NlCgHv
+	kV+KZmdTPi9yL5AKB0jN1y4cXpdAMT20toDNxH3aJzzLZhBRCtoj/e0AHM1xbbvFR+HzOrx3OA=
+	=
+X-Google-Smtp-Source: AGHT+IF4jkwmghllC6ERa1DqhXDhKdCb/g4YWS9LuRHAjY7lPeV7SUV64TcGNhOaHX/kw4fd8aSMHw==
+X-Received: by 2002:a17:90b:548b:b0:2ee:e518:c1cb with SMTP id 98e67ed59e1d1-30a6196eedbmr3237028a91.7.1746299116709;
+        Sat, 03 May 2025 12:05:16 -0700 (PDT)
 Received: from localhost.localdomain ([2804:14d:4c64:81ec:4ff:1626:32b1:712a])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74059065223sm3761921b3a.141.2025.05.03.11.48.05
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30a348266ccsm8184622a91.42.2025.05.03.12.05.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 May 2025 11:48:08 -0700 (PDT)
+        Sat, 03 May 2025 12:05:16 -0700 (PDT)
 From: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-To: conor@kernel.org
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	jic23@kernel.org,
+To: robh@kernel.org,
 	krzk+dt@kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	rodrigo.gobbi.7@gmail.com,
-	~lkcamp/patches@lists.sr.ht
-Subject: Re: [PATCH v2] dt-bindings:iio:adc:st,spear600-adc: txt to yaml format conversion.
-Date: Sat,  3 May 2025 15:44:12 -0300
-Message-ID: <20250503184800.27026-1-rodrigo.gobbi.7@gmail.com>
+	conor+dt@kernel.org
+Cc: ~lkcamp/patches@lists.sr.ht,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: trivial-devices: Add Maxim max30208
+Date: Sat,  3 May 2025 16:01:01 -0300
+Message-ID: <20250503190509.33074-1-rodrigo.gobbi.7@gmail.com>
 X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250430-folic-skittle-06b0ccbedf35@spud>
-References: <20250430-folic-skittle-06b0ccbedf35@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-> Is 0 the default here or 1? "Single data conversion" sounds more like 1
-> sample than 0, and the default of 0 is below the minimum of 1. What's
-> going on there?
+The temperature sensor for maxim is a simple i2c driver,
+it's eligible to trivial devices.
 
-Good point, after I`ve submitted the patch I was double checking it and noticed 
-that too. It`s stange because the public datasheet mentions "Programmable averaging of results 
-from 1 (No averaging) up to 128". Meanwhile, the spear_adc.c driver at probe
-stated the following:
-
-	/*
-	 * Optional avg_samples defaults to 0, resulting in single data
-	 * conversion
-	 */
-	device_property_read_u32(dev, "average-samples", &st->avg_samples);
-
-Since avg_samples is inside 
-
-	struct spear_adc_state *st;
-
-which is allocated with devm_iio_device_alloc() (which uses the kzalloc/zero filling the priv data):
-
-	indio_dev = devm_iio_device_alloc(dev, sizeof(struct spear_adc_state));
-	if (!indio_dev)
-		return dev_err_probe(dev, -ENOMEM,
-				     "failed allocating iio device\n");
-
-	st = iio_priv(indio_dev);
-
-...matches the driver comment meaning the default is actually "0", single data, but it does
-not match the public datasheet in my understanding. Since I don`t have access to a more
-detailed datasheet, I chose to describe "1" as a minimum value, but I agree it is weird.
-Maybe we could drop the minimum constraint in this case (go with default and max)?
+Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+---
+Inspecting the code of max30208.c digital temperature sensor (i2c), 
+I can see that the probe method does not support additional properties
+and only does a few things related to the IIO subsystem. 
+Also, since was added in the tree, there is no binding file. 
+I'm suggesting a change to add that compatible to the trivial-devices file.
 Tks and regards.
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 8da408107e55..377722af6c00 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -173,6 +173,8 @@ properties:
+           - maxim,ds3502
+             # Temperature Sensor, I2C interface
+           - maxim,max1619
++            # Digital temperature sensor with 0.1°C accuracy
++          - maxim,max30208
+             # 3-Channel Remote Temperature Sensor
+           - maxim,max31730
+             # 10-bit 10 kOhm linear programmable voltage divider
+-- 
+2.47.0
+
 
