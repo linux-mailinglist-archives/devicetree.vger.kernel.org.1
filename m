@@ -1,125 +1,217 @@
-Return-Path: <devicetree+bounces-173346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51FCDAA820D
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 21:05:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4219AA8215
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 21:10:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB7A017DF79
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 19:05:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2839E7AC862
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 19:09:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A39227E1DC;
-	Sat,  3 May 2025 19:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00FFB27E7E4;
+	Sat,  3 May 2025 19:10:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MEMEcdOt"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="J6hsKgKD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2252DC789;
-	Sat,  3 May 2025 19:05:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF342DC789;
+	Sat,  3 May 2025 19:10:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746299119; cv=none; b=NZpbrGPXJy8JibtxgCn4nw7bgqHa7+b2sxb2oi4TABrbA3ieaSX5kuXS0uLg2OJM+3IcVVX4ksYXdjy1V+jBEru0eVUe9wZP4JuirAzNzIG/8aAqDVFngdxgo+xzIvGZ4dQWSxv2iwPj9G3PmELPsiIOqPPp2tchP6H/GHMbyAI=
+	t=1746299413; cv=none; b=dGpKZOyYTEZ6LWQD7btMOxG8VjBbY5VMYAjF91bb+EfDeUv0CH9P1b8GPzrQNlerW/71b3H9HaWRA/JIKEdhxa8rCfvH/XUcrlsbcCzoMQVJaVKww+7TiJkj/GEh5PLdIr7l5usUldOY+aEBpMLHDA/oqgL+uyFr4rptvbrYeN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746299119; c=relaxed/simple;
-	bh=tr+YPjJXjPoj3o9dY995qlT2B0azd5JGRRRMV8X1HGQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AVq46DQRij3X1pMo/R/ByeuQuTG8QQ/FjstknG42ik4vQtN8TX+c1CBfqzHwM0za+4KEDwY7YAPuNaZ2wuhplLWyMAqQ60xbRbbm0aSmmzGz5KXyo4Eygdslf/nB7fNpshoVwL3XQ5AuCQrrvVOAOp9/oj0cIVYMKuKSIteaG0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MEMEcdOt; arc=none smtp.client-ip=209.85.215.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-b1fb650bdf7so991687a12.1;
-        Sat, 03 May 2025 12:05:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746299117; x=1746903917; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=H1SOPVK3jq+ETNPgBzdZyyatrwVeYL4czc8WtcGbAVo=;
-        b=MEMEcdOtjJzt0crofWe4fWY3sogn6XnzQmTur7rLRKBDiR7hpZxZnaNMG1jlEi5AxZ
-         SJELVy8473fLnZ5PAU8/ZhEHkitDLa+xPC6V/aRCRzeqllezX//QGpe3p9g0P8lsIM7b
-         v2v7Thmh8cyjYliWWWsW1RswSDLrf8YwtmELO3js1s9+w6r++LnXleUYzP8QVZrlmNmF
-         Se/+GqMgLGSsS4dZJE4D4kRNMLMI9FoOBtXcmkNUiqJEa74gz5GA5d1adTPS4VOpmlJb
-         f0ZV31BN2oz2HxDcnV5I93JRrujJ7FGKc4tQlxrNoF/EuY1C+XwEMx3DubjFOO9NFGLA
-         54mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746299117; x=1746903917;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H1SOPVK3jq+ETNPgBzdZyyatrwVeYL4czc8WtcGbAVo=;
-        b=JH8IFNV21i48cBajrfQP5PWoicHVrax6WwcjW35rqusdHjBLnwwDzWFnOKpBWvAHcl
-         MLb5JZblAFbfr4Q2WxLlYl4U+Qxp8laabVX0ArcAFEMxd+2F7+y69Inb4UMPtUTUq5KV
-         xBrHvszE0729uaxtZF7uDTjoE+LyvvxtdXucOz6rtiWbVySZtHyLeUGBuyf/mS+H6Mgw
-         C7htf1GwqQJcb7mwhrJIWrjtggJyspxTY/IrwPcfS6iF8ghndtgyBhKc03I8iFhT6Cmr
-         HWIwakt6Ia0LxZUZ3XdQsGVZXa3zp750hFf6icFwjUkH9UpCFeg4SmXjTpaLI7ajP9SC
-         +f7A==
-X-Forwarded-Encrypted: i=1; AJvYcCWRQ8gTYKtkPek6sKnBfK8gClhnzAMteVj7yoIYeyzV6mHo18LWEz6Rq8uWWtW1Japa9HfDBTgqI0Ft@vger.kernel.org, AJvYcCX9M02iThSfbdIGAWRZSFgUo+hY1WrD8ugSy8ngzIrezmX/WsGUUuL+NE5HikL8Zjgw9oPXXvgFal+QY8CL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3dzNjcFg3vbRcurZNjEDBjDnhKqY1RW7QPqp9zH8z+smUO6dA
-	c13c1BA8gKCygs9gM5+FDuhd1FyYPqVd/J2e5qqrp7A1yb2liObT
-X-Gm-Gg: ASbGnctNk335otBqJKf0THrQIAT/8Qe4Rk8B+ZD9v97HR31FmnTt15qwQ5asrzdi3Qi
-	nPJO+bwkRaMAuRRfY8+nkSwWyJqEzWd29Pik5e91wJPX6iicX7NLDNFiMXmAS/Ck2pmoMrnkOpt
-	6AbLbD9WjUx5Z5Afzbad4ITCFoNOP47wMztlJzMy8RIoi9jFFG+UJM7CeFLPclDLVMKtzH6a6jn
-	woGzoBj8CeaFoxx0J5sSV0GCDt4hF6Qfe9VL5X/X4Ifs2ILApFOWI2ujfjxUA2XhjUb41NlCgHv
-	kV+KZmdTPi9yL5AKB0jN1y4cXpdAMT20toDNxH3aJzzLZhBRCtoj/e0AHM1xbbvFR+HzOrx3OA=
-	=
-X-Google-Smtp-Source: AGHT+IF4jkwmghllC6ERa1DqhXDhKdCb/g4YWS9LuRHAjY7lPeV7SUV64TcGNhOaHX/kw4fd8aSMHw==
-X-Received: by 2002:a17:90b:548b:b0:2ee:e518:c1cb with SMTP id 98e67ed59e1d1-30a6196eedbmr3237028a91.7.1746299116709;
-        Sat, 03 May 2025 12:05:16 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14d:4c64:81ec:4ff:1626:32b1:712a])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30a348266ccsm8184622a91.42.2025.05.03.12.05.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 May 2025 12:05:16 -0700 (PDT)
-From: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: ~lkcamp/patches@lists.sr.ht,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: trivial-devices: Add Maxim max30208
-Date: Sat,  3 May 2025 16:01:01 -0300
-Message-ID: <20250503190509.33074-1-rodrigo.gobbi.7@gmail.com>
-X-Mailer: git-send-email 2.47.0
+	s=arc-20240116; t=1746299413; c=relaxed/simple;
+	bh=FbP3ivNjme43qE4kLCKkGteBw1VX+DS/lTWMuvg+vog=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=DFS9YvRe48KEFtQTbc3SaFPh/3Q6kpjGBV9ctywW2etp+dFSfE6LRc19vr9S7x8Td8ZO2fRfEo3nOf1IfTI8WTLYWntUhDyR59WpiD1xMqOMnsRkeDWFazwg03z4xrP4uCjQgEA7fNGw10IqvQkEpsDBWli1c+F3vsJdtyOW13c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=J6hsKgKD; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1746299412; x=1777835412;
+  h=from:to:cc:subject:date:message-id;
+  bh=FbP3ivNjme43qE4kLCKkGteBw1VX+DS/lTWMuvg+vog=;
+  b=J6hsKgKDJzO5bYOo1ukQbJgvrgi7mDOGhhcBwyj5EYyO0KsBcb0b9O2B
+   7gUWjZTzghlQnlmGJ1g7w06DG+UQcADYmNk1MTSrBMnY6WXC2u70FpCoz
+   0WoC8s5CG1xbxW730Bd9XQ5x55p/kpvokfrVTMS31PT5YvOj1pnteskBI
+   iue7Ivskd+273miTOoXAwqGfU0RyhirCJZbNUP3CXqaipAS1CaDOrQqlh
+   sFrhupY/u4b6pO/jC/lIwz6pqN5tH0pyeUCyLB1orjM+nI1QnN/6nfv6X
+   kCA7bEgLlzMVrTiwVcb7qVuYdVNVcU8cvFB0JarkNv8zOLoQ4+fgtS3ed
+   Q==;
+X-CSE-ConnectionGUID: Oks2LhVoR8u4nUp7xmjRlA==
+X-CSE-MsgGUID: HMdXZ6QXTWySLvr86yRzPA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11422"; a="48095599"
+X-IronPort-AV: E=Sophos;i="6.15,258,1739865600"; 
+   d="scan'208";a="48095599"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 May 2025 12:10:10 -0700
+X-CSE-ConnectionGUID: Vu9k5b06Txmdk4CFuY7dAw==
+X-CSE-MsgGUID: HUuAKM5ASi2XChz3I0h8UQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,258,1739865600"; 
+   d="scan'208";a="140046078"
+Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
+  by fmviesa004.fm.intel.com with ESMTP; 03 May 2025 12:10:09 -0700
+From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+To: x86@kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>,
+	Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>
+Cc: devicetree@vger.kernel.org,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>,
+	linux-hyperv@vger.kernel.org,
+	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
+	linux-acpi@vger.kernel.org ,
+	linux-kernel@vger.kernel.org,
+	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
+	Ricardo Neri <ricardo.neri@intel.com>
+Subject: [PATCH v3 00/13] x86/hyperv/hv_vtl: Use a wakeup mailbox to boot secondary CPUs
+Date: Sat,  3 May 2025 12:15:02 -0700
+Message-Id: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-The temperature sensor for maxim is a simple i2c driver,
-it's eligible to trivial devices.
+Hi,
 
-Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+I have taken over this work from Yunhong Jiang [1]. I have implemented all
+the feedback received in his last submission. I think that the acpi,
+smpboot, and hyperv portions are in good shape and ready for review by the
+x86 maintainers. I did major rework on the DeviceTree bindings and in my
+opinion are also ready for review by the maintainer too.
+
+Thanks in advance for your feedback!
+
 ---
-Inspecting the code of max30208.c digital temperature sensor (i2c), 
-I can see that the probe method does not support additional properties
-and only does a few things related to the IIO subsystem. 
-Also, since was added in the tree, there is no binding file. 
-I'm suggesting a change to add that compatible to the trivial-devices file.
-Tks and regards.
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 8da408107e55..377722af6c00 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -173,6 +173,8 @@ properties:
-           - maxim,ds3502
-             # Temperature Sensor, I2C interface
-           - maxim,max1619
-+            # Digital temperature sensor with 0.1°C accuracy
-+          - maxim,max30208
-             # 3-Channel Remote Temperature Sensor
-           - maxim,max31730
-             # 10-bit 10 kOhm linear programmable voltage divider
+This patchset adds functionality to use a wakeup mailbox to boot secondary
+CPUs in Hyper-V VTL level 2 TDX guests with virtual firmware that describes
+hardware using a DeviceTree graph. Although this is the target use case,
+the use of the mailbox depends solely on it being enumerated in the
+DeviceTree.
+
+On x86 platforms, secondary CPUs are typically booted using INIT assert,
+de-assert followed by Start-Up IPI messages. Virtual machines can also make
+hypercalls to bring up secondary CPUs to a desired execution state. These
+two mechanisms require support from the hypervisor. Confidential computing
+VMs in a TDX environment cannot use this mechanism because the hypervisor
+is considered an untrusted entity.
+
+Linux already supports the ACPI Multiprocessor Wakeup Structure in which
+the guest platform firmware boots the secondary CPUs and transfers control
+to the kernel using a mailbox. This mechanism does not need involvement
+of the VMM. It can be used in a Hyper-V VTL level 2 TDX guest.
+
+Currently, this mechanism can only be used on x86 platforms with firmware
+that supports ACPI. There are platforms that use DeviceTree (e.g., OpenHCL
+[2]) instead of ACPI to describe the hardware.
+
+Provided that a Wakeup Mailbox defined in the DeviceTree is compatible in
+structure and operation with the ACPI Multiprocessor Wakeup Structure, the
+kernel can use common code for both.
+
+This patcheset is structured as follows:
+
+   * Relocate portions of the ACPI Multiprocessor Wakeup Structure code to
+     to a common location. (patches 1-3)
+   * Add DeviceTree schema and bindings to define a Wakeup Mailbox for
+     Intel processors that is compatible with the ACPI Multiprocessor
+     Wakeup Structure as well as a new enable-method property for cpu@N
+     nodes (patches 4, 6).
+   * Add support to parse the enable-method property in the cpu@N nodes of
+     DeviceTree graphs for x86 and enable the Wakeup Mailbox if available.
+     (patches 5, 7)
+   * Prepare Hyper-V VTL2 TDX guests to use the Wakeup Mailbox to boot
+     secondary CPUs when available. (patches 8-13)
+
+I have tested this patchset on a Hyper-V host with VTL2 OpenHCL, QEMU, and
+physical hardware.
+
+Thanks and BR,
+Ricardo
+
+Changes since v2:
+  - Only move out of the acpi directory acpi_wakeup_cpu() and its
+    accessory variables. Use helper functions to access the mailbox as
+    needed. This also fixed the warnings about unused code with CONFIG_
+    ACPI=n that Michael reported.
+  - Major rework of the DeviceTree bindings and schema. Now there is a
+    reserved-memory binding for the mailbox as well as a new x86 CPU
+    bindings. Both have `compatible` properties.
+  - Rework of the code parsing the DeviceTree bindings for the mailbox.
+    Now configuring the mailbox depends solely on its enumeration in the
+    DeviceTree and not on Hyper-V VTL2 TDX guest.
+  - Do not make reserving the first 1MB of memory optional. It is not
+    needed and may introduce bugs.
+  - Prepare Hyper-V VTL2 guests to unconditionally use the mailbox in TDX
+    environments. If the mailbox is not available, booting secondary CPUs
+    will fail gracefully.
+
+Changes since v1:
+  - Fix the cover letter's summary phrase.
+  - Fix the DT binding document to pass validation.
+  - Change the DT binding document to be ACPI independent.
+  - Move ACPI-only functions into the #ifdef CONFIG_ACPI.
+  - Change dtb_parse_mp_wake() to return mailbox physical address.
+  - Rework the hv_is_private_mmio_tdx().
+  - Remove unrelated real mode change from the patch that marks mailbox
+    page private.
+  - Check hv_isolation_type_tdx() instead of wakeup_mailbox_addr in
+    hv_vtl_init_platform() because wakeup_mailbox_addr is not parsed yet.
+  - Add memory range support to reserve_real_mode.
+  - Remove realmode_reserve callback and use the memory range.
+  - Move setting the real_mode_header to hv_vtl_init_platform.
+  - Update comments and commit messages.
+  - Minor style changes.
+
+[1]. https://lore.kernel.org/lkml/20240823232327.2408869-7-yunhong.jiang@linux.intel.com/T/#ma1f56fc7eee585b777829fa7e8bd39cd3e780fe0
+[2]. https://openvmm.dev/guide/user_guide/openhcl.html
+
+Ricardo Neri (9):
+  x86/acpi: Add a helper function to setup the wakeup mailbox
+  x86/acpi: Add a helper function to get a pointer to the wakeup mailbox
+  x86/acpi: Move acpi_wakeup_cpu() and helpers to smpboot.c
+  dt-bindings: x86: Add CPU bindings for x86
+  x86/dt: Parse the `enable-method` property of CPU nodes
+  dt-bindings: reserved-memory: Wakeup Mailbox for Intel processors
+  x86/dt: Parse the Wakeup Mailbox for Intel processors
+  x86/smpboot: Add a helper get the address of the wakeup mailbox
+  x86/hyperv/vtl: Use the wakeup mailbox to boot secondary CPUs
+
+Yunhong Jiang (4):
+  x86/hyperv/vtl: Set real_mode_header in hv_vtl_init_platform()
+  x86/realmode: Make the location of the trampoline configurable
+  x86/hyperv/vtl: Setup the 64-bit trampoline for TDX guests
+  x86/hyperv/vtl: Mark the wakeup mailbox page as private
+
+ .../reserved-memory/intel,wakeup-mailbox.yaml |  87 +++++++++++
+ .../devicetree/bindings/x86/cpus.yaml         |  80 ++++++++++
+ arch/x86/hyperv/hv_vtl.c                      |  35 ++++-
+ arch/x86/include/asm/smp.h                    |   6 +
+ arch/x86/include/asm/x86_init.h               |   3 +
+ arch/x86/kernel/acpi/madt_wakeup.c            |  75 +---------
+ arch/x86/kernel/devicetree.c                  | 141 +++++++++++++++++-
+ arch/x86/kernel/smpboot.c                     |  83 +++++++++++
+ arch/x86/kernel/x86_init.c                    |   3 +
+ arch/x86/realmode/init.c                      |   7 +-
+ 10 files changed, 440 insertions(+), 80 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/intel,wakeup-mailbox.yaml
+ create mode 100644 Documentation/devicetree/bindings/x86/cpus.yaml
+
 -- 
-2.47.0
+2.43.0
 
 
