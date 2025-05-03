@@ -1,105 +1,93 @@
-Return-Path: <devicetree+bounces-173331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D4A6AA816D
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 17:30:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5899AA8184
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 17:56:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFDB93AEDBD
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 15:29:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5059E3AA928
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 15:55:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CABA2797A4;
-	Sat,  3 May 2025 15:30:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="YMBUxxQ9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58855266F0A;
+	Sat,  3 May 2025 15:56:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 359A72797AA
-	for <devicetree@vger.kernel.org>; Sat,  3 May 2025 15:29:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E421DB346;
+	Sat,  3 May 2025 15:56:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746286201; cv=none; b=RxlDJfHLHHw2zWrO+QW7qH8LuVJVo1cjvJ7a4W3sybuH9xXx0IXiysa55hRww6uwlCdcfSOM3rJMidq32cMTkZDonzzzs9VNayEjijMUnG+cYC6YhkrjRey+LJOcoe0zlyWJ3xAoAevkTBG6azEGy9f3hwxFBhx7Gm5sZfMtp7c=
+	t=1746287769; cv=none; b=oTUvIvaLFhjCVWzUQc7ecVzRFC0YVzeQoLisQQdbcqtQA8w1dniukkaf36fR2m4rgt6tv3dfViDzaISZ4zeuHvfZE9zvxbPyyjVC/Bwzok5FP8KMrCDgQpp5SPHEoEIBWXEyNjhOMC6EA62el9DzmdkwALTuf3a3PIdYQzUaNhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746286201; c=relaxed/simple;
-	bh=SYM1ZHMlMGhGZIhQe3dMr/f2FJitxadd7kVZW6crBM0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mTu9or31+YSRP4/7GBtPsL5WM6L6ct6ps3hwNAbIWDMfrEiv4jIean6U0k1b6Z+IxKNQ7uVTuKHPf6I0ZOPx5xzfhgaiuf0Q7KPkZNjqXOlszKObAB9fkRcq8VCIVmk9DRLIIBD9vav9D8++LVuNj8QAux2F2fED9GIOS/VGslU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=YMBUxxQ9; arc=none smtp.client-ip=91.218.175.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1746286197;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=eeQFPClstvwoZtBpTw1enwh36lgdeWvNmapxU6wc1lw=;
-	b=YMBUxxQ95w+z72G58zuI1TiGCa9i+RhhlCB2BXyk36bSKa8KTeTajosafbGi9LUkIT5oRN
-	e0+M0sSsznrIemJAje6+9L9tW70L8ByuNmv7hdSp2Jt48RofuhM+CSv83AyIw0jnUfBEOP
-	pXO4/34WbdOePbpAQpzWIyWKeo6cCoBiIBh/fgYGNbCjQti73Xiy8Qi4LeJ8D5DvSf+mpO
-	Zk7O5wuf+xVJHZkDscGRZsW/P6f5CGaxzlKvtN2Xrs1YW+zNtikKT4Y9qkwY06oO6iIieK
-	pY05Y9TXWIb3TB32Cgrc6auw9JpcdCxNoPlBqp+p5IA8+26vdyrq2mUuhkBidw==
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Dragan Simic <dsimic@manjaro.org>,
-	Vasily Khoruzhick <anarsoul@gmail.com>,
-	Tianling Shen <cnsztl@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3566-quartz64-b
-Date: Sat,  3 May 2025 17:22:19 +0200
-Message-ID: <20250503152917.138648-3-didi.debian@cknow.org>
-In-Reply-To: <20250503152917.138648-1-didi.debian@cknow.org>
-References: <20250503152917.138648-1-didi.debian@cknow.org>
+	s=arc-20240116; t=1746287769; c=relaxed/simple;
+	bh=MlN4CjpXi3IaHN/bNJWMD4qf9bbw2w3cGlsMeSf7fgQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=U7dGALoHgdAubArjk2fhNPMm0P5RzgG7TAg10zKKuRNS6Bn7d9Mb4CRwdKPUGbWDwDI3Y/vQ08HHxPvH2Rz3caDCmSYA4GTHVoFtjS9T4ynFuR2GImwhywTBw8pgfnjHZXTatCbTtlJNSz8t7l/3yROUpaSmd+lgUrvdHCcrBQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78FADC4CEE3;
+	Sat,  3 May 2025 15:56:08 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 822275F863;
+	Sat,  3 May 2025 23:56:05 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Yixun Lan <dlan@gentoo.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, 
+ Corentin Labbe <clabbe.montjoie@gmail.com>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250430-01-sun55i-emac0-v3-0-6fc000bbccbd@gentoo.org>
+References: <20250430-01-sun55i-emac0-v3-0-6fc000bbccbd@gentoo.org>
+Subject: Re: (subset) [PATCH v3 0/5] allwinner: Add EMAC0 support to A523
+ variant SoC
+Message-Id: <174628776539.3898418.13280613195656914749.b4-ty@csie.org>
+Date: Sat, 03 May 2025 23:56:05 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-The Quartz64 Model B has a Winbound 25Q64DWZPIG SPI flash chip,
-identified as 'U13' on the component placement schematic.
-In the Quartz 64 Model-B Schematic from 20220124 on page 17, we can see
-that the VCC connector is connected to VCCIO_FLASH and page 4 shows that
-that in turn is connected to the VCCIO2 domain.
-That domain uses vcc_1v8 as its power source.
+On Wed, 30 Apr 2025 13:32:02 +0800, Yixun Lan wrote:
+> This patch series is trying to add EMAC0 ethernet MAC support
+> to the A523 variant SoCs, including A523, A527/T527 chips.
+> 
+> This MAC0 is compatible to previous A64 SoC, so introduce a new DT
+> compatible but make it as a fallback to A64's compatible.
+> 
+> In this version, the PHYRSTB pin which routed to external phy
+> has not been populated in DT. It's kind of optional for now,
+> but we probably should handle it well later.
+> 
+> [...]
 
-This fixes the following warning:
+Applied to sunxi/dt-for-6.16 in sunxi/linux.git, thanks!
 
-  spi-nor spi4.0: supply vcc not found, using dummy regulator
+[1/5] dt-bindings: sram: sunxi-sram: Add A523 compatible
+      https://git.kernel.org/sunxi/linux/c/02f27ea7fa02
+[3/5] arm64: dts: allwinner: a523: Add EMAC0 ethernet MAC
+      https://git.kernel.org/sunxi/linux/c/56766ca6c4f6
+[4/5] arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E board
+      https://git.kernel.org/sunxi/linux/c/acca163f3f51
+[5/5] arm64: dts: allwinner: t527: add EMAC0 to Avaota-A1 board
+      https://git.kernel.org/sunxi/linux/c/c6800f15998b
 
-Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
----
- arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-index 5707321a1144..f8cf03380636 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-@@ -648,6 +648,7 @@ flash@0 {
- 		spi-max-frequency = <24000000>;
- 		spi-rx-bus-width = <4>;
- 		spi-tx-bus-width = <1>;
-+		vcc-supply = <&vcc_1v8>;
- 	};
- };
- 
+Best regards,
 -- 
-2.49.0
+Chen-Yu Tsai <wens@csie.org>
 
 
