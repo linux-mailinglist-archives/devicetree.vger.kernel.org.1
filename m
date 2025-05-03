@@ -1,146 +1,122 @@
-Return-Path: <devicetree+bounces-173288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C48AA7FF6
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 12:07:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1080DAA800C
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 12:30:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE29B982BC9
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 10:07:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 398D6463780
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 10:30:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 131331EDA2C;
-	Sat,  3 May 2025 10:07:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D4261E3DF4;
+	Sat,  3 May 2025 10:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BogwD8M7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jpDy3Tkw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B5A1E633C;
-	Sat,  3 May 2025 10:07:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF9601AAA1A;
+	Sat,  3 May 2025 10:30:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746266836; cv=none; b=YsPeueGyRqZ3vxZz7ZtEm/sV7wnt//QUP/FczCazI1N0IiDwlEeFJNCm836BDo1yCWMgQvaN52OcDTHk7nUtoy3sCPozeCNAIO0WNmBKRXtDu1XfpWGlIPYSuCgCcicGs07DxqGuiJjKdatJ2TsKYoPqvQ1hrU+Wi69wR3rGWXE=
+	t=1746268220; cv=none; b=qmwUvaO2VzrL0PwC42cx+J2fE0zyc+j3cUcp57QibcjjChlGEdpLMyL8uv6Gwc9fNKumYNvA0eEUAVjqZ63+7ZLrSIl+3KmTJp3cU8V7wLvjjYdUKQ7iBxKmF+irkUJKfAG4+t6Kf3UQ5/ZmG397UhNf+j9I/8YWI62jcMXAGVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746266836; c=relaxed/simple;
-	bh=wtZXovpm5BhGJm95IGnSaS5EDCcED8O/F+H6LBoX7x4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=si/SG26Yj425tZHeyV8Qcoe6knxoTAM7eHwwPj8sxeQwEH9DZo0MRG3A0kjnLGoP3Js8JJm1HP9AD4aggNGP9V0b7okN8qtn8+deeMwunR594LIfAfa7H+RhEFadtmBcdOKfNiu/izKrGaUs1pvQBLRKBu/C7IiCq+2lqkFxpWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BogwD8M7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 28433C116B1;
-	Sat,  3 May 2025 10:07:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746266836;
-	bh=wtZXovpm5BhGJm95IGnSaS5EDCcED8O/F+H6LBoX7x4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=BogwD8M7HMB/x7SVFn1jYO+cavA321UBBoBa/l+GLpcW+okTS1MP+FG1YVaz0OB7Z
-	 xqqAV1XWt8j10H+ZnxybsDD3JZBB3Y7GofsiCx5KkPaLXJQXZq1atriVefLwRWMIML
-	 ytgN1yZPer4HTlm6mQjReOm1NXN7B4ehmHSyAlphGPxrG1cA8DSy4VsDEFkqXlaROy
-	 oOqn/dPQOPFM5Jc1WiWoUynpAMYQvPZR1otb3k2A4V/8Hu2gq8UqgxM1wTA+cS8XU6
-	 76Asfd1iuyW+DoacH/d34AkjMWolnASr2M1a8D31BniwUu07z2Dl5mXVh5MvOBPVlJ
-	 To4n0O5+ZPQUw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 20A6FC3ABB0;
-	Sat,  3 May 2025 10:07:16 +0000 (UTC)
-From: Sven Peter via B4 Relay <devnull+sven.svenpeter.dev@kernel.org>
-Date: Sat, 03 May 2025 10:06:56 +0000
-Subject: [PATCH v4 9/9] arm64: dts: apple: t600x: Add SMC node
+	s=arc-20240116; t=1746268220; c=relaxed/simple;
+	bh=UMrNAau0Eh6k8vqOiELFsOeEbGqSVXDyF/kCPEcPG3c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=usX95rYBSh1FfV6rOB2E/POV/czzIRSA8M9DTlGUFU+Rhgba9MNZ8XszlOJhDtMTUmXK2pcRO4Vyyv+EzWBqzYUFMHiN6YmtPJ4sNeBnIYMqoIb51GH0am1yUjyUu5hhvXxaZg5Nf6deYo23XBlppT7CgVrx1GmJUJw+4qk0TpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jpDy3Tkw; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-acb2faa9f55so363297566b.3;
+        Sat, 03 May 2025 03:30:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746268217; x=1746873017; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=D1Yh7xVdmrrVR1LoLiazJHgnLXij+6WlhbMFQTvBRYc=;
+        b=jpDy3TkwAjglRLyyWUSK3AUs27LVPRzf6D85+g7qGryMtnpkuPdQVJEKKPcb0xA/nn
+         EU1Jj8Kpoy5cKda76d905ENVnibArRg9jMG1eRMj2eTQiv2U1xAnJWgiznGLgn/XFyB7
+         8Td3V/48TlxftJ75Q2Bpy5fc84sCVupm/cEZtdjpFSHDJtRpnXzD6DLO8ogGsBvA1VC0
+         sqcgt1wcXaw28nu335AmrInGEIJ2RYeuZ4y2uw/5Bu8um3vfAxQgY7CKV/gsBaNY4bNV
+         6r3KVtsq/OkPFyo+d6kI/P+ftklqQ4BXzUTPLoqs+6CbDsUM29VBEoJoyzY+AYqqD9wD
+         7iVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746268217; x=1746873017;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D1Yh7xVdmrrVR1LoLiazJHgnLXij+6WlhbMFQTvBRYc=;
+        b=dbaJ9Xt8IA/Fa1h6j0ZnW/1DBumWyZK5+m/TcVhJZKhdXC3sVDVRrjGCqf6Q7DFB+M
+         l4dmtQkBy7/gD3CAQRGsj6zOYERHT1mIruTPXDCJjlAeZUfDenamhuMoqNFhanoH6OQs
+         HDeASM/gTP1mhHwVJO3TQ76QqIvdpiNVsoY9JMeBoOBwSaqcWh4HKx2vCbAmJhjH+z7i
+         INRc+lzQ5uqygwCJtxv0x5sGOWK3HoXWwGjaYA22UIdC+FCYZW0PrfxhOyvn/KN/cUu1
+         flvqVkX/0nTfgVCO+9Ya8hiMoq/VO2eSpbrc1ozCl4uqXJNGrp896KeQqVbW97UcQ1rA
+         TXHg==
+X-Forwarded-Encrypted: i=1; AJvYcCV/T52XhmwD+PqZ1CvULDBPKvmfyHCnplke5uQMr0YuhrrfUriZt8Ngm0dTxeyC/XmyJ2gD1PLM/CLqDEk=@vger.kernel.org, AJvYcCXMwuEwMb6efn6MMES8blHe0g3CcD6/Zhb51aFUDFNa/zAImkxp29o1yKGLajQN4GA6D+0iMCygmmBTEaA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJy1Z2mfleQ0oShfhNobFmTrEB32yGyKGoL3QTntK7fTie7Sya
+	mODAJgPQsyESa8oWaKPlC4/joU/JdYXBe7eO2kM6l/z6rRsDFWOS
+X-Gm-Gg: ASbGncvn/xq/llC40e3AjGvLBJIGYooi1/VxNbE2/bHp6l04h8yNj/el9EWyq4qYxsq
+	vBMo4u//jp3KjRlbMoJ3g7xUhJgTuDo9ADPa/hwlIi5spKI+YZPVfEMPDiY9iBu67EuTjyww54P
+	JjzUtydOZAT4FWG1TenTfryRTl/NwN0hq0gWgb2Y7XjrtQVHv/3X+u2BRPjLtNW4QzemponCuJd
+	v1AZQbu31pcKJilaU5qkCSw2UNRZX1JYUvF7e8rXHbP4M/zD3JSTU+6y3ynxwRQCFwUkJRmbUFq
+	2J5jBLN38UpHRPoqKGprmt6NkzZgh3z1EiCbOYaV48g=
+X-Google-Smtp-Source: AGHT+IFceLos5ktmx2J70iKAHVypKkw3OnGNaUUQ1SACaovTBDxd9YXwOlGGIrVppLZWfel+TWOqzw==
+X-Received: by 2002:a17:907:7fa2:b0:ace:d4f8:b687 with SMTP id a640c23a62f3a-ad1a494e3a4mr56576466b.20.1746268216088;
+        Sat, 03 May 2025 03:30:16 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad189509088sm177848766b.146.2025.05.03.03.30.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 03 May 2025 03:30:15 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thierry Reding <treding@nvidia.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Maxim Schwalm <maxim.schwalm@gmail.com>,
+	Brad Griffis <bgriffis@nvidia.com>,
+	David Heidelberg <david@ixit.cz>,
+	Ion Agorria <ion@agorria.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] ARM: tegra: Add device-tree for ASUS Transformer Pad LTE TF300TL
+Date: Sat,  3 May 2025 13:29:47 +0300
+Message-ID: <20250503102950.32744-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250503-smc-6-15-v4-9-500b9b6546fc@svenpeter.dev>
-References: <20250503-smc-6-15-v4-0-500b9b6546fc@svenpeter.dev>
-In-Reply-To: <20250503-smc-6-15-v4-0-500b9b6546fc@svenpeter.dev>
-To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
- Hector Martin <marcan@marcan.st>, Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
- Lee Jones <lee@kernel.org>, Marc Zyngier <maz@kernel.org>, 
- "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1851; i=sven@svenpeter.dev;
- h=from:subject:message-id;
- bh=asgFHWE+Y4/VDiSrToyfl0Yn74umJgKBLDT/bgdqN0Y=;
- b=owGbwMvMwCHmIlirolUq95LxtFoSQ4boqwv9W1hXrXl85egORZ91dt9vt2mWbwp2t1jwcpbQo
- iZtZbvlHaUsDGIcDLJiiizb99ubPnn4RnDppkvvYeawMoEMYeDiFICJ7E1h+O/0KJ1lw8S3t4Sn
- nIqs/utTsnt9fvKpI6eui0U/2xy7WW4Kwz/lCyVLRDfu6pJbtsBpXnWb75mKshP8apu79c7MOjk
- 7fCoHAA==
-X-Developer-Key: i=sven@svenpeter.dev; a=openpgp;
- fpr=A1E3E34A2B3C820DBC4955E5993B08092F131F93
-X-Endpoint-Received: by B4 Relay for sven@svenpeter.dev/default with
- auth_id=167
-X-Original-From: Sven Peter <sven@svenpeter.dev>
-Reply-To: sven@svenpeter.dev
+Content-Transfer-Encoding: 8bit
 
-From: Hector Martin <marcan@marcan.st>
+Add device-tree for ASUS Transformer Pad LTE TF300TL, which is NVIDIA
+Tegra30-based tablet device.
 
-Signed-off-by: Hector Martin <marcan@marcan.st>
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
 ---
- arch/arm64/boot/dts/apple/t600x-die0.dtsi | 35 +++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+Changes from v2:
+- optimized the schema for Transformers
+---
 
-diff --git a/arch/arm64/boot/dts/apple/t600x-die0.dtsi b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-index 110bc6719512e334e04b496fb157cb4368679957..4993a8ace87b2fc7e645b08c19fcd9b0c21896aa 100644
---- a/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-@@ -24,6 +24,41 @@ aic: interrupt-controller@28e100000 {
- 		power-domains = <&ps_aic>;
- 	};
- 
-+	smc: smc@290400000 {
-+		compatible = "apple,t6000-smc", "apple,smc";
-+		reg = <0x2 0x90400000 0x0 0x4000>,
-+			<0x2 0x91e00000 0x0 0x100000>;
-+		reg-names = "smc", "sram";
-+		mboxes = <&smc_mbox>;
-+
-+		smc_gpio: gpio {
-+			compatible = "apple,smc-gpio";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+		};
-+
-+		smc_reboot: reboot {
-+			compatible = "apple,smc-reboot";
-+			nvmem-cells = <&shutdown_flag>, <&boot_stage>,
-+				<&boot_error_count>, <&panic_count>, <&pm_setting>;
-+			nvmem-cell-names = "shutdown_flag", "boot_stage",
-+				"boot_error_count", "panic_count", "pm_setting";
-+		};
-+	};
-+
-+	smc_mbox: mbox@290408000 {
-+		compatible = "apple,t6000-asc-mailbox", "apple,asc-mailbox-v4";
-+		reg = <0x2 0x90408000 0x0 0x4000>;
-+		interrupt-parent = <&aic>;
-+		interrupts = <AIC_IRQ 0 754 IRQ_TYPE_LEVEL_HIGH>,
-+			<AIC_IRQ 0 755 IRQ_TYPE_LEVEL_HIGH>,
-+			<AIC_IRQ 0 756 IRQ_TYPE_LEVEL_HIGH>,
-+			<AIC_IRQ 0 757 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "send-empty", "send-not-empty",
-+			"recv-empty", "recv-not-empty";
-+		#mbox-cells = <0>;
-+	};
-+
- 	pinctrl_smc: pinctrl@290820000 {
- 		compatible = "apple,t6000-pinctrl", "apple,pinctrl";
- 		reg = <0x2 0x90820000 0x0 0x4000>;
+Svyatoslav Ryhel (3):
+  dt-bindings: arm: tegra: group Tegra30 based ASUS Transformers
+  dt-bindings: arm: tegra: Add Asus Transformer Pad TF300TL
+  ARM: tegra: Add device-tree for ASUS Transformer Pad LTE TF300TL
+
+ .../devicetree/bindings/arm/tegra.yaml        |  19 +-
+ arch/arm/boot/dts/nvidia/Makefile             |   1 +
+ .../boot/dts/nvidia/tegra30-asus-tf300tl.dts  | 857 ++++++++++++++++++
+ 3 files changed, 866 insertions(+), 11 deletions(-)
+ create mode 100644 arch/arm/boot/dts/nvidia/tegra30-asus-tf300tl.dts
 
 -- 
-2.34.1
-
+2.48.1
 
 
