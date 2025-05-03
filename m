@@ -1,237 +1,171 @@
-Return-Path: <devicetree+bounces-173259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D6D5AA7F5E
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 10:10:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52F08AA7F7B
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 10:44:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3AD098649C
-	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 08:10:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 034171BA22E1
+	for <lists+devicetree@lfdr.de>; Sat,  3 May 2025 08:44:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0821B041A;
-	Sat,  3 May 2025 08:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFFBD1AF0C9;
+	Sat,  3 May 2025 08:44:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="SFOMRa7I"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="b34wYraK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DCFF18DB20;
-	Sat,  3 May 2025 08:10:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDC268F58;
+	Sat,  3 May 2025 08:44:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746259822; cv=none; b=uZFIdEaxYSe+BLkZFTYVeBeArgnBgvixZPKwJOzzUyNbB6WmH7cgMogrncNZac2Zfqt3pX7M5c076/gXgYG7rSQgqOlHCMOx6ncEP5/jgQR4DowmOXvl/GJT5CutPtPRB29aJOgXsSYGVO30k07Zua4F3be5O46BtSgUt7N2Kqw=
+	t=1746261865; cv=none; b=TPKqrXcPqTR701iSxcljgZrTRoPVm+HCFAAHfyZf5sJqi4lsvyltGFFMe/fm8K0n6uV/mHsg8dL+JTJIG/YEVO0y6mwQfdrJQixr2Ge2PDuKv122Z2ReecF96/L272+Jlb+6hJqzhwLHIFzElVmlWv6NUO/jFVtrOozGiuVbYwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746259822; c=relaxed/simple;
-	bh=0rybimlKDX32tVNv6dUWOEFNrXeYzQniolth/7G1KeA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=uDTAqMArLuT0Nje7fLy6iSz0SjyeYjHEi4yK3fO/63EE1mORdmZeujrzmUVZ6rEbXDx46cfrEHxWmdWXxiTdXpYFYPoKAjopF/btTGocNbPWyw18dC9TYmkqcnNcuphuvYwH6Ld1mWfj9ncf2XejKu5zTbYB+alEk33fj3ZqkZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=SFOMRa7I; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1746259803; x=1746864603; i=wahrenst@gmx.net;
-	bh=f9yFUk+rZhcL56xZdVvP5zsnfEQ/If1IUd8BdZ4zUgc=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:
-	 MIME-Version:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=SFOMRa7ITWLxs7WY+8XQkv53kR5uytd6blPaVOlUm/V+9F1xpvSooRg2ajxkUhXH
-	 R0WP6S+eepBPsjpsw6pdaPhyiykB49IYq4rl+I6fVpMOA9EeeS/Fu0aOo3m7vTonz
-	 ajA//dm0UpchzHXez38sbLU/ICT3pmEz4l+Xypa+fYngVhE84rF4fvWUiKaV7lYwi
-	 8lHa5qglkjPYUqgxH2FdooFsMYaJYz11K0eAzwXbPoA+5dBtAxZShhMpj83zzTCrM
-	 F6Y55/wgUpNt8TVEAQVM9cmsBrF1T/v1MACPceIhuMOaPz9qrTUrJmSN5loHHl8Ow
-	 FtAexdFkKgf+CCGfmg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from stefanw-SCHENKER ([91.41.216.208]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mk0JW-1uvDH90gvo-00j2yw; Sat, 03
- May 2025 10:10:03 +0200
-From: Stefan Wahren <wahrenst@gmx.net>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	bcm-kernel-feedback-list@broadcom.com,
-	kernel-list@raspberrypi.com,
-	devicetree@vger.kernel.org,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH] dt-bindings: clock: convert bcm2835-aux-clock to yaml
-Date: Sat,  3 May 2025 10:09:49 +0200
-Message-Id: <20250503080949.3945-1-wahrenst@gmx.net>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1746261865; c=relaxed/simple;
+	bh=RrhQFWFDlhUk9yaZGBhTbwThvjzekcN3XZpWgSxZP0I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YFRL4hBhiSEob722YPOpNLFJxk/+eBL6gcFy8nke/kQilGlR3GHk+NjSAThhfaBEyotesReI0fVCG0v2ZjFyXwUkG7t/vaChQj3aYi0hm1qPEtqkcCxiAPzddaaSdpEtoEWuoq8htwCtduMUf/6g+0WE0PPxi2sYHfIge//Ue7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=b34wYraK; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C3BA3594;
+	Sat,  3 May 2025 10:44:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1746261847;
+	bh=RrhQFWFDlhUk9yaZGBhTbwThvjzekcN3XZpWgSxZP0I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=b34wYraKcacAAKhNsLK0r1mbBwMuXz34AaRmr8kfD/3YTlo9TIIEVnoNLDna/v1hw
+	 vdnKD71ddyKRsHzDbTrZkIsjJ4ZfCl8pVPtNGolaF7lfatyxMaRyK0hp0hTiHPK53H
+	 rWlDj/ArrI51uyq2yiPk+r9UDzjQna3ec9pdauxI=
+Message-ID: <d4daa87f-3556-4b46-a0e0-d90f9d14a097@ideasonboard.com>
+Date: Sat, 3 May 2025 11:44:12 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:R82YShtapVE/GH0n0Xqc/xUyM4kXQ53V7LNTYoOvgJMOwT1mVql
- CYcZP9GWG3ZiaahuEW8W1/8LA300n0hVld4xyfwTA2zvpeSuXs7MXuxaY5WiaSHM76VR7Uh
- uc6hAn2fYlZj3kVvhJfhiLmuAolDd5oUd0gW2BTzODhdj+2ec7kzMzRgiTaoQvG6ErCB6xr
- DWZBViOiYfRwqhzZ+jzKQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:14hOMghUO/k=;Dl7hE6mh5EIa6hVS0wKq5vo99/d
- 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
- RfRMPLou5CWg/9Acm9WF0c+EkHdTyPd81K
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] drm/tidss: Update infrastructure to support K3 DSS
+ cut-down versions
+To: Devarsh Thakkar <devarsht@ti.com>
+Cc: praneeth@ti.com, vigneshr@ti.com, aradhya.bhatia@linux.dev,
+ s-jain1@ti.com, r-donadkar@ti.com, j-choudhary@ti.com, h-shenoy@ti.com,
+ jyri.sarha@iki.fi, airlied@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
+ simona@ffwll.ch, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+References: <20250429143656.3252877-1-devarsht@ti.com>
+ <20250429143656.3252877-3-devarsht@ti.com>
+ <f729c0d6-45a0-4610-b22b-92c03f534bf7@ideasonboard.com>
+ <1f8c43cd-8c26-4e42-b144-b91f5ffc2e2e@ti.com>
+ <88993439-bfdc-418c-95c6-d6d8bdb5b87f@ideasonboard.com>
+ <466254e9-145f-4839-9451-a5f282ff02e9@ti.com>
+ <ce831f65-67d0-4f4c-9f08-3014b1d00dc0@ideasonboard.com>
+ <ca008cb0-bec6-4b10-b6b5-0f29648f76c0@ti.com>
+ <ed82e498-b3af-46f6-97ce-3a2f47872935@ideasonboard.com>
+ <ead31912-d1e5-4813-99a7-5cd2754672ef@ti.com>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
+ wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
+ Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
+ eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
+ LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
+ G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
+ DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
+ 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
+ rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
+ Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
+ aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
+ ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
+ PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
+ VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
+ 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
+ uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
+ R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
+ sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
+ Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
+ PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
+ dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
+ qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
+ hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
+ DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
+ KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
+ 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
+ xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
+ UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
+ /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
+ 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
+ 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
+ mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
+ 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
+ suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
+ xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
+ m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
+ CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
+ CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
+ 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
+ ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
+ yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
+ 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
+In-Reply-To: <ead31912-d1e5-4813-99a7-5cd2754672ef@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Convert the DT binding document for BCM2835 auxiliary peripheral clock
-from .txt to YAML.
+On 02/05/2025 14:52, Devarsh Thakkar wrote:
+> Hi,
+> 
+> <snip>
+>>> It uses hw_id i.e. 1 for all vid irqstatus related registers since it is
+>>> accessing am65x common region register space which has vid on idx0 which
+>>> we want to skip for am62l.
+>>>
+>>> For dispc_plane_enable(), the caller uses
+>>>> 0, for dispc_k3_vid_write_irqstatus(), the caller uses 1...
+>>>
+>>> Yes above is correct, and I think that's how it is supposed to be.
+>>
+>> No it's not. Both functions have "hw_plane" parameter, yet they require
+>> a different value to be used even when referring to the same plane.
+>>
+>>>> With a quick look at the code, changing the callers to pass the "old
+>>>> style" hw_plane as the parameter to those irq functions, and the
+>>>> functions internally get the hw_id, would solve most of the problems.
+>>>
+>>> I don't follow above, hw_plane has 0 so it should not be used for
+>>> programming irq related functions which expect idx 1 as explained above.
+>>
+>> We have various functions in tidss_dispc.c that have hw_plane as a
+>> parameter. But the caller is supposed to know that for some functions
+>> hw_plane is a plane index from 0, and for some it's the hw_id from
+>> vid_info[].
+>>
+>>> There's still dispc_k3_set_irqenable() which manages 'main_disable' and
+>>>> needs the hw_id, but maybe that's fine, even if a bit confusing.
+>>>>
+>>>
+>>> I still feel there is no inherent bug here, but let me know if you want
+>>> me to put some debug prints or get register dump so that we can double
+>>> confirm.
+>>
+>> I'm not saying there's a bug. I'm saying it's bad code and will cause
+>> confusion and bugs in the future.
+>>
+> 
+> Ok I see what you mean to say.....although functionally it is working
+> fine but from readability point of view it is confusing since both
+> functions use same argument name i.e hw_plane in two different contexts.
+> In that case, I would propose to use hw_id as arg name for all
+> dispc_k3_vid* functions, will that be okay ?
 
-Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-=2D--
- .../bindings/clock/brcm,bcm2835-aux-clock.txt | 31 ------------
- .../clock/brcm,bcm2835-aux-clock.yaml         | 47 +++++++++++++++++++
- 2 files changed, 47 insertions(+), 31 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/brcm,bcm2835-a=
-ux-clock.txt
- create mode 100644 Documentation/devicetree/bindings/clock/brcm,bcm2835-a=
-ux-clock.yaml
+I'd prefer to have all the dispc functions take the same kind of index.
 
-diff --git a/Documentation/devicetree/bindings/clock/brcm,bcm2835-aux-cloc=
-k.txt b/Documentation/devicetree/bindings/clock/brcm,bcm2835-aux-clock.txt
-deleted file mode 100644
-index 4acfc8f641b6..000000000000
-=2D-- a/Documentation/devicetree/bindings/clock/brcm,bcm2835-aux-clock.txt
-+++ /dev/null
-@@ -1,31 +0,0 @@
--Broadcom BCM2835 auxiliary peripheral support
--
--This binding uses the common clock binding:
--    Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--The auxiliary peripherals (UART, SPI1, and SPI2) have a small register
--area controlling clock gating to the peripherals, and providing an IRQ
--status register.
--
--Required properties:
-=2D- compatible:	Should be "brcm,bcm2835-aux"
-=2D- #clock-cells:	Should be <1>. The permitted clock-specifier values can=
- be
--		  found in include/dt-bindings/clock/bcm2835-aux.h
-=2D- reg:		Specifies base physical address and size of the registers
-=2D- clocks:	The parent clock phandle
--
--Example:
--
--	clocks: cprman@7e101000 {
--		compatible =3D "brcm,bcm2835-cprman";
--		#clock-cells =3D <1>;
--		reg =3D <0x7e101000 0x2000>;
--		clocks =3D <&clk_osc>;
--	};
--
--	aux: aux@7e215004 {
--		compatible =3D "brcm,bcm2835-aux";
--		#clock-cells =3D <1>;
--		reg =3D <0x7e215000 0x8>;
--		clocks =3D <&clocks BCM2835_CLOCK_VPU>;
--	};
-diff --git a/Documentation/devicetree/bindings/clock/brcm,bcm2835-aux-cloc=
-k.yaml b/Documentation/devicetree/bindings/clock/brcm,bcm2835-aux-clock.ya=
-ml
-new file mode 100644
-index 000000000000..e19c2f4be77d
-=2D-- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/brcm,bcm2835-aux-clock.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/brcm,bcm2835-aux-clock.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM2835 auxiliary peripheral clock
-+
-+maintainers:
-+  - Stefan Wahren <wahrenst@gmx.net>
-+  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-+
-+description:
-+  The auxiliary peripherals (UART, SPI1, and SPI2) have a small register
-+  area controlling clock gating to the peripherals, and providing an IRQ
-+  status register.
-+
-+properties:
-+  compatible:
-+    const: brcm,bcm2835-aux
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#clock-cells"
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/bcm2835.h>
-+    aux: clock@7e215000 {
-+        compatible =3D "brcm,bcm2835-aux";
-+        reg =3D <0x7e215000 0x8>;
-+        #clock-cells =3D <1>;
-+        clocks =3D <&clocks BCM2835_CLOCK_VPU>;
-+    };
-=2D-=20
-2.34.1
+  Tomi
 
 
