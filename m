@@ -1,130 +1,232 @@
-Return-Path: <devicetree+bounces-173431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7CB7AA86A2
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 16:12:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1531CAA86C7
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 16:45:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 401D8176879
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 14:12:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 669823B5B0C
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 14:45:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDE7F1865EB;
-	Sun,  4 May 2025 14:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CEB071747;
+	Sun,  4 May 2025 14:45:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Bb7gjwRW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cnqrodQt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0195217996;
-	Sun,  4 May 2025 14:12:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BEE2A32;
+	Sun,  4 May 2025 14:45:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746367955; cv=none; b=MsQHVM5KmRGTZ8Y1HTpbzOsDzdHJiVkISXxNhm2r/GVQ4VweqvsfGxJqP1iewct7lxeqoNyLeGGjEDwCglm3NaiX063h6Br/zlsVJYvSBZ95PL7SQ9hAQBytbc17EJxJqXN12vpPnTuUsw92V5MACZktkibYNsIIrvDCIWEncmw=
+	t=1746369941; cv=none; b=rGh0xrft8wP3LmBj/289T75lT2e/09Q9vYXtNQKHxw137sIEE2APta8KWydIUYYdhJas3SJY0kk/pYM9n2+DiS3L3ikYWKBC1nyK49QfSLihUikq/DEO3EiTPBOlbmsmURbyfSfsCxJqEj9VCz2rpuE6dYh+qdqO6zBTxj5UuCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746367955; c=relaxed/simple;
-	bh=gkkmFF2Sp2718kg5rXyr67yd5W54tZ4aYdEM2KFLYPY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PcRWIGyEqj9yL5wGsVa3R5n4rHbssJ+N6fGyn+2o4BsLCXe6RL1rzQLEYq30C77CeG8pIY0di/b1SKgYuOR/jjjjo335KHfQOT5tVRSiws7aX9N7eDVl83IgJdGOQ93O/bD4Z6js2nlcf/cePPlS++4uACY3b7B2g9hZttRG6Ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Bb7gjwRW; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=TzNUiPHYqKLKNt/h1EVZBJxW8aJwF1vX/txgWZiJsu0=; b=Bb7gjwRWfwJ0JouMGasFpiS43u
-	2IVy3h2C3iqVfvL2e+Arxxj2/qvCygXe080JqRUEM2fgGLgQyoUhQzLvXmj6w8MHFE3UM4x/FmclU
-	UXEFo7P/YG2GXi2IA5E0J6SRER3/SL/qm0tMnbdKCBpIVF77bFt7uHjrwNV2Hx78akqM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uBa4q-00BWXL-Q4; Sun, 04 May 2025 16:12:20 +0200
-Date: Sun, 4 May 2025 16:12:20 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: John Clark <inindev@gmail.com>, heiko@sntech.de, robh@kernel.org,
-	conor+dt@kernel.org, detlev.casanova@collabora.com,
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Add Luckfox Omni3576 Board
- support
-Message-ID: <87892840-bdbf-43d4-bd93-cb98f5e1c672@lunn.ch>
-References: <20250502205533.51744-1-inindev@gmail.com>
- <20250504102447.153551-1-inindev@gmail.com>
- <20250504102447.153551-4-inindev@gmail.com>
- <bb171ae2-c495-49a3-a7eb-a4b865e54199@kwiboo.se>
+	s=arc-20240116; t=1746369941; c=relaxed/simple;
+	bh=oiCEtS/eOz6m9+tyNyy/pKX2vCc5Am/9bmOf469qf7Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Fal2SZEyb7CWZ24yN4om3zUT8ViHKr//Z65WAfdPOgGI9zOJGNAet65oycE+USkYfrC02qUxeIpgtKpGeGuSVBXHDQBIqbhsDByHc6oh7DWScZGJESWG4QOTFHFXMVl5p7yNMzqF1DsodJSrAZetcf7pwrJN2l6HMEnjgMLvePM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cnqrodQt; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5eb92df4fcbso6750482a12.0;
+        Sun, 04 May 2025 07:45:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746369937; x=1746974737; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3GLMQvVURueTJUfJOlZy1bzDlyZjB6YxPVmLXhRiwUg=;
+        b=cnqrodQtr8c2v4B3axTP2fovZHdNUCCxj1ok0H4ijGphIFOG1ZvdJY8PKpA6vhW0SC
+         lD0vO+TQXTLS9Vj/SPW1jUGHBzHrCcnVkZEnr/wy+v+jy/b7g0SttCbPCxUx3EiJUxFa
+         qLy4CrI3cqGaay6AbjEYYvDRcTytHaXsfpaeVHSNHtCacVPoYRxdH/ziGYi9GXIPyzHx
+         CMGkeS2zvrPcjoFdhPjAomla310Gz42/hbE5FgqnakG00XMc8orNLGKFPMOMf3HT6rdk
+         8S0Q11z0qIJxW+26E5npJ3cgA9DX79kkoQFLRisn/VZEjcJrEK0JhWd6ChCnGBOI3Ucq
+         ZhRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746369937; x=1746974737;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3GLMQvVURueTJUfJOlZy1bzDlyZjB6YxPVmLXhRiwUg=;
+        b=cZbxQpCjSwEh5ISI6H/x3+2HDq1DfIZFkAN9E75FrMuQxKxCjCC4CUujei1O0tJUbt
+         nriWpSYtZ6b/3Xd1QkU5hIH3iV+OX19nHq1rVaa8Oy8rtvLhv0M/RQDK3gG8nU6Rn2KF
+         CLD+5tQ/7T+3phVLoEZTETlHWUSrZ1on63psNPbnh8+25ffHNl763ElJobEWO44R+LsT
+         VNJ7XPmKIHk9ofQqExINMIRLvfSmccmYicLGZJmcOTe773uACFG4mgtBbYjnvaGjiKS1
+         fOyFSm+gDta6feKKVGOwL7Vtsz7dKJJN7j0i1fgB3DsydSqhA5z+gSu/yYediXWZDaft
+         OEIA==
+X-Forwarded-Encrypted: i=1; AJvYcCVajcEG3bwsokUn6yNcJXFGLWuXti3DTyddrk9U6m6yYLv5v08FUU4bD+f66jZiZWgy9uif+S0WCIpMHSgQcw==@vger.kernel.org, AJvYcCW76lLeIlNNgo5oKzroJR+4FsPT2G3RPJCeZFhOIRkN6S1BrkLqG38ulu4/q/uZr7DOL2S8NBP+sUNn@vger.kernel.org, AJvYcCX8fwaYijG2Ga+ve4urCXFh/lVDYwE8NNvlnzZ45fwbDeLKvYp8yobsrvSgxIAFhxfs+d8ZkcmwrcxX3F+8UwGlsOo=@vger.kernel.org, AJvYcCXTsAXs+ni91torFdUbsQrQa4SXvTinDMVoHBwpMEZx9ZJvcq0wDwVRErEQco0VY8w3UuO88abzOjXQECsH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3Xs7a9e+tjg5de24yx7DnAWSzQoLCfDczkhLrsYgZjaTCwXYU
+	34XXCGNSPUmwBUXUjbHNmAOZnngeFBMCW8SKqQXZosqehK92km3SO1RsXw==
+X-Gm-Gg: ASbGncs5zCGLjcQU5GnsKpbA4jFpie4D1dt6ZuNlsCqVOsFcpQz0In9kNF861j7v7JZ
+	uma6aQwZfLBivAnsCHrNRyavI3fPaQJpfWH0HkGDcqUuzOYc+xsr8kFX0FE9Y6aOIrlAowt0H7c
+	aMxg/oQ5kn9S0k1ng2xrQHfS+VzdgmEC2jDaEGi5stbzJ+ci4VX6djFXTOOS65jj2xjpIvRQ43p
+	g7kJPkcv8llbZ9JnkO/7Dm51kknNTdbdxC3LauPgF5iqyg6+VSQnQORrmjt9YRAaHbb/pjpwGBx
+	u0lb3MsQ5TNKDqHZipwlBp777Lr/kZCWayMjmV51VCBNUfBepiF4LUt2IkIhQybWWMSQRYX/P1z
+	0MnbA0+ElvPqZygF0
+X-Google-Smtp-Source: AGHT+IEC43jOF2l9Y+pWj7JP3rs0bfznp+nHLXmOJyVYTaj2ERAtZaGGWdiC4aq9yrCcx89V7OTvYw==
+X-Received: by 2002:a05:6402:3494:b0:5f8:36b2:dc07 with SMTP id 4fb4d7f45d1cf-5fab057d79cmr3440722a12.16.1746369937074;
+        Sun, 04 May 2025 07:45:37 -0700 (PDT)
+Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5faecf59d31sm1147258a12.77.2025.05.04.07.45.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 May 2025 07:45:36 -0700 (PDT)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc: linux-phy@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 00/10] phy: samsung: add Exynos2200 SNPS eUSB2 driver
+Date: Sun,  4 May 2025 17:45:17 +0300
+Message-ID: <20250504144527.1723980-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bb171ae2-c495-49a3-a7eb-a4b865e54199@kwiboo.se>
+Content-Transfer-Encoding: 8bit
 
-> > +&gmac0 {
-> > +	clock_in_out = "output";
-> > +	phy-handle = <&rgmii_phy0>;
-> > +	phy-mode = "rgmii-rxid";
-> 
-> See Andrew's remark on v1 of this patch.
+Hey folks,
 
-Hi John
+This patchset adds Exynos2200 support to the existing eUSB2 phy driver,
+as well as USBDRD support for that SoC.
 
-If you have questions, please ask. It is not a good idea to silently
-ignore reviewers comments. Either do something about it, ask
-questions, or politely argue why the reviewer is wrong, because
-sometimes we are.
+The SoC features the same (as far as I can tell from comparing code)
+USBDRD 3.2 4nm block that Exynos2400 has, hence the common denominator.
+It consists of a SEC USB link controller, Synopsys eUSB2 and Synopsys
+USBDP combophy, which are independent underlying hardware blocks of
+the USBDRD controller.
 
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&eth0m0_miim
-> > +		     &eth0m0_tx_bus2
-> > +		     &eth0m0_rx_bus2
-> > +		     &eth0m0_rgmii_clk
-> > +		     &eth0m0_rgmii_bus
-> > +		     &ethm0_clk0_25m_out>;
-> > +	snps,reset-gpio = <&gpio2 RK_PB3 GPIO_ACTIVE_LOW>;
-> > +	snps,reset-active-low;
-> > +	snps,reset-delays-us = <0 20000 100000>;
-> 
-> The snps,reset- props are depracated, please move to reset props in the
-> Ethernet PHY node.
+In the vendor kernel, everything is handled in the usbdrd controller
+driver, with helpers for underlying hardware block functions outside it.
+Clocks and regulators are specified and enabled in one node, which makes
+it difficult to separate what clocks and regulators go where without
+access to schematics or TRMs. The following gates are defined for USB:
 
-FYI: snps,dwmac.yaml says:
+CLK_BLK_HSI0_UID_USB32DRD_IPCLKPORT_I_USBSUBCTL_APB_PCLK
+CLK_BLK_HSI0_UID_USB32DRD_IPCLKPORT_I_USBDPPHY_CTRL_PCLK
+CLK_BLK_HSI0_UID_USB32DRD_IPCLKPORT_I_USBDPPHY_TCA_APB_CLK
 
-snps,reset-gpio:
-    deprecated: true
-    maxItems: 1
-    description:
-      PHY Reset GPIO
+CLK_BLK_HSI0_UID_USB32DRD_IPCLKPORT_I_USBLINK_ACLK
+CLK_BLK_HSI0_UID_USB32DRD_IPCLKPORT_I_USB32DRD_REF_CLK_40
 
-Anything with 'deprecated: true' you should not be using in new DT
-blobs. Don't blindly copy vendor DT, you need to verify it is up to
-Mainline quality, and if not, bring it up to Mainline quality.
+CLK_BLK_HSI0_UID_USB32DRD_IPCLKPORT_I_EUSB_CTRL_PCLK
+CLK_BLK_HSI0_UID_USB32DRD_IPCLKPORT_I_EUSB_APB_CLK
+CLK_BLK_HSI0_UID_AS_APB_EUSBPHY_HSI0_IPCLKPORT_PCLKM
+CLK_BLK_HSI0_UID_RSTNSYNC_CLK_HSI0_EUSB_IPCLKPORT_CLK
 
-> > +	tx_delay = <0x20>;
+The vendor kernel specifies 4 regulators, 2 of which are for eUSB
+and the other 2 for the repeater. The rest of the PHYs and the dwc3
+controller are on a single power domain (hsi0), so they're most likely
+sharing power rails.
 
-This property probably plays a role in the issue with phy-mode.
+As Qualcomm is also using the eUSB2 IP, the approach taken here is to
+rename the driver so that it can be used by other SoC vendors as well
+while keeping compatibles SoC-vendor prefixed (different vendors have
+different implementations of the IP with different register maps),
+add support for exynos2200 in it and implement support for exynos2200
+in the existing exynos5-usbdrd driver (with link controller init).
 
-arch/arm64/boot/dts/rockchip$ grep "rgmii-id" *
-rk3328-orangepi-r1-plus-lts.dts:	phy-mode = "rgmii-id";
-rk3566-bigtreetech-cb2.dtsi:	phy-mode = "rgmii-id";
-rk3566-nanopi-r3s.dts:	phy-mode = "rgmii-id";
-rk3566-odroid-m1s.dts:	phy-mode = "rgmii-id";
-rk3566-orangepi-3b.dtsi:	phy-mode = "rgmii-id";
-rk3566-radxa-zero-3e.dts:	phy-mode = "rgmii-id";
-rk3566-rock-3c.dts:	phy-mode = "rgmii-id";
-rk3568-evb1-v10.dts:	phy-mode = "rgmii-id";
-rk3568-evb1-v10.dts:	phy-mode = "rgmii-id";
-...
-etc.
+A new USBDP driver will be added later on, so that super-speed can be
+configured.
 
-You might be able to learn something from these.
+Bindings have been tested:
 
-	Andrew
+$ make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j4 dt_binding_check DT_SCHEMA_FILES="Documentation/devicetree/bindings/phy/samsung,exynos2200-eusb2-phy.yaml"
+  CHKDT   ./Documentation/devicetree/bindings
+  LINT    ./Documentation/devicetree/bindings
+  DTEX    Documentation/devicetree/bindings/phy/samsung,exynos2200-eusb2-phy.example.dts
+  DTC [C] Documentation/devicetree/bindings/phy/samsung,exynos2200-eusb2-phy.example.dtb
+
+Best regards,
+Ivaylo
+
+Changes in v5:
+EUSB2 changes:
+- rename binding to match compatible
+- simplify binding name
+- indent binding example node properly
+- add r-b tag for binding
+USBDRD changes:
+- add r-b tag for binding
+
+Changes in v4:
+EUSB2 changes:
+- make a new separate binding for eusb2 ip found in samsung socs
+- fix order of tags in 03/10
+- change 'SNPS' to 'Synopsys' in the MODULE_DESCRIPTION in 04/10
+- simplify code around device_get_match_data in 05/10
+USBDRD changes:
+- drop double colons and 'phandle to' in binding
+
+Changes in v3:
+USBCON changes:
+- drop the driver and introduce it all in existing exynos5-usbdrd driver
+EUSB2 changes:
+- split changes into multiple commits with clear diff
+- add a commit to do table-based lookup for refclk
+- clean up here and there
+- correct the cover letter according to my new knowledge of how the
+  hardware functions
+- change commit message of the optional repeater patch
+
+Changes in v2:
+USBCON changes:
+- drop unused header includes
+- sanitize the binding
+- proper init and exit power management
+- shorten some variables
+- unrelax reads and writes
+- update commit description
+- remodel to take other phys
+- drop specified regulators as these are for the repeater
+- make the kconfig description better
+- general cleanup
+EUSB2 changes:
+- merge the previous separate driver into the qualcomm one
+- drop the previous model of taking usbcon phandle
+
+Ivaylo Ivanov (10):
+  dt-bindings: phy: add exynos2200 eusb2 phy support
+  dt-bindings: phy: samsung,usb3-drd-phy: add exynos2200 support
+  phy: move phy-qcom-snps-eusb2 out of its vendor sub-directory
+  phy: phy-snps-eusb2: refactor constructs names
+  phy: phy-snps-eusb2: split phy init code
+  phy: phy-snps-eusb2: make repeater optional
+  phy: phy-snps-eusb2: make reset control optional
+  phy: phy-snps-eusb2: refactor reference clock init
+  phy: phy-snps-eusb2: add support for exynos2200
+  phy: exynos5-usbdrd: support Exynos USBDRD 3.2 4nm controller
+
+ .../phy/samsung,exynos2200-eusb2-phy.yaml     |  80 +++
+ .../bindings/phy/samsung,usb3-drd-phy.yaml    |  38 +-
+ drivers/phy/Kconfig                           |   8 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/phy-snps-eusb2.c                  | 627 ++++++++++++++++++
+ drivers/phy/qualcomm/Kconfig                  |   9 -
+ drivers/phy/qualcomm/Makefile                 |   1 -
+ drivers/phy/qualcomm/phy-qcom-snps-eusb2.c    | 442 ------------
+ drivers/phy/samsung/phy-exynos5-usbdrd.c      | 227 ++++++-
+ include/linux/soc/samsung/exynos-regs-pmu.h   |   3 +
+ 10 files changed, 965 insertions(+), 471 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/samsung,exynos2200-eusb2-phy.yaml
+ create mode 100644 drivers/phy/phy-snps-eusb2.c
+ delete mode 100644 drivers/phy/qualcomm/phy-qcom-snps-eusb2.c
+
+-- 
+2.43.0
+
 
