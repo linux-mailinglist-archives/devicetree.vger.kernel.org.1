@@ -1,109 +1,191 @@
-Return-Path: <devicetree+bounces-173461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44DC4AA873C
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 17:22:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60D26AA8745
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 17:23:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9069F3B2A13
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 15:21:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D87A7A8CC0
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 15:22:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B759E1CDFAC;
-	Sun,  4 May 2025 15:22:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 042B11CDFAC;
+	Sun,  4 May 2025 15:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L8xOtQT+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CcTO0zei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 889E17DA73;
-	Sun,  4 May 2025 15:22:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3E81D5ADC;
+	Sun,  4 May 2025 15:23:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746372128; cv=none; b=cVvI8rPt6OuD9YjGDCxmzER3QpM7Ha8x9RsBRHGCVD+KoPP++MeYgGFIq+qx6pVwZV60/LpSMv8oiv9m2vf2AyAkmsT+fHFsSgzqhANWy7ZqiS7KF0hhq+b9U1EIWjD3FtZ5kuf4McOuUtBEYYteY8y5qWdkBrwWM0Gx5iB2HZ4=
+	t=1746372199; cv=none; b=XVDbd2U/n9njN37cJiBy3Qci9Wna4mI4oAlkhd9NDKKCX27HARIG66PsHXqhcItE/9837rTgamMKsIDxTnI6Xss080Jiz9uV82C9eB8+ZTqH62chEHIXMPDy7orwgbwPIqmwSFbDmQyNd9qixPWFjkWnY+45NqZH0rEEBz6eafU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746372128; c=relaxed/simple;
-	bh=AEkzEBU3143KxzQbR7rAGVWLfe3ey5sdykehyg1ERvM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oD9ud6hoXY1p774kl61vx4r4Azoa8b7Z+QCUFBBcWcIcnh4NWpEAu+T0Tfhd/ubPRO0w+Os/8Q2Kpuxj28xoT1G6lH3b87G4T4p9kEVElMmxyp9BaxLrGsbq5pZv3mwbGYMUWsLNZjedWIu1BvViG/JCUhTu70GvSZCcwBBe6gc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L8xOtQT+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6255CC4CEE7;
-	Sun,  4 May 2025 15:22:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746372128;
-	bh=AEkzEBU3143KxzQbR7rAGVWLfe3ey5sdykehyg1ERvM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=L8xOtQT+fGEkXaLF+zlgPeq9Otnh2cqJqICP2RVuVxfcXg95ddn6hQ/10K24/GTV9
-	 54f97J7rPdzT8YZLP5c8z3YTWf0n4UuMK27zn85nnfwdAtmNDy+e2oH2TLDdDgYZ5X
-	 FnfvUdqCq+7xEzhQr2TpKav11z1TxpAU2wlr0Q5a4CutSHFGumfWTkd4RQKHJp2tO3
-	 jc+NqhV9WADyBtcZPuNvbdxF26ruoF9aRtp3pWox7lm/RCp/5iCfHaZunb+b7SZnBm
-	 BBdjNl6Iiq6RK4AyV+JIVvSE7Hp5TNO9T/jKNhLl58tSWljmteHE2OvNBG9GRVuuNz
-	 qGF0H5NVmBfPQ==
-Date: Sun, 4 May 2025 16:21:58 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] iio: adc: ad7606: add offset and phase
- calibration support
-Message-ID: <20250504162158.7f89d76f@jic23-huawei>
-In-Reply-To: <20250502-wip-bl-ad7606-calibration-v2-3-174bd0af081b@baylibre.com>
-References: <20250502-wip-bl-ad7606-calibration-v2-0-174bd0af081b@baylibre.com>
-	<20250502-wip-bl-ad7606-calibration-v2-3-174bd0af081b@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1746372199; c=relaxed/simple;
+	bh=XEwlcJCA5Da41SdMBLYzYGyCaFgKHLG5pnLQnEwVluY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Q2jRNsuz77rH+4TsKo1ftmAO6yGYfPBfy8Xf1jcE90UE4ywr8xPUi+UuU2As4xyz2qUscgCSHXMVxY1o6Oad5KcWVee55IIfi3MftaZe1uKOO4mMtNnWrGc6oB1PZIyFzNeUEJMTtfP0er12znRh5SUJsAfx0/1lk3tySMWT0nk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CcTO0zei; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5449HoAu015704;
+	Sun, 4 May 2025 15:23:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	K9ZECEvCO6mT81rT0VaO77s5JpEISdiJilPBgZHWCN0=; b=CcTO0zeimd7ggz7+
+	7fjF7U5muBhNPijAjRnh3oUdkv/rFhBNlIQ30HAjr7FWlSA8oBs4X9PUYVP37ArS
+	fe3zoS5suCUGDTeRI/N6unmRZ9GeIH3Uveh0tykIpZ22gs9ZU8DggIK6kGfawvj4
+	GB6m9oGmeinWtMvYuboJyyzm6vFxFTfNgZ82x+uGm/Ofp3TQVjBySanoJpShAE4Q
+	292B/oC2TS4UGP0eVGp8l8w3h19g6AnhCw+7xIjV9ujY9xbYQFcamvnP2iLP9JMu
+	MtqSWl+SBgEs+qRMgPSM67HoMlGMwHHNDXDijJNjACxW0li505i2jd8vdXeRyJXJ
+	5rRt1w==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46da55t5c8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 04 May 2025 15:23:12 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 544FNBuY019445
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 4 May 2025 15:23:11 GMT
+Received: from [10.50.60.31] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 4 May 2025
+ 08:23:04 -0700
+Message-ID: <36757fb1-b1a9-5b49-c5b8-62cde4dea1c5@quicinc.com>
+Date: Sun, 4 May 2025 20:53:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 13/23] media: iris: Send V4L2_BUF_FLAG_ERROR for
+ buffers with 0 filled length
+Content-Language: en-US
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Vikash Garodia
+	<quic_vgarodia@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
+        Stefan Schmidt
+	<stefan.schmidt@linaro.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Rob Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor Dooley" <conor+dt@kernel.org>
+CC: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org>,
+        <20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com>
+References: <20250502-qcom-iris-hevc-vp9-v3-0-552158a10a7d@quicinc.com>
+ <20250502-qcom-iris-hevc-vp9-v3-13-552158a10a7d@quicinc.com>
+ <1b204ed7bc63373f52973b96af68e64e24be8cde.camel@collabora.com>
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+In-Reply-To: <1b204ed7bc63373f52973b96af68e64e24be8cde.camel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA0MDE0NCBTYWx0ZWRfXyJpsbDNgig2v
+ MQQrh8FSydxA1YaPgsJdWa1dBE2hGK3rATvWZ8gWFyMY9TjJnRBiRkI1tjZbvv6NqNjkzWzhQUV
+ CiJYa013ZA9oLdoGuyWHpwPkxew6iOKI5VNcNH/pylu30QpWJ7UfwMI6Eg9QJGLCTuyIFn1/Cg+
+ au0Z1B+HpkiuKla4QUgeQ/BokHujqTyXuKZtgB6KofRFiubGXB9+F2cXz+fimnHhJ+l7yC3SIww
+ feJUJS9iHyY9X1RlZVvBN+9c8niTnRzMyeRwstXGDsDPtyRDx0GFYqz3PvChIDIhi0RfTZwWRet
+ /HYHIYHv4ZY1RKxU0V0TH1xrVAmWPKk97OcIJTlGMO7S7YvFzee0CrgNCxI//56iyPZuULRRfzD
+ hKM6Alkf/8vHtOHe+Txea2iJME/ZDa5JlsrJ7UNXFnIvkjpGF3H7AvLyrd2QW7cexF5OAkr4
+X-Authority-Analysis: v=2.4 cv=M9RNKzws c=1 sm=1 tr=0 ts=68178660 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
+ a=RZNktNr6s82MSkpdd14A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: CFLOB_yY5Vj3h-r7k7tlM8ZGU_c1dNyA
+X-Proofpoint-ORIG-GUID: CFLOB_yY5Vj3h-r7k7tlM8ZGU_c1dNyA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-04_06,2025-04-30_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 mlxlogscore=999 priorityscore=1501 malwarescore=0
+ mlxscore=0 bulkscore=0 adultscore=0 suspectscore=0 clxscore=1015
+ lowpriorityscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2504070000 definitions=main-2505040144
 
-On Fri, 02 May 2025 15:27:00 +0200
-Angelo Dureghello <adureghello@baylibre.com> wrote:
-
-> From: Angelo Dureghello <adureghello@baylibre.com>
->=20
-> Add support for offset and phase calibration, only for
-> devices that support software mode, that are:
->=20
-> ad7606b
-> ad7606c-16
-> ad7606c-18
->=20
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-
-One trivial typo.
-
-> +static int ad7606_set_calib_phase(struct ad7606_state *st, int ch, int v=
-al,
-> +				  int val2)
-> +{
-> +	int wreg, start_ns, step_ns, stop_ns;
-> +
-> +	if (val !=3D 0)
-> +		return -EINVAL;
-> +
-> +	start_ns =3D st->chip_info->calib_phase_avail[0][1];
-> +	step_ns =3D st->chip_info->calib_phase_avail[1][1];
-> +	stop_ns =3D st->chip_info->calib_phase_avail[2][1];
-> +
-> +	/*
-> +	 * ad7606b: phase dielay from 0 to 318.75 =CE=BCs in steps of 1.25 =CE=
-=BCs.
-
-Spell check. delay
 
 
+On 5/3/2025 9:39 PM, Nicolas Dufresne wrote:
+> Hi Dikshita,
+> 
+> Le vendredi 02 mai 2025 à 00:43 +0530, Dikshita Agarwal a écrit :
+>> Firmware sends buffers with 0 filled length which needs to be dropped,
+>> to achieve the same, add V4L2_BUF_FLAG_ERROR to such buffers.
+>> Also make sure:
+>> - These 0 length buffers are not returned as result of flush.
+>> - Its not a buffer with LAST flag enabled which will also have 0 filled
+>>   length.
+> 
+> This message is quite vague, is this about capture or output buffers ?
+> If its output buffers that don't produce capture, I don't see why they
+> have to be flagged as errors, or why the payload size matter. Then, if
+> its about assigned capture buffers that did not get used in the end, you
+> should put them back in the queue instead of returning them to user
+> space.
+> 
+> Returning a capture buffers to userspace should only be used if a frame
+> could not be produced. That imply copying the cookie timestamp from the
+> src buffers into the capture buffer. Please make sure you don't endup
+> returning fake erorrs to userspace, which may lead to some frame
+> metadata being dropped erroneously.
+> 
+The capture buffers which I am trying to handle here are of 0 byteused
+which means they don't have any valid data and they have the timestamp
+copied from src buffers.
+How these buffers will be handled by client? if we don't associate error
+flag to such buffers?
 
-> +	 * ad7606c-16/18: phase delay from 0 =C2=B5s to 255 =C2=B5s in steps of=
- 1 =C2=B5s.
-> +	 */
+Thanks,
+Dikshita
+> Nicolas
+> 
+>>
+>> Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+>> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+>> ---
+>>  drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
+>> b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
+>> index 4488540d1d41..3bb326843a7b 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
+>> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
+>> @@ -378,6 +378,12 @@ static int iris_hfi_gen2_handle_output_buffer(struct iris_inst *inst,
+>>  
+>>  	buf->flags = iris_hfi_gen2_get_driver_buffer_flags(inst, hfi_buffer->flags);
+>>  
+>> +	if (!buf->data_size && inst->state == IRIS_INST_STREAMING &&
+>> +	    !(hfi_buffer->flags & HFI_BUF_FW_FLAG_LAST) &&
+>> +	    !(inst->sub_state & IRIS_INST_SUB_DRC)) {
+>> +		buf->flags |= V4L2_BUF_FLAG_ERROR;
+>> +	}
+>> +
+>>  	return 0;
+>>  }
+>>  
 
