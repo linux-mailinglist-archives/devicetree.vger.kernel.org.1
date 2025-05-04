@@ -1,93 +1,95 @@
-Return-Path: <devicetree+bounces-173392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3F04AA8578
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 11:24:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38CDDAA85E6
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 12:25:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BCD47AB9A0
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 09:23:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2386D189A5E4
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 10:25:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3AE1A23A0;
-	Sun,  4 May 2025 09:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2D91A265E;
+	Sun,  4 May 2025 10:25:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jZe/nXOL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T0Zdle94"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC60C19E7D1;
-	Sun,  4 May 2025 09:23:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C4ED1A2391;
+	Sun,  4 May 2025 10:24:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746350632; cv=none; b=hOxLRvm8YF7wWTo4AFAXFH2oCdlGbFZjCwN8DnzJUTaCPhyQSgnXrNzSMF4HmP39odKKYV8ff9UYPbrh/udMfGHpwlJGoexbiUK5XV8DJyPYNAb2+YWNU9O1xhgjbCVrOOEcvI55vF//W0rZWzFZFBhW9G8j7yPqgB6l3qmnqTs=
+	t=1746354301; cv=none; b=k9Quol1SeqVfP3pL5+Da1WuAR/uRFI3BpRPhg6odHc6tTXIbK2Bf2zDxDbAc1s9bajfgQM9Lq/LCkqqlMDgvREWTJw8W1fqmPcJZCDvLdfwU8lmONHkqvC8KZizioZ6TLJSxv2jFlARjWFQjlx76a6aZq22ndve/s9uLrU6swWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746350632; c=relaxed/simple;
-	bh=BO6DxgXTRnZVb2SSLavVfZPIIK3dMJeUTCm7UYWcAtM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZxCIoff9YIUZTc72NIEWLJwxfWfGuyAO1jbspqIprUt/qAXMzc+v6qIMzoO/69eC0lTut3SpzwB1xfW9SPYk0uZdJEDJa4/4fMAYF6nA/Jy1Nd1GQX228PI2Q3PFrI6lqoSvNHcQCip98KW23oVOX7EaIIe9yYUGTwYZ9dksXiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jZe/nXOL; arc=none smtp.client-ip=209.85.208.42
+	s=arc-20240116; t=1746354301; c=relaxed/simple;
+	bh=4xgR/nLOxR+neQ8HFSvyc0xNkPTaq4iZpZPllJ5W1N0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=iBdrLpjpdfds6S3vsMacT2RkdkZnr/wdmCaxK6INQVaf8sKT3f5nRi/4ptrA/UUhx1o9p3sHtQC6JzHNZaznWynsoAg/xdly0RtttqngOL6cHP+Jh4+vu3QHY3+m0p7bWE398vPg/CTQec1KYxDtcBl1BudRvYKU4Ar9Am+f84Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T0Zdle94; arc=none smtp.client-ip=209.85.222.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5faaddb09feso1611844a12.2;
-        Sun, 04 May 2025 02:23:50 -0700 (PDT)
+Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7c560c55bc1so422503085a.1;
+        Sun, 04 May 2025 03:24:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746350629; x=1746955429; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1746354298; x=1746959098; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ULlfDCNR8m/9pJtlgrHCEPaJVNLe3RFSja1Lf02MnM4=;
-        b=jZe/nXOLllzb7vy3aWilQ3lJfukrdw5fCFyvuUhkyDJxV7e3lVRNJ2IIRvTsq3+MAF
-         DlEKIm0WIAYhTjY8oRbumLXZOz1RJy8FTRDySCfO/L32uCh0dzsqOnoDSJ8D27cBhDci
-         y9ZhSogt6yLGH1DmGk+3pGbx8QZ2S3rQm+h+JExcv4KKEscdRERR3N5A1XCWf8u5tr3p
-         jCz9f/0C+XQtaqTxVWTb9SXnpI7Wa+TMPhH1THvsVechy01Eu4+pTShQLXDhdzBKovpA
-         Q4UaLjmiJ/d6ut6fO5U7dK4T6v4ZcfodyT9/MXFmBrqMFIcOPn1aHft/Fp2O9gLPj2Wk
-         nPPw==
+        bh=1PQ7S6mvnJWIgkvAn2u3X6CatMHsWA3MJFpJ2pyOLwk=;
+        b=T0Zdle94y9Hi5Oh7n6oaFexQtXaxSHObOFPJ9GtvAukR3QT97k594PE6t7hic4n7sg
+         0Tk+hFW+f/HIkbKDN9YoNKCnzkqcrjZ5N+LMnnzfjkoZOtFJeF4+HqAVe1AM5PzZxoWG
+         IKYC7l/MeAXQ/PMgIbcH/HmPyU8m1AfNzDAnuQpZHZjI2uW/CbiTwsKpu/LcoCG1udLg
+         CiUECpzZhrS67ltiGW6bvgtsvHbyqRGPsbsKRv22MEc5hEMutcEauDosaHvGYkCLBIgy
+         NrZO+L9y8u3HwPVtqc6ypdBtWzsU9r1g/BlmRnW6K7wbEFVvFMWw/tnQCJxsXCUmse97
+         XX5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746350629; x=1746955429;
+        d=1e100.net; s=20230601; t=1746354298; x=1746959098;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ULlfDCNR8m/9pJtlgrHCEPaJVNLe3RFSja1Lf02MnM4=;
-        b=fmDsUSGyQMM5K68ebj2+4NjaXKe8dQKP1Ahi5W1RQdPmhYopGyLhp+JoHtfdN1MlvD
-         NydZeoLAEEInUOXK4N01wtWjh65MiOTingGdSU8Q/p/vnTxJcbu4rbqao/veC++Vgh+X
-         LnNXOZiCpEt7sUlSbLp+DprLUOHI/i2vLk1sQkE1/D8o9Tt5Ma8XY4bzaDnJhSp1vcQp
-         9QZevSkzx0CShMwFNxhpcEasOGG4FwyW+8VagADWkMcT9yq61H+0yt6oplyhyowJ1CPO
-         jR8nlzxdwIa+ygSy11YWgmdyOTehanG+NZM+ZggouZAWlfpVYFNuVz0gGJrjMF0Zs6pO
-         ow1A==
-X-Forwarded-Encrypted: i=1; AJvYcCWJC3w/Cum1dgA1VUxybqdYOTWQd9uwwtkiIpq+/Gx4Qd70Va4BIs3bis/MP0wovkAuqo/HrA/T1aPNEJo=@vger.kernel.org, AJvYcCXkeg0X7kMZRojdx1rPPt9ZKLhZyv2gTd002lcn+LAIuSvmN4tKyD2mlnjBip7ura9NpbEud9182exBLEI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxH0VJlsLNT+OD9N6PnXR8Gs6aen53MCl4kHhtU5LhkhgewGYhD
-	3szxVft2TbnK/JP6UBTUyEc6hVNp+LxLJAo3yUzFBaRcZIQbihXA
-X-Gm-Gg: ASbGncvr/0/LfbdCjG2MKbhK3DxL7cEF0ZTp8T9Ndkv/LlReQQ1/TOLjd4ncE55z17X
-	L9i8rz8X/qn4H/v6BVj7TdhGzoLCfe/hYrcVNutSr8IBIPFEBD624OHw8fWZasPc21SI4PsENDh
-	NXiKlrMHsAoFynAIOk3MZ/IEznfVO+YDAme28WO0M9BBmlY9Q/yPKfz/8Dd1qB6/8TX+TYJEUIM
-	YTqFbBFGaUlSRjoKhPpJZ3uBerCZsmXYZn2Vrxy5gt4q1SoLZVqHsJUNcTYnQHOuLd83nyGl0xX
-	1TFS4XFmvVEQ1SEKv4AjDR7EDximDS7V
-X-Google-Smtp-Source: AGHT+IGKrc+4P+CCmQxGtEci8Piln9XhnppgGCzsKX971n/OxzWghBmZW4xn+ucKpFSOXGJQ0gP/3g==
-X-Received: by 2002:a17:907:6e94:b0:acb:ba01:4a4 with SMTP id a640c23a62f3a-ad1a48bcf72mr352875066b.3.1746350628696;
-        Sun, 04 May 2025 02:23:48 -0700 (PDT)
-Received: from xeon.. ([188.163.112.70])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad1891a26bdsm306050266b.43.2025.05.04.02.23.47
+        bh=1PQ7S6mvnJWIgkvAn2u3X6CatMHsWA3MJFpJ2pyOLwk=;
+        b=c8oXT+1pByJ3CeOCJR0eK0z/7rMwb4cO6Pl4oAKA1S+Urd3Iw6llx8isP52U2eo+9q
+         0dSD1ScgZLetjOyyGqiJuYLIeJ2JyJRas9ossMFD/7Moc4zxP1by5kn3CCqHYIP8cc7X
+         +IGjhaBP5mrt1reQ/i44txPSdgUZscgtX+fNow5c5xTMhJCEwSv/TrMM+p/lu2ympcCM
+         UrRpfz8skV2sUSYrc05g78uluOUanhz+Do2vPKgjjjvpRIAlISx+pIoBV3AD5DfLMnPV
+         /9RZnZb+bgsFw7GxlHwdKT4kopJyyT51q5z0nbPzolrim6N4xxRdb1o+3B+Jzr0t05az
+         IFZA==
+X-Forwarded-Encrypted: i=1; AJvYcCV9Ckzqz6wUwNDGF1GjVny7McBrxEyA8TONf5eo8uMSMrGFvs+sclaOtw2GPW+6Nzbk7boHdjkOGxjPNexh@vger.kernel.org, AJvYcCWi2VDykP4QQCSUV+0S7pBF92EQc6ENj/wEj1Lk3bN7ACyhqWyI0JlH+fksD7ryiqumrv0497H7USFe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKcrGutaj/1IpKYa3QE16gf64a/4jOVQjcH7P8CLHtYbhEqO+g
+	Zm93oSn34AsaL20HWehV/wXUkkvOJ/JZePNMsrZM/EoKP81dPaho
+X-Gm-Gg: ASbGnctP30YOEsbXwm28vjvhtNpLByy+U5c6i+BKWhdbCCd7Oyegm3NlgS1flocLf2r
+	/OzYlFwW2AiSYQM07CxpzRCpehoLU6F8hg2fKsR8RhdtCMkN0k+kRrgdzEVhoW6zV9DIikhA2by
+	FZKlHQxnFg15V1MSw46mREt/FVlTCiv/V/euuqHXn+JCJXno8rO01/3gOdIy0kvLyeeWArNq2Qj
+	2+JZVUeNK2drSQLt8yw5egiBjsXL7hT6QTTkcCQJjR21rnBOugDHlOc7mNsPc/yYhs4zZWcnZk6
+	SRp8KakgMdWhrZ1SAbyyEfHzH/E8Nfipvqx7+aSxj/pDOSYdjlDj
+X-Google-Smtp-Source: AGHT+IEKTdMWS+jgcgAMuh3WRdpxZw08Q315wtPX2pV7WRyc1kxWG/qYE8O2gr4jHmjNND3M/QRc1Q==
+X-Received: by 2002:a05:620a:4014:b0:7c9:4c25:9eb7 with SMTP id af79cd13be357-7cad5b3867amr1038889385a.23.1746354298396;
+        Sun, 04 May 2025 03:24:58 -0700 (PDT)
+Received: from localhost.localdomain ([216.237.233.165])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7cad23c48d6sm429222285a.32.2025.05.04.03.24.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 May 2025 02:23:48 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <treding@nvidia.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] ARM: tegra124: complete HOST1X devices binding
-Date: Sun,  4 May 2025 12:23:24 +0300
-Message-ID: <20250504092324.10802-4-clamor95@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250504092324.10802-1-clamor95@gmail.com>
-References: <20250504092324.10802-1-clamor95@gmail.com>
+        Sun, 04 May 2025 03:24:57 -0700 (PDT)
+From: John Clark <inindev@gmail.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	nicolas.frattaroli@collabora.com,
+	detlev.casanova@collabora.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	inindev@gmail.com
+Subject: [PATCH v2 0/3] Add Luckfox Omni3576 Carrier Board support for RK3576
+Date: Sun,  4 May 2025 06:24:44 -0400
+Message-Id: <20250504102447.153551-1-inindev@gmail.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250502205533.51744-1-inindev@gmail.com>
+References: <20250502205533.51744-1-inindev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,97 +98,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add nodes for devices on the HOST1X bus: VI, ISP, ISPB, MSENC and TSEC.
+This series adds device tree support for the Luckfox Omni3576 Carrier Board
+with Core3576 Module, based on the Rockchip RK3576 SoC, enabling essential
+functionality for booting Linux and basic connectivity. v1 was posted at:
+https://lore.kernel.org/linux-rockchip/20250502205533.51744-1-inindev@gmail.com
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Tested features (on Linux 6.15-rc4):
+ - UART: Serial console operational
+ - SD card: Mounts and reads/writes successfully
+ - PCIe: NVMe SSD detected, mounted, and fully functional
+ - Ethernet 0: Functional with RGMII PHY
+ - USB 2.0: Host ports
+ - RTC: Timekeeping and wake-up tested
+ - LED: Heartbeat trigger works
+ - eMMC: Enabled, not populated on tested board
+
+The series includes the following patches:
+ 1. dt-bindings: vendor-prefixes: Add Luckfox vendor prefix
+ 2. dt-bindings: arm: rockchip: Add luckfox,omni3576 binding
+ 3. arm64: dts: rockchip: Add Luckfox Omni3576 Board support
+
+The new DTS is covered by the existing ROCKCHIP ARCHITECTURE entry in MAINTAINERS.
+
+I am aware of ongoing RK3576 upstreaming efforts (e.g., by Collabora) and
+welcome feedback or collaboration to align with mainline driver development.
+
+Changes in v2:
+ - Enabled HDMI node per feedback from Heiko and Nicolas; untested due to
+   upstream driver issues
+ - Enabled Ethernet 1 node per Heiko's DT philosophy; untested due to
+   suspected PHY driver or configuration issues
+ - Clarified eMMC remains enabled but unpopulated on tested board, per Heiko
+
+Signed-off-by: John Clark <inindev@gmail.com>
 ---
- arch/arm/boot/dts/nvidia/tegra124.dtsi | 65 ++++++++++++++++++++++++++
- 1 file changed, 65 insertions(+)
+John Clark (3):
+  dt-bindings: vendor-prefixes: Add luckfox prefix
+  dt-bindings: arm: rockchip: Add Luckfox Omni3576 board
+  arm64: dts: rockchip: Add Luckfox Omni3576 Board support
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra124.dtsi b/arch/arm/boot/dts/nvidia/tegra124.dtsi
-index ec4f0e346b2b..ad7813da8aec 100644
---- a/arch/arm/boot/dts/nvidia/tegra124.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra124.dtsi
-@@ -103,6 +103,45 @@ host1x@50000000 {
- 
- 		ranges = <0 0x54000000 0 0x54000000 0 0x01000000>;
- 
-+		vi@54080000 {
-+			compatible = "nvidia,tegra124-vi";
-+			reg = <0x0 0x54080000 0x0 0x00040000>;
-+			interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&tegra_car TEGRA124_CLK_VI>;
-+			resets = <&tegra_car 20>;
-+			reset-names = "vi";
-+
-+			iommus = <&mc TEGRA_SWGROUP_VI>;
-+
-+			status = "disabled";
-+		};
-+
-+		isp@54600000 {
-+			compatible = "nvidia,tegra124-isp";
-+			reg = <0x0 0x54600000 0x0 0x00040000>;
-+			interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&tegra_car TEGRA124_CLK_ISP>;
-+			resets = <&tegra_car TEGRA124_CLK_ISP>;
-+			reset-names = "isp";
-+
-+			iommus = <&mc TEGRA_SWGROUP_ISP2>;
-+
-+			status = "disabled";
-+		};
-+
-+		isp@54680000 {
-+			compatible = "nvidia,tegra124-isp";
-+			reg = <0x0 0x54680000 0x0 0x00040000>;
-+			interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&tegra_car TEGRA124_CLK_ISPB>;
-+			resets = <&tegra_car TEGRA124_CLK_ISPB>;
-+			reset-names = "isp";
-+
-+			iommus = <&mc TEGRA_SWGROUP_ISP2B>;
-+
-+			status = "disabled";
-+		};
-+
- 		dc@54200000 {
- 			compatible = "nvidia,tegra124-dc";
- 			reg = <0x0 0x54200000 0x0 0x00040000>;
-@@ -209,6 +248,32 @@ dsib: dsi@54400000 {
- 			#size-cells = <0>;
- 		};
- 
-+		msenc@544c0000 {
-+			compatible = "nvidia,tegra124-msenc";
-+			reg = <0x0 0x544c0000 0x0 0x00040000>;
-+			interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&tegra_car TEGRA124_CLK_MSENC>;
-+			resets = <&tegra_car TEGRA124_CLK_MSENC>;
-+			reset-names = "mpe";
-+
-+			iommus = <&mc TEGRA_SWGROUP_MSENC>;
-+
-+			status = "disabled";
-+		};
-+
-+		tsec@54500000 {
-+			compatible = "nvidia,tegra124-tsec";
-+			reg = <0x0 0x54500000 0x0 0x00040000>;
-+			interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&tegra_car TEGRA124_CLK_TSEC>;
-+			resets = <&tegra_car TEGRA124_CLK_TSEC>;
-+			reset-names = "tsec";
-+
-+			iommus = <&mc TEGRA_SWGROUP_TSEC>;
-+
-+			status = "disabled";
-+		};
-+
- 		sor@54540000 {
- 			compatible = "nvidia,tegra124-sor";
- 			reg = <0x0 0x54540000 0x0 0x00040000>;
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3576-luckfox-omni3576.dts  | 779 ++++++++++++++++++
+ 4 files changed, 787 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-luckfox-omni3576.dts
+
 -- 
-2.48.1
+2.39.5
 
 
