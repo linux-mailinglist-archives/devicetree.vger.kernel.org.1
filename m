@@ -1,150 +1,136 @@
-Return-Path: <devicetree+bounces-173379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94D81AA8399
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 04:17:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC348AA83C8
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 05:35:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DF3B17B6E0
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 02:17:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 240FE1758D3
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 03:35:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E643FBA7;
-	Sun,  4 May 2025 02:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A38154BF0;
+	Sun,  4 May 2025 03:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mJQM36X/"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="K2gPVk2p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C40DF2FB6;
-	Sun,  4 May 2025 02:17:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22ECA146588
+	for <devicetree@vger.kernel.org>; Sun,  4 May 2025 03:35:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746325069; cv=none; b=MmVA266tEQrED2aoMHkGb/i7oRrSgN9R4YiYmpvR+E8fBD64QTtHitE+MMflNBF54BiOu5K0Umy0zKEU6Cy1O38VkhKNlC79v6DR44HWkU7L/StkOoBodTgwnes7NU14uKCYKAaa90+uugu4u3v29fHoswHRLkVYnCxGTmMALns=
+	t=1746329720; cv=none; b=b8M4VP9E9GeIhQJXAlTZum4smKEpJbq3ValF2vVTlnLpwFjXIdtMlYNsa2hv+pzzes1URB4IYChbY6fBx300ZEBvp8hWR+ldZhFp3uYxIMFFUKRbcDY3jHrCcokVIaecUQtxSPugZn2lQQarRUqKFPFQcWNisBEKeWizQb8SJwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746325069; c=relaxed/simple;
-	bh=5NeyMMIS4SZYCdUdtWmJdCjRc+ODgHvf4ZgdwiJJnD4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qmwffx8605kHEvI4k5wLLycjQUNPO/k0O8rMoovDe6HUpszR0RtqKww/On/FItqzbOwXy92pycBPqr1fjk+xfL8a4bbjF+1jSYEIBL5UKSILWIwqhe/LXdU8fgOQXHdv0NtDzDZbquL5C1JhQUJruCAED2ZCgdmgZwMlukJELTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mJQM36X/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5440sdVr029355;
-	Sun, 4 May 2025 02:17:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XyUBmEte4QszpyUnEqycbjY7YzHmOGbdtPVYj57blxs=; b=mJQM36X/ASBl2HrP
-	Jmsye/BYuOnYVhcWdobHInUU/Ofim14VGNBBFjK/oqCjAdTwh+TmTxREgi3/hSZM
-	BLAuhBHl4QZDVA/m0SOyrnuIcW0CXUOCs/oDbsk9W9GGBv3QefDmQoqjNYj15Th7
-	+wyUzs3ZiajshnSgTqAFq573j5VsnuCIt0V8Gl18nw+SJQELZTxpukd3teChtc1T
-	PLyVoI5QZb0QABb8ndYInjuZmKvODhpuj1YyVPND2Ruq7U/5hYgyB2CRhpHteH3f
-	GzIr6NSb/6f8YSft5ugcrd9sc5OeJCmYJ1EEh+7e2VorpvomsRwVHFoiZzBAeCYM
-	f+UzEQ==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46da3rse97-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 04 May 2025 02:17:40 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5442HSqD015670
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 4 May 2025 02:17:28 GMT
-Received: from [10.253.79.250] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 3 May 2025
- 19:17:24 -0700
-Message-ID: <35dbe18b-2c10-4af2-8ffc-05278158be68@quicinc.com>
-Date: Sun, 4 May 2025 10:17:21 +0800
+	s=arc-20240116; t=1746329720; c=relaxed/simple;
+	bh=G38Y6ejHHNy25foI2rFjn1QAdikdVwNhEtaER9WcXtc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CMmvnmeJee6oeJe/6v9ByMG9CjaTC+VeOr7v+DJ55P4V++AvvcFpfcPvLVKHCOfc12ziwTYqArfDB9C7X3EMVAl4KihZLnrh6v06IRqN7F8rCBrgPtxmcaelOfjLMsDYdBOt0OrfOCaqhCwW3daccj/tJd2ghLXclcqb2sFYhSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=K2gPVk2p; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1746329716;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=0v/OjtH+AYMPDo4HyiUOT8RSQOKjvKJRz99zAdE5I5g=;
+	b=K2gPVk2pSpjEGcAT/reeuoPNxmiJ2Rh9zQ68QoflNknv+jx/dHYKMI7tLeagyLZzzFlqld
+	xPn6l/52EV5l0vJxAG85T6CC1d4t7j53/geIlCuTKPzHTDoXX/Ago6U+8iPdBuUpt0UUu4
+	3iAVUh8FB48gok/zRZ/hivijMFjKt5Y=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-541-QiXdVupIPgm_51vgNDnd5A-1; Sat, 03 May 2025 23:35:14 -0400
+X-MC-Unique: QiXdVupIPgm_51vgNDnd5A-1
+X-Mimecast-MFC-AGG-ID: QiXdVupIPgm_51vgNDnd5A_1746329713
+Received: by mail-ej1-f70.google.com with SMTP id a640c23a62f3a-acb8f9f58ebso247559866b.2
+        for <devicetree@vger.kernel.org>; Sat, 03 May 2025 20:35:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746329713; x=1746934513;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0v/OjtH+AYMPDo4HyiUOT8RSQOKjvKJRz99zAdE5I5g=;
+        b=QDykD9TE5whMgjn4Vd8xl9/FAO4+2TSg1JokzbYlAKBX8tteNwS3ENx38mrabNvDVv
+         KFECt5ylqmBW6g4rqg0qnMgGQUYmcy3aUsZV82AfCZMl82QnJ1IZfb+AEv6GC7V/7NE8
+         xND66NtSt43RyybM7TqKK1b5D5EgFdqSZYRQRHwghFUpzpiyZUXwEaNNRHvcivKuPf9t
+         tnlz5Mqnqp+8UIiF126dvMLT/loYSPJBZvpWrEioGyKOHXyhU7Bz26ryJWcNJSQrC0f5
+         vICRvE4jdYzsGAU0R3WfEIbd1chXt+Wkr0fE9FQGPINoMGbNtr6EVtIWCMPpTeQjwW6x
+         3wyA==
+X-Forwarded-Encrypted: i=1; AJvYcCWzHjBwyHUJ8fpFxfxMYMEiGrfskmcsq9gqBkT/mzcH1e34AWFApJjzFb0W2SpkMUBbWOtlePLaUu3W@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxcj4uyyiUTpAyulE7MylQCwPVpwZDOoTeS72Pp14K8ZiHWGUgl
+	1aBeiKWh5LFkxOhbHxzg5hxDEOfLYeH7p+0dv4Gwcy+JFJbA1Q0lLypbyvZ2ZqoFCJJO68OPx3/
+	IBzGJRzgE8CYq89myoUWmK/yNpBoUseG3BpG8VlKS8tD5h6c6gjbcpbkdtkStELz5vjw=
+X-Gm-Gg: ASbGncuoO+YNYsO5NV8g98ryqJkmbbJgpQraoO20E+xuTklF4Oi/u5n0Es+KfG050LU
+	ZDDM766n4F1vZsYSy4nAFobsL0z/ZRr/W6i6HLexXnztstke7DGvJz3ar6+maAnim12boeXPVc/
+	7LuPDbRvGFp3yaTeDmhTI4lc69zGoeXzIahdn3dJ/Mfstufr8E4wJR1cFHJiNvm81irj486AJDq
+	FlP0vjug5UhtBfWBskqJlyHXym5khPAPk85CEgHbMCl7HfwqV4n0CcOXhNyaCwY2UT89ty5OKOM
+	IMLiiAvio9zlfK7zvy5KGhPejllYpm2BTnBPGVPl+wcnZhGJ9LlgBHZ3Tg==
+X-Received: by 2002:a17:907:2d07:b0:ac7:e815:6e12 with SMTP id a640c23a62f3a-ad1a4a09f38mr245224766b.33.1746329713062;
+        Sat, 03 May 2025 20:35:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG3DPNJBEfULAFRQwM0mCppaXVmV0b1Gm6boTIP80Vx6UREkQTGIelmuYJ6z6ENgBGk1YNm4g==
+X-Received: by 2002:a17:907:2d07:b0:ac7:e815:6e12 with SMTP id a640c23a62f3a-ad1a4a09f38mr245223866b.33.1746329712719;
+        Sat, 03 May 2025 20:35:12 -0700 (PDT)
+Received: from lbulwahn-thinkpadx1carbongen9.rmtde.csb ([2a02:810d:7e01:ef00:b52:2ad9:f357:f709])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad189540751sm269222266b.166.2025.05.03.20.35.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 03 May 2025 20:35:11 -0700 (PDT)
+From: Lukas Bulwahn <lbulwahn@redhat.com>
+X-Google-Original-From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
+To: David Heidelberg <david@ixit.cz>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	kernel-janitors@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lukas Bulwahn <lukas.bulwahn@redhat.com>
+Subject: [PATCH] MAINTAINERS: adjust file entry in OMNIVISION OV7670 SENSOR DRIVER
+Date: Sun,  4 May 2025 05:35:02 +0200
+Message-ID: <20250504033502.37809-1-lukas.bulwahn@redhat.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: Update IPQ5018 xo_board_clk to use
- fixed factor clock
-To: George Moussalem <george.moussalem@outlook.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250502-ipq5018-cmn-pll-v1-0-27902c1c4071@outlook.com>
- <20250502-ipq5018-cmn-pll-v1-6-27902c1c4071@outlook.com>
- <frlw5n2fxu5wxrlaahiuwlgaeg4rsqk7ushpcgvc2q4mzorrzf@e4axknhir4el>
- <DS7PR19MB888312EBE14582523C3B95209D8D2@DS7PR19MB8883.namprd19.prod.outlook.com>
-Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <DS7PR19MB888312EBE14582523C3B95209D8D2@DS7PR19MB8883.namprd19.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: hmTCiVMof6DDP74HuMGvZMmTRFMwCj1_
-X-Authority-Analysis: v=2.4 cv=cpWbk04i c=1 sm=1 tr=0 ts=6816ce44 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10
- a=rGiGdXKnD2MgKQmdEHQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: hmTCiVMof6DDP74HuMGvZMmTRFMwCj1_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA0MDAyMCBTYWx0ZWRfXzDJbOfqc992O
- os3xN0E5bFRcozVc0QYaSOXfVM9Rq2BT13cuufWbulayRmMV3jxjeFGI2m8jaqZExeNphg5YNje
- voJi5cILtaXqQaRpi0wOwCcd2hMhgmuBS3OOIzOFbi1DwqQjfyN8/Uuzf1wbRkq+EZ8CKlhYoKW
- gCGrKdDgbFEyXzncp94eaaI+LOibx+/wZv6jlKMq7rREI7B8ziB3bqCrPdtX6GEneR9rYvaXxM/
- QoS4W99BIGBu588rCUvR8PgcL8BJX4nnNlAlhm2DwyQHprqbRvry1F9eNXv3TL000veRBK7Od/Y
- K/Lk5zf0os3gLIqBSeHLPr87k7hn4COekV6wkJKAHgEzRx9CPX4f5Q3/0Avh+jRp5u+27C1U9hd
- EpoqbHclrOrPZSr9yOwWtp7zbWiFLfYeTD7Rm2YwYPlSxgJxykU7lROZtHM/1M5j4+llFNQR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-04_01,2025-04-30_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 spamscore=0 lowpriorityscore=0 phishscore=0 adultscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=862
- clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505040020
 
+From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
 
+Commit 59b24c0047a2 ("media: dt-bindings: media: i2c: align filenames
+format with standard") renames the files in
+Documentation/devicetree/bindings/media/i2c/, but misses to adjust the file
+entry in OMNIVISION OV7670 SENSOR DRIVER.
 
-On 5/2/2025 11:53 PM, George Moussalem wrote:
->>> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55- 
->>> v1.dts b/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
->>> index 
->>> 5bb021cb29cd39cb95035bfac1bdbc976439838b..7a25af57749c8e8c9a6a185437886b04b0d99e8e 100644
->>> --- a/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
->>> +++ b/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
->>> @@ -124,5 +124,6 @@ uart_pins: uart-pins-state {
->>>   };
->>>   &xo_board_clk {
->>> -    clock-frequency = <24000000>;
->>> +    clock-div = <4>;
->>> +    clock-mult = <1>;
->>>   };
->>
->> Is the divider a part of the SoC? If so, please move these values to 
->> the SoC dtsi file.
-> 
-> my 'best guess' is that the ref clk for ipq5018 is always 96MHZ and the 
-> XO board clk is 24MHZ, so it should be safe to move it to the dtsi, but 
-> this is purely based on the 5 different board types I have.
-> 
-> @Luo Jie: can you confirm the above?
+Adjust the file entry after this renaming.
 
-The xo_board_clk is achieved by the bootstrap PINs, which should be
-always 24 MHZ, we can move it to the RDP common DTSI if it is existed.
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@redhat.com>
+---
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 7b78a98d1f42..78872ebb1aac 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -18163,7 +18163,7 @@ OMNIVISION OV7670 SENSOR DRIVER
+ L:	linux-media@vger.kernel.org
+ S:	Orphan
+ T:	git git://linuxtv.org/media.git
+-F:	Documentation/devicetree/bindings/media/i2c/ov7670.txt
++F:	Documentation/devicetree/bindings/media/i2c/ovti,ov7670.txt
+ F:	drivers/media/i2c/ov7670.c
+ 
+ OMNIVISION OV772x SENSOR DRIVER
+-- 
+2.49.0
 
 
