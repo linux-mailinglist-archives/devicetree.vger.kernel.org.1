@@ -1,170 +1,134 @@
-Return-Path: <devicetree+bounces-173478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31928AA882F
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 18:53:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FA52AA8840
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 19:01:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED7BA1895D80
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 16:54:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64E5A189745B
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 17:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 177CE1E0DD1;
-	Sun,  4 May 2025 16:53:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0AF288A5;
+	Sun,  4 May 2025 17:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aSRFzbKN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cAEcg+Ww"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAAE98F7D;
-	Sun,  4 May 2025 16:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BB89BE46;
+	Sun,  4 May 2025 17:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746377634; cv=none; b=YZQ4NAB8YNEfdeCfX/n7jmtZiPyDfK9BMMm/aZ8acUrvzPXwDfmcGytMAvBy0pxtalxhWA0VlLAZYfCOAtz+du3LwUzqwGLAwPhms2nnwurJFHup8f6u8mv2AeyDozAmrDlSOYcbS6ZG4/im+E6tE9CtTaQjOya7ekKDCE0YNcs=
+	t=1746378080; cv=none; b=Q2n3UKGBu8mdUEg/9EYufkQtvD9aoPvZNwV78KDpjdAauOvZ0Z7KVy0arhBPlkyqW8y1uaP+5uFP4Fv5jNoBVd7Akd9OmjfnpidClBC5A0RsyP5bfmIwZBIr/h/P26j5H/YL302hfvYMme/ZBg4+RZ1earh8X/ZOnwOIpuiLB5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746377634; c=relaxed/simple;
-	bh=0gXJYMgPbvqPvJzZFFCwd3YP+XfNALENWu18AtKI1iQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RhrqoH1YnbIqm8von2n7ByasMTeHtKtQGHSgWglSL/+6AgllNNtB68KH8kq8VWBaisY6S3uPfA+i39fP8aaWzCO1wxx8HH7237hAdoUxJ4bUGzBYNFIidPEymi8YZl6D3DLQTMqt20mHjNv/C0uk1Oh3zomToitYkQkt+DGy+qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aSRFzbKN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05B83C4CEE7;
-	Sun,  4 May 2025 16:53:50 +0000 (UTC)
+	s=arc-20240116; t=1746378080; c=relaxed/simple;
+	bh=BaPPJANucR/812RtKyZtISxhsCg/BNk42rLMW10I6hA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pBSXpghWH93fmVrE/WvCf0XT1+7pxkqi2LREXEPLsyNoYzsUkpGMTiuF/JeKQXC7/DvvaaBml4Ykhw7NxqqXvVZJTIUT5jF80A0MLlkI8dxDNQNh+XqscXZkJvZS1CpIaOK4DEVcMH4MoGZ4RkMrg4p9XhQOUjDeXcbUCyXCqeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cAEcg+Ww; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACAEFC4CEE7;
+	Sun,  4 May 2025 17:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746377633;
-	bh=0gXJYMgPbvqPvJzZFFCwd3YP+XfNALENWu18AtKI1iQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=aSRFzbKNybtkZwfKlfVs/kMcJiztW/9nOE3cCYuVmCTSexhgUuLegTWoZ9CFPmmQe
-	 aQ2q8Ft9cWlCTHmR/rj4la2QxJz0NDZmSyCbTaKMu0dWhw9bCojR+lJ35jDYmy9ZMx
-	 FBnU2CUBT/Ux/MFxwRcw6TnRfslnVb6qTq30gB89EiOKJmRTiO6CP9C8QIVLVcXoa/
-	 4B6FqRpukjjL2qAmgC2YAFLsb0jjrYWbz4TqGTx/7mo9EnBQ1gOvfqXp4lB9N//WQ6
-	 vMhlV8uchcew4iE4qG9sA3WhB5QsnQ1on03nGukKd7CQVjpGNMr66NKrEWcMxnpeGv
-	 ++oeCmfAAj2tw==
-Date: Sun, 4 May 2025 17:53:45 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- ~lkcamp/patches@lists.sr.ht, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings:iio:adc:st,spear600-adc: txt to yaml
- format conversion.
-Message-ID: <20250504175345.2465f82a@jic23-huawei>
-In-Reply-To: <20250430020248.26639-1-rodrigo.gobbi.7@gmail.com>
-References: <20250430020248.26639-1-rodrigo.gobbi.7@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=k20201202; t=1746378077;
+	bh=BaPPJANucR/812RtKyZtISxhsCg/BNk42rLMW10I6hA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cAEcg+WwbNBEhPyJS1HOkM72ACHl4NXN5PjTsKiX2HF93LCbtUnxtvhUI13TuHmKB
+	 2EOuj/qU/WnK/GFFy89yBmRsHP1nzEVOzcEuF4LvL8MH4fxqvuf9JdrSR9ILhI0W0e
+	 /36t7wMfkHD8pNChqI8nvA9k3H5eZKCFEIe/fxUOnAlyK2AjqQh5s0kMB3i6Q8BOkw
+	 Ubw5tqI5gvPuP7SajT3bZDTLxJxX1yo54Iqphjflxp3tsHR98cGnmlQ9BQT/8hOQow
+	 QgE6w65WcfrkHGm1NH6OmbB5TCRb9Vv+Jrv4POZMlxsUCiXxifRVSfxvUrHRrmZ7PJ
+	 5Lmz9bFc3I5Nw==
+Message-ID: <fc3aee25-2d0f-4825-abbf-6631dbc64996@kernel.org>
+Date: Sun, 4 May 2025 19:01:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 0/4] can: m_can: Add am62 wakeup support
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+ Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vishal Mahaveer <vishalm@ti.com>,
+ Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
+ Sebin Francis <sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>,
+ Akashdeep Kaur <a-kaur@ti.com>, Simon Horman <horms@kernel.org>,
+ Vincent MAILHOL <mailhol.vincent@wanadoo.fr>, linux-can@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250421-topic-mcan-wakeup-source-v6-12-v7-0-1b7b916c9832@baylibre.com>
+ <20250503-petite-echidna-from-hyperborea-cfd7fc-mkl@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250503-petite-echidna-from-hyperborea-cfd7fc-mkl@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Tue, 29 Apr 2025 22:50:01 -0300
-Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com> wrote:
-
-> Straight forward conversion from spear-adc.txt into yaml format.
+On 03/05/2025 16:03, Marc Kleine-Budde wrote:
+> On 21.04.2025 10:10:36, Markus Schneider-Pargmann wrote:
 > 
-> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-> ---
-> Some constraints were extracted from the driver (spear_adc.c) and the public datasheet
-> referenced at the yaml.
+> [...]
 > 
-> Changelog:
-> v2: add constraints over properties and remove a ref at MAINTAINERS file.
-> v1: https://lore.kernel.org/linux-devicetree/20250423022956.31218-1-rodrigo.gobbi.7@gmail.com/
-> ---
->  .../bindings/iio/adc/st,spear600-adc.yaml     | 69 +++++++++++++++++++
->  .../bindings/staging/iio/adc/spear-adc.txt    | 24 -------
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 70 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/st,spear600-adc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/staging/iio/adc/spear-adc.txt
+>> Devicetree Bindings
+>> -------------------
+>> The wakeup-source property is used with references to
+>> system-idle-states. This depends on the dt-schema pull request that adds
+>> bindings for system-idle-states and updates the binding for wakeup-source:
+>>   https://github.com/devicetree-org/dt-schema/pull/150
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/st,spear600-adc.yaml b/Documentation/devicetree/bindings/iio/adc/st,spear600-adc.yaml
-> new file mode 100644
-> index 000000000000..afce10eab1c1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/st,spear600-adc.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/st,spear600-adc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ST SPEAr ADC device driver
-> +
-> +maintainers:
-> +  - Jonathan Cameron <jic23@kernel.org>
-> +
-> +description: |
-> +  Integrated ADC inside the ST SPEAr SoC, SPEAr600, supporting
-> +  10-bit resolution. Datasheet can be found here:
-> +  https://www.st.com/resource/en/datasheet/spear600.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,spear600-adc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  sampling-frequency:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 2500000
-> +    maximum: 20000000
-> +    description:
-> +      Default sampling frequency of the ADC
-For consistency probably wants a full stop.  (as well as units)
+> How can we get an Ack for patch 1 by the DT people?
 
-> +
-> +  vref-external:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1000
-> +    maximum: 2800
-> +    description:
-> +      External voltage reference in milli-volts. If omitted
+No ack, because it waits on dtschema changes. I commented there some
+time ago but there was no response from the author.
 
-Very short wrap. Go up to 80 chars.
-
-> +      the internal voltage reference will be used.
-> +
-> +  average-samples:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 128
-> +    default: 0
-> +    description:
-> +      Number of samples to generate an average value. If
-> +      omitted, single data conversion will be used.
-It is odd to have a default outside of range.  I'll wait
-to see what Conor suggests for that. I'm fine with anything
-that doesn't trip up the dt parsing!
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - sampling-frequency
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    adc: adc@d8200000 {
-> +        compatible = "st,spear600-adc";
-> +        reg = <0xd8200000 0x1000>;
-> +        interrupt-parent = <&vic1>;
-> +        interrupts = <6>;
-> +        sampling-frequency = <5000000>;
-> +        vref-external = <2500>;	/* 2.5V VRef */
-> +    };
+Best regards,
+Krzysztof
 
