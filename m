@@ -1,110 +1,171 @@
-Return-Path: <devicetree+bounces-173466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFD9AAA8798
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 18:02:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1E9FAA87CD
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 18:14:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFC161897A1B
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 16:03:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3053E3B9787
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 16:13:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5913027454;
-	Sun,  4 May 2025 16:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6556B1E7C24;
+	Sun,  4 May 2025 16:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fQQPi4DD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PceyglrV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 298894C7C;
-	Sun,  4 May 2025 16:02:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56B31E51E5
+	for <devicetree@vger.kernel.org>; Sun,  4 May 2025 16:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746374567; cv=none; b=n9DIqT7A9X4argqTiILRJNnPK0iVRZJ/zB/MMObnJg7IQ/QuTqXmaehANoWeNrSnJhWti6aKYhGmcFpdhFpntJwpheOAUxs/hO1DSaDgGiECf/6r1tbhG9w+hBPai8NAlo5XhWmmuIKYNbmK0rI5Ro0Y4UCiBer3XnhVofBIlvM=
+	t=1746375224; cv=none; b=hf9nEqVgE9wsCh2g6/Iv2RabmW3zTcv/CjN0B05PCHO0ntsgZa92GXKZJ8wRXNXKB7I/lIH++BqAB6IfIixLx1kN0Y/UC5nARuHlE/uNB4VnIh7IlbVAEvRLKk2A9kNL4FIJ1smy83qqOQ48b89Br8NsFqD8dPfAnXGmBYk8LPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746374567; c=relaxed/simple;
-	bh=BFHMsTPszTF3xXY2zylqYXdY6IMVQpG3ks1nZ8p4z8E=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=N/t3qSx5WpgRYYLIxjxLRVvQfEpb2liNK0WYpuunhrq8g0LAu50iICYwQ7PckY+Aionf60Tg+fxyEvK14cS87pcV0IMlgqi5H254eDyI01lIZGZuGYp7lvbZm42jD9f2WCrK5tpGHBqErdc8/YLqXV618+ClH52PCp9HEfhm93M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fQQPi4DD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6D68C4CEEF;
-	Sun,  4 May 2025 16:02:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746374566;
-	bh=BFHMsTPszTF3xXY2zylqYXdY6IMVQpG3ks1nZ8p4z8E=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=fQQPi4DDj6DWJH2qy1/3yVtoRiCZHmgamzhDXRj3vRMhNpUx0jV/7Dr7FPRuwan8M
-	 5CKP1Kg63STYQmyMGKz4un4rsjyQT8AAQKwKCM3f6B8spb68lWF0f9iens4L1vc0H/
-	 UDDhgdKr1BsWP4V0pdqQU0Ay2MDDEa6QNLlAmKN1BwYevSZKLkAcu05OF6Xrdkhz2S
-	 e7g8wVjb+iIzJnL0JY5jzdX8DjdzdI/GGUiAPyJsud5D10BtJNsD6UdDJImBijqex+
-	 U4mxSTg4acWqYsY9W3vmZR+1lMcUmz6l1MLP5Tmh3USTgDyUQkJEykHnvO5On5CLUU
-	 9Ve0P/G7WDFMA==
-Date: Sun, 4 May 2025 17:02:34 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Sayyad Abid <sayyad.abid16@gmail.com>
-Cc: linux-iio@vger.kernel.org, lars@metafoo.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, javier.carrasco.cruz@gmail.com,
- olivier.moysan@foss.st.com, gstols@baylibre.com, tgamblin@baylibre.com,
- alisadariana@gmail.com, eblanc@baylibre.com, antoniu.miclaus@analog.com,
- andriy.shevchenko@linux.intel.com, stefan.popa@analog.com,
- ramona.gradinariu@analog.com, herve.codina@bootlin.com,
- tobias.sperling@softing.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 4/5] MAINTAINERS: add entry for TI ADS1262 ADC
- driver
-Message-ID: <20250504170234.46b52188@jic23-huawei>
-In-Reply-To: <20250501100043.325423-5-sayyad.abid16@gmail.com>
-References: <20250501100043.325423-1-sayyad.abid16@gmail.com>
-	<20250501100043.325423-5-sayyad.abid16@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1746375224; c=relaxed/simple;
+	bh=k+dXzlqMIg75u0mEM2Z8oVwbF0JGO6yHXhkMZsH6N+o=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IaXw/7Wbcb2y3+jqGiHBaILpCzCTfgeVnUOm6DBGrZQ7miO7G46hZxYg16KYD5ANGazse5luaJMrOAMDZcTn0Tq+zSDi6CddJepvvk8xNkbSruW4gUikYDMVApqMvT9k7/3J7wa9TDCinJ43z8BupioYDeBZA2SU24Fd+dTn0Uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PceyglrV; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 544BagZP003594
+	for <devicetree@vger.kernel.org>; Sun, 4 May 2025 16:13:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	86cBgxAbBj1uawgk6dKg3/xrbG+UFcgr07uuksYBAN8=; b=PceyglrV3PU7GHzr
+	LuuP7Q12afGV8PbCfYTHmKQsTBtZtuXymMNqsu2dmixChR6erxqUWCPzVtzIT7Gk
+	D72ayXTs04CvX8pg1yjiO3EBXBRqHRXpUYRYHBe8A6pSpkmCkApdh0vt9qhFEL2e
+	qYe4qDZc0K7MXrbAPan9x/gNIgAWkQxxja4dziSbeCovgizl9DF6pVz8ML6UH7Aq
+	eoxo9YtwQQTIU4OTEl7CSA938rcpLUBnFBZNRFns2Jrvjh5BT0+s8qlapBpu3x8R
+	Fy23vk+CeM5ssAffU0ROjuC+FH8tK4rnDQixqbzSyXB0ON2tFzzgZIDrvggqZKg6
+	mZKNhA==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46da55t7cd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 04 May 2025 16:13:41 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c5c77aff78so337524685a.0
+        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 09:13:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746375221; x=1746980021;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=86cBgxAbBj1uawgk6dKg3/xrbG+UFcgr07uuksYBAN8=;
+        b=dQ+e6YU7hEIm920vbSZDAMovgZIwh5ywKQejAhb5JHICss/4orgmvxrlr/Z3SNZ4d0
+         YOhJFw/T1OTVPJHmkYlPils3PpNq0n2kDnup7UqMuJHDeyfo6SmUrM/brjjJnEf3f6bg
+         mk8FSJg6LeLU6duG7CDJLXAhzPDuq9n8fAgrursfl2vQvkhQ+A9ZebD1aOH7396iqk7Z
+         neS/xdn83VzjoS4QGH4PhcaQ5TRLkC2CxUVlS/3KmJTDAMqAdrig4W8YKa+/NII/mQmY
+         aO/U3KmIabi6Ur+JP+j7FvMTND68bHmgVXetXCp5s5EOvce8bX81HZc/vUvzw9Cb0wJH
+         EFOA==
+X-Forwarded-Encrypted: i=1; AJvYcCUA38RH2vhTxesQ9ezTGslbJ35PZ5/3HQDvExmYJDIKjDRmqGgEhIGSl7Hc1RP9Ydo3f+zJVhvJyK6q@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgcgvfrylgfP7hPaQ7TCnH9uMpEpLqd1m3+SCXo+ChKiGFmGSG
+	DkKXplahiDzR3NwtuBb/eHg0ybgjwS9JzbKZICWRmqKbInfmNeNsmPf3K7dtJg8B//dTKsfJH2l
+	1O7mVoATHaK1QlCpzI8ClafseDSpka1iNNQ0fPr2MHxwVVfIA/PFOttgs59QQ
+X-Gm-Gg: ASbGncuFMtz+HSEWKJ65TdLA5Di/ue9ZMZgKkE1v1VLZ0httvER7YOZ44Gy/PLzZHGR
+	D9f/bgHctUbZtGgElGv7R/IiSygw4NK9etPOXZeGksMPcPyYCobXaCquXlO0ELb6FNAK52AEHKL
+	sN6A1/XQDMunZjo4LpcUdDwkSZLhYVmFmN7VGUQHhsdZWRuctbocGLgIiTTnkMK1IEsp3HT2rDI
+	4X5UM3nYa/x4NmBlD5X1RnOPMnMBCjhZ45+Ko3ScZdtgUrwNoxKwGJQ5zbCJtPKAXBYkWVmVAYc
+	Diy5AWEorvjOgo528udZ7SunRDsbT9eSYicl6gyWAqlZOoqWZ6/QgYN/74SH2keS/sXFYBZ28k+
+	GWQlmxauONmuFK3QbUzSgnSAu
+X-Received: by 2002:a05:620a:2591:b0:7c5:5f38:ba59 with SMTP id af79cd13be357-7cae3a5a077mr572042785a.3.1746375220865;
+        Sun, 04 May 2025 09:13:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEc6F2gMWEMC/eQyOndUIwlivpCZSW5Hk2df4PpYxa0HMFQ0EsGz/WEeqpDE8GrC8oyTI9p4A==
+X-Received: by 2002:a05:620a:2591:b0:7c5:5f38:ba59 with SMTP id af79cd13be357-7cae3a5a077mr572039185a.3.1746375220519;
+        Sun, 04 May 2025 09:13:40 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94ee937sm1335231e87.142.2025.05.04.09.13.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 May 2025 09:13:39 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v4 0/7] drm/msm/mdp4: rework LVDS/LCDC panel support
+Date: Sun,  4 May 2025 19:13:23 +0300
+Message-Id: <174637445761.1385605.15776598312432418446.b4-ty@oss.qualcomm.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250425-fd-mdp4-lvds-v4-0-6b212160b44c@oss.qualcomm.com>
+References: <20250425-fd-mdp4-lvds-v4-0-6b212160b44c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA0MDE1MiBTYWx0ZWRfX2EoCNeQXg1Ud
+ Du8gXqQ2x+xCUSWOv2L7RfFPT8ARe6MSbNLXreJZvCznl0gr3UXlMCJPRnpEe86Ex1iMNq0y7cs
+ CMZpmAU7G/Pp+PQlQnL/pQx7G67I2AGSSefJKYn1d4DDZifU/vMwBbrmNpS+V8A9TPCs5WKpLDH
+ CjEmrI5srhQ6SN/aKdCgVRnzFXK1p2Le1JRH6ILhsIKMO1ZkwUkkGQpeSlSOW099XjF3z7lgSgQ
+ gcFvh6VDCacAD51olFGZAKzmemeaJhgnHoZvCGptd0inVomCyrxc2b6j18afE8xnCrlZ1Pf909C
+ Cf+qynbQywWgRMEUzRCcHfntFI/DYbs1Q1v8kihsoeUDLlM8Bo/LpvM2U+IK8nJanxPEBCEOVAo
+ N23+6EUCFiTJpAbouCxIcwKcwldDzxC93uBFm7VzElHxQZ2TzWEX32lgPa9UioPdtCtEN5r/
+X-Authority-Analysis: v=2.4 cv=M9RNKzws c=1 sm=1 tr=0 ts=68179235 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=dt9VzEwgFbYA:10 a=e5mUnYsNAAAA:8 a=EUspDBNiAAAA:8 a=JuEGTYreKb10gHM5aT0A:9
+ a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-GUID: vlS7cnWG1AuKWUUjE8d2rbTIJmEf-F0y
+X-Proofpoint-ORIG-GUID: vlS7cnWG1AuKWUUjE8d2rbTIJmEf-F0y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-04_06,2025-04-30_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 mlxlogscore=971 priorityscore=1501 malwarescore=0
+ mlxscore=0 bulkscore=0 adultscore=0 suspectscore=0 clxscore=1015
+ lowpriorityscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2504070000 definitions=main-2505040152
 
-On Thu,  1 May 2025 15:30:42 +0530
-Sayyad Abid <sayyad.abid16@gmail.com> wrote:
 
-> Add a new MAINTAINERS section for the TI ADS1262 ADC driver, which includes
-> the main source file and the device tree binding documentation.
+On Fri, 25 Apr 2025 12:51:50 +0300, Dmitry Baryshkov wrote:
+> The LCDC controller uses pixel clock provided by the multimedia clock
+> controller (mmcc) instead of using LVDS PHY clock directly. Link LVDS
+> clocks properly, taking MMCC into account.
 > 
-> Signed-off-by: Sayyad Abid <sayyad.abid16@gmail.com>
-Better to add this (and build it up in stages) as part of the patch
-that introduces the 1st file which should be the DT binding.  
-
-That way checkpatch won't moan ;)
-
-Jonathan
-
-
-> ---
->  MAINTAINERS | 7 +++++++
->  1 file changed, 7 insertions(+)
+> MDP4 uses custom code to handle LVDS panel. It predates handling
+> EPROBE_DEFER, it tries to work when the panel device is not available,
+> etc. Switch MDP4 LCDC code to use drm_panel_bridge/drm_bridge_connector
+> to follow contemporary DRM practices.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 3cbf9ac0d83f..10b2e9293a99 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -24187,6 +24187,13 @@ S:	Supported
->  F:	Documentation/devicetree/bindings/iio/adc/ti,ads7924.yaml
->  F:	drivers/iio/adc/ti-ads7924.c
->  
-> +TI ADS1262 ADC DRIVER
-> +M:	Sayyad Abid <sayyad.abid16@gmail.com>
-> +L:	linux-iio@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/adc/ti,ads1262.yaml
-> +F:	drivers/iio/adc/ads1262.c
-> +
->  TI AM437X VPFE DRIVER
->  M:	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>
->  L:	linux-media@vger.kernel.org
+> [...]
 
+Applied, thanks!
+
+[1/7] dt-bindings: display: msm: mdp4: add LCDC clock and PLL source
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/2f1d131147aa
+[2/7] drm/msm/mdp4: drop mpd4_lvds_pll_init stub
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/f6720d64d8eb
+[3/7] drm/msm/mdp4: register the LVDS PLL as a clock provider
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/9c2f63da6a70
+[4/7] drm/msm/mdp4: use parent_data for LVDS PLL
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/b641bf534cf4
+[5/7] drm/msm/mdp4: move move_valid callback to lcdc_encoder
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/f26b80359bc7
+[6/7] drm/msm/mdp4: switch LVDS to use drm_bridge/_connector
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/9b565edc44b6
+
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
