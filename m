@@ -1,150 +1,186 @@
-Return-Path: <devicetree+bounces-173445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6583DAA86FB
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 16:52:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54FE5AA8704
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 16:56:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7DEA17A232A
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 14:51:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FB631777BC
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 14:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4E61B0420;
-	Sun,  4 May 2025 14:52:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 474051C8632;
+	Sun,  4 May 2025 14:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OAi652JY"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="doh7haJ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA25026AC3
-	for <devicetree@vger.kernel.org>; Sun,  4 May 2025 14:52:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A414A1C84A6;
+	Sun,  4 May 2025 14:56:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746370329; cv=none; b=pggYv8/k0hTT0UUfSaA7PVBCzY6CTktrvpVxieHObqMVzoyvh+KMOCd+loDMFinbVtIW01JlhTxCcjKWUCX5yl/BUETUt1E1Rt9R64mg7YQ9gApHl3tmPvDe2kN8H4hWKUSdu86EyO5jsZENOU7ai9LMrUMGWIX+1MHNa5YezKU=
+	t=1746370575; cv=none; b=G9DZGCBSAE1ZwvffpCrrzFrz44nwlQLTQiZ9s12KHpGXFzW8I9SMTFEPeLdn8hpBprf+U0QiuuofqJa2wt+TO406iC56qy+naPAF19rhz1FwhoQc9Jyy9hMwYpR9oeXcc4AGjcv601VMLZK56NBD/A0Nfh3XXGhRXLbV7JXxdBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746370329; c=relaxed/simple;
-	bh=cCQU1JvKA5nSLiAdJUlKkfAQRunXcvgEAyvWc+BTpH8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rXeBTOqBZ/t/ExFjdJmdMofGDePIrJACf0sxCWOY+fCcg1JZTre/moungNBFa19QQSJjStMWD7Bbt7WrDWTKpyP7ybK0Z57HHNl6eCikeo1XB+vjjOaKOr5xssOr/RKca6vSV5lEeXHSoJmBf8xoDf7qQML0+IPE1GKT/B94WWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OAi652JY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 544Dt2LG008648
-	for <devicetree@vger.kernel.org>; Sun, 4 May 2025 14:52:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=m83SZdAydqLM2NkATe6eUZ2F
-	MEFy1GeBKkXmBHJv2kk=; b=OAi652JY7QUssxZTbVts4KAOO7G4CJcC02XGcJFb
-	gcXteM3NLwPmXuEBHjmTLwRcyYJp9hyXMR7pmbif4VIh8L9OdHjT2hSpBadd/v9f
-	kJE2CdtEEMkeCX7rMNKgdSWGrL0/InS3q3gBdhBz7tNRZBidKD4VCc1h+gJNehQk
-	lWawK/o525vAdYGqyndFJf9LwnCSCQNu/SchK3mBfj/WgrcdnCb99Cy+13l/aTLf
-	LAG0CFtvARdOM2dfE519ik918b3FcH2XPW6JdlbUjzhlUXiE/1O5xFwxBFcp5S43
-	pEWpye47Y7y64pKfctrIYBMGY2l8BuiiOQOqS3G2fFOFnA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46dafg23jv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 04 May 2025 14:52:06 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c5bb68b386so485761385a.3
-        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 07:52:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746370326; x=1746975126;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m83SZdAydqLM2NkATe6eUZ2FMEFy1GeBKkXmBHJv2kk=;
-        b=Q+LcGmMJrPjlZaeGUEA4UzuO13iwsfWAg2FMYwRvLzWxH3eH2c/WOgoVrGhJCrUfFL
-         TkFxT/I7mH0zI5amPAxwgi1x/ytZ0D8CANBJxa8wZmfURAMfDLG4ph5hCMMJ3M875AoG
-         8Vumten1MYh0rC0Ri4IJ5AM0s1qKJ7Z9NWdKq+NyxFsNdcOopTl8MItRPuO9Os1vuaQZ
-         vqLsc0b/5mmx9GC12raJzXdig3xHfOWEBJpFH/yzRpzYACsvJnDwfrofroUTcFAXuTOT
-         zcJ14Zoew77HIXdKbyRfoA2lnXRweLZZGQ50nvbIhDTopNl0ZJTVdQb+pH2QYCli+GEy
-         rIMw==
-X-Forwarded-Encrypted: i=1; AJvYcCUPizFr5MFhznWxjQM+UYWD2igr+deK0T4CWlClBPa0NXXkq2DGqubWL2dDlgpXQKsgjF9iiNSAjrzq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIOviIpAeo+46J7xNsDNLSBaafk4FrXooR/xsH/vBoaGKkjiNW
-	NKKAlrww3Y3CMIDtN1LcYpjX/4SEzO7FCDegT0wzVmaFE4W3F7C7LOCrtT0P6ciK1LOVDQeg7kb
-	x18ua0kEO0KOL9p9+oeT4uNYtgnqoF+MJ7iS+2+K5dA1zHKtfTQrS1MgxQBZ2
-X-Gm-Gg: ASbGncvxUtGgFRMetk3JoMnxt/WopPSJ1Wmk7kUU5z22cF3yeFbRWeRSXDeNvLCM6x9
-	v5SznQ6yf6FF6WaO9I051h4h81/gF4ihON7hxLTV/LO7V3iQe0wOHgUQdw77S4Y6hlq9ydmNCkp
-	i8nFF/+O4P58jICLHRlXC8O5Ebh8UVENvbDUSZQHqk3gkvwvVotq11DPw7Y0H7YyvZ1wtllGTMR
-	M+nzYJKzXaVnTbNyAgSIuruLPBxNVKOfHxSPB/tdr2Y+p7LL93jRs2q+XK7Xeq0OJ2OYxfhhzAI
-	zGx6tUCoNF0Xd8UbD9i/9iQZjAHg2/9hSFRi3D5ExF3xnZeVzizFUdzTGbEJHgUTJv3Vr0xRVy0
-	=
-X-Received: by 2002:a05:620a:2b92:b0:7c5:5339:48cf with SMTP id af79cd13be357-7cae3aa5b75mr725688385a.30.1746370325768;
-        Sun, 04 May 2025 07:52:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGjMPjtNhpIyjrKZzrhJw9j9z9DzHZIYlT7MKiqysN0RLMW7cC90IIwrON1/tFp4KvpBkcPoA==
-X-Received: by 2002:a05:620a:2b92:b0:7c5:5339:48cf with SMTP id af79cd13be357-7cae3aa5b75mr725686185a.30.1746370325494;
-        Sun, 04 May 2025 07:52:05 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94bf03dsm1267630e87.66.2025.05.04.07.52.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 May 2025 07:52:04 -0700 (PDT)
-Date: Sun, 4 May 2025 17:52:02 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Alexey Minnekhanov <alexeymin@postmarketos.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>, Dang Huynh <danct12@riseup.net>,
-        Alexey Minnekhanov <alexey.min@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sda660-ifc6560: Fix dt-validate
- warning
-Message-ID: <2bftieu7mnct7lp5cz6flhuc2azz4enubm5dkecxzsgwhswu33@xvghahkj6qrs>
-References: <20250504115120.1432282-1-alexeymin@postmarketos.org>
- <20250504115120.1432282-4-alexeymin@postmarketos.org>
+	s=arc-20240116; t=1746370575; c=relaxed/simple;
+	bh=fRJh8RqQfnX/k073onfcKPvzijH343aDxv+L93r0Af4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RYV7hutwqBrvPDbvJ831jxvT+0lDGonOEzXt04ZM5OP4IE6FqFcq+AFtOa7D+MNmJK9IM+iLkZApeUr9X/btBdmYpDHzXl49xahzGEFJ4oSvcAS8xswtHSZO7cpn4KCVGsuel6RZh8o7bRshXJqeWic/XWgHSI8G2Fy7c1PxZAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=doh7haJ0; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8AC34102EBA58;
+	Sun,  4 May 2025 16:56:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1746370568; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=lFqEBI0rgBvclEvWpUaefC/HISUhE6toiFXHRhmattk=;
+	b=doh7haJ0hvE6pzP6N6jCPG3+EWfYZRmTbWDtHF9p30Jc/5seoxeMvszylhzKHSN/bqBpOl
+	ts/vkyaGPXyzG5qMuNREwNeGHENdz1/ob8S3DQC3pzqiYONLDqsDLQkuYjHpLaprcZ0XRh
+	GYKuecrMMOUoiNOlBf8wdITACLV0q3uTBc5nRNMvF0lOcZKa+ffDxJCc45SRUQyj9i3GaA
+	h+BMlOAX4udBVxuCVDw1cEOJv/EKlH+/7Haox+SvMcweIdUNZaqiSFkLHXqBWfrzbq7I1e
+	BAsEqRwKZ9IR2gSpbyEdAEF45BpAKRQQwrXnMogMNCZexOW4wqHkJddlMAYFbw==
+From: Lukasz Majewski <lukma@denx.de>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Simon Horman <horms@kernel.org>,
+	Lukasz Majewski <lukma@denx.de>
+Subject: [net-next v11 0/7] net: mtip: Add support for MTIP imx287 L2 switch driver
+Date: Sun,  4 May 2025 16:55:31 +0200
+Message-Id: <20250504145538.3881294-1-lukma@denx.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250504115120.1432282-4-alexeymin@postmarketos.org>
-X-Proofpoint-GUID: EQK07F_ZeKQaCxZRrF9mpQIRkVJfoP_B
-X-Proofpoint-ORIG-GUID: EQK07F_ZeKQaCxZRrF9mpQIRkVJfoP_B
-X-Authority-Analysis: v=2.4 cv=atqyCTZV c=1 sm=1 tr=0 ts=68177f16 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=Gbw9aFdXAAAA:8 a=EUspDBNiAAAA:8 a=dCBGrzmRZM4nFyVncTUA:9
- a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22 a=9vIz8raoGPyDa4jBFAYH:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA0MDEzOCBTYWx0ZWRfX7XxxojUrBuiF
- mzBIvZQwMVW8fXxlzvEBwziOGCU0x0Nvm3+TF9oXeG/2qcmcUTcHUI7gdRdsgq5/x3amhavlIio
- DvQp+eBYsGX4psJai69lr/mYpRlqaNcbAkcaYrHiuHwDC5y5B1FZdtoedoFR7dqKDKau6HNFTDk
- RVyYxeeTK7Wc02pIM7d8+YoRqFoj0GUwtgbOh4M1ZGqgkcLbSV3ibVf3isL9wvzkE0NiYtj+ERe
- iJqYmddEidHnp8gYVzeak7Nyy3Kwx2+pQ5tgGiHF1AMzAe/4hPFabLrLVD3zhx9gbG5+SHEiRid
- gmBiVrIyfcVrcEkEV4hLoei9kl5+8Jpi0sFITaiv8PHUIpdvR9HyQeY/qpZmv6lz0F1ZnRa47qh
- 2j8OXVOmTYPhIBYR0vsyObdyDKLninQNpppV2MStbzGCKKBaeGB+QVjXCJJ3H3Q5ss9iKeHU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-04_06,2025-04-30_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0
- lowpriorityscore=0 mlxlogscore=449 mlxscore=0 impostorscore=0 adultscore=0
- clxscore=1015 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505040138
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Sun, May 04, 2025 at 02:51:20PM +0300, Alexey Minnekhanov wrote:
-> If you remove clocks property, you should remove clock-names, too.
-> Fixes warning with dtbs check:
-> 
->  'clocks' is a dependency of 'clock-names'
-> 
-> Fixes: 34279d6e3f32c ("arm64: dts: qcom: sdm660: Add initial Inforce IFC6560 board support")
-> Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
-> ---
->  arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+This patch series adds support for More Than IP's L2 switch driver embedded
+in some NXP's SoCs. This one has been tested on imx287, but is also available
+in the vf610.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In the past there has been performed some attempts to upstream this driver:
+
+1. The 4.19-cip based one [1]
+2. DSA based one for 5.12 [2] - i.e. the switch itself was treat as a DSA switch
+   with NO tag appended.
+3. The extension for FEC driver for 5.12 [3] - the trick here was to fully reuse
+   FEC when the in-HW switching is disabled. When bridge offloading is enabled,
+   the driver uses already configured MAC and PHY to also configure PHY.
+
+All three approaches were not accepted as eligible for upstreaming.
+
+The driver from this series has floowing features:
+
+1. It is fully separated from fec_main - i.e. can be used interchangeable
+   with it. To be more specific - one can build them as modules and
+   if required switch between them when e.g. bridge offloading is required.
+
+   To be more specific:
+        - Use FEC_MAIN: When one needs support for two ETH ports with separate
+          uDMAs used for both and bridging can be realized in SW.
+
+        - Use MTIPL2SW: When it is enough to support two ports with only uDMA0
+          attached to switch and bridging shall be offloaded to HW. 
+
+2. This driver uses MTIP's L2 switch internal VLAN feature to provide port
+   separation at boot time. Port separation is disabled when bridging is
+   required.
+
+3. Example usage:
+        Configuration:
+        ip link set lan0 up; sleep 1;
+        ip link set lan1 up; sleep 1;
+        ip link add name br0 type bridge;
+        ip link set br0 up; sleep 1;
+        ip link set lan0 master br0;
+        ip link set lan1 master br0;
+        bridge link;
+        ip addr add 192.168.2.17/24 dev br0;
+        ping -c 5 192.168.2.222
+
+        Removal:
+        ip link set br0 down;
+        ip link delete br0 type bridge;
+        ip link set dev lan1 down
+        ip link set dev lan0 down
+
+4. Limitations:
+        - Driver enables and disables switch operation with learning and ageing.
+        - Missing is the advanced configuration (e.g. adding entries to FBD). This is
+          on purpose, as up till now we didn't had consensus about how the driver
+          shall be added to Linux.
+
+5. Clang build:
+	make LLVM_SUFFIX=-19 LLVM=1 mrproper
+	cp ./arch/arm/configs/mxs_defconfig .config
+	make ARCH=arm LLVM_SUFFIX=-19 LLVM=1 W=1 menuconfig
+	make ARCH=arm LLVM_SUFFIX=-19 LLVM=1 W=1 -j8 LOADADDR=0x40008000 uImage dtbs
+
+6. Kernel compliance checks:
+	make coccicheck MODE=report J=4 M=drivers/net/ethernet/freescale/mtipsw/
+	~/work/src/smatch/smatch_scripts/kchecker drivers/net/ethernet/freescale/mtipsw/
+
+
+Links:
+[1] - https://github.com/lmajewski/linux-imx28-l2switch/commits/master
+[2] - https://github.com/lmajewski/linux-imx28-l2switch/tree/imx28-v5.12-L2-upstream-RFC_v1
+[3] - https://source.denx.de/linux/linux-imx28-l2switch/-/tree/imx28-v5.12-L2-upstream-switchdev-RFC_v1?ref_type=heads
+
+
+Lukasz Majewski (7):
+  dt-bindings: net: Add MTIP L2 switch description
+  ARM: dts: nxp: mxs: Adjust the imx28.dtsi L2 switch description
+  ARM: dts: nxp: mxs: Adjust XEA board's DTS to support L2 switch
+  net: mtip: The L2 switch driver for imx287
+  ARM: mxs_defconfig: Enable CONFIG_NFS_FSCACHE
+  ARM: mxs_defconfig: Update mxs_defconfig to 6.15-rc1
+  ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW to support MTIP L2
+    switch
+
+ .../bindings/net/nxp,imx28-mtip-switch.yaml   |  149 ++
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/nxp/mxs/imx28-xea.dts       |   56 +
+ arch/arm/boot/dts/nxp/mxs/imx28.dtsi          |    9 +-
+ arch/arm/configs/mxs_defconfig                |   13 +-
+ drivers/net/ethernet/freescale/Kconfig        |    1 +
+ drivers/net/ethernet/freescale/Makefile       |    1 +
+ drivers/net/ethernet/freescale/mtipsw/Kconfig |   13 +
+ .../net/ethernet/freescale/mtipsw/Makefile    |    4 +
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.c  | 1968 +++++++++++++++++
+ .../net/ethernet/freescale/mtipsw/mtipl2sw.h  |  771 +++++++
+ .../ethernet/freescale/mtipsw/mtipl2sw_br.c   |  120 +
+ .../ethernet/freescale/mtipsw/mtipl2sw_mgnt.c |  436 ++++
+ 13 files changed, 3537 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Kconfig
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/Makefile
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
+ create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_mgnt.c
 
 -- 
-With best wishes
-Dmitry
+2.39.5
+
 
