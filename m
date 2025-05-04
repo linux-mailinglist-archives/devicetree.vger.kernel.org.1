@@ -1,109 +1,110 @@
-Return-Path: <devicetree+bounces-173411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0E3FAA8627
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 13:00:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC65EAA8643
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 13:52:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 650B11758B6
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 11:00:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F8A73BC33F
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 11:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069811B0411;
-	Sun,  4 May 2025 11:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A502C1993A3;
+	Sun,  4 May 2025 11:51:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="cExt7QZ9"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="eUa9UHmI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35BDB1A8F60;
-	Sun,  4 May 2025 11:00:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5D61ADC7C
+	for <devicetree@vger.kernel.org>; Sun,  4 May 2025 11:51:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746356402; cv=none; b=hZ/3ialwYGCA+9yh6DyYAMr+nzuPXHJ0wdcE1wztgq0QXA8H4SGgFZkXJ6IvtNpAblFQFSZyU129ktcg/rTe6wL8JOaP7H1maWS18F6zc6f/spQZCLrXdAGBaxyjJ7C1YYt0oNYvxuXtU9nJSl6TuE63zi9BmQJW2rF1yNd8pZM=
+	t=1746359519; cv=none; b=cZVqyor/C6WxvIkQmQ4e2yZFCQu1JBKdxM52muYmuSsW5oMFjTXIHO9v7fKQWo2iIBUA2o7BZ0tpocdrQQWaToc7jdp8YwAtCN7hVsqZS9Pjaj6XF/Yc10J1eXCkKO4qzYsJ+qPVNVhkvjUT9OB4K/MPcfejI5aO8+F7NaVRHxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746356402; c=relaxed/simple;
-	bh=k+wbSPxmHbsz+gWZZT77cinp09GKnwS5LD3mLK37ktU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T322Ua2L41v7rm/aq1XxEPX4zXAKSBQcZkwpd3bqHZ3qIyEmnE9LCGU3BCoCA2QbcWXuBFjKMpIVNWbFScSwdj9OAVxmlVqTGr/BOVv1AavyEBM6VvTNDIXK3kCDGZ9TZdFe4v9sw5uTt6UBYlmmFOeMQuum5DwtlLZTIib3ceM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=cExt7QZ9; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=VjW/S1wj+bsZEprtcW0AfkkvqS+OgAoSKYgQyE7SjV4=; b=cExt7QZ9//sJx6sNHJx3b66viV
-	JeCAQajhqriJs2/S2c1ru6cIX5GEke8nF5FjkwJ8Rpyx01+75MPOGtKDQRxkm7JmaY7EEd3tfCuAG
-	6M/OazxmoCR8pLCspg4HoSBrjDg64J5EaRcornEsIZSGTUqmzvfqina+ranhIWl+dX3V6AnqBZ9t/
-	Ia3B9QTk3B4G9hKrIP6xrT4ldPW24pdNmdwPD7O57RLcMO9MJNeZX9C4FwYMU7FToEq0f43brcftj
-	RwT3qu/3lMCR2CQ+TqD0RZeU8EsZdxXzyQTJQDzAKBXvbwF1SUZOYVUVnmi5ipjIBAf/uJK83h9jW
-	EvaIunVA==;
-Received: from i53875bbc.versanet.de ([83.135.91.188] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uBX4X-0001M5-Nx; Sun, 04 May 2025 12:59:49 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	hjc@rock-chips.com,
-	mripard@kernel.org,
-	neil.armstrong@linaro.org,
-	dmitry.baryshkov@oss.qualcomm.com,
-	knaerzche@gmail.com,
+	s=arc-20240116; t=1746359519; c=relaxed/simple;
+	bh=u0804QVAGmcXwjwp3po7cxMRu0aamQ6heTTl2p+MiD0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VTBZn8erPDNCCmdWhTcI79nQm9eBm8Xz+dYpad0qA+Z6PwcdGiutjFl+1fNyaWgFe0IgTWz2rU/7DODav5tiq8EKjmlVrZHueaCUyYtdLNrRZWDqgREETm7OofveLoL5iqq3nIaTeOO4cqAzsnOmuobX/3HBc87Tr2aETEw7V7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=eUa9UHmI; arc=none smtp.client-ip=91.218.175.186
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1746359504;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=dsCLlaxW5Ry4SD7QVSXb//q8OL/Z72WZhoaVT84ZE4k=;
+	b=eUa9UHmIq83v7LNGquwIZmYWyWTBNotgrbliZPrYVrW0Fm3t+b6RCl8cGZEMoMEkTFIy/w
+	s7VoldfLoHK4Fq9UkhyygMeF3wgbO6FDPFhEcrIkwSbyyftKw/Qp8cwJlktI0Ae3r8F1pJ
+	PVBQMmQkOag9PM8ygVCBWbYICQFLqrTC/WGWoYQHHqA5tUOT5WEVzfXkxQ27cOq3WQVEcl
+	c7uo80hOd1bo/LaKKsz/VsB0x0wtzyaA6wpADLyymNTD7RifpY0l+IKzjcQdk0F5aXYaPM
+	fQsjmqH+EvnNqgqcMOvEUzRx/j7mtnohmJMpcP4z6q/7jJiC/amWzoOmZ++/Kw==
+From: Alexey Minnekhanov <alexeymin@postmarketos.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Baryshkov <lumag@kernel.org>
+Cc: Dang Huynh <danct12@riseup.net>,
+	Alexey Minnekhanov <alexey.min@gmail.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: (subset) [PATCH v4 0/7] Convert inno hdmi to drm bridge
-Date: Sun,  4 May 2025 12:59:39 +0200
-Message-ID: <174635636712.1068615.12087879387464324976.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250422070455.432666-1-andyshrk@163.com>
-References: <20250422070455.432666-1-andyshrk@163.com>
+	~postmarketos/upstreaming@lists.sr.ht,
+	Alexey Minnekhanov <alexeymin@postmarketos.org>
+Subject: [PATCH 0/3] Elminate all DTBs check warnings for SDM630/660 boards
+Date: Sun,  4 May 2025 14:51:17 +0300
+Message-ID: <20250504115120.1432282-1-alexeymin@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
+Run the following:
 
-On Tue, 22 Apr 2025 15:04:39 +0800, Andy Yan wrote:
-> When preparing to convert the current inno hdmi driver into a
-> bridge driver, I found that there are several issues currently
-> existing with it:
-> 
-> 1. When the system starts up, the first time it reads the EDID, it
->    will fail. This is because RK3036 HDMI DDC bus requires it's PHY's
->    reference clock to be enabled first before normal DDC communication
->    can be carried out.
-> 
-> [...]
+ make -j1  CHECK_DTBS=y 'qcom/sdm630-*.dtb' \
+         'qcom/sdm636-*.dtb' 'qcom/sdm660-*.dtb' \
+         'qcom/sda660-*.dtb'
 
-Applied, thanks!
+Before:
 
-[1/7] dt-bindings: display: rockchip,inno-hdmi: Fix Document of RK3036 compatible
-      commit: c0673bb356557136954b6725bf5fe327b94c6233
-[2/7] dt-bindings: display: rockchip,inno-hdmi: Document GRF for RK3036 HDMI
-      commit: e0c93980d293b6e6eb7483fd5d665f84e725b518
-[3/7] drm/rockchip: inno-hdmi: Simplify error handler with dev_err_probe
-      commit: 31b4403c6c523a710205eadb9ca75c6cfe1478ab
-[4/7] drm/rockchip: inno-hdmi: Fix video timing HSYNC/VSYNC polarity setting for rk3036
-      commit: ad10b82c2bcac7f87ac6eaecfca33378b43425ee
+ Observe multiple warning about memory-region is too short,
+ one about 'vdda-pll-supply' is a required property, two
+ about 'clocks' is a dependency of 'clock-names'. Fix them all!
 
-Best regards,
+After:
+
+ SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+ DTC [C] arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dtb
+ DTC [C] arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-discovery.dtb
+ DTC [C] arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-pioneer.dtb
+ DTC [C] arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-voyager.dtb
+ DTC [C] arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dtb
+ DTC [C] arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dtb
+ DTC [C] arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dtb
+
+No errors, no warnings.
+
+Alexey Minnekhanov (3):
+  arm64: dts: qcom: sdm630: Add modem metadata mem
+  arm64: dts: qcom: sdm660-lavender: Add missing USB phy supply
+  arm64: dts: qcom: sda660-ifc6560: Fix dt-validate warning
+
+ arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 2 ++
+ arch/arm64/boot/dts/qcom/sdm630.dtsi                | 8 +++++++-
+ arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts | 1 +
+ 3 files changed, 10 insertions(+), 1 deletion(-)
+
 -- 
-Heiko Stuebner <heiko@sntech.de>
+2.49.0
+
 
