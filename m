@@ -1,143 +1,213 @@
-Return-Path: <devicetree+bounces-173381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C805FAA844F
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 08:28:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 171D7AA846C
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 08:59:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BE3F1788B9
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 06:28:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDBD7189B401
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 06:59:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29EA1624DE;
-	Sun,  4 May 2025 06:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B36F186295;
+	Sun,  4 May 2025 06:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="MgE7mYBf"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="V+Me3clG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2035.outbound.protection.outlook.com [40.92.42.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B380817BD3;
-	Sun,  4 May 2025 06:28:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746340111; cv=none; b=dgsrniK0Jyh/3CfhL7y8d01PUMomett8w34Lowy5sxejmFpqoCHO8zMvyFMIW25ggqtZEvykjp/k6/lkIG+MNY8GXlulyRAvMEuCg3f5Z7uZSBgM5xwh5nqgwwe9bTJYZkHskLA1azVtTYSJcGGQupKJPpQmTprnQt9aC2QpJls=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746340111; c=relaxed/simple;
-	bh=JH7UWl0QPjoLu0FdEYSBj0ChSPIozh3YaMARZWs2Gyo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Q/rdCKo1sSpPN8jLU/DKL17HKi4+3fINXNcMz82kQQ19PAvwdkIKEiaOCgOS889sUCaVUtoFaT7+fvvTtNxM1uCg9084ZLExTN7duGbb4/CWEDWfrmJsLB0UV9nMehEeM5/P0ryk1y/GLFLxO8wu2t9Zm3W9XhBp4+qlDG6Bgqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=MgE7mYBf; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9C58C102EBA58;
-	Sun,  4 May 2025 08:28:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1746340100; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=rCgrVpFe4biw8hf/ZoueDjqGBEEPT9+1gxH8yMqDfrI=;
-	b=MgE7mYBfXN/HyW3DXX1gurVkn01PGNgPV3q7o0L+9PRlNWoioSE9c6kaq2ZrqXIAPjdDgI
-	ONrqX8sYjiREnJHNYF0XKTSgW48osfwDUHKGGigLh3ByV6gUlX3WDHhRaNL9/0t/uJFGc9
-	f4ahN/RJd72PKhp8T4/7o+dqVrm7S1+Inh96VoMAZ80yCs+r8KxQRhdoxyEPA2z1Qowo4U
-	z2ULxr3K0WOZB44kliZKG41EccEypr8FoznyhCm128qryxuGu+JwdH7mjWkgmX3vCEhyRk
-	eDWwJFj7edmMDpl+Z7ZlxTGe9cRJrRxesac92ErNRHW47zCX6GFC1O81tWmhBQ==
-Date: Sun, 4 May 2025 08:28:11 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Richard Cochran
- <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
- <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
- <andrew@lunn.ch>
-Subject: Re: [net-next v10 4/7] net: mtip: The L2 switch driver for imx287
-Message-ID: <20250504082811.4893afaa@wsk>
-In-Reply-To: <20250502071328.069d0933@kernel.org>
-References: <20250502074447.2153837-1-lukma@denx.de>
-	<20250502074447.2153837-5-lukma@denx.de>
-	<20250502071328.069d0933@kernel.org>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A5629A5;
+	Sun,  4 May 2025 06:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.42.35
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746341956; cv=fail; b=fACaqHLE462RMns8CCxkWLPV9wMdam22NAuDsydn5USAdlqbSOVhtNxciIOsXW5E4FvILbQz+eVDdG69OlBEpOcBh6QstVxL21lKbDlA3Cwpv9bT4gUk9ZZ9Nc8VUpp+4u0TnJVaZhJity4IRBIHOWKrab5mWK2rBgD5MbyRCyg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746341956; c=relaxed/simple;
+	bh=/faJgiYXZoAxelgps4Z7AbVJ9TmaGnJcX7yNIy5vZ88=;
+	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=PL0rEQ7mwDdSR9bTERup0NgRo7k0Nn2BnDmdA2dsggXxsWFAdWdTy6x23FjTUAuI6qtDvCbvUVg1HwjPwXOZVtEKkdDWNqGRf4R45cW0mIdBm1uN6a7yIq2JJeYCp6JWht8XG5EmCLzBEsTcCdkRpe4a11BAoZnslThrQMzSrnY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=V+Me3clG; arc=fail smtp.client-ip=40.92.42.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vTpGQYE8SmjeC/TKakGI6SNMIByRNog0+rPqrwh+3IPeibhxhSQn+LEQ1u9GAVBEuPhp0xP64qXU9YS+R9iYti2LeGO8KajHsIzT7xwS+hNJ3NFFOgEb8TYtAdpoMH0/qyy4MH8SgpuC6YpKvA6nham6LnbD2LMHb2Lk19nkt7FMhddFxeVJE/z7LrYqv7aBSdBGyvBFUtovVaTGQmEUIvv9ajMrFdaoH6EBGbFtZ4ZcH2pc+EVNl2a+Nw8WGphUbRKG+5mA8Jtz3dwZNDne5gx9zb/a3bANUVE89lrkIgTasNp6xE26F6BBeRdwSmOUVUVkUaRiKc737mun24MWeg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EjEPv93+ctgIgytIZY16IDfVoK4o0ViEtUTwQYF0mPU=;
+ b=iTNzAU+gO9GIIRbUV2pcuY56t4ytO/HoVbpOybeQYfSGvkVQxZCjf4kwZl+OvRLVpT3Y17sKFmASAwP/RHVbHK8f6S6IoKDxWc8/yItBJ4hEc+U0CrSymZuM3aOlhV6pxJAnggO3WPcGnZ197triVNNIPjDBpRfIEttic7ATTWOUtnvc9p1n12KwdhvY8XJ2D4Pthtm86gfYdYtYsCAWtRhmkLuCgQ73+ZUSmMjHHyC4HxvzOebxJV6JCIQp5D2kfEPO8uUpsP6rO5joPt5hpjEbIoRiiOu2MOfcPnkG/4Yv5Fb8BqpIWGykLZQiAhGa/7mVg+toWZ3iDbF4GyYk4g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EjEPv93+ctgIgytIZY16IDfVoK4o0ViEtUTwQYF0mPU=;
+ b=V+Me3clGSz3B5MfYxiL22oZzClCV16ad0FmWTE61TiU9OaNFO2C/akrB70VCaEUDHz6GCcfFY04dZnf5suvTLNV7lyD/myW40+MuTstiqe4WfI+JvuKeofdeQZjvrHgMelmCDsZYXnEJEKRphRiyv9WmvP7EijxMNgZibZQdNOKhoCS44pTCfUpD4AgX+UtQ82rU3wDU+o3ME7pOrXSKVHKi5j4UUJTco3UXbQ5ASDcaG7AZDkLqEak0FoJBw+vTI4UD/b6FUjZSUmUwv6Ds/HtVPYSxxtWwV1LowzxfL59SnQWGNiPH+AH1gCONyq5Ipb3H4ErgzfOhioMNk8ElRA==
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
+ by MN0PR19MB6360.namprd19.prod.outlook.com (2603:10b6:208:3c0::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.24; Sun, 4 May
+ 2025 06:59:11 +0000
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305%4]) with mapi id 15.20.8699.026; Sun, 4 May 2025
+ 06:59:11 +0000
+Message-ID:
+ <DS7PR19MB8883995CB86AE2784CAFF8AC9D8F2@DS7PR19MB8883.namprd19.prod.outlook.com>
+Date: Sun, 4 May 2025 10:59:01 +0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] clk: qcom: ipq5018: mark XO clock as critical
+From: George Moussalem <george.moussalem@outlook.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
+ Lee Jones <lee@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250502-ipq5018-cmn-pll-v1-0-27902c1c4071@outlook.com>
+ <20250502-ipq5018-cmn-pll-v1-2-27902c1c4071@outlook.com>
+ <1435b068-3bb9-4285-8399-81fc278152c4@oss.qualcomm.com>
+ <b05d9351-cc79-4e60-a6e0-de2fe698098f@outlook.com>
+Content-Language: en-US
+In-Reply-To: <b05d9351-cc79-4e60-a6e0-de2fe698098f@outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DX0P273CA0078.AREP273.PROD.OUTLOOK.COM
+ (2603:1086:300:5d::19) To DS7PR19MB8883.namprd19.prod.outlook.com
+ (2603:10b6:8:253::16)
+X-Microsoft-Original-Message-ID:
+ <59330b4f-5d64-40cf-9743-26b266163b73@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/6QmTqwgtdiqccoc742SZ04r";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|MN0PR19MB6360:EE_
+X-MS-Office365-Filtering-Correlation-Id: d98138df-c56b-4a91-59ec-08dd8ad92bfb
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|8060799006|15080799006|5072599009|19110799003|6090799003|7092599003|461199028|10035399004|3412199025|4302099013|440099028|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?S2FPNjhoQ09KZkV1bXA3aGVJMFhyc0NQT0NtN21QNERuUmlSTkdmOTFFR1Bo?=
+ =?utf-8?B?NW56Y3BBSFFnd3RjQlplY0dUSVF4VG51aXJDK05wQ2pqeTNvZUJONElqajRw?=
+ =?utf-8?B?SzNMUFlaZm40NkNNWXZ1TXBzUDhmZm1xUU5vN3FlZHhhclpVWHRDTkFReGtl?=
+ =?utf-8?B?SjZpNG5IMlRVLzVDN2dnRmRiVFlCd1Yrd0JxbmNZbFRJcGYvQTc5M3ErU3NH?=
+ =?utf-8?B?K0RTUjRQTThleUJMOHJ0NE9ocWFEcnk3YmpsRjhyTG10aWZHc2tSV0J4dFRz?=
+ =?utf-8?B?UkV1Z2J4S25NdG9GVGl4d1J0NzhpNnIzSExPQlRZUGkyRWN4SUtiSzBFR0th?=
+ =?utf-8?B?c1NGTVQva21Fa3FJVHpCdHBVd2hrWHFEb1RIdG0rOUlXTmRBMGErSmJFbWR4?=
+ =?utf-8?B?NXpvQmtPbU9sN1Q2Q08yVEgzaGM2R1BNRXhDZUtBdnZnaUVjWlFvMFVwd20v?=
+ =?utf-8?B?QlkvL0hBVnZjbVRVUHVNaVU3Q0Q2QTBINjN6clljRUR1SDVDOWY2MUxyNW94?=
+ =?utf-8?B?cTRGMlhTZmJrVnl3dVQreThHc21vVXp3RUY5Y3VIK01tR2RuRmFxb2pIa2V2?=
+ =?utf-8?B?OU1PdzBybVVlQTFlQVNySXZiNDEwY2JZMUs1NHY1OFVFa09BdmZNTERsVXZr?=
+ =?utf-8?B?NW5xRktxeVR1dTdOeCtYQityRnY3WWIxdWJsbGxpck9lZTRWZEl2dWxxVFYy?=
+ =?utf-8?B?NFlHdjl5dTh2QWRlbTkyY29ZL1N5Mmd1VC84cDRCdEdHeGluZlRXSTNyY25G?=
+ =?utf-8?B?QklPcldKazNmOEY3Y080NTFJRVlEZXd3U25Hb09tRXB1MVYxMGJZUTh4Ymtm?=
+ =?utf-8?B?ckRqY0RXYWcyTUQ0YTNUR3FBVXNxakJYWXM0N3dLaUl2V2ZqU1FmQzNFK3Bj?=
+ =?utf-8?B?b01CM1dLb1Q2UkwxaGpCMTRIMkRXcUc5bzc3MXNSM3N2M3I5QlZlSnB4UEYx?=
+ =?utf-8?B?ZmxUNjFIM3A3Y3ZiSU5TRUkyWUZ4bjVDZGw4YnJvbDV3VjF1SmJjdS9wVURl?=
+ =?utf-8?B?MEUyQTNGb1o4NlpkdnJ2WVI2NmxZZ3MvUGdRRS94dWJEaWwrSDB0Vkx4YlJX?=
+ =?utf-8?B?V1BuK016ZjhLOVVaVG5zVnRmckhKMTFzaVcyM2pWanB1Qzl5cXZ3TlBIa1R6?=
+ =?utf-8?B?cDhZTkwvNjhJSFJpa1paOVJ1UFJrN3Z6WHg3bEtjd0k5NnlreWl0T1dwZjQ2?=
+ =?utf-8?B?NkpXWlBtelZzb25BYWpuYkwvRk5PZEduTmpPUE51SFpnRzFHRW1EL2s0end1?=
+ =?utf-8?B?L3pHd0tBczh4bCtiREoxSjBmSjdwVXZ3eTNvSFN6VnhySmVua2ZQZm1CVDA5?=
+ =?utf-8?B?a09zWFJjYWZOcmU1TjAxTzAvWVNjcmlxNWQ2a0FqR3ZFMk04Tlh4QTdnMjhD?=
+ =?utf-8?B?Vm1YdVdCcTdnK0sreE9VSnZJczhHa2QxOXNBNUp3elFVejVrNlQwdURYK2RC?=
+ =?utf-8?B?cjFnSCtTZjljM2VxSStYaFJMN3dLcEd5bmpabVV0c1Uvd0wwY0Ftbi9sOXNt?=
+ =?utf-8?B?QnV5bEh0cnVSeElDRU55N0JjTVZwNnE2a0VMbWJuYUVhTFpmcWQ0ZytrR3J0?=
+ =?utf-8?B?eDN3MUZCZ1hGQmlIbUc1ZTRJUk1CSVVFRkZPeG82U2oxbGZHc3YvS2d3QXBL?=
+ =?utf-8?B?djgwUUVUemUrdmlIVjgrMzFBZDA1Y0Z4ZWk3Q1Zxbm0rWklwTXhRdTA4Nlo1?=
+ =?utf-8?Q?Jqa+03UsSzQ8LS4OODuZ?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ck5Udi9CM0UwQUlEekkzSytQckNnRHNLQWt3elZuemVtMW9WWjczdHZmWlUw?=
+ =?utf-8?B?VmJaNHBtSnlyZzA3S1RwcjdtSnk3TllLUXhnNU9CVC8vMVJQMEZUYTRBTlZ4?=
+ =?utf-8?B?Vis5bDF3TCtSelpKMUJoS21IVVV5Tk01by9ibVFCRHV2TXdWTmlkempuVzZp?=
+ =?utf-8?B?TStremlGeEY0UXZJVncrYy8vaVRGOHhYbGtXSW4zcHl4SnZmVGNVYVg0YVZD?=
+ =?utf-8?B?MExmdXhaYTlKdkttZlJZbWxvRHIxNHZ4enpjNlBJNjRvN29ZQi9mY3BIYkJX?=
+ =?utf-8?B?dHJrNUxqNFF2SmdsK1hRTWw3Y1lDUk85SFRKUG1PZ01ydVJPMElkMXhkcHpr?=
+ =?utf-8?B?RVVscFNOMCs5Smx4dDRrQkc2Z3ZIaVg1citXM3lkQW0zT3ptcEgxak9ld0tw?=
+ =?utf-8?B?MWtiSmZSREtVUXRyZWdVSkt2Rmo4cVFyRXVBak1zMCtuaFYvUWZzcEpqZm42?=
+ =?utf-8?B?UkovVjBBckxqV0pRWnNScGRrSzIvWllORFcvVEdJeWVMem5odkZxN2puV0JT?=
+ =?utf-8?B?aEZSUHA1V2VEVWlTaStwMXZPZzlOYlFIUFFuakIrMEdtbFdNUUlLLzNJWGlB?=
+ =?utf-8?B?b1FmRmVYU0xzQUNkQlRxUmtTekNHd29OdnJEWU0yclBhWEFlc0dkV283RGs0?=
+ =?utf-8?B?SWUyQ2pDNFVqZjM0bjhBQk9uNWpMTllhdlR2T0NjSlFtTXNqUy82YVVJK0w0?=
+ =?utf-8?B?LzdPMHRkM3JEdUlGcmVuampiMXRCdGxXUldCWUcwNXRCWExheDBla3lSeG4y?=
+ =?utf-8?B?UThQTnUxN2IyOUM1cGx3TWtRZ3lPT3FkK215dTdMSXhncGpiMTRmU3JYQ3B5?=
+ =?utf-8?B?anFMTHd3dnBQTGRFR096UDZFS1NTNHpJUmF5ekNwbUE0V2hOdnlVWEkwUGhx?=
+ =?utf-8?B?cE96c2JIZDJzUk15UXlxeDZSQytjOEtBd216MVZDUzZZZzI0ekdZdElYRXlP?=
+ =?utf-8?B?L0N0anpFNmVOWko4RDBFZGZPSUtWOHdXRTk2MEpRK013S3lrSk9jNVo2a2Zo?=
+ =?utf-8?B?a0NkMFNERkNiQ21iSlh1UlY0Y0FOTTVZQVRtdHlEYVNTYk1GVUxFMWRTdnhZ?=
+ =?utf-8?B?SkZMOTVFTlpqODV2TmdDZHZvM0RCT3YvVmlFSHpSMnVlSnBudXRHUGtBL0F1?=
+ =?utf-8?B?YXk1OWdQVHBoMFNwVDRtT2taUHhaYUVyRXFrMm5KbXp6dVd4WndlU1loTzlm?=
+ =?utf-8?B?dG8vbW1VVk81QUYzSWpmL0E4ZW9KME5ic1R3aWR5Qmx6TmJMZTZINVdZMjlj?=
+ =?utf-8?B?dUpSUHhpQm5JSmVDMy8raWtuclR1aW5ybGFJci9xUXMrZEZEbnNENFFKd1JL?=
+ =?utf-8?B?Y3lSU0VRcmg2cUEvSG1McFovQm9ES0UyMG9xZVhpamlNU3ZUWFlDVzRUcEtJ?=
+ =?utf-8?B?ZW9wTDJBZ29MY01hVFNXZWJ3cTFzSEMweHBReHczMUNqUEV0MTZEem1yWWtW?=
+ =?utf-8?B?RjNUUWZNN3c2clV6b3Yyd1ZVZm5lclptNUNnTS81VndoNTF5RkVUZUZwdHIz?=
+ =?utf-8?B?cSs3WThnT2daS0NTV1dYQjh3Uk9tR3ZPclI5ODU3M2hCSGlSY1pIalVqNFU1?=
+ =?utf-8?B?RmRBdXBSTWJRWU8ya1J1WmNyeE5GcUhFWmtjNVdiUGJyZHQ5UDQrcFJ5ZlhZ?=
+ =?utf-8?B?U2gxdUZiUW1TQU04N3dWWUJ6SERUZThIWnFFeTc1YmdlajBxNzlJRWlxaGJS?=
+ =?utf-8?Q?rHnDLoiZ6czuuDhavpBy?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d98138df-c56b-4a91-59ec-08dd8ad92bfb
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2025 06:59:11.5905
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR19MB6360
 
---Sig_/6QmTqwgtdiqccoc742SZ04r
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
 
-Hi Jakub,
 
-> On Fri,  2 May 2025 09:44:44 +0200 Lukasz Majewski wrote:
-> > This patch series provides support for More Than IP L2 switch
-> > embedded in the imx287 SoC.
-> >=20
-> > This is a two port switch (placed between uDMA[01] and MAC-NET[01]),
-> > which can be used for offloading the network traffic.
-> >=20
-> > It can be used interchangeably with current FEC driver - to be more
-> > specific: one can use either of it, depending on the requirements.
-> >=20
-> > The biggest difference is the usage of DMA - when FEC is used,
-> > separate DMAs are available for each ENET-MAC block.
-> > However, with switch enabled - only the DMA0 is used to
-> > send/receive data to/form switch (and then switch sends them to
-> > respecitive ports).
-> >=20
-> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
-> > Reviewed-by: Andrew Lunn <andrew@lunn.ch> =20
->=20
-> Now that basic build is green the series has advanced to full testing,
-> where coccicheck says:
->=20
-> drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c:1961:1-6: WARNING:
-> invalid free of devm_ allocated data
-> drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c:1237:16-19: ERROR:
-> bus is NULL but dereferenced.
+On 5/2/25 16:45, George Moussalem wrote:
+> 
+> 
+> On 5/2/25 14:29, Konrad Dybcio wrote:
+>> On 5/2/25 12:15 PM, George Moussalem via B4 Relay wrote:
+>>> From: George Moussalem <george.moussalem@outlook.com>
+>>>
+>>> The XO clock must not be disabled, so let's add the CLK_IS_CRITICAL
+>>> flag to avoid the kernel trying to disable the XO clock (when parenting
+>>> it under the CMN PLL reference clock), else the kernel will panic and
+>>> the following message will appear in the kernel logs:
+>>
+>> Remove the struct definition for this clock (and the assignment in
+>> blah_blah_clks[]) and replace it with:
+>>
+>> qcom_branch_set_clk_en(regmap, 0x30030); /* GCC_XO_CLK */
+> 
+> understood, thanks for the quick turnaround!
 
-I'm sorry for not checking the code with coccinelle.
+Tested it, but then then the issue is still there. This time fixable by 
+setting the CLK_IS_CRITICAL flag on gcc_xo_clk_src. I was looking at 
+removing the struct for gcc_xo_clk_src too and use 
+qcom_branch_set_clk_en, but there are clocks that refer to the 
+gcc_xo_clk_src as their parent. I'm a bit hesitant to tinker with the 
+GCC driver without access to the datasheet. The downstream driver 
+actually has the CLK_IS_CRITICAL flag set too on gcc_xo_clk as initially 
+proposed in this patch:
 
-I do have already used sparse and checkpatch.
+https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/-/blob/NHSS.QSDK.12.5/drivers/clk/qcom/gcc-ipq5018.c#L1457
 
-I will fix those errors.
+Are you okay with this suggested approach?
+
+> 
+>>
+>> Konrad
+> 
+> Best regards,
+> George
 
 Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/6QmTqwgtdiqccoc742SZ04r
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmgXCPwACgkQAR8vZIA0
-zr03AwgAkMNG0YrgvTM3iFWNDJ6IgUY1d14CkUU8GCex+FMbAMEEJeXx/+nws0ZR
-9sxsteMOv8I8iImMD1EIgBHdT8YjQKy9afBmzf5t8E9XOeE92W/e4Dc8w5CziCyN
-TV4akdUhoaTkhv3s7whhUAEOBvrZ7aHn9uqYzw5AybFcSArlLmmNS4MqWaGK0ATz
-tkfp14hOhxRKzMY87sqfTZYw+1DKMwnIn8mStHL8rHFnidLrt6LlAqWYrPw4wocp
-Ne/ziIpwkNfLjGtJM29tAB97HI4l4aZ5th6kcZACU+pTgRgY24wLDtXtk8UhY2a5
-+EqG6B5zHuTWSNnZiUalr89fo0JhzA==
-=HuJH
------END PGP SIGNATURE-----
-
---Sig_/6QmTqwgtdiqccoc742SZ04r--
+George
 
