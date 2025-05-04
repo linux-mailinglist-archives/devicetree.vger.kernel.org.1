@@ -1,142 +1,206 @@
-Return-Path: <devicetree+bounces-173475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D10AAA87F7
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 18:20:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23CE6AA8820
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 18:46:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A3921898DA3
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 16:21:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AAE71751F7
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 16:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192511D63C6;
-	Sun,  4 May 2025 16:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328CC1DCB09;
+	Sun,  4 May 2025 16:46:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="diEQgoGH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R66C+6jW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD7031B3957;
-	Sun,  4 May 2025 16:20:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01448849C;
+	Sun,  4 May 2025 16:46:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746375646; cv=none; b=kWpuYYlAGanHnd0RosVPD3VuNGSbhQpdsj+wnyYLa3a52+xBpMu39K2kByVVSm1wU/J6wsCK2PM/U+DzLsC9Zreb4XpxfGezcjnMXeP+4y8nFCV/wSf7/4f1APOqDWSSJuzLQNG7kUEgQ3/UCErAWmI2KxxaybYAk8LmvKorbQk=
+	t=1746377163; cv=none; b=K4wx5jKlOirClFL1/c0lxixd8viKbD7ReC9A3gDOW9eoUgjG/ddq+EQhPsYY62myN3gKWbydIE2WLeKn4IvhDCDNxGqwgyxYZD88QY5V4Obegw5ALNnvZ0zXOd9TVOAd5J+ssFuI4EI+GalQ3mKvQFBLzUhkpfsi+SWnutjd5vI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746375646; c=relaxed/simple;
-	bh=8SGKrwFsi6MSGg1AkOsX7EbuWyf4IOy6I9k86qXwR5o=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QJppkii1pv5na5j1iCOOGWSfdcy7ciJuVHsA9VO0fBMn/ZBz1lf3QbAX1Ev3yhft0CEjiclF513NtSyVXFKHiGjEbC8lt1qyuE+IfewobWsaRt0uN0nqbPNV3WQZyqP7sTK+lJta8Rob0jc6r3v8D93zj0lATbjPxr1uuwIzvew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=diEQgoGH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17B47C4CEED;
-	Sun,  4 May 2025 16:20:38 +0000 (UTC)
+	s=arc-20240116; t=1746377163; c=relaxed/simple;
+	bh=FVPsGINmP1WQyRoUbUN8JBoNi/+iGAAHepfgidJ3Rac=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IRAcRjunm2caX+tuqxGNTAf5gBnr1UEdD0tu57rReDoXaFehBWTpGj3gyiYjDpbv06NsxhtE4djJNpm3uehKrUK70UJ3AdJ2WnCtyeAjdI7/T+XtkfIJ97N23qerAWBo3LAZRm6ThU7jOx1Zbzv/ks+6rwTvPHKp80Ei/IC+ZlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R66C+6jW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C85C2C4CEE7;
+	Sun,  4 May 2025 16:46:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746375645;
-	bh=8SGKrwFsi6MSGg1AkOsX7EbuWyf4IOy6I9k86qXwR5o=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=diEQgoGHb4QlcwRjRjhFNpHordBbmX2YI7DoQFo0LlesJA9RE/dzCML+UxCx7sW0D
-	 89I5ZRX1FvabdAg4KLmjy491B7qQex8Mw+E82cv6NnLFOEt0tL5Ku91Ud7xtkJQQxl
-	 /kqQIS4N4fC2UevTvNmGITHZR+57QFnlkyTl0YJ0gj/XIafkRnqojzi0sQ1j1/IoXG
-	 gza8fKcWPhsqlmyLxQnZqZ+SaEGclgAFql4pQ29LEpXKnB/uxC0b/CgSuG3DVe3S0i
-	 /xcZw0hDBPweZAi+fnHfKXrphoDbjv+zRlCwubC92upOyveDn7f7/W5CJDPAUIPGdv
-	 AZVHVN5f4KkUQ==
-Date: Sun, 4 May 2025 17:20:34 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Sayyad Abid <sayyad.abid16@gmail.com>
-Cc: linux-iio@vger.kernel.org, lars@metafoo.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, javier.carrasco.cruz@gmail.com,
- olivier.moysan@foss.st.com, gstols@baylibre.com, tgamblin@baylibre.com,
- alisadariana@gmail.com, eblanc@baylibre.com, antoniu.miclaus@analog.com,
- andriy.shevchenko@linux.intel.com, stefan.popa@analog.com,
- ramona.gradinariu@analog.com, herve.codina@bootlin.com,
- tobias.sperling@softing.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 0/5] iio: adc: Add initial support for TI ADS1262
-Message-ID: <20250504172034.2ab4936a@jic23-huawei>
-In-Reply-To: <20250501100043.325423-1-sayyad.abid16@gmail.com>
-References: <20250501100043.325423-1-sayyad.abid16@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=k20201202; t=1746377162;
+	bh=FVPsGINmP1WQyRoUbUN8JBoNi/+iGAAHepfgidJ3Rac=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R66C+6jWolGajgXLLCKJNsKTuEzDRASNw0BKx8m4UdDLdhKrBMmgpTTeW0oZSjgyq
+	 6Z9fK0pgUapkTId2Tm21z6igl6Xc9WakVKGsptUdyn50Asv8b5QH7JewCbpkkY44Gm
+	 OxLrUqdqY56bNlAzqFiXsQEMk0Inw3sZJEmsOlRonwr3TK2arSdQAd+qg8Hr0V6Npa
+	 eIArOya5F/gZ3QBxqcmmqp47YWudMsY/JX5d0JP+OnxCetoVIOmAbMWRgUoNVvXcUn
+	 Cxsw7UcylwZtf7IkSrKnCdVB+yK4U7No3o7CJc7crm5gvrGD3B/fZhEBxLTTwhWRff
+	 5Z1cxrLCu8HRw==
+Date: Sun, 4 May 2025 18:45:59 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	"K. Y. Srinivasan" <kys@microsoft.com>, Haiyang Zhang <haiyangz@microsoft.com>, 
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>, 
+	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org, 
+	Saurabh Sengar <ssengar@linux.microsoft.com>, Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org, 
+	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>, linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	"Ravi V. Shankar" <ravi.v.shankar@intel.com>, Ricardo Neri <ricardo.neri@intel.com>
+Subject: Re: [PATCH v3 04/13] dt-bindings: x86: Add CPU bindings for x86
+Message-ID: <20250504-happy-spoonbill-of-radiance-3b9fec@kuoka>
+References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
+ <20250503191515.24041-5-ricardo.neri-calderon@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250503191515.24041-5-ricardo.neri-calderon@linux.intel.com>
 
-On Thu,  1 May 2025 15:30:38 +0530
-Sayyad Abid <sayyad.abid16@gmail.com> wrote:
+On Sat, May 03, 2025 at 12:15:06PM GMT, Ricardo Neri wrote:
+> Add bindings for CPUs in x86 architecture. Start by defining the `reg` and
 
-> The ADS1262 is a 32-bit, high-resolution delta-sigma ADC communicating
-> over SPI. It's designed for precision measurements.
-> 
-> This initial driver provides the basic functionality needed to:
->  - Probe and register the device via SPI.
->  - Expose standard IIO channels for reading raw voltage samples.
-> 
-> Basic testing was performed on a Raspberry Pi Zero 2W using the hardware
-> SPI0 interface. The connections used were:
-> 
-> +-----------------+            +-----------------+
-> | RPi Zero 2W     |            | TI ADS1262      |
-> | (SPI0 Pins)     |            |                 |
-> |-----------------|            |-----------------|
-> | MOSI            |----------->| DIN             |
-> | MISO            |<-----------| DOUT/DRDY       |
-> | SCLK            |----------->| SCLK            |
-> | CE0             |----------->| /CS             |
-> | 5V              |----------->| DVDD, AVDD      |
-> | GND             |----------->| DGND, AGND      |
-> +-----------------+            +-----------------+
-> 
-> I would greatly appreciate any feedback on the driver structure,
-> IIO integration, SPI communication handling, or any potential issues
-> or areas for improvement you might spot.
-> 
-> This series is broken down as follows:
->  Patch 1: Adds the core driver code (ti-ads1262.c).
->  Patch 2: Adds the Kconfig option.
->  Patch 3: Adds the Makefile entry for compilation.
->  Patch 4: Adds the MAINTAINERS entry.
-> 
-> Thanks for your time and consideration.
+What for?
 
-Hi Sayyad
+> `enable-method` properties and their relationship to x86 APIC ID and the
+> available mechanisms to boot secondary CPUs.
+> 
+> Start defining bindings for Intel processors. Bindings for other vendors
+> can be added later as needed.
+> 
+> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+> ---
 
-As a general rule, an RFC is usually meant to contain a list of open
-questions or some clear statement on why it is not ready for consideration
-as a final driver submissions. Often that is something like some other
-ongoing discussion that needs to conclude.
+Not really tested so only limited review follows.
 
-I'm not seeing such questions, so I'm guessing this was just a bit of
-a lack of confidence?  In general it looks pretty good so drop the RFC on
-v2 :)
+>  .../devicetree/bindings/x86/cpus.yaml         | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/x86/cpus.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/x86/cpus.yaml b/Documentation/devicetree/bindings/x86/cpus.yaml
+> new file mode 100644
+> index 000000000000..108b3ad64aea
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/x86/cpus.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/x86/cpus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: x86 CPUs
+> +
+> +maintainers:
+> +  - Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+> +
+> +description: |
+> +  Description of x86 CPUs in a system through the "cpus" node.
+> +
+> +  Detailed information about the CPU architecture can be found in the Intel
+> +  Software Developer's Manual:
+> +    https://intel.com/sdm
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - intel,x86
 
-Jonathan
+That's architecture, not a CPU. CPUs are like 80286, 80386, so that's
+not even specific instruction set. I don't get what you need it for.
 
-> 
-> Sayyad Abid (5):
->   iio: adc: ti-ads1262.c: add initial driver for TI ADS1262 ADC
->   iio: adc: Kconfig: add Kconfig entry for TI ADS1262 driver
->   iio: adc: Makefile: add compile support for TI ADS1262 driver
->   MAINTAINERS: add entry for TI ADS1262 ADC driver
->   dt-bindings: iio: adc: add bindings for TI ADS1262
-> 
->  .../bindings/iio/adc/ti,ads1262.yaml          | 189 ++++++++
->  MAINTAINERS                                   |   7 +
->  drivers/iio/adc/Kconfig                       |  12 +
->  drivers/iio/adc/Makefile                      |   1 +
->  drivers/iio/adc/ti-ads1262.c                  | 438 ++++++++++++++++++
->  5 files changed, 647 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1262.yaml
->  create mode 100644 drivers/iio/adc/ti-ads1262.c
-> 
-> --
-> 2.39.5
-> 
-> 
+> +
+> +  reg:
+
+Missing constraints.
+
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      Local APIC ID of the CPU. If the CPU has more than one execution thread,
+> +      then the property is an array with one element per thread.
+> +
+> +  enable-method:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: |
+> +      The method used to wake up secondary CPUs. This property is not needed if
+> +      the secondary processors are booted using INIT assert, de-assert followed
+> +      by Start-Up IPI messages as described in the Volume 3, Section 11.4 of
+> +      Intel Software Developer's Manual.
+> +
+> +      It is also optional for the bootstrap CPU.
+> +
+> +    oneOf:
+
+I see only one entry, so didn't you want an enum?
+
+> +      - items:
+
+Not a list
+
+> +          - const: intel,wakeup-mailbox
+
+So every vendor is supposed to come with different name for the same
+feature? Or is wakeup-mailnox really intel specific, but then specific
+to which processors?
+
+
+> +            description: |
+> +              CPUs are woken up using the mailbox mechanism. The platform
+> +              firmware boots the secondary CPUs and puts them in a state
+> +              to check the mailbox for a wakeup command from the operating
+> +              system.
+> +
+> +required:
+> +  - reg
+> +  - compatible
+> +
+> +unevaluatedProperties: false
+
+Missing ref in top-level or this is supposed to be additionalProps. See
+example-schema.
+
+> +
+> +examples:
+> +  - |
+> +    /*
+> +     * A system with two CPUs. cpu@0 is the bootstrap CPU and its status is
+> +     * "okay". It does not have the enable-method property. cpu@1 is a
+> +     * secondary CPU. Its status is "disabled" and defines the enable-method
+> +     * property.
+> +     */
+> +
+> +    cpus {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      cpu@0 {
+> +        reg = <0x0 0x1>;
+> +        compatible = "intel,x86";
+> +        status = "okay";
+
+Drop
+
+> +      };
+> +
+> +      cpu@1 {
+> +        reg = <0x0 0x1>;
+> +        compatible = "intel,x86";
+> +        status = "disabled";
+
+Why?
+
+Best regards,
+Krzysztof
 
 
