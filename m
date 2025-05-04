@@ -1,113 +1,109 @@
-Return-Path: <devicetree+bounces-173410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11042AA8621
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 12:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0E3FAA8627
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 13:00:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E1B1175681
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 10:55:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 650B11758B6
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 11:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F1A1A83F4;
-	Sun,  4 May 2025 10:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069811B0411;
+	Sun,  4 May 2025 11:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j/iVzj/S"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="cExt7QZ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A395615B102;
-	Sun,  4 May 2025 10:55:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35BDB1A8F60;
+	Sun,  4 May 2025 11:00:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746356141; cv=none; b=CcKEpN7R8bE/MprTqbRSRze0/TqWo3DWZ7OFVrbuVHIRZooIXr7UI0vzktvM3FAS3keYhTMT32MpH22iDlKNfVUeWeIdJ8tKAKAHCawwQZ1ePJmBNKVXC2Vh/fsgRUxKuHe+OsYnKhASs+S5Np0jG6BOzXqL65JjpREZHVTlNtY=
+	t=1746356402; cv=none; b=hZ/3ialwYGCA+9yh6DyYAMr+nzuPXHJ0wdcE1wztgq0QXA8H4SGgFZkXJ6IvtNpAblFQFSZyU129ktcg/rTe6wL8JOaP7H1maWS18F6zc6f/spQZCLrXdAGBaxyjJ7C1YYt0oNYvxuXtU9nJSl6TuE63zi9BmQJW2rF1yNd8pZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746356141; c=relaxed/simple;
-	bh=JHticgXyIuVL8fJ2I1XWOAHd1k7KFWJZtBwgTOARLQE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=i/VNliOdEUvHRwREPNldcKdSnojuzp4wOIF4XAJ+7Kesf0EJMKszmPo7yzgc195w733yBLz8x4iQso9gBZcq1rMhaLO2UqOAA0hFqJjPme24URHY1SAfBrHvhLdyVJMGBNp6/4hjezkzo24RPb4a8IbcPf9L9GgaVMGZS+SYh0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j/iVzj/S; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ace333d5f7bso653651166b.3;
-        Sun, 04 May 2025 03:55:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746356138; x=1746960938; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JHticgXyIuVL8fJ2I1XWOAHd1k7KFWJZtBwgTOARLQE=;
-        b=j/iVzj/Szpd9lYM6phei+QE1R+3ne5hMm+NdQLta0NXG1kpDU4CIk9Z86mECyYJyJI
-         bojK75W1yDtOCS62cMOHgp31xrBtOMc5Ivtyjp/cWP1vN4h0qqNC6eVBWB23wXRZOBSg
-         k5AYTafd7ySBXGwVBbdZZcf6N6XmfwGzmtZ1JmVEWVlrs5NyGRNSChJSTn8BXnxP6d0d
-         jx1ZT2BV65fX29lXLN8kO1VzXCYRyyGrsdOcW+g43wKhqmB/ENxqmIVGRt2GKwiBQ2fl
-         ZaXFqvFh+M+llZTUkpDiHMF65xbFvnFMY7ygtLV3OWh9qgXE/bgcVXwVYfxujbjw7j1x
-         bwNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746356138; x=1746960938;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JHticgXyIuVL8fJ2I1XWOAHd1k7KFWJZtBwgTOARLQE=;
-        b=kpkW0yDncZOZbAh9rs6x/CUMHmtQP5sUgzMZyR+JHbemtroVv5nAlgsoC3NLvv8KlD
-         1J6q2JOY7/ZRY/AClequB45eofLyW54Ct7Ny8cWGdolBKdFZBCOPJjF8Tnwv4+0RMoQA
-         Vl0RqUzSLGR5f8cHbBALLnsFhdcTsL1XiW8kRI+zsnFGxFMbsquwEN3S1O7D0gimWQps
-         9xKVoHb98zP6YVs7Gn0BtdVnxPSteBbBDp9PY3cGjMKH5KnH0WDlyiu3x76O0ptU5gbf
-         nXpsSjR01xeTijiYIFP/DxLMJkEkrw2qvD5h4v3DYaBeex/DqGz8NB3eYPcz6EWDuXvn
-         abeA==
-X-Forwarded-Encrypted: i=1; AJvYcCUCxdbiqby/3dUc4e2q2DJkKHn2ba0fzJn0W4HcnJwhBhjVmqf44wbKgOMUOeDZiwxJmjtu/laZO/01fMnG@vger.kernel.org, AJvYcCXVE65QaAZ2Wzv0rLtPydjO24AdgmxREXFQY8N9JmsV80bOVgQfqSzCVGflL9ojbNE7aFY8KF6jbWHo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHBW7dRCO9/usXmUqwjoIznWf/YckBEmVbcNL+Hr5CTktBSK0k
-	9zHlX2vDpvHa6+nZJxVCfaGo4JOCF6GVVo+ZSP2Km0eY7org9v3tqYLPsBgi
-X-Gm-Gg: ASbGncvRmvkxDe4rAUdBcV9I8/TQ+r/DuszZCG9a/nvYHIRKmDXQ6j9kXWNSrSCd2Lc
-	z5aa1F+hS7r8LB/lKlSqE6Gb/cgbQUKYVBbQj1rqFLrwb1Ey6w1YqDJh5ws1N6nwMRVQKmkfufU
-	iF1bAUTu8nvmOsSAQBp7rWs1qriI8jddBHFiXCA7NgbGzsVpewcQ2w02/twDVXkGUgvXh7lEtkT
-	buIgkumixUKWv6lGfPZuPMZkKuzEdypC44TAQ3o/fVr8NdXnK31Ap+rXXbYe3C42Re5ACWFJoPV
-	orJnzpC6cAmrXTf09qZ47lNtINKBiWIi4eCVqha0Qe2hIPG16mRyIwxUmJWIg9tP2nEkRGA=
-X-Google-Smtp-Source: AGHT+IGPBRqZ8nAL71n+j3b7Cwv7/Y14UgPdPJpAj77aNr8QGSe9maFrY5B6bcLyEAGl4PoeZoym2g==
-X-Received: by 2002:a17:907:980d:b0:ac7:d23d:b3ac with SMTP id a640c23a62f3a-ad1a4b3773amr291859166b.53.1746356137751;
-        Sun, 04 May 2025 03:55:37 -0700 (PDT)
-Received: from giga-mm-3.home ([2a02:1210:8608:9200:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad189147329sm313852266b.1.2025.05.04.03.55.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 May 2025 03:55:37 -0700 (PDT)
-Message-ID: <284f4158408d4047a52d427c9189910064b24d97.camel@gmail.com>
-Subject: Re: [PATCH v2 3/3] riscv: dts: sophgo: switch precise compatible
- for existed clock device for CV18XX
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Date: Sun, 04 May 2025 12:55:41 +0200
-In-Reply-To: <20250504104553.1447819-4-inochiama@gmail.com>
-References: <20250504104553.1447819-1-inochiama@gmail.com>
-	 <20250504104553.1447819-4-inochiama@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0 
+	s=arc-20240116; t=1746356402; c=relaxed/simple;
+	bh=k+wbSPxmHbsz+gWZZT77cinp09GKnwS5LD3mLK37ktU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=T322Ua2L41v7rm/aq1XxEPX4zXAKSBQcZkwpd3bqHZ3qIyEmnE9LCGU3BCoCA2QbcWXuBFjKMpIVNWbFScSwdj9OAVxmlVqTGr/BOVv1AavyEBM6VvTNDIXK3kCDGZ9TZdFe4v9sw5uTt6UBYlmmFOeMQuum5DwtlLZTIib3ceM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=cExt7QZ9; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=VjW/S1wj+bsZEprtcW0AfkkvqS+OgAoSKYgQyE7SjV4=; b=cExt7QZ9//sJx6sNHJx3b66viV
+	JeCAQajhqriJs2/S2c1ru6cIX5GEke8nF5FjkwJ8Rpyx01+75MPOGtKDQRxkm7JmaY7EEd3tfCuAG
+	6M/OazxmoCR8pLCspg4HoSBrjDg64J5EaRcornEsIZSGTUqmzvfqina+ranhIWl+dX3V6AnqBZ9t/
+	Ia3B9QTk3B4G9hKrIP6xrT4ldPW24pdNmdwPD7O57RLcMO9MJNeZX9C4FwYMU7FToEq0f43brcftj
+	RwT3qu/3lMCR2CQ+TqD0RZeU8EsZdxXzyQTJQDzAKBXvbwF1SUZOYVUVnmi5ipjIBAf/uJK83h9jW
+	EvaIunVA==;
+Received: from i53875bbc.versanet.de ([83.135.91.188] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uBX4X-0001M5-Nx; Sun, 04 May 2025 12:59:49 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	hjc@rock-chips.com,
+	mripard@kernel.org,
+	neil.armstrong@linaro.org,
+	dmitry.baryshkov@oss.qualcomm.com,
+	knaerzche@gmail.com,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: (subset) [PATCH v4 0/7] Convert inno hdmi to drm bridge
+Date: Sun,  4 May 2025 12:59:39 +0200
+Message-ID: <174635636712.1068615.12087879387464324976.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250422070455.432666-1-andyshrk@163.com>
+References: <20250422070455.432666-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Sun, 2025-05-04 at 18:45 +0800, Inochi Amaoto wrote:
-> replace newly added precise compatible with old one for existed
-> clock device of CV18XX series SoCs.
->=20
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 
-Reviewed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+On Tue, 22 Apr 2025 15:04:39 +0800, Andy Yan wrote:
+> When preparing to convert the current inno hdmi driver into a
+> bridge driver, I found that there are several issues currently
+> existing with it:
+> 
+> 1. When the system starts up, the first time it reads the EDID, it
+>    will fail. This is because RK3036 HDMI DDC bus requires it's PHY's
+>    reference clock to be enabled first before normal DDC communication
+>    can be carried out.
+> 
+> [...]
 
-> ---
-> =C2=A0arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 2 +-
-> =C2=A0arch/riscv/boot/dts/sophgo/cv1812h.dtsi | 2 +-
-> =C2=A0arch/riscv/boot/dts/sophgo/sg2002.dtsi=C2=A0 | 2 +-
-> =C2=A03 files changed, 3 insertions(+), 3 deletions(-)
+Applied, thanks!
 
---=20
-Alexander Sverdlin.
+[1/7] dt-bindings: display: rockchip,inno-hdmi: Fix Document of RK3036 compatible
+      commit: c0673bb356557136954b6725bf5fe327b94c6233
+[2/7] dt-bindings: display: rockchip,inno-hdmi: Document GRF for RK3036 HDMI
+      commit: e0c93980d293b6e6eb7483fd5d665f84e725b518
+[3/7] drm/rockchip: inno-hdmi: Simplify error handler with dev_err_probe
+      commit: 31b4403c6c523a710205eadb9ca75c6cfe1478ab
+[4/7] drm/rockchip: inno-hdmi: Fix video timing HSYNC/VSYNC polarity setting for rk3036
+      commit: ad10b82c2bcac7f87ac6eaecfca33378b43425ee
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
