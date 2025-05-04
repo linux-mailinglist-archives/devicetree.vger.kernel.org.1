@@ -1,131 +1,191 @@
-Return-Path: <devicetree+bounces-173458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 171EAAA872B
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 17:00:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12000AA8735
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 17:04:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 071A03A79F4
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 14:59:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 608513B4854
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 15:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CD831DF97C;
-	Sun,  4 May 2025 14:59:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB58814831F;
+	Sun,  4 May 2025 15:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ByVBQJA8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PUUMNi6Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD1E1DE4E7;
-	Sun,  4 May 2025 14:59:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B9292DC799;
+	Sun,  4 May 2025 15:04:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746370775; cv=none; b=N6ohS8POzCHqx5GnG5x7/NyiC0HbCw5K+O5od0KXMkxkj5uSZt7TuWo2A37ZxhIGGvvszcnLalcc96GvLc6qt4rMmNVKRlMEeWXSUduzuzjhbY9rdEoWCteR31zuy9cOX4Fv96zvbqJuEyZQuMcnLAHu+ppUUh7DAfLJnzBaQ1A=
+	t=1746371086; cv=none; b=iLRBfJLdMKCx21uLFy9FCZ9UWUqamT+58Z1oFGB8in7PQSSM3lE+5qpgcoJWcLdT5Rpgij9t3pB0K+k6GfhK2wEpOex5T7aQi/R1Ks+WBJuJ3QaXLtRWzmFnhxPpRbcwEVvskIJC0TDQToOXa49oOI37MmiIw9c5kPtc0C5kUuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746370775; c=relaxed/simple;
-	bh=SFIyXosOhLyy5Qfz3e0zgrOkS97jBHBTxBoHFCbB/EI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kiaAh7OaCmCDSvx/bWhYu1MGPvGpW7Y+TBnQ6hASsSSrEvooxSp3Be/7eKFK+vYtoy427ScYz9lLBtse/kOTGKE3wL8TaeTq09pdkdcyuROruFtcyiZtMVXAZOSrEM8TKJzVhUcTgYHJIQnwC/PA8OT5iOzRsjQyLDIc5qZW6hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ByVBQJA8; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5e5dce099f4so4476994a12.1;
-        Sun, 04 May 2025 07:59:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746370772; x=1746975572; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5ny5j/6TjMJC/z8tBR7whkEk58tIYnd2wnAxlQ5nNsQ=;
-        b=ByVBQJA8y4EEGeP9tsTzmljP6JauK0FtY4f64ckL9yqNyVHQd0VvVdbJRm7CNaAtHo
-         iZPt1pEVYVyCTCLtTiWp1oFxvR8UDAfuSt2nr96SezvC+eHIlPHUGb90jPo7CfcneVoe
-         ZHb5ds/Ur9GTwkgtZjioH/DGx0gAuTH+GPq+dqDTy0d/yzJULT3U0OSbXldrTnmgBXjb
-         GtlvuUsUnmv0gaXgmDQfLFJditXbnZDVTP5jEOGwUMJ7QTLnW88WchiPWjFBoWaTPjws
-         Dvo9VrYsQp/X0DWhYHEuBu4uXFP5zD5Np99fsFgo7RBGadxo9kiNa45Cyb9ixm5UCfxt
-         m6oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746370772; x=1746975572;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5ny5j/6TjMJC/z8tBR7whkEk58tIYnd2wnAxlQ5nNsQ=;
-        b=I1oLlCJNhynKp491CGuRXAZ8D9pIcuT0rWdG4xyVQxa+9PbxzF4740rzABO0UE1XNE
-         lqoSUwCyq3npw+lW7J7wfswy/bSkHcIl9l2xVW2VrjwpniA9sEGr1GCk0B0sjK1nBGHd
-         BfBPuu8A1KIXnFBeTD1UYeSuCxkXsJ4c5vP3HSEv/aKUPaSml+oE6YgKfpcNy5gbedeK
-         x2SHw7Cgc7E0nIxtFOCSG9FIzXPhbvazyPhYRK2MSvhTlzeLl+AowK4sNdKqEZ8mQF6K
-         582QwFel/M3DtQsRLeC2fFcgsAm1ilTp/idx5tcUnA2XtyYjkwJHLQUqdZSm8xIeQU3X
-         hngA==
-X-Forwarded-Encrypted: i=1; AJvYcCVYoT3eH6H841ky5tV+850pNuh4Y+ytX5Ikcw269tDULF9Q/KkP1p+mcfi2BL4Vuu0BDe1EC9zv6zt1@vger.kernel.org, AJvYcCVyza2qUco81kEd/LUujhL54nGyDUaCPzJ7htZN31K/jJwK7wl8svxXexOzJuL6Pg/84tuvhbLsXvH18klV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPMrP9GKwE7uu2oxvkXzwfPIfpypEQlLf3JgS1JVeFtGWjizNK
-	L32p9+GTRDLVx1TgTdQm7vvrJqwzVF9SvAVrGu8Se4/nKnJB5+MU
-X-Gm-Gg: ASbGnctAR60WP550hL3QohmK32TxF9V4TGeiqXbANi3Auab/2tPc6u6tvMXJNgJuPvC
-	DqijGuAAC/U0v7XGL4d8sLVmVwm97q5LtbcyoJaGgmyK6K7M4ZWHTFRHYZgqqtAccnpo0M/4oy4
-	uN2OWlB36/H8bKZN6ujNKQok0IO2fXE0L1ncBkvRofDwcd+QSRum7l2HNd5na5oNO/OmkvWZWR8
-	s2VZimJJmrOTYZQBSD9ktdMelXQsvepA402o++Aqc9yq0lzoSZFnsZoIuVWJxAb4PLFv09wKWon
-	AjNgbc3scSWeipZxdIudKdVF0/mnaTJp+4SY2GJOwCEZ2GjtNI8incp08JOTA9UuohA4xbTbS1Q
-	ICZELFvhzJITTt7VCrB4iOyo6wDM=
-X-Google-Smtp-Source: AGHT+IEAZn2vETWAdCzHTScUgsNEu/Nuf7Gcd6Ob+PheOqy9a2d+WQheq2mGZLss9RXAM3FEkqVPyA==
-X-Received: by 2002:a17:907:7f90:b0:ace:388e:d84a with SMTP id a640c23a62f3a-ad1a4a8dac7mr364338266b.47.1746370771646;
-        Sun, 04 May 2025 07:59:31 -0700 (PDT)
-Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad189508cf4sm336614666b.138.2025.05.04.07.59.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 May 2025 07:59:30 -0700 (PDT)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 4/4] MAINTAINERS: add entry for Samsung Exynos2200 SoC
-Date: Sun,  4 May 2025 17:59:07 +0300
-Message-ID: <20250504145907.1728721-5-ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250504145907.1728721-1-ivo.ivanov.ivanov1@gmail.com>
-References: <20250504145907.1728721-1-ivo.ivanov.ivanov1@gmail.com>
+	s=arc-20240116; t=1746371086; c=relaxed/simple;
+	bh=2EfXC6JzwMjtzR1Uhw+hjMRWBxN9P0Ufuf+HDxP31Rc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=P6iICCq9jV1wqDlahNpqYx8/CCpMUXHUNHxuY/cZtuv+61VaP+sKyTPyc0YKROUxfQvP0y32HWdov9/CqMvrFpmji+6SZmIY/+gBQQXBCHRG2+T5uKmsmOvI+CrKpCqgPVnHYdhEZnIk+Yd263XHRQCCOfReuif+uQtvodpdjrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PUUMNi6Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 308F5C4CEE7;
+	Sun,  4 May 2025 15:04:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746371086;
+	bh=2EfXC6JzwMjtzR1Uhw+hjMRWBxN9P0Ufuf+HDxP31Rc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=PUUMNi6Z3UyrhM47ffRfQX4WY5hLtx+2C9Ri1CeNCyvuCcQjTMwCozr7an9PS4/OY
+	 8CAuly4ACDcsZ2ww6fG4XSyE6ShUesWlckac8OicetDh6fViZIF+zYXiq6K8vpy9oE
+	 6A7G4yzTsIvZ+TIIuDZFpZgJbY9jBwEND1nbXCvs/IQOfY3tCLmv/AXhx8nPSnHGXZ
+	 on8XEZjwnTnMw4XZgtyd0/vi3NWDkn3NqUJBTLdu/t+g0NRSezojQHzQeMtnjwgUIa
+	 Z0+5sJhDu5SXfKQsV6GTEgOtDXvobIuwbrjr//dYilNZ5Ht4eOARjsgSXAaGOJy5KB
+	 iNerrcUcg4zGg==
+Date: Sun, 4 May 2025 16:04:37 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Angelo Dureghello <adureghello@baylibre.com>, Andy Shevchenko
+ <andy@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/5] Documentation: ABI: IIO: add calibphase_delay
+ documentation
+Message-ID: <20250504160437.33116d5a@jic23-huawei>
+In-Reply-To: <0c7e4efc-7c2a-46ac-b970-4134c386bc71@baylibre.com>
+References: <20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com>
+	<20250429-wip-bl-ad7606-calibration-v1-1-eb4d4821b172@baylibre.com>
+	<4645ae3e0c3bb1ada9d4cadce77b64fe5e651596.camel@gmail.com>
+	<070b269c-c536-49c5-a11d-7e23653613f9@baylibre.com>
+	<aBI3eUPirZEXpZgG@smile.fi.intel.com>
+	<896023ae-c279-4201-a7a8-dfd9b33fe0e5@baylibre.com>
+	<7fe18625-3a25-40c8-bfb7-a7a22a3eccff@baylibre.com>
+	<jvhwdzmruov3je7qvsncn4naxg2cbbset27vr6tfjl3fumw7es@v3ho7m6iwaqp>
+	<0c7e4efc-7c2a-46ac-b970-4134c386bc71@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Add maintainers entry for the Samsung Exynos2200 SoC based platforms.
+On Thu, 1 May 2025 09:44:51 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> On 5/1/25 7:33 AM, Angelo Dureghello wrote:
+> > On 30.04.2025 10:04, David Lechner wrote: =20
+> >> On 4/30/25 9:56 AM, David Lechner wrote: =20
+> >>> On 4/30/25 9:45 AM, Andy Shevchenko wrote: =20
+> >>>> On Wed, Apr 30, 2025 at 09:21:28AM -0500, David Lechner wrote: =20
+> >>>>> On 4/30/25 12:40 AM, Nuno S=C3=A1 wrote: =20
+> >>>>>> On Tue, 2025-04-29 at 15:06 +0200, Angelo Dureghello wrote: =20
+> >>>>>>> From: Angelo Dureghello <adureghello@baylibre.com>
+> >>>>>>>
+> >>>>>>> Add new IIO calibphase_delay documentation.
+> >>>>>>>
+> >>>>>>> The delay suffix is added to specify that the phase, generally in
+> >>>>>>> radiants, is for this case (needed from ad7606) in nanoseconds. =
+=20
+> >>>>
+> >>>> ...
+> >>>> =20
+> >>>>>>> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_calibphase_d=
+elay =20
+> >>>>>>
+> >>>>>> Not sure if I'm too convinced on the _delay suffix
+> >>>>>> =20
+> >>>>> Phase is measured in radians, not seconds, so it seems wrong to use=
+ it here.
+> >>>>>
+> >>>>> https://en.wikipedia.org/wiki/Phase_(waves)
+> >>>>>
+> >>>>> And the delay here is with respect to individual samples in a simul=
+taneous
+> >>>>> conversion without regard for a sampling frequency, so I don't see =
+how we could
+> >>>>> convert the time to radians in any meaningful way. =20
+> >>>>
+> >>>> And how this delay is aplicable to the phase in the hardware? Sounds=
+ to me that
+> >>>> HW has some meaningful way of such a conversion?
+> >>>> =20
+> >>>
+> >>> It is a calibration to account for a phase difference between two inp=
+ut signals.
+> >>> This is a simultaneous sampling ADC, so all channels normally sample =
+at exactly
+> >>> the same time. This phase delay calibration factor can introduce a sm=
+all delay
+> >>> on an individual channel so that it starts it's conversion some micro=
+seconds
+> >>> after the others.
+> >>>
+> >>> There is a nice diagram here:
+> >>>
+> >>> https://www.analog.com/media/en/technical-documentation/data-sheets/a=
+d7606c-18.pdf#%5B%7B%22num%22%3A113%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%2=
+2XYZ%22%7D%2C34%2C594%2C0%5D
+> >>>
+> >>> To convert the phase delay to a phase angle and back would require al=
+so knowing
+> >>> the frequency of the input voltage signals. =20
+> >>
+> >> Maybe calling it "conversion delay" would make more sense? Since the p=
+hase part
+> >> of it is really referring to the application rather than to what we ar=
+e actually
+> >> adjusting. =20
+> >=20
+> > Are there examples of a phase calibration in iio ? Becouse apply a radi=
+ans=20
+> > calibration seems complicated and maybe non approrpiate for non-periodi=
+c=20
+> > signals as often used in real world applications.
+> >=20
+> > So another viable idea could be to use a IIO_CHAN_INFO_CALIBDELAY inste=
+ad.
+> >=20
+> > Regards,
+> > angelo =20
+>=20
+> I was looking at the datasheet on another ADC that popped up on the maili=
+ng list
+> today. https://www.ti.com/product/ADS1262
+>=20
+> It has a "conversion delay" register that does basically the same thing. =
+So I'm
+> liking that name even more now. Just calling it "delay" seems a bit too v=
+ague.
+> We could make it IIO_CHAN_INFO_CALIBCONV_DELAY to try to keep it shorter.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2dcc38f64..52258d22e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21401,6 +21401,16 @@ B:	mailto:linux-samsung-soc@vger.kernel.org
- F:	Documentation/devicetree/bindings/sound/samsung*
- F:	sound/soc/samsung/
- 
-+SAMSUNG EXYNOS2200 SoC SUPPORT
-+M:	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+L:	linux-samsung-soc@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/samsung,exynos2200-cmu.yaml
-+F:	arch/arm64/boot/dts/exynos/exynos2200*
-+F:	drivers/clk/samsung/clk-exynos2200.c
-+F:	include/dt-bindings/clock/samsung,exynos2200-cmu.h
-+
- SAMSUNG EXYNOS850 SoC SUPPORT
- M:	Sam Protsenko <semen.protsenko@linaro.org>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
--- 
-2.43.0
+This is wondering into a long term gap in IIO ABI.  Even if we ignore this =
+particular
+usecase, it could potentially be useful to indicate the timing offsets betw=
+een the
+sampling of specific channels.  In simultaneous sampling case we'd normally=
+ assume
+0 (subject to tweaks like this one) whereas in a sequencer type situation i=
+t can get
+complex.  IIRC there are sequencers that allow insertions of extra delays a=
+s well
+as the simpler ones where it is just dependent on the previous channel samp=
+ling times.
+What you have here is a relatively simple time delay control but I'd like
+to cover the full gamut of things we might see.
+
+To me it's really not got much to do with calibration so I'd drop the calib=
+ bit.
+Define a baseline for all channels (which should probably be an arbitrary p=
+eriod
+after trigger as measuring trigger to first sample gets complicated in some=
+ devices.)
+
+Anyhow, I'll comment on v2 and point back at this.
+
 
 
