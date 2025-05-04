@@ -1,75 +1,90 @@
-Return-Path: <devicetree+bounces-173453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DF52AA8719
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 16:58:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7281AA871E
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 16:59:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96730188CF27
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 14:58:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30197175D91
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 14:59:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BAC71F1921;
-	Sun,  4 May 2025 14:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A19911C862C;
+	Sun,  4 May 2025 14:59:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Z6nmZtES"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N0x//dtR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B402D1EEA4B;
-	Sun,  4 May 2025 14:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C71181B0F19;
+	Sun,  4 May 2025 14:59:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746370585; cv=none; b=QOTg00fch2QPwJfo9G1klbCpkzPIRpssYRgo8pWYIMLc7tJqzChENZq8OOl7z9t0osTIWlo2NTxSd6R9LG6LtM3K6sAobtpRXSPm3v19CY61i2BSW8Qk35PwkyaufhbefwONqhnBpIB8pwl6V56IBodJg7AWJhzIApT7oO56MrI=
+	t=1746370769; cv=none; b=e+1DJY35r3gkUxLtMeung1zleR/ZjkHY3r7FJtK2K/xDRQkDHNkKqCHbPFLsSWC8hnhSMLcEK0+xCzQTFAhips7Y6BhVkCKtmZigpMH2cWs98DJ39AmF64zwpJ78kZPX2Ms7sQ7aB6ur9fVQ9zGihDOtbNDA8UDlwSk5iZaTz38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746370585; c=relaxed/simple;
-	bh=/5nL6+/kdmiB63wqMIerwIWFwFN5EywEEBav/DWm1D0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=oTbaPNGTWvgXamiG38i/uiVmN1rU20MU2MlyCtk9/FqjE9g0efJAFGmDwdCtnUUWBsYugGb1Ma53/CqgtrXse0TAlKm1xLek73J5bFIuFtWN34EKzrG3dE0QeW+vtMaCrLmF0v0NGjkRMKkGKuHNHfXhpFDvod2Lv/Jxt5i6wVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Z6nmZtES; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2C2331048C2EB;
-	Sun,  4 May 2025 16:56:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1746370581; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=2ic75qfUQ5dsvgeD7dQg7XwR25eUpd2j6vcWbqOyRZs=;
-	b=Z6nmZtESH2Kw6EqRNrDHDyRCTgWUssCaym8LamlLwvkyJhW5mAt31YXsGmLSfgqZFroekk
-	4wlA/2oA2QU2sIOCOxdJfwgb7FniWMDjjvkywFT/zzGDQmqGqiT8KmVTO2pDjNRzCbvLf0
-	C6KTVo1/phyLukfJAfrQ6H3C3EIByvXEUnvLmdTPNnHiB01+yH4LaLTfF36qfWBmPReLZL
-	c4OcF1NqOwkvB3Ro7y69iwQOs6VT0uyzUpcgLqLbUqu+0IyhidtoPsOtNuOS9iQ4sCYqmW
-	6SenHxrUOcQp4GUKMlG/Y66eQJEWuQCBw28qfGqf2DqYwywKlXMT7h+bRcB8EA==
-From: Lukasz Majewski <lukma@denx.de>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
+	s=arc-20240116; t=1746370769; c=relaxed/simple;
+	bh=YwOVVNPOsjxJnheEcJ43TxdldUrhEW+iI4+wfbbuQCU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZcOro/Sp/odYAPh/7nfW/eeCPtfyHbSbymZo7Kc+vwMUnIyAIaJR1705vCElFSnqAKW88+yiGhKtrXC1DOF2ahl1m2+L1L67iUO8K1WCF36M4Nm+Ihli7waqET+TU+lY0/rD8iTbp8/S3nwtl8A0zZlKwDl1blci/XTPI0ajWD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N0x//dtR; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ac3b12e8518so617301766b.0;
+        Sun, 04 May 2025 07:59:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746370766; x=1746975566; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+ZiY2b1FLpsy9r3AGKcw4zckDdyCiygN84DOUybmFlo=;
+        b=N0x//dtRqUgGFOZS0O8CurrUk8R9e3tUAPqSWzDRDr/woqARPT5eY4X/sVCxutVRMH
+         c5HvPyFPHUhIIdCaoI7aBrg2u7RcREafHzkKuLaK1aFPiFIN1dSUSIuC7BMewwO/iDQj
+         kJ6LLNNq9XVJg6/5+GzDRLGRqqPV2drSxkym5zURRQRn5F3UmGuTg+7euso/9L6Pl+b7
+         xOh6KTBycfl1e00QecBwqkk1u2DPmWrksegivxm6CfsmEmReTFO/DAENMWw2ZgKcNZoU
+         V6cnl/o/8qxiGo7yysSBkp3VjdxDL4e61nyZdHFPvok4y05LcFRq0BaJ3X+UX0MfLs6L
+         AgDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746370766; x=1746975566;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+ZiY2b1FLpsy9r3AGKcw4zckDdyCiygN84DOUybmFlo=;
+        b=aZBG1gxRgQ83wpCD7bsh7TWcqntsom7jjeMMpUGhj/senWEYODfhx2NmmDn/qy/8Iw
+         xCB6b6YG+DTbiFwmgSYEqxA06y4ROzMq1Kk4k1hxDmrZeqWqY3OyBIv1zdem3FH2vNPQ
+         Y3+QyhBW0UhC9fA0Rcti5lgJ1RZF7RKJRjqtyyQAqZ1ngcXGSx5qeUJLZEZhAiSNDadJ
+         pcfAOMsK6+g0x+had01qlwn42YTX7YbHNovNn9GsInuXqnIJyQT1vgp83jNKi2BM8at5
+         OHz4azVf7+gr9NyHlflQbTK/BuHUpTK3QD40gpzdE1QNcNZs7ZrmMalT7IMhRru1vZrj
+         /7rA==
+X-Forwarded-Encrypted: i=1; AJvYcCW+ysf4JIcMsGPGnptgmiLSG9U6LF2Hq/j85YnOerinek6CK7K3ub3H8PEbuY/nQK9osOC6rNh+KHnEyajs@vger.kernel.org, AJvYcCXx9U5yxiU4rWY39PvoEo/oX+jhw3IxtJ7hgaE2DSvCoBiMOlXSb9T2bW+RgaXfkn2Mk0yJ6nw1sGSW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqmPxI3/48WjnrnY/PDoEajBonlbiSXX+NJXxSgP2dF8N3IZlK
+	HRS4DzzkA18/S7WKViD5uq4I+yV8WvuCd5zl0QQ8ni4jAc8O9w0t
+X-Gm-Gg: ASbGncuBuq7EaTkZDCA9trn7QAPou6dEtRu84dmpwHkb/72/lTNaWvlM7tH0Hm6QED4
+	7rq5zwiewmNz9rIPiLafAv8aRw8IGjMYkvHPs6H2p4DDEoLrA6K6Tc1YWKpRzfmigih5r4abdSV
+	/T5S1z52pT3dmUisJo4oQeP0hHYEE0gujCgUNQ8+jB6wW8KQ8lAMfXquopjc1Wz4tcklwM1nX76
+	Tr0RM4ysDxDK7YrLFpj7oinDEM+aKmKfoCyLp8+kO3X2igNMF0p1zSgSV7uGbSMrMF0mhZbpyHQ
+	rwIFLj645GXUnj79MuQX1yBiOra4SY3bkFqVmxdyDwre+7rQSx4httQ9tN2CX1QhJpBuElWOJdB
+	saKQotWNx/tRHknYV
+X-Google-Smtp-Source: AGHT+IH4wtKObtJgtR1AT9dmxZGZI8D1fxqQbvpRwTRDavVZf4FwcIKdlepre/v+4+c5U/zvyE1CRg==
+X-Received: by 2002:a17:907:868e:b0:ac2:49b1:166f with SMTP id a640c23a62f3a-ad1a4b36f20mr356109066b.52.1746370765856;
+        Sun, 04 May 2025 07:59:25 -0700 (PDT)
+Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad189508cf4sm336614666b.138.2025.05.04.07.59.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 May 2025 07:59:25 -0700 (PDT)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	netdev@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Simon Horman <horms@kernel.org>,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [net-next v11 7/7] ARM: mxs_defconfig: Enable CONFIG_FEC_MTIP_L2SW to support MTIP L2 switch
-Date: Sun,  4 May 2025 16:55:38 +0200
-Message-Id: <20250504145538.3881294-8-lukma@denx.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250504145538.3881294-1-lukma@denx.de>
-References: <20250504145538.3881294-1-lukma@denx.de>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/4] arm64: dts: exynos: add initial support for Samsung Galaxy S22+
+Date: Sun,  4 May 2025 17:59:03 +0300
+Message-ID: <20250504145907.1728721-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,69 +92,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-This patch enables support for More Than IP L2 switch available on some
-imx28[7] devices.
+Hey folks,
 
-Moreover, it also enables CONFIG_SWITCHDEV and CONFIG_BRIDGE required
-by this driver for correct operation.
+This patchset adds device tree files for Exynos 2200 and Samsung
+Galaxy S22+.
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
----
-Changes for v4:
-- New patch
+[1] is a dependancy on the aforementioned series for the usb phy drivers
+and bindings.
 
-Changes for v5:
-- Apply this patch on top of patch, which updates mxs_defconfig to
-  v6.15-rc1
-- Add more verbose commit message with explanation why SWITCHDEV and
-  BRIDGE must be enabled as well
+Exynos 2200 SoC is an ARMv8 mobile SoC found in the Samsung Galaxy S22
+(r0s), S22+ (g0s), S22 Ultra (b0s) Add minimal support for that SoC,
+including psci, pmu, chipid, architecture timer and mct, pinctrl,
+clocks and usb.
 
-Changes for v6:
-- None
+The devices using this SoC suffer from an issue caused by the stock
+Samsung bootloader, as it doesn't configure CNTFRQ_EL0. Hence it's
+needed to hardcode the adequate frequency in the timer node,
+otherwise the kernel panics.
 
-Changes for v7:
-- None
+Another issue is that cpu2 and cpu3 fail to come up consistently, which
+leads to a hang later in the boot process. As A510 cores are clustered
+by two, it makes sense for both of these cpus to fail if there is a
+power issue. Disable them until the problem is figured out.
 
-Changes for v8:
-- None
+Samsung Galaxy S22+ (SM-S906B), codenamed g0s, is a mobile phone from
+2022. It features 8GB RAM, 128/256GB UFS 3.1, Exynos 2200 SoC and a
+1080x2340 Dynamic AMOLED display.
 
-Changes for v9:
-- None
+Further platform support will be added over time.
 
-Changes for v10:
-- None
+Best regards,
+Ivaylo
 
-Changes for v11:
-- None
----
- arch/arm/configs/mxs_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+Changes in v4:
+- account for compatible changes in usb phy patches
+- use status fail instead of deleting cpu nodes
+- add a-b tag in the 1/4 patch
 
-diff --git a/arch/arm/configs/mxs_defconfig b/arch/arm/configs/mxs_defconfig
-index b1a31cb914c8..ef4556222274 100644
---- a/arch/arm/configs/mxs_defconfig
-+++ b/arch/arm/configs/mxs_defconfig
-@@ -34,6 +34,8 @@ CONFIG_IP_PNP_DHCP=y
- CONFIG_SYN_COOKIES=y
- # CONFIG_INET_DIAG is not set
- # CONFIG_IPV6 is not set
-+CONFIG_BRIDGE=y
-+CONFIG_NET_SWITCHDEV=y
- CONFIG_CAN=m
- # CONFIG_WIRELESS is not set
- CONFIG_DEVTMPFS=y
-@@ -52,6 +54,7 @@ CONFIG_EEPROM_AT24=y
- CONFIG_SCSI=y
- CONFIG_BLK_DEV_SD=y
- CONFIG_NETDEVICES=y
-+CONFIG_FEC_MTIP_L2SW=y
- CONFIG_ENC28J60=y
- CONFIG_ICPLUS_PHY=y
- CONFIG_MICREL_PHY=y
+Changes in v3:
+- account for the usbdrd changes in the exynos2200 soc dtsi
+- drop usbcon driver from the MAINTAINERS patch
+
+Changes in v2:
+- mention the board codename in the first patch's commit message
+- make all reg values hex in device trees
+- reorder usb_con above usb_dwc3
+- drop regulators for usb_con
+- remodel usb_con_phy to take usb_hsphy phandle
+- include MAINTAINERS patch in this patchset
+
+[1] https://lore.kernel.org/all/20250504144527.1723980-1-ivo.ivanov.ivanov1@gmail.com/
+
+Ivaylo Ivanov (4):
+  dt-bindings: arm: samsung: document g0s board binding
+  arm64: dts: exynos: add initial support for exynos2200 SoC
+  arm64: dts: exynos: add initial support for Samsung Galaxy S22+
+  MAINTAINERS: add entry for Samsung Exynos2200 SoC
+
+ .../bindings/arm/samsung/samsung-boards.yaml  |    6 +
+ MAINTAINERS                                   |   10 +
+ arch/arm64/boot/dts/exynos/Makefile           |    1 +
+ arch/arm64/boot/dts/exynos/exynos2200-g0s.dts |  169 ++
+ .../boot/dts/exynos/exynos2200-pinctrl.dtsi   | 1765 +++++++++++++++++
+ arch/arm64/boot/dts/exynos/exynos2200.dtsi    |  561 ++++++
+ 6 files changed, 2512 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos2200-g0s.dts
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos2200-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos2200.dtsi
+
 -- 
-2.39.5
+2.43.0
 
 
