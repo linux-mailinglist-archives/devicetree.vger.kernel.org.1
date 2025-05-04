@@ -1,157 +1,140 @@
-Return-Path: <devicetree+bounces-173388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C30B4AA84D8
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 10:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 694A9AA8571
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 11:24:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 776F57A193D
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 08:37:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E61D7A27DE
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 09:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65A1F17A31C;
-	Sun,  4 May 2025 08:38:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF10419A2A3;
+	Sun,  4 May 2025 09:23:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="tekcZyI0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iiWe0fku"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01422A1D8;
-	Sun,  4 May 2025 08:38:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E562AD2C;
+	Sun,  4 May 2025 09:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746347905; cv=none; b=Vo6Jz9s86xZMo6qTQmwqLzJZsM7cJxkKmmxyIHDERDc5IjCvP3oe8lVy5HgFyXUnTShvth+02ysfA/6SRd/pBEMM2HtlbJHTNzHXCciXB+wLgT5pBFfcOLLdpbQoFXsoJEbYHJkRHewF7cJyuZ41HffWCeK0ohpqv9HYnTDpCrw=
+	t=1746350628; cv=none; b=gWorBANkKNZayoxJ/oTDo9VDA5Z4HB1tYclRkvTpeOLj9hNHlC84xNE7tQ9iE8M1S48ywlfYawpquoVLXo4zh08m8yOp9pz5+92Yk/5xPUJeLz43M28+QBZp9K27Q6bcmyQgOzWvuAIHJxoiN4fD3Zm4MENq1TzBogxHeLgyo90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746347905; c=relaxed/simple;
-	bh=zajni2ZotkkHJ3e2nqxmanS/CfmCsSsU+pl0LSL/dHg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yzb1kEakLfd2GcOwNsxujogqrgmraMYlH1OYn6A7BmWko/hdoJUf+uYrISrAmHNU5T433f1gmDQhyQEBWwSxu2itNJ63zTx2FLenBtlwvNz4+7tIyhv1/6IwDorrdZn8wEgdeGSoi4LagLdPb1jm0Wv21c+DQ+PQ1Viv7bHlqHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=tekcZyI0; arc=none smtp.client-ip=89.177.23.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.112.122.126] (unknown [193.96.224.59])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 605E0166B39;
-	Sun,  4 May 2025 10:38:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1746347898;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=0+7ojsVOVO/CRe37Da0xAzrNQ3YahhkxCE5bOnIDJY4=;
-	b=tekcZyI0IOY9MTDmq4csOxiiKr5cVKtFem8wQkzK0fbNPQ78zPp3q+IX0+KxmQXkBzvEtl
-	ytBBHXVobjqe1w+CaDdtCw9M02BWPrhNTHlmDlipyYn2gOfZztWmm21ILVY76gPDiIRmQh
-	ssemKQxcdwAHWuAMYv6BxpMLgisMv7k=
-Message-ID: <84ce1af9-3a95-48c5-8424-c93d9a34cefb@ixit.cz>
-Date: Sun, 4 May 2025 10:38:17 +0200
+	s=arc-20240116; t=1746350628; c=relaxed/simple;
+	bh=Z/wLesU/upHvvAffQRHDs/tfmsS89ObVZ7/4iwPs8us=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RXmdsZdoGQ/Tm1KuAYi6lJdd47euz8cjaOwK99pa6Cux8cf8+yurZSnP2FOsjTy/fg80WCX+1DIszQEAHCvH+Por2SDaTWAajQx2epPyCsROowlyNE3/vo5fz0j/rnAzhz3UmOW3CEwtFyDa2wx4hzunagdU/iCoEGfluZOTpRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iiWe0fku; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-acbb48bad09so624799366b.0;
+        Sun, 04 May 2025 02:23:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746350625; x=1746955425; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wukg0Qpk7AR1GIRYF/LwuQcmAOnY6o+ntzPPoaejwTg=;
+        b=iiWe0fku0xSkn1FJgtcpf6ekgOrF5l840tCs0YdhCmFOOXtu/sFFbKxydbnWpyRlVZ
+         2dsAvOS25TTzQhKkCpSIFmt9/M5EOCHoSftfzl3a3k+gsmkGd47jrFcG3Sdb9Doguht/
+         q7SVfIoUrG9N8+eZPWlaWrwhVw+4pmBB5Tg9Ete6gprg4fydhL8zfS9gEOIVgZvS4tJk
+         3fCedyPJfHJ4Ups1E0f2bChfu+avjIxJHZQaHsZyqpbS8CdvGfmBVMmVYckens8NRDvL
+         77PAeh5USljhwuSEMB7CPTtWAIMOzg9u0dD8oWkPi6WVfbo9K6DAu59jbFZ/Jn4N/Bpd
+         UoPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746350625; x=1746955425;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wukg0Qpk7AR1GIRYF/LwuQcmAOnY6o+ntzPPoaejwTg=;
+        b=Gq7ffPBLepW83WcUJI6UsuBeaJsALqK1R8fPaIfBKdyCVKuEENbGrgQxLco+GJ7QkK
+         AsY/0nemB8tuM8wpUG+TMZgf3d0Qkrp2KBZFSWmH2cTfwsC7ObXu0dbEK4+/nw36erWM
+         yjZpPP2CHG7rUYRLLrgHmSre5V1dPUWXJ5Z7nFKaBqmuKuX+BpxWjS7QlgymZlZFLJ8V
+         9CnpGZQLQRbNg08Q0+BxUQE+LXiysyZJlKxrBlLBVP+ty4ERBEqMZDTp+Q3CXXbqFfGX
+         lDuAmUDgBfRC0ymGa9lYRlwjvkZ1gzDFsXB89lNLiB402UfFQKaR/jWHxqgpl+cmY0C1
+         9eww==
+X-Forwarded-Encrypted: i=1; AJvYcCW203hHeQ+RkopOymnQ/ekiRwuSir+0WGuoHY5EgKcOrWiz8jpC21oMJqyLAUqQYKZroFt1BkcHt74yS1k=@vger.kernel.org, AJvYcCXU0PjNAlfRcXIGCLt+pKCVtCSIYI35WqUcd6NXHwDB8qKeMXZV5vprme6SUL2qpPBZ0Jn/MkGNjDgRG8I=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDRHYVoWdTafXSL6dQog4m0ZbPlFwJgohZC4tSoOkbwNLavrNG
+	z7p8Hn4HfDhrZm9wrP0PdMcDPGu3amJkXAGu8/MAzQJRRHerPGDm
+X-Gm-Gg: ASbGncsZRzUYMWIoHnk9OjyHGrttF34/+gUT6M5OzZT14FQ5A2KMiaIgJQULwTfDWFg
+	nAjjam3eNwXZCmTlywcxZndHNOG5STqo4vEWVbyg1tMFzIzUHmzCj3FVVyDTWOJFwRDluXA2ys2
+	zgBOyckTA2cleAR+acnvH1197TM/MLyZ1O6j6HgzbBus3xauv23vxCgjwCNsqwDJuFS1E4dmTgO
+	0Y03L7dpVrve3vt84zayWahcdkW/sLtvqwUGkd/Tc8v3XrgiXq0PigTojKNfYmMb74IDlCqtcly
+	0x1jINlPcXnSBg2y/ocVmtlClAumWv4R
+X-Google-Smtp-Source: AGHT+IHQl2DxfmN1ppv6Ja7k7ndh6ZBKscKyu0r+/1iqiYGyo98UWkzsNTwLN5NeQ1pDTaoW4y3YfA==
+X-Received: by 2002:a17:906:9c94:b0:ace:bead:5ee1 with SMTP id a640c23a62f3a-ad1a4a8d3bcmr259923466b.42.1746350625206;
+        Sun, 04 May 2025 02:23:45 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad1891a26bdsm306050266b.43.2025.05.04.02.23.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 May 2025 02:23:44 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <treding@nvidia.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/3] ARM: tegra: complete Tegra 4 and Tegra K1 device trees
+Date: Sun,  4 May 2025 12:23:21 +0300
+Message-ID: <20250504092324.10802-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] MAINTAINERS: adjust file entry in OMNIVISION OV7670
- SENSOR DRIVER
-To: Lukas Bulwahn <lbulwahn@redhat.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- Lukas Bulwahn <lukas.bulwahn@redhat.com>
-References: <20250504033502.37809-1-lukas.bulwahn@redhat.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20250504033502.37809-1-lukas.bulwahn@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Good catch, thank you.
+Complete T114 and T124 device trees.
 
-Reviewed-by: David Heidelberg <david@ixit.cz>
+---
+Changes in v4:
+- configured tsec schema to cover Tegra210 TSEC as well
+- added required to tsec schema
+- reset-names preserved for consistency with other host1x devices and align with T210
+- added clock-names to align with T210
+- operating-points-v2 check https://lore.kernel.org/lkml/20230119131033.117324-1-krzysztof.kozlowski@linaro.org/
 
-On 04/05/2025 05:35, Lukas Bulwahn wrote:
-> From: Lukas Bulwahn <lukas.bulwahn@redhat.com>
-> 
-> Commit 59b24c0047a2 ("media: dt-bindings: media: i2c: align filenames
-> format with standard") renames the files in
-> Documentation/devicetree/bindings/media/i2c/, but misses to adjust the file
-> entry in OMNIVISION OV7670 SENSOR DRIVER.
-> 
-> Adjust the file entry after this renaming.
-> 
-> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@redhat.com>
-> ---
->   MAINTAINERS | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7b78a98d1f42..78872ebb1aac 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18163,7 +18163,7 @@ OMNIVISION OV7670 SENSOR DRIVER
->   L:	linux-media@vger.kernel.org
->   S:	Orphan
->   T:	git git://linuxtv.org/media.git
-> -F:	Documentation/devicetree/bindings/media/i2c/ov7670.txt
-> +F:	Documentation/devicetree/bindings/media/i2c/ovti,ov7670.txt
->   F:	drivers/media/i2c/ov7670.c
->   
->   OMNIVISION OV772x SENSOR DRIVER
+Changes in v3:
+- added tsec description
+- swapped compatible back to use enum
+- clock and reset description dropped, added maxItems: 1
+- reset-names preserved for consistency with other host1x devices
+- dropped interconnects and interconnect-names
+- dropped isp nodename
+- dropped multiple rest names for mpe/msenc
+- dropped tegra114 msenc example
+- fixed reset name in second isp in t124 dtsi
+
+Changes in v2:
+- dropped accepted commits
+- added EPP, MPE and ISP compatibility for T114 and T124
+- added TSEC schema
+---
+
+Svyatoslav Ryhel (3):
+  dt-bindings: display: tegra: document EPP, ISP, MPE and TSEC for
+    Tegra114+
+  ARM: tegra114: complete HOST1X devices binding
+  ARM: tegra124: complete HOST1X devices binding
+
+ .../display/tegra/nvidia,tegra114-tsec.yaml   | 79 +++++++++++++++++++
+ .../display/tegra/nvidia,tegra20-epp.yaml     | 14 +++-
+ .../display/tegra/nvidia,tegra20-isp.yaml     | 15 +++-
+ .../display/tegra/nvidia,tegra20-mpe.yaml     | 18 +++--
+ arch/arm/boot/dts/nvidia/tegra114.dtsi        | 65 +++++++++++++++
+ arch/arm/boot/dts/nvidia/tegra124.dtsi        | 65 +++++++++++++++
+ 6 files changed, 243 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml
 
 -- 
-David Heidelberg
+2.48.1
 
 
