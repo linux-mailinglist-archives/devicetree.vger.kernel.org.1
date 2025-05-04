@@ -1,87 +1,100 @@
-Return-Path: <devicetree+bounces-173481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C863AA884F
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 19:10:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52CE7AA885A
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 19:11:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0D981896B19
-	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 17:10:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 295D31890168
+	for <lists+devicetree@lfdr.de>; Sun,  4 May 2025 17:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793011E22FC;
-	Sun,  4 May 2025 17:10:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A241E7C05;
+	Sun,  4 May 2025 17:11:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pYZzFAxN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="abDBGjyN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486E84A29;
-	Sun,  4 May 2025 17:09:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 463831E5B91;
+	Sun,  4 May 2025 17:11:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746378600; cv=none; b=WH8rg5eDW/H9P/vSpf0Y40ajkx5LD7FNz0hljboTYiFYvGhrKhPNteptZX28cMXEdSVcGq7wwMJkBA7cSgOx9iqqv3rYHLMR6dVOPiF2tmmxkcuae0drwjngSyHcPzckUBhCq7JFSw20GhQUsw4cDaqCnPXUOm0QGFZDC3upWjg=
+	t=1746378702; cv=none; b=bcz3p5AhhTWNDur1MhUNecopfdkCFYLrQJX72A/MDD+sB76i+fBIlXdnrvwxb2u2cC/Cu2ya9Ox4BEzvSfU369TR6ebMHmWNgdsvlZO5IMCldjmTHnnZR32IlJvMndIQOcSRwdJqcTP89EstYEKBnQT/mawssb6XXpttAJGtICg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746378600; c=relaxed/simple;
-	bh=DHKSJfYJCd2InIFKt/Zme3Y3SRdPHc9bFn5oLj6g3ec=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WIBa7DQXyYwOdlAbr/DQ72VuLiLTxPP11Dt2livxljKrERf25QXY/YI8q4KtPQqzjocGGraQDvSI5yAd6f1L7XU+Y8jt1PwNwHj03et2B4HIwOBtGfvnaP/75UZoh6CSHnDKmF2n93SE3EZTze+Nc1D/Ahza1uZU9XpFH9vqmOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pYZzFAxN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33BE7C4CEE7;
-	Sun,  4 May 2025 17:09:59 +0000 (UTC)
+	s=arc-20240116; t=1746378702; c=relaxed/simple;
+	bh=ibjUWSAUfLwtzvf59Yp/2FVYayCZFaq7BJh4eClGZfM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ORshypNi1JiYHKNt67mc+KOke9mlFlDXRjGI4KMGjuHBnzAZ+HER9D96P64fZedG0nY1DdssJos/AOhuZQFJJ9pIQwrinc/TCguPBWuh+TCBb/OWCyjON275ytmg3LMynZisqe5chOMEtjaUe2lNuVOH8wJq1f04uY8taSUd7tQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=abDBGjyN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3E78C4CEE7;
+	Sun,  4 May 2025 17:11:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746378599;
-	bh=DHKSJfYJCd2InIFKt/Zme3Y3SRdPHc9bFn5oLj6g3ec=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pYZzFAxNlY3wdWERCzMQw7F8AFStTNSXlKm3x+TMb3zMBZ+r+YhGXUU16qe08dvCv
-	 C26tAojukA8oyBsbRm1S/kNKVBDl0b6EhEpzBxMggPUjnk3IF33WjTpe7NA1dM3zm6
-	 sWC6esDxj7xer9oF+YmDr6fcNqqsxKSNOJYWeqE4oV2pp6NIJQaF7HRyVm9T9Tvv+k
-	 oAyEibE/UPNuporRVmOTH+aUR27MuuE0e+83rTcLIEcssj7OZp769J1D5BOSVV6eBh
-	 VwFNnIXr8DqOctiZZmVf6MRiu6Y5HBhYG2d0upX1myyVOk/h9vlCoT7RRRbdZhUcSi
-	 UkEuz12P0Znfw==
-Date: Sun, 4 May 2025 19:09:57 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Praveen Talari <quic_ptalari@quicinc.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	devicetree@vger.kernel.org, psodagud@quicinc.com, djaggi@quicinc.com, 
-	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com, quic_arandive@quicinc.com, 
-	quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com, Nikunj Kela <quic_nkela@quicinc.com>
-Subject: Re: [PATCH v4 2/8] dt-bindings: qcom: geni-se: describe SA8255p
-Message-ID: <20250504-funky-coati-of-vigor-fe1fe5@kuoka>
-References: <20250502171417.28856-1-quic_ptalari@quicinc.com>
- <20250502171417.28856-3-quic_ptalari@quicinc.com>
+	s=k20201202; t=1746378700;
+	bh=ibjUWSAUfLwtzvf59Yp/2FVYayCZFaq7BJh4eClGZfM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=abDBGjyN5T4tpU1olHuoyuwtx+zkEO0UOo+9Qy6xxmadqY2GHPvW8dmkUpqefkFik
+	 2Gg8uo2UFBpkE2oEfOryW1i/E/TqYhhnglLnQomJl7FwYoEZ4stQ/WI2szHOR8qf5Q
+	 pS/XG/PpZwKRMBWtXJAWxFLBEkyScmvJs7S6JALH9kBm3dj5+W+3NB0aQW67FgAVmC
+	 NZW4B6fX65Ot6V3uh55XfojDrJF93AhjugU8Rd+8HD9y4dbiYUpCQMtBdi9hJslBMG
+	 rtjOgEKzzRQiIZikqrYkHolfuqCjrO2f3wFVNYoEOu2taDEZBBmJkgB8bVKN+xDK9E
+	 C3OWOj+3aSWhg==
+Date: Sun, 4 May 2025 18:11:31 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Kim Seer Paller <kimseer.paller@analog.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 3/3] iio: dac: ad3530r: Add driver for AD3530R and
+ AD3531R
+Message-ID: <20250504181131.3fc515ca@jic23-huawei>
+In-Reply-To: <CAHp75VeY_vjS=Ca4L34UMjVyDvG6iLdrW_c-owKWBLK-3Lg0BA@mail.gmail.com>
+References: <20250429-togreg-v7-0-0af9c543b545@analog.com>
+	<20250429-togreg-v7-3-0af9c543b545@analog.com>
+	<CAHp75VeY_vjS=Ca4L34UMjVyDvG6iLdrW_c-owKWBLK-3Lg0BA@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250502171417.28856-3-quic_ptalari@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 02, 2025 at 10:44:11PM GMT, Praveen Talari wrote:
-> From: Nikunj Kela <quic_nkela@quicinc.com>
-> 
-> SA8255p platform abstracts resources such as clocks, interconnect
-> configuration in Firmware.
-> 
-> Add DT bindings for the QUP Wrapper on sa8255p platform.
-> 
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
-> Co-developed-by: Praveen Talari <quic_ptalari@quicinc.com>
-> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
-> ---
+On Wed, 30 Apr 2025 01:18:58 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> On Tue, Apr 29, 2025 at 5:20=E2=80=AFAM Kim Seer Paller
+> <kimseer.paller@analog.com> wrote:
+> >
+> > The AD3530/AD3530R (8-channel) and AD3531/AD3531R (4-channel) are
+> > low-power, 16-bit, buffered voltage output DACs with software-
+> > programmable gain controls, providing full-scale output spans of 2.5V or
+> > 5V for reference voltages of 2.5V. These devices operate from a single
+> > 2.7V to 5.5V supply and are guaranteed monotonic by design. The "R"
+> > variants include a 2.5V, 5ppm/=C2=B0C internal reference, which is disa=
+bled
+> > by default.
+> >
+> > Support for monitoring internal die temperature, output voltages, and
+> > current of a selected channel via the MUXOUT pin using an external ADC
+> > is currently not implemented. =20
+>=20
+> LGTM,
+> Reviewed-by: Andy Shevchenko <andy@kernel.org>
+>=20
 
-Best regards,
-Krzysztof
+Series applied and pushed out as testing for 0-day to take a first
+poke at it.
 
+Thanks,
+
+Jonathan
 
