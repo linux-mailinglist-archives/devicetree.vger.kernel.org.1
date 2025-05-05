@@ -1,130 +1,154 @@
-Return-Path: <devicetree+bounces-173842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF570AA9C98
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 21:26:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1545DAA9C9E
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 21:27:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4CD73A1565
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 19:26:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DC0D17DF4F
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 19:27:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD69E26C3A4;
-	Mon,  5 May 2025 19:25:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6247D259C92;
+	Mon,  5 May 2025 19:27:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GRDGtYET"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QgMNsUXP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 605DF2701D7
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 19:25:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AF9817333F;
+	Mon,  5 May 2025 19:27:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746473157; cv=none; b=Ztf8sGr++OVaB46JGwihDSa1VC+5xUQnoLis+lsc2KY+dd9+ZXeeUDSOqfU38UIMXgex2VMy6Hvb09w18MPK18xhK+vLTefSofviQjHQwAMWxgLs2wV3ZiF0It00Nws+X/gAEkCEwwvUG98w7MhdIUOIWpHsLvhhWAZJlMCnI8o=
+	t=1746473252; cv=none; b=b4gyNJUhJduCbkF8lgeVTa+zZGVmLAOp+zoga3kibvxjBtZXVaI6f8GGqdRr2bIF5kTXbn3kbRAoRrE0rckiz7uSMBjQc6oNQO9JspK8D4M35lpCOOlwp5MKF2cKJ3pe1iyXgRffbp1LfBXNeP6X61smH4fzdY37xOBfcZuvti8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746473157; c=relaxed/simple;
-	bh=Ynk3R5nbJSLKiEywR4223zh8hbUXr9zVKrKDdnMkXOE=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Vv32dj8OP1Ax+CY2tC5Z5tO6DZqCZMOonywgDPtwEr5GyXcd+MQHZ6pcR3AILYVNJpn7ZaN03TwDiyxsBvuA08eJxkNQCDKAwOTLD9rnOXDvHFs5niBfqoLUP06pHd4O1eKUrzH8M8dmv7i2K8N+xTb0ODp0w83OfEIHEnaRaOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GRDGtYET; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43cf7c2c351so4387255e9.0
-        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 12:25:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746473153; x=1747077953; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WH8gtHz6B4rMizmqYQm1yuL9136pUtmyGX3DxrZ7Ves=;
-        b=GRDGtYETzUnbVnotCPSdwWGjfDBqdSdWszXKc7saiTf8ZN/6izNxoJTAZsQSfgdqp0
-         xxXrbckhJGuRxAk1rQOnw9pc+3C1UcSPXV0PR863ypcEqH7VaTVyEJ5EC/vaAFjGwPNP
-         OA74Gi20/zuR5D0TnX/kCXBmkN0NozlWNI4mrOXGywcUfpEYf6xmucYMQ9W1hUmU1Lt6
-         181b9XMnBkFLPRRjH6hn17ezrecZdVSmFqzxWg/L5iHU9DjCX70BHb2v8iompM/Kmh0k
-         xSs3Nh5GdFtMA7m2QotNpJRfa3ZfbXoMaktKXpiiB0/oAW6MxSQc+FKtsIjPAo/2+6Yq
-         5erQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746473153; x=1747077953;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WH8gtHz6B4rMizmqYQm1yuL9136pUtmyGX3DxrZ7Ves=;
-        b=wIrfqnDgggva6gRbWSj+RfoVVc1CtQ3t6mTFGFz5ZZPpuauduCWajdj0fmfvpV/Zp4
-         VrrC5c+mAk7c+0Wqg/RlTTUeW5Qlb1q9P1UX0n5dPsu8iUILR17x/QLZXTw3TQowO+ji
-         cF1AjMpHrNm+3XyULgL+U2Iw2rDfflMQhWynPrij5/a94ug7iMFlyfVWhA1/Nk2ViClZ
-         IEPgKXnN1NyxxnAGz0as3/l+GRDJ1i0ferGepuK3VXmWrDemkxaV2uLgHNRDFP3bqPC1
-         C34Rt9SdUU6LPHEmEs6oJG/dXjxXp2iEmhLtl6OrAEg5y21FMf14Aqvqv5juB+8MUCxc
-         Rcwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOEgPZvLmjiawlF+hfHutMU2YPYwsps1v24UTPePEwgvsVc+bHoGagqRLmx7b8g8272/Fa7V4OcfdN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJPZVzbWXa5mgHbgQ5Z+VNAk+EPybvn6VYYpBqKDvqXLxiymMZ
-	vxQRmLdDW5dm4fGuor+xDvNs4l/xsO9R/rxQbztTxjtRpQREcXqeqMDNKhkpv+Q=
-X-Gm-Gg: ASbGncuZOXCPkPgYLrh91vpQCySOwhJCFVgmFfCaQYjiveaLaebMo9R00G2/AK44rYx
-	Rv2zlOpIaLoZwqLB+kdrY/pXwtmpS+OyfMFM4XPZquCeP2bh8Is7niAyG29sibtVAZPTQWvpQgs
-	WKV6T8D63hYLxxL/SxYhSzN3PhCgAshHPz7kzG/idcswoa1ujy/VYSOHCbvFuyLE6ducA4V31xe
-	nZssHpZcpIg+yHlBfAg0lX+WElDf151+ATYFklMa3uOURnuNBlX7+68xNTnceFzemF4MHOb9Mrl
-	gj+sSmajyE6DHXOoOxiRBlpfOuPN6UTA2NWCLlwnGaMCTSgrMQ==
-X-Google-Smtp-Source: AGHT+IFQEHNGf7/D1efpW0ms8IrvVnOu76w+4u/3GMokHybcmKaxexp0/lnZzk4zFWZoiyidipxSsw==
-X-Received: by 2002:a05:600c:3c88:b0:439:9a40:aa1a with SMTP id 5b1f17b1804b1-441bbf38405mr42878885e9.6.1746473153627;
-        Mon, 05 May 2025 12:25:53 -0700 (PDT)
-Received: from kuoka.. ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b89cc441sm145342045e9.3.2025.05.05.12.25.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 May 2025 12:25:52 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1746473252; c=relaxed/simple;
+	bh=yE4K00cim4sjv2RnRcLDj9EJ+VBCvkau+NXqtQGE4to=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=owc4533ZU0RKa77AH/5Pe0zgFaFix04P9Jb0qAUVXabTLBQboFEKa4apgVFh4AxWVc/ByjZB4H/At4oDFwjjzuOj6mgEBTVd338/7vLdYM7R/wWntk1W7I5Ym88ay7214a9dxrpy/pYFGMOQ4bYx1X997VRCiEdNhsvtqCkhSXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QgMNsUXP; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=hKochlIwHnCpW8MnNP8D8YL+YspnWH14oOiGbaOJ6Vg=; b=Qg
+	MNsUXPFv2p51/f9Vsv8mA3try/6PvDu0rDiMnH0O8/DyN0x30z27QL+H3hhHpLQBgI30HMSNCThSz
+	SEdyZAN6xe/lods7BJgawT4gsFpmsDOn/zM16pkzdKCGj0H7q4Zrv7zNFu0mDVbZ5VMEodKc8tjLB
+	uEOim51zxWp9IbU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uC1TA-00BdB7-N5; Mon, 05 May 2025 21:27:16 +0200
+Date: Mon, 5 May 2025 21:27:16 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] arm64: tegra: tegra210-p2894: Align GPIO hog node name with preferred style
-Date: Mon,  5 May 2025 21:25:48 +0200
-Message-ID: <174647309278.308425.619180434639032.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250115204603.136997-1-krzysztof.kozlowski@linaro.org>
-References: <20250115204603.136997-1-krzysztof.kozlowski@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 4/5] net: vertexcom: mse102x: Return code for
+ mse102x_rx_pkt_spi
+Message-ID: <51cdf94b-6f97-421d-916c-aca5e7c34879@lunn.ch>
+References: <20250505142427.9601-1-wahrenst@gmx.net>
+ <20250505142427.9601-5-wahrenst@gmx.net>
+ <3b9d36a7-c2fd-4d37-ba33-fc13121d92e6@lunn.ch>
+ <c1fc1341-4490-4e22-a2ee-64bb67529660@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=569; i=krzysztof.kozlowski@linaro.org;
- h=from:subject:message-id; bh=YWhEExbXWK0i0KinY8dDPGi15oUXCcJ3B2nDuPDFR0s=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoGRC7BRrRIgGFXwULyceZMeAFc9ZGxKd+jvR7x
- o2L7OfgwiiJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaBkQuwAKCRDBN2bmhouD
- 1xn9D/96vprsQHtyCJjXxBYrw4aZvYuYe6trpozVbY0NFOWQlNrh7yrs7mZgRzPVAEuR448nRdD
- vOxKiflvbrDAOz3VCPWTjpJYzCyns/lnsEsWvCCK150aA2G5BWbzII0rVjxdfqtcYmuqh9lsq3R
- OwMtn7gvSuuyN2GwD5AxvUSxoyZMpckLOJ0LkXLlxfet60KpN/hbQka55ua80l5JBh2WfN0dIrm
- YdYBEbyGCKfvMO0VgjnRCd0HyQmCS64GKkOhx75trM5oSuHJyX+DaRSIwqIsoPG/ciwTICuZxir
- F5Iwx4MC+qPNWSsXClTJCjyXtx62jziyLXQGNzEv+6IdpBvl95xriSAvPfj70llHdfyGk1VZAds
- cepLdy1zzUM1b2rkj2A/FDltHbGDPNsxyhe8pvlZe7uB5EcH+45PH2mTGABYx7C7gS9aIc6mJJ2
- cE+W+agKMiiNGchgWJCPVMXcGlLjUk2d+eXfkpaNScwjOsvVxg70b8HjHyJDp4ZoAjjmwnlk0Q3
- xo1hLqyU2yesl/i902b3QsE1OcuoT2WBnSiDtDpL9stfasv/fxSajRBghD4ijEjxaMTMkDxAbJI
- I85INAY5WOE7RkUGJ6o93owWYuW53C+sBntz2HlYtXUhmMoVlig9vntw2doxKpYmEuQ8EbXzUlJ VUcX8OjFSlihZKw==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <c1fc1341-4490-4e22-a2ee-64bb67529660@gmx.net>
 
-
-On Wed, 15 Jan 2025 21:46:03 +0100, Krzysztof Kozlowski wrote:
-> GPIO hogs device node names can use 'hog' prefix or suffix, but the
-> suffix is preferred.  The pattern in DT schema might narrow in the
-> future, so adjust the DTS now.
+On Mon, May 05, 2025 at 07:16:51PM +0200, Stefan Wahren wrote:
+> Hi Andrew,
 > 
+> Am 05.05.25 um 18:43 schrieb Andrew Lunn:
+> > On Mon, May 05, 2025 at 04:24:26PM +0200, Stefan Wahren wrote:
+> > > The interrupt handler mse102x_irq always returns IRQ_HANDLED even
+> > > in case the SPI interrupt is not handled. In order to solve this,
+> > > let mse102x_rx_pkt_spi return the proper return code.
+> > > 
+> > > Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> > > ---
+> > >   drivers/net/ethernet/vertexcom/mse102x.c | 15 +++++++++------
+> > >   1 file changed, 9 insertions(+), 6 deletions(-)
+> > > 
+> > > diff --git a/drivers/net/ethernet/vertexcom/mse102x.c b/drivers/net/ethernet/vertexcom/mse102x.c
+> > > index 204ce8bdbaf8..aeef144d0051 100644
+> > > --- a/drivers/net/ethernet/vertexcom/mse102x.c
+> > > +++ b/drivers/net/ethernet/vertexcom/mse102x.c
+> > > @@ -303,7 +303,7 @@ static void mse102x_dump_packet(const char *msg, int len, const char *data)
+> > >   		       data, len, true);
+> > >   }
+> > > -static void mse102x_rx_pkt_spi(struct mse102x_net *mse)
+> > > +static irqreturn_t mse102x_rx_pkt_spi(struct mse102x_net *mse)
+> > >   {
+> > >   	struct sk_buff *skb;
+> > >   	unsigned int rxalign;
+> > > @@ -324,7 +324,7 @@ static void mse102x_rx_pkt_spi(struct mse102x_net *mse)
+> > >   		mse102x_tx_cmd_spi(mse, CMD_CTR);
+> > >   		ret = mse102x_rx_cmd_spi(mse, (u8 *)&rx);
+> > >   		if (ret)
+> > > -			return;
+> > > +			return IRQ_NONE;
+> > >   		cmd_resp = be16_to_cpu(rx);
+> > >   		if ((cmd_resp & CMD_MASK) != CMD_RTS) {
+> > > @@ -357,7 +357,7 @@ static void mse102x_rx_pkt_spi(struct mse102x_net *mse)
+> > >   	rxalign = ALIGN(rxlen + DET_SOF_LEN + DET_DFT_LEN, 4);
+> > >   	skb = netdev_alloc_skb_ip_align(mse->ndev, rxalign);
+> > >   	if (!skb)
+> > > -		return;
+> > > +		return IRQ_NONE;
+> > This is not my understanding of IRQ_NONE. To me, IRQ_NONE means the
+> > driver has read the interrupt status register and determined that this
+> > device did not generate the interrupt. It is probably some other
+> > device which is sharing the interrupt.
+> At first i wrote this patch for the not-shared interrupt use case in mind.
+> Unfortunately this device doesn't have a interrupt status register and in
+> the above cases the interrupt is not handled.
 > 
+> kernel-doc says:
+> 
+> @IRQ_NONE:        interrupt was not from this device or was not handled
+> @IRQ_HANDLED:    interrupt was handled by this device
 
-No responses for four months, also to a ping, so I will just apply it.
+A memory allocation failure in netdev_alloc_skb_ip_align() does not
+seem like a reason to return IRQ_NONE. I think the more normal case
+is, there was an interrupt, there was an attempt to handle it, but the
+handler failed. The driver should try to put the hardware into a state
+the next interrupt will actually happen, and be serviced.
 
-[1/1] arm64: tegra: tegra210-p2894: Align GPIO hog node name with preferred style
-      https://git.kernel.org/krzk/linux-dt/c/04e7638dd64af20e4e81b7569abea9673e337098
+This is particularly important with level interrupts. If you fail to
+clear the interrupt, it is going to fire again immediately after
+exiting the interrupt handler and the interrupt is reenabled. You
+don't want to die in an interrupt storm. Preventing such interrupt
+storms is part of what the return value is used for. If the handler
+continually returns IRQ_NONE, after a while the core declares there is
+nobody actually interested in the interrupt, and it leaves it
+disabled.
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> So from my understanding IRQ_NONE fits better here (assuming a not-shared
+> interrupt).
+> 
+> I think driver should only use not-shared interrupts, because there is no
+> interrupt status register. Am I right?
+
+I don't see why it cannot be shared. It is not very efficient, and
+there will probable be a bias towards the first device which requests
+the interrupt, but a shared interrupt should work.
+
+	Andrew
 
