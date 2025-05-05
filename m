@@ -1,123 +1,193 @@
-Return-Path: <devicetree+bounces-173647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5574BAA9312
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:28:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AB64AA9323
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:30:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92F333A5345
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 12:28:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70E8D1899F06
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 12:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F3A524A043;
-	Mon,  5 May 2025 12:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72141204C1A;
+	Mon,  5 May 2025 12:30:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="b5O+J/UM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bAfu4hin"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E8C8207DF3;
-	Mon,  5 May 2025 12:28:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689E624E4AA
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 12:30:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746448095; cv=none; b=M9ZcOu+rvCiC/fi7k+a9i+wanehjMgoZ1cqOYtwGYU50dS7IFw8ynoA7jw9Gw99LhxKshPS1XJWwMzu7flLfTYtfP3ekWKDGMjVXZBTMBvJIyaiEMPqZyQlOE9KzChv/AZNrDxPZxrkdJueQE7/yLfyVG1DO8U9vn88+h1A4Zq8=
+	t=1746448208; cv=none; b=TNvJkVCCwvl+FwFV37cQF6Kj1n3CLk8u7x0OF0W0V5rST7s/jCCFM9PyCTk9hVKXIoLumwOYO5OGbZafbiGYTUdoZedfymU1wvzXVkTSHxC6D6KsLNhUrsUwPN8z3xlnPmyGZ7hs1dXR2aFTFJECT1bpKrJvp+JNLhAFL1IFtKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746448095; c=relaxed/simple;
-	bh=Z69FCtu1r+ndkYq5XR5rcqeiaNjXG25NQ6VehquV3HU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WgHYFbVhmauXjYHSFFy8RV0C9kiXHcoX3SepzIpBG5Ck5lU00BUdcl/PYG4SUcJECUAEVXopLg4bAj0nGGFcsbH+s+d5kaPf7K1h4EBpVJJeBQMORl0LPUx6P5dxYL1Da5NtwMJOpT3hFP/1wz/SpuYeiC7o6xkIU2RGv3tbs/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=b5O+J/UM; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=QThOCW+spE4F0Srm+t3y3bO2Fskva0qz0HPI3WJ3OuI=; b=b5O+J/UMfheJprS0FNIu39QNrM
-	62+1pNEYJ1B82BoYcJ+BUzBGUN1UtoFblR5Uf/YOCTQX1Zd4Tb8drZNnD+ZN9RgJtZJJHqPgnix3g
-	6ttmCpDmKNBmTYsOy3XaD3cCHiUESN0dOhtcVk3msOvK3wwFMQXsAotObNwy68uV5qub6zCZ1jkvE
-	pJ1Go73Kk3j7nmi1LXwcyd67gRdst31E8KSUPLR4O+Ls8eJHtotmlYWaPGPItxgFRzySRi1pFeICa
-	rQOAmc07b2nnRhn6dKL3ZTGOKomtfl3xoO0ecu+K/misbBAy5+7VXhT0uq0fRzKW/DD73CxINB1qM
-	L87UyfGA==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1uBuv2-003YHw-2t;
-	Mon, 05 May 2025 20:27:37 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Mon, 05 May 2025 20:27:36 +0800
-Date: Mon, 5 May 2025 20:27:36 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Daniel Golle <daniel@makrotopia.org>,
-	Aurelien Jarno <aurelien@aurel32.net>,
-	Olivia Mackall <olivia@selenic.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Jonas Karlman <jonas@kwiboo.se>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] RK3576 Hardware RNG
-Message-ID: <aBiuuOAcq1rCM0Ob@gondor.apana.org.au>
-References: <20250430-rk3576-hwrng-v1-0-480c15b5843e@collabora.com>
+	s=arc-20240116; t=1746448208; c=relaxed/simple;
+	bh=eC4rf7B14lDTCwZ8B+eqbwh8ui74TY7nf9x4H9JFM7k=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=RILcWVLAHm8ifTZCtFM3696GMnhIW3oRXyKBZ0QtkRCcmvmVR17sJgXaSneHXPhWPcWWzk1WDEf2RZyqR3jNNOC5xg9mjbNiXFwbHaSnX530TtzFJZeUo/Rdhcf5YVsAKlG2vxg4UCTQWaYMKsjLtAb20c5PamGORZHEJm+1owo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bAfu4hin; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43cf58eea0fso18295725e9.0
+        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 05:30:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746448204; x=1747053004; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=t0GjryULo4v09EAImrhm7s0nrCH1vBTnHzkq05ckM1c=;
+        b=bAfu4hinbiGfwi6+7dL8teBEkKg63WlGuzzsHJGajG5YWCAJgwsvbfq1EzT48DYAjg
+         ASCAeIm7hk0PQyNcRZ+5XW4IVKjKeOSARnIiU6IaFWJuME8Bc1y32pRFxi+6oIKid166
+         sY1mZJwmRDwdLbqe2ABzsHdxwEboHDPrgDBpPuchJNVufuk0WySIw7S5yZbeOwuTMytV
+         aNOPzJq4cgh9uPciFqW/P7ZAkp7q+PmTJ7SkOJ81haWAJ2YQ1fOH4tMJCKg45Acgmd/1
+         R1guZbZ4IAa8KxKUtT90/PTvlvczKHZygNGmFAWAhYpgqKaOBquPcj3FGc+HecxlqMP4
+         bZdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746448204; x=1747053004;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=t0GjryULo4v09EAImrhm7s0nrCH1vBTnHzkq05ckM1c=;
+        b=uOOrO5YXUEA7bbMaYpORVgdU719eRKzoD164ZKykFrlrdYSLMPrM/qK1mpt61m3jNe
+         dYizdfSElt1biWuGuhMHuBazofp/H3fSDUDrXxVYeQ1v5FKN9tPpkTnPpWSqfkFWaWih
+         n0WVwti8EyosbNbVFWa/CBprcmzPkilCw4Hi7aE6Issp5Ms5JwoKM2DkNGQBz4cFOUT2
+         HAbTubshdhI7OdLz6ZUnB2KZFzM/YLTtMM6lKYsvNxVpacycGQKpQnh4UGNV0qf5BVO2
+         0j0/C5LJWGJz7uEmnd5G6qb3qx69ZpC/EvRQelHHuM8PSQEj7ezdme5xXc+DVF3DCskC
+         34nQ==
+X-Gm-Message-State: AOJu0Yx3xF1J/xoCMsmQOrMt6sOr8gByKcykgx3DhQkekzu4DZcBKhFq
+	PvXw9XxnJQe1KIVV4KHFL7WgskD6X/eT5Jq1U9Zj5pPnQymLjYpSShrLVTPqurs=
+X-Gm-Gg: ASbGncszyt4QEia0YHD3zfIFjIdDJnEqmGJ55/fPWW+7boZZrdcmLxbgimEWChEPHiM
+	IUXSmBUBrKrMJtOA7/p99HrJbPzCvd0Fc8A+jKEpIUdbF+D/giOQfjOk0sydwLY3hZV5q/6z9G1
+	U1IOVpjNsygJh/sqst1M7g1sxQA9MjHblFAsxNsdKoekwb92/z09dYRz1qrlgjrgNHRdmSxUQkk
+	4TMyO6UUrLZD6T76o+Ii72dDf3pR5HgbFFSN+SjDOkTS3/szDd7QfYmYhso0mmjy8onKDYSUsNS
+	ZNU12DGlndMR8N8qHHPac9J4aJqwzeAPiQa8OA54rhWmcA+Wr4lZ7pgbT4FaokAuzg0sB4T7xxP
+	tV/zQ+QT6S7W44kvD+A==
+X-Google-Smtp-Source: AGHT+IEXaFpXxqRcmFqcdi7rW9veV7mUOW9LMRdHD1faNwTOAtntg/32GzuRuVivniydhFYII1GnXQ==
+X-Received: by 2002:a05:600c:19c6:b0:43c:e9f7:d6a3 with SMTP id 5b1f17b1804b1-441bbec2a80mr104674185e9.13.1746448204392;
+        Mon, 05 May 2025 05:30:04 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3? ([2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441bc83d471sm108852165e9.26.2025.05.05.05.30.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 May 2025 05:30:03 -0700 (PDT)
+Message-ID: <5bb02494-e974-4d2f-a00f-417312b73bc1@linaro.org>
+Date: Mon, 5 May 2025 14:30:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250430-rk3576-hwrng-v1-0-480c15b5843e@collabora.com>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v6 1/3] dt-bindings: reset: Add compatible for Amlogic
+ A4/A5 Reset Controller
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Zelong Dong <zelong.dong@amlogic.com>,
+ Conor Dooley <conor.dooley@microchip.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Rob Herring <robh@kernel.org>, kelvin.zhang@amlogic.com
+References: <20250411-a4-a5-reset-v6-0-89963278c686@amlogic.com>
+ <20250411-a4-a5-reset-v6-1-89963278c686@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250411-a4-a5-reset-v6-1-89963278c686@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 30, 2025 at 06:16:33PM +0200, Nicolas Frattaroli wrote:
-> Gee Nicolas, how come your mom lets you write two Rockchip HWRNG drivers
-> in a year?
-> 
-> In short, RK3576 (and RK3562 and RK3528) introduce another HWRNG IP. It
-> actually has quite a few cool features, but I ignored the cool bits and
-> went straight for the true entropy. Some of the cool bits someone else
-> may wish to add in the future: AES-CTR PRNG that's regularly reseeded
-> from the entropy, adjustments for oscillator and oscillator ring lengths
-> to maximise entropy generation, automatic continuous quality checking of
-> the produced entropy by the hardware itself, etc.
-> 
-> In testing, it seems to produce about 2 mbit/s of high quality entropy
-> on the RK3576 with its default settings when we read the TRNG entropy
-> output directly. That's less than we'd get if we had the hardware use
-> the PRNG to stretch it, but I've decided to leave that up to Linux's
-> entropy pool implementation for now.
-> 
-> RK3562 and RK3528 probably just need a compatible and a DTS node to
-> enable it as well, but I don't have any RK3562/RK3528 boards to test
-> this with, so it's not done in this series.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
-> Nicolas Frattaroli (3):
->       dt-bindings: rng: rockchip,rk3588-rng: add rk3576-rng compatible
->       hwrng: rockchip - add support for RK3576's RNG
->       arm64: dts: rockchip: add RK3576 RNG node
-> 
->  .../bindings/rng/rockchip,rk3588-rng.yaml          |  5 +-
->  arch/arm64/boot/dts/rockchip/rk3576.dtsi           |  8 +++
->  drivers/char/hw_random/rockchip-rng.c              | 73 ++++++++++++++++++++++
->  3 files changed, 84 insertions(+), 2 deletions(-)
-> ---
-> base-commit: 4e0a9c660788594b5b49ac07f0fbdccd2218431e
-> change-id: 20250429-rk3576-hwrng-8c308b5711ae
-> 
-> Best regards,
-> -- 
-> Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Hi Philipp,
 
-Patches 1-2 applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+On 11/04/2025 13:38, Kelvin Zhang via B4 Relay wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
+> 
+> Add compatibles for Amlogic A4 and A5 reset controllers,
+> which fall back to 'amlogic,meson-s4-reset'.
+> 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Link: https://lore.kernel.org/r/20240918074211.8067-2-zelong.dong@amlogic.com
+> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+> ---
+>   .../bindings/reset/amlogic,meson-reset.yaml        | 22 ++++++++++++++--------
+>   1 file changed, 14 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> index 695ef38a7bb346c92b4cf428e7615d45682c940a..150e95c0d9bed74c7045942610a311114a257889 100644
+> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> @@ -12,14 +12,20 @@ maintainers:
+>   
+>   properties:
+>     compatible:
+> -    enum:
+> -      - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
+> -      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
+> -      - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+> -      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+> -      - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+> -      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+> -      - amlogic,t7-reset
+> +    oneOf:
+> +      - enum:
+> +          - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
+> +          - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
+> +          - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+> +          - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+> +          - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
+> +          - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+> +          - amlogic,t7-reset
+> +      - items:
+> +          - enum:
+> +              - amlogic,a4-reset
+> +              - amlogic,a5-reset
+> +          - const: amlogic,meson-s4-reset
+>   
+>     reg:
+>       maxItems: 1
+> 
+
+Do you plan to take this change ?
+
+It has been laying around on the list for a while now, I plan
+to apply it in my amlogic/drivers tree at the end of the week.
+
+Thanks,
+Neil
+
+
 
