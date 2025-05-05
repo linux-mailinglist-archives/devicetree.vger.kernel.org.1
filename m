@@ -1,89 +1,90 @@
-Return-Path: <devicetree+bounces-173519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCB59AA8A1D
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 02:15:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ED86AA8A26
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 02:15:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 151113B381B
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 00:14:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEDA5171968
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 00:15:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4393C79CD;
-	Mon,  5 May 2025 00:15:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 995A144C77;
+	Mon,  5 May 2025 00:15:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jY9I134T"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iqQr7IVh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB9A02F2A
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 00:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9CE2628D
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 00:15:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746404101; cv=none; b=g/87LkR9cp2IhdAIS+7unu4xlE7G3yFo7gyjJffFpt+SHm9RZ14Gd1sGb8hgegaHa7VnlAgctwPBn6tvrbc4cIKxUjjmS6JCXPNgWUxdYyOre5bjA0cO3ZwkyBWXudUESMW44ZLQQGgwvEIvqF74s4nr6vvYKNmtjF7MT+gnviU=
+	t=1746404103; cv=none; b=DPmpE8GSdie3VpFwAZg2U+CE6TXdVwYnbV/9N8SazzG3fMZKz+rt46uVNpdHUGSgmAIdDa5PQ82y3l91uqW9E536v6IIlR3RUzRbRMaCQu3zeUY5JP9x9jAulq+wHDziwlzxZRTmTODfKi8zOac68f6076LmQV1Yyq+NtlA/XHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746404101; c=relaxed/simple;
-	bh=7Pino99IS4gxmEVNtT1+Fg674jvsTFh8QsSqJonlwOc=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qeqnr3LUpGofeKz+cHrNg9e7/wVnyg7OA1yt1swW4mcrEssaPj6b16tfbkvKdnJusKvGs3TuuxSRN9wamQoR/ZYodVP/uf1Jvk1a8ST7wlRUaWj/+A8hW5DhkfQuKEFasqkZmZrij/jttAHnXLMcsaqXdRSOPcAW4lrKyKl5l7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jY9I134T; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1746404103; c=relaxed/simple;
+	bh=qPjEnVJcWHzZbV3EVkbm0vz2YVbx//bPP/IZKQShGaQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=SNQSPiKuty/soAOrjMKL0Az9z1L5rSDQo3RcVRkRO62YYxnHOOAk9T7MJUT+av10hjcd1IfcTamzW3DwUoC08QPHIwcLeVX751mNdC6rKBhAoW7/vVZIvPn38VI1fshqqYn1wL5aGU+V+74R2h9rrMBE6QoYzzn/05OUfwD0A8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iqQr7IVh; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 544NMlsZ009210
-	for <devicetree@vger.kernel.org>; Mon, 5 May 2025 00:14:58 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 544MZLqO017719
+	for <devicetree@vger.kernel.org>; Mon, 5 May 2025 00:15:01 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=l90h0HGpLRpkB0qNvwdUHZ
-	hYMuIvBrbptPLn9QIs7xg=; b=jY9I134TbSePusW2ZUmNzl90f6cO3f74Ixjv7u
-	yI8bgMxgl8HLcl+s5jrsf9P7q0Rab5hFw2FFPoNeVXpTCFeb8dR5E5U0yhJsjIyo
-	qYG/mrCSNLGTZxnmuoYIgmE60zUR9jQnxpiCUV9Mq6qmp212qr0TcHPoKE03rpvk
-	Y15L65dvlVGWfAZZxo6merFAtgYPrrvPWM/uCIyDIz6pj0QuLQHWb/UU/oA25F92
-	vt14aSTRPPFP434gsloK2g4wsGhdTcqLytE/Jj/mJ/Nu+b2uVv6gzQMi32CLwkvw
-	xCrvJS0TZFFay7A7v5yrhJJ6Egdc/GaRAiK+8Wo3ekXC1J4Q==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46dbwfjj32-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	70R5N83II2gknlMbdIhEMERE7CMg2dERyKgyccEkyWU=; b=iqQr7IVhBWyGuD89
+	Kc7IIiWFNIJyjp2lJ2lUfGhfrSq0c7ps7d15ZlvSUuLYl0KDAaxfNKyp1ZsEEoLJ
+	hPqkAMmlKiUtEtDsRKDs6PMNix3VrTYBULTpdSx2vaY6PXhD5566ZJShGyhyhRq0
+	vc6PnKQFyG/vlgVpKsnl+FrQkdY7F9Bwm6lR0/SAVlUY7sCPcHugCp71Jn4EF0Q0
+	KORFcHAemuzQRNoJ3ps6oeG4cxWJEGbRU8OsGR5VyI035vkF7MJB+H4EDJHyeNsM
+	W0VC5PACaPQEhZ8bdB39mHsD3rGS/3DeKRXt/CNbt2E3+AWGaXaY6WseR0UZ8Y+N
+	Uip2RQ==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46dce9ahhe-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 05 May 2025 00:14:57 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c790dc38b4so697812985a.0
-        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 17:14:57 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Mon, 05 May 2025 00:15:01 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c54e9f6e00so869617685a.0
+        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 17:15:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746404096; x=1747008896;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l90h0HGpLRpkB0qNvwdUHZhYMuIvBrbptPLn9QIs7xg=;
-        b=Wc355rHod6SWFJLA7HrV76a2Fq6Gy14COolU2J3fxf/nYM/mOj8RXPaEXiQhNz5qMK
-         z0kSJi8ZaGZvYTYl9GGW7mqS2ZHQaZqfqdbkKNePbAMvlp1TYyX2W+KQzydBn7NKmb9m
-         kQkeqO7F7MnAgb5PJ5gsWsIF3tb2q5eD3j2UAjI68bq9NahVTKjjIyGmY+FxbasSQjA7
-         F29bT6S0o2+ISHDBqyZxJ8Az5ZnVJ9ycmVf7s6HY1aGQU4ysznzuV2TZTIYhr/dDy3UN
-         2IqLa8gTK1weD1MdWbxsrB4x1dUDDF/4tR+uh6lBM+veL5TMaycsRNB8nDnhwvZVcS79
-         Cp+w==
-X-Forwarded-Encrypted: i=1; AJvYcCV5+8xLGGwRv6ezBm7SPvkf9o2V+2wGvtCw2z5DvgTYIDbKoHJ7GhPLrz7Y5iIm7q9Wlf4s5nAn2Rvb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxT6fV2OiuaHsBWqtq4sJdOUhs50yPcad8BVfzzJcGy4CeTY02x
-	OLEZe68dDcwCB2MFpEXQa0ss28E36hPDQCDKRkcFsKZPI+8cPDMMM+M1exiDoKGpqE4Ur3DPtUx
-	vnt5VORQC9iOPGddnQvCnK5QUDmah8hZH4mnDojeGlVrrI/UWNKp8OG77QJNK
-X-Gm-Gg: ASbGnctL+v5mTv2BTv2t5ar83aBXMwaSz/0EGQ5BlzEDS4eHO8aBo1BmMvUySYbFiRF
-	QDlS0NE/TM3/HLxBedvLIEdeKUjYUBEiVXfr3Oa+MnkZHxo7uQHIodceGxRkXhkUF0FWAfOVeX8
-	7zpPj7NzXAyPpqhPe+Cgn0yPvEkLYSRhURvtgOEm5e7yDL+lqk/5IOTAXmjrCiUo52GkZQhIcPx
-	hU2jAwBIJaSAvpPM6UKUnhpecQA0LWa8oGUOZdmRf3129GWOiH5PrMfB5gfhcKQbbXudr02uAY/
-	rd//lohr/Q2kFt/NAj+3shZC5FGtUcXwJyfw7J5kbm7T8lAZ7ImlFc4YWLWBVey9X5HOPeiJk50
-	Qvqb2fQ0dkSu1b6n38k0gS9ir
-X-Received: by 2002:a05:620a:404e:b0:7c2:f39d:d0e0 with SMTP id af79cd13be357-7cace970621mr2280185285a.3.1746404096365;
-        Sun, 04 May 2025 17:14:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHtGJXxyiZuVoheTixj01E/WidOroFmG3EK+TLgG2+eb1c8BMLiBCNLo1GSEwRMtdW96uybvQ==
-X-Received: by 2002:a05:620a:404e:b0:7c2:f39d:d0e0 with SMTP id af79cd13be357-7cace970621mr2280182385a.3.1746404095994;
-        Sun, 04 May 2025 17:14:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1746404100; x=1747008900;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=70R5N83II2gknlMbdIhEMERE7CMg2dERyKgyccEkyWU=;
+        b=qaUCPfaq6jqyKYIJh7zzMbtzmOptV0CX/MsaSQjMFfeSrNi+yfMa5BiTvLKbtKD6LG
+         nhWiWXcPMQzBp+f9QCrgc/LHl+s9ok40QgrM2aDnA5slhPtVM1YyiRywRt9tFIo0Nhyq
+         hi6m9nbnJ18c35rbe0hfmOAB3z2G8EDv4UVzNxEjH4+7eWSpqAEJqD2khq1RxxFDK2Ld
+         jNOxRoayWQox51dueTpmUkIrM2L1jUO8Ykb1NYrEhn4imDHMvL+B5SHhHYUU11VVuBdp
+         MjKQhilROINbLrj35j1+d1JwImKNb02QrxwW/SJ7PX8FYALdaFEvbjVulitwfMDWTPpM
+         npww==
+X-Forwarded-Encrypted: i=1; AJvYcCUGT6MGPWizvyTxmnOkwrwVhLmD8pZ8bLltdY3FLR8qhHueMlEV2Bw6SDUx7+N+i/yJxsu8K8DdKwR4@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUYr/YWe6V/3c4Bifu5V9ItNOJEXjpEXHJ+NMEh0bVUEXJIxsj
+	koJkR+ISX89ySZ7gKq1TkbpNnYNVgN4fZ60PG0/bzq7fXFN/9TToRGoISKc7edABlNPhwEOIAT7
+	UNermXx4yRFL7BooyMvfPYtayVqX/Sa6eKzpcCCiw+OO6c39opVNq1+I4zYBX
+X-Gm-Gg: ASbGnctYYOoAeZ7krPPx/U8OuxPbYcPPp1oOscCQpobUCy9x103A2GgEg6eiMewk5WZ
+	rWuOsk0CW0Gz1yF6nJhNbmLwve0mBUW8HOSeoxyy2H9qwBLaPk4ElyBUN6cjQIvawUMrjIdLk9F
+	hEVi3l5RTYlutoetB2e5KO6Ong2U1/eOdGgtMqS/Yjy3PVIn1ItUg2+08KwZX/4/HTAefZ++62j
+	uqoIMsrhhemoJGC/oj2KqFLu1dmAtUmT8n/0C9sMW5rtLt2fj2gWQNxEK6nrGmqT3wOW6q+KNPr
+	wvl0T7RvYwLG470O7611wl4hruWtA+i6JZDTkJ4kofomxj9UjqKN4gZ1unwipaCJdU2Kwr6dxDo
+	ukTe31kCdpH81bjkduwC4oyfm
+X-Received: by 2002:a05:620a:a4a:b0:7ca:d9e8:d737 with SMTP id af79cd13be357-7cad9e8d908mr1091028985a.22.1746404099964;
+        Sun, 04 May 2025 17:14:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHRhCRNcvKG5ymjFE6pX4ZnRjXc7dZtbqrZKKdZ0iDjLTptYnzUJfbnAUIC3NcigRTH0B1TZg==
+X-Received: by 2002:a05:620a:a4a:b0:7ca:d9e8:d737 with SMTP id af79cd13be357-7cad9e8d908mr1091027485a.22.1746404099646;
+        Sun, 04 May 2025 17:14:59 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94ce656sm1454066e87.105.2025.05.04.17.14.53
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94ce656sm1454066e87.105.2025.05.04.17.14.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 May 2025 17:14:53 -0700 (PDT)
+        Sun, 04 May 2025 17:14:57 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: [PATCH v5 00/13] drm/msm/hdmi: rework and fix the HPD even
- generation
-Date: Mon, 05 May 2025 03:14:44 +0300
-Message-Id: <20250505-fd-hdmi-hpd-v5-0-48541f76318c@oss.qualcomm.com>
+Date: Mon, 05 May 2025 03:14:45 +0300
+Subject: [PATCH v5 01/13] dt-bindings: display/msm/hdmi: drop obsolete
+ GPIOs from schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,12 +93,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAPQCGGgC/22Qy07DMBBFf6XymgnGr4Su+A/Ewo9JbUHiYoeoU
- dV/Z9KqgggWXtzFOXN9z6xiSVjZfndmBedUUx4p6Icd89GOB4QUKDPBheJaCOgDxDAkiMcAKDv
- TBXTGImdEHAv26XS1vb5R7kseYIoF7d0huZFccK2FbFrTCQlPQLapLI2zZanxPc8vH2m0JTe5H
- FZpTHXKZbk2nMWq/r/MLICDl9wF13rtW/ztWdvM8gc2dHkDS4I7o7Q1yrtg5B9Y3WFN/Z+3sCL
- YCKG06TB0bb+BL7dhCn5+0brTbR3mbEXweaC/73dDHR7pwYiniYDLN4Gi1WOWAQAA
-X-Change-ID: 20240522-fd-hdmi-hpd-e3868deb6ae0
+Message-Id: <20250505-fd-hdmi-hpd-v5-1-48541f76318c@oss.qualcomm.com>
+References: <20250505-fd-hdmi-hpd-v5-0-48541f76318c@oss.qualcomm.com>
+In-Reply-To: <20250505-fd-hdmi-hpd-v5-0-48541f76318c@oss.qualcomm.com>
 To: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Sean Paul <sean@poorly.run>,
@@ -114,106 +112,83 @@ To: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
 Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Konrad Dybcio <konradybcio@kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2844;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1292;
  i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=7Pino99IS4gxmEVNtT1+Fg674jvsTFh8QsSqJonlwOc=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoGAL7k34CTyL+GciS47k4GgyjUDHX+AiePEWZZ
- PZu+mKeY1aJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaBgC+wAKCRCLPIo+Aiko
- 1d7DCACkX6diSixrEFcrvdjBBsobYTaNgNHevK3bgBqUR79f2pfonOim2y8lJLX9Fg9goVbj1qW
- al7hSm6nEwi6XSkld5cDVhg4U2y6DgZDOVwGUtre+qLRAx/Cb84RPUhUmpYsZyn2EEDke7sgoNl
- nSqNbc5I+gGdXVKsL2NUyZ1EwLtwKsivS+5gt3TvZvhwsSWdi8iFuXAAVICpIhMq0RHH+qLm/pJ
- Yb3ZFzWt8++wR9qcVZRjufl6hFe8/zHs0PcHaHLqtjtC7y2Qt6mTlATiNLn3ijqIRVgYB5eWZw8
- C829W9kv/t0e/7vdGOcCuEBrjBLc+Vy/WiUfCSOYEL0XhMA+
+ bh=gcOjyAZkXuR3SrOQQtUEYQYbb60rDFhov+Xy2NtQ5t4=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoGAL7tA9sxa/DweHnrlNpCUZI8ErVU6X39GuyJ
+ 8xVcAVW1ceJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaBgC+wAKCRCLPIo+Aiko
+ 1ccPCACgPWq8rM5hryfozxB2ZWetX4xJ24yyrKuD89yYi6VrlRNmyhCy5tuIwVtGlxtPWIPNhQB
+ dTWXqSpX1rjDTAELM4B4E59M4ZOn5EMf4QASI7RjO1QxJgvB/oh0RISwTAD41x/DhwsAZW9SYsT
+ 7HujJL66j41R4uEvXSC//FCkBhJX3lq7m4V2hohlH9NDv7XrBFEGThI0sEM+nzA31Baya9aD1ML
+ YEeMypT4BBlpR9/viELikD8eDcvX9mdZ6jxJ4Rq17H/+xAqxGakHWKGUSD1ELIUKf59jy05URF0
+ TWRcURDtUuVLJJwIk4b1XLXof83szgUS9+yy+Nf+hHiy1l8o
 X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-ORIG-GUID: eJkwKRPXzakqtnDNmKswnH15qDV8HTeW
-X-Proofpoint-GUID: eJkwKRPXzakqtnDNmKswnH15qDV8HTeW
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA1MDAwMCBTYWx0ZWRfX39iD0u1Enk6q
- 2wA0TlXeq4FHGxL07l3EEJojmGA1rla0RQLP12s+Ug3vIDP/GSJQaZ1t7MjLxCd8JaykTPDdzNk
- vp5n3jof4QjQw9cv89AgkUYhi/FDjkfETPa82jgDNPkpqwJQYRxvdlnOSbrwsRqIEeFfIhi+TYC
- gVqbBuvrVyKf8GXEfWdd08sTRajhL570P+APrN5AT8yXC0rHNHCZB4DD60axpzigobPsFQGiBQE
- HRK1DYDr00aADtQ3VFwalnbmlYhaYMI1iL1IVyqGSgWND2dd8VUpggY6I8+YvGrcBqMQ4l6p2J9
- iv1zX/uTZHBrnsUsFRgSUahkUQe/EUY9vdzN4uiWiCqAjxPO7pfYT5WRz4pKv4HI9h9H6DF++Kr
- yaLqyYMRYiveZSBmdYgc0Dxpjux3fiyLnQleRUXzqyuU+4UcIySGfjCocA/pixN8Rs8vDJfZ
-X-Authority-Analysis: v=2.4 cv=AfqxH2XG c=1 sm=1 tr=0 ts=68180301 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=LpQP-O61AAAA:8 a=KKAkSRfTAAAA:8
- a=EUspDBNiAAAA:8 a=xeEy2NUaHwTvFDDSPagA:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=pioyyrs4ZptJ924tMmac:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA1MDAwMCBTYWx0ZWRfX86jcvGvWWifi
+ 0VFo9RAhq9rFrq/CaH7tyKKRPuZfSRIjnbg2XV8vWDkBZDx4eYQvTF48sk3p+gwFsZJ+j+F7C2W
+ v7CJvyRXMpCR6uG2RFIeI38zHBXHgDH+PqJbijloIijdx1h0aMQVUSxWSEieaELtxXpoxIhJfVC
+ WhzREaa+oeXYnzc1iAxWttMrFqTLdEo83QLJU+XnXYFNMnCarZdb/cOnYxWJVxqDG+SzpXswqTf
+ THksHAauYFKiz4QPnS/VBaEy8vXvumpA1H64HzKPYBdKjPpXIj8mvYUHZf5gFT8q0HgNkrxMV6P
+ RMCmnCLBigdcS5qR5hJH/kPCzC3fBR+H583eO2c2KMcK/5K2Kt1FOGxieVFFnjAZOaFYnvLhkcP
+ FeX+sqZpWeYXp5MT2uCA2laMRMfwfZ+c/lDZewmFsrq7sNESEQhF1zY9vXF0ev4D7zkBeZea
+X-Proofpoint-ORIG-GUID: xHc5je41yA0vMG2OxvPZ9NaUSwGk1Tom
+X-Authority-Analysis: v=2.4 cv=Qope3Uyd c=1 sm=1 tr=0 ts=68180305 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=Q0eG0X4qb_EmYOw2QsEA:9 a=QEXdDO2ut3YA:10
+ a=PEH46H7Ffwr30OY-TuGO:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: xHc5je41yA0vMG2OxvPZ9NaUSwGk1Tom
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-05-04_09,2025-04-30_01,2025-02-21_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 priorityscore=1501 phishscore=0 impostorscore=0
- mlxscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 mlxlogscore=999
- spamscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ lowpriorityscore=0 priorityscore=1501 mlxscore=0 adultscore=0 clxscore=1015
+ malwarescore=0 bulkscore=0 suspectscore=0 impostorscore=0 phishscore=0
+ mlxlogscore=999 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
  definitions=main-2505050000
 
-The MSM HDMI driver is plagued with the long-standing bug. If HDMI cable
-is disconnected, in most of the cases cable reconnection will not be
-detected properly. We have been carrying the patch from [1] in our
-integration tree for ages. The time has come to fix the long-standing
-bug and implement proper HPD handling.
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-This series was tested on msm8996 and apq8064 boards. Previously HPD
-handling sometimes could trigger in the CRTC event handling, however I
-can no longer reproduce it now.
+The commit 68e674b13b17 ("drm/msm/hdmi: drop unused GPIO support")
+dropped support for obsolete qcom,hdmi-tx-mux-* gpios. They were not
+used by any of the upstream platforms. Drop them from the bindings too.
 
-[1] https://lore.kernel.org/linux-arm-msm/20171027105732.19235-2-architt@codeaurora.org/
-
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Changes in v5:
-- Dropped hpd-gpio patches (to prevent ABI break, Krzysztof)
-- Link to v4: https://lore.kernel.org/r/20250209-fd-hdmi-hpd-v4-0-6224568ed87f@linaro.org
+ Documentation/devicetree/bindings/display/msm/hdmi.yaml | 15 ---------------
+ 1 file changed, 15 deletions(-)
 
-Changes in v4:
-- Added bindings patches. Dropped hpd-gpios from the IFC6410 board DT.
-- Fixed checkpatch.pl warning about non-const string arrays.
-- Rebased on top of linux-next and the MSM HDMI patchset.
-- Link to v3: https://lore.kernel.org/r/20240623-fd-hdmi-hpd-v3-0-8645a64cbd63@linaro.org
+diff --git a/Documentation/devicetree/bindings/display/msm/hdmi.yaml b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
+index d4a2033afea8d4e4f83c9859f8840d30ae9d53f8..7e6f776a047a00851e3e1e27fec3dabeed5242fd 100644
+--- a/Documentation/devicetree/bindings/display/msm/hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
+@@ -66,21 +66,6 @@ properties:
+     maxItems: 1
+     description: hpd pin
+ 
+-  qcom,hdmi-tx-mux-en-gpios:
+-    maxItems: 1
+-    deprecated: true
+-    description: HDMI mux enable pin
+-
+-  qcom,hdmi-tx-mux-sel-gpios:
+-    maxItems: 1
+-    deprecated: true
+-    description: HDMI mux select pin
+-
+-  qcom,hdmi-tx-mux-lpm-gpios:
+-    maxItems: 1
+-    deprecated: true
+-    description: HDMI mux lpm pin
+-
+   '#sound-dai-cells':
+     const: 1
+ 
 
-Changes in v3:
-- Rebase on top of linux-next
-- Dropped the patches that were replaced by the HDMI Connector
-  framework
-- Picked up the mode_set -> atomic_pre_enable patch
-- Link to v2: https://lore.kernel.org/r/20240522-fd-hdmi-hpd-v2-0-c30bdb7c5c7e@linaro.org
-
----
-Dmitry Baryshkov (13):
-      dt-bindings: display/msm/hdmi: drop obsolete GPIOs from schema
-      drm/msm/hdmi: convert clock and regulator arrays to const arrays
-      drm/msm/hdmi: move the alt_iface clock to the hpd list
-      drm/msm/hdmi: simplify extp clock handling
-      drm/msm/hdmi: drop clock frequency assignment
-      drm/msm/hdmi: switch to clk_bulk API
-      drm/msm/hdmi: switch to pm_runtime_resume_and_get()
-      drm/msm/hdmi: add runtime PM calls to DDC transfer function
-      drm/msm/hdmi: implement proper runtime PM handling
-      drm/msm/hdmi: rename hpd_clks to pwr_clks
-      drm/msm/hdmi: expand the HDMI_CFG macro
-      drm/msm/hdmi: ensure that HDMI is up if HPD is requested
-      drm/msm/hdmi: wire in hpd_enable/hpd_disable bridge ops
-
- .../devicetree/bindings/display/msm/hdmi.yaml      |  15 ---
- drivers/gpu/drm/msm/hdmi/hdmi.c                    | 133 ++++++++++-----------
- drivers/gpu/drm/msm/hdmi/hdmi.h                    |  26 ++--
- drivers/gpu/drm/msm/hdmi/hdmi_bridge.c             |  55 ++++-----
- drivers/gpu/drm/msm/hdmi/hdmi_hpd.c                |  89 ++++----------
- drivers/gpu/drm/msm/hdmi/hdmi_i2c.c                |  14 ++-
- drivers/gpu/drm/msm/hdmi/hdmi_phy.c                |   6 +-
- 7 files changed, 135 insertions(+), 203 deletions(-)
----
-base-commit: db76003ade5953d4a83c2bdc6e15c2d1c33e7350
-change-id: 20240522-fd-hdmi-hpd-e3868deb6ae0
-
-Best regards,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+2.39.5
 
 
