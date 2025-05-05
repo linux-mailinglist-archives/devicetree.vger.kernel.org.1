@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-173811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3000CAA991F
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:36:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C6B9AA992F
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:37:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0BAC5A0488
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:32:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F14357ACEDC
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:36:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AE5426A088;
-	Mon,  5 May 2025 16:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FE71991A9;
+	Mon,  5 May 2025 16:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="KFD+MeuW"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FDB8Tlk+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6DBF199FAB;
-	Mon,  5 May 2025 16:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D3719341F;
+	Mon,  5 May 2025 16:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746462766; cv=none; b=W0Kkyax8GV4+nlf0AkcGC1l83kA1jyvrDwqCthURAsGrhLyywZAnwtbj0QDg4io4+QXvYlcZFo45n04U00QAjgMwSVQTF5eyOoB340CfmaETsDba5n/ngA6AMopWKRTOwoPYpzisGRNevWASa9ln0hDwhRkE34XXNLokOSrKoSY=
+	t=1746462956; cv=none; b=FBei3VDft5OICD+4NjpWBuHuDS/1NU/ejWQjXpDJaPOfANIAS3QwuU5d4psG0uEi0UkI7K+ukNuScIrFJneE9sxw9ZrzCmd/+YEx/a1p+EJ5M/IjZUDswX/u9NcYpLfex4MlJoiQjb8Gmp0u6G1NiPJQ0+xltdcpn1dd4NMlBoc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746462766; c=relaxed/simple;
-	bh=8QerDb6+LQ5kykEagf//mv6YJYYa27DjcJAakhoL2ek=;
+	s=arc-20240116; t=1746462956; c=relaxed/simple;
+	bh=SN3LEvOozy9YYjogVFFZMv66Vs1R7d/I7uPJaAfKHsc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SOD0VjssaJOQO6SGhdSrQcpHrUoJwB8d4JsEQ+hufRzT0J/3YJJY8F89uOjEOo6ewTgmGMccGxofyFmJbwVylYlXyF1akMEapEs9O+Psd11sqr45AJfDbQtW+BLM5udEEWiLtYl3y6r24LNU5OcEtHc+BAWGo+drxhB9QTD8hoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=KFD+MeuW; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=L4sftIUiJ4tdJtv2K5RSBI7lSA5YnCQNQL+zMhTUPsP4syIW0cVWTLKZrrrwOS0m2UEuIlH6eDN4s3AJSJdrL4o17K6jxzsGBxJSLbJHqTL84E3Ig/kyHzvG1ZhqtW7TGMlwEwOZ2s0ms4h20G6Sq7H4BBVaUKccgQoo5DK4SIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FDB8Tlk+; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=LI63wCPigukzRsXOAQ8hXthpt1mMm/xTU4W1Z7ZfDUQ=; b=KFD+MeuWp4YhjOryiBHY2XooTh
-	mkcCZX2BDwUxPMf7nsO3024ZuRw+0mxAfu6p8wP2swqFZBfvZhdL8un+ERLImW7O3ylg3lOBOGXmA
-	BDI3hBR4oTlSe7GDwC4aG3ageysLsR0iHiaCuyY7acsSEPm1TSDPCpcPuYQTFDXHJEZE=;
+	bh=Ps5XORoy5MluWSPT6nmEp/fadh/2kzupywrUCthCbkM=; b=FDB8Tlk+ubkAocR0FYvBOlxfN+
+	9jJyPMdqMwL9Z+fWyr3PFSn2s4JV+eZ3++bCpzWu0vSAFN42D74SHQfqYMKjfj9gxXLQuLkq7One/
+	5+vczXCA6fIOREt+kb5fKZLt6WGaqPQVDPbxWzl7y3QdRz80ujcHUjXJTHZSqZnBQMxE=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1uByk9-00Bc9n-5Z; Mon, 05 May 2025 18:32:37 +0200
-Date: Mon, 5 May 2025 18:32:37 +0200
+	id 1uBynE-00BcB6-4v; Mon, 05 May 2025 18:35:48 +0200
+Date: Mon, 5 May 2025 18:35:48 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: Stefan Wahren <wahrenst@gmx.net>
 Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -53,11 +53,11 @@ Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/5] net: vertexcom: mse102x: Add warning about
- IRQ trigger type
-Message-ID: <14326654-2573-4bb6-b7c0-eb73681caabd@lunn.ch>
+Subject: Re: [PATCH net-next 3/5] net: vertexcom: mse102x: Drop invalid cmd
+ stats
+Message-ID: <fdac2206-86ad-4d07-9aea-ef88820dfc88@lunn.ch>
 References: <20250505142427.9601-1-wahrenst@gmx.net>
- <20250505142427.9601-3-wahrenst@gmx.net>
+ <20250505142427.9601-4-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,24 +66,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250505142427.9601-3-wahrenst@gmx.net>
+In-Reply-To: <20250505142427.9601-4-wahrenst@gmx.net>
 
-> +	if (!irq_data) {
-> +		netdev_err(ndev, "Invalid IRQ: %d\n", ndev->irq);
-> +		return -EINVAL;
-> +	}
-> +
-> +	switch (irqd_get_trigger_type(irq_data)) {
-> +	case IRQ_TYPE_LEVEL_HIGH:
-> +	case IRQ_TYPE_LEVEL_LOW:
-> +		break;
-> +	default:
-> +		netdev_warn_once(ndev, "Only IRQ type level recommended, please update your firmware.\n");
+On Mon, May 05, 2025 at 04:24:25PM +0200, Stefan Wahren wrote:
+> The SPI implementation on the MSE102x MCU is in software, as a result
+> it cannot reply to SPI commands in busy state and increase the invalid
+> command counter. So drop the confusing statistics about "invalid" command
+> replies.
+> 
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> ---
+>  drivers/net/ethernet/vertexcom/mse102x.c | 3 ---
+>  1 file changed, 3 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/vertexcom/mse102x.c b/drivers/net/ethernet/vertexcom/mse102x.c
+> index 33371438aa17..204ce8bdbaf8 100644
+> --- a/drivers/net/ethernet/vertexcom/mse102x.c
+> +++ b/drivers/net/ethernet/vertexcom/mse102x.c
+> @@ -45,7 +45,6 @@
+>  
+>  struct mse102x_stats {
+>  	u64 xfer_err;
+> -	u64 invalid_cmd;
+>  	u64 invalid_ctr;
+>  	u64 invalid_dft;
+>  	u64 invalid_len;
+> @@ -56,7 +55,6 @@ struct mse102x_stats {
+>  
+>  static const char mse102x_gstrings_stats[][ETH_GSTRING_LEN] = {
+>  	"SPI transfer errors",
+> -	"Invalid command",
+>  	"Invalid CTR",
+>  	"Invalid DFT",
+>  	"Invalid frame length",
+> @@ -194,7 +192,6 @@ static int mse102x_rx_cmd_spi(struct mse102x_net *mse, u8 *rxb)
+>  	} else if (*cmd != cpu_to_be16(DET_CMD)) {
+>  		net_dbg_ratelimited("%s: Unexpected response (0x%04x)\n",
+>  				    __func__, *cmd);
+> -		mse->stats.invalid_cmd++;
 
-I would probably put DT in there somewhere. firmware is rather
-generic.
+If the net_dbg_ratelimited() is going to stay, maybe rename the
+counter to unexpct_rsp, or similar?
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-
-    Andrew
+	Andrew
 
