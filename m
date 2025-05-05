@@ -1,37 +1,38 @@
-Return-Path: <devicetree+bounces-173817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53521AA99A1
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F91AAA99A2
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:48:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C19CB17C8E7
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:48:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97C1D17D59B
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:48:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E908267B65;
-	Mon,  5 May 2025 16:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B946C26771B;
+	Mon,  5 May 2025 16:48:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61ECE25C809
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 16:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B4425E476
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 16:48:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746463682; cv=none; b=RZN9nASE373HFk9AKlBh8FzhsIQ8B/WWGmUnM4UHYU53pYMis2nM/i7GRyhDgxwpDu5D7GK53njb6rQqp4r2OYiVqonIucrR6R/AIU2mvTmszNgrlEXQJMb18FhNkxtgh9Ysew8s3dxfBahS/Y70IePE99x9L2JR0Aqda433bg4=
+	t=1746463684; cv=none; b=Ei3sSTkMqBOOeEkf0YMK/4vFs3ZIe5WcVg85gzVffRCEl3OVSLlz+leLHjnJ5Anz1lETd1bD6awfmyWZdcbekIli4zuqzL0oNUpRvyqyPAH/X5pn7SHzsRgp5pOTrScaaPRx80z+7XV4+W50vN4QH1fJXkGZ4yw2pUgYqtcrlcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746463682; c=relaxed/simple;
-	bh=6kgLLkSzbCsnkK7Wh83ln3Ro09UOIvCxzW63+HKgWiI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dfriU9mFa+lOZbwWDYbSfrb7ZUDD/5Valj/AC+4neBxlGAfgG1lHWW2f8K+gWJt+8uvw3p3jgAFt2Wt2kQuZ2ko2krqWSCQbuGPDdKeazN+EQSyYcujbJF+Bzd6oSAMy0uwGoW+TzyDXhlWEAkHBVe/rAced5SL1ks5nEexg4Ss=
+	s=arc-20240116; t=1746463684; c=relaxed/simple;
+	bh=d3nTEZwQe3cXL0KjTQ5FeB7cGZ4gCzcxP83h0e1KSlE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=GwxwLvSSdaZNhcUCD9OOCAlwYUR4888x6RLur43QZyxlQmVht9qvJGvtqQlqDA4C/eODMSrsBnNz755qCV46FUnYLJcil/qlQV27beX5AUFRvJYYCbeDORejgVfXRCs2FTSHd+8rariCjx0NAPyZXVF7aFFK89wVhKDc0/EvWio=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 20F54339;
-	Mon,  5 May 2025 09:47:50 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E1AB71007;
+	Mon,  5 May 2025 09:47:51 -0700 (PDT)
 Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 000F63F673;
-	Mon,  5 May 2025 09:47:57 -0700 (PDT)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C30483F673;
+	Mon,  5 May 2025 09:47:59 -0700 (PDT)
 From: Andre Przywara <andre.przywara@arm.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -44,10 +45,12 @@ Cc: Cody Eksal <masterr3c0rd@epochal.quest>,
 	devicetree@vger.kernel.org,
 	linux-sunxi@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 0/3] arm64: dts: sunxi: Add Liontron H-A133L support
-Date: Mon,  5 May 2025 17:47:26 +0100
-Message-ID: <20250505164729.18175-1-andre.przywara@arm.com>
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Liontron name
+Date: Mon,  5 May 2025 17:47:27 +0100
+Message-ID: <20250505164729.18175-2-andre.przywara@arm.com>
 X-Mailer: git-send-email 2.46.3
+In-Reply-To: <20250505164729.18175-1-andre.przywara@arm.com>
+References: <20250505164729.18175-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,32 +59,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The Liontron H-A133L is an industrial development board featuring the
-Allwinner A133 SoC.
-Alongside the usual standard connectors like USB and Ethernet ports,
-it contains a number of dedicated JST connectors, to connect external
-peripherals.
+Liontron is a company based in Shenzen, China, making industrial
+development boards and embedded computers, mostly using Rockchip and
+Allwinner SoCs.
 
-Add support for that board with the usual patch trinity: vendor prefix,
-board name binding, board .dts file.
+Add their name to the list of vendors.
 
-Please have a look!
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Cheers,
-Andre
-
-Andre Przywara (3):
-  dt-bindings: vendor-prefixes: Add Liontron name
-  dt-bindings: arm: sunxi: Add Liontron H-A133L board name
-  arm64: dts: allwinner: a100: add Liontron H-A133L board support
-
- .../devicetree/bindings/arm/sunxi.yaml        |   5 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../sun50i-a133-liontron-h-a133l.dts          | 214 ++++++++++++++++++
- 4 files changed, 222 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 411fd65e0bde9..580dfd62dc9ae 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -864,6 +864,8 @@ patternProperties:
+     description: Linux-specific binding
+   "^linx,.*":
+     description: Linx Technologies
++  "^liontron,.*":
++    description: Shenzhen Liontron Technology Co., Ltd
+   "^liteon,.*":
+     description: LITE-ON Technology Corp.
+   "^litex,.*":
 -- 
 2.46.3
 
