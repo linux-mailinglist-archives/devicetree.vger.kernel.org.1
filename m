@@ -1,148 +1,141 @@
-Return-Path: <devicetree+bounces-173789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90399AA97B3
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:44:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46EB7AA97D8
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:49:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93679189A54A
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:44:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AA263A40B2
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:48:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6180C25DAE1;
-	Mon,  5 May 2025 15:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3FA25D8FA;
+	Mon,  5 May 2025 15:49:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hoxXpH/s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e4sMa5mg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA66201004;
-	Mon,  5 May 2025 15:44:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1E782561C2;
+	Mon,  5 May 2025 15:49:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746459852; cv=none; b=TSLxG/0OTHyHM/npQl29kATYj3U9VY2vr/8W/dRP+yeO/aYZsVhPB48Fl2NqKgodXfLHPUK+H9B9Aq5lrA296LGKn4z3L40Bno7yhJGHLbu2WfW8WhSw8mFDhhBjZOe/RcVCnrPLiG5kyIZnxyiHcyNGRioT6RTl6MQe0MmnrkA=
+	t=1746460142; cv=none; b=XBePqsAE9GrGxFeSZ0LwJJhuPAWHSCSkA0VVtKnI5zfr36u+pJIxIM9PB80tlOe2oIUT6gbff2bioa3sNmrztcR53hWWzXnYQ3R8vBoDwBn5vbaAZ3zcZnmwQCUfxTRFz4uIbGzffybn5AmRIXxH2XTsArX1kJaMjcymm1kbZlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746459852; c=relaxed/simple;
-	bh=QS8dg5Szhy9yOKcqWeqbeXZjnglqgCLYD3ZcvqvMcCM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=U9n3zbiYS+Z1H5uoskumOXqr0Azah8bEEdyaAd3CZEGqJRwaZrc+nIwid56UPhIOyyMn0KNSGR31r5jYgPtmOtZb3Hk7HPXV6R1VqSb6USzak/HkTwK3khzjwUWdXxz500qBvrlKlXXPFRwTUV+S8w0XlVyo0BhXVmjmTzKd+rk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hoxXpH/s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF991C4CEF0;
-	Mon,  5 May 2025 15:44:05 +0000 (UTC)
+	s=arc-20240116; t=1746460142; c=relaxed/simple;
+	bh=tNdJlfxtfHWQAARGwoyWKnpx70MF3hIPr6+xkdRMw6o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EIGASIvSQL+RsEHkH383YKnAXqeA/eUSHFklRQH7BexP3x8MRSv3p1xuDI8eQ5ok8VqDdGF7N3L8ci7kK444h9ihM2rHV9mOyBuyR4Mvq+khL6FUIZXWcvCVjWmGpbxW2wiv//FKEei51/pn6NyGR63Le0/3pqLxdzZpYMvSVTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e4sMa5mg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 295CBC4CEE4;
+	Mon,  5 May 2025 15:48:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746459851;
-	bh=QS8dg5Szhy9yOKcqWeqbeXZjnglqgCLYD3ZcvqvMcCM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=hoxXpH/smgixxZOLB0h6+9wBw4YUKoDsFKZMkbhcm75sdDJqdHdm/Ry3geaytxpw6
-	 nAMzU92gh2z5OYXm+mqnIZ79WAu9iHGmXCjMApTJkCH9cunE8YMRhSAd/IXVP5Dvdx
-	 ft8a9nHz8Q/23pZNN0+m+DfeDFSwNki6KttQLWuwzvbQt+x2+gJ87fxPm15yZny4xQ
-	 v+mr1vkhPwLsUQjG9VpkNJLsAdTK9GPg0NrcKTm/punInWGZA/p8/UPA20n5Cy6t2J
-	 6/gJX9WadHwzzCrFCq8DOXD6GlqPBbleWgsTq8sE/GHmk8KLIlz+wy585Ygu8G4FdD
-	 M3YxbZ4tYLL0Q==
-Date: Mon, 5 May 2025 16:44:01 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
- <andy@kernel.org>, <nuno.sa@analog.com>, <Michael.Hennerich@analog.com>,
- <marcelo.schmitt@analog.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <marcelo.schmitt1@gmail.com>,
- <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <lgirdwood@gmail.com>,
- <broonie@kernel.org>, <jonath4nns@gmail.com>, <dlechner@baylibre.com>
-Subject: Re: [PATCH v6 01/11] dt-bindings: trigger-source: add generic GPIO
- trigger source
-Message-ID: <20250505164401.64cd3da7@jic23-huawei>
-In-Reply-To: <f76579f8aa040125568c044c86761211a2e2f5ae.1745605382.git.Jonathan.Santos@analog.com>
-References: <cover.1745605382.git.Jonathan.Santos@analog.com>
-	<f76579f8aa040125568c044c86761211a2e2f5ae.1745605382.git.Jonathan.Santos@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=k20201202; t=1746460141;
+	bh=tNdJlfxtfHWQAARGwoyWKnpx70MF3hIPr6+xkdRMw6o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=e4sMa5mg9/80nQp5jxlKMvorQz/69Omm/kVIG1CTygwri+HeGeSSM0ziFkECulLZR
+	 gcxcfEOx6w+gOD7TPgecPOOtdCk/NAyY0jB8oq0VclsIGkv0Xz19uxZm93PIAenCJi
+	 jdgHZqb7bq26F6WTDckm7qXbkrySRAtblcd1ic6V3OhJ6WC7z0xrIe7qf51KDWRwSs
+	 gI9Qtf2hQjh/tRayxfRKBtaJQX3DtR3F3MG1Uw3bvzBoZiTDNPlDwdM+JI+s1dHsww
+	 /QwUPGbRcDhPCGpA67IR0k+XaOodbtMwxr0eUyLBGNqtooSLaGQsVPXA5CqSGWkDTL
+	 P/EgHJbd/DeQA==
+Message-ID: <5b6c66e8-3fac-408f-980c-f261ccd3fefd@kernel.org>
+Date: Mon, 5 May 2025 17:48:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: crypto: Document support for SPAcc
+To: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>,
+ linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+ herbert@gondor.apana.org.au, robh@kernel.org
+Cc: Ruud.Derwig@synopsys.com, manjunath.hadli@vayavyalabs.com,
+ adityak@vayavyalabs.com, Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
+References: <20250505125538.2991314-1-pavitrakumarm@vayavyalabs.com>
+ <20250505125538.2991314-2-pavitrakumarm@vayavyalabs.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250505125538.2991314-2-pavitrakumarm@vayavyalabs.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Sun, 27 Apr 2025 21:12:02 -0300
-Jonathan Santos <Jonathan.Santos@analog.com> wrote:
-
-> Inspired by pwm-trigger, create a new binding for using a GPIO
-> line as a trigger source.
+On 05/05/2025 14:55, Pavitrakumar M wrote:
+> From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
 > 
-> Link: https://lore.kernel.org/linux-iio/20250207-dlech-mainline-spi-engine-offload-2-v8-3-e48a489be48c@baylibre.com/
-
-David, given you did the pwm one, maybe give this a quick look.
-
-Maybe it's worth generalising to cover all trigger sources in MAINTAINERS?
-
-Thanks. Otherwise I obviously need a DT review before taking this and maybe the GPIO
-element suggests Linus W or Bartosz might be other good reviewers?
-
-Jonathan
-
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> ---
-> v6 Changes:
-> * Changed description.
-> * Fixed typos and replaced GPIO pin with GPIO line.
-> * Added link reference for pwm-trigger.
+> Add DT bindings related to the SPAcc driver for Documentation.
+> DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
+> Engine is a crypto IP designed by Synopsys.
 > 
-> v5 Changes:
-> * New patch in v5.
-> ---
->  .../bindings/trigger-source/gpio-trigger.yaml | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/trigger-source/gpio-trigger.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/trigger-source/gpio-trigger.yaml b/Documentation/devicetree/bindings/trigger-source/gpio-trigger.yaml
-> new file mode 100644
-> index 000000000000..1331d153ee82
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/trigger-source/gpio-trigger.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/trigger-source/gpio-trigger.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic trigger source using GPIO
-> +
-> +description: A GPIO used as a trigger source.
-> +
-> +maintainers:
-> +  - Jonathan Santos <Jonathan.Santos@analog.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: gpio-trigger
-> +
-> +  '#trigger-source-cells':
-> +    const: 0
-> +
-> +  gpios:
-> +    maxItems: 1
-> +    description: GPIO to be used as a trigger source.
-> +
-> +required:
-> +  - compatible
-> +  - '#trigger-source-cells'
-> +  - gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    trigger {
-> +        compatible = "gpio-trigger";
-> +        #trigger-source-cells = <0>;
-> +        gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
-> +    };
+> Co-developed-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
+> Signed-off-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
+> Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+> Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
 
+
+I do not see any improvements. It seems you ignored all comments, not
+single one was responded to or addressed.
+
+NAK
+
+<form letter>
+This is a friendly reminder during the review process.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+</form letter>
+
+Best regards,
+Krzysztof
 
