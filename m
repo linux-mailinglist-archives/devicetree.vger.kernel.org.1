@@ -1,327 +1,92 @@
-Return-Path: <devicetree+bounces-173820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD45AA99A4
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:48:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D04A1AA99BE
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:53:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0238D3B41DE
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:47:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A55A16CF14
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:53:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2926326771B;
-	Mon,  5 May 2025 16:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044FB268FDB;
+	Mon,  5 May 2025 16:53:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O+nrjSCD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ADFD1A255C
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 16:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77A518C322;
+	Mon,  5 May 2025 16:53:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746463688; cv=none; b=jvBDLfTs0h3zAp1OyE06FbwjcimJzGHqBog4WW5yg13E1Vb1TL5MNzJHP4+6oSfFPM+OP0Pfi+z35AGfE8pGQSLgSo2IdF9sEvzpQrNqS3xf7uraubhH9c8WQSH4s/pJSLyaXSRFtHScyUbC/BrhTDutCFewVMLt91Hy7mJuk2A=
+	t=1746464028; cv=none; b=e2eqjUrID2ZynWSYHnnGn+WXp/tl8324/dA/XLTF1P0rwKwQinBRBmm9iWb5gVM0/01f/M5C5y9fBIrZGFdqSJ3EXMolk+MgjKdEqBCf6mxxP9KK0mGBBGPH3Fe+HPmxzXw19WhGyTnWS5UnG3kMm/uJcvRluYxk3KoxXYfR3zg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746463688; c=relaxed/simple;
-	bh=nNwLHrtwVvY9usWYlTGpsWC5kq5rMQ3ca3Ebtf3Kj68=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sUHsZOmUMF5Lin8NNTvz0okBD8DL9bQFi77VgiU7HBJBMr8mChLC9i5aaSOsjiw0pPMvyRCZ8rUyY+TsZzFQjfbLkzIO0zvfBYlSmR/+3POhikX9UF8Am1x03NruhoW5vfQaR0ssly993JuieyG07N24BK5Kmiu9UjaE8p3SWNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7C9601CDD;
-	Mon,  5 May 2025 09:47:55 -0700 (PDT)
-Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5E09D3F673;
-	Mon,  5 May 2025 09:48:03 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: Cody Eksal <masterr3c0rd@epochal.quest>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 3/3] arm64: dts: allwinner: a100: add Liontron H-A133L board support
-Date: Mon,  5 May 2025 17:47:29 +0100
-Message-ID: <20250505164729.18175-4-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.46.3
-In-Reply-To: <20250505164729.18175-1-andre.przywara@arm.com>
-References: <20250505164729.18175-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1746464028; c=relaxed/simple;
+	bh=Nt9TcqO3UcWxGX1SmSKh3T9F59jPsuN5c6SX2ZcbeOQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fLlG0xz7c1SX0hGOVI3pE8aIqSFraI42b0b/rgOGH5Puv5mN0zwD9n3H5qU+CVq2V6U1VM2jZxbQ/qeVpTNsJEYFUAjaVuLRm3g8aF7UJ5wM+bT25Yc9vkyEFbRRPe4JbKqC30ot9yKRo4ohD7yjtNosFyuE12i/Yh8WFqCYotk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O+nrjSCD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88F4DC4CEE4;
+	Mon,  5 May 2025 16:53:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746464028;
+	bh=Nt9TcqO3UcWxGX1SmSKh3T9F59jPsuN5c6SX2ZcbeOQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=O+nrjSCDS7LvZr7nbKa5xKwL7YW9HZec0XBroINpabVtDhcuYDtAeTw0TGAUsRRdt
+	 NkChCiTJviMHlFRbXtZGRcNIKEz8lxgG9c11I/F97BOOW/rBF4/7Xxp2gQOnmy7YNd
+	 o8MF1/wPv47ufRTyz8SCC66lVYbW/rv4MB8gy+B7qfwdU7P715/MtD+uxKtqRrL94p
+	 wiAntoLCorGkY7ROr61JHvQiyX+dPysGNqq0dOZTVHhAZJ3o/tJO29A2ME9tUaH5Mr
+	 HNI/QpbZqEdwIj5SMn0mDFhiTjmZCEGf27r/nT0O9TxHKKOFdGBUybkwK6EJm66K7O
+	 bQN9UwhYWGrYg==
+Date: Mon, 5 May 2025 17:53:40 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: gomba007@gmail.com, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: trivial-devices: Document SEN0322
+Message-ID: <20250505175340.00b6861b@jic23-huawei>
+In-Reply-To: <3d42e605-2526-4eb1-b222-6552629333ef@kernel.org>
+References: <20250505-iio-chemical-sen0322-v2-0-217473983b42@gmail.com>
+	<20250505-iio-chemical-sen0322-v2-1-217473983b42@gmail.com>
+	<3d42e605-2526-4eb1-b222-6552629333ef@kernel.org>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-The H-A133L board is an industrial development board made by Liontron.
-It contains a number of dedicated JST connectors, to connect external
-peripherals. It features:
+On Mon, 5 May 2025 10:16:06 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-- Allwinner A133 SoC (4 * Arm Cortex-A53 cores at up to 1.6 GHz)
-- 1 GiB, 2 GiB or 4 GiB of LPDDR4 DRAM
-- between 16 and 128 GiB eMMC flash
-- AXP707 PMIC (compatible to AXP803)
-- 100 Mbit/s RJ45 Ethernet socket, using an JLSemi JL1101 PHY
-- XR829 WIFI+Bluetooth chip
-- 2 * USB 2.0 USB-A ports, plus three sets of USB pins on connectors
-  (connected via a USB hub connected to USB1 on the SoC)
-- microSD card slot
-- 3.5mm A/V port
-- 12V power supply
-- connectors for an LVDS or MIPI-DSI panel
+> On 05/05/2025 09:52, T=C3=B3th J=C3=A1nos via B4 Relay wrote:
+> > From: T=C3=B3th J=C3=A1nos <gomba007@gmail.com>
+> >=20
+> > Add documentation for the DFRobot SEN0322 oxygen sensor.
+> >=20
+> > Signed-off-by: T=C3=B3th J=C3=A1nos <gomba007@gmail.com> =20
+>=20
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
+> Best regards,
+> Krzysztof
+>=20
+Hmm. This is fine I guess, but I'm never sure how pretty much anything
+justifies being in trivial-devices.yaml given they should all be full bindi=
+ngs
+and almost anything requires a power supply :)
 
-Add the devicetree describing the board's peripherals and their
-connections.
+Maybe we should let there be a few standard supplies for the devices
+in there in the same way a single interrupt is allowed?
 
-Despite being a devboard, the manufacturer does not publish a schematic
-(I asked), so the PMIC rail assignments were bases on BSP dumps,
-educated guesses and some experimentation. Dropping the always-on
-property from any of the rails carrying it will make the board hang as
-soon as the kernel turns off unused regulators.
-
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../sun50i-a133-liontron-h-a133l.dts          | 214 ++++++++++++++++++
- 2 files changed, 215 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts
-
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 790aad3a91e86..773cc02a13d04 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -18,6 +18,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-sopine-baseboard.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-teres-i.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h64-remix-mini-pc.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a100-allwinner-perf1.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a133-liontron-h-a133l.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-bananapi-m2-plus.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-bananapi-m2-plus-v1.2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-emlid-neutis-n5-devboard.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts b/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts
-new file mode 100644
-index 0000000000000..682ed15d84854
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts
-@@ -0,0 +1,211 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2025 Arm Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-a100.dtsi"
-+#include "sun50i-a100-cpu-opp.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/{
-+	model = "Liontron H-A133L";
-+	compatible = "liontron,h-a133l", "allwinner,sun50i-a100";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led {
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 7 16 GPIO_ACTIVE_LOW>; /* PH16 */
-+		};
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply from a 12V->5V regulator */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_usb1_vbus: regulator-usb1-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb1-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_vcc5v>;
-+		enable-active-high;
-+		gpio = <&r_pio 0 8 GPIO_ACTIVE_HIGH>; /* PL8 */
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_dcdc1>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&mmc2 {
-+	vmmc-supply = <&reg_dcdc1>;
-+	vqmmc-supply = <&reg_eldo1>;
-+	cap-mmc-hw-reset;
-+	non-removable;
-+	bus-width = <8>;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pb-supply = <&reg_dcdc1>;
-+	vcc-pc-supply = <&reg_eldo1>;
-+	vcc-pf-supply = <&reg_dcdc1>;
-+	vcc-ph-supply = <&reg_dcdc1>;
-+};
-+
-+&r_i2c0 {
-+	status = "okay";
-+
-+	axp803: pmic@34 {
-+		compatible = "x-powers,axp803";
-+		reg = <0x34>;
-+		interrupt-parent = <&r_intc>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+#include "axp803.dtsi"
-+
-+&ac_power_supply {
-+	status = "okay";
-+};
-+
-+&reg_aldo1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "vcc-codec-avcc";
-+};
-+
-+&reg_aldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "vcc-dram-1";
-+};
-+
-+&reg_aldo3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-usb-pl";
-+};
-+
-+&reg_dcdc1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-io-usb-pd-emmc";
-+};
-+
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <810000>;
-+	regulator-max-microvolt = <1200000>;
-+	regulator-name = "vdd-cpux";
-+};
-+
-+&reg_dcdc3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <900000>;
-+	regulator-max-microvolt = <900000>;
-+	regulator-name = "vdd-usb-cpus";
-+};
-+
-+&reg_dcdc4 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <950000>;
-+	regulator-name = "vdd-sys";
-+};
-+
-+&reg_dcdc5 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1100000>;
-+	regulator-max-microvolt = <1100000>;
-+	regulator-name = "vcc-dram";
-+};
-+
-+/* DCDC6 unused */
-+/* DLDO3 unused */
-+/* DLDO4 unused */
-+
-+&reg_eldo1 {
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "vcc-pc-emmc";
-+};
-+
-+/* ELDO2 unused */
-+/* ELDO3 unused */
-+
-+&reg_fldo1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <900000>;
-+	regulator-max-microvolt = <900000>;
-+	regulator-name = "vdd-cpus-usb";
-+};
-+
-+/* reg_drivevbus unused */
-+/* dc1sw unused */
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	dr_mode = "host";       /* USB A type receptable, always powered */
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+	usb1_vbus-supply = <&reg_usb1_vbus>;
-+};
--- 
-2.46.3
+J
 
 
