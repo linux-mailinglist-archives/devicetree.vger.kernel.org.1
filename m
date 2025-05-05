@@ -1,116 +1,88 @@
-Return-Path: <devicetree+bounces-173816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89F6BAA9996
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:44:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53521AA99A1
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:48:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA22F188A0A3
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:43:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C19CB17C8E7
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:48:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068B924A069;
-	Mon,  5 May 2025 16:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fQnHuZum"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E908267B65;
+	Mon,  5 May 2025 16:48:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D1E1F582C;
-	Mon,  5 May 2025 16:43:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61ECE25C809
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 16:48:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746463396; cv=none; b=RHXgXpIuGbkgZZwYJzuWr4ReFD5vWA+M/otzEmPQTsmnbEZn9uHJHy9H3K4saNz52DGVnnSaxvsaKcihunHheLp58jX1Z0UC3RcTTn9fJ80RbdnQ3+ySjgzpa79576t772gNlofGgm3vvp4/buSsRZkZ20Z+g7RzQ3g+S0uXURI=
+	t=1746463682; cv=none; b=RZN9nASE373HFk9AKlBh8FzhsIQ8B/WWGmUnM4UHYU53pYMis2nM/i7GRyhDgxwpDu5D7GK53njb6rQqp4r2OYiVqonIucrR6R/AIU2mvTmszNgrlEXQJMb18FhNkxtgh9Ysew8s3dxfBahS/Y70IePE99x9L2JR0Aqda433bg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746463396; c=relaxed/simple;
-	bh=iusOOjruwYY0cj893U40aBJkYw6OvfktZxxkNF2KiJU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EDxsRpHbj/Z2mY2HZ/lgnaO0jw0sTNyfj9UVHDesdCl+PSh/vP4y0t1jmiUzbGhXiy1k1kLfeuCr5jMD7aKEEFIIK5AqjhgUXvO+e1Ghoxtbe2PWg79ZtpL7K9TwdQfEPBaP9NH662k4wBVhG/6Toljuc+DPOLTDeO9G6QogCxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fQnHuZum; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=R38+9FFEzIX1X2Mle5QSWjPU0quacBXrx9buQ+zcKnU=; b=fQnHuZumblFZCEaHY6biHy9g5U
-	v6+OTVxSYFgqeQyttfUTLNlt03/pABBRsWFyUc3ykjbj7ii/XK7ZS8uZe8YcABnnJUY4jEiwE4e2m
-	D5+KCjkv9Xwi4kBWGrdFyyzPWJlyspEylaSCcvQrpiN9O0xAv7+68N9KK3MgDKeRtoXI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uByuJ-00BcEE-K4; Mon, 05 May 2025 18:43:07 +0200
-Date: Mon, 5 May 2025 18:43:07 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1746463682; c=relaxed/simple;
+	bh=6kgLLkSzbCsnkK7Wh83ln3Ro09UOIvCxzW63+HKgWiI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dfriU9mFa+lOZbwWDYbSfrb7ZUDD/5Valj/AC+4neBxlGAfgG1lHWW2f8K+gWJt+8uvw3p3jgAFt2Wt2kQuZ2ko2krqWSCQbuGPDdKeazN+EQSyYcujbJF+Bzd6oSAMy0uwGoW+TzyDXhlWEAkHBVe/rAced5SL1ks5nEexg4Ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 20F54339;
+	Mon,  5 May 2025 09:47:50 -0700 (PDT)
+Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 000F63F673;
+	Mon,  5 May 2025 09:47:57 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 4/5] net: vertexcom: mse102x: Return code for
- mse102x_rx_pkt_spi
-Message-ID: <3b9d36a7-c2fd-4d37-ba33-fc13121d92e6@lunn.ch>
-References: <20250505142427.9601-1-wahrenst@gmx.net>
- <20250505142427.9601-5-wahrenst@gmx.net>
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: Cody Eksal <masterr3c0rd@epochal.quest>,
+	Philippe Simons <simons.philippe@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/3] arm64: dts: sunxi: Add Liontron H-A133L support
+Date: Mon,  5 May 2025 17:47:26 +0100
+Message-ID: <20250505164729.18175-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.46.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250505142427.9601-5-wahrenst@gmx.net>
+Content-Transfer-Encoding: 8bit
 
-On Mon, May 05, 2025 at 04:24:26PM +0200, Stefan Wahren wrote:
-> The interrupt handler mse102x_irq always returns IRQ_HANDLED even
-> in case the SPI interrupt is not handled. In order to solve this,
-> let mse102x_rx_pkt_spi return the proper return code.
-> 
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-> ---
->  drivers/net/ethernet/vertexcom/mse102x.c | 15 +++++++++------
->  1 file changed, 9 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/vertexcom/mse102x.c b/drivers/net/ethernet/vertexcom/mse102x.c
-> index 204ce8bdbaf8..aeef144d0051 100644
-> --- a/drivers/net/ethernet/vertexcom/mse102x.c
-> +++ b/drivers/net/ethernet/vertexcom/mse102x.c
-> @@ -303,7 +303,7 @@ static void mse102x_dump_packet(const char *msg, int len, const char *data)
->  		       data, len, true);
->  }
->  
-> -static void mse102x_rx_pkt_spi(struct mse102x_net *mse)
-> +static irqreturn_t mse102x_rx_pkt_spi(struct mse102x_net *mse)
->  {
->  	struct sk_buff *skb;
->  	unsigned int rxalign;
-> @@ -324,7 +324,7 @@ static void mse102x_rx_pkt_spi(struct mse102x_net *mse)
->  		mse102x_tx_cmd_spi(mse, CMD_CTR);
->  		ret = mse102x_rx_cmd_spi(mse, (u8 *)&rx);
->  		if (ret)
-> -			return;
-> +			return IRQ_NONE;
->  
->  		cmd_resp = be16_to_cpu(rx);
->  		if ((cmd_resp & CMD_MASK) != CMD_RTS) {
-> @@ -357,7 +357,7 @@ static void mse102x_rx_pkt_spi(struct mse102x_net *mse)
->  	rxalign = ALIGN(rxlen + DET_SOF_LEN + DET_DFT_LEN, 4);
->  	skb = netdev_alloc_skb_ip_align(mse->ndev, rxalign);
->  	if (!skb)
-> -		return;
-> +		return IRQ_NONE;
+The Liontron H-A133L is an industrial development board featuring the
+Allwinner A133 SoC.
+Alongside the usual standard connectors like USB and Ethernet ports,
+it contains a number of dedicated JST connectors, to connect external
+peripherals.
 
-This is not my understanding of IRQ_NONE. To me, IRQ_NONE means the
-driver has read the interrupt status register and determined that this
-device did not generate the interrupt. It is probably some other
-device which is sharing the interrupt.
+Add support for that board with the usual patch trinity: vendor prefix,
+board name binding, board .dts file.
 
-       Andrew
+Please have a look!
+
+Cheers,
+Andre
+
+Andre Przywara (3):
+  dt-bindings: vendor-prefixes: Add Liontron name
+  dt-bindings: arm: sunxi: Add Liontron H-A133L board name
+  arm64: dts: allwinner: a100: add Liontron H-A133L board support
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../sun50i-a133-liontron-h-a133l.dts          | 214 ++++++++++++++++++
+ 4 files changed, 222 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts
+
+-- 
+2.46.3
+
 
