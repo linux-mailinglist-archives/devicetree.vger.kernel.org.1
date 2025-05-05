@@ -1,86 +1,183 @@
-Return-Path: <devicetree+bounces-173861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74776AA9DA1
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 22:57:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 363FEAA9DA9
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 23:00:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E217317E117
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 20:57:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D78D3BB25C
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 21:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B63126C3A4;
-	Mon,  5 May 2025 20:57:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033FA26F464;
+	Mon,  5 May 2025 21:00:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ERySrEhp"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="rhxl1a2m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3215E1EA7DE;
-	Mon,  5 May 2025 20:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56DD51DC994
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 21:00:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746478633; cv=none; b=LWp75IY0zAkOaLRd01mmFDpdkok+0A77c+C3oK093naA/5vKRc0uWIR8V2qUQBL4XmqQBQD8PvzPPqbO7e2ixUwkS5Iz2xpn51a5Om5nPUEFPtrcqfJjNtbuh0O/EKfCS7CtJvZBtLBzrG/EVPlJvvTx5t35BZ1eYy38fTcCGXM=
+	t=1746478816; cv=none; b=G09yw0P3J5HweYAML5gh2onXDK6gCzRsV/UqRgTcSz2y0JlP+CAPr9Ptps9H87sZRLA2SVNOHi76TgJoga29Tm0NPEVTBdjNhHupF+jfRkH5OG9Z1guBp75q5mPkVknm2CWtbHYfhKi7t/cTv3eF1dUHWSDieGm1CnqGc6ZaQG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746478633; c=relaxed/simple;
-	bh=Dmzf3Z0ahnejagf6WsFXTesHMfb1g5ns+BwkAAG7v+g=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=L5JH/d8IWldKq5EtGyp5FG9AeZvVbMO9T5h/j38R1CB2WHO/Q8GTfaP5elppEV4rv9bl0UztYH3qvAE0OoAOZcC1kBO/JzdcDf84lbAeT2wVy3BQX5pO4F1mJBXkSI2L9sCH147BKEb79YrtfADWJJi2UhJYdKNCpOOv7XCrF+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ERySrEhp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B0ECC4CEE4;
-	Mon,  5 May 2025 20:57:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746478632;
-	bh=Dmzf3Z0ahnejagf6WsFXTesHMfb1g5ns+BwkAAG7v+g=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ERySrEhp9W6kHdWmu/h4FcNpBM6hN/198rHph4Fg/Q1QTS7Abn/AYpiFtEWi1ID6F
-	 NNvF/HxxfiEjoSJ51HOLRLHImQmdl+i246Ae73iJNiRoOJ2cDIau1jNIjbRa4O96+Z
-	 8MwerszjenYekhkms25X0VmjaC+XAEE1qDd8kG8+j3gnGis6ScG7zL73LqFFBYuc/z
-	 Z+BPpXc3aseYHxNakvpK1nrt01BcXs3W38s/TnSP2iGyH/W4KWHXmQAiAcCjiHHq3b
-	 3VHBHvyjuNNxnhS5mR/8qxhO9e3HvSKkwYwnApIXgvWmM8LhOKm0zgACDHK9rOeU1H
-	 /AKhEmQSEgJWA==
-Date: Mon, 5 May 2025 13:57:11 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/5] net: vertexcom: mse102x: Add warning about
- IRQ trigger type
-Message-ID: <20250505135711.742cd759@kernel.org>
-In-Reply-To: <20250505142427.9601-3-wahrenst@gmx.net>
-References: <20250505142427.9601-1-wahrenst@gmx.net>
-	<20250505142427.9601-3-wahrenst@gmx.net>
+	s=arc-20240116; t=1746478816; c=relaxed/simple;
+	bh=5ufq1FfQ7+ItMWnW/bHVbCw8E2sCN/GQabyoCbiAToM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bskrW7Zd4X94rk+YAGdfmD+tsG99K8jzjuANNFQ965QjBUSASHCK674oNhF45/O/63nvo7hAMY6BcBFXlBLz1yD7b62lrIaQMl6Y/g2Wzd2qz/SHjiA8RXtMLO4lIOsmND7mT4weBh5Xn52WOtTLuphtdl5VyeH6GSVW9j2JQnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=rhxl1a2m; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1746478814;
+ bh=D6mVc2F17QEJBHK1fhZDepaSGxODcDU0cKVXx0iYDDg=;
+ b=rhxl1a2mSABhcUitETqBY39SqRRKE6xHkRJah5Fk9meFUKKILvlMIQr9uOBAVjaSBwaAAujck
+ E1EcYYAO6D/3tOJIZIBQWEroIm1MWfc5gyFLJI3PmhtDHnQyi9LEBJGTZUj1/m//6LQ9AOQBaSU
+ 9UgcXzJ8LUiunpR13F2WP30Bas7P5C0QW3noarJI2NNWzcwgMwQIIrSHgXeSGdnWubzv+QaalFB
+ NnTvYUD1NtPLn15N55HZ6Um1Yppr814hnQevyuPF6u1rVeGXZ50oclxJ9G0mpeZfe8U8bJBsNvR
+ KIhwiedBVRCUEcsR4IHrJv/B41EHAdMFCQdEiTFSOjkg==
+X-Forward-Email-ID: 681926d746c37f8647c203a8
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.0.2
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <f19f11f7-c020-44a3-84fa-eb9ca48ed11f@kwiboo.se>
+Date: Mon, 5 May 2025 23:00:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/5] arm64: dts: rockchip: Enable SD-card interface on
+ Radxa E20C
+To: Yao Zi <ziyao@disroot.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Shresth Prasad <shresthprasad7@gmail.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Chukun Pan <amadeus@jmu.edu.cn>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20250417143647.43860-1-ziyao@disroot.org>
+ <20250417144005.43927-1-ziyao@disroot.org>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20250417144005.43927-1-ziyao@disroot.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Mon,  5 May 2025 16:24:24 +0200 Stefan Wahren wrote:
-> The example of the initial DT binding of the Vertexcom MSE 102x suggested
-> a IRQ_TYPE_EDGE_RISING, which is wrong. So warn everyone to fix their
-> device tree to level based IRQ.
+On 2025-04-17 16:40, Yao Zi wrote:
+> SD-card is available on Radxa E20C board.
+> 
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
 
-Doesn't build on x86:
+SD-card is detected and working on my E20C, and this also seem to match
+the schematics for E20C:
 
-drivers/net/ethernet/vertexcom/mse102x.c:535:10: note: did you mean 'led_get_trigger_data'?
-include/linux/leds.h:544:21: note: 'led_get_trigger_data' declared here
-  544 | static inline void *led_get_trigger_data(struct led_classdev *led_cdev)
-      |                     ^
-drivers/net/ethernet/vertexcom/mse102x.c:536:7: error: use of undeclared identifier 'IRQ_TYPE_LEVEL_HIGH'
-  536 |         case IRQ_TYPE_LEVEL_HIGH:
-      |              ^
-drivers/net/ethernet/vertexcom/mse102x.c:537:7: error: use of undeclared identifier 'IRQ_TYPE_LEVEL_LOW'
-  537 |         case IRQ_TYPE_LEVEL_LOW:
-      |              ^
--- 
-pw-bot: cr
+  mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+  mmc_host mmc1: Bus speed (slot 0) = 148500000Hz (slot req 150000000Hz, actual 148500000HZ div = 0)
+  dwmmc_rockchip ffc30000.mmc: Successfully tuned phase to 215
+  mmc1: new UHS-I speed SDR104 SDHC card at address 59b4
+  mmcblk1: mmc1:59b4 USD00 29.5 GiB
+   mmcblk1: p1
+
+  $ cat /sys/kernel/debug/mmc1/ios
+  lock:           150000000 Hz
+  actual clock:   148500000 Hz
+  vdd:            21 (3.3 ~ 3.4 V)
+  bus mode:       2 (push-pull)
+  chip select:    0 (don't care)
+  power mode:     2 (on)
+  bus width:      2 (4 bits)
+  timing spec:    6 (sd uhs SDR104)
+  signal voltage: 1 (1.80 V)
+  driver type:    0 (driver type B)
+
+So this is:
+
+Reviewed-by: Jonas Karlman <jonas@kwiboo.se>
+
+Regards,
+Jonas
+
+> ---
+>  .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> index 57a446b5cbd6..09d917a0acc5 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> @@ -17,6 +17,7 @@ / {
+>  
+>  	aliases {
+>  		mmc0 = &sdhci;
+> +		mmc1 = &sdmmc;
+>  	};
+>  
+>  	chosen {
+> @@ -108,6 +109,18 @@ vcc5v0_sys: regulator-5v0-vcc-sys {
+>  		regulator-min-microvolt = <5000000>;
+>  		regulator-max-microvolt = <5000000>;
+>  	};
+> +
+> +	vccio_sd: regulator-vccio-sd {
+> +		compatible = "regulator-gpio";
+> +		gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&sdmmc_vol_ctrl_h>;
+> +		regulator-name = "vccio_sd";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		states = <1800000 0x0>, <3300000 0x1>;
+> +		vin-supply = <&vcc5v0_sys>;
+> +	};
+>  };
+>  
+>  &pinctrl {
+> @@ -130,6 +143,12 @@ wan_led_g: wan-led-g {
+>  			rockchip,pins = <4 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
+>  		};
+>  	};
+> +
+> +	sdmmc {
+> +		sdmmc_vol_ctrl_h: sdmmc-vol-ctrl-h {
+> +			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+>  };
+>  
+>  &saradc {
+> @@ -148,6 +167,17 @@ &sdhci {
+>  	status = "okay";
+>  };
+>  
+> +&sdmmc {
+> +	bus-width = <4>;
+> +	cap-mmc-highspeed;
+> +	cap-sd-highspeed;
+> +	disable-wp;
+> +	sd-uhs-sdr104;
+> +	vmmc-supply = <&vcc_3v3>;
+> +	vqmmc-supply = <&vccio_sd>;
+> +	status = "okay";
+> +};
+> +
+>  &uart0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&uart0m0_xfer>;
+
 
