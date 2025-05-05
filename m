@@ -1,157 +1,115 @@
-Return-Path: <devicetree+bounces-173656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0C39AA9359
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:38:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 000AFAA9360
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:38:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AC681780A6
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 12:38:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C16837A2738
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 12:37:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1518924BBEB;
-	Mon,  5 May 2025 12:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9C0324E4AA;
+	Mon,  5 May 2025 12:38:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Zauusnj0"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Maj2dj09"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA9626FC3;
-	Mon,  5 May 2025 12:38:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 903781FCFFC;
+	Mon,  5 May 2025 12:38:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746448684; cv=none; b=shrmHvcrDykqUGFPqgfLIBJdqJ9NkN8CKTwdjSYbzgzTxLh1mjgMdtnNj4ZHnnPZwZ8JXQPNG/ZbOmNTn6rq39tQkcTxDd/VkkuC/ljQgKo53/ycYsN/b4knhzfRsSd/GVxEDykPlnKlMx7FK+V/ECcM6Jba38ET9hZ6Izx6oS4=
+	t=1746448721; cv=none; b=PHsATGip7E6IW+bD7F4gymOmV24VaRCnOzwLdobo4nDbtl1RJJOYu8riPGBIY6mFI3V83r4JGgxTLvN1jfzbORLcjSl+S47cfL7O872rosaQoB7qUKnrAk3Ld+WPqKyiM7O9QGNGPnN8+nsQdruhK9myYJsLN63xeNkXA129Tds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746448684; c=relaxed/simple;
-	bh=pYBN3lsmWkKdV1oODnXSMo3X/39kVT+oxVXpOMKSOCo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=VdCxAeoESKRWtEJOaEG5NwMgXhNcrzTU3uOy65yOJ401xau3oSmJ2tl6RIWubiFh62bz5j0k0E69QYMPEMnp+sLYw3k2ogbqPpmBAAQQxHorQTqfbCVwhKkKhv13ykBEL/YDzdq7clW5HhlbUHF/6NvrOMoYrjY8CKSTRQoRogU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Zauusnj0; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1746448679;
-	bh=pYBN3lsmWkKdV1oODnXSMo3X/39kVT+oxVXpOMKSOCo=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=Zauusnj0dYv2ApLcBldHcDtboyBrosevqNbqns6Iw8XL60YdE4hIyAHxyGULJqysP
-	 HWUabOhVCZMU0Bd4XNCpJtI0QmheyTSqB5xx6ZimJp2+fHa13NMDXoA5QZsuHwmdyI
-	 0lpJ1ZVvYonR0kdee85X6wjJcU/aWBOcQMj9a2EmvHslJ5cFnzdKr2wSfJgkYetyCl
-	 NpBWIDzKnOVO0O06M9THMbKHC0Pu8QGBm8DXkEO7+iZq3B/IRZ29JyI+CpTRbqtE7H
-	 vY5dvKG5PejgSmBu/h2vh6cEyqUZ6JbCVAitnAuT6MPUw8F8+u+3SIqhlsDRdUWX1g
-	 lHldAH1mEIc1g==
-Received: from [IPv6:2606:6d00:15:ec4::5ac] (unknown [IPv6:2606:6d00:15:ec4::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9C44717E12D6;
-	Mon,  5 May 2025 14:37:57 +0200 (CEST)
-Message-ID: <fc4d70d3d3a98da8c0a8679bcea87d8d1e83fc5e.camel@collabora.com>
-Subject: Re: [PATCH v3 13/23] media: iris: Send V4L2_BUF_FLAG_ERROR for
- buffers with 0 filled length
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>, Vikash Garodia	
- <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Mauro Carvalho Chehab	 <mchehab@kernel.org>, Stefan Schmidt
- <stefan.schmidt@linaro.org>, Hans Verkuil	 <hverkuil@xs4all.nl>, Bjorn
- Andersson <andersson@kernel.org>, Konrad Dybcio	 <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Dmitry Baryshkov	
- <dmitry.baryshkov@oss.qualcomm.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, 	linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, 
-	20250417-topic-sm8x50-iris-v10-v7-0-f020cb1d0e98@linaro.org, 
-	20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com
-Date: Mon, 05 May 2025 08:37:56 -0400
-In-Reply-To: <36757fb1-b1a9-5b49-c5b8-62cde4dea1c5@quicinc.com>
-References: <20250502-qcom-iris-hevc-vp9-v3-0-552158a10a7d@quicinc.com>
-	 <20250502-qcom-iris-hevc-vp9-v3-13-552158a10a7d@quicinc.com>
-	 <1b204ed7bc63373f52973b96af68e64e24be8cde.camel@collabora.com>
-	 <36757fb1-b1a9-5b49-c5b8-62cde4dea1c5@quicinc.com>
-Organization: Collabora Canada
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.56.1 (3.56.1-1.fc42) 
+	s=arc-20240116; t=1746448721; c=relaxed/simple;
+	bh=DjPWvL+pbNYwxMHfjVA7imMUqiVf1Nxpy8ibShvLkrU=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i3PRLSjqVRqzLmQjoW61/D32Iz0C/m5eM/BfC2QGZSKWfEdrqEORQ1153qengYEdm4jSShpEa8CMwz2dDMubEH9Ish7Cg04On17LlUJAW2i/SH9JAbd8USGOaZvDPeoOpdKzOEPtoYSN/djpHCGJg+S2NuqSA9NVqCswMTf/ZCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Maj2dj09; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 545CcXeP762189
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 5 May 2025 07:38:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746448713;
+	bh=dz6qpzr4bWrGe4AO4WpYeTnOtWSVnS+tyHsG4borA2s=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=Maj2dj09KHbCoTeBiPWG2KZsInEORj+RINL2szdtWGY1SFP59ODpTrNKBowwZ8XfW
+	 ZZWiyMLRDGnjC5eWRcU7uLBryOQLMIojhV1I7u7yxSbgElKKBDCADVe6Ha3FM7QLwA
+	 qNG7JL5Y0+rVw+OI1F+qs4WRwMaIMD8sPrEf1ACQ=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 545CcX4X064815
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 5 May 2025 07:38:33 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
+ May 2025 07:38:32 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 5 May 2025 07:38:32 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 545CcWWX066547;
+	Mon, 5 May 2025 07:38:32 -0500
+Date: Mon, 5 May 2025 07:38:32 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Prasanth Babu Mantena <p-mantena@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-common-proc-board: Enable OSPI1
+ on J721E
+Message-ID: <20250505123832.shukji5gfx3erjdq@lustiness>
+References: <20250505112731.2515734-1-p-mantena@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250505112731.2515734-1-p-mantena@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Dikshita,
-
-Le dimanche 04 mai 2025 à 20:53 +0530, Dikshita Agarwal a écrit :
+On 16:57-20250505, Prasanth Babu Mantena wrote:
+> J721E SoM has MT25QU512AB Serial NOR flash connected to
+> OSPI1 controller. Enable ospi1 node in device tree.
 > 
+> Signed-off-by: Prasanth Babu Mantena <p-mantena@ti.com>
+> ---
+> Test log : https://gist.github.com/PrasanthBabuMantena/9dda540dce88282117de7e0e945e24ca
+>  arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> On 5/3/2025 9:39 PM, Nicolas Dufresne wrote:
-> > Hi Dikshita,
-> > 
-> > Le vendredi 02 mai 2025 à 00:43 +0530, Dikshita Agarwal a écrit :
-> > > Firmware sends buffers with 0 filled length which needs to be dropped,
-> > > to achieve the same, add V4L2_BUF_FLAG_ERROR to such buffers.
-> > > Also make sure:
-> > > - These 0 length buffers are not returned as result of flush.
-> > > - Its not a buffer with LAST flag enabled which will also have 0 filled
-> > >   length.
-> > 
-> > This message is quite vague, is this about capture or output buffers ?
-> > If its output buffers that don't produce capture, I don't see why they
-> > have to be flagged as errors, or why the payload size matter. Then, if
-> > its about assigned capture buffers that did not get used in the end, you
-> > should put them back in the queue instead of returning them to user
-> > space.
-> > 
-> > Returning a capture buffers to userspace should only be used if a frame
-> > could not be produced. That imply copying the cookie timestamp from the
-> > src buffers into the capture buffer. Please make sure you don't endup
-> > returning fake erorrs to userspace, which may lead to some frame
-> > metadata being dropped erroneously.
-> > 
-> The capture buffers which I am trying to handle here are of 0 byteused
-> which means they don't have any valid data and they have the timestamp
-> copied from src buffers.
-> How these buffers will be handled by client? if we don't associate error
-> flag to such buffers?
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> index e3d0ef6913b2..3112b351c052 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> @@ -571,6 +571,7 @@ &usb1 {
+>  };
+>  
+>  &ospi1 {
+> +	status = "okay";
 
-Please share a link to the stream and specify which frames are handled
-this way by your firmware. The answer to your question is entirely
-dependent on the stream you are decoding.
+Follow Documentation/devicetree/bindings/dts-coding-style.rst
 
-Nicolas
-
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&mcu_fss0_ospi1_pins_default>;
+>  
+> -- 
+> 2.34.1
 > 
-> Thanks,
-> Dikshita
-> > Nicolas
-> > 
-> > > 
-> > > Acked-by: Vikash Garodia <quic_vgarodia@quicinc.com>
-> > > Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> > > ---
-> > >  drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c | 6 ++++++
-> > >  1 file changed, 6 insertions(+)
-> > > 
-> > > diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> > > b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> > > index 4488540d1d41..3bb326843a7b 100644
-> > > --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> > > +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_response.c
-> > > @@ -378,6 +378,12 @@ static int iris_hfi_gen2_handle_output_buffer(struct iris_inst *inst,
-> > >  
-> > >  	buf->flags = iris_hfi_gen2_get_driver_buffer_flags(inst, hfi_buffer->flags);
-> > >  
-> > > +	if (!buf->data_size && inst->state == IRIS_INST_STREAMING &&
-> > > +	    !(hfi_buffer->flags & HFI_BUF_FW_FLAG_LAST) &&
-> > > +	    !(inst->sub_state & IRIS_INST_SUB_DRC)) {
-> > > +		buf->flags |= V4L2_BUF_FLAG_ERROR;
-> > > +	}
-> > > +
-> > >  	return 0;
-> > >  }
-> > >  
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
