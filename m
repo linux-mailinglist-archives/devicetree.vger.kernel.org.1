@@ -1,184 +1,127 @@
-Return-Path: <devicetree+bounces-173628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BDD2AA923B
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:42:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47213AA9253
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:52:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B48C1895190
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 11:42:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47BF818873F3
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 11:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4756B1F419A;
-	Mon,  5 May 2025 11:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 462E4205513;
+	Mon,  5 May 2025 11:52:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hp4EBdh9"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Jr7cWSqc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 763633596A;
-	Mon,  5 May 2025 11:42:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A25C02040A8;
+	Mon,  5 May 2025 11:52:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746445333; cv=none; b=KBW6x/posg8+tOKG0dwQjIKSKdL59kW9rxSTmpHHoIHTZLsui2/0tyjgWjapbZAkKz9WtjwLAwgItJet41XlCA7AUxqt9V6YGXvqtNZF1KAzOzyjKltEstd9lptQwZRjerRSs+S8Q10BJ/0a2GckNAgbKajsNl94tDsirU/xHog=
+	t=1746445963; cv=none; b=eB0/0ESVCTLDa0g03abKNeDJB/O13QPngGHaUpjXy61WhmeH76trDuQ0e6IXRaMg7CjRuv4Z4dBtjq4JZT9eqaSA78jwJN5O0sK9rHQLoIv+0q+1qyohcxXchHx66TIMxlwv7b4hnz4gjQoJZzHKQpNB1HYl14ja3TavO44qGQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746445333; c=relaxed/simple;
-	bh=3ShDgHcrv0si/8F2zUrP8xt3sbXDU6yq8+ErTpjgbbA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RG/ENaQl0PjzUwIPeylLrVWezYIa8TqMFvtE59V+MKa1FHxrHygprCnun65Fus73kY9MU1vAPxXAXMjVMtSPD3dDwBdfKLzQTP8eKHvZPxBvNxn9xP08JKBR817zojSddGNBiPLKJ1Mer4mwKKFC/zGSwJTx5sxhAdVkCh/Figg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hp4EBdh9; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-39c1efc457bso2845571f8f.2;
-        Mon, 05 May 2025 04:42:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746445329; x=1747050129; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KruIqdPdauGVWjRYCa4lawsGc3EYFEr3EbHiC3ED+fE=;
-        b=Hp4EBdh9ixPBzHy7kPaFpLpFSciYdaZgMNgksVYiBjIL90kcS2k3orzgBClchk/qgB
-         llRaX5Wt5QDr/hV2W+MPpDsYPr+HFWxdIFGmUPMfKE00y2sbVwHA7rgWukARWxP3DSNC
-         Wjc+zSv5fuJcw3NWHVUKXj/2Cc7LRbJwB8QawrxAAqhLsevKoA6/O4uupCZSNrRaMmn+
-         EpyIXcFDzDaQJrCs+ZPyjIKSZQleca/unsXFXqGFqty4WGYTVmjHs5ABR6YXCwBCT07z
-         dgfX56pUZdhwXGhVGuq9FGnDOLMrKhlUisDtsi6M2RimcTkTYtUNxhr7uLywwNCW7OoJ
-         2LUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746445329; x=1747050129;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KruIqdPdauGVWjRYCa4lawsGc3EYFEr3EbHiC3ED+fE=;
-        b=L9V5pCFJWfzve+i/I+ZD0fAkpMYpiHt3TILac3D70A3NCEuXnd9GnSU59VUCACTWbq
-         EPI7jW6t2vpwIZkXDBKtYS2iJ9ZmyZbDHPR0X7SHMakL0sYNC++LnV/GhrpBRqBqGrUI
-         LetwfT7vXQEGbUFjXJ/Iv0LfR4YfAzu214UyXqgaNsfkESlCTN6mXMAOWjwES1ncHVgN
-         W85+cvhwp0mupMsxrFA4Gh1TCanEFuHMfnGtd5qMfcnIec1DvPIMcV2BbwTdJOz+vSks
-         NZSGBBXdao2ZXFO1F+5go0DrvU/8A1vjZ5TDMUBXeEn3Kj0vFbQX8cETkbUSJvpkbH7a
-         sJ4g==
-X-Forwarded-Encrypted: i=1; AJvYcCUmpCc5vpUtpwOGfvdkpexb6W/VKX4excVyAeVOYyvS1VYNw5+O97brTzq8sFo9M6lEk/sEowGSo9CENV91@vger.kernel.org, AJvYcCVO4BkAnP0m/8SbuE9rf3r61M9hzLReh/YZ2iqnxwvoinMOPvK7A1OE9Ccw/SZAEFjXAcQUVeHjoUwj@vger.kernel.org
-X-Gm-Message-State: AOJu0YziSw1Jy/g7E9ptGIK19STRdHQ87WVd0KmM5IR+mOMsCEnVJfRE
-	iqsWpQ9qTA0Uo9Ox4TGhf7HU6wNoqnr1mn26b02cKuZctLJ6uy62Wk5Cpx7+2vbzcLQ7fbDyZUH
-	AiO6WYIzDsTSpWRMf9v9JLnczN1Y=
-X-Gm-Gg: ASbGncsDjVG7FiBe82I3EYz3LBmqCn2EHU0lqmYMyPsYsbFX8p/+7w9Dp8tKB4ruiAK
-	Tvn96+N+Q+FgzDLKjOxt0/Q9Xx4N0liRWHNiL9TkfCA5rqdcwJ6u+jbreB07i9FH75MBCdr5wmk
-	1MAv+duwrtrRdDViRDUEq+mJxGke4cddFphA==
-X-Google-Smtp-Source: AGHT+IF0b08rVUeiB6pMpxCseBfmukd/TOtG6DGSWcy45xXCpz3/srzTxmFTfkMiKUYFe9RprpS0sbmx07u7TavER8A=
-X-Received: by 2002:a05:6000:1ac9:b0:39c:1f04:a646 with SMTP id
- ffacd0b85a97d-3a09fd726camr4763586f8f.13.1746445328440; Mon, 05 May 2025
- 04:42:08 -0700 (PDT)
+	s=arc-20240116; t=1746445963; c=relaxed/simple;
+	bh=4kaZEUxGVTYwxOZIR6two8Odt1oN1JQHgkymxLgLVS8=;
+	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:Mime-Version:
+	 References:In-Reply-To; b=uiJjuz/RRu/4bIptTn5ySSCCtfqPh/2NNNH8b/nRpfkQQ2FYjnMCyxpfoRY1IetAvZsXNhMpnZx/pY71dWu9/duCGJtuLbRKx3au5Q2CNdSMjQmUiKNSeowrUP4VZ/vAsKJUmgHhR14XUMAzhKE2ujyd4l6C6GRiGBGVvnTd0SE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Jr7cWSqc; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0F111432A2;
+	Mon,  5 May 2025 11:52:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746445952;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Vm8qmex3bAGRILrPZHXrirOvCQozzFYhA+oyW1nX2/A=;
+	b=Jr7cWSqcIA1lpycR6i5nolFqFjVEdLgYXoW24zAYltxtUHfKBqnhE0pHou0wG9DxIvkI8z
+	zFDQb6X1TEw32V5IEJX8uJCQG6mFBBZgkqkNbR9hmPQbK34Mw0vDp7L8Xa2Ppo03LRTv7/
+	musII7g5mPco3A3vzxZBs0XnvdogiQed15QcxXnB3DsA1YmjKarmdiZgavq1ietgMfKMvD
+	3Jd0n9feQ6jfJ/jPsCZwxt4ameL6rD6bVz9g0Rd6GWLnZKfbEXPHcnSVVP8BH4beHbIxPH
+	2H+smQfh5OoSA2XEwdE3j6Z2KTM5sgnHcmZZHzOxrRmaXZV7Zzefu0nwAg/TFw==
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 05 May 2025 13:52:30 +0200
+Message-Id: <D9O7F5Q6F1PS.2Q7R864GRUHZQ@bootlin.com>
+Subject: Re: [PATCH v7 10/11] input: misc: Add support for MAX7360 rotary
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250503094149.29201-1-clamor95@gmail.com> <20250503094149.29201-3-clamor95@gmail.com>
- <ffac4a1b-5dfa-48e9-8ac4-37939b6a9347@linaro.org>
-In-Reply-To: <ffac4a1b-5dfa-48e9-8ac4-37939b6a9347@linaro.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Mon, 5 May 2025 14:41:57 +0300
-X-Gm-Features: ATxdqUG83kxEDJWXfjf1kMB8KKjw9VeaTfQqOHpfaGzkV6Mu-zq0PSNbH5qNHFs
-Message-ID: <CAPVz0n3i7=jM9GB-CggFOJEN7B+oBWvyqsSn8UXav3MH0BQJ5g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] drm: panel: Add support for Renesas R61307 based
- MIPI DSI panel
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+X-Mailer: aerc 0.19.0-0-gadd9e15e475d
+References: <20250428-mdb-max7360-support-v7-0-4e0608d0a7ff@bootlin.com>
+ <20250428-mdb-max7360-support-v7-10-4e0608d0a7ff@bootlin.com>
+ <aBSkCsw3GJ6RHeJV@smile.fi.intel.com>
+ <D9LQ7NV1LJM9.F2GF0YEEDFEY@bootlin.com>
+ <aBTSNsCupbpAscwA@smile.fi.intel.com>
+In-Reply-To: <aBTSNsCupbpAscwA@smile.fi.intel.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkedutddvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegtfffkufevhffvggfgofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefhtdeuhfehtdekueeltdejffdtuefgueffhfeiueegleffueevvefgtedtkeegjeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlr
+ dhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-=D0=BF=D0=BD, 5 =D1=82=D1=80=D0=B0=D0=B2. 2025=E2=80=AF=D1=80. =D0=BE 10:50=
- Neil Armstrong <neil.armstrong@linaro.org> =D0=BF=D0=B8=D1=88=D0=B5:
+On Fri May 2, 2025 at 4:09 PM CEST, Andy Shevchenko wrote:
+> On Fri, May 02, 2025 at 03:58:04PM +0200, Mathieu Dubois-Briand wrote:
+>> On Fri May 2, 2025 at 12:52 PM CEST, Andy Shevchenko wrote:
+>> > On Mon, Apr 28, 2025 at 01:57:28PM +0200, Mathieu Dubois-Briand wrote:
 >
-> On 03/05/2025 11:41, Svyatoslav Ryhel wrote:
-> > R61307 is liquid crystal driver for high-definition amorphous silicon
-> > (a-Si) panels and is ideal for tablets and smartphones.
-> >
-> > Supported compatibles are:
-> > - hit,tx13d100vm0eaa
-> > - koe,tx13d100vm0eaa
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >   drivers/gpu/drm/panel/Kconfig                |  13 +
-> >   drivers/gpu/drm/panel/Makefile               |   1 +
-> >   drivers/gpu/drm/panel/panel-renesas-r61307.c | 327 ++++++++++++++++++=
-+
-> >   3 files changed, 341 insertions(+)
-> >   create mode 100644 drivers/gpu/drm/panel/panel-renesas-r61307.c
-> >
+> ...
 >
-> <snip>
+>> >> +				pos =3D max(0, (int)pos + steps);
+>> >
+>> > Please, no castings for min()/max()/clamp(). It diminishes the use of =
+those
+>> > macros.
+>>=20
+>> Sorry, I'm not sure to get the point. Should I use MIN_T() instead?
 >
-> > +static int renesas_r61307_probe(struct mipi_dsi_device *dsi)
-> > +{
-> > +     struct device *dev =3D &dsi->dev;
-> > +     struct renesas_r61307 *priv;
-> > +     int ret;
-> > +
-> > +     priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +     if (!priv)
-> > +             return -ENOMEM;
-> > +
-> > +     priv->vcc_supply =3D devm_regulator_get(dev, "vcc");
-> > +     if (IS_ERR(priv->vcc_supply))
-> > +             return dev_err_probe(dev, PTR_ERR(priv->vcc_supply),
-> > +                                  "Failed to get vcc-supply\n");
-> > +
-> > +     priv->iovcc_supply =3D devm_regulator_get(dev, "iovcc");
-> > +     if (IS_ERR(priv->iovcc_supply))
-> > +             return dev_err_probe(dev, PTR_ERR(priv->iovcc_supply),
-> > +                                  "Failed to get iovcc-supply\n");
-> > +
-> > +     priv->reset_gpio =3D devm_gpiod_get_optional(dev, "reset",
-> > +                                                GPIOD_OUT_HIGH);
-> > +     if (IS_ERR(priv->reset_gpio))
-> > +             return dev_err_probe(dev, PTR_ERR(priv->reset_gpio),
-> > +                                  "Failed to get reset gpios\n");
-> > +
-> > +     if (device_property_read_bool(dev, "renesas,inversion"))
-> > +             priv->inversion =3D true;
-> > +
-> > +     if (device_property_read_bool(dev, "renesas,contrast"))
-> > +             priv->dig_cont_adj =3D true;
-> > +
-> > +     priv->gamma =3D 0;
-> > +     device_property_read_u32(dev, "renesas,gamma", &priv->gamma);
-> > +
-> > +     priv->dsi =3D dsi;
-> > +     mipi_dsi_set_drvdata(dsi, priv);
-> > +
-> > +     dsi->lanes =3D 4;
-> > +     dsi->format =3D MIPI_DSI_FMT_RGB888;
-> > +     dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYN=
-C_PULSE |
-> > +                       MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_L=
-PM;
-> > +
-> > +     drm_panel_init(&priv->panel, dev, &renesas_r61307_panel_funcs,
-> > +                    DRM_MODE_CONNECTOR_DSI);
->
-> Please switch to devm_drm_panel_alloc()
->
+> Are the second argument is compile-time constant? I don't think so. Hence=
+ no
+> use for MIN*()/MAX*(). First of all, try to answer to the Q: Why is the e=
+xplicit
+> casting being used? The second Q: How can it be easily fixed without usin=
+g _t()
+> variants of the macros?
 
-This helper is not available as for 6.15-rc5
+Err right, no MIN/MAX of course.
 
-> > +
-> > +     ret =3D drm_panel_of_backlight(&priv->panel);
-> > +     if (ret)
-> > +             return dev_err_probe(dev, ret, "Failed to get backlight\n=
-");
-> > +
-> > +     drm_panel_add(&priv->panel);
-> > +
-> <snip>
->
-> With that:
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Explicit cast is here because the unsigned int + int sum would result in
+an unsigned int.
+
+I will use an intermediate signed value. Also the whole logic here can
+be simplified a bit, so I will rework the whole block.
+
+Best regards,
+Mathieu
+
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
