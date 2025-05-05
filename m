@@ -1,131 +1,303 @@
-Return-Path: <devicetree+bounces-173732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD642AA9616
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:45:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45983AA961E
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:46:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48D0A1716B7
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:45:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A56C817A4D0
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70F6025D91D;
-	Mon,  5 May 2025 14:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C5F625D205;
+	Mon,  5 May 2025 14:45:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AJBFrTr8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uBU1dXGc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48FD625D90D;
-	Mon,  5 May 2025 14:44:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E8A25D1E9;
+	Mon,  5 May 2025 14:45:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746456252; cv=none; b=AnEfKVsjW9sEwNHR24baRbUpdON6OJaH9m5YBI4B+LzDz4669jxfPtxL4yeDskRy3VE2FbexKbdT74/t2v4rvk7qr/pr8i3tSjWTtAkwllgVXbohSy3nFHQNd4SeppxBskr8tMyxP+d59i4BFGT1dV++71QDuOcoGbkxbi7WdIU=
+	t=1746456333; cv=none; b=O8WfWm6dvI8oddntKsRMaLhSy8Pn2j5+gzREdaAr9//negfQGzbKK1QyIYaDNzIJaMN9Qp9litaXnO61rYVy0nXugvzIqsYnaVWxGJ+tslHt90DV3197F6p49iF+aWJ8MKq9TtOf8fq7lx6WcRT0PCGDaRbiJTwXqbZBBi2du9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746456252; c=relaxed/simple;
-	bh=vkzC9zv68KsWIrMeAfc6iXVzA8iO3cgRRySvwrwTtVI=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=s/seTd2YUOxJchkMk4IRukIv3k9ixGjLsQHqEEN3ZkOmZwWEYagt1AaVSqrQ8rULnz3hnRUkHGWRmzzOLqdB9zOb/xbRwMcg09fnk4wMauk6sYo0pLk8Pc+nwgn3Be+Y9bNv5pRd/MzPGfZPen2hvSrmklfQTRMMHBw7kATrq6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AJBFrTr8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80F22C4CEF0;
-	Mon,  5 May 2025 14:44:11 +0000 (UTC)
+	s=arc-20240116; t=1746456333; c=relaxed/simple;
+	bh=t0v/i5Jc3hHJnt3i5u4/GJb+kOvcKszCfq5u3iUIeaM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Wk4wsKjlmkK33FaQQji41qp9GTFyRzrraNIAfoPSn7pTBstX1w/nCQl2tG92NFsrqJj05XabSO8CgYmU4u/POwiRN0dj9FvrPQWx+CnGSKwDVgyo/Iga/7k08DMIlvY/LVSyqF/TfzUNEgbuVA33JRuIhdpzyNox/WBAkYV/G9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uBU1dXGc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C357CC4CEE4;
+	Mon,  5 May 2025 14:45:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746456251;
-	bh=vkzC9zv68KsWIrMeAfc6iXVzA8iO3cgRRySvwrwTtVI=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=AJBFrTr8gRuydAYqiTXhh0btD+lTuqY2jzFE3q1LbzL+Kff56DrNpOwwjBJXJZebl
-	 OFsbjEIhFh0Rwqumqr+6lKj3l8ggzeY7mC8pziOk+hLvibCM6ya40ueCcpjQYBbT+B
-	 sFbdPeXh945g/Ema75fQGhpi6S1xN1mFFik1PK+9R4sHnF8jzZznStJqYH72yRfbMZ
-	 mvrBXfl1BNVl/HG8sePzywo8sFBtR0xNqwY5T9X2+9YlSrMpqYQTng5O6DnKrJz7uu
-	 2LBpJsaJnsUuwdAvJBfqRzx+TGV/zZrHrf9XUgGNQGZvlDIAaRou/QcyAKHZV3dvvZ
-	 2PhUqqpgJfn9A==
-Date: Mon, 05 May 2025 09:44:10 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1746456333;
+	bh=t0v/i5Jc3hHJnt3i5u4/GJb+kOvcKszCfq5u3iUIeaM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=uBU1dXGcat6IcoBpr3VyFOGTAzGWG856zFOmLjU/aHDPOJkHphBV2gSAhtAfnoIJp
+	 vYw/yNiBGDbArB7hhguRvbMe1L/V5cLgcpwRsqN7MCiwMsT0phPNdnjbNiLl6MCqeJ
+	 PzJg4y0KTScw4AkIK0ceqIPzuoyIzQaOO1MuSCYB3AHmtrMWoJlXkJ1kQO1h2c9bu5
+	 A1+Fq0WoRo1bTj/VY4AHq+p9MHGvn9reQxs0Ul1gP7RqLw/3N259lXnoAa+10QXG4i
+	 UlQDTrZkuEmmCPt3FQJ8boK+YeqcVIUQCiMiRHJCIiKIHrJWuFc84Eqef6bWqNaR4B
+	 qqxpOfzqVx0nw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: interrupt-controller: Convert marvell,cp110-icu to DT schema
+Date: Mon,  5 May 2025 09:45:23 -0500
+Message-ID: <20250505144524.1285795-1-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@mediatek.com>, linux-mediatek@lists.infradead.org, 
- Matthias Brugger <matthias.bgg@gmail.com>, wenst@chromium.org, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org
-To: Sirius Wang <sirius.wang@mediatek.com>
-In-Reply-To: <20250505121627.3944728-1-sirius.wang@mediatek.com>
-References: <20250505121627.3944728-1-sirius.wang@mediatek.com>
-Message-Id: <174645594319.1246809.14814085003624998764.robh@kernel.org>
-Subject: Re: [PATCH 0/2] Add mt8189 dts evaluation board and Mafefile
+Content-Transfer-Encoding: 8bit
 
+Convert the Marvell ICU interrupt controller to DT schema format.
 
-On Mon, 05 May 2025 20:15:44 +0800, Sirius Wang wrote:
-> MT8189 is a SoC based on 64bit ARMv8 architecture. It contains 6 CA55
-> and 2 CA78 cores. MT8189 share many HW IP with MT8188 series.
-> 
-> We add basic chip support for MediaTek MT8189 on evaluation board.
-> 
-> In this series, we also add dt-bindings document definition for MT8189.
-> 
-> Sirius Wang (2):
->   WIP: dt-bindings: arm: Add compatible for MediaTek MT8189
->   WIP: arm64: dts: mt8189: Add mt8189 dts evaluation board and Mafefile
-> 
->  .../devicetree/bindings/arm/mediatek.yaml     |   4 +
->  arch/arm64/boot/dts/mediatek/Makefile         |   1 +
->  arch/arm64/boot/dts/mediatek/mt8189-evb.dts   |  20 +
->  arch/arm64/boot/dts/mediatek/mt8189.dtsi      | 441 ++++++++++++++++++
->  4 files changed, 466 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8189-evb.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8189.dtsi
-> 
-> --
-> 2.45.2
-> 
-> 
-> 
+Add the missing addressing properties to read and translate child node
+addresses.
 
+Drop the legacy binding description and example.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../marvell,cp110-icu.yaml                    |  98 +++++++++++++++
+ .../interrupt-controller/marvell,icu.txt      | 112 ------------------
+ 2 files changed, 98 insertions(+), 112 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/marvell,cp110-icu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/marvell,icu.txt
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250505 (exact match)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/mediatek/' for 20250505121627.3944728-1-sirius.wang@mediatek.com:
-
-arch/arm64/boot/dts/mediatek/mt8189-evb.dtb: / (mediatek,mt8189-evb): memory: False schema does not allow {'device_type': ['memory'], 'reg': [[0, 1073741824, 0, 3221225472]]}
-	from schema $id: http://devicetree.org/schemas/root-node.yaml#
-arch/arm64/boot/dts/mediatek/mt8189-evb.dtb: idle-states: 'clusteroff-b', 'clusteroff-l', 'clusteroff-m', 'cpuoff-b', 'cpuoff-l', 'cpuoff-m', 'mcusysoff-b', 'mcusysoff-l', 'mcusysoff-m', 's2idle', 'system-vcore' do not match any of the regexes: '^(cpu|cluster)-', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/cpu/idle-states.yaml#
-arch/arm64/boot/dts/mediatek/mt8189-evb.dtb: idle-states: entry-method:0: 'psci' was expected
-	from schema $id: http://devicetree.org/schemas/cpu/idle-states.yaml#
-arch/arm64/boot/dts/mediatek/mt8189-evb.dtb: serial@11001000 (mediatek,mt6577-uart): Unevaluated properties are not allowed ('uart-line' was unexpected)
-	from schema $id: http://devicetree.org/schemas/serial/mediatek,uart.yaml#
-
-
-
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/marvell,cp110-icu.yaml b/Documentation/devicetree/bindings/interrupt-controller/marvell,cp110-icu.yaml
+new file mode 100644
+index 000000000000..9d4f06f45372
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/marvell,cp110-icu.yaml
+@@ -0,0 +1,98 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/marvell,cp110-icu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++maintainers:
++  - Miquel Raynal <miquel.raynal@bootlin.com>
++  - Thomas Petazzoni <thomas.petazzoni@bootlin.com>
++
++title: Marvell ICU Interrupt Controller
++
++description:
++  The Marvell ICU (Interrupt Consolidation Unit) controller is responsible for
++  collecting all wired-interrupt sources in the CP and communicating them to the
++  GIC in the AP. The unit translates interrupt requests on input wires to MSG
++  memory mapped transactions to the GIC. These messages access different GIC
++  memory areas depending on their type (NSR, SR, SEI, REI, etc).
++
++properties:
++  compatible:
++    const: marvell,cp110-icu
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 1
++
++  ranges: true
++
++patternProperties:
++  "^interrupt-controller@":
++    type: object
++    description: Interrupt group child nodes
++    additionalProperties: false
++
++    properties:
++      compatible:
++        enum:
++          - marvell,cp110-icu-nsr
++          - marvell,cp110-icu-sr
++          - marvell,cp110-icu-sei
++          - marvell,cp110-icu-rei
++
++      reg:
++        maxItems: 1
++
++      '#interrupt-cells':
++        const: 2
++
++      interrupt-controller: true
++
++      msi-parent:
++        maxItems: 1
++        description: Phandle to the GICP controller
++
++    required:
++      - compatible
++      - reg
++      - '#interrupt-cells'
++      - interrupt-controller
++      - msi-parent
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    interrupt-controller@1e0000 {
++        compatible = "marvell,cp110-icu";
++        reg = <0x1e0000 0x440>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges;
++
++        interrupt-controller@10 {
++                compatible = "marvell,cp110-icu-nsr";
++                reg = <0x10 0x20>;
++                #interrupt-cells = <2>;
++                interrupt-controller;
++                msi-parent = <&gicp>;
++        };
++
++        interrupt-controller@50 {
++                compatible = "marvell,cp110-icu-sei";
++                reg = <0x50 0x10>;
++                #interrupt-cells = <2>;
++                interrupt-controller;
++                msi-parent = <&sei>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/marvell,icu.txt b/Documentation/devicetree/bindings/interrupt-controller/marvell,icu.txt
+deleted file mode 100644
+index 1c94a57a661e..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/marvell,icu.txt
++++ /dev/null
+@@ -1,112 +0,0 @@
+-Marvell ICU Interrupt Controller
+---------------------------------
+-
+-The Marvell ICU (Interrupt Consolidation Unit) controller is
+-responsible for collecting all wired-interrupt sources in the CP and
+-communicating them to the GIC in the AP, the unit translates interrupt
+-requests on input wires to MSG memory mapped transactions to the GIC.
+-These messages will access a different GIC memory area depending on
+-their type (NSR, SR, SEI, REI, etc).
+-
+-Required properties:
+-
+-- compatible: Should be "marvell,cp110-icu"
+-
+-- reg: Should contain ICU registers location and length.
+-
+-Subnodes: Each group of interrupt is declared as a subnode of the ICU,
+-with their own compatible.
+-
+-Required properties for the icu_nsr/icu_sei subnodes:
+-
+-- compatible: Should be one of:
+-              * "marvell,cp110-icu-nsr"
+-	      * "marvell,cp110-icu-sr"
+-	      * "marvell,cp110-icu-sei"
+-	      * "marvell,cp110-icu-rei"
+-
+-- #interrupt-cells: Specifies the number of cells needed to encode an
+-  interrupt source. The value shall be 2.
+-
+-  The 1st cell is the index of the interrupt in the ICU unit.
+-
+-  The 2nd cell is the type of the interrupt. See arm,gic.txt for
+-  details.
+-
+-- interrupt-controller: Identifies the node as an interrupt
+-  controller.
+-
+-- msi-parent: Should point to the GICP controller, the GIC extension
+-  that allows to trigger interrupts using MSG memory mapped
+-  transactions.
+-
+-Note: each 'interrupts' property referring to any 'icu_xxx' node shall
+-      have a different number within [0:206].
+-
+-Example:
+-
+-icu: interrupt-controller@1e0000 {
+-	compatible = "marvell,cp110-icu";
+-	reg = <0x1e0000 0x440>;
+-
+-	CP110_LABEL(icu_nsr): interrupt-controller@10 {
+-		compatible = "marvell,cp110-icu-nsr";
+-		reg = <0x10 0x20>;
+-		#interrupt-cells = <2>;
+-		interrupt-controller;
+-		msi-parent = <&gicp>;
+-	};
+-
+-	CP110_LABEL(icu_sei): interrupt-controller@50 {
+-		compatible = "marvell,cp110-icu-sei";
+-		reg = <0x50 0x10>;
+-		#interrupt-cells = <2>;
+-		interrupt-controller;
+-		msi-parent = <&sei>;
+-	};
+-};
+-
+-node1 {
+-	interrupt-parent = <&icu_nsr>;
+-	interrupts = <106 IRQ_TYPE_LEVEL_HIGH>;
+-};
+-
+-node2 {
+-	interrupt-parent = <&icu_sei>;
+-	interrupts = <107 IRQ_TYPE_LEVEL_HIGH>;
+-};
+-
+-/* Would not work with the above nodes */
+-node3 {
+-	interrupt-parent = <&icu_nsr>;
+-	interrupts = <107 IRQ_TYPE_LEVEL_HIGH>;
+-};
+-
+-The legacy bindings were different in this way:
+-
+-- #interrupt-cells: The value was 3.
+-	The 1st cell was the group type of the ICU interrupt. Possible
+-	group types were:
+-	ICU_GRP_NSR (0x0) : Shared peripheral interrupt, non-secure
+-	ICU_GRP_SR  (0x1) : Shared peripheral interrupt, secure
+-	ICU_GRP_SEI (0x4) : System error interrupt
+-	ICU_GRP_REI (0x5) : RAM error interrupt
+-	The 2nd cell was the index of the interrupt in the ICU unit.
+-	The 3rd cell was the type of the interrupt. See arm,gic.txt for
+-	details.
+-
+-Example:
+-
+-icu: interrupt-controller@1e0000 {
+-	compatible = "marvell,cp110-icu";
+-	reg = <0x1e0000 0x440>;
+-
+-	#interrupt-cells = <3>;
+-	interrupt-controller;
+-	msi-parent = <&gicp>;
+-};
+-
+-node1 {
+-	interrupt-parent = <&icu>;
+-	interrupts = <ICU_GRP_NSR 106 IRQ_TYPE_LEVEL_HIGH>;
+-};
+-- 
+2.47.2
 
 
