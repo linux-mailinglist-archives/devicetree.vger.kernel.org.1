@@ -1,194 +1,181 @@
-Return-Path: <devicetree+bounces-173786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F0B4AA9763
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:23:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC1AAA979A
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:37:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6A1B189C870
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:23:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AA6B1899F64
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:38:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE8A25C713;
-	Mon,  5 May 2025 15:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A546625D1F5;
+	Mon,  5 May 2025 15:37:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ymcs8VBH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dwKNxUQZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51AEF25C6E7;
-	Mon,  5 May 2025 15:22:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7879C1DED49;
+	Mon,  5 May 2025 15:37:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746458568; cv=none; b=P0riiX7jeL1nnKMtAERebsdyp/HgoPPaLR5/fuTT1Bb4b81MZEOXhQzVQgcQCn2+F4dZAJEwFTYNqx/weqm774Zy17PYlB8r7iuug/Ym9TccQ8QYZpPDuSwwsywod7LeKf7W14Tp8bgozQG87aPKenlDUmqjV/2m/tNRXNaFsNU=
+	t=1746459469; cv=none; b=YtwWlqCVfkPQgwk/nWtCd4U+7IVzd6xVG32L/0/1YfdglzgI97aRPtWF+6uKy4ZowbSMYnhm04QKTcBTg1SEPcraB/QM8mFpWXut8Og8ZUtQl2E6aIavbKI2rGDMmjwE0WqMPU4nWaboxfH1R4/ZUZA7eM9MEZ+Qmh39Q8ekAiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746458568; c=relaxed/simple;
-	bh=VHk4TU9myRa7HfzrRfKD5NLgm23gbm1Xab5HBAQrBeU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QiwH9cP+5uJamq3/bmSFZm799MMvUN2daq13kdyPJc3rN5fjcsYRNdTvZNI0dMqKs5V3mYAM8rgb8tdYzpCKYWD/4T7lYZ/nfVRYDHVLdGeAEtjMfwt5mbO0Hf+7vaA4Ru3OHzOOpfX5abXifGef8vzTDtjPC31KPetD23D3B2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ymcs8VBH; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 545FMYoQ979537
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 5 May 2025 10:22:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746458554;
-	bh=tq8VaHCFP3bqtzmIRyMTTtFhUUx3Cc7L3Y5GXWBtUJg=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=ymcs8VBH5F+OBNGDJxNpcba6cabkvorR+qPRgOm87tQcaK8Or3GE1gPbEu4lM+hPr
-	 KnuyB8xOSwurqHIr7JOgXVwI3PkeWJEHvjIcTGHPUeOHJVANAcQmEuXiQq5VksbEv+
-	 /iJCOZHSfJ1JCQdItviMbBbtxOrBLPxDdmBJ7DpQ=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 545FMYqN011294
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 5 May 2025 10:22:34 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
- May 2025 10:22:34 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 5 May 2025 10:22:34 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 545FMXkw070284;
-	Mon, 5 May 2025 10:22:33 -0500
-Message-ID: <31d32966-05fe-4369-afda-3278822d8cb5@ti.com>
-Date: Mon, 5 May 2025 10:22:33 -0500
+	s=arc-20240116; t=1746459469; c=relaxed/simple;
+	bh=kgjT8WEf5LwjWtrsLGMHB9U6vbfqzylva8cBtuqg4/Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EqZH58hfsiKwUlbwPl3RbRO2m2PmKbzxyWa/O/kS4DjGDMvmBiFjLZzO7oVk0YfcNo1hLIKvJtTG8uvCVcCbF4lep9Dco3+DKMBf95ig11MriPvbyfiYaBgbskYsh+D+NDdRrSBy/72OZ4djvHU8Jj4v9QKQenHVOZaJ59s2WjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dwKNxUQZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB9A2C4CEF1;
+	Mon,  5 May 2025 15:37:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746459469;
+	bh=kgjT8WEf5LwjWtrsLGMHB9U6vbfqzylva8cBtuqg4/Q=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=dwKNxUQZf9DhoOXPnXrcKKcI1sbxhKg/2c9DLx+rYuulyHwb4yjGZavcfEyrutpIi
+	 J058STMeDCvMeAONM3Xse0pIht/au9ewF7th9hYtEEOkLboOvc+aUgdYlnYHb1Xlp9
+	 46+lN/U2vFHsPWUmJ48BoFov+Kz0iiEg362XY2HHf7SxxIwxRdc4ai3woK7OoMvcRo
+	 q0grF+rnpLBKuNEd7M6P/NdZbbt2/JXQp2Vq2S4LMdMvW7dVobrIwBr+Rnw5KacOQ5
+	 nn7+wg7RTqVFUzx6Vr6xnfrZNg6QuuElNdIhOYOC9b2/Omd5N1q5qnAeuaPT9mut4g
+	 z9tqN8RbBZSmQ==
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-acb5ec407b1so802670666b.1;
+        Mon, 05 May 2025 08:37:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVq4kHWfO53OjDm2/vYA1g5ZeCRBen8YHYMDtBGGArTlWxbLU+aJAuAfPn3knVNfCfOpxIlSn6Rj8LDjxAz@vger.kernel.org, AJvYcCW2N6tNxdgiGJ5m080fAreRZ2EGl/PdZjV5afrIlMISBVMUue9+71lFPM/jKq5bkZCqK69WQMVWmNRE6Tl9WWE=@vger.kernel.org, AJvYcCWJTPfdSIa6AfcQ8g7s0reJ63P0Wm9GdgN9Eg5ttqGDrqyTXk9pbD7l1BKBYVkE+K7X9zQF3aq1g5Ma@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx5LI4hsmO59hLRZc16IfvY18W+AZ430i43I998ZVzoEnfWsEKE
+	rKpdG/3CoMv6DHnWHAD2Kl8fzEECILLN8Kj4ZQbkh4cat9prtG0hwkSgSNsBGU/L8JaCVoIxmUU
+	YWJ8BQFG3Cd7N1099A1+S69yIXQ==
+X-Google-Smtp-Source: AGHT+IF5AdNi6ekQVBhEb6rjF7V2tE+jZ02cfPCg2chOIcgD2I4YdahkYMy23tbr5pS6sBhTqg3+U5rrGHICU/lzw5A=
+X-Received: by 2002:a17:907:3f91:b0:acb:b5a4:ba35 with SMTP id
+ a640c23a62f3a-ad1a48bc3c9mr793360166b.2.1746459467451; Mon, 05 May 2025
+ 08:37:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 03/11] arm64: dts: ti: k3-am62a-mcu: Add R5F remote
- proc node
-To: "Mendez, Judith" <jm@ti.com>, Daniel Schultz <d.schultz@phytec.de>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Hari
- Nagalla <hnagalla@ti.com>,
-        Beleswar Padhi <b-padhi@ti.com>,
-        Markus
- Schneider-Pargmann <msp@baylibre.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250502220325.3230653-1-jm@ti.com>
- <20250502220325.3230653-4-jm@ti.com>
- <50039c49-a6c5-4f29-a35a-53b9af117fd8@phytec.de>
- <6c5e786d-7581-492f-92fb-be92ecbecd87@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <6c5e786d-7581-492f-92fb-be92ecbecd87@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250504173154.488519-1-remo@buenzli.dev> <20250504173154.488519-6-remo@buenzli.dev>
+ <5946174b-3178-462d-bb59-1e0d6c5f4dda@de.bosch.com> <D9O8WJ0RDNIA.4JYLWLYLBC2A@buenzli.dev>
+In-Reply-To: <D9O8WJ0RDNIA.4JYLWLYLBC2A@buenzli.dev>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 5 May 2025 10:37:35 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+bzCc2r4H6=MfWq=9ku1SMCUL03KkCTeBPcqQrUEUMLg@mail.gmail.com>
+X-Gm-Features: ATxdqUGu6okHMU6FbF2k6yuoAMnbFwZyqbdFtsRZc_x_x-_V0GDUKq40RCC19ns
+Message-ID: <CAL_Jsq+bzCc2r4H6=MfWq=9ku1SMCUL03KkCTeBPcqQrUEUMLg@mail.gmail.com>
+Subject: Re: [PATCH v4 5/9] rust: device: Introduce PropertyGuard
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Dirk Behme <dirk.behme@de.bosch.com>, Saravana Kannan <saravanak@google.com>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5/5/25 10:05 AM, Mendez, Judith wrote:
-> Hi Daniel,
-> 
-> On 5/5/2025 4:55 AM, Daniel Schultz wrote:
->> Hi,
->>
->> I'm unable to load the latest TI firmware (98efd20ec71f8c1c8f909d34ab656731) with this patch.
->>
->> [    7.012889] remoteproc remoteproc1: 79000000.r5f is available
->> [    7.032640] remoteproc remoteproc1: powering up 79000000.r5f
->> [    7.038626] remoteproc remoteproc1: Booting fw image am62a-mcu- r5f0_0-fw, size 53140
->> [    7.057209] remoteproc remoteproc1: bad phdr da 0x79100000 mem 0x47ea0
+On Mon, May 5, 2025 at 8:02=E2=80=AFAM Remo Senekowitsch <remo@buenzli.dev>=
+ wrote:
+>
+> On Mon May 5, 2025 at 7:14 AM CEST, Dirk Behme wrote:
+> > On 04/05/2025 19:31, Remo Senekowitsch wrote:
+> >> This abstraction is a way to force users to specify whether a property
+> >> is supposed to be required or not. This allows us to move error
+> >> logging of missing required properties into core, preventing a lot of
+> >> boilerplate in drivers.
+> >>
+> >> It will be used by upcoming methods for reading device properties.
+> >>
+> >> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+> >> ---
+> >>  rust/kernel/device/property.rs | 59 +++++++++++++++++++++++++++++++++=
++
+> >>  1 file changed, 59 insertions(+)
+> >>
+> >> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/prope=
+rty.rs
+> >> index 6ccc7947f9c31..59c61e2493831 100644
+> >> --- a/rust/kernel/device/property.rs
+> >> +++ b/rust/kernel/device/property.rs
+> >> @@ -123,3 +123,62 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
+> >>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
+> >>      }
+> >>  }
+> >> +
+> >> +/// A helper for reading device properties.
+> >> +///
+> >> +/// Use [`Self::required_by`] if a missing property is considered a b=
+ug and
+> >> +/// [`Self::optional`] otherwise.
+> >> +///
+> >> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provid=
+ed.
+> >> +pub struct PropertyGuard<'fwnode, 'name, T> {
+> >> +    /// The result of reading the property.
+> >> +    inner: Result<T>,
+> >> +    /// The fwnode of the property, used for logging in the "required=
+" case.
+> >> +    fwnode: &'fwnode FwNode,
+> >> +    /// The name of the property, used for logging in the "required" =
+case.
+> >> +    name: &'name CStr,
+> >> +}
+> >> +
+> >> +impl<T> PropertyGuard<'_, '_, T> {
+> >> +    /// Access the property, indicating it is required.
+> >> +    ///
+> >> +    /// If the property is not present, the error is automatically lo=
+gged. If a
+> >> +    /// missing property is not an error, use [`Self::optional`] inst=
+ead. The
+> >> +    /// device is required to associate the log with it.
+> >> +    pub fn required_by(self, dev: &super::Device) -> Result<T> {
+> >> +        if self.inner.is_err() {
+> >> +            dev_err!(
+> >> +                dev,
+> >> +                "{}: property '{}' is missing\n",
+> >> +                self.fwnode.display_path(),
+> >> +                self.name
+> >> +            );
+> >> +        }
+> >> +        self.inner
+> >> +    }
+> >
+> > Thinking about the .required_by(dev) I wonder if there will be cases
+> > where we do *not* have a device? I.e. where we really have a fwnode,
+> > only. And therefore can't pass a device. If we have such cases do we
+> > need to be able to pass e.g. Option(dev) and switch back to pr_err() in
+> > case of None?
+>
+> In that case, bringing back the previous .required() method seems
+> reasonable to me. But only if we definitely know such cases exist.
 
-So this looks like the firmware has sections in the SRAM region. That would be the
-issue here.
+They definitely exist. Any property in a child node of the device's
+node when the child itself is not another device for example.
 
->> [    7.064716] remoteproc remoteproc1: Failed to load program segments: -22
->>
->> I figured out that the mcu sram node disappeared in v5. Apparently adding it back manually doesn't solve this problem. Any idea what's wrong?
-> 
-> For am62ax, there should be several items changed with this v8
-> series in order for remoteproc to work with the TI default firmware:
-> 
-> 1. memory carveouts were reduced to 15MB [0] & edge-ai memory
-> carveouts are not included here
+> > From the beginning of our discussion I think to remember that the C API
+> > has both the fwnode_property_*() and device_property_*() because there
+> > are use cases for the fwnode_property_*() API where is no device?
 
-This shouldn't be an issue, the default firmware doesn't
-use the extended carveouts.
+Correct.
 
-> 2. mcu_sram1 node removed [2]
-> 
+> I'm not sure what you're referring to, the closest thing I can think of
+> is this comment by Rob [1] where he mentions the device_property_*()
+> functions only exist in C for a minimal convenience gain and we may not
+> want to keep that in Rust.
 
-So when you say you added back the SRAM node, did you also add the
-sram = <&mcu_ram>; in the core node?
+The point there was if there's not the same convenience with Rust,
+then we shouldn't keep the API.
 
-Andrew
+I think this came up previously, but I don't think it matters whether
+we print the device name or fwnode path. If you have either one, you
+can figure out both the driver and node. Arguably the fwnode path is
+more useful because that's likely where the error is.
 
-> If you want to catch up on the general direction for this series,
-> please refer to [3]. atm remoteproc can fail with the default FW,
-> but we are trying to move away from that firmware and this is the
-> first step in that direction.
-> 
-> [0] https://lore.kernel.org/linux-devicetree/0ab5c5ec-cde3-41f1-8adf-2419b31497c1@ti.com/
-> [1] https://lore.kernel.org/linux-devicetree/04e77daf-e775-44fa-82bf-8b6ebf73bcef@ti.com/
-> [2] https://lore.kernel.org/linux-devicetree/32358aa1-0c02-4f4d-9782-2d8376c0d9fc@ti.com/
-> [3] https://lore.kernel.org/linux-devicetree/e131298f-3713-482a-a740-ff89709270b4@ti.com/
-> 
-> ~ Judith
-> 
->>
->> On 5/3/25 00:03, Judith Mendez wrote:
->>> From: Hari Nagalla <hnagalla@ti.com>
->>>
->>> AM62A SoCs have a single R5F core in the MCU voltage domain.
->>> Add the R5FSS node with the child node for core0 in MCU voltage
->>> domain .dtsi file.
->>>
->>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
->>> Signed-off-by: Judith Mendez <jm@ti.com>
->>> Acked-by: Andrew Davis <afd@ti.com>
->>> ---
->>>   arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi | 25 ++++++++++++++++++++++++
->>>   1 file changed, 25 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi b/arch/arm64/ boot/dts/ti/k3-am62a-mcu.dtsi
->>> index 9ed9d703ff24..ee961ced7208 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
->>> @@ -174,4 +174,29 @@ mcu_mcan1: can@4e18000 {
->>>           bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
->>>           status = "disabled";
->>>       };
->>> +
->>> +    mcu_r5fss0: r5fss@79000000 {
->>> +        compatible = "ti,am62-r5fss";
->>> +        #address-cells = <1>;
->>> +        #size-cells = <1>;
->>> +        ranges = <0x79000000 0x00 0x79000000 0x8000>,
->>> +             <0x79020000 0x00 0x79020000 0x8000>;
->>> +        power-domains = <&k3_pds 7 TI_SCI_PD_EXCLUSIVE>;
->>> +        status = "disabled";
->>> +
->>> +        mcu_r5fss0_core0: r5f@79000000 {
->>> +            compatible = "ti,am62-r5f";
->>> +            reg = <0x79000000 0x00008000>,
->>> +                  <0x79020000 0x00008000>;
->>> +            reg-names = "atcm", "btcm";
->>> +            resets = <&k3_reset 9 1>;
->>> +            firmware-name = "am62a-mcu-r5f0_0-fw";
->>> +            ti,atcm-enable = <0>;
->>> +            ti,btcm-enable = <1>;
->>> +            ti,loczrama = <0>;
->>> +            ti,sci = <&dmsc>;
->>> +            ti,sci-dev-id = <9>;
->>> +            ti,sci-proc-ids = <0x03 0xff>;
->>> +        };
->>> +    };
->>>   };
-> 
+Rob
 
