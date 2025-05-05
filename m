@@ -1,161 +1,121 @@
-Return-Path: <devicetree+bounces-173580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF6A5AA8E67
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 10:42:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92814AA8E07
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 10:16:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 784311892D3D
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:42:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5226173103
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:16:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C6A1F4722;
-	Mon,  5 May 2025 08:42:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD5C91DED6C;
+	Mon,  5 May 2025 08:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="T18kbwql"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hYCKgsgG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D02DE1F470E;
-	Mon,  5 May 2025 08:42:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D46154F8C;
+	Mon,  5 May 2025 08:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746434526; cv=none; b=IcBNSscTK0GQso6DNUb/6/s8DV5P8DmdPVB27dOKt/9+X1xbQi1Mew0Wh6TVd8+wk6tLx1PW9QqLZ25u3lz3GZ5kTHQo5KzkZJKdpQNseFokEc9esG4NYcDbd8yDeXd3vSlJ81VdsYnHOhg6cXvG0jP7QjnJuG7qPPrAnK8eAX4=
+	t=1746432972; cv=none; b=q6SUZ+iI2ENmIPYTxoi2E+iwRJ1ZMhTP9cs2Z7oObADdGUlTNR/qxosk50HcQtX/CqfamOt3pTi6fLT3lx8imG/0Rxnpj7OFr38Iat57k2t0iPcRWfmCyIvgcrDopp5e3tAKD6rGZgTt4qoc/gcnEljaK8i/utj1ePHoM/hvo98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746434526; c=relaxed/simple;
-	bh=0+6oZE1hwK3UeG5kCzKKYxsMJ/enj4nAcQVTQmp0PgE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jf6T7KFFN2IStbEG1w75EMAyqZW63HBnlSMP0coVO8XBBnhsOHLzmjBF3l1cKGLvPf/86/4dHBgJpf15Z5QG3g+CIrprkPJeAQwSCdRtQKzGFYfRfBQmmKHFG4SpvSbmqG5QSumwV6GwbW03eTI/RWl0g2IAXk5NnyLoQtZd2Rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=T18kbwql; arc=none smtp.client-ip=217.70.178.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-	by mslow3.mail.gandi.net (Postfix) with ESMTP id C16C558476A;
-	Mon,  5 May 2025 08:10:44 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7979A1FCE8;
-	Mon,  5 May 2025 08:10:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746432637;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vzVOmKsYIDKNF1BIkZAw33am/9eak/yksL+SVCLIQ7A=;
-	b=T18kbwql+qFAaSqfn1iAyCd1YAxHHYCjb2hrJjPQq8ea65bYxGJ9cr9/kzdeUtzMpAgy4w
-	GbIr8VnutWSMgvcPo5fAjJ4GCPu1AFoR9lVRwGfYYtpgkhdWW/yrShkDj6aFQ/0Grk9LAp
-	0Kn5mcpvLCl5+4UgC7Mn3wgUlqflJ7tHkGj7ajMwA5CbQRhJW9PgBwtIFCcrQR/pz7L0Mv
-	4c7T4VFBWZ4T+c3EignL5hTpb+F9W8mB++oVU3CnsiIyRDI+0bn/PjPQla/hXQVUCdohFI
-	lrvkgYClhTq29UHlVaJEvYCdYe8ckMhK9ZGCMjZfZkraO1hN8DEjqG5P2Lk8Kw==
-Date: Mon, 5 May 2025 10:10:34 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>, Ayush Singh
- <ayush@beagleboard.org>
-Cc: David Gibson <david@gibson.dropbear.id.au>, Andrew Davis <afd@ti.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>,
- devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 3/7] of: resolver: Add export_symbols in
- of_resolve_phandles() parameters
-Message-ID: <20250505101034.6e29c8bc@bootlin.com>
-In-Reply-To: <20250502163559.0a5643e5@booty>
-References: <20250430125154.195498-1-herve.codina@bootlin.com>
-	<20250430125154.195498-4-herve.codina@bootlin.com>
-	<20250502163559.0a5643e5@booty>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1746432972; c=relaxed/simple;
+	bh=txRJFeqG/VxogXxBmY8Dh9KU8z1bJGtjegmmbsPgJSQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ik+2QzzGdPoUTMGHksboCsoV/JjOT4yzZFbrOLDyeYyfT+8C+DO4GsCFIdwe4KzBVBsnajhrqkBFOujbtlGglaKM4lYNZb1zw3COhjC9XUS/PPuSFjmqZvpTovZipb9JrvEpCqExdPVmDAKm66kklQStQQjI7VDjn1QkAOT4Pg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hYCKgsgG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E897C4CEE4;
+	Mon,  5 May 2025 08:16:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746432970;
+	bh=txRJFeqG/VxogXxBmY8Dh9KU8z1bJGtjegmmbsPgJSQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hYCKgsgGoCEGWq050qTpv2dkN3TYZDTjoe9ktasYOCoJc7NU4/IxwjcYJ0ULxWp3D
+	 hsu8MX+qJS5GgwVT2J8yJOs9HpnVeukASdAzJKp0pEVZGLLNBpgS9nvtUuZO7Fl69w
+	 PKHxHMFgXZXw54IucfFd2XxaI9SIU2VtkGjDMXNKmDvwK/5P3zJ6SDDlJhgSF2OXG3
+	 aWQh90sIJtCLQnJ4ytp3FHR04zxq3Ldotdf0HpIcPAxJV+PZNf5LqRPLxuhjh39Osl
+	 vv/suhfAfn9/1f4mwar9m7gglJIOwa8TRhLV3Ycxp8yGj7jecxvgSgrfxy93lDwaLI
+	 5srDVbbwP20EA==
+Message-ID: <3d42e605-2526-4eb1-b222-6552629333ef@kernel.org>
+Date: Mon, 5 May 2025 10:16:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: trivial-devices: Document SEN0322
+To: gomba007@gmail.com, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250505-iio-chemical-sen0322-v2-0-217473983b42@gmail.com>
+ <20250505-iio-chemical-sen0322-v2-1-217473983b42@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250505-iio-chemical-sen0322-v2-1-217473983b42@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkedtheekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiffefgeeitdelleeigefhjeelueeuveekveetgeffheeltdekgeduiefggfdvnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduhedprhgtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepuggrvhhiugesghhisghsohhnrdgurhhophgsvggrrhdrihgurdgruhdprhgtphhtthhopegrfhgusehtihdrtghomhdprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepghgvvghrtheslhhinhhugidqmheikehkrdhorhhgpdhrtghpthhtohepr
- hhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Luca,
+On 05/05/2025 09:52, Tóth János via B4 Relay wrote:
+> From: Tóth János <gomba007@gmail.com>
+> 
+> Add documentation for the DFRobot SEN0322 oxygen sensor.
+> 
+> Signed-off-by: Tóth János <gomba007@gmail.com>
 
-On Fri, 2 May 2025 16:35:59 +0200
-Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
-
-> Hello Hervé,
-> 
-> On Wed, 30 Apr 2025 14:51:47 +0200
-> Herve Codina <herve.codina@bootlin.com> wrote:
-> 
-> > In order to prepare the introduction of the export symbols node
-> > handling, add a export_symbols parameter in of_resolve_phandles().
-> > 
-> > The export_symbols is the export symbols device tree node the resolver
-> > will use for the overlay symbols resolution.
-> > 
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > Tested-by: Ayush Singh <ayush@beagleboard.org>  
-> 
-> [...]
-> 
-> > --- a/drivers/of/resolver.c
-> > +++ b/drivers/of/resolver.c
-> > @@ -237,7 +237,8 @@ static int get_phandle_from_symbols_node(const struct device_node *tree_symbols,
-> >  /**
-> >   * of_resolve_phandles - Relocate and resolve overlay against live tree
-> >   *
-> > - * @overlay:	Pointer to devicetree overlay to relocate and resolve
-> > + * @overlay:		Pointer to devicetree overlay to relocate and resolve
-> > + * @export_symbols:	Pointer to devicetree export symbols node.
-> >   *
-> >   * Modify (relocate) values of local phandles in @overlay to a range that
-> >   * does not conflict with the live expanded devicetree.  Update references
-> > @@ -257,6 +258,10 @@ static int get_phandle_from_symbols_node(const struct device_node *tree_symbols,
-> >   * corresponding to that symbol in the live tree.  Update the references in
-> >   * the overlay with the phandle values in the live tree.
-> >   *
-> > + * @export_symbols can be use in this references update. The resolver tries
-> > + * first to find a match in the @export_symbols. If not found, it uses the
-> > + * "__symbol__" node in the live tree.  
-> 
-> The rationale behind this logic is not clear to me. I'd have expected
-> instead this logic:
-> 
->   if (export-symbols != NULL):
->       match only in export-symbols
->   else
->       match only in __symbols__
-> 
-> following the idea that it's better to be strict when introducing
-> something, and possibly relax it later on.
-> 
-> As I see it, with the current logic if you use export-symbols but you
-> build dtbs with -@, you can still match a global label. export-symbols
-> should avoid that instead.
-> 
-> Let me know whether I'm missing something here (which is surely
-> possible).
-
-No, you don't miss anything, it was just a choice and I have chosen to be
-not exclusive between export-symbols and __symbols__.
-
-export-symbols is taken in priority and if the symbol is not found in
-export-symbols, we try with __symbols__.
-
-Maybe I should be stricter. I don't have any strong opinion about that.
-
-Ayush, on fdtoverlay what is the choice done ?
-
-If an export-symbols is present and a symbol needs to be resolved but this
-symbol is not found in export-symbols, do you try to fing it in __symbols__
-or do you simply abort the resolution with an error ?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
-Hervé
+Krzysztof
 
