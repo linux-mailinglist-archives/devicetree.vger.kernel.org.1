@@ -1,210 +1,121 @@
-Return-Path: <devicetree+bounces-173563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18109AA8D60
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:50:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38409AA8D63
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:51:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48181172E8A
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 07:50:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0ADD17350F
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 07:51:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F361B1DE3A9;
-	Mon,  5 May 2025 07:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16CC1DE3A9;
+	Mon,  5 May 2025 07:51:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZO3hhHl/"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="g0aI6aKU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F841C862D
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 07:50:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94491DF75D;
+	Mon,  5 May 2025 07:51:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746431447; cv=none; b=S5F6F6/RCUsgUsGx+Tn84O6yI4ptdoPTtYe4TEoCkD1o5vP3WeRodxkNu9XzUOu1W9dOe4TT9pBQpEl33p10DmzIPrabFZ5PrcBz1VtUUTf6yJqTdy9D2boscD0LQpE6z4qL82lz4Huclm4aZAzcsXPw0PZx9qvxeHRVsFAqaZM=
+	t=1746431472; cv=none; b=c64wkhxWh1Ke/GjYKRkuureHALqqYTdSLMAxUOnLR3HLyZWFHGWfV/S6Y0VzWB8JzOdLCNoYJvDhl4OwWLiGcXdgmBwxZwmcXWhq7WOzRS7mwJLq4IgPPeyLsLS9CQ6C79YrmlnM97xwGQod+Ic1kfjVShLvPrdjNkmF5opHKjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746431447; c=relaxed/simple;
-	bh=msS1Da7X8XNg1BESfPHuwoOlF+19DnOu3vYS93+IdM0=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=REgo/gNaK5n6GsZtqbM51tEcREycqzatVDbDEa8g78312Z5zUxFRp7INsKoj7hd3TmEUHMI922DoMpMFKsb+MuMABAukE5SGTCSyNAwwgFHN4oW+qxJwhVKbSQHVft/r6aPRf65rLHtjwY4OiDJRSbxo8D/KjYfGwYMTcpzHG/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZO3hhHl/; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-39129fc51f8so2480518f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 00:50:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746431444; x=1747036244; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uCzAWVJKudlGSsTTp8Mqf9Mg/VxXTDyWoombBPE5a9Y=;
-        b=ZO3hhHl/UdbGZJC4oVzqqGo2SATz/0m4hm7z03BvxXzMk0vMqh96Xt010WqujFQXER
-         uHhauuHepQDmXHuFzdpiEL0QhQYwrivcUQvSUpGk1H63sFICTTmCGhTKpTpbDAxF6/Ch
-         jFC4ZA3cCnep6A44kIVuwlBe0HoYfnSVQMQCH4rN9Zzefn+yImBh1sBB5vvDJfTh3Ty6
-         URnvreKWP2OPiyQ6F3lmFSu5agS700FlLO3Fxu6UMG2iNHF7kv2YaJcWi7cunmGo4u/E
-         pCJV6STdD4IXr2iYhIvviLSLjlaNHPDQAZV6vvr5uMpPvk3u2UnOqxT188F2spUXWxU/
-         aFoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746431444; x=1747036244;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=uCzAWVJKudlGSsTTp8Mqf9Mg/VxXTDyWoombBPE5a9Y=;
-        b=HArm8A30TORerSvRpZcQmNvAfehFZPoarJmibtNYrkGr53ttpGyW/aZI4UXJsKeb7A
-         H+X4aSwBiY6xVHiIZ3gs8PaaA5414tur3fPQY5ghKa1jvhyRndsAebI0whdyyERdOKIL
-         FrbwNLjICfTWM0/pvZlHdWOeR4caF6E8hLr0Rn3NQ7uPP6vhf4TkoY5zhgQGZPuX11DO
-         5vD1gqJtRW5zRxGXDASUuF2CgLr5i5X+t1TijT3a1XTLz9pSYUJ7r0ua1gbU8TB1FPI1
-         MuXBfVWhtlc7byJHTumKvfO83phOBdEJ4t9DrstwSKP2feq8GrlNlQxZIqgoaCWXzRHH
-         Y5KA==
-X-Forwarded-Encrypted: i=1; AJvYcCX+OJT+S897zvvUXf+lBiEJ7VWkvp3sgf7QeecfCSj0snAaumXYn7WOFpxsExV/HaL8L5MaffotAeDW@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywv12kLu9Anvx/9kjKD0wpBN0hI0VWTtJOiKUCCM6qJxycYrcCp
-	O3J0Pld/447n7dOR/xE8XLLJHYBgfInZKsl6QdC5DcVTMWDGN/4L6bgjfnulS3I=
-X-Gm-Gg: ASbGnctMHvTVc08s3yxrRDdquAcDDjRbEZHB3I8lwl3DAocXDluEY+RPQetn4z47WDU
-	1sGXcg/+5CpuZ2yAYKT8ErLIk84WcivuxoIbYQ7wIQvIJZ6AMQOEtdPdCE9Gqtp7QKbVVfI+MB4
-	c1q2f9eAqcw5QFfvvW8JaNZEZ4jgNuNsSyd3azNkvAAFTO/pH+vu+YDH76D3zq5z1QNcpLdkLyv
-	POLm8TASY3uPkxn8ZuYv75qJZt1qWW18BKbRwz9pK5SBcbHBfQr/35du8k15WbkpZK4GfA9VPEo
-	GIhZGhicwrUuYoW8nhurQD5ozWZ9NELSZkg3KHY8oEEmZF1wFKU8TMv8Dp6SD+ZEdAbd+2euO8n
-	PBSji1zb62qfTTJLCKDnDEMLOl+Xg
-X-Google-Smtp-Source: AGHT+IG0YjR0pOS+mPxGwAmH+DdU4Wux8KjtWtFkXVVNHEhAlQOHrjEqILqYPlZacgqXKNWhcBJj9A==
-X-Received: by 2002:a05:6000:3108:b0:391:466f:314e with SMTP id ffacd0b85a97d-3a09fd88976mr4436114f8f.16.1746431444177;
-        Mon, 05 May 2025 00:50:44 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3? ([2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae338bsm9395380f8f.27.2025.05.05.00.50.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 May 2025 00:50:43 -0700 (PDT)
-Message-ID: <ffac4a1b-5dfa-48e9-8ac4-37939b6a9347@linaro.org>
-Date: Mon, 5 May 2025 09:50:43 +0200
+	s=arc-20240116; t=1746431472; c=relaxed/simple;
+	bh=ekkXZr/XQuNLHSGTyUWTo+m7wlIRrqIqRDpRWGBerOM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hPkEWTe/iwj2m2UEmlJ+y4p9BQ1Z+v8ECyyWGqYPZ5//doeDuUdHAiyIPvxLjXqv08U/SM/JnBGoYFkWcNblKdphPFioWkgEE4i8Mo4S1hfOPdCSrC+LeGovaEEu2O6Doq5UfAvZvoF/U0k/PMiSPm1vy00ZjoJrdxJ+8bnK/Pg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=g0aI6aKU; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=W8dw99Gm2MjCZCGOQPkYh4fdAw0NQcG5zRqV453oVro=; b=g0aI6aKUKJkBsmqjqc7jEd2WF0
+	SXmUgqnOVFP5Vfkzywqi2+A2IJ16Tg2UuGhcjNksYbFQPEZT//yHtz6YKH3GLbtKpXXys7Wg6iie+
+	LyUGCm5+Gw+2oO1tuA6GsJ/I/tR2SlzYrGQObfkpM+CYVFvxeNXWNEnmOXQxRE4DbjczqpMWhKDbx
+	P/sF1C8LsASqZaYhKsiHNxHkHhAbb4ovHu510l5aCodkMWfedZ9a9HQw9r0mIsMYIwWMwUNGqlmzl
+	btflI91CGqog8Ealw9nXHooivZRIxnnPNc/zEdIWftLG7lrucf58Yw+gpmEl92nk6J164lrOc3IJw
+	CKmhxaaw==;
+Received: from [89.212.21.243] (port=45262 helo=localhost.localdomain)
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1uBqbV-00BnPr-28;
+	Mon, 05 May 2025 09:51:08 +0200
+From: Primoz Fiser <primoz.fiser@norik.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	upstream@lists.phytec.de
+Subject: [PATCH v2 1/2] bindings: arm: fsl: Add PHYTEC phyBOARD-Nash-i.MX93 board
+Date: Mon,  5 May 2025 09:51:06 +0200
+Message-Id: <20250505075107.2579801-1-primoz.fiser@norik.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/4] drm: panel: Add support for Renesas R61307 based
- MIPI DSI panel
-To: Svyatoslav Ryhel <clamor95@gmail.com>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250503094149.29201-1-clamor95@gmail.com>
- <20250503094149.29201-3-clamor95@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250503094149.29201-3-clamor95@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On 03/05/2025 11:41, Svyatoslav Ryhel wrote:
-> R61307 is liquid crystal driver for high-definition amorphous silicon
-> (a-Si) panels and is ideal for tablets and smartphones.
-> 
-> Supported compatibles are:
-> - hit,tx13d100vm0eaa
-> - koe,tx13d100vm0eaa
-> 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->   drivers/gpu/drm/panel/Kconfig                |  13 +
->   drivers/gpu/drm/panel/Makefile               |   1 +
->   drivers/gpu/drm/panel/panel-renesas-r61307.c | 327 +++++++++++++++++++
->   3 files changed, 341 insertions(+)
->   create mode 100644 drivers/gpu/drm/panel/panel-renesas-r61307.c
-> 
+Add devicetree bindings for PHYTEC phyBOARD-Nash-i.MX93 board based on
+the existing PHYTEC phyCORE-i.MX93 SoM (System-on-Module).
 
-<snip>
+Adjust the compatibles for the existing phyBOARD-Segin-i.MX93 board, to
+be able to add additional board based on the phyCORE-i.MX93 SoM.
 
-> +static int renesas_r61307_probe(struct mipi_dsi_device *dsi)
-> +{
-> +	struct device *dev = &dsi->dev;
-> +	struct renesas_r61307 *priv;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->vcc_supply = devm_regulator_get(dev, "vcc");
-> +	if (IS_ERR(priv->vcc_supply))
-> +		return dev_err_probe(dev, PTR_ERR(priv->vcc_supply),
-> +				     "Failed to get vcc-supply\n");
-> +
-> +	priv->iovcc_supply = devm_regulator_get(dev, "iovcc");
-> +	if (IS_ERR(priv->iovcc_supply))
-> +		return dev_err_probe(dev, PTR_ERR(priv->iovcc_supply),
-> +				     "Failed to get iovcc-supply\n");
-> +
-> +	priv->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-> +						   GPIOD_OUT_HIGH);
-> +	if (IS_ERR(priv->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(priv->reset_gpio),
-> +				     "Failed to get reset gpios\n");
-> +
-> +	if (device_property_read_bool(dev, "renesas,inversion"))
-> +		priv->inversion = true;
-> +
-> +	if (device_property_read_bool(dev, "renesas,contrast"))
-> +		priv->dig_cont_adj = true;
-> +
-> +	priv->gamma = 0;
-> +	device_property_read_u32(dev, "renesas,gamma", &priv->gamma);
-> +
-> +	priv->dsi = dsi;
-> +	mipi_dsi_set_drvdata(dsi, priv);
-> +
-> +	dsi->lanes = 4;
-> +	dsi->format = MIPI_DSI_FMT_RGB888;
-> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
-> +			  MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM;
-> +
-> +	drm_panel_init(&priv->panel, dev, &renesas_r61307_panel_funcs,
-> +		       DRM_MODE_CONNECTOR_DSI);
+Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes in v2:
+- add Reviewed-by:
 
-Please switch to devm_drm_panel_alloc()
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-> +
-> +	ret = drm_panel_of_backlight(&priv->panel);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to get backlight\n");
-> +
-> +	drm_panel_add(&priv->panel);
-> +
-<snip>
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 1b90870958a2..6abb58d599a6 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1387,8 +1387,10 @@ properties:
+ 
+       - description: PHYTEC phyCORE-i.MX93 SoM based boards
+         items:
+-          - const: phytec,imx93-phyboard-segin # phyBOARD-Segin with i.MX93
+-          - const: phytec,imx93-phycore-som    # phyCORE-i.MX93 SoM
++          - enum:
++              - phytec,imx93-phyboard-nash  # phyBOARD-Nash-i.MX93
++              - phytec,imx93-phyboard-segin # phyBOARD-Segin with i.MX93
++          - const: phytec,imx93-phycore-som # phyCORE-i.MX93 SoM
+           - const: fsl,imx93
+ 
+       - description: Variscite VAR-SOM-MX93 based boards
+-- 
+2.34.1
 
-With that:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
