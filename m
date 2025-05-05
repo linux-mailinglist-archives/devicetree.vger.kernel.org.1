@@ -1,208 +1,89 @@
-Return-Path: <devicetree+bounces-173846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65566AA9CFC
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 22:08:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6190AA9D0E
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 22:16:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8AAB170006
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 20:08:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA0D31A80159
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 20:16:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A941266577;
-	Mon,  5 May 2025 20:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 903591A3169;
+	Mon,  5 May 2025 20:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="oZiZeZng"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QZoQNGLs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f201.google.com (mail-pl1-f201.google.com [209.85.214.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 595AF19C546
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 20:08:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2FD1862;
+	Mon,  5 May 2025 20:16:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746475715; cv=none; b=UKOu80yKQ50fCqnjEuLSyGMpVGiYGTEu6iYsKn0buZUVcVX7leZ7hYalsRF7CRYrGUgqq6ZwO7xjkgSMs8Amt5Fw6EuSR1vBAKxA+AqYP9KV/MzhhCOijJPBQPvK33S65ry2joMj2c15jv8SSEUsEC4G9MPchNjgrA7Nd4Hh930=
+	t=1746476173; cv=none; b=XlW1EHqpbNzkkUE5Zfu8GA0zp0+FxrVbvd+ZfhtDzuAtXgmNDcpIPxg0Ny05R+TBrEhJ1Xs9JzNMAZy7kKqrsYNTDYzicq+DYoCGnYfTWZEWLzwsk46+RM8llANIuRvryo/cVvvVeiNBJb/uAhUSBYICjXm8HAAPTcfTps51Zz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746475715; c=relaxed/simple;
-	bh=1KzQAdzt6kozgctVLqMUI+0YIdwgkoZ9QgFaIIjRSbE=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=gy5U2aCEdOe6SmA/sUxB+ePTSGKinkF/KQ4QqYDh4t4xmrIWi4T2vRWQ2dfBZ0NlO5a3m51DSYx5+oMuqNWFDn+9dwLYajh1zmYBt5k1AtAwMWzjdgV+s8WgmE6w7Ord/L1PEUUjN2p0n8NQsU3Z+ZAoocV3oja/GXe69z6rEts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=oZiZeZng; arc=none smtp.client-ip=209.85.214.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com
-Received: by mail-pl1-f201.google.com with SMTP id d9443c01a7336-2242f3fd213so44606515ad.1
-        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 13:08:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1746475713; x=1747080513; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oOuRgIeoWvJ+xJkqB+IUVGx6fHLCdoleXxRua1kYdv4=;
-        b=oZiZeZng1O6abYgkRBb2yDSOBu1crc8JUScQpT+ThWyZC+xSEeYZG1bskcHh4L7cdO
-         bVU6B1Aidy2gg0hwUhe57cYD5CP4pQ3bc2Gl7Il8mXNdQ/j+f5ffURb3+28znr1nARgA
-         7gXJM35dd3l7cB7QwthjC8IJuVmq1e3b9eW435xK6GFuSXK9etjRso1n3+PYq1YNZ+j4
-         3sEi1AJGBNEDV5PMElsxSQ6WM/SoEvfhnpKjuRdDcNvyNzc92p3L6PbINvU49VG20jdc
-         4mvbwu3ZnfKEmB1O0FDPXUJR2lze2adoHwy52xEqFhCYfOQiLZxvxalIn2t50R/We8nA
-         cL3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746475713; x=1747080513;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oOuRgIeoWvJ+xJkqB+IUVGx6fHLCdoleXxRua1kYdv4=;
-        b=RR08Oz+iX7vtfNFPZIPeefrDp8Jf4p65AQwzXX4Sy8xco0HfQKiGQ9smyQVdMZPzgM
-         q2PHAdRnKmnWP41qhBxkmcacRKD25Acsz4X7sc1sFXzt9TaVYwTXqQyg9DHGlH38Ej6V
-         5CnA4wpm+c0pf69OmMKDtAB+prBV5txcwCq8WvtHwqh1IinpL1gnZZVqLSJxAnMG4ji5
-         EqoaP2Byur02EHGiou4wV1tBX8ZXwKdV0JeFB6+NRUl/LU6sG2CtefvP6TIPQPMPxqZj
-         qbft2OOZjQ0xzxvye/sV2ceqfOJNvCtuz/iwYc05wgEah5GuLXYYccRJkJqi5ALicNe1
-         WpLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUgtN1lh1WAC6yAFsMroSdb4B2P7ruC32vqpSaS2P01Jc7QqjL5O+sUAfo+7kPXIkl89c6Lw7AXXxsM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yycz6G2g9lKqS1+u3vjpPPj1qmJod5mxp51dIYnco+rnGWMEF8A
-	PxCG0joDvLnHi0qyHWZH7fxmera7THnsNUsDt2/zUeyWC/G3JeoUfSHcivU8FXg55yjGU56CKXm
-	y7ao+jal9CHqervDuOg==
-X-Google-Smtp-Source: AGHT+IGAxfh3fReuw49sEBnCIqEgZnEB4d1Kz9/LHzQ3CYJt6UkvcZ+t0jrC2mykwUxbQTB6d5Dqd6LW9byg1ZNs
-X-Received: from plkp1.prod.google.com ([2002:a17:902:6b81:b0:220:ea57:34e3])
- (user=changyuanl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:902:f648:b0:224:93e:b5d7 with SMTP id d9443c01a7336-22e32eff19bmr9877065ad.34.1746475713621;
- Mon, 05 May 2025 13:08:33 -0700 (PDT)
-Date: Mon,  5 May 2025 13:07:45 -0700
-In-Reply-To: <20250501225425.635167-15-changyuanl@google.com>
+	s=arc-20240116; t=1746476173; c=relaxed/simple;
+	bh=349bf66eeGny6rwMfg6X1fE0CZMMIkpNGVwbI75oRZU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uxzncp9R6JA8rquhBdX55BkFduYlqzIKkhz9tPFVrpmzygP73/WqmEPcRsGsjghMVSPFlm6jCMpYxRH7ye2wquvC/QLiqRxw0TS7PAMBfMVS9uO0/p6IYVO9negbANuWdq9hVCZs3FzkFXBtZz35KsnIyzY+8ycyd/ztaYafnlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QZoQNGLs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DB09C4CEE4;
+	Mon,  5 May 2025 20:16:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746476172;
+	bh=349bf66eeGny6rwMfg6X1fE0CZMMIkpNGVwbI75oRZU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=QZoQNGLsK0ooAHqLgBDKlX+R9oisnbhXSEsZ1oYjUlST9fwXGW8F1oZLlKUY3JwnT
+	 kg3g6lHfCJ+42ocGBRjPOyc7cqrpDEyoRkKZsFCkgQnZZ45jf26knamqgC2XUrf++D
+	 x0qvo/aL5HpPlE4bJ0mhBdrL3FspH/U7o8Ki1tDERBCDJESoeBrJHniWytA7UBv0iv
+	 TPbIom3KLa4EnUAd1D8PIs+puObJif3OSr+qtp4+9v3bIdZZnjcn/YQFQVoqUrKKhU
+	 jVlb98MzKteV5zBKz1X2TYFApyxJ2oGPjZhJljLcxdJX+ZZ8mEUQtufWaxPycyorOe
+	 aIhQ/XqCEy6Qg==
+Date: Mon, 5 May 2025 13:16:11 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Richard Cochran
+ <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
+ <andrew@lunn.ch>
+Subject: Re: [net-next v10 4/7] net: mtip: The L2 switch driver for imx287
+Message-ID: <20250505131611.0c779894@kernel.org>
+In-Reply-To: <20250504082811.4893afaa@wsk>
+References: <20250502074447.2153837-1-lukma@denx.de>
+	<20250502074447.2153837-5-lukma@denx.de>
+	<20250502071328.069d0933@kernel.org>
+	<20250504082811.4893afaa@wsk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20250501225425.635167-15-changyuanl@google.com>
-X-Mailer: git-send-email 2.49.0.967.g6a0df3ecc3-goog
-Message-ID: <20250505200745.1975264-1-changyuanl@google.com>
-Subject: Re: [PATCH v7 14/18] x86/boot: make sure KASLR does not step over KHO
- preserved memory
-From: Changyuan Lyu <changyuanl@google.com>
-To: changyuanl@google.com
-Cc: akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de, 
-	ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
-	catalin.marinas@arm.com, corbet@lwn.net, dave.hansen@linux.intel.com, 
-	devicetree@vger.kernel.org, dwmw2@infradead.org, ebiederm@xmission.com, 
-	graf@amazon.com, hpa@zytor.com, jgowans@amazon.com, kexec@lists.infradead.org, 
-	krzk@kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, 
-	luto@kernel.org, mark.rutland@arm.com, mingo@redhat.com, 
-	pasha.tatashin@soleen.com, pbonzini@redhat.com, peterz@infradead.org, 
-	ptyadav@amazon.de, robh@kernel.org, rostedt@goodmis.org, rppt@kernel.org, 
-	saravanak@google.com, skinsburskii@linux.microsoft.com, tglx@linutronix.de, 
-	thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Andrew,
+On Sun, 4 May 2025 08:28:11 +0200 Lukasz Majewski wrote:
+> > Now that basic build is green the series has advanced to full testing,
+> > where coccicheck says:
+> > 
+> > drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c:1961:1-6: WARNING:
+> > invalid free of devm_ allocated data
+> > drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c:1237:16-19: ERROR:
+> > bus is NULL but dereferenced.  
+> 
+> I'm sorry for not checking the code with coccinelle.
+> 
+> I do have already used sparse and checkpatch.
 
-Based on Dave's feedback above, could you please take the following
-fix and squash it with "x86/boot: make sure KASLR does not step over
-KHO preserved memory" with the updated commit message in mm-unstable?
-
-Thank you very much!
-
-Best,
-Changyuan
-
----- 8< ----
-
-From 464b5750c55f978b47da242f50ec7dbcbac1948c Mon Sep 17 00:00:00 2001
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Mon, 5 May 2025 11:29:23 -0700
-Subject: [PATCH] fixup! x86/boot: make sure KASLR does not step over KHO
- preserved memory
-
-During kexec handover (KHO) memory contains data that should be
-preserved and this data would be consumed by kexec'ed kernel.
-
-To make sure that the preserved memory is not overwritten, KHO uses
-"scratch regions" to bootstrap kexec'ed kernel. These regions are
-guaranteed to not have any memory that KHO would preserve and are used as
-the only memory the kernel sees during the early boot.
-
-The scratch regions are passed in the setup_data by the first kernel with
-other KHO parameters. If the setup_data contains the KHO parameters, limit
-randomization to scratch areas only to make sure preserved memory won't get
-overwritten.
-
-Since all the pointers in setup_data are represented by u64, they require
-double casting (first to unsigned long and then to the actual pointer type)
-to compile on 32-bits. This looks goofy out of context, but it is
-unfortunately the way that this is handled across the tree. There are at
-least a dozen instances of casting like this.
-
-Signed-off-by: Alexander Graf <graf@amazon.com>
-Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-Co-developed-by: Changyuan Lyu <changyuanl@google.com>
-Signed-off-by: Changyuan Lyu <changyuanl@google.com>
----
- arch/x86/boot/compressed/kaslr.c | 26 ++++++++++++--------------
- 1 file changed, 12 insertions(+), 14 deletions(-)
-
-diff --git a/arch/x86/boot/compressed/kaslr.c b/arch/x86/boot/compressed/kaslr.c
-index 25de8c3e17cdb..3b0948ad449f9 100644
---- a/arch/x86/boot/compressed/kaslr.c
-+++ b/arch/x86/boot/compressed/kaslr.c
-@@ -764,25 +764,26 @@ static void process_e820_entries(unsigned long minimum,
-  * If KHO is active, only process its scratch areas to ensure we are not
-  * stepping onto preserved memory.
-  */
--#ifdef CONFIG_KEXEC_HANDOVER
- static bool process_kho_entries(unsigned long minimum, unsigned long image_size)
- {
- 	struct kho_scratch *kho_scratch;
- 	struct setup_data *ptr;
-+	struct kho_data *kho;
- 	int i, nr_areas = 0;
-
--	ptr = (struct setup_data *)boot_params_ptr->hdr.setup_data;
-+	if (!IS_ENABLED(CONFIG_KEXEC_HANDOVER))
-+		return false;
-+
-+	ptr = (struct setup_data *)(unsigned long)boot_params_ptr->hdr.setup_data;
- 	while (ptr) {
- 		if (ptr->type == SETUP_KEXEC_KHO) {
--			struct kho_data *kho = (struct kho_data *)ptr->data;
--
--			kho_scratch = (void *)kho->scratch_addr;
-+			kho = (struct kho_data *)(unsigned long)ptr->data;
-+			kho_scratch = (void *)(unsigned long)kho->scratch_addr;
- 			nr_areas = kho->scratch_size / sizeof(*kho_scratch);
--
- 			break;
- 		}
-
--		ptr = (struct setup_data *)ptr->next;
-+		ptr = (struct setup_data *)(unsigned long)ptr->next;
- 	}
-
- 	if (!nr_areas)
-@@ -801,13 +802,6 @@ static bool process_kho_entries(unsigned long minimum, unsigned long image_size)
-
- 	return true;
- }
--#else
--static inline bool process_kho_entries(unsigned long minimum,
--				       unsigned long image_size)
--{
--	return false;
--}
--#endif
-
- static unsigned long find_random_phys_addr(unsigned long minimum,
- 					   unsigned long image_size)
-@@ -824,6 +818,10 @@ static unsigned long find_random_phys_addr(unsigned long minimum,
- 		return 0;
- 	}
-
-+	/*
-+	 * During kexec handover only process KHO scratch areas that are known
-+	 * not to contain any data that must be preserved.
-+	 */
- 	if (!process_kho_entries(minimum, image_size) &&
- 	    !process_efi_entries(minimum, image_size))
- 		process_e820_entries(minimum, image_size);
---
-2.49.0.967.g6a0df3ecc3-goog
+No worries. Not testing a build W=1 is a bit of a faux pas.
+But coccinelle is finicky and slow.
 
