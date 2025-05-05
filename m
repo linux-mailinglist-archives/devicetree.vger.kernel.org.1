@@ -1,219 +1,359 @@
-Return-Path: <devicetree+bounces-173650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA905AA933D
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:34:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72315AA9348
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:36:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E9FD3B3162
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 12:34:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28EA21899D0F
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 12:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89EE3188A3B;
-	Mon,  5 May 2025 12:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01FFB250BED;
+	Mon,  5 May 2025 12:35:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oB+bGQbf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F84A2745E;
-	Mon,  5 May 2025 12:34:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1861FCFFC
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 12:35:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746448475; cv=none; b=cN2G2H27jtpRx9VnyE7FM4qvHwyDOWXie6Cf39OF/0jJtOArIc0TsL75QYvc9zJ6hgufWBFxcPJsiUsldLfgH7MOuJYS8i7f753jCw16W33E7F4YyoPfKYyx2GHjaM+ZrYbqfsQmN7tudp5ncFUhIweGKs2Gigdm5bu+w/C+47M=
+	t=1746448552; cv=none; b=LjK5tmnqmkgGU+YHtQSpncrQ0c2BVRU6I0aB95t6DfgBXSUaOEob7z9SU0NJwKv70j+ZhHiXEEI1YWMqGr0+u8heub31qafBquM/Agpne3bRPuYljIf4NayU4YcHdO+Uen1w/ZnoMe3VWrmQ/514KPmHK0fYDQOKz8tqXvumuFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746448475; c=relaxed/simple;
-	bh=c/WymaZNCmun97LV9ufNBaljbi2XnsROnz0Xbw3V8HM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Kyc4dDLXP2ayHVtSz64C23Fbjqj4hWV0zdCDnROaXUhvWvc1/C9xQ5IonY0f1TmE2sPNaDGYXdY0Eyvfw5QmWswUnreNE0r/l5RvPptYBTR9qhvvfCJPmeSgtOZ87mIrHXE0GOJ+b+iI64Fc28AsI3ABjXSoriloBkiXhHDTSbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-86d3ac0fec0so2690232241.1;
-        Mon, 05 May 2025 05:34:32 -0700 (PDT)
+	s=arc-20240116; t=1746448552; c=relaxed/simple;
+	bh=Zzo8qT6W+ElQpK7CYPpA+bB37GELYvuIMWB8kWVYE/o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L15i1hXGIe20y5/Tjk3zgJuflZt3V2EInu/pcbIt1llClDG+KWxJADtm1e1BF1mEGA7Rft+3d8duwfBxor2RQo3/mMh5/cKbPcRuGotIvTLCL2fcMXsLzUFbS9kENGXnhdNiXg+SD9Tap7MP4tUe9Rt3YML4WnTN4IoKeLklc+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oB+bGQbf; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 545BobX1007849
+	for <devicetree@vger.kernel.org>; Mon, 5 May 2025 12:35:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=t3lkQBdOSxlK02o6RqfGSm1o
+	lk235v8tbkgI5LntsXs=; b=oB+bGQbfO3KCHvTZCMoYbqKwKZPR7zwpgZMu5ttq
+	0mw6i1yKfqGDQ3aE/StTTiHaFU7OI+ht3od9x0xz2heKNqSbRVEeO8hEnPM6CRV6
+	4sW+k4p7P3MWCFYoRn9MSn3f+8vYWiTyqm7RhgJAS5UYK4xWADER0qRfLR6lHTE3
+	3OLptjKcLw9zkonuG/tmrHhN27Z8nQ+FuQ6E/PA72Lw+04D57oXmvNxQrkB0t8BC
+	Lj3jieZ6Y6IPg/aqGZyGchxGsP0ZfsmvxtP5PcMD06Iqb5rUyRMDoyUtp/zAWrYk
+	ff9Z7Jt+dRDVhjOCeipyqgMrM41WXLDPJuWvMN0n/KAMbg==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46dbc5c361-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 05 May 2025 12:35:48 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c5f3b94827so706844085a.0
+        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 05:35:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746448471; x=1747053271;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fGFd6d5wkAAByXLyC1HEjiWtD1BkTZ+hLPpKkf60af4=;
-        b=FgpyHECNh3/BfnKzDeAOw/Er76dSI7qy1dGxaxBTkmQhhPsek73Ohu/VghB/DM0Ik8
-         HdogH8nbeV3Ab58XaUl/D8VOi8NY1lfdMvxv4/24fjq5Ce4+6rLoufBg3ky5hwx46AeT
-         ns0+bT1KJcEBsIGTobBOn7PK+ANjTWnWz0DC84Po+BEJ4zyhDpzpq4z5k231ybDEw0Pe
-         MOXifYrjv/JAhfX4TGWOeJaZJK9S0XBwz5q70+e7mbJ9ad0wAAWYuikZOGVltjVnNsUJ
-         YOr0siaXRfqZVlGiQqagpkkyMckwg0CUX62ttTayagBdHDdvtdBMBII1c2PvTkCNp0T5
-         yNYw==
-X-Forwarded-Encrypted: i=1; AJvYcCUcijjVVVk+fWGMSePziX0ZPOYkEmH1aasSdgwS4vrBGKrgE0vdEpEp67nojyx9Rgd8hQGB2reiNQ9J@vger.kernel.org, AJvYcCVI3mzAF6bIsjwMVddSGe4qR3irGz13RCfB9nvGoWGQSubSihZ0zcCF1ed8u7GWwBoUszYiO1G5VbFWrW3kkO/18GQ=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8cjkYFdnvVUSFFt9o3rw/x2DFZ0Un9gH5LUejTwRjNYsPpqpM
-	lmd7XwRAR1XvzQYbt+q5H8cYb6h5113THnGdKwhooyBKUyn/wyKaVGlDGLOm
-X-Gm-Gg: ASbGncvISc5zLTHjLgVb5fyVcxEmE/fSybU5lAVhz2p94J9/tLIlDsrVgSQLTenS7Xb
-	BuGfGOeFtdz3tZNBi0z77QL2hb70y23SQMGyP7bSE8L6Q9y75NmwoeRVwTrFOjmhQX1H9UN3IbW
-	bCd2t2igSBsJ7+DYYPg30AKaM+PCNsTSDgeLFrhOOmD5eV2DdlTyFJKByKEBs6hfj6JnFMRx9Fc
-	Li9Z5S93QLjkupuq1Snsghg9tUHSJ+iYu0s2RDG0SqVzIcj07TfeNQIdM+C/cTgCdOqz7rgZICV
-	WqFL+LNjbH4o4mfgBODffx28yNK+mke77x+vMcZ0RB9DYOPO/U4O0ZMrry/9phP8hdCHrTij/GA
-	gLggBSv1kYiJ67w==
-X-Google-Smtp-Source: AGHT+IEqK/bcRTd5ZU8GCV/UH4WiYWic+ZWbXJmEADMsHfchEIs64bGYplgijkpPSQ8TkugROIdkGg==
-X-Received: by 2002:a05:6102:158d:b0:4c1:83c4:8562 with SMTP id ada2fe7eead31-4db14823503mr2828689137.13.1746448471473;
-        Mon, 05 May 2025 05:34:31 -0700 (PDT)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4daf234a8ecsm1424223137.14.2025.05.05.05.34.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 May 2025 05:34:31 -0700 (PDT)
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4c301b1df82so1168182137.0;
-        Mon, 05 May 2025 05:34:31 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUNOgHBcnuOlh9GqjJzC1U2KFwQBe/lqmgQ5m+ZizwSxpa+qATtIVgyFP3AVdp9kSgKIJe3rGlGoQSvdYvVCwZ/NbM=@vger.kernel.org, AJvYcCVoNMoMej3sQxNGmok0/Mshoid66UFtr3PA10G171SK4WupoKyLc+VlvM3FMrmqkdvWwBmAvKJDnnDp@vger.kernel.org
-X-Received: by 2002:a05:6102:4b03:b0:4cb:5e02:7538 with SMTP id
- ada2fe7eead31-4db1495be63mr3034496137.22.1746448470950; Mon, 05 May 2025
- 05:34:30 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1746448547; x=1747053347;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t3lkQBdOSxlK02o6RqfGSm1olk235v8tbkgI5LntsXs=;
+        b=nMEwzCQMPZXP1/n3DKXYR73d3wWN6M2HBvpau9e3uZcOfLiov3nC94ouBbJ6Ym8O8N
+         p3NZlntArjJKhU9/Gc+Xw+IM0LVsbRcS75auCRhugxzVKTiwfyuVFI3HmB3FPIbDkaLp
+         asxmibtBmnXLeSLfyXmvItejZTbnJN0nMClLbUjNYfWeqpCjjnayBz/UXzNC9hmSzzsu
+         sVe5YoWhn/2qz8WH6eyvK9bqdxqEd1Vi3UTfZxoZCzdKmKYHB7nhlhINaiWCOe9EfD8R
+         vkmObvGFjpKLhWCD4py4RisMH/VJI68e+Az0MDWKRg4rg5njW69si1x9GbQH7RDy8zoc
+         SsOA==
+X-Forwarded-Encrypted: i=1; AJvYcCUHYQVmZOK/JB6i6gWpZIBVZnwozQ+8dgCmgIOnMJ6gPM4l6xDZ2iL1yBgnNagnxNsPXDYU70c6hs3H@vger.kernel.org
+X-Gm-Message-State: AOJu0YxS5NfPcV1xRMF6Ks2iRUJ+5VTWv0fgabkeJPPofZMJriXYqzpU
+	oxzzx76W+/TF5J+tVCHZQlyveLichmVr3omVa1DyTuViVDUVmL6wYrdbXHZg7F3nulyV2XqQ5RD
+	Pxy1gP+E3z2WsUiuXBWKwHSjqt6TDpbDOE1lR2jHvTafQ4fRIE7vXHne/QaUA
+X-Gm-Gg: ASbGnct/2OVS40gNG2JeiX4wbIzb4CO0XpAvp2+39HwO7keRnjQLYi2+4DElEdIGNna
+	9H3pjQJGi8tX5XkdlFssLIU7UK44uWEcQLrb7S+JoBe/yy63KWWIwfdmID2Zv+mOlOwfN7KH0Eo
+	Tqb7mM7xeesu/Z3TbkYtgGI4VseOc8xgDaZGPlWLR/FxJrGZ9lmoEOmSUIeGJN08XkaM7mZ4m4q
+	NFpE33wQwiy3Gt2oDi+bKrsefLV7WGte+G+znhT2pWyM/6ROmQDJdDCxE4pdwKEwhkFPvqyhE9W
+	qFlhmP2F9h9q5dwM2B4iVqopCH5P3TE5tu1rrmetpOSjXzZ68zZ0NahjmqF1RuX8DMz4lb9KIdI
+	=
+X-Received: by 2002:a05:620a:2a16:b0:7c5:4b6a:d862 with SMTP id af79cd13be357-7cad5b4d28cmr1471548885a.33.1746448547555;
+        Mon, 05 May 2025 05:35:47 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFwtkRQRntUbGznMt8lXyW4K5q0xBaV6j0bk3J+OZSNHs09W25QCShb9JofbW226xRCv08R8g==
+X-Received: by 2002:a05:620a:2a16:b0:7c5:4b6a:d862 with SMTP id af79cd13be357-7cad5b4d28cmr1471544285a.33.1746448547088;
+        Mon, 05 May 2025 05:35:47 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94ce656sm1694392e87.105.2025.05.05.05.35.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 May 2025 05:35:46 -0700 (PDT)
+Date: Mon, 5 May 2025 15:35:44 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org,
+        Srinivas Kandagatla <srini@kernel.org>
+Subject: Re: [PATCH v5 19/24] drm/msm/dsi: Add support for SM8750
+Message-ID: <hobn3fq647z54q6uqrooapokipr4zoxfb3tztg46lwzcsof3jd@5bwn34r2v7ks>
+References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
+ <20250430-b4-sm8750-display-v5-19-8cab30c3e4df@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250414153818.214811-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250414153818.214811-1-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 5 May 2025 14:34:19 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUjtG-EcrpbDO2y8M=GQeV=5i4qODp=VZqymipeCneXhQ@mail.gmail.com>
-X-Gm-Features: ATxdqUF3RhhLMxUL05o0XGs4umBt8dW4lTChMwIx06Fylk7PRQ4fF7_fTpwr1S4
-Message-ID: <CAMuHMdUjtG-EcrpbDO2y8M=GQeV=5i4qODp=VZqymipeCneXhQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a09g047e57-smarc: Add gpio keys
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250430-b4-sm8750-display-v5-19-8cab30c3e4df@linaro.org>
+X-Proofpoint-GUID: elIKgrvoxyu694yzTVFhTTVA489Z-NPL
+X-Authority-Analysis: v=2.4 cv=O7Y5vA9W c=1 sm=1 tr=0 ts=6818b0a4 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=dt9VzEwgFbYA:10 a=e5mUnYsNAAAA:8 a=KKAkSRfTAAAA:8 a=vPhFULFQeS3k4onP6IoA:9
+ a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22 a=Vxmtnl_E_bksehYqCbjh:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: elIKgrvoxyu694yzTVFhTTVA489Z-NPL
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA1MDEyMCBTYWx0ZWRfX56y+owTMbUtk
+ ittj3gYlbYc+2ykPAo3W4VmglqpLcJ9FlmaYpLqGGSKKIj78yHMmxEMtVmBH1QThulo1P3gyXFB
+ vblqBLaS9EOxcLdGThoe9zIH5MvYtbqy3TRZwpPfC85OU7n6THJoP/RtHnrDFYW43LNs8WJIysm
+ oeaI3D68cd4lQzc9GIAEaS1/eLY/Ff2+FpW6kJCef7V/rf8A6elvz2fuQ8H3Zil3aZvQyWJRj8s
+ afFIAfedUK+QNXnOYaUKB0ixL6AVMas2Jgns2ymevEs7QKlmBD5fBomOIpCBb+Hw0bopSh8XrXL
+ WlgJYuYsgudt0ZUvAOc2t5M4bP0EeVtt2i+qCu3XLiuiZiX6/Y+60ZgPfpUa3Yb/Uid10LAHdeO
+ c3geH1IYyY4wwmgbG8dhqWI1QtgXAIO1URFt6V8i5HE7Y6TXKEidGfkuqrXbeuHC2rIg/lvo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-05_05,2025-05-05_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
+ clxscore=1015 priorityscore=1501 adultscore=0 phishscore=0 bulkscore=0
+ impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505050120
 
-Hi Biju,
-
-On Mon, 14 Apr 2025 at 17:38, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> RZ/G3E SMARC EVK  has 3 user buttons called USER_SW1, USER_SW2 and
-> USER_SW3. Add a DT node in device tree to instantiate the gpio-keys driver
-> for these buttons.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-Thanks for your patch, which conflicts with your CANFD patch that
-I have just applied.
-
-> --- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> @@ -8,9 +8,18 @@
->  /dts-v1/;
->
->  /* Switch selection settings */
-> +#define SW_LCD_EN              0
->  #define SW_SD0_DEV_SEL         0
->  #define SW_SDIO_M2E            0
->
-> +#define PMOD_GPIO4             0
-> +#define PMOD_GPIO6             0
-> +#define PMOD_GPIO7             0
-> +
-> +#define  KEY_1_GPIO            RZG3E_GPIO(3, 1)
-> +#define  KEY_2_GPIO            RZG3E_GPIO(8, 4)
-> +#define  KEY_3_GPIO            RZG3E_GPIO(8, 5)
-
-Please drop the extra spaces after the define keywords.
-
-> +
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h>
->  #include "r9a09g047e57.dtsi"
-> @@ -33,6 +42,24 @@ vqmmc_sd1_pvdd: regulator-vqmmc-sd1-pvdd {
->         };
+On Wed, Apr 30, 2025 at 03:00:49PM +0200, Krzysztof Kozlowski wrote:
+> Add support for DSI on Qualcomm SM8750 SoC with notable difference:
+> 
+> DSI PHY PLLs, the parents of pixel and byte clocks, cannot be used as
+> parents before DSI PHY is configured, the PLLs are prepared and their
+> initial rate is set.  Therefore assigned-clock-parents are not working
+> here and driver is responsible for reparenting clocks with proper
+> procedure: see dsi_clk_init_6g_v2_9().
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Changes in v5:
+> 1. Only reparent byte and pixel clocks while PLLs is prepared. Setting
+>    rate works fine with earlier DISP CC patch for enabling their parents
+>    during rate change.
+> 
+> Changes in v3:
+> 1. Drop 'struct msm_dsi_config sm8750_dsi_cfg' and use sm8650 one.
+> 
+> SM8750 DSI PHY also needs Dmitry's patch:
+> https://patchwork.freedesktop.org/patch/542000/?series=119177&rev=1
+> (or some other way of correct early setting of the DSI PHY PLL rate)
+> ---
+>  drivers/gpu/drm/msm/dsi/dsi.h      |  2 +
+>  drivers/gpu/drm/msm/dsi/dsi_cfg.c  | 14 +++++++
+>  drivers/gpu/drm/msm/dsi/dsi_cfg.h  |  1 +
+>  drivers/gpu/drm/msm/dsi/dsi_host.c | 81 ++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 98 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/msm/dsi/dsi.h b/drivers/gpu/drm/msm/dsi/dsi.h
+> index 87496db203d6c7582eadcb74e94eb56a219df292..93c028a122f3a59b1632da76472e0a3e781c6ae8 100644
+> --- a/drivers/gpu/drm/msm/dsi/dsi.h
+> +++ b/drivers/gpu/drm/msm/dsi/dsi.h
+> @@ -98,6 +98,7 @@ int msm_dsi_host_init(struct msm_dsi *msm_dsi);
+>  int msm_dsi_runtime_suspend(struct device *dev);
+>  int msm_dsi_runtime_resume(struct device *dev);
+>  int dsi_link_clk_set_rate_6g(struct msm_dsi_host *msm_host);
+> +int dsi_link_clk_set_rate_6g_v2_9(struct msm_dsi_host *msm_host);
+>  int dsi_link_clk_set_rate_v2(struct msm_dsi_host *msm_host);
+>  int dsi_link_clk_enable_6g(struct msm_dsi_host *msm_host);
+>  int dsi_link_clk_enable_v2(struct msm_dsi_host *msm_host);
+> @@ -115,6 +116,7 @@ int dsi_dma_base_get_6g(struct msm_dsi_host *msm_host, uint64_t *iova);
+>  int dsi_dma_base_get_v2(struct msm_dsi_host *msm_host, uint64_t *iova);
+>  int dsi_clk_init_v2(struct msm_dsi_host *msm_host);
+>  int dsi_clk_init_6g_v2(struct msm_dsi_host *msm_host);
+> +int dsi_clk_init_6g_v2_9(struct msm_dsi_host *msm_host);
+>  int dsi_calc_clk_rate_v2(struct msm_dsi_host *msm_host, bool is_bonded_dsi);
+>  int dsi_calc_clk_rate_6g(struct msm_dsi_host *msm_host, bool is_bonded_dsi);
+>  void msm_dsi_host_snapshot(struct msm_disp_state *disp_state, struct mipi_dsi_host *host);
+> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+> index 7754dcec33d06e3d6eb8a9d55e53f24af073adb9..7f8a8de0897a579a525b466fd01bbcd95454c614 100644
+> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+> @@ -257,6 +257,18 @@ static const struct msm_dsi_host_cfg_ops msm_dsi_6g_v2_host_ops = {
+>  	.calc_clk_rate = dsi_calc_clk_rate_6g,
 >  };
->
-> +&keys{
-> +#if PMOD_GPIO4
-> +       /delete-node/ key-1;
-> +#endif
-> +
-> +#if SW_LCD_EN || PMOD_GPIO6
-> +       /delete-node/ key-2;
-> +#endif
-> +
-> +#if SW_LCD_EN || PMOD_GPIO7
-> +       /delete-node/ key-3;
-> +#endif
+>  
+> +static const struct msm_dsi_host_cfg_ops msm_dsi_6g_v2_9_host_ops = {
+> +	.link_clk_set_rate = dsi_link_clk_set_rate_6g_v2_9,
+> +	.link_clk_enable = dsi_link_clk_enable_6g,
+> +	.link_clk_disable = dsi_link_clk_disable_6g,
+> +	.clk_init_ver = dsi_clk_init_6g_v2_9,
+> +	.tx_buf_alloc = dsi_tx_buf_alloc_6g,
+> +	.tx_buf_get = dsi_tx_buf_get_6g,
+> +	.tx_buf_put = dsi_tx_buf_put_6g,
+> +	.dma_base_get = dsi_dma_base_get_6g,
+> +	.calc_clk_rate = dsi_calc_clk_rate_6g,
 > +};
 > +
-> +#if SW_LCD_EN && PMOD_GPIO4 && PMOD_GPIO6 && PMOD_GPIO7
-
-"PMOD_GPIO4 && (SW_LCD_EN || (PMOD_GPIO6 && PMOD_GPIO7))"?
-
-> +       /delete-node/ keys;
-> +#endif
-> +
->  &pinctrl {
->         scif_pins: scif {
->                 pins = "SCIF_TXD", "SCIF_RXD";
-> diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-> index fd82df8adc1e..84fb955ad77b 100644
-> --- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-> @@ -12,8 +12,13 @@
->   * SW_SDIO_M2E:
->   *     0 - SMARC SDIO signal is connected to uSD1
->   *     1 - SMARC SDIO signal is connected to M.2 Key E connector
-> + *
-> + * GPIO keys are enabled by default. Use PMOD_GPIO macros to disable them
-> + * if needed.
->   */
->
-> +#include <dt-bindings/input/input.h>
-> +
->  / {
->         model = "Renesas RZ SMARC Carrier-II Board";
->         compatible = "renesas,smarc2-evk";
-> @@ -27,6 +32,31 @@ aliases {
->                 serial3 = &scif0;
->                 mmc1 = &sdhi1;
->         };
-> +
-> +       keys: keys {
-> +               compatible = "gpio-keys";
-> +
-> +               key-1 {
-> +                       interrupts-extended = <&pinctrl KEY_1_GPIO IRQ_TYPE_EDGE_FALLING>;
-
-So you are using them as interrupts. Don't you need to configure pin
-control for that (function 15 = IRQ14)?
-Alternatively, can't you use them as gpios with interrupt facilities?
-
-> +                       linux,code = <KEY_1>;
-> +                       label = "USER_SW1";
-> +                       debounce-interval = <20>;
-> +               };
-> +
-> +               key-2 {
-> +                       interrupts-extended = <&pinctrl KEY_2_GPIO IRQ_TYPE_EDGE_FALLING>;
-> +                       linux,code = <KEY_2>;
-> +                       label = "USER_SW2";
-> +                       debounce-interval = <20>;
-> +               };
-> +
-> +               key-3 {
-> +                       interrupts-extended = <&pinctrl KEY_3_GPIO IRQ_TYPE_EDGE_FALLING>;
-> +                       linux,code = <KEY_3>;
-> +                       label = "USER_SW3";
-> +                       debounce-interval = <20>;
-> +               };
-> +       };
+>  static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
+>  	{MSM_DSI_VER_MAJOR_V2, MSM_DSI_V2_VER_MINOR_8064,
+>  		&apq8064_dsi_cfg, &msm_dsi_v2_host_ops},
+> @@ -300,6 +312,8 @@ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
+>  		&sm8550_dsi_cfg, &msm_dsi_6g_v2_host_ops},
+>  	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_8_0,
+>  		&sm8650_dsi_cfg, &msm_dsi_6g_v2_host_ops},
+> +	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_9_0,
+> +		&sm8650_dsi_cfg, &msm_dsi_6g_v2_9_host_ops},
 >  };
->
->  &scif0 {
+>  
+>  const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
+> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+> index 120cb65164c1ba1deb9acb513e5f073bd560c496..859c279afbb0377d16f8406f3e6b083640aff5a1 100644
+> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+> @@ -30,6 +30,7 @@
+>  #define MSM_DSI_6G_VER_MINOR_V2_6_0	0x20060000
+>  #define MSM_DSI_6G_VER_MINOR_V2_7_0	0x20070000
+>  #define MSM_DSI_6G_VER_MINOR_V2_8_0	0x20080000
+> +#define MSM_DSI_6G_VER_MINOR_V2_9_0	0x20090000
+>  
+>  #define MSM_DSI_V2_VER_MINOR_8064	0x0
+>  
+> diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
+> index 4d75529c0e858160761f5eb55db65e5d7565c27b..694ed95897d49c477726a2b0bec1099e75a3ce21 100644
+> --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
+> +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
+> @@ -119,6 +119,15 @@ struct msm_dsi_host {
+>  	struct clk *pixel_clk;
+>  	struct clk *byte_intf_clk;
+>  
+> +	/*
+> +	 * Clocks which needs to be properly parented between DISPCC and DSI PHY
+> +	 * PLL:
+> +	 */
+> +	struct clk *byte_src_clk;
+> +	struct clk *pixel_src_clk;
+> +	struct clk *dsi_pll_byte_clk;
+> +	struct clk *dsi_pll_pixel_clk;
+> +
+>  	unsigned long byte_clk_rate;
+>  	unsigned long byte_intf_clk_rate;
+>  	unsigned long pixel_clk_rate;
+> @@ -269,6 +278,38 @@ int dsi_clk_init_6g_v2(struct msm_dsi_host *msm_host)
+>  	return ret;
+>  }
+>  
+> +int dsi_clk_init_6g_v2_9(struct msm_dsi_host *msm_host)
+> +{
+> +	struct device *dev = &msm_host->pdev->dev;
+> +	int ret;
+> +
+> +	ret = dsi_clk_init_6g_v2(msm_host);
+> +	if (ret)
+> +		return ret;
+> +
+> +	msm_host->byte_src_clk = devm_clk_get(dev, "byte_src");
+> +	if (IS_ERR(msm_host->byte_src_clk))
+> +		return dev_err_probe(dev, PTR_ERR(msm_host->byte_src_clk),
+> +				     "can't get byte_src clock\n");
+> +
+> +	msm_host->dsi_pll_byte_clk = devm_clk_get(dev, "dsi_pll_byte");
+> +	if (IS_ERR(msm_host->dsi_pll_byte_clk))
+> +		return dev_err_probe(dev, PTR_ERR(msm_host->dsi_pll_byte_clk),
+> +				     "can't get dsi_pll_byte clock\n");
+> +
+> +	msm_host->pixel_src_clk = devm_clk_get(dev, "pixel_src");
+> +	if (IS_ERR(msm_host->pixel_src_clk))
+> +		return dev_err_probe(dev, PTR_ERR(msm_host->pixel_src_clk),
+> +				     "can't get pixel_src clock\n");
+> +
+> +	msm_host->dsi_pll_pixel_clk = devm_clk_get(dev, "dsi_pll_pixel");
+> +	if (IS_ERR(msm_host->dsi_pll_pixel_clk))
+> +		return dev_err_probe(dev, PTR_ERR(msm_host->dsi_pll_pixel_clk),
+> +				     "can't get dsi_pll_pixel clock\n");
+> +
+> +	return 0;
+> +}
+> +
+>  static int dsi_clk_init(struct msm_dsi_host *msm_host)
+>  {
+>  	struct platform_device *pdev = msm_host->pdev;
+> @@ -370,6 +411,46 @@ int dsi_link_clk_set_rate_6g(struct msm_dsi_host *msm_host)
+>  	return 0;
+>  }
+>  
+> +int dsi_link_clk_set_rate_6g_v2_9(struct msm_dsi_host *msm_host)
+> +{
+> +	struct device *dev = &msm_host->pdev->dev;
+> +	int ret;
+> +
+> +	/*
+> +	 * DSI PHY PLLs have to be enabled to allow reparenting to them and
+> +	 * setting the rates of pixel/byte clocks.
+> +	 */
 
-Gr{oetje,eeting}s,
+According to the docs this should be handled by the
+CLK_OPS_PARENT_ENABLE flag. Please correct me if I'm wrong.
 
-                        Geert
+> +	ret = clk_prepare_enable(msm_host->dsi_pll_byte_clk);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to enable dsi_pll_byte: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = clk_prepare_enable(msm_host->dsi_pll_pixel_clk);
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+And this.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +	if (ret) {
+> +		dev_err(dev, "Failed to enable dsi_pll_byte: %d\n", ret);
+> +		goto out_disable_byte_clk;
+> +	}
+> +
+> +	ret = clk_set_parent(msm_host->byte_src_clk, msm_host->dsi_pll_byte_clk);
+> +	if (ret)
+> +		dev_err(dev, "Failed to parent byte_src -> dsi_pll_byte: %d\n", ret);
+> +
+> +	ret = clk_set_parent(msm_host->pixel_src_clk, msm_host->dsi_pll_pixel_clk);
+> +	if (ret)
+> +		dev_err(dev, "Failed to parent pixel_src -> dsi_pll_pixel: %d\n", ret);
+> +
+> +	clk_disable_unprepare(msm_host->dsi_pll_pixel_clk);
+> +	clk_disable_unprepare(msm_host->dsi_pll_byte_clk);
+> +
+> +	return dsi_link_clk_set_rate_6g(msm_host);
+> +
+> +out_disable_byte_clk:
+> +	clk_disable_unprepare(msm_host->dsi_pll_byte_clk);
+> +
+> +	return ret;
+> +}
+> +
+>  int dsi_link_clk_enable_6g(struct msm_dsi_host *msm_host)
+>  {
+>  	int ret;
+> 
+> -- 
+> 2.45.2
+> 
+
+-- 
+With best wishes
+Dmitry
 
