@@ -1,121 +1,177 @@
-Return-Path: <devicetree+bounces-173574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92814AA8E07
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 10:16:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4798AA8E0D
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 10:18:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5226173103
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:16:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 020ED3A77CC
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:17:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD5C91DED6C;
-	Mon,  5 May 2025 08:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE191E1C1F;
+	Mon,  5 May 2025 08:18:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hYCKgsgG"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eigLgicF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D46154F8C;
-	Mon,  5 May 2025 08:16:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5DC454F8C;
+	Mon,  5 May 2025 08:18:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746432972; cv=none; b=q6SUZ+iI2ENmIPYTxoi2E+iwRJ1ZMhTP9cs2Z7oObADdGUlTNR/qxosk50HcQtX/CqfamOt3pTi6fLT3lx8imG/0Rxnpj7OFr38Iat57k2t0iPcRWfmCyIvgcrDopp5e3tAKD6rGZgTt4qoc/gcnEljaK8i/utj1ePHoM/hvo98=
+	t=1746433083; cv=none; b=uLanLL/4xuLdmYJLMxstCZBuPS5q3r9xnb0n+RQqsRFdAZ1kVRvkGGiJRmAp6zmoy6NKri+3Yux/FFNTXESHUEcy6DZbdebRIORxHNNrXvOtJCgWwrSKDd6e0aPJA2zoEP7WX9ufqA0bDJMN2v96zEA+EZuHBfGiFSo5cw4boF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746432972; c=relaxed/simple;
-	bh=txRJFeqG/VxogXxBmY8Dh9KU8z1bJGtjegmmbsPgJSQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ik+2QzzGdPoUTMGHksboCsoV/JjOT4yzZFbrOLDyeYyfT+8C+DO4GsCFIdwe4KzBVBsnajhrqkBFOujbtlGglaKM4lYNZb1zw3COhjC9XUS/PPuSFjmqZvpTovZipb9JrvEpCqExdPVmDAKm66kklQStQQjI7VDjn1QkAOT4Pg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hYCKgsgG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E897C4CEE4;
-	Mon,  5 May 2025 08:16:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746432970;
-	bh=txRJFeqG/VxogXxBmY8Dh9KU8z1bJGtjegmmbsPgJSQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hYCKgsgGoCEGWq050qTpv2dkN3TYZDTjoe9ktasYOCoJc7NU4/IxwjcYJ0ULxWp3D
-	 hsu8MX+qJS5GgwVT2J8yJOs9HpnVeukASdAzJKp0pEVZGLLNBpgS9nvtUuZO7Fl69w
-	 PKHxHMFgXZXw54IucfFd2XxaI9SIU2VtkGjDMXNKmDvwK/5P3zJ6SDDlJhgSF2OXG3
-	 aWQh90sIJtCLQnJ4ytp3FHR04zxq3Ldotdf0HpIcPAxJV+PZNf5LqRPLxuhjh39Osl
-	 vv/suhfAfn9/1f4mwar9m7gglJIOwa8TRhLV3Ycxp8yGj7jecxvgSgrfxy93lDwaLI
-	 5srDVbbwP20EA==
-Message-ID: <3d42e605-2526-4eb1-b222-6552629333ef@kernel.org>
-Date: Mon, 5 May 2025 10:16:06 +0200
+	s=arc-20240116; t=1746433083; c=relaxed/simple;
+	bh=FQyrGJnLZ/Q9fHLW7A2NpkWtl8+bT+Q4CeJaUiIZzN4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=QIsHyb8e9dSKXfV+yKAcjsgnLUeZCoMS25F7jOcgc/OLBYgUIsWSWOmfutHPyHMFPXy+HsneQfN0U8Jv4jzhonhXvHzBXPulgrKYNlZtWc8d1j6v2N4YpGEu2o9R/IEEEfSQxT0CUgx1dtss3IEu4Y89zjGs5Nmv5IpLcdGjSTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eigLgicF; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3156A1FCED;
+	Mon,  5 May 2025 08:17:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746433078;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ene3pBCls87d2ZFff3sMFaohdKR0s7zqvoRcpx4YgKI=;
+	b=eigLgicFgWm6NvYLXhwU5OW2VzgTRcVAMKri8KAtivencPpK/T/V5KoOeUPJsUfw/jLOk0
+	ryMm2H3ITxEnvhDmP8whs6/bZuWJTawsNAZDSHTSJEdSw/dlj+KDFvE2VzwZf636MIbQRO
+	3xhJz15NjGU3zeCozQQ43qY6H6ihQI+7NWWJ1z3U4yCcKydd2DK+qraNhcUCwl3Ra5Sf3H
+	6E9t3PHeqKaXyN1f4nV2wpPenI51EYxkdWnBuWnRX5VypyKSqDsyW68PqRQtaKA90234Uu
+	I0Fe+cWumI40RrDESqLfNnqCf9kxJM/PUFdpWGQ9xjxr1f9A6IC8RUm7BzR8RQ==
+Date: Mon, 5 May 2025 10:17:57 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: David Gibson <david@gibson.dropbear.id.au>, Andrew Davis <afd@ti.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>,
+ devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 5/7] of: overlay: Add export_symbols_name in
+ of_overlay_fdt_apply() parameters
+Message-ID: <20250505101757.0b294b63@bootlin.com>
+In-Reply-To: <dba95e76-3d60-41ef-b98c-5aedee808dd9@beagleboard.org>
+References: <20250430125154.195498-1-herve.codina@bootlin.com>
+	<20250430125154.195498-6-herve.codina@bootlin.com>
+	<dba95e76-3d60-41ef-b98c-5aedee808dd9@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: trivial-devices: Document SEN0322
-To: gomba007@gmail.com, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250505-iio-chemical-sen0322-v2-0-217473983b42@gmail.com>
- <20250505-iio-chemical-sen0322-v2-1-217473983b42@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250505-iio-chemical-sen0322-v2-1-217473983b42@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkedtheelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiffefgeeitdelleeigefhjeelueeuveekveetgeffheeltdekgeduiefggfdvnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduhedprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepuggrvhhiugesghhisghsohhnrdgurhhophgsvggrrhdrihgurdgruhdprhgtphhtthhopegrfhgusehtihdrtghomhdprhgtphhtthhopehgvggvrhhtsehlihhnuhigqdhmieekkhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvr
+ hhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrrhhnugesrghrnhgusgdruggv
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 05/05/2025 09:52, Tóth János via B4 Relay wrote:
-> From: Tóth János <gomba007@gmail.com>
-> 
-> Add documentation for the DFRobot SEN0322 oxygen sensor.
-> 
-> Signed-off-by: Tóth János <gomba007@gmail.com>
+Hi Ayush,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Fri, 2 May 2025 20:10:41 +0530
+Ayush Singh <ayush@beagleboard.org> wrote:
+
+> On 4/30/25 18:21, Herve Codina wrote:
+> 
+> > In order to prepare the introduction of the export symbols node
+> > handling, add a export_symbols_name parameter in of_overlay_fdt_apply().
+> >
+> > The export_symbols_name is the name of the export symbols subnode
+> > available in the base node that will be used by the resolver to handle
+> > export symbols resolution.
+> >
+> > Having the name of the subnode in parameters instead of the subnode
+> > itself avoids the use of an export symbol node that is not directly
+> > related to the base node.
+> >
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > Tested-by: Ayush Singh <ayush@beagleboard.org>
+> > ---
+> >   drivers/misc/lan966x_pci.c    | 3 ++-
+> >   drivers/of/of_kunit_helpers.c | 2 +-
+> >   drivers/of/overlay.c          | 7 ++++++-
+> >   drivers/of/unittest.c         | 4 ++--
+> >   include/linux/of.h            | 6 ++++--
+> >   5 files changed, 15 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/drivers/misc/lan966x_pci.c b/drivers/misc/lan966x_pci.c
+> > index 9c79b58137e5..f05cb040ec69 100644
+> > --- a/drivers/misc/lan966x_pci.c
+> > +++ b/drivers/misc/lan966x_pci.c
+> > @@ -128,7 +128,8 @@ static int lan966x_pci_load_overlay(struct lan966x_pci *data)
+> >   	u32 dtbo_size = __dtbo_lan966x_pci_end - __dtbo_lan966x_pci_begin;
+> >   	void *dtbo_start = __dtbo_lan966x_pci_begin;
+> >   
+> > -	return of_overlay_fdt_apply(dtbo_start, dtbo_size, &data->ovcs_id, dev_of_node(data->dev));
+> > +	return of_overlay_fdt_apply(dtbo_start, dtbo_size, &data->ovcs_id,
+> > +				    dev_of_node(data->dev), NULL);
+> >   }
+> >   
+> >   static void lan966x_pci_unload_overlay(struct lan966x_pci *data)
+> > diff --git a/drivers/of/of_kunit_helpers.c b/drivers/of/of_kunit_helpers.c
+> > index 7b3ed5a382aa..476b43474168 100644
+> > --- a/drivers/of/of_kunit_helpers.c
+> > +++ b/drivers/of/of_kunit_helpers.c
+> > @@ -56,7 +56,7 @@ int of_overlay_fdt_apply_kunit(struct kunit *test, void *overlay_fdt,
+> >   		return -ENOMEM;
+> >   
+> >   	ret = of_overlay_fdt_apply(overlay_fdt, overlay_fdt_size,
+> > -				   ovcs_id, NULL);
+> > +				   ovcs_id, NULL, NULL);
+> >   	if (ret)
+> >   		return ret;
+> >   
+> > diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> > index aa1b97e634aa..73ff38c41de2 100644
+> > --- a/drivers/of/overlay.c
+> > +++ b/drivers/of/overlay.c
+> > @@ -968,6 +968,10 @@ static int of_overlay_apply(struct overlay_changeset *ovcs,
+> >    * @overlay_fdt_size:	number of bytes in @overlay_fdt
+> >    * @ret_ovcs_id:	pointer for returning created changeset id
+> >    * @base:		pointer for the target node to apply overlay
+> > + * @export_symbols_name:
+> > + *			Name of the export symbol subnode of the @base node to
+> > + *			provide extra symbols. Those extra symbols are used in
+> > + *			the overlay symbols resolution.
+> >    *
+> >    * Creates and applies an overlay changeset.
+> >    *
+> > @@ -983,7 +987,8 @@ static int of_overlay_apply(struct overlay_changeset *ovcs,
+> >    */
+> >   
+> >   int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+> > -			 int *ret_ovcs_id, const struct device_node *base)
+> > +			 int *ret_ovcs_id, const struct device_node *base,
+> > +			 const char *export_symbols_name)  
+> 
+> Do we really need the export-symbols node name to be configurable?
+
+Well, it depends on the export-symbols acceptance in device-tree spec or some
+other global device-tree bindings.
+
+If this export-symbols node is accepted globally, the name is not needed and
+shouldn't be configurable.
+
+If this node name can be changed from one node binding to an other, having it
+configurable is interesting.
+
+That said, according to your work done at higher level (device-tree spec), this
+name tends to be global. If confirmed, I will remove the export_symbols_name
+parameter in the next iteration and use 'export-symbols' for all cases.
 
 Best regards,
-Krzysztof
+Hervé
 
