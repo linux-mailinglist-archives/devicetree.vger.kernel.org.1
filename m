@@ -1,90 +1,89 @@
-Return-Path: <devicetree+bounces-173528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ACBAAA8A4C
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 02:17:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0FB4AA8A50
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 02:17:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96609188F03C
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 00:17:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88C063B66AB
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 00:16:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1D51B415F;
-	Mon,  5 May 2025 00:15:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F851B85CC;
+	Mon,  5 May 2025 00:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MLkdtaUf"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NJVHk4qT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1034C1ABEA5
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 00:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 047B91459F7
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 00:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746404122; cv=none; b=aUNVL+w6NuZtmxpfBFf9a80rA1LTT36GDPtwEdT5Ormy5ETQn19QHkLQCodtBvwcCpGDvrBhkQ+8m/l62IfJ8hAx77wXTC2SB3VM/ggtT24l5MUXtwdB3tIKhDoJbDw7FKCtWMgjlicHn4ItKhqp/WnTUGIqf6/pleO89u397d0=
+	t=1746404126; cv=none; b=LY/iLRTnEmkfw+STkhPlBj+HHl0foij1d+fMz0V/YHafftFW/G4qcGfFtTzX5cThh6OtW6hYC7KccZVp+KnoualyN4Rloz3nDKGEwovCUbzhsAUwENIUtpmbyrdVVX5l2rcqgEj4/5Qmm3yM42Rdlh7LhDtLDlYajHmHaTzydIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746404122; c=relaxed/simple;
-	bh=JiwyaSew0NFtZ5o4cDod5F4IS9r3LnQFkGJ/FWeINsA=;
+	s=arc-20240116; t=1746404126; c=relaxed/simple;
+	bh=9IyasSP8Tc0inHx2Ugrd2jyGWCstbici0EYKr4owmRw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NaeutdFoN/pXwzo7Wp6NAdJCeivkEJ2ifQHrdSi44HMl9iZdx9fwyY9SgdZBnQJ5Dl2raN4gX4Qx0Siil4j8u6NIWYarVYNbCUyVLwrCT2YNCuibZ/tcyy1598HKu9KzCIHKqNwqFjmIRMLuLtQVbNHkTjeGXD1L//BskP/jcEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MLkdtaUf; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=qvgRmzPe5+jW+Ls05M9QwF7KC+5sWcBRrnK7vhFxA0kO6ljMEETgTc8EuYxDguXUnknxJHFFODa+BebsLwBjH1ItKM1ukPAcC+voD8ZPNAqt3tfEJCBkMvdz835ocPXUh3wzxoSfh4hUfvsI3ER/x/Ajj50dk4iT1QjlMCbkjxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NJVHk4qT; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 544NPH7n012766
-	for <devicetree@vger.kernel.org>; Mon, 5 May 2025 00:15:20 GMT
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 544MunD8027975
+	for <devicetree@vger.kernel.org>; Mon, 5 May 2025 00:15:24 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2mAZjRTa40l8e4BSdDDl0ubGwkl56NVIuzite4sqbHo=; b=MLkdtaUfVjbjqICO
-	vwEtDcRhw4I4sX1D2HCRNt74rpbCq1yQekUobZR8umJwKCiUMyRQpfXllrU6eS70
-	OlQPq4uS+rulAq2yjpIuu7ujear8gjz3/E4Nrw1s9IdlUQ+BZaLovq6OKgpuhG5+
-	mdS0DLDmSfcY0CdmPyDRB75MPLffhdKIdiLR+TA+9jiqGhoJTt255keab7FlNMdn
-	bSOovbhtLeds+sTtDDqFjr22Jyq+HsDnriX7ym9XVV3xJf8G+oKopjriu4eyqSh6
-	noOt9pHp+e9vYe1PMLSbIIaN35v+kZzN8Uwiho7NN+xGlt6DPAZ5Bi1YmJNT1dxb
-	ILpDWg==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46dbc5an65-1
+	jajSFMr5lYMffK+9G2gWOOh1EauR/2XrX+fSYkHoXAE=; b=NJVHk4qTFVxyiCln
+	EM7Ecp2Z0yhoTyZtUQcHJvnH2FP2DDa4etXsMlATuGxd+ikHccAgGkJTIR4E0ctE
+	L0ctV6InLfJ6Rv8RIZyCSHTSQd7WzU1S1wwHPP7aPlgzmUpJQeyLivW55Rk7E63a
+	aXlRJQmdG7/ZcdDkP/gzb348yK6MKK/R36qjetRArP+yqdz9alx+B54jXrrRINPG
+	bi4JFXYPKLaiBR0uIXluuqB3paygxpttZso0N/NJiwJ3Cmxs0wh0eSPF3Zstb5a1
+	PR7+XkWQ5Q7JehnlRb+c+fUAUikp4BpHIjYmKtDgqDLxmW3mqc0RLzyHQ/Rgy0Lk
+	BD00PA==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46dbwfjj5b-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 05 May 2025 00:15:20 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c0c1025adbso870626185a.1
-        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 17:15:20 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Mon, 05 May 2025 00:15:23 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5d608e703so737735085a.3
+        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 17:15:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746404119; x=1747008919;
+        d=1e100.net; s=20230601; t=1746404122; x=1747008922;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2mAZjRTa40l8e4BSdDDl0ubGwkl56NVIuzite4sqbHo=;
-        b=BIesX3VvXR36kQCscqsVmZjwxfQMRH4V0vIjM05h/I/sYEJSxIb14xhB4Bf19zRiVF
-         z3zaH9uG4hUQ82xjgfiCbuu5uy/GrkvbtLvGlwHiIBqgvmUDEDvrbev3fxs/mFOc2noE
-         OZmdWrQoOftb/F5nwKxQqcyEa0FyHGa9Jied/855Rv2vyiXccl8lUlR1oeCvAkxISHIq
-         Y0RlqwB9ouuiuikLNd6U2SyW7dFLlJQ+ke2YqFvRZPLiB0+anzOlr1Q6vX1W5RJfXhkW
-         LHKGr84e610LoK6BM9ge3QPr+Epzx46jdfTwdVmI+WQC4i46VE3qNeNzBIj0455Woepd
-         BLFg==
-X-Forwarded-Encrypted: i=1; AJvYcCXpa7O1hMrfdktmxFKm/tn7vtVFdzVCKY9YaMcQ81fDIfeUtieO7rf/5Puv5/IYpONJyT8k2ocggWxm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2yGtMLgkZG1QvensqR6EaqGK5PrYWIs+yDraE87ri/+eebzBh
-	7fwjsx7ejEoGzIBJTpv5rSWJN2oQEpwQ/Ld4GrXtr74WxAw8RURJeyKICk4vL9GCQAU/qyNS9Tz
-	SwF3D4zhfRexJWT4VdMpT5v/+jCN/JT80eB84BF9utNvSVUe2iujWGy1ts6Ej
-X-Gm-Gg: ASbGnctELTRBA1uKdu3MmHruAStE2ukJOcFgEKSah0+871+db+/vBCkDx+wijBDLm2q
-	L5vGXldh1zdedqzdnvmFgpzVKOPQpzSeFpYwwOCjj3fh6gF7165H3pOPaDcqmypQOUqZ0SMX98X
-	WXvK1esebnT6r1r9Rd1xPnpI+l7XutKlcp8NUsYGwCMgTh57M9SEKTLUvPS2K8Hs85Gc+vDNDwD
-	RSPz0ch/sm1u101Zs8uhmdX8GWm4cD8XFdrBR32j88UJZugJigQMefwEoO62WuKB+AX6RDGnFIj
-	wcCB2Q0ll47aYW6fRVrqz+Pj4bno01ts/axvszKh73tkU3ebwS/yO4kw0SsnWWPl1ODpPJ/1ltl
-	PqO/9GBBtKzdEus789Te2Vrr0
-X-Received: by 2002:a05:620a:3705:b0:7c5:a2de:71d3 with SMTP id af79cd13be357-7cae3aa7dccmr710183985a.20.1746404118936;
-        Sun, 04 May 2025 17:15:18 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGJvT2qXEA+3qgUD9BONo0ieQGGIaGCVQ0ND5SLSFhAwExotlMLJ/1Dm1zx+Ha2IJcArypA1Q==
-X-Received: by 2002:a05:620a:3705:b0:7c5:a2de:71d3 with SMTP id af79cd13be357-7cae3aa7dccmr710180085a.20.1746404118531;
-        Sun, 04 May 2025 17:15:18 -0700 (PDT)
+        bh=jajSFMr5lYMffK+9G2gWOOh1EauR/2XrX+fSYkHoXAE=;
+        b=H4RAOs+pIy0TUdGjvlyXPz4C1MKjdkOITS4Fp/0lSk4p2ZVR33a6bi9XoSpZE0SBd7
+         7/eUfLaPDhNNro/JvOgONqbYM4jh+h6RmDT9xBghjNTrR1krCZFKWQVwhlK6UJxC3EX/
+         LsSB0sVGKCxmWqoSUtID+VEYXqrAwQbAJQzWZF1lqmrvepX9xq11LNDk/N19k4JQb1wX
+         msGs/xqCnF4dt44tjsvSMXpgDwBQXKfTo3gmv52bRL9ctEQ58P+FdJ44aR3HOnafmGrq
+         FaoO02JFEvgl/CJSdgtv2hAGNd9hn6dCTPXMUyZ/tJQPazwQkeM6EzTCNrzXckee34II
+         z0Bg==
+X-Forwarded-Encrypted: i=1; AJvYcCVW5z46lIbQLCEMhIDI8hQFcAHTV9nvgzy8yWP3D0bF47G/yiBBRTcdDpPVkfjHopdXDbF5ASZKR8ZP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuGL3ITwnaYWH48waxlt04Uk2k9Zfk0zpViD01tyV+2A1moUuA
+	O27Yfjz8T/6SJtpqPYhM5jApzOBkXBbpwUvOUnZOXC3XE1cciLoBtpRXV3YPeYqBQJHTNMWqnOI
+	+f1f5Bx4i80YHzh1qumoCcq1KJBVmN7i59VwxeY+LDuxCngbaXbx0qTaqnZtm
+X-Gm-Gg: ASbGncs6BypXUDeFUCikca+D6Ec5DggIq6snRPuOtG48L3KPfyy6H320yQdvpt360Hq
+	O7q1vore5nTEhUGw9V4sXCYMh2dLh7C3ElsPvO0KpiBymK9jV7vLTOyKD3BJrULa9lo8UQrM3sY
+	Sii7QNUfP+x/FYmzwue4atBWRzgLeARs9MSbJVIwfeIPXfsDXlL41Rozt5w4zSFWkJrDF8Fschg
+	+qFwRW5k1gc9N/vKg2aDvF18Hlg1lNH1n+mnB9wxVCUptHDKdxkP22apInJhkD/IJ9w9sQ6J6dH
+	uHkT6nq2F6N1PIEjTzEYUaXr2rMv4gNZxql3iuptENmrJUAwdCaHxXJ298eTvewc7vHgl9dAzN7
+	K0WsylZEBZzoq7tGJ0DGuKWE+
+X-Received: by 2002:a05:620a:244c:b0:7c7:b5e1:4e45 with SMTP id af79cd13be357-7cae3a8944cmr668304685a.9.1746404122577;
+        Sun, 04 May 2025 17:15:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGHfQd4fdpXw2cyT7Pt13a3SfvjKp9b+b5JPOEFBwoYuX3US9TJSLCx2Mkjm87vAk3BLxuWHw==
+X-Received: by 2002:a05:620a:244c:b0:7c7:b5e1:4e45 with SMTP id af79cd13be357-7cae3a8944cmr668300985a.9.1746404122233;
+        Sun, 04 May 2025 17:15:22 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94ce656sm1454066e87.105.2025.05.04.17.15.16
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94ce656sm1454066e87.105.2025.05.04.17.15.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 May 2025 17:15:16 -0700 (PDT)
+        Sun, 04 May 2025 17:15:20 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Mon, 05 May 2025 03:14:53 +0300
-Subject: [PATCH v5 09/13] drm/msm/hdmi: implement proper runtime PM
- handling
+Date: Mon, 05 May 2025 03:14:54 +0300
+Subject: [PATCH v5 10/13] drm/msm/hdmi: rename hpd_clks to pwr_clks
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,7 +92,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250505-fd-hdmi-hpd-v5-9-48541f76318c@oss.qualcomm.com>
+Message-Id: <20250505-fd-hdmi-hpd-v5-10-48541f76318c@oss.qualcomm.com>
 References: <20250505-fd-hdmi-hpd-v5-0-48541f76318c@oss.qualcomm.com>
 In-Reply-To: <20250505-fd-hdmi-hpd-v5-0-48541f76318c@oss.qualcomm.com>
 To: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
@@ -113,326 +112,150 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, Jessica Zhang <quic_jesszhan@quicinc.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9382;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4084;
  i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=03nwODxsaeTmx63o5nvi9in7Q0eD5uMPd8cMRsyvZo0=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoGAL81CMtn0s/fUQMfCDvzbQVQPs5xvSHf1AaA
- lnsYs3+a6OJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaBgC/AAKCRCLPIo+Aiko
- 1UU1B/4mcG9UB2+HV1URSbHawbcWzIpOvWrp3klhn5IMEYsNXir5XoGy8ouhN/ojtuCT+hq8aZH
- +dtXh6kNGnHIgCLiz/kFvOSvG75ua7FQtkHeJDezXyoErUmzLCSJgqVcYsUUBkPv4FiWD/vXABR
- K0NCz4mILOu6A0uPmMTpzB0yvnmHdiPRQWpvamBwsatBWa6rfDkLYqCDeknfHtRzGQpdiT/OqOj
- kl49dtxohNwXLiD5L/1fdI7sye8Sda2anZ3jxwvLk6w/dbdI78fFriBT12I3HFzOX3K/Met+7PZ
- 18/u+CTAy+mqoCfqsMvDYieoWMikHbF7+XRWHpxFl0DwVerX
+ bh=+WpYll0ay0xnF4O7o5nyBXY9cEIfu8gX+WDGXWRK1Mc=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBoGAL85+RFzHM4YW1ldHLSewJCste9D6pvpiH4n
+ 5xqiI3GQSGJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaBgC/AAKCRCLPIo+Aiko
+ 1bfbB/43PPjrEo0fZiqjfyPKdV/fFRD0T1cm2kWrnY4MjGNPPCrcuHruIMnGeY6iVLXiqEepty1
+ ZtAlbR6vbvGcNZcCw+qfBvRYP54xITkPSVDU+O3mTXaO3zBu3cNaBXE4ZkUurvvBbMI90kIC+5d
+ 7e2Pwj7AxIpS6gvWe4emxps0737rHt1k0NMB49iR0yki8RetQ4KpxJsitfymSZ7xyir+m1kt7pN
+ 90vTKvqo2y9IzfCeGw5fNa/Sd+vUsqHweUwFRlTtpG7j24czau8dS8xKs8KH3ggDyoB5ZvFtgn1
+ /D2zKJ788jbDu5LEhWBdwoaQi66btF5XMGm66pOWOPopxY1W
 X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-GUID: ITSQZJzat_GQ78F-L_TupmaXvEGCR_R9
-X-Authority-Analysis: v=2.4 cv=O7Y5vA9W c=1 sm=1 tr=0 ts=68180318 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=5f27SdGkVz2AZoGoeocA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: A24bJtBhi5wRWwa9Y58vQopdcElrLlxK
+X-Proofpoint-GUID: A24bJtBhi5wRWwa9Y58vQopdcElrLlxK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA1MDAwMCBTYWx0ZWRfXzuPOFlEJPDNr
+ T+VtWRYdkOUvQo1Bkcvf7LTzqr53DDmp24m715xarktS2zSPSyOft/iBItaLlYGQcwtvPfk4QCY
+ xaHr4JjRzcwb+IyZixKuLQioSnDhzN9979obA5yE9s8UuCzUm7zA74p+mHvNoS9lAeKHtBu7jOl
+ lTHFiDRhFFfrgyMiEbT7xaj7vmAkoy4kqsXEZR9mUt2RgdWVuNGIrBn9pZMW8Zrh48mVAHkkbdf
+ s9VgobUMGj1GHR0C54kpTl1eYzXAbPXbFJyi74n6CGk/CTpx5te99wClpsSov/GBJcHH0Zn19Li
+ w39ZrepMLvTUo7sQeMoDLSPprzMkcrxLpqpHZNF220Z+pYugPXxhOt6l4c77/tWZ0ff8p71/Gy4
+ iDCOb93If6aDOpZmXIEno72N26frxUIkFaib6ufGdH0S1MFp71tMl6Wp0jVL7QDNnSO4mgpm
+X-Authority-Analysis: v=2.4 cv=AfqxH2XG c=1 sm=1 tr=0 ts=6818031b cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=5NGqCyE2FtwQWQBj1xQA:9
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22
  a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: ITSQZJzat_GQ78F-L_TupmaXvEGCR_R9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA1MDAwMCBTYWx0ZWRfX8hvE0t9BqNq2
- eRyUofT2mmTUnptN1b2un+J57ZZNqAX++BaGoXSzvlpldZGL2MREFU5yHvIwBqaJ1LpFGVMj1vO
- pvwFgVgXSJt+gr0FdLgJJIGxxTsCnaWdSnajCf6th/qIXzJHQUkZZJ6CG4VWnz2kYV8L2rbbqdd
- RqZQ9DYD2WktEtTihT+CggaJ1l1sdq/K45883o6E9uCozXIGyJLkE6wjyTPIchQTJ1Gpk/5kM5G
- oS6QNcWb1d3gbcOSbzN0jfzpqKzQulBEZaQiaWg9iNZLIu6v6oI7sB6IN8mV9vkBYhWDYur/dbO
- BeUo7d+4sYHlCUuZpbdO0Uefyt/WudYM7iR9VAgo1YnG4jpJTtf275pQXeJn03m+ZsgnxA+8lSm
- rGqKgYfXMrarnB2iDuN/uYXAd2KPByHYnSXzL+s5PKOFg1XDAUUgGAl1/v6NoAqAsN4pMAjF
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-05-04_09,2025-04-30_01,2025-02-21_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 suspectscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
- clxscore=1015 priorityscore=1501 adultscore=0 phishscore=0 bulkscore=0
- impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ malwarescore=0 clxscore=1015 priorityscore=1501 phishscore=0 impostorscore=0
+ mlxscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 mlxlogscore=999
+ spamscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
  definitions=main-2505050000
 
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-It is completely not obvious, but the so-called 'hpd' clocks and
-regulators are required for the HDMI host to function properly. Merge
-pwr and hpd regulators. Use regulators, clocks and pinctrl to implement
-proper runtime PM callbacks.
+As these clocks are now used in the runtime PM callbacks, they have no
+connection to 'HPD'. Rename corresponding fields to follow clocks
+purpose, to power up the HDMI controller.
 
 Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/gpu/drm/msm/hdmi/hdmi.c        | 62 +++++++++++++++++++++++++---------
- drivers/gpu/drm/msm/hdmi/hdmi.h        |  5 ---
- drivers/gpu/drm/msm/hdmi/hdmi_bridge.c | 12 -------
- drivers/gpu/drm/msm/hdmi/hdmi_hpd.c    | 42 +----------------------
- 4 files changed, 47 insertions(+), 74 deletions(-)
+ drivers/gpu/drm/msm/hdmi/hdmi.c | 26 +++++++++++++-------------
+ drivers/gpu/drm/msm/hdmi/hdmi.h |  6 +++---
+ 2 files changed, 16 insertions(+), 16 deletions(-)
 
 diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c b/drivers/gpu/drm/msm/hdmi/hdmi.c
-index 69e337d551799b4d35c8c8c7ecb5c4680b9a9e5f..ded20176aa805db98b0599e617eb6ea9bce122d8 100644
+index ded20176aa805db98b0599e617eb6ea9bce122d8..8e6e3e6a04bd2d86bcbd23c110f3533f56c17887 100644
 --- a/drivers/gpu/drm/msm/hdmi/hdmi.c
 +++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
-@@ -8,6 +8,7 @@
- #include <linux/gpio/consumer.h>
- #include <linux/of_irq.h>
- #include <linux/of_platform.h>
-+#include <linux/pinctrl/consumer.h>
- #include <linux/platform_device.h>
- 
- #include <drm/drm_bridge_connector.h>
-@@ -224,11 +225,11 @@ int msm_hdmi_modeset_init(struct hdmi *hdmi,
- 	.item ## _names = item ##_names_ ## entry, \
+@@ -226,19 +226,19 @@ int msm_hdmi_modeset_init(struct hdmi *hdmi,
  	.item ## _cnt   = ARRAY_SIZE(item ## _names_ ## entry)
  
--static const char * const hpd_reg_names_8960[] = {"core-vdda"};
-+static const char * const pwr_reg_names_8960[] = {"core-vdda"};
- static const char * const hpd_clk_names_8960[] = {"core", "master_iface", "slave_iface"};
+ static const char * const pwr_reg_names_8960[] = {"core-vdda"};
+-static const char * const hpd_clk_names_8960[] = {"core", "master_iface", "slave_iface"};
++static const char * const pwr_clk_names_8960[] = {"core", "master_iface", "slave_iface"};
  
  static const struct hdmi_platform_config hdmi_tx_8960_config = {
--		HDMI_CFG(hpd_reg, 8960),
-+		HDMI_CFG(pwr_reg, 8960),
- 		HDMI_CFG(hpd_clk, 8960),
+ 		HDMI_CFG(pwr_reg, 8960),
+-		HDMI_CFG(hpd_clk, 8960),
++		HDMI_CFG(pwr_clk, 8960),
  };
  
-@@ -318,20 +319,6 @@ static int msm_hdmi_dev_probe(struct platform_device *pdev)
- 	if (hdmi->irq < 0)
- 		return hdmi->irq;
+ static const char * const pwr_reg_names_8x74[] = {"core-vdda", "core-vcc"};
+-static const char * const hpd_clk_names_8x74[] = {"iface", "core", "mdp_core", "alt_iface"};
++static const char * const pwr_clk_names_8x74[] = {"iface", "core", "mdp_core", "alt_iface"};
  
--	hdmi->hpd_regs = devm_kcalloc(&pdev->dev,
--				      config->hpd_reg_cnt,
--				      sizeof(hdmi->hpd_regs[0]),
--				      GFP_KERNEL);
--	if (!hdmi->hpd_regs)
--		return -ENOMEM;
--
--	for (i = 0; i < config->hpd_reg_cnt; i++)
--		hdmi->hpd_regs[i].supply = config->hpd_reg_names[i];
--
--	ret = devm_regulator_bulk_get(&pdev->dev, config->hpd_reg_cnt, hdmi->hpd_regs);
--	if (ret)
--		return dev_err_probe(dev, ret, "failed to get hpd regulators\n");
--
- 	hdmi->pwr_regs = devm_kcalloc(&pdev->dev,
- 				      config->pwr_reg_cnt,
- 				      sizeof(hdmi->pwr_regs[0]),
-@@ -409,6 +396,48 @@ static void msm_hdmi_dev_remove(struct platform_device *pdev)
- 	msm_hdmi_put_phy(hdmi);
- }
- 
-+static int msm_hdmi_runtime_suspend(struct device *dev)
-+{
-+	struct hdmi *hdmi = dev_get_drvdata(dev);
-+	const struct hdmi_platform_config *config = hdmi->config;
-+
-+	clk_bulk_disable_unprepare(config->hpd_clk_cnt, hdmi->hpd_clks);
-+
-+	pinctrl_pm_select_sleep_state(dev);
-+
-+	regulator_bulk_disable(config->pwr_reg_cnt, hdmi->pwr_regs);
-+
-+	return 0;
-+}
-+
-+static int msm_hdmi_runtime_resume(struct device *dev)
-+{
-+	struct hdmi *hdmi = dev_get_drvdata(dev);
-+	const struct hdmi_platform_config *config = hdmi->config;
-+	int ret;
-+
-+	ret = regulator_bulk_enable(config->pwr_reg_cnt, hdmi->pwr_regs);
-+	if (ret)
-+		return ret;
-+
-+	ret = pinctrl_pm_select_default_state(dev);
-+	if (ret)
-+		goto fail;
-+
-+	ret = clk_bulk_prepare_enable(config->hpd_clk_cnt, hdmi->hpd_clks);
-+	if (ret)
-+		goto fail;
-+
-+	return 0;
-+
-+fail:
-+	pinctrl_pm_select_sleep_state(dev);
-+
-+	return ret;
-+}
-+
-+DEFINE_RUNTIME_DEV_PM_OPS(msm_hdmi_pm_ops, msm_hdmi_runtime_suspend, msm_hdmi_runtime_resume, NULL);
-+
- static const struct of_device_id msm_hdmi_dt_match[] = {
- 	{ .compatible = "qcom,hdmi-tx-8998", .data = &hdmi_tx_8974_config },
- 	{ .compatible = "qcom,hdmi-tx-8996", .data = &hdmi_tx_8974_config },
-@@ -426,6 +455,7 @@ static struct platform_driver msm_hdmi_driver = {
- 	.driver = {
- 		.name = "hdmi_msm",
- 		.of_match_table = msm_hdmi_dt_match,
-+		.pm = &msm_hdmi_pm_ops,
- 	},
+ static const struct hdmi_platform_config hdmi_tx_8974_config = {
+ 		HDMI_CFG(pwr_reg, 8x74),
+-		HDMI_CFG(hpd_clk, 8x74),
++		HDMI_CFG(pwr_clk, 8x74),
  };
+ 
+ static int msm_hdmi_bind(struct device *dev, struct device *master, void *data)
+@@ -333,17 +333,17 @@ static int msm_hdmi_dev_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return dev_err_probe(dev, ret, "failed to get pwr regulators\n");
+ 
+-	hdmi->hpd_clks = devm_kcalloc(&pdev->dev,
+-				      config->hpd_clk_cnt,
+-				      sizeof(hdmi->hpd_clks[0]),
++	hdmi->pwr_clks = devm_kcalloc(&pdev->dev,
++				      config->pwr_clk_cnt,
++				      sizeof(hdmi->pwr_clks[0]),
+ 				      GFP_KERNEL);
+-	if (!hdmi->hpd_clks)
++	if (!hdmi->pwr_clks)
+ 		return -ENOMEM;
+ 
+-	for (i = 0; i < config->hpd_clk_cnt; i++)
+-		hdmi->hpd_clks[i].id = config->hpd_clk_names[i];
++	for (i = 0; i < config->pwr_clk_cnt; i++)
++		hdmi->pwr_clks[i].id = config->pwr_clk_names[i];
+ 
+-	ret = devm_clk_bulk_get(&pdev->dev, config->hpd_clk_cnt, hdmi->hpd_clks);
++	ret = devm_clk_bulk_get(&pdev->dev, config->pwr_clk_cnt, hdmi->pwr_clks);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -401,7 +401,7 @@ static int msm_hdmi_runtime_suspend(struct device *dev)
+ 	struct hdmi *hdmi = dev_get_drvdata(dev);
+ 	const struct hdmi_platform_config *config = hdmi->config;
+ 
+-	clk_bulk_disable_unprepare(config->hpd_clk_cnt, hdmi->hpd_clks);
++	clk_bulk_disable_unprepare(config->pwr_clk_cnt, hdmi->pwr_clks);
+ 
+ 	pinctrl_pm_select_sleep_state(dev);
+ 
+@@ -424,7 +424,7 @@ static int msm_hdmi_runtime_resume(struct device *dev)
+ 	if (ret)
+ 		goto fail;
+ 
+-	ret = clk_bulk_prepare_enable(config->hpd_clk_cnt, hdmi->hpd_clks);
++	ret = clk_bulk_prepare_enable(config->pwr_clk_cnt, hdmi->pwr_clks);
+ 	if (ret)
+ 		goto fail;
  
 diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.h b/drivers/gpu/drm/msm/hdmi/hdmi.h
-index 3f87535bcf43e20f0618d3016307fe1642d7baf9..7e3c035cf913d713ed63379a843897fad96b23ab 100644
+index 7e3c035cf913d713ed63379a843897fad96b23ab..a28437beb1574553c1dc00a0c693b390389353e0 100644
 --- a/drivers/gpu/drm/msm/hdmi/hdmi.h
 +++ b/drivers/gpu/drm/msm/hdmi/hdmi.h
-@@ -47,7 +47,6 @@ struct hdmi {
- 	void __iomem *qfprom_mmio;
+@@ -48,7 +48,7 @@ struct hdmi {
  	phys_addr_t mmio_phy_addr;
  
--	struct regulator_bulk_data *hpd_regs;
  	struct regulator_bulk_data *pwr_regs;
- 	struct clk_bulk_data *hpd_clks;
+-	struct clk_bulk_data *hpd_clks;
++	struct clk_bulk_data *pwr_clks;
  	struct clk *extp_clk;
-@@ -83,10 +82,6 @@ struct hdmi {
  
- /* platform config data (ie. from DT, or pdata) */
- struct hdmi_platform_config {
--	/* regulators that need to be on for hpd: */
--	const char * const *hpd_reg_names;
--	int hpd_reg_cnt;
--
- 	/* regulators that need to be on for screen pwr: */
- 	const char * const *pwr_reg_names;
+ 	struct gpio_desc *hpd_gpiod;
+@@ -87,8 +87,8 @@ struct hdmi_platform_config {
  	int pwr_reg_cnt;
-diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_bridge.c b/drivers/gpu/drm/msm/hdmi/hdmi_bridge.c
-index 3ae305e868a5931a8982e261f518cd8134d559cc..665c5e1323d09513621429a6f184fb89bae0a37d 100644
---- a/drivers/gpu/drm/msm/hdmi/hdmi_bridge.c
-+++ b/drivers/gpu/drm/msm/hdmi/hdmi_bridge.c
-@@ -18,15 +18,10 @@ static void msm_hdmi_power_on(struct drm_bridge *bridge)
- 	struct drm_device *dev = bridge->dev;
- 	struct hdmi_bridge *hdmi_bridge = to_hdmi_bridge(bridge);
- 	struct hdmi *hdmi = hdmi_bridge->hdmi;
--	const struct hdmi_platform_config *config = hdmi->config;
- 	int ret;
  
- 	pm_runtime_resume_and_get(&hdmi->pdev->dev);
+ 	/* clks that need to be on for hpd: */
+-	const char * const *hpd_clk_names;
+-	int hpd_clk_cnt;
++	const char * const *pwr_clk_names;
++	int pwr_clk_cnt;
+ };
  
--	ret = regulator_bulk_enable(config->pwr_reg_cnt, hdmi->pwr_regs);
--	if (ret)
--		DRM_DEV_ERROR(dev->dev, "failed to enable pwr regulator: %d\n", ret);
--
- 	if (hdmi->extp_clk) {
- 		DBG("pixclock: %lu", hdmi->pixclock);
- 		ret = clk_set_rate(hdmi->extp_clk, hdmi->pixclock);
-@@ -41,11 +36,8 @@ static void msm_hdmi_power_on(struct drm_bridge *bridge)
- 
- static void power_off(struct drm_bridge *bridge)
- {
--	struct drm_device *dev = bridge->dev;
- 	struct hdmi_bridge *hdmi_bridge = to_hdmi_bridge(bridge);
- 	struct hdmi *hdmi = hdmi_bridge->hdmi;
--	const struct hdmi_platform_config *config = hdmi->config;
--	int ret;
- 
- 	/* TODO do we need to wait for final vblank somewhere before
- 	 * cutting the clocks?
-@@ -55,10 +47,6 @@ static void power_off(struct drm_bridge *bridge)
- 	if (hdmi->extp_clk)
- 		clk_disable_unprepare(hdmi->extp_clk);
- 
--	ret = regulator_bulk_disable(config->pwr_reg_cnt, hdmi->pwr_regs);
--	if (ret)
--		DRM_DEV_ERROR(dev->dev, "failed to disable pwr regulator: %d\n", ret);
--
- 	pm_runtime_put(&hdmi->pdev->dev);
- }
- 
-diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_hpd.c b/drivers/gpu/drm/msm/hdmi/hdmi_hpd.c
-index d77c68914c5f525cf12971c1058b1abc33792b24..a42ed26a5b7c7d916d543aa2920754347903062a 100644
---- a/drivers/gpu/drm/msm/hdmi/hdmi_hpd.c
-+++ b/drivers/gpu/drm/msm/hdmi/hdmi_hpd.c
-@@ -64,36 +64,17 @@ int msm_hdmi_hpd_enable(struct drm_bridge *bridge)
- {
- 	struct hdmi_bridge *hdmi_bridge = to_hdmi_bridge(bridge);
- 	struct hdmi *hdmi = hdmi_bridge->hdmi;
--	const struct hdmi_platform_config *config = hdmi->config;
- 	struct device *dev = &hdmi->pdev->dev;
- 	uint32_t hpd_ctrl;
- 	int ret;
- 	unsigned long flags;
- 
--	ret = regulator_bulk_enable(config->hpd_reg_cnt, hdmi->hpd_regs);
--	if (ret) {
--		DRM_DEV_ERROR(dev, "failed to enable hpd regulators: %d\n", ret);
--		goto fail;
--	}
--
--	ret = pinctrl_pm_select_default_state(dev);
--	if (ret) {
--		DRM_DEV_ERROR(dev, "pinctrl state chg failed: %d\n", ret);
--		goto fail;
--	}
--
- 	if (hdmi->hpd_gpiod)
- 		gpiod_set_value_cansleep(hdmi->hpd_gpiod, 1);
- 
- 	ret = pm_runtime_resume_and_get(dev);
--	if (ret) {
--		DRM_DEV_ERROR(dev, "runtime resume failed: %d\n", ret);
--		goto fail;
--	}
--
--	ret = clk_bulk_prepare_enable(config->hpd_clk_cnt, hdmi->hpd_clks);
- 	if (ret)
--		goto fail;
-+		return ret;
- 
- 	msm_hdmi_set_mode(hdmi, false);
- 	msm_hdmi_phy_reset(hdmi);
-@@ -119,32 +100,18 @@ int msm_hdmi_hpd_enable(struct drm_bridge *bridge)
- 	spin_unlock_irqrestore(&hdmi->reg_lock, flags);
- 
- 	return 0;
--
--fail:
--	return ret;
- }
- 
- void msm_hdmi_hpd_disable(struct hdmi *hdmi)
- {
--	const struct hdmi_platform_config *config = hdmi->config;
- 	struct device *dev = &hdmi->pdev->dev;
--	int ret;
- 
- 	/* Disable HPD interrupt */
- 	hdmi_write(hdmi, REG_HDMI_HPD_INT_CTRL, 0);
- 
- 	msm_hdmi_set_mode(hdmi, false);
- 
--	clk_bulk_disable_unprepare(config->hpd_clk_cnt, hdmi->hpd_clks);
- 	pm_runtime_put(dev);
--
--	ret = pinctrl_pm_select_sleep_state(dev);
--	if (ret)
--		dev_warn(dev, "pinctrl state chg failed: %d\n", ret);
--
--	ret = regulator_bulk_disable(config->hpd_reg_cnt, hdmi->hpd_regs);
--	if (ret)
--		dev_warn(dev, "failed to disable hpd regulator: %d\n", ret);
- }
- 
- void msm_hdmi_hpd_irq(struct drm_bridge *bridge)
-@@ -179,7 +146,6 @@ void msm_hdmi_hpd_irq(struct drm_bridge *bridge)
- 
- static enum drm_connector_status detect_reg(struct hdmi *hdmi)
- {
--	const struct hdmi_platform_config *config = hdmi->config;
- 	u32 hpd_int_status = 0;
- 	int ret;
- 
-@@ -187,14 +153,8 @@ static enum drm_connector_status detect_reg(struct hdmi *hdmi)
- 	if (ret)
- 		goto out;
- 
--	ret = clk_bulk_prepare_enable(config->hpd_clk_cnt, hdmi->hpd_clks);
--	if (ret)
--		goto out;
--
- 	hpd_int_status = hdmi_read(hdmi, REG_HDMI_HPD_INT_STATUS);
- 
--	clk_bulk_disable_unprepare(config->hpd_clk_cnt, hdmi->hpd_clks);
--
- out:
- 	pm_runtime_put(&hdmi->pdev->dev);
- 
+ struct hdmi_bridge {
 
 -- 
 2.39.5
