@@ -1,100 +1,181 @@
-Return-Path: <devicetree+bounces-173689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75933AA9463
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:24:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4530CAA9476
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:25:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D3B93A6CFB
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:23:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71E2D189B6E1
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:25:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B172512C4;
-	Mon,  5 May 2025 13:23:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TXyG+U58"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27142AF1B;
+	Mon,  5 May 2025 13:24:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A7C11A2C25;
-	Mon,  5 May 2025 13:23:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 407C624C092
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 13:24:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746451428; cv=none; b=qb7lU8/+nsfx73tWVJOgo6dl9F/+HyZqwPPwdnxrUebSxoAwKAuOlsB6YMo8EKFz8gZN3VB2ybqHGFS2LB9cZXQMMrgnyf8t/f8bJ9sy9RrIg4cr7pFR3WN5wrbzqSzDSuSS7VK+vNWvhHeTn3Dq5v5ndDAY9gTDQWPB4RUO8fc=
+	t=1746451483; cv=none; b=jdSImPAmEejbXLk6+w5Y2sAuHRis/xSgZ3T5cDxNcxL0HrM/VqrZPfnLU0wgbFBJZ2nEyyOIMVo1900cAloYnNx+UFCn36vJazG8+Vkv/PPJPDMg+AJ9UuGvPuIqbc/dwv2spC3GGFxwi2fR/pTPXWIF8eZmQUsstDLiLK/me2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746451428; c=relaxed/simple;
-	bh=VKT3aBfYoXH1u6KUim8JNWjyDbLB3L+/vn7uNu6+8DA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=h+bnHVFP0PxW4AGpXTpnIZLMVSeOPXZjftVkoBLXElEscvmtSK8ViA7aNKJZwmkZj71jbw8N/WNXWRTvLkYqLjRQZcP+DVAEflRNAD+AdyB1wMza4I4eJxc9NUHwjzzYDN1i/MsdOlpuaVA9Raxm+kxoTqrBm3MOWCKqogvDaoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TXyG+U58; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C0F5C4CEE4;
-	Mon,  5 May 2025 13:23:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746451427;
-	bh=VKT3aBfYoXH1u6KUim8JNWjyDbLB3L+/vn7uNu6+8DA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=TXyG+U58O2CzMBN8byeno/h7NEDMZkyU/O7G2qCRIuNeyoGG04UAWC72Rwy0SM9DD
-	 4U3fpKoRNHA/IvP9jPiZZyyPjp5Eqd0cxzhzkVM+rulF/qsgM+N9WXX5sVnS5Y9mLW
-	 JHf4YwJGtRiM3PHNtOdWbxPAM8KSry9g2GfKF2azEp0DpkjPKZ61ur/sdc4IKEXpCw
-	 U9rfpYQiNunxn1nCH9ma7c5TiOooGRHqy5aVg7bmnWOoOKnpCQRpjN+jBFXSLur9vX
-	 Mz1xHVtsYB8vB8F+nxwD8FDH61kV2pRPk6fPWZ3Zhzh/sB7N5638CKHIYKG4MsSzj5
-	 JXkCa8gMamBhA==
-Date: Mon, 5 May 2025 14:23:40 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: =?UTF-8?B?VMOzdGggSsOhbm9z?= <gomba007@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: chemical: Document SEN0322
-Message-ID: <20250505142340.3c74eb23@jic23-huawei>
-In-Reply-To: <vz5ndf6mojowehi5b6cz6ljsknnatxg6iomghndbt2ffdld3iu@nywmhejv6oge>
-References: <20250428-iio-chemical-sen0322-v1-0-9b18363ffe42@gmail.com>
-	<20250428-iio-chemical-sen0322-v1-1-9b18363ffe42@gmail.com>
-	<9463c3b0-ce67-4c67-a8e9-91b4ffd09a58@kernel.org>
-	<uju5lntp3hzibbrw6ej53xhgvkkpjory74l5et2jspwocuj2xr@bbterxtg3ba7>
-	<20250504192701.6ceb9daf@jic23-huawei>
-	<vz5ndf6mojowehi5b6cz6ljsknnatxg6iomghndbt2ffdld3iu@nywmhejv6oge>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1746451483; c=relaxed/simple;
+	bh=y77X37gAugX91JrGBbDc9vema3Ytb2kMk2Zu6xzLV/8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=r/E18ug4Z16dPXHdgQYZbvFDYhMWljit61mxNNz0PANOFGZHBRhz/gDSUTt4UZHxMwIojP1TtVSKNAL4cv3dJCFo0XgFanHjimtUrTKMM1Ke2YRo6NTA/Ks0ExaUTPUx/B62hjjNS1oPR+LofIZHVDrX7FKC8FI/dyCKao+MsoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1uBvo7-0000dt-Kd; Mon, 05 May 2025 15:24:31 +0200
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1uBvo6-001ElS-37;
+	Mon, 05 May 2025 15:24:30 +0200
+Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
+	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1uBvo6-00Ce6n-2o;
+	Mon, 05 May 2025 15:24:30 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Date: Mon, 05 May 2025 15:24:24 +0200
+Subject: [PATCH] arm64: dts: ti: k3-am625-sk: Add power/temperature sensors
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250505-am625-sk-sensors-v1-1-688fb928b390@pengutronix.de>
+X-B4-Tracking: v=1; b=H4sIAAe8GGgC/x2MQQqAMAzAviI9W5jFKfgV8bBp1SJusoIIsr87J
+ KcckheUk7DCUL2Q+BaVGIo0dQXz7sLGKEtxIEPWFNCdHVnUA5WDxqToPVnL5J1reyjZlXiV51+
+ OU84fngVTXmIAAAA=
+X-Change-ID: 20250505-am625-sk-sensors-bb255e2baa47
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746451470; l=2443;
+ i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
+ bh=y77X37gAugX91JrGBbDc9vema3Ytb2kMk2Zu6xzLV/8=;
+ b=kHuheosHNgMn75rW9pnvt3xs2K4Lnln8qgA5qFhk2utGwFiN33cb+Gr6UfNBBHalVJ2x1enMi
+ R02UGWmyz2EDvENq1aDh7qV3X9tJCZ64/vB1fgIe50zT9i+ts7Reka6
+X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
+ pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: s.hauer@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, 5 May 2025 08:32:02 +0200
-T=C3=B3th J=C3=A1nos <gomba007@gmail.com> wrote:
+The AM625-SK has six power sensors and two temperature sensors connected
+to I2C. Add them to the device tree.
 
-> Hi!
->=20
-> > > > No other properties like supplies or configuration? If so, this cou=
-ld go
-> > > > to trivial-devices.   =20
-> > >=20
-> > > I don't think so, I'll add it as a trivial-device then. =20
-> >=20
-> > vcc-supply? =20
->=20
-> It has no switchable VCC supply.
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
+The AM625-SK has six power sensors and two temperature sensors connected
+to I2C. Add them to the device tree.
+---
+ arch/arm64/boot/dts/ti/k3-am625-sk.dts | 68 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 68 insertions(+)
 
-Your board may have no switchable vcc-supply. In general someone else's
-board with this part in use may well have a switchable vcc-supply.
-Ideally the DT binding should support that and the driver should just
-turn it on at probe.  A stub / fake regulator will be provided by
-the regulator core so there is no need for special handling of boards
-that don't have switchable vcc-supply - they will just work.
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+index 2fbfa371934575efc4e9118a705f062bdea55f4f..e900d3134c72dc2616e3820b273d84b0db64bed5 100644
+--- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+@@ -193,6 +193,74 @@ exp1: gpio@22 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&main_gpio1_ioexp_intr_pins_default>;
+ 	};
++
++	power-sensor@40 {
++		compatible = "ti,ina231";
++		reg = <0x40>;
++		#io-channel-cells = <1>;
++		label = "vdd_core";
++		shunt-resistor = <10000>;
++		vs-supply = <&vcc_3v3_sys>;
++	};
++
++	power-sensor@41 {
++		compatible = "ti,ina231";
++		reg = <0x41>;
++		#io-channel-cells = <1>;
++		label = "vddr_core";
++		shunt-resistor = <10000>;
++		vs-supply = <&vcc_3v3_sys>;
++	};
++
++	power-sensor@45 {
++		compatible = "ti,ina231";
++		reg = <0x45>;
++		#io-channel-cells = <1>;
++		label = "dvdd_1v8";
++		shunt-resistor = <10000>;
++		vs-supply = <&vcc_3v3_sys>;
++	};
++
++	power-sensor@47 {
++		compatible = "ti,ina231";
++		reg = <0x47>;
++		#io-channel-cells = <1>;
++		label = "vdd_ddr";
++		shunt-resistor = <10000>;
++		vs-supply = <&vcc_3v3_sys>;
++	};
++
++	temperature-sensor@48 {
++		compatible = "ti,tmp100";
++		reg = <0x48>;
++		label = "soc";
++		vs-supply = <&vcc_3v3_sys>;
++	};
++
++	temperature-sensor@49 {
++		compatible = "ti,tmp100";
++		reg = <0x49>;
++		label = "ddr";
++		vs-supply = <&vcc_3v3_sys>;
++	};
++
++	power-sensor@4c {
++		compatible = "ti,ina231";
++		reg = <0x4c>;
++		#io-channel-cells = <1>;
++		label = "dvdd_3v3";
++		shunt-resistor = <10000>;
++		vs-supply = <&vcc_3v3_sys>;
++	};
++
++	power-sensor@4d {
++		compatible = "ti,ina231";
++		reg = <0x4d>;
++		#io-channel-cells = <1>;
++		label = "vdda_1v8";
++		shunt-resistor = <10000>;
++		vs-supply = <&vcc_3v3_sys>;
++	};
+ };
+ 
+ &sdhci1 {
 
-Jonathan
+---
+base-commit: 92a09c47464d040866cf2b4cd052bc60555185fb
+change-id: 20250505-am625-sk-sensors-bb255e2baa47
 
->=20
-> Regards,
-> J=C3=A1nos
->=20
+Best regards,
+-- 
+Sascha Hauer <s.hauer@pengutronix.de>
 
 
