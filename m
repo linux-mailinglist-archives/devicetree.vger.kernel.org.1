@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-173551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 719E2AA8C68
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:45:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D62AA8C71
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:49:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B543C3B4486
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 06:44:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE2A31892F65
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 06:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DAE1CCB40;
-	Mon,  5 May 2025 06:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2D1F1C84B7;
+	Mon,  5 May 2025 06:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r0CjERFh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RXjPLd/4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A704A1ACEDA
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 06:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072681AD403
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 06:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746427508; cv=none; b=utxqwDNBztewfdfbvRWsDzG/aGDUTK8YD6iZtX6AVKxh1Ccjwb9Bgp1Vt8FRVWeqFXrCKg0NwIH3HszOtyxvp1fDJ6A8etAKrEsQSttu0bYOWXEjjC4wMi+kXypC5xOThVurwKer+ADEpMc50seugdHOtUt0JPfj1zmH9HsB/6I=
+	t=1746427783; cv=none; b=r7JLvl9MZRZuvSLBe6Z9a6qQ6UhxYOj3kwN/KoSdgQgWX67/rdntIwwFV/s/Zz8Hwd2MMF8qKpUaMJ4zg86leQKlu2H89k5Pi1KAVk3c0B06JvuBkqE9tbP/Mr6EO56kEaZ+Al+m4EXq67LAGi19dQ3BGC+kxMaSlNV1iDmVUWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746427508; c=relaxed/simple;
-	bh=Ksz2MkhzWiD6KlQcTwLlFEF5v2ADwK9Yf6rKIUoP/6I=;
+	s=arc-20240116; t=1746427783; c=relaxed/simple;
+	bh=88Uuz1TbUzYdXx0pus28jQ5jt2A3GWm6BsQK8H/WLzc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hKctmczd2FzdAifIg9P5+saAgeVV9/SmvL422qR51PGgtTHFd+LbEAhV35/nNSOBmR2/6HZYpfzN4aY4z+TYr7s4AzV1herXuqccyIsB6mszkFGV5sFVd5gAUrxBw39Jv92CKhfURcBEr3dB2+69PHU8HU8cMcOSQYmtZuas3wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r0CjERFh; arc=none smtp.client-ip=209.85.128.44
+	 In-Reply-To:Content-Type; b=om/JmBuf2Pcl0ZnwMDlQ1x/RDR5IrSLTDfnHB5Ai5bsW/HZoS8sP9VpV3tcRv1QzEfijAoZ4pMMKIBiiqZruGOD+59Z1tbCSE1yEdev9ZJFX3IFUTuXk9+HeJPI9n3AGdJXrGjivnhALsCdVAuFFG1ZfbXrREA2wvZ+A2K5ZGfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RXjPLd/4; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43cfe99f2a7so4920945e9.2
-        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 23:45:06 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43cee550af2so5107105e9.1
+        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 23:49:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746427505; x=1747032305; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1746427779; x=1747032579; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=w8noPVR70Xgd7wEK+1WJmgui78pNLLCVT+Tyy9XyHfs=;
-        b=r0CjERFh7wR4yk9MwPfumA/Slp0Lg148wkw9DGW/kzMgF0DGNOaRVco+7iLvNV5sy1
-         rGl0yq9BoIVoz+F94T/wxPB7F75asQnu4YXraTmBQ79zE6n+zdQRENNsajJnt3H/nncD
-         /GgiQ5NkZ+JT52JTe/AuZgIoueiXiuDAJ3u02vb1J0QCL9ghUP+fOB+ROXhFthh+Ec/7
-         9if7CwvxnaRIzFjijG69SzGOwYGaQddydDIMP6ejPWjixI+ijrCfWSfXEiLom4QNe13V
-         9F4MF7r0ozRrilrxNqgKYhc3mndhXnb+B1zFepCBgvC4FwY990ZsX5457io4Xo7N7PgJ
-         Gcyg==
+        bh=vRkejBpgKK6q5CvBnTyipH/mCg4FuaPtM0mb9AWojxI=;
+        b=RXjPLd/48ixyz884Aa+PKXRaW2JUh+5Vhe8lxZQUCBFAa4rQK6zJY3eTMwzPsjsl/b
+         bNomy8Na4BGhnZPBULRbsS8tv6GuQLSlvafi7MhCaEnEClduQdhggUONfjPcGd0KN56C
+         4auMXY2uInqXYJZlMQ5lyLo2SSR2ZduG94n86uvZj/xwHBEwkemtWnoFqrFZRtFtfPMl
+         DtoW/9aJNfCJyutSb8NqWnPdM0nPN1FiBU26T80RpjLBxCVAC57VNWf/RDSZ90/uU2MZ
+         0alyC2pVlTWa7/W1FUoal0Wa+LUMtoWFNigKQKpoNRlnr21LgVcUfbtTzGWmkLPZpPyy
+         zpUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746427505; x=1747032305;
+        d=1e100.net; s=20230601; t=1746427779; x=1747032579;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=w8noPVR70Xgd7wEK+1WJmgui78pNLLCVT+Tyy9XyHfs=;
-        b=pyM+2nzoxtLHPiJmu/ne4S5Lcu1MiR6TRzPOeYEoQ48Aq7LpgJgKI0XCzDuCIY+Oox
-         zCRyg7juA7BzcYUQFnw4xKuMMcY2nHhCfr9ebO1c6aaOgU0ZJqfsdrNGMf0UaiyJSR+B
-         XJr7C8ArC1wzyIIMbmUFQGBKHPsU6H8p6uMxOYzC7MVsl96FKGe/mMkQ9cA+c1F/01UX
-         t2TMsyMPfQpB8ldRz2b56MCn+pshDMP2MvPIeLjtlUF2oQTHfLdr9eB5y+/FMnZsFELr
-         s/O5L51kVhQgo83lPQGXKfG/sN0QpAk4yasBMRVb53nYElHdZcHxUOuTtUlNm+osSTdg
-         xXQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXdWCIxTpwW3CcknAFUx6d1DFKiD1C8ZbQwaTmGrDH4XyW2dfsb2vXrsr8jCg91ZVZTDwcOeb5WRTZP@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywz8KBWt7AMiUmaRUsL13WKxPyp4nJfzAkjB3KxFRLItTtfQ65H
-	tBcHZqFOTM2Uf4hVtjrcz/6xUJdCmgtIcF46o7ggHRQkW7t7Q2OvR6lzgaMrV28=
-X-Gm-Gg: ASbGnctQXQqmgwg3atqXgjc3p3WPdGaugrAXRkwolK3Fn31FbpHaKfKu1s+Gq3tFihl
-	46tJLCqUROAxnvbbt9Zr2DldRaBS4ULCjdtFKIEc11Zw/UKauuuKiGMP7RG9milq25XkOPbRTOn
-	OsZhj2xNC/bKoMKdTCchn2NdGmvc4Lstwd5mJ8Ot40KizYwgrkM3Ev2b/cwTIkV2HEoHPVFSU4+
-	o57w4j+/mrv96WqxIubCIoxE9VWRnYlM3SIij2yB07ctHUVBUYzp2eq8H59emi87WFG44tbsTlw
-	Ew28f7+wm0u8Xy7leu3P2udOBsU4ku9V7OubAaxh6xyA+UDcuIkL4XaMbzg=
-X-Google-Smtp-Source: AGHT+IFqK9ylb6N7k08mb0TyDcKoH9DPTwdh1zCrGridcwy/TzfJH8PhEKoWWMZ2Yj9Gv9rTYTvRkQ==
-X-Received: by 2002:a05:6000:2481:b0:3a0:782b:acf8 with SMTP id ffacd0b85a97d-3a099af619dmr3414511f8f.15.1746427504927;
-        Sun, 04 May 2025 23:45:04 -0700 (PDT)
+        bh=vRkejBpgKK6q5CvBnTyipH/mCg4FuaPtM0mb9AWojxI=;
+        b=MwYjM8vWhLY5j8qTj7rlEPYhv0vGVVepZBp4v7VHpDV5gDE2kJSbLydSHQnG+D8AmH
+         jPHg9R/NMhqNY49lvyPQXITL9HWZqLDOzWKT7t2rnBT66c4/wsaxcMIV4hpJIpD8PEGW
+         7e/zzgS/INh4XkX0tn58ucYvg4olafmdTmBZdJJhMXJwlFvuqLIlA2P4UbkleIqMGmx0
+         EvprEjSohy+lVqwdkbU5jwABNyLEH8R9UEJoVXIDn7Yz6TSKc9WR4xLGLEeG9jeT5BFQ
+         qDHVJvb9TJW5dIB4BZ9aSksU4oV/7nfgbfKY7b9PP9kE3OdcsKEZ/2xME6V2YW513suw
+         ML2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXqNvZ4HcwUQ978/pydSj0YOzadCGE3Gx1vBdeRekw9JR1bCtBoMe1iP6xmjrT4FwlX6t0Yt+wA+NBc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxz39LvB/mU/lk09SnEnCPzFGovnpH3OKfH/HU0e3VL5noLku9E
+	skD9fdkmFddqwcpfFzhJrSgug5sa/mcvBSWqsdGjrnJzAy11cp8qzASW+wvpsTQ=
+X-Gm-Gg: ASbGncsdQZZFHn8o6JU0wOZXinIPwZ0WEI4IBgKiW5qfFEuJ0Uwj1u8Dfwi65RbaTLO
+	G/nwLO8VxG6UHSqs3LaDdgfTrVnAc4n66Vrh/zvTWTa4aTSKXwMv2YVLZ8hweoGm3/CVOf9pO6I
+	6qMFBjQAZqzHbyJ9HX/Ki1BjUNpHcIFhcmGjHpQLwk+k0/CbB3BVWlgip8BVjG7q+IVEIZLP22N
+	w15hTy4QMWqDkt7odF67sgoDRuL6DZyGVLShUcHVpsoSEMBB565wtHyKOuhkCOybKt0t1zHtxoK
+	g0YNCEHw+o+AgoVr6oYphSb1yfOEWqLgpWbNqWdjd/tERP7UxaxGbHQg7UZWJYmsEuh3Lg==
+X-Google-Smtp-Source: AGHT+IFixvKD7HHsHGtwqJsBWlNq4SzbJAFQFX2S8HlNzHe6g/+ADbRyeikQ/D0Ur+FrhfKob6EyRQ==
+X-Received: by 2002:a05:600c:c88:b0:43d:77c5:9c0e with SMTP id 5b1f17b1804b1-441bbe9919bmr35457555e9.1.1746427779252;
+        Sun, 04 May 2025 23:49:39 -0700 (PDT)
 Received: from [192.168.1.29] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae3d3bsm9521985f8f.33.2025.05.04.23.45.02
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b0f0f6sm9499940f8f.66.2025.05.04.23.49.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 May 2025 23:45:04 -0700 (PDT)
-Message-ID: <5c307e88-a3fc-430b-8ccc-af59e2097da3@linaro.org>
-Date: Mon, 5 May 2025 08:45:01 +0200
+        Sun, 04 May 2025 23:49:38 -0700 (PDT)
+Message-ID: <387f8a74-8c5b-4b8b-9f6d-8f32cdadc6c8@linaro.org>
+Date: Mon, 5 May 2025 08:49:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,29 +82,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 19/24] drm/msm/dsi: Add support for SM8750
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>,
- Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Dmitry Baryshkov <lumag@kernel.org>, Rob Clark <robdclark@gmail.com>,
+Subject: Re: [PATCH RFC/WIP 1/4] arm64: dts: qcom: sm8750: Add display (MDSS)
+ with Display CC
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
  Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org,
- Srinivas Kandagatla <srini@kernel.org>
-References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
- <20250430-b4-sm8750-display-v5-19-8cab30c3e4df@linaro.org>
- <ahx623ttvzd62u4fri6iqguj7mirlf22tvwbu6k2ngxw6hwbcp@oh7mmex5fjmz>
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Jessica Zhang <jesszhan@quicinc.com>, Abhinav Kumar
+ <abhinavk@quicinc.com>, Abel Vesa <abel.vesa@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250424-sm8750-display-dts-v1-0-6fb22ca95f38@linaro.org>
+ <20250424-sm8750-display-dts-v1-1-6fb22ca95f38@linaro.org>
+ <81205948-ae43-44ee-aa07-e490ea3bba23@oss.qualcomm.com>
+ <97ae84c6-0807-4b19-a474-ba76cc049da9@quicinc.com>
+ <59e3e34d-83b6-4f83-be4c-eeaaba9a353e@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -151,30 +144,51 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  h0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1qwom6QbU06ltb
  vJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHpcwzYbmi/Et7T
  2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <ahx623ttvzd62u4fri6iqguj7mirlf22tvwbu6k2ngxw6hwbcp@oh7mmex5fjmz>
+In-Reply-To: <59e3e34d-83b6-4f83-be4c-eeaaba9a353e@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 03/05/2025 00:52, Dmitry Baryshkov wrote:
-> On Wed, Apr 30, 2025 at 03:00:49PM +0200, Krzysztof Kozlowski wrote:
->> Add support for DSI on Qualcomm SM8750 SoC with notable difference:
+On 30/04/2025 09:46, Konrad Dybcio wrote:
+> On 4/30/25 1:07 AM, Abhinav Kumar wrote:
 >>
->> DSI PHY PLLs, the parents of pixel and byte clocks, cannot be used as
->> parents before DSI PHY is configured, the PLLs are prepared and their
->> initial rate is set.  Therefore assigned-clock-parents are not working
->> here and driver is responsible for reparenting clocks with proper
->> procedure: see dsi_clk_init_6g_v2_9().
+>>
+>> On 4/28/2025 2:31 PM, Konrad Dybcio wrote:
+>>> On 4/24/25 3:04 PM, Krzysztof Kozlowski wrote:
+>>>> Add device nodes for entire display: MDSS, DPU, DSI, DSI PHYs,
+>>>> DisplayPort and Display Clock Controller.
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>
+>>>> ---
+>>>
+>>> [...]
+>>>
+>>>> +                mdp_opp_table: opp-table {
+>>>> +                    compatible = "operating-points-v2";
+>>>> +
+>>>
+>>> The computer tells me there's also a 156 MHz rate @ SVS_D1
+>>>
+>>> Maybe Abhinav could chime in whether we should add it or not
+>>>
+>>
+>> Yes I also see a 156Mhz for LOW_SVS_D1 but we had a similar entry even for sm8650 and did not publish it in the dt.
+>>
+>> It was present till sm8450.dtsi but dropped in sm8550/sm8650 even though LOW_SVS_D1 is present even on those.
+>>
+>> I think the reason could be that the displays being used on the reference boards will need a pixel clock of atleast >= low_svs and the MDP clock usually depends on the value of the DSI pixel clock (which has a fixed relationship to the byte clock) to maintain the data rate. So as a result perhaps even if we add it, for most displays this level will be unused.
+>>
+>> If we end up using displays which are so small that the pixel clock requirement will be even lower than low_svs, we can add those.
+>>
+>> OR as an alternative, we can leave this patch as it is and add the low_svs_d1 for all chipsets which support it together in another series that way it will have the full context of why we are adding it otherwise it will look odd again of why sm8550/sm8650 was left out but added in sm8750.
 > 
-> Is it still the case? I thought you've said that with the proper flags
+> I would assume that with VRR even fancy panels at low refresh rate (in
+> the 1-5 Hz range) may make use of this, so I would be happy to go with
+> option 2
 
-Yes, as we discussed many times - this is still needed even with the
-proper flags.
-
-> there would be no need to perform this in the driver.
-
-assigned-clock-xxx are not respecting that flag and anyway, even if that
-was solved, they are executed too early - before PHY is initialized. You
-cannot prepare PHY PLL before PHY is initialized and enabled.
+Corner cases, at least high frequency, was omitted intentionally because
+for example NOM_L1 simply cause hardware reboot. Something else is
+missing in rpmh, but I don't mind documenting all of them.
 
 Best regards,
 Krzysztof
