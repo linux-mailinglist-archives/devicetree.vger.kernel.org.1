@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-173710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99CD5AA94F2
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:57:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E10AA94F8
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:58:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D42DD3BB20D
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:57:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11DCF3BB429
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D32258CD3;
-	Mon,  5 May 2025 13:57:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2526E258CDB;
+	Mon,  5 May 2025 13:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KJMbGmoR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HpZaiw7P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA1F2561DC
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 13:57:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E202561DC
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 13:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746453435; cv=none; b=fKr2s10JfF48UWoTbuC32TavZiFmeCKotR0kO7TyF/rW/KEaUFxdSGJCWlBGEHuT1QAktjbr0CJCVaVQOswgFcj+LhZqLzZ5JddFDnhvF0XOJ4/9FdEM6C2p66QvZZJB14KSltLAMZJ9ByTLHV+RV27jiAFwsjwBgYXZ49zhR9U=
+	t=1746453505; cv=none; b=IMXgpAMacJ2erKJVrZB3Pi4GlgQKbllhemQGR7er3zjIGkXTX1cNmRceEY/nzx84YhY0jAL4xunmd48y71ZDgc4d2O0m20nnJk4FgbfgjV79LHU8JsGtR0kZjsxYAkxCd+QiV7Uzn4nCmrzYRMRW6dLmmLNZzB4b6AUImin4dBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746453435; c=relaxed/simple;
-	bh=cvWIoQGrtgo+3ChyE96QITsQpkx48iXSqXhKsZn9rE0=;
+	s=arc-20240116; t=1746453505; c=relaxed/simple;
+	bh=r+cHjp2J90SV7SUs56fjwmLSFTdWS3kSW4jkgptKB08=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=uRfUfHVrCrTno5Iurc3MkDVI2W+UgVgwoVERnw7hWROf5HgahEqVCkcPpae9lFckYH2hTd7SKo4VOV4Q0XP3lBiOKspsc50XauwoboxG61wTBYm3xiYFr7/sP3/Ut4P+ilFWrAiDuVWNY1ORx3k51x4hV9ir7PFfUuS7VZWY6xM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KJMbGmoR; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:Content-Type; b=oFb/sOIaP9GSN7Mnn8LVlMuX9Z8ykveN7A05WjAytA13MsIlo9/vSzLUgxzZ/gSFSsGTIXza4Vgx/mBGzGGnB2DGvFE3uAyJAeNYRRVzOkYKPv8Q7Q4m6KvOXpletmfNlaoabTTTE3DEyd3fwBv2oeqEXZ7TsTk3OXlyhT8uWtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HpZaiw7P; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-441c99459e9so8785695e9.3
-        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 06:57:13 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-39efc1365e4so2049974f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 06:58:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746453432; x=1747058232; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1746453501; x=1747058301; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tpOfCpy36Um39vuzOQ53zo4WM5KtHq+wPwA/g9psN6k=;
-        b=KJMbGmoRm6wcTsN+0irHQsscyspXZGQl/Ac1bRyna82n3FDrnQLPRTVdhWT99WWp8j
-         SnyZ58LZCjf84b9CzioU9OcuK8cYyGqB4B/vd9yxpe/CT/XdXVL/gyEBdYmRwOvLynV4
-         feCS0geq6M9UkhmtxmsS+L7HXTKCq2LEpeNph6hRgh/npJpWNcWmfZGLnWZOUgXmSmE5
-         qI27SEkTC7lUWT06qgXL7nGAAn+99RfHvggVs1AUow+sFrblVm7efAh9QmZijAurNyoz
-         vxbkS9yKmjCS9hUHB1eip7j2FaxXhfvY+qfYauZ7DBeFDioADWgpmAUXazvfmtdMEuek
-         k2VA==
+        bh=gXC9l1aT+CSZ+5Bnc4RA/CQ9ik+Uji08ELGYRLxgqC8=;
+        b=HpZaiw7PGjtMtoBJuIb/pJv2s66O/OWjwQuATZVxCqiupJquKYaZTkIilvHw5GUlWY
+         2wg98K8Bff1g6T5BH4b4Iqb2DIr9YLpPzUNPW4pZ4G/0O8aZbG2Vx17Mif2atyeTLNOu
+         aBL/bFGwwPlylrC3hELWno6z/nymE+sifR1lN470CxgGxbu0/jF3dcFvjJ3bLaNCYEH2
+         L9V/hpJ/giIry7/RjTdi7fAviotusGQhy5Cu3MaYSkf0qL2kPAwnZefph9lDk+Y32b6B
+         7vnM8iXMh8fByYByvvEZrtB39iQDiUk+zKkKZTLohR2qEi8FHUCrsnwm6XFwVs9aRC9N
+         pAKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746453432; x=1747058232;
+        d=1e100.net; s=20230601; t=1746453501; x=1747058301;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=tpOfCpy36Um39vuzOQ53zo4WM5KtHq+wPwA/g9psN6k=;
-        b=TvCIBXAW3Ye8c1ZHqPDSyaMucdNKfvJhiHpzbTq9iWLP4dFRfv5NPUK8L9/nxPqzHN
-         jToup7YEcqOL2/QMOD5RAsC48SUWdcEEqr/2+6jLaMGySjJzzvheHcpoTjFqNw9jy056
-         FLbgvkeFkagIBiCRdoC5WrMgSAngwFLGXKY7Ih39TMt9s+mOSiOfePCLJUcJRr96jjxQ
-         yVOvSXgnFWBJ5BsE2KARFEq2PSa3z10eMmDckFIbJbkGIRLr+zlBBPOrTSwFy0JRl5G5
-         8pO//qgSn7/AfVNSxdMHb3HdnOhJsrwK1QybIyGTRLNt4O82B2eqKtclTBDBPrY9Z9jU
-         JPcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVru10Pbmz9a2Co7yO7vg3VmfP8L6P+djzCFatucLOgmzfzETbw1KagndMHpY6YAJ4s0fyNwZR0yKV/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxmo6KUo9xI6dmz7NUq3A4Fr0v+tOwe6RLKDz+fMaXnq84AnyYu
-	OqI2RzhmzzRabZJJha+6i2kqworNTUXUjPvxWulrsyM8trRyCplgJllqw6E7IYM=
-X-Gm-Gg: ASbGncsJyVWTHd9WnNBQAwJsuxUrMs3qzwePW9xT7l3TTpVokDRrBN7h682sYztnQdq
-	Z3nXtegMJWb3+Y0TCdjn/IV37GKtGoWxOsuQbMsn6iba74T5m4si63/+xaYQNgl8MzB6BGn5Bbp
-	fhnyqRyCgdDoG5tjfXI45yJY4FhLEbDQnuU3g13U57XhyZeM7AnUNo1Ymjsi3gwyRjkD2FKzZtM
-	E5nyOVK4DK26HK0XEBlSmmQlwCtPjzQuTWArbbGgDR9dDazfLzUUl+LPPiK/ETqoM6eeO2R6Hro
-	VLUDya0AyD5zOcdi5r2HMGyrP5KO8WZSRrzvMjwRXAq1aAdI5BbBc2Hl4nay8HUJggEFcn2SboS
-	ttvGuoRq7olgvRPlZSA==
-X-Google-Smtp-Source: AGHT+IERbb85euZHYXgiYa/TxvOEZ/vOaHxMeVPrrX0S12v3xDTa50lnxHqFU0pSGJ3Idq6PuA6aDA==
-X-Received: by 2002:a05:6000:c8b:b0:3a0:9fe1:c2ac with SMTP id ffacd0b85a97d-3a09fe1c507mr4152470f8f.22.1746453431630;
-        Mon, 05 May 2025 06:57:11 -0700 (PDT)
+        bh=gXC9l1aT+CSZ+5Bnc4RA/CQ9ik+Uji08ELGYRLxgqC8=;
+        b=FmwlxIc+hQMTPCPs5La760MwAzFFtAWjh765j7mfWGaNcu5km1Apjj8BqDDyRbvVA4
+         cdTrsqpLZGFDuZj4quFh1RSXNCZoOwVGJF1w6gK3dCnL5erumbOAvPnjDOwrW83NmIUB
+         BXVmxoLQL+qY5L27MASgydcoAJCVmpYWPjrsPJkt0on2zuhx4RZeP/tHzepVvn5Yz0uf
+         p+Bdq9+z4vNjBRnTPyvQnfxddriINuXzI0NpifA4d7vP5Vbpl6aLJ9FTjJ4J0Bz/Hj/i
+         YJV5/KOECjRLhaoQkV8X8wbC2lW0+2PPqk9ZlbERorQI/kZyghK+Tzz6OBeCoQIX4MyZ
+         Sitg==
+X-Forwarded-Encrypted: i=1; AJvYcCWao0jO9CSfr1fr5/XT23xwHQUEc5GF2cpKele3f3+8D1fwUEF9r5Kq1j2LKHCC4yTv3iQrOoepGKuz@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOJkefe8UmBEzY9mzpCGLMtaVaX7i4QEovP8GFmbbmwivn/S6q
+	tWPOVKlaVHeuxLcLigZSvFroqLidDU4Z7Xr/s47TsuvhMwXxM5CSDRkE2QV4D4c=
+X-Gm-Gg: ASbGncujpv99Xa5hO7a9GbIbOIIsPofi7TSuPQUAjUclofeAM7izXT/7cMyle3jw/Kx
+	QKxd9znzVlbDTcG6wwdKX5oGzoNmMj8HLoJJPc7lrKAROH/yXyg5BqHVBlX9oxbGPVLKcxytiwl
+	TLW+YQHIuoroy6e0H5aZ2/XJvQB6jOjpMxCQF/fkE+1E+1lAIP7huUCdUWUNYBg1QsxTQiBqfaF
+	EWuivLuz9FU2AScNSUI0vONcx3KTg4cSgOpf5KQyGNErPH9BuMLUE5DhapCT1yx1/bhtpKORkTr
+	XIZQbYqrRakQ/tVtKum04E9zIN+Op9ONU5z9SfgtT0T+v3TGzYrNTbbWq0gqLhKhHhsxwQJwxO/
+	yTdVc1/RWsMFA3vw+uw==
+X-Google-Smtp-Source: AGHT+IE7FeAN808jsF/kt7iIrLbLyf2BIqYT3PpEA8avKbfuiTEn401GQqFVkx1FNAcBY+VwNCyVRw==
+X-Received: by 2002:a05:6000:240b:b0:39c:1257:febb with SMTP id ffacd0b85a97d-3a099aefed3mr10195484f8f.59.1746453500967;
+        Mon, 05 May 2025 06:58:20 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3? ([2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b17260sm10778567f8f.98.2025.05.05.06.57.10
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b0ff8esm10551704f8f.79.2025.05.05.06.58.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 May 2025 06:57:11 -0700 (PDT)
-Message-ID: <861acd58-5eed-4291-bae2-965bfb5fe2bb@linaro.org>
-Date: Mon, 5 May 2025 15:57:10 +0200
+        Mon, 05 May 2025 06:58:20 -0700 (PDT)
+Message-ID: <2fb8cb05-8fd7-431d-87a9-134448125f06@linaro.org>
+Date: Mon, 5 May 2025 15:58:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,20 +86,18 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/4] drm: panel: Add support for Renesas R61307 based
- MIPI DSI panel
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Jessica Zhang <quic_jesszhan@quicinc.com>,
+Subject: Re: [PATCH 2/2] drm/panel: Add Novatek NT37801 panel driver
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250503094149.29201-1-clamor95@gmail.com>
- <20250503094149.29201-3-clamor95@gmail.com>
- <ffac4a1b-5dfa-48e9-8ac4-37939b6a9347@linaro.org>
- <CAPVz0n3i7=jM9GB-CggFOJEN7B+oBWvyqsSn8UXav3MH0BQJ5g@mail.gmail.com>
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250505-sm8750-display-panel-v1-0-e5b5398482cc@linaro.org>
+ <20250505-sm8750-display-panel-v1-2-e5b5398482cc@linaro.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -126,101 +124,422 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <CAPVz0n3i7=jM9GB-CggFOJEN7B+oBWvyqsSn8UXav3MH0BQJ5g@mail.gmail.com>
+In-Reply-To: <20250505-sm8750-display-panel-v1-2-e5b5398482cc@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 05/05/2025 13:41, Svyatoslav Ryhel wrote:
-> пн, 5 трав. 2025 р. о 10:50 Neil Armstrong <neil.armstrong@linaro.org> пише:
->>
->> On 03/05/2025 11:41, Svyatoslav Ryhel wrote:
->>> R61307 is liquid crystal driver for high-definition amorphous silicon
->>> (a-Si) panels and is ideal for tablets and smartphones.
->>>
->>> Supported compatibles are:
->>> - hit,tx13d100vm0eaa
->>> - koe,tx13d100vm0eaa
->>>
->>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
->>> ---
->>>    drivers/gpu/drm/panel/Kconfig                |  13 +
->>>    drivers/gpu/drm/panel/Makefile               |   1 +
->>>    drivers/gpu/drm/panel/panel-renesas-r61307.c | 327 +++++++++++++++++++
->>>    3 files changed, 341 insertions(+)
->>>    create mode 100644 drivers/gpu/drm/panel/panel-renesas-r61307.c
->>>
->>
->> <snip>
->>
->>> +static int renesas_r61307_probe(struct mipi_dsi_device *dsi)
->>> +{
->>> +     struct device *dev = &dsi->dev;
->>> +     struct renesas_r61307 *priv;
->>> +     int ret;
->>> +
->>> +     priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
->>> +     if (!priv)
->>> +             return -ENOMEM;
->>> +
->>> +     priv->vcc_supply = devm_regulator_get(dev, "vcc");
->>> +     if (IS_ERR(priv->vcc_supply))
->>> +             return dev_err_probe(dev, PTR_ERR(priv->vcc_supply),
->>> +                                  "Failed to get vcc-supply\n");
->>> +
->>> +     priv->iovcc_supply = devm_regulator_get(dev, "iovcc");
->>> +     if (IS_ERR(priv->iovcc_supply))
->>> +             return dev_err_probe(dev, PTR_ERR(priv->iovcc_supply),
->>> +                                  "Failed to get iovcc-supply\n");
->>> +
->>> +     priv->reset_gpio = devm_gpiod_get_optional(dev, "reset",
->>> +                                                GPIOD_OUT_HIGH);
->>> +     if (IS_ERR(priv->reset_gpio))
->>> +             return dev_err_probe(dev, PTR_ERR(priv->reset_gpio),
->>> +                                  "Failed to get reset gpios\n");
->>> +
->>> +     if (device_property_read_bool(dev, "renesas,inversion"))
->>> +             priv->inversion = true;
->>> +
->>> +     if (device_property_read_bool(dev, "renesas,contrast"))
->>> +             priv->dig_cont_adj = true;
->>> +
->>> +     priv->gamma = 0;
->>> +     device_property_read_u32(dev, "renesas,gamma", &priv->gamma);
->>> +
->>> +     priv->dsi = dsi;
->>> +     mipi_dsi_set_drvdata(dsi, priv);
->>> +
->>> +     dsi->lanes = 4;
->>> +     dsi->format = MIPI_DSI_FMT_RGB888;
->>> +     dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
->>> +                       MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM;
->>> +
->>> +     drm_panel_init(&priv->panel, dev, &renesas_r61307_panel_funcs,
->>> +                    DRM_MODE_CONNECTOR_DSI);
->>
->> Please switch to devm_drm_panel_alloc()
->>
+On 05/05/2025 11:16, Krzysztof Kozlowski wrote:
+> Add driver for the Novatek NT37801 or NT37810 AMOLED DSI 1440x3200
+> panel in CMD mode, used on Qualcomm MTP8750 board (SM8750).
 > 
-> This helper is not available as for 6.15-rc5
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   MAINTAINERS                                   |   6 +
+>   drivers/gpu/drm/panel/Kconfig                 |  10 +
+>   drivers/gpu/drm/panel/Makefile                |   1 +
+>   drivers/gpu/drm/panel/panel-novatek-nt37801.c | 336 ++++++++++++++++++++++++++
+>   4 files changed, 353 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index b2c3be5f6131432647dd01f22bbf4bf1c8bde9e6..78cdd5f81c322c230a82c8a877b2338d932478cb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -7595,6 +7595,12 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
+>   F:	Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+>   F:	drivers/gpu/drm/panel/panel-novatek-nt36672a.c
+>   
+> +DRM DRIVER FOR NOVATEK NT37801 PANELS
+> +M:	Krzysztof Kozlowski <krzk@kernel.org>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/display/panel/novatek,nt37801.yaml
+> +F:	drivers/gpu/drm/panel/panel-novatek-nt37801.c
+> +
+>   DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS
+>   M:	Lyude Paul <lyude@redhat.com>
+>   M:	Danilo Krummrich <dakr@kernel.org>
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 7e9c60a626fbbabb954ed2a7e3d1ef5eee0679d6..c7b688995c8d31b7445aa79dcc310742e4e724d8 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -508,6 +508,16 @@ config DRM_PANEL_NOVATEK_NT36672E
+>   	  LCD panel module. The panel has a resolution of 1080x2408 and uses 24 bit
+>   	  RGB per pixel.
+>   
+> +config DRM_PANEL_NOVATEK_NT37801
+> +	tristate "Novatek NT37801/NT37810 AMOLED DSI panel"
+> +	depends on OF
+> +	depends on DRM_MIPI_DSI
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	help
+> +	  Say Y here if you want to enable support for Novatek NT37801 (or
+> +	  NT37810) AMOLED DSI Video Mode LCD panel module with 1440x3200
+> +	  resolution.
+> +
+>   config DRM_PANEL_NOVATEK_NT39016
+>   	tristate "Novatek NT39016 RGB/SPI panel"
+>   	depends on OF && SPI
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> index 883974f0cba128e28f23e31512f8d30d59913b0e..2dcc224cba63e9cf59410fd974e5f068bb9e26b3 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -50,6 +50,7 @@ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35950) += panel-novatek-nt35950.o
+>   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36523) += panel-novatek-nt36523.o
+>   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672A) += panel-novatek-nt36672a.o
+>   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672E) += panel-novatek-nt36672e.o
+> +obj-$(CONFIG_DRM_PANEL_NOVATEK_NT37801) += panel-novatek-nt37801.o
+>   obj-$(CONFIG_DRM_PANEL_NOVATEK_NT39016) += panel-novatek-nt39016.o
+>   obj-$(CONFIG_DRM_PANEL_MANTIX_MLAF057WE51) += panel-mantix-mlaf057we51.o
+>   obj-$(CONFIG_DRM_PANEL_OLIMEX_LCD_OLINUXINO) += panel-olimex-lcd-olinuxino.o
+> diff --git a/drivers/gpu/drm/panel/panel-novatek-nt37801.c b/drivers/gpu/drm/panel/panel-novatek-nt37801.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..2c07a61c3a58819ca4c5e39ae352eac1b1fc694c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-novatek-nt37801.c
+> @@ -0,0 +1,336 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +// Copyright (c) 2024 Linaro Limited
+> +
+> +#include <linux/backlight.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +
+> +#include <drm/display/drm_dsc.h>
+> +#include <drm/display/drm_dsc_helper.h>
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_panel.h>
+> +#include <drm/drm_probe_helper.h>
+> +
+> +#include <video/mipi_display.h>
+> +
+> +struct novatek_nt37801 {
+> +	struct drm_panel panel;
+> +	struct mipi_dsi_device *dsi;
+> +	struct drm_dsc_config dsc;
+> +	struct gpio_desc *reset_gpio;
+> +	struct regulator_bulk_data *supplies;
+> +};
+> +
+> +static const struct regulator_bulk_data novatek_nt37801_supplies[] = {
+> +	{ .supply = "vddio" },
+> +	{ .supply = "vci" },
+> +	{ .supply = "vdd" },
+> +};
+> +
+> +static inline struct novatek_nt37801 *to_novatek_nt37801(struct drm_panel *panel)
+> +{
+> +	return container_of(panel, struct novatek_nt37801, panel);
+> +}
+> +
+> +static void novatek_nt37801_reset(struct novatek_nt37801 *ctx)
+> +{
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +	usleep_range(10000, 21000);
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	usleep_range(10000, 21000);
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +	usleep_range(10000, 21000);
+> +}
+> +
+> +static int novatek_nt37801_on(struct novatek_nt37801 *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi;
+> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0,
+> +				     0x55, 0xaa, 0x52, 0x08, 0x01);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x01);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc5, 0x0b, 0x0b, 0x0b);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x80);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x02);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf5, 0x10);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x1b);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf4, 0x55);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x18);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf8, 0x19);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x0f);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfc, 0x00);
+> +	mipi_dsi_dcs_set_column_address_multi(&dsi_ctx, 0x0000, 0x059f);
+> +	mipi_dsi_dcs_set_page_address_multi(&dsi_ctx, 0x0000, 0x0c7f);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x90, 0x03, 0x03);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x91,
+> +				     0x89, 0x28, 0x00, 0x28, 0xc2, 0x00, 0x02,
+> +				     0x68, 0x04, 0x6c, 0x00, 0x0a, 0x02, 0x77,
+> +				     0x01, 0xe9, 0x10, 0xf0);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x81);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x23);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfb,
+> +				     0x00, 0x01, 0x00, 0x11, 0x33, 0x33, 0x33,
+> +				     0x55, 0x57, 0xd0, 0x00, 0x00, 0x44, 0x56,
+> +				     0x77, 0x78, 0x9a, 0xbc, 0xdd, 0xf0);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x06);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3, 0xdc);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_SET_GAMMA_CURVE, 0x00);
+> +	mipi_dsi_dcs_set_tear_on_multi(&dsi_ctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x3b, 0x00, 0x18, 0x00, 0x10);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_WRITE_CONTROL_DISPLAY,
+> +				     0x20);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x51,
+> +				     0x07, 0xff, 0x07, 0xff, 0x0f, 0xff);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5a, 0x01);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5f, 0x00);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x9c, 0x01);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_WRITE_MEMORY_START);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x2f, 0x00);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0,
+> +				     0x55, 0xaa, 0x52, 0x08, 0x01);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb2, 0x55, 0x01, 0xff, 0x03);
+> +	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> +	mipi_dsi_msleep(&dsi_ctx, 120);
+> +	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> +	mipi_dsi_msleep(&dsi_ctx, 20);
+> +
+> +	return dsi_ctx.accum_err;
+> +}
+> +
+> +static int novatek_nt37801_off(struct novatek_nt37801 *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi;
+> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
+> +	mipi_dsi_msleep(&dsi_ctx, 20);
+> +
+> +	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
+> +	mipi_dsi_msleep(&dsi_ctx, 120);
+> +
+> +	return dsi_ctx.accum_err;
+> +}
+> +
+> +static int novatek_nt37801_prepare(struct drm_panel *panel)
+> +{
+> +	struct novatek_nt37801 *ctx = to_novatek_nt37801(panel);
+> +	struct device *dev = &ctx->dsi->dev;
+> +	struct drm_dsc_picture_parameter_set pps;
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(novatek_nt37801_supplies),
+> +				    ctx->supplies);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	novatek_nt37801_reset(ctx);
+> +
+> +	ret = novatek_nt37801_on(ctx);
+> +	if (ret < 0)
+> +		goto err;
+> +
+> +	drm_dsc_pps_payload_pack(&pps, &ctx->dsc);
+> +
+> +	ret = mipi_dsi_picture_parameter_set(ctx->dsi, &pps);
+> +	if (ret < 0) {
+> +		dev_err(panel->dev, "failed to transmit PPS: %d\n", ret);
+> +		goto err;
+> +	}
+> +
+> +	ret = mipi_dsi_compression_mode(ctx->dsi, true);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to enable compression mode: %d\n", ret);
+> +		goto err;
+> +	}
+> +
+> +	msleep(28);
+> +
+> +	return 0;
+> +
+> +err:
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	regulator_bulk_disable(ARRAY_SIZE(novatek_nt37801_supplies),
+> +			       ctx->supplies);
+> +
+> +	return ret;
+> +}
+> +
+> +static int novatek_nt37801_unprepare(struct drm_panel *panel)
+> +{
+> +	struct novatek_nt37801 *ctx = to_novatek_nt37801(panel);
+> +	struct device *dev = &ctx->dsi->dev;
+> +	int ret;
+> +
+> +	ret = novatek_nt37801_off(ctx);
+> +	if (ret < 0)
+> +		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
+> +
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +
+> +	regulator_bulk_disable(ARRAY_SIZE(novatek_nt37801_supplies),
+> +			       ctx->supplies);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct drm_display_mode novatek_nt37801_mode = {
+> +	.clock = (1440 + 20 + 4 + 20) * (3200 + 20 + 2 + 18) * 120 / 1000,
+> +	.hdisplay = 1440,
+> +	.hsync_start = 1440 + 20,
+> +	.hsync_end = 1440 + 20 + 4,
+> +	.htotal = 1440 + 20 + 4 + 20,
+> +	.vdisplay = 3200,
+> +	.vsync_start = 3200 + 20,
+> +	.vsync_end = 3200 + 20 + 2,
+> +	.vtotal = 3200 + 20 + 2 + 18,
+> +	.type = DRM_MODE_TYPE_DRIVER,
+> +};
+> +
+> +static int novatek_nt37801_get_modes(struct drm_panel *panel,
+> +				     struct drm_connector *connector)
+> +{
+> +	return drm_connector_helper_get_modes_fixed(connector,
+> +						    &novatek_nt37801_mode);
+> +}
+> +
+> +static const struct drm_panel_funcs novatek_nt37801_panel_funcs = {
+> +	.prepare = novatek_nt37801_prepare,
+> +	.unprepare = novatek_nt37801_unprepare,
+> +	.get_modes = novatek_nt37801_get_modes,
+> +};
+> +
+> +static int novatek_nt37801_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
+> +	u16 brightness = backlight_get_brightness(bl);
+> +	int ret;
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct backlight_ops novatek_nt37801_bl_ops = {
+> +	.update_status = novatek_nt37801_bl_update_status,
+> +};
+> +
+> +static struct backlight_device *
+> +novatek_nt37801_create_backlight(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	const struct backlight_properties props = {
+> +		.type = BACKLIGHT_RAW,
+> +		.brightness = 4095,
+> +		.max_brightness = 4095,
+> +	};
+> +
+> +	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
+> +					      &novatek_nt37801_bl_ops, &props);
+> +}
+> +
+> +static int novatek_nt37801_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	struct novatek_nt37801 *ctx;
+> +	int ret;
+> +
+> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	ret = devm_regulator_bulk_get_const(dev,
+> +					    ARRAY_SIZE(novatek_nt37801_supplies),
+> +					    novatek_nt37801_supplies,
+> +					    &ctx->supplies);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(ctx->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
+> +				     "Failed to get reset-gpios\n");
+> +
+> +	ctx->dsi = dsi;
+> +	mipi_dsi_set_drvdata(dsi, ctx);
+> +
+> +	dsi->lanes = 4;
+> +	dsi->format = MIPI_DSI_FMT_RGB888;
+> +	dsi->mode_flags = MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_CLOCK_NON_CONTINUOUS;
+> +
+> +	drm_panel_init(&ctx->panel, dev, &novatek_nt37801_panel_funcs,
+> +		       DRM_MODE_CONNECTOR_DSI);
 
-Please rebase on on drm-misc-next or linux-next:
+Please switch to devm_drm_panel_alloc()
 
-https://cgit.freedesktop.org/drm/drm-misc/
+> +	ctx->panel.prepare_prev_first = true;
+> +
+> +	ctx->panel.backlight = novatek_nt37801_create_backlight(dsi);
+> +	if (IS_ERR(ctx->panel.backlight))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
+> +				     "Failed to create backlight\n");
+> +
+> +	drm_panel_add(&ctx->panel);
+> +
+> +	/* This panel only supports DSC; unconditionally enable it */
+> +	dsi->dsc = &ctx->dsc;
+> +	ctx->dsc.dsc_version_major = 1;
+> +	ctx->dsc.dsc_version_minor = 1;
+> +	ctx->dsc.slice_height = 40;
+> +	ctx->dsc.slice_width = 720;
+> +	ctx->dsc.slice_count = 1440 / ctx->dsc.slice_width;
+> +	ctx->dsc.bits_per_component = 8;
+> +	ctx->dsc.bits_per_pixel = 8 << 4; /* 4 fractional bits */
+> +	ctx->dsc.block_pred_enable = true;
+> +
+> +	ret = mipi_dsi_attach(dsi);
+> +	if (ret < 0) {
+> +		drm_panel_remove(&ctx->panel);
+> +		return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void novatek_nt37801_remove(struct mipi_dsi_device *dsi)
+> +{
+> +	struct novatek_nt37801 *ctx = mipi_dsi_get_drvdata(dsi);
+> +	int ret;
+> +
+> +	ret = mipi_dsi_detach(dsi);
+> +	if (ret < 0)
+> +		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
+> +
+> +	drm_panel_remove(&ctx->panel);
+> +}
+> +
+> +static const struct of_device_id novatek_nt37801_of_match[] = {
+> +	{ .compatible = "novatek,nt37801" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, novatek_nt37801_of_match);
+> +
+> +static struct mipi_dsi_driver novatek_nt37801_driver = {
+> +	.probe = novatek_nt37801_probe,
+> +	.remove = novatek_nt37801_remove,
+> +	.driver = {
+> +		.name = "panel-novatek-nt37801",
+> +		.of_match_table = novatek_nt37801_of_match,
+> +	},
+> +};
+> +module_mipi_dsi_driver(novatek_nt37801_driver);
+> +
+> +MODULE_AUTHOR("Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>");
+> +MODULE_DESCRIPTION("Panel driver for the Novatek NT37801/NT37810 AMOLED DSI panel");
+> +MODULE_LICENSE("GPL");
+> 
+
+With that fixed:
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 Thanks,
 Neil
-
-> 
->>> +
->>> +     ret = drm_panel_of_backlight(&priv->panel);
->>> +     if (ret)
->>> +             return dev_err_probe(dev, ret, "Failed to get backlight\n");
->>> +
->>> +     drm_panel_add(&priv->panel);
->>> +
->> <snip>
->>
->> With that:
->> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
 
