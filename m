@@ -1,123 +1,107 @@
-Return-Path: <devicetree+bounces-173865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17C59AA9E55
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 23:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC706AA9E6B
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 23:53:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE67D17A17E
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 21:44:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6667B17D915
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 21:53:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69608274FEB;
-	Mon,  5 May 2025 21:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8AE274677;
+	Mon,  5 May 2025 21:53:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="kSUUApq2"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DdC3AwJ7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8737327467D;
-	Mon,  5 May 2025 21:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1058270548;
+	Mon,  5 May 2025 21:53:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746481434; cv=none; b=AG8k5/558CTaeMhSHZeHZTifCFeMwFoIsp69ugrkBYsIixqTCuGBfCVfE8Ljn63n7hyNKLEynHvri259o7BWhHjFKFuDhSf8wYtkeO9A3AgZ2FZf3eoaWdtXJfUhP31AqM+ztdWZSsFFXLVoSQPsCc7gHFm1EkpRXTyDWEfEOzU=
+	t=1746482009; cv=none; b=c+gC+dYLNTQ3INVWvOqjwM4060unLnkHt117x7f5z4gskZ/voRmkERaRWqKXhxrbtsfLupwR9BZgaNCFiq2RJzl5FPnqjQ0aR30UnTidNuY/Is2KXcEVuGpb9KUueVUGpVWOvlerI8gxNu+rr2CSJLvfBhQVsOKwTztO1DnlAZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746481434; c=relaxed/simple;
-	bh=KGoHMvJXNrLt/JsqqoIqwpdT9g6Nv2QdDE3wTmLc9bE=;
+	s=arc-20240116; t=1746482009; c=relaxed/simple;
+	bh=+FQHZZM7aoI7UialL3yB5/dJRd4nVbYfzohSTv3bLmM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SDoiLJ0Qmny3CjZMCwUASzssbZVgIsX2kMKmKuhkF79QaVDkdzMMmgaiw5emS8433tFy7oOHaYDpLPD5PwiPULiL99N1/Ww4yUEWkJh3W86+WDVYRnPsOTw2pPlSZj3yVEiOc6nnQ+qL+HSJDLJojLvRo1KpkrLYkT6LRLLCjtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=kSUUApq2; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=dsdmj9T57cW8fjg3VsJ4WXLaQ0eWBwt0+ucO46mRX/wMnaR4KdUZyQrWJ3UvdFfmjbVcbs9XLcgmWSwty55o0DTLF4YUDF6PP6pR0/Dl1KWP4MiLM4RRBcUNuG9Au2kTY7ncBQZEp9ivUFuv2mhqSMSJIHsH1PBMHaxy69oRyD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DdC3AwJ7; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=KGoHMvJXNrLt/JsqqoIqwpdT9g6Nv2QdDE3wTmLc9bE=; b=kSUUApq2S4eNRL51I1LuJ6Pe8t
-	eNc4wgeEMwVSJCCJEyO3cH0gVI4kAR6O8AK0gbnQgS8L2CF2rstRWLwBpClZ7Aa17YQAwgqkOhje7
-	Ort+DuY3t/6gjVNpfu6XWjqI1EycDlm5bqqiTc08w2AMJgffh+ywAjDKPEMALs7eE1D9YJuJykWsS
-	EGeZWgKsYLugvRv3jHGNkbEiWZMSATsz9fCKyahntq0eKPQVtx+m1ld1Z7VRkHO6sAzN4RSFBv2DO
-	wz1ZxpHGm/94FZsS8BaDRfeiTOFriNE5JBz37Uveoko2KzOWySP4kuPirh+ZxxSvDLT2W2fpQQsUD
-	OPCGLDWw==;
-Received: from i53875a1d.versanet.de ([83.135.90.29] helo=diego.localnet)
+	bh=ky2FY8wQi0hoWGwOjDyfpng6BVXAqJP2zLIjZqhEWZA=; b=DdC3AwJ7cAtgun0b6u5kgbdY5+
+	MYldwYok5u4hquFQNeMD6gHgOoDzmnS6HmEoYWikdz5TTtdpWkxyuxqbnf0+974VNsQkyPyRI3MHC
+	mgmpcwVl9gL2hAM8qKL3nGifuLykHuNPDmKRhDbgKPfR+PCYAh65SMOPqk7KxYDM/Aba3XLKVo3K/
+	2thz9Nm6ua3t++DMLO5DdMOiJxUxU4sWfysIHA57NwHEdJLfn6/olIf0jGes5ZOnnXz4jh/qGsa5q
+	LQoJsKmRVOCf68Bk+Uymma2vKbF40Rgr4zKXwb5QGx7nshJkyBC464hQySo9EiSxpuLXKMK1g/+7B
+	av8er3RA==;
+Received: from i53875a1d.versanet.de ([83.135.90.29] helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1uC3bE-0000B0-Ug; Mon, 05 May 2025 23:43:44 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Yao Zi <ziyao@disroot.org>, Chukun Pan <amadeus@jmu.edu.cn>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-Subject:
- Re: [PATCH v2 1/3] dt-bindings: i2c: i2c-rk3x: Add compatible string for
- RK3528
-Date: Mon, 05 May 2025 23:43:43 +0200
-Message-ID: <2918896.Y6S9NjorxK@diego>
-In-Reply-To: <h4hpaadpeu2pnsbcfbg4iye7w5sn26wflth4uztdghafuegqi5@2xbtygdwe2hu>
-References:
- <20250417120118.17610-3-ziyao@disroot.org> <4864135.rnE6jSC6OK@diego>
- <h4hpaadpeu2pnsbcfbg4iye7w5sn26wflth4uztdghafuegqi5@2xbtygdwe2hu>
+	id 1uC3kW-0000QT-94; Mon, 05 May 2025 23:53:20 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Yao Zi <ziyao@disroot.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/3] Support I2C controllers in RK3528
+Date: Mon,  5 May 2025 23:53:09 +0200
+Message-ID: <174648198304.1334687.5769287856260852986.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250417120118.17610-3-ziyao@disroot.org>
+References: <20250417120118.17610-3-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-
-Hi Andi,
-
-Am Montag, 5. Mai 2025, 22:47:04 Mitteleurop=C3=A4ische Sommerzeit schrieb =
-Andi Shyti:
-> Hi Heiko,
->=20
-> On Mon, May 05, 2025 at 09:49:36AM +0200, Heiko St=C3=BCbner wrote:
-> > Am Donnerstag, 17. April 2025, 14:01:17 Mitteleurop=C3=A4ische Sommerze=
-it schrieb Yao Zi:
-> > > Document I2C controllers integrated in RK3528, which are compatible w=
-ith
-> > > the RK3399 variant.
-> > >=20
-> > > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
-> >=20
-> > do you expect to apply this patch to the i2c tree individually,
-> > or have it go together with the devicetree patch?
->=20
-> with these patches, I normally wait a bit to see how the others
-> in the same series go before merging.
->=20
-> I now merged this patch into i2c/i2c-host.
->=20
-> If there is any particular need to merge everything together in
-> the devicetree, then I can take it out.
-
-on the contrary ... I was hoping for exactly this :-) .
-
-I.e. there is no need to merge everything together and the common pattern
-is "binding goes through the driver-tree", dts goes through some soc-tree
-(mine it this case).
-
-But I can only merge the dts patches, _after_ the binding was merged,
-so that was more of an elborate "ping" and _sometimes_ maintainers
-might expect the binding just going with the dts patches.
+Content-Transfer-Encoding: 8bit
 
 
-So, thanks for merging the binding and I'll merge the dts patches now.
+On Thu, 17 Apr 2025 12:01:16 +0000, Yao Zi wrote:
+> RK3528 integrates eight I2C controllers which are compatible with the
+> RK3399 variant of i2c-rk3x. This series documents the controllers in
+> dt-bindings, describe them in SoC devicetree and enable the onboard
+> EEPROM of Radxa E20C which is connected to I2C-2.
+> 
+> Changed from v1
+> - rebase on top of linux-rockchip/for-next
+> - dt-binding: collect review tags
+> - SoC devicetree
+>   - sort i2c and gpio in /aliases
+>   - provide default pinctrl for controllers with only one set of
+>     possible pins
+> - Radxa E20C devicetree: mark eeprom as read-only
+> 
+> [...]
 
+Applied, thanks!
 
-Thanks a lot
-Heiko
+[2/3] arm64: dts: rockchip: Add I2C controllers for RK3528
+      commit: d3a05f490d048808968df1e0d3240ab01fe82211
+[3/3] arm64: dts: rockchip: Add onboard EEPROM for Radxa E20C
+      commit: 101fe8b5627c68b3f2f941266e26ac355131e2fe
 
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
