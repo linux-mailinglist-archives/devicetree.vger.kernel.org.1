@@ -1,106 +1,150 @@
-Return-Path: <devicetree+bounces-173678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B951AAA93DF
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:01:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6BD5AA93E3
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:02:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00BFF3B0D57
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:01:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B506D7A1EE8
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 712551F5842;
-	Mon,  5 May 2025 13:01:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="G/pbePtf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5222D2066CF;
+	Mon,  5 May 2025 13:02:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610674683;
-	Mon,  5 May 2025 13:01:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1D91D619F;
+	Mon,  5 May 2025 13:02:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746450110; cv=none; b=rsw+2RrMPUO8UO25l9MreLmRaQ2DAW+1ngzj+ERTbaYvmMqosokQOVg82Btpi4KEkDCWn2dRjtrv/fZJUusbcNU4scNt5caVlL1MUvN6Lq6+KdiISll23HZOBi1VQNccjKqT/r3tAjX2eUxKti5fLtLh9VRoRXXlicY0pBCSdig=
+	t=1746450147; cv=none; b=i4q2w7jm6BbxO/KkTM9oh2giqL1n2gtiG/Nok2SZAQ6H9J3kooO0RnQP9gWUcosiRkUMQdVe25JSjRiLOfwYBGSJaNHUd8goElUs8Or0L9GyCMnCsdD4uL7S6BaMihLZKLby3M0KY1+HUH8p7wsIBoaYsOHXaDX4fWZvvCIi21k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746450110; c=relaxed/simple;
-	bh=HWtpxq8VSbL7osdg/n3YvEAARAvRWdjvgKI8goZ9yrg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Plcp4fxJFGakoL06UGIkj71vReE9+flFNnsWUV6rZ+3rDONlflpO0NieXS4aG+p1UedD2BNq8pR1pLfpVHB2Cf4lPymY5/VrVpYgkbDTKGpzYTvSt14a3M4HDfukzFkEilrY2SthxG8+iQwU67YSuvK+tr+OxGKjuED72dFtEWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=G/pbePtf; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=WBYMe8AWciFRbGt/UH6lyqSHdnAGgD4jpjABIeG45Ss=; b=G/pbePtf629UUQemqdlgBwP/jR
-	MZV+7whYgmJ/tAJLSU+DLyqCxZ/wfKCgiDyKBYAfD1wpq88Eu8+7hPhfNwcNJcHvbYUTsRYld6gyi
-	Vzt9xbaQYFL6tKFKTRveu/knLvUBh+thg5wLRJpoEpgJadUBlIRLHtza6Kizff+5la/rQMNIFEiCO
-	GKL5qQMaJ75xsZpMB81aB0HsJoV6bL6kEpR5OC6723rGQezQeFzKGcqEL9COaPSx2ITSiX21OoIC0
-	Uc0vDch+cxHvVi5mbuRSPsEouddLoxf80+lxq6bWHL0wFwh0+9xub7lByQds7VRztvPVUAWJ3gn1c
-	K6hodFqg==;
-Received: from i53875a1d.versanet.de ([83.135.90.29] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uBvRd-0006mT-UT; Mon, 05 May 2025 15:01:18 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Daniel Golle <daniel@makrotopia.org>,
-	Aurelien Jarno <aurelien@aurel32.net>,
-	Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com,
-	linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/3] RK3576 Hardware RNG
-Date: Mon,  5 May 2025 15:01:07 +0200
-Message-ID: <174645006215.1225797.3007982185133849135.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250430-rk3576-hwrng-v1-0-480c15b5843e@collabora.com>
-References: <20250430-rk3576-hwrng-v1-0-480c15b5843e@collabora.com>
+	s=arc-20240116; t=1746450147; c=relaxed/simple;
+	bh=Td0CRIACmhO1qs94ownqg6ANz2bC805DWWXUsmW2bJU=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=LWGGcrP3Ig+RYLWRMddXAZDW121U5eq7rvr74c3V2aTunjxZZBVhf+78HcpFgpQf5iS0y0O1+Bid02+Z1H79XDd+QnY6/N5Ny77oAPFVS6bLtFRdP/4FNSevxOW3mdF+JqpBdOK1J3ukiO1QxIGyO5RlrSZfIJzmfOOCexxsxcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4ZrhWZ5nHqz9tFm;
+	Mon,  5 May 2025 15:02:18 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 05 May 2025 15:02:12 +0200
+Message-Id: <D9O8WJ0RDNIA.4JYLWLYLBC2A@buenzli.dev>
+To: "Dirk Behme" <dirk.behme@de.bosch.com>, "Rob Herring" <robh@kernel.org>,
+ "Saravana Kannan" <saravanak@google.com>, "Miguel Ojeda"
+ <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <benno.lossin@proton.me>, "Andreas Hindborg" <a.hindborg@kernel.org>,
+ "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
+ "Danilo Krummrich" <dakr@kernel.org>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <rust-for-linux@vger.kernel.org>
+Subject: Re: [PATCH v4 5/9] rust: device: Introduce PropertyGuard
+From: "Remo Senekowitsch" <remo@buenzli.dev>
+References: <20250504173154.488519-1-remo@buenzli.dev>
+ <20250504173154.488519-6-remo@buenzli.dev>
+ <5946174b-3178-462d-bb59-1e0d6c5f4dda@de.bosch.com>
+In-Reply-To: <5946174b-3178-462d-bb59-1e0d6c5f4dda@de.bosch.com>
+X-Rspamd-Queue-Id: 4ZrhWZ5nHqz9tFm
 
+On Mon May 5, 2025 at 7:14 AM CEST, Dirk Behme wrote:
+> On 04/05/2025 19:31, Remo Senekowitsch wrote:
+>> This abstraction is a way to force users to specify whether a property
+>> is supposed to be required or not. This allows us to move error
+>> logging of missing required properties into core, preventing a lot of
+>> boilerplate in drivers.
+>>=20
+>> It will be used by upcoming methods for reading device properties.
+>>=20
+>> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+>> ---
+>>  rust/kernel/device/property.rs | 59 ++++++++++++++++++++++++++++++++++
+>>  1 file changed, 59 insertions(+)
+>>=20
+>> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/propert=
+y.rs
+>> index 6ccc7947f9c31..59c61e2493831 100644
+>> --- a/rust/kernel/device/property.rs
+>> +++ b/rust/kernel/device/property.rs
+>> @@ -123,3 +123,62 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
+>>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
+>>      }
+>>  }
+>> +
+>> +/// A helper for reading device properties.
+>> +///
+>> +/// Use [`Self::required_by`] if a missing property is considered a bug=
+ and
+>> +/// [`Self::optional`] otherwise.
+>> +///
+>> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provided=
+.
+>> +pub struct PropertyGuard<'fwnode, 'name, T> {
+>> +    /// The result of reading the property.
+>> +    inner: Result<T>,
+>> +    /// The fwnode of the property, used for logging in the "required" =
+case.
+>> +    fwnode: &'fwnode FwNode,
+>> +    /// The name of the property, used for logging in the "required" ca=
+se.
+>> +    name: &'name CStr,
+>> +}
+>> +
+>> +impl<T> PropertyGuard<'_, '_, T> {
+>> +    /// Access the property, indicating it is required.
+>> +    ///
+>> +    /// If the property is not present, the error is automatically logg=
+ed. If a
+>> +    /// missing property is not an error, use [`Self::optional`] instea=
+d. The
+>> +    /// device is required to associate the log with it.
+>> +    pub fn required_by(self, dev: &super::Device) -> Result<T> {
+>> +        if self.inner.is_err() {
+>> +            dev_err!(
+>> +                dev,
+>> +                "{}: property '{}' is missing\n",
+>> +                self.fwnode.display_path(),
+>> +                self.name
+>> +            );
+>> +        }
+>> +        self.inner
+>> +    }
+>
+> Thinking about the .required_by(dev) I wonder if there will be cases
+> where we do *not* have a device? I.e. where we really have a fwnode,
+> only. And therefore can't pass a device. If we have such cases do we
+> need to be able to pass e.g. Option(dev) and switch back to pr_err() in
+> case of None?
 
-On Wed, 30 Apr 2025 18:16:33 +0200, Nicolas Frattaroli wrote:
-> Gee Nicolas, how come your mom lets you write two Rockchip HWRNG drivers
-> in a year?
-> 
-> In short, RK3576 (and RK3562 and RK3528) introduce another HWRNG IP. It
-> actually has quite a few cool features, but I ignored the cool bits and
-> went straight for the true entropy. Some of the cool bits someone else
-> may wish to add in the future: AES-CTR PRNG that's regularly reseeded
-> from the entropy, adjustments for oscillator and oscillator ring lengths
-> to maximise entropy generation, automatic continuous quality checking of
-> the produced entropy by the hardware itself, etc.
-> 
-> [...]
+In that case, bringing back the previous .required() method seems
+reasonable to me. But only if we definitely know such cases exist.
 
-Applied, thanks!
+> From the beginning of our discussion I think to remember that the C API
+> has both the fwnode_property_*() and device_property_*() because there
+> are use cases for the fwnode_property_*() API where is no device?
 
-[3/3] arm64: dts: rockchip: add RK3576 RNG node
-      commit: 5268f3b5d29887480011b44567bcbf0d422cda94
+I'm not sure what you're referring to, the closest thing I can think of
+is this comment by Rob [1] where he mentions the device_property_*()
+functions only exist in C for a minimal convenience gain and we may not
+want to keep that in Rust.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+[1] https://rust-for-linux.zulipchat.com/#narrow/channel/288089-General/top=
+ic/DS90UB954.20driver.20done.2C.20ready.20to.20upstream.3F/near/505415697
 
