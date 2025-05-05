@@ -1,56 +1,64 @@
-Return-Path: <devicetree+bounces-173822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B091FAA9A3C
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 19:17:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36AF9AA9A61
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 19:23:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEAC73AD745
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:16:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF6457A134F
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:22:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620F625A347;
-	Mon,  5 May 2025 17:17:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A78F26A0CA;
+	Mon,  5 May 2025 17:23:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="N8YDXxJm"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tuaULRW0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5B4B1A841B;
-	Mon,  5 May 2025 17:17:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73F720E6;
+	Mon,  5 May 2025 17:23:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746465430; cv=none; b=Uku8ADdD8wPMqd6i8B5RWDA+sx0kv3x/c0a5r5Lgw9bC83CbucuvZ6YyMZahEeHwdnKqIGOTo9eir5fxuS5iUSmu679nQerSxoNTCp9ib+Z00Idkws1MWBg+CpM1MEd+p1X9pNYAv68K9PJRdMMFilKbOmkLZpYI+hE1uP4k3Y0=
+	t=1746465811; cv=none; b=IRSLIkZ8yIiyW/6kMjsa2CJp5uSR3k46qYCZ4dnJdYxZhd/ffQ3/gfJjVW4VEN6Hnqqs7IIMcivbWXPBtWRRROasW7vDlMr1QrB1j8yLB2DJ3JsLXm4hnJf4tpN10ZnMKjZB9Jl6FjdPGEZk3pbCWZo4xCJ9bZZwI6MOTRcAWGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746465430; c=relaxed/simple;
-	bh=Hml9TVBh6aj3dyxSBs/WiRTSA/hKsF6Tmpu2siws/K4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iIg7XuPE42VlZh4bVqyeWzQERbO9r5Q6PyYhwq9DlFUYvPGqfMBGQ+brJEyLtc1v8ddQDW2CILvhGmBiIJ3PVs0/ol4WgoA/RnyMd8NA8jFJw7pntMoHLWaQ738EYTInTKNM+qVoaEeQBOfbyAIizMJ61uFSuzc7ISE1RZGNWGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=N8YDXxJm; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1746465413; x=1747070213; i=wahrenst@gmx.net;
-	bh=cLDXsZGYD6q0gy/FV+zDspd5anO+yccSzga1fFE+UGY=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=N8YDXxJmofIOgqz5XkLuTEi9iBjGw+DJNex9WQOXQot4ZV+5AttOudSjaVJc8inc
-	 v/auhtVFAR+iHOxo9PM294IKenOJw57E2FkIJzsPRURHq7lVD9cbKrL+xxnY3MKH3
-	 B3DKL1Gu4iia3RToxCn673xrYcjr/EO4ngFZwGrFVm5sl78RFUD7YlDwMIS3kxZvJ
-	 0tTQh30BcuTStpedz9TaJs7gXJ/iQegYejTRKHEEeA6fkHGPPj2YgLg8ucD/afB85
-	 XE69/YemwUA+pQfSprZweNNUS1LpJy55uSyBbksfkgJvyws+dvqwdYdWCBXXkucaU
-	 tJHiD3fnwkHRE+ZFaw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.101] ([91.41.216.208]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MatVb-1ujgMQ2Dl5-00kdMm; Mon, 05
- May 2025 19:16:53 +0200
-Message-ID: <c1fc1341-4490-4e22-a2ee-64bb67529660@gmx.net>
-Date: Mon, 5 May 2025 19:16:51 +0200
+	s=arc-20240116; t=1746465811; c=relaxed/simple;
+	bh=s6QeaakJa6BDfEjphO1uxANkNdJWYK74iR7RWVkaVus=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=aFNhLTLKUZcFhthzyvlnittwMcnzuW5vm8wJY52Coq3l3pmFbL2SYAqysGxqlO0EliZTjvrGLGfl+46huY8dRpzEqBRGiL2OB8hgRN4OQjlCtC1ETLmu2ShSwN2bqPmxILC++g8wL1/xBuzbtIDTcSb2pWjh3wuhKhklt1+nifo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tuaULRW0; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 545HNFZ3833317
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 5 May 2025 12:23:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746465795;
+	bh=eI4y/BuLlZr98QGdclamONyFaz80LpH9fGjQQShpoLM=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=tuaULRW0ltUDsbZ6QncT2ZybY5Gt/MrkZZmLjIdtTU7jqb1nzbZKu0VL8ATKLxZto
+	 AzEhmlp70e+kFfQujYyDWcl/JEfOfZu5p5tUs/Nes7bI3t/5w2h7U5aPWJQrdkDz1A
+	 ukLBG/CcNa3SZk7I8kTa9di+80EizM9/+Gss7OJM=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 545HNF0a091066
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 5 May 2025 12:23:15 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
+ May 2025 12:23:14 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 5 May 2025 12:23:14 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 545HNEJu093720;
+	Mon, 5 May 2025 12:23:14 -0500
+Message-ID: <84e6413e-4a61-40a5-acc7-85da76e6d540@ti.com>
+Date: Mon, 5 May 2025 12:23:14 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,151 +66,158 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 4/5] net: vertexcom: mse102x: Return code for
- mse102x_rx_pkt_spi
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250505142427.9601-1-wahrenst@gmx.net>
- <20250505142427.9601-5-wahrenst@gmx.net>
- <3b9d36a7-c2fd-4d37-ba33-fc13121d92e6@lunn.ch>
+Subject: Re: [PATCH v8 03/11] arm64: dts: ti: k3-am62a-mcu: Add R5F remote
+ proc node
+To: Daniel Schultz <d.schultz@phytec.de>, "Mendez, Judith" <jm@ti.com>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Hari
+ Nagalla <hnagalla@ti.com>,
+        Beleswar Padhi <b-padhi@ti.com>,
+        Markus
+ Schneider-Pargmann <msp@baylibre.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250502220325.3230653-1-jm@ti.com>
+ <20250502220325.3230653-4-jm@ti.com>
+ <50039c49-a6c5-4f29-a35a-53b9af117fd8@phytec.de>
+ <6c5e786d-7581-492f-92fb-be92ecbecd87@ti.com>
+ <31d32966-05fe-4369-afda-3278822d8cb5@ti.com>
+ <646350fd-3dc5-47eb-ab1b-1a6a9acd69a8@phytec.de>
 Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <3b9d36a7-c2fd-4d37-ba33-fc13121d92e6@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:7AXzuM2iX2ojF4KGGHK+3BedcyHtcSCJZHehgfHPSB+/eUuUmu6
- hwwx5avNQy0EXd1X59G9YffL7bv+EgPVo1Yl+B131NrTgnXnUADSW9t4gp56wkG8VEXRgtl
- HlK732Z75kUKq6NWFW4D3KjWd1Q5KoYt4U9GnbAwjU55vy+cmsVilYP4oO0eZRAHLaZW14a
- nYASm0j5YAu4QppYfjqxw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:HSRHXNXONBg=;eZw6Cme4f/CPGl3qGMIKIx5xzGF
- 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
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <646350fd-3dc5-47eb-ab1b-1a6a9acd69a8@phytec.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Andrew,
-
-Am 05.05.25 um 18:43 schrieb Andrew Lunn:
-> On Mon, May 05, 2025 at 04:24:26PM +0200, Stefan Wahren wrote:
->> The interrupt handler mse102x_irq always returns IRQ_HANDLED even
->> in case the SPI interrupt is not handled. In order to solve this,
->> let mse102x_rx_pkt_spi return the proper return code.
+On 5/5/25 11:00 AM, Daniel Schultz wrote:
+> Hey,
+> 
+> On 5/5/25 17:22, Andrew Davis wrote:
+>> On 5/5/25 10:05 AM, Mendez, Judith wrote:
+>>> Hi Daniel,
+>>>
+>>> On 5/5/2025 4:55 AM, Daniel Schultz wrote:
+>>>> Hi,
+>>>>
+>>>> I'm unable to load the latest TI firmware (98efd20ec71f8c1c8f909d34ab656731) with this patch.
+>>>>
+>>>> [    7.012889] remoteproc remoteproc1: 79000000.r5f is available
+>>>> [    7.032640] remoteproc remoteproc1: powering up 79000000.r5f
+>>>> [    7.038626] remoteproc remoteproc1: Booting fw image am62a-mcu- r5f0_0-fw, size 53140
+>>>> [    7.057209] remoteproc remoteproc1: bad phdr da 0x79100000 mem 0x47ea0
 >>
->> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
->> ---
->>   drivers/net/ethernet/vertexcom/mse102x.c | 15 +++++++++------
->>   1 file changed, 9 insertions(+), 6 deletions(-)
+>> So this looks like the firmware has sections in the SRAM region. That would be the
+>> issue here.
 >>
->> diff --git a/drivers/net/ethernet/vertexcom/mse102x.c b/drivers/net/eth=
-ernet/vertexcom/mse102x.c
->> index 204ce8bdbaf8..aeef144d0051 100644
->> --- a/drivers/net/ethernet/vertexcom/mse102x.c
->> +++ b/drivers/net/ethernet/vertexcom/mse102x.c
->> @@ -303,7 +303,7 @@ static void mse102x_dump_packet(const char *msg, in=
-t len, const char *data)
->>   		       data, len, true);
->>   }
->>  =20
->> -static void mse102x_rx_pkt_spi(struct mse102x_net *mse)
->> +static irqreturn_t mse102x_rx_pkt_spi(struct mse102x_net *mse)
->>   {
->>   	struct sk_buff *skb;
->>   	unsigned int rxalign;
->> @@ -324,7 +324,7 @@ static void mse102x_rx_pkt_spi(struct mse102x_net *=
-mse)
->>   		mse102x_tx_cmd_spi(mse, CMD_CTR);
->>   		ret =3D mse102x_rx_cmd_spi(mse, (u8 *)&rx);
->>   		if (ret)
->> -			return;
->> +			return IRQ_NONE;
->>  =20
->>   		cmd_resp =3D be16_to_cpu(rx);
->>   		if ((cmd_resp & CMD_MASK) !=3D CMD_RTS) {
->> @@ -357,7 +357,7 @@ static void mse102x_rx_pkt_spi(struct mse102x_net *=
-mse)
->>   	rxalign =3D ALIGN(rxlen + DET_SOF_LEN + DET_DFT_LEN, 4);
->>   	skb =3D netdev_alloc_skb_ip_align(mse->ndev, rxalign);
->>   	if (!skb)
->> -		return;
->> +		return IRQ_NONE;
-> This is not my understanding of IRQ_NONE. To me, IRQ_NONE means the
-> driver has read the interrupt status register and determined that this
-> device did not generate the interrupt. It is probably some other
-> device which is sharing the interrupt.
-At first i wrote this patch for the not-shared interrupt use case in=20
-mind. Unfortunately this device doesn't have a interrupt status register=
-=20
-and in the above cases the interrupt is not handled.
+>>>> [    7.064716] remoteproc remoteproc1: Failed to load program segments: -22
+>>>>
+>>>> I figured out that the mcu sram node disappeared in v5. Apparently adding it back manually doesn't solve this problem. Any idea what's wrong?
+>>>
+>>> For am62ax, there should be several items changed with this v8
+>>> series in order for remoteproc to work with the TI default firmware:
+> What firmware did you use? I was using the latest public default firmware from ti-linux-firmware.
+>>>
+>>> 1. memory carveouts were reduced to 15MB [0] & edge-ai memory
+>>> carveouts are not included here
+>>
+>> This shouldn't be an issue, the default firmware doesn't
+>> use the extended carveouts.
+> Yes, this is just the echo firmware.
+>>
+>>> 2. mcu_sram1 node removed [2]
+>>>
+>>
+>> So when you say you added back the SRAM node, did you also add the
+>> sram = <&mcu_ram>; in the core node?
+> 
+> With that property added, I can load the firmware again! So, what's the problem with adding this sram node and did you remove it?
+> 
 
-kernel-doc says:
+Good to hear that fixed it.
 
-@IRQ_NONE:=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 interrupt was not from thi=
-s device or was not handled
-@IRQ_HANDLED:=C2=A0=C2=A0=C2=A0 interrupt was handled by this device
+And we removed the SRAM node as I was unhappy with how we were handling reserving it.
+The firmware should declare usage of shared resources like this in its resource table,
+and the RProc driver should dynamically request the same from a normal SRAM pool.
+What we were doing before was to statically block out the whole SRAM node for use by
+the R5, and the driver would unconditionally map it, even if it was not used by the
+loaded firmware at all.
 
-So from my understanding IRQ_NONE fits better here (assuming a=20
-not-shared interrupt).
+I wanted us to fix the above before upstreaming it so we left it out of this
+series. Next cycle we should have the better solution ready and posted for
+upstream.
 
-I think driver should only use not-shared interrupts, because there is=20
-no interrupt status register. Am I right?
-May this SPI client protocol limitation should be documented in the=20
-dt-binding?
+Andrew
 
->
->         Andrew
-
+> - Daniel
+> 
+>>
+>> Andrew
+>>
+>>> If you want to catch up on the general direction for this series,
+>>> please refer to [3]. atm remoteproc can fail with the default FW,
+>>> but we are trying to move away from that firmware and this is the
+>>> first step in that direction.
+>>>
+>>> [0] https://lore.kernel.org/linux-devicetree/0ab5c5ec-cde3-41f1-8adf-2419b31497c1@ti.com/
+>>> [1] https://lore.kernel.org/linux-devicetree/04e77daf-e775-44fa-82bf-8b6ebf73bcef@ti.com/
+>>> [2] https://lore.kernel.org/linux-devicetree/32358aa1-0c02-4f4d-9782-2d8376c0d9fc@ti.com/
+>>> [3] https://lore.kernel.org/linux-devicetree/e131298f-3713-482a-a740-ff89709270b4@ti.com/
+>>>
+>>> ~ Judith
+>>>
+>>>>
+>>>> On 5/3/25 00:03, Judith Mendez wrote:
+>>>>> From: Hari Nagalla <hnagalla@ti.com>
+>>>>>
+>>>>> AM62A SoCs have a single R5F core in the MCU voltage domain.
+>>>>> Add the R5FSS node with the child node for core0 in MCU voltage
+>>>>> domain .dtsi file.
+>>>>>
+>>>>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+>>>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>>>> Acked-by: Andrew Davis <afd@ti.com>
+>>>>> ---
+>>>>>   arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi | 25 ++++++++++++++++++++++++
+>>>>>   1 file changed, 25 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi b/arch/arm64/ boot/dts/ti/k3-am62a-mcu.dtsi
+>>>>> index 9ed9d703ff24..ee961ced7208 100644
+>>>>> --- a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
+>>>>> @@ -174,4 +174,29 @@ mcu_mcan1: can@4e18000 {
+>>>>>           bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+>>>>>           status = "disabled";
+>>>>>       };
+>>>>> +
+>>>>> +    mcu_r5fss0: r5fss@79000000 {
+>>>>> +        compatible = "ti,am62-r5fss";
+>>>>> +        #address-cells = <1>;
+>>>>> +        #size-cells = <1>;
+>>>>> +        ranges = <0x79000000 0x00 0x79000000 0x8000>,
+>>>>> +             <0x79020000 0x00 0x79020000 0x8000>;
+>>>>> +        power-domains = <&k3_pds 7 TI_SCI_PD_EXCLUSIVE>;
+>>>>> +        status = "disabled";
+>>>>> +
+>>>>> +        mcu_r5fss0_core0: r5f@79000000 {
+>>>>> +            compatible = "ti,am62-r5f";
+>>>>> +            reg = <0x79000000 0x00008000>,
+>>>>> +                  <0x79020000 0x00008000>;
+>>>>> +            reg-names = "atcm", "btcm";
+>>>>> +            resets = <&k3_reset 9 1>;
+>>>>> +            firmware-name = "am62a-mcu-r5f0_0-fw";
+>>>>> +            ti,atcm-enable = <0>;
+>>>>> +            ti,btcm-enable = <1>;
+>>>>> +            ti,loczrama = <0>;
+>>>>> +            ti,sci = <&dmsc>;
+>>>>> +            ti,sci-dev-id = <9>;
+>>>>> +            ti,sci-proc-ids = <0x03 0xff>;
+>>>>> +        };
+>>>>> +    };
+>>>>>   };
+>>>
 
