@@ -1,136 +1,117 @@
-Return-Path: <devicetree+bounces-173562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87E63AA8D5A
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:50:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC3C9AA8D55
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:49:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 840801894E0A
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 07:50:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E59127A462B
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 07:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B0181DE4F6;
-	Mon,  5 May 2025 07:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B76521ACEDA;
+	Mon,  5 May 2025 07:49:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="t5NOcc4A"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="z+11W6G6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00D31DDC2C;
-	Mon,  5 May 2025 07:50:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D78D1C3BE2;
+	Mon,  5 May 2025 07:49:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746431419; cv=none; b=YXOsecre7BChYZ9XzyimSNFwRSbHMLVvuHeZ1wI8pcxX3ABfj/ndG+VLHkW4wG5CbfRK1webiZin2+VfU1ruKM0rVReOa0WRcHIE7kbKnUJQzfp+8wYYihGSSYT5yfBWDmqc5/mdbCCNJliHRWmtE4RWecvMIZAV9JHGnqpGjNA=
+	t=1746431391; cv=none; b=Yi2PLi8WiObjPLKHvPsIUEdyFnnr8lpeD8CSr78e2XdXuy5+6qkRqy029zYEs7lUiLhxNglyvQCH51zniGWPF77o/4/FNsnkLQgcUpR20qe9tmST3teyUH8oqFQumnnL58MKnntuKAysJNsN7hSfg7xV4JXKlF4MmnGSC9OXGvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746431419; c=relaxed/simple;
-	bh=8ctXOMeS1LPtoldoIrh31Q77Yd6gwu6HLyjZWl8gxo0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GFEj3ewi6JnvAFPPwtyDLoFTQVMUlMQCsNaWr+za4nRLMJy00OdAD/lpM+MlWam2PwBN9LUqcEztjxM6iOLihIBPDsd2VxzoPGUp4JPoApxG7GyEQ5CqZSc0c/Fl5JVD2l+Mj6N4vhE5vPnJadducC8wG3L7D9TGEC9P/RrQ5Xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=t5NOcc4A; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5457nOll716797
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 5 May 2025 02:49:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746431364;
-	bh=5Ii9h9rPzROGPRkouzthetaV+45FxhY90QOk8t0nqok=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=t5NOcc4AkykTBetmD815dXZgKQT6FypKLSXNv8PzRCUkpEQBeB2ShPwrsvLWs0Iro
-	 ArOJwiKxnKdxee9m6P3/eQZ/CAKe3YZPpTf8KAIQsVgK/KSXw9vlanZoPsb1lMxsWX
-	 imw5Ni2+NvFoTfmjVFJ+mYL/53paBSoQD6oQj/64=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5457nOBi019555
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 5 May 2025 02:49:24 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
- May 2025 02:49:23 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 5 May 2025 02:49:23 -0500
-Received: from [172.24.227.193] (devarsh-precision-tower-3620.dhcp.ti.com [172.24.227.193])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5457nHUY087427;
-	Mon, 5 May 2025 02:49:18 -0500
-Message-ID: <5fd14448-27d9-43e6-8526-fd93483b94cb@ti.com>
-Date: Mon, 5 May 2025 13:19:17 +0530
+	s=arc-20240116; t=1746431391; c=relaxed/simple;
+	bh=V3I2N452zoAxRjRuyGOUZILKBEKeiRMPPSSgMieldXA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tkK9NXG+Cj1hiz/SpKCj0kTl2L1DAyLYD5qNxNING8b1z0O06d1NwPoBrYM03ndG5WTP/cSIYVj5YmajbyZAWVt0mYv94+MAGtR+O6VEksNzGiCgLBkeWZhCqtzfgexSTU9LnD0j/x1/MNvi32pDZ1fMJbdzJs4U5uddZWu+6LU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=z+11W6G6; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=g6E3Fmt7cfqXOAXJWZj3GI0CXUJV8EUTYEDTm9gMTDg=; b=z+11W6G6rm+LkV+kCDHjVKwpO+
+	tKOxP1CyIwwUl0Qse5Upck55bH9iZOyMOxFQvw8LXXyXbFgCqbWcWFo+KfmeXdURYL5i+mlDlDCwk
+	zKDEErGrPdWb3dQb6qp+PvKDgipiboBueGPJUEGM0xVmN99v7LlepjRC5SngXtKh93x58SvcLORLS
+	XL5FKwYxRkybBQdVcGszmKFiKnKL3PZibkEXs4PloDGXyg5blkXW0/l1Zw/66Odasjj3aQ1L4BRLG
+	ENqn1dvE69j3Q5mL1sqJqQYaSouY76WFBF+AtXae4eTEtRYLvfzKuo6CH4P+0rutUZk3hHzGWYWOy
+	WgEGsypQ==;
+Received: from i53875a1d.versanet.de ([83.135.90.29] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uBqa1-0000dB-Ff; Mon, 05 May 2025 09:49:37 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>, Yao Zi <ziyao@disroot.org>,
+ Chukun Pan <amadeus@jmu.edu.cn>, Yao Zi <ziyao@disroot.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Subject:
+ Re: [PATCH v2 1/3] dt-bindings: i2c: i2c-rk3x: Add compatible string for
+ RK3528
+Date: Mon, 05 May 2025 09:49:36 +0200
+Message-ID: <4864135.rnE6jSC6OK@diego>
+In-Reply-To: <20250417120118.17610-4-ziyao@disroot.org>
+References:
+ <20250417120118.17610-3-ziyao@disroot.org>
+ <20250417120118.17610-4-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Linux)
-Subject: Re: [PATCH v5 2/3] drm/tidss: Update infrastructure to support K3 DSS
- cut-down versions
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-CC: <praneeth@ti.com>, <vigneshr@ti.com>, <aradhya.bhatia@linux.dev>,
-        <s-jain1@ti.com>, <r-donadkar@ti.com>, <j-choudhary@ti.com>,
-        <h-shenoy@ti.com>, <jyri.sarha@iki.fi>, <airlied@gmail.com>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <dri-devel@lists.freedesktop.org>,
-        <simona@ffwll.ch>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-References: <20250429143656.3252877-1-devarsht@ti.com>
- <20250429143656.3252877-3-devarsht@ti.com>
- <f729c0d6-45a0-4610-b22b-92c03f534bf7@ideasonboard.com>
- <1f8c43cd-8c26-4e42-b144-b91f5ffc2e2e@ti.com>
- <88993439-bfdc-418c-95c6-d6d8bdb5b87f@ideasonboard.com>
- <466254e9-145f-4839-9451-a5f282ff02e9@ti.com>
- <ce831f65-67d0-4f4c-9f08-3014b1d00dc0@ideasonboard.com>
- <ca008cb0-bec6-4b10-b6b5-0f29648f76c0@ti.com>
- <ed82e498-b3af-46f6-97ce-3a2f47872935@ideasonboard.com>
- <ead31912-d1e5-4813-99a7-5cd2754672ef@ti.com>
- <d4daa87f-3556-4b46-a0e0-d90f9d14a097@ideasonboard.com>
-Content-Language: en-US
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <d4daa87f-3556-4b46-a0e0-d90f9d14a097@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Hi Tomi
+Hi Andi,
 
-On 03/05/25 14:14, Tomi Valkeinen wrote:
-> On 02/05/2025 14:52, Devarsh Thakkar wrote:
+Am Donnerstag, 17. April 2025, 14:01:17 Mitteleurop=C3=A4ische Sommerzeit s=
+chrieb Yao Zi:
+> Document I2C controllers integrated in RK3528, which are compatible with
+> the RK3399 variant.
+>=20
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
 
->> Hi,
->>
->>
-<snip>
->> Ok I see what you mean to say.....although functionally it is working
->> fine but from readability point of view it is confusing since both
->> functions use same argument name i.e hw_plane in two different contexts.
->> In that case, I would propose to use hw_id as arg name for all
->> dispc_k3_vid* functions, will that be okay ?
-> 
-> I'd prefer to have all the dispc functions take the same kind of index.
-> 
+do you expect to apply this patch to the i2c tree individually,
+or have it go together with the devicetree patch?
 
-Why? Even all dispc functions are not named with same prefix.
-1) dispc_vid* functions act on VID* base directly and here plane
-indexing would be w.r.t which VID* base we are using e.g VID vs VIDL
-2) dispc_k3_vid* functions act on common region bits which are related
-to VID pipelines and plane indexing would signify vid base w.r.t common
-register space i.e. COMMON_VID_IRQ0 vs COMMON_VID_IRQ1.
 
-As they both act on different register base and refer it in different
-contexts (VID* base vs COMMON_VID* base)  and have also been named
-differently anyway, I feel it is okay and legitimate to use hw_id for
-dispc_k3_vid* functions (which would signify vid* indexing w.r.t common
-region) and hw_plane for dispc_vid* functions (which would signify vid*
-base w.r.t VID* regions mapped in device-tree).
+Thanks a lot
+Heiko
 
-Regards
-Devarsh
+> ---
+>  Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml b/Docume=
+ntation/devicetree/bindings/i2c/i2c-rk3x.yaml
+> index 8101afa6f146..2f1e97969c3f 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
+> @@ -37,6 +37,7 @@ properties:
+>                - rockchip,px30-i2c
+>                - rockchip,rk3308-i2c
+>                - rockchip,rk3328-i2c
+> +              - rockchip,rk3528-i2c
+>                - rockchip,rk3562-i2c
+>                - rockchip,rk3568-i2c
+>                - rockchip,rk3576-i2c
+>=20
 
->  Tomi
-> 
+
+
 
 
