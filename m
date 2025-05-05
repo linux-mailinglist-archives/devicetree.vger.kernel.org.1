@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-173886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0436AAB393
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 06:48:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E071AAB594
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:32:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 076E31BA40D3
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 04:43:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12A36503A06
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 05:28:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57ED228850D;
-	Tue,  6 May 2025 00:38:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88021349861;
+	Tue,  6 May 2025 00:47:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWymScLZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mgdmIlaK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23348239E76;
-	Mon,  5 May 2025 23:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753CE272E51;
+	Mon,  5 May 2025 23:19:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746486350; cv=none; b=H6n1+kwl8VQ0Tnc3z8FcG1ODi/n7uVQT/k6dCYRWMeQJx0T0mf1lsRNztJ5doI2J9TUIGr4h0HijB6THIkzPVYtdzED6XJ9PCafJ7iWa30CchrGqOirIdvSNUq9cm5A/gzB0pzUiVZLj+ennMIlQ1WhijtlQfnDssfH9mzOsoH8=
+	t=1746487168; cv=none; b=aXN7ga6rNJX5gv7axiBD+P5aG4z0qoAosqYSxYc9Kok5Sr7qge/Nv4wq+xAfv2k1kDfeCSTkoAvUuHr69eomQeknG3EDSbXynKMIw71hvwJYuix/j2Lj/eXSUuxDpx6ZK2HshQ9ULr0HnQ+FrpoZ4YKYhdmHwWlYggOxDg/vsEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746486350; c=relaxed/simple;
-	bh=ZeIxvAUrHZZMKH03SqNPRb317W4t2bSkcRs8LThgY0M=;
+	s=arc-20240116; t=1746487168; c=relaxed/simple;
+	bh=Wn/M93AwaZkmc/psVLwJu5hWcPDVyYQStzZWQ0sbA/Y=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ugfJBb+7TdeOSYZkpUJbOus22k+x+6N+CkpcStcEw4agaiyre2sxCacNzWuZ9cJlezv0ehdVrznf4ZW/Roc1VI78zX+4dPf6bapCgbSI7o0bJW+u1ZImMHDbctGTAzQfowdtb5JN6UiqGjwKyQ+Pi+ZEXxGaacpZ16SVGtvzzl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWymScLZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0F92C4CEE4;
-	Mon,  5 May 2025 23:05:47 +0000 (UTC)
+	 MIME-Version; b=GJ561/a6yYEt/OxEOYK6vAPzkySujNH6czCOTecHPJAWgJRNn+iqzg/8ufr6mqFdbbNa9ojrViDUkg2xpeD40WHSIV5K04p8o89D64n5sguvBu0ZqKjjT57V0iQ794p4A0j2wMzA3r8LEd8G3RgNklYxMjOK/PnoYuDh0/tmxuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mgdmIlaK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E69BAC4CEEF;
+	Mon,  5 May 2025 23:19:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746486349;
-	bh=ZeIxvAUrHZZMKH03SqNPRb317W4t2bSkcRs8LThgY0M=;
+	s=k20201202; t=1746487167;
+	bh=Wn/M93AwaZkmc/psVLwJu5hWcPDVyYQStzZWQ0sbA/Y=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PWymScLZZfYqd7CvaF1KlsXPLbj7ncGvexerey74kXBosJKPsQUMgyfFXuaeYGVU+
-	 HBUaqF7xfu0mByz6J45cLidqwe4+kQTXeXswIDwsZR3sEEkesvOHPmYyjsSL1NyHXk
-	 iRfMM/dn0NgDSNhI+E/MwPeCQkM1xWmGIgMOmcF9tk6zfPWYJnLgZQ7UCUp7Sya7EV
-	 D0YbpoUpfJhwn+MWohhQesrxq5pV5nHCsvyc3BkmmskeDTogsrMW5xWU2TRrNNUiRa
-	 39mQz/jM0ijg+Zt90mxFF0YMWWcVMfuMhZ9mJlsgYBUMozzO7DUpn98JT5dkEUp2/w
-	 bwwoC6QTP8Pow==
+	b=mgdmIlaK7A1guFpHzYBVEcv/kTcAMyUPWGY2kmYk1NpjhI1dHwC2UCfNwGmEinn2O
+	 pLn+3hgdXM+UHivkEcY1c5YNHyFxodfH2rl+kjd2Rm4RMjM5oGAoW5UUwZaubjQ4+p
+	 5RGiKAkPU3XRBIgyEtjp3TBuFAmB2O+ODNgTmkQRrJBkVdppbNQfhI6Qb+D4282UX0
+	 B+6/KDD+acbi5hZFEfqruEsgieQVCZJLp6sDXLUD2e32hddSBNAwR10TaPhS/QR9Up
+	 6T8zhCl1WlhZ+vipG3qZIWWfgtCrbaePvu/36r24IWVnA449N5IHM8JAztlxcXBXLb
+	 37ZCJO1Z1BLzA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Naman Trivedi <naman.trivedimanojbhai@amd.com>,
-	Senthil Nathan Thangaraj <senthilnathan.thangaraj@amd.com>,
-	Michal Simek <michal.simek@amd.com>,
+Cc: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
+	Thierry Reding <treding@nvidia.com>,
 	Sasha Levin <sashal@kernel.org>,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	sean.anderson@linux.dev,
+	thierry.reding@gmail.com,
+	jonathanh@nvidia.com,
+	tmn505@gmail.com,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.6 273/294] arm64: zynqmp: add clock-output-names property in clock nodes
-Date: Mon,  5 May 2025 18:56:13 -0400
-Message-Id: <20250505225634.2688578-273-sashal@kernel.org>
+	linux-tegra@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.10 037/114] arm64: tegra: p2597: Fix gpio for vdd-1v8-dis regulator
+Date: Mon,  5 May 2025 19:17:00 -0400
+Message-Id: <20250505231817.2697367-37-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250505225634.2688578-1-sashal@kernel.org>
-References: <20250505225634.2688578-1-sashal@kernel.org>
+In-Reply-To: <20250505231817.2697367-1-sashal@kernel.org>
+References: <20250505231817.2697367-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,81 +69,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.89
+X-stable-base: Linux 5.10.237
 Content-Transfer-Encoding: 8bit
 
-From: Naman Trivedi <naman.trivedimanojbhai@amd.com>
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
 
-[ Upstream commit 385a59e7f7fb3438466a0712cc14672c708bbd57 ]
+[ Upstream commit f34621f31e3be81456c903287f7e4c0609829e29 ]
 
-Add clock-output-names property to clock nodes, so that the resulting
-clock name do not change when clock node name is changed.
-Also, replace underscores with hyphens in the clock node names as per
-dt-schema rule.
+According to the board schematics the enable pin of this regulator is
+connected to gpio line #9 of the first instance of the TCA9539
+GPIO expander, so adjust it.
 
-Signed-off-by: Naman Trivedi <naman.trivedimanojbhai@amd.com>
-Acked-by: Senthil Nathan Thangaraj <senthilnathan.thangaraj@amd.com>
-Link: https://lore.kernel.org/r/20241122095712.1166883-1-naman.trivedimanojbhai@amd.com
-Signed-off-by: Michal Simek <michal.simek@amd.com>
+Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Link: https://lore.kernel.org/r/20250224-diogo-gpio_exp-v1-1-80fb84ac48c6@tecnico.ulisboa.pt
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-index ccaca29200bb9..995bd8ce9d43a 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-@@ -10,39 +10,44 @@
- 
- #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
- / {
--	pss_ref_clk: pss_ref_clk {
-+	pss_ref_clk: pss-ref-clk {
- 		bootph-all;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <33333333>;
-+		clock-output-names = "pss_ref_clk";
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
+index a9caaf7c0d67e..c04772a9740ec 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
+@@ -1638,7 +1638,7 @@ vdd_1v8_dis: regulator@7 {
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <1800000>;
+ 		regulator-always-on;
+-		gpio = <&exp1 14 GPIO_ACTIVE_HIGH>;
++		gpio = <&exp1 9 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		vin-supply = <&vdd_1v8>;
  	};
- 
--	video_clk: video_clk {
-+	video_clk: video-clk {
- 		bootph-all;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <27000000>;
-+		clock-output-names = "video_clk";
- 	};
- 
--	pss_alt_ref_clk: pss_alt_ref_clk {
-+	pss_alt_ref_clk: pss-alt-ref-clk {
- 		bootph-all;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <0>;
-+		clock-output-names = "pss_alt_ref_clk";
- 	};
- 
--	gt_crx_ref_clk: gt_crx_ref_clk {
-+	gt_crx_ref_clk: gt-crx-ref-clk {
- 		bootph-all;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <108000000>;
-+		clock-output-names = "gt_crx_ref_clk";
- 	};
- 
--	aux_ref_clk: aux_ref_clk {
-+	aux_ref_clk: aux-ref-clk {
- 		bootph-all;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <27000000>;
-+		clock-output-names = "aux_ref_clk";
- 	};
- };
- 
 -- 
 2.39.5
 
