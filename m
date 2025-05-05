@@ -1,161 +1,207 @@
-Return-Path: <devicetree+bounces-173834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97AE0AA9B98
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 20:34:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19CE0AA9BBF
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 20:42:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11358164D72
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:34:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 508E63BE4BA
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:42:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5CB826E17D;
-	Mon,  5 May 2025 18:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC5626E158;
+	Mon,  5 May 2025 18:42:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SoYI82O2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cKc/2tY7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C6B26B097;
-	Mon,  5 May 2025 18:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2D21B0F31;
+	Mon,  5 May 2025 18:42:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746470037; cv=none; b=fXHbdKDdKI5CNz1v1PL5aKHrqYyVeM1hfDZNgZAikVom7ovLc5ffWkGWTIcOmNVJBtWWWPxcf+BjU2pMgRQsQMQ6OjLLEjrwBtD5QpU3TdMdivoKtbb+78q1yLdVSTsaXLM0u2dR9WaKqajWFAZvLCxC5lqLwWnDwZr0l1FlqZI=
+	t=1746470537; cv=none; b=hBeaFNChOsWuqVTTNQWfYAIqmREenIixPEy5JJJY8a+tM5Fb8Yh+pTqIwkov0mppZh+m3HJG9EeruT8C23iIlK0K8EC8+fensEFu5MA4eo4mDo/Z3VNwwZ+TAOAkmm9JwV+jBmmfp8RWZckAqNDNT8eKHFhPuJvm7R2MdrdJl6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746470037; c=relaxed/simple;
-	bh=5S8M/c10REYo4PgzbC8d4IT8+Lk4+t8C4D84ntmXYig=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E88KG/iexXiOpYECGyN8S05AgK207aBZYXzblgx9Zhcz4q/yAoB00OQe0CEavcG0yslZJOZHxFWR9m4wu8gLtZA/Fmrnu1O+6+lVR8PinZ20ppmHZ9gdZxA/xeAWZxrA84PCW1Fc1F5OHEdJlj/uoscCgvqGZabSJpMl13aRhus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SoYI82O2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C52CCC4CEE4;
-	Mon,  5 May 2025 18:33:56 +0000 (UTC)
+	s=arc-20240116; t=1746470537; c=relaxed/simple;
+	bh=WsVm1VWhGB/q4UiDgJw4yMWmXTJdExntWW8us53Bh/4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=S628Ge3R53BUfRwr6GW/JM6cTUu4khSh/ReZAnhOxLmr7tW8MR6yuUyVgonIYD8USLxnk0Lr/pQWx2Ldv6R/PQ+27/LOv+I0WniFGGz7DOw8cGSvej6BqEv5rPhD3rP7HiYRpn7DL4jlrWa+QmI29tDsyxVYy5hiegbM6rGdmRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cKc/2tY7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2312C4CEE4;
+	Mon,  5 May 2025 18:42:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746470037;
-	bh=5S8M/c10REYo4PgzbC8d4IT8+Lk4+t8C4D84ntmXYig=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SoYI82O2m/0NkHy3N0fDYrkgm4jlBTVenJoq4IKfWeLcfvsNnwVrpKnHUupKwt/nl
-	 3pQNcVC8/9H/16kDZFtWQt2miX73DaRlN5Osus4B8lZAvuRT6QU/89CqQJOSZzeveC
-	 9rOmzYMlRSLuZb2wAQYQL/JndyteJ41+qxP20NRhizh9M0lwsa/QjxA9j6HX5Jxkdd
-	 O1H1DJxEAZy+Cl0NSWuJfq4vujaxlj2IApj4o1O1E9JRETaH3hky1FaEuf0aLndNoa
-	 0sCJmd3SXWtabtXlmy/QPTI+qnvpze+Ugjc2BrkeORZUscI+0gje96xfp9nLxNT8Sa
-	 je5WDQ9cAuFHg==
-Date: Mon, 5 May 2025 13:33:55 -0500
-From: Rob Herring <robh@kernel.org>
-To: Remo Senekowitsch <remo@buenzli.dev>
-Cc: Dirk Behme <dirk.behme@de.bosch.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v4 5/9] rust: device: Introduce PropertyGuard
-Message-ID: <20250505183355.GA1658159-robh@kernel.org>
-References: <20250504173154.488519-1-remo@buenzli.dev>
- <20250504173154.488519-6-remo@buenzli.dev>
- <5946174b-3178-462d-bb59-1e0d6c5f4dda@de.bosch.com>
- <D9O8WJ0RDNIA.4JYLWLYLBC2A@buenzli.dev>
- <CAL_Jsq+bzCc2r4H6=MfWq=9ku1SMCUL03KkCTeBPcqQrUEUMLg@mail.gmail.com>
- <D9OCJQ1HH5CM.2OHEAOF271GMC@buenzli.dev>
+	s=k20201202; t=1746470537;
+	bh=WsVm1VWhGB/q4UiDgJw4yMWmXTJdExntWW8us53Bh/4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cKc/2tY7I2KB0TePdp8Ms5GA6WLpmkSNtLG4wW++4Ho1tEwdtjNXd2kMLh/eMf6vy
+	 vX6b94sG5BXKyh4McwhxanJbFRFwCwRmJBuJQRtZ2hBNAKW5lwCoxbO0BxCKFU1Q5n
+	 1QxTLBV1Zv7f90aZXNEOldeZgw02NJNGlNIcvZszYb6tTlX1U4XwBBpSuqS1xv738G
+	 DUbqRBCwrnRkLrvfebmHXSwxVXuqoNZ3Se3/EqUXCtJlg40b4eMD6ws71Ky5UQHAZR
+	 fEUG1tp6twf0tNT3+KKSAjsNe+j957+tok2IS2J2QVzHWmWNBZkH2D8ghiYePwxWhp
+	 s2LH5kGSH2ldw==
+Date: Mon, 5 May 2025 19:42:04 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Eason Yang <j2anfernee@gmail.com>
+Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+ javier.carrasco.cruz@gmail.com, alisadariana@gmail.com,
+ olivier.moysan@foss.st.com, tgamblin@baylibre.com, eblanc@baylibre.com,
+ antoniu.miclaus@analog.com, andriy.shevchenko@linux.intel.com,
+ gstols@baylibre.com, ramona.nechita@analog.com, matteomartelli3@gmail.com,
+ marcelo.schmitt@analog.com, chanh@os.amperecomputing.com,
+ KWLIU@nuvoton.com, yhyang2@nuvoton.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 2/2] iio: adc: add support for Nuvoton NCT7201
+Message-ID: <20250505194204.3ef319a2@jic23-huawei>
+In-Reply-To: <20250505092600.962675-3-j2anfernee@gmail.com>
+References: <20250505092600.962675-1-j2anfernee@gmail.com>
+	<20250505092600.962675-3-j2anfernee@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <D9OCJQ1HH5CM.2OHEAOF271GMC@buenzli.dev>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, May 05, 2025 at 05:53:33PM +0200, Remo Senekowitsch wrote:
-> On Mon May 5, 2025 at 5:37 PM CEST, Rob Herring wrote:
-> > On Mon, May 5, 2025 at 8:02 AM Remo Senekowitsch <remo@buenzli.dev> wrote:
-> >>
-> >> On Mon May 5, 2025 at 7:14 AM CEST, Dirk Behme wrote:
-> >> > On 04/05/2025 19:31, Remo Senekowitsch wrote:
-> >> >> This abstraction is a way to force users to specify whether a property
-> >> >> is supposed to be required or not. This allows us to move error
-> >> >> logging of missing required properties into core, preventing a lot of
-> >> >> boilerplate in drivers.
-> >> >>
-> >> >> It will be used by upcoming methods for reading device properties.
-> >> >>
-> >> >> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
-> >> >> ---
-> >> >>  rust/kernel/device/property.rs | 59 ++++++++++++++++++++++++++++++++++
-> >> >>  1 file changed, 59 insertions(+)
-> >> >>
-> >> >> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
-> >> >> index 6ccc7947f9c31..59c61e2493831 100644
-> >> >> --- a/rust/kernel/device/property.rs
-> >> >> +++ b/rust/kernel/device/property.rs
-> >> >> @@ -123,3 +123,62 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
-> >> >>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
-> >> >>      }
-> >> >>  }
-> >> >> +
-> >> >> +/// A helper for reading device properties.
-> >> >> +///
-> >> >> +/// Use [`Self::required_by`] if a missing property is considered a bug and
-> >> >> +/// [`Self::optional`] otherwise.
-> >> >> +///
-> >> >> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provided.
-> >> >> +pub struct PropertyGuard<'fwnode, 'name, T> {
-> >> >> +    /// The result of reading the property.
-> >> >> +    inner: Result<T>,
-> >> >> +    /// The fwnode of the property, used for logging in the "required" case.
-> >> >> +    fwnode: &'fwnode FwNode,
-> >> >> +    /// The name of the property, used for logging in the "required" case.
-> >> >> +    name: &'name CStr,
-> >> >> +}
-> >> >> +
-> >> >> +impl<T> PropertyGuard<'_, '_, T> {
-> >> >> +    /// Access the property, indicating it is required.
-> >> >> +    ///
-> >> >> +    /// If the property is not present, the error is automatically logged. If a
-> >> >> +    /// missing property is not an error, use [`Self::optional`] instead. The
-> >> >> +    /// device is required to associate the log with it.
-> >> >> +    pub fn required_by(self, dev: &super::Device) -> Result<T> {
-> >> >> +        if self.inner.is_err() {
-> >> >> +            dev_err!(
-> >> >> +                dev,
-> >> >> +                "{}: property '{}' is missing\n",
-> >> >> +                self.fwnode.display_path(),
-> >> >> +                self.name
-> >> >> +            );
-> >> >> +        }
-> >> >> +        self.inner
-> >> >> +    }
-> >> >
-> >> > Thinking about the .required_by(dev) I wonder if there will be cases
-> >> > where we do *not* have a device? I.e. where we really have a fwnode,
-> >> > only. And therefore can't pass a device. If we have such cases do we
-> >> > need to be able to pass e.g. Option(dev) and switch back to pr_err() in
-> >> > case of None?
-> >>
-> >> In that case, bringing back the previous .required() method seems
-> >> reasonable to me. But only if we definitely know such cases exist.
-> >
-> > They definitely exist. Any property in a child node of the device's
-> > node when the child itself is not another device for example.
+On Mon,  5 May 2025 17:26:00 +0800
+Eason Yang <j2anfernee@gmail.com> wrote:
+
+> Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
 > 
-> I don't think that counts, because you do have a device in that
-> situation. The log should be assicated with that. So callers are
-> responsible to propagate a reference to the device to wherever the call
-> to .required_by(dev) is happening.
+> NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up
+> to 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins
+> for independent alarm signals, and all the threshold values could be set
+> for system protection without any timing delay. It also supports reset
+> input RSTIN# to recover system from a fault condition.
+> 
+> Currently, only single-edge mode conversion and threshold events are
+> supported.
 
-Ah, right. So it would just be cases that aren't a driver at all. That's 
-limited to the OF_DECLARE cases. I agree we can worry about those later.
+As below. Setup of threshold events seems to be here, but not the interrupt
+handler that would call iio_push_event() to actually notify userspace they
+occurred.  Is the intent they are getting wired to something else?
 
-Rob
+Even if that is the intent we normally cross wire them to the host as well
+so as to be able to find out what happened.  The use in here of client->irq
+implies such wiring but no sign of it being handled.
+
+
+Jonathan
+
+
+> 
+> Signed-off-by: Eason Yang <j2anfernee@gmail.com>
+> ---
+>  MAINTAINERS               |   1 +
+>  drivers/iio/adc/Kconfig   |  11 +
+>  drivers/iio/adc/Makefile  |   1 +
+>  drivers/iio/adc/nct7201.c | 462 ++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 475 insertions(+)
+>  create mode 100644 drivers/iio/adc/nct7201.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 85b031ad7082..065202ab8fe7 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17378,6 +17378,7 @@ M:	Eason Yang <j2anfernee@gmail.com>
+>  L:	linux-iio@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+> +F:	drivers/iio/adc/nct7201.c
+>  
+>  NVIDIA (rivafb and nvidiafb) FRAMEBUFFER DRIVER
+>  M:	Antonino Daplas <adaplas@gmail.com>
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index 6529df1a498c..6d6af1b51b5e 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -1092,6 +1092,17 @@ config NAU7802
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called nau7802.
+>  
+> +config NCT7201
+> +	tristate "Nuvoton Instruments NCT7201 and NCT7202 Power Monitor"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  If you say yes here you get support for the Nuvoton NCT7201 and
+> +	  NCT7202 Voltage Monitor.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called nct7201.
+> +
+>  config NPCM_ADC
+>  	tristate "Nuvoton NPCM ADC driver"
+>  	depends on ARCH_NPCM || COMPILE_TEST
+> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> index 3e918c3eec69..54e8a7541af6 100644
+> --- a/drivers/iio/adc/Makefile
+> +++ b/drivers/iio/adc/Makefile
+> @@ -97,6 +97,7 @@ obj-$(CONFIG_MESON_SARADC) += meson_saradc.o
+>  obj-$(CONFIG_MP2629_ADC) += mp2629_adc.o
+>  obj-$(CONFIG_MXS_LRADC_ADC) += mxs-lradc-adc.o
+>  obj-$(CONFIG_NAU7802) += nau7802.o
+> +obj-$(CONFIG_NCT7201) += nct7201.o
+>  obj-$(CONFIG_NPCM_ADC) += npcm_adc.o
+>  obj-$(CONFIG_PAC1921) += pac1921.o
+>  obj-$(CONFIG_PAC1934) += pac1934.o
+> diff --git a/drivers/iio/adc/nct7201.c b/drivers/iio/adc/nct7201.c
+> new file mode 100644
+> index 000000000000..0dadf699162a
+> --- /dev/null
+> +++ b/drivers/iio/adc/nct7201.c
+> @@ -0,0 +1,462 @@
+
+> +static const struct iio_event_spec nct7201_events[] = {
+> +	{
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_RISING,
+> +		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
+> +				 BIT(IIO_EV_INFO_ENABLE),
+> +	}, {
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_FALLING,
+> +		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
+> +				 BIT(IIO_EV_INFO_ENABLE),
+> +	},
+I'd missed this before but you spend lots of time setting up event
+detectors etc which all looks good, but where are they actually signalled?
+
+The irq handler seems to be missing.
+
+> +};
+
+> +static int nct7201_init_chip(struct nct7201_chip_info *chip)
+> +{
+> +	struct device *dev = regmap_get_device(chip->regmap);
+> +	__le16 data = cpu_to_le16(GENMASK(chip->num_vin_channels - 1, 0));
+> +	unsigned int value;
+> +	int err;
+> +
+> +	err = regmap_write(chip->regmap, NCT7201_REG_CONFIGURATION,
+> +			   NCT7201_BIT_CONFIGURATION_RESET);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to reset chip\n");
+> +
+> +	/*
+> +	 * After about 25 msecs, the device should be ready and then the power-up
+> +	 * bit will be set to 1. If not, wait for it.
+
+Trivial but you don't "wait for it."  That's the right choice here but the comment is
+misleading.
+
+> +	 */
+> +	fsleep(25 * USEC_PER_MSEC);
+> +
+> +	err = regmap_read(chip->regmap, NCT7201_REG_BUSY_STATUS, &value);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to read busy status\n");
+> +	if (!(value & NCT7201_BIT_PWR_UP))
+> +		return dev_err_probe(dev, -EIO, "Failed to power up after reset\n");
+> +
 
