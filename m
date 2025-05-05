@@ -1,105 +1,114 @@
-Return-Path: <devicetree+bounces-173698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDE6DAA948D
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:30:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89D7BAA9494
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:30:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 581783B3D51
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:29:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03A411663F3
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A61792586CA;
-	Mon,  5 May 2025 13:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5007838382;
+	Mon,  5 May 2025 13:30:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 349972586E8
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 13:29:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E67E8494;
+	Mon,  5 May 2025 13:30:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746451800; cv=none; b=I839OOuzUzDo0k5RhxESN870crPVtz34TfqnWhVH0+Uo8MgTew76OjvwcB+fmssBRu1AbIlCSvXKBE1zG0piSALmUi0cCE17FiHW3oknn2UqGQzpXuLSKYP1xxOXfakPQN3acSjmo6e3NCQpeAnSd9U3QwN+dDRVgjaKEVMWacg=
+	t=1746451853; cv=none; b=CVSvYmesLvx17KE7tfASA6eD4Ij32gmtk516Qu6YUAYmMEcJO94Y49rmojuA4RiDtBqW44ThTUjcrdZXS1MScxafsRIQWGh2FFF8ZwJy/8vD33qmQLbKn88gcizNnD4gQftmOTFZarQ7CYnxqHtkcHY0OdFxtw6+70l6kNS9vLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746451800; c=relaxed/simple;
-	bh=nxv8omxoWylB/thmP6M3rQdOrACdO/QSPsp7iDIySd0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gusPsYspqudxgfqJ6BkTl/8H/1ydApy+33qxcCXNnUfM+aFeAnd1ETvDB7GJqcprD5YfBFwQHpdYcChi36ghgeHmWR/9sAPx2gN88G+AMiZLC7HfYdvxBg/M9Xz1ItdsOaUIKQ70qwelT/ZUcIKq7Jc2MFr/hq3h1wGt3X3MwAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uBvsv-0001kY-OL; Mon, 05 May 2025 15:29:29 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uBvsr-001EmE-2j;
-	Mon, 05 May 2025 15:29:25 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uBvsr-000KtU-2N;
-	Mon, 05 May 2025 15:29:25 +0200
-Message-ID: <a21bc1518141c38b064360ff4c2b7953bfdfda41.camel@pengutronix.de>
-Subject: Re: [PATCH v2 05/10] dt-bindings: reset: sophgo: Add SG2044
- bindings.
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Inochi Amaoto <inochiama@gmail.com>, Jean Delvare <jdelvare@suse.com>, 
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
- <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, Andi Shyti
- <andi.shyti@kernel.org>,  Thomas Gleixner <tglx@linutronix.de>, Paul
- Walmsley <paul.walmsley@sifive.com>, Samuel Holland
- <samuel.holland@sifive.com>, Ulf Hansson <ulf.hansson@linaro.org>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
- Ghiti <alex@ghiti.fr>,  Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas
- Bonnefille <thomas.bonnefille@bootlin.com>, Jarkko Nikula
- <jarkko.nikula@linux.intel.com>, Jisheng Zhang <jszhang@kernel.org>, Chao
- Wei <chao.wei@sophgo.com>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
- sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org,  linux-riscv@lists.infradead.org,
- linux-mmc@vger.kernel.org, Yixun Lan <dlan@gentoo.org>, Longbin Li
- <looong.bin@gmail.com>
-Date: Mon, 05 May 2025 15:29:25 +0200
-In-Reply-To: <20250413223507.46480-6-inochiama@gmail.com>
-References: <20250413223507.46480-1-inochiama@gmail.com>
-	 <20250413223507.46480-6-inochiama@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1746451853; c=relaxed/simple;
+	bh=JvKghcmKnjMhoG5LFd26j3rcP2HcpNU42TYq1hdEfNQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Iwc7fImJmOZWXk0HHDWuYxMT3QfFTYECNgGG0+Dp1vALVI2j+/Tudpsg+38RI+fN7Jkjw+dKY53kJdjnvbMrw1mkyIk37zXwWxQcu4aEJh06Ja6L3HMaz9nWZBGLyO05W+ddCg4YJoXCSMhnnIIWu55DkZdcVMKHm24jFUytK/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-86d377306ddso1044919241.2;
+        Mon, 05 May 2025 06:30:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746451849; x=1747056649;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nuh+CdOn7uD0LZd8BALHSrSesh+e5Elj6fD2f7bCbWs=;
+        b=TNLzsM7HApeOauYyA+EwRgA7hK9nJsdkFO31XmqGFY/M6kR/I0YuL7FZjIjtQ4M6YR
+         EauRd+8P5zNFazLMzfld7Nst4OGCCrmsEJMiEl91abotQvppURECBZ07p0Chdp5sYAVZ
+         LL2h5AbmSyRJXH5FTG5ruknVfACyj285I5NBZDeYNZ9Vc94hgdVDq1vQOfQhasixN5/T
+         cAn3MzUdv88Xq9LDTbuR9BB/JqKkbowxMIuUtAk00BnNLygN3h7yYN/Lc0DWAbNLMiJB
+         /PSMpKh3RM/yjRzHrA7FHabTvl9EwacSqbi+QMipczU/dgUq1GipSeNibRD/EkvE/y+h
+         D5lg==
+X-Forwarded-Encrypted: i=1; AJvYcCUmnmHlnOlEdi+Ez25M5dhtMxgJIy1Jn5MzUMhspLO8MHn/BzsJz81ROhq2lfk5rxXJQuNgKKtizVCu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+SilinCB/1lOhhlrDFqLCFGaYP8FE9k/t92LR4Y1FBa10h4IR
+	k6RvFRqI07dWKUZQ8CB6zofW49o2Ne9qhvVsaJie0and+wbAL9Z6LNHks6Ei
+X-Gm-Gg: ASbGncu3J+BevuZ/tJARRxggNcqQJsCdAbF8nu7nhTBCgv+58JcKenT7fW5ct0cfrnh
+	Qtc8ADTGOmPS8KsXfUdeW5cDRCgwmONMbdhoSW+3O2tH7h6+rUEWfLVHTPATCxxbWCd7WdsBfm+
+	WFRpCagEzHIGPWEN3EAMje2A/m6lZ7DtFq7KlY9kvTlTvdlGend/f0GTIbUF3M8qzHEwKQDbvXt
+	Ndy4G8Wu8HI0RNQ+Nx8eOeOIeXV7aWKuMpqKLALDJibMfib7rwWuZ7GLHup7VYBYAdYVI/AbNBl
+	cmbuDu4OzHx5dRg3EX8ohuav1GOqmmjJ5EqFX9J49/aBbf49O4hOdrvu1lD56q0f8WQ3RrUSVWo
+	3JpI=
+X-Google-Smtp-Source: AGHT+IFGzMetuQVy6FW0eg8f0/nYUdd8AKs4UXQuL95kiUTnl3EMElZmEhY2bWaawUw3LEt81XZ3TQ==
+X-Received: by 2002:a05:6102:568a:b0:4bb:e5bf:9c7d with SMTP id ada2fe7eead31-4db0c3de417mr4046455137.17.1746451849356;
+        Mon, 05 May 2025 06:30:49 -0700 (PDT)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4daf234a8ecsm1435092137.14.2025.05.05.06.30.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 May 2025 06:30:49 -0700 (PDT)
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4c9cea30173so1097476137.3;
+        Mon, 05 May 2025 06:30:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXNgNi0dlmoWfhPKweeTZpxJUogz5Vy26EA7hxS0tWuEYw1DQyw/7Xl+4y7ZT9GZEZ6UM7W5e2C0hAm@vger.kernel.org
+X-Received: by 2002:a05:6102:579a:b0:4da:fc9d:f0a with SMTP id
+ ada2fe7eead31-4db0c302d5dmr4283329137.15.1746451848733; Mon, 05 May 2025
+ 06:30:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20250424102805.22803-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20250424102805.22803-2-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 5 May 2025 15:30:36 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXu9G_C5GxotWn0Oy7Yo=oJo7RcfCioPV_tyihqr8e1kA@mail.gmail.com>
+X-Gm-Features: ATxdqUFipEIjMm-6Ipgsls0aNfTqXlrE45k5Yjd7xK7rE120sihUIVMsItK0_Wk
+Message-ID: <CAMuHMdXu9G_C5GxotWn0Oy7Yo=oJo7RcfCioPV_tyihqr8e1kA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: describe 9-pin
+ SubD-serial port
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mo, 2025-04-14 at 06:34 +0800, Inochi Amaoto wrote:
-> The SG2044 shares the same reset controller as SG2042, so it
-> is just enough to use the compatible string of SG2042 as a
-> basis.
->=20
-> Add compatible string for the reset controller of SG2044.
->=20
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
+Hi Wolfram,
 
-Applied patch 5 to reset/next, thanks!
+Thanks for your patch!
 
-[05/10] dt-bindings: reset: sophgo: Add SG2044 bindings.
-        https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D1c64de886b88
+On Thu, 24 Apr 2025 at 12:28, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> A simple CTS/RTS capable UART on a good old SubD connector.
 
-regards
-Philipp
+D-sub
 
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.16.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
