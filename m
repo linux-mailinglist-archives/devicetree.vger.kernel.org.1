@@ -1,370 +1,161 @@
-Return-Path: <devicetree+bounces-173833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CFDEAA9B33
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 20:10:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97AE0AA9B98
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 20:34:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C76E117839D
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:10:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11358164D72
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:34:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A4AF26C3A3;
-	Mon,  5 May 2025 18:10:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5CB826E17D;
+	Mon,  5 May 2025 18:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="Y93Nlzht"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SoYI82O2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89F734CF5;
-	Mon,  5 May 2025 18:10:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C6B26B097;
+	Mon,  5 May 2025 18:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746468604; cv=none; b=ALr8a9eCxKQG7rWpA1ecsA1EmAfUwIQXPnyzbepMU5FE3LMxzr5+sz8EMxHbKQuVgcMljfCfGw7/W57r47dHp8hoAxluGWGerZnlBgtXu3aDy2+c2rhBLjOMrXOvEZZF+LwKYH6MLgnUlywTGENMBTqP/c6+BfHxscrAADAUctc=
+	t=1746470037; cv=none; b=fXHbdKDdKI5CNz1v1PL5aKHrqYyVeM1hfDZNgZAikVom7ovLc5ffWkGWTIcOmNVJBtWWWPxcf+BjU2pMgRQsQMQ6OjLLEjrwBtD5QpU3TdMdivoKtbb+78q1yLdVSTsaXLM0u2dR9WaKqajWFAZvLCxC5lqLwWnDwZr0l1FlqZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746468604; c=relaxed/simple;
-	bh=X6WmAh88THr8C9z9mzwEovCpndgVKVF0lVExX6A49Yw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qRvVEdmIWKHjQU2FKxSjzVdTyGrJwwhm/6JQPI/rOHz8kKqit7Su1weIpB/F0N63mZp16SlQzcuQB14XtgKe2Tnzg3dnRmuxIWMFgGsvjrdc1M3sUpa/ZjJdpIs44nMhMvvPT/awZVYolEAeW/S+TxI/Oc7sKXHTetzFnUTQtbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=Y93Nlzht; arc=none smtp.client-ip=5.135.140.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2A2A7D27C3;
-	Mon,  5 May 2025 20:09:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1746468592; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=mIYHb9Si9IXtbaejOZHizAzHg3IBCVST5ALoZloHbGY=;
-	b=Y93NlzhtawEHirqeYEunwMCFd29pkrveS9OEdyBDnE463PG/Yy9s2Lj7JSisAkqa5K+Idc
-	oFMncNtPr+ICQcBOm4FF0WjR+cykEZLrRgRr1r3kHeJ57CxyDx2pi2oIVy7q9Lov0aghaF
-	sXr40r2tKWKV8gtDETMCHaXcyaLGgoK13vKp3W5fv7RbvIad2Fvg1BIdpxzmTyhPUx+h9u
-	m3R4VHMnXProWzZgfPhWH4L0vtIABLjs86xGmK8kehreL1jPLF+lBu9jdnMzgPNhba1a9y
-	Rmyx6Wadkc8pD6uesvs7xH/plDgpqe8L0CBFYYMZyCtrFndKxfFQ3fKDp+UMnQ==
-Message-ID: <92cd3689-3409-4d43-8db1-8633d35f779a@cjdns.fr>
-Date: Mon, 5 May 2025 20:09:47 +0200
+	s=arc-20240116; t=1746470037; c=relaxed/simple;
+	bh=5S8M/c10REYo4PgzbC8d4IT8+Lk4+t8C4D84ntmXYig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E88KG/iexXiOpYECGyN8S05AgK207aBZYXzblgx9Zhcz4q/yAoB00OQe0CEavcG0yslZJOZHxFWR9m4wu8gLtZA/Fmrnu1O+6+lVR8PinZ20ppmHZ9gdZxA/xeAWZxrA84PCW1Fc1F5OHEdJlj/uoscCgvqGZabSJpMl13aRhus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SoYI82O2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C52CCC4CEE4;
+	Mon,  5 May 2025 18:33:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746470037;
+	bh=5S8M/c10REYo4PgzbC8d4IT8+Lk4+t8C4D84ntmXYig=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SoYI82O2m/0NkHy3N0fDYrkgm4jlBTVenJoq4IKfWeLcfvsNnwVrpKnHUupKwt/nl
+	 3pQNcVC8/9H/16kDZFtWQt2miX73DaRlN5Osus4B8lZAvuRT6QU/89CqQJOSZzeveC
+	 9rOmzYMlRSLuZb2wAQYQL/JndyteJ41+qxP20NRhizh9M0lwsa/QjxA9j6HX5Jxkdd
+	 O1H1DJxEAZy+Cl0NSWuJfq4vujaxlj2IApj4o1O1E9JRETaH3hky1FaEuf0aLndNoa
+	 0sCJmd3SXWtabtXlmy/QPTI+qnvpze+Ugjc2BrkeORZUscI+0gje96xfp9nLxNT8Sa
+	 je5WDQ9cAuFHg==
+Date: Mon, 5 May 2025 13:33:55 -0500
+From: Rob Herring <robh@kernel.org>
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Dirk Behme <dirk.behme@de.bosch.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v4 5/9] rust: device: Introduce PropertyGuard
+Message-ID: <20250505183355.GA1658159-robh@kernel.org>
+References: <20250504173154.488519-1-remo@buenzli.dev>
+ <20250504173154.488519-6-remo@buenzli.dev>
+ <5946174b-3178-462d-bb59-1e0d6c5f4dda@de.bosch.com>
+ <D9O8WJ0RDNIA.4JYLWLYLBC2A@buenzli.dev>
+ <CAL_Jsq+bzCc2r4H6=MfWq=9ku1SMCUL03KkCTeBPcqQrUEUMLg@mail.gmail.com>
+ <D9OCJQ1HH5CM.2OHEAOF271GMC@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v4 2/7] clocksource/drivers: Add EcoNet Timer HPT driver
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: linux-mips@vger.kernel.org, tglx@linutronix.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, tsbogend@alpha.franken.de,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- benjamin.larsson@genexis.eu, linux-mediatek@lists.infradead.org
-References: <20250430133433.22222-1-cjd@cjdns.fr>
- <20250430133433.22222-3-cjd@cjdns.fr> <aBjpBpJAIP89oiit@mai.linaro.org>
-Content-Language: en-US
-From: Caleb James DeLisle <cjd@cjdns.fr>
-In-Reply-To: <aBjpBpJAIP89oiit@mai.linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <D9OCJQ1HH5CM.2OHEAOF271GMC@buenzli.dev>
 
+On Mon, May 05, 2025 at 05:53:33PM +0200, Remo Senekowitsch wrote:
+> On Mon May 5, 2025 at 5:37 PM CEST, Rob Herring wrote:
+> > On Mon, May 5, 2025 at 8:02 AM Remo Senekowitsch <remo@buenzli.dev> wrote:
+> >>
+> >> On Mon May 5, 2025 at 7:14 AM CEST, Dirk Behme wrote:
+> >> > On 04/05/2025 19:31, Remo Senekowitsch wrote:
+> >> >> This abstraction is a way to force users to specify whether a property
+> >> >> is supposed to be required or not. This allows us to move error
+> >> >> logging of missing required properties into core, preventing a lot of
+> >> >> boilerplate in drivers.
+> >> >>
+> >> >> It will be used by upcoming methods for reading device properties.
+> >> >>
+> >> >> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+> >> >> ---
+> >> >>  rust/kernel/device/property.rs | 59 ++++++++++++++++++++++++++++++++++
+> >> >>  1 file changed, 59 insertions(+)
+> >> >>
+> >> >> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
+> >> >> index 6ccc7947f9c31..59c61e2493831 100644
+> >> >> --- a/rust/kernel/device/property.rs
+> >> >> +++ b/rust/kernel/device/property.rs
+> >> >> @@ -123,3 +123,62 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
+> >> >>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
+> >> >>      }
+> >> >>  }
+> >> >> +
+> >> >> +/// A helper for reading device properties.
+> >> >> +///
+> >> >> +/// Use [`Self::required_by`] if a missing property is considered a bug and
+> >> >> +/// [`Self::optional`] otherwise.
+> >> >> +///
+> >> >> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provided.
+> >> >> +pub struct PropertyGuard<'fwnode, 'name, T> {
+> >> >> +    /// The result of reading the property.
+> >> >> +    inner: Result<T>,
+> >> >> +    /// The fwnode of the property, used for logging in the "required" case.
+> >> >> +    fwnode: &'fwnode FwNode,
+> >> >> +    /// The name of the property, used for logging in the "required" case.
+> >> >> +    name: &'name CStr,
+> >> >> +}
+> >> >> +
+> >> >> +impl<T> PropertyGuard<'_, '_, T> {
+> >> >> +    /// Access the property, indicating it is required.
+> >> >> +    ///
+> >> >> +    /// If the property is not present, the error is automatically logged. If a
+> >> >> +    /// missing property is not an error, use [`Self::optional`] instead. The
+> >> >> +    /// device is required to associate the log with it.
+> >> >> +    pub fn required_by(self, dev: &super::Device) -> Result<T> {
+> >> >> +        if self.inner.is_err() {
+> >> >> +            dev_err!(
+> >> >> +                dev,
+> >> >> +                "{}: property '{}' is missing\n",
+> >> >> +                self.fwnode.display_path(),
+> >> >> +                self.name
+> >> >> +            );
+> >> >> +        }
+> >> >> +        self.inner
+> >> >> +    }
+> >> >
+> >> > Thinking about the .required_by(dev) I wonder if there will be cases
+> >> > where we do *not* have a device? I.e. where we really have a fwnode,
+> >> > only. And therefore can't pass a device. If we have such cases do we
+> >> > need to be able to pass e.g. Option(dev) and switch back to pr_err() in
+> >> > case of None?
+> >>
+> >> In that case, bringing back the previous .required() method seems
+> >> reasonable to me. But only if we definitely know such cases exist.
+> >
+> > They definitely exist. Any property in a child node of the device's
+> > node when the child itself is not another device for example.
+> 
+> I don't think that counts, because you do have a device in that
+> situation. The log should be assicated with that. So callers are
+> responsible to propagate a reference to the device to wherever the call
+> to .required_by(dev) is happening.
 
-On 05/05/2025 18:36, Daniel Lezcano wrote:
-> On Wed, Apr 30, 2025 at 01:34:28PM +0000, Caleb James DeLisle wrote:
->> Introduce a clocksource driver for the so-called high-precision timer (HPT)
->> in the EcoNet EN751221 MIPS SoC.
-> As a new driver, please document the timer (up - down ?, SPI/PPI, etc
-> ...) that will help to understand the code more easily, especially the
-> reg_* functions (purposes?).
+Ah, right. So it would just be cases that aren't a driver at all. That's 
+limited to the OF_DECLARE cases. I agree we can worry about those later.
 
-
-Sure thing, I can elaborate the comment in the header of
-timer-econet-en751221.c. Let me know if you'd like it described
-somewhere else as well, such as the help of config ECONET_EN751221_TIMER.
-
-
->
->> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
->> ---
->>   drivers/clocksource/Kconfig                 |   8 +
->>   drivers/clocksource/Makefile                |   1 +
->>   drivers/clocksource/timer-econet-en751221.c | 216 ++++++++++++++++++++
->>   3 files changed, 225 insertions(+)
->>   create mode 100644 drivers/clocksource/timer-econet-en751221.c
->>
->> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
->> index 487c85259967..976afb0b2312 100644
->> --- a/drivers/clocksource/Kconfig
->> +++ b/drivers/clocksource/Kconfig
->> @@ -73,6 +73,14 @@ config DW_APB_TIMER_OF
->>   	select DW_APB_TIMER
->>   	select TIMER_OF
->>   
->> +config ECONET_EN751221_TIMER
->> +	bool "EcoNet EN751221 High Precision Timer" if COMPILE_TEST
->> +	depends on HAS_IOMEM
->> +	select CLKSRC_MMIO
->> +	select TIMER_OF
->> +	help
->> +	  Support for CPU timer found on EcoNet MIPS based SoCs.
->> +
->>   config FTTMR010_TIMER
->>   	bool "Faraday Technology timer driver" if COMPILE_TEST
->>   	depends on HAS_IOMEM
->> diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
->> index 43ef16a4efa6..d2998601eda5 100644
->> --- a/drivers/clocksource/Makefile
->> +++ b/drivers/clocksource/Makefile
->> @@ -17,6 +17,7 @@ obj-$(CONFIG_CLKBLD_I8253)	+= i8253.o
->>   obj-$(CONFIG_CLKSRC_MMIO)	+= mmio.o
->>   obj-$(CONFIG_DAVINCI_TIMER)	+= timer-davinci.o
->>   obj-$(CONFIG_DIGICOLOR_TIMER)	+= timer-digicolor.o
->> +obj-$(CONFIG_ECONET_EN751221_TIMER)	+= timer-econet-en751221.o
->>   obj-$(CONFIG_OMAP_DM_TIMER)	+= timer-ti-dm.o
->>   obj-$(CONFIG_OMAP_DM_SYSTIMER)	+= timer-ti-dm-systimer.o
->>   obj-$(CONFIG_DW_APB_TIMER)	+= dw_apb_timer.o
->> diff --git a/drivers/clocksource/timer-econet-en751221.c b/drivers/clocksource/timer-econet-en751221.c
->> new file mode 100644
->> index 000000000000..9cfeead09377
->> --- /dev/null
->> +++ b/drivers/clocksource/timer-econet-en751221.c
->> @@ -0,0 +1,216 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Timer present on EcoNet EN75xx MIPS based SoCs.
->> + *
->> + * Copyright (C) 2025 by Caleb James DeLisle <cjd@cjdns.fr>
->> + */
->> +
->> +#include <linux/io.h>
->> +#include <linux/cpumask.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/clockchips.h>
->> +#include <linux/sched_clock.h>
->> +#include <linux/of.h>
->> +#include <linux/of_irq.h>
->> +#include <linux/of_address.h>
->> +#include <linux/cpuhotplug.h>
->> +#include <linux/clk.h>
->> +
->> +#define ECONET_BITS			32
->> +#define ECONET_MIN_DELTA		0x00001000
->> +#define ECONET_MAX_DELTA		GENMASK(ECONET_BITS - 2, 0)
->> +/* 34Kc hardware has 1 block and 1004Kc has 2. */
->> +#define ECONET_NUM_BLOCKS		DIV_ROUND_UP(NR_CPUS, 2)
->> +
->> +static struct {
->> +	void __iomem	*membase[ECONET_NUM_BLOCKS];
->> +	u32		freq_hz;
->> +} econet_timer __ro_after_init;
->> +
->> +static DEFINE_PER_CPU(struct clock_event_device, econet_timer_pcpu);
->> +
->> +/* Each memory block has 2 timers, the order of registers is:
->> + * CTL, CMR0, CNT0, CMR1, CNT1
->> + */
->> +static inline void __iomem *reg_ctl(u32 timer_n)
->> +{
->> +	return econet_timer.membase[timer_n >> 1];
->> +}
->> +
->> +static inline void __iomem *reg_compare(u32 timer_n)
->> +{
->> +	return econet_timer.membase[timer_n >> 1] + (timer_n & 1) * 0x08 + 0x04;
->> +}
->> +
->> +static inline void __iomem *reg_count(u32 timer_n)
->> +{
->> +	return econet_timer.membase[timer_n >> 1] + (timer_n & 1) * 0x08 + 0x08;
->> +}
->> +
->> +static inline u32 ctl_bit_enabled(u32 timer_n)
->> +{
->> +	return 1U << (timer_n & 1);
->> +}
->> +
->> +static inline u32 ctl_bit_pending(u32 timer_n)
->> +{
->> +	return 1U << ((timer_n & 1) + 16);
->> +}
->> +
->> +static bool cevt_is_pending(int cpu_id)
->> +{
->> +	return ioread32(reg_ctl(cpu_id)) & ctl_bit_pending(cpu_id);
->> +}
->> +
->> +static irqreturn_t cevt_interrupt(int irq, void *dev_id)
->> +{
->> +	struct clock_event_device *dev = this_cpu_ptr(&econet_timer_pcpu);
->> +	int cpu = cpumask_first(dev->cpumask);
->> +
->> +	if (!cevt_is_pending(cpu)) {
->> +		pr_debug("%s IRQ %d on CPU %d is not pending\n", __func__, irq, cpu);
->> +		return IRQ_NONE;
->> +	}
-> How this can happen ? Can this interrupt be shared ?
-To my knowledge it can't, but vendor code does it and I wasn't feeling
-bold enough to gamble.
-> The system will account this as a spurious interrupt, the debug
-> message is not needed.
-Good point, will remove.
->
->> +	iowrite32(ioread32(reg_count(cpu)), reg_compare(cpu));
->> +	dev->event_handler(dev);
->> +	return IRQ_HANDLED;
->> +}
->> +
->> +static int cevt_set_next_event(ulong delta, struct clock_event_device *dev)
->> +{
->> +	u32 next;
->> +	int cpu;
->> +
->> +	cpu = cpumask_first(dev->cpumask);
->> +	next = ioread32(reg_count(cpu)) + delta;
->> +	iowrite32(next, reg_compare(cpu));
->> +
->> +	if ((s32)(next - ioread32(reg_count(cpu))) < ECONET_MIN_DELTA / 2)
->> +		return -ETIME;
->> +
->> +	return 0;
->> +}
->> +
->> +static int cevt_init_cpu(uint cpu)
->> +{
->> +	struct clock_event_device *cd = &per_cpu(econet_timer_pcpu, cpu);
->> +	u32 reg;
->> +
->> +	pr_info("%s: Setting up clockevent for CPU %d\n", cd->name, cpu);
-> That is more debug information
-Fair enough, will change.
->> +	reg = ioread32(reg_ctl(cpu)) | ctl_bit_enabled(cpu);
->> +	iowrite32(reg, reg_ctl(cpu));
->> +
->> +	enable_percpu_irq(cd->irq, IRQ_TYPE_NONE);
->> +
->> +	/* Do this last because it synchronously configures the timer */
->> +	clockevents_config_and_register(
->> +		cd, econet_timer.freq_hz,
->> +		ECONET_MIN_DELTA, ECONET_MAX_DELTA);
->> +
->> +	return 0;
->> +}
->> +
->> +static u64 notrace sched_clock_read(void)
->> +{
->> +	/* Always read from clock zero no matter the CPU */
->> +	return (u64)ioread32(reg_count(0));
->> +}
->> +
->> +/* Init */
->> +
->> +static void __init cevt_dev_init(uint cpu)
->> +{
->> +	iowrite32(0, reg_count(cpu));
->> +	iowrite32(U32_MAX, reg_compare(cpu));
->> +}
->> +
->> +static int __init cevt_init(struct device_node *np)
->> +{
->> +	int i, irq, ret;
->> +
->> +	irq = irq_of_parse_and_map(np, 0);
->> +	if (irq <= 0) {
->> +		pr_err("%pOFn: irq_of_parse_and_map failed", np);
->> +		return -EINVAL;
->> +	}
->> +
->> +	ret = request_percpu_irq(irq, cevt_interrupt, np->name, &econet_timer_pcpu);
->> +
->> +	if (ret < 0) {
->> +		pr_err("%pOFn: IRQ %d setup failed (%d)\n", np, irq, ret);
->> +		goto err_unmap_irq;
->> +	}
->> +
->> +	for_each_possible_cpu(i) {
->> +		struct clock_event_device *cd = &per_cpu(econet_timer_pcpu, i);
->> +
->> +		cd->rating		= 310,
->> +		cd->features		= CLOCK_EVT_FEAT_ONESHOT |
->> +					  CLOCK_EVT_FEAT_C3STOP |
->> +					  CLOCK_EVT_FEAT_PERCPU;
->> +		cd->set_next_event	= cevt_set_next_event;
->> +		cd->irq			= irq;
->> +		cd->cpumask		= cpumask_of(i);
->> +		cd->name		= np->name;
->> +
->> +		cevt_dev_init(i);
->> +	}
->> +
->> +	cpuhp_setup_state(CPUHP_AP_MIPS_GIC_TIMER_STARTING,
->> +			  "clockevents/en75/timer:starting",
->> +			  cevt_init_cpu, NULL);
-> cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, ... ) ?
-
-I see that Ingenic does this. This is the only timer so until it's up,
-sleeping causes a hang. If sleeping is prior to CPUHP_AP_ONLINE_DYN is
-considered a bug then this should be okay, but I'm not informed enough
-to say whether that is the case so I'll follow your guidance here.
-
-
-Thanks,
-
-Caleb
-
-
->
->> +	return 0;
->> +
->> +err_unmap_irq:
->> +	irq_dispose_mapping(irq);
->> +	return ret;
->> +}
->> +
->> +static int __init timer_init(struct device_node *np)
->> +{
->> +	int num_blocks = DIV_ROUND_UP(num_possible_cpus(), 2);
->> +	struct clk *clk;
->> +	int ret;
->> +
->> +	clk = of_clk_get(np, 0);
->> +	if (IS_ERR(clk)) {
->> +		pr_err("%pOFn: Failed to get CPU clock from DT %ld\n", np, PTR_ERR(clk));
->> +		return PTR_ERR(clk);
->> +	}
->> +
->> +	econet_timer.freq_hz = clk_get_rate(clk);
->> +
->> +	for (int i = 0; i < num_blocks; i++) {
->> +		econet_timer.membase[i] = of_iomap(np, i);
->> +		if (!econet_timer.membase[i]) {
->> +			pr_err("%pOFn: failed to map register [%d]\n", np, i);
->> +			return -ENXIO;
->> +		}
->> +	}
->> +
->> +	/* For clocksource purposes always read clock zero, whatever the CPU */
->> +	ret = clocksource_mmio_init(reg_count(0), np->name,
->> +				    econet_timer.freq_hz, 301, ECONET_BITS,
->> +				    clocksource_mmio_readl_up);
->> +	if (ret) {
->> +		pr_err("%pOFn: clocksource_mmio_init failed: %d", np, ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = cevt_init(np);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	sched_clock_register(sched_clock_read, ECONET_BITS,
->> +			     econet_timer.freq_hz);
->> +
->> +	pr_info("%pOFn: using %u.%03u MHz high precision timer\n", np,
->> +		econet_timer.freq_hz / 1000000,
->> +		(econet_timer.freq_hz / 1000) % 1000);
->> +
->> +	return 0;
->> +}
->> +
->> +TIMER_OF_DECLARE(econet_timer_hpt, "econet,en751221-timer", timer_init);
->> -- 
->> 2.39.5
->>
+Rob
 
