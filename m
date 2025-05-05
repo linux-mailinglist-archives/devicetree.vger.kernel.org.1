@@ -1,181 +1,125 @@
-Return-Path: <devicetree+bounces-173695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4530CAA9476
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:25:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C037AAA9482
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:29:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71E2D189B6E1
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:25:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 070433B3839
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27142AF1B;
-	Mon,  5 May 2025 13:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21FD02586C5;
+	Mon,  5 May 2025 13:28:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JDtvla5h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 407C624C092
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 13:24:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B4B1E5218;
+	Mon,  5 May 2025 13:28:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746451483; cv=none; b=jdSImPAmEejbXLk6+w5Y2sAuHRis/xSgZ3T5cDxNcxL0HrM/VqrZPfnLU0wgbFBJZ2nEyyOIMVo1900cAloYnNx+UFCn36vJazG8+Vkv/PPJPDMg+AJ9UuGvPuIqbc/dwv2spC3GGFxwi2fR/pTPXWIF8eZmQUsstDLiLK/me2g=
+	t=1746451737; cv=none; b=HQrKhfZTS2KJYGbv2+7CxGDGc4DL+ReDza5EQfu2TTfNeBhOoGApADcZalynQJOVgacRxkV3Tuw7eYKu07XPe20N/qzn8/8x09kjlljpvZEGx0j/krVSQhWfxwncV5vyZavyfVWWghQ53nghlPJNLldZSGvtJug6fE9uBBi6ycM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746451483; c=relaxed/simple;
-	bh=y77X37gAugX91JrGBbDc9vema3Ytb2kMk2Zu6xzLV/8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=r/E18ug4Z16dPXHdgQYZbvFDYhMWljit61mxNNz0PANOFGZHBRhz/gDSUTt4UZHxMwIojP1TtVSKNAL4cv3dJCFo0XgFanHjimtUrTKMM1Ke2YRo6NTA/Ks0ExaUTPUx/B62hjjNS1oPR+LofIZHVDrX7FKC8FI/dyCKao+MsoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <s.hauer@pengutronix.de>)
-	id 1uBvo7-0000dt-Kd; Mon, 05 May 2025 15:24:31 +0200
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <s.hauer@pengutronix.de>)
-	id 1uBvo6-001ElS-37;
-	Mon, 05 May 2025 15:24:30 +0200
-Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
-	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.96)
-	(envelope-from <s.hauer@pengutronix.de>)
-	id 1uBvo6-00Ce6n-2o;
-	Mon, 05 May 2025 15:24:30 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Mon, 05 May 2025 15:24:24 +0200
-Subject: [PATCH] arm64: dts: ti: k3-am625-sk: Add power/temperature sensors
+	s=arc-20240116; t=1746451737; c=relaxed/simple;
+	bh=xH7735ca1FwHO7Q1/W7N4dAS2/ej5MPuwbbwF2LGDRg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aidxfS5HDwM88NGApdOsNWO0pjkrAZErDKJzAcDbu8YdU4fzZlNvpMWEWX1e38bCcpQ5CWyMrQVGyGJXaC04jfnDPZWVqWSFE7NZ0H3PS+Oi2FnceIeGMl2RB/vJ3nFh/9bmPWzFLCvr3QfcMw0xXJwHbNio/PJH3ESYEd/viME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JDtvla5h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EB62C4CEE4;
+	Mon,  5 May 2025 13:28:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746451736;
+	bh=xH7735ca1FwHO7Q1/W7N4dAS2/ej5MPuwbbwF2LGDRg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=JDtvla5hoHPfR/l8HpHtFMPc9hwc5lwxDfhV5UGs+oG6RF74d1+QScND31+NO8I5J
+	 pnLT22DuZ8jpdyxUa94eoZ5Tf2i9slv06h57zL7e0I+CeDB/9XKFCaPkm18idFrtX2
+	 BLpsI/4MihbGtjrRTEPMn/yCKuc41sgMB73QnVzRCpYikAJy6sbo3xYUD95IRf0Q2T
+	 pDl/KlGTQ38TNJXiZN68aAuZc+vV1sJlfbYMe6hrTP13FvWxN+FDS07hCQgLK9vdlg
+	 EUjW/tz0WiFhBz1aSFsqHHDt1U9wKebiON4w3n9rZs+k0A70g6xfu85eWWbMKqv+zJ
+	 0MBq86pyZKIqg==
+Date: Mon, 5 May 2025 14:28:45 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Angelo Dureghello <adureghello@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] Documentation: ABI: IIO: add calibconv_delay
+ documentation
+Message-ID: <20250505142845.5b58a74c@jic23-huawei>
+In-Reply-To: <357c418f-7f00-416c-937e-f6fea1c0af96@baylibre.com>
+References: <20250502-wip-bl-ad7606-calibration-v2-0-174bd0af081b@baylibre.com>
+	<20250502-wip-bl-ad7606-calibration-v2-1-174bd0af081b@baylibre.com>
+	<20250504161603.7d1027af@jic23-huawei>
+	<357c418f-7f00-416c-937e-f6fea1c0af96@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250505-am625-sk-sensors-v1-1-688fb928b390@pengutronix.de>
-X-B4-Tracking: v=1; b=H4sIAAe8GGgC/x2MQQqAMAzAviI9W5jFKfgV8bBp1SJusoIIsr87J
- KcckheUk7DCUL2Q+BaVGIo0dQXz7sLGKEtxIEPWFNCdHVnUA5WDxqToPVnL5J1reyjZlXiV51+
- OU84fngVTXmIAAAA=
-X-Change-ID: 20250505-am625-sk-sensors-bb255e2baa47
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746451470; l=2443;
- i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
- bh=y77X37gAugX91JrGBbDc9vema3Ytb2kMk2Zu6xzLV/8=;
- b=kHuheosHNgMn75rW9pnvt3xs2K4Lnln8qgA5qFhk2utGwFiN33cb+Gr6UfNBBHalVJ2x1enMi
- R02UGWmyz2EDvENq1aDh7qV3X9tJCZ64/vB1fgIe50zT9i+ts7Reka6
-X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
- pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: s.hauer@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The AM625-SK has six power sensors and two temperature sensors connected
-to I2C. Add them to the device tree.
+On Sun, 4 May 2025 14:48:32 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
----
-The AM625-SK has six power sensors and two temperature sensors connected
-to I2C. Add them to the device tree.
----
- arch/arm64/boot/dts/ti/k3-am625-sk.dts | 68 ++++++++++++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
+> On 5/4/25 10:16 AM, Jonathan Cameron wrote:
+> > On Fri, 02 May 2025 15:26:58 +0200
+> > Angelo Dureghello <adureghello@baylibre.com> wrote:
+> >   
+> >> From: Angelo Dureghello <adureghello@baylibre.com>
+> >>
+> >> Add new IIO calibconv_delay documentation.
+> >>
+> >> The ad7606 implements a phase calibation feature, in nanoseconds.
+> >> Being this a time delay, using the conv_delay suffix.  
+> > I made a late reply to v1...
+> > 
+> > Key point being that, in the general sense this is only a calibration
+> > thing if it is both writeable and we are using it for filter phase correction.
+> > In more general terms it's just a conversion sampling time offset (and as you have
+> > it here in seconds).  I'm keen we define this to incorporate more general
+> > cases including extra read only info on sequencer timing - that can be useful
+> > if we have something like 
+> >                  _____________
+> > Input 0 --------|             |
+> > Input 1 --------| 4 in, 2 out |-----  ADC0
+> > Input 2 --------|  MUX        |
+> > Input 3 --------|_____________|-----  ADC1
+> > 
+> > That is the ability to schedule more channels across a small number of
+> > simultaneous sampling ADCs.  In these cases we've never had a way to
+> > express what was done together.  Mostly there have been obvious
+> > combinations (i.e. voltage and current at same time on a given wire for
+> > power measurement), but it would still be nice to use your new interface
+> > to allow us to describe what is running here (though probably not control
+> > it as that would be hard to do!)
+> >   
+> I'm totally on board with making this more general than just calibration, but
+> having worked on a couple of multiplexed simultaneous sampling ADCs like this,
+> I'm scratching my head a bit trying to figure out how we would be able to know
+> what the delay was between the conversions, at least in cases where we don't
+> have a hardware conversion trigger based on a clock/pwm. Generally, it is as
+> fast as the SPI bus can bang it out, but that isn't a fixed or predictable
+> amount of time.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-index 2fbfa371934575efc4e9118a705f062bdea55f4f..e900d3134c72dc2616e3820b273d84b0db64bed5 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -193,6 +193,74 @@ exp1: gpio@22 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&main_gpio1_ioexp_intr_pins_default>;
- 	};
-+
-+	power-sensor@40 {
-+		compatible = "ti,ina231";
-+		reg = <0x40>;
-+		#io-channel-cells = <1>;
-+		label = "vdd_core";
-+		shunt-resistor = <10000>;
-+		vs-supply = <&vcc_3v3_sys>;
-+	};
-+
-+	power-sensor@41 {
-+		compatible = "ti,ina231";
-+		reg = <0x41>;
-+		#io-channel-cells = <1>;
-+		label = "vddr_core";
-+		shunt-resistor = <10000>;
-+		vs-supply = <&vcc_3v3_sys>;
-+	};
-+
-+	power-sensor@45 {
-+		compatible = "ti,ina231";
-+		reg = <0x45>;
-+		#io-channel-cells = <1>;
-+		label = "dvdd_1v8";
-+		shunt-resistor = <10000>;
-+		vs-supply = <&vcc_3v3_sys>;
-+	};
-+
-+	power-sensor@47 {
-+		compatible = "ti,ina231";
-+		reg = <0x47>;
-+		#io-channel-cells = <1>;
-+		label = "vdd_ddr";
-+		shunt-resistor = <10000>;
-+		vs-supply = <&vcc_3v3_sys>;
-+	};
-+
-+	temperature-sensor@48 {
-+		compatible = "ti,tmp100";
-+		reg = <0x48>;
-+		label = "soc";
-+		vs-supply = <&vcc_3v3_sys>;
-+	};
-+
-+	temperature-sensor@49 {
-+		compatible = "ti,tmp100";
-+		reg = <0x49>;
-+		label = "ddr";
-+		vs-supply = <&vcc_3v3_sys>;
-+	};
-+
-+	power-sensor@4c {
-+		compatible = "ti,ina231";
-+		reg = <0x4c>;
-+		#io-channel-cells = <1>;
-+		label = "dvdd_3v3";
-+		shunt-resistor = <10000>;
-+		vs-supply = <&vcc_3v3_sys>;
-+	};
-+
-+	power-sensor@4d {
-+		compatible = "ti,ina231";
-+		reg = <0x4d>;
-+		#io-channel-cells = <1>;
-+		label = "vdda_1v8";
-+		shunt-resistor = <10000>;
-+		vs-supply = <&vcc_3v3_sys>;
-+	};
- };
- 
- &sdhci1 {
+Yeah, this only applies to self clocking devices with a FIFO (possibly a very
+short one with 1 register per channel in a scan).
+The SPI hammering cases don't work for exactly the reason you mention.
 
----
-base-commit: 92a09c47464d040866cf2b4cd052bc60555185fb
-change-id: 20250505-am625-sk-sensors-bb255e2baa47
+For those we might be able to come up with a multi-baseline solution to
+indicate that inputs 0 + 1 are together and 2 + 3 also together but it would
+be fiddly.  So lets wait until we know we need that :)
 
-Best regards,
--- 
-Sascha Hauer <s.hauer@pengutronix.de>
+Jonathan
+
 
 
