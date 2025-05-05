@@ -1,223 +1,145 @@
-Return-Path: <devicetree+bounces-173555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF9CAAA8CD4
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:07:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA098AA8CF1
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:25:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38EC716F240
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 07:07:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFAFA188E83F
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 07:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FFE21ACEDA;
-	Mon,  5 May 2025 07:07:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB5601DC993;
+	Mon,  5 May 2025 07:25:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hnehQkTh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hOYfu2VO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 168332F22;
-	Mon,  5 May 2025 07:07:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 381731DB128;
+	Mon,  5 May 2025 07:25:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746428849; cv=none; b=bIjrDqT7HfoK6M9bMd+jDpNv17J+UraLRX03L0f6qeSt25WjDVEzOP7dcoBdcBMHnDTKOctCdYBJw4lSzmMjPOu+rnk0xbgbwxzgFkI3r10yNWJ/4ZH0wNnL78C3P6gpI2goWEY3dacEIzxjfuH7XCht9SgTMC5Kjd9bIsD7jLA=
+	t=1746429903; cv=none; b=mExt2D+Ph1uNz7zGsJREu5H3rqfcFY+JGmY+qpx+ORmTOmiPfizA/1suAFc6LEbuTs5uyoFzsOYy77MAgHHLBC9MneMIqsa2zEqVM4tsMMBE4eDcrquqT+ULlb5MFvPUJBXfnNijtBtdH0MMmUfjmMaRngsn9tyHTtyW596sJow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746428849; c=relaxed/simple;
-	bh=RkCKem2ilcaRlQrvBAQ1A0ircFTfTmD0DZFuyTNRC24=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=koJixPVfzpAXy13hBvlMOaqCVxyv7neIxkD9PDqpXxGzLGyYt1CuvKuZoB3oQknNjp+FvQTsghoCs8x6sLVbPObyTg3VYf1jOcF4Ud1gU3psQjp1MP71MUtE2W9vc24lXCMfnNS/mGtiTZQkKsWBMXSLrHTt09aZ6icbCmsk7vM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hnehQkTh; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 54576ceh882866
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 5 May 2025 02:06:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746428798;
-	bh=CjMQjxbI4MVkcYVy6hFeJm3Q9c2cTiQFbTSz3mMbm8g=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=hnehQkThiz8l+CaJyoKa489nowKLIpNWxhsd1AsDwYKoT38YDiJ9szQLsshvw2Lck
-	 g030p5BPFEXVZsjjNGWcxrL89YVMZOdsyMbYAK/62nOKgWa0tAISBHOs4ONZBu6FpF
-	 NDovo1ZG5f87f/bk6BJoWqiw9auIHRjZiHZC7RMI=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 54576cHI010010
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 5 May 2025 02:06:38 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
- May 2025 02:06:37 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 5 May 2025 02:06:37 -0500
-Received: from [10.24.69.232] (ws.dhcp.ti.com [10.24.69.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 54576VRR040260;
-	Mon, 5 May 2025 02:06:32 -0500
-Message-ID: <6da2f444-443e-403b-9def-f66f0cf65010@ti.com>
-Date: Mon, 5 May 2025 12:36:30 +0530
+	s=arc-20240116; t=1746429903; c=relaxed/simple;
+	bh=WX9ZAN+ePQEnywGTWo3okIi3omEMWty7ws1C1C7frjI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=G1/Zs+4EhZMhB5GJZX9J9akSMzRu6UaDZGghVx8NoR7OFhoZbBCWZVfjUO1/nD6VKb35N3mO01/CyFGujqONGAh4b7piEz/vuQtng5inQcNBO3OjNR6FSilycG/v51PeI0ZGOUoNv6hGYilqx617iZPEmVHL59r2BZjyBunh/Dw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hOYfu2VO; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-af5139ad9a2so2685731a12.1;
+        Mon, 05 May 2025 00:25:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746429901; x=1747034701; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Wb5qvTnPUM1Ol9JNA2tWO/vRefXXoUSqF58bo/+ZxNQ=;
+        b=hOYfu2VOwhyLU8k4Qhve95sWUnvIS4W5o2CIyT2se7zvohDNTdBtEW4b3ZkGj5nhKd
+         uEmZx35ebu7GVVaa96X5X/fK2aPtdPPSyuQTu0EpOGyXRi/v+zuTPuJKQ/ACx+SPq/ya
+         q3KK9FETlXSZVCwo7dNhtGiusH5eqWGAxrmPGHJ12dbKCyaA00UhIfDQuzSsv1SMFmgg
+         Pq9BWtGre2Ru60qeWbtE/BOAA2b30J9hSJGIBPDGW+/scUJovxbdEgbCI59rx6XmyDTr
+         Sm1x8VB/Mh/wZJLEyg1D8refvP3o4Uqryz9WJM+n7RHInQjIm3L6MH7VbiYLjpcEbp8D
+         ZtDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746429901; x=1747034701;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Wb5qvTnPUM1Ol9JNA2tWO/vRefXXoUSqF58bo/+ZxNQ=;
+        b=JV/Foz82NZmzlQ9M5Po6xhjIoDKs4TPHji+5+7dc5VRK6SU9BNg7g3PdfeKaEjtReE
+         YaSL2smtA4yER/vX7gtvOFl06Gi/u0h6N8ZrXCRdME9Lo4XfdNowXlgoqU5tvCC7alY3
+         2WPIxYdzX4/SS+t8OQ59/bfk+rS97CQguE0y4Rar5iWy6we0eUqs9AGxQVC/97vd59zS
+         o+8uiT0ajd462vnrY8I89KQogY4Je7byGh1Ab/04koPD3ZqW66YA10INB8pLJHiq1Mmq
+         SB4RHqyVqtPKlFFPoVwSMqE5RyyXfTMb47uycTwsoF7wtnu71kibGGQYybc19CtS0Mly
+         DGWg==
+X-Forwarded-Encrypted: i=1; AJvYcCUahUJXAu/idfI/ZlgjD0xi+4wObXqHGZ4MAcv5m0bfHaRQaZccM38Px+KNadXnjkqyadWmdwmPhcuf@vger.kernel.org, AJvYcCUeFJQZp9WF9C34NU/Gn12VSR4fPMwzPCCrKRlJJTYGXmsAIv9tYIg/NG1FS33s5RedTn45aVOQmWYo@vger.kernel.org, AJvYcCVEKMTJG3fnx/0IusL63TtJeXCu+gdih41WRZSj0OU+SiZiu1e3btDHGC5b73RHysDukcY0XXdIv04dMHkj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcKskUMTJnysmvZBomlBH0i2TquJEBNU6ejdIpcTaS2sjRqBP/
+	6BulKrGtCqAkjuQxyS8zRoX+1UBTWiYiVXiNBQ+Cs9qZ0nl5S8iD
+X-Gm-Gg: ASbGnctZ0Z7tmaf1/+TFDxVSH4ps7IjCMHKW3kbobP64sLU87T0/kosJNAcMyy9E8T5
+	mRVUxOzC8+JpIRCJpQcaNH5Em3j29Abgr6Tec1POTXK432B9su41rtrO9Zqul/4R76X9KaUGwYo
+	EMnqi9I+70T+Dvh7SsZ3SQFVwxM7jrvB7j7POSI+R7MAd7RIIoGzftICKC3rs/nE1JXniEqfGr2
+	8YkqQjRexaimq5PPc0kRv9H32CtdaoE12k8Os3ZLsSyMeFV+9urHshYZwe+oFgdDyhvx+8gEK/y
+	wngsobpVFfHEs5HJcVSSfk6y1GDmhkXwnmlFQcchN5VBPJHjEY2tPQ==
+X-Google-Smtp-Source: AGHT+IGVG1kAkM03dHDBqgAZ17yvSfG8Lf8Gc6OKwsCxPxmUgPj69TVFM70BIdzaECoV/A7XImgaQw==
+X-Received: by 2002:a17:90b:4c84:b0:2ee:b875:6d30 with SMTP id 98e67ed59e1d1-30a6197c311mr10473328a91.9.1746429901311;
+        Mon, 05 May 2025 00:25:01 -0700 (PDT)
+Received: from localhost.localdomain ([27.67.185.150])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22e1522fa58sm48014325ad.242.2025.05.05.00.24.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 May 2025 00:25:00 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: pavel@ucw.cz
+Cc: andy@kernel.org,
+	geert@linux-m68k.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	christophe.jaillet@wanadoo.fr,
+	corbet@lwn.net,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix LED driver
+Date: Mon,  5 May 2025 14:24:33 +0700
+Message-Id: <20250505072433.8193-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <aBHN+395kaIdbBEm@duo.ucw.cz>
+References: <aBHN+395kaIdbBEm@duo.ucw.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 08/13] media: ti: j721e-csi2rx: add support for
- processing virtual channels
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC: <jai.luthra@linux.dev>, <mripard@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <devarsht@ti.com>,
-        <y-abhilashchandra@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vaishnav.a@ti.com>,
-        <s-jain1@ti.com>, <vigneshr@ti.com>, <sakari.ailus@linux.intel.com>,
-        <hverkuil-cisco@xs4all.nl>, <tomi.valkeinen@ideasonboard.com>,
-        <jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
-        <jack.zhu@starfivetech.com>
-References: <20250417065554.437541-1-r-donadkar@ti.com>
- <20250417065554.437541-9-r-donadkar@ti.com>
- <20250421133418.GI29483@pendragon.ideasonboard.com>
-Content-Language: en-US
-From: Rishikesh Donadkar <r-donadkar@ti.com>
-In-Reply-To: <20250421133418.GI29483@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On Wed, 30 Apr 2025 Pavel Machek wrote:
 
-On 21/04/25 19:04, Laurent Pinchart wrote:
-> Hi Rishikesh,
->
-> Thank you for the patch.
+> > > > > Is it intended to be used as a 4x3 matrix, or is this just an internal
+> > > > > wiring detail, and should it be exposed as 12 individual LEDs instead?
+> > > > 
+> > > > The 4×3 matrix is a real and fundamental aspect of the LP5812’s operation.
+> > > > It is not just an internal wiring detail.
+> > > > The device adopts a Time-Cross-Multiplexing (TCM) structure, where 4 output
+> > > > pins control 12 LED dots individually through scanning. Each pin includes
+> > > > both high-side and low-side drive circuits, meaning matrix multiplexing is
+> > > > required for proper operation — it cannot be treated as 12 completely
+> > > > independent LEDs.
+> > > 
+> > > Scanning is really a detail.
+> > > 
+> > > If this is used as rectangular 4x3 display, then it goes to auxdisplay.
+> > > 
+> > > If this is used as a power LED, SD activity LED, capslock and numlock
+> > > ... placed randomly all around the device, then it goes LED subsystem.
+> > 
+> > The LP5812 is used for LED status indication in devices like smart speakers,
+> > wearables, and routers, not as a structured rectangular display.
+> 
+> Well, IIRC it also supports automated animations, and that does not
+> make sense on LED indicators. So... what device do _you_ have and how
+> exactly is it used there?
 
+We’re using the LP5812 in a battery-powered smart speaker as a status indicator
+with visually enhanced lighting — for example, breathing effects during standby
+and fading effects during voice processing.
 
-Hi Laurent,
+While the LP5812 supports autonomous animations, they’re used here to offload
+real-time brightness control from the main controller. Each LED’s animation engine
+enables smooth transitions like fade-in/fade-out and breathing effects.
+These patterns are configured once and run autonomously, saving MCU load and power,
+while still serving traditional indicator roles.
 
-Thanks you for the review.
-
-
->
-> On Thu, Apr 17, 2025 at 12:25:49PM +0530, Rishikesh Donadkar wrote:
->> From: Jai Luthra <j-luthra@ti.com>
->>
->> Use get_frame_desc() to get the frame desc from the connected source,
->> and use the provided virtual channel instead of hardcoded one.
->>
->> get_frame_desc() works per stream, but as we don't support multiple
->> streams yet, we will just always use stream 0. If the source doesn't
->> support get_frame_desc(), fall back to the previous method of always
->> capturing virtual channel 0.
->>
->> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
->> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
->> Signed-off-by: Jai Luthra <j-luthra@ti.com>
->> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
->> ---
->>   .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 39 +++++++++++++++++++
->>   1 file changed, 39 insertions(+)
->>
->> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
->> index e85d04d7c2ff9..3e2a0517a9096 100644
->> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
->> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
->> @@ -29,6 +29,7 @@
->>   #define SHIM_DMACNTX_EN			BIT(31)
->>   #define SHIM_DMACNTX_YUV422		GENMASK(27, 26)
->>   #define SHIM_DMACNTX_SIZE		GENMASK(21, 20)
->> +#define SHIM_DMACNTX_VC			GENMASK(9, 6)
->>   #define SHIM_DMACNTX_FMT		GENMASK(5, 0)
->>   #define SHIM_DMACNTX_YUV422_MODE_11	3
->>   #define SHIM_DMACNTX_SIZE_8		0
->> @@ -105,6 +106,8 @@ struct ti_csi2rx_ctx {
->>   	struct media_pad		pad;
->>   	u32				sequence;
->>   	u32				idx;
->> +	u32				vc;
->> +	u32				stream;
->>   };
->>   
->>   struct ti_csi2rx_dev {
->> @@ -573,6 +576,7 @@ static void ti_csi2rx_setup_shim(struct ti_csi2rx_ctx *ctx)
->>   	}
->>   
->>   	reg |= FIELD_PREP(SHIM_DMACNTX_SIZE, fmt->size);
->> +	reg |= FIELD_PREP(SHIM_DMACNTX_VC, ctx->vc);
->>   
->>   	writel(reg, csi->shim + SHIM_DMACNTX(ctx->idx));
->>   
->> @@ -846,6 +850,33 @@ static void ti_csi2rx_buffer_queue(struct vb2_buffer *vb)
->>   	}
->>   }
->>   
->> +static int ti_csi2rx_get_vc(struct ti_csi2rx_ctx *ctx)
->> +{
->> +	struct ti_csi2rx_dev *csi = ctx->csi;
->> +	struct v4l2_mbus_frame_desc fd;
->> +	struct media_pad *pad;
->> +	int ret, i;
-> i can never be negative, you can make it an unsigned int.
-
-
-Will fix.
-
-
->
->> +
->> +	pad = media_entity_remote_pad_unique(&csi->subdev.entity, MEDIA_PAD_FL_SOURCE);
->> +	if (!pad)
->> +		return -ENODEV;
->> +
->> +	ret = v4l2_subdev_call(csi->source, pad, get_frame_desc, pad->index,
->> +			       &fd);
->> +	if (ret)
->> +		return ret;
->> +
->> +	if (fd.type != V4L2_MBUS_FRAME_DESC_TYPE_CSI2)
->> +		return -EINVAL;
->> +
->> +	for (i = 0; i < fd.num_entries; i++) {
->> +		if (ctx->stream == fd.entry[i].stream)
->> +			return fd.entry[i].bus.csi2.vc;
->> +	}
->> +
->> +	return -ENODEV;
->> +}
->> +
->>   static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->>   {
->>   	struct ti_csi2rx_ctx *ctx = vb2_get_drv_priv(vq);
->> @@ -866,6 +897,14 @@ static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
->>   	if (ret)
->>   		goto err;
->>   
->> +	ret = ti_csi2rx_get_vc(ctx);
->> +	if (ret == -ENOIOCTLCMD)
->> +		ctx->vc = 0;
->> +	else if (ret < 0)
->> +		goto err;
->> +	else
->> +		ctx->vc = ret;
->> +
-> When you'll add support for multiple streams in patch 11/13, you will
-> end up calling .get_frame_desc() once per stream. All calls will return
-> the same information, so it's a bit wasteful. Would it be possible to
-> call this function once only at start time, and cache and use the
-> results for all video devices ?
-
-
-Yes, Right. I will make these changes in 11/13 when adding
-
-muti-stream support.
-
-
->
->>   	ti_csi2rx_setup_shim(ctx);
->>   
->>   	ctx->sequence = 0;
-Regards,
-Rishikesh
+Best regards,
+Nam Tran
 
