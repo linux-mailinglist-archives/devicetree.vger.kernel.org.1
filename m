@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-173877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FFFDAAAAAB
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 03:42:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80CE6AAABD2
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 04:03:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BEB94C0DA2
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 01:42:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 755E87AC069
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 02:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7FA83991A0;
-	Mon,  5 May 2025 23:07:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A16A37F93C;
+	Mon,  5 May 2025 23:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fmHhZPYq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IIdM5hwz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1A938096C;
-	Mon,  5 May 2025 23:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B474837F0BF;
+	Mon,  5 May 2025 23:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746486016; cv=none; b=jpd9dGj74VhGdZ3OXy6i/SQnDKUcYhuV3Zf78Unejby+WToUxnZea+O/cxOzdMF0ecIMNb2mfLFDKA6ukDvigLYhB4TXK27fFbOAs++T6g2DATjz8OJfR48I18Sj8/zq4RPGidJ+JwfJ6k55BMtqU/HGNtgx9+t7DVWR6df6/QY=
+	t=1746486541; cv=none; b=TF2YYIsCEpfwYa0ShGGuPqbdYGAUjZyt/vE9WvSJCho9S7BegHKE9qambydzaNrGkkFyGTRaj44i5JljmstKo/FlxsbgXY2eaJstCC6x98uChB/ZnnIFEqaqrlYh+pRRfJmoBT0oYSF2DCPuE472zQpwtw1a1DRwK3PMPSHETTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746486016; c=relaxed/simple;
-	bh=o2nRDv428v4MvnR0vHSeeoTJRiIo3h6mJurHS12K5IQ=;
+	s=arc-20240116; t=1746486541; c=relaxed/simple;
+	bh=otf3s4N0RZUh+MpY/D9yLl+SuE9qqAD+ne/e7haR7Po=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ba1U+0CjRH6mEoY7E2mHPqqah7KXhumromwiyxuQ4iKxCPTBLyaWyx/si2RbjxYQ3ouwNbou8VfGqLeUpDT7nmWXa8fghCfYJEik6eQ5eJfz2faPEXxIG0kkKsvYr4ywJ+ozup9uUc2BXZxs7Uk83E2dlT6SFukCHaT5CDf7xvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fmHhZPYq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9FE2C4CEE4;
-	Mon,  5 May 2025 23:00:14 +0000 (UTC)
+	 MIME-Version; b=e4jL4I5/FMe6QBLNe8iYS6c9orbHekVteXfXoUEu46TfFqylTVtudfYOxvt+QBOEkZV8kLx84DxvYuVgqlmZjQkqZ+DlQHeqqgpIzGLRU8qX6RefAjaqiONVvRt5dwbEtXoI+rt7uWAkOXqGwJv7XpC875pvTekaIeVC7UuqcjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IIdM5hwz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38D94C4CEED;
+	Mon,  5 May 2025 23:08:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746486016;
-	bh=o2nRDv428v4MvnR0vHSeeoTJRiIo3h6mJurHS12K5IQ=;
+	s=k20201202; t=1746486540;
+	bh=otf3s4N0RZUh+MpY/D9yLl+SuE9qqAD+ne/e7haR7Po=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=fmHhZPYqgOs8HEuDWREKfbRyxeqgC61+REak2puecNrbM+w4qTwCTbcVNzUW5dQmF
-	 y9kHQ2OyHh2hrG6MerZdUa3Iqh8hNMQ060yDzAwPn8u1U6WkFZ2hvke5NR/msF9fl4
-	 Sc8s7UECzFs4WLP2t1DPjiHHDY9JX17312dNk0KpgKE8WeSnZ+Fv84jqXVbFDD0eXv
-	 xOVR+EEgavuruSmYANQA1iJGyP+9XhibTZuU94CRa6QuOI4oaj8Wl1XwiM7gF8n1Kp
-	 v2/jQ7cLNw08hPhXPVTjTDSspHfh9AeWu/1eGjkJH9LFxB8KVcoKASmU4bdthCc1MO
-	 8Hbc5g2ncvjtw==
+	b=IIdM5hwzrfJYggwigp1jXXB77+S974h51jBm28N3nGwEYEDZ/AbeyLrl18OPDzKXH
+	 lbzcc19Pkvamf0rHQO+MmQ33EirluNsWfjwJ45Vw+8d6XdwkQYrcFisTyJ+uvBFNqk
+	 laMtGP+85WGLn7G3EwakB43/sWiZXPW3AmYUBtLZuLhepmZxNCEIQJyk31lz7XqgSo
+	 B/Tz0RJ/QaHSN0G6EzzL7FJKWAYF6epBQiD56ixcoWDdhwzYHZyOkDm2f3rPnYBj+y
+	 fZ5NibUr01WljZvBpF6+YY6vR5wHG+GUIOLksPAk15GwUr2Hkr2OEIxtk3j7FNjWj6
+	 +w6kRcgVoVUVg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Svyatoslav Ryhel <clamor95@gmail.com>,
+Cc: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
 	Thierry Reding <treding@nvidia.com>,
 	Sasha Levin <sashal@kernel.org>,
 	robh@kernel.org,
@@ -52,14 +52,15 @@ Cc: Svyatoslav Ryhel <clamor95@gmail.com>,
 	conor+dt@kernel.org,
 	thierry.reding@gmail.com,
 	jonathanh@nvidia.com,
+	tmn505@gmail.com,
 	devicetree@vger.kernel.org,
 	linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 111/294] ARM: tegra: Switch DSI-B clock parent to PLLD on Tegra114
-Date: Mon,  5 May 2025 18:53:31 -0400
-Message-Id: <20250505225634.2688578-111-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 080/212] arm64: tegra: p2597: Fix gpio for vdd-1v8-dis regulator
+Date: Mon,  5 May 2025 19:04:12 -0400
+Message-Id: <20250505230624.2692522-80-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250505225634.2688578-1-sashal@kernel.org>
-References: <20250505225634.2688578-1-sashal@kernel.org>
+In-Reply-To: <20250505230624.2692522-1-sashal@kernel.org>
+References: <20250505230624.2692522-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,37 +69,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.89
+X-stable-base: Linux 6.1.136
 Content-Transfer-Encoding: 8bit
 
-From: Svyatoslav Ryhel <clamor95@gmail.com>
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
 
-[ Upstream commit 2b3db788f2f614b875b257cdb079adadedc060f3 ]
+[ Upstream commit f34621f31e3be81456c903287f7e4c0609829e29 ]
 
-PLLD is usually used as parent clock for internal video devices, like
-DSI for example, while PLLD2 is used as parent for HDMI.
+According to the board schematics the enable pin of this regulator is
+connected to gpio line #9 of the first instance of the TCA9539
+GPIO expander, so adjust it.
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Link: https://lore.kernel.org/r/20250226105615.61087-3-clamor95@gmail.com
+Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Link: https://lore.kernel.org/r/20250224-diogo-gpio_exp-v1-1-80fb84ac48c6@tecnico.ulisboa.pt
 Signed-off-by: Thierry Reding <treding@nvidia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/nvidia/tegra114.dtsi | 2 +-
+ arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra114.dtsi b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-index 86f14e2fd29f3..6c057b5069514 100644
---- a/arch/arm/boot/dts/nvidia/tegra114.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-@@ -139,7 +139,7 @@ dsib: dsi@54400000 {
- 			reg = <0x54400000 0x00040000>;
- 			clocks = <&tegra_car TEGRA114_CLK_DSIB>,
- 				 <&tegra_car TEGRA114_CLK_DSIBLP>,
--				 <&tegra_car TEGRA114_CLK_PLL_D2_OUT0>;
-+				 <&tegra_car TEGRA114_CLK_PLL_D_OUT0>;
- 			clock-names = "dsi", "lp", "parent";
- 			resets = <&tegra_car 82>;
- 			reset-names = "dsi";
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
+index 634373a423ef6..481a88d83a650 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
+@@ -1631,7 +1631,7 @@ vdd_1v8_dis: regulator-vdd-1v8-dis {
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <1800000>;
+ 		regulator-always-on;
+-		gpio = <&exp1 14 GPIO_ACTIVE_HIGH>;
++		gpio = <&exp1 9 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		vin-supply = <&vdd_1v8>;
+ 	};
 -- 
 2.39.5
 
