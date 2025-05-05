@@ -1,63 +1,56 @@
-Return-Path: <devicetree+bounces-173553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 144DEAA8C76
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:51:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B05FAA8DBB
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 10:00:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E8951719D3
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 06:51:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 275B51884622
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:00:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CC611C2335;
-	Mon,  5 May 2025 06:51:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A707E1E0DB3;
+	Mon,  5 May 2025 08:00:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aQEdCUjJ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="cK9noqLn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BBBD2AF12;
-	Mon,  5 May 2025 06:51:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB081DF733;
+	Mon,  5 May 2025 08:00:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746427893; cv=none; b=gQDjtn+hxTftG9gvdCCQIZLXtLGy5i4l6MStjNPsmJC9w/ZbZjn2EWXXDBVDEkT63S4PGJKKdytG+TeG/Hsion9NOHhwMGm369kJOLSaHPEYi1gyiurusdGLtBHJTkHZnOdFzwpOLbHsg9JSGsTF92uGwtxiW/u2p4ce7Svn+2c=
+	t=1746432007; cv=none; b=bW/H0X0lSSRD5pd4sqrHUXAGFpDAntvFwkt+KnljIKAZ3eLyPhSw+GmIf/kNo985CIH+Gpxbp80dzBJfDhmJlAVAlF0TotrRXlR7HgWAWNTal/WqAxG2Co/INCo37Cs5utKIyRBZuwkIiGCG9OL+eWy/oqvB0MnOx5/V/M2Zf8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746427893; c=relaxed/simple;
-	bh=6TtALFn0MIoyb3vQ1EFwtcxuRpTJHNrPJ9HxGs1TwG0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nqog839awBu6Jc3Or7IaQ5jFjWghxKKNktWQViMx7of5PgdOmCQ8GDwsT6gkcbXXZ+fnPe8FnBvqQgMPJZzKJa+4vrNu2qOGVjFG1GdpsapgM248D2kQVT8koCeqxfr43oZtRzZUqFOMxbWWnVL3qPuRGj9Ck1+nVUPTDd5+4sg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aQEdCUjJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5451HuJv010334;
-	Mon, 5 May 2025 06:51:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	S5Q04H2g09Ybuz94LE/fHBYVpyjCiGeFOWfHqtV8a3U=; b=aQEdCUjJ/ii37BR3
-	gdir0XhaoHZKa0z4Re4CRgOIV9l6eDDa/yXS5NLcWfejgf8uT8ZoNGLzy0iBiHBI
-	3pyNaTo7W2ZJ+IEnYuSAEgaB962X7ji9wmi8GDTLXIk1iBPzMdxQLcyWHpd6Kxzj
-	MVvsHxffW2W5c4n9gS/LifQx5DFkNGZey87zbgVYzBZco9Y68teddnSJApJMAtak
-	8AdtCFlaXedaEdqkcbhj2FgbQbH1BRt894wo83Hd0tOZlc3v5k4Qwpo0WzHJJi8S
-	je3xe82ROQYlUnLYTBD8l2Gd1eaH/UJiU6JlWBZOjNL+eP3AKWHTOuFyiFvEfBKp
-	qbnlzQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46dce9b2rc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 05 May 2025 06:51:27 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5456pQsH025290
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 5 May 2025 06:51:26 GMT
-Received: from [10.216.4.22] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 4 May 2025
- 23:51:20 -0700
-Message-ID: <4ebe065e-9686-4e35-bb00-a9e816fb8926@quicinc.com>
-Date: Mon, 5 May 2025 12:21:17 +0530
+	s=arc-20240116; t=1746432007; c=relaxed/simple;
+	bh=yDPy55Cf9Zyk4amT2UFhvK6TEYzPakN4rmyC6eHpXpY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NObYbh237zZmdm9cwbz7KqTpTe8P8vzL2P3047XLYNA6UfQmAbw6vZ55T3zUIlcAyhNQguXVW2LS3bxJNpmhhrJcl4UQM2oIJ99/GZiMKYJ9NDniYJnzzVEfY/Y5+YKaK1lubpmuZYZ6cpvZhfk8VL7wgu4nZxN5EvqQHQl9F34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=cK9noqLn; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=FWcMhUUAD341x1j4p0TzxNBabdUQcp6F1O3NT2s7Z9I=; b=cK9noqLnLdYH8B5aHwnOVCr3N8
+	aFx1PhEY/AeDmgx30074nqdwSaV2O3JlovBwN6qZ/ncicaMyCEmmS5VH5ez+VuFKd6PT0O1dadn2r
+	wSLeCT/LpfhW2+tGGAd1OHXe6ZHyqa/nGbiRAfRLHCReM+BqRN7kELFx9302k1TmN7zG74MGAjvQS
+	fTQElveeg8b8N6vHKjQVnWT6esJW1+jbbFhJiNuPJfxizo4WtlSeFARU7XnwbnNBrZ7HXJbQArCez
+	rVvQHu/zsoCp0KQ0De/EW7oY711Av6tuCj9lf5vm3d9s6HYfNWrpdq+WpN9MUeeC+mTEiWxp/EEzO
+	zNzibs3g==;
+Received: from [89.212.21.243] (port=58904 helo=[192.168.69.116])
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1uBpsB-00BenA-24;
+	Mon, 05 May 2025 09:04:18 +0200
+Message-ID: <282a7e41-97f8-4fd4-9f03-29f70acc4df2@norik.com>
+Date: Mon, 5 May 2025 09:04:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,110 +58,113 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/8] dt-bindings: serial: describe SA8255p
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby
-	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <psodagud@quicinc.com>, <djaggi@quicinc.com>,
-        <quic_msavaliy@quicinc.com>, <quic_vtanuku@quicinc.com>,
-        <quic_arandive@quicinc.com>, <quic_mnaresh@quicinc.com>,
-        <quic_shazhuss@quicinc.com>, Nikunj Kela
-	<quic_nkela@quicinc.com>
-References: <20250502171417.28856-1-quic_ptalari@quicinc.com>
- <20250502171417.28856-2-quic_ptalari@quicinc.com>
- <20250504-hilarious-ultra-grebe-d67e7d@kuoka>
- <6f97510c-eb6c-4f3b-b219-aa8d895b060b@quicinc.com>
- <20250505-ostrich-of-impossible-conversion-a0f8ac@kuoka>
+Subject: Re: [Upstream] [PATCH 2/2] arm64: dts: freescale: Add PHYTEC
+ phyBOARD-Nash-i.MX93 support
+To: Wadim Egorov <w.egorov@phytec.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ upstream@lists.phytec.de
+References: <20250425064107.174548-1-primoz.fiser@norik.com>
+ <20250425064107.174548-2-primoz.fiser@norik.com>
+ <000c1117-81d1-4a74-9d36-f83a2b0fedd3@phytec.de>
 Content-Language: en-US
-From: Praveen Talari <quic_ptalari@quicinc.com>
-In-Reply-To: <20250505-ostrich-of-impossible-conversion-a0f8ac@kuoka>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA1MDA2MiBTYWx0ZWRfX6XW+Y0I5EM3a
- 4GPAhDxlSWjYCiA7L2J2C9qIceP9eIdDMi75JNBqz15PctsJKHDQi2U7aJ+XCe0eJOY+LvZlHu/
- ic1gTIGF930fy2B3qHdR4xVdyCoGQvxaXhtzG52TKauPNO0PfmOb4m/Ld8rVe+1JQ/NM9+vlHrY
- EqzUmm3VkLuYYeMuK8tN0Unj2pGI1xnrx+lbJ8k/rt3nxysHCM+eqb0VD9F3NZ6ZtHjis8KTJzF
- LYwFs1P1iNi7VLBaziObEaKUPDExeqR1CDEWIiIZJEbVVdXwTy+9FNcylwbEuP3mqHs0jAcUE/J
- rJ8w6HblGYu/Q8WtK8Ae5/X+CX5X0dtkp/DIW/5/YWFnlZhDKrcxoGIMZOIRr9lfUlxXC6RmKvj
- c1ng+GV7JLSJRDWCaP3RuK3+AHIwjforxppam5789DbmtEBVvXYKkyNk/I/SGMyxXIuygVBp
-X-Proofpoint-ORIG-GUID: OfJZi5H1Xw_EG-jWHgPqIiQYofQHV6nm
-X-Authority-Analysis: v=2.4 cv=Qope3Uyd c=1 sm=1 tr=0 ts=68185fef cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10
- a=ghQGDFbB09k-6H9FCWUA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: OfJZi5H1Xw_EG-jWHgPqIiQYofQHV6nm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-05_03,2025-04-30_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 adultscore=0 clxscore=1015
- malwarescore=0 bulkscore=0 suspectscore=0 impostorscore=0 phishscore=0
- mlxlogscore=881 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505050062
+From: Primoz Fiser <primoz.fiser@norik.com>
+Autocrypt: addr=primoz.fiser@norik.com; keydata=
+ xjMEZrROOxYJKwYBBAHaRw8BAQdAADVOb5tiLVTUAC9nu/FUl4gj/+4fDLqbc3mk0Vz8riTN
+ JVByaW1veiBGaXNlciA8cHJpbW96LmZpc2VyQG5vcmlrLmNvbT7CiQQTFggAMRYhBK2YFSAH
+ ExsBZLCwJGoLbQEHbnBPBQJmtE47AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQagttAQducE+T
+ gAD+K4fKlIuvH75fAFwGYG/HT3F9mN64majvqJqvp3gTB9YBAL12gu+cm11m9JMyOyN0l6Os
+ jStsQFghPkzBSDWSDN0NzjgEZrROPBIKKwYBBAGXVQEFAQEHQP2xtEOhbgA+rfzvvcFkV1zK
+ 6ym3/c/OUQObCp50BocdAwEIB8J4BBgWCAAgFiEErZgVIAcTGwFksLAkagttAQducE8FAma0
+ TjwCGwwACgkQagttAQducE8ucAD9F1sXtQD4iA7Qu+SwNUAp/9x7Cqr37CSb2p6hbRmPJP8B
+ AMYR91JYlFmOJ+ScPhQ8/MgFO+V6pa7K2ebk5xYqsCgA
+Organization: Norik systems d.o.o.
+In-Reply-To: <000c1117-81d1-4a74-9d36-f83a2b0fedd3@phytec.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-Hi Krzysztof
+Hi Wadim,
 
-On 5/5/2025 12:01 PM, Krzysztof Kozlowski wrote:
-> On Mon, May 05, 2025 at 08:00:32AM GMT, Praveen Talari wrote:
->> Hi Krzysztof
+On 28. 04. 25 16:31, Wadim Egorov wrote:
+> Hi Primoz,
+> 
+> a few of the node references you are adding are out of alphabetical order.
+
+Only &mdio node is out of alphabetical order.
+
+But this is done by choice to keep it together with &eqos node since
+both nodes are related to the 2nd Ethernet interface (&ethphy2) and thus
+kept logically with each other.
+
+We did the same for phyBOARD-Segin-i.MX93.
+
+> 
+> Am 25.04.25 um 09:41 schrieb Primoz Fiser:
+>> Add initial support for PHYTEC phyBOARD-Nash-i.MX93 board [1] based on
+>> the PHYTEC phyCORE-i.MX93 SoM (System-on-Module) [2].
 >>
->> On 5/4/2025 10:39 PM, Krzysztof Kozlowski wrote:
->>> On Fri, May 02, 2025 at 10:44:10PM GMT, Praveen Talari wrote:
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +  - interrupts
->>>> +  - power-domains
->>>> +  - power-domain-names
->>>> +
->>>> +unevaluatedProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>> +
->>>> +    serial@990000 {
->>>> +        compatible = "qcom,sa8255p-geni-uart";
->>>> +        reg = <0x990000 0x4000>;
->>>> +        interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
->>> Why isn't here wakeup interrupt? Commit msg also does not help me to
->>> understand why number of interrupts varies.
->> Currently we are not using wake-irq because it is optional for our current
->> implementation.
-> Great explanation. I asked why is it optional, answer because it is
-> optional.
-sorry.
->
-> What does it mean optional? This is part of the SoC, so how given one,
-> fixed SoC can have it routed or not routed in the same time?
+>> Supported board features:
+>>   * ADC
+>>   * CAN
+>>   * Ethernet 2x
+>>   * EEPROM
+>>   * eMMC
+>>   * Heartbeat LED
+>>   * RTC
+> 
+> eMMC and Hearbeat LED are not board features but SoM features.
 
-the serial driver doesn't enter runtime suspend mode until the port is 
-closed.
+That's true.
 
-therefore, there is no need for a wake IRQ when the driver is in an 
-active state
+I will remove those from the list in v2 and only list carrier-board
+features.
 
+BR,
+Primoz
 
-Thanks,
+> 
+>>   * RS-232/RS-485
+>>   * SD-card
+>>   * TPM 2.0
+>>   * USB
+>>
+>> For more details see the product pages for the development kit and the
+>> SoM:
+>>
+>> [1] https://www.phytec.eu/en/produkte/development-kits/phyboard-nash/
+>> [2]
+>> https://www.phytec.eu/en/produkte/system-on-modules/phycore-imx-91-93/
+>>
+>> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+> 
+> With that changed,
+> 
+> Reviewed-by: Wadim Egorov <w.egorov@phytec.de>
+> 
 
-Praveen Talari
-
->
-> Best regards,
-> Krzysztof
->
+-- 
+Primoz Fiser
+phone: +386-41-390-545
+email: primoz.fiser@norik.com
+--
+Norik systems d.o.o.
+Your embedded software partner
+Slovenia, EU
+phone: +386-41-540-545
+email: info@norik.com
 
