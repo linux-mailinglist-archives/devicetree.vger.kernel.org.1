@@ -1,107 +1,292 @@
-Return-Path: <devicetree+bounces-173866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC706AA9E6B
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 23:53:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B45EDAA9EAF
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 00:02:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6667B17D915
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 21:53:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC314189C1E8
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 22:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8AE274677;
-	Mon,  5 May 2025 21:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8FFF2741B9;
+	Mon,  5 May 2025 22:01:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DdC3AwJ7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hgZd4LJd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1058270548;
-	Mon,  5 May 2025 21:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BB2613AF2;
+	Mon,  5 May 2025 22:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746482009; cv=none; b=c+gC+dYLNTQ3INVWvOqjwM4060unLnkHt117x7f5z4gskZ/voRmkERaRWqKXhxrbtsfLupwR9BZgaNCFiq2RJzl5FPnqjQ0aR30UnTidNuY/Is2KXcEVuGpb9KUueVUGpVWOvlerI8gxNu+rr2CSJLvfBhQVsOKwTztO1DnlAZw=
+	t=1746482515; cv=none; b=mLFfjXf08js+fNXBiLmtemau+mJTC91G+di9Lw8lYPGxUNzfUZZ1h2DxPoE/EFBiKCDLC3SeZVejqY437Zf3ucPIhYHfLEi8RWjGoTAqAL9l7dfKK1lT7Euup0QiKIFF824M7CPR2lG0eCA0iMux/iT+X67w5okKrIABMBPbWCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746482009; c=relaxed/simple;
-	bh=+FQHZZM7aoI7UialL3yB5/dJRd4nVbYfzohSTv3bLmM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dsdmj9T57cW8fjg3VsJ4WXLaQ0eWBwt0+ucO46mRX/wMnaR4KdUZyQrWJ3UvdFfmjbVcbs9XLcgmWSwty55o0DTLF4YUDF6PP6pR0/Dl1KWP4MiLM4RRBcUNuG9Au2kTY7ncBQZEp9ivUFuv2mhqSMSJIHsH1PBMHaxy69oRyD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DdC3AwJ7; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=ky2FY8wQi0hoWGwOjDyfpng6BVXAqJP2zLIjZqhEWZA=; b=DdC3AwJ7cAtgun0b6u5kgbdY5+
-	MYldwYok5u4hquFQNeMD6gHgOoDzmnS6HmEoYWikdz5TTtdpWkxyuxqbnf0+974VNsQkyPyRI3MHC
-	mgmpcwVl9gL2hAM8qKL3nGifuLykHuNPDmKRhDbgKPfR+PCYAh65SMOPqk7KxYDM/Aba3XLKVo3K/
-	2thz9Nm6ua3t++DMLO5DdMOiJxUxU4sWfysIHA57NwHEdJLfn6/olIf0jGes5ZOnnXz4jh/qGsa5q
-	LQoJsKmRVOCf68Bk+Uymma2vKbF40Rgr4zKXwb5QGx7nshJkyBC464hQySo9EiSxpuLXKMK1g/+7B
-	av8er3RA==;
-Received: from i53875a1d.versanet.de ([83.135.90.29] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uC3kW-0000QT-94; Mon, 05 May 2025 23:53:20 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1746482515; c=relaxed/simple;
+	bh=55XDFxWGcB1qN4x9HaNj27mOmq2XQiQ5ukihNGYhR0g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mHBV55ld95J1THVkWG4S+O6SQiVNMG7lAITknHIFszVgCdJYG0gsjVUUjzIzVtWlGj6yIhjPNox6DtsL3RdQHuvnlCMasJ5x5yN4Tpyko3mQJ6QAxR65oO3Dequ9dG28s3hsCQEH+NZnzv32Laq+5lWvj5lzG0QMCcBb1U/JWJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hgZd4LJd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA8DAC4CEE4;
+	Mon,  5 May 2025 22:01:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746482514;
+	bh=55XDFxWGcB1qN4x9HaNj27mOmq2XQiQ5ukihNGYhR0g=;
+	h=From:To:Cc:Subject:Date:From;
+	b=hgZd4LJddoPofodkRZPGO0Fsu8+KcluN2IQ8vEt2imAePBGrCLgGaHG6I9Sek3Ys0
+	 4cHEHwboIttCahfukNXC+sZfH8X8EsfIMkp3yVAsH9ZSDo8FfRNfS0gwUk2A4g4Dhu
+	 3JxiJarmSlUBwfPXil1zl0xQrpcLKuK3hSXKXIyecIS6mZ6e1HEsKzmZzXK3NPUazA
+	 xW5ss5TszJER/yTTzIO33XBhqJfuCu24Saiv4BRQX6bXY0q0Vo8VkjtWQcQGw/rqje
+	 9y+8zY8GrkHlJSKER4MPsUdISttlDMLu1eNGk8blOCkbr+q3kqvuMsO7Ao5jNkF6Ai
+	 yuOEKNDlOMNLw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	Yao Zi <ziyao@disroot.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-i2c@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 0/3] Support I2C controllers in RK3528
-Date: Mon,  5 May 2025 23:53:09 +0200
-Message-ID: <174648198304.1334687.5769287856260852986.b4-ty@sntech.de>
+Subject: [PATCH v2] dt-bindings: PCI: Convert v3,v360epc-pci to DT schema
+Date: Mon,  5 May 2025 17:01:37 -0500
+Message-ID: <20250505220139.2202164-1-robh@kernel.org>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250417120118.17610-3-ziyao@disroot.org>
-References: <20250417120118.17610-3-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
+Convert the v3,v360epc-pci binding to DT schema format.
 
-On Thu, 17 Apr 2025 12:01:16 +0000, Yao Zi wrote:
-> RK3528 integrates eight I2C controllers which are compatible with the
-> RK3399 variant of i2c-rk3x. This series documents the controllers in
-> dt-bindings, describe them in SoC devicetree and enable the onboard
-> EEPROM of Radxa E20C which is connected to I2C-2.
-> 
-> Changed from v1
-> - rebase on top of linux-rockchip/for-next
-> - dt-binding: collect review tags
-> - SoC devicetree
->   - sort i2c and gpio in /aliases
->   - provide default pinctrl for controllers with only one set of
->     possible pins
-> - Radxa E20C devicetree: mark eeprom as read-only
-> 
-> [...]
+Add "clocks" which was not documented and is required. Drop "syscon"
+which was documented, but is not used.
 
-Applied, thanks!
+Drop the "v3,v360epc-pci" compatible by itself as this device is only
+used on the Arm Integrator/AP and not likely going to be used anywhere
+else at this point.
 
-[2/3] arm64: dts: rockchip: Add I2C controllers for RK3528
-      commit: d3a05f490d048808968df1e0d3240ab01fe82211
-[3/3] arm64: dts: rockchip: Add onboard EEPROM for Radxa E20C
-      commit: 101fe8b5627c68b3f2f941266e26ac355131e2fe
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+v2:
+- Update MAINTAINERS
+---
+ .../bindings/pci/v3,v360epc-pci.yaml          | 100 ++++++++++++++++++
+ .../bindings/pci/v3-v360epc-pci.txt           |  76 -------------
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 101 insertions(+), 77 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/v3,v360epc-pci.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/v3-v360epc-pci.txt
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/pci/v3,v360epc-pci.yaml b/Documentation/devicetree/bindings/pci/v3,v360epc-pci.yaml
+new file mode 100644
+index 000000000000..38cac88f17bf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/v3,v360epc-pci.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/v3,v360epc-pci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: V3 Semiconductor V360 EPC PCI bridge
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description:
++  This bridge is found in the ARM Integrator/AP (Application Platform)
++
++allOf:
++  - $ref: /schemas/pci/pci-host-bridge.yaml#
++
++properties:
++  compatible:
++    items:
++      - const: arm,integrator-ap-pci
++      - const: v3,v360epc-pci
++
++  reg:
++    items:
++      - description: V3 host bridge controller
++      - description: Configuration space
++
++  clocks:
++    maxItems: 1
++
++  dma-ranges:
++    maxItems: 2
++    description:
++      The inbound ranges must be aligned to a 1MB boundary, and may be 1MB, 2MB,
++      4MB, 8MB, 16MB, 32MB, 64MB, 128MB, 256MB, 512MB, 1GB or 2GB in size. The
++      memory should be marked as pre-fetchable.
++
++  interrupts:
++    description: Bus Error IRQ
++    maxItems: 1
++
++  ranges:
++    description:
++      The non-prefetchable and prefetchable memory windows must each be exactly
++      256MB (0x10000000) in size. The prefetchable memory window must be
++      immediately adjacent to the non-prefetchable memory window.
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - dma-ranges
++  - "#interrupt-cells"
++  - interrupt-map
++  - interrupt-map-mask
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pci@62000000 {
++        compatible = "arm,integrator-ap-pci", "v3,v360epc-pci";
++        #interrupt-cells = <1>;
++        #size-cells = <2>;
++        #address-cells = <3>;
++        reg = <0x62000000 0x10000>, <0x61000000 0x01000000>;
++        device_type = "pci";
++        interrupt-parent = <&pic>;
++        interrupts = <17>; /* Bus error IRQ */
++        clocks = <&pciclk>;
++        ranges = <0x01000000 0 0x00000000 0x60000000 0 0x01000000>,     /* 16 MiB @ LB 60000000 */
++                 <0x02000000 0 0x40000000 0x40000000 0 0x10000000>,     /* 256 MiB @ LB 40000000 1:1 */
++                 <0x42000000 0 0x50000000 0x50000000 0 0x10000000>;     /* 256 MiB @ LB 50000000 1:1 */
++        dma-ranges = <0x02000000 0 0x20000000 0x20000000 0 0x20000000>, /* EBI: 512 MB @ LB 20000000 1:1 */
++                     <0x02000000 0 0x80000000 0x80000000 0 0x40000000>; /* CM alias: 1GB @ LB 80000000 */
++        interrupt-map-mask = <0xf800 0 0 0x7>;
++        interrupt-map =
++            /* IDSEL 9 */
++            <0x4800 0 0 1 &pic 13>, /* INT A on slot 9 is irq 13 */
++            <0x4800 0 0 2 &pic 14>, /* INT B on slot 9 is irq 14 */
++            <0x4800 0 0 3 &pic 15>, /* INT C on slot 9 is irq 15 */
++            <0x4800 0 0 4 &pic 16>, /* INT D on slot 9 is irq 16 */
++            /* IDSEL 10 */
++            <0x5000 0 0 1 &pic 14>, /* INT A on slot 10 is irq 14 */
++            <0x5000 0 0 2 &pic 15>, /* INT B on slot 10 is irq 15 */
++            <0x5000 0 0 3 &pic 16>, /* INT C on slot 10 is irq 16 */
++            <0x5000 0 0 4 &pic 13>, /* INT D on slot 10 is irq 13 */
++            /* IDSEL 11 */
++            <0x5800 0 0 1 &pic 15>, /* INT A on slot 11 is irq 15 */
++            <0x5800 0 0 2 &pic 16>, /* INT B on slot 11 is irq 16 */
++            <0x5800 0 0 3 &pic 13>, /* INT C on slot 11 is irq 13 */
++            <0x5800 0 0 4 &pic 14>, /* INT D on slot 11 is irq 14 */
++            /* IDSEL 12 */
++            <0x6000 0 0 1 &pic 16>, /* INT A on slot 12 is irq 16 */
++            <0x6000 0 0 2 &pic 13>, /* INT B on slot 12 is irq 13 */
++            <0x6000 0 0 3 &pic 14>, /* INT C on slot 12 is irq 14 */
++            <0x6000 0 0 4 &pic 15>; /* INT D on slot 12 is irq 15 */
++    };
++...
+diff --git a/Documentation/devicetree/bindings/pci/v3-v360epc-pci.txt b/Documentation/devicetree/bindings/pci/v3-v360epc-pci.txt
+deleted file mode 100644
+index 11063293f761..000000000000
+--- a/Documentation/devicetree/bindings/pci/v3-v360epc-pci.txt
++++ /dev/null
+@@ -1,76 +0,0 @@
+-V3 Semiconductor V360 EPC PCI bridge
+-
+-This bridge is found in the ARM Integrator/AP (Application Platform)
+-
+-Required properties:
+-- compatible: should be one of:
+-  "v3,v360epc-pci"
+-  "arm,integrator-ap-pci", "v3,v360epc-pci"
+-- reg: should contain two register areas:
+-  first the base address of the V3 host bridge controller, 64KB
+-  second the configuration area register space, 16MB
+-- interrupts: should contain a reference to the V3 error interrupt
+-  as routed on the system.
+-- bus-range: see pci.txt
+-- ranges: this follows the standard PCI bindings in the IEEE Std
+-  1275-1994 (see pci.txt) with the following restriction:
+-  - The non-prefetchable and prefetchable memory windows must
+-    each be exactly 256MB (0x10000000) in size.
+-  - The prefetchable memory window must be immediately adjacent
+-    to the non-prefetcable memory window
+-- dma-ranges: three ranges for the inbound memory region. The ranges must
+-  be aligned to a 1MB boundary, and may be 1MB, 2MB, 4MB, 8MB, 16MB, 32MB,
+-  64MB, 128MB, 256MB, 512MB, 1GB or 2GB in size. The memory should be marked
+-  as pre-fetchable. Two ranges are supported by the hardware.
+-
+-Integrator-specific required properties:
+-- syscon: should contain a link to the syscon device node, since
+-  on the Integrator, some registers in the syscon are required to
+-  operate the V3 host bridge.
+-
+-Example:
+-
+-pci: pciv3@62000000 {
+-	compatible = "arm,integrator-ap-pci", "v3,v360epc-pci";
+-	#interrupt-cells = <1>;
+-	#size-cells = <2>;
+-	#address-cells = <3>;
+-	reg = <0x62000000 0x10000>, <0x61000000 0x01000000>;
+-	interrupt-parent = <&pic>;
+-	interrupts = <17>; /* Bus error IRQ */
+-	clocks = <&pciclk>;
+-	bus-range = <0x00 0xff>;
+-	ranges = 0x01000000 0 0x00000000 /* I/O space @00000000 */
+-		0x60000000 0 0x01000000 /* 16 MiB @ LB 60000000 */
+-		0x02000000 0 0x40000000 /* non-prefectable memory @40000000 */
+-		0x40000000 0 0x10000000 /* 256 MiB @ LB 40000000 1:1 */
+-		0x42000000 0 0x50000000 /* prefetchable memory @50000000 */
+-		0x50000000 0 0x10000000>; /* 256 MiB @ LB 50000000 1:1 */
+-	dma-ranges = <0x02000000 0 0x20000000 /* EBI memory space */
+-		0x20000000 0 0x20000000 /* 512 MB @ LB 20000000 1:1 */
+-		0x02000000 0 0x80000000 /* Core module alias memory */
+-		0x80000000 0 0x40000000>; /* 1GB @ LB 80000000 */
+-	interrupt-map-mask = <0xf800 0 0 0x7>;
+-	interrupt-map = <
+-	/* IDSEL 9 */
+-	0x4800 0 0 1 &pic 13 /* INT A on slot 9 is irq 13 */
+-	0x4800 0 0 2 &pic 14 /* INT B on slot 9 is irq 14 */
+-	0x4800 0 0 3 &pic 15 /* INT C on slot 9 is irq 15 */
+-	0x4800 0 0 4 &pic 16 /* INT D on slot 9 is irq 16 */
+-	/* IDSEL 10 */
+-	0x5000 0 0 1 &pic 14 /* INT A on slot 10 is irq 14 */
+-	0x5000 0 0 2 &pic 15 /* INT B on slot 10 is irq 15 */
+-	0x5000 0 0 3 &pic 16 /* INT C on slot 10 is irq 16 */
+-	0x5000 0 0 4 &pic 13 /* INT D on slot 10 is irq 13 */
+-	/* IDSEL 11 */
+-	0x5800 0 0 1 &pic 15 /* INT A on slot 11 is irq 15 */
+-	0x5800 0 0 2 &pic 16 /* INT B on slot 11 is irq 16 */
+-	0x5800 0 0 3 &pic 13 /* INT C on slot 11 is irq 13 */
+-	0x5800 0 0 4 &pic 14 /* INT D on slot 11 is irq 14 */
+-	/* IDSEL 12 */
+-	0x6000 0 0 1 &pic 16 /* INT A on slot 12 is irq 16 */
+-	0x6000 0 0 2 &pic 13 /* INT B on slot 12 is irq 13 */
+-	0x6000 0 0 3 &pic 14 /* INT C on slot 12 is irq 14 */
+-	0x6000 0 0 4 &pic 15 /* INT D on slot 12 is irq 15 */
+-	>;
+-};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 63e804277519..e4a753c5b671 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -18569,7 +18569,7 @@ PCI DRIVER FOR V3 SEMICONDUCTOR V360EPC
+ M:	Linus Walleij <linus.walleij@linaro.org>
+ L:	linux-pci@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/pci/v3-v360epc-pci.txt
++F:	Documentation/devicetree/bindings/pci/v3,v360epc-pci.yaml
+ F:	drivers/pci/controller/pci-v3-semi.c
+ 
+ PCI DRIVER FOR XILINX VERSAL CPM
 -- 
-Heiko Stuebner <heiko@sntech.de>
+2.47.2
+
 
