@@ -1,105 +1,223 @@
-Return-Path: <devicetree+bounces-173890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBCD4AAB5D4
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:37:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42BEBAAB750
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 08:09:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 471687A526B
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 05:33:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 242D44A5E19
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 06:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 746304AD456;
-	Tue,  6 May 2025 00:52:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78BBF47F9A1;
+	Tue,  6 May 2025 00:42:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jxqhYEVH"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="eknjcBrC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27823BBDA3;
-	Mon,  5 May 2025 23:22:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8452F22E0
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 23:13:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746487362; cv=none; b=CUguxMLBd7t7r6phfqU3ae7RW3fgmfDnJ6EWB3O3cXuv0al84ZfikhWM44lkJOoCMuwe1UaOiMlu4tSyB3ZK6rqmJlh6oLfkkcxk3PQ7em16DK4TkA/OwN19SKkzMDqnGHqWwQB9yjDxu3exAL1PN+Hl+7kfbcuTKfujqbHr8eA=
+	t=1746486789; cv=none; b=lpRGmyrJ+lC/aTJZJ4CzK4RhluIrSZQUJzRQMV9xijeDP0qRMS8iZyQGkuUfEO/m05XP0uik+nT4/wQ8CP40Sofg8ec9zT8lGxjRY1EXp4Fn89A5o3XPplgHD3w34E4uqc/fTLUKehYYWQ7jxKHpeQXLeqCeWGd8PXcQott2PMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746487362; c=relaxed/simple;
-	bh=ZztsGYn9Zhzs7edFt/EwPOC7cIZjrhxJ3HKzmyw/HUA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NQm9ERN/ngjnvYtFJYG1qy+rGhCJEIGwtRnLSEFz3YVQqcZlZeKp26icyEYPcmHCHCRe1r4GcCnLfhaj7H27Am0Y6KJXf6R7E0oFYs07no/+XXj+7VFghPXJ2h5sPXp24rl/8rrRMlyaibExLeiKJFIY4/kSNVBzNvrYcy0UjaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jxqhYEVH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49487C4CEEE;
-	Mon,  5 May 2025 23:22:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746487362;
-	bh=ZztsGYn9Zhzs7edFt/EwPOC7cIZjrhxJ3HKzmyw/HUA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=jxqhYEVHx4JeC0KjvDldGg7pNJhOjaFiLSZWAdSR/gs6DSjRXUrWVHY8srGYi8Wof
-	 VgiVCeDCRFB3dqfxBr92jd8ZPzuIKf81MrA0f55tRPFSbEhPW7O9QHy2ZVXWq95KGZ
-	 9FqNM4FVPccaHR81uheyZLRzummLlmA3dzzGNsT7rYyjzfCTA8lEkebCPv8owmj5Zm
-	 1f02m5NHStPot3aHPIL8vF0Xymo1VDxiLaWpVlJD61XEIvlJjv9YLGzrqN07ONHbWc
-	 X3pvTLJ9y9CI+96SqiZtoC5q7jH1ROlhWeWh1bZjrqTulZzEyObptkIgBukdo1FuU7
-	 DNuaUM9+7BY9g==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Svyatoslav Ryhel <clamor95@gmail.com>,
-	Thierry Reding <treding@nvidia.com>,
-	Sasha Levin <sashal@kernel.org>,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	thierry.reding@gmail.com,
-	jonathanh@nvidia.com,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 30/79] ARM: tegra: Switch DSI-B clock parent to PLLD on Tegra114
-Date: Mon,  5 May 2025 19:21:02 -0400
-Message-Id: <20250505232151.2698893-30-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250505232151.2698893-1-sashal@kernel.org>
-References: <20250505232151.2698893-1-sashal@kernel.org>
+	s=arc-20240116; t=1746486789; c=relaxed/simple;
+	bh=/y36eIzw3tsLqO94est9pK083SAtGIqQR2rB+xzPBxY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m3sMi4ucKXnP+PxAqH4l4MSV8SZRLo+oyXlwy0kS84+auXnb91ckiPv8kbYBaVXS0LSgaZajuSNP3B8qUzwHGg5P5pD5WWSxWmePfEt5usylZ43DtljcWXJWUdxXydDbxbH8dutWpMsAgBo7VjJz+9ymEkGZkFtw9R1lH7jJCRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=eknjcBrC; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1746486779;
+ bh=hreABS4yBfCC7+5bh2avmFHQCqO0LIR8soO0wntiKLc=;
+ b=eknjcBrCMTWh2x/GwZ5l/CkINt0qbr33EoJIu0yXjApGR9hNoJbFJYMzNwP6X2bld8kmEys0p
+ mtm0WzTYo9DfalAgkMyUsZYAIdPcYMEZKiUhm9E6kgVO02DC9DV2HOdYoeSau09T8edT8OdJJkx
+ AUfKmimZAPBcvdz9eTZMhKjAekjjsJbjhY0s6dSYTMznhu0Yh01pkqQqZmBvBZkKgrySKTQ56Vo
+ 4+I1Omr3ljia7QsAzmYFlwCVJm5z+U2zai0GlxpiTPNVX1A+wN8ddtfD5uFcuSnyF3G6OhbwGzY
+ x93Zdhw36+GGDyElSxVIDTfBtsxP70Ys5d6yA+ky2qsw==
+X-Forward-Email-ID: 681945fa46c37f8647c22e46
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.0.2
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <621e33ff-f43f-48cc-a316-aa3e19d513d8@kwiboo.se>
+Date: Tue, 6 May 2025 01:12:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.4.293
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] arm64: dts: rockchip: Enable regulators for Radxa
+ E20C
+To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
+Cc: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250401120020.976343-1-amadeus@jmu.edu.cn>
+ <20250401120020.976343-3-amadeus@jmu.edu.cn>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20250401120020.976343-3-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Svyatoslav Ryhel <clamor95@gmail.com>
+On 2025-04-01 14:00, Chukun Pan wrote:
+> Enable pwm and fixed regulators for Radxa E20C. The pwm regulator is
+> used to power the CPU and GPU. Note that the LPDDR4 voltage is 1.1V.
+> 
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
 
-[ Upstream commit 2b3db788f2f614b875b257cdb079adadedc060f3 ]
+This seem to match the schematics of the E20C and the regulators work on
+my E20C:
 
-PLLD is usually used as parent clock for internal video devices, like
-DSI for example, while PLLD2 is used as parent for HDMI.
+   regulator                      use open bypass  opmode voltage current     min     max
+  ---------------------------------------------------------------------------------------
+   regulator-dummy                  1    0      0 unknown     0mV     0mA     0mV     0mV
+   vcc5v0_sys                       7    6      0 unknown  5000mV     0mA  5000mV  5000mV
+      vdd_0v9                       1    0      0 unknown   900mV     0mA   900mV   900mV
+      vcc_ddr                       1    0      0 unknown  1100mV     0mA  1100mV  1100mV
+      vcc_3v3                       5    5      0 unknown  3300mV     0mA  3300mV  3300mV
+         ffbf0000.mmc-vmmc          1                                 0mA  3300mV  3400mV
+         ffc30000.mmc-vmmc          1                                 0mA  3300mV  3400mV
+         1-0050-vcc                 0                                 0mA     0mV     0mV
+         ffbe0000.ethernet-phy      1                                 0mA     0mV     0mV
+         vcc_1v8                    3    2      0 unknown  1800mV     0mA  1800mV  1800mV
+            ffbf0000.mmc-vqmmc      1                                 0mA     0mV     0mV
+            ffae0000.adc-vref       1                                 0mA     0mV     0mV
+      vccio_sd                      2    1      0 unknown  1800mV     0mA  1800mV  3300mV
+         ffc30000.mmc-vqmmc         1                                 0mA  1800mV  1950mV
+      vdd_arm                       1    0      0 unknown  1201mV     0mA   746mV  1201mV
+      vdd_logic                     1    0      0 unknown  1006mV     0mA   705mV  1006mV
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Link: https://lore.kernel.org/r/20250226105615.61087-3-clamor95@gmail.com
-Signed-off-by: Thierry Reding <treding@nvidia.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/tegra114.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Without any opp table or the pwm-regulators not being initialized in
+U-Boot they seem to default to max voltage, should be fine so this is:
 
-diff --git a/arch/arm/boot/dts/tegra114.dtsi b/arch/arm/boot/dts/tegra114.dtsi
-index 0d7a6327e404a..fe1ebc3c5aa86 100644
---- a/arch/arm/boot/dts/tegra114.dtsi
-+++ b/arch/arm/boot/dts/tegra114.dtsi
-@@ -123,7 +123,7 @@ dsi@54400000 {
- 			reg = <0x54400000 0x00040000>;
- 			clocks = <&tegra_car TEGRA114_CLK_DSIB>,
- 				 <&tegra_car TEGRA114_CLK_DSIBLP>,
--				 <&tegra_car TEGRA114_CLK_PLL_D2_OUT0>;
-+				 <&tegra_car TEGRA114_CLK_PLL_D_OUT0>;
- 			clock-names = "dsi", "lp", "parent";
- 			resets = <&tegra_car 82>;
- 			reset-names = "dsi";
--- 
-2.39.5
+Reviewed-by: Jonas Karlman <jonas@kwiboo.se>
+
+Regards,
+Jonas
+
+> ---
+>  .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> index 57a446b5cbd6..14770bd63ae7 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> @@ -9,6 +9,7 @@
+>  
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/pwm/pwm.h>
+>  #include "rk3528.dtsi"
+>  
+>  / {
+> @@ -80,6 +81,26 @@ led-wan {
+>  		};
+>  	};
+>  
+> +	vdd_0v9: regulator-0v9-vdd {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vdd_0v9";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <900000>;
+> +		regulator-max-microvolt = <900000>;
+> +		vin-supply = <&vcc5v0_sys>;
+> +	};
+> +
+> +	vcc_ddr: regulator-1v1-vcc-ddr {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_ddr";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <1100000>;
+> +		regulator-max-microvolt = <1100000>;
+> +		vin-supply = <&vcc5v0_sys>;
+> +	};
+> +
+>  	vcc_1v8: regulator-1v8-vcc {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "vcc_1v8";
+> @@ -108,6 +129,46 @@ vcc5v0_sys: regulator-5v0-vcc-sys {
+>  		regulator-min-microvolt = <5000000>;
+>  		regulator-max-microvolt = <5000000>;
+>  	};
+> +
+> +	vdd_arm: regulator-vdd-arm {
+> +		compatible = "pwm-regulator";
+> +		pwms = <&pwm1 0 5000 PWM_POLARITY_INVERTED>;
+> +		pwm-supply = <&vcc5v0_sys>;
+> +		regulator-name = "vdd_arm";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <746000>;
+> +		regulator-max-microvolt = <1201000>;
+> +		regulator-settling-time-up-us = <250>;
+> +	};
+> +
+> +	vdd_logic: regulator-vdd-logic {
+> +		compatible = "pwm-regulator";
+> +		pwms = <&pwm2 0 5000 PWM_POLARITY_INVERTED>;
+> +		pwm-supply = <&vcc5v0_sys>;
+> +		regulator-name = "vdd_logic";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <705000>;
+> +		regulator-max-microvolt = <1006000>;
+> +		regulator-settling-time-up-us = <250>;
+> +	};
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply = <&vdd_arm>;
+> +};
+> +
+> +&cpu1 {
+> +	cpu-supply = <&vdd_arm>;
+> +};
+> +
+> +&cpu2 {
+> +	cpu-supply = <&vdd_arm>;
+> +};
+> +
+> +&cpu3 {
+> +	cpu-supply = <&vdd_arm>;
+>  };
+>  
+>  &pinctrl {
+> @@ -132,6 +193,18 @@ wan_led_g: wan-led-g {
+>  	};
+>  };
+>  
+> +&pwm1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pwm1m0_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&pwm2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pwm2m0_pins>;
+> +	status = "okay";
+> +};
+> +
+>  &saradc {
+>  	vref-supply = <&vcc_1v8>;
+>  	status = "okay";
 
 
