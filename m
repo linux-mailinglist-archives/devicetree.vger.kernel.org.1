@@ -1,161 +1,150 @@
-Return-Path: <devicetree+bounces-173716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B952CAA953A
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:15:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D50CAA9546
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:18:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93086189BD39
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:15:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A76BB3B8ADD
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:17:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E6111922F5;
-	Mon,  5 May 2025 14:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61651A2545;
+	Mon,  5 May 2025 14:17:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tIgMv3Cl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c4VgYPng"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE2B1714C6
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 14:15:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A54E7625;
+	Mon,  5 May 2025 14:17:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746454531; cv=none; b=Q0KuT3mabsQLv2Q4N/Z7Hgvibv8nuKqImrfzDYprHIIk1AiyHeLSwq6MAm9rAQcmC/WI2mFzPy17b5ujlgXlLlceEucOqyUVXKbqFW/XevD29axibxjaTcL3gTipHX9YBtYBPMDIMx8QcuY/cQskgBPplezZLg9Wg+G1z8Nc8IY=
+	t=1746454678; cv=none; b=GuVVZ5YBNbs1Q3hekmKmca/TWH7vSw4AV/yGfmmR+esG2FbXhdsekbGiR3gOxpLgLGpwSungahpUCwU1UTsdPWnXkMG0HJnDpX7fRjl5iw5rJ/48pNZAa4b4ZbvWLEp4If1dhx69b8CRcPhTp+Z/PIkye1kTMKmrnssW2T19Am4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746454531; c=relaxed/simple;
-	bh=VIzk7gtYB28WUcMxCaffHF6oUxC1cG6T2gJRk7Wdq4M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iuZqaExlaVul3aEz8b2OvVTO2OInFUJtg5RluXf37yQVNZ4TnPnZYzuyNneXkUjWz7/bUqpaXaGy5yARiIIsOwfCNnlw7sL4fqBJKmY5lwdSP4p4XMSd2ynJfOu4RZHA1Soe12iefevrihBtlDMFBMLJ9UictT4A9UxhZARamnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tIgMv3Cl; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-39c14016868so5190303f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 07:15:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746454528; x=1747059328; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VIzk7gtYB28WUcMxCaffHF6oUxC1cG6T2gJRk7Wdq4M=;
-        b=tIgMv3ClfrAnZ++DtwfdKSoGSipuc2PjOV0MM9Y6YwQReyCz/fsq9vJ84AOE1aeIVs
-         Z9Nxjy87C1dgOg1EwokqrLp2mMXazXkZu1kWXASo+HWOsyeZfJ4xcteYvpGTxo5FEwdQ
-         LjSNP+r3ncI38WjUW88xUGTi++9DqDUPowoduHjWAYR2FTsLcIi7jaHO7BQc8zBBILOA
-         PlKP8kxdT7NjddF2F6BHYcTLfVCfzsadioxCswGwFp/6SFdP3rFB5nZ/R6z1iq2Fon2F
-         bUPGyp+jpvGuc+jJh5h40Ui8zBtL5sgK2Cx83vVKOi63Ep9oBXh3ALXf+Qvbq41tkQLp
-         sSaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746454528; x=1747059328;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VIzk7gtYB28WUcMxCaffHF6oUxC1cG6T2gJRk7Wdq4M=;
-        b=XmBGjIpYGFsV3y3FCeXKB0RMBVi0s0+lK2izmbNlaXyN4tw5U8vZvuIhQsn/52gMjn
-         E27u8rrLC7vaoO6aXt5I104/dwIL1GRlKx4ccmBB1HJPwO3YSHqlnbNd/mERFofw0NWX
-         8eKGv1hB6/fUTX3h9/A3hcZSS52YbObgSglYGW/ABd60IimRmEkfJ5r1sFg+LUHTlv6j
-         Qcd1L4koObYlF7Siq+4/GlMJF/EKTs7RZnLgrSArMY0YAeub0MeyofAerzP2+kv6kN1M
-         gVdDw49mb+l9wHp3tP7TxkOGXDp1VUgPUAcK0+yMqnPAjhcfA+EYDSN7FlAkqK0L64Bu
-         z/wA==
-X-Forwarded-Encrypted: i=1; AJvYcCWX7zgmAJ2SGOl67zg/YFP+Mm34Vxzkvfbxj8R4yhB2+EJ1hwKJ9dY9I4Q8dNbyEWT1P9845tcl2b6D@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxw9jND8TkBCPsdOtH1qyLPlqBKrEOvpXJrjR5QdMvnMMWrs+Bm
-	kCRsh2oabYBZv9SU9l1Fsky5+ykwVz+IUTj+tuRGHcSDipsohgQm6iEsyTLh+7E=
-X-Gm-Gg: ASbGncu1BSUhN64ULBpND2sNadKY+Re+dzMXu+A8+JN4qpPl1Oem9EHJYVqH6YX7s4K
-	FVWvJsl6CfV81YJfjMEaE6KeXL897B3sku8obcUe0Be6PZdA1IeB9XTclmKDalgVq8Zvfy3nTD0
-	MfCe24Qu4CUoohf3XKZ82fxsFVS35ArToCU0tJ9W07w3we77dQ9Mxk4OpM8LKAifKil7fJvGL/K
-	dDgG0diNDOKLc9MOfT8XScUekM5RKdmQNuC9WS92KIp5vaGs06SuN0dAHaYJ3eOqmPrEjG5ooDH
-	LrTkB5A3qCPcwpcJrlQDYc2aMh/poTpknON1tAlwwxB2wgZ2uP1ANdyUaJV1omD0UPXVOz94g+x
-	1E5ocffU=
-X-Google-Smtp-Source: AGHT+IG9eZwbQrU8o0UZPUEZ4V+8pzTpRVFyCpoHq2n5EZUfHNLzK8DAz3/XlK/eNalcb3vKmwDU8g==
-X-Received: by 2002:a05:6000:1867:b0:3a0:8325:8090 with SMTP id ffacd0b85a97d-3a09fd7614bmr4959995f8f.18.1746454527674;
-        Mon, 05 May 2025 07:15:27 -0700 (PDT)
-Received: from localhost (p200300f65f00780800000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f00:7808::1b9])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a099ae7cbbsm10727995f8f.53.2025.05.05.07.15.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 May 2025 07:15:27 -0700 (PDT)
-Date: Mon, 5 May 2025 16:15:26 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: Uwe@legfed1.smtp.subspace.kernel.org,
-	Kleine-K@legfed1.smtp.subspace.kernel.org,
-	dimitri.fedrau@liebherr.com, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v9 0/2] pwm: add support for NXPs high-side switch
- MC33XS2410
-Message-ID: <w26ohdzfoci4nztulnzngqy54m73qkhy6k55mwfzdyeqjpqiqa@hmbshtcbhite>
-References: <20250407-mc33xs2410-v9-0-57adcb56a6e4@liebherr.com>
- <cz5tzcmkpkoi7f6g64opcoq5mclahyom4aqafpjxmhisjidize@uw4uq3pmxou4>
- <20250505125749.GA12411@legfed1>
+	s=arc-20240116; t=1746454678; c=relaxed/simple;
+	bh=gsc3JlKON4CygcCk73kQax7z0OnlE/CBQE7MvPAsB9c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=knTCvLzubuQ/PFExDKX2BU1J/zgLO8x7wX3nzcuGpZ9B/Jo+5G2z9MKN6wiq/eAhbX44NnJhiYSLN234vvMCkcZdiyvVSaWgxRDKklinH97dHp7ZC/qQxnqN1XF1LNGUaZ5QtAct6+VZRyt309Q1r5iuGQ2fmN9ejNJFMOwcKxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c4VgYPng; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F5E4C4CEE4;
+	Mon,  5 May 2025 14:17:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746454678;
+	bh=gsc3JlKON4CygcCk73kQax7z0OnlE/CBQE7MvPAsB9c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=c4VgYPngdyhq82fvAO+lJufmpZ8INcFqCV16xwu2s//YPjQ9mt0o+xRgTQYKXqSfp
+	 j8HAYG0mH8y7BXWVeIEknxPAGGKXcR6lQIeD8DX6tdLvmaTsXWL9VbMPnrWOaLswX7
+	 Urp+GzXyUw4q8EC8BmO7d8r5NARU88ayXOD+K05334ZGhELIeU1DfaL050JMxNofgN
+	 31XPfKdvknJ3DEkXj3MfoCCSpIy4MamWNFHV6lQ1z0dlNtItZM/NY0Wn2xEolztFzZ
+	 u2VNl4tsOeltpcW00ZIyjBqiTqi3wI0fgsoBmeSwojjbT2fEj49c+9YWBhx4KqdB5o
+	 +klrTLlNkxw9Q==
+Message-ID: <32d9f0c5-5648-4cc2-9db6-f5165d20d20c@kernel.org>
+Date: Mon, 5 May 2025 16:17:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rpi3sdp44g7whwuv"
-Content-Disposition: inline
-In-Reply-To: <20250505125749.GA12411@legfed1>
+User-Agent: Mozilla Thunderbird
+Subject: Re: arm64: dts: blaize-blzp1600: Enable GPIO support
+To: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, James Cowgill
+ <james.cowgill@blaize.com>, Matt Redfearn <matthew.redfearn@blaize.com>,
+ Neil Jones <neil.jones@blaize.com>, "soc@lists.linux.dev"
+ <soc@lists.linux.dev>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20250327-kernel-upstreaming-add_gpio_support-v2-0-2c45a1acdc0c@blaize.com>
+ <20250327-kernel-upstreaming-add_gpio_support-v2-3-2c45a1acdc0c@blaize.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250327-kernel-upstreaming-add_gpio_support-v2-3-2c45a1acdc0c@blaize.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 05/05/2025 16:14, Nikolaos Pasaloukos wrote:
+> Blaize BLZP1600 uses the custom silicon provided from
+> 
+> VeriSilicon to add GPIO support.
+> 
+> This interface is used to control signals on many other
+> 
+> peripherals, such as Ethernet, USB, SD and eMMC.
+> 
+> 
+> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
 
---rpi3sdp44g7whwuv
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v9 0/2] pwm: add support for NXPs high-side switch
- MC33XS2410
-MIME-Version: 1.0
+Entire patch is corrupted by your mail server. Please switch to b4 relay
+if your mail server is not capable of sending emails (like Microsoft
+Outlook).
 
-Hello Dimitri,
+Please use standard email subjects, so with the PATCH keyword in the
+title. `git format-patch -vX` helps here to create proper versioned
+patches. Another useful tool is b4. Skipping the PATCH keyword makes
+filtering of emails more difficult thus making the review process less
+convenient.
 
-On Mon, May 05, 2025 at 02:57:49PM +0200, Dimitri Fedrau wrote:
-> On Fri, May 02, 2025 at 06:47:49PM +0200, Uwe Kleine-K??nig wrote:
-> > Hallo Dimitri,
-> >=20
-> > On Mon, Apr 07, 2025 at 01:21:50PM +0200, Dimitri Fedrau via B4 Relay w=
-rote:
-> > > The MC33XS2410 is a four channel high-side switch. Featuring advanced
-> > > monitoring and control function, the device is operational from 3.0 V=
- to
-> > > 60 V. The device is controlled by SPI port for configuration.
-> >=20
-> > Applied to
-> >=20
-> > https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/=
-for-next
-> >=20
-> > as v6.16-rc1 material. Thanks for your contribution!
-> >=20
-> > Best regards
-> > Uwe
->=20
-> thanks for reviewing and helping me. It took quite a long time but I
-> think it was worth it. When comparing to the first series, the code
-> quality improved a lot with your help, besides fixing some bugs.
+> 
+> ---
+> 
+> I am re-sending the patch to include the soc list. The original patchset
+> 
+> has already been applied but not this patch.
+> 
+> Arnd, could you please apply or do I need someone to review?
 
-I'm glad if that is your prevailing feeling about that driver submission
-and not annoyance about my pickyness and the long time I need to
-communicate it.
+Platform maintainers are responsible for the patches for their platform.
+Any reason why this is not working for blaize?
 
-Best regards
-Uwe
-
---rpi3sdp44g7whwuv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgYx/sACgkQj4D7WH0S
-/k7wXggAgxNVBDtDJ85dVmVVNJq6UQe54mXO7dCEDj/5BbnwqLiNi3UoKuLs3JPk
-oM3MoAfrcgURIjT1oJeZsYjjQhbdKcGPogqNOEBF6i0tVPcRfqdACUlkeHHGtpKz
-POChmt8g6ryuc6wMIOhJTuK5GX1IgOZDYekw5xD8w8Iz9HkiSbmbjzXTABitLqw7
-hKYP5/qRn79MYL7klNpdJV+WTujiYlWUmkjvYgDKtXAuVY3LgmC3RcUqzvva3LH4
-+T+/JH7S7RguKkGki2p0NT20vOFX6AeT8DuJp/w6Bs9I1xisjZjfg0cLgPkx8O4u
-CpsW9tzeg9iuNJlomq71ywwJxKhczw==
-=Q0Rn
------END PGP SIGNATURE-----
-
---rpi3sdp44g7whwuv--
+Best regards,
+Krzysztof
 
