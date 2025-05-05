@@ -1,123 +1,208 @@
-Return-Path: <devicetree+bounces-173675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF9C1AA93C3
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:58:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E59AA93DA
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:00:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42DE31889BD1
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 12:58:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCAE2178FA0
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:00:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B4492512F3;
-	Mon,  5 May 2025 12:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5677112BF24;
+	Mon,  5 May 2025 13:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DCNi+fcM"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j/xzmTv/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A436A2512E1;
-	Mon,  5 May 2025 12:57:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D69681724;
+	Mon,  5 May 2025 13:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746449875; cv=none; b=c+JlG3ZlKRHBYrFCm/NmltQnWpLWdHh++DxFhpBQkeuV4krmbBqk2OTv4VK+1nMco/YYz2R4mvZ6trR51Y9DjsyTJXlhTntZuvk068/8rho4Xf+HQ/7dynyANSj27Y8D9+iDmLEJ9cjopNbIdHmUOaoMsRSXyr0O/vqiYbsyoHA=
+	t=1746450045; cv=none; b=Thb8mT4KjHcj7omtfZOtuBpbz5E8Rt5T7L0F9cEJlN2iZMb3fXiQZHn15/oBqPr7E14ZuCQGiiD0+MxsTI1Ghg7FQTzmwl59KYuRlkCZY9V/Etck343OGKw4wSryP9Ke/Wh6+ilZdV9M787HiZj/A+qO1PyrIFZBzATrCkWzeiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746449875; c=relaxed/simple;
-	bh=tNZclWA2J7U2VOsCGrssqELF1la8cxXpR8L6S3NP+Pw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gRJ3ZOLpOdplnzzzNmzscRKn7ElV63mmxZTnfzTpnKwy6+aOZoyzkg2TMM3kOoxJnNDCGOjaki+yK5q7IV0i3rJnhDHSsR29/wbD05+wNFurXFKRpcY7uSDwfb/Kia+93njteoBqhP6PF5vKM/TfzBDGc9toxm0EROFwMlL3qKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DCNi+fcM; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-39c1ef4ae3aso2559642f8f.1;
-        Mon, 05 May 2025 05:57:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746449872; x=1747054672; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=TmqXEI3DS2Oyvr/XlJzwxBhkuvi+mSDYFQAfHhsgBsA=;
-        b=DCNi+fcMmJF3ARl1M9mwoEERuPWpqp9rImZiv2ajdcu7Axz4Ub0ZNhr1f7q0I4d25D
-         R59Y2tFndh9RnpQKD+78UF7MkPVOPPTX0tEea743SoeKpi+bdI2G/EvkxdL+52KLBxcH
-         5pIO7GG60Mra3ex717bQbZwet9gxZJG4h8spktgnKYKnNyfmfdMdINGph+JqjYo6iTMr
-         Yh6ur6sz8Qiw4MBC4z8bciNSTuRnrSdtELRYlJ5ugN9Lhy7MjWzjFFFgkTqyeAVWgnrp
-         E0XWNacPKteHkbtSiC1hBr15tmiPeCr2+aYFmiKPOos9r4YAm0yTqWt1Gm5Cn7US/eVF
-         vXRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746449872; x=1747054672;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TmqXEI3DS2Oyvr/XlJzwxBhkuvi+mSDYFQAfHhsgBsA=;
-        b=Ei1EtLUVjXItBaFWvylPvbf6qCdIzw8o0HfQG2pzxpheK5GG2bFpHIMP2RDHwA28d/
-         7IXvetqLzlm/V8cSucKs/hTSgol7t8ogepRuJeOFJX3ehaElHa+0+snQ8bOiE4FIGMum
-         sxJCw/D2RCtG9MB/msfLX+ysHIbh0FdhfcqKqqIXG5RBHyXTkYNZiuhpNc/LMlMALLIy
-         IxzD0OWQMPkmDPI2Zrq/tMlFp28kgHRqO4LQMVpP65z2iWDqIUSLhpJcn9QqqKDO1Wa+
-         hLpTgaEiuDwJFoRI3w/oWA52IMg3wUihwdvMIjk72FVvVj3R8LdIZDGznAdpTvbmhy0R
-         IX7g==
-X-Forwarded-Encrypted: i=1; AJvYcCUeyywSUtJM7MIRb+Djx87vH6pD/ab48XxfRikkd3xGECLl1vLp7ELOwP6PhQyHLwsZ5TAAthQVCrHW@vger.kernel.org, AJvYcCUkrjoiQPJ7nJ9g+BCCWaiOCX3XNAFkdhfdAqEsTkOjriYWVgw+tZCvh9XoOpSQ+6KROH5mRyaIA2Hu@vger.kernel.org, AJvYcCXHsWAFjrSJVXs92FUVYF5YM/MRI7TDf4exHgzG2GlbRK27B7mmZdeYpbm+wH6r/EO9rgWe5aYz2NIgAomE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhdvE1JjGt8Pszij4Rvc9HfwPqSl4DSp9Fn+EVwOG9ZXzkIZuK
-	ijItaMh3S3rw9fRFI2B3TjlHcoMAHVtA8bMal45Qfig1FbHP1EbwHOJjmQ==
-X-Gm-Gg: ASbGncstg4AL51KZ90OXNUb/QzxntG1zYFoEPg5jR7SBEQATvCfV1N/ctYk0VY/Cs/s
-	9al6RPfyswDETd2TgsbZAqUPdg1HWw6eFovhEQG01872zN5pv28jPiGsTyFWM63TkJ+mlC1vwOf
-	mvnoCq+nqZHxPjfVNVVSPdfkNztn4W7jo+YedyYRzkre8WHESezwWw659xeQQ2Bnuxlf+MBh4PN
-	YdAp3DzC+BJd8S/m4rUGphNC9UQx+b3PvhWZSeJHMMqEFK10zovvKlEdjoWd7XyyMIsb9w4SjXQ
-	E0KWcCNjAUc6cOOG2QczfjpFDEgVcx+DD8Fukb2X7pjifWkhLQ==
-X-Google-Smtp-Source: AGHT+IE4PdwHdIyEYMhBzntFJvcH88zMSO3ezA+eNhKiKoINHtHn8t+U8Y+RuHAeG/+/lX2B2nZgIA==
-X-Received: by 2002:a05:6000:2204:b0:3a0:8536:1261 with SMTP id ffacd0b85a97d-3a094034dd8mr12903052f8f.8.1746449871679;
-        Mon, 05 May 2025 05:57:51 -0700 (PDT)
-Received: from legfed1 ([2a00:79c0:608:9e00:1ebe:eb51:3a97:3b47])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b1702dsm10159875f8f.88.2025.05.05.05.57.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 May 2025 05:57:51 -0700 (PDT)
-Date: Mon, 5 May 2025 14:57:49 +0200
-From: Dimitri Fedrau <dima.fedrau@gmail.com>
-To: Uwe@legfed1.smtp.subspace.kernel.org,
-	Kleine-K@legfed1.smtp.subspace.kernel.org
-Cc: dimitri.fedrau@liebherr.com, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v9 0/2] pwm: add support for NXPs high-side switch
- MC33XS2410
-Message-ID: <20250505125749.GA12411@legfed1>
-References: <20250407-mc33xs2410-v9-0-57adcb56a6e4@liebherr.com>
- <cz5tzcmkpkoi7f6g64opcoq5mclahyom4aqafpjxmhisjidize@uw4uq3pmxou4>
+	s=arc-20240116; t=1746450045; c=relaxed/simple;
+	bh=3EHiqhycvBax/tqC3yJfvS39+SNdoGy1LgMMMybSTsk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=eDNgs5oOkeEm/oICbGuAbVAFZJP1WlYT3SeRldSWBL6I18PWWfTWDgtAGi4XJ3agYOQshBFhrEzgIfc387upjL9Osucqa2i0166qFwibuyaPh54wNcFsGsHcA0po4d6dxDoXWz+GcA4EJWv83q/yhiwXJoxEyw5bB7Z5HRhXWI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j/xzmTv/; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 545BG8OC002489;
+	Mon, 5 May 2025 13:00:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Wl4lIRVgeB3HpFIbRw6yRJPD1yim/TzEJ99/qDoZ6vE=; b=j/xzmTv/MPLJSNnx
+	nFhYetUWy/Sy1p3WB2Qi4BmR9Lx105C0iZLu9z3O9ECseAvdlitRd0csxumprNhd
+	5jWjhHVYi3ndUrhxFCid+sNrzEj+IPPjgwoun4eIfKa4LqYWYhB4E4bFBgccahRd
+	wapupcX8k56M2vjMgLCrCM/fp6uFPmDkZ44l6dmW8odMX6Qmxp6uJlSc+ysSY6iv
+	u9a5Mh47c+tD3Rk7+EMJ+DDSPM3Mxog/4uWyAcE9ae0AvmfRgmCwtfViW0H+Dsmz
+	KF/ngWvHNV/vm4s+8FjZByW6oOF0Lh74NSZOJANJU/H4+8H0SEcdTH2vwvGCnyzS
+	ogVy1w==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46d9ep48hw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 05 May 2025 13:00:36 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 545D0Z2W030171
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 5 May 2025 13:00:35 GMT
+Received: from [10.151.37.100] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 5 May 2025
+ 06:00:32 -0700
+Message-ID: <043da348-e120-4fac-b051-a7c196d5c685@quicinc.com>
+Date: Mon, 5 May 2025 18:30:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cz5tzcmkpkoi7f6g64opcoq5mclahyom4aqafpjxmhisjidize@uw4uq3pmxou4>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 2/2] mailbox: tmelite-qmp: Introduce TMEL QMP mailbox
+ driver
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <jassisinghbrar@gmail.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <manivannan.sadhasivam@linaro.org>,
+        <dmitry.baryshkov@linaro.org>
+References: <20250327181750.3733881-1-quic_srichara@quicinc.com>
+ <20250327181750.3733881-3-quic_srichara@quicinc.com>
+ <6b6a163b-be75-4003-a618-f0e928a6d114@oss.qualcomm.com>
+Content-Language: en-US
+From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <6b6a163b-be75-4003-a618-f0e928a6d114@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=EOUG00ZC c=1 sm=1 tr=0 ts=6818b674 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
+ a=uL57qzDeI7d6P-pwTO4A:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: tZ_9FFrs0GhbsUxHIFZ3LnmyLU20MYYb
+X-Proofpoint-GUID: tZ_9FFrs0GhbsUxHIFZ3LnmyLU20MYYb
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA1MDEyNCBTYWx0ZWRfX3qE7vRKX/la1
+ t+GpbLifv22TL+SxPF7vHjLkM3YdpcwIyUpUUp1WOtx7J5PtO1isGDzu2p5ww5xTE4AasgBqo4E
+ cd5pxwMz8vXsQ5fBil1/B7WGPQ7v3k2JgSgTUdB0BBGx7Nf16XRO4EXJLRcvF4CIXjOnC0pe2wL
+ S1ivCfaNhL4xFmbTlbUOxwCwPAVc6B/lY10wDk0VpyY78e1XklGpvGHQGWPObkzU3arLR4iNLnm
+ M/R/8F2c0nlpshqA35xvroXwbCy8zBfRPnmHzoQwG6fFTgclAwujg+byjQDqKIotUWgk05tghYI
+ sbFLjghjeAPeXA8GSBVmpLhGIQWSmhlqTWPZFiWjzNzSoxqP1i1QlYYtBXZq6ocPhy+PJvrxaQ7
+ INWsp8mQvzTw285RJAEkITVNb10/9UzTdOumVUaHp5OslA2XWDVxvTGCRa0jDQZuTG1ichdm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-05_05,2025-05-05_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 impostorscore=0 spamscore=0 lowpriorityscore=0
+ bulkscore=0 phishscore=0 suspectscore=0 mlxlogscore=999 mlxscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2504070000 definitions=main-2505050124
 
-Hi Uwe,
 
-On Fri, May 02, 2025 at 06:47:49PM +0200, Uwe Kleine-K??nig wrote:
-> Hallo Dimitri,
-> 
-> On Mon, Apr 07, 2025 at 01:21:50PM +0200, Dimitri Fedrau via B4 Relay wrote:
-> > The MC33XS2410 is a four channel high-side switch. Featuring advanced
-> > monitoring and control function, the device is operational from 3.0 V to
-> > 60 V. The device is controlled by SPI port for configuration.
-> 
-> Applied to
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-next
-> 
-> as v6.16-rc1 material. Thanks for your contribution!
-> 
-> Best regards
-> Uwe
 
-thanks for reviewing and helping me. It took quite a long time but I
-think it was worth it. When comparing to the first series, the code
-quality improved a lot with your help, besides fixing some bugs.
+On 4/26/2025 3:19 PM, Konrad Dybcio wrote:
+> On 3/27/25 7:17 PM, Sricharan R wrote:
+>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>
+>> This mailbox facilitates the communication between the TMEL server
+>> subsystem (Trust Management Engine Lite) and the TMEL client
+>> (APPSS/BTSS/AUDIOSS), used for secure services like secure image
+>> authentication, enable/disable efuses, crypto services etc. Each client in
+>> the SoC has its own block of message RAM and IRQ for communication with the
+>> TMEL SS. The protocol used to communicate in the message RAM is known as
+>> Qualcomm Messaging Protocol (QMP).
+>>
+>> Remote proc driver subscribes to this mailbox and uses the
+>> mbox_send_message to use TMEL to securely authenticate/teardown the images.
+>>
+>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>> ---
+> 
+> [...]
+> 
+>> +
+>> +#define QMP_NUM_CHANS		0x1
+> 
+> Quantities make more sense in decimal, but since this is effectively
+> a single-use value, you can put in the '1' literal in num_chans and use
+> devm_kzalloc instead of devm_kcalloc in the other use
+> 
+ok
 
-Best regards,
-Dimitri Fedrau
+>> +#define QMP_TOUT_MS		1000
+> 
+> "TIMEOUT"
+> 
+ok
+
+>> +#define QMP_CTRL_DATA_SIZE	4
+>> +#define QMP_MAX_PKT_SIZE	0x18
+> 
+> This is very handwavy, please structurize all data that comes in and
+> out of the mailbox.
+> 
+ok
+
+>> +#define QMP_UCORE_DESC_OFFSET	0x1000
+>> +#define QMP_SEND_TIMEOUT	30000
+> 
+> Please include the unit in the macro name - although 30s is quite a
+> timeout for a couple bytes..
+> 
+ok
+
+> [...]
+> 
+>> +#define QMP_HW_MBOX_SIZE		32
+>> +#define QMP_MBOX_RSV_SIZE		4
+>> +#define QMP_MBOX_IPC_PACKET_SIZE	(QMP_HW_MBOX_SIZE - QMP_CTRL_DATA_SIZE - QMP_MBOX_RSV_SIZE)
+>> +#define QMP_MBOX_IPC_MAX_PARAMS		5
+>> +
+>> +#define QMP_MAX_PARAM_IN_PARAM_ID	14
+>> +#define QMP_PARAM_CNT_FOR_OUTBUF	3
+>> +#define QMP_SRAM_IPC_MAX_PARAMS		(QMP_MAX_PARAM_IN_PARAM_ID * QMP_PARAM_CNT_FOR_OUTBUF)
+>> +#define QMP_SRAM_IPC_MAX_BUF_SIZE	(QMP_SRAM_IPC_MAX_PARAMS * sizeof(u32))
+> 
+> These should be expressed in terms of structures and sizeof() instead,
+> as well
+> 
+ok
+
+>> +
+>> +#define TMEL_ERROR_GENERIC		(0x1u)
+>> +#define TMEL_ERROR_NOT_SUPPORTED	(0x2u)
+>> +#define TMEL_ERROR_BAD_PARAMETER	(0x3u)
+>> +#define TMEL_ERROR_BAD_MESSAGE		(0x4u)
+>> +#define TMEL_ERROR_BAD_ADDRESS		(0x5u)
+>> +#define TMEL_ERROR_TMELCOM_FAILURE	(0x6u)
+>> +#define TMEL_ERROR_TMEL_BUSY		(0x7u)
+> 
+> Oh I didn't notice this during the first review.. I assume these are
+> returned by the mbox. Please create a dictionary such as:
+> 
+> u32 tmel_error_dict[] = {
+> 	[TMEL_ERROR_GENERIC] = EINVAL,
+> 	[TMEL_ERROR_NOT_SUPPORTED] = EOPNOTSUPP
+> 	...
+> };
+> 
+> that we can then plug into the function down below that currently does
+> error ? -EINVAL : 0
+> 
+
+Hmm ok, will try this mapping.
+
+Regards,
+  Sricharan
+
 
