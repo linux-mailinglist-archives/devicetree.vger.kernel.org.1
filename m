@@ -1,188 +1,88 @@
-Return-Path: <devicetree+bounces-173779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A027EAA96F0
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:06:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEE84AA96FE
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:09:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 894F77A79EC
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:05:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EB7716FA6A
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:09:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEBB325C83C;
-	Mon,  5 May 2025 15:06:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECB33259493;
+	Mon,  5 May 2025 15:09:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OoOGGlRo"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QgGNUXco"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EE325CC58;
-	Mon,  5 May 2025 15:06:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC2EB1991DD;
+	Mon,  5 May 2025 15:09:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746457570; cv=none; b=Hd58QvA2z+dqX/4d6ZNQ8y99t3Sa4phGZieS0M0Ns+eD9VYzOfsPzNnbVhczHfhEGsW3tQp04fK99wFIK+E6RqazWu7zNEcUohopySCmApZRphwL1425oGEc3yiYiGy/utAsuPff2qYsDJAHuyy9AVpQlafqtc0PNDlejqz/8JQ=
+	t=1746457779; cv=none; b=R8p1En2OdSkdBkDODk2Kq60uckLCiqvc5hJEL0ck7Prwm/Hgqg9kW1jYawCm4Pq6q21aviYDYA0UENHU1LTRi5HWCwL+oVqdvNANjv5ddqx13BUc8C7KZRUG+w+I6WIiXOx0Pxuz+r4bx/+dDG4A2Ra48uwPy7ke6Fm08H7fUwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746457570; c=relaxed/simple;
-	bh=2pjKGRUh5AKe7m3pwNrBYOaxkmH/+FZUR/QVA1z7oRQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gEL2nPqan0P7quprokYABen5VlR3dbtYZE1CnNrcUe6U8q0MArpvyWwL7znEXHGDQA7bVHfghjxwRLNEruBQYMXjpgnlkNtqjGm5XKSOkUv2VviBAh785e+pqmQ2kzSYlTvM/iRAU03SmxWHoCl59pXKDsFo1PYGKTsmPQ2hV6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OoOGGlRo; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 545F5tIl276214
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 5 May 2025 10:05:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746457555;
-	bh=CK4LuQymWo+MpxuNt4yUrkVbDp9M2LjuWFpwebt1sus=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=OoOGGlRos9EVeojPMSerNs/FBGQxjiDukyptWlTDzQXbigkcd0e7dZtabsr6vAKst
-	 arQd9K1A8vDxCYAnPPrMs1A7vM5SCugF9agDtc/4WGspwOcTQAd96zI7Az+6JrbhvP
-	 1fEnhwhWpJYpsbcmtSGuHvgz/WmWvwd5k77VjFUY=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 545F5tow031923
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 5 May 2025 10:05:55 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
- May 2025 10:05:55 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 5 May 2025 10:05:55 -0500
-Received: from [10.250.32.125] ([10.250.32.125])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 545F5sJG122185;
-	Mon, 5 May 2025 10:05:54 -0500
-Message-ID: <6c5e786d-7581-492f-92fb-be92ecbecd87@ti.com>
-Date: Mon, 5 May 2025 10:05:54 -0500
+	s=arc-20240116; t=1746457779; c=relaxed/simple;
+	bh=TSUZKeCdQhdSNxarE2Jb8rQpBLaG9AFMMnYpT2x7Odo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e/ANv+lemgp0uSTuwwWkzm1aH7X4RhOLnRmDEJSU2hMO0a/3cphtUTYN6Ngb/q961Bqfz98BZSmn2w1T5jrWkPRKdNFxfrj2f7L/3r6dpV+p59kzyQViMcaoizfRzcp9G+gsGQ5rf1TEgKYD8Tyb7fKfFDzUHd/jxqcinqLaAtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QgGNUXco; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=kWu5GJ/61aSn6x94SwqhrcX8Db76+qXS9tFC+eWlWv8=; b=QgGNUXcooNpXGyc0ZCLQdGrbSK
+	VnLeqcKzMUrQdNCvQi/jczUba522CT8xjzYYxpU1Yz1b6xwI795L8tnXtNHIqxz7kKlD7gCjrpNB/
+	4c/7cLCXoanQNknxMOdfC8canG4ldWUK0MK8Fv+6c8FM+5UoFLzNA7/r7Gh+lb3l2BUc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uBxRW-00Bbh1-MR; Mon, 05 May 2025 17:09:18 +0200
+Date: Mon, 5 May 2025 17:09:18 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
+ marvell,orion-bridge-intc to DT schema
+Message-ID: <dd9795f1-872a-4f7f-b4df-52cee65151a7@lunn.ch>
+References: <20250505144743.1290672-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 03/11] arm64: dts: ti: k3-am62a-mcu: Add R5F remote
- proc node
-To: Daniel Schultz <d.schultz@phytec.de>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Hari
- Nagalla <hnagalla@ti.com>,
-        Beleswar Padhi <b-padhi@ti.com>,
-        Markus
- Schneider-Pargmann <msp@baylibre.com>,
-        Andrew Davis <afd@ti.com>, Devarsh
- Thakkar <devarsht@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250502220325.3230653-1-jm@ti.com>
- <20250502220325.3230653-4-jm@ti.com>
- <50039c49-a6c5-4f29-a35a-53b9af117fd8@phytec.de>
-Content-Language: en-US
-From: "Mendez, Judith" <jm@ti.com>
-In-Reply-To: <50039c49-a6c5-4f29-a35a-53b9af117fd8@phytec.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250505144743.1290672-1-robh@kernel.org>
 
-Hi Daniel,
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/marvell,orion-bridge-intc.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/marvell,orion-bridge-intc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Orion SoC Bridge Interrupt Controller
+> +
+> +maintainers:
+> +  - Andrew Lunn <andrew@lunn.ch>
+> +  - Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
 
-On 5/5/2025 4:55 AM, Daniel Schultz wrote:
-> Hi,
-> 
-> I'm unable to load the latest TI firmware 
-> (98efd20ec71f8c1c8f909d34ab656731) with this patch.
-> 
-> [    7.012889] remoteproc remoteproc1: 79000000.r5f is available
-> [    7.032640] remoteproc remoteproc1: powering up 79000000.r5f
-> [    7.038626] remoteproc remoteproc1: Booting fw image am62a-mcu- 
-> r5f0_0-fw, size 53140
-> [    7.057209] remoteproc remoteproc1: bad phdr da 0x79100000 mem 0x47ea0
-> [    7.064716] remoteproc remoteproc1: Failed to load program segments: -22
-> 
-> I figured out that the mcu sram node disappeared in v5. Apparently 
-> adding it back manually doesn't solve this problem. Any idea what's wrong?
+You should probably drop Sebastian. I've not heard from him in years.
 
-For am62ax, there should be several items changed with this v8
-series in order for remoteproc to work with the TI default firmware:
+Apart from that:
 
-1. memory carveouts were reduced to 15MB [0] & edge-ai memory
-carveouts are not included here
-2. mcu_sram1 node removed [2]
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-If you want to catch up on the general direction for this series,
-please refer to [3]. atm remoteproc can fail with the default FW,
-but we are trying to move away from that firmware and this is the
-first step in that direction.
-
-[0] 
-https://lore.kernel.org/linux-devicetree/0ab5c5ec-cde3-41f1-8adf-2419b31497c1@ti.com/
-[1] 
-https://lore.kernel.org/linux-devicetree/04e77daf-e775-44fa-82bf-8b6ebf73bcef@ti.com/
-[2] 
-https://lore.kernel.org/linux-devicetree/32358aa1-0c02-4f4d-9782-2d8376c0d9fc@ti.com/
-[3] 
-https://lore.kernel.org/linux-devicetree/e131298f-3713-482a-a740-ff89709270b4@ti.com/
-
-~ Judith
-
-> 
-> On 5/3/25 00:03, Judith Mendez wrote:
->> From: Hari Nagalla <hnagalla@ti.com>
->>
->> AM62A SoCs have a single R5F core in the MCU voltage domain.
->> Add the R5FSS node with the child node for core0 in MCU voltage
->> domain .dtsi file.
->>
->> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
->> Signed-off-by: Judith Mendez <jm@ti.com>
->> Acked-by: Andrew Davis <afd@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi | 25 ++++++++++++++++++++++++
->>   1 file changed, 25 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi b/arch/arm64/ 
->> boot/dts/ti/k3-am62a-mcu.dtsi
->> index 9ed9d703ff24..ee961ced7208 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
->> @@ -174,4 +174,29 @@ mcu_mcan1: can@4e18000 {
->>           bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
->>           status = "disabled";
->>       };
->> +
->> +    mcu_r5fss0: r5fss@79000000 {
->> +        compatible = "ti,am62-r5fss";
->> +        #address-cells = <1>;
->> +        #size-cells = <1>;
->> +        ranges = <0x79000000 0x00 0x79000000 0x8000>,
->> +             <0x79020000 0x00 0x79020000 0x8000>;
->> +        power-domains = <&k3_pds 7 TI_SCI_PD_EXCLUSIVE>;
->> +        status = "disabled";
->> +
->> +        mcu_r5fss0_core0: r5f@79000000 {
->> +            compatible = "ti,am62-r5f";
->> +            reg = <0x79000000 0x00008000>,
->> +                  <0x79020000 0x00008000>;
->> +            reg-names = "atcm", "btcm";
->> +            resets = <&k3_reset 9 1>;
->> +            firmware-name = "am62a-mcu-r5f0_0-fw";
->> +            ti,atcm-enable = <0>;
->> +            ti,btcm-enable = <1>;
->> +            ti,loczrama = <0>;
->> +            ti,sci = <&dmsc>;
->> +            ti,sci-dev-id = <9>;
->> +            ti,sci-proc-ids = <0x03 0xff>;
->> +        };
->> +    };
->>   };
-
+    Andrew
 
