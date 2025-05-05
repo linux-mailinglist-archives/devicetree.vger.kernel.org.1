@@ -1,64 +1,87 @@
-Return-Path: <devicetree+bounces-173540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E08EFAA8B61
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 06:01:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD2C2AA8B72
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 06:30:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E8811892CD8
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 04:01:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90D661890B99
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 04:30:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C11A38F91;
-	Mon,  5 May 2025 04:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A78081A3056;
+	Mon,  5 May 2025 04:30:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jaYlpGPA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RHomb34U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B13C182;
-	Mon,  5 May 2025 04:01:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A6C01A070E
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 04:30:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746417688; cv=none; b=fC40SErB1VOdjt9FLwGFu5ciX+PwIT0kxE0PlNdM70OyUTLf/WrpqxNB1GMnkdvIfo7+ff6FM6L3FjJNBNrQMXNEk0UdnqEJGLdIqPBh4V1QszDYjdy9Bzi1pEhJtiDjPEuYyghDgrkug9Zq98utcapEvxH2mmXbdxTfRclMNhw=
+	t=1746419409; cv=none; b=QS7eV53yPwe/YfVM3GEBq500NRgGo1Csede4kDt4njp2xsG83tUk38xiXZcEWVvhMlzYJ9/GCvMOx3qp4cLgH+Ogj1L3wmHnAWENFRfr8FippdGdyh2LAckhASTY6oiTyhSk57bCWufpm7FfYpl+A80lwlUw+XBmbaU3GFyaa9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746417688; c=relaxed/simple;
-	bh=1a425qsFOjl1/H5i5opXLgFZye2zLKSDqZefyCMpOHg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fG0CNPCh2a2nfll7WBTWD6aWNgJBMBJfbVogGKb63GRe4XL4NtTMuwEz7yeSlWHNYHnXJ5efNx1Ko6qLSMvSYRjcFk95VBSnMlJrTAPNrS8EraRM1a7njQn5ujzzg03tNoYcY3nlpscibksfHZ0PIIMvdYMLG+vaQiCXcPo8mvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jaYlpGPA; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 545415Dr123988
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sun, 4 May 2025 23:01:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746417665;
-	bh=2tG/hP70MpeKfFLue11e+68DdSS5RzRgjC80Ey3Fa/c=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=jaYlpGPAuOxR8C/9rEOiTi1QbHdb9FJUUFhjMLX8nJbUjh/MSva5WABvqHVTlf5Hf
-	 mNRP9A0Rx4GMHFpuO7kIXlLikv20NtMoNIW6hQeyznFSABaGn+UEBm4m0PovrMQMbK
-	 YtCc7yaP/d8B9Oiaj7mEcGOXc4EHawb8qX5iQ7UY=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 545415or017932
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 4 May 2025 23:01:05 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 4
- May 2025 23:01:04 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 4 May 2025 23:01:04 -0500
-Received: from [10.249.140.90] ([10.249.140.90])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 545410RA127426;
-	Sun, 4 May 2025 23:01:01 -0500
-Message-ID: <4bddfa36-7cdb-4e74-b356-8ec4d7fb55aa@ti.com>
-Date: Mon, 5 May 2025 09:30:59 +0530
+	s=arc-20240116; t=1746419409; c=relaxed/simple;
+	bh=tat/UdOeVW9y9E5UvXaU8Epq8XucIiru3S2OvjCiOjo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LF3FbpUkro0psRXblbkROXDbBvvooPhqAvxXSODsdCUbNCCm3k6PzVI6oab52mm2CSyqj3MDhblO9RXpypftHgMDS9562W77sevjR0EfKDztk5pzRtbeFCVJrrSETcgC8vwSbVxjhWcEYPyB90++0zqPEazbSQT8mLX00iEqAmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RHomb34U; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 544NN5oc021369
+	for <devicetree@vger.kernel.org>; Mon, 5 May 2025 04:30:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	RT+Thy0QvLCO4okTddVASjhzNC6Tj2+mPt9xU6TKuOo=; b=RHomb34UiVgOC5K2
+	9NiA45A56iqz7xDXjr/EgzN5mTO0YQrwnUff82B7vZdBGBmKjYIKhOQnXM+MlMN0
+	JNlWdgKaQD4owkq5l/rji1iquiF0QWFQ+fR5pZdud+5+rzM0C25A8p/55k17Hzso
+	C3oMjQ7rjfbM4F1VmUBSoXmEU8GLHTbSPEPJRDPeoV9ILgdqTSR7RhqF8Df11Ne9
+	s+xfInsU6X+pzzRmwDFGRx+17sm/5XRa5vnvX6IN6kiUdXkKNAlJnc6xQYtXC8hF
+	X35gXKhNkgSmUhl1jAg8t3TD5noIwbZPWDvgwSr1xnxMsDQxh/IAyqnBHljJO/8S
+	Tio9EA==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46da55tygu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 05 May 2025 04:30:05 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-2ff58318acaso5872541a91.0
+        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 21:30:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746419404; x=1747024204;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RT+Thy0QvLCO4okTddVASjhzNC6Tj2+mPt9xU6TKuOo=;
+        b=mztXXpbj4mzZAFwpe38PJHSWYCV00Yo6/OTUa+1ywcFyALwDdgTZRSMlRfxIfkd/6F
+         9AM2IhKguoLIm+wQ3v6mPYoZZIULPlem9cDxz1h8hy9rrH5mX+etQuGR2ySL2K3jsZc9
+         Qe0QVH8OmCTPFiXSefn0ClRId3BWE6uCpJJKwKCL/h3ay3XxMkuHkz2t16xCE53lR4oO
+         4k3a81znFrqe5efEr4r2M+HoXe5a3vSgJlnKjQwkiHgoefegx0hsmzs/USw2gPpiU94j
+         gsV9YcpMQgH7qEA//nNRvB3jpWIZj4pSLUtWCAvOHf6v88Ni5/HfR39lwLAmf61FBZVN
+         WPZw==
+X-Forwarded-Encrypted: i=1; AJvYcCWsBrtmgJs9wwvKFOeNhFGh96BSt1ObOjuKaTn758Ee7kqy1A+ByZAbvl31B8CbbqnzMiuUTynIlYxI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzFH/AKawfDKX4D9nS43N6bt+1J93+0XO7l5EhFuM/APLsZt0c
+	V8PEGtfObFW1NVN9C2J/P/1naZiEtiLAASHFBWWd6tgqu09LZ+AEoNi0AkDXXahUiEE1uHrqEbm
+	D/c5BPpx3MqmnwyPbBPCRsa4W8yIBSgpgT87YCwNqC9tgqY+BDKuRwtczjJ+C
+X-Gm-Gg: ASbGncsfF3MfAe/uZroiGGme4FbbeBlqrlslMX1QF/fVbHj+U48Nj4Bt66XET/3Osdl
+	YAlmQlUCcT4jziu1GJUZRQLc1ono8EcFTDPq+ywcJkSvJwrXtm0iLo0lOhgp9wjxb2PONe5wrVj
+	as94foB6/exeRjsl5BJZ0rCT5vcIvmN1VHx1jaA1FxQycBIRf/RrISOz3IpjQdXSIBg+rngHazy
+	nLETeqoGgNErU+6TuTMFw8Ewjj8WNEN2VWT15s9KAGSXwH5gsDjCd0maVabmm+0OiyRMb3m8r81
+	p7nm75qSVXS4/l6oVtb2QZUWHk+lrR+fDnBfG7ql
+X-Received: by 2002:a17:90b:3d50:b0:309:f407:5ad1 with SMTP id 98e67ed59e1d1-30a6198dbf4mr9352645a91.14.1746419404075;
+        Sun, 04 May 2025 21:30:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHqUmOMTDYpmv11950TW1BS1e0LDkivXBdXi//Md6qRiIa4KrFjTB/t9ogC6F9TPBb4UttJXA==
+X-Received: by 2002:a17:90b:3d50:b0:309:f407:5ad1 with SMTP id 98e67ed59e1d1-30a6198dbf4mr9352620a91.14.1746419403762;
+        Sun, 04 May 2025 21:30:03 -0700 (PDT)
+Received: from [10.152.201.37] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22e1522f8c1sm44772135ad.246.2025.05.04.21.29.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 May 2025 21:30:03 -0700 (PDT)
+Message-ID: <3d03e70f-b1c5-48f9-9aa4-421e48ff7c7f@oss.qualcomm.com>
+Date: Mon, 5 May 2025 09:59:58 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,154 +89,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62-main: Add PRUSS-M node
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>
-References: <20250430144343.972234-1-jm@ti.com>
+Subject: Re: [PATCH V5 2/6] dt-bindings: remoteproc: qcom: document hexagon
+ based WCSS secure PIL
+To: Krzysztof Kozlowski <krzk@kernel.org>, andersson@kernel.org,
+        mathieu.poirier@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, konradybcio@kernel.org, quic_mmanikan@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc: quic_srichara@quicinc.com, vignesh.viswanathan@oss.qualcomm.com
+References: <20250417061245.497803-1-gokul.sriram.p@oss.qualcomm.com>
+ <20250417061245.497803-3-gokul.sriram.p@oss.qualcomm.com>
+ <23f0efae-9d37-45cd-85df-7122843fece0@kernel.org>
 Content-Language: en-US
-From: Beleswar Prasad Padhi <b-padhi@ti.com>
-In-Reply-To: <20250430144343.972234-1-jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Gokul Sriram P <gokul.sriram.p@oss.qualcomm.com>
+In-Reply-To: <23f0efae-9d37-45cd-85df-7122843fece0@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA1MDA0MCBTYWx0ZWRfX96KKTl7xSIei
+ FFfP11fFYJzPdAFQ7ylfjbYLIrceJjMfsZmCAyHUc+S+qnc4gXX1WvWU8rfITlLQ0bTZvO4Z8sW
+ VUJFfhP5JngFbNgbiU6ayjhNbSKDMMCylEb06swjBtDf6WqLWe3mqojcle/shJGnMdwkeZIxgtH
+ Z1ua1pmVpo56xWXUAo1CJV3HEXdABoVF+lO1OHyHRDSiMG8NEeXLKlFaH4dmgBGYez5i/WanfMG
+ l0a9lgSFXdI+7Q8JfPQvvChVTsdYOyn+3XBfG2OLvJl1sQFyc29gW1Ov49AidIlZMdmZ30sauCS
+ uk4+YWZE3w8NaP8V6gg6+2lIoWJGTZvpEkzaNcl6wvUPFR44QxEjCPhAtitG/f9ew43hfDHsRF4
+ 2ZBFDk7wnahF2FW/3jEnXa/M2M3rRCOugcI82aBkoWcwv2XnO+4kQxdflpsQ9P6xBrRTdiv2
+X-Authority-Analysis: v=2.4 cv=M9RNKzws c=1 sm=1 tr=0 ts=68183ecd cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=lbk28AChQbnHTQvtX8QA:9
+ a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-GUID: BvN72JOdktxQ6KrUmYopOJC2-IHHHMmb
+X-Proofpoint-ORIG-GUID: BvN72JOdktxQ6KrUmYopOJC2-IHHHMmb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-05_02,2025-04-30_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 mlxlogscore=794 priorityscore=1501 malwarescore=0
+ mlxscore=0 bulkscore=0 adultscore=0 suspectscore=0 clxscore=1015
+ lowpriorityscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2504070000 definitions=main-2505050040
 
-Hi Judith,
 
-On 4/30/2025 8:13 PM, Judith Mendez wrote:
-> From: Kishon Vijay Abraham I <kishon@ti.com>
+On 4/25/2025 11:52 AM, Krzysztof Kozlowski wrote:
+> On 17/04/2025 08:12, Gokul Sriram Palanisamy wrote:
+>> +  interrupts:
+>> +    items:
+>> +      - description: Watchdog interrupt
+>> +      - description: Fatal interrupt
+>> +      - description: Ready interrupt
+>> +      - description: Handover interrupt
+>> +      - description: Stop acknowledge interrupt
+>> +
+>> +  interrupt-names:
+>> +    items:
+>> +      - const: wdog
+>> +      - const: fatal
+>> +      - const: ready
+>> +      - const: handover
+>> +      - const: stop-ack
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: sleep clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: sleep
+>> +
+>> +  mboxes:
+>> +    maxItems: 1
+>> +    description: A phandle for the TMECom mailbox driver
+> This is also a new property.
 >
-> Add the DT node for the PRUSS-M processor subsystem that is present
-> on the K3 AM62x SoCs. The K3 AM62x family of SoC has one PRUSS-M
-> instance and it has two Programmable Real-Time Units (PRU0 and PRU1).
+> Phandles cannot point to drivers. It is just impossible. It is a phandle
+> to some device (as in "device node", but we describe here hardware)
 >
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> [ Judith: Fix pruss_iclk id for pruss_coreclk_mux ]
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
-> Changelog:
-> - drop internal tags
-> - rebase against ti-k3-dts-next
-> - fix header
+> Anyway, either drop description if obvious or use simpler form:
+>   items:
+>     - description
+
+ok, will update. Thanks
 
 
-Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
+Regards,
 
-Thanks,
-Beleswar
+Gokul
 
->
-> Link to v1:
-> https://lore.kernel.org/linux-devicetree/20250108222048.818835-1-jm@ti.com/
-> ---
->   arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 90 ++++++++++++++++++++++++
->   1 file changed, 90 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index 7d355aa73ea2..ee53e663b5bd 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -1079,6 +1079,96 @@ dphy0: phy@30110000 {
->   		status = "disabled";
->   	};
->   
-> +	pruss: pruss@30040000 {
-> +		compatible = "ti,am625-pruss";
-> +		reg = <0x00 0x30040000 0x00 0x80000>;
-> +		power-domains = <&k3_pds 81 TI_SCI_PD_EXCLUSIVE>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x0 0x00 0x30040000 0x80000>;
-> +
-> +		pruss_mem: memories@0 {
-> +			reg = <0x0 0x2000>,
-> +			      <0x2000 0x2000>,
-> +			      <0x10000 0x10000>;
-> +			reg-names = "dram0", "dram1", "shrdram2";
-> +		};
-> +
-> +		pruss_cfg: cfg@26000 {
-> +			compatible = "ti,pruss-cfg", "syscon";
-> +			reg = <0x26000 0x200>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0x26000 0x2000>;
-> +
-> +			clocks {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				pruss_coreclk_mux: coreclk-mux@3c {
-> +					reg = <0x3c>;
-> +					#clock-cells = <0>;
-> +					clocks = <&k3_clks 81 0>,  /* pruss_core_clk */
-> +						 <&k3_clks 81 14>; /* pruss_iclk */
-> +					assigned-clocks = <&pruss_coreclk_mux>;
-> +					assigned-clock-parents = <&k3_clks 81 14>;
-> +				};
-> +
-> +				pruss_iepclk_mux: iepclk-mux@30 {
-> +					reg = <0x30>;
-> +					#clock-cells = <0>;
-> +					clocks = <&k3_clks 81 3>,	/* pruss_iep_clk */
-> +						 <&pruss_coreclk_mux>;	/* pruss_coreclk_mux */
-> +					assigned-clocks = <&pruss_iepclk_mux>;
-> +					assigned-clock-parents = <&pruss_coreclk_mux>;
-> +				};
-> +			};
-> +		};
-> +
-> +		pruss_intc: interrupt-controller@20000 {
-> +			compatible = "ti,pruss-intc";
-> +			reg = <0x20000 0x2000>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <3>;
-> +			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "host_intr0", "host_intr1",
-> +					  "host_intr2", "host_intr3",
-> +					  "host_intr4", "host_intr5",
-> +					  "host_intr6", "host_intr7";
-> +		};
-> +
-> +		pru0: pru@34000 {
-> +			compatible = "ti,am625-pru";
-> +			reg = <0x34000 0x3000>,
-> +			      <0x22000 0x100>,
-> +			      <0x22400 0x100>;
-> +			reg-names = "iram", "control", "debug";
-> +			firmware-name = "am62x-pru0-fw";
-> +			interrupt-parent = <&pruss_intc>;
-> +			interrupts = <16 2 2>;
-> +			interrupt-names = "vring";
-> +		};
-> +
-> +		pru1: pru@38000 {
-> +			compatible = "ti,am625-pru";
-> +			reg = <0x38000 0x3000>,
-> +			      <0x24000 0x100>,
-> +			      <0x24400 0x100>;
-> +			reg-names = "iram", "control", "debug";
-> +			firmware-name = "am62x-pru1-fw";
-> +			interrupt-parent = <&pruss_intc>;
-> +			interrupts = <18 3 3>;
-> +			interrupt-names = "vring";
-> +		};
-> +	};
-> +
->   	gpmc0: memory-controller@3b000000 {
->   		compatible = "ti,am64-gpmc";
->   		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
 
