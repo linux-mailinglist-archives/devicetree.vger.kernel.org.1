@@ -1,223 +1,152 @@
-Return-Path: <devicetree+bounces-173823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36AF9AA9A61
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 19:23:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6355EAA9A6B
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 19:27:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF6457A134F
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:22:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A901189CC7F
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:27:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A78F26A0CA;
-	Mon,  5 May 2025 17:23:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38B5126C38D;
+	Mon,  5 May 2025 17:27:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tuaULRW0"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="IE3iWLri"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from sender3-pp-f112.zoho.com (sender3-pp-f112.zoho.com [136.143.184.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73F720E6;
-	Mon,  5 May 2025 17:23:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746465811; cv=none; b=IRSLIkZ8yIiyW/6kMjsa2CJp5uSR3k46qYCZ4dnJdYxZhd/ffQ3/gfJjVW4VEN6Hnqqs7IIMcivbWXPBtWRRROasW7vDlMr1QrB1j8yLB2DJ3JsLXm4hnJf4tpN10ZnMKjZB9Jl6FjdPGEZk3pbCWZo4xCJ9bZZwI6MOTRcAWGk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746465811; c=relaxed/simple;
-	bh=s6QeaakJa6BDfEjphO1uxANkNdJWYK74iR7RWVkaVus=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aFNhLTLKUZcFhthzyvlnittwMcnzuW5vm8wJY52Coq3l3pmFbL2SYAqysGxqlO0EliZTjvrGLGfl+46huY8dRpzEqBRGiL2OB8hgRN4OQjlCtC1ETLmu2ShSwN2bqPmxILC++g8wL1/xBuzbtIDTcSb2pWjh3wuhKhklt1+nifo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tuaULRW0; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 545HNFZ3833317
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 5 May 2025 12:23:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746465795;
-	bh=eI4y/BuLlZr98QGdclamONyFaz80LpH9fGjQQShpoLM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=tuaULRW0ltUDsbZ6QncT2ZybY5Gt/MrkZZmLjIdtTU7jqb1nzbZKu0VL8ATKLxZto
-	 AzEhmlp70e+kFfQujYyDWcl/JEfOfZu5p5tUs/Nes7bI3t/5w2h7U5aPWJQrdkDz1A
-	 ukLBG/CcNa3SZk7I8kTa9di+80EizM9/+Gss7OJM=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 545HNF0a091066
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 5 May 2025 12:23:15 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
- May 2025 12:23:14 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 5 May 2025 12:23:14 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 545HNEJu093720;
-	Mon, 5 May 2025 12:23:14 -0500
-Message-ID: <84e6413e-4a61-40a5-acc7-85da76e6d540@ti.com>
-Date: Mon, 5 May 2025 12:23:14 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E3326B2DF;
+	Mon,  5 May 2025 17:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746466050; cv=pass; b=UI+qG2E2qNaR86DqSoaaBsziVVqSKRf+Pz+OzbMRs5D5DbasQKbAH3igI1Utl+Dl2WZP5A1/Dfl+8em6HXVxjmEzOEOmNetHg/vvZZldQdeddpcBsekuz7yVHtL1Uhs9ogqJqXb30pTpCgAZWrD6XcdsDMjJMYygP2L5/MTi/pk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746466050; c=relaxed/simple;
+	bh=FYpSavXphjADAeX0YHS2mCo1CtZPWxuvq+ePhyKPsfc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hFLEE0sD+B5CEmbLQaaK5Cz0cRAG+7n2CZIuxKOgBkWEWIRa+yCnZHED3mm3/fm7jdfWxTX375KLrVwxaehSVwU6fZJtHQpIW5D6/4VycnWi156aGNQ9QuoGL8iVSVCeKSALLCvhJFyb7YpDpOx6jbGsUVoPjoN2MJrFgKkaWTA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=IE3iWLri; arc=pass smtp.client-ip=136.143.184.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1746466016; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=eYJLW9VKE8LhtiM5lq1YZimviiv1G7ucXcu2rts14+KpCXlIAulWWuUGPiAyyQvCLCchqlgyptNOAbHFGuogMuuzp4SGPNIvhCSkwE3UK6iWlmDNaifpix2DBSh6SOkYasHv9ZNLJu3koUttaJ3VEXUHfgAdwz94IivBMM1owwM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1746466016; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=vQz0h8Cg0H00hKBW/D9u6XEnTUbBcY/hnTwQjAPVemg=; 
+	b=dkQ3WSUAJ4e6mKzZUtcZl87lmeu8Y3k9XQqwbyEay7CRlvXc7EbGDTxkOLXInM+Y2Cs4DHZvAfqd8aUfmQ2T4oWT9Ofem9Fe2ic4Wg2FGFUPWx7jSX3AnzEQYqAWI6Hdvn5uvGS2ZYGWIE40csMUOgKtR4jjdGsheeaNQqokJrY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1746466016;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=vQz0h8Cg0H00hKBW/D9u6XEnTUbBcY/hnTwQjAPVemg=;
+	b=IE3iWLrihEHOABe6/b8r/JpoAQ5kRnNZQ2BmDBRi2oB4EFjHtVpGCcWGRkylVh42
+	tWghVJndZw0DKwh83wTjvaUj4sLxxYrcH9NoKI5TcmionZFKkSPRM5VEjnD5zyObvWS
+	sFA4oFHf9yrqTs83+zF4u6tq8FwncLIzlXI9HsZs=
+Received: by mx.zohomail.com with SMTPS id 1746466015237302.45549093734485;
+	Mon, 5 May 2025 10:26:55 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v2 0/5] RK3576 USB Enablement
+Date: Mon, 05 May 2025 19:26:35 +0200
+Message-Id: <20250505-rk3576-sige5-usb-v2-0-d5ba4305f3be@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 03/11] arm64: dts: ti: k3-am62a-mcu: Add R5F remote
- proc node
-To: Daniel Schultz <d.schultz@phytec.de>, "Mendez, Judith" <jm@ti.com>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Hari
- Nagalla <hnagalla@ti.com>,
-        Beleswar Padhi <b-padhi@ti.com>,
-        Markus
- Schneider-Pargmann <msp@baylibre.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250502220325.3230653-1-jm@ti.com>
- <20250502220325.3230653-4-jm@ti.com>
- <50039c49-a6c5-4f29-a35a-53b9af117fd8@phytec.de>
- <6c5e786d-7581-492f-92fb-be92ecbecd87@ti.com>
- <31d32966-05fe-4369-afda-3278822d8cb5@ti.com>
- <646350fd-3dc5-47eb-ab1b-1a6a9acd69a8@phytec.de>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <646350fd-3dc5-47eb-ab1b-1a6a9acd69a8@phytec.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMv0GGgC/2WOQQ6CMBBFr0Jm7Zi2SCGuvIdhUeoAjUC1LQRDu
+ Lu1LM2s3kze/7OBJ2fIwzXbwNFivLFTBHHKQPdq6gjNIzIIJgqWiwrdMy9Kid50VODsGxQ540w
+ oIqUVRO3lqDVrirzXBzt6zzE5HEtolCfUdhxNuGYTrQFTehz4Cb3xwbpPemnhyUj3Cyv/2xeOD
+ GVJpLmUbSXam7bDoBrr1DlWQL3v+xcS9V7A5QAAAA==
+X-Change-ID: 20250328-rk3576-sige5-usb-230102aeeaca
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Frank Wang <frank.wang@rock-chips.com>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ kernel@collabora.com, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.2
 
-On 5/5/25 11:00 AM, Daniel Schultz wrote:
-> Hey,
-> 
-> On 5/5/25 17:22, Andrew Davis wrote:
->> On 5/5/25 10:05 AM, Mendez, Judith wrote:
->>> Hi Daniel,
->>>
->>> On 5/5/2025 4:55 AM, Daniel Schultz wrote:
->>>> Hi,
->>>>
->>>> I'm unable to load the latest TI firmware (98efd20ec71f8c1c8f909d34ab656731) with this patch.
->>>>
->>>> [    7.012889] remoteproc remoteproc1: 79000000.r5f is available
->>>> [    7.032640] remoteproc remoteproc1: powering up 79000000.r5f
->>>> [    7.038626] remoteproc remoteproc1: Booting fw image am62a-mcu- r5f0_0-fw, size 53140
->>>> [    7.057209] remoteproc remoteproc1: bad phdr da 0x79100000 mem 0x47ea0
->>
->> So this looks like the firmware has sections in the SRAM region. That would be the
->> issue here.
->>
->>>> [    7.064716] remoteproc remoteproc1: Failed to load program segments: -22
->>>>
->>>> I figured out that the mcu sram node disappeared in v5. Apparently adding it back manually doesn't solve this problem. Any idea what's wrong?
->>>
->>> For am62ax, there should be several items changed with this v8
->>> series in order for remoteproc to work with the TI default firmware:
-> What firmware did you use? I was using the latest public default firmware from ti-linux-firmware.
->>>
->>> 1. memory carveouts were reduced to 15MB [0] & edge-ai memory
->>> carveouts are not included here
->>
->> This shouldn't be an issue, the default firmware doesn't
->> use the extended carveouts.
-> Yes, this is just the echo firmware.
->>
->>> 2. mcu_sram1 node removed [2]
->>>
->>
->> So when you say you added back the SRAM node, did you also add the
->> sram = <&mcu_ram>; in the core node?
-> 
-> With that property added, I can load the firmware again! So, what's the problem with adding this sram node and did you remove it?
-> 
+This series is the result of what I thought would be a quick 10 minute
+job, but turned out to be more like 3 days of pain, suffering, and
+confusion. This should be expected with USB Type C though.
 
-Good to hear that fixed it.
+The first patch in the series extends the inno usb2 PHY driver to fiddle
+with some GRF flags in that driver when the PHY is connected to a USB
+Type C port. Without this change, devices on USB-C simply don't
+enumerate at all, as the state machine gets stuck waiting for vbus to go
+low or something along those lines.
 
-And we removed the SRAM node as I was unhappy with how we were handling reserving it.
-The firmware should declare usage of shared resources like this in its resource table,
-and the RProc driver should dynamically request the same from a normal SRAM pool.
-What we were doing before was to statically block out the whole SRAM node for use by
-the R5, and the driver would unconditionally map it, even if it was not used by the
-loaded firmware at all.
+An alternate way to implement this would've been a vendor property in
+the PHY binding which is then checked for in the driver and needs to be
+present in all rockchip inno u2phy instances that happen to be connected
+to a USB Type C connector. This is what downstream does, for example.
 
-I wanted us to fix the above before upstreaming it so we left it out of this
-series. Next cycle we should have the better solution ready and posted for
-upstream.
+Patch 2 and 3 allow Super Speed in reverse orientation on USB Type-C
+connectors to work, but I am not entirely confident in the solution I
+arrived at.
 
-Andrew
+Patch 4 is what I think may have been the culprit of what originally
+made me add the USB2 PHY suspension quirk, but I'm somehow unable to
+reproduce that particular SError fest anymore.
 
-> - Daniel
-> 
->>
->> Andrew
->>
->>> If you want to catch up on the general direction for this series,
->>> please refer to [3]. atm remoteproc can fail with the default FW,
->>> but we are trying to move away from that firmware and this is the
->>> first step in that direction.
->>>
->>> [0] https://lore.kernel.org/linux-devicetree/0ab5c5ec-cde3-41f1-8adf-2419b31497c1@ti.com/
->>> [1] https://lore.kernel.org/linux-devicetree/04e77daf-e775-44fa-82bf-8b6ebf73bcef@ti.com/
->>> [2] https://lore.kernel.org/linux-devicetree/32358aa1-0c02-4f4d-9782-2d8376c0d9fc@ti.com/
->>> [3] https://lore.kernel.org/linux-devicetree/e131298f-3713-482a-a740-ff89709270b4@ti.com/
->>>
->>> ~ Judith
->>>
->>>>
->>>> On 5/3/25 00:03, Judith Mendez wrote:
->>>>> From: Hari Nagalla <hnagalla@ti.com>
->>>>>
->>>>> AM62A SoCs have a single R5F core in the MCU voltage domain.
->>>>> Add the R5FSS node with the child node for core0 in MCU voltage
->>>>> domain .dtsi file.
->>>>>
->>>>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
->>>>> Signed-off-by: Judith Mendez <jm@ti.com>
->>>>> Acked-by: Andrew Davis <afd@ti.com>
->>>>> ---
->>>>>   arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi | 25 ++++++++++++++++++++++++
->>>>>   1 file changed, 25 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi b/arch/arm64/ boot/dts/ti/k3-am62a-mcu.dtsi
->>>>> index 9ed9d703ff24..ee961ced7208 100644
->>>>> --- a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
->>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
->>>>> @@ -174,4 +174,29 @@ mcu_mcan1: can@4e18000 {
->>>>>           bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
->>>>>           status = "disabled";
->>>>>       };
->>>>> +
->>>>> +    mcu_r5fss0: r5fss@79000000 {
->>>>> +        compatible = "ti,am62-r5fss";
->>>>> +        #address-cells = <1>;
->>>>> +        #size-cells = <1>;
->>>>> +        ranges = <0x79000000 0x00 0x79000000 0x8000>,
->>>>> +             <0x79020000 0x00 0x79020000 0x8000>;
->>>>> +        power-domains = <&k3_pds 7 TI_SCI_PD_EXCLUSIVE>;
->>>>> +        status = "disabled";
->>>>> +
->>>>> +        mcu_r5fss0_core0: r5f@79000000 {
->>>>> +            compatible = "ti,am62-r5f";
->>>>> +            reg = <0x79000000 0x00008000>,
->>>>> +                  <0x79020000 0x00008000>;
->>>>> +            reg-names = "atcm", "btcm";
->>>>> +            resets = <&k3_reset 9 1>;
->>>>> +            firmware-name = "am62a-mcu-r5f0_0-fw";
->>>>> +            ti,atcm-enable = <0>;
->>>>> +            ti,btcm-enable = <1>;
->>>>> +            ti,loczrama = <0>;
->>>>> +            ti,sci = <&dmsc>;
->>>>> +            ti,sci-dev-id = <9>;
->>>>> +            ti,sci-proc-ids = <0x03 0xff>;
->>>>> +        };
->>>>> +    };
->>>>>   };
->>>
+Patch 5 adds the USB related nodes, including associated regulators and
+Type C controllers, to the Sige5 tree.
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Changes in v2:
+- Rebased onto next-20250505
+- Drop the u2susphy quirk, as I can no longer reproduce the original
+  problem with various amounts of ripping up the DT and changing the
+  config. Yeah I'm not super hyped about this now being a heisenbug
+  either.
+- Drop the bindings patch, as Rob showed me there's a way to do this
+  without extending the bindings
+- Rewrite the usb 2 phy driver patch to no longer walk an OF graph from
+  PHY to connector, but instead first find the USB controller that uses
+  this PHY, and then use the USB controller's existing graph connection
+  to the usb connector.
+- Adjust the Sige5 DTS patch to now have two port connections from the
+  USB connector to the drd0 USB controller, one for high-speed aka
+  USB2, one for super-speed aka USB3, ordered as per its binding.
+- Add a patch for rk3576.dtsi to reference u2phy1 as a clock in the drd1
+  controller.
+- Add two patches to fix USB Type-C super speed in reverse orientation.
+- Link to v1: https://lore.kernel.org/r/20250407-rk3576-sige5-usb-v1-0-67eec166f82f@collabora.com
+
+---
+Nicolas Frattaroli (5):
+      phy: rockchip: inno-usb2: add soft vbusvalid control
+      phy: rockchip: usbdp: move orientation handling further down
+      phy: rockchip: usbdp: reset USB3 and reinit on orientation switch
+      arm64: dts: rockchip: reference u2phy1 as clock on RK3576
+      arm64: dts: rockchip: enable USB on Sige5
+
+ .../boot/dts/rockchip/rk3576-armsom-sige5.dts      | 160 +++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi           |   5 +-
+ drivers/phy/rockchip/phy-rockchip-inno-usb2.c      | 113 ++++++++++++++-
+ drivers/phy/rockchip/phy-rockchip-usbdp.c          | 154 +++++++++++++-------
+ 4 files changed, 376 insertions(+), 56 deletions(-)
+---
+base-commit: 214464d4c3491d4eb2c0e9d1310d7f60c408b94b
+change-id: 20250328-rk3576-sige5-usb-230102aeeaca
+
+Best regards,
+-- 
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
 
