@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-173587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2472FAA8F31
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 11:16:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D3CEAA8F35
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 11:16:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2203E1894F01
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:17:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9861F165285
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ACFC1F4CB8;
-	Mon,  5 May 2025 09:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39911F4E54;
+	Mon,  5 May 2025 09:16:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tCzZm/7W"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BJb0FswM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895AC34CF5
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 09:16:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2CB81F4CA8
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 09:16:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746436605; cv=none; b=g6mBDI7hMIqTGf4S7R9UVjsh32cM07BxT7psPlLwli+CT0MYTle441OMVXv7wbEwJnMvrRPtaUuxp0kvpvQSyLt8Hc+UuI1oe31bFsYcIaNp/rqnRiAAVIsMq7g2Q0H8bXtqefdml4OiaduinR5lVfMmHaWkwR+1r43iaSCbTi0=
+	t=1746436606; cv=none; b=FjohVQ78EqiFR87/XFnlCv2Ch1ye9eP2ofgb3y+u/cPQH3BWNGk3j2JnlbXpYLxcYFjGG7fZv1gIH2BCLs7SLGNavDbp4+8Je2CeYnfvrTBl/Rut9AS76dvBz/+to0J4PQRqGfyxlJJK1Lu2/BM8byWSYWi0k8dAfWXsE/5G/s4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746436605; c=relaxed/simple;
-	bh=GZsCEmxTNR3TybbFW4Uny89Ft6R2/iD9rzXjkRyHWNc=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cUO0Z2yw0FzlZz8PpMgz1+ickLM2Rbsgl1XZSfWQEwFsqTLwXhT6qrfI4uukE3lFJM7hnmX7In0cyXV1Ofc2YOWJU4B++Nl7ShO6GQMFWy2AxHumA7gZj8QqYy0V17FB4Ra9H70swrmiQWfuTqXOt6mWeLLpXMLXdE/G0n+27t0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tCzZm/7W; arc=none smtp.client-ip=209.85.128.50
+	s=arc-20240116; t=1746436606; c=relaxed/simple;
+	bh=myYAgwe4Uvo4pZ4TdmGjIMDrUx1GUpHdZvEtUczKmjk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=rD+jXadeLNSbay3uIABOjT+TI2vmO1g5AIbeoip8o+OMBuk71tu0raPloH4WhOwfxbfoChHNnhKRcm8czfdLpiZvGCelFB54ZS/zrjOuJJKGuIPjsBCMrvSwny22TeJAyX+iFkJDXmquZjhVII509RapC8cJCW2DRjvydj9c7w4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BJb0FswM; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43cfe99f2a7so5113145e9.2
-        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 02:16:43 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-440668acbf3so5703445e9.0
+        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 02:16:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746436602; x=1747041402; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+GvHgNN9nS8EKTq3WiT7gHOgXYtnHXDfWTIDwaJfrKc=;
-        b=tCzZm/7WSPbaD4g2fTg0jgMkhrlUcK5JrWxOpjugREPmGlp0US0spCz0CH/GICo/df
-         oCpaa7VJFRged0DDNk1J0Df14s7iKerYPAUX0kj0mI+kq4IW/jFvcE8BsnGgZVBZPT01
-         z35rwjrm2Q7Ob63pyA92yilg/rKx5mKfxwx8o4wE63GATUs1IPUwAZ95RVEHhfjGFFpF
-         poANMD31bISjcQRRaB+w2ukST4l77YbQq9SirOKlH3fEA2+shzRQAcE3zAI23DMOelnN
-         hnQt93EmOjgrtM3dz0WKk/VOBQ7DN2xGKSMh7mWVnyTBImIh7gF1d4lZ1Ai5MGLFsWyv
-         L3Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746436602; x=1747041402;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1746436603; x=1747041403; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+GvHgNN9nS8EKTq3WiT7gHOgXYtnHXDfWTIDwaJfrKc=;
-        b=mcJz7DiL12WHvHlY70EGTw4UJDhAdMzJOmNmrI+J+7NRKBHDksvGXBKTZPtocCojAB
-         Ugy630MIzLG18Hp1/Te/kDNK0b6gem+tRo0k6QbU6+rhu9ptErK6In4q5rqpiAIw10PI
-         RCXT1vh1uZPFOjtKdEgms9KMcqUBFEQRKcKI0M1lzXbZ6mNOHYuBjcDln4gFklDHv76J
-         TutX4njqIaxWbCYzkboQ40EbjiPe+vUWGt/W4sX2HX/mayCEl+gN7yu5XwOYuFETUEM+
-         6uxCGeQQR8HAP1OqJ2mNYBvw8PO5hAMMS6L4Qh0dbEHL+RKH9Uvzrt+tLa3Sk2x7Y/Wi
-         WtYw==
-X-Forwarded-Encrypted: i=1; AJvYcCV7sv5jtEcFm/Ks4UC0voqsvHhkToN7SbeLYaODPjWspfVCUuwyjy0pe4FrWfHJnHCUczBDdc+cOabH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQ1erWRjdNkB0fA0wYVqIB4d0OyGtHVxb9BldMyxHa3jXilx6T
-	/hYivbN4pX/LDcChP3U+3l2BQoPP/QU/2e8ie92ln6oy1LjRHo1L63qjOz4HdPU=
-X-Gm-Gg: ASbGncvIQcsVmfpNsgC4qZpqCAR/ap6fRkV99fKu4fC9bQIbJbINjhp3THyrFJYDtzu
-	zq29IQGfKI3XdV5LnGv1doMC6vVtbwkICldLgb3pIIPCcc/4HhsXXRt4lyKIBFrYv5MrbL7D5jM
-	f6GGemx6WCQrGm1U4ZiVT4d/VR3XKsfsLHlpBt68gJqWwxOk6toJRLkrS4UVU7X8jgWxdW9kMZE
-	eMJCo5yHEhF3vFm9iq1G2f6bOebZ5mnUMeHTUcgvxrfHySjP5NkmxKpxudrRPpwp5/gQih+oa/x
-	eCJBBKc+xes8q1dOwY8hdLtvMn0B2PIWRheYJV/+PVwWQQhEMMQjFRt6D0E=
-X-Google-Smtp-Source: AGHT+IHwXnx4n+J2n2EvRnaTe8Cay07NE0L065IdHInb8uYa78mM4hgMDYARnzzTlGxyuCFJBK6sLg==
-X-Received: by 2002:a05:600c:3d90:b0:439:9a1f:d73d with SMTP id 5b1f17b1804b1-441bbf412c1mr36857365e9.8.1746436601809;
-        Mon, 05 May 2025 02:16:41 -0700 (PDT)
+        bh=/4bgv6KVmjcRZE0LErys1nX4WVPjn1RSVgidnV/lpwo=;
+        b=BJb0FswM+sNCnKiCogA2sSNjD1KhIS7aqLHRE95O2iOs4DmXwZUKoELSsNKWqwd8vt
+         T4VbM9uTJY0lU+2pk3qsAZ3rTfFxI86Xhncl2OhipcAcQuI2Z+Eb2Y0yoUShmyAU32f8
+         CHPtKtYflPIMetVXUsc9Dd3dIGmu0mWHvDstRPLGfGKSxb6Joevs9yy6mvwIYsQEPVwE
+         GvGIgSYhYTzEkcWyKhCz+6cqoxBU3RPdmfwUTd/Y3I/5Y90z/t/zfB/7nlkRYniWpVlk
+         //A5xYDCr/fpnL9RUqeOwT9RK2fjujZ0EZ+bNnOuz/Ptp6XWIQ9bTYCg3Fbs7hXk5BTg
+         soWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746436603; x=1747041403;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/4bgv6KVmjcRZE0LErys1nX4WVPjn1RSVgidnV/lpwo=;
+        b=GjVIIWv2uBSqvFqTKBOK7FciKXh9oqlV/umtiFDAspe45yqjueqzKbrBFUQLadM3iv
+         Xpl9Z+oGewgbS4bbFUxsoM0zvW00RXx6jD9+PuXxcwVKGXk/Rr6kaYXCUXEnkMiLex5A
+         HoGtZ1p5CBuaweUlLvYO7k1jOoLxMZp3kQAY7Jr+JWNxzyyiF6o7RmXCLBXcSgB8YHtD
+         pjF1gViYh3HYL+HuvgPVUHlSbAS7VVYYZjie4WNTDfAxgKtzMdnh61vuJxwoSjc+vPfG
+         F8p5uZo4c70hhL2SSbtYQqpcK+dscmqnnhQmAYvDFoP9C15Qq9VfLYPcPwYjUkjt4cda
+         TkHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXXmRYB6qNzOVAkh871C0ZQhSnsHY0/dnTQX7F+0ZCpOzO/QtHIsiZCxGE+D673mpQRUmv4uy6eRUZR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFfHbmQN3kTXhG5C5ruwBZn2MDCsgaqbswyZ95V4ZRImBSb1Qd
+	zQeKRDOXTlkly+hMUuVX0nhzonKQYUWbxQEWNdu52/gbghuiqV85d9wtnc65Rn0=
+X-Gm-Gg: ASbGnctLwjURVtUHOEhMIwMq7dpUPvfKigZ5CsDY2cccIq3I0ADCgwZzh2illyCG8SX
+	QkMiLnpseOYV0cCJsiK31q294O9IG0hHZuXpsVUyU35XiBBoDghqBVjjhk7sD0/pZs2IezaG7Th
+	c6DCGFqvSw9HSVQWHirX/moeX0r8HmaGnQivnVNilbTvaikdCiGs0yldvoGLtyA9bCx/NVEWA01
+	B7yDCzG96v4TSDfCvJvaExfelGuWGhLUa3bY7wqRJdPkHoauWHpHo7kJL6kq3J87l/c7YpP4hPW
+	xn+YIw4mSWTEpY3jtk54d9f4J4bbtAX9B6mmzOloLPQNVqDeALEttHsY3n0=
+X-Google-Smtp-Source: AGHT+IEw5FuKNFm8/QHlYSWSxgEk5Utm8CEJLfZb4GNFY9PyR4vY5NLfmVDfUzrUr9GSrQrTJ8tj+w==
+X-Received: by 2002:a05:600c:1d8c:b0:439:8294:2115 with SMTP id 5b1f17b1804b1-441bbf4b11fmr38391925e9.8.1746436603220;
+        Mon, 05 May 2025 02:16:43 -0700 (PDT)
 Received: from [192.168.1.28] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2aece0asm171784775e9.14.2025.05.05.02.16.40
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2aece0asm171784775e9.14.2025.05.05.02.16.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 May 2025 02:16:41 -0700 (PDT)
+        Mon, 05 May 2025 02:16:42 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 0/2] drm/panel: Add Novatek NT37801 panel driver
-Date: Mon, 05 May 2025 11:16:27 +0200
-Message-Id: <20250505-sm8750-display-panel-v1-0-e5b5398482cc@linaro.org>
+Date: Mon, 05 May 2025 11:16:28 +0200
+Subject: [PATCH 1/2] dt-bindings: display: panel: Add Novatek NT37801
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,10 +83,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOuBGGgC/zWNQQrDIBBFryKz7oCRaEuuUrJQM20HorFqS0rI3
- SsNXb4H//0NCmWmAoPYINObCy+xQXcS4B823gl5agxKKi171WMJl7OWOHFJs/1gspFmNM4Yb73
- TUnbQpinTjddf9joenOn5avV6SHC2EPolBK6DiLRW/D/AuO9fu/Y1OJcAAAA=
-X-Change-ID: 20250424-sm8750-display-panel-6b66cacb5001
+Message-Id: <20250505-sm8750-display-panel-v1-1-e5b5398482cc@linaro.org>
+References: <20250505-sm8750-display-panel-v1-0-e5b5398482cc@linaro.org>
+In-Reply-To: <20250505-sm8750-display-panel-v1-0-e5b5398482cc@linaro.org>
 To: Krzysztof Kozlowski <krzk@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
@@ -97,47 +97,110 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=834;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2288;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=GZsCEmxTNR3TybbFW4Uny89Ft6R2/iD9rzXjkRyHWNc=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoGIHzizxrcXFsC6PCqZV6EvICoj/THNgJz+p2o
- S1NAQqLbauJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaBiB8wAKCRDBN2bmhouD
- 16BzD/4j5M8/ZGKtM6q9xDxrPsNqRGsUFU3PUmkjiastBMMcmbfu/pd7AGm/e3Smkll9DKprXPA
- wsqp1VJpUW2N1Zz5g3rxVFL+TZct8/I2WDdjaAUKQsch+MOpYUYTA4cdz107YR9djRaGw6Bpqje
- GYBJY2uhxy+SsNU9Osc0CZaSUjWVXm877J2kdfTbB5SfkX7g1YdI/zw/sMqMGuXbLhS7CQ7W0Zr
- /rTmYZ0+q8yqt0JlcukZ1dRlwtDf+QVjYcxNW1OF+oNvdsdRpEO7A67HElVGZUXLS44MejYM/MF
- APJOxUM04ti/38Pub1UxYwcEhslQPX1JLncjLCa22/4TwgaowDyomylHRf/hN6OGZ9voz3P7vBM
- +gyjerlEIcp3MGHJnWg4MbULZKb7piogWRpMq/vzolJ0xjKqzhKlNP2qdG4yWuOiAQAzCuLq2J7
- 1QcSza+NDl0SUNgZ60S2ut8snoj2EI+1Q17lNJz3/7S/4RSl6egc9OkhytcBfuYmhh8PXgNiw2u
- hSPoo/8Uajz28RKLJ9Kw7DdWf1ceSCL2zICaemRKfWggENmLhh5lJDHldMfltSyFtuOyjwMK7mJ
- LOz9PxPYAAhXe8sMGxFkDlD+yD+NR7nqVG1LXsrS3j0LgXuHfwKLV/JDgScrip8nPCCrIWH5hOp
- rapgL3H18LUdI1g==
+ bh=myYAgwe4Uvo4pZ4TdmGjIMDrUx1GUpHdZvEtUczKmjk=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoGIH2ScsJDcvIBEj9t1ReIUtNo3cMb2/ZJgKUC
+ l+qaSluVbWJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaBiB9gAKCRDBN2bmhouD
+ 16vOD/0Xg7HRST6WJpe0HHIavieRlmZ4EFQDs1jrlhqFiVP3V0sQxpYAs3nWiECJuSAsUoW/SAd
+ sxsLQukOfdeRmj1HbE21xDxkeBO02E84D1hhnuBh8afGj2ub5dB/mf1UPrEhvOdd5iZvHtCbTa/
+ 6Qck/pri8IxiPpCqcgRLeiA5TycsntYPy/A7QKW4Cz3dQjw/rU5A3yBPiE+mwV9+ffVbaoJRfw5
+ Y7/lZVVmqnZlFDV77FPaeTLtG+MDZ/oIDgo6V75FIXSeNkWVQIhU1v77kZuK2Hps73A49PMS8lW
+ Sng7/ctyy9WsBOEu13whSv/8y272P+euJyom6HhD7ulxipjizCnHtVSUJVAbSeZaJ9SPlrNl+G7
+ DYZvN1eIYJOMaxYocM6pjsbMWWDnQag7dRKVpCPQhT3rpuLVy64QoGjto2I852IrFU93JPqA4M/
+ Sg85L7Ry6SZZ5KGHa0aQINHcjmgXQ5OwR2P56fBFe54DWu2EfwkdWLD5UdSBRW25CzOw1ykj48B
+ BFqPs17ex0WdsnUgfFEVoLk593yZ3hZE0eAM2JiPua168trVB0xpTZ0yK1PGdz0L/vp78KPKmZx
+ 3+W/wtlOEPzysK7T46NSPt1KlKW9ohW9mSktel4bH01leYTrFO8PfaVXAxEYezSYA3hQ1mrZrJQ
+ 4/pHUnqAQsle3vg==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Add driver for the Novatek NT37801 or NT37810 AMOLED DSI panel, used on
-Qualcomm MTP8750 board (SM8750).
+Add bindings for the Novatek NT37801 or NT37810 AMOLED DSI panel.
+Sources, like downstream DTS, schematics and hardware manuals, use two
+model names (NT37801 and NT37810), so choose one and hope it is correct.
 
-Best regards,
-Krzysztof
-
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Krzysztof Kozlowski (2):
-      dt-bindings: display: panel: Add Novatek NT37801
-      drm/panel: Add Novatek NT37801 panel driver
+ .../bindings/display/panel/novatek,nt37801.yaml    | 69 ++++++++++++++++++++++
+ 1 file changed, 69 insertions(+)
 
- .../bindings/display/panel/novatek,nt37801.yaml    |  69 +++++
- MAINTAINERS                                        |   6 +
- drivers/gpu/drm/panel/Kconfig                      |  10 +
- drivers/gpu/drm/panel/Makefile                     |   1 +
- drivers/gpu/drm/panel/panel-novatek-nt37801.c      | 336 +++++++++++++++++++++
- 5 files changed, 422 insertions(+)
----
-base-commit: 0273d02b2f84f645e8b8ab317722931eb96f6130
-change-id: 20250424-sm8750-display-panel-6b66cacb5001
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt37801.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt37801.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..1b38c1d0af6825341e047af57584a93261e7af2c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt37801.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/novatek,nt37801.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Novatek NT37801 AMOLED DSI Panel
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++description:
++  Naming is inconclusive and different sources claim this is either Novatek
++  NT37801 or NT37810 AMOLED DSI Panel.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: novatek,nt37801
++
++  reg:
++    maxItems: 1
++    description: DSI virtual channel
++
++  vci-supply: true
++  vdd-supply: true
++  vddio-supply: true
++  port: true
++  reset-gpios: true
++
++required:
++  - compatible
++  - reg
++  - vci-supply
++  - vdd-supply
++  - vddio-supply
++  - port
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "novatek,nt37801";
++            reg = <0>;
++
++            vci-supply = <&vreg_l13b_3p0>;
++            vdd-supply = <&vreg_l11b_1p2>;
++            vddio-supply = <&vreg_l12b_1p8>;
++
++            reset-gpios = <&tlmm 98 GPIO_ACTIVE_LOW>;
++
++            port {
++                endpoint {
++                    remote-endpoint = <&dsi0_out>;
++                };
++            };
++        };
++    };
++...
 
-Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.45.2
 
 
