@@ -1,251 +1,188 @@
-Return-Path: <devicetree+bounces-173682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EFBEAA9404
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7401EAA9403
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:08:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72E85189A29A
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:08:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7558F1899FB4
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 13:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F76D256C65;
-	Mon,  5 May 2025 13:07:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 121FB2561B3;
+	Mon,  5 May 2025 13:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ja9Hcmsy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OGtOGBMz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 195B21F417E;
-	Mon,  5 May 2025 13:07:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B4FA20C02D
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 13:07:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746450477; cv=none; b=QEGrGushqoTP+E64r7ZYb+IozyjtDB/m+/L7blcPGNaK/4UDbFCllgC+hVVCxEQBMPIraUJz1P4g7AZKbLOINADwOP76YMiU41H8Bb72sQagmSLMkhgp7IpksX8KFKuB3V7sJD8bKo91yEE9sv2zf6NFOwAlVjgq70es0WieF/Y=
+	t=1746450474; cv=none; b=iMU6gjaec4EubOIjgmsu8CqypUOArUK9yEjamvwCihQSyi+1HR/klibvPQYEgK5wnmqlbNFvK1sRjqSJVKU4QKjNRQQF/6tlcUoTjWxTqdDOV4Uc+vrN459edQyft+EKdPaeyvUNLjtcz+iffj8w7qKMcZLCJmjoYsKMf2yKcTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746450477; c=relaxed/simple;
-	bh=Ja6gaduoMfpLfx53EIkIq4u5tNzA++ROap/e8Y99wWw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BwcMJjHLmUhdv4EulSzr/OsOBOdfqq+MY5/1YlKuGeotN5vTArSE8n5pf0nETOnxSuOaErjJ7YFC91BZWGBpMHBxzIJvNdeSTGXLHovb+GH4/6AjBNJphfE6fJgmRY0EzldXc/cKOTV2POMOkSyZq/B0CCje7k38X8io+n1p6Vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ja9Hcmsy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7897DC4CEE4;
-	Mon,  5 May 2025 13:07:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746450475;
-	bh=Ja6gaduoMfpLfx53EIkIq4u5tNzA++ROap/e8Y99wWw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ja9HcmsyLfZ19y+WL2iW3vsZK1VE3PJIrJdBemBPgFEftVVt6nxhrg8Q4vTdXfxEZ
-	 7A8iHImTQOsw2JOOZFN2si8oi9WK9ESrdzCTcfDFwa4EO9ZfwvVyISQucBknjXsInM
-	 DLD0ao10+HgE1g3WY0bTr4pbFeCW2eBTsf071MO0+vH9BFyGPVSyDXTaKIKaHEKv7g
-	 7XP4UdfhigzwjfV4+0wrULXeXD9sURFqfajnFS9kh8NlixABzgcegBIciibD4RQc7G
-	 d7U0pnUvIIWEn27/HruVLiS9NUJTquctsBNPtbyW4XzGM+/mRqKZlsC4oEfc5if7/C
-	 bqxMp086S26Vg==
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3f8ae3ed8adso3168136b6e.3;
-        Mon, 05 May 2025 06:07:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUjBKcz39w/9S83wsG4U9Ta2D1GzGkkgxo/gbOhrkwFxbfAWBkYXWvu3cF0Y/ad93N1mrzkD1hrdP8ZPQ==@vger.kernel.org, AJvYcCUntqnj1wsBuZlR0fM8lQEkEvVJRZKhhgBqQ48eINCDef8aKxu6pbBWzMMHUyr1Llw0FlWih9uiGL9t@vger.kernel.org, AJvYcCUq+r5dI1hrW9ujOvzIVX7RqP9wbWGTz2aswSzX9vvlX6HnRgo8GFp9kIfPHQ18b0eOYrYrJUKp6mwMGbxn@vger.kernel.org, AJvYcCVrFO65ewQ9TnBBOI4YH0DqzttmpavraN0Xbdx8b+EkIsVsCZI2YFJMybv71GzQVw8j8GNIcxBltGYxwl/T@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPiZtm1yA+89iUMXL9fc5gq3A7Pn4Fly6fOzuPD6CcofADQ5gL
-	UI4W8vHgmQJUQ3Dg9OVmPNpHzTlnCviCtt4uRCxfLPk0RFcJAtzPrJ2Su70z6HVzHphbAsWcej3
-	KI0jf2Zy8iyygectD1cY06rDwg0M=
-X-Google-Smtp-Source: AGHT+IHafvTUmLP+318TJZovnwvkV7NxuJchj37bOS0+RlXAjCLDey4g2q/qRn3CyHFWlAdadNbnH6Ys4hKJ+xORPyo=
-X-Received: by 2002:a05:6871:6a6:b0:2cc:3586:294f with SMTP id
- 586e51a60fabf-2dab2fe1391mr7120194fac.9.1746450474755; Mon, 05 May 2025
- 06:07:54 -0700 (PDT)
+	s=arc-20240116; t=1746450474; c=relaxed/simple;
+	bh=Co5/+JRmTV9xf6AE6O7EzpylVwg5wsLvPoGaApnYw+4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ksutcqywcRw+kt0tWSfeLnKUH2/T+xgAFkXFMfFFQE3GAjsK9G0sxX01eZ5SzdlKEwmv81L1ejD5kpUMMv68PI6frIcsuhpkqE9u6ER8zG4xwAp0Q7JgiF33DbDbV45k/NY3Hb9XMcKCSG9Omma37iLMFmsACZkTNWhGMuEh/qI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OGtOGBMz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 545Bv0Ra015953
+	for <devicetree@vger.kernel.org>; Mon, 5 May 2025 13:07:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oJ2xkOZreVOLEDBm9yTWCFsnyfq9hqlhNlEZZUyUYhE=; b=OGtOGBMzNTjfBuZD
+	4PZ+56hd6zE+zlNlP+sev4p1NxQ8BveHxGSvzS+ewfswkz7fflOZCD2cg7qMBYFB
+	q83fqp1ZTDpzwCBQjKKnJlsOqW6r+jrnp8TjXDKhDE49/SkXlDobUzeQA98GFny2
+	FKfefxPUAmDS9JtZAmh+wT0+4P4HcZHp6f6BXxO0ESZ2dOqqO9HmxRj/PwhEIvKt
+	/DkU/ICNDYOA96I5ljZTKfHjw0mOOd96stKK7eq3gfZ7O8Bz/Gf0AughhdDzjHFR
+	7zGrDSZ4qm0vVE8HvQSMdUlozEfwOMXB5Jlb9+bpJ/6SGvJ6oQ9ZSQauiTOSqhkY
+	osPKgA==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46dce9c2v7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 05 May 2025 13:07:50 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6eeb8a269a7so19881386d6.0
+        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 06:07:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746450469; x=1747055269;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oJ2xkOZreVOLEDBm9yTWCFsnyfq9hqlhNlEZZUyUYhE=;
+        b=ZTXux/S697henR9XZ/U1hmSen+i3D7BRHh3OUO8dOEsrEW8P2owBGKFOXRzUUDSjz2
+         7iKp/GwIJszZHEkWgtiW519fJxh4T5ChZNqkZ+fN27cImNCyH+1e7rbdMDSHlLcxu6gb
+         viksoDpfPIjsDz0VACtypztjsI1Kv5Ed4w2VxB3BOJx6II8XaL9zZKEhPad1R5fS8I3Q
+         5WpdfCZfFzzaWWzFkOG721DTavqy08eYmPRb36BO8XtEn67+j4LGRrG2n3846naowsXn
+         oCNdKZlglol/gSo6KgFBW9ECW+DIl9+SMlL8SINxTMvXeVGEsOUHi0D2E+y061Ij0NcC
+         OaMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUodGOO2660MhOVWrOrcUljpLk0I/dq+HrljLBnbfH6mZIZ5WptB1MSK/vDW107k1Jq3bAXNSVm611W@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuIK+LZGEXOc7kTMtS0aonVpcDTrgsh61d10BAy5iaBKVMHhQy
+	XR20rfE3i38czbcCftKNHvujrjrVJSGAyaenKbrNn0kRqrlpN5VSmmpYlbUIhPlZo9GI6JPpOTd
+	DG1dulWnJfKaXzuAVUbbMJkbunGfYCxt+nrENkAZVfONr2lHOqzjKhgs1F1pS
+X-Gm-Gg: ASbGnctGcUWjgs5THqWjOX6R6zgS19QJHVsGuAM6vgHUGOH/8poNOK9EDENwum1h0BZ
+	+QnaL+CytqAglw0SAgMTd/mwE7TS3cA2Jq7OzDHrxHMCAU8NnZgbRM1VQoRB37MMy1Spp0/Oo3a
+	OknmY4LiiYinOLpyMYuSaD+M+lot3OIwQWA4yfTpBavm1nSDj0iZQM+XPQ7WBEX/zBpb33mY9G+
+	9+JQ1AJm55nPDaUgTbKbYXwjylHdh8gFPg0adUG55RrCiYC1WQpFc02UGy36xf4aim4yL32X6Pv
+	2atyHCsiNICAzs7UWQGSPMGurwuyUiORf1PukgIhKFdB1F1eUx6HrB0rXMEItl9d8yQ=
+X-Received: by 2002:a05:620a:24ce:b0:7c0:be0e:cb09 with SMTP id af79cd13be357-7cad5b618bamr628258185a.7.1746450468850;
+        Mon, 05 May 2025 06:07:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEjHQXQJA0Wg7e8FXr0tEryYns4283mrVA0VshcEjXdpS+g9SWnQrrJmYkgMZ1/GNoTTXSE8w==
+X-Received: by 2002:a05:620a:24ce:b0:7c0:be0e:cb09 with SMTP id af79cd13be357-7cad5b618bamr628256385a.7.1746450468376;
+        Mon, 05 May 2025 06:07:48 -0700 (PDT)
+Received: from [192.168.65.169] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad18950b5a6sm488310466b.155.2025.05.05.06.07.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 May 2025 06:07:47 -0700 (PDT)
+Message-ID: <9e8c9de6-19a9-44bc-83b7-5947bb626962@oss.qualcomm.com>
+Date: Mon, 5 May 2025 15:07:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com> <20250503191515.24041-7-ricardo.neri-calderon@linux.intel.com>
-In-Reply-To: <20250503191515.24041-7-ricardo.neri-calderon@linux.intel.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Mon, 5 May 2025 15:07:43 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0j262Jorbb5--WY6KedR7CWvdTTYP10ZRZTqXhTNJ1GiA@mail.gmail.com>
-X-Gm-Features: ATxdqUHOe_bTrNgfNcYSdbpuewLh6hfF5OjL2949NofDe1GEt1BvWztbAYVUpwQ
-Message-ID: <CAJZ5v0j262Jorbb5--WY6KedR7CWvdTTYP10ZRZTqXhTNJ1GiA@mail.gmail.com>
-Subject: Re: [PATCH v3 06/13] dt-bindings: reserved-memory: Wakeup Mailbox for
- Intel processors
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
-	Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>, 
-	Dexuan Cui <decui@microsoft.com>, Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org, 
-	Saurabh Sengar <ssengar@linux.microsoft.com>, Chris Oo <cho@microsoft.com>, 
-	linux-hyperv@vger.kernel.org, 
-	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>, linux-acpi@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, "Ravi V. Shankar" <ravi.v.shankar@intel.com>, 
-	Ricardo Neri <ricardo.neri@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V5 3/6] remoteproc: qcom: add hexagon based WCSS secure
+ PIL driver
+To: Gokul Sriram P <gokul.sriram.p@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
+        mathieu.poirier@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, konradybcio@kernel.org, quic_mmanikan@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc: quic_srichara@quicinc.com, vignesh.viswanathan@oss.qualcomm.com
+References: <20250417061245.497803-1-gokul.sriram.p@oss.qualcomm.com>
+ <20250417061245.497803-4-gokul.sriram.p@oss.qualcomm.com>
+ <72f0d4f7-8d8a-4fc5-bac2-8094e971a0e3@oss.qualcomm.com>
+ <538b32d1-c7b7-41b5-aa93-d285604d1f05@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <538b32d1-c7b7-41b5-aa93-d285604d1f05@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA1MDEyNiBTYWx0ZWRfX7IbKmBIu9adK
+ vz6cPjdhytzmmEa2h1P7NQlf6AjDKABbTbyFwtgQIt3KN9Zw0Br5d550JgMccMrwO+bMNUfxit9
+ JP5C407KyK/I4KpB5EjnJ1V2WbzqfwDF/4z89NT1T7m0jfNQKPNEs4Wii+QqZ5z6nkGvj8dP872
+ MPH6OV36TGE/WC7bmf/iiLa/n7vQOzRycMTZQeHvkBZKoapZIGWhdgNOo30DY379AZsudVTXyys
+ THMr9eScFS0pdSOCV1AP7yUc9LFLqyMlwEQ4kM+l5XPQHHCe4OIB6V3aE7m9QvZgn7M44bqe7iz
+ 6FqL6jrUjBYyAaFPmf43reJTUqiK3flqTaAbvvEt0PGtw7O8A31Uk0aJpg+HG14YJ5FbRcDKjDN
+ RpRHZZbBh7KN8/+gK+OSX2uBPRtGAzJC8c0yundXvwefUAR2T84G3U6udJdfq7I5RQf1mm8X
+X-Proofpoint-ORIG-GUID: J-HADDnqNdQsJTFszP2EP0dCuhmpZjNa
+X-Authority-Analysis: v=2.4 cv=Qope3Uyd c=1 sm=1 tr=0 ts=6818b826 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=3J7CewlSCtftuwbhWDwA:9 a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: J-HADDnqNdQsJTFszP2EP0dCuhmpZjNa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-05_05,2025-05-05_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 mlxscore=0 adultscore=0 clxscore=1015
+ malwarescore=0 bulkscore=0 suspectscore=0 impostorscore=0 phishscore=0
+ mlxlogscore=648 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505050126
 
-On Sat, May 3, 2025 at 9:10=E2=80=AFPM Ricardo Neri
-<ricardo.neri-calderon@linux.intel.com> wrote:
->
-> Add DeviceTree bindings for the wakeup mailbox used on Intel processors.
->
-> x86 platforms commonly boot secondary CPUs using an INIT assert, de-asser=
-t
-> followed by Start-Up IPI messages. The wakeup mailbox can be used when th=
-is
-> mechanism unavailable.
->
-> The wakeup mailbox offers more control to the operating system to boot
-> secondary CPUs than a spin-table. It allows the reuse of same wakeup vect=
-or
-> for all CPUs while maintaining control over which CPUs to boot and when.
-> While it is possible to achieve the same level of control using a spin-
-> table, it would require to specify a separate cpu-release-addr for each
-> secondary CPU.
->
-> Originally-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> ---
-> Changes since v2:
->  - Implemented the mailbox as a reserved-memory node. Add to it a
->    `compatible` property. (Krzysztof)
->  - Explained the relationship between the mailbox and the `enable-mehod`
->    property of the CPU nodes.
->  - Expanded the documentation of the binding.
->
-> Changes since v1:
->  - Added more details to the description of the binding.
->  - Added requirement a new requirement for cpu@N nodes to add an
->    `enable-method`.
-> ---
->  .../reserved-memory/intel,wakeup-mailbox.yaml | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reserved-memory/int=
-el,wakeup-mailbox.yaml
->
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/intel,wake=
-up-mailbox.yaml b/Documentation/devicetree/bindings/reserved-memory/intel,w=
-akeup-mailbox.yaml
-> new file mode 100644
-> index 000000000000..d97755b4673d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reserved-memory/intel,wakeup-mail=
-box.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reserved-memory/intel,wakeup-mailbox.=
-yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Wakeup Mailbox for Intel processors
-> +
-> +description: |
-> +  The Wakeup Mailbox provides a mechanism for the operating system to wa=
-ke up
-> +  secondary CPUs on Intel processors. It is an alternative to the INIT-!=
-INIT-
-> +  SIPI sequence used on most x86 systems.
-> +
-> +  Firmware must define the enable-method property in the CPU nodes as
-> +  "intel,wakeup-mailbox" to use the mailbox.
-> +
-> +  Firmware implements the wakeup mailbox as a 4KB-aligned memory region =
-of size
-> +  of 4KB. It is memory that the firmware reserves so that each secondary=
- CPU can
-> +  have the operating system send a single message to them. The firmware =
-is
-> +  responsible for putting the secondary CPUs in a state to check the mai=
-lbox.
-> +
-> +  The structure of the mailbox is as follows:
-> +
-> +  Field           Byte   Byte  Description
-> +                 Length Offset
-> +  ----------------------------------------------------------------------=
---------
-> +  Command          2      0    Command to wake up the secondary CPU:
-> +                                        0: Noop
-> +                                        1: Wakeup: Jump to the wakeup_ve=
-ctor
-> +                                        2-0xFFFF: Reserved:
-> +  Reserved         2      2    Must be 0.
-> +  APIC_ID          4      4    APIC ID of the secondary CPU to wake up.
-> +  Wakeup_Vector    8      8    The wakeup address for the secondary CPU.
-> +  ReservedForOs 2032     16    Reserved for OS use.
-> +  ReservedForFW 2048   2048    Reserved for firmware use.
-> +  ----------------------------------------------------------------------=
---------
-> +
-> +  To wake up a secondary CPU, the operating system 1) prepares the wakeu=
-p
-> +  routine; 2) populates the address of the wakeup routine address into t=
-he
-> +  Wakeup_Vector field; 3) populates the APIC_ID field with the APIC ID o=
-f the
-> +  secondary CPU; 4) writes Wakeup in the Command field. Upon receiving t=
-he
-> +  Wakeup command, the secondary CPU acknowledges the command by writing =
-Noop in
-> +  the Command field and jumps to the Wakeup_Vector. The operating system=
- can
-> +  send the next command only after the Command field is changed to Noop.
-> +
-> +  The secondary CPU will no longer check the mailbox after waking up. Th=
-e
-> +  secondary CPU must ignore the command if its APIC_ID written in the ma=
-ilbox
-> +  does not match its own.
-> +
-> +  When entering the Wakeup_Vector, interrupts must be disabled and 64-bi=
-t
-> +  addressing mode must be enabled. Paging mode must be enabled. The virt=
-ual
-> +  address of the Wakeup_Vector page must be equal to its physical addres=
-s.
-> +  Segment selectors are not used.
+On 5/5/25 2:30 PM, Gokul Sriram P wrote:
+> 
+> On 4/25/2025 5:17 PM, Konrad Dybcio wrote:
+>> On 4/17/25 8:12 AM, Gokul Sriram Palanisamy wrote:
+>>> From: Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>
+>>>
+>>> Add support to bring up hexagon based WCSS using secure PIL. All IPQxxxx
+>>> SoCs support secure Peripheral Image Loading (PIL).
+>>>
+>>> Secure PIL image is signed firmware image which only trusted software such
+>>> as TrustZone (TZ) can authenticate and load. Linux kernel will send a
+>>> Peripheral Authentication Service (PAS) request to TZ to authenticate and
+>>> load the PIL images. This change also introduces secure firmware
+>>> authentication using Trusted Management Engine-Lite (TME-L) which is
+>>> supported on IPQ5424 SoC. This driver uses mailbox based PAS request to
+>>> TME-L for image authentication if supported, else it will fallback to use
+>>> SCM call based PAS request to TZ.
+>>>
+>>> In order to avoid overloading the existing WCSS driver or PAS driver, we
+>>> came up with this new PAS based IPQ WCSS driver.
+>>>
+>>> Signed-off-by: Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>
+>>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>>> Signed-off-by: Gokul Sriram Palanisamy <gokul.sriram.p@oss.qualcomm.com>
+>>> ---
+>> [...]
+>>
+>>> +static int wcss_sec_start(struct rproc *rproc)
+>>> +{
+>>> +	struct wcss_sec *wcss = rproc->priv;
+>>> +	struct device *dev = wcss->dev;
+>>> +	int ret;
+>>> +
+>>> +	ret = qcom_q6v5_prepare(&wcss->q6);
+>>> +	if (ret)
+>>> +		return ret;
+>>> +
+>>> +	if (!IS_ERR_OR_NULL(wcss->mbox_chan)) {
+>> You abort probe if wcss->mbox_chan returns an errno, please rework
+>> this to use if (use_tmelcom) or something
+> 
+> Hi Konrad,
+> 
+> do you mean to use 'use_tmelcom' variable from driver descriptor? If
+> yes, what if mbox_request_channel( ) failed?
+> 
+> or based on wcss->mbox_chan, should I set 'use_tmeeiihcckgddglcom' to
+> true or false and use it?
 
-This interface is defined in the ACPI specification and all of the
-above information is present there.
+Add 'use_tmelcom' in match data and then make decisions based on it
+if the mailbox channel get fails and use_tmelcom is true, fail probing
+etc.
 
-Why are you copying it without acknowledging the source of it instead
-of just saying where this interface is defined and pointing to its
-definition?
-
-> +
-> +maintainers:
-> +  - Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> +
-> +allOf:
-> +  - $ref: reserved-memory.yaml
-> +
-> +properties:
-> +  compatible:
-> +    const: intel,wakeup-mailbox
-> +
-> +  alignment:
-> +    description: The mailbox must be 4KB-aligned.
-> +    const: 0x1000
-> +
-> +required:
-> +  - compatible
-> +  - alignment
-
-Why do you need the "alignment" property if the alignment is always the sam=
-e?
-
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    reserved-memory {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <1>;
-> +
-> +        wakeup-mailbox@12340000 {
-> +            compatible =3D "intel,wakeup-mailbox";
-> +            alignment =3D <0x1000>;
-> +            reg =3D <0x0 0x12340000 0x1000>;
-> +        };
-> +    };
-> --
+Konrad
 
