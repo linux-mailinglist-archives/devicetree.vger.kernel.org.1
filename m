@@ -1,105 +1,107 @@
-Return-Path: <devicetree+bounces-173869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAA23AA9EBC
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 00:04:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09430AAA31F
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 01:09:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E97A16495D
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 22:04:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42FD0462B65
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 23:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC862274FF4;
-	Mon,  5 May 2025 22:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F3D2EE4B3;
+	Mon,  5 May 2025 22:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CbqEW6mo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nLcB0WVn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4A221EB182
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 22:04:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D6312EE4AA;
+	Mon,  5 May 2025 22:23:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746482683; cv=none; b=Fo84WcpLU8Y8XkayoLSJrTmcLImsEDEnWI3HLOsIBCRCKvl020fiWrp17ZhK0z2EVIshyv4TxVbwKPEQUnJY/qhqsDaX8Bizooy/TjLB7J5bWvzIq19w6UnMvZCD+Rt/Q2lCyLZXqCCHQGcNhAqcBIA6xCV29HZiO+FV47rmVJQ=
+	t=1746483800; cv=none; b=mXWwt46BIrG6cMHHhbkFUQm0s1o6bKRtE+y8yPgiqT/pLkhPARAwhEjwQKqrwn1WCebWlBT5kkQdPsheMnKhIyhGx7/G7K6E0oPy5JWjDMN+KlBUR1Ba4dH90xi3W2CyjgmkE25fpTulVleh7qKgEqJhgJxCvMVLi58P+aRqKdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746482683; c=relaxed/simple;
-	bh=snnOXzAe6Heu5aV6mBs11DJFSl0CS3QgcwKgPRQLEqw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YWj6mgZ3+XeaRgLXHicPgfBNCxPQHSWz/PiRbz573+qWp128dfKXyTyV+SeEExdtN5SVfv4FIMKuIvMeOZ3tryHnIkGwzbGecQQuH1evHdJ+pFJ2dVo0RumDbcTfTpis01zRnnU8XZC7y6Ty04+Gg/0sa/SzIMpyfExPm+xGK5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CbqEW6mo; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-30c091b54aaso42539801fa.3
-        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 15:04:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746482680; x=1747087480; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=snnOXzAe6Heu5aV6mBs11DJFSl0CS3QgcwKgPRQLEqw=;
-        b=CbqEW6mozUuh5dSDm0FHYiwRVzfuV7llWkCzbTPuTbHkkU0TEsOlvxxTr6qhqJu4ES
-         wPlgqLaTwzN5D2PMseUtgzVsk78H20k8NVe/0k59Nx42F6rRond8FV7E/yALe8SxqNXs
-         25WNqWieGSiigKK6vmi7ZTuuR7oF//scBKHSGHdBMvsGJr0DjBg87IokuCgfGSxTbUrC
-         MBhH/PDPpbnC1JTQPagM8exsn5tpKuYgGTjUs+ScypV5r8ncWP9tDiwbXIV+1mRlVez+
-         psAzX1r+Oh2zSF6tTSOKY1LXu+ov78+c3vdkZtO/WJVmEa4f2GUua07Mm0qjrdS7hhV9
-         HUIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746482680; x=1747087480;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=snnOXzAe6Heu5aV6mBs11DJFSl0CS3QgcwKgPRQLEqw=;
-        b=u+sfUjP5ymsxjqadNl9HYDpnH4B/5eHKIxwqbBhcv08kLBpiIK6XjtPK82pyrv/t7I
-         l/YTgMsNAgpwir7R+t9cQp2zwe0afJdrU3cTd7fwIft/5rzKEGIrJ/ub6aCkHpSyzt3F
-         vdl07nF0N329d2+FWunD+RdGUnQTUh2gdI/xT9hu1SF3r/ZyKZD12OjESoUm7YkuKSdh
-         dC3Srt5KLsug5fMt5PAf5hLRelEgPyYGbpgdJ+FgYF4N4O9KYiGSodmACnvEICt7bq9M
-         ulTVuSKsJKg2BDDEEbSBIk4ATJfS9Hhgjtvnnf89rKzNaGkrZ0MR3JV0wdMJxTXPprZl
-         BYxg==
-X-Forwarded-Encrypted: i=1; AJvYcCWv3o9anNIOi3AYChqy4V3JHAL1oquOyt2g9IRMqlzuaaCveUEvLN1JcycfC2t9aA9FfMYf+/XB8cMK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxV3CdrSsjsaDXxmwAhKfu5ylIgY/aeTgjTa+BNYowI1KqXg5oB
-	WXPzayZLTKcyIcW1k2KdIeNxT1z3d8201hNQ1jbc6GBH+MEuLbGFaBmKHSTkhgRVp025m5hfU96
-	ihcaX4If4hO00icWdsVrib1Mig9tVL7o60w6Yzg==
-X-Gm-Gg: ASbGncu0vZGh894LQYEQZUfFuvgtS6MhCBa46bAXNM7yyYtwdA1wlzphRWOhF2kcBYS
-	0AidFqgdLhQPGG16Q7ymCEDaj5/iKAEQd5YPTgBjpSOwIyOex+5DNNGt+jiTYUIAkgy7sX5KOGL
-	MEHWj1tjhdm/XhNSLAdN/Z5FWy6c3x//eJ
-X-Google-Smtp-Source: AGHT+IGApbe9p7gXAk1nkGLKFD1tdslNqS67hi+XGq/azpYJ6FPZ6Uj8RDgT8dGRyemAo12Y9+ch0ZiUQQSCtCm0RZ8=
-X-Received: by 2002:a2e:a58d:0:b0:30b:b987:b6a7 with SMTP id
- 38308e7fff4ca-32668d51266mr1583961fa.0.1746482679935; Mon, 05 May 2025
- 15:04:39 -0700 (PDT)
+	s=arc-20240116; t=1746483800; c=relaxed/simple;
+	bh=xcTwYq2bMsivseQDA5CYNGoPJpwC7m1P/ITeFcI4upU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=UT74oWK1FVZjvoCWjfeR+gmr8ZqQZ9ENTSMM2nvXk6fiY4o53nCT3hi8Yv2c0nxVLEsNWJT8bbCW+9lcTMYyHAfZeIOUtnSeCbIE94Q9pGN7yPWJkEgv+LZUWwYtEY2h3zquiEXOCfmTC0eHA6b39im7b6ZS3/UAOi7Zhmpi50c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nLcB0WVn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1868C4CEE4;
+	Mon,  5 May 2025 22:23:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746483800;
+	bh=xcTwYq2bMsivseQDA5CYNGoPJpwC7m1P/ITeFcI4upU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=nLcB0WVna8wWAQG1Kj29n4gS4hwBBQ7zWOAaEqFhiA68WYU1WGFJKccBvznEgyved
+	 iSlAIeSXP+NXPqdWvptT+g2IJea4Na9K1YuCg6iV9t+uB66Y0f9uKB6nzX9P7hMlg0
+	 3MTn7KKruKqopDMWouNZ/THfE3M7+I4pz5nsmruKZ7AXWPw3SKrKjvZpgzGrBcHh/f
+	 +va7vEsvFcmZchzgLnN1mmDL+ri1DbmVrDZrZhYVphrQ2BUQ6jrmwVnP1hk2X1fBhR
+	 tCzbsGrXJC6U9mxc1jV8bLcTlRTUNpDElA9H4g1ZaGfqmsNUSEZ7xqG9X+clfJmCV4
+	 NuZXOd3Yk8I6g==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
+	Thierry Reding <treding@nvidia.com>,
+	Sasha Levin <sashal@kernel.org>,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	thierry.reding@gmail.com,
+	jonathanh@nvidia.com,
+	tmn505@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.14 223/642] arm64: tegra: p2597: Fix gpio for vdd-1v8-dis regulator
+Date: Mon,  5 May 2025 18:07:19 -0400
+Message-Id: <20250505221419.2672473-223-sashal@kernel.org>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250505221419.2672473-1-sashal@kernel.org>
+References: <20250505221419.2672473-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250505144654.1288979-1-robh@kernel.org>
-In-Reply-To: <20250505144654.1288979-1-robh@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 6 May 2025 00:04:28 +0200
-X-Gm-Features: ATxdqUGbLo14PoDMJ9iRiD56H5JN5nsFkKufHU7P1DoHi_A24GdHzXWd-M_Gq0E
-Message-ID: <CACRpkdY1OU+hfTuqOJ2noHp9pMtYbTJGtOzpHrb6qcVt4hY22Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
- faraday,ftintc010 to DT schema
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.14.5
+Content-Transfer-Encoding: 8bit
 
-On Mon, May 5, 2025 at 4:46=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org> =
-wrote:
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
 
-> Convert the Faraday FTINTC010 interrupt controller binding to schema
-> format. It's a straight-forward conversion of the typical interrupt
-> controller.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+[ Upstream commit f34621f31e3be81456c903287f7e4c0609829e29 ]
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+According to the board schematics the enable pin of this regulator is
+connected to gpio line #9 of the first instance of the TCA9539
+GPIO expander, so adjust it.
 
-Yours,
-Linus Walleij
+Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Link: https://lore.kernel.org/r/20250224-diogo-gpio_exp-v1-1-80fb84ac48c6@tecnico.ulisboa.pt
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
+index 63b94a04308e8..38d49d612c0c1 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
+@@ -1686,7 +1686,7 @@ vdd_1v8_dis: regulator-vdd-1v8-dis {
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <1800000>;
+ 		regulator-always-on;
+-		gpio = <&exp1 14 GPIO_ACTIVE_HIGH>;
++		gpio = <&exp1 9 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		vin-supply = <&vdd_1v8>;
+ 	};
+-- 
+2.39.5
+
 
