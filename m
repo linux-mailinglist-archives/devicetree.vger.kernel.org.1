@@ -1,195 +1,107 @@
-Return-Path: <devicetree+bounces-173545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C413AA8C2C
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:17:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0977CAA8C38
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:22:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E546C1891F48
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 06:18:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63FCF172148
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 06:22:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B9961B041A;
-	Mon,  5 May 2025 06:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7C3A1B4F15;
+	Mon,  5 May 2025 06:22:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yPghz9Rw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B+Qluh3t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FE51A315E
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 06:17:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 002FD1459F7;
+	Mon,  5 May 2025 06:22:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746425866; cv=none; b=ers6TnICvvyoMwOqyF4b/Any7clbCnfPNIPyhfHao7XGzg0fmme1u2mUJTq1iFjiHCGNLc6Nqg40UrBu0Sg62FbnJMUguy0PBvy7o27XYwOcPieV2T+g9lJA0DBUnlq76dZ4p83kG1+JlkqRO2RUXt7CTloVpxbiFG4i178J23M=
+	t=1746426145; cv=none; b=lsG9pXCKdGv6nedCiDGcM0FNQyyCtY2Ykil7M0KINiFTxWjAURofJt9zXsMfXjE8N0j4dCvQsii8No+0G4ATu+lcLduw6wfQX5pkDPLM9hz3/FXSK+Pj0+qjtgkfdAlyz3nz11JLanStwWIhKBrSp94/P67QPDGdaHncEqf0B0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746425866; c=relaxed/simple;
-	bh=WTqruFHJPbXUvJ+Abad466vMBFstOzi4YaAP4ufNfuo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=syJYactvnswrXU4OpyZVbqj6z+lp7gHlsg+S9Oe2h6Z5h1gORM6xPvFuOIcnpFxM2FJlNr0xqWUkidk1Yeq7urHiJ8vcDiduvnPPIq6VZ2MyBGyB9ly0KaHn/5N1RELXlQykafop0i1QGYrjbXxWWv+1izGINrTidSg7D3r0LXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yPghz9Rw; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43d72b749dcso4555355e9.1
-        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 23:17:44 -0700 (PDT)
+	s=arc-20240116; t=1746426145; c=relaxed/simple;
+	bh=Duo5WKqyQks5iE5n04QHhkTiv6EU6Slj9UKbtgro9+A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QxyoaBsOZ0uPFEK8qK5elcy5RKMJxJyfpLHWfkoMuSrxooVCGE5WtnAAHwWw3r6KpxlTZ8hoBRGlEWio/NDAfsbdb91k6/AYM8m6LEcerJoRqxDwhB9t9aWrNzyleXzjuI9KmPCfT90V5HPTVrK9UaFj6AxGGIfgIHvvaeZV6PU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B+Qluh3t; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-39c1ef4acf2so2992406f8f.0;
+        Sun, 04 May 2025 23:22:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746425863; x=1747030663; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NX4Rz1dfaupNMAP0jhgw9F7SGjjiJLMayEUKk5YTb2Q=;
-        b=yPghz9Rw9nMf/UJWworAQvkUFhEb6HLfN+I33mEVt0PDtCP0hwIhL74zmUNOu87a4n
-         NyWryfdpytukqRSeRTrS725DdcU+Ijddt9jboAWm5+y7euVxR7c3sbEU2RFzjzY5sIBu
-         c42mQwOuR02yyzAl+W0mGskx+fFGtQX7vUBpmMTb3a15dQHIYy5G3TObs81whuqiZAua
-         K4ZeGdi4mFckSw4M47GM9iwg0GydqCyFLM0rFfO2hmNBIxJ7t14IzoRLEYUB/9S9IMVQ
-         yhjvOJ0nPbByWViGtW/16L0UK/INHCkIp62Bm72bDATSOnqeUJIOqXnxT8S8qrLWgEFd
-         EfPA==
+        d=gmail.com; s=20230601; t=1746426142; x=1747030942; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Duo5WKqyQks5iE5n04QHhkTiv6EU6Slj9UKbtgro9+A=;
+        b=B+Qluh3tTJJ+sB63bpof+UPfirutUQ4usDaoOQhE3g8oSbGCA3rPJbHRSozZx00b3J
+         4N4rOq850n59A4ljFQrYOfZG9EJX99MvGgnMv0wdilq4wHroBf8GHxhh79vBMmQif1+F
+         LEHN0qILqpwEXrleK75AdxdjtC6gCXHaEqDweJFTGvTIxtgEyxStLhPzU8PeCJzTbDUn
+         UyuC10WwWgghwSPZWbSNGgd+VfdTdM/pj0Ziqdt/MEPvxkdZQVbmvm33Zmwly9A5busu
+         CbZGPaUrFszQQif6zDnGar+6ast1LpDaTiCn5fYNUQyhK1SkPgde4QTaFoUrELMNeVxu
+         7gBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746425863; x=1747030663;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NX4Rz1dfaupNMAP0jhgw9F7SGjjiJLMayEUKk5YTb2Q=;
-        b=XGqoKkQpugrMgXaHD7UcrX/yBqNmnne0v4ChwZV/zqKPbJkmo1VwWrSAaye2x6cHA2
-         WdM2vqlQVD5N0Hi/1EZDeMb4jALmAQnunuxXTGWBR/nuw9VVTyTZDvyAJJN5iSRF0F86
-         WAq76lDj7d1/EtoSL6ojH9RRxSosguNpTwfxprtTDokxOdVW1hNvN2c1n7NYi47TJzJw
-         2skUw80QzHfaPSlrxU69KtzsdA8N2UnELiHJ8hAllYaduMyh3f9QBR9Nuz035cDzquj5
-         gymb0YHAObByRXKiKK3fmkfL9A8Sjs/HtCOlnFkxXsrkebP61JbQ5yovzbiFnUafkfhr
-         KScg==
-X-Forwarded-Encrypted: i=1; AJvYcCVHnBPXQM36bVR6NMjLHpxq3nzYAbSF1EWVl5NurabnHHbkUPNLvDeS2N1Df78qAdW9VvsMgdbZM+zG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1sjz74MAgXgsXMcq5IiZTasPaXwjmwFcrTaE0rUDqk5j7W3c2
-	y0cAdLWXUX2NobwxB+E16mav5ge5RUnqrNTvO1+d5Hx4xbywWDOLBsDkGLk19fI=
-X-Gm-Gg: ASbGncuG4EigqnuZT0IqHeHE7aHBC/Ac9W485SVKS46m3UqirBXyi+yJk8fYc0ySKMa
-	2VoOqQNuzVdyceapfumykq1eBZOdRRGs8tJwB4vnG6nHzpS0dWOvG+gC4eqFI0Edn5TF36q555D
-	eoIJ9eZoYDJJ2VIAvAoMqi+ZVkXfeGvOPnm1w64pXOKkZMaFuT6c/TIHlS+nCP1i77TKKd/HBvJ
-	Wzv86fff1OJTrHJHruyL8IcV2+0bQDS1/2j+tnrgI5nAflQz/kC6YQArZmb1wM1egGsljeDIs0o
-	Lq8BZJWcYsEKdYmbMoZDkupuZMiRjBIYN8A43s+RMBMMkqqRgm+0uZU5vY+1x5KpbSKosg==
-X-Google-Smtp-Source: AGHT+IH0LOrDkps/9Rr0/olfktl+QlWmLaEC4ldMHPBjCaA9Xv+NxHcZaPiI2hpb6qHiQmJJWKSUhQ==
-X-Received: by 2002:a05:6000:1ac9:b0:3a0:75ff:261f with SMTP id ffacd0b85a97d-3a099aee755mr2986209f8f.11.1746425862733;
-        Sun, 04 May 2025 23:17:42 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b17748sm9225083f8f.100.2025.05.04.23.17.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 May 2025 23:17:42 -0700 (PDT)
-Message-ID: <97e49dc5-9cca-4c85-b0b0-18c472d0ec0d@linaro.org>
-Date: Mon, 5 May 2025 08:17:40 +0200
+        d=1e100.net; s=20230601; t=1746426142; x=1747030942;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Duo5WKqyQks5iE5n04QHhkTiv6EU6Slj9UKbtgro9+A=;
+        b=L+638DGrU9yzJtnU7dPuGQaWFu6C5xNKdWzO1tD14LS4HtKJq4gRnXvmEngYuDrp6V
+         nIucDgIcfCrIOAH2hmvb/TTs/JpPb4KQHaQk+fBzGlwXDZbFd2XDEGg1fXKnYCehHomp
+         uMH/J5kDET2lVTP7pQaMaadwef2K+MHpgJUhViEh5AEqYcIZOQRcMp9cnrkeDDSVXuAI
+         jYqyN7nXJ/mHunfkO8/5JMmTvJzHE7rUgXcaGSH5MCJzT3hfRlYHGYlfaEy+3GD9voxq
+         suHKpapW/pf8GPAhu0UeGze2kyKl5itb3D83TCpqJHfF/va87eYxIcn1uhuwJennaSau
+         jW/g==
+X-Forwarded-Encrypted: i=1; AJvYcCUfvsn/jkPE1nuEnMxcOVAjOGkrPtxJNuF9N4IGXmXAGAv2jF/IoMCaGYX+B1vIUTMEZZbQW6UkzRh7@vger.kernel.org, AJvYcCVd8dev/gaNoBwBzISWeLAEfCN/turXdgTOWZoWQjFUhaZvHczcabRY9uEVvXS6aJmIXASfXhanu+4Wqg0T@vger.kernel.org, AJvYcCWdpsyW5f+Cb9dwqE/nFD6zoFO6z3ZJsmBQolFjC936aaX5gTS93m+ooR4Y9K+59eGJMa1Nuda/bLy3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYmWCZH/x3lfUyeZtxcD7EqfNVSL/MBmUE0sIEGMSdIOaOWsiS
+	9Sb372SSwycdejtMrUCdkvtSWoKEw7tE14yj0AO+H+7UBseBulBZ
+X-Gm-Gg: ASbGncub5SBzBtmo05gwnsVxBBeBIlKeANle5DLnLKT6id+WXy7t/WC+NxXhiGEfAuy
+	QVW90HD3UXm651TXfC3+fK1YqgxN5sivud6pnZXSdLTV0poAj2WVsgYmDABQFECAskjqGGddx4h
+	gYxsN5d2YOWFw8NHbc4bzASuBYvGUdH5swymNfb8EbeT4h3yiF17LMVrLv3aCO7DN2/xrAWWLok
+	X7xgpgNmFw1j0mrMWEWrBNWshNl1f+cQbnnV7mfrLzShREWls05qW5LdAddob8SDNszFphPvtmG
+	sjitDQRouG1RhjS9VDUJ5DyX+x9MxL805fhJpOpR4hKsK2c4eMHuSl/Xzpxs8I3b4/S/++DzNVw
+	=
+X-Google-Smtp-Source: AGHT+IFa6PSKJ495c8AhszxaLJ2l4O8rCrcCUKyRo4T5ew1TOyxNOcHky6aWXz5UiUGTc2UnquVKQg==
+X-Received: by 2002:a05:6000:4285:b0:391:3aab:a7d0 with SMTP id ffacd0b85a97d-3a09fd73958mr3875093f8f.19.1746426141924;
+        Sun, 04 May 2025 23:22:21 -0700 (PDT)
+Received: from ubuntu2204 (207-pool1.nat.godollo.uni-mate.hu. [192.188.242.207])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b17017sm9455691f8f.92.2025.05.04.23.22.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 May 2025 23:22:21 -0700 (PDT)
+Date: Mon, 5 May 2025 08:22:25 +0200
+From: =?utf-8?B?VMOzdGggSsOhbm9z?= <gomba007@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: 
+	=?utf-8?B?VMOzdGggSsOhbm9z?= via B4 Relay <devnull+gomba007.gmail.com@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] iio: chemical: Add driver for SEN0322
+Message-ID: <usgphnspj2y56quulrjcxtib4wv3lpnadg4pyozmkxoc3ayhah@bpyzcn5walmm>
+References: <20250428-iio-chemical-sen0322-v1-0-9b18363ffe42@gmail.com>
+ <20250428-iio-chemical-sen0322-v1-2-9b18363ffe42@gmail.com>
+ <20250504194030.4efe60db@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 15/24] drm/msm/dsi/phy: Define PHY_CMN_CTRL_0 bitfields
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>,
- Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Dmitry Baryshkov <lumag@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org,
- Srinivas Kandagatla <srini@kernel.org>
-References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
- <20250430-b4-sm8750-display-v5-15-8cab30c3e4df@linaro.org>
- <j47udhqq3ldsza3cr6a6rd5dq7uxjgpolbmdhmpzvzt7glpuva@v5tgkydlywag>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <j47udhqq3ldsza3cr6a6rd5dq7uxjgpolbmdhmpzvzt7glpuva@v5tgkydlywag>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250504194030.4efe60db@jic23-huawei>
 
-On 03/05/2025 00:44, Dmitry Baryshkov wrote:
-> On Wed, Apr 30, 2025 at 03:00:45PM +0200, Krzysztof Kozlowski wrote:
->> Add bitfields for PHY_CMN_CTRL_0 registers to avoid hard-coding bit
->> masks and shifts and make the code a bit more readable.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Changes in v5:
->> 1. New patch
->> ---
->>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c             |  9 ++++++---
->>  drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml | 11 ++++++++++-
->>  2 files changed, 16 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
->> index ca1a120f630a3650bf6d9f9d426cccea88c22e7f..7ef0aa7ff41b7d10d2630405c3d2f541957f19ea 100644
->> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
->> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
->> @@ -362,17 +362,19 @@ static int dsi_pll_7nm_lock_status(struct dsi_pll_7nm *pll)
->>  static void dsi_pll_disable_pll_bias(struct dsi_pll_7nm *pll)
->>  {
->>  	u32 data = readl(pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
-> 
-> This (and several following functions) should be triggering a warning
-> regarding empty line after variable declaration block.
+Hi Jonathan!
 
-You mean --strict or what? It is common to have the &= immediately after
-assignment, so that's why I chosen that syntax. It is just more
-readable, but I understand your comment that you want --strict
-compliancen even if it hurts readability, so I'll change it.
+Thank you for the review and the explanation! I've misunderstood the purpose of
+_SCALE. I'll rewrite the driver to use only _RAW and _SCALE.
 
-
-
-Best regards,
-Krzysztof
+Regards,
+János
 
