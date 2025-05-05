@@ -1,160 +1,192 @@
-Return-Path: <devicetree+bounces-173590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1789AAA8F5E
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 11:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 935D9AA8F73
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 11:26:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F8483A9CBA
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:22:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B6D23A5B4B
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:25:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053CD1F5413;
-	Mon,  5 May 2025 09:22:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542601F5859;
+	Mon,  5 May 2025 09:26:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="il3ouxPM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bwfi9T22"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3368313E41A;
-	Mon,  5 May 2025 09:22:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B96D11F470E;
+	Mon,  5 May 2025 09:26:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746436949; cv=none; b=jM5MMyug4vWeMMB1LUAxsizNuNqh5r22ji5UedeW+k/OL8Bor74tvrH4FY2SIea3nNcgRVHbswxDxybCkKhFijoMFxNulOR8/x/gMABWVA+ma23le/qj2+Z02elE+ThXzgddSI3LAO8vfxGfCL7zWAGI7Bj3vb0sUSex2Orsns8=
+	t=1746437172; cv=none; b=n4FpfrYvWWXI7kqQZj1oaXJjYHBxE6/aaebywY5CPU/Pp0EEdf/Gn6SrY9OL/h8elOK1eLZ/RXIqjK+tFzOqDf3BMXQBt+y7v1HqWz5fRfdqTHAWV6i1Apoc4eTpNQqlYGrLOTtMUS00RmEYHztBymr5QI2uJhrlEWc0YxEVXUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746436949; c=relaxed/simple;
-	bh=4PPmKt8IuhKlMpBTvl8losUbw3pKFTJ9SWl59nts+x0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AJxTuURS4yJsf/By6azzwKd+A2VbohUF5iLHWumwEHCeeXH0ZvCXxWy1khVQikMVTKfjxH4JRiPvONMrv8ETypcI9VzJeb0fb4izMA0wZhXWuvMs4wjtmaj/7wslW/GZuLy/ezauOJKZKsdMH4v2xEL20gSxw4YAkFowWK8jSUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=il3ouxPM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 544NVdZV014482;
-	Mon, 5 May 2025 09:22:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lXNQXYb5NPbFeM8ThHXJaleH2ashWd2spg6TCDzP+vw=; b=il3ouxPML3OgCM53
-	WdBbupHxmavG7WvLfC72uSS5BPDLtN/qoDHpuyi2W7DrKoMnLVEh/MgqgY4GJX/5
-	MZbDXMuGC6DkJhOHYxcB0e5sNADWjVDTG1uN+cxe8bXkKt+Hwg0LQPRhPbp3rca0
-	ShcnlSncEt5Z+aeeOkIej1DqtTwXKA9W4+p4d4tayZRm+wdWiwGs/XPRdNnapiBm
-	TT/LR0FzzEr2wkz4HBUUAcm2vcqpwibOLGogBDPKKrgI7JAj/JPjWMOV8QxSH565
-	iZDe6F/yePKphpqzyxW2fwAtwLOZbNSmHTslIGkt3M0El/drpFCFDtnQ6rrtxa7u
-	xWaPlQ==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46d9nkur26-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 05 May 2025 09:22:01 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5459M0kk019240
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 5 May 2025 09:22:00 GMT
-Received: from [10.204.66.137] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 5 May 2025
- 02:21:53 -0700
-Message-ID: <c486415a-1c08-4089-b837-15671d5922f3@quicinc.com>
-Date: Mon, 5 May 2025 14:51:50 +0530
+	s=arc-20240116; t=1746437172; c=relaxed/simple;
+	bh=Yk3OZqOn6A9EIo7uEkMjs4xvroEFFyQK/soU6vJie2w=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aGu9iA46z5Z6traDsp6Li8g4wXti/6Y+ByGkmyERw2brZFDYZgpznD8yecesASaT/AqJWQ37WEipoQx54RFLxIEw/9tjzBv/kEbjiKux5Oy3/pMAoynu0Mlyf9+MigC3sdE3K0qb8U4DiamTz6XQfAHC+ZPaXvNDY0E+cxZFYJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bwfi9T22; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7390d21bb1cso4175232b3a.2;
+        Mon, 05 May 2025 02:26:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746437170; x=1747041970; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TFo53WacOzcxwWBDcoCY5+G7006z8+N2fRouRbOOg1A=;
+        b=bwfi9T22ue678pFqtkQEEKnAoRU1QlhxViGVlRRCrcZnddmPFUdoakfuX22PykM/Pw
+         mZfOFLCqFVCTNBvQJXLaZ355YLMFtIekRpkDUjDFcRleteXuXzAFs4RmZzUEoo5DPgSU
+         0LkRdhv5oq1e2RdSQtZglVldpFABoKnwQfcFdac17cfEueTS+7Rn7ywPM6pWSsWixxh6
+         ZBZir7qr2m6YiHO7yzzMtTdHqjax4T/yo7bq11oJmNOxJtaW8vsg+SCSZdWQg0JW8N1b
+         CsJLpu6zL4IF4NXvWdR3VF1jmNoGP5AUvt2uNwd9nPpjoZgIJINHdoC/TgfDoVf2qSBE
+         XMww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746437170; x=1747041970;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TFo53WacOzcxwWBDcoCY5+G7006z8+N2fRouRbOOg1A=;
+        b=I6hqtkev9gYzCM2tgkzhHvuxO9YrCmF6ES5CVzxvBhMriMdWGOX5QDKKAyluk4yIsF
+         bRIjeBh78vU8Eo9/ROTDwatznSfOqb12O+KFQKZA6x9+l/ptOh4xS4Xbpu1gqVj+O1Ew
+         Ibpc7JbDJq7upankYL8cWCEDB7bZ74auidrLuWRblwzU3Jcs8G/HyrU9kRHfS94PQst0
+         poN93yOotnNekqUvTG8ldB5qWcv8LiJHmJfr/TSGbv7EOIjxgX9kIEc7Zg+n0fAEGwEY
+         cnq4XGu7rji972WPV9WmrFDHhGCBwhxEMu2OIWkhC6GLzbC7EwsXEtwDNfNZRlfRtsPH
+         YXKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUlEP4AEVYYOmEA4xs3Ww+qUg7xdWRZaXPycyqQAuB0l7ErvR4fdZAig5cNW0KJ6jdmm4DXpord3A6r@vger.kernel.org, AJvYcCUlztMOJxbxNi89L57YKhKPqkXzeIE8IKHNYO+oUufwHYP/Ggc5/kNYi2CjHWTOpMdCiKXJxmaXcdYh+8sI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAnlK/NURy7UuN++RRfZ7Y/E7NdMnY1x9x7JmsQA1+no78H1lZ
+	na4hlEONExDWCJh0k+PaSw8+mhDRQl0pcLi6yiq8L+MTyw/By36t
+X-Gm-Gg: ASbGncvaNqRv8LgWLYHxT0b+JcQRpr/YvHB+kiB0KLaIxQGYb4e/q0hRicMByjTuOiG
+	Uj+Klm9u8ZHW5oNribqIVPHnBA+S+fPhLe7IpXluyAgGDif+G4bFpI+KtZAlcgP9iXJx9oUeLv7
+	6VBb9xIwJmMsPngdrDoxSrjQ3OpesJ3/BLaH/EfFbrQ5OhEq56Uw5HDpl2t+GS3gecNBTsV3YaU
+	3pfimnPjSDBMUr0otM7kNbFeCo/XvD5rMljvQPyRCty9SKkl5N44OTiSQSYImG2lUEkS/iz8wfR
+	jtLTrTCSRKLma4dNIIEd8sLvmPmizm6bH11BGAbO0RL9sHJdjq9D7NHEtJyyGCv7Y9BEpyqMKFi
+	B6QF2xyo=
+X-Google-Smtp-Source: AGHT+IGwm4cT3yJ4lewoezkZiCi583zQoSW1M6ZcIXhz33/6OsxkPLWiNFBEQG0KXVtWFOFJ3NPl3w==
+X-Received: by 2002:a05:6a00:ab86:b0:736:ab1d:83c4 with SMTP id d2e1a72fcca58-740587626dbmr16576349b3a.0.1746437169882;
+        Mon, 05 May 2025 02:26:09 -0700 (PDT)
+Received: from openbmc.. (211-23-34-211.hinet-ip.hinet.net. [211.23.34.211])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74058df2a6csm6288000b3a.81.2025.05.05.02.26.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 May 2025 02:26:09 -0700 (PDT)
+From: Eason Yang <j2anfernee@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	javier.carrasco.cruz@gmail.com,
+	alisadariana@gmail.com,
+	olivier.moysan@foss.st.com,
+	tgamblin@baylibre.com,
+	eblanc@baylibre.com,
+	antoniu.miclaus@analog.com,
+	andriy.shevchenko@linux.intel.com,
+	gstols@baylibre.com,
+	ramona.nechita@analog.com,
+	matteomartelli3@gmail.com,
+	marcelo.schmitt@analog.com,
+	chanh@os.amperecomputing.com,
+	KWLIU@nuvoton.com,
+	yhyang2@nuvoton.com
+Cc: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Eason Yang <j2anfernee@gmail.com>
+Subject: [PATCH v9 0/2] iio: adc: add Nuvoton NCT7201 ADC driver
+Date: Mon,  5 May 2025 17:25:58 +0800
+Message-Id: <20250505092600.962675-1-j2anfernee@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 07/11] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI
- to DP bridge nodes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <robdclark@gmail.com>, <dmitry.baryshkov@oss.qualcomm.com>,
-        <sean@poorly.run>, <marijn.suijten@somainline.org>,
-        <andersson@kernel.org>, <robh@kernel.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <konradybcio@kernel.org>, <conor+dt@kernel.org>,
-        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
-        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
-        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>
-References: <20250424062431.2040692-1-quic_amakhija@quicinc.com>
- <20250424062431.2040692-8-quic_amakhija@quicinc.com>
- <11e76323-db6b-428b-816f-e96fc9523fe5@oss.qualcomm.com>
-Content-Language: en-US
-From: Ayushi Makhija <quic_amakhija@quicinc.com>
-In-Reply-To: <11e76323-db6b-428b-816f-e96fc9523fe5@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA1MDA4OCBTYWx0ZWRfX7bTr2sAFs/qZ
- fRrcuR9T2+BdlU1d8bAio25xNpQMNE+VmgeC3qSXal9nIR0TdYl6sQJGwXz1DR5jmbBaGLI3Ovc
- HbI83GCK2ZvKj5RnPwnBpRyYpIX/5+6PuKGJ+8zepCC/XM7qXGXOW0kopW6Eeh6B/8gcX3e/KWD
- gWh3y7WCAGB0ZrfdHB0YngyCmbtSO9uPDL0vM2p71bpncKvcT3zPvPXLVCX4Mtnl8XsA3VXTgls
- yT5RZ/PhBY9kfXqUbvQ1lOsScQmph2Pvt9abILswNMQRMSADOv1A1AbELXUI8BNaeteMbeFztVL
- Ipi2WPWd3zjbFev+FfdIfoF76A8Ozm6qWtO3MQDsThAv2q//msAucXPP4WGj5Pg5PZjy36sV/hX
- skYkmcnazOXJxJnTwILp1SIJ277JMSUGdJ/5cNocV6aLefk+RL/6ICwUmPT1rXMlYP9GQSpa
-X-Proofpoint-GUID: 2nQCdatEFbyePhqHO_QO4GIyi-qr0a6F
-X-Authority-Analysis: v=2.4 cv=LpeSymdc c=1 sm=1 tr=0 ts=68188339 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=EUspDBNiAAAA:8 a=WlFH9gXdXrC4dCi8yUwA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 2nQCdatEFbyePhqHO_QO4GIyi-qr0a6F
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-05_04,2025-04-30_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999 adultscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
- spamscore=0 malwarescore=0 priorityscore=1501 clxscore=1015 phishscore=0
- bulkscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505050088
+Content-Transfer-Encoding: 8bit
 
-On 4/26/2025 3:42 PM, Konrad Dybcio wrote:
-> On 4/24/25 8:24 AM, Ayushi Makhija wrote:
->> Add anx7625 DSI to DP bridge device nodes.
->>
->> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 181 +++++++++++++++++++++
->>  1 file changed, 181 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
->> index 175f8b1e3b2d..b8851faec271 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
->> @@ -28,6 +28,13 @@ chosen {
->>  		stdout-path = "serial0:115200n8";
->>  	};
->>  
->> +	vph_pwr: vph-pwr-regulator {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vph_pwr";
-> 
-> Please provide a reference voltage for this one
+Change since version 9:
+ - Fix comments
+ - Change vin_mask and mask from CPU-endian to little-endian
+ - Fix access to restricted __le16
 
-Hi Konard,
+Change since version 8:
+ - dev_err_probe(), move the definition from device.h to dev_printk.h
+ - Use USEC_PER_MSEC rather than the hard coded value of 1000
+ - Use one dev for both regmap and regmap16
 
-Thanks, for the review.
+Change since version 7:
+ - Fix comments
+ - Derive dev from the respective regmap
+ - Generate the mask from the number of voltage input channels 
 
-Please ignore the previous comment, will update the below reference voltage in next patchset.
+Change since version 6:
+ - Fix comments
+ - Add use_single_read in regmap_config
+ - Remove unused definitions
+ - Do not shadow the return code by -EIO and let regmap API caller to decide
+ - Use simple English in all error messages
+ - Use a local variable for the struct device pointers. This increases 
+   code readability with shortened lines.
+ - Use `fsleep` instead of `mdelay`
+ - Use 16 bits type __le16 instead of u8 data[2]
 
-+ regulator-min-microvolt = <12000000>;
-+ regulator-max-microvolt = <12000000>;
+Change since version 5:
+ - Fix comments
+ - Add NUVOTON NCT7201 IIO DRIVER section in MAINTAINERS
+ - Add vdd-supply and vref-supply to the DT example
+ - Remove mutex since the regmap should already have an internal lock
+ - Remove redundant assigning values
+ - Check errors on regmap_write
 
-Thanks,
-Ayushi
+Change since version 4:
+ - Fix comments
+ - Add interrupts and reset-gpios to the DT example
+ - Use the FIELD_PREP and FIELD_GET
+ - Add use_single_write in regmap_config
+ - Use regmap_access_table
 
-> otherwise
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> Konrad
+Change since version 3:
+ - Fix comments
+ - Don't put nct720"x" in the name, just call it nct7201
+ - Remove differential inputs until conversions are finished
+ - Add NCT7201_ prefix in all macros and avoid the tables
+ - Correct event threshold values in raw units
+ - Add with and without interrupt callback function to have the event
+   config part and one that doesn't
+ - Remove print an error message if regmap_wirte failed case
+
+Change since version 2:
+ - Remvoe read-vin-data-size property, default use read word vin data
+ - Use regmap instead of i2c smbus API
+ - IIO should be IIO_CHAN_INFO_RAW and _SCALE not _PROCESSED
+ - Use dev_xxx_probe in probe function and dev_xxx in other functions
+ - Use devm_iio_device_register replace of iio_device_register
+ - Use guard(mutex) replace of mutex_lock
+ - Use get_unaligned_le16 conversion API
+
+Changes since version 1:
+ - Add new property in iio:adc binding document
+ - Add new driver for Nuvoton NCT720x driver
+
+Eason Yang (2):
+  dt-bindings: iio: adc: add NCT7201 ADCs
+  iio: adc: add support for Nuvoton NCT7201
+
+ .../bindings/iio/adc/nuvoton,nct7201.yaml     |  70 +++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/nct7201.c                     | 462 ++++++++++++++++++
+ 5 files changed, 551 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+ create mode 100644 drivers/iio/adc/nct7201.c
+
+-- 
+2.34.1
 
 
