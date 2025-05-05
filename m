@@ -1,92 +1,208 @@
-Return-Path: <devicetree+bounces-173845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 858EAAA9CB1
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 21:36:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65566AA9CFC
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 22:08:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE7B117CD38
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 19:36:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8AAB170006
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 20:08:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735381D5CDD;
-	Mon,  5 May 2025 19:36:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A941266577;
+	Mon,  5 May 2025 20:08:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="BgDFCPzs"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="oZiZeZng"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.166.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f201.google.com (mail-pl1-f201.google.com [209.85.214.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDCAE19CC22;
-	Mon,  5 May 2025 19:36:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 595AF19C546
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 20:08:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746473809; cv=none; b=XY70pSWntk82n5XKd/H2c69zmzz0yyz0IPkt2mx7l25QvQ+RN/jc4D6aMWjA44caK6KrdBfO4xkFZbNlytWg3/MilbAF2KS2JLQsbMT+d6VpG58zi+24J5pTSQcFxsPYyXwaRBjboigv0tnnI7Hu4IoX5VLiMRdZyGqfrq1cfiQ=
+	t=1746475715; cv=none; b=UKOu80yKQ50fCqnjEuLSyGMpVGiYGTEu6iYsKn0buZUVcVX7leZ7hYalsRF7CRYrGUgqq6ZwO7xjkgSMs8Amt5Fw6EuSR1vBAKxA+AqYP9KV/MzhhCOijJPBQPvK33S65ry2joMj2c15jv8SSEUsEC4G9MPchNjgrA7Nd4Hh930=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746473809; c=relaxed/simple;
-	bh=RO2rvPFwsU9Xpc/pkZSTBrPrQgVR/uHxXBggVsYUGa8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TYhMWuMwooKk4xy53FjaMPXhPSTg0SLTQgn9OS4FbJYJG4liKXXEHpRMYJ1p+wTz+OasCmV6mSgmdP7a2VIUUzkL+Pp0Gcy77Dp97SU1Gj+5DZfy5XoRSo5zhs/4FRB+3iv3TrOI09h9JJWQfZAiVk2+DAC4dPzKI+gFPImFWro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=BgDFCPzs; arc=none smtp.client-ip=192.19.166.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 11C45C0000E0;
-	Mon,  5 May 2025 12:30:09 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 11C45C0000E0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1746473409;
-	bh=RO2rvPFwsU9Xpc/pkZSTBrPrQgVR/uHxXBggVsYUGa8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BgDFCPzsvn9+Ee0fecqz78TJfQAONznFdsMayIslHOJy+73pDTEFjqvVUww1BZx6e
-	 qQxrGekZSB+HXdVPgqzKRQq70mTaEsXHXwB4p6MI7n0ZaJdcaVpgI+4Tj0JdcL1soQ
-	 v9cuBfK2bchqVoicRcI6WJcA1RCXuLGirIezGZQc=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id D022918000847;
-	Mon,  5 May 2025 12:30:08 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH] ARM: broadcom: MAINTAINERS: Cover bcm2712 files
-Date: Mon,  5 May 2025 12:30:08 -0700
-Message-ID: <20250505193008.1951252-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250505191255.304500-2-krzysztof.kozlowski@linaro.org>
-References: <20250505191255.304500-2-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1746475715; c=relaxed/simple;
+	bh=1KzQAdzt6kozgctVLqMUI+0YIdwgkoZ9QgFaIIjRSbE=;
+	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
+	 To:Cc:Content-Type; b=gy5U2aCEdOe6SmA/sUxB+ePTSGKinkF/KQ4QqYDh4t4xmrIWi4T2vRWQ2dfBZ0NlO5a3m51DSYx5+oMuqNWFDn+9dwLYajh1zmYBt5k1AtAwMWzjdgV+s8WgmE6w7Ord/L1PEUUjN2p0n8NQsU3Z+ZAoocV3oja/GXe69z6rEts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=oZiZeZng; arc=none smtp.client-ip=209.85.214.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com
+Received: by mail-pl1-f201.google.com with SMTP id d9443c01a7336-2242f3fd213so44606515ad.1
+        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 13:08:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1746475713; x=1747080513; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oOuRgIeoWvJ+xJkqB+IUVGx6fHLCdoleXxRua1kYdv4=;
+        b=oZiZeZng1O6abYgkRBb2yDSOBu1crc8JUScQpT+ThWyZC+xSEeYZG1bskcHh4L7cdO
+         bVU6B1Aidy2gg0hwUhe57cYD5CP4pQ3bc2Gl7Il8mXNdQ/j+f5ffURb3+28znr1nARgA
+         7gXJM35dd3l7cB7QwthjC8IJuVmq1e3b9eW435xK6GFuSXK9etjRso1n3+PYq1YNZ+j4
+         3sEi1AJGBNEDV5PMElsxSQ6WM/SoEvfhnpKjuRdDcNvyNzc92p3L6PbINvU49VG20jdc
+         4mvbwu3ZnfKEmB1O0FDPXUJR2lze2adoHwy52xEqFhCYfOQiLZxvxalIn2t50R/We8nA
+         cL3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746475713; x=1747080513;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oOuRgIeoWvJ+xJkqB+IUVGx6fHLCdoleXxRua1kYdv4=;
+        b=RR08Oz+iX7vtfNFPZIPeefrDp8Jf4p65AQwzXX4Sy8xco0HfQKiGQ9smyQVdMZPzgM
+         q2PHAdRnKmnWP41qhBxkmcacRKD25Acsz4X7sc1sFXzt9TaVYwTXqQyg9DHGlH38Ej6V
+         5CnA4wpm+c0pf69OmMKDtAB+prBV5txcwCq8WvtHwqh1IinpL1gnZZVqLSJxAnMG4ji5
+         EqoaP2Byur02EHGiou4wV1tBX8ZXwKdV0JeFB6+NRUl/LU6sG2CtefvP6TIPQPMPxqZj
+         qbft2OOZjQ0xzxvye/sV2ceqfOJNvCtuz/iwYc05wgEah5GuLXYYccRJkJqi5ALicNe1
+         WpLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUgtN1lh1WAC6yAFsMroSdb4B2P7ruC32vqpSaS2P01Jc7QqjL5O+sUAfo+7kPXIkl89c6Lw7AXXxsM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yycz6G2g9lKqS1+u3vjpPPj1qmJod5mxp51dIYnco+rnGWMEF8A
+	PxCG0joDvLnHi0qyHWZH7fxmera7THnsNUsDt2/zUeyWC/G3JeoUfSHcivU8FXg55yjGU56CKXm
+	y7ao+jal9CHqervDuOg==
+X-Google-Smtp-Source: AGHT+IGAxfh3fReuw49sEBnCIqEgZnEB4d1Kz9/LHzQ3CYJt6UkvcZ+t0jrC2mykwUxbQTB6d5Dqd6LW9byg1ZNs
+X-Received: from plkp1.prod.google.com ([2002:a17:902:6b81:b0:220:ea57:34e3])
+ (user=changyuanl job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a17:902:f648:b0:224:93e:b5d7 with SMTP id d9443c01a7336-22e32eff19bmr9877065ad.34.1746475713621;
+ Mon, 05 May 2025 13:08:33 -0700 (PDT)
+Date: Mon,  5 May 2025 13:07:45 -0700
+In-Reply-To: <20250501225425.635167-15-changyuanl@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+References: <20250501225425.635167-15-changyuanl@google.com>
+X-Mailer: git-send-email 2.49.0.967.g6a0df3ecc3-goog
+Message-ID: <20250505200745.1975264-1-changyuanl@google.com>
+Subject: Re: [PATCH v7 14/18] x86/boot: make sure KASLR does not step over KHO
+ preserved memory
+From: Changyuan Lyu <changyuanl@google.com>
+To: changyuanl@google.com
+Cc: akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de, 
+	ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
+	catalin.marinas@arm.com, corbet@lwn.net, dave.hansen@linux.intel.com, 
+	devicetree@vger.kernel.org, dwmw2@infradead.org, ebiederm@xmission.com, 
+	graf@amazon.com, hpa@zytor.com, jgowans@amazon.com, kexec@lists.infradead.org, 
+	krzk@kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, 
+	luto@kernel.org, mark.rutland@arm.com, mingo@redhat.com, 
+	pasha.tatashin@soleen.com, pbonzini@redhat.com, peterz@infradead.org, 
+	ptyadav@amazon.de, robh@kernel.org, rostedt@goodmis.org, rppt@kernel.org, 
+	saravanak@google.com, skinsburskii@linux.microsoft.com, tglx@linutronix.de, 
+	thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+Hi Andrew,
 
-On Mon,  5 May 2025 21:12:56 +0200, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> Add bcm2712 files to existing BCM2711/BCM2835 entry, so the files will
-> not feel abandoned.
-> 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Closes: https://lore.kernel.org/all/CAL_JsqJi+8-WdYEyrGjb=cQXPEb07Lkcj90a32d38ChvYJAA-Q@mail.gmail.com/
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+Based on Dave's feedback above, could you please take the following
+fix and squash it with "x86/boot: make sure KASLR does not step over
+KHO preserved memory" with the updated commit message in mm-unstable?
 
-Applied to https://github.com/Broadcom/stblinux/commits/maintainers/next, thanks!
+Thank you very much!
+
+Best,
+Changyuan
+
+---- 8< ----
+
+From 464b5750c55f978b47da242f50ec7dbcbac1948c Mon Sep 17 00:00:00 2001
+From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+Date: Mon, 5 May 2025 11:29:23 -0700
+Subject: [PATCH] fixup! x86/boot: make sure KASLR does not step over KHO
+ preserved memory
+
+During kexec handover (KHO) memory contains data that should be
+preserved and this data would be consumed by kexec'ed kernel.
+
+To make sure that the preserved memory is not overwritten, KHO uses
+"scratch regions" to bootstrap kexec'ed kernel. These regions are
+guaranteed to not have any memory that KHO would preserve and are used as
+the only memory the kernel sees during the early boot.
+
+The scratch regions are passed in the setup_data by the first kernel with
+other KHO parameters. If the setup_data contains the KHO parameters, limit
+randomization to scratch areas only to make sure preserved memory won't get
+overwritten.
+
+Since all the pointers in setup_data are represented by u64, they require
+double casting (first to unsigned long and then to the actual pointer type)
+to compile on 32-bits. This looks goofy out of context, but it is
+unfortunately the way that this is handled across the tree. There are at
+least a dozen instances of casting like this.
+
+Signed-off-by: Alexander Graf <graf@amazon.com>
+Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+Co-developed-by: Changyuan Lyu <changyuanl@google.com>
+Signed-off-by: Changyuan Lyu <changyuanl@google.com>
+---
+ arch/x86/boot/compressed/kaslr.c | 26 ++++++++++++--------------
+ 1 file changed, 12 insertions(+), 14 deletions(-)
+
+diff --git a/arch/x86/boot/compressed/kaslr.c b/arch/x86/boot/compressed/kaslr.c
+index 25de8c3e17cdb..3b0948ad449f9 100644
+--- a/arch/x86/boot/compressed/kaslr.c
++++ b/arch/x86/boot/compressed/kaslr.c
+@@ -764,25 +764,26 @@ static void process_e820_entries(unsigned long minimum,
+  * If KHO is active, only process its scratch areas to ensure we are not
+  * stepping onto preserved memory.
+  */
+-#ifdef CONFIG_KEXEC_HANDOVER
+ static bool process_kho_entries(unsigned long minimum, unsigned long image_size)
+ {
+ 	struct kho_scratch *kho_scratch;
+ 	struct setup_data *ptr;
++	struct kho_data *kho;
+ 	int i, nr_areas = 0;
+
+-	ptr = (struct setup_data *)boot_params_ptr->hdr.setup_data;
++	if (!IS_ENABLED(CONFIG_KEXEC_HANDOVER))
++		return false;
++
++	ptr = (struct setup_data *)(unsigned long)boot_params_ptr->hdr.setup_data;
+ 	while (ptr) {
+ 		if (ptr->type == SETUP_KEXEC_KHO) {
+-			struct kho_data *kho = (struct kho_data *)ptr->data;
+-
+-			kho_scratch = (void *)kho->scratch_addr;
++			kho = (struct kho_data *)(unsigned long)ptr->data;
++			kho_scratch = (void *)(unsigned long)kho->scratch_addr;
+ 			nr_areas = kho->scratch_size / sizeof(*kho_scratch);
+-
+ 			break;
+ 		}
+
+-		ptr = (struct setup_data *)ptr->next;
++		ptr = (struct setup_data *)(unsigned long)ptr->next;
+ 	}
+
+ 	if (!nr_areas)
+@@ -801,13 +802,6 @@ static bool process_kho_entries(unsigned long minimum, unsigned long image_size)
+
+ 	return true;
+ }
+-#else
+-static inline bool process_kho_entries(unsigned long minimum,
+-				       unsigned long image_size)
+-{
+-	return false;
+-}
+-#endif
+
+ static unsigned long find_random_phys_addr(unsigned long minimum,
+ 					   unsigned long image_size)
+@@ -824,6 +818,10 @@ static unsigned long find_random_phys_addr(unsigned long minimum,
+ 		return 0;
+ 	}
+
++	/*
++	 * During kexec handover only process KHO scratch areas that are known
++	 * not to contain any data that must be preserved.
++	 */
+ 	if (!process_kho_entries(minimum, image_size) &&
+ 	    !process_efi_entries(minimum, image_size))
+ 		process_e820_entries(minimum, image_size);
 --
-Florian
+2.49.0.967.g6a0df3ecc3-goog
 
