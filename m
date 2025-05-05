@@ -1,196 +1,237 @@
-Return-Path: <devicetree+bounces-173830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3BACAA9A7F
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 19:29:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A882AA9AFE
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 19:47:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFBA1189E64D
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:29:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1520117DA0D
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:47:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3B9A26C386;
-	Mon,  5 May 2025 17:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B035D2690F2;
+	Mon,  5 May 2025 17:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="ctRys7Jw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NZLahehg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E86C426B96B;
-	Mon,  5 May 2025 17:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834D21AC458;
+	Mon,  5 May 2025 17:47:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746466137; cv=none; b=pTPtBwqrj/ZeJaV1JLGclvrOTGC8O2eGrxsJcLs29Hcs2atlajBc5kAjzqMqYv7a7uzWvgQuUrX24AmmGr7X9r14apaSulbF9ZOiBVrG0sHC8JW2HNGSY35M1ragWNMOCUOWaO4Lkr4lIG//+sfA+WQgegr2QwKzBrOpkoElXbY=
+	t=1746467233; cv=none; b=R0ccIGkoA5m3cV6CN8w1rOb3Q+3hXnQ5JA4gwZig2lCkKfXjZRBJyRIHbyI8yMJ3QWZdHSL9nivPp7+Z7VqPGfwNxBRJ5zaSnQVfJJJFemY5ObCU/KogISYAZQU1ynV6yk9SYNGyMmgQ0fBXSZRu8OdotTto8YXI2p6wjrKU3jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746466137; c=relaxed/simple;
-	bh=Q9SUJDlxu7+oHqqERc9KWOzxSght9ksFz6MmLIcSFVQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iEjMtV5SCcNVqnewbCsLAWji1sGfEgvXULahkifUjJg1PV8pEZKQojWJfDrqRxfGXHGPOnZ4ZN/AxluMxGQrZ5rklgnO8na2tTA/LB5lqRKuP8qmOr4Yo6/dpg+nvznbVUamOpvbHlc9KcCFzgYK7MX1ojLpxgiaVGqYE0bYRUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=ctRys7Jw; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1746466118; x=1747070918; i=wahrenst@gmx.net;
-	bh=TS+8AQqmHliHMq0qcLfbUxz1SOqHNnQuwRnW5p6kMog=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=ctRys7JwUqbmYB6bjCdds4rzccyadII+UAdqJ5H2kdwPg3r7d0XagiqcZxuoA5Zd
-	 Wr2bdlIHwwFxqKpdVO/mbwcEuD01xGwe9DjI9i2PJxK2nwypJfIK+rt6apTac0iWW
-	 k2A8RV2xptPVJu/XTq61B7pit80cHicmMFID0ICjm4Z7q4F/UpC/rJsadvvejD6xN
-	 0tkaJYMGAHuDgwvN9mrun1n/DyteBt2OCJ9Ow1WaN/tUIIHj3rYWE6kmZfRLBkYSn
-	 XqO8Rd9/zkcliFgq9Q4lIe7iu3ImWyOZwIOLBTEWv0VZGYJ6E+tZv/piLpqmoE//R
-	 fUB0SVarFSGtXtvZog==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.101] ([91.41.216.208]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mg6dy-1ug5qS2xqg-00oARP; Mon, 05
- May 2025 19:28:38 +0200
-Message-ID: <3b9bf068-fa84-454f-8cca-cb424a1556a4@gmx.net>
-Date: Mon, 5 May 2025 19:28:34 +0200
+	s=arc-20240116; t=1746467233; c=relaxed/simple;
+	bh=y0ZpQ6ZMJcFQtR9JoG+u889WezBkhmmP03zluTSmHI4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UVlLAYQTKvTOA/ERM216NQJkvkZKKznT09cU17piPyVyqmWV01BiFWPzJLTD2mxjA0emuRbKZjWvL9TgGb76ksredGywWKsKyQJeAaiI8dpZEBmW8Cgl3YhUfiOo/1FgMg/Wp543sOHeMMgIZq/D4iMrdOyRfvkKvfjC0oFE2lI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NZLahehg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D99E6C4CEE4;
+	Mon,  5 May 2025 17:47:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746467233;
+	bh=y0ZpQ6ZMJcFQtR9JoG+u889WezBkhmmP03zluTSmHI4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=NZLahehgYKmOiKeq33MCXS9z+7/V21fRzPEjMB5Hk+QNX42SiGWX1+qR3ytW74FkT
+	 fo4ZvYFj3tqn3r1Au7PS/qTnPFenYuuUjyiGsDAsVFLkJSyXzIB6EOX1YmYiDM0rPo
+	 GD8dUJBaxM/hRz3fY62UHxQS2do9v/xKKNK9MEwSBjZg+X6p5Zar7u48eRSOTfbw5q
+	 BWXitrKnIaSezFNbBNbme+RfsTQMNVvwhWdCHoxOFJFHoJJkJWjyBCT7AbVjw2QgDX
+	 wPnFefOXCPEuQ/zeKMcTUesYNiKXYlpvXFz8ALouvj4aUe9e0ZzuDgJM5L7ksWUvF8
+	 3nkFQuqcQy0EA==
+Date: Mon, 5 May 2025 18:47:05 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: =?UTF-8?B?VMOzdGggSsOhbm9z?= via B4 Relay
+ <devnull+gomba007.gmail.com@kernel.org>
+Cc: gomba007@gmail.com, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: chemical: Add driver for SEN0322
+Message-ID: <20250505184705.6f00321a@jic23-huawei>
+In-Reply-To: <20250505-iio-chemical-sen0322-v2-2-217473983b42@gmail.com>
+References: <20250505-iio-chemical-sen0322-v2-0-217473983b42@gmail.com>
+	<20250505-iio-chemical-sen0322-v2-2-217473983b42@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 3/5] net: vertexcom: mse102x: Drop invalid cmd
- stats
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250505142427.9601-1-wahrenst@gmx.net>
- <20250505142427.9601-4-wahrenst@gmx.net>
- <fdac2206-86ad-4d07-9aea-ef88820dfc88@lunn.ch>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <fdac2206-86ad-4d07-9aea-ef88820dfc88@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:MEuqLFBDy73ap3gVhdMkTjQFy7LTG3+oKSvKM0vpIZmL8MvWi/7
- JzzxmRNupbKnu6Ix57G2Zo23B+vFR0uMf+KkN8544m4s/zyYlaO0H+MwyeBKSjC68y0/6z6
- iL5xISX1Uym0JIvCvuB+33j3Bvz3PKo4LIJJKWNkoOk9bsuOwtTTjBVS8y6WB0YF3VpYy0j
- rQDgmkez/VtCNvdw94SPw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:3OGx38FJPJw=;Sdx4+6ly0SSU7GWDYtj4lyNB02G
- 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
 
-Am 05.05.25 um 18:35 schrieb Andrew Lunn:
-> On Mon, May 05, 2025 at 04:24:25PM +0200, Stefan Wahren wrote:
->> The SPI implementation on the MSE102x MCU is in software, as a result
->> it cannot reply to SPI commands in busy state and increase the invalid
->> command counter. So drop the confusing statistics about "invalid" comma=
-nd
->> replies.
->>
->> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
->> ---
->>   drivers/net/ethernet/vertexcom/mse102x.c | 3 ---
->>   1 file changed, 3 deletions(-)
->>
->> diff --git a/drivers/net/ethernet/vertexcom/mse102x.c b/drivers/net/eth=
-ernet/vertexcom/mse102x.c
->> index 33371438aa17..204ce8bdbaf8 100644
->> --- a/drivers/net/ethernet/vertexcom/mse102x.c
->> +++ b/drivers/net/ethernet/vertexcom/mse102x.c
->> @@ -45,7 +45,6 @@
->>  =20
->>   struct mse102x_stats {
->>   	u64 xfer_err;
->> -	u64 invalid_cmd;
->>   	u64 invalid_ctr;
->>   	u64 invalid_dft;
->>   	u64 invalid_len;
->> @@ -56,7 +55,6 @@ struct mse102x_stats {
->>  =20
->>   static const char mse102x_gstrings_stats[][ETH_GSTRING_LEN] =3D {
->>   	"SPI transfer errors",
->> -	"Invalid command",
->>   	"Invalid CTR",
->>   	"Invalid DFT",
->>   	"Invalid frame length",
->> @@ -194,7 +192,6 @@ static int mse102x_rx_cmd_spi(struct mse102x_net *m=
-se, u8 *rxb)
->>   	} else if (*cmd !=3D cpu_to_be16(DET_CMD)) {
->>   		net_dbg_ratelimited("%s: Unexpected response (0x%04x)\n",
->>   				    __func__, *cmd);
->> -		mse->stats.invalid_cmd++;
-> If the net_dbg_ratelimited() is going to stay, maybe rename the
-> counter to unexpct_rsp, or similar?
-The problem here is that there are many reasons for the unexpected respons=
-e:
+On Mon, 05 May 2025 09:52:59 +0200
+T=C3=B3th J=C3=A1nos via B4 Relay <devnull+gomba007.gmail.com@kernel.org> w=
+rote:
 
-  * line interferences
-  * MSE102x has no firmware installed
-  * MSE102x busy
-  * no packet in MSE102x receive buffer
+> From: T=C3=B3th J=C3=A1nos <gomba007@gmail.com>
+>=20
+> Add support for the DFRobot SEN0322 oxygen sensor.
+>=20
+> Datasheet:
+> 	https://wiki.dfrobot.com/Gravity_I2C_Oxygen_Sensor_SKU_SEN0322
 
-So without further context like the actual response this counter isn't=20
-very helpful and more likely to scare users. But I would like keep the=20
-debug message for hardware / wiring issues.
+Checkpatch is lagging behind the times, but it is fine to use this
+as a formal tag in the tag block..
+>=20
+> To instantiate (assuming device is connected to I2C-2):
+> 	echo 'sen0322 0x73' > /sys/class/i2c-dev/i2c-2/device/new_device
+>=20
+> To get the oxygen concentration (assuming device is iio:device0) multiply
+> the values read from:
+> 	/sys/bus/iio/devices/iio:device0/in_concentration_raw
+> 	/sys/bus/iio/devices/iio:device0/in_concentration_scale
+>=20
+Datasheet: https://wiki.dfrobot.com/Gravity_I2C_Oxygen_Sensor_SKU_SEN0322
 
-Regards
+> Signed-off-by: T=C3=B3th J=C3=A1nos <gomba007@gmail.com>
+A few other little things inline.
 
->
-> 	Andrew
+Nice little driver :)
+
+Jonathan
+
+> diff --git a/drivers/iio/chemical/sen0322.c b/drivers/iio/chemical/sen032=
+2.c
+> new file mode 100644
+> index 000000000000..c2dfb0ff7f40
+> --- /dev/null
+> +++ b/drivers/iio/chemical/sen0322.c
+> @@ -0,0 +1,167 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Driver for the DFRobot SEN0322 oxygen sensor.
+> + *
+> + * Datasheet:
+> + *	https://wiki.dfrobot.com/Gravity_I2C_Oxygen_Sensor_SKU_SEN0322
+> + *
+> + * Possible I2C slave addresses:
+> + *	0x70
+> + *	0x71
+> + *	0x72
+> + *	0x73
+> + *
+> + * Copyright (C) 2025 T=C3=B3th J=C3=A1nos <gomba007@gmail.com>
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <linux/iio/iio.h>
+> +
+> +#define SEN0322_REG_DATA	0x03
+> +#define SEN0322_REG_COEFF	0x0A
+> +
+> +struct sen0322 {
+> +	struct regmap	*regmap;
+> +};
+> +
+> +static int sen0322_read_scale(struct sen0322 *sen0322, int *num, int *de=
+n)
+> +{
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret =3D regmap_read(sen0322->regmap, SEN0322_REG_COEFF, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (val) {
+> +		*num =3D val;
+> +		*den =3D 100000;
+> +	} else {
+> +		*num =3D 209;
+> +		*den =3D 120000;
+
+This is odd enough, that perhaps we could add a comment on why, or at least
+a cross reference to where these numbers come from?
+What is the special meaning of 0?
+
+> +	}
+> +
+> +	dev_dbg(regmap_get_device(sen0322->regmap), "scale: %d/%d\n",
+> +		*num, *den);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sen0322_read_data(struct sen0322 *sen0322)
+> +{
+> +	u8 data[4] =3D { 0 };
+
+If you are only read 3 bytes, why is this 4 long?
+
+> +	int ret;
+> +
+> +	ret =3D regmap_bulk_read(sen0322->regmap, SEN0322_REG_DATA, data, 3);
+
+Having shortened above, use sizeof(data) for that 3 to avoid
+any potential future mismatch in sizes.
+
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret =3D data[0] * 100 + data[1] * 10 + data[2];
+> +
+> +	dev_dbg(regmap_get_device(sen0322->regmap), "data: %d\n", ret);
+
+Given you more or less directly provide this to userspace now I'd drop
+the dev_dbg() as not adding any value for debugging.
+
+> +
+> +	return ret;
+> +}
+> +
+> +static int sen0322_read_raw(struct iio_dev *iio_dev,
+> +			    const struct iio_chan_spec *chan,
+> +			    int *val, int *val2, long mask)
+> +{
+> +	struct sen0322 *sen0322 =3D iio_priv(iio_dev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		switch (chan->type) {
+> +		case IIO_CONCENTRATION:
+As the sensor only does concentration, you could either drop this
+check on basis we can't get here without it or if you want=20
+a strong sanity check do it outside the switch statement as
+	if (chan->type !=3D IIO_CONCENTRATION)
+		return -EINVAL;
+
+
+> +			ret =3D sen0322_read_data(sen0322);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +			*val =3D ret;
+> +			return IIO_VAL_INT;
+> +
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +
+> +	case IIO_CHAN_INFO_SCALE:
+> +		switch (chan->type) {
+> +		case IIO_CONCENTRATION:
+> +			ret =3D sen0322_read_scale(sen0322, val, val2);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +			return IIO_VAL_FRACTIONAL;
+> +
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
 
 
