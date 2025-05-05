@@ -1,161 +1,185 @@
-Return-Path: <devicetree+bounces-173781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1383AA9716
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:14:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D09AAA974E
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:21:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C93A189042F
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:15:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95BB03AA9BA
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:20:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 785A525CC77;
-	Mon,  5 May 2025 15:14:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB89265631;
+	Mon,  5 May 2025 15:18:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KeyV2cBh"
+	dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b="eFYgxqub"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2088.outbound.protection.outlook.com [40.107.22.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94DEF25C83C
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 15:14:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746458093; cv=none; b=Z6khYyAArwgPdM9zZ4NX4CaGbYuBousaBq/dgMvxIYjyPgU/HrSqTE/jv655HgtHxfUO3rrSO/9qHJSEwY3TOnACvrX4+g1O3HGyIeAbrw3wvsAz3sIh+ljKKMeWvFnTfIJljb79bo5Ifojk1b+VhTPol3maYHxksoT355Tp10I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746458093; c=relaxed/simple;
-	bh=pgPKW4o269AEzuRZ7ilMi1bigEa3Hu2tQwNb2hqo0bY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U7cI65px4oF5BL21wyTZHjJfiaJIjd3IOkQlE+lniLoTfvr4foJyGMU6JyrOCvHA/Otjfl0LXrGkzoDXstnliz+unKCe3CQS2tn3+jUqYFiRLS82gF5a0588M0hHke+NFTPm98YU472LnDx8i6oSGNg5J/cmsOaeyWi/k/iaSBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KeyV2cBh; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-440668acbf3so6140565e9.0
-        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 08:14:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746458090; x=1747062890; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=d32GTanChrRQiIX2kw/78XA2TlMTohJ35wsLjmwnrpU=;
-        b=KeyV2cBhwdOBj86COo1QPl3oGjWmy1Vuk4j6RzqYQcffmZLvwrpDFPp6A+PDWMfrNG
-         fWSTdHvXIlj5aM47r0oO5/0WcVyOJIfyrApvA/RTfzcyzv7TJQHvOw1i69LNjfKog2Nx
-         CVjY57PnNB4zKsu1IxNVIHCGOgOaozxdj/uKmAe6BWAH7OQ/e7gLFUxx20dHpeWgtPuD
-         fQssMeUEMAHuGfa53CsunVFFduLvWdW/bIIN3PSnuwQfW6J2qBWuKim4UqG891EKXsaK
-         0JQVAuUyhQqdcj/8mSaxINkQk2LrZnKCiaZc81yklpZVDQ2gjxGtUaRICLbgTOGDEBdq
-         1iRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746458090; x=1747062890;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d32GTanChrRQiIX2kw/78XA2TlMTohJ35wsLjmwnrpU=;
-        b=LM4BrmoLaxWxxN4XHlx5Rk4voF/T6NvMN67bRUIvtC4t54+0CYPP1wbvaLB/aJIT1K
-         33hxlIsdgo5ZBw11LXAtVJFIXx2J5d3rtPVK7vLXVv0H+i21ckpGUUorPncYS+wQxotY
-         A/9hB8fwEoNMqXo2HsFyvK/Y+1H8Hck19+zldtUShyYBB9WzAcf5BGZLjmoWTQkF8dGD
-         j+lFcXqcWfL15hTO+1L2GDmO9jMbk4tGTBKC8SUQNBxHnsjnt4++lHVBI2+C7dtfjyMK
-         w/+YZv1yvR/+Lr/qcpoqXQMjyBUAczns4vNHsHa1H2ltBRFNir0O+Rfxs1JfdeI94W0S
-         LUdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVxN2Xewf3S7HlASGf6OcGB622IsAm2FUxftl5bGZbPneo7Wr96iS4nWWDUw3g0vd5TTTCS1DFSic+x@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPRtj8tyJMuIXsos98Rv7oY71ygwPZ+Wa9pHdqy7OZ8K85UJ4R
-	Ia+kqqP7albdBOK0SIZX7TyNadHsI6GZrdDPJvJ77OvYFRrrN+TBghrSpMpRpUI=
-X-Gm-Gg: ASbGncvTMFYm9qLHeWuq1QWdEjnzT9BFT82ta8k4nUXmZPgaab9CF6zwmVok5f6mxOP
-	OrG8iszEmB/sz/upWos1orXVfgvmRMwaaF35cYvVirZwqLKqoKsvhAe65odq40u6XlYHcLEi7lm
-	CpXSs0X/fBdSg5N+xfcCzn3mxAhFHSPcA1EXMplyLmp22q/zGkCxDdzXpMeo+zpjaDUZK3JlUAJ
-	A2vvszetwMThp0j7u59AfcDJ13SKqQyoH4b2MTsn/LYevhSiIBN/OKeFqq440RsgjKwP48tmpGp
-	74g0beZH7L6iOf4vhnbudrumPzMu0cqr13Ka+0+zSq4QYY9uC0ptv+L6YSkx9TbWh61tLQ==
-X-Google-Smtp-Source: AGHT+IGcpN1WH+W1TOAguqrm2FpFHGatweK6lfRlcaT9gjRgYlUH82bX8IAOdPt8S2pz9M/xpfDWfg==
-X-Received: by 2002:a05:6000:40dc:b0:3a0:6bd0:9771 with SMTP id ffacd0b85a97d-3a099adde6emr3159216f8f.7.1746458089886;
-        Mon, 05 May 2025 08:14:49 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2aecc14sm182288875e9.12.2025.05.05.08.14.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 May 2025 08:14:49 -0700 (PDT)
-Message-ID: <4fe7a429-50d8-41a6-a63a-6294cc76d599@linaro.org>
-Date: Mon, 5 May 2025 17:14:47 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1DA25D204;
+	Mon,  5 May 2025 15:17:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.88
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746458280; cv=fail; b=LMywYAUymrwzzgG0J29HL7Y0ny4KdYWWcN7mOxQa91ksZ9DwW1f4HptRF57XKNwZ2WsR+iGedb3u3NWnhpaAzsw4s7NFiEY/szdoa/TqXc2ljNZOZvS7LFwMYowcVpY25TSviZQJ4pxSxziTOqi/cM/JUgsqdPrW5IMWXwEXWWA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746458280; c=relaxed/simple;
+	bh=PTj1MP1WIRGuu0nZm4w8Ew+GTkJXFlSXfC9J/2ahsVA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=CDue9QFnbpszcvg5yhW41sXwM2WWaMG6feN0GvAzOyOV0Loa/sEqiFkkiOdsg5R4btltfXQDHhd/kSaXu++xqupFFq+4u6VIc02Dzoh/WLPGSaXBGflX3NdOxaFTzMekGyqbH5XlS6JzmglU7SxzUzIcQTWfa2tSP3shrC3pxaI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com; spf=pass smtp.mailfrom=de.bosch.com; dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b=eFYgxqub; arc=fail smtp.client-ip=40.107.22.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=de.bosch.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TgQxlsbl9JUnELy17u0nXDZEavJa10Bp33xWmCJvxU/1ArI6FiKGYQ3uUpLgxJctTpO1BhYxDQeCAB35cZOsrtWjkJgp9TiD9MJpId+jhaskyWagt5MFaIpSob1vzDX+bBz8WcmKzF9Xc76CJ+xifJdHfF1J1pS3wP34siYDAuQJ3c/dbNSz+dh8MwVu7wtGwwN3fVdpOOFOBe282TkIwqYrpYzqwrqH/STUtCrqEZfKmJf0ycVDX491vUF+QRdqFFn1RNqyuLiktrq9Ti0m2p7Sgy24qw60Y9hVahesiqPbHi1eT2hRGCMcZSteMQZuqkhX3nlxZPu7gMklxTKpmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e4RbypwvohzBv2l93lo1dOGouqk8EROORnX2dMZrXzM=;
+ b=FjWmOXvp7NEMnEYZGTUrejsJVqUynwjbIrR8chBK3qozgR8h9jRUnVZOMqb9GHB2QltUVevfAAZKWNUoHZ9HJr2Uss1SZdsqSYgRUnjXBwepUqIUc1AXTLhhWZc6dINiypx63jP3CnA1hgwJaDK+QQ+6IBh9Dqi8I9SorGV2AZpKXEi9XOw0H7h0pj9HpTqxjcImFEKBbMKBCdpJYxhLepfjn7bKHgVRmJ/MlMILq++87fYPB+WzGyPr1pz0+FLhlLtgMJgBTsc58bOhbbE1hWR2FzzPsj0g41KkKuEP7dalkM+SXv14t3tRVLBq6j7q1Rr4/u9W+uDAAVKaTCM7jQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 139.15.153.205) smtp.rcpttodomain=kernel.org smtp.mailfrom=de.bosch.com;
+ dmarc=pass (p=reject sp=none pct=100) action=none header.from=de.bosch.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=de.bosch.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e4RbypwvohzBv2l93lo1dOGouqk8EROORnX2dMZrXzM=;
+ b=eFYgxqubFdubSutXJk0NmMo+fdpZ/zkIMG98vf18KpIwEChSG3Z3U3gQ2HDI+Bwh4stIWvr/mJcoRj7EElBdb+1rqruVdJ5kSVawwNOI2QWLs/L2IQEzTT/L6T75qI6+Ren6zoEygU2F9c4G2epU2+6om+H/L8/NUr6S7H0ov5crOspy+JzXAyjdoAA1z7o9/ir8NKeZOPailEA8zG+Z3rRVeyVPr30wANd/r/ouCSC7UL1xZPaKrJrrtvw/A5+OEf4kWuoGySsvUwE5Obao41DozHFBX40uRWjXRWr6SX56WpMFtKNQ+IX1oD26FFhKJ68e7JuoYUUn1/AI79Y4gQ==
+Received: from DU2PR04CA0317.eurprd04.prod.outlook.com (2603:10a6:10:2b5::22)
+ by DB9PR10MB7124.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:459::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.24; Mon, 5 May
+ 2025 15:17:51 +0000
+Received: from DB5PEPF00014B89.eurprd02.prod.outlook.com
+ (2603:10a6:10:2b5:cafe::5d) by DU2PR04CA0317.outlook.office365.com
+ (2603:10a6:10:2b5::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8699.27 via Frontend Transport; Mon,
+ 5 May 2025 15:17:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.205)
+ smtp.mailfrom=de.bosch.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=de.bosch.com;
+Received-SPF: Pass (protection.outlook.com: domain of de.bosch.com designates
+ 139.15.153.205 as permitted sender) receiver=protection.outlook.com;
+ client-ip=139.15.153.205; helo=eop.bosch-org.com; pr=C
+Received: from eop.bosch-org.com (139.15.153.205) by
+ DB5PEPF00014B89.mail.protection.outlook.com (10.167.8.197) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8722.18 via Frontend Transport; Mon, 5 May 2025 15:17:51 +0000
+Received: from FE-EXCAS2000.de.bosch.com (10.139.217.199) by eop.bosch-org.com
+ (139.15.153.205) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 5 May
+ 2025 17:17:46 +0200
+Received: from RNGMBX3003.de.bosch.com (10.124.11.208) by
+ FE-EXCAS2000.de.bosch.com (10.139.217.199) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.43; Mon, 5 May 2025 17:17:45 +0200
+Received: from LR-C-0008DVM.lr.de.bosch.com (10.13.213.45) by
+ smtp.app.bosch.com (10.124.11.208) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Mon, 5 May 2025 17:17:45 +0200
+From: <Jianping.Shen@de.bosch.com>
+To: <jic23@kernel.org>, <lars@metafoo.de>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <dima.fedrau@gmail.com>,
+	<marcelo.schmitt1@gmail.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<Jianping.Shen@de.bosch.com>, <Christian.Lorenz3@de.bosch.com>,
+	<Ulrike.Frauendorf@de.bosch.com>, <Kai.Dolde@de.bosch.com>
+Subject: [PATCH v1 0/3] iio: imu: smi330: add bosch smi330 driver
+Date: Mon, 5 May 2025 17:16:38 +0200
+Message-ID: <20250505151641.52878-1-Jianping.Shen@de.bosch.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/panel: Add Novatek NT37801 panel driver
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250505-sm8750-display-panel-v1-0-e5b5398482cc@linaro.org>
- <20250505-sm8750-display-panel-v1-2-e5b5398482cc@linaro.org>
- <2fb8cb05-8fd7-431d-87a9-134448125f06@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <2fb8cb05-8fd7-431d-87a9-134448125f06@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB5PEPF00014B89:EE_|DB9PR10MB7124:EE_
+X-MS-Office365-Filtering-Correlation-Id: 06aef56c-b950-4e02-3b96-08dd8be800ca
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|1800799024|7416014|82310400026|376014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?2vAxD1xf92MPF/kKpZyireSbpnNtOjs9EBxFnVB44FHDp1hTOpvlSH3oep1C?=
+ =?us-ascii?Q?KCcsbb1C/MVKspWpjUYGFT5JNHxjn/OTqbHYEvrj0knn2mUbwPK7T2Su/JNk?=
+ =?us-ascii?Q?yYNkMKbDzGzMLUx9G7/B96Iw+N8dJVrkqWlqllwdzPEKptkM4Qdi61AFLO0b?=
+ =?us-ascii?Q?LHEe0wboS3l8MmUupdDuYT4J/xIJNuo1lEqHzEDhB+jrOUnc37TeXZwAqOp9?=
+ =?us-ascii?Q?bFwBzUSEfKk+4EWMWIedisjjcE7eJHDtIoOf056YdvVG1fK16sq4rxsDH+Bj?=
+ =?us-ascii?Q?uENtmAk92SZwjqV00FrVyYWdkz0oOsQRCR2uWBtf98nbWOe1h8MFxAxxFjBu?=
+ =?us-ascii?Q?KYTAgWTj3765vkHKzRVvR1GjEYccn7nNDh5TjkaXAzNdzdt2vTXzuaaBzJhE?=
+ =?us-ascii?Q?xkPvaORnO7x3kEyN5pZArckY2a/eK6jU07HL98vOuN4Upp1F4taY1fmQ6D2q?=
+ =?us-ascii?Q?Be3q4OXYAe7eOKMLdmzq4YeVcz1jMA5h2dtSmiAZrDlfNr+TLU4bbhRi0Xf2?=
+ =?us-ascii?Q?YkONrVE3V8TNIhO7HX+o2GJDvot5M/9Ot4PvEUfnJJjiOoBcX1c3R4ss/rOJ?=
+ =?us-ascii?Q?UyfOptNaLdUCMf8K1rOObDLdMeoQNgH/6P5/0fY0WytG4V518hjszhhexDm/?=
+ =?us-ascii?Q?oWtX64AATcka1PKtmvS4HN1cD1kHMo6MFh3SvtdVoy85ynfNmLiM8c6zoYiw?=
+ =?us-ascii?Q?qIFJMeJ30nFQ42ZshXz6dpTlgHCvUM/fZRbEDRV9LJRBLT7Ushfh6d/FTdW1?=
+ =?us-ascii?Q?MdTxFDWkqDx53+mGVehfoEJRa8Q6W9QKr+Vw3qPX/W1SAKSrTHzYgD3tI3+W?=
+ =?us-ascii?Q?1ikhsTSdivzryRZR+lnrC2FMiunhgHJF4phHEB0fsKawguFnWsSvkIFn9EOW?=
+ =?us-ascii?Q?dB8p9ri75j9LCpBJMVFHQV78Vv7mse3hbk0dx6U2ogUqSpZls9V8wwqmlpyW?=
+ =?us-ascii?Q?Dtu0gHYRUHPKZdTIYcLqy9LyJzs7gbMDKYvtoMsi9A6mXT2GsUEW4J+JdchG?=
+ =?us-ascii?Q?6R+JD8ULXaU4NiD9vH/9WEHxx8MPTi7RD7aBXY1xAo+3YBwZIPHkqW7NGFMF?=
+ =?us-ascii?Q?X6QkeVnCG2HzeRzSjoUYGVlB23lF1Sp5cdruh3flwV1wSPdushKvuEQK/CKT?=
+ =?us-ascii?Q?QEu2bWgWai0R4NoK1S8oK0m6owHlDO/k/cm5De8+ASNsj8zbZJXpttGVlqs7?=
+ =?us-ascii?Q?RfO/l4KSHP8KSb2Ndoj5lO1kZ6ucuOozXwFFRjZknazr86lMRjBGLbUemaT2?=
+ =?us-ascii?Q?6XHiSqfSeC7rWDgvZVbc8uJPAp/72BUSAzbGG9s9f8Wcrs/r/ZCWPhUqwEkL?=
+ =?us-ascii?Q?Cb1hTwCT4vSNWISasUPzr2PhEGKEAyov7kph9RenyIbUIFPQ5df26ba0dTpA?=
+ =?us-ascii?Q?f42GDqUSYofhEouwm/taXjXpFUmWReXQE25xIxIiyt2B7K2aQOTHRlQz/5Mm?=
+ =?us-ascii?Q?4HUs8cyI03xa6MJW28zLjUFUW6WLWBQVfXScv540z0uMQityKjVNpzZc8paf?=
+ =?us-ascii?Q?si7UXQ4chWy5aZwWZPTwsarAYyjK+Yi/qoFRQ28g5nU12ZgQBlHYO+EV8w?=
+ =?us-ascii?Q?=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:139.15.153.205;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eop.bosch-org.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(7416014)(82310400026)(376014)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: de.bosch.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2025 15:17:51.7345
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06aef56c-b950-4e02-3b96-08dd8be800ca
+X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4;Ip=[139.15.153.205];Helo=[eop.bosch-org.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB5PEPF00014B89.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR10MB7124
 
-On 05/05/2025 15:58, Neil Armstrong wrote:
->> +	dsi->lanes = 4;
->> +	dsi->format = MIPI_DSI_FMT_RGB888;
->> +	dsi->mode_flags = MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_CLOCK_NON_CONTINUOUS;
->> +
->> +	drm_panel_init(&ctx->panel, dev, &novatek_nt37801_panel_funcs,
->> +		       DRM_MODE_CONNECTOR_DSI);
-> 
-> Please switch to devm_drm_panel_alloc()
-Ack
+From: Jianping Shen <Jianping.Shen@de.bosch.com>
 
-Best regards,
-Krzysztof
+Add the iio driver for bosch imu smi330. The smi330 is a combined
+three axis angular rate and three axis acceleration sensor module.
+This driver provides raw data access for each axis through sysfs, 
+and tiggered buffer for continuous sampling.
+
+Jianping Shen (3):
+  docs: iio: imu: smi330: Add ABI documentation
+  dt-bindings: iio: imu: smi330: Add binding
+  iio: imu: smi330: Add driver
+
+ .../ABI/testing/sysfs-bus-iio-smi330          |  149 +
+ .../bindings/iio/imu/bosch,smi330.yaml        |   89 +
+ drivers/iio/imu/Kconfig                       |    1 +
+ drivers/iio/imu/Makefile                      |    1 +
+ drivers/iio/imu/smi330/Kconfig                |  129 +
+ drivers/iio/imu/smi330/Makefile               |    5 +
+ drivers/iio/imu/smi330/smi330.h               |  351 +++
+ drivers/iio/imu/smi330/smi330_core.c          | 2608 +++++++++++++++++
+ drivers/iio/imu/smi330/smi330_i2c.c           |  140 +
+ drivers/iio/imu/smi330/smi330_spi.c           |   77 +
+ 10 files changed, 3550 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-smi330
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,smi330.yaml
+ create mode 100644 drivers/iio/imu/smi330/Kconfig
+ create mode 100644 drivers/iio/imu/smi330/Makefile
+ create mode 100644 drivers/iio/imu/smi330/smi330.h
+ create mode 100644 drivers/iio/imu/smi330/smi330_core.c
+ create mode 100644 drivers/iio/imu/smi330/smi330_i2c.c
+ create mode 100644 drivers/iio/imu/smi330/smi330_spi.c
+
+-- 
+2.34.1
+
 
