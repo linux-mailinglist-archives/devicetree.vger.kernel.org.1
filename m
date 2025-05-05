@@ -1,125 +1,272 @@
-Return-Path: <devicetree+bounces-173849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 155ADAA9D1B
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 22:27:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20FBEAA9D44
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 22:34:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18CB6189C104
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 20:27:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EB2E1A80BEB
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 20:34:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 400632561DC;
-	Mon,  5 May 2025 20:27:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3051E7648;
+	Mon,  5 May 2025 20:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="UIN2p2jr"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="I/Lbi1CV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592511624C2
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 20:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3EB723CE
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 20:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746476843; cv=none; b=Z0dm+3y4u3YQvdX+qG1Gl9SwCu8RzPqbQzxYQFpWd0lPTLDw8BvxxvcqA6AxHoPkryXl167XVBo8DurID0jqlO3q8tnYJOFsSdgV3/SJWGW4hs8giZPlMu9EaadMpcVBLJtHvT4pD42ojhzYfiT7c/1gsiKf11JX+rM4CQqjx0c=
+	t=1746477275; cv=none; b=lTapIw8JtcGruyedB48tkU5sXJSp5cfxFxDdpyBbL0kjlFDvqnjCFNXF3mQeUn62k+HdEvlNz19T3lw0Gp7gNUt8UUe7uLgFMjf4D0FwnNcAIHuB//JcJ6BwqRAngOMNjyXmDxSMjxOF3ja2ZsYcI16S47Y2nMhJN+PZpWdOAB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746476843; c=relaxed/simple;
-	bh=Gv4IZdvwFAlcynuNtzzAfil15jVh/pjcFz9j3dEcv1A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mLhU0xJAvP9fLn/MS/FpOiMebFWoJbywcrl5don98GHx9yzIA9ApWh9/NTUCqLMXNwnGq4JfNvYSEW7AWkrnCcdGAZwk9QzcjrlxJI6Mlb1lIAYN1KZIpzicD2YdszVB4uNOJWM2PN4QrG8Btg7Z17s1BlmRAtf/JY4QxjsNeEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=UIN2p2jr; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=hEm5
-	1459XoFERFFsEF7nofrhCzEKQ7WoDM7uXL5EKf8=; b=UIN2p2jr7X21tWZy0iyV
-	P8GuLMLZAeH/xpEBIJRl2J037jd6xC6mh9IPPBCG0BL6BOZATMTIWo389nI9zSgz
-	UZqCq3uCK5PxM9DnX2ca0v8h2Uxi5nE/DgaHD0xr624o8PI+HryTvxYP8NAgccql
-	GiSGs8yJDXGlA38x5rirA7o+oFE1ZFYxnhhaBl7ltFy/J44GsEBU+BuBHhGnq7rp
-	t38CGAHDmfuGP2Wp6LQMXczez/OV+QN/0GdDK2jUzMD9fAKlIT+CYxdZwilV0NVZ
-	FeClO+OSjwKwwE1klkdFMnBWflPhZo4y4m/0rhQdrWEPkjU31DzqXzrCX4R+hHfR
-	6w==
-Received: (qmail 2656059 invoked from network); 5 May 2025 22:27:10 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 May 2025 22:27:10 +0200
-X-UD-Smtp-Session: l3s3148p1@ZPgXU2k0+NYujnup
-Date: Mon, 5 May 2025 22:27:10 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: Re: [PATCH 2/2] ARM: dts: renesas: r9a06g032-rzn1d400-eb: enable USB
- host port
-Message-ID: <aBkfHudni5WoJLtt@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	linux-renesas-soc@vger.kernel.org,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>
-References: <20250425100129.11942-4-wsa+renesas@sang-engineering.com>
- <20250425100129.11942-6-wsa+renesas@sang-engineering.com>
- <CAMuHMdW2NHeatmSr4ePj6fPcbT5XNZJr967L3NJ_i6xYwgxaBA@mail.gmail.com>
+	s=arc-20240116; t=1746477275; c=relaxed/simple;
+	bh=eXsbeYaStEdVkB/9iiuPPvCcb0GJ33j+Y7Lm4GpCn+k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ifRKKrsPU4sBtCB9PQjlJNYnRy0YVOzZDoLP+xjU+5uwD7KSagHL/szhe/Zkuss9jVnYh0mI72RW2DeeZHUc6Tdgi2D67Eq4ezLhGjUl7z+zWtTfKOtFKbYYl3ZojArV5IzLtTT7B2tdJ3BiN6xK+d4LOabbJOjCxloTF/jHXLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=I/Lbi1CV; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-54998f865b8so5306347e87.3
+        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 13:34:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1746477271; x=1747082071; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aad+O7LlnePo9Jud5k6L+0x2zxiP/d5GA/t21nuBedc=;
+        b=I/Lbi1CVZDl1obG0Fb/2EMGdznGkHEAP980LT0oBlKAb39k9aPyq8cCLUWC7GZtrR/
+         rJZfD4xgng58xottKDQH5b7Y40adyt9beewyCkNl3QyGgsLqUFV2uDC2jNQOHy+JoNjS
+         9kxQy5p1eLTrg1ioVr0GLrR5s/tj5cc88xCx8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746477271; x=1747082071;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aad+O7LlnePo9Jud5k6L+0x2zxiP/d5GA/t21nuBedc=;
+        b=SydVOsaGpb0iTJ1/0urH811YCi37Rj4OvUVqfnKIyE9DCvYlZXVkCDEAW/g80kbbC0
+         dZVddAnjsBtuI2rWuIZJpmYnhEZCMbV1Sc/KOcuyCz3AcojvB7Z+29irYfqypDXKCfev
+         6MHsd8vo4/xpRvkjNnGCIxS7RkcM235lgedKSkEpwnMGjktcmCu3tpWbvr3ecn6jVy66
+         9TTR+OUAQiXlLuN/UVSpMxdV+FM9VF30UcyLOc8E7foMEGX08W4sIi5CCqgqwltWDLfs
+         r0gPz1E4GrPsK9OQWJ/Y2ftUat5euPqvefpIxP6qW+9uh6GGwQPOYKOdWkkFz2EmUuGF
+         vYCg==
+X-Forwarded-Encrypted: i=1; AJvYcCV2YCtljRyA7YRyBILHn4JgJE+icL6vSU/fRy7WpI5GiICr4JIOWqR8xt3YFYa1kJybQnlEj3a+H4FE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAOtpYtseZbmis+Oa/kUwA+N2zLZRdv8/4VAumu5+jB61MyZmR
+	GQVmScHfVyf80Z1I2EBcfLOL+s4U5/CA9PMHTX8ra9rdyatrCNZgeUKrnTb7Tf0KZCJHx00qmI8
+	=
+X-Gm-Gg: ASbGncuUr7MhknlcwUXPMU7i5kn0RJ6AqeNbyy1J0WHb42LzKNrPxR+xAmjAYqQs4X6
+	S6DdAWMxmtZNht1mPKKywKjhwIAaMkPJm0EyjOkPPB8iR83huMQtYl6hlsxkZTTwfoQtMovzuBB
+	ZTZFXesHyIfbCE/anpNMn0lxfD7zbuaVTL28RNMWsHoC+u1Lrzn5x6MLGoYPoAgkpM64VUm5hYz
+	/QQNBH9TIPVVZxa9FIOX7y/pp6Nguoko4eAux+mWC/LedhtY4dyhMNgIIk3Wwsen1BR2+tbnbuK
+	Rm4h121f3pWPqSM7TEx/2xF3JXLDlea1wN4uNzsIAlyGCF6hhTG/knjmuONy1Nw9eC5sUJEBW1p
+	ESw1Mn80=
+X-Google-Smtp-Source: AGHT+IEtAuTUJOgyxA9VyEFjWEgu5PKtq+H6twFaZ537BslaCtZIZvVRT1oONC4aOsZjuZpjldvq9Q==
+X-Received: by 2002:a05:6512:3e24:b0:549:8f4a:6baa with SMTP id 2adb3069b0e04-54fb4a67ca9mr133902e87.27.1746477270915;
+        Mon, 05 May 2025 13:34:30 -0700 (PDT)
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com. [209.85.208.174])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94b18a1sm1847864e87.42.2025.05.05.13.34.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 May 2025 13:34:29 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-30c091b54aaso41955431fa.3
+        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 13:34:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVI7MVBng0zXlh5h2CJPBTyrMfaoPbfQIeJ2dgJ8sGay7kcMfhQhBL52JB50YpiU0If6a2K9MxADthk@vger.kernel.org
+X-Received: by 2002:a05:651c:b2a:b0:319:d856:c2f3 with SMTP id
+ 38308e7fff4ca-3266b59789emr751721fa.10.1746477268328; Mon, 05 May 2025
+ 13:34:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="IYBwt3Y2mERE+mYx"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdW2NHeatmSr4ePj6fPcbT5XNZJr967L3NJ_i6xYwgxaBA@mail.gmail.com>
+References: <20250403-uvc-orientation-v1-0-1a0cc595a62d@chromium.org>
+ <20250403-uvc-orientation-v1-3-1a0cc595a62d@chromium.org> <Z_uIyEe4uU_BC5aY@valkosipuli.retiisi.eu>
+ <CANiDSCvQC25ZrSZgUuFt6deCogFL6=GPsYYrsegK1NOK=uzRJA@mail.gmail.com>
+ <dd471b51-333b-4537-ac58-29ad2a10f1e2@redhat.com> <aAdkU65ruBfyRjss@valkosipuli.retiisi.eu>
+In-Reply-To: <aAdkU65ruBfyRjss@valkosipuli.retiisi.eu>
+From: Ricardo Ribalda <ribalda@chromium.org>
+Date: Mon, 5 May 2025 22:34:16 +0200
+X-Gmail-Original-Message-ID: <CANiDSCt5_HwfwXDWNGWvzkSAW2ZB4PJwS00=i0EizY_3A-OSgw@mail.gmail.com>
+X-Gm-Features: ATxdqUEg2rUAsN7TYo98ElSvRXDzyBQACXaWg80nr6xGofF6c5WfqBKJm9vPYRM
+Message-ID: <CANiDSCt5_HwfwXDWNGWvzkSAW2ZB4PJwS00=i0EizY_3A-OSgw@mail.gmail.com>
+Subject: Re: [PATCH 3/8] media: v4l: fwnode: Support acpi devices for v4l2_fwnode_device_parse
+To: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: Hans de Goede <hdegoede@redhat.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Sakari
+
+On Tue, 22 Apr 2025 at 11:41, Sakari Ailus <sakari.ailus@iki.fi> wrote:
+>
+> Hi Hans, Ricardo,
+>
+> On Tue, Apr 22, 2025 at 10:44:41AM +0200, Hans de Goede wrote:
+> > Hi Ricardo,
+> >
+> > On 22-Apr-25 2:23 AM, Ricardo Ribalda wrote:
+> > > Hi Sakari
+> > >
+> > > On Sun, 13 Apr 2025 at 17:50, Sakari Ailus <sakari.ailus@iki.fi> wrot=
+e:
+> > >>
+> > >> Hi Ricardo,
+> > >>
+> > >> Thanks for the patch.
+> > >>
+> > >> On Thu, Apr 03, 2025 at 07:16:14PM +0000, Ricardo Ribalda wrote:
+> > >>> This patch modifies v4l2_fwnode_device_parse() to support ACPI devi=
+ces.
+> > >>>
+> > >>> We initially add support only for orientation via the ACPI _PLD met=
+hod.
+> > >>>
+> > >>> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
+> > >>> ---
+> > >>>  drivers/media/v4l2-core/v4l2-fwnode.c | 58 +++++++++++++++++++++++=
+++++++++----
+> > >>>  1 file changed, 52 insertions(+), 6 deletions(-)
+> > >>>
+> > >>> diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/=
+v4l2-core/v4l2-fwnode.c
+> > >>> index cb153ce42c45d69600a3ec4e59a5584d7e791a2a..81563c36b6436bb61e1=
+c96f2a5ede3fa9d64dab3 100644
+> > >>> --- a/drivers/media/v4l2-core/v4l2-fwnode.c
+> > >>> +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
+> > >>> @@ -15,6 +15,7 @@
+> > >>>   * Author: Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+> > >>>   */
+> > >>>  #include <linux/acpi.h>
+> > >>> +#include <acpi/acpi_bus.h>
+> > >>>  #include <linux/kernel.h>
+> > >>>  #include <linux/mm.h>
+> > >>>  #include <linux/module.h>
+> > >>> @@ -807,16 +808,47 @@ int v4l2_fwnode_connector_add_link(struct fwn=
+ode_handle *fwnode,
+> > >>>  }
+> > >>>  EXPORT_SYMBOL_GPL(v4l2_fwnode_connector_add_link);
+> > >>>
+> > >>> -int v4l2_fwnode_device_parse(struct device *dev,
+> > >>> -                          struct v4l2_fwnode_device_properties *pr=
+ops)
+> > >>> +static int v4l2_fwnode_device_parse_acpi(struct device *dev,
+> > >>> +                                      struct v4l2_fwnode_device_pr=
+operties *props)
+> > >>> +{
+> > >>> +     struct acpi_pld_info *pld;
+> > >>> +     int ret =3D 0;
+> > >>> +
+> > >>> +     if (!acpi_get_physical_device_location(ACPI_HANDLE(dev), &pld=
+)) {
+> > >>> +             dev_dbg(dev, "acpi _PLD call failed\n");
+> > >>> +             return 0;
+> > >>> +     }
+> > >>
+> > >> You could have software nodes in an ACPI system as well as DT-aligne=
+d
+> > >> properties. They're not the primary means to convey this information=
+ still.
+> > >>
+> > >> How about returning e.g. -ENODATA here if _PLD doesn't exist for the=
+ device
+> > >> and then proceeding to parse properties as in DT?
+> > >
+> > > Do you mean that there can be devices with ACPI handles that can also
+> > > have DT properties?
+> >
+> > Yes it is possible to embed DT properties in ACPI, but I don't
+> > think that is really applicable here.
+>
+> This is determined by
+> Documentation/firmware-guide/acpi/DSD-properties-rules.rst . So rotation
+> and orientation shouldn't come from _DSD properties on ACPI systems.
+
+Doesn't this contradict what DisCo does?
 
 
---IYBwt3Y2mERE+mYx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+if (!fwnode_property_present(adev_fwnode, "rotation")) {
+struct acpi_pld_info *pld;
+
+if (acpi_get_physical_device_location(handle, &pld)) {
+swnodes->dev_props[NEXT_PROPERTY(prop_index, DEV_ROTATION)] =3D
+PROPERTY_ENTRY_U32("rotation",
+   pld->rotation * 45U);
+kfree(pld);
+}
+}
+
+It seems to first check for the rotation property, and then check _DSD.
+
+If I send a v2, shall I also replace DisCo even if that means
+reverting its logic?
 
 
-> According to Sections 10.6.5.1 (1) ("Meanings of USB_OCI and USB_PPON
-> Signals") and Table 10.131 ("OCI and PPON") of the RZ/N1D System Control
-> and Peripheral Manual, USB_PPON2 and USB_OC2 are only used when both
-> ports are configured for host mode.  When port 1 is configured for
-> function mode, port 2 uses USB_PPON1 and USB_OC1 instead, so you
-> shouldn't need pin control for USB_PPON2 and USB_OC2.
-> However, that does not match the schematics, which show that USB_PPON2
-> and USB_OC2 are wired to port 2's power switch.
-> Can you enlighten me?
+>
+> >
+> > But we also have secondary software-fwnodes which are used
+> > extensively on x86 to set device-properties on devices by
+> > platform code to deal with ACPI tables sometimes having
+> > incomplete information.
+> >
+> > For example atm _PLD is already being parsed in:
+> >
+> > drivers/media/pci/intel/ipu-bridge.c and that is then used to add
+> > a standard "orientation" device-property on the sensor device.
+> >
+> > This is actually something which I guess we can drop once your
+> > patches are in, since those should then do the same in a more
+> > generic manner.
+>
+> DisCo for Imaging support currently also digs this information from _PDL
+> (see init_crs_csi2_swnodes() in drivers/acpi/mipi-disco-img.c), but this
+> is only done if a _CRS CSI-2 descriptor is present. It could also be done
+> for devices with the IPU Windows specific ACPI objects and it would be a
+> natural location for handing quirks -- there are some
+> unrelated Dell DSDT quirks already.
+>
+> >
+> > > What shall we do if _PLD contradicts the DT property? What takes prec=
+edence?
+> >
+> > As for priorities, at east for rotation it seems that we are going
+> > to need some quirks, I already have a few Dell laptops where it seems
+> > that the sensor is upside down and parsing the rotation field in
+> > the IPU6 specific SSDB ACPI package does not yield a 180=C2=B0 rotation=
+,
+> > so we are going to need some quirks.
+> >
+> > I expect these quirks to live in the bridge code, while your helper
+> > will be called from sensor drivers, so in order to allow quirks to
+> > override things, I think that first the "orientation" device-property
+> > should be checked (which the ACPI glue code we have can set before
+> > the sensor driver binds) and only then should _PLD be checked.
+> >
+> > IOW _PLD should be seen as the fallback, because ACPI tables are
+> > often a copy and paste job so it can very well contain wrong info
+> > copy-pasted from some example ACPI code or from another hw model.
+>
+> Unfortunately that does happen. :-(
+>
+> --
+> Regards,
+>
+> Sakari Ailus
 
-Both pins I enabled here are routed to the Config CPLD (check the DB
-datasheet, page 9). This handles the configuration and routes whatever
-is selected to the EB then. The pins on the EB are always named PPON2
-and OC2. Because these pins are always routed to the CPLD, I think it
-makes sense to have them described like this always. I didn't see
-another way to use them anyhow. It could be argued, though, that these
-pinmux properties belong to the DB, then. Maybe this makes more sense?
 
 
---IYBwt3Y2mERE+mYx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmgZHxoACgkQFA3kzBSg
-KbZY6xAAiXI2SnEAFk0HxPbwMl/d30Z+/XHF1s45giYOOIj3FI9cPvLnsX/QWhMl
-iRvC10JorpiF1Ry2NkUj9g8znexK4KpeWasVgL3bBeuGx4BTbl2KJ6e9tXajVYYY
-so5/iykN0TrnzOy46DO/khJkSxHzxTl56/T4SOhzTgBOVerWsHsHi25vUYS9bVUl
-ZCLBhzHDtnfYA4QfA59N/57XkA1ESvLcWThcboxjpPF+RaY2GwhrRyA/qVr0v0MF
-qtjYtat4t/XxqY8vuZ0CkKNtZKzoQwkZbiBHaX6ZUfSdHCBC/npqD6/V1l8C4Bcy
-X89iR6uL5KecEE23HOjI2uub5G3ap+ApDUzm9QZK1h1OvZlyvDhTvDYSBLYrazrx
-i4tFyzEYOLVRAZkaD/5N78ORFgSgw7KTCNXfcbvJwCuy4jNjDdsfogEa/lGqkLZ6
-R+hMvmKznywBmiXCvYufSu40qCwpFUEga2fm0JMVAtVrZn/TVz79LVYMchuHAZlA
-+Dw6+FQG8kyvDnPf9U4U+qS9WniWl9vIfSDSahyQGyCGVpT8uWsutf5AKOR5fweC
-vZW/tWSdJXqqxbVHtQFCwiNoq+RVA5H3kADNMsmMk5jn7mHJjIRNP8zNtER7AIdx
-xsBy0kNd4Zwp2cqjBinFKS/U7TjXqpUP7obzjZJXYdiUox4QHkI=
-=DPoK
------END PGP SIGNATURE-----
-
---IYBwt3Y2mERE+mYx--
+--=20
+Ricardo Ribalda
 
