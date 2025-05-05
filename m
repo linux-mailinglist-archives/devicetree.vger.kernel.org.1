@@ -1,115 +1,188 @@
-Return-Path: <devicetree+bounces-173778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63918AA96F2
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:07:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A027EAA96F0
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 17:06:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E71F518840DF
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:05:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 894F77A79EC
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 15:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEF9825C6E8;
-	Mon,  5 May 2025 15:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEBB325C83C;
+	Mon,  5 May 2025 15:06:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OoOGGlRo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF5B24E4AA;
-	Mon,  5 May 2025 15:04:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EE325CC58;
+	Mon,  5 May 2025 15:06:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746457489; cv=none; b=ukmW3IU6PefcG8/YDl7Hj5TNPmJr8Ucayx7Mr4TQZ6rU5GWGEdDz2rQi0EsuSpTNPCW61r0NA6FPaKne+DyUtugOnpdhWK0yHFf4W+ht5521clTSu4qiPtwlNNkS3fROXUZNj3WaTQbulN9GsKbSh5JlAS3bVlOb50iNBBrbEos=
+	t=1746457570; cv=none; b=Hd58QvA2z+dqX/4d6ZNQ8y99t3Sa4phGZieS0M0Ns+eD9VYzOfsPzNnbVhczHfhEGsW3tQp04fK99wFIK+E6RqazWu7zNEcUohopySCmApZRphwL1425oGEc3yiYiGy/utAsuPff2qYsDJAHuyy9AVpQlafqtc0PNDlejqz/8JQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746457489; c=relaxed/simple;
-	bh=oyirWERup5Uc8jmwpcQClnWtJH12UWehY4h+S+AUxC8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HgcwXflyUghuSj9Mm17f2z2EVpbZ3i65+5rZB/1NnA3ElSxtC1u4LZYC0ZU34VO9yrTiKbm+VS30uQKcUvsE7KueSK3bzAq0kSBGp+4DqgTpONv6k3gVpYP+xooqB/1KdpKusbgdb5veZ9SuCe7x+vNdhgRMgwrDZHLv1yng3KE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-7c5f720c717so651362585a.0;
-        Mon, 05 May 2025 08:04:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746457484; x=1747062284;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PQ9jug1fRN1yvNW6wnb1QXO89WpVeOCqzDCpI6ZRvAQ=;
-        b=XBUHlZStkUuYr3AUh5RhpOpNh0TMvC+f4a7HYVXRufZ9WLsGL6HNs6bP+KYJZl72FO
-         PuEN7CT76cw/ozAANWLjH6kIR1gMC5l53DFDwPIVvSgluiUVHqCsE+Wo7+cP5aILpLeg
-         vKNTv1cZ4Gyom4PGU3wznzqornduMcevR2ojaiyxl5QE3YB6KsE4n5A5W6k7AoJZOTQe
-         uUPO0FM4hkt0UNSiYGbxTozUxIeyPsHfMLagdHmcWj/LA2f4lgK4VcX+qLGK0Eh7t6Qf
-         4FoQeTR9hMBeOMAaOPthG8J06sB1vXhZ1qgXHAMLVTMCxlWFM5HxEUHbzv54FlVlrnF8
-         MZyA==
-X-Forwarded-Encrypted: i=1; AJvYcCUSM7XTzkWCxpRvrIABWTYktourk7/oP8O+l2SFXO7JjZ6SlXffFmcf80M/jbrixh0Ru2ulpCp3UkW0@vger.kernel.org, AJvYcCUyC50syJ18UxFkhsPEsnikeGZUXG/E1HQTngCmw5VEyl2NLGEnYohy/ClcjTVCNCzBUzyTSSrjbNCn8TwYQU0PHgg=@vger.kernel.org, AJvYcCX0oewpqGzcHqfkNQi6aU+FBhp1cQMvm7aW/jvHH1EHNr1JfJNbAQngTQhE8EiZcrKyfpnQzqrRaC181eeh@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCJJfJ8I6BMnGYazBXprHJy24zjk7xshyrUsJYUXqQ4XwWHze8
-	H2jo436o1szpZh6Egt1qDO5yKQf72dKKaXqXWxXc4ieTHQmVgtLS+6A3T3hR
-X-Gm-Gg: ASbGnctDxtp73AxLyu7hPGfO441SG5VTJ5YEghyGV8CfV2JEiEF4YjnA1xnqcdCBZ2f
-	yf/fkYbCHMLSz2/MSvOz7HwyiP8qjYQqYuntI+qkJERN5zj35Yeow1tPdqzQfpwFvf7OsNVNxdm
-	Izp2RVVnKz6auIel9hwWKovVA6xNPKCXVFA2QeVKYAonXCO+NwOVcvwZB6hIU62MNAve0hRzD+c
-	UC0qEifSATAv4E5Eh5eXDwtrGn2feSf8qE0oXegkwCuKgOaOkFvNS3qDj57zaQW+KEmZYT1Ig+j
-	NJZ7lmNqEvx7ZOO7E6E4Kqe/O/GqJeQsn4FK7lQSBbUZn5vClF0TjLYWopmFe2uR4uTBVDu11gE
-	MWYj94V1WiOr5dd3Vjg==
-X-Google-Smtp-Source: AGHT+IGAAEdmoEmIYBqMAB1fz7fUTMk1BATQhNKWfpcVLLRVM+vYOc7+QgiI8ZU1xT/gC9Bezbt1Jg==
-X-Received: by 2002:a05:620a:2551:b0:7c9:142d:3c66 with SMTP id af79cd13be357-7cace7d458amr2627208985a.0.1746457484579;
-        Mon, 05 May 2025 08:04:44 -0700 (PDT)
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com. [209.85.222.178])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7cad23b5f7fsm580788685a.8.2025.05.05.08.04.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 May 2025 08:04:43 -0700 (PDT)
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7c922734cc2so514548185a.1;
-        Mon, 05 May 2025 08:04:43 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUoOBDJ9htFPkrgr5HeLV+T9t02GjZRG3zfUttae3IyBF0wq9GShaFqdSAuYAwxJJYa135y3f8Bhhf6TnDm@vger.kernel.org, AJvYcCVG2vbjBPwQ0p7Ns4btkSwWY+IpZWyhRey+A+J8Dp64H0mgJvwG8SwpRYtuEF4u2fS09VsBzAcXCnKp+3HLHo9l/h4=@vger.kernel.org, AJvYcCXSADXyj/zaS8KjD2Qe6eIIIO9K/SCGWacdan56OgPceVBf2Si+0JxutpIHCvT8cpg6P0KsUDmgT/PX@vger.kernel.org
-X-Received: by 2002:a05:620a:1aa4:b0:7c5:93bd:fbf2 with SMTP id
- af79cd13be357-7cacea249abmr2184067585a.19.1746457483117; Mon, 05 May 2025
- 08:04:43 -0700 (PDT)
+	s=arc-20240116; t=1746457570; c=relaxed/simple;
+	bh=2pjKGRUh5AKe7m3pwNrBYOaxkmH/+FZUR/QVA1z7oRQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=gEL2nPqan0P7quprokYABen5VlR3dbtYZE1CnNrcUe6U8q0MArpvyWwL7znEXHGDQA7bVHfghjxwRLNEruBQYMXjpgnlkNtqjGm5XKSOkUv2VviBAh785e+pqmQ2kzSYlTvM/iRAU03SmxWHoCl59pXKDsFo1PYGKTsmPQ2hV6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OoOGGlRo; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 545F5tIl276214
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 5 May 2025 10:05:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746457555;
+	bh=CK4LuQymWo+MpxuNt4yUrkVbDp9M2LjuWFpwebt1sus=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=OoOGGlRos9EVeojPMSerNs/FBGQxjiDukyptWlTDzQXbigkcd0e7dZtabsr6vAKst
+	 arQd9K1A8vDxCYAnPPrMs1A7vM5SCugF9agDtc/4WGspwOcTQAd96zI7Az+6JrbhvP
+	 1fEnhwhWpJYpsbcmtSGuHvgz/WmWvwd5k77VjFUY=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 545F5tow031923
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 5 May 2025 10:05:55 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
+ May 2025 10:05:55 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 5 May 2025 10:05:55 -0500
+Received: from [10.250.32.125] ([10.250.32.125])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 545F5sJG122185;
+	Mon, 5 May 2025 10:05:54 -0500
+Message-ID: <6c5e786d-7581-492f-92fb-be92ecbecd87@ti.com>
+Date: Mon, 5 May 2025 10:05:54 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250502162540.165962-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250502162540.165962-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 5 May 2025 17:04:30 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXaUQL5SpHn3LhOAXjekcSny4dqVRpOsoH55+LpCZbc1g@mail.gmail.com>
-X-Gm-Features: ATxdqUEOtG3XXxLqmzQMjTNb2y4P8FgtJLglgkF0XPtmWs1pQXZT1INZTTkHBh8
-Message-ID: <CAMuHMdXaUQL5SpHn3LhOAXjekcSny4dqVRpOsoH55+LpCZbc1g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: gpu: mali-bifrost: Add compatible for RZ/V2N SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 03/11] arm64: dts: ti: k3-am62a-mcu: Add R5F remote
+ proc node
+To: Daniel Schultz <d.schultz@phytec.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Hari
+ Nagalla <hnagalla@ti.com>,
+        Beleswar Padhi <b-padhi@ti.com>,
+        Markus
+ Schneider-Pargmann <msp@baylibre.com>,
+        Andrew Davis <afd@ti.com>, Devarsh
+ Thakkar <devarsht@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250502220325.3230653-1-jm@ti.com>
+ <20250502220325.3230653-4-jm@ti.com>
+ <50039c49-a6c5-4f29-a35a-53b9af117fd8@phytec.de>
+Content-Language: en-US
+From: "Mendez, Judith" <jm@ti.com>
+In-Reply-To: <50039c49-a6c5-4f29-a35a-53b9af117fd8@phytec.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, 2 May 2025 at 18:25, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add a compatible string for the Renesas RZ/V2N SoC variants that include a
-> Mali-G31 GPU. These variants share the same restrictions on interrupts,
-> clocks, and power domains as the RZ/G2L SoC, so extend the existing schema
-> validation accordingly.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Daniel,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 5/5/2025 4:55 AM, Daniel Schultz wrote:
+> Hi,
+> 
+> I'm unable to load the latest TI firmware 
+> (98efd20ec71f8c1c8f909d34ab656731) with this patch.
+> 
+> [    7.012889] remoteproc remoteproc1: 79000000.r5f is available
+> [    7.032640] remoteproc remoteproc1: powering up 79000000.r5f
+> [    7.038626] remoteproc remoteproc1: Booting fw image am62a-mcu- 
+> r5f0_0-fw, size 53140
+> [    7.057209] remoteproc remoteproc1: bad phdr da 0x79100000 mem 0x47ea0
+> [    7.064716] remoteproc remoteproc1: Failed to load program segments: -22
+> 
+> I figured out that the mcu sram node disappeared in v5. Apparently 
+> adding it back manually doesn't solve this problem. Any idea what's wrong?
 
-Gr{oetje,eeting}s,
+For am62ax, there should be several items changed with this v8
+series in order for remoteproc to work with the TI default firmware:
 
-                        Geert
+1. memory carveouts were reduced to 15MB [0] & edge-ai memory
+carveouts are not included here
+2. mcu_sram1 node removed [2]
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+If you want to catch up on the general direction for this series,
+please refer to [3]. atm remoteproc can fail with the default FW,
+but we are trying to move away from that firmware and this is the
+first step in that direction.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+[0] 
+https://lore.kernel.org/linux-devicetree/0ab5c5ec-cde3-41f1-8adf-2419b31497c1@ti.com/
+[1] 
+https://lore.kernel.org/linux-devicetree/04e77daf-e775-44fa-82bf-8b6ebf73bcef@ti.com/
+[2] 
+https://lore.kernel.org/linux-devicetree/32358aa1-0c02-4f4d-9782-2d8376c0d9fc@ti.com/
+[3] 
+https://lore.kernel.org/linux-devicetree/e131298f-3713-482a-a740-ff89709270b4@ti.com/
+
+~ Judith
+
+> 
+> On 5/3/25 00:03, Judith Mendez wrote:
+>> From: Hari Nagalla <hnagalla@ti.com>
+>>
+>> AM62A SoCs have a single R5F core in the MCU voltage domain.
+>> Add the R5FSS node with the child node for core0 in MCU voltage
+>> domain .dtsi file.
+>>
+>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> Acked-by: Andrew Davis <afd@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi | 25 ++++++++++++++++++++++++
+>>   1 file changed, 25 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi b/arch/arm64/ 
+>> boot/dts/ti/k3-am62a-mcu.dtsi
+>> index 9ed9d703ff24..ee961ced7208 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
+>> @@ -174,4 +174,29 @@ mcu_mcan1: can@4e18000 {
+>>           bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+>>           status = "disabled";
+>>       };
+>> +
+>> +    mcu_r5fss0: r5fss@79000000 {
+>> +        compatible = "ti,am62-r5fss";
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges = <0x79000000 0x00 0x79000000 0x8000>,
+>> +             <0x79020000 0x00 0x79020000 0x8000>;
+>> +        power-domains = <&k3_pds 7 TI_SCI_PD_EXCLUSIVE>;
+>> +        status = "disabled";
+>> +
+>> +        mcu_r5fss0_core0: r5f@79000000 {
+>> +            compatible = "ti,am62-r5f";
+>> +            reg = <0x79000000 0x00008000>,
+>> +                  <0x79020000 0x00008000>;
+>> +            reg-names = "atcm", "btcm";
+>> +            resets = <&k3_reset 9 1>;
+>> +            firmware-name = "am62a-mcu-r5f0_0-fw";
+>> +            ti,atcm-enable = <0>;
+>> +            ti,btcm-enable = <1>;
+>> +            ti,loczrama = <0>;
+>> +            ti,sci = <&dmsc>;
+>> +            ti,sci-dev-id = <9>;
+>> +            ti,sci-proc-ids = <0x03 0xff>;
+>> +        };
+>> +    };
+>>   };
+
 
