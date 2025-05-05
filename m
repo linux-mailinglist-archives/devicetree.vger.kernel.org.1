@@ -1,232 +1,216 @@
-Return-Path: <devicetree+bounces-173542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66F2BAA8B8A
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 07:14:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D58DAA8BE3
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 07:59:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B2153B2C58
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 05:14:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D45316B1AF
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 05:59:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0377B15B546;
-	Mon,  5 May 2025 05:14:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b="jcq59Vr3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 154361B0F31;
+	Mon,  5 May 2025 05:59:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2054.outbound.protection.outlook.com [40.107.20.54])
+Received: from PNYPR01CU001.outbound.protection.outlook.com (mail-centralindiaazon11020126.outbound.protection.outlook.com [52.101.225.126])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113D023774;
-	Mon,  5 May 2025 05:14:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CD1E136E37;
+	Mon,  5 May 2025 05:59:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.225.126
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746422092; cv=fail; b=opnJTuwbOxXlC8Ir0L1GC4jeIBLo5LFvKz+fojKbJ2ujfixwfY+85nui1j/QqSHAeGfu1K9mi1neiLOE/2R/eaytzNeAlIpN+NQ8rjnvGFmaOpO9Nmqo8/9+bJS7p3q3gbOT3KsVC7ci6Ki3uH2lgO1uM6JZRPZ/RjOU4Gnvmlg=
+	t=1746424746; cv=fail; b=DlILr7yHW8StLSyPAgUF6J2Opo8nXR6ACvtI/cwLReYYCEMvHmZs9v/apY8+CDi+8e4ETr2E4W6MHILiMfRI7Xh9fUzxxQY5exyndFm7InmRx3RsqZt5lm900kgRgi7iz9x1zPE3yffsBooZj/GT/JtGcSF1eFW3Jcqca/LKOHM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746422092; c=relaxed/simple;
-	bh=wCWlgbwmePcVr+ARVpMO0URjf0ufRg0H8lDx+shNBP0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WcGBFvN7pxmF7U+jTevZnxTlXVrsJuZ8vmi0HhD0qFmowxwuyUfgpjZZQLT8bNCyVtifb66SdvyZHwUlPAJ9P7WpeKC8IyfzX76Nx4DgDgpbSWJKxM2ERKK3GNaauP+XpvVA8Xu617n7uI38MtPDXBj5k8yO6aSWmbOWUMbWAFo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com; spf=pass smtp.mailfrom=de.bosch.com; dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b=jcq59Vr3; arc=fail smtp.client-ip=40.107.20.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=de.bosch.com
+	s=arc-20240116; t=1746424746; c=relaxed/simple;
+	bh=qWbX6AAvSaO91Bv8n+fwra3+x2oZP7kT8ENQridOu7Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=dlc1DoL8S+42hr4ZeMg+5+hQRL2h4dWAnQz4UiipZvHav38EjANWmLzBszb/6n58cFwR6qgBKd4yLW6ryKwqqIwasiTkp+37PG0X1iK/CjQtYuTgfDuHKSESnbQa+rIR2Wus4++RT9buzP6auUGrF97uPLXAnUqO+uhoxUDBJec=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=52.101.225.126
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UigrapYiMqMZ46NMQqW9XoVmlrxfFLUX16Dymg6f5HEK5uhiuSYgG5+RD7UJp8Sg9Xc0b8eu9hFMEia4wZMAWUM/bOWREuxe9VHOHpmUqBSh4s7J9Xuxy2Kiv6TMyVmAhTa3ZAcmgaQD//h7zmLEUImnG7nYXl/3Nrgezz2/ms5NOfXcrIEM5+cxk4jeoceTq1HJ9gqRQ6NF3LTv3Dzv4VdzIO44qsZOB22QNLfVIjly1Pk0Ounrp1u0Pkg5jedB8RUIKx1Ff08SU53TWbAoUvYI28WR1+A6f7FGW2fddSx4qdNYsrVBBYJBvI6L3kA65y8AxvXrTujkNmxUHrAfIA==
+ b=LDfi+2f+YupNF7TV6MjVEApG+32MQT/3J8FD8/MqzoCF8jpQRY5Aai0qKYRXikfqPT8sr9lMooidJfU4+IxyVYw7M79JLbjUOEGJTASlCKVpiueYMCkb33MOMOgUYYbIS2J7g/rTWKQzgO45o83a/3bH7P5KLZ4WiXsX2nOOzhCG+q+Mbk6B9G7+xEvHtvyvD86fSqYH6rtdJGruaW5yVNx1giotga4UCilFtBov18JqUh6N95MFpmDcEnkSSNUbEb3/em0nGdXoYBlqYIw1qo9QJYEUkKcqL8zDBPqOb9efguGOgNfCBV3ri5fq47j/i+yVQ4lCMEi75088I/rPRA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7BhaR2h5imYVwEKKxZokIqeBy9ilFw6nihf00AmTdlI=;
- b=fha9y3F8zjIN2FvWvB695czQMcPBGTd1ot4Cee89brRyuWdiVAyUF/b4TrN2I28+6b2lbAlB0aYvd0I6/sN8OjasYDFc/uG5M+ur3BCzu7c3SGbO6LxtIz8Srw0ih7EX7wL9c9X4o9oik/lFRsDkInTpBqPflgrkzD5TMm/ckDCYZIYxwFW6AciCGwSyfVTF6f2QSCvJ2tXVPJupPflZ/AmwU2uSl9wuTnGSKHrUSP8gdrcEhIamYIFXZB7XZLu4CgevL7CLSbN5p4Rp9LUWl8a1y8ew6G1Q8PFwQms7OkAbBuxHWepg0+6R+XAwRb+IJYa3i1QQqe6MK8TerXzoNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 139.15.153.206) smtp.rcpttodomain=buenzli.dev smtp.mailfrom=de.bosch.com;
- dmarc=pass (p=reject sp=none pct=100) action=none header.from=de.bosch.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=de.bosch.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7BhaR2h5imYVwEKKxZokIqeBy9ilFw6nihf00AmTdlI=;
- b=jcq59Vr3Xu2niV1KcOjyFGu4UxfO7EmFEyJ4dAgjsikZlGmfw6w8ai1P7lYIfnn0drx7mrRLwso8o6h35Qv9EPouOE1rdlVXcZVO19SihLvJTofqQnD0pFkyJVg+HIFf1REbIYzhcZbNiOGeq/TLzLZpYXCF3c7H5xUb3kMXNwFWz0pwGIRaXZ0jscukQqh4Q3S4gU0S8FArW3p5iyX+OhlvL6f0hUCk5TIksVCXTz2IRQhHoQTIiy1oyfDMWbYMtiBHp/ZzlvGqxHyBKiR3UhxRWVXZTPnaLod0o/Bf+Yy/nELmerTgWikifnUJ+IMlwcBPXTqUxDPgoikjP5tKRg==
-Received: from AS4P190CA0038.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:5d1::17)
- by PAXPR10MB5157.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:285::17) with
+ bh=6mgbBpuH+vwgxATfGxsEGtyfbK3eFvsnmWZJVlfKaB8=;
+ b=EjyUCZeDEaTzl2r7roFclZLweovR72P9lQcdQPv/VP78bqQaVJ73bAkhbVVpAJ1Zj+g+pyr9yvtDwMdyAAp5BpmOFzWQVujLyiSRI7j2gnOiko6ZqXi+1EfPXH8/3acu/vwQx3DuJmMjfUt3fcVe2ZQ/HIS68WXsca6kX2bMUkhFfbgHLqTlL8uwGwtbVhEvJTBxuEaVl6VWP7+zehp1Quod88+7P+NMkcWflQBwExFLQnEze+3se3JHGlyybQdaihv0VPvCw2PJmHfLivivkyiyf2G0MwV23NJVtDgwyfsQ5Hbi50URAY/25Nz7wlY9HOcp2S28bOoUL29zMC9Qgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1b8::9)
+ by PN0P287MB1188.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:17e::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.26; Mon, 5 May
- 2025 05:14:44 +0000
-Received: from AM2PEPF0001C70D.eurprd05.prod.outlook.com
- (2603:10a6:20b:5d1:cafe::32) by AS4P190CA0038.outlook.office365.com
- (2603:10a6:20b:5d1::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8699.30 via Frontend Transport; Mon,
- 5 May 2025 05:14:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.206)
- smtp.mailfrom=de.bosch.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=de.bosch.com;
-Received-SPF: Pass (protection.outlook.com: domain of de.bosch.com designates
- 139.15.153.206 as permitted sender) receiver=protection.outlook.com;
- client-ip=139.15.153.206; helo=eop.bosch-org.com; pr=C
-Received: from eop.bosch-org.com (139.15.153.206) by
- AM2PEPF0001C70D.mail.protection.outlook.com (10.167.16.201) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8722.18 via Frontend Transport; Mon, 5 May 2025 05:14:44 +0000
-Received: from FE-EXCAS2001.de.bosch.com (10.139.217.200) by eop.bosch-org.com
- (139.15.153.206) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 5 May
- 2025 07:14:43 +0200
-Received: from [10.34.219.93] (10.139.217.196) by FE-EXCAS2001.de.bosch.com
- (10.139.217.200) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.43; Mon, 5 May
- 2025 07:14:43 +0200
-Message-ID: <5946174b-3178-462d-bb59-1e0d6c5f4dda@de.bosch.com>
-Date: Mon, 5 May 2025 07:14:31 +0200
+ 2025 05:58:58 +0000
+Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ac6c:f2c2:8013:8d0f]) by PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ac6c:f2c2:8013:8d0f%7]) with mapi id 15.20.8699.026; Mon, 5 May 2025
+ 05:58:58 +0000
+From: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+To: shawnguo@kernel.org,
+	tarang.raval@siliconsignals.io
+Cc: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: imx8mp-var-som: Fix LDO5 shutdown causing SD card timeout
+Date: Mon,  5 May 2025 11:28:27 +0530
+Message-Id: <20250505055828.4160-1-himanshu.bhavani@siliconsignals.io>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PN2PR01CA0125.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:6::10) To PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:1b8::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v4 5/9] rust: device: Introduce PropertyGuard
-To: Remo Senekowitsch <remo@buenzli.dev>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>,
-	"Alex Gaynor" <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
-	<bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, "Trevor
- Gross" <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
-	<rafael@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<rust-for-linux@vger.kernel.org>
-References: <20250504173154.488519-1-remo@buenzli.dev>
- <20250504173154.488519-6-remo@buenzli.dev>
-Content-Language: en-GB
-From: Dirk Behme <dirk.behme@de.bosch.com>
-In-Reply-To: <20250504173154.488519-6-remo@buenzli.dev>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM2PEPF0001C70D:EE_|PAXPR10MB5157:EE_
-X-MS-Office365-Filtering-Correlation-Id: 80140183-58cc-4196-df1f-08dd8b93bf46
+X-MS-TrafficTypeDiagnostic: PN0P287MB2019:EE_|PN0P287MB1188:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6780f993-5bc2-4006-d550-08dd8b99ed53
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|376014|7416014|7053199007|921020;
+	BCL:0;ARA:13230040|376014|7416014|52116014|366016|1800799024|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?MFo4cGlzVDdDOGVxWHpvbTdCdDhyVkhWSWdTRG03cjFtN2UwN01qUGFnZXV5?=
- =?utf-8?B?YWFBSnFTanMwaXZvalQzekFUb1V4ZXR0ZzBMaE9HbGZ6b0Z4d1hsOVFDOWtr?=
- =?utf-8?B?TS90VjdTbm9VMHYwT3NONzBZd0ZrYjJLUnVYa2kzcGp3dWVQVGZBZjU0R1kx?=
- =?utf-8?B?dnpQN1dndEtTWEJjWkxkbVY1d0p2b3BGbFRlRFpld2VQMnpSSjNxZzdmTUE1?=
- =?utf-8?B?aFh6VjM5NG5hd3ZQdTkxS1Z4WHhkc2NWaWhKNityT29JQUdMQlZPckxYdGc1?=
- =?utf-8?B?UTQ4TUNhWGRqciswOFZLOGFLT3d1VHZMek9NWXA5WE1iVVJXNUs5bmkzVkh1?=
- =?utf-8?B?c0tGTExRZWozNkZQMVpiQTFIWEswOERYYy9aYzY5Z0h4Sk10VnZia0FkNTN5?=
- =?utf-8?B?SFI3YzRkdmw2SThuUHgrcDNQZVdHSzBNdVF3YzFkTVcyLzVmYjJBT0dOWE9z?=
- =?utf-8?B?RjF1WVZMdnowMG5lOUNzQWF3WkJPTXFwcDdWelhaeFhlcWlaVzRpOVJyaWZR?=
- =?utf-8?B?WFhhUDR1bkw3N3I2bUE0WUFhT0FSWGZYaXdmVHczRk9YMXF1dDQydmJEZGQx?=
- =?utf-8?B?WVZYVUhGcnJUUVFNV3NqUU53RVZjYjBzTXhvdnR4QUtPOS92UjFVeHQ4dmZZ?=
- =?utf-8?B?SG1LRm1MNkxFTmpQSVRzK2xsa0RoS2h6RlFMbEM2TUpHRzI5OHFZMVQrUjBi?=
- =?utf-8?B?NmRmVkFQK2x5K0kvQmVLanhkSE9JWC9zT0pRVWE3U2lYais3dWRxZGFsaWFV?=
- =?utf-8?B?MFk1MUJpY1dGWmhxcnhZemZCTnAyMHd1QUFjWXF4eVNCalJnVk01UmhpQkNN?=
- =?utf-8?B?Y3hWRWMyQzVpVlVKNTMyZWcxSTNjbGRsMnptSzFudXhVUmxNTnR2Siszcllr?=
- =?utf-8?B?c0FEc0IyUzhjcitxd2VMeFBjc0RDRGRRWDVGUk5UM2dlWlEwTFN6T3FxNnow?=
- =?utf-8?B?bWkrN202VS9HS1lsbmdTYW9sUXYzTXJKaVdtMFBETjlidWNkb0xNdk1ReVZo?=
- =?utf-8?B?QlE2UFdJRnNPZkM3UHBEaGgvMllZUUZqZU14WlBmdkJaZHJTdW51M0dJOTBU?=
- =?utf-8?B?cERPL0tXbUV2UW1HREp4V1FqRkVOd1JqbE1wS2g1ZlRzRnI3U1RscEFWajhs?=
- =?utf-8?B?TFVPMFlwZ01CdWdTT2NaR0pwcTRyVSt4TzA5amEyRzVlc2NBVkpPOUVoRk1M?=
- =?utf-8?B?OG1LcGFpMUhkdUl1NW0rTUE5YU9HTm9DYTRDSW9tN0xTL0hiZXA1K2UyS3A1?=
- =?utf-8?B?d0d3REpZVUoya0NYNWZ6TkNnYmJMY2Jza2daN2tseDg1WW1OcS8xeldxSkpt?=
- =?utf-8?B?UVdCOUFrd2pwTml0WFZFYUJ3TjRzYm9wZGJsVjJDVXhEVWJDWS9UcVNFZUx3?=
- =?utf-8?B?cVI3YlFFN0xJUDAyV2VKNk1Oampib1hodGJZa0IxbmlsU29TTVpTdW1mUURB?=
- =?utf-8?B?OEM3cTBnRmhTWFdrY0hBd0UrRW5WRUQzdE1WWGJGcUt4Sk1jSHkrcXNQMmho?=
- =?utf-8?B?TS9jcXdtdTRiTC94VFVYdjdDcTMyT1Q5VzhGMFZybGVtd0dkQXRKQW00NDVC?=
- =?utf-8?B?OTZFSXhKVUY4MDA3eEkvVEV1TmIxNlRJc0xiaGZjSEdtVWFEWHJKRVFnOVhq?=
- =?utf-8?B?T29oQmlJM2lGeE5Gc3NVQm9sZWpiRGtTUUMyZWFnbVY1MmFqL0JPaGM5UVNL?=
- =?utf-8?B?L1dSaE5VaDIxdzJCR3FjYy9BaHdqYW1IczFpenppQ2pnUkRkWk1pd1hxMmlP?=
- =?utf-8?B?MHZXUVdIZVJscDcwR251dDBmejRjYTJBRWhJdlJvS0JhcG9SaWdDSWEreFNS?=
- =?utf-8?B?bTNqQkpmWVFRMjloL2tyK1grc3Vnc1hwZi9ZSjRRTGJNczBZbkxVVzBkbGty?=
- =?utf-8?B?R0k5ZllZMUhXaGZsL2hab0ZJVGZKWmNNUzMxUys5RWF4Y1FKRWFibmkzZzdT?=
- =?utf-8?B?dUFvOTQyd2Yvb1hlMVFRMnhkSUpvWWxaYjI0QTZlN3E3VC9SdXRjaUExZXkz?=
- =?utf-8?B?Rm8xeEZLcFA2cWxKcm9nM25OUUxoUS9Qa25GTmtPYlI0YjdjMVhnR1paNEpV?=
- =?utf-8?B?OTVhSy9hSzJpbE5zMEdRQXB4ZXo2Y2U5TnRKUT09?=
+	=?us-ascii?Q?9oRgeLHv1MpJ5JZT/rP6ewzryvdbmkuSGH8fgI+elDuG7yzXmvsMStxvUlnC?=
+ =?us-ascii?Q?TUj9aUDd0D8NJiUkgIFd7nG1ImGd6e9G5404ItVBIytjLzBQo/8vZWF1pEzr?=
+ =?us-ascii?Q?pEA8BkJS11zAzs6ZcUJ5FjDTj6TFNGn3nef7GaVW+O/2UfJsQNq8nxZcdl3S?=
+ =?us-ascii?Q?1h4odAFcc2dmRWXyvBegXCbccR/tbtw4vDOQi+5ugY3hBk1FholZ60B0072t?=
+ =?us-ascii?Q?MYMzJSYvc+gdzYFD9hum7xwx2YLI82hCQvwNnxuBqkkSOMlZajt7cUpBYTxh?=
+ =?us-ascii?Q?Q+zbbTYFi5IgAm+z08/H+UyDGN7TgfgizuTQRy5+mbUNS/2XJKaCQxmDBytr?=
+ =?us-ascii?Q?cgBNazovnCSL23/bw5yabM/vw+/2Ce86y3x1M+49d0CHsMLe5jRRB6sKpN6s?=
+ =?us-ascii?Q?JM/gC7FYxFFdcSk9rpinD0gZHC+QGAyDL/GYpGXbSBKAYgfirsWiQlYcSnTe?=
+ =?us-ascii?Q?NFK+ZpDza89cAFmBdh0i7ToPQKZ8DJJi7sCbdGbVvOgMMeMLT98eiB+lOcO1?=
+ =?us-ascii?Q?1InyYPR3209xEga3Pwl/R2GFwxvu/37NTjHf2pgRjGmyoc0Lc6d1d2ncM98Q?=
+ =?us-ascii?Q?9KCycjQNscjl5znxSBRdNub9QLAT1zF97WePK2spHyyR2ido5kuaqYGVGj4/?=
+ =?us-ascii?Q?bQP9ORLAvCMckn3KkrFFlyMKL0ruIhIyY8Y3fvSV/GkDGJNOuj+d/hv/vXyK?=
+ =?us-ascii?Q?RD01tEOX0rRKph3MLjg7Va4ngdHqrB/ctTbgaR0CKS+JObVyCtXqIPjp8Yqm?=
+ =?us-ascii?Q?+97j7iRGF9+GHD8Gh47hoxYHSZQ8kZDRRgL+m+IbT9D2l2irO+rJnTSiHSeo?=
+ =?us-ascii?Q?tBaz8yh558mslqrVACKA1j+RcNypUiou5Q3hPxolOcZ6xQRgGu7Hel9N8AKA?=
+ =?us-ascii?Q?Mb27nK6H/JmcN8R+MrFBHaqNiqE+N7cKi2tHyF/SlIQLIUIbxMg/lzqTvZbK?=
+ =?us-ascii?Q?DuSb0bSa0pmvtQ4a0yTjVXH6Pn9zqxZ63mDuCEy+bObAtbBiQ7StfwWuNFZO?=
+ =?us-ascii?Q?2NPQqjFyflePDeInjrvqQB7sjMmityHSL26mABMOWWSS9yyrOZWTedNcBq9j?=
+ =?us-ascii?Q?0waYqIx+XzYewvWRhtqjTVt2dOxw7PFp80wJG8bohdAjoOiH/uCGW0QOLRY/?=
+ =?us-ascii?Q?L+AYnZDuq3u1H/s0iUtxWHJ30VnUP18LlUYLRestQFETxzy8saIG3/h7Nm2w?=
+ =?us-ascii?Q?beEpFpm61hRwcISYsIyfyfIKT10/RymUy0PLkcRBnBJ8MPGvQkcbYMxxP1WX?=
+ =?us-ascii?Q?lH29640wMwp9z6pCRgai/bi85TZBCHpJu5z0sB3fQQA18ihfWyWs/i5XRBES?=
+ =?us-ascii?Q?hwx5McE1c+RHaMN3qxBdEaGsC1DTK2yn3+sMEOSkA3PE8MRxOSd1kDf/rQE1?=
+ =?us-ascii?Q?qrThaV5NAas/nP4FyTHx8PK1GgMenwrMy/NfLq5IN9pdWKjQQ6gYF3GyFRsl?=
+ =?us-ascii?Q?OcLwI0O2AJqNxNxf6BmGIFosdVD572AtA2qrXYYXRXZKwoQhFJnkgA=3D=3D?=
 X-Forefront-Antispam-Report:
-	CIP:139.15.153.206;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eop.bosch-org.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014)(7416014)(7053199007)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: de.bosch.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2025 05:14:44.1309
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN0P287MB2019.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?U8XjjLyFNQqrPz6+UyqAk5EZZ0ueNDJLj/Jc3axuygbOkAXPVwwaA+J5RF9i?=
+ =?us-ascii?Q?lUjZa0nuhryyTj5iVx5fy7KDZmae8aoH65mwarCpwass+COx7Em7iLA+ikLV?=
+ =?us-ascii?Q?BtuBKNtJgldcWuDq07EZdoK88eZ46VCBDhTUS7VZFmIjzkLklwHIYoqmZl8g?=
+ =?us-ascii?Q?xm5RVeEPU7OARH1zj+GfXx9xoUxgZQrL8SQvZ68V3WW2GRzmB2Hgr2LCsf2x?=
+ =?us-ascii?Q?89ACSENVBcE3LeYMpx512DunCNWysbNvCFnIhBp6NRxFkaMHqCgQJu2mkc7/?=
+ =?us-ascii?Q?0wZuY3/VhY5jfPFoCFOYbKjXeyX7wSotl4U6avjoaVWsM/6dv2/Ksm/bMOmN?=
+ =?us-ascii?Q?XKnOmh9RMihpv2De3NR0gDaGRn/to2sQUDXxiQ1JtcI/gl/NsvNOzy+6vruJ?=
+ =?us-ascii?Q?bU8sBMgHE5Wbgeui6Y2yYn8WkL6KcPSynDq9o9i34ltVnK8iodAz/lDGRgpD?=
+ =?us-ascii?Q?6ziPjKJG5j8CNxmPO7ONKHRuLKGPCa71CVhnbxGSYIVDhcFW7R5zL5cSd6Je?=
+ =?us-ascii?Q?6ImYfjorDCe+KueKBbVRiMXppQq2b7TtsuO+5snfUYpiMtcjt09gcd3Yr2Y1?=
+ =?us-ascii?Q?Qy7vkMweZL8opHuaDuBPNa52YV0v/rhR/MOSl2c5/+aHhBqLp2HKM9CQV4nj?=
+ =?us-ascii?Q?jMpv75FxG0dUl1EmAwsN6rcYAlst0DXpBIJee54TgdgdYGhPiZo/PpLZUb6v?=
+ =?us-ascii?Q?YTR0lVsAJW8/YR8Ofq6GhTRRPBxh8ps4wRnhZR85O3Y/Eyth3R7M7OY/aeXQ?=
+ =?us-ascii?Q?kB5J7coSSP5MGvRL+sv/rfv5cG6qg3HQzOv+rPNVQtePRJY75dkMOfsDZ/Ak?=
+ =?us-ascii?Q?Z+ju36z2PBz1LgsgvqGV/AhwE1JAxgh7t1zsZAhSpY5ATturtn+aoljfEBpf?=
+ =?us-ascii?Q?POvHwm8gAQxha/FD2NDcKxdCNhj2vpW9Sgdsz3u84z8GN1wqqiPwGUB90x52?=
+ =?us-ascii?Q?21Ul1Lert4ulauR/KmrGTkoX6+OTz2Sy8hsi0vsq7O15QKeAebxRdeHI0Xx8?=
+ =?us-ascii?Q?PqMUJmM5CMQ44qZqIxzCh6JTEtsWlcC5g2mNpPtrG4uE3V1QNO9827MfBU5j?=
+ =?us-ascii?Q?UUjF5M4S+RFUYgKOkW+LICA4G3IyWebiYRuf4egWemimwyc+bv4/LE/SaSUQ?=
+ =?us-ascii?Q?Y2Wl/G5GfWTCmy9DgY16v1MDuTJSko7J4j9dn6N84/kO1RcXtWzGl/M28b50?=
+ =?us-ascii?Q?qnbsFQWNcSqda/3HK8nsn+V+H8puUWr19pbMQTy/8JlRqprcYswV5xq9ADZ/?=
+ =?us-ascii?Q?Fmg9f22vvjvIfOfZCxXO3PWzh0KC1XkRMXEP+l+eesaOJjpYM66etwXxJS2X?=
+ =?us-ascii?Q?fPrduE7t7Q78Jg9KP2pPE/jCI1y4vur35I5ao7bE4ZQzxDut2AFn26fRoJSR?=
+ =?us-ascii?Q?75MDFEH8rjYyI5ghoK/8PT42+Ep23/B4ZpT5tAMzfbUYJRlH4hMmdV3ykFEm?=
+ =?us-ascii?Q?RaFHokM6nxT8I+iv3WPsGle415OGDPJQ9lt6gQi70IRmbQtgw+F9kQld8NVH?=
+ =?us-ascii?Q?2jRIjfbdPzNTEJZWqhD2Y/cg4KbdB7xeEewh3oOH7jjWNyN2iLWitsQuUqvC?=
+ =?us-ascii?Q?HQ1wbj7WJ0QMoWvRUzu53W6Jf+cTA8U6q/LUE/5N5vkq5K2DM5fA7qrgld8P?=
+ =?us-ascii?Q?YyiTBOesiUIgRLrqG8pIbe4=3D?=
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6780f993-5bc2-4006-d550-08dd8b99ed53
+X-MS-Exchange-CrossTenant-AuthSource: PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2025 05:58:58.6262
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80140183-58cc-4196-df1f-08dd8b93bf46
-X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4;Ip=[139.15.153.206];Helo=[eop.bosch-org.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM2PEPF0001C70D.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR10MB5157
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vveDH4vKA1W1Jt4e/GPVX+eOxI6IDA/FiPfnZmE1j1i/N3GvusCNtnwjSHDq/e4PNvU1KZP+FYrISeiuO1OETXt3BzxCGgFZ/cQae7GYrujE6FQPosJYOmye0Df6+lZc
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB1188
 
-On 04/05/2025 19:31, Remo Senekowitsch wrote:
-> This abstraction is a way to force users to specify whether a property
-> is supposed to be required or not. This allows us to move error
-> logging of missing required properties into core, preventing a lot of
-> boilerplate in drivers.
-> 
-> It will be used by upcoming methods for reading device properties.
-> 
-> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
-> ---
->  rust/kernel/device/property.rs | 59 ++++++++++++++++++++++++++++++++++
->  1 file changed, 59 insertions(+)
-> 
-> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
-> index 6ccc7947f9c31..59c61e2493831 100644
-> --- a/rust/kernel/device/property.rs
-> +++ b/rust/kernel/device/property.rs
-> @@ -123,3 +123,62 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
->          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
->      }
->  }
-> +
-> +/// A helper for reading device properties.
-> +///
-> +/// Use [`Self::required_by`] if a missing property is considered a bug and
-> +/// [`Self::optional`] otherwise.
-> +///
-> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provided.
-> +pub struct PropertyGuard<'fwnode, 'name, T> {
-> +    /// The result of reading the property.
-> +    inner: Result<T>,
-> +    /// The fwnode of the property, used for logging in the "required" case.
-> +    fwnode: &'fwnode FwNode,
-> +    /// The name of the property, used for logging in the "required" case.
-> +    name: &'name CStr,
-> +}
-> +
-> +impl<T> PropertyGuard<'_, '_, T> {
-> +    /// Access the property, indicating it is required.
-> +    ///
-> +    /// If the property is not present, the error is automatically logged. If a
-> +    /// missing property is not an error, use [`Self::optional`] instead. The
-> +    /// device is required to associate the log with it.
-> +    pub fn required_by(self, dev: &super::Device) -> Result<T> {
-> +        if self.inner.is_err() {
-> +            dev_err!(
-> +                dev,
-> +                "{}: property '{}' is missing\n",
-> +                self.fwnode.display_path(),
-> +                self.name
-> +            );
-> +        }
-> +        self.inner
-> +    }
+Fix SD card timeout issue caused by LDO5 regulator getting disabled
+after boot.
 
-Thinking about the .required_by(dev) I wonder if there will be cases
-where we do *not* have a device? I.e. where we really have a fwnode,
-only. And therefore can't pass a device. If we have such cases do we
-need to be able to pass e.g. Option(dev) and switch back to pr_err() in
-case of None?
+The kernel log shows LDO5 being disabled, which leads to a timeout
+on USDHC2:
+[   33.760561] LDO5: disabling
+[   81.119861] mmc1: Timeout waiting for hardware interrupt.
 
-From the beginning of our discussion I think to remember that the C API
-has both the fwnode_property_*() and device_property_*() because there
-are use cases for the fwnode_property_*() API where is no device?
+To prevent this, set regulator-boot-on and regulator-always-on for
+LDO5. Also add the vqmmc regulator to properly support 1.8V/3.3V
+signaling for USDHC2 using a GPIO-controlled regulator.
 
-Thanks
+Fixes: 6c2a1f4f71258 ("arm64: dts: imx8mp-var-som-symphony: Add Variscite Symphony board and VAR-SOM-MX8MP SoM")
+Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-Dirk
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
+index b2ac2583a592..b59da91fdd04 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
+@@ -35,7 +35,6 @@ memory@40000000 {
+ 		      <0x1 0x00000000 0 0xc0000000>;
+ 	};
+ 
+-
+ 	reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
+ 	        compatible = "regulator-fixed";
+ 	        regulator-name = "VSD_3V3";
+@@ -46,6 +45,16 @@ reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
+ 	        startup-delay-us = <100>;
+ 	        off-on-delay-us = <12000>;
+ 	};
++
++	reg_usdhc2_vqmmc: regulator-usdhc2-vqmmc {
++		compatible = "regulator-gpio";
++		regulator-name = "VSD_VSEL";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++		gpios = <&gpio2 12 GPIO_ACTIVE_HIGH>;
++		states = <3300000 0x0 1800000 0x1>;
++		vin-supply = <&ldo5>;
++	};
+ };
+ 
+ &A53_0 {
+@@ -205,6 +214,7 @@ &usdhc2 {
+         pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
+         cd-gpios = <&gpio1 14 GPIO_ACTIVE_LOW>;
+         vmmc-supply = <&reg_usdhc2_vmmc>;
++	vqmmc-supply = <&reg_usdhc2_vqmmc>;
+         bus-width = <4>;
+         status = "okay";
+ };
+-- 
+2.34.1
+
 
