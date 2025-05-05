@@ -1,180 +1,165 @@
-Return-Path: <devicetree+bounces-173802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47677AA983D
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:03:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0D74AA9829
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 18:00:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5861A3B6058
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:03:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35FA416801A
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 16:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA58A25C825;
-	Mon,  5 May 2025 16:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2BE5265CDC;
+	Mon,  5 May 2025 16:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tkos.co.il header.i=@tkos.co.il header.b="ORUpY0pX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hNuiVDv7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.tkos.co.il (wiki.tkos.co.il [84.110.109.230])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6BE615AF6;
-	Mon,  5 May 2025 16:03:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.110.109.230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A31A226560B;
+	Mon,  5 May 2025 16:00:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746460994; cv=none; b=ghWBeRqEqPDEhRTKfZghhRZKtAgsF4qgZld3aRdt79HH7A+DyPYyeNbOKG7b3JI/L4b1WYSsvXSfbNJdzFl1WxZ4auej40mUiCj1G18j7lF+t00/E1o4T/lySZmbguJ/TDD4y/WKV7ZpNdGl7KcHxcUsqWbs6ejccy59scGlADI=
+	t=1746460803; cv=none; b=h8c6vBsc4qw7i0rzLQyGW6gQD1r4B1gsqi+aOkY3wCb/Oz+O6fujstutoP8KIPqB3z8U2aHtGwIxCjzig9yFU0F+EGLip3D2O3b8POjIcRe5SXwv3f6QSV4nBFI7Afl3q0bEq211gWTw8v0tJd6gwxusu8lQaFfivJ2YSJjWQBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746460994; c=relaxed/simple;
-	bh=JShUoHNOxcFtMymlCDbXQT4jf0W+lgjQzqYxCFWCtdo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=O2c3ohwGke3F30CvgBOOw9Ax32Z3kPvCL8Fnm6cIwkoeCvbkez/LAxvFUovyQ2WuhfF6jm81rULHRJKA/0MML4RrUXF31TvudD3gCRnWk+BtOEbQYo2j1Nw2yzQ3qo1Nflslzkoskxz8mE4WZt2jW5v7GjaQVndlx4RvT3Gvmjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tkos.co.il; spf=pass smtp.mailfrom=tkos.co.il; dkim=pass (2048-bit key) header.d=tkos.co.il header.i=@tkos.co.il header.b=ORUpY0pX; arc=none smtp.client-ip=84.110.109.230
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tkos.co.il
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tkos.co.il
-Received: from localhost (unknown [10.0.8.2])
-	by mail.tkos.co.il (Postfix) with ESMTP id 4E544440F5F;
-	Mon,  5 May 2025 18:57:15 +0300 (IDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-	s=default; t=1746460635;
-	bh=JShUoHNOxcFtMymlCDbXQT4jf0W+lgjQzqYxCFWCtdo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=ORUpY0pXkoPMM3sK8BZwYsIzlsNX4uinKRBLTP0+ztPwc/savUZQbYomplJ73ST7H
-	 IC2/HweQzUlIOCO7ruYHaeuA957fPRWdRiTIJQMK5ye42lVqWbVptq1VFUQz45sUYc
-	 R19iKlNYQN/DGJjk5Sa7EgQk8d8ghtbHJ1kmDHYZt7LtX9tEC/hO/+04lB9SBOHthY
-	 lnLqDB0V05YnVrO3QjB8Df6qyJ+JP5QYUhHNewzMgFHhztAWPG0z3elAQneVRHp7c1
-	 B5JwQrAQ0TGH5j8pQS3N7AzuldtQPksuU+M1t8umBmXRgLrg0SJJTZe5Sg82SWYM/j
-	 NhAOHS8MHPC+g==
-From: Baruch Siach <baruch@tkos.co.il>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  linux-kernel@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
- cnxt,cx92755-ic to DT schema
-In-Reply-To: <20250505144644.1288617-1-robh@kernel.org> (Rob Herring's message
-	of "Mon, 5 May 2025 09:46:43 -0500")
-References: <20250505144644.1288617-1-robh@kernel.org>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Mon, 05 May 2025 18:57:22 +0300
-Message-ID: <87v7qfyrrx.fsf@tarshish>
+	s=arc-20240116; t=1746460803; c=relaxed/simple;
+	bh=5ynFe25+2HfNv2eY3CY5suWJcgSSXs7GbguoKQuTOE8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DJ576gHBIjkCWf9A0/lV1SQ1077QIOIKogIfH956qdR19NraMDdcaw4Px8eZFWLbz7hP5m5NLPJZw2mTHQGFMr0qz21Js3wjn+n86bRw7hcBhShsWWwLzaARqAvjEJv9QZ/YJ90kZPjTrgJpJvdtdiioe6n6jEHx+W28X4MpaVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hNuiVDv7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFED1C4CEE4;
+	Mon,  5 May 2025 15:59:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746460803;
+	bh=5ynFe25+2HfNv2eY3CY5suWJcgSSXs7GbguoKQuTOE8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hNuiVDv7kHrBn3/wCxcN2vN1vpcWOk+on51UP+dYHa8YvyWX9B25k1PhiK77NMui3
+	 YxVxGayr8H3TASlUA95vNO0wkSh7QaIXJytjU0AK5+DMF09BTknG2NrsE6gxGJlabk
+	 U57nSCdFgyhbHYE8ShYN6Kr/pGSf6ix0jWL4kwBmuE2pmh1sxJXyceSXj+zISbYgww
+	 ES+VO30OWEcLo2trKhfGSIy9vfl1hEjzPS5qUN0aysHfJ/EmZORsh5+rbNZRkUE91b
+	 ntDDwaiwCeojrPTRbfEEbb9ro34cwRJROIhCYyUXTFsQDJXIwmz+bu0j3J7OGEtGSD
+	 1RPf8A3KEbZwA==
+Date: Mon, 5 May 2025 16:59:53 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+ <andy@kernel.org>, <nuno.sa@analog.com>, <Michael.Hennerich@analog.com>,
+ <marcelo.schmitt@analog.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <marcelo.schmitt1@gmail.com>,
+ <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <lgirdwood@gmail.com>,
+ <broonie@kernel.org>, <jonath4nns@gmail.com>, <dlechner@baylibre.com>
+Subject: Re: [PATCH v6 08/11] iio: adc: ad7768-1: add support for
+ Synchronization over SPI
+Message-ID: <20250505165953.15958d58@jic23-huawei>
+In-Reply-To: <c5a5376a6ffbb571d7874218494b04fd20015ee9.1745605382.git.Jonathan.Santos@analog.com>
+References: <cover.1745605382.git.Jonathan.Santos@analog.com>
+	<c5a5376a6ffbb571d7874218494b04fd20015ee9.1745605382.git.Jonathan.Santos@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Rob,
+On Sun, 27 Apr 2025 21:13:47 -0300
+Jonathan Santos <Jonathan.Santos@analog.com> wrote:
 
-On Mon, May 05 2025, Rob Herring (Arm) wrote:
+> The synchronization method using GPIO requires the generated pulse to be
+> truly synchronous with the base MCLK signal. When it is not possible to
+> do that in hardware, the datasheet recommends using synchronization over
+> SPI, where the generated pulse is already synchronous with MCLK. This
+> requires the SYNC_OUT pin to be connected to SYNC_IN pin.
+> 
+> Use trigger-sources property to enable device synchronization over SPI
+> and multi-device synchronization, as an alternative to adi,sync-in-gpios
+> property.
+> 
 
-> Convert the Conexant Digicolor interrupt controller binding to schema
-> format. It's a straight-forward conversion of the typical interrupt
-> controller.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> +static int ad7768_trigger_sources_get_sync(struct device *dev,
+> +					   struct ad7768_state *st)
+> +{
+> +	struct fwnode_reference_args args;
+> +	struct fwnode_handle *fwnode = NULL;
+> +	int ret;
+> +
+> +	/*
+> +	 * The AD7768-1 allows two primary methods for driving the SYNC_IN pin
+> +	 * to synchronize one or more devices:
+> +	 * 1. Using an external GPIO.
+> +	 * 2. Using a SPI command, where the SYNC_OUT pin generates a
+> +	 *    synchronization pulse that drives the SYNC_IN pin.
+> +	 */
+> +	if (!device_property_present(dev, "trigger-sources")) {
+> +		/*
+> +		 * In the absence of trigger-sources property, enable self
+> +		 * synchronization over SPI (SYNC_OUT).
+> +		 */
+> +		st->en_spi_sync = true;
+> +		return 0;
+> +	}
+> +
+> +	ret = fwnode_property_get_reference_args(dev_fwnode(dev),
+> +						 "trigger-sources",
+> +						 "#trigger-source-cells",
+> +						 0,
+> +						 AD7768_TRIGGER_SOURCE_SYNC_IDX,
+> +						 &args);
+> +	if (ret)
+> +		return ret;
+> +
+> +	fwnode = args.fwnode;
+> +	/*
+> +	 * First, try getting the GPIO trigger source and fallback to
+> +	 * synchronization over SPI in case of failure.
+> +	 */
+> +	st->gpio_sync_in = ad7768_trigger_source_get_gpio(dev, fwnode);
+> +	if (IS_ERR(st->gpio_sync_in)) {
+> +		/*
+> +		 * For this case, it requires one argument, which indicates the
+> +		 * output pin referenced.
+> +		 */
+> +		if (args.nargs < 1)
+> +			goto err_not_supp;
+> +
+> +		if (args.args[0] != AD7768_TRIGGER_SOURCE_SYNC_OUT)
+> +			goto err_not_supp;
+> +
+> +		/*
+> +		 * Only self trigger is supported for now, i.e.,
+> +		 * external SYNC_OUT is not allowed.
+> +		 */
+> +		if (fwnode->dev == dev) {
+> +			st->en_spi_sync = true;
+> +			goto out_put_node;
+> +		}
+> +
+> +		goto err_not_supp;
+> +	}
+> +
+> +	goto out_put_node;
+> +
+> +err_not_supp:
 
-Acked-by: Baruch Siach <baruch@tkos.co.il>
+Split the good and bad paths here so we don't have good paths jumping to
+mid way through the block. If the good paths need to jump then I'd
+suggest factoring out the stuff with the node held into a separate function.
+Superficially it just looks like one condition flip and you are refactoring
+this anyway based on other feedback so maybe this comment becomes irrelevant!
 
-Thanks,
-baruch
 
-> ---
->  .../interrupt-controller/cnxt,cx92755-ic.yaml | 47 +++++++++++++++++++
->  .../interrupt-controller/digicolor-ic.txt     | 21 ---------
->  2 files changed, 47 insertions(+), 21 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/cnxt,cx92755-ic.yaml
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/digicolor-ic.txt
->
-> diff --git
-> a/Documentation/devicetree/bindings/interrupt-controller/cnxt,cx92755-ic.yaml
-> b/Documentation/devicetree/bindings/interrupt-controller/cnxt,cx92755-ic.yaml
-> new file mode 100644
-> index 000000000000..3f016cf47812
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/cnxt,cx92755-ic.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/cnxt,cx92755-ic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +	ret = dev_err_probe(dev, -EOPNOTSUPP,
+> +			    "Invalid synchronization trigger source");
+> +out_put_node:
+> +	fwnode_handle_put(args.fwnode);
+> +	return ret;
+> +}
 > +
-> +title: Conexant Digicolor Interrupt Controller
-> +
-> +maintainers:
-> +  - Baruch Siach <baruch@tkos.co.il>
-> +
-> +description: Conexant Digicolor Interrupt Controller
-> +
-> +properties:
-> +  compatible:
-> +    const: cnxt,cx92755-ic
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  syscon:
-> +    description: A phandle to the syscon node describing UC registers
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - syscon
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    interrupt-controller@f0000040 {
-> +        compatible = "cnxt,cx92755-ic";
-> +        interrupt-controller;
-> +        #interrupt-cells = <1>;
-> +        reg = <0xf0000040 0x40>;
-> +        syscon = <&uc_regs>;
-> +    };
-> diff --git
-> a/Documentation/devicetree/bindings/interrupt-controller/digicolor-ic.txt
-> b/Documentation/devicetree/bindings/interrupt-controller/digicolor-ic.txt
-> deleted file mode 100644
-> index 42d41ec84c7b..000000000000
-> --- a/Documentation/devicetree/bindings/interrupt-controller/digicolor-ic.txt
-> +++ /dev/null
-> @@ -1,21 +0,0 @@
-> -Conexant Digicolor Interrupt Controller
-> -
-> -Required properties:
-> -
-> -- compatible : should be "cnxt,cx92755-ic"
-> -- reg : Specifies base physical address and size of the interrupt controller
-> -  registers (IC) area
-> -- interrupt-controller : Identifies the node as an interrupt controller
-> -- #interrupt-cells : Specifies the number of cells needed to encode an
-> -  interrupt source. The value shall be 1.
-> -- syscon: A phandle to the syscon node describing UC registers
-> -
-> -Example:
-> -
-> -	intc: interrupt-controller@f0000040 {
-> -		compatible = "cnxt,cx92755-ic";
-> -		interrupt-controller;
-> -		#interrupt-cells = <1>;
-> -		reg = <0xf0000040 0x40>;
-> -		syscon = <&uc_regs>;
-> -	};
 
--- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+
 
