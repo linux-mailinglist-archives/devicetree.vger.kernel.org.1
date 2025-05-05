@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-173872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AF62AAA349
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 01:12:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE4DAAA79B
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 02:37:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A1361892337
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 23:12:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FD97982D67
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 00:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE712F1538;
-	Mon,  5 May 2025 22:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EBEF29824B;
+	Mon,  5 May 2025 22:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BwgDwiFY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OFKpTaLG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E51F12F1535;
-	Mon,  5 May 2025 22:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BD8298246;
+	Mon,  5 May 2025 22:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746483822; cv=none; b=Yx39xrUgqz6OxbrV/TUXXb3ch5yfyvv0diDija6t0xLUfvP39VjVFUreR3p19cV2a8YxRNShq776LODGe24aIADNUfqY2ju4Y0tn6xOQfHR8SF1Fil1GwOTZUlWy3mb8V4ZIEKElGmuSj2EWYJeZb+Qn7hKVX0wNJbPOJRm9+RU=
+	t=1746484629; cv=none; b=e1CWKzzfmgHQHOfS7UBUVfj25AaGgIT/4ai0DgVkWUwGIxYO7kghw8IAk1DLPLvhCU/U827QrFrAPbgzjA7rrFUloHcLcMuC5Ot3M8RG//z0CgGM3guqexI4C1dspUkA6RFesb/fQu/CuSXOfSsl//69IyeV7s/us20XrOa3b2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746483822; c=relaxed/simple;
-	bh=o2nRDv428v4MvnR0vHSeeoTJRiIo3h6mJurHS12K5IQ=;
+	s=arc-20240116; t=1746484629; c=relaxed/simple;
+	bh=KCH91/zsYJ4aTUBVAhrrGbgMbywzpLFiEgK6TFB6SxE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=POxUH7MlF60A4DssHLBzMgqJgaa074lna6I+q69xVnOWnI5ij3+Polnspy4jksjJOXoKa/ghiX2k/eMvCfr4tkEFP2KofF24ADEC13OYnF8UbIa64+uCPGzrlSjDcU/5b8WWlZBR1mo7MUdrZseRD4TaHkChtBeJN3KTQgWKsOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BwgDwiFY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 299E7C4CEE4;
-	Mon,  5 May 2025 22:23:40 +0000 (UTC)
+	 MIME-Version; b=IKscyWomVANOk/IsVzE9aMY4DMqoo6hP3RSaAkDwbt4Jp4hyVORMZjQ3JFpXwzUi9bfkHEMdUyHZ60ypoODTu+kxCp3vVZFTzorroCr9ZAdkgIXtUXmk8l54/q6IpUOL/8zzdViSSUV3q1Hrh1jbCANLxM82cXDp8VGjSNqNtf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OFKpTaLG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC450C4CEE4;
+	Mon,  5 May 2025 22:37:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746483821;
-	bh=o2nRDv428v4MvnR0vHSeeoTJRiIo3h6mJurHS12K5IQ=;
+	s=k20201202; t=1746484629;
+	bh=KCH91/zsYJ4aTUBVAhrrGbgMbywzpLFiEgK6TFB6SxE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BwgDwiFYhVzPpKEIrq/Abp7OOaGY1TGW0FAuPw0dLG8DZCguDTlSeGn3FZWfaEO5K
-	 IPLAGYQ5IdrFCIPfUvP1oIqJb6Qg8gpzsKoEyB/V33foGRUq0XE36AF/d/c6Y0Qihr
-	 9S/+RXqfFmDBz15VaacW5UYXhFNx6mPgeN4DooMyxkpAlcpJ7mZvwnL7tmLGR7KJ9E
-	 aQ5qera25xMipbslLVYp/A5REw2uIV6wHh4TVJbTe1Aghacl33e087b29/PgbGF3EK
-	 Q6Bf7YrBK840r2dX4ziwE/s9t/cQtzXocqgc6HFyoqy3fpLvK2WAZ7637v1AOcBPzs
-	 otCaGEVJBbVnA==
+	b=OFKpTaLGTEPQuV0QvBLr4QPYosS1SRMoKYHoitm6f2cf5g4C42JWGZa7EzkjuUAOx
+	 PRmN9gU9PpxTuj4t9JnFrv+xwWTkKzXxkLTzYYLLbbBmrxrDuEhxbRmoNYMFsBRa33
+	 I389BwoQ8clbVVm95FLO7rzJhfaFqiOO0TuaeqP5wrD1NE0HGtN9hvv584/Gv0NEha
+	 OFYcVIHYeOOjGZgNvwGznPEIwOgJA+uAOsh8bhBioi/xX8gV45OXSKDnAzK/FGYOU/
+	 ZWBFIG5ZX8pOVT6h8HpK+TMaTfVjqBgbdNHPhY+ilx6P/9EQxDRZo9ZR7BKIe6CO5+
+	 Msz9NpoRlKxZg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Svyatoslav Ryhel <clamor95@gmail.com>,
-	Thierry Reding <treding@nvidia.com>,
+Cc: Naman Trivedi <naman.trivedimanojbhai@amd.com>,
+	Senthil Nathan Thangaraj <senthilnathan.thangaraj@amd.com>,
+	Michal Simek <michal.simek@amd.com>,
 	Sasha Levin <sashal@kernel.org>,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	thierry.reding@gmail.com,
-	jonathanh@nvidia.com,
+	sean.anderson@linux.dev,
 	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.14 234/642] ARM: tegra: Switch DSI-B clock parent to PLLD on Tegra114
-Date: Mon,  5 May 2025 18:07:30 -0400
-Message-Id: <20250505221419.2672473-234-sashal@kernel.org>
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.14 571/642] arm64: zynqmp: add clock-output-names property in clock nodes
+Date: Mon,  5 May 2025 18:13:07 -0400
+Message-Id: <20250505221419.2672473-571-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250505221419.2672473-1-sashal@kernel.org>
 References: <20250505221419.2672473-1-sashal@kernel.org>
@@ -71,34 +71,78 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.14.5
 Content-Transfer-Encoding: 8bit
 
-From: Svyatoslav Ryhel <clamor95@gmail.com>
+From: Naman Trivedi <naman.trivedimanojbhai@amd.com>
 
-[ Upstream commit 2b3db788f2f614b875b257cdb079adadedc060f3 ]
+[ Upstream commit 385a59e7f7fb3438466a0712cc14672c708bbd57 ]
 
-PLLD is usually used as parent clock for internal video devices, like
-DSI for example, while PLLD2 is used as parent for HDMI.
+Add clock-output-names property to clock nodes, so that the resulting
+clock name do not change when clock node name is changed.
+Also, replace underscores with hyphens in the clock node names as per
+dt-schema rule.
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Link: https://lore.kernel.org/r/20250226105615.61087-3-clamor95@gmail.com
-Signed-off-by: Thierry Reding <treding@nvidia.com>
+Signed-off-by: Naman Trivedi <naman.trivedimanojbhai@amd.com>
+Acked-by: Senthil Nathan Thangaraj <senthilnathan.thangaraj@amd.com>
+Link: https://lore.kernel.org/r/20241122095712.1166883-1-naman.trivedimanojbhai@amd.com
+Signed-off-by: Michal Simek <michal.simek@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/nvidia/tegra114.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra114.dtsi b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-index 86f14e2fd29f3..6c057b5069514 100644
---- a/arch/arm/boot/dts/nvidia/tegra114.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra114.dtsi
-@@ -139,7 +139,7 @@ dsib: dsi@54400000 {
- 			reg = <0x54400000 0x00040000>;
- 			clocks = <&tegra_car TEGRA114_CLK_DSIB>,
- 				 <&tegra_car TEGRA114_CLK_DSIBLP>,
--				 <&tegra_car TEGRA114_CLK_PLL_D2_OUT0>;
-+				 <&tegra_car TEGRA114_CLK_PLL_D_OUT0>;
- 			clock-names = "dsi", "lp", "parent";
- 			resets = <&tegra_car 82>;
- 			reset-names = "dsi";
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+index 60d1b1acf9a03..385fed8a852af 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+@@ -10,39 +10,44 @@
+ 
+ #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
+ / {
+-	pss_ref_clk: pss_ref_clk {
++	pss_ref_clk: pss-ref-clk {
+ 		bootph-all;
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <33333333>;
++		clock-output-names = "pss_ref_clk";
+ 	};
+ 
+-	video_clk: video_clk {
++	video_clk: video-clk {
+ 		bootph-all;
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <27000000>;
++		clock-output-names = "video_clk";
+ 	};
+ 
+-	pss_alt_ref_clk: pss_alt_ref_clk {
++	pss_alt_ref_clk: pss-alt-ref-clk {
+ 		bootph-all;
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <0>;
++		clock-output-names = "pss_alt_ref_clk";
+ 	};
+ 
+-	gt_crx_ref_clk: gt_crx_ref_clk {
++	gt_crx_ref_clk: gt-crx-ref-clk {
+ 		bootph-all;
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <108000000>;
++		clock-output-names = "gt_crx_ref_clk";
+ 	};
+ 
+-	aux_ref_clk: aux_ref_clk {
++	aux_ref_clk: aux-ref-clk {
+ 		bootph-all;
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <27000000>;
++		clock-output-names = "aux_ref_clk";
+ 	};
+ };
+ 
 -- 
 2.39.5
 
