@@ -1,460 +1,214 @@
-Return-Path: <devicetree+bounces-173565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2085CAA8D64
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:51:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8E58AA8D6B
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 09:52:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 605F13AC169
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 07:51:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABD157A418A
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 07:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDACD1E0DD1;
-	Mon,  5 May 2025 07:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B7E1DB92E;
+	Mon,  5 May 2025 07:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="OiE29A6G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hUSbL1gG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B93C31DF250;
-	Mon,  5 May 2025 07:51:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38DCF1D5CD1
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 07:51:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746431472; cv=none; b=OwFwlV6aUqZ2vRideCTL3mk1Q80Vhm4pi2yLzPrJpjgA2NNi4U6C5wOPsJyylopIVcsxsqxl16Vp51wRE2tyu2TatZRT1vP6Eb3f927R3shsIxidVOAvK24EudH9j/jM/ytisxhw6riDjwuv3k8RwMNmcX8gd769UHmZ5lwxpFQ=
+	t=1746431505; cv=none; b=S2eCWpJil/J/1WlVeMdXt5j4V7XzGxr3d7CtlK+lzU8+AF39PqLp0/ITPSiuAYYmIj20wTNftVp4WbgsVo6jVZCe50AyhTGDHV6PqvkSo6Db8TBpbkXLgOwA8IdFIxq2oH5Ti6HsOPGXFYafHswmM57js3qILhif36/j5lJh4YA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746431472; c=relaxed/simple;
-	bh=xHmh5O620aurUGFjXr967Ips4D5z9o3YTjM+OA9mZhM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=RvgPIWz8HC224rSzqd4Kz0qc/4FwPd+uNA2leawiyW+xR7dzA2FshgxrPw25GwVevah/MMMmhEj7qHI1rZLCbWGw9PmKTmQpvONks4SU+HLZDFPW/j5xs/vUawuIojNWTFfDqBJIB1WrCKrULVLYj4b84xtHExoKZ7oU5/+gGE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=OiE29A6G; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=mqO2E56jUo4TnMTaBEoW0nSrlxbQ3qTko9BWd1E3O5Y=; b=OiE29A6GMenxxszUpJ0hmKuHBQ
-	0uskzhHGrAvE9BY/CKHbjfZ19qLpnjGTMNz+xEzeFx6QSTfSeHq7CVDFAVzigmzQr0b0Y81l/gnJq
-	CzlVEL80Vom0Ami3lkIUuNOmmpQNcKEROP13Ob99AW4c9msBz2KtMmS5nFbVdqKNXvLdBgIhIlriS
-	ZSSYPmx4DGc/YhFesaQSPWBoNJxU8mW6KHfQSxHkWLfAE9PUCbIV+CxM54uUN82MYVUUtL+ZtcOGV
-	gi/9B/km/bFdovtzGGSp3A/cSHr+OPtQfc7iwCUHOxt2ZgfnnZAacQJT3TA9bxv5GeUAf0x2etidz
-	D/pk4iCg==;
-Received: from [89.212.21.243] (port=45262 helo=localhost.localdomain)
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1uBqbV-00BnPr-2U;
-	Mon, 05 May 2025 09:51:08 +0200
-From: Primoz Fiser <primoz.fiser@norik.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	upstream@lists.phytec.de
-Subject: [PATCH v2 2/2] arm64: dts: freescale: Add PHYTEC phyBOARD-Nash-i.MX93 support
-Date: Mon,  5 May 2025 09:51:07 +0200
-Message-Id: <20250505075107.2579801-2-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250505075107.2579801-1-primoz.fiser@norik.com>
-References: <20250505075107.2579801-1-primoz.fiser@norik.com>
+	s=arc-20240116; t=1746431505; c=relaxed/simple;
+	bh=V9wBKhsABzmC5MV0f8VU88b7eCISUk+3HgrSsQfRuSQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=pnCw1HkxBg350qTbIq4+uKHttTBLzpMFC0KM2KB8RnJdpcOAunhyAfbJ9GcKC1FsPmmEvlegZyRnV8VvDnGLH2FDYDke/iWbNM2WuKxwDsTLBPVbxXK7MOuqkMaqvAbIR5b7TK2cQAJSSSHOsCQT+LlsmrHea3RjPi06aCqYZf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hUSbL1gG; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43cf848528aso29852955e9.2
+        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 00:51:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746431501; x=1747036301; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Wie8r7wwaj4hCKnvUhWZAyBhmz21TlJyJxhA0DAvZ0Q=;
+        b=hUSbL1gGxMiJtk5uGRtz+Cp0+KIltRvL7+BfMF9wUHgEcgmOiBmqVh1HFAi8sh23lS
+         Vf1TH8RYG36hZnIlHDfPox5clhecn0TRiHu2LDkdw2ja9E0q/ia1hjln1a/zeNQq40uC
+         sJ4DnOxBuDR20hhn2qzU5mpyFVmm1H8XEu2SDlJbC+UrzWd0p4C+B7zY8Zg+OAoqyIzZ
+         TrEwXtgnXaVxvalhsnXM49M74n7qNHSpM6vRAZZaPmGmiBoZJ2Y+Ke7uqBMAaQ4qU5qZ
+         sVpEam8+rvwaRcMnCVDyxN4KhLSrB9s6q68htpYjPlXZXWwAxw/8b/m7z84xyrThuUY5
+         nVyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746431501; x=1747036301;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Wie8r7wwaj4hCKnvUhWZAyBhmz21TlJyJxhA0DAvZ0Q=;
+        b=QbP9ICtCx6aTa9AgdlHDI3obb0+U9tjpeaMYoGKfRa/ljbiBa6v4IAQZJ+2M1EXl6V
+         7RQU6BlTAsv7/LBwBrChwvYQ5VuU47BGhLHBM+b2UdMM893FRMHmOAk7kQOeZPqJwmYq
+         JhsdfPuzo+wTGtDCzK1aN576Bh/6tTjtCMEzj2GopZlXkbxePjeWrygTU6IDUobjDBxw
+         JafAhj8nPWfKoB8NngNzvsqUUpySdQL7ECOes6Hwvp9B25EwzvP8S46P+S+Jhj5UFd2d
+         LaACDWZzLyG6Xg+Wdtm259LN3jWHvrewoZV8afZ/LxTcf20C3uMGIhK4X8d7XIMMcv24
+         2K+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWTCTcqjNhXQ9w2jkCGiX8gyl+3aYY7VNtTKh9TecH5bnfcrzsTyMrXH8rlrrtW4DzUwlV962mjPuGr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyin8dIs+2G/TRkORzvy4+SB11Lo+btFJdtneCGyzt9rhi/V1BE
+	xsmNm8P0aKCWu5AQX/1suH5x3BoS/PqHDT34Uf6+MB6//IHQ0y3PAFzuTKSNc5o=
+X-Gm-Gg: ASbGncvx/QrdYKfNuMdSJzsG1YrlfX95rArzm3pfEMszF8JW++QNFY/0bK/nmjxUtDo
+	KVHyA6u7aayXXTU6K5eD51uHEtxHwMoSTYwGRjFnwvI7+12dSHBIggKnhdkVnSm64u5GGRVDBRv
+	IKgSuTAHo5ctoQirYevcOrL0LGQ6UgQykJUp9i0XFd/hnPToM09DzpWGoA0BvFc8zEPZgakmIr8
+	aTJoUlAk/uowZfyeVzUxSjMqxYSawC3cJhWLaegRNwdinPDLUnD0aJ4lmC7e9Fpp9ijxQQlcysh
+	CX9wzTWveaKD+PdEaz2NXdrECieAqq91Qu70DT1ydodgDEu6VMth+d8MtpAKoQRqWesRZSONqD2
+	yRReuXe8uszIILejiqw==
+X-Google-Smtp-Source: AGHT+IEPiJdLqcTbJfTjzTOjuxs/aLJDBS7MKFlyLDYrt9pnVYYisdtCF0Hmrjuu4qXzSBKFvNZbXw==
+X-Received: by 2002:a05:600c:4ec7:b0:43d:1824:aadc with SMTP id 5b1f17b1804b1-441c1d73a7emr60072165e9.29.1746431501488;
+        Mon, 05 May 2025 00:51:41 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3? ([2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2af32a0sm172561445e9.23.2025.05.05.00.51.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 May 2025 00:51:40 -0700 (PDT)
+Message-ID: <d1fd162e-9d12-4913-81b3-56f4455784c7@linaro.org>
+Date: Mon, 5 May 2025 09:51:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 4/4] drm: panel: Add support for Renesas R69328 based
+ MIPI DSI panel
+To: Svyatoslav Ryhel <clamor95@gmail.com>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250503094149.29201-1-clamor95@gmail.com>
+ <20250503094149.29201-5-clamor95@gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250503094149.29201-5-clamor95@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add initial support for PHYTEC phyBOARD-Nash-i.MX93 board [1] based on
-the PHYTEC phyCORE-i.MX93 SoM (System-on-Module) [2].
+On 03/05/2025 11:41, Svyatoslav Ryhel wrote:
+> From: Maxim Schwalm <maxim.schwalm@gmail.com>
+> 
+> Driver adds support for panels with Renesas R69328 IC
+> 
+> Currently supported compatible is:
+> - jdi,dx12d100vm0eaa
+> 
+> Co-developed-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Signed-off-by: Maxim Schwalm <maxim.schwalm@gmail.com>
+> ---
+>   drivers/gpu/drm/panel/Kconfig                |  13 +
+>   drivers/gpu/drm/panel/Makefile               |   1 +
+>   drivers/gpu/drm/panel/panel-renesas-r69328.c | 283 +++++++++++++++++++
+>   3 files changed, 297 insertions(+)
+>   create mode 100644 drivers/gpu/drm/panel/panel-renesas-r69328.c
+> 
 
-Supported board features:
- * ADC
- * CAN
- * Ethernet
- * EEPROM
- * RTC
- * RS-232/RS-485
- * SD-card
- * TPM 2.0
- * USB
+<snip>
 
-For more details see the product pages for the development kit and the
-SoM:
+> +
+> +static int renesas_r69328_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	struct renesas_r69328 *priv;
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->vdd_supply = devm_regulator_get(dev, "vdd");
+> +	if (IS_ERR(priv->vdd_supply))
+> +		return dev_err_probe(dev, PTR_ERR(priv->vdd_supply),
+> +				     "Failed to get vdd-supply\n");
+> +
+> +	priv->vddio_supply = devm_regulator_get(dev, "vddio");
+> +	if (IS_ERR(priv->vddio_supply))
+> +		return dev_err_probe(dev, PTR_ERR(priv->vddio_supply),
+> +				     "Failed to get vddio-supply\n");
+> +
+> +	priv->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> +						   GPIOD_OUT_LOW);
+> +	if (IS_ERR(priv->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(priv->reset_gpio),
+> +				     "Failed to get reset-gpios\n");
+> +
+> +	priv->dsi = dsi;
+> +	mipi_dsi_set_drvdata(dsi, priv);
+> +
+> +	dsi->lanes = 4;
+> +	dsi->format = MIPI_DSI_FMT_RGB888;
+> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
+> +			  MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM;
+> +
+> +	drm_panel_init(&priv->panel, dev, &renesas_r69328_panel_funcs,
+> +		       DRM_MODE_CONNECTOR_DSI);
 
-[1] https://www.phytec.eu/en/produkte/development-kits/phyboard-nash/
-[2] https://www.phytec.eu/en/produkte/system-on-modules/phycore-imx-91-93/
+Same as patch 2
 
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
-Reviewed-by: Wadim Egorov <w.egorov@phytec.de>
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
----
-Changes in v2:                                                                  
-- add Reviewed-by:
-- reword commit message (remove SoM features)
+> +
+> +	ret = drm_panel_of_backlight(&priv->panel);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get backlight\n");
+> +
+> +	drm_panel_add(&priv->panel);
+> +
+> +	ret = mipi_dsi_attach(dsi);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
+> +		drm_panel_remove(&priv->panel);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+<snip>
 
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx93-phyboard-nash.dts     | 317 ++++++++++++++++++
- 2 files changed, 318 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index b6d3fe26d621..58f5e7146ccc 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -297,6 +297,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-i3c.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-new file mode 100644
-index 000000000000..7e9d031a2f0e
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-@@ -0,0 +1,317 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
-+ * Author: Primoz Fiser <primoz.fiser@norik.com>
-+ *
-+ * Product homepage:
-+ * https://www.phytec.eu/en/produkte/development-kits/phyboard-nash/
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include "imx93-phycore-som.dtsi"
-+
-+/ {
-+	model = "PHYTEC phyBOARD-Nash-i.MX93";
-+	compatible = "phytec,imx93-phyboard-nash", "phytec,imx93-phycore-som",
-+		     "fsl,imx93";
-+
-+	aliases {
-+		ethernet0 = &fec;
-+		ethernet1 = &eqos;
-+		rtc0 = &i2c_rtc;
-+		rtc1 = &bbnsm_rtc;
-+	};
-+
-+	chosen {
-+		stdout-path = &lpuart1;
-+	};
-+
-+	flexcan1_tc: can-phy0 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <8000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flexcan1_tc>;
-+		standby-gpios = <&gpio4 16 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2 {
-+		compatible = "regulator-fixed";
-+		gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VCC_SD";
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+	};
-+
-+	reg_vcc_1v8: regulator-vcc-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC1V8";
-+		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+	};
-+
-+	reg_vref_1v8: regulator-adc-vref {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREF_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+};
-+
-+/* ADC */
-+&adc1 {
-+	vref-supply = <&reg_vref_1v8>;
-+	status = "okay";
-+};
-+
-+/* Ethernet */
-+&eqos {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_eqos>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy2>;
-+	status = "okay";
-+};
-+
-+&mdio {
-+	ethphy2: ethernet-phy@2 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <2>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_1_75_NS>;
-+		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+	};
-+};
-+
-+/* CAN */
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	phys = <&flexcan1_tc>;
-+	status = "okay";
-+};
-+
-+/* I2C2 */
-+&lpi2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpi2c2>;
-+	status = "okay";
-+
-+	/* RTC */
-+	i2c_rtc: rtc@52 {
-+		compatible = "microcrystal,rv3028";
-+		reg = <0x52>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_rtc>;
-+		trickle-resistor-ohms = <3000>;
-+		wakeup-source;
-+	};
-+
-+	/* EEPROM */
-+	eeprom@54 {
-+		compatible = "atmel,24c32";
-+		reg = <0x54>;
-+		pagesize = <32>;
-+		vcc-supply = <&reg_vcc_1v8>;
-+	};
-+};
-+
-+/* SPI6 */
-+&lpspi6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpspi6>;
-+	cs-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	/* TPM */
-+	tpm@0 {
-+		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
-+		reg = <0>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_tpm>;
-+		spi-max-frequency = <10000000>;
-+	};
-+};
-+
-+/* Console */
-+&lpuart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+/* RS-232/RS-485 */
-+&lpuart7 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart7>;
-+	status = "okay";
-+};
-+
-+/* USB */
-+&usbotg1 {
-+	disable-over-current;
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	disable-over-current;
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+/* SD-Card */
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2_default>, <&pinctrl_usdhc2_cd>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_cd>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
-+	cd-gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	bus-width = <4>;
-+	disable-wp;
-+	no-mmc;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_eqos: eqosgrp {
-+		fsl,pins = <
-+			MX93_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0	0x57e
-+			MX93_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1	0x57e
-+			MX93_PAD_ENET1_RD2__ENET_QOS_RGMII_RD2	0x57e
-+			MX93_PAD_ENET1_RD3__ENET_QOS_RGMII_RD3	0x57e
-+			MX93_PAD_ENET1_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x5fe
-+			MX93_PAD_ENET1_RX_CTL__ENET_QOS_RGMII_RX_CTL	0x57e
-+			MX93_PAD_ENET1_TD0__ENET_QOS_RGMII_TD0	0x51e
-+			MX93_PAD_ENET1_TD1__ENET_QOS_RGMII_TD1	0x51e
-+			MX93_PAD_ENET1_TD2__ENET_QOS_RGMII_TD2	0x50e
-+			MX93_PAD_ENET1_TD3__ENET_QOS_RGMII_TD3	0x50e
-+			MX93_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x58e
-+			MX93_PAD_ENET1_TX_CTL__ENET_QOS_RGMII_TX_CTL	0x50e
-+			MX93_PAD_CCM_CLKO1__GPIO3_IO26		0x1002
-+		>;
-+	};
-+
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			MX93_PAD_PDM_BIT_STREAM0__CAN1_RX	0x139e
-+			MX93_PAD_PDM_CLK__CAN1_TX		0x1382
-+		>;
-+	};
-+
-+	pinctrl_flexcan1_tc: flexcan1tcgrp {
-+		fsl,pins = <
-+			MX93_PAD_ENET2_TD3__GPIO4_IO16		0x31e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c2: lpi2c2grp {
-+		fsl,pins = <
-+			MX93_PAD_I2C2_SCL__LPI2C2_SCL		0x40000b9e
-+			MX93_PAD_I2C2_SDA__LPI2C2_SDA		0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_lpspi6: lpspi6grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO00__GPIO2_IO00		0x386
-+			MX93_PAD_GPIO_IO01__LPSPI6_SIN		0x3fe
-+			MX93_PAD_GPIO_IO02__LPSPI6_SOUT		0x386
-+			MX93_PAD_GPIO_IO03__LPSPI6_SCK		0x386
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_RESET_B__GPIO3_IO07	0x31e
-+		>;
-+	};
-+
-+	pinctrl_rtc: rtcgrp {
-+		fsl,pins = <
-+			MX93_PAD_ENET2_RD2__GPIO4_IO26		0x31e
-+		>;
-+	};
-+
-+	pinctrl_tpm: tpmgrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO17__GPIO2_IO17		0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX93_PAD_UART1_RXD__LPUART1_RX		0x31e
-+			MX93_PAD_UART1_TXD__LPUART1_TX		0x30e
-+		>;
-+	};
-+
-+	pinctrl_uart7: uart7grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO08__LPUART7_TX		0x30e
-+			MX93_PAD_GPIO_IO09__LPUART7_RX		0x31e
-+			MX93_PAD_GPIO_IO10__LPUART7_CTS_B	0x31e
-+			MX93_PAD_GPIO_IO11__LPUART7_RTS_B	0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_cd: usdhc2cdgrp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc2_default: usdhc2grp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000178e
-+			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x40001386
-+			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x40001386
-+			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x40001386
-+			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x4000138e
-+			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
-+			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000139e
-+			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000139e
-+			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x4000139e
-+			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x400013be
-+			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x159e
-+			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000139e
-+			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000139e
-+			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000139e
-+			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x4000139e
-+			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x4000139e
-+			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+};
--- 
-2.34.1
-
+With that fixed:
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
