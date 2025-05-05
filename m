@@ -1,81 +1,87 @@
-Return-Path: <devicetree+bounces-173648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AB64AA9323
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:30:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6994FAA9327
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 14:30:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70E8D1899F06
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 12:30:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 527867AAFE8
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 12:29:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72141204C1A;
-	Mon,  5 May 2025 12:30:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64CB51420DD;
+	Mon,  5 May 2025 12:30:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bAfu4hin"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DnnPOVfG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689E624E4AA
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 12:30:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D071F6FC3
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 12:30:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746448208; cv=none; b=TNvJkVCCwvl+FwFV37cQF6Kj1n3CLk8u7x0OF0W0V5rST7s/jCCFM9PyCTk9hVKXIoLumwOYO5OGbZafbiGYTUdoZedfymU1wvzXVkTSHxC6D6KsLNhUrsUwPN8z3xlnPmyGZ7hs1dXR2aFTFJECT1bpKrJvp+JNLhAFL1IFtKw=
+	t=1746448242; cv=none; b=ZAs4fiRYPTDJjjNCFROyJp2uUnclGvxT9f1RIDwcbFxhf6f78ir+9bg5o3MCsd7e7paORnF8TBTMzLZHgiAVYmJH8zZLB6ftiqAGfYdSyiAM79mOjge1TkAWqoPMBqzJ5rWMuDmLb1ziVnkVHypm2nz6D3WT2YT0ckZS9aN2SYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746448208; c=relaxed/simple;
-	bh=eC4rf7B14lDTCwZ8B+eqbwh8ui74TY7nf9x4H9JFM7k=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=RILcWVLAHm8ifTZCtFM3696GMnhIW3oRXyKBZ0QtkRCcmvmVR17sJgXaSneHXPhWPcWWzk1WDEf2RZyqR3jNNOC5xg9mjbNiXFwbHaSnX530TtzFJZeUo/Rdhcf5YVsAKlG2vxg4UCTQWaYMKsjLtAb20c5PamGORZHEJm+1owo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bAfu4hin; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43cf58eea0fso18295725e9.0
-        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 05:30:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746448204; x=1747053004; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t0GjryULo4v09EAImrhm7s0nrCH1vBTnHzkq05ckM1c=;
-        b=bAfu4hinbiGfwi6+7dL8teBEkKg63WlGuzzsHJGajG5YWCAJgwsvbfq1EzT48DYAjg
-         ASCAeIm7hk0PQyNcRZ+5XW4IVKjKeOSARnIiU6IaFWJuME8Bc1y32pRFxi+6oIKid166
-         sY1mZJwmRDwdLbqe2ABzsHdxwEboHDPrgDBpPuchJNVufuk0WySIw7S5yZbeOwuTMytV
-         aNOPzJq4cgh9uPciFqW/P7ZAkp7q+PmTJ7SkOJ81haWAJ2YQ1fOH4tMJCKg45Acgmd/1
-         R1guZbZ4IAa8KxKUtT90/PTvlvczKHZygNGmFAWAhYpgqKaOBquPcj3FGc+HecxlqMP4
-         bZdg==
+	s=arc-20240116; t=1746448242; c=relaxed/simple;
+	bh=KUndq4hJdVEJD5ngNJGBRZeJyb0wTFdvOJGt1kRqK6k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mBhEpIv7wHXvclJBYhn5e0TvAiwmGvlp/uKbyT7CrOPTKGNO+NcA0CsFs4us6UsPe1K2U2/smtAyPePvrzmLmxoQi0hiwPwVVYvqkBLBWqVYTF5kYBchvJqezdrXIB6AOWkJWNozS14RE8Z7a2kT+pzA+/S6qxnKWF72BLN+hEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DnnPOVfG; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 545Bv0OU015953
+	for <devicetree@vger.kernel.org>; Mon, 5 May 2025 12:30:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	y3G6J7mrlp65EzgO5VLytgkQO3fSgok1k/X2CkcanNg=; b=DnnPOVfGaj3nPpIf
+	PitqrK0HiLJjajI2U8/bck6JhKAqtp5hVEi6zBmiOqVy8L+c9coT5HKFHEbHyBH9
+	oLkKHiLCOTA9w5UqhXdhAzz+IIX+fv5kCDGEG0DBnGtMWGxsoSluXLc6D+SOBo4O
+	ErAl0rpaER1PLt6/cqCb1/8o5JLfX8DLm7Kx2ydLn7yObwuKtJeymMMz/NqoiRzG
+	OFMf5RdMKzDf5bxF0fFE25RjIHdwFowwURPH9FxTP4i/5MW40oVsiFoi/Zl6kesc
+	NYSzqSh9BCifrPaczyrigO0MpTq6jO8VNcn+o4pmsYUJf82CXER6LVMkkqIZw6EN
+	yyQOmA==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46dce9bys2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 05 May 2025 12:30:39 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b1fc7b14cd9so892560a12.1
+        for <devicetree@vger.kernel.org>; Mon, 05 May 2025 05:30:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746448204; x=1747053004;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=t0GjryULo4v09EAImrhm7s0nrCH1vBTnHzkq05ckM1c=;
-        b=uOOrO5YXUEA7bbMaYpORVgdU719eRKzoD164ZKykFrlrdYSLMPrM/qK1mpt61m3jNe
-         dYizdfSElt1biWuGuhMHuBazofp/H3fSDUDrXxVYeQ1v5FKN9tPpkTnPpWSqfkFWaWih
-         n0WVwti8EyosbNbVFWa/CBprcmzPkilCw4Hi7aE6Issp5Ms5JwoKM2DkNGQBz4cFOUT2
-         HAbTubshdhI7OdLz6ZUnB2KZFzM/YLTtMM6lKYsvNxVpacycGQKpQnh4UGNV0qf5BVO2
-         0j0/C5LJWGJz7uEmnd5G6qb3qx69ZpC/EvRQelHHuM8PSQEj7ezdme5xXc+DVF3DCskC
-         34nQ==
-X-Gm-Message-State: AOJu0Yx3xF1J/xoCMsmQOrMt6sOr8gByKcykgx3DhQkekzu4DZcBKhFq
-	PvXw9XxnJQe1KIVV4KHFL7WgskD6X/eT5Jq1U9Zj5pPnQymLjYpSShrLVTPqurs=
-X-Gm-Gg: ASbGncszyt4QEia0YHD3zfIFjIdDJnEqmGJ55/fPWW+7boZZrdcmLxbgimEWChEPHiM
-	IUXSmBUBrKrMJtOA7/p99HrJbPzCvd0Fc8A+jKEpIUdbF+D/giOQfjOk0sydwLY3hZV5q/6z9G1
-	U1IOVpjNsygJh/sqst1M7g1sxQA9MjHblFAsxNsdKoekwb92/z09dYRz1qrlgjrgNHRdmSxUQkk
-	4TMyO6UUrLZD6T76o+Ii72dDf3pR5HgbFFSN+SjDOkTS3/szDd7QfYmYhso0mmjy8onKDYSUsNS
-	ZNU12DGlndMR8N8qHHPac9J4aJqwzeAPiQa8OA54rhWmcA+Wr4lZ7pgbT4FaokAuzg0sB4T7xxP
-	tV/zQ+QT6S7W44kvD+A==
-X-Google-Smtp-Source: AGHT+IEXaFpXxqRcmFqcdi7rW9veV7mUOW9LMRdHD1faNwTOAtntg/32GzuRuVivniydhFYII1GnXQ==
-X-Received: by 2002:a05:600c:19c6:b0:43c:e9f7:d6a3 with SMTP id 5b1f17b1804b1-441bbec2a80mr104674185e9.13.1746448204392;
-        Mon, 05 May 2025 05:30:04 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3? ([2a01:e0a:3d9:2080:88d3:1ad7:3ae1:56e3])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441bc83d471sm108852165e9.26.2025.05.05.05.30.03
+        d=1e100.net; s=20230601; t=1746448239; x=1747053039;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=y3G6J7mrlp65EzgO5VLytgkQO3fSgok1k/X2CkcanNg=;
+        b=HbgZyeNaaMs4o8LSRb3in6IN3jQXCHhHUL+JM27Nzd2tCrqtYogvRh8SR5o01N+CtQ
+         k6Q9FCiVm9V1j12FqvO/H/FMCb6aBR+3LbWEAD3W2616QJJ+QYQIwlUm4lIjFslwgb7P
+         AqI7YyfGwR4xKxzTFmIKo0Akl5MCX8O5uzJhB+EoNNllXCcFz+rvjyCIPSGWN/8GyEdp
+         3hAEMtostKI9+6aa2QCE1s2FoT9BX/oMw9cqT1wt57BHafb5OscV1uxRq3U3FnzaUzPV
+         BP3bwN70h8NKNq/X2iFsw3BjpQEd+EflyhA4CHurBgxRyi1GvaNb3ODD2zopTggcMHdH
+         8r9A==
+X-Forwarded-Encrypted: i=1; AJvYcCWIYT5Svm0ABbO7JWoRJwaTFXvywO5jZP4J4MS86Rqm8cYTwl+rJ2/GHoTTs4J/dzqXpGTE4YDGpE0I@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLcoSko8h4nzmEjvqP8zhULM/wok50833Xiar2yCCwqPVFsTnk
+	jvNP4K+UF8k7p0yw7n4g9Mmf9oV14UyOj9pMrE8cIIhvO1nshrI5+g0Tt2vD8Q83ZpS73nxUKag
+	cfGGPs28Py9IToPHSEYHFdz764iETyISFKd70zMlCbttRQoMjKDyShIkI23RN
+X-Gm-Gg: ASbGncssrLkELLWhKmJrZ9CKfvb5nUuMxJcjzgZUV1IzmWFmkPsj8tLGdCpnhftWLxn
+	h5gEHwD2wuuhdsNgH91mgFZvMUkvsJ0+mZ5gfPvew7P6/p2CUvJbipPin4gbKnpsAaQJyCDpT+r
+	w7PR9hLjwrWBMJPKPTxA7WNTeomLMrQHPo2CXwTuc66ZqtODrSygTwM/U0SCEpS9oKGskd+SGau
+	TlwnnHxDBLL4mp8hPFZbnQn5KoAUnb7HIi3CqnOzAjpuYyoBsUTaUJ2pQXxjQDojSKNZGADijpt
+	zTbix4ogJo334ojrVnEmdxWxm3WIVABkBmAEzLrb
+X-Received: by 2002:a17:90b:35c2:b0:2fa:603e:905c with SMTP id 98e67ed59e1d1-30a42e4ec2bmr24078904a91.2.1746448238747;
+        Mon, 05 May 2025 05:30:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEiYHZNbAPD2hX6uotPQt4rYNK5LSmkNVeXzY+HRrfyvbKuerZll0vE/BGL+crksM4WYtDukQ==
+X-Received: by 2002:a17:90b:35c2:b0:2fa:603e:905c with SMTP id 98e67ed59e1d1-30a42e4ec2bmr24078856a91.2.1746448238319;
+        Mon, 05 May 2025 05:30:38 -0700 (PDT)
+Received: from [10.152.201.37] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30a3471f005sm11506606a91.5.2025.05.05.05.30.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 May 2025 05:30:03 -0700 (PDT)
-Message-ID: <5bb02494-e974-4d2f-a00f-417312b73bc1@linaro.org>
-Date: Mon, 5 May 2025 14:30:02 +0200
+        Mon, 05 May 2025 05:30:38 -0700 (PDT)
+Message-ID: <538b32d1-c7b7-41b5-aa93-d285604d1f05@oss.qualcomm.com>
+Date: Mon, 5 May 2025 18:00:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,111 +89,165 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v6 1/3] dt-bindings: reset: Add compatible for Amlogic
- A4/A5 Reset Controller
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Zelong Dong <zelong.dong@amlogic.com>,
- Conor Dooley <conor.dooley@microchip.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Rob Herring <robh@kernel.org>, kelvin.zhang@amlogic.com
-References: <20250411-a4-a5-reset-v6-0-89963278c686@amlogic.com>
- <20250411-a4-a5-reset-v6-1-89963278c686@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250411-a4-a5-reset-v6-1-89963278c686@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH V5 3/6] remoteproc: qcom: add hexagon based WCSS secure
+ PIL driver
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org,
+        mathieu.poirier@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, konradybcio@kernel.org, quic_mmanikan@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc: quic_srichara@quicinc.com, vignesh.viswanathan@oss.qualcomm.com
+References: <20250417061245.497803-1-gokul.sriram.p@oss.qualcomm.com>
+ <20250417061245.497803-4-gokul.sriram.p@oss.qualcomm.com>
+ <72f0d4f7-8d8a-4fc5-bac2-8094e971a0e3@oss.qualcomm.com>
+Content-Language: en-US
+From: Gokul Sriram P <gokul.sriram.p@oss.qualcomm.com>
+In-Reply-To: <72f0d4f7-8d8a-4fc5-bac2-8094e971a0e3@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA1MDExOSBTYWx0ZWRfX/i5gmefvYkpB
+ JpA+3wwuY26BA6ePhHI2xgtJ1ininLMZbZeEccos3RN7l0KxbUR548XkmMyycJpcUIY9dqVpQPN
+ i8TroxhLVYJO4soOkAHxBK2K23XEod0mEIdVCZSsmU2pzsJ99Mk4hfvdgPluPQvw+mQB6Jk8Yr+
+ amuI8P7mJi+/VZv9Thj6INxcp7o+TtShs+7g95nyRonTRYoaKEFP5E4xBzYISE0BTMoDP2RfkaF
+ I9ULjP6/U/2JrWnW1nj6VNABqQy+7mbaG0uu2A5/70jSLAESvQKhHC3OHtHD2TfjKEWtnFqJyIs
+ jRpAPcjdzxv0vm2W8477es2NNjPUINem/lXpfmbgJM89hY8RCMs1Q83HoU/U761wCeGdEKLBZop
+ 6D6bnNlnpF6A2GB0Z8QW4AgqdPozgIxO4mWPt9kMzDPzW8jFyaGryD4QqwTGmaJe7Tsbh90I
+X-Proofpoint-ORIG-GUID: kXVhKyPB1mLiKMT4IllBTCIu4T8LDY43
+X-Authority-Analysis: v=2.4 cv=Qope3Uyd c=1 sm=1 tr=0 ts=6818af6f cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=iPeUMZ46Q7pfEY4_gPoA:9 a=QEXdDO2ut3YA:10
+ a=bFCP_H2QrGi7Okbo017w:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: kXVhKyPB1mLiKMT4IllBTCIu4T8LDY43
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-05_05,2025-05-05_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 mlxscore=0 adultscore=0 clxscore=1015
+ malwarescore=0 bulkscore=0 suspectscore=0 impostorscore=0 phishscore=0
+ mlxlogscore=686 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505050119
 
-Hi Philipp,
 
-On 11/04/2025 13:38, Kelvin Zhang via B4 Relay wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
-> 
-> Add compatibles for Amlogic A4 and A5 reset controllers,
-> which fall back to 'amlogic,meson-s4-reset'.
-> 
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Link: https://lore.kernel.org/r/20240918074211.8067-2-zelong.dong@amlogic.com
-> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
-> ---
->   .../bindings/reset/amlogic,meson-reset.yaml        | 22 ++++++++++++++--------
->   1 file changed, 14 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> index 695ef38a7bb346c92b4cf428e7615d45682c940a..150e95c0d9bed74c7045942610a311114a257889 100644
-> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-> @@ -12,14 +12,20 @@ maintainers:
->   
->   properties:
->     compatible:
-> -    enum:
-> -      - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
-> -      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
-> -      - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
-> -      - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
-> -      - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
-> -      - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
-> -      - amlogic,t7-reset
-> +    oneOf:
-> +      - enum:
-> +          - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
-> +          - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
-> +          - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
-> +          - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
-> +          - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
-> +          - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
-> +          - amlogic,t7-reset
-> +      - items:
-> +          - enum:
-> +              - amlogic,a4-reset
-> +              - amlogic,a5-reset
-> +          - const: amlogic,meson-s4-reset
->   
->     reg:
->       maxItems: 1
-> 
+On 4/25/2025 5:17 PM, Konrad Dybcio wrote:
+> On 4/17/25 8:12 AM, Gokul Sriram Palanisamy wrote:
+>> From: Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>
+>>
+>> Add support to bring up hexagon based WCSS using secure PIL. All IPQxxxx
+>> SoCs support secure Peripheral Image Loading (PIL).
+>>
+>> Secure PIL image is signed firmware image which only trusted software such
+>> as TrustZone (TZ) can authenticate and load. Linux kernel will send a
+>> Peripheral Authentication Service (PAS) request to TZ to authenticate and
+>> load the PIL images. This change also introduces secure firmware
+>> authentication using Trusted Management Engine-Lite (TME-L) which is
+>> supported on IPQ5424 SoC. This driver uses mailbox based PAS request to
+>> TME-L for image authentication if supported, else it will fallback to use
+>> SCM call based PAS request to TZ.
+>>
+>> In order to avoid overloading the existing WCSS driver or PAS driver, we
+>> came up with this new PAS based IPQ WCSS driver.
+>>
+>> Signed-off-by: Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>
+>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> Signed-off-by: Gokul Sriram Palanisamy <gokul.sriram.p@oss.qualcomm.com>
+>> ---
+> [...]
+>
+>> +static int wcss_sec_start(struct rproc *rproc)
+>> +{
+>> +	struct wcss_sec *wcss = rproc->priv;
+>> +	struct device *dev = wcss->dev;
+>> +	int ret;
+>> +
+>> +	ret = qcom_q6v5_prepare(&wcss->q6);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (!IS_ERR_OR_NULL(wcss->mbox_chan)) {
+> You abort probe if wcss->mbox_chan returns an errno, please rework
+> this to use if (use_tmelcom) or something
 
-Do you plan to take this change ?
+Hi Konrad,
 
-It has been laying around on the list for a while now, I plan
-to apply it in my amlogic/drivers tree at the end of the week.
+do you mean to use 'use_tmelcom' variable from driver descriptor? If
+yes, what if mbox_request_channel( ) failed?
 
-Thanks,
-Neil
+or based on wcss->mbox_chan, should I set 'use_tmeeiihcckgddglcom' to
+true or false and use it?
 
+
+> [...]
+>
+>> +static void wcss_sec_copy_segment(struct rproc *rproc,
+>> +				  struct rproc_dump_segment *segment,
+>> +				  void *dest, size_t offset, size_t size)
+>> +{
+>> +	struct wcss_sec *wcss = rproc->priv;
+>> +	struct device *dev = wcss->dev;
+>> +
+>> +	if (!segment->io_ptr)
+>> +		segment->io_ptr = ioremap_wc(segment->da, segment->size);
+>> +
+>> +	if (!segment->io_ptr) {
+>> +		dev_err(dev, "Failed to ioremap segment %pad size 0x%zx\n",
+>> +			&segment->da, segment->size);
+>> +		return;
+>> +	}
+>> +
+>> +	if (offset + size <= segment->size) {
+> I believe this allows an off-by-one (remove '=')
+ok, will check and update.
+> [...]
+>
+>> +		memcpy(dest, segment->io_ptr + offset, size);
+>> +	} else {
+>> +		iounmap(segment->io_ptr);
+>> +		segment->io_ptr = NULL;
+>> +	}
+>> +}
+>> +
+>> +static int wcss_sec_dump_segments(struct rproc *rproc,
+>> +				  const struct firmware *fw)
+>> +{
+>> +	struct device *dev = rproc->dev.parent;
+>> +	struct reserved_mem *rmem = NULL;
+>> +	struct device_node *node;
+>> +	int num_segs, index;
+>> +	int ret;
+>> +
+>> +	/*
+>> +	 * Parse thcitejlvhvdriihtheuvhn
+
+>> hrough additional reserved memory regions for the rproc
+>> +	 * and add them to the coredump segments
+>> +	 */
+>> +	num_segs = of_count_phandle_with_args(dev->of_node,
+>> +					      "memory-region", NULL);
+>> +	for (index = 0; index < num_segs; index++) {
+>> +		node = of_parse_phandle(dev->of_node,
+>> +					"memory-region", index);
+> https://lore.kernel.org/linux-arm-msm/20250423-dt-memory-region-v2-v2-0-2fbd6ebd3c88@kernel.org/
+
+ok, will implement of_reserved_mem_region_to_resource() and
+of_reserved_mem_region_count().
+
+>
+> [...]
+>
+>> +static const struct wcss_data wcss_sec_ipq5424_res_init = {
+>> +	.pasid = MPD_WCSS_PAS_ID,
+>> +	.ss_name = "q6wcss",
+>> +	.tmelcom = true,
+> "bool tmelcom" is very non-descriptive.. call it something like
+> use_tmelcom, or maybe flip the condition and call it e.g.
+> tz_managed
+
+oeiihcckgddgcjnfeeuhjfdfbcfcdenvfnjnuceuntbir
+
+eiihcckgddgcgltegldivttfeldnhugbnjvtllkkrujt
+
+eiihcckgddgchbegrjtgfnk, will call it 'use_tmelcom'.
 
 
