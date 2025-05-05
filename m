@@ -1,145 +1,105 @@
-Return-Path: <devicetree+bounces-173576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F320AA8E23
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 10:22:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD43AA8E34
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 10:27:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 277FD18929BF
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:22:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C3473B5C66
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64AA31F09AF;
-	Mon,  5 May 2025 08:22:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C4CF1F416B;
+	Mon,  5 May 2025 08:26:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mVtwl5fo"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="EqsgzOBI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED2531EFFAF;
-	Mon,  5 May 2025 08:22:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936A51F4161;
+	Mon,  5 May 2025 08:26:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746433333; cv=none; b=iX2i8sMx/oJnTRhxaeI5JMGTuZrXzX6ru2Up+qkQ0+pNNJfnU6aE28NmEVD1XHuaGyhF42ovl6wkLHpZFZtFefAnR2l9rr3C5na03jXeqfTrlztATwkzh1ZHTBtYH2+9bX7qaCIz8OogC2FIW+x+r3olGfO04v8vscJQI2KD/Z8=
+	t=1746433603; cv=none; b=S1UoFqxlNhq1WX0nfxQjgOT5qjYgeANUxvbsS0n0CtLSr+9sTmza2y5/f7NmZQWdaeKLYOwAQAnpHSK4JZjDiTLi9RslGdZKfY7a4qX1Fsfg7u1ZmJoOxIbP+h/kQRnqLPL8e++xglyd7mZLHLq9QfIdM4W7qRbenU2C4W9/E5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746433333; c=relaxed/simple;
-	bh=zCrAasw3aT6zagyU+hfu0KLmpivQDVk4DpsxMEgM65k=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IPrDhdAQwHelVZhU2u6eOqaA47+WAXSZD5ydDBlYU+cMg49TdE09c70JkyYQjsI43blZXa3iweWHqokcoYcK3dqAtV7WaYeYdrWQj+1XcIA0Iyfo1q9xXu3XF85Zgoav6mVZWoCFt0gEoWTFlKrEG6mhuYdeEZxb1cpywjRxNjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mVtwl5fo; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id ADCF31FD48;
-	Mon,  5 May 2025 08:22:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746433329;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YM3k1ODh/XrTfaviGoaAW5WSeUPQLJS+hciVRusS5Yg=;
-	b=mVtwl5foQ/Tm6luhAVmCrNrTxB1YGeVTjiF4WibQSEH4i5AGSKe4AuqPq90zZTB8TdFwWD
-	DgXjCeVVoc/zW/nQpbT0tqpiB0/2lhCCBZPIuUdhtNJzW8Xha8Y8fp0yzCSnREF6aFhORr
-	op3cMN7xmlf7L/HK3FPQ0oZFFyCJEOyV+NkESvWupHQdJCfDh9kU84EuQWUUOHE3PMWvwG
-	NTijzjDcAKYW0zGkpFBgNnX+M5Lz0DjWRPdniq1oar8C27c3QgLrMYXugVro5LrV252bHs
-	0gC3lFxa2OX9/IOD04n+1n9d1B7VPJm4oQV1R/+PlZD1EmnWqvDPP72FzGEaNQ==
-Date: Mon, 5 May 2025 10:22:07 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Ayush Singh <ayush@beagleboard.org>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Andi Shyti <andi.shyti@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree-spec@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 1/1] schemas: i2c: Introduce I2C bus extensions
-Message-ID: <20250505102207.2c54cbaf@bootlin.com>
-In-Reply-To: <20250502160910.448f63dd@booty>
-References: <20250430152201.209797-1-herve.codina@bootlin.com>
-	<20250430152201.209797-2-herve.codina@bootlin.com>
-	<20250502160910.448f63dd@booty>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1746433603; c=relaxed/simple;
+	bh=i+tTiJZ7k7wpl5y1tdiroTrPgUOLQAatWAJJiH3KQKI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BqMVyB4vbhRGWEvEhcsQUYwR0dOY+VfEaav0v8xbfna7MHsYImqSVI1X2MjlUmi7jnsIwr1NSQKDivVKK4DdzoiFLJFx0lDQfLJYexZOjQ3PzlcrDlTecY5rnatASpyDmuIsQ3N5eYBRDGyXG0VQjfDLma6QbV0FBUnVxsPgGvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=EqsgzOBI; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=79u0OVf8LkWKmm3Wdou6FM0hujmZjDHVeYn1Q2NENsw=; b=EqsgzOBIrGjPuFoBjKNtkB308w
+	VTwCJi+SJq3zdiiMnB0g/cGN/OfXfz5oX/LxhKDV5Aqw6BGKKn/omiK9PJtN6WdV0rhjCj+gAatKr
+	xSiyKBYAagXWW4JtDEWQf55eutefx2YZ5YLRuA6tSsJv6+C1pEzMk+bgCzc0hTfVXmKfz0OoTbN7f
+	+0r5DekvMq0MYaohIUjW9LY0b3qwI+V2i2/nvzDvJ232eeDzPtqWrHGF1cJd25OpbsbVRYedbyNOL
+	cFk9IVPb6nbOsGrDEm+n87CAg0vkwSLZCRPdirkOIkn0Izc2B+crQtTpEtezTcm/G4wm+Cy7xC2ap
+	s712kSyQ==;
+Received: from i53875a1d.versanet.de ([83.135.90.29] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uBr9g-0001Ho-BB; Mon, 05 May 2025 10:26:28 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	hjc@rock-chips.com,
+	mripard@kernel.org,
+	neil.armstrong@linaro.org,
+	dmitry.baryshkov@oss.qualcomm.com,
+	knaerzche@gmail.com,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: (subset) [PATCH v4 0/7] Convert inno hdmi to drm bridge
+Date: Mon,  5 May 2025 10:26:15 +0200
+Message-ID: <174643357077.1204535.10688043941921762631.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250422070455.432666-1-andyshrk@163.com>
+References: <20250422070455.432666-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkedtheelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiffefgeeitdelleeigefhjeelueeuveekveetgeffheeltdekgeduiefggfdvnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduvddprhgtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprgihuhhshhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopeifshgrodhrvghnvghsrghssehsrghnghdqvghnghhinhgvvghrihhnghdrtghomhdprhgtphhtthhopegrnhguihdrshhhhihtiheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdro
- hhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqihdvtgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Luca,
 
-On Fri, 2 May 2025 16:09:10 +0200
-Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+On Tue, 22 Apr 2025 15:04:39 +0800, Andy Yan wrote:
+> When preparing to convert the current inno hdmi driver into a
+> bridge driver, I found that there are several issues currently
+> existing with it:
+> 
+> 1. When the system starts up, the first time it reads the EDID, it
+>    will fail. This is because RK3036 HDMI DDC bus requires it's PHY's
+>    reference clock to be enabled first before normal DDC communication
+>    can be carried out.
+> 
+> [...]
 
-> Hello Hervé,
-> 
-> On Wed, 30 Apr 2025 17:22:00 +0200
-> Herve Codina <herve.codina@bootlin.com> wrote:
-> 
-> > An I2C bus can be wired to the connector and allows an add-on board to
-> > connect additional I2C devices to this bus.
-> > 
-> > Those additional I2C devices could be described as sub-nodes of the I2C
-> > bus controller node however for hotplug connectors described via device
-> > tree overlays there is additional level of indirection, which is needed
-> > to decouple the overlay and the base tree:
-> > 
-> >   --- base device tree ---
-> > 
-> >   i2c1: i2c@abcd0000 {
-> >       compatible = "xyz,i2c-ctrl";
-> >       i2c-bus-extension@0 {
-> >           i2c-bus = <&i2c_ctrl>;
-> >       };
-> >       ...
-> >   };
-> > 
-> >   i2c5: i2c@cafe0000 {
-> >       compatible = "xyz,i2c-ctrl";
-> >       i2c-bus-extension@0 {
-> >           i2c-bus = <&i2c-sensors>;  
->                         ^^^^^^^^^^^
-> 
-> This should be i2c_sensors (with an underscore)...
-> 
-> >       };
-> >       ...
-> >   };
-> > 
-> >   connector {
-> >       i2c_ctrl: i2c-ctrl {
-> >           i2c-parent = <&i2c1>;
-> >           #address-cells = <1>;
-> >           #size-cells = <0>;
-> >       };
-> > 
-> >       i2c-sensors {  
-> 
-> ...and this should have a label:
-> 
->         i2c-sensors: i2c-sensors {
-> 
-> With those fixed you can add my:
+Applied, thanks!
 
-Indeed, thanks for pointing out.
-
-I will fix them in the next iteration and add your 'Reviewed-by' tag.
-
-> 
-> +Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> 
+[5/7] ARM: dts: rockchip: Add ref clk for hdmi
+      commit: cdc602ad064009470b1c40af51d4a8cd804eaaf9
+[6/7] Revert "ARM: dts: rockchip: drop grf reference from rk3036 hdmi"
+      commit: dd6c77864aa69ba1079998c590b552e35649d51b
 
 Best regards,
-Hervé
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
