@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-173544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2E96AA8C26
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:15:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C413AA8C2C
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 08:17:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 087803A9E73
-	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 06:15:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E546C1891F48
+	for <lists+devicetree@lfdr.de>; Mon,  5 May 2025 06:18:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863831B423D;
-	Mon,  5 May 2025 06:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B9961B041A;
+	Mon,  5 May 2025 06:17:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sje229x7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yPghz9Rw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C2CE4C6E
-	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 06:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FE51A315E
+	for <devicetree@vger.kernel.org>; Mon,  5 May 2025 06:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746425725; cv=none; b=cnpKNVIPIkxPzaeBFEnbVbAFS/CLeR0uadRwtlV0Ot1Est21JL5UTK6tbpXOFprb5pweM0zsDjIAHt1TAKRcb46ersvTXO0N7/Mb3AsGYyjitQq/lgp9Cx5zVZ7BQWYoq2Vp/ZPxxBv0dXT9eREL9an9wAXO47LSsp4lSQ8V/TI=
+	t=1746425866; cv=none; b=ers6TnICvvyoMwOqyF4b/Any7clbCnfPNIPyhfHao7XGzg0fmme1u2mUJTq1iFjiHCGNLc6Nqg40UrBu0Sg62FbnJMUguy0PBvy7o27XYwOcPieV2T+g9lJA0DBUnlq76dZ4p83kG1+JlkqRO2RUXt7CTloVpxbiFG4i178J23M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746425725; c=relaxed/simple;
-	bh=2Ypy5/mrMqj2QpsVf3jU3yiGqAAuyQ/KJ2bHJb5EEO0=;
+	s=arc-20240116; t=1746425866; c=relaxed/simple;
+	bh=WTqruFHJPbXUvJ+Abad466vMBFstOzi4YaAP4ufNfuo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LVw9pwT85Uwc7ObZQcu/asi/myrWBjwUa1HtuIcMSdPjYz+2sgGfl8fWrbvKodW70HiV1MTwhuRHsvyhOFgSsKdunNsTy09Nm80sDWnKPzV7rV8hcksnaTAcW4KIFjIluvM8EEWUF47erATx3eF2+WjZVFiRGLC+8UzIGZ794Uw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sje229x7; arc=none smtp.client-ip=209.85.128.52
+	 In-Reply-To:Content-Type; b=syJYactvnswrXU4OpyZVbqj6z+lp7gHlsg+S9Oe2h6Z5h1gORM6xPvFuOIcnpFxM2FJlNr0xqWUkidk1Yeq7urHiJ8vcDiduvnPPIq6VZ2MyBGyB9ly0KaHn/5N1RELXlQykafop0i1QGYrjbXxWWv+1izGINrTidSg7D3r0LXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yPghz9Rw; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43ceeb85ab2so4279435e9.0
-        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 23:15:22 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43d72b749dcso4555355e9.1
+        for <devicetree@vger.kernel.org>; Sun, 04 May 2025 23:17:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746425721; x=1747030521; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1746425863; x=1747030663; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=TxK/pctKF6C6aazKg6OENbtkCxPaC3gyVkFcwKqIeNI=;
-        b=sje229x7pyRByIT9+jkfKqy36eCKzZXJwZU01dD/8OLE6NkPVPFeFyT/BF+DsMCCb7
-         rdShwM+HUzUKmSeOIirPhYuzTNZPrwovxVKrSu5CSGGUw7o/NOIpHQZzY+5utxkN0Pr9
-         XDyqRaC5fNuF9zch1zMovUQfVVzd9KAJP63NZEbqZWeA9K6lQN95sD+aSXMvLfAaNis+
-         70yIpZNm0ZdDAWN/or0OP/nILhP3ShCF+0tjNrn9BPrT9k5mLPcHhreO/+zVPbXpFQFR
-         6c45et8Qg7wFJB/mY+5jNuhJiQ8/pzplxH04S4Sp1raeyzMWbb+7y7Sqv3uzn6o5cqGc
-         YtIA==
+        bh=NX4Rz1dfaupNMAP0jhgw9F7SGjjiJLMayEUKk5YTb2Q=;
+        b=yPghz9Rw9nMf/UJWworAQvkUFhEb6HLfN+I33mEVt0PDtCP0hwIhL74zmUNOu87a4n
+         NyWryfdpytukqRSeRTrS725DdcU+Ijddt9jboAWm5+y7euVxR7c3sbEU2RFzjzY5sIBu
+         c42mQwOuR02yyzAl+W0mGskx+fFGtQX7vUBpmMTb3a15dQHIYy5G3TObs81whuqiZAua
+         K4ZeGdi4mFckSw4M47GM9iwg0GydqCyFLM0rFfO2hmNBIxJ7t14IzoRLEYUB/9S9IMVQ
+         yhjvOJ0nPbByWViGtW/16L0UK/INHCkIp62Bm72bDATSOnqeUJIOqXnxT8S8qrLWgEFd
+         EfPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746425721; x=1747030521;
+        d=1e100.net; s=20230601; t=1746425863; x=1747030663;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TxK/pctKF6C6aazKg6OENbtkCxPaC3gyVkFcwKqIeNI=;
-        b=mSHSdpX5d5KdwSQucAoxCo6zJy9Txu/JyCf1chwmCrb/rSjqPrzIerhzA3lgnm1RDk
-         i3ax8Adkxs+kDNxF0bMVmgFKWi7Wnq0Ff72qQRVIbGkzoRUoTPsrGAfxwbEoVxlV8i9Y
-         rRTMF9Xmp6k7UFusUeY6/WU9DfmMgLGi6ZGMHQds1ZMa+jkAnmuDfZFpASOHdDkLeL5j
-         KmgpFGfd1D5SCwjYzOTHMvMjUr/I8Ff3l8xKATvycJ/FqbZ3V3Luj3hWbUScUy19e830
-         FfFvKl7LZC75GtcFcOiGDyC7C0YRWShJSEfvqvCaO1ej3siO2idi98fFd8hxAMWtoEio
-         J+fg==
-X-Forwarded-Encrypted: i=1; AJvYcCVA4y9LAk968NZtsIY50RA2NP+3Fhf4FOgAl+e6wRXw4rFy+IEF+mETh2JM505jHGYd0wiboSeUJSOj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoB+axgql37ORlO1Fy0t6fOoLoURaefFvUUTkYkLZV8VtQnrW9
-	Quk5KO/ooo+uxN9DoJ8tCWwERDCx+ENL0z+pmQ3VNZuM4VwXEnqROUc2hddkAb4=
-X-Gm-Gg: ASbGncugyUTSorJbbOA/fAW84h1xSI4cYGP9pZT87fj//PtC048bXrXp15PdypKjMhb
-	FvkvLZIppB1VRTdKBGGwLIQGeTjV3UV0wAcwHusKwMpkyDC/1gcFyco3ZNdAVG8Dmp/qhw5dLXB
-	V2ipbGE11QuP/YsF7UqtgeGdETzOt0F7/h9NKImqhQrx4phwQSK3/15OLCNfp3lXhpQBS5X5XnQ
-	rWktgHsR0/t13KiXf2keBLgxMaTIU0CpHN3Tch6UxHGB3NuzRDJ2EHLcSileO1uQsD3DKdwiMkL
-	PifXGN/jnSSVkEjaMJpbjdQzo1Lf4kAyQ2D3v/Prh0yi4TXcvl9wRNdLpng=
-X-Google-Smtp-Source: AGHT+IGYzpcLXDJt3YPMJwjoLaKIbfaCgKHzEcaTw+3Vcv1jOY7XPCX3Z7TVWylT+uhkc9trXq4HgA==
-X-Received: by 2002:a05:6000:310b:b0:3a0:6868:8b13 with SMTP id ffacd0b85a97d-3a099ad5a51mr3279808f8f.1.1746425720738;
-        Sun, 04 May 2025 23:15:20 -0700 (PDT)
+        bh=NX4Rz1dfaupNMAP0jhgw9F7SGjjiJLMayEUKk5YTb2Q=;
+        b=XGqoKkQpugrMgXaHD7UcrX/yBqNmnne0v4ChwZV/zqKPbJkmo1VwWrSAaye2x6cHA2
+         WdM2vqlQVD5N0Hi/1EZDeMb4jALmAQnunuxXTGWBR/nuw9VVTyTZDvyAJJN5iSRF0F86
+         WAq76lDj7d1/EtoSL6ojH9RRxSosguNpTwfxprtTDokxOdVW1hNvN2c1n7NYi47TJzJw
+         2skUw80QzHfaPSlrxU69KtzsdA8N2UnELiHJ8hAllYaduMyh3f9QBR9Nuz035cDzquj5
+         gymb0YHAObByRXKiKK3fmkfL9A8Sjs/HtCOlnFkxXsrkebP61JbQ5yovzbiFnUafkfhr
+         KScg==
+X-Forwarded-Encrypted: i=1; AJvYcCVHnBPXQM36bVR6NMjLHpxq3nzYAbSF1EWVl5NurabnHHbkUPNLvDeS2N1Df78qAdW9VvsMgdbZM+zG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1sjz74MAgXgsXMcq5IiZTasPaXwjmwFcrTaE0rUDqk5j7W3c2
+	y0cAdLWXUX2NobwxB+E16mav5ge5RUnqrNTvO1+d5Hx4xbywWDOLBsDkGLk19fI=
+X-Gm-Gg: ASbGncuG4EigqnuZT0IqHeHE7aHBC/Ac9W485SVKS46m3UqirBXyi+yJk8fYc0ySKMa
+	2VoOqQNuzVdyceapfumykq1eBZOdRRGs8tJwB4vnG6nHzpS0dWOvG+gC4eqFI0Edn5TF36q555D
+	eoIJ9eZoYDJJ2VIAvAoMqi+ZVkXfeGvOPnm1w64pXOKkZMaFuT6c/TIHlS+nCP1i77TKKd/HBvJ
+	Wzv86fff1OJTrHJHruyL8IcV2+0bQDS1/2j+tnrgI5nAflQz/kC6YQArZmb1wM1egGsljeDIs0o
+	Lq8BZJWcYsEKdYmbMoZDkupuZMiRjBIYN8A43s+RMBMMkqqRgm+0uZU5vY+1x5KpbSKosg==
+X-Google-Smtp-Source: AGHT+IH0LOrDkps/9Rr0/olfktl+QlWmLaEC4ldMHPBjCaA9Xv+NxHcZaPiI2hpb6qHiQmJJWKSUhQ==
+X-Received: by 2002:a05:6000:1ac9:b0:3a0:75ff:261f with SMTP id ffacd0b85a97d-3a099aee755mr2986209f8f.11.1746425862733;
+        Sun, 04 May 2025 23:17:42 -0700 (PDT)
 Received: from [192.168.1.29] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae79d8sm9148905f8f.42.2025.05.04.23.15.18
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b17748sm9225083f8f.100.2025.05.04.23.17.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 May 2025 23:15:19 -0700 (PDT)
-Message-ID: <0e7c76ad-ebc6-4dbb-9c3d-07071443b759@linaro.org>
-Date: Mon, 5 May 2025 08:15:17 +0200
+        Sun, 04 May 2025 23:17:42 -0700 (PDT)
+Message-ID: <97e49dc5-9cca-4c85-b0b0-18c472d0ec0d@linaro.org>
+Date: Mon, 5 May 2025 08:17:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,8 +82,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 06/24] clk: qcom: dispcc-sm8750: Fix setting rate byte
- and pixel clocks
+Subject: Re: [PATCH v5 15/24] drm/msm/dsi/phy: Define PHY_CMN_CTRL_0 bitfields
 To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
  Marijn Suijten <marijn.suijten@somainline.org>,
@@ -104,8 +103,8 @@ Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
  Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org,
  Srinivas Kandagatla <srini@kernel.org>
 References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
- <20250430-b4-sm8750-display-v5-6-8cab30c3e4df@linaro.org>
- <l6hwojjbk4e7eahoqcjprzululibhgrlpsv5zi7odicwx2wuvr@6difydf2mbz4>
+ <20250430-b4-sm8750-display-v5-15-8cab30c3e4df@linaro.org>
+ <j47udhqq3ldsza3cr6a6rd5dq7uxjgpolbmdhmpzvzt7glpuva@v5tgkydlywag>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -152,60 +151,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  h0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1qwom6QbU06ltb
  vJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHpcwzYbmi/Et7T
  2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <l6hwojjbk4e7eahoqcjprzululibhgrlpsv5zi7odicwx2wuvr@6difydf2mbz4>
+In-Reply-To: <j47udhqq3ldsza3cr6a6rd5dq7uxjgpolbmdhmpzvzt7glpuva@v5tgkydlywag>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/05/2025 00:42, Dmitry Baryshkov wrote:
-> On Wed, Apr 30, 2025 at 03:00:36PM +0200, Krzysztof Kozlowski wrote:
->> On SM8750 the setting rate of pixel and byte clocks, while the parent
->> DSI PHY PLL, fails with:
->>
->>   disp_cc_mdss_byte0_clk_src: rcg didn't update its configuration.
->>
->> DSI PHY PLL has to be unprepared and its "PLL Power Down" bits in
->> CMN_CTRL_0 asserted.
->>
->> Mark these clocks with CLK_OPS_PARENT_ENABLE to ensure the parent is
->> enabled during rate changes.
+On 03/05/2025 00:44, Dmitry Baryshkov wrote:
+> On Wed, Apr 30, 2025 at 03:00:45PM +0200, Krzysztof Kozlowski wrote:
+>> Add bitfields for PHY_CMN_CTRL_0 registers to avoid hard-coding bit
+>> masks and shifts and make the code a bit more readable.
 >>
 >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >>
 >> ---
 >>
->> Patch is independent and can go via separate tree. Including here for
->> complete picture of clock debugging issues.
->>
 >> Changes in v5:
 >> 1. New patch
 >> ---
->>  drivers/clk/qcom/dispcc-sm8750.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c             |  9 ++++++---
+>>  drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml | 11 ++++++++++-
+>>  2 files changed, 16 insertions(+), 4 deletions(-)
 >>
->> diff --git a/drivers/clk/qcom/dispcc-sm8750.c b/drivers/clk/qcom/dispcc-sm8750.c
->> index 877b40d50e6ff5501df16edcffb6cf3322c65977..d86f3def6dd06b6f6f7a25018a856dcc86fc48eb 100644
->> --- a/drivers/clk/qcom/dispcc-sm8750.c
->> +++ b/drivers/clk/qcom/dispcc-sm8750.c
->> @@ -393,7 +393,7 @@ static struct clk_rcg2 disp_cc_mdss_byte0_clk_src = {
->>  		.name = "disp_cc_mdss_byte0_clk_src",
->>  		.parent_data = disp_cc_parent_data_1,
->>  		.num_parents = ARRAY_SIZE(disp_cc_parent_data_1),
->> -		.flags = CLK_SET_RATE_PARENT,
->> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
->>  		.ops = &clk_byte2_ops,
->>  	},
->>  };
->> @@ -712,7 +712,7 @@ static struct clk_rcg2 disp_cc_mdss_pclk0_clk_src = {
->>  		.name = "disp_cc_mdss_pclk0_clk_src",
->>  		.parent_data = disp_cc_parent_data_1,
->>  		.num_parents = ARRAY_SIZE(disp_cc_parent_data_1),
->> -		.flags = CLK_SET_RATE_PARENT,
->> +		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
+>> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+>> index ca1a120f630a3650bf6d9f9d426cccea88c22e7f..7ef0aa7ff41b7d10d2630405c3d2f541957f19ea 100644
+>> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+>> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+>> @@ -362,17 +362,19 @@ static int dsi_pll_7nm_lock_status(struct dsi_pll_7nm *pll)
+>>  static void dsi_pll_disable_pll_bias(struct dsi_pll_7nm *pll)
+>>  {
+>>  	u32 data = readl(pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
 > 
-> I assume that these flags should be set for DSI1 clocks too.
+> This (and several following functions) should be triggering a warning
+> regarding empty line after variable declaration block.
 
-
-Indeed.
+You mean --strict or what? It is common to have the &= immediately after
+assignment, so that's why I chosen that syntax. It is just more
+readable, but I understand your comment that you want --strict
+compliancen even if it hurts readability, so I'll change it.
 
 
 
