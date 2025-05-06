@@ -1,61 +1,66 @@
-Return-Path: <devicetree+bounces-174279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26DD3AACAF7
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:29:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86969AACAFE
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:30:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 018CE3BE474
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:28:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DDAC3BF0DA
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99253284B21;
-	Tue,  6 May 2025 16:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEBC283FCB;
+	Tue,  6 May 2025 16:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oq2LlI2P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i3FdGlF9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7090627BF8D;
-	Tue,  6 May 2025 16:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9A728001E;
+	Tue,  6 May 2025 16:30:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746548952; cv=none; b=HEI8xWBL2PSPFXaSrEOTKg7TA7Kjzmrg/VLl49H2wIIV8oAJn8Z1jmKLIJhz7yN4o/p9TN/OWx0oSNHJNRVHW57CBmOiUWoUhy8eXCzPUEaiy5lekgkrExp5LCAlxqRIhAzNI1bTyO3UwXPZOlEOuA+zEA4MRjOyZy7Fua2hvQg=
+	t=1746549028; cv=none; b=MZthvFwF8uQLY6j60tHoG0ljF7yhDnh5jVUU5iCgL4vNjc5zokhjjFNi4Y8DyqdvUBcl/TY8TO+WOhrNWtoREzxrt4QhS86t01Ss0Rpnm3Lt8Vo/F4dgWe+PJjkb7BPrhN8NT5qVY0crcEaXU7bAUVJ734+T0pFFkXe1GJe1OJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746548952; c=relaxed/simple;
-	bh=kOucaCiTOjCuwEDYRf4xSI+oTb3XR4SieOgn6ttIfaQ=;
+	s=arc-20240116; t=1746549028; c=relaxed/simple;
+	bh=yk89LHTXO3jss8gNOPcfJRUOju19BFvggSyJM9Digqk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nYfH18gqO5t73yWOHmoTvxG1gbPp+Bc/nlsEbeiJwW1aAyk4EB0xD+d8souWmNdRS6tLer7p/fPolnyFyGHxDIZCYwvw1OCgYUaVZXxczVqOVskpFnjRJxqQruNCvV3sUyEdOJK10bcxKNGJY0Guf+wRSZ6SNObCC3mNtaJY68I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oq2LlI2P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A813C4CEE4;
-	Tue,  6 May 2025 16:29:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BDCJJieYeCdL1KYNeJ6mIpm9Dnu2si6sfLp8EbkPjfLEJFx+0jC4Lg2VXaMWVjH909GePP0eCc0N2FtODZYe5JdIMqyrBAWUclL4oMj9WASLN1GOKi0bOTG/+kBVz7+JkaHQGQlbXnc9Io35GphjxIGMkdeLVzDcOxnJwlDMArs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i3FdGlF9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0129C4CEE4;
+	Tue,  6 May 2025 16:30:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746548951;
-	bh=kOucaCiTOjCuwEDYRf4xSI+oTb3XR4SieOgn6ttIfaQ=;
+	s=k20201202; t=1746549027;
+	bh=yk89LHTXO3jss8gNOPcfJRUOju19BFvggSyJM9Digqk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oq2LlI2P1lJQ/oyTKrRnxPw7EO9BiOf+OVuYZ3G451tnU26eZ0c+4XvvzNaTI8TVP
-	 iAUD+c5GLRTD/oj9Y53Pxyf0lnqRNijMMDncNs/iu8KopcJamreqtaD9YZN5ju/6rd
-	 Q8OVymac1ixkcsZNpLy3CWfEtTx+6U2omV+Q9jU18T3sYgDp78jfj2MAf/8kLDCyYO
-	 6ETStIDRBR00iFJ/Brt5WAEw3IyB2Hc4GJ/HTZpJ2+wZzXsuguw/eDaKguJpZWzpqp
-	 re/s0R/shqflOfoKJmYzXV5xCjBjuoXReIXPf/L3/YpSDf/aewjwAeKHpVcnef1B5Q
-	 V60LKme8+mWaw==
-Date: Tue, 6 May 2025 17:29:07 +0100
+	b=i3FdGlF9r/zuuI40wyqxOzGvxDbf+SqGdyaiMBUoxowwEunFPrve3bRz6pb6552t/
+	 8FjCXrOBQ74tQ+RoKpFLwzTUyrMAVFx6Bvw/iQMYUltrNV9dY4T8/MMvkp42Mk5rXF
+	 ZxQuIWb1pxu7GYi4ObbFdg8EqUhg8c0rMLM1VzWR+WLqdwUaxfz+wnWhFXDVxvylgt
+	 WyY0dVl8Th4ieB14eCz59E/yzC1DzZlE4Tag+Hob7lUG2AKCv3PSkIWJcaG7xUVGAf
+	 OO7tUayKKhf4yr5NL8ZObm3CfyeOaZjVVYk3XoJJDhIWamkHUUohSiJYi9q3+WOkyq
+	 suD7hzhxBnK6A==
+Date: Tue, 6 May 2025 17:30:22 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+To: =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	bcm-kernel-feedback-list@broadcom.com, kernel-list@raspberrypi.com,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clock: convert bcm2835-aux-clock to yaml
-Message-ID: <20250506-recycler-sugar-2b0f34d60361@spud>
-References: <20250503080949.3945-1-wahrenst@gmx.net>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Alexandre Mergnat <amergnat@baylibre.com>,
+	Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+	Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>,
+	Fabien Parent <fparent@baylibre.com>, kernel@collabora.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: Add
+ mediatek,mt8365-infracfg-nao
+Message-ID: <20250506-safeguard-brisket-96da510a99d3@spud>
+References: <20250502-mt8365-infracfg-nao-compatible-v1-0-e40394573f98@collabora.com>
+ <20250502-mt8365-infracfg-nao-compatible-v1-1-e40394573f98@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,32 +68,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BYm1tPIPDcX1NmBu"
+	protocol="application/pgp-signature"; boundary="PZUhCmeqes3xNKnX"
 Content-Disposition: inline
-In-Reply-To: <20250503080949.3945-1-wahrenst@gmx.net>
+In-Reply-To: <20250502-mt8365-infracfg-nao-compatible-v1-1-e40394573f98@collabora.com>
 
 
---BYm1tPIPDcX1NmBu
-Content-Type: text/plain; charset=us-ascii
+--PZUhCmeqes3xNKnX
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, May 03, 2025 at 10:09:49AM +0200, Stefan Wahren wrote:
+On Fri, May 02, 2025 at 12:43:21PM -0400, N=EDcolas F. R. A. Prado wrote:
+> The register space described by DT node of compatible
+> mediatek,mt8365-infracfg-nao exposes a variety of unrelated registers,
+> including registers for controlling bus protection on the MT8365 SoC,
+> which is used by the power domain controller through a syscon.
+>=20
+> Add this compatible to the syscon binding.
+>=20
+> Signed-off-by: N=EDcolas F. R. A. Prado <nfraprado@collabora.com>
 
-> +    aux: clock@7e215000 {
-
-Drop the "aux" label if you respin for some reason.
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---BYm1tPIPDcX1NmBu
+--PZUhCmeqes3xNKnX
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBo40wAKCRB4tDGHoIJi
-0szWAQCpZXN5ujtc5qNCr1gNAxdHwpTCCoxoCXi85BN1ByM1GgEA/fkQNS08jLp2
-XxAoeX9oIf4UJM+aYeyiZPqBk73MwAs=
-=9nwV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBo5HgAKCRB4tDGHoIJi
+0o6IAQDuQXjMuejZZPZgecYQRVBoKrB/iTH2vnh1+sSpGOzoXwEA159pOsyZy5CJ
+3GifqtsxDfIlIV5zxXmOb+gRCw9eOg0=
+=ziAH
 -----END PGP SIGNATURE-----
 
---BYm1tPIPDcX1NmBu--
+--PZUhCmeqes3xNKnX--
 
