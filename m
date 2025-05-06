@@ -1,127 +1,142 @@
-Return-Path: <devicetree+bounces-174344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B46DDAACE76
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 21:57:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE17CAACE83
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:02:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD80B189C567
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 19:57:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D396A1BC0788
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F7F20E703;
-	Tue,  6 May 2025 19:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900AB35957;
+	Tue,  6 May 2025 20:02:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZtT10z7I"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Q0M2fJwz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00A2420F081
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 19:57:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BEAD182D0;
+	Tue,  6 May 2025 20:02:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746561428; cv=none; b=p0NlUM1BOBcQuvRjguqYX65klDr7bfZNEashbnYqlDOBXsVI5J6N1J64JO6y5ibABa5i2mnLmgzA4vd5uPf12vIzoLUgaH23BLwz66NhinTJe3fxke2LEEkBxOrlM04Gwb23aJqA+/lb7KjGKgSMEytcziDB+36LfgByiA9n1mg=
+	t=1746561740; cv=none; b=tFbZgznhpbgS1G2v/1oUdFCTyFCpeOylcoS32Oxfhc1svzanzbd5QlaNsxPzsxoBxO+9hiIiozk91lgfMkaIeXRQA9bWMxTC+1Dj0hpyYjsL5J7XuS9pFhIKzXDCdagWAn8wbA4Jyjd9EJ05ODjA1Rgqaj3WvIIOLfWdiKRCyNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746561428; c=relaxed/simple;
-	bh=vUvfTx3x+1eAiM3gKEP9sFrTmU/Xt0RZ0aFkMTXhiGg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Amt7P6UXGv9RDZW4PYmzGgnDQfgGB8v5m06M3vj0D5X6M3ieRm7XLgaOedqMNAvtYbyiUF8wg4bPQQBf3Aw5TXK+t9eEe4iDb3HPeM406yYx+GYRRNzpcmnojpjPRBfrBcYGTw9uMEdTA14vHiR8XugtGVf+Sk7XZSJoQIKQ4UI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZtT10z7I; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-39c0dfba946so5066757f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 12:57:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746561425; x=1747166225; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=y3vbxhBSLqLe3XjcC4EERoFFbogworhDxS7+05BBfYk=;
-        b=ZtT10z7Irlmb1Ciy3pHZXWiwE85zlSRqVNEsR9i5C+w0YtG0DgtxhaM65PUe6vc6sB
-         6S8TOz0mHWtMTxxaPlx3vHJ4ygfxct4A5ObL/M+weuLtLhjApi6fMnEvFb9D9hUyZ64d
-         hMn/BGCyilqYujlczAZ6IxByVTpW4SSSMGfBizrl4P00x9rkFSxCpJW5cwCN6+lJWZVi
-         YXId4RuEzw+6erwX/5EyQ/3fnoVZwcs23wIKDuZdn/DRXjCqS7AQPqfvKw5B7l7RIOTq
-         Er5BkJf3YmIFz5S2r+3hpz9cNUlnHLBFGgJhs2qXz/DpR5lgw/96392d93/xf9RWcPmT
-         JJZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746561425; x=1747166225;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=y3vbxhBSLqLe3XjcC4EERoFFbogworhDxS7+05BBfYk=;
-        b=meYqhj56PSgh4gHYqMu0+pOS6+xhBU1V5+lFF7yQ6PuY9r2FsJztrc4sk2We0M1k64
-         zaG6vJLI0U2ZDm7bVjWgt8D/2yjeJMaIwLqxv5dEYjwdLUmxihzNtSqI3F0mzvzrkSIJ
-         7qAZ4K4O5nXgQZomr+SPjVlQX5bUeTIYh4N/s9Cb4GozXsyN182gtg6Xlmp39laJWn4l
-         o9KSpBrnojshcPr1P2Pq47nH8DVDsfO/oNEc/jZRT2B50ZNzrJg3neTUZ3230fcEVl73
-         3KZdywR6+FBoyud63vyJAg2YE4enn77qOWAK2V4F9aVAV2AilWGKLZ1YvuBe42ngWZAj
-         HCJw==
-X-Forwarded-Encrypted: i=1; AJvYcCU9iv/DwiwrgmUHpW1B3AWcfDWR7u3bwoalxrdjBEvlP/4oqXcR7psq9D43WogiiFe7pKiQYc/KkVWf@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeSDHCYoF7pGlzJ/o47cMz7xXCGipMXiC52NWYl0EITQhMZm2r
-	Ay7+KavyT0cWShAeLiPKgclrorGWk0EadhjtbaxmlqZVuQx4PiPt
-X-Gm-Gg: ASbGncudqn5Ogi5SjM9Mea9zclzqmiFqHlbH67pdRmItC6gJhfmtorp0wiGMWkqEt0o
-	o/cwQG1/+luk64TU2UuLBR5TC0mqzUBSvAcLRzfw7KDLWdYh5Wxb/eI/ttKqIVBBLtKeHalOan5
-	bSL16iycflKx4vYHk/F4DLUNYirhhN6stEKncjaB4IJwFIzI1RF02SdPSH/Ii1Ic3q1aLjwXDZF
-	sIPXjsNZ9GSK5UKd643JqBwiR2GhYxGJjcNTLMJVNR7vRrr9/iIHZklFMYD6M21mH0kQn86mH/n
-	qaDl75XjtWYquAEZmzpI9MXpOVVHhB0NbKTmMZja7WnMZ0+gShV5MR8ZVE1O0zDFshPOHJlUFPh
-	16Iwy6yevMdLQ8ucumfABx7/pHdj2ggJxm1R2XvuEcSrNdk5g424S5sCpKHKjenHFK6TisXx1oS
-	c=
-X-Google-Smtp-Source: AGHT+IG1PEHQDubohmsoatevOOLhijpxe1NphokuiP/Nu7Ncl0qkD97C4xKqr2gLqznzH6itSftAng==
-X-Received: by 2002:a05:6000:2dc3:b0:3a0:7a5d:bc02 with SMTP id ffacd0b85a97d-3a0b49ea159mr641969f8f.7.1746561424910;
-        Tue, 06 May 2025 12:57:04 -0700 (PDT)
-Received: from cypher.home.roving-it.com (2.c.4.1.7.3.6.4.2.a.a.3.0.f.c.2.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681:2cf0:3aa2:4637:14c2])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a0b3d0a77asm885636f8f.56.2025.05.06.12.57.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 12:57:04 -0700 (PDT)
-From: Peter Robinson <pbrobinson@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Cc: Peter Robinson <pbrobinson@gmail.com>
-Subject: [PATCH] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3566-rock3c
-Date: Tue,  6 May 2025 20:56:55 +0100
-Message-ID: <20250506195702.593044-1-pbrobinson@gmail.com>
-X-Mailer: git-send-email 2.49.0
+	s=arc-20240116; t=1746561740; c=relaxed/simple;
+	bh=VFpsjQswqN7WRkOQQiXqntDWdIecEJS9KiXG5Wv2OtM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tOBYqu+peP9OdbsrHomgdwr6m1UouGFTLCqCLpoBfr//3xp4jeI+776dBBTTjav8DOtc8ZBUkb/xNy7CpHEbnWk9jMJdpRoqzGTSlolDbRJSsaNFZaVzXSg2DXXO184xuQi90ynQJGB+whawV6+MOJkfitOdqbCoQnG/gaSwM2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Q0M2fJwz; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 546K1g5v609667
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 6 May 2025 15:01:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746561702;
+	bh=W42cyLUdol+oUsgXG96Kh1xhxA3DvcRncFoVbahX4AI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Q0M2fJwzd5R5U8NnigZDb+vyIv7sTySh9pvRo9zOOPOrY+RD2VCW+uYI7OhS/cLfN
+	 mgonkL2aoWgrOu14yE5+uitN7t+6zFK1TrMJy01vLJgCSLngNSuSgJkfUQIeQ2TjbI
+	 7NdvDzYzQw+bvbmE7FZP8yLrToeByKM9ZT30el2o=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 546K1gpr110583
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 6 May 2025 15:01:42 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ May 2025 15:01:41 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 May 2025 15:01:41 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 546K1fPh040642;
+	Tue, 6 May 2025 15:01:41 -0500
+Message-ID: <4e014361-65ec-4b6e-839d-bfeb995262c6@ti.com>
+Date: Tue, 6 May 2025 15:01:41 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] PM: TI: AM335x: PM STANDBY fixes
+To: Sukrut Bellary <sbellary@baylibre.com>,
+        Kevin Hilman
+	<khilman@baylibre.com>, Nishanth Menon <nm@ti.com>,
+        Ulf Hansson
+	<ulf.hansson@linaro.org>
+CC: Aaro Koskinen <aaro.koskinen@iki.fi>,
+        Andreas Kemnade
+	<andreas@kemnade.info>,
+        Roger Quadros <rogerq@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Bajjuri
+ Praneeth <praneeth@ti.com>,
+        Raghavendra Vignesh <vigneshr@ti.com>, Bin Liu
+	<b-liu@ti.com>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, Russell King
+	<linux@armlinux.org.uk>,
+        Rob Herring <robh@kernel.org>, Tony Lindgren
+	<tony@atomide.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20250318230042.3138542-1-sbellary@baylibre.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20250318230042.3138542-1-sbellary@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-As described in the radxa_rock_3c_v1400_schematic.pdf, the SPI Flash's
-VCC connector is connected to VCCIO_FLASH and according to the
-that same schematic, that belongs to the VCC_1V8 power source.
+Hello Sukrut, Keven, Ulf,
 
-This fixes the following warning:
+On 3/18/25 6:00 PM, Sukrut Bellary wrote:
+> This patch series fixes the Power management issues on TI's am335x soc.
+> 
+> on AM335x, the wakeup doesn't work in the case of STANDBY.
+> 
+> 1. Since CM3 PM FW [1](ti-v4.1.y) doesn't enable l4ls clockdomain upon
+> wakeup, it fails to wakeup the MPU.
+> To fix this, don't turn off the l4ls clk domain in the STANDBY transition
+> in MPU.
+> 
+> 2. Also Per AM335x TRM [2](section 8.1.4.3 Power mode), in case of STANDBY,
+> PER domain should be ON. So fix PER power domain handling for
+> standby. l4ls is a part of the PER domain.
+> 
+> Since we are not turning off the l4ls clockdomain on STANDBY in MPU,
+> PER power domain would remain ON. But still, explicitly handle this
+> to be in sync with the STANDBY requirement.
+> 
+> 3. On am335x evm[1], UART0 - (UART1-HW) has a wakeup capability.
+> Set the wakeup-source property in DT for AM335x.
+> 
+> 4. Enable PM configs for AM335x.
+> 
+> [1] https://git.ti.com/cgit/processor-firmware/ti-amx3-cm3-pm-firmware/
+> [2] https://www.ti.com/lit/ug/spruh73q/spruh73q.pdf
+> [3] https://www.ti.com/tool/TMDXEVM3358
+> 
+> Test log:
+> https://gist.github.com/sukrutb/bdbfd1220fe8578a9decf87d0bac6796
+> 
 
-  spi-nor spi4.0: supply vcc not found, using dummy regulator
+Thanks for the patches, Sukrut.
 
-Fixes: ee219017ddb5 ("arm64: dts: rockchip: Add Radxa ROCK 3C")
-Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts | 1 +
- 1 file changed, 1 insertion(+)
+I was able to test this series on am335x EVM, baseline being rc5 next
+branch: https://gist.github.com/jmenti/cda1675b5fc5844b6f065376e98026f5
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
-index 53e71528e4c4c..6224d72813e59 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
-@@ -636,6 +636,7 @@ flash@0 {
- 		spi-max-frequency = <104000000>;
- 		spi-rx-bus-width = <4>;
- 		spi-tx-bus-width = <1>;
-+		vcc-supply = <&vcc_1v8>;
- 	};
- };
- 
--- 
-2.49.0
+Tested-by: Judith Mendez <jm@ti.com>
 
+regards,
+~ Judith
 
