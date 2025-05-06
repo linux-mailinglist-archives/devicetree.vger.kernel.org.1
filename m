@@ -1,135 +1,140 @@
-Return-Path: <devicetree+bounces-174132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A0A7AAC2AC
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:31:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13BCDAAC2D6
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:38:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C2C23B29B1
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:31:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4769D7A19DF
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6938927CB07;
-	Tue,  6 May 2025 11:30:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE06B278742;
+	Tue,  6 May 2025 11:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="W6ahW4Cd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P6TN1P1H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A346427AC42;
-	Tue,  6 May 2025 11:30:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3857733DF;
+	Tue,  6 May 2025 11:36:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746531016; cv=none; b=mkXCGP6M++mrS4MxBKxNHl/f9QcjtM/w+vcZZK+TUG91WW0iPyrtWV9aGFB4fo3NI51wGIqPj8opJWU2BdOlnIfssh+nCySnfezi0JJN+fabsa5RCpr7SU2r9iqj1bQ9bc3ITjToKnpEmcQW7KhAqGFH3vCt+jjJhM79VTTGsYc=
+	t=1746531381; cv=none; b=M+itehJrUpi+fTtaT3bnhXNKa+NQ5GQcFQsIUu+ay62SdaIEib5qkvCBKUC0yXKsrK+utZ9II7mZqTUdPBu7/ScRN7KlN/f9SQclROTNfUSbsxaRynJiJiskuVPp7yjgSV5sLJnNCEyhSK7cWZGNbz1LcF0aWs5SKVb2CQQaoVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746531016; c=relaxed/simple;
-	bh=6zvLh1+M1TopLSMEihum0IjZMluVdHS2PGGCBhHCFos=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HwfSYL0lcON6Leofwyi3NduYylMBIisMIF9EavYH3bPV43ffPjHaXWH33wh46TYcJkCzseUPC3Jo5Q05SKN3eVLa9v7U13jd1rlJhb5LbNqxo5Cv7rGHukOCG+3mgDSbvsv/oWRuzpplqJXL+9xsQh4/mibYEEbx0YS+/BRRco8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=W6ahW4Cd; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9FA101048C2EF;
-	Tue,  6 May 2025 13:30:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1746531012; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=j+tjm4josKsxx1XYGwI2ueKPNoEguumH2AgRPhy7ttY=;
-	b=W6ahW4CdKTfVxM95VHuGYdddGdilzhWER2Uybu0fbJV8lhKvmzz6jyldsaXQYo1D6rxQed
-	/IEuy42LWI6CH6yGXVXl7Wc56T/ZLjItA5b/oRsCRX79p4jsPVSyv717zDHqFhi4AHOvBA
-	lwQR/DuRqPbOxCRvz3G8B6k2lI/v7ha/iOgJdQUsh2PpYgzFWu963NQkOtYSMCtdlfelaG
-	a5vUosABWOg9xbYof+5USgGRX39V61UGuVb0W6c4RhH2PXKYkBxeuszey34ueGpLi6vqPW
-	LbN/LUcrygAtvkk0m6fGRYM+QcSNZkZu+yXJoiRQmgQSdRvRSvGrmrcUycL1eA==
-Date: Tue, 6 May 2025 13:30:09 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Richard Cochran
- <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
- <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
- <andrew@lunn.ch>
-Subject: Re: [net-next v10 4/7] net: mtip: The L2 switch driver for imx287
-Message-ID: <20250506133009.3e945546@wsk>
-In-Reply-To: <20250505131611.0c779894@kernel.org>
-References: <20250502074447.2153837-1-lukma@denx.de>
-	<20250502074447.2153837-5-lukma@denx.de>
-	<20250502071328.069d0933@kernel.org>
-	<20250504082811.4893afaa@wsk>
-	<20250505131611.0c779894@kernel.org>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1746531381; c=relaxed/simple;
+	bh=9keMmpZSyqI5tSOuG8Pqrhgf7LjyBxdO9UY563YM01k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n/xQQOg4NEhD4RToAPS//EfmVjPjoze2g3Q3GUQQfJof/t4bRG5pnI32Qj/qg5kFDv7y3Qn6Wyta7mQ2KMaFPqfTpxaPOCLV1UJtRi4XG+tEKlMif8/MOF40McUCT0xKecqMM6brON2GS+EFn/DJwTB+RVGyZcnEFdn6xZEh//k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P6TN1P1H; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-736b98acaadso5238663b3a.1;
+        Tue, 06 May 2025 04:36:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746531377; x=1747136177; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=A+r2etV5TTN9GUy5eqZyzlOSAzsHs6a0GmxwX3NuYtQ=;
+        b=P6TN1P1Hsclhuy3OaKRoyDpFsC4498j+pm93S107dVOwPLWl3NRNPUWZrAfVlalfbi
+         16uALdgn9A/3ntRZFi9+nvq7CpJrrSRfIgJXpHCS2z8QRpdlbJq7oxBmVtO6FgteRn4c
+         oGOeRJWQhGxPevOwhQKcTuT3piPRl/PzO7W9WcTjNc0hZr7FJIeVoMfrUHL3TEIKc8hQ
+         bMzZC8dgEl/XsRn5LVAf1MMz4dKmIZ+3h/L1uODIbvGn5cZi8/wldmhwBmys4juBXv5U
+         VPzvztNQe1LCE59ebLuZbW1VqCzJCqOraSFP1GQgKJckUBq4qWHGCmycLZSqqAsRVJ+p
+         7NLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746531377; x=1747136177;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=A+r2etV5TTN9GUy5eqZyzlOSAzsHs6a0GmxwX3NuYtQ=;
+        b=f69hT1YN72N+RzwKATAAwHs6ULhJr2FMv75pyviUulNFobALAkNBb99VIeNpGQP+XM
+         WrhQ2GHMX98xCiIq4k9EvZpES5OQEod27rWZCxfUMwuNtrS5RWatIDTJSMQkauHRS+aL
+         io+vcW5gw/zpxazNrOTaLB+Kh9nDbG5dgOvu2jEoJ3cFn8IyFYWdDqpu8j9y2si+0Emu
+         BFaXNaBfBXEl5Pb5IkzCNPoMSCitAdO8VpyVH8O6kRmALHoOZVvTh/eWqFLKKjn0NMYu
+         1u31WLGhKZuKPb/NfElAPrgXYnvua9ngRTGVjl2Oi0Xz43E3tz8jN2xmLcZUektsNxYh
+         EtsA==
+X-Forwarded-Encrypted: i=1; AJvYcCVEcatReaJoGhHsvnvSKzqz3lMoYEHayxmctnihgMH5j2tiQNsTD34z5ChRUOHbA5d6QjdFUiycRzUPUHM=@vger.kernel.org, AJvYcCXLCTLO86FrxTe/yP5xuvApWxlw9EFfRNd9WPH0ioNIU8SW26tV/Q9RyWQCVT3av5WKIjHVpBRsVU+js+Il@vger.kernel.org, AJvYcCXYojOuGRrna1ozM7AvVCrGmHlkVgIxCxghdfzxINy3F4lnXpokEz9F/YMZWJoKyIkAmj3jJ+xgaBhC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzqq50BFTK12YyAnkFMIBcNkidl0VA4znl00qXti+HdVsn14FzQ
+	BPXNBkMfn2gX1RWPYFbDhkEDo7gUjBF0J2Qg9aoi5OmGoX8Ju6a6
+X-Gm-Gg: ASbGncsNThjt4n2z4gswsWm+QDDaFbpRB1NsBkJD/MMJ/AlsM8uW7+gvAnlUMExcL8L
+	Xa3dVfxO5ZhIKXDbs0JD5tqGovS21K25TVLy3R3MrkCK0aL1dESTzsqJz8a11gL7DTIa1AhC0rw
+	g63QTeJnU8fid6c/adW5PMkYQ68qsh0RzwgB93qjA5vUhsHRfWbq92DT2HZaGLVq7eExlw9JpSR
+	jJ+UEKz2v7J/p8pTJMwRRL4jOqsIvFzR5IomEBmBWvRfZ1dDJvShqRzQJc9BLFDHmjN7wUsSEvE
+	P8kPSczz51NJRBVi/xCQQz0PVb5AiV1oTH2KOYQXzsnAfPH3kl4IBxunHyOoz388JA==
+X-Google-Smtp-Source: AGHT+IE6XF0LC0bfX0riu351c7PSdWNsATp9NoJ9u5v3diJd1yyBdZH6E2imJcSroJJnM0fVZfgakQ==
+X-Received: by 2002:a05:6a20:244c:b0:1ee:e46d:58a2 with SMTP id adf61e73a8af0-2118153c0c5mr4211536637.3.1746531377426;
+        Tue, 06 May 2025 04:36:17 -0700 (PDT)
+Received: from [192.168.1.5] ([122.174.61.156])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7405902154dsm8995529b3a.90.2025.05.06.04.36.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 May 2025 04:36:17 -0700 (PDT)
+Message-ID: <d0bfbcd7-4fde-41d4-a8fd-796dc7db814c@gmail.com>
+Date: Tue, 6 May 2025 17:06:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/VGhUyR7bm1Y+8Pq6wGW6=0i";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
-
---Sig_/VGhUyR7bm1Y+8Pq6wGW6=0i
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi Jakub,
-
-> On Sun, 4 May 2025 08:28:11 +0200 Lukasz Majewski wrote:
-> > > Now that basic build is green the series has advanced to full
-> > > testing, where coccicheck says:
-> > >=20
-> > > drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c:1961:1-6:
-> > > WARNING: invalid free of devm_ allocated data
-> > > drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c:1237:16-19:
-> > > ERROR: bus is NULL but dereferenced.   =20
-> >=20
-> > I'm sorry for not checking the code with coccinelle.
-> >=20
-> > I do have already used sparse and checkpatch. =20
->=20
-> No worries. Not testing a build W=3D1 is a bit of a faux pas.
-
-Yes, I'm fully aware of them - mea culpa.
-
-(at least now by default I will have W=3D1 set :-) )
-
-> But coccinelle is finicky and slow.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] dt-bindings: dma: nvidia,tegra20-apbdma: convert
+ text based binding to json schema
+To: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250506-nvidea-dma-v3-0-3add38d49c03@gmail.com>
+ <20250506-nvidea-dma-v3-2-3add38d49c03@gmail.com>
+ <28757bb3-61b4-423d-850a-70fd5a4c2786@kernel.org>
+Content-Language: en-US
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <28757bb3-61b4-423d-850a-70fd5a4c2786@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
 
+On 06-05-2025 16:42, Krzysztof Kozlowski wrote:
+> On 06/05/2025 13:02, Charan Pedumuru wrote:
+>> +
+>> +allOf:
+>> +  - $ref: dma-controller.yaml#
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/reset/tegra186-reset.h>
+>> +    dma-controller@6000a000 {
+>> +        compatible = "nvidia,tegra30-apbdma", "nvidia,tegra20-apbdma";
+>> +        reg = <0x6000a000 0x1200>;
+>> +        interrupts = <0 136 0x04>,
+> 
+> You gave me little time to respond - 15 minutes - and then you sent v3.
+> 
+> Use the header and its defines instead of hard-coding it. Wasn't this
+> the entire point why you included the header in the first place in v1?
+> Otherwise why was it included?
 
-Best regards,
 
-Lukasz Majewski
+Oh my bad, now I got it, I will use #include <dt-bindings/interrupt-controller/arm-gic.h> header and redefine the interrupts with 
+interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH> format instead of hard coding. Thanks for your patience and clarification.
 
---
+> 
+>>
+> 
+> 
+> Best regards,
+> Krzysztof
 
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+-- 
+Best Regards,
+Charan.
 
---Sig_/VGhUyR7bm1Y+8Pq6wGW6=0i
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmgZ8sEACgkQAR8vZIA0
-zr2hpwgA4XcfexGrhhN6LFts0lR95BX5rhktdQBEW5FlLs57vikXMEzNzJqty9n3
-MqEjDsfAcdHJfe9vwMMVgoxBLBDahgnAki/tyn+PrtH78hmXIZ8p4ZOShnGalF11
-13lKMYA8oH/tCLonXLTvspvwR92/S0aUZKszFWwDq4VS8ZBLHRUMtU0TvkA/TZps
-7VrU+3V6SX16CPI73894dh5lkc+tV5bnJJu2PTQ+pMhL+DuLmEMSCkxyhAocLcdq
-bvcb6o3hjhXzQtE70wXbI2HfH5X/x4hEyliOfK8Q+/s/BsjWFjEsxCvtVCb4UCGR
-DQ7kBhb6w1Q4Q5B+D+d8g/R+O/iNbw==
-=4Uhq
------END PGP SIGNATURE-----
-
---Sig_/VGhUyR7bm1Y+8Pq6wGW6=0i--
 
