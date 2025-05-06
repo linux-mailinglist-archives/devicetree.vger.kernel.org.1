@@ -1,132 +1,156 @@
-Return-Path: <devicetree+bounces-174089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5591BAAC0EB
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:08:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 807B8AAC0F4
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:10:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D7893A1773
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:07:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3F8F3A55F7
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:10:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06E0272E7E;
-	Tue,  6 May 2025 10:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF81E2750F5;
+	Tue,  6 May 2025 10:10:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="fVCYukBZ"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="k3yezd4p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C44226AAB2
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 10:08:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4E527703B
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 10:10:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746526087; cv=none; b=QH8OjItRqFgIo/ozcaD1UPy/FXwXCN/GTcDIjADyVa9EbdoLZoWiI07ItguevmCmF1PzqjTUGfmHqnAn99YfhaBPceS83qCzOSJv/WU13wIg9HQ3Ds+D1UJPySJYDKJbrtBU2ixtpVulEdCYP2I2s9gycT1FHg4gNCI/cGxSr28=
+	t=1746526239; cv=none; b=YQ0Wn3drgG4zcUyUef2rScafSzKlRxpTNatr5zgAZCd+t1N+NOCLl/d3dx4TFscWu+tx0tQqVme0gnQXNItFP2k97gnl8bm7BDfflIuEvD91x+X2wUEeTXHyvSVQAiB9kYxM8v1GryXJF16MPxVI0hw+uBuVyx2DUzhLlDPi6UM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746526087; c=relaxed/simple;
-	bh=Wz6GfcLllA8wXtKZftbfMGr8twZTF0gIGI34vcXnxvA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Rw/RE8MmUAVaA/dFZrkKPQuOm3vNZhz82jMQSZRNuoZmvSgXaULZ4b9kSmBSNK8cxPt5obUswEcMPRuu76jyTJoV7T6dJ/9ZqyLxTlN69lUQ7i7EL0D39lSMms6BJTHhU76t/Mwd4nr06SQOQ4rvLncurMmJGLOdnNyERe3e+F8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=fVCYukBZ; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1746526085;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2KtQkNqGsM537amwwqhIUa++uqwpFX6sC1hurxsMCHI=;
-	b=fVCYukBZAHcpNHxC5l7aWX7MxV7r3Xaqfu8pedC+lsO3H0/OpjrnAl5l8/gjAw8U2qLuI9
-	ePCuOYmoJ5+qi/qWOtI+FzqEraPlzMHJCxxzZV8z0FBZDCPNv9z+r+xPAloQQVyRzT8fWU
-	GMFahnY1ok+YbT7zeWqEHFMRRtnEzXg=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-35-fcDs-rGbNjedFs8rhOS6Ow-1; Tue, 06 May 2025 06:08:04 -0400
-X-MC-Unique: fcDs-rGbNjedFs8rhOS6Ow-1
-X-Mimecast-MFC-AGG-ID: fcDs-rGbNjedFs8rhOS6Ow_1746526083
-Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-44059976a1fso23448675e9.1
-        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 03:08:03 -0700 (PDT)
+	s=arc-20240116; t=1746526239; c=relaxed/simple;
+	bh=/HBE0X80tekKwVpe/I6rSG6afei1xLRG1IopLTv4b90=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=ZSXmBJiRqLw6Hc2HMNX58oNn5pLFQj17Ets/ndKwKRuYyGyVZfuKx0EX5uQdfJWBsDozqdt+i+Zx1oOr4AY6I1GV91dOZHJx3GhuaBLQdjprTftuyX4HFjjt9fTPi/7s098oZKj8chQhC6eKN9y2ectZg1xLTBKYXcQj6hO/Fjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=k3yezd4p; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3912a28e629so138513f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 03:10:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1746526235; x=1747131035; darn=vger.kernel.org;
+        h=in-reply-to:references:from:to:cc:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MDlCPukG676ZkXDqA7+irYPpUi8ypltoa/WLU7iYTZw=;
+        b=k3yezd4pHOP993DCvnJYvnnrLQ1mQCRimlX6KF3OwLBGIjRxOc3HI5AcNZB8pZhuWj
+         pzuW1eppoxocBCntG/gAypFjNT0c2K33klUSjcfO5TClCnm76dz3JLIX/z5ESFhaprPT
+         nRwfLtrtLlpz8HVBl5tXVu+qSANl+Vudwd5La9yJ9av/tFmsKPxcvsVmai85Yg9S0G2j
+         gBYB/Q3FrSGMB3QfoQs0HpjGJymi73TUlgOsy1VraKjWGcyD6teiRQxVunD8dpEx3FX4
+         iAKFmr0MeOH735cMF502s277NyhW/SvQIBLSEPUkrR6JYMN+955NaiHnc5d/DcCc8Z9d
+         C91w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746526083; x=1747130883;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2KtQkNqGsM537amwwqhIUa++uqwpFX6sC1hurxsMCHI=;
-        b=ayqJaqUjS7WxdHVWuK+35tYbVt6lSX8aRCzDgkp9Awo1GWMYCSqvR9gUHzq+4oTGyQ
-         a+wktMxk5WNdd8qIr7+k/Y9yxZTBI50khyPVwshMhMHgpz2dsFCz64OowskCUVen616h
-         SI8cRGsU36tONv6WKehDjrcsatEXvEEskEIexF6B6FKY57rfY+Bj00Ddp+RDxGt4QeQY
-         R421uT+sE7NJ15G5BNCwEZrleJbDHPuRsoqMFfElDKGW6VpskvW+9XYPKIeicthwevxy
-         tSdxe0Foa5T9QRwzhTEBmeIGTbxoJckn//bGHHo8jGz8wwFAhUwh/frCx2QifGiDoOsp
-         dgTg==
-X-Forwarded-Encrypted: i=1; AJvYcCUeXaLF9IMTwbmgDvyNL40+VyyeHLkWcUQm/KZ31rOeNvkc666fZckjk0ysKwiXwtH6l2Qyt7zEP8e9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgCBP+sW6w88HgtPxV0o7tTuRQs20wWAGjl8BZKKbmeyf9u+kP
-	U2+30/xSrh6jimQjwr71xoML0NE8oCYl/lOBB+ynw4FgN3euyph9+LxFq353eGHj1mbck64JGQY
-	5om0Ts1InHEkUQ+T5KWVnAKBENrQyha8odJMowIFEQROhRzm1k8tVBijCFWM=
-X-Gm-Gg: ASbGncvxY+fRc/PVces3SP9hLKvMONVcg/sDbgCT6GnHJcpUDbF5wQFeruk1jjrZT5Z
-	cO7FnU5y/Y+gNJIKHckFzgKxOCLECLODNWbwEfvfZ2WM3Wi6DoRHeeQTb2YHK+yAHTQz8TU+cQh
-	mHoCF2bOWZWwq839WbTY0rQEwgbgXnIYehQqWNR5Q5W9FRtTJMOSJSp4CAS/s9jmEEgsrZIRD5J
-	AZPDCwLmFkYG2aMRrSnZLQ4HHkAW6L2cCfnLFfL/N3NPNjwAgEyTdmJtnYhbXAKlZfUn+8aCEpd
-	G5fAVq6zv/Z1eHsyPAZEjLPyrsONxq7TAiUf9SAsqwZaIqf9UqF+0GnNYck=
-X-Received: by 2002:a05:600c:5304:b0:43c:fe15:41e1 with SMTP id 5b1f17b1804b1-441bbea0afbmr153287205e9.4.1746526082875;
-        Tue, 06 May 2025 03:08:02 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFhc03MBzoZWgjKorEMXR128n+knjgaDZEvqQTT3kpgSCz4Z047896lj5XIARk7un2ADQgeHA==
-X-Received: by 2002:a05:600c:5304:b0:43c:fe15:41e1 with SMTP id 5b1f17b1804b1-441bbea0afbmr153286675e9.4.1746526082521;
-        Tue, 06 May 2025 03:08:02 -0700 (PDT)
-Received: from ?IPV6:2a0d:3344:2706:e010:b099:aac6:4e70:6198? ([2a0d:3344:2706:e010:b099:aac6:4e70:6198])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2aecb60sm207881215e9.11.2025.05.06.03.07.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 May 2025 03:08:01 -0700 (PDT)
-Message-ID: <19f4f38b-9962-41d6-97b7-e254db3c6dee@redhat.com>
-Date: Tue, 6 May 2025 12:07:58 +0200
+        d=1e100.net; s=20230601; t=1746526235; x=1747131035;
+        h=in-reply-to:references:from:to:cc:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MDlCPukG676ZkXDqA7+irYPpUi8ypltoa/WLU7iYTZw=;
+        b=LC+FWaBTzbLx2S2p++LuZuA7hdEFPZWMIb0LAOsX6/sxd2x0XKQZQ7NFr4AA2jL+lL
+         M9caVpb5biqVwWKRIBJfT5mL4cts8Wmxv9upmSjZWi1lDt2pRwVlv8JzClcZK3gwy+XP
+         Py2ewwq2brZ/nYrRP1XiQ1UHyF2/t6i9LtAUeZAWFuCmsV0bv4Yyf2qQ6YB6biM9UY1B
+         Xie4MuOO2jokFa6QE4enQ+Jld+PDYwTGQkVQ+frd/B/MtgI+mS7uzKmp1fPH469tOenr
+         KGes3Wda9o7p9HUlyMuHsBhmXlsVVksIc2UqFHM1WHM0ZrSxHb0e7LgJHwIXn1JHSXtV
+         5ssA==
+X-Forwarded-Encrypted: i=1; AJvYcCWIiBQmzDW+Ko8RTvq2fW2SYY3VVGeeIZ0az54NjEJFMrnl2SpNpWQX9FhTDzlZsFVVleZ18+EHDve6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPU2fFAP6eiX9y1UwSGhPkLP0cDgkwDdaN0Gl3Un+FrhJpWvcg
+	MRwexNbN0O8oIle+WS3lIyfgE9kHeS0RJKMtUgq/e2NP82sOTej5Nk+bgpEE4Oc=
+X-Gm-Gg: ASbGncvV0B4+ONiFpTGt9l36eZjjFQv3WyuwSrDdFbF2tDukEioZeZJ+7KlKfORcR8H
+	jJ+CFTgTX/eoJffZ2Hg+oB+46HIsg9leK+xI8rczcbCURUnfoKhfPr/cDtBrY3uCIt3Wzo2XRNd
+	QanmA33KEyrQMP4Lx42k/EnGr1+GmScHBu4oNCBaD7rGpWmzCnjaLkCIDDxDNuGe7ld5vpq6Xlh
+	Ha47Sd82Go0s3Zes8XmOdv8d2LRg/D5GycWv1k/i+T5n8DDCkxTe9lESu73OLOWj/Hq8HL1Dh5U
+	bhA1wAfsT6l0GmRgiaCeg8VgMh3Mj8ACjCL7LFWaT0pdg4X4
+X-Google-Smtp-Source: AGHT+IEUjKjGwlmMCjrKZvF7YuhMUsrs5D+dPoN1CPSaPd4oD3QBATAQzTQqUOqU1bgynoQlRYwsyA==
+X-Received: by 2002:a05:6000:144a:b0:3a0:9f28:2e53 with SMTP id ffacd0b85a97d-3a09f282ec4mr3244079f8f.0.1746526235363;
+        Tue, 06 May 2025 03:10:35 -0700 (PDT)
+Received: from localhost ([2a02:8308:a00c:e200:d5f0:7802:c94b:10f6])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b89cc441sm166448565e9.3.2025.05.06.03.10.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 May 2025 03:10:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 03/11] net: ti: prueth: Adds PRUETH HW and SW
- configuration
-To: Parvathi Pudi <parvathi@couthit.com>, danishanwar@ti.com,
- rogerq@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nm@ti.com, ssantosh@kernel.org, tony@atomide.com,
- richardcochran@gmail.com, glaroque@baylibre.com, schnelle@linux.ibm.com,
- m-karicheri2@ti.com, s.hauer@pengutronix.de, rdunlap@infradead.org,
- diogo.ivo@siemens.com, basharath@couthit.com, horms@kernel.org,
- jacob.e.keller@intel.com, m-malladi@ti.com, javier.carrasco.cruz@gmail.com,
- afd@ti.com, s-anna@ti.com
-Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, pratheesh@ti.com,
- prajith@ti.com, vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com,
- krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
-References: <20250503121107.1973888-1-parvathi@couthit.com>
- <20250503121107.1973888-4-parvathi@couthit.com>
-Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <20250503121107.1973888-4-parvathi@couthit.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Tue, 06 May 2025 12:10:34 +0200
+Message-Id: <D9OZVNOGLU4T.2XOUPX27HN0W8@ventanamicro.com>
+Subject: Re: [PATCH v15 05/27] riscv: usercfi state for task and
+ save/restore of CSR_SSP on trap entry/exit
+Cc: <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
+ <linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
+ <alistair.francis@wdc.com>, <richard.henderson@linaro.org>,
+ <jim.shu@sifive.com>, <andybnac@gmail.com>, <kito.cheng@sifive.com>,
+ <charlie@rivosinc.com>, <atishp@rivosinc.com>, <evan@rivosinc.com>,
+ <cleger@rivosinc.com>, <alexghiti@rivosinc.com>, <samitolvanen@google.com>,
+ <broonie@kernel.org>, <rick.p.edgecombe@intel.com>,
+ <rust-for-linux@vger.kernel.org>, "Zong Li" <zong.li@sifive.com>,
+ "linux-riscv" <linux-riscv-bounces@lists.infradead.org>
+To: "Deepak Gupta" <debug@rivosinc.com>, "Thomas Gleixner"
+ <tglx@linutronix.de>, "Ingo Molnar" <mingo@redhat.com>, "Borislav Petkov"
+ <bp@alien8.de>, "Dave Hansen" <dave.hansen@linux.intel.com>,
+ <x86@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>, "Andrew Morton"
+ <akpm@linux-foundation.org>, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ "Vlastimil Babka" <vbabka@suse.cz>, "Lorenzo Stoakes"
+ <lorenzo.stoakes@oracle.com>, "Paul Walmsley" <paul.walmsley@sifive.com>,
+ "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
+ "Conor Dooley" <conor@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Arnd Bergmann"
+ <arnd@arndb.de>, "Christian Brauner" <brauner@kernel.org>, "Peter Zijlstra"
+ <peterz@infradead.org>, "Oleg Nesterov" <oleg@redhat.com>, "Eric Biederman"
+ <ebiederm@xmission.com>, "Kees Cook" <kees@kernel.org>, "Jonathan Corbet"
+ <corbet@lwn.net>, "Shuah Khan" <shuah@kernel.org>, "Jann Horn"
+ <jannh@google.com>, "Conor Dooley" <conor+dt@kernel.org>, "Miguel Ojeda"
+ <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <benno.lossin@proton.me>, "Andreas Hindborg" <a.hindborg@kernel.org>,
+ "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>
+From: =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>
+References: <20250502-v5_user_cfi_series-v15-0-914966471885@rivosinc.com>
+ <20250502-v5_user_cfi_series-v15-5-914966471885@rivosinc.com>
+In-Reply-To: <20250502-v5_user_cfi_series-v15-5-914966471885@rivosinc.com>
 
-On 5/3/25 2:10 PM, Parvathi Pudi wrote:
-> +static int icssm_prueth_emac_config(struct prueth_emac *emac)
-> +{
-> +	struct prueth *prueth = emac->prueth;
+[Ah, I missed v13 and v14, feel free to Cc me on next versions.]
+
+2025-05-02T16:30:36-07:00, Deepak Gupta <debug@rivosinc.com>:
+> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
+> @@ -91,6 +91,32 @@
+> +.macro save_userssp tmp, status
+> +	ALTERNATIVE("nops(4)",
+> +		__stringify(				\
+> +		andi \tmp, \status, SR_SPP;		\
+> +		bnez \tmp, skip_ssp_save;		\
+> +		csrrw \tmp, CSR_SSP, x0;		\
+> +		REG_S \tmp, TASK_TI_USER_SSP(tp);	\
+> +		skip_ssp_save:),
+> +		0,
+> +		RISCV_ISA_EXT_ZICFISS,
+> +		CONFIG_RISCV_USER_CFI)
+> +.endm
 > +
-> +	/* PRU needs local shared RAM address for C28 */
-> +	u32 sharedramaddr = ICSS_LOCAL_SHARED_RAM;
-> +
-> +	/* PRU needs real global OCMC address for C30*/
-> +	u32 ocmcaddr = (u32)prueth->mem[PRUETH_MEM_OCMC].pa;
-> +	void __iomem *dram_base;
-> +	void __iomem *mac_addr;
-> +	void __iomem *dram;
+> +.macro restore_userssp tmp
+> +	ALTERNATIVE("nops(2)",
+> +		__stringify(				\
+> +		REG_L \tmp, TASK_TI_USER_SSP(tp);	\
+> +		csrw CSR_SSP, \tmp),
+> +		0,
+> +		RISCV_ISA_EXT_ZICFISS,
+> +		CONFIG_RISCV_USER_CFI)
+> +.endm
 
-Minor nit: please respect the reverse christmas tree order above.
+Do we need to emit the nops when CONFIG_RISCV_USER_CFI isn't selected?
 
-/P
+(Why not put #ifdef CONFIG_RISCV_USER_CFI around the ALTERNATIVES?)
 
+Thanks.
 
