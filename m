@@ -1,155 +1,133 @@
-Return-Path: <devicetree+bounces-174351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3866AACE9A
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:06:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFAEAACEA8
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:07:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B58D4E8423
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:06:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71075980F12
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:06:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0653C20B811;
-	Tue,  6 May 2025 20:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A311A9B3F;
+	Tue,  6 May 2025 20:06:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="xnInx0XX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nJHmqrhx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53DAE1FA178;
-	Tue,  6 May 2025 20:05:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 644EA4B1E4B;
+	Tue,  6 May 2025 20:06:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746561938; cv=none; b=nD0s6zhGcPt0oIk3RLCu07YJnRQ3kLLfKT/YYUp4pMLErI/qfEqtlB8SvGM2i0sKNT6RAA/8hG5t8kWc/qZ1Ze7fd7C8LTx6M/UKdGmAf1a1xgtgMA+jrDfuO+4zYO3Z7WvZ778Q1zf2d7X+fJGZ29Pbo6otpuYG5PwHxK4GAtE=
+	t=1746562012; cv=none; b=osaMX3tVqNwu43DbRpUkAkVO0qXVapII1hZi4FG8hRJv6hNn7WmRPJR6jkgI+RF5aKNx0Z1wnLKZVSAxlVz2mAtYJqzvmBiVL4JidUQASaEsVoJnFwnXRiLj3trOhfqXFswNtDc6yck1Jjagmxt+uFE0+wEk/uOzqE+g3+avgbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746561938; c=relaxed/simple;
-	bh=jfgSiqLCqwkZI4qYAO/dSdiUYlqbnqAIsGKA2fS7izw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PoYbSxd5Mbl7IYDqvLgfHc4RW5NKBQ/aoXoT+fRmKA9lSrxfpUoCxRlXqQYeOJp++L+XSlV6fXVSrtiy4dAHrAxg05gKuQVpJ47ToNb45F74SiWO0U4RFiBed4GkPTEK22MA8BhR0hsQ7L+z1kMZHVDr2YqgjQBSj7x3iy1fy+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=xnInx0XX; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1746561937; x=1778097937;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=jfgSiqLCqwkZI4qYAO/dSdiUYlqbnqAIsGKA2fS7izw=;
-  b=xnInx0XXrLTPWCuPj38ji8G/z+GU/Oj0UgXc5lD1tS3OmD/BV6CS+91O
-   4KDpt8iXPnRDIU0ThFVMg2Hnax9P69qvWmCAE6GqVkTIqQj4ooSa5kV/U
-   1MjNw1jYhDj3+nijmI34+sSwd9XaoyawJRfuWXBpVRyv20AbbjWHzAunx
-   24QFd3v5G+imkVyppZWeD3KJkoAy4eAV9xKjkqKQLvDIx2EUpHGUTR/0Y
-   zcgk6L/tZpFJ2A/B1Ag9jriJXNitE5S2Jv2Yuha+8ob2iD6GqWgNTnnLs
-   0McFFlKl5wAQzK//5cC/pPTtDPgVp0NC59UDbfANozbYBMFP8NQtQbTET
-   Q==;
-X-CSE-ConnectionGUID: dUBqohHAQlqcpEGq8j09lg==
-X-CSE-MsgGUID: BzcJr+ljReaz+1R4R6gYiw==
-X-IronPort-AV: E=Sophos;i="6.15,267,1739862000"; 
-   d="scan'208";a="208799764"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 06 May 2025 13:05:33 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 6 May 2025 13:05:12 -0700
-Received: from ryan-Precision-3630-Tower.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.44 via Frontend Transport; Tue, 6 May 2025 13:05:12 -0700
-From: <Ryan.Wanner@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <mturquette@baylibre.com>, <sboyd@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>, Ryan Wanner
-	<Ryan.Wanner@microchip.com>
-Subject: [PATCH v3 4/4] ARM: dts: microchip: sama7g5: Adjust clock xtal phandle
-Date: Tue, 6 May 2025 13:04:59 -0700
-Message-ID: <c4c12d7cb6dbd1cb025d159c2fa1985616dd387c.1746561722.git.Ryan.Wanner@microchip.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1746561722.git.Ryan.Wanner@microchip.com>
-References: <cover.1746561722.git.Ryan.Wanner@microchip.com>
+	s=arc-20240116; t=1746562012; c=relaxed/simple;
+	bh=C/hqTH9fWgjvHIAlcqh9rsEMLpNaQkiA3cjX0v4rFQ4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sYj4Q43AvnbLP8Au2aQ2ueUZ5OvXai4vOo7y/AubJkMwJgFzbOxVA9Jg3KpUoEWtCgzFu5lX9zYiuSQRNh9OaEW+ojp8Ys5HoOm0GC9BIQrpgif0BGRWskudmZc/J996AiW/FvshA7XRQZdXS3/XW773SbH59u5Bm0mIHumJWHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nJHmqrhx; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-22e3b069f23so14539355ad.2;
+        Tue, 06 May 2025 13:06:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746562010; x=1747166810; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GzXxf0Hnx2ZuZyJaAghD13+hNIZ5tC1zzw1pZ5Fbdb4=;
+        b=nJHmqrhxmbb+C84MqYT/ACL3UhMYizNb4srdiunTEWxhazD7BIDRffFerY5pBMtPN/
+         MKXj3k/kWR94Fl93jSdLWppuSjR97NnXb4vttOJ/66VQ1OrIRfDsZEWor6Xl9NZgEGNp
+         vb5GEVNn0YXozaL+fn76ahRfvJOJyGcJPQrs3gOOmGskpO8yuA2HTcWHHNNHxA0BU+FW
+         Gl1fOgbV9f1P0RoxlonDSjKvYvj1ZMfPhinrOTIuTwajLPChtpkSaE7FzixhejIK3QOk
+         F826mIJmQJ6QY2ta0jYokHbtz5tqRuGfudYKfb5QMY/AFC5IOH5aHSFmLyst1HhiYxEv
+         K53Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746562010; x=1747166810;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GzXxf0Hnx2ZuZyJaAghD13+hNIZ5tC1zzw1pZ5Fbdb4=;
+        b=F7dmuJ25Wk5N86Y/PMtFHAFQ2bq0QQikIKn1qqhnlK8oUl9JFp6e3ixh3ewOBZeUVT
+         vKT9kiV/QXR7IoBM8ay7wHCT6jCCPL7YtjSmRDmvdmWJrN5a+NljQY0iGThogWuLf4GT
+         a6XwAl3MlIhWi5C2OLAyiE4cj8MfYKRvwTjd9u4VogciRQu2GXlwOViY227o6mrRIcxs
+         GXIwA3OG6MgeBrr0YncUOcdYyAOPhfR9miWA/78Vab4TyVxHhOkpO1kcM8YwrsIseZeW
+         nme9tvdOFAVzka+dxw4iFVEW2lPdwqiWWXu6mEcZqI+gy2pxNK92pPQQxHPAoL6ROMJ+
+         5bbg==
+X-Forwarded-Encrypted: i=1; AJvYcCWcH+yN+3OAl29osgCNe2n6e4D/mi2W176npPxKfaP7HCr9KHaRMGM2mNRKxuS//jZqAgPUA1cJLPWC@vger.kernel.org, AJvYcCXJkUdKbkd0ouFkRlsBa7FoYf5qrNgRf4Vc14+15RXJv9w2tjzPZnvTIUoEVIo+cAb3pqgbo4hrBQsTbI9a@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywy8ZkEm/e9+8FwYFrmTTXHVmsAv0L8gT0AnC4tmbdIp5Demnst
+	DXUjoZr2lSJOh31zki8L/L3d3ENeu+3Hkv53hrTXC0CCj2iD9BTfs65OIK09AK0=
+X-Gm-Gg: ASbGncttrBPh2FI1xKFs6xiHtsz/NmPsR+OyOnwxDTV1lvZWtVt1/LXF84uh9xTkGTi
+	jzeiiojfdULfgoU+ZwdTNg++V/C1uca1f+N1DCQeqifCzFncUQcF12x430J1nEcoMJwBIvL6ChS
+	5N1+2xYFXq1qpz1CSPibTlwY9S0+pS0UFYw+7l0e/x62qr0mgErIvwyfzoBkDDlyg1FawTXao6h
+	WnoSCKa4+reRHnlOh5moUX0Q+AeOGe+bOJ9EPL4+oTS6u4swACrvJ8RrnS7bsv3qsDAgDPXIRX3
+	tLR7RCH/6tmkPaN3I1FNGis29kSo4EsFtsP5/tFiMku6YIOhCZsV
+X-Google-Smtp-Source: AGHT+IGdwuldVbcmWLN0KkrUf8rKTSXH7NdW0ivuFj9VQtpVoZ4NgUzZQC4g3DwuL7LkRQ99v38W+A==
+X-Received: by 2002:a17:902:fc4c:b0:216:2bd7:1c4a with SMTP id d9443c01a7336-22e5ecc2696mr7068435ad.26.1746562010216;
+        Tue, 06 May 2025 13:06:50 -0700 (PDT)
+Received: from NB-GIGA003.letovo.school ([5.194.95.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22e151e97absm78378635ad.62.2025.05.06.13.06.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 May 2025 13:06:49 -0700 (PDT)
+From: Alexey Charkov <alchark@gmail.com>
+Subject: [PATCH 0/3] clocksource/drivers/timer-vt8500: clean up and add
+ watchdog function
+Date: Wed, 07 May 2025 00:06:11 +0400
+Message-Id: <20250507-vt8500-timer-updates-v1-0-6b76f7f340a6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALNrGmgC/x3MPQqAMAxA4atIZgMxtCpeRRyKjZrBH9oqgnh3i
+ +M3vPdAlKASoSseCHJp1H3LqMoCxsVts6D6bGBiS5ZqvFJriTDpKgHPw7skEY1x5JlH3zBBTo8
+ gk97/th/e9wN7PQX7ZgAAAA==
+X-Change-ID: 20250506-vt8500-timer-updates-44a0d22cd720
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746562005; l=1116;
+ i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
+ bh=C/hqTH9fWgjvHIAlcqh9rsEMLpNaQkiA3cjX0v4rFQ4=;
+ b=OYx9UAzouM70vpNCQH3qouty7tsRpKFTtpa0JWKuPso00r10WEe4tlx4RQVdoEH34FMnVadUi
+ vlkxM9CYfvgBuejsWOwhg7DDo6ck4dKisIh/KF92tMHD0RSHr6KlVgN
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
 
-From: Ryan Wanner <Ryan.Wanner@microchip.com>
+Add named defines for all registers and bits in timer-vt8500.
+Move the system events timer from channel 0 to channel 1 when enough
+information is provided by the device tree (i.e. more than one IRQ).
+Use channel 0 for the system watchdog
 
-Adjust clock xtal phandles to match the new xtal phandle formatting.
-
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
 ---
- arch/arm/boot/dts/microchip/at91-sama7g5ek.dts | 18 ++++++++----------
- arch/arm/boot/dts/microchip/sama7g5.dtsi       |  4 ++--
- 2 files changed, 10 insertions(+), 12 deletions(-)
+Alexey Charkov (3):
+      clocksource/drivers/timer-vt8500: Add defines for magic constants
+      clocksource/drivers/timer-vt8500: Add watchdog functionality
+      ARM: dts: vt8500: list all four timer interrupts
 
-diff --git a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
-index 2543599013b1..79bf58f8c02e 100644
---- a/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama7g5ek.dts
-@@ -35,16 +35,6 @@ aliases {
- 		i2c2 = &i2c9;
- 	};
- 
--	clocks {
--		slow_xtal {
--			clock-frequency = <32768>;
--		};
--
--		main_xtal {
--			clock-frequency = <24000000>;
--		};
--	};
--
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
-@@ -512,6 +502,10 @@ spi11: spi@400 {
- 	};
- };
- 
-+&main_xtal {
-+	clock-frequency = <24000000>;
-+};
-+
- &gmac0 {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
-@@ -917,3 +911,7 @@ &vddout25 {
- 	vin-supply = <&vdd_3v3>;
- 	status = "okay";
- };
-+
-+&slow_xtal {
-+	clock-frequency = <32768>;
-+};
-diff --git a/arch/arm/boot/dts/microchip/sama7g5.dtsi b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-index 17bcdcf0cf4a..250c9e98a8bb 100644
---- a/arch/arm/boot/dts/microchip/sama7g5.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama7g5.dtsi
-@@ -117,12 +117,12 @@ map1 {
- 	};
- 
- 	clocks {
--		slow_xtal: slow_xtal {
-+		slow_xtal: clock-slowxtal {
- 			compatible = "fixed-clock";
- 			#clock-cells = <0>;
- 		};
- 
--		main_xtal: main_xtal {
-+		main_xtal: clock-mainxtal {
- 			compatible = "fixed-clock";
- 			#clock-cells = <0>;
- 		};
+ arch/arm/boot/dts/vt8500/vt8500.dtsi |   2 +-
+ arch/arm/boot/dts/vt8500/wm8505.dtsi |   2 +-
+ arch/arm/boot/dts/vt8500/wm8650.dtsi |   2 +-
+ arch/arm/boot/dts/vt8500/wm8750.dtsi |   2 +-
+ arch/arm/boot/dts/vt8500/wm8850.dtsi |   2 +-
+ drivers/clocksource/Kconfig          |   6 +-
+ drivers/clocksource/timer-vt8500.c   | 115 +++++++++++++++++++++++++++--------
+ 7 files changed, 101 insertions(+), 30 deletions(-)
+---
+base-commit: 0a00723f4c2d0b273edd0737f236f103164a08eb
+change-id: 20250506-vt8500-timer-updates-44a0d22cd720
+
+Best regards,
 -- 
-2.43.0
+Alexey Charkov <alchark@gmail.com>
 
 
