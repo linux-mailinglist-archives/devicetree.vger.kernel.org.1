@@ -1,161 +1,124 @@
-Return-Path: <devicetree+bounces-174233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE68EAAC6A2
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 15:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7678AAC6C4
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 15:42:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DD6E1C44C91
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:38:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 484101BC09D8
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:42:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01ADB27F75C;
-	Tue,  6 May 2025 13:38:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E4128003B;
+	Tue,  6 May 2025 13:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ffM2f71k"
+	dkim=pass (1024-bit key) header.d=lessconfused.com header.i=@lessconfused.com header.b="HeXbKkpt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32771279919;
-	Tue,  6 May 2025 13:38:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C030219315
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 13:42:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746538682; cv=none; b=McK6EDETugCxjo5LWsHOuG4Dbkjb+wGDp5kihsnrBt1Qzz7L8FVLK2tCwdbrabiMwR61z8sol07ObAd5csIY3Y4eUxKUumWuxKpYLhrlT8JxPuRsEmSztCYBjf2pfVEEdcrYDXhuF9QwNHcYvz3VTmf2S7CK5753xkV5Bmsu8PY=
+	t=1746538948; cv=none; b=q4kMAJjNzXHgVwUQiicuRNcBBg8SlM3KN44x/zHjpe14ZbNAdAJzHN0R6b9O482REX1/sxALkVl5mMO8bVokjvv0R93TpLf3Yb3oj2VRsLIuXXRXmNci89B66Hx7/IG/7ExhQD4LPJVuftpK4Z9gLFtMXkoe3QP9c59b1T01XUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746538682; c=relaxed/simple;
-	bh=j3pZC/XaZxq1nTfApPbo0UhslwhHoqMDuBioTufbjAI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gknCHYqVW+/ZquTCO0jPEgQDibIp1uL09dABLEc8++DH/uHsFQh1tBb1GdCKGIKddNKXn1d0UoMJpgNiuoc22sosUN7dZzxIp7V5vj2J1tnK9RbAnZU3+hAugGNnvPyB75/zJIsBWZdgmhP2dSgyV3CtvVl1yt9mqH/XLG2OBkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ffM2f71k; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5fbcc5aa54aso474802a12.0;
-        Tue, 06 May 2025 06:38:00 -0700 (PDT)
+	s=arc-20240116; t=1746538948; c=relaxed/simple;
+	bh=JseNVTS5cyJQpI/Mfz9vsdQjjHZ+PMPgo17Lr4qAjrY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=srjuS49x1v2oGUeV6FNbLYwWfNrWwQBI+nCmY8PqNiCRUbFUP2DcNs+XhgpEJwMhX7ZqsDOlrNby45+4Vk58gmlJbO1hXKJh27ISJPUVwrZ7wzdIbsS1TFbFPnhQ8dkbTYZTJmOewi3KQ0300SiGKqQ7o4xy5Oem8REuu0g42U8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lessconfused.com; spf=pass smtp.mailfrom=lessconfused.com; dkim=pass (1024-bit key) header.d=lessconfused.com header.i=@lessconfused.com header.b=HeXbKkpt; arc=none smtp.client-ip=209.85.216.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lessconfused.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lessconfused.com
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-308702998fbso5183039a91.1
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 06:42:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746538679; x=1747143479; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=uSF+OJIgK26VEh3x/SDKQXMT6lVshgj+NKwxNjbf6F4=;
-        b=ffM2f71kgepuKIfMN2ikyKDA4j+dyQYzGeY8qJjdDYSAts9FPAI5aOLiX21p8y4b22
-         HIuJ4g1P0fNg+uF+zvtd6gm/UAwU5tekEqPwKCAMNhVzSghuKDly11268GdXxRX+rh7e
-         1mJjzoH4y8b8M+9VOqer0FrcJoITv0TYvq2SQu8UzKF96BZ0LDx5H8FzIKyzo9+aAdM+
-         hdanS8b3rdgTtLXJK0TXbA/J/+DbGninkJY7sb9Q83ycD1PhGBdPgS4ORzRltEUdZaJ2
-         +xZDawSRKEVFe80d8trMmsMf877YKnlMXP8GNx4UPozIK0D8b7Cx+5Xf2zd/VskQNUdT
-         BIHQ==
+        d=lessconfused.com; s=lessconfused; t=1746538946; x=1747143746; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JseNVTS5cyJQpI/Mfz9vsdQjjHZ+PMPgo17Lr4qAjrY=;
+        b=HeXbKkpt1qIQTa3tdXetfK5FROdbIsq37GIZRK1WNfszcfTsPnqtO5Fo0aM7q8zvU7
+         NUdOMVwgEM687AenZ7TCjIlYdnaxc/0reivxktQVTxSq3TF+pYq8YAklkd36bbe9tvoI
+         fxu1aJcaNnprAG36yprMmmg+cAOM0cIhNjAw8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746538679; x=1747143479;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uSF+OJIgK26VEh3x/SDKQXMT6lVshgj+NKwxNjbf6F4=;
-        b=ZMzojbu7tGBqOWv5R5yG2i+mMZ6FNbk14Sek2VHKfv0gXC5NUevZaE3Txn5mRatnyn
-         pSHp8bM0ohqtcZfzR8n/spRoq46ERXDFOP0aZ8KkAzfLksbnriRQcN0ifgr1W3BVUG3U
-         /4qk0HHEUTFoyM9BzvuCJv1Cdmxnb/3EgNOFqTv2llc9XQ1oxoftg4zb12XSCt9XFk5n
-         WCe2z0nB2PVRffcNq0rUEQEHmVltRoGVKbTxwhD84drEVkBNMLAf9+k4Ie1hBr+3w6Vg
-         T6WpS5oKg4LE3+PcAIytcPcj8v4DV+1CAyj7ABASZRtIJESkCXjrJV5MomlUV3Zq5TU0
-         nk/g==
-X-Forwarded-Encrypted: i=1; AJvYcCV7eYy8A5oyn7h0H/XEui3uDdWQLjDlbS5hXn7LTquf3ZNdsZX5PlWcBVf7jc0LaVwx6xKUP31P4EO4@vger.kernel.org, AJvYcCWssB1z8Dsi9IOGhkoS4mKAHRgNUlEAkgfHzE5UD9OQo+9Rwlz681cV97BkILNMpyKtzCwlYzRrp4m2gR71@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWjIwh3cFy0+snQQJuc+9D1awwhzS2HatTjexxqsX1bPM98Ua5
-	ayQtAC36TMJu5slHI8hUyklutNq5zn5fY9ufuj9FJO+1vqwLqpxNyFsAfQ==
-X-Gm-Gg: ASbGncsP3AKTzNpuFhBwKx3tg6btZEQ0TwtiyxCfWlB5e/ScPmWX9rqaNErlEDECdtZ
-	GApc+zOh3qru+CfnonK1D9mMGLgxvB5XCgefZH/7bivQH+0XRl6MzwqN2vKlPDok/fHkDBvzEtj
-	LED2BZkSM6n4lMX5QhN5nivJ4WgSVvFY9W+c+c8c/bOBbf8VX4zv5aGHWCozukRbR0DNGQRDJLD
-	j+5rB8jJm8edQA38e64sMZ3n4cqEYMzWEGIWujAWqL5biF5RMykxIKvqpiL872o3/78Y9HqBTV1
-	U0qhdRRpc6BT1eD4nSfikXlwS31P+ZyZlhOJo/4OveKTS/wUHKXeKvPGe9ztlpdmPPXpmpc=
-X-Google-Smtp-Source: AGHT+IHdBx2trF6WSf/C+/MvDSiam7ynoOC/9Th/EBM168yVaFg+D0ObGm+tyCAkPnXFePNlctaGPw==
-X-Received: by 2002:a05:6402:84d:b0:5fb:2041:6bd2 with SMTP id 4fb4d7f45d1cf-5fb700a2dd3mr2496423a12.16.1746538679153;
-        Tue, 06 May 2025 06:37:59 -0700 (PDT)
-Received: from [192.168.20.124] (5D59A51C.catv.pool.telekom.hu. [93.89.165.28])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5fa77b8ffcfsm7735801a12.64.2025.05.06.06.37.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 06:37:58 -0700 (PDT)
-From: Gabor Juhos <j4g8y7@gmail.com>
-Date: Tue, 06 May 2025 15:37:47 +0200
-Subject: [PATCH] arm64: dts: ipq6018: drop standalone 'smem' node
+        d=1e100.net; s=20230601; t=1746538946; x=1747143746;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JseNVTS5cyJQpI/Mfz9vsdQjjHZ+PMPgo17Lr4qAjrY=;
+        b=R2kBSffQI2XinQD6HVyvVkuQKA4C4bHTmlwB2me13GNj4XLgR3ipRgZF0LM4x3a+xI
+         mtp1e73bM1RoUOYNI2mTAKgmXuVTm4b1Tvd3HBfLcMmNK/JhoKyBV4PQcx9KS2p/vY06
+         1tZqQQuOwmwW8P0hyoEWPQ2vXIHVWXtubqjENHMLKJCmBICqO4eY5MpQPl113Mw2Bavl
+         SF+Txan0sE0ruxOEQjgfpkvwrP3CplKQ36hPRNRHRyDus1sW4cd02CgN0ibpYwqZ0uP3
+         VfT3H76iVb/32WbXzd0I5yIaaGuXeV/sv7hKmX8/RhWgrCc2deNjGbIiXuB+0f9RWnfP
+         5DeA==
+X-Forwarded-Encrypted: i=1; AJvYcCWp7WVAoUv74UzCpL9c2b4X7dPiYOghLFEXx31/08Y7eBeCbl+RQnFe3s3ksBbQ6Eu9VWvzldPk8Ua0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzsN4z15Z2qAoTmYIotRYzhPc/7pMJ8BmiDr7Mr1J6aCapu9H2
+	2Z1+m14ij3NHMV9YIsumeJDouHyn7iMQCWGf9smvhPVIegItM0g0w0sipEw5lwqnfD1RguaOUwb
+	pzetyBFLL0jXr958kMaCJlZSr/gFSPK7fLwCVag==
+X-Gm-Gg: ASbGncuMaStd/xeWhI3lYt34fcytTTY9ibwCRqZhxl2sfrwV4Z6nHL4VyTMtFRm9vrY
+	z1kBWtEAm1vvgFH4qmBd3hXsK12q496pwgAjTrn5Q9qQOT1zyKv/QvZtaUU3DLxOw0OuIuHH+Jl
+	vDMRyYuOiymH+xbAHvgi7k2F+JeCZC2kmgWVYGq76zHlDV+D+TTYLlfm4=
+X-Google-Smtp-Source: AGHT+IFMb+lrclQ4OPHCAh1lzSkIMnskyJOofZ7Kk/Nmt7sTAKcOTEwR67sDgAeExPy9dKzAQGA9Dqsm1s06dVSJZYE=
+X-Received: by 2002:a17:90b:5446:b0:301:a0e9:66f with SMTP id
+ 98e67ed59e1d1-30a6198e12emr19037686a91.14.1746538946445; Tue, 06 May 2025
+ 06:42:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250506-ipq6018-drop-smem-v1-1-af99d177be2f@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAKoQGmgC/x3MQQ5AMBBA0avIrE0yqFJXEQthyixQbSKSpnfXW
- L7F/xECe+EAQxHB8yNBrjOjKgtY9vncGGXNhprqllrSKO7WVPW4+sthOPhANtZ0puFZKYLcOc9
- W3v85Til9PVt/WWMAAAA=
-X-Change-ID: 20250506-ipq6018-drop-smem-e9f9793ea440
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Gabor Juhos <j4g8y7@gmail.com>
-X-Mailer: b4 0.14.2
+References: <20250505143700.4029484-1-christianshewitt@gmail.com> <CAFBinCBmBotJL=wC2=oV-o7piGckoBvN3S6ofYh20fEP9sn4XA@mail.gmail.com>
+In-Reply-To: <CAFBinCBmBotJL=wC2=oV-o7piGckoBvN3S6ofYh20fEP9sn4XA@mail.gmail.com>
+From: Da Xue <da@lessconfused.com>
+Date: Tue, 6 May 2025 09:42:13 -0400
+X-Gm-Features: ATxdqUHU86InfKfq52zvNkEmca8096lqpeIdB0VVbLy3DnspBF4H2KEICm4USso
+Message-ID: <CACdvmAi3JbdLstkudF=Fb_O_P1GGADuubKVS6s22hvC93qz3tg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: sm1-bananapi: lower SD card speed
+ for stability
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Christian Hewitt <christianshewitt@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Since commit b5af64fceb04 ("soc: qcom: smem: Support reserved-memory
-description") the SMEM device can be instantiated directly from a
-reserved-memory node.
+On Tue, May 6, 2025 at 2:26=E2=80=AFAM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> On Mon, May 5, 2025 at 4:37=E2=80=AFPM Christian Hewitt
+> <christianshewitt@gmail.com> wrote:
+> >
+> > Users report being able to boot (u-boot) from SD card but kernel
+> > init then fails to mount partitions on the card containing boot
+> > media resulting in first-boot failure. System logs show only the
+> > probe of the mmc devices: the SD card is seen, but no partitions
+> > are found so init fails to mount them and boot stalls.
+> >
+> > Reducing the speed of the SD card from 50MHz to 35MHz results in
+> > complete probing of the card and successful boot.
+> >
+> > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> > ---
+> > The same workaround of dropping to 35MHz is also done with the
+> > ac2xx dtsi; which has a comment about CRC errors being seen at
+> > 50MHz. It's probable this is the same although I forget now how
+> > that diagnosis was done (or who did it, Martin perhaps?).
+> Maybe Jerome helped investigate/debug? I can't recall and at the same
+> time: if it fixes the end user experience it's a win.
 
-The 'smem' node is defined in this way for each modern IPQ SoCs except for
-IPQ6018. In order to make it inline with the others, move the 'compatible'
-and the 'hwlock' properties into the respective reserved-memory node, and
-drop the standalone 'smem' node.
+We had an issue too and ended up disabling MMC_MODE_HS_52MHz | MMC_MODE_HS;
 
-Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
----
-Note: dtbcheck produces the warnings below, but those are present even
-without the patch.
-
-  DTC [C] arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb
-arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: qusb@59000: 'vdd-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
-arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: qusb@59000: 'vdda-pll-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
-arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: qusb@59000: 'vdda-phy-dpdm-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
-arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: /soc@0/remoteproc@cd00000: failed to match any schema with compatible: ['qcom,ipq6018-wcss-pil']
----
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index dbf6716bcb59a04939c2b994d85cf58c12365962..b5266702accb62056eb57d9ef75ee0383c8bd54f 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -210,8 +210,11 @@ tz: memory@4a600000 {
- 		};
- 
- 		smem_region: memory@4aa00000 {
-+			compatible = "qcom,smem";
- 			reg = <0x0 0x4aa00000 0x0 0x100000>;
- 			no-map;
-+
-+			hwlocks = <&tcsr_mutex 3>;
- 		};
- 
- 		q6_region: memory@4ab00000 {
-@@ -220,12 +223,6 @@ q6_region: memory@4ab00000 {
- 		};
- 	};
- 
--	smem {
--		compatible = "qcom,smem";
--		memory-region = <&smem_region>;
--		hwlocks = <&tcsr_mutex 3>;
--	};
--
- 	soc: soc@0 {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-
----
-base-commit: 92a09c47464d040866cf2b4cd052bc60555185fb
-change-id: 20250506-ipq6018-drop-smem-e9f9793ea440
-
-Best regards,
--- 
-Gabor Juhos <j4g8y7@gmail.com>
-
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
