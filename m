@@ -1,143 +1,206 @@
-Return-Path: <devicetree+bounces-174248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC8A0AAC7FD
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:30:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7100FAAC889
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:47:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2B0F1C42ECC
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:30:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB5764A574A
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:47:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D092F28312A;
-	Tue,  6 May 2025 14:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB7D9283132;
+	Tue,  6 May 2025 14:47:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hg89lbwO"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="lyBTH5As"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2AB92820B8;
-	Tue,  6 May 2025 14:30:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D71302820B8
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 14:47:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746541802; cv=none; b=OTLuFPLS0206mzQ/MdlUHJxqKvbK5TkJwlGgecnpbMzYdElDqtBMxDSir/Whm5llKFWEUlMDP1eGYlSrX2pFE1g8qKHZvmhMGgagCotVPfet7EnavDUcurRiw+TmC5YjIv1AO3FMaAOcac6Lvm7DJGXzkVty/38d9ALH4i0pB1I=
+	t=1746542869; cv=none; b=VvG2ourxw4qZqqx1GilLcRRlmy1uCZuBgu3RxuxW9Y2+gimPp5yBPaObzfNUHrzUs4d0PfXxUWSguJ2ed2YoQSqzXcKhr3/eJ05G9b+O0VL8ff/pWq2YAeXNIcRejjc1Zic2k3C6wfAZInCC0nL4EGUE8gleJDazOr6qxR6QHhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746541802; c=relaxed/simple;
-	bh=A1H3TXwOP419hOv7YtURrPgGfrLKrYvyzqZVBda9Emw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pjmrQQ9Nef6TRmraQ+1KX8IuGQc8hfcG7dVSFrn4gbiqSOXA+HhDLT3KB+i+1dYk+JIVf4kn5q1Imkd00x8dFDisIfXH8Fyhc+MQ6q+MfSlefq5J7MgTBXxJCVon//JQGKZuSLcxH1QAclB1IJRhFyrFimbR8LJcRP+O2mAe8dE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hg89lbwO; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54e816aeca6so7388708e87.2;
-        Tue, 06 May 2025 07:30:00 -0700 (PDT)
+	s=arc-20240116; t=1746542869; c=relaxed/simple;
+	bh=MDJBuL1RzWn4HeHi6fe1HfBITOzG68lYUGph30mhD9Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lx/JiqRNyp7Rp/Faghu3D0v3KuJ+h6q6dGu2FoNqQ4HXHLfNAIB/wG5BZ/x5jNlxpAh4d7dL+lnNE6HtF37xljNfnO4A5VkTyBJXpPRQ3CjhRIhXqN9LS0R5dmpTzf5p70gCXTKr6dSTsopoNyiwvQrIosH6Boti/b5MiMuecJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=lyBTH5As; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43cef035a3bso36703495e9.1
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 07:47:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746541799; x=1747146599; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sljW97pZ6uaoZQNHWCGt8IHp/aX282c5IvFtjIqBmN4=;
-        b=hg89lbwOoI1dcFwkcDCb2++CNuvSZ0k+1yWgLm7I817gvA1U9ORU6KOKLGQS5qZ9W1
-         EvgfMRuJbJnd6YQnDz/+Onmp76WQdds1dh6DUZXKt8wV8+qIeE9LszICT6yI9CD3qo0G
-         7P73l8iEOgeGpnx+5Wn733TPNf+lCivQiMOL+UMAvmK0RR8B/W/uVkh9tuOFP/YVDT0r
-         YfthxNJDZqVSvg26MrE/4DxlqMnUK8Tts6flUoszEf8hG18S+pufNzehYZ8My8xuk8/n
-         qMQA53EfCe/OUmFADqsJKUwE0uEy9SCy4sIN6bU4TEUyJbziTPlg730/m/5VnhFDTIe/
-         U6wA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746542866; x=1747147666; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Tdn9b7Ao6LumL2AK75QMki8Vnby7kIyvCLDKsENV0Ws=;
+        b=lyBTH5AsDIe9AHIQ8aaX3fd8SjspDaDIHrJg6sDLbiWRFAvUGgBqR6pWRi4UTf/Oc5
+         Nc/FLBXB8ThrKgVdnHp06RpZuytcUKfmx0+DaHkmeu7BCxvXEhctUUW9esj+ulVorPIl
+         j0ad0yGKEXOVw+9fIbK+gJtWKCvUN9mkDAfvUjFOkyqUB+JQ/V1nvOgHlyQ5lgkpFlCJ
+         B//ccqWyc5aFppL1pXqtg7hmbJusmybOXubALdpi89B6s9+a5GeKZqY4Vmzl5+IYIiVQ
+         NX4aIxFvXPMWsHBcFArapgoXJi3QvXeyOZx9KW+ATnCx97aQ+tRhekFOYusXhebgKvgT
+         QWvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746541799; x=1747146599;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1746542866; x=1747147666;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sljW97pZ6uaoZQNHWCGt8IHp/aX282c5IvFtjIqBmN4=;
-        b=e7qv9OFb8wHoRMBmyQaE0GtIw3N9a8tFzKDQZFTc11kI1TR5zWbmPrya6pjSxH2a0R
-         iSdqFwbLhmDBRZBdI9yNLHfkdJgB9Bh1d51oKqBexxG88k9EFjPlxxVPpp2ywhULPKPr
-         vT3q8naKp90rTanhq3TrZZ57/Vx7OpdXhFtO16FA2A9AqHBiHW5VELh4RQe6JqOVxq0h
-         6WKFUjnkf/oDQkmhzobBi/Fv/YqSkyO2t7y5op/tCr77ZODQ/9FmL4WWmqQIplv40OPa
-         d9fFTcg9BOGx4LZALgs7U1vse7+q6LSMOzQTKVasR1dleEvAKvXd8iwlMxGG+2gLwNjm
-         QEkw==
-X-Forwarded-Encrypted: i=1; AJvYcCWG4ut38/RX8RIekyvM1gnvbsXrLJtZiRQ1DJ44y+OeDn92nYpfSUFNb5AN/mmrvVUdnwg6eU90Z4bO@vger.kernel.org, AJvYcCXxbhqp9XIhr/tmS+45BlK/h15uEwnJiut7l4btDRTCLODAmgEp221CJ+yFnzyYpSNAfA5CLOjkRYRMSXNU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIY01zi+5l4JetQo3EcZRnW0MLJOtD3DJYrw4U22SJatG5jwxz
-	/p51nPG2JfXGRvDZ10eKkXDszxWMoW8AiPkxHzH22p6fwsUehNCc
-X-Gm-Gg: ASbGncu9M2wUpKUxIR2mrz0pR8qoiA3rneszJD4BBDXwc+EoE3SSC6qLph8cGyzFZpM
-	uZ8FUR4jU86tPAHhF81q0KBmaeP4bqYWYig4F8nPUSfzzYMcr/AspTsUb8GmAQmOfTVhSR1oEEc
-	qS4LXqRotfiGZONa7S+LH/kRCvjuk6X5++S7tnAD1tkCCC417RhJCgyixqGf1pOL3I9d7IVoA3F
-	aUhKN+BJS8euTCF9liCienp2nZITGzAvu+eZCVVQSABc4Cw7J73ydxb7jJTMukgCXxldQ81VOo7
-	yaC+S6r4cvwaqEtx+qcSp0E88AAiF3FIgk67Bifm9aH4uYS6O4EFsvx6/tiLXh3BQUzw9aOk02x
-	rngOLk6DinzvHIY+ERFfTcDq5nsiYvt/7
-X-Google-Smtp-Source: AGHT+IFFNwZuzPpcgXu3kBDtlZM8MMqYF6bESV7jDqgOq+SzmMpJ61BfMt+aYVq4BlEH8Tzb0P3QQg==
-X-Received: by 2002:a05:6512:10d1:b0:54d:6a89:8725 with SMTP id 2adb3069b0e04-54fb4aa0f95mr1077123e87.48.1746541798584;
-        Tue, 06 May 2025 07:29:58 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94ee2f9sm2080641e87.108.2025.05.06.07.29.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 May 2025 07:29:58 -0700 (PDT)
-Message-ID: <57fb3864-51f1-45b4-a16a-be67e3a1451c@gmail.com>
-Date: Tue, 6 May 2025 17:29:57 +0300
+        bh=Tdn9b7Ao6LumL2AK75QMki8Vnby7kIyvCLDKsENV0Ws=;
+        b=xEWmV4iPziSZo6yYyZ5UtvLsYMz1iytx51aFEOwo3MJAqksHcGqsB/f28OGKaabYsf
+         8/Kk5Se8Y29QQLECQPODNwaMPonm792hv3HVCtaeufiLwuGdhlAuxLtEt1ts3pLdP3XP
+         8vZYQh4iiAplVUe75+arTiPlnDH+tsa2QZv2p3ArEvtb+XyV3ABzyw9ntyuOy33n8/I6
+         rlhRv5n7VBvSCNXxOJuXs1Qit/nk5h59gRz3j/ms4+COkP/A+JctV3fxUOICBo5ICKBD
+         0asKk4BrhWGc1/H4exXBE/0uAXhnPue4/cB9i9C7xLzn6eI3gYcmdKa72kT2ysxDybJ5
+         VFHA==
+X-Forwarded-Encrypted: i=1; AJvYcCWGXm0BvvBuJQDjtvea49bc2uwUcGWmdZgoSgFiBM4rtoK/DZTVCjX83dskPozKjRTygzbqc/LIHxhV@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQOzOlXLYF3Dg5HhkTlTbeY2hFZzNjcrB+Yih/C560CTk7DrrD
+	N0g68UMqkU5j+OaB4c+/CI+XrTYCa2M0S7ToRfrrcctbxipE/llFMfIh7CgmQio=
+X-Gm-Gg: ASbGncue/1jQAbNGdl6KLAnKwxiClN341ce3ykiARDvTNkFUglfTQ9/eznoNtrCZvyk
+	X21HFrlxpzLgk9aE5yichvMZXUiOUJMVKUfO8LYkdAaOccvaEoUjooMgG+Cj6Cgyl4ZRJJitr55
+	Ux6UJbtDeMUHEa0xks3W5ZXR2AGdJITVAkQkaNFCsD75uy8xT3pMNJpdg6rWNEYmqzau77PMkCS
+	Df14vxvaiLoakwtyX0iGozZTuhLrnbfqr158TbSR9z4nb+xBxRuyJ1CvH+K8NsUU46+3AJtgWka
+	8BbQVLgloyH6fd9dFe8NzoVf57/k5mGdfWli23cwRQaotfDL9ANZ7eyv/fu8gWNDCZ+8tMsZFtN
+	4ND2F3tA=
+X-Google-Smtp-Source: AGHT+IGWnyz90KvTmiIQWpZLqETqxFIeIRkLJUcNIerHzLwaG535iH8yJPYvWsNSlo1qXQYSnksCtw==
+X-Received: by 2002:a05:600c:34c7:b0:43c:eeee:b70a with SMTP id 5b1f17b1804b1-441c491fcb6mr89623205e9.22.1746542865994;
+        Tue, 06 May 2025 07:47:45 -0700 (PDT)
+Received: from archlinux (host-87-8-31-78.retail.telecomitalia.it. [87.8.31.78])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2b28045sm216060085e9.35.2025.05.06.07.47.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 May 2025 07:47:45 -0700 (PDT)
+Date: Tue, 6 May 2025 16:46:35 +0200
+From: Angelo Dureghello <adureghello@baylibre.com>
+To: Andy Shevchenko <andy@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] iio: adc: ad7606: add offset and phase
+ calibration support
+Message-ID: <wvflf3rmqaonm6gt45gqtxndprkqbhgvce5z7c4z7c7jgdg4tm@kofkvcbvnaav>
+References: <20250502-wip-bl-ad7606-calibration-v2-0-174bd0af081b@baylibre.com>
+ <20250502-wip-bl-ad7606-calibration-v2-3-174bd0af081b@baylibre.com>
+ <aBTLBvw_88hQBbns@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [GIT PULL] Immutable branch between MFD and Regulator due for the
- v6.16 merge window
-To: Mark Brown <broonie@kernel.org>
-Cc: Lee Jones <lee@kernel.org>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1744090658.git.mazziesaccount@gmail.com>
- <20250502074743.GC3865826@google.com>
- <aBVUTvVnfuLFxzh4@finisterre.sirena.org.uk>
- <CANhJrGPMhRy4TW_JMZ8dkgdctgF3f+bAsoWLkrNvqbcbc412WA@mail.gmail.com>
- <aBoYYrfANv8QLfWA@finisterre.sirena.org.uk>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <aBoYYrfANv8QLfWA@finisterre.sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aBTLBvw_88hQBbns@smile.fi.intel.com>
 
-On 06/05/2025 17:10, Mark Brown wrote:
-> On Tue, May 06, 2025 at 08:28:33AM +0300, Matti Vaittinen wrote:
->> la 3.5.2025 klo 2.25 Mark Brown (broonie@kernel.org) kirjoitti:
+On 02.05.2025 16:39, Andy Shevchenko wrote:
+> On Fri, May 02, 2025 at 03:27:00PM +0200, Angelo Dureghello wrote:
+> > From: Angelo Dureghello <adureghello@baylibre.com>
+> > 
+> > Add support for offset and phase calibration, only for
+> > devices that support software mode, that are:
+> > 
+> > ad7606b
+> > ad7606c-16
+> > ad7606c-18
 > 
->>>> are available in the Git repository at:
+> ...
 > 
->>>>    ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-regulator-v6.16
+> > +static int ad7606_get_calib_offset(struct ad7606_state *st, int ch, int *val)
+> > +{
+> > +	int ret;
+> > +
+> > +	ret = st->bops->reg_read(st, AD7606_CALIB_OFFSET(ch));
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	*val = st->chip_info->calib_offset_avail[0] +
+> > +		ret * st->chip_info->calib_offset_avail[1];
 > 
->>> You need to specify a separate url and pushurl for the git remote so git
->>> generates PRs with a public URL people can use.
-> 
->> I didn't spot this in regulator/for-next. Is the URL sorted? I'd love
->> to see this merged...
-> 
-> I've not seen any updates, you can infer the URL by hand if needed:
-> 
->     s,ssh://git@gitolite,https://git,
-> 
-> should do it so
-> 
->     https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-regulator-v6.16
-> 
-> I generally don't actually pull these unless there's a dependency
-> materialises, especially if I'd have to fight with my tooling for pull
-> requests a bit.  If you've got a dependency then send it and mention the
-> dependency in your cover letter.
+> Something wrong with the indentation.
 
-Thanks for the explanation Mark. There should be no dependencies I'm 
-aware of. I just assumed you'd pull it from MFD to regulator to catch 
-any potential conflicts early.
+Can eventually adjust to:
 
-It's all good for me for as long as the series gets to the rc1. I just, 
-for some reason, thought that these changes are required to go via the 
-regulator tree.
+	*val = st->chip_info->calib_offset_avail[0] + ret *
+		st->chip_info->calib_offset_avail[1];
 
-Sorry for the noise.
+this is genrelly ok.
 
-Yours,
-	-- Matti
+> 
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> > +static int ad7606_set_calib_offset(struct ad7606_state *st, int ch, int val)
+> > +{
+> > +	int start_val, step_val, stop_val;
+> 
+> All need to be signed?
+> 
+
+would keep them all as int, to avoid different type comparison later. 
+
+
+> > +	start_val = st->chip_info->calib_offset_avail[0];
+> > +	step_val = st->chip_info->calib_offset_avail[1];
+> > +	stop_val = st->chip_info->calib_offset_avail[2];
+> > +
+> > +	if (val < start_val || val > stop_val)
+> > +		return -EINVAL;
+> > +
+> > +	val -= start_val;
+> > +	val /= step_val;
+> > +
+> > +	return st->bops->reg_write(st, AD7606_CALIB_OFFSET(ch), val);
+> > +}
+> 
+> ...
+> 
+> > +static int ad7606_set_calib_phase(struct ad7606_state *st, int ch, int val,
+> > +				  int val2)
+> > +{
+> > +	int wreg, start_ns, step_ns, stop_ns;
+> 
+> Ditto.
+>
+here too, val and val2 comes in as int, and subsequent operations
+are int, so would stay as int.
+ 
+> > +	if (val != 0)
+> > +		return -EINVAL;
+> > +
+> > +	start_ns = st->chip_info->calib_phase_avail[0][1];
+> > +	step_ns = st->chip_info->calib_phase_avail[1][1];
+> > +	stop_ns = st->chip_info->calib_phase_avail[2][1];
+> > +
+> > +	/*
+> > +	 * ad7606b: phase dielay from 0 to 318.75 μs in steps of 1.25 μs.
+> > +	 * ad7606c-16/18: phase delay from 0 µs to 255 µs in steps of 1 µs.
+> > +	 */
+> > +	if (val2 < start_ns || val2 > stop_ns)
+> > +			return -EINVAL;
+> 
+> Wrong indentation. Please fix in all places where it happens.
+> 
+rechecked better now, tabs in this place was wrong. Fixed, thanks.
+
+> > +	wreg = val2 / step_ns;
+> > +
+> > +	return st->bops->reg_write(st, AD7606_CALIB_PHASE(ch), wreg);
+> > +}
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
+regards,
+angelo
 
