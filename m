@@ -1,143 +1,161 @@
-Return-Path: <devicetree+bounces-174227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91C2AAC688
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 15:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE68EAAC6A2
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 15:40:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B473018938F9
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:37:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DD6E1C44C91
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:38:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F8A2280CE7;
-	Tue,  6 May 2025 13:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01ADB27F75C;
+	Tue,  6 May 2025 13:38:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z75ue56s"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ffM2f71k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56943280A4F;
-	Tue,  6 May 2025 13:36:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32771279919;
+	Tue,  6 May 2025 13:38:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746538570; cv=none; b=aiotZj3VjAgbv8IYT2A/R3JqR4hACq8m9Uk2RlGzdtQsUwn8AHaE7e75DcbRZ74fPi5kWN3RFZ1pc2Vuq703JRHNoYeIvnwHwF1uYEY+LCXV/KZ4eC7aDMQ3fY/m6/BJu/BREcBuineYGhVjS5n+cPQaH7IbkfVBclr3uZs67VY=
+	t=1746538682; cv=none; b=McK6EDETugCxjo5LWsHOuG4Dbkjb+wGDp5kihsnrBt1Qzz7L8FVLK2tCwdbrabiMwR61z8sol07ObAd5csIY3Y4eUxKUumWuxKpYLhrlT8JxPuRsEmSztCYBjf2pfVEEdcrYDXhuF9QwNHcYvz3VTmf2S7CK5753xkV5Bmsu8PY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746538570; c=relaxed/simple;
-	bh=l8cNdTtWlopAOwLIw56OgvqwCEKqnrjsM9w0Gczo+b0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=agFoXsQzmc869zPHUYRZbqVTXs96MrYfqHZnstlg1BoOlOw41zG+SG9n1mjM8IFkksvqKUB4pY1qVZUViwAf8xZB4wwgv92+GwNrsRCRXHoqbnA6GR6i7jszkeWBpUrU5rVJLVcJM6SPvbrWe8PtjIikeGbsHKD2ZBzFfEdaenI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z75ue56s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82451C4CEE4;
-	Tue,  6 May 2025 13:36:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746538569;
-	bh=l8cNdTtWlopAOwLIw56OgvqwCEKqnrjsM9w0Gczo+b0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Z75ue56s0GMpO69m8tQHSlJBw3XwiRP8L1xv4vm4im/KU2qOVN9xy6QwvwLBWGx32
-	 wwqJJ/Iz1trXgZiSPua+ZnhV7OfKcuBwha/S10eirMUaXMtMVaUjVUgyKDA7NWASB3
-	 hLrSmrqZdQbkVhUpWfcGMFkBLIwOc5zE2HFPKnI5gz50zsITWql/zg++9ZLh1ZAxa9
-	 qZ7qr9JrYFnqpznytsZcUV7e2mbrICVaq8MJo5MoaAHMr/HIlcBywJhrrI0ZkPeqiY
-	 Temx0aEf6Jep7y6FSxXsme5SBuN9I1DPDU+sEs7etpvA18AqSpjcc22pRLffXjqbfe
-	 G4WnGP/3DzyfA==
-Message-ID: <48fd85e7-4940-4bfd-943d-3c9674828a6c@kernel.org>
-Date: Tue, 6 May 2025 15:36:05 +0200
+	s=arc-20240116; t=1746538682; c=relaxed/simple;
+	bh=j3pZC/XaZxq1nTfApPbo0UhslwhHoqMDuBioTufbjAI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gknCHYqVW+/ZquTCO0jPEgQDibIp1uL09dABLEc8++DH/uHsFQh1tBb1GdCKGIKddNKXn1d0UoMJpgNiuoc22sosUN7dZzxIp7V5vj2J1tnK9RbAnZU3+hAugGNnvPyB75/zJIsBWZdgmhP2dSgyV3CtvVl1yt9mqH/XLG2OBkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ffM2f71k; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5fbcc5aa54aso474802a12.0;
+        Tue, 06 May 2025 06:38:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746538679; x=1747143479; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uSF+OJIgK26VEh3x/SDKQXMT6lVshgj+NKwxNjbf6F4=;
+        b=ffM2f71kgepuKIfMN2ikyKDA4j+dyQYzGeY8qJjdDYSAts9FPAI5aOLiX21p8y4b22
+         HIuJ4g1P0fNg+uF+zvtd6gm/UAwU5tekEqPwKCAMNhVzSghuKDly11268GdXxRX+rh7e
+         1mJjzoH4y8b8M+9VOqer0FrcJoITv0TYvq2SQu8UzKF96BZ0LDx5H8FzIKyzo9+aAdM+
+         hdanS8b3rdgTtLXJK0TXbA/J/+DbGninkJY7sb9Q83ycD1PhGBdPgS4ORzRltEUdZaJ2
+         +xZDawSRKEVFe80d8trMmsMf877YKnlMXP8GNx4UPozIK0D8b7Cx+5Xf2zd/VskQNUdT
+         BIHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746538679; x=1747143479;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uSF+OJIgK26VEh3x/SDKQXMT6lVshgj+NKwxNjbf6F4=;
+        b=ZMzojbu7tGBqOWv5R5yG2i+mMZ6FNbk14Sek2VHKfv0gXC5NUevZaE3Txn5mRatnyn
+         pSHp8bM0ohqtcZfzR8n/spRoq46ERXDFOP0aZ8KkAzfLksbnriRQcN0ifgr1W3BVUG3U
+         /4qk0HHEUTFoyM9BzvuCJv1Cdmxnb/3EgNOFqTv2llc9XQ1oxoftg4zb12XSCt9XFk5n
+         WCe2z0nB2PVRffcNq0rUEQEHmVltRoGVKbTxwhD84drEVkBNMLAf9+k4Ie1hBr+3w6Vg
+         T6WpS5oKg4LE3+PcAIytcPcj8v4DV+1CAyj7ABASZRtIJESkCXjrJV5MomlUV3Zq5TU0
+         nk/g==
+X-Forwarded-Encrypted: i=1; AJvYcCV7eYy8A5oyn7h0H/XEui3uDdWQLjDlbS5hXn7LTquf3ZNdsZX5PlWcBVf7jc0LaVwx6xKUP31P4EO4@vger.kernel.org, AJvYcCWssB1z8Dsi9IOGhkoS4mKAHRgNUlEAkgfHzE5UD9OQo+9Rwlz681cV97BkILNMpyKtzCwlYzRrp4m2gR71@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWjIwh3cFy0+snQQJuc+9D1awwhzS2HatTjexxqsX1bPM98Ua5
+	ayQtAC36TMJu5slHI8hUyklutNq5zn5fY9ufuj9FJO+1vqwLqpxNyFsAfQ==
+X-Gm-Gg: ASbGncsP3AKTzNpuFhBwKx3tg6btZEQ0TwtiyxCfWlB5e/ScPmWX9rqaNErlEDECdtZ
+	GApc+zOh3qru+CfnonK1D9mMGLgxvB5XCgefZH/7bivQH+0XRl6MzwqN2vKlPDok/fHkDBvzEtj
+	LED2BZkSM6n4lMX5QhN5nivJ4WgSVvFY9W+c+c8c/bOBbf8VX4zv5aGHWCozukRbR0DNGQRDJLD
+	j+5rB8jJm8edQA38e64sMZ3n4cqEYMzWEGIWujAWqL5biF5RMykxIKvqpiL872o3/78Y9HqBTV1
+	U0qhdRRpc6BT1eD4nSfikXlwS31P+ZyZlhOJo/4OveKTS/wUHKXeKvPGe9ztlpdmPPXpmpc=
+X-Google-Smtp-Source: AGHT+IHdBx2trF6WSf/C+/MvDSiam7ynoOC/9Th/EBM168yVaFg+D0ObGm+tyCAkPnXFePNlctaGPw==
+X-Received: by 2002:a05:6402:84d:b0:5fb:2041:6bd2 with SMTP id 4fb4d7f45d1cf-5fb700a2dd3mr2496423a12.16.1746538679153;
+        Tue, 06 May 2025 06:37:59 -0700 (PDT)
+Received: from [192.168.20.124] (5D59A51C.catv.pool.telekom.hu. [93.89.165.28])
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5fa77b8ffcfsm7735801a12.64.2025.05.06.06.37.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 May 2025 06:37:58 -0700 (PDT)
+From: Gabor Juhos <j4g8y7@gmail.com>
+Date: Tue, 06 May 2025 15:37:47 +0200
+Subject: [PATCH] arm64: dts: ipq6018: drop standalone 'smem' node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/6] of: of_cpu_phandle_to_id to support SMT threads
-To: Alireza Sanaee <alireza.sanaee@huawei.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, jonathan.cameron@huawei.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linuxarm@huawei.com, mark.rutland@arm.com,
- shameerali.kolothum.thodi@huawei.com
-References: <20250502161300.1411-1-alireza.sanaee@huawei.com>
- <20250502161300.1411-7-alireza.sanaee@huawei.com>
- <20250504-acoustic-skink-of-greatness-1e90ac@kuoka>
- <c2ace0e9-6565-44c3-84eb-555707f84509@kernel.org>
- <20250506112337.00006918.alireza.sanaee@huawei.com>
- <78797f80-bdd6-49ef-b1cf-ffe4dc1dc5f6@kernel.org>
- <20250506143125.00002cae.alireza.sanaee@huawei.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250506143125.00002cae.alireza.sanaee@huawei.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250506-ipq6018-drop-smem-v1-1-af99d177be2f@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAKoQGmgC/x3MQQ5AMBBA0avIrE0yqFJXEQthyixQbSKSpnfXW
+ L7F/xECe+EAQxHB8yNBrjOjKgtY9vncGGXNhprqllrSKO7WVPW4+sthOPhANtZ0puFZKYLcOc9
+ W3v85Til9PVt/WWMAAAA=
+X-Change-ID: 20250506-ipq6018-drop-smem-e9f9793ea440
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Gabor Juhos <j4g8y7@gmail.com>
+X-Mailer: b4 0.14.2
 
-On 06/05/2025 15:31, Alireza Sanaee wrote:
->>>>  
->>>
->>> Hi Krzysztof,
->>>
->>> There are some existing bindings in which this pattern has been
->>> used, so I don't think I am changing binding really.
->>>
->>> https://www.kernel.org/doc/Documentation/devicetree/bindings/thermal/thermal-zones.yaml#:~:text=cooling%2Ddevice%20%3D%20%3C%26CPU0%203%203%3E%2C%20%3C%26CPU1%203%203%3E%2C  
->> I do not understand this - it is not cpus phandle. Please respond to
->> specific comment: how many arguments are allowed by dtschema for cpus?
-> 
-> Hi Krzysztof,
-> 
-> If you mean checking
-> here? https://github.com/devicetree-org/dt-schema/blob/e6ea659d2baa30df1ec0fcc4f8354208692489eb/dtschema/schemas/cpu-map.yaml#L110
-> 
-> There is no parameters allowed at this point for cpu phandles in the
-> cpu-map tree. Of course, this is different than what's been
-> implemented in the patchset.
-Hm, ok, I thought you are adding this for cpu-map, but if not, then
-where are the bindings for this ABI?
+Since commit b5af64fceb04 ("soc: qcom: smem: Support reserved-memory
+description") the SMEM device can be instantiated directly from a
+reserved-memory node.
 
-BTW, share your DTS so we can be sure that it is properly validated
-against bindings.
+The 'smem' node is defined in this way for each modern IPQ SoCs except for
+IPQ6018. In order to make it inline with the others, move the 'compatible'
+and the 'hwlock' properties into the respective reserved-memory node, and
+drop the standalone 'smem' node.
+
+Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
+---
+Note: dtbcheck produces the warnings below, but those are present even
+without the patch.
+
+  DTC [C] arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb
+arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: qusb@59000: 'vdd-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: qusb@59000: 'vdda-pll-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: qusb@59000: 'vdda-phy-dpdm-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/phy/qcom,qusb2-phy.yaml#
+arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: /soc@0/remoteproc@cd00000: failed to match any schema with compatible: ['qcom,ipq6018-wcss-pil']
+---
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+index dbf6716bcb59a04939c2b994d85cf58c12365962..b5266702accb62056eb57d9ef75ee0383c8bd54f 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -210,8 +210,11 @@ tz: memory@4a600000 {
+ 		};
+ 
+ 		smem_region: memory@4aa00000 {
++			compatible = "qcom,smem";
+ 			reg = <0x0 0x4aa00000 0x0 0x100000>;
+ 			no-map;
++
++			hwlocks = <&tcsr_mutex 3>;
+ 		};
+ 
+ 		q6_region: memory@4ab00000 {
+@@ -220,12 +223,6 @@ q6_region: memory@4ab00000 {
+ 		};
+ 	};
+ 
+-	smem {
+-		compatible = "qcom,smem";
+-		memory-region = <&smem_region>;
+-		hwlocks = <&tcsr_mutex 3>;
+-	};
+-
+ 	soc: soc@0 {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+
+---
+base-commit: 92a09c47464d040866cf2b4cd052bc60555185fb
+change-id: 20250506-ipq6018-drop-smem-e9f9793ea440
 
 Best regards,
-Krzysztof
+-- 
+Gabor Juhos <j4g8y7@gmail.com>
+
 
