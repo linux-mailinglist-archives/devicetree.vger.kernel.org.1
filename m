@@ -1,327 +1,128 @@
-Return-Path: <devicetree+bounces-174020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24023AABE0D
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:01:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DCA1AABE30
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:04:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CE9D3AD14F
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:01:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AB3A52060D
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32EB5264A73;
-	Tue,  6 May 2025 09:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC863265CDE;
+	Tue,  6 May 2025 09:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oHKXg0tY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n25KxqL2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02119262FCB;
-	Tue,  6 May 2025 09:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF571265CAF;
+	Tue,  6 May 2025 09:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746522092; cv=none; b=UkPWtv0ocXYOG6f0W0+DUlhZP5Vl6/Cm/BmoZGuFCwdxdMDYlmvSoFkEBLx6ZtaEqlUyIB7ZEdqo6vwDGvukoNagpcubWfcQcQ+vy8Psk90hCjG08pOycpbrI5kdTDJPNtijqmi4TwY3IgKvr+Tc2VxdhxzM2NfeIUDrFad6AfE=
+	t=1746522153; cv=none; b=HLwUVUM6WwTVoAAeWd4yfStx240rQCjAdWlZhYLJNOJCDE1zAEtFIQeXGTJBZWC9nwNR2u4g7qxtB7ULDwmEjp0Z6yNcHCZzDByPuCVRUgfQbmgW4PAYP+r+Bq5R7dCt7hv4vf9l8bwIRd6/iQRITsgpnpC3Q8fipHQBn3ZfRpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746522092; c=relaxed/simple;
-	bh=nw6d/SZSKNLBkkU8aJfTtZbRWP1PXjimyeHTGPVYBYc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Vr5/FH4QbAiHILCCn9s91AEoQWqX1sZXXL3dLoo9RMuZ7AaOOm5+YrImb6nZkiYRgr+x/sIAYycR7NHHdUX/ldPKIhBsXO4p+oRI/yttBcFNCLxbIk68DbJ4t1DJjpjojWMvt+i9AMrbbLb7SLO3JuPNZ5Ss++tEf8meZNt4E5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oHKXg0tY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 71F84C4CEED;
-	Tue,  6 May 2025 09:01:31 +0000 (UTC)
+	s=arc-20240116; t=1746522153; c=relaxed/simple;
+	bh=oM6Sq5hCR2u/yBPJ7zbEXV/rQJUo9k1PJU6yLsUr0Hk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rREmNKZIq/BqgST7M2sH927kwBWM96Q9Saghv/73FOUOjxmlfjUYBkAkYS2vpXv4wJgT++2D4eTpxsAnMNP1fZcKu5TfH0YV4zg0tHDQOyMZZJjteL+nYJU8c0KfPyghS6+BV28iLgqhUMK4xi1bPhpxuIEINUUb2C7C4JkeEZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n25KxqL2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 907F1C4CEE4;
+	Tue,  6 May 2025 09:02:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746522091;
-	bh=nw6d/SZSKNLBkkU8aJfTtZbRWP1PXjimyeHTGPVYBYc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=oHKXg0tY4u+3+W0qrYJ/oLIdyex39OiiWr9mDuj79f4nxW6puaOLnQVYBbrTXzYm5
-	 dMkvO8vyIs8Uy77/dDEDbaYqMyio3a8kgixlMk5ng/bq6dnEW8cBaTTJJTSL+DsrjM
-	 DgqWPDXojCBEcs2mEl6b8ccNJ5qNuB5dcU8lwncySjJzKmjmKSnvYtDqihciNe+Jwl
-	 Svq9Y7LGafp2vPOQtmuh9WoIirKKwtj7BmycEAtazSwwGz8JqZi44bt++V0+E8420F
-	 w6lHTi0/Ascdldhcr+mLEw0bHu8y6gKgu13nOcJirJNi2KXqKRzqN1EoaBQCEUL1Df
-	 Y5ou1tJtRSzOQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63E98C3ABC3;
-	Tue,  6 May 2025 09:01:31 +0000 (UTC)
-From: =?utf-8?q?T=C3=B3th_J=C3=A1nos_via_B4_Relay?= <devnull+gomba007.gmail.com@kernel.org>
-Date: Tue, 06 May 2025 11:01:16 +0200
-Subject: [PATCH v4 2/2] iio: chemical: Add driver for SEN0322
+	s=k20201202; t=1746522153;
+	bh=oM6Sq5hCR2u/yBPJ7zbEXV/rQJUo9k1PJU6yLsUr0Hk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=n25KxqL2OYzVsYW1b1/bVd6DsU6ypjAJqzDktEhmI8ll5QwB1z0+OLNRk3tBXvY+G
+	 zlY2JLfNvQpCpUzWdp0uRPKf/mA8nBX2qE9kkcGLOdg4+uIBibdD0fTSfsZ3shIV7V
+	 qEhXGAGUkxbay6ucf4tB6JedoQnJqx2Tlt/jR13SwccmK0zEYqsm6lupaPfUKi7mcJ
+	 tIOpTRrJzH71lEJ6skaYoWDXOwT4/mCo2WW7edKDBR+klEVIUTueiPa3p6V64vYq6E
+	 vbrd9Q32n29EQw0Ris2zVVhCbVqRPF5A9ZSPfAdStVbPPfQ10Ki/YhmECYUtt4rubD
+	 C1a8thancavtA==
+Message-ID: <c165476a-cf57-494d-92fc-0d4b4fc1eac4@kernel.org>
+Date: Tue, 6 May 2025 11:02:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250506-iio-chemical-sen0322-v4-2-1465ac8dc190@gmail.com>
-References: <20250506-iio-chemical-sen0322-v4-0-1465ac8dc190@gmail.com>
-In-Reply-To: <20250506-iio-chemical-sen0322-v4-0-1465ac8dc190@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?T=C3=B3th_J=C3=A1nos?= <gomba007@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746522090; l=6662;
- i=gomba007@gmail.com; s=20230706; h=from:subject:message-id;
- bh=+Ezp/DsTUmLfMfPAYh8WgNX/9ol2LZWhHTJ8ACAmRtg=;
- b=aMEQUwFvHlkNzOT8e93+ZxqWL1pHUg7JyEr7k76xhaiaIJKqVnvqvOZRtqjNDGqqkxG1LYWS0
- Su0Ws1cHlNZDTtxeCxvJblQVJWa+GuBCXcTZHzspLf5C9NuxUkeOEnN
-X-Developer-Key: i=gomba007@gmail.com; a=ed25519;
- pk=iY9MjPCbud82ULS2PQJIq3QwjKyP/Sg730I6T2M8Y5U=
-X-Endpoint-Received: by B4 Relay for gomba007@gmail.com/20230706 with
- auth_id=60
-X-Original-From: =?utf-8?q?T=C3=B3th_J=C3=A1nos?= <gomba007@gmail.com>
-Reply-To: gomba007@gmail.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: media: qcom,x1e80100-camss: Add optional
+ bus-type property
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Robert Foss
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250502204142.2064496-1-vladimir.zapolskiy@linaro.org>
+ <20250502204142.2064496-3-vladimir.zapolskiy@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250502204142.2064496-3-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Tóth János <gomba007@gmail.com>
+On 02/05/2025 22:41, Vladimir Zapolskiy wrote:
+> Since CSIPHY IP on modern Qualcomm SoCs supports D-PHY and C-PHY
+> interfaces, it might be necessary to specify it explicitly for some
+> particular devices.
+> 
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>  .../devicetree/bindings/media/qcom,x1e80100-camss.yaml       | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
-Add support for the DFRobot SEN0322 oxygen sensor.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-To instantiate (assuming device is connected to I2C-2):
-	echo 'sen0322 0x73' > /sys/class/i2c-dev/i2c-2/device/new_device
-
-To get the oxygen concentration (assuming device is iio:device0) multiply
-the values read from:
-	/sys/bus/iio/devices/iio:device0/in_concentration_raw
-	/sys/bus/iio/devices/iio:device0/in_concentration_scale
-
-Datasheet: https://wiki.dfrobot.com/Gravity_I2C_Oxygen_Sensor_SKU_SEN0322
-
-Signed-off-by: Tóth János <gomba007@gmail.com>
----
- MAINTAINERS                    |   6 ++
- drivers/iio/chemical/Kconfig   |  10 +++
- drivers/iio/chemical/Makefile  |   1 +
- drivers/iio/chemical/sen0322.c | 163 +++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 180 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3cbf9ac0d83f..6fda7a2f1248 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6852,6 +6852,12 @@ L:	linux-rtc@vger.kernel.org
- S:	Maintained
- F:	drivers/rtc/rtc-sd2405al.c
- 
-+DFROBOT SEN0322 DRIVER
-+M:	Tóth János <gomba007@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	drivers/iio/chemical/sen0322.c
-+
- DH ELECTRONICS DHSOM SOM AND BOARD SUPPORT
- M:	Christoph Niedermaier <cniedermaier@dh-electronics.com>
- M:	Marek Vasut <marex@denx.de>
-diff --git a/drivers/iio/chemical/Kconfig b/drivers/iio/chemical/Kconfig
-index 330fe0af946f..60a81863d123 100644
---- a/drivers/iio/chemical/Kconfig
-+++ b/drivers/iio/chemical/Kconfig
-@@ -166,6 +166,16 @@ config SCD4X
- 	  To compile this driver as a module, choose M here: the module will
- 	  be called scd4x.
- 
-+config SEN0322
-+	tristate "SEN0322 oxygen sensor"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Say Y here to build support for the DFRobot SEN0322 oxygen sensor.
-+
-+	  To compile this driver as a module, choose M here: the module will
-+	  be called sen0322.
-+
- config SENSIRION_SGP30
- 	tristate "Sensirion SGPxx gas sensors"
- 	depends on I2C
-diff --git a/drivers/iio/chemical/Makefile b/drivers/iio/chemical/Makefile
-index 4866db06bdc9..deeff0e4e6f7 100644
---- a/drivers/iio/chemical/Makefile
-+++ b/drivers/iio/chemical/Makefile
-@@ -20,6 +20,7 @@ obj-$(CONFIG_SCD30_CORE) += scd30_core.o
- obj-$(CONFIG_SCD30_I2C) += scd30_i2c.o
- obj-$(CONFIG_SCD30_SERIAL) += scd30_serial.o
- obj-$(CONFIG_SCD4X) += scd4x.o
-+obj-$(CONFIG_SEN0322)	+= sen0322.o
- obj-$(CONFIG_SENSEAIR_SUNRISE_CO2) += sunrise_co2.o
- obj-$(CONFIG_SENSIRION_SGP30)	+= sgp30.o
- obj-$(CONFIG_SENSIRION_SGP40)	+= sgp40.o
-diff --git a/drivers/iio/chemical/sen0322.c b/drivers/iio/chemical/sen0322.c
-new file mode 100644
-index 000000000000..088f8947083e
---- /dev/null
-+++ b/drivers/iio/chemical/sen0322.c
-@@ -0,0 +1,163 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for the DFRobot SEN0322 oxygen sensor.
-+ *
-+ * Datasheet:
-+ *	https://wiki.dfrobot.com/Gravity_I2C_Oxygen_Sensor_SKU_SEN0322
-+ *
-+ * Possible I2C slave addresses:
-+ *	0x70
-+ *	0x71
-+ *	0x72
-+ *	0x73
-+ *
-+ * Copyright (C) 2025 Tóth János <gomba007@gmail.com>
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/regmap.h>
-+
-+#include <linux/iio/iio.h>
-+
-+#define SEN0322_REG_DATA	0x03
-+#define SEN0322_REG_COEFF	0x0A
-+
-+struct sen0322 {
-+	struct regmap	*regmap;
-+};
-+
-+static int sen0322_read_data(struct sen0322 *sen0322)
-+{
-+	u8 data[3] = { 0 };
-+	int ret;
-+
-+	ret = regmap_bulk_read(sen0322->regmap, SEN0322_REG_DATA, data,
-+			       sizeof(data));
-+	if (ret < 0)
-+		return ret;
-+
-+	/*
-+	 * The actual value in the registers is:
-+	 *	val = data[0] + data[1] / 10 + data[2] / 100
-+	 * but it is multiplied by 100 here to avoid floating-point math
-+	 * and the scale is divided by 100 to compensate this.
-+	 */
-+	ret = data[0] * 100 + data[1] * 10 + data[2];
-+
-+	return ret;
-+}
-+
-+static int sen0322_read_scale(struct sen0322 *sen0322, int *num, int *den)
-+{
-+	u32 val;
-+	int ret;
-+
-+	ret = regmap_read(sen0322->regmap, SEN0322_REG_COEFF, &val);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (val) {
-+		*num = val;
-+		*den = 100000;	/* Coeff is scaled by 1000 at calibration. */
-+	} else { /* The device is not calibrated, using the factory-defaults. */
-+		*num = 209;	/* Oxygen content in the atmosphere is 20.9%. */
-+		*den = 120000;	/* Output of the sensor at 20.9% is 120 uA. */
-+	}
-+
-+	dev_dbg(regmap_get_device(sen0322->regmap), "scale: %d/%d\n",
-+		*num, *den);
-+
-+	return 0;
-+}
-+
-+static int sen0322_read_raw(struct iio_dev *iio_dev,
-+			    const struct iio_chan_spec *chan,
-+			    int *val, int *val2, long mask)
-+{
-+	struct sen0322 *sen0322 = iio_priv(iio_dev);
-+	int ret;
-+
-+	if (chan->type != IIO_CONCENTRATION)
-+		return -EINVAL;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = sen0322_read_data(sen0322);
-+		if (ret < 0)
-+			return ret;
-+
-+		*val = ret;
-+		return IIO_VAL_INT;
-+
-+	case IIO_CHAN_INFO_SCALE:
-+		ret = sen0322_read_scale(sen0322, val, val2);
-+		if (ret < 0)
-+			return ret;
-+
-+		return IIO_VAL_FRACTIONAL;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info sen0322_info = {
-+	.read_raw = sen0322_read_raw,
-+};
-+
-+static const struct regmap_config sen0322_regmap_conf = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+};
-+
-+static const struct iio_chan_spec sen0322_channel = {
-+	.type = IIO_CONCENTRATION,
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+			      BIT(IIO_CHAN_INFO_SCALE),
-+};
-+
-+static int sen0322_probe(struct i2c_client *client)
-+{
-+	struct sen0322 *sen0322;
-+	struct iio_dev *iio_dev;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
-+		return -ENODEV;
-+
-+	iio_dev = devm_iio_device_alloc(&client->dev, sizeof(*sen0322));
-+	if (!iio_dev)
-+		return -ENOMEM;
-+
-+	sen0322 = iio_priv(iio_dev);
-+
-+	sen0322->regmap = devm_regmap_init_i2c(client, &sen0322_regmap_conf);
-+	if (IS_ERR(sen0322->regmap))
-+		return PTR_ERR(sen0322->regmap);
-+
-+	iio_dev->info = &sen0322_info;
-+	iio_dev->name = "sen0322";
-+	iio_dev->channels = &sen0322_channel;
-+	iio_dev->num_channels = 1;
-+	iio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	return devm_iio_device_register(&client->dev, iio_dev);
-+}
-+
-+static const struct of_device_id sen0322_of_match[] = {
-+	{ .compatible = "dfrobot,sen0322" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, sen0322_of_match);
-+
-+static struct i2c_driver sen0322_driver = {
-+	.driver = {
-+		.name = "sen0322",
-+		.of_match_table = sen0322_of_match,
-+	},
-+	.probe = sen0322_probe,
-+};
-+module_i2c_driver(sen0322_driver);
-+
-+MODULE_AUTHOR("Tóth János <gomba007@gmail.com>");
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("SEN0322 oxygen sensor driver");
-
--- 
-2.34.1
-
-
+Best regards,
+Krzysztof
 
