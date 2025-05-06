@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-174322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11407AACD34
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:25:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E049AACD51
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:32:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A5254E4772
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:25:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B428A1C009C9
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:33:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F01F12857F0;
-	Tue,  6 May 2025 18:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4362D286417;
+	Tue,  6 May 2025 18:32:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B8J/URRK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="skdiQNGX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF61A278146;
-	Tue,  6 May 2025 18:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0184B25B69F;
+	Tue,  6 May 2025 18:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746555941; cv=none; b=aBtMbq2E6G3M6yfFkOtcpDQl0bbjBEn2W40K8/5SXu93B1Zc8upMVw8g+7jHPgRQOV6DFS7pT6kH3gUFTt0k5MlojtF0EaAazdR1z5YyPyWh3OBKSXoXPwLNUmUgUYjqxyfXvif/ngxSzodIHfmubk76FR59anK6fFGJnadlg38=
+	t=1746556365; cv=none; b=tStak1JViE9WijLeZ0jBegLp276tXj4DttnAQNUStRehKF+Wnho8ycfCinVoSBV9D0nmpJdj8veupSNfP+u8HUCBgWhcexqdHOH2gm+Wo9tTkmFNfEDKEbkhr55YKfsygFzX16KVHTCnC0AY36TGKACfDgj69/wO/SKWpDxGSWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746555941; c=relaxed/simple;
-	bh=eZMtMRX+XEqjPAGK33crRcL0vjbLxp3ZTlEuyfjqAoA=;
+	s=arc-20240116; t=1746556365; c=relaxed/simple;
+	bh=7Lz99HJQmL5ge/V85UbT5qmtj6szgrjLvNLhcChVRBM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kXd1JpAMa2DFCUdDRey1HTFrCtEGf5ovrZDBw2P66cPPo49gYznnnwc/AVhcubiiOZstaaN+SaNyGuyG6k4mAWmRlLYP4OHOt8+YmtQF3WH3hZgRf7LPqBeZ9vbsuPdmedAmsQfrnsjmMw/sGlvdBqXSPbd+iS9hzrGLij7SGjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B8J/URRK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D482EC4CEE4;
-	Tue,  6 May 2025 18:25:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=F4iN5PHpGB9gqxMahJxjs946cySBTOVJGzLae7nvDcJj0LJcUN88NxPpbRjJVmRveOgW8fiQcMrY0BMiuDsVMtZ+6YgCPI7alKU1gws7GOqjBEIGyDrFsgKgMbrQsLXJ5FjYboWBlW2bdEgK6qfWEmALaBTqc2dp0KyN16tnIcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=skdiQNGX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB5D6C4CEE4;
+	Tue,  6 May 2025 18:32:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746555941;
-	bh=eZMtMRX+XEqjPAGK33crRcL0vjbLxp3ZTlEuyfjqAoA=;
+	s=k20201202; t=1746556364;
+	bh=7Lz99HJQmL5ge/V85UbT5qmtj6szgrjLvNLhcChVRBM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=B8J/URRKLWpKRIOJp6qYCTRL6ZN1QKrIV9paC9NNi8EdKHQZpKoIBQ9m3afopNyqd
-	 YbzyWaEn7PDtAHFXsWfBW4ZPA1QLlCthkDlbU8nZ7xpi4jJmMSJbZnmmOUw5aNsAdX
-	 JxUivRnkKDShsZmgAa1My5LD9hwXlnSouCBFiGXRsSGl2DuEB8Fvvxc2RjW0Ryoqvx
-	 +sOtNiBXPZClJ46F98XVTBaIU/8y7Z4zudU561QH9N9EDSWP6Ydb89H2MIYz5co5uC
-	 TM8o7qmo3KeIqNV5rmaK8yNohGkkJe1SZ9CaXwHuThYNlA+aVA5E6Xt1gkjhKz623V
-	 XqHU3ii65D2Cg==
-Message-ID: <8def8f5d-3bc6-4ca3-85bf-f55dc7dc7d9c@kernel.org>
-Date: Tue, 6 May 2025 20:25:35 +0200
+	b=skdiQNGX5sMlAeiLXmaXYDLn4lFoA3vaNTxUnSZOShMaomDRSiL/E6X/USldt+pbX
+	 uIYVWvwog9OI24OTc+lTM5VpgSGf+FLCFAGOGgjPcp5awA424ReYBr2iNXQKtvRs5h
+	 FKA58kPfLYqDsyF8ls8p772P5QgmNbimNYCemMJdM05bgRcDKAPBBrPcYqG1MW7Rua
+	 beY//w4yfAPeDsjgxQ6BFIt5Lwh5bihzCIfQJXBPi4MxFdvIf7194HQ0578oa1zvXR
+	 WXnT+r7dDZIg23E6cPBOAlzF8gOhpxlboeQ94iVfKKmlexJjaD3daMioz6A6xZoEUm
+	 7HJw8Gj9QCquA==
+Message-ID: <fe324018-542a-47c8-85cf-5ef6c66d1b65@kernel.org>
+Date: Tue, 6 May 2025 20:32:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/8] dt-bindings: qcom: geni-se: describe SA8255p
-To: Praveen Talari <quic_ptalari@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
- quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
- quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com,
- Nikunj Kela <quic_nkela@quicinc.com>
-References: <20250506180232.1299-1-quic_ptalari@quicinc.com>
- <20250506180232.1299-3-quic_ptalari@quicinc.com>
+Subject: Re: [PATCH v7 6/9] arm64: defconfig: Enable CIX SoC
+To: Peter Chen <peter.chen@cixtech.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ maz@kernel.org, kajetan.puchalski@arm.com, sudeep.holla@arm.com,
+ eballetb@redhat.com
+References: <20250506090752.3695666-1-peter.chen@cixtech.com>
+ <20250506090752.3695666-7-peter.chen@cixtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,44 +104,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250506180232.1299-3-quic_ptalari@quicinc.com>
+In-Reply-To: <20250506090752.3695666-7-peter.chen@cixtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/05/2025 20:02, Praveen Talari wrote:
-> From: Nikunj Kela <quic_nkela@quicinc.com>
+On 06/05/2025 11:07, Peter Chen wrote:
+> - Enable CIX SoC support at ARM64 defconfig
+> - Enable CIX mailbox
+> At CIX SoC platforms, the clock handling uses Arm SCMI protocol,
+> the physical clock access is at sub processor, so it needs to enable
+> mailbox by default.
 > 
-> SA8255p platform abstracts resources such as clocks, interconnect
-> configuration in Firmware.
-> 
-> Add DT bindings for the QUP Wrapper on sa8255p platform.
-> 
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
-> Co-developed-by: Praveen Talari <quic_ptalari@quicinc.com>
-> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
-You are wasting people's time, srsly, replying without giving any chance
-to comment and then totally ignoring review.
 
-Reach to your colleagues before sending next version to be sure you
-understand the process.
-
-<form letter>
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
-
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
