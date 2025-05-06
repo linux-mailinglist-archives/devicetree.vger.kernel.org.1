@@ -1,120 +1,126 @@
-Return-Path: <devicetree+bounces-173935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1679AABAB6
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:27:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D63EAABADA
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:29:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EF274E4E14
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:23:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 337FA1C41CA1
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F55628BABB;
-	Tue,  6 May 2025 05:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F2D028C5C9;
+	Tue,  6 May 2025 05:28:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UNExQlPi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F7+AMYKr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8EF23A9BD;
-	Tue,  6 May 2025 05:17:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE05E28C842;
+	Tue,  6 May 2025 05:28:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746508679; cv=none; b=l2QJQ5ESfr84rE3gFZ6H/v52g0Pf7mIiLTjMsFVZMCtpu89+E4y2e9NK+J81fRm2A0peqG9YZxLQk6tnnkwSvkP64ErnKrCAtzDrnbq9aW3bk7ZFXPKmmfL7vONMA4fgG1WDC/q4cvaCC+ABRxkeRdGtnZbCyiAX9hCJysV2pNs=
+	t=1746509328; cv=none; b=Z04vZBU4KXN600cwVRLMGHO1rSexte4veFqDRLfKjblExOmeTwKjbvaYU1tf6dOcbzIajWS3MDjHVnlPsD8yn0Z/vMKED2aNHzVhNARsm+XifkbZwnaBFjnLoT7fAezrIh9SwxOCZ7keqP00O7A+Im4Xa6Uf/X06KuCoV0T7l0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746508679; c=relaxed/simple;
-	bh=YupN7OpiadTlvUUHNYqjvAOJEtB1+VQb1H44FbQZ4cY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DfO6/iysCCuVRrwL5PQ5A2bhe5kZkc0cc5SK7+EKtx6810JBwfk4Ye0ekRq9IgfqERtDiFXk4d7KSWXb4FR/hUjryuJX9jlB1t5sk+1i2wVht6gApZUBPM2NFbKerlEtZjd5s6pu0LCtuGdYvbXfDne8zkLNBrcwLzaKTjHgPX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UNExQlPi; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746508678; x=1778044678;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=YupN7OpiadTlvUUHNYqjvAOJEtB1+VQb1H44FbQZ4cY=;
-  b=UNExQlPiBZiKBgL4ATJd0VU1yuZb13+MEjwygUTxtGGHJ/tfLphnFiQE
-   2gAIq/guZ6jat7cFtQWmltXyjUHvXiWtCMG4vcoPPq/v7JR74fJ9Mm8kW
-   BJKDVftMxbZWt2jnZD4/ANz6Tn7OqGinXMudHgAl2uoYKCn7NER6daOiE
-   Xdvcb01k7C80eg2rrGuyVlhMvzsVXvE+vsR7lrpQuJQM/WjINHgxo3hzn
-   QEG/W1tNYVoJZOvxpVC4zXaWMI/hbNykdtN4w4CRrA16sOO9Fk9/DNg2Q
-   ayoA9prIn0MvWZMEieZ113EuapQkGK1W5TAxCMbS2aA1xU+4Am7e9i2Ba
-   Q==;
-X-CSE-ConnectionGUID: l/pzZrPDTjuTNE730KtPFA==
-X-CSE-MsgGUID: hFLim6LGS32dk5BNX0IwOA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="51801224"
-X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; 
-   d="scan'208";a="51801224"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2025 22:17:57 -0700
-X-CSE-ConnectionGUID: mocT4V6qQBm6tcQbt70gsg==
-X-CSE-MsgGUID: JImtxp0ZSCOBUGVUt4J8Ng==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; 
-   d="scan'208";a="172700057"
-Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
-  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2025 22:17:57 -0700
-Date: Mon, 5 May 2025 22:23:00 -0700
-From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org,
-	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
-	Ricardo Neri <ricardo.neri@intel.com>
-Subject: Re: [PATCH v3 02/13] x86/acpi: Add a helper function to get a
- pointer to the wakeup mailbox
-Message-ID: <20250506052300.GE25533@ranerica-svr.sc.intel.com>
-References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
- <20250503191515.24041-3-ricardo.neri-calderon@linux.intel.com>
- <CAJZ5v0g563qdyEdd6v1voyyZM5tpZab72LXTZcO9C0jE6mnRzw@mail.gmail.com>
+	s=arc-20240116; t=1746509328; c=relaxed/simple;
+	bh=gQp6Ny1UV/nufpAO8MF2mNS1/7lehGRjSJTqjPYT+tI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IezdGvkledmqaQScEJsgizAg1ta+FYZh5CEiFdR/Pvluok9JISH9e1Tj5L3VqZcwH0gxAjKIwvDZHXGyauXkOGCrM247rGHbioe2pQER9zqpfvn1UVZgT0Bmv8fS0ORVZd+odgcgJ/xvoaE4Thrqz1906ws8bI+d+NkUM3GhGao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F7+AMYKr; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-22c3407a87aso77693665ad.3;
+        Mon, 05 May 2025 22:28:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746509326; x=1747114126; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=zY64DOh4SaFpvvACLrzCGnh69WAMNHQAZsNHFyi2xL0=;
+        b=F7+AMYKrqWMBs+4b4OdgAvYOesAw9L74coUIL04h70s1QgHMsuysVmWEbd1is1La2H
+         zyg8Q2WoMvalll1BfuEpu0DSb2OFJYmJFg+gkw1bZO8Od9zlOYV6PHnINoYG0hrlKI3K
+         2/u2DrdSw5SXqBjwL5vzG/AwHA+q7gAp+tM7syP3OaL3nGhJJM+NPMaGKcXaOgE7ONGc
+         lmV+YJr4C0wn2chRFp3FeBH4H5zRT1zZa+JtwNn0dda9//OwDWEUVehc5gGDwPQbGkLW
+         X+LQ2LnycJ2Pbdn+G9p9PatrAuZ+N8z9f+/33yaxSTSbFGzJYkr/rXavFgEdKf8/BvN1
+         GOxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746509326; x=1747114126;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zY64DOh4SaFpvvACLrzCGnh69WAMNHQAZsNHFyi2xL0=;
+        b=cyyOBiVmVOIAT0hoNlFyJv9Vh/ZXy5/188lR0oNm8jET2rNJKZ0Nj7ccdDQZKuXHgL
+         mJ1ZtrjSlgYDbr6eoj2wwWPHGyd6wMDUBpiZUvb5U7oZlzs102ODxoTkF6s66xMP/ego
+         YIes7FNnSJNQ70moRwNx56TQY48HSEPVlOjTvvnP/8HMmDDQ6MzG4LZFUVRtoNQRzWSM
+         T5I4j7kEKSoGFcnPeUAn2L7rtTmePEZXqeH95GBXwMtKNZK7HUJGazem3SmOTnnqlLbW
+         b6DKLMiTpvDxezpux1A85gBV9Ai2T7Gqb73hIL+3zusxm98BsAtQU87ghERWCXUqBtur
+         0pcw==
+X-Forwarded-Encrypted: i=1; AJvYcCUx203lI/A6+1pg/mOoi1Rb9cVTa7EgRtweoC6vXDxwsSVl7/UoTHbga29haxMAG3h1/I946j0FNs+Z@vger.kernel.org, AJvYcCXsDdKyKJ8jmNCbWMEVSo0mu4F1j4b/BJ4hDXuQjo6HZ83SZYeZ9dMw+933oa8SpnpP4COQJ37X+i54+e8l@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsTW8mt+wyaBUTBrZhEyEo4Au5I/dja7KbReTYWKE7p0keZ6qD
+	7guNXA/xo01ApqMepCcysSRTx/CtKmfa2x4yzcs8OODwyDCRKviZ/N7Oj256SSEzlsVmDWw84OY
+	F93Og6uZiLEloJuu8WicQnwkJ/UM=
+X-Gm-Gg: ASbGncuBhglE/LriwtcfWw0a1flrV7rKILoPsyul9dovD+Q7IyKACCRZTDzF1GMGnTt
+	IjsOIclZd7tVaYiTiD5qf50TSm6h7Nr16Z2XE5I9UQ9X/Y9SEN+YSGNhDrcAIyomN+gRKo71eff
+	kfwOvQopnN/al86clg0Xmpkmnft61C2/7JL9htHc4T6mcIqPm0UCUXOGRf
+X-Google-Smtp-Source: AGHT+IFbJpLRXSHxF3fSLL1KL2sqdc0f46WjNL+UBT+jETt6hQGktbkUm2SINYV0PlaaSfTi2JtBW+w1nNCUsf/TMdc=
+X-Received: by 2002:a17:903:3c4f:b0:220:f449:7419 with SMTP id
+ d9443c01a7336-22e1e8ea150mr137149705ad.7.1746509326137; Mon, 05 May 2025
+ 22:28:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJZ5v0g563qdyEdd6v1voyyZM5tpZab72LXTZcO9C0jE6mnRzw@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <cover.1744090658.git.mazziesaccount@gmail.com>
+ <20250502074743.GC3865826@google.com> <aBVUTvVnfuLFxzh4@finisterre.sirena.org.uk>
+In-Reply-To: <aBVUTvVnfuLFxzh4@finisterre.sirena.org.uk>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+Date: Tue, 6 May 2025 08:28:33 +0300
+X-Gm-Features: ATxdqUHCc7cfCqJDo08T9ZVB_47GBrflRMP_AN4R69nBeeX2bEalAJ3t8txgJeY
+Message-ID: <CANhJrGPMhRy4TW_JMZ8dkgdctgF3f+bAsoWLkrNvqbcbc412WA@mail.gmail.com>
+Subject: Re: [GIT PULL] Immutable branch between MFD and Regulator due for the
+ v6.16 merge window
+To: Mark Brown <broonie@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, May 05, 2025 at 11:55:03AM +0200, Rafael J. Wysocki wrote:
-> On Sat, May 3, 2025 at 9:10 PM Ricardo Neri
-> <ricardo.neri-calderon@linux.intel.com> wrote:
-> >
-> > In preparation to move the functionality to wake secondary CPUs up out
-> > of the ACPI code, add a helper function to get a pointer to the mailbox.
-> >
-> > Use this helper function only in the portions of the code for which the
-> > variable acpi_mp_wake_mailbox will be out of scope once it is relocated
-> > out of the ACPI directory.
-> >
-> > The wakeup mailbox is only supported for CONFIG_X86_64 and needed only
-> > with CONFIG_SMP.
-> >
-> > Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> > ---
-> > Changes since v2:
-> >  - Introduced this patch.
-> 
-> Have you considered merging it with the previous patch?  They both do
-> analogous things.
+Hi dee Ho!
 
-Indeed, I can merge these two patches.
+la 3.5.2025 klo 2.25 Mark Brown (broonie@kernel.org) kirjoitti:
+>
+> On Fri, May 02, 2025 at 08:47:43AM +0100, Lee Jones wrote:
+> > Enjoy!
+> >
+> > The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
+> >
+> >   Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
+> >
+> > are available in the Git repository at:
+> >
+> >   ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-regulator-v6.16
+>
+> You need to specify a separate url and pushurl for the git remote so git
+> generates PRs with a public URL people can use.
 
-Thanks and BR,
-Ricardo
+I didn't spot this in regulator/for-next. Is the URL sorted? I'd love
+to see this merged...
+
+Yours,
+    -- Matti
+
+-- 
+
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
+Discuss - Estimate - Plan - Report and finally accomplish this:
+void do_work(int time) __attribute__ ((const));
 
