@@ -1,97 +1,101 @@
-Return-Path: <devicetree+bounces-174186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B96AAAC424
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:31:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77D35AAC3D6
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:25:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF6287BFA1E
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:28:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0B407BCA30
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C35284B32;
-	Tue,  6 May 2025 12:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A07327FD59;
+	Tue,  6 May 2025 12:24:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dq5cTMty"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="lKI6Le0K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60241284B27;
-	Tue,  6 May 2025 12:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEA1C280030;
+	Tue,  6 May 2025 12:24:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746534351; cv=none; b=iWVnrDgKMKn6KS6DgCsxb9tQV6iKsHYnndMucoCEQ4e0Krzv1gNZqifAmbBAmmNGuaN+58x8H2z12gJZctLoMmxiM1pbMQA+g4KdNpm5chIVPNLkwVoxpt/5j2gUQKVBnpVsI9ehS3nLmxYS7QPrBwiL1YqFvUd3bBhvfZGaXag=
+	t=1746534253; cv=none; b=tJD5uE1OlnQEWwYQaJjVdnwE3HkeZupdkuuXvNYn6XYTLgDPFDIlLiIWdT4Lc3zlDrQRIIAVnEdfYGoItREVVwWeCsexB5R//wpgeZu36sMjV3xnlJg58W/ef2TlnK/ZnSX1DJVmzQkjQJ8k+I8tz9Tpyfl1WHCLcSl9Com5g+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746534351; c=relaxed/simple;
-	bh=Dhr0rsx9WpeMa8aspdbgl7YO+d4d6KcEE2+waQCoYbI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DUIkXyAPVasPMzdab9bY7M2Lu/syAIFSmTOl/ssn8PbR+x1Db2uVinoDODUm30pyY7HA/zGis6kiiO5Bvdrr2y14W6MZBlSecJZCc7ADYXt+tzKEumEV9p2zB1ILz7ygTwWI4/SXjH92m4pWAXV58g4ZdHv6nXHuWBUnh+EBjZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dq5cTMty; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58A11C4CEF0;
-	Tue,  6 May 2025 12:25:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746534351;
-	bh=Dhr0rsx9WpeMa8aspdbgl7YO+d4d6KcEE2+waQCoYbI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Dq5cTMtyj0wHuo1T5aHKQkBcSlr+6GhC/2Qcc90isxK0fDRSfA0/Qo/GQnLnu53YZ
-	 6S/53TJ5C1EXGWuq4Qd55nzieRvN0xzjjM3zme/3EvAv4Wj3tLhELaUTdAMAidfbFd
-	 kIbLU6kV4uSUVi8DAvFe09ZzCOdtMaL8hHvY51pQKaTND8dkWddz1nSt6/ZiBZ90+8
-	 uK2I0XBLiZ7PxGSEZFtnHWlCj1BsFMF9AXFId2lfnYLepQi8xtoX+EyKVmoF7H2krc
-	 T24abHve5ye3qgA806xvLjWw+4bjpPF648cjcMWeaQ982/BBEa3ZbF+LAkI0/8E+ro
-	 6WBwFb1pMheHA==
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Date: Tue, 06 May 2025 14:23:54 +0200
-Subject: [PATCH v3 25/25] arm64: Kconfig: Enable GICv5
+	s=arc-20240116; t=1746534253; c=relaxed/simple;
+	bh=Pe/LD1R11v0r3nlohRwma2BBA+QuXERTLjiv7SMrDH0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n6rrUC3h1zEOVTpXLVks7LqcSmChGkYjfrWNs2mx+ajEenEr72YbKvOL5A2Fuv6mrwMt2qYhaX8GRbjcJwpKnHUw5ON5dus7RBBLJITONfhZpg9Y3c4JWDQHhmRwwSBmh/Yuu2iY6/LvVStnabn1rLC8FkE9eD788f1UZD+ilh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=lKI6Le0K; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=y94onA26ptuGt6ZZ1O0PWKBzwfWEx+cfBmv8M1gAVUg=; b=lKI6Le0KREcdNawRsk0CAI0W4h
+	YKfzlKz5/1N0rCWNPOVlKunDUiZvVYlHZTDoCy+JhPcM/aoEkLpNFsCtYibgDU2HTjR2EFXS0+FJv
+	DE7tlyBKVFtKuF5zA/ikUTG+MZr22NPuxbhEeRYNDG0B1LN6rYc+4+RAFPsE3ZJ6fARk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uCHLA-00BlBI-0c; Tue, 06 May 2025 14:24:04 +0200
+Date: Tue, 6 May 2025 14:24:03 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/5] net: vertexcom: mse102x: Add warning about
+ IRQ trigger type
+Message-ID: <a9633874-a41c-4f62-9b80-33785c0eec10@lunn.ch>
+References: <20250505142427.9601-1-wahrenst@gmx.net>
+ <20250505142427.9601-3-wahrenst@gmx.net>
+ <14326654-2573-4bb6-b7c0-eb73681caabd@lunn.ch>
+ <e75cebaf-6119-4502-ae63-a8758d0dd9f5@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250506-gicv5-host-v3-25-6edd5a92fd09@kernel.org>
-References: <20250506-gicv5-host-v3-0-6edd5a92fd09@kernel.org>
-In-Reply-To: <20250506-gicv5-host-v3-0-6edd5a92fd09@kernel.org>
-To: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, 
- Sascha Bischoff <sascha.bischoff@arm.com>, 
- Timothy Hayes <timothy.hayes@arm.com>, 
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Mark Rutland <mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Lorenzo Pieralisi <lpieralisi@kernel.org>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e75cebaf-6119-4502-ae63-a8758d0dd9f5@gmx.net>
 
-Enable GICv5 driver code for the ARM64 architecture.
+On Tue, May 06, 2025 at 10:38:53AM +0200, Stefan Wahren wrote:
+> Hi Andrew,
+> 
+> Am 05.05.25 um 18:32 schrieb Andrew Lunn:
+> > > +	if (!irq_data) {
+> > > +		netdev_err(ndev, "Invalid IRQ: %d\n", ndev->irq);
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	switch (irqd_get_trigger_type(irq_data)) {
+> > > +	case IRQ_TYPE_LEVEL_HIGH:
+> > > +	case IRQ_TYPE_LEVEL_LOW:
+> > > +		break;
+> > > +	default:
+> > > +		netdev_warn_once(ndev, "Only IRQ type level recommended, please update your firmware.\n");
+> > I would probably put DT in there somewhere. firmware is rather
+> > generic.
+> I'm fine with changing it to DT. I slightly remember of a patch for a
+> BCM2835 driver, which also had a warning to update the DT and a reviewer
+> requested it to change it to firmware. I don't remember the reason behind
+> it, maybe it's the fact that not all user know what a DT / devicetree is. A
+> quick grep shows both variants (DT vs firmware).
 
-Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Will Deacon <will@kernel.org>
-Cc: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Marc Zyngier <maz@kernel.org>
----
- arch/arm64/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index a182295e6f08bfa0f3e6f630dc4adfe797a4d273..f1b3c695b376717979ae864865238ae12ad65ca2 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -128,6 +128,7 @@ config ARM64
- 	select ARM_GIC_V2M if PCI
- 	select ARM_GIC_V3
- 	select ARM_GIC_V3_ITS if PCI
-+	select ARM_GIC_V5
- 	select ARM_PSCI_FW
- 	select BUILDTIME_TABLE_SORT
- 	select CLONE_BACKWARDS
+The line gets long, but "Only IRQ type level recommended, please
+update your device tree firmware.\n" is good for me.
 
--- 
-2.48.0
-
+	Andrew
 
