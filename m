@@ -1,127 +1,108 @@
-Return-Path: <devicetree+bounces-174022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B0FAABE34
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:05:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 340BBAABE3D
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:05:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C301D5206F4
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:04:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 767903B55C1
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:04:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 654F4267709;
-	Tue,  6 May 2025 09:03:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6A22673BF;
+	Tue,  6 May 2025 09:03:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mxJWX01H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RRDdcouL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D34264A7A;
-	Tue,  6 May 2025 09:03:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0C2619F115;
+	Tue,  6 May 2025 09:03:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746522185; cv=none; b=G+gUl5BohO0F8Hvhz9WAiCAVTY1KEczDFr8p1poIOT5FQLMwGCchNtTrE4x+hvZjWClk8xr4MWlSaB5lcZhu7GH2OaF0HwaDnDImWjGgctcrIxyFBtcdP6wKEpn0DSKYu4XIsLf59qmpwhO+lDLBUd4oSDk7Za6Ac9tW4/tJ2kE=
+	t=1746522234; cv=none; b=PBl8BQcMHdgURS1HHdGzTgVfBoOFhaYCUbsONbKoHRPlCkwUF1I11ihGh3EP2DyybSECx2VW/3xdK30XthFvaLuSyWDRQd+pkqzBdJGjesQIqeXyL9KgD3MBvQ8CmN4gC0vcYfjj0PoAckexzViq9D12H4fP7BgYbhUNQg6v2u8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746522185; c=relaxed/simple;
-	bh=KzjpAkZSQHMJ4XB3bjrKeORHNcNIBfFqKt9m+bqJINk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BVzagTKksyJ1K2n9DSOOSZZw38g/m3YBISaM9IWf+L4Bw5PUDkdbL67xn5xVep5krKfekhS7+8WE3X4rFYMtBXoLGbs/zlDNzZFv7GvTJIn1m8AJGbjJeEtO851L1MdsG/W76PYPWdh3+FrLz5DInQ1Y2KyyqThUlkLngOfb8X8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mxJWX01H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE79AC4CEE4;
-	Tue,  6 May 2025 09:03:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746522184;
-	bh=KzjpAkZSQHMJ4XB3bjrKeORHNcNIBfFqKt9m+bqJINk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mxJWX01HMsrW9zvLPgqQSTSvpIv2wLJUuKV99kxNz/EYbu0jST6dlJLm7YPkMmnqw
-	 f6zWPipUvF/Is/Nnw83xWKiv9x2YHTJ/ul5VaVN0Hi664djWR62/3kEtmF5ZszFoCA
-	 ltQiXyU6dAOjRPbMgF9ZbGKoNYwJbXpNHRn22dRiU2t4ElGcC4zGWEPgscOxM2bwS7
-	 fkPLULd3Y2degn/eXcJ7Z/cV6ee8Cak34yEvwD1JQArq+lG54HY82shZyf8GvT8cX0
-	 UQnVoWttEnzdaC4+C9kk7dqcWrympjQphkLMh5Q0BLM+Y/aKVrxAKV+DqdA+N82lKa
-	 6dUOTWgCGPmnQ==
-Message-ID: <9268048b-9868-4e41-b0f6-dc2e73b019cc@kernel.org>
-Date: Tue, 6 May 2025 11:03:00 +0200
+	s=arc-20240116; t=1746522234; c=relaxed/simple;
+	bh=gyIx0Ki5AOaReJxfeZj63dyjx9FKVMsihfA3i8+mBGg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E/7XB7HF+/syMYrbXtMSyC9tNpx6XDWR9KwtnnU0zbCv2YWTWqTKf/un2c6tWniBM1KZ77GK+R3Rv0wDG+R6tYDV3JTV676Rs0JOpCI/A8Py1sevJxwoc2m3UcdIrLJeX7e9TiL6Ec1yncqLdNnt9gnZnCLL+xCSrdoaue5698A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RRDdcouL; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-39c1ef4acf2so4214937f8f.0;
+        Tue, 06 May 2025 02:03:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746522231; x=1747127031; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gyIx0Ki5AOaReJxfeZj63dyjx9FKVMsihfA3i8+mBGg=;
+        b=RRDdcouLItgszsRPvJD/IrtKTbR8ipn3WlJETa4xoP0mCoo+eZDgIYTe21b3d90Lwz
+         7PgcJoz1w9qhX64X4sBroY3bdPCAT94SKN6dbjPY7ogtREqUfUJokmOaX2orNeg+Ui+L
+         o/qnOLRn9UorOLmhvJox8lD1SVRnvwGtFeiMayQTRVvwznyH16FlN8chIc+aYp297vRU
+         KR3v+tFMglkMW5xns9kh4AEhtwfiiegbAze/xqCx5G0/AHSLGnMaXSB9scm2CtCeRJPO
+         J0sRomX8540b+O9vVv0iLmXWsF/kfnQ5lmst/d8PjdJ13kZENOGi7JNngR45yW7mqWDg
+         svBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746522231; x=1747127031;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gyIx0Ki5AOaReJxfeZj63dyjx9FKVMsihfA3i8+mBGg=;
+        b=Zss3A832HR5XBdyXwM7IDqlB9gXkUrDaa4g7B2UaUWIEglrVykiCXP7Y8bL1VXsdy/
+         KEJdK1xqebS2uLwAi5xMrvGvmMtLUr6RSlZ8yIOYC/ZMP9PPT3bIxttQ3eOZ+J9J+82C
+         NzL498GAiftR1sFrq333KYAGjziT5vXX6R6q0jdeOBg0EUN/eMLZ6ZKvVRec+w1gnST8
+         aoNP95pyKic0Kgn/VzJfd6ti+SFJ8nysKXynsoFdRgFTi0G1QlFZYKmrHY9/Xypd7AdZ
+         wEvVkkUsoVxF73ahPGJfq7ZqntUukdpgFeus2CDuDoZfJIcsRlbsBwkgs3+mz0Y8pR2/
+         qFZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUfj9MNAA+gIrJCLKXy9m6KJNKZJ14IjvBzo2tOS7ew0SP27mFjH8QLQriOK9Iesppy3r9c2vgyqOAf@vger.kernel.org, AJvYcCVFvTlEAxBPzghqjVfJ6nl7W6q7wKORM980aFPpvb6lk03r0kn2oil0NUNdyRdtk0p/WMR9jKLt5ZQl@vger.kernel.org, AJvYcCWu57m8T0tTlyOOicUvJIyHLAAOrwU7zHWDPJEv7RJ7Hyk0Pulqod4FJtgRBLKPVKzmrzOUOU1HC5IGwJ2i@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6eR2q12417gjznhBTmctRMXNQLgnGKZ4lIwcH2lv71TUyzmM8
+	SX5F8ysxPZp3tKkf24AVQafjrVAxLlea5WtZ+1po/eOgzQ/uhALw
+X-Gm-Gg: ASbGncuAkagXx8brAJpKrJ1kPrk6xsBoZFm51sdx9Kq5zvBHKVlUPQCU6hI0sxdM0k6
+	G2SteTENzLvcsnyR73xxrBUg1DBoMEtFBhSzIoDq27dijWCCdqEE5/DnvVjKf42O5vxHEbg86WK
+	lQgJhD9kYllKFyzx6KnwnisPznX9+EEDZgd1G0eCA55fuDmm4cUOWJwR/ZflaXMVxJW7APfecEG
+	u2pHBmUFFVMiB+2/hzc6dfCzAWuwXO2QX/QMy15Dd7ORRXM3nMckqfcsP234JdPpFGdhRSVUMKj
+	+Kb3g2SqVyavZNrSK+CA/YiwoNrDJMN0xFjHl4sOJS4PfYdhIhMfdAnY/z6fF08kK3AMGReqgKQ
+	=
+X-Google-Smtp-Source: AGHT+IHRYQv7gbtTFV1OT21EShfpi94fTR1K/sawhJ6BR+I4eHDDjPZQutWAPs2LuuqvlF8J7eUroQ==
+X-Received: by 2002:a05:6000:2489:b0:3a0:9f24:774d with SMTP id ffacd0b85a97d-3a09fdbc96emr7653085f8f.45.1746522230986;
+        Tue, 06 May 2025 02:03:50 -0700 (PDT)
+Received: from ubuntu2204 (207-pool1.nat.godollo.uni-mate.hu. [192.188.242.207])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae3441sm12755409f8f.26.2025.05.06.02.03.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 May 2025 02:03:50 -0700 (PDT)
+Date: Tue, 6 May 2025 11:03:48 +0200
+From: =?utf-8?B?VMOzdGggSsOhbm9z?= <gomba007@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] Add support for the DFRobot SEN0322 oxygen sensor
+Message-ID: <3bpvrmrrlv75snba3o4nvnb33b2ibxskakkip2ukpxvfgezwj6@sqnmmtgi3rcl>
+References: <20250506-iio-chemical-sen0322-v3-0-d6aa4acd00e0@gmail.com>
+ <4ef1f428-d580-4263-9190-d187d1fd0e53@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dt-bindings: media: qcom,x1e80100-camss: Remove
- clock-lanes port property
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Robert Foss
- <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250502204142.2064496-1-vladimir.zapolskiy@linaro.org>
- <20250502204142.2064496-4-vladimir.zapolskiy@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250502204142.2064496-4-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4ef1f428-d580-4263-9190-d187d1fd0e53@kernel.org>
 
-On 02/05/2025 22:41, Vladimir Zapolskiy wrote:
-> Since clock lanes under CSIPHY are hard-wired and non-selectable,
-> it makes sense to remove this port property.
-> 
-> The change follows the same logic as found in commit 336136e197e2
-> ("media: dt-bindings: media: camss: Remove clock-lane property").
-> 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
+Hi!
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> What exactly changed? I do not see any changes in the binding but you
+> decided to drop my review tag.
 
-Best regards,
-Krzysztof
+Sorry, my bad. I've fixed it in v4.
+
+Regards,
+János
+
 
