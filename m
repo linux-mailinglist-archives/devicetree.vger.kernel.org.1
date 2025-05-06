@@ -1,163 +1,132 @@
-Return-Path: <devicetree+bounces-174282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C547CAACB15
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:35:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA317AACB2B
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:38:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31AA650606E
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:35:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C47C11C05BEA
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E225283CBE;
-	Tue,  6 May 2025 16:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96BE3284B21;
+	Tue,  6 May 2025 16:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jxx0uI9/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EhpirLcY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A17B2836BE
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 16:35:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D91A5284B5B;
+	Tue,  6 May 2025 16:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746549304; cv=none; b=ojvkkvbWQj+Ew7CAtyfsD4c2ZL3xYn56oiKvmBIKccDwVrhv4IxmGRzzeccNREBx+zDBBe/RmmFaUBVewwARD6Bn/Zq55p0G+Ovp5x+ApKLuwqMRCYQLLvUPDxm7xJJo1SIkCjXXSMI0b+iUqxJVzDqEjzgd4EUmLfOmrGalkHg=
+	t=1746549466; cv=none; b=n+d5QQ4UbJ+It012APu0n+jZfVslTfu+8kZMx4ppFyXDfiM1D3upyI9zVRmnZiOpuK4Gyu6oyjaA6uhSXLlu4NR3492I1Ph3EbOcqsxt1+9NGm44gdud/al/QzyZbZGpbUHefxm/EJR3CjtCCa7Ae3JNT/e2E0gOk9q/ZghNldg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746549304; c=relaxed/simple;
-	bh=uoptlTpW6qeK2AgUdwaGx1IisUVQuZQm4yEmqfnzTbI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Aa/56xjloA7RFDh50Use+ybyJf7Oi/NEvFAu/TXYJc3wJCLU0yWmH7iWsSCLe4deHI1UHCERdYxpTjvZnfdG1q9axQm4pqL8ksNuIh2DFdhHZYMEnsnK4nbfpRYpBckCPY3uUcVGTngJaFNIUZvurcYEvbbKxRr8enrqSW93KZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jxx0uI9/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AFBDC4CEE4;
-	Tue,  6 May 2025 16:35:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746549303;
-	bh=uoptlTpW6qeK2AgUdwaGx1IisUVQuZQm4yEmqfnzTbI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Jxx0uI9/nEy5R97VUwfzVk64Y3uxY0P/9N69G2xEsBrshABBz6A7XyunpO7cDfLHy
-	 /6KzEl+Ul8L0n7E9r5DPzBowSEsIX3/tvLbu9y49wkVZJ206+mt8aYKXRVF04cWaUM
-	 qZB+6mMGzlwaFefNRQRB54mkuotGYGN7xxLhI2PaA0cicmE7Ami/iI/Y5BDGP9S34U
-	 w2zYZEXyDvTXY52pImHjYKUVAR7SUiy2WK6C/jLhz4KZ81aVSE99EFZiE2qWePP8Vo
-	 gjN37lTeMXPNGk7SvsP2lOelmt8TQqWUOrwQQR4I/FljuSZ6qd8oEJKrbZNpYqoClq
-	 YDKGZcg0qlaGg==
-Date: Tue, 6 May 2025 17:34:59 +0100
-From: Conor Dooley <conor@kernel.org>
-To: John Clark <inindev@gmail.com>
-Cc: heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	robh@kernel.org, krzysztof.kozlowski@linaro.org,
-	conor+dt@kernel.org, jonas@kwiboo.se, frattaroli.nicolas@gmail.com,
-	andrew@lunn.ch
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm: rockchip: Add Luckfox Omni3576
- and Core3576 bindings
-Message-ID: <20250506-navigate-cannabis-19078e498781@spud>
-References: <20250506114115.613616-1-inindev@gmail.com>
- <20250506114115.613616-3-inindev@gmail.com>
- <20250506-almighty-uncork-f7a0bc42d763@spud>
- <c8114ff8-f207-4ea8-aaf1-298dcea9f030@gmail.com>
+	s=arc-20240116; t=1746549466; c=relaxed/simple;
+	bh=ZZLYZRqalGJH9EAXC5H7UDkMrkHsVeFSxTdaPceNAig=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ChrPE4rujm7NYC3zm37Vi/NUefWSd7hhhDXA3gB9WSC//IQ2o5h9Vf+9bsMi/GT5TNwStlOCTad6vQPgUdD9oAVcsJt426MfWdiLEx2qKxbGzyvt/Nk/Ann/TsH30gL7PSbxtnRXRgFAHEupNHXhIYpARgGlmHLFauK76Wos3c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EhpirLcY; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5468npYU007245;
+	Tue, 6 May 2025 16:37:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=yc2RUdCvkXOSy1TyTmx0o2WlO+CFm9kYTZ9
+	ABmGDDAk=; b=EhpirLcYCFJa8yPw7UeNefeozzx4MGSJma9LK+C+Dy+5uQiv9km
+	krajxdCWNg30p3xY4idzqKukLW/35uI//F5Q0c3NxoSxaM2Y6WDyLmqFFE7xFgAL
+	XIKmrsmsVqed54pil7v4mTk/7nNKdvQVxdyf4B4F9DMl3gVfUlYge3tWR4lwQSMD
+	D8qX+8HKKevm7tYYxLY29Dv/MvlRAJtnj7NQkwBGc2/apJNaTtRZnorV0q1LTfAU
+	HWFiTvv/dS6H5C6knVBd4l5TJaRZ3euehNI6ouCfvFmMzLQdE84lSgpYujjoSGg6
+	TCfIq+gl4ftW84zDUV5GTDzyVvHziwBZ5Qg==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46f5wg2w12-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 06 May 2025 16:37:12 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 546Gb8TQ003105;
+	Tue, 6 May 2025 16:37:08 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 46dc7kx4m1-1;
+	Tue, 06 May 2025 16:37:08 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 546Gb8Yw003100;
+	Tue, 6 May 2025 16:37:08 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-nitirawa-hyd.qualcomm.com [10.213.109.152])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 546Gb8jb003099;
+	Tue, 06 May 2025 16:37:08 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2342877)
+	id 7CA6A5015A9; Tue,  6 May 2025 22:07:07 +0530 (+0530)
+From: Nitin Rawat <quic_nitirawa@quicinc.com>
+To: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
+        krzk+dt@kernel.org, robh@kernel.org, mani@kernel.org,
+        conor+dt@kernel.org, James.Bottomley@HansenPartnership.com,
+        martin.petersen@oracle.com, beanhuo@micron.com,
+        peter.wang@mediatek.com
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Nitin Rawat <quic_nitirawa@quicinc.com>
+Subject: [PATCH V2 0/3] Add support to disable UFS LPM
+Date: Tue,  6 May 2025 22:07:02 +0530
+Message-ID: <20250506163705.31518-1-quic_nitirawa@quicinc.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XP6d7CgI79zNHt7u"
-Content-Disposition: inline
-In-Reply-To: <c8114ff8-f207-4ea8-aaf1-298dcea9f030@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: b2DvvsqmjbUmr2U_S87zoWaWCBXfa1ic
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA2MDE1NyBTYWx0ZWRfX4T/A3BJQPQx8
+ XMS4V4Z/adm2zLYd5FQ1pK/UVbXv+e2lVi40tjct3iC3aD64TKyC/IbM+9PkAaMgxjF6Wz7Vu4U
+ ydZEFtzY4xss9WdIgaXc50M5wNhUiRGaTDGMURT5E7FGFKbyOTqv6+Kjz4khezwonyVdNqtPjMf
+ P/rGpoj/oevWrvA6E13DvvJcxaT/LJJP4SmS2mmZKPlv8vPqW1JT5sKY2vr2K4Gw7Q2iOPhKdVS
+ WAYvFH2YC+5N0zun69dHlFd2KqfrGYCUCs2wupedsvMWd2LIgslxrx67FUlsAtnGNYHACbdlywN
+ iLKsWCDHa/RevUwrJ+NxDQUUdfuKyxdcnzq1d+ZjQyoIBryoeRUE8oilc8eTQMLYZudA0t5Eq1z
+ Tgc+CUIwfUz/psL7jYm0O4th96brcaSDPk6VIgHtNCjdjIKArWJAWZUejww4roFT8XPBLhKQ
+X-Authority-Analysis: v=2.4 cv=dPemmPZb c=1 sm=1 tr=0 ts=681a3ab8 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=dt9VzEwgFbYA:10 a=DcltoM30VHtk37mhClIA:9
+X-Proofpoint-GUID: b2DvvsqmjbUmr2U_S87zoWaWCBXfa1ic
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-06_07,2025-05-05_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 mlxlogscore=942 priorityscore=1501 impostorscore=0
+ suspectscore=0 lowpriorityscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ mlxscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505060157
 
+Add support to disable UFS Low Power Mode (LPM) for platforms
+that doesn't support LPM.
 
---XP6d7CgI79zNHt7u
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v2:
+1. Addressed peter wang's comment to exclude write booster from
+   ufs lpm check.
+2. Addressed rob herring's comment to remove ufs lpm debug print
+   in ufshcd-pltr.c
 
-On Tue, May 06, 2025 at 11:54:10AM -0400, John Clark wrote:
-> On 5/6/25 11:44 AM, Conor Dooley wrote:
-> > On Tue, May 06, 2025 at 07:41:14AM -0400, John Clark wrote:
-> > > Add device tree binding for the Luckfox Omni3576 Carrier Board with
-> > > Core3576 Module, based on the Rockchip RK3576 SoC.
-> > >=20
-> > > Signed-off-by: John Clark <inindev@gmail.com>
-> > > ---
-> > >   Documentation/devicetree/bindings/arm/rockchip.yaml | 10 ++++++++++
-> > >   1 file changed, 10 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Do=
-cumentation/devicetree/bindings/arm/rockchip.yaml
-> > > index 455fbb290b77..826dede32145 100644
-> > > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> > > @@ -715,6 +715,16 @@ properties:
-> > >             - const: lckfb,tspi-rk3566
-> > >             - const: rockchip,rk3566
-> > > +      - description: Luckfox Core3576 Module
-> > > +        items:
-> > > +          - const: luckfox,core3576
-> > > +          - const: rockchip,rk3576
-> > > +
-> > > +      - description: Luckfox Omni3576 Carrier Board
-> > > +        items:
-> > > +          - const: luckfox,omni3576
-> > > +          - const: rockchip,rk3576
-> >=20
-> > Not sure this is correct, does the module not have to be attached to
-> > this particular carrier to be used?
->=20
-> The compute module and the carrier board together like the E25. Presumably
-> the compute module would be used in other applications
-> but the carrier board is not useful without it.
->=20
-> Is the E25 done correctly here?  I can copy this format:
+Nitin Rawat (3):
+  scsi: ufs: dt-bindings: Document UFS Disable LPM property
+  scsi: ufs: pltfrm: Add parsing support for disable LPM property
+  scsi: ufs: qcom: Add support to disable UFS LPM Feature
 
-Yeah, the format below looks good for these type of carrier situations.
+ .../devicetree/bindings/ufs/ufs-common.yaml         |  5 +++++
+ drivers/ufs/host/ufs-qcom.c                         | 13 ++++++++-----
+ drivers/ufs/host/ufshcd-pltfrm.c                    | 13 +++++++++++++
+ include/ufs/ufshcd.h                                |  1 +
+ 4 files changed, 27 insertions(+), 5 deletions(-)
 
->=20
-> model =3D "Radxa E25 Carrier Board";
-> compatible =3D "radxa,e25", "radxa,cm3i", "rockchip,rk3568";
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/a=
-rch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts?h=3Dv6.15-rc5
->=20
-> compatible =3D "radxa,cm3i", "rockchip,rk3568";
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/a=
-rch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi?h=3Dv6.15-rc5
->=20
-> - description: Radxa Compute Module 3 (CM3)
-> items:
->   - enum:
->       - radxa,cm3-io
->   - const: radxa,cm3
->   - const: rockchip,rk3566
->=20
-> - description: Radxa CM3 Industrial
-> items:
->   - enum:
->       - radxa,e25
->   - const: radxa,cm3i
->   - const: rockchip,rk3568
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/D=
-ocumentation/devicetree/bindings/arm/rockchip.yaml?h=3Dv6.15-rc5
->=20
-> >=20
-> > > +
-> > >         - description: Lunzn FastRhino R66S / R68S
-> > >           items:
-> > >             - enum:
-> > > --=20
-> > > 2.39.5
-> > >=20
+--
+2.48.1
 
---XP6d7CgI79zNHt7u
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBo6MwAKCRB4tDGHoIJi
-0geLAQDJ0izzs/rvcwECsDGYdXwC3w9wY2NmGbJVdF3BaY+1IwD/dtUh8DTEiNhe
-uHU2gI6ycQ+XgXFh1JRJ3eBwkC5n4QQ=
-=8jtU
------END PGP SIGNATURE-----
-
---XP6d7CgI79zNHt7u--
 
