@@ -1,61 +1,98 @@
-Return-Path: <devicetree+bounces-174356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5B57AACEC1
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:23:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E143EAACECE
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:27:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88DA41BC089A
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:23:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BBFF5200E5
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:27:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D00E1DA23;
-	Tue,  6 May 2025 20:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866F2154C15;
+	Tue,  6 May 2025 20:27:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a8v7+Z63"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LnliKpHY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C00D372;
-	Tue,  6 May 2025 20:23:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66F94315A;
+	Tue,  6 May 2025 20:27:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746563004; cv=none; b=Jxqp8ZTK79txLXxeHC0RYSRTJGzLad/g8gRws9l/3cQ+WR34RyYKqjxbXcA/zIuY91YiYHSCgelKpx8ErUCysTSyqx5r8Z0vVXecMRNVupY3oZEuncyV8ToYzlPaT2gPlAJ+wLKb7pBDhiZEJj/pYCNeEy8ocvlJLXnRenyuDTU=
+	t=1746563265; cv=none; b=bXoPzcI6wi1Asa8XimffC/+gPn2pHncCiuIatAROAP66MduAxAL9zlgSmSOBNZ77rkXy79tQX1aFBt6bbuRjY6vVo/AFbJqPmPG4WCKowOKjtM050xZ6y/mX5yC0DK6LfsIeOzrc18ThcqMm4bZ/4gbyJ9Tz6z7M3iPnwfM+DwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746563004; c=relaxed/simple;
-	bh=JZoS77bwlb3qo0vjs7rkqCS4ofr7Fru3B+rU59+jDAQ=;
+	s=arc-20240116; t=1746563265; c=relaxed/simple;
+	bh=Z4dfHFOdc8zbOCs+oia3qZiHTU10t25uC5QYhcTXUng=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SEuvrVDm5G+dKrHYyT2dEaG9f2JISYQI2WMoR3sWFK5pTG0f3TWtOud0042edNbdpKA28zUHyOvd5k3Pc5kLtQ7NwkEaA9i6yRV0FOvn7w7OZdtWHJM6Hu80QZFzAVIKmfOhjiIIjknFO8Z3ai8UwexKvy7936JAMvN7FRi+XHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a8v7+Z63; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF1EFC4CEE4;
-	Tue,  6 May 2025 20:23:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746563003;
-	bh=JZoS77bwlb3qo0vjs7rkqCS4ofr7Fru3B+rU59+jDAQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a8v7+Z63AUZmTM6mHNpAl6ots9EDK1X4LCKQZVEdhnbgzLPe0A5TKE0HwPQXdyyNZ
-	 kTRkriSKyQpB344LDzQKbzCXjZcyq2t5vLVNVvraJriFQA4KF1FaA2qZ0dlwHqojHb
-	 cQEVYtTguGIzCjkM+93OzT4a46AYW9pVsyjuKiCyfmWzMxuSOSwaFx4Ak9Q9Nux/vK
-	 zS18CyoDrdHMtCHCkITnbks4LJcHLQIfLK82aNLZEPpN/+g2esQYo+4f18nMRuHEqO
-	 VpXxjBmybGBjvZzvCIgVkd6sROWjVDPPMSvqPq53sgbkD3A6pO8zPh4maFX7oXhnRP
-	 HfHRfZmzA9elQ==
-Date: Tue, 6 May 2025 13:23:21 -0700
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	neil.armstrong@linaro.org, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8650: add iris DT node
-Message-ID: <4lmt5cgg2tanrughooxw73h2brwyyc6ifqgo3ju6iz4enkvkic@umeijjk4ijxg>
-References: <20250424-topic-sm8x50-upstream-iris-8650-dt-v2-1-dd9108bf587f@linaro.org>
- <3498cfda-a738-449d-9d9f-754bbc8125c2@oss.qualcomm.com>
- <db91a526-e2f8-48f8-a071-f3fcc75235be@linaro.org>
- <CAO9ioeWaPKXHgNGPx5q34+RP59PMLD+EVK5fQsN89KC9A1ca-Q@mail.gmail.com>
- <d79790e5-52c9-4135-8f3c-af797145fa2d@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=XVgdcIYIMd+XK0wH2O/9msFAPAcnitPH2RlUz0aCk7PT++/5SbNAkEeAIi4jF0q1m9J7k/vNnd/T6HtxYOOJKy5PE62bOx/rrdJA8ob2EqnuMBwz2mJ0CYLh3iE1HvFhfC7QFHN7b2UZi8Ga5BLzJBjiMXiTNAw5uluaBP8Z17s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LnliKpHY; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ac2902f7c2aso970600866b.1;
+        Tue, 06 May 2025 13:27:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746563262; x=1747168062; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dSv1f72q2Br/HkTLRvnIUjJKIt36w5BUq7xaU114oLk=;
+        b=LnliKpHYCREHcWBBM98qDZEzVFYPS6ptwGapfr8ulnYyGS8wUnb4xyFByDIWeObIZB
+         R6jcH5lJXSf4FrivXgHPUV1/GXB9S+rbQt8mtsnCeIrpzSaIS5/rC0dLSe/N0pxAyGi/
+         Oc1l96oGw21EZNxm9tYCo31J6IlctuTJWigpbppKIVgf/OYBnPQ0Led21sVtJ162UDSs
+         xMo5y13OI//S04xRkyp5iolGcwj/c2lHaSROGMcfZUQ2Lroggb87jZ2FXV8w2fxo3Rca
+         1pERmWysN0O8R7RledkOgNBAMAxEUILLlC3epViXSjACRWjPXsYY7IJGsAeoAtYtxeyN
+         NZ5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746563262; x=1747168062;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dSv1f72q2Br/HkTLRvnIUjJKIt36w5BUq7xaU114oLk=;
+        b=pS6Ktzd0NCE81PaxAKM6Bzx2wwOrMrAJ+7nw8Ekshq529pDsv1m0KtZfIoRSE2mk1K
+         goicJY4YV7SaHfRckLVBzkJrUTkXVW8hHkIl3wZ0HMDwv6Qeakm0HzCKXFTjDnFBPSyK
+         RLXRU4gckv4hYw8io5QdZoSaV9zlsVNC4yRw6kkb0Vg4vpI2RBNs3WBuwNGLwOJbXdSZ
+         cwhzs+SHwIDXyH+Uf9cInxkyWuvEACmQF9wiK7knyVkIkjJ3pIvw3Cu/EVl/EwYrYfLK
+         mF6XCx5FgzvDZoFEY6gCBQI2EbK+dNzfzQfViTM44KJy5tSdCSCuY/9x9DmnsX4Eq+2B
+         1KiA==
+X-Forwarded-Encrypted: i=1; AJvYcCWnzmewzBqym5xKt4ch1576L1EyChgVONO4eCD59bRGrmQLEB0jKUL3dLEVljMqY9qdH7BrElqI+ZnErdCC@vger.kernel.org, AJvYcCWye5wXwCKXeUd3jb8aefLKoh0LTxgTMkxdusbFc9FaF66IQY1qxkWUuJ8BozBd8cm9utBGIxDlKYLI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7mh2v5rVDyuyo5ZzUNYA8rm1vmitQItYIn2hnYeGKaleK0RKX
+	Pdos2uRTdIwPM+VkVohCmyuGX12OUVco2vd/3XgqcnO+VjmD7xQm
+X-Gm-Gg: ASbGnctSa57PhFZcDWv8CetwqLuIERnvdmd9BrnjC6qvHD4/285R5SzYv/D1Q7fYbcT
+	/0NOTZFo7ZgdwsyEcfc5PJjaQ8NF7KsfLBFVTNshSDxxfg/A6H6ntFuNW5RGOCh47Nexv26KlfS
+	vEqgWqWq/XQAcIwnFDf9xbthUMIhP+p1XDpvMKY6iFy2ziwA+ZOv+Xfn4NXo2nLXX17ao+wXcme
+	NTLzMoRzMDI4OTDWT+0UvcxNv/b4egnvQNoeMrehZRWYqGmn05Pt16wT3K9vTzJYPIOaUDB0Nmn
+	SneI7kJYbHGxHON4R93vUklrcQ9Oap+a01vz3WAMfq0QOnax7G5jXd1Cv95RHgbgGUFAj890Adw
+	gf8uv
+X-Google-Smtp-Source: AGHT+IF28dWY6dX03yamEtrxQ8IDoIkzwFAJdcmE10A1YLS8hxpcBSo7uXAa2s4AhgXsBNi1jsAeTw==
+X-Received: by 2002:a17:907:7e82:b0:ace:c225:c723 with SMTP id a640c23a62f3a-ad1e8b92275mr82948466b.12.1746563261544;
+        Tue, 06 May 2025 13:27:41 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad1891a1e60sm764564166b.47.2025.05.06.13.27.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 May 2025 13:27:41 -0700 (PDT)
+Date: Tue, 6 May 2025 22:27:39 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Artur Weber <aweber.kernel@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v8 5/9] mfd: bcm590xx: Add PMU ID/revision parsing
+ function
+Message-ID: <aBpwu0rEK_K-9tcu@standask-GA-A55M-S2HP>
+References: <20250430-bcm59054-v8-0-e4cf638169a4@gmail.com>
+ <20250430-bcm59054-v8-5-e4cf638169a4@gmail.com>
+ <aBo0qzqHOkfFxaXs@standask-GA-A55M-S2HP>
+ <7eeaa7b4-b76d-4658-ac78-705a5f8e54df@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,135 +101,67 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d79790e5-52c9-4135-8f3c-af797145fa2d@oss.qualcomm.com>
+In-Reply-To: <7eeaa7b4-b76d-4658-ac78-705a5f8e54df@gmail.com>
 
-On Mon, Apr 28, 2025 at 11:14:18PM +0200, Konrad Dybcio wrote:
-> On 4/28/25 12:48 PM, Dmitry Baryshkov wrote:
-> > On Mon, 28 Apr 2025 at 11:18, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> >>
-> >> Hi,
-> >>
-> >> On 25/04/2025 23:49, Konrad Dybcio wrote:
-> >>> On 4/24/25 6:32 PM, Neil Armstrong wrote:
-> >>>> Add DT entries for the sm8650 iris decoder.
-> >>>>
-> >>>> Since the firmware is required to be signed, only enable
-> >>>> on Qualcomm development boards where the firmware is
-> >>>> available.
-> >>>>
-> >>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> >>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> >>>> ---
-> >>>> Changes in v2:
-> >>>> - removed useless firmware-name
-> >>>> - Link to v1: https://lore.kernel.org/r/20250418-topic-sm8x50-upstream-iris-8650-dt-v1-1-80a6ae50bf10@linaro.org
-> >>>> ---
-> >>>
-> >>> [...]
-> >>>
-> >>>> +            iris: video-codec@aa00000 {
-> >>>> +                    compatible = "qcom,sm8650-iris";
-> >>>> +                    reg = <0 0x0aa00000 0 0xf0000>;
-> >>>> +
-> >>>> +                    interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH 0>;
-> >>>> +
-> >>>> +                    power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
-> >>>> +                                    <&videocc VIDEO_CC_MVS0_GDSC>,
-> >>>> +                                    <&rpmhpd RPMHPD_MXC>,
-> >>>> +                                    <&rpmhpd RPMHPD_MMCX>;
-> >>>> +                    power-domain-names = "venus",
-> >>>> +                                         "vcodec0",
-> >>>> +                                         "mxc",
-> >>>> +                                         "mmcx";
-> >>>> +
-> >>>> +                    operating-points-v2 = <&iris_opp_table>;
-> >>>> +
-> >>>> +                    clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
-> >>>> +                             <&videocc VIDEO_CC_MVS0C_CLK>,
-> >>>> +                             <&videocc VIDEO_CC_MVS0_CLK>;
-> >>>> +                    clock-names = "iface",
-> >>>> +                                  "core",
-> >>>> +                                  "vcodec0_core";
-> >>>> +
-> >>>> +                    interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-> >>>> +                                     &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
-> >>>> +                                    <&mmss_noc MASTER_VIDEO QCOM_ICC_TAG_ALWAYS
-> >>>> +                                     &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-> >>>> +                    interconnect-names = "cpu-cfg",
-> >>>> +                                         "video-mem";
-> >>>> +
-> >>>> +                    /* FW load region */
-> >>>
-> >>> I don't think this comment brings value
-> >>
-> >> Right
-> >>
-> >>>
-> >>>> +                    memory-region = <&video_mem>;
-> >>>> +
-> >>>> +                    resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
-> >>>> +                             <&videocc VIDEO_CC_XO_CLK_ARES>,
-> >>>> +                             <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
-> >>>> +                    reset-names = "bus",
-> >>>> +                                  "xo",
-> >>>> +                                  "core";
-> >>>> +
-> >>>> +                    iommus = <&apps_smmu 0x1940 0>,
-> >>>> +                             <&apps_smmu 0x1947 0>;
-> >>>
-> >>> I think you may also need 0x1942 0x0 (please also make the second value / SMR
-> >>> mask hex)> +
-> >>
-> >> I don't see 0x1942 in the downstream DT, and which mask should I set ? 0x1 ?
-> 
-> I saw it in docs only, maybe Vikash or Dikshita can chime in whether it's
-> necessary. It would have mask 0x0 if so.
-> 
-> >>
-> >>>> +                    dma-coherent;
-> >>>> +
-> >>>> +                    /*
-> >>>> +                     * IRIS firmware is signed by vendors, only
-> >>>> +                     * enable in boards where the proper signed firmware
-> >>>> +                     * is available.
-> >>>> +                     */
-> >>>
-> >>> Here's to another angry media article :(
-> >>>
-> >>> Please keep Iris enabled.. Vikash reassured me this is not an
-> >>> issue until the user attempts to use the decoder [1], and reading
-> >>> the code myself I come to the same conclusion (though I haven't given
-> >>> it a smoke test - please do that yourself, as you seem to have a better
-> >>> set up with these platforms).
-> >>>
-> >>> If the userland is sane, it should throw an error and defer to CPU
-> >>> decoding.
-> >>>
-> >>> This is >>unlike venus<< which if lacking firmware at probe (i.e. boot)
-> >>> would prevent .sync_state
-> >>
-> >> Well sync with Bjorn who asked me to only enable on board with available firmware ;-)
+On Tue, May 06, 2025 at 09:03:15PM +0200, Artur Weber wrote:
+> On 5/6/25 18:11, Stanislav Jakubek wrote:
+> > Hi Artur,
+> > one note below.
 > > 
-> > I'd second him here: if there is no firmware, don't enable the device.
-> > It's better than the users having cryptic messages in the dmesg,
-> > trying to understand why the driver errors out.
+> > On Wed, Apr 30, 2025 at 09:07:09AM +0200, Artur Weber wrote:
+> > > The BCM590xx PMUs have two I2C registers for reading the PMU ID
+> > > and revision. The revision is useful for subdevice drivers, since
+> > > different revisions may have slight differences in behavior (for
+> > > example - BCM59054 has different regulator configurations for
+> > > revision A0 and A1).
+> > > 
+> > > Check the PMU ID register and make sure it matches the DT compatible.
+> > > Fetch the digital and analog revision from the PMUREV register
+> > > so that it can be used in subdevice drivers.
+> > > 
+> > > Also add some known revision values to bcm590xx.h, for convenience
+> > > when writing subdevice drivers.
+> > > 
+> > > Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> > > ---
+> > 
+> > [snip]
+> > 
+> > > diff --git a/include/linux/mfd/bcm590xx.h b/include/linux/mfd/bcm590xx.h
+> > > index 8d146e3b102a7dbce6f4dbab9f8ae5a9c4e68c0e..fbc458e94bef923ca1b69afe2cac944adf6fedf8 100644
+> > > --- a/include/linux/mfd/bcm590xx.h
+> > > +++ b/include/linux/mfd/bcm590xx.h
+> > > @@ -17,6 +17,16 @@
+> > >   #define BCM590XX_PMUID_BCM59054		0x54
+> > >   #define BCM590XX_PMUID_BCM59056		0x56
+> > > +/* Known chip revision IDs */
+> > > +#define BCM59054_REV_DIGITAL_A1		1
+> > 
+> > 1 seems to be the digital revision ID for A0 (couldn't find the analog
+> > revision ID), see [1].
+> > 
+> > Other values seems to match downstream (as far as I can tell anyway).
+> > 
+> > [1] https://github.com/Samsung-KYLEPROXX/android_kernel_samsung_kyleproxx/blob/cm-13.0/include/linux/mfd/bcmpmu59xxx.h#L82
+> From my testing on a device with the BCM59054A1 (BCM23550-based Samsung
+> Galaxy Grand Neo), the digital value is also 1 on this model:
 > 
-> I don't agree.. the firmware may appear later at boot (e.g. user installs a
-> small rootfs and manually pulls in linux-firmware). Plus without the firmware,
-> we can still power on and off the IP block, particularly achieve sync_state
-> regardless of it
+>   bcm590xx 0-0008: PMU ID 0x54 (BCM59054), revision: dig 1 ana 2
 > 
+> (This constant is not actually used anywhere in code yet - I just
+> included it for the sake of completeness, since the BCM59056 headers
+> in downstream listed both values...)
+> 
+> Best regards
+> Artur
 
-Not "available during boot", but rather "available for a particular
-board".
+Thanks for checking Artur!
 
-We generally avoid enabling device_nodes that depend on vendor-signed
-firmware until someone has tested the device on such board and specified
-the proper path to the vendor-specific firmware.
-
-Are you suggesting that we should leave this enabled on all boards for
-some reason (perhaps to ensure that resources are adequately managed)?
+I guess both BCM59054 A0 and A1 have the same digital revision?
+Well, to be sure we'd have to get the hardware, since downstream doesn't
+use this value either.
+So I guess the patch is good as-is, we can add known IDs when we... know them ;)
 
 Regards,
-Bjorn
+Stanislav
 
