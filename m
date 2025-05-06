@@ -1,94 +1,113 @@
-Return-Path: <devicetree+bounces-174359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 570E9AACED5
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:33:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5DC9AACEE7
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:48:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C42D252169B
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:33:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5A8098229E
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B7F7376;
-	Tue,  6 May 2025 20:33:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA111AF0AE;
+	Tue,  6 May 2025 20:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tp/MS5JM"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="gBDh+uwv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F0FCF9D6;
-	Tue,  6 May 2025 20:33:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CDD7197A76
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 20:47:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746563608; cv=none; b=Bmp7Q9K5WAhNnKZ70OoJChqsRO6vCJwBqs//bC/d0u2hxJ0RknAoW3tteip8ho73hONzUpiOQxqltlWgff2WvAIMp3R1+/rytCIrOlyi6zHnVKv1Xbdy/d7Bld6Pb1pg+iqUfRaD4Mu/+srnuUFP4p85H0i+PcmEf/6JxVzt5K8=
+	t=1746564464; cv=none; b=mdSYLJOxuW9QDiXrETWPfTk++BNhdjhP/4C60dQ4b7q1RD0544XZA2mDMGuV0tEcctJ73g8U7MN+tpduzJdFXszE3iD3SGWLw0bV+donagUmSo0G6zY3tHOd5PHd9aqg11vHBlWqi4MuuR+IND+rCpWoKSsiXqPo4QxNd3fgotM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746563608; c=relaxed/simple;
-	bh=GU/0QWzYrVSXft65qatATHb9UdRCKocqAo8RojTRjHU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O4vEnIHtwBckMJVjMwJqo0SjnPjsNDs+vDwQAnTYz4IvpLuluWeH6hS9h1qFzsJUNHt+BxEupZiHyjMQHmfP1JZXrEZgWAtLkGs990DrRMDdr4m/QF5VyAeXlt43/hGvNxA7+73Va8RHnlDOi3qBZuqJ6Db9rLTDBakm6EoduOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tp/MS5JM; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ac28e66c0e1so708148366b.0;
-        Tue, 06 May 2025 13:33:26 -0700 (PDT)
+	s=arc-20240116; t=1746564464; c=relaxed/simple;
+	bh=HoSPNJpzAj/UHgTcCm+14l6OqVn0UOHxo2Yn1NKbwwc=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M9B9+la1s3d4DJK70f77qsnPWYHibFfLCaSMhehjVM06lTKV0JuFclW8kstP/i/mmcsUU7g1LcPFvvW5i1MkaosB7lVX3P9NEuZBhyaM2J5EbXlbdpPSO5CE2C3YBIrhe2zpvp22uxgLkQCwgRc1ldZ3cV1DwEZb+OyI8Zr/ipY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=gBDh+uwv; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5e5deb6482cso541154a12.1
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 13:47:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746563605; x=1747168405; darn=vger.kernel.org;
+        d=suse.com; s=google; t=1746564459; x=1747169259; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zgHemNWtqa8k4AyF6DtlkqCjI8OhMDy1+rer4Kv1t4w=;
-        b=Tp/MS5JMppH7tRQuSHcwGnO+5SqCroaE4xUZ71iDZ9B9o+CnNACoLgBvID5+R8tuPG
-         xAJ0gSpSp7AMJ37B8FcY0D4+0G3SSEMGUGDxzpwoaTCRzjOlHWdIKiPxq9Ny2z68gVQn
-         IfsCwZi48YWtclukgV5kAqXpsI29nGu5XZfSIyZCcoJEIO0s6aEWxg/Aoeqa/dkTULwr
-         iNgGsKJZUdkWLY8jnLsjYZPAbH9mlJpJjbIsIz7UiOPRChEhdzPYGoqp18qSfKgvBs+u
-         S0ZqcSL86xVhcCcgnFl6CkqtTRwOmHdpsZs0An0MFi7+rPRoGA0qPbMwAN84S3zQaltc
-         I6/Q==
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pi47gK8MYhyGIqIdKO9+ShtObSRr4S3t2PvkIQxuaXA=;
+        b=gBDh+uwvqOEb3fLM4eNviuqwt3dZpUuSnrvnEac6apQCsRqOMi0E89SJlebAeuGJlu
+         29jc5MflQOtiZdAlaW7UueewAZmgrE7KnNq3XfTDdFzT3YWTZmNXIUKCYiuWnULLyGal
+         HOPF+AUrGqI0fCB5N+IkmdMarL8VDvUzvvvTcTaRcoK//+MtWrgjrxAI7Qv4u3atBkOf
+         L5SYGvvF2J1mNeaNHcivYH2+j+AS2Gk2KTJEUPV/l7xQuQcQmwyQ87PtJPmRQHNOfv8t
+         H8FGhg7pxvHH1k/TkfPJAiv/OHRQqJTTOqVhL9XwbUWPx+dTUKJYNLazYYmAXYEp3B4Y
+         GCoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746563605; x=1747168405;
+        d=1e100.net; s=20230601; t=1746564459; x=1747169259;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zgHemNWtqa8k4AyF6DtlkqCjI8OhMDy1+rer4Kv1t4w=;
-        b=f2xjQHVXgR3T6nbHTV1NHw0sdbO6NX+b+eTc+U40raldO5pVp0w2q/+KSRnPIONs6M
-         ZTMabCmxSoF4yPjaYaa8VC3b8DMg9HOptLaX7z/0uE6CePeAtvpdqWIcxdE2a7AuAJPO
-         GAafJaAkM0WyDd72fdwVoMzGC45qO4O9mjD4pi9FOeZurrtuN+ViveXvcb9rad61kf+i
-         F/+hIj0RiqeJ9UC2jNGMk15tqTqSlrIY2sJ5ulAQjuc7+sRlYOOV+2sHDB//Lu2FnZG0
-         oo+vAYILpGChsCYXn5eKxUwi0XDE2VH0Dgp8G8IATNaKgmFa3HIO7M4szEpnWvTEHvEL
-         LKDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXmTcAGMoEP5bNLc/qxSfWjkiM7XpBFpYtSHrTN6gvZn7gMrSnBsuQuu2I1O6fjMqwCNDuSw/izVms+@vger.kernel.org, AJvYcCXxjHVIET21IQGjpQ+lP7Dzit1C184hIHz+qDroxkOs+jgX9TaGQfX6Jj6UA8hHuPfxTh7OwcPTVRNeva86@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFdz3YCgDLQfhqh+67sXz6SRaVlsIQC5IR14+NO34F2UCJPC7f
-	eHebHljHyqMF6yNL/NjC6PM79BFfAub5qGcnS0NkaV4NTWPmKDWOIMSHrg==
-X-Gm-Gg: ASbGncuBZk5pPcXO9sXZtETQY3cQM5ZzwxCnkdVgSlgvmLFG1SLzS7fMA43Vo2Ya6BR
-	+Bdnz80bKY4kAvBzG84j8mEzHy+hcGTEwnReNJMa7oHiRs/zgI5ep6MM1EpuVJdLqdBR0jKZ7uR
-	2/Ngu1WhSfmaD9geuRkHaWEEHLRvacOM01C3jRr6Qn95AGlLiuqWU3DS2LJ4NdIx0eKPmhQqV3z
-	aY9bErwgomJ9J+6zCy/Osxz3eDwFj+XiQEjREzJ5q2xIRWd1MahQMi2p9DqF/CGesgG3+Zzl/zo
-	qhL4UPz4FQEs3PM1/5P1cRhrrLVr9NhSxD2gStyecNKuVQJJN915FO2u2LNckQaL6VP10eqTLpJ
-	AaMuL
-X-Google-Smtp-Source: AGHT+IHQmjfRpINHsgz9ShdGUI4kDJEPSLEEfjV+MOKkEjV1f+crGBhCrNB3BbnYjWe8s6Rm/a27nw==
-X-Received: by 2002:a17:907:7207:b0:acb:32c5:43ff with SMTP id a640c23a62f3a-ad1e89f8dc3mr78243466b.0.1746563604672;
-        Tue, 06 May 2025 13:33:24 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad189540da0sm759259366b.165.2025.05.06.13.33.23
+        bh=Pi47gK8MYhyGIqIdKO9+ShtObSRr4S3t2PvkIQxuaXA=;
+        b=E82LP4AnynYZ8bqbfMCKzhbEN7vacRG5nmnj6gBJWzUe7Z2PcyvV66y/eSh5R/0SOh
+         C7/r4O9dHwXoaZ9idZrrhxLh0NfcryhvhdvB7Nvl9XmBAl4INrXXKsyyflriXqddMoDB
+         Rxg14KdM2ceTdE94hivtRHOPFRyw4orAQRir5p5krJxFdOsH5Nkr9XZ+fcQUJ3U9b0zx
+         yAZP/U+QbhlgcVdph3kA7qx+qmZCg5ihU75P+D27pXO2ab3CIBzvHv3Bz8HEqDnZ/Sh5
+         R1F/PQ77QB8FXjGT2LaFrx8+IW/PiIdyFShsjDq0cqs8f4L8EA/pOi1At8lGiR2LuDIL
+         5tKw==
+X-Forwarded-Encrypted: i=1; AJvYcCV1aeutxCcBqt3Dm56MsZBKr8yHG5e2OTat4DHg9JrrWaEF9hmGvfgVU2ErR3aEl9arhE9GFrMJQXv2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4qynEBRk92zOAE1Z6v9FSf3ct3ByBDf19oI4Y0gSVRGj0DtJV
+	aU0D65t02maxBuGkPDc2zkUBPiUBaicRL7os3uH3w6Tq9mY2G7xpOdgSRUkl5Ok=
+X-Gm-Gg: ASbGncvruW0XEw+cdbw4dSIUzByM79Epgfu/MsAv7HHMDg7Niv4Vw72jCpV11Y32Nxu
+	9xc2NgUBrn2L3GdloPZmz11T7BTC49nqxhatho7eBg7Vu5csUEOub+i6tA579Og0xyqMPaS68Nx
+	yBjRVJbMy+Co4tvYIH9U47CPjFVwMBWaVk2XZ2CqRZ4FxMzqH2hEQrrcCArykwIGZiJvw+Ze6Bn
+	dTvHjbbxCH+WXcm5DO97wkOe4gEIYsyBbAGrboGMWRHr2ROANBFAlvrUdxYuJIl0LuJTLT4LHTM
+	fUEHKlOF21b+8waT9aqtlIonSXRqTSc8xXeF0NcqasGe5LWdIlKGDdRkAyrB7Zp82S6NfMc=
+X-Google-Smtp-Source: AGHT+IGdejKWhHgobANcBR0HkA6BZ7303l9tnuRyiuAvIspM7E6yB+9PaEvl5m9+eOZo13IwvIZIoA==
+X-Received: by 2002:a17:907:6d23:b0:ac7:3929:25fa with SMTP id a640c23a62f3a-ad1e79a28bamr109364566b.30.1746564459254;
+        Tue, 06 May 2025 13:47:39 -0700 (PDT)
+Received: from localhost (93-44-188-26.ip98.fastwebnet.it. [93.44.188.26])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad189540d5bsm770703266b.176.2025.05.06.13.47.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 13:33:24 -0700 (PDT)
-Date: Tue, 6 May 2025 22:33:22 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        Tue, 06 May 2025 13:47:38 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Tue, 6 May 2025 22:49:07 +0200
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
 	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
 	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v8 0/9] mfd: bcm590xx: Add support for BCM59054
-Message-ID: <aBpyEo8SHFq7SDf4@standask-GA-A55M-S2HP>
-References: <20250430-bcm59054-v8-0-e4cf638169a4@gmail.com>
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	kernel-list@raspberrypi.com, Matthias Brugger <mbrugger@suse.com>
+Subject: Re: [PATCH v9 -next 08/12] arm64: dts: bcm2712: Add external clock
+ for RP1 chipset on Rpi5
+Message-ID: <aBp1wye0L7swfe1H@apocalypse>
+References: <cover.1745347417.git.andrea.porta@suse.com>
+ <38514415df9c174be49e72b88410d56c8de586c5.1745347417.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,30 +116,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250430-bcm59054-v8-0-e4cf638169a4@gmail.com>
+In-Reply-To: <38514415df9c174be49e72b88410d56c8de586c5.1745347417.git.andrea.porta@suse.com>
 
-On Wed, Apr 30, 2025 at 09:07:04AM +0200, Artur Weber wrote:
-> Add support for the BCM59054 MFD to the bcm590xx driver (mfd and
-> regulator) and fix a couple of small bugs in it that also affected
-> the already supported BCM59056.
+Hi Florian,
+
+On 20:53 Tue 22 Apr     , Andrea della Porta wrote:
+> The RP1 found on Raspberry Pi 5 board needs an external crystal at 50MHz.
+> Add clk_rp1_xosc node to provide that.
 > 
-> While we're at it - convert the devicetree bindings to YAML format
-> and drop the bcm59056 DTS in favor of describing the PMU in users'
-> DTS files, as is done for most other MFDs.
-> 
-> The BCM59054 is fairly similar to the BCM59056, with the primary
-> difference being the different number and layout of regulators.
-> It is primarily used in devices using the BCM21664 and BCM23550
-> chipsets.
-> 
-> This patchset has been tested on a Samsung Galaxy Grand Neo
-> (baffinlite rev02; DTS not in mainline yet) with a BCM59054 PMIC.
-> Testing on a BCM59056 would be appreciated.
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+
+A gentle reminder for patches 8 through 12 of this series, which I guess
+would ideally be taken by you. Since the merge window is approaching, do
+you think it's feasible to iterate a second pull request to Arnd with my
+patches too?
+
+With respect to your devicetree/next branch, my patches have the following
+conflicts:
+
+PATCH 9:
+- arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts: &pcie1 and &pcie2
+  reference at the end, my patch was rebased on linux-next which has them
+  while your devicetree branch has not. This is trivial to fix too.
+
+PATCH 9 and 10:
+- arch/arm64/boot/dts/broadcom/Makefile on your branch has a line recently
+  added by Stefan's latest patch for RPi2. The fix is trivial.
+
+PATCH 11 and 12:
+- arch/arm64/configs/defconfig: just a couple of fuzz lines.
+
+Please let me know if I should resend those patches adjusted for your tree.
+
+Many thanks,
+Andrea
+
+
 > ---
-
-Other than the already applied patch 3, the whole series is
-
-Reviewed-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+>  arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> index 34470e3d7171..6ea3c102e0d6 100644
+> --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> @@ -16,6 +16,13 @@ chosen: chosen {
+>  		stdout-path = "serial10:115200n8";
+>  	};
+>  
+> +	clk_rp1_xosc: clock-50000000 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-output-names = "rp1-xosc";
+> +		clock-frequency = <50000000>;
+> +	};
+> +
+>  	/* Will be filled by the bootloader */
+>  	memory@0 {
+>  		device_type = "memory";
+> -- 
+> 2.35.3
+> 
 
