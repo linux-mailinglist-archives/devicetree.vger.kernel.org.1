@@ -1,98 +1,84 @@
-Return-Path: <devicetree+bounces-174151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9239EAAC367
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:08:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EF4EAAC36F
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:09:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C2E35042FD
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:08:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B6E11C22A28
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A6627F16E;
-	Tue,  6 May 2025 12:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37A5327F186;
+	Tue,  6 May 2025 12:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="E3J1lOd7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LxCXDU9n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5294B27B4E6
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 12:08:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E42A27E7DC;
+	Tue,  6 May 2025 12:09:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746533304; cv=none; b=gjDyo105Lt0IQKhObykfuM4vUn9TROWEbRSngYSbDLZbjuSjeDwjjFUaCyWQD6JCDUx7idBzY7ezPKrI77Yb26UZwe052fAASAnuEoB7XNGwxArTS9z2TPDgdDdjyxMbExPCbQ3aBGRcl1Jy3OETm42HMZwGOIqxfRmg9WCQbI4=
+	t=1746533381; cv=none; b=ls7hg1u7NLvNRVhQ0e+kvSOUFsgh8NbVroFxC6M6fjXboS5Z5a0qxHVND1eo+DVzYh8jcVtx1f/3+eK7YAf2beH1lLGGYCQ20gOOxIwJ+x5rQccE9fTiCyrCiI3ZQY8TojG2DLQw8PoibwIxilIBU3zn+ZcyjObbBQwfurYnY5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746533304; c=relaxed/simple;
-	bh=DdbmmhonCetUBZsFTlekD4aubGPPFIJ9ItkmtXG5bpg=;
+	s=arc-20240116; t=1746533381; c=relaxed/simple;
+	bh=C1cNc1T1EZTLsEqWLlQZ4HP/ZrBdzYD7Gj1Q5X2lVgk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XB73swWnw75SwoMXl9KLt5fRFp0b1DBBwj4wrPz91vJ2DZtxfEjZIVpmBu0Kgq8AuLQrxglQr0gU6+gcVSsAhlFtsBNxk4XSEE7iABSS14Vp6esKYSPlUsB64PQuUWwooB55ANHrzjJilPmNq1+5UwS/mqElH+0vnLDhTxqgB1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=E3J1lOd7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5468e2PA014186
-	for <devicetree@vger.kernel.org>; Tue, 6 May 2025 12:08:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=GD4lMZs5a3pKzd5cggQ3wq6Y
-	VdqPYIs1t4O/gynZcKE=; b=E3J1lOd7/umRoIoyHPXx+HWv+BhAjFG2wgSGRs3h
-	4REjvf6kVGrZ4z/9aFucBCebJg+hkZWhWeKtJ/pvf+eXKNYW8Mz+Hn3TVzzCPHVr
-	GpAiYsTReVbH0TfZbMWJ79HPUWDamy+npijq06Fp5wgSIAVsSq6mriISUQUf0wxh
-	FAbhD38u1N9kQRyH1+3iWKXX8pau6ucut1uB5RlTSn4ARqo4fSLlpfn7HFPpdpzz
-	LGTFLLo+ghwWRLGOLbyHoktz6neYZZJ4G3o/ZGxEy5OYD8PShvIehuJJkEBe/smm
-	Qeg54HJborZn1OskGXcRmpjNSxsuhHjqpLVx+sXsCKbWiA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46f5u42748-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 06 May 2025 12:08:20 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7caee990721so286496485a.1
-        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 05:08:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746533300; x=1747138100;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GD4lMZs5a3pKzd5cggQ3wq6YVdqPYIs1t4O/gynZcKE=;
-        b=nDAHyoz6z1GVFheLvjt6a3qOnHYXcj4j7ndXddq0WYD4/vtDFJWC4EOwZWIW/iskWG
-         MCLAxM+JRDJmYjDaVFwN9rMz+X2Miivzd8ADlVBKIo7dReAeeeMbAYz+T6NzobrRuzX1
-         WkUBTpW0/Og+thN9V7bSt8xYHzq46P4CGKNUKjaOQ6JErQSSdCZDnjC7l3050WF5QAcp
-         Onj4P+8CKY0swDdRl01eKF6PDKocru2o/ifNdmW3A6AwVZydDHFjAKFkGb1nnhDg4M0f
-         2bdaV5VOz6qbMH+MVIi6XPl+p/jJucsSSCLT4TMU7udBmtyxXU9aneHOs8IoCNPTLN7v
-         qdaw==
-X-Forwarded-Encrypted: i=1; AJvYcCUZjPGX5ueFWuxu2YWuSOLewQnwYfOy0j/lJvuEMqVrGkqRrCGIXFZG9U5s2HIEtADcrdNow6BAWNvn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzExyBNoCusXqVYNVjEKEz9oo1Xa2G4jN2J7JlQPWDPoZ1NJCbv
-	HKd1ggxAEZPYCRsnlrBXIaC/ZmrTnM59e2FYU5hP3iRxJmLaEYU1pFf2Hq1AYErCyKq8zjKYudF
-	Mjq2HXU+wc8ftgtSdGy0Roi/SUhCpVvRtNRvT2X7ihe85kTlNPRiowIKOC5d5
-X-Gm-Gg: ASbGncuPmDB5DpzLK2X9+1/HmkS7vxaMsGplDKJsE5MTPTbRG1WZP4paF2WarGAW0gH
-	aRz7t5vs+tCPRbv7P9s428c1XqQ0+hb7HPLmdRkvs+vdRGnVcgTQaRB3Grlk+iFzy+PRHOzDDON
-	7cFmehyxu60soWXU6Swsev8wMEe3oaoS86C7H0CAxA+nbsWqqDagHVDYzVcrngsMiN67IHL6Fh1
-	PqH8ZAWwJ2tZD5iT8oUSZB72BQBUsA0Y+/hua3GwNbve/2ocEIkQ1TeXG9g0vuCcpx0mhTERbNo
-	SogAd9FUPlA7SUuuuj64HyF2VYqgQldiROIGrV1JrmBtOkU2i0MQkukIsYk1awmHRiOWWOy8YEE
-	=
-X-Received: by 2002:a05:620a:4629:b0:7ca:df98:2f6 with SMTP id af79cd13be357-7caf09bf07emr524577985a.43.1746533300214;
-        Tue, 06 May 2025 05:08:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGz6fgxkf8GCZyugOKLOyYO6nxMMiDaVer/gkboErci2Inurno93UgLLdfrFIxkKoZ4FWDdkg==
-X-Received: by 2002:a05:620a:4629:b0:7ca:df98:2f6 with SMTP id af79cd13be357-7caf09bf07emr524572085a.43.1746533299797;
-        Tue, 06 May 2025 05:08:19 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32028b38e2csm19391601fa.13.2025.05.06.05.08.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 05:08:18 -0700 (PDT)
-Date: Tue, 6 May 2025 15:08:17 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@quicinc.com, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v5 4/6] arm64: dts: qcom: Add support for QCS9075 RB8
-Message-ID: <vr3q2c47ht5iebf7nvy3qywoxlquwma3p2tffswrefpmxqy24h@wrfecu6mcqcn>
-References: <20241229152332.3068172-1-quic_wasimn@quicinc.com>
- <20241229152332.3068172-5-quic_wasimn@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=aJFkf+DKZ+aIh2W7D0q5syZ0+TP0LVcDDZ0FFH+nmiGyDS8HSxDY+l+G0oBPaLNylKEQEQqauY/X3RUDTFSMl9Ln8GVi2tD9OuiAhpOnNWBot4pvbVd3pd3vnO50z0dbRgTrh5SfzpiGTLP6mIhS6NOES62sweRg1jkEXZ2gvms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LxCXDU9n; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1746533379; x=1778069379;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=C1cNc1T1EZTLsEqWLlQZ4HP/ZrBdzYD7Gj1Q5X2lVgk=;
+  b=LxCXDU9nvZUIIEkIba5hhP/VBcVFFGU47vCWbPlamV5gfBrgvNcGR5Y0
+   e6boY7OoLJKpbmWH6t70wQj0eDyYjXc1eYF6ECcqqxzgUfi3QdWnUiXTc
+   /mbnUXHwGWOLGg7CIhGJnlq0MHZHbnOC49soALAKoeag0pp74VB4/0R9k
+   wkApKMFs97EZXUrha9DaGpjfPHLYkLvwPVKqzxgtVKm0G/sKzLCr89Zpa
+   yNb0ReYe4w0P6ZxevvUOPSob+27/1+kku6PtUAVXPCvky7bxMjnk7T0Rm
+   P1D0MB+Qs8WopUJKg5Cxq895015f+jOqcXJhj/7KWKiJfOaOBBYcKsX4Q
+   Q==;
+X-CSE-ConnectionGUID: Tmd3iPVeSRuGQPPaIctcCg==
+X-CSE-MsgGUID: SZBiTcwvT+22q/su0G8tGA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="52007845"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; 
+   d="scan'208";a="52007845"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2025 05:09:38 -0700
+X-CSE-ConnectionGUID: 2HCngJfPS4OtN3NFDHOPUQ==
+X-CSE-MsgGUID: AkdwN2B/RO2PGMjkHhJ6nA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; 
+   d="scan'208";a="136595874"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.245.251])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2025 05:09:33 -0700
+Date: Tue, 6 May 2025 14:09:24 +0200
+From: Mehdi Djait <mehdi.djait@linux.intel.com>
+To: michael.riesch@collabora.com
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, Gerald Loacker <gerald.loacker@wolfvision.net>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Kever Yang <kever.yang@rock-chips.com>, 
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Collabora Kernel Team <kernel@collabora.com>, Paul Kocialkowski <paulk@sys-base.io>, 
+	Alexander Shiyan <eagle.alexander923@gmail.com>, Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH v6 05/13] media: dt-bindings: add rockchip rk3568 mipi
+ csi receiver
+Message-ID: <wxwzca4i36hdhdx5ehjqvq5ljpsb7lcvzermkhqyvufsr47au4@3qcth2vawwju>
+References: <20240220-rk3568-vicap-v6-0-d2f5fbee1551@collabora.com>
+ <20240220-rk3568-vicap-v6-5-d2f5fbee1551@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,51 +87,164 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241229152332.3068172-5-quic_wasimn@quicinc.com>
-X-Authority-Analysis: v=2.4 cv=KcfSsRYD c=1 sm=1 tr=0 ts=6819fbb5 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
- a=q-whWVftEaYGax-JpAIA:9 a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
- a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: CoFwo3qaU0jehkHiZ5MRNGvltQWmHtKo
-X-Proofpoint-ORIG-GUID: CoFwo3qaU0jehkHiZ5MRNGvltQWmHtKo
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA2MDExNyBTYWx0ZWRfX/oavw8ce0ZFv
- D1a1EAVPaNazmdccY/mZi7ozvlG84gKrZVmFYxJqjB9NoeUcGReTrMPsLdUCWzXMKub3wRxw1HH
- OStCFG7PeyFYtsWuZqxXY3m2Ra7FrSjnYRezatIKhmQjqjfoLSMqZdoAdW9zfsq3gS3tvaVZeyN
- HTJuMxjptCmsxgylqTefHfhmGyHqW03SjsweSyh+j67ZcJznacPKWW6N0p3xpkM458PaY5OAIeS
- 8Iq2AHF2n+Dybb/oW+fs6fu8WoLs67R9IMjbAjuj6Ebci0TIsomfNGs26zVEbF5mQchyhAl+Xug
- AodnIZpxT0ETjmBSn3TF5sIEz75qzFrBlEUyMkGB6gqzigLYidGSPXImFmpp7TbKdQuDWn76Swg
- RmZSjFlrAOjFhIzr6L2mbhFLlti9vDEpUkkQPa1Iqc9q7GvjkwABm9IDM1mG2oZxQW9Dldbo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-06_05,2025-05-05_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 spamscore=0 suspectscore=0 bulkscore=0 mlxlogscore=775
- phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0 adultscore=0
- clxscore=1015 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505060117
+In-Reply-To: <20240220-rk3568-vicap-v6-5-d2f5fbee1551@collabora.com>
 
-On Sun, Dec 29, 2024 at 08:53:30PM +0530, Wasim Nazir wrote:
-> Add initial device tree support for the RB8 board
-> based on Qualcomm's QCS9075 SoC.
+Hi Michael,
+
+thank you for the patch!
+
+On Wed, Apr 30, 2025 at 11:15:54AM +0200, Michael Riesch via B4 Relay wrote:
+> From: Michael Riesch <michael.riesch@wolfvision.net>
 > 
-> Basic changes are supported for boot to shell.
+> Add documentation for the Rockchip RK3568 MIPI CSI-2 Receiver.
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile        |   1 +
->  arch/arm64/boot/dts/qcom/qcs9075-rb8.dts | 281 +++++++++++++++++++++++
->  2 files changed, 282 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-rb8.dts
+>  .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 113 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 114 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
+> new file mode 100644
+> index 000000000000..d5004cb288dd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
+> @@ -0,0 +1,113 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip RK3568 MIPI CSI-2 Receiver
+> +
+> +maintainers:
+> +  - Michael Riesch <michael.riesch@collabora.com>
+> +
+> +description:
+> +  The Rockchip RK3568 MIPI CSI-2 Receiver is a CSI-2 bridge with one input port
+> +  and one output port. It receives the data with the help of an external
+> +  MIPI PHY (C-PHY or D-PHY) and passes it to the Rockchip RK3568 Video Capture
+> +  (VICAP) block.
+> +
+> +properties:
+> +  compatible:
+> +    const: rockchip,rk3568-mipi-csi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: MIPI C-PHY or D-PHY.
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: Input port node. Connect to e.g., a MIPI CSI-2 image sensor.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              bus-type:
+> +                enum: [1, 4]
 
-For the next submission please include at least the UFS support. The
-board is pretty useless without the actual storage support.
+shouldn't you add data-lanes property here ?
 
--- 
-With best wishes
-Dmitry
+                 data-lanes:
+                   minItems: 1
+                   maxItems: 4
+> +
+> +            required:
+> +              - bus-type
+
+and add it to required:
+                 - data-lanes
+
+you are actually checking for data-lanes when you enable the stream in:
+
+rkcif-mipi-csi-receiver.c +226
+
+	u32 lanes = csi_dev->vep.bus.mipi_csi2.num_data_lanes;
+
+	if (lanes < 1 || lanes > 4)
+		return -EINVAL;
+
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Output port connected to a RK3568 VICAP port.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - phys
+> +  - phy-names
+> +  - ports
+> +  - power-domains
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3568-cru.h>
+> +    #include <dt-bindings/power/rk3568-power.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        csi: csi@fdfb0000 {
+> +            compatible = "rockchip,rk3568-mipi-csi";
+> +            reg = <0x0 0xfdfb0000 0x0 0x10000>;
+> +            clocks = <&cru PCLK_CSI2HOST1>;
+> +            phys = <&csi_dphy>;
+> +            power-domains = <&power RK3568_PD_VI>;
+> +            resets = <&cru SRST_P_CSI2HOST1>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                csi_in: port@0 {
+> +                    reg = <0>;
+> +                };
+> +
+> +                csi_out: port@1 {
+> +                    reg = <1>;
+> +
+> +                    csi_output: endpoint {
+> +                        remote-endpoint = <&vicap_mipi_input>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+
+--
+Kind Regards
+Mehdi Djait
 
