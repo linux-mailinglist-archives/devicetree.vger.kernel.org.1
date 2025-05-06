@@ -1,270 +1,211 @@
-Return-Path: <devicetree+bounces-174372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C988AACF3B
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 23:06:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEBFFAACF49
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 23:07:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 513761B64CAC
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 21:06:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19DDF1B63CCA
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 21:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2E8D21ABA3;
-	Tue,  6 May 2025 21:05:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0710421859A;
+	Tue,  6 May 2025 21:06:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tuFG8mL8"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="F+3i9RXz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4341219A94
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 21:05:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01172185A0
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 21:06:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746565531; cv=none; b=VSMOXG96ZR6xkU+vQ4G8MIYvJW8I+TBkET5zVbSHemRvE1iHoajUBJRfZ9cd8b+b7gZwy9kzZXgrQbcCioAJVhq0wTnbGPLjoSZDZNzCVosvr5n6wVlYvdSJGXdOvsubR1W3XMqdywiy+Iay6Zq7GdObMqV0gURMazKiyTiDfsM=
+	t=1746565606; cv=none; b=reg176RNX+U3/snCJem2LZwwfer5X/BYdh6Yp0VawXthr3UoXfMeWsyt3fLadK52cddYR13jUmOFUDhFNpvf/wYex5gJ+HCnFC2+nYGjRcSvwLuWSREO9VqO3DZgFQ3IyLiV0p7WhTUrnWmY6R5kI/qf/5sX+sHidr2NTO4Qw8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746565531; c=relaxed/simple;
-	bh=z7O+cJ2s2VXn/7thHiJDbQY7RdvV9lwOOzqK+FZqCpw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DU8NPqs5CcednMQUku5xEnNEoe+jqLFIkXH8IGXb9EIp0ia99dMRaYnl6PtDWx+A9nkwiBgi18ut2dRUB0AFbmsOTuCTt/1rA9b9MCW+NQjj7YPvteyWtcDRSjJw8kWDLJifdtOS8rfB/Xj7E1l21mO6EvYnfvYWIiw5TcUsGRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tuFG8mL8; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43cf06eabdaso50763845e9.2
-        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 14:05:29 -0700 (PDT)
+	s=arc-20240116; t=1746565606; c=relaxed/simple;
+	bh=ERNUVozEOVt14+yZDFjTZpFiaXN84yn5w7dLaTHaL9I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FPX6u592F/L9vaQV/pBpfAqSBrqx5oFo0l5wyFrJe8l8xj8UWskX9r4VFdZqyKWlo7xDABSsAGq3Js1LtX+VhM6r9EgR1CBNj3yHYN32z29uwU9CMewc0ZeM2HTNj7qo0FBrif88Ou4keKUaDSi5WrQotZgv7pOzc0mio1U/NEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=F+3i9RXz; arc=none smtp.client-ip=209.85.166.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-8647a81e683so171136339f.1
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 14:06:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746565528; x=1747170328; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IxjDKD+JKSiLqw8gK8zG+KrBnxfs5SYwuaGv7cdl5fk=;
-        b=tuFG8mL84FquZoOheVVBWxOFQasfvzWViWkaacoMAJyXImsAIJQrTDp9ow8oSf3ZeM
-         cpQpVs1Jak/bo1BBSkTEgyf9qmS401GUmcND2oByYzbTfa9JdkzB4+5+QBa5PXLraczV
-         vxnKPBD0Aw4I1CG3nhwI8XLtKyFs2Zg9Tn1UJcMdoeZii2jfBeNHK/J5HHobQlOgUyj8
-         YmrOboTw+wUlWhTWlfKidYQU5O39yhtxUOjX4ZRTjZs3PPxhpI8J7NKskuG1XUOtvGC0
-         gfSvw1vRw6Lni3O8C8ig7lsJzcpPt0ofO5THHvCs28PSm4uazrHFIi9ziWuxvFT1PRhD
-         +jwg==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1746565604; x=1747170404; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ctQSvVihHY5dWsU4MBBsIjj+H5evIdxG47g04dOZUkE=;
+        b=F+3i9RXzL7sv4SaVclDtnqEzmiCThSpxM1btD6+6QL25D90tMoEHYHqpiNZpfEBcxn
+         iKhY0OrCGXkBMKjevJCciXbE5P7+sBIl7Wm/Cy7uin6Key+KacDEzuEzDsx4x7U2sP/f
+         QECC236yEoldWRfrhkqx7FLC8Hc7LUFuKhZSQXP6h7vmqjFi64ptZK/frD3f/SmCtOyg
+         co3+OCe/XIbNxfLqvouEHunt5rumqOxGCI6vXB0zuTIlhkstGpcy3v2Jy7qi9k62aR3y
+         kcgqCmGvXxgV2d/nGUQKYgk4fa7RgZ/FN4RnMWPzsHC99ow3Q0yl0/wEg0qbyn1iahhJ
+         0PRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746565528; x=1747170328;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IxjDKD+JKSiLqw8gK8zG+KrBnxfs5SYwuaGv7cdl5fk=;
-        b=j6ej6hVlhpyJeOJo6xU6GIOEnnH2P0R+IBz8SqEDHLVIRQsl8Qb4qhJ6BLTAChCdn8
-         hmcwtD4CQTz6y/XlmlxYhRi3ZmwYXe0xlWnV6pmIYqw5TGVXF3N8/TIGmTGTmEad/Vlm
-         xVpzur9eCC2F5vh6lrlwRlH+zsSQQEAnf0Ca9ihrQC1pShCLDbawLg1PfL4BEfpbTOYt
-         MXrCZAbPT3uwTWQ6wHHt04uV64kxAdngn8AbgKc+INJ7VB2SRtAFBVkmkGNADdiTy9wk
-         vwfn7/JA7Z3SzaIe4yM17wjZc6NJSFFHSGv9ZB379pZFQvKCyNyr7HahWj+rrDxLA0s+
-         TFgg==
-X-Forwarded-Encrypted: i=1; AJvYcCUtXsdKlUEVHqa9TONfWT5mXsF5KkpU2OPIqd0jJNepX51IvjUlouM9+IB+ijsutaDHk6WahMLgmhM+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeiImGB+gfqMAYZ3lLhkOQ4+XR8oYgZib/s6W0Kt7esk3J+B7f
-	E5oKVbFbbiaHrL0nS6UO/aJHCy92UNfGe48l3CUjspHSXSZbmS3ONhkPLVvRK5s=
-X-Gm-Gg: ASbGnctfmy1AzyFN9CAGfAmZrE+6DlaCvSHE2WCqkweZtdDb0BQz4uQ/coL8M/MT9AB
-	St6RMD8p/Z0NUZJqU8L4LRyDSygfWc78DsMH7SkuRkyQYR90qP0OXrusHjCUZkwTiWxCyVGjKRq
-	uL3W8cTQIg+xe3+ldGh4+D0bEmd66VeNOv9aF+jHvicBoUikBIwG3nrtOUhSWuHH7skkJIEe0f2
-	NbhTZYAEDmqtgsNjBOH9xzIJa+IPQbEYZVMZd0dYTzY+IskRjLXSWAeTdOvjxg6nMrzRjN+utIw
-	4ZAdtjTZ1DqE+v/q1T7z/RGdDnyNTUGplh1vhreb0GAKl7Jh6mQ/Om4yhEyZGh/7gtHjtmUQqUc
-	1GUm/lLFLvK+uVx06KyvMEKk=
-X-Google-Smtp-Source: AGHT+IH/I6vCXS+EzMw3gIbUrM+QZJy17d3GmYqQtggUh+d00T+nsunpp1HkxxkyT/ZZ+4Ldp/Ngiw==
-X-Received: by 2002:a05:600c:5006:b0:43c:ea36:9840 with SMTP id 5b1f17b1804b1-441d44de12dmr3049785e9.22.1746565527940;
-        Tue, 06 May 2025 14:05:27 -0700 (PDT)
-Received: from [192.168.0.2] (host-87-8-31-78.retail.telecomitalia.it. [87.8.31.78])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441d4351abdsm6794475e9.23.2025.05.06.14.05.26
+        d=1e100.net; s=20230601; t=1746565604; x=1747170404;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ctQSvVihHY5dWsU4MBBsIjj+H5evIdxG47g04dOZUkE=;
+        b=Z+LxOKdBcjk4mZ3zj3mw3fenYQpWIY0fPsnJNrySFo3/KPwGDeHecRfCzJf0M6e0xO
+         qWzj4tSe9s24jNahxbK9eDd1e+KG80mZTi4BZV2Yttl8pPl6W7XFwSNez19p/dHgYrjg
+         msuUpbGdOPZYiEonB2FWG7QcgWjXyTzWeKli+mAZsX8hOxmZldA1Tm3A968eG9eRe36g
+         pgP6divISVeXXgLEcrvmCL9flHNTJyMWGppbHCFPGmgLJ52YF17bOWaYbprvMsGnn0z1
+         kZ8vnLTZSrGeZPjUwM6L537wIJR6M7k57LIexq5l1x2/Kd9NZmfhHBU8kxQVoPKVj1sj
+         lE4w==
+X-Forwarded-Encrypted: i=1; AJvYcCV63mRbArbMgMpd3kIXVKBP/7y1XZrMjx55khEFfWVrvURmPYg8QAakYhx7OsqDzwpeC6au98POwFZ9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/Q2DFclkSAP/sI4NiaF+EeGAD/Akqwr0s+lIPcTgrTI0fNNJO
+	ca740IO8paxcL5r3JE9bhA0QDCgIe0H+d7Ar9DT2b8CDmlQHIMvKWMbPKkfAc8E=
+X-Gm-Gg: ASbGncui6KiSENbw2WaoQWLiyCFyOKSoKE+ErDj2QW1qcHhxdFr7rBj61bKbiEGVfOZ
+	KxeFyjDO8F+2DhQ7divkI9twoasnfa+AI+3RTwCpFwCCrrzcp8xC/XSfgF+G77+TB6P1kchFGV/
+	3bE01OfZK6w/UEmNYX4JS5M5K3rnrx30V8cWE44O/jfGOPW335O6mhhtfFt8Lh1pdK3Zp2PmU2a
+	sjzvzG2/k9r9rqbKPFeFxESlStCtmVvNjQoyuBU+r9lBlkGuCRSXbn+FyoZQvFE2xLVvAcQRJPn
+	65xQkdbEPo9UcQivkOM39OJejiqnFyKDXYa1E+frVkqMZGWZpL8gU/3pJBgL/abzIjd/Jww/t/N
+	duUEbaI9PcTy3EA==
+X-Google-Smtp-Source: AGHT+IHmLwR/RdxY6gKxsVffp2BFaQw1Bk6UdfmCxeRt2RRt1uEhRJSBeWBP2YNWT9ppTywhStu3jQ==
+X-Received: by 2002:a05:6602:6b07:b0:85b:41cc:f709 with SMTP id ca18e2360f4ac-86747413db3mr136372539f.14.1746565603723;
+        Tue, 06 May 2025 14:06:43 -0700 (PDT)
+Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f88aa588basm2419559173.79.2025.05.06.14.06.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 14:05:27 -0700 (PDT)
-From: Angelo Dureghello <adureghello@baylibre.com>
-X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Date: Tue, 06 May 2025 23:03:51 +0200
-Subject: [PATCH v3 5/5] iio: adc: ad7606: add gain calibration support
+        Tue, 06 May 2025 14:06:43 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	p.zabel@pengutronix.de,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	dlan@gentoo.org
+Cc: heylenay@4d2.org,
+	inochiama@outlook.com,
+	guodong@riscstar.com,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/6] clk: spacemit: add K1 reset support
+Date: Tue,  6 May 2025 16:06:31 -0500
+Message-ID: <20250506210638.2800228-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250506-wip-bl-ad7606-calibration-v3-5-6eb7b6e72307@baylibre.com>
-References: <20250506-wip-bl-ad7606-calibration-v3-0-6eb7b6e72307@baylibre.com>
-In-Reply-To: <20250506-wip-bl-ad7606-calibration-v3-0-6eb7b6e72307@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- devicetree@vger.kernel.org, Angelo Dureghello <adureghello@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5739;
- i=adureghello@baylibre.com; h=from:subject:message-id;
- bh=P/FuxJZA+9kES7o8SpZCT2TnVHvYO5j9LvTN2jJFlis=;
- b=owGbwMvMwCXGf3bn1e/btlsznlZLYsiQqvSYb7upmDlGwPPAjCt+jzb1+BmrOz3byPtZXjL22
- xdt5d08HaUsDGJcDLJiiix1iREmobdDpZQXMM6GmcPKBDKEgYtTACZiKM/w39XKa/n7HcWltiHn
- 3DYW79QLWLLIjffi7mmB6gmCEU2pbxn+B+twGNwW4WFwFilxef0w4veF/t6tPT3noo+nbmB93vm
- BHQA=
-X-Developer-Key: i=adureghello@baylibre.com; a=openpgp;
- fpr=703CDFAD8B573EB00850E38366D1CB9419AF3953
 
-From: Angelo Dureghello <adureghello@baylibre.com>
+This series adds reset controller support for the SpacemiT K1 SoC.
 
-Add gain calibration support, using resistor values set on devicetree,
-values to be set accordingly with ADC external RFilter, as explained in
-the ad7606c-16 datasheet, rev0, page 37.
+This code builds upon the clock controller driver from Haylen Chu.
+This version has been reworked to use the auxiliary device model,
+as requested by Stephen Boyd.  As a result the reset code resides
+under drivers/reset rather than drivers/clk.  A new header file
+holds definitions used by the clock and reset drivers.  The first
+patch is the same as before, so I preserved Krzysztof's Reviewed-by
+tag.  I dropped the tags from Haylen and Philipp, given the new
+location of the code.  (The actual reset code is largely the same.)
 
-Usage example in the fdt yaml documentation.
+This series is based on the "for-next" branch in the SpacemiT
+repository:
+  https://github.com/spacemit-com/linux/tree/for-next
 
-Tested-by: David Lechner <dlechner@baylibre.com>
-Reviewed-by: Nuno Sá <nuno.sa@analog.com>
-Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
----
- drivers/iio/adc/ad7606.c | 56 ++++++++++++++++++++++++++++++++++++++++++++++++
- drivers/iio/adc/ad7606.h |  4 ++++
- 2 files changed, 60 insertions(+)
+All of these patches are available here:
+  https://github.com/riscstar/linux/tree/outgoing/reset-v6
 
-diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-index a986eb1284106da4980ac36cb0b5990e4e3bd948..049fd8616769d32778aa238b348b2fb82fa83745 100644
---- a/drivers/iio/adc/ad7606.c
-+++ b/drivers/iio/adc/ad7606.c
-@@ -33,6 +33,10 @@
- 
- #include "ad7606.h"
- 
-+#define AD7606_CALIB_GAIN_MIN	0
-+#define AD7606_CALIB_GAIN_STEP	1024
-+#define AD7606_CALIB_GAIN_MAX	(63 * AD7606_CALIB_GAIN_STEP)
-+
- /*
-  * Scales are computed as 5000/32768 and 10000/32768 respectively,
-  * so that when applied to the raw values they provide mV values.
-@@ -125,6 +129,8 @@ static int ad7609_chan_scale_setup(struct iio_dev *indio_dev,
- 				   struct iio_chan_spec *chan);
- static int ad7616_sw_mode_setup(struct iio_dev *indio_dev);
- static int ad7606b_sw_mode_setup(struct iio_dev *indio_dev);
-+static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev,
-+					struct iio_chan_spec *chan);
- 
- const struct ad7606_chip_info ad7605_4_info = {
- 	.max_samplerate = 300 * KILO,
-@@ -180,6 +186,7 @@ const struct ad7606_chip_info ad7606b_info = {
- 	.scale_setup_cb = ad7606_16bit_chan_scale_setup,
- 	.sw_setup_cb = ad7606b_sw_mode_setup,
- 	.offload_storagebits = 32,
-+	.calib_gain_setup_cb = ad7606_chan_calib_gain_setup,
- 	.calib_offset_avail = ad7606_calib_offset_avail,
- 	.calib_phase_avail = ad7606b_calib_phase_avail,
- };
-@@ -195,6 +202,7 @@ const struct ad7606_chip_info ad7606c_16_info = {
- 	.scale_setup_cb = ad7606c_16bit_chan_scale_setup,
- 	.sw_setup_cb = ad7606b_sw_mode_setup,
- 	.offload_storagebits = 32,
-+	.calib_gain_setup_cb = ad7606_chan_calib_gain_setup,
- 	.calib_offset_avail = ad7606_calib_offset_avail,
- 	.calib_phase_avail = ad7606c_calib_phase_avail,
- };
-@@ -246,6 +254,7 @@ const struct ad7606_chip_info ad7606c_18_info = {
- 	.scale_setup_cb = ad7606c_18bit_chan_scale_setup,
- 	.sw_setup_cb = ad7606b_sw_mode_setup,
- 	.offload_storagebits = 32,
-+	.calib_gain_setup_cb = ad7606_chan_calib_gain_setup,
- 	.calib_offset_avail = ad7606c_18bit_calib_offset_avail,
- 	.calib_phase_avail = ad7606c_calib_phase_avail,
- };
-@@ -357,6 +366,49 @@ static int ad7606_get_chan_config(struct iio_dev *indio_dev, int ch,
- 	return 0;
- }
- 
-+static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev,
-+					struct iio_chan_spec *chan)
-+{
-+	struct ad7606_state *st = iio_priv(indio_dev);
-+	unsigned int num_channels = st->chip_info->num_adc_channels;
-+	struct device *dev = st->dev;
-+	int ret;
-+
-+	device_for_each_child_node_scoped(dev, child) {
-+		u32 reg, r_gain;
-+
-+		ret = fwnode_property_read_u32(child, "reg", &reg);
-+		if (ret)
-+			return ret;
-+
-+		/* channel number (here) is from 1 to num_channels */
-+		if (reg < 1 || reg > num_channels) {
-+			dev_warn(dev, "wrong ch number (ignoring): %d\n", reg);
-+			continue;
-+		}
-+
-+		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
-+					       &r_gain);
-+		if (ret == -EINVAL)
-+			/* Keep the default register value. */
-+			continue;
-+		if (ret)
-+			return ret;
-+
-+		if (r_gain > AD7606_CALIB_GAIN_MAX)
-+			return dev_err_probe(st->dev, -EINVAL,
-+					     "wrong gain calibration value.");
-+
-+		/* Chan reg is 1-based index. */
-+		ret = st->bops->reg_write(st, AD7606_CALIB_GAIN(reg - 1),
-+			DIV_ROUND_CLOSEST(r_gain, AD7606_CALIB_GAIN_STEP));
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int ad7606c_18bit_chan_scale_setup(struct iio_dev *indio_dev,
- 					  struct iio_chan_spec *chan)
- {
-@@ -1410,6 +1462,10 @@ static int ad7606_probe_channels(struct iio_dev *indio_dev)
- 				chan->info_mask_separate_available |=
- 					BIT(IIO_CHAN_INFO_CALIBBIAS) |
- 					BIT(IIO_CHAN_INFO_CONVDELAY);
-+				ret = st->chip_info->calib_gain_setup_cb(
-+					indio_dev, chan);
-+				if (ret)
-+					return ret;
- 			}
- 
- 			/*
-diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-index f613583a7fa4095115b0b28e3f8e51cd32b93524..94165d217b69d54cbce9109b8c0f9dc0237cf304 100644
---- a/drivers/iio/adc/ad7606.h
-+++ b/drivers/iio/adc/ad7606.h
-@@ -50,6 +50,8 @@ struct ad7606_state;
- typedef int (*ad7606_scale_setup_cb_t)(struct iio_dev *indio_dev,
- 				       struct iio_chan_spec *chan);
- typedef int (*ad7606_sw_setup_cb_t)(struct iio_dev *indio_dev);
-+typedef int (*ad7606_calib_gain_setup_cb_t)(struct iio_dev *indio_dev,
-+					    struct iio_chan_spec *chan);
- 
- /**
-  * struct ad7606_chip_info - chip specific information
-@@ -66,6 +68,7 @@ typedef int (*ad7606_sw_setup_cb_t)(struct iio_dev *indio_dev);
-  * @init_delay_ms:	required delay in milliseconds for initialization
-  *			after a restart
-  * @offload_storagebits: storage bits used by the offload hw implementation
-+ * @calib_gain_setup_cb: callback to setup of gain calibration for each channel
-  * @calib_offset_avail: pointer to offset calibration range/limits array
-  * @calib_phase_avail:  pointer to phase calibration range/limits array
-  */
-@@ -81,6 +84,7 @@ struct ad7606_chip_info {
- 	bool				os_req_reset;
- 	unsigned long			init_delay_ms;
- 	u8				offload_storagebits;
-+	ad7606_calib_gain_setup_cb_t	calib_gain_setup_cb;
- 	const int			*calib_offset_avail;
- 	const int			(*calib_phase_avail)[2];
- };
+Between version 5 and version 6:
+  - Reworked the code to use the auxiliary device framework.
+  - Moved the code supporting reset under drivers/reset/spacemit.
+  - Created a new header file shared by reset and clock.
+  - Separated generic from SoC-specific code in the reset driver.
+  - Dropped two Reviewed-by tags.
 
+Between version 4 and version 5:
+  - Added Haylen's Reviewed-by on the second patch.
+  - Added Philipp's Reviewed-by on the third patch.
+  - In patch 4, added a const qualifier to some structures, and removed
+    parentheses surrounding integer constants, as suggested by Philipp
+  - Now based on the SpacemiT for-next branch
+
+Here is version 4 of this series.
+  https://lore.kernel.org/lkml/20250414191715.2264758-1-elder@riscstar.com/
+
+Between version 3 and version 4:
+  - Now based on Haylen Chu's v7 clock code, built on v6.15-rc2.
+  - Added Krzysztof's Reviewed-by on the first patch.
+
+Here is version 3 of this series.
+  https://lore.kernel.org/lkml/20250409211741.1171584-1-elder@riscstar.com/
+
+Between version 2 and version 3 there was no feedback, however:
+  - Haylen posted v6 of the clock series, and it included some changes
+    that affected the logic in this reset code.
+  - I was informed that defining CCU nodes without any clocks led to
+    warnings about "clocks" being a required property when running
+    "make dtbs_check".  For that reason, I made clock properties
+    optional for reset-only CCU nodes.
+  - This code is now based on v6.15-rc1, which includes a few commits
+    that were listed as dependencies previously.
+
+Here is version 2 of this series.
+  https://lore.kernel.org/lkml/20250328210233.1077035-1-elder@riscstar.com/
+
+Between version 1 and version 2:
+  - Added Rob's Reviewed-by tag on the first patch
+  - Renamed the of_match_data data type (and one or two other symbols) to
+    use "spacemit" rather than "k1".
+  - Replaced the abbreviated "rst" or "RST" in names of newly-defined
+    sympols with "reset" or "RESET" respectively.
+  - Eliminated rcdev_to_controller(), which was only used once.
+  - Changed a function that unsafely did a read/modify/write of a register
+    to use regmap_update_bits() instead as suggested by Haylen.
+  - Eliminated a null check for a pointer known to be non-null.
+  - Reordered the assignment of reset controller device fields.
+  - Added a "sentinel" comment as requested by Yixun.
+  - Updated to be based on Linux v6.14 final.
+
+Here is the first version of this series.
+  https://lore.kernel.org/lkml/20250321151831.623575-1-elder@riscstar.com/
+
+					-Alex
+
+Alex Elder (6):
+  dt-bindings: soc: spacemit: define spacemit,k1-ccu resets
+  soc: spacemit: create a header for clock/reset registers
+  clk: spacemit: set up reset auxiliary devices
+  reset: spacemit: add support for SpacemiT CCU resets
+  reset: spacemit: define three more CCUs
+  riscv: dts: spacemit: add reset support for the K1 SoC
+
+ .../soc/spacemit/spacemit,k1-syscon.yaml      |  29 ++-
+ arch/riscv/boot/dts/spacemit/k1.dtsi          |  18 ++
+ drivers/clk/spacemit/ccu-k1.c                 | 220 ++++++++---------
+ drivers/reset/Kconfig                         |   1 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/spacemit/Kconfig                |  12 +
+ drivers/reset/spacemit/Makefile               |   7 +
+ drivers/reset/spacemit/core.c                 |  61 +++++
+ drivers/reset/spacemit/core.h                 |  39 +++
+ drivers/reset/spacemit/k1.c                   | 231 ++++++++++++++++++
+ .../dt-bindings/clock/spacemit,k1-syscon.h    | 128 ++++++++++
+ include/soc/spacemit/ccu_k1.h                 | 155 ++++++++++++
+ 12 files changed, 777 insertions(+), 125 deletions(-)
+ create mode 100644 drivers/reset/spacemit/Kconfig
+ create mode 100644 drivers/reset/spacemit/Makefile
+ create mode 100644 drivers/reset/spacemit/core.c
+ create mode 100644 drivers/reset/spacemit/core.h
+ create mode 100644 drivers/reset/spacemit/k1.c
+ create mode 100644 include/soc/spacemit/ccu_k1.h
+
+base-commit: cb9c3aeae509b36afbdf46942a7a0a0dfc856ce7
 -- 
-2.49.0
-
+2.45.2
 
