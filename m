@@ -1,163 +1,159 @@
-Return-Path: <devicetree+bounces-173980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D16AABCAB
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:10:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AAE8AABCA1
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:09:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99DF83A334D
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 08:01:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2ACC01B65B4E
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 08:04:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848DA23D2A2;
-	Tue,  6 May 2025 07:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E78821D00E;
+	Tue,  6 May 2025 08:03:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g0RxVZnT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pa1N40qw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A702C33FD;
-	Tue,  6 May 2025 07:52:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0ADE21504D;
+	Tue,  6 May 2025 08:03:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746517931; cv=none; b=GG0bZRqhLQqQ+2He+mks1v1SJdhm5jj0NyZ4aClEJlK0bm63OujUeIDmGOA4+xL3T0jldIsIGNzTLmTaD6apR3hltsHod76aokupNHxnmfiuEEEVPvgCJ+/BKplRAPt+EdRQSXzYy4SyG1qO/mDYzuWHVqEFq9oUQnP2SnKUf3o=
+	t=1746518582; cv=none; b=Eca1a/XB3OBqXYSMVoezqCLrXPIQIxHrV1bWeFJaM69BIAW4NmawPtSdS/jU/zmiMJ9ssb5bDRkKWukuAx3DcEHmQWJof/GzhpjXN/gk93JFr8mRB63ee7377XC9psncewdsoN2uq1bPQbfso0OsegBX8iesFFJ+A41cdELTng8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746517931; c=relaxed/simple;
-	bh=0+uO/XoYIQCc8Dgm6gCzikikLCGOEjO0kaq/d1A05mg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dIHIQov5zZUmKhwZwFGcugk7+Ig6FFQF74w1qDM3n9N6cBGRimDfMKm7RaLBpyk1D8a0G8hC7OL4K1ti/x6CZM0LqwKRv4/fYPEzt/Dadq2ReYt7LHDOOOkB8k1/D20y3ww1A7rWlv514PkEVASMMMfsd0EgTsoQRE8NiZykDnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g0RxVZnT; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5f63ac6ef0fso7338517a12.1;
-        Tue, 06 May 2025 00:52:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746517928; x=1747122728; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ILaPhC29TjZEHYEs2jF6zz89xMd5BTo40WxWLbWUDSQ=;
-        b=g0RxVZnTZS0GMvtGQAMbfIQ/XYaXTs49/GaKXtVPjKR90ZyJt+oAL3jKCR/6FmVhYy
-         377Kt6cgnqLCJ/B2Kf2BcR8aw/t40O0+qYuzOa11dTxWB9LdWxZc0QP+YVpJ+5kgr6zD
-         Rby4r1FUotXCQAW4+Fp6Dm3BbWGYeNwHCdT4+aSIocYVvsgjeHOvx+rWBii0eYdzWD+9
-         Ku0ZQRdBGGg2mYWdhMsYf8P6CfMiYlW46KARRzSFIjHtfVGr4555IMcXWF7toTcTtm/8
-         O/g2eNrc4IfA+OcwLrywxMdXYqf5Wj247328Hw8L8zAh1kOEw0XwtjKs6iBzSr8hL/Bh
-         ShAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746517928; x=1747122728;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ILaPhC29TjZEHYEs2jF6zz89xMd5BTo40WxWLbWUDSQ=;
-        b=IvXXc1egnKmOuldxPoc7MNm6iYqe+K3OeXceKnPrIITkJOuOxrvY/3nRBoTcT6jDBi
-         1mxKmzTge0NyBUroqepopRLE27EjerVJ+NfQcMnEVKlJ6lBw+N7VODGP/fhczboPu0V1
-         zKZdl6nEwjNqEQSAEJODSHsG7sPW7gm0UvORT8yRlq43ojWgex7VmizMo7EhMzA2Feet
-         nKgYVXSilbNJo7oME47f9WafBOFJmDAt+2AJN84H/Amsu6qEBSMvO1/v8uRT/xDjk5Kj
-         yzEocdxeVgfwYebKxfprp6fJ+TqCMzE1Js4WDnOWIFA2+cwvaTPn7xyPi3US4moBtBH5
-         1E7w==
-X-Forwarded-Encrypted: i=1; AJvYcCVJIHMXd7GXqn8P7IsyzZm4JMmhHb2OR9V6+AGFkAz492tX/vdsUJK6z0xCEMZglacSBQS6srjpXary@vger.kernel.org, AJvYcCXv+GA6Mr5ezp6N/DdNqoIEhPrUGkRBGCi/+DtOZMwN+r/wXJ/MlRnHvZ9CjMLFTYysU0bjs/mQcJM2UxkZ@vger.kernel.org, AJvYcCXyKZgHWXOrdoqNHCLCLRgRwghI21hob64zRbDTVWf5+jRv1Vr+2IbXy9zq47lW9Fxk9Tmi7ecFSzG0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMPHBeJxjXRe/vgT1UIzNBOMzCNbLfX6RkbcZ9gsuodpUUbH60
-	RCIEVw6nuNmWfsz6IpjZAtkFT+XBO/sbd1iBKw4ySg9KmfAlPkch
-X-Gm-Gg: ASbGncu6XOy1uuMNMLnx4mybUR4eNy/yOjH4LSzV96Tf2R72MDULUcFP/RFBkJ72bex
-	vqcvCqcIIKHc2/9Vyci0AsGN2Y05FXxLjxwobvjToGmtOZtbA/SgbQNeY+TKbA6r0//9Eytw7h4
-	Jh3h3UKGZ/yfgVCtNHvbOULKBbJrBMSDp5F8D6EkFezY8pSCbe0YS+IMk/8eZxGWPumalCg9Dk/
-	5DqhmtsaX5b2ZsWSH5MgvxvTBcKyHL9jdN24jHeUWrsmWVJ1SPNwHlV09xgWpgUqWoV6NaGI1D9
-	OpZV/JYwVCNPs0+9RWY5TaNNv2+vQNpBpFDCZ3pb6INJWQDqHK0ehBepUuu4M0BEYjwSQ+7lJrs
-	=
-X-Google-Smtp-Source: AGHT+IEW+wTfs5Sgf1Cb3eF+wezALJj/S29kLlJJHN51zwzNZKOHty3jYcaOzqfnxwvzRxCaXnYlxw==
-X-Received: by 2002:a05:6402:5112:b0:5fb:8903:dc82 with SMTP id 4fb4d7f45d1cf-5fb8903e71bmr910254a12.10.1746517927636;
-        Tue, 06 May 2025 00:52:07 -0700 (PDT)
-Received: from ubuntu2204 (207-pool1.nat.godollo.uni-mate.hu. [192.188.242.207])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5fb45a0c675sm1727131a12.14.2025.05.06.00.52.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 00:52:06 -0700 (PDT)
-Date: Tue, 6 May 2025 09:52:05 +0200
-From: =?utf-8?B?VMOzdGggSsOhbm9z?= <gomba007@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: 
-	=?utf-8?B?VMOzdGggSsOhbm9z?= via B4 Relay <devnull+gomba007.gmail.com@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: chemical: Add driver for SEN0322
-Message-ID: <4bvmhlzbk3wxnjskfio3i7wyimaclnjt7mlk5bydmn4ycur7fi@pdkvjofbrurw>
-References: <20250505-iio-chemical-sen0322-v2-0-217473983b42@gmail.com>
- <20250505-iio-chemical-sen0322-v2-2-217473983b42@gmail.com>
- <20250505184705.6f00321a@jic23-huawei>
+	s=arc-20240116; t=1746518582; c=relaxed/simple;
+	bh=vnJVR0fpUtnSD5YKrx/8xtPtn88K4qKx2bqXnh54DdI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e1l7oBTX/21HN+/D/l+MObVQKb31JHyDJcpYt5s2biEtliUPQ07FxRsJzyoZ5ooPv9BhyAt+dv2MwJ7JnrOriSxypoxMdXCBKItzGdGoLtfoP0nRv+3VkMFWuNg2lIcAjNAfwm0ATc7dJeHmIG0JoxIGEVcd7wRdOkEIF9hfYLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pa1N40qw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19026C4CEE4;
+	Tue,  6 May 2025 08:02:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746518582;
+	bh=vnJVR0fpUtnSD5YKrx/8xtPtn88K4qKx2bqXnh54DdI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pa1N40qwqtx14HtJEXcKMZiNFf9xZ57dRcdBQvzS52soq2Tds+0FJepell8WvX9th
+	 Nffen8WVRA07EJ7XKtECXhaEbF/iJNTAQB/9tVdcGnbdwdriLqcjMeRSbflOiRO8gm
+	 Mwd9HXllPirOmZQW3Cjn95FWuilvk27t+KxH1ofzzsv+UxO0U5WusBCdxcZ9+n0EjW
+	 0F9L9PKweuOAcPna+PPIPJ+sp3PS+yqyXWprJ6Y9Re0kYWOqdFIxvd46D7gkP0bsGC
+	 EQhmso3s+a0fCNFvxosbSAhtFmBQXPzzOE4SLaSyFvKyhBqyEOnrmaSB6cApZk/DsB
+	 JR6SNceDsfQtg==
+Message-ID: <88b463b2-6cd3-4b92-acc5-447bbfadabde@kernel.org>
+Date: Tue, 6 May 2025 10:02:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250505184705.6f00321a@jic23-huawei>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 2/3] memory: Add STM32 Octo Memory Manager driver
+To: Patrice Chotard <patrice.chotard@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: christophe.kerello@foss.st.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250506-upstream_ospi_v6-v12-0-e3bb5a0d78fb@foss.st.com>
+ <20250506-upstream_ospi_v6-v12-2-e3bb5a0d78fb@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250506-upstream_ospi_v6-v12-2-e3bb5a0d78fb@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi!
-
-Thank you for the review!
-
-> Checkpatch is lagging behind the times, but it is fine to use this
-> as a formal tag in the tag block..
-> > 
-> Datasheet: https://wiki.dfrobot.com/Gravity_I2C_Oxygen_Sensor_SKU_SEN0322
+On 06/05/2025 09:52, Patrice Chotard wrote:
+> Octo Memory Manager driver (OMM) manages:
+>   - the muxing between 2 OSPI busses and 2 output ports.
+>     There are 4 possible muxing configurations:
+>       - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
+>         output is on port 2
+>       - OSPI1 and OSPI2 are multiplexed over the same output port 1
+>       - swapped mode (no multiplexing), OSPI1 output is on port 2,
+>         OSPI2 output is on port 1
+>       - OSPI1 and OSPI2 are multiplexed over the same output port 2
+>   - the split of the memory area shared between the 2 OSPI instances.
+>   - chip select selection override.
+>   - the time between 2 transactions in multiplexed mode.
+>   - check firewall access.
 > 
-> > Signed-off-by: Tóth János <gomba007@gmail.com>
-
-Sure.
-
-> > +	if (val) {
-> > +		*num = val;
-> > +		*den = 100000;
-> > +	} else {
-> > +		*num = 209;
-> > +		*den = 120000;
+> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> ---
+>  drivers/memory/Kconfig     |  18 ++
+>  drivers/memory/Makefile    |   1 +
+>  drivers/memory/stm32_omm.c | 476 +++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 495 insertions(+)
 > 
-> This is odd enough, that perhaps we could add a comment on why, or at least
-> a cross reference to where these numbers come from?
-> What is the special meaning of 0?
+> diff --git a/drivers/memory/Kconfig b/drivers/memory/Kconfig
+> index c82d8d8a16eaf154c247c0dbb9aff428b7c81402..bc7ab46bd8b98a89f0d9173e884a99b778cdc9c4 100644
+> --- a/drivers/memory/Kconfig
+> +++ b/drivers/memory/Kconfig
+> @@ -225,6 +225,24 @@ config STM32_FMC2_EBI
+>  	  devices (like SRAM, ethernet adapters, FPGAs, LCD displays, ...) on
+>  	  SOCs containing the FMC2 External Bus Interface.
+>  
+> +config STM32_OMM
+> +	tristate "STM32 Octo Memory Manager"
+> +	depends on ARCH_STM32 || COMPILE_TEST
+> +	depends on SPI_STM32_OSPI
 
-Okay, I'll add some explanation.
+I don't think you tested for the reported issue. I reported that
+firewall symbols are missing and you add dependency on ospi. How is that
+related? How does this solve any problem?
 
-> > +	u8 data[4] = { 0 };
-> 
-> If you are only read 3 bytes, why is this 4 long?
-
-It is the closest power of 2, to pacify my OCD, but you are right.
-
-> > +	ret = regmap_bulk_read(sen0322->regmap, SEN0322_REG_DATA, data, 3);
-> 
-> Having shortened above, use sizeof(data) for that 3 to avoid
-> any potential future mismatch in sizes.
-
-Agreed.
-
-> > +	dev_dbg(regmap_get_device(sen0322->regmap), "data: %d\n", ret);
-> 
-> Given you more or less directly provide this to userspace now I'd drop
-> the dev_dbg() as not adding any value for debugging.
->
-
-I just like to see if the function actually ran and not reading some buffered 
-value stuck somewhere, but okay.
-
-> > +	switch (mask) {
-> > +	case IIO_CHAN_INFO_RAW:
-> > +		switch (chan->type) {
-> > +		case IIO_CONCENTRATION:
-> As the sensor only does concentration, you could either drop this
-> check on basis we can't get here without it or if you want 
-> a strong sanity check do it outside the switch statement as
-> 	if (chan->type != IIO_CONCENTRATION)
-> 		return -EINVAL;
-
-I did not want to deviate from the pattern, but yes, it will make the code
-more readable.
+And to be sure, I applied this and obviously - as expected - same errors.
 
 Best regards,
-János
+Krzysztof
 
