@@ -1,283 +1,458 @@
-Return-Path: <devicetree+bounces-174404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAF0EAAD125
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 00:53:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB9AFAAD147
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 00:58:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBCC6983F5A
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:53:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0BD41C248D4
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:58:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8B3121CA0A;
-	Tue,  6 May 2025 22:53:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ShSjCFLo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D481821FF21;
+	Tue,  6 May 2025 22:57:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5D521A43C
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 22:53:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54FAD21CC61;
+	Tue,  6 May 2025 22:57:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746572016; cv=none; b=lf+6Qjoi557dvW0/Q23tbBdRJ482xB4CDoKJgFS1iTCwarDtW33O+ZZMhcQAhSsTybDlLkkUXZak71Rt2+yMn8U3FHKNIEHYNtPWif0ePENIQt6d9/nmW6eLoIWCxQ+0ozzivbZ/P9Os3MUwWm+MDeLa2VxAhk9otmiWMRYqucE=
+	t=1746572259; cv=none; b=cXZnSplqFLJzb768T0ho007Nmm8ORTihgDUdjJnhxAGcBRSU8590L3lOxpQESwDaBazOgDaf1kGqTmX3RlcFy2pzsWyY7fib/e4YDZas5Jo4VyUkAFHGxVUCS/W9NIxLCKjsg4iCBow/nZKYk6V8hodcBzb0wZsdDsWYQToznac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746572016; c=relaxed/simple;
-	bh=WnMPpwg5JDjp5B8VN00/1xJ4Cen7riGSv0Wxd6c0ZG0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OT0JhjJVU48Cll2vDWUxyg1lyXlUbxZNgS6MhWtPFqtFYSXIE39Z3JtzTlIW1xN+d4tsrOC+SQGkU0JpzmMHHhpntUNZ2w5KQ8bPrXClJ4e09h3K8kYf7pWSe62foQp8wZ5tYq2ufOQxy002tJqYAkSZPZ2qEd7zWWCnRfe+lDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ShSjCFLo; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 546H0BNP007904
-	for <devicetree@vger.kernel.org>; Tue, 6 May 2025 22:53:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ygofsMCIB0jAe4SjuNSFtVbwkj+wcUa/4Hu0Jd/IzCc=; b=ShSjCFLoNtC+bO7H
-	kpSDfPhqfkuBmEepArQEgKU2v0smbJN1omencgfMxQC5D37JAUW/cMfJ/ncrlJpH
-	uWcTT9P40BRlEZjaiyq+q5L9H6l00N+63h/EKmwov79qwdcFJwj3ag65RROKfEGg
-	MD3Mqq/vGSdLR5nU/+tlIg8DPW2kzeGaTt8lrrVd7qowj3uNyXbvIQBmo/3sNxji
-	UlCk9bPVNrpg+Z+LinpadsDWjHRYqr54oBDRzZ9RNNiqse2HPBsLVPGu3NYHomvy
-	eCEddUpAPxIRb461+w2Ki94Ann47aAVw8xIaE7/TKHjPj3F6BwA5AzmjXyIUmseh
-	Vk4wpw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46d9ep98g4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 06 May 2025 22:53:32 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6e8fec7ab4dso14330416d6.3
-        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 15:53:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746572012; x=1747176812;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ygofsMCIB0jAe4SjuNSFtVbwkj+wcUa/4Hu0Jd/IzCc=;
-        b=NSbNmZANgQnhhThMAd274Wk9QjQ0p7JIQc8HUZI1eocT+xKJIDnReXJyn8tlf+fbCS
-         5fukBSNpaRWcyKCLqlZAjXQi6tOXLewXGoOw84qwzKYpiuOIgAiw04qgxRJD64t3kVMZ
-         BQIk7v5ec4npXFPRhF6WTyKSzHYcCL6imNHQ4xtYUrGWB53m43/LAQLVSKFw5Zwk84Dn
-         rWSnOjRUw+s8rFAdx2+b4W9NpENm97tFfaQkB1z0M79Gtv3LViLfTuYbEMM6TK2twcsT
-         dTq41ow0+ZcbPPajSo02yl2UguyAnT9mOXiLb2C1323Ox6Fp9mV5Qais3yp/dof7A329
-         CA/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWp2X+mhloPoNHWbiMv2p/GYx3912SAPXWq0tIF7C+ay2T2mlXTk+s0HxTIHsfEPCiq5T2KBk9gfnAQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBVJtGGXRa8fq4vjbeTjLMdXWrhcdyeFGKE4rU0nZwSYnn4kLS
-	aff76WUx136GnayJL9Slv0oCGfLGXpLKy7LNrx4um2juy+B/LZDiC3tP2VtFg6m7rAhY3YVZjCU
-	cGcU7nTcPJNwgJSWqf0oKCdcq4ZqWl+zWVSDXmp/usANMdao4vnAgOpjNWogl
-X-Gm-Gg: ASbGncv2OX3SAopzp+LjV33TakNEyu74nd561JhomC5I+uM4wdrJSkspkvlH11PSYTB
-	Eps2Z1ODImM5eiIbCp9HuaBKs5Ch7D3LS9SxVvMeb8zgGK9FAjwXQ8UT3gThtjmoLNYV5rH8cfM
-	hmnozMZiFA+72i/eAXX7s2+xEot+3StoHm3rxj55VcT3eJm4C66Nbjvj//zbK/+nCzdZNRwwWdp
-	I2hynLQbrHS+0ZH9iL0uLaKDbk7Rrj3fKywHEpJyUisdcbWcokcCe9tA4oEInhvKoPBdQOl+LcN
-	ptFX3XXBwzGEC0PABDyBw9VfDZvwUIvjTO2BPWYHFaWYqUTfsuCUrrZbTPoTbfXJ4Ww=
-X-Received: by 2002:ad4:5b87:0:b0:6f5:3c5e:27fc with SMTP id 6a1803df08f44-6f542a33ea5mr5293456d6.4.1746572011905;
-        Tue, 06 May 2025 15:53:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE43cQIT9y8yXMQPh1E2nIEuYn9kHdGjFj3F2wY9ltVfAgob6dYvmnhqdTo3UgiQkpbsfe9cg==
-X-Received: by 2002:ad4:5b87:0:b0:6f5:3c5e:27fc with SMTP id 6a1803df08f44-6f542a33ea5mr5293256d6.4.1746572011426;
-        Tue, 06 May 2025 15:53:31 -0700 (PDT)
-Received: from [192.168.65.143] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5fb61307074sm2741831a12.75.2025.05.06.15.53.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 May 2025 15:53:30 -0700 (PDT)
-Message-ID: <651f1421-b471-485a-aea0-1b1ef92f8331@oss.qualcomm.com>
-Date: Wed, 7 May 2025 00:53:27 +0200
+	s=arc-20240116; t=1746572259; c=relaxed/simple;
+	bh=5yXVwtNMDk6XVZfMVJMKhvVhbnrBjq7UYOFLGhp6LXo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pN6Lv9ROfLzKRDuk+FbEwXmZ4ROF3VHBELneCbiryK9SMcL920Q2n1Q+TWvAumYXJGIq2Bq8wnJxYBIPVjJDQbrawm6/0pfGPCL7DzV5SvO59LUdA+tSRnHiAyIvaaBFm/mhpV8NSekgCfuY8JJ4qfKq6lPc4Q69tML4JOQX8wM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.147.253])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 33944343140;
+	Tue, 06 May 2025 22:57:35 +0000 (UTC)
+Date: Tue, 6 May 2025 22:57:20 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Alex Elder <elder@riscstar.com>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] mmc: sdhci-of-k1: add support for SpacemiT K1 SoC
+Message-ID: <20250506225720-GYA499202@gentoo>
+References: <20250501-20-k1-sdhci-v2-0-3e7005fae29b@gentoo.org>
+ <20250501-20-k1-sdhci-v2-2-3e7005fae29b@gentoo.org>
+ <gfrdvfencetztdmkxmeo5q5vdnp3yxmggnuewfprjyxsldzhv2@eur5wtlltqtm>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8650: add iris DT node
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        neil.armstrong@linaro.org, Konrad Dybcio <konradybcio@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250424-topic-sm8x50-upstream-iris-8650-dt-v2-1-dd9108bf587f@linaro.org>
- <3498cfda-a738-449d-9d9f-754bbc8125c2@oss.qualcomm.com>
- <db91a526-e2f8-48f8-a071-f3fcc75235be@linaro.org>
- <CAO9ioeWaPKXHgNGPx5q34+RP59PMLD+EVK5fQsN89KC9A1ca-Q@mail.gmail.com>
- <d79790e5-52c9-4135-8f3c-af797145fa2d@oss.qualcomm.com>
- <4lmt5cgg2tanrughooxw73h2brwyyc6ifqgo3ju6iz4enkvkic@umeijjk4ijxg>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <4lmt5cgg2tanrughooxw73h2brwyyc6ifqgo3ju6iz4enkvkic@umeijjk4ijxg>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=EOUG00ZC c=1 sm=1 tr=0 ts=681a92ec cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
- a=EUspDBNiAAAA:8 a=sxpqNeDj30WxuUvu1H0A:9 a=QEXdDO2ut3YA:10
- a=OIgjcC2v60KrkQgK7BGD:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: veUCJM6FekR_bVzciANeuVFxRRmIzHHW
-X-Proofpoint-GUID: veUCJM6FekR_bVzciANeuVFxRRmIzHHW
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA2MDIxNyBTYWx0ZWRfX8jjtK6RXvZfK
- BCRjlmnIkuNMhKQmLd0WCZibxxAcZWBk6ClnxRebIkzsKMYhjLyRdM4YWlkB5GwnlVmUJveM5aB
- yYl68kPMBd+fMxJZ6X72kszpK0TEF1lGzyRYvPC/qaTU2Hb0fPYjsmGcZIEFawWZcmq1+zxO2oD
- ypfFSU+Sl2B414PD00bFYVbD5oXKY3vLTANjVxYObOac1APRxf8imjWMdoplDwTyW6DRRAHHjMC
- oguBdR6ek+QRYkZz4tZFQ31b33borjc4UZaLUXlzffEwkKIiTxi4r+zbqwbTdyKO3mTa8FXD1Ik
- WEfI4ZDAFtSxD7OSVt3BywJCqBml8K+G9Jil00t1TnLHNzZRRdwU1nNzpATprxntJfW3QCsr0Bo
- nH9wVWxY9LH+EtC79/alkUav5Lh0PNO5rRI680+L+yUP0VVXG/lL70i+efqQ0C+OuRLltmGs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-06_09,2025-05-06_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1015 impostorscore=0 spamscore=0 lowpriorityscore=0
- bulkscore=0 phishscore=0 suspectscore=0 mlxlogscore=999 mlxscore=0
- priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2504070000 definitions=main-2505060217
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <gfrdvfencetztdmkxmeo5q5vdnp3yxmggnuewfprjyxsldzhv2@eur5wtlltqtm>
 
-On 5/6/25 10:23 PM, Bjorn Andersson wrote:
-> On Mon, Apr 28, 2025 at 11:14:18PM +0200, Konrad Dybcio wrote:
->> On 4/28/25 12:48 PM, Dmitry Baryshkov wrote:
->>> On Mon, 28 Apr 2025 at 11:18, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>>>
->>>> Hi,
->>>>
->>>> On 25/04/2025 23:49, Konrad Dybcio wrote:
->>>>> On 4/24/25 6:32 PM, Neil Armstrong wrote:
->>>>>> Add DT entries for the sm8650 iris decoder.
->>>>>>
->>>>>> Since the firmware is required to be signed, only enable
->>>>>> on Qualcomm development boards where the firmware is
->>>>>> available.
->>>>>>
->>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>>>> ---
->>>>>> Changes in v2:
->>>>>> - removed useless firmware-name
->>>>>> - Link to v1: https://lore.kernel.org/r/20250418-topic-sm8x50-upstream-iris-8650-dt-v1-1-80a6ae50bf10@linaro.org
->>>>>> ---
->>>>>
->>>>> [...]
->>>>>
->>>>>> +            iris: video-codec@aa00000 {
->>>>>> +                    compatible = "qcom,sm8650-iris";
->>>>>> +                    reg = <0 0x0aa00000 0 0xf0000>;
->>>>>> +
->>>>>> +                    interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH 0>;
->>>>>> +
->>>>>> +                    power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
->>>>>> +                                    <&videocc VIDEO_CC_MVS0_GDSC>,
->>>>>> +                                    <&rpmhpd RPMHPD_MXC>,
->>>>>> +                                    <&rpmhpd RPMHPD_MMCX>;
->>>>>> +                    power-domain-names = "venus",
->>>>>> +                                         "vcodec0",
->>>>>> +                                         "mxc",
->>>>>> +                                         "mmcx";
->>>>>> +
->>>>>> +                    operating-points-v2 = <&iris_opp_table>;
->>>>>> +
->>>>>> +                    clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
->>>>>> +                             <&videocc VIDEO_CC_MVS0C_CLK>,
->>>>>> +                             <&videocc VIDEO_CC_MVS0_CLK>;
->>>>>> +                    clock-names = "iface",
->>>>>> +                                  "core",
->>>>>> +                                  "vcodec0_core";
->>>>>> +
->>>>>> +                    interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
->>>>>> +                                     &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
->>>>>> +                                    <&mmss_noc MASTER_VIDEO QCOM_ICC_TAG_ALWAYS
->>>>>> +                                     &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
->>>>>> +                    interconnect-names = "cpu-cfg",
->>>>>> +                                         "video-mem";
->>>>>> +
->>>>>> +                    /* FW load region */
->>>>>
->>>>> I don't think this comment brings value
->>>>
->>>> Right
->>>>
->>>>>
->>>>>> +                    memory-region = <&video_mem>;
->>>>>> +
->>>>>> +                    resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
->>>>>> +                             <&videocc VIDEO_CC_XO_CLK_ARES>,
->>>>>> +                             <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
->>>>>> +                    reset-names = "bus",
->>>>>> +                                  "xo",
->>>>>> +                                  "core";
->>>>>> +
->>>>>> +                    iommus = <&apps_smmu 0x1940 0>,
->>>>>> +                             <&apps_smmu 0x1947 0>;
->>>>>
->>>>> I think you may also need 0x1942 0x0 (please also make the second value / SMR
->>>>> mask hex)> +
->>>>
->>>> I don't see 0x1942 in the downstream DT, and which mask should I set ? 0x1 ?
->>
->> I saw it in docs only, maybe Vikash or Dikshita can chime in whether it's
->> necessary. It would have mask 0x0 if so.
->>
->>>>
->>>>>> +                    dma-coherent;
->>>>>> +
->>>>>> +                    /*
->>>>>> +                     * IRIS firmware is signed by vendors, only
->>>>>> +                     * enable in boards where the proper signed firmware
->>>>>> +                     * is available.
->>>>>> +                     */
->>>>>
->>>>> Here's to another angry media article :(
->>>>>
->>>>> Please keep Iris enabled.. Vikash reassured me this is not an
->>>>> issue until the user attempts to use the decoder [1], and reading
->>>>> the code myself I come to the same conclusion (though I haven't given
->>>>> it a smoke test - please do that yourself, as you seem to have a better
->>>>> set up with these platforms).
->>>>>
->>>>> If the userland is sane, it should throw an error and defer to CPU
->>>>> decoding.
->>>>>
->>>>> This is >>unlike venus<< which if lacking firmware at probe (i.e. boot)
->>>>> would prevent .sync_state
->>>>
->>>> Well sync with Bjorn who asked me to only enable on board with available firmware ;-)
->>>
->>> I'd second him here: if there is no firmware, don't enable the device.
->>> It's better than the users having cryptic messages in the dmesg,
->>> trying to understand why the driver errors out.
->>
->> I don't agree.. the firmware may appear later at boot (e.g. user installs a
->> small rootfs and manually pulls in linux-firmware). Plus without the firmware,
->> we can still power on and off the IP block, particularly achieve sync_state
->> regardless of it
->>
+Hi Inochi,
+
+On 06:37 Wed 07 May     , Inochi Amaoto wrote:
+> On Thu, May 01, 2025 at 04:50:22PM +0800, Yixun Lan wrote:
+> > The SDHCI controller found in SpacemiT K1 SoC features SD,
+> > SDIO, eMMC support, such as:
+> > 
+> > - Compatible for 4-bit SDIO 3.0 UHS-I protocol, up to SDR104
+> > - Compatible for 4-bit SD 3.0 UHS-I protocol, up to SDR104
+> > - Compatible for 8bit eMMC5.1, up to HS400
+> > 
+> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> > ---
+> >  drivers/mmc/host/Kconfig       |  14 ++
+> >  drivers/mmc/host/Makefile      |   1 +
+> >  drivers/mmc/host/sdhci-of-k1.c | 306 +++++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 321 insertions(+)
+> > 
+> > diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> > index 6824131b69b188cae58c8f48076715ca647ca28c..0ce78f22c33cfff916a2d4d680c79e9d19637e0e 100644
+> > --- a/drivers/mmc/host/Kconfig
+> > +++ b/drivers/mmc/host/Kconfig
+> > @@ -250,6 +250,20 @@ config MMC_SDHCI_OF_DWCMSHC
+> >  	  If you have a controller with this interface, say Y or M here.
+> >  	  If unsure, say N.
+> >  
+> > +config MMC_SDHCI_OF_K1
+> > +	tristate "SDHCI OF support for the SpacemiT K1 SoC"
+> > +	depends on ARCH_SPACEMIT || COMPILE_TEST
+> > +	depends on MMC_SDHCI_PLTFM
+> > +	depends on OF
+> > +	depends on COMMON_CLK
+> > +	help
+> > +	  This selects the Secure Digital Host Controller Interface (SDHCI)
+> > +	  found in the SpacemiT K1 SoC.
+> > +
+> > +	  If you have a controller with this interface, say Y or M here.
+> > +
+> > +	  If unsure, say N.
+> > +
+> >  config MMC_SDHCI_OF_SPARX5
+> >  	tristate "SDHCI OF support for the MCHP Sparx5 SoC"
+> >  	depends on MMC_SDHCI_PLTFM
+> > diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
+> > index 5147467ec825ffaef3a7bd812fad80545e52b180..75bafc7b162b9e1d4c6c050f5d28b9d7cb582447 100644
+> > --- a/drivers/mmc/host/Makefile
+> > +++ b/drivers/mmc/host/Makefile
+> > @@ -88,6 +88,7 @@ obj-$(CONFIG_MMC_SDHCI_OF_AT91)		+= sdhci-of-at91.o
+> >  obj-$(CONFIG_MMC_SDHCI_OF_ESDHC)	+= sdhci-of-esdhc.o
+> >  obj-$(CONFIG_MMC_SDHCI_OF_HLWD)		+= sdhci-of-hlwd.o
+> >  obj-$(CONFIG_MMC_SDHCI_OF_DWCMSHC)	+= sdhci-of-dwcmshc.o
+> > +obj-$(CONFIG_MMC_SDHCI_OF_K1)		+= sdhci-of-k1.o
+> >  obj-$(CONFIG_MMC_SDHCI_OF_SPARX5)	+= sdhci-of-sparx5.o
+> >  obj-$(CONFIG_MMC_SDHCI_OF_MA35D1)	+= sdhci-of-ma35d1.o
+> >  obj-$(CONFIG_MMC_SDHCI_BCM_KONA)	+= sdhci-bcm-kona.o
+> > diff --git a/drivers/mmc/host/sdhci-of-k1.c b/drivers/mmc/host/sdhci-of-k1.c
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..8988053eeb33a476fa484d145579db6214b2d0b7
+> > --- /dev/null
+> > +++ b/drivers/mmc/host/sdhci-of-k1.c
+> > @@ -0,0 +1,306 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (C) 2023-2025 SpacemiT (Hangzhou) Technology Co. Ltd
+> > + * Copyright (c) 2025 Yixun Lan <dlan@gentoo.org>
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/iopoll.h>
+> > +#include <linux/init.h>
+> > +#include <linux/mmc/card.h>
+> > +#include <linux/mmc/host.h>
+> > +#include <linux/mmc/mmc.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +#include "sdhci.h"
+> > +#include "sdhci-pltfm.h"
+> > +
+> > +#define SDHC_MMC_CTRL_REG		0x114
+> > +#define  MISC_INT_EN			BIT(1)
+> > +#define  MISC_INT			BIT(2)
+> > +#define  ENHANCE_STROBE_EN		BIT(8)
+> > +#define  MMC_HS400			BIT(9)
+> > +#define  MMC_HS200			BIT(10)
+> > +#define  MMC_CARD_MODE			BIT(12)
+> > +
+> > +#define SDHC_TX_CFG_REG			0x11C
+> > +#define  TX_INT_CLK_SEL			BIT(30)
+> > +#define  TX_MUX_SEL			BIT(31)
+> > +
+> > +#define SDHC_PHY_CTRL_REG		0x160
+> > +#define  PHY_FUNC_EN			BIT(0)
+> > +#define  PHY_PLL_LOCK			BIT(1)
+> > +#define  HOST_LEGACY_MODE		BIT(31)
+> > +
+> > +#define SDHC_PHY_FUNC_REG		0x164
+> > +#define  PHY_TEST_EN			BIT(7)
+> > +#define  HS200_USE_RFIFO		BIT(15)
+> > +
+> > +#define SDHC_PHY_DLLCFG			0x168
+> > +#define  DLL_PREDLY_NUM			GENMASK(3, 2)
+> > +#define  DLL_FULLDLY_RANGE		GENMASK(5, 4)
+> > +#define  DLL_VREG_CTRL			GENMASK(7, 6)
+> > +#define  DLL_ENABLE			BIT(31)
+> > +
+> > +#define SDHC_PHY_DLLCFG1		0x16C
+> > +#define  DLL_REG1_CTRL			GENMASK(7, 0)
+> > +#define  DLL_REG2_CTRL			GENMASK(15, 8)
+> > +#define  DLL_REG3_CTRL			GENMASK(23, 16)
+> > +#define  DLL_REG4_CTRL			GENMASK(31, 24)
+> > +
+> > +#define SDHC_PHY_DLLSTS			0x170
+> > +#define  DLL_LOCK_STATE			BIT(0)
+> > +
+> > +#define SDHC_PHY_PADCFG_REG		0x178
+> > +#define  PHY_DRIVE_SEL			GENMASK(2, 0)
+> > +#define  RX_BIAS_CTRL			BIT(5)
+> > +
+> > +struct spacemit_sdhci_host {
+> > +	struct clk *clk_core;
+> > +	struct clk *clk_io;
+> > +};
+> > +
+> > +static inline void spacemit_sdhci_setbits(struct sdhci_host *host, u32 val, int reg)
+> > +{
+> > +	sdhci_writel(host, sdhci_readl(host, reg) | val, reg);
+> > +}
+> > +
+> > +static inline void spacemit_sdhci_clrbits(struct sdhci_host *host, u32 val, int reg)
+> > +{
+> > +	sdhci_writel(host, sdhci_readl(host, reg) & ~val, reg);
+> > +}
+> > +
 > 
-> Not "available during boot", but rather "available for a particular
-> board".
-
-I'd argue that if a device is in the hands of users, there already exists
-some acceptable set of fw binaries.. but most developers aren't in the
-position to upload them into l-f.. And quite frankly I'm not the biggest
-fan of having a gigabyte of 99%-the-same files with a dozen lines changed
-and a different signature prepended to them either..
-
-> We generally avoid enabling device_nodes that depend on vendor-signed
-> firmware until someone has tested the device on such board and specified
-> the proper path to the vendor-specific firmware.
+> > +static inline void spacemit_sdhci_clrsetbits(struct sdhci_host *host, u32 clr, u32 set, int reg)
 > 
-> Are you suggesting that we should leave this enabled on all boards for
-> some reason (perhaps to ensure that resources are adequately managed)?
+> updatebits?
+> 
+IMO, it's more ambiguous to use updatebits(), so I will just keep it
 
-Yes, for that reason indeed.
+besides, these above helper functions should really be carefully used,
+setbits() only set bits of 'val' while preserve other bits,
+clrsetbits() will first clear bits, then set, while still preserve others
 
-We don't generally need to load firmware to turn something *off*. And
-most IP blocks don't **actually** need to be presented with firmware at
-probe time (I can only think of external ICs like no-storage touch
-controllers that need the fw uploaded on each powerup). 
+I will try to put a comment for them while updating next version
 
-Telling the user "hey, this is supported but the firmware file can't
-be loaded on your device" may also be better sounding than "won't work
-on your machine" (with the quiet part being: "because someone hasn't
-copied 5 lines of DTS")
+> > +{
+> > +	u32 val = sdhci_readl(host, reg);
+> > +
+> > +	val = (val & ~clr) | set;
+> > +	sdhci_writel(host, val, reg);
+> > +}
+> > +
+> > +static void spacemit_sdhci_reset(struct sdhci_host *host, u8 mask)
+> > +{
+> > +	struct platform_device *pdev;
+> > +
+> > +	pdev = to_platform_device(mmc_dev(host->mmc));
+> > +	sdhci_reset(host, mask);
+> > +
+> > +	if (mask != SDHCI_RESET_ALL)
+> > +		return;
+> > +
+> > +	spacemit_sdhci_setbits(host, PHY_FUNC_EN | PHY_PLL_LOCK, SDHC_PHY_CTRL_REG);
+> > +
+> > +	spacemit_sdhci_clrsetbits(host, PHY_DRIVE_SEL,
+> > +				  RX_BIAS_CTRL | FIELD_PREP(PHY_DRIVE_SEL, 4),
+> > +				  SDHC_PHY_PADCFG_REG);
+> > +
+> > +	if (!(host->mmc->caps2 & MMC_CAP2_NO_MMC))
+> > +		spacemit_sdhci_setbits(host, MMC_CARD_MODE, SDHC_MMC_CTRL_REG);
+> > +}
+> > +
+> > +static void spacemit_sdhci_set_uhs_signaling(struct sdhci_host *host, unsigned int timing)
+> > +{
+> > +	if (timing == MMC_TIMING_MMC_HS200)
+> > +		spacemit_sdhci_setbits(host, MMC_HS200, SDHC_MMC_CTRL_REG);
+> > +
+> > +	if (timing == MMC_TIMING_MMC_HS400)
+> > +		spacemit_sdhci_setbits(host, MMC_HS400, SDHC_MMC_CTRL_REG);
+> > +
+> > +	sdhci_set_uhs_signaling(host, timing);
+> > +
+> > +	if (!(host->mmc->caps2 & MMC_CAP2_NO_SDIO))
+> > +		spacemit_sdhci_setbits(host, SDHCI_CTRL_VDD_180, SDHCI_HOST_CONTROL2);
+> > +}
+> > +
+> > +static void spacemit_sdhci_set_clock(struct sdhci_host *host, unsigned int clock)
+> > +{
+> > +	struct mmc_host *mmc = host->mmc;
+> > +
+> > +	if (mmc->ios.timing <= MMC_TIMING_UHS_SDR50)
+> > +		spacemit_sdhci_setbits(host, TX_INT_CLK_SEL, SDHC_TX_CFG_REG);
+> > +	else
+> > +		spacemit_sdhci_clrbits(host, TX_INT_CLK_SEL, SDHC_TX_CFG_REG);
+> > +
+> > +	sdhci_set_clock(host, clock);
+> > +};
+> > +
+> > +static void spacemit_sdhci_phy_dll_init(struct sdhci_host *host)
+> > +{
+> > +	u32 state;
+> > +	int ret;
+> > +
+> > +	spacemit_sdhci_clrsetbits(host, DLL_PREDLY_NUM | DLL_FULLDLY_RANGE | DLL_VREG_CTRL,
+> > +				  FIELD_PREP(DLL_PREDLY_NUM, 1) |
+> > +				  FIELD_PREP(DLL_FULLDLY_RANGE, 1) |
+> > +				  FIELD_PREP(DLL_VREG_CTRL, 1),
+> > +				  SDHC_PHY_DLLCFG);
+> > +
+> > +	spacemit_sdhci_clrsetbits(host, DLL_REG1_CTRL,
+> > +				  FIELD_PREP(DLL_REG1_CTRL, 0x92),
+> > +				  SDHC_PHY_DLLCFG1);
+> > +
+> > +	spacemit_sdhci_setbits(host, DLL_ENABLE, SDHC_PHY_DLLCFG);
+> > +
+> > +	ret = readl_poll_timeout(host->ioaddr + SDHC_PHY_DLLSTS, state,
+> > +				 state & DLL_LOCK_STATE, 2, 100);
+> > +	if (ret == -ETIMEDOUT)
+> > +		dev_warn(mmc_dev(host->mmc), "fail to lock phy dll in 100us!\n");
+> > +}
+> > +
+> > +static void spacemit_sdhci_hs400_enhanced_strobe(struct mmc_host *mmc, struct mmc_ios *ios)
+> > +{
+> > +	struct sdhci_host *host = mmc_priv(mmc);
+> > +
+> > +	if (!ios->enhanced_strobe) {
+> > +		spacemit_sdhci_clrbits(host, ENHANCE_STROBE_EN, SDHC_MMC_CTRL_REG);
+> > +		return;
+> > +	}
+> > +
+> > +	spacemit_sdhci_setbits(host, ENHANCE_STROBE_EN, SDHC_MMC_CTRL_REG);
+> > +	spacemit_sdhci_phy_dll_init(host);
+> > +}
+> > +
+> > +static unsigned int spacemit_sdhci_clk_get_max_clock(struct sdhci_host *host)
+> > +{
+> > +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> > +
+> > +	return clk_get_rate(pltfm_host->clk);
+> > +}
+> > +
+> > +static int spacemit_sdhci_pre_select_hs400(struct mmc_host *mmc)
+> > +{
+> > +	struct sdhci_host *host = mmc_priv(mmc);
+> > +
+> > +	spacemit_sdhci_setbits(host, MMC_HS400, SDHC_MMC_CTRL_REG);
+> > +	host->mmc->caps |= MMC_CAP_WAIT_WHILE_BUSY;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static void spacemit_sdhci_post_select_hs400(struct mmc_host *mmc)
+> > +{
+> > +	struct sdhci_host *host = mmc_priv(mmc);
+> > +
+> > +	spacemit_sdhci_phy_dll_init(host);
+> > +	host->mmc->caps &= ~MMC_CAP_WAIT_WHILE_BUSY;
+> > +}
+> > +
+> > +static void spacemit_sdhci_pre_hs400_to_hs200(struct mmc_host *mmc)
+> > +{
+> > +	struct sdhci_host *host = mmc_priv(mmc);
+> > +
+> > +	spacemit_sdhci_clrbits(host, PHY_FUNC_EN | PHY_PLL_LOCK, SDHC_PHY_CTRL_REG);
+> > +	spacemit_sdhci_clrbits(host, MMC_HS400 | MMC_HS200 | ENHANCE_STROBE_EN, SDHC_MMC_CTRL_REG);
+> > +	spacemit_sdhci_clrbits(host, HS200_USE_RFIFO, SDHC_PHY_FUNC_REG);
+> > +
+> > +	udelay(5);
+> > +
+> > +	spacemit_sdhci_setbits(host, PHY_FUNC_EN | PHY_PLL_LOCK, SDHC_PHY_CTRL_REG);
+> > +}
+> > +
+> > +static inline int spacemit_sdhci_get_clocks(struct device *dev,
+> > +					    struct sdhci_pltfm_host *pltfm_host)
+> > +{
+> > +	struct spacemit_sdhci_host *sdhst = sdhci_pltfm_priv(pltfm_host);
+> > +
+> > +	sdhst->clk_core = devm_clk_get_enabled(dev, "core");
+> > +	if (IS_ERR(sdhst->clk_core))
+> > +		return -EINVAL;
+> > +
+> > +	sdhst->clk_io = devm_clk_get_enabled(dev, "io");
+> > +	if (IS_ERR(sdhst->clk_io))
+> > +		return -EINVAL;
+> > +
+> > +	pltfm_host->clk = sdhst->clk_io;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct sdhci_ops spacemit_sdhci_ops = {
+> > +	.get_max_clock		= spacemit_sdhci_clk_get_max_clock,
+> > +	.reset			= spacemit_sdhci_reset,
+> > +	.set_bus_width		= sdhci_set_bus_width,
+> > +	.set_clock		= spacemit_sdhci_set_clock,
+> > +	.set_uhs_signaling	= spacemit_sdhci_set_uhs_signaling,
+> > +};
+> > +
+> > +static const struct sdhci_pltfm_data spacemit_sdhci_k1_pdata = {
+> > +	.ops = &spacemit_sdhci_ops,
+> > +	.quirks = SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK |
+> > +		  SDHCI_QUIRK_NO_ENDATTR_IN_NOPDESC |
+> > +		  SDHCI_QUIRK_32BIT_ADMA_SIZE |
+> > +		  SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
+> > +		  SDHCI_QUIRK_BROKEN_CARD_DETECTION |
+> > +		  SDHCI_QUIRK_BROKEN_TIMEOUT_VAL,
+> > +	.quirks2 = SDHCI_QUIRK2_BROKEN_64_BIT_DMA |
+> > +		   SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
+> > +};
+> > +
+> > +static const struct of_device_id spacemit_sdhci_of_match[] = {
+> > +	{ .compatible = "spacemit,k1-sdhci" },
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, spacemit_sdhci_of_match);
+> > +
+> > +static int spacemit_sdhci_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct spacemit_sdhci_host *sdhst;
+> > +	struct sdhci_pltfm_host *pltfm_host;
+> > +	struct sdhci_host *host;
+> > +	struct mmc_host_ops *mops;
+> > +	int ret;
+> > +
+> > +	host = sdhci_pltfm_init(pdev, &spacemit_sdhci_k1_pdata, sizeof(*sdhst));
+> > +	if (IS_ERR(host))
+> > +		return PTR_ERR(host);
+> > +
+> > +	pltfm_host = sdhci_priv(host);
+> > +
+> > +	ret = mmc_of_parse(host->mmc);
+> > +	if (ret)
+> > +		goto err_pltfm;
+> > +
+> > +	sdhci_get_of_property(pdev);
+> > +
+> > +	if (!(host->mmc->caps2 & MMC_CAP2_NO_MMC)) {
+> > +		mops = &host->mmc_host_ops;
+> > +		mops->hs400_prepare_ddr	= spacemit_sdhci_pre_select_hs400;
+> > +		mops->hs400_complete	= spacemit_sdhci_post_select_hs400;
+> > +		mops->hs400_downgrade	= spacemit_sdhci_pre_hs400_to_hs200;
+> > +		mops->hs400_enhanced_strobe = spacemit_sdhci_hs400_enhanced_strobe;
+> > +	}
+> > +
+> > +	host->mmc->caps |= MMC_CAP_NEED_RSP_BUSY;
+> > +
+> > +	if (spacemit_sdhci_get_clocks(dev, pltfm_host))
+> > +		goto err_pltfm;
+> > +
+> > +	ret = sdhci_add_host(host);
+> > +	if (ret)
+> > +		goto err_pltfm;
+> > +
+> > +	return 0;
+> > +
+> > +err_pltfm:
+> > +	sdhci_pltfm_free(pdev);
+> > +	return ret;
+> > +}
+> > +
+> > +static struct platform_driver spacemit_sdhci_driver = {
+> > +	.driver		= {
+> > +		.name	= "sdhci-spacemit",
+> 
+> > +		.of_match_table = of_match_ptr(spacemit_sdhci_of_match),
+> 
+> I think the of_match_ptr is not needed.
+> 
+right, since CONFIG_OF is enforced here, will drop in next version
 
-Konrad
+thanks for the review
+
+> > +	},
+> > +	.probe		= spacemit_sdhci_probe,
+> > +	.remove		= sdhci_pltfm_remove,
+> > +};
+> > +module_platform_driver(spacemit_sdhci_driver);
+> > +
+> > +MODULE_DESCRIPTION("SpacemiT SDHCI platform driver");
+> > +MODULE_LICENSE("GPL");
+> > 
+> > -- 
+> > 2.49.0
+> > 
+
+-- 
+Yixun Lan (dlan)
 
