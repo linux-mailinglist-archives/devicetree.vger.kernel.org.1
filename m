@@ -1,142 +1,122 @@
-Return-Path: <devicetree+bounces-173938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED7BAABB8B
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:43:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0250BAABB45
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:37:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBB553A8D49
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:24:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D18BC3B0B51
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3392A28DF41;
-	Tue,  6 May 2025 05:32:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B2F28FAAE;
+	Tue,  6 May 2025 05:39:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mcI8Pe0A"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="fIRgVAd3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2170F28DF47;
-	Tue,  6 May 2025 05:32:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661CE27BF9A;
+	Tue,  6 May 2025 05:39:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746509546; cv=none; b=XBlu6nlVSWbngX2bEJGquWwCWryoJo3Bmqk8sfUl5gQ27mg2LQQE0b37sl/dCALXda7oV/vfegRXXITgXyw6j0sc8igLxePMIhG62N6JeD5BiFLDdziOior4D9BU5Wne3mNmiZTnL3mGZb2tPQrtm9nEwEnmQ6tVHE8v9SXpA7M=
+	t=1746509948; cv=none; b=IajYhBsBAYeFRXRvam01W4eVPjy5ev2de9fVNSsEHuFQm0ShERMC767PNdcnZ3sXFIXIX2lBTQQyjqN5eEJtf10AeFAIJREoZDkz/EU3eqC765t/pwJrGaiGk+K2iNnhWMMwagwfnNNPvlk+v+hjepnFAlCoZpI7kvMlnEKSdbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746509546; c=relaxed/simple;
-	bh=remPqthXLp54OhP3D7Lc9RtMDdogPoIvT5KHNV5kIjM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YrZRKuvoKEO0T3HNW4pSd+L3UVmG2HIseUxeMO4wC2xSxehzL4VmIOzWSTglk/FHoWjMdfUL1bh8euEo2ceufrq6RMFLuZsQSWlpsrk0eT3JYlcpATfpUoWSWPmYE//jp33RxWyqq6pHynV2iTt5d1AmF1BAEOqEgwZ+nIMYmEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mcI8Pe0A; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746509544; x=1778045544;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=remPqthXLp54OhP3D7Lc9RtMDdogPoIvT5KHNV5kIjM=;
-  b=mcI8Pe0AnvS8rvzSFy7mdSSpuuT05Ke55DzTjk4Aj8v79dwvP23Q7Nga
-   X8Ogwr3KziOw9bYefTuT4O71wdtkdF1Fn997PoYzaop86vhcSfH07gD8I
-   LgmVs9ouBMNVyAy3dpSizJxhwaglvmBaVjJjpXHc86egr0DPJ14vmzYNj
-   A+tvmJ26bOp8E9xW+X533TliBFPBu2FHHfP4VD2ylY2Yjv+QxP5Tmfh2b
-   Lw09HE3UAjjcIoyGwLfv0KLJsFTAcCSDl19zT9fTfknslHQfZoof1Ieyq
-   yS8fHmZLP1Q7bVCRYjeazNinzajcSRVgkErQO38k6LxCmxyjQ8bKP2Kbw
-   g==;
-X-CSE-ConnectionGUID: EOG2YerGSh2Llr+1WNL3LQ==
-X-CSE-MsgGUID: AR7YbiIIRyOkw6bjv8slQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="59544505"
-X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; 
-   d="scan'208";a="59544505"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2025 22:32:24 -0700
-X-CSE-ConnectionGUID: FTuGaNbgRhiyzQpmGqK8LA==
-X-CSE-MsgGUID: Tdb3wdcaS5KMnHepMukgsg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; 
-   d="scan'208";a="135389730"
-Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2025 22:32:23 -0700
-Date: Mon, 5 May 2025 22:37:26 -0700
-From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org,
-	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
-	Ricardo Neri <ricardo.neri@intel.com>
-Subject: Re: [PATCH v3 03/13] x86/acpi: Move acpi_wakeup_cpu() and helpers to
- smpboot.c
-Message-ID: <20250506053726.GF25533@ranerica-svr.sc.intel.com>
-References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
- <20250503191515.24041-4-ricardo.neri-calderon@linux.intel.com>
- <CAJZ5v0h_QcH72COEU-cnHUMfXj2grHv1EoLuBJnxm7_AeRteWw@mail.gmail.com>
+	s=arc-20240116; t=1746509948; c=relaxed/simple;
+	bh=jS6WcRUZ5LMlqt/v3lxpcWGgtkNFOwJfvXYwfqfFbi4=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=abdFgEBTpdt6u9n9fNkiUWgrCkEX0RF/ZazA7fCtLHpNmgRyxRYeiTDKPVJC2MO6oundOMxFJZP6vol4NRJvp+EeUAR0tDTx7xo/Yh4JyAu7gPT/kLG1ZO/YIO6GTUx0TjTgj7/4vcP06t+g5IHRNtJX0nzmGRHoZSNfSFWr5Z8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=fIRgVAd3; arc=none smtp.client-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id; bh=SEKm99PurVmtrNTupP
+	5Lg3cHjShnygrGqkE6bVv/E7I=; b=fIRgVAd3fMVfzNtZrUHMKm4X5GSFt8lgWi
+	9njtbfBxHMQhvRTM4ntJlB65BvfuWlTqWy8Ys+YmtCU90kEmfBKhadOclNKvdA8a
+	fQGUsQvJVLZCBWOVCnU2xkf61BfP7bcQdkIpdaBhmJb0GfKbfztdrjwQtoXTCEyU
+	WkyuG1TeM=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wBHxSpEoBloZ2M1Ew--.50689S6;
+	Tue, 06 May 2025 13:38:28 +0800 (CST)
+From: Wenliang Yan <wenliang202407@163.com>
+To: linux@roeck-us.net,
+	Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Wenliang Yan <wenliang202407@163.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	christophe.jaillet@wanadoo.fr,
+	derek.lin@silergycorp.com,
+	miguel.lee@silergycorp.com,
+	chris.ho@silergycorp.com,
+	eason.liao@silergycorp.com
+Subject: [PATCH v7 4/4] dt-bindings:Add SQ52206 to ina2xx devicetree bindings
+Date: Tue,  6 May 2025 01:37:41 -0400
+Message-Id: <20250506053741.4837-5-wenliang202407@163.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20250506053741.4837-1-wenliang202407@163.com>
+References: <20250506053741.4837-1-wenliang202407@163.com>
+X-CM-TRANSID:_____wBHxSpEoBloZ2M1Ew--.50689S6
+X-Coremail-Antispam: 1Uf129KBjvJXoW7CF18Kr4fWF45uF4UWF43Awb_yoW8XF17p3
+	9xCF1jqryFqF13u3y7t3Z5G34Uu3Wv9F48KF1DJr1a93WkZa4Fq39xKr18Kr17Cr1fZFWf
+	uFn2grW8X340yaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pRVnmiUUUUU=
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbiMAZF02gZnOxMHwAAsy
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJZ5v0h_QcH72COEU-cnHUMfXj2grHv1EoLuBJnxm7_AeRteWw@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
 
-On Mon, May 05, 2025 at 12:03:13PM +0200, Rafael J. Wysocki wrote:
-> On Sat, May 3, 2025 at 9:10 PM Ricardo Neri
-> <ricardo.neri-calderon@linux.intel.com> wrote:
-> >
-> > The bootstrap processor uses acpi_wakeup_cpu() to indicate to firmware that
-> > it wants to boot a secondary CPU using a mailbox as described in the
-> > Multiprocessor Wakeup Structure of the ACPI specification.
-> >
-> > The wakeup mailbox does not strictly require support from ACPI.
-> 
-> Well, except that it is defined by the ACPI specification.
+Add the sq52206 compatible to the ina2xx.yaml
 
-That is true.
+Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+---
 
-> 
-> > The platform firmware can implement a mailbox compatible in structure and
-> > operation and enumerate it using other mechanisms such a DeviceTree graph.
-> 
-> So is there a specification defining this mechanism?
-> 
-> It is generally not sufficient to put the code and DT bindings
-> unilaterally into the OS and expect the firmware to follow suit.
-> 
+Add the meaning of 'shunt-gain' in SQ52206.
 
-This mechanism is described in the section 4.3.5 of the Intel TDX
-Virtual Firmware Design Guide [1], but it refeers to the ACPI
-specification for the interface.
+v6->v7: Change 'silergy,sy24655' to 'silergy,sq52206' so that
+the make dt_binding_check' command can be successfully passed
 
-> > Move the code used to setup and use the mailbox out of the ACPI
-> > directory to use it when support for ACPI is not available or needed.
-> 
-> I think that the code implementing interfaces defined by the ACPI
-> specification is not generic and so it should not be built when the
-> kernel is configured without ACPI support.
+v5->v6:add content to meet the update requirements of the ina2xx.yaml
 
-Support for ACPI would not be used on systems describing hardware using
-a DeviceTree graph. My goal is to have a common interface that both
-DT and ACPI can use. I think what is missing is that common interface.
+ Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Would it be preferred to have a separate implementation that is
-functionally equivalent?
-
-Thanks and BR,
-Ricardo
-
-
-[1]. https://cdrdv2-public.intel.com/733585/tdx-virtual-firmware-design-guide-rev-004-20231206.pdf
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+index bc03781342c0..d1fb7b9abda0 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+@@ -19,6 +19,7 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - silergy,sq52206
+       - silergy,sy24655
+       - ti,ina209
+       - ti,ina219
+@@ -58,6 +59,9 @@ properties:
+       shunt voltage, and a value of 4 maps to ADCRANGE=0 such that a wider
+       voltage range is used.
+ 
++      For SQ52206,the shunt-gain value 1 mapps to ADCRANGE=10/11, the value 2
++      mapps to ADCRANGE=01, and the value 4 mapps to ADCRANGE=00.
++
+       The default value is device dependent, and is defined by the reset value
+       of PGA/ADCRANGE in the respective configuration registers.
+     $ref: /schemas/types.yaml#/definitions/uint32
+@@ -97,6 +101,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - silergy,sq52206
+               - silergy,sy24655
+               - ti,ina209
+               - ti,ina219
+-- 
+2.17.1
 
 
