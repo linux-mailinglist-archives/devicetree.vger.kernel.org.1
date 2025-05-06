@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-174325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E777AACD5B
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:35:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51D62AACD6A
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:38:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4DCE4A32E7
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:35:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 447421C40505
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3A51286430;
-	Tue,  6 May 2025 18:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 782D7286436;
+	Tue,  6 May 2025 18:38:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KaC/pWQ3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hNW8K3Ty"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A59A28137F;
-	Tue,  6 May 2025 18:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6081D5ADC;
+	Tue,  6 May 2025 18:38:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746556527; cv=none; b=BMYT9hVTW13kw/y2KzXpCQJRcd5JgUckeo0vzhjsyX1q52BvXlsvQKAVo+cGpA4aZs+jTs00ZQuAlbvYIeXVQdHC8XlbQ7CJuqDGeBWTVI3FgYgZxKyFVbdrmvvuPwfAHnbuZVZdkLl21UIHYze2u+5o6WWQHCD5vH9Mrpvzv5E=
+	t=1746556732; cv=none; b=fefdvN7RC9LLYSrUavKDb11bm5qMcLdDgTn5WuHbx8GAh5uwEvWx48im5qBlGbnXbmNP7QUkvwuwk+j/8LG/VJ7C2BShXu31zEdtAUdoqPGNhiJ3Q6wEZwJ2L4tnHRgI19T3tHOJziRPKWbItWED9xeHx/ZhMl1Wnke6nSeV1t8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746556527; c=relaxed/simple;
-	bh=5CHlCIC3H3lI1zfdS7zqpj0NEj8pS2Iio7nJD6emYis=;
+	s=arc-20240116; t=1746556732; c=relaxed/simple;
+	bh=gENiHVaxO1cmf80wqivECEs5b1lWHjuxUFcc5Rj9v6s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aruW1ipBn7bBP33dQLuenNrt9iEV3o9au+wEN9W896XEBe2NVwTm7oWDMEhP5BTHj6q9xS3MyllxUZFloaCRTQJ06FFw22thnE7HuXblb4CJySCQZiGRCIlNQXnpZoqJWTWxWLnZgYIPh40MV8xOpGkwJjDJyNmOk7MPfdhZUuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KaC/pWQ3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5030FC4CEE4;
-	Tue,  6 May 2025 18:35:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=F3JvNNui2fg7ogAD/5aKti4ZR5ApPhFbDju7XM+Il7OsIj8bpK5XGY9L4zAjWKdUkdRceIODEBWOu366/LOGl2NscJGj4v5XTwzVhKSIJ3KYAO4W1UfAXR9bSmquCI4u6Amqjp57QN3i06Z4rquxBV0tJTyj9Xc1IGlfP4B8rrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hNW8K3Ty; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B2DCC4CEE4;
+	Tue,  6 May 2025 18:38:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746556527;
-	bh=5CHlCIC3H3lI1zfdS7zqpj0NEj8pS2Iio7nJD6emYis=;
+	s=k20201202; t=1746556731;
+	bh=gENiHVaxO1cmf80wqivECEs5b1lWHjuxUFcc5Rj9v6s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KaC/pWQ3sli3g7x1OG9pVE9Hx4y8YpDA73LyneqENJWap7s7j1KNhnFBH9g0gaTgd
-	 Gua3IX2iZTv6UT/mjw+EMdUpcGg3tSy3fZLG6O+MY2JUjJaM0KJ/tZvI70DvmXT/a/
-	 hDpR1T0bC267D++TanZGeMqVbRkP+1xY0rNY8fNMX8tsdlXKIJXf9Z0PI9UyK9mVWu
-	 jhEUEYv8zCPg/yP8pYpkCQkdrnATwJUTsl+c7hksdb1JD/TDwjgKYLyirf0hqJixoV
-	 L3lr80Ri8G+07tngC7zih1gKobK2WEhRB6RTu2AHIfGbTPApsuqMoQC8bGPjXdavVy
-	 F6RKWZEIWPkbQ==
-Message-ID: <497aaba9-f3fe-43d7-a54b-56e1a37d5167@kernel.org>
-Date: Tue, 6 May 2025 20:35:21 +0200
+	b=hNW8K3TynJZ598S3ASeaKe4sOs3uOQkWpdFHo/Y28/zJqReUoGqgw96wPFLXEg7c8
+	 DXVCawoIXOjLNaeRRtRs6TI7X8px0pUVXuv1jsIuUB5zM16vPj2OBl0EcwaMlJGsor
+	 jWQtdG7gawM8KGta69yM5E3ZruZBgEK7GZ2v8w4ff3u+bwXR/cDakLDkZGrhHtLol4
+	 1nLRZM7rosYjZr5ljtrdzAiApiNT3j5ei5jrqJH+QmEtH/CaNyEo2XVtwO3ABD1vJm
+	 44/GUvOBqDGzRZTL8Tr0j/lWMttWjwj7zR3LoTeoarYbswG0gfh+gWoA5RqG8UX3yD
+	 30sr6kKqDZA2w==
+Message-ID: <2e0efc8f-516e-47fb-9a8f-f140bf8a47c9@kernel.org>
+Date: Tue, 6 May 2025 20:38:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 7/9] dt-bindings: clock: cix: Add CIX sky1 scmi clock
- id
+Subject: Re: [PATCH v7 9/9] MAINTAINERS: Add CIX SoC maintainer entry
 To: Peter Chen <peter.chen@cixtech.com>, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de
 Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
  maz@kernel.org, kajetan.puchalski@arm.com, sudeep.holla@arm.com,
- eballetb@redhat.com, Gary Yang <gary.yang@cixtech.com>
+ eballetb@redhat.com, Fugang Duan <fugang.duan@cixtech.com>
 References: <20250506090752.3695666-1-peter.chen@cixtech.com>
- <20250506090752.3695666-8-peter.chen@cixtech.com>
+ <20250506090752.3695666-10-peter.chen@cixtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,28 +104,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250506090752.3695666-8-peter.chen@cixtech.com>
+In-Reply-To: <20250506090752.3695666-10-peter.chen@cixtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 06/05/2025 11:07, Peter Chen wrote:
-> From: Gary Yang <gary.yang@cixtech.com>
+> Using this entry as the maintainers information for CIX SoCs.
 > 
-> Add device tree bindings for the scmi clock id on
-> Cix sky1 platform.
-> 
-> Reviewed-by: Peter Chen <peter.chen@cixtech.com>
-
-I say this is conflicting with:
-
-> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> Acked-by: Fugang Duan <fugang.duan@cixtech.com>
 > Signed-off-by: Peter Chen <peter.chen@cixtech.com>
-
-this, but well, eh...
-
 > ---
+>  MAINTAINERS | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c59316109e3f..169b89eabea3 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2404,6 +2404,17 @@ F:	arch/arm/boot/compressed/misc-ep93xx.h
+>  F:	arch/arm/mach-ep93xx/
+>  F:	drivers/iio/adc/ep93xx_adc.c
+>  
+> +ARM/CIX SOC SUPPORT
+> +M:	Peter Chen <peter.chen@cixtech.com>
+> +M:	Fugang Duan <fugang.duan@cixtech.com>
+> +R:	CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>
+> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> +S:	Maintained
+> +T:	git git://git.kernel.org/pub/scm/linux/kernel/git/peter.chen/cix.git
+I am confused. I see this patchset already applied (3 weeks ago!) to
+above git repo:
+https://web.git.kernel.org/pub/scm/linux/kernel/git/peter.chen/cix.git/log/?h=cix-for-next
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+in a branch claiming this is for the next. This is the branch which you
+are supposed to be feeding next, so:
+1. Are you properly feeding linux-next (see for example my beginners
+talk from 2023 plumbers how to do it)?
+
+2. If so, how can you send something for review - v7 - while this is
+already applied and scheduled for next cycle (that is the meaning of
+"for-next")?
 
 Best regards,
 Krzysztof
