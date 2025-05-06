@@ -1,192 +1,198 @@
-Return-Path: <devicetree+bounces-174355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130BEAACEA4
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:07:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5B57AACEC1
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CAEC4E8837
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:07:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88DA41BC089A
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:23:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F051FF1D8;
-	Tue,  6 May 2025 20:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D00E1DA23;
+	Tue,  6 May 2025 20:23:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mCuakODT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a8v7+Z63"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8B81DE2C9;
-	Tue,  6 May 2025 20:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C00D372;
+	Tue,  6 May 2025 20:23:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746562028; cv=none; b=ol62Apg24fW7ACQx1//WV44774VRAJjr5xaao9gh19IaiZwlSK4gdSd/7z4yYTLlDCCTikqcVDtW/7JOpYJcuFnxI+odiyNog2FIaHCiHKuGmiHSlK8AgX+kXVQFVG9FpdDVi/G7/YPxUsGwgcVI6UmvguyfKd5JRrrhteoRjGA=
+	t=1746563004; cv=none; b=Jxqp8ZTK79txLXxeHC0RYSRTJGzLad/g8gRws9l/3cQ+WR34RyYKqjxbXcA/zIuY91YiYHSCgelKpx8ErUCysTSyqx5r8Z0vVXecMRNVupY3oZEuncyV8ToYzlPaT2gPlAJ+wLKb7pBDhiZEJj/pYCNeEy8ocvlJLXnRenyuDTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746562028; c=relaxed/simple;
-	bh=np1yhCpp/qpjWGPuT2g9hwqJ7HuHqaWY+xGRBXC7yJw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=R4EeUHZYroAaeMX1OecJu1aFgdJSpjnxsMbLW4mOOgNccGj+5KJmRAYPTzSR/Ie4EFLwZIt29P534eMU9gRAdJhGOzBdX8sionI5TdG7gmSLRSGbP/8jQKDfwoYsV48rxP9CQhSNdItzdz/RD8Tv06Ol7noOkS07ng4Eb0LzWJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mCuakODT; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2241053582dso95268445ad.1;
-        Tue, 06 May 2025 13:07:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746562026; x=1747166826; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4ZxCy7mrct22eBjkvKCaCp8i27n4yjdKKChzB9Nlcrw=;
-        b=mCuakODTArWwyJStrZwTroLuKqwZ4cbExcu6c2Ph1HkfPqIznAk0sH5JAicBNdNgFk
-         +9Im9XmsaCDIgSmww5mVTrNB5gEILQJuDnFNquR7polUTTXkNDrRercp5ePhZGYXg8O+
-         CS0hNO4Dv/jtEyu6tCzTcLI6Ctdoh/MgMjzub5rsSSNINx6zVK0iFIUwoo8jtomlqUMG
-         LxSbQWd7l/xVKGqHhtiSaLFAQ1gGowdIoMcxEhKfbJ0z19Rfzj1pmApSexRsQRXVQtBS
-         2fqDV3yrg6J9qKMdfWITtPWRhTHhrNY21KT7QzqQcQFf6nnkNSNQgj25dPi2BISgSrqB
-         tORw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746562026; x=1747166826;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4ZxCy7mrct22eBjkvKCaCp8i27n4yjdKKChzB9Nlcrw=;
-        b=vkjlXc0x15wUW4xZ582PFoZQqfScRlKEH8RZqVDCIZhZA9007bbhvkjXURY+UX8mhR
-         Y4oT8cdt/WBebKuUaWOflj+ALgTtQnMG4tU4f8jY0CdlpGDdZhAHASiGGAszOo3y3JYM
-         rZIW97U4UWVweqqX+KuI0TWcWSBvwDv6L42wlKx8R1Y6SJxYPav3Q+MCVKOmd0yu035L
-         2Nc149QKwolmwv6S3C22XhPoqmKFP8WdGcXmOUyAmhxP2As+Vgz308mx4OYb/07wU+p1
-         YjfM0TDbOpDegpn8NDLxxoQVTl86/hWC+hBs+xdXHUFkifSdmOZCavgT/o/kCj0Iw6O+
-         S7hg==
-X-Forwarded-Encrypted: i=1; AJvYcCWB6Evfl9jpTX7zz+ru0mMT0anrku+bRJRk2soB2LLU1opk7+dFwqy2dUmPQy3MxwrAxWCrP95hklEwD1fe@vger.kernel.org, AJvYcCWMqID0B+FLnDnBChBfDJgB+fs0C/cJ0Z/7Sr6EPzD/NNmuYh8Z3h9t6S70FHGOSwIdfYuC3pfhiKcQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJ4JqkiCeLbNQo5BrKmhgeJjy8Bf0NJRJji+Fi3QG6TpwNDHJh
-	8CdD0T3KGUWprmiDgReT+s/xFKGd2ZKiBZmL7DmQys/E8LF19pvBTyfx7dxtyLo=
-X-Gm-Gg: ASbGnctLkw6D65CcTs5JdYZczt1A0zGQ3dVr0MFPKyNa9htOk9udveAKi+ZURUxVF5A
-	aM02qBEA9ePof19FPja7uvIE7yNrdtNkTsM1/xY2wzW7OaG0TZVXXTDv1wFgYxxevRhXkkcF+R5
-	BDbyMGKd8B1YEXGS/7nmWe+qKmM4HJ5i5oW2c3rkRlsJzENVWLOEg2IqHBoAuNodAiuuaE5HXFy
-	D7YyhtEeKmTBX8xLil9CRYbae28TtJEwvEal/VVIOeqrOCa4HCy3VLVCIo5W4cP3RIuKVhqyGFG
-	QaqJ0Rc+ZjhJXYIYSWMhsoT+uqPkoLgsVxJzrccJnVP6c+Q1LaLK8ItCJxGgnY0=
-X-Google-Smtp-Source: AGHT+IHgty+nWlNjvTn6uA89Smf4WEwkFQeboQPPyPj2tQrZt5RL3JsInUt016uy2gN0K4G0GCNLdw==
-X-Received: by 2002:a17:902:e784:b0:21f:1202:f2f5 with SMTP id d9443c01a7336-22e5ea70a93mr7009825ad.8.1746562026263;
-        Tue, 06 May 2025 13:07:06 -0700 (PDT)
-Received: from NB-GIGA003.letovo.school ([5.194.95.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22e151e97absm78378635ad.62.2025.05.06.13.07.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 13:07:05 -0700 (PDT)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Wed, 07 May 2025 00:06:14 +0400
-Subject: [PATCH 3/3] ARM: dts: vt8500: list all four timer interrupts
+	s=arc-20240116; t=1746563004; c=relaxed/simple;
+	bh=JZoS77bwlb3qo0vjs7rkqCS4ofr7Fru3B+rU59+jDAQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SEuvrVDm5G+dKrHYyT2dEaG9f2JISYQI2WMoR3sWFK5pTG0f3TWtOud0042edNbdpKA28zUHyOvd5k3Pc5kLtQ7NwkEaA9i6yRV0FOvn7w7OZdtWHJM6Hu80QZFzAVIKmfOhjiIIjknFO8Z3ai8UwexKvy7936JAMvN7FRi+XHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a8v7+Z63; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF1EFC4CEE4;
+	Tue,  6 May 2025 20:23:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746563003;
+	bh=JZoS77bwlb3qo0vjs7rkqCS4ofr7Fru3B+rU59+jDAQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a8v7+Z63AUZmTM6mHNpAl6ots9EDK1X4LCKQZVEdhnbgzLPe0A5TKE0HwPQXdyyNZ
+	 kTRkriSKyQpB344LDzQKbzCXjZcyq2t5vLVNVvraJriFQA4KF1FaA2qZ0dlwHqojHb
+	 cQEVYtTguGIzCjkM+93OzT4a46AYW9pVsyjuKiCyfmWzMxuSOSwaFx4Ak9Q9Nux/vK
+	 zS18CyoDrdHMtCHCkITnbks4LJcHLQIfLK82aNLZEPpN/+g2esQYo+4f18nMRuHEqO
+	 VpXxjBmybGBjvZzvCIgVkd6sROWjVDPPMSvqPq53sgbkD3A6pO8zPh4maFX7oXhnRP
+	 HfHRfZmzA9elQ==
+Date: Tue, 6 May 2025 13:23:21 -0700
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	neil.armstrong@linaro.org, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: qcom: sm8650: add iris DT node
+Message-ID: <4lmt5cgg2tanrughooxw73h2brwyyc6ifqgo3ju6iz4enkvkic@umeijjk4ijxg>
+References: <20250424-topic-sm8x50-upstream-iris-8650-dt-v2-1-dd9108bf587f@linaro.org>
+ <3498cfda-a738-449d-9d9f-754bbc8125c2@oss.qualcomm.com>
+ <db91a526-e2f8-48f8-a071-f3fcc75235be@linaro.org>
+ <CAO9ioeWaPKXHgNGPx5q34+RP59PMLD+EVK5fQsN89KC9A1ca-Q@mail.gmail.com>
+ <d79790e5-52c9-4135-8f3c-af797145fa2d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250507-vt8500-timer-updates-v1-3-6b76f7f340a6@gmail.com>
-References: <20250507-vt8500-timer-updates-v1-0-6b76f7f340a6@gmail.com>
-In-Reply-To: <20250507-vt8500-timer-updates-v1-0-6b76f7f340a6@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746562005; l=3301;
- i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
- bh=np1yhCpp/qpjWGPuT2g9hwqJ7HuHqaWY+xGRBXC7yJw=;
- b=acj9oqY6ajaVU5Jdm/+NS52srXwXFDErkKw/vH45g0NmZPqUHKsdDmqsG39gjwMEAfZdC+dIX
- Kxa/8yKPuWGBEKPxh2MZY5a0osj9FK/0b0OPvbVxF9Ahurk+TAxBM3O
-X-Developer-Key: i=alchark@gmail.com; a=ed25519;
- pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d79790e5-52c9-4135-8f3c-af797145fa2d@oss.qualcomm.com>
 
-VIA/WonderMedia SoC timer can generate up to four interrupts corresponding
-to four timer match registers (firing when the 32-bit freerunning clock
-source counter matches either of the match registers, respectively).
+On Mon, Apr 28, 2025 at 11:14:18PM +0200, Konrad Dybcio wrote:
+> On 4/28/25 12:48 PM, Dmitry Baryshkov wrote:
+> > On Mon, 28 Apr 2025 at 11:18, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> >>
+> >> Hi,
+> >>
+> >> On 25/04/2025 23:49, Konrad Dybcio wrote:
+> >>> On 4/24/25 6:32 PM, Neil Armstrong wrote:
+> >>>> Add DT entries for the sm8650 iris decoder.
+> >>>>
+> >>>> Since the firmware is required to be signed, only enable
+> >>>> on Qualcomm development boards where the firmware is
+> >>>> available.
+> >>>>
+> >>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> >>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> >>>> ---
+> >>>> Changes in v2:
+> >>>> - removed useless firmware-name
+> >>>> - Link to v1: https://lore.kernel.org/r/20250418-topic-sm8x50-upstream-iris-8650-dt-v1-1-80a6ae50bf10@linaro.org
+> >>>> ---
+> >>>
+> >>> [...]
+> >>>
+> >>>> +            iris: video-codec@aa00000 {
+> >>>> +                    compatible = "qcom,sm8650-iris";
+> >>>> +                    reg = <0 0x0aa00000 0 0xf0000>;
+> >>>> +
+> >>>> +                    interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH 0>;
+> >>>> +
+> >>>> +                    power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
+> >>>> +                                    <&videocc VIDEO_CC_MVS0_GDSC>,
+> >>>> +                                    <&rpmhpd RPMHPD_MXC>,
+> >>>> +                                    <&rpmhpd RPMHPD_MMCX>;
+> >>>> +                    power-domain-names = "venus",
+> >>>> +                                         "vcodec0",
+> >>>> +                                         "mxc",
+> >>>> +                                         "mmcx";
+> >>>> +
+> >>>> +                    operating-points-v2 = <&iris_opp_table>;
+> >>>> +
+> >>>> +                    clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
+> >>>> +                             <&videocc VIDEO_CC_MVS0C_CLK>,
+> >>>> +                             <&videocc VIDEO_CC_MVS0_CLK>;
+> >>>> +                    clock-names = "iface",
+> >>>> +                                  "core",
+> >>>> +                                  "vcodec0_core";
+> >>>> +
+> >>>> +                    interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+> >>>> +                                     &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
+> >>>> +                                    <&mmss_noc MASTER_VIDEO QCOM_ICC_TAG_ALWAYS
+> >>>> +                                     &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+> >>>> +                    interconnect-names = "cpu-cfg",
+> >>>> +                                         "video-mem";
+> >>>> +
+> >>>> +                    /* FW load region */
+> >>>
+> >>> I don't think this comment brings value
+> >>
+> >> Right
+> >>
+> >>>
+> >>>> +                    memory-region = <&video_mem>;
+> >>>> +
+> >>>> +                    resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
+> >>>> +                             <&videocc VIDEO_CC_XO_CLK_ARES>,
+> >>>> +                             <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
+> >>>> +                    reset-names = "bus",
+> >>>> +                                  "xo",
+> >>>> +                                  "core";
+> >>>> +
+> >>>> +                    iommus = <&apps_smmu 0x1940 0>,
+> >>>> +                             <&apps_smmu 0x1947 0>;
+> >>>
+> >>> I think you may also need 0x1942 0x0 (please also make the second value / SMR
+> >>> mask hex)> +
+> >>
+> >> I don't see 0x1942 in the downstream DT, and which mask should I set ? 0x1 ?
+> 
+> I saw it in docs only, maybe Vikash or Dikshita can chime in whether it's
+> necessary. It would have mask 0x0 if so.
+> 
+> >>
+> >>>> +                    dma-coherent;
+> >>>> +
+> >>>> +                    /*
+> >>>> +                     * IRIS firmware is signed by vendors, only
+> >>>> +                     * enable in boards where the proper signed firmware
+> >>>> +                     * is available.
+> >>>> +                     */
+> >>>
+> >>> Here's to another angry media article :(
+> >>>
+> >>> Please keep Iris enabled.. Vikash reassured me this is not an
+> >>> issue until the user attempts to use the decoder [1], and reading
+> >>> the code myself I come to the same conclusion (though I haven't given
+> >>> it a smoke test - please do that yourself, as you seem to have a better
+> >>> set up with these platforms).
+> >>>
+> >>> If the userland is sane, it should throw an error and defer to CPU
+> >>> decoding.
+> >>>
+> >>> This is >>unlike venus<< which if lacking firmware at probe (i.e. boot)
+> >>> would prevent .sync_state
+> >>
+> >> Well sync with Bjorn who asked me to only enable on board with available firmware ;-)
+> > 
+> > I'd second him here: if there is no firmware, don't enable the device.
+> > It's better than the users having cryptic messages in the dmesg,
+> > trying to understand why the driver errors out.
+> 
+> I don't agree.. the firmware may appear later at boot (e.g. user installs a
+> small rootfs and manually pulls in linux-firmware). Plus without the firmware,
+> we can still power on and off the IP block, particularly achieve sync_state
+> regardless of it
+> 
 
-List all four interrupts in device trees.
+Not "available during boot", but rather "available for a particular
+board".
 
-This also enables the system event timer to use a match register other
-than 0, which can then in turn be used as a system watchdog (watchdog
-function is not available on other channels)
+We generally avoid enabling device_nodes that depend on vendor-signed
+firmware until someone has tested the device on such board and specified
+the proper path to the vendor-specific firmware.
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
----
- arch/arm/boot/dts/vt8500/vt8500.dtsi | 2 +-
- arch/arm/boot/dts/vt8500/wm8505.dtsi | 2 +-
- arch/arm/boot/dts/vt8500/wm8650.dtsi | 2 +-
- arch/arm/boot/dts/vt8500/wm8750.dtsi | 2 +-
- arch/arm/boot/dts/vt8500/wm8850.dtsi | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+Are you suggesting that we should leave this enabled on all boards for
+some reason (perhaps to ensure that resources are adequately managed)?
 
-diff --git a/arch/arm/boot/dts/vt8500/vt8500.dtsi b/arch/arm/boot/dts/vt8500/vt8500.dtsi
-index 2ba021585d4889f29777a12473964c29f999f3a0..d1dd37220d41becece5d24fbb19aa71b01723e35 100644
---- a/arch/arm/boot/dts/vt8500/vt8500.dtsi
-+++ b/arch/arm/boot/dts/vt8500/vt8500.dtsi
-@@ -111,7 +111,7 @@ clkuart3: uart3 {
- 		timer@d8130100 {
- 			compatible = "via,vt8500-timer";
- 			reg = <0xd8130100 0x28>;
--			interrupts = <36>;
-+			interrupts = <36>, <37>, <38>, <39>;
- 		};
- 
- 		usb@d8007900 {
-diff --git a/arch/arm/boot/dts/vt8500/wm8505.dtsi b/arch/arm/boot/dts/vt8500/wm8505.dtsi
-index 99c064c916b2279797f71261ca9306e9dcd4bbd8..2b1819f0c5412648a83cd3eeb495f68d2e4100ef 100644
---- a/arch/arm/boot/dts/vt8500/wm8505.dtsi
-+++ b/arch/arm/boot/dts/vt8500/wm8505.dtsi
-@@ -209,7 +209,7 @@ clksdhc: sdhc {
- 		timer@d8130100 {
- 			compatible = "via,vt8500-timer";
- 			reg = <0xd8130100 0x28>;
--			interrupts = <36>;
-+			interrupts = <36>, <37>, <38>, <39>;
- 		};
- 
- 		usb@d8007100 {
-diff --git a/arch/arm/boot/dts/vt8500/wm8650.dtsi b/arch/arm/boot/dts/vt8500/wm8650.dtsi
-index 0d6c7bd87f7dcce0eef056d04c38ab1de5d52639..042eec78c085d19fc97d7f0f9721399c0716ff74 100644
---- a/arch/arm/boot/dts/vt8500/wm8650.dtsi
-+++ b/arch/arm/boot/dts/vt8500/wm8650.dtsi
-@@ -181,7 +181,7 @@ clksdhc: sdhc {
- 		timer@d8130100 {
- 			compatible = "via,vt8500-timer";
- 			reg = <0xd8130100 0x28>;
--			interrupts = <36>;
-+			interrupts = <36>, <37>, <38>, <39>;
- 		};
- 
- 		usb@d8007900 {
-diff --git a/arch/arm/boot/dts/vt8500/wm8750.dtsi b/arch/arm/boot/dts/vt8500/wm8750.dtsi
-index 0158c0ba5dd110957eac38775d3bf3ebd2ab4154..56342aa1d993a43e7ee766f93151c6d456496262 100644
---- a/arch/arm/boot/dts/vt8500/wm8750.dtsi
-+++ b/arch/arm/boot/dts/vt8500/wm8750.dtsi
-@@ -253,7 +253,7 @@ pwm: pwm@d8220000 {
- 		timer@d8130100 {
- 			compatible = "via,vt8500-timer";
- 			reg = <0xd8130100 0x28>;
--			interrupts = <36>;
-+			interrupts = <36>, <37>, <38>, <39>;
- 		};
- 
- 		usb@d8007900 {
-diff --git a/arch/arm/boot/dts/vt8500/wm8850.dtsi b/arch/arm/boot/dts/vt8500/wm8850.dtsi
-index c4bfb4d30aad0358b39cbf30edf0c63e32167bbd..03e72f28d31b1cfdcfa71ede93b8943971bae4e3 100644
---- a/arch/arm/boot/dts/vt8500/wm8850.dtsi
-+++ b/arch/arm/boot/dts/vt8500/wm8850.dtsi
-@@ -240,7 +240,7 @@ pwm: pwm@d8220000 {
- 		timer@d8130100 {
- 			compatible = "via,vt8500-timer";
- 			reg = <0xd8130100 0x28>;
--			interrupts = <36>;
-+			interrupts = <36>, <37>, <38>, <39>;
- 		};
- 
- 		usb@d8007900 {
-
--- 
-2.49.0
-
+Regards,
+Bjorn
 
