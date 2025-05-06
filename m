@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-174277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D337AACAE4
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:26:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 973E9AACAFC
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:30:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3093E16E4CF
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:26:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 796E51BA427D
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:28:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D620D284B20;
-	Tue,  6 May 2025 16:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F154D2857C6;
+	Tue,  6 May 2025 16:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LFHuWwt8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rhuo3y9T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE445283686;
-	Tue,  6 May 2025 16:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9213284B2F;
+	Tue,  6 May 2025 16:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746548810; cv=none; b=usoMNkuIgyfpyJHsC9ADhrTV90MQh1LHF5mxIlB46ACljWXDlzB35B4x09tk+0uDBAjrwI81oMNDngf0K+tXlOICucoUvVOOhvGaDTvMM4UaDJfCjXjMjrp9f8KQOdWY71MjEq4a2YmXeemlOm8ZwkFpy6hWG6iXF18iO5fbk8Y=
+	t=1746548864; cv=none; b=Xl34nglt9h4uaiQtX9rp5RMrbqd55DvpKdIHJMDUgvOlMM17kSWY5fc5SwEuSTY5JZOeXN/O76biySJCYvL0A2LJO9hrrQoGfqS0Usy/3SabkLirSg7X0bTguPq3RYM1JfaP5rHdJxaW2Z/CzVo7bPPugW87kszDx+7KUeh92/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746548810; c=relaxed/simple;
-	bh=qqnaCN+QUPYHPuDmxiApoJhIGYIBjx2h4vMiQAZJhHc=;
+	s=arc-20240116; t=1746548864; c=relaxed/simple;
+	bh=wJl9fXyLBlj/alvhQ5nvzBTo2DX+kfoN+jfRteXdm2I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mo9ofseIQFSdVdpFvMQE0+wPNgKnfJTzrLtZgYOFPA2s2ULYtzOOCXoRhQvEbYNiH6VW4MabqsxpjYPJ7Fp2NTnZPkMxBHIk6EsZWV+rfs6ZxOPoq9+lA+yTufL1miKay5x4evnEXoz5Lg1s0SOsKovqWDGQ0HVUqMwveUmBovY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LFHuWwt8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB54EC4CEE4;
-	Tue,  6 May 2025 16:26:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iAcgnT1Bf3hpcxe2VDlgUELkt7iNENHYHlNPSC/prUFAt6JgCkigWFa7Lyv6g4U8ktXzl5FHazU29T65v3IjvYQ001Zn52HI8xuLkqDU1wzYUS10soLvhU/huy8ByJD3VpNkh5r7SZADxoU/iF1oYeYCFtmiAIA721hM3lSlb34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rhuo3y9T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D61D5C4CEE4;
+	Tue,  6 May 2025 16:27:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746548810;
-	bh=qqnaCN+QUPYHPuDmxiApoJhIGYIBjx2h4vMiQAZJhHc=;
+	s=k20201202; t=1746548864;
+	bh=wJl9fXyLBlj/alvhQ5nvzBTo2DX+kfoN+jfRteXdm2I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LFHuWwt8KEmzfbjluK08PXJ75odEuQdIzn1DQ34fKIIrWPAFJ6UM8PkQlbT/P2Zzx
-	 Ln+8bbdrBzXviTn/DhBbupzYUJA5F3aGeIQBmMZCTkLEj5STbZGp+Ay3vWps/iopps
-	 qeiavphfsQGCL+VEYBQ760Fcd/c6fHw3Gx0kAZFgoKE01TsKfhK+IHBh8tHQtmPL3z
-	 YCJp6hAQDiIrQJHoL5MRNnvkoDiLdXR1vnojmdG6KpdZqyzqRAXVCuzz8Ghq4p3Nfi
-	 /45IAq1a47qN0hMB8P0+wntcUHzGd64/IEiEstVR8GUN66NV+E0srIF8KRaKru4Kx2
-	 NdE91e8vXaakg==
-Date: Tue, 6 May 2025 17:26:45 +0100
+	b=Rhuo3y9TxDpq5ldZKL2HKkbwDu2AeBTHP5+/g7FPz5CgzrP4Ax9Es9tm6+hELS3AF
+	 rH2Y6Ri9dyMKWLknUeYV5tzJZTv1zEjS5Dec1xZGAV7YPKFymJ04FcZYbZif7mRtZ1
+	 5CVnTtkMyZa3b3yYtQc/339Uif3VQlInWZ/cktPdrwwWGo9jSYn5iIFCJ4QDNNQPQ8
+	 c+5kNG2AmUWIk1LIpU9X23aswuxg8V6RkMRPcNCeZgO2ehWHHsIcDE9jAvC+L1xnS7
+	 KVtf6jzmfVrP4LyO2/mKsI6gFJic2hF9X4zg/yhXFXprzsnXnhGK9QEzpUOU1b2nkG
+	 RTs+bx3Ltd9Ew==
+Date: Tue, 6 May 2025 17:27:39 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Ben Zong-You Xie <ben717@andestech.com>
 Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
@@ -50,10 +50,10 @@ Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
 	tglx@linutronix.de, daniel.lezcano@linaro.org,
 	prabhakar.mahadev-lad.rj@bp.renesas.com, tim609@andestech.com
-Subject: Re: [PATCH v2 9/9] riscv: defconfig: enable Andes SoC
-Message-ID: <20250506-gargle-lustrous-4fbf8c7d28e8@spud>
+Subject: Re: [PATCH v2 5/9] dt-bindings: timer: add Andes machine timer
+Message-ID: <20250506-bonehead-security-fdd71309a721@spud>
 References: <20250503151829.605006-1-ben717@andestech.com>
- <20250503151829.605006-10-ben717@andestech.com>
+ <20250503151829.605006-6-ben717@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,34 +61,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jKXAgiWgHNZ7yjmY"
+	protocol="application/pgp-signature"; boundary="cHkgK4xVUxJ740D6"
 Content-Disposition: inline
-In-Reply-To: <20250503151829.605006-10-ben717@andestech.com>
+In-Reply-To: <20250503151829.605006-6-ben717@andestech.com>
 
 
---jKXAgiWgHNZ7yjmY
+--cHkgK4xVUxJ740D6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, May 03, 2025 at 11:18:29PM +0800, Ben Zong-You Xie wrote:
-> Enable Andes SoC config in defconfig to allow the default
-> upstream kernel to boot on Voyager board.
+On Sat, May 03, 2025 at 11:18:25PM +0800, Ben Zong-You Xie wrote:
+> Add the DT binding documentation for Andes machine timer.
+>=20
+> The RISC-V architecture defines a machine timer that provides a real-time
+> counter and generates timer interrupts. Andes machiner timer (PLMT0) is
+> the implementation of the machine timer, and it contains memory-mapped
+> registers (mtime and mtimecmp). This device supports up to 32 cores.
 >=20
 > Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---jKXAgiWgHNZ7yjmY
+--cHkgK4xVUxJ740D6
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBo4RQAKCRB4tDGHoIJi
-0uAUAP92hrP7s3WaVFynMqKTElxT3ELtr+tufOcVF07+D/ugAgD/SdMXiT8FhPv8
-+Z0WDTWilrlPNUYIGLIDgiYcsrxsFwo=
-=Vig7
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBo4ewAKCRB4tDGHoIJi
+0hwNAQDM2atqbPzuEVmNCgCayxvl4ixzEpqJu6dqfw41f5RJ5AD/fTboHXFJsmwG
+tNcawZ/ktKYZjQUmN3Q2fvk7oKf8DQo=
+=YvVt
 -----END PGP SIGNATURE-----
 
---jKXAgiWgHNZ7yjmY--
+--cHkgK4xVUxJ740D6--
 
