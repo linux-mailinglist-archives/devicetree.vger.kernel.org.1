@@ -1,262 +1,158 @@
-Return-Path: <devicetree+bounces-174342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D567AACE6E
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 21:55:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02B56AACE74
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 21:56:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7960B4A753B
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 19:55:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D5121B68505
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 19:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C847020E007;
-	Tue,  6 May 2025 19:54:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC00920E6F9;
+	Tue,  6 May 2025 19:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="m7HJo9jl"
+	dkim=pass (2048-bit key) header.d=fossekall.de header.i=@fossekall.de header.b="PlivN+BK";
+	dkim=permerror (0-bit key) header.d=fossekall.de header.i=@fossekall.de header.b="e14vL1jp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.167])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740EF1FBCB1;
-	Tue,  6 May 2025 19:54:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746561296; cv=none; b=igKSrEG6y6gErsF37Mm611x/LDoIITpWFA8bcJMKgthx5WazyXQUP1MFMLepzX4nAw2RzmuqjggG9CDcdl9uSMLAn+yvXzOw0m3+eZ2BYFqFYd9JLAKZSRqEfBPUa2vTMYuMgeHBay3ya42f4jeUs5O2yKYLHBxaYafpVCaD/Ps=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746561296; c=relaxed/simple;
-	bh=TX6fnqyOQLRCqud7L1fLcyM5ocSTEz2pblmDAnAzXbs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dKpgDmeDVQgqcNEQxUn7UAqMaAb3KhwUQV98FoPSN0BipgRwtZeO/uwboOnLWyyUkABpYUK/DGZvW+OA1NicFDe6cLzf21BFgA3Y6aA6kPTCXyY0TSTt/y4r22LX2eIxsCxVCKnPVlF2klpMyGUwhNFmLSXL/JQ4bOcks8K5qV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=m7HJo9jl; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1746561292;
-	bh=TX6fnqyOQLRCqud7L1fLcyM5ocSTEz2pblmDAnAzXbs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m7HJo9jl86sLv4qpeTc+fxgIuJA6St3d9IyKACbTZaZC6aWIHO6SCnopb3UOR1HTf
-	 LDl13EJMxzqGAz3J1wdnPXNK68paaGDnzQLhfbL8/IEhznNnrHp/VkeIv0WaDLSTYX
-	 +iOuMFyVfxBmSWp+mzaO5hkMM707SKDij4F0hTegTHveJCMRXIw42+yGTNCefzvYmP
-	 LhgTdC0f9v1sTf+e53HWJGNAkFqSfjZoOzRp/detfV1C6Zuxjdqbw9+ZkqVdhOr8do
-	 8JCO++cM8Pt/3MURn4C9lN9JIskVvJs7huknkV2LCVDmXWhO33IJ7FtM/b0KTqFgzk
-	 oIWV7O3oGfdIw==
-Received: from [IPV6:2a05:1141:1cc:8600:1cd7:9a7e:17d7:cd2c] (unknown [IPv6:2a05:1141:1cc:8600:1cd7:9a7e:17d7:cd2c])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: mriesch)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4380E17E10D3;
-	Tue,  6 May 2025 21:54:51 +0200 (CEST)
-Message-ID: <82fd6088-2979-4a4b-8eb5-dd8da965369e@collabora.com>
-Date: Tue, 6 May 2025 21:54:50 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5624B1E7A;
+	Tue,  6 May 2025 19:55:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.167
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746561361; cv=pass; b=bHujGD8tp1uGj/MIZFesweouRReJJpYjyFnypZei0sLOKJlIQmqh4h5zJMyEhhuMa0wh8XCma7sAC+W5R/NPL3hpXlPwTh0vP+7vBbTUFNGwKbYbJk4EZ2ouwIH/Md6mOEcWEduJmYRupqZX19qikFC7+3jnJN6dxnX9zvMBvKA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746561361; c=relaxed/simple;
+	bh=dpOQOwmZwxz5yxg6dU34b7vRGoW+3W6OH3VKZZ80vQQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=un2F1I58KhcSaBg1zACYL2urWN3bfRyanBlJ0uDfWoBNbuXr9a5L9orTpVgnZ/nX4xRsfB8wUpMgPP5zztBEv1KHmsb6ewS945wjWjpjUkpNsHb8crNP8cFnSveZptIKfwbqKPW4KyXGOqKq0MRUrjsTUveY5CfFWmBEnvj9z6k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fossekall.de; spf=pass smtp.mailfrom=a98shuttle.de; dkim=pass (2048-bit key) header.d=fossekall.de header.i=@fossekall.de header.b=PlivN+BK; dkim=permerror (0-bit key) header.d=fossekall.de header.i=@fossekall.de header.b=e14vL1jp; arc=pass smtp.client-ip=81.169.146.167
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fossekall.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=a98shuttle.de
+ARC-Seal: i=1; a=rsa-sha256; t=1746561353; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=iItlDEyQQkRMyzY8ze3m0HcU17dosn8Pkvvj+GX1tMTR08hGW36/BjwUFy8TVi6su/
+    7GJo6rR47gHauQ6hB5UW1ex24N1+9vu5ZJJemyYFXsCjfLyUXWkuDGcZmhNikl+aPF7f
+    tzk1aah9lLzfp78p/eTZCzfjTC+YJSwD/eZkdAa2vTbV2Zu1XDf9Q56F32LdKEUvucxa
+    ZU4iR6j/USyNSw1OPXyX9g5U3+u4xjOW7CQOO9WlcuOcz/aD/S2s9atzhIHO+IBUPX9c
+    nkNcH3IJHziYk7/SZvApQknO3NMyjXkZPYXm6Mna8KQ/8klPmCqxEDqHN5KsinyDzKa9
+    Qnww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1746561353;
+    s=strato-dkim-0002; d=strato.com;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=SHGcwlXyO0VPtrwwQiIYT7gn7XIrOvrSomEywP3J7og=;
+    b=WhyD+tdjourEJZIX8lGosf0o8NIq3AuRggcPX2NOjOJPMj+Zf7RCMjExxw5btSkgQm
+    rJ+E1WNop8vHHawAX1pUoYziuBrrCkxOj8cjU4FmKtT/4xLvSp7AM9Kx9By7gvhwerWp
+    We0PU3ADcNsuhZZ4wu7URnriIEGBpcRjf/o1+ieuHxGOo6XjZ5gYz4sBi3BgY2WbeHyJ
+    TdFpDCV83A+fvGds/Kn4hOiD21YVxlR2wFIDIJkpuhfaMzTDSTUe3z0ZP6RZXrZQrnJu
+    1kNXC0olQnB8XZ2Kp9A13bV0WLO2XALNOIRlC+MRlzQ+0U22oBe5Y8Krqaj2fNHq4wzE
+    /j2g==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1746561353;
+    s=strato-dkim-0002; d=fossekall.de;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=SHGcwlXyO0VPtrwwQiIYT7gn7XIrOvrSomEywP3J7og=;
+    b=PlivN+BKYFOt78sn38yRJhJMT5IJNBMKR2aJfujdg6FJj4moe3ieCoI+XyTi1DKslY
+    TY0Edu9vIPrWiRpA/GCWvV7L+QnXxjNeUmJoS8w1Ptea9aY1sse0R8vXUviJLMevWItP
+    58vWuWWerIGW3shhzZDOpqNm8Myob7+kuuMd0hEBfBi2hrPSoOrXxXkpiAQxydmAyN2G
+    ENLctgZHWLDaPWb65zxgBW+ox9JWe3MV/oT/Nod6FJNZ4ricpZKqmZbULLN/vE5UcDQW
+    RQTrJTZQ0KrpDdRxWztBsczYjUKPI4BlJhdGRMWfSX2MWLwI6WWV8wGto5+t+shmNvZP
+    Visg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1746561353;
+    s=strato-dkim-0003; d=fossekall.de;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=SHGcwlXyO0VPtrwwQiIYT7gn7XIrOvrSomEywP3J7og=;
+    b=e14vL1jpjJXxoo3bX97kkuUXfmD11zmNoRFt8Q89JoNLbqCqgBMsawyAZsNd1Atw8B
+    GIZ8SV7pIdK2v8JZ2/BQ==
+X-RZG-AUTH: ":O2kGeEG7b/pS1EzgE2y7nF0STYsSLflpbjNKxx7cGrBdao6FTL4AJcMdm+lap4JEHkzok9eyEg=="
+Received: from aerfugl
+    by smtp.strato.de (RZmta 51.3.0 AUTH)
+    with ESMTPSA id f28b35146JtqAsr
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 6 May 2025 21:55:52 +0200 (CEST)
+Received: from koltrast.home ([192.168.1.27] helo=a98shuttle.de)
+	by aerfugl with smtp (Exim 4.96)
+	(envelope-from <michael@a98shuttle.de>)
+	id 1uCOON-0000ia-1r;
+	Tue, 06 May 2025 21:55:51 +0200
+Received: (nullmailer pid 601301 invoked by uid 502);
+	Tue, 06 May 2025 19:55:51 -0000
+From: Michael Klein <michael@fossekall.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
+Cc: Michael Klein <michael@fossekall.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: bananapi: add support for PHY LEDs
+Date: Tue,  6 May 2025 21:55:24 +0200
+Message-Id: <20250506195524.601268-1-michael@fossekall.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 05/13] media: dt-bindings: add rockchip rk3568 mipi csi
- receiver
-To: Mehdi Djait <mehdi.djait@linux.intel.com>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Gerald Loacker <gerald.loacker@wolfvision.net>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Kever Yang <kever.yang@rock-chips.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Collabora Kernel Team <kernel@collabora.com>,
- Paul Kocialkowski <paulk@sys-base.io>,
- Alexander Shiyan <eagle.alexander923@gmail.com>,
- Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- Michael Riesch <michael.riesch@wolfvision.net>
-References: <20240220-rk3568-vicap-v6-0-d2f5fbee1551@collabora.com>
- <20240220-rk3568-vicap-v6-5-d2f5fbee1551@collabora.com>
- <wxwzca4i36hdhdx5ehjqvq5ljpsb7lcvzermkhqyvufsr47au4@3qcth2vawwju>
-Content-Language: en-US
-From: Michael Riesch <michael.riesch@collabora.com>
-In-Reply-To: <wxwzca4i36hdhdx5ehjqvq5ljpsb7lcvzermkhqyvufsr47au4@3qcth2vawwju>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Mehdi,
+The Bananapi M1 has three LEDs connected to the RTL8211E ethernet PHY.
+Add the corresponding nodes to the device tree.
 
-On 5/6/25 14:09, Mehdi Djait wrote:
-> Hi Michael,
-> 
-> thank you for the patch!
-> 
-> On Wed, Apr 30, 2025 at 11:15:54AM +0200, Michael Riesch via B4 Relay wrote:
->> From: Michael Riesch <michael.riesch@wolfvision.net>
->>
->> Add documentation for the Rockchip RK3568 MIPI CSI-2 Receiver.
->>
->> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
->> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
->> ---
->>  .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 113 +++++++++++++++++++++
->>  MAINTAINERS                                        |   1 +
->>  2 files changed, 114 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
->> new file mode 100644
->> index 000000000000..d5004cb288dd
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
->> @@ -0,0 +1,113 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Rockchip RK3568 MIPI CSI-2 Receiver
->> +
->> +maintainers:
->> +  - Michael Riesch <michael.riesch@collabora.com>
->> +
->> +description:
->> +  The Rockchip RK3568 MIPI CSI-2 Receiver is a CSI-2 bridge with one input port
->> +  and one output port. It receives the data with the help of an external
->> +  MIPI PHY (C-PHY or D-PHY) and passes it to the Rockchip RK3568 Video Capture
->> +  (VICAP) block.
->> +
->> +properties:
->> +  compatible:
->> +    const: rockchip,rk3568-mipi-csi
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  phys:
->> +    maxItems: 1
->> +    description: MIPI C-PHY or D-PHY.
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    properties:
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        unevaluatedProperties: false
->> +        description: Input port node. Connect to e.g., a MIPI CSI-2 image sensor.
->> +
->> +        properties:
->> +          endpoint:
->> +            $ref: video-interfaces.yaml#
->> +            unevaluatedProperties: false
->> +
->> +            properties:
->> +              bus-type:
->> +                enum: [1, 4]
-> 
-> shouldn't you add data-lanes property here ?
+Signed-off-by: Michael Klein <michael@fossekall.de>
+---
+ .../boot/dts/allwinner/sun7i-a20-bananapi.dts | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-Yes, makes sense.
-
-Thanks for pointing it out -- will be in v7.
-
-Best regards,
-Michael
-
-> 
->                  data-lanes:
->                    minItems: 1
->                    maxItems: 4
->> +
->> +            required:
->> +              - bus-type
-> 
-> and add it to required:
->                  - data-lanes
-> 
-> you are actually checking for data-lanes when you enable the stream in:
-> 
-> rkcif-mipi-csi-receiver.c +226
-> 
-> 	u32 lanes = csi_dev->vep.bus.mipi_csi2.num_data_lanes;
-> 
-> 	if (lanes < 1 || lanes > 4)
-> 		return -EINVAL;
-> 
->> +
->> +      port@1:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        description: Output port connected to a RK3568 VICAP port.
->> +
->> +    required:
->> +      - port@0
->> +      - port@1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - phys
->> +  - phy-names
->> +  - ports
->> +  - power-domains
->> +  - resets
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/rk3568-cru.h>
->> +    #include <dt-bindings/power/rk3568-power.h>
->> +
->> +    soc {
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +
->> +        csi: csi@fdfb0000 {
->> +            compatible = "rockchip,rk3568-mipi-csi";
->> +            reg = <0x0 0xfdfb0000 0x0 0x10000>;
->> +            clocks = <&cru PCLK_CSI2HOST1>;
->> +            phys = <&csi_dphy>;
->> +            power-domains = <&power RK3568_PD_VI>;
->> +            resets = <&cru SRST_P_CSI2HOST1>;
->> +
->> +            ports {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                csi_in: port@0 {
->> +                    reg = <0>;
->> +                };
->> +
->> +                csi_out: port@1 {
->> +                    reg = <1>;
->> +
->> +                    csi_output: endpoint {
->> +                        remote-endpoint = <&vicap_mipi_input>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +    };
-> 
-> --
-> Kind Regards
-> Mehdi Djait
+diff --git a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts b/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
+index 46ecf9db2324..d8b362c9661a 100644
+--- a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
++++ b/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
+@@ -48,6 +48,7 @@
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/leds/common.h>
+ 
+ / {
+ 	model = "LeMaker Banana Pi";
+@@ -169,6 +170,32 @@ &ir0 {
+ &gmac_mdio {
+ 	phy1: ethernet-phy@1 {
+ 		reg = <1>;
++
++		leds {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			led@0 {
++				reg = <0>;
++				color = <LED_COLOR_ID_GREEN>;
++				function = LED_FUNCTION_LAN;
++				linux,default-trigger = "netdev";
++			};
++
++			led@1 {
++				reg = <1>;
++				color = <LED_COLOR_ID_AMBER>;
++				function = LED_FUNCTION_LAN;
++				linux,default-trigger = "netdev";
++			};
++
++			led@2 {
++				reg = <2>;
++				color = <LED_COLOR_ID_BLUE>;
++				function = LED_FUNCTION_LAN;
++				linux,default-trigger = "netdev";
++			};
++		};
+ 	};
+ };
+ 
+-- 
+2.39.5
 
 
