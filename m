@@ -1,145 +1,120 @@
-Return-Path: <devicetree+bounces-174263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4922EAACA24
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 17:54:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F095FAACA85
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:10:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEA271C41945
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 15:55:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 319815023B8
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:09:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50124283CB5;
-	Tue,  6 May 2025 15:54:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C1428467C;
+	Tue,  6 May 2025 16:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c5nHp5fJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YL0jVWeO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA13283159;
-	Tue,  6 May 2025 15:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC1728466B;
+	Tue,  6 May 2025 16:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746546890; cv=none; b=pTeyCIyDbvy7RCbkhc5qFBmN0pN1if9j2j6iohIgIeTDEZTZmpC+c1SmYffMYfN5hIdCaQFMzZlEzSHzzpHh5Auq6vXgKnOaAkl844fa5nAFosuTwU2+99o1Yw2sz5jqVogUZUPeAmDpBdAhvIvExLREqtTrF9H6ZocH8VqolZw=
+	t=1746547786; cv=none; b=PS881b8zGqavwhf13U85OnZsOWc1ouy/eV8dRxFFVrgk3I9KhFqrvP/9RYa686jLmj38mBubLSm8Hw8AypHhrWy35tSBgjnOtG+UnLlkgSyNg0kUJkFImtrP07xO7aByNXzs8QFzrdB9/Mp65fIG01OzidXfBDy7c2cTK0jOXNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746546890; c=relaxed/simple;
-	bh=CN4H43AlZ5yAzJyJzLWrVuFa8slUBC0Ks7P4bDi+zL4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=CX66oY9ci4X2S5y0vi5sP/LYdiKQ+B0AerU7EdOmhC43V7p2chQxxYV4cYZnsYGc4KP7o24oy5tXYzPn1ksNmjYbjs08JJIejMtlNe2Aoa2ph7vpg4l2f1cJo76vLNGXKL07X/FyB8LAH5WZlLD2iD06h331pRW49/tQRfl9Jj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c5nHp5fJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1283BC4CEE4;
-	Tue,  6 May 2025 15:54:45 +0000 (UTC)
+	s=arc-20240116; t=1746547786; c=relaxed/simple;
+	bh=1AqPf7T899io12qypJ/mms7Lr5Nr9wni8SyAes9z2vI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dXRIZHcwy0PKVL4dC/wbU4d6kaKsKfuW7godWSBWSyUnvMSHfLpk+LtsP5yvOeZ9SwYc7nz2zPZpJsPZBJnF29tHSSaoP12i2Lg44ugs0r38IL7DS6Z9+1FVzm7TWxHYdSe3NfhytI/1b1QXI0M4QbS8AVwMPC+iVI1xqZNqmBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YL0jVWeO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93E07C4CEE4;
+	Tue,  6 May 2025 16:09:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746546889;
-	bh=CN4H43AlZ5yAzJyJzLWrVuFa8slUBC0Ks7P4bDi+zL4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=c5nHp5fJIZPVpV8nyOTL/WSC/KG3eKQx+DyBSy/p+RzRvp1BXeEv8BYcnbU8v2YJa
-	 HLzaXkc+tNNmjOJNZeoyL78e2SDipRbMyLCdJkcdTQrMPa3Zmcs6e4g5xg1U2gFyFI
-	 HOu3G8paiBuD439SIXqHxgifwNiLNYvAxcJ6HONhhwCVvb0e3nQ/pES4EcxIppW2cQ
-	 qGy7XaMz3Pwmi2QihdwuPYn5tj8Kz1lm9PMyTvaQRejrmuCybjz0TQYS+TPpPN/dsz
-	 l8y0J+JQ4LD3iaBl9qJEWQ3DVwpZ3d+dYpq3Wsr0qvBeJKjB/8CbCNr/+fwks0rYQw
-	 ja0+CWpmyNUYA==
-Message-ID: <0aedf5fb-557b-4c8c-a336-182498e2c3ea@kernel.org>
-Date: Tue, 6 May 2025 17:54:43 +0200
+	s=k20201202; t=1746547786;
+	bh=1AqPf7T899io12qypJ/mms7Lr5Nr9wni8SyAes9z2vI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YL0jVWeOd2s74qnpkynu5XmWmK16ssceH5qmopx7m7dxOJjOXSGUQtCPBNOg/Oz49
+	 37dOweLLtPGvzHFhP+6u+7eHmpivki9joZPtkhirZHDMeNjuQyhQbr+e/jkn8GnpHL
+	 TLHcsZHUT3aRldmvNpMFP0hs5lL7lANiKIWvORQxCMJtTPM0s+xwtlsl6VxPr8NmA1
+	 LAG7B1VWtaDuWebv5PobKgCo/GNw6wioQ88wuRnMyF03mX7nPj67mGqA3YEio7dSxv
+	 8AhnvEk/ymk50+DUDPBY4alQGcZgnHxsOM8xy8plh/m8ZOhsf1cMSiydJsWprsfanM
+	 Bp/pw8/P9aN2A==
+Date: Tue, 6 May 2025 17:09:37 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Guo Ren <guoren@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
+	Lothar Rubusch <l.rubusch@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>, Han Gao <rabenda.cn@gmail.com>
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: sophgo,sg2044-dwmac: Add
+ support for Sophgo SG2042 dwmac
+Message-ID: <20250506-tidings-backless-99cfc65a2ab4@spud>
+References: <20250506093256.1107770-1-inochiama@gmail.com>
+ <20250506093256.1107770-2-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 1/3] spi: tegra210-quad: Add iommus property to DT
- bindings
-To: Vishwaroop A <va@nvidia.com>, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
- jonathanh@nvidia.com, skomatineni@nvidia.com, ldewangan@nvidia.com,
- kyarlagadda@nvidia.com, smangipudi@nvidia.com, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250506152350.3370291-1-va@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250506152350.3370291-1-va@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 06/05/2025 17:23, Vishwaroop A wrote:
-> The Tegra210 Quad SPI controller uses internal DMA engines to
-> efficiently transfer data between system memory and the SPI bus.
-> On platforms with an IOMMU, such as Tegra234, DMA transactions
-> must be properly mapped and protected to ensure system security
-> and functional correctness.
-
-Does this mean this is not valid for other platforms? Then in
-allOf:if:then: disallow it (iommus: false) for hardware this is invalid.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="xnhOoqcIxXVoDYDg"
+Content-Disposition: inline
+In-Reply-To: <20250506093256.1107770-2-inochiama@gmail.com>
 
 
-> 
-> This patch adds the iommus property to the device tree binding.
+--xnhOoqcIxXVoDYDg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+On Tue, May 06, 2025 at 05:32:51PM +0800, Inochi Amaoto wrote:
+> The GMAC IP on SG2042 is a standard Synopsys DesignWare MAC
+> (version 5.00a) with tx clock.
+>=20
+> Add necessary compatible string for this device.
+>=20
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Tested-by: Han Gao <rabenda.cn@gmail.com>
 
-> This property is required to associate the SPI controller with
-> the system IOMMU, specifying the correct stream ID for address
-> translation and access protection.
-> 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+--xnhOoqcIxXVoDYDg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Missing: dt-bindings
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBo0QQAKCRB4tDGHoIJi
+0uzcAP9AXEpRJB9kYjvwkSr1RxOOhB6kQeDj6R9Xa2LcbHBQOAD9FXI/OFWlXOrQ
+PME/DZ4B5w9p7Kbs85bcMHB0v6+2zAI=
+=rLmY
+-----END PGP SIGNATURE-----
 
-Best regards,
-Krzysztof
+--xnhOoqcIxXVoDYDg--
 
