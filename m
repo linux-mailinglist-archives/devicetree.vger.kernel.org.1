@@ -1,163 +1,112 @@
-Return-Path: <devicetree+bounces-174288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63168AACBD8
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 19:06:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D132AACBE6
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 19:10:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2BFF4A18BE
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 17:06:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D8874E3DA9
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 17:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2ED25F98D;
-	Tue,  6 May 2025 17:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB87285407;
+	Tue,  6 May 2025 17:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HCdSYiW4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bD8tec4A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3D462222D5
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 17:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3D332853F6;
+	Tue,  6 May 2025 17:09:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746551165; cv=none; b=Qnn4F1WenndGuKISf/5etiY1ltoML60vwqrfMFiaG4AfAmtq3k9GABHMb64lHyjpyNusR+M+VwggEZQ5Nz9QiQ9T3t369RhlFB5k31pqsAj5AAbjmCyYwZqJwSRa+IWkh1N+IaYIlC1+WpHD7OjAk2ofhChxq2TV5RWj8zVD+Kw=
+	t=1746551374; cv=none; b=TQEWSRw2NZ0W1qjPFwuHcUo260/ixzKP71IdzDSwzf+wUKC1Zi2cBUrHlC/cFoESUKF+etfrhItIgE2r6rP4fG5BJ66uPxvOX8O3Aq77cXjWEMVAgsZZu8g7WIs0eTMqsZDLhiRkQolTQKUbyB2MtutjuQuiFhz8CcAxJrYg0t4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746551165; c=relaxed/simple;
-	bh=tUBsxMHfYRkjXRSEEL/gyTqeIsgMW7YeG9tVwe/Hw8U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GOsLvkzc+rDD/HhnN+AAZobK22IHCe+OQdspPbqH3L0BXKqh/rwp9aKGlTfdWc4fF5M1BzOUTuPxpjBRTbqyhS7NtRliM/OMp470/F6ugTuPjxybheXi2P+VaYuDYTROnt6nCuw/nC2F4HHfDrvwZbmr9HkjpCWJwRH31wFhvdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HCdSYiW4; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43cfe99f2a7so7556065e9.2
-        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 10:06:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746551162; x=1747155962; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKxUmPHgtJ1auRntYQ3zJdbwoBcjW9ng47toHLgvQyQ=;
-        b=HCdSYiW42usxMdJndNHz+xH9HksItGGMrabv8eyn9aXxSLevHyHMQwYvyTaVr1YznB
-         FML5AzOmkiUoZ6RZueqDlaekX3dxH8p9VItk0gCvTr9yHHMuQPMLUKwFsUTNUJPZBwyy
-         8X99CuhB9fhyLPGCn2yEYtlnKdaXurJTq10aB2HFvxILQecOoy1dZIfB/ZNCjhcsDkMz
-         A73YgOLGi/yM5hE7r5xemoGZ3BY44gYqvJ1dUWoDuwlccz6zxI+0Br2+/wnmZELZ3yXl
-         v71+4kWyxIY65EKlTEUsuZrachqqczq7K8zn4QUtI3/twfd7FWyYrLvnBceVB2sPIHp9
-         /iRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746551162; x=1747155962;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZKxUmPHgtJ1auRntYQ3zJdbwoBcjW9ng47toHLgvQyQ=;
-        b=V9RPCsEMYBnulmAMZPFj7FCy54JrFe769FPwRumBj7jKGszMBpflFIvuVAMhi3biB4
-         JO1ldCshksBYmrXjJzw66plVGub+pcxGgy7yZoRAx2wVhIUps72l7HA7ScgmrmnFx4DC
-         323k2X0Qtd4LaRuGJ/NRP7ZyZa/HVRQo+eCLZkHUQexzHE+wLRywvmxuOWMd/Ztp9F5J
-         Pev9NHLG7487UIRitxGCPA/z9wjjHTfBiUDjSkbMOnCW2FVy73IfpD/eWZBYunvuTYrm
-         V4XWI08oD/OlAdp7N731o4pF4SvO1CS57naGjao0HKTrrg1OlGlUhVePrNkUlecxcsvj
-         tUxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV6htL1XIFuQYjLr2AgBgiyG15ygvqqNlARd+VlEqiHlxx2R4nvkCurYOf3rsE3o7dydixsgra+oTjn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWoGPrBNpHOTnkiNBQdjbBbga5cH24wtKCYLEruPlapzzovELY
-	juAbNd+YiS27hnVvLBjLFVfNpRA8D2jZXtlLvEzG1F3x2USEfsTQ0ASggJAepWo=
-X-Gm-Gg: ASbGncv9/F+9V0Q6BcyFp+WksNnWU+otFbK/GlCPW3nV6LNydMKrC/EnQ1jLfFYBkWU
-	9XNaiZBNO9Op0rdPt5YNs+U8y0gCbXdImhIoQwSL5ffhM2TeZcx04DLODmwUEJMtle/OJMn11FB
-	oP/S2KdLTz8Hp261Xbkhugn7IsHmJKXu859QKT3bUBXmw0eN1RC/pHSkKqkAkRDMYECfARMdvUZ
-	J1DAbZXRvYTb2zhHZK9gXhkch9AqDJpQYYTkN3IFcGg15dFKUP2l3YIzkb3Antu9JVmPcSkAQqL
-	tPMyU3btjjXzH+pvUU0hWyJvsaD6fgRgOyGOnNjaTT3sr8R7aUcQhjpbl/qDUkUANcG8GA==
-X-Google-Smtp-Source: AGHT+IGHoQYv3yKC01U0PdcyTniOLz3Ljk+3J/XMWm4y8VZKBtbq5GjI8V30r+/hbEY1whEUZmU54A==
-X-Received: by 2002:a05:600c:3b11:b0:43b:c0fa:f9bf with SMTP id 5b1f17b1804b1-441bbec0daemr57107415e9.3.1746551162115;
-        Tue, 06 May 2025 10:06:02 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2b44474sm223802455e9.29.2025.05.06.10.06.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 May 2025 10:06:01 -0700 (PDT)
-Message-ID: <bb857b7d-97f8-4505-9d2a-1ba9d6319710@linaro.org>
-Date: Tue, 6 May 2025 19:05:59 +0200
+	s=arc-20240116; t=1746551374; c=relaxed/simple;
+	bh=FNA2gsRQTdJsloAcS3RRSgVH0l+51ZiDBDeK6njOiz8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZuAyxT+dbmUTMBx/NB9bSG4b8c+BGvZisOTIAylH8BdVou04A9JfuAVIArLskMzs9tmaI1sNyXbTwcA93/0DypanPvnz+4aMxOq/tV+LVp7aQN1P0PQpIanEsqse/HnsqQbTRy7Pura36DrSjBty682LsebFH8hB45sk9CVixIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bD8tec4A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4066BC4CEF0;
+	Tue,  6 May 2025 17:09:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746551374;
+	bh=FNA2gsRQTdJsloAcS3RRSgVH0l+51ZiDBDeK6njOiz8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=bD8tec4A0etJw6u2v9BYQfdDu4z4+U8FKKfYI+sQQyoqCTwtGl5z91W4lkHQGojA5
+	 VQI4JZTQyamjMzZyeRGfje0BkyBnHdLhEsf9xxIqSBBeUwFhd42sZLI/cENmB71L3q
+	 zT7hBr7/SnEBJj8jcTU3BgOd/mzgBHI7JC3MrP0P0Sg5hWm9VrBH6AO9/l960amG2m
+	 e/iGktH5Cki9ZlUUgqFkYlT9Upuq44FsjrYxP/WQMiQaFRbb/pd3cOTQ6zsOSC5Zol
+	 SFrKnEDxjCKCs8oYAFHOWPOy/8m3VrdV5TYt4E92DHr8ymcbiwmLdoGIeroykSnuqr
+	 9OX5kXOBB4GDA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C584C3ABBE;
+	Tue,  6 May 2025 17:09:34 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH v2 0/2] phy: tegra: xusb: Default otg mode to peripheral
+Date: Tue, 06 May 2025 12:09:16 -0500
+Message-Id: <20250506-xusb-peripheral-v2-0-bfbe00671389@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] Add Luckfox Omni3576 Carrier Board support for
- RK3576
-To: John Clark <inindev@gmail.com>, heiko@sntech.de
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, robh@kernel.org, conor+dt@kernel.org,
- jonas@kwiboo.se, frattaroli.nicolas@gmail.com, andrew@lunn.ch
-References: <20250506114115.613616-1-inindev@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20250506114115.613616-1-inindev@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADxCGmgC/3WNyw7CIBBFf6WZtWMKpSpd+R+mC0Aok/RBQElN0
+ 38Xu3d5bnLO3SDZSDZBV20QbaZEy1yAnyowXs2DRXoWBl7ztha1wPWdNIYiBW+jGtGIVrNLc3V
+ No6FYIVpH61F89IU9pdcSP8dBZr/1fyszZCilYTehpXatuw+TovFslgn6fd+/RSnzeq4AAAA=
+X-Change-ID: 20250404-xusb-peripheral-c45b1637f33b
+To: JC Kuo <jckuo@nvidia.com>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-phy@lists.infradead.org, linux-tegra@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Aaron Kling <webgeek1234@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746551373; l=1076;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=FNA2gsRQTdJsloAcS3RRSgVH0l+51ZiDBDeK6njOiz8=;
+ b=+Y2xZC3OosSjaAuY4rTFVw/J7gz3zpQ3FqXfBcXxUM2W6VcJmlJ40WuayQMLyyTmMC4TMJ8RA
+ SWaNIMRmfzmDzYzt0EQkphgtJmhgwPVpVdguGVVDKbzt3j7q+lCQC2r
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
 
-On 06/05/2025 13:41, John Clark wrote:
-> This series adds device tree support for the Luckfox Omni3576
-> Carrier Board with the Core3576 Module, powered by the Rockchip
-> RK3576 SoC (four Cortex-A72 cores, four Cortex-A53 cores, Mali-G52
-> MC3 GPU). It enables essential functionality for booting Linux and
-> basic connectivity, with plans for future support of peripherals
-> like WiFi, MIPI-DSI, HDMI, and Ethernet.
-> 
-> The series was first posted as v1 at:
-> https://lore.kernel.org/linux-rockchip/20250502205533.51744-1-inindev@gmail.com
-> v2 at:
-> https://lore.kernel.org/linux-rockchip/20250504102447.153551-1-inindev@gmail.com
-You got extensive guideline what to do in my reply to avoid exactly the
-mistake you did ... yet you ignored the guideline.
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+Changes in v2:
+- Add new patch to document role-switch-default-mode in xusb padctl
+- Simplify code change, per review
+- Comment in code why device mode is default
+- Link to v1: https://lore.kernel.org/r/20250404-xusb-peripheral-v1-1-99c184b9bf5f@gmail.com
 
-I don't understand.
+---
+Aaron Kling (2):
+      dt-bindings: phy: tegra-xusb: Document role-switch-default-mode
+      phy: tegra: xusb: Default otg mode to peripheral
 
-Are you going to ignore also Conor's tags?
+ .../bindings/phy/nvidia,tegra124-xusb-padctl.yaml  | 33 ++++++++++++++++++++
+ .../bindings/phy/nvidia,tegra186-xusb-padctl.yaml  | 27 ++++++++++++++++
+ .../bindings/phy/nvidia,tegra194-xusb-padctl.yaml  | 36 ++++++++++++++++++++++
+ .../bindings/phy/nvidia,tegra210-xusb-padctl.yaml  | 36 ++++++++++++++++++++++
+ drivers/phy/tegra/xusb.c                           | 11 +++----
+ 5 files changed, 136 insertions(+), 7 deletions(-)
+---
+base-commit: 91e5bfe317d8f8471fbaa3e70cf66cae1314a516
+change-id: 20250404-xusb-peripheral-c45b1637f33b
 
 Best regards,
-Krzysztof
+-- 
+Aaron Kling <webgeek1234@gmail.com>
+
+
 
