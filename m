@@ -1,66 +1,67 @@
-Return-Path: <devicetree+bounces-174280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86969AACAFE
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:30:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F887AACB12
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:33:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DDAC3BF0DA
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:30:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 129691BC0A8E
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:33:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEBC283FCB;
-	Tue,  6 May 2025 16:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A4EA2820CE;
+	Tue,  6 May 2025 16:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i3FdGlF9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j557xrhr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9A728001E;
-	Tue,  6 May 2025 16:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C826281363;
+	Tue,  6 May 2025 16:33:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746549028; cv=none; b=MZthvFwF8uQLY6j60tHoG0ljF7yhDnh5jVUU5iCgL4vNjc5zokhjjFNi4Y8DyqdvUBcl/TY8TO+WOhrNWtoREzxrt4QhS86t01Ss0Rpnm3Lt8Vo/F4dgWe+PJjkb7BPrhN8NT5qVY0crcEaXU7bAUVJ734+T0pFFkXe1GJe1OJQ=
+	t=1746549193; cv=none; b=oj5gGeJU8IKH16lMylrOvjx4BMRJ80i2PrTATUFiFKY5UB7uVXk5ejfzcO8+XUAM/i1Y6qwbjnlwKTwGorxEQija5BioO6JhS9mJf6gYCcZ9RQgoR7tYBesbOOO7/23rElYQ3+fr79ksgTwDS5N7ZK83zCRwfIu3MXqVEXu6Fco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746549028; c=relaxed/simple;
-	bh=yk89LHTXO3jss8gNOPcfJRUOju19BFvggSyJM9Digqk=;
+	s=arc-20240116; t=1746549193; c=relaxed/simple;
+	bh=T5IwqVc6xFlXyQ8S8dzAZ6X4EgS5Ru1mHBEXNH45t/s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BDCJJieYeCdL1KYNeJ6mIpm9Dnu2si6sfLp8EbkPjfLEJFx+0jC4Lg2VXaMWVjH909GePP0eCc0N2FtODZYe5JdIMqyrBAWUclL4oMj9WASLN1GOKi0bOTG/+kBVz7+JkaHQGQlbXnc9Io35GphjxIGMkdeLVzDcOxnJwlDMArs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i3FdGlF9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0129C4CEE4;
-	Tue,  6 May 2025 16:30:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TTX/gsGC/8rehTgnReUomTrLnRn4pjAHkn1qYQFhbr8RZUjrpoXI2QU78YjdbDc8HPICcC/rWXaMQNBAcoMGPLnQwUFYZz9RWBhh7bD5xt/baCTBMQd79se5LYJNIaJMKeK+2IaqtZRq+KZWonNQGcz+ElLKxuXmHpPpDxgsLfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j557xrhr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86DDDC4CEEB;
+	Tue,  6 May 2025 16:33:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746549027;
-	bh=yk89LHTXO3jss8gNOPcfJRUOju19BFvggSyJM9Digqk=;
+	s=k20201202; t=1746549192;
+	bh=T5IwqVc6xFlXyQ8S8dzAZ6X4EgS5Ru1mHBEXNH45t/s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i3FdGlF9r/zuuI40wyqxOzGvxDbf+SqGdyaiMBUoxowwEunFPrve3bRz6pb6552t/
-	 8FjCXrOBQ74tQ+RoKpFLwzTUyrMAVFx6Bvw/iQMYUltrNV9dY4T8/MMvkp42Mk5rXF
-	 ZxQuIWb1pxu7GYi4ObbFdg8EqUhg8c0rMLM1VzWR+WLqdwUaxfz+wnWhFXDVxvylgt
-	 WyY0dVl8Th4ieB14eCz59E/yzC1DzZlE4Tag+Hob7lUG2AKCv3PSkIWJcaG7xUVGAf
-	 OO7tUayKKhf4yr5NL8ZObm3CfyeOaZjVVYk3XoJJDhIWamkHUUohSiJYi9q3+WOkyq
-	 suD7hzhxBnK6A==
-Date: Tue, 6 May 2025 17:30:22 +0100
+	b=j557xrhrILi2MnAwG8b+Vun0FgPtExVIsTvVw1RZAHUnV7mry6ggoagqoPe3R61bt
+	 JPJoyOrQ1CLGe+dkWR/csvarBAWtpQM+zyjj+SgsoWF3hFKQnOz6WMnKBVaiT1uDHr
+	 hLRAC09tpACodPknrf5H/yZW0hU7qn0pLDwRmr56/esoSen3HfNFXnalmWjUZj6Kik
+	 LPckqFnXXVtbwGcs9Q9ASS0E+V9r7LUHJYK4i4ugfhIsTY2TPg3HpB0uB0uotiCpnS
+	 1/6uzGGnsV4adsrCQ+HrypTqjXoXXUWKNFQxLzs2azgvzMDvd4Yu5CGhzlV3FC8y2l
+	 n3Dfu70dY8TLQ==
+Date: Tue, 6 May 2025 17:33:07 +0100
 From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Alexandre Mergnat <amergnat@baylibre.com>,
-	Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-	Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>,
-	Fabien Parent <fparent@baylibre.com>, kernel@collabora.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: Add
- mediatek,mt8365-infracfg-nao
-Message-ID: <20250506-safeguard-brisket-96da510a99d3@spud>
-References: <20250502-mt8365-infracfg-nao-compatible-v1-0-e40394573f98@collabora.com>
- <20250502-mt8365-infracfg-nao-compatible-v1-1-e40394573f98@collabora.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: gpu: mali-bifrost: Add compatible for
+ RZ/V2N SoC
+Message-ID: <20250506-collie-rover-9e157c442748@spud>
+References: <20250502162540.165962-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,38 +69,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="PZUhCmeqes3xNKnX"
+	protocol="application/pgp-signature"; boundary="wuQ590LFJw1Dw6xo"
 Content-Disposition: inline
-In-Reply-To: <20250502-mt8365-infracfg-nao-compatible-v1-1-e40394573f98@collabora.com>
+In-Reply-To: <20250502162540.165962-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
 
---PZUhCmeqes3xNKnX
-Content-Type: text/plain; charset=iso-8859-1
+--wuQ590LFJw1Dw6xo
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 02, 2025 at 12:43:21PM -0400, N=EDcolas F. R. A. Prado wrote:
-> The register space described by DT node of compatible
-> mediatek,mt8365-infracfg-nao exposes a variety of unrelated registers,
-> including registers for controlling bus protection on the MT8365 SoC,
-> which is used by the power domain controller through a syscon.
+On Fri, May 02, 2025 at 05:25:40PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >=20
-> Add this compatible to the syscon binding.
+> Add a compatible string for the Renesas RZ/V2N SoC variants that include a
+> Mali-G31 GPU. These variants share the same restrictions on interrupts,
+> clocks, and power domains as the RZ/G2L SoC, so extend the existing schema
+> validation accordingly.
 >=20
-> Signed-off-by: N=EDcolas F. R. A. Prado <nfraprado@collabora.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---PZUhCmeqes3xNKnX
+--wuQ590LFJw1Dw6xo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBo5HgAKCRB4tDGHoIJi
-0o6IAQDuQXjMuejZZPZgecYQRVBoKrB/iTH2vnh1+sSpGOzoXwEA159pOsyZy5CJ
-3GifqtsxDfIlIV5zxXmOb+gRCw9eOg0=
-=ziAH
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBo5wwAKCRB4tDGHoIJi
+0pvJAP42yoslbjgKSBdNI1/TOdTQv+1AzQzyz4vG84MvPhN6QwEAl5hUJaIS8obI
+Ijtv2fy6kUplbiuNHrDRhIpGHpWB7gg=
+=S3tM
 -----END PGP SIGNATURE-----
 
---PZUhCmeqes3xNKnX--
+--wuQ590LFJw1Dw6xo--
 
