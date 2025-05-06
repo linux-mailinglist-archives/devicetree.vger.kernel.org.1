@@ -1,132 +1,143 @@
-Return-Path: <devicetree+bounces-174247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B5DAAC7E6
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:26:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC8A0AAC7FD
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:30:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3911FB21275
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:25:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2B0F1C42ECC
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:30:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8B3B2820CD;
-	Tue,  6 May 2025 14:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D092F28312A;
+	Tue,  6 May 2025 14:30:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="irxMbsQt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hg89lbwO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC22427FD57;
-	Tue,  6 May 2025 14:25:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2AB92820B8;
+	Tue,  6 May 2025 14:30:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746541550; cv=none; b=MkX+IlsEimnbhGWiY8j0cq6EFDOTWcObMaFj3AhOXev1oDLTm6R7GWwy9J7teXz3kolb/PWN6nvDZ0cfxsZ2oaANbKtZybbsVFPYnDq33qfRyjELB4zYZjt3omrIPODZSLr5Mgvsj08XjaI0D8W2TJXWzoklz1rMCLAoPzHIjZQ=
+	t=1746541802; cv=none; b=OTLuFPLS0206mzQ/MdlUHJxqKvbK5TkJwlGgecnpbMzYdElDqtBMxDSir/Whm5llKFWEUlMDP1eGYlSrX2pFE1g8qKHZvmhMGgagCotVPfet7EnavDUcurRiw+TmC5YjIv1AO3FMaAOcac6Lvm7DJGXzkVty/38d9ALH4i0pB1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746541550; c=relaxed/simple;
-	bh=bfhs5TMIO9WwVex3wgkVyM47F2j9OE9qbP0G/kaOvoU=;
+	s=arc-20240116; t=1746541802; c=relaxed/simple;
+	bh=A1H3TXwOP419hOv7YtURrPgGfrLKrYvyzqZVBda9Emw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NXSC6qzLNXxNWyUV63hjBO5fjhqdMP9RjRSFlUTLyKNXaYEnSUELJVrDtmCPKdKIwMB22hjUPn79OGudaqD+PznnoLKaMABUI1cRYwLtke+vfGDi7J2QSdB24fopWPMRYJJrSUyfqu+4RMbgdQCWkfiPlq70jIIxDJx+THMvm+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=irxMbsQt; arc=none smtp.client-ip=5.135.140.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EED13E9408;
-	Tue,  6 May 2025 16:25:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1746541545; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=BIis3C4CFWwe/Nb/WYKe4dImQBx542mXba7Be46nPPk=;
-	b=irxMbsQt3aIZkBTMYNb71ndZxm2HmV49EHtCrCq4sSmN4VC6qVpAuQcT8r6vSO/XEtW/CT
-	hJSyvmpYsZwcUDDclOCyzxEx9ZpBvkOpuovMINSWZlUhmZb7ES9nDS3ZF7VnUuQb1eJTLT
-	H+Jpv153lHJuk6CN8be32XLeoAfKtBAtM8vbYxZW+/jN2ZEyeJgW99NUbtylN4/OjNYyWc
-	/GiO6cAF+wPBAQkkKj6CByIhE9DgqkvJoFGIcEKY+uP+tY6GV7hROBKfsug/psWVwvLrUO
-	jLnCxRUI6sOzyeEYU9Z0d7v2fhlnt/HMtiHjMwokS4LsS6hazjaOthyjAxkU9w==
-Message-ID: <ea17e686-68c7-463c-bb9e-bcc9e59a929d@cjdns.fr>
-Date: Tue, 6 May 2025 16:25:41 +0200
+	 In-Reply-To:Content-Type; b=pjmrQQ9Nef6TRmraQ+1KX8IuGQc8hfcG7dVSFrn4gbiqSOXA+HhDLT3KB+i+1dYk+JIVf4kn5q1Imkd00x8dFDisIfXH8Fyhc+MQ6q+MfSlefq5J7MgTBXxJCVon//JQGKZuSLcxH1QAclB1IJRhFyrFimbR8LJcRP+O2mAe8dE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hg89lbwO; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54e816aeca6so7388708e87.2;
+        Tue, 06 May 2025 07:30:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746541799; x=1747146599; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sljW97pZ6uaoZQNHWCGt8IHp/aX282c5IvFtjIqBmN4=;
+        b=hg89lbwOoI1dcFwkcDCb2++CNuvSZ0k+1yWgLm7I817gvA1U9ORU6KOKLGQS5qZ9W1
+         EvgfMRuJbJnd6YQnDz/+Onmp76WQdds1dh6DUZXKt8wV8+qIeE9LszICT6yI9CD3qo0G
+         7P73l8iEOgeGpnx+5Wn733TPNf+lCivQiMOL+UMAvmK0RR8B/W/uVkh9tuOFP/YVDT0r
+         YfthxNJDZqVSvg26MrE/4DxlqMnUK8Tts6flUoszEf8hG18S+pufNzehYZ8My8xuk8/n
+         qMQA53EfCe/OUmFADqsJKUwE0uEy9SCy4sIN6bU4TEUyJbziTPlg730/m/5VnhFDTIe/
+         U6wA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746541799; x=1747146599;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sljW97pZ6uaoZQNHWCGt8IHp/aX282c5IvFtjIqBmN4=;
+        b=e7qv9OFb8wHoRMBmyQaE0GtIw3N9a8tFzKDQZFTc11kI1TR5zWbmPrya6pjSxH2a0R
+         iSdqFwbLhmDBRZBdI9yNLHfkdJgB9Bh1d51oKqBexxG88k9EFjPlxxVPpp2ywhULPKPr
+         vT3q8naKp90rTanhq3TrZZ57/Vx7OpdXhFtO16FA2A9AqHBiHW5VELh4RQe6JqOVxq0h
+         6WKFUjnkf/oDQkmhzobBi/Fv/YqSkyO2t7y5op/tCr77ZODQ/9FmL4WWmqQIplv40OPa
+         d9fFTcg9BOGx4LZALgs7U1vse7+q6LSMOzQTKVasR1dleEvAKvXd8iwlMxGG+2gLwNjm
+         QEkw==
+X-Forwarded-Encrypted: i=1; AJvYcCWG4ut38/RX8RIekyvM1gnvbsXrLJtZiRQ1DJ44y+OeDn92nYpfSUFNb5AN/mmrvVUdnwg6eU90Z4bO@vger.kernel.org, AJvYcCXxbhqp9XIhr/tmS+45BlK/h15uEwnJiut7l4btDRTCLODAmgEp221CJ+yFnzyYpSNAfA5CLOjkRYRMSXNU@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIY01zi+5l4JetQo3EcZRnW0MLJOtD3DJYrw4U22SJatG5jwxz
+	/p51nPG2JfXGRvDZ10eKkXDszxWMoW8AiPkxHzH22p6fwsUehNCc
+X-Gm-Gg: ASbGncu9M2wUpKUxIR2mrz0pR8qoiA3rneszJD4BBDXwc+EoE3SSC6qLph8cGyzFZpM
+	uZ8FUR4jU86tPAHhF81q0KBmaeP4bqYWYig4F8nPUSfzzYMcr/AspTsUb8GmAQmOfTVhSR1oEEc
+	qS4LXqRotfiGZONa7S+LH/kRCvjuk6X5++S7tnAD1tkCCC417RhJCgyixqGf1pOL3I9d7IVoA3F
+	aUhKN+BJS8euTCF9liCienp2nZITGzAvu+eZCVVQSABc4Cw7J73ydxb7jJTMukgCXxldQ81VOo7
+	yaC+S6r4cvwaqEtx+qcSp0E88AAiF3FIgk67Bifm9aH4uYS6O4EFsvx6/tiLXh3BQUzw9aOk02x
+	rngOLk6DinzvHIY+ERFfTcDq5nsiYvt/7
+X-Google-Smtp-Source: AGHT+IFFNwZuzPpcgXu3kBDtlZM8MMqYF6bESV7jDqgOq+SzmMpJ61BfMt+aYVq4BlEH8Tzb0P3QQg==
+X-Received: by 2002:a05:6512:10d1:b0:54d:6a89:8725 with SMTP id 2adb3069b0e04-54fb4aa0f95mr1077123e87.48.1746541798584;
+        Tue, 06 May 2025 07:29:58 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94ee2f9sm2080641e87.108.2025.05.06.07.29.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 May 2025 07:29:58 -0700 (PDT)
+Message-ID: <57fb3864-51f1-45b4-a16a-be67e3a1451c@gmail.com>
+Date: Tue, 6 May 2025 17:29:57 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v4 2/7] clocksource/drivers: Add EcoNet Timer HPT driver
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: linux-mips@vger.kernel.org, tglx@linutronix.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, tsbogend@alpha.franken.de,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- benjamin.larsson@genexis.eu, linux-mediatek@lists.infradead.org
-References: <20250430133433.22222-1-cjd@cjdns.fr>
- <20250430133433.22222-3-cjd@cjdns.fr> <aBjpBpJAIP89oiit@mai.linaro.org>
- <92cd3689-3409-4d43-8db1-8633d35f779a@cjdns.fr>
- <7c08cc9e-f39f-490c-85fe-5738656380e5@linaro.org>
-Content-Language: en-US
-From: Caleb James DeLisle <cjd@cjdns.fr>
-In-Reply-To: <7c08cc9e-f39f-490c-85fe-5738656380e5@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [GIT PULL] Immutable branch between MFD and Regulator due for the
+ v6.16 merge window
+To: Mark Brown <broonie@kernel.org>
+Cc: Lee Jones <lee@kernel.org>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1744090658.git.mazziesaccount@gmail.com>
+ <20250502074743.GC3865826@google.com>
+ <aBVUTvVnfuLFxzh4@finisterre.sirena.org.uk>
+ <CANhJrGPMhRy4TW_JMZ8dkgdctgF3f+bAsoWLkrNvqbcbc412WA@mail.gmail.com>
+ <aBoYYrfANv8QLfWA@finisterre.sirena.org.uk>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <aBoYYrfANv8QLfWA@finisterre.sirena.org.uk>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
 
+On 06/05/2025 17:10, Mark Brown wrote:
+> On Tue, May 06, 2025 at 08:28:33AM +0300, Matti Vaittinen wrote:
+>> la 3.5.2025 klo 2.25 Mark Brown (broonie@kernel.org) kirjoitti:
+> 
+>>>> are available in the Git repository at:
+> 
+>>>>    ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-regulator-v6.16
+> 
+>>> You need to specify a separate url and pushurl for the git remote so git
+>>> generates PRs with a public URL people can use.
+> 
+>> I didn't spot this in regulator/for-next. Is the URL sorted? I'd love
+>> to see this merged...
+> 
+> I've not seen any updates, you can infer the URL by hand if needed:
+> 
+>     s,ssh://git@gitolite,https://git,
+> 
+> should do it so
+> 
+>     https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-regulator-v6.16
+> 
+> I generally don't actually pull these unless there's a dependency
+> materialises, especially if I'd have to fight with my tooling for pull
+> requests a bit.  If you've got a dependency then send it and mention the
+> dependency in your cover letter.
 
-On 06/05/2025 10:54, Daniel Lezcano wrote:
-> On 05/05/2025 20:09, Caleb James DeLisle wrote:
->>
->> On 05/05/2025 18:36, Daniel Lezcano wrote:
->>> On Wed, Apr 30, 2025 at 01:34:28PM +0000, Caleb James DeLisle wrote:
->>>> Introduce a clocksource driver for the so-called high-precision 
->>>> timer (HPT)
->>>> in the EcoNet EN751221 MIPS SoC.
->>> As a new driver, please document the timer (up - down ?, SPI/PPI, etc
->>> ...) that will help to understand the code more easily, especially the
->>> reg_* functions (purposes?).
->>
->>
->> Sure thing, I can elaborate the comment in the header of
->> timer-econet-en751221.c. Let me know if you'd like it described
->> somewhere else as well, such as the help of config 
->> ECONET_EN751221_TIMER.
->
-> It is ok in the changelog, so it is possible to get the description 
-> when looking for the patch introducing the new timer.
+Thanks for the explanation Mark. There should be no dependencies I'm 
+aware of. I just assumed you'd pull it from MFD to regulator to catch 
+any potential conflicts early.
 
+It's all good for me for as long as the series gets to the rc1. I just, 
+for some reason, thought that these changes are required to go via the 
+regulator tree.
 
-Sounds good.
+Sorry for the noise.
 
-
->
-> [ ... ]
->
->>>> +
->>>> +    cpuhp_setup_state(CPUHP_AP_MIPS_GIC_TIMER_STARTING,
->>>> +              "clockevents/en75/timer:starting",
->>>> +              cevt_init_cpu, NULL);
->>> cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, ... ) ?
->>
->> I see that Ingenic does this. This is the only timer so until it's up,
->> sleeping causes a hang. If sleeping is prior to CPUHP_AP_ONLINE_DYN is
->> considered a bug then this should be okay, but I'm not informed enough
->> to say whether that is the case so I'll follow your guidance here.
->
-> Hmm, hard to say without the platform. May be just give a try with 
-> CPUHP_AP_ONLINE_DYN to check if it works otherwise stick on 
-> CPUHP_AP_MIPS_GIC_TIMER_STARTING as it is already defined ?
-
-
-I need a little time for this because I only got SMP on this processor
-
-some time ago in a PoC so I'll need to put that back together in order
-
-to validate the change.
-
-
-Thanks,
-
-Caleb
-
-
->
-> [ ... ]
->
->
+Yours,
+	-- Matti
 
