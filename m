@@ -1,83 +1,80 @@
-Return-Path: <devicetree+bounces-174198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEF93AAC563
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 15:13:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41FCDAAC56B
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 15:14:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6C461BA6B15
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:10:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D02101BC4A71
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC44527FD7A;
-	Tue,  6 May 2025 13:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 290C4280038;
+	Tue,  6 May 2025 13:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Y0hlhFUP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UzGa3alC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CC03C0C;
-	Tue,  6 May 2025 13:10:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208DD280020
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 13:10:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746537011; cv=none; b=cU+ttOnZs4ycxQH0nMdorg0jLQmOtDfGMd0RYGtF/p+b6+DQTDF2r758c9XYYdxE0qit4u3XvEpAQ1Ka8vW8RdvMdfjT0ogk+4yZlATEiGgQlP7TTmyRfTJNKWIs1YgXITtQpQ+1+Nl3lCapNOzq8T/Rg1RUKXcdnXnNPoY7TdI=
+	t=1746537027; cv=none; b=jbhmasBAqvpclA3N4N3/PLMlZpYXxRAX2IJWzBhbZL68b2L7oe5TeyU7C4Eh1/1NIEbKXc2h73Z746h+r828hgE4CTqXNU6T0mhf2iT/ZFWP9wlR0n5uuWfh43vw2rfzH3EdunfcJQu+chw8eudcFJuxE5B5P4aBPCBjq/9pbeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746537011; c=relaxed/simple;
-	bh=/bpooHBEJModu2gwj25LTjMGDdwHouYNPtu3yCbIpBo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YAS47rTlCKtVtJhVkZRY+vzZ/+aUXBlaCAd4XCqAC5AOoD3K14EhKJNDQvOypVrVhk7vZnc28zjYFxYjka0QpVfggirSrUBT1iha4eADUyRBj0foWbeI/vb5oc4URGIvZ7CXnmcglFMUm3f4REVaR89FYDZdblo6JGaZgOsCyCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Y0hlhFUP; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 546DA3cw1233575
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 6 May 2025 08:10:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746537003;
-	bh=m1WV0MLIxAXaiL0qMLLb987hannOL0sYsm3J66Wc0gE=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Y0hlhFUP5qOd3sYVqkxo8lsyYBg3/T2Kt/6x+yRcZ6SH376RvoXDr3/gJ81g5/7X+
-	 E/vLDgqaRsdBQRZU76/7ldR4xwSD3mbaiS5i9TnvTmr1v3O84PEzWwqXai+2kwRAfe
-	 Alg47wn31a4xdM6VU2D6HZYoTJioONISBiiGhSIk=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 546DA3g1103618
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 6 May 2025 08:10:03 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- May 2025 08:10:02 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 May 2025 08:10:02 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 546DA26a015719;
-	Tue, 6 May 2025 08:10:02 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Judith Mendez <jm@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Hari Nagalla <hnagalla@ti.com>,
-        Beleswar Padhi
-	<b-padhi@ti.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Andrew Davis
-	<afd@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v8 00/11] Add R5F and C7xv device nodes
-Date: Tue, 6 May 2025 08:09:58 -0500
-Message-ID: <174653697389.718892.12387672790395559537.b4-ty@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250502220325.3230653-1-jm@ti.com>
-References: <20250502220325.3230653-1-jm@ti.com>
+	s=arc-20240116; t=1746537027; c=relaxed/simple;
+	bh=6mA6iTRXWXZ1yOt7qM2S0V/T0zHayKp4IhqSJBG4MFE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZjDBiqLcZshMsIhbV8dHJn6tB8PQfIHR0tTn6MeZtSuhYQ/xvhwUS2HD1BoxwrXnFjXR/Nu3B3b17xqtKX50EhpYqqIdAO8luDnx86iobcyN4CU+7qZx77lDsj/wC9uOH9OCtTi4C8Puss2h1rrWmCM22k7oer0ANr7whM6K7+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UzGa3alC; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-39ee5a5bb66so3688085f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 06:10:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746537023; x=1747141823; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eVSozHIL1R1kO0geupLABCS2zCL42BF9GBcy5eQEopI=;
+        b=UzGa3alC5N4eAV39c7+SsmDiWDtNzRWGK6seEdZ2nwyq0MFnb+163Lxk2noxlXlyzK
+         yHvB9JopgUAK6Cmw5Jz7BErXkIshWMSwhPWs6DojM4dYMsZm4hNRoB04GkXwNEJ1efJS
+         0ipacx84IpVPLY5+QG7SdMtERjq5ZtM5AiMj2lYLzDkresYriAH+e2JQtwAriNSiKqQG
+         20Do67KbVOxXQEvlzUtFjZupt4HYnMtNbe+qfhPCw3kP4mlK3FqPXZtR+XRz/7SHM+K0
+         CK2Hg2DkzjXsewHA1m14zn49gVvlSw6+38fLWIts2R3OpPTGo1++MPMOXGMvRYVmEPrM
+         kNZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746537023; x=1747141823;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eVSozHIL1R1kO0geupLABCS2zCL42BF9GBcy5eQEopI=;
+        b=JGh9sX8xbAxDqEiJ8w9H7kRXPQGxJ2j2ixp/i63gdS1v3+j9j1UN3yba0zt6kJLV40
+         VhQ0ZAqKQnTkjy9J3CLBxR+zFJPrhYcZjAkMumscl1gdgq+5/cIVqCej0f9E99Sr3Rhr
+         jzWk3JTnWE48mXwOKTg1J69dPD3DmINDR8sg3cPxAmr9rYwtlQA1s+uYGKTBv06ondpO
+         lfCStMtb/nWwMWcpYkKF2v6PVK4TjOdcoSYoCWyZUAgFEzRBJ4Kli6OugrsTVLtcRS5V
+         mtIxzeEjKvYTOsQQ4MQmyoKusl2ys9sL2XUKTIobDk0xlBzCnvO0DsxYl8Log4asWJRT
+         VMAg==
+X-Forwarded-Encrypted: i=1; AJvYcCV2L2SIaxwO0yKZ3vKw1M0NjFxB6UhjiMpHN8ydeZB3fu5FvUhcu/sFrE4szQXcdlhZGaMlzAn/ll6w@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfdgbmGySHD53qIldgxxR4DO1Ik/HxmJ7MyfgFctk/m3nIjKXJ
+	zZO0m4vN9isbAZMhzrhSZnAEgaKAIKZxcbfO0XzJC33IVApU7wnA46eCz5mV6xo=
+X-Gm-Gg: ASbGnct9o+bH8a85f/0GEXMD7A76TuotynasCiUfioQqc15FqDCjbRpqms5dcHauZ+Y
+	nmHdxp50PcuV6/zd9SOVFrFtajXy9WxjlrO+R6dBA9gYcMnjo4HyUW237l39NIznl03xdOy379x
+	tvBtZNqUYbwJwlOaD2piBnGLitvSAKYlI+wxH9Iqq7XZPhWA4cCpU2o62fQ4C42+KYzTZkIm18E
+	7BaboU4mxXNpquCDhZiGoxg/HNA0SgdcuYttRBaKnlnqhTzAGZ8RhMewryVv6SfCf3SuKwVbgng
+	f4ttSVhoNXs/tDCnM3Lb59lgtgEWPSJn0IwIpVHR1LogvqsLhJ8u+Cw=
+X-Google-Smtp-Source: AGHT+IGvOKJR9bQjNfDvrDffZYoLtEjrjFfhbdpqa82uUo012ez5u5VvKrhfKfFZsatuBILBuKkHHg==
+X-Received: by 2002:a5d:5848:0:b0:391:952:c728 with SMTP id ffacd0b85a97d-3a0ac0cb3f3mr2514750f8f.4.1746537023357;
+        Tue, 06 May 2025 06:10:23 -0700 (PDT)
+Received: from [127.0.0.2] ([2a02:2454:ff21:ef41:3f93:4614:996d:f5f7])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a0af3255afsm1771268f8f.66.2025.05.06.06.10.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 May 2025 06:10:22 -0700 (PDT)
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Subject: [PATCH 0/4] mailbox: qcom-apcs-ipc: Avoid circular dependency with
+ clock controller
+Date: Tue, 06 May 2025 15:10:07 +0200
+Message-Id: <20250506-qcom-apcs-mailbox-cc-v1-0-b54dddb150a5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,68 +82,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC8KGmgC/x2MQQqAIBAAvxJ7bsGkgvpKdNBtq4XMUohA/HsSc
+ 5rDTILIQTjCWCUI/EgUfxZp6gpoN+fGKEtx0Ep3qoA3eYfmoojOyGH9i0TYsx60tf3SKoaSXoF
+ Xef/tNOf8Acc6CglmAAAA
+X-Change-ID: 20250505-qcom-apcs-mailbox-cc-6e292bb6d40e
+To: Jassi Brar <jassisinghbrar@gmail.com>, 
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-clk@vger.kernel.org, Georgi Djakov <djakov@kernel.org>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+X-Mailer: b4 0.14.2
 
-Hi Judith Mendez,
+The APCS "global" node in the device tree currently combines two distinct
+use cases in a single device tree node: a mailbox to communicate with other
+remoteprocs in the system, and a clock for controlling the CPU frequency.
 
-On Fri, 02 May 2025 17:03:14 -0500, Judith Mendez wrote:
-> For am62x and am62ax devices, this patch series adds device nodes
-> for the R5F subsystem and C7xv DSP subsystem found in their
-> respective voltage domain, based on the device TRMs [0][1].
-> 
-> This patch series also includes patches for enabling IPC for am62x SK,
-> am62ax SK, and am62px SK by reserving memory and binding the mailbox
-> assignments for each remote core.
-> 
-> [...]
+These two use cases have unavoidable circular dependencies: the mailbox is
+needed as early as possible during boot to start controlling shared
+resources like clocks and power domains, while the clock controller needs
+one of these shared clocks as its parent. Currently, there is no way to
+distinguish these two use cases for generic mechanisms like fw_devlink.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Break up the circular dependency chain in the device tree by separating the
+clock controller into a separate child node.
 
-[01/11] arm64: dts: ti: k3-am62: Add ATCM and BTCM cbass ranges
-        commit: 5bb1949ffa021056b389393c5edb22abba5372c3
-[02/11] arm64: dts: ti: k3-am62-wakeup: Add wakeup R5F node
-        commit: 5722117235aca01893dbda9dbc7e4790b0b9d43c
-[03/11] arm64: dts: ti: k3-am62a-mcu: Add R5F remote proc node
-        commit: 7f321892dc53015e29cd1055231727b8cdc24923
-[04/11] arm64: dts: ti: k3-am62a-wakeup: Add R5F device node
-        commit: f0623719c2a612cbb9d5927fc5ffef9b54a12fb7
-[05/11] arm64: dts: ti: k3-am62a-main: Add C7xv device node
-        commit: 56f13d79430f8faa27943e376ac25aca0836ee93
-[06/11] arm64: dts: ti: k3-am62a7-sk: Enable IPC with remote processors
-        commit: 77c29ebe76d80174d5735b61edd3c95e32a75d2e
-[07/11] arm64: dts: ti: k3-am62p5-sk: Enable IPC with remote processors
-        commit: b05a6c145001e99348a2fe33958be912f4eb8d4d
-[08/11] arm64: dts: ti: k3-am62x-sk-common: Enable IPC with remote processors
-        commit: 8fb034b8402ead1028ed63394a177947b1450fcd
-[09/11] arm64: dts: ti: k3-am62a7-sk: Reserve main_timer2 for C7x DSP
-        commit: 2a473854bea16de7d3502ae2cd1ba4481eb632e9
-[10/11] arm64: dts: ti: k3-am62a7-sk: Reserve main_rti4 for C7x DSP
-        commit: b4ec77305c2645ce96c4a13aca0c375815e06672
-[11/11] arm64: dts: ti: k3-am64: Reserve timers used by MCU FW
-        commit: e4b55d85024f806c9b364d498e0ebbc74d76d77d
+The patches in this series should be merged together in one tree to avoid
+potential bisect problems. Given the majority of the changes is in the
+mailbox subsystem and the QC clock drivers only have trivial 1-line
+changes, I propose merging all of these through the mailbox subsystem.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+@Bjorn: If this sounds good to you, could you provide an Acked-by for the
+two "clk: qcom:" patches?
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+---
+Stephan Gerhold (4):
+      dt-bindings: mailbox: qcom,apcs: Add separate node for clock-controller
+      mailbox: qcom-apcs-ipc: Assign OF node to clock controller child device
+      clk: qcom: apcs-msm8916: Obtain clock from own OF node
+      clk: qcom: apcs-sdx55: Obtain clock from own OF node
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+ .../bindings/mailbox/qcom,apcs-kpss-global.yaml    | 169 ++++++++++++++-------
+ drivers/clk/qcom/apcs-msm8916.c                    |   2 +-
+ drivers/clk/qcom/apcs-sdx55.c                      |   2 +-
+ drivers/mailbox/qcom-apcs-ipc-mailbox.c            |  16 +-
+ 4 files changed, 132 insertions(+), 57 deletions(-)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250505-qcom-apcs-mailbox-cc-6e292bb6d40e
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+Best regards,
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Stephan Gerhold <stephan.gerhold@linaro.org>
 
 
