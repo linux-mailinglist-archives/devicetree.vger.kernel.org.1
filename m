@@ -1,72 +1,61 @@
-Return-Path: <devicetree+bounces-173917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5881CAAB9E7
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:07:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D83B7AABABF
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:27:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E0FA3B2FC9
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 06:57:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01ED65A0BB2
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:06:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6835C297B82;
-	Tue,  6 May 2025 04:03:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFDF22DF9E;
+	Tue,  6 May 2025 04:38:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="JXt3rZTM"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="EwQtZEg/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731110.qiye.163.com (mail-m19731110.qiye.163.com [220.197.31.110])
+Received: from mail-m82174.xmail.ntesmail.com (mail-m82174.xmail.ntesmail.com [156.224.82.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CEBA319A5E;
-	Tue,  6 May 2025 03:12:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D934C29ACF5;
+	Tue,  6 May 2025 04:13:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.224.82.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746501170; cv=none; b=cuDmZ530+mrpkP9i0j2Ms/NagXF/DaJxSb/9i/rlSvT6CRULbstLyivw5PAq6oVgezAJyNuJ/iPwEIf2OF6M4N9iO3QfNRJgXYApgL94lJ0DtM+HvDaXeEzIj9B6H6koMlGzAvYZWM9bxRhO36F+SNB0flvDkfanOMRKNykwIPI=
+	t=1746504787; cv=none; b=nxKiBIG7+qwBjIwnmQ0eIbH4rGlrk8fjvPAzMUQ3nlJ1EpbsXPvlVdJbXz/t8NVkyuIZh9ShS17uVlYANxsSU+nURU0mfsQaCj98Lp/NYeh9AgoZRlsJ93UuYgRCakLsn2UANptBkcDdMFhDX7c+daViozydO0HAWqXl/b9M4Rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746501170; c=relaxed/simple;
-	bh=oW9HeIeCmokvmEUwG5AjU4lvlrfAArDaT9DBtFEWufc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=S+I/KkD/t7wBT9ZmEkVqk79mnHbhyydse54TcQ7BpBmuEP4ms4ZsIr1R+k59cYBNDeEb34bP3xOcuzfAUmZIcDOVyJQ58/XRAp/SGjHcQuhZ4Jhwy/5i5jIaNKvrTszD2IZWV5Fh+C1w7t0aOcJMzfm8mWR34vR1Dft2ISWTxIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=JXt3rZTM; arc=none smtp.client-ip=220.197.31.110
+	s=arc-20240116; t=1746504787; c=relaxed/simple;
+	bh=uDVf/saMy4+Z9R9ojM5P/eQj0EB4phsLM7i+B38h2iE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=cSQL6vrO/xuEZTzLFXeVZieg+jdeEt9QkmYnIlsN7IRwkpw6Dp8BcWNFylx77QMUiT4YpGRmCOK/jfO6nW2dpCDCKowFqWSH4mHF+QOMXjYb6Rcl/QenbMNva9d4kreEy3DqF4nU+yOJQeNdrZyP/BXhABdtgQe2XakJB2Lv+1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=EwQtZEg/; arc=none smtp.client-ip=156.224.82.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 140c6eae0;
-	Tue, 6 May 2025 10:57:19 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 140c6eaf9;
+	Tue, 6 May 2025 10:57:25 +0800 (GMT+08:00)
 From: Kever Yang <kever.yang@rock-chips.com>
 To: heiko@sntech.de
 Cc: linux-rockchip@lists.infradead.org,
 	Kever Yang <kever.yang@rock-chips.com>,
-	Jamie Iles <jamie@jamieiles.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
-	Junhao Xie <bigfoot@classfun.cn>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Yao Zi <ziyao@disroot.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	devicetree@vger.kernel.org,
-	Diederik de Haas <didi.debian@cknow.org>,
-	linux-watchdog@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	devicetree@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	linux-kernel@vger.kernel.org,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Yao Zi <ziyao@disroot.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Shresth Prasad <shresthprasad7@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	linux-kernel@vger.kernel.org,
-	Jimmy Hon <honyuenkwun@gmail.com>
-Subject: [PATCH v5 0/6] rockchip: Add rk3562 SoC and evb support
-Date: Tue,  6 May 2025 10:57:09 +0800
-Message-Id: <20250506025715.33595-1-kever.yang@rock-chips.com>
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH v5 3/6] dt-bindings: soc: rockchip: Add rk3562 syscon compatibles
+Date: Tue,  6 May 2025 10:57:12 +0800
+Message-Id: <20250506025715.33595-4-kever.yang@rock-chips.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250506025715.33595-1-kever.yang@rock-chips.com>
+References: <20250506025715.33595-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,90 +64,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxoZSFYYGhlPGktMSB1DThpWFRQJFh
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk5NHVYYHU1MQ0hKQkkfGUNWFRQJFh
 	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
 	1VSktLVUpCWQY+
-X-HM-Tid: 0a96a386c1a103afkunm140c6eae0
+X-HM-Tid: 0a96a386d66c03afkunm140c6eaf9
 X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NxQ6Fio4SjJJShEtMjxMMDIe
-	KS4KCjBVSlVKTE9NTktLSU9KQkpLVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFIQkNKNwY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Pwg6FCo4VjJRNxEtIjMJMD8d
+	HC4aCTVVSlVKTE9NTktLSU9NTUtPVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJTkNPNwY+
 DKIM-Signature:a=rsa-sha256;
-	b=JXt3rZTMDb7HXMD+niuonbqjJO5oAH8E9/BS/AneQJR5fV0DyZvEkJj5FvNTpH8YpOqSHRatefzpH/oVzeTuTrmZ0GwEM28dHv5+b0Q8SjBCu8Di4pHtPVYu7GhLUfP1HIYTumDe32xV7t4WYRL8JK79ZaoLr28DDGYcKGofxXY=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=3dqzEK6o7cHu5/0LtgezIfFhqUApVg/7ee7umICA/ho=;
+	b=EwQtZEg/JcR9X1aI3qN+lcZB8BLJGZzmogevqtBCXYTMSJ0LbLAJFcjnWqQPESUH3kmNkI/EZAUbcKEte4FPiuE3Uah8VQA0K+JXK1YYyEVymbNOlBJXzC3uVUT3d0nhvqtFSGkPKwp/C6M/TbKL86Pux1ebE1NWBWMr2fCR+ks=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=z6yuuAP3upQvCqHVAexjgMB4cGshHYyvgpiH/jTzsjM=;
 	h=date:mime-version:subject:message-id:from;
 
+Add all syscon compatibles for rk3562.
 
-Patch series V5 remove [v4 1/7] which had taken by Manivannan, and move
-scmi-shmem from soc node to reserved memory.
+Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+---
 
-Patch series V4 remove patches already landed, and remove dts nodes for
-modules still under review.
-
-This patch set adds rk3562 SoC and its evb support.
-
-I have split out patches need driver change for different subsystem.
-And all the modules with dt-binding document update in this patch set
-do not need any driver change. I put them together to make it clear we
-have a new SoC and board to use the new compatible. Please pick up the
-patch for your subsystem, or please let me know if the patch has to
-send separate.
-
-Test with USB, PCIe, EMMC, SD Card.
-
-This patch set is base on the patch set for rk3576 evb1 support.
-
-V3:
-https://lore.kernel.org/linux-rockchip/20250227111913.2344207-1-kever.yang@rock-chips.com/
-V2:
-https://lore.kernel.org/linux-rockchip/b4df8a73-58a2-4765-a9e4-3513cb2bc720@rock-chips.com/T/
-
-
-Changes in v5:
-- Collect review tag
-- Update scmi-shmem from soc to reserved memory
-
+Changes in v5: None
 Changes in v4:
 - Collect ack tag
-- Collect ack tag
-- Collect ack tag
-- remove gmac and otp nodes
-- remove gmac nodes
 
-Changes in v3:
-- Collect reveiw tag
-- Collect the Acked-by tag
-- remove i2c/serial/spi alias
-- add soc node
+Changes in v3: None
+Changes in v2: None
 
-Changes in v2:
-- Update in sort order
-- remove grf in cru
-- Update some properties order
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Finley Xiao (2):
-  arm64: dts: rockchip: add core dtsi for RK3562 Soc
-  arm64: dts: rockchip: Add RK3562 evb2 devicetree
-
-Kever Yang (4):
-  dt-bindings: watchdog: Add rk3562 compatible
-  dt-bindings: rockchip: pmu: Add rk3562 compatible
-  dt-bindings: soc: rockchip: Add rk3562 syscon compatibles
-  dt-bindings: arm: rockchip: Add rk3562 evb2 board
-
- .../devicetree/bindings/arm/rockchip.yaml     |    5 +
- .../devicetree/bindings/arm/rockchip/pmu.yaml |    2 +
- .../devicetree/bindings/soc/rockchip/grf.yaml |    7 +
- .../bindings/watchdog/snps,dw-wdt.yaml        |    1 +
- arch/arm64/boot/dts/rockchip/Makefile         |    1 +
- .../boot/dts/rockchip/rk3562-evb2-v10.dts     |  488 ++++
- .../boot/dts/rockchip/rk3562-pinctrl.dtsi     | 2352 +++++++++++++++++
- arch/arm64/boot/dts/rockchip/rk3562.dtsi      | 1270 +++++++++
- 8 files changed, 4126 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3562-evb2-v10.dts
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3562-pinctrl.dtsi
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3562.dtsi
-
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index 2f61c1b95fea..8cbf5b6772dd 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -18,6 +18,12 @@ properties:
+               - rockchip,rk3528-ioc-grf
+               - rockchip,rk3528-vo-grf
+               - rockchip,rk3528-vpu-grf
++              - rockchip,rk3562-ioc-grf
++              - rockchip,rk3562-peri-grf
++              - rockchip,rk3562-pipephy-grf
++              - rockchip,rk3562-pmu-grf
++              - rockchip,rk3562-sys-grf
++              - rockchip,rk3562-usbphy-grf
+               - rockchip,rk3566-pipe-grf
+               - rockchip,rk3568-pcie3-phy-grf
+               - rockchip,rk3568-pipe-grf
+@@ -82,6 +88,7 @@ properties:
+               - rockchip,rk3368-pmugrf
+               - rockchip,rk3399-grf
+               - rockchip,rk3399-pmugrf
++              - rockchip,rk3562-pmu-grf
+               - rockchip,rk3568-grf
+               - rockchip,rk3568-pmugrf
+               - rockchip,rk3576-ioc-grf
 -- 
 2.25.1
 
