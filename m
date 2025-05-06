@@ -1,250 +1,90 @@
-Return-Path: <devicetree+bounces-174152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EF4EAAC36F
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:09:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA3F2AAC38B
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:13:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B6E11C22A28
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:09:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 239C0461D05
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:13:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37A5327F186;
-	Tue,  6 May 2025 12:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80E1227F4EF;
+	Tue,  6 May 2025 12:13:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LxCXDU9n"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="fTCUrSqw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E42A27E7DC;
-	Tue,  6 May 2025 12:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A16A227F16F;
+	Tue,  6 May 2025 12:13:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746533381; cv=none; b=ls7hg1u7NLvNRVhQ0e+kvSOUFsgh8NbVroFxC6M6fjXboS5Z5a0qxHVND1eo+DVzYh8jcVtx1f/3+eK7YAf2beH1lLGGYCQ20gOOxIwJ+x5rQccE9fTiCyrCiI3ZQY8TojG2DLQw8PoibwIxilIBU3zn+ZcyjObbBQwfurYnY5M=
+	t=1746533595; cv=none; b=VcrgVUR9ijYKVyaq8wlCs4g4re5wd99XhiT3Jr0XHupKEINdUbH5eaGSvKSjRBOMYjTF7sF8f/oSuQzbbovQdU8oGfJFSMkyzOUG+W2OjQ+CWDFuyT7XNqWhVezoJM/GuBkxCXfS/02+fwGsrS1NPfTyz8RKz6OkNArUXG/A4aM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746533381; c=relaxed/simple;
-	bh=C1cNc1T1EZTLsEqWLlQZ4HP/ZrBdzYD7Gj1Q5X2lVgk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aJFkf+DKZ+aIh2W7D0q5syZ0+TP0LVcDDZ0FFH+nmiGyDS8HSxDY+l+G0oBPaLNylKEQEQqauY/X3RUDTFSMl9Ln8GVi2tD9OuiAhpOnNWBot4pvbVd3pd3vnO50z0dbRgTrh5SfzpiGTLP6mIhS6NOES62sweRg1jkEXZ2gvms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LxCXDU9n; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746533379; x=1778069379;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=C1cNc1T1EZTLsEqWLlQZ4HP/ZrBdzYD7Gj1Q5X2lVgk=;
-  b=LxCXDU9nvZUIIEkIba5hhP/VBcVFFGU47vCWbPlamV5gfBrgvNcGR5Y0
-   e6boY7OoLJKpbmWH6t70wQj0eDyYjXc1eYF6ECcqqxzgUfi3QdWnUiXTc
-   /mbnUXHwGWOLGg7CIhGJnlq0MHZHbnOC49soALAKoeag0pp74VB4/0R9k
-   wkApKMFs97EZXUrha9DaGpjfPHLYkLvwPVKqzxgtVKm0G/sKzLCr89Zpa
-   yNb0ReYe4w0P6ZxevvUOPSob+27/1+kku6PtUAVXPCvky7bxMjnk7T0Rm
-   P1D0MB+Qs8WopUJKg5Cxq895015f+jOqcXJhj/7KWKiJfOaOBBYcKsX4Q
-   Q==;
-X-CSE-ConnectionGUID: Tmd3iPVeSRuGQPPaIctcCg==
-X-CSE-MsgGUID: SZBiTcwvT+22q/su0G8tGA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="52007845"
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; 
-   d="scan'208";a="52007845"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2025 05:09:38 -0700
-X-CSE-ConnectionGUID: 2HCngJfPS4OtN3NFDHOPUQ==
-X-CSE-MsgGUID: AkdwN2B/RO2PGMjkHhJ6nA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; 
-   d="scan'208";a="136595874"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.245.251])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2025 05:09:33 -0700
-Date: Tue, 6 May 2025 14:09:24 +0200
-From: Mehdi Djait <mehdi.djait@linux.intel.com>
-To: michael.riesch@collabora.com
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, Gerald Loacker <gerald.loacker@wolfvision.net>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Kever Yang <kever.yang@rock-chips.com>, 
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Collabora Kernel Team <kernel@collabora.com>, Paul Kocialkowski <paulk@sys-base.io>, 
-	Alexander Shiyan <eagle.alexander923@gmail.com>, Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH v6 05/13] media: dt-bindings: add rockchip rk3568 mipi
- csi receiver
-Message-ID: <wxwzca4i36hdhdx5ehjqvq5ljpsb7lcvzermkhqyvufsr47au4@3qcth2vawwju>
-References: <20240220-rk3568-vicap-v6-0-d2f5fbee1551@collabora.com>
- <20240220-rk3568-vicap-v6-5-d2f5fbee1551@collabora.com>
+	s=arc-20240116; t=1746533595; c=relaxed/simple;
+	bh=WkezLrjTLU+d3BljfRIEuFJO5wKwrOidYS6e0q3POdw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rKf29YC/OYwqtQ35KoybmKYMhjQ4iM9inIOB7FMbiQpuBtjOi8+5VwZkKKUkDe/f4lnlpSqsxpCPrjVs6Lvv55kRfPo+jLTwTOMHqRWfqoUF9E3lLqxpHjhc1Tw67gZClKVi2unSpILmk3v+EOJ0nJwfRW5FG52P6Bsv/RF6aU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=fTCUrSqw; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 87F11129;
+	Tue,  6 May 2025 14:12:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1746533575;
+	bh=WkezLrjTLU+d3BljfRIEuFJO5wKwrOidYS6e0q3POdw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=fTCUrSqwLazFCD5DFnSFZMUbFbHM21mqRKvbAU8zZdwPdvVjpPelynfkuaUa70QBw
+	 RqoV6xByHzslqvyDmVEHpDf9LJhRKzOxAGdq741zwS2jVfPXyjvvCmevZr6Z1qc6y9
+	 TrW6XSFzjXoOTkaLLhQHHb4TotgNtr3tNjMj/8no=
+From: Daniel Scally <dan.scally@ideasonboard.com>
+To: linux-clk@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: geert+renesas@glider.be,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	magnus.damm@gmail.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	Daniel Scally <dan.scally@ideasonboard.com>
+Subject: [PATCH 0/4] Add clocks and reset definitions for RZ/V2H ISP
+Date: Tue,  6 May 2025 13:12:48 +0100
+Message-Id: <20250506121252.557170-1-dan.scally@ideasonboard.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240220-rk3568-vicap-v6-5-d2f5fbee1551@collabora.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Michael,
+Hello all
 
-thank you for the patch!
+This series adds the clocks and reset lines (with backing macros in dt-bindings)
+for the ISP in the RZ/V2H SoC.
 
-On Wed, Apr 30, 2025 at 11:15:54AM +0200, Michael Riesch via B4 Relay wrote:
-> From: Michael Riesch <michael.riesch@wolfvision.net>
-> 
-> Add documentation for the Rockchip RK3568 MIPI CSI-2 Receiver.
-> 
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> ---
->  .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 113 +++++++++++++++++++++
->  MAINTAINERS                                        |   1 +
->  2 files changed, 114 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
-> new file mode 100644
-> index 000000000000..d5004cb288dd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
-> @@ -0,0 +1,113 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip RK3568 MIPI CSI-2 Receiver
-> +
-> +maintainers:
-> +  - Michael Riesch <michael.riesch@collabora.com>
-> +
-> +description:
-> +  The Rockchip RK3568 MIPI CSI-2 Receiver is a CSI-2 bridge with one input port
-> +  and one output port. It receives the data with the help of an external
-> +  MIPI PHY (C-PHY or D-PHY) and passes it to the Rockchip RK3568 Video Capture
-> +  (VICAP) block.
-> +
-> +properties:
-> +  compatible:
-> +    const: rockchip,rk3568-mipi-csi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    maxItems: 1
-> +    description: MIPI C-PHY or D-PHY.
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: Input port node. Connect to e.g., a MIPI CSI-2 image sensor.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              bus-type:
-> +                enum: [1, 4]
+Thanks
+Dan
 
-shouldn't you add data-lanes property here ?
+Daniel Scally (4):
+  dt-bindings: clock: Add macros for RZ/V2H ISP clocks
+  clk: renesas: r9a09g057-cpg: Add clock entries for RZ/V2H ISP
+  dt-bindings: clock: Add macros for RZ/V2H ISP reset
+  clk: renesas: r9a09g057-cpg: Add reset definitions for RZ/V2H ISP
 
-                 data-lanes:
-                   minItems: 1
-                   maxItems: 4
-> +
-> +            required:
-> +              - bus-type
+ drivers/clk/renesas/r9a09g057-cpg.c               | 15 +++++++++++++++
+ drivers/clk/renesas/rzv2h-cpg.h                   |  2 ++
+ include/dt-bindings/clock/renesas,r9a09g057-cpg.h | 10 ++++++++++
+ 3 files changed, 27 insertions(+)
 
-and add it to required:
-                 - data-lanes
+-- 
+2.34.1
 
-you are actually checking for data-lanes when you enable the stream in:
-
-rkcif-mipi-csi-receiver.c +226
-
-	u32 lanes = csi_dev->vep.bus.mipi_csi2.num_data_lanes;
-
-	if (lanes < 1 || lanes > 4)
-		return -EINVAL;
-
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Output port connected to a RK3568 VICAP port.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - phys
-> +  - phy-names
-> +  - ports
-> +  - power-domains
-> +  - resets
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rk3568-cru.h>
-> +    #include <dt-bindings/power/rk3568-power.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        csi: csi@fdfb0000 {
-> +            compatible = "rockchip,rk3568-mipi-csi";
-> +            reg = <0x0 0xfdfb0000 0x0 0x10000>;
-> +            clocks = <&cru PCLK_CSI2HOST1>;
-> +            phys = <&csi_dphy>;
-> +            power-domains = <&power RK3568_PD_VI>;
-> +            resets = <&cru SRST_P_CSI2HOST1>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                csi_in: port@0 {
-> +                    reg = <0>;
-> +                };
-> +
-> +                csi_out: port@1 {
-> +                    reg = <1>;
-> +
-> +                    csi_output: endpoint {
-> +                        remote-endpoint = <&vicap_mipi_input>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-
---
-Kind Regards
-Mehdi Djait
 
