@@ -1,153 +1,144 @@
-Return-Path: <devicetree+bounces-174284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B022BAACB27
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:38:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDBA7AACB31
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:39:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31BCD507F7E
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:38:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBA8116450A
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B75292857C6;
-	Tue,  6 May 2025 16:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BE49283FE2;
+	Tue,  6 May 2025 16:38:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Kx3UI59W"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="MkWdMOIu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A4B285406;
-	Tue,  6 May 2025 16:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14F602820AB
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 16:38:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746549468; cv=none; b=TcylBfL5rpkiH163MDNaJEqS+1D+x1xhvqlpX0TYHzKIvbRhZGs0BDe3SiIbFpZK6lYhA9aLGD8lcXj1Eny2PPxH0R1Xj7slVh/se7Mqj+cv/uqh/1OtZlVGf2RKzY3cgvk5gxiTtbCJpSU+mbSBOnbjueWZek35W8YoE5nwn/E=
+	t=1746549519; cv=none; b=ZyxdoN0a0/ZkHSmlBGcYTXagDsWmPknsO1hnFHJr98VkaMFoz+N/cScGweXY8RZAcFh8/57HXPpj8IBp9iBJXAtLLjQxwxdE6EbNYhe51fTYoE/6q02LyYHPHy4z3Hj1wXfKnPIalGXzCuUSsbvqWKiCpESTxfgpClhxx9NT+/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746549468; c=relaxed/simple;
-	bh=rl+VdJnM8U54MEl4WHmsvqizGTzkQ+fz3Py8qHb+n/A=;
+	s=arc-20240116; t=1746549519; c=relaxed/simple;
+	bh=YZ9decDNQnnxpsaT2NSdgxRRkOQk5BsdQyjM7wUXQ8E=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=j7SRN/KduzwKMo644RwvoCCINovtd/MzeutXGX1ZJT+k2SkVxhWbm90fHUZrZXk6/ZLm+J20e03fjd7Pn6qq4Ip38ZAhLwCsyFOoK/w096rf/M+hWpRY0rG8bz+5dLFfOJCB7lxZc5AHpCON2bEJY5lLMpRCGxMbqat0z7NhNsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Kx3UI59W; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5468FFKQ013247;
-	Tue, 6 May 2025 16:37:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=AnZXfvO2F4n
-	jdN9SKiMeC1UFuBcsq368N5AF4Tbnc1M=; b=Kx3UI59W/cplb8j2ebmjukIrh6j
-	zBKZc3N/9oIDp9SEGX2jKmaEo2WfbzBIEB0iJOiiACXlfPEzyCCa3yo/CA+b9DA4
-	hXh9RN8HOhi8TcLEq4hS3SBBxLqcz3Zb0vBY2W++arYFU4QegRaiBJyp7DaQ0QIO
-	OtLE8kj6aceZEOSjUZuSB3wkulble9J180nyipr9Ud3Nd6wH/ZZyT9I3iysKffT5
-	C1DFpHuGix/vXhCf5eMw1oX2+ePKzAyGCfu4BL2S6As+FoSX5qiAjSUEp0+tZwY2
-	FNhUMPIpv1TjkcIIwqa+qIjWRs+xieU97R5/S2Ig6hd3foBbWCkSj18U2KA==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46f5u42yn3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 06 May 2025 16:37:15 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 546GbCIE003142;
-	Tue, 6 May 2025 16:37:12 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 46dc7kx4mh-1;
-	Tue, 06 May 2025 16:37:12 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 546GbBdK003137;
-	Tue, 6 May 2025 16:37:12 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-nitirawa-hyd.qualcomm.com [10.213.109.152])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 546GbB9D003135;
-	Tue, 06 May 2025 16:37:11 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2342877)
-	id 185885015A9; Tue,  6 May 2025 22:07:11 +0530 (+0530)
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-To: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
-        krzk+dt@kernel.org, robh@kernel.org, mani@kernel.org,
-        conor+dt@kernel.org, James.Bottomley@HansenPartnership.com,
-        martin.petersen@oracle.com, beanhuo@micron.com,
-        peter.wang@mediatek.com
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Nitin Rawat <quic_nitirawa@quicinc.com>
-Subject: [PATCH V2 3/3] scsi: ufs: qcom: Add support to disable UFS LPM Feature
-Date: Tue,  6 May 2025 22:07:05 +0530
-Message-ID: <20250506163705.31518-4-quic_nitirawa@quicinc.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250506163705.31518-1-quic_nitirawa@quicinc.com>
-References: <20250506163705.31518-1-quic_nitirawa@quicinc.com>
+	 MIME-Version:Content-Type; b=MPB7TpaAAK73acFneZ2iJ7VdUR3z/98tWUpR3TzMcjfGgvl2uG4nbuIT9ifqSkTiIRy+OPFUklcc5V05DpxkIvop1ZXg32U8FYnmKqEG34TEcSyX7dAC52pxThhwxYfTOHum0f5QWerCUFo5veZ2Sm1FkUE/daIu0OJEMrTjVYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=MkWdMOIu; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=wYQJgp+YqSaqLX+Gu3RwL9L3fPGOWiBg+qdbYxy4gD4=; b=MkWdMOIuXbNbPdrDqke9a8CvVo
+	fwO/8nDlAA/RjKLAZALusRdWlAl9ik7oOTCmbecFwcgrv0oWv83AS8M45iBVGiJr24zpGmhW5fS5o
+	CXc38odJNP/lT3uwlSPjgyobgDNHgLax6TUVtQpoAiNwThoVow/8RZSArpbx8QAb5GQ87u+3IEL/n
+	coWcj3MWcqc6Jpm6JQoA7BZNNut/P2yxcTZJo68Z/i6SZqAw+HgSLbf8u7JA+t/Wq0aoYNdMTmXgI
+	asGjoGOc8QZrq27HuZJBV6i/d6S/a2h24qfaHpOC6SpVZc21uxk8/kTvwqPnadiWVRZE1JChfNiZh
+	9qnhjVXg==;
+Received: from i53875a1d.versanet.de ([83.135.90.29] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uCLJM-00039w-FT; Tue, 06 May 2025 18:38:28 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Conor Dooley <conor@kernel.org>, John Clark <inindev@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, robh@kernel.org,
+ krzysztof.kozlowski@linaro.org, conor+dt@kernel.org, jonas@kwiboo.se,
+ frattaroli.nicolas@gmail.com, andrew@lunn.ch
+Subject:
+ Re: [PATCH v3 2/3] dt-bindings: arm: rockchip: Add Luckfox Omni3576 and
+ Core3576 bindings
+Date: Tue, 06 May 2025 18:38:27 +0200
+Message-ID: <5007332.31r3eYUQgx@diego>
+In-Reply-To: <c8114ff8-f207-4ea8-aaf1-298dcea9f030@gmail.com>
+References:
+ <20250506114115.613616-1-inindev@gmail.com>
+ <20250506-almighty-uncork-f7a0bc42d763@spud>
+ <c8114ff8-f207-4ea8-aaf1-298dcea9f030@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=KcfSsRYD c=1 sm=1 tr=0 ts=681a3abb cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=xQxKfdDwmO31qOoK2vYA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: Q1ylV7Bx-Ra_HMbSphY1rWezIYfnpAMv
-X-Proofpoint-ORIG-GUID: Q1ylV7Bx-Ra_HMbSphY1rWezIYfnpAMv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA2MDE1NyBTYWx0ZWRfXzZPgNsenZhX2
- 1w/6oZRFvytp8t7yL4dYm1xEPKyk6iFlYUOvXvNV0GpiClmgy8JS0JOy6R66WvD3rm6979YK+td
- htFa1lPb6YjdNkEtVlF8zn+6pCHVIBCCJLvFHX2DynYZ+VHJOpo77DDWQJEOdULslxn6m04Pzb4
- ZGHMm63a2EGjLLDE3thGrvQBQNbzpcBcLLgs3ZJpDvDGkdAzl3kPdAreWwOmohnAaYxgBXOfA3Z
- luWtshlKcViIhAai1FNgUEpvy35NSiXHJcdMcGQ12Oapl8A68XAdkJo0/b4WYIkalDOcxDN7b3+
- i9ErGktb77pAYzsr+8kVZLgKJGX0zrS1B7mnsSrazSVMswZjtNDO75N6AEMnGa1TgBnqTR5M4UI
- wGqfZXVanODrekzsHRKpCwclS1lOyqfwkttZLL7KnTZmw/MFfdUyXVbKZUxTWuSfjWpYqf8p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-06_07,2025-05-05_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 spamscore=0 suspectscore=0 bulkscore=0 mlxlogscore=999
- phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0 adultscore=0
- clxscore=1015 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505060157
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-There are emulation FPGA platforms or other platforms where UFS low
-power mode is either unsupported or power efficiency is not a critical
-requirement.
+Hi John,
 
-Disable all low power mode UFS feature based on the "disable-lpm" device
-tree property parsed in platform driver.
+Am Dienstag, 6. Mai 2025, 17:54:10 Mitteleurop=C3=A4ische Sommerzeit schrie=
+b John Clark:
+> On 5/6/25 11:44 AM, Conor Dooley wrote:
+> > On Tue, May 06, 2025 at 07:41:14AM -0400, John Clark wrote:
+> >> Add device tree binding for the Luckfox Omni3576 Carrier Board with
+> >> Core3576 Module, based on the Rockchip RK3576 SoC.
+> >>
+> >> Signed-off-by: John Clark <inindev@gmail.com>
+> >> ---
+> >>   Documentation/devicetree/bindings/arm/rockchip.yaml | 10 ++++++++++
+> >>   1 file changed, 10 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Doc=
+umentation/devicetree/bindings/arm/rockchip.yaml
+> >> index 455fbb290b77..826dede32145 100644
+> >> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> >> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> >> @@ -715,6 +715,16 @@ properties:
+> >>             - const: lckfb,tspi-rk3566
+> >>             - const: rockchip,rk3566
+> >>  =20
+> >> +      - description: Luckfox Core3576 Module
+> >> +        items:
+> >> +          - const: luckfox,core3576
+> >> +          - const: rockchip,rk3576
+> >> +
+> >> +      - description: Luckfox Omni3576 Carrier Board
+> >> +        items:
+> >> +          - const: luckfox,omni3576
+> >> +          - const: rockchip,rk3576
+> >=20
+> > Not sure this is correct, does the module not have to be attached to
+> > this particular carrier to be used?
+>=20
+> The compute module and the carrier board together like the E25.=20
+> Presumably the compute module would be used in other applications
+> but the carrier board is not useful without it.
+>=20
+> Is the E25 done correctly here?  I can copy this format:
 
-Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
----
- drivers/ufs/host/ufs-qcom.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+=46or the baseboard + module you should always have one of those
 
-diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-index c0761ccc1381..ad4974c6d08e 100644
---- a/drivers/ufs/host/ufs-qcom.c
-+++ b/drivers/ufs/host/ufs-qcom.c
-@@ -1057,12 +1057,15 @@ static void ufs_qcom_set_host_caps(struct ufs_hba *hba)
+> >> +      - description: Luckfox Core3576 Module
+> >> +        items:
+> >> +          - const: luckfox,core3576
+> >> +          - const: rockchip,rk3576
+> >> +
 
- static void ufs_qcom_set_caps(struct ufs_hba *hba)
- {
--	hba->caps |= UFSHCD_CAP_CLK_GATING | UFSHCD_CAP_HIBERN8_WITH_CLK_GATING;
--	hba->caps |= UFSHCD_CAP_CLK_SCALING | UFSHCD_CAP_WB_WITH_CLK_SCALING;
--	hba->caps |= UFSHCD_CAP_AUTO_BKOPS_SUSPEND;
-+	if (!hba->disable_lpm) {
-+		hba->caps |= UFSHCD_CAP_CLK_GATING | UFSHCD_CAP_HIBERN8_WITH_CLK_GATING;
-+		hba->caps |= UFSHCD_CAP_CLK_SCALING | UFSHCD_CAP_WB_WITH_CLK_SCALING;
-+		hba->caps |= UFSHCD_CAP_AUTO_BKOPS_SUSPEND;
-+		hba->caps |= UFSHCD_CAP_AGGR_POWER_COLLAPSE;
-+		hba->caps |= UFSHCD_CAP_RPM_AUTOSUSPEND;
-+	}
-+
- 	hba->caps |= UFSHCD_CAP_WB_EN;
--	hba->caps |= UFSHCD_CAP_AGGR_POWER_COLLAPSE;
--	hba->caps |= UFSHCD_CAP_RPM_AUTOSUSPEND;
+      - description: Luckfox Core3576 based boards
+        items:
+          - enum:
+              - luckfox,omni3576
+          - const: luckfox,core3576
+          - const: rockchip,rk3576
 
- 	ufs_qcom_set_host_caps(hba);
- }
---
-2.48.1
+I've looked at the product page [0] now and the Core3576 module itself
+can't work independently without a baseboard present, so the above should
+be enough, and also allows for possible future other baseboards to be
+integrated.
+
+
+Heiko
+
+
+[0] https://www.luckfox.com/EN-Core3576
+
 
 
