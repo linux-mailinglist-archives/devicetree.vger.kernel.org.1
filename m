@@ -1,77 +1,94 @@
-Return-Path: <devicetree+bounces-174045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CF07AABF55
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:25:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21619AABF69
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:27:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10BE93B6634
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:24:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8668C17B6EC
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:27:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0282C266EEC;
-	Tue,  6 May 2025 09:24:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D214264612;
+	Tue,  6 May 2025 09:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="bzbc8dF8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SD5F6bN4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67367252906;
-	Tue,  6 May 2025 09:24:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C98D24EA8F;
+	Tue,  6 May 2025 09:27:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746523454; cv=none; b=s4FN4L9N9mTKSzvK305Kxv1iQe93pWkxsDpWH/PEctvWcacP34LR88QqeePJN35Zg3nrLTvXtj/+A4eDb5OLOCobv4pf2hB/5/5lQCcHlvRZeVIOHrd1VBOIVMqgiNDJNuhwxhaE8wNW8AK5Gp5uTFLKYD70ykUd3uOPn+RGIus=
+	t=1746523651; cv=none; b=lLHVbzZFdKqSEOpDgrPN760ffgupGAvK8Q9Pa11ljrR3dAQeGRajLNtSGFxB8Fw6Wl0Po34aYP/cVFE/bb3skzbuxH48gTsv/t1k/A7L9J/3VnRUBzZ8ZD4Z59KDCWD/a59fJt2CNoI4VI9aAJNyS8bFzKl6ilciogMEgdlpP48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746523454; c=relaxed/simple;
-	bh=6w+tXU7Z8tsTcrJtTb1oifhiSkHhaVbmuA7KCza1/rU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hmQUVqTO8YUUxKoSvKlUoiOjlM7rxrZtXRp5/ZShqY71i2xWfg1APzhMbuSRK7b9K3KZ5+L+1aZb9ieW+lQ+Zl7GKxOKRk7zsNPlUAjLjhc337fKTAz/1W6rPHOyBUPcwYqpCqdWh/OzQgOMZ1pVHHg6R4fut3x7qGEdV2z9yY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=bzbc8dF8; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id C4B0D25A88;
-	Tue,  6 May 2025 11:24:11 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id WKdrIXse09H6; Tue,  6 May 2025 11:24:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1746523451; bh=6w+tXU7Z8tsTcrJtTb1oifhiSkHhaVbmuA7KCza1/rU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=bzbc8dF8Okg0jQcz0QdqchtwqlD3B9UslylP0fk1n1d5FBGEkvutT0d8W4eJNXQJp
-	 xKFKGRt2BSraG+16zvoDmsfHw/0nFYFq1pifYO5yLZtPuiexBZkYhsJOV56Tdquq18
-	 oWCheiEZx2zZJipHA3i6NoPNS/2OSsQGklUwWl+Ktj4eiRMqhV69WvJbMWaGSbIZJw
-	 mQeKwLFHbrL5e/gEQxW6viSh18SIMd4gae70pV1gJYR5WouacHRjLh0Pf+IDSNpU3G
-	 BRq6s47TGxGF2eY9Nsbk+nFGd0yh0AYoElMHoq+No+E5ytm6IjQxBDOvklbi9J77N0
-	 N8Rnrktmetqug==
-From: Yao Zi <ziyao@disroot.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
+	s=arc-20240116; t=1746523651; c=relaxed/simple;
+	bh=9HwLwVH4rtBu1AcEFKq5QUoTX5AGExymfeqtIDbAVr4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=O3WwybBYmkBNGCAdGqeiKnDygh5etpXmFl2l/brkHs+XJ9oMrDIKrMYludnZDgudIy94198vpR40y5Fe2j2OA9INatOY6VdSSsUnOPLhaJQB+FUX5Rq8NFULatlLbWZLLAcRLZbMbKh4KhXTJ1LCb9MgTHy3oKHsS6EGSsAfjJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SD5F6bN4; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5f4d0da2d2cso10651700a12.3;
+        Tue, 06 May 2025 02:27:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746523648; x=1747128448; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=184wuFTAJlMSFIwKpNsxB4H0JZOaRNDGBSu0dTC1wqA=;
+        b=SD5F6bN49vGijgfSbdow9/CLueEXDYktZvZNbtXVStViHuBjblNydDl23OfJkgy5SB
+         +wCKCFmVQkHhQ+AzmVhGeRrL98s+39hnaQ1ASEsuQAInxJm3dRKwzdhFJfEvx6EZ1Pmm
+         xgBm8CBhTqnTeLBPKoQb2lZXKi5pmNYWUDwq7HQ3B1e/AsvhdwASLlywYE6im4WjeeWL
+         LykX9wXtx5r9rE/qlZUSy6NLc+Qno9Kc59bQGaE+yAXEmoDD2dddtoBbG/QKGGIWK06d
+         0bIwFkKYxz8cEQW/ugBugv90C7uudwpj07TXd2WzYlulAXVUaJs46AoZq2LbVxish44O
+         yZzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746523648; x=1747128448;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=184wuFTAJlMSFIwKpNsxB4H0JZOaRNDGBSu0dTC1wqA=;
+        b=HyQKIOoAD62tRvlQO0JXUM/DY4DCHOod6V2vJMJITiM6cm3tG9T9+EtAJ+RzQ9V2EH
+         QF9dLaTH1HnEOiw7vxJ7MWCwybq0zK3N6u/chHK5B8fau5gsupKqIWH8J4YPXuOK0uBD
+         cqQTQbsuKqSV6O0pyw8ZqAYnahy2xg8V8EJG5YehViqcn2NsqY7q6l/TWOwoasL5BM6H
+         LxB5r3uB/JwfOElgX6cMEJjVLtH2zhwoOO17vBGXhn3OrtJcHtbXcOzgLXzha+rQi7OR
+         eoQCMxZRq8NrLZJgn5FzZBB+ypY706TgeESUYspAeWKWe3+LQHFp2/eIdolSnOv/ipRo
+         9CEw==
+X-Forwarded-Encrypted: i=1; AJvYcCWHZ6Lpe/twiGu1BqGJeLurbbaAgV6GjG+EbRdJyBVVBecctXHmqDSUwfaFbZNQU/co6KgXSEIuc2j6LC0r@vger.kernel.org, AJvYcCWP7jgM1Fgedu7kViA1MfNDXALoQT6zNQDrR9WEIDZrXwADLml9y3878hiBcxNCz4vqxI8IrvDN+F7A@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzTvpe2LthkZNJhS9nygc6U/Esd3DJDriI+iwF0MkwaeP8o5NR
+	eg/8piAIDEGwW9cANrGLtw/QNXyDJyk1qHcXQ+X0tO98XyEibCBv
+X-Gm-Gg: ASbGnctjtIgEb9vfHdATc4UMFAfRRMoyy6FZC7FFUy2it12Ga4CcL947oVaItmrhKxh
+	ZKquOzTiAd7v8R8eDastknGScnGTyqHXivbTycJzM3JAIlYyWrRE222iVgZDQK17amh8m9VELRj
+	iloGFnhG2AVWVzRwads3LMxeKQ27Sxswva3ReJIUiATSktiEscHehu3bkeoYCKlKYkHtr3CP8F5
+	yoDDNLCevejci8NSUmloeTaW2WaYL8Lw1EBUwQO6Zg6qkRFYqqMAW75FvOkseJF6bYTtZ16e1xz
+	NTxViQ3H7VDYSiPIgnCxGgrLVyAb/oTw
+X-Google-Smtp-Source: AGHT+IEfjJcQzL0jr4eUj8ffG6VatLpr1FG10qmF3SwSlavdo3y44IW2Rq1TdRSj1YvO7W1aQKJEvg==
+X-Received: by 2002:a05:6402:348d:b0:5f8:d4bf:e663 with SMTP id 4fb4d7f45d1cf-5fb6fb8e175mr1840105a12.2.1746523647640;
+        Tue, 06 May 2025 02:27:27 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5fa77756206sm7349523a12.3.2025.05.06.02.27.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 May 2025 02:27:27 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Shresth Prasad <shresthprasad7@gmail.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Cc: linux-mmc@vger.kernel.org,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Yao Zi <ziyao@disroot.org>
-Subject: [PATCH v5 5/5] arm64: dts: rockchip: Enable SD-card interface on Radxa E20C
-Date: Tue,  6 May 2025 09:22:06 +0000
-Message-ID: <20250506092206.46143-6-ziyao@disroot.org>
-In-Reply-To: <20250506092206.46143-1-ziyao@disroot.org>
-References: <20250506092206.46143-1-ziyao@disroot.org>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/4] drm: panel: add support for panels used in LG P880/P895
+Date: Tue,  6 May 2025 12:27:14 +0300
+Message-ID: <20250506092718.106088-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,76 +97,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-SD-card is available on Radxa E20C board.
+Add support for panels used in LG P880/P895 which are based on Renesas IC
+(not related to Renesas RISC-V architecture just the same manufacturer).
 
-Signed-off-by: Yao Zi <ziyao@disroot.org>
 ---
- .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Changes in v3:
+- switch to devm_drm_panel_alloc
+- rebased on top of drm-misc-next
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-index 6e77f7753ff7..d0b194b7e66e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-@@ -17,6 +17,7 @@ / {
- 
- 	aliases {
- 		mmc0 = &sdhci;
-+		mmc1 = &sdmmc;
- 	};
- 
- 	chosen {
-@@ -108,6 +109,18 @@ vcc5v0_sys: regulator-5v0-vcc-sys {
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
- 	};
-+
-+	vccio_sd: regulator-vccio-sd {
-+		compatible = "regulator-gpio";
-+		gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&sdmmc_vol_ctrl_h>;
-+		regulator-name = "vccio_sd";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		states = <1800000 0x0>, <3300000 0x1>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
- };
- 
- &i2c1 {
-@@ -144,6 +157,12 @@ wan_led_g: wan-led-g {
- 			rockchip,pins = <4 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
-+
-+	sdmmc {
-+		sdmmc_vol_ctrl_h: sdmmc-vol-ctrl-h {
-+			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
- };
- 
- &saradc {
-@@ -162,6 +181,17 @@ &sdhci {
- 	status = "okay";
- };
- 
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0m0_xfer>;
+Changes in v2:
+- added IC vendor compatible ass fallback
+- renamed renesas,inversion > renesas,column-inversion
+---
+
+Maxim Schwalm (1):
+  drm: panel: Add support for Renesas R69328 based MIPI DSI panel
+
+Svyatoslav Ryhel (3):
+  dt-bindings: display: panel: Document Renesas R61307 based DSI panel
+  drm: panel: Add support for Renesas R61307 based MIPI DSI panel
+  dt-bindings: display: panel: Document Renesas R69328 based DSI panel
+
+ .../display/panel/renesas,r61307.yaml         |  94 +++++
+ .../display/panel/renesas,r69328.yaml         |  73 ++++
+ drivers/gpu/drm/panel/Kconfig                 |  26 ++
+ drivers/gpu/drm/panel/Makefile                |   2 +
+ drivers/gpu/drm/panel/panel-renesas-r61307.c  | 325 ++++++++++++++++++
+ drivers/gpu/drm/panel/panel-renesas-r69328.c  | 281 +++++++++++++++
+ 6 files changed, 801 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/renesas,r61307.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/renesas,r69328.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-renesas-r61307.c
+ create mode 100644 drivers/gpu/drm/panel/panel-renesas-r69328.c
+
 -- 
-2.49.0
+2.48.1
 
 
