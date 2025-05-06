@@ -1,165 +1,129 @@
-Return-Path: <devicetree+bounces-174225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63499AAC668
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 15:35:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3143BAAC643
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 15:34:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53CEC1BC0D77
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:34:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 857437BCD2E
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D2E283C90;
-	Tue,  6 May 2025 13:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jfZHZUL9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BFD828315A;
+	Tue,  6 May 2025 13:31:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29FA6283C8C;
-	Tue,  6 May 2025 13:31:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4224280CF5;
+	Tue,  6 May 2025 13:31:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746538312; cv=none; b=OnFdS7ysq8iFfeQgZS+uhYDbnagT5sj8bjTY/iLNPxUqpMR4ahfFHDMMs98q/GlwgSbsVLSJG8Wb2jWEcBv6ED4fbZXhlfki5/43q/GNCLWkKe7orUXtDTYHtT8Hp5eE00IhFYxhjo4ZGZzjP1WGNbx3F43/U8A7M0+bo6w8zk8=
+	t=1746538298; cv=none; b=TTdNIlV+IChAsY/mJ7tHzXl6m28l+fDCq1btnMIcXl/4RMupFMTB7o+PlZ744SRJegNkjW7qGcLXECUFm149tQWe61SXfayxuMlzokwfqxC8KjSNsg9kc7pgSfLJ25j/qFC+VCLBDx4QQ+v7Ydgxp7jzlbgwqngVGlg4TfXDaOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746538312; c=relaxed/simple;
-	bh=LcOrty6LZ00HbBgJR6bvjHHeEuAq6Ky5k+ijm7bEDVM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ncmqu7yt722BZKuqnqjnQZisy4JPDdjwmB+W/K6211fKhdacwi+Slmroyq+FlDdrUbfwfpFsSnO1Qc9LeFQLonjeudVKy968mhpnZ1zhB5tN5Hzf9+8q5UnzKN6/zOJqB9r5jREdy7YEsZMRhCyKyrKL0cJU27WhR7SgVXh58ZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jfZHZUL9; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43d04dc73b7so49093055e9.3;
-        Tue, 06 May 2025 06:31:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746538309; x=1747143109; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Slorj42xucBLgcEgCTYJT1nDW78UozPuVsLaHl9+ais=;
-        b=jfZHZUL9x5mreS24FJ/Pyt99/MXUwBd5C2mSR21YcjruMX8UyQTsny+LwPTj/uPTPF
-         MwBxGhYfWoQTROjG1LOYCfSNe5BaGXkcH52w7Zq1cmfROA+vsRzv2NPViefcgyIE3Yw4
-         vMrpMvvjRvJqk+FAqdcZQcQAtSFVL07+RNHic7yPTG2moirKyPErnN9Vv0J0irHXFnfH
-         hD4cUEtpMdIalkxhJQ6uUd9uLgkMMVcruqTjeiTNevxDYfqTiT0EqFZXKh7+ghKe/pW2
-         vlMtIEa188cLv2jiHINdWRd8HO8etUDuUiIXmJzsdgAy+U+TtYcjCufHGfrbybqEOKNb
-         iIpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746538309; x=1747143109;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Slorj42xucBLgcEgCTYJT1nDW78UozPuVsLaHl9+ais=;
-        b=eW/JdGCpV/ulL1CWjeXgAIjYL96JyxbIGpxTzuQh+iiKZxm5jVRE+wDLBJlhVlD+uv
-         LC6ktoiARJWWx3b+McxN9NyHT/1D3dhXZ4Wt0aOVBD4t1zpYcMgz6uhlm0pNfZkaSpI+
-         Ia+ejkH05/PmtOH6UfiT/21V1ONt3kuJGbWcKASkBDaqQxl0PN7pKyw/Nwcz0dfnl/0h
-         8FTwITJvqwiTarxwFxlwcHa6TflH2jbk4OtK7olefWXzgzCx/R3BgvIAnQQ0I2ksMBjE
-         MxCXThu+si4OpN71DXzyb4BFWSWNZY6+MF4MMU6OoINHCjMpeHEli+tDBOdBYFircY1I
-         vXog==
-X-Forwarded-Encrypted: i=1; AJvYcCVy9kdVVhoGzeiqRjHch1XCHPAnyh0TTJflZcXJA0i0MzYV0KPB5SJv8WcRbbkkMZIwyTB4v3s5uyQN@vger.kernel.org, AJvYcCXc2ZFFe1E6Cskvwoh0wzki3K88qlWP8odGY0Aa6dut0QvLB1l3k0U3VBfiz2YB06KfrkQL35lQPUZvocE=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBEwbdQ/7kCUonJDCMJLPPqNbvi/CtoidnuZk2d72+ASAEJzpe
-	KQMN1EbiUjddD+o0YWDfMT0V6sF/YrRxFOp9Nrzib8DWnOP/qWbHhrgqQg==
-X-Gm-Gg: ASbGnctfSO313aJSiIdfAzm5NIhLoH+ppkYVu989VAS3hdZE91q/jUP0pdaU2me5i34
-	UBgJ5ShdPzR+fQ+TWIIuPNTFZczPyJeuqbb7RMsDEQ8XJGZGtvi1MH+M8yRcrrwIU8vnl6703ZR
-	oi+nrYW3jPnfmdPqsncqzsZKb0ljdpMSmneXwJVqDNubxWP1U/VHhSA+kw5b/SBDU3EtRggoWYw
-	BBcHQzuihqqFiQ8og/33iwscLIdGEihd871zaDGUTQwsnLX8+Mf5WLrEJ+09ZmKrZsoX/wL9tza
-	hv0aOchghlHTxzdXCyKZk+twrtSumn0YWhCqD9CiDP66tI7U0QqiBuJH6gPSS1EKljU6YMBf2UL
-	rfIybhTD604BmLfMBjd2jpoSoL4SB/yKz
-X-Google-Smtp-Source: AGHT+IEqtAFghQueMw8z+GZ68EaGQYCbkFFmcLlBWgpzWkkb1FBjdt56CDfJkVu9rAJJoM/2Z/ekWg==
-X-Received: by 2002:a05:600c:1d8d:b0:440:66a4:8d1a with SMTP id 5b1f17b1804b1-441c48aa302mr102353625e9.7.1746538309306;
-        Tue, 06 May 2025 06:31:49 -0700 (PDT)
-Received: from localhost (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-441b2af4546sm218375415e9.22.2025.05.06.06.31.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 06:31:47 -0700 (PDT)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Jon Hunter <jonathanh@nvidia.com>,
-	linux-tegra@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 11/11] arm64: defconfig: Enable Tegra HSP and BPMP
-Date: Tue,  6 May 2025 15:31:18 +0200
-Message-ID: <20250506133118.1011777-12-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250506133118.1011777-1-thierry.reding@gmail.com>
-References: <20250506133118.1011777-1-thierry.reding@gmail.com>
+	s=arc-20240116; t=1746538298; c=relaxed/simple;
+	bh=P63SDXs3MrPmFdM87Z5r6w/XbTJFa9pqgHAV73sR79o=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fBXQxDg9cDBtHZn6tKzhFhmRPkLBhzIssnAwRYJf2FqtRWPvPjTI2fabsGRcfYeayAPB89wOi4pEbD9afPHu/uJ1QoHkwDK3yTp/nn5p5pu6B5z6Jxy+/vGFdHxwwCAsYaijB6Z3AAdbwA/sW87TR18TFK9Mh2KH5+W55fN+WE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ZsK1f1lPVz6M4Qt;
+	Tue,  6 May 2025 21:27:02 +0800 (CST)
+Received: from frapeml500003.china.huawei.com (unknown [7.182.85.28])
+	by mail.maildlp.com (Postfix) with ESMTPS id D14D3140370;
+	Tue,  6 May 2025 21:31:31 +0800 (CST)
+Received: from localhost (10.47.68.20) by frapeml500003.china.huawei.com
+ (7.182.85.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 6 May
+ 2025 15:31:31 +0200
+Date: Tue, 6 May 2025 14:31:25 +0100
+From: Alireza Sanaee <alireza.sanaee@huawei.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <devicetree@vger.kernel.org>, <robh@kernel.org>,
+	<jonathan.cameron@huawei.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linuxarm@huawei.com>,
+	<mark.rutland@arm.com>, <shameerali.kolothum.thodi@huawei.com>
+Subject: Re: [PATCH v2 6/6] of: of_cpu_phandle_to_id to support SMT threads
+Message-ID: <20250506143125.00002cae.alireza.sanaee@huawei.com>
+In-Reply-To: <78797f80-bdd6-49ef-b1cf-ffe4dc1dc5f6@kernel.org>
+References: <20250502161300.1411-1-alireza.sanaee@huawei.com>
+	<20250502161300.1411-7-alireza.sanaee@huawei.com>
+	<20250504-acoustic-skink-of-greatness-1e90ac@kuoka>
+	<c2ace0e9-6565-44c3-84eb-555707f84509@kernel.org>
+	<20250506112337.00006918.alireza.sanaee@huawei.com>
+	<78797f80-bdd6-49ef-b1cf-ffe4dc1dc5f6@kernel.org>
+Organization: Huawei
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500009.china.huawei.com (7.191.174.84) To
+ frapeml500003.china.huawei.com (7.182.85.28)
 
-From: Thierry Reding <treding@nvidia.com>
+On Tue, 6 May 2025 12:56:43 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Selecting the IVC, HSP and BPMP drivers via Kconfig is problematic
-because it can create conflicting configurations. Instead, enable them
-in the default configuration.
+> On 06/05/2025 12:23, Alireza Sanaee wrote:
+> > On Sun, 4 May 2025 19:52:34 +0200
+> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >   
+> >> On 04/05/2025 19:51, Krzysztof Kozlowski wrote:  
+> >>>> In the CPU map, there are two cases that only one occurs at at
+> >>>> time. 1) "cpu" = <phandle>
+> >>>>     2) "cpus" = <phandle> <index>
+> >>>>
+> >>>> The first case addresses non-SMTs and the second case addresses
+> >>>> SMTs that the variable must be cpu(s) with an index where we
+> >>>> later look up the reg array with that.
+> >>>>
+> >>>>     core0 {
+> >>>>       thread0 {
+> >>>>         cpus = <&cpu0 0>;    
+> >>>
+> >>> Not so sure, dtschema says only one item is allowed in the phandle
+> >>> and I do not see here binding change.
+> >>>
+> >>> Although this wasn't even sent to me, so I'll just ignore your
+> >>> patchset.    
+> >>
+> >> Ah, there was no binding in the patchset, so that's why I did not
+> >> get it. Makes sense now, but question about missing binding change
+> >> stays.
+> >>
+> >> Best regards,
+> >> Krzysztof
+> >>  
+> > 
+> > Hi Krzysztof,
+> > 
+> > There are some existing bindings in which this pattern has been
+> > used, so I don't think I am changing binding really.
+> > 
+> > https://www.kernel.org/doc/Documentation/devicetree/bindings/thermal/thermal-zones.yaml#:~:text=cooling%2Ddevice%20%3D%20%3C%26CPU0%203%203%3E%2C%20%3C%26CPU1%203%203%3E%2C  
+> I do not understand this - it is not cpus phandle. Please respond to
+> specific comment: how many arguments are allowed by dtschema for cpus?
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- arch/arm64/configs/defconfig | 2 ++
- drivers/soc/tegra/Kconfig    | 9 ---------
- 2 files changed, 2 insertions(+), 9 deletions(-)
+Hi Krzysztof,
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 98ad22833282..85582019be04 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -266,6 +266,7 @@ CONFIG_QCOM_TZMEM_MODE_SHMBRIDGE=y
- CONFIG_QCOM_QSEECOM=y
- CONFIG_QCOM_QSEECOM_UEFISECAPP=y
- CONFIG_EXYNOS_ACPM_PROTOCOL=m
-+CONFIG_TEGRA_BPMP=y
- CONFIG_GNSS=m
- CONFIG_GNSS_MTK_SERIAL=m
- CONFIG_MTD=y
-@@ -1431,6 +1432,7 @@ CONFIG_PLATFORM_MHU=y
- CONFIG_BCM2835_MBOX=y
- CONFIG_QCOM_APCS_IPC=y
- CONFIG_MTK_ADSP_MBOX=m
-+CONFIG_TEGRA_HSP_MBOX=y
- CONFIG_QCOM_IPCC=y
- CONFIG_ROCKCHIP_IOMMU=y
- CONFIG_TEGRA_IOMMU_SMMU=y
-diff --git a/drivers/soc/tegra/Kconfig b/drivers/soc/tegra/Kconfig
-index bc532cbe32e7..9392c2c43cc8 100644
---- a/drivers/soc/tegra/Kconfig
-+++ b/drivers/soc/tegra/Kconfig
-@@ -97,9 +97,6 @@ config ARCH_TEGRA_186_SOC
- 	bool "NVIDIA Tegra186 SoC"
- 	depends on !CPU_BIG_ENDIAN
- 	select MAILBOX
--	select TEGRA_BPMP
--	select TEGRA_HSP_MBOX
--	select TEGRA_IVC
- 	select SOC_TEGRA_PMC
- 	help
- 	  Enable support for the NVIDIA Tegar186 SoC. The Tegra186 features a
-@@ -114,9 +111,6 @@ config ARCH_TEGRA_194_SOC
- 	depends on !CPU_BIG_ENDIAN
- 	select MAILBOX
- 	select PINCTRL_TEGRA194
--	select TEGRA_BPMP
--	select TEGRA_HSP_MBOX
--	select TEGRA_IVC
- 	select SOC_TEGRA_PMC
- 	help
- 	  Enable support for the NVIDIA Tegra194 SoC.
-@@ -126,9 +120,6 @@ config ARCH_TEGRA_234_SOC
- 	depends on !CPU_BIG_ENDIAN
- 	select MAILBOX
- 	select PINCTRL_TEGRA234
--	select TEGRA_BPMP
--	select TEGRA_HSP_MBOX
--	select TEGRA_IVC
- 	select SOC_TEGRA_PMC
- 	help
- 	  Enable support for the NVIDIA Tegra234 SoC.
--- 
-2.49.0
+If you mean checking
+here? https://github.com/devicetree-org/dt-schema/blob/e6ea659d2baa30df1ec0fcc4f8354208692489eb/dtschema/schemas/cpu-map.yaml#L110
+
+There is no parameters allowed at this point for cpu phandles in the
+cpu-map tree. Of course, this is different than what's been
+implemented in the patchset.
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
 
 
