@@ -1,276 +1,130 @@
-Return-Path: <devicetree+bounces-173974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4A9AAABB74
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:41:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4396EAABAF7
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:32:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B1463B8DF5
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:34:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7DCD7B6C9A
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610C84B1E6F;
-	Tue,  6 May 2025 07:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5BF2253AB;
+	Tue,  6 May 2025 07:27:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n/AxhGZr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfW0d/Jh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE134B1E51;
-	Tue,  6 May 2025 07:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0800422425B;
+	Tue,  6 May 2025 07:27:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746516362; cv=none; b=rJaIwi2K/k+LIPd7BzlUJ0I0alrDFPnctWaGGUUVTSzQu/tRMo/GI+tn0mS6aanKbUsyvRaED/9hZA3vYkzT1jhPGJs9xucxDZqkOcdXGV9wQg1AoRzDA4ZhMK1gH0zjvx/FeJ8vSS6N8oqjG2CcY+bsq0VddSCMoZKdk67+F1w=
+	t=1746516478; cv=none; b=fATrUsFMMqyfndq66s26BEhxHlZjHv4475sZoPf4yXi3r9jmFWdYYH7+0UWw+wM6b4dDlkVcQo44Ncfe4yxoSrqKGD5g7A5dWMdDeV7Wkr2a7pelBZbuwd9FtgmxM8NEW2HsbxnhbMTLz2ragaNsqKumjWCUmKjalemYAbs9MSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746516362; c=relaxed/simple;
-	bh=8Oc0xkyq6v9wmSnKpRvRRCYkyApCq0GyR4eU9o97d10=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g8j2Hue3fKcehvohxZm/GWykTDm2Xa79GsRMPtpIRtgh4Cgj6AgasnMKSe+5O2tgWjJsJ42I/a2UbytH4u8t4c0IpaHYrf3t/s+EhdsCtqIC2O1hf27LVFX3z9dIe9J1yOA+AwenQYTmkLf76TlLwoxYS45ShHvdEIH682an1O4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n/AxhGZr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18D75C4CEE4;
-	Tue,  6 May 2025 07:26:00 +0000 (UTC)
+	s=arc-20240116; t=1746516478; c=relaxed/simple;
+	bh=4o12yW4sJboPsOe6JWe4yHRkHNsA37x/g8VZvI68pSk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ji/wuoJFNk7hlCGjnPd1UQlowV4lDr4wuasvi+a3Qbr+1Lq03b8TKteinTp4V1Pt7vdMg2nck5ACMH1ErdaA9Ozf41g8uRS8/5SG7HmuuHuZPMR7FLTEot1iBFtmyTtOSazWzezj77p464OwqB/klu5dPXhdDhN9V+uysHO5Zgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfW0d/Jh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F24B3C4CEED;
+	Tue,  6 May 2025 07:27:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746516361;
-	bh=8Oc0xkyq6v9wmSnKpRvRRCYkyApCq0GyR4eU9o97d10=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n/AxhGZrOHtwo6+F1w7BzO0PPWzgrskAu4Ole1I7TUFlEmjQhooCVGCw5v5XWU4EH
-	 NLxsf0XTfRLPP09itezWit/lyooHaeTgYUosKH+jRwjNW2FkvH8Y18UDp54u3g9Daa
-	 8KebqO6mBuIJjOY04DFXzVCSYhurYkadfxe/f3eh+Rpx0FQiHEuAbHEIceYguo7Le3
-	 Un2reHfZNb1xSXzYgA3/DXnIBYNUyt0H40xjT/vvQMt9qX2icNmQLkb37VJbzKq38l
-	 YKSQzRFyB6fBDKgM6Cp/HM3UFf28alfBpk+m92URSacW14zjFeqza4RRXgwX56mJLv
-	 7JsHQFDlzsi/w==
-Date: Tue, 6 May 2025 09:25:59 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	"K. Y. Srinivasan" <kys@microsoft.com>, Haiyang Zhang <haiyangz@microsoft.com>, 
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>, 
-	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org, 
-	Saurabh Sengar <ssengar@linux.microsoft.com>, Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org, 
-	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>, linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	"Ravi V. Shankar" <ravi.v.shankar@intel.com>, Ricardo Neri <ricardo.neri@intel.com>
-Subject: Re: [PATCH v3 04/13] dt-bindings: x86: Add CPU bindings for x86
-Message-ID: <20250506-alluring-beaver-of-modernism-65ff8a@kuoka>
-References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
- <20250503191515.24041-5-ricardo.neri-calderon@linux.intel.com>
- <20250504-happy-spoonbill-of-radiance-3b9fec@kuoka>
- <20250506045235.GB25533@ranerica-svr.sc.intel.com>
+	s=k20201202; t=1746516477;
+	bh=4o12yW4sJboPsOe6JWe4yHRkHNsA37x/g8VZvI68pSk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LfW0d/JhCp0gTgOGMZlQDMHHfzALRKLGdNoOpITiIeeLyd6Ws61/p/QKZjzwExEDk
+	 gQu4jmumogSCAU41kyAJKWtzno14M89a3qDuRqCl5HpzUBQQxsF2J833GqMuIZyKnL
+	 bg+Ufxxcpse0ezT/13a1J0DFpG3fsl6+DdnfCN0T7rnDNAJGsIAgR/dd81DeOMt/4E
+	 JGh1Ay4bPWYrZ9R48lv6m4q5LATrUuAf0XWq6yHQEuwu/lcA/ftYggPkccDS1XLzVt
+	 ito+GxdmxOUEWvWFhY2nZHRqPYgslJLbL5AznMBUFiaHyQn8J1Ldm7GHHbqk83NfrG
+	 wFZNlIigLzaiA==
+Message-ID: <a9ed7728-6600-4efe-afed-f058357eabe4@kernel.org>
+Date: Tue, 6 May 2025 09:27:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250506045235.GB25533@ranerica-svr.sc.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] arch: arm: dts: nvidia: tegra20,30: Rename the
+ apbdma nodename to match with common dma-controller binding
+To: Charan Pedumuru <charan.pedumuru@gmail.com>, Vinod Koul
+ <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250506-nvidea-dma-v2-0-2427159c4c4b@gmail.com>
+ <20250506-nvidea-dma-v2-1-2427159c4c4b@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250506-nvidea-dma-v2-1-2427159c4c4b@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, May 05, 2025 at 09:52:35PM GMT, Ricardo Neri wrote:
-> On Sun, May 04, 2025 at 06:45:59PM +0200, Krzysztof Kozlowski wrote:
-> > On Sat, May 03, 2025 at 12:15:06PM GMT, Ricardo Neri wrote:
-> > > Add bindings for CPUs in x86 architecture. Start by defining the `reg` and
-> > 
-> > What for?
+On 06/05/2025 09:07, Charan Pedumuru wrote:
+> Rename the apbdma nodename from "dma@" to "dma-controller@" to align with
+> linux common dma-controller binding.
 > 
-> Thank you for your quick feedback, Krzysztof!
-> 
-> Do you mean for what reason I want to start bindings for x86 CPUs? Or only
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+if there is going to be resend, then subject: drop arch
 
-Yes. For which devices, what purpose.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-> the `reg` property? If the former, it is to add an enable-method property to
-> x86 CPUs. If the latter, is to show the relationship between APIC and `reg`.
-> 
-> > 
-> > > `enable-method` properties and their relationship to x86 APIC ID and the
-> > > available mechanisms to boot secondary CPUs.
-> > > 
-> > > Start defining bindings for Intel processors. Bindings for other vendors
-> > > can be added later as needed.
-> > > 
-> > > Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> > > ---
-> > 
-> > Not really tested so only limited review follows.
-> 
-> Sorry, I ran make dt_binding_check but only on this schema. I missed the
-> reported error.
-> 
-> > 
-> > >  .../devicetree/bindings/x86/cpus.yaml         | 80 +++++++++++++++++++
-> > >  1 file changed, 80 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/x86/cpus.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/x86/cpus.yaml b/Documentation/devicetree/bindings/x86/cpus.yaml
-> > > new file mode 100644
-> > > index 000000000000..108b3ad64aea
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/x86/cpus.yaml
-> > > @@ -0,0 +1,80 @@
-> > > +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/x86/cpus.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: x86 CPUs
-> > > +
-> > > +maintainers:
-> > > +  - Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> > > +
-> > > +description: |
-> > > +  Description of x86 CPUs in a system through the "cpus" node.
-> > > +
-> > > +  Detailed information about the CPU architecture can be found in the Intel
-> > > +  Software Developer's Manual:
-> > > +    https://intel.com/sdm
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - intel,x86
-> > 
-> > That's architecture, not a CPU. CPUs are like 80286, 80386, so that's
-> > not even specific instruction set. I don't get what you need it for.
-> 
-> Am I to understand the the `compatible` property is not needed if the
-> bindings apply to any x86 CPU?
-
-Every device needs compatible. Its meaning is explained:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#compatible
-
-If you add here a device representing CPU, then look at existing
-bindings for CPUs how they do it.
-
-It again feels like you add DT for platform which is not a real thing.
-If you use DT, you do not get different rules, therefore read all
-standard guides and tutorials (there were many, quite comprehensive).
-
-
-> 
-> > 
-> > > +
-> > > +  reg:
-> > 
-> > Missing constraints.
-> 
-> I could add minItems. For maxItems, there is no limit to the number of
-> threads.
-
-I am pretty sure that any given CPU, e.g. 80486 has a fixed number of
-threads...
-
-> 
-> > 
-> > > +    description: |
-> > 
-> > Do not need '|' unless you need to preserve formatting.
-> 
-> OK.
-> 
-> > 
-> > > +      Local APIC ID of the CPU. If the CPU has more than one execution thread,
-> > > +      then the property is an array with one element per thread.
-> > > +
-> > > +  enable-method:
-> > > +    $ref: /schemas/types.yaml#/definitions/string
-> > > +    description: |
-> > > +      The method used to wake up secondary CPUs. This property is not needed if
-> > > +      the secondary processors are booted using INIT assert, de-assert followed
-> > > +      by Start-Up IPI messages as described in the Volume 3, Section 11.4 of
-> > > +      Intel Software Developer's Manual.
-> > > +
-> > > +      It is also optional for the bootstrap CPU.
-> > > +
-> > > +    oneOf:
-> > 
-> > I see only one entry, so didn't you want an enum?
-> 
-> Indeed, enum would be more appropriate.
-> 
-> > 
-> > > +      - items:
-> > 
-> > Not a list
-> > 
-> > > +          - const: intel,wakeup-mailbox
-> > 
-> > So every vendor is supposed to come with different name for the same
-> > feature? Or is wakeup-mailnox really intel specific, but then specific
-> > to which processors?
-> 
-> It would not be necessary for every vendor to provide a different name for
-> the same feature. I saw, however that the Devicetree specification requires
-> a [vendor],[method] stringlist.
-
-Indeed, it's fine then.
-
-> 
-> Also, platform firmware for any processor could implement the wakeup
-> mailbox.
-> 
-> > 
-> > 
-> > > +            description: |
-> > > +              CPUs are woken up using the mailbox mechanism. The platform
-> > > +              firmware boots the secondary CPUs and puts them in a state
-> > > +              to check the mailbox for a wakeup command from the operating
-> > > +              system.
-> > > +
-> > > +required:
-> > > +  - reg
-> > > +  - compatible
-> > > +
-> > > +unevaluatedProperties: false
-> > 
-> > Missing ref in top-level or this is supposed to be additionalProps. See
-> > example-schema.
-> 
-> I will check.
-> 
-> > 
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    /*
-> > > +     * A system with two CPUs. cpu@0 is the bootstrap CPU and its status is
-> > > +     * "okay". It does not have the enable-method property. cpu@1 is a
-> > > +     * secondary CPU. Its status is "disabled" and defines the enable-method
-> > > +     * property.
-> > > +     */
-> > > +
-> > > +    cpus {
-> > > +      #address-cells = <1>;
-> > > +      #size-cells = <0>;
-> > > +
-> > > +      cpu@0 {
-> > > +        reg = <0x0 0x1>;
-> > > +        compatible = "intel,x86";
-> > > +        status = "okay";
-> > 
-> > Drop
-> 
-> I will drop status = "okay"
-> 
-> > 
-> > > +      };
-> > > +
-> > > +      cpu@1 {
-> > > +        reg = <0x0 0x1>;
-> > > +        compatible = "intel,x86";
-> > > +        status = "disabled";
-> > 
-> > Why?
-> 
-> Because this is a secondary CPU that the operating system will enable using
-> the method specified in the `enable-method` property.
-
-OK, so this was intentional to express it is in quiescent state.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
-
 
