@@ -1,284 +1,144 @@
-Return-Path: <devicetree+bounces-174398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30C7AAD0D7
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 00:17:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5619EAAD0EB
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 00:24:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A1D546735A
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:18:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0E724E7C89
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:24:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B12D1F4184;
-	Tue,  6 May 2025 22:17:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78662218ADD;
+	Tue,  6 May 2025 22:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="APJI/q06"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fIGJ9WXu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9437262E;
-	Tue,  6 May 2025 22:17:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3110217648;
+	Tue,  6 May 2025 22:24:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746569876; cv=none; b=jku4zqxi4/EyVvhc5YikZpGA0vw0FNaxPsjBxS9HbJCUCdvbKfYG4SEVuL9h1Y329QK4HdYGWuhhfeiwiXPRKzxUZgAmcamsdiOOpmenJHwtvdcqjctDNc/ZwdmSIPKnZ9QIAqUW6u9Fi3dEVDi1rEKLdvGh8rlTi/OrLcLh40Q=
+	t=1746570295; cv=none; b=dUqY4/0jXH08Cf1mK6B0WZG3dD2p76mtzHpXhTUGQiUfs921fERj9LnK4RCI41Nhd4iJ9klQFb27+O/cjDVOeSXaRfq05KMX3JojsZeejimOW7lKSsY6FfxovED70Xd6LKs6G/wjB0EsBFrWS5cAtY3u4qoipZa7FAfNMpLg/vE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746569876; c=relaxed/simple;
-	bh=qZH0GlY8+x6orE1nAMK2QAd0Y/5Cgrue4HjmDPfwwCA=;
+	s=arc-20240116; t=1746570295; c=relaxed/simple;
+	bh=pGCW6+4GYSpPWrxlBu87gJhu5P8X0pt7xGbhx4iMxbU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gtK9cG5rS3vkOV76g3LPii3idDafmwCM/dR2Drpk5z15fSDP8KE88aLk059q6ajfym390WEAti3BMG63AcNcjfYM0Y6YdtaQIhd+xX7OrSfciU+zhuk4tG7r8mVTSzssUPlzJoRLyKKMdD+Y+cnG7CQm4fQsNvXm/LBze3PzEtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=APJI/q06; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0486AC4CEE4;
-	Tue,  6 May 2025 22:17:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746569875;
-	bh=qZH0GlY8+x6orE1nAMK2QAd0Y/5Cgrue4HjmDPfwwCA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=APJI/q06j2akXY7u2+C+4m0YRb/FnyeGA4Vz87JUAjPBUPMcpOWHKDetoeis/cg5J
-	 8lV9WzmyQDMK0MVoZPf/F8OuDSwxtkZSOr/mIWhNpmEnvkb/gRZI+JNsa/YD+1gU4t
-	 iCQbo1Ep75GIR4TOqqjgpvzodEpDZbqUyhsmqTHp7yUhp/nX9lG9nGxN657hMCF1WZ
-	 9mZPJ5iobHtDCGVSS5VXEQ3yh9zGiUtZo+gqgj6mgaOpeAHISM614F3m8yDR3Wz49g
-	 ukqalCat3fCzm1a7Iq+24f0N0x6T6G3stZ6fcb11q4jGnejucTYi+vDN4TtV3ridzP
-	 vpgHIW4/HgcKg==
-Received: by pali.im (Postfix)
-	id 0A00067E; Wed,  7 May 2025 00:17:51 +0200 (CEST)
-Date: Wed, 7 May 2025 00:17:51 +0200
-From: Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] irq-names dt-bindings: serial: Convert
- marvell,armada-3700-uart to DT schema
-Message-ID: <20250506221751.t3iwqquzjgysjaai@pali>
-References: <20250506220044.2546706-1-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pIKtHyoWxouaOwMtgqdCd4a2OJ1jRjoGhm6B0CdW+Ku5LdxyDPsgwtBYgN0AkbwJE4y3f4sgcBOSQI25uUhHfJ9jH8W9B7h+w30UpPozjekl3PDVUNFyhyfsnQhtjcdmJl0dAzdRlZhUGpv/gE9z4uC9NtIGv/KUH7Bm2QAp6aU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fIGJ9WXu; arc=none smtp.client-ip=209.85.219.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6ecfc7ed0c1so56614096d6.3;
+        Tue, 06 May 2025 15:24:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746570293; x=1747175093; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=S6PuN11kmLGkE9CdpXY3LsP08NiwndWR9cFcKMuKbeQ=;
+        b=fIGJ9WXuBt4dCCptMl/c6244BfnFKMYMn0w8/Cj3sQkbo1RI37YFUq9XZlILkJoIUR
+         7DiuFE1qwfE8xJvSHSE3NP0Sjq5J9YXxKyYo4OY39SEKHF3hyL6IbuKnatsnz8TUXiyr
+         ivcDp4DSbznp03hfXoDv1JnmyP86sjzfvzm+PfWK9QhLKz8N97IwSiQhnPV3BmD7L0pE
+         qd7mq1GLsOk3/v0qI4geXW4I4rMU23i79GmpCgzeCVktwqlcd633teOyFT7IWp5EQ78K
+         S0kx0E801R94y7VKILiMkzJqJotg+7dIuU9zxjdej/D3fg6ZABcvqfaXl7keC0soZRCR
+         rqSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746570293; x=1747175093;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S6PuN11kmLGkE9CdpXY3LsP08NiwndWR9cFcKMuKbeQ=;
+        b=shK0HOSJY8597vd26oHl3IGRbE3ZqzVrqWsduSUYjFyy6GaQUSTLljjzLtOzNdOhHw
+         RdU/Ek9Vcwn7vLjY6uaph6wUFt+Kzc3fJMcEw9wfHMw+WWIaLJLXFuTU7bap6EWoRTKD
+         okeMMjpk1Y3FCueiLhzOUfwDIWbaALIgDKGkl+rRtGBHbUN53xXxj4Uy0kvXGujwDsoO
+         QgvqmzeM+zUPsGc2WvJrFLv1zpni7gqvywGprk7mAgCKB9qUnudaT4EJOSFAZQiaRJRY
+         EEGLmhS/fA/ZI5KAQWsqBIRJxJGb/Pih+on1vl1gSkovSLyhdFQmPkdM4kIRGbGW9TrD
+         Fc0A==
+X-Forwarded-Encrypted: i=1; AJvYcCV8t4PlSsthLPOoy1uwR6fVEplHqOV2S4sFqDdTO76C+kbIcVMhRFTydOlbnKpchKgkDLvuk1am9KNw@vger.kernel.org, AJvYcCWqUcXw8JBVEl00SLtxELtplEWPVwKswWh2Rwf+4hPhCbRWbiY28YjbdqV3KMAUt/x82EBDTKCD45axCRJl@vger.kernel.org, AJvYcCWyvK0jvpNEEzWSGYHjf7uTO/QM+OCQlcW2f7ZrZ6CScv3aT3LADjuZkAaYVtJaNmFLPVCI6AuU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8FG4t9x2YE05Koh4eqbrOqg/2M355By8NgwTxqL+v2TLkGV90
+	9fDBg4dxunLMPs1HXhz0dyOsrENcH0xIEM62D03KI3lb5vNsllTz
+X-Gm-Gg: ASbGncuGgWQDHtwD1VkT2FLiSa5pd/iArsGUZCIAEGhb1AvZ3ESmRDPRjCBw1UZWEJA
+	V9EVJZTyflKt/u7W8bJtP+KDKrb9aHskQHAzMn15HyqeMkcnRVPTSLD4mLKOi8MYvfXgQ4b/bl8
+	Nxsk5nedKi9bxYYB9bH1uEgiV1Of8UHZPMLi7H7uOjCFoyLOR5k0GUuk7V34ILpvNfWbnLRaChx
+	LwC6O5op4QlADBLI5amJi9dwoq1vb8nhe74EymLalo4PgL8kQ+/iRC6zUPMAPBuf1ZVkoTYdp8a
+	i64QRTYT7prNEUvJ
+X-Google-Smtp-Source: AGHT+IE/HcOkUaQ1OjeZ76XLCIoAMcLQ4gb8y3bZBjcdCFJTsGZuHVr3Qr8wRx0H5mUFdFynUfAxQQ==
+X-Received: by 2002:ad4:5b87:0:b0:6f5:3e46:63f9 with SMTP id 6a1803df08f44-6f5429afe88mr16025426d6.7.1746570292605;
+        Tue, 06 May 2025 15:24:52 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6f5427b07e6sm3118126d6.106.2025.05.06.15.24.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 May 2025 15:24:52 -0700 (PDT)
+Date: Wed, 7 May 2025 06:24:29 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Richard Cochran <richardcochran@gmail.com>, 
+	Guo Ren <guoren@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, 
+	Romain Gantois <romain.gantois@bootlin.com>, Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>, 
+	Lothar Rubusch <l.rubusch@gmail.com>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, sophgo@lists.linux.dev, 
+	linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next 0/4] riscv: sophgo: Add ethernet support for
+ SG2042
+Message-ID: <fgao5qnim6o3gvixzl7lnftgsish6uajlia5okylxskn3nrexe@gyvgrp72jvj6>
+References: <20250506093256.1107770-1-inochiama@gmail.com>
+ <c7a8185e-07b7-4a62-b39b-7d1e6eec64d6@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250506220044.2546706-1-robh@kernel.org>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <c7a8185e-07b7-4a62-b39b-7d1e6eec64d6@lunn.ch>
 
-On Tuesday 06 May 2025 17:00:41 Rob Herring (Arm) wrote:
-> Convert the Marvell Armada-3700 UART binding to DT schema. It is a
-> straight-forward conversion.
+On Tue, May 06, 2025 at 02:03:18PM +0200, Andrew Lunn wrote:
+> On Tue, May 06, 2025 at 05:32:50PM +0800, Inochi Amaoto wrote:
+> > The ethernet controller of SG2042 is Synopsys DesignWare IP with
+> > tx clock. Add device id for it.
+> > 
+> > This patch can only be tested on a SG2042 x4 evb board, as pioneer
+> > does not expose this device.
 > 
-> Drop the long deprecated single interrupt support.
+> Do you have a patch for this EVB board? Ideally there should be a user
+> added at the same time as support for a device.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../serial/marvell,armada-3700-uart.yaml      | 102 ++++++++++++++++++
->  .../devicetree/bindings/serial/mvebu-uart.txt |  56 ----------
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 103 insertions(+), 57 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/serial/marvell,armada-3700-uart.yaml
->  delete mode 100644 Documentation/devicetree/bindings/serial/mvebu-uart.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/marvell,armada-3700-uart.yaml b/Documentation/devicetree/bindings/serial/marvell,armada-3700-uart.yaml
-> new file mode 100644
-> index 000000000000..fa454337f06f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/marvell,armada-3700-uart.yaml
-> @@ -0,0 +1,102 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/serial/marvell,armada-3700-uart.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Marvell Armada-3700 UART
-> +
-> +maintainers:
-> +  - Pali Rohár <pali@kernel.org>
-> +
-> +description:
-> +  Marvell UART is a non standard UART used in some of Marvell EBU SoCs (e.g.
-> +  Armada-3700).
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - marvell,armada-3700-uart
-> +      - marvell,armada-3700-uart-ext
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description:
-> +      UART reference clock used to derive the baud rate. If absent, only fixed
-> +      baud rate from the bootloader is supported.
-> +
-> +  interrupts:
-> +    minItems: 2
-> +    items:
-> +      - description: UART sum interrupt (deprecated single-element form)
-> +      - description: UART TX interrupt
-> +      - description: UART RX interrupt
+> 	Andrew
 
-I think that this is wrong description and does not match the old txt
-description:
+Yes, I have one for this device. And Han Gao told me that he will send
+the board patch for the evb board. So I only send the driver.
+And the fragment for the evb board is likes below, I think it is kind
+of trivial:
 
-- Must contain three elements for the standard variant of the IP
-  (marvell,armada-3700-uart): "uart-sum", "uart-tx" and "uart-rx",
+&gmac0 {
+	phy-handle = <&phy0>;
+	phy-mode = "rgmii-txid";
+	status = "okay";
 
-- Must contain two elements for the extended variant of the IP
-  (marvell,armada-3700-uart-ext): "uart-tx" and "uart-rx",
-
-"UART sum interrupt" is not deprecated, it must be present for the
-marvell,armada-3700-uart.
-
-> +
-> +  interrupt-names:
-> +    minItems: 2
-> +    maxItems: 3
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +
-> +unevaluatedProperties: false
-> +
-> +allOf:
-> +  - $ref: /schemas/serial.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: marvell,armada-3700-uart-ext
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 2
-> +          
-> +        interrupt-names:
-> +          items:
-> +            - const: uart-tx
-> +            - const: uart-rx
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          minItems: 3
-> +
-> +        interrupt-names:
-> +          items:
-> +            - const: uart-sum
-> +            - const: uart-tx
-> +            - const: uart-rx
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    serial@12000 {
-> +        compatible = "marvell,armada-3700-uart";
-> +        reg = <0x12000 0x18>;
-> +        clocks = <&uartclk 0>;
-> +        interrupts =
-> +            <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> +            <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-> +            <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "uart-sum", "uart-tx", "uart-rx";
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    serial@12200 {
-> +        compatible = "marvell,armada-3700-uart-ext";
-> +        reg = <0x12200 0x30>;
-> +        clocks = <&uartclk 1>;
-> +        interrupts =
-> +            <GIC_SPI 30 IRQ_TYPE_EDGE_RISING>,
-> +            <GIC_SPI 31 IRQ_TYPE_EDGE_RISING>;
-> +        interrupt-names = "uart-tx", "uart-rx";
-> +    };
-> diff --git a/Documentation/devicetree/bindings/serial/mvebu-uart.txt b/Documentation/devicetree/bindings/serial/mvebu-uart.txt
-> deleted file mode 100644
-> index a062bbca532c..000000000000
-> --- a/Documentation/devicetree/bindings/serial/mvebu-uart.txt
-> +++ /dev/null
-> @@ -1,56 +0,0 @@
-> -* Marvell UART : Non standard UART used in some of Marvell EBU SoCs
-> -                 e.g., Armada-3700.
-> -
-> -Required properties:
-> -- compatible:
-> -    - "marvell,armada-3700-uart" for the standard variant of the UART
-> -      (32 bytes FIFO, no DMA, level interrupts, 8-bit access to the
-> -      FIFO), called also UART1.
-> -    - "marvell,armada-3700-uart-ext" for the extended variant of the
-> -      UART (128 bytes FIFO, DMA, front interrupts, 8-bit or 32-bit
-> -      accesses to the FIFO), called also UART2.
-> -- reg: offset and length of the register set for the device.
-> -- clocks: UART reference clock used to derive the baudrate. If no clock
-> -      is provided (possible only with the "marvell,armada-3700-uart"
-> -      compatible string for backward compatibility), it will only work
-> -      if the baudrate was initialized by the bootloader and no baudrate
-> -      change will then be possible. When provided it should be UART1-clk
-> -      for standard variant of UART and UART2-clk for extended variant
-> -      of UART. TBG clock (with UART TBG divisors d1=d2=1) or xtal clock
-> -      should not be used and are supported only for backward compatibility.
-> -- interrupts:
-> -    - Must contain three elements for the standard variant of the IP
-> -      (marvell,armada-3700-uart): "uart-sum", "uart-tx" and "uart-rx",
-> -      respectively the UART sum interrupt, the UART TX interrupt and
-> -      UART RX interrupt. A corresponding interrupt-names property must
-> -      be defined.
-> -    - Must contain two elements for the extended variant of the IP
-> -      (marvell,armada-3700-uart-ext): "uart-tx" and "uart-rx",
-> -      respectively the UART TX interrupt and the UART RX interrupt. A
-> -      corresponding interrupt-names property must be defined.
-> -    - For backward compatibility reasons, a single element interrupts
-> -      property is also supported for the standard variant of the IP,
-> -      containing only the UART sum interrupt. This form is deprecated
-> -      and should no longer be used.
-> -
-> -Example:
-> -	uart0: serial@12000 {
-> -		compatible = "marvell,armada-3700-uart";
-> -		reg = <0x12000 0x18>;
-> -		clocks = <&uartclk 0>;
-> -		interrupts =
-> -		<GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> -		<GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-> -		<GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> -		interrupt-names = "uart-sum", "uart-tx", "uart-rx";
-> -	};
-> -
-> -	uart1: serial@12200 {
-> -		compatible = "marvell,armada-3700-uart-ext";
-> -		reg = <0x12200 0x30>;
-> -		clocks = <&uartclk 1>;
-> -		interrupts =
-> -		<GIC_SPI 30 IRQ_TYPE_EDGE_RISING>,
-> -		<GIC_SPI 31 IRQ_TYPE_EDGE_RISING>;
-> -		interrupt-names = "uart-tx", "uart-rx";
-> -	};
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 96b827049501..8b1306c14380 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14254,7 +14254,7 @@ MARVELL ARMADA 3700 SERIAL DRIVER
->  M:	Pali Rohár <pali@kernel.org>
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/clock/marvell,armada-3700-uart-clock.yaml
-> -F:	Documentation/devicetree/bindings/serial/mvebu-uart.txt
-> +F:	Documentation/devicetree/bindings/serial/marvell,armada-3700-uart.yaml
->  F:	drivers/tty/serial/mvebu-uart.c
->  
->  MARVELL ARMADA DRM SUPPORT
-> -- 
-> 2.47.2
-> 
+	mdio {
+		phy0: phy@0 {
+			compatible = "ethernet-phy-ieee802.3-c22";
+			reg = <0>;
+			reset-gpios = <&port0a 27 GPIO_ACTIVE_LOW>;
+			reset-assert-us = <100000>;
+			reset-deassert-us = <100000>;
+		};
+	};
+};
+ 
+Regards,
+Inochi
 
