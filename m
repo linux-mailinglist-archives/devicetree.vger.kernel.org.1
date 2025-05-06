@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-174016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C97EAABE03
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:00:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA54AABE08
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:01:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C413D4E1FD7
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:00:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D03943A644F
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C85972627E5;
-	Tue,  6 May 2025 09:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F9825D1E5;
+	Tue,  6 May 2025 09:01:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rl/2s9ws"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F3ryfYgh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99A7D1D8DE4;
-	Tue,  6 May 2025 09:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B763253920;
+	Tue,  6 May 2025 09:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746522019; cv=none; b=aMFCx2a+A7S5M0mJcfe8r+I5yYgmllNZFTc705xuf+wBUQAzYGla6eUzXYZnUW52tBa827HMBXnkRpewWm+Qq9+B5JNdIc+OLEXycQDMKTn9R2oiPOL1pxEBGp8RHsHs2p9dVnX9/wRJyLZAAS93iAdpYj/MgqoY6BT2b8QfmKw=
+	t=1746522074; cv=none; b=Byoftn0v48eAXL34vByoF6rFbEY8RKqPJoUpuyKG3x7cq4bUnW0DI/2CwNJqNbq67i3+9yS68CBM3uSIMpF39POFzCKV8UWiOdFNsZVgPSLIlk/DXB4FMnMQL2i5Tb8bQ9KE7covwS8ANyq2zWgZ4nA9ndlBzubbBtFdvjtTM/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746522019; c=relaxed/simple;
-	bh=bfJ+i+nxjlIUMvDoGZDzIdNxnwJIksoC8QFe5Y85Ngw=;
+	s=arc-20240116; t=1746522074; c=relaxed/simple;
+	bh=9a6+p/iYVU72YliU1ZqP7UmzQhmQDj7mQcUeuX/3OQU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SmpXVcAHBg+9+UAEqZ/BhnSLjoiIxnFcRYIvPhyjvEzrvCnUrW008LDQ5c1aDd+YjIaafsd74TJgBBcLDPCP/R0u88jA9DGymQ0lNEA24BrJLMIflEn2GOopff4tQ6ydtE1HqB9cYbCp86u4Iv39+L6+ou3l0w2ayofTYN61KNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rl/2s9ws; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4899AC4CEE4;
-	Tue,  6 May 2025 09:00:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VfYY9DK6z8xrw/7SOH3Mf5eQFvkMFYCWvBEB/tnbgkM/rwzlQhnQfpEtYClROSIDXhY/aVJyT8z/8OB5NpGyqe8puMpmzhdllJQoj/WKHIOETXOrGGA2n4olppPtJ/eO80hdEuor626PONBt5EowMneYyNeeVRl2BkWXZSzvRkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F3ryfYgh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7361C4CEE4;
+	Tue,  6 May 2025 09:01:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746522019;
-	bh=bfJ+i+nxjlIUMvDoGZDzIdNxnwJIksoC8QFe5Y85Ngw=;
+	s=k20201202; t=1746522073;
+	bh=9a6+p/iYVU72YliU1ZqP7UmzQhmQDj7mQcUeuX/3OQU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Rl/2s9wskItIvl3CUknUMoPYW3AlOVWiqtZVd1Mh90ULtbmf76k39STen9JbuzTws
-	 jO0w7bcSY9p+ZVEweLivWRkh9ptI2mAFH/8fM3+y0sjcOKvrbnMiE7CfA32/wB7naf
-	 EeUbZzl6AOc4fMPpBKvv9eaKZXEWNpWhSfRWo9TjEFTjFTTqYUfhk9HWPim+dr4AdW
-	 D13LKVjv5ZqNz/mM+gzoWnGTYaJ/nee0Ssnavcfc4++tJte9a5MKs7HlLoZSBNw591
-	 ZZY1XgxTmdzPPoNOp69ZDd6/BOATos3xcHBz9VzKvfAM4lchBMlRryhKaY+pLszCX6
-	 F596JZGCj17jQ==
-Message-ID: <4ef1f428-d580-4263-9190-d187d1fd0e53@kernel.org>
-Date: Tue, 6 May 2025 11:00:15 +0200
+	b=F3ryfYghESFqNQ4Vu8zuFaE2dg9ss3GBc+kIyKd+sTTe1v24svqcT4gX5MIOABZem
+	 UopI4iYYLszujgv4nMgpDnIIYmTs957mn/k0+PB6js8yB3/1BkvQBfmDSxKpA4BUW7
+	 moQAHB4M9C0gk0g0Kp+DxZFboGf3SorNeEOe1riXz7Tvid4XBBR0uMYuf4VSXDcOqS
+	 Jiao8KB9oZ1TqYzvZ6u2LFNe1anSWeZQgwvNH3w0wUIHBATXQq4RDN7w9krdZoq63N
+	 D/+nj1kXpYxlSgtx+2M2Pr6gUPP0Kl+tfpcBnf5SPlen047XZy5Rtkfju0yP0RuTYS
+	 k8QW738NL90oA==
+Message-ID: <4d481cc1-cc86-4154-a202-ee0dd5802b29@kernel.org>
+Date: Tue, 6 May 2025 11:01:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] Add support for the DFRobot SEN0322 oxygen sensor
-To: gomba007@gmail.com, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/3] dt-bindings: media: qcom,x1e80100-camss: Tighten the
+ property regex pattern
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Robert Foss
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250506-iio-chemical-sen0322-v3-0-d6aa4acd00e0@gmail.com>
-Content-Language: en-US
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250502204142.2064496-1-vladimir.zapolskiy@linaro.org>
+ <20250502204142.2064496-2-vladimir.zapolskiy@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -102,42 +106,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250506-iio-chemical-sen0322-v3-0-d6aa4acd00e0@gmail.com>
+In-Reply-To: <20250502204142.2064496-2-vladimir.zapolskiy@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 06/05/2025 10:53, Tóth János via B4 Relay wrote:
-> This patchset adds a driver and the documentation for the
-> DFRobot SEN0322 oxygen sensor.
+On 02/05/2025 22:41, Vladimir Zapolskiy wrote:
+> There are 4 CSIPHY ports on X1E80100, it'd be preferred to tinker a too
+> loose the regexp, which covers all these port names.
 > 
-> Signed-off-by: Tóth János <gomba007@gmail.com>
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 > ---
-> Changes in v3:
-> - Refactor based on reviewer's suggestions.
-
-What exactly changed? I do not see any changes in the binding but you
-decided to drop my review tag.
+>  .../devicetree/bindings/media/qcom,x1e80100-camss.yaml          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
 
-<form letter>
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
-
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
