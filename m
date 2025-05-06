@@ -1,122 +1,116 @@
-Return-Path: <devicetree+bounces-173939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0250BAABB45
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:37:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15689AABAEB
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:31:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D18BC3B0B51
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:26:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E346502EE3
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B2F28FAAE;
-	Tue,  6 May 2025 05:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E783427C17C;
+	Tue,  6 May 2025 05:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="fIRgVAd3"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="RKSNA0Ln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661CE27BF9A;
-	Tue,  6 May 2025 05:39:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D5918DF80;
+	Tue,  6 May 2025 05:42:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746509948; cv=none; b=IajYhBsBAYeFRXRvam01W4eVPjy5ev2de9fVNSsEHuFQm0ShERMC767PNdcnZ3sXFIXIX2lBTQQyjqN5eEJtf10AeFAIJREoZDkz/EU3eqC765t/pwJrGaiGk+K2iNnhWMMwagwfnNNPvlk+v+hjepnFAlCoZpI7kvMlnEKSdbU=
+	t=1746510167; cv=none; b=RjmRI2TFzmN0hXuzufvhHw+LO8gCJHBG87eGP6fBkTo+9ofI6lSqOIqoVPJHf6StQu3fsgE8Hb83WZE3zb32bdabwqk8IOccqaY0t/Nfj+VKxA2L87S/+MNfgECTji369yfOx1kWv/96b3llit2ebtunMZQm6Jo3PrLJLY+Nz7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746509948; c=relaxed/simple;
-	bh=jS6WcRUZ5LMlqt/v3lxpcWGgtkNFOwJfvXYwfqfFbi4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=abdFgEBTpdt6u9n9fNkiUWgrCkEX0RF/ZazA7fCtLHpNmgRyxRYeiTDKPVJC2MO6oundOMxFJZP6vol4NRJvp+EeUAR0tDTx7xo/Yh4JyAu7gPT/kLG1ZO/YIO6GTUx0TjTgj7/4vcP06t+g5IHRNtJX0nzmGRHoZSNfSFWr5Z8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=fIRgVAd3; arc=none smtp.client-ip=117.135.210.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id; bh=SEKm99PurVmtrNTupP
-	5Lg3cHjShnygrGqkE6bVv/E7I=; b=fIRgVAd3fMVfzNtZrUHMKm4X5GSFt8lgWi
-	9njtbfBxHMQhvRTM4ntJlB65BvfuWlTqWy8Ys+YmtCU90kEmfBKhadOclNKvdA8a
-	fQGUsQvJVLZCBWOVCnU2xkf61BfP7bcQdkIpdaBhmJb0GfKbfztdrjwQtoXTCEyU
-	WkyuG1TeM=
-Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wBHxSpEoBloZ2M1Ew--.50689S6;
-	Tue, 06 May 2025 13:38:28 +0800 (CST)
-From: Wenliang Yan <wenliang202407@163.com>
-To: linux@roeck-us.net,
-	Jean Delvare <jdelvare@suse.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Wenliang Yan <wenliang202407@163.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	christophe.jaillet@wanadoo.fr,
-	derek.lin@silergycorp.com,
-	miguel.lee@silergycorp.com,
-	chris.ho@silergycorp.com,
-	eason.liao@silergycorp.com
-Subject: [PATCH v7 4/4] dt-bindings:Add SQ52206 to ina2xx devicetree bindings
-Date: Tue,  6 May 2025 01:37:41 -0400
-Message-Id: <20250506053741.4837-5-wenliang202407@163.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250506053741.4837-1-wenliang202407@163.com>
-References: <20250506053741.4837-1-wenliang202407@163.com>
-X-CM-TRANSID:_____wBHxSpEoBloZ2M1Ew--.50689S6
-X-Coremail-Antispam: 1Uf129KBjvJXoW7CF18Kr4fWF45uF4UWF43Awb_yoW8XF17p3
-	9xCF1jqryFqF13u3y7t3Z5G34Uu3Wv9F48KF1DJr1a93WkZa4Fq39xKr18Kr17Cr1fZFWf
-	uFn2grW8X340yaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pRVnmiUUUUU=
-X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbiMAZF02gZnOxMHwAAsy
+	s=arc-20240116; t=1746510167; c=relaxed/simple;
+	bh=w5PP8pPqPAlFWPzr7SqBRYCQHZuRk2Mb8hKI7hyMvQs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Tghj9gfoU3G2fu6683AGxTmQrU9My3N0L3r0wuecr/VF23t3VQAnQb7W24a/37590Uzbp7WHpyQMd/gXHzn9+OBowC5M9bdqIWK5PZ8ox2PUsZk9djyPsgscpL/HGt7uVTHQB7XHDC+sNvLtxaxTQ+/EEpnPhYXM5RHcrgvuIFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=RKSNA0Ln; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-22c3407a87aso77799035ad.3;
+        Mon, 05 May 2025 22:42:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1746510165; x=1747114965; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=w5PP8pPqPAlFWPzr7SqBRYCQHZuRk2Mb8hKI7hyMvQs=;
+        b=RKSNA0LnACSRcHFm8dM8NKqkQlkftEO2yWNLuEYNESSVVsEwWsn/6ongqBainOKWMp
+         GLX6k8BnlCLWJdsxTaSCfRgGsUNeE1J6a/M2GFr+1Sh1Q3reUPL4HomNzhCzNytY6Hhf
+         JtsDMGsQwvXr36IAOvI45N04bca9twsPIQbPze+Qys3X4Sv4cMBPz0j5SWyQY8wCHn5e
+         i3DhDp8RZeiUSdI2TOI0TNf5mv/95VycR2X6GyDCM7MxqTOhQEdZnBFsARHhk4REDoEi
+         UJu/4oulRTseL65AOm26kC0/4NxNb0ADl9CZE3qmUKO1QMhWDREuLiBXcwMHQesqZJN+
+         0jJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746510165; x=1747114965;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=w5PP8pPqPAlFWPzr7SqBRYCQHZuRk2Mb8hKI7hyMvQs=;
+        b=KU+1Kc4SCD1Gaa4gbl5tYLb+w+m5tCf3+HJz8Z/d3IpSCNYeuQZTIXs1fb+SCvrfne
+         10tnRo3UPXtEal37QbszrKx1mLhkaWZx4GCqxCbhz9es8/iQA0ptAZvbqBYIhOhHh6uw
+         QzuG+5j480v3iXkPu9LRJ7LazXOL1KvHwTT8JlKQe2a9mpule8buXgH7gS/2LdC1c0I6
+         dfnAYL2ihieC+KCSUip48pxYUKQqgAkebrKZtUc5WF+SjW/wJo7q6rNr2aLSxFFsTFiP
+         Qg8w0FhFDGaQD6Y9jhw7h6J/LGcEBbSerzeX985es2ctLVBlgzyLciMe9LqJNG6I5lyK
+         mHAg==
+X-Forwarded-Encrypted: i=1; AJvYcCXMaOgJMYdk/+Pa0I+ctRW+Ifr8e5LpknQEHFqU1T05OkcUZgwmcF9hmXF3bTuNJ45dpv/6a3ZxSib+/16S@vger.kernel.org, AJvYcCXtGYcu5hfgGMsO2ENDjaDk/5iGxUI0amOYWR9XvfFsjKvJ1CttnyVe+k+IXwe7506cbfgHRRJZiIqI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2C8kZnL9+/sCv1hPXmvR9t2CBykPCsR8DoKouZu6ZZTtooWgM
+	fgRCShkXE2jPdRdJpnsA1gm8rf3EJgOXG235D3pOWYS52w7b3bZ1YmEGZ/NDgHntXCSlHBjVG4h
+	1yqGYINaDvjZErwF1Mhf0VAEL7DY=
+X-Gm-Gg: ASbGncuoLqxJ6FC6EoVbY3re1VN67eNLZ5qg9ZVwWIJIx9J78Mm4iyiRnZozH/aQHE6
+	W5EL6210Xpeis/SwYbrG94mMkXIYyBBGmW61qKCIUfnoYjStuGI+NG3HxBJJYA7TK4EQPkhTbA+
+	6ljGcUIvpRMsmd+Wjex+8Sa/gvWU3EUsVo8UNB
+X-Google-Smtp-Source: AGHT+IHWCctdzwcMCj5ZjU40zivptT8H7299TSSxDfB5fLI/6Bil0HTVn5o/o/QdVIGdyzwtB4e67QWfmRswaQICEjE=
+X-Received: by 2002:a17:903:3c2e:b0:22e:3c2:d477 with SMTP id
+ d9443c01a7336-22e1ea60099mr185549235ad.25.1746510165582; Mon, 05 May 2025
+ 22:42:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20250505143700.4029484-1-christianshewitt@gmail.com>
+In-Reply-To: <20250505143700.4029484-1-christianshewitt@gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 6 May 2025 07:42:34 +0200
+X-Gm-Features: ATxdqUG_EIknxuU7AXpA0gnX9o4lB6z8IXOJ4Kfd6xvHmWt15cDgq86uJeQsSX0
+Message-ID: <CAFBinCBmBotJL=wC2=oV-o7piGckoBvN3S6ofYh20fEP9sn4XA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: sm1-bananapi: lower SD card speed
+ for stability
+To: Christian Hewitt <christianshewitt@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add the sq52206 compatible to the ina2xx.yaml
+On Mon, May 5, 2025 at 4:37=E2=80=AFPM Christian Hewitt
+<christianshewitt@gmail.com> wrote:
+>
+> Users report being able to boot (u-boot) from SD card but kernel
+> init then fails to mount partitions on the card containing boot
+> media resulting in first-boot failure. System logs show only the
+> probe of the mmc devices: the SD card is seen, but no partitions
+> are found so init fails to mount them and boot stalls.
+>
+> Reducing the speed of the SD card from 50MHz to 35MHz results in
+> complete probing of the card and successful boot.
+>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Signed-off-by: Wenliang Yan <wenliang202407@163.com>
----
-
-Add the meaning of 'shunt-gain' in SQ52206.
-
-v6->v7: Change 'silergy,sy24655' to 'silergy,sq52206' so that
-the make dt_binding_check' command can be successfully passed
-
-v5->v6:add content to meet the update requirements of the ina2xx.yaml
-
- Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-index bc03781342c0..d1fb7b9abda0 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-@@ -19,6 +19,7 @@ description: |
- properties:
-   compatible:
-     enum:
-+      - silergy,sq52206
-       - silergy,sy24655
-       - ti,ina209
-       - ti,ina219
-@@ -58,6 +59,9 @@ properties:
-       shunt voltage, and a value of 4 maps to ADCRANGE=0 such that a wider
-       voltage range is used.
- 
-+      For SQ52206,the shunt-gain value 1 mapps to ADCRANGE=10/11, the value 2
-+      mapps to ADCRANGE=01, and the value 4 mapps to ADCRANGE=00.
-+
-       The default value is device dependent, and is defined by the reset value
-       of PGA/ADCRANGE in the respective configuration registers.
-     $ref: /schemas/types.yaml#/definitions/uint32
-@@ -97,6 +101,7 @@ allOf:
-         compatible:
-           contains:
-             enum:
-+              - silergy,sq52206
-               - silergy,sy24655
-               - ti,ina209
-               - ti,ina219
--- 
-2.17.1
-
+> ---
+> The same workaround of dropping to 35MHz is also done with the
+> ac2xx dtsi; which has a comment about CRC errors being seen at
+> 50MHz. It's probable this is the same although I forget now how
+> that diagnosis was done (or who did it, Martin perhaps?).
+Maybe Jerome helped investigate/debug? I can't recall and at the same
+time: if it fixes the end user experience it's a win.
 
