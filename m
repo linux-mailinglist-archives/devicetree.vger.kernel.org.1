@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-174122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C546AAC21B
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:08:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F76AAC227
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:11:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BFAC4C8448
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:08:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 048791C23833
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:11:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AEFC2798E1;
-	Tue,  6 May 2025 11:08:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE1427A45B;
+	Tue,  6 May 2025 11:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhkoApNP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bC1wnt5Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5804E224250;
-	Tue,  6 May 2025 11:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D086279903;
+	Tue,  6 May 2025 11:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746529719; cv=none; b=iG8BJlg3viMbQWLu9gOTYjCyYP+bqcGS0kULLoWZtM27zVqfSw4/KwAgXlS3G6zdj1btIVIMHaUPQXfmT+RJtPGurlINMQRFQO2clYB3/ylcs+DP6M7aqqvgMjn+efAPbloEhxCBXg42axAhaPK1zKP9GTlhqmA4A3yTJvtY5Uw=
+	t=1746529878; cv=none; b=FscVkAeMi3cIHh+Y/oDKhK1JuaZXRAJTtZ7vVY3W6a4WmEo4+1sy1EsVlq5ICfl2hKGfYtV95ezky7AZGD1Uqyd/I1eL3uud/drrHA2WaXvewkpMtYTWm+ip0nHbWrS2h+BWpNomeFwyPRBRY2XElgqym8MGQMJV79yEcmXN1cg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746529719; c=relaxed/simple;
-	bh=oG6/2IHwC9TU785hP8ZTx7QljRu77QhLKNtBxqyfX/E=;
+	s=arc-20240116; t=1746529878; c=relaxed/simple;
+	bh=FtmiGAyFmhRK41qGDmr2uZkBBa+l91ql/WL6Uw4d3Ws=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ApWAj7+s2Y6H1IoYRpP/AFGRsPSWR7iCN7a3277MM+YHTCR3sXqbijkyxczu6d4KQx461h3yXFvx+c0WOjPScGUHwm8C/ylvaTZvNjzbmweZiXdPsSNlWUUzzjESR2PcV2wW1lhJ0Q/UIYEeYQVKDrWd2XItpZcTSNupjFCJcow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhkoApNP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98027C4CEED;
-	Tue,  6 May 2025 11:08:34 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WSJy0bkTL9HxVi657w8iEQ0AQVVzLkLdgbNtnJURO7XY54KkGSvM0WgZdnYtFYHU4EaeaTsMLGFuF8M2EKvZwqf0jIaZbhtK1Eo7gjI9L6ONn0BHNsUH6+8yUsJ3OI4XzQ8NuPW8A5UDoW87JzjjvRE9WH77lyWw7TLfg9JBu5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bC1wnt5Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D6F8C4CEE4;
+	Tue,  6 May 2025 11:11:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746529718;
-	bh=oG6/2IHwC9TU785hP8ZTx7QljRu77QhLKNtBxqyfX/E=;
+	s=k20201202; t=1746529876;
+	bh=FtmiGAyFmhRK41qGDmr2uZkBBa+l91ql/WL6Uw4d3Ws=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OhkoApNPEE6U5Ityg35H850t4Yvidcvgk5WzimaWQytpPKezOJmb03xt+UPK3UvRA
-	 bvtko+i9/dWxnu70CS8TY3LIycyYDf2JSn8bw6Rpgnf0Xrzf+V/bWYx3hLjqRE5JMw
-	 +XSKGGw2vdNm1H25YadNXJfgL90MVOw2X7TQ5NPC4W1lmcLE+Yup6kCjDo73xCVgpJ
-	 gTHHEiss48u6pB0uH3hafY64KEA+8WRX8BhpnVce3OJqbV/Hy3qVFvT9Rkm27v2EOG
-	 07WlX4Pgaj2VMtJX8OKEQhyoQGk+ibRf9sUMqo6FR3010ANv2SL9vaSVPF8TmthPTY
-	 7ELClK4wd+UUw==
-Message-ID: <1f7a47f6-33d0-4e35-bd4f-9d130e37c931@kernel.org>
-Date: Tue, 6 May 2025 13:08:32 +0200
+	b=bC1wnt5QhoQa/Nm+CVc5xFktamfoEswqZSHrmP0D1HM+f2GKQCG4RNWgajjKGBmwc
+	 WCNFFJ5TGzuiMQ8eHOSLpoJoUzRHt68MzN30fC0KmZ82jeDpRk0jy6bJfhudzQ7WUK
+	 g6vPLthVmvBowRQ9vRr3CasjffStaDIZx8D3IzShIaPGW2+OTGPxXWkuRxJDh9V0Cz
+	 pNJBXJHB7UyQ2t76QYgGMEMazS5vkfJ66ZeN7I2ZPkSryz4CwUnLLfIFOQzV6o2eUv
+	 NqG9zSMktMwfsntdMy922pAZRjcA6Ng7xFF5rOHXTsOuzOYQeDXtRW9cy2pTG5jCJK
+	 zVc5ClXUuRgdw==
+Message-ID: <03aedee5-bab9-4f36-8d71-f31496832629@kernel.org>
+Date: Tue, 6 May 2025 13:11:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] pinctrl: eswin: Add eic7700 pinctrl driver
-To: luyulin <luyulin@eswincomputing.com>, linus.walleij@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kees@kernel.org, gustavoars@kernel.org,
- brgl@bgdev.pl, linux-hardening@vger.kernel.org
-Cc: zhengyu@eswincomputing.com, ningyu@eswincomputing.com,
- huangyifeng@eswincomputing.com, linmin@eswincomputing.com,
- fenglin@eswincomputing.com, lianghujun@eswincomputing.com,
- Samuel Holland <samuel.holland@sifive.com>
-References: <20250506090844.1516-1-luyulin@eswincomputing.com>
- <20250506091241.941-1-luyulin@eswincomputing.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: dma: nvidia,tegra20-apbdma: convert
+ text based binding to json schema
+To: Charan Pedumuru <charan.pedumuru@gmail.com>, Vinod Koul
+ <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250506-nvidea-dma-v2-0-2427159c4c4b@gmail.com>
+ <20250506-nvidea-dma-v2-2-2427159c4c4b@gmail.com>
+ <28afd932-1d63-4bc7-8ed2-33bf838a858d@kernel.org>
+ <a9729fd4-1fed-459a-b242-eabc71503954@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,49 +108,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250506091241.941-1-luyulin@eswincomputing.com>
+In-Reply-To: <a9729fd4-1fed-459a-b242-eabc71503954@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/05/2025 11:12, luyulin wrote:
-> +static int eic7700_pinctrl_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct pinctrl_dev *pctldev;
-> +	struct eic7700_pinctrl *pc;
-> +	struct regulator *regulator;
-> +	u32 voltage, rgmii0_mode, rgmii1_mode;
-> +	int ret;
-> +
-> +	pc = devm_kzalloc(dev, struct_size(pc, functions, EIC7700_FUNCTIONS_COUNT), GFP_KERNEL);
-> +	if (!pc)
-> +		return -ENOMEM;
-> +
-> +	pc->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(pc->base))
-> +		return PTR_ERR(pc->base);
-> +
-> +	regulator = devm_regulator_get(dev, "vrgmii");
-> +	if (IS_ERR_OR_NULL(regulator)) {
-> +		dev_err(dev, "failed to get vrgmii regulator!\n");
+On 06/05/2025 12:46, Charan Pedumuru wrote:
+> 
+> 
+> On 06-05-2025 13:00, Krzysztof Kozlowski wrote:
+>> On 06/05/2025 09:07, Charan Pedumuru wrote:
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>
+>> Why is this a irq.h now?
+>>
+>>> +    #include <dt-bindings/reset/tegra186-reset.h>
+>>> +    dma-controller@6000a000 {
+>>> +        compatible = "nvidia,tegra30-apbdma", "nvidia,tegra20-apbdma";
+>>> +        reg = <0x6000a000 0x1200>;
+>>> +        interrupts = <0 136 0x04>,
+>>> +                     <0 137 0x04>,
+>>> +                     <0 138 0x04>,
+>>> +                     <0 139 0x04>,
+>>> +                     <0 140 0x04>,
+>>> +                     <0 141 0x04>,
+>>> +                     <0 142 0x04>,
+>>> +                     <0 143 0x04>,
+>>> +                     <0 144 0x04>,
+>>> +                     <0 145 0x04>,
+>>> +                     <0 146 0x04>,
+>>> +                     <0 147 0x04>,
+>>> +                     <0 148 0x04>,
+>>> +                     <0 149 0x04>,
+>>> +                     <0 150 0x04>,
+>>> +                     <0 151 0x04>;
+>>
+>>
+>> Again, quoting:
+>>
+>> You included this...
+>> ... so use it.
+>>
+>> Otherwise what would be the point of including the header?
+> 
+> 
+> Yes, I understood it now, will remove the header.
 
-Hm? So here you do not use dev_err_probe, even though it is actually
-important, but...
-
-
-
-...
-
-> +
-> +	ret = devm_pinctrl_register_and_init(dev, &pc->desc, pc, &pctldev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "could not register pinctrl driver\n");
-
-Here you use, even though here it actually does not matter? It makes no
-sense, it is not logical. If using dev_err_probe selectively, then use
-it when it matters - so for probe deferal. Or preferred is to use it always.
-
-
+No, I asked to use the header.
 
 Best regards,
 Krzysztof
