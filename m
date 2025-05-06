@@ -1,182 +1,210 @@
-Return-Path: <devicetree+bounces-173911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82842AAB8AB
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 08:39:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 035FCAAB9F6
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:09:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FDE91C27D66
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 06:33:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A5825A0363
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 06:51:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF2F296724;
-	Tue,  6 May 2025 04:01:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D88D28DF27;
+	Tue,  6 May 2025 04:01:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B64oE3A7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HBiMS0kC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94FEB30037D;
-	Tue,  6 May 2025 02:23:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8A9306CCB;
+	Tue,  6 May 2025 02:31:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746498214; cv=none; b=CrwGSLwWiT7c1TlTNCIBoJLCqb4FXlAV7xd7l4f6/2EP9XmJ9Cu3ivP8vdnmpbAyyHQrAwc3dXZ34XMp2FiDDDW97a9PJbSRedP4lDe0K2gZVj6pgPdDvjkCyJQeffnH8gXieOKJFeaG7BPMNUfMPjfSTfYldGYZ6uFuXaeqnnc=
+	t=1746498712; cv=none; b=SrFMG6XSOVjZEaf3plbzK9ZURqYuNglGBKetouX5PJkEUVYeKB7Vl9WxmAsWtyZKrhqwRDzuYmyKx8cvkDcAG2RjMhYjE1xcosz5VJOVglRYyPbahf+iyVFWdLKZ1i0wm4XP4xBEstmqf2I7gxR8HwCZaz6omWEsmZCa9MFX4Wo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746498214; c=relaxed/simple;
-	bh=PlcCyqGeJ+hlmKFOd1cg9NQSi+thrfDLcnZzzn+MdkM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C0OAJ9Z0HEmAhVMkuMfaGN1gskgaIXh7HYrmo/cbOivnuL4c+7tD4hekdIgrBJ16Hmkco1R4xGOwOrTuv7zDZSrYWi11tTDaRUw30f+2sA+dg1wuK22lEU59jhbZieiRxE6ISR+70YKUWMXW4iF38eZCwDuYh45cx3l7uTapLGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B64oE3A7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEA62C4CEE4;
-	Tue,  6 May 2025 02:23:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746498213;
-	bh=PlcCyqGeJ+hlmKFOd1cg9NQSi+thrfDLcnZzzn+MdkM=;
-	h=From:To:Cc:Subject:Date:From;
-	b=B64oE3A7knBQekF6ZWd6GcHN0s+6V4PBU49Nze4TKr5qnB0t7rgBPreeNdqH8XMTk
-	 ODpzmx9UdCOSrRHxVi/F8YIgoeLayCeMjMA5kki57V4yFvsaAmHBlFnZAOgQX/faH/
-	 f5JyT8sRq4kzhq1403/CIKI3CDLbMoXhBezqlZst3dkOV6NX3AmNpf40jZUL/dZv/R
-	 fPCR6mZzYtY4dcTDxa6A16wzp3tpEqBhsAqhWIH5sZV4VA174SPdomZ7CJgXr0sT8N
-	 0lpFny+rG+06hFyqUJUo9xTBHWcjY3JuFz/EH/NsN+L20M72Bu9tvtHoCVk+dgM8py
-	 Mbt/kiIc6EajA==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Alexander A. Klimov" <grandmaster@al2klimov.de>,
-	Ivan Khoronzhuk <ivan.khoronzhuk@ti.com>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: timer: Convert ti,keystone-timer to DT schema
-Date: Mon,  5 May 2025 21:23:29 -0500
-Message-ID: <20250506022330.2589598-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1746498712; c=relaxed/simple;
+	bh=wYBErgk59yRPYTKpFOXAiimpZRl4DE2BrEA04HijqEs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XwOiXxbyYtZ5bUxTyzohr3k7LHaofIxhINzmX1tc1G0+e7BEFnwoNiC3IGwn/f9M9e4vvV53tUwL5bICuf03xD51ZQ9TmDs00V9uIexAJNIt7f+r73t04P1ayvTuQEqzMxAxiIbYbTdvTCyMDeeGI7vClQrr5c76UXnWB09uXkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HBiMS0kC; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-739525d4e12so5009852b3a.3;
+        Mon, 05 May 2025 19:31:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746498710; x=1747103510; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=poh4flnsblOTuXQPZPNN2P3hxWXnOplQoLoK9Oy5wOo=;
+        b=HBiMS0kCDr0na03K2B6HG6M/yJzGpk/ipa3ed6WvtQQS/mjXljmZaGB0v3ecm/hu6G
+         BjOiHEDPQginwuHomuENFlOVI3xA4F/D3w9NKVfsnEMNg9cgn2X+PT2xN+8VDUwylG0n
+         V6Wfv/HChRkSrKKOvvIVqEKK+8pv/zW2MEbNM9EPAYGCMD0p6f187IsKSKge/S3kFSag
+         9kFCgrpmDfpPSv69qUZMazcbjsEk+0lOF3CmjL03sfut0QxlMKa/aF4Gm1DeZND7Cm5U
+         kQeN3tWP5Kpot0hA+V1SZyd0HT9/Xe9AbCxFrircct00f7NwcLhGZJ+SUsWiTSXpdnGH
+         Z9zQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746498710; x=1747103510;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=poh4flnsblOTuXQPZPNN2P3hxWXnOplQoLoK9Oy5wOo=;
+        b=urwcifXifzEXqSFLaPDb8MYLCbZOGQpHlhZYCgn8puGUlQlvBZXCn/cVJ+NeKUX1fk
+         ghMQYjqYmmRO4m7J8+XMfjFghZawZ+8e6FNUfPVZhOT+WyqRF5hsz+apWKwAk/3hyBAO
+         qkOjZUbJkDl7cB+HLC5p/NZxC2DDyvX09Fs2Bu+kRucquNyJ4+KfQLjdQh9kXPLA+WS9
+         joov7+FMC0qOejE0uocf6zyC8XMRmbYArCN+RfpCTDbqku8XYnq/1eaLXJXpcrkJwiJE
+         IiBg8H6+L8QaHLs1gvXxXAwwbbEK+MBDqb+WbszKS0eDqmPQiLhfrrZ0bxI7YPDibXTK
+         1dEw==
+X-Forwarded-Encrypted: i=1; AJvYcCW/Y3Xb6O9CyoCmfQlLd1+ieGKo3HLz5/Ah34cihugQ+s4L3n17Mh3pWnDYm6sftrjLC9++FzpxMzOK@vger.kernel.org, AJvYcCWfB91Ae8fv2O5NeAUBtcHJCpX56zzFHqLYbNn81I9RbuXxhGV30srk0fG6uVyYST0hUVDmDVrPZvCZ@vger.kernel.org, AJvYcCXochhPSuScBjofzh7oz2v5dbqw0LF+2gv/zFwGXNtcEow0y0ny9g4POUqsLQjqb9riPK1HvAU2x+iQ2fn9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxf8cbwmU3IrnqVrMmeoVafviK/+9tMDBATLb19vo244AnBhlFk
+	x/VdiHF+53NQxXHDQI133SUy+xdUHE0oVKf6A1a9zF0D0aiIaqRu
+X-Gm-Gg: ASbGncs9SLOJBDNPGVNC8Q8fht2MkoqWeB4GzAH3NJLwC8B6HGESnKnoRgmwMHl4+wm
+	/6mY3nrPmBWHsVWwDDHTYmpCGgCaV9rXYl9AkNtdKzRX+Rz4Qq/58AEYC4dP4RuUq5HN+XQGvwa
+	C0XgTrukfmAmDpWCHpcgTI8FxfhF4Yef7UOYgTaPd4vxO0ZKrnGU18ViEGIvjM5gAtLoA1ittIZ
+	jyERcWFQz1isA4eYd9l16M7WCI1iZYi2179/uEqWsjWTtCDnj2EOUGai2wizCzSZzO1VDzB+bGO
+	degWnb4umytQ19aR7GZudhX4mZ+LPkXJfDPhXvR/
+X-Google-Smtp-Source: AGHT+IFm2DxJzuwGUz6BKAo8aCcTy5T+PX1t2f2NG17JtptJTbCdw+A9Vy7/npC+48IEhStxuhVLiA==
+X-Received: by 2002:a05:6a00:4294:b0:736:6ecd:8e32 with SMTP id d2e1a72fcca58-74058b23ef3mr18912149b3a.21.1746498710367;
+        Mon, 05 May 2025 19:31:50 -0700 (PDT)
+Received: from archie.me ([103.124.138.155])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74058dbbb15sm7939011b3a.58.2025.05.05.19.31.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 May 2025 19:31:49 -0700 (PDT)
+Received: by archie.me (Postfix, from userid 1000)
+	id 3FFBD42439E4; Tue, 06 May 2025 09:31:45 +0700 (WIB)
+Date: Tue, 6 May 2025 09:31:45 +0700
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org
+Cc: akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de,
+	ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de,
+	catalin.marinas@arm.com, corbet@lwn.net,
+	dave.hansen@linux.intel.com, devicetree@vger.kernel.org,
+	dwmw2@infradead.org, ebiederm@xmission.com, graf@amazon.com,
+	hpa@zytor.com, jgowans@amazon.com, kexec@lists.infradead.org,
+	krzk@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org, linux-mm@kvack.org, luto@kernel.org,
+	mark.rutland@arm.com, mingo@redhat.com, pasha.tatashin@soleen.com,
+	pbonzini@redhat.com, peterz@infradead.org, ptyadav@amazon.de,
+	robh@kernel.org, rostedt@goodmis.org, rppt@kernel.org,
+	saravanak@google.com, skinsburskii@linux.microsoft.com,
+	tglx@linutronix.de, thomas.lendacky@amd.com, will@kernel.org,
+	x86@kernel.org
+Subject: Re: [PATCH v7 17/18] Documentation: add documentation for KHO
+Message-ID: <aBl0kUIKryH5AUD5@archie.me>
+References: <20250501225425.635167-1-changyuanl@google.com>
+ <20250501225425.635167-18-changyuanl@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7/7+Tnuu7kTtOC0+"
+Content-Disposition: inline
+In-Reply-To: <20250501225425.635167-18-changyuanl@google.com>
 
-Convert the TI Keystone Timer binding to DT schema format. It's a
-straight-forward conversion.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/timer/ti,keystone-timer.txt      | 29 ---------
- .../bindings/timer/ti,keystone-timer.yaml     | 63 +++++++++++++++++++
- 2 files changed, 63 insertions(+), 29 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/timer/ti,keystone-timer.txt
- create mode 100644 Documentation/devicetree/bindings/timer/ti,keystone-timer.yaml
+--7/7+Tnuu7kTtOC0+
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/timer/ti,keystone-timer.txt b/Documentation/devicetree/bindings/timer/ti,keystone-timer.txt
-deleted file mode 100644
-index d3905a5412b8..000000000000
---- a/Documentation/devicetree/bindings/timer/ti,keystone-timer.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--* Device tree bindings for Texas instruments Keystone timer
--
--This document provides bindings for the 64-bit timer in the KeyStone
--architecture devices. The timer can be configured as a general-purpose 64-bit
--timer, dual general-purpose 32-bit timers. When configured as dual 32-bit
--timers, each half can operate in conjunction (chain mode) or independently
--(unchained mode) of each other.
--
--It is global timer is a free running up-counter and can generate interrupt
--when the counter reaches preset counter values.
--
--Documentation:
--https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
--
--Required properties:
--
--- compatible : should be "ti,keystone-timer".
--- reg : specifies base physical address and count of the registers.
--- interrupts : interrupt generated by the timer.
--- clocks : the clock feeding the timer clock.
--
--Example:
--
--timer@22f0000 {
--	compatible = "ti,keystone-timer";
--	reg = <0x022f0000 0x80>;
--	interrupts = <GIC_SPI 110 IRQ_TYPE_EDGE_RISING>;
--	clocks = <&clktimer15>;
--};
-diff --git a/Documentation/devicetree/bindings/timer/ti,keystone-timer.yaml b/Documentation/devicetree/bindings/timer/ti,keystone-timer.yaml
-new file mode 100644
-index 000000000000..1caf5ce64f01
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/ti,keystone-timer.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ti,keystone-timer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI Keystone timer
-+
-+maintainers:
-+  - Alexander A. Klimov <grandmaster@al2klimov.de>
-+  - Ivan Khoronzhuk <ivan.khoronzhuk@ti.com>
-+
-+description: >
-+  A 64-bit timer in the KeyStone architecture devices. The timer can be
-+  configured as a general-purpose 64-bit timer, dual general-purpose 32-bit
-+  timers. When configured as dual 32-bit timers, each half can operate in
-+  conjunction (chain mode) or independently (unchained mode) of each other.
-+
-+  It is global timer is a free running up-counter and can generate interrupt
-+  when the counter reaches preset counter values.
-+
-+  Documentation:
-+  https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
-+
-+properties:
-+  compatible:
-+    const: ti,keystone-timer
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    items:
-+      - const: irq
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: timer
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    timer@22f0000 {
-+        compatible = "ti,keystone-timer";
-+        reg = <0x022f0000 0x80>;
-+        interrupts = <110 IRQ_TYPE_EDGE_RISING>;
-+        clocks = <&clktimer15>;
-+    };
--- 
-2.47.2
+On Thu, May 01, 2025 at 03:54:24PM -0700, Changyuan Lyu wrote:
+> +This document expects that you are familiar with the base KHO
+> +:ref:`concepts <concepts>`. If you have not read
+The reference label is generic and can collide with future patches.
+It should've been disambiguated as kho_concepts instead.
+> +them yet, please do so now.
+> +
+> +Prerequisites
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +KHO is available when the ``CONFIG_KEXEC_HANDOVER`` config option is set=
+ to y
+> +at compile time. Every KHO producer may have its own config option that =
+you
+when the kernel is compiled with ``CONFIG_KEXEC_HANDOVER`` set to y.
+> +need to enable if you would like to preserve their respective state acro=
+ss
+> +kexec.
+> +
+> <snipped>...
+> +First, before you perform a KHO kexec, you need to move the system into
+> +the :ref:`KHO finalization phase <finalization_phase>` ::
 
+kho_finalization_phase to disambiguate label.
+
+> +Next, load the target payload and kexec into it. It is important that you
+> +use the ``-s`` parameter to use the in-kernel kexec file loader, as user
+> +space kexec tooling currently has no support for KHO with the user space
+> +based file loader ::
+> +
+> +  # kexec -l Image --initrd=3Dinitrd -s
+> +  # kexec -e
+
+Use full paths to kernel and initramfs image.
+
+> +``/sys/kernel/debug/kho/out/scratch_len``
+> +    To support continuous KHO kexecs, we need to reserve
+> +    physically contiguous memory regions that will always stay
+> +    available for future kexec allocations. This file describes
+> +    the length of these memory regions. Kexec user space tooling
+> +    can use this to determine where it should place its payload
+> +    images.
+
+"Length of KHO scratch region, which is a physically contiguous memory regi=
+ons
+that will always available for future kexec allocations. Kexec user space
+tools can use this file to determine where it should place its payload imag=
+es."
+
+> +
+> +``/sys/kernel/debug/kho/out/scratch_phys``
+> +    To support continuous KHO kexecs, we need to reserve
+> +    physically contiguous memory regions that will always stay
+> +    available for future kexec allocations. This file describes
+> +    the physical location of these memory regions. Kexec user space
+> +    tooling can use this to determine where it should place its
+> +    payload images.
+
+"Physical location of KHO scratch region. Kexec user space tools can use th=
+is
+file in conjunction to scratch_phys to determine where it should place its
+payload images."
+
+> +.. SPDX-License-Identifier: GPL-2.0-or-later
+> +.. _concepts:
+
+The label can be ambiguous. It should've been _kho_concepts instead.
+
+> +.. _finalization_phase:
+
+The label should be _kho_finalization_phase.
+
+> +Generally, A KHO user serialize its state into its own FDT and instructs
+"Generally, a KHO user ..."
+> +KHO to preserve the underlying memory, such that after kexec, the new ke=
+rnel
+> +can recover its state from the preserved FDT.
+> +
+
+Thanks.
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--7/7+Tnuu7kTtOC0+
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCaBl0iQAKCRD2uYlJVVFO
+oy/8AP48Fa7VB0kwt+kqGg4VMR/+tEgBDGxzTX5HXZWYD5fZLQEAm6XrPJBViu5A
+Mpce1oumgUOmlwq+sRSgixha15i4eAo=
+=lxMZ
+-----END PGP SIGNATURE-----
+
+--7/7+Tnuu7kTtOC0+--
 
