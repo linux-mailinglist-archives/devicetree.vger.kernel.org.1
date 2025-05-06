@@ -1,118 +1,114 @@
-Return-Path: <devicetree+bounces-174385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38BDCAACF73
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 23:30:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C75AAD079
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 00:00:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5464F3BB82C
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 21:30:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E21771BA81F6
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C7F15C158;
-	Tue,  6 May 2025 21:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95B3218E96;
+	Tue,  6 May 2025 22:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tIxHCMEV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dgrIkkK7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F8E748D;
-	Tue,  6 May 2025 21:30:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAADA218838;
+	Tue,  6 May 2025 22:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746567030; cv=none; b=YhjpqPGV94Xr31Dn/H5yuXSp9jqgZBUVLHgjOlZd0MDJT3yqSyF5O7Hbk51yz/NKDUCG7RRIoFZklPmdLNwwBBmU+4mc7IMC+8y6bcFMUJduRLZJkpMd75LLXejZYbb80ZXVIRhhpU2nt1/QBVNOGJi2l8mOjJ36nT11Ov9d6os=
+	t=1746568803; cv=none; b=FcV1WOqxGccSXo4Q59FbA0EilAssNBTLMZgNkJhbmaJppzzgGipDGpxq4r1VdNtR1WkNl3WJXCRgQUimAXgI1gB/MdFTokGeimRFxbYhbufOZtoJT5/D4VMSuvJnh++XMmnMXo8lB+HKlMM8n0Hgy8RzM7wnUTYBJnhwov9A8pU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746567030; c=relaxed/simple;
-	bh=tHVSCMowVHak9eFvdfPawbHvEbN8M8vOtdhU5mpQIbU=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=fCiv/oRbaA0FLIb/Vd373H6kn25+pLNs2n1ft7f/AQlDiz/3mokJIlNlI444SrDwepfRr+1HZ36Bi8n45OaHTiX/2xog/8WBlHcxfeccmTNzpZTgnZ4NsoPJE9qwOj1MIKlLnRKC76aOrE9Z1vu3EvI27/lKRQxc+OQ+EGmZHWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tIxHCMEV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62CB3C4CEE4;
-	Tue,  6 May 2025 21:30:29 +0000 (UTC)
+	s=arc-20240116; t=1746568803; c=relaxed/simple;
+	bh=x0kj9Jv4aZPukUlCk34g8XBO/482wG4PTvrgKvgia2k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=B0/iSKQcgvXiSWD2HwLiYcbVNZr2EsI7oSWEb8kGN20A8+PAyvWOzqhbskaUpRNS7gZkpz7ZY2JiD5wdoSwbopCNXwc7pRyJEBvQfsCGfiCo3B/yeon2zr4dSgTdKi7Ft5Tl0EQIDrPbYfHJ1FBx0Qn1ZBxiuLp6DbJhKSsJdx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dgrIkkK7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05F45C4CEE4;
+	Tue,  6 May 2025 22:00:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746567029;
-	bh=tHVSCMowVHak9eFvdfPawbHvEbN8M8vOtdhU5mpQIbU=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=tIxHCMEVNzGmZlsR7hg0FiY2js/ySu7vVNW0VTozqzvoEdwXRqRhVKo00FIIcTvVD
-	 jBH2l5E0TL6aBm7Fw3hHCJctfykIjwrQGnrzoFKMsixFIEQVVGRA1G8winWudeS6sz
-	 Rynlhtjp5LckOsx6gnK8G33zda4cT+oGr4repRWgN2DRqQvEX7DVuSNPfxCyCPnc1I
-	 xZozNJY0PeBs43kwRdMWdQmGj9bCxPoq80+9NggkdGwq4L4mWXIPMXZItq9wXiSD3o
-	 bCLAcvDZxCC7PsjLm+78YJH7SBW1PJunjrcn1Khu9F0A68ExXqAd0yvNWNq5QSWtIQ
-	 NZ3FLz3dBHoBA==
-Message-ID: <c46de621e098b7873a00c1af4ca550a1@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1746568803;
+	bh=x0kj9Jv4aZPukUlCk34g8XBO/482wG4PTvrgKvgia2k=;
+	h=From:To:Cc:Subject:Date:From;
+	b=dgrIkkK7HAvlEDQcNymbKS0V2gBDv+iWjyjxsiXg+1/1JL095lGvZ5zGgCCUp6B9b
+	 depbAmj4LCyB15mG+hOKoeHy9KOtsXDc7eYgZDqYRj/QWuzgMrSOMetb2m2ANa9CCa
+	 ZIFJEgvzHf8NeX0J4Z8OHH0TX3bitKjcpGme551AWDCUtDRFKhRVTa37PXskICjHFH
+	 2ckmrU1xZ5thzslYRzCTEl0ltStPlIN27QH/2lJ9c3oSkxublMvw4+NJHN0e6NTf6J
+	 ZX5wiGApVLy0McVD09lDsne+bfX5tI/t9UWDoeG1kjF4ZWB510JDkUYld41R/yZ2jS
+	 m8QxqzsUL+J8A==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dinh Nguyen <dinguyen@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: serial: Convert altr,juart-1.0 to DT schema
+Date: Tue,  6 May 2025 16:59:58 -0500
+Message-ID: <20250506215959.2544931-1-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <475c9a27-e1e8-4245-9ca0-74c9ed663920@samsung.com>
-References: <20250403094425.876981-1-m.wilczynski@samsung.com> <CGME20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319@eucas1p2.samsung.com> <20250403094425.876981-4-m.wilczynski@samsung.com> <Z/BoQIXKEhL3/q50@x1> <17d69810-9d1c-4dd9-bf8a-408196668d7b@samsung.com> <9ce45e7c1769a25ea1abfaeac9aefcfb@kernel.org> <475c9a27-e1e8-4245-9ca0-74c9ed663920@samsung.com>
-Subject: Re: [PATCH v7 3/3] riscv: dts: thead: Add device tree VO clock controller
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, guoren@kernel.org, wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org, p.zabel@pengutronix.de, m.szyprowski@samsung.com, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-To: Drew Fustini <drew@pdp7.com>, Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Tue, 06 May 2025 14:30:27 -0700
-User-Agent: alot/0.12.dev8+g17a99a841c4b
+Content-Transfer-Encoding: 8bit
 
-Quoting Michal Wilczynski (2025-04-30 00:52:29)
->=20
-> In the v2 version of the patchset, there was no reset controller yet, so
-> I thought your comment was made referring to that earlier version.
-> This representation clearly describes the hardware correctly, which is
-> the requirement for the Device Tree.
->=20
-> The manual, in section 5.4.1.6 VO_SUBSYS, describes the reset registers
-> starting at 0xFF_EF52_8000:
->=20
-> GPU_RST_CFG             0x00
-> DPU_RST_CFG             0x04
-> MIPI_DSI0_RST_CFG       0x8
-> MIPI_DSI1_RST_CFG       0xc
-> HDMI_RST_CFG            0x14
-> AXI4_VO_DW_AXI          0x18
-> X2H_X4_VOSYS_DW_AXI_X2H 0x20
->=20
-> And the clock registers for VO_SUBSYS, manual section 4.4.1.6 start at of=
-fset 0x50:
-> VOSYS_CLK_GATE          0x50
-> VOSYS_CLK_GATE1         0x54
-> VOSYS_DPU_CCLK_CFG0     0x64
-> TEST_CLK_FREQ_STAT      0xc4
-> TEST_CLK_CFG            0xc8
->=20
-> So I considered this back then and thought it was appropriate to divide
-> it into two nodes, as the reset node wasn't being considered at that
-> time.
->=20
-> When looking for the reference [1], I didn't notice if you corrected
-> yourself later, but I do remember considering the single-node approach
-> at the time.
->=20
+Convert the Altera JTAG UART binding to DT schema. The "ALTR,juart-1.0"
+compatible has long been deprecated, so drop it.
 
-If the two register ranges don't overlap then this is probably OK. I
-imagine this is one device shipped by the hardware engineer, VO_SUBSYS,
-which happens to be a clock and reset controller. This is quite common,
-and we usually have one node with both #clock-cells and #reset-cells in
-it. Then we use the auxiliary bus to create the reset device from the
-clk driver with the same node. This helps match the device in the
-datasheet to the node and compatible in DT without making the compatible
-provider specific (clk or reset postfix).
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/serial/altera_jtaguart.txt       |  5 -----
+ .../bindings/serial/altr,juart-1.0.yaml       | 19 +++++++++++++++++++
+ 2 files changed, 19 insertions(+), 5 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/altera_jtaguart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/altr,juart-1.0.yaml
 
-That's another reason why we usually have one node. DT doesn't describe
-software, i.e. the split between clk and reset frameworks may not exist
-in other operating systems. We don't want to put the software design
-decisions into the DT.
+diff --git a/Documentation/devicetree/bindings/serial/altera_jtaguart.txt b/Documentation/devicetree/bindings/serial/altera_jtaguart.txt
+deleted file mode 100644
+index 55a901051e8f..000000000000
+--- a/Documentation/devicetree/bindings/serial/altera_jtaguart.txt
++++ /dev/null
+@@ -1,5 +0,0 @@
+-Altera JTAG UART
+-
+-Required properties:
+-- compatible : should be "ALTR,juart-1.0" <DEPRECATED>
+-- compatible : should be "altr,juart-1.0"
+diff --git a/Documentation/devicetree/bindings/serial/altr,juart-1.0.yaml b/Documentation/devicetree/bindings/serial/altr,juart-1.0.yaml
+new file mode 100644
+index 000000000000..02e20fa591da
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/altr,juart-1.0.yaml
+@@ -0,0 +1,19 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/altr,juart-1.0.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Altera JTAG UART
++
++maintainers:
++  - Dinh Nguyen <dinguyen@kernel.org>
++
++properties:
++  compatible:
++    const: altr,juart-1.0
++
++required:
++  - compatible
++
++additionalProperties: false
+-- 
+2.47.2
 
-It may also be that a device like this consumes shared power resources
-like clks or regulators that need to be enabled to drive the device, or
-an IOMMU is used to translate the register mappings. We wouldn't want to
-split the device in DT in that case so we can easily manage the power
-resources or memory mappings for the device.
-
-TL;DR: This is probably OK, but I'd be careful to not make it a thing.
 
