@@ -1,144 +1,135 @@
-Return-Path: <devicetree+bounces-174399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5619EAAD0EB
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 00:24:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2BB5AAD0F2
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 00:25:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0E724E7C89
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:24:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D1A57B0028
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78662218ADD;
-	Tue,  6 May 2025 22:24:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE20E1EE03D;
+	Tue,  6 May 2025 22:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fIGJ9WXu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FrG2X5Jd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3110217648;
-	Tue,  6 May 2025 22:24:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116E9157A6B
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 22:25:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746570295; cv=none; b=dUqY4/0jXH08Cf1mK6B0WZG3dD2p76mtzHpXhTUGQiUfs921fERj9LnK4RCI41Nhd4iJ9klQFb27+O/cjDVOeSXaRfq05KMX3JojsZeejimOW7lKSsY6FfxovED70Xd6LKs6G/wjB0EsBFrWS5cAtY3u4qoipZa7FAfNMpLg/vE=
+	t=1746570337; cv=none; b=K+7hAo8omSt0uuOr1Q2z8WKPY8fgFXCvETZ/BskOPCHUB0S/LHPU4aBn01XpNMHt7WEBQauKsucRQL6n5UM+gSKsS7nl96/lIhZ4AhxinMPJOWsSQm3SgDg7zIMiddOeCR+8d1TbHu6yAlozPlPVBFCp6zPw5wqgNhNiTUWYLMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746570295; c=relaxed/simple;
-	bh=pGCW6+4GYSpPWrxlBu87gJhu5P8X0pt7xGbhx4iMxbU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pIKtHyoWxouaOwMtgqdCd4a2OJ1jRjoGhm6B0CdW+Ku5LdxyDPsgwtBYgN0AkbwJE4y3f4sgcBOSQI25uUhHfJ9jH8W9B7h+w30UpPozjekl3PDVUNFyhyfsnQhtjcdmJl0dAzdRlZhUGpv/gE9z4uC9NtIGv/KUH7Bm2QAp6aU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fIGJ9WXu; arc=none smtp.client-ip=209.85.219.53
+	s=arc-20240116; t=1746570337; c=relaxed/simple;
+	bh=Xy15aZU9aIHbREjKdrMW0ZTPG2N1cjBK8BuxWOv0aIc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KOVtOsuSL7fdnBNpxMYt9yb3GWZ+z2Mi06cbsx+1xfx4UqGT/6YhryJ+7wlbZ7+fDIFWUmKMP1Fk217CwNVgsSH5E7sIV8BmJZHXcRUgaq6wWR2j5nla9VMjnZ8ZlXqxiGZb7GPXDvDz5pV/ayf1CktEUAZ0KntQ1q80HOvbPbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FrG2X5Jd; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6ecfc7ed0c1so56614096d6.3;
-        Tue, 06 May 2025 15:24:53 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso29074935e9.3
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 15:25:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746570293; x=1747175093; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=S6PuN11kmLGkE9CdpXY3LsP08NiwndWR9cFcKMuKbeQ=;
-        b=fIGJ9WXuBt4dCCptMl/c6244BfnFKMYMn0w8/Cj3sQkbo1RI37YFUq9XZlILkJoIUR
-         7DiuFE1qwfE8xJvSHSE3NP0Sjq5J9YXxKyYo4OY39SEKHF3hyL6IbuKnatsnz8TUXiyr
-         ivcDp4DSbznp03hfXoDv1JnmyP86sjzfvzm+PfWK9QhLKz8N97IwSiQhnPV3BmD7L0pE
-         qd7mq1GLsOk3/v0qI4geXW4I4rMU23i79GmpCgzeCVktwqlcd633teOyFT7IWp5EQ78K
-         S0kx0E801R94y7VKILiMkzJqJotg+7dIuU9zxjdej/D3fg6ZABcvqfaXl7keC0soZRCR
-         rqSw==
+        d=gmail.com; s=20230601; t=1746570334; x=1747175134; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gT+hqvYnvFoiGUuape8lhiuYp0FjZhhNlHilKAoqjy0=;
+        b=FrG2X5JdFAxlESAejbkFdkXIArS5NM/N65PO9EpIEHahrc62ikokBXeLYSjqqhGJ5I
+         kKDZCI/F8VrD0AQRXN1C+xZM4RVoVbFxFmgnVBN/yFJ0kOd0Q2G2x4vtpz4N/mE5U+FI
+         qUKQoIwhS6dI0zy863g+l0S7PWk9IxFdO94Dh+5WErx5XJfl2m0oHeTC2EWh7xJVZjHr
+         jBXEs9tl1fm9qoGMYQxsZOcCzuq2+In9jD8YwiNNh0Qqg+jGZMEQjSOli9J9JBxqIy8u
+         TNM3EFovBNuBeIfAqFnOU6lcq1HxdnyumDGfQ6uJmaK3rz5Weq/rwwIWfRdKKQTdrc2k
+         kudg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746570293; x=1747175093;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S6PuN11kmLGkE9CdpXY3LsP08NiwndWR9cFcKMuKbeQ=;
-        b=shK0HOSJY8597vd26oHl3IGRbE3ZqzVrqWsduSUYjFyy6GaQUSTLljjzLtOzNdOhHw
-         RdU/Ek9Vcwn7vLjY6uaph6wUFt+Kzc3fJMcEw9wfHMw+WWIaLJLXFuTU7bap6EWoRTKD
-         okeMMjpk1Y3FCueiLhzOUfwDIWbaALIgDKGkl+rRtGBHbUN53xXxj4Uy0kvXGujwDsoO
-         QgvqmzeM+zUPsGc2WvJrFLv1zpni7gqvywGprk7mAgCKB9qUnudaT4EJOSFAZQiaRJRY
-         EEGLmhS/fA/ZI5KAQWsqBIRJxJGb/Pih+on1vl1gSkovSLyhdFQmPkdM4kIRGbGW9TrD
-         Fc0A==
-X-Forwarded-Encrypted: i=1; AJvYcCV8t4PlSsthLPOoy1uwR6fVEplHqOV2S4sFqDdTO76C+kbIcVMhRFTydOlbnKpchKgkDLvuk1am9KNw@vger.kernel.org, AJvYcCWqUcXw8JBVEl00SLtxELtplEWPVwKswWh2Rwf+4hPhCbRWbiY28YjbdqV3KMAUt/x82EBDTKCD45axCRJl@vger.kernel.org, AJvYcCWyvK0jvpNEEzWSGYHjf7uTO/QM+OCQlcW2f7ZrZ6CScv3aT3LADjuZkAaYVtJaNmFLPVCI6AuU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8FG4t9x2YE05Koh4eqbrOqg/2M355By8NgwTxqL+v2TLkGV90
-	9fDBg4dxunLMPs1HXhz0dyOsrENcH0xIEM62D03KI3lb5vNsllTz
-X-Gm-Gg: ASbGncuGgWQDHtwD1VkT2FLiSa5pd/iArsGUZCIAEGhb1AvZ3ESmRDPRjCBw1UZWEJA
-	V9EVJZTyflKt/u7W8bJtP+KDKrb9aHskQHAzMn15HyqeMkcnRVPTSLD4mLKOi8MYvfXgQ4b/bl8
-	Nxsk5nedKi9bxYYB9bH1uEgiV1Of8UHZPMLi7H7uOjCFoyLOR5k0GUuk7V34ILpvNfWbnLRaChx
-	LwC6O5op4QlADBLI5amJi9dwoq1vb8nhe74EymLalo4PgL8kQ+/iRC6zUPMAPBuf1ZVkoTYdp8a
-	i64QRTYT7prNEUvJ
-X-Google-Smtp-Source: AGHT+IE/HcOkUaQ1OjeZ76XLCIoAMcLQ4gb8y3bZBjcdCFJTsGZuHVr3Qr8wRx0H5mUFdFynUfAxQQ==
-X-Received: by 2002:ad4:5b87:0:b0:6f5:3e46:63f9 with SMTP id 6a1803df08f44-6f5429afe88mr16025426d6.7.1746570292605;
-        Tue, 06 May 2025 15:24:52 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6f5427b07e6sm3118126d6.106.2025.05.06.15.24.51
+        d=1e100.net; s=20230601; t=1746570334; x=1747175134;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gT+hqvYnvFoiGUuape8lhiuYp0FjZhhNlHilKAoqjy0=;
+        b=Ze53AQCScBb5OMJ57qEmzOxaI2ry/D4qqfqEJyy+sGHMUaa9Zn67on4y1rNvlOjuL2
+         IdY9x7U42EunhkDb9M5iMcDnP8GOqcJAAXmgzmOlwfWLI/zZAZ001iYDlIE/Ex8pXtBN
+         an3I4YF8NDBm6VScnK2c34qkfVCDzOeze9jTiG61O+xUL6UiazjZUrbDoXBRvqDB6xNw
+         HAIkBVctVymuPHwtRLLHw/LQe2p3PBCKMrnr5QfSTSe4+T7w8NAFvc8aFMGPLN+G+rRz
+         Z6ODq/itHw+aBiy1NK2Cq4eehop5h6ySGTPI8c9NEFDiXSCRSfV79PgGg/bpFLFL8Bxh
+         3KZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXVKShmDFZ3FxtunQdTabRczBmLv7pLla/7R8jvFziwV0/SwPlOSC1BE+BeGyOaPRG6xKNdXdgn8UrD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQIt8EIDqkvPsKDAGdhgfgjoc4zOK0nEB9LBuqEG9Yzj64xHos
+	Y4e24DgTlLMR+oFCjQ2zZ1XVEjxydkiHrtyZfoWMJFKKPyXvdRGG
+X-Gm-Gg: ASbGnctlDv02qMctgqmUtySJedP+kxh3tTUtu0rXU6bIUmOtlvKjb3FNi/lpgmrG1cx
+	KjQ0ktv6svVgXYlCLgOmp+pTrHWIGmS5aHBZb71iFf5mDpfFY1QgPG7gcMzX0j1/Uaa5X+fST7j
+	Tuy1DwFFJdFkgVj58nME+fiI64Jaq/STyPUYqpM1rN1b96DZlQ6R+frutCAQo3mlxzvaNcdCVxG
+	bHWzTCdKSQdLjBev02v2XlIyPSLCfrkcrxCy7/jkTLsnB4DRLrenMtsHpiRVzNBzXOPWzC5lZQy
+	Wh6aTOn9UtQNBwAqpUE9oNmEhFAxiehrcwRzi2AAplod8MCV0lZfIlnc66vJpD6tmV3nSWZcoDX
+	hvgXMbBH5zQnwlYb9zpc/Y7ZUL2lkgUQIHX1yZ8c+4i5jsSIokTdQQooWLcn7v+ngx7uwNJuDLr
+	A=
+X-Google-Smtp-Source: AGHT+IGGW2UR02UyKr5m7oSO8uNudVCq7G0oipkdATajemKEbGILj6K3P8WqusgC9FWz3WuR33yVkQ==
+X-Received: by 2002:a05:600c:c10:b0:43c:e70d:4504 with SMTP id 5b1f17b1804b1-441d44c7c36mr4619785e9.19.1746570334058;
+        Tue, 06 May 2025 15:25:34 -0700 (PDT)
+Received: from cypher.home.roving-it.com (2.c.4.1.7.3.6.4.2.a.a.3.0.f.c.2.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681:2cf0:3aa2:4637:14c2])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-441d43cb59bsm8202305e9.2.2025.05.06.15.25.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 15:24:52 -0700 (PDT)
-Date: Wed, 7 May 2025 06:24:29 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>, Inochi Amaoto <inochiama@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Richard Cochran <richardcochran@gmail.com>, 
-	Guo Ren <guoren@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, 
-	Romain Gantois <romain.gantois@bootlin.com>, Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>, 
-	Lothar Rubusch <l.rubusch@gmail.com>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, sophgo@lists.linux.dev, 
-	linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next 0/4] riscv: sophgo: Add ethernet support for
- SG2042
-Message-ID: <fgao5qnim6o3gvixzl7lnftgsish6uajlia5okylxskn3nrexe@gyvgrp72jvj6>
-References: <20250506093256.1107770-1-inochiama@gmail.com>
- <c7a8185e-07b7-4a62-b39b-7d1e6eec64d6@lunn.ch>
+        Tue, 06 May 2025 15:25:33 -0700 (PDT)
+From: Peter Robinson <pbrobinson@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Vasily Khoruzhick <anarsoul@gmail.com>,
+	Tianling Shen <cnsztl@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Cc: Peter Robinson <pbrobinson@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Update eMMC for NanoPi R5 series
+Date: Tue,  6 May 2025 23:25:28 +0100
+Message-ID: <20250506222531.625157-1-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c7a8185e-07b7-4a62-b39b-7d1e6eec64d6@lunn.ch>
+Content-Transfer-Encoding: 8bit
 
-On Tue, May 06, 2025 at 02:03:18PM +0200, Andrew Lunn wrote:
-> On Tue, May 06, 2025 at 05:32:50PM +0800, Inochi Amaoto wrote:
-> > The ethernet controller of SG2042 is Synopsys DesignWare IP with
-> > tx clock. Add device id for it.
-> > 
-> > This patch can only be tested on a SG2042 x4 evb board, as pioneer
-> > does not expose this device.
-> 
-> Do you have a patch for this EVB board? Ideally there should be a user
-> added at the same time as support for a device.
-> 
-> 	Andrew
+Add the 3.3v and 1.8v regulators that are connected to
+the eMMC on the R5 series devices, as well as adding the
+eMMC data strobe, and enable eMMC HS200 mode as the
+Foresee FEMDNN0xxG-A3A55 modules support it.
 
-Yes, I have one for this device. And Han Gao told me that he will send
-the board patch for the evb board. So I only send the driver.
-And the fragment for the evb board is likes below, I think it is kind
-of trivial:
+Fixes: c8ec73b05a95d ("arm64: dts: rockchip: create common dtsi for NanoPi R5 series")
+Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+---
 
-&gmac0 {
-	phy-handle = <&phy0>;
-	phy-mode = "rgmii-txid";
-	status = "okay";
+I had reports from some Fedora users that their eMMC didn't work
+on the R5C and this fixes it, the schematic of the eMMC is the
+same across all of the R5 series of devices.
 
-	mdio {
-		phy0: phy@0 {
-			compatible = "ethernet-phy-ieee802.3-c22";
-			reg = <0>;
-			reset-gpios = <&port0a 27 GPIO_ACTIVE_LOW>;
-			reset-assert-us = <100000>;
-			reset-deassert-us = <100000>;
-		};
-	};
-};
+ arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi
+index 00c479aa18711..a28b4af10d13a 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi
+@@ -486,9 +486,12 @@ &saradc {
+ &sdhci {
+ 	bus-width = <8>;
+ 	max-frequency = <200000000>;
++	mmc-hs200-1_8v;
+ 	non-removable;
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd>;
++	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe>;
++	vmmc-supply = <&vcc_3v3>;
++	vqmmc-supply = <&vcc_1v8>;
+ 	status = "okay";
+ };
  
-Regards,
-Inochi
+-- 
+2.49.0
+
 
