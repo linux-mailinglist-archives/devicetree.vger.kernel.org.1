@@ -1,103 +1,128 @@
-Return-Path: <devicetree+bounces-174008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C405AABD8E
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:43:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06575AABD99
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:44:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 000EF7B5597
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 08:42:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 881DF3A6D4B
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 08:44:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ADD62512C7;
-	Tue,  6 May 2025 08:42:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CF332571BE;
+	Tue,  6 May 2025 08:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Rv++PX5Y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xJMjmiJh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 858AA24C075;
-	Tue,  6 May 2025 08:42:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3EAF255224
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 08:44:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746520978; cv=none; b=VhEzWqSKj1HqV0xZG/goXeJHssyARPRJZZwRCOD5vAMLx1u09baX2NA/IraNugvJHbEUr9VIYKMR618Z9N4qyFmNPefukbu6B+KW1F1BZLy31Dcu+yqsQ8dR7fBE/mKiKSxBAVW9wb0vm1vM/R/U4LGua3vXQ2T6qukCUO+/RJ0=
+	t=1746521062; cv=none; b=mgSzUYolVdz37g1uCRRCJ2/nIOry1FxqIgN13RWLgR1oWgUcLqs1vx4OtoYmkdXne+Fu0MC9Cilr/EtOgKFQ703/Mb/Jnb+L71gMoAUXxlxA0wn2WYl/gff9oK0lYQ7QxcRgiG/kZ3RfbAegoEk/fD54MbkbgBCbrg4PnmXXzEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746520978; c=relaxed/simple;
-	bh=F3dtZtfd8sl1XZfT8M5NMHOnj5cKiMAgsEOR1aqdr6U=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=O3I6GJwnKKvpAgv2pALq4tOXaXtwHfOFcttdPxYgFN7nlN8vZlQ6jpHtoYMZfPax2iRn4PzAusAJ9AhviykTAULyRPPg3KEYc/tFgsk+Ib6aTJjzuPxBfBdVcLZTMUYZG2+3jDGW7/X6dYELl26W3x5SJZ3KkQr90iBY0wQSKog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Rv++PX5Y; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1746520974;
-	bh=F3dtZtfd8sl1XZfT8M5NMHOnj5cKiMAgsEOR1aqdr6U=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Rv++PX5YnRbe1dXiOufvraYla5D0NWb/6s+6JD5AA3B6FoN/SegaGrRC6IHGdxVD0
-	 TNIsIj0OE9zu65/1Qpmjhpj8lhBjHCcLa+ceewQZFQ1CgK0CHjob1zBMDC25c17rIc
-	 pzod58fsLIUPj6W/LkxLNKrVmY6r29JBY+BDKT/xslesJ9oS0EMgswwM1vmbKdJujI
-	 fDN2xvIH2Jpey+9r1zRx1jfA5TZAcvIegh5NyubUmaohozZ00Utw9tzE6KcdSDuFBQ
-	 juSiKrI+o82NKlLKgqWUo2C3qe98W0abkcAxWDsfz3DNrcIYGP35Y1W4nFd5/TQb+0
-	 dPg2LT6M9+17Q==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 75C2C17E153D;
-	Tue,  6 May 2025 10:42:53 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: kernel@collabora.com, Sen Chu <sen.chu@mediatek.com>, 
- Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, 
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>, 
- Hui Liu <hui.liu@mediatek.com>, Yong Wu <yong.wu@mediatek.com>, 
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, 
- Tinghan Shen <tinghan.shen@mediatek.com>, 
- Julien Massot <julien.massot@collabora.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, iommu@lists.linux.dev
-In-Reply-To: <20250505-mt8395-dtb-errors-v1-0-9c4714dcdcdb@collabora.com>
-References: <20250505-mt8395-dtb-errors-v1-0-9c4714dcdcdb@collabora.com>
-Subject: Re: (subset) [PATCH 0/4] mt8395/mt6359: Fix several dtb-check
- errors
-Message-Id: <174652097340.119919.13115180921625978268.b4-ty@collabora.com>
-Date: Tue, 06 May 2025 10:42:53 +0200
+	s=arc-20240116; t=1746521062; c=relaxed/simple;
+	bh=+2GVlVD2L0RLoxh4xotkcQLOqvnaqQnQU41zbcKNvIg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MxczVhZd5shfQennkzesuUUq2ufHzd0t0WD0jOGoz2y7KQXWz86oAv7tpSzGaTn+mRu/N8OMHyMlc3MhDdQOnmQEabRSI/ptZieyphwB5FyCfbiQ1ZtJpIl7wcoQjvMcXFOwcJwSeN6mYesawubhTD8qB1SqIsgXuMZWw0/UA7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xJMjmiJh; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-441d1ed82faso1849305e9.0
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 01:44:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746521057; x=1747125857; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L5gGsosY8ut1Bx/SwqzzJglKhQtcNAYIW9Tsdra1ZGQ=;
+        b=xJMjmiJhomgLvacAFfnNxk3stbxyhDm9gQV3KFtLWeL6rHSO4udDKtgxPtAEOBllgA
+         KQi/z1NhVatnSi1gh+V+Dl2vka/GJDpwN0mcazhhWUmp1DDzQxnO6ozKMi9tyxkBOWTp
+         efH/uQmS9wrI63EGtaUfUN3SexHufpjLJ6SGshhM6DfBQ3i3gIesnGhTkNmcBpI6nM5t
+         PkmjJKEuiPpc9dAzsE95AqWmXaLopxbyQQ5XZ79LEnUrYnFcZp1eRzGCpVz4G6x4StkR
+         E1/0P5toMObyLji1eW9Jfp99oHeXhWNGcbSA0JngRq1LizXGQdquUQ3DX59hr8/tHnWc
+         yKMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746521057; x=1747125857;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L5gGsosY8ut1Bx/SwqzzJglKhQtcNAYIW9Tsdra1ZGQ=;
+        b=DETYbGcanC5isRKQCW3Fb+/7HjVXieElVaYWXYjbmr/EbIKaTe5KH9i81/0Gn2kOto
+         1aisDSJJFg/TeXDt8ucJFGN5Pcnpxk32o0mdvKNJBmy3hX2mWO2GAs1mydKIZ5vkr8VB
+         3NZlGFKSH1C7Xvq4R064w647GYOMJUfHTwZFRQhGH8ImWCA6NpuFsa6n+tjMywea59UH
+         YAhVBoMRnkl2w5QXAZwWTAdH1hhFTw+RFtBXQ+70nOwy5XzJlyNSU/TLVKkXSeWkG8H7
+         FmSGgNPDPOzUxcqdqj7ilqG5KB757kld3N1gXPA70zlcIzdX9acVkrLZy1cT1Vf3UURD
+         pWxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUoWmh5eg/E32gsbn5smRJUWnfPljjeQUPqFKqDwp9Ouu/yFPrqtb985qYyg+d+WjEvOapyRCSw4Vfp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdThDjlaRNmvw9S28VNAIEHjFdQdM966eTn+pNZukSVky6N3NX
+	ltenDPFf7mJPd1JD6GqFgMLYC0JSlDFpeSJh8XTR+ZyzrOlpQOAP5mPUKBL3Oow=
+X-Gm-Gg: ASbGncvrMSTqGnSv2rvZdfDei59SjkkdA5zQcdA1Kby702aFQgFRaoMx2n0gBZ8DblF
+	8lW3hnDjQN4bhYQCo6A31HwyRpKF19n/4unALdMAjvdM1JVqCZGc5p5hkLaT6kIK2JJhOmE0/B2
+	P+sJhfzrShNKoTVTPOnCaV1y99cMevXl/iRZeWrZ3qFO8ZNCrf+4EKpzX+rlHkAE1X1oQDLU1GU
+	wE8v/GiYh+nhQk61j9JDnTRLQgyzVQ2QruqD7nEyLrXhCEHNEDSrfqdcVtelhSls8gtEo7AgLUD
+	vk8y194TrwFpnrXye3EnIKGeBzBy0ShfBmzZGwZoqneASe2rFmpGg9n5nNl/JQTuuY3rcnv52eo
+	BaFFHsQ==
+X-Google-Smtp-Source: AGHT+IHHZuJf/esu3cKTxXqW0HI6bwS3OQqxETST9uSfS/LugLOy6+dy1AlDM1w7IH882lGtmgu9pg==
+X-Received: by 2002:a05:600c:3b90:b0:43c:efed:732c with SMTP id 5b1f17b1804b1-441c4938eddmr64629905e9.28.1746521056721;
+        Tue, 06 May 2025 01:44:16 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2af2a0csm205627795e9.18.2025.05.06.01.44.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 May 2025 01:44:16 -0700 (PDT)
+Message-ID: <9b678d19-ce4e-477d-81fa-bb3eb0a6dd57@linaro.org>
+Date: Tue, 6 May 2025 09:44:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: media: qcom,x1e80100-camss: Add optional
+ bus-type property
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250502204142.2064496-1-vladimir.zapolskiy@linaro.org>
+ <20250502204142.2064496-3-vladimir.zapolskiy@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250502204142.2064496-3-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
 
-On Mon, 05 May 2025 15:23:36 +0200, Julien Massot wrote:
-> This patch series addresses several dtb-check errors reported for the mt8395-genio-1200-evk.dtb and mt8395-radxa-nio-12l.dtb device trees.
+On 02/05/2025 21:41, Vladimir Zapolskiy wrote:
+> Since CSIPHY IP on modern Qualcomm SoCs supports D-PHY and C-PHY
+> interfaces, it might be necessary to specify it explicitly for some
+> particular devices.
 > 
-> The fixes include:
-> - Adding the missing #sound-dai-cells property in the mt6397 binding.
-> - Allowing up to 5 interrupts in the MediaTek IOMMU binding to support MT8395 properly.
-> - Defining the required compatible property in the regulators node of the mt6359.dtsi.
-> - Renaming the rtc node to match expected schema naming.
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>   .../devicetree/bindings/media/qcom,x1e80100-camss.yaml       | 5 +++++
+>   1 file changed, 5 insertions(+)
 > 
-> [...]
-
-Applied to v6.15-next/dts64, thanks!
-
-[3/4] arm64: dts: mt6359: Add missing 'compatible' property to regulators node
-      commit: 1fe38d2a19950fa6dbc384ee8967c057aef9faf4
-
-Cheers,
-Angelo
-
-
+> diff --git a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
+> index 680f3f514132..2e7455bd75ec 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
+> @@ -153,6 +153,11 @@ properties:
+>                   minItems: 1
+>                   maxItems: 4
+>   
+> +              bus-type:
+> +                enum:
+> +                  - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
+> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
+> +
+>               required:
+>                 - clock-lanes
+>                 - data-lanes
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
