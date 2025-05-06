@@ -1,105 +1,145 @@
-Return-Path: <devicetree+bounces-173981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB759AABC57
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:01:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 927A8AABC7B
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:04:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FCBA506950
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 08:01:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47984507059
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 08:04:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46E820127B;
-	Tue,  6 May 2025 07:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 292677262F;
+	Tue,  6 May 2025 08:04:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DfKzxirR"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2GSaWky1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFAB327713
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 07:53:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F8972620
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 08:04:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746518039; cv=none; b=MxO4nHclz93itc2kBij/K8PIL2UM1B88THFOAKQlcqb5Cp2jpN+fpKWWQl41JP+r0bluoDIAR1Kf8fH7X78HYo/vaQgC7+/A632g5/XfSBzy4bL7bvZ5ll0Co7T4FzeBpZWlUyQ8/yBO9Ia/9aAbJoOmMGuE8oiN6Bt1swbCs00=
+	t=1746518644; cv=none; b=iO9Lop/XEZPCoq0483CceR4gPQNlXnZkBHmR7q1TKX/HkrTPzsgAyjN2XgnABF4pis/f7NDcBjjNPBOZcUyyM+OTo2lFCfvkOANiwCO+Z9DPayDEDX22iIVh8IoSm6oH7vfX86Yh2Yi35AeXbVUAiQVp+fIf8K55aj4r0EJZ8CI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746518039; c=relaxed/simple;
-	bh=JscL+bjhizxl/VXl2XNE12A5YSF/kEsWbbqNxdspqsc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MsoipO6JaXpl0jP0+zhwkj6GRwi2D0IvzVVsfJ57FWrj2QI7gqWxKc9HOgUlCNyS3PUuvUpRlI8z8R5VtdFAeQn/0PkcGwINeOAS2+Adx8O/UhVsiNVkKBi43HZfnRrOm7mObysoZG7Y6i4gdi2upTJRw8myhitLgvaI7u2sN44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DfKzxirR; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30beedb99c9so45724081fa.3
-        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 00:53:57 -0700 (PDT)
+	s=arc-20240116; t=1746518644; c=relaxed/simple;
+	bh=GDgq1k6gecP9HkpLEFdZKzUDM3uYsMCps4pFXq/sQdg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=RWvHoZvfvHHxryQGc76idY68zs1RlFxfnVzrxQK7su1+spYuzN3U/+r7R85Uqm/cXAzlumdHxBZzM3njdpmVHa5Kft9+6WxbafjgszjQVviuuUhGIYeo0ZrCwSUA8QwOAisnc6Y9p2JjvU6sGvAymhb96IWWx/achJq1aQ29bLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2GSaWky1; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-acec5b99052so1047255166b.1
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 01:04:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746518036; x=1747122836; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JscL+bjhizxl/VXl2XNE12A5YSF/kEsWbbqNxdspqsc=;
-        b=DfKzxirRb8TABFC7uPN2lYJn/qCS6FrxVwcDr4SRP7WhXrAyB5N9EyExNWELll0Ad6
-         FMW1UHYJHv3Uoijjip0bWhBCf7TwhYZFpAcCO6qqLGjrQF8EI9RJs+74R5a6hf6ZcN/U
-         O8CPiEHqUdluzZAaXWu1IJ/zQzZdRimYhv5acT6iLToM918UOraskJE0zmMI7wgXr6jL
-         qWDBYjwuIgrGyqCjDRDBT08hmEt3qou70bzNgaB7PqHO11lnXYLBnaDqLvpnsfGTtY7l
-         dfkah8iKrDOTQoQx79sQPXtIsIiEHT0ke3NaV+jwiHtZO4aTrr+YadnRnBiBJ09DQ1Ne
-         agRQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746518640; x=1747123440; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3hvy8MwKFG7pRMa9YWodnPvvUtw/Ntbixkh/hbz8wy4=;
+        b=2GSaWky1IeDCxWThMFXDIDxWe+6neHmedrlhBsO7W2NiDshYbC8Yg74RwXaeh0IWo7
+         R/G9q5B7DyYeHYNGHnGYKwaGW/8mj9Oi8+KgtZYegfvkZ/ljHUqQ9AbztUvBcLFCTQmG
+         bbn6vhhlwqmPQr+2FQgXILpEd09h6rVKkTx8m+VEnPh3Vorvo5u0LeKt9VIexf+NA4UI
+         lAYVhIeF8vxBZtX+StJjoon+dGS9mtRmRhmUwYnGNKxH9+Tv0JlnUOd8UHELRvGlLfPK
+         3SUVcBgAjmoBKk2bn1WaDviwBQjSMcydO3ppsnRJIpH0X+DTW1KSmnKQwYj0obxUB7eb
+         MLwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746518036; x=1747122836;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JscL+bjhizxl/VXl2XNE12A5YSF/kEsWbbqNxdspqsc=;
-        b=FvuI1/FZ8cVuLEG8N2pVPhCIQNDSQtbyGZlI3n0IgogJwtyOVr3IpExiu1nc1DpBcO
-         1uUCmLZPl+5oMYtPE28e//aZrBj4NjLXcz8dLai7D+pO07Box49ECFmB13u8UFDCLZFe
-         GDliZOEoJzklk8ZVyBLs4uQwG9pHHVyHVSLaMKCmmSBkW/kD+q57ardA2xbuXDEYumDk
-         ihXOkDisEl+9qbyA4sPz/qgzkW9YOzFo30bGHqQUGxbDjGNY/Is0gP5OaPzJY11do02v
-         FeKQ0YoZdUrwsCXqENYDFDzptf9g0/lUaKilsNrkoJOvMM1s9D9rtLQSaoE/dfPqi06A
-         4JVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUOoGn78ONlHOmAGCAJSwRNrmzOJKW+jY9yhVlD/HCq+Ux+yqkd8EiEk8UXhR/JgFXZ9xKNXuC0dgB7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJnXbeBG5zUdbHvdEAJ9SvsSmnDZ6mJUEirU3UKnasJGSOVweo
-	lIJJ0ESwmwl9Hz1l0suF95NSv5vJ24AekKLo+wYui6CVQdPw5GOgDZa3U+GKXNxeueYfzJZviQ1
-	oe0y7cKHxnLeDLly2YYxA/uugMegdT8ikbm8K3w==
-X-Gm-Gg: ASbGncuJ5AHmwe1SM4b6LeuaUw+L9jZKwYqEyphH+sleKzsSoN3ZeZdVPuP+eO/EuaZ
-	ADX3rsFKT4FyZdB3gAFBXc4OBpw7B5MmSAIr5UCjuEW1xCElHB0Fvku4U5bxCGv0SfiBI1eTthe
-	MQCQ6kM0NduMV+dzVcrFW8iw==
-X-Google-Smtp-Source: AGHT+IF91l9MSJHufEzIXbuFx2951Qfg90hY8mnCf7auO/TilTLWdM48ESfSxXtPpkT6j485LMfJPJx1ASyKbnclt/8=
-X-Received: by 2002:a2e:a986:0:b0:30d:b89d:aafd with SMTP id
- 38308e7fff4ca-3266cb0a41amr5820561fa.31.1746518035967; Tue, 06 May 2025
- 00:53:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1746518640; x=1747123440;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3hvy8MwKFG7pRMa9YWodnPvvUtw/Ntbixkh/hbz8wy4=;
+        b=ZVA3hDw/fKdersUMyhaVLOoof2e3KQMGjaIV07vwnr/jrFXJ+H1a44n+bf8KgsAXv1
+         Bs06WVLG2xt8PwKqYbcsCaggToDufu+SmE4F2GH7Bf60k9z/zDCaKyPNMDYsiWifG8eS
+         ML1Wr+EZyzVlABeTKihfG1VsxmLfExRUn3uhI9byO2DBAqrAdYpuFTdtNrIpidy0nzti
+         Ul65j6lvNfp5ty+SHdMHlyJ4UL7gTIdDvJdHTeb4E8ZjCKMNJ9ASLoTOItuTNxhgj5KO
+         4tns3qN+nVOVEmfW6Xs1WrAjRJoUpLp4jyJFMoHQ9suC3ZbkuhNQU/v304YaAv3x+jKp
+         Qpuw==
+X-Forwarded-Encrypted: i=1; AJvYcCXAQC4ohVvNd85iLeht8hWgCwn9mnxmgPB02hAyLmDrdjFGZ3ae3dUeQi/l826Uv9/VcQ89IK4QotJe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxq6x9LM/Fgdhj/InGgXTWo8hvZqoIavOcJoX92iUpqaNtIlUvr
+	A8dg1rPxsgoDh2jhtsKcwT1DOtT3637hObUhEw0ppWTKLZjXFzl1+xf02vBMMjc=
+X-Gm-Gg: ASbGncsq9LUJEgYk4Va69rpTE+g/qTbnbZkqgubXqz/rjiALQQiGp0KW273ZOiQu0I+
+	jJ1NHeN++ezrbOMNTsTpUtzFnhiySgv/I2vRyRornDZ1U8uUQLyjxW5yowlTV7ETV9hNBKVm0Dx
+	VKROciXf33fzOuElmiWvDAvNvlzY14bDZjBJ7gziB0Bb1b1qWtZ5lFHGl23UzG/oKKHdVIzYF4z
+	j+WrziWBUB10DR4trOBVt0JC2+uOKwnvZfaismP/Nq6ITvAqwj+D1Inm9iTc0RSUiQ2zV6o/6x4
+	X4hkse6ob86616jSL5JLt927yYoN8Ci+Kpo=
+X-Google-Smtp-Source: AGHT+IG3XXm9ccIB+CUT1vcml+DotrJ5Y4qNjCNhUj/Y6+0BAiNhM6g1peAmLYMmcf6ccbAvm/mcSA==
+X-Received: by 2002:a17:907:9406:b0:ac6:f6e2:7703 with SMTP id a640c23a62f3a-ad1a48bc5d9mr824167166b.8.1746518640041;
+        Tue, 06 May 2025 01:04:00 -0700 (PDT)
+Received: from localhost ([2001:4090:a244:802a:8179:d45a:7862:147])
+        by smtp.gmail.com with UTF8SMTPSA id 4fb4d7f45d1cf-5fa77b8fbadsm7209300a12.50.2025.05.06.01.03.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 May 2025 01:03:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250506022241.2587534-1-robh@kernel.org>
-In-Reply-To: <20250506022241.2587534-1-robh@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 6 May 2025 09:53:45 +0200
-X-Gm-Features: ATxdqUF2xR_n1OAmI33TitnuvBI7EySPMcpq6MNTJ065NAvfrLt-E_rn3C-_-xc
-Message-ID: <CACRpkdYvxV+5d84qJtE+mpDbKq0qagrDn3zjRxQQgfJVuGKGEw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: Convert faraday,fttmr010 to DT schema
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=aa6293dec9e61380259b30e974f91a7a73a728eef4006bbfe88058cc3ae5;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Tue, 06 May 2025 10:03:50 +0200
+Message-Id: <D9OX6MLK06I5.178PSUN91MJQX@baylibre.com>
+Cc: "Chandrasekar Ramakrishnan" <rcsekar@samsung.com>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Vishal Mahaveer" <vishalm@ti.com>, "Kevin
+ Hilman" <khilman@baylibre.com>, "Dhruva Gole" <d-gole@ti.com>, "Sebin
+ Francis" <sebin.francis@ti.com>, "Kendall Willis" <k-willis@ti.com>,
+ "Akashdeep Kaur" <a-kaur@ti.com>, "Simon Horman" <horms@kernel.org>,
+ "Vincent MAILHOL" <mailhol.vincent@wanadoo.fr>,
+ <linux-can@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 0/4] can: m_can: Add am62 wakeup support
+From: "Markus Schneider-Pargmann" <msp@baylibre.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Marc Kleine-Budde"
+ <mkl@pengutronix.de>
+X-Mailer: aerc 0.20.1
+References: <20250421-topic-mcan-wakeup-source-v6-12-v7-0-1b7b916c9832@baylibre.com> <20250503-petite-echidna-from-hyperborea-cfd7fc-mkl@pengutronix.de> <fc3aee25-2d0f-4825-abbf-6631dbc64996@kernel.org>
+In-Reply-To: <fc3aee25-2d0f-4825-abbf-6631dbc64996@kernel.org>
+
+--aa6293dec9e61380259b30e974f91a7a73a728eef4006bbfe88058cc3ae5
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-On Tue, May 6, 2025 at 4:22=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org> =
-wrote:
-
-> Convert the Faraday fttmr010 Timer binding to DT schema format. Adjust
-> the compatible string values to match what's in use. The number of
-> interrupts can also be anywhere from 1 to 8. The clock-names order was
-> reversed compared to what's used.
+On Sun May 4, 2025 at 7:01 PM CEST, Krzysztof Kozlowski wrote:
+> On 03/05/2025 16:03, Marc Kleine-Budde wrote:
+>> On 21.04.2025 10:10:36, Markus Schneider-Pargmann wrote:
+>>=20
+>> [...]
+>>=20
+>>> Devicetree Bindings
+>>> -------------------
+>>> The wakeup-source property is used with references to
+>>> system-idle-states. This depends on the dt-schema pull request that add=
+s
+>>> bindings for system-idle-states and updates the binding for wakeup-sour=
+ce:
+>>>   https://github.com/devicetree-org/dt-schema/pull/150
+>>=20
+>> How can we get an Ack for patch 1 by the DT people?
 >
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> No ack, because it waits on dtschema changes. I commented there some
+> time ago but there was no response from the author.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+I wasn't available last week, but there is a response now. Basically I
+don't know if you would like to have a different name for
+idle-state-name or a different description. Rest is solved.
 
-Yours,
-Linus Walleij
+Best
+Markus
+
+--aa6293dec9e61380259b30e974f91a7a73a728eef4006bbfe88058cc3ae5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iIcEABYKAC8WIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaBnCZxEcbXNwQGJheWxp
+YnJlLmNvbQAKCRCFwVZpkBVKUxAqAP9D+cIQvVuOFWd2CRsjE+SfzFPGwRZqZgSq
+Yg3qb3RJtAD9EBL3kKkQh3G1ojXxBapT1h0bEkW2Y6GgW5EFMczBews=
+=bETQ
+-----END PGP SIGNATURE-----
+
+--aa6293dec9e61380259b30e974f91a7a73a728eef4006bbfe88058cc3ae5--
 
