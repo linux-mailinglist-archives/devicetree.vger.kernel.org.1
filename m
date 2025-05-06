@@ -1,167 +1,258 @@
-Return-Path: <devicetree+bounces-173964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 119B5AABB92
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:44:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD562AABAF1
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:32:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B9937BDE0F
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:42:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB2737B159D
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:30:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E04821C9ED;
-	Tue,  6 May 2025 06:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09D68218592;
+	Tue,  6 May 2025 06:57:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RiC9h1cA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="niXS9vJD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0996320D50C;
-	Tue,  6 May 2025 06:51:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D388321ADB9;
+	Tue,  6 May 2025 06:57:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746514284; cv=none; b=A7i/KONPvaFX2s+bfDUBu0qPi8psffz31INea7tLwQz0i2xAbVYjYfHLF6wDCHLlFPFZ9IUWcB/NGK6kZgXF3ZSSvMLK02SoSB2EWgYGnD9COUlr5UZHhKPk8fSBN2ZTbzJSh2CEnJFwAutHV32k/DogMBUlUcDVdScLaDROPxQ=
+	t=1746514644; cv=none; b=ZqkBrIv4ieYCPp0nUJ186V4d4+GUGjfmGAzyT0COJ/XP0Y4XXGwoSAaRznyxx/UXDBo4qamLvZ7IafhDMp4Yp9kr8L5ciVbLRwEEDu69EmEKIEpC18LB0I37FF8V5eHF1Xbm1LN+QkJ9tKnhBkqarnI7g3qJNFGhCcASO7mqSa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746514284; c=relaxed/simple;
-	bh=f6MCVMoyIyDh6X4+NpBMr+x9iT3qZ16UKn4vne88fnw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QuBFKwBqlhDbQQpZOortOpt8QIlHs7cpHe3qyZVItAeQS92o8mwmh9vwX12dsZ9mbDaLtfXiaOUp50XwR4JVVUbToq0MteETcoKj11tjA/fwAXmSe9QCeWq+idNT4LzteIms8ynL6Ccbe/yE6aybNwb6XgM4zWRkZsyBrFzWFQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RiC9h1cA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D52DC4CEE4;
-	Tue,  6 May 2025 06:51:21 +0000 (UTC)
+	s=arc-20240116; t=1746514644; c=relaxed/simple;
+	bh=jmxxIbzqKYSBJ1ZYZ8TvH3M6DSe+Gh2o2IqwWJRzrlA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M+CvlABJLY31zKDdXp1dtoj/AsxtFNBmPwC6SafOChrFByunuMgwQJJLcs+TOLMgg4IkUl+WWTiJrAb2SOVcacYoIh0+Hkmz7xKpAaGK9we/ZZVTZd4tnMRo4BFM26T8x1M9hLjQon81LuOnD+BKVIIUehPnc76JpheaVEX5XKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=niXS9vJD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C6E9C4CEE4;
+	Tue,  6 May 2025 06:57:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746514283;
-	bh=f6MCVMoyIyDh6X4+NpBMr+x9iT3qZ16UKn4vne88fnw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RiC9h1cAhVOYw+f7nbJCESnvHsnlp/Zo8dlQQMrVi3QKsiK0fJ3WOv8PunT6DLvD9
-	 AHH1eG81vleGwVN0GMyGOAtQjad7TQHMDmpLHAc/NCymGmWjWMYXxwezwX/Pm7G40/
-	 6UWSTsMqYkMFghfm1upKDDEH/J5yy6KIagRlzD20KK+xXXgBTkE5O68rIWv9mRE0bU
-	 7nxHITvEb5GNQxctVq6CYliCQdnOe1zkcXzs0qbWk9d0fevdhRqMORVzTwy1Gm3fU9
-	 6AftAREM5KqWn6gLNN66hx73rG4MQa52rNXsHbxz96YOw65ktlqqY2T9NuBd80kp7Z
-	 UTw6w+d2+SF0g==
-Message-ID: <19b1fca7-e1b1-4190-9bcb-7ce36fabd02e@kernel.org>
-Date: Tue, 6 May 2025 08:51:19 +0200
+	s=k20201202; t=1746514644;
+	bh=jmxxIbzqKYSBJ1ZYZ8TvH3M6DSe+Gh2o2IqwWJRzrlA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=niXS9vJDBbl74HJG7BMxJx0ezJru9LnnTdImpiFfPAWDz1TV9f8NaPhgOvlou7DLL
+	 YR7Ymim2r2aVEu68jncTxc0Z43NtijYzrEjKCvLC7coeiNwd2/nAA4pTJeA840aGNF
+	 UVgJ08bl8eujq9WFeKh84c1yi9Ibo3XTQVFDrkUEJxgCWcTGTMVIWDJxJH4VdyqX08
+	 4EZTcTn+1tw7qB2pSyM/rCMhamsIFmZvb/YQZEKWUve+Jc6cTC6kIlvn0A9i5f3HVP
+	 /3mEgg2kZK5XtciRNm8goYBIoLgN6m1Q2wM6OsX2DLH1hxZvdEgUKYq1eBMN5iJd8q
+	 OJ4gAQ3gPhztw==
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-acbb48bad09so976943966b.0;
+        Mon, 05 May 2025 23:57:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUkwM1Wppczmt1Sjl+pXAmQA63M6idIQqrEe6zVAEdtvTlaIG++tCHvZfCyCzBVURrtRLQLr235ybO6@vger.kernel.org, AJvYcCWc9DTUOx580/pTNPlDM/0AmO8otXHc1lw3Ek5e2r5SM7gwi6U6ng/aOzSGaSK2NihlZL/oGPTeTzUhciyd@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIY56FpAvV8SMR5/aMkHYqlcGoLOl29e7FHSOTIwlRkWVwOM5j
+	cQ0Mz0S7aVLPTuMdrva4EohRPp6j3DICIij8iyECyXYzcmiVixw3cePPjTdVnbpuex4NFunDTps
+	8nY5D3dM7WlXZhv9PgOQZk+vqc1E=
+X-Google-Smtp-Source: AGHT+IHqT3uZQgVbS8zzGchNicDCxaGgHK15LYaUKIzG0HK3z4buSjYRHnO51K7zWfR57fyko+u8zvaJcxJf/ibZ4E0=
+X-Received: by 2002:a17:907:d40e:b0:aca:c8aa:5899 with SMTP id
+ a640c23a62f3a-ad1d349bc2cmr199839966b.22.1746514643038; Mon, 05 May 2025
+ 23:57:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: crypto: Document support for SPAcc
-To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
- herbert@gondor.apana.org.au, robh@kernel.org, Ruud.Derwig@synopsys.com,
- manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com,
- Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-References: <20250505125538.2991314-1-pavitrakumarm@vayavyalabs.com>
- <20250505125538.2991314-2-pavitrakumarm@vayavyalabs.com>
- <5b6c66e8-3fac-408f-980c-f261ccd3fefd@kernel.org>
- <bcf5c5de-e649-491b-9849-21eeaae0b64a@kernel.org>
- <CALxtO0=jB9L4WvaZNjP5qVB1tc9UfhjC5-u7e1dhveaQF=AOEQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CALxtO0=jB9L4WvaZNjP5qVB1tc9UfhjC5-u7e1dhveaQF=AOEQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250225090014.59067-1-clamor95@gmail.com> <20250225090014.59067-3-clamor95@gmail.com>
+In-Reply-To: <20250225090014.59067-3-clamor95@gmail.com>
+From: Chanwoo Choi <chanwoo@kernel.org>
+Date: Tue, 6 May 2025 15:56:42 +0900
+X-Gmail-Original-Message-ID: <CAGTfZH3qAXwB6gD4Jxb6s5QZQFE8zkAG3cPZC5KoWEaZi4fQYg@mail.gmail.com>
+X-Gm-Features: ATxdqUG3o8cHQPZFii1jFBNrMYogu47ZLQun4AWci1craFWNsch5lxW3bY0GIMQ
+Message-ID: <CAGTfZH3qAXwB6gD4Jxb6s5QZQFE8zkAG3cPZC5KoWEaZi4fQYg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] extcon: Add basic support for Maxim MAX14526 MUIC
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: MyungJoo Ham <myungjoo.ham@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 06/05/2025 08:33, Pavitrakumar Managutte wrote:
-> Hi Krzysztof,
->   My comments are embedded below.
-> 
-> Warm regards,
-> PK
-> 
-> On Mon, May 5, 2025 at 9:22 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 05/05/2025 17:48, Krzysztof Kozlowski wrote:
->>> On 05/05/2025 14:55, Pavitrakumar M wrote:
->>>> From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
->>>>
->>>> Add DT bindings related to the SPAcc driver for Documentation.
->>>> DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
->>>> Engine is a crypto IP designed by Synopsys.
->>>>
->>>> Co-developed-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
->>>> Signed-off-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
->>>> Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
->>>> Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
->>>
->>>
->>> I do not see any improvements. It seems you ignored all comments, not
->>> single one was responded to or addressed.
-> 
-> PK: Addressed all the below
-> 
-> 1. SoC Bindings: We dont have any SoC bindings since its tested on the
-> Zynq platform (on FPGA). So I have retained just the Synopsys SPAcc
-> device here. Also added a detailed description for the same, which
-> describes how we have tested the SPAcc peripheral on Zynq. This was
-> based on your inputs to describe the existing hardware.
+Hi,
 
-1. I asked to use SoC specific compatibles and after such explanation
-that you use it in some different, hardware configuration, I asked to
-use that.
+On Tue, Feb 25, 2025 at 6:09=E2=80=AFPM Svyatoslav Ryhel <clamor95@gmail.co=
+m> wrote:
+>
+> The MAX14526 is designed to simplify interface requirements on
+> portable devices by multiplexing common inputs (USB, UART,
+> Microphone, Stereo Audio and Composite Video) on a single
+> micro/mini USB connector. The USB input supports Hi-Speed USB
+> and the audio/video inputs feature negative rail signal
+> operation allowing simple DC coupled accessories. These device
+> allow a single micro/mini USB port to support all the common
+> interfaces on Cellular phones and portable media players over
+> the same external lines.
+>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  drivers/extcon/Kconfig           |  12 ++
+>  drivers/extcon/Makefile          |   1 +
+>  drivers/extcon/extcon-max14526.c | 301 +++++++++++++++++++++++++++++++
+>  3 files changed, 314 insertions(+)
+>  create mode 100644 drivers/extcon/extcon-max14526.c
+>
+> diff --git a/drivers/extcon/Kconfig b/drivers/extcon/Kconfig
+> index a6f6d467aacf..1096afc0b5bb 100644
+> --- a/drivers/extcon/Kconfig
+> +++ b/drivers/extcon/Kconfig
+> @@ -134,6 +134,18 @@ config EXTCON_MAX8997
+>           Maxim MAX8997 PMIC. The MAX8997 MUIC is a USB port accessory
+>           detector and switch.
+>
+> +config EXTCON_MAX14526
+> +       tristate "Maxim MAX14526 EXTCON Support"
+> +       select IRQ_DOMAIN
+> +       select REGMAP_I2C
+> +       help
+> +         If you say yes here you get support for the Maxim MAX14526
+> +         MUIC device. The MAX14526 MUIC is a USB port accessory
+> +         detector and switch. The MAX14526 is designed to simplify
+> +         interface requirements on portable devices by multiplexing
+> +         common inputs (USB, UART, Microphone, Stereo Audio and
+> +         Composite Video) on a single micro/mini USB connector.
+> +
+>  config EXTCON_PALMAS
+>         tristate "Palmas USB EXTCON support"
+>         depends on MFD_PALMAS
+> diff --git a/drivers/extcon/Makefile b/drivers/extcon/Makefile
+> index 0d6d23faf748..6482f2bfd661 100644
+> --- a/drivers/extcon/Makefile
+> +++ b/drivers/extcon/Makefile
+> @@ -18,6 +18,7 @@ obj-$(CONFIG_EXTCON_MAX3355)  +=3D extcon-max3355.o
+>  obj-$(CONFIG_EXTCON_MAX77693)  +=3D extcon-max77693.o
+>  obj-$(CONFIG_EXTCON_MAX77843)  +=3D extcon-max77843.o
+>  obj-$(CONFIG_EXTCON_MAX8997)   +=3D extcon-max8997.o
+> +obj-$(CONFIG_EXTCON_MAX14526)  +=3D extcon-max14526.o
+>  obj-$(CONFIG_EXTCON_PALMAS)    +=3D extcon-palmas.o
+>  obj-$(CONFIG_EXTCON_PTN5150)   +=3D extcon-ptn5150.o
+>  obj-$(CONFIG_EXTCON_QCOM_SPMI_MISC) +=3D extcon-qcom-spmi-misc.o
+> diff --git a/drivers/extcon/extcon-max14526.c b/drivers/extcon/extcon-max=
+14526.c
+> new file mode 100644
+> index 000000000000..b38b20a4db47
+> --- /dev/null
+> +++ b/drivers/extcon/extcon-max14526.c
+> @@ -0,0 +1,301 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +#include <linux/device.h>
+> +#include <linux/devm-helpers.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/extcon-provider.h>
+> +#include <linux/i2c.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/pm.h>
+> +#include <linux/regmap.h>
+> +
+> +/* I2C addresses of MUIC internal registers */
+> +#define MAX14526_DEVICE_ID     0x00
+> +#define MAX14526_ID            0x02
+> +
+> +/* CONTROL_1 register masks */
+> +#define MAX14526_CONTROL_1     0x01
+> +#define   ID_2P2               BIT(6)
+> +#define   ID_620               BIT(5)
+> +#define   ID_200               BIT(4)
+> +#define   VLDO                 BIT(3)
+> +#define   SEMREN               BIT(2)
+> +#define   ADC_EN               BIT(1)
+> +#define   CP_EN                        BIT(0)
+> +
+> +/* CONTROL_2 register masks */
+> +#define MAX14526_CONTROL_2     0x02
+> +#define   INTPOL               BIT(7)
+> +#define   INT_EN               BIT(6)
+> +#define   MIC_LP               BIT(5)
+> +#define   CP_AUD               BIT(4)
+> +#define   CHG_TYPE             BIT(1)
+> +#define   USB_DET_DIS          BIT(0)
 
-Reflect whatever your hardware is called in the compatible.
+(snip)
 
-I claim this cannot be used in a SoC without customization. If I
-understood correctly this is soft IP in FPGA for evaluation, so no one
-will be ever able to use it. Therefore this binding makes no sense to me
-in general: you do not add anything any customer could use. It is fine
-to add something which you use internally only, but again describe the
-hardware properly.
+> +static int max14526_probe(struct i2c_client *client)
+> +{
+> +       struct device *dev =3D &client->dev;
+> +       struct max14526_data *priv;
+> +       int ret, dev_id, rev, i;
+> +
+> +       priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +       if (!priv)
+> +               return -ENOMEM;
+> +
+> +       priv->client =3D client;
+> +       i2c_set_clientdata(client, priv);
+> +
+> +       priv->regmap =3D devm_regmap_init_i2c(client, &max14526_regmap_co=
+nfig);
+> +       if (IS_ERR(priv->regmap))
+> +               return dev_err_probe(dev, PTR_ERR(priv->regmap), "cannot =
+allocate regmap\n");
+> +
+> +       for (i =3D 0; i < MAX14526_N_REGMAP_FIELDS; i++) {
+> +               priv->rfield[i] =3D devm_regmap_field_alloc(dev, priv->re=
+gmap,
+> +                                                         max14526_reg_fi=
+eld[i]);
+> +               if (IS_ERR(priv->rfield[i]))
+> +                       return dev_err_probe(dev, PTR_ERR(priv->rfield[i]=
+),
+> +                                            "cannot allocate regmap fiel=
+d\n");
+> +       }
+> +
+> +       /* Detect if MUIC version is supported */
+> +       ret =3D regmap_field_read(priv->rfield[VENDOR_ID], &dev_id);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "failed to read MUIC ID\n"=
+);
+> +
+> +       regmap_field_read(priv->rfield[CHIP_REV], &rev);
+> +
+> +       if (dev_id =3D=3D MAX14526_ID)
+> +               dev_info(dev, "detected MAX14526 MUIC with id 0x%x, rev 0=
+x%x\n", dev_id, rev);
+> +       else
+> +               dev_err_probe(dev, -EINVAL, "MUIC vendor id 0x%X is not r=
+ecognized\n", dev_id);
+> +
+> +       priv->edev =3D devm_extcon_dev_allocate(dev, max14526_extcon_cabl=
+e);
+> +       if (IS_ERR(priv->edev))
+> +               return dev_err_probe(dev, (IS_ERR(priv->edev)),
+> +                                    "failed to allocate extcon device\n"=
+);
+> +
+> +       ret =3D devm_extcon_dev_register(dev, priv->edev);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret, "failed to register extcon=
+ device\n");
+> +
+> +       ret =3D max14526_ap_usb_mode(priv);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret, "failed to set AP USB mode=
+\n");
+> +
+> +       regmap_write_bits(priv->regmap, MAX14526_CONTROL_2, INT_EN, INT_E=
+N);
+> +       regmap_write_bits(priv->regmap, MAX14526_CONTROL_2, USB_DET_DIS, =
+~USB_DET_DIS);
 
-2. I wrote you entire guide what is wrong with your Cc addresses and
-this was fully ignored. Neither responded to, nor resolved.
+When using ~USB_DET_DIS, there is overflow issue like you are received
+mail from linux-next.
+I'd like you to fix this issue.
 
-I am not going to review the rest of the file.
+I'm sorry for late reply.
 
-Best regards,
-Krzysztof
+(snip)
+
+--=20
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
 
