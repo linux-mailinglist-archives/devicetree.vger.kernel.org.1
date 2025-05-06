@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-173953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E935AABB59
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:39:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58197AABB28
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:35:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 182C25A16C8
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:32:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70B634C389D
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:32:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE18C22256B;
-	Tue,  6 May 2025 06:03:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20565227E93;
+	Tue,  6 May 2025 06:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QYU9RDvR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KwdI0Jnh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1762521ABD0;
-	Tue,  6 May 2025 06:03:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF38022332E;
+	Tue,  6 May 2025 06:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746511427; cv=none; b=uGHtXWo8cb9lif7JAMAE+tBTOY7RmWU9DgGi/3oG8BADcaAv15PzCXUh7/+ZaP+94nfN4PyGnj1KADn4Lml24bG9HMmPdqkU2PL6MUCr/xYiFG7OQzga3TGj2T7XhMMq9y2s8wV9Dc5Q+VurNd1UzisJWqBORVOIg7BWAFxmi6E=
+	t=1746512118; cv=none; b=LwcRTn2IkDuiTunSkCEse2p8F+EKuXPO2z0bSC9sz+sf/onM3WaW2G8Lgi6bfMM0cj243MM1Yr080d1SN9m3IyL1sJwVBhQiA/xQdgVbYC2DviEMNHm78ez2Suq2nTqR+YCI/dTuOblQY8yz1oOhtgXwK0KJ0CTMY/9qlgZo+jk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746511427; c=relaxed/simple;
-	bh=DR9N6LLtHjxW30A8YA8c5PfM+NMNVdzBghpvwUKjXek=;
+	s=arc-20240116; t=1746512118; c=relaxed/simple;
+	bh=v7iR4obbmk4+FE8A5coJmFH0oyUV/G5dOfWdweAl7NA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ebUBiy3iSKQ3KgwAknM/8+cWcW0G9VxvOW72wJBE//7wNWWYTQceVrA3xjpAqWguuIF9HgQhBbRnKmv4WzUFusN54WYUq8juIJUXmCbi3Er9dSPDjLRko9ROFaAsRDSJfY5Fbm3c2RbeSMB8ZlSDbfNU+tyXgTosN9TJl4GTJRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QYU9RDvR; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5499c5d9691so6227034e87.2;
-        Mon, 05 May 2025 23:03:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746511424; x=1747116224; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5YZb/SsvKmpgl4ztaGs6og26V8j459fPhlvo52pdzBw=;
-        b=QYU9RDvR7iYaq8tHtj6iX/MXjr5uU8ZEu1hB6xoz2vSa2Z19xAyhlgB+ZVyeK79RGX
-         SoNzUcpdIAW2xU95t1to6XYMn/V1ndWZFFLgkeSjjpkdGaq0/hy0hGrHaaBByfgKCUvf
-         ve9UUMUTZN2TW6dyRPoITS8E3V3RWi76IsoGHceZnDkW4o2KT//F3PjUz1yF1thVE/jn
-         zONlzUTj/hMLFtBTRJZxYB6Xr44Eg15GLBUFFcZ2pI9ask2BJlfwP2+svESA44uENrB1
-         PeqvJ33RQiJynIlppdtqoW1myZ90IwFV7sj3zFtwAdVZHrVIQSnpG9aKCpD/tYQEJ2g+
-         rBLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746511424; x=1747116224;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5YZb/SsvKmpgl4ztaGs6og26V8j459fPhlvo52pdzBw=;
-        b=NfSO70V6FhpOILOYSQfhr+andw3dFTAXg5M2UPqSG0LuWaXJwZI7BHELnoDC7nH6wz
-         scC8Q0gm9BQcZgQ5fUGbcTTz0P9Wour90hSjsjnhK2qomRc/pa1bA49fkfEQqNMEI/+n
-         cxd/eDtd5FCa0u+wHiGBkPrJalJKJfj3G0vstItLcfutTTymIadJlX+Y3UHdGFKU3kN3
-         I7NHm/xP+V5Gk5nIAzXR41AylqZGEqbffOhbuwtu6lLaz+VSpvaNDZTfP/iELQP55weD
-         yHWIxM5VABncqB8uGwkJPLKm+NXfRmNMpbrmZFej5TQvuqAYCcCqm6ls2tZiA3Et+9jJ
-         Iddg==
-X-Forwarded-Encrypted: i=1; AJvYcCVKEgcB2XH7yOderQYZqPzphQdJyJr3FqQg4I0MUPWVU43GzVDLYx1w4/+B8yJSg/ai6CDS9IyMOPp4@vger.kernel.org, AJvYcCWfhTXiM9FRYs4km6mRea3At5AenRKUcr4qNpDRWcDzeXSt4jZy6XIt90j4hnphHKy98NP9MdDznN5/@vger.kernel.org, AJvYcCXdYwULl8MBtLJJwvGixcWxaFdgdZ2MhBU/i4Nhwwmyk1rtJ8v9mfAOQgWj31a88scNtJYgtfDfnxpOBDrv@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDM/enlwWXZ5V70SPp4Z9pwiZnZTTM8Kb08Xh36yY5SSrlv2r7
-	1jFAzDnF7bmzVNKNaTPqSZx/3MkLC216ZNuJreUPGIM3xT0S1con
-X-Gm-Gg: ASbGncsgAQLjvfbyMmrMf3nQ2LkvwNeDlGxPnh8B8rKZNozzn4T5zNqdXD8V7CbN0Qr
-	F2aeI9ZimuMoirkv4U5a9XZy2nWA/I2StIfgQ9L6PEOQ4PrTuJY/fDPe89Tq2bFinK0W9lp2Q/W
-	eKWbSmq0x+Yt47xTUAXexcbF8oGdPtNJMaxbLUj6soa9h3bqxrJ/6X4tslH2WDVUMVJTUYOhzEq
-	5OCOqmH9NXnvFRZ6oUbvdsO+VVv5aRRGsyNm44sPZIq393Ohp97I1l2ZdXfU/VlGvlPmUlAY8hy
-	7EFoyBLnKny/7hgnw7wu+bs8NDCaN5LGAm0fCqL7ItzTokZmHzMGtF1TV93UltHCgreTnpBs+ai
-	sPYa0GTVUmgfHx/QM1wC8VA==
-X-Google-Smtp-Source: AGHT+IFIkaTi5MhEhlnZ8Wd8d8HTx2c4HbOvpVY/oYxFl+Zijyf1n4FMaB5juvPsDNMCFPw4ntdCiA==
-X-Received: by 2002:a05:6512:3993:b0:54e:819a:8323 with SMTP id 2adb3069b0e04-54fa4f905demr2680384e87.42.1746511423620;
-        Mon, 05 May 2025 23:03:43 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94f6cf1sm1918921e87.250.2025.05.05.23.03.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 May 2025 23:03:42 -0700 (PDT)
-Message-ID: <181472f0-5c00-4e1d-8f00-1d84b5c54685@gmail.com>
-Date: Tue, 6 May 2025 09:03:41 +0300
+	 In-Reply-To:Content-Type; b=X/BZ3xncRf8KVhFUh1SWu2f0vRPHCzkHjp8K5IlYyWZvSOAi8dLDRw/zi+MHy70HqCJF3ph+PDoBmHSUUWqAkg5qorOl5Hsr4HQ9+bxncQeXUQY54rNaIgha8j/phEI4hUn8W5Jqlumd8yUT7BijpZLus67mLrke7YcGtGz4ANQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KwdI0Jnh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D875EC4CEE4;
+	Tue,  6 May 2025 06:15:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746512117;
+	bh=v7iR4obbmk4+FE8A5coJmFH0oyUV/G5dOfWdweAl7NA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KwdI0JnhAPGxydaFAejapUGN712V5izTz9driNk7vTuJPJyAX6ln7i9HuOiPyHlsC
+	 Dor/2nfr4Zyv6VFRNZIYwbFzb9uGrQz5UbQNeL7pV2LvB1IT7UBFDmncHxtGyBqS0g
+	 T+tkQVFKWBIjfZkcX42zwhdV8lMutcpzU1d/TV6DNI1fy9vtWPRaSNKMfOZCicxgiA
+	 86HkIfPhLkV9kj4YwjojqzYYjOwHGbzVJloRc2jJ43EJx0AhXGX1VgZY8wwOWaTJx4
+	 VkpQLwSp108u162coQzlkx++ArpLL+vTNS/bvdQ8Ied9ezhNWnIhf6Gzb6C4mKanUk
+	 0f80kzmGN1ONg==
+Message-ID: <8ed44a58-eed3-4be6-9c63-7c6c172a6b7f@kernel.org>
+Date: Tue, 6 May 2025 08:15:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,87 +50,117 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] iio: light: add support for veml6046x00 RGBIR color
- sensor
-To: Andreas Klinger <ak@it-klinger.de>, Jonathan Cameron <jic23@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- lars@metafoo.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, javier.carrasco.cruz@gmail.com,
- subhajit.ghosh@tweaklogic.com, muditsharma.info@gmail.com,
- arthur.becker@sentec.com, ivan.orlov0322@gmail.com
-References: <20250316113131.62884-1-ak@it-klinger.de>
- <20250316113131.62884-3-ak@it-klinger.de>
- <20250317115005.72a539a0@jic23-huawei> <Z_I-qwzUrTNz1DZp@mail.your-server.de>
- <20250406120825.41b2575c@jic23-huawei>
- <ecb2844c-feb5-47d4-b4db-12171380a9cb@gmail.com>
- <aBkNHSxU4T8j4oMT@mail.your-server.de>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <aBkNHSxU4T8j4oMT@mail.your-server.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v4 1/8] dt-bindings: serial: describe SA8255p
+To: Praveen Talari <quic_ptalari@quicinc.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, psodagud@quicinc.com, djaggi@quicinc.com,
+ quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
+ quic_arandive@quicinc.com, quic_mnaresh@quicinc.com,
+ quic_shazhuss@quicinc.com, Nikunj Kela <quic_nkela@quicinc.com>
+References: <20250502171417.28856-1-quic_ptalari@quicinc.com>
+ <20250502171417.28856-2-quic_ptalari@quicinc.com>
+ <20250504-hilarious-ultra-grebe-d67e7d@kuoka>
+ <6f97510c-eb6c-4f3b-b219-aa8d895b060b@quicinc.com>
+ <20250505-ostrich-of-impossible-conversion-a0f8ac@kuoka>
+ <4ebe065e-9686-4e35-bb00-a9e816fb8926@quicinc.com>
+ <1de5c0b7-7761-4d0c-bced-7e26150e995f@kernel.org>
+ <d96eb6b7-5b48-446c-8b33-ba282d896e85@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <d96eb6b7-5b48-446c-8b33-ba282d896e85@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/05/2025 22:10, Andreas Klinger wrote:
->>
->> I was CC'd due to the GTS (gain-time-scale)-helpers. The above is the beef
->> of those helpers - which, attempt to aid drivers to convert the impact of
->> the hardware gain + integration time into a single scale value. This
->> approach has some caveats, but the goal is to fulfill the expectations of
->> those user-space apps which expect only scale to change the gain, while also
->> need to have the integration time controllable (for example to reduce the
->> measurement time for one reason or another).
->>
->> Problem is that, especially when there are multiple channels with separate
->> gain control but common integration time, there will be some situations
->> where the integration time change _will_ cause changes to "total gain (E.g.
->> scale)" too. There may also be cases where some scale values can be met only
->> with certain integration times, or where a scale for a channel can't be met
->> maintaining the scale for other channels etc.
->>
->> All in all, I am not sure if the 'unchangeable hardware gain' approach makes
->> things as simple as possible - but as long as we want to have it, the GTS
->> helpers may be of use :) There are couple of drivers using them - feel free
->> to take a look. "git grep gts_ drivers/iio/light/" should point you the
->> current users.
->>
+On 05/05/2025 15:42, Praveen Talari wrote:
+> Hi Krzysztof
 > 
-> Thanks a lot for illustrating and explaining the GTS. I implemented the driver
-> with GTS and by this learned a lot about it. But at the end i found it in my
-> case to be simpler to implement it without GTS for some reasons:
+> On 5/5/2025 3:29 PM, Krzysztof Kozlowski wrote:
+>> On 05/05/2025 08:51, Praveen Talari wrote:
+>>>>>>> +    serial@990000 {
+>>>>>>> +        compatible = "qcom,sa8255p-geni-uart";
+>>>>>>> +        reg = <0x990000 0x4000>;
+>>>>>>> +        interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
+>>>>>> Why isn't here wakeup interrupt? Commit msg also does not help me to
+>>>>>> understand why number of interrupts varies.
+>>>>> Currently we are not using wake-irq because it is optional for our current
+>>>>> implementation.
+>>>> Great explanation. I asked why is it optional, answer because it is
+>>>> optional.
+>>> sorry.
+>>>> What does it mean optional? This is part of the SoC, so how given one,
+>>>> fixed SoC can have it routed or not routed in the same time?
+>>> the serial driver doesn't enter runtime suspend mode until the port is
+>>> closed.
+>>>
+>>> therefore, there is no need for a wake IRQ when the driver is in an
+>>> active state
+>> You described current Linux driver, so if we change Linux driver or we
+>> try for example FreeBSD, then bindings are different?
+> 
+> Currently, the driver includes code to register the device's wakeup 
+> capability
+> 
+> but it lacks the necessary handler code for wakeup IRQ. According to the 
+> serial driver,
+> 
+> the wake IRQ is meant to wake up the device but the device remains 
+> active because
+> 
+> the serial driver does not enter runtime suspend mode until the port 
+> closed.
+> 
+> So it is better to exclude the wake IRQ until the appropriate code is added.
+But my driver on FreeBSD handles the wake IRQ, why you cannot add the
+IRQ for it?
 
-Firstly, it's perfectly Ok to choose to not to use the GTS helpers. Yet, 
-I would like to understand couple of things.
-
-> - User wants to be able to set up the integration time as well as scale and the
->    driver should not optimize it somehow.
-
-How does using GTS to do the conversion from
-HWGAIN + time => scale
-cause optimization? Or, do you just mean that part of the functionality 
-provided by these helpers wouldn't be applicable, while the conversion 
-could still be done?
-
-> - There is not only a relation from the scale to the gain of the sensor but also
->    to the photodiode size. Because of this i need another helper table asize of
->    GTS for translating the scale into sensor gain and photodiode size.
-
-I suppose that using the GTS with gains and times without PD, and then 
-computing the impact of the PD size after the GTS conversions would have 
-caused the available scales to be wrong, right?
-
-Couldn't you still have used two different set of gain tables (one for 
-each PD size) if you chose to use the GTS?
-
-> I'll come up with a version 3 shortly.
-
-I took a very quick look at the v3 - not one worth a reviewed-by :) And, 
-as I wrote, I have nothing against skipping the GTS. I'm not sure the 
-values in the multi-dimensional array were clear to me at a glance - but 
-I assume it's lean and efficient when one wraps his head around it. So, 
-I'm not trying to argue you should've used GTS - I just want to 
-understand what was the exact issue with it :)
-
-
-Yours,
-	-- Matti
+Best regards,
+Krzysztof
 
