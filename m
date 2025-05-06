@@ -1,257 +1,167 @@
-Return-Path: <devicetree+bounces-174226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5CF2AAC680
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 15:37:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A035AAC69C
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 15:40:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C64717C4BF
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:35:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8188B1785A6
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03116280CF5;
-	Tue,  6 May 2025 13:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C082797BF;
+	Tue,  6 May 2025 13:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HcB3EycQ"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="iulyWgB2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2134.outbound.protection.outlook.com [40.107.21.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE95F280327;
-	Tue,  6 May 2025 13:34:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746538452; cv=none; b=ghejN/Eh/+1wTADzio5PuYLgg8Vg7D6WNB9+CVojkbtChCBM3hepIPf/YLRW03X5yjsvGXNKtXHJReFUPCxVw7cmwnoga9TiNSXTGuYzSqI8mWtCdlRiZJijeGFpXgxeuLME74Cfsx8wG6TNAjxRTbwTo+C09DvmbzkgbTaaOQA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746538452; c=relaxed/simple;
-	bh=8UyH5kKUBxEMOm4LPDEmDz6QR/KnRy9FLct88j76kTM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dxsaiMMQyGbs/JhNspoa6udMLw1kUX5eZISe1FQySXLdJZYThB9DunZR5fuQwqHGT64IXs1TT8J0oQFSf75qGL2W7rGuK8fO9M5Rat8iEaeDz71RMc0o4JjHdQOOAYXql1+4QNUOR2NFFdgu70fgIv6xI/VT0xx//H4741qOE7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HcB3EycQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 024B4C4CEE4;
-	Tue,  6 May 2025 13:34:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746538452;
-	bh=8UyH5kKUBxEMOm4LPDEmDz6QR/KnRy9FLct88j76kTM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HcB3EycQiKMmNSpEZm8qX4wOZ5UPyNbFk93mGEGb5EbSs3TOHufV77AphIFwu4Nku
-	 Og6uTbIW2gAihFZptBDqH8hY51O/VLpC3n3idSzEyUuUeg7OmMTfgEoPPESjKGYWuQ
-	 VFsXJstuqNQmZswUdqhE0/Cj5t6bFkBYMyTYLZGnd07S4Vujza9pDe0gKwHezwZLpt
-	 stUZpOcBxfE4Px4f34aSjqHnAuYoLu2+JfTlDDYdol0fE1Jl7SYvWU4nb0ffPq48/U
-	 k/yLkLcIzVbC52A+xBbMmLGJd6H7tWZjUSSITn+hHzunJazbHxCWZEbeBDMTeczPqz
-	 lBg13qbofSA4g==
-Message-ID: <4146d497-9440-4a3e-9348-1394a610a93e@kernel.org>
-Date: Tue, 6 May 2025 15:34:07 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5CED280012;
+	Tue,  6 May 2025 13:36:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.134
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746538590; cv=fail; b=kDwxh36XihvoEXleRkqcRsNDPHkb89d5Jf8JW+3ltmHcO/29Gsx405xV0kZKy2YDTPsVNu0Qk+D0Y3Hg0hAE3q6pUjypPOL5ga9/q+bHhUeq+RwRMWNtYScC0yX25p4vadXq7TA04E3py7j2fbdT5gUpXf7axdNR78Mwg5Bf/5s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746538590; c=relaxed/simple;
+	bh=XNy8yheaU4riy2PR+YWVVSkwABXKTFiW6K2jjgB9n0Q=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jAqwe2dOwP400HLbSl4dkufCAkgi7NM3sGkmOKWwutONVEKivhMan+zpTlS8n+Dfg+JImf/bMIy44yhYxDPzv5fXx37vWw3DsNJYxtnhyiPBpeKIOWG9JAWiXa0fauyO4QJ0Tb0+DylWrl4vzQK0MvawnfCdWSrnhdTR98RufkY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=iulyWgB2; arc=fail smtp.client-ip=40.107.21.134
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V2+gUHT0Q7FXHuP7t6cBZIyVEZtOEy2rdzBfxPom3uQK/v2g101WZwtPnsXBjustlRfOM1BvPAWXpKiGaxUYLAcWQKQVIfsZzPH5KLwFN/3xba8l/HnhlwZcO2V4O/Ok4WWJ6vdYy1Tw5nVT0UoE19zwzhMfDJ5ReJFJGccd8yE5KCY7JJ3L5r08byFnmPpYREeUEmxpvH9Yh/Ah1aXqNrgs8LY6QEKVZsXXMSNnIhJi2T3rCGKxOMt1zA6ZwoJ4RrkzpwAuOdbynE4mmD6SBP73Yp8AMIflL90t1PDrK5ZyzeLP+jwmY3TI9VRyRBiKsJKwdHQ0/JRpEq/bVzHXiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UNhlkNvADN2HaEqY4ACIZv/HkcW2vqwTbUYnIEYZOSg=;
+ b=O/hX8ydlOmp6hZgUFQwC0zU7cg3U+h/vqmZYLODRFqcnBLFW0hCN2Fq700ZWyoCdEfohfffbwVeixaM6ZiUx6u8m+tulCqPmMb/JqfC0MjxGy5PDlVWyqIRmPjXMarxhOpN/Ar5+I4XiWI+s2W86252tfqax/qqCASrvHmNxiG1yYYgtcIl/MfcdVyUwx5CSNiCoMTXDBmaPOzT1cZ++O2BLjOrNB5+iuGcw37yadKgj0+rZvXlweBl24EGo2ovgZSKVxL9Hrct5OXQzgh+0IdJz7gpK173uyJMMmDehiLCFEUFtv2LQ2gGkV9E6F4J9kaH876lGH7t4ueDYC2vqZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=ti.com smtp.mailfrom=phytec.de; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine header.from=phytec.de;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UNhlkNvADN2HaEqY4ACIZv/HkcW2vqwTbUYnIEYZOSg=;
+ b=iulyWgB2STLiYEscFZOS+xLeCEii5Kk/cLedtuWWFRZyl9zVyL0SMv+AhaZi7/8dq5SEI6U6KP9J165IlwHzmC5HeABewrx2sIID+PXFD7LQzHIm5qWTOYMvx/UbB0DLt77qEsbqZCszdgi7C9GY85CqATqHDDv3auSL34JNajFSa2+TepDWN8X6qKHcJP31KT1VyuNJM19xX4j8fW1epdcFMP5EMFnotSYwb9vaOSv9vBqntj8s4+/vGiNfYfm1csJe5YtKNZamcPNJP9zGF0mxHVIvGslrcrE9Sbxkqw3NIOOu4Shbg/f/8lODCOm0ZeIJl6/gq5W0ASeDvMtx2A==
+Received: from AM0P190CA0001.EURP190.PROD.OUTLOOK.COM (2603:10a6:208:190::11)
+ by DB9P195MB1354.EURP195.PROD.OUTLOOK.COM (2603:10a6:10:295::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.26; Tue, 6 May
+ 2025 13:36:24 +0000
+Received: from AMS1EPF0000003F.eurprd04.prod.outlook.com
+ (2603:10a6:208:190:cafe::55) by AM0P190CA0001.outlook.office365.com
+ (2603:10a6:208:190::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8722.20 via Frontend Transport; Tue,
+ 6 May 2025 13:36:24 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Diagnostix.phytec.de (91.26.50.189) by
+ AMS1EPF0000003F.mail.protection.outlook.com (10.167.16.36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8722.18 via Frontend Transport; Tue, 6 May 2025 13:36:23 +0000
+Received: from Florix.phytec.de (172.25.0.13) by Diagnostix.phytec.de
+ (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Tue, 6 May
+ 2025 15:36:23 +0200
+Received: from ls-radium.phytec (172.25.39.17) by Florix.phytec.de
+ (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Tue, 6 May
+ 2025 15:36:20 +0200
+From: Daniel Schultz <d.schultz@phytec.de>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <upstream@lists.phytec.de>, <w.egorov@phytec.de>, Daniel Schultz
+	<d.schultz@phytec.de>
+Subject: [PATCH v2 0/4] {am62,am62a}-phycore-som: Add R5F and C7xv device nodes
+Date: Tue, 6 May 2025 06:36:00 -0700
+Message-ID: <20250506133604.294920-1-d.schultz@phytec.de>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 2/3] memory: Add STM32 Octo Memory Manager driver
-To: Patrice CHOTARD <patrice.chotard@foss.st.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: christophe.kerello@foss.st.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250506-upstream_ospi_v6-v12-0-e3bb5a0d78fb@foss.st.com>
- <20250506-upstream_ospi_v6-v12-2-e3bb5a0d78fb@foss.st.com>
- <88b463b2-6cd3-4b92-acc5-447bbfadabde@kernel.org>
- <ad80e3b8-4f62-4c58-8dbd-762f0b268713@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <ad80e3b8-4f62-4c58-8dbd-762f0b268713@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: Diagnostix.phytec.de (172.25.0.14) To Florix.phytec.de
+ (172.25.0.13)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS1EPF0000003F:EE_|DB9P195MB1354:EE_
+X-MS-Office365-Filtering-Correlation-Id: 14225faa-d32e-4ca9-5852-08dd8ca2fe80
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?izDcbK+IGoDqva0PrQgcYTtT4IaGAWCgyRtYxKA6BSv3U0SRkJpa+ICYhkzG?=
+ =?us-ascii?Q?qnv/jNzoXgo44X851akUiinjaLy30AvcDPlmBxDopN6KNK0wCdb8XedEa4TO?=
+ =?us-ascii?Q?L3UMlMlrRDWNT8088pbAGqQH5xDFzLGWuuw9JxdlrQ8i0RFiKQhEW3CFWr4J?=
+ =?us-ascii?Q?tclVCuIEHJH8Hc/3obxq920F0T+Y/ZfKbztZ9S9YasL9mKxA2MfUV1NsY1u0?=
+ =?us-ascii?Q?dk1K41br8ztgiaLEMsQNx+24PY8bCELrZ47Rd/BKOL1iTGSt0ZResz5/F7zC?=
+ =?us-ascii?Q?Wef90ItXLCp89BQsh6dfiZC0xQuPqYcUoSkRBslob9Nkv0LVduTxUwasZ2s9?=
+ =?us-ascii?Q?2oFzzWtgW1kMhc+RB73NzJ9i6HXfzrthJOl9ML95ETufbkurE+0XHiazpcol?=
+ =?us-ascii?Q?AOmSuoapTl2qt6KjXkpKSPRhoxPOYZJyZyHxUyeMjaRG/d9/NwR4T+IDAZg4?=
+ =?us-ascii?Q?B7O1q/Jd097dG1TkvuYLF/8Rs5Bd1ej/LihfgJGrMw7rjKdx7Kl+Ja+U2F0x?=
+ =?us-ascii?Q?NCzzLjvUjsHqjONBOoCbIuq/5dSvY/mdbpqnT5iFPGvyqLA5OXdLbtnPSD3Z?=
+ =?us-ascii?Q?Sh6IEIcMj8Gg9zUHop8zRCREkMEt4z2i8M7FmYKDrgs4R90fsqiNZgbwS683?=
+ =?us-ascii?Q?GxugEvXviqbwi2O5z03AuHq+a5+SYw/mQW8K2vAHqy3BICoDLAhpJJr3WRw5?=
+ =?us-ascii?Q?r9IHIkJ8jlqkdnGnP/8Ghmfeiv+HNV8TGX3pkgJC3yRvK7arMf9LGBLS1P5t?=
+ =?us-ascii?Q?S+AmCc9TRFOynze6XUfQPOwI1lPkpVvHho5dgX4KjGPtW27j2JFM5rRUTbPg?=
+ =?us-ascii?Q?g3pgU4HA02hZM8jE5/dUjFPL07LtsNaapn9E3Im0z2hW3AgRFWTmzn4p0VaM?=
+ =?us-ascii?Q?FYrhTmL6IB5Ndmh8qf1MdywwNg9K31LF1Yxc4ICMs+EpOWofPka6ywa+V3I9?=
+ =?us-ascii?Q?FV7OrkgHKWUJfSe1X4eYag/bml6AlXf1KHiKCJPXF02UPzfWqj/2QCxJxPOx?=
+ =?us-ascii?Q?gNPFKHH7zCe3jlJk6V2GuFa2dQedSiI+U6QJeXedmg+KngEJ7cKqK2sXhe8B?=
+ =?us-ascii?Q?kmkDyAwFSUMCQCP40vAWM/kQi/zXlWb5kTbUGIfRj7Hb1HWk5LVVPCGqERxU?=
+ =?us-ascii?Q?x5cNQfe6ygKEin17slXr9j855si9IkzEMZjf4jM1/k7k1nzJY/YZium1g0gM?=
+ =?us-ascii?Q?7ikQ9V1ZEQVuAsn58HUkzbMK2jKDTFxbVJ//pnU6e1y5vNvCj94JghW5G0Cb?=
+ =?us-ascii?Q?r67D4dmEYm20HjAdsDn3M3tBh1u4uVuU2pDEfj2AD7Ki6+zqciTskzr137FQ?=
+ =?us-ascii?Q?bLUhoKkhb3z9jt4G2O+X5DIasr/cdF2wO2DfWZCo3xUpaE/I8zQzy0sgWcS7?=
+ =?us-ascii?Q?G9ZByHeLBmKlJM869opIopPUJF4kwpxF/c0CLGpKyDj+bm6Y6/3aNbeT4R8F?=
+ =?us-ascii?Q?m6c94cqFgdCIDuVY+mV2mE0s+Umn6T3s/ADfeC+XVITkqcouLQBz8Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Diagnostix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2025 13:36:23.8447
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14225faa-d32e-4ca9-5852-08dd8ca2fe80
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Diagnostix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS1EPF0000003F.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9P195MB1354
 
-On 06/05/2025 13:16, Patrice CHOTARD wrote:
-> 
-> 
-> On 5/6/25 10:02, Krzysztof Kozlowski wrote:
->> On 06/05/2025 09:52, Patrice Chotard wrote:
->>> Octo Memory Manager driver (OMM) manages:
->>>   - the muxing between 2 OSPI busses and 2 output ports.
->>>     There are 4 possible muxing configurations:
->>>       - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
->>>         output is on port 2
->>>       - OSPI1 and OSPI2 are multiplexed over the same output port 1
->>>       - swapped mode (no multiplexing), OSPI1 output is on port 2,
->>>         OSPI2 output is on port 1
->>>       - OSPI1 and OSPI2 are multiplexed over the same output port 2
->>>   - the split of the memory area shared between the 2 OSPI instances.
->>>   - chip select selection override.
->>>   - the time between 2 transactions in multiplexed mode.
->>>   - check firewall access.
->>>
->>> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
->>> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
->>> ---
->>>  drivers/memory/Kconfig     |  18 ++
->>>  drivers/memory/Makefile    |   1 +
->>>  drivers/memory/stm32_omm.c | 476 +++++++++++++++++++++++++++++++++++++++++++++
->>>  3 files changed, 495 insertions(+)
->>>
->>> diff --git a/drivers/memory/Kconfig b/drivers/memory/Kconfig
->>> index c82d8d8a16eaf154c247c0dbb9aff428b7c81402..bc7ab46bd8b98a89f0d9173e884a99b778cdc9c4 100644
->>> --- a/drivers/memory/Kconfig
->>> +++ b/drivers/memory/Kconfig
->>> @@ -225,6 +225,24 @@ config STM32_FMC2_EBI
->>>  	  devices (like SRAM, ethernet adapters, FPGAs, LCD displays, ...) on
->>>  	  SOCs containing the FMC2 External Bus Interface.
->>>  
->>> +config STM32_OMM
->>> +	tristate "STM32 Octo Memory Manager"
->>> +	depends on ARCH_STM32 || COMPILE_TEST
->>> +	depends on SPI_STM32_OSPI
->>
->> I don't think you tested for the reported issue. I reported that
->> firewall symbols are missing and you add dependency on ospi. How is that
->> related? How does this solve any problem?
-> 
-> Hi Krzysztof
-> 
-> The dependency with SPI_STM32_OSPI was already present since the beginning.
-> I just added dependency on ARCH_STM32 on this current version to avoid issue on x86_64 arch.
+This patch series is based on [1] and adds these R5F and C7xv device nodes
+to the am62- and am62a-phycore-som device-trees. It also reserves main_timer2
+as well as main_rti4 for the C7 DSP firmware.
 
-Ah, I missed that in the diff.
+1: https://lore.kernel.org/linux-arm-kernel/20250502220325.3230653-1-jm@ti.com/T/#t
 
-Anyway this does not solve the case - you still won't get your
-bus/firewall code.
+Changes in v2:
+  * Rebased to latest master branch.
 
-> 
-> On my side i tested compilation on arm, arm64 and x86_64 without any issue.
+Daniel Schultz (4):
+  arm64: dts: ti: k3-am62-phycore-som: Enable Co-processors
+  arm64: dts: ti: k3-am62a-phycore-som: Enable Co-processors
+  arm64: dts: ti: k3-am62a-phycore-som: Reserve main_rti4 for C7x DSP
+  arm64: dts: ti: k3-am62a-phycore-som: Reserve main_timer2 for C7x DSP
 
-Oh man... do you understand that this is compile test? Enable STM32_OMM
-on x86_64 and immediately you will see the error.
+ .../boot/dts/ti/k3-am62-phycore-som.dtsi      |  35 +++++-
+ .../boot/dts/ti/k3-am62a-phycore-som.dtsi     | 106 +++++++++++++++++-
+ 2 files changed, 129 insertions(+), 12 deletions(-)
 
+-- 
+2.25.1
 
-> 
-> I tried to reproduce your build process:
-> 
-> 
-> 
-> make -j16 defconfig
->   HOSTCC  scripts/basic/fixdep
->   HOSTCC  scripts/kconfig/conf.o
->   HOSTCC  scripts/kconfig/confdata.o
->   HOSTCC  scripts/kconfig/expr.o
->   LEX     scripts/kconfig/lexer.lex.c
->   YACC    scripts/kconfig/parser.tab.[ch]
->   HOSTCC  scripts/kconfig/menu.o
->   HOSTCC  scripts/kconfig/preprocess.o
->   HOSTCC  scripts/kconfig/symbol.o
->   HOSTCC  scripts/kconfig/util.o
->   HOSTCC  scripts/kconfig/lexer.lex.o
->   HOSTCC  scripts/kconfig/parser.tab.o
->   HOSTLD  scripts/kconfig/conf
-> *** Default configuration is based on 'x86_64_defconfig'
-> #
-> # configuration written to .config
-> #
-> 
-> scripts/config --file .config -e COMPILE_TEST -e OF -e SRAM -e MEMORY -e PM_DEVFREQ -e FPGA -e FPGA_DFL
-> 
-> scripts/config --file .config -e SAMSUNG_MC
-> scripts/config --file .config -e EXYNOS5422_DMC
-> scripts/config --file .config -e EXYNOS_SROM
-> scripts/config --file .config -e TEGRA_MC
-> scripts/config --file .config -e TEGRA20_EMC
-> scripts/config --file .config -e TEGRA30_EMC
-> scripts/config --file .config -e TEGRA124_EMC
-> scripts/config --file .config -e TEGRA210_EMC_TABLE
-> scripts/config --file .config -e TEGRA210_EMC
-> scripts/config --file .config -e MEMORY
-> scripts/config --file .config -e DDR
-> scripts/config --file .config -e ARM_PL172_MPMC
-> scripts/config --file .config -e ATMEL_EBI
-> scripts/config --file .config -e BRCMSTB_DPFE
-> scripts/config --file .config -e BRCMSTB_MEMC
-> scripts/config --file .config -e BT1_L2_CTL
-> scripts/config --file .config -e TI_AEMIF
-> scripts/config --file .config -e TI_EMIF
-> scripts/config --file .config -e OMAP_GPMC
-> scripts/config --file .config -e OMAP_GPMC_DEBUG
-> scripts/config --file .config -e TI_EMIF_SRAM
-> scripts/config --file .config -e FPGA_DFL_EMIF
-> scripts/config --file .config -e MVEBU_DEVBUS
-> scripts/config --file .config -e FSL_CORENET_CF
-> scripts/config --file .config -e FSL_IFC
-> scripts/config --file .config -e JZ4780_NEMC
-> scripts/config --file .config -e MTK_SMI
-> scripts/config --file .config -e DA8XX_DDRCTL
-> scripts/config --file .config -e PL353_SMC
-> scripts/config --file .config -e RENESAS_RPCIF
-> scripts/config --file .config -e STM32_FMC2_EBI
-> scripts/config --file .config -e STM32_OMM
-
-That's the code from previous version, which would lead you to the bug.
-Once you understand the bug, you should understand that SPI_STM32_OSPI
-is not selected here, thus STM32_OMM is not there.
-
-You did not fix the bug, you just masked it for one given configuration,
-but still having the bug for other.
-
-Answer to yourself: where are firewall functions? Then, answer: is this
-thing with firewall selected (or expressed as dependency) when you
-select this driver?
-
-If not, do you have stubs for the firewall?
-If yes, do you have stubs for module case (one is a module, other is not)?
-
-This all will lead you to missing dependency for the firewall kconfig.
-Now the dependency must be also tested for module & non-module cases
-(see longer explanation in docs kconfig syntax).
-
-Best regards,
-Krzysztof
 
