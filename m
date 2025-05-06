@@ -1,133 +1,143 @@
-Return-Path: <devicetree+bounces-174098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CA9AAAC154
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:26:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62A1AAAC165
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:32:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4400B3B45D8
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:26:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 879A53B41F0
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:31:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E7526B956;
-	Tue,  6 May 2025 10:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E023A278741;
+	Tue,  6 May 2025 10:32:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AvOufdCu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6521F4C9D;
-	Tue,  6 May 2025 10:26:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA1C277013;
+	Tue,  6 May 2025 10:31:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746527198; cv=none; b=UsJ6W28yI5ff66ucPgSu+qr7j47ZmzlGWqr0PtLkOnDNn5jSZVowQBLyqf7IKf+Bp4TPOqla/xldr2OfK70wuI16tyPfk4kJX/sEEm5mg35bBvW9uYXV87ivrWFb3cGW+5c8AsOmw0E1eQdGguMlD6oQCPI16r/DxeRoWcCzFLI=
+	t=1746527521; cv=none; b=G5LV/i0hncI/7gjfrJxsY8AZaUrYoxsR/eZiOP2NsuvZROeZGsoDiLGrMjIARxZlS+F7z8b+5nUehaFyYCOn5xfScAqBSpDW7Fii6QtK8rArZyUM6xAI7QIqTHXzSA9/5OYk0R+OuyVvkjLCI/Mh1B9TtXf+aX+STsH704DB2U0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746527198; c=relaxed/simple;
-	bh=9mRHDYKby7wkLKdArVGiiiGYXjx7MwW/PwXAzRu0mw4=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cb1ya7iXUiETK0UIM94QpdD+EN5YqEbtRYQW3ZlCgx+cW7QR0zJNngtW97SDLwb3DnwP8sZ9i89dfOzmCvcGNdDgKEy8HRmHymJt335ps+CIaZz0usxAx5YEPeku3bH1Bom4q5Td5meswrFzInq4aOGdS6aRBaU1LZNcLOagDXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ZsDwD2g0Vz6M4YD;
-	Tue,  6 May 2025 18:22:04 +0800 (CST)
-Received: from frapeml500003.china.huawei.com (unknown [7.182.85.28])
-	by mail.maildlp.com (Postfix) with ESMTPS id C2B741402FC;
-	Tue,  6 May 2025 18:26:33 +0800 (CST)
-Received: from localhost (10.47.68.20) by frapeml500003.china.huawei.com
- (7.182.85.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 6 May
- 2025 12:26:33 +0200
-Date: Tue, 6 May 2025 11:26:27 +0100
-From: Alireza Sanaee <alireza.sanaee@huawei.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <devicetree@vger.kernel.org>, <robh@kernel.org>,
-	<jonathan.cameron@huawei.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linuxarm@huawei.com>,
-	<mark.rutland@arm.com>, <shameerali.kolothum.thodi@huawei.com>
-Subject: Re: [PATCH v2 1/6] of: add infra for finding CPU id from phandle
-Message-ID: <20250506112627.00004a7f.alireza.sanaee@huawei.com>
-In-Reply-To: <20250504-eminent-sepia-cuscus-fc7f7e@kuoka>
-References: <20250502161300.1411-1-alireza.sanaee@huawei.com>
-	<20250502161300.1411-2-alireza.sanaee@huawei.com>
-	<20250504-eminent-sepia-cuscus-fc7f7e@kuoka>
-Organization: Huawei
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1746527521; c=relaxed/simple;
+	bh=lhnv40esCz1FiYndyj/R/gsGzq0csbIm8ebf+TghkTc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=js4HmFWkQldL9aH3id3F401tNj/hRfuWM4pSeO5qc41Eef7D2Yins7DXJerDP6yQAB3w4Fec+rhiDAjGsAlnSKPBuMj6lAGZt+9uV0GEI75kjzjE+aAdxKKccdDQZMbt4eqDTXX4YW37kFrLFQRtM3EKwOOFNcTVObv+H0kxzbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AvOufdCu; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43cebe06e9eso34352295e9.3;
+        Tue, 06 May 2025 03:31:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746527518; x=1747132318; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ea2yeqyCln5YmQUlQrOfEBlQkw4IJEtC+0ef1Pufbzk=;
+        b=AvOufdCuP9m2GflHlAHmTLQofSIhkMBFkUDEpHZIiVbbfFhdm3raOE1iWxgmPksVN2
+         0kpNjEUgt0SY3W5u1Y/R/3o5I4yiGyytfVAV2Cqg6hMS9F74MRa8/zUlr1RcixMWbb9E
+         dcTiCFCq0xc3t39epcY1ZabskAyJPUmTc6WSEMn1zrSShGC9E8Q/wht40OevSDixgWAN
+         5svFIkuU9XKOWJavgKs/jpOpXstRbmn7gpaSd2seJj3dQBWqcrJ1xoNFFpBbZ2OWpJmC
+         vzSNeLi7ZaNKluLNplcQLQjmfj/eMm5Rz2yzipvI+mEezzCOPisFkrbNFpz0jZ5zL8bw
+         TRNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746527518; x=1747132318;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ea2yeqyCln5YmQUlQrOfEBlQkw4IJEtC+0ef1Pufbzk=;
+        b=bf+h3gkCmV5IgUyM9X+nYadA9acKRB02rguy+O4kBOi54Q3O1hf5ix+f0EGGI6xd+3
+         nZP956bPZr+p4Ba3t7q45ZRT5qc2bDaeOWTRMwLH1XcGDdZH6ky/0C0MKhf2lYxNsxYc
+         NE4aHqIeXlGe0FwoH0lDinFzYiIsWC0zaM8quw1CAFjgOEkxZe6toe2PxBEAIHHon/06
+         X2eJTPEl6deFg28Vf3y2CVcncz5ONYMdi9cQAtW5Jf298ATi3dUYtR5brs8Fo17QrBp0
+         lPn8mP/3oaZz9n6p44txoKiO3KVQ59NJP5pA0a9ycGj9eeU/2ZjL47j8rYyUSojrMle0
+         CV3w==
+X-Forwarded-Encrypted: i=1; AJvYcCUKO/F0s1LAApPZVNkzSeLccDsJZjLkHSo0Oa5LdaKEbEKOtQjxP5yqDRWz3T0V95gi4LHEJkhkFeKtSYs/cOD7+sA=@vger.kernel.org, AJvYcCXbnvJnSN0mQcXPCGBl+hvLlwCUdqoaPvLng9fdKDrdi31f426+HUial0gZ2mrg5ZzO7v5J+DpMMNN8@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmVKtNfYNNZslL4Tf2+NUvyS0lghBD/JInyczEv2TibLfP+F+J
+	eMm81SmCI/A44OTPURe7ANyhTPR+O217kF2dlxKJt3jKXRyn1N3K
+X-Gm-Gg: ASbGncuU569+9uBJm36WFeCNGAkAPED1D4cJcCxrAZ+TOV1QhUzN+zvGKM/8WdLg9tK
+	i2Gxdjyx0zfrYPflsKsHoyntLyMwuIBCfaFpcC9p5NgEbpeaAjNmOzxiS03auHadn9drHEXche4
+	/HCROI0mIqQMzyk1mT2+yeyitHsIXkjZZ+iNVAv8F4ii6db83ZqJVmqOaxvDuzz7PbDKSX6OnOH
+	kxKrSHt9Bzd9pKehO3BsATRyLwGZjfMA3yruSDmFb90CXGmfWTfqClGhbI9zQOD12DWLwxd+0UW
+	XWwnT/R/yrdhZF+xw7b5aXpylOd6s3VwtQhubjwc/dgsATaJEAGRkzcowH7aRGpOuQ==
+X-Google-Smtp-Source: AGHT+IFlaL3zlxfWhU9eMQsd2gakbJ4MFYO8Vvi3cHZ3L2dU+abGaPcYIyJZw9nvTDrS+u/WlfaH6w==
+X-Received: by 2002:a05:600c:8212:b0:43c:fae1:5151 with SMTP id 5b1f17b1804b1-441d0531289mr19620165e9.25.1746527518190;
+        Tue, 06 May 2025 03:31:58 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:26ec:c7bf:3d4f:d8ea])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b89cc469sm166148695e9.6.2025.05.06.03.31.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 May 2025 03:31:57 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Chris Brandt <chris.brandt@renesas.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/2] Add support for Renesas OSTM on RZ/V2N SoC
+Date: Tue,  6 May 2025 11:31:50 +0100
+Message-ID: <20250506103152.109525-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500012.china.huawei.com (7.191.174.4) To
- frapeml500003.china.huawei.com (7.182.85.28)
+Content-Transfer-Encoding: 8bit
 
-On Sun, 4 May 2025 19:48:11 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> On Fri, May 02, 2025 at 05:12:55PM GMT, Alireza Sanaee wrote:
-> > Get CPU id from phandle. Many drivers get do this by getting hold
-> > of CPU node first through a phandle and then find the CPU ID using
-> > the relevant function. This commit encapsulates cpu node finding
-> > and improves readability.
-> > 
-> > The API interface requires two parameters, 1) node, 2) pointer to
-> > CPU node. API sets the pointer to the CPU node and allows the
-> > driver to play with the CPU itself, for logging purposes for
-> > instance.  
-> 
-> Run checkpatch - missing SoB.
-Shoot! I guess I know what happened! Will use the script.
-> 
-> > ---
-> >  drivers/of/cpu.c   | 24 ++++++++++++++++++++++++
-> >  include/linux/of.h |  8 ++++++++
-> >  2 files changed, 32 insertions(+)
-> > 
-> > diff --git a/drivers/of/cpu.c b/drivers/of/cpu.c
-> > index 5214dc3d05ae..1e8d1fa04d3c 100644
-> > --- a/drivers/of/cpu.c
-> > +++ b/drivers/of/cpu.c
-> > @@ -173,6 +173,30 @@ int of_cpu_node_to_id(struct device_node
-> > *cpu_node) }
-> >  EXPORT_SYMBOL(of_cpu_node_to_id);
-> >  
-> > +/**
-> > + * of_cpu_phandle_to_id: Get the logical CPU number for a given
-> > device_node
-> > + *
-> > + * @node: Pointer to the device_node containing CPU phandle.
-> > + * @cpu_np: Pointer to the device_node for CPU.
-> > + *
-> > + * Return: The logical CPU number of the given CPU device_node or
-> > -ENODEV if
-> > + * the CPU is not found. If the property is not found, it returns
-> > -1. On
-> > + * success, cpu_np will always point to the retrieved CPU
-> > device_node.
-> > + */
-> > +int of_cpu_phandle_to_id(const struct device_node *node,
-> > +			 struct device_node **cpu_np)
-> > +{
-> > +	if (!node)
-> > +		return -1;
-> > +
-> > +	*cpu_np = of_parse_phandle(node, "cpu", 0);
-> > +	if (!cpu_np)
-> > +		return -ENODEV;
-> > +
-> > +	return of_cpu_node_to_id(*cpu_np);  
-> 
-> You leak the node... or intention was to return it to the caller, but
-> then you need to document that caller must drop the ref.
-That's fair, I include documentation for that.
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+Hi all,
+
+This patch series adds support for the Renesas OS Timer (OSTM) found on
+the Renesas RZ/V2N (R9A09G056) SoC. The OSTM IP on RZ/V2N is identical to
+that on other RZ families.
+
+v2->v3:
+- Dropped config check and unconditionally enabled reprobe support for all
+  SoCs.
+
+v1->v2:
+- Inveted the logic in the dt-bindings to require the "resets" property
+- Instead of adding config for new SoC, changed the probe condition to
+  `CONFIG_ARM64`.
+- Updated commit messages
+- Added a Reviewed-by tag from Geert.
+
+v1:
+https://lore.kernel.org/all/20250501123709.56513-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (2):
+  dt-bindings: timer: renesas,ostm: Document RZ/V2N (R9A09G056) support
+  clocksource/drivers/renesas-ostm: Unconditionally enable reprobe
+    support
+
+ .../devicetree/bindings/timer/renesas,ostm.yaml      | 12 ++++++------
+ drivers/clocksource/renesas-ostm.c                   |  2 --
+ 2 files changed, 6 insertions(+), 8 deletions(-)
+
+-- 
+2.49.0
 
 
