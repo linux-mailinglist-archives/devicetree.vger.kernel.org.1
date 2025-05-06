@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-174278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 973E9AACAFC
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:30:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26DD3AACAF7
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:29:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 796E51BA427D
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:28:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 018CE3BE474
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:28:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F154D2857C6;
-	Tue,  6 May 2025 16:27:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99253284B21;
+	Tue,  6 May 2025 16:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rhuo3y9T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oq2LlI2P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9213284B2F;
-	Tue,  6 May 2025 16:27:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7090627BF8D;
+	Tue,  6 May 2025 16:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746548864; cv=none; b=Xl34nglt9h4uaiQtX9rp5RMrbqd55DvpKdIHJMDUgvOlMM17kSWY5fc5SwEuSTY5JZOeXN/O76biySJCYvL0A2LJO9hrrQoGfqS0Usy/3SabkLirSg7X0bTguPq3RYM1JfaP5rHdJxaW2Z/CzVo7bPPugW87kszDx+7KUeh92/U=
+	t=1746548952; cv=none; b=HEI8xWBL2PSPFXaSrEOTKg7TA7Kjzmrg/VLl49H2wIIV8oAJn8Z1jmKLIJhz7yN4o/p9TN/OWx0oSNHJNRVHW57CBmOiUWoUhy8eXCzPUEaiy5lekgkrExp5LCAlxqRIhAzNI1bTyO3UwXPZOlEOuA+zEA4MRjOyZy7Fua2hvQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746548864; c=relaxed/simple;
-	bh=wJl9fXyLBlj/alvhQ5nvzBTo2DX+kfoN+jfRteXdm2I=;
+	s=arc-20240116; t=1746548952; c=relaxed/simple;
+	bh=kOucaCiTOjCuwEDYRf4xSI+oTb3XR4SieOgn6ttIfaQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iAcgnT1Bf3hpcxe2VDlgUELkt7iNENHYHlNPSC/prUFAt6JgCkigWFa7Lyv6g4U8ktXzl5FHazU29T65v3IjvYQ001Zn52HI8xuLkqDU1wzYUS10soLvhU/huy8ByJD3VpNkh5r7SZADxoU/iF1oYeYCFtmiAIA721hM3lSlb34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rhuo3y9T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D61D5C4CEE4;
-	Tue,  6 May 2025 16:27:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nYfH18gqO5t73yWOHmoTvxG1gbPp+Bc/nlsEbeiJwW1aAyk4EB0xD+d8souWmNdRS6tLer7p/fPolnyFyGHxDIZCYwvw1OCgYUaVZXxczVqOVskpFnjRJxqQruNCvV3sUyEdOJK10bcxKNGJY0Guf+wRSZ6SNObCC3mNtaJY68I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oq2LlI2P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A813C4CEE4;
+	Tue,  6 May 2025 16:29:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746548864;
-	bh=wJl9fXyLBlj/alvhQ5nvzBTo2DX+kfoN+jfRteXdm2I=;
+	s=k20201202; t=1746548951;
+	bh=kOucaCiTOjCuwEDYRf4xSI+oTb3XR4SieOgn6ttIfaQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rhuo3y9TxDpq5ldZKL2HKkbwDu2AeBTHP5+/g7FPz5CgzrP4Ax9Es9tm6+hELS3AF
-	 rH2Y6Ri9dyMKWLknUeYV5tzJZTv1zEjS5Dec1xZGAV7YPKFymJ04FcZYbZif7mRtZ1
-	 5CVnTtkMyZa3b3yYtQc/339Uif3VQlInWZ/cktPdrwwWGo9jSYn5iIFCJ4QDNNQPQ8
-	 c+5kNG2AmUWIk1LIpU9X23aswuxg8V6RkMRPcNCeZgO2ehWHHsIcDE9jAvC+L1xnS7
-	 KVtf6jzmfVrP4LyO2/mKsI6gFJic2hF9X4zg/yhXFXprzsnXnhGK9QEzpUOU1b2nkG
-	 RTs+bx3Ltd9Ew==
-Date: Tue, 6 May 2025 17:27:39 +0100
+	b=oq2LlI2P1lJQ/oyTKrRnxPw7EO9BiOf+OVuYZ3G451tnU26eZ0c+4XvvzNaTI8TVP
+	 iAUD+c5GLRTD/oj9Y53Pxyf0lnqRNijMMDncNs/iu8KopcJamreqtaD9YZN5ju/6rd
+	 Q8OVymac1ixkcsZNpLy3CWfEtTx+6U2omV+Q9jU18T3sYgDp78jfj2MAf/8kLDCyYO
+	 6ETStIDRBR00iFJ/Brt5WAEw3IyB2Hc4GJ/HTZpJ2+wZzXsuguw/eDaKguJpZWzpqp
+	 re/s0R/shqflOfoKJmYzXV5xCjBjuoXReIXPf/L3/YpSDf/aewjwAeKHpVcnef1B5Q
+	 V60LKme8+mWaw==
+Date: Tue, 6 May 2025 17:29:07 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Ben Zong-You Xie <ben717@andestech.com>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	tglx@linutronix.de, daniel.lezcano@linaro.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, tim609@andestech.com
-Subject: Re: [PATCH v2 5/9] dt-bindings: timer: add Andes machine timer
-Message-ID: <20250506-bonehead-security-fdd71309a721@spud>
-References: <20250503151829.605006-1-ben717@andestech.com>
- <20250503151829.605006-6-ben717@andestech.com>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	bcm-kernel-feedback-list@broadcom.com, kernel-list@raspberrypi.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: clock: convert bcm2835-aux-clock to yaml
+Message-ID: <20250506-recycler-sugar-2b0f34d60361@spud>
+References: <20250503080949.3945-1-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,38 +63,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="cHkgK4xVUxJ740D6"
+	protocol="application/pgp-signature"; boundary="BYm1tPIPDcX1NmBu"
 Content-Disposition: inline
-In-Reply-To: <20250503151829.605006-6-ben717@andestech.com>
+In-Reply-To: <20250503080949.3945-1-wahrenst@gmx.net>
 
 
---cHkgK4xVUxJ740D6
+--BYm1tPIPDcX1NmBu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sat, May 03, 2025 at 11:18:25PM +0800, Ben Zong-You Xie wrote:
-> Add the DT binding documentation for Andes machine timer.
->=20
-> The RISC-V architecture defines a machine timer that provides a real-time
-> counter and generates timer interrupts. Andes machiner timer (PLMT0) is
-> the implementation of the machine timer, and it contains memory-mapped
-> registers (mtime and mtimecmp). This device supports up to 32 cores.
->=20
-> Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
+On Sat, May 03, 2025 at 10:09:49AM +0200, Stefan Wahren wrote:
 
+> +    aux: clock@7e215000 {
+
+Drop the "aux" label if you respin for some reason.
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---cHkgK4xVUxJ740D6
+--BYm1tPIPDcX1NmBu
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBo4ewAKCRB4tDGHoIJi
-0hwNAQDM2atqbPzuEVmNCgCayxvl4ixzEpqJu6dqfw41f5RJ5AD/fTboHXFJsmwG
-tNcawZ/ktKYZjQUmN3Q2fvk7oKf8DQo=
-=YvVt
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBo40wAKCRB4tDGHoIJi
+0szWAQCpZXN5ujtc5qNCr1gNAxdHwpTCCoxoCXi85BN1ByM1GgEA/fkQNS08jLp2
+XxAoeX9oIf4UJM+aYeyiZPqBk73MwAs=
+=9nwV
 -----END PGP SIGNATURE-----
 
---cHkgK4xVUxJ740D6--
+--BYm1tPIPDcX1NmBu--
 
