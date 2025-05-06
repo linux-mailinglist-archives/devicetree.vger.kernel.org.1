@@ -1,78 +1,59 @@
-Return-Path: <devicetree+bounces-174105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 100F2AAC182
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:38:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD1E8AAC190
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:43:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 700004C8582
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:38:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 071B83B6281
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:43:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02DF6275869;
-	Tue,  6 May 2025 10:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B0527586F;
+	Tue,  6 May 2025 10:43:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WWrMZkNf"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="eBdhkGps"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE6572673BF;
-	Tue,  6 May 2025 10:38:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746527912; cv=none; b=rIvfWTKxLQtOXPFe6/1SkFgFRInJu40d+ox3jiN6opFW4AT0WRArXGTaycZNeoID6YU3tQOykAlHDtljmLNHghHgZjdruz7qn1yk6CmoChbWp/5mdG7FS2QOU5D7mYWw6QrO9OcYvKVYpEHQcq3o/qwKb6iDNIOOVAvM6d1rayw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746527912; c=relaxed/simple;
-	bh=DsRp18KqLHynQ7ek2b6vxlNhlQdmZWpAkRJL4Ln5cTE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=XBB1jDhKELSQ5fwqgpNytbbTxKf0TqL2yjQsVFPXd9lKODah31di6i1t+sN9mzw2wnFVhAHmP42vIBedxwmTTqvNCoRTrO0679dDj5CGQDz7mr90E72ySIZxNnh95dZoBwErJXPRw4tbK20lB3cX85nitTDiZswZV3mfcvb+Asc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WWrMZkNf; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-22e16234307so31271845ad.0;
-        Tue, 06 May 2025 03:38:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746527910; x=1747132710; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UXv90NJmJZRERtBytNCfPjU778hNLPiLy80HmbPYFyI=;
-        b=WWrMZkNfmazDgtMI9P4zeKG6OA2MdaHNy9crn1PqUweHbNGm49UyhdlfW3Y5gidLa1
-         1t/mG3yt3tnr6unFZOyYkVkKM98A4cLnX90116DFJevBvkzakuhBMQhvL5zgqSc/XQPs
-         547YSsaO+IrM65/fawukisGrYYpM/89TJznrg20gColaYEzVdInfXy21BxWtfMjj/Y2t
-         hsRQnHwkJJudyYdUF4gRuYW4V0beR1FnlyglBs7arsP92cpaui7AML8LX2pYxUzGUCb3
-         hIPNMGD51gv6fDKy8HTAab3E5mYpPE51iFPYcx4KMUnuyw+9m7kCqnX+kpfaNUll419Q
-         EHYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746527910; x=1747132710;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UXv90NJmJZRERtBytNCfPjU778hNLPiLy80HmbPYFyI=;
-        b=nmMrIhuHIzn2FWVaP4I+4npvPDiV09pbSPb+4JCLKa1mUS3LaSeBM+qR4KaZL/AA7m
-         T+SWXVNLvrI9C6ETGEKizXyskB4lenz3XVVep9UmifMnGxQMfFCEOP4yc+NJMxp771ng
-         9g1YLcn8/opEi22lPtGvF5RpEBk3T9bhyNSYXMuItk6M+jIR4Hjwe5/PGYS9jCaSpsK8
-         lZpiTbmWPR7rPxonEYEozdAzRqODhlBiPgz0TfTaLqVMB+g14HRhmgIqGPs/tp1UIyA3
-         jfxEYSqhOpJMdt5en57z9gae3iqzzQBo3BBNMd/BVWK06fFh1ScAfGVGR9Yf93pDQISE
-         EAIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWB1XomzAOhJp0JbbxiJvC0wl91Q4UogMmRKu4yDig6Tfj8yYn3AU3v/T2sYq39IfG6TYNmaXCE1g3i@vger.kernel.org, AJvYcCWtztUSvbe9prQSGuj+Mg6q4iH8jMQq8QCp6lURet/ysgK60Ke3jDT4V5FmfzMubq9kCkH8HLMzVebU@vger.kernel.org, AJvYcCXWsF490ZuwnWNbkNtGChGXN/OYrgN3tcAppqPTkbB8Ne7iQvmSh2J+mrQlsXclZjnkWuMqbE1ywakXj8Ai@vger.kernel.org
-X-Gm-Message-State: AOJu0YxK8STq56pptkb3Q3X2Bnqv4yT3NA3gmTap5Lwlf5eOWi2TbLiD
-	6N9RP2v9YJkG/RFZNh0iFgKUjjJhTBqJlaexgdemvmTcce3dn0bYUGRW2dQhUMo=
-X-Gm-Gg: ASbGncuL2JUgPvHgTOFWH0FvCnez+LM84g/sDUBz3k8jNoiWVgTlTdWr73lcE5q2J+R
-	FFpLxBLbbktomRyl4oJwBy5TipjTdjnbpv1SHUaNtJ5Qr17V24gs6SELTHdrYrrOg4UqT96t2g+
-	5jbWfYw2ahwN0VVaMArRymt3XVjbqAHby49VTRxf6HWEpdAjHSNk5v688aSKWOyFmFpTSXnnRLZ
-	BymGc4gOxx/dWh7oLTKOu8nJnh/AyzaoGq0cjj1ipYXNGv/rTeQ4KTHPHFFwzcjikxzkyzd7/D/
-	W78P3eJhvbsxmSINXpTaZJMXMv3zlQC4OvwJtIepbCl82N03YfCT
-X-Google-Smtp-Source: AGHT+IEQb8VRTFER+5/KPQ67cIaHptMVjdm37TypNQglY+WRH7pzbxrcVJBPZHwUMTsKykPATosOdg==
-X-Received: by 2002:a17:902:f60d:b0:225:abd2:5e5a with SMTP id d9443c01a7336-22e32776c1fmr35820535ad.4.1746527909820;
-        Tue, 06 May 2025 03:38:29 -0700 (PDT)
-Received: from NB-GIGA003.letovo.school ([5.194.95.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22e15232797sm70470525ad.240.2025.05.06.03.38.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 03:38:29 -0700 (PDT)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Tue, 06 May 2025 14:38:15 +0400
-Subject: [PATCH v3] dt-bindings: i2c: i2c-wmt: Convert to YAML
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76571230D2B;
+	Tue,  6 May 2025 10:43:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746528214; cv=pass; b=Rx4aRRNNlVDTDl5u/SB3lVuDk4f8OONHdzuifmCrT1o/xTKsU7X6VvaIPG1GSgDTq2zN0OQDSbf9ekEJWdKEuOZsZ4Uwy99ODAWtpQo9eib6FhVYAyS6pdbhRrKysQLYJkjgMEeOGfU1rhDq5Tkx7OreMg7h5BKuDkJ8VYipJjA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746528214; c=relaxed/simple;
+	bh=OwyABRdytN3edzFNnElS5EbLf0mhU7Lzx3dwQn5bXx0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LILdDonACYMU+BcWJdRb4gNwmXGWRfSUTWPuAPGKi2JPr+L3/XzzzKJr1ff4k2mimIWztUasL7gZfVSTsuhoZClfJaER2yQA+w+DZWHbRFDwpu5BIteT04Dq3wuJL+wJ6PeqvIJdgSJclvZji5sBYpCe2kQsnSzF/0pa/0WlbfU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=eBdhkGps; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1746528180; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=EUt0IX7bUxgf0bzqQLU1D+ki/6BXD4YEaW0gX0tX/TiG7VCy+6Ii5R08/FwnpnQW4ggbrf3sjBqoSxUD7ZpBZPuXpx5M3frJb60LzWZonnT42Jp99LpbyhQlJCkITaNV8MptnHKx0gKpZ/D4nhxahsRn1S8HAd8vQm1ToYt2Lvs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1746528180; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=1l6FHgsDuMiEUcIfSXG1IsXCgZa1bTdz/QloPt8obhI=; 
+	b=PoGoDyRwQGT5nYf4d9SMTM5afqSBIHaqXUte205nOYYXIScE7gcW93ktbe2YtdgaavosXoJvjmQXREd7nM5vQn1KzEyjBuYr/k/0iqK+gPIsyONBCOYK9h3aTZ1D7uwvURIfOlx0n4TKxsEFxopmy/FYDaZGIFD3Q9ju+DVDxt4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1746528180;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=1l6FHgsDuMiEUcIfSXG1IsXCgZa1bTdz/QloPt8obhI=;
+	b=eBdhkGpsGLbPl2SpzGU7sSWWhDSB5HtK+EGRXMj+96K2uVZLWv8zOjuSr/ySY1AJ
+	CI0I/eHR2FQYYi8hlmC71YDO1NT4uLFa/yTkMCV09TiFEhiaHPWIVZ/XNsdqv6NyKXl
+	4Q8jKPVGt2wdIdIRn2faZ0RvqXtbgnSy/0vOdH6Y=
+Received: by mx.zohomail.com with SMTPS id 1746528179569823.6445212545938;
+	Tue, 6 May 2025 03:42:59 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v4 0/5] Add RK3576 SAI Audio Controller Support
+Date: Tue, 06 May 2025 12:42:39 +0200
+Message-Id: <20250506-rk3576-sai-v4-0-a8b5f5733ceb@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,158 +62,145 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250506-vt8500-i2c-binding-v3-1-401c3e090a88@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAJbmGWgC/32NQQ6CMBBFr0Jm7ZhxSgO68h6GBbQFJpFiWtJoS
- O9u5QAu30v++ztEF8RFuFU7BJckyuoLqFMFZu795FBsYWBiTbUiTFuriVDY4CDeip9QD+raDLo
- h1TZQhq/gRnkf0UdXeJa4reFzfCT+2b+5xHhBMiOzJcO25vu09PI8m3WBLuf8BXYdvIm0AAAA
-X-Change-ID: 20250430-vt8500-i2c-binding-5b397b570387
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Alexey Charkov <alchark@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAJ/nGWgC/23OQW7DIBCF4atYrEs1ZmCMs+o9qiwwHjeoiWnBs
+ VJFvnspWUSpsnxI3z9cReYUOItdcxWJ15BDnMvQL43wBzd/sAxj2UKBMoBgZPpE05HMLkjfWQa
+ NYHvLooCvxFO41Nj7/rYTf59Lc7k9isFllj6eTmHZNTNfFlm7Bkj8gUPIS0w/9TNrW8Wzu2srQ
+ ZJm8pMl5N69+Xg8uiEm91riNbWqO9ctPHBVuCdNYFHTwPiM450bUA8cC8eOPE9tP46d/8+3bfs
+ F4owIW1cBAAA=
+X-Change-ID: 20250305-rk3576-sai-c78e0430898e
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Sugar Zhang <sugar.zhang@rock-chips.com>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746527901; l=4312;
- i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
- bh=DsRp18KqLHynQ7ek2b6vxlNhlQdmZWpAkRJL4Ln5cTE=;
- b=xVr23GBL4GVFKc7GqRfXepQhft1RJL9XZ2qsOs5diF9sQjU19v77z45H5YgmdOSFGLwEjZ/vZ
- EHC0zP/wNwTC+PzpHvEaFTp+KlfApn+6fLvPlZthelotjuprMlVMzEY
-X-Developer-Key: i=alchark@gmail.com; a=ed25519;
- pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
 
-Rewrite the textual description for the WonderMedia I2C controller
-as YAML schema, and switch the filename to follow the compatible
-string.
+This series adds support for Rockchip's Serial Audio Interface (SAI)
+controller, found on SoCs such as the RK3576. The SAI is a flexible
+controller IP that allows both transmitting and receiving digital audio
+in the I2S, TDM and PCM formats. Instances of this controller are used
+both for externally exposed audio interfaces, as well as for audio on
+video interfaces such as HDMI.
 
-The controller only supports two bus speeds (100kHz and 400kHz)
-so restrict clock-frequency values accordingly.
+Patch 1 and 2 are boring devicetree changes to add the nodes, including
+an hdmi_sound node in the SoC tree which can be enabled by individual
+boards that enable HDMI.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
+Patch 3 and 4 enable analog audio and HDMI audio respectively on the
+ArmSoM Sige5 board. Patch 3 goes into some schematic-derived knowledge
+about where the audio signal can actually be tapped into in order to
+test analog audio.
+
+Patch 5 enables the driver in the arm64 defconfig for both the SAI audio
+driver and the ES8328 driver used by the Sige5, as the RK3576 and Sige5
+are supported in mainline, so its drivers should be enabled in the
+defconfig.
+
+To test analog audio on the Sige5, I both soldered to the output 2
+testpads, as well as fashioned a cable to plug into the headphone
+header. I do have the necessary materials to to make more such cables,
+so if you have a Sige5 and want to test this but don't happen to sit on
+a pile of 03SUR-32S cables, then you may contact me off-list to request
+I send you such a cable from Switzerland, and I'll see what I can do.
+
+HDMI audio is now enabled in this series.
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
+Changes in v4:
+- drop the clock patches Heiko already applied, rebase onto
+  next-20250506.
+- Squash the defconfig patches into one patch
+- Link to v3: https://lore.kernel.org/r/20250502-rk3576-sai-v3-0-376cef19dd7c@collabora.com
+
 Changes in v3:
-- Re-added the part updating MAINTAINERS by Andi's request
-- Link to v2: https://lore.kernel.org/r/20250430-vt8500-i2c-binding-v2-1-0cf22d0c2d42@gmail.com
+- Fix auxiliary GRF patch on RK3388 and RV1126, which were
+  unintentionally broken previously because I didn't build 32-bit ARM
+  platforms. Thanks to Heiko for noticing!
+- Drop "ASoC: dt-bindings: add schema for rockchip SAI controllers" as
+  it was applied already
+- Drop "ASoC: rockchip: add Serial Audio Interface (SAI) driver" as it
+  was applied already
+- Add codec driver defconfig patch
+- Link to v2: https://lore.kernel.org/r/20250410-rk3576-sai-v2-0-c64608346be3@collabora.com
 
 Changes in v2:
-- Added Krzysztof's review tag (thanks Krzysztof)
-- Dropped the update to MAINTAINERS for now to reduce merge conflicts
-  across different trees
-- Split out the i2c binding separately from the big series affecting
-  multiple subsystems unnecessarily (thanks Rob)
-- Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-1-f9af689cdfc2@gmail.com/
----
- Documentation/devicetree/bindings/i2c/i2c-wmt.txt  | 24 -----------
- .../devicetree/bindings/i2c/wm,wm8505-i2c.yaml     | 47 ++++++++++++++++++++++
- MAINTAINERS                                        |  2 +-
- 3 files changed, 48 insertions(+), 25 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-wmt.txt b/Documentation/devicetree/bindings/i2c/i2c-wmt.txt
-deleted file mode 100644
-index 94a425eaa6c78bc9e3136ae7055b51635baf16ca..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/i2c/i2c-wmt.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--* Wondermedia I2C Controller
--
--Required properties :
--
-- - compatible : should be "wm,wm8505-i2c"
-- - reg : Offset and length of the register set for the device
-- - interrupts : <IRQ> where IRQ is the interrupt number
-- - clocks : phandle to the I2C clock source
--
--Optional properties :
--
-- - clock-frequency : desired I2C bus clock frequency in Hz.
--	Valid values are 100000 and 400000.
--	Default to 100000 if not specified, or invalid value.
--
--Example :
--
--	i2c_0: i2c@d8280000 {
--		compatible = "wm,wm8505-i2c";
--		reg = <0xd8280000 0x1000>;
--		interrupts = <19>;
--		clocks = <&clki2c0>;
--		clock-frequency = <400000>;
--	};
-diff --git a/Documentation/devicetree/bindings/i2c/wm,wm8505-i2c.yaml b/Documentation/devicetree/bindings/i2c/wm,wm8505-i2c.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..e498ce47b885203fcfe233b946f987abdac6784a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/wm,wm8505-i2c.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/wm,wm8505-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: I2C Controller on WonderMedia WM8505 and related SoCs
-+
-+maintainers:
-+  - Alexey Charkov <alchark@gmail.com>
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: wm,wm8505-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    enum: [100000, 400000]
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c_0: i2c@d8280000 {
-+        compatible = "wm,wm8505-i2c";
-+        reg = <0xd8280000 0x1000>;
-+        interrupts = <19>;
-+        clocks = <&clki2c0>;
-+        clock-frequency = <400000>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 16037aaa770fc35efb45fc26555afaa5102e2640..4d18afdaf12bf6a5956793814f8db39b34074a12 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3464,7 +3464,7 @@ M:	Krzysztof Kozlowski <krzk@kernel.org>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Odd Fixes
- F:	Documentation/devicetree/bindings/hwinfo/via,vt8500-scc-id.yaml
--F:	Documentation/devicetree/bindings/i2c/i2c-wmt.txt
-+F:	Documentation/devicetree/bindings/i2c/wm,wm8505-i2c.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.yaml
- F:	Documentation/devicetree/bindings/pwm/via,vt8500-pwm.yaml
- F:	arch/arm/boot/dts/vt8500/
+- split rockchip clk changes into 3 separate patches, all of which
+  build on their own
+- driver: expand Kconfig symbol help text to make checkpatch shut up
+- driver: remove runtime PM debug messages, as they were redundant
+- driver: move of_defice_id table and MODULE_DEVICE_TABLE to be above
+  the platform_driver struct and below the probe function, as is done in
+  many other drivers
+- driver: drop of_match_ptr
+- driver: drop MODULE_ALIAS
+- driver: remove the confusing hclk disable comment in the probe
+  function
+- driver: remove quirks handling, which only existed for
+  rockchip,always-on purposes. Downstream does not appear to need this
+  quirk for any sai implementations. It can always be added back later
+  when the problem, if there is any, is better understood.
+- driver: fix hw_params when the number of requested channels is lower
+  than twice the number of lanes in non-TDM mode. Without this, playing
+  back stereo audio on an 8-channel SAI would fail to set the hw_params
+- driver: when in I2S TDM mode, set the XFER delay to 1 aka half a cycle
+  This makes the output waveform line up with both what RK3568 I2S-TDM
+  and the TI TAS6424 codec describe as correct TDM'd I2S in their
+  datasheets, namely that on the first rising SCLK pulse after LRCK is
+  high, there's audio data ready.
+- driver: treat set_tdm_slot with 0 slots as disabling TDM. This lines
+  up with what the function documentation for ASoC core's
+  snd_soc_dai_set_tdm_slot says it'll do if it's called with 0 slots,
+  but in practice that function seems broken because it'll just pass
+  the signed number of slots to the unsigned parameter of the mask
+  generation function, which treats 0 slots as an error, making the
+  caller snd_soc_dai_set_tdm_slot function bail out before ever
+  giving any driver set_tdm_slot callback the 0 slot number. If that
+  ever gets fixed (I hacked around it to test it), then our driver will
+  be able to turn off TDM mode at runtime.
+- ASoC bindings: rename bindings file from rockchip,sai.yaml to
+  rockchip,rk3576-sai.yaml
+- ASoC bindings: remove extraneous blank line
+- ASoC bindings: change resets property to use an items listing
+- ASoC bindings: fix rockchip,sai-(t|r)x-route property constraints
+- ASoC bindings: remove rockchip,always-on
+- RK3576 dts: add tx/rx-route to all internal SAI nodes. This is needed
+  because they all can do either 8CH TX, 8CH TXRX or 8CH RX, and an
+  absent route property is understood to be just 2CH if the direction is
+  present.
+- RK3576 dts: add hdmi_sound node
+- Sige5 dts: enable hdmi_sound
+- Now based on v6.15-rc1
+- Link to v1: https://lore.kernel.org/r/20250305-rk3576-sai-v1-0-64e6cf863e9a@collabora.com
 
 ---
-base-commit: 0a00723f4c2d0b273edd0737f236f103164a08eb
-change-id: 20250430-vt8500-i2c-binding-5b397b570387
+Nicolas Frattaroli (5):
+      arm64: dts: rockchip: Add RK3576 SAI nodes
+      arm64: dts: rockchip: Add RK3576 HDMI audio
+      arm64: dts: rockchip: Add analog audio on RK3576 Sige5
+      arm64: dts: rockchip: Enable HDMI audio on Sige5
+      arm64: defconfig: Enable Rockchip SAI and ES8328
+
+ .../boot/dts/rockchip/rk3576-armsom-sige5.dts      |  64 ++++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi           | 217 +++++++++++++++++++++
+ arch/arm64/configs/defconfig                       |   3 +
+ 3 files changed, 284 insertions(+)
+---
+base-commit: 580d4593971087787eb1edddeddf1f33e7d590a8
+change-id: 20250305-rk3576-sai-c78e0430898e
 
 Best regards,
 -- 
-Alexey Charkov <alchark@gmail.com>
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
 
