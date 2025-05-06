@@ -1,144 +1,122 @@
-Return-Path: <devicetree+bounces-173945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C93FAABAFC
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:32:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B95AAABBA8
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:45:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A95BC4A6A3E
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:29:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9D705A20DB
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A7D5295527;
-	Tue,  6 May 2025 05:44:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560DF2989C6;
+	Tue,  6 May 2025 05:45:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qjh7CxFE"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="KLizDeGY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C942951DE;
-	Tue,  6 May 2025 05:44:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A27FB2989BD;
+	Tue,  6 May 2025 05:45:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746510261; cv=none; b=PYJXVAC1uoKDIN70yN8R36dCBkDiXGAQyZiOXCU2m+k+pxrH+RXrD+tQOiIWZn0rvWTy7qEVNWGk0u2+YSgnISVlkygoT7epoFZLofZ7eo3feQLALZDauiWh5SdcTjSnjplOaAa/0GAYRV0qAjd4igeBxJghyau/lPBPuX/p5FA=
+	t=1746510305; cv=none; b=jVQikv+raKJtq7VQS9e5Yj9o6fFixQeOBWcbYcwWzCBmxYxM62kOPGbENluRWFQyd/IS75r1WKs9LRybO2JjTztVcRFPkWGJnJVkjJ8NkVSy4fX5Oo5rPpyj7iBucIQamxd2cwfkTrgb8dZFoDWvl/FgNNNg1T6GVUq8cfx0x08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746510261; c=relaxed/simple;
-	bh=Qdh7b0oxeGVA4SRLfwk4vHAL//K06YNKGRJLWOShx0E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CBap/lpYdUzYf+4dI6awNh+rJtiOV5OotP4yEe4YnuL0puZm0D6y5uQabcbDsMHk5ypX63qqwgHXU3S5TpDdVEQ312eOU5wwMtZ0elNTwUn/ykUi2WSxD+L+0CmzDjYx0ZMar8aXYG8cl8k9chzGVbo1vtp+sY/PXMdTSbARV0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qjh7CxFE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 03E21C4CEFE;
-	Tue,  6 May 2025 05:44:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746510261;
-	bh=Qdh7b0oxeGVA4SRLfwk4vHAL//K06YNKGRJLWOShx0E=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Qjh7CxFECa94YXyRlah2mXsFRYQyC5vrPsl8F/75oQEMKe+ZCs5Dd4Xy1+M45nuah
-	 /EN2pc5uUngOWJJVRaxSFSCLAvRjJOhcsi18OQiC+mSRVXSRTLOJtRIVryzXJhONZZ
-	 ePlbmWcM1+xbEVetlQV/l7L7Xq2Tss5gl5g8TnqzClPCD9lbxYkZGSM+pXdkG2ITWz
-	 nth7kGM7le9cESDcskS+q69osWkMveJbib+sdqpSkBOWoAQaQHOzXb7zVsKFu170CD
-	 HnxOdppWwRuDA4twG51cS8E8y9iIUQWOiqZllyAZIaj0u57XYXBZuXFhSpZECXZtou
-	 hK+jxpq+mwCvQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EFE0BC3ABAC;
-	Tue,  6 May 2025 05:44:20 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Tue, 06 May 2025 09:43:38 +0400
-Subject: [PATCH v2 6/6] arm64: dts: qcom: Update IPQ5018 xo_board_clk to
- use fixed factor clock
+	s=arc-20240116; t=1746510305; c=relaxed/simple;
+	bh=7QMw+5nA2GGVua9gtBE8dFrWvOjPIYNtXm8x/tSpfgU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iRKFSlssWPSjwOVRhMpkgy6DU4HWLHjPpj0u4NcRGNfX44mn5ld1gDuoTdCP7YCftAUKN977akb0xCShVbAXlHLeD8aCokqBixV5kRylWPz0f3t+gCHfgcec4EnKa9bpz1HeD2XmW524dfoAr6U6j/Q7VIT2qq5ckQ+5Ryj6uzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=KLizDeGY; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-22438c356c8so50925245ad.1;
+        Mon, 05 May 2025 22:45:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1746510303; x=1747115103; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7QMw+5nA2GGVua9gtBE8dFrWvOjPIYNtXm8x/tSpfgU=;
+        b=KLizDeGYMr+2DlL93H/0AaSzG+kkX61+yeYpHNTIdfUprLxPvcQmQVx6T9OWs2yMur
+         jMELMTaU98zHR8d0MlHKeVdhYwpJqK51gYOxR133qsyLoVvcyXFRy4SodueFHTX1pPhi
+         MePeym3RntrJeCd/Ty7yErKLoMjJQ4ldpKjWIDDzZ6gYoBXzVey+cKHxd8nYByoO2NKa
+         MCae3Wjv1kLcG+wR/V+SENOuF0rMiTME/L6lqT2O4npcA98AaRNFPHxy4lYTsNa8CyNt
+         HXkiVGtXV7/ZMAvheL0Vt5ejvAa8KQrUSwSqE/vQwNzpcTtS1Xl8do4dmL5ROe+p5ZFm
+         IfqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746510303; x=1747115103;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7QMw+5nA2GGVua9gtBE8dFrWvOjPIYNtXm8x/tSpfgU=;
+        b=DtrgnYNL9N4/vx0tuOGItSnlg0asLiUr7bYtXBhxzhbWIGJRik24Yei+tSv0WwjmTs
+         7urehqt66n7Cdu2wklHootTWS1mZdV0TiVe/J0LQsmWRnTD2iF8Q8nOdX26hGV1YDONE
+         rB235An6WhbdKk6McTkmDa8GHuUZb7bCRzoYQq4RG0nAmB4LEnt3V5d8EiS7DK/99Mtx
+         DDPGO7yKdN8YgT1DSFh5zqydKSWYjopD5pxHakAjL+qApFAyHOS11xilJf/kqEngP0q9
+         UKeVtC2sPuUsML/duMFQ/OGGWbb9jPxr1p9U501ghIrcuHFIdfESGQZxMZ9eHNmsDucm
+         bLOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU8iNR6qtA7rbz+DC/d4uuHXhwpaX22Wu+ThyRCuAaU2fudtuYWEtkUkjrif4tpHot7gA7jgbDCzJmU/Opu@vger.kernel.org, AJvYcCXZAJkf+vt2DWouLpt3dCF39om07aBsovXXVIBpy3a2oGF7ig/O+pSPnh4TDaza2Eq7VsaeHYCUTXoD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXWI8piEHwsd8iu1t1g4DgoaLqxvES2PJxmnZK+f5tLDpVP5A3
+	GnTeUIGM5p3zjzU1moPNycs7H8Pg+O4UN+UNZ5CZk38LlWcZQGWQZVpCt8G8QqwdiJBIyIDJJJA
+	LlC9Li9rKZ6ZM7L6beNlQ8TkPBfs=
+X-Gm-Gg: ASbGncuHDh4dSVoLqlR8LT5/ZHzuqsC+tCH2UlrTm5yJKTc5HlLlkRVPaCgS7kRsfCc
+	bLO42JOJMMTTGq5RaKkbstpiGNYAg0336m55tkfuw6tpJYQTb/USwYkblbLlcIG39g21NQ+iAIz
+	rJLAr+P07V6pW220NTEoOBURCM0Lsj27BLrXt87ab8TWYmwnE=
+X-Google-Smtp-Source: AGHT+IEAtjZAiVW9FmeIPs+b2L0Cy/C7fmszykHtPtzqcf1LWGqQ9MrO3WWZWQisFX6hdN6dX2Pwfb6vvI+jq0mf724=
+X-Received: by 2002:a17:903:1ac3:b0:216:7926:8d69 with SMTP id
+ d9443c01a7336-22e1ea95042mr127743175ad.47.1746510302790; Mon, 05 May 2025
+ 22:45:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250506-ipq5018-cmn-pll-v2-6-c0a9fcced114@outlook.com>
-References: <20250506-ipq5018-cmn-pll-v2-0-c0a9fcced114@outlook.com>
-In-Reply-To: <20250506-ipq5018-cmn-pll-v2-0-c0a9fcced114@outlook.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Luo Jie <quic_luoj@quicinc.com>, 
- Lee Jones <lee@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
- Arnd Bergmann <arnd@arndb.de>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746510258; l=2154;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=rsjsy3sOFV1Bg2dDCftuVKNO8nGOiFRTAbeFFfhHc1c=;
- b=0VkXT8KgrXJiOeVPwOsCMJkL8WBGzu2Ai1tNRz+xQh1NXvS3hxts5NHZIBfMwvp61k+Qjpx3J
- heUx4Dl8ppaAg0cOOwbIYbjtjqBnWwBWKJeS82kY8nYamZ5Ue+0fKKf
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
+References: <20250428-fernsehfee-v2-0-293b98a43a91@posteo.net> <20250428-fernsehfee-v2-3-293b98a43a91@posteo.net>
+In-Reply-To: <20250428-fernsehfee-v2-3-293b98a43a91@posteo.net>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 6 May 2025 07:44:51 +0200
+X-Gm-Features: ATxdqUE0-lwrubrO18uAn6fPR3DZquMt1RXTKqplWpMfrQ3jLYv5ONhvDdTbeEQ
+Message-ID: <CAFBinCBVZeGk1QXMhwqQR9k9vJqDR3Hew2gxMxGZh4+SdbARFg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] ARM: dts: amlogic: Add TCU Fernsehfee 3.0
+To: j.ne@posteo.net
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: George Moussalem <george.moussalem@outlook.com>
-
-The xo_board_clk is fixed to 24 MHZ, which is routed from WiFi output
-clock 96 MHZ (also being the reference clock of CMN PLL) divided by 4
-to the analog block routing channel. Update the xo_board_clk nodes in
-the board DTS files to use clock-div/clock-mult accordingly.
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts             | 3 ++-
- arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts | 3 ++-
- arch/arm64/boot/dts/qcom/ipq5018.dtsi                      | 3 ++-
- 3 files changed, 6 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-index 8460b538eb6a3e2d6b971bd9637309809e0c0f0c..abb629678c023a2eb387ebf229f6dd1c30133b19 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-@@ -80,5 +80,6 @@ &usbphy0 {
- };
- 
- &xo_board_clk {
--	clock-frequency = <24000000>;
-+	clock-div = <4>;
-+	clock-mult = <1>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts b/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
-index 5bb021cb29cd39cb95035bfac1bdbc976439838b..7a25af57749c8e8c9a6a185437886b04b0d99e8e 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
-@@ -124,5 +124,6 @@ uart_pins: uart-pins-state {
- };
- 
- &xo_board_clk {
--	clock-frequency = <24000000>;
-+	clock-div = <4>;
-+	clock-mult = <1>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-index 6992d164fa965c760ce2738307f6e103d3ff3a20..6cd76155534c9933fb2b2762291519e9355aee2f 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-@@ -31,7 +31,8 @@ sleep_clk: sleep-clk {
- 		};
- 
- 		xo_board_clk: xo-board-clk {
--			compatible = "fixed-clock";
-+			compatible = "fixed-factor-clock";
-+			clocks = <&ref_96mhz_clk>;
- 			#clock-cells = <0>;
- 		};
- 
-
--- 
-2.49.0
-
-
+On Mon, Apr 28, 2025 at 12:44=E2=80=AFPM J. Neusch=C3=A4fer via B4 Relay
+<devnull+j.ne.posteo.net@kernel.org> wrote:
+>
+> From: "J. Neusch=C3=A4fer" <j.ne@posteo.net>
+>
+> Fernsehfee[1] ("TV fairy") 3.0 is a set-top box with HDMI input and
+> output ports. It originally ran Android 4.4 and a Linux 3.10 kernel.
+>
+> The following features are tested and known to work:
+>
+> - Ethernet
+> - Power LED (switching between green and red)
+> - Power button
+> - eMMC
+> - SD Card
+> - USB
+> - Wifi
+>
+> The following features are untested or not working:
+>
+> - HDMI input and output
+> - Infrared remote control input and output
+>
+> [1]: https://fernsehfee.de/ (German), https://telefairy.com/ (English)
+>
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: J. Neusch=C3=A4fer <j.ne@posteo.net>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
