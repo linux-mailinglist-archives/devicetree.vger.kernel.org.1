@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-174366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69AA5AACF20
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 22:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C70F3AACF2D
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 23:05:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B46B31B68B7F
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:58:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9FA31B667C8
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 21:05:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B09120012B;
-	Tue,  6 May 2025 20:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD7F2217679;
+	Tue,  6 May 2025 21:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xpN0qUZM"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="1TrRsykv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C5151EE032
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 20:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BFB82153DA
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 21:05:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746565070; cv=none; b=iuRQRL7Re8BW2DdeQqWXOhocVafkVdtB+RHQ3Gp+RMh2hWox3bdeU0JFkbdbgK+MddFZ9KO7j1r3LOxlkwBhupbXgTesUwaZVFAvNTgCkl0lEI8bYrBMQ2a9MJceZegf+23GUYlzhx6GpFkn0m1cKCOPIMUXMS/2A5NaUinGtZk=
+	t=1746565524; cv=none; b=u58CsREYFTneaXpeUjU6CwsKNADAHML3/wPK++YPfP/l5jotESELUnqPqG14+zYNVETHxebXT5xjIP0pRgUcwHl6poP8KVp0jig6+mAox/Tzyd+2tzjBg6AFS880arbcsVSxf2MeTeQwh2y5RB83JFj+h4TUtD06QUyXrexXivI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746565070; c=relaxed/simple;
-	bh=DmhgKVwxaPjv1roKDXteW3FTL4oH33qlI5LJtEP83bI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KB9hKBRI/wStmmt9EzMRhYOQUzFlRmFRi8Mu/LOogcCgojEQhKuDXlZeProgxUIvI6CKZOHfUSopmQ5UcIP+cxNEa2jny65I1nDeKbJ6wgXL+4gtKsEhwqfeM9Gr0kFSdUrCdO8/RuCsibP/FKBUschGsB0AmnqIIFxxBQ+oW1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xpN0qUZM; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-39bf44be22fso4186807f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 13:57:46 -0700 (PDT)
+	s=arc-20240116; t=1746565524; c=relaxed/simple;
+	bh=DtfGGT3IGxKqdB3FC1mVlHDnlo7XpWTSUsAjxMBNLfc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dUrWQY7NeDRX+nRlR4zHRY+WDprWL3PAbY5HF6SIi5f1keUC7pWX+XRoEqyr23vToF2C5y+5mx7mxGNCvKBm3Ls4UD6fXwLVkkMMlp+yyaIzj+iwxYfjxuzxMgtPWoLKmGTDlvbv9hyc/4bUK7njPAxAiOM0JbcoHNP8UGfqwmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=1TrRsykv; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43cfe63c592so57633465e9.2
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 14:05:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746565065; x=1747169865; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rHRlpPPsSJqGzltMuOf+ZTof6Jgch8QpoTOiopbtkF4=;
-        b=xpN0qUZMsmW+V1s31q+TbUxPoGS19xW8M32DfhXAHIMjCFCb+FsL3qbYXvtcEm+vAW
-         w/cKG3exNRt1n9tkfWy7i+prRRhlXQCluyH83EzEKZ+2oOiDFRt7+ukoP9WuTdWqp+Yh
-         67Kk9OkBngqlEebWSDIZE9QaiJXEWeQYIRqbWI3RwiXUkIPkR/zRssfymiiMK8SCdWi7
-         4HcMOOxJCy/umCQG5utEjidtSi4ajF6aCtTeBhjpmwoEagCqleXhE/IgOK9QB2y49QYI
-         yqZ4/W7pQHCFWdyR5MV1GD7vsICgZK0abOu8nY0dAqubI9j+wzmRHGr55ttQN/EJ+nB0
-         xjkQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746565520; x=1747170320; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=m8JsgWUKbE/peIKbAfNn2XRYX9tbkW2uKeLMmFKymPk=;
+        b=1TrRsykvF4Fk5gk61we8hdojF4BI4/1C44Ud6pNg8glqiDGCc5btIJ6SLfGPPPQMRJ
+         aT2h47ZSbadDAC1TghvjlBuDuLztgyJhsHktgHlCknOxxeErSa1dgwNUamhHsQc1M+1R
+         +lC/FvbkKhyxsi2/zkXI7z8O6lU8bHTYbodHULw39HaXtEUcLzIC9ZNEwT9kc1fuxVh4
+         azsYDDhedRq9Z4kqOdY21QTZPv4pXFTV9Awc6OETG35dGU27c7YCm/zOlmsxDkcKvlRh
+         HCbBgd7UB+Z/94s4ZcMWMekZjozDnqquFEZNphQiGek9sJykWoguir0A1jOfJcHUHYkG
+         jWaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746565065; x=1747169865;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rHRlpPPsSJqGzltMuOf+ZTof6Jgch8QpoTOiopbtkF4=;
-        b=dpCzs/tdhf6jmdAcSf0k2PaHl+hNR3x3uELTplKYuThCRN1XifbLhs3NkV1zV9gJq8
-         iWdZmjPZsn7U8CGae6gA/OSNPNrLI7qN/GDmZ/KR6QOf8e+HTGtXyG/ystU5mB/miJ+X
-         M/5P+hdfxbT+8MNUCQ4XtykfH6TojgVIdB5T+hVT5tiukp+qTbL9EurgmYd3RnjBn27N
-         1M082B7LnGOfo7kAowSN3pADRjvS0W61SHQL+Lq011SU43acuOytpz+CTYf82kIbC/Ot
-         k/ozTo0bJ4g8ck3HdeOfw/XlTN9zJOEt/jtP2KDwOLh36AzlWGV6RpeQl81dHKcU+3n0
-         jWSw==
-X-Gm-Message-State: AOJu0YwzwktYAApf40dRg6Qpd31oUKYZe6oc7Sdz7hkXQ92/bWDE+OrS
-	hN3j/86tF9H8CW6tktw6N/DWFDj6LKtTSmfzDpQLUgNUY7EhVhjs5QsWWIOJxrg=
-X-Gm-Gg: ASbGncsKWbz7NqVf3+rDBUg005drfXY6TYK1g+LMkhr5XyL16xHfn9runCewBEsxT2l
-	4tfenhwH+2ilzTb17Cr2PcTggeHF+Qn1U+AHjhLkj+M3Q4w9jxqg+BEgvK3rcJxlPfVjuwTMMr7
-	LkbbpMgpPr6vniSYu8EEVSocrJEtlUYsozIfxEgQk9h9vl0SPfALq4RglnPKpUsqbSXwJfq4sn2
-	FHek70hTgPlBUcZJfnk7aLQa3RfAfOYuf6I8dxbEghOE4QXGT2pL0kW16BBj+rnxVQCKxPP5o3J
-	/Lthd2M+jeufn4mdNl/jYHwO8bFUQJxLRvamnaMf9clCu+DVFpLg8WwJHzYvtvihF2UrFlc=
-X-Google-Smtp-Source: AGHT+IGulLrYWlG+kZCMXnnKSTODIHE+4aud4nyijHDirTc+a1jg1d1OEehyINhIG/PQqFXnGWHJpg==
-X-Received: by 2002:a05:6000:4310:b0:391:22e2:cd21 with SMTP id ffacd0b85a97d-3a0b4a0554emr651550f8f.36.1746565065379;
-        Tue, 06 May 2025 13:57:45 -0700 (PDT)
-Received: from gpeter-l.roam.corp.google.com ([145.224.65.147])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099b17022sm14671826f8f.89.2025.05.06.13.57.44
+        d=1e100.net; s=20230601; t=1746565520; x=1747170320;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=m8JsgWUKbE/peIKbAfNn2XRYX9tbkW2uKeLMmFKymPk=;
+        b=UBFOQM7F3M/st331wmyeeboPOWdEoZvfi9GiEELhBgEzlJdZy96kMBHrsEEqNBpHDd
+         jHbeVgyFWd1hsv8Xkz/zGo5s07eoRbFpOGgdFIDKau7HeToDbFvHF1MS6uiKnxpQ+gKt
+         NqrRUiPP+unrComtbprFhyTlNOzrnDdnFZH9SFprJr5GoPE7q3g9ZTUtk9YQVCjdAd1Z
+         HGdpLVln2uJSpa4zXvBC7B/GRPs0z2dd5+99fq4QkvGXGeyUOLvb+bVBtdsgnjI+0yo7
+         LMVzcAXDdradykpD/4OurvvdZsjXnkpWs2uuDS4Nqkrb5NLaHsVVltYeHkPApVE6lN2s
+         wh+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUn17KPOsfye50jOQLnHaMhREwcZMlZfpJta2c5xyER2RIaq9xVqU+D6q+2E7VQYI1GK3EZlJczm1PQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpU85qwwWlAqAe344I3B2cuqAwAi8/uUjQS42vTYfY9yCp1PRF
+	kD0BpmvDFNU7CETG/v8y0q7/kfcWDscg4AgUhafXEPzaKYpmDeo31bheG/bixhM=
+X-Gm-Gg: ASbGncu/KeRP49v2TGuLgctLJFoeAioDtJNnLzVH3Xv9UZicJGpFVyC1KfrkBaLcaxg
+	l0LT9vvOUMirN46rE9u56VfvtCj/VzcUv5taPjjAxhz48SKqmTbYuqmviCLBbF5tmgGGkHf1KPY
+	KL0I7mzPvc2OTvwqP/QIAb9/2u5+HIkSRTUfSRcDCa08/nolw1slOsFAEoNQOwpVuFUDSwKCjMo
+	yXfadVE6It+XhuxFj5jD+YQTlyc81N0iGTb3bjR0nt5bweZAUX/jBPMPUOEhUpQfI+G7ZfJ3855
+	mVW0LVDmaNoY+vBN/Fe2bdEu34XnScgwEw8aZZreJdha8TAL6Zm1X/IDWcOxDfCRZD6e/mH7fGK
+	aDxdacM4qibhDcFFVQrfPkmI=
+X-Google-Smtp-Source: AGHT+IFdcNg9xalwI/vP6wkduaNeYlIs7UH23AvEcqdx7FJHsBxWlW0U2gNA2iDaY0NitktQrxSABw==
+X-Received: by 2002:a05:600c:5252:b0:43c:f44c:72a6 with SMTP id 5b1f17b1804b1-441d44bc466mr4438175e9.2.1746565519709;
+        Tue, 06 May 2025 14:05:19 -0700 (PDT)
+Received: from [192.168.0.2] (host-87-8-31-78.retail.telecomitalia.it. [87.8.31.78])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441d4351abdsm6794475e9.23.2025.05.06.14.05.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 13:57:44 -0700 (PDT)
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 06 May 2025 21:57:31 +0100
-Subject: [PATCH v4 5/5] soc: samsung: exynos-pmu: enable CPU hotplug
- support for gs101
+        Tue, 06 May 2025 14:05:19 -0700 (PDT)
+From: Angelo Dureghello <adureghello@baylibre.com>
+X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
+Subject: [PATCH v3 0/5] iio: adc: add ad7606 calibration support
+Date: Tue, 06 May 2025 23:03:46 +0200
+Message-Id: <20250506-wip-bl-ad7606-calibration-v3-0-6eb7b6e72307@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,227 +84,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250506-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v4-5-9f64a2657316@linaro.org>
-References: <20250506-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v4-0-9f64a2657316@linaro.org>
-In-Reply-To: <20250506-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v4-0-9f64a2657316@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- tudor.ambarus@linaro.org, andre.draszik@linaro.org, willmcvicker@google.com, 
- kernel-team@android.com, Peter Griffin <peter.griffin@linaro.org>
+X-B4-Tracking: v=1; b=H4sIADJ5GmgC/43NQQ6CMBAF0KuYrq2ZDqWAK+9hXLS0yCQIpCVVQ
+ ri7hY2JC+Py/8l/s7DgPLnAzoeFeRcp0NCnkB0PrG51f3ecbMoMAXOQWPEnjdx0XNtCgeK17sh
+ 4PaUVR9BZpbSCLEeW9qN3Db12+3pLuaUwDX7eX0Wxtf+oUXDgzkgrSxRGFHgxet7O7lQPD7bBE
+ T9YDvgLw4SJQhoLuoFSmC9sXdc3preGCBIBAAA=
+X-Change-ID: 20250429-wip-bl-ad7606-calibration-20a396a60352
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ devicetree@vger.kernel.org, Angelo Dureghello <adureghello@baylibre.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6461;
- i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=DmhgKVwxaPjv1roKDXteW3FTL4oH33qlI5LJtEP83bI=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBoGne/lbKw4I26t2kad3YPe6N0+D1U9nwWjSbiV
- qxfSIyClViJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaBp3vwAKCRDO6LjWAjRy
- uvkwD/40C6kd/hz8G7/BRCna/loJnrlliDpXug9hRYnua7k0DIzUhdhVt6G5eWj5vbfW026Vel9
- yi76dDm9N4DsM9VxevSVpl3qaUr3Q21qF7Tvl06e/EtiBLKJUwas3SLgiwaGo90dlsyECKjYjYE
- FNvdOu5u3ep+ZE5r2XrPiEVeyONHR1Jrc25AW0Au6lokRTQoVPNZXx4R1I0iWAAM8Uu7lVyhmal
- Kps/mBJZSBesMIcZnUR0IYgIgmLUccqlmXEPcS8E2OmmcN0hdKSY8jHcdYFqmKID/X78Wx4Jp+y
- +QPkpBTIfREDs22QEeKfYIz+EJmRSfOSpgmCB+t556edtpWW9Zhi/Cu/DTMVuZVMAM81XbgbP07
- eG+rGtanTx2ezj3ZGpHcTkRMzjn7E5UiCQ9RQL8RB0lA3Ra8CnkXw0kQTa+m1FybTzn1lrxMstL
- ko0FZ2rMoUuEj+eMG5XaVoIsLAqxsbF3TtJhv8atgDEcqchqxmIENWV8CptTcii0zogpF9AdGlN
- 8cBbG9VePfp8tx3nb+Q40eZPwtQTrVzTMrrcVj8P1Xi6cHTqef290wsFTV4sBQn8LOZqYzPeFaZ
- JbgC3J0ZJIDgKGOO2/HAYe8h1ZNsMOQNJQskzv4J7hYOlnAS3dgA7xnLOhjzxALWcG6MRj1TtEo
- BbBnvwlnAiPhGjw==
-X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
- fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2206;
+ i=adureghello@baylibre.com; h=from:subject:message-id;
+ bh=DtfGGT3IGxKqdB3FC1mVlHDnlo7XpWTSUsAjxMBNLfc=;
+ b=owGbwMvMwCXGf3bn1e/btlsznlZLYsiQqnR3nG7z87zWxa9ntFJKyu25tzlxzixg4px1Z2uM9
+ 4+Ht/8e6ChlYRDjYpAVU2SpS4wwCb0dKqW8gHE2zBxWJpAhDFycAjCR+L0M/0vunzh8b1VD/Kb5
+ E805vU4vtAu4nmrN+by6XCWr846Dzj+G/yFR7PeMLZKTgq/ULuMO2ulU0NYt6BR5KPL3wXe5yen
+ r+QA=
+X-Developer-Key: i=adureghello@baylibre.com; a=openpgp;
+ fpr=703CDFAD8B573EB00850E38366D1CB9419AF3953
 
-Some additional register writes are required when hotplugging CPUs
-on gs101, without these the system hangs when hotplugging.
+Add gain, offset and phase (as a delay) calibration support, for
+ad7606b, ad7606c16 and ad7606c18.
 
-Specifically a CPU_INFORM register needs to be programmed with
-a hint value which is used by the EL3 firmware (el3mon) and the
-pmu-intr-gen registers need to be programmed.
+Calibration is available for devices with software mode capability. 
 
-With this patch applied, and corresponding DT update CPU hotplug
-now works as expected. e.g.
+Offset and phase calibration is configurable by sysfs attributes, while
+gain calibration value in ohms must match the external RFilter value,
+when an external RFilter is available, so implemented through a specific
+devicetree "adi,rfilter-ohms" property.
 
-echo 0 > /sys/devices/system/cpu/cpu6/online
-echo 1 > /sys/devices/system/cpu/cpu6/online
+This patchset depends on:
+https://lore.kernel.org/linux-iio/20250505131544.0a7477a2@jic23-huawei/
 
-Note: to maintain compatibility with older DTs that didn't specify
-pmu-intr-gen phandle only a warning is issued if the syscon can't
-be obtained.
-
-Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 ---
-
-Changes in v4:
-* Fix typo with GS101_GRP1_INTR_BID_CLEAR in gs101_cpuhp_pmu_offline() (Peter)
+Changes in v3:
+- fix dt_bindings,
+- change sysfs calib_delay to convdelay,
+- fix sysfs documentation accordingly,
+- used u32 for reg and r_gain,
+- used DIV_ROUND_CLOSEST for setting r_gain,
+- minor syntax fixes,
+- Link to v2: https://lore.kernel.org/r/20250502-wip-bl-ad7606-calibration-v2-0-174bd0af081b@baylibre.com
 
 Changes in v2:
-* Use BIT macro (Kryzstof)
-* Use gs101_ prefix for cpuhp functions (Kryzstof)
-* Model pmuintrgen SFR region as it's own syscon (Kryzstof)
-* Use regmap_update_bits() API (Kryzstof)
-* Program hint on current processor number (Peter)
+- change phase_delay to calib_delay,
+- fix dt_bindings,
+- fix gain calibarion fdt parsing,
+- fix ad7606c-18 calib offset range,
+- fix calib offset calculation,
+- fix calib gain range,
+- Link to v1: https://lore.kernel.org/r/20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com
+
 ---
- drivers/soc/samsung/exynos-pmu.c            | 80 ++++++++++++++++++++++++++++-
- drivers/soc/samsung/exynos-pmu.h            |  1 +
- include/linux/soc/samsung/exynos-regs-pmu.h | 11 ++++
- 3 files changed, 91 insertions(+), 1 deletion(-)
+Angelo Dureghello (5):
+      Documentation: ABI: IIO: add calibconv_delay documentation
+      iio: core: add ADC delay calibration definition
+      iio: adc: ad7606: add offset and phase calibration support
+      dt-bindings: iio: adc: adi,ad7606: add gain calibration support
+      iio: adc: ad7606: add gain calibration support
 
-diff --git a/drivers/soc/samsung/exynos-pmu.c b/drivers/soc/samsung/exynos-pmu.c
-index c40313886a012304b3f345d5d7369f15713eb857..0915b2457be7f473f09b6030923ba80c2f963427 100644
---- a/drivers/soc/samsung/exynos-pmu.c
-+++ b/drivers/soc/samsung/exynos-pmu.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/array_size.h>
- #include <linux/arm-smccc.h>
-+#include <linux/cpuhotplug.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
- #include <linux/mfd/core.h>
-@@ -33,6 +34,7 @@ struct exynos_pmu_context {
- 	struct device *dev;
- 	const struct exynos_pmu_data *pmu_data;
- 	struct regmap *pmureg;
-+	struct regmap *pmuintrgen;
- };
- 
- void __iomem *pmu_base_addr;
-@@ -222,7 +224,8 @@ static const struct regmap_config regmap_smccfg = {
- };
- 
- static const struct exynos_pmu_data gs101_pmu_data = {
--	.pmu_secure = true
-+	.pmu_secure = true,
-+	.pmu_cpuhp = true,
- };
- 
- /*
-@@ -326,6 +329,60 @@ struct regmap *exynos_get_pmu_regmap_by_phandle(struct device_node *np,
- }
- EXPORT_SYMBOL_GPL(exynos_get_pmu_regmap_by_phandle);
- 
-+/*
-+ * CPU_INFORM register hint values which are used by
-+ * EL3 firmware (el3mon).
-+ */
-+#define CPU_INFORM_CLEAR	0
-+#define CPU_INFORM_C2		1
-+
-+static int gs101_cpuhp_pmu_online(unsigned int cpu)
-+{
-+
-+	unsigned int cpuhint = smp_processor_id();
-+	u32 reg, mask;
-+
-+	/* clear cpu inform hint */
-+	regmap_write(pmu_context->pmureg, GS101_CPU_INFORM(cpuhint),
-+		     CPU_INFORM_CLEAR);
-+
-+	mask = BIT(cpu);
-+
-+	regmap_update_bits(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_ENABLE,
-+			   mask, (0 << cpu));
-+
-+	regmap_read(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_UPEND, &reg);
-+
-+	regmap_write(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_CLEAR,
-+		     reg & mask);
-+
-+	return 0;
-+}
-+
-+static int gs101_cpuhp_pmu_offline(unsigned int cpu)
-+{
-+	u32 reg, mask;
-+	unsigned int cpuhint = smp_processor_id();
-+
-+	/* set cpu inform hint */
-+	regmap_write(pmu_context->pmureg, GS101_CPU_INFORM(cpuhint),
-+		     CPU_INFORM_C2);
-+
-+	mask = BIT(cpu);
-+	regmap_update_bits(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_ENABLE,
-+			   mask, BIT(cpu));
-+
-+	regmap_read(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_UPEND, &reg);
-+	regmap_write(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_CLEAR,
-+		     reg & mask);
-+
-+	mask = (BIT(cpu+8));
-+	regmap_read(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_UPEND, &reg);
-+	regmap_write(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_CLEAR,
-+		     reg & mask);
-+	return 0;
-+}
-+
- static int exynos_pmu_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -378,6 +435,27 @@ static int exynos_pmu_probe(struct platform_device *pdev)
- 	pmu_context->pmureg = regmap;
- 	pmu_context->dev = dev;
- 
-+	if (pmu_context->pmu_data && pmu_context->pmu_data->pmu_cpuhp) {
-+
-+		pmu_context->pmuintrgen = syscon_regmap_lookup_by_phandle(dev->of_node,
-+							"google,pmu-intr-gen-syscon");
-+		if (IS_ERR(pmu_context->pmuintrgen)) {
-+			/*
-+			 * To maintain support for older DTs that didn't specify syscon phandle
-+			 * just issue a warning rather than fail to probe.
-+			 */
-+			dev_warn(&pdev->dev, "pmu-intr-gen syscon unavailable\n");
-+		} else {
-+			cpuhp_setup_state(CPUHP_BP_PREPARE_DYN,
-+					"soc/exynos-pmu:prepare",
-+					gs101_cpuhp_pmu_online, NULL);
-+
-+			cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
-+					"soc/exynos-pmu:online",
-+					NULL, gs101_cpuhp_pmu_offline);
-+		}
-+	}
-+
- 	if (pmu_context->pmu_data && pmu_context->pmu_data->pmu_init)
- 		pmu_context->pmu_data->pmu_init();
- 
-diff --git a/drivers/soc/samsung/exynos-pmu.h b/drivers/soc/samsung/exynos-pmu.h
-index 0a49a2c9a08ef5bc75670551bdbf6d0a2d3e8ae9..0938bb4fe15f439e2d8bddeec51b6077e79a7e84 100644
---- a/drivers/soc/samsung/exynos-pmu.h
-+++ b/drivers/soc/samsung/exynos-pmu.h
-@@ -22,6 +22,7 @@ struct exynos_pmu_data {
- 	const struct exynos_pmu_conf *pmu_config;
- 	const struct exynos_pmu_conf *pmu_config_extra;
- 	bool pmu_secure;
-+	bool pmu_cpuhp;
- 
- 	void (*pmu_init)(void);
- 	void (*powerdown_conf)(enum sys_powerdown);
-diff --git a/include/linux/soc/samsung/exynos-regs-pmu.h b/include/linux/soc/samsung/exynos-regs-pmu.h
-index cde299a85384a70d04dae49ee9a4e2daa88fbbf6..c82b40035e9fa8fe6a673b829a75a50a707afb1b 100644
---- a/include/linux/soc/samsung/exynos-regs-pmu.h
-+++ b/include/linux/soc/samsung/exynos-regs-pmu.h
-@@ -660,9 +660,20 @@
- #define EXYNOS5433_PAD_RETENTION_FSYSGENIO_OPTION		(0x32A8)
- 
- /* For Tensor GS101 */
-+/* PMU ALIVE */
- #define GS101_SYSIP_DAT0					(0x810)
-+#define GS101_CPU0_INFORM					(0x860)
-+#define GS101_CPU_INFORM(cpu)	\
-+			(GS101_CPU0_INFORM + (cpu*4))
- #define GS101_SYSTEM_CONFIGURATION				(0x3A00)
- #define GS101_PHY_CTRL_USB20					(0x3EB0)
- #define GS101_PHY_CTRL_USBDP					(0x3EB4)
- 
-+/* PMU INTR GEN */
-+#define GS101_GRP1_INTR_BID_UPEND				(0x0108)
-+#define GS101_GRP1_INTR_BID_CLEAR				(0x010c)
-+#define GS101_GRP2_INTR_BID_ENABLE				(0x0200)
-+#define GS101_GRP2_INTR_BID_UPEND				(0x0208)
-+#define GS101_GRP2_INTR_BID_CLEAR				(0x020c)
-+
- #endif /* __LINUX_SOC_EXYNOS_REGS_PMU_H */
+ Documentation/ABI/testing/sysfs-bus-iio            |  24 +++
+ .../devicetree/bindings/iio/adc/adi,ad7606.yaml    |  29 +++
+ drivers/iio/adc/ad7606.c                           | 216 +++++++++++++++++++++
+ drivers/iio/adc/ad7606.h                           |  13 ++
+ drivers/iio/industrialio-core.c                    |   1 +
+ include/linux/iio/types.h                          |   1 +
+ 6 files changed, 284 insertions(+)
+---
+base-commit: 2f122cfb4c5d0ee7e44ed34ccb2d148d4146c0a5
+change-id: 20250429-wip-bl-ad7606-calibration-20a396a60352
 
+Best regards,
 -- 
-2.49.0.967.g6a0df3ecc3-goog
+Angelo Dureghello <adureghello@baylibre.com>
 
 
