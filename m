@@ -1,119 +1,142 @@
-Return-Path: <devicetree+bounces-174192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A657DAAC462
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:41:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6B25AAC48A
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:50:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF9E63A6E96
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:40:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C102E3B3180
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:49:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EBC827D79F;
-	Tue,  6 May 2025 12:41:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QKSOfD4B"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C561F27FB20;
+	Tue,  6 May 2025 12:50:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8669D27A478;
-	Tue,  6 May 2025 12:41:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DEA9266B46;
+	Tue,  6 May 2025 12:50:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746535270; cv=none; b=qVDacWzz2gCOFNLSoyM4ruEDw24kAySX4pJCm7SmkrNVdeQqvxNh66KGVA5IibmOxBbnBMzR7sttGQpJNAuD/vz7lp0BCmG3SnG19HshXkzBgllMLiPBBuaZFMkMq7167L3SY6e2fxlGe04oyLc79oWlFd9N2j1SfxSFvLgBwA4=
+	t=1746535812; cv=none; b=Yq9fPED9p9Lu3tE/Bjz2D8u9WUO8tUmzvBdiawMJGqMmzkFUpiNVhVnzkonFIc4KePy9mVX+EdZVE4kUhvJv5KarQPibnke+zQ20rhDR3/3JhOkPtucweeSU4FDuKqZQbn6l4n24Ee0pQ5KVC1XbQ17vdemFIfpQIHl0Li4wCSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746535270; c=relaxed/simple;
-	bh=fKAjeUu7aJ2cAoUuZNbRM4pTCnVbVDOkQZPM/+G+pdE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Subject:Cc:From:
-	 References:In-Reply-To; b=XluRxXYjiGJmxKmFQCpM4vgtWyqK/Qo8N+KqH972pH85zthIco1zv+BUjAssbgw8O95JJKpA6UNFtatUc5vq0ETZqOBIsokq09VZBRhKhsATiR8QjaXWpvhos+tzy5HRgxAbgS188VorUmHU7JKoApUMHMr4gPiaBae7LBZdA2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QKSOfD4B; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AD73B43B04;
-	Tue,  6 May 2025 12:41:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746535264;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0sqKVcBEt6pQmMwRIYYIzEuUV/01lrMK0Zw8BI9CN/k=;
-	b=QKSOfD4BfheMezgztCkjPf4/2L/rXlXNBI6VznfgOptD6RjikLqYOqRBLdlu4UdwlUw+uA
-	YQWgQh5Mb8hGO8Qlod4DrEOyTSzUmPPk7YATMA7PvL/Yg9n/RCE01u/1vCdFqx4Yhx3VHl
-	8PLnIt645r6+EF3G2mGcERTp89/Mq0vKccIh09vNzcC12JQTNKh1fN4ZgXTUvMdqYfqS8n
-	+ILvwpmYyLZxipsa8SADLUYEPNZBqBZa6gaIRLBCik/BSZjvfxvvaeGA91PFBUIDsKoyRi
-	d/7uHyDA76WT2xZ524HjSpFIDI1uTldbpg2zGODJ03l3qv3Pu1lWtA3D61Q0Rw==
+	s=arc-20240116; t=1746535812; c=relaxed/simple;
+	bh=gZPKHu3de39xnOaBWrciTA9P8WQ95TdpqCBYRonCb9Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Je0NhOJpo94cUyzSbvo8BxoAJRRv3OR0piu7wzCvT3OxLtR4BCvUO67DbLoKtI2GdV3poFDhOTnmMuGwbE9mvRfvfF7LG6zYAtWQYl/6cVf2k9gQv95W/zeRFqFARoNM9IE/yRM774g4LgUgYkOnHJ9u/ZIt96+5v+Np7noH5rE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-523dc190f95so1976192e0c.1;
+        Tue, 06 May 2025 05:50:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746535809; x=1747140609;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dR5SLyEuVXCgzfFmFtCWiF+tB6qj8RmfZjai3JkMnSo=;
+        b=NKymZdQF+X0MyTVh5BK9ADyi8/v0DItG/bMeA8RkbTcvjmumlKrQ7cz7kS35qUlDjO
+         1mfFb4btEECb1NyLk6RBMEUDE21gXREC8tWg7lDZhH8vMiuZ/QcbMO39XWnG4mCHhSJz
+         AlL2xV7OMxCIIGgcASOA3dW7X2pI/Bakpsuw1aXMkZEYvf1PuP1F/w+VZzGcc8T9troM
+         fYU38zQu9viMqo49VTvCykIuqETfFV/aOg4bNCcPNOLzBUccGLR0kfe48kdzqvI7FbBM
+         tZXEMCkhU2meYzTbiwXUNKTENSja4FgXUh7TAJh3nJDzETXGJhvCx3fPe1MjntI5MAc+
+         n44w==
+X-Forwarded-Encrypted: i=1; AJvYcCUHQdpzX8zkfGzyqK+NtO+vmNI4Naak/ggAo2EBstHTbvooSXHtjOSeNZ9MvtvtpVEIbvLMes1picz2vJ7SkxoLH6Y=@vger.kernel.org, AJvYcCXU9wp4kvgjiR9b6eNQ4YnIerny3e9cQvUHyGhdv0MqI7xP/qIdJr3y4UTb8ZuJAl9/d/sT8Gz+guJoBxlg@vger.kernel.org, AJvYcCXW/hHWk23xnvzC1f+5H50NrE8CEK14cBSlhcEEtLRWGpOGsM/aiPUV+C9PeH6ez99WIE8xLqM466cK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxk+tqhIJLbEUriCz46HYHpm5Sc6fN1Pk7K2uJIa62nzjmrFlc+
+	hIKPsVt1OrGhlB5+7nxE0osr2PZCi60TiQJE8JJv0b1oCmPbJi0paQFjg9pN
+X-Gm-Gg: ASbGnctU83e9iMm4KlzgCRYif4/bq9N9b30Mmg/ICZKXpW/HVHpAhXJl2hltbaRysn7
+	d3p2K/ccoVbB1tTwY+DP3/Y5xUZri9T8mPigwKiMr3FknrzzBc0/pI0AK+b3QtAEIMnyM045Xlw
+	fIYQtewydTbTP1UlFpTFeDfZp+uzAypXZwMqJzle4dLQgB1/D2eGAETnM2aAO0jdihm8beHFdC5
+	kzAED05QZ3oPXqOrLX4iU5WCvNSFIe95GmMyd212F7eVb2p70x5NCOxdn8OTfJAy/iN0gUrMsJv
+	xdtzJzm+LmymjYgZssGpRIApxsTzL1BJ+8z64y9HjEDf0Ty3RsoYIWeMmP37qCCtUDXij6+s8EC
+	5Thg=
+X-Google-Smtp-Source: AGHT+IECORAsJK5HvLlJTaOdwp7I0foTM1+mbT8X2l+6rUCgGE5LQYJWmc0WnSYxP89YzvMtamuCRg==
+X-Received: by 2002:a05:6122:d99:b0:520:42d3:91b7 with SMTP id 71dfb90a1353d-52b2790458fmr1306031e0c.1.1746535809099;
+        Tue, 06 May 2025 05:50:09 -0700 (PDT)
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52ae41f3ed2sm1900053e0c.48.2025.05.06.05.50.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 May 2025 05:50:08 -0700 (PDT)
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4c32d6ddd50so1603746137.0;
+        Tue, 06 May 2025 05:50:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUMStV/iZ3wIB3mqUvbeMF6ldoouNlwdy3boGRz/3RBD+B27KGHhkjC4IsfYv7n9Ha3GY70SQn3p6Jcj5xe@vger.kernel.org, AJvYcCW+28Pfy/9b+8yGD+a5sFyaRdANVT/6lOahTgBwi0out2hbPtdYGLK7Mbx+5J/4B3W1x4lJSVXb0e8o@vger.kernel.org, AJvYcCXeegIiCirwNaE8M1VgEbFrASZMylxZTFzo4QEaWPDASiuJfDVnhTdo3R1VvfiUtQpQQIml9BSV3WTAayOAx+7YxdM=@vger.kernel.org
+X-Received: by 2002:a05:6102:330c:b0:4bb:dba6:99cd with SMTP id
+ ada2fe7eead31-4dc64fe3d40mr1513226137.8.1746535808032; Tue, 06 May 2025
+ 05:50:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 06 May 2025 14:41:03 +0200
-Message-Id: <D9P32VIGJX5V.1VV0F5MZ17QDW@bootlin.com>
-To: "Dmitry Torokhov" <dmitry.torokhov@gmail.com>, "Andy Shevchenko"
- <andriy.shevchenko@intel.com>
-Subject: Re: [PATCH v7 09/11] input: keyboard: Add support for MAX7360
- keypad
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
- <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250428-mdb-max7360-support-v7-0-4e0608d0a7ff@bootlin.com>
- <20250428-mdb-max7360-support-v7-9-4e0608d0a7ff@bootlin.com>
- <aBSii0rHox72GM5Y@smile.fi.intel.com>
- <aggrss4doko5scdlmyzdsujkifryzuzqdnpkh6sd33rg5ibqmm@aiikzv732rkq>
-In-Reply-To: <aggrss4doko5scdlmyzdsujkifryzuzqdnpkh6sd33rg5ibqmm@aiikzv732rkq>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkeegtdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvffuvefhofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeethfeiheehheegheekueeigfekffdvheegfeeivefgkeeftdehhfdthfehueejfeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegumhhithhrhidrthhorhhokhhhohhvsehgmhgrihhlrdgtohhmpdhrtghpthhtoheprghnughrihihrdhshhgvvhgth
- hgvnhhkohesihhnthgvlhdrtghomhdprhgtphhtthhopehlvggvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrghmvghlrdgsohhuhhgrrhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhg
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+MIME-Version: 1.0
+References: <20250506103152.109525-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250506103152.109525-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250506103152.109525-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 6 May 2025 14:49:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXbeZPCCxqqU2O3J5K38ygJb2zMbuNq7mD0CCjLEgtPxw@mail.gmail.com>
+X-Gm-Features: ATxdqUGlzOJWAzAM_swPtywTszF9Wt5U6k2_C5syW23x2Dms_5uimTdgJSqV7NE
+Message-ID: <CAMuHMdXbeZPCCxqqU2O3J5K38ygJb2zMbuNq7mD0CCjLEgtPxw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] clocksource/drivers/renesas-ostm: Unconditionally
+ enable reprobe support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Chris Brandt <chris.brandt@renesas.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue May 6, 2025 at 7:14 AM CEST, Dmitry Torokhov wrote:
-> On Fri, May 02, 2025 at 01:46:35PM +0300, Andy Shevchenko wrote:
->> On Mon, Apr 28, 2025 at 01:57:27PM +0200, Mathieu Dubois-Briand wrote:
->> > +	error =3D matrix_keypad_build_keymap(&keymap_data, NULL,
->> > +					   max7360_keypad->rows, max7360_keypad->cols,
->> > +					   max7360_keypad->keycodes, max7360_keypad->input);
->> > +
->> > +	return error;
->>=20
->> 	return matrix_...(...);
+On Tue, 6 May 2025 at 12:32, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >
-> Because that function has multiple failure points please
+> Previously, the OSTM driver's platform probe path was only enabled for
+> selected SoCs (e.g., RZ/G2L and RZ/V2H) due to issues on RZ/Ax (ARM32)
+> SoCs, which encountered IRQ conflicts like:
 >
-> 	if (error)
-> 		return error; // or return dev_err_probe()
+>     /soc/timer@e803b000: used for clock events
+>     genirq: Flags mismatch irq 16. 00215201 (timer@e803c000) vs. 00215201 (timer@e803c000)
+>     Failed to request irq 16 for /soc/timer@e803c000
+>     renesas_ostm e803c000.timer: probe with driver renesas_ostm failed with error -16
 >
-> 	return 0;
+> These issues have since been resolved by commit 37385c0772a4
+> ("clocksource/drivers/renesas-ostm: Avoid reprobe after successful early
+> probe"), which prevents reprobe on successfully initialized early timers.
 >
-> Thanks.
+> With this fix in place, there is no longer a need to restrict platform
+> probing based on SoC-specific configs. This change unconditionally enables
+> reprobe support for all SoCs, simplifying the logic and avoiding the need
+> to update the configuration for every new Renesas SoC with OSTM.
+>
+> RZ/A1 and RZ/A2 remain unaffected with this change.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3:
+> - Dropped config check and unconditionally enabled reprobe support for all
+>   SoCs.
+> - Dropped Reviewed-by tag from Geert
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Noted, I will change this.
+Boots fine on RSK+RZA1 and RZA2MEVB.
 
-Thanks for your review.
-Mathieu
+Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Gr{oetje,eeting}s,
 
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
