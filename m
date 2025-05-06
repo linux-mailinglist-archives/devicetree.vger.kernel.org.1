@@ -1,139 +1,101 @@
-Return-Path: <devicetree+bounces-174124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0330AAC22E
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:12:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE95EAAC237
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 13:16:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 615611C24E96
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:12:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C06851C2573F
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 11:16:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B013F2797AA;
-	Tue,  6 May 2025 11:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801A827875F;
+	Tue,  6 May 2025 11:15:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hcLcxZut"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Q9cFFKzd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D64C224250;
-	Tue,  6 May 2025 11:12:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03AD71DED51;
+	Tue,  6 May 2025 11:15:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746529957; cv=none; b=oPrxukfkb7NUI27jLQIOi+5pGEPAU00Yl+iTKyfCvcB4dZftKJ0gShJCGsiwx3UNZ0OD5lnX0FkedfrxCVud4MQlW93I7NEDkSA+hG5gGkt82cP0ztWKiYF3ykQy3ZSiAB2HR35zBx1AGHpSbflmflmrFsHqwP6mZyJZJSb5xys=
+	t=1746530159; cv=none; b=Y9DQnRpQAYJ409m8Xfx/dTAnaZpsaJrgxL8jpfU01PK6I9e0IfgXRIlRl9+0Usp0NpEI5bTacccOsQ0b8VAgolk7Z3gIRpQLeqgMYlXJ2SqjwijYYotozx62Ex5c2YxJBUZUd1qr6Gi/aqGYVny44IBo1ZBB9L9EPL5qrx32o9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746529957; c=relaxed/simple;
-	bh=NGhTUQxKwHpGF5b4VFHgUHZrCVEnRrlcNKNuUbJdrJQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FuHMXQA52JMX5wFvlqOluXN9C2jff8V4t2tU1lam6rc30YgH7UdMpLWKT1bepRjFlsg6MND7q3RGYYCTJ37iHOlkj77ph+kdnmRc+gesjI/R2IWkQmRnu6DXpCXbK5x9hiwulw+XRdFXRUuPWS0YVq68G09UzCf6O2ddNyTGZnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hcLcxZut; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49F7FC4CEE4;
-	Tue,  6 May 2025 11:12:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746529957;
-	bh=NGhTUQxKwHpGF5b4VFHgUHZrCVEnRrlcNKNuUbJdrJQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hcLcxZutwIknyTvhOe6c2cW/CvT00A0bNAuwB5TlNKv5HOjNgnBf8O8Nqo+U2Ziui
-	 2SOT740dgJuJS7aflrts26/ltGVntUmnVmKy8seY69S3vTU1QijZup3LYZD2Dcy6k/
-	 8DN+1uVSNJuqHqF8LrFE6DeN0dpGFAoBET1r/4Rq+OIaDr+Fp/MJlAk4eQpl6DeHRz
-	 bjiz8WxBqgoQyPdzO7BW/LZIL/HS4VChvX57pz4Id5q8P8wA8Uclp4M9yGLOGCS7hj
-	 bPdeSng0fGdlo43uQGpw97piPH6oV/AdH27mGIxIprvpjFTD7/T7BXryvJjez/0+eZ
-	 OyACLFXeU06bQ==
-Message-ID: <28757bb3-61b4-423d-850a-70fd5a4c2786@kernel.org>
-Date: Tue, 6 May 2025 13:12:32 +0200
+	s=arc-20240116; t=1746530159; c=relaxed/simple;
+	bh=5H1YHmqg1BfIge4wOyPuppiouxLBRjewLVC2HmMG7k8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bsjoQB1wxdQ5jhe92Pa7nUR4OSh/clm3V+yhAX8EEdcPpFSSmTXM91e9Sp3xjFWuUn7HHNetlAr8liZ+sLwfL8mLJOPhxH9/BhHzbN8UOoagC4OuttZTISFaaAb/taSQVqD9vhPcSTm3hwskeTO5SdD1MrwOkU+Xuow7+u7FdG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Q9cFFKzd; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=PjX4pdz/ggEMRHtgaXyYi2dUz9COuWm0CR9rLf0Od6Y=; b=Q9cFFKzdh5LtgPMqryJ59PeE6N
+	ZyMwlTsx+/VInOIa/Hj69E4lw8UYYnCAuMQGvtqBvKF27NBAEkvCArJ3kkKIQPFQmXGTwHZfk+Ogw
+	i95rf6acUDLueruRWXuwk+SQR4qguPXyBqsUUH8CLjYO1isDaUxxvctC3tQ1vE6WrD3Qa+4WlLfg8
+	x91vMpNPs9VLo6H8H1H5S3YTdy19z16SMW9vgNOqqWlwH9Xxy0I/pLVblkaHx9N7mTLFfjxJDrRFQ
+	8t9bzdUEERxN8ZGd4lNVK9fV5vtjVS6YW0vR7/6dzucLXtE8aXwNHRGlxr78yaoycIWlLkhTWWrih
+	473gwvJA==;
+Received: from i53875a1d.versanet.de ([83.135.90.29] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uCGGv-0003Vx-Mq; Tue, 06 May 2025 13:15:37 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Yao Zi <ziyao@disroot.org>,
+	Rob Herring <robh@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] arm64: dts: rockchip: Add pwm nodes for RK3528
+Date: Tue,  6 May 2025 13:15:28 +0200
+Message-ID: <174653011959.1371608.16023824654446843423.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250401120020.976343-1-amadeus@jmu.edu.cn>
+References: <20250401120020.976343-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: dma: nvidia,tegra20-apbdma: convert
- text based binding to json schema
-To: Charan Pedumuru <charan.pedumuru@gmail.com>, Vinod Koul
- <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250506-nvidea-dma-v3-0-3add38d49c03@gmail.com>
- <20250506-nvidea-dma-v3-2-3add38d49c03@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250506-nvidea-dma-v3-2-3add38d49c03@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 06/05/2025 13:02, Charan Pedumuru wrote:
-> +
-> +allOf:
-> +  - $ref: dma-controller.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/reset/tegra186-reset.h>
-> +    dma-controller@6000a000 {
-> +        compatible = "nvidia,tegra30-apbdma", "nvidia,tegra20-apbdma";
-> +        reg = <0x6000a000 0x1200>;
-> +        interrupts = <0 136 0x04>,
 
-You gave me little time to respond - 15 minutes - and then you sent v3.
-
-Use the header and its defines instead of hard-coding it. Wasn't this
-the entire point why you included the header in the first place in v1?
-Otherwise why was it included?
-
+On Tue, 01 Apr 2025 20:00:18 +0800, Chukun Pan wrote:
+> Add pwm nodes for RK3528. Most rk3528 boards use pwm-regulator to
+> supply to CPU, add node to enable them. The PWM core on RK3528 is
+> the same as RK3328, but the driver doesn't support interrupts yet.
 > 
+> Note that pwm regulator needs to be initialized in U-Boot:
+> ```
+> &vdd_arm {
+> 	regulator-init-microvolt = <953000>;
+> };
+> 
+> [...]
 
+Applied, thanks!
+
+[1/2] arm64: dts: rockchip: Add pwm nodes for RK3528
+      commit: 9e701ad7c3551b3ab87ed5fa439569696ddf42e4
+[2/2] arm64: dts: rockchip: Enable regulators for Radxa E20C
+      commit: c6599944af5a09029259ff8c533d22754f2b1ba4
 
 Best regards,
-Krzysztof
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
