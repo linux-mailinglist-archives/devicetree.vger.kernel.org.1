@@ -1,128 +1,134 @@
-Return-Path: <devicetree+bounces-174291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C9DCAACBEA
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 19:10:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D1CAACC0A
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 19:15:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A3C64E4C2B
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 17:09:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7793174B9D
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 17:14:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28ED32857C6;
-	Tue,  6 May 2025 17:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EB8C27BF95;
+	Tue,  6 May 2025 17:14:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VcDx68d5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rhj3Excf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAFF028151D;
-	Tue,  6 May 2025 17:09:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F6238382
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 17:14:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746551375; cv=none; b=iE5AG3t+HKmbAd9Lw3HqhGYVzSpdZO6GJ8ejIt8OXuIAoRlVgGiq0TmWppgpNy2mo5c6xVQK5g7R/luqARf1zipoCR5ptU57ByZXDOikCiD4fOiVmJTEp4zqCkdpprC8xQUcGlGwsHeqETn/LAmv846SvTiz9jxOhBU9DRQB5Ew=
+	t=1746551649; cv=none; b=WaIAbjgaTnr2+ovmwiuJl80EXYNLpxfpEcjcOHUERhmGnYEK+hxrvaGODKWFsI8tGqlBN9cgF814mOx03URYkdtnY/eNIJFOAZoYq25ckvL8CNjtOd9sTxlEiJdi/zkA9a6BGYVNafJ6/Ky9GbciZQ0ez6jkGGc5cBYir4Wtdh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746551375; c=relaxed/simple;
-	bh=k+gZ1pxmpGXcLHj2TLw4nLia4cr2GC0EuPxS3YjpOCg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EKHco1pGoZ87Ww7V5HrXRPMysq69Ef4g0JaMdIEFaynsRpizxeoaC+TSacIoZyAd2FsarL4K0IfoKLurDoxVyyNkRckIsQJhGza+XlJuZpVs6hcJ2HDbYB1JFKgBz8qJAgEP+UzhB4YLZWiDd3YSMXgLx+sZkIfZqZdNlnakJTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VcDx68d5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 58F7CC4CEF3;
-	Tue,  6 May 2025 17:09:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746551374;
-	bh=k+gZ1pxmpGXcLHj2TLw4nLia4cr2GC0EuPxS3YjpOCg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=VcDx68d5Wc2yLUlRvccpd/myN1moA5pKE7H4f4f0ib88r7j1fENwvw70NQSonwxgT
-	 CoE7MGXOHwDCwuIbSm/A2O46wmnjfivqwDUitiIa0y+7kxPeWTaIManccTNRWz2/0f
-	 VtYWfG1NK1BQEZZ+omAqXCAyT2yy7lnwcYvf7T/lCurvR/bf5djhiHe9SZ4Po6ZlFR
-	 jOObMVTZ0NSuKZH0M4+qy09FQyLibIE2v6Jz0uZG0NkmJdg0JODLYztSIpljgwOKaf
-	 0yCl9OjzkYWmiNwj/2OyGxUfVsU5jkw1l/muai+Mju8ETfY06KbzZlijB4bu+YcNKy
-	 1RbOH1vM0675g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4942DC3ABC5;
-	Tue,  6 May 2025 17:09:34 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Tue, 06 May 2025 12:09:18 -0500
-Subject: [PATCH v2 2/2] phy: tegra: xusb: Default otg mode to peripheral
+	s=arc-20240116; t=1746551649; c=relaxed/simple;
+	bh=9NGxmdgUCYoxHA11aqHB04tqd4jytYgf4Gz5SHiLcbQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E8DWNqhZVUi9s0jCiegRUdwnAxKpvkom+aDM1b5b8aG+CU90K+9mcZiP/5TXaKv1eJbUPv1FeqOl4belSj3km3IdAND2VhAkBblVvcubHzPd3kmUZIa3YVAIrdCB1HE1DthAzfZ/x79j4QbuMYYc1F0XLbWZHoks90Kr5FwWP0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rhj3Excf; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-708ac7dfc19so46911227b3.3
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 10:14:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746551647; x=1747156447; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tRedBdvWHewdGHc+8H5jFzCl3OWzRCEmeyqHhByRR8w=;
+        b=Rhj3ExcfrRnxZcZx/pEhNMKx8EN576IFrrjAnseG0fhZKoivfhhpGsdfxcOFGTfgaA
+         DjokrgW0Or7GQL04PhWaWbTARwrsyCI0xWj4LTl5biWUZhgHD2cjOXkWUsR1yVnEBCTB
+         DyjLShC350hIAKgFa0awlrPU2iyg+KIccZLNehZNucphbaRaBo0lfYaNc8ME89UndSQQ
+         5aqWz9a9Pgi9NaeqnIhgrJT3MyGb2RHQe1RkcCeY0hc+HkVpAbkJNNJ7TLL55B603YTZ
+         mRtvYBVWNnwel/KzfZEH/De76NRT5KKe/f4eH5jHJ58FZ0bHx8L/GiQgm1MEArsUMdnz
+         H80A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746551647; x=1747156447;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tRedBdvWHewdGHc+8H5jFzCl3OWzRCEmeyqHhByRR8w=;
+        b=ZOREf8EJlxLvbuZC4AZnezkKgHl0kHWf0jv0cPpUyVofWwEIiVGNndBUqKvUshU0G/
+         4nc57gzWyFkW8JuJ4/b0q27GY2O8gq83Ps/e5qLfngIvRmHBxBbNbqI+LEmHTWtsyfu/
+         qZ0hIUYjcJ08ehU+5Q52UyBofpa32RUSm3WkWo41Elpb6Ha8a3Hp8I8VhoZiMcNruGC7
+         mqUXEFQvNlZhEtDzhsBr0D9XO6mg1TFDN4LH3aYX3jMFm3RqpBhA/A1B34NpmgV3LTqx
+         0BZ2V6sabSwbc47F/hvH+FrQZNyHZTsNTr9Vb7AtdTDd+WYqDwuTxeDqTqpUVMpvcGBa
+         rORw==
+X-Forwarded-Encrypted: i=1; AJvYcCVCo1x8wiU/vZE+RY/wBnAlpPK3DKULdXpHR2PGLcSq+/Bbx3BOKXpf8FI3asOUH5Rgf/6w3/riW4Th@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYTLrGL8gBW9X9eEbHDU0aywaxJ/pSOQJELkoek/4NHIhD4Rzr
+	0LF1QSy5Wa8tstxk0wOj1OvlL548uvLD18hznT/eHCoCrTvo6ghD
+X-Gm-Gg: ASbGncs5aKt8IOo2nF4mljRtxv3aSMy9td3CJhOfrLC7QG3PimHjHIGMIvYcA1McmuN
+	LTlsjIMs25cml/DGtCdYzq2evEk4HDYqLiHDDL4//KwH/9n5u1ilpRH6Aa/4SSfi5EOGrZGM4sm
+	7ENtT+nSiQKE/Kf4QXKjezVyzA/QgJqcslrcYuC47XwzpUrOL9ceXvjrpdWzYDhKkNIabZUbiNX
+	tOQ+HC7QsUuDxRYWr2SGZOxxnc2Eic40oWNlwkp6xHgM45F8+1e/cstN3xJEZwT9BvfYfr7IidV
+	jkbTX4JYNuB724SivV0bwLj53GGruhLavC7sOg==
+X-Google-Smtp-Source: AGHT+IGbekAdUjGPTcZlU040LQUgD3tEix530NlthS43YkNGTWjhWN4j1EIfWmF30Nba4JZ16EQ9mQ==
+X-Received: by 2002:a05:690c:6482:b0:708:c18d:e6ac with SMTP id 00721157ae682-70a1da36dedmr3095007b3.18.1746551647021;
+        Tue, 06 May 2025 10:14:07 -0700 (PDT)
+Received: from [100.96.0.9] ([104.28.237.13])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-708c4154d13sm27994527b3.58.2025.05.06.10.14.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 May 2025 10:14:06 -0700 (PDT)
+Message-ID: <043117e7-9fd7-4ddc-8fd9-433c5b8c5dc6@gmail.com>
+Date: Tue, 6 May 2025 13:14:05 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/3] Add Luckfox Omni3576 Carrier Board support for
+ RK3576
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, heiko@sntech.de
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, robh@kernel.org, conor+dt@kernel.org,
+ jonas@kwiboo.se, frattaroli.nicolas@gmail.com, andrew@lunn.ch
+References: <20250506114115.613616-1-inindev@gmail.com>
+ <bb857b7d-97f8-4505-9d2a-1ba9d6319710@linaro.org>
+Content-Language: en-US
+From: John Clark <inindev@gmail.com>
+In-Reply-To: <bb857b7d-97f8-4505-9d2a-1ba9d6319710@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250506-xusb-peripheral-v2-2-bfbe00671389@gmail.com>
-References: <20250506-xusb-peripheral-v2-0-bfbe00671389@gmail.com>
-In-Reply-To: <20250506-xusb-peripheral-v2-0-bfbe00671389@gmail.com>
-To: JC Kuo <jckuo@nvidia.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-phy@lists.infradead.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746551373; l=1618;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=WY090858pJtzoKww7YaC7Z9JTjET1bec4L1964gg6J4=;
- b=NaDOg+nVQv05p86Ta/79J6j2EU3M3vcxowUBXmQydstuVgGIULGpaJycP9oGlAbZopQhyWfpF
- OWzO8bM+nO6Cp/bxIk33uX0ce/QeUjBV6iUHqoiGfgtc3beuBTn+vi1
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
 
-From: Aaron Kling <webgeek1234@gmail.com>
+On 5/6/25 1:05 PM, Krzysztof Kozlowski wrote:
+> On 06/05/2025 13:41, John Clark wrote:
+>> This series adds device tree support for the Luckfox Omni3576
+>> Carrier Board with the Core3576 Module, powered by the Rockchip
+>> RK3576 SoC (four Cortex-A72 cores, four Cortex-A53 cores, Mali-G52
+>> MC3 GPU). It enables essential functionality for booting Linux and
+>> basic connectivity, with plans for future support of peripherals
+>> like WiFi, MIPI-DSI, HDMI, and Ethernet.
+>>
+>> The series was first posted as v1 at:
+>> https://lore.kernel.org/linux-rockchip/20250502205533.51744-1-inindev@gmail.com
+>> v2 at:
+>> https://lore.kernel.org/linux-rockchip/20250504102447.153551-1-inindev@gmail.com
+> You got extensive guideline what to do in my reply to avoid exactly the
+> mistake you did ... yet you ignored the guideline.
 
-Currently, if usb-role-switch is set and role-switch-default-mode is
-not, a xusb port will be inoperable until that port is hotplugged,
-because the driver defaults to role none. Instead of requiring all
-devices to set the default mode, assume that the port is primarily
-intended for use in device mode.
+I did not ignore it, I took this to mean:
 
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- drivers/phy/tegra/xusb.c | 11 ++++-------
- 1 file changed, 4 insertions(+), 7 deletions(-)
+ > Do not attach (thread) your patchsets to some other threads (unrelated
+ > or older versions). This buries them deep in the mailbox and might
+ > interfere with applying entire sets."
 
-diff --git a/drivers/phy/tegra/xusb.c b/drivers/phy/tegra/xusb.c
-index 79d4814d758d5e1f0e8200d61e131606adbb0e2d..22338f3f24a0794c22544a0e16e0fc706c4fb6d7 100644
---- a/drivers/phy/tegra/xusb.c
-+++ b/drivers/phy/tegra/xusb.c
-@@ -726,18 +726,15 @@ static int tegra_xusb_setup_usb_role_switch(struct tegra_xusb_port *port)
- 
- static void tegra_xusb_parse_usb_role_default_mode(struct tegra_xusb_port *port)
- {
--	enum usb_role role = USB_ROLE_NONE;
-+	/* Most switchable usb ports are normally used in device mode */
-+	enum usb_role role = USB_ROLE_DEVICE;
- 	enum usb_dr_mode mode = usb_get_role_switch_default_mode(&port->dev);
- 
- 	if (mode == USB_DR_MODE_HOST)
- 		role = USB_ROLE_HOST;
--	else if (mode == USB_DR_MODE_PERIPHERAL)
--		role = USB_ROLE_DEVICE;
- 
--	if (role != USB_ROLE_NONE) {
--		usb_role_switch_set_role(port->usb_role_sw, role);
--		dev_dbg(&port->dev, "usb role default mode is %s", modes[mode]);
--	}
-+	usb_role_switch_set_role(port->usb_role_sw, role);
-+	dev_dbg(&port->dev, "usb role default mode is %s", modes[mode]);
- }
- 
- static int tegra_xusb_usb2_port_parse_dt(struct tegra_xusb_usb2_port *usb2)
+that I should not use the "--in-reply-to" on my git submission which 
+caused the emails to be nested. I see now that you were referring to 
+adding the urls to my submission.
+I realize this is probably painful to go through over and over again 
+with new contributors as they try to carefully follow all of the linux 
+submission guidelines and I apologize for my ignorance.
 
--- 
-2.48.1
-
-
+> 
+> I don't understand.
+> 
+> Are you going to ignore also Conor's tags?
+> 
+> Best regards,
+> Krzysztof
 
