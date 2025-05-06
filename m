@@ -1,83 +1,96 @@
-Return-Path: <devicetree+bounces-173927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58A8AAABA84
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:21:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0F0AABBB5
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:47:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B63A63A290D
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:12:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 229905A5188
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 07:22:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 531B21A255C;
-	Tue,  6 May 2025 04:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70400289E10;
+	Tue,  6 May 2025 05:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GXISCohN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NQHIw5NZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4BD4B1E71;
-	Tue,  6 May 2025 04:47:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F682139D2;
+	Tue,  6 May 2025 05:11:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746506880; cv=none; b=WonhmzFOQXmTce7jfoyZ50/6I1+44+NNP/f4kQUscEy0KAvJxaZdpYp8YtvsgOIZkoNGiD4xWiLIM2UXkLjN022UykdjGCfqwv/4hJbe1NIvnxCZQrow2bZKo/F6bgsoqBo529PM0yf+XZcdSmzo1EFNWGejsMEG0ooMZIkFxm4=
+	t=1746508270; cv=none; b=tL1cfXN7rQntD8ofA9RlcQtlLx2kwrlc/oduZvtBEwEV9QPMxMz29uZ0mAvkbuph3ItX3/AO6m+CI4su2gYQZt/Uv8KhamDVVF+lczNv2tKWvROjgIM/4WjKLhKQbGJQhJivc5JIuZqnvzUD6wmDkhIqMXVrkCS344RyjJVD6mk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746506880; c=relaxed/simple;
-	bh=ky76C3dJ2zWIGTBoeltBiKqkv5AWib+EuPhOpuaifAg=;
+	s=arc-20240116; t=1746508270; c=relaxed/simple;
+	bh=CI4i1B9euLP8x//+FHqQVWisGZ46riW7BOCrO4SVRX4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qdvOw+RjD/t0fB+iH7nLlv+NP6Kl7R6qp3cROLwYc2BdJ0t3GXqP8z/McN01nz5YRhRC6ENqKImqZGTf0E+VtTL57GdWaGIFK30O2bxwjCB+yUVSC81yvSVkAb1fUbW+NtBEXAX7UvfMfiTUn7n0LEDiONVuTGF6+tObJBKd8QU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GXISCohN; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746506879; x=1778042879;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ky76C3dJ2zWIGTBoeltBiKqkv5AWib+EuPhOpuaifAg=;
-  b=GXISCohNw8wfwgdN1CO7SxVRsQqeanF43OQ4hAicsTS/sx54HD9adBkE
-   ely6LhRF0qc98R/CRHcxkOMsP1ysn2oK7Pd31UY6Sfaiy/6zbPlxl6yX/
-   cnhhGtFSO6VSJTXLQPQLSby2VmpX9sjlEwDCxHg4rHjLjsQpOH5dp5Ydq
-   BT376bIiy1J4m7O/3SQMufT0Bq7nP8KdTqp9+n7aelfWviSgdIkWxH0E2
-   CNyGnf1uuOIKy+wAN4ACF765V76X/XfTBLBjRCv5VgmBSmkg+f1pQwxgq
-   hF3JnHf+jfuiQC/c6xkaytpp3Wyj7ggU36FiQCKttP7HM8Bbi+vXV6URx
-   g==;
-X-CSE-ConnectionGUID: l/fP/ptUQ7mhL/qE5DJuKw==
-X-CSE-MsgGUID: LjWwOdlKQuai4nGvNFW3+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="48284312"
-X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; 
-   d="scan'208";a="48284312"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2025 21:47:55 -0700
-X-CSE-ConnectionGUID: jtpdzpW1R4Smrt15chOdlQ==
-X-CSE-MsgGUID: wD20LN+kTcuq2mvvjvSVzA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; 
-   d="scan'208";a="135381968"
-Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2025 21:47:36 -0700
-Date: Mon, 5 May 2025 21:52:35 -0700
-From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org,
-	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
-	Ricardo Neri <ricardo.neri@intel.com>
-Subject: Re: [PATCH v3 04/13] dt-bindings: x86: Add CPU bindings for x86
-Message-ID: <20250506045235.GB25533@ranerica-svr.sc.intel.com>
-References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
- <20250503191515.24041-5-ricardo.neri-calderon@linux.intel.com>
- <20250504-happy-spoonbill-of-radiance-3b9fec@kuoka>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sSBT+6BM4mfqJoURJ7OXeuHO1S/qaW11hdtL12wRxbxISQ0zITh7nAuKcmGgBAldriejxgQVL5PwUIq1sYWx4vW/GqpjcqIfr28V7o1ghp7O6D5c+cVq3ezBFEJFeXKtEjKh0ENWIlAufXaYPeav+MG6Kk9EPZ/3WJDhpHqHoo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NQHIw5NZ; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-30a93117e1bso113758a91.1;
+        Mon, 05 May 2025 22:11:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746508268; x=1747113068; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=aLeas8Li48TySMUHWqANlPkw8T4tUY9B0p2mUn+Xfr0=;
+        b=NQHIw5NZ5GNsOrms1U430wvRKmyknBLF8C7qydH8AlMMUa3xd+YTlbA5BArLs3yMOA
+         rEgpXnzXd+/v2RoehM6Xxgp57XM0iuvUv6mKUVQ18PoDH8wEdL3TdalphX5TXk6KGlQw
+         D69ZogQ1kcGSdX1uTrhNDJzNdFN+gtG2ZrIHx4U7EbZugl7K2bTP6YN/maoYDLvU8cc8
+         y+qLN3k5G+ej86HOeJH3DRZ7RxItzDUpuFQPXrphcE1s/SMfmsG1oQhE1CGb241RQLQc
+         BC16u+71mOHaG1Zf9EAXPqNHNQETpiM0riYbvm1sA97GfrlAVi/mdZZnvZVNbBon2+Eb
+         Py0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746508268; x=1747113068;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aLeas8Li48TySMUHWqANlPkw8T4tUY9B0p2mUn+Xfr0=;
+        b=BtAftN3Njv05NNR0zQMOZ0BSZ6sdwTFqHt+V+TEeGcL2Lj/idWBNpxUiMwB3pYxMXM
+         fAEabEN4ldrYR9cC/KKzSMaAqsIK2vI/Ffb0oV5opYgesPFk2rL7lwMJxwEYIDJ/zJoz
+         R5zqy45JauQJKJrCuzN2VijdPDfEwVaAqCaIY73EalJNOCDxr04MOAU3iPqhMaaG2IZH
+         GJtUGtes3WZrnRATFu0Ym9M0GADuHFQdtOd7U/2TprPORZSMs3QqoM65fyJ+STVyAykG
+         ahQlCb2XnjVUOw6p2HhVfninRD7/Me7FL+UmDBLiQns6Y857FZk8JZrh7p/c/LEyrnX6
+         nHLw==
+X-Forwarded-Encrypted: i=1; AJvYcCU84lq5IuyLsXnfVZCwFrUSneyvVx2Lnmsff1WI+CafQNrYrz0LkkBomolxdjBiICCCEqBYW2nJ6VVB@vger.kernel.org, AJvYcCUL7UFA0G3wu8PJ3S6AVNCd8GAeSbKa6qcH2Nbw71WNFSxAiBadrluLvEHJe+DgU7m+koUwnMePTGRMrB4=@vger.kernel.org, AJvYcCVN7womjCSAKUgQ8AkdjWXJPgB6CtTbVJ81E0m7mh3gEzU0KbUFey2gQOsxlKRtukid3yQf835aTg1qXWYp@vger.kernel.org, AJvYcCWC2Y8Ps5g2QmCz5csKEJ8i+A0D/orwV+b+JRT47Y86a2X1HyyicPjEA3kx5d4EWp/172uMC6scd8Yupw==@vger.kernel.org, AJvYcCWj7/XQ/NqOk1lSIOqXlwzNUy3y1GXiUnXtb1OqfMjXgHfj97qNASMYWiIORf6MxS6fyxt9dArJxwcr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjNDHHTBEQQFdeTsHfqMz0bURrMipT+lnGFaGzrOl46VaMHOzz
+	xWXjXLaLtNtcWGc3dFN9u0qXR5nlfZCYgQdnh8hEJTAUadfa2mrL
+X-Gm-Gg: ASbGncuNi4TOD4W9tIwJ36h8yBC/Hd5wmr7slu11Avz1ybdbsJJBZaRci3b71/p8U5t
+	voyz0Co3p3DRnBHlKIqxwn/zNzc8599oxd3T0qmIhCth7aTZDJU6QdkoJIGAJxW+LT3vCA5JQKl
+	CJyYWwOdlEkWpPzJs4+OI47IMDCvlQLNmKdWZ2Bhh2UeRdgZqkRh3Tvlyx8fECrmp4qCcYdKXXS
+	+O6urKteB3ZXgmC4RJZku6qSCzXIpsI1QdJC3ko07MUbPqHwDYiTHEw0LW6owQcKQdorbOUIEGK
+	om4QTdNbTgV4xaWg1u+JbVZNV5FxclgKoSndFFe5Cw==
+X-Google-Smtp-Source: AGHT+IHM3lDvnqLdoesUo+uJi4M/M2ZwTTwbmZ4orgbHaFGwITXJQOKxmg8xNyy9NcvHWdLssbXY7A==
+X-Received: by 2002:a17:90b:3c44:b0:305:5f33:980f with SMTP id 98e67ed59e1d1-30a7f7053d8mr2142527a91.27.1746508267597;
+        Mon, 05 May 2025 22:11:07 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:17ab:9e47:29ba:57e6])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30a347221a9sm12802505a91.1.2025.05.05.22.11.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 May 2025 22:11:07 -0700 (PDT)
+Date: Mon, 5 May 2025 22:11:04 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>, 
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	=?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v7 09/11] input: keyboard: Add support for MAX7360 keypad
+Message-ID: <7nuovfjsp7dqklz7khk4biabo22d7qpqqajpcte656vinoft6c@ot6epnbgzgp4>
+References: <20250428-mdb-max7360-support-v7-0-4e0608d0a7ff@bootlin.com>
+ <20250428-mdb-max7360-support-v7-9-4e0608d0a7ff@bootlin.com>
+ <aBSii0rHox72GM5Y@smile.fi.intel.com>
+ <D9LPB49CQJDW.3VMFI0TFGV7K2@bootlin.com>
+ <aBTJcQp-wBLJTh-6@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,186 +99,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250504-happy-spoonbill-of-radiance-3b9fec@kuoka>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <aBTJcQp-wBLJTh-6@smile.fi.intel.com>
 
-On Sun, May 04, 2025 at 06:45:59PM +0200, Krzysztof Kozlowski wrote:
-> On Sat, May 03, 2025 at 12:15:06PM GMT, Ricardo Neri wrote:
-> > Add bindings for CPUs in x86 architecture. Start by defining the `reg` and
+On Fri, May 02, 2025 at 04:32:33PM +0300, Andy Shevchenko wrote:
+> On Fri, May 02, 2025 at 03:15:34PM +0200, Mathieu Dubois-Briand wrote:
+> > On Fri May 2, 2025 at 12:46 PM CEST, Andy Shevchenko wrote:
+> > > On Mon, Apr 28, 2025 at 01:57:27PM +0200, Mathieu Dubois-Briand wrote:
 > 
-> What for?
-
-Thank you for your quick feedback, Krzysztof!
-
-Do you mean for what reason I want to start bindings for x86 CPUs? Or only
-the `reg` property? If the former, it is to add an enable-method property to
-x86 CPUs. If the latter, is to show the relationship between APIC and `reg`.
-
+> ...
 > 
-> > `enable-method` properties and their relationship to x86 APIC ID and the
-> > available mechanisms to boot secondary CPUs.
+> > >> +static irqreturn_t max7360_keypad_irq(int irq, void *data)
+> > >> +{
+> > >> +	struct max7360_keypad *max7360_keypad = data;
+> > >> +	struct device *dev = max7360_keypad->input->dev.parent;
+> > >> +	unsigned int val;
+> > >> +	unsigned int row, col;
+> > >> +	unsigned int release;
+> > >> +	unsigned int code;
+> > >> +	int error;
+> > >> +
+> > >> +	do {
+> > >> +		error = regmap_read(max7360_keypad->regmap, MAX7360_REG_KEYFIFO, &val);
+> > >> +		if (error) {
+> > >> +			dev_err(dev, "Failed to read max7360 FIFO");
+> > >> +			return IRQ_NONE;
+> > >> +		}
+> > >> +
+> > >> +		/* FIFO overflow: ignore it and get next event. */
+> > >> +		if (val == MAX7360_FIFO_OVERFLOW)
+> > >> +			dev_warn(dev, "max7360 FIFO overflow");
+> > >
+> > > If many events are missing this will flood the logs, perhaps _ratelimited() ?
+> > >
+> > >> +	} while (val == MAX7360_FIFO_OVERFLOW);
+> > >
+> > > regmap_read_poll_timeout() ?
 > > 
-> > Start defining bindings for Intel processors. Bindings for other vendors
-> > can be added later as needed.
+> > OK, I can try something like:
 > > 
-> > Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> > ---
-> 
-> Not really tested so only limited review follows.
-
-Sorry, I ran make dt_binding_check but only on this schema. I missed the
-reported error.
-
-> 
-> >  .../devicetree/bindings/x86/cpus.yaml         | 80 +++++++++++++++++++
-> >  1 file changed, 80 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/x86/cpus.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/x86/cpus.yaml b/Documentation/devicetree/bindings/x86/cpus.yaml
-> > new file mode 100644
-> > index 000000000000..108b3ad64aea
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/x86/cpus.yaml
-> > @@ -0,0 +1,80 @@
-> > +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/x86/cpus.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +       error = regmap_read(max7360_keypad->regmap, MAX7360_REG_KEYFIFO, &val);
 > > +
-> > +title: x86 CPUs
+> > +       /* FIFO overflow: ignore it and get next event. */
+> > +       if (!error && (val == MAX7360_FIFO_OVERFLOW)) {
+> > +               dev_warn(dev, "max7360 FIFO overflow");
+> > +               error = regmap_read_poll_timeout(max7360_keypad->regmap, MAX7360_REG_KEYFIFO,
+> > +                                                val, val != MAX7360_FIFO_OVERFLOW, 0, 0);
+> > +       }
 > > +
-> > +maintainers:
-> > +  - Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> > +
-> > +description: |
-> > +  Description of x86 CPUs in a system through the "cpus" node.
-> > +
-> > +  Detailed information about the CPU architecture can be found in the Intel
-> > +  Software Developer's Manual:
-> > +    https://intel.com/sdm
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - intel,x86
+> > +       if (error) {
+> > +               dev_err(dev, "Failed to read max7360 FIFO");
+> > +               return IRQ_NONE;
+> > +       }
 > 
-> That's architecture, not a CPU. CPUs are like 80286, 80386, so that's
-> not even specific instruction set. I don't get what you need it for.
+> Maybe something like this (see also below about timeouts)?
+> 
+>        error = regmap_read(max7360_keypad->regmap, MAX7360_REG_KEYFIFO, &val);
+>        if (error) {
+>                dev_err(dev, "Failed to read MAX7360 FIFO");
+>                return IRQ_NONE;
+>        }
+> 
+>        /* FIFO overflow: ignore it and get next event. */
+>        if (val == MAX7360_FIFO_OVERFLOW) {
+>                dev_warn(dev, "max7360 FIFO overflow");
+>                error = regmap_read_poll_timeout(max7360_keypad->regmap, MAX7360_REG_KEYFIFO,
+>                                                 val, val != MAX7360_FIFO_OVERFLOW, 0, 1000);
+>                if (error) {
+>                        dev_err(dev, "Failed to empty MAX7360 FIFO");
+>                        return IRQ_NONE;
+>                }
+>        }
+> 
+> > Sleep_us is 0 as we are in the IRQ handler,
+> 
+> Isn't it under the mutex, so we are fine to have small delays? But in general
+> it seems not okay to sleep here. In any case 0 for sleep_us gives an atomic read.
 
-Am I to understand the the `compatible` property is not needed if the
-bindings apply to any x86 CPU?
+This is in a threaded interrupt, you can sleep all you want.
 
-> 
-> > +
-> > +  reg:
-> 
-> Missing constraints.
+Thanks.
 
-I could add minItems. For maxItems, there is no limit to the number of
-threads.
-
-> 
-> > +    description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
-
-OK.
-
-> 
-> > +      Local APIC ID of the CPU. If the CPU has more than one execution thread,
-> > +      then the property is an array with one element per thread.
-> > +
-> > +  enable-method:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: |
-> > +      The method used to wake up secondary CPUs. This property is not needed if
-> > +      the secondary processors are booted using INIT assert, de-assert followed
-> > +      by Start-Up IPI messages as described in the Volume 3, Section 11.4 of
-> > +      Intel Software Developer's Manual.
-> > +
-> > +      It is also optional for the bootstrap CPU.
-> > +
-> > +    oneOf:
-> 
-> I see only one entry, so didn't you want an enum?
-
-Indeed, enum would be more appropriate.
-
-> 
-> > +      - items:
-> 
-> Not a list
-> 
-> > +          - const: intel,wakeup-mailbox
-> 
-> So every vendor is supposed to come with different name for the same
-> feature? Or is wakeup-mailnox really intel specific, but then specific
-> to which processors?
-
-It would not be necessary for every vendor to provide a different name for
-the same feature. I saw, however that the Devicetree specification requires
-a [vendor],[method] stringlist.
-
-Also, platform firmware for any processor could implement the wakeup
-mailbox.
-
-> 
-> 
-> > +            description: |
-> > +              CPUs are woken up using the mailbox mechanism. The platform
-> > +              firmware boots the secondary CPUs and puts them in a state
-> > +              to check the mailbox for a wakeup command from the operating
-> > +              system.
-> > +
-> > +required:
-> > +  - reg
-> > +  - compatible
-> > +
-> > +unevaluatedProperties: false
-> 
-> Missing ref in top-level or this is supposed to be additionalProps. See
-> example-schema.
-
-I will check.
-
-> 
-> > +
-> > +examples:
-> > +  - |
-> > +    /*
-> > +     * A system with two CPUs. cpu@0 is the bootstrap CPU and its status is
-> > +     * "okay". It does not have the enable-method property. cpu@1 is a
-> > +     * secondary CPU. Its status is "disabled" and defines the enable-method
-> > +     * property.
-> > +     */
-> > +
-> > +    cpus {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      cpu@0 {
-> > +        reg = <0x0 0x1>;
-> > +        compatible = "intel,x86";
-> > +        status = "okay";
-> 
-> Drop
-
-I will drop status = "okay"
-
-> 
-> > +      };
-> > +
-> > +      cpu@1 {
-> > +        reg = <0x0 0x1>;
-> > +        compatible = "intel,x86";
-> > +        status = "disabled";
-> 
-> Why?
-
-Because this is a secondary CPU that the operating system will enable using
-the method specified in the `enable-method` property.
-
-Thanks and BR,
-Ricardo
+-- 
+Dmitry
 
