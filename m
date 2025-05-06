@@ -1,144 +1,117 @@
-Return-Path: <devicetree+bounces-174010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46093AABDB7
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:49:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 012D5AABDD6
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:54:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 634C01C23603
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 08:50:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A4623AE87D
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 08:53:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6FE92609E1;
-	Tue,  6 May 2025 08:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2064263C9E;
+	Tue,  6 May 2025 08:53:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UWg5RX3+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JtRIponA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC610216399
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 08:49:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81ACC25E822;
+	Tue,  6 May 2025 08:53:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746521379; cv=none; b=rvftuEdn9ZOt0H7buQyiUxXMKnqZ9cLcF5FSCfg8MZyY6j5gMs00PjF4Pf0hHMslwTO2v0KxmDkVvOFJUt6zqlQCTq4sIzeagQvaTNf4QyBpvYAO1vj/yD79EQik4HAurCf/XBE5OIVVa6gujJvbmrJDDpNSAbTQx+vcMIfQgTA=
+	t=1746521635; cv=none; b=kftPzTBuKYdCkf9dV0HQivdCSZq3GIBTlaF/AcynaKKeWe3PaVUz4tRdfpz5N1MNhTp5HDEogwWjoeNOcKEH8fAERv+5NuxHRMCab4p/wzdnCr/t80jf/VUmiZLpwwxZStPBCyDn68j4iNJWhVv/Q4JwnMILykJ/74e/PEhO9Sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746521379; c=relaxed/simple;
-	bh=lapmL4XXkzLQwfKJEVQM/oIUTraZNom4wMSXP3hH9uc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y8mczPPP0JRTQz5Os4ot/tnce58FvTCEbtJFbZ5MQ+cRMEY1N/Z597H6dv+plGIhsgu+q4rW+8U0TG2l9HvRvVRuyGE20CPgFxTXrY7fMwacJXwM1cMdL92DMs4uOaRJgdtbRT/XD+n8qkX/cw31I2SMxxI0O+DD+r3P4Gm+Lak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UWg5RX3+; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-39ac8e7688aso3815765f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 01:49:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746521376; x=1747126176; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RzGxTtDXLvBAN5ePbGP8uftxdGujZZRHKT0sgRE5gW0=;
-        b=UWg5RX3+/ofjzPe82pF+tInZ9rE7olINfnxUmIlR5V/6RsWFFy/xKYyscCBcrvIxY/
-         vClYJhrQLXELlU9c5I4zgDT14zUQA/TO4ucA1UQfM/H27BRdf1dE3K1+DVc0EbDN6dHg
-         whgDNRTufVGn2eAEwUkD5H6L+S95MdzJuNi4DYP+5Y9PHZJshdadoQSkkT8acc415KQh
-         A4qdc6mXlj4zodltO8fDMRUb9aBS9NuYpiy/tqw+pFOjRgJtNIz9585jErPpOnp6ct/o
-         +nSuaAIA3YHYjP4uyl5qG5V+0aHua40RuptfTgU++ju0DrhZ4r53Niloa+ZaU70dY1+l
-         qGSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746521376; x=1747126176;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RzGxTtDXLvBAN5ePbGP8uftxdGujZZRHKT0sgRE5gW0=;
-        b=U8xZ2Dy9A7Hje/EUabngJXHLJVKFeW97PrZnXYoUGb55fhYBd0GcAhokhRoP+rb4Jh
-         rQdCHk0Db4Fajkw8E01ERa+x7X5Za0gBpq1rNMC/vKDs7Yj5xx/YJ/TO30PghWGihs3P
-         /jLI84yiy1M7WczSj1QA8oDvxew6XY9Kti8ZjUx8CEFBhv2ImjTjgnfeWVMW8Vaph8F1
-         2ZoTWeWFfrpwPsOcq+3uYF9weBD2tomXxKNmZDxfRCENasRBBglWjRTtzCiz4fkL3Bn5
-         2ZZSrs0GnAjOoXxfIFqkXsWyBcKrsa1Hh9CwEmbJIq53RozJuhN2DmfcHvSh1l4k9lVS
-         tGCw==
-X-Forwarded-Encrypted: i=1; AJvYcCV7Q/YJgUTVCWlAsFrS1PYEvlNzN4qZB4YyFXZvBJMNmeVjpPiTNDr8SmZ//uJgSMSWzx17ucHaGk+q@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9vlZhaGMF4d4Q2Raz4xxGwSlP5ZTuvmgMopDWUrIQsTq5f4OE
-	hbmW653GX6uuaoqB/eSOJD2WbXbt3MD+x5bld0Coj8P8fIGUA+kxDtJVHkCTstY=
-X-Gm-Gg: ASbGnctUh8wV/Ze2FcSXII5SBglysQqTNG65xJCVzPqgNuae1MH1EU3e9QYZMPMMu4t
-	tT5/kgTdMuG4eawdtHWUTHSwPkXhM2Sk+/cwHo6z7wI05k2rYovthhFxalnL9oLLSKy6mVJPvd+
-	gGbW/U8g94l1fFN5Qwp9qK2aIJOutxT5R0I7xRL8GNTetGxlnSscKPEJSzbCKwWGUM8d7xAOU54
-	WNNdoqigHSvplNQMpZAhgvzcvqZSERAvpnvFxWhiK94SZE25M+v2qvOVN6OZqCKnd1Wtgu9ZGix
-	1qMIqTlAF4Z6/tDxO9nlbRB3PygVEl8mJ47ihXluZjHziI5B2HOisq8/dsatWT/NVdOXJL50ceF
-	4YKGp6w==
-X-Google-Smtp-Source: AGHT+IHarR+7EjkTMAiam6eveCDdf5OEEIkCQCGW6Awa5AYCZ7FsFMiuBPIymOFLGLSvzGdXLPnzMQ==
-X-Received: by 2002:a05:6000:40c9:b0:3a0:8ac0:bbbb with SMTP id ffacd0b85a97d-3a0ac1ff350mr1718113f8f.46.1746521376087;
-        Tue, 06 May 2025 01:49:36 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae0d15sm13183115f8f.13.2025.05.06.01.49.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 May 2025 01:49:35 -0700 (PDT)
-Message-ID: <3bd7e192-a8cc-4f64-b11e-d07499ba4696@linaro.org>
-Date: Tue, 6 May 2025 09:49:35 +0100
+	s=arc-20240116; t=1746521635; c=relaxed/simple;
+	bh=jn9lLGkSG4V3RG7ST7Gwm3kBhuCTAbYEo25iK3E0KCM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=p37z2u9rdAYTaHGIkHWdkjsWN+EXNkVqd9r79xnjrXTi/QUwxM7P5hRcbikS3CDHQfNe+KOW/+AOUk8LyDl4Batx1PW6ijIQTNso8SImdk7UlfQETCT3FJlJIlv+y69ntzbjhTJ9uTaJqfH6hPz3/KGCai68jFHSVEWTY/+Ri6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JtRIponA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E5EE9C4CEF4;
+	Tue,  6 May 2025 08:53:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746521635;
+	bh=jn9lLGkSG4V3RG7ST7Gwm3kBhuCTAbYEo25iK3E0KCM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=JtRIponAkT8pY5/4dDK4M7B8K+8C0XF8DI/3VDDpRoKu00Msz2XlIy3nhUMX4AAnN
+	 hAqHjRUOf+s+CXgy5sAsPy15glLwpIyf6cJNU1AAE42KAvmUAckhwofbcj6bbGPem2
+	 qTNSb1EeqzKnmnAYjz/JaFojdaFPzwJT2dgBuayv+S8zID/EP749mP9ZBPPFU/6kSf
+	 hGNHxq+ORWQaQbGEgS8Kmrxld8BgOpOW6LuS9NdNNcNFBQreiq+ilDt9jhUcor+JLk
+	 InC1j8yd2u/ObBYnFodqozjFDz7oma/2C5r+mLUZESP3UAacUOKBRAYkVub/ReYrzw
+	 HT8ZTFjDzbI1g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D3642C3ABAC;
+	Tue,  6 May 2025 08:53:54 +0000 (UTC)
+From: =?utf-8?q?T=C3=B3th_J=C3=A1nos_via_B4_Relay?= <devnull+gomba007.gmail.com@kernel.org>
+Subject: [PATCH v3 0/2] Add support for the DFRobot SEN0322 oxygen sensor
+Date: Tue, 06 May 2025 10:53:43 +0200
+Message-Id: <20250506-iio-chemical-sen0322-v3-0-d6aa4acd00e0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dt-bindings: media: qcom,x1e80100-camss: Remove
- clock-lanes port property
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250502204142.2064496-1-vladimir.zapolskiy@linaro.org>
- <20250502204142.2064496-4-vladimir.zapolskiy@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250502204142.2064496-4-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIABfOGWgC/4XNwQ6CMAyA4VchOzszugHDk+9hPLDZQRNgZjOLh
+ vDuDi7GgzE9/U36dWERA2Fkp2JhARNF8nMOeSiYHbq5R0633AwEVEKB5kSe2wEnst3II85CAnD
+ rtDPGYFOpmuXTe0BHz529XHMPFB8+vPYvqdy2f8BUcsFbU2pZS+dQwbmfOhqP1k9sAxN8kDw/E
+ MgIlI1qZKul+UbWdX0Dd78Xtf0AAAA=
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?T=C3=B3th_J=C3=A1nos?= <gomba007@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746521633; l=1219;
+ i=gomba007@gmail.com; s=20230706; h=from:subject:message-id;
+ bh=jn9lLGkSG4V3RG7ST7Gwm3kBhuCTAbYEo25iK3E0KCM=;
+ b=zzKWNLKdpwAFUG0SCqPlYIR+2sJPsAXk73dOfjot8Z+i8Z6zUF4Gnmj7zrEZ/VdWRqxc+ki5n
+ wfvW5DQqeRNCXqxK/oIKVvR34nwvfX4FS0GRZUbv23zPman353F562M
+X-Developer-Key: i=gomba007@gmail.com; a=ed25519;
+ pk=iY9MjPCbud82ULS2PQJIq3QwjKyP/Sg730I6T2M8Y5U=
+X-Endpoint-Received: by B4 Relay for gomba007@gmail.com/20230706 with
+ auth_id=60
+X-Original-From: =?utf-8?q?T=C3=B3th_J=C3=A1nos?= <gomba007@gmail.com>
+Reply-To: gomba007@gmail.com
 
-On 02/05/2025 21:41, Vladimir Zapolskiy wrote:
-> Since clock lanes under CSIPHY are hard-wired and non-selectable,
-> it makes sense to remove this port property.
-> 
-> The change follows the same logic as found in commit 336136e197e2
-> ("media: dt-bindings: media: camss: Remove clock-lane property").
-> 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->   .../devicetree/bindings/media/qcom,x1e80100-camss.yaml       | 5 -----
->   1 file changed, 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> index 2e7455bd75ec..c101e42f22ac 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,x1e80100-camss.yaml
-> @@ -146,9 +146,6 @@ properties:
->               unevaluatedProperties: false
->   
->               properties:
-> -              clock-lanes:
-> -                maxItems: 1
-> -
->                 data-lanes:
->                   minItems: 1
->                   maxItems: 4
-> @@ -159,7 +156,6 @@ properties:
->                     - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
->   
->               required:
-> -              - clock-lanes
->                 - data-lanes
->   
->   required:
-> @@ -362,7 +358,6 @@ examples:
->                   port@0 {
->                       reg = <0>;
->                       csiphy_ep0: endpoint {
-> -                        clock-lanes = <7>;
->                           data-lanes = <0 1>;
->                           remote-endpoint = <&sensor_ep>;
->                       };
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+This patchset adds a driver and the documentation for the
+DFRobot SEN0322 oxygen sensor.
+
+Signed-off-by: Tóth János <gomba007@gmail.com>
+---
+Changes in v3:
+- Refactor based on reviewer's suggestions.
+- Link to v2: https://lore.kernel.org/r/20250505-iio-chemical-sen0322-v2-0-217473983b42@gmail.com
+
+Changes in v2:
+- Add SEN0322 to trivial-devices.
+- Use _RAW and _SCALE instead of fixed-point math.
+- Refactor based on reviewer's suggestions.
+- Link to v1: https://lore.kernel.org/r/20250428-iio-chemical-sen0322-v1-0-9b18363ffe42@gmail.com
+
+---
+Tóth János (2):
+      dt-bindings: trivial-devices: Document SEN0322
+      iio: chemical: Add driver for SEN0322
+
+ .../devicetree/bindings/trivial-devices.yaml       |   2 +
+ MAINTAINERS                                        |   6 +
+ drivers/iio/chemical/Kconfig                       |  10 ++
+ drivers/iio/chemical/Makefile                      |   1 +
+ drivers/iio/chemical/sen0322.c                     | 163 +++++++++++++++++++++
+ 5 files changed, 182 insertions(+)
+---
+base-commit: b4432656b36e5cc1d50a1f2dc15357543add530e
+change-id: 20250428-iio-chemical-sen0322-cf8fbbbe7546
+
+Best regards,
+-- 
+Tóth János <gomba007@gmail.com>
+
+
 
