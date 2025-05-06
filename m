@@ -1,236 +1,223 @@
-Return-Path: <devicetree+bounces-174092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56342AAC118
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:15:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DF98AAC125
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:16:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 808057B122C
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:13:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A59B3AF8B5
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:16:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5882F272E7E;
-	Tue,  6 May 2025 10:14:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97791263C9E;
+	Tue,  6 May 2025 10:16:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="ZJkhctv9";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="OKahMCMy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from fout-a1-smtp.messagingengine.com (fout-a1-smtp.messagingengine.com [103.168.172.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0A3A2750EB
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 10:14:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8208026560B;
+	Tue,  6 May 2025 10:16:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746526473; cv=none; b=Q5GpCo6QCPpWDcGEYq7zlJXLBUZiDVxWvzuV8MBFPe8G9aAGFcjTDprAy3ouBK8jLdeXNpr9K/8O5C/J0PskLIzoEqIA65uzf48Fn71cU2qYlrFsKBtOpxjwVdBiFUAMd28LFKztTeUIVXav1dheeCjPbxS93wyzUnbKBFZ+gLk=
+	t=1746526593; cv=none; b=fy9yEN4RVObpO9e2iQCBhHRkAdXcNt0n8OPcJnWZt0RmeOQeECPSzO/j/W0ARi/NoGFGXaj+J/JWxVRg9HJ50brWavuu0NmKdfykLj9guZnl4w6HxZdfeDOFdkzPs4/QxbyKOQq9ogjKM7hG41x4iTQzpCQK86t/hX58CD6NNe8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746526473; c=relaxed/simple;
-	bh=WD+ZJ4NtJb45Ch4i+Uiez7RgTZJ1NY8PlVuKx2jh1E4=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=uzQNqpPJAte6Qfk2F6MO3Ukwe86cnBPhAXkSSdpxxleiqaYEvUdGadOGnthjW391ghx0uVnzpsEnEU8R2MquZOWT0Rsp3iGaHN/3N1EAQjfOxdX736tVzDy4m88lRMqdsc8PYHJ2i0aBa5UcTxMlW8Pe8xPXpTnMACMBXCbm+xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uCFJX-0002sa-Ve; Tue, 06 May 2025 12:14:15 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uCFJX-001NTS-2E;
-	Tue, 06 May 2025 12:14:15 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uCFJX-0005o0-1x;
-	Tue, 06 May 2025 12:14:15 +0200
-Message-ID: <6da16137350aced4881cd623c27acb4094bf874d.camel@pengutronix.de>
-Subject: Re: [PATCH 2/4] i2c: tegra: make reset an optional property
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Akhil R <akhilrajeev@nvidia.com>, andi.shyti@kernel.org,
- robh@kernel.org,  krzk+dt@kernel.org, onor+dt@kernel.org,
- thierry.reding@gmail.com,  jonathanh@nvidia.com, ldewangan@nvidia.com,
- digetx@gmail.com,  linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Tue, 06 May 2025 12:14:15 +0200
-In-Reply-To: <20250506095936.10687-2-akhilrajeev@nvidia.com>
-References: <20250506095936.10687-1-akhilrajeev@nvidia.com>
-	 <20250506095936.10687-2-akhilrajeev@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1746526593; c=relaxed/simple;
+	bh=tfJE/xsquhVWWbSfVNtxd7mxkKLpuW/Q3MoXdBzWEbw=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=q4NmBhMZYbZkhQdxxEwac7WQxOTJzva+9iSHYIYATaTb/lqSvyswiKRFqDjgj4E/VNiEd3V+QBzFBM4Xd/rcCaDcIn/eIsfLFLx1u5jUAe2hF0yC7hz90IbobXoSgK/ai0O30w9cev9UpsDZKIObMZTQ6QCiwG/j8OInesIPU1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=ZJkhctv9; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=OKahMCMy; arc=none smtp.client-ip=103.168.172.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
+Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
+	by mailfout.phl.internal (Postfix) with ESMTP id 7375C1381006;
+	Tue,  6 May 2025 06:16:28 -0400 (EDT)
+Received: from phl-imap-12 ([10.202.2.86])
+  by phl-compute-04.internal (MEProxy); Tue, 06 May 2025 06:16:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
+	 t=1746526588; x=1746612988; bh=u4ZHetn6p+gj8N2CA7NvMJ9GHPYdTeEK
+	pJ3GrEZD+ck=; b=ZJkhctv9B2NAQMglgaUYteeHtV1edBTOoePYfTVKqlvifJy0
+	fJWCLZRQRtgNkvYhrsUnxw3VqEcSnH2mjGmYQIchOI+R5o/+J6h4vyI1DiJ0y7Bt
+	fPCugGbW+1MaVK678SxNSuqA4i8+hHJEM2dA3ZGEfSxwKvThgD4X1Yv44hj8vZs7
+	/GK3JDaonKVlrfnBuw8cJZVKvTNkPnDDX+2L+DiZL8Pf6Ew7IIN+1/71m6jcYaH9
+	OVd5EizdKJH7Vx3xzAmKy/iZCDEo78QEUXFKjbVonWfMsju39Jy4BjJgA41r/H6D
+	P6iK5l++JlKC5rqChIDW5zophjWsnZzP0zIqww==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1746526588; x=
+	1746612988; bh=u4ZHetn6p+gj8N2CA7NvMJ9GHPYdTeEKpJ3GrEZD+ck=; b=O
+	KahMCMyBsg8bRfkAg2P/TMCEqXjthOylc6NFspaoD0MYT1xQJvAUfAhfcZUzDGVd
+	rsZfAfHuTu5U3jV+ODyWoOvOEughel86KZbeTbyMtg/aP0gEq5NO6lTE2vUqk6Up
+	4ASIE6vox5B5Bm0UP9a0UgpKyKycQWN5ZI0rwjqbyhd2+P3FgxeYg85DBYhPpuAU
+	XjEu0s9r08MxEiGcvtoYKioR0QYfJR6pk5OBSxbrRWcIHN1fte0ITDLU3Z6QBCcx
+	mICb8y7b7e6P4bh6Ya3DMlPnIT6dVSsgmqKFNorw1KwfuKOC8xkYYe55D9VBzNVD
+	m2ocg6mvOl9qvklVmxmYg==
+X-ME-Sender: <xms:euEZaILVJBwWtr2baaSB6TlmAJNm3cUe58sBzaajE2dmvLpKKd7aBg>
+    <xme:euEZaILQT-tTxNY6TK56P6NoH0nxCGZCxl_kIB_UkElbpiG4r9G0iKv2zz70efbwF
+    kvIN86fbQIpNsFlk1o>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkeefjeduucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtqhertder
+    tdejnecuhfhrohhmpedfufhvvghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvth
+    gvrhdruggvvheqnecuggftrfgrthhtvghrnhepgeegheelffdujeduffevfefhieekgeef
+    fedukedtvdduhfffjeehleekfeehhfdtnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+    hrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghvpdhnsggp
+    rhgtphhtthhopeduledpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheprhhmkhdokh
+    gvrhhnvghlsegrrhhmlhhinhhugidrohhrghdruhhkpdhrtghpthhtohepsghrghhlsegs
+    ghguvghvrdhplhdprhgtphhtthhopehnvggrlhesghhomhhprgdruggvvhdprhgtphhtth
+    hopehjsehjrghnnhgruhdrnhgvthdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhn
+    vghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtg
+    hpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgriieskhgvrhhn
+    vghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:euEZaIvriNGIwfgefP8pMni-k1-Mi8CzIMaLsYfTRdaK95nv6DwF1g>
+    <xmx:euEZaFaY8i2dz8F74MNuvedfSCa6MYKKfa_p8CUuZr-bmsVlA8p48A>
+    <xmx:euEZaPbks8S8RUfwkDzDMPwXPEs_Tznk-Kz1GYritVFxYQeFZUnpUw>
+    <xmx:euEZaBAd_EfcQkYFXQgIpZRq4wMgV1jcVqubCESpNsKhAaP1bFfF6A>
+    <xmx:fOEZaN4m4sWqe_fgyAZMrGAsSCzeZTmjg9ceuj_brIetONwj2TczbF81>
+Feedback-ID: i51094778:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id A6BA31C20069; Tue,  6 May 2025 06:16:26 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-ThreadId: T90a118147f15bbe7
+Date: Tue, 06 May 2025 12:16:06 +0200
+From: "Sven Peter" <sven@svenpeter.dev>
+To: "Bartosz Golaszewski" <brgl@bgdev.pl>
+Cc: "Janne Grunau" <j@jannau.net>, "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+ "Neal Gompa" <neal@gompa.dev>, "Hector Martin" <marcan@marcan.st>,
+ "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Sebastian Reichel" <sre@kernel.org>,
+ "Lee Jones" <lee@kernel.org>, "Marc Zyngier" <maz@kernel.org>,
+ "Russell King" <rmk+kernel@armlinux.org.uk>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+Message-Id: <b96bd2d6-98f7-44da-9293-816daeac80d0@app.fastmail.com>
+In-Reply-To: 
+ <CAMRc=MebFf-DBh_=H0J4ORStaxBYhOnfY+jSk2d4UpdyS=m1LA@mail.gmail.com>
+References: <20250503-smc-6-15-v4-0-500b9b6546fc@svenpeter.dev>
+ <20250503-smc-6-15-v4-5-500b9b6546fc@svenpeter.dev>
+ <CAMRc=MebFf-DBh_=H0J4ORStaxBYhOnfY+jSk2d4UpdyS=m1LA@mail.gmail.com>
+Subject: Re: [PATCH v4 5/9] gpio: Add new gpio-macsmc driver for Apple Macs
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Di, 2025-05-06 at 15:29 +0530, Akhil R wrote:
-> For controllers that has an internal software reset, make the reset
-> property optional. This is useful in systems that choose to restrict
-> reset control from Linux.
->=20
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> ---
->  drivers/i2c/busses/i2c-tegra.c | 35 ++++++++++++++++++++++++++++++++--
->  1 file changed, 33 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegr=
-a.c
-> index 87976e99e6d0..49b77dcef184 100644
-> --- a/drivers/i2c/busses/i2c-tegra.c
-> +++ b/drivers/i2c/busses/i2c-tegra.c
-> @@ -134,6 +134,8 @@
->  #define I2C_MST_FIFO_STATUS_TX			GENMASK(23, 16)
->  #define I2C_MST_FIFO_STATUS_RX			GENMASK(7, 0)
-> =20
-> +#define I2C_MASTER_RESET_CNTRL			0x0a8
-> +
->  /* configuration load timeout in microseconds */
->  #define I2C_CONFIG_LOAD_TIMEOUT			1000000
-> =20
-> @@ -184,6 +186,9 @@ enum msg_end_type {
->   * @has_mst_fifo: The I2C controller contains the new MST FIFO interface=
- that
->   *		provides additional features and allows for longer messages to
->   *		be transferred in one go.
-> + * @has_mst_reset: The I2C controller contains MASTER_RESET_CTRL registe=
-r which
-> + *		provides an alternative to controller reset when configured as
-> + *		I2C master
->   * @quirks: I2C adapter quirks for limiting write/read transfer size and=
- not
->   *		allowing 0 length transfers.
->   * @supports_bus_clear: Bus Clear support to recover from bus hang durin=
-g
-> @@ -213,6 +218,7 @@ struct tegra_i2c_hw_feature {
->  	bool has_multi_master_mode;
->  	bool has_slcg_override_reg;
->  	bool has_mst_fifo;
-> +	bool has_mst_reset;
->  	const struct i2c_adapter_quirks *quirks;
->  	bool supports_bus_clear;
->  	bool has_apb_dma;
-> @@ -604,6 +610,18 @@ static int tegra_i2c_wait_for_config_load(struct teg=
-ra_i2c_dev *i2c_dev)
->  	return 0;
->  }
-> =20
-> +static int tegra_i2c_master_reset(struct tegra_i2c_dev *i2c_dev)
-> +{
-> +	if (!i2c_dev->hw->has_mst_reset)
-> +		return -EOPNOTSUPP;
-> +
-> +	i2c_writel(i2c_dev, 0x1, I2C_MASTER_RESET_CNTRL);
-> +	udelay(1);
-> +	i2c_writel(i2c_dev, 0x0, I2C_MASTER_RESET_CNTRL);
-> +
-> +	return 0;
-> +}
-> +
->  static int tegra_i2c_init(struct tegra_i2c_dev *i2c_dev)
->  {
->  	u32 val, clk_divisor, clk_multiplier, tsu_thd, tlow, thigh, non_hs_mode=
-;
-> @@ -621,8 +639,10 @@ static int tegra_i2c_init(struct tegra_i2c_dev *i2c_=
-dev)
->  	 */
->  	if (handle)
->  		err =3D acpi_evaluate_object(handle, "_RST", NULL, NULL);
-> -	else
-> +	else if (i2c_dev->rst)
->  		err =3D reset_control_reset(i2c_dev->rst);
-> +	else
-> +		err =3D tegra_i2c_master_reset(i2c_dev);
-> =20
->  	WARN_ON_ONCE(err);
-> =20
-> @@ -1467,6 +1487,7 @@ static const struct tegra_i2c_hw_feature tegra20_i2=
-c_hw =3D {
->  	.has_multi_master_mode =3D false,
->  	.has_slcg_override_reg =3D false,
->  	.has_mst_fifo =3D false,
-> +	.has_mst_reset =3D false,
->  	.quirks =3D &tegra_i2c_quirks,
->  	.supports_bus_clear =3D false,
->  	.has_apb_dma =3D true,
-> @@ -1491,6 +1512,7 @@ static const struct tegra_i2c_hw_feature tegra30_i2=
-c_hw =3D {
->  	.has_multi_master_mode =3D false,
->  	.has_slcg_override_reg =3D false,
->  	.has_mst_fifo =3D false,
-> +	.has_mst_reset =3D false,
->  	.quirks =3D &tegra_i2c_quirks,
->  	.supports_bus_clear =3D false,
->  	.has_apb_dma =3D true,
-> @@ -1515,6 +1537,7 @@ static const struct tegra_i2c_hw_feature tegra114_i=
-2c_hw =3D {
->  	.has_multi_master_mode =3D false,
->  	.has_slcg_override_reg =3D false,
->  	.has_mst_fifo =3D false,
-> +	.has_mst_reset =3D false,
->  	.quirks =3D &tegra_i2c_quirks,
->  	.supports_bus_clear =3D true,
->  	.has_apb_dma =3D true,
-> @@ -1539,6 +1562,7 @@ static const struct tegra_i2c_hw_feature tegra124_i=
-2c_hw =3D {
->  	.has_multi_master_mode =3D false,
->  	.has_slcg_override_reg =3D true,
->  	.has_mst_fifo =3D false,
-> +	.has_mst_reset =3D false,
->  	.quirks =3D &tegra_i2c_quirks,
->  	.supports_bus_clear =3D true,
->  	.has_apb_dma =3D true,
-> @@ -1563,6 +1587,7 @@ static const struct tegra_i2c_hw_feature tegra210_i=
-2c_hw =3D {
->  	.has_multi_master_mode =3D false,
->  	.has_slcg_override_reg =3D true,
->  	.has_mst_fifo =3D false,
-> +	.has_mst_reset =3D false,
->  	.quirks =3D &tegra_i2c_quirks,
->  	.supports_bus_clear =3D true,
->  	.has_apb_dma =3D true,
-> @@ -1587,6 +1612,7 @@ static const struct tegra_i2c_hw_feature tegra186_i=
-2c_hw =3D {
->  	.has_multi_master_mode =3D false,
->  	.has_slcg_override_reg =3D true,
->  	.has_mst_fifo =3D false,
-> +	.has_mst_reset =3D false,
->  	.quirks =3D &tegra_i2c_quirks,
->  	.supports_bus_clear =3D true,
->  	.has_apb_dma =3D false,
-> @@ -1611,6 +1637,7 @@ static const struct tegra_i2c_hw_feature tegra194_i=
-2c_hw =3D {
->  	.has_multi_master_mode =3D true,
->  	.has_slcg_override_reg =3D true,
->  	.has_mst_fifo =3D true,
-> +	.has_mst_reset =3D true,
->  	.quirks =3D &tegra194_i2c_quirks,
->  	.supports_bus_clear =3D true,
->  	.has_apb_dma =3D false,
-> @@ -1666,7 +1693,11 @@ static int tegra_i2c_init_reset(struct tegra_i2c_d=
-ev *i2c_dev)
->  	if (ACPI_HANDLE(i2c_dev->dev))
->  		return 0;
-> =20
-> -	i2c_dev->rst =3D devm_reset_control_get_exclusive(i2c_dev->dev, "i2c");
-> +	if (i2c_dev->hw->has_mst_reset)
-> +		i2c_dev->rst =3D devm_reset_control_get_optional_exclusive(i2c_dev->de=
-v, "i2c");
-> +	else
-> +		i2c_dev->rst =3D devm_reset_control_get_exclusive(i2c_dev->dev, "i2c")=
-;
+Hi,
 
-This could just use devm_reset_control_get_optional_exclusive()
-unconditionally. If the device tree correctly marked the required
-resets as non-optional, DT checks would guarantee that required resets
-are present in the device tree.
 
-regards
-Philipp
+On Tue, May 6, 2025, at 10:07, Bartosz Golaszewski wrote:
+> On Sat, May 3, 2025 at 12:07=E2=80=AFPM Sven Peter via B4 Relay
+> <devnull+sven.svenpeter.dev@kernel.org> wrote:
+>>
+>> From: Hector Martin <marcan@marcan.st>
+>>
+>> This driver implements the GPIO service on top of the SMC framework
+>> on Apple Mac machines. In particular, these are the GPIOs present in =
+the
+>> PMU IC which are used to control power to certain on-board devices.
+>>
+>> Although the underlying hardware supports various pin config settings
+>> (input/output, open drain, etc.), this driver does not implement that
+>> functionality and leaves it up to the firmware to configure things
+>> properly. We also don't yet support interrupts/events. This is
+>> sufficient for device power control, which is the only thing we need =
+to
+>> support at this point. More features will be implemented when needed.
+>>
+>> To our knowledge, only Apple Silicon Macs implement this SMC feature.
+>>
+>> Signed-off-by: Hector Martin <marcan@marcan.st>
+>> Reviewed-by: Bartosz Golaszewski <brgl@bgdev.pl>
+>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>> Reviewed-by: Sven Peter <sven@svenpeter.dev>
+>> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+>> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+>> ---
+>
+> [snip]
+>
+>> +
+>> +       smcgp->gc.label =3D "macsmc-pmu-gpio";
+>> +       smcgp->gc.owner =3D THIS_MODULE;
+>> +       smcgp->gc.get =3D macsmc_gpio_get;
+>> +       smcgp->gc.set =3D macsmc_gpio_set;
+>
+> I must have given my Reviewed-by under this driver before we started
+> the conversion to the new GPIO driver setters. Could you please
+> replace this with set_rv() as the old set() is now deprecated?
+
+Probably, the last version I took from the ML is from November 2022 :-(
+Will do that for the next version, I can just pass through the return va=
+lue
+we get from apple_smc_write_u32 anyway.
+
+
+Thanks,
+
+
+Sven
+
+
+-- >8 --
+Subject: [PATCH] fixup! gpio: Add new gpio-macsmc driver for Apple Macs
+
+---
+ drivers/gpio/gpio-macsmc.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpio/gpio-macsmc.c b/drivers/gpio/gpio-macsmc.c
+index 289be4268f63..a68676239718 100644
+--- a/drivers/gpio/gpio-macsmc.c
++++ b/drivers/gpio/gpio-macsmc.c
+@@ -135,7 +135,7 @@ static int macsmc_gpio_get(struct gpio_chip *gc, uns=
+igned int offset)
+ 	return val ? 1 : 0;
+ }
+
+-static void macsmc_gpio_set(struct gpio_chip *gc, unsigned int offset, =
+int value)
++static int macsmc_gpio_set(struct gpio_chip *gc, unsigned int offset, i=
+nt value)
+ {
+ 	struct macsmc_gpio *smcgp =3D gpiochip_get_data(gc);
+ 	smc_key key =3D macsmc_gpio_key(offset);
+@@ -146,6 +146,8 @@ static void macsmc_gpio_set(struct gpio_chip *gc, un=
+signed int offset, int value
+ 	if (ret < 0)
+ 		dev_err(smcgp->dev, "GPIO set failed %p4ch =3D 0x%x\n",
+ 			&key, value);
++
++	return ret;
+ }
+
+ static int macsmc_gpio_init_valid_mask(struct gpio_chip *gc,
+@@ -214,7 +216,7 @@ static int macsmc_gpio_probe(struct platform_device =
+*pdev)
+ 	smcgp->gc.label =3D "macsmc-pmu-gpio";
+ 	smcgp->gc.owner =3D THIS_MODULE;
+ 	smcgp->gc.get =3D macsmc_gpio_get;
+-	smcgp->gc.set =3D macsmc_gpio_set;
++	smcgp->gc.set_rv =3D macsmc_gpio_set;
+ 	smcgp->gc.get_direction =3D macsmc_gpio_get_direction;
+ 	smcgp->gc.init_valid_mask =3D macsmc_gpio_init_valid_mask;
+ 	smcgp->gc.can_sleep =3D true;
+--
+2.34.1
 
