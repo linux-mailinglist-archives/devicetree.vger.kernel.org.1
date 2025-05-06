@@ -1,156 +1,104 @@
-Return-Path: <devicetree+bounces-174090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 807B8AAC0F4
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:10:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AACA3AAC0FD
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:11:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3F8F3A55F7
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:10:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC5481C251DB
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:11:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF81E2750F5;
-	Tue,  6 May 2025 10:10:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="k3yezd4p"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E67627467C;
+	Tue,  6 May 2025 10:11:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4E527703B
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 10:10:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4F319F489
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 10:11:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746526239; cv=none; b=YQ0Wn3drgG4zcUyUef2rScafSzKlRxpTNatr5zgAZCd+t1N+NOCLl/d3dx4TFscWu+tx0tQqVme0gnQXNItFP2k97gnl8bm7BDfflIuEvD91x+X2wUEeTXHyvSVQAiB9kYxM8v1GryXJF16MPxVI0hw+uBuVyx2DUzhLlDPi6UM=
+	t=1746526292; cv=none; b=iwWaoyneT2yRyfm/OzbPiz1beYbiEsFNrQtl5nKgrneDKEbXa1Mb8cmuKzr6Ur8S2UNY6MAv5N6Gitmiij2P79DDVzzGN2+YEdxkhirT1/XEHDAfv5C3YjkugCacazkwoS4ltvdv96+5kg6CjuqAYdkHeL7ElisDXSvXrlIGYhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746526239; c=relaxed/simple;
-	bh=/HBE0X80tekKwVpe/I6rSG6afei1xLRG1IopLTv4b90=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=ZSXmBJiRqLw6Hc2HMNX58oNn5pLFQj17Ets/ndKwKRuYyGyVZfuKx0EX5uQdfJWBsDozqdt+i+Zx1oOr4AY6I1GV91dOZHJx3GhuaBLQdjprTftuyX4HFjjt9fTPi/7s098oZKj8chQhC6eKN9y2ectZg1xLTBKYXcQj6hO/Fjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=k3yezd4p; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3912a28e629so138513f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 03:10:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1746526235; x=1747131035; darn=vger.kernel.org;
-        h=in-reply-to:references:from:to:cc:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MDlCPukG676ZkXDqA7+irYPpUi8ypltoa/WLU7iYTZw=;
-        b=k3yezd4pHOP993DCvnJYvnnrLQ1mQCRimlX6KF3OwLBGIjRxOc3HI5AcNZB8pZhuWj
-         pzuW1eppoxocBCntG/gAypFjNT0c2K33klUSjcfO5TClCnm76dz3JLIX/z5ESFhaprPT
-         nRwfLtrtLlpz8HVBl5tXVu+qSANl+Vudwd5La9yJ9av/tFmsKPxcvsVmai85Yg9S0G2j
-         gBYB/Q3FrSGMB3QfoQs0HpjGJymi73TUlgOsy1VraKjWGcyD6teiRQxVunD8dpEx3FX4
-         iAKFmr0MeOH735cMF502s277NyhW/SvQIBLSEPUkrR6JYMN+955NaiHnc5d/DcCc8Z9d
-         C91w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746526235; x=1747131035;
-        h=in-reply-to:references:from:to:cc:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MDlCPukG676ZkXDqA7+irYPpUi8ypltoa/WLU7iYTZw=;
-        b=LC+FWaBTzbLx2S2p++LuZuA7hdEFPZWMIb0LAOsX6/sxd2x0XKQZQ7NFr4AA2jL+lL
-         M9caVpb5biqVwWKRIBJfT5mL4cts8Wmxv9upmSjZWi1lDt2pRwVlv8JzClcZK3gwy+XP
-         Py2ewwq2brZ/nYrRP1XiQ1UHyF2/t6i9LtAUeZAWFuCmsV0bv4Yyf2qQ6YB6biM9UY1B
-         Xie4MuOO2jokFa6QE4enQ+Jld+PDYwTGQkVQ+frd/B/MtgI+mS7uzKmp1fPH469tOenr
-         KGes3Wda9o7p9HUlyMuHsBhmXlsVVksIc2UqFHM1WHM0ZrSxHb0e7LgJHwIXn1JHSXtV
-         5ssA==
-X-Forwarded-Encrypted: i=1; AJvYcCWIiBQmzDW+Ko8RTvq2fW2SYY3VVGeeIZ0az54NjEJFMrnl2SpNpWQX9FhTDzlZsFVVleZ18+EHDve6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPU2fFAP6eiX9y1UwSGhPkLP0cDgkwDdaN0Gl3Un+FrhJpWvcg
-	MRwexNbN0O8oIle+WS3lIyfgE9kHeS0RJKMtUgq/e2NP82sOTej5Nk+bgpEE4Oc=
-X-Gm-Gg: ASbGncvV0B4+ONiFpTGt9l36eZjjFQv3WyuwSrDdFbF2tDukEioZeZJ+7KlKfORcR8H
-	jJ+CFTgTX/eoJffZ2Hg+oB+46HIsg9leK+xI8rczcbCURUnfoKhfPr/cDtBrY3uCIt3Wzo2XRNd
-	QanmA33KEyrQMP4Lx42k/EnGr1+GmScHBu4oNCBaD7rGpWmzCnjaLkCIDDxDNuGe7ld5vpq6Xlh
-	Ha47Sd82Go0s3Zes8XmOdv8d2LRg/D5GycWv1k/i+T5n8DDCkxTe9lESu73OLOWj/Hq8HL1Dh5U
-	bhA1wAfsT6l0GmRgiaCeg8VgMh3Mj8ACjCL7LFWaT0pdg4X4
-X-Google-Smtp-Source: AGHT+IEUjKjGwlmMCjrKZvF7YuhMUsrs5D+dPoN1CPSaPd4oD3QBATAQzTQqUOqU1bgynoQlRYwsyA==
-X-Received: by 2002:a05:6000:144a:b0:3a0:9f28:2e53 with SMTP id ffacd0b85a97d-3a09f282ec4mr3244079f8f.0.1746526235363;
-        Tue, 06 May 2025 03:10:35 -0700 (PDT)
-Received: from localhost ([2a02:8308:a00c:e200:d5f0:7802:c94b:10f6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b89cc441sm166448565e9.3.2025.05.06.03.10.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 03:10:35 -0700 (PDT)
+	s=arc-20240116; t=1746526292; c=relaxed/simple;
+	bh=/14muUSnjrguA3XDoHQcGk3OKFUssHvmhKsZnJ4M/DM=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=geZgVgvg8spVyVLGbBVkM3Eac6u2B8UrViOZtlk531M1+ROi3DiHbfsA39sWNFmFnzzqA7T9G0d5M0ZLmmN58weri0Ft6/9MBZDuqx+Y8Hmz3FXLlRrP+xrFtTVi/aiTgsw1n3zKFxrYFRjeZTsUZzNX/s5WMaFxv/1O5egsSXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uCFGh-0002Dd-2d; Tue, 06 May 2025 12:11:19 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uCFGg-001NTB-1n;
+	Tue, 06 May 2025 12:11:18 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uCFGg-0005kT-1X;
+	Tue, 06 May 2025 12:11:18 +0200
+Message-ID: <bce05a662787134194d20951b8de7f6defb4f9bb.camel@pengutronix.de>
+Subject: Re: [PATCH 1/4] dt-bindings: i2c: Specify reset as optional
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Akhil R <akhilrajeev@nvidia.com>, andi.shyti@kernel.org,
+ robh@kernel.org,  krzk+dt@kernel.org, onor+dt@kernel.org,
+ thierry.reding@gmail.com,  jonathanh@nvidia.com, ldewangan@nvidia.com,
+ digetx@gmail.com,  linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Tue, 06 May 2025 12:11:18 +0200
+In-Reply-To: <20250506095936.10687-1-akhilrajeev@nvidia.com>
+References: <20250506095936.10687-1-akhilrajeev@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 06 May 2025 12:10:34 +0200
-Message-Id: <D9OZVNOGLU4T.2XOUPX27HN0W8@ventanamicro.com>
-Subject: Re: [PATCH v15 05/27] riscv: usercfi state for task and
- save/restore of CSR_SSP on trap entry/exit
-Cc: <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
- <linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
- <alistair.francis@wdc.com>, <richard.henderson@linaro.org>,
- <jim.shu@sifive.com>, <andybnac@gmail.com>, <kito.cheng@sifive.com>,
- <charlie@rivosinc.com>, <atishp@rivosinc.com>, <evan@rivosinc.com>,
- <cleger@rivosinc.com>, <alexghiti@rivosinc.com>, <samitolvanen@google.com>,
- <broonie@kernel.org>, <rick.p.edgecombe@intel.com>,
- <rust-for-linux@vger.kernel.org>, "Zong Li" <zong.li@sifive.com>,
- "linux-riscv" <linux-riscv-bounces@lists.infradead.org>
-To: "Deepak Gupta" <debug@rivosinc.com>, "Thomas Gleixner"
- <tglx@linutronix.de>, "Ingo Molnar" <mingo@redhat.com>, "Borislav Petkov"
- <bp@alien8.de>, "Dave Hansen" <dave.hansen@linux.intel.com>,
- <x86@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>, "Andrew Morton"
- <akpm@linux-foundation.org>, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- "Vlastimil Babka" <vbabka@suse.cz>, "Lorenzo Stoakes"
- <lorenzo.stoakes@oracle.com>, "Paul Walmsley" <paul.walmsley@sifive.com>,
- "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
- "Conor Dooley" <conor@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Arnd Bergmann"
- <arnd@arndb.de>, "Christian Brauner" <brauner@kernel.org>, "Peter Zijlstra"
- <peterz@infradead.org>, "Oleg Nesterov" <oleg@redhat.com>, "Eric Biederman"
- <ebiederm@xmission.com>, "Kees Cook" <kees@kernel.org>, "Jonathan Corbet"
- <corbet@lwn.net>, "Shuah Khan" <shuah@kernel.org>, "Jann Horn"
- <jannh@google.com>, "Conor Dooley" <conor+dt@kernel.org>, "Miguel Ojeda"
- <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
- <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <benno.lossin@proton.me>, "Andreas Hindborg" <a.hindborg@kernel.org>,
- "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>
-From: =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>
-References: <20250502-v5_user_cfi_series-v15-0-914966471885@rivosinc.com>
- <20250502-v5_user_cfi_series-v15-5-914966471885@rivosinc.com>
-In-Reply-To: <20250502-v5_user_cfi_series-v15-5-914966471885@rivosinc.com>
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-[Ah, I missed v13 and v14, feel free to Cc me on next versions.]
+On Di, 2025-05-06 at 15:29 +0530, Akhil R wrote:
+> Specify reset as optional in the description for controllers that has an
+> internal software reset available
+>=20
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> ---
+>  Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yam=
+l b/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
+> index b57ae6963e62..19aefc022c8b 100644
+> --- a/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
+> @@ -97,7 +97,9 @@ properties:
+> =20
+>    resets:
+>      items:
+> -      - description: module reset
+> +      - description: |
+> +          Module reset. This property is optional for controllers in Teg=
+ra194 and later
+> +          chips where an internal software reset is available as an alte=
+rnative.
 
-2025-05-02T16:30:36-07:00, Deepak Gupta <debug@rivosinc.com>:
-> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
-> @@ -91,6 +91,32 @@
-> +.macro save_userssp tmp, status
-> +	ALTERNATIVE("nops(4)",
-> +		__stringify(				\
-> +		andi \tmp, \status, SR_SPP;		\
-> +		bnez \tmp, skip_ssp_save;		\
-> +		csrrw \tmp, CSR_SSP, x0;		\
-> +		REG_S \tmp, TASK_TI_USER_SSP(tp);	\
-> +		skip_ssp_save:),
-> +		0,
-> +		RISCV_ISA_EXT_ZICFISS,
-> +		CONFIG_RISCV_USER_CFI)
-> +.endm
-> +
-> +.macro restore_userssp tmp
-> +	ALTERNATIVE("nops(2)",
-> +		__stringify(				\
-> +		REG_L \tmp, TASK_TI_USER_SSP(tp);	\
-> +		csrw CSR_SSP, \tmp),
-> +		0,
-> +		RISCV_ISA_EXT_ZICFISS,
-> +		CONFIG_RISCV_USER_CFI)
-> +.endm
+If the module reset was not optional before, shouldn't the resets
+property have been marked as required? Then, instead of the comment,
+you could conditionally remove the required status for nvidia,tegra194-
+i2c.
 
-Do we need to emit the nops when CONFIG_RISCV_USER_CFI isn't selected?
-
-(Why not put #ifdef CONFIG_RISCV_USER_CFI around the ALTERNATIVES?)
-
-Thanks.
+regards
+Philipp
 
