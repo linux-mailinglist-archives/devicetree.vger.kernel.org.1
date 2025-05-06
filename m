@@ -1,217 +1,132 @@
-Return-Path: <devicetree+bounces-174246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEFFEAAC7BF
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:22:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0B5DAAC7E6
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 16:26:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5EB41BC5F16
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:22:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3911FB21275
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E4FE281516;
-	Tue,  6 May 2025 14:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8B3B2820CD;
+	Tue,  6 May 2025 14:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="FaxS4qOP"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="irxMbsQt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013045.outbound.protection.outlook.com [40.107.159.45])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B33F22D790;
-	Tue,  6 May 2025 14:22:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746541325; cv=fail; b=GZr97dN+KCHaHOxfH/FLl/1BNGYClH8CWd0zp01jm72N66hxWBhFIDJgd3MqjE5LEZfMUWtqQz0EnmyVMUkhj3Vz0r9MbuHyrpZZd5jEnKgK+NMkWv3RXkDd1m3m8SNA3U8MWFj/bo/BVf9XHVMqNcQU5qpzeXfnBhpqHV6FKf8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746541325; c=relaxed/simple;
-	bh=wL1Aqte8Se9ZL9bVIvNpdiMIwPWWifkeTlUbGx69v+8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=vCclWVPfPS5nXEuecEXfj9Tfere5ZUrgPQAg8w2ZBkL09t2HA3+i4dQ6Q9kowMTjwpDwPcr29+tUOa1lG8aB+3jqHC6hGomV+ScufC5Htdf+w/cyNYDzS/6pnYYhY0A12equYXC2UECi3T9O5lL8gqt8pZ3t6Jk2oereA0SKTBc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=FaxS4qOP; arc=fail smtp.client-ip=40.107.159.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pqWpBoMXGh055hTuMSJxgelPZLR0rpKA3FGbOYiBd6gmGdEpONukZ3rQJ62ty0uqutjNht5HobFBmW5RDzWux6caCcxyvHz0Z86npOIDyZottGXAONc/53G05uTZtmxpPgFacT0Vo0XoSQIvOZUkBVQ3hEh1Zp4O0UvBlvdPFcHyt02y9UrQbg0yldEMA7MJsnxqHfqXlQzs75hEs3Dd5PHiDwJCt8yXqmnYFgbvhlANhjJuYvguK+koG+oEfUSeO+uGkZ9abgxyVoxcFuoXAgCjLsaVDZOYxX31djYS1nejL/EFstNk1vu4OzFrOho5h6R0wIE9s7Gx8xLIn31apg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xPiaoAIQ8g5mgZTS1TOyFzBws4F6cTeoyTehuMwvClc=;
- b=iGu6Gmi3IhcO9PJOAvpaVMRwIWlV4Devyu7h7PJEVphOCyoCVWvTTXu6Zw43qsBi/d95G0tnEaDSxqr/BHZbQW8osbclKubX7nEg0iBFeSi+g/vN/G72Xl/bEuL79YoKe54Ilfg/UWUo/xl9F4i4KaI/czofnJBWlFPKOTkGQDh7bn9vBkYtzxylCLdR74eQ0FO75UYo1eAGKHMvdtJKdipgjMIkqX7cG+UEpOevnwffgqzCeZ0R5aRN5VauBB86XW/+iurvVxM/mOEy7qNKoRIoU2fOlqECEZ9L8auVesv5VFt9ecaezR2baqQiQ+jI9UC7vrPaYfER8jP6B+Gzsw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xPiaoAIQ8g5mgZTS1TOyFzBws4F6cTeoyTehuMwvClc=;
- b=FaxS4qOPwS0+RMvStuzzL8c2j5gpOUFbd/r8hmA88HGMiEL+R9i1xE/cs34aGQlW67ndF8Uf7ielUGCzM6wBxe51c1cnhUQayTvHYgaaKiFV4WSHkkzO3VdGkDEJQjnVYRE/2T4cYcBML5jYvcBle3EBj0GNDWhBFRAfy3KmtMNmedkvWpgDUs8nOM3IZT+1HVIPlrzJEbMQ4hJQPtcaaEd/5P4XpHmTYy5VLJGZ7e8tYrE1yeXoYUD3y99z2NTKaAblW04J0f7b6M6ilbMau6ZeSCHz0KRPRtYBqggo8LE0y0H5C2/7tm/vm7Xw2SZxC4pBGYiBaWKbgOmpWgaDEQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com (2603:10a6:20b:42f::6)
- by AS8PR04MB7655.eurprd04.prod.outlook.com (2603:10a6:20b:292::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.26; Tue, 6 May
- 2025 14:22:00 +0000
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b317:9c26:147f:c06e]) by AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b317:9c26:147f:c06e%3]) with mapi id 15.20.8699.026; Tue, 6 May 2025
- 14:22:00 +0000
-Date: Tue, 6 May 2025 17:21:57 +0300
-From: Ioana Ciornei <ioana.ciornei@nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Vladimir Oltean <vladimir.oltean@nxp.com>
-Subject: Re: [PATCH 5/6] arm64: dts: ls1028a-qds: make the QIXIS CPLD use the
- simple-mfd-i2c.c driver
-Message-ID: <smfuskvhdhrfrgbpjflgymoadms6vfiwgjmipsmkrxldtor6we@tyvafv626bwr>
-References: <20250430153634.2971736-1-ioana.ciornei@nxp.com>
- <20250430153634.2971736-6-ioana.ciornei@nxp.com>
- <20250502-savvy-eccentric-hog-b4fed5@kuoka>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250502-savvy-eccentric-hog-b4fed5@kuoka>
-X-ClientProxiedBy: AS4P189CA0051.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:20b:659::16) To AS8PR04MB8868.eurprd04.prod.outlook.com
- (2603:10a6:20b:42f::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC22427FD57;
+	Tue,  6 May 2025 14:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746541550; cv=none; b=MkX+IlsEimnbhGWiY8j0cq6EFDOTWcObMaFj3AhOXev1oDLTm6R7GWwy9J7teXz3kolb/PWN6nvDZ0cfxsZ2oaANbKtZybbsVFPYnDq33qfRyjELB4zYZjt3omrIPODZSLr5Mgvsj08XjaI0D8W2TJXWzoklz1rMCLAoPzHIjZQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746541550; c=relaxed/simple;
+	bh=bfhs5TMIO9WwVex3wgkVyM47F2j9OE9qbP0G/kaOvoU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NXSC6qzLNXxNWyUV63hjBO5fjhqdMP9RjRSFlUTLyKNXaYEnSUELJVrDtmCPKdKIwMB22hjUPn79OGudaqD+PznnoLKaMABUI1cRYwLtke+vfGDi7J2QSdB24fopWPMRYJJrSUyfqu+4RMbgdQCWkfiPlq70jIIxDJx+THMvm+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=irxMbsQt; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EED13E9408;
+	Tue,  6 May 2025 16:25:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1746541545; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=BIis3C4CFWwe/Nb/WYKe4dImQBx542mXba7Be46nPPk=;
+	b=irxMbsQt3aIZkBTMYNb71ndZxm2HmV49EHtCrCq4sSmN4VC6qVpAuQcT8r6vSO/XEtW/CT
+	hJSyvmpYsZwcUDDclOCyzxEx9ZpBvkOpuovMINSWZlUhmZb7ES9nDS3ZF7VnUuQb1eJTLT
+	H+Jpv153lHJuk6CN8be32XLeoAfKtBAtM8vbYxZW+/jN2ZEyeJgW99NUbtylN4/OjNYyWc
+	/GiO6cAF+wPBAQkkKj6CByIhE9DgqkvJoFGIcEKY+uP+tY6GV7hROBKfsug/psWVwvLrUO
+	jLnCxRUI6sOzyeEYU9Z0d7v2fhlnt/HMtiHjMwokS4LsS6hazjaOthyjAxkU9w==
+Message-ID: <ea17e686-68c7-463c-bb9e-bcc9e59a929d@cjdns.fr>
+Date: Tue, 6 May 2025 16:25:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8868:EE_|AS8PR04MB7655:EE_
-X-MS-Office365-Filtering-Correlation-Id: 75195820-ed85-4985-c865-08dd8ca95d3a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?0RDBgPSufAeafiO+QWvshJp0+4JRzl34iSSg6mvileeEhKnJ6uNL0iQJQres?=
- =?us-ascii?Q?Oh06E1N+csSVFsxF9zvujlwpw81XDPJfPyvsumTlHC6XyTwbbErgIMZi2t52?=
- =?us-ascii?Q?tcBOOym/Ekdx7hPPsa4d6eMpnyeeUvjRG1h2Ym3M1LdNnXoJ5cAKLYjB8rSM?=
- =?us-ascii?Q?OnxmDsVKs8xWmNNyW+RI7+9VTD8TIRY6rz9TBR5NXneDkEJrQsQe5r13aPkx?=
- =?us-ascii?Q?1QXMELO5dd5C+4BimEg4PovfqvXppBIgA0hrUV65nlDy9AuDWQe68oD/rMZI?=
- =?us-ascii?Q?Xr44FYI/3OQe2D2NGGQeJNNmeLvnQSTXTOlgJYzXFpyhBr1PSTNQLnYmvLu1?=
- =?us-ascii?Q?mPCAknLB480n/5rGf/L5SafdpXlfBjzKSm2Ol5jxvRDEWYGE6cROtD0Jh6ym?=
- =?us-ascii?Q?UaZr9tx5m99eYAx3/IwIj/LEKl4qgqy4x2uSRfZtKWVxIK8uzM+8Ew9wG5Ye?=
- =?us-ascii?Q?gtZSVXa39vcMz0fesYY98iN6pkvt+eK/pFSHkR/k63NKYexF3i/5CZoLIyoI?=
- =?us-ascii?Q?ldOtddHJEBBbGMPy/f5EaFYTT9mfZ91pj50zkyWCHU2kyUpf++KYj3dkGGyS?=
- =?us-ascii?Q?AU6YetDHOSHaLzZTLQB06Ebgzc62tJUyLVQm6tHkLJ87oABhPPMBdzO6WoNk?=
- =?us-ascii?Q?o5mCI49Pmxn8RqTqSifyoPdh7LsypISoHNnWa+f4EqSJK3vgXduxfva4raSC?=
- =?us-ascii?Q?ev4B24UVHCp/eYJrucUYXyJ7021mFV3KXYthV1dRCIcaJMyszyOorh63cawU?=
- =?us-ascii?Q?WkWy6IA7aiqVxiZJGkjiceL6xtUCf2Jj5ZARAVSKxxPxMiWTcIB3kbc4X/4+?=
- =?us-ascii?Q?ad0w9dbaepj0AyboNb0qSxqIVqXkQyx9BpoU2JQn5IbkfiOkVH3OdeQkAS3y?=
- =?us-ascii?Q?G4TFHz2p3KNG3kEYGGPjYPFZRH6DhKGy3smIYZVpTRLVNYtZ3C9gRgkVNj5N?=
- =?us-ascii?Q?GCPr9EOM/NbYGcx2yFcjOnRu6uBDrE0lBkm9zo0bG13Nt+/DHB/M6eE83itE?=
- =?us-ascii?Q?7h3fZvUuEDV0GhNFCgV60ApISnss1OQSs6De/EJtNK3RAPxpyE8Wim51i2bZ?=
- =?us-ascii?Q?uguc8t2CfBCIphJCB35mc/chYAIRXQtHRb+9y7b2BYzSZFh8Lh40r2wiYs2j?=
- =?us-ascii?Q?zTKEd/VZpOqgiHiqYgxrk/f/Rf7+m7G5vh+JOgJSmR8hPttV7U4WUZHGatwZ?=
- =?us-ascii?Q?umjPLq5sDbIOsa7J/+6/jJoHnI6eROH2MXXw2lHe3WYJqLagH6ysZm/6c20v?=
- =?us-ascii?Q?I2AVy9bSgLsmrETpIWcFQw4MDS/2YVD13SP4fErMRJ4UOF2B1smkTpbAOlqR?=
- =?us-ascii?Q?RakVTk6YaOBJ76DIgmN3P7nsLcAC8YnSuQCKGzWup4CJnA8dFfxgwf79fs0r?=
- =?us-ascii?Q?BY+hHGuP+UMaLWyuU8yJFHwVtwfZ8+qvv0pdocY7droV4Gd4dwcA5wzlKpJq?=
- =?us-ascii?Q?Z6szxXcDVJg=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8868.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?2C23o+UwoF7pbAVVnzzdwN6J+TINIrBde+GdqpoA235HXhEIrcrW46/13jcI?=
- =?us-ascii?Q?RqTOeVIhAFOFZSePVeYxsf/tOS4RNPOdT6I2ypqJLFwZ5NpDJJ8GxJzScRqX?=
- =?us-ascii?Q?4to9z18gpEy6R+jxDj6PcaiPgGN9McWQV8WhstpUMWCh0Xbqsyvf77mH95vy?=
- =?us-ascii?Q?aEm40ilNX+Li3aJFgJ/qymQG+HEzpSyFaDYu01tDt05tfJP7XMQpxgpgqyGx?=
- =?us-ascii?Q?pHV5KyIi5yON/Wd3hHgqBKQJyHebwpsRNruJPQxXZ2/sYlf0UPj+438egaDZ?=
- =?us-ascii?Q?t8oFY4tMxPyRg2C+kOzwFMK8SiiWDUucmGuosy40ChSLQ2lNTcM+sMMgyDJq?=
- =?us-ascii?Q?e/5M+7t2SBUIJbC9l40jx+m/wDQW7DezSx9ZTi0frhdeZ9s2CvrXktXOZFDE?=
- =?us-ascii?Q?rfKlV1qI93BB4/E9pxFj5SMKB0jn50ltXKJz6ba6PRxLvHkoWDjmDK9xjOU9?=
- =?us-ascii?Q?sKXxH6CNP8DYs05v5XJv2aNhzETVAKBXiEeY5ZuaLC3hmePeuNBnNYfupMsR?=
- =?us-ascii?Q?zROqmrYh0oRyVF6hK9gvYeBgN2aqV+UwS02An5T0VJN5TuO7DfcQTunxTo+j?=
- =?us-ascii?Q?he4SGRiJWHGRpLWD3yvsGf34GPryFLPZ/B+05Zd2ipyRZsUIwD4gguAqy6nm?=
- =?us-ascii?Q?1KH+T9vO56nzm4W/mCSfb+tM5yrLwCsQ4+tmA/FleAAcXlWxMpWO46MVjDY1?=
- =?us-ascii?Q?XKfqYsbRBOPwNVb+AhlrjCsBt+PEXwXO0DD2Bq0F4IPiuIDHLS3grQxDYflP?=
- =?us-ascii?Q?MEJfHwns5qSfZrbNLXMWLO4cPD6gYKj78A21I21bpwVyQi/fvo6HfGwWBUxX?=
- =?us-ascii?Q?PFT2Q+FNXaFjecr2gY94sH4ZM95fP16R+sm3+FHqDmsZmkAvlJz0d44bOeU1?=
- =?us-ascii?Q?sxh5M5OytfODGVDwlVYbtokSTyaYYLkTCN3+KvHq4QenSg0GShd651LhhNCA?=
- =?us-ascii?Q?hb1KLMRnrJguw/tAsg0xWVGFjOCTbTypt0p/meX8l/XD3BKBHO8bl7250NwE?=
- =?us-ascii?Q?kC8m36jWAYA5cwP8OweC7Neia6/r5RpK8iTY3jTD55S+xRC9zOFi4mjElEzO?=
- =?us-ascii?Q?yEhF6gWxIUipHwFptHzuBPVs0UxPxib9bxLz5FCeYQ+a13gSqmL7eu9y+w67?=
- =?us-ascii?Q?oTE1iyp53sfWbAxX0SCxu0EfJTZ9pulMJKuXOkwdkuSJnqZFlH5P0tYx8d3m?=
- =?us-ascii?Q?CJJc8tQFLbIfo3x57KEf/cSABTR/npEOBMRn+7mvDB6VEJA44slpbLPbMCcs?=
- =?us-ascii?Q?8sCobUVKjuTOGRbuROy+/VIrJ7HOcutYBDROJCQTD2AJb4same5lMIlVPvyS?=
- =?us-ascii?Q?0HyWYJfUK+bvj1KzHeo75UNEPAkABmodsBP+NE0ocLp9JXBA2uHegDHu+VJG?=
- =?us-ascii?Q?0fEQObxqmenyGsQZoekeBYOGOnrhMTCJO3dQX2QgHr5h7IeYh5OQICPKi5El?=
- =?us-ascii?Q?WldYqDkV5qEj/a5/fyrgbCvbFWl5nSyMJtewcG6DTvJeNINXbGw51bLTCWDV?=
- =?us-ascii?Q?ih9P1j8wvXCg4//dbRH++z0sWa8isRyF3b6lYSQMJc/Zyfm+nFxwM3boY1fE?=
- =?us-ascii?Q?hG/JC/HL8gK0N5HoXc/z6vE0mKEM+b7Q26S7s3aV?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75195820-ed85-4985-c865-08dd8ca95d3a
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8868.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2025 14:22:00.0074
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: D1caTNS1TbIbPcsflhslvil0eBVMUtcQgDziyrM1GSibDwfcS06fsbnw2h/PZK+GjNvgiX8oPEuJuoudN3MACA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7655
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v4 2/7] clocksource/drivers: Add EcoNet Timer HPT driver
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: linux-mips@vger.kernel.org, tglx@linutronix.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, tsbogend@alpha.franken.de,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ benjamin.larsson@genexis.eu, linux-mediatek@lists.infradead.org
+References: <20250430133433.22222-1-cjd@cjdns.fr>
+ <20250430133433.22222-3-cjd@cjdns.fr> <aBjpBpJAIP89oiit@mai.linaro.org>
+ <92cd3689-3409-4d43-8db1-8633d35f779a@cjdns.fr>
+ <7c08cc9e-f39f-490c-85fe-5738656380e5@linaro.org>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <7c08cc9e-f39f-490c-85fe-5738656380e5@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, May 02, 2025 at 09:04:03AM +0200, Krzysztof Kozlowski wrote:
-> On Wed, Apr 30, 2025 at 06:36:33PM GMT, Ioana Ciornei wrote:
-> > From: Vladimir Oltean <vladimir.oltean@nxp.com>
-> > 
-> > The MDIO mux on the LS1028A-QDS never worked in mainline. The device
-> > tree was submitted as-is, and there is a downstream driver for the QIXIS
-> > FPGA:
-> > 
-> > https://github.com/nxp-qoriq/linux/blob/lf-6.12.y/drivers/soc/fsl/qixis_ctrl.c
-> > 
-> > That driver is very similar to the already existing drivers/mfd/simple-mfd-i2c.c,
-> > and the hardware works with the simple-mfd-i2c driver, so there isn't
-> > any reason to upstream the other one.
-> > 
-> > Adapt the compatible string and child node format of the FPGA node, so
-> > that the simple-mfd-i2c driver accepts it.
-> 
-> Why do you break the users based on some driver differences? Fix the
-> drivers, not the DTS.
-> 
-> > 
-> > Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 9 +++++----
-> >  1 file changed, 5 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> > index 0bb2f28a0441..58b54d521d75 100644
-> > --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> > @@ -338,17 +338,18 @@ sgtl5000: audio-codec@a {
-> >  	};
-> >  
-> >  	fpga@66 {
-> > -		compatible = "fsl,ls1028aqds-fpga", "fsl,fpga-qixis-i2c",
-> > -			     "simple-mfd";
-> > +		compatible = "fsl,ls1028a-qds-qixis-i2c";
-> 
-> This breaks all the existing users. NAK.
 
-Using a mainline kernel, this DT node was never used or probed by a
-driver since that driver was never submitted. I am not breaking any user
-of the mainline kernel.
+On 06/05/2025 10:54, Daniel Lezcano wrote:
+> On 05/05/2025 20:09, Caleb James DeLisle wrote:
+>>
+>> On 05/05/2025 18:36, Daniel Lezcano wrote:
+>>> On Wed, Apr 30, 2025 at 01:34:28PM +0000, Caleb James DeLisle wrote:
+>>>> Introduce a clocksource driver for the so-called high-precision 
+>>>> timer (HPT)
+>>>> in the EcoNet EN751221 MIPS SoC.
+>>> As a new driver, please document the timer (up - down ?, SPI/PPI, etc
+>>> ...) that will help to understand the code more easily, especially the
+>>> reg_* functions (purposes?).
+>>
+>>
+>> Sure thing, I can elaborate the comment in the header of
+>> timer-econet-en751221.c. Let me know if you'd like it described
+>> somewhere else as well, such as the help of config 
+>> ECONET_EN751221_TIMER.
+>
+> It is ok in the changelog, so it is possible to get the description 
+> when looking for the patch introducing the new timer.
 
-> 
-> >  		reg = <0x66>;
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> >  
-> > -		mux: mux-controller {
-> > +		mux: mux-controller@54 {
-> 
-> This was never tested. Your binding says something else.
 
-Will fix the binding in v2.
+Sounds good.
 
-Ioana
+
+>
+> [ ... ]
+>
+>>>> +
+>>>> +    cpuhp_setup_state(CPUHP_AP_MIPS_GIC_TIMER_STARTING,
+>>>> +              "clockevents/en75/timer:starting",
+>>>> +              cevt_init_cpu, NULL);
+>>> cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, ... ) ?
+>>
+>> I see that Ingenic does this. This is the only timer so until it's up,
+>> sleeping causes a hang. If sleeping is prior to CPUHP_AP_ONLINE_DYN is
+>> considered a bug then this should be okay, but I'm not informed enough
+>> to say whether that is the case so I'll follow your guidance here.
+>
+> Hmm, hard to say without the platform. May be just give a try with 
+> CPUHP_AP_ONLINE_DYN to check if it works otherwise stick on 
+> CPUHP_AP_MIPS_GIC_TIMER_STARTING as it is already defined ?
+
+
+I need a little time for this because I only got SMP on this processor
+
+some time ago in a PoC so I'll need to put that back together in order
+
+to validate the change.
+
+
+Thanks,
+
+Caleb
+
+
+>
+> [ ... ]
+>
+>
 
