@@ -1,191 +1,154 @@
-Return-Path: <devicetree+bounces-174321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B7DAACD30
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:25:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11407AACD34
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 20:25:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 979269831C3
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:24:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A5254E4772
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 18:25:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E419A2874FC;
-	Tue,  6 May 2025 18:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F01F12857F0;
+	Tue,  6 May 2025 18:25:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mTq9wd72"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B8J/URRK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B76272874F2
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 18:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF61A278146;
+	Tue,  6 May 2025 18:25:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746555837; cv=none; b=qRfcg0UQ9yPM4nOjtFfsmVKCNzEAgvddpWWmpI49q4e+oRUujMRyn4cr/sogxbqNioBeh5przFj3iJyXYvsigD2bxIOqBaxehACB06OXoc1j8qvgJJAknxXfVC95uy/Fpig9GzAYuU6qb7ODpGl6kgA0i4dQ/BTSRMPGTpAmuYk=
+	t=1746555941; cv=none; b=aBtMbq2E6G3M6yfFkOtcpDQl0bbjBEn2W40K8/5SXu93B1Zc8upMVw8g+7jHPgRQOV6DFS7pT6kH3gUFTt0k5MlojtF0EaAazdR1z5YyPyWh3OBKSXoXPwLNUmUgUYjqxyfXvif/ngxSzodIHfmubk76FR59anK6fFGJnadlg38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746555837; c=relaxed/simple;
-	bh=Uqf8kJePtfsVZgbr7I/p/tyXitesai0FA9qB6jM2d68=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=NWQgs4+a4hRmgP8jX7VQ8M4O/F71Bt7oKOtc7MmiujQYjotLLZwqaCaQcu48kIbZZS4HsK71uNY+f8QOIbm+ZGH4xuKmijofwarZASVxUFuQM/BVr8Hqs4FMQ5dPdWCmxCsJZOKqtUPhtVVYDzHQmKBoXqNwjJGWKiyzwObI2J8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mTq9wd72; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20B55C4CEF1;
-	Tue,  6 May 2025 18:23:57 +0000 (UTC)
+	s=arc-20240116; t=1746555941; c=relaxed/simple;
+	bh=eZMtMRX+XEqjPAGK33crRcL0vjbLxp3ZTlEuyfjqAoA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kXd1JpAMa2DFCUdDRey1HTFrCtEGf5ovrZDBw2P66cPPo49gYznnnwc/AVhcubiiOZstaaN+SaNyGuyG6k4mAWmRlLYP4OHOt8+YmtQF3WH3hZgRf7LPqBeZ9vbsuPdmedAmsQfrnsjmMw/sGlvdBqXSPbd+iS9hzrGLij7SGjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B8J/URRK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D482EC4CEE4;
+	Tue,  6 May 2025 18:25:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746555837;
-	bh=Uqf8kJePtfsVZgbr7I/p/tyXitesai0FA9qB6jM2d68=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=mTq9wd72DU/eVRRzweoLa9Us5dM41/K5sQmA3weNWILL47X8Wcx8FB2YmSXawNFxO
-	 00r/kZZsupjVQsqvsSFMenCqsj6dw5/lZzRr33ggkVVN1CX9MwbnuXdgDWtRQQ70Va
-	 kAi8VI68bih+bJwU8cdzG20jhtCrvgU5EctFEFcRNUGCYrAHgUCLc6gdt4Fk1nbugj
-	 Ob2lQ/9Yn7FqnI1SqmLFra+kY/9HdeVfV8o2uWgrtYnJAicll9s351T5D9Nx4ctgEG
-	 B0tw6Nr70flZ8CW1OhUgMC9S6tU4+0t7jmAivWARLNod01I8KSHLQtMske++7cXItA
-	 OW2ACImsJ31pw==
-Date: Tue, 06 May 2025 13:23:55 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1746555941;
+	bh=eZMtMRX+XEqjPAGK33crRcL0vjbLxp3ZTlEuyfjqAoA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=B8J/URRKLWpKRIOJp6qYCTRL6ZN1QKrIV9paC9NNi8EdKHQZpKoIBQ9m3afopNyqd
+	 YbzyWaEn7PDtAHFXsWfBW4ZPA1QLlCthkDlbU8nZ7xpi4jJmMSJbZnmmOUw5aNsAdX
+	 JxUivRnkKDShsZmgAa1My5LD9hwXlnSouCBFiGXRsSGl2DuEB8Fvvxc2RjW0Ryoqvx
+	 +sOtNiBXPZClJ46F98XVTBaIU/8y7Z4zudU561QH9N9EDSWP6Ydb89H2MIYz5co5uC
+	 TM8o7qmo3KeIqNV5rmaK8yNohGkkJe1SZ9CaXwHuThYNlA+aVA5E6Xt1gkjhKz623V
+	 XqHU3ii65D2Cg==
+Message-ID: <8def8f5d-3bc6-4ca3-85bf-f55dc7dc7d9c@kernel.org>
+Date: Tue, 6 May 2025 20:25:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krzysztof.kozlowski@linaro.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, frattaroli.nicolas@gmail.com, 
- devicetree@vger.kernel.org, heiko@sntech.de, jonas@kwiboo.se, 
- conor+dt@kernel.org, andrew@lunn.ch
-To: John Clark <inindev@gmail.com>
-In-Reply-To: <20250506114115.613616-1-inindev@gmail.com>
-References: <20250506114115.613616-1-inindev@gmail.com>
-Message-Id: <174655575268.2171082.7949828475697497257.robh@kernel.org>
-Subject: Re: [PATCH v3 0/3] Add Luckfox Omni3576 Carrier Board support for
- RK3576
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/8] dt-bindings: qcom: geni-se: describe SA8255p
+To: Praveen Talari <quic_ptalari@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
+ quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
+ quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com,
+ Nikunj Kela <quic_nkela@quicinc.com>
+References: <20250506180232.1299-1-quic_ptalari@quicinc.com>
+ <20250506180232.1299-3-quic_ptalari@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250506180232.1299-3-quic_ptalari@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Tue, 06 May 2025 07:41:12 -0400, John Clark wrote:
-> This series adds device tree support for the Luckfox Omni3576
-> Carrier Board with the Core3576 Module, powered by the Rockchip
-> RK3576 SoC (four Cortex-A72 cores, four Cortex-A53 cores, Mali-G52
-> MC3 GPU). It enables essential functionality for booting Linux and
-> basic connectivity, with plans for future support of peripherals
-> like WiFi, MIPI-DSI, HDMI, and Ethernet.
+On 06/05/2025 20:02, Praveen Talari wrote:
+> From: Nikunj Kela <quic_nkela@quicinc.com>
 > 
-> The series was first posted as v1 at:
-> https://lore.kernel.org/linux-rockchip/20250502205533.51744-1-inindev@gmail.com
-> v2 at:
-> https://lore.kernel.org/linux-rockchip/20250504102447.153551-1-inindev@gmail.com
+> SA8255p platform abstracts resources such as clocks, interconnect
+> configuration in Firmware.
 > 
-> Tested features (on Linux 6.15-rc4):
->  - UART: Serial console operational
->  - SD card: Mounts and reads/writes successfully
->  - PCIe: NVMe SSD detected, mounted, and fully functional
->  - USB 2.0: Host ports operational
->  - RTC: Timekeeping and wake-up tested
->  - LED: Heartbeat trigger functional
->  - eMMC: Enabled in device tree, not populated on tested hardware
+> Add DT bindings for the QUP Wrapper on sa8255p platform.
 > 
-> The series includes three patches:
->  1. dt-bindings: vendor-prefixes: Add Luckfox vendor prefix
->  2. dt-bindings: arm: rockchip: Add Luckfox Omni3576 and Core3576 bindings
->  3. arm64: dts: rockchip: Add Luckfox Omni3576 board support
-> 
-> The device tree is covered by the existing ROCKCHIP ARCHITECTURE
-> entry in MAINTAINERS. I am aware of ongoing RK3576 upstreaming
-> efforts (e.g., by Collabora) and welcome feedback or collaboration
-> to align with mainline driver development.
-> 
-> Changes in v3:
->  - Addressed Jonas Karlman's feedback on patch 3/3
->    (Luckfox Omni3576 device tree):
->    - Added pinctrl for green LED GPIO (gpio1 RK_PD5) for proper
->      pin setup.
->    - Reordered regulator node properties for consistent sequence
->      (e.g., regulator-name, regulator-min-microvolt,
->      regulator-max-microvolt, etc.).
->    - Updated regulator nodes (vcc_3v3_pcie, vbus_5v0_typec,
->      vcc_5v0_host, vcc_5v0_hdmi) to use 'gpios' property instead
->      of deprecated 'gpio'.
->    - Removed pmic-power-off pinctrl state and pinctrl-1 from RK806
->      PMIC node, as they are vendor-specific and undocumented in
->      bindings.
->    - Removed pwrkey node from PMIC, as it lacks binding
->      documentation.
->    - Added blank line between properties and child nodes in i2c2
->      node for DT style compliance.
->    - Removed no-mmc property from sdmmc node to enable MMC
->      support, aligning with RK3576 SD v3.0 and MMC v4.51
->      capabilities, allowing TF card slot to support MMC devices
->      or eMMC via adapter.
->  - Removed Ethernet support (gmac0/gmac1 nodes) per Andrew Lunn's
->    feedback, as it relied on the generic PHY driver with incorrect
->    RGMII delay settings, which would break with the upcoming
->    MAE0621A driver.
->  - Addressed Rob Herring's DTB check warnings, other warnings
->    (e.g., VOP, PCIe, OTP, HDMI PHY) originate from rk3576.dtsi and
->    are outside this patchset scope.
->  - Added RNG node to pick up Nicolas Frattaroli's "add RK3576 RNG
->    node" patch
-> 
-> Changes in v2:
->  - Enabled HDMI node per feedback from Heiko Stuebner and Nicolas
->    Frattaroli; untested due to upstream driver issues.
->  - Enabled Ethernet 1 node per Heiko's device tree philosophy;
->    untested due to suspected PHY driver or configuration issues
->    (removed in v3 per Andrew Lunn).
->  - Clarified eMMC remains enabled but unpopulated on tested
->    board, per Heiko.
-> 
-> Signed-off-by: John Clark <inindev@gmail.com>
-> ---
-> John Clark (3):
->   dt-bindings: vendor-prefixes: Add luckfox prefix
->   dt-bindings: arm: rockchip: Add Luckfox Omni3576 and Core3576 bindings
->   arm64: dts: rockchip: Add Luckfox Omni3576 Board support
-> 
->  .../devicetree/bindings/arm/rockchip.yaml     |  10 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../dts/rockchip/rk3576-luckfox-core3576.dtsi | 683 ++++++++++++++++++
->  .../dts/rockchip/rk3576-luckfox-omni3576.dts  |  53 ++
->  5 files changed, 749 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-luckfox-omni3576.dts
-> 
-> --
-> 2.39.5
-> 
-> 
-> 
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> Co-developed-by: Praveen Talari <quic_ptalari@quicinc.com>
+> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+You are wasting people's time, srsly, replying without giving any chance
+to comment and then totally ignoring review.
 
+Reach to your colleagues before sending next version to be sure you
+understand the process.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+<form letter>
+It looks like you received a tag and forgot to add it.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-  pip3 install dtschema --upgrade
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250506 (best guess, 2/3 blobs matched)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250506114115.613616-1-inindev@gmail.com:
-
-arch/arm64/boot/dts/rockchip/rk3576-luckfox-omni3576.dtb: /soc/rng@2a410000: failed to match any schema with compatible: ['rockchip,rk3576-rng']
-
-
-
-
-
+Best regards,
+Krzysztof
 
