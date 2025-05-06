@@ -1,46 +1,86 @@
-Return-Path: <devicetree+bounces-174088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A60DAAC0DF
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5591BAAC0EB
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:08:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DB333A3CFF
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:05:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D7893A1773
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 10:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192EE1A9B48;
-	Tue,  6 May 2025 10:05:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06E0272E7E;
+	Tue,  6 May 2025 10:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=david-bauer.net header.i=@david-bauer.net header.b="Ydn5wlgH"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="fVCYukBZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgate02.uberspace.is (mailgate02.uberspace.is [185.26.156.114])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A9AE26AAB2
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 10:05:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.26.156.114
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C44226AAB2
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 10:08:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746525951; cv=none; b=hRp5NTL/2UPdWuRdGqwcG4i4VlU4HJY9UGXLqw0eadxKLDEK2Ett3FAiL1BUmCujf+WWIoViJd12GK01iFyGPatnfTmU1hpEA67lD2rglxJvnwexMOQRpe6yBhxbwxysxnWbv2RGAB7WD9ld6q3NWxMWMt5U1esIhnZV/D7tfUE=
+	t=1746526087; cv=none; b=QH8OjItRqFgIo/ozcaD1UPy/FXwXCN/GTcDIjADyVa9EbdoLZoWiI07ItguevmCmF1PzqjTUGfmHqnAn99YfhaBPceS83qCzOSJv/WU13wIg9HQ3Ds+D1UJPySJYDKJbrtBU2ixtpVulEdCYP2I2s9gycT1FHg4gNCI/cGxSr28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746525951; c=relaxed/simple;
-	bh=BwhNMp0UKnG882cpIKMkCxp3AB6dxSGE8tTxzzwppPY=;
+	s=arc-20240116; t=1746526087; c=relaxed/simple;
+	bh=Wz6GfcLllA8wXtKZftbfMGr8twZTF0gIGI34vcXnxvA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IVe9UpkVxcVOZZr/9EXZljXDL14xVCH3GL8WBjk1xwSY12Ss6bkmps5AuvhPk+wBdWxH9iXLusx18sLU2j7LkgQnShJZ2ufCd370rKpAfk+lWbOSciiaIRUMwNfe50xuRdP3WPA/zs/8OA8JbqNRXNVPUEX/ugQM6jjKSSCePOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=david-bauer.net; spf=pass smtp.mailfrom=david-bauer.net; dkim=pass (4096-bit key) header.d=david-bauer.net header.i=@david-bauer.net header.b=Ydn5wlgH; arc=none smtp.client-ip=185.26.156.114
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=david-bauer.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=david-bauer.net
-Received: from perseus.uberspace.de (perseus.uberspace.de [95.143.172.134])
-	by mailgate02.uberspace.is (Postfix) with ESMTPS id A2E3017F96C
-	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 12:05:44 +0200 (CEST)
-Received: (qmail 10419 invoked by uid 988); 6 May 2025 10:05:44 -0000
-Authentication-Results: perseus.uberspace.de;
-	auth=pass (plain)
-Received: from unknown (HELO unkown) (::1)
-	by perseus.uberspace.de (Haraka/3.0.1) with ESMTPSA; Tue, 06 May 2025 12:05:44 +0200
-Message-ID: <8c9e5e74-966b-4969-9776-7655863fd197@david-bauer.net>
-Date: Tue, 6 May 2025 12:05:43 +0200
+	 In-Reply-To:Content-Type; b=Rw/RE8MmUAVaA/dFZrkKPQuOm3vNZhz82jMQSZRNuoZmvSgXaULZ4b9kSmBSNK8cxPt5obUswEcMPRuu76jyTJoV7T6dJ/9ZqyLxTlN69lUQ7i7EL0D39lSMms6BJTHhU76t/Mwd4nr06SQOQ4rvLncurMmJGLOdnNyERe3e+F8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=fVCYukBZ; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1746526085;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2KtQkNqGsM537amwwqhIUa++uqwpFX6sC1hurxsMCHI=;
+	b=fVCYukBZAHcpNHxC5l7aWX7MxV7r3Xaqfu8pedC+lsO3H0/OpjrnAl5l8/gjAw8U2qLuI9
+	ePCuOYmoJ5+qi/qWOtI+FzqEraPlzMHJCxxzZV8z0FBZDCPNv9z+r+xPAloQQVyRzT8fWU
+	GMFahnY1ok+YbT7zeWqEHFMRRtnEzXg=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-35-fcDs-rGbNjedFs8rhOS6Ow-1; Tue, 06 May 2025 06:08:04 -0400
+X-MC-Unique: fcDs-rGbNjedFs8rhOS6Ow-1
+X-Mimecast-MFC-AGG-ID: fcDs-rGbNjedFs8rhOS6Ow_1746526083
+Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-44059976a1fso23448675e9.1
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 03:08:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746526083; x=1747130883;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2KtQkNqGsM537amwwqhIUa++uqwpFX6sC1hurxsMCHI=;
+        b=ayqJaqUjS7WxdHVWuK+35tYbVt6lSX8aRCzDgkp9Awo1GWMYCSqvR9gUHzq+4oTGyQ
+         a+wktMxk5WNdd8qIr7+k/Y9yxZTBI50khyPVwshMhMHgpz2dsFCz64OowskCUVen616h
+         SI8cRGsU36tONv6WKehDjrcsatEXvEEskEIexF6B6FKY57rfY+Bj00Ddp+RDxGt4QeQY
+         R421uT+sE7NJ15G5BNCwEZrleJbDHPuRsoqMFfElDKGW6VpskvW+9XYPKIeicthwevxy
+         tSdxe0Foa5T9QRwzhTEBmeIGTbxoJckn//bGHHo8jGz8wwFAhUwh/frCx2QifGiDoOsp
+         dgTg==
+X-Forwarded-Encrypted: i=1; AJvYcCUeXaLF9IMTwbmgDvyNL40+VyyeHLkWcUQm/KZ31rOeNvkc666fZckjk0ysKwiXwtH6l2Qyt7zEP8e9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgCBP+sW6w88HgtPxV0o7tTuRQs20wWAGjl8BZKKbmeyf9u+kP
+	U2+30/xSrh6jimQjwr71xoML0NE8oCYl/lOBB+ynw4FgN3euyph9+LxFq353eGHj1mbck64JGQY
+	5om0Ts1InHEkUQ+T5KWVnAKBENrQyha8odJMowIFEQROhRzm1k8tVBijCFWM=
+X-Gm-Gg: ASbGncvxY+fRc/PVces3SP9hLKvMONVcg/sDbgCT6GnHJcpUDbF5wQFeruk1jjrZT5Z
+	cO7FnU5y/Y+gNJIKHckFzgKxOCLECLODNWbwEfvfZ2WM3Wi6DoRHeeQTb2YHK+yAHTQz8TU+cQh
+	mHoCF2bOWZWwq839WbTY0rQEwgbgXnIYehQqWNR5Q5W9FRtTJMOSJSp4CAS/s9jmEEgsrZIRD5J
+	AZPDCwLmFkYG2aMRrSnZLQ4HHkAW6L2cCfnLFfL/N3NPNjwAgEyTdmJtnYhbXAKlZfUn+8aCEpd
+	G5fAVq6zv/Z1eHsyPAZEjLPyrsONxq7TAiUf9SAsqwZaIqf9UqF+0GnNYck=
+X-Received: by 2002:a05:600c:5304:b0:43c:fe15:41e1 with SMTP id 5b1f17b1804b1-441bbea0afbmr153287205e9.4.1746526082875;
+        Tue, 06 May 2025 03:08:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFhc03MBzoZWgjKorEMXR128n+knjgaDZEvqQTT3kpgSCz4Z047896lj5XIARk7un2ADQgeHA==
+X-Received: by 2002:a05:600c:5304:b0:43c:fe15:41e1 with SMTP id 5b1f17b1804b1-441bbea0afbmr153286675e9.4.1746526082521;
+        Tue, 06 May 2025 03:08:02 -0700 (PDT)
+Received: from ?IPV6:2a0d:3344:2706:e010:b099:aac6:4e70:6198? ([2a0d:3344:2706:e010:b099:aac6:4e70:6198])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-441b2aecb60sm207881215e9.11.2025.05.06.03.07.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 May 2025 03:08:01 -0700 (PDT)
+Message-ID: <19f4f38b-9962-41d6-97b7-e254db3c6dee@redhat.com>
+Date: Tue, 6 May 2025 12:07:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,259 +88,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: input: add Semtech SX951x binding
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250505203847.86714-1-mail@david-bauer.net>
- <cbf42385-9803-4bea-bf99-a6f31f1454f6@linaro.org>
+Subject: Re: [PATCH net-next v7 03/11] net: ti: prueth: Adds PRUETH HW and SW
+ configuration
+To: Parvathi Pudi <parvathi@couthit.com>, danishanwar@ti.com,
+ rogerq@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, nm@ti.com, ssantosh@kernel.org, tony@atomide.com,
+ richardcochran@gmail.com, glaroque@baylibre.com, schnelle@linux.ibm.com,
+ m-karicheri2@ti.com, s.hauer@pengutronix.de, rdunlap@infradead.org,
+ diogo.ivo@siemens.com, basharath@couthit.com, horms@kernel.org,
+ jacob.e.keller@intel.com, m-malladi@ti.com, javier.carrasco.cruz@gmail.com,
+ afd@ti.com, s-anna@ti.com
+Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, pratheesh@ti.com,
+ prajith@ti.com, vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com,
+ krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
+References: <20250503121107.1973888-1-parvathi@couthit.com>
+ <20250503121107.1973888-4-parvathi@couthit.com>
 Content-Language: en-US
-From: David Bauer <mail@david-bauer.net>
-Autocrypt: addr=mail@david-bauer.net; keydata=
- xjMEZgynMBYJKwYBBAHaRw8BAQdA+32xE63/l6uaRAU+fPDToCtlZtYJhzI/dt3I6VxixXnN
- IkRhdmlkIEJhdWVyIDxtYWlsQGRhdmlkLWJhdWVyLm5ldD7CjwQTFggANxYhBLPGu7DmE/84
- Uyu0uW0x5c9UngunBQJmDKcwBQkFo5qAAhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQbTHlz1Se
- C6eKAwEA8B6TGkUMw8X7Kv3JdBIoDqJG9+fZuuwlmFsRrdyDyHkBAPtLydDdancCVWNucImJ
- GSk+M80qzgemqIBjFXW0CZYPzjgEZgynMBIKKwYBBAGXVQEFAQEHQPIm0qo7519c7VUOTAUD
- 4OR6mZJXFJDJBprBfnXZUlY4AwEIB8J+BBgWCAAmFiEEs8a7sOYT/zhTK7S5bTHlz1SeC6cF
- AmYMpzAFCQWjmoACGwwACgkQbTHlz1SeC6fP2AD8CduoErEo6JePUdZXwZ1e58+lAeXOLLvC
- 2kj1OiLjqK4BANoZuHf/ku8ARYjUdIEgfgOzMX/OdYvn0HiaoEfMg7oB
-In-Reply-To: <cbf42385-9803-4bea-bf99-a6f31f1454f6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20250503121107.1973888-4-parvathi@couthit.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Bar: ---
-X-Rspamd-Report: BAYES_HAM(-3) XM_UA_NO_VERSION(0.01) MIME_GOOD(-0.1)
-X-Rspamd-Score: -3.09
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=david-bauer.net; s=uberspace;
-	h=from:to:cc:subject:date;
-	bh=BwhNMp0UKnG882cpIKMkCxp3AB6dxSGE8tTxzzwppPY=;
-	b=Ydn5wlgHz9wy9nIQG9lu+5dKh6m5Pgvhcu3UGrxIMMnwOiVUu7N3UIpgo72D5NqdwbEeO4C+gm
-	evJKo+SYUWl2K/vb0BURikzVbeyUjYIRq8YkNElCX40RMW5PVTM098RcU0j5Jos1tY5+J/2er/LF
-	sMDGW+jVwxMDTkU7kOu54mB+rWcCB/5je5RaNa0oOxiJOm+rNp2Yb1RCYOg62+Vo+4vCUC3xthJO
-	3UyBNyfv6hewu1+w1nnozKhrxWa6DtV059NAW7CTrLq0K6J6EqLyJj/DXzPr5LHNKM4S1bWJAjj7
-	td6NiCrR3/rZYgWdeDWgoXi0fogI6wiHJAPlEefSdEIF/xV3xfUWxbHhfz12cLqqMaU2GMfCAZJN
-	n0z7N2pnZeOJKqM4pfDk3hm/Sp5H/jvvhq5t3LfW+LfGk0o5oq9RP1bw3X7mZ9FhQS1HyleebMlL
-	ZEPkTS7VFx9rSioj+j0chbq9zL9ohe42uHVDD1cUQRVfNwyZ+uE2exv6pWZ0AC2Guqi5khyoQmrZ
-	q/zI+kRlMYYzOheNkGkKQI4hVmAuzbHov/cPRdo8DyIUMYHig1LA7c18hmH5lgZTDHHx7uWUDU3m
-	jw8nVb/1go8SX9/XDgY3M9dloAps0TBde8jyALJnWY6c58aGT4TORCZI9YDvci2I90Gc8MKqt7V2
-	c=
 
-Hi Krzysztof,
+On 5/3/25 2:10 PM, Parvathi Pudi wrote:
+> +static int icssm_prueth_emac_config(struct prueth_emac *emac)
+> +{
+> +	struct prueth *prueth = emac->prueth;
+> +
+> +	/* PRU needs local shared RAM address for C28 */
+> +	u32 sharedramaddr = ICSS_LOCAL_SHARED_RAM;
+> +
+> +	/* PRU needs real global OCMC address for C30*/
+> +	u32 ocmcaddr = (u32)prueth->mem[PRUETH_MEM_OCMC].pa;
+> +	void __iomem *dram_base;
+> +	void __iomem *mac_addr;
+> +	void __iomem *dram;
 
-thanks for the review.
+Minor nit: please respect the reverse christmas tree order above.
 
-On 5/6/25 08:21, Krzysztof Kozlowski wrote:
-> On 05/05/2025 22:38, David Bauer wrote:
->> Add device-tree binding for the Semtech SX9512/SX9513 family of touch
->> controllers with integrated LED driver.
->>
->> Signed-off-by: David Bauer <mail@david-bauer.net>
-> 
-> You CC-ed an address, which suggests you do not work on mainline kernel
-> or you do not use get_maintainers.pl/b4/patman. Please rebase and always
-> work on mainline or start using mentioned tools, so correct addresses
-> will be used.
-I'm a bit unsure what you are referring to - maybe I've set the options
-for get_maintainer.pl wrong, but i use
+/P
 
-get_maintainer.pl --nogit --nogit-fallback --norolestats --nol
-
-to determine TO recipients and
-
-get_maintainer.pl --nogit --nogit-fallback --norolestats --nom
-
-for CC destinations.
-
-Granted, my tree was a bit out of date but it was from mainline
-and after rebase both commands returned consistent results.
-
-Hope you can provide me with some guidance there.
-
-> 
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC (and consider --no-git-fallback argument, so you will
-> not CC people just because they made one commit years ago). It might
-> happen, that command when run on an older kernel, gives you outdated
-> entries. Therefore please be sure you base your patches on recent Linux
-> kernel.
-> 
-> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-> people, so fix your workflow. Tools might also fail if you work on some
-> ancient tree (don't, instead use mainline) or work on fork of kernel
-> (don't, instead use mainline). Just use b4 and everything should be
-> fine, although remember about `b4 prep --auto-to-cc` if you added new
-> patches to the patchset.
-> 
-> 
->> ---
->>   .../bindings/input/semtech,sx951x.yaml        | 180 ++++++++++++++++++
->>   1 file changed, 180 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/input/semtech,sx951x.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/input/semtech,sx951x.yaml b/Documentation/devicetree/bindings/input/semtech,sx951x.yaml
->> new file mode 100644
->> index 000000000000..e4f938decd86
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/input/semtech,sx951x.yaml
->> @@ -0,0 +1,180 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/input/semtech,sx951x.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Semtech SX9512/SX9513 based capacitive touch sensors
->> +
->> +description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
-> 
->> +  The Semtech SX9512/SX9513 Family of capacitive touch controllers
->> +  with integrated LED drivers. The device communication is using I2C only.
->> +
->> +maintainers:
->> +  - David Bauer <mail@david-bauer.net>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - semtech,sx9512
->> +      - semtech,sx9513
-> 
-> Devices are not compatible? What are the differences?
-
-The SX9513 is a cost-reduced version which does not
-support proximity sensing. With the current support
-of the driver they work identical. Should i add this
-information as a comment?
-
-> 
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  '#address-cells':
->> +    const: 1
->> +
->> +  '#size-cells':
->> +    const: 0
->> +
->> +  poll-interval:
->> +    default: 100
->> +    description: |
-> 
-> Do not need '|' unless you need to preserve formatting. Same comment
-> everywhere.
-> 
->> +      The polling interval for touch events in milliseconds.
-> 
-> Missing -ms property unit suffix... unless you are using existing
-> property from common schema, but I do not see any reference (and thus
-> unevaluatedProperties at the end).
-> 
->> +
->> +patternProperties:
->> +  "^channel@[0-7]$":
->> +    $ref: input.yaml#
->> +    type: object
->> +    description: |
->> +      Each node represents a channel of the touch controller.
->> +      Each channel provides a capacitive touch sensor input and
->> +      an LED driver output.
->> +
->> +    properties:
->> +      reg:
->> +        enum: [0, 1, 2, 3, 4, 5, 6, 7]
->> +
->> +      linux,keycodes:
->> +        maxItems: 1
->> +        description: |
->> +          Specifies an array of numeric keycode values to
->> +          be used for the channels. If this property is
->> +          omitted, the channel is not used as a key.
->> +
->> +      semtech,cin-delta:
-> 
-> Use proper unit suffix and express it in pF.
-
-To represent 2.3 and 3.8 pF, would it be better to represent in
-femtofarad?
-
-> 
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        minimum: 0
->> +        maximum: 3
->> +        default: 3
->> +        description: |
->> +          The capacitance delta which is used to detect a touch
->> +          or release event. The property value is mapped to a
->> +          farad range between 7pF and 2.3pF internally. The delta
->> +          becomes smaller the higher the value is.
->> +
->> +      semtech,sense-threshold:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        minimum: 0
->> +        maximum: 255
->> +        default: 4
->> +        description: |
->> +          The threshold value after which the channel detects a touch.
->> +          Refer to the datasheet for the internal calculation of the
->> +          resulting touch sensitivity.
->> +
->> +      led:
-> 
-> I think subnode is here not needed. This should be part of the channel,
-> probably.
-
-Just to be sure - you mean to have a property "led" upon which instructs
-the channel to be used to drive an LED and include the LED specific
-properties in the node of the channel?
-
-> 
->> +        $ref: /schemas/leds/common.yaml#
->> +        type: object
->> +        unevaluatedProperties: false
->> +        description: |
->> +          Presence of this property indicates the channel
->> +          is used as an LED driver.
->> +
->> +    required:
->> +      - reg
->> +
->> +    additionalProperties: false
-> 
-> unevaluatedProperties instead
-> 
->> +
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/input/input.h>
->> +    #include <dt-bindings/leds/common.h>
->> +    i2c {
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +
->> +      touch@2b {
->> +        compatible = "semtech,sx9512";
->> +
-> 
-> Drop blank line
-> 
->> +        reg = <0x2b>;
->> +
-> 
-> 
-> Best regards,
-> Krzysztof
 
