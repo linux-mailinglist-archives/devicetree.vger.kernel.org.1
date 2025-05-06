@@ -1,82 +1,61 @@
-Return-Path: <devicetree+bounces-174147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04485AAC355
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:03:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC6A4AAC35F
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 14:06:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71BD7507868
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:03:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 288B53AA112
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 12:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48E327E1D9;
-	Tue,  6 May 2025 12:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F9327C859;
+	Tue,  6 May 2025 12:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="03rizyVd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eN50fn5Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B1027A912;
-	Tue,  6 May 2025 12:03:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29C0827C157;
+	Tue,  6 May 2025 12:06:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746533032; cv=none; b=tYTkBej3RZMH+qDJfKfh6fp6Bmy+KDWtzTVkPQkHoFWMnyUUeS9x3DzfrSHMlbLDSga8e70Sh/3M+/vTO56rS9mQBUWS+CHq08xD/BeysMuVm38D8NPE/NV+1UnmsOkLboope6ovxqfbXhOl27PUOs7UKvDBNKVBLwaY8WVJLD8=
+	t=1746533206; cv=none; b=JGoXE8XOVAkDWlKWoNUK45k8bkeLheuiFrmdglEcjHAhe3ZUbKhu4DEdIoMTqDYANxkp/TvOBAd/iUy0z8/gW5vIU7se8DYhRu9zq4WpEZOpzE54AZ/LL+QgOezBMOiIZKMSTGqslrg8ovHoGlZyHKK9LRxbLh4a+l7UV+wCxz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746533032; c=relaxed/simple;
-	bh=bvcE8UJriU5bQ/HfVeJGeB81Nh5hUtXaylGcj4Om6OM=;
+	s=arc-20240116; t=1746533206; c=relaxed/simple;
+	bh=kKU+uCIszAf0TanYBW6FtHHTFA9JElr5vNNK/+12RjM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eROXJUYF+P/HFCfgcnM1NW8WAxNZ1O3RJJPVhhKTzny7xzEYHE9WldL8KGDrNALL99PW3jLnYk5Zme913O4DyJrkWDHgAIuPaJSIHEdQZ90CWx+ZzatDTvWdUzLqj45YqWVVPcnJ2yE65rsXJ0NJgKvSDTV5L4av5U2pN9Rc7KQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=03rizyVd; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ccy92s0Vv0PZxaLjkoe4HChXBpQXYsl9udKDAzD8mp0=; b=03rizyVdV3c8TaymbHp7nH4o/P
-	EWDRrO2mANpHp/Bmru1XHIadbYDLJUdlUY0n8ZmM1kaQ+UIKip2J1Y5c9UPUJuU7rXlDNBVSeAOMy
-	OLeVuLdeKPBPnyNoLvaA9W8cBGhC+43Y5kpAnLKlyk/3bFCc94W7ANvs6OM2dRxakHmQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uCH14-00BkfN-6i; Tue, 06 May 2025 14:03:18 +0200
-Date: Tue, 6 May 2025 14:03:18 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=UZQ66iVx/fAPHCzy5OsChmDRExb4ZZ1hbqngtPHubcj7isHomRZbKUCq1f+V8XkALMDHUlSUj/mpmCfcGVseU4MMgDD6uLhiaQoTo61o6htAwbdYDiL4ghc7o+NHBCgn4Cv3lOxIABzXkydFhNgj7j19oN+TWt4gAxLTGp4Pbfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eN50fn5Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE53EC4CEED;
+	Tue,  6 May 2025 12:06:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746533206;
+	bh=kKU+uCIszAf0TanYBW6FtHHTFA9JElr5vNNK/+12RjM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eN50fn5ZeJQl72u4TLKSNAfG/8dzMfS7MFq6JTHLB4suCW7dN+2XDelJd80g8X1uM
+	 69U/18mlGG3t2v7soTPcHSp58UhvW3UR7GoyuhXF6VDCR7Rqirynz7PVl0F2QS20B6
+	 W/skUjXH5DgJZIkHHz4HuV6AgGYMpqluonLz5B3Ub/D9QQmepho5lmW27iFSDAHqKe
+	 I/oGxHgyKeJJirQpS+3IOqwk3Z6h9nJAeefA7RyPTzJMOXXWHp8xYa4LjVCDCxWAE0
+	 ohj/qh9eVZh0QNM796NjT2ccD4Dmf0af8Z+poTvk/UWTgACbBwyiVTWTqVljGPMWrT
+	 aMOcuJj3JzAJQ==
+Date: Tue, 6 May 2025 07:06:44 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Philippe Simons <simons.philippe@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Guo Ren <guoren@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
-	Lothar Rubusch <l.rubusch@gmail.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
-	Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next 0/4] riscv: sophgo: Add ethernet support for
- SG2042
-Message-ID: <c7a8185e-07b7-4a62-b39b-7d1e6eec64d6@lunn.ch>
-References: <20250506093256.1107770-1-inochiama@gmail.com>
+	Cody Eksal <masterr3c0rd@epochal.quest>,
+	Chen-Yu Tsai <wens@csie.org>, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Liontron name
+Message-ID: <174653320333.607552.11987630283053407011.robh@kernel.org>
+References: <20250505164729.18175-1-andre.przywara@arm.com>
+ <20250505164729.18175-2-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,17 +64,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250506093256.1107770-1-inochiama@gmail.com>
+In-Reply-To: <20250505164729.18175-2-andre.przywara@arm.com>
 
-On Tue, May 06, 2025 at 05:32:50PM +0800, Inochi Amaoto wrote:
-> The ethernet controller of SG2042 is Synopsys DesignWare IP with
-> tx clock. Add device id for it.
+
+On Mon, 05 May 2025 17:47:27 +0100, Andre Przywara wrote:
+> Liontron is a company based in Shenzen, China, making industrial
+> development boards and embedded computers, mostly using Rockchip and
+> Allwinner SoCs.
 > 
-> This patch can only be tested on a SG2042 x4 evb board, as pioneer
-> does not expose this device.
+> Add their name to the list of vendors.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Do you have a patch for this EVB board? Ideally there should be a user
-added at the same time as support for a device.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-	Andrew
 
