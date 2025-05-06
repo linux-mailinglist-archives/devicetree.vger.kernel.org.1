@@ -1,56 +1,57 @@
-Return-Path: <devicetree+bounces-173896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-173899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5CBBAAB936
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 08:52:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 994A6AAB9B2
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 09:02:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD84D4A149D
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 06:49:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DFE43A1FE2
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 06:49:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4042223C517;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B340B283FC0;
 	Tue,  6 May 2025 04:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vu4CTjRa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JRt1JKLY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42757288CA3;
-	Tue,  6 May 2025 02:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE77B300296;
+	Tue,  6 May 2025 02:22:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746498144; cv=none; b=iMWowXj5mqindvHv6HEQSojhe27X5H0TScNSxOkfnySoQT5TAChEfikqSNukw6s8xrW4cEo67DaqzzAki0DL/gGhMLD0nQpMrmpfbA3wq7gz6yBWXpj00Y5hgKkfKi7L9WfQvn4W+veUWM2aBGr/k7luyFKYSwOJ+Sr4ww3lVRw=
+	t=1746498148; cv=none; b=kcwAPEdIEToeiliHRJZ+V0z6W4Dgfan2ui0dXoFcX6BOUr99oc5vrVNQIgoYxUnwI8WjkTIsbr/fTwm2kEi2Brmm7sfH1wSPJbSOaW+2tAXv0XOXHwCW3fdKc+7mNLNUFKm3408Zsgiy5lCuFAp40mSzgRAULchteBPISOPXhtk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746498144; c=relaxed/simple;
-	bh=7ef2pJBKAZeVrG/4t6fNBbsvtcjSVP4jrJFlRb13DSE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ULHknOqc4pLZJdlu0q086J0oSd1QHlrtjfWOGP7DRbku71kpk1UiMzUDPUx78ING1oIfDqPrmcG4YgzcYacsBoAFovOSYIOaxDT5eKxEAsLHrwU/xy4saXUhShk0jaRVQwvtRoRUKSdQm1CzIU3kKZdubBF3F1Ilie+2ReeWDpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vu4CTjRa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90661C4CEE4;
-	Tue,  6 May 2025 02:22:22 +0000 (UTC)
+	s=arc-20240116; t=1746498148; c=relaxed/simple;
+	bh=iw+EcWCNPov4bxyPeoD8LUh/hbyYCdRWN30dNiEaW4I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=g7vVSOXcn5yvVcalgV1IV7Qcwu5Qze/OXOFeSE6G7qFZqYXeGlTDoZOgwjNwv0TVPWFHGu4qSrq4S2XcBqyJPZsTRYzi7E6LkMk1X/UAezR5cyf2QQHgzSOeZVYRXz3uCm8EGraeRBWtwYxiFbhyr8biXD1Jpb8s4DY2/92O61Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JRt1JKLY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93FEAC4CEE4;
+	Tue,  6 May 2025 02:22:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746498142;
-	bh=7ef2pJBKAZeVrG/4t6fNBbsvtcjSVP4jrJFlRb13DSE=;
+	s=k20201202; t=1746498146;
+	bh=iw+EcWCNPov4bxyPeoD8LUh/hbyYCdRWN30dNiEaW4I=;
 	h=From:To:Cc:Subject:Date:From;
-	b=Vu4CTjRabuy/Nkbz67AX9G2bX29g7y+31s67ITUOhZ0dXv9fVy2RHYbi7Xmhm2XkV
-	 bcu1Mn/yFjh7TuV295Fo+oDpwtdl0W5oe21lmvHALSeiNk/+yKIWRUON9F7wN3L/OX
-	 H3jd5RUQtwah+1cL4PtZUFTSg2E2cr2aVTwqdiOtZ4+lbG0ekjJ0EHg5DwdNjt4e4a
-	 jvCQd6X4KRLegepoW6DOPJ5Lkt1CJqjq5wYwQcLSzHJsclv9oHIrsA6ouqE6f/aWhy
-	 tkTim2h77DlmWz2zg/NYsvRzif+ePzRNrMOUE4xzPP3FlaR6FXIHHNQwiS5CnE5xJp
-	 LwJJI7Nm9ORUQ==
+	b=JRt1JKLY/FNMEunKzVOTOarJkaSa5zegAItguo2V1rLuwfJD5ocIuqWWtDCNra99E
+	 MuWT4ugi5oa4XFZI2Qn7bagPuRhynfTAxPYD3BlrdEXzaQz1ldxPlmC4rgbDqsyAyj
+	 ElyutpOYa6fYodib9LTYd917wQh9/uJ7qWhoaM8Xcq/cIaDLcsOKoUEJwYmh0oOz+t
+	 PGqVJliuZhCsrK3wUhmcWLoOI3RNH4mfy4AWtGJxfOoENSvwiVPApac/W9VdXHCQxD
+	 /2CmsGboUPYpbVCVA2yQUt+QJW03zFBIxUnKQNQTRumdLVu2q87qIT3cgWN04youSi
+	 fwLg42F/tgqKg==
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Daniel Lezcano <daniel.lezcano@linaro.org>,
 	Thomas Gleixner <tglx@linutronix.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Shiyan <shc_work@mail.ru>
+	Guo Ren <guoren@kernel.org>
 Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: timer: Convert cirrus,clps711x-timer to DT schema
-Date: Mon,  5 May 2025 21:22:14 -0500
-Message-ID: <20250506022215.2586595-1-robh@kernel.org>
+	devicetree@vger.kernel.org,
+	linux-csky@vger.kernel.org
+Subject: [PATCH] dt-bindings: timer: Convert csky,gx6605s-timer to DT schema
+Date: Mon,  5 May 2025 21:22:23 -0500
+Message-ID: <20250506022224.2586860-1-robh@kernel.org>
 X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -60,79 +61,85 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the Cirrus CLPS711x timer binding to DT schema format. It's a
+Convert the C-SKY gx6605s timer binding to DT schema format. It's a
 straight-forward conversion.
-
-Drop the aliases node and second example which aren't relevant.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../bindings/timer/cirrus,clps711x-timer.txt  | 29 ------------
- .../bindings/timer/cirrus,clps711x-timer.yaml | 45 +++++++++++++++++++
- 2 files changed, 45 insertions(+), 29 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/timer/cirrus,clps711x-timer.txt
- create mode 100644 Documentation/devicetree/bindings/timer/cirrus,clps711x-timer.yaml
+ .../bindings/timer/csky,gx6605s-timer.txt     | 42 -------------------
+ .../bindings/timer/csky,gx6605s-timer.yaml    | 40 ++++++++++++++++++
+ 2 files changed, 40 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/timer/csky,gx6605s-timer.txt
+ create mode 100644 Documentation/devicetree/bindings/timer/csky,gx6605s-timer.yaml
 
-diff --git a/Documentation/devicetree/bindings/timer/cirrus,clps711x-timer.txt b/Documentation/devicetree/bindings/timer/cirrus,clps711x-timer.txt
+diff --git a/Documentation/devicetree/bindings/timer/csky,gx6605s-timer.txt b/Documentation/devicetree/bindings/timer/csky,gx6605s-timer.txt
 deleted file mode 100644
-index d4c62e7b1714..000000000000
---- a/Documentation/devicetree/bindings/timer/cirrus,clps711x-timer.txt
+index 6b04344f4bea..000000000000
+--- a/Documentation/devicetree/bindings/timer/csky,gx6605s-timer.txt
 +++ /dev/null
-@@ -1,29 +0,0 @@
--* Cirrus Logic CLPS711X Timer Counter
+@@ -1,42 +0,0 @@
+-=================
+-gx6605s SOC Timer
+-=================
 -
--Required properties:
--- compatible: Shall contain "cirrus,ep7209-timer".
--- reg       : Address and length of the register set.
--- interrupts: The interrupt number of the timer.
--- clocks    : phandle of timer reference clock.
+-The timer is used in gx6605s soc as system timer and the driver
+-contain clk event and clk source.
 -
--Note: Each timer should have an alias correctly numbered in "aliases" node.
+-==============================
+-timer node bindings definition
+-==============================
 -
--Example:
--	aliases {
--		timer0 = &timer1;
--		timer1 = &timer2;
+-	Description: Describes gx6605s SOC timer
+-
+-	PROPERTIES
+-
+-	- compatible
+-		Usage: required
+-		Value type: <string>
+-		Definition: must be "csky,gx6605s-timer"
+-	- reg
+-		Usage: required
+-		Value type: <u32 u32>
+-		Definition: <phyaddr size> in soc from cpu view
+-	- clocks
+-		Usage: required
+-		Value type: phandle + clock specifier cells
+-		Definition: must be input clk node
+-	- interrupt
+-		Usage: required
+-		Value type: <u32>
+-		Definition: must be timer irq num defined by soc
+-
+-Examples:
+----------
+-
+-	timer0: timer@20a000 {
+-		compatible = "csky,gx6605s-timer";
+-		reg = <0x0020a000 0x400>;
+-		clocks = <&dummy_apb_clk>;
+-		interrupts = <10>;
+-		interrupt-parent = <&intc>;
 -	};
--
--	timer1: timer@80000300 {
--		compatible = "cirrus,ep7312-timer", "cirrus,ep7209-timer";
--		reg = <0x80000300 0x4>;
--		interrupts = <8>;
--		clocks = <&clks 5>;
--	};
--
--	timer2: timer@80000340 {
--		compatible = "cirrus,ep7312-timer", "cirrus,ep7209-timer";
--		reg = <0x80000340 0x4>;
--		interrupts = <9>;
--		clocks = <&clks 6>;
--	};
-diff --git a/Documentation/devicetree/bindings/timer/cirrus,clps711x-timer.yaml b/Documentation/devicetree/bindings/timer/cirrus,clps711x-timer.yaml
+diff --git a/Documentation/devicetree/bindings/timer/csky,gx6605s-timer.yaml b/Documentation/devicetree/bindings/timer/csky,gx6605s-timer.yaml
 new file mode 100644
-index 000000000000..507b777e16bc
+index 000000000000..888fc8113996
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/cirrus,clps711x-timer.yaml
-@@ -0,0 +1,45 @@
++++ b/Documentation/devicetree/bindings/timer/csky,gx6605s-timer.yaml
+@@ -0,0 +1,40 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/timer/cirrus,clps711x-timer.yaml#
++$id: http://devicetree.org/schemas/timer/csky,gx6605s-timer.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Cirrus Logic CLPS711X Timer Counter
++title: gx6605s SOC Timer
 +
 +maintainers:
-+  - Alexander Shiyan <shc_work@mail.ru>
++  - Guo Ren <guoren@kernel.org>
 +
 +properties:
 +  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - cirrus,ep7312-timer
-+          - const: cirrus,ep7209-timer
-+      - const: cirrus,ep7209-timer
++    const: csky,gx6605s-timer
 +
 +  reg:
 +    maxItems: 1
@@ -153,11 +160,11 @@ index 000000000000..507b777e16bc
 +
 +examples:
 +  - |
-+    timer@80000300 {
-+        compatible = "cirrus,ep7312-timer", "cirrus,ep7209-timer";
-+        reg = <0x80000300 0x4>;
-+        interrupts = <8>;
-+        clocks = <&clks 5>;
++    timer@20a000 {
++        compatible = "csky,gx6605s-timer";
++        reg = <0x0020a000 0x400>;
++        clocks = <&dummy_apb_clk>;
++        interrupts = <10>;
 +    };
 -- 
 2.47.2
