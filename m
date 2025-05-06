@@ -1,471 +1,154 @@
-Return-Path: <devicetree+bounces-174334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09BC7AACDC0
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 21:08:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E065CAACDC7
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 21:10:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBE7C1C039AA
-	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 19:08:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B0BE5213ED
+	for <lists+devicetree@lfdr.de>; Tue,  6 May 2025 19:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACCDD18D65F;
-	Tue,  6 May 2025 19:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E69C21FF54;
+	Tue,  6 May 2025 19:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I9aSzr+d"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="L9K2OaAI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83F36142E86;
-	Tue,  6 May 2025 19:08:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D995C1BE238
+	for <devicetree@vger.kernel.org>; Tue,  6 May 2025 19:10:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746558496; cv=none; b=kJYyDxoM4TdmChnfdJf9aESv5ybt0FEjN6bSw59gQ3Lvd6qmVKn4Jg1BhRW2C8VZITLC/u5A2Igjfh1oQmR9cQdsiLl+xB3m8x/omACR/vakFnu7UtuUk2boRnAoaygfQXJM7vCugc76+Qe3cTAgimuK4CS6zoF8MtN/pW9Nao0=
+	t=1746558610; cv=none; b=fx2wsn5fjjmcaIL6TaUZiCDNu4fMJWK5QhEOqDaVedR7v4CRvUyWLQSTv1/98DbLZWR/bCWYf+D5JklHQ3MI4QBYSYEzYQwp/1MmkvbPGZpsEypLhZ54mT7/pWlgPrpMsQk5sabi+8/1n3NgsjARELTEpQ01rGMw+TZYZ6aYBJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746558496; c=relaxed/simple;
-	bh=paTUFGSz04LNT/C2BDv0ImA0O+MsG2kBS12SleaLNnc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gdbgjbGyc7OU0dDoTGLmGw6vkBOqwoDrnBtK9tJNIsvk/EBsJH3IfCNcrKWl+EY2K4fD71ecvHMQbIH21eGukkMiuRxehndWQ+4m4qf57I6pBGJ3qGmuPYY/luLw3OT2/7thwfBU0KPqe8soYu/NOTcY9CAe41iWCKELZWJcO9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I9aSzr+d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2B0AC4CEEF;
-	Tue,  6 May 2025 19:08:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746558495;
-	bh=paTUFGSz04LNT/C2BDv0ImA0O+MsG2kBS12SleaLNnc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=I9aSzr+d7TvJ8+VZIYDsy4Qd4D7ms6PhFKPytwqXf3tcpz0vTmUVBmDbKVUN8jsdT
-	 5hgresaB2j5y2P/PGsmqKbrg1DnyKeLPaKSehmiszyNMg3k88XudVUD1OfpjE2yfqo
-	 5tOfyjHdcKkBjaQBZSJp0cuBxzMrmkVMGfwDKSRP20JWfMNnAouOJ4rq7oBo0yUtIh
-	 Il8Ip1yhDaJNK3kEP+BWiWJ7D3xZmtZ0TGbpqumaX0Oxz/h+uOr/xPZ5mC2SL5pSVc
-	 w6izSPKxfKmv3Nld9tteAoyra70lVdoJrX9yZfP4BxxTSKbYg06/qpDYbR75aEXa/l
-	 bhwuDBW5s4V5g==
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5e5dce099f4so7927612a12.1;
-        Tue, 06 May 2025 12:08:14 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVOoMkeZz4ONwO7lf0SYfkMGZplSwMAm3elyb87Uw9AtIP9ptqHRlDjo//TFV6ENhq1dO0/9s2hQMNFp22m@vger.kernel.org, AJvYcCVhOiuzcy/WF5z1LRwNI9D+aopw6kUnrKTN5weikzfaQK27Rv6LjjE1mHgAT0hPZOHvqgbTmgq13p+O@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjC6sltn2GG3SBKpXqkRw5RwSJhf9rxotW4mg7jLMDBllwHZWT
-	ERXxv5xf6Oj9nAmUv31YD826RcMNTMq/2SA6QFvcbw9h01ODb22FNHg5HHfQByLPCSsr6Bzz6Gk
-	9StIy/zgLYJGcIQOyPb4bx22rdg==
-X-Google-Smtp-Source: AGHT+IG5bV9HHgyKjBFnzwp3/cOgl7x43ZVv1upSuafOcFeM+MkAJOpTlLULzDn1VWlVKjUkxUfXOhQM9k4na2AbsX8=
-X-Received: by 2002:a17:907:6d19:b0:ac6:f6ea:cc21 with SMTP id
- a640c23a62f3a-ad1e8e6b66emr57640566b.55.1746558493511; Tue, 06 May 2025
- 12:08:13 -0700 (PDT)
+	s=arc-20240116; t=1746558610; c=relaxed/simple;
+	bh=W5LSkZiC6OONbIl3yFWmvcAKLA5RZHe07Z/De94PpK0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Nveo1G6fwK9UTUfFixikXAKaRHC0vAuZXrfG0ehD0Tarhi7J1EKBTnkMmAO+gnHQrbVDNmMxyLg/MrJgPZZ41xwIl+mjl1rrC+m24yVhns3OP4ObGG2cADHZsYB5cnwVgtJR7tCi2hfxmf5Dq3zr8ApUjmDYYOqN/2uc24LpIdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=L9K2OaAI; arc=none smtp.client-ip=209.85.167.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3f94b7bd964so4720776b6e.1
+        for <devicetree@vger.kernel.org>; Tue, 06 May 2025 12:10:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746558606; x=1747163406; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b7M9Vh4cA/vAEJWog9BRDwxxCIas5FuWV5Bkti2ZaSc=;
+        b=L9K2OaAIKVJ8XEzNDHMNOWFDCeDWHbk7vxcjHe6TwHNTNXJiGkmBEAWJj7whlwiThs
+         Knujaf2rbDwwFsqsWQYkSG4fW1+JqRjRfkC0A6jYs4roOfbr45W2viX9p54DPX80rdME
+         qFQcZR97DU7ewyoIbxu64EPkkgOfzuJ2o1smoy63YmEY+0cnw5Jy5v7sDFpSZF5J/VqE
+         aFuugtq/S1QQZ73qk5me4LOf/rapVVoj2CYj9782GWiqT4+6mcJ7ZhgilICEifl+K63m
+         0UNrWMc/8aDGPAJ+QdxCG0AKtN5lu530l8pdjRfQuO9kc2PmxbRTXf3lJ0PNMjaQHmkr
+         vsOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746558606; x=1747163406;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b7M9Vh4cA/vAEJWog9BRDwxxCIas5FuWV5Bkti2ZaSc=;
+        b=dCO2sqechPV0rtruV7lYZQsIYSIiF22J/gQSF7RmDH0BGHeeDrTvevKnZLbsRWsZwT
+         EcJk3Ke0u9T53DR8Np4tkv5tDa890gWpR6q79PxJIN4daJghPU/HkP4AesihIg2S34I1
+         ER1OZBP++YqfyqFZYjg4Wxe3rBrkIyMUsuIpc4tK4UnFtq4SzcpO1Zu09/BW+sXDlfki
+         kU4QIO/ez36Y4t/ZgSsMMicCAnwBV5scIrNxNwgHe7ZaTqVi5p0OUV0dB1dBAzdwTzip
+         2x0CN2OyWraz3dAHw9ROZGeUcQiiryRD0OaK7nVb8U8bIG9WpzcLBjdG/5TAkir7GU/4
+         S2JQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXG7OGdYrgyzIkObHZGMCKoFTivxWbygvATML3YAE+fh51so8gQ3800iA1bki4HpGHuQrDPUgbkBZV2@vger.kernel.org
+X-Gm-Message-State: AOJu0YxyPgXmRTgnwhTDRHiUtOD2U7zfrCpQCxAQO7TOysgqvL8VuhwO
+	VnDtYLOw1hzihbJN79XDtyTfrbia5fAX1i0dgt4Bg//jHi7btPoragsaPbqY4YE=
+X-Gm-Gg: ASbGncvlk6Bt3iO1Q3EqarEQUSGfvAGCo7dDh6M1A5hkbuF2iC6tiCE/XNgxIhh4Dax
+	A5DjY0ql2iwaadFrI2pGKWYFthEvlvHKjrTs6HRIxaJ6xHz3DSTfSq9dwsTFBWB7v7LzSYx/r2j
+	ETRO/raPiaS+Qcn+mRYsUKX+NKOXKdZz/ysGg7J1YWID6LMVEe01fEgRkNttYiBkQ4T0skAQJO8
+	tOsb8QN/mA8xoWWwm3V/L2cw9p6ioeDge6aOLJsc7zHjinCzsWK9T6pQXx1ioJjpVrxWDm0FYzo
+	s9NGgiaZMv6vmFzPc5dwzTX8pS12JjZNJTAu191ll52aiKoGipij35FqL+Vn0mnDFDahp94VTLF
+	0o2/yymN5xjJRnufuZg==
+X-Google-Smtp-Source: AGHT+IFJhJoNsdYwSL56KZvKfxZoVwS9PDEA9mN250fkyvogc1aJUfgOT11q5mMwvC2Qeq/RUXmjcg==
+X-Received: by 2002:a05:6808:11cd:b0:3fe:b0ad:f927 with SMTP id 5614622812f47-4036f085567mr471124b6e.16.1746558605880;
+        Tue, 06 May 2025 12:10:05 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:5172:9f6c:997a:41ea? ([2600:8803:e7e4:1d00:5172:9f6c:997a:41ea])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-4036f3b12c8sm42180b6e.49.2025.05.06.12.10.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 May 2025 12:10:05 -0700 (PDT)
+Message-ID: <64b41a31-6224-4ab7-b26d-ea3e60a60d3b@baylibre.com>
+Date: Tue, 6 May 2025 14:10:04 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250506-gicv5-host-v3-0-6edd5a92fd09@kernel.org> <20250506-gicv5-host-v3-1-6edd5a92fd09@kernel.org>
-In-Reply-To: <20250506-gicv5-host-v3-1-6edd5a92fd09@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 6 May 2025 14:08:00 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK1mTrj4tG_D3sjXdE_jbpHG_o79ReDpZNCH44wXiBj2g@mail.gmail.com>
-X-Gm-Features: ATxdqUFkwx6wCHrwPzmvPvVj7GYAyB5eNUDayhhnrDe_pr1MLa_iWy-GVbQk6vI
-Message-ID: <CAL_JsqK1mTrj4tG_D3sjXdE_jbpHG_o79ReDpZNCH44wXiBj2g@mail.gmail.com>
-Subject: Re: [PATCH v3 01/25] dt-bindings: interrupt-controller: Add Arm GICv5
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Sascha Bischoff <sascha.bischoff@arm.com>, Timothy Hayes <timothy.hayes@arm.com>, 
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Mark Rutland <mark.rutland@arm.com>, 
-	Jiri Slaby <jirislaby@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 10/11] iio: adc: ad7768-1: add filter type and
+ oversampling ratio attributes
+To: 20250505170950.1d7941d0@jic23-huawei.smtp.subspace.kernel.org,
+	Jonathan Cameron <jic23@kernel.org>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+ Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+ linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+ broonie@kernel.org, Pop Paul <paul.pop@analog.com>
+References: <cover.1745605382.git.Jonathan.Santos@analog.com>
+ <4493dc2e3e0fb61ba3e8a0e54571998aaaaf46c8.1745605382.git.Jonathan.Santos@analog.com>
+ <20250505170950.1d7941d0@jic23-huawei>
+ <aBpdDN12wdV/gOBB@JSANTO12-L01.ad.analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <aBpdDN12wdV/gOBB@JSANTO12-L01.ad.analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, May 6, 2025 at 7:24=E2=80=AFAM Lorenzo Pieralisi <lpieralisi@kernel=
-.org> wrote:
->
-> The GICv5 interrupt controller architecture is composed of:
->
-> - one or more Interrupt Routing Service (IRS)
-> - zero or more Interrupt Translation Service (ITS)
-> - zero or more Interrupt Wire Bridge (IWB)
->
-> Describe a GICv5 implementation by specifying a top level node
-> corresponding to the GICv5 system component.
->
-> IRS nodes are added as GICv5 system component children.
->
-> An ITS is associated with an IRS so ITS nodes are described
-> as IRS children - use the hierarchy explicitly in the device
-> tree to define the association.
->
-> IWB nodes are described as a separate schema.
->
-> An IWB is connected to a single ITS, the connection is made explicit
-> through the msi-parent property and therefore is not required to be
-> explicit through a parent-child relationship in the device tree.
->
-> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Marc Zyngier <maz@kernel.org>
-> ---
->  .../interrupt-controller/arm,gic-v5-iwb.yaml       |  76 ++++++++
->  .../bindings/interrupt-controller/arm,gic-v5.yaml  | 196 +++++++++++++++=
-++++++
->  MAINTAINERS                                        |   7 +
->  3 files changed, 279 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,g=
-ic-v5-iwb.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm=
-,gic-v5-iwb.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..b3eb89567b3457e91b93588d7=
-db1cef69b6b9813
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5-i=
-wb.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/arm,gic-v5-iwb.y=
-aml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM Generic Interrupt Controller, version 5 Interrupt Wire Bridge=
- (IWB)
-> +
-> +maintainers:
-> +  - Lorenzo Pieralisi <lpieralisi@kernel.org>
-> +  - Marc Zyngier <maz@kernel.org>
-> +
-> +description: |
-> +  The GICv5 architecture defines the guidelines to implement GICv5
-> +  compliant interrupt controllers for AArch64 systems.
-> +
-> +  The GICv5 specification can be found at
-> +  https://developer.arm.com/documentation/aes0070
-> +
-> +  GICv5 has zero or more Interrupt Wire Bridges (IWB) that are responsib=
-le
-> +  for translating wire signals into interrupt messages to the GICv5 ITS.
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,gic-v5-iwb
-> +
-> +  interrupt-controller: true
+On 5/6/25 2:03 PM, Jonathan Santos wrote:
+> On 05/05, Jonathan Cameron wrote:
+>> On Sun, 27 Apr 2025 21:14:17 -0300
+>> Jonathan Santos <Jonathan.Santos@analog.com> wrote:
+>>
+> ...
+>>  drivers/iio/adc/ad7768-1.c | 363 ++++++++++++++++++++++++++++++-------
+>>>  1 file changed, 293 insertions(+), 70 deletions(-)
+>>>
+>>> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+>>> index 10791a85d2c5..e2b8f12260a5 100644
+>>> --- a/drivers/iio/adc/ad7768-1.c
+>>> +++ b/drivers/iio/adc/ad7768-1.c
+>>> @@ -20,6 +20,8 @@
+>>>  #include <linux/regulator/driver.h>
+>>>  #include <linux/sysfs.h>
+>>>  #include <linux/spi/spi.h>
+>>> +#include <linux/unaligned.h>
+>>> +#include <linux/util_macros.h>
+>>>  
+>>>  #include <linux/iio/buffer.h>
+>>>  #include <linux/iio/iio.h>
+>>> @@ -77,7 +79,7 @@
+>>>  #define AD7768_PWR_PWRMODE(x)		FIELD_PREP(AD7768_PWR_PWRMODE_MSK, x)
+>>>  
+>>>  /* AD7768_REG_DIGITAL_FILTER */
+>>> -#define AD7768_DIG_FIL_FIL_MSK		GENMASK(6, 4)
+>>> +#define AD7768_DIG_FIL_FIL_MSK		GENMASK(7, 4)
+>>
+>> Bug?  If so does this belong in a precursor patch?
+>>
+> 
+> Actually not, this extra bit is to include the 60Hz rejection enable
+> for sinc3 filter
 
-Move next to #interrupt-cells
+Seems odd to me to group those together since they are two separate fields in
+the register. It would make more sense to have a separate BIT(7) for the
+EN_60HZ_REJ bit.
 
-> +
-> +  "#address-cells":
-> +    const: 0
-> +
-> +  "#interrupt-cells":
-> +    description: |
-> +      The 1st cell corresponds to the IWB wire.
-> +
-> +      The 2nd cell is the flags, encoded as follows:
-> +      bits[3:0] trigger type and level flags.
-> +
-> +      1 =3D low-to-high edge triggered
-> +      2 =3D high-to-low edge triggered
-> +      4 =3D active high level-sensitive
-> +      8 =3D active low level-sensitive
-> +
-> +    const: 2
-> +
-> +  reg:
+If we need to manipulate both at the same time in the driver, then we would
+use AD7768_DIG_FIL_EN_60HZ_REJ | AD7768_DIG_FIL_FIL_MSK.
 
-Generally, the order is compatible, reg, common properties, vendor
-properties, child nodes. Related properties grouped together and
-alphabetical order (ignoring '#') within common and vendor properties.
+> 
+>>>  #define AD7768_DIG_FIL_FIL(x)		FIELD_PREP(AD7768_DIG_FIL_FIL_MSK, x)
+>>
+> ...
+>  
 
-> +    items:
-> +      - description: IWB control frame
-> +
-> +  msi-parent:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - msi-parent
-
-interrupt-controller and #interrupt-cells should be required
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    interrupt-controller@2f000000 {
-> +      compatible =3D "arm,gic-v5-iwb";
-> +      #address-cells =3D <0>;
-> +
-> +      interrupt-controller;
-> +      #interrupt-cells =3D <2>;
-> +
-> +      reg =3D <0x2f000000 0x10000>;
-
-Use the same order as the schema.
-
-> +
-> +      msi-parent =3D <&its0 64>;
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,g=
-ic-v5.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic=
--v5.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..1ba0a2088e6d15bacae22c9fc=
-9eebc4ce5c51b0b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.y=
-aml
-> @@ -0,0 +1,196 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/arm,gic-v5.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM Generic Interrupt Controller, version 5
-> +
-> +maintainers:
-> +  - Lorenzo Pieralisi <lpieralisi@kernel.org>
-> +  - Marc Zyngier <maz@kernel.org>
-> +
-> +description: |
-> +  The GICv5 architecture defines the guidelines to implement GICv5
-> +  compliant interrupt controllers for AArch64 systems.
-> +
-> +  The GICv5 specification can be found at
-> +  https://developer.arm.com/documentation/aes0070
-> +
-> +  The GICv5 architecture is composed of multiple components:
-> +    - one or more IRS (Interrupt Routing Service)
-> +    - zero or more ITS (Interrupt Translation Service)
-> +
-> +  The architecture defines:
-> +    - PE-Private Peripheral Interrupts (PPI)
-> +    - Shared Peripheral Interrupts (SPI)
-> +    - Logical Peripheral Interrupts (LPI)
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,gic-v5
-> +
-> +  interrupt-controller: true
-> +
-> +  "#address-cells":
-> +    enum: [ 1, 2 ]
-> +
-> +  "#size-cells":
-> +    enum: [ 1, 2 ]
-> +
-> +  ranges: true
-> +
-> +  "#interrupt-cells":
-> +    description: |
-> +      The 1st cell corresponds to the INTID.Type field in the INTID; 1 f=
-or PPI,
-> +      3 for SPI. LPI interrupts must not be described in the bindings si=
-nce
-> +      they are allocated dynamically by the software component managing =
-them.
-> +
-> +      The 2nd cell contains the interrupt INTID.ID field.
-> +
-> +      The 3rd cell is the flags, encoded as follows:
-> +      bits[3:0] trigger type and level flags.
-> +
-> +        1 =3D low-to-high edge triggered
-> +        2 =3D high-to-low edge triggered
-> +        4 =3D active high level-sensitive
-> +        8 =3D active low level-sensitive
-> +
-> +    const: 3
-> +
-> +  interrupts:
-> +    description:
-> +      The VGIC maintenance interrupt.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-
-If you always have an IRS which you say there is, then #address-cells,
-#size-cells, and ranges are required. And interrupt-controller and
-#interrupt-cells.
-
-> +
-> +patternProperties:
-> +  "^irs@[0-9a-f]+$":
-> +    type: object
-> +    description:
-> +      GICv5 has one or more Interrupt Routing Services (IRS) that are
-> +      responsible for handling IRQ state and routing.
-> +
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        const: arm,gic-v5-irs
-> +
-> +      "#address-cells":
-> +        enum: [ 1, 2 ]
-> +
-> +      "#size-cells":
-> +        enum: [ 1, 2 ]
-> +
-> +      ranges: true
-> +
-> +      dma-noncoherent:
-> +        description:
-> +          Present if the GIC IRS permits programming shareability and
-> +          cacheability attributes but is connected to a non-coherent
-> +          downstream interconnect.
-> +
-> +      reg:
-
-Move after compatible
-
-> +        minItems: 1
-> +        items:
-> +          - description: IRS control frame
-> +          - description: IRS setlpi frame
-> +
-> +      cpus:
-> +        description:
-> +          CPUs managed by the IRS.
-> +
-> +      arm,iaffids:
-> +        $ref: /schemas/types.yaml#/definitions/uint16-array
-> +        description:
-> +          Interrupt AFFinity ID (IAFFID) associated with the CPU whose
-> +          CPU node phandle is at the same index in the cpus array.
-> +
-> +    patternProperties:
-> +      "^msi-controller@[0-9a-f]+$":
-> +        type: object
-> +        description:
-> +          GICv5 has zero or more Interrupt Translation Services (ITS) th=
-at are
-> +          used to route Message Signalled Interrupts (MSI) to the CPUs. =
-Each
-> +          ITS is connected to an IRS.
-> +        additionalProperties: false
-> +
-> +        properties:
-> +          compatible:
-> +            const: arm,gic-v5-its
-> +
-> +          dma-noncoherent:
-> +            description:
-> +              Present if the GIC ITS permits programming shareability an=
-d
-> +              cacheability attributes but is connected to a non-coherent
-> +              downstream interconnect.
-> +
-> +          msi-controller: true
-> +
-> +          "#msi-cells":
-> +            description:
-> +              The single msi-cell is the DeviceID of the device which wi=
-ll
-> +              generate the MSI.
-> +            const: 1
-> +
-> +          reg:
-
-Move after compatible.
-
-> +            items:
-> +              - description: ITS control frame
-> +              - description: ITS translate frame
-> +
-> +        required:
-> +          - compatible
-> +          - msi-controller
-> +          - "#msi-cells"
-> +          - reg
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - cpus
-> +      - arm,iaffids
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    interrupt-controller {
-> +      compatible =3D "arm,gic-v5";
-> +      #interrupt-cells =3D <3>;
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <1>;
-> +      ranges;
-> +
-> +      interrupt-controller;
-> +
-> +      interrupts =3D <1 25 4>;
-> +
-> +      irs@2f1a0000 {
-> +        compatible =3D "arm,gic-v5-irs";
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <1>;
-> +        ranges;
-> +
-> +        reg =3D <0x2f1a0000 0x10000>;  // IRS_CONFIG_FRAME for NS
-> +
-> +        arm,iaffids =3D /bits/ 16 <0 1 2 3 4 5 6 7>;
-> +        cpus =3D <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>, <&cpu4>, <&cpu5>, <=
-&cpu6>, <&cpu7>;
-> +
-> +        msi-controller@2f120000 {
-> +          compatible =3D "arm,gic-v5-its";
-> +
-> +          msi-controller;
-> +          #msi-cells =3D <1>;
-> +
-> +          reg =3D <0x2f120000 0x10000    // ITS_CONFIG_FRAME for NS
-
-Enclose each entry in <>'s.
-
-> +                 0x2f130000 0x10000>;  // ITS_TRANSLATE_FRAME
-> +        };
-> +      };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 96b82704950184bd71623ff41fc4df31e4c7fe87..1902291c3cccc06d27c5f7912=
-3e67774cf9a0e43 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1901,6 +1901,13 @@ F:       drivers/irqchip/irq-gic*.[ch]
->  F:     include/linux/irqchip/arm-gic*.h
->  F:     include/linux/irqchip/arm-vgic-info.h
->
-> +ARM GENERIC INTERRUPT CONTROLLER V5 DRIVERS
-> +M:     Lorenzo Pieralisi <lpieralisi@kernel.org>
-> +M:     Marc Zyngier <maz@kernel.org>
-> +L:     linux-arm-kernel@lists.infradead.org (moderated for non-subscribe=
-rs)
-> +S:     Maintained
-> +F:     Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5=
-*.yaml
-> +
->  ARM HDLCD DRM DRIVER
->  M:     Liviu Dudau <liviu.dudau@arm.com>
->  S:     Supported
->
-> --
-> 2.48.0
->
 
