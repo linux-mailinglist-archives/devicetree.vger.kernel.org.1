@@ -1,150 +1,165 @@
-Return-Path: <devicetree+bounces-174569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11FEDAAD9CF
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:13:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 347B4AAD9AF
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:09:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CCEE3ACA47
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:07:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F37EB4A0ECE
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:09:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC49223714;
-	Wed,  7 May 2025 07:59:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B97225413;
+	Wed,  7 May 2025 08:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FHNBUs5m"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="N/GBQnER"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53455222568;
-	Wed,  7 May 2025 07:59:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A51220F2D
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 08:02:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746604744; cv=none; b=TYatBW7tNDsltKNtc23pU1w3/WFYrDkYgT8VCP0xJ9rZDZ7NeBNHIKxTx3lVdMYtpAkOTyNFrFgmBUEbW0h1ZgpddBsWvWSKTNjxhzmSzTBCB3xQIKv7beEGxfHwEV+bUoD0Lctb5/dFg/iHBeEGPvlSk2QTKoKpYKysE65X908=
+	t=1746604928; cv=none; b=FGxcQ4DoekBBs2QtEJVEsixvGI8mVl46cc7a6n/hnOlTHf90Vtm/wDEji8s5RCmA35OrG5OHr/kAUqxZhnSZ/UJi6UcrlQYZpIXvzODDvq+0FMgLy/HxFqh6GgsY0DGxMDkTL3QrRJgut01529WS78rNmDlUMi1b1SzNgydb1+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746604744; c=relaxed/simple;
-	bh=cJVc8vDwwV6eG3WvH6uiIoTnL+2Yb4/F1G4OnVH37bo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G0TsRwNIhWoZG5gMWL6UpD+FPQ56K2lovAG+HygHLlankl5y/VzPWmSEY1e8qiEZbg3MhektabdcBJG92YZu2ZZJMxHcUu1cVbVyeqfT4MxPxVXrURVPPvWtz1Dv5P9H2GcN93k0GhW2e9iRNl0ODMsmj1xEjzf58khI+cqX5r4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FHNBUs5m; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746604743; x=1778140743;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cJVc8vDwwV6eG3WvH6uiIoTnL+2Yb4/F1G4OnVH37bo=;
-  b=FHNBUs5mDrvEsxe9oKHXAckoUDjW+E+nwv9OduaOoLleq4nr+NivnNRU
-   axX8QACXSFiReYugRQaqILIQNVM/2WTB+6ovi+vcyO7kK8ZB19G+2GntJ
-   Vc/sgfR9J3TOPA1qa9xon9Ftpc6PNAlRbErEvswo5MwtGdhEbhGNk7OsH
-   t6zVBYkkf4BtiKm1PTHShoIUi82o1hIE9xZY9YJmfYWnpW6PkoYqjukJQ
-   c9I6QOgZLmm+A4RnwxH8oh2ctGR29pVKzxMObWUeCpJcG2ZpC671lTYIX
-   l6nSiJxqVViXh5LoBCczU9CRvlDFrqVBDJESmpRrsYWtZm8/1Zt4pXBwc
-   Q==;
-X-CSE-ConnectionGUID: 6quq6gNZQQ6YUoBqs1saBg==
-X-CSE-MsgGUID: S1scbWBCTpOo7xheNtEUtA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="51969535"
-X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; 
-   d="scan'208";a="51969535"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2025 00:59:02 -0700
-X-CSE-ConnectionGUID: i3OY1f7dSP6kowPaS9EQDw==
-X-CSE-MsgGUID: XJ5A9IlWRxamSWSXFFzBUw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; 
-   d="scan'208";a="159175153"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 07 May 2025 00:58:57 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uCZg6-0007Mx-21;
-	Wed, 07 May 2025 07:58:54 +0000
-Date: Wed, 7 May 2025 15:58:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Praveen Talari <quic_ptalari@quicinc.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, psodagud@quicinc.com, djaggi@quicinc.com,
-	quic_msavaliy@quicinc.com, quic_vtanuku@quicinc.com,
-	quic_arandive@quicinc.com, quic_mnaresh@quicinc.com,
-	quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v3 8/9] serial: qcom-geni: Enable PM runtime for serial
- driver
-Message-ID: <202505071523.FhPMXslL-lkp@intel.com>
-References: <20250502031018.1292-9-quic_ptalari@quicinc.com>
+	s=arc-20240116; t=1746604928; c=relaxed/simple;
+	bh=UQYPuQ4V0eo5jv/qafQ0OHy9kWYPLY7nSfMkxHI957U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=r+xDh0uMbYPGoRuGHfJTxPAUO4kBGP/hdJOIdqewz9rcSpZ+lDrYFoC3TvFzgdrR4Lp1br+CXjICLoUk+I5V7M3C5W2JOdtn29xHxZwZt2Eql8oAWuCNW7ve55b1Sp+HQftGZdDdwbUcVVixuqKrzvEwIhNtTBxoKHGkAUmlCHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=N/GBQnER; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-acae7e7587dso1046023966b.2
+        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 01:02:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1746604925; x=1747209725; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=U+u3bu7oYvpS4FSzs62hW1Jixx7IoWbryK85jVovTQg=;
+        b=N/GBQnER7vPZZPl9WgMXAaCr8UIsJEjDiTtSYhcF9SIQeM+WQmcYRUb8pSSnlY2DCA
+         NmnaFXtZBHxHAxXqCaoW6u5oNI76/19MWeBJw78+5UzSDkn3vbaGmSi7Emlzex9WNvD1
+         f3hR9l2lemzkPPJImVhPV0/sZE5AF0DG2wv21/jkAUCE1aswL4jEhSE8rIUYk8eAbJlu
+         /38JHd3BZ1L7OhQPR3byxIaV+xgwI8kx96N3ZnPLZyTesmL9X3bR74SL5k0kO8ZexywW
+         u77OK6XsQxTxO269EUbWyk9JbE12jXbX+GsfcnBlGeaSH7DOwPWVb0GYL87rn4uyRBeL
+         wHGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746604925; x=1747209725;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U+u3bu7oYvpS4FSzs62hW1Jixx7IoWbryK85jVovTQg=;
+        b=dSMp/GWzPhUE2C2ScknQYGloG14LyOyh7BVa3yln6/SRQGnbe6ciUYn78lq8ZlIue6
+         HJTCi1+IJyQgPGAz2UViMvfLzCqNQhGT834EL7X4Bc0cfvnIEZTxm9No8CIXPMz89RCd
+         L+5oMkUNPb3MI33/p2BbaoMJ3bfiT1s+goQWjkZNvXSU0jM2Bjw6d3HRHKlOHuveoCDz
+         LU18Yr5Oige3UxAs4kNksviHn9kwpMVqyfw/v1cqEltnZXxIgDUgCtbKXn04IczOK99B
+         Kj0ij1CmKqhRBQOl4tH28n+reEQSA22+azqfEXZl21+rb+XDVzEpc0AL04f9BmIqD0Tt
+         ibyw==
+X-Forwarded-Encrypted: i=1; AJvYcCVjmf4H9lRkkRx+LbRNVVgszrKuUjCaA/soiGQKgcl6kqjNJO3eyZ8hmZztj6FSmivtqRIEqhxhaLPP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzw8DOX2KLYQJjLtiqRJ2K9yc4EvCDB7l2eaAJ8Iznf3hzc9OIy
+	lxe+5HC1tEqRqxY8rhF5Bik134XE0hmHVkOY1OqTyYVT03Kshmaf5hDIfKW4OaM=
+X-Gm-Gg: ASbGncu3fDn6ZwwFpSD++O89ipXb6jKhk2dgXjF60nSHzXN6AEYqRmqqZCn3B2JdwdI
+	flHYoqksi0JSPU8MEhvgH/kz8wcR2hhPOxWw0JkmT0cqHYnJbVXcfqCEbpid3+Br+iDgrpat9vF
+	bJeB6Q4CsTr2zEwSxtli0lXSISZ1z5yudMWQLsQvxUpuBLJhGGWRFTZr+vdKMRz6kCyeD8CaMvZ
+	qdqdkYsJJH7nyuZQktcN3e3GxCK2n1Byv3+bHnvakJVmItlmPh2nsR1xEjCYAbTd5Rs1g5V8lVO
+	b25SzJeYHcq2AAE/iByfDvj9363mM6Lxr0E5srZh34m/Vr+YSuJr9fJr+llC5OsA2DFzK8E/bJB
+	lxDlLSbO2kOvt1g==
+X-Google-Smtp-Source: AGHT+IHF5b+vKZO4u0eoZyRIBjD7kg25Q5WOddOsFOZKz33BDxBpiXozlemQ76d2/Vw293ayXjtVIg==
+X-Received: by 2002:a17:907:944e:b0:ace:6d53:3da3 with SMTP id a640c23a62f3a-ad1e8ce48dcmr237718466b.23.1746604924787;
+        Wed, 07 May 2025 01:02:04 -0700 (PDT)
+Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad1894c0310sm855236066b.88.2025.05.07.01.02.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 May 2025 01:02:04 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v4 0/5] Add DisplayPort sound support for Fairphone 5
+ smartphone
+Date: Wed, 07 May 2025 10:01:36 +0200
+Message-Id: <20250507-fp5-dp-sound-v4-0-4098e918a29e@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250502031018.1292-9-quic_ptalari@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGATG2gC/3XMSwrCMBSF4a1IxkZuXm3iyH2Ig+ZlMzApiRald
+ O+mBUGKDv8D55tQcTm4go67CWU3hhJSrMH3O2T6Ll4dDrY2okA5SFDYDwLbAZf0iBZr1jbSMyB
+ KW1QvQ3Y+PFfufKndh3JP+bXqI1nWP9BIMGDb6o4ayn2j1cl3IQ99iu5g0g0t2Eg/gABO5AagF
+ QBhG+FBcg3iF8C+ACo2AKtAazQXRAIoorfAPM9vUJe6hy4BAAA=
+X-Change-ID: 20240809-fp5-dp-sound-b3768f3019bd
+To: Srinivas Kandagatla <srini@kernel.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
 
-Hi Praveen,
+Add the necessary sound card bits and some dts additions to enable sound
+over DisplayPort-over-USB-C, e.g. to a connected TV or monitor.
 
-kernel test robot noticed the following build warnings:
+The UCM files can be found here:
+https://gitlab.postmarketos.org/postmarketOS/pmaports/-/tree/master/device/testing/device-fairphone-fp5/ucm
 
-[auto build test WARNING on 3e039dcc9c1320c0d33ddd51c372dcc91d3ea3c7]
+This series - in spirit - depends on the series enabling DisplayPort in
+the first place, but can land pretty independently, especially the ASoC
+bits:
+https://lore.kernel.org/linux-arm-msm/20250312-fp5-pmic-glink-dp-v2-0-a55927749d77@fairphone.com/
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Praveen-Talari/opp-add-new-helper-API-dev_pm_opp_set_level/20250502-111540
-base:   3e039dcc9c1320c0d33ddd51c372dcc91d3ea3c7
-patch link:    https://lore.kernel.org/r/20250502031018.1292-9-quic_ptalari%40quicinc.com
-patch subject: [PATCH v3 8/9] serial: qcom-geni: Enable PM runtime for serial driver
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20250507/202505071523.FhPMXslL-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250507/202505071523.FhPMXslL-lkp@intel.com/reproduce)
+The ASoC bits depend on the patches for USB audio offloading merged
+through Greg's tree so this cannot easily be applied for v6.16 through
+the sound tree. Either it waits for v6.17 or also goes through Greg's
+tree.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505071523.FhPMXslL-lkp@intel.com/
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v4:
+- Use "sm4250" for qcom,qrb4210-rb2-sndcard (Srinivas)
+- Expand cover letter to mention dependencies for ASoC patches
+- Pick up tags
+- Link to v3: https://lore.kernel.org/r/20250425-fp5-dp-sound-v3-0-7cb45180091b@fairphone.com
 
-All warnings (new ones prefixed by >>):
+Changes in v3:
+- Simplify return qcom_snd_wcd_jack_setup in machine driver
+- Pick up tags
+- Link to v2: https://lore.kernel.org/r/20250418-fp5-dp-sound-v2-0-05d65f084b05@fairphone.com
 
->> drivers/tty/serial/qcom_geni_serial.c:1876:12: warning: 'qcom_geni_serial_runtime_resume' defined but not used [-Wunused-function]
-    1876 | static int qcom_geni_serial_runtime_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/tty/serial/qcom_geni_serial.c:1868:12: warning: 'qcom_geni_serial_runtime_suspend' defined but not used [-Wunused-function]
-    1868 | static int qcom_geni_serial_runtime_suspend(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Changes in v2:
+- Revamp series based on comments on v1, doesn't have much too much in
+  common anymore
+- Use sm8250 instead of sc8280xp sndcard file, so port other required
+  changes from sc8280xp.c to sm8250.c
+- This also changes the sound card compatible to from
+  qcom,qcm6490-sndcard to fairphone,fp5-sndcard
+- Link to v1: https://lore.kernel.org/r/20240809-fp5-dp-sound-v1-0-d7ba2c24f6b9@fairphone.com
 
+---
+Luca Weiss (5):
+      ASoC: dt-bindings: qcom,sm8250: Add Fairphone 5 sound card
+      ASoC: qcom: sm8250: set card driver name from match data
+      ASoC: qcom: sm8250: add DisplayPort Jack support
+      ASoC: qcom: sm8250: Add Fairphone 5 soundcard compatible
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Add DisplayPort sound support
 
-vim +/qcom_geni_serial_runtime_resume +1876 drivers/tty/serial/qcom_geni_serial.c
+ .../devicetree/bindings/sound/qcom,sm8250.yaml     |  1 +
+ arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 31 ++++++++++++++++++++++
+ sound/soc/qcom/sm8250.c                            | 27 ++++++++++---------
+ 3 files changed, 47 insertions(+), 12 deletions(-)
+---
+base-commit: f819a667fa466d3b96b542b147053b6873f18ea1
+change-id: 20240809-fp5-dp-sound-b3768f3019bd
 
-  1867	
-> 1868	static int qcom_geni_serial_runtime_suspend(struct device *dev)
-  1869	{
-  1870		struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
-  1871		struct uart_port *uport = &port->uport;
-  1872	
-  1873		return geni_serial_resources_off(uport);
-  1874	};
-  1875	
-> 1876	static int qcom_geni_serial_runtime_resume(struct device *dev)
-  1877	{
-  1878		struct qcom_geni_serial_port *port = dev_get_drvdata(dev);
-  1879		struct uart_port *uport = &port->uport;
-  1880	
-  1881		return geni_serial_resources_on(uport);
-  1882	};
-  1883	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Luca Weiss <luca.weiss@fairphone.com>
+
 
