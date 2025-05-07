@@ -1,141 +1,148 @@
-Return-Path: <devicetree+bounces-174711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1F98AAE25C
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:17:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD936AAE265
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:17:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9075F522933
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:12:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45077188C28A
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 592EC28B7E7;
-	Wed,  7 May 2025 13:58:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="magUTuRh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3357728001E;
+	Wed,  7 May 2025 14:07:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 941D828936E;
-	Wed,  7 May 2025 13:58:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D94D42A89;
+	Wed,  7 May 2025 14:07:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746626307; cv=none; b=dFDMY3lKqMcuYOWvqtMaMd5IeWMWk3NT+zoLkIsYJuUl0HjBH7RHtyAdqxARMc81J9QYIWjGGb+sZ8vdQBpkQkpJjO7NGH2mQ5rbAQj5+aQ/YJUpOmSDvzxXYfcT5SykMGHTYKLupu90DVisJO/M5lRdMge5dSL5ixsi5rksGW4=
+	t=1746626828; cv=none; b=VzwjXSzTMvz35fCX66auBLL8tL2QvUAL/MX1tJf2juW47On4Uxv5F7muUOn7EzxkRPdC+96kOcJk3HxWVym/89Gl8tyR/i/XgeCXo5FCqo1mxh2HmfpU66AIgFTQI9FPJ5OOfwz/vKAFkg9IyyX7WlUVWRyGf9VEn0W1fIyCKhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746626307; c=relaxed/simple;
-	bh=WFer8e0bFikfukjmXwGyg1ZGpzNoXKUjdhtAJDp1nzE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i3xcH0rmGedYOdXoJ8b5RXQqkEuC7x+q//CxIGLJ5JPP67I/cQxwsppWGVl9tVZw11Dpn5tzr8+364+11nayvt6z4Jh1K9IcrrgUmGAqTQd3dpV9gOSG+UbOV/rd3R/IDTdPhrO9jQQJZ0IcnqVrrkCKKsQ2qaUx1D8ZXPDRpKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=magUTuRh; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3a0adcc3e54so1165534f8f.1;
-        Wed, 07 May 2025 06:58:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746626304; x=1747231104; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dpBOaKV+yyjzqRs1dDOpKMagpR3gaIT9d9jJ3WjXu5k=;
-        b=magUTuRhaKRZOIKmjnpB2+R4/r1vVZvmGwDb3/n6PBv40LLzvtpMJj/72Uy02m4lau
-         qjGr8dixZq3b3+7u4lxIbrYoCk+Nk/soBYzFF2d68HGBpRnMUa21fedgz7fHBbS6fjjT
-         Uc9TP5kXnznAPjZ1FM8DSkaZ8Kh5NHRInHFLfPtMozFpUQ8KCAJTdQi6tfimxbs9fqqL
-         4I8XU74fL6UdvZ449XQzbKQzzTuKs6mU2z1jdf4nMRi1L6sTHNzOzFaHA1kDENqL3RFe
-         FUvZI45yASEmuWfbS5f43H+2i7bwtxhjiVQag9hBz0L0zzY4r24IIk2CYeT94uL6PgST
-         E35Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746626304; x=1747231104;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dpBOaKV+yyjzqRs1dDOpKMagpR3gaIT9d9jJ3WjXu5k=;
-        b=mgFVn6VNglOpzW7Z/5PKQh2xh4ORYwiwDiYIsfn32NrcxUusyLxHGzyBtDwq3cqacV
-         ra8alNzKgU4rL3KmZGqdkBn9zvmx8KD0NAixytakDPEwwX9CXZGoHNSo9zBVBNhi2JDy
-         vODSwf5d5w4dbJmG56AL39dkbYASeh6g46ObhiEme1i5HS/QoOBjI9Hz72QzY+bBRBS7
-         yMAAgNkMHyd8ESJ9y0PQf3uj5F5oWSCXBNJelzS5GxMMhwSLP8obiVci79RnkBQA/Fy9
-         SrYC28k3J11JeqQlMJ1GE8nPNtudErmy1rqm2WnUQY5V//FNBDw3rOoqkRO/DPnFjRS4
-         vMJA==
-X-Forwarded-Encrypted: i=1; AJvYcCV8byfJ+pQw4L6L3DMpg0EeIR1vTU2cVI2duQSelZ1hUDG5EYhQrN8ZnKQl84+MEN93BgFuvzgxk46IDPm1@vger.kernel.org, AJvYcCX7nIyiBW5yyMtTrnejwJqz0I53Hd5HniT7Agp6FVbR3uQvHvo5NKqDVSjlIvvITYI5XuFejlTxoDEXxTZB@vger.kernel.org, AJvYcCXzzWCWzdRXNeajeznbbaXvXaX1d2lCVexC01QcRREiCLQBKJVIlU5yNlTdUQKZPRDoWmwFhDM/t/3x@vger.kernel.org
-X-Gm-Message-State: AOJu0YyehlFYVwBvJO1kAPo5nXIvDl6nBxdILZd1JuAdhI9OCUDFCFBr
-	tUj+nXdtAeV0HHNKraAYDjmGW7FQcdzKa7j0WhC4GPD20oR13juuaixDaw==
-X-Gm-Gg: ASbGnctAX9d6tCOn197CeqI9Q4v8aBhIzD8NkMrZBgZBzoNv6bmxLU7y1C3C8xTDeFf
-	Ywn/VYvRq58kTd8ZZtys4/EnD0MicyOz/YYg3ET2t1Epp+yyviCy548ExHGYSMp2Bv/cFp+Dv4Q
-	ChnpJzmMxoyieY4xjLOZ8nqjD+TSfn8Mlz3ye51DePfDqm6a3Sl77j5LspSg0AKBgCqJhf4/PJS
-	9WehrKjC2LeDuPuVbkd0Dji0DCViU8zQcrZrWM+mPf9T3mn7iZ1UVMveCcH7z2uRmvMS8Mn1DBR
-	ciafl3UGicqkLr7ifdOCf7IJH0DUJjToi7LJ9AduvD9AV8ShwKJRNv8ig50b/5oMU0WSA+uLO/v
-	o0Se7qcTGyr/flXJ6vv+ajZfYIDQ=
-X-Google-Smtp-Source: AGHT+IEE73NhNkRPDgIrsa2zntE0urmbFH7L73hnMkdy1TBZb0kNJDjkn9LP+dpojQJT9A7UbLLGFw==
-X-Received: by 2002:a05:6000:1367:b0:3a0:b4f0:c84d with SMTP id ffacd0b85a97d-3a0b4f0c867mr2423476f8f.0.1746626303703;
-        Wed, 07 May 2025 06:58:23 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae0bb5sm16722021f8f.7.2025.05.07.06.58.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 May 2025 06:58:22 -0700 (PDT)
-Date: Wed, 7 May 2025 15:58:20 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: serial: Convert altr,juart-1.0 to DT schema
-Message-ID: <q7lacaplecj6kjbatxiwh6sjhby5mhxzoowwhr6feza7iownt7@sej7agtylc7o>
-References: <20250506215959.2544931-1-robh@kernel.org>
+	s=arc-20240116; t=1746626828; c=relaxed/simple;
+	bh=R34/WzJt6Id9+UAWg+Utgvwzw83hFftNgkfUAfxsEqY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ErZ7qtL3sKKdPMSyLfySOk5ulXA5DNKrB8SmRHdLN1gMH+M+Iy9219BuWJmfTV5ZQTAECZQ8vZ0cWV+QV8DhD65U4GbxPtpfCEfkQIRH4X46NPnF2FclMFntBozS9/FjEF7mUvdbWqgiHH5mEqLyr/jjcdJ69ID1dDUNMUSm6KI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E6F09339;
+	Wed,  7 May 2025 07:06:54 -0700 (PDT)
+Received: from [10.57.20.214] (unknown [10.57.20.214])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EB1AF3F5A1;
+	Wed,  7 May 2025 07:07:00 -0700 (PDT)
+Message-ID: <2b85071a-e3e7-4cfc-a471-e81e463b7c37@arm.com>
+Date: Wed, 7 May 2025 15:06:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="f4b6bbsdc4dsnfyf"
-Content-Disposition: inline
-In-Reply-To: <20250506215959.2544931-1-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] drm/panfrost: Add support for Mali on the MT8370
+ SoC
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20250502-mt8370-enable-gpu-v5-0-98e247b30151@collabora.com>
+ <20250502-mt8370-enable-gpu-v5-2-98e247b30151@collabora.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250502-mt8370-enable-gpu-v5-2-98e247b30151@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 02/05/2025 13:17, Louis-Alexis Eyraud wrote:
+> Add a compatible for the MediaTek MT8370 SoC, with an integrated ARM
+> Mali G57 MC2 GPU (Valhall-JM, dual core), with new platform data for
+> its support in the panfrost driver.
+> It uses the same data as MT8186 for the power management features to
+> describe power supplies, pm_domains and enablement (one regulator, two
+> power domains) but also sets the FORCE_AARCH64_PGTABLE flag in the GPU
+> configuration quirks bitfield to enable AARCH64 4K page table format
+> mode.
+> As MT8186 and MT8370 SoC have different GPU architecture (Mali G52 2EE
+> MC2 for MT8186), making them not compatible, and this mode is only
+> enabled for Mediatek SoC that are Mali G57 based (compatible with
+> mediatek,mali-mt8188 or mediatek,mali-8192), having specific platform
+> data allows to set this flag for MT8370 without modifying MT8186
+> configuration and behaviour.
+> 
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
---f4b6bbsdc4dsnfyf
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] dt-bindings: serial: Convert altr,juart-1.0 to DT schema
-MIME-Version: 1.0
+With one minor comment fixed below:
 
-On Tue, May 06, 2025 at 04:59:58PM -0500, Rob Herring (Arm) wrote:
-> Convert the Altera JTAG UART binding to DT schema. The "ALTR,juart-1.0"
-> compatible has long been deprecated, so drop it.
->=20
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Steven Price <steven.price@arm.com>
+
 > ---
->  .../bindings/serial/altera_jtaguart.txt       |  5 -----
->  .../bindings/serial/altr,juart-1.0.yaml       | 19 +++++++++++++++++++
->  2 files changed, 19 insertions(+), 5 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/serial/altera_jtagu=
-art.txt
->  create mode 100644 Documentation/devicetree/bindings/serial/altr,juart-1=
-=2E0.yaml
+>  drivers/gpu/drm/panfrost/panfrost_drv.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> index f1ec3b02f15a0029d20c7d81046ded59854e885c..8e0a1ae6940c73b7b60233950ae3abdfa843cc8e 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> @@ -846,6 +846,16 @@ static const struct panfrost_compatible mediatek_mt8192_data = {
+>  	.gpu_quirks = BIT(GPU_QUIRK_FORCE_AARCH64_PGTABLE),
+>  };
+>  
+> +/* MT8370 uses the same power domains and power supplies as MT8186 */
 
-Reviewed-by: Thierry Reding <treding@nvidia.com>
+This comment is not correct - you've got the power domains of MT8186, 
+but the supplies of MT8183. The comment doesn't actually add much so you 
+could just drop it.
 
---f4b6bbsdc4dsnfyf
-Content-Type: application/pgp-signature; name="signature.asc"
+If you're feeling adventurous then one option here is to actually clean 
+up the mediatek entries a little. Instead of referring to particular 
+part numbers we could have:
 
------BEGIN PGP SIGNATURE-----
+static const char * const mediatek_2_pm_domains[] = { "core0", "core1" };
+static const char * const mediatek_3_pm_domains[] = { "core0", "core1", "core2" };
+static const char * const mediatek_5_pm_domains[] = { "core0", "core1", "core2",
+                                                      "core3", "core4" };
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmgbZvwACgkQ3SOs138+
-s6EaUw/+PFpKm217yyGnEEtkwhARJq1ODAIXlAzA9oOlrGF4OtXsfMxD1nbJYeL7
-HPjJZUwaymepSChyDvLUxw3gCx0hYnNFkoPrywBvkawvOtrmIf33DBNfDyD8lZZM
-LnwQQCS6UmSDX+lzFbLOI12qw+bnApMTTDIcbvZwSOY//OPXpGg8oejxViHm59h0
-KNP1Ry6FTA+tLVRwsUWwW6wxizXXhX+7+LbnF2u5w8zdsJCbgklB/QZe+cbr+02s
-Q1UAQRDYQ5EmGwWHCjrlgX8XSxJhThpXS2qP1t8z0b4FvG6eXtU3jvOQim4NMKqf
-REMFWd2JPNF2PjoETb4QFfANPxyZJttWkhAC1zwmKwecvAf73PnmF/kKs6WBHivk
-OHus2lttXKLoEFebPPFsHcq+Bfk1nmfyPaiOVReSeAQ8adYdVBu3Y4s/dn4N8ASp
-x5iYnb9zRI6h+vWpz/UGpiAywfrRNWe7rDLypMoFtwG+o6VH6oxLpMoZObMk3WZF
-a3meBfJgSLNG0P2xT8DmF9xvIxVKs4bdRWZ/nAMsHE0Y794VfG61pE7TWQ6wwEq/
-FoiBsoEFJq/ZLbYC/r5sqO4Mv0ZPnEJv3VOisAS4cNuoSiVPcGRFn9XjTJU5sEE4
-JGaSYV5EwqQj9bcwD7MU0NfKbZ2zcQTDYHpldmF0wj4JvxaWe0A=
-=lzjv
------END PGP SIGNATURE-----
+Or even just have the mediatek_5_domains[] array (dropping the '5' in
+the name) and not use ARRAY_SIZE().
 
---f4b6bbsdc4dsnfyf--
+Equally the supplies arrays could be renamed. We have the one with 
+"sram" for legacy and everything else uses {"mali", NULL} but we have 
+two definitions for it (mt8183_b and mt8192).
+
+Thanks,
+Steve
+
+> +static const struct panfrost_compatible mediatek_mt8370_data = {
+> +	.num_supplies = ARRAY_SIZE(mediatek_mt8183_b_supplies) - 1,
+> +	.supply_names = mediatek_mt8183_b_supplies,
+> +	.num_pm_domains = ARRAY_SIZE(mediatek_mt8186_pm_domains),
+> +	.pm_domain_names = mediatek_mt8186_pm_domains,
+> +	.pm_features = BIT(GPU_PM_CLK_DIS) | BIT(GPU_PM_VREG_OFF),
+> +	.gpu_quirks = BIT(GPU_QUIRK_FORCE_AARCH64_PGTABLE),
+> +};
+> +
+>  static const struct of_device_id dt_match[] = {
+>  	/* Set first to probe before the generic compatibles */
+>  	{ .compatible = "amlogic,meson-gxm-mali",
+> @@ -868,6 +878,7 @@ static const struct of_device_id dt_match[] = {
+>  	{ .compatible = "mediatek,mt8186-mali", .data = &mediatek_mt8186_data },
+>  	{ .compatible = "mediatek,mt8188-mali", .data = &mediatek_mt8188_data },
+>  	{ .compatible = "mediatek,mt8192-mali", .data = &mediatek_mt8192_data },
+> +	{ .compatible = "mediatek,mt8370-mali", .data = &mediatek_mt8370_data },
+>  	{ .compatible = "allwinner,sun50i-h616-mali", .data = &allwinner_h616_data },
+>  	{}
+>  };
+> 
+
 
