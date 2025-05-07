@@ -1,377 +1,192 @@
-Return-Path: <devicetree+bounces-174558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27ADFAAD832
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:33:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C09AAAD813
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:30:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40AC33A482A
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:29:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99330502909
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 309EB219303;
-	Wed,  7 May 2025 07:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9281621FF4E;
+	Wed,  7 May 2025 07:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lqcX8HWj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC95C21CC4E;
-	Wed,  7 May 2025 07:28:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8517721D00D
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 07:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746602936; cv=none; b=fzx5E0iO5fws0vQT95Z87rb63N1D4QfEer4BsnvDgID9DnNQbOcTYwaw6/X0A3zP/0Zp2+92cS/b+5FGb695mWiZrbEGAk7KjgNaesFPGGN1mZleMzyYSrQ+OqGoUrHunOQtuPRavD0aFPWopwUq7KPxamf76DIkvBGfIv5XON0=
+	t=1746602971; cv=none; b=RX8jEY238yZY8GWyS737zF+Pz6G+Xe+0apEdGN9I5sxOPp81vKgO06+k52eJmUTFta45XbS/7JWaXS2W9TipasxopG/5badh5nOXF/+zSrRX0vG+fCMJra2g5Vkg7jdFm/jQnvv0/hXYIIuaKPb8eOJiLw+eI32XxoKD1QRhH1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746602936; c=relaxed/simple;
-	bh=0gdUch54tHNcIiS6v3A1QTu/T/UKFepm5OCRq9nALX0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Z8t9t572oJxHcnX3akMPxOFkIUEfcpuTYmwBmrNjKVAgTao4BkIrQLaMb6iqEss+dDezxtdvQZ79aYeD8r8t+1AYzwsU6McVIGWod6TzadP4zlQK3JmnZr4zr7HqcwRTFMMIhLZROPWovS+joISwjdPpaEKNrpylYqvhb36wQWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.68.186])
-	by gateway (Coremail) with SMTP id _____8DxjXKyCxtoMuHXAA--.26535S3;
-	Wed, 07 May 2025 15:28:50 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.68.186])
-	by front1 (Coremail) with SMTP id qMiowMAxzxuuCxtoSXa5AA--.25184S2;
-	Wed, 07 May 2025 15:28:48 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-mmc@vger.kernel.org,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v2 4/4] mmc: loongson2: Add Loongson-2K2000 SD/SDIO/eMMC controller driver
-Date: Wed,  7 May 2025 15:28:39 +0800
-Message-ID: <704447268706b1b9f25bbe9d15459163d0ac3404.1746581751.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <cover.1746581751.git.zhoubinbin@loongson.cn>
-References: <cover.1746581751.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1746602971; c=relaxed/simple;
+	bh=3ofFTovtnJvX5M/xuhvl18Z0GfLNgQGP2MJvinEcTik=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CpeODfDuzNZ3dFOp5X7QPqpq2lI0rsNpX7mh+7Dbuv9E+Oan+gEtOHPZmnAjJjXmF3w23aOTHHG7jHJxucSa0H3alhKls8AQmPJ02g0BxpMsGtgXUAMKsVcQ42iSL4NWAFZqawl62D5TT9mOcOOCHogAmQK25rXPMSX6o46E3Ds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lqcX8HWj; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-39efc1365e4so3135238f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 00:29:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746602968; x=1747207768; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=exh3b5R7L77rlGB9XDLUTNFBk7LtXN6j6kHQ/wrFppg=;
+        b=lqcX8HWjoX36WHrfdPUWIjNj0BPu4jxR/vDN0sjAWhBJQ7QMdXwwwRn20Na67XyaNs
+         zHRWU9RdQEm52VDinC1WP3zhufhSSap2ix1APn4UVW706vlBGsTTSr7E1kOYi/Z0yrHb
+         TTYmpP3N0NXBHnieEZKmqSuC9UsAvDTniQz82qqKpTkd+wKP8fiHBBQR3gWkSjKtXjaE
+         u1K0iGAv7JdeeqgIYPqdeTRQ2q6VfzsWxDU1vLI/y+pkJZ5YicQstZdEmoPGpih70KZ5
+         IpzulRQDCE2YGYLBW6+NN+uJmfQmESsHDdaVmVMcnOWUgDLz7gFX//YoL6mv3zx4Q++8
+         9xoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746602968; x=1747207768;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=exh3b5R7L77rlGB9XDLUTNFBk7LtXN6j6kHQ/wrFppg=;
+        b=Ey70WSrVo5FJ/BF0ILWUmZYi+67u0BZEd9NeBfEVIGijvwFe6Q0wf6dnkGS5/m+pP1
+         ZXJad+zoQjzBCxk4YjnsyOd0gyZW1MzqL4ke/Izcc3q6ZM+kqC8w3m2thSKK/9MwQ8jE
+         RA5HkQunx+m9mBb/Du5ftm39azd+567VVsx6k340JXknyKg7VDg6sKp2iVmfinEV1y6U
+         qZDC4ogLMN0uL9V7KNXide5gs/kvDOkXBhEUDC9iU/ndlEumR7e/zXorcPXipWWZSQaQ
+         e7VfvkogutvczXmYT1iDsGGr2VMdHuPD2P/1oXl782s4w3yRqH6guWFflt1hVWAi75gj
+         /UlA==
+X-Forwarded-Encrypted: i=1; AJvYcCV0L04vz+z2etxipuQjUYV1bxIBCRPqD2mKcAcoKhi+SY7Lobsi0oMKBSEkgySo+P392sLgcfPgEhVI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxU6XWSuHH2yuM3dyKznTvkRUJIyMLIDJJXclaIhOYhbWWZBbng
+	jsGkLibBFXk+nem2U74e69BAwsCQ55gv958rNEQ65bCQFfVOyw9tXUXs5ruOBB0=
+X-Gm-Gg: ASbGncu0CvVDIyDN70SduEBNm/eF9z79arBUKl5DBFbwfxzw+BI1wxBaawXLWJoIqn4
+	P7mhSJvssW8gAedtpfkq/Am803J1wVeE9VIoe2lvEzEQdNjw4C+e2yozw0uvHZJgYSYOSjjrzZ2
+	wRAPHZUbCOgY+X9zbjg6pmq4oh+oJrPWO2OrOjYiwIzJQUHF2+HUE+rjPM/92aOXuSpYjY4J2pM
+	+vJVxGullB5uUYGL4DkJ1IF+PE/BWaRnXWedOM/bjWUp55O2Xs4wiPyVZLeSEAU6DLS3YCChVmN
+	M4JIuSrrTGYTGkQzQhWul1UBkK7hHWyx6Dvu7vHJ+VzcoVf7vd620W8CaPp91sZTRbZ0ZjfGcu0
+	hTJ6n
+X-Google-Smtp-Source: AGHT+IEH+UhigDV51ycf06z5unZsxUS1KzhCHNWdikOd5Jo+ShmTKo/P+eDgWolx1p8pfsovDvmOIg==
+X-Received: by 2002:a5d:64e7:0:b0:38d:b325:471f with SMTP id ffacd0b85a97d-3a0b4a16497mr2004847f8f.15.1746602967790;
+        Wed, 07 May 2025 00:29:27 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a0b350f604sm2547973f8f.21.2025.05.07.00.29.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 May 2025 00:29:27 -0700 (PDT)
+Message-ID: <c0e9a395-41d1-4edc-a759-f958ea10387a@linaro.org>
+Date: Wed, 7 May 2025 09:29:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] thermal: Add support for Airoha EN7581 thermal
+ sensor
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250226003608.8973-1-ansuelsmth@gmail.com>
+ <20250226003608.8973-2-ansuelsmth@gmail.com>
+ <a9f58437-5992-4042-85cd-b9150c4855ff@linaro.org>
+ <6814de0d.7b0a0220.2add1a.0689@mx.google.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <6814de0d.7b0a0220.2add1a.0689@mx.google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowMAxzxuuCxtoSXa5AA--.25184S2
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3ur45Cw1kuw1rur4rGr45Jwc_yoWDKFWDpF
-	y5ArWYgrW5tr4a934FqF4Uu3y5ZrWaqw1aka9rWr15Zw17tr18uw1DGFyfXF98KrykGFyx
-	Za1DuayDua9rXwbCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBYb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v2
-	6rxl6s0DM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYI
-	kI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUtVWr
-	XwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI4
-	8JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
-	6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwV
-	AFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv2
-	0xvE14v26ryj6F1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4
-	v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AK
-	xVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0epB3UUUUU==
 
-This patch describes the two MMC controllers of the Loongson-2K2000 SoC,
-one providing an eMMC interface and the other exporting an SD/SDIO
-interface.
+On 02/05/2025 17:00, Christian Marangi wrote:
+> On Fri, May 02, 2025 at 03:30:56PM +0200, Daniel Lezcano wrote:
 
-Compared to the Loongson-2K1000's MMC controllers, their internals are
-similar, except that we use an internally exclusive DMA engine instead of
-an externally shared APBDMA engine.
+[ ... ]
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- drivers/mmc/host/loongson2-mmc.c | 205 +++++++++++++++++++++++++++++++
- 1 file changed, 205 insertions(+)
+>>> +static int airoha_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
+>>> +{
+>>> +	struct airoha_thermal_priv *priv = thermal_zone_device_priv(tz);
+>>> +	int min, max, avg_temp, temp_adc;
+>>> +	int i;
+>>> +
+>>> +	/* Get the starting temp */
+>>> +	temp_adc = airoha_get_thermal_ADC(priv);
+>>> +	min = temp_adc;
+>>> +	max = temp_adc;
+>>> +	avg_temp = temp_adc;
+>>> +
+>>> +	/* Make 5 more measurement and average the temp ADC difference */
+>>> +	for (i = 0; i < 5; i++) {
+>>> +		temp_adc = airoha_get_thermal_ADC(priv);
+>>> +		avg_temp += temp_adc;
+>>> +		if (temp_adc > max)
+>>> +			max = temp_adc;
+>>> +		if (temp_adc < min)
+>>> +			min = temp_adc;
+>>> +	}
+>>> +	avg_temp = avg_temp - max - min;
+>>> +	avg_temp /= 4;
 
-diff --git a/drivers/mmc/host/loongson2-mmc.c b/drivers/mmc/host/loongson2-mmc.c
-index e52fa0a3bc4a..d89c3a5adae2 100644
---- a/drivers/mmc/host/loongson2-mmc.c
-+++ b/drivers/mmc/host/loongson2-mmc.c
-@@ -44,6 +44,18 @@
- #define LOONGSON2_MMC_REG_DATA		0x40 /* Data Register */
- #define LOONGSON2_MMC_REG_IEN		0x64 /* Interrupt Enable Register */
- 
-+/* EMMC DLL Mode Registers */
-+#define LOONGSON2_MMC_REG_DLLVAL	0xf0
-+#define LOONGSON2_MMC_REG_DLLCTL	0xf4
-+#define LOONGSON2_MMC_REG_DELAY		0xf8
-+#define LOONGSON2_MMC_REG_SEL		0xfc
-+
-+/* Exclusive DMA R/W Registers */
-+#define LOONGSON2_MMC_REG_WDMA_LO	0x400
-+#define LOONGSON2_MMC_REG_WDMA_HI	0x404
-+#define LOONGSON2_MMC_REG_RDMA_LO	0x800
-+#define LOONGSON2_MMC_REG_RDMA_HI	0x804
-+
- /* Bitfields of control register */
- #define LOONGSON2_MMC_CTL_ENCLK		BIT(0)
- #define LOONGSON2_MMC_CTL_EXTCLK	BIT(1)
-@@ -109,6 +121,8 @@
- #define LOONGSON2_MMC_DSTS_RESUME	BIT(15)
- #define LOONGSON2_MMC_DSTS_SUSPEND	BIT(16)
- 
-+#define LOONGSON2_MMC_FSTS_TXFULL	BIT(11)
-+
- /* Bitfields of interrupt register */
- #define LOONGSON2_MMC_INT_DFIN		BIT(0)
- #define LOONGSON2_MMC_INT_DTIMEOUT	BIT(1)
-@@ -136,6 +150,37 @@
- #define LOONGSON2_MMC_IEN_ALL		GENMASK(9, 0)
- #define LOONGSON2_MMC_INT_CLEAR		GENMASK(9, 0)
- 
-+#define LOONGSON2_MMC_DLLVAL_DONE	BIT(8)
-+
-+#define LOONGSON2_MMC_DLLCTL_TIME	GENMASK(7, 0)
-+#define LOONGSON2_MMC_DLLCTL_INCRE	GENMASK(15, 8)
-+#define LOONGSON2_MMC_DLLCTL_START	GENMASK(23, 16)
-+#define LOONGSON2_MMC_DLLCTL_CLK_MODE	BIT(24)
-+#define LOONGSON2_MMC_DLLCTL_START_BIT	BIT(25)
-+#define LOONGSON2_MMC_DLLCTL_TIME_BPASS	GENMASK(29, 26)
-+
-+#define LOONGSON2_MMC_DELAY_PAD		GENMASK(7, 0)
-+#define LOONGSON2_MMC_DELAY_RD		GENMASK(15, 8)
-+
-+#define LOONGSON2_MMC_SEL_DATA		BIT(0)	/* 0: SDR, 1: DDR */
-+#define LOONGSON2_MMC_SEL_BUS		BIT(0)	/* 0: EMMC, 1: SDIO */
-+
-+/* Bitfields in Global Configuration Register */
-+#define LOONGSON2_MMC_DMA_64BIT_EN	BIT(0) /* 1: 64 bit support */
-+#define LOONGSON2_MMC_DMA_UNCOHERENT_EN	BIT(1) /* 0: cache, 1: uncache */
-+#define LOONGSON2_MMC_DMA_ASK_VALID	BIT(2)
-+#define LOONGSON2_MMC_DMA_START		BIT(3) /* DMA start operation */
-+#define LOONGSON2_MMC_DMA_STOP		BIT(4) /* DMA stop operation */
-+#define LOONGSON2_MMC_DMA_CONFIG_MASK	GENMASK_ULL(4, 0) /* DMA controller config bits mask */
-+
-+/* Bitfields in ndesc_addr field of HW descriptor */
-+#define LOONGSON2_MMC_DMA_DESC_EN	BIT(0) /*1: The next descriptor is valid */
-+#define LOONGSON2_MMC_DMA_DESC_ADDR_LOW	GENMASK(31, 1)
-+
-+/* Bitfields in cmd field of HW descriptor */
-+#define LOONGSON2_MMC_DMA_INT		BIT(1)	/* Enable DMA interrupts */
-+#define LOONGSON2_MMC_DMA_DATA_DIR	BIT(12) /* 1: write to device, 0: read from device */
-+
- /* Loongson-2K1000 SDIO2 DMA routing register */
- #define LS2K1000_SDIO_DMA_MASK		GENMASK(17, 15)
- #define LS2K1000_DMA0_CONF		0x0
-@@ -180,6 +225,8 @@ struct loongson2_mmc_host {
- 	struct resource *res;
- 	struct clk *clk;
- 	u64 rate;
-+	void *sg_cpu;
-+	dma_addr_t sg_dma;
- 	int dma_complete;
- 	struct dma_chan *chan;
- 	int cmd_is_stop;
-@@ -192,6 +239,7 @@ struct loongson2_mmc_host {
- struct loongson2_mmc_pdata {
- 	const struct regmap_config regmap_config;
- 	void (*reorder_cmd_data)(struct loongson2_mmc_host *host, struct mmc_command *cmd);
-+	void (*fix_cmd_interrupt)(struct loongson2_mmc_host *host, struct mmc_command *cmd);
- 	int (*setting_dma)(struct loongson2_mmc_host *host, struct platform_device *pdev);
- 	int (*prepare_dma)(struct loongson2_mmc_host *host, struct mmc_data *data);
- 	void (*release_dma)(struct loongson2_mmc_host *host, struct device *dev);
-@@ -282,6 +330,12 @@ static void loongson2_mmc_send_request(struct mmc_host *mmc)
- 		return;
- 	}
- 
-+	/* Fix lose interrupt issue when sending MMC_WRITE_BLOCK
-+	 * or MMC_WRITE_MULTIPLE_BLOCK commands
-+	 */
-+	if (host->pdata->fix_cmd_interrupt)
-+		host->pdata->fix_cmd_interrupt(host, cmd);
-+
- 	loongson2_mmc_send_command(host, cmd);
- 
- 	/* Fix deselect card */
-@@ -426,6 +480,36 @@ static irqreturn_t loongson2_mmc_irq(int irq, void *devid)
- 	return IRQ_WAKE_THREAD;
- }
- 
-+static void loongson2_mmc_ddr_mode_init(struct loongson2_mmc_host *host)
-+{
-+	u32 val, pad_delay, delay, ret;
-+
-+	regmap_update_bits(host->regmap, LOONGSON2_MMC_REG_SEL,
-+			   LOONGSON2_MMC_SEL_DATA, LOONGSON2_MMC_SEL_DATA);
-+
-+	val = FIELD_PREP(LOONGSON2_MMC_DLLCTL_TIME, 0xc8)
-+	    | FIELD_PREP(LOONGSON2_MMC_DLLCTL_INCRE, 0x1)
-+	    | FIELD_PREP(LOONGSON2_MMC_DLLCTL_START, 0x1)
-+	    | FIELD_PREP(LOONGSON2_MMC_DLLCTL_CLK_MODE, 0x1)
-+	    | FIELD_PREP(LOONGSON2_MMC_DLLCTL_START_BIT, 0x1)
-+	    | FIELD_PREP(LOONGSON2_MMC_DLLCTL_TIME_BPASS, 0xf);
-+
-+	regmap_write(host->regmap, LOONGSON2_MMC_REG_DLLCTL, val);
-+
-+	ret = regmap_read_poll_timeout(host->regmap, LOONGSON2_MMC_REG_DLLVAL, val,
-+				       (val & LOONGSON2_MMC_DLLVAL_DONE), 0, 4000);
-+	if (ret < 0)
-+		return;
-+
-+	regmap_read(host->regmap, LOONGSON2_MMC_REG_DLLVAL, &val);
-+	pad_delay = FIELD_GET(GENMASK(7, 1), val);
-+
-+	delay = FIELD_PREP(LOONGSON2_MMC_DELAY_PAD, pad_delay)
-+	      | FIELD_PREP(LOONGSON2_MMC_DELAY_RD, pad_delay + 1);
-+
-+	regmap_write(host->regmap, LOONGSON2_MMC_REG_DELAY, delay);
-+}
-+
- static void loongson2_mmc_set_clk(struct loongson2_mmc_host *host, struct mmc_ios *ios)
- {
- 	u32 pre;
-@@ -438,6 +522,10 @@ static void loongson2_mmc_set_clk(struct loongson2_mmc_host *host, struct mmc_io
- 
- 	regmap_update_bits(host->regmap, LOONGSON2_MMC_REG_CTL,
- 			   LOONGSON2_MMC_CTL_ENCLK, LOONGSON2_MMC_CTL_ENCLK);
-+
-+	/* EMMC DDR mode setting */
-+	if (ios->timing == MMC_TIMING_UHS_DDR50 || ios->timing == MMC_TIMING_MMC_DDR52)
-+		loongson2_mmc_ddr_mode_init(host);
- }
- 
- static void loongson2_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
-@@ -641,6 +729,122 @@ static struct loongson2_mmc_pdata ls2k1000_mmc_pdata = {
- 	.release_dma		= loongson2_mmc_release_external_dma,
- };
- 
-+static const struct regmap_config ls2k2000_mmc_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = LOONGSON2_MMC_REG_RDMA_HI,
-+};
-+
-+static void ls2k2000_mmc_reorder_cmd_data(struct loongson2_mmc_host *host,
-+					  struct mmc_command *cmd)
-+{
-+	struct scatterlist *sg;
-+	u32 *data;
-+	int i, j;
-+
-+	if (cmd->opcode != SD_SWITCH || mmc_cmd_type(cmd) != MMC_CMD_ADTC)
-+		return;
-+
-+	for_each_sg(cmd->data->sg, sg, cmd->data->sg_len, i) {
-+		data = sg_virt(&sg[i]);
-+		for (j = 0; j < (sg_dma_len(&sg[i]) / 4); j++)
-+			data[j] = bitrev8x4(data[j]);
-+	}
-+}
-+
-+static void ls2k2000_mmc_fix_cmd_interrupt(struct loongson2_mmc_host *host,
-+					   struct mmc_command *cmd)
-+{
-+	int val;
-+
-+	if (cmd->opcode != MMC_WRITE_BLOCK && cmd->opcode != MMC_WRITE_MULTIPLE_BLOCK)
-+		return;
-+
-+	regmap_read_poll_timeout(host->regmap, LOONGSON2_MMC_REG_FSTS, val,
-+				 (val & LOONGSON2_MMC_FSTS_TXFULL), 0, 500);
-+}
-+
-+static int loongson2_mmc_prepare_internal_dma(struct loongson2_mmc_host *host,
-+					      struct mmc_data *data)
-+{
-+	struct loongson2_dma_desc *pdes = (struct loongson2_dma_desc *)host->sg_cpu;
-+	struct mmc_host *mmc = mmc_from_priv(host);
-+	dma_addr_t next_desc = host->sg_dma;
-+	struct scatterlist *sg;
-+	int reg_lo, reg_hi;
-+	u64 dma_order;
-+	int i, ret;
-+
-+	ret = dma_map_sg(mmc_dev(mmc), data->sg, data->sg_len,
-+			 mmc_get_dma_dir(data));
-+	if (!ret)
-+		return -ENOMEM;
-+
-+	for_each_sg(data->sg, sg, data->sg_len, i) {
-+		pdes[i].len = sg_dma_len(&sg[i]) / 4;
-+		pdes[i].step_len = 0;
-+		pdes[i].step_times = 1;
-+		pdes[i].mem_addr = lower_32_bits(sg_dma_address(&sg[i]));
-+		pdes[i].high_mem_addr = upper_32_bits(sg_dma_address(&sg[i]));
-+		pdes[i].apb_addr = host->res->start + LOONGSON2_MMC_REG_DATA;
-+		pdes[i].cmd = LOONGSON2_MMC_DMA_INT;
-+
-+		if (data->flags & MMC_DATA_READ) {
-+			reg_lo = LOONGSON2_MMC_REG_RDMA_LO;
-+			reg_hi = LOONGSON2_MMC_REG_RDMA_HI;
-+		} else {
-+			pdes[i].cmd |= LOONGSON2_MMC_DMA_DATA_DIR;
-+			reg_lo = LOONGSON2_MMC_REG_WDMA_LO;
-+			reg_hi = LOONGSON2_MMC_REG_WDMA_HI;
-+		}
-+
-+		next_desc += sizeof(struct loongson2_dma_desc);
-+		pdes[i].ndesc_addr = lower_32_bits(next_desc) |
-+				     LOONGSON2_MMC_DMA_DESC_EN;
-+		pdes[i].high_ndesc_addr = upper_32_bits(next_desc);
-+	}
-+
-+	/* Setting the last descriptor enable bit */
-+	pdes[i - 1].ndesc_addr &= ~LOONGSON2_MMC_DMA_DESC_EN;
-+
-+	dma_order = (host->sg_dma & ~LOONGSON2_MMC_DMA_CONFIG_MASK) |
-+		    LOONGSON2_MMC_DMA_64BIT_EN |
-+		    LOONGSON2_MMC_DMA_START;
-+
-+	regmap_write(host->regmap, reg_hi, upper_32_bits(dma_order));
-+	regmap_write(host->regmap, reg_lo, lower_32_bits(dma_order));
-+
-+	return 0;
-+}
-+
-+static int loongson2_mmc_set_internal_dma(struct loongson2_mmc_host *host,
-+					  struct platform_device *pdev)
-+{
-+	host->sg_cpu = dma_alloc_coherent(&pdev->dev, PAGE_SIZE,
-+					  &host->sg_dma, GFP_KERNEL);
-+	if (!host->sg_cpu)
-+		return -ENOMEM;
-+
-+	memset(host->sg_cpu, 0, PAGE_SIZE);
-+	return 0;
-+}
-+
-+static void loongson2_mmc_release_internal_dma(struct loongson2_mmc_host *host,
-+					       struct device *dev)
-+{
-+	dma_free_coherent(dev, PAGE_SIZE, host->sg_cpu, host->sg_dma);
-+}
-+
-+static struct loongson2_mmc_pdata ls2k2000_mmc_pdata = {
-+	.regmap_config		= ls2k2000_mmc_regmap_config,
-+	.reorder_cmd_data	= ls2k2000_mmc_reorder_cmd_data,
-+	.fix_cmd_interrupt	= ls2k2000_mmc_fix_cmd_interrupt,
-+	.setting_dma		= loongson2_mmc_set_internal_dma,
-+	.prepare_dma		= loongson2_mmc_prepare_internal_dma,
-+	.release_dma		= loongson2_mmc_release_internal_dma,
-+};
-+
- static int loongson2_mmc_resource_request(struct platform_device *pdev,
- 					  struct loongson2_mmc_host *host)
- {
-@@ -759,6 +963,7 @@ static void loongson2_mmc_remove(struct platform_device *pdev)
- static const struct of_device_id loongson2_mmc_of_ids[] = {
- 	{ .compatible = "loongson,ls2k0500-mmc", .data = &ls2k0500_mmc_pdata },
- 	{ .compatible = "loongson,ls2k1000-mmc", .data = &ls2k1000_mmc_pdata },
-+	{ .compatible = "loongson,ls2k2000-mmc", .data = &ls2k2000_mmc_pdata },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, loongson2_mmc_of_ids);
+Why 4 ? There is 5 samples no ? one before the loop and 4 with the loop
+
+>>> +	*temp = RAW_TO_TEMP(priv, avg_temp);
+
+Does RAW_TO_TEMP() on a average raw adc value report the same value as 
+an average of the temperature after their conversion ?
+
+>>> +	return 0;
+>>> +}
+
+The routine is a bit confusing because of the initial adc read.
+
+avg_value = 0;
+min_value = INT_MAX;
+max_value = INT_MIN;
+
+for (i = 0; i < AIROHA_MAX_SAMPLES; i++) {
+	value = airoha_get_thermal_ADC(priv);
+	min_value = min(value, min_value);
+	max_value = max(value, max_value);
+	avg_value += value;
+}
+
+avg_value -= (min_value + max_value);
+avg_value /= AIROHA_MAX_SAMPLES;
+
+>> Does this chip support the averaging with the filtered mode which prevent to
+>> do this expensive calls when getting the temperature ?
+>>
+> 
+> If you notice in this function we read directly from the ADC sensor to
+> have a more precise and realtime temperature.
+> 
+> Yes the thermal module support averaging (and this is what is set for
+> the critical temperature monitor) but since we base everything on
+> interrupt the expensive call is called only when the user poll the
+> temperature with sysfs.
+
+When the temperature reaches the threshold, the interrupt is fired which 
+in turn calls thermal_zone_device_update(). This lead to a polling from 
+the kernel at a higher rate with the governor taking cooling decision.
+
+> Do you prefer to use the thermal module entirely?
+
+It is up to you. I would say if the sensor has a hardware assistance to 
+compute the averaging while the CPU does something else it is better. 
+But if the filtered mode has the same issues than the LVTS, then it is 
+probably not worth it.
+
+
+[ ... ]
+
+
+
 -- 
-2.47.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
