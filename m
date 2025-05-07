@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-174784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E63B6AAE737
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:56:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7778AAE746
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 19:00:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C0B5522860
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:56:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D2E0522F6D
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 17:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9016428C2C7;
-	Wed,  7 May 2025 16:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216BB14A4C7;
+	Wed,  7 May 2025 17:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Y7QuOjyR"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="V2HFT7ut"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A92028C2A2;
-	Wed,  7 May 2025 16:56:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5120310F9;
+	Wed,  7 May 2025 17:00:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746636988; cv=none; b=FtU0uVWl2tZxzg3q4KvtwAruqkORtxEvAwpNa72gS3KVHnCDGC0fDo9HBFwclVymYAb0CFZkYA+EkAKlMBVZFNh2xcI4ynabk8U3WaR+nkKB7UKbe/6LmZeuVTv9yNrZu+SmlZlYPn2/ZAPw+d95mep6Q6cz8wq4KKYsRO1IGto=
+	t=1746637247; cv=none; b=AX8e5EI141z4aucy3DdP0EI+Y1loIBBtm0Qqx5N1FBG4AWLHoh9nl+KJiuDdx7NTwKSTSQJKaXFO9vPmLwzTTsG9bQbKUrBF/y/qL1qRuu3IIhC40kkAzJd53+E033Uw5KEfNykwhC+dyqJYE15J/1FOP6J54MiRh5v5C+2fKwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746636988; c=relaxed/simple;
-	bh=G8yG7fiD+drVoJWsnr3QQsegC7Q9gGFV/6SDPFVmP6k=;
+	s=arc-20240116; t=1746637247; c=relaxed/simple;
+	bh=rJkpAr1apQ3BjXBzScslXWgVRmmq2IDLhDkNuhrW25o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gpuaoM8Fx6F3n8uodbgY2m7JIXOpYmR8Ylb/zvrhOEYUswf/hoWu5BLOY7LmB8H6Bx4uzaHoPsgXvMFjmeycx6ajLmA9eT+z8SwGDxQEdJZKGb1540UPEo8mWH0pPoOeSUscfItGfahL4wepc+8PEReB5YeeO05B26aREeLpwqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Y7QuOjyR; arc=none smtp.client-ip=198.47.23.234
+	 In-Reply-To:Content-Type; b=ZCtA6iPdSlnRKU+otHH8NsKEmcqwae9b04APsshuKawjffu+Gx6QWFUTe9YH++cfq3hpSO5ONkg43NTqcl0zia0y39uAxemdEZQa/c9DJKIAJYyuSbcrSZoPgThHrgjj/UC7nQU8mIQbYTLOh/mXIAzch2BJlMhGI4cQsM6iLtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=V2HFT7ut; arc=none smtp.client-ip=198.47.23.235
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 547GuEaL867288
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 547H0c9x1582333
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 7 May 2025 11:56:14 -0500
+	Wed, 7 May 2025 12:00:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746636974;
-	bh=jaKjSlRu1WXVw9EyzBu98dAha3ndJFifpvhWA7RJcL0=;
+	s=ti-com-17Q1; t=1746637238;
+	bh=COsi7czH8qaZZ7x1a7SmRwuxTQo32qR7Uo5j1icnvjk=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Y7QuOjyRoihv73KpXsYifbOAk6x4QsVI6fW4QQBJdSrKOmKzhOjO4CvF7deYIM3WG
-	 3W+/fw6+VaZH8okE5sHfhXFC/dNjDXRCgFp5I5GCwYSSMmaUs2vPwhspDqWm1MxVdC
-	 rcCm+mdsuba4+nL+qLF115rV59CoL1eT7lr0h/Dc=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 547GuEOq064996
+	b=V2HFT7ut3ple1yorqjYVLBkw98IDUImDcTNmbolwk+VYTtgm19N8JgybV2KEI99Vv
+	 SkY25o1rZYnQEZnGx4dSrdvnU6t95iCNxMJXoRJzT+Xvr92on+pzWnOaW39NocQGVU
+	 95tsH0mK1loZ+pW2X4cj00QTY4QOaPOR7NPb/TnE=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 547H0c33028108
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 May 2025 11:56:14 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 7 May 2025 12:00:38 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- May 2025 11:56:14 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ May 2025 12:00:38 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 May 2025 11:56:14 -0500
+ Frontend Transport; Wed, 7 May 2025 12:00:38 -0500
 Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 547GuDWE130295;
-	Wed, 7 May 2025 11:56:14 -0500
-Message-ID: <d4f21cdc-bb0c-4c78-aeea-f6e5c75fa5f1@ti.com>
-Date: Wed, 7 May 2025 11:56:13 -0500
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 547H0cDT006228;
+	Wed, 7 May 2025 12:00:38 -0500
+Message-ID: <287d2607-c2f8-4024-850b-dfe0b4b96fc2@ti.com>
+Date: Wed, 7 May 2025 12:00:38 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] arm64: dts: ti: k3-am62a7-sk: Set wakeup-source
+Subject: Re: [PATCH 7/7] arm64: dts: ti: k3-am62p5-sk: Set wakeup-source
  system-states
 To: Markus Schneider-Pargmann <msp@baylibre.com>, Nishanth Menon <nm@ti.com>,
         Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
@@ -82,10 +82,10 @@ CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
         Sebin Francis
 	<sebin.francis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>
 References: <20250421-topic-am62-dt-partialio-v6-15-v1-0-6ced30aafddb@baylibre.com>
- <20250421-topic-am62-dt-partialio-v6-15-v1-6-6ced30aafddb@baylibre.com>
+ <20250421-topic-am62-dt-partialio-v6-15-v1-7-6ced30aafddb@baylibre.com>
 Content-Language: en-US
 From: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <20250421-topic-am62-dt-partialio-v6-15-v1-6-6ced30aafddb@baylibre.com>
+In-Reply-To: <20250421-topic-am62-dt-partialio-v6-15-v1-7-6ced30aafddb@baylibre.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
@@ -104,16 +104,16 @@ On 4/21/25 03:14, Markus Schneider-Pargmann wrote:
 > 
 > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 > ---
->   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 76 +++++++++++++++++++++++++++++++++
+>   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 76 +++++++++++++++++++++++++++++++++
 >   1 file changed, 76 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> index 1c9d95696c839a51b607839abb9429a8de6fa620..724d9a6f3c575fe35496fdd9e17d6d8e33869f92 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> @@ -741,3 +741,79 @@ dpi1_out: endpoint {
->   		};
->   	};
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> index d29f524600af017af607e2cb6122d3a581575ffc..35b950e444353c416e33344dfff42e2edeab3aba 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> @@ -683,3 +683,79 @@ &mcu_gpio0 {
+>   &mcu_gpio_intr {
+>   	status = "reserved";
 >   };
 > +
 > +&mcu_mcan0 {
@@ -153,14 +153,8 @@ On 4/21/25 03:14, Markus Schneider-Pargmann wrote:
 > +			<&system_mcu_only>,
 > +			<&system_standby>;
 > +};
-Hi Markus,
-
-I noticed wkup_uart0 is already referenced earlier in the dts. Could the 
-wakeup-source property be added into the first reference?
 > +
 > +&mcu_pmx0 {
-Same thing with mcu_pmx0. Is there a reason for separating it from when 
-it was referenced originally?
 > +	mcu_mcan0_tx_pins_default: mcu-mcan0-tx-default-pins {
 > +		pinctrl-single,pins = <
 > +			AM62X_IOPAD(0x034, PIN_OUTPUT, 0) /* (D6) MCU_MCAN0_TX */
@@ -196,11 +190,16 @@ it was referenced originally?
 > +			AM62X_IOPAD(0x040, PIN_INPUT | WKUP_EN, 0) /* (D4) MCU_MCAN1_RX */
 > +		>;
 > +	};
-> +};Additionally, this patch does not apply cleanly to linux-next and needs 
-to be fixed and rebased.
+> +};
+> 
+Hi Markus,
+
+I have the same concerns with this patch as I did with the previous 
+patch (arm64: dts: ti: k3-am62a7-sk: Set wakeup-source system-states).
+Both the wkup_uart and mcu_pmx0 have already been referenced early in 
+the dts and could be consolidated. This patch also does not apply 
+cleanly to linux-next.
 
 Best,
 Kendall Willis
-> 
-
 
