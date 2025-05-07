@@ -1,105 +1,165 @@
-Return-Path: <devicetree+bounces-174734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFB47AAE3A4
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:57:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A8DFAAE3AF
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:59:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0526B7A4680
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:56:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3D2E188E1FA
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:59:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F260C289E0A;
-	Wed,  7 May 2025 14:57:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="c3w6h9UC";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="uhSJSd9k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEA3289E33;
+	Wed,  7 May 2025 14:59:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B205289E0B;
-	Wed,  7 May 2025 14:57:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40309289E1B;
+	Wed,  7 May 2025 14:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746629831; cv=none; b=WihJ4yKxkJmyfIyr/qXFsON2l9P0rqO6hw2DkiAgkPMEZ28jZDMNWNxGno5TdhHmiStDtPBGVmn5t657+MbWK4TLNmYL4ygGl7h36/z9qECfrbn1UQHtVtdqobOBVSCBmRqry30EegRHBddNubUcSDZAFg9ZTg8ZSxM6shoeHGs=
+	t=1746629952; cv=none; b=i0Gb4Bkd87Wpi10AaAsZMISApnv6TSUoqZxYWySK9xBDdPA6fFz2uepEsK1GY+4zPE0kupEui5cyyJwl2vGExo/xGlpgq0o5xEUshCs8Ci4qchm9JjctEGCxRGLMIl/8EM51nJfx6MPzT72JIaRvrFvzSz6WuZu9SwgwLJa6Mbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746629831; c=relaxed/simple;
-	bh=dDqtRZg26E4Et3Yjy8rypNhjSO073NNczyslrDzYN2k=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=fAPXw/TZ5oDclMi6xN5JtT6DCEOAfBO4PvTD2SzyTechAfdh1Vz6BHK8Fs6iHJQSnJmEZgduZZNli2sXd6XF14P83nY6k6XB36It4K30iB6dt3X7qc1MOzOXCJQdNpLt/AC4iYVeRlgo9cY6gR5N4awpOFxFwcQfUNKfBvGdFzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=c3w6h9UC; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=uhSJSd9k; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1746629828;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xmIM9bL+9pYqApP4iiFLa2aJhHWBMRN4cnMPPzQ7Uuo=;
-	b=c3w6h9UCZfwIuuS3NCJZL6VICMiK/xZO9n6BXRGzZTeB8JGqEKsYIIJQEd+sCKVnjzB0mx
-	Ut1PYkFchzhx9Hx8bDfwGnfRQrKm+oWIvMKhDIg9J0GkO5XbC06KybHbF9EmCRGmjm69D0
-	7dHULGK9bVsIrb1YwTPdTvaS0TGFHrIA+q/v7BLB6QENoRF/k52oMT9bGEDnYQWKxBLOZD
-	UEMESZJFZ8aEPFPnqnAx1yzpx7hQHLpEMgQDuxfabwD0Z6qYGzguk9UKrbJpvkVZWi+QjD
-	j5dWMGyUKfbo8NntAtEVhu8ZsfSDLGC+j/sgbi/V55iFV01xcbV+yyqxYkUOaA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1746629828;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xmIM9bL+9pYqApP4iiFLa2aJhHWBMRN4cnMPPzQ7Uuo=;
-	b=uhSJSd9k2sw9XI3tMkhm2D2DL5P+4G6hR5bf0vhvXUMS5HskOI3vlbVGHn1v576LCoIznP
-	Fn6GgNvNKNPOdoAQ==
-To: Marc Zyngier <maz@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will
- Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Sascha Bischoff
- <sascha.bischoff@arm.com>, Timothy Hayes <timothy.hayes@arm.com>, "Liam R.
- Howlett" <Liam.Howlett@oracle.com>, Mark Rutland <mark.rutland@arm.com>,
- Jiri Slaby <jirislaby@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 20/25] irqchip/gic-v5: Add GICv5 PPI support
-In-Reply-To: <867c2sh6jx.wl-maz@kernel.org>
-References: <20250506-gicv5-host-v3-0-6edd5a92fd09@kernel.org>
- <20250506-gicv5-host-v3-20-6edd5a92fd09@kernel.org> <87zffpn5rk.ffs@tglx>
- <86a57ohjey.wl-maz@kernel.org> <87ecx0mt9p.ffs@tglx>
- <867c2sh6jx.wl-maz@kernel.org>
-Date: Wed, 07 May 2025 16:57:07 +0200
-Message-ID: <874ixwmpto.ffs@tglx>
+	s=arc-20240116; t=1746629952; c=relaxed/simple;
+	bh=5M9Jjh9uDZo+VHf9DGUueg2942ffkGE/NO0/mkfCAp8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z8mDuBUKuxJZyqr7ylX6UnlCGEd51EtIUF+VXUK0a2VRS7R4F7lovAgnWJfNH9PoyY50AEN6Vo5FiitgGHTe8dW5kzIoXQl/d2hDSe093LKvak4noF+oHh/5l1eB6zBHipg3+kIux4ceJxphyDsGgVVHD3X1AB3byPoDeG22k4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+X-CSE-ConnectionGUID: tEChOFZsRAWzuAhCUhzBxQ==
+X-CSE-MsgGUID: gwTs4j7aRI+UYcC0cBTp9g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="48478247"
+X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; 
+   d="scan'208";a="48478247"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2025 07:59:11 -0700
+X-CSE-ConnectionGUID: ob9JxO7RQ9G1d0CTgF1x2g==
+X-CSE-MsgGUID: Hk7wflCUSRuHCcl3F1c2vQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; 
+   d="scan'208";a="136384725"
+Received: from smile.fi.intel.com ([10.237.72.55])
+  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2025 07:59:07 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andy.shevchenko@gmail.com>)
+	id 1uCgEi-00000003lKU-0Fpf;
+	Wed, 07 May 2025 17:59:04 +0300
+Date: Wed, 7 May 2025 17:59:03 +0300
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Lee Jones <lee@kernel.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH net-next v7 8/8] mfd: zl3073x: Register DPLL sub-device
+ during init
+Message-ID: <aBt1N6TcSckYj23A@smile.fi.intel.com>
+References: <20250507124358.48776-1-ivecera@redhat.com>
+ <20250507124358.48776-9-ivecera@redhat.com>
+ <CAHp75Ven0i05QhKz2djYx0UU9E9nipb7Qw3mm4e+UN+ZSF_enA@mail.gmail.com>
+ <2e3eb9e3-151d-42ef-9043-998e762d3ba6@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2e3eb9e3-151d-42ef-9043-998e762d3ba6@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, May 07 2025 at 14:52, Marc Zyngier wrote:
-> On Wed, 07 May 2025 14:42:42 +0100,
-> Thomas Gleixner <tglx@linutronix.de> wrote:
->> 
->> On Wed, May 07 2025 at 10:14, Marc Zyngier wrote:
->> > On Tue, 06 May 2025 16:00:31 +0100,
->> > Thomas Gleixner <tglx@linutronix.de> wrote:
->> >> 
->> >> How does this test distinguish between LEVEL_LOW and LEVEL_HIGH? It only
->> >> tests for level, no? So the test is interesting at best ...
->> >
->> > There is no distinction between HIGH and LOW, RISING and FALLING, in
->> > any revision of the GIC architecture.
->> 
->> Then pretending that there is a set_type() functionality is pretty daft
->
-> You still need to distinguish between level and edge when this is
-> programmable (which is the case for a subset of the PPIs).
+On Wed, May 07, 2025 at 03:56:37PM +0200, Ivan Vecera wrote:
+> On 07. 05. 25 3:41 odp., Andy Shevchenko wrote:
+> > On Wed, May 7, 2025 at 3:45 PM Ivan Vecera <ivecera@redhat.com> wrote:
 
-Fair enough, but can we please add a comment to this function which
-explains this oddity.
+...
 
-Thanks,
+> > > +static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
+> > > +       { .channel = 0, },
+> > > +       { .channel = 1, },
+> > > +       { .channel = 2, },
+> > > +       { .channel = 3, },
+> > > +       { .channel = 4, },
+> > > +};
+> > 
+> > > +static const struct mfd_cell zl3073x_devs[] = {
+> > > +       ZL3073X_CELL("zl3073x-dpll", 0),
+> > > +       ZL3073X_CELL("zl3073x-dpll", 1),
+> > > +       ZL3073X_CELL("zl3073x-dpll", 2),
+> > > +       ZL3073X_CELL("zl3073x-dpll", 3),
+> > > +       ZL3073X_CELL("zl3073x-dpll", 4),
+> > > +};
+> > 
+> > > +#define ZL3073X_MAX_CHANNELS   5
+> > 
+> > Btw, wouldn't be better to keep the above lists synchronised like
+> > 
+> > 1. Make ZL3073X_CELL() to use indexed variant
+> > 
+> > [idx] = ...
+> > 
+> > 2. Define the channel numbers
+> > 
+> > and use them in both data structures.
+> > 
+> > ...
+> 
+> WDYM?
+> 
+> > OTOH, I'm not sure why we even need this. If this is going to be
+> > sequential, can't we make a core to decide which cell will be given
+> > which id?
+> 
+> Just a note that after introduction of PHC sub-driver the array will look
+> like:
+> static const struct mfd_cell zl3073x_devs[] = {
+>        ZL3073X_CELL("zl3073x-dpll", 0),  // DPLL sub-dev for chan 0
+>        ZL3073X_CELL("zl3073x-phc", 0),   // PHC sub-dev for chan 0
+>        ZL3073X_CELL("zl3073x-dpll", 1),  // ...
+>        ZL3073X_CELL("zl3073x-phc", 1),
+>        ZL3073X_CELL("zl3073x-dpll", 2),
+>        ZL3073X_CELL("zl3073x-phc", 2),
+>        ZL3073X_CELL("zl3073x-dpll", 3),
+>        ZL3073X_CELL("zl3073x-phc", 3),
+>        ZL3073X_CELL("zl3073x-dpll", 4),
+>        ZL3073X_CELL("zl3073x-phc", 4),   // PHC sub-dev for chan 4
+> };
 
-        tglx
+Ah, this is very important piece. Then I mean only this kind of change
+
+enum {
+	// this or whatever meaningful names
+	..._CH_0	0
+	..._CH_1	1
+	...
+};
+
+static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
+       { .channel = ..._CH_0, },
+       ...
+};
+
+static const struct mfd_cell zl3073x_devs[] = {
+       ZL3073X_CELL("zl3073x-dpll", ..._CH_0),
+       ZL3073X_CELL("zl3073x-phc", ..._CH_0),
+       ...
+};
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
