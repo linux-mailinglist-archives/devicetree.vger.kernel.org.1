@@ -1,118 +1,139 @@
-Return-Path: <devicetree+bounces-174566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E549AAD92C
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:56:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF2BAAD968
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:02:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 360991887F77
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:56:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22C317AB6BB
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:55:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 841C8221FBB;
-	Wed,  7 May 2025 07:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1665221D83;
+	Wed,  7 May 2025 07:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YYPP9URb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XAsyMpah"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 556BB2153E2;
-	Wed,  7 May 2025 07:54:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A5D223DD4
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 07:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746604491; cv=none; b=K6YjMxA02J33TdBA2eoAyWGQbgfrg+g3HWf1qFuovOzeY9QhUnc9hs6NrlZVFrKcaQtvA//6ljbKLB3s9N0ePob1J+bUZXMkDReQnS9vXvaWYhljV2SZvEpYL3sPY3Yb2ZoMkL4iqahsWmsQixRuCxLfHqiS3scn7sn/SgClaY4=
+	t=1746604531; cv=none; b=kPzehbhAcfBkTMARw15xfQbQeylxRnF3hmAml5PsGenoy21C2ufwoPHLnRhzh0WQv4Pe34n3+KcHVHqfdI1eTPT5L1lQyCovk30AOzY8MUmfnXiGK8ACy7lDcQ359vxSll16rWxeO9Cbedi8n3MxeF83ZYElRokV9NeeGLUcE7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746604491; c=relaxed/simple;
-	bh=RvNzjk0M4mARQxnDPb6DusUcGQ12+LWoRjehzoQ9+0k=;
+	s=arc-20240116; t=1746604531; c=relaxed/simple;
+	bh=q6pNPs0UuN6WlRKaJkUjx2xsLLW66yNqWqj7oq0oEBw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JTt0wQZxRvNNyKdy1UniHEVVsO6O3zn+uevFoUM0ekRSczZexXdi/3PmaKrS1fJKeQiYiFJn0xy0aDHs94gKkt8wP1erT+t0Z0uq15HAm6sA0f8ABAVPnlrFhsk8oVLEbbizH2x/onFQPvTdBvXxPmUZxDg7BSyAu+oGFZGa4NI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YYPP9URb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE4CCC4CEEE;
-	Wed,  7 May 2025 07:54:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746604490;
-	bh=RvNzjk0M4mARQxnDPb6DusUcGQ12+LWoRjehzoQ9+0k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YYPP9URbYPC+uecaNokMl21TG6IAS8eM6KFsa+k+ziuulMc/0YPMlkBc/6xBJ7oVX
-	 2sQc4TQbzH7QDarjCEITyBG5jt1yqyaImSlsaKopA5Ul9y6gl7ntQDYkdF/OMJq/eZ
-	 kcjgqeqTVApPxZQCQY1RKJMpbKdbifLFwlJZCq7HdvKw5Ci8B7CgwwuaY8OShZ6qQO
-	 t2K2mNgsjVtjpg6IDPp96LiaJzpC77DdRBjlOT/r/u90RgstR6oTLYKWQ9E2sRro0P
-	 J6jgmSDJLGUEw063QNzeMCOyg7S82M48kvrZ+TUB/UGNhgUYDZqH9IJh2WreR5lg9c
-	 V4m6pM62CzCIg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uCZc5-000000005me-3rfW;
-	Wed, 07 May 2025 09:54:46 +0200
-Date: Wed, 7 May 2025 09:54:45 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Bjorn Andersson <andersson@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/4] rtc: pm8xxx: fix uefi offset lookup
-Message-ID: <aBsRxbBb91e_sQn3@hovoldconsulting.com>
-References: <20250423075143.11157-1-johan+linaro@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qYqsDlCwt3ezqQvh4lhvG6+UZZy+5P7Yx2b0vBhj+kwgXNkcC0SNWfIo/QVzlqe638JPqMMJYEspZPRQVRjCt8G3svQxwJGsdyC/FJr7jg3K046oZ97Z6NXj5oOR+xe7lNSEntOpwK+SDXcVXggtOrWQOpbi0SYFXcP3IpyaPk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XAsyMpah; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a07a7b517dso4314780f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 00:55:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746604528; x=1747209328; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TBL3qIVf81e3PhkRqu3EdoePuATSbIziAx1f5bGu5+Q=;
+        b=XAsyMpahI3Avjef5C/FsbxPfog4HQ/ERRThKWUgHnt+W2OYpbx//L5RhqESqyNdKz3
+         aXG4Kt4Q+V0jPt9ILrMCvlBvkHgjwP4/hB229sSGatcJIZOsijzxZMtjRArqpHzab8ZA
+         4A7j0Z9X/KBfvkmhRta1gzno5aymrIZzrSGuavC4288sBQMV+YaPxaWIkL395XGtjyAL
+         gDPA+IydTOp9MlXzngQHRu0AtRf3sLA8pn0CUwoxKPZqBhANsSjFlTUYgY8Y11ZFACFD
+         ZsYZ2M0jFNdHM5slxcWOHS2cOh55iLuT9cjvVA4sXa3NkMSrjKPTcAZkPx9v2VyS2aD/
+         caPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746604528; x=1747209328;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TBL3qIVf81e3PhkRqu3EdoePuATSbIziAx1f5bGu5+Q=;
+        b=hZBAZ2+tDGyF118tUMSrt6oPVrcEs8vuXvIG8BkDLU7qkeLwpsSWuLNj4wUR5ES9lf
+         2Jb1IGvtzgX+FN1ZkfZHWiDzK2HtmAY0JY4y/1FcGz1/gbdvRPAdG6ipg5LS4vmnVcOS
+         E61HBb/PPESEaluV8ZhlHUZk3U6ZAJ9VV5Kb/kOAnJi58bmdhHJ+gWxhB2xWxRQEU+eY
+         SSqFOkCT3tKqBeRkeIgHN7RnrAdZeaOZofhKtQUdMb3Z95c4zg0g5v9OvJkISEdnhdFr
+         yXD8l7BrKN6giifXYkL1RXOwKCFdKc1CUAUicbnzXHQXGZ0EJrsYFkUQxqLz1bfUWecw
+         nZ3w==
+X-Forwarded-Encrypted: i=1; AJvYcCUV0NgNnxsYNXSdTltOrTTfz7HwjWPecDjmb4xenMWmn2lKejI8P9iECzqSg3cXiE6vTr+zY/8ET1Ur@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDDc/+AqF1gF3bG70UKcbto4JwNT85S43ZBz+ReZ14Vm7qo0RD
+	b+fTHrgxgJ4a0vfbqUv3I5Qw0aqu4rngFlkEbpeksn2HARzomnZ5zXzcAiz7tTI=
+X-Gm-Gg: ASbGncslvPTtPOkfXEuNPZSzOFkkxmElmH9OOCR8QoSVwRvsNpZHLZP02zL+xs0QJRZ
+	UhZcd2dvY2Y3tc391WZsyE2QfkMSN58rc6Hi6MtcbpyIWWeyD/niEJ4MN1ZaavS9HRaMebhsRpv
+	1h0RM/SLIV2BDsjixFU2CSCS4nSfGIgqDLXh+vTNOfKqy/PeRK2J1bIxrqfpNJsFix61TK+AIKC
+	ufPmu1AK6dXfNkmox0E8QrI3Fhnclwrn5qSc1EtDTNWHwdkvD/29kh+1HMI3rbzn6/yHhyhJd27
+	SlPtfWBoji03/nGU0Bu84ZyJb14xmB81G6RC1/wlPXKY29hQLz6ntRGnis5BZqWiMsa4dDve8w/
+	ZAS8=
+X-Google-Smtp-Source: AGHT+IHSub+w3i180SBYtmH4xnfpAxz/7R8NINsxJdekQwKRKRmtdqdbqRAvzeMDt6WyEG1Omh+Khw==
+X-Received: by 2002:a5d:47c7:0:b0:3a0:a3f3:5034 with SMTP id ffacd0b85a97d-3a0b49d26bemr2060932f8f.34.1746604527781;
+        Wed, 07 May 2025 00:55:27 -0700 (PDT)
+Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a0ad54f105sm4491875f8f.85.2025.05.07.00.55.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 May 2025 00:55:27 -0700 (PDT)
+Date: Wed, 7 May 2025 09:55:25 +0200
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: lee@kernel.org, alexandre.torgue@foss.st.com, tglx@linutronix.de,
+	ukleinek@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	jic23@kernel.org, robh@kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, devicetree@vger.kernel.org, wbg@kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	olivier.moysan@foss.st.com
+Subject: Re: [PATCH v6 3/7] clocksource: stm32-lptimer: add support for
+ stm32mp25
+Message-ID: <aBsR7W15mPQiTjCc@mai.linaro.org>
+References: <20250429125133.1574167-1-fabrice.gasnier@foss.st.com>
+ <20250429125133.1574167-4-fabrice.gasnier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250423075143.11157-1-johan+linaro@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250429125133.1574167-4-fabrice.gasnier@foss.st.com>
 
-Hi Alexandre and Bjorn,
+On Tue, Apr 29, 2025 at 02:51:29PM +0200, Fabrice Gasnier wrote:
+> On stm32mp25, DIER (former IER) must only be modified when the lptimer
+> is enabled. On earlier SoCs, it must be only be modified when it is
+> disabled. There's also a new DIEROK flag, to ensure register access
+> has completed.
+> Add a new "set_evt" routine to be used on stm32mp25, called depending
+> on the version register, read by the MFD core (LPTIM_VERR).
+> 
+> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> ---
+> Changes in V6:
+> - Fixed warning reported by kernel test robot in
+>   https://lore.kernel.org/oe-kbuild-all/202504261456.aCATBoYN-lkp@intel.com/
+>   use FIELD_GET() macro
+> Changes in V5:
+> - Added a delay after timer enable, it needs two clock cycles.
+> Changes in V4:
+> - Daniel suggests to encapsulate IER write into a separate function
+>   that manages the enabling/disabling of the LP timer. In addition,
+>   DIEROK and ARROK flags checks have been added. So adopt a new routine
+>   to set the event into ARR register and enable the interrupt.
+> Changes in V2:
+> - rely on fallback compatible as no specific .data is associated to the
+>   driver. Use version data from MFD core.
+> - Added interrupt enable register access update in (missed in V1)
+> ---
 
-On Wed, Apr 23, 2025 at 09:51:39AM +0200, Johan Hovold wrote:
-> On many Qualcomm platforms the PMIC RTC control and time registers are
-> read-only so that the RTC time can not be updated. Instead an offset
-> needs be stored in some machine-specific non-volatile memory, which a
-> driver can take into account.
-> 
-> On platforms where the offset is stored in a Qualcomm specific UEFI
-> variable the variables are also accessed in a non-standard way, which
-> means that the OS cannot assume that the variable service is available
-> by the time the driver probes.
-> 
-> This series adds a 'qcom,uefi-rtc-info' boolean DT property to indicate
-> that the RTC offset is stored in a Qualcomm specific UEFI variable so
-> that the OS can determine whether to wait for it to become available.
-> 
-> I used such a property in v1 of the series adding support for the UEFI
-> offset [1], but mistakenly convinced myself that it was not needed given
-> that the efivars driver would need to remain built in. As Rob Clark
-> noticed, this is however not sufficient and the driver can currently
-> fail to look up the offset if the RTC driver is built in or if a
-> dependency of the efivars driver is built as a module. [2]
-> 
-> As with the rest of this driver, hopefully all of this goes away (for
-> future platforms) once Qualcomm fix their UEFI implementation so that
-> the time service can be used directly.
-> 
-> Preferably the binding and driver fix can be merged for 6.15-rc by
-> Alexandre, while Bjorn takes the DT changes through the branch which has
-> the DT patches from v2 (which unfortunately missed 6.15 but may possibly
-> be sent as hw enablement fixups). [3]
+Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+-- 
 
-It seems we won't have RTC support in 6.15, but could you please pick
-these up for 6.16 to make sure that the RTC works also when the driver
-is built in?
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-> [1] https://lore.kernel.org/all/20250120144152.11949-1-johan+linaro@kernel.org/
-> [2] https://lore.kernel.org/all/aAecIkgmTTlThKEZ@hovoldconsulting.com/
-> [3] https://lore.kernel.org/lkml/20250219134118.31017-1-johan+linaro@kernel.org/
-> 
-> Johan Hovold (4):
->   dt-bindings: rtc: qcom-pm8xxx: add uefi-variable offset
->   rtc: pm8xxx: fix uefi offset lookup
->   arm64: dts: qcom: sc8280xp-x13s: describe uefi rtc offset
->   arm64: dts: qcom: x1e80100: describe uefi rtc offset
-
-Johan
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
