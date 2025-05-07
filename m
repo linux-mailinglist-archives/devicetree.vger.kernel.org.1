@@ -1,231 +1,246 @@
-Return-Path: <devicetree+bounces-174560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ADB1AAD821
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:31:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7DA6AAD826
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:31:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBA051C223C3
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:31:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23707178D01
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:31:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7534221B8E1;
-	Wed,  7 May 2025 07:31:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7EBB218AC3;
+	Wed,  7 May 2025 07:31:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Ll2r1LwP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="F+Jioq5z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011000.outbound.protection.outlook.com [52.101.70.0])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 406441A9B53;
-	Wed,  7 May 2025 07:31:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.0
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746603069; cv=fail; b=CpULupuxD644pezYeU41L8ietvprRh6wPI7ZpHsTFaMLqek1mpLXruCEW2srNws9zqx+JfBopiaBbY2hSHnisZe/nmPhcRpcTzsUuJvWNJcTgJP1L2bY9kFvKHwUTrT7vKaBeEjGBbVl10ccCFRr8U5cWhrgOvOeq7ot3MBLhtc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746603069; c=relaxed/simple;
-	bh=cykKM++N7Ttmq3ukYFSEoWq+NhPW8db3E4xyCfrdNUk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=J57sIzLO9NUsiIwrjZsNUndNgBQN8IYqsru+zoH9ULk3bi0VqgRFiDRHXXTTl9EekhyQWz8jyRaSFPjPxKKoySsl+rPW+SZYlrKEcL4A5UVbhzs4zp1VxqudDpYy8oXgpuaSWeXOqrgZiMdX5Ah88p0pBd07vg5Tye3PRQ1yhXs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Ll2r1LwP; arc=fail smtp.client-ip=52.101.70.0
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MtPh1zEE1lcFJmUHyn0sweh6+/BAbWd5L8hwcyTos6SxV/pGkQ7X4M4NFahpMY3XZg/VedqNMIoE6TtITLDhTyoN1XeOoIcvPW3Hy3HuLv+JwxYibHx3iZFZ5tSk3h9cfawJuMG0AwsLvtbijCjn9DigRbSbYr3bvTp7pCTH80corTDloK1gb/nmPaIc7Ak9WD6qhp7TGKHsWI4EtzMfNnjbnSB9sFN286tpCEiBBMP66JungzrUlQMI3AFCAt16alsrHq0bf1oB8KUrCjESc/yhQK9nJ2jhPhdKqJxmjTn4Bj7Tqb+xSTejwhTD9E8MsybCeljLD5ggwXu0sXk1gQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NGbLxZ8EhTAK70ThQ1nQhNeC0hgX/SeK9N1oN2gffBE=;
- b=aN0IfZq+oeyHoNb67TweAXfwsZUxmbPCGM33w2l25KkRjCHsbNeSldKU6YkFsx0enUdcnr0ZVVklBdJtx/D76RpKXjlG2iIVzD+CAGA4Mn5D2SdnlybmZKW6lcf2csgZGEjgjTck1BXpmchSzcPotvRv5jlIjxP35OoOCbEe4RuTmpNIK6pbjqLNyNQRdGIKNGLi5gcG4zEkGBCf2nZ6nb737N7eS4ZU/IRxxUDMTKFo7hAl2/eTGAXg9XId1X27ueziLrhxOhTafw8WejxwRXPxgS3xiV7HhgThm+3/CoI3mx0+5yrzBfNPxbgsnWzsU7MIC06KL0DoE9WmM7ngbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NGbLxZ8EhTAK70ThQ1nQhNeC0hgX/SeK9N1oN2gffBE=;
- b=Ll2r1LwPak7OjtDjHTKiS74xlhLBbgfQTqIOUu7QYbhPcj55eB9DYLbGJ3pUhRdX/LRNlY9rYGRRfNeZ1Qz/GEubj3yp7kRyxm/nxx3Em7IobE3hA2/CbRxPA/kUpFuEyjeULIQZUXUx88xKBjorFR8QPU3ezJSYOJdJHHfZ0CrghogihUIgbxuMD6InrD5EgFoaMjq0+mIAD4HyBvCfLgksuabr3MAF7Tvu85spMMnpQWOhVk94+zb9wucvP7NpVAOBpV4gpLJd2VhVNMqlqRCQ8BR+wBotc/fvAl51dhlGZTaGf2uHmrVyz07oOo6KVwuBE9RHvGbMg7KCuvY2UQ==
-Received: from AM0PR04MB6515.eurprd04.prod.outlook.com (2603:10a6:208:16f::10)
- by PA4PR04MB7854.eurprd04.prod.outlook.com (2603:10a6:102:c2::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.26; Wed, 7 May
- 2025 07:31:04 +0000
-Received: from AM0PR04MB6515.eurprd04.prod.outlook.com
- ([fe80::ca11:63b8:aeea:8043]) by AM0PR04MB6515.eurprd04.prod.outlook.com
- ([fe80::ca11:63b8:aeea:8043%5]) with mapi id 15.20.8699.024; Wed, 7 May 2025
- 07:31:04 +0000
-From: Pankit Garg <pankit.garg@nxp.com>
-To: Conor Dooley <conor@kernel.org>
-CC: "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "alexandre.belloni@bootlin.com"
-	<alexandre.belloni@bootlin.com>, Vikash Bansal <vikash.bansal@nxp.com>,
-	Priyanka Jain <priyanka.jain@nxp.com>, Daniel Aguirre
-	<daniel.aguirre@nxp.com>, Shashank Rebbapragada
-	<shashank.rebbapragada@nxp.com>, Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-Subject: RE: [EXT] Re: [PATCH v2 1/2] dt-bindings: rtc: Add pcf85053a support
-Thread-Topic: [EXT] Re: [PATCH v2 1/2] dt-bindings: rtc: Add pcf85053a support
-Thread-Index: AQHbvmwEyq44ngbwY0OGh1sJZwWSkbPFv9cAgAEGdbA=
-Date: Wed, 7 May 2025 07:31:03 +0000
-Message-ID:
- <AM0PR04MB65156BE2EE9C7EF14991892CE788A@AM0PR04MB6515.eurprd04.prod.outlook.com>
-References: <20250506094815.3765598-1-pankit.garg@nxp.com>
- <20250506-durable-cryptic-24119a6e7dbd@spud>
-In-Reply-To: <20250506-durable-cryptic-24119a6e7dbd@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM0PR04MB6515:EE_|PA4PR04MB7854:EE_
-x-ms-office365-filtering-correlation-id: 46ce92b5-d6a1-4b2e-ade4-08dd8d391fb8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?drjRmyKl4tqgg9KXcsponZYWgZl+/05/cWqS14QyyaDh8/qCDT109IsREy6G?=
- =?us-ascii?Q?6GoHDk7b9ycPzxDsHH4mCYkc929cJW070AnQ48zxf5Mv9XnUeQHCP0zpXyik?=
- =?us-ascii?Q?wEV9YXswLcGn+/TcdFlJ0+PoRjz1n6qqcggJUA4mhCo0W342IlRKUfSwu+mO?=
- =?us-ascii?Q?BCswhzY5jFg2M2kDos3eGP+pE+1cv8y6rl1BXimpInnf0aUMZFxvEtT7f1lV?=
- =?us-ascii?Q?DvQJ3jbhSjeQY/OOyKndLS1bQAsfCmAMyY3b89cj6e/3ApY1jeSAjLwkF5vq?=
- =?us-ascii?Q?myQMGX/m6wutzKctggbnqvkY80/Idjo4QK2UdYpkNCPcmV9OBvgQAj6FOdpB?=
- =?us-ascii?Q?Sa6qtPkti+J1gkSd5ASpL1M0ZhJ2aji5kXGufwSWv84EPGAN5KtbaYvloTJo?=
- =?us-ascii?Q?npDGTaXXYS0v7Cgpdy7fii8CLqizJ2/3LVXcmS1nvTbIhqcGHk/ebAyEFK4x?=
- =?us-ascii?Q?KJHzdZ+xk4K55PBaKhbdEF+SZcDD9zZ/aGwaWk6WBQn0T83Ro0mFlB+aQtJR?=
- =?us-ascii?Q?oOoRjzBDK4TAqRgUeqU+sprBhps53f+kyzQiIz4CEjDfIX4HB7W0U4fow1Qo?=
- =?us-ascii?Q?jSyd7FIyIJxpZ3nlDpxCpriMbonSjGBaxZzaHX91dZR9kduz+qBJoj96w1Cc?=
- =?us-ascii?Q?1R7ZokgjvSmNkCyhrCM44mFizt8IHBa39xDvEUPdEePPr8SOjJs2Ue4pTZZ6?=
- =?us-ascii?Q?3scU76SvpDDUfistltAJ4zP3zVLOFMYjfY6m5ip4XOp1aq0MssbYOftlGxy8?=
- =?us-ascii?Q?kcefpNTlxqd4xbDLcaK3Rx3zQNX/UnjeJX28jn2Bo6I7cIpRhkAgGSIc8wJZ?=
- =?us-ascii?Q?l8GHon854B+tVljAhNcPRRh5MkmUXhPyTOKoYlKuVPtko1zj73SqWWqzYlRK?=
- =?us-ascii?Q?+XXwaTPmVquZZxlSpkJn+QgX/6BKx3AmdT5x+VyMmE4WT9IJkqVBXjAYPsty?=
- =?us-ascii?Q?+xz9/9Up4ZQU5p/oC9p6JZGxhBozvQMPmVa2yYjezXXutZxcz9yzfwZ1p8LM?=
- =?us-ascii?Q?ailqj2173pfeqxijAA2oNeMJUYuldWCUmLMAEhnOX9itxfZvF2vdOVQ326NC?=
- =?us-ascii?Q?6r3N2gNCRp1JfOxi3d38y6OWCO5syiMut8p3rofIu/h7J2gAS0tOeViMIsAz?=
- =?us-ascii?Q?59xMqz+XzP1favcse9X+LEJc/yN8XPsEa4jwc0VXPUNID5NVJd0Maj/eZg4t?=
- =?us-ascii?Q?5vH8PT/MdIPKJ1ievdN1VpN3iOkWcaJrP+aqicW2Vzpe7ghSW4azQ3YHsaEC?=
- =?us-ascii?Q?QFVWA9JSt9SgSaIuKa1Vp0ny5ZZsiJJBAsSuaMKlsIoP4zijH0DKfGLZRJbD?=
- =?us-ascii?Q?wnNiXkF5Kf9MZX7g+eGpCcjfJf6ctKXlON/FO5V47JQRDuOLuN7S6d2uMyvy?=
- =?us-ascii?Q?o5BPcyK31ixfpiiT87Ed1UB5IGmj064+BX/9wAxoYyE6rYlMFctdp3ksBAkU?=
- =?us-ascii?Q?1ByA6MFcaqen1XikZVMZp6dYbsuM6zPt9pNLQGuX+hyNZfbekSyv5mB8gJYn?=
- =?us-ascii?Q?ER4Hkk7c/8MU5Rg=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6515.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?9SNLuFJwPHq5v2Cf8XfSsskMbUFGJUG3BFzwhuSsdEwrDNGM/Y0M6XJSuDWv?=
- =?us-ascii?Q?5eHksH3kayfJay7GllX+CCJFp5R1QS8345s2UnRv+yCrJ0190dTLrZ3H0i9H?=
- =?us-ascii?Q?685CYZS8NAMkwYA/wjTmynq00y/ifompNumzwT16dDE/Y7Ca7GLcFzzzK5K9?=
- =?us-ascii?Q?BLxfJxilvfVr8c48Ve72d1oqYaR0ypRnjWX0K/Q60mcHmn/5c+ntJj2k4RAz?=
- =?us-ascii?Q?laAY/0pAYF6JWZv4QRH/ppZQHonQE59tEVypm1isQ/UmRSP4s39GQBZoRGDu?=
- =?us-ascii?Q?W9ra/5WLzvCnWwci+9Uy6QDndjFAjtYG1FCQosVB5xxTaoVGv0f+KakMYusU?=
- =?us-ascii?Q?F43fNgB2jKnDWLOmLTVXIMwcU+RwHaQFVvSmYZ0DgdmQJQh2SRF8DVuvSOdR?=
- =?us-ascii?Q?B/5HhlNOwh6hoeOEAaz3VonJau7O1HdGSItIXwkt3rfK00W9BGYNbRraB5jC?=
- =?us-ascii?Q?WSKufHj1zX+hulNvXodG8Vw2koyvhOqJSfv8p5CypJapGCy+NZfVRW61/27A?=
- =?us-ascii?Q?D8yoOsArCFiyOi40aBfcfXJVrgr4OncVh3z+Iy2QdHxKJ92QM9CL70trXk/o?=
- =?us-ascii?Q?CWQ0FMuE5uqxy9SrEXaHCj6hDYWX62TzjpUPhEgdIEN07EJVhdvcLX3KfLD5?=
- =?us-ascii?Q?eIQ+9NfEKxrVu12OniFoOcu36WBpFT8Idnq7ABJGwZoyVLBBDcRPYgdyNsuD?=
- =?us-ascii?Q?7npGgYJRoVQfRA7Oa+BnVUM+dbzqwUKhUXsBQjf2O3xFq12pKiUocVcMZBuy?=
- =?us-ascii?Q?JPKLECwujkW8ZjTjf8nLVq4s9T/Q2NVNvpOEV81n3Ovfw05rNYLBW3R8kpSq?=
- =?us-ascii?Q?TZkuNGa5eBtqgXxRzuhTvNiotZozlxyypCwKxtgQplsuZwnlAsnf8I/UEV+s?=
- =?us-ascii?Q?FsJWogcuHd3xQxCL0iNEm+DrP+T3ArxF4SqpqNB7JoY2dp4nbWhduzRtB9Me?=
- =?us-ascii?Q?peZKNoOHzIz1LJe28z0tLm9bcXDMLgGzMEu9kFq29AUwciGmiBlXqDTE2Cfq?=
- =?us-ascii?Q?0p1rAk8tvXODuBFc7k2cUwFpt9FRbf/l2LC1QJyVjoOiy6RnOqynSTnkmgua?=
- =?us-ascii?Q?bYGr0I/eajaUDfkpShrw/tZbr7ln4Z2xgcke7C9UofzdzLRvkdplIP5lGVhV?=
- =?us-ascii?Q?5MooDwhqlh73cFHnOQ8Yf3XrbRdbeJnjPoz7JRX5OLPMOzJtPzQDgdwQFcvI?=
- =?us-ascii?Q?ujI/tppgmvMo6Ota5h7qjmDp4Ykng0+U0NXTSWhYTx1APM1sXoBsmurOIR5e?=
- =?us-ascii?Q?g9NlbfjV9CuHr24Z5lOBMh1pJvTxst4lm6/Ik1vDBKwlqae+TltnXRy2EuqM?=
- =?us-ascii?Q?MLxKejRCh0US54UYlOenu8w5aNmNdr5hU1yA0IvKIk1SZHJ0F8ALLERFMsnF?=
- =?us-ascii?Q?I2Nx2CL+122WLuZ2ykDpXOp8Fie9BZY3bEjHnyAmZnpgG7LLZzRqTK8Vga+Z?=
- =?us-ascii?Q?AcfNpYUYBUgmaJzYAbwZwQg2Kp9JBJWvW3sf97LoXuOXZAu9/5FsNomTQRX9?=
- =?us-ascii?Q?1ZGH1KRYiQ8MK/mougi99lhQG7ba28Mw90oQBqvOvjHXmhCS7yt8N6+LGG7r?=
- =?us-ascii?Q?2xDeS78ReEO2z/cK90M/vgnF/bv9ofTKDrAxQMrL?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 172021C84D6;
+	Wed,  7 May 2025 07:31:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746603111; cv=none; b=gtV4sPCIAuroxt3kQeKgjtpoxffUHCbWLYSTQLFXfZMAwhTx90hO8Ef3/Nm5uE4GxFz1jd0JCRzzZJRP5xoQxJhpIAYggQzGFBQiQlEq56nLz7KHaKJRN5z+xmyTLCLY+WC0NerQVGl3Wn+kjZcOkN90ENX5g1lOjQqCesQwDSY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746603111; c=relaxed/simple;
+	bh=0cur8ilifh2WKjNlVxEGKdLdHBX8xWsGsKF2bcY55+U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iWiQKdLze1ehMbN/r0u0T2DqPl7fDgC0DzxxNb1afkba3ufPawtBd2XTPSjM64UnnIubVi0SGZS4I2POJzC5jlAeIOkBdHZoFy8lfT5AftCt+FJXyEjDknAsTctLyzFbLsn7BihiLV3t3SzP4zcrAfMNZosrW3bNZQEs8nL8iks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=F+Jioq5z; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1746603110; x=1778139110;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0cur8ilifh2WKjNlVxEGKdLdHBX8xWsGsKF2bcY55+U=;
+  b=F+Jioq5zr7qQewoZ3a1JJxXWmsMvMFXeOn6IIW2n0JualFSHEC9jbbuw
+   F58CT8rMBtiu29HDqmL1hXqe5RXFi4sOpxcttU1VGwtp/hui24i3qjqzk
+   8vn1Wu03W8mzu4S/rLZYg/Pt2DfX7iI2US/WC+rSJwhm9dZqThK1MRlqN
+   YHZOy/t6uWFUT11YmsiCHa2aBx5Wu1npt3xD+3DAQO7tVdz3rvKNSZqb7
+   w0daGjkXbGcS2LkTySKIxO9QX6kCHQ4i/NZ0AFHgQhuzSOLM4DjkmVOxK
+   bWwh76z/71YY/KtGBnpmq61w+5szRA0FJzdXO/tqg2UVU2M1LXPGl5YpQ
+   Q==;
+X-CSE-ConnectionGUID: 8EKWOhpFRL2/vYrDmYehzg==
+X-CSE-MsgGUID: rn/heQAzSIa8letC0iLNYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="35944827"
+X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; 
+   d="scan'208";a="35944827"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2025 00:31:44 -0700
+X-CSE-ConnectionGUID: RSlEYW6FRciUmNy6dTwI/Q==
+X-CSE-MsgGUID: FDmAR+czTniIup4AsqAqUw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; 
+   d="scan'208";a="173064110"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 07 May 2025 00:31:40 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uCZFi-0007JR-10;
+	Wed, 07 May 2025 07:31:38 +0000
+Date: Wed, 7 May 2025 15:31:14 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sai Sree Kartheek Adivi <s-adivi@ti.com>, peter.ujfalusi@gmail.com,
+	vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, nm@ti.com, ssantosh@kernel.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	praneeth@ti.com, vigneshr@ti.com, u-kumar1@ti.com, a-chavda@ti.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 6/8] dmaengine: ti: New driver for K3 BCDMA_V2
+Message-ID: <202505071527.yZZNwWXf-lkp@intel.com>
+References: <20250428072032.946008-7-s-adivi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6515.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46ce92b5-d6a1-4b2e-ade4-08dd8d391fb8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2025 07:31:04.0864
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cZ09XNHt6lZe9I/N7Ebj7Pdz+DZk4o4eNVxeeRCfyk88GVgsWsy57FHJFFdgGzlAlv4NLSM4Ag3+PsT19Dt2zg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7854
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250428072032.946008-7-s-adivi@ti.com>
+
+Hi Sai,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on vkoul-dmaengine/next]
+[also build test WARNING on linus/master v6.15-rc5]
+[cannot apply to next-20250506]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Sai-Sree-Kartheek-Adivi/dt-bindings-dma-ti-Add-document-for-K3-BCDMA-V2/20250428-152616
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
+patch link:    https://lore.kernel.org/r/20250428072032.946008-7-s-adivi%40ti.com
+patch subject: [PATCH 6/8] dmaengine: ti: New driver for K3 BCDMA_V2
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20250507/202505071527.yZZNwWXf-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250507/202505071527.yZZNwWXf-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505071527.yZZNwWXf-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/dma/ti/k3-udma-v2.c:147:14: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+     147 |         int status, ret;
+         |                     ^
+>> drivers/dma/ti/k3-udma-v2.c:1042:6: warning: variable 'cap2' set but not used [-Wunused-but-set-variable]
+    1042 |         u32 cap2, cap3;
+         |             ^
+>> drivers/dma/ti/k3-udma-v2.c:1042:12: warning: variable 'cap3' set but not used [-Wunused-but-set-variable]
+    1042 |         u32 cap2, cap3;
+         |                   ^
+   3 warnings generated.
 
 
+vim +/ret +147 drivers/dma/ti/k3-udma-v2.c
 
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: Tuesday, May 6, 2025 9:19 PM
-> To: Pankit Garg <pankit.garg@nxp.com>
-> Cc: linux-rtc@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; conor+dt@kernel.org; robh@kernel.org;
-> alexandre.belloni@bootlin.com; Vikash Bansal <vikash.bansal@nxp.com>;
-> Priyanka Jain <priyanka.jain@nxp.com>; Daniel Aguirre
-> <daniel.aguirre@nxp.com>; Shashank Rebbapragada
-> <shashank.rebbapragada@nxp.com>; Aman Kumar Pandey
-> <aman.kumarpandey@nxp.com>
-> Subject: [EXT] Re: [PATCH v2 1/2] dt-bindings: rtc: Add pcf85053a support
->=20
-> On Tue, May 06, 2025 at 03:18:14PM +0530, Pankit Garg wrote:
-> > Add device tree bindings for NXP PCF85053a RTC chip.
-> >
-> > Signed-off-by: Pankit Garg <pankit.garg@nxp.com>
-> > ---
-> > V1 -> V2: Handled dt-bindings by trivial-rtc.yaml
-> >
-> > ---
-> >  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 2 ++
-> >  MAINTAINERS                                            | 5 +++++
-> >  2 files changed, 7 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > index 7330a7200831..47be7bbbfedd 100644
-> > --- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > +++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > @@ -65,6 +65,8 @@ properties:
-> >        - microcrystal,rv8523
-> >        # NXP LPC32xx SoC Real-time Clock
-> >        - nxp,lpc3220-rtc
-> > +      # NXP PCF85053A Real Time Clock Module with I2C-Bus
-> > +      - nxp,pcf85053a
->=20
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> >        # I2C bus SERIAL INTERFACE REAL-TIME CLOCK IC
-> >        - ricoh,r2025sd
-> >        # I2C bus SERIAL INTERFACE REAL-TIME CLOCK IC
->=20
-> > diff --git a/MAINTAINERS b/MAINTAINERS index
-> > 0737dcb2e411..d39fc05c6454 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -17782,6 +17782,11 @@ S:	Maintained
-> >  F:	Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-> >  F:	sound/soc/codecs/tfa989x.c
-> >
-> > +NXP RTC PCF85053A DRIVER
-> > +M:	Pankit Garg<pankit.garg@nxp.com>
-> > +L:	linux-kernel@vger.kernel.org
-> > +S:	Maintained
->=20
-> This looks like a hang-over from your v1 and should really be moved to th=
-e
-> patch adding the driver.
+   142	
+   143	static int udma_v2_start(struct udma_chan *uc)
+   144	{
+   145		struct virt_dma_desc *vd = vchan_next_desc(&uc->vc);
+   146		struct udma_dev *ud = uc->ud;
+ > 147		int status, ret;
+   148	
+   149		if (!vd) {
+   150			uc->desc = NULL;
+   151			return -ENOENT;
+   152		}
+   153	
+   154		list_del(&vd->node);
+   155	
+   156		uc->desc = to_udma_desc(&vd->tx);
+   157	
+   158		/* Channel is already running and does not need reconfiguration */
+   159		if (udma_is_chan_running(uc) && !udma_chan_needs_reconfiguration(uc)) {
+   160			udma_start_desc(uc);
+   161			goto out;
+   162		}
+   163	
+   164		/* Make sure that we clear the teardown bit, if it is set */
+   165		ud->udma_reset_chan(uc, false);
+   166	
+   167		/* Push descriptors before we start the channel */
+   168		udma_start_desc(uc);
+   169	
+   170		switch (uc->desc->dir) {
+   171		case DMA_DEV_TO_MEM:
+   172			/* Config remote TR */
+   173			if (uc->config.ep_type == PSIL_EP_PDMA_XY) {
+   174				u32 val = PDMA_STATIC_TR_Y(uc->desc->static_tr.elcnt) |
+   175					  PDMA_STATIC_TR_X(uc->desc->static_tr.elsize);
+   176				const struct udma_match_data *match_data =
+   177								uc->ud->match_data;
+   178	
+   179				if (uc->config.enable_acc32)
+   180					val |= PDMA_STATIC_TR_XY_ACC32;
+   181				if (uc->config.enable_burst)
+   182					val |= PDMA_STATIC_TR_XY_BURST;
+   183	
+   184				udma_chanrt_write(uc,
+   185						   UDMA_CHAN_RT_STATIC_TR_XY_REG,
+   186						   val);
+   187	
+   188				udma_chanrt_write(uc,
+   189					UDMA_CHAN_RT_STATIC_TR_Z_REG,
+   190					PDMA_STATIC_TR_Z(uc->desc->static_tr.bstcnt,
+   191							 match_data->statictr_z_mask));
+   192	
+   193				/* save the current staticTR configuration */
+   194				memcpy(&uc->static_tr, &uc->desc->static_tr,
+   195				       sizeof(uc->static_tr));
+   196			}
+   197	
+   198			udma_chanrt_write(uc, UDMA_CHAN_RT_CTL_REG,
+   199					UDMA_CHAN_RT_CTL_EN | UDMA_CHAN_RT_CTL_AUTOPAIR);
+   200	
+   201			/* Poll for autopair completion */
+   202			ret = read_poll_timeout_atomic(udma_v2_check_chan_autopair_completion,
+   203					status, status != 0, 100, 500, false, uc);
+   204	
+   205			if (status <= 0)
+   206				return -ETIMEDOUT;
+   207	
+   208			break;
+   209		case DMA_MEM_TO_DEV:
+   210			/* Config remote TR */
+   211			if (uc->config.ep_type == PSIL_EP_PDMA_XY) {
+   212				u32 val = PDMA_STATIC_TR_Y(uc->desc->static_tr.elcnt) |
+   213					  PDMA_STATIC_TR_X(uc->desc->static_tr.elsize);
+   214	
+   215				if (uc->config.enable_acc32)
+   216					val |= PDMA_STATIC_TR_XY_ACC32;
+   217				if (uc->config.enable_burst)
+   218					val |= PDMA_STATIC_TR_XY_BURST;
+   219	
+   220				udma_chanrt_write(uc,
+   221						   UDMA_CHAN_RT_STATIC_TR_XY_REG,
+   222						   val);
+   223	
+   224				/* save the current staticTR configuration */
+   225				memcpy(&uc->static_tr, &uc->desc->static_tr,
+   226				       sizeof(uc->static_tr));
+   227			}
+   228	
+   229			udma_chanrt_write(uc, UDMA_CHAN_RT_CTL_REG,
+   230					UDMA_CHAN_RT_CTL_EN | UDMA_CHAN_RT_CTL_AUTOPAIR);
+   231	
+   232			/* Poll for autopair completion */
+   233			ret = read_poll_timeout_atomic(udma_v2_check_chan_autopair_completion,
+   234					status, status != 0, 100, 500, false, uc);
+   235	
+   236			if (status <= 0)
+   237				return -ETIMEDOUT;
+   238	
+   239			break;
+   240		case DMA_MEM_TO_MEM:
+   241			udma_bchanrt_write(uc, UDMA_CHAN_RT_CTL_REG,
+   242					   UDMA_CHAN_RT_CTL_EN);
+   243			udma_bchanrt_write(uc, UDMA_CHAN_RT_CTL_REG,
+   244					   UDMA_CHAN_RT_CTL_EN);
+   245	
+   246			break;
+   247		default:
+   248			return -EINVAL;
+   249		}
+   250	
+   251		uc->state = UDMA_CHAN_IS_ACTIVE;
+   252	out:
+   253	
+   254		return 0;
+   255	}
+   256	
 
-Thanks for reviewing the patch. I have pushed v3, in which I have handled t=
-his thing.
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
