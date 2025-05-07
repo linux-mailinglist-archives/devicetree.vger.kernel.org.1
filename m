@@ -1,57 +1,63 @@
-Return-Path: <devicetree+bounces-174609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45106AADC23
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 12:04:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 779E6AADC36
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 12:08:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5421B1C21487
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:04:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30447981FBE
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:07:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77E0D20DD42;
-	Wed,  7 May 2025 10:04:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0C0211476;
+	Wed,  7 May 2025 10:08:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="JkPLRVWu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OWy+lrgc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5CC205E02
-	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 10:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C6C20D50B;
+	Wed,  7 May 2025 10:08:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746612248; cv=none; b=ghf5WfCM7tzOqdZliTy197qWY0pHtG1eAwJ2aHjknF0CRrsGVKn74C5eNVSWnrSv57iHPiY+AORF0yC8o/iY1amjelrWw2frkNJs1l256nKgv2m0EULt2Eq+SjNmNrtMtJmcwjsmiS7bZ8DCWP5dccS55AA667V4TzWsv96ljXc=
+	t=1746612483; cv=none; b=CPwGOLAQK0srno/YxfN1oUWIkYkWAI8Z8luwJhYvJuluB1uoV11xM7vpv+i5qUeiyuz+pkFh+P2D89l3s40KAXOlFwXKQq+SoENVHGJoRqIyiaosbBEC+iAwXZ26qEoUGfOronGVtKrLJIBhviN/GiVw6SP+u3IcH6V/YY6xXbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746612248; c=relaxed/simple;
-	bh=KKDPdf+RYih2MpxRJbdswI13umMtHPKoTSKbUwdg2SQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=SHlUoEjXKPLfL8mD9pTCYCZFSbxvJspvI7079UVKEpY7jjFRpRqDU7/Nlrw4I+9KldcYLICdLJtPoA7f2wl/oXbdKrjWf4SXXUpeETiiQIvytOn1YUXcpcbv5RS54bQj7vZWUQY+kmZ3I1jKtUYwEhg306qXDWKjSASh7s9UXy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=JkPLRVWu; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250507100403euoutp02114fe31d70dcbd5b8efb64092ff95f92~9NpT5TS1K1468914689euoutp02P
-	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 10:04:03 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250507100403euoutp02114fe31d70dcbd5b8efb64092ff95f92~9NpT5TS1K1468914689euoutp02P
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1746612243;
-	bh=N32TfHVqNTkje4PcTK07rh/HIsJBsQBWcN1H8kWn9js=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=JkPLRVWuHBDbxns/R/3DK8w87IPCtNOg2sGMoqr4GavTq/yF0viOnzZnBTs8ZrWI6
-	 lYvhnCAFyq59EGWlnhGYpCXwQzDsHeXwqOD/orpLzP+waygrJJjzqYthmqoUeCMMKg
-	 PCaedNImP5Y/Dbgr/zZOR/RRE7Oq68itdkMfRpGQ=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250507100403eucas1p1c31cf23f55512589a7663132f9f50778~9NpTWWOeV1269412694eucas1p11;
-	Wed,  7 May 2025 10:04:03 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250507100402eusmtip2f16f3da88a0473dad88a4f960a19539c~9NpSR_l2o2857428574eusmtip2I;
-	Wed,  7 May 2025 10:04:02 +0000 (GMT)
-Message-ID: <91ecca14-2102-4c29-9252-025ce6b6a07f@samsung.com>
-Date: Wed, 7 May 2025 12:04:01 +0200
+	s=arc-20240116; t=1746612483; c=relaxed/simple;
+	bh=GgBHq/ss9JLltp+XQwctnZoMcmQN2He3KQqAB5MlVdg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fOIMW4KjpwAdiXOGY11FCQTOZoyS96eYS5jHitcabsLz4gi0oUk7Ut1wHE2TthwQPke05zbCF+9AMJ54JfpeZ+N48Ohaih6XGJY7w1ahAv8fD4cZxV8TB5sPJi00Dlf0rdaIUGqrcDl2R/qZdXJibN+qzvk8gPWU+92XbpsFGzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OWy+lrgc; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5471H9ck018448;
+	Wed, 7 May 2025 10:07:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Y0TBYJUUEibduVEkuEGGQEVeC5/+ntP3Yk2DalRvAxg=; b=OWy+lrgcWvQ/Xgrg
+	DiAp7Nnfae+MbOOY+9wgwsxGSmq9uEwEJSB6nbXRz8vIipXAmZ4s/hUvvIzDP5KQ
+	g9WshjxmUkzSy5TTpscepP8wTued4vjB6+n8kt28ytEFXzoCK21JKDwp7P9j2W7I
+	UoRDonKfViIW0aR4FHjddKq3zjMbHlNthmN0zjQoDlk2lTq9ZdYtE8VIrm7zkjEA
+	nNcMVjJWuvJLPmGjRnUfhTFCCqOCsqPx7QqfjxHFgJmzk1Er9nGXqm8a99d4Cx5C
+	dbcx+5aF+pHKhcBF/Dv6cykwjLlU9THswMp5kzzswqK/gp2tFo3y/igP71GkqJef
+	thnVxQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46f5tbd9t0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 07 May 2025 10:07:52 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 547A7pS1029357
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 7 May 2025 10:07:51 GMT
+Received: from [10.239.29.178] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 May 2025
+ 03:07:44 -0700
+Message-ID: <71bca969-3423-46b8-ad69-838fa70b70fc@quicinc.com>
+Date: Wed, 7 May 2025 18:07:40 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,101 +65,132 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/3] riscv: dts: thead: Add device tree VO clock
- controller
-To: Stephen Boyd <sboyd@kernel.org>, Drew Fustini <drew@pdp7.com>
-Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, guoren@kernel.org, wefu@redhat.com,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, jszhang@kernel.org, p.zabel@pengutronix.de,
-	m.szyprowski@samsung.com, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 2/6] dt-bindings: PCI: qcom,pcie-sa8775p: document
+ qcs8300
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Ziyue Zhang
+	<quic_ziyuzhan@quicinc.com>
+CC: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <neil.armstrong@linaro.org>,
+        <abel.vesa@linaro.org>, <manivannan.sadhasivam@linaro.org>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <quic_krichai@quicinc.com>,
+        <quic_vbadigan@quicinc.com>
+References: <20250507031019.4080541-1-quic_ziyuzhan@quicinc.com>
+ <20250507031019.4080541-3-quic_ziyuzhan@quicinc.com>
+ <20250507-quixotic-handsome-wallaby-4560e3@kuoka>
+ <8fef4573-0527-44d8-a481-f3271d9ffa33@quicinc.com>
+ <01b06e36-823c-4f28-8db5-dc0ee0b4c063@kernel.org>
+ <c91c5357-464b-4ecc-96a5-c617048f73e5@quicinc.com>
+ <574a67b7-bd57-4cf4-9ecb-cdcefafeb791@kernel.org>
 Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <c46de621e098b7873a00c1af4ca550a1@kernel.org>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250507100403eucas1p1c31cf23f55512589a7663132f9f50778
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319
-X-EPHeader: CA
-X-CMS-RootMailID: 20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319
-References: <20250403094425.876981-1-m.wilczynski@samsung.com>
-	<CGME20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319@eucas1p2.samsung.com>
-	<20250403094425.876981-4-m.wilczynski@samsung.com> <Z/BoQIXKEhL3/q50@x1>
-	<17d69810-9d1c-4dd9-bf8a-408196668d7b@samsung.com>
-	<9ce45e7c1769a25ea1abfaeac9aefcfb@kernel.org>
-	<475c9a27-e1e8-4245-9ca0-74c9ed663920@samsung.com>
-	<c46de621e098b7873a00c1af4ca550a1@kernel.org>
+From: Qiang Yu <quic_qianyu@quicinc.com>
+In-Reply-To: <574a67b7-bd57-4cf4-9ecb-cdcefafeb791@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: wOXB-O8ZB2DkLSBVJNot-gdVrGaNWVLX
+X-Proofpoint-GUID: wOXB-O8ZB2DkLSBVJNot-gdVrGaNWVLX
+X-Authority-Analysis: v=2.4 cv=doXbC0g4 c=1 sm=1 tr=0 ts=681b30f9 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
+ a=Lwqc8tY7GNGPzp1I7RAA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA3MDA5MyBTYWx0ZWRfXwKzCKDKlaI01
+ hQk7ccUK4pGHYTV/pZdQ2FSLTCWmjoiddQ7D9EIb0Gkays3rf8Z+XwznWzc3abr0Mxu7UOoN6pA
+ HyHyIa0rFJL4xsX5kTo2MbWvBKh4WacdMXQL5UKCYECjxfVrbjrc47rGdZTX6wfUUYSiAUaMpTr
+ DKmL4CkBqVS+QG2k37nw920kaBk4SVhWB962AcAoVwr77NHt8aZshw8WgvhN90hOv9cQ3U6f6hf
+ x6h5tKrWgJaMI9Hmv53a5f8wShEJlSLLmnm4SAaeEJIp0E3Ie8+BaYkfL4A59xztq4atEnFwCEy
+ 6rT+n15yMdm9vuUxEoBigTaAsme9Rf3KuWKLCy8vZc0u2UNq53QRnoCG+H8AAdaz+LJKDI/iQxt
+ LbX3BrWxH/DEuPQLjrM55c5XY62uqFFViUNVt0rmBRGRYDL23K0lNDLZYbdB3GE8ungiD7/6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-07_03,2025-05-06_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 adultscore=0 malwarescore=0 phishscore=0
+ mlxlogscore=978 impostorscore=0 clxscore=1011 mlxscore=0 priorityscore=1501
+ spamscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505070093
 
 
+On 5/7/2025 6:03 PM, Krzysztof Kozlowski wrote:
+> On 07/05/2025 11:56, Qiang Yu wrote:
+>> On 5/7/2025 4:25 PM, Krzysztof Kozlowski wrote:
+>>> On 07/05/2025 10:19, Ziyue Zhang wrote:
+>>>> On 5/7/2025 1:10 PM, Krzysztof Kozlowski wrote:
+>>>>> On Wed, May 07, 2025 at 11:10:15AM GMT, Ziyue Zhang wrote:
+>>>>>> Add compatible for qcs8300 platform, with sa8775p as the fallback.
+>>>>>>
+>>>>>> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+>>>>>> ---
+>>>>>>     .../bindings/pci/qcom,pcie-sa8775p.yaml       | 26 ++++++++++++++-----
+>>>>>>     1 file changed, 19 insertions(+), 7 deletions(-)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>>>>>> index efde49d1bef8..154bb60be402 100644
+>>>>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>>>>>> @@ -16,7 +16,12 @@ description:
+>>>>>>     
+>>>>>>     properties:
+>>>>>>       compatible:
+>>>>>> -    const: qcom,pcie-sa8775p
+>>>>>> +    oneOf:
+>>>>>> +      - const: qcom,pcie-sa8775p
+>>>>>> +      - items:
+>>>>>> +          - enum:
+>>>>>> +              - qcom,pcie-qcs8300
+>>>>>> +          - const: qcom,pcie-sa8775p
+>>>>>>     
+>>>>>>       reg:
+>>>>>>         minItems: 6
+>>>>>> @@ -45,7 +50,7 @@ properties:
+>>>>>>     
+>>>>>>       interrupts:
+>>>>>>         minItems: 8
+>>>>>> -    maxItems: 8
+>>>>>> +    maxItems: 9
+>>>>> I don't understand why this is flexible for sa8775p. I assume this
+>>>>> wasn't tested or finished, just like your previous patch suggested.
+>>>>>
+>>>>> Please send complete bindings once you finish them or explain what
+>>>>> exactly changed in the meantime.
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>> Hi Krzysztof
+>>>> Global interrupt is optional in the PCIe driver. It is not present in
+>>>> the SA8775p PCIe device tree node, but it is required for the QCS8300
+>>> And hardware?
+>> The PCIe controller on the SA8775p is also capable of generating a global
+>> interrupt.
+>>>> I did the DTBs and yaml checks before pushing this patch. This is how
+>>>> I became aware that `maxItem` needed to be changed to 9.
+>>> If it is required for QCS8300, then you are supposed to make it required
+>>> in the binding for this device. Look at other bindings.
+>> The global interrupt is not mandatory. The PCIe driver can still function
+>> without this interrupt, but it will offer a better user experience when
+>> the device is plugged in or removed. On other platforms, the global
+>> interrupt is also optional, and `minItems` and `maxItems` are set to 8 and
+>> 9 respectively. Please refer to `qcom,pcie - sm8550.yaml`,
+>> `qcom,pcie - sm8450.yaml`, and `qcom,pcie - x1e80100.yaml`.
+> I don't know what does it prove. You cannot add requirement of global
+> interrupt to existing devices because it would be an ABI break.
+IIUC, this will not break ABI because pcie_qcom.c parses this irq using
+"irq = platform_get_irq_byname_optional(pdev, "global");"
+>
+> Best regards,
+> Krzysztof
 
-On 5/6/25 23:30, Stephen Boyd wrote:
-> Quoting Michal Wilczynski (2025-04-30 00:52:29)
->>
->> In the v2 version of the patchset, there was no reset controller yet, so
->> I thought your comment was made referring to that earlier version.
->> This representation clearly describes the hardware correctly, which is
->> the requirement for the Device Tree.
->>
->> The manual, in section 5.4.1.6 VO_SUBSYS, describes the reset registers
->> starting at 0xFF_EF52_8000:
->>
->> GPU_RST_CFG             0x00
->> DPU_RST_CFG             0x04
->> MIPI_DSI0_RST_CFG       0x8
->> MIPI_DSI1_RST_CFG       0xc
->> HDMI_RST_CFG            0x14
->> AXI4_VO_DW_AXI          0x18
->> X2H_X4_VOSYS_DW_AXI_X2H 0x20
->>
->> And the clock registers for VO_SUBSYS, manual section 4.4.1.6 start at offset 0x50:
->> VOSYS_CLK_GATE          0x50
->> VOSYS_CLK_GATE1         0x54
->> VOSYS_DPU_CCLK_CFG0     0x64
->> TEST_CLK_FREQ_STAT      0xc4
->> TEST_CLK_CFG            0xc8
->>
->> So I considered this back then and thought it was appropriate to divide
->> it into two nodes, as the reset node wasn't being considered at that
->> time.
->>
->> When looking for the reference [1], I didn't notice if you corrected
->> yourself later, but I do remember considering the single-node approach
->> at the time.
->>
-> 
-> If the two register ranges don't overlap then this is probably OK. I
-> imagine this is one device shipped by the hardware engineer, VO_SUBSYS,
-> which happens to be a clock and reset controller. This is quite common,
-> and we usually have one node with both #clock-cells and #reset-cells in
-> it. Then we use the auxiliary bus to create the reset device from the
-> clk driver with the same node. This helps match the device in the
-> datasheet to the node and compatible in DT without making the compatible
-> provider specific (clk or reset postfix).
-> 
-> That's another reason why we usually have one node. DT doesn't describe
-> software, i.e. the split between clk and reset frameworks may not exist
-> in other operating systems. We don't want to put the software design
-> decisions into the DT.
-> 
-> It may also be that a device like this consumes shared power resources
-> like clks or regulators that need to be enabled to drive the device, or
-> an IOMMU is used to translate the register mappings. We wouldn't want to
-> split the device in DT in that case so we can easily manage the power
-> resources or memory mappings for the device.
-> 
-> TL;DR: This is probably OK, but I'd be careful to not make it a thing.
-
-Thank you very much for the comprehensive explanation. Because the
-registers don’t overlap, it’s fine in this case. Since Drew also seem to
-agree, we can probably push these patches forward, while keeping in mind
-that for future SoCs it would be better to use a single node.
-
-> 
-
-Best regards,
 -- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+With best wishes
+Qiang Yu
+
 
