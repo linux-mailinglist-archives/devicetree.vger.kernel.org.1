@@ -1,254 +1,143 @@
-Return-Path: <devicetree+bounces-174704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E5B8AAE1F0
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:06:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8DACAAE230
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:13:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E14E7A9C4F
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:05:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A240D1C03DE2
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539F828AAEE;
-	Wed,  7 May 2025 13:54:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEFBB289E11;
+	Wed,  7 May 2025 13:55:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UcpV+v9Y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fp3WBv+n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9566A28FFD2;
-	Wed,  7 May 2025 13:54:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14291289E0F;
+	Wed,  7 May 2025 13:55:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746626064; cv=none; b=sfhwgGwL8SB5ZWJVzq87BYHZZfxcODhNToyOg301QEz70LUzo3hZ4X+9yHBOLLQsaktDRFgNQaeSQwmHCq9HPlUsu2SjuDEa25wIUp1J4E/R7srlW8ep802Qg4NI8LvtvH6Tk+3UX2K7Pkbj7ISw5400pKkZ6kOPW0lVu0MSML8=
+	t=1746626111; cv=none; b=k1B9FP41jfIdtX25yytiMBeq4gmf2C3KXLdxRJiWsw0FO/NS3zMAp1fds1478Ecug5qp+yu6658b0Yv29qOzcTHOESDLqSk6vPdr8oXTFuWklR5iJ2b2PfBh7OktMGK7QutQjgnz0lqlZdFEXYla3QKiTJNj3zoHvhr6AjO+MrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746626064; c=relaxed/simple;
-	bh=6VwOYHrrtcuotOKfEozxcEWvB6l+4kLuBMP/N61gCz8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uBYyIa4RLKrwmPeJob1snXo7UQi8PEVqPtirWDH7t1EHOQlkAqytoxPoMqYqiTXTHI8SuQkjXQvfmkqdanZbRxcAi3jBpHSbtb+dEOelOeWiuMlfUuQeO7JTVeb6A6wJegNuUksw497X/bY8aBrQlPTliOunHN69efzpZV/gxaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UcpV+v9Y; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3853843B6C;
-	Wed,  7 May 2025 13:54:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746626059;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LdnFK0FsJj4B2Vj6KZEYUKA+NibzaycAR1+plWAQTUw=;
-	b=UcpV+v9YZnA9dfamfoV7B2X2ZAIR97XIM9umOw03xUsz4n1ZUnmSCky19IJQToDXIddwrp
-	BO9wTG9CNs+3rWjR+3WoaWzoohijrWkiCMF3T2bOfEIezqGN9AghmuWn8VesKNE6GARlqE
-	TmA29cG3s/t/Wn1vTs393Mz1e0OR4GdOV5BOGQgY3RG6c2JPAWjln3XVzASyCKsDLoNOBM
-	o3ko6qkwNN98T4NYtQ/qBIC52ceVHBeyMPnYLYyfGSFoVvSqh+BfZR6h5LgAZfgxgZ2YhX
-	Q8lhfZiBDyLbQntSvJ0Yh0V/VCZA1mZabN9ImTgLpfHgdMjbf1umPvR6n12uuw==
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: davem@davemloft.net
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?UTF-8?q?Nicol=C3=B2=20Veronese?= <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: [PATCH net-next v6 14/14] Documentation: networking: Document the phy_port infrastructure
-Date: Wed,  7 May 2025 15:53:30 +0200
-Message-ID: <20250507135331.76021-15-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250507135331.76021-1-maxime.chevallier@bootlin.com>
-References: <20250507135331.76021-1-maxime.chevallier@bootlin.com>
+	s=arc-20240116; t=1746626111; c=relaxed/simple;
+	bh=O3lK9O8MOlFJ22S3bVWYOt57Oo1oTISBPFrYqr8v6Qw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rlLirb8R4MFyj+OVv6toidmSmMKYU3bVKGYscrBOMCs064xe8xVOq2eObMTqqe9KUPzh05DdvaupS4TMgTMLqLyGxgCxjrv6uH8CanYQI6vzobUpFF4EGclzHmMzUI5YG5cwo6jox5PclODXL737/chhdEbuN4tN3x58q09MsPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fp3WBv+n; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43d0618746bso50499465e9.2;
+        Wed, 07 May 2025 06:55:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746626108; x=1747230908; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WnTHQiWLUMQGeqv2NTcj6QDK3soHu+sTbr9U/eBZ7WI=;
+        b=Fp3WBv+nRbIqIL44f+NIzZXi2hs9xo/bMqIhJzZWb04jp5Z5ME5YYtNOy5n3WM/D/u
+         lqI3CDC8wz0tuzQ3Mm/T7bdObvQrsMk75yBgqJKCIbJQh3dq5Ao4AkmbvKeqn7URXOXD
+         8klOlv6TXnyD06tXMjcEB+Tup9C4uK6UVFjyVVL3ri015V2zEkrOnlhAWy5Kpvplk8AE
+         Gy/QQ5eQ3lcHHWgGSLYA5BdGxEWzTxURcH/eVbqglhwxjBS/E8Mdx4RpgBd68+QpL8Uo
+         drmKgaUhvrbiYkeDnMR5m7/ADKnoH2ezl2YhaAY6K90u38VA4cPmVs+WgphVLSESQS5H
+         Df0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746626108; x=1747230908;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WnTHQiWLUMQGeqv2NTcj6QDK3soHu+sTbr9U/eBZ7WI=;
+        b=bao5Z5hAKW2oKeRWH3luJ3ijpYNe8IqkGrz2OwnZHMRVed+ZmTRHDnQ87bE7c1lM1b
+         fDv7oPTNyom88E55/Hu/zcYvnOBUNbkPCLgEKcq2vcHGnsm++YzIaZVDiJ8a1MwKhXTx
+         BKNFh01Fu9UQjOUWdX5IIIiNPYqTfmRhXuhAyGgNDjNRBkE2szfS+hERuo7O2qg48nIw
+         RbPae9WkSIiYx5k6JS1qEJP+MPVPfQsuocYznjRGpYLeENIsN7dZW6umG7dR6f/F0g+w
+         tpqEc8vT9ZvtcPLkrZ7dXXDH1vcam7tU0+AIX0kRGMXNf9X4SpGv8Xn+ZaXME5yYeVfk
+         +oGw==
+X-Forwarded-Encrypted: i=1; AJvYcCUR/ID0Z02pSc+i8nC+rh9CeCprzU/Q8BCDsP0+9yvXdjsRCblm483vMVk3qPWxR+zUoqCDiW7lwJS5DUiU@vger.kernel.org, AJvYcCURvIVDwUeOvk+hv9lk/L73e98DaunHPt11Y6TJRnDwhbBW23vDbtxCU5UXlvYVQvqSrs7YQpxQ5MNS@vger.kernel.org, AJvYcCVzwB+ihvXeydkolXPfT9hReBIfgArS/eIn30FQc+1Bi+y3CrCRiSEUiWT46aYIMXSIgK+yZwBy8kP42J3z@vger.kernel.org
+X-Gm-Message-State: AOJu0YzaMx5Xf9purJgHDfOaGRvXIhVcGb9YrsRMDZipgg8M18A/C3wG
+	Px+TBnJUYkPlXm/btJrYME7RweJAJ4L/fvLBzG1uIcRzLRHozq2I
+X-Gm-Gg: ASbGncvF2jAwdfmLx6flDSw4t0ViFRECZmniUAWS5ojrccx1RM8FPYqL+Vy1QehG5bA
+	/+2GcEgW7GdcgQZmWsWhTqej+sBYMUv1NVC8rwlOLZvMHHnV/o1RUO4kKGrv73vQc6ABWex7B/N
+	JXT+YT2yhVKXy/RaPopvLdJpJ0khTYQZmJXyx9CDufglsXEqKXbuPUABVhtUuGrnMds22lY7wAG
+	EnFxU+UEvddRBo5DOXk0eAw2thbnStTTPEYtF6hBJkvimLNsfCrJP08dpwrhMjAhi0qWRgIqf2w
+	RCbGs6Ttra7lSpTDvdWwyxBfSe9hb3Nlnve0pQEk2c7XYn0REczYkP4ARvfrUrMsWtZ6ntAVSOQ
+	n/06Evq7uTrJr+BAq+B+Ds7JfkG0=
+X-Google-Smtp-Source: AGHT+IEb3s5r0tzt4J13SHuTnyrUEEoizYd/G0Q4fUW6CsFjqN+mxH2wI6fI3XlsrrrqYAMtkKGuOw==
+X-Received: by 2002:a05:600d:1b:b0:43d:47e:3205 with SMTP id 5b1f17b1804b1-442459df273mr20612315e9.11.1746626108099;
+        Wed, 07 May 2025 06:55:08 -0700 (PDT)
+Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd35fb49sm1820095e9.28.2025.05.07.06.55.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 May 2025 06:55:07 -0700 (PDT)
+Date: Wed, 7 May 2025 15:55:05 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, John Crispin <john@phrozen.org>, 
+	Songjun Wu <songjun.wu@linux.intel.com>, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: serial: Convert lantiq,asc to DT schema
+Message-ID: <tr4jy53i53iiyzdznhtczy62vcqdrqhz5ncyw2rozwvdh4gs2h@yls6ovvkpqf2>
+References: <20250506220029.2546179-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkeejtdefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcuvehhvghvrghllhhivghruceomhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveegtdffleffleevueellefgjeefvedvjefhheegfefgffdvfeetgeevudetffdtnecukfhppedvrgdtvdemkeeggedtmehfhedtsgemfedvheemrgeigeefmedufheiugemfhgvrgegmeegsgduieenucevlhhushhtvghrufhiiigvpeduvdenucfrrghrrghmpehinhgvthepvdgrtddvmeekgeegtdemfhehtdgsmeefvdehmegrieegfeemudhfiegumehfvggrgeemgegsudeipdhhvghlohepvdgrtddvqdekgeegtddqfhehtdgsqddtfedvhedqrgeigeefqddufheiugdqfhgvrgegqdegsgduiedrrhgvvhdrshhfrhdrnhgvthdpmhgrihhlfhhrohhmpehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefuddprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepmhgrgihimhgvrdgthhgvv
- hgrlhhlihgvrhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="dlvhedjs2xvby25t"
+Content-Disposition: inline
+In-Reply-To: <20250506220029.2546179-1-robh@kernel.org>
 
-This documentation aims at describing the main goal of the phy_port
-infrastructure.
 
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
- Documentation/networking/index.rst    |   1 +
- Documentation/networking/phy-port.rst | 111 ++++++++++++++++++++++++++
- MAINTAINERS                           |   1 +
- 3 files changed, 113 insertions(+)
- create mode 100644 Documentation/networking/phy-port.rst
+--dlvhedjs2xvby25t
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] dt-bindings: serial: Convert lantiq,asc to DT schema
+MIME-Version: 1.0
 
-diff --git a/Documentation/networking/index.rst b/Documentation/networking/index.rst
-index ac90b82f3ce9..f60acc06e3f7 100644
---- a/Documentation/networking/index.rst
-+++ b/Documentation/networking/index.rst
-@@ -96,6 +96,7 @@ Contents:
-    packet_mmap
-    phonet
-    phy-link-topology
-+   phy-port
-    pktgen
-    plip
-    ppp_generic
-diff --git a/Documentation/networking/phy-port.rst b/Documentation/networking/phy-port.rst
-new file mode 100644
-index 000000000000..6d9d46ebe438
---- /dev/null
-+++ b/Documentation/networking/phy-port.rst
-@@ -0,0 +1,111 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+.. _phy_port:
-+
-+=================
-+Ethernet ports
-+=================
-+
-+This document is a basic description of the phy_port infrastructure,
-+introduced to represent physical interfaces of Ethernet devices.
-+
-+Without phy_port, we already have quite a lot of information about what the
-+media-facing interface of a NIC can do and looks like, through the
-+:c:type:`struct ethtool_link_ksettings <ethtool_link_ksettings>` attributes,
-+which includes :
-+
-+ - What the NIC can do through the :c:member:`supported` field
-+ - What the Link Partner advertises through :c:member:`lp_advertising`
-+ - Which features we're advertising through :c:member:`advertising`
-+
-+We also have info about the number of lanes and the PORT type. These settings
-+are built by aggregating together information reported by various devices that
-+are sitting on the link :
-+
-+  - The NIC itself, through the :c:member:`get_link_ksettings` callback
-+  - Precise information from the MAC and PCS by using phylink in the MAC driver
-+  - Information reported by the PHY device
-+  - Information reported by an SFP module (which can itself include a PHY)
-+
-+This model however starts showing its limitations when we consider devices that
-+have more than one media interface. In such a case, only information about the
-+actively used interface is reported, and it's not possible to know what the
-+other interfaces can do. In fact, we have very few information about whether or
-+not there are any other media interfaces.
-+
-+The goal of the phy_port representation is to provide a way of representing a
-+physical interface of a NIC, regardless of what is driving the port (NIC through
-+a firmware, SFP module, Ethernet PHY).
-+
-+Multi-port interfaces examples
-+==============================
-+
-+Several cases of multi-interface NICs have been observed so far :
-+
-+Internal MII Mux::
-+
-+  +------------------+
-+  | SoC              |
-+  |          +-----+ |           +-----+
-+  | +-----+  |     |-------------| PHY |
-+  | | MAC |--| Mux | |   +-----+ +-----+
-+  | +-----+  |     |-----| SFP |
-+  |          +-----+ |   +-----+
-+  +------------------+
-+
-+Internal Mux with internal PHY::
-+
-+  +------------------------+
-+  | SoC                    |
-+  |          +-----+ +-----+
-+  | +-----+  |     |-| PHY |
-+  | | MAC |--| Mux | +-----+   +-----+
-+  | +-----+  |     |-----------| SFP |
-+  |          +-----+       |   +-----+
-+  +------------------------+
-+
-+External Mux::
-+
-+  +---------+
-+  | SoC     |  +-----+  +-----+
-+  |         |  |     |--| PHY |
-+  | +-----+ |  |     |  +-----+
-+  | | MAC |----| Mux |  +-----+
-+  | +-----+ |  |     |--| PHY |
-+  |         |  +-----+  +-----+
-+  |         |     |
-+  |    GPIO-------+
-+  +---------+
-+
-+Double-port PHY::
-+
-+  +---------+
-+  | SoC     | +-----+
-+  |         | |     |--- RJ45
-+  | +-----+ | |     |
-+  | | MAC |---| PHY |   +-----+
-+  | +-----+ | |     |---| SFP |
-+  +---------+ +-----+   +-----+
-+
-+phy_port aims at providing a path to support all the above topologies, by
-+representing the media interfaces in a way that's agnostic to what's driving
-+the interface. the struct phy_port object has its own set of callback ops, and
-+will eventually be able to report its own ksettings::
-+
-+             _____      +------+
-+            (     )-----| Port |
-+ +-----+   (       )    +------+
-+ | MAC |--(   ???   )
-+ +-----+   (       )    +------+
-+            (_____)-----| Port |
-+                        +------+
-+
-+Next steps
-+==========
-+
-+As of writing this documentation, only ports controlled by PHY devices are
-+supported. The next steps will be to add the Netlink API to expose these
-+to userspace and add support for raw ports (controlled by some firmware, and directly
-+managed by the NIC driver).
-+
-+Another parallel task is the introduction of a MII muxing framework to allow the
-+control of non-PHY driver multi-port setups.
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b155eec69552..211a6ba50166 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8781,6 +8781,7 @@ F:	Documentation/devicetree/bindings/net/ethernet-connector.yaml
- F:	Documentation/devicetree/bindings/net/ethernet-phy.yaml
- F:	Documentation/devicetree/bindings/net/mdio*
- F:	Documentation/devicetree/bindings/net/qca,ar803x.yaml
-+F:	Documentation/networking/phy-port.rst
- F:	Documentation/networking/phy.rst
- F:	drivers/net/mdio/
- F:	drivers/net/mdio/acpi_mdio.c
--- 
-2.49.0
+On Tue, May 06, 2025 at 05:00:28PM -0500, Rob Herring (Arm) wrote:
+> Convert the Lantiq SoC ASC UART binding to DT schema. There are no such
+> clock identifier defines nor a user with clocks, so drop the example
+> with clocks.
+>=20
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../bindings/serial/lantiq,asc.yaml           | 56 +++++++++++++++++++
+>  .../devicetree/bindings/serial/lantiq_asc.txt | 31 ----------
+>  2 files changed, 56 insertions(+), 31 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/serial/lantiq,asc.y=
+aml
+>  delete mode 100644 Documentation/devicetree/bindings/serial/lantiq_asc.t=
+xt
 
+Reviewed-by: Thierry Reding <treding@nvidia.com>
+
+--dlvhedjs2xvby25t
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmgbZjkACgkQ3SOs138+
+s6FdGw//V8g7aZGNkt/SaLaEDGkgANm+T6HBw7ktIC/ewVKIe8aeZsPtMTUf8nwb
+o5oZXCbcqiGdGw06UnNyVOBOd+2PIkJTs5rOMz5ZhLZ7rcqQi1OmK45FegKj64Im
+RphFC816ZznMZaW0u7NsFpRdFJnse20Y/nPGywZ8BlotVpC19HqG7zZz+iG5eMaE
+hozF54uidBXDzB8BvUdu1ug80vcmk8MfgQiI/S5/Ec2Ih1C4GFNO79j0PcuxAm99
+eTQ0REUSmdKuEFnp1GAkq6rIIva6KdSNF4S1gL3sveD6UAhCGEoN+QvBfrLreJt9
+hsjOqOyu2ia9eML0KSn2zMy7+SoU5OcNylqAeYC30PZsL8uOeN8Jw2RYeN9dHJQN
+SMZikkWSOszba4pUjk+5b9t6G6vTChd5Gwk6Lf3lBHJ1lPUAW5hbVaHs7iGM84RN
+PVU7u1nXjhpdppj4+cdnMatF+td/jHDcd1VGFgcph9N6aAwgGTt9gC/FRnHLBzKF
+jsG2ZdyJaAVM3Mm6cMa9XF6q5EMdm7ns+OBfMVyf3SlYw/zFFZO1lSHDrGIr7KaT
+PokYEQMAo9Mg56xAUlbH6ZSSvGOUJYPkXBlmcpyuLecW1hfD6voaEQJ5z0KplPD3
+mgrnfLuClahfcMWrGthhZCFLZmQfh8IVwalujrczCLIVfdJEEGs=
+=7lG2
+-----END PGP SIGNATURE-----
+
+--dlvhedjs2xvby25t--
 
