@@ -1,83 +1,48 @@
-Return-Path: <devicetree+bounces-174597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BF6BAADB57
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 11:22:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB56AADB62
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 11:24:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6FAB520F69
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:21:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3694118828CD
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:23:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5E6E1B6CFE;
-	Wed,  7 May 2025 09:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4885218E025;
+	Wed,  7 May 2025 09:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p16AwptU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n9k+UWsu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCFB6146A72
-	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 09:20:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 199DA2747B;
+	Wed,  7 May 2025 09:22:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746609616; cv=none; b=piOrKMD48WisIB55KHr+RI4DeZATRHLZ0Sh75HSfGUuoIurgctpTQMvxnd+zfr+8bhYYC+2uOW66L7lhTIgHF9p4t8LRsrw554WLeULjZwRSy8FJ8uRuwzJwNkGLhQQ9dkENHxmnsxm00jPVvg2NrlaRHR/HArUBZNfpnZ+H58o=
+	t=1746609775; cv=none; b=t+4q/C328ODd+lke32Nz0rVCdbP9wccxmlLlXiaLyb6C37POCpcfZIrvbm1lVAUYvyFLFUOrqh/D74BQjdAxEb+RDQlXSkiIUTCsQ2MHYMwBeWrjZK35l9/ba6BZ/cIBX0skKQUhGvPnRc4SbHkhZsifoRNZvz9zV4OsWLNGKZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746609616; c=relaxed/simple;
-	bh=0IfhmpCW/CyAYeO02o6DSgjDR85Ki9ApcScPfaeTPzg=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=bsP0KqKVzBTK5XzPLeH24Aw3O1iHsXvC/RIwqkaJsKvEh8GT3CLdANiB65eDoMWhDoj8aB2psZWo3OcQdqUptx01NC1nuwq/tkk/fbgvtiLjBMRyTBGvCYwGJ+PNZomlgNCWmFJ1M2/8FU8wQvvPkYH7gcxG+raBynKI2QRd/XY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p16AwptU; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-39c1efbefc6so4906475f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 02:20:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746609613; x=1747214413; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1njWSRf45ZDmLxqO2qReL+xw32Jj+Gkcqkwi1/z3DHU=;
-        b=p16AwptUGqrojQKPpXy1X0owBWaC2eBfD4KqlmoGiNWLKmxMMDCxHAFuF1RxaZexCp
-         qLM84Cb/F4kQ7egvLMtsagatJ3bd6Z5kKck/qjyZPDRhL/tBkKgOICbB1ZKbWZQrVoBf
-         i45Lh+qF7MSrLHU7TqAfzX33HjJwb4Zhyq4m34ZCSohHJpP7sqlGt6qECAPYB81t7exE
-         QcZe0FyU7rBL9PobJ/GYIUmFCpkSkS7A8+L2jWC/JIc4jwLDlCki4ukYoOop9EHeHotc
-         99RjDTMIspHiPYBUsq5XVNOKqfeurFS2rk4M5IRk/EfbOa5vhxViD2r8Rfh71rx8FvOZ
-         Wjzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746609613; x=1747214413;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=1njWSRf45ZDmLxqO2qReL+xw32Jj+Gkcqkwi1/z3DHU=;
-        b=MRfRrxlM0yO1NTOkB3o1fEfaukqP3+2T3aRgLx8Sp58xN5DKUhvMRgFCoDkenaGjhL
-         GFvyWrSV6S2013my+AfIPYQmmP6uIozunZAo/G9yRoHYYLqD0gUNkJ8aE+6ieWU7eVpy
-         Xxr5Jt/0jCw/8zrjfggVQfrdcVAfG/0P/C8xuN3nff+V8dHgVsxjltRuOLRiqO5APHkP
-         bXyaTjVWYMWPXZiQye1OUCAVtoxeOWgvzKKInMw9yKsV5NoC2sAY1nAsslCE6VYpm54w
-         mstZEher1mRqCcJD+ojwsUiiJ4y8pCWhqjUuZtvKkGF8ScgqP0U4kMSfwGni5aO7Oiq+
-         ZAfw==
-X-Forwarded-Encrypted: i=1; AJvYcCWKFmUe8Vl5pIufAT1M2D9QEpd9X8ZBkBp7ukHeI4SSY1vY1LTm2A7oNVEpx6TFSC1K7QRxinsVTpPY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7vZnTY8kmUEGi3v54v4+uQRSLmGKqWlLM5XTOSy7Sp/Vg9o1l
-	+6wcL//zpGcwE1ciHTpN7DtoAy+cpVMeID9kgEdbKjvE0uPZTKVA9UodGS7IbQnNiEHyuVsvyVj
-	r
-X-Gm-Gg: ASbGncv98RYAtCicgJZveE8NdgoWrNrQ+QOLOZU/pzt9WrCqFOWxX7xVF+kT4foMi+q
-	5/CModma0K0vxaJuJlYi9rtpYdsos7MrcN85qQf/gbiOc339L2RowR1iseK3ohQLu5+AJ1kteGG
-	EFICIgdqOKiA3eCEo7mMHaUS6a34R5qUNDT3HILQZKGPpR76Oz4GwTdb/l3h7YztBQipiPl4g7J
-	UrEx0XqBaSBWr/C5v3MBsNstRSYrWm7ZlP69Rc6QrjQitwTR4QyR4fCDhC+Be8DJeGZEYmQopiB
-	94rNsXFxEtY+SLpS0yLU8tSFB7ofReiQtvsiTgZQx8KQRPKdaI2uACx5EieMx/7WHdvaobjP/Ii
-	esuZTXeFw+q5BzteaSA==
-X-Google-Smtp-Source: AGHT+IEAm8WnYpaJaFCnAIQh6i1JbL41eserYkboKFbrFiqBYvdjFP6g92MFdos53ZjJs0xJJl0nzA==
-X-Received: by 2002:a05:6000:420a:b0:39e:e3fa:a66b with SMTP id ffacd0b85a97d-3a0b49bbe3amr2133655f8f.34.1746609613081;
-        Wed, 07 May 2025 02:20:13 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:784f:3312:6406:12a9? ([2a01:e0a:3d9:2080:784f:3312:6406:12a9])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a0ad661602sm4745706f8f.61.2025.05.07.02.20.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 May 2025 02:20:12 -0700 (PDT)
-Message-ID: <b651623f-f102-4fa3-9a21-df9f8c7d4d7f@linaro.org>
-Date: Wed, 7 May 2025 11:20:11 +0200
+	s=arc-20240116; t=1746609775; c=relaxed/simple;
+	bh=yNe/yghsog/b5Puwx6JCvObC6eqIzd/4ueq2VaAB2yU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bX598xDlUNCYclkKPpzJJEuA8RQQrRV+GdHGlkmLMYWj+4WN8AJGmJuZm5ATNYR1jlf97OXU8/ElVQKg07ClvYuOrvSdTeSMKA8o81q0EXQJ9kl+K+4cq5MrfNek76fFjQt3sxp7YpQsUCrmgft0BV11VNzfu6nSXDwom2lEf8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n9k+UWsu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DA74C4CEE7;
+	Wed,  7 May 2025 09:22:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746609774;
+	bh=yNe/yghsog/b5Puwx6JCvObC6eqIzd/4ueq2VaAB2yU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=n9k+UWsugyDH/IF579694s5FyZt8jd6vyF0dbaGZ3G41pVvUE0jqAgUCuoaXdK+Of
+	 BWR8HRi5W9FHaMdDxYZHZ0uJWnFsL6qUgeWVuvfbTXZv5uEBRaKuJRfMOP5ihZHtLc
+	 v9GvG+ES3VDQI73i9//Rlc6o1nNSgnuN0thWlVEWoM/dQWNE9GbUF5ONA+f+QVvdfM
+	 Ih11WnnRaYooheZbMHVSeSu8j7wOhca06kOmriCjJl4jTBPrDoAPnEEePEzvxrwD33
+	 sINnLw5lyivWCX/3okKLrmuwrkn9KUi/pwNf0KMU15lhHFofVNVGAwSgXVs+CARSVH
+	 TKZCzywJk75YA==
+Message-ID: <7b344f05-70b6-4c59-9b5f-611dde59c09b@kernel.org>
+Date: Wed, 7 May 2025 11:22:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,88 +50,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 0/2] input: convert dlg,da7280.txt to dt-schema &
- update MAINTAINERS
-To: Support Opensource <support.opensource@diasemi.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Roy Im <roy.im.opensource@diasemi.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- kernel test robot <lkp@intel.com>
-References: <20250306-topic-misc-da7280-convert-v4-0-2972c4e81cb5@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250306-topic-misc-da7280-convert-v4-0-2972c4e81cb5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v13 1/4] firewall: Always expose firewall prototype
+To: Patrice Chotard <patrice.chotard@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc: christophe.kerello@foss.st.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
+References: <20250507-upstream_ospi_v6-v13-0-32290b21419a@foss.st.com>
+ <20250507-upstream_ospi_v6-v13-1-32290b21419a@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250507-upstream_ospi_v6-v13-1-32290b21419a@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Dmitry,
-
-On 06/03/2025 11:56, Neil Armstrong wrote:
-> Convert the Dialog Semiconductor DA7280 Low Power High-Definition
-> Haptic Driver bindings to dt-schema. and update the corresponding
-> MAINTAINERS entry.
+On 07/05/2025 09:25, Patrice Chotard wrote:
+> In case CONFIG_STM32_FIREWALL is not set, prototype are not visible
+> which leads to following errors when enabling, for example, COMPILE_TEST
+> and STM32_OMM:
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> stm32_firewall_device.h:117:5: error: no previous prototype for
+> ‘stm32_firewall_get_firewall’ [-Werror=missing-prototypes]
+>   117 | int stm32_firewall_get_firewall(struct device_node *np, struct
+> stm32_firewall *firewall,
+>       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+> include/linux/bus/stm32_firewall_device.h:123:5:
+> error: no previous prototype for ‘stm32_firewall_grant_access’
+> [-Werror=missing-prototypes]
+>   123 | int stm32_firewall_grant_access(struct stm32_firewall *firewall)
+>       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+> include/linux/bus/stm32_firewall_device.h:128:6:
+> error: no previous prototype for ‘stm32_firewall_release_access’
+> [-Werror=missing-prototypes]
+>   128 | void stm32_firewall_release_access(struct stm32_firewall *firewall)
+>       |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> include/linux/bus/stm32_firewall_device.h:132:5:
+> error: no previous prototype for ‘stm32_firewall_grant_access_by_id’
+> [-Werror=missing-prototypes]
+>   132 | int stm32_firewall_grant_access_by_id(struct stm32_firewall *firewall, u32 subsystem_id)
+>       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> include/linux/bus/stm32_firewall_device.h:137:6:
+> error: no previous prototype for ‘stm32_firewall_release_access_by_id’
+> [-Werror=missing-prototypes]
+>   137 | void stm32_firewall_release_access_by_id(struct stm32_firewall *firewall, u32 subsystem_id)
+>       |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> 
+> Make prototypes always exposed to fix this issue.
+> 
+> Cc: <stable@vger.kernel.org>
+> Fixes: 5c9668cfc6d7 ("firewall: introduce stm32_firewall framework")
+> 
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
 > ---
-> Changes in v4:
-> - Rebase on next-20250306
-> - Link to v3: https://lore.kernel.org/r/20241211-topic-misc-da7280-convert-v3-0-4df87ac08881@linaro.org
+>  include/linux/bus/stm32_firewall_device.h | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
 > 
-> Changes in v3:
-> - Add conor's review
-> - Also fix the MAINTAINERS entry
-> - Link to v2: https://lore.kernel.org/r/20241206-topic-misc-da7280-convert-v2-1-1c3539f75604@linaro.org
-> 
-> Changes in v2:
-> - Switched to flag instead of boolean
-> - Switched the array to unit32_t, because this is how it was defined in the txt, DT and driver
-> - Link to v1: https://lore.kernel.org/r/20241204-topic-misc-da7280-convert-v1-1-0f89971beca9@linaro.org
-> 
-> ---
-> Neil Armstrong (2):
->        dt-bindings: input: convert dlg,da7280.txt to dt-schema
->        MAINTAINERS: update dlg,da72??.txt to yaml
-> 
->   .../devicetree/bindings/input/dlg,da7280.txt       | 108 ---------
->   .../devicetree/bindings/input/dlg,da7280.yaml      | 248 +++++++++++++++++++++
->   MAINTAINERS                                        |   2 +-
->   3 files changed, 249 insertions(+), 109 deletions(-)
-> ---
-> base-commit: 565351ae7e0cee80e9b5ed84452a5b13644ffc4d
-> change-id: 20241204-topic-misc-da7280-convert-20efaad588ca
-> 
-> Best regards,
+> diff --git a/include/linux/bus/stm32_firewall_device.h b/include/linux/bus/stm32_firewall_device.h
+> index 5178b72bc920986bb6c55887453d146f382a8e77..ba6ef4468a0a8dfeb3e146ec90502e2f35172edc 100644
+> --- a/include/linux/bus/stm32_firewall_device.h
+> +++ b/include/linux/bus/stm32_firewall_device.h
+> @@ -35,7 +35,6 @@ struct stm32_firewall {
+>  	u32 firewall_id;
+>  };
+>  
+> -#if IS_ENABLED(CONFIG_STM32_FIREWALL)
+>  /**
+>   * stm32_firewall_get_firewall - Get the firewall(s) associated to given device.
+>   *				 The firewall controller reference is always the first argument
+> @@ -112,6 +111,15 @@ int stm32_firewall_grant_access_by_id(struct stm32_firewall *firewall, u32 subsy
+>   */
+>  void stm32_firewall_release_access_by_id(struct stm32_firewall *firewall, u32 subsystem_id);
+>  
+> +#if IS_ENABLED(CONFIG_STM32_FIREWALL)
+> +
+> +extern int stm32_firewall_get_firewall(struct device_node *np, struct stm32_firewall *firewall,
+> +				unsigned int nb_firewall);
 
-Gentle ping.
+That's duplicated with earlier declaration. If you need to duplicate
+declarations means your code is not correct. That's not a fix at all and
+you are again masking the real problem which I asked to understand and
+learn.
 
-Thanks,
-Neil
+This is something solved already in all other common interfaces (ones
+with stubs) and it confuses me why here it takes so much time. I'll just
+fix it myself and I will apply v11.
+
+Best regards,
+Krzysztof
 
