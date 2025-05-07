@@ -1,151 +1,133 @@
-Return-Path: <devicetree+bounces-174513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812A3AAD6D6
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:08:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CD91AAD6CF
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:07:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 060757BD311
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:07:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F28EE4E776C
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:07:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8699214217;
-	Wed,  7 May 2025 07:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F80214235;
+	Wed,  7 May 2025 07:07:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="EYUatmxy"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nmlOy1s8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64DD72165E9;
-	Wed,  7 May 2025 07:07:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A86CF2101B3;
+	Wed,  7 May 2025 07:07:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746601666; cv=none; b=oP54GXvPbxY9B96xyLiRHXaHb5vMPGjsXsTT8P+27FQ2X0eaj3k1bdSyJOcMjyq0vfPkqJff1dgetkKpAHWe0TXzKkyhOtjImE73GxsmRjc6hgfUNmVRS9EtfQeYHDFxKOVmotDN74w3q+hNJTf//VIplpczTrd9EKcmTSv1VZk=
+	t=1746601659; cv=none; b=rSRjsC0ZDwGQyUp7OwDOGAfGOSQHFQujoHoaZdyFefo37FlVvibf+0RvV3lYjqldmWNoNs+k144LASz2eZ21EAOEsmgY6D7H7yCtKtWTcOfkpwpvJ2S5oAl84JgLPT2H2XXFjrNi5N66Bfayhjqx8FnD+kf8fnLY+leKwQ2C7s8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746601666; c=relaxed/simple;
-	bh=cRIStsaa0AZh2Bu8bbYl44E6frjm/72zgUBqPYFB9/0=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pX9mYgbmamUxS0OTt4+NTk4ZKJZ2FvcbhgfOiVNW0qVx83dDTnx3bVkn1D2630pF+79ARyBwwerBz6mYWH62FYSS8ObUw+cE6e2DRrBR36kAfcFy9HN1pXEYCt8WFYg7cEDAZnNleGh8xdpVCRgfGSilqrqDfAzffDtMnNGIq8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=EYUatmxy; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 04D7225F40;
-	Wed,  7 May 2025 09:07:35 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id NK8Ks1rz7fSl; Wed,  7 May 2025 09:07:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1746601652; bh=cRIStsaa0AZh2Bu8bbYl44E6frjm/72zgUBqPYFB9/0=;
-	h=Date:From:To:Subject:References:In-Reply-To;
-	b=EYUatmxy4Ns11dDZA5E/dquOhEu3sUWpXXHIIMyj7V8Wm3jnPshfH10TA1iQjF9qy
-	 0pQGNZHY2zOsSyQvE+6nAlX2mkV6J9ys1QYyXPVZWTwRrfcGplflYel9kGgdjYzfwq
-	 tzQE/K/4pSTATPD7WvwlLCgO8pXlNCj0E7FMTXsn3UGr4GDDvyOburIr+Mq3kKyXPk
-	 w5wY6OdzvG8D2uvE+n60CtvmGY3FX7sQnH//pC4DYQSSQ2voea99EuwJHD5nLz9LWz
-	 W2qJOVElt+XR2gFv6EzM2pwG6+Ff8WQ55Ybvt5UWwBrzFbgW04TwwxB88mJQT9chfY
-	 8l5MfviK6OTTw==
-Date: Wed, 7 May 2025 07:07:15 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Yanteng Si <si.yanteng@linux.dev>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1746601659; c=relaxed/simple;
+	bh=4g1meUY7nXGsLmA3ICMv283OhsmrHmNHTC3hWxkVC9U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bwKgML+nzqYAorZAinQe6dfKOM5F05nanDkNvCxVXquRbgs+tGhMv89ewG8Rxuo1PQ9R2hXeHkdbTn2HEaAIB2p8xAJNJ3x1Nsg+3zpU1tkPJKgtCEoSUg9RyASQGRcD6srTN6e5WNGVQ1qj/DQz5q2RPg3+Teq99ylPBIWfvCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nmlOy1s8; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1746601658; x=1778137658;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4g1meUY7nXGsLmA3ICMv283OhsmrHmNHTC3hWxkVC9U=;
+  b=nmlOy1s87hyw4VmAmRUSCh+IdTw3/DuYbTBDmBxAULC+aVgA7rg4sMYD
+   +mN/r50Hpw+43b063UQATs6tc7gN7ltlPuE27SPVlVUIqCluCSX0Enpzf
+   G6HOax9Bbgxsicdyj+pjY5gDL2tggE9+GkTVbz5xDzqkgBZRz1q5lguzd
+   qlOepO19K1Ke9GHluMiYfrM9+2XUcUoSRfW71wyZIYUkarpcB4xGT98k9
+   xoe2r+2qTdOrDN5vZSdmem8mk+jtnKh3VcCQvkJyKm+dC9rDu5dR9VMVT
+   GJF1u/WNS4Mwez4bjZ3t3Ab2PdQpbxZ7WtpHSKuawFprlLsLFvitGkZ56
+   w==;
+X-CSE-ConnectionGUID: AIBkOdDnSJu6dicLZsgM9Q==
+X-CSE-MsgGUID: wQv1mhoiQICh4e5FGkj6yA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="73702382"
+X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; 
+   d="scan'208";a="73702382"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2025 00:07:37 -0700
+X-CSE-ConnectionGUID: zCSCCDRrTdSJsRd7DdL1/Q==
+X-CSE-MsgGUID: fYVDb9S2SfyCD34yU9tWOA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; 
+   d="scan'208";a="135767280"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa006.jf.intel.com with ESMTP; 07 May 2025 00:07:31 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uCYsK-0007GF-2A;
+	Wed, 07 May 2025 07:07:28 +0000
+Date: Wed, 7 May 2025 15:07:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Aradhya Bhatia <a-bhatia1@ti.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Binbin Zhou <zhoubinbin@loongson.cn>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
-	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
-Subject: Re: [PATCH 2/4] dt-bindings: LoongArch: Add CTCISZ Ninenine Pi
-Message-ID: <aBsGozWwg_WQfe4R@pie>
-References: <20250501044239.9404-2-ziyao@disroot.org>
- <20250501044239.9404-4-ziyao@disroot.org>
- <7e56091d-0e91-44ef-b314-facb102ee468@linux.dev>
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	andriy.shevchenko@intel.com,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Subject: Re: [PATCH v7 08/11] gpio: max7360: Add MAX7360 gpio support
+Message-ID: <202505071411.RPLesOGz-lkp@intel.com>
+References: <20250428-mdb-max7360-support-v7-8-4e0608d0a7ff@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7e56091d-0e91-44ef-b314-facb102ee468@linux.dev>
+In-Reply-To: <20250428-mdb-max7360-support-v7-8-4e0608d0a7ff@bootlin.com>
 
-On Tue, May 06, 2025 at 04:58:50PM +0800, Yanteng Si wrote:
-> 在 5/1/25 12:42 PM, Yao Zi 写道:
-> > Ninenine Pi is an Loongson 2K0300-based development board produced by
-> I think "Ninenine Pi" doesn't make sense. I browsed
-> <https://bbs.ctcisz.com/forum.php?mod=forumdisplay&fid=2> and found that the
-> Chinese name of this development board is "久久派". Interestingly, its
-> selling price is 99 yuan. In Chinese, the Roman numeral "9" has the same
-> pronunciation as the Chinese character "久".
+Hi Mathieu,
 
-> It seems that you intended to name the development board after its
-> selling price.
+kernel test robot noticed the following build warnings:
 
-I've confirmed with the vendor that they call the board "99pi" in
-English which is rewritten as "Ninenine Pi" to avoid possibly unexpected
-problems with a name starting with digits. This has nothing to do with
-the price.
+[auto build test WARNING on b4432656b36e5cc1d50a1f2dc15357543add530e]
 
-> But shouldn't it be
-> "Ninety-nine Pi" in English? Or "99 Pi"? Perhaps "Jiujiu Pi" is a better
-> option?
+url:    https://github.com/intel-lab-lkp/linux/commits/Mathieu-Dubois-Briand/dt-bindings-mfd-gpio-Add-MAX7360/20250428-221705
+base:   b4432656b36e5cc1d50a1f2dc15357543add530e
+patch link:    https://lore.kernel.org/r/20250428-mdb-max7360-support-v7-8-4e0608d0a7ff%40bootlin.com
+patch subject: [PATCH v7 08/11] gpio: max7360: Add MAX7360 gpio support
+config: alpha-randconfig-r111-20250429 (https://download.01.org/0day-ci/archive/20250507/202505071411.RPLesOGz-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 12.4.0
+reproduce: (https://download.01.org/0day-ci/archive/20250507/202505071411.RPLesOGz-lkp@intel.com/reproduce)
 
-"Ninety-nine Pi" sounds too complicated for a board name and I don't
-think "99" in "99pi" is meant to represent a number. Thus I'd like to
-stick with "ninenine pi".
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505071411.RPLesOGz-lkp@intel.com/
 
-> 
-> 
-> Thanks,
-> Yanteng
+sparse warnings: (new ones prefixed by >>)
+>> drivers/gpio/gpio-max7360.c:30:31: sparse: sparse: symbol 'max7360_gpio_port_plat' was not declared. Should it be static?
+>> drivers/gpio/gpio-max7360.c:31:31: sparse: sparse: symbol 'max7360_gpio_col_plat' was not declared. Should it be static?
 
-Best regards,
-Yao Zi
+vim +/max7360_gpio_port_plat +30 drivers/gpio/gpio-max7360.c
 
-> 
-> > CTCISZ. Features include,
-> > 
-> > - 512MiB DDR4 RAM
-> > - On-board eMMC storage
-> > - Optional SD Card support
-> > - 2 USB 2.0 Ports (OTG and HOST)
-> > - 1 GbE Ethernet port
-> > - Optional WiFi/BT support
-> > - Audio output through 3.5mm phone connector
-> > - Optional display output through RAW RGB interface
-> > 
-> > Add compatible string for the board.
-> > 
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > ---
-> >   Documentation/devicetree/bindings/loongarch/loongson.yaml | 5 +++++
-> >   1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/loongarch/loongson.yaml b/Documentation/devicetree/bindings/loongarch/loongson.yaml
-> > index e1a4a97b7576..aac4af9ee97a 100644
-> > --- a/Documentation/devicetree/bindings/loongarch/loongson.yaml
-> > +++ b/Documentation/devicetree/bindings/loongarch/loongson.yaml
-> > @@ -14,6 +14,11 @@ properties:
-> >       const: '/'
-> >     compatible:
-> >       oneOf:
-> > +      - description: CTCISZ Ninenine Pi
-> > +        items:
-> > +          - const: ctcisz,ninenine-pi
-> > +          - const: loongson,ls2k0300
-> > +
-> >         - description: Loongson-2K0500 processor based boards
-> >           items:
-> >             - const: loongson,ls2k0500-ref
-> 
-> 
+    29	
+  > 30	struct max7360_gpio_plat_data max7360_gpio_port_plat = { .function = MAX7360_GPIO_PORT };
+  > 31	struct max7360_gpio_plat_data max7360_gpio_col_plat = { .function = MAX7360_GPIO_COL };
+    32	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
