@@ -1,137 +1,130 @@
-Return-Path: <devicetree+bounces-174777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C35F7AAE695
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:27:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41161AAE6C3
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:33:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C52129C18B0
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:27:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F3519E0125
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:33:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 638A028A3E1;
-	Wed,  7 May 2025 16:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C0D28B7E1;
+	Wed,  7 May 2025 16:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BXKpjqzr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PNeuv9i4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 880D7289821;
-	Wed,  7 May 2025 16:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D944B1E4B;
+	Wed,  7 May 2025 16:33:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746635233; cv=none; b=pHYKY9q9NH/CxSLZED+ip4oDY8GD6cUdTlSfoRGTI4qhByUktWFtCDfvTIJPp2i1TO1goWrFFzR5682MBpVVJ0X5cNkdkfuM0ME57zb9m61AbVg8PJa0Kgh4xlvzFC1vQO8Mcdl8aMgUDZD8dO7rnMzLT9D2Fbj8e+J52W6MU64=
+	t=1746635602; cv=none; b=AlJ0HfJYGaJ2+1kcSwAr5jD/AteD3Ihh/mhASMQol8opFrvdIWbUKUe1T5CWxr/DHwlo1bDvRoBO5zsTIE1KIkQ+mGYV3dxXe+V9CbD6oI6jwfKjQTM41NCJLN2Dzk9cvIj5yn1wQEKGHQEyT0Nvdvfc624zLaMn1eXku6aLYQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746635233; c=relaxed/simple;
-	bh=/bkp1+ndxM6IUZavIiudg3yZ6BIozijVYfvBG//IBwU=;
+	s=arc-20240116; t=1746635602; c=relaxed/simple;
+	bh=5PNsaUkEGcwl6bLcWpVgvynTWCnJdydaJWuyO6roJWo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JLF4YWzJ9fp5J1Vo9uKSa6NSY0lAunYV6s/4pBSi4O3rDhx0nm3NVt2t3VKsaIe4HBwGDl9mVr4I9+xFv4VJpNRtP8wW37ovVleZmgJlKOezavUaXCXpnxJt5x7hLNW6EhuJ5LBcdHav1WrMGX//CQBRoVhy87czwIaP1oLuoAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BXKpjqzr; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-326b683ac3aso1036151fa.0;
-        Wed, 07 May 2025 09:27:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746635228; x=1747240028; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/bkp1+ndxM6IUZavIiudg3yZ6BIozijVYfvBG//IBwU=;
-        b=BXKpjqzrZU/aK6BeKwUiNeBVcVsuvFwRaX8r2rvIf/c7nZfeDNwrvCETuR4C9Hh/fz
-         YEerQ0DqjXofVkKtV49lE7dMAmakQIu/gmpBad9AkL8uC/0aDENWAv54+4EOMbZIm7A2
-         zLl+HPhtfNdJaA+wrZI1ZhxjQTxfMJVc48LuNclgfCFgqG1afhN40Rz8Xavp4IoW2rEa
-         2vpr5XeCpzfFULpSTa8Sd5LAfAJnP8S7niCr8nSxQV2mndAr9ZM2NYwgAUZixihMlUlq
-         U/1ScTlRGXdcphSNpM9rck3jyXIwlnCrzaKfO/ToUlfrMphnctTcXXWJqeJmlUtrO27n
-         1xbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746635228; x=1747240028;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/bkp1+ndxM6IUZavIiudg3yZ6BIozijVYfvBG//IBwU=;
-        b=go/H1gshU1GgRdcQKZNjLLVECW8p1uEFwiL0p1rjwoSm8sAn9JoQJR0R4TZPPE7ykB
-         CyVWlGidfrsy7oHOY0Hj7mHuhPu0C8og/JTXWAybwbxj9JEi7ln5yr2cVH4d2bF34pCs
-         T12iNQC7PJDkAMHnQjR/ms+smY7TuhjwtFZgKKScqBCjV1PEj00JmRTVdD/y6LyBptwC
-         RhUXGrIFxpPcnPEIK13jwRZyOP/eMnGIeF6g3GLgzLSBsTEfOdH6SBJA/eAlybTsO1mB
-         4c75pszLO/W5iPK251zyjJ1E+UfrseIU5gPExLVydEXwz7CIWEQhuTBoE0WwQ7Y8V8mR
-         LIzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUFP80x14djxj9zsAJ23t17AgFkH1iVpF64tQCQk9yxdNR04SdEoyKcxcF0eC/pU7+NQ5vrXDdRvM2OLPU=@vger.kernel.org, AJvYcCUSoqq/xX34+Q2UtEL2f1S5Dkldc2xkalKzHcZtWMjt/gldi/pgp/BZggjT/ivNMyHRgIG6Y2zp/XH2@vger.kernel.org, AJvYcCWJUnBFcv/gDCW/N+0aGu+B15/kPvYigQf5jJo4XY6ExOMR//qWR0Vyyva7roChG2z31Qjr7MlNcSKXERgg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7QShvRKOrOAlL+HHmmTmbIs4FMfZ/tKmFRrPB6sfyvb1GF8Qi
-	JHk+gOAae7Cc2GOgy7/7+rOz4m55fZSXyXOBz0woD3izKRbP7HONPFWfa6oNhwLPTafNjuZTty/
-	7sjrKo1hzv5Hrd95Qvz3EaAEAr4c=
-X-Gm-Gg: ASbGncvpSwCkxVaU3MPnTKkGUX3+UFhpF0+/S1xOAwfaRb+mpQvLez47Tktz0bSqa1H
-	XkRR85Nq2T5yhJQ4f+xM0/R1wpJM3c+2+EwF2vl7P9q5Rt4UMVDeV50A35jSiI6nJxVAqqvaVpp
-	s+JfIjIcA+Xz6Rz30hPxFKowtwV22K56oRUg==
-X-Google-Smtp-Source: AGHT+IHOrELlfrPc4U6o94ZfK4oHdb0EgEpd9D53TLeAXQjPNrwN+J+jfBObUTEvdKwpYzy9vRNel+cJiNf8YN9WrPA=
-X-Received: by 2002:a2e:bc94:0:b0:30d:6270:a3b4 with SMTP id
- 38308e7fff4ca-326b764f0bcmr720101fa.15.1746635228251; Wed, 07 May 2025
- 09:27:08 -0700 (PDT)
+	 To:Cc:Content-Type; b=jzxG9il6SNaP0tv8br6e5gDqkv2iAoXESCad2vT4gDzMVr5vLUIvtgvyUAem9gelXO71a/xh4yBWVc59FtZSp9OS1i3kMgH5pD9FPyRzsOQMOXGMlAnRvOjYUinECjWoh5A4nC6090pWQtKjjj/ZZtqC5dbDNyqObu1R47Uogvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PNeuv9i4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16B81C4CEE2;
+	Wed,  7 May 2025 16:33:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746635602;
+	bh=5PNsaUkEGcwl6bLcWpVgvynTWCnJdydaJWuyO6roJWo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=PNeuv9i4FW68lrdYEIH+OvkPUun2GCl+X5bZ8d6QTCI93nFrsrCwxh50EN+kCBmlw
+	 mQCq5hjGlkHBeSI/DtB4qkLOeRO6XJEnBCDQvYV5SU9yHWchq0W1/WcjzwqjQQmeoM
+	 gReuu6roxmtjr4SJPq+7+HX7Z/x9vBn6MR1xA8uZZS53z8Xiu4Ak+JGc+xCXXLgpAz
+	 gy37jLwfjq4Iuko8jbQzuMcjfKUINz1h1pOmNM5Ueg9bEAktFG+36wnGDJJQ++BP/a
+	 d25WpFMg67fiNJ+EXaPmzC3Pv+UmvEzoB0n8ZKTyOfZD602hSMnPcXtViyJZfYJLQH
+	 6DzoXXb70/yeA==
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ac2902f7c2aso821066b.1;
+        Wed, 07 May 2025 09:33:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUzvxunn98yAPU19+qjcjVXAEGAAMoVNAZeY74V7rS26ADxX/ZCmWvjQhl6TYmrggTIaLi2F20eKGMGbnpC@vger.kernel.org, AJvYcCV3/2/OzhEds31GPIi55Bg4AZH7H4F181OLxtx6tJQbgYzYMoFq0WZjVW52Gtf/lmMnOl/qQjXm5cHCBGi7@vger.kernel.org, AJvYcCWpARgmEPAskhFfOU6ZPDVGt0TQi5pdZNB93mbn4DDA4F1ItcqU1qvf6XF/MC7hnCgXzu9/R70++Eqr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFavzO37A3rtjEqEZ0h7gbR8UN9V021ZkkOo5g2HRKL10uWXYV
+	dhyXr5CI2ASyaiE6hOBncdO34Rvj1NFIrTWIslvbIKqir5p1j18XwwiDJYoNRoPt4t7vovRewq/
+	FZqUR6R86ZYGjoQ0PjiAtKGFNqA==
+X-Google-Smtp-Source: AGHT+IFbXKkluOPn99/o7gDALkGZlj3EQIAiAnWfyaoAaMejb4qqqHeuVh2Qnro+FLlcAyfNU+PnEPf3FfamJcZhNoQ=
+X-Received: by 2002:a17:907:3e21:b0:ac7:f00d:52ec with SMTP id
+ a640c23a62f3a-ad1e8d0db1bmr336967966b.58.1746635600709; Wed, 07 May 2025
+ 09:33:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250419-tegra186-host1x-addr-size-v1-1-a7493882248d@gmail.com> <vegicz45jspxecpaitgju6ivvrefwoufg5yrzlvxudjatno7cr@rnvnqrmqofsk>
-In-Reply-To: <vegicz45jspxecpaitgju6ivvrefwoufg5yrzlvxudjatno7cr@rnvnqrmqofsk>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Wed, 7 May 2025 11:26:57 -0500
-X-Gm-Features: ATxdqUHPCKEwfrljQ_Y3mZLOd5OdP80bfGHGqvB8s0eKCloQAxHcEsxq3hWZt1Q
-Message-ID: <CALHNRZ8N=NnirL_vBYjsUt_w8hSXzu5z7H7ditFQTjuHH2Zs2A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: tegra: Bump #address-cells and #size-cells on Tegra186
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250506220016.2545637-1-robh@kernel.org> <20250507165447.7e340d47@donnerap.manchester.arm.com>
+In-Reply-To: <20250507165447.7e340d47@donnerap.manchester.arm.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 7 May 2025 11:33:09 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKve4hXiR31ApMADEz3NqD_futjETWrPKEWz3tADsX7gA@mail.gmail.com>
+X-Gm-Features: ATxdqUFg1sT4pwdyybWgm-K9_ztHsP0q9-QRdWfCP7CwDJwHRKdVQ4NBVzTsuSU
+Message-ID: <CAL_JsqKve4hXiR31ApMADEz3NqD_futjETWrPKEWz3tADsX7gA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: serial: Convert arm,sbsa-uart to DT schema
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 7, 2025 at 10:37=E2=80=AFAM Thierry Reding <thierry.reding@gmai=
-l.com> wrote:
+On Wed, May 7, 2025 at 10:54=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
+com> wrote:
 >
-> On Sat, Apr 19, 2025 at 10:30:31PM -0500, Aaron Kling via B4 Relay wrote:
-> > From: Aaron Kling <webgeek1234@gmail.com>
+> On Tue,  6 May 2025 17:00:15 -0500
+> "Rob Herring (Arm)" <robh@kernel.org> wrote:
+>
+> > Convert the Arm SBSA UART binding to DT schema. It is a straight-forwar=
+d
+> > conversion.
 > >
-> > This was done for Tegra194 and Tegra234 in 2838cfd, but Tegra186 was no=
-t
-> > part of that change. The same reasoning for that commit also applies to
-> > Tegra186, plus keeping the archs as close to each other as possible mak=
-es
-> > it easier to compare between them and support features concurrently.
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> >
+> > ---
+> >  .../bindings/serial/arm,sbsa-uart.yaml        | 38 +++++++++++++++++++
+> >  .../bindings/serial/arm_sbsa_uart.txt         | 10 -----
+> >  2 files changed, 38 insertions(+), 10 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/serial/arm,sbsa-u=
+art.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/serial/arm_sbsa_u=
+art.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yam=
+l b/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml
+> > new file mode 100644
+> > index 000000000000..68e3fd64b1d8
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml
+> > @@ -0,0 +1,38 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +---
+> > +$id: http://devicetree.org/schemas/serial/arm,sbsa-uart.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ARM SBSA UART
+> > +
+> > +maintainers:
+> > +  - Andre Przywara <andre.przywara@arm.com>
+> > +
+> > +description:
+> > +  This UART uses a subset of the PL011 registers and consequently live=
+s in the
+> > +  PL011 driver. It's baudrate and other communication parameters canno=
+t be
 >
-> As explained in the commit that you referenced, the reason for making
-> these changes for Tegra194 and Tegra234 was so that the PCI and GPU
-> nodes could move back into the bus@0 node. This doesn't exist on
-> Tegra186, and the top-level already has #address-cells =3D <2> and
-> #size-cells =3D <2>.
+> He said "driver" in a binding document!! ;-) I think you can remove that
+> part, or maybe rephrase it to say it could be supported by the same drive=
+r
+> that supports a PL011.
 
-This isn't recursive, though. I had thought it was, but kept having
-issues. Then I found docs that say:
+I know that's 'the rule', but I kind of think that's relevant in this
+case. If we're looking for improvements, defining SBSA here might be
+the place to start... But I'm not really as this is 1 of 1100
+remaining I've had chatgpt to convert and then I fix all the issues.
 
-The #address-cells and #size-cells properties are not inherited from
-ancestors in the devicetree. They shall be explicitly defined. [0]
-
-> Does this actually fix a bug? Just making this look more similar to
-> Tegra194/234 doesn't seem like the best of justifications for bloating
-> the DT.
-
-Tegra132 and Tegra210 also have size 2 on all these nodes. I probably
-should have mentioned that in the message too. But having Tegra186 as
-the only odd out tegra arm64 arch is confusing and makes for extra
-work when trying to implement things across all archs.
-
-What made me sit down and and type all this out was an attempt to get
-simplefb working for seamless display handoff. And I could not get the
-reserved-memory nodes and iommu-addresses and all to line up. Not
-until I made everything connected to that have #address-cells =3D <2>
-and #size-cells =3D <2>. Which happened to line up with every arm64
-tegra arch except t186, so I submitted this.
-
-Sincerely,
-Aaron Kling
-
-[0] https://devicetree-specification.readthedocs.io/en/stable/devicetree-ba=
-sics.html#address-cells-and-size-cells
+Rob
 
