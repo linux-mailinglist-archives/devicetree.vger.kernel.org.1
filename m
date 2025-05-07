@@ -1,190 +1,251 @@
-Return-Path: <devicetree+bounces-174605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA16AADBF1
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 11:56:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87892AADC17
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 12:02:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA50B188D442
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:57:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1142617A88C
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A373A4B1E57;
-	Wed,  7 May 2025 09:56:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F343204F8B;
+	Wed,  7 May 2025 10:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JMe13eXE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RsyTmuvq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80E39202C31;
-	Wed,  7 May 2025 09:56:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FA4A31;
+	Wed,  7 May 2025 10:01:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746611808; cv=none; b=ggYPCcH897+ovF/2skZ5MhXC0NeX0jGNDceKljv2OnCP/nBEz+8uihiHyNEW7qzzBalcDmYvd7V9uAY4SXC03N3ozr9A9yP6kR/mWFaObbIkJedgt0wRvkD8msvp6mHP7pZmBQv3GWcU+ZTsngAm1JyGmMcbvrMfHWO3CZZqLcc=
+	t=1746612071; cv=none; b=C7Tl19k0x5+1heQTJq4MRhQYi7Wwx+YYU8gkqw//1WMlHyKtFEggoLKz4YXABwT20UELAdEFNO9EI3P1FPnPq0FL3E1+hNKfZGRfpI9bsENx5m0cTp7z/8R3+X2/3dQW6rACt35yyxtC0xsQrOH1uQlxsyVzBZbCjku6KjsOtLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746611808; c=relaxed/simple;
-	bh=0MgyHT40Kzwm56PZc1QIu5bnfmCzRdNV6JD2WgXp0VQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=niD5QTA8DpVfortyR1fLMm40VsHgTgBwO8NxgIExXqmQP+T4lEUhed61Qj16SBOZN5y6a/b5HmxtJOAOT13qLeGY7rocW+Xl28X7odGy9va6WlPIuoDUgX/upxDOWkYCQL3Z76ckSOU8icqiaxuFSTRCUCpbulptLV4giWUnf2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JMe13eXE; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5471H8o6021660;
-	Wed, 7 May 2025 09:56:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	i3WjVEP76mf0rqTTBuk0vFXV+/2ZlGwZiVlYgOnFqxA=; b=JMe13eXEg2+Y46NC
-	KoMLRzOMY8Ja4LHmwpF2M/9yWvze3sx1kTIaGboAoKB+QUS93YOL1fvXIBZrWVI/
-	hDr5ywtIBXI5TomzdiUzpMhZaaezHt23mDWqB0DqvPBSylGfN6xYZBU/tl1N7QWb
-	bwectKQ2O0Ddkqq2KWp57vS4Obtf1svihx5MZ8ASd7ituMK3y2UXI8E3cSMnc4fK
-	tFBEIC8j9fuuLd2xj7w323+jZv2fmwBl0EgNvrN/mQ+c3v1zAGypQ52reGUOEbbM
-	nhMXeYsM6vgsUI6T0eFQ3LZ+jC7xWND845oYcP7sQH/TlNiOoQLy089UfJCRompF
-	uB3PKg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46fdwtv2k4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 07 May 2025 09:56:36 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5479uaAP018854
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 7 May 2025 09:56:36 GMT
-Received: from [10.239.29.178] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 May 2025
- 02:56:28 -0700
-Message-ID: <c91c5357-464b-4ecc-96a5-c617048f73e5@quicinc.com>
-Date: Wed, 7 May 2025 17:56:12 +0800
+	s=arc-20240116; t=1746612071; c=relaxed/simple;
+	bh=zs1SYKT6lv/EHt5palXhPJ9VMYIN0/AXuAq54Q0W+4Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HLnu7jNBDVOGsvNBuXmVJGs7qgTgnrkwcAjNZSP+UQt2to1qYBDCDISUNZhOCKHDnO6ypurZuxqqXVnL3dcVzMFI3un5j+QJ+GQI6gDfVEE8E53zZxh7a5CqGF+6uLT4ijoDU0wYbnBeN3uyAtKeBawgaWGjL/pJJNc1WE8a1tM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RsyTmuvq; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1746612069; x=1778148069;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zs1SYKT6lv/EHt5palXhPJ9VMYIN0/AXuAq54Q0W+4Q=;
+  b=RsyTmuvqLnYykY740RpidH4V/2iXnp/IAshZBuJMLPFJcftE1FriUw2E
+   wlMaSpW0IUIO0JbSnqSA+TkqvI/TXoyLkikZJtoxyjksiy3LQq05deVIE
+   Wtpf7fq9Kls720vx5a7E1RAzVrGzGEx7QjUelIMzNVFOwJ7wAD+eYbo+G
+   DqoGDsEKHTgwflM8wX10mA5B2ywX81T2WjArr4N9b0JemMOilBXkDgV4E
+   7wyHlSkJYHGSNy3wkLBsZDi5exFmwzUGPW6/pw4W8eE4c9bDuHIe+EoRz
+   XiYd5jTKDEJkLb5latazyHH32ciXxTt9cbZwZ8YCJIudilCoSe2ywFKw8
+   w==;
+X-CSE-ConnectionGUID: K70JQ8o+TO6StdrJxdxJOQ==
+X-CSE-MsgGUID: QbIyM45rQYOvCqvXFabvvg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="58527553"
+X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; 
+   d="scan'208";a="58527553"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2025 03:01:08 -0700
+X-CSE-ConnectionGUID: JSsk2riqRCqSl8SPZprJdg==
+X-CSE-MsgGUID: 0jgR7Dl5Q8u7mmmb2p9Msg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; 
+   d="scan'208";a="159199341"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 07 May 2025 03:01:04 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uCbaH-0007YL-32;
+	Wed, 07 May 2025 10:01:01 +0000
+Date: Wed, 7 May 2025 18:00:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nick Chan <towinchenmi@gmail.com>, Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>
+Cc: oe-kbuild-all@lists.linux.dev, Marc Zyngier <maz@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
+	asahi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Nick Chan <towinchenmi@gmail.com>
+Subject: Re: [PATCH RESEND v6 03/21] drivers/perf: apple_m1: Support
+ per-implementation event tables
+Message-ID: <202505071747.2b2WEajY-lkp@intel.com>
+References: <20250429-apple-cpmu-v6-3-ed21815f0c3f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/6] dt-bindings: PCI: qcom,pcie-sa8775p: document
- qcs8300
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Ziyue Zhang
-	<quic_ziyuzhan@quicinc.com>
-CC: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <dmitry.baryshkov@linaro.org>, <neil.armstrong@linaro.org>,
-        <abel.vesa@linaro.org>, <manivannan.sadhasivam@linaro.org>,
-        <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <quic_krichai@quicinc.com>,
-        <quic_vbadigan@quicinc.com>
-References: <20250507031019.4080541-1-quic_ziyuzhan@quicinc.com>
- <20250507031019.4080541-3-quic_ziyuzhan@quicinc.com>
- <20250507-quixotic-handsome-wallaby-4560e3@kuoka>
- <8fef4573-0527-44d8-a481-f3271d9ffa33@quicinc.com>
- <01b06e36-823c-4f28-8db5-dc0ee0b4c063@kernel.org>
-Content-Language: en-US
-From: Qiang Yu <quic_qianyu@quicinc.com>
-In-Reply-To: <01b06e36-823c-4f28-8db5-dc0ee0b4c063@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=VPPdn8PX c=1 sm=1 tr=0 ts=681b2e54 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=dLDUmFIFFNY9evZcgTYA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: SVOMAAcLwkbfVUfj6PlgHnCuWn07ExSi
-X-Proofpoint-ORIG-GUID: SVOMAAcLwkbfVUfj6PlgHnCuWn07ExSi
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA3MDA5MiBTYWx0ZWRfX6c1iUg6TOczc
- fkYFtN9r5Ec7tWrDVYsgmT4sPG/QUC3BaDEK0u3D3KRy7QjzXZQHFSwaJ4Ht6ozHiEGCUOkGhNG
- uwNyO9kgdzZNivNepBNY14MZn8qV4zq0RS7+4USXV2HIYREtAgfrLAbZbQUgbjVUNVR3bJFi1t4
- 3IF449tvQURByGxxeVGrU+Be8umFC+jIUHf6QMAFgaSeKl9avP2PmQLrAI3rhemvSb3YWPPxbDh
- GwyOxL2pzTLy036OsDOykgJPzLXKdhJSQUuyslSuHmDntuWb2WwLgvka8/PfKzBCusP9FCssKa0
- noY9EUuiKprTdpB2Cy1n0wPWnl0zK8nE5ZeVOe3jmp+8Fi/TjT2NtH7wUFJCQtKTSTbjIlAqzIs
- pm9fhNMAXpmT2eWbSkmgDxKTNKo0qlCcdqF7MtwJkB0zVjkH8XySFQCYkkPwUufrUjNCFLIN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-07_03,2025-05-06_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0 mlxscore=0
- bulkscore=0 clxscore=1015 lowpriorityscore=0 impostorscore=0 malwarescore=0
- mlxlogscore=995 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505070092
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250429-apple-cpmu-v6-3-ed21815f0c3f@gmail.com>
+
+Hi Nick,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on 0af2f6be1b4281385b618cb86ad946eded089ac8]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Nick-Chan/dt-bindings-arm-pmu-Add-Apple-A7-A11-SoC-CPU-PMU-compatibles/20250429-114920
+base:   0af2f6be1b4281385b618cb86ad946eded089ac8
+patch link:    https://lore.kernel.org/r/20250429-apple-cpmu-v6-3-ed21815f0c3f%40gmail.com
+patch subject: [PATCH RESEND v6 03/21] drivers/perf: apple_m1: Support per-implementation event tables
+config: arm64-randconfig-004-20250501 (https://download.01.org/0day-ci/archive/20250507/202505071747.2b2WEajY-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 9.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250507/202505071747.2b2WEajY-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505071747.2b2WEajY-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   include/linux/bits.h:34:2: note: (near initialization for 'm1_pmu_event_affinity[248]')
+      34 |  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
+         |  ^
+   drivers/perf/apple_m1_cpu_pmu.c:27:23: note: in expansion of macro 'GENMASK'
+      27 | #define ONLY_2_TO_7   GENMASK(7, 2)
+         |                       ^~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:163:35: note: in expansion of macro 'ONLY_2_TO_7'
+     163 |  [M1_PMU_PERFCTR_UNKNOWN_f8]    = ONLY_2_TO_7,
+         |                                   ^~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:28:22: warning: initialized field overwritten [-Woverride-init]
+      28 | #define ONLY_2_4_6   (BIT(2) | BIT(4) | BIT(6))
+         |                      ^
+   drivers/perf/apple_m1_cpu_pmu.c:164:35: note: in expansion of macro 'ONLY_2_4_6'
+     164 |  [M1_PMU_PERFCTR_UNKNOWN_fd]    = ONLY_2_4_6,
+         |                                   ^~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:28:22: note: (near initialization for 'm1_pmu_event_affinity[253]')
+      28 | #define ONLY_2_4_6   (BIT(2) | BIT(4) | BIT(6))
+         |                      ^
+   drivers/perf/apple_m1_cpu_pmu.c:164:35: note: in expansion of macro 'ONLY_2_4_6'
+     164 |  [M1_PMU_PERFCTR_UNKNOWN_fd]    = ONLY_2_4_6,
+         |                                   ^~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:169:32: warning: initialized field overwritten [-Woverride-init]
+     169 |  [PERF_COUNT_HW_CPU_CYCLES]  = M1_PMU_PERFCTR_CORE_ACTIVE_CYCLE,
+         |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:169:32: note: (near initialization for 'm1_pmu_perf_map[0]')
+   drivers/perf/apple_m1_cpu_pmu.c:170:34: warning: initialized field overwritten [-Woverride-init]
+     170 |  [PERF_COUNT_HW_INSTRUCTIONS]  = M1_PMU_PERFCTR_INST_ALL,
+         |                                  ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:170:34: note: (near initialization for 'm1_pmu_perf_map[1]')
+   drivers/perf/apple_m1_cpu_pmu.c:171:40: warning: initialized field overwritten [-Woverride-init]
+     171 |  [PERF_COUNT_HW_BRANCH_INSTRUCTIONS] = M1_PMU_PERFCTR_INST_BRANCH,
+         |                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:171:40: note: (near initialization for 'm1_pmu_perf_map[4]')
+   drivers/perf/apple_m1_cpu_pmu.c:172:35: warning: initialized field overwritten [-Woverride-init]
+     172 |  [PERF_COUNT_HW_BRANCH_MISSES]  = M1_PMU_PERFCTR_BRANCH_MISPRED_NONSPEC,
+         |                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:172:35: note: (near initialization for 'm1_pmu_perf_map[5]')
+   drivers/perf/apple_m1_cpu_pmu.c:176:40: warning: initialized field overwritten [-Woverride-init]
+     176 |  [ARMV8_PMUV3_PERFCTR_##pmuv3_event] = M1_PMU_PERFCTR_##m1_event
+         |                                        ^~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:180:2: note: in expansion of macro 'M1_PMUV3_EVENT_MAP'
+     180 |  M1_PMUV3_EVENT_MAP(INST_RETIRED, INST_ALL),
+         |  ^~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:176:40: note: (near initialization for 'm1_pmu_pmceid_map[8]')
+     176 |  [ARMV8_PMUV3_PERFCTR_##pmuv3_event] = M1_PMU_PERFCTR_##m1_event
+         |                                        ^~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:180:2: note: in expansion of macro 'M1_PMUV3_EVENT_MAP'
+     180 |  M1_PMUV3_EVENT_MAP(INST_RETIRED, INST_ALL),
+         |  ^~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:176:40: warning: initialized field overwritten [-Woverride-init]
+     176 |  [ARMV8_PMUV3_PERFCTR_##pmuv3_event] = M1_PMU_PERFCTR_##m1_event
+         |                                        ^~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:181:2: note: in expansion of macro 'M1_PMUV3_EVENT_MAP'
+     181 |  M1_PMUV3_EVENT_MAP(CPU_CYCLES,  CORE_ACTIVE_CYCLE),
+         |  ^~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:176:40: note: (near initialization for 'm1_pmu_pmceid_map[17]')
+     176 |  [ARMV8_PMUV3_PERFCTR_##pmuv3_event] = M1_PMU_PERFCTR_##m1_event
+         |                                        ^~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:181:2: note: in expansion of macro 'M1_PMUV3_EVENT_MAP'
+     181 |  M1_PMUV3_EVENT_MAP(CPU_CYCLES,  CORE_ACTIVE_CYCLE),
+         |  ^~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:176:40: warning: initialized field overwritten [-Woverride-init]
+     176 |  [ARMV8_PMUV3_PERFCTR_##pmuv3_event] = M1_PMU_PERFCTR_##m1_event
+         |                                        ^~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:182:2: note: in expansion of macro 'M1_PMUV3_EVENT_MAP'
+     182 |  M1_PMUV3_EVENT_MAP(BR_RETIRED,  INST_BRANCH),
+         |  ^~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:176:40: note: (near initialization for 'm1_pmu_pmceid_map[33]')
+     176 |  [ARMV8_PMUV3_PERFCTR_##pmuv3_event] = M1_PMU_PERFCTR_##m1_event
+         |                                        ^~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:182:2: note: in expansion of macro 'M1_PMUV3_EVENT_MAP'
+     182 |  M1_PMUV3_EVENT_MAP(BR_RETIRED,  INST_BRANCH),
+         |  ^~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:176:40: warning: initialized field overwritten [-Woverride-init]
+     176 |  [ARMV8_PMUV3_PERFCTR_##pmuv3_event] = M1_PMU_PERFCTR_##m1_event
+         |                                        ^~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:183:2: note: in expansion of macro 'M1_PMUV3_EVENT_MAP'
+     183 |  M1_PMUV3_EVENT_MAP(BR_MIS_PRED_RETIRED, BRANCH_MISPRED_NONSPEC),
+         |  ^~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:176:40: note: (near initialization for 'm1_pmu_pmceid_map[34]')
+     176 |  [ARMV8_PMUV3_PERFCTR_##pmuv3_event] = M1_PMU_PERFCTR_##m1_event
+         |                                        ^~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:183:2: note: in expansion of macro 'M1_PMUV3_EVENT_MAP'
+     183 |  M1_PMUV3_EVENT_MAP(BR_MIS_PRED_RETIRED, BRANCH_MISPRED_NONSPEC),
+         |  ^~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c: In function 'm1_pmu_enable_event':
+   drivers/perf/apple_m1_cpu_pmu.c:422:5: warning: variable 'evt' set but not used [-Wunused-but-set-variable]
+     422 |  u8 evt;
+         |     ^~~
+   drivers/perf/apple_m1_cpu_pmu.c:421:13: warning: variable 'kernel' set but not used [-Wunused-but-set-variable]
+     421 |  bool user, kernel;
+         |             ^~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:421:7: warning: variable 'user' set but not used [-Wunused-but-set-variable]
+     421 |  bool user, kernel;
+         |       ^~~~
+   In file included from include/linux/bits.h:22,
+                    from include/linux/bitops.h:6,
+                    from include/linux/of.h:15,
+                    from drivers/perf/apple_m1_cpu_pmu.c:13:
+   drivers/perf/apple_m1_cpu_pmu.c: At top level:
+>> include/linux/build_bug.h:16:44: warning: anonymous struct declared inside parameter list will not be visible outside of this definition or declaration
+      16 | #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); })))
+         |                                            ^~~~~~
+   include/linux/bits.h:24:35: note: in expansion of macro 'BUILD_BUG_ON_ZERO'
+      24 | #define GENMASK_INPUT_CHECK(h, l) BUILD_BUG_ON_ZERO(const_true((l) > (h)))
+         |                                   ^~~~~~~~~~~~~~~~~
+   include/linux/bits.h:34:3: note: in expansion of macro 'GENMASK_INPUT_CHECK'
+      34 |  (GENMASK_INPUT_CHECK(h, l) + __GENMASK(h, l))
+         |   ^~~~~~~~~~~~~~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:24:27: note: in expansion of macro 'GENMASK'
+      24 | #define M1_PMU_CFG_EVENT  GENMASK(7, 0)
+         |                           ^~~~~~~
+   drivers/perf/apple_m1_cpu_pmu.c:496:32: note: in expansion of macro 'M1_PMU_CFG_EVENT'
+     496 |     const u16 event_affinities[M1_PMU_CFG_EVENT])
+         |                                ^~~~~~~~~~~~~~~~
 
 
-On 5/7/2025 4:25 PM, Krzysztof Kozlowski wrote:
-> On 07/05/2025 10:19, Ziyue Zhang wrote:
->> On 5/7/2025 1:10 PM, Krzysztof Kozlowski wrote:
->>> On Wed, May 07, 2025 at 11:10:15AM GMT, Ziyue Zhang wrote:
->>>> Add compatible for qcs8300 platform, with sa8775p as the fallback.
->>>>
->>>> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
->>>> ---
->>>>    .../bindings/pci/qcom,pcie-sa8775p.yaml       | 26 ++++++++++++++-----
->>>>    1 file changed, 19 insertions(+), 7 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
->>>> index efde49d1bef8..154bb60be402 100644
->>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
->>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
->>>> @@ -16,7 +16,12 @@ description:
->>>>    
->>>>    properties:
->>>>      compatible:
->>>> -    const: qcom,pcie-sa8775p
->>>> +    oneOf:
->>>> +      - const: qcom,pcie-sa8775p
->>>> +      - items:
->>>> +          - enum:
->>>> +              - qcom,pcie-qcs8300
->>>> +          - const: qcom,pcie-sa8775p
->>>>    
->>>>      reg:
->>>>        minItems: 6
->>>> @@ -45,7 +50,7 @@ properties:
->>>>    
->>>>      interrupts:
->>>>        minItems: 8
->>>> -    maxItems: 8
->>>> +    maxItems: 9
->>> I don't understand why this is flexible for sa8775p. I assume this
->>> wasn't tested or finished, just like your previous patch suggested.
->>>
->>> Please send complete bindings once you finish them or explain what
->>> exactly changed in the meantime.
->>>
->>> Best regards,
->>> Krzysztof
->> Hi Krzysztof
->> Global interrupt is optional in the PCIe driver. It is not present in
->> the SA8775p PCIe device tree node, but it is required for the QCS8300
-> And hardware?
+vim +16 include/linux/build_bug.h
 
-The PCIe controller on the SA8775p is also capable of generating a global
-interrupt.
->> I did the DTBs and yaml checks before pushing this patch. This is how
->> I became aware that `maxItem` needed to be changed to 9.
-> If it is required for QCS8300, then you are supposed to make it required
-> in the binding for this device. Look at other bindings.
-
-The global interrupt is not mandatory. The PCIe driver can still function
-without this interrupt, but it will offer a better user experience when
-the device is plugged in or removed. On other platforms, the global
-interrupt is also optional, and `minItems` and `maxItems` are set to 8 and
-9 respectively. Please refer to `qcom,pcie - sm8550.yaml`,
-`qcom,pcie - sm8450.yaml`, and `qcom,pcie - x1e80100.yaml`.
->
-> Best regards,
-> Krzysztof
+bc6245e5efd70c Ian Abbott       2017-07-10   6  
+bc6245e5efd70c Ian Abbott       2017-07-10   7  #ifdef __CHECKER__
+bc6245e5efd70c Ian Abbott       2017-07-10   8  #define BUILD_BUG_ON_ZERO(e) (0)
+bc6245e5efd70c Ian Abbott       2017-07-10   9  #else /* __CHECKER__ */
+bc6245e5efd70c Ian Abbott       2017-07-10  10  /*
+bc6245e5efd70c Ian Abbott       2017-07-10  11   * Force a compilation error if condition is true, but also produce a
+8788994376d84d Rikard Falkeborn 2019-12-04  12   * result (of value 0 and type int), so the expression can be used
+bc6245e5efd70c Ian Abbott       2017-07-10  13   * e.g. in a structure initializer (or where-ever else comma expressions
+bc6245e5efd70c Ian Abbott       2017-07-10  14   * aren't permitted).
+bc6245e5efd70c Ian Abbott       2017-07-10  15   */
+8788994376d84d Rikard Falkeborn 2019-12-04 @16  #define BUILD_BUG_ON_ZERO(e) ((int)(sizeof(struct { int:(-!!(e)); })))
+527edbc18a70e7 Masahiro Yamada  2019-01-03  17  #endif /* __CHECKER__ */
+527edbc18a70e7 Masahiro Yamada  2019-01-03  18  
 
 -- 
-With best wishes
-Qiang Yu
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
