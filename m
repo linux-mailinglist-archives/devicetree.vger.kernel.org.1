@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-174812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E97EAAECD1
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 22:22:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 087B8AAECCE
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 22:22:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 942557BBA2C
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 20:21:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22212189CC58
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 20:22:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9A6C28EA61;
-	Wed,  7 May 2025 20:22:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84AB928EA51;
+	Wed,  7 May 2025 20:22:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W3Q0tQH7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="edWv23yb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D2E428EA4A
-	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 20:22:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED1A128EA52
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 20:22:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746649350; cv=none; b=YjjZ4pwHMhWezcRMvTIH23eh1NdBl6LfD+5O/w0Co0FfjZkAVxMMHZJJuVoRvQ7+J00DndFXwf6pCUKiHWASxxLBy4a0EBVjHX9HB66KerVWPT+34W5So8/RRJpwedN4sSBqQPZmII8cHgF1HjEhA6hY59JBySOoq6Y2Ej3ibE0=
+	t=1746649351; cv=none; b=db3R3q/bGQcjgz2GwMKz7U5wPMsmFGftRr3YeQUojIr3iFDGsDt46piDKDG1aOyVFU+urhuSifhitLY9QrzkkULW3KT2bQKBgzcrdEVGlnF3+sOhlKBx5jG+xpKJJGQna0pTAjeMaQUlRQ8c43OLtDbFc5gOoKxSvD5GtKitEdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746649350; c=relaxed/simple;
-	bh=xsgJ2zKW1s6unCASARfB210Gumqt0eW6xXNMAN+uJvs=;
+	s=arc-20240116; t=1746649351; c=relaxed/simple;
+	bh=4hIfE/LE0Bo5hgDg8MWhBMifz2o9TEh1kLGyL38EbdI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HnRfhxOqsAPz7kul/WCGm99HHBMHkAgXzOL21mKs6WBPqTdWSzv/IEYtu2tnUfZrrZ2QCmqrfGIhR3EwhCN2Upz1r2lrTddPqhkbARwxEjtWam3x66SF5Cn3fZFTIZmZetuSIV+oQK3YMQy/OSceov/6Apm4OiwEt+5j93Paq20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W3Q0tQH7; arc=none smtp.client-ip=209.85.210.54
+	 MIME-Version; b=VpsdkRflZNDqWthd80gdO1rLT9KHOF4r0RRvQye5ohuVNKpiLL+5RBCT/qcSOi4pBT/ATyHfvzcPIhw0ojoQNth+OmLlvMLY435yuyXaz1e+eOT+1lWsVFjEGVydZ0YpEpF3POigrI/w+Czvhn+zF7JCLZaNmm6IgPYNxs0rH68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=edWv23yb; arc=none smtp.client-ip=209.85.210.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-72c3b863b8eso141786a34.2
-        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 13:22:28 -0700 (PDT)
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-72c47631b4cso135752a34.1
+        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 13:22:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746649348; x=1747254148; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1746649349; x=1747254149; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2wCsPI37yI3kW2PZlC399eWtWxNv3NVwnKhYRGNZB4g=;
-        b=W3Q0tQH7DlnD0LDm7n4IdprQsZFiBQAeLt8QvJE1nOay/6RsZK6nPOVZayACxgXlYA
-         v56EsXQNDiait7NcHCJDP2tlwWtETTmDaTT44DlkNeuVNZVWx6aWwRL7wQ4fmReAm7Va
-         yN2PJEXPinjxMSOVpuZn0XPzGN46ktTbgET5GioB+fMyUdtf+9nMbmJmb5+4NDaUT1Ba
-         z1iDgWBmnKD7mDS9GJsdKNXIMJ03n9e0xhtcPjsgB80QdBeqeoQIDLGseSlwHF8Q+m/t
-         pvaZf1HOh3SDKyG0YGfngFsTIKqfTL5S5D8oNRMQWP2C3O6QsYpzPBDte5ocBlWoObNP
-         828g==
+        bh=uejrNc06iTAs+YLZjBRvSkO6o5dbouRkykrkJDTloTk=;
+        b=edWv23ybdJwAWCVU+z13dgYwH/TirMYmKrQD0HqKjIktsK3Bjpu37LeWVfDYP84Dbc
+         vMa/J+AGefkGTPPKocCl5rfXcbKk2Jsk+tO15n6DPOQ44bK12dhlt0zvtJ4uEk+6E8/p
+         Iq6oXpKIaii8r5IuvJxa48zNIFWt6Oih4cADe4G+A1Bt6P2FYysRa4D8YMi9IqF5kH+5
+         v9iS0DYlrfnlpSur/C7P3jI6Kc2wvbfMGReT+8IQTVyCJAdYDxJKuiCHS68HSS+Pv8G7
+         cwZN7i5B8XeKQeS+pZYozu+l0RMFtfmdbfmZuVBfg5g8yABy6Wngp/ID3cFN06HA8+vT
+         CNCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746649348; x=1747254148;
+        d=1e100.net; s=20230601; t=1746649349; x=1747254149;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2wCsPI37yI3kW2PZlC399eWtWxNv3NVwnKhYRGNZB4g=;
-        b=XL7SyKKauwuBiMA+tktRJ+36ktohL4Pu5Zckh3tQLRKev+hWRJMYnRUCU7zTqJ48iu
-         JRmhjIleVtAE6WiyRQD3eOE2hgwoJV/0cV1RRiyH6eJI6c2v6dEgArF5b7NTHqgvBSsT
-         K31oGUUQCG1dEtfkwI3FJiKcwyhYQ0B+pJugbaC6eQA1vcCGYRAIB+ajsldFsGZPZV7x
-         /PZd6+9OznLRyshFoChzDnBMA8H6TFqxE+AJkziW1hNSAUi9Nzne+QQzNZ4V9BL1w0x6
-         Z9PMduaRzkueMqHhi9XccQtC2Q9UwWpT4qkWUMSDmnS7+64bGNyO5HZlf0Nzc467mv0G
-         N4AQ==
-X-Gm-Message-State: AOJu0YwMzYo3gkVG5HdQmiin2XpA5etUI13i3UshZ4X4wXzLAoEwpB0c
-	jOXoMWzg/WITqIsh4YZ57B2SlwtdtE5zPiruVtGJ+xLmBuYogRJG
-X-Gm-Gg: ASbGnct9X/reOlDgNN0v59v5EUZvh91F8z0ZQvdtK+XvVnAZqwgIvEDkdb584vzGGFo
-	XobvrB2ai5X/ClBlxNWmNZSTDMq+Hn021j9svl2XtGCKsYY9FseUALVFMUspbNG5EbCxNv+i4UW
-	jzLButUXkQmlPhj1jGw8NEaKc1tos1eO8u68cOLN9WkqCJUjAZ1UXWTXpK/qA6bIREnDLnjYek3
-	fwIcMeyq//6REfEGLzA6FVljgzW00PN/dLJJbwr81oIdmRPuBtXdL0RPwpZRtPj4uUZdtKXho48
-	bBMtYRV5fHCcZKq/P9OJS8tYKluUs77/WmHiLipkecbDQLuHKNbiIgm0E+8x
-X-Google-Smtp-Source: AGHT+IFytOVfXojJmCR6jJHFmx4KGJn78CqT1+wKBNfjDiJd69/px5acPIOn7PhMAV+YoSaRnITWVQ==
-X-Received: by 2002:a05:6830:370f:b0:72b:9fb2:2abd with SMTP id 46e09a7af769-7321c97d487mr523435a34.20.1746649348140;
+        bh=uejrNc06iTAs+YLZjBRvSkO6o5dbouRkykrkJDTloTk=;
+        b=VeE/mEI77yP4H+g5W5Qbemto/FeZMfCOWKgbLhf2KPjtiBRLckvtCrSMJgw/UpNPvY
+         GoyYRA3786yh2veTjhTMhWGJR8UUzybISurCR2OVrgB5RsXWTbWpz8YZ8Awilq7K8sXx
+         bTxyDy0DeRSqmvIYrtWJiC7rM9WEW80tANCEJOWWzkT6X9Kg3wtJYal7q7fEgg7jHO71
+         FJ+W6lCUH6FFUUJkRtXGTCS3mNjmzMaNaekmQZYS9mHzs1vZI0fuiqK1m6X9RNfLdn+w
+         j69XFnSeq2YHElogJW3nm6T68AN+DR8kuNoaZlw3GoN7KITi5Bv2CTRuV3d7ZaVwnisj
+         5K4w==
+X-Gm-Message-State: AOJu0YxcoUUfr5ClURDqVOFXjKn5PBUR2JuSzsE4m1SuY1+KGkckO1ne
+	i54EbKEDs0d8W7nxxbZLpOTlNN6RiE0K7UpI8UfE05KSDo1oGwdkg6U4TQ==
+X-Gm-Gg: ASbGnctuetliKErbJ94fez0u+M6dP6qnAoiqscMppFQVbsxQbDVcgn9hgmKJ66MbQct
+	1guaFT20/yXvnapdCJaqsNncxDXpDUZohTH88IxDUPaXJ+SUy7TP68IJelvYXbc0z6RUH4wzbBJ
+	zKX2SCG0En2ubAsYE3DXU/2AxtNbXZtWN5Mb0V90fAkzP8nZc8BDBityAU3nJgRjhXMn9M2wurr
+	C78aG+pNBZLwdWa73PqLNIaCcRDz5gLnqqhKPQdKD8i+nUiRzfU95yu4JweUbd6UqGkYqbSPgtD
+	bLWgsbMqoIzJz+vM65J7cwlz8fvY4oYdgdE72p1lqBgnPWMhKExPDvTxxzsHVtGFvkUFwoY=
+X-Google-Smtp-Source: AGHT+IFJzZAXCyZXw0QWeomPprmm2P68wLAv+/7r9VxtEI/Sd4+CGxIKlA//Tnd+huAraTUCYejlBQ==
+X-Received: by 2002:a05:6830:3749:b0:731:cac7:3634 with SMTP id 46e09a7af769-7321c341618mr506386a34.3.1746649348955;
         Wed, 07 May 2025 13:22:28 -0700 (PDT)
 Received: from localhost.localdomain ([2600:1700:fb0:1bcf:e46c:46ba:cecd:a52c])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-732109df2dcsm725945a34.9.2025.05.07.13.22.27
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-732109df2dcsm725945a34.9.2025.05.07.13.22.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 May 2025 13:22:27 -0700 (PDT)
+        Wed, 07 May 2025 13:22:28 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: linux-sunxi@lists.linux.dev
 Cc: devicetree@vger.kernel.org,
@@ -89,9 +89,9 @@ Cc: devicetree@vger.kernel.org,
 	conor+dt@kernel.org,
 	krzk+dt@kernel.org,
 	robh@kernel.org
-Subject: [PATCH V9 01/24] dt-bindings: clock: sun50i-h616-ccu: Add LVDS reset
-Date: Wed,  7 May 2025 15:19:20 -0500
-Message-ID: <20250507201943.330111-2-macroalpha82@gmail.com>
+Subject: [PATCH V9 02/24] clk: sunxi-ng: h616: Add LVDS reset for LCD TCON
+Date: Wed,  7 May 2025 15:19:21 -0500
+Message-ID: <20250507201943.330111-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250507201943.330111-1-macroalpha82@gmail.com>
 References: <20250507201943.330111-1-macroalpha82@gmail.com>
@@ -105,25 +105,28 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add the required LVDS reset binding for the LCD TCON.
+Add the required LVDS reset for the LCD TCON. Note that while this
+reset is exposed for the T507, H616, and H700 only the H700 has
+an LCD controller.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 Signed-off-by: Ryan Walklin <ryan@testtoast.com>
 ---
- include/dt-bindings/reset/sun50i-h616-ccu.h | 1 +
+ drivers/clk/sunxi-ng/ccu-sun50i-h616.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/include/dt-bindings/reset/sun50i-h616-ccu.h b/include/dt-bindings/reset/sun50i-h616-ccu.h
-index 81b1eba2a7f7..ba626f7015b5 100644
---- a/include/dt-bindings/reset/sun50i-h616-ccu.h
-+++ b/include/dt-bindings/reset/sun50i-h616-ccu.h
-@@ -69,5 +69,6 @@
- #define RST_BUS_GPADC		60
- #define RST_BUS_TCON_LCD0	61
- #define RST_BUS_TCON_LCD1	62
-+#define RST_BUS_LVDS		63
- 
- #endif /* _DT_BINDINGS_RESET_SUN50I_H616_H_ */
+diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+index daa462c7d477..955c614830fa 100644
+--- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
++++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
+@@ -1094,6 +1094,7 @@ static const struct ccu_reset_map sun50i_h616_ccu_resets[] = {
+ 	[RST_BUS_TCON_LCD1]	= { 0xb7c, BIT(17) },
+ 	[RST_BUS_TCON_TV0]	= { 0xb9c, BIT(16) },
+ 	[RST_BUS_TCON_TV1]	= { 0xb9c, BIT(17) },
++	[RST_BUS_LVDS]		= { 0xbac, BIT(16) },
+ 	[RST_BUS_TVE_TOP]	= { 0xbbc, BIT(16) },
+ 	[RST_BUS_TVE0]		= { 0xbbc, BIT(17) },
+ 	[RST_BUS_HDCP]		= { 0xc4c, BIT(16) },
 -- 
 2.43.0
 
