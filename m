@@ -1,176 +1,235 @@
-Return-Path: <devicetree+bounces-174574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6999AAD9BB
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:10:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BDCDAAD9E2
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:16:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AABDA1C22B72
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:10:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE020985EA9
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB4822A4E6;
-	Wed,  7 May 2025 08:02:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="aH27DY0v"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F6B9221DA8;
+	Wed,  7 May 2025 08:05:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CFB4227E82
-	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 08:02:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5147E22D4EF
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 08:05:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746604933; cv=none; b=qTta9SxnHd5iDzcgAfY7W/LaP4xy3kEScGt5mYDVFRYSV0v95j63YJl0VKRXAX9yNMOghZLxNY4KSQMvHK/Lh9W2OeUTOcDnEf/Yml7HV7zCKnh1xroWqa9Al96WvYoE0jcJB1Ud8c290X0YqphKSULsDtNxdQIb3YMVASUr+y0=
+	t=1746605134; cv=none; b=K22P7xDST1WmKzNrXqNFZ3vjaN6PG4tSJL2Xx6KnSQH8jokDFJtZp1+YttzdSL9oQogdB3TNIrk2tcOFwLJtgmMIhzRt5M5OkqhwMPLG1GzbWE4KGd9FsxHBxl2IHQbw6V8PkX00DMkGRj/7+Fe92pvn5PSTDo5cq8nHG0MfMjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746604933; c=relaxed/simple;
-	bh=9du/cqVmLABi3S4H7ZzYui0a7J0RxPnHiR8v0eg+GN0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TlAQDI8mE5k6tjcWf9Z7M0rg1eNyHp40pjmfCLI56wiueZM1ZGV8ZEyIxKGczzLfa7JaaS6L2nazkQtt4+XXVfRjrbm+2KeNDK3KigeWCi3AlyAoDbndI4fUYk4ME6Xb6CQ9VYWNESdtDNnaDiEssmezkN0SQrFaMOMMf7Qx0wU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=aH27DY0v; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ac2a81e41e3so1221223666b.1
-        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 01:02:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1746604929; x=1747209729; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1WF9R1PkrWxK/cwLXU/35vaxB2tRI8rlJl2KnNgRvug=;
-        b=aH27DY0voTohBr8HRChz6S0/3+fyIkQNuErhKJqhM3NksMajkZlNOGHF37fKoce01q
-         kfriDLkgQODwg1mMWqo5eK8LbdLAt+Olk6e8kOwX2xUdWf6Y1qW0SWgbvHCg409tYSxX
-         0VUs2E+y8K4nwDHbyuYlnyM0utpsW44jWenAR4HkLc4FSbbr+4+BEukuvprHywOJ0Snk
-         lsPssuBeUkPACY3HsjPPUH1YmeFKQAkG2Jgr5l6Hgtl7khiTi63b2rGMRIkg8GEFhSNA
-         /A25oLwoGcx5X6UK35DzQV5tP/1cKxMvC8L4EQRzROFV8y7iFDOfgH40qL22jwNCeVw+
-         kkLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746604929; x=1747209729;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1WF9R1PkrWxK/cwLXU/35vaxB2tRI8rlJl2KnNgRvug=;
-        b=uqz6t3WRELSk/OEYbneyFoMbYu1ejwGWHbO+kk//7nldLI14sQJuSZCQCtLOUOJbnx
-         FTLvmGMnzgDXWb7brL4AwHpReUg6CUyA1f95ZKME0ouNZY+qfUgZlrXptecS61rwvO5Q
-         3uvQt6MMGX9A5jlvSWNwukDmUlnWaclAik2BD5Tu5oIM9iFbCJtSKIlG5hpV7MLJd7Qz
-         Q+rJO0R8ipt48sOGSlcZwFVoQS+hpO6DMj7/NCcpHRSGp1Yh8TLiSFY+1PJsyrgh8cfz
-         MUXKosdZD1IEPgorDgRiti8pPiTjy9YS60IQZJsQvYh1Y5nilXC2XVklzEhf4BbR7/ga
-         +drw==
-X-Forwarded-Encrypted: i=1; AJvYcCUYhttg424+TAwLv3sa+o6dhFFtNbdD9Ecep3ta6wYnZAyY6SXfhSR2T6xCFW6wD1PBq+F34UumFeFd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4s1sJI3lGHs5i+/ekriUvH4lr+buSQP4b5MDb1/kut0acWsk6
-	/0adkrZIPWvzqN2NAi7D1Z8+ZwfKwrBAkIe0QbD/iJtPNnsfcFn7OYve6RYju6M=
-X-Gm-Gg: ASbGncuwHNJ6v4J9wUACO+j5Cj2x5HTEaniWSumjVla2ZAQUywWV6M2Yp+0nKciwfIy
-	R9ZYkpQRMhKh+3uJUa3bmcGrPiLAFj/UvTE3Y9Y3AlAPiR8QB5UcVl5lgRbRcLgq47Pp7Xh0buQ
-	SlBwPwqTHFXaps6Lpft0+JetRyXUazNNyAUPcZEC98WVIwMRAN914XHzrI1/iqGCNsDIYW7MKXt
-	gnnluhvC7Snce1gbkaVPvb0rM663LI+c+ocSEXmAxkJFnj2hOGxdvCnd32g0+ixlYRQUj2oZCEu
-	4bzEI7/kqfK3/yGJKjTJYq8KH9AAqwadZLExcwrPTb5+X2O5gWmBzxayQV9Aood1DjFUn/gH39h
-	ijfiBMzLs2DP/zQ==
-X-Google-Smtp-Source: AGHT+IHag0H2cbbPyO4b5Fnqc17Ebpqc1RQXUqG6LtKmBXIShvnF4nzFMo2lTa0qFSCUZEOEH+300A==
-X-Received: by 2002:a17:907:d48f:b0:ad1:e7ed:c1c5 with SMTP id a640c23a62f3a-ad1e8d5f6c8mr200591666b.59.1746604929014;
-        Wed, 07 May 2025 01:02:09 -0700 (PDT)
-Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad1894c0310sm855236066b.88.2025.05.07.01.02.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 May 2025 01:02:08 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Wed, 07 May 2025 10:01:41 +0200
-Subject: [PATCH v4 5/5] arm64: dts: qcom: qcm6490-fairphone-fp5: Add
- DisplayPort sound support
+	s=arc-20240116; t=1746605134; c=relaxed/simple;
+	bh=nuE10YXTP2AEEebcF9P03Yz7YE72bjtBs/GDG5t5Z+U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a26ug0OWaRqv5HsRVScNf6D7S8aKV7beuTmrN/yaNjjto4a2BiX3BIxbaaI7lU6Ygcc1ns73ZypmIxpSjvrsqIVhomKluCzE4sprsE1l9zKdFpSf4ZiRGsU2DkPGSPGrCQ12/f/svthtDCxSVKaStaWOYKh+Lw0PGmJLhsCs2aw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uCZmD-0006r1-RL; Wed, 07 May 2025 10:05:13 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uCZmD-001WaU-1R;
+	Wed, 07 May 2025 10:05:13 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uCZmD-008QHT-0y;
+	Wed, 07 May 2025 10:05:13 +0200
+Date: Wed, 7 May 2025 10:05:13 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@pengutronix.de,
+	Alvin =?iso-8859-15?Q?=A6ipraga?= <alsi@bang-olufsen.dk>
+Subject: Re: [PATCH v4 2/3] dt-bindings: clock: add TI CDCE6214 binding
+Message-ID: <aBsUObKHmJkBFN04@pengutronix.de>
+References: <20250430-clk-cdce6214-v4-0-9f15e7126ac6@pengutronix.de>
+ <20250430-clk-cdce6214-v4-2-9f15e7126ac6@pengutronix.de>
+ <3ba53493700561923c4ea9ab53a1a272@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250507-fp5-dp-sound-v4-5-4098e918a29e@fairphone.com>
-References: <20250507-fp5-dp-sound-v4-0-4098e918a29e@fairphone.com>
-In-Reply-To: <20250507-fp5-dp-sound-v4-0-4098e918a29e@fairphone.com>
-To: Srinivas Kandagatla <srini@kernel.org>, 
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3ba53493700561923c4ea9ab53a1a272@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add the required nodes for sound playback via a connected external
-display (DisplayPort over USB-C).
+On Mon, May 05, 2025 at 10:50:49AM -0700, Stephen Boyd wrote:
+> Quoting Sascha Hauer (2025-04-30 02:01:35)
+> > diff --git a/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
+> > new file mode 100644
+> > index 0000000000000..d4a3a3df9ceb9
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
+> > @@ -0,0 +1,155 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/ti,cdce6214.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: TI CDCE6214 programmable clock generator with PLL
+> > +
+> > +maintainers:
+> > +  - Sascha Hauer <s.hauer@pengutronix.de>
+> > +
+> > +description: >
+> > +  Ultra-Low Power Clock Generator With One PLL, Four Differential Outputs,
+> > +  Two Inputs, and Internal EEPROM
+> > +
+> > +  https://www.ti.com/product/CDCE6214
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - ti,cdce6214
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    maxItems: 1
+> > +    items:
+> > +      enum: [ priref, secref ]
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  '#clock-cells':
+> > +    const: 1
+> > +
+> > +patternProperties:
+> > +  '^clk@[0-1]$':
+> > +    type: object
+> > +    description:
+> > +      optional child node that can be used to specify input pin parameters. The reg
+> > +      properties match the CDCE6214_CLK_* defines.
+> 
+> Presumably the EEPROM is typically used to configure all this stuff? Do
+> you actually need to program this from the kernel, or are you
+> implementing all this for development purposes?
 
-In user space just the following route needs to be set (e.g. using
-ALSA UCM):
+The EEPROM could be used to configure this. I don't know if the final
+product will have the EEPROM programmed, but even if it is, should we
+make this mandatory?
 
-  amixer -c0 cset name='DISPLAY_PORT_RX Audio Mixer MultiMedia1' 1
+Speaking of the EEPROM I think we should make sure that the pin
+configuration in the device tree is optional so that we do not overwrite
+settings from the EEPROM if it contains valid values.
 
-Afterwards one can play audio on the MultiMedia1 sound device, e.g.:
+> > +        enum: [ cmos, lvds, lp-hcsl ]
+> > +        description:
+> > +          Clock input format.
+> 
+> Is it "Clock output format"?
 
-  aplay -D plughw:0,0 test.wav
+Yes.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 31 ++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+> 
+> > +
+> > +      ti,cmosn-mode:
+> > +        enum: [ disabled, high, low ]
+> > +        description:
+> > +          CMOSN output mode.
+> > +
+> > +      ti,cmosp-mode:
+> > +        enum: [ disabled, high, low ]
+> > +        description:
+> > +          CMOSP output mode.
+> 
+> Would 'disabled' be the absence of the property? I think we could just
+> have ti,cmosn-mode = <0> or <1> for low or high.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-index 9e8f9fb57c4723a24704a8239a86c6081910916b..e115b6a52b299ef663ccfb614785f8f89091f39d 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-@@ -14,6 +14,8 @@
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include <dt-bindings/sound/qcom,q6asm.h>
-+#include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
- #include "sc7280.dtsi"
- #include "pm7250b.dtsi"
- #include "pm7325.dtsi"
-@@ -1147,6 +1149,35 @@ &sdhc_2 {
- 	status = "okay";
- };
- 
-+&sound {
-+	compatible = "fairphone,fp5-sndcard";
-+	model = "Fairphone 5";
-+
-+	mm1-dai-link {
-+		link-name = "MultiMedia1";
-+
-+		cpu {
-+			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
-+		};
-+	};
-+
-+	displayport-rx-dai-link {
-+		link-name = "DisplayPort Playback";
-+
-+		codec {
-+			sound-dai = <&mdss_dp>;
-+		};
-+
-+		cpu {
-+			sound-dai = <&q6afedai DISPLAY_PORT_RX>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+	};
-+};
-+
- &spi13 {
- 	status = "okay";
- 
+Yes. I think we can do that.
+
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - '#clock-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        clock-generator@67 {
+> > +            compatible = "ti,cdce6214";
+> > +            reg = <0x67>;
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +            #clock-cells = <1>;
+> > +            clocks = <&clock_ref25m>;
+> > +            clock-names = "secref";
+> > +
+> > +            clk@1 {
+> > +                reg = <1>; // CDCE6214_CLK_SECREF
+> > +                ti,clkin-fmt = "xtal";
+> > +                ti,xo-cload-femtofarads = <4400>;
+> > +                ti,xo-bias-current-microamp = <295>;
+> > +            };
+> > +
+> > +            clk@3 {
+> > +                reg = <3>; // CDCE6214_CLK_OUT1
+> > +                ti,clkout-fmt = "cmos";
+> > +                ti,cmosp-mode = "high";
+> > +                ti,cmosn-mode = "low";
+> > +            };
+> > +
+> > +            clk@4 {
+> > +                reg = <4>; // CDCE6214_CLK_OUT2
+> > +                ti,clkout-fmt = "lvds";
+> > +            };
+> > +
+> > +            clk@6 {
+> > +                reg = <6>; // CDCE6214_CLK_OUT4
+> 
+> Can you use the defines instead of numbers so we know they're the same?
+
+Yes, I could and have done that, but Krzysztof objected to it here:
+https://lore.kernel.org/all/5766d152-51e7-42f5-864f-5cb1798606a3@kernel.org/
+
+Sascha
 
 -- 
-2.49.0
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
