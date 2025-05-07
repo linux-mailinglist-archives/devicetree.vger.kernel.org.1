@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-174472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABB07AAD574
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:47:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48713AAD57B
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:49:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA64C1BA5F95
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 05:47:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56D8F3B2EDC
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 05:48:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 905621D8A0A;
-	Wed,  7 May 2025 05:47:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6192D1DE4EF;
+	Wed,  7 May 2025 05:49:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AUHhDQwM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="foLBNRiE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0E21A00E7;
-	Wed,  7 May 2025 05:47:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73921C84BF;
+	Wed,  7 May 2025 05:49:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746596832; cv=none; b=V2Ro0dOp8FS2aDxwsWixhssGIhSriHZvrVE0cHhuypArqd5MjJN2xat10yQuctA4c59dCmBXIMsgqhZOAkl94kcZWSmE3H8PJ1W/qUK5cNlRiQ5m8d5KmmUGqs1c7U/9e1W4f6XtiEsXkIbFy7ZS+tii42rV6WnOzlXcc8wKhaU=
+	t=1746596945; cv=none; b=FKp279G/DRlRZ499Qr8k3n7K/QgAZ+mKT9C7FBGXUYktJjAz4Nd/SClmYk/pe8fX2Ti/7nLUVzjMHErZi3I8xPmVB3c5AecssgUcZ2x/J5yKlMxmj2oHLR8xkYga5HpRLhyPw3t/N8O/eF9Obu6xjQshM5Ojh/TYneVF4drcDPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746596832; c=relaxed/simple;
-	bh=O3d7vwCPdLbhv5EPV1ky2qGUrqEyeP/U/PqjnMu36Ik=;
+	s=arc-20240116; t=1746596945; c=relaxed/simple;
+	bh=wcg08Kt1C+xZgbC0SDxeuZMP4Sa/aGcldOCUz7tMn50=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cMunRWKqPGZEFnFrqeQ+N/V3B8ioqUX9ZCyZi8XG2iWKQwgJQemzD8X5X7d9zPVfK81z9t4a+JKChYJ3liFPpYhFEWPkQ6Kknq3Ivlti6Xen8zeHWZpV9fVYgptn6vhd5tKiglGoQKLW5j8Pf7oFkIJNnhFGyfhikRZu/EkhvFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AUHhDQwM; arc=none smtp.client-ip=209.85.219.50
+	 To:Cc:Content-Type; b=pf1r8EAjxDqof8JInxYPPII34J3QWZO5CfS83fnMM0V/M5YscA/ZrXg9Ew/6aNjDPu0Y/0MsVOdF36rERN/Q1APyPS3v4soAbkeeWNgRoe5INgI9M7NSZ5rR5ScStCSjRwuo/gcazkDyMiBWRUUf2SflozKWrAxormSn9JYdRiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=foLBNRiE; arc=none smtp.client-ip=209.85.160.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-6ecf0e07954so101632336d6.1;
-        Tue, 06 May 2025 22:47:09 -0700 (PDT)
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-476b4c9faa2so93171471cf.3;
+        Tue, 06 May 2025 22:49:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746596829; x=1747201629; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1746596942; x=1747201742; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Sr/EBTQG4/UwFZx/KYi2kLPC/6miYByKQl01Eq8yNq0=;
-        b=AUHhDQwMdy351X3lE2Evr7TFTttGh42VfhNsOXHyzK9vILeH7C6s+YFQ46hHivOb1m
-         sI2etstyRczyArkyfxDv3u2WwgjC2/WUjIrHOI0UCcJsWhpu7+RHdgvGjY90XgPZNRyH
-         1wmYJwd4zvcvMN9aUuqlNP4qWNXXAh7ahL3AGDofNRSlWWg126QfHbKkfTJ2kMyQapYA
-         vFzsJ7j5k4pfz1LpUX4621fCcnjcWC/ZW0WMekwWBSaWbUlq6KnujOfuqZc0TUZxails
-         /28ZSwvUpLKsStge9z4LSvlWJ/T4N/QEXY0gUGCIxeLj/uZpZk/S0dcb7GiEIcdCLBTw
-         2FHA==
+        bh=7JdJMsLzfDGeRvx+Emk46r8xhmMRITfWllQfaK4Duwk=;
+        b=foLBNRiER075wcSuuAjGaH9EtJxa2yLUu/aH5rbHtIikDNGvfQHwOZ3WLRh/U3woYx
+         VoOdN9blD6hrojbz/ogUrwhhTQkUreP/1nXybfMN9CDFf+ndqHO2Hi1+KGloy/7KkTTk
+         2c4ffleWfzIefGPo0nU1GexU7E3ywNahIq6y5Fv8fAxWd0x3zk2lRC7eRzp5eA8DAcrc
+         DCO37D/ih/WUqbAkFURFmGufxgWPOYgMPOD/cDvZxEItnfYkwa1eenGaY3dzGWOJbaa4
+         4QHaof1rr+FijwDGqef1JE5KXc/0ryxf/Gkp5+9sDrJnu3ADUYRHEIHjhdWRwqdKdM5c
+         SZuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746596829; x=1747201629;
+        d=1e100.net; s=20230601; t=1746596942; x=1747201742;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Sr/EBTQG4/UwFZx/KYi2kLPC/6miYByKQl01Eq8yNq0=;
-        b=dDqBRK67JGYKRXiojpK6+aLnE+mki07v/+JOqIUslYeNW1jQGC/Pj+1km+KuflFnEh
-         M57ZsS6wNhhXDBcQDrf37z4p8xC2BFK1nUYviyd2R+luHoAJPyFYtAKEPEhcIodhEvqJ
-         ulg434CewTtZv53ej5BQI1JKOdU7ZRmljBHrw/y+19T14Zw3IMhFxNuLqY4/gmilIr9L
-         P/TZ5PMxxHmdxKLSX0orDx+P9Y+tqm66Z6SeGfXqXNbJGZ8GG6AYXQ4okgjc32tCEnym
-         3dbrA+pFJCcHKELSCYmQ8JZnj8s6xedQjPjrSwAXzWFjWjgdRCv2Po39Fxmma8XLo0vq
-         qPzA==
-X-Forwarded-Encrypted: i=1; AJvYcCVOvfJPgxeurZSrYt1d/SnY7dBD+xMPAa9qy7V5bw625WzamWos+4N+D/tFJyiMWcdkOXnr2qI3bw7P@vger.kernel.org, AJvYcCXAJSbMdjnZk6qFWgDkYNwdJZG+YcTDpNqHM1MgIsS0zANXju46EcSi1zRrXU99zcie/ej7pnK7d715p3J9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2dQB6l3RZhZoWaFF6vCPPbTH2Je7qnZHsXYFUikcNst04y/3s
-	0xVh4Hrbgjv/OK3GeKyOQjtOhdVd67GXUUiCeVn77bfR/eFCEYaNJAn8IRl6H6Q1xmJAlirMDK9
-	bAeK517a/08cn0z9e2VmzzIoVd5QfD39DgkRTfw==
-X-Gm-Gg: ASbGnctfhzyjQvg8UghfrxLm9ozlq2QYWt+phjLVVfD+NOLjDAIRvbd9PrErf32CSX4
-	jl8OJlzUniLIKJ7xDyfHKcEMqUv570J7n9NQEanFDKCXg3Msb0r4bzKMptANMuw9LbplWpFk4lf
-	tCJdLr/5zkp+XiEYiil2cK2h2duq7Lbi0=
-X-Google-Smtp-Source: AGHT+IH+l73WkllP0u4r7uaSDidXOWDrfnL+BIbC9V9jeSezy4B7RZaNnCkLw7jvUCpMubvtnuETSM/JFB2R3NarJkU=
-X-Received: by 2002:a05:622a:410f:b0:48d:8053:df56 with SMTP id
- d75a77b69052e-4922795ddb7mr32129241cf.48.1746596817909; Tue, 06 May 2025
- 22:46:57 -0700 (PDT)
+        bh=7JdJMsLzfDGeRvx+Emk46r8xhmMRITfWllQfaK4Duwk=;
+        b=BK2sWNa4HuW9r+x4ht/xBFTZlUlgovK9pe+pFKt320YaeySvFZHUqpE3k4/M7ULzLY
+         TGxbNtvsZVveHFxCbsneYy/8Fqg2wN3NRhagjdrh4j0VieUH6iFcSBF+EJ2WwiZYggqh
+         BFYS9ceBBwD2pe4vMBjVSV01P9hxAawS4DlN0eIJVyPha1tNFVx8lH2TD8+EE1g1vUMh
+         p9OjEduJ8QSTiLtenHjHPkewwHmN/yOUu0GUcMMKUZVIwaPWBCIUYHs7L+JUvMceRkki
+         tnyzIR+W6Pwg/YS7bONyydclxw4kObqmQ/JGUUArfzEfDtRgYSf5bOPkewo5LzmZkl+a
+         P5OQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUDqavBGdaAq42YRcV/FolpEDTWhuUxk8prBvQD53whCglAtfbl3+Z369OPRJxlJNS5erjbp6ujSXRk@vger.kernel.org, AJvYcCXGo+IUdTb1pLJg8Wto9j3CylPkgLw3wC++sahoWV/jCrDr7D/dJZFddGdMcB3W1yLHk4Y9b/IzW970bEk6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuzGDegvjRMV0L+UW7GFu1KvaPOobeGjot6kUZ4FkhX0qOk2Dm
+	yzvNy3kTqs6WsTlXFC39gAjr/6GdOv4ZHl/8dUAEveRtDCXu53U3K6vfeNZ+KW9xTAdqNo08dvq
+	Au9OSCrap4xA6sQxSAlq/HXyduP0BGq3tsb4zLkYi
+X-Gm-Gg: ASbGncukGW2Ejm+XEQ05PySJzgk64dMBSlcWCqaxVVGfwHxzCY+BGsCz4egSujrJ6f0
+	HQhCxVtMphx3HycDNNVDeeJe0tdccm7lfUI5HFMpWTNNqZ51d70rPHrVk6y62qbNngNE4G+jv1b
+	hr7gUcPCHo0miujJC1IuV0FtK9ig0IhrE=
+X-Google-Smtp-Source: AGHT+IF7vvrjUXrQ8Ma7pGYyWlbfTrxCvT38VXq6TtbN5SNAo7OxWdmxVFlZHyYkepkkFVBGOS2HmDQU3+iLDdcpFsM=
+X-Received: by 2002:a05:622a:5588:b0:477:41c3:3c59 with SMTP id
+ d75a77b69052e-492278663f1mr28654201cf.40.1746596942669; Tue, 06 May 2025
+ 22:49:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,13 +75,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20250507-vt8500-timer-updates-v1-0-6b76f7f340a6@gmail.com>
- <20250507-vt8500-timer-updates-v1-2-6b76f7f340a6@gmail.com> <e05151a1-2112-497b-affa-d0e95c71b627@kernel.org>
-In-Reply-To: <e05151a1-2112-497b-affa-d0e95c71b627@kernel.org>
+ <20250507-vt8500-timer-updates-v1-3-6b76f7f340a6@gmail.com> <8d3c2ab5-dfc0-4a65-94c8-48a94c850aba@kernel.org>
+In-Reply-To: <8d3c2ab5-dfc0-4a65-94c8-48a94c850aba@kernel.org>
 From: Alexey Charkov <alchark@gmail.com>
-Date: Wed, 7 May 2025 09:46:47 +0400
-X-Gm-Features: ATxdqUH29QtBVUIdEBGgpphpU7Cm3yGDAmRazAqGvFsGpNIyRjeSFbKTUq_yrS0
-Message-ID: <CABjd4YzmbQj2eDKS1YvdZFzwzP0v=2dwPsPUqZqL9=Gc6zatFw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] clocksource/drivers/timer-vt8500: Add watchdog functionality
+Date: Wed, 7 May 2025 09:48:51 +0400
+X-Gm-Features: ATxdqUFKht2xkkVskEfWLYN789ACQMJmDtBSHahlN1jQVzEb-f__uuxu03cTVZ8
+Message-ID: <CABjd4YxjC13H9G+ZpQO7EcmA4quu-9OMYjc5z6W5z+f=pwkTbw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ARM: dts: vt8500: list all four timer interrupts
 To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
 	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -90,53 +90,50 @@ Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 7, 2025 at 8:33=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+On Wed, May 7, 2025 at 8:32=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
 > wrote:
 >
 > On 06/05/2025 22:06, Alexey Charkov wrote:
-> > VIA/WonderMedia system timer IP can generate a watchdog reset when its
-> > clocksource counter matches the value in the match register 0 and
-> > watchdog function is enabled. For this to work, obvously the clock even=
-t
-> > device must use a different match register (1~3) and respective interru=
-pt.
+> > VIA/WonderMedia SoC timer can generate up to four interrupts correspond=
+ing
+> > to four timer match registers (firing when the 32-bit freerunning clock
+> > source counter matches either of the match registers, respectively).
 > >
-> > Check if at least two interrupts are provided by the device tree, then =
-use
-> > match register 1 for system clock events and match register 0 for watch=
-dog
-> > respectively.
+> > List all four interrupts in device trees.
+> >
+> > This also enables the system event timer to use a match register other
+> > than 0, which can then in turn be used as a system watchdog (watchdog
+> > function is not available on other channels)
 > >
 > > Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > > ---
-> >  drivers/clocksource/Kconfig        |  6 +++-
-> >  drivers/clocksource/timer-vt8500.c | 58 ++++++++++++++++++++++++++++++=
-++++----
-> >  2 files changed, 58 insertions(+), 6 deletions(-)
+> >  arch/arm/boot/dts/vt8500/vt8500.dtsi | 2 +-
+> >  arch/arm/boot/dts/vt8500/wm8505.dtsi | 2 +-
+> >  arch/arm/boot/dts/vt8500/wm8650.dtsi | 2 +-
+> >  arch/arm/boot/dts/vt8500/wm8750.dtsi | 2 +-
+> >  arch/arm/boot/dts/vt8500/wm8850.dtsi | 2 +-
+> >  5 files changed, 5 insertions(+), 5 deletions(-)
 > >
-> > diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> > index 487c8525996724fbf9c6e9726dabb478d86513b9..e4f9aade058af1adc279274=
-c6c711658f9f4cd0a 100644
-> > --- a/drivers/clocksource/Kconfig
-> > +++ b/drivers/clocksource/Kconfig
-> > @@ -177,9 +177,13 @@ config TEGRA186_TIMER
-> >
-> >  config VT8500_TIMER
-> >       bool "VT8500 timer driver" if COMPILE_TEST
-> > +     depends on ARCH_VT8500 || COMPILE_TEST
+> > diff --git a/arch/arm/boot/dts/vt8500/vt8500.dtsi b/arch/arm/boot/dts/v=
+t8500/vt8500.dtsi
+> > index 2ba021585d4889f29777a12473964c29f999f3a0..d1dd37220d41becece5d24f=
+bb19aa71b01723e35 100644
+> > --- a/arch/arm/boot/dts/vt8500/vt8500.dtsi
+> > +++ b/arch/arm/boot/dts/vt8500/vt8500.dtsi
+> > @@ -111,7 +111,7 @@ clkuart3: uart3 {
+> >               timer@d8130100 {
+> >                       compatible =3D "via,vt8500-timer";
+> >                       reg =3D <0xd8130100 0x28>;
+> > -                     interrupts =3D <36>;
+> > +                     interrupts =3D <36>, <37>, <38>, <39>;
 >
-> Does not look related to this patch.
+> You need to update the binding, preferably first convert it to DT schema.
 
-Will drop in v2.
+The binding change [1] has been reviewed by Rob and is pending merge.
+Shall I fold it into this series when I send v2?
 
-> >       depends on HAS_IOMEM
-> > +     select WATCHDOG
->
-> Drivers are not supposed to select user-visible symbols.
-
-Fair enough, thanks. Will add a separate nested user selectable option
-for the watchdog function and make it depend on both the driver itself
-and the watchdog core.
+[1] https://lore.kernel.org/all/20250506-via_vt8500_timer_binding-v3-1-8845=
+0907503f@gmail.com/
 
 Best regards,
 Alexey
