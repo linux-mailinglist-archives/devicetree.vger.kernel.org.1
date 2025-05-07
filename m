@@ -1,81 +1,122 @@
-Return-Path: <devicetree+bounces-174438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C218AAD408
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 05:22:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C30ABAAD3FA
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 05:18:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 846687BBCC3
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 03:21:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCDB93A903C
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 03:18:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393DD14A4CC;
-	Wed,  7 May 2025 03:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636641C5485;
+	Wed,  7 May 2025 03:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="bCR+8fc3"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="X1r44WmD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C4B1A255C;
-	Wed,  7 May 2025 03:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B65EF1B422A;
+	Wed,  7 May 2025 03:18:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746588136; cv=none; b=gO7jc+l1RwXVghpU+dX6INikaabDJ7184dZ7Sao+1lDrFSmgqgeqyFqEl+BYm7FKjlY/2wnIEYAAv4zfbjRikXupLz1/u8hv6iUgO59uqouiSmXqzx3AuX0r7ncLY36LgkTwObxFPp3vx5/RY5TdbfiZjoFSrUojoputF9HYMsA=
+	t=1746587918; cv=none; b=OvY0hq77uDKAni0S28rxRDWX+cBDwWhHIyCjhHz4Ht5h1f6t0JBOxFJhM6mzS0HFTe+aQSIP0NiRW7aVQjq6sz880cioZ/u4ZcrnF/U4VdW+/MjETJLoQOWPiYbYxxdhnQcJiAsWfv6WvUhdlGCsn0Wqhhnxv1R2HKGL17IXbSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746588136; c=relaxed/simple;
-	bh=WxnIZWGjyW8z4p9AhSnJJsn8ZjAdBNM5VL2W6LDw1c0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mdKqWcRbCMpbde/Bjvt6LVgttvfsIxyVjrLN0OMw87QAA5WsAw0TGzVQhbqDTu50MvUZTF4iCnp72M3WLFgVBTRtoPK4PgHCLvtqxCI9kdVFWuQe6mkFqq/QWDky231NRfSgrShd1iRtnvtgygohXmDSDvE7Hb2U+67mGXvwm8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=bCR+8fc3; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1746588132;
-	bh=WxnIZWGjyW8z4p9AhSnJJsn8ZjAdBNM5VL2W6LDw1c0=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=bCR+8fc3LtDcSawxO4X6KapprEaFUHlDopKZmFaplYY0hg9qY2ZHxxAV725dw6TZI
-	 vMDQ4I5qCYW6aZB4ClA6mBPGWTAzsDb1q1Thuz7JM2NEN/d3IuDPcTQLqgOX/JwN49
-	 KHoX9w693tqIC2Wx8pBJhr+8PskzFyOU7AHb//tDxrGce2vfyWslb8hUjjTgbuA7VR
-	 Q5OEngX/ctCaryV+qVyYxXLfGBO3HzAYro10sfoquGFdPUUuZPvdQI5ai05jbgyxJM
-	 fT8bxI8lm3R4gU+9Se9xj6dc4oLjeMt/vfVhuQ2ToHwniIaYo/sUJ108EIsmeyRJEA
-	 xje1L/94ngvGg==
-Received: from [192.168.68.112] (unknown [180.150.112.225])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 324D864473;
-	Wed,  7 May 2025 11:22:10 +0800 (AWST)
-Message-ID: <5acf9c0afc764931f3e9e70c4085beeb95b9652d.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
- aspeed,ast2400-i2c-ic to DT schema
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: "Rob Herring (Arm)" <robh@kernel.org>, Thomas Gleixner
- <tglx@linutronix.de>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Ryan Chen
- <ryan_chen@aspeedtech.com>, Benjamin Herrenschmidt
- <benh@kernel.crashing.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org
-Date: Wed, 07 May 2025 12:52:09 +0930
-In-Reply-To: <20250505144605.1287121-1-robh@kernel.org>
-References: <20250505144605.1287121-1-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1746587918; c=relaxed/simple;
+	bh=0wP1bQljxUQUGrOunL2PMPLMe5TpD0MJuFYd/zpWynM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sc985+Bw40Ib0MTm0OGlfzZMbba52zc/zlimZ7WfBCx2C4ZMCioixUeydmJW1bYRbD1KaJJzI5E7FtbSrW0kH63CooQgZ1HM9JhpHUebHsk4Q94J2BhDN1M1HphjFh5BZ31wXvJBpYVbbdKpRJNnteR0rUvh2ChQfDpv0TrGHxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=X1r44WmD; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1746587916; x=1778123916;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0wP1bQljxUQUGrOunL2PMPLMe5TpD0MJuFYd/zpWynM=;
+  b=X1r44WmD+ej8EPP+BYa9DffEOEMuZaPsEVmXYuG2LF/0uN6noN8CBZQq
+   wZRffzNtPmodXrxvx1TbT5NtN1dvjvWsKejXY9mgVVa6Gp5zszOPxa1Up
+   109CikbZZQ9674KYrPOndXNE1Zcc+Cm4nKugZbLOEvPspxO3QIStrTFlT
+   9OPzA/IVCXGvDWtk6My/4Ik+lijqPTZkhKK3JTLRvYuHJ11Y5wllCXXl2
+   uexaFpAXaDprCYdaf/pJm/MNQejmJ9JqzZrTu1421Lq7BVQkZWJpkcq0E
+   3pTsf+cRW7LLxUiAxLXf2oilcV5OQoY3HG4mQixZVSB2DqUoUi1EeLvr1
+   w==;
+X-CSE-ConnectionGUID: VzYl/c90TdaiF0k99fTJoA==
+X-CSE-MsgGUID: 7wt+Rv6nQLWxeL4YqcAC4A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="51945575"
+X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; 
+   d="scan'208";a="51945575"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2025 20:18:35 -0700
+X-CSE-ConnectionGUID: RUHY0FDlT/CApbLIDCobyQ==
+X-CSE-MsgGUID: FcGpM7MtTzCK67BqXHo+Ow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; 
+   d="scan'208";a="135821930"
+Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2025 20:18:34 -0700
+Date: Tue, 6 May 2025 20:23:39 -0700
+From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org,
+	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
+	Ricardo Neri <ricardo.neri@intel.com>
+Subject: Re: [PATCH v3 06/13] dt-bindings: reserved-memory: Wakeup Mailbox
+ for Intel processors
+Message-ID: <20250507032339.GA27243@ranerica-svr.sc.intel.com>
+References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
+ <20250503191515.24041-7-ricardo.neri-calderon@linux.intel.com>
+ <20250504-original-leopard-of-vigor-5702ef@kuoka>
+ <20250506051610.GC25533@ranerica-svr.sc.intel.com>
+ <20250506-pompous-meaty-crane-97efce@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250506-pompous-meaty-crane-97efce@kuoka>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 
-On Mon, 2025-05-05 at 09:46 -0500, Rob Herring (Arm) wrote:
-> Convert the Aspeed I2C interrupt controller binding to schema format.
->=20
-> Drop the "#address-cells" and "#size-cells" as they are unused and
-> incorrect anyways.
->=20
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+On Tue, May 06, 2025 at 09:10:22AM +0200, Krzysztof Kozlowski wrote:
+> On Mon, May 05, 2025 at 10:16:10PM GMT, Ricardo Neri wrote:
+> > > If this is a device, then compatibles specific to devices. You do not
+> > > get different rules than all other bindings... or this does not have to
+> > > be binding at all. Why standard reserved-memory does not work for here?
+> > > 
+> > > Why do you need compatible in the first place?
+> > 
+> > Are you suggesting something like this?
+> > 
+> > reserved-memory {
+> > 	# address-cells = <2>;
+> > 	# size-cells = <1>;
+> > 
+> > 	wakeup_mailbox: wakeupmb@fff000 {
+> > 		reg = < 0x0 0xfff000 0x1000>
+> > 	}
+> > 
+> > and then reference to the reserved memory using the wakeup_mailbox
+> > phandle?
+> 
+> Yes just like every other, typical reserved memory block.
 
-Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+Thanks! I will take this approach and drop this patch.
+
+BR,
+Ricardo 
 
