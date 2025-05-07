@@ -1,207 +1,190 @@
-Return-Path: <devicetree+bounces-174604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0CFAADBE1
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 11:51:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBA16AADBF1
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 11:56:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42B583BF290
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:51:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA50B188D442
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:57:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0FFD1F417E;
-	Wed,  7 May 2025 09:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A373A4B1E57;
+	Wed,  7 May 2025 09:56:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="byrTMmjq";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="hrgzO0Cz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JMe13eXE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B79576410;
-	Wed,  7 May 2025 09:51:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80E39202C31;
+	Wed,  7 May 2025 09:56:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746611502; cv=none; b=Zno64al5qw/GyHXyev6AWeOrdxhEcDGjHg9Un5MDlwQs0DfZjEfA9euSVo7nN2hoQ1rRevgOCcFDy/Tw9sCcoPCZYNtgm0Gci9V/z8VT3MwCFMmDFJjKgFzNjpVih4wXsnt5Ox9vV5Bllt94CHy0yeXjtkwURfWWVYT5sbZIIxI=
+	t=1746611808; cv=none; b=ggYPCcH897+ovF/2skZ5MhXC0NeX0jGNDceKljv2OnCP/nBEz+8uihiHyNEW7qzzBalcDmYvd7V9uAY4SXC03N3ozr9A9yP6kR/mWFaObbIkJedgt0wRvkD8msvp6mHP7pZmBQv3GWcU+ZTsngAm1JyGmMcbvrMfHWO3CZZqLcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746611502; c=relaxed/simple;
-	bh=lkDEAQnNpFikfSxH7maKRI098GHsz70sWCLPsBCkgdw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gXlv/nCrooY/83gL5sczdHORWcCM4zCPQ/PwlR02Jcdee2at4eMDy+P4/USdUsgc4ID9dAFuwSrsSjqJplWgbEZkFBssU8BzDSfPP+6iBaLTeA1RK8yNqSX3d0lolFe/r5m5c0020QBd6EZyDm/Xe3jcwq+OVOU0lKo64r0jYBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=byrTMmjq; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=hrgzO0Cz reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1746611499; x=1778147499;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=F/i9Jm7x0sU9sxHf9FawPOb71EGh2v9Y58NkBsYaux4=;
-  b=byrTMmjqhGmhma5cs7iqeHPgRH/lbB6wJicVkPeZfZOFaF9enUB8mNQi
-   GQRKsF/XmaBWg+ChFN5hcaXtBqbUiSIMJ8qSdNRYcXMlxcbUNrRG1pfe5
-   uncR5d7xtlK1AoHb9q3Ed9nl/lgQzeln68W4+ARWq4F6jRU2Kvj6ODVyJ
-   xcl8ndoEZWNxVuB9coO2+zgWGOON6okuWvV8g92VX3lijmW69hfaexF+b
-   8K9RmGwGZlbgEfxqLdErT3ylceUnKlU9ZMabGwtCBu0iuLR00RC80APlW
-   iMG6I1nc+/PaDjox9yEG47EWXVwH7mCtSkNgElQKrQ9YfeLbMTsyz1dmF
-   g==;
-X-CSE-ConnectionGUID: xQanc9akTUOCfAyriMNxVA==
-X-CSE-MsgGUID: qB0IcNYRTKigede2IsGhTQ==
-X-IronPort-AV: E=Sophos;i="6.15,269,1739833200"; 
-   d="scan'208";a="43931540"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 07 May 2025 11:51:34 +0200
-X-CheckPoint: {681B2D26-1B-45F3AE15-E90F7DFA}
-X-MAIL-CPID: 2C825C19DDFDF09B778A43311167F0AF_5
-X-Control-Analysis: str=0001.0A006396.681B2D27.00A1,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 36290161474;
-	Wed,  7 May 2025 11:51:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1746611490;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=F/i9Jm7x0sU9sxHf9FawPOb71EGh2v9Y58NkBsYaux4=;
-	b=hrgzO0Cz+7eH2reXwH2XD31ZpLjhmSq/x9ISo7PGeW52JetAaTh9qN7ZM1+YF/TqCxD87z
-	QqwZegexR1DOExJowI7nqxEKLyR7ji9lI1AGa24Y+I54oYplOyrJroxr3b5/s+pKiWPt+c
-	h4ZShjpGZYBY3KKmRJeluziCP+T6CkBDFMFNeXJsAmxY74iihCd1xidC18hFX02On9amw7
-	FDd1vpvLpX5pB1ZA17G/2h/fUKxepZLUl26ZFsHryzqyAkinRovOqBxZgj/GdQn1lSW55E
-	X+SHnmoQW7CilT7u+//OOu+/42Q6ugouqbaLD4U2sr/MmTl3XZVFEfJd+TGLfA==
-Message-ID: <6e4d3127af2e2ace3fcec73eb8903c12ebcdda38.camel@ew.tq-group.com>
-Subject: Re: [PATCH net-next 2/4] dt-bindings: net: ti: k3-am654-cpsw-nuss:
- update phy-mode in example
-From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To: Roger Quadros <rogerq@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andy Whitcroft <apw@canonical.com>, "mike .."
- <wingman205@gmx.com>, Dwaipayan Ray <dwaipayanray1@gmail.com>, Lukas
- Bulwahn <lukas.bulwahn@gmail.com>, Joe Perches <joe@perches.com>, Jonathan
- Corbet <corbet@lwn.net>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
- <vigneshr@ti.com>, Siddharth Vadapalli <s-vadapalli@ti.com>, Tero Kristo
- <kristo@kernel.org>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org,  netdev@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux@ew.tq-group.com
-Date: Wed, 07 May 2025 11:51:25 +0200
-In-Reply-To: <06268dcb-4a49-468e-8ebd-d9366a2cf0c2@kernel.org>
-References: <cover.1744710099.git.matthias.schiffer@ew.tq-group.com>
-	 <4216050f7b33ce4e5ce54f32023ec6ce093bd83c.1744710099.git.matthias.schiffer@ew.tq-group.com>
-	 <06268dcb-4a49-468e-8ebd-d9366a2cf0c2@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3-0ubuntu1 
+	s=arc-20240116; t=1746611808; c=relaxed/simple;
+	bh=0MgyHT40Kzwm56PZc1QIu5bnfmCzRdNV6JD2WgXp0VQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=niD5QTA8DpVfortyR1fLMm40VsHgTgBwO8NxgIExXqmQP+T4lEUhed61Qj16SBOZN5y6a/b5HmxtJOAOT13qLeGY7rocW+Xl28X7odGy9va6WlPIuoDUgX/upxDOWkYCQL3Z76ckSOU8icqiaxuFSTRCUCpbulptLV4giWUnf2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JMe13eXE; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5471H8o6021660;
+	Wed, 7 May 2025 09:56:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	i3WjVEP76mf0rqTTBuk0vFXV+/2ZlGwZiVlYgOnFqxA=; b=JMe13eXEg2+Y46NC
+	KoMLRzOMY8Ja4LHmwpF2M/9yWvze3sx1kTIaGboAoKB+QUS93YOL1fvXIBZrWVI/
+	hDr5ywtIBXI5TomzdiUzpMhZaaezHt23mDWqB0DqvPBSylGfN6xYZBU/tl1N7QWb
+	bwectKQ2O0Ddkqq2KWp57vS4Obtf1svihx5MZ8ASd7ituMK3y2UXI8E3cSMnc4fK
+	tFBEIC8j9fuuLd2xj7w323+jZv2fmwBl0EgNvrN/mQ+c3v1zAGypQ52reGUOEbbM
+	nhMXeYsM6vgsUI6T0eFQ3LZ+jC7xWND845oYcP7sQH/TlNiOoQLy089UfJCRompF
+	uB3PKg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46fdwtv2k4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 07 May 2025 09:56:36 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5479uaAP018854
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 7 May 2025 09:56:36 GMT
+Received: from [10.239.29.178] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 May 2025
+ 02:56:28 -0700
+Message-ID: <c91c5357-464b-4ecc-96a5-c617048f73e5@quicinc.com>
+Date: Wed, 7 May 2025 17:56:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/6] dt-bindings: PCI: qcom,pcie-sa8775p: document
+ qcs8300
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Ziyue Zhang
+	<quic_ziyuzhan@quicinc.com>
+CC: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <neil.armstrong@linaro.org>,
+        <abel.vesa@linaro.org>, <manivannan.sadhasivam@linaro.org>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <quic_krichai@quicinc.com>,
+        <quic_vbadigan@quicinc.com>
+References: <20250507031019.4080541-1-quic_ziyuzhan@quicinc.com>
+ <20250507031019.4080541-3-quic_ziyuzhan@quicinc.com>
+ <20250507-quixotic-handsome-wallaby-4560e3@kuoka>
+ <8fef4573-0527-44d8-a481-f3271d9ffa33@quicinc.com>
+ <01b06e36-823c-4f28-8db5-dc0ee0b4c063@kernel.org>
+Content-Language: en-US
+From: Qiang Yu <quic_qianyu@quicinc.com>
+In-Reply-To: <01b06e36-823c-4f28-8db5-dc0ee0b4c063@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=VPPdn8PX c=1 sm=1 tr=0 ts=681b2e54 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
+ a=dLDUmFIFFNY9evZcgTYA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: SVOMAAcLwkbfVUfj6PlgHnCuWn07ExSi
+X-Proofpoint-ORIG-GUID: SVOMAAcLwkbfVUfj6PlgHnCuWn07ExSi
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA3MDA5MiBTYWx0ZWRfX6c1iUg6TOczc
+ fkYFtN9r5Ec7tWrDVYsgmT4sPG/QUC3BaDEK0u3D3KRy7QjzXZQHFSwaJ4Ht6ozHiEGCUOkGhNG
+ uwNyO9kgdzZNivNepBNY14MZn8qV4zq0RS7+4USXV2HIYREtAgfrLAbZbQUgbjVUNVR3bJFi1t4
+ 3IF449tvQURByGxxeVGrU+Be8umFC+jIUHf6QMAFgaSeKl9avP2PmQLrAI3rhemvSb3YWPPxbDh
+ GwyOxL2pzTLy036OsDOykgJPzLXKdhJSQUuyslSuHmDntuWb2WwLgvka8/PfKzBCusP9FCssKa0
+ noY9EUuiKprTdpB2Cy1n0wPWnl0zK8nE5ZeVOe3jmp+8Fi/TjT2NtH7wUFJCQtKTSTbjIlAqzIs
+ pm9fhNMAXpmT2eWbSkmgDxKTNKo0qlCcdqF7MtwJkB0zVjkH8XySFQCYkkPwUufrUjNCFLIN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-07_03,2025-05-06_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0 mlxscore=0
+ bulkscore=0 clxscore=1015 lowpriorityscore=0 impostorscore=0 malwarescore=0
+ mlxlogscore=995 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505070092
 
-On Wed, 2025-04-30 at 17:22 +0300, Roger Quadros wrote:
->=20
-> Hi Matthias,
->=20
-> On 15/04/2025 13:18, Matthias Schiffer wrote:
-> > k3-am65-cpsw-nuss controllers have a fixed internal TX delay, so RXID
-> > mode is not actually possible and will result in a warning from the
-> > driver going forward.
-> >=20
-> > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> > ---
-> >  .../devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml          | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nus=
-s.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> > index b11894fbaec47..c8128b8ca74fb 100644
-> > --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> > +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> > @@ -282,7 +282,7 @@ examples:
-> >                      ti,syscon-efuse =3D <&mcu_conf 0x200>;
-> >                      phys =3D <&phy_gmii_sel 1>;
-> > =20
-> > -                    phy-mode =3D "rgmii-rxid";
-> > +                    phy-mode =3D "rgmii-id";
-> >                      phy-handle =3D <&phy0>;
-> >                  };
-> >              };
->=20
-> FYI the following TI boards using this driver are using "rgmii-rxid".
-> Will you be sending fixes to the device trees files?
 
+On 5/7/2025 4:25 PM, Krzysztof Kozlowski wrote:
+> On 07/05/2025 10:19, Ziyue Zhang wrote:
+>> On 5/7/2025 1:10 PM, Krzysztof Kozlowski wrote:
+>>> On Wed, May 07, 2025 at 11:10:15AM GMT, Ziyue Zhang wrote:
+>>>> Add compatible for qcs8300 platform, with sa8775p as the fallback.
+>>>>
+>>>> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+>>>> ---
+>>>>    .../bindings/pci/qcom,pcie-sa8775p.yaml       | 26 ++++++++++++++-----
+>>>>    1 file changed, 19 insertions(+), 7 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>>>> index efde49d1bef8..154bb60be402 100644
+>>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>>>> @@ -16,7 +16,12 @@ description:
+>>>>    
+>>>>    properties:
+>>>>      compatible:
+>>>> -    const: qcom,pcie-sa8775p
+>>>> +    oneOf:
+>>>> +      - const: qcom,pcie-sa8775p
+>>>> +      - items:
+>>>> +          - enum:
+>>>> +              - qcom,pcie-qcs8300
+>>>> +          - const: qcom,pcie-sa8775p
+>>>>    
+>>>>      reg:
+>>>>        minItems: 6
+>>>> @@ -45,7 +50,7 @@ properties:
+>>>>    
+>>>>      interrupts:
+>>>>        minItems: 8
+>>>> -    maxItems: 8
+>>>> +    maxItems: 9
+>>> I don't understand why this is flexible for sa8775p. I assume this
+>>> wasn't tested or finished, just like your previous patch suggested.
+>>>
+>>> Please send complete bindings once you finish them or explain what
+>>> exactly changed in the meantime.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> Hi Krzysztof
+>> Global interrupt is optional in the PCIe driver. It is not present in
+>> the SA8775p PCIe device tree node, but it is required for the QCS8300
+> And hardware?
 
-Hi Roger,
+The PCIe controller on the SA8775p is also capable of generating a global
+interrupt.
+>> I did the DTBs and yaml checks before pushing this patch. This is how
+>> I became aware that `maxItem` needed to be changed to 9.
+> If it is required for QCS8300, then you are supposed to make it required
+> in the binding for this device. Look at other bindings.
 
-as written in the cover letter, I haven't fixed any DTS for now, so project=
-s
-consuming Linux's Device Tree sources (like U-Boot) have some time to updat=
-e
-their driver first (as fixing the Device Trees without updating the driver =
-would
-break Ethernet).
+The global interrupt is not mandatory. The PCIe driver can still function
+without this interrupt, but it will offer a better user experience when
+the device is plugged in or removed. On other platforms, the global
+interrupt is also optional, and `minItems` and `maxItems` are set to 8 and
+9 respectively. Please refer to `qcom,pcie - sm8550.yaml`,
+`qcom,pcie - sm8450.yaml`, and `qcom,pcie - x1e80100.yaml`.
+>
+> Best regards,
+> Krzysztof
 
-Once a fix has been accepted in U-Boot (and preferably after we've come to =
-an
-agreement on the open questions...) I can also send a patch to update these
-files.
+-- 
+With best wishes
+Qiang Yu
 
-Best,
-Matthias
-
-
-
->=20
-> arch/arm64/boot/dts/ti
-> k3-am625-beagleplay.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am625-sk.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am625-sk.dts.orig:	phy-mode =3D "rgmii-rxid";
-> k3-am62a7-sk.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am62a-phycore-som.dtsi:	phy-mode =3D "rgmii-rxid";
-> k3-am62p5-sk.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am62p5-sk.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am62-phycore-som.dtsi:	phy-mode =3D "rgmii-rxid";
-> k3-am62-verdin-dev.dtsi:	phy-mode =3D "rgmii-rxid";
-> k3-am62-verdin.dtsi:	phy-mode =3D "rgmii-rxid";
-> k3-am62-verdin-ivy.dtsi:	phy-mode =3D "rgmii-rxid";
-> k3-am62x-phyboard-lyra.dtsi:	phy-mode =3D "rgmii-rxid";
-> k3-am62x-sk-common.dtsi:	phy-mode =3D "rgmii-rxid";
-> k3-am642-evm.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am642-evm.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am642-sk.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am642-sk.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am642-tqma64xxl-mbax4xxl.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am642-tqma64xxl-mbax4xxl.dts:	/* phy-mode is fixed up to rgmii-rxid by=
- prueth driver to account for
-> k3-am64-phycore-som.dtsi:	phy-mode =3D "rgmii-rxid";
-> k3-am654-base-board.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am67a-beagley-ai.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am68-sk-base-board.dts:	phy-mode =3D "rgmii-rxid";
-> k3-am69-sk.dts:	phy-mode =3D "rgmii-rxid";
-> k3-j7200-common-proc-board.dts:	phy-mode =3D "rgmii-rxid";
-> k3-j721e-beagleboneai64.dts:	phy-mode =3D "rgmii-rxid";
-> k3-j721e-common-proc-board.dts:	phy-mode =3D "rgmii-rxid";
-> k3-j721e-evm-gesi-exp-board.dtso:	phy-mode =3D "rgmii-rxid";
-> k3-j721e-evm-gesi-exp-board.dtso:	phy-mode =3D "rgmii-rxid";
-> k3-j721e-evm-gesi-exp-board.dtso:	phy-mode =3D "rgmii-rxid";
-> k3-j721e-evm-gesi-exp-board.dtso:	phy-mode =3D "rgmii-rxid";
-> k3-j721e-sk.dts:	phy-mode =3D "rgmii-rxid";
-> k3-j721s2-common-proc-board.dts:	phy-mode =3D "rgmii-rxid";
-> k3-j721s2-evm-gesi-exp-board.dtso:	phy-mode =3D "rgmii-rxid";
-> k3-j722s-evm.dts:	phy-mode =3D "rgmii-rxid";
-> k3-j784s4-j742s2-evm-common.dtsi:	phy-mode =3D "rgmii-rxid";
-> k3-j784s4-j742s2-evm-common.dtsi:	phy-mode =3D "rgmii-rxid";
->=20
-
---=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-https://www.tq-group.com/
 
