@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-174422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49007AAD39D
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 04:52:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0073AAD3A8
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 04:58:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 573CB9835F4
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 02:51:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C0891BA0CED
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 02:59:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8DA1917F4;
-	Wed,  7 May 2025 02:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF0A19E96D;
+	Wed,  7 May 2025 02:58:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="DEAxXyIW"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Tvdw5ZaD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B50412B73;
-	Wed,  7 May 2025 02:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F005979E1;
+	Wed,  7 May 2025 02:58:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746586333; cv=none; b=BBiemmtlXDtMwaN1mAXN7GGrO0fOjaqHpP1c3OklWedqAKvOdYIVXOIIv90ZHpGX+yp4Kt9MPzBv6umNR+631EaCE17UtDHgswIWHoC4Oz+8QxNcMybPq1gWNBeGkQlWF+oP/P1g68zya9wBCD3i1zQaqf8tyOeccpGZcQwr8oA=
+	t=1746586730; cv=none; b=X4IiLhK/MdsF4lgMmMoqTZjnSg/f64v4s3a1zGHlyQbPfqBqSx7ZigFnLdbznzNbJIWHbb25QMD5I64wj98dDtkdNLDpQq2wE4TUPGTZt4Guc/kK1OvzhSxIM+Xengc9CGUmF5DXDu211xZY7Km0Kv3RUikmy5Mj1TM8138wQrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746586333; c=relaxed/simple;
-	bh=jla9KNrIyCdQo3DzfEhy08PcQH+6cSQg16Xv+U233AU=;
+	s=arc-20240116; t=1746586730; c=relaxed/simple;
+	bh=nXlSMWZFp/UNpyJGN+JfAGIB2yLICPFXWZ3dy64EAHY=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=OOF9sw2gmb5M1wgBJE4XknrW3gYR0kAmWsH5oL4XEXpXwMtIUvM67od9714eaAzRXTsa4r6BSSv5HBzC+xiGUWBlzlpqGuLnorcVzNqQtjSKkymc5OxPFWQbMsqWKNmQvQTTf4ISeNKzXsAr2UrVeJiFsf/Uby33pR4SJ4ylyGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=DEAxXyIW; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=OomZXpEbS1b22y0jjOf4Uy3p6CGCaK0+opfby8iWGKVEE1GJTh4VWdba+atjeDjAWfuu7sA03EA0hjeSMH0hWpQxJn6bVdKX2wPsOfIISslkmjLBtTown76XQtoBqTarT2CLfvAYQLmK5VhWRIMwB2Us1DOmf2LEGol9R/V7Kjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Tvdw5ZaD; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1746586329;
-	bh=jla9KNrIyCdQo3DzfEhy08PcQH+6cSQg16Xv+U233AU=;
+	d=codeconstruct.com.au; s=2022a; t=1746586726;
+	bh=nXlSMWZFp/UNpyJGN+JfAGIB2yLICPFXWZ3dy64EAHY=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=DEAxXyIW/x7MxY0+7oDOoLYtt8LXGz1pQqcEmy/0HTyKS8dm4l8erumNwzO07H7K4
-	 n0vWuEVTc/pZZxYQEapnu9D8kulboSld91j2dGSHH8U+m38Tyf5JspN5j9ZYgxJ8pr
-	 e/Bx+K+Rlpgdulin/WuxhXSTfhXeC/h/jVrNa6nOPYS4OFKmfC8Gmk7y7SRvbUKQdT
-	 /mrzZLZFagMzN1+9UCl5pvflJtjYJZD0Y3l5nDgLjdcrN3MFjzbF9MjWf1/xWQeOle
-	 U2mzLOuF71sPUsRmesGjqbTYFJtsrRh0r3dZQFCpjvWjwR3mNHpqOBsOnNxaZVz1jm
-	 D11auCpKfOHkA==
+	b=Tvdw5ZaDRfSlNK/cGmHOf7usOW3+sTa/3HirQ9VXE1cQefBjeB3YYi9ersBmWyG/H
+	 vwFdvoHzh1Lwlitl4rsZbpgE9QHj9F1wG2DeGzkNTECwZSkNCZQ70IT9SIL+dxNAS5
+	 7hZJNiZQySufSsP1Z6UDBwvL1BTjePJCwSuKBIFgfnk4+DIFdLkZpTGd9Nk/opLDNv
+	 SGEN4MwMagyXK/PmelwtAJ1hZrxgDqEJSzwfnr5Wh07y1s8XlLMEH2vqGJulBsDtwl
+	 3mhOSLlr3DIJaMHm6ka1SJZW7wN9t025Yhvwur9R1bww+9pR0zxSiLa2k+m7R0QB5d
+	 Ho3XXZMybvWEw==
 Received: from [192.168.68.112] (unknown [180.150.112.225])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E93E764473;
-	Wed,  7 May 2025 10:52:08 +0800 (AWST)
-Message-ID: <2ed50b1463f62a829f863b889ab818f492b73946.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] arm64: dts: nuvoton: Add EDAC controller
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5CD5764473;
+	Wed,  7 May 2025 10:58:46 +0800 (AWST)
+Message-ID: <59c5351d701e9dd5d8ea7d274c6362aadd22ddae.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] arm64: dts: nuvoton: Add USB Hosts
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
 To: "William A. Kennington III" <william@wkennington.com>, Avi Fishman
  <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>, Tali Perry
@@ -53,11 +53,11 @@ To: "William A. Kennington III" <william@wkennington.com>, Avi Fishman
  <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Cc: devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, 
 	linux-kernel@vger.kernel.org
-Date: Wed, 07 May 2025 12:22:08 +0930
-In-Reply-To: <20250415233403.2052913-1-william@wkennington.com>
-References: <20250415233403.2052913-1-william@wkennington.com>
+Date: Wed, 07 May 2025 12:28:45 +0930
+In-Reply-To: <20250416001818.2067486-1-william@wkennington.com>
+References: <20250416001818.2067486-1-william@wkennington.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,34 +66,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-T24gVHVlLCAyMDI1LTA0LTE1IGF0IDE2OjM0IC0wNzAwLCBXaWxsaWFtIEEuIEtlbm5pbmd0b24g
-SUlJIHdyb3RlOgo+IFdlIGhhdmUgdGhlIGRyaXZlciBzdXBwb3J0IGJ1dCBuZWVkIGEgY29tbW9u
-IG5vZGUgZm9yIGFsbCB0aGUgOHh4Cj4gcGxhdGZvcm1zIHRoYXQgY29udGFpbiB0aGlzIGRldmlj
-ZS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBXaWxsaWFtIEEuIEtlbm5pbmd0b24gSUlJIDx3aWxsaWFt
-QHdrZW5uaW5ndG9uLmNvbT4KPiAtLS0KPiDCoGFyY2gvYXJtNjQvYm9vdC9kdHMvbnV2b3Rvbi9u
-dXZvdG9uLWNvbW1vbi1ucGNtOHh4LmR0c2kgfCA3ICsrKysrKysKPiDCoDEgZmlsZSBjaGFuZ2Vk
-LCA3IGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9u
-dXZvdG9uL251dm90b24tY29tbW9uLW5wY204eHguZHRzaSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMv
-bnV2b3Rvbi9udXZvdG9uLWNvbW1vbi1ucGNtOHh4LmR0c2kKPiBpbmRleCA0ZGE2MjMwOGIyNzQu
-LmNjZWJjYjExYzA1ZSAxMDA2NDQKPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL251dm90b24v
-bnV2b3Rvbi1jb21tb24tbnBjbTh4eC5kdHNpCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9u
-dXZvdG9uL251dm90b24tY29tbW9uLW5wY204eHguZHRzaQo+IEBAIC01Niw2ICs1NiwxMyBAQCBj
-bGs6IHJzdGM6IHJlc2V0LWNvbnRyb2xsZXJAZjA4MDEwMDAgewo+IMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCNjbG9jay1jZWxscyA9IDwxPjsKPiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gwqAKPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgbWM6IG1lbW9yeS1jb250cm9sbGVyQGYwODI0MDAwIHsKPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAibnV2b3Rv
-bixucGNtODQ1LW1lbW9yeS1jb250cm9sbGVyIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDAgMHhmMDgyNDAwMCAweDAgMHgyMDAwPjsK
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVycnVw
-dHMgPSA8R0lDX1NQSSAyNSBJUlFfVFlQRV9MRVZFTF9ISUdIPjsKPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJkaXNhYmxlZCI7Cj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gKwoKVGhlIHBhdGNoIGZhaWxzIHRvIGFw
-cGx5IGR1ZSB0byBmdXp6LCBkbyB5b3UgbWluZCByZWJhc2luZyBpdCBvbgpudXZvdG9uL2FybTY0
-L2R0IGZyb20gWzFdPwoKWzFdOiBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgv
-a2VybmVsL2dpdC9hcmovYm1jLmdpdAoKUG9zc2libHkgaXQncyB0aGUgcmVzdWx0IG9mIGFwcGx5
-aW5nIG90aGVyIHBhdGNoZXMgb2YgeW91cnMgYXMgdGhleQp3ZXJlIHNlbnQgaW5kZXBlbmRlbnRs
-eS4gSXQgbWlnaHQgYmUgYmVzdCB0byBzZW5kIHRoZW0gYXMgYSBzZXJpZXMgZXZlbgppZiB0aGV5
-IGFyZSBjb25jZXB0dWFsbHkgaW5kZXBlbmRlbnQuCgpBbmRyZXcK
+On Tue, 2025-04-15 at 17:18 -0700, William A. Kennington III wrote:
+> The npcm 8xx chip has 2 EHCI and 2 OHCI hosts with driver support
+> already existing in the kernel.
+>=20
+> Signed-off-by: William A. Kennington III <william@wkennington.com>
 
+Please rebase to address fuzz as noted here:
+
+https://lore.kernel.org/all/2ed50b1463f62a829f863b889ab818f492b73946.camel@=
+codeconstruct.com.au/
+
+Andrew
 
