@@ -1,219 +1,148 @@
-Return-Path: <devicetree+bounces-174623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B1ADAADCDB
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 13:03:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F504AADCF9
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 13:08:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E4A7160CFD
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 11:03:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F8671BA18EA
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 11:07:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E5EF20DD42;
-	Wed,  7 May 2025 11:03:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C74B5216E01;
+	Wed,  7 May 2025 11:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="c0HBedNU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TQ4UFZE7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2072.outbound.protection.outlook.com [40.107.223.72])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 031E51C6FF5;
-	Wed,  7 May 2025 11:03:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.72
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746615833; cv=fail; b=jhU3B+8gOx449NudLBtvVgFIvWcfy3uTz4/ixhwbvR54rjkgBZEWOSIHJtGaG8W+lRSmidCGi9dwMYxDl7Wwrb9ZIBlR94VZOZsOD/G5tgOsT3Ox2ktlx54hlFHal70WahwziD//2H/AJQiAUP1jJTayGyC6hktuoRFmgtzhaP4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746615833; c=relaxed/simple;
-	bh=qREHezgNMQFEAUi9uU698dX++gNTAt608pTZ4Net/Qo=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=AEm6TXNkrGpEcDYUo+A0dneMEZ58ZC8ox37umxt/ijxeSHSytvKd7/JA63u7TcQOAQb+Qrc425eT/HaKqS55enAhjB/dGxnRR7QtIz6BNgtKUE2bVyR/DM0TUDnAfs7ZTK/vEl/JnHg3XafBuKcKDSVtya3PlomfZjbLm4HjvfA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=c0HBedNU; arc=fail smtp.client-ip=40.107.223.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lgvSyHASJ6teRReOKBE1oK8jeRjTaZjx7TqhMKIeFTqdXvietg7dX5sSwvZldOO43U4JNXekBAHZXYC3SVlNZmrLQ2caKBZCXkWUAoEww7DuIBLUrd/QT0fQ/Y0ysuHUndfjr8/RYXNzVprRdEjaODyLNCkIJ7CYHQQDCRAEbCO03nZuFeyFPimdqHIZwgb7jncERu3c3nL029ZW7RIZCHs3KvqhvI0WKK/+/2WBUOHaTNbwfbPCIssmDZRVSswxYqOH0P8DbM7elCM4Sc07jOmNF2iKrWNVNAOpMo5C6NPJt/GpvOhO06fIgQ5aN8gaWZQfidCdGgMmcGyNzRo0Yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BsDSjQfDFiuxIZnZkdHzPR08S4WZ/KYpCo+HK7w1lho=;
- b=ZYZTqkluA/nFlucC2aiRbjNxQqkZgOMLYAHSXcij4PqHPWERyNKWo3H2OO/Dw7cSFxoxFu7g7EkORJtp4M/dZHmqokR94V/Ds9qU0beoAEC30VZm42KFTlkY2RuF1Iy2ozPWQcj/DI5LzYDZw6ssKVaJXChMSlJmafueY+grM7tv7hJ08/iIOmSILEqv/c+8++qiGgP0Q5yEir2chGvzhtc630fLrQq3OMnX0sTJ4EUqSgyv4jwhq446Ih8RwDOSli9zCfcunhXj6gm9C+nX8npPQ+JWy5dBc+gy8+OGDgvQfZU4JBAPSZdJb1R9XURT89yUESV+gHPkDRUBi2dbDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BsDSjQfDFiuxIZnZkdHzPR08S4WZ/KYpCo+HK7w1lho=;
- b=c0HBedNU6v8v7c/fvOv9qWRQBM6JHff6aRmMr9mk6hBeRgOPsaQZtcKjr7+II8rFS+JIhtJvNgnjqOo3N8+ZFzjgBzyNRIARz31HGIavkQD2MXB/EVHE0b6HH7513KjZ7mQpwBUwWpfPfOEdNMSdbj0pgeBOirTJBNvBB0YUCpMauEkgZQhx1ZHIQiQz39gyKT6zPgC/9LMDj7pu0ULc6RSH65+/wxWn3dF2+Ei8c7lWQ6uytIIRSXBkuDlbSBpwdMcsH3Bva25MlC5z8QVKdtMrKkwWrkhTS885jkuIaTQq/CvOaXHu4xCpNSAzhBcdGpIAqZi2jIXdqWkD07uxWA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11)
- by CH1PR12MB9598.namprd12.prod.outlook.com (2603:10b6:610:2ae::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.23; Wed, 7 May
- 2025 11:03:44 +0000
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9]) by SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9%3]) with mapi id 15.20.8699.022; Wed, 7 May 2025
- 11:03:44 +0000
-Message-ID: <964d8b07-aeb1-437b-ac8e-c129c49b2a78@nvidia.com>
-Date: Wed, 7 May 2025 12:03:39 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/11] soc/tegra: pmc: Add Tegra264 support
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250506133118.1011777-1-thierry.reding@gmail.com>
- <20250506133118.1011777-8-thierry.reding@gmail.com>
-From: Jon Hunter <jonathanh@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <20250506133118.1011777-8-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P265CA0244.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:8a::16) To SJ2PR12MB8784.namprd12.prod.outlook.com
- (2603:10b6:a03:4d0::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B57215F49;
+	Wed,  7 May 2025 11:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746615988; cv=none; b=O5RRyaROz1EaZ5v5ovZbaxQYkKMni+rFVJForvaM13HK+IThJ/BdU2W4vCOFtCT+Wusa7T/f7HYRW2X6FOQssxrKLETIrrY86ablAMzKfAuZV9f96rAxELetF4OamiebqEsJhEdB+lXNFozW4/VODjglxw4Mv8b6a4D8jOVPQqw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746615988; c=relaxed/simple;
+	bh=x6JZx+dOYymoRNv+YG8960djGVqVEcH0E3ay4BxKGss=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SpBjSiminz0l8BUkabq91gLLSUly8s20ZIGnDCU570hO/uFkiO8d1P2M4NmkA+XItvIFyBtjfrtkxo2zlLE/vxpOjrjYFyOsQ9oBY1axrfy3Q/YSEHm+hcUOqiz1kfl0No0UjsxXTuVoNBZ1rXRUko/dlzLcbXTWq+2JLAKz9F4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TQ4UFZE7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7642AC4CEE7;
+	Wed,  7 May 2025 11:06:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746615988;
+	bh=x6JZx+dOYymoRNv+YG8960djGVqVEcH0E3ay4BxKGss=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TQ4UFZE7muTuWd5GcbVqwDA1zs7oSSrN0OZsKGydTQNoAe5fZ+YxTKEKXmzA0uhbs
+	 V1qlyS9BVuunskNg101PiJeI0r/gRvYL1h4PMRvC6pZRwPF3ZQ/17m1qVlnLkq+Uc/
+	 9EBbdMXYPpyjslgWDmXjlB1lCMTw7RwH0l5uAttumKzAObETzWGcs+2ddjKTxtY1AD
+	 Zco1ngz84KPnVTQ+k5YQtJX9CLvrHKdOaSc3ewX5Bfijhn358nWM9mDvoaiiIby5+x
+	 ooKVq+AT6EaXXwaRi28HX7LMXb0WJkPWcAth3keDwxcYsXRZxYc2vZ3Zm2aN4V7gWp
+	 LMyQIvlgErNMw==
+Date: Wed, 7 May 2025 12:06:21 +0100
+From: Lee Jones <lee@kernel.org>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH net-next v6 8/8] mfd: zl3073x: Register DPLL sub-device
+ during init
+Message-ID: <20250507110621.GJ3865826@google.com>
+References: <20250430101126.83708-1-ivecera@redhat.com>
+ <20250430101126.83708-9-ivecera@redhat.com>
+ <20250501132201.GP1567507@google.com>
+ <a699035f-3e8d-44d7-917d-13c693feaf2e@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8784:EE_|CH1PR12MB9598:EE_
-X-MS-Office365-Filtering-Correlation-Id: 67794bd1-ce20-439d-0a8c-08dd8d56d504
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|10070799003;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RzUxdVFYc0djcmNuUExadWRWRmJPVWhiVEtaNnRhcjRQYTBMRHJ4MFFnNEdq?=
- =?utf-8?B?V3JtUktacmpEQlljUmlDTkZ4Njh4S3BRZGl0MkwyUGxzVTNITlFhWDY4OXQv?=
- =?utf-8?B?UTQxUDc3OUIyeWlRcGtsZDdMRWlGZ1Ftc0hwVzlDbXdVS0FINkxtRGxTUXls?=
- =?utf-8?B?cVJBVmxMMG8yNEVzb2tEQ2EzQmUvdU43ZUIzMm9ySkZMYlVZTmM2OTZFQW92?=
- =?utf-8?B?aFltR3Uyck5RZ2FRRlNKUUhyUnZ2Vk9zOUNZUlBqN21sVkFXZ1FsUHhNbkc2?=
- =?utf-8?B?MElQVnFGQnI4RVA2bU1IbWdRWVFyRDZZNStrZGlwVGk4Z0FNSjlkYWxwbE52?=
- =?utf-8?B?ZUNPY1FaMXp6RGhqd1cwcWxmMHA1SVJJUlJMVGx0RldxK2FHNDhzV2VHNmE2?=
- =?utf-8?B?OHd5WWRBRU0zaUtocjNLcGlHZ3V4L0dYSmRuL2l6WHJwdHJDekhxd3F2bHpZ?=
- =?utf-8?B?SDJlR3ppRUhSTzhMZWJrbnEwa1FBMlB4UjJzTFF2QTkrazdjbmZ2TlNSeklv?=
- =?utf-8?B?N1lrVGs2djYrdFhIeWZEdnVqRS9lQXlIWEY2L0o5K1VkSlRnRTRtYVoxQytk?=
- =?utf-8?B?UWh5OGdoeGNmTWkxNkxGRUZ2ZXpiYlZzMnlCblhPLzdxQk5PdG91YWx3aGNR?=
- =?utf-8?B?dnZEa05KdlFoVVo4OXI4SndLWkd1amkvdXk0NllpRXdXVWdBUEE4WlJOWWNP?=
- =?utf-8?B?S3RRZFNhdjYzK2wyYWJna0NidWJ2MWIya2lwNk1DdTRLSlRqVjJRaEZHTWM1?=
- =?utf-8?B?Skp1U3ppT1hZVDVLSmRodVlHUlRCSHRuc0c2V2tJeW1lVTNiSkpLRHhlK3c5?=
- =?utf-8?B?dWFjQWw2QTl0amV1Ui90NjUrTGpRMSthS0JtOElkUmNNNVc5U3JTNHRHeUw0?=
- =?utf-8?B?bjJTNW42WW9hK1dNTWpYT3N0aVc5a3B2ay9vSWNwcDlRd3hwaVJqWVdacEo0?=
- =?utf-8?B?RXNJd0pGQ1Vad3MzcHMwWFRqb3VIM0ZkdDE4S1V4ZGJtUlpaWDRuTXBYZUl4?=
- =?utf-8?B?aFBNWThDMVlPZ2FFY2Qxd1BDd2wwWVV0R0xydkxZVHBpK0xQMkhISzRIU1Js?=
- =?utf-8?B?WExUVENabHpLQTB0Y3lGZTNuYWFiclBqa1VWN2FtYkNwT0tYL3NPQzZwY09W?=
- =?utf-8?B?TU9wVHBYZnBmTk54Y0tQUkltT3FqSnhHN2ZjQmh2bVhxdlZrTUtVcVRhR1dM?=
- =?utf-8?B?bGlKR3NobEcreWY5K014dTBLd0JCZ2JrOUs5aE4zUWNLbS85NW9sYlFlMUln?=
- =?utf-8?B?UGJxQ1BUazloZFpqU2U5YTc2dDhEV0xOaWFhK1EvZ2N3YjQ5alRUVUdNNjNz?=
- =?utf-8?B?dmlLMVV3cHA3RjlpZTcvVlczcUR4c0tVYVFKSGt5Qjl1d0VVNTN6TDJMcDVo?=
- =?utf-8?B?Zk1nR0ViWUhubW1KTlFaVmtBZ0NtUlAzSlhPMGQ3djA2K1F3dFp3bkZqZFlm?=
- =?utf-8?B?d2Nrc1VJTW5FdWducDFRb0RvVTdLMERDbVhBME1tUkRFT1JEUW1teDRuQm9z?=
- =?utf-8?B?cVQrMGN4ZExqWWNxdVVtTUFtK1hEdXlYam81WWtpdEMxMlNHZTE4Z2kwTHp6?=
- =?utf-8?B?SUhEU25YYVRmM0hOazhjbEVCZXZJNVBic2VVYStIVEZXUHYxQXNWNjEvZTdZ?=
- =?utf-8?B?T1RYNmhDZGhYeGt2dG92Q3lSMGhyTGJLR1d6alAwclhZK1c0Vmt0TC9sdVY1?=
- =?utf-8?B?MEtTQkFrK3FjVVJ6T1NMdHp2bWpIUEp0dEd6QmFDL0JTMnRpem14Rjh6alBD?=
- =?utf-8?B?MGFQQnZ0dG53Zkp3aXFSZU5FUnkwUFdvU2M2RnJrN3lMSDRld1MrWFgzNGtt?=
- =?utf-8?B?aEQ2eXFCcDZ1U2JmcDlOazdGRExQQ1c3U3FqY1dqcGZJVDFja0EveWEyVk5H?=
- =?utf-8?B?ZHpqazBpS2Y2RUJMUnJ3aGdwQko5Um1EcUU3MjJEY2o1T1UxOTFTUjNEUC82?=
- =?utf-8?Q?hTxfhQ3agpE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8784.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(10070799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?T0NuTG02bkZWOEZoZ1VMa2FqSngrRy9JSDB4RmJQb2ZlMXRPVzlIMDdjUFcx?=
- =?utf-8?B?TzRvY2RpQmxrNGE3czFVSnFuWnlDU21mbi9Scm1xSWV0ZGhLemdFajY0RGtU?=
- =?utf-8?B?SVBMNkdIWTNBTHhjODdIdEpUa1NNdEhtWlJadnhodEVMblBOMDNUN2lhT1FQ?=
- =?utf-8?B?ODBNWHNER0g1SmhLMGp0Y1dGejZObElVeUpzRXJYMkU3Z3o3VC9FVG96ekw2?=
- =?utf-8?B?TVhVWXFSTUVpRHU3V2pmNEFiY2lmZ0dzN2V4Kzl5a3V0a2NnaktvWkF2NjlX?=
- =?utf-8?B?TlVzRmMxbEU4WkNGaXRHdU84SmdnVll1RXg4Zm1iSVZIajJKczZCZXJhdFh3?=
- =?utf-8?B?WTNXd2dpaEJ6S2dmSHNvZmFYY1N0M0h6b01iZ1NmT1ZYeHV5M1h1cS9mN1J4?=
- =?utf-8?B?NjY3RXdHdmZVa2xBY2dNRWxyYTJJb25NZDZjak5JWlVzMkxFZ3lIQ0tHemxq?=
- =?utf-8?B?QjhZbFNoZFhwc3BJcHdUM0lVSVNRclZpZDZqb2hjZ20rNXE5VkNld3VOMXU5?=
- =?utf-8?B?WWNUVmdHS0U4S09QYjNJSEhpM1JjQmRVZVpDYzBhZzgySkN6WFZkY2hvRm5C?=
- =?utf-8?B?dFV2V3ZvQTZXUlpXOTF4eEJPL1MyVTBJRGgvc09iREtMaWlQcGd3UXhRY0JD?=
- =?utf-8?B?UWg4Ym5wSWpFemh4bCt5ckpUczRMNHZ5WGpva1FIVThmcUFNSzRrdVIzMGF3?=
- =?utf-8?B?K28wYlp3T1VFMzNoL2hEQVVXV2VqY3JOQXhDYVJQSkw2MFM4YnlMSUM3dys5?=
- =?utf-8?B?L3FKcG9OM1N0YXMvZlRTUW12NWVXbktkUmdNaXE0S0dPRFlWMEJxc0N3cjJn?=
- =?utf-8?B?OHowVnFOMWk4RHJzeThDZU5halJvZEV2VUNBU1FjRDR4NUF3azRTalFReWQ5?=
- =?utf-8?B?RWdWRXhDYWZnbm1veHR2YkFFakdrMkRoZVgxOGxCUDVrSzcxRDgrV0pKVXVI?=
- =?utf-8?B?U3BLRytTZDgvdk84NkRxYjVGMnA2U2QvbzhmUnY3NFRNbWlQWXZMNThvRy9q?=
- =?utf-8?B?Um1CMDRpSFZYSkYvNkNIYzl2VlJUdDNMSE5KNXdVMW0raEhMZDVxOWZ4dS93?=
- =?utf-8?B?QlIwa3YrUmFBSkxHbVlBK3dRZTBzckZuRFFvZWkrblpwNDdJcUtacGs2WFNB?=
- =?utf-8?B?QjJSYU5EK1dSY1YvTVQ1SzBQb2thT0MrdXptbmhKeVJqdktIU3Z0R0NRSmJD?=
- =?utf-8?B?c1Y0MjU1L2syTUZhY2NBczFwbzRza3pISlFzVnE0YUlFNWFlUVdkVE9kVXVB?=
- =?utf-8?B?eEg4MVJzdWQrbDhFMDVyNXhmeWZ3UncxNkw0bDVBczN1ZzBWMFIwb1NaMWRh?=
- =?utf-8?B?bFc2V2R5WmxMUEJLcG51SWNGZFVQNjhTUzRXUG5pL1JjRUkyR3IxNFFsN3Fj?=
- =?utf-8?B?cUY4N3p4N01BcEVZdjROUEl3ZmcrbnRNZDBTdlE4Sk1lcEtrd2xvSWNtQzRu?=
- =?utf-8?B?Tkhhdk5vR1Y2Vmc3RWZRZm5XT1JkN2FsQ2l4d2NJSlJhUEZid0dmMnlrV2Fj?=
- =?utf-8?B?TUh1RFozQ0dDeVF5b2lkUjZ4dFJnbnk0WTFJL0ZVTFpZWDh4NFJCQ3pWSFE2?=
- =?utf-8?B?elVWN1pHMXFxdjlHdXpjdmRKRXZad2JYU2NXTDFhY1R2RTlpSVYwdVI2Y0Qy?=
- =?utf-8?B?NjZpMmF1Yk1hejBuVGNESDQzZmxSdzVpK211OXlxbUtrT05RMmNTYk9zMUxQ?=
- =?utf-8?B?ei9oV3BHMUtYUWlXTmlYb2lIdEhIY2gzMkhRR2k5aUlHWWxueG5FYThYSEQz?=
- =?utf-8?B?dHFPKzE1YW85V1ljT2FMelpBTFFjbno1OGJZTjBsVjE1TThYWEZ3ZExZa3lX?=
- =?utf-8?B?SHNWUnFva3FCZFRIMG1VL1ZzYmVack4rWDZFczl2RDNSeGF3TVpPR2pTdTJP?=
- =?utf-8?B?V3JuSEsxTUhQZUFHOVpON0ppZ1pUcnBYQTBKdzJtUnA4Wi83OGllcTg5dmVr?=
- =?utf-8?B?ODZzSFRJVlBvL2FBNlJ3WW94RkR0K24vOTcvYlhPVU43ZCtpSVpqLzBhOEdC?=
- =?utf-8?B?eEQxaVMrdktBVXhhQWdqbzJCL0lXVTBac0ZKcWsrTkg0YUVXc3RuMnN2VXR2?=
- =?utf-8?B?OGxjQnNVbWFIbzRWYk9zL1dGbFNKQlUreUE4OEJPbDh4Vk9FL3orWTdYRC9C?=
- =?utf-8?B?OHNWdVc4NHZqZkxFUndkU2VGQnlKUDZ2MndndXVCaGdwNUZoc2drN1Q1QUpq?=
- =?utf-8?Q?o24Qjj9jzGLCN0WdN0SdNH2062YElD0c44/WvhSxJitF?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67794bd1-ce20-439d-0a8c-08dd8d56d504
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8784.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2025 11:03:43.9681
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uMdLu75mTUTFRD11/VU8josDRjucZX+ovRVjpPfXPVQykiU7p6EmUf2f2iAaGASU4zZ5gtO6kbD/VXwP72ksSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PR12MB9598
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a699035f-3e8d-44d7-917d-13c693feaf2e@redhat.com>
 
+On Fri, 02 May 2025, Ivan Vecera wrote:
 
-On 06/05/2025 14:31, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
 > 
-> The PMC block on Tegra264 has undergone a few small changes since it's
-> Tegra234 predecessor. Match on the new compatible string to select the
-> updated SoC-specific data.
 > 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->   drivers/soc/tegra/pmc.c | 132 +++++++++++++++++++++++++++++++++++++++-
->   1 file changed, 129 insertions(+), 3 deletions(-)
+> On 01. 05. 25 3:22 odp., Lee Jones wrote:
+> > On Wed, 30 Apr 2025, Ivan Vecera wrote:
+> > 
+> > > Register DPLL sub-devices to expose the functionality provided
+> > > by ZL3073x chip family. Each sub-device represents one of
+> > > the available DPLL channels.
+> > > 
+> > > Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+> > > ---
+> > > v4->v6:
+> > > * no change
+> > > v3->v4:
+> > > * use static mfd cells
+> > > ---
+> > >   drivers/mfd/zl3073x-core.c | 19 +++++++++++++++++++
+> > >   1 file changed, 19 insertions(+)
+> > > 
+> > > diff --git a/drivers/mfd/zl3073x-core.c b/drivers/mfd/zl3073x-core.c
+> > > index 050dc57c90c3..3e665cdf228f 100644
+> > > --- a/drivers/mfd/zl3073x-core.c
+> > > +++ b/drivers/mfd/zl3073x-core.c
+> > > @@ -7,6 +7,7 @@
+> > >   #include <linux/device.h>
+> > >   #include <linux/export.h>
+> > >   #include <linux/math64.h>
+> > > +#include <linux/mfd/core.h>
+> > >   #include <linux/mfd/zl3073x.h>
+> > >   #include <linux/module.h>
+> > >   #include <linux/netlink.h>
+> > > @@ -755,6 +756,14 @@ static void zl3073x_devlink_unregister(void *ptr)
+> > >   	devlink_unregister(ptr);
+> > >   }
+> > > +static const struct mfd_cell zl3073x_dpll_cells[] = {
+> > > +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 0),
+> > > +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 1),
+> > > +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 2),
+> > > +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 3),
+> > > +	MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 4),
+> > > +};
+> > 
+> > What other devices / subsystems will be involved when this is finished?
 > 
-> diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
-> index 51b9d852bb6a..6f1ea5b6b9db 100644
-> --- a/drivers/soc/tegra/pmc.c
-> +++ b/drivers/soc/tegra/pmc.c
-> @@ -2892,9 +2892,14 @@ static int tegra_pmc_probe(struct platform_device *pdev)
->   		if (IS_ERR(pmc->wake))
->   			return PTR_ERR(pmc->wake);
->   
-> -		pmc->aotag = devm_platform_ioremap_resource_byname(pdev, "aotag");
-> -		if (IS_ERR(pmc->aotag))
-> -			return PTR_ERR(pmc->aotag);
-> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "aotag");
-> +		if (res) {
-> +			pmc->aotag = devm_ioremap_resource(&pdev->dev, res);
-> +			if (IS_ERR(pmc->aotag))
-> +				return PTR_ERR(pmc->aotag);
-> +		} else {
-> +			pmc->aotag = NULL;
-> +		}
+> Lee, btw. I noticed from another discussion that you mentioned that
+> mfd_cell->id should not be used outside MFD.
+> 
+> My sub-drivers uses this to get DPLL channel number that should be used
+> for the particular sub-device.
+> 
+> E.g.
+> 1) MFD_CELL_BASIC("zl3073x-dpll", NULL, NULL, 0, 2);
+> 2) MFD_CELL_BASIC("zl3073x-phc", NULL, NULL, 0, 3);
+> 
+> In these cases dpll_zl3073x sub-driver will use DPLL channel 2 for this
+> DPLL sub-device and ptp_zl3073x sub-driver will use DPLL channel 3 for
+> this PHC sub-device.
+> 
+> platform_device->id cannot be used for this purpose in conjunction with
+> PLATFORM_DEVID_AUTO as that ->id can be arbitrary.
+> 
+> So if I cannot use mfd_cell->id what should I use for that case?
+> Platform data per cell with e.g. the DPLL channel number?
 
-This part make aotag optional, if I understand this correctly. This is 
-not mentioned above and probably should be. Also, I believe that 
-currently dt-binding has this as required and so we should update the 
-dt-binding doc to make this optional too.
+Yes, using the device ID for anything other than enumeration is a hack.
 
-Jon
+Channel numbers and the like should be passed as platform data.
 
 -- 
-nvpublic
-
+Lee Jones [李琼斯]
 
