@@ -1,76 +1,80 @@
-Return-Path: <devicetree+bounces-174594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D584CAADB23
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 11:18:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48DC9AADB2B
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 11:19:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA9829A2A0B
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:16:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AE851BC5E17
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 09:18:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5F72356A0;
-	Wed,  7 May 2025 09:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92ED231A3B;
+	Wed,  7 May 2025 09:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DymS85hP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WjzGV6yC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE971235044;
-	Wed,  7 May 2025 09:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C040192D8F;
+	Wed,  7 May 2025 09:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746608987; cv=none; b=YSJA6XpCN93l3FuHxXaS1+S54CStL4AUlsWp32XYZFhz7IPzSrs3MCEoVcL0WZG40IZTquVKRuBwEhT3FfuVLPQBEmQWQOO3zgI763U4TQ57ZloPyuaEb7avAeGX8A7KYohmIF+s7iNmRjVaqdIpC4PHTyaSt09jvzwMQ0hUtKE=
+	t=1746609273; cv=none; b=mJDUCAwLnSF21WhAQmE0bD/oaI97iX9Xyi00wqchcWOx8fsbO8HLqTBE6I7dZF5FfDhHo5V46BUOFH+ISYXcbM1dKDohXD33Pjsj3zpInz0u+uqrcrFVYJu3Zc5OmQcb10pV3g39DIpsw/Y1dGC0gtXCoPKDojjK7c63RfZSfaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746608987; c=relaxed/simple;
-	bh=NLp8JFDJsOzfYtXeJkQaN/hv+HwjkOYPnkWmlYWTRYw=;
+	s=arc-20240116; t=1746609273; c=relaxed/simple;
+	bh=bMRotR6sHrHiFqd8cq3cCqa6cfuObmO7cwP+0halJek=;
 	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Pqsul3VHcY0qlbGhLKQRy8KRoDq7GhBn73kAglhcHhjNzVQ3DrzHqm4NrKS1/f9fBLMtz1BZT9F4AtyGImUINeUH2S+mPIHFWbaYFkw/TV6ajWof5ABOS11Qpi2WHeXgDkpAFMYXaB67/fbqa6v4qPY4TL5HI9fjP7macb/oYyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DymS85hP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25017C4CEE7;
-	Wed,  7 May 2025 09:09:47 +0000 (UTC)
+	 MIME-Version:Content-Type; b=UQNVZOdx9IWfhSGUEKj5lF4AwwSJy203MIemEPDNEU9QQzwh+PI785bBpk/dmamY7XMR9wo5tKK240lkZeCuswS88mQbu6cZcldry/i3QiwiqerfDvNwLe/g8+vjcHcTtqin57t0+pKIj+VGZLVD2ZexUy2Uq0djo7pP46unm7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WjzGV6yC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C150C4CEE7;
+	Wed,  7 May 2025 09:14:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746608987;
-	bh=NLp8JFDJsOzfYtXeJkQaN/hv+HwjkOYPnkWmlYWTRYw=;
+	s=k20201202; t=1746609273;
+	bh=bMRotR6sHrHiFqd8cq3cCqa6cfuObmO7cwP+0halJek=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DymS85hPUzNiC/r88JR99TxNB6pkG4E+GO492ckDnEoz2gJ2WURqRCglDqtrQiFI9
-	 7DW2vdJkItnjQeJJ2WUePiED3oO5qJr4l3hADJQ8QyaydobKd4rEjttCwXaGeZ85U1
-	 5WbYsAwR9pLQyT1jbswC/YYk+c+uD3/3Ipzlj8W9yRsHjHAglRZgNf1OEFpalyvIh9
-	 y9SDv2sgehE5n2rZL2hd28EpxzhT5afNJ04BpLREhr69O+O2BWAE/QYTzv7xu9W+Qv
-	 IKkbu7Ai68twjAUDpH7Zbqg8V4X5rBU2uuvi1UVNXniDGRg49p33Skmby+vyFEg2jc
-	 p9bYRKHqv/H6A==
+	b=WjzGV6yCVCGZZCdYD4aRpjcWB/HhiFulV1TmDLmdZL+ZT2BeGwlIERfi9kHcmfUSy
+	 AfEUmYKO3x8q5rkUL3rNuR2keeslMT7PXyIWgwptyamIA4GK93lljdluNf1+8fdx0P
+	 hv++GqOsMtg4TVQV/UwM+dxd+CjU3rAvJHgtI5+N1iDgmyaPkK3F8RSLK6DxHhmFTs
+	 rBf/6R2h0wL8+e2h1Yq/yfvHHMYH1NNHCwklwkptBRu7sbrYvszX3UCfzAPgbi4n1o
+	 pwCzJImD56wpoxOBEN6JNNBX9vWJKzwMACaVIVDJeu1oeLl/ovm3KWaGTbVsS3TWOS
+	 F4HG7vMTomWnA==
 Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
 	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.95)
 	(envelope-from <maz@kernel.org>)
-	id 1uCame-00CY8v-Ra;
-	Wed, 07 May 2025 10:09:44 +0100
-Date: Wed, 07 May 2025 10:09:44 +0100
-Message-ID: <86bjs4hjmv.wl-maz@kernel.org>
+	id 1uCarH-00CYHp-2W;
+	Wed, 07 May 2025 10:14:31 +0100
+Date: Wed, 07 May 2025 10:14:29 +0100
+Message-ID: <86a57ohjey.wl-maz@kernel.org>
 From: Marc Zyngier <maz@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
+	Catalin Marinas
+ <catalin.marinas@arm.com>,
 	Will Deacon <will@kernel.org>,
 	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Sascha Bischoff
+ <sascha.bischoff@arm.com>,
 	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	"Liam R.\
+ Howlett" <Liam.Howlett@oracle.com>,
 	Mark Rutland <mark.rutland@arm.com>,
 	Jiri Slaby <jirislaby@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 00/25] Arm GICv5: Host driver implementation
-In-Reply-To: <aBsRvOzse7z39dkh@lpieralisi>
+Subject: Re: [PATCH v3 20/25] irqchip/gic-v5: Add GICv5 PPI support
+In-Reply-To: <87zffpn5rk.ffs@tglx>
 References: <20250506-gicv5-host-v3-0-6edd5a92fd09@kernel.org>
-	<86frhhhm18.wl-maz@kernel.org>
-	<aBsRvOzse7z39dkh@lpieralisi>
+	<20250506-gicv5-host-v3-20-6edd5a92fd09@kernel.org>
+	<87zffpn5rk.ffs@tglx>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
  (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -82,97 +86,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
 Content-Type: text/plain; charset=US-ASCII
 X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, timothy.hayes@arm.com, Liam.Howlett@oracle.com, mark.rutland@arm.com, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Rcpt-To: tglx@linutronix.de, lpieralisi@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, timothy.hayes@arm.com, Liam.Howlett@oracle.com, mark.rutland@arm.com, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Wed, 07 May 2025 08:54:36 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+On Tue, 06 May 2025 16:00:31 +0100,
+Thomas Gleixner <tglx@linutronix.de> wrote:
 > 
-> On Tue, May 06, 2025 at 03:05:39PM +0100, Marc Zyngier wrote:
-> > On Tue, 06 May 2025 13:23:29 +0100,
-> > Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> > > 
-> > > =============
-> > > 2.5 GICv5 IWB
-> > > =============
-> > > 
-> > > The IWB driver has been dropped owing to issues encountered with
-> > > core code DOMAIN_BUS_WIRED_TO_MSI bus token handling:
-> > > 
-> > > https://lore.kernel.org/lkml/87tt6310hu.wl-maz@kernel.org/
-> > 
-> > This problem does not have much to do with DOMAIN_BUS_WIRED_TO_MSI.
-> > 
-> > The issues are that:
-> > 
-> > - the core code calls into the .prepare domain on a per-interrupt
-> >   basis instead of on a per *device* basis. This is a complete
-> >   violation of the MSI API, because .prepare is when you are supposed
-> >   to perform resource reservation (in the GICv3 parlance, that's ITT
-> >   allocation + MAPD command).
-> > 
-> > - the same function calls .prepare for a *single* interrupt,
-> >   effectively telling the irqchip "my device has only one interrupt".
-> >   Because I'm super generous (and don't like wasting precious bytes),
-> >   I allocate 32 LPIs at the minimum. Only snag is that I could do with
-> >   300+ interrupts, and calling repeatedly doesn't help at all, since
-> >   we cannot *grow* an ITT.
-> 
-> On the IWB driver code that I could not post I noticed that it is
-> true that the .prepare callback is called on a per-interrupt basis
-> but the vector size is the domain size (ie number of wires) which
-> is correct AFAICS, so the ITT size should be fine I don't get why
-> it would need to grow.
+> How does this test distinguish between LEVEL_LOW and LEVEL_HIGH? It only
+> tests for level, no? So the test is interesting at best ...
 
-Look again. The only reason you are getting something that *looks*
-correct is that its_pmsi_prepare() has this nugget:
-
-	/* Allocate at least 32 MSIs, and always as a power of 2 */
-	nvec = max_t(int, 32, roundup_pow_of_two(nvec));
-
-and that the IWB is, conveniently, in sets of 32. However, the caller
-of this function (__msi_domain_alloc_irqs()) passes a  nvec value that
-is always exactly *1* when allocating an interrupt.
-
-So you're just lucky that I picked a minimum ITT size that matches the
-IWB on your model. Configure your IWB to be, let's say, 256 interrupts
-and use the last one, and you'll have a very different behaviour.
-
-> The difference with this series is that on v3 LPIs are allocated
-> on .prepare(), we allocate them on .alloc().
-
-Absolutely not. Even on v3, we never allocate LPIs in .prepare(). We
-allocate the ITT, perform the MAPD, and that's it. That's why it's
-called *prepare*.
-
-> So yes, calling .prepare on a per-interrupt basis looks like a bug
-> but if we allow reusing a deviceID (ie the "shared" thingy) it could
-> be harmless.
-
-Harmless? No. It is really *bad*. It means you lose any sort of sane
-tracking of what owns the ITT and how you can free things. Seeing a
-devid twice is the admission that we have no idea of what is going on.
-
-GICv3 is already in that sorry state, but I am hopeful that GICv5 can
-be a bit less crap.
-
-> > So this code needs to be taken to the backyard and beaten into shape
-> > before we can make use of it. My D05 (with its collection of MBIGENs)
-> > only works by accident at the moment, as I found out yesterday, and
-> > GICv5 IWB is in the same boat, since it reuses the msi-parent thing,
-> > and therefore the same heuristic.
-> > 
-> > I guess not having the IWB immediately isn't too big a deal, but I
-> > really didn't expect to find this...
-> 
-> To be honest, it was expected. We found these snags while designing
-> the code (that explains how IWB was structured in v1 - by the way)
-> but we didn't know if the behaviour above was by construction, we
-> always thought "we must be making a mistake".
-
-Then why didn't you report it? We could have caught this very early
-on, before the fscked-up code was in a stable release...
+There is no distinction between HIGH and LOW, RISING and FALLING, in
+any revision of the GIC architecture.
 
 	M.
 
