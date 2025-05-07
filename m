@@ -1,48 +1,57 @@
-Return-Path: <devicetree+bounces-174608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9467EAADC1C
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 12:03:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45106AADC23
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 12:04:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8738D1BA150D
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:03:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5421B1C21487
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:04:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00E69202998;
-	Wed,  7 May 2025 10:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77E0D20DD42;
+	Wed,  7 May 2025 10:04:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qiYVkYgs"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="JkPLRVWu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C431A72607;
-	Wed,  7 May 2025 10:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5CC205E02
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 10:04:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746612201; cv=none; b=Cr5XopGov7cQPg/iiUs3EyvL5FVnJnT9f2gL0fSh81HaW5X3eyZkzLR/MlT1IcgxT3waZzVfy3zSSqBXl7TyZuDq8vPo1JyIAGoTt+HIbXLBr4wrkG9f0yXto+6ohjFnM2jVukHKDSbfl72D+brMfrnrAnuEj3K/JE6+P6ADAkY=
+	t=1746612248; cv=none; b=ghf5WfCM7tzOqdZliTy197qWY0pHtG1eAwJ2aHjknF0CRrsGVKn74C5eNVSWnrSv57iHPiY+AORF0yC8o/iY1amjelrWw2frkNJs1l256nKgv2m0EULt2Eq+SjNmNrtMtJmcwjsmiS7bZ8DCWP5dccS55AA667V4TzWsv96ljXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746612201; c=relaxed/simple;
-	bh=Vja99RwKaWd86Bne8CVxoLF7hXa1qZ2hU2qWEbh3rTM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DKQjl73VUtcdy/gDxY97kEQXJoTVQJppdcPqWx0lcH9sGa4bobIXds+8ds+7z+RxbM2blH37UJOe+10iPbQJpTHKfu/OzbilomBo9LyDjI1IyrkQYuAa8/GAElcvTs+YZajS5OmsuXmefuGPEMYmqu++fLxseAE8fv9SvrkEAm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qiYVkYgs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44473C4CEEB;
-	Wed,  7 May 2025 10:03:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746612201;
-	bh=Vja99RwKaWd86Bne8CVxoLF7hXa1qZ2hU2qWEbh3rTM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qiYVkYgsZJk1ojH2gUT0LuMkPaET6AsYf/tKwE/0NkUB43kU6qBoxjNwN00fGIvxT
-	 BDsNWC76g4TZw8L/HgeNyguw1F5vnOrFHOquk+1x5scGvDlx+PLRojlR8fOFLRl9uj
-	 ITq1FNep+ghls2iq7ojFYqD2EXPqBsM7FRADhnmYjdVhDUGkAZYamO1q9qXk+caIdL
-	 ZiCampwGUpIpbncLJsUrNJxgSQSIfFspt+5Goztwy8f6tbF65j8EMsSWXsanfyzP6Z
-	 iSN47YE511HkrBnFBRnmyccIxXsrYVO8w6j67aBFIRdmkxxATlvW8NjoIpF3+4d5ry
-	 6IP5gkty3xcIA==
-Message-ID: <574a67b7-bd57-4cf4-9ecb-cdcefafeb791@kernel.org>
-Date: Wed, 7 May 2025 12:03:14 +0200
+	s=arc-20240116; t=1746612248; c=relaxed/simple;
+	bh=KKDPdf+RYih2MpxRJbdswI13umMtHPKoTSKbUwdg2SQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=SHlUoEjXKPLfL8mD9pTCYCZFSbxvJspvI7079UVKEpY7jjFRpRqDU7/Nlrw4I+9KldcYLICdLJtPoA7f2wl/oXbdKrjWf4SXXUpeETiiQIvytOn1YUXcpcbv5RS54bQj7vZWUQY+kmZ3I1jKtUYwEhg306qXDWKjSASh7s9UXy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=JkPLRVWu; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250507100403euoutp02114fe31d70dcbd5b8efb64092ff95f92~9NpT5TS1K1468914689euoutp02P
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 10:04:03 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250507100403euoutp02114fe31d70dcbd5b8efb64092ff95f92~9NpT5TS1K1468914689euoutp02P
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1746612243;
+	bh=N32TfHVqNTkje4PcTK07rh/HIsJBsQBWcN1H8kWn9js=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=JkPLRVWuHBDbxns/R/3DK8w87IPCtNOg2sGMoqr4GavTq/yF0viOnzZnBTs8ZrWI6
+	 lYvhnCAFyq59EGWlnhGYpCXwQzDsHeXwqOD/orpLzP+waygrJJjzqYthmqoUeCMMKg
+	 PCaedNImP5Y/Dbgr/zZOR/RRE7Oq68itdkMfRpGQ=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250507100403eucas1p1c31cf23f55512589a7663132f9f50778~9NpTWWOeV1269412694eucas1p11;
+	Wed,  7 May 2025 10:04:03 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250507100402eusmtip2f16f3da88a0473dad88a4f960a19539c~9NpSR_l2o2857428574eusmtip2I;
+	Wed,  7 May 2025 10:04:02 +0000 (GMT)
+Message-ID: <91ecca14-2102-4c29-9252-025ce6b6a07f@samsung.com>
+Date: Wed, 7 May 2025 12:04:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,139 +59,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/6] dt-bindings: PCI: qcom,pcie-sa8775p: document
- qcs8300
-To: Qiang Yu <quic_qianyu@quicinc.com>,
- Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
- abel.vesa@linaro.org, manivannan.sadhasivam@linaro.org,
- lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
- andersson@kernel.org, konradybcio@kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-References: <20250507031019.4080541-1-quic_ziyuzhan@quicinc.com>
- <20250507031019.4080541-3-quic_ziyuzhan@quicinc.com>
- <20250507-quixotic-handsome-wallaby-4560e3@kuoka>
- <8fef4573-0527-44d8-a481-f3271d9ffa33@quicinc.com>
- <01b06e36-823c-4f28-8db5-dc0ee0b4c063@kernel.org>
- <c91c5357-464b-4ecc-96a5-c617048f73e5@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v7 3/3] riscv: dts: thead: Add device tree VO clock
+ controller
+To: Stephen Boyd <sboyd@kernel.org>, Drew Fustini <drew@pdp7.com>
+Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, guoren@kernel.org, wefu@redhat.com,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, jszhang@kernel.org, p.zabel@pengutronix.de,
+	m.szyprowski@samsung.com, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <c91c5357-464b-4ecc-96a5-c617048f73e5@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <c46de621e098b7873a00c1af4ca550a1@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250507100403eucas1p1c31cf23f55512589a7663132f9f50778
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319
+X-EPHeader: CA
+X-CMS-RootMailID: 20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319
+References: <20250403094425.876981-1-m.wilczynski@samsung.com>
+	<CGME20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319@eucas1p2.samsung.com>
+	<20250403094425.876981-4-m.wilczynski@samsung.com> <Z/BoQIXKEhL3/q50@x1>
+	<17d69810-9d1c-4dd9-bf8a-408196668d7b@samsung.com>
+	<9ce45e7c1769a25ea1abfaeac9aefcfb@kernel.org>
+	<475c9a27-e1e8-4245-9ca0-74c9ed663920@samsung.com>
+	<c46de621e098b7873a00c1af4ca550a1@kernel.org>
 
-On 07/05/2025 11:56, Qiang Yu wrote:
+
+
+On 5/6/25 23:30, Stephen Boyd wrote:
+> Quoting Michal Wilczynski (2025-04-30 00:52:29)
+>>
+>> In the v2 version of the patchset, there was no reset controller yet, so
+>> I thought your comment was made referring to that earlier version.
+>> This representation clearly describes the hardware correctly, which is
+>> the requirement for the Device Tree.
+>>
+>> The manual, in section 5.4.1.6 VO_SUBSYS, describes the reset registers
+>> starting at 0xFF_EF52_8000:
+>>
+>> GPU_RST_CFG             0x00
+>> DPU_RST_CFG             0x04
+>> MIPI_DSI0_RST_CFG       0x8
+>> MIPI_DSI1_RST_CFG       0xc
+>> HDMI_RST_CFG            0x14
+>> AXI4_VO_DW_AXI          0x18
+>> X2H_X4_VOSYS_DW_AXI_X2H 0x20
+>>
+>> And the clock registers for VO_SUBSYS, manual section 4.4.1.6 start at offset 0x50:
+>> VOSYS_CLK_GATE          0x50
+>> VOSYS_CLK_GATE1         0x54
+>> VOSYS_DPU_CCLK_CFG0     0x64
+>> TEST_CLK_FREQ_STAT      0xc4
+>> TEST_CLK_CFG            0xc8
+>>
+>> So I considered this back then and thought it was appropriate to divide
+>> it into two nodes, as the reset node wasn't being considered at that
+>> time.
+>>
+>> When looking for the reference [1], I didn't notice if you corrected
+>> yourself later, but I do remember considering the single-node approach
+>> at the time.
+>>
 > 
-> On 5/7/2025 4:25 PM, Krzysztof Kozlowski wrote:
->> On 07/05/2025 10:19, Ziyue Zhang wrote:
->>> On 5/7/2025 1:10 PM, Krzysztof Kozlowski wrote:
->>>> On Wed, May 07, 2025 at 11:10:15AM GMT, Ziyue Zhang wrote:
->>>>> Add compatible for qcs8300 platform, with sa8775p as the fallback.
->>>>>
->>>>> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
->>>>> ---
->>>>>    .../bindings/pci/qcom,pcie-sa8775p.yaml       | 26 ++++++++++++++-----
->>>>>    1 file changed, 19 insertions(+), 7 deletions(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
->>>>> index efde49d1bef8..154bb60be402 100644
->>>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
->>>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
->>>>> @@ -16,7 +16,12 @@ description:
->>>>>    
->>>>>    properties:
->>>>>      compatible:
->>>>> -    const: qcom,pcie-sa8775p
->>>>> +    oneOf:
->>>>> +      - const: qcom,pcie-sa8775p
->>>>> +      - items:
->>>>> +          - enum:
->>>>> +              - qcom,pcie-qcs8300
->>>>> +          - const: qcom,pcie-sa8775p
->>>>>    
->>>>>      reg:
->>>>>        minItems: 6
->>>>> @@ -45,7 +50,7 @@ properties:
->>>>>    
->>>>>      interrupts:
->>>>>        minItems: 8
->>>>> -    maxItems: 8
->>>>> +    maxItems: 9
->>>> I don't understand why this is flexible for sa8775p. I assume this
->>>> wasn't tested or finished, just like your previous patch suggested.
->>>>
->>>> Please send complete bindings once you finish them or explain what
->>>> exactly changed in the meantime.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>> Hi Krzysztof
->>> Global interrupt is optional in the PCIe driver. It is not present in
->>> the SA8775p PCIe device tree node, but it is required for the QCS8300
->> And hardware?
+> If the two register ranges don't overlap then this is probably OK. I
+> imagine this is one device shipped by the hardware engineer, VO_SUBSYS,
+> which happens to be a clock and reset controller. This is quite common,
+> and we usually have one node with both #clock-cells and #reset-cells in
+> it. Then we use the auxiliary bus to create the reset device from the
+> clk driver with the same node. This helps match the device in the
+> datasheet to the node and compatible in DT without making the compatible
+> provider specific (clk or reset postfix).
 > 
-> The PCIe controller on the SA8775p is also capable of generating a global
-> interrupt.
->>> I did the DTBs and yaml checks before pushing this patch. This is how
->>> I became aware that `maxItem` needed to be changed to 9.
->> If it is required for QCS8300, then you are supposed to make it required
->> in the binding for this device. Look at other bindings.
+> That's another reason why we usually have one node. DT doesn't describe
+> software, i.e. the split between clk and reset frameworks may not exist
+> in other operating systems. We don't want to put the software design
+> decisions into the DT.
 > 
-> The global interrupt is not mandatory. The PCIe driver can still function
-> without this interrupt, but it will offer a better user experience when
-> the device is plugged in or removed. On other platforms, the global
-> interrupt is also optional, and `minItems` and `maxItems` are set to 8 and
-> 9 respectively. Please refer to `qcom,pcie - sm8550.yaml`,
-> `qcom,pcie - sm8450.yaml`, and `qcom,pcie - x1e80100.yaml`.
-I don't know what does it prove. You cannot add requirement of global
-interrupt to existing devices because it would be an ABI break.
+> It may also be that a device like this consumes shared power resources
+> like clks or regulators that need to be enabled to drive the device, or
+> an IOMMU is used to translate the register mappings. We wouldn't want to
+> split the device in DT in that case so we can easily manage the power
+> resources or memory mappings for the device.
+> 
+> TL;DR: This is probably OK, but I'd be careful to not make it a thing.
+
+Thank you very much for the comprehensive explanation. Because the
+registers don’t overlap, it’s fine in this case. Since Drew also seem to
+agree, we can probably push these patches forward, while keeping in mind
+that for future SoCs it would be better to use a single node.
+
+> 
 
 Best regards,
-Krzysztof
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
