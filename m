@@ -1,143 +1,282 @@
-Return-Path: <devicetree+bounces-174580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09052AADA24
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:28:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D9CAADA2E
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:30:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 158B698209A
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:28:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70AB416B29B
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:30:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8BD221708;
-	Wed,  7 May 2025 08:28:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACDFA1EDA0F;
+	Wed,  7 May 2025 08:30:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cIJkU8hf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQVl1AAs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD47F217F40;
-	Wed,  7 May 2025 08:28:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8445B217F40;
+	Wed,  7 May 2025 08:30:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746606503; cv=none; b=CbbMpMnJbY9rQ/lWj31Ks7HvKQLaa889oGZGYT7kMy41uFL2bpNvWEgWpFolieWI/3hp8n4vkgshSOB84xcJ4M3GCu6BNGXI0bxB0tMR7pt6eRUAfjK4iQWGyJgG51dhEXYVyoQLesxSwHxaMVHovL4q529y6tcC2fvBiOBNrxA=
+	t=1746606603; cv=none; b=Anv41n/+THyJGiOlboSzT4W/85qx7hJemNnK1UaBJ9s/Y5ycjWWz0lNaDncVEV1lK+5V/j078ecqbg4ED2CokZcr8RoYQT2htO4fOpxTN7rhfddEPEKLrPsnxnuGVC7YwcE9kZ9/V5+D+lZwn5xlAfzaf9ldyp4rJlGqwbN6lKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746606503; c=relaxed/simple;
-	bh=/6zoEkQ0lo1XuA4K+Km6yLk8x1QoBH8K7XBJwf6FiMQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VBc11DwL5SyrhKbam5ElnMkplhU1FRFCwpj0PwvLOrN1jLt8WG429kUVOYTPogevpxK2WCe9aNzKbrywXRU/iDKDpA+CDgrQphMtB1hMUfj5LgvBKl13mYva4VgDHMhCzK0JUfG+GrExH+3mmhEnjJARnJna7XyhEpL8ebiNtQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cIJkU8hf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 952C9C4CEF1;
-	Wed,  7 May 2025 08:28:19 +0000 (UTC)
+	s=arc-20240116; t=1746606603; c=relaxed/simple;
+	bh=LgZIIR3VWR/B7NCGqfYJnfn8zg8b4s8/O2CmZ0PJpS8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oPbDbTZEuH/H3mAZw+8ILoYe6f4aUiKQRvb+GL66u7/iYMjtV/iP2SQ/nTST7hTVMudogZzzG8Rr7EHYa1CGMeGwMoyFz4BTuFLe1vwrlzH7Qpb1238pE2PQZWv6Irn6+pQJy14bcE9ejMmJ4O7ZSzH/aWl3qSiiFhLkW/8Jrz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eQVl1AAs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B25AC4CEE7;
+	Wed,  7 May 2025 08:29:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746606503;
-	bh=/6zoEkQ0lo1XuA4K+Km6yLk8x1QoBH8K7XBJwf6FiMQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cIJkU8hfhMdDBPvbbZA6/upzqsWRFL4U8FummycAokXNJBjRVlNhRKF1Va6UIijEg
-	 I85wdxkk4Q7ZgRSuRj/ZHpEWE5Rb9z3kMXsjgRSKCnv+mV5qrBLGiQwz6yhsBJF1oO
-	 Ld8XhAcxixCeSLNrfgjN9FmCrbjQa3DxXvk/FOPfIhFJxKLXnw2m1b1Cqj2gcgXpDz
-	 J/H7wzU2Gsy4ejnAEGfGfXFeT8NmEW7wD++UzaxXFRDAwYF/mHVze2giHsyGq/DVQd
-	 1AJfO0tdl8ob8at7Nj40aP9QoU3sOr6Xj7uBShJu74ftO34MS9cqdMJyk6GJ6Nkciq
-	 tNuQ9ShTR6V7g==
-Message-ID: <1f7760c6-0fdf-48b0-9c13-85fa5e01cddd@kernel.org>
-Date: Wed, 7 May 2025 10:28:17 +0200
+	s=k20201202; t=1746606603;
+	bh=LgZIIR3VWR/B7NCGqfYJnfn8zg8b4s8/O2CmZ0PJpS8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eQVl1AAsAzPugaTbhcwnyMqVE8YJga+7DZmHrA/tgTUXLEAgXl84aD5k4IRr5v1A/
+	 cscW4kkPIESdZQD0uYOHjZNS/jJ0XWybnrbxB2nOCBtJXLTRM7Se5ph3PqfjXx/ihH
+	 Tqyuesewk7mNSRpBbFxc4fvwg+n0oDaolAaiaTDX6IVx81RMrWwAGo68M3r2LBTETh
+	 GU0xAlvJz4cVUtrhK3EW+3uCnE2nb/6KTxYu9DjPwibSJthMLOAwMBsvDwe4JJzP65
+	 RzFyJhXyOPFqa0eYddjViK16bTXwcOO6GHNpbZ9zHR9AfuoQc2lVNw104kwvqvhDCd
+	 uqOUS3LvJ/u4w==
+Date: Wed, 7 May 2025 10:29:56 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 20/25] irqchip/gic-v5: Add GICv5 PPI support
+Message-ID: <aBsaBDB17LAV48ZB@lpieralisi>
+References: <20250506-gicv5-host-v3-0-6edd5a92fd09@kernel.org>
+ <20250506-gicv5-host-v3-20-6edd5a92fd09@kernel.org>
+ <87zffpn5rk.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 0/4] Add STM32MP25 SPI NOR support
-To: Patrice Chotard <patrice.chotard@foss.st.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc: christophe.kerello@foss.st.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
-References: <20250507-upstream_ospi_v6-v13-0-32290b21419a@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250507-upstream_ospi_v6-v13-0-32290b21419a@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87zffpn5rk.ffs@tglx>
 
-On 07/05/2025 09:25, Patrice Chotard wrote:
-> This series adds SPI NOR support for STM32MP25 SoCs from STMicroelectronics.
+On Tue, May 06, 2025 at 05:00:31PM +0200, Thomas Gleixner wrote:
+> On Tue, May 06 2025 at 14:23, Lorenzo Pieralisi wrote:
+> > +
+> > +static u8 pri_bits = 5;
 > 
-> On STM32MP25 SoCs family, an Octo Memory Manager block manages the muxing,
-> the memory area split, the chip select override and the time constraint
-> between its 2 Octo SPI children.
+> __ro_after_init ?
+
+Ok.
+
 > 
-> Due to these depedencies, this series adds support for:
->   - Octo Memory Manager driver.
->   - Octo SPI driver.
->   - yaml schema for Octo Memory Manager and Octo SPI drivers.
+> > +#define GICV5_IRQ_PRI_MASK 0x1f
 > 
-> The device tree files adds Octo Memory Manager and its 2 associated Octo
-> SPI chidren in stm32mp251.dtsi and adds SPI NOR support in stm32mp257f-ev1
-> board.
->     
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> Please put a new line before the #define and use a TAB between the
+> symbol and the value.
+
+Ok, sorry.
+
+> > +#define GICV5_IRQ_PRI_MI \
+> > +		(GICV5_IRQ_PRI_MASK & GENMASK(4, 5 - pri_bits))
 > 
-> Changes in v13:
-> - Make firewall prototypes always exposed.
+> No line break required. You have 100 characters
 
+Right.
 
-I do not see any changes here.
+> > +#define READ_PPI_REG(irq, reg)							\
+> > +	({									\
+> > +		u64 __ppi_val;							\
+> > +										\
+> > +		if (irq < 64)							\
+> > +			__ppi_val = read_sysreg_s(SYS_ICC_PPI_##reg##R0_EL1);	\
+> > +		else								\
+> > +			__ppi_val = read_sysreg_s(SYS_ICC_PPI_##reg##R1_EL1);	\
+> > +		__ppi_val;							\
+> > +	})
+> > +
+> > +#define WRITE_PPI_REG(set, irq, bit, reg)					\
+> > +	do {									\
+> > +		if (set) {							\
+> > +			if (irq < 64)						\
+> > +				write_sysreg_s(bit, SYS_ICC_PPI_S##reg##R0_EL1);\
+> > +			else							\
+> > +				write_sysreg_s(bit, SYS_ICC_PPI_S##reg##R1_EL1);\
+> > +		} else {							\
+> > +			if (irq < 64)						\
+> > +				write_sysreg_s(bit, SYS_ICC_PPI_C##reg##R0_EL1);\
+> > +			else							\
+> > +				write_sysreg_s(bit, SYS_ICC_PPI_C##reg##R1_EL1);\
+> > +		}								\
+> > +	} while (0)
+> 
+> I'm not convinced that these need to be macros.
+> 
+> static __always_inline u64 read_ppi_sysreg_s(unsigned int irq, const unsigned int which)
+> {
+>         switch (which) {
+>         case PPI_HM:
+>         	return irq < 64 ? read_sysreg_s(SYS_ICC_PPI_HM_R0_EL1) :
+>                 		  read_sysreg_s(SYS_ICC_PPI_HM_R1_EL1;
+>         case ....:
+> 
+>         default:
+>                 BUILD_BUG_ON(1);
+>         }
+> }
+> 
+> static __always_inline void write_ppi_sysreg_s(unsigned int irq, bool set, const unsigned int which)
+> {
+> 	u64 bit = BIT_ULL(irq % 64);
+> 
+>         switch (which) {  
+>         case PPI_HM:
+>         	if (irq < 64)
+>                 	write_sysreg_s(bit, SYS_ICC_PPI_HM_R0_EL1);
+>                 else
+>                 	write_sysreg_s(bit, SYS_ICC_PPI_HM_R1_EL1;
+>                 return;
+>         case ....:
+> 
+>         default:
+>                 BUILD_BUG_ON(1);
+>         }
+> }
+> 
+> Or something like that.
 
-b4 diff suggests this is the same as v11 so I expect the same failures.
+Done.
 
-Best regards,
-Krzysztof
+> > +static int gicv5_ppi_set_type(struct irq_data *d, unsigned int type)
+> > +{
+> > +	/*
+> > +	 * The PPI trigger mode is not configurable at runtime,
+> > +	 * therefore this function simply confirms that the `type`
+> > +	 * parameter matches what is present.
+> > +	 */
+> > +	u64 hmr = READ_PPI_REG(d->hwirq, HM);
+> > +
+> > +	switch (type) {
+> > +	case IRQ_TYPE_LEVEL_HIGH:
+> > +	case IRQ_TYPE_LEVEL_LOW:
+> > +		if (((hmr >> (d->hwirq % 64)) & 0x1) != GICV5_PPI_HM_LEVEL)
+> > +			return -EINVAL;
+> 
+> Blink!
+> 
+> How does this test distinguish between LEVEL_LOW and LEVEL_HIGH? It only
+> tests for level, no? So the test is interesting at best ...
+
+There is no HIGH/LOW concept for level interrupts in the architecture,
+level interrupts are asserted/de-asserted. On top of that, as you
+already noticed, for PPIs this can't even be changed so this function
+is utterly pointless.
+
+> Secondly this comparison is confusing at best especially given that you
+> mask with a hex constant (0x1) first.
+> 
+>      		if (hmr & BIT_UL(d->hwirq % 64))
+>                 	return -EINVAL;
+> 
+> Aside of that why do you have a set_type() function if there is no way
+> to set the type?
+
+Yes, that's useless, the kernel is not there to validate firmware, I
+will remove it.
+
+> > +
+> > +static int gicv5_ppi_irq_get_irqchip_state(struct irq_data *d,
+> > +					   enum irqchip_irq_state which,
+> > +					   bool *val)
+> > +{
+> > +	u64 pendr, activer, hwirq_id_bit = BIT_ULL(d->hwirq % 64);
+> > +
+> > +	switch (which) {
+> > +	case IRQCHIP_STATE_PENDING:
+> > +		pendr = READ_PPI_REG(d->hwirq, SPEND);
+> > +
+> > +		*val = !!(pendr & hwirq_id_bit);
+> > +
+> > +		return 0;
+> 
+> 		*val = !!(read_ppi_reg(d->hwirq, PPI_SPEND) & bit);
+>                 return 0;
+> 
+> would take up less space and be readable.
+
+Ok done.
+
+> > +	case IRQCHIP_STATE_ACTIVE:
+> > +		activer = READ_PPI_REG(d->hwirq, SACTIVE);
+> > +
+> > +		*val = !!(activer & hwirq_id_bit);
+> > +
+> > +		return 0;
+> > +	default:
+> > +		pr_debug("Unexpected PPI irqchip state\n");
+> > +	}
+> > +
+> > +	return -EINVAL;
+> 
+> Move the return into the default case.
+
+Ok.
+
+> > +static int __init gicv5_init_domains(struct fwnode_handle *handle)
+> > +{
+> > +	struct irq_domain *d;
+> > +
+> > +	d = irq_domain_create_linear(handle, PPI_NR, &gicv5_irq_ppi_domain_ops,
+> > +				     NULL);
+> 
+> Please use the full 100 charactes all over the place.
+
+Ok.
+
+> > +	if (!d)
+> > +		return -ENOMEM;
+> > +
+> > +	irq_domain_update_bus_token(d, DOMAIN_BUS_WIRED);
+> > +	gicv5_global_data.ppi_domain = d;
+> > +
+> > +	gicv5_global_data.fwnode = handle;
+> 
+> The random choices of seperating code with new lines are really
+> amazing.
+
+I separated code that initializes the domain from one that initialises
+fwnode - it made sense to *me*, I don't know what makes sense to others
+unless there are rules (or a script/bot reformatting the code for a
+given subsytem) that one can follow I am afraid.
+
+> > +static int __init gicv5_of_init(struct device_node *node, struct device_node *parent)
+> > +{
+> > +	int ret;
+> > +
+> > +	ret = gicv5_init_domains(&node->fwnode);
+> 
+>         int ret = ....;
+
+Ok.
+
+> > +	if (ret)
+> 
+> Thanks,
+> 
+>         tglx
+
+Thanks for reviewing.
+
+Lorenzo
 
