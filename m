@@ -1,297 +1,245 @@
-Return-Path: <devicetree+bounces-174662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA1CBAAE04F
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 15:13:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5D4AAE062
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 15:15:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD8E67BB067
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 13:10:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1C1D3BF8F7
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 13:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4CFB28980C;
-	Wed,  7 May 2025 13:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B0C0289346;
+	Wed,  7 May 2025 13:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="UgSIQJXp"
+	dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b="d81IQe2C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11020123.outbound.protection.outlook.com [52.101.69.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CB6289802;
-	Wed,  7 May 2025 13:08:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C81152820AC;
+	Wed,  7 May 2025 13:12:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.123
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746623292; cv=pass; b=gW+pfGZ4MUyEa6kqW9pNiztOhgtSgrPfUw6IcBzck8Yb5ds2Ko4Ihvue5y6R5suIzediLd8fVcfBhFd+qYRscswVbflPLDhBIN51HWwkgIfH+3ZFlfMWF1yEVIOsS9dbhh8Xq8Xjlkve0GOsijPljuHzEuf1/y+sz9D/4tJMffA=
+	t=1746623527; cv=fail; b=KAYeFfGRY/8D7X5LEboVKywGe+XVIegQ1vN8+ZjEa9CIbpozK7GBSaXlp5U5AWHsg239vW1wK872HXb6uwB8jw+f+TEdg3jwYMniqZzWIwxE6V3LUin/E/fU3zpY1MbVOciApnPRYQ6xbZqYAgDj61TMxFtLP9b/MmwVRV/en3Q=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746623292; c=relaxed/simple;
-	bh=MTAb9rz5IjDPFHU4fcHQ4VBXXcHmzG1zGNQI2Arg+5s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bP6mSCsvDZo4/ZoXpJFO9DBeXPlMyBvNZKLmE+A6s8ChDMdTungYoVqsg/xY25YGVPkyD8ABWERQzgk3Ae9z+h61QClzWtix6qx61dCgHySYUVFWqo1dqO4BPIdFcg025/Y8z195hjk6u/CWIw0gaUNkSCwo/Vcbb3ayjOZsa34=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=UgSIQJXp; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1746623270; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=lrg3mL/fl3g21qBIr7JHsU9AgJdDTBwJgUwEmF2MWRPDxs82b0mMndWXxpGn5SqhqXbwC9LY0E+pbtRtVb3pnvAEar/lJY9kcV7SBE3Ou3dZ+Rl1c5Y0egHUQwRdM4prxRn0WGBISC8YnISxgvaEkYaQZIGIhOa8N7wpb0shnE0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1746623270; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=n/b63KH5NJPUOPZ1g1cKRKHd1zEwEqpry3HADn6QvTM=; 
-	b=X4XIXLTqBJUKStQo2Q6NXfd5PrDMik2UqVgXPsUU0AYBPG0CUpxx7Ch6IDPgZaJeQSuUICweSqeJ2tttyZ7WXSEvX7/pfulNyzov8MW/41ufDiKlDvaWtbhUGVLJPhJVhN5hrwg7OvrcfPOaiszN82oT59y8Zda/j79jLYpE9Ig=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1746623270;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=n/b63KH5NJPUOPZ1g1cKRKHd1zEwEqpry3HADn6QvTM=;
-	b=UgSIQJXpt40JoQWQx9NJh3nI/TmbfDvztlOBqxNfBs9vkcxjaESiACyVYMYtZFRo
-	BhXMI1s3LDC+ZZX7qsKyOYMy2T62FK+kGmqIrv5LD2a+jG2sImjma9kDVzfqZA7q40I
-	gCvHjWbEbkFHYtzGCfd9YzkZBldYeJbvEXwqSnJ8=
-Received: by mx.zohomail.com with SMTPS id 1746623268314716.9665012016193;
-	Wed, 7 May 2025 06:07:48 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Wed, 07 May 2025 15:07:24 +0200
-Subject: [PATCH v3 4/4] arm64: dts: rockchip: enable USB on Sige5
+	s=arc-20240116; t=1746623527; c=relaxed/simple;
+	bh=C41rI9aFmq3RUqAZ937AW+T8iFThLTlV2So12qL8vhU=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Sm5OfXRjZHUBLDf1qeRuJjJa1YV5lr8RaovNt6NhxcqdPrtorO5Tz0DJrD5EG22/IRSsg2CrEMezhlC8eQb+4Sgn2DJFsIdN2WsbDn6igjEgJ+6Q02HCIsAkjwX6gXWE7JX2IuHXHFUES7CIwL9Uwvos0ioX4ok/KBcSMtrfDac=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=topic.nl; spf=pass smtp.mailfrom=topic.nl; dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b=d81IQe2C; arc=fail smtp.client-ip=52.101.69.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=topic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=topic.nl
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pyfzEOewlEtvhWwScYzTZ8CIPahFEcnPpJOYMCdEBmMozmL5oa17DtjpUtN6C5G4GHYPXKJ5v4gUfTJLRJtX0V4634lzMRVOiWPPPg651MFhUJx8ulNjuzoUPQs3LDSUptLjPYvcsUIlbnbGk5jriy8gxPDMOqAepbu3ltqOB+hjn3p9zDAlzYDKF2xCuP66r9iIdIrCsXEtcmmMiGfzTU6muMzxTe1vutscFp5ZmLXdT8XDRtNsMgp65ZI85+b/4bn8EmBL252zqUcXc8G3CuBzE7/74xgm4/5RW0wtHt5VrYe9wIItgYVFsHZUmoXchyKEW1WHxEXKDWBb91pENQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zn/p8fdyXB3HV36V73ktKknngPANxXcofucmvPvXjjE=;
+ b=uGdrcYTfe+mqFyn/1z87zfbA6uiCmLR+0sZ/DWwoRb3fRPX62cZxYGlXYrvgK+UhnKf1x4DrILLw5Ktw90wcORU4OiShZKgRsGSirFKFdDucLUgaK8oq+vkElUmtfSMdkBqnjAwKTRRUNvs6fjXCL7GDylWzBNRIRyZ9F0/4uN11zqSJnHT08HE+DBhaO3GLGxMhPMPOK9mkEBWvKc4GW/TyXP3svY4vtoX1oNFCbD5s/R1uv5bMyCCX9R/Q0xjik/TNgO31WED08dYBqeRNyXdq8FmImkLepZ3s4mlakAaHBjL6mfwv8SsPkPmmR9rDgHNiH2aT1MMEbxBFChAk1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 13.93.42.39) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=topic.nl;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=topic.nl; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zn/p8fdyXB3HV36V73ktKknngPANxXcofucmvPvXjjE=;
+ b=d81IQe2C7CoASdcGvh+xSoTWKKLLnMbhRcTNK5exulllgPVSCj27eaH5vTiYMNh/PmFEGa+UPBKqUUsGNnNwZnI9BQhAkubf/NKpdh1BKb4MpcoVTwoTgTQWMkXTafGLi2o48XnNLge0fYdm+jOiZ9E/gdVXXvElvUn5PrkJFdkgwKVNsub8kivtNdtJLKDVtmu9GDeoXtBr1B28rSRILd9W9LRNo2Xsl28PmX0D+uaGOdk6U+aVeoNxqK51e1GKwFPkXTK4JNtCSztnpZOSRP2m3id53V0ThlXO/2WStxDoUGLy3lwO4TAXZZsfJxqkTRp1w9puhy15Hnd7jJcsEQ==
+Received: from AS9PR04CA0086.eurprd04.prod.outlook.com (2603:10a6:20b:50e::24)
+ by GV2PR04MB11094.eurprd04.prod.outlook.com (2603:10a6:150:279::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.21; Wed, 7 May
+ 2025 13:11:58 +0000
+Received: from AMS1EPF00000045.eurprd04.prod.outlook.com
+ (2603:10a6:20b:50e:cafe::85) by AS9PR04CA0086.outlook.office365.com
+ (2603:10a6:20b:50e::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8722.21 via Frontend Transport; Wed,
+ 7 May 2025 13:11:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 13.93.42.39)
+ smtp.mailfrom=topic.nl; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topic.nl designates
+ 13.93.42.39 as permitted sender) receiver=protection.outlook.com;
+ client-ip=13.93.42.39; helo=westeu12-emailsignatures-cloud.codetwo.com; pr=C
+Received: from westeu12-emailsignatures-cloud.codetwo.com (13.93.42.39) by
+ AMS1EPF00000045.mail.protection.outlook.com (10.167.16.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8722.18 via Frontend Transport; Wed, 7 May 2025 13:11:58 +0000
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (104.47.18.106) by westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Wed, 07 May 2025 13:11:57 +0000
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from AS8PR04MB8644.eurprd04.prod.outlook.com (2603:10a6:20b:42b::12)
+ by DB9PR04MB9283.eurprd04.prod.outlook.com (2603:10a6:10:36d::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.22; Wed, 7 May
+ 2025 13:11:54 +0000
+Received: from AS8PR04MB8644.eurprd04.prod.outlook.com
+ ([fe80::e86d:f110:534e:480a]) by AS8PR04MB8644.eurprd04.prod.outlook.com
+ ([fe80::e86d:f110:534e:480a%6]) with mapi id 15.20.8699.026; Wed, 7 May 2025
+ 13:11:54 +0000
+From: Mike Looijmans <mike.looijmans@topic.nl>
+To: linux-usb@vger.kernel.org
+CC: Mike Looijmans <mike.looijmans@topic.nl>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] dt-bindings: usb: ti,usb8041: Add binding for TI USB8044 hub controller
+Date: Wed, 7 May 2025 15:11:43 +0200
+Message-ID: <20250507131143.2243079-2-mike.looijmans@topic.nl>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250507131143.2243079-1-mike.looijmans@topic.nl>
+References: <20250507131143.2243079-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.3e03400f-766d-4690-8f43-cbea2cac93d8@emailsignatures365.codetwo.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ClientProxiedBy: AS4P191CA0008.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5d5::19) To AS8PR04MB8644.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42b::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250507-rk3576-sige5-usb-v3-4-89bf5a614ccf@collabora.com>
-References: <20250507-rk3576-sige5-usb-v3-0-89bf5a614ccf@collabora.com>
-In-Reply-To: <20250507-rk3576-sige5-usb-v3-0-89bf5a614ccf@collabora.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Frank Wang <frank.wang@rock-chips.com>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, 
- kernel@collabora.com, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.2
+X-MS-TrafficTypeDiagnostic:
+	AS8PR04MB8644:EE_|DB9PR04MB9283:EE_|AMS1EPF00000045:EE_|GV2PR04MB11094:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f195857-2bb8-4c22-61d6-08dd8d68bf73
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted:
+ BCL:0;ARA:13230040|1800799024|366016|52116014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info-Original:
+ =?us-ascii?Q?Qi10+n8pGV8ZF4rCghY/M8PjvBeCpf+KF6KP/MtxLQcJPVDGyYF20lZuF7HO?=
+ =?us-ascii?Q?hBonepVX1ZZMVVKO7dzs5hS94lNkKofp4rG1uVx9T7pPXFWRFEWrb64YPXDs?=
+ =?us-ascii?Q?0bn7bdW6Ow5e1Ibg5Pqen+TUbU1vTb6csttxRapLpsQD7R9fz1jyTBAwG57b?=
+ =?us-ascii?Q?7UqlQzG8rxIgOzBTaIozsjhXeRfH1O7+HqSELGrP2u14/T2yL7mHoQ8K0mog?=
+ =?us-ascii?Q?Oa2aDX3Qq2EtF9SCZY7r3sNozjtyEHvRbw3m3hwpYc8vdgKbOXLxMLUWVQ6c?=
+ =?us-ascii?Q?qUqbCg7KN0BhIDAya6kh/kAFzzFE1YBgt8dBlWWXqq5L1Aq49XBv9ljAY7Q4?=
+ =?us-ascii?Q?J4Nh5JkO119dxmfBMOlJ6pH7qT8Xh2/WhBTtZOz1z5SmrAPmVZbhtXmBYT69?=
+ =?us-ascii?Q?c7mB5Ynsj8FcA0pN91LAg1f2D8HXUfFGoCPB3mOyE8wMzh4aVNAsxZCGlDr5?=
+ =?us-ascii?Q?fM3l1+VT+fZG3k+f2338M1xh9CPigP84OjoHdyQB7b9uI3kYqBKB4bLGyJHQ?=
+ =?us-ascii?Q?f6jmAOrgTdGtGOTurMxBLpfoS4BSSwUu+8Ka0jluta4bQpAJJB3bMhM51Cut?=
+ =?us-ascii?Q?rMMSKRqFzDcdeV7YsdH+9m8skqDK7vneQrH4ecKUHldchSZ3viP2ehRhrH6e?=
+ =?us-ascii?Q?98DZrkah2A5Rdg4crC9nGa0xD09xzTEb+WjB113n1iHglF2KqkB2a079+MKg?=
+ =?us-ascii?Q?wyGPWnHUUeniCTgvlykFx2rVEMrqV4LPq0OHoy6utaLsSULS20x43BmY2ewD?=
+ =?us-ascii?Q?DeJwEjsCXcKpdNtWfRpjN4eeariq/zL3yuvjtv8xhS9PI62UCiyxpbUhcUvU?=
+ =?us-ascii?Q?PKgzST4FZaDHRZGPaxlJH6DmTycZ8pQbeeBUUt9EPWaaN0Vh/6Vqd07AQJNI?=
+ =?us-ascii?Q?rVxzNzku9oA41gVZ+QmrFEzxR0kKMy5dOIBCdWYOfAS1tKX8c9YQvfm4TWKe?=
+ =?us-ascii?Q?13iZI1cdzqhuYQ486t6Nza0vkIcmXaYIlDTaJq3igCPqYo7ocibLpypaVNVy?=
+ =?us-ascii?Q?aZuden1dvPuas2fh0LJBQ2FNsBK4bqGiyGkw2RAEgOUu+g4g2fB0EtZIm/yo?=
+ =?us-ascii?Q?vzITHaRNysO4qaJzScUAI5MSyhqVYg/Sk2cv2cIUZw/UY5p+yPjWQOpZ445I?=
+ =?us-ascii?Q?Bsgr5HZlyw2Y/5roKV0gjU8S4+YO9AZ94RL2IFOWTKps0haHCHal3j6i4m6n?=
+ =?us-ascii?Q?Y5yuqrh9BJ05IcuvAvKBL7RJXlNoH0rCrH7PhD4HovPvGf2e8MaV56pefa1x?=
+ =?us-ascii?Q?hzC/WgSD9oiU3jPVyh9HTMtplXQ0SFP1Mvzdu2dK2rqCJhCcOv4er1ZbprNP?=
+ =?us-ascii?Q?qRdKaasnDXsUSJTH7aPM62ZxCKZURTndRWtePNHD/EgAj4YwNhul0k3eUsSD?=
+ =?us-ascii?Q?A1K9eljs8OjFjkElYEOfPr4hKeioHYUNkxXDPj3DSHKJ0Acje/nPpIBr8ARW?=
+ =?us-ascii?Q?/W9tnYJ4LNg=3D?=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8644.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(376014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9283
+X-CodeTwo-MessageID: f875d1cf-8034-4870-90c9-890be63e53c2.20250507131157@westeu12-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ AMS1EPF00000045.eurprd04.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	be19f403-3fef-455c-b892-08dd8d68bca3
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|1800799024|35042699022|82310400026|376014|14060799003;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?PKwPIUuAqsZYuWsLZZc3oD3PItsIMCIVFV0awGQng+C1FllB7kntQssEJlv7?=
+ =?us-ascii?Q?BUTx0EoG+HvmbFN0H/UxT1JQSQw7qYN6g/ZVxSmu4FHaa9+zd0yvvwyxgy/R?=
+ =?us-ascii?Q?b4+iIzZA+Q1wfdeAKchTqVCQ2XsFEyaDa1hhwgQ204FJeaxWKEmmOpWGwgOY?=
+ =?us-ascii?Q?ozl3pyi4VBa04XtF0W9elOiO3oz84vExeS4nL0x5G0xlPh+yTLAs4vbUAMgj?=
+ =?us-ascii?Q?2IJZQwWVCoVwv5ocOLS3DXDf+ffkHxTW3MKv4wL8q2WXDbP1JqulRUUh4FCe?=
+ =?us-ascii?Q?cWAjarPiGpAeu7C2pon2XPzqL9fNCZgpZIKJ5AX5HphIC7HPt6xkGsya0yu8?=
+ =?us-ascii?Q?lHlZWfoqITLYgLGWdNxxxVGlBr7OzKbuvi+Jgyz8sWnIHBSWGdlsWFTVEJqz?=
+ =?us-ascii?Q?9VqVwBkhKx8VFl/uVfz31ao2dP4BZSTHJRWO6W+qSCxhMFPLqE1tKIgSH+RM?=
+ =?us-ascii?Q?VoZe8KI02oCAWlHmz3gJtcDUcICuokRXvRsKNyZ65KEu5yKYg+q2o5JcZZ4t?=
+ =?us-ascii?Q?JMkBHPtNF0SJbO54BFZW64pxZ1SvcQzwLToWSadBMg11cXJ8VWN+jEiZt0lq?=
+ =?us-ascii?Q?KrWn1pqZUeRMLtHNYL02RsQhFIMXS2uRSn8UIslNAgXWIe4/Efyvqk/I5FWr?=
+ =?us-ascii?Q?w4nW7lkvOGrYyvoSzOeAzQpfWk9wpS7LzXYaVoXHOeqeXdldmgVHgv19QxNw?=
+ =?us-ascii?Q?FZ4Pb9KwKGiA3MRl0OQMnIuVbS57V1mRTMybmW0+U5YUNn8kNwjkziO9hltb?=
+ =?us-ascii?Q?4q6xlcHUNr5Thd3acsGB0hjLi5uo+DxICZextDPh9dcoMyXB1zaoVdllYoxH?=
+ =?us-ascii?Q?mzrCRIO+ocnrzC1XMqrPKswExCmHXMtmDx7XnOawGt3O6JiNu8GED23Vy4Kh?=
+ =?us-ascii?Q?YaIfGEy1Yhtlhlxhj5ZR+2kHNiYQmJpDQpZ8l6gdeHtEEJlhLCalFunqQ/FV?=
+ =?us-ascii?Q?FCKy/ThswkuOjaerYSzXLLGv5i22NBxSCJvl30aQHNbA+hGmOw2WFPJAodbh?=
+ =?us-ascii?Q?2cNWC29WHu40O43GlH6P/BtMohAqmm2yi0GJrYp/mP4s3F7RlNhOwX0MIJK3?=
+ =?us-ascii?Q?OqNevwPgQ/nLa67KH0HYVI4iPPY6h0H3cC8Av+FBO+S5ErwFMHP1p9e8WEBf?=
+ =?us-ascii?Q?0/Khy9c/eyR7WtQbEdseVFIziWBF8HklPOWVl5ZJv+s+2DgZjXSH6qIg/B64?=
+ =?us-ascii?Q?vj7Be4uAtwPuoEDbewphu0stJL3eg+T3CUOvnfCIlYe1a9qeoHe4KfGeD4TT?=
+ =?us-ascii?Q?L4GIDv5nU4Zn55mTqVVWc/JDYX0IwjkNMw9vnyVTdJ61P33YBB4K8/xVe8gd?=
+ =?us-ascii?Q?2R+aPaCkM55a4p3u27Pv0g82eklcAWwkb+/SSpYHpkUbo/W5v1yWpBu5ly4X?=
+ =?us-ascii?Q?chuihaBRURopWNMuUooD30f92zyHeWN0IK/RZwbY87o7brwrYE1ioiATr4N/?=
+ =?us-ascii?Q?gvpQNwk6Mt7s8TCO5+TnOwKd2vZwTxNu?=
+X-Forefront-Antispam-Report:
+	CIP:13.93.42.39;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(35042699022)(82310400026)(376014)(14060799003);DIR:OUT;SFP:1102;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2025 13:11:58.4312
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f195857-2bb8-4c22-61d6-08dd8d68bf73
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.93.42.39];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS1EPF00000045.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11094
 
-The ArmSoM Sige5 has several USB ports: a Type-A USB 3 port (USB2 lines
-going through a hub), a Type-A USB 2.0 port (also going through a hub),
-a Type-C DC input port that has absolutely no USB data connection and a
-Type-C port with USB3.2 Gen1x1 that's also the maskrom programming port.
+The TI USB8044 is similar to the USB8041.
 
-Enable these ports, and set the device role to be host for the host
-ports.
-
-The data capable Type-C USB port uses a fusb302 for data role switching.
-
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 ---
- .../boot/dts/rockchip/rk3576-armsom-sige5.dts      | 160 +++++++++++++++++++++
- 1 file changed, 160 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-index 570252c4c0bfe56a3c269e47d81fca7676e61787..74de0fc77fefeffb8a90dd6dd9327ddb0083a146 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-@@ -177,6 +177,33 @@ vcc_3v3_ufs_s0: regulator-vcc-ufs-s0 {
- 		regulator-max-microvolt = <3300000>;
- 		vin-supply = <&vcc_5v0_sys>;
- 	};
-+
-+	vcc_5v0_typec0: regulator-vcc-5v0-typec0 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_otg0_pwren>;
-+		regulator-name = "vcc_5v0_typec0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v0_device>;
-+	};
-+	vcc_5v0_usbhost: regulator-vcc-5v0-usbhost {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpios = <&gpio4 RK_PA4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_host_pwren>;
-+		regulator-name = "vcc_5v0_usbhost";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v0_device>;
-+	};
-+};
-+
-+&combphy1_psu {
-+	status = "okay";
- };
- 
- &combphy0_ps {
-@@ -611,6 +638,58 @@ regulator-state-mem {
- &i2c2 {
- 	status = "okay";
- 
-+	usbc0: typec-portc@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA5 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_interrupt>;
-+		vbus-supply = <&vcc_5v0_typec0>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			/* fusb302 supports PD Rev 2.0 Ver 1.2 */
-+			pd-revision = /bits/ 8 <0x2 0x0 0x1 0x2>;
-+			power-role = "source";
-+			source-pdos = <PDO_FIXED(5000, 2000,
-+						 PDO_FIXED_USB_COMM | PDO_FIXED_DATA_SWAP)>;
-+
-+			altmodes {
-+				displayport {
-+					svid = /bits/ 16 <0xff01>;
-+					vdo = <0xffffffff>;
-+				};
-+			};
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					usbc0_hs_ep: endpoint {
-+						remote-endpoint = <&usb_drd0_hs_ep>;
-+					};
-+				};
-+				port@1 {
-+					reg = <1>;
-+					usbc0_ss_ep: endpoint {
-+						remote-endpoint = <&usb_drd0_ss_ep>;
-+					};
-+				};
-+				port@2 {
-+					reg = <2>;
-+					usbc0_dp_ep: endpoint {
-+						remote-endpoint = <&usbdp_phy_ep>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- 	hym8563: rtc@51 {
- 		compatible = "haoyu,hym8563";
- 		reg = <0x51>;
-@@ -678,6 +757,24 @@ pcie_reset: pcie-reset {
- 			rockchip,pins = <2 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
- 	};
-+
-+	usb {
-+		usb_host_pwren: usb-host-pwren {
-+			rockchip,pins = <4 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		usb_otg0_pwren: usb-otg0-pwren {
-+			rockchip,pins = <4 RK_PA6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		usbc0_interrupt: usbc0-interrupt {
-+			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+		usbc0_sbu1: usbc0-sbu1 {
-+			rockchip,pins = <2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+		usbc0_sbu2: usbc0-sbu2 {
-+			rockchip,pins = <2 RK_PA7 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
- };
- 
- &sdhci {
-@@ -706,11 +803,74 @@ &sdmmc {
- 	status = "okay";
- };
- 
-+&u2phy0 {
-+	status = "okay";
-+};
-+
-+&u2phy0_otg {
-+	status = "okay";
-+};
-+
-+&u2phy1 {
-+	status = "okay";
-+};
-+
-+&u2phy1_otg {
-+	phy-supply = <&vcc_5v0_usbhost>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-0 = <&uart0m0_xfer>;
- 	status = "okay";
- };
- 
-+&usb_drd0_dwc3 {
-+	usb-role-switch;
-+	dr_mode = "otg";
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			usb_drd0_hs_ep: endpoint {
-+				remote-endpoint = <&usbc0_hs_ep>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			usb_drd0_ss_ep: endpoint {
-+				remote-endpoint = <&usbc0_ss_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&usb_drd1_dwc3 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usbdp_phy {
-+	mode-switch;
-+	orientation-switch;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usbc0_sbu1 &usbc0_sbu2>;
-+	sbu1-dc-gpios = <&gpio2 RK_PA6 GPIO_ACTIVE_HIGH>;
-+	sbu2-dc-gpios = <&gpio2 RK_PA7 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	port {
-+		usbdp_phy_ep: endpoint {
-+			remote-endpoint = <&usbc0_dp_ep>;
-+		};
-+	};
-+};
-+
- &vop {
- 	status = "okay";
- };
+ Documentation/devicetree/bindings/usb/ti,usb8041.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
--- 
-2.49.0
+diff --git a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml b/Docume=
+ntation/devicetree/bindings/usb/ti,usb8041.yaml
+index c2e29bd61e11..fd6b35a40a5b 100644
+--- a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
++++ b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/usb/ti,usb8041.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+=20
+-title: TI USB8041 USB 3.0 hub controller
++title: TI USB8041 and USB8044 USB 3.0 hub controllers
+=20
+ maintainers:
+   - Alexander Stein <alexander.stein@ew.tq-group.com>
+@@ -17,6 +17,8 @@ properties:
+     enum:
+       - usb451,8140
+       - usb451,8142
++      - usb451,8440
++      - usb451,8442
+=20
+   reg: true
+=20
+--=20
+2.34.1
 
+
+Met vriendelijke groet / kind regards,=0A=
+=0A=
+Mike Looijmans=0A=
+System Expert=0A=
+=0A=
+=0A=
+TOPIC Embedded Products B.V.=0A=
+Materiaalweg 4, 5681 RJ Best=0A=
+The Netherlands=0A=
+=0A=
+T: +31 (0) 499 33 69 69=0A=
+E: mike.looijmans@topic.nl=0A=
+W: www.topic.nl=0A=
+=0A=
+Please consider the environment before printing this e-mail=0A=
 
