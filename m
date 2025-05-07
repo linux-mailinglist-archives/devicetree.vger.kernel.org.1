@@ -1,81 +1,69 @@
-Return-Path: <devicetree+bounces-174483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E3F8AAD620
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:32:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CB02AAD625
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:33:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF0661BC7141
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 06:33:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48430985522
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 06:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02F09213E74;
-	Wed,  7 May 2025 06:32:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BDC0214813;
+	Wed,  7 May 2025 06:32:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CTDPSW8X"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="V6f3LQ9R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5DF212FB8;
-	Wed,  7 May 2025 06:32:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501C5211479
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 06:32:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746599542; cv=none; b=RR2pIe1MEwZ745zEKuzBYO58iJzwMcoAu6NPzvRKxjmQqFH1OstflM1FvGsMDu5XWDhkaUJgtgtum30dbx52f2kuvT/HLk0N/IbQSGfqDKG4MNLWQs8XsfIhb+jiAWqkQZEicBZ15kE0oRPudV673NOS+FhBk59eyP8iEtzC5rg=
+	t=1746599546; cv=none; b=aX1xDbvgvV6oBmCKTabS7tf1in64fQrdYHiaHxc0Hlth9fZ19g10PXEjrA1xd7G7ozksthXNG+51USnJeH3ohgCVAw6KN0ZkPhbdbYfb2KFAtC3/FPmkmsyude6fqY1lEKQoLnQxBnIaeKMyAfwPvT8B0O50F+o2g9EH2H9i8hs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746599542; c=relaxed/simple;
-	bh=gVnr8TnU5oBPUOllfUkHDqgYRsX0nAzlPey3pz8QsSw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QasUDT1vK8VkqEtMU40dhGQjAn0Z975l/mi9stsuSFZ8lIN10JEAZN4PKWURWYjk0O9Rz3v/crq1LyIJ3A+OSfM9P+YSvZveAqQK80/7jMMGJLwPQhLUyu4ZA/TgON81FITBNMSoaZekOKm+PGbtec5O3hRoSuR9nRck/Njl9ps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CTDPSW8X; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-22423adf751so73716855ad.2;
-        Tue, 06 May 2025 23:32:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746599540; x=1747204340; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8YWstoYnxasTg7tshxJbl1B8GWpQGF7X65mCdPOf1/0=;
-        b=CTDPSW8XZD6Be5HIisLjLIaoiMkLL+tFC3VX20M9GpI3SJ4sTDsfGG2F+2eJe39jil
-         Kuwqv0YbbIX9xMcjzuDPCybuWdNbY5+k1qwGFFOm7cFb3xJsRjj7m5VbcpVUCeRhJYW1
-         nR4EE6cFHwTD9L0HhPoOQ3ULbBZ13deEr9y7fpevOJNXziUMZiy/qa3OvSYifuYCA6u9
-         2m1W0FTUUIjP2YtJa1Xy1pBADwLZDRvIE7fyYozCSYGH8b85oKm43TDr4J1oqI9ZGZni
-         lX10LqHrdjov8II0//0Ln0pRfqtvrn85aaxbhx5+0Q+agImUNIoSEVqCQLcNi9dOC86C
-         2CbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746599540; x=1747204340;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8YWstoYnxasTg7tshxJbl1B8GWpQGF7X65mCdPOf1/0=;
-        b=Xmra7d4lMoScKSu3/rFpLaw2V8YkaKCR3RCRmc3wOSZxd3IH50ky7oQKiHR6nmRCN5
-         /7DD8e/QphKK0855yemNE1CPVhqwLZc2AsUFXML0kFIA1pTWBOHy7frfFRtTyiH7W9Gm
-         HEerklEXhvTyvrvJjTHXEBH0UIbWjI41x0VtR3ZKcqyxiqCzLGW2t1RUTTcChbhUZko3
-         g9/q51pkIkuue1GQb+QmUHGBpaHud7vZKUsRHOM+Aq7lIw5KCqSDvjQxStrh7o5AAJrj
-         Y4CNvIRrgLBYkC/xIQMt4c97dAMrLT9kS//REQOhgldJCbm7yhdBqpIGTxEJtUne+QcU
-         l9wg==
-X-Forwarded-Encrypted: i=1; AJvYcCUiuDM1SaLiHzsuRUTTW5kBZHt6dCLnXSbRvyIXc9OBwXevHs0Jm5nYfX5x/gyE250cyguEI9UpeNGq@vger.kernel.org, AJvYcCUrYaSoFQYvt8i0VoY4+edgAqILpV+Nt+nWm/c93jOU5CBhJOpvdpOntte1phCQtJYmqK7o829LllG8nQ==@vger.kernel.org, AJvYcCXjlFAiQtHOXG7Q+ZZXRWfUvdXBey8oRcYbP+pCDz6CIUPPHcsIdDeYEtKnYonXOOf+xtEl8qiyLrPqJKo=@vger.kernel.org
-X-Gm-Message-State: AOJu0YypSrY+x+D4XmHzF2Yrmf3KI3d0NIfbbyWmHej44rPgAdaDvB4t
-	SahReigSv940o/+rBTHzfWM2R8CbJZwqD/4ODbGFph4dg+sOKem1
-X-Gm-Gg: ASbGncv20WHx/MywniplRnNDO4HdNVIvyQk53hXCRgRtALFba9xHjdImKQev6nvTGuD
-	/0m/utw2DD4/upia7NDJnGT0pK07TRTCmp0serW+aaO1Hn2ghhs76ac0wswN7lxcD6cLgPlVgLI
-	YAzF/O3fEdSlfmYhJzM06FH/FUl4GufS8u64ouXB2Dis66hWCnaBKLIR3TUjkjZad6mviRjhhtH
-	Sv9E/re79+cfQCUHiUgIqBPc3GyMa6jpqB75DsSR8wtsAqSOfioJHxNSQ3eqLokbyAg/LnKVChg
-	PtJ5IeRNtWGlt9hNGV4XBKCI92O5L42oJuvRrQACIUt0NKgEPhM=
-X-Google-Smtp-Source: AGHT+IGJ/qWe5PPqzuHBICQzeHVIVKp5crJzNNKXqyBfyk7uaOLcOkz/tYZnutpwUCMI1zF55cUgKQ==
-X-Received: by 2002:a17:902:e844:b0:22c:3609:97ed with SMTP id d9443c01a7336-22e5ec9e997mr25272325ad.30.1746599540530;
-        Tue, 06 May 2025 23:32:20 -0700 (PDT)
-Received: from Black-Pearl. ([122.162.204.119])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-22e15229384sm85805295ad.206.2025.05.06.23.32.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 May 2025 23:32:20 -0700 (PDT)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Wed, 07 May 2025 06:29:36 +0000
-Subject: [PATCH 2/2] dt-binding: mmc: microchip,sdhci-pic32: convert text
- based binding to json schema
+	s=arc-20240116; t=1746599546; c=relaxed/simple;
+	bh=pQwZxWHeh1IWoTKVDUIvMk5q8p0aY4NYl0A59t/5Xzs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BRsg7N0pw0+meIP0iPEBMMgCbFjF3va4cJlAc8avS0NgjvGqxMRDlxXKIhgUgQ78s58IPXk89kYBGzKafv6wvrOPeyqt1858lFvlHEDk0TKftDV6hsOCNlOEOQdYyex1MqSFlP1hAZerHYgjgkvnMo1XGS67g1nQjwgdxUrlzn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=V6f3LQ9R; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=chmXwA64MAAzTh+Y3uuSjRyk0/eZPBPU5XbIWQeCSMw=; b=V6f3LQ9R9uxfhZ2w/mBMAE8m/w
+	FlCr6+I3xzE6kTeN6IG2RmPb1Ibcc/7n0puf7RYyWeO1xQVuaaEtNu4mqWNG8S/pBRNs6KKMLvkjj
+	3ZtbnI3nXhmxGCnAl2mu0baSDoz96hEPd3VGg64O0Q5slKYdYeiG9v9/cEsc5c8k43fwrx8g4rM0B
+	MNaWkk4CYgxVxUfU3tDU5BkzYr1wZk3xoqelQvF4cCzZvcE1sO7pB+m3Dtqjzm2vgH33lMT0zkSpT
+	yrouMwx6oJC0s7sbGYUawdbcf+5E4828BFVQZbpo3nfMBrrnic0D+I68a/Thb8MHiuIrQzVChP0xq
+	tRramUNg==;
+Received: from i53875a1d.versanet.de ([83.135.90.29] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uCYKB-0008As-Bd; Wed, 07 May 2025 08:32:11 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Peter Robinson <pbrobinson@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3566-rock3c
+Date: Wed,  7 May 2025 08:32:01 +0200
+Message-ID: <174659951055.1528016.5792676162591810152.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250506195702.593044-1-pbrobinson@gmail.com>
+References: <20250506195702.593044-1-pbrobinson@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,139 +71,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250507-mchp-sdhci-v1-2-ed29de05295a@gmail.com>
-References: <20250507-mchp-sdhci-v1-0-ed29de05295a@gmail.com>
-In-Reply-To: <20250507-mchp-sdhci-v1-0-ed29de05295a@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Ulf Hansson <ulf.hansson@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-mips@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
- Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
 
-Update text binding to YAML.
-Changes during conversion:
-Add appropriate include statements for interrupts and clock-names
-to resolve errors identified by `dt_binding_check` and `dtbs_check`.
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
- .../bindings/mmc/microchip,sdhci-pic32.txt         | 29 ----------
- .../bindings/mmc/microchip,sdhci-pic32.yaml        | 66 ++++++++++++++++++++++
- 2 files changed, 66 insertions(+), 29 deletions(-)
+On Tue, 06 May 2025 20:56:55 +0100, Peter Robinson wrote:
+> As described in the radxa_rock_3c_v1400_schematic.pdf, the SPI Flash's
+> VCC connector is connected to VCCIO_FLASH and according to the
+> that same schematic, that belongs to the VCC_1V8 power source.
+> 
+> This fixes the following warning:
+> 
+>   spi-nor spi4.0: supply vcc not found, using dummy regulator
+> 
+> [...]
 
-diff --git a/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.txt b/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.txt
-deleted file mode 100644
-index f064528effed31f30d1d1c6e0b49c02e215d99af..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--* Microchip PIC32 SDHCI Controller
--
--This file documents differences between the core properties in mmc.txt
--and the properties used by the sdhci-pic32 driver.
--
--Required properties:
--- compatible: Should be "microchip,pic32mzda-sdhci"
--- interrupts: Should contain interrupt
--- clock-names: Should be "base_clk", "sys_clk".
--               See: Documentation/devicetree/bindings/resource-names.txt
--- clocks: Phandle to the clock.
--          See: Documentation/devicetree/bindings/clock/clock-bindings.txt
--- pinctrl-names: A pinctrl state names "default" must be defined.
--- pinctrl-0: Phandle referencing pin configuration of the SDHCI controller.
--             See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
--
--Example:
--
--	sdhci@1f8ec000 {
--		compatible = "microchip,pic32mzda-sdhci";
--		reg = <0x1f8ec000 0x100>;
--		interrupts = <191 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&rootclk REF4CLK>, <&rootclk PB5CLK>;
--		clock-names = "base_clk", "sys_clk";
--		bus-width = <4>;
--		cap-sd-highspeed;
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_sdhc1>;
--	};
-diff --git a/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.yaml b/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..ca0ca7df9ee991d8402bc4c62b1235ef5db2e85f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/microchip,sdhci-pic32.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip PIC32 SDHI Controller
-+
-+description:
-+  The Microchip PIC32 family of microcontrollers (MCUs) includes models with
-+  Secure Digital Host Controller Interface (SDHCI) controllers, allowing them
-+  to interface with Secure Digital (SD) cards. This interface is used for reading,
-+  writing, and managing data on SD cards, enabling storage and data transfer
-+  capabilities in embedded systems.
-+
-+allOf:
-+  - $ref: mmc-controller.yaml
-+
-+maintainers:
-+  - Ulf Hansson <ulf.hansson@linaro.org>
-+
-+properties:
-+  compatible:
-+    const: microchip,pic32mzda-sdhci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: base_clk
-+      - const: sys_clk
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - pinctrl-names
-+  - pinctrl-0
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/microchip,pic32-clock.h>
-+    mmc@1f8ec000 {
-+        compatible = "microchip,pic32mzda-sdhci";
-+        reg = <0x1f8ec000 0x100>;
-+        interrupts = <191 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&rootclk REF4CLK>, <&rootclk PB5CLK>;
-+        clock-names = "base_clk", "sys_clk";
-+        bus-width = <4>;
-+        cap-sd-highspeed;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_sdhc1>;
-+    };
-+...
+Applied, thanks!
 
+[1/1] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3566-rock3c
+      commit: a706a593cb19796f31d3a888423ef1a71885ae72
+
+Best regards,
 -- 
-2.43.0
-
+Heiko Stuebner <heiko@sntech.de>
 
