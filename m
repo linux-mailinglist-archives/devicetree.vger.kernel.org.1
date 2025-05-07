@@ -1,177 +1,181 @@
-Return-Path: <devicetree+bounces-174720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DEECAAE32F
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:38:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B139AAE32D
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:38:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41CA1169D7D
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:33:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D70001BA5EB6
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:36:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDC928983F;
-	Wed,  7 May 2025 14:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D22D4289367;
+	Wed,  7 May 2025 14:35:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JBE/PAt0"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="rXUEyQZw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82CA4289376;
-	Wed,  7 May 2025 14:32:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB9B289365;
+	Wed,  7 May 2025 14:35:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746628370; cv=none; b=AYCvulA5kFabcMqhxnb7e3kSmnqe9TkZZZpkmrYLDRlMEv4P6WdMVoaS/jJOOynyFDgmgFRZeNFG+zW9nGJNCDDxy2rqIACfs9EoZfNjpj6E2ZM83AwHQ11kkhBUUdF5GsPAY1VxXctG0dO4/962Kr1a0acuEHBQAMKn6OT7GSM=
+	t=1746628523; cv=none; b=kXexxddIwrGfKdvIv7dASOfRArz0BOqsRhvSg9x2z9U86tBsmSDKZyoQy3IzD2QmUkWd2eZ13NAEayxud6FBgUgnXGd+feHfgpL2DXQ3mcLJMOGG2NRnB/+pbzNNi2I77b4CJuw/iWB2Z3ZCJwFlK3TK/0dxHRtHuUkqoJ00CDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746628370; c=relaxed/simple;
-	bh=vMCsAoGOR/jE9JYpIk0OdcLmxBTPV6g7aYkv5FPcsSU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cbkQ2pk2xY7caScBdpLZMQecrsfyfbSqLln08BxmwfhVI7kGHv5q5wy4hjoVG6qz79fZPbhrLBgI8kHddAde/GogCu/9GcvRnx4LJw+dMij3HiOY7rhxhbwOotBUemCMa1hhjGAqXNACf9xILWZIpKC2jYGZkEayV7gEXi0WV8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JBE/PAt0; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-441d1ed82dbso16227525e9.0;
-        Wed, 07 May 2025 07:32:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746628367; x=1747233167; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4cK2GR+MTIxCdrAVL3u30qal7MJPY3+v+RkxSo+dm/A=;
-        b=JBE/PAt0KddAsUNH/Q/kX0qpc7CJQHUvtSBqqP3io+8HpkEg8J+MjC0ynOUK/ojRrs
-         hj0QFft0MJI2iWVfhl6ap2zisAQPOki6jBK9Wrl1tC+aoNZi6ybjedURX1QfBeOKz2KJ
-         7cLWY88ri0nRmhtGJ31lfaoLpOAhkr8zUj6N7yVI0ze9b18n3SCkcTOYsdrXduQCnIg6
-         2R9mjhSaBtCVDxh3mIBnuGt8PGG3qEITs9zJpzmfqmNqW6BsQOt3UALjApITaDoSYCQ6
-         8wJUdeNBjUaDgnxG/S8VcpZ5JtzE+XqQ82Qs/C9k0tn+L04Y1KR8BjLX8WsnZatYhGfd
-         Mmrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746628367; x=1747233167;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4cK2GR+MTIxCdrAVL3u30qal7MJPY3+v+RkxSo+dm/A=;
-        b=j3TuZNgRN8/8rJIOpRdco+0gregtHeDnb2aIX3cln8fZzotG9MJvMOD75vmIVPyVtA
-         8nWjgyL1SPhzlbzD4gsosRkxjHCObAiundvqGgQo0+XyT4qtbsc4DjByuUzECYYFGnWl
-         YucgQUDdtn3NBidDMq05Vcd/hgQoayWV/Aaoz9/q0OZuOhgCf5oGOdhwqDMJ7ZZcJoNp
-         Imm4PT1uW9/ej6H9Wrrtb5YMj4iCx7AUZITS0Gi2+zzaI5FwLg1f2hmCRcFCeZFXM2Lb
-         IB97+9vajKeeFTXtbQypRjvW+tDg72TMzCNEhb6e9lJKycSFE4BdV/I9K7V1w7qCZaGl
-         Y0Lg==
-X-Forwarded-Encrypted: i=1; AJvYcCXirXhFFERgLNwTZf6gEvZE3TzMJyKatV+Da6GBa3v/slNapq04BXsTbHnqVJXN0cuVBLUNJl2cU4if@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw66prL5sS0EkMb7a9pDWyGEmAxEdWDqEvsVbli+2E0PEECRVWb
-	25G5THcXB+65s/3y7OYywylwi+4qDGs6sXd+BAHuw52+huunCWu70GAoxQ==
-X-Gm-Gg: ASbGncsKcnVvvLDa0OG9bqSgnaQ9erTqzJtXCIMSrRHnNTE2zaYESUG36AgBWhKh+Re
-	wwZhOcI47VNbyOZ8++xY14KZqhOig+WimA6yapMz+/tyGiwhebvwAI450ie40C1P60/EihCGr9h
-	s1/eVejW6LgHTu6G6hw0EdJ/vN/BONtt5kJ9irOnVeGntoEesbuGppYRd+D8zCoPTLD9lnYaVmo
-	bMppRJYuAsFUH7ret2LXogbVgcvosR2TaQA2drBvuIe20UTTU2WqKNrE0s2HvO+pey+ARhlhIaA
-	C+gB+cld+eptc+of+MW+9Eor6OJDcR6lH+0yRcAnhVEUMvg2Fr92Z/ujw2xEs4u3oyDff4UGzjc
-	6HnN8HLMplQtOsKJpA01ivpCm1mE=
-X-Google-Smtp-Source: AGHT+IEd1QJ3UGhkjXTiuM6IWrT+bURzxPWFWLEi/P7RC8gos+sLg4dyG+3f7M+cmEZydt7eQ6bD3A==
-X-Received: by 2002:a05:600c:528c:b0:43d:300f:fa1d with SMTP id 5b1f17b1804b1-441d44e32cfmr34862855e9.31.1746628366474;
-        Wed, 07 May 2025 07:32:46 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd3af15bsm2800915e9.30.2025.05.07.07.32.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 May 2025 07:32:45 -0700 (PDT)
-Date: Wed, 7 May 2025 16:32:43 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: linux-tegra@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 07/11] soc/tegra: pmc: Add Tegra264 support
-Message-ID: <fknux7o27tbcykml6ze4rcuwkkfxuiv7uvbdkejf5ikermr6h7@57jse3b45wsz>
-References: <20250506133118.1011777-1-thierry.reding@gmail.com>
- <20250506133118.1011777-8-thierry.reding@gmail.com>
- <964d8b07-aeb1-437b-ac8e-c129c49b2a78@nvidia.com>
+	s=arc-20240116; t=1746628523; c=relaxed/simple;
+	bh=nEZ/X/CSa6CpJDBkA277TD/Y7XJmH0AfsOiAQ8MtW+A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gnnDa8PcUYxKeHIPA1EENUo453tvjK/3bF/JbAQzp0k+tWkIF6PVfEAiuK9wazNioMs0476Ddnkk5r9Lv0gsaCCmsOBuanoL6koD6byhiPtFEMEe52BulNVRlewkgZjYixctozge6oNEPO1jZ2sh/5W37/+88nHiS0e7qwxxX/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=rXUEyQZw; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1746628509; x=1747233309; i=wahrenst@gmx.net;
+	bh=Ut6H0hDVHeAmPZH3h31kBg4T5UPa/h5BzSiJ1oq/iGo=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=rXUEyQZwXOAJnYHbD3SY9uBkl2/+qlpXK8TJOF/kH/rYdyv7KEV4KKQ2k8+KSRDB
+	 G5B5CvWjwLzyIn2/3eTseH9yYoDUA3Mf4J2tf2njvASc2mjBXc1EdHmJKqumQVPJJ
+	 AAqQOpaMP3nRHEkL2Vxf5vguz/9JS+QHc80eNwcBGZHnIyK+CVNdMwjA2uiSA6/MT
+	 nRk1RWehnVFo0gfB5AcJ5+nEtaFci4p6JkMBzFxkDnTuByWhCFzAHrwCk/6XQRJmi
+	 +0GWic9I4R2RKn7i8eW6/JD7/xILsatdcQBnH4GIVBjTcgOFGDwusi+pndXxlIDlT
+	 l5K3WdZMU0Wcx1As6A==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.101] ([91.41.216.208]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MNswE-1uNc6H0OrY-00Oqtt; Wed, 07
+ May 2025 16:35:09 +0200
+Message-ID: <c9c2f4cb-614e-496a-852b-ca8af034c2c1@gmx.net>
+Date: Wed, 7 May 2025 16:35:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wmguxf7cc2ndw7cd"
-Content-Disposition: inline
-In-Reply-To: <964d8b07-aeb1-437b-ac8e-c129c49b2a78@nvidia.com>
-
-
---wmguxf7cc2ndw7cd
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 2/5] net: vertexcom: mse102x: Add warning about
+ IRQ trigger type
+To: kernel test robot <lkp@intel.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250505142427.9601-3-wahrenst@gmx.net>
+ <202505071827.nbdcs1rW-lkp@intel.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <202505071827.nbdcs1rW-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 07/11] soc/tegra: pmc: Add Tegra264 support
-MIME-Version: 1.0
+X-Provags-ID: V03:K1:HM+jVi0Q2F+6Nvpk2DtOxtn3Uwzm6lnAPq3bASXL6d2VB8Xg5fq
+ gVRdsT6+VY/qdEHHnZo7XeOwgH5IcMiwoXZJflsw3l12VVCYC4Pdr5AWKrpks0YoAoZbPkH
+ MF0AXj0/swToxOGX2XPw+zhrfPi1TW66uAhotICX62Ispg+yMlq+Gu1LbO9aMNozkBRGNgm
+ nUhoOa3W+xBm1y20rWPlg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:GxDhRsOPVo8=;9aw5O2splymu8Yz1Jeu+1+BUt4Q
+ 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
+ 6JtmM901eMbAUuCAXEPEmrruX
 
-On Wed, May 07, 2025 at 12:03:39PM +0100, Jon Hunter wrote:
->=20
-> On 06/05/2025 14:31, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > The PMC block on Tegra264 has undergone a few small changes since it's
-> > Tegra234 predecessor. Match on the new compatible string to select the
-> > updated SoC-specific data.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >   drivers/soc/tegra/pmc.c | 132 +++++++++++++++++++++++++++++++++++++++-
-> >   1 file changed, 129 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
-> > index 51b9d852bb6a..6f1ea5b6b9db 100644
-> > --- a/drivers/soc/tegra/pmc.c
-> > +++ b/drivers/soc/tegra/pmc.c
-> > @@ -2892,9 +2892,14 @@ static int tegra_pmc_probe(struct platform_devic=
-e *pdev)
-> >   		if (IS_ERR(pmc->wake))
-> >   			return PTR_ERR(pmc->wake);
-> > -		pmc->aotag =3D devm_platform_ioremap_resource_byname(pdev, "aotag");
-> > -		if (IS_ERR(pmc->aotag))
-> > -			return PTR_ERR(pmc->aotag);
-> > +		res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "aotag");
-> > +		if (res) {
-> > +			pmc->aotag =3D devm_ioremap_resource(&pdev->dev, res);
-> > +			if (IS_ERR(pmc->aotag))
-> > +				return PTR_ERR(pmc->aotag);
-> > +		} else {
-> > +			pmc->aotag =3D NULL;
-> > +		}
->=20
-> This part make aotag optional, if I understand this correctly. This is not
-> mentioned above and probably should be. Also, I believe that currently
-> dt-binding has this as required and so we should update the dt-binding doc
-> to make this optional too.
+Am 07.05.25 um 12:25 schrieb kernel test robot:
+> Hi Stefan,
+>
+> kernel test robot noticed the following build errors:
+>
+> [auto build test ERROR on net-next/main]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Stefan-Wahren/dt-=
+bindings-vertexcom-mse102x-Fix-IRQ-type-in-example/20250505-222628
+> base:   net-next/main
+> patch link:    https://lore.kernel.org/r/20250505142427.9601-3-wahrenst%=
+40gmx.net
+> patch subject: [PATCH net-next 2/5] net: vertexcom: mse102x: Add warning=
+ about IRQ trigger type
+> config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20250=
+507/202505071827.nbdcs1rW-lkp@intel.com/config)
+> compiler: s390-linux-gcc (GCC) 14.2.0
+> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/arch=
+ive/20250507/202505071827.nbdcs1rW-lkp@intel.com/reproduce)
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new ver=
+sion of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202505071827.nbdcs1rW-lk=
+p@intel.com/
+>
+> All errors (new ones prefixed by >>):
+>
+>     drivers/net/ethernet/vertexcom/mse102x.c: In function 'mse102x_net_o=
+pen':
+>>> drivers/net/ethernet/vertexcom/mse102x.c:525:37: error: implicit decla=
+ration of function 'irq_get_irq_data'; did you mean 'irq_set_irq_wake'? [-=
+Wimplicit-function-declaration]
+>       525 |         struct irq_data *irq_data =3D irq_get_irq_data(ndev-=
+>irq);
+>           |                                     ^~~~~~~~~~~~~~~~
+>           |                                     irq_set_irq_wake
+>
+this issue has already been reported by Jakub. I will add the missing=20
+include in the next round. Sorry about that.
 
-Good catch. I actually noticed earlier, as I was going over the next set
-of patches once more, that there's actually an AOTAG region in the PMC's
-address space, so I'm leaning towards dropping the above hunk and leave
-the DT bindings as they are.
-
-When it comes to these AOTAG registers, it's a bit difficult to tell
-because we don't ever use them after mapping them, even on older Tegra
-generations. Keeping it for now should be fine, and we can subsequently
-drop them (and the driver could always just continue ignoring them) if
-there's a good reason.
-
-Thierry
-
---wmguxf7cc2ndw7cd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmgbbwsACgkQ3SOs138+
-s6GdBQ/+PXZtw/PwLe1C1WBwkC4dYdLtKOFbwk1qXEFlf+QhwRhwz1DHrNmutqFS
-Hc11IeCLgNnUdawS7IvX8PJWvw4voRcT6YHKgjyV1hHcGitARgYnVGEJ4nLyXjj0
-ThGzWWDpMhgoivYAuQxyfbAkTCYv8ef96LhdigB7v6xsvTYsWCago/S4miXVxQGd
-8FR6GXgckq1WLGoOh+scMF0TOoXDF3XRtX/A+okCt2+9MDwhhg6dKwaQXOn6fH0P
-eDOdholwnsNdji0oXviRybo8Beiku5YLX4/NBU51l+OZqWBhkb4GQIdEQBTzzTsz
-qLkbr/nsOvyALrS4gtGQQeatGx7Q9709OO2huURY8bk5EyNNfjFvH1YTDjSqdVJQ
-6jkipWcafg2JwlmtmMduR/c1mGVLyypK/9Vb6cFCOGyXHAi8YPtCrygT3jCpD+H+
-+WGoBAENxSeqk4BhlEcTwlgqAqMgNJCzEx/3UZMjA9YO7wBxFjymtRwwpmQ7mYKO
-gMamMUL34Geyt08WEzZHuEIME1v4IL7W7t42D4/eBXp29ugxoUKXMJ7uKmzNCdRl
-ZDLc0BmTVujtP40ywIbN1EMwsWwbJXggovmxcEoYJyqBm9zUb9QP35yZba7+AbIj
-Ctno5Cfm3923b7Xsr7x9UwHD1rZy5EV3ksPO9bZrxSuUQDJBxdQ=
-=r/81
------END PGP SIGNATURE-----
-
---wmguxf7cc2ndw7cd--
+Regards
 
