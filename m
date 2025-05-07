@@ -1,105 +1,111 @@
-Return-Path: <devicetree+bounces-174839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEEF5AAEE3F
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 23:59:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C502AAEE91
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 00:14:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1806A1B646B6
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 21:59:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D52F1BC7279
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 22:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC2F28C5CC;
-	Wed,  7 May 2025 21:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B27290D9E;
+	Wed,  7 May 2025 22:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="et2XrWBc"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="si0idtTN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 918E372632;
-	Wed,  7 May 2025 21:59:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59290242928;
+	Wed,  7 May 2025 22:14:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746655160; cv=none; b=oFaXD2RlIKaEbByQPsMLkxBITvdKyKoctQhro/6Tj0GSkEZ4qsInRA7jtnAWugWPi9lt4hV8en0gLcU+Iho81gL7ZgjdFVDQ34OSnBnKQUHM3chhHHSJLXU1y+g8PTpGO8+JmhQ1lLALdLcLKtDas0abZNBslHVLHQx7W6k7wis=
+	t=1746656084; cv=none; b=WfgaLYIvwvqrFqvm1JuAxbjOaeHSJtEORZAEs7AaeniofzD9pjF3ddZwfvYQwLUHV/fI5cZ2pTdDM6rpcpZv3r9PugfH4z0zvUHyRBa/0Jeu4DSi+85ATvRzF2+1xg8RoLzEOKSDmS0+r6r2EDgBxqqURnZSWdkYUjBCGRROHhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746655160; c=relaxed/simple;
-	bh=Cni/pdWt9cIp+mXSH/rdXfKlwgkpc0+yATONdzAnZ/k=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=F0goMZNB5tPr09SIQhJ5bKQP+2OS9o6wbpfRTQh+u5YS8dw8Xo77Um9+MHQg4go/twEOIpo7G1ZE5CuS8St/uo2dCJUtdmsTYbE/YAudNT9nUr+mGfOq6roFSFVaajR+dT0GJjN84shH9mlzrNCuTI6NkpvTxTU2ycKLLn08ex0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=et2XrWBc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3041C4CEE2;
-	Wed,  7 May 2025 21:59:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746655159;
-	bh=Cni/pdWt9cIp+mXSH/rdXfKlwgkpc0+yATONdzAnZ/k=;
-	h=From:To:Cc:Subject:Date:From;
-	b=et2XrWBcXB0vQxxivC3De8795+Bcn71ukrJG8s/ytct8YVrQJtRd3h2BjreH2Nywv
-	 MWkJfnAxgfYHvL/1M+6epLXyjjqzg3qgbA429FyR9H646S/56Ax2WfcDxBVkdI7Imb
-	 0PFSxw7hfHM5B4an/L8UGw/bMVcBs2jqupntMaGMtNhlRtye8QW37guotxPHPYv6xy
-	 Agc1vIDuB2ROE3XZRUxie7rqSDYWkJUxhzxktqaVga4cBAspCj3B+602P3Ozi3C7LH
-	 YnkWMW/sl1FD5yYJ4cQmuXg2iyZILTamXmejfNHDJcD4v0EnqiE70uw02tXjAH5BHv
-	 figz6GvjKR8CA==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: display/msm: hdmi: Fix constraints on additional 'port' properties
-Date: Wed,  7 May 2025 16:59:12 -0500
-Message-ID: <20250507215912.2748964-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1746656084; c=relaxed/simple;
+	bh=dP1z7M47j4PZpEMumZ+QSsZvk9KzxMc0x7CrV24AZHE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bZGaBaOzG/601iosWf3QNQVol+0Xr9kyrgb6AlSbgYP02nyLYFKbYHjaxxFgdD5LYeG2+l+uMlGHDvYRBAYIKX1mcP7By64dX71+xE3l7CixLRxNRFqVaORBIoX1lELc8pAiAVqq2OAcj0DmNxAOo6i8NfVfOhpfc/y+dyHB4+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=si0idtTN; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=QSB///5JCKK7/bkloOaaZL68imP0TbqjyJok4xYN/JE=; b=si0idtTNRfYOtIz1mEtv6mijPs
+	sRVeZ9aoK8fQbQS1F3VzoBvYGbhk3NOXlqmUq90rnRtFjJnoxY6Zs415C146bAojm2iBU9Z2o3k93
+	fOOKaG6M2UETwcTqm+lSM2SsJyiat11O6aVySDfr0VofmUeMZ5MM8EG2eI6QNmA41/gM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uCn1x-00Bw9R-Dz; Thu, 08 May 2025 00:14:21 +0200
+Date: Thu, 8 May 2025 00:14:21 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Peter Rosin <peda@axentia.se>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Wolfram Sang <wsa@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 21/26] misc: lan966x_pci: Split dtso in dtsi/dtso
+Message-ID: <11b7fd86-99b9-4dbe-997d-8aa948f1f4c0@lunn.ch>
+References: <20250507071315.394857-1-herve.codina@bootlin.com>
+ <20250507071315.394857-22-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250507071315.394857-22-herve.codina@bootlin.com>
 
-The MSM HDMI port nodes are missing any restrictions on additional
-properties. The $ref should be to "/properties/port" rather than
-"/$defs/port-base" as there are not additional properties in the nodes
-to define.
+On Wed, May 07, 2025 at 09:13:03AM +0200, Herve Codina wrote:
+> The lan966x_pci.dtso file contains descriptions related to both the
+> LAN966x PCI device chip and the LAN966x PCI device board where the chip
+> is soldered.
+> 
+> Split the file in order to have:
+>   - lan966x_pci.dtsi
+>     The description related to the PCI chip.
+> 
+>   - lan966x_pci.dtso
+>     The description of the PCI board.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- Documentation/devicetree/bindings/display/msm/hdmi.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-diff --git a/Documentation/devicetree/bindings/display/msm/hdmi.yaml b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-index d4a2033afea8..099274d35680 100644
---- a/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-@@ -89,12 +89,12 @@ properties:
-     $ref: /schemas/graph.yaml#/properties/ports
-     properties:
-       port@0:
--        $ref: /schemas/graph.yaml#/$defs/port-base
-+        $ref: /schemas/graph.yaml#/properties/port
-         description: |
-           Input endpoints of the controller.
- 
-       port@1:
--        $ref: /schemas/graph.yaml#/$defs/port-base
-+        $ref: /schemas/graph.yaml#/properties/port
-         description: |
-           Output endpoints of the controller.
- 
--- 
-2.47.2
-
+    Andrew
 
