@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-174579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D765AADA19
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:26:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09052AADA24
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:28:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51D551C084F3
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:26:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 158B698209A
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 849D6221D93;
-	Wed,  7 May 2025 08:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8BD221708;
+	Wed,  7 May 2025 08:28:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sLQCKWOE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cIJkU8hf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E74221714;
-	Wed,  7 May 2025 08:25:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD47F217F40;
+	Wed,  7 May 2025 08:28:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746606360; cv=none; b=GI2/CaLm0HwTPQYObv5QDJD+F1hlQtTaj+YARiG/Uube3RY2fPM8cPTMVcMU8BzrALpeBJ5GO1aJfa6mlg0xrwJi3zzqqDMH4w86WKHezXYpXqnTJFrwKkenQciDXk6j3EgLPe3Tw4k3rkiB92mVEBjGYOp68xdzkPUE8y+JFz4=
+	t=1746606503; cv=none; b=CbbMpMnJbY9rQ/lWj31Ks7HvKQLaa889oGZGYT7kMy41uFL2bpNvWEgWpFolieWI/3hp8n4vkgshSOB84xcJ4M3GCu6BNGXI0bxB0tMR7pt6eRUAfjK4iQWGyJgG51dhEXYVyoQLesxSwHxaMVHovL4q529y6tcC2fvBiOBNrxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746606360; c=relaxed/simple;
-	bh=NNekwt0jL97gDY8/IkIMxdxKqceQcOvhTDJ6jjqvosg=;
+	s=arc-20240116; t=1746606503; c=relaxed/simple;
+	bh=/6zoEkQ0lo1XuA4K+Km6yLk8x1QoBH8K7XBJwf6FiMQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y1dSFGYy9Qpy82WamysIHjZphXuenS5Z3yRn09sTB7kVs/XjYt+Nw/DQ4UOKQFj84Ovxr0zac3I+DnpsC/LHNopfCohKCC32d3IT4pPCeQhX75tV3PrsNlPh1UbnbEv/Ikawsgc2axIWD8S8y1YT+yXzLY5ekSr3elrLFGwh4gI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sLQCKWOE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B76BC4CEEE;
-	Wed,  7 May 2025 08:25:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VBc11DwL5SyrhKbam5ElnMkplhU1FRFCwpj0PwvLOrN1jLt8WG429kUVOYTPogevpxK2WCe9aNzKbrywXRU/iDKDpA+CDgrQphMtB1hMUfj5LgvBKl13mYva4VgDHMhCzK0JUfG+GrExH+3mmhEnjJARnJna7XyhEpL8ebiNtQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cIJkU8hf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 952C9C4CEF1;
+	Wed,  7 May 2025 08:28:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746606359;
-	bh=NNekwt0jL97gDY8/IkIMxdxKqceQcOvhTDJ6jjqvosg=;
+	s=k20201202; t=1746606503;
+	bh=/6zoEkQ0lo1XuA4K+Km6yLk8x1QoBH8K7XBJwf6FiMQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sLQCKWOEo0ZeQ4hHPMlBuyHB0tQKY47E4cbgbUPw8UARjsJjNrHY+9bb/tx5NT2E7
-	 2gb4x/v1fTTh+b5o3aPmmaO/OAsOmdgDE7SbN4uxcoLgvgu+5GAZVF7uqsJWE97Ml6
-	 hZx0mPX0IVzTRlXRLJIiMVG6KsyDJbg/rb39A5h5LefUpgazYNCUIb9jlNCIYeQTH4
-	 52InMMguMXKb1pm6/kokONhZdYIb3382X87AZfKDP1UAOK0OLygJRvwwjU/EHsgyyk
-	 BDpUr/e08MhAJsbp43oVzC48eZMcQrZEFb4IVn/Lcgh1Zj+i4uplSWxAPPolb+SnJF
-	 BHCi58C0XLtfA==
-Message-ID: <01b06e36-823c-4f28-8db5-dc0ee0b4c063@kernel.org>
-Date: Wed, 7 May 2025 10:25:52 +0200
+	b=cIJkU8hfhMdDBPvbbZA6/upzqsWRFL4U8FummycAokXNJBjRVlNhRKF1Va6UIijEg
+	 I85wdxkk4Q7ZgRSuRj/ZHpEWE5Rb9z3kMXsjgRSKCnv+mV5qrBLGiQwz6yhsBJF1oO
+	 Ld8XhAcxixCeSLNrfgjN9FmCrbjQa3DxXvk/FOPfIhFJxKLXnw2m1b1Cqj2gcgXpDz
+	 J/H7wzU2Gsy4ejnAEGfGfXFeT8NmEW7wD++UzaxXFRDAwYF/mHVze2giHsyGq/DVQd
+	 1AJfO0tdl8ob8at7Nj40aP9QoU3sOr6Xj7uBShJu74ftO34MS9cqdMJyk6GJ6Nkciq
+	 tNuQ9ShTR6V7g==
+Message-ID: <1f7760c6-0fdf-48b0-9c13-85fa5e01cddd@kernel.org>
+Date: Wed, 7 May 2025 10:28:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/6] dt-bindings: PCI: qcom,pcie-sa8775p: document
- qcs8300
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
- abel.vesa@linaro.org, manivannan.sadhasivam@linaro.org,
- lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
- andersson@kernel.org, konradybcio@kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- quic_qianyu@quicinc.com, quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-References: <20250507031019.4080541-1-quic_ziyuzhan@quicinc.com>
- <20250507031019.4080541-3-quic_ziyuzhan@quicinc.com>
- <20250507-quixotic-handsome-wallaby-4560e3@kuoka>
- <8fef4573-0527-44d8-a481-f3271d9ffa33@quicinc.com>
+Subject: Re: [PATCH v13 0/4] Add STM32MP25 SPI NOR support
+To: Patrice Chotard <patrice.chotard@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc: christophe.kerello@foss.st.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
+References: <20250507-upstream_ospi_v6-v13-0-32290b21419a@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,64 +108,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <8fef4573-0527-44d8-a481-f3271d9ffa33@quicinc.com>
+In-Reply-To: <20250507-upstream_ospi_v6-v13-0-32290b21419a@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/05/2025 10:19, Ziyue Zhang wrote:
+On 07/05/2025 09:25, Patrice Chotard wrote:
+> This series adds SPI NOR support for STM32MP25 SoCs from STMicroelectronics.
 > 
-> On 5/7/2025 1:10 PM, Krzysztof Kozlowski wrote:
->> On Wed, May 07, 2025 at 11:10:15AM GMT, Ziyue Zhang wrote:
->>> Add compatible for qcs8300 platform, with sa8775p as the fallback.
->>>
->>> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
->>> ---
->>>   .../bindings/pci/qcom,pcie-sa8775p.yaml       | 26 ++++++++++++++-----
->>>   1 file changed, 19 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
->>> index efde49d1bef8..154bb60be402 100644
->>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
->>> @@ -16,7 +16,12 @@ description:
->>>   
->>>   properties:
->>>     compatible:
->>> -    const: qcom,pcie-sa8775p
->>> +    oneOf:
->>> +      - const: qcom,pcie-sa8775p
->>> +      - items:
->>> +          - enum:
->>> +              - qcom,pcie-qcs8300
->>> +          - const: qcom,pcie-sa8775p
->>>   
->>>     reg:
->>>       minItems: 6
->>> @@ -45,7 +50,7 @@ properties:
->>>   
->>>     interrupts:
->>>       minItems: 8
->>> -    maxItems: 8
->>> +    maxItems: 9
->> I don't understand why this is flexible for sa8775p. I assume this
->> wasn't tested or finished, just like your previous patch suggested.
->>
->> Please send complete bindings once you finish them or explain what
->> exactly changed in the meantime.
->>
->> Best regards,
->> Krzysztof
+> On STM32MP25 SoCs family, an Octo Memory Manager block manages the muxing,
+> the memory area split, the chip select override and the time constraint
+> between its 2 Octo SPI children.
 > 
-> Hi Krzysztof
-> Global interrupt is optional in the PCIe driver. It is not present in 
-> the SA8775p PCIe device tree node, but it is required for the QCS8300
+> Due to these depedencies, this series adds support for:
+>   - Octo Memory Manager driver.
+>   - Octo SPI driver.
+>   - yaml schema for Octo Memory Manager and Octo SPI drivers.
+> 
+> The device tree files adds Octo Memory Manager and its 2 associated Octo
+> SPI chidren in stm32mp251.dtsi and adds SPI NOR support in stm32mp257f-ev1
+> board.
+>     
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> 
+> Changes in v13:
+> - Make firewall prototypes always exposed.
 
-And hardware?
 
-> I did the DTBs and yaml checks before pushing this patch. This is how
-> I became aware that `maxItem` needed to be changed to 9.
-If it is required for QCS8300, then you are supposed to make it required
-in the binding for this device. Look at other bindings.
+I do not see any changes here.
+
+b4 diff suggests this is the same as v11 so I expect the same failures.
 
 Best regards,
 Krzysztof
