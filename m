@@ -1,64 +1,78 @@
-Return-Path: <devicetree+bounces-174785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7778AAE746
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 19:00:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CA3DAAE76F
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 19:10:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D2E0522F6D
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 17:00:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19FF13B38E3
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 17:10:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216BB14A4C7;
-	Wed,  7 May 2025 17:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0D5528C2BC;
+	Wed,  7 May 2025 17:10:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="V2HFT7ut"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="ZDa1+ET9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5120310F9;
-	Wed,  7 May 2025 17:00:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A899628C034
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 17:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746637247; cv=none; b=AX8e5EI141z4aucy3DdP0EI+Y1loIBBtm0Qqx5N1FBG4AWLHoh9nl+KJiuDdx7NTwKSTSQJKaXFO9vPmLwzTTsG9bQbKUrBF/y/qL1qRuu3IIhC40kkAzJd53+E033Uw5KEfNykwhC+dyqJYE15J/1FOP6J54MiRh5v5C+2fKwU=
+	t=1746637835; cv=none; b=LfamKSA5IU35Q1F6kzGMr+Q9oA82MJR9ZzjJhLOBTA1iqgamBU3Me+U3XPf8lU2DqKjn9MmtQqdqwJ6zfUcUxg0WyNyu4Hj/fq8H2zM735oMbD15dbyU28hIF+Qo3vtd9DXL7ttGl91DDYY6iu+qL1FYav+JFVe7HktBKWMTAxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746637247; c=relaxed/simple;
-	bh=rJkpAr1apQ3BjXBzScslXWgVRmmq2IDLhDkNuhrW25o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZCtA6iPdSlnRKU+otHH8NsKEmcqwae9b04APsshuKawjffu+Gx6QWFUTe9YH++cfq3hpSO5ONkg43NTqcl0zia0y39uAxemdEZQa/c9DJKIAJYyuSbcrSZoPgThHrgjj/UC7nQU8mIQbYTLOh/mXIAzch2BJlMhGI4cQsM6iLtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=V2HFT7ut; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 547H0c9x1582333
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 7 May 2025 12:00:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746637238;
-	bh=COsi7czH8qaZZ7x1a7SmRwuxTQo32qR7Uo5j1icnvjk=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=V2HFT7ut3ple1yorqjYVLBkw98IDUImDcTNmbolwk+VYTtgm19N8JgybV2KEI99Vv
-	 SkY25o1rZYnQEZnGx4dSrdvnU6t95iCNxMJXoRJzT+Xvr92on+pzWnOaW39NocQGVU
-	 95tsH0mK1loZ+pW2X4cj00QTY4QOaPOR7NPb/TnE=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 547H0c33028108
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 May 2025 12:00:38 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- May 2025 12:00:38 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 May 2025 12:00:38 -0500
-Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 547H0cDT006228;
-	Wed, 7 May 2025 12:00:38 -0500
-Message-ID: <287d2607-c2f8-4024-850b-dfe0b4b96fc2@ti.com>
-Date: Wed, 7 May 2025 12:00:38 -0500
+	s=arc-20240116; t=1746637835; c=relaxed/simple;
+	bh=jrpjhvpfg+DcK9WZ3D7ziffxQ61gLSYtx+DsBsRPqUE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=bfeTXtVbYJ+iCEv7ORG6b1li7qijyl87byfziexviaejlc1se9h1Pa7WGO2CqiIbgJIauxOto9govNniCMvgnBCEupikZ4TTA6vBwimrgfxsa7ZsrIUe5fwzB7+jIO/MhzKmcyw9ODhrc0kqA/R//iEaeLPJ3uSuusi07OmC0Tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=ZDa1+ET9; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43edecbfb94so1203185e9.1
+        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 10:10:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1746637832; x=1747242632; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=kcOLMbYlvwqOTROoo3srbEJTigUJIWnrqfB7khtMLAw=;
+        b=ZDa1+ET9TZnEVnzinSHwP/jYY73/WT5S1Ya/gCxhkOiP1rNER16/P/datqlYENGJ2v
+         9oqPbODSunU5d3QnG4kC84KebGMhh9ELrRaJP+BYUQUsS2QN76X5JFOyJkh3pAC/lXfH
+         KH6yiCKsqLbelfTJ/tKf+qS2GXPmIBaidVo8s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746637832; x=1747242632;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kcOLMbYlvwqOTROoo3srbEJTigUJIWnrqfB7khtMLAw=;
+        b=AjvB1bP2+CY89xbhqxaN5xCb6oKgPJA91120kpleBRA+4GpEd8KMkyVVdxigGW4NRA
+         qUALArQnkQSeB+LdYDHlsEqyvGTUIKksV0KcPBhADyxBkkbjnzZgGM6WeapwoG8GwXe0
+         g6G7Ed1VkbaHxtupsAHKKKVXB1LdVLvZtq51KL0eUDfyl3hTbR+3eixZ3XcxS9MwJDY7
+         D7/ZDtnWlvDF9nsWi0CF2wvtNPMwLbJZNfq94cGCZogovfLYaso6LsGb9Zy4vwnAf7e1
+         kAXdu9ZEM1ZmgSW4nzQFT893/xMmcn0bMwRIKRsufQBlYgTjloosVLJ9OuY2y9KFlzju
+         D0Nw==
+X-Forwarded-Encrypted: i=1; AJvYcCXrv8Xw1PAZILJNJm66w4RWHC7bysR4GTT09+S1tXm01RUpEfvbpgVbDL5XBR/v96eJm/3MKWGgxKhD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxtx/Wv1cyyCoh55d0xhZuK5H1RCdK0MJ2spvDgYxlsMouIpo8F
+	G2NY2JRXW4Dy9/JPWmF/gbM5U2hx9EINJc+j/zqaDMnMpdMT4rE3fiKkBEAL3g==
+X-Gm-Gg: ASbGncuBe+a+T8xmb0Qj1R4/Cphp5yaoPRrZmJ8T/UbgHKRcd5QpwknRwR2zva6Ba4V
+	ujiVWeIEL/crb25to+PFg9uWHzFnRaHRzSzhbK9fxYJ0dFk3GgcDDb8PItKqUoWAn+poU7B0t0T
+	8NHJq6rAhchQFZ8RuN/8uvfhEeU7K4T7c52fApIS4oc83R/rTxkD4KCVzegBfLMjy0mXm7moWS9
+	244hc4Z5+2cA5FImlxCcFmjMviY8nggsWzxbfAWMyccyyKHmX/1zDpgGmLGV/3nEMInh3bTUo6v
+	I1vya/nTSVUFaCwwUGuXwxVmggIS1DTYsMspJzgFcrCQo6+IyTnsLwtP6EDVOAOuQHxpWgYV0E3
+	ZZSH/N4l+2+kPB+kBuRFH3apfDIsip8Uv23QxN8c=
+X-Google-Smtp-Source: AGHT+IFfi8UuFAYQjEy7l3BA3dJvfF0+JO48+2QUY30u6pN9hylsIH72wrE3T3OJ8QBiBWVpD2GDFQ==
+X-Received: by 2002:a05:600c:8714:b0:43d:1b95:6d0e with SMTP id 5b1f17b1804b1-442d033a3d9mr3016065e9.23.1746637831970;
+        Wed, 07 May 2025 10:10:31 -0700 (PDT)
+Received: from [192.168.1.24] (90-47-60-187.ftth.fr.orangecustomers.net. [90.47.60.187])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd33103dsm7143265e9.10.2025.05.07.10.10.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 May 2025 10:10:30 -0700 (PDT)
+Message-ID: <779ae10a-3174-4dbb-9130-008393b59745@broadcom.com>
+Date: Wed, 7 May 2025 19:10:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,140 +80,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] arm64: dts: ti: k3-am62p5-sk: Set wakeup-source
- system-states
-To: Markus Schneider-Pargmann <msp@baylibre.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Vishal Mahaveer <vishalm@ti.com>,
-        Kevin
- Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
-        Sebin Francis
-	<sebin.francis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>
-References: <20250421-topic-am62-dt-partialio-v6-15-v1-0-6ced30aafddb@baylibre.com>
- <20250421-topic-am62-dt-partialio-v6-15-v1-7-6ced30aafddb@baylibre.com>
+Subject: Re: [PATCH v9 -next 08/12] arm64: dts: bcm2712: Add external clock
+ for RP1 chipset on Rpi5
+To: Andrea della Porta <andrea.porta@suse.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Masahiro Yamada <masahiroy@kernel.org>, kernel-list@raspberrypi.com
+References: <cover.1745347417.git.andrea.porta@suse.com>
+ <38514415df9c174be49e72b88410d56c8de586c5.1745347417.git.andrea.porta@suse.com>
+ <aBp1wye0L7swfe1H@apocalypse>
+ <96272e42-855c-4acc-ac18-1ae9c5d4617f@broadcom.com>
+ <aBtqhCc-huQ8GzyK@apocalypse>
 Content-Language: en-US
-From: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <20250421-topic-am62-dt-partialio-v6-15-v1-7-6ced30aafddb@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <aBtqhCc-huQ8GzyK@apocalypse>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 4/21/25 03:14, Markus Schneider-Pargmann wrote:
-> The CANUART pins of mcu_mcan0, mcu_mcan1, mcu_uart0 and wkup_uart0 are
-> powered during Partial-IO and IO+DDR and are capable of waking up the
-> system in these states. Specify the states in which these units can do a
-> wakeup on this board.
-> 
-> Note that the UARTs are not capable of wakeup in Partial-IO because of
-> of a UART mux on the board not being powered during Partial-IO.
-> 
-> Add pincontrol definitions for mcu_mcan0 and mcu_mcan1 for wakeup from
-> Partial-IO. Add these as wakeup pinctrl entries for both devices.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 76 +++++++++++++++++++++++++++++++++
->   1 file changed, 76 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-> index d29f524600af017af607e2cb6122d3a581575ffc..35b950e444353c416e33344dfff42e2edeab3aba 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-> @@ -683,3 +683,79 @@ &mcu_gpio0 {
->   &mcu_gpio_intr {
->   	status = "reserved";
->   };
-> +
-> +&mcu_mcan0 {
-> +	pinctrl-names = "default", "wakeup";
-> +	pinctrl-0 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_default>;
-> +	pinctrl-1 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_wakeup>;
-> +	wakeup-source = <&system_partial_io>,
-> +			<&system_io_ddr>,
-> +			<&system_deep_sleep>,
-> +			<&system_mcu_only>,
-> +			<&system_standby>;
-> +	status = "okay";
-> +};
-> +
-> +&mcu_mcan1 {
-> +	pinctrl-names = "default", "wakeup";
-> +	pinctrl-0 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_default>;
-> +	pinctrl-1 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_wakeup>;
-> +	wakeup-source = <&system_partial_io>,
-> +			<&system_io_ddr>,
-> +			<&system_deep_sleep>,
-> +			<&system_mcu_only>,
-> +			<&system_standby>;
-> +	status = "okay";
-> +};
-> +
-> +&mcu_uart0 {
-> +	wakeup-source = <&system_io_ddr>,
-> +			<&system_deep_sleep>,
-> +			<&system_mcu_only>,
-> +			<&system_standby>;
-> +};
-> +
-> +&wkup_uart0 {
-> +	wakeup-source = <&system_io_ddr>,
-> +			<&system_deep_sleep>,
-> +			<&system_mcu_only>,
-> +			<&system_standby>;
-> +};
-> +
-> +&mcu_pmx0 {
-> +	mcu_mcan0_tx_pins_default: mcu-mcan0-tx-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x034, PIN_OUTPUT, 0) /* (D6) MCU_MCAN0_TX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan0_rx_pins_default: mcu-mcan0-rx-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x038, PIN_INPUT, 0) /* (B3) MCU_MCAN0_RX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan0_rx_pins_wakeup: mcu-mcan0-rx-wakeup-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x038, PIN_INPUT | WKUP_EN, 0) /* (B3) MCU_MCAN0_RX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan1_tx_pins_default: mcu-mcan1-tx-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x03c, PIN_OUTPUT, 0) /* (E5) MCU_MCAN1_TX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan1_rx_pins_default: mcu-mcan1-rx-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x040, PIN_INPUT, 0) /* (D4) MCU_MCAN1_RX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan1_rx_pins_wakeup: mcu-mcan1-rx-wakeup-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x040, PIN_INPUT | WKUP_EN, 0) /* (D4) MCU_MCAN1_RX */
-> +		>;
-> +	};
-> +};
-> 
-Hi Markus,
 
-I have the same concerns with this patch as I did with the previous 
-patch (arm64: dts: ti: k3-am62a7-sk: Set wakeup-source system-states).
-Both the wkup_uart and mcu_pmx0 have already been referenced early in 
-the dts and could be consolidated. This patch also does not apply 
-cleanly to linux-next.
 
-Best,
-Kendall Willis
+On 5/7/2025 4:13 PM, 'Andrea della Porta' via 
+BCM-KERNEL-FEEDBACK-LIST,PDL wrote:
+> Hi Florian
+> 
+> On 09:32 Wed 07 May     , Florian Fainelli wrote:
+>>
+>>
+>> On 5/6/2025 10:49 PM, Andrea della Porta wrote:
+>>> Hi Florian,
+>>>
+>>> On 20:53 Tue 22 Apr     , Andrea della Porta wrote:
+>>>> The RP1 found on Raspberry Pi 5 board needs an external crystal at 50MHz.
+>>>> Add clk_rp1_xosc node to provide that.
+>>>>
+>>>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+>>>> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+>>>
+>>> A gentle reminder for patches 8 through 12 of this series, which I guess
+>>> would ideally be taken by you. Since the merge window is approaching, do
+>>> you think it's feasible to iterate a second pull request to Arnd with my
+>>> patches too?
+>>>
+>>> With respect to your devicetree/next branch, my patches have the following
+>>> conflicts:
+>>>
+>>> PATCH 9:
+>>> - arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts: &pcie1 and &pcie2
+>>>     reference at the end, my patch was rebased on linux-next which has them
+>>>     while your devicetree branch has not. This is trivial to fix too.
+>>>
+>>> PATCH 9 and 10:
+>>> - arch/arm64/boot/dts/broadcom/Makefile on your branch has a line recently
+>>>     added by Stefan's latest patch for RPi2. The fix is trivial.
+>>>
+>>> PATCH 11 and 12:
+>>> - arch/arm64/configs/defconfig: just a couple of fuzz lines.
+>>>
+>>> Please let me know if I should resend those patches adjusted for your tree.
+>>
+>> Yes please resend them today or tomorrow so I can send them the following
+>> day. Thanks
+> 
+> Sorry, what's the best wasy to provide the updated patch 8 to 12 to you?
+> 
+> 1) Resend the entire patchset (V10) with relevant patches updated
+> 2) Send only updated patches 8 through 12 (maybe as an entirely new patchset with
+>     only those specific patches)
+
+Either of those two options would work. Maybe let's do option 2) in the 
+interest of keeping the traffic low for people.
+-- 
+Florian
+
 
