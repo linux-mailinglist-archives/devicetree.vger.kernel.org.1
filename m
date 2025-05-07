@@ -1,152 +1,196 @@
-Return-Path: <devicetree+bounces-174625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76C58AADCFC
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 13:09:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64924AADD34
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 13:23:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18A331BC203B
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 11:08:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB13E983829
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 11:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE1D220F22;
-	Wed,  7 May 2025 11:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BA9523315E;
+	Wed,  7 May 2025 11:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y/pgV53M"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="mybp3sV6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E315231C9F;
-	Wed,  7 May 2025 11:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3493E4B1E6E
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 11:23:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746616010; cv=none; b=G/We1SFmmcqdPvwHhoaaXpSFSlWSoIkMxyCit9ekVyK4WURYxLRt190QdgyvW1KjRnqTiXaKB2Ra5pKOpVklIb2KaF3nYJtDNLhnw3Xn6wietywY/nPPRQ2VOllo8821aWH4M6q7319HL70gplFLE00yYzuh0jw478aPBAx9qSc=
+	t=1746616994; cv=none; b=ZINLB76vhWzJkWHyjQMD/c6gF+fSU82DrxqrIgSNl6cdHEIATAgZXogWfCG38ljnbmTxYJGJitz6VCi+JyIWT2Fr3/T+Pc0+cW3Y6ABCwJQbF8CLq/sdFmLXSSlVQ3Vrg+jjUIQE/zKstWTp4EahWRZf3FESv846pS9R60ZWVk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746616010; c=relaxed/simple;
-	bh=aOkcXIBKJAR9llayqzp+OuFfdvHH0nZj+heQRjsae+o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gpmKkXlNLRC2gt42VFYWMIQ1uEwtRbSJQr1JFq6fhy1SAiQaRZ29jCtJWc4UgAJWE7wtc5j7zV0jEU/f409mXfGd6dhzPlm6iukIQFBYX7u/AbiGhmnGd40UuhCc2GD2vLlznxnCzmBfu4Dl8PoqZCkB3X8mB3B1CW3fEIbOrUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y/pgV53M; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5f6222c6c4cso10048366a12.1;
-        Wed, 07 May 2025 04:06:48 -0700 (PDT)
+	s=arc-20240116; t=1746616994; c=relaxed/simple;
+	bh=0YN7Qt+8hBYIMYQkj/bbF+8pso2oPM0KoT57Hc+rRzk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X+waumBoeqggDkw4e2SFx9NzapJzs9IvJ6uCtUMma90LliMVdlTyPDt52mQTIIeoN8nXsxpoXSQ8V3u1n+vd6vp20f3u9/zX8goMhGy8UHnD3Z41snw716jgGqbNGEBoT2lV8O0Vd0s4tzSu74w7xhaAb7qrV5D44xZ3x4Q5Tvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=mybp3sV6; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e78e53cc349so395966276.0
+        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 04:23:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746616007; x=1747220807; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=duDxhGSUaa+DKP3WsDW9rwdEeqUl14A6M/ImrV8wnQY=;
-        b=Y/pgV53M1LUsw7oxKzlx3Kp4xxGli1l8THui/VYrbzdGZecy5CjVoO/bDh8bWxV1Hg
-         nwX1OYnsxNcPkQt4qFErseVO+KZiq6DBDnNQFaNp/LoroperWm8BIKZXgIopGKJl3i4s
-         toaCtUMu5TFDqe2OUsXgmKgX+S3UaLLsmAHOJH/JkcRDLm6/KpQpqdoWEnFqyp4+/yTH
-         QUFWaF2eDbyZxyjYGddAmEhN+HgksTAdHQF7B9ycvn6UyWVYHIHaWWSWZ08l4cQcxzG3
-         8JOq3YmmA/GRIcOsaEHoe4DGpWVe9Ce74mgk3Suh3Mcb+0U0HEtwfRR3GtXgNsv/VFqu
-         YO7g==
+        d=raspberrypi.com; s=google; t=1746616991; x=1747221791; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BrlKQngaih/GyBdcD0JlQz7H1v2pzxnPiDTUdfvP4es=;
+        b=mybp3sV6AGCN4BO5zB4gqBXdriJSZwq2KPTT4t1sB9sklCUTuGVZYldgh+kx2rTcYl
+         08zoX1KX5bW/qeDqD3fWSMSMXo4VlXlMhymWUyLWNFF8tCcJ9MwiIf6pd3ap/S6r3Nu9
+         RzS8HsHMmQnznzifQ9Xod4Tg9HuGeLEpdGivLJGk57LRpNV9iC5mLEcxG7pAPa+suJbC
+         T6cSiSrhsoJc5PE3rnq90R9/ZGyxB6HaWA3PXa6Eo/1GZF9j3rh4hvU28iuzY4C1kcGD
+         7gLVavPFZSwcGv6S+ra6DL0VAx1EzyrVgn/O3thmrlGtratkZnpVruJA6TM0WBaWCBIz
+         uxXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746616007; x=1747220807;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=duDxhGSUaa+DKP3WsDW9rwdEeqUl14A6M/ImrV8wnQY=;
-        b=mlp36XTjszEp04XJOJS/rNZkb8OmO2aN+Fwt9GtHBj1IAyl2YRnGNB7HmJt4rJTBCZ
-         r3s+fE2387rEqyeHM6xiJhqXNYKjbRhXUNvQSeP6wQoTxNga0VzQ2XwTV8hPMR2wqjmX
-         F3RnrGdZU1bRvXvnJFYTWhVpwJB888U66mF2VcDgs8vcFBFbbz3JzRTlykM3ct7MzcnQ
-         7itIlp+hIiLpYWlyTpVa6hH8lGlF/kHFrPjyBNMhsdV047tWa9idluReOQA6veu5wqNJ
-         wX+/YwHw7xbfE+Yxx52EnjyNhSLz0I9wL9bSijxZgyH+xomoWLH7EFElRQZWY0ARvqsE
-         qVWg==
-X-Forwarded-Encrypted: i=1; AJvYcCVyXyAsJALMU4taCvczYUHJJ+V2AOAA5s+GZw304+PBSjzcjLjCQDup4g6jA1mj8kPTXIjMRZahiIuMB1cG@vger.kernel.org, AJvYcCWywCNWBw0T57BIFfS+YEN0DKOdRR3hcEBSDoUCv/tNKre5hjbbEk2oOF5P4v65U9CLpM22sdnV/Kg2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQgjfZGSDbYVX1fRnSs0DuHm01999Ct+tURO0Lqdxni2tXoVR6
-	nNWX5tSxXbxS9jT7JusdzLgFEHiZKvllVZF/xqx72FmM6DXv+fnV
-X-Gm-Gg: ASbGncvw2Do7JrYul8C6mFxx6qItR/jkB3PSwrx3B26opaCyzTcNFYLvnjMmHoCv9hZ
-	QNhnbSAgoAOnZwamNZh6mhCNYfJ2Ej1r0geIBTCeKH+LUxWGBDd0CzcTSL5oDEUtmW4sxZddcak
-	haFWKOVxu6WiPm1C3xxiG9fZ11Ve7oYnBt0rs73mBIjzkR5PdOLISeNIF8WE9iyfhOvZTF/+Rrj
-	i8H1i017j7xJITGgoPf1Su63XMy+6vHSsL5DoyYESIYx8R6T2WkmHIrsxfNmKqqoLP36JtJIW8C
-	1oe+fJg2AwRWgEsd3z+FcjO3vRNFrWtqKhCzj/uDlQuSAtTWug==
-X-Google-Smtp-Source: AGHT+IHUTGuZKxGzeUHzGfykWA8vb3hzItLyZnesCtBXdESu0mFRGfHYDE/15YKTQH60qIZWWmK6oA==
-X-Received: by 2002:a17:907:c388:b0:ace:d3f0:e51d with SMTP id a640c23a62f3a-ad1e8d89b0cmr288549566b.54.1746616006898;
-        Wed, 07 May 2025 04:06:46 -0700 (PDT)
-Received: from [192.168.1.130] ([188.193.103.108])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad18914d067sm888907766b.3.2025.05.07.04.06.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 May 2025 04:06:46 -0700 (PDT)
-Message-ID: <63665c17-da37-4b5b-9c2d-28d5a669680f@gmail.com>
-Date: Wed, 7 May 2025 13:06:44 +0200
+        d=1e100.net; s=20230601; t=1746616991; x=1747221791;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BrlKQngaih/GyBdcD0JlQz7H1v2pzxnPiDTUdfvP4es=;
+        b=s7O84G3vCZNEgQ07yCtdNq+AiPZUt+zQcwn1MkW/FyYBH28Wg1ZTfLtzfsUZD2XyTB
+         dWBBDBwY/2q7AOg7oo5t2HGBRrwqZC3CmYolJPBv3buYF/S18vyf1NiDPNgMdQmge1El
+         xIpH8AGUMjcOmLgafWPVZcQkjuQjyahjE0QL7orlrDSP99uxBdwkEOiDh8CDgmaDCopK
+         iucVAk5aId2knEAHYBUIydk5XF3FOTG6gMt3wdIvx9CVP2n7XfJrQl2fUmKo6Z7TExQY
+         MIlOyv59xH7Lq6p69DgRqFu0rE7xkeG7GLCtj2qzRT6m5EM0mwSx5HrnoTU10xaB5oox
+         iaVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV/Ts+ZQeDrDmORelbx0edXYkYzgZGdNhXyWZOmM4MC6HFktxefOeyEBeQNd9c++SJTVixCRiSMe9Vy@vger.kernel.org
+X-Gm-Message-State: AOJu0YzudzPvHME+KXC6WeUC7DHi01RMDu7P09jUKOERx9hQBDgnczd0
+	GXRaejkN+T7HdfCpr99Fr93bwpfoAYzCbYrxsFfuKlFlosHFIMmGRb8jw4pqi+WQfClcvPoC9qV
+	y0VfLZgwSJy57QgHQI9HMmunfUcEXPiqWwUw2zQ==
+X-Gm-Gg: ASbGncvuaM62aL4PeSwyYln66sua+EM+hWBBX0PZ4vZU70czS50JVayfEcB0KfqRHDA
+	eylwbgiT85lL7EoFr7P6f55Q73lAr6/EPMS+BJ1q3tlA1WBjY38g4/QilHW8JjT4cpUrlPTJwQW
+	lOzqIt+rYA/2BMl4G/z3RuIQQLSFsni3PlTQK3h5cbz9gLtkaC8c9f
+X-Google-Smtp-Source: AGHT+IFxdYKCzY2TKwPokyurfueqmOKja0Rc4hCwr5SUWy06EioalRQvocuOR1AAy0bCdqDcNh77dszj2t/Oy74t3i4=
+X-Received: by 2002:a05:6902:18cd:b0:e74:e02:626a with SMTP id
+ 3f1490d57ef6-e7880fc6382mr3556036276.19.1746616991034; Wed, 07 May 2025
+ 04:23:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] ARM: dts: stm32: add initial support for
- stm32mp157-ultra-fly-sbc board
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- =?UTF-8?B?QsO2cmdlIFN0csO8bXBmZWw=?= <boerge.struempfel@gmail.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250505115827.29593-1-goran.radni@gmail.com>
- <20250505115827.29593-5-goran.radni@gmail.com>
- <2d0ff289-06f6-4bde-a238-097d22573d4e@lunn.ch>
-Content-Language: en-US
-From: Goran Radenovic <goran.radni@gmail.com>
-In-Reply-To: <2d0ff289-06f6-4bde-a238-097d22573d4e@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250309084814.3114794-1-demonsingur@gmail.com>
+ <20250309084814.3114794-13-demonsingur@gmail.com> <b214bf8d-33d0-4da8-bf16-cc62bd1fbd55@videtronic.com>
+In-Reply-To: <b214bf8d-33d0-4da8-bf16-cc62bd1fbd55@videtronic.com>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Wed, 7 May 2025 12:22:50 +0100
+X-Gm-Features: ATxdqUG3nHKGjKOQoFEY4aL1pXCEA2rU5jPHWszWU5gDb-fbZzf1eN3M8MI_ltM
+Message-ID: <CAPY8ntCtycm+fha9yuJyr2_9obq8cq6xjYJT7acnFPgh_sCi8Q@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 12/16] media: i2c: add Maxim GMSL2/3 serializer and
+ deserializer drivers
+To: Jakub Kostiw <jakub.kostiw@videtronic.com>
+Cc: Cosmin Tanislav <demonsingur@gmail.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Cosmin Tanislav <cosmin.tanislav@analog.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
+	Julien Massot <julien.massot@collabora.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Bjorn Andersson <quic_bjorande@quicinc.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Taniya Das <quic_tdas@quicinc.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	Eric Biggers <ebiggers@google.com>, Javier Carrasco <javier.carrasco@wolfvision.net>, 
+	Ross Burton <ross.burton@arm.com>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Zhi Mao <zhi.mao@mediatek.com>, 
+	Kieran Bingham <kieran.bingham@ideasonboard.com>, Dongcheng Yan <dongcheng.yan@intel.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>, Tommaso Merciai <tomm.merciai@gmail.com>, 
+	Dan Carpenter <dan.carpenter@linaro.org>, Ihor Matushchak <ihor.matushchak@foobox.net>, 
+	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-staging@lists.linux.dev, 
+	linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Andrew,
+Hi Jakub and Cosmin
 
-thank You very much for Your comments.
+On Tue, 6 May 2025 at 19:34, Jakub Kostiw <jakub.kostiw@videtronic.com> wrote:
+>
+> Hi Cosmin
+>
+> Awesome work. The initiative to establish a common framework for GMSL
+> devices is a great idea.
+>
+> I believe that we have found few bugs:
+>
+> > +#define MAX9296A_BACKTOP22(x)                        (0x31d * (x) * 0x3)
+>
+> The first multiplication is wrong and should be replaced with addition:
+>
+> +#define MAX9296A_BACKTOP22(x)                  (0x31d + (x) * 0x3)
+>
+> The same goes for MAX96724 equivalent macro:
+>
+> > +#define MAX96724_BACKTOP22(x)                        (0x415 * (x) * 0x3)
+>
+> In MAX96714 driver there is an issue with setting up lane-polarities.
+>
+> > +static const struct max9296a_chip_info max96714_info = {
+> > +     .max_register = 0x5011,
+> > +     .set_pipe_stream_id = max96714_set_pipe_stream_id,
+> > +     .set_pipe_enable = max96714_set_pipe_enable,
+> > +     .set_pipe_tunnel_enable = max96714_set_pipe_tunnel_enable,
+> > +     .phys_configs = {
+> > +             .num_configs = ARRAY_SIZE(max96714_phys_configs),
+> > +             .configs = max96714_phys_configs,
+> > +     },
+> > +     .polarity_on_physical_lanes = true,
+> > +     .supports_phy_log = true,
+> > +     .adjust_rlms = true,
+> > +     .num_pipes = 1,
+> > +     .pipe_hw_ids = { 1 },
+> > +     .num_phys = 1,
+> > +     .phy_hw_ids = { 1 },
+> > +     .num_links = 1,
+> > +};
+>
+> In order to make thing work we had to set
+>
+> > +     .polarity_on_physical_lanes = true,
+>
+> To false. So this field is either improperly set for MAX96714, or handling of this case is wrong:
+>
+> > +             if (priv->info->polarity_on_physical_lanes)
+> > +                     map = phy->mipi.data_lanes[i];
+> > +             else
+> > +                     map = i;
+>
+> Upon mentioned changes we have successfully tested two GMSL2
+> combinations on Raspberry 5 platform:
+>
+> 1. MAX96724 + MAX96717 (only 2 MIPI-CSI2 lanes with single camera due to
+> hardware limitations)
+>
+> 2. MAX96714 + MAX96717
 
-Andrew Lunn wrote:
->> +&ethernet0 {
->> +	status = "okay";
->> +	pinctrl-0 = <&ethernet0_ux_rgmii_pins_a>;
->> +	pinctrl-1 = <&ethernet0_ux_rgmii_pins_sleep_a>;
->> +	pinctrl-names = "default", "sleep";
->> +	phy-mode = "rgmii-id";
->> +	max-speed = <1000>;
-> 
-> max-speed is probably pointless, rgmii cannot do more than 1G.
+Feel free to shout if you want help on the Pi side.
 
-Agreed. I'll drop the `max-speed` property in the next revision.
+Pi5 should be able to extract multiple virtual channels to support
+several sensors simultaneously (up to 4 VC/DT combinations). It does
+need a rework so the CFE runs from memory rather than being fed data
+directly from the CSI-2 receiver, but I believe that is pencilled in
+as future work with libcamera already.
 
+Unless things have regressed, libcamera should report all connected
+sensors to SerDes setups, and set up Media Controller appropriately to
+use them one at a time. I know I've had that working with simple CSI-2
+multiplexers and thought I'd had it working with TI FPD-Link III
+SerDes (Arducam's IMX219 V3Link kit, modded to remove their MCU). I
+don't have any GMSL hardware to test with.
 
->> +	phy-handle = <&phy1>;
->> +
->> +	mdio {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +		compatible = "snps,dwmac-mdio";
->> +		phy1: ethernet-phy@1 {
->> +			reg = <1>;
->> +			interrupt-parent = <&gpiod>;
->> +			interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-> 
-> PHY interrupts are 99% time level, not edge.
+We're also fairly open to merging drivers and overlays for 3rd party
+hardware into the downstream Pi kernel. If they've been reviewed and
+merged upstream then that is the ideal, but if you're prepared to
+support them, then it saves the user the headache of having to build
+out-of-tree modules.
 
-That is correct, but I am facing strange behavior, when I set 
-IRQ_TYPE_LEVEL_LOW.
-My board stops booting at:
-
-[    2.343233] Waiting for root device /dev/mmcblk0p4...
-[   12.638818] platform 5a006000.usbphyc: deferred probe pending
-[   12.643192] platform 49000000.usb-otg: deferred probe pending
-[   12.649029] platform 48003000.adc: deferred probe pending
-[   12.654277] platform 5800d000.usb: deferred probe pending
-[   12.659744] platform 5800c000.usb: deferred probe pending
-[   12.665089] amba 58005000.mmc: deferred probe pending
-[   12.670239] amba 58007000.mmc: deferred probe pending
-[   12.675185] platform 50025000.vrefbuf: deferred probe pending
-
-I must investigate this. If You have any idea, You are welcome to share it.
-
-> 	Andrew
-
+Cheers
+  Dave
 
