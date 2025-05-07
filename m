@@ -1,162 +1,126 @@
-Return-Path: <devicetree+bounces-174802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF18EAAE8E3
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 20:20:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 266BCAAEA8F
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 20:57:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C78A3BFC36
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:19:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BA3952372B
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7E2528DF41;
-	Wed,  7 May 2025 18:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DEDD28C5B0;
+	Wed,  7 May 2025 18:57:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fossekall.de header.i=@fossekall.de header.b="D7uPwl8m";
-	dkim=permerror (0-bit key) header.d=fossekall.de header.i=@fossekall.de header.b="MPK+TQ1b"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="byBmq9J0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1599528DF39;
-	Wed,  7 May 2025 18:20:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746642013; cv=pass; b=UwpqbuWcWteUtJNoZUbD4UHHVALG/YNxu+YBvWLxOKgEAlxpXA1LvViIFRYUq7KgLY0nMnBVui1LQoAbPW7veFFK4nocEoUDAaYp40QqsQwxwdVnXDPYLVQVd5QzLynKvf/LoNB4/z62wHAMmgyJce5yRerrH55ttyy3vesBP3Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746642013; c=relaxed/simple;
-	bh=k45LvJCj4nul5OnklsWDK1e1YwrPqFzRj3IxfD3mvIM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=B+15iQu+7urOpEW5RFB565dEfoXcYqQ05EV5nFPSlB8OL38vbiP1tX/H2KtoIj2/X1nq3zinzw+u3oE7H6+t7Rx8eFrDw2NOjP6tKJnkBNwErIkCoDTt0unzqotJ7ysCKyWHYD1Vur/MCl8UfYUH+mFZb+ALW5ccirqH+ROwcjg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fossekall.de; spf=pass smtp.mailfrom=a98shuttle.de; dkim=pass (2048-bit key) header.d=fossekall.de header.i=@fossekall.de header.b=D7uPwl8m; dkim=permerror (0-bit key) header.d=fossekall.de header.i=@fossekall.de header.b=MPK+TQ1b; arc=pass smtp.client-ip=85.215.255.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fossekall.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=a98shuttle.de
-ARC-Seal: i=1; a=rsa-sha256; t=1746642008; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=ggge+QZGr5xlTVA7vxZ/DhCinzk/tfLC0jY9/0C12uHsm0elGXp7J2DtmfR5JkXSZu
-    jVDRgFLUtJNo08tXBGmOB65mwOp2UggVv4H033dx5y2HaFb/8RquCRGu5SAcfDLtvIhO
-    6STnMtKFQgCxFEhfkApD8YDsysd3q5MMgX+/zxNu2bpL/ijkN2gHj5g3PZ0dv+BpV2+e
-    cFY6sBTRXa+1NzMcEJNVoAr1L4LIwZnPr+Y4mRU+d0s0AinEJnkep3GV9OG3OkGru50d
-    Ux3rYV+y81dxzBCIbHN9Tse26DbYp+uaN8FJOM5NU5Z0smGPilJEhqih7QmZBvgphg52
-    0KfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1746642008;
-    s=strato-dkim-0002; d=strato.com;
-    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
-    bh=aeRCGfuCcMOkPK+Z73zPArBARVdjs149XSsfgGnEbOA=;
-    b=AaBAN5F+3xCC1nBDYRrN1DwzYcukxl0dwY5lL4M7/eypM0RwjNRruuRutLr+gev7Of
-    OdpGi9m95ojwPJhwG1zd46zqY9RrvFMsdj0Vf2mnoZJsEYofkwxSfInRHHYNnvCbEEBf
-    U3c1xl0M3FKqab3YLvI3rirUaW2ux3uuPraOFHosVDcQeKo67rLQdpQzAKLRqu75L4Ru
-    cITv9CL4M3hjTt0Mmi0yYdkczbajYVYhBl/FpbUNXgC/Su+nvZv7DIL1+5YdvM4QO2kg
-    1XfAJRuOMM4hEkgfqhlfxbGCCN7SxAcs/SDDxU/J8xHJI/LL+5vAAyq7ka3y+plEuvXw
-    GGMg==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1746642008;
-    s=strato-dkim-0002; d=fossekall.de;
-    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
-    bh=aeRCGfuCcMOkPK+Z73zPArBARVdjs149XSsfgGnEbOA=;
-    b=D7uPwl8mRfI57QaefQKOtQp9FCFjdKWBPLmCzJTfm/4snA0mo8iOYFbobl8yorExkw
-    uCnhwU9lwMLxd6uHQnxTuF8MNoVQi5VYNssKMhCW9vCZpLWZNbBp0bIdY+h+VItWow3d
-    W+gjclUHfpRS0i0T/tm7TV+xX20A9o+4n9+pfdXY0u4a7vnmJgA2DcCzsF+0qudlR+Iq
-    qlZYza/u1wZPNSDJs8mBcEp8UhouCAia0nIBkqFhfB7GQlHQExzM0qxNR2dv8dTO3I2c
-    CM0KqTq1nG4DAnpYhbtwe/MVA2OVXDkAQTED0nrPSgInOL4byOsvluoMJyw8ZXDoclwt
-    29uQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1746642008;
-    s=strato-dkim-0003; d=fossekall.de;
-    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
-    bh=aeRCGfuCcMOkPK+Z73zPArBARVdjs149XSsfgGnEbOA=;
-    b=MPK+TQ1b+m+0OUuuVFOGwh69lVpWFh+Ddse2Lzgn7lMhnitJJQLWBdH68HbZ2/Vbm9
-    1R/ge4ax/EiJpDTl5XDQ==
-X-RZG-AUTH: ":O2kGeEG7b/pS1EzgE2y7nF0STYsSLflpbjNKxx7cGrBdao6FTL4AJcMdm+lap4JEHkzok9eyEg=="
-Received: from aerfugl
-    by smtp.strato.de (RZmta 51.3.0 AUTH)
-    with ESMTPSA id f28b35147IK8GMU
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Wed, 7 May 2025 20:20:08 +0200 (CEST)
-Received: from koltrast.home ([192.168.1.27] helo=a98shuttle.de)
-	by aerfugl with smtp (Exim 4.96)
-	(envelope-from <michael@a98shuttle.de>)
-	id 1uCjNH-0002s1-0Z;
-	Wed, 07 May 2025 20:20:07 +0200
-Received: (nullmailer pid 8685 invoked by uid 502);
-	Wed, 07 May 2025 18:20:07 -0000
-From: Michael Klein <michael@fossekall.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
-Cc: Michael Klein <michael@fossekall.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: bananapi: add support for PHY LEDs
-Date: Wed,  7 May 2025 20:20:04 +0200
-Message-Id: <20250507182005.8660-1-michael@fossekall.de>
-X-Mailer: git-send-email 2.39.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F01289823
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 18:57:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746644223; cv=none; b=IzlpowpYzc/Sk4rNKW/saQKRtj/jXzK6mkAoGQWAx7efD64d/XN5BAgvRwg/Jw52UstxhjuyhD95GyDfgGruMoA4VyrIe5c3qJYELD2oVkiLG0teQGxMi66odRtlo7QAaXwlYS+5dAMv+yXJb1+PgpjcWyiCV0WJBUqnsetKfJY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746644223; c=relaxed/simple;
+	bh=pe3tyzUnuTHHV9wY+pcDILJl9icjd/4bGQ8VCrn/BHA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=k1mU8arfzb9UdCI8UCdkL2aRHJ3Xxlu9XF6YfzgG49l6FZXGmyWVst/eb6VumnKdvH+ZBrJb9HPcDMsr1FFLKUsKqM1k/EHXG2S5CulYYc7Gb4nPWIC3SVHAV6+Cu9TuVbwkcWkzj0BoV0hLu9LFONapHcvOeEzDPlT2vklPK1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=byBmq9J0; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-736c3e7b390so292451b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 11:57:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1746644220; x=1747249020; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0D7Z3FNBB3xDX5RO0FZQrmLI3qnCJ7UO3XkdhJ32m+0=;
+        b=byBmq9J0BMzGUW2oBf42qoORUcDgUlFE3wFaB8cqTPOUaKk2DtgfSZnUduQX+NxQXi
+         JaZJpaTqPH+ePjESJDw/tC7aI4xmkXxR4pykLReKqndmUo3INRJfyHHRLO7ccJo7ksRp
+         OgUqzkXnTg/tov4QyM1nisO1uvMUQVf/SMeB76Vp0R94DHmRp5kmXtpFxtRaJxLZHOVB
+         IFTCFduzGAuDaLpeNJwD0LnKc6bt8cfWE7DDQuS3F8FmaPiHrP2UDQ3dAPSH+zKbIG33
+         te9rj1aksaleiDWPAKY2Bn5ITFoFY8tGTIGLhvLpaiyb9AatvtPioMCy496dKXbVOfif
+         jaHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746644220; x=1747249020;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0D7Z3FNBB3xDX5RO0FZQrmLI3qnCJ7UO3XkdhJ32m+0=;
+        b=wKRDJ/FFMX0cwTommA+53ygNL5L1+UzWB3lyHT2wcfZu9G+XU7aMIRVpVJfKOZCvdl
+         lPeqtkWgjtbfAIILIngHVs27jnl8m8blrM3m6Jfi6n//Bo9agvGJ86lhSGZPa9MyE9Ev
+         1n14BcpYDWMLzubz6+M9OiTVFB3r4C+pjYH/0bRctBMnOHbUUpz5T6r/1hRPujj+p1Iu
+         x9cW3MjZh05RrVqYFM8lP7/U5Jc7adIz7BSieta/ayfxQnKy1ddDfPJoD0M0WWCvHHqc
+         2WN55AjEi16khaG4bau/2pTnGzIuqOLJWZKCPMa8A2rPCFce48D4RXeuw3KhhVT/QUwF
+         P+wg==
+X-Gm-Message-State: AOJu0Ywja2iUfKC6CgydL48lk2oZmAsi126lLjwguL7XLKWiGpp6vaJe
+	EMpupJaVc0yXDXAu+4BRbiPsi9IdVE0F+3VUlsdYyH4+qcWxvpihmmECJCfnfmE=
+X-Gm-Gg: ASbGncuwKnt1lUEeMZpGyxI5uIazPA3+YuAqRVNiRWIIKmwCtO19UyXaS6Ql+yQxh+2
+	SU1o3Krjf0R8mQC15NSMao1gfIE8aSvtXv2Lc37m9K2P2iokRMd+5Eo9UpGOaSZGM+tI21ZDHyc
+	aenD7WA+UCLuKaeqayWjME2uc+Qlsy1hxNw7n3sQkzWBo8HhN6vQgEQ3S0jhVuGhu2gjz1zjen0
+	6cROrVKECR8nOUn6DZLFh7xTz1ZlXbowuiK60ndzQackT8vM6Gj6INzk6MhSSp9jdnPKWNg6u8Z
+	d6f/8301SamIxYuIkmchebPpq663/bBBvhCAmvO0/A51OxA=
+X-Google-Smtp-Source: AGHT+IEdnDHavMVVsk2ZTJfyzX7ew+kWTOFVAkNqTxlCa/8qxYi15T/lhuGRhufPsi1FCD90sh72qQ==
+X-Received: by 2002:a05:6a00:e0b:b0:736:32d2:aa93 with SMTP id d2e1a72fcca58-740a9a91092mr595573b3a.20.1746644220028;
+        Wed, 07 May 2025 11:57:00 -0700 (PDT)
+Received: from x1 (97-120-122-6.ptld.qwest.net. [97.120.122.6])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-740590a2735sm12068773b3a.176.2025.05.07.11.56.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 May 2025 11:56:59 -0700 (PDT)
+Date: Wed, 7 May 2025 11:56:57 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Guo Ren <guoren@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
+	Palmer Dabbelt <palmer@rivosinc.com>,
+	Michal Wilczynski <m.wilczynski@samsung.com>
+Subject: [GIT PULL] clk: thead: Updates for v6.16
+Message-ID: <aBus+Yc7kf/H2HE5@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The RTL8211E ethernet PHY driver has recently gained support for
-controlling PHY LEDs via /sys/class/leds. The Bananapi M1 has three
-LEDs connected to the RTL8211E PHY. Add the corresponding nodes to
-the device tree.
+The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
 
-v2: Refine commit message
+  Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
 
-Signed-off-by: Michael Klein <michael@fossekall.de>
----
- .../boot/dts/allwinner/sun7i-a20-bananapi.dts | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+are available in the Git repository at:
 
-diff --git a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts b/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
-index 46ecf9db2324..d8b362c9661a 100644
---- a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
-+++ b/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
-@@ -48,6 +48,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
- 
- / {
- 	model = "LeMaker Banana Pi";
-@@ -169,6 +170,32 @@ &ir0 {
- &gmac_mdio {
- 	phy1: ethernet-phy@1 {
- 		reg = <1>;
-+
-+		leds {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				reg = <0>;
-+				color = <LED_COLOR_ID_GREEN>;
-+				function = LED_FUNCTION_LAN;
-+				linux,default-trigger = "netdev";
-+			};
-+
-+			led@1 {
-+				reg = <1>;
-+				color = <LED_COLOR_ID_AMBER>;
-+				function = LED_FUNCTION_LAN;
-+				linux,default-trigger = "netdev";
-+			};
-+
-+			led@2 {
-+				reg = <2>;
-+				color = <LED_COLOR_ID_BLUE>;
-+				function = LED_FUNCTION_LAN;
-+				linux,default-trigger = "netdev";
-+			};
-+		};
- 	};
- };
- 
--- 
-2.39.5
+  git@github.com:pdp7/linux.git tags/thead-clk-for-v6.16
 
+for you to fetch changes up to 50d4b157fa96bfeb4f383d7dad80f8bdef0d1d2a:
+
+  clk: thead: Add clock support for VO subsystem in T-HEAD TH1520 SoC (2025-05-07 10:09:28 -0700)
+
+----------------------------------------------------------------
+T-HEAD clock changes for v6.16
+
+Add clock support for the Video Output (VO) subsystem in the T-HEAD
+TH1520 SoC. This includes the device tree bindings for the VO clock
+controller as well as extending the TH1520 clk driver to provide
+clock functionality for the VO subsystem.
+
+Signed-off-by: Drew Fustini <drew@pdp7.com>
+
+----------------------------------------------------------------
+Michal Wilczynski (2):
+      dt-bindings: clock: thead: Add TH1520 VO clock controller
+      clk: thead: Add clock support for VO subsystem in T-HEAD TH1520 SoC
+
+ .../bindings/clock/thead,th1520-clk-ap.yaml        |  17 +-
+ drivers/clk/thead/clk-th1520-ap.c                  | 196 ++++++++++++++++++---
+ include/dt-bindings/clock/thead,th1520-clk-ap.h    |  34 ++++
+ 3 files changed, 216 insertions(+), 31 deletions(-)
 
