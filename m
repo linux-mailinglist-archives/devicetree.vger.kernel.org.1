@@ -1,161 +1,164 @@
-Return-Path: <devicetree+bounces-174767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D75AAAE53F
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 17:46:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45068AAE55B
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 17:49:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAE8098847B
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 15:45:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FD269C3B4F
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 15:49:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F76A28A403;
-	Wed,  7 May 2025 15:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6061428BAB1;
+	Wed,  7 May 2025 15:47:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32F9E19D092;
-	Wed,  7 May 2025 15:45:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2CBF28B50A;
+	Wed,  7 May 2025 15:47:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746632747; cv=none; b=UN73I/DhIsEUaE5ux32PsIRT0q3pS9w7939AFZtg/wm6dYj58Y7Ss90/YIBLzYIw3PL6lIkjfrKNSSC43muOhjZ+0A8dKRPTORoKbhKrdffrf1rNbyd8MdIchGy/RtBrTwv83LfiaODLJ+C7njLGCQhYgOOEVrpd4gG47F6yYHk=
+	t=1746632868; cv=none; b=kuN+CopNeXFQQBfij8BpC2nuoV2sSl8y6ZG/fHTzzHEU6b5MbAIctypNHWnu/g2P7+XS/R5u5kQhGN7ABcpH9T7LmE/xe52CvA+ouSjvq9TrYmazMbq2alVcMnxInHjUvC1ADtmHpbVNBvS4piczjilVCe1vyNHmoU0fYZB5Wss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746632747; c=relaxed/simple;
-	bh=snxIgqDfv9AzTPRASeTgnmdONS2s/uweYA4rLFpghpE=;
+	s=arc-20240116; t=1746632868; c=relaxed/simple;
+	bh=Z4xfUuRPwg+8T9n0Ut4Omo/Fa771zcSxf5NA+FwJrTY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J9mtRYxpTenpQwfV0Ogbye9XTN9nmkunHLzenGhp6gCL2OW6ACUA7rlc6LJIfSLAUfxAuJy4aC4G+NHpC1/LCQaE/iwDN+Ods2vE2yNcq84e0TxX4SKoNVnRwJeRnfYVzs5vY1LOCuCIkkX5K7x08OOvRF7LfFWFSFYui8/rtW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+	 To:Cc:Content-Type; b=cId01u0uY2FfLGjzckKGIelmlvCXgY9LrbCefe23e4NP1M1J+Ei1hhGtnjgJ0ot5wirjdFOG9yPmNajQjVvSwNTJ+Kgo14yooxRjfgvHVO+JuQCxgpJv2tGO5NoZw2FpOVr7YcauYVEp4sua4dZZgZGCM7c3gpFAdUIhM1XXKrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-54e7967cf67so5370e87.0;
-        Wed, 07 May 2025 08:45:44 -0700 (PDT)
+Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-523dc190f95so2524261e0c.1;
+        Wed, 07 May 2025 08:47:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746632743; x=1747237543;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hUchLAT2CvoC+0spmKn93ymH4pNN6dMT06ZJPIMdE5s=;
-        b=w6HhOYKk+UN+FGVFpBVLFdHnvr4E+PmKQW0WIvRxTH7gYZ6dWPFhKPCnbHi0HJZWG1
-         WJNg/zbHBybwbQU2XBS4BexI2SuZ1tjHzvFt4kt6TpCuPZalamaE2hL7xd+VCyzu2dCE
-         F74EIykoGzxr0CGjqmqt2l356olnnI0Qm6zFg0snADx9TZHIYYed/ev39JnHpxZfOOKj
-         CnKe32qbCiego6cWayp0JMIeWpT/MjxV7h/6f10NtFzKQDvniBCFRLdnZqTx6wbwFKIp
-         cpxxtZ0Aca94BG8gfIZVD/SM1Zcq/ElTUpFEgCC2nM1QWdvJKgcfP2iiT+SaQZvR2yyZ
-         rD3A==
-X-Forwarded-Encrypted: i=1; AJvYcCW7XXwwSFcKTdcGCwTA8ZssqNZgLuu/SqhaswcYNBvyabTiz6bvP800gseLYoccf3ZJG3vzSJ/ha3RTtmRd@vger.kernel.org, AJvYcCXCKB1nprcaYcCx1+L5N1QByiiC7BlV6nu42z2N6zdscHRkjhhkjUSyZrI2zCJQEjiBqU4IygpIlPOM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwcP3TuJuUjvCKdNZB4mdiZoiFBKUXVx+8xS+wRJ2uMnsZuF5A
-	cbUYuwZesv3xtEstjLv6qqIia4rW55B6cxyZaPSmRjwYfLRALx0S96zwdEXU
-X-Gm-Gg: ASbGncsmvJ2ZjKgZVZEezq/b9EaG53JGByzJzjWQQolwaGVbAipzzm06IkbZeo4OqZo
-	7es9HwkY9OUOtYDrud8Gn/D1MhM2eyjaEau2Y+k6QTwDVmKTNJp6VhGQR5TWN1mtBDGqifteiJQ
-	2Cv8rQlXSCuUmxztFUUALwxuwKE9uD3Y0IBR4QiUMIwaVcYCCdanrVFhu3ViidX+qZKHt2MNM+j
-	g2uYKIa6ZVbqN91xczuwzFKUcJUwxSalQux5JhJTLfTBocCMx1Wo0BOfz8CHNDhG+Tru8bPY/o1
-	hZsdXf2POgLP+9BZvhuXmX0+I18XinwiJC6wloPoiiwkmi1jf5VyHeAfbaN3hOObFSM9SQ6mtg=
-	=
-X-Google-Smtp-Source: AGHT+IGUtAzwPgtOkcNndnaFBO5XyKYfXW2FtKeY8TaXIyE0oH6rVJDuEkxV5qGfzK0WIzx5RS0izQ==
-X-Received: by 2002:a05:6512:1195:b0:549:78bd:6b9f with SMTP id 2adb3069b0e04-54fb9296120mr1521118e87.30.1746632742577;
-        Wed, 07 May 2025 08:45:42 -0700 (PDT)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com. [209.85.208.181])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ea94f6d9dsm2354228e87.255.2025.05.07.08.45.41
+        d=1e100.net; s=20230601; t=1746632863; x=1747237663;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/NX61842Xcehih96DKmizUZ+/nW7mZduWkg4pn0lYhM=;
+        b=vc5Oap+UfLpVd2U/hYRZlpr1myP+qDtAX0Bl2vgjjHEqPXtbnWjGxcjY1bbtixaUCZ
+         yKipDjkl7L9f52zhOtaiMj5EIoibEnPHwxjYSIpgsyudTMY2CmmsCeuOMrq9WbQbWkTS
+         ASVGNqkJY0aEJ4IkUlHQwVulkPwsk+RzB2Ny6Gki9XVV0Nh2OCPSp7J6ywlCaD6hnFkV
+         mlBVsGJVDuVk7klhiyy0F6eEcqkCczV/YZm4YnSU3tnO1Q+mHbSuRMCYnNsbmr4G/Ep7
+         +rK1l26kS+gPeB1LgqDHhi28MN5/4NLJFPKFC+MUd1AsmXNMi0EptEPn0HTqnuQA6TaD
+         XzDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW9s0NMUZP87BIioK7fivsAH61Y9+oP3fTsBLrFK0EWGzNRBLmQKJFwC5tKCa1X4rXyhgORVaSsQ8ZJf61O@vger.kernel.org, AJvYcCWvYMiSw8PKLYTS8Nnb9PiY4kVb+zZTC5ieH2tQioH0XJYhYNZ7DuQelGKrmUUIouL+MomsFjFTx9lo@vger.kernel.org, AJvYcCXKZLBtaF2RP5QCBI8y0GnVWSibRXqHoPe0iSGlnx8QYpXZZjUbG8ee39jLPwurF9ysVeUAfsHeMmUw@vger.kernel.org, AJvYcCXNK3irv8kNW2v3iy7iwOM9EZqIbUqbQFclPch8LI4Z0nRUdknU+F/867c507R2WMp2q1QsletOecIbuFFHuY3YYPs=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzqnn+xImGi8I9oeEXtmXAHf1cTBDotu1YBtHwQiHp7MRQCadbf
+	X0Aq15DWvOWzgIFDN4zKOCFxNjT3JzrUYXuowmBS7tKz8Nx56xD0L2NKE+gY
+X-Gm-Gg: ASbGncuiKhtOWKCoMBPpk2iC+2JWGAE+mVkrre/hT//pnvnA1IYyU5l+hkfAet25qyp
+	LdpM5QwL+LcSUuzJdga12qii/HSPRIJq3AuwCtSGod7yshTD8wKsZBRPnXt98wgXSP3OPKhFOCy
+	+8LtYpDfn88v0rX/XSx5y9DJkudnLApPBh01+C1Eilh+FbYhhAqZNlHGHH2Td52kwWcm+WFnh17
+	CldftCWeeTyTOWmsuQ853Q0LINTfQyra+5TqOAX6KskWs0JSIHU/c/DcgH3YB7JX0POPMYWEz+n
+	D0oCkMjzPYjWCTixO6S8KHROYKrVwx89Pog4xlFnIxd5QBmP3QAjWOd9/I29zmSnIyAgmWoekgT
+	Aj9c=
+X-Google-Smtp-Source: AGHT+IFCA/zzgIJWfQpveD7iS3SU3qBoqVVn+82LVTwM7gDImNEH946a0TJKgRoJA0kLiFFuvqGdkA==
+X-Received: by 2002:a05:6122:90f:b0:52a:cdda:f2a5 with SMTP id 71dfb90a1353d-52c378a18c4mr2506907e0c.0.1746632863481;
+        Wed, 07 May 2025 08:47:43 -0700 (PDT)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52ae41f2134sm2407760e0c.44.2025.05.07.08.47.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 May 2025 08:45:41 -0700 (PDT)
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30f30200b51so72366081fa.3;
-        Wed, 07 May 2025 08:45:41 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV49qSOADHb1U5Uk9f8RIfVLKRqDvJV1n1E8IjApCaCI1l4pvwmQIhSoEMKW4Kj9a88W5OumGex88j6TksZ@vger.kernel.org, AJvYcCXtVKLNnLsvgY+1AQE9QlAFz+oVVxZQigbhV7YVjFdnLV+73VA5G5yS4qR7Tzsa3/p/Cp+z+cqrWFBY@vger.kernel.org
-X-Received: by 2002:a2e:ab1a:0:b0:308:eb58:6591 with SMTP id
- 38308e7fff4ca-326ad33bc90mr16246971fa.25.1746632741134; Wed, 07 May 2025
- 08:45:41 -0700 (PDT)
+        Wed, 07 May 2025 08:47:42 -0700 (PDT)
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4c9cea30173so1854407137.3;
+        Wed, 07 May 2025 08:47:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUcINC8w/JRiIdrrYNVoEsmpL8lX0SIr4oUnkx7BxUki4kU1qqFQaLpSrfC4C5S90XXi/mNy/vhfres@vger.kernel.org, AJvYcCVBfNgn4SFhN9uEI80RjnzZFZEG7HBElkNITvb4c36o4hhzxzyoi18LOns1xJCTBoJG6YMIbyLKr6+xRHwRTB8LP/I=@vger.kernel.org, AJvYcCWRJZL5i+nQXT8Bvt2eODZEpNosvvJ/FL6CXbQyC4mZG5WZfE3rpIVV4+tJsYJ0xvj8pRuToMxd+5Mt@vger.kernel.org, AJvYcCWh8CLONqwVubumnljnMJ1ms3fQdWToeXyHsgIxIDonP2D8tHMjUZ+8B5jtuLoMkNkWXxpPXJSJ4v/FdYXx@vger.kernel.org
+X-Received: by 2002:a05:6102:5794:b0:4da:fc9d:f0a with SMTP id
+ ada2fe7eead31-4dc738070afmr2809737137.15.1746632862634; Wed, 07 May 2025
+ 08:47:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250506195524.601268-1-michael@fossekall.de>
-In-Reply-To: <20250506195524.601268-1-michael@fossekall.de>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Thu, 8 May 2025 00:45:28 +0900
-X-Gmail-Original-Message-ID: <CAGb2v671wD7y6n6n20BrhH-pcTGD8RzPp25gCWUtnFmRhh=naw@mail.gmail.com>
-X-Gm-Features: ATxdqUGxuy4nk1up7F0wkRPqSR-2r-DSURGKLc-zVrNDcFGAmDsshfUtzZKSfic
-Message-ID: <CAGb2v671wD7y6n6n20BrhH-pcTGD8RzPp25gCWUtnFmRhh=naw@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: bananapi: add support for PHY LEDs
-To: Michael Klein <michael@fossekall.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
+References: <20250410140628.4124896-1-claudiu.beznea.uj@bp.renesas.com> <20250410140628.4124896-4-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20250410140628.4124896-4-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 7 May 2025 17:47:30 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU00apiWYCPiwqGr66Ucg9KgWMhhm8FW_KBoeN2ceos+w@mail.gmail.com>
+X-Gm-Features: ATxdqUEPvMf-mwyHfKPxbObOMsBB9zp7l1DVjNEqfU_robJh7lehTsH5CJLC9MU
+Message-ID: <CAMuHMdU00apiWYCPiwqGr66Ucg9KgWMhhm8FW_KBoeN2ceos+w@mail.gmail.com>
+Subject: Re: [PATCH 3/7] clk: renesas: rzg2l-cpg: Add support for MSTOP in
+ clock enable/disable API
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 7, 2025 at 4:56=E2=80=AFAM Michael Klein <michael@fossekall.de>=
- wrote:
->
-> The Bananapi M1 has three LEDs connected to the RTL8211E ethernet PHY.
-> Add the corresponding nodes to the device tree.
+Hi Claudiu,
 
-I see from old emails that this was supposed to be updated? And if you
-didn't, then his patch should be marked as a "RESEND", so tooling doesn't
-get confused and ignore it.
+On Thu, 10 Apr 2025 at 16:06, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The RZ/{G2L, V2L, G3S} CPG versions support a feature called MSTOP. Each
+> module has one or more MSTOP bits associated with it, and these bits need
+> to be configured along with the module clocks. Setting the MSTOP bits
+> switches the module between normal and standby states.
+>
+> Previously, MSTOP support was abstracted through power domains
+> (struct generic_pm_domain::{power_on, power_off} APIs). With this
+> abstraction, the order of setting the MSTOP and CLKON bits was as follows:
+>
+> Previous Order:
+> A/ Switching to Normal State (e.g., during probe):
+> 1/ Clear module MSTOP bits
+> 2/ Set module CLKON bits
+>
+> B/ Switching to Standby State (e.g., during remove):
+> 1/ Clear CLKON bits
+> 2/ Set MSTOP bits
+>
+> However, in some cases (when the clock is disabled through devres), the
+> order may have been (due to the issue described in link section):
+>
+> 1/ Set MSTOP bits
+> 2/ Clear CLKON bits
+>
+> Recently, the hardware team has suggested that the correct order to set
+> the MSTOP and CLKON bits is:
+>
+> Updated Order:
+> A/ Switching to Normal State (e.g., during probe):
+> 1/ Set CLKON bits
+> 2/ Clear MSTOP bits
 
-I'll wait a couple days in case anyone else wants to take a look.
+What is the recommended order in case multiple clocks map to
+the same module? Clear the MSTOP bit(s) after enabling the first clock,
+or clear the MSTOP bit(s) after enabling all clocks?
+I believe the code implements the former?
 
-ChenYu
+>
+> B/ Switching to Standby State (e.g., during remove):
+> 1/ Set MSTOP bits
+> 2/ Clear CLKON bits
+>
+> To prevent future issues due to incorrect ordering, the MSTOP setup has
+> now been implemented in rzg2l_mod_clock_endisable(), ensuring compliance
+> with the sequence suggested in Figure 41.5: Module Standby Mode Procedure
+> from the RZ/G3S HW manual.
+>
+> Additionally, since multiple clocks of a single module may be mapped to a
+> single MSTOP bit, MSTOP setup is reference-counted.
+>
+> Furthermore, as all modules start in the normal state after reset, if the
+> module clocks are disabled, the module state is switched to standby. This
+> prevents keeping the module in an invalid state, as recommended by the
+> hardware team.
+>
+> Link: https://lore.kernel.org/all/20250215130849.227812-1-claudiu.beznea.uj@bp.renesas.com/
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-> Signed-off-by: Michael Klein <michael@fossekall.de>
-> ---
->  .../boot/dts/allwinner/sun7i-a20-bananapi.dts | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts b/arch/ar=
-m/boot/dts/allwinner/sun7i-a20-bananapi.dts
-> index 46ecf9db2324..d8b362c9661a 100644
-> --- a/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
-> +++ b/arch/arm/boot/dts/allwinner/sun7i-a20-bananapi.dts
-> @@ -48,6 +48,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/leds/common.h>
->
->  / {
->         model =3D "LeMaker Banana Pi";
-> @@ -169,6 +170,32 @@ &ir0 {
->  &gmac_mdio {
->         phy1: ethernet-phy@1 {
->                 reg =3D <1>;
-> +
-> +               leds {
-> +                       #address-cells =3D <1>;
-> +                       #size-cells =3D <0>;
-> +
-> +                       led@0 {
-> +                               reg =3D <0>;
-> +                               color =3D <LED_COLOR_ID_GREEN>;
-> +                               function =3D LED_FUNCTION_LAN;
-> +                               linux,default-trigger =3D "netdev";
-> +                       };
-> +
-> +                       led@1 {
-> +                               reg =3D <1>;
-> +                               color =3D <LED_COLOR_ID_AMBER>;
-> +                               function =3D LED_FUNCTION_LAN;
-> +                               linux,default-trigger =3D "netdev";
-> +                       };
-> +
-> +                       led@2 {
-> +                               reg =3D <2>;
-> +                               color =3D <LED_COLOR_ID_BLUE>;
-> +                               function =3D LED_FUNCTION_LAN;
-> +                               linux,default-trigger =3D "netdev";
-> +                       };
-> +               };
->         };
->  };
->
-> --
-> 2.39.5
->
->
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
