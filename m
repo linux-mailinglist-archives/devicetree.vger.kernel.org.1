@@ -1,251 +1,189 @@
-Return-Path: <devicetree+bounces-174776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5D88AAE68B
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:26:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB8EAAE650
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:16:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28D4B1BC434F
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:20:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C757B3A8FBB
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C0928B7CC;
-	Wed,  7 May 2025 16:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7259A28BA8C;
+	Wed,  7 May 2025 16:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EPkq35zO"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="X0tvRK2q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9021F28B7FB
-	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 16:16:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A683A215197
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 16:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746634594; cv=none; b=kOl55m9II+JxR8pehBGpb1wKJmceuGFA3fvrFqMS5NrLV26D7+A2SSSfe8Zz61aJCVEd/4XY2ukAnoWy89pZvXK6k/7PrkZaS97Pv1wp4nTA+0ATCVD9Iwwiyyk7btld47VDd7wVtVRZi1ppQBmi0Ff9QkOfQW1Ni5K9hTGKQOc=
+	t=1746634424; cv=none; b=t6yqlaOKrQU560PSF/EQ7YWu1dNMfQBCwKY/n1DIHKSYcErc3duBKVFRoM1SiNdrIC/IDXHsBVfKVJypXU8ortrGoTiGAxxIFP6ZDPlZ7F2ReUwmxrSDjgJLmNyV95iZkUJQVryb/2COd5ARdKn1TDMdA6SBh9djMwO+0NUoK8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746634594; c=relaxed/simple;
-	bh=4CPRvqP9o3Wz9Yk/8RkLaScl5LuWpsRDZZF+CLPFlN4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ROhkIJJdqhSGUxLuQVaYJCtJ1W49fIDLa/wqisX1teBSQtHfCFqZM3GVKGF3lurdJLDLwUY7AjzClDDGwZVrvXUr8YTiQJrIpwKQ4FQ/GturAuEEbf3j1Oqw3MGEBg9LZlM86TRWdnkIse3B1545dHI0ZJ97iNFKjnDRnkA3uZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EPkq35zO; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 547B59B4015197
-	for <devicetree@vger.kernel.org>; Wed, 7 May 2025 15:48:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=sCssKQwqlkZybFzzJZnS5cDS
-	IKfik9hOyKrvkleK4eY=; b=EPkq35zO6ueuQcbFY7Px3KxAZJumYb2SgJYVMIQG
-	QOioTsVercQ9Au6rONc5DUjOCZRprRLhxNKz3eMeLFu2GH2boF1onBY7bAz9MkiG
-	Y2DGVLDXvhDEPOCOGzZB+lpfNFOkRvIE5/xsJ4tyCuOvp380xcEbaPii4Z6NoGze
-	pXm+AeCpkNvWQ+sU0J1HHA/NFSQi10WWQAekdRujOu96+FDISDMgYl0v1MY+v1kl
-	e9sn9SIYmj9YESZxEhnWUkSrBXXkaG5BxQGNS16Zt4bG2IWfmjnjXfXR/tFdutke
-	d3jCuxNW0I4J+t4Yl1W2cCBOpv+rmQr315g08EoCtE8Mcg==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46f5u46ch0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 07 May 2025 15:48:59 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e916df0d5dso853506d6.2
-        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 08:48:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746632938; x=1747237738;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sCssKQwqlkZybFzzJZnS5cDSIKfik9hOyKrvkleK4eY=;
-        b=XXFW0l/qbBzAwJJSRjA9h+tfyLiaokCBj5IQ63S/lDO8ZuE/4KsRP/pT3jESN8iS0r
-         Nw1aRb4PemcHzFCZ+DmPu8L49XWXNKi2ALwMfXcmooRJzqq+loK6GXG+aEclj29UaMy7
-         8KVqZHWQMAzOC3vXJcoPEJCpDzlcgYo7No5xGRldJf0xMvnrJcNIdWa8b/bLHr4txDJY
-         GPs8JV2WdcFT6V3UMKqIwRVXA3YHhkQRiBe4VF4AsD6WqXBY6h686adglY5n+c6v3EjD
-         7DRGx3VLMt64m+bK8Pv3lB0NPW+7plWF3Q7GVrxcuKrHkTPUECz5pBwOOWwY2wnv5RIP
-         JNPA==
-X-Forwarded-Encrypted: i=1; AJvYcCVXcQUTYAZQ4+IYyfftazPepGNlbIwn+kokPxoVX7ERGSz0acXYOr4udJmELmUi8qXkSCk7JZV8y82C@vger.kernel.org
-X-Gm-Message-State: AOJu0YycvFX3Xwa65jRZxlttBihvLeMCRXlKU2tQfXQqHTQwl2ptFlvn
-	koQVk7LjUmNXeIuh2Vr3RSBIm0VxlTO7xzLalCF3Pj6pKEI9DJ3+vg8OOhePb5/2ZnwmfRtdKPe
-	Pag3g3yUYOEH0vB5KkFGfbLwNDuzdAjVodCFKfj+r29IlUiV3g6FiCggDrHmM
-X-Gm-Gg: ASbGncstX5G7xQTqOJes6/s/2WMQgeYioQ+tk0eTZS+SWyLXmlBcFkAAG++vKf7pu+5
-	iKuWkfRsH0MdPmJ8Rk9ZN01NIbBH+0+Kn6i8phuDlE4Dt+Nc/I7FqAR/YS/Ytna9rEqYbpftYng
-	fZXXGhPI4+gl8HksvWlPHdRgHWnEHoBVQB0AR4zFeLUMIeKS+z0y9ESHL+HGkeksUvtWlstyXyr
-	YLBSNDMSHPdoo3vFKxDwtPPRti50GF/BhC7eCODdV5n14vPxnGpcNRsPSO7mdOLjfq8qURU/Pb9
-	iJiudGAKVatwPJnJRcbTkYuOltTQxjTvooJDxIR3dLI0cUHUzxJch0Iv1AGKbhyW5Fq6/PKJN9Y
-	=
-X-Received: by 2002:ad4:574c:0:b0:6f4:f1aa:bdc9 with SMTP id 6a1803df08f44-6f542a22256mr63115096d6.7.1746632938270;
-        Wed, 07 May 2025 08:48:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFpqKBqvVCtmEDGnqQSDIg99DPZFwCrSN2UhDVL/02dWzadQzFLThTPNaoR0pTeP+O9HpyfqQ==
-X-Received: by 2002:ad4:574c:0:b0:6f4:f1aa:bdc9 with SMTP id 6a1803df08f44-6f542a22256mr63114676d6.7.1746632937860;
-        Wed, 07 May 2025 08:48:57 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32029306984sm22747811fa.58.2025.05.07.08.48.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 May 2025 08:48:56 -0700 (PDT)
-Date: Wed, 7 May 2025 18:48:54 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ayushi Makhija <quic_amakhija@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com, sean@poorly.run,
-        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
-        conor+dt@kernel.org, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, rfoss@kernel.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
-        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
-        quic_jesszhan@quicinc.com,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v6 07/11] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI
- to DP bridge nodes
-Message-ID: <m6qrmvku6anw6ajg2qdbusodjxesfusi7w2pogvvz5lj5vfyx2@mcit7fy5w6ij>
-References: <20250505094245.2660750-1-quic_amakhija@quicinc.com>
- <20250505094245.2660750-3-quic_amakhija@quicinc.com>
- <grwlmrgi5cfv3jtuki57ug7gsqykpwdf2to2l7di6glfxtb7vz@6id6cpfkrbuh>
- <88b139c4-0a35-4c9e-9993-573fede29b71@quicinc.com>
- <ip2phi56u4yof376t5a5mqhvo3x4oo4blcnirwc6w7eancpm7i@ofcgyfcxdmre>
- <bd136800-8ef5-4597-b918-41b9f97db14f@quicinc.com>
+	s=arc-20240116; t=1746634424; c=relaxed/simple;
+	bh=2ilPNKF6f/rDkMNB2UoP20P3lHsdIGcLFDsA/AUjOXo=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=OpJw54xtnssTToAFXhIzW7fdP9pDpNRkAgsIMCqu/qANwT4gI9VJToL2EnmipBk9wbEnCu4sESkADXL935lbqnF6j2FQ1njliOqMjaV5IvzWhOZQllDt326K/XGXWfsRK14nJ2QlNu8nPlTMBjHVfop1ktC6PnJky/2Fc1PJkvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=X0tvRK2q; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1746634421;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3/Vr0zVbcT7BzCMh97BIa3Lqx/NCn2qxIyCi3f2m9aU=;
+	b=X0tvRK2qHY7cbuwtgdsByKBmMmB4x77ClImcCx7br+8VNmE/8KsQYxBFW6ZWkZrwNaOxKb
+	b3w1AfbJcek+mcC+ahOpHUB2YvMuzLE1wlKd/47Ez4Qy7F1Q5SS4QSBZTJswuq2I6KCFWl
+	FHMhYPAXvQLSFZc3BPn5HIY17BEKgF0=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-190-SXPiZFViOwKTJHjCPGb2vw-1; Wed,
+ 07 May 2025 12:13:36 -0400
+X-MC-Unique: SXPiZFViOwKTJHjCPGb2vw-1
+X-Mimecast-MFC-AGG-ID: SXPiZFViOwKTJHjCPGb2vw_1746634414
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id BE1B5195608B;
+	Wed,  7 May 2025 16:13:33 +0000 (UTC)
+Received: from [10.44.33.91] (unknown [10.44.33.91])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id B246A30001A1;
+	Wed,  7 May 2025 16:13:12 +0000 (UTC)
+Message-ID: <2c41caf5-0579-42d8-8f7e-4a9b1a0baa48@redhat.com>
+Date: Wed, 7 May 2025 18:13:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bd136800-8ef5-4597-b918-41b9f97db14f@quicinc.com>
-X-Authority-Analysis: v=2.4 cv=KcfSsRYD c=1 sm=1 tr=0 ts=681b80eb cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=hnXmAr2WX_wFmnp3NVMA:9
- a=CjuIK1q_8ugA:10 a=iYH6xdkBrDN1Jqds4HTS:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: hxxYrYZxwgXmYnjXcStvHb2k2GiVLkOt
-X-Proofpoint-ORIG-GUID: hxxYrYZxwgXmYnjXcStvHb2k2GiVLkOt
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA3MDE0OCBTYWx0ZWRfX1Vti3LH4SCBa
- 0PvUjTUfgpePkkhuOoEYZWw7IGaJIrebK48mEey7t2d4XcFHkwFbs256I6cc/Et2McEmixsyN0o
- SDianUE2X3cQgengf58T3FRTBihjvnwgCPimuokL6GZQJEhv7Rhw1lC8Ry/m8pvIyjQtLjkHxvG
- 1ofn31CjbKzRYJgDDQN0JKgii+pUBe0yVR+z0OwnpwUi+mO9T3x2AY+wtaJYDrDgWfJQLIkRgiq
- bZE3r3ohKuH64zxQI8Bwqo+eYr0i1VhK2oAHHWkntY5OUUfptk0lgxhy0QhvBeM+pdqIiImd0zf
- blzxCuZ/zZj1Sj8m4v4feh1aknhN2/D/ekvSrSTzw0hDc3tfQ0Poe9J/5qn0Vwyh1lWTS5eE8f9
- RTkXAlzHohnWUWBG8p5tD8UE34tkCYy6V/LJ/QA7+C+sLOGUc56C/hGxExgFZ274y946wdP3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-07_05,2025-05-06_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 spamscore=0 suspectscore=0 bulkscore=0 mlxlogscore=999
- phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0 adultscore=0
- clxscore=1015 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505070148
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v8 0/8] Add Microchip ZL3073x support (part 1)
+From: Ivan Vecera <ivecera@redhat.com>
+To: netdev@vger.kernel.org
+Cc: Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+ Lee Jones <lee@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20250507152504.85341-1-ivecera@redhat.com>
+Content-Language: en-US
+In-Reply-To: <20250507152504.85341-1-ivecera@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 
-On Wed, May 07, 2025 at 06:27:54PM +0530, Ayushi Makhija wrote:
-> On 5/6/2025 5:58 PM, Dmitry Baryshkov wrote:
-> > On Tue, May 06, 2025 at 05:42:50PM +0530, Ayushi Makhija wrote:
-> >> Hi Dmitry,
-> >>
-> >> On 5/5/2025 3:32 PM, Dmitry Baryshkov wrote:
-> >>> On Mon, May 05, 2025 at 03:12:41PM +0530, Ayushi Makhija wrote:
-> >>>> Add anx7625 DSI to DP bridge device nodes.
-> >>>>
-> >>>> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
-> >>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> >>>> ---
-> >>>>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 183 +++++++++++++++++++++
-> >>>>  1 file changed, 183 insertions(+)
-> >>>>
-> >>>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> >>>> index 175f8b1e3b2d..de14f3ea8835 100644
-> >>>> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> >>>> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> >>>> @@ -28,6 +28,15 @@ chosen {
-> >>>>  		stdout-path = "serial0:115200n8";
-> >>>>  	};
-> >>>>  
-> >>>> +	vph_pwr: vph-pwr-regulator {
-> >>>> +		compatible = "regulator-fixed";
-> >>>> +		regulator-name = "vph_pwr";
-> >>>> +		regulator-min-microvolt = <12000000>;
-> >>>> +		regulator-max-microvolt = <12000000>;
-> >>>
-> >>> 12 V, if my eyes don't deceive me.
-> >>
-> >> Yes, it's 12V. According to the chipset's power grid, the VPH rail is rated at 12 volts.
-> >> That's significantly higher than what we typically see on mobile platforms. I guess,
-> >> this is due to the SA8775P Ride SX being designed for automotive applications, where higher voltage levels are required.
-> >>
-> >>>
-> >>>> +		regulator-always-on;
-> >>>> +		regulator-boot-on;
-> >>>> +	};
-> >>>> +
-> >>>
-> >>> [...]
-> >>>
-> >>>> +
-> >>>> +			bridge@58 {
-> >>>> +				compatible = "analogix,anx7625";
-> >>>> +				reg = <0x58>;
-> >>>> +				interrupts-extended = <&io_expander 2 IRQ_TYPE_EDGE_FALLING>;
-> >>>> +				enable-gpios = <&io_expander 1 GPIO_ACTIVE_HIGH>;
-> >>>> +				reset-gpios = <&io_expander 0 GPIO_ACTIVE_HIGH>;
-> >>>> +				vdd10-supply = <&vph_pwr>;
-> >>>> +				vdd18-supply = <&vph_pwr>;
-> >>>> +				vdd33-supply = <&vph_pwr>;
-> >>>
-> >>> Here you are saying that 1.0V, 1.8V and 3.3V pins are powered on by 12V
-> >>> supply. I wonder how the board doesn't trigger all fire alarms in the
-> >>> building.
-> >>>
-> >>
-> >> Let me try to explain the connections from the schematics.
-> >>
-> >> In the SA8775P RIDE SX platform, the ANX bridge supplies are connected from the below sources:
-> >>
-> >> 1) AVDD1P8 is sourced from the `VREG_1P8` of the backplane card.
-> >> 2) AVDD3P0 is sourced from the `VREG_3P0` of the backplane card.
-> >> 3) AVDD1P0 is sourced from the TPS74801 LDO voltage regulator that has `VREG_1P8` connected to
-> >>    VIN & EN lines, and `VREG_3P0` connected to BIAS line.
-> >>  
-> >> The `VREG_1P8` is sourced from a buck converter TPS54618CQRTERQ1 that is using 
-> >> `VREG_5P0` as VIN and EN_VR1P8_M3P3 as EN signal. 
-> >> Where the `EN_VR1P8_M3P3` is an output signal from SAK-TC397XX-256F300S BD micro-controller.
-> >>  
-> >> Similarly, the `VREG_1P3` and `VREG_5P0` are sourced from another buck converter LM5143QRWGRQ1
-> >> that is using `VREG_12P0` as VIN and `EN_VR5P0_M3P3` as EN signal.
-> >> Where the EN_VR5P0_M3P3 is an output from the same micro-controller.
-> >>  
-> >> Combining above details, all three ANX bridge supplies are getting enabled by `VREG_12P0` supply,
-> >> `EN_VR1P8_M3P3` and `EN_VR5P0_M3P3` signals once the SOC is out of reset.
-> >>  
-> >> The `VREG_12P0` is directly sourced from `VBATT_IN`.
-> >>  
-> >> Since, there is no SW control for ANX bridge supplies and they are getting enabled
-> >> once the SOC is out of reset, I have used vph-pwr-regulator dummy regulator.
-> >> I am not sure if it's the right way to handle above scenario. Please let me know if there is other way to do the same.
-> > 
-> > Add these regulators as fixed ones, describing the power grid. Consult
-> > other board files if you are unsure. RB3, RB5, HDKs - all these boards
-> > have fixed-regulators for the grid.
-> > 
+On 07. 05. 25 5:24 odp., Ivan Vecera wrote:
+> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
+> provides DPLL and PTP functionality. This series bring first part
+> that adds the common MFD driver that provides an access to the bus
+> that can be either I2C or SPI.
 > 
-> Hi Dmirty,
+> The next part of the series is bringing the DPLL driver that will
+> covers DPLL functionality. Another series will bring PTP driver and
+> flashing capability via devlink in the MFD driver will follow soon.
 > 
-> After referring the RB3, RB5, HDKs boards example for fixed regulator.
+> Testing was done by myself and by Prathosh Satish on Microchip EDS2
+> development board with ZL30732 DPLL chip connected over I2C bus.
 > 
-
-[...]
-
+> Patch breakdown
+> ===============
+> Patch 1 - Common DT schema for DPLL device and pin
+> Patch 2 - DT bindings for microchip,zl3073* devices
+> Patch 3 - Basic support for I2C, SPI and regmap configuration
+> Patch 4 - Devlink device registration and info
+> Patch 5 - Helpers for reading and writing register mailboxes
+> Patch 6 - Fetch invariant register values used by DPLL/PTP sub-drivers
+> Patch 7 - Clock ID generation for DPLL driver
+> Patch 8 - Register/create DPLL device cells
 > 
-> Let me know, Which way we need to define the our anx7625 bridge supplies.
+> ---
+> v7->v8:
+> * replaced zl3073x_pdata array ZL3073X_PDATA macro in patch 8
+> v6->v7:
+> * pass channel number using platform data instead of mfd_cell->id
+> v5->v6:
+> * fixed devlink info firmware version to be running instead of fixed
+> * added documentation for devlink info versions
+> v4->v5:
+> * fixed DT patches description
+> * dropped mailbox API
+> * added type-safe register access functions
+> * added an ability to protect multi-op accesses
+> v3->v4:
+> * fixed shortcomings in DT patches
+> * completely reworked register access
+> * removed a need to manage locking during mailbox accesses by callers
+> * regcache switched to maple
+> * dev_err_probe() in probe path
+> * static mfd cells during sub-devices registration
+> v1->v3:
+> * dropped macros for generating register access functions
+> * register access functions are provided in <linux/mfd/zl3073x_regs.h>
+> * fixed DT descriptions and compatible wildcard usage
+> * reworked regmap locking
+>    - regmap uses implicit locking
+>    - mailbox registers are additionally protected by extra mutex
+> * fixed regmap virtual address range
+> * added regmap rbtree cache (only for page selector now)
+> * dropped patches for exporting strnchrnul and for supporting mfg file
+>    this will be maybe added later
+> 
+> Ivan Vecera (8):
+>    dt-bindings: dpll: Add DPLL device and pin
+>    dt-bindings: dpll: Add support for Microchip Azurite chip family
+>    mfd: Add Microchip ZL3073x support
+>    mfd: zl3073x: Add support for devlink device info
+>    mfd: zl3073x: Protect operations requiring multiple register accesses
+>    mfd: zl3073x: Fetch invariants during probe
+>    mfd: zl3073x: Add clock_id field
+>    mfd: zl3073x: Register DPLL sub-device during init
+> 
+>   .../devicetree/bindings/dpll/dpll-device.yaml |  76 ++
+>   .../devicetree/bindings/dpll/dpll-pin.yaml    |  45 +
+>   .../bindings/dpll/microchip,zl30731.yaml      | 115 +++
+>   Documentation/networking/devlink/index.rst    |   1 +
+>   Documentation/networking/devlink/zl3073x.rst  |  37 +
+>   MAINTAINERS                                   |  11 +
+>   drivers/mfd/Kconfig                           |  32 +
+>   drivers/mfd/Makefile                          |   5 +
+>   drivers/mfd/zl3073x-core.c                    | 872 ++++++++++++++++++
+>   drivers/mfd/zl3073x-i2c.c                     |  68 ++
+>   drivers/mfd/zl3073x-regs.h                    |  54 ++
+>   drivers/mfd/zl3073x-spi.c                     |  68 ++
+>   drivers/mfd/zl3073x.h                         |  31 +
+>   include/linux/mfd/zl3073x-regs.h              |  88 ++
+>   include/linux/mfd/zl3073x.h                   | 202 ++++
+>   15 files changed, 1705 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/dpll/dpll-device.yaml
+>   create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin.yaml
+>   create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml
+>   create mode 100644 Documentation/networking/devlink/zl3073x.rst
+>   create mode 100644 drivers/mfd/zl3073x-core.c
+>   create mode 100644 drivers/mfd/zl3073x-i2c.c
+>   create mode 100644 drivers/mfd/zl3073x-regs.h
+>   create mode 100644 drivers/mfd/zl3073x-spi.c
+>   create mode 100644 drivers/mfd/zl3073x.h
+>   create mode 100644 include/linux/mfd/zl3073x-regs.h
+>   create mode 100644 include/linux/mfd/zl3073x.h
 
-Please describe the power grid. As accurate as seems logical for you. I
-won't give you a single 'this is correct' here, but generally I'd prefer
-having all vin-supply properly set. Please use grid names from the
-schematics in order to describe the regulators (instead of inventing
-them).
+I apologize for this quick update not respecting the 24 hour grace
+period, I was not aware of such rule and otherwise I would not have been
+able to send the v8 before Monday.
 
-Hope this helps. Anyway, it's easier to discuss the code once you post
-something, so I'm looking forward to seeing the patch.
+Ivan
 
--- 
-With best wishes
-Dmitry
 
