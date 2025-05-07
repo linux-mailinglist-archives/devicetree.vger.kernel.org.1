@@ -1,305 +1,102 @@
-Return-Path: <devicetree+bounces-174843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45F86AAEEBF
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 00:36:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DBB3AAEEF8
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 01:07:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1D2A4C3654
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 22:36:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F5D41BC3152
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 23:07:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35C2E20CCFB;
-	Wed,  7 May 2025 22:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0DB728C027;
+	Wed,  7 May 2025 23:07:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eKp+AcOh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805F21ACEC8;
-	Wed,  7 May 2025 22:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80C5F1E1C1A;
+	Wed,  7 May 2025 23:07:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746657361; cv=none; b=clQvNMf3WC13BU3KTxz6G6IlCsJK0k0IiyP8veBWvW2W/MKyeBoBX+leHGoENDTTdNpwEoqzMyqugHVCnn7FFrwXHofGzK1Cex/B+2PE3Qnol6fQyVJGfAq0GxgFPmXVE6qPmfKzgGkN/qR4ESordX23vvtQOPZmLBiczNmIAdo=
+	t=1746659231; cv=none; b=HbYeUuLYbVbmDeVz5fhacVLBrd6N+7SsZzw74nvCS16buryxOyTRGcJ7BN/E8U3id9io1VCh8SWnVYYjZ6zSNI5S39IkzHmigFSmt2j/upY22VQR18Q4sLmNpcTiHpR5JuROYFkwrpaihTxMGRF2nl2Sq7NpBojqH1QtDjNAMYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746657361; c=relaxed/simple;
-	bh=HatrC2ZmLN8Nl17ZhtTK2kiutE2CHcwuvTNTKkyyf7w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q1IPaQHHJ+IvfwUPCfEEVfNEJH95671NVQn/Qik8fs5KKj46QWaDgqL4xUEPiHbuAx4NvmeOPvoc0nIexfM0BIgNIJXF6OUaOnScn584a1NYLQGUJX5M+E9K9dwgVe1XjUXUE/DT5LJnDqgtueIOwczD9fmHN2ipOh2bIJYTi6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.147.253])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 6C7E6342FF8;
-	Wed, 07 May 2025 22:35:58 +0000 (UTC)
-Date: Wed, 7 May 2025 22:35:54 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, heylenay@4d2.org, inochiama@outlook.com,
-	guodong@riscstar.com, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org, spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 1/6] dt-bindings: soc: spacemit: define
- spacemit,k1-ccu resets
-Message-ID: <20250507223554-GYA505240@gentoo>
-References: <20250506210638.2800228-1-elder@riscstar.com>
- <20250506210638.2800228-2-elder@riscstar.com>
+	s=arc-20240116; t=1746659231; c=relaxed/simple;
+	bh=kowzluapG3MSh9AZGkanLQ0O4GtMg+6T1JAjxCMbNls=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=MPbyanYixapY2dMdogKUMfyDRrTpqcF65xdIJHLEp0dY93dWCGjm6luKVPfCrD+mNvaIv5JDI210eaDcexaIqHCCmRb+HI6jSV6/Fr2ZBAZ6Oc/IqIpiN+hmipbyIhoIpLlHfykpogpPd2R/CoJX3AV8iPqicA1L5Lr8mpzkhgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eKp+AcOh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEC7BC4CEE2;
+	Wed,  7 May 2025 23:07:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746659230;
+	bh=kowzluapG3MSh9AZGkanLQ0O4GtMg+6T1JAjxCMbNls=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=eKp+AcOhgSWxjgv9mFidR+urP+yGFCMhatyj7ZCInpUNJoblKelkwKObkqUowX+eM
+	 UlvwxMFGDKiQXxnSFihcOagaNKvxTtbcAuK2YVvFIQVVF/mI/IWkrvbemIGGAUDgFc
+	 l1Mz0+dM5jNZ1wQ0376XLn9riuMKrsVIE1qrjBvw0a9Bh9guWyd/nEji3CwzNVy66w
+	 +k04OImsNzWKhtpAr1EH/QoIAR6ynDV1e6ShzmhTxRYuCyr9fbnSrDYV/wBhboHZD4
+	 ZmcStZ9MRzIMiKPEwRFIZ+Aej+x89pxRGnDkdf1remWILZymXd/kmm2A5tGeXcJoTG
+	 FJiiNpA+PjVKw==
+Date: Wed, 07 May 2025 18:07:09 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250506210638.2800228-2-elder@riscstar.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-gpio@vger.kernel.org
+To: "Rob Herring (Arm)" <robh@kernel.org>
+In-Reply-To: <20250507215852.2748420-1-robh@kernel.org>
+References: <20250507215852.2748420-1-robh@kernel.org>
+Message-Id: <174665922697.2893748.11935723086658329970.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: pinctrl: amlogic,pinctrl-a4: Add missing
+ constraint on allowed 'group' node properties
 
-hi Alex,
 
-On 16:06 Tue 06 May     , Alex Elder wrote:
-> There are additional SpacemiT syscon CCUs whose registers control both
-> clocks and resets:  RCPU, RCPU2, and APBC2. Unlike those defined
-> previously, these will (initially) support only resets.  They do not
-> incorporate power domain functionality.
+On Wed, 07 May 2025 16:58:51 -0500, Rob Herring (Arm) wrote:
+> The "^group-[0-9a-z-]+$" nodes schema doesn't constrain the allowed
+> properties as the referenced common schemas don't have constraints.
+> Add the missing "unevaluatedProperties" constraint.
 > 
-> Previously the clock properties were required for all compatible nodes.
-> Make that requirement only apply to the three existing CCUs (APBC, APMU,
-> and MPMU), so that the new reset-only CCUs can go without specifying them.
-> 
-> Define the index values for resets associated with all SpacemiT K1
-> syscon nodes, including those with clocks already defined, as well as
-> the new ones (without clocks).
-> 
-> Signed-off-by: Alex Elder <elder@riscstar.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  .../soc/spacemit/spacemit,k1-syscon.yaml      |  29 +++-
->  .../dt-bindings/clock/spacemit,k1-syscon.h    | 128 ++++++++++++++++++
->  2 files changed, 150 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> index 30aaf49da03d3..133a391ee68cd 100644
-> --- a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> @@ -19,6 +19,9 @@ properties:
->        - spacemit,k1-syscon-apbc
->        - spacemit,k1-syscon-apmu
->        - spacemit,k1-syscon-mpmu
-> +      - spacemit,k1-syscon-rcpu
-> +      - spacemit,k1-syscon-rcpu2
-> +      - spacemit,k1-syscon-apbc2
->  
->    reg:
->      maxItems: 1
-> @@ -47,9 +50,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - clocks
-> -  - clock-names
-> -  - "#clock-cells"
->    - "#reset-cells"
->  
->  allOf:
-> @@ -57,13 +57,28 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: spacemit,k1-syscon-apbc
-> +            enum:
-> +              - spacemit,k1-syscon-apmu
-> +              - spacemit,k1-syscon-mpmu
->      then:
-> -      properties:
-> -        "#power-domain-cells": false
-> -    else:
->        required:
->          - "#power-domain-cells"
-> +    else:
-> +      properties:
-> +        "#power-domain-cells": false
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - spacemit,k1-syscon-apbc
-> +              - spacemit,k1-syscon-apmu
-> +              - spacemit,k1-syscon-mpmu
-> +    then:
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +        - "#clock-cells"
->  
->  additionalProperties: false
->  
-> diff --git a/include/dt-bindings/clock/spacemit,k1-syscon.h b/include/dt-bindings/clock/spacemit,k1-syscon.h
-> index 35968ae982466..f5965dda3b905 100644
-> --- a/include/dt-bindings/clock/spacemit,k1-syscon.h
-> +++ b/include/dt-bindings/clock/spacemit,k1-syscon.h
-would it be better to move all reset definition to its dedicated dir?
-which like: include/dt-bindings/reset/spacemit,k1-syscon.h?
-
-> @@ -78,6 +78,9 @@
->  #define CLK_APB			31
->  #define CLK_WDT_BUS		32
->  
-> +/* MPMU resets */
-> +#define RESET_WDT		0
-> +
->  /* APBC clocks */
->  #define CLK_UART0		0
->  #define CLK_UART2		1
-> @@ -180,6 +183,59 @@
->  #define CLK_TSEN_BUS		98
->  #define CLK_IPC_AP2AUD_BUS	99
->  
-> +/* APBC resets */
-> +#define RESET_UART0		0
-> +#define RESET_UART2		1
-> +#define RESET_UART3		2
-> +#define RESET_UART4		3
-> +#define RESET_UART5		4
-> +#define RESET_UART6		5
-> +#define RESET_UART7		6
-> +#define RESET_UART8		7
-> +#define RESET_UART9		8
-> +#define RESET_GPIO		9
-> +#define RESET_PWM0		10
-> +#define RESET_PWM1		11
-> +#define RESET_PWM2		12
-> +#define RESET_PWM3		13
-> +#define RESET_PWM4		14
-> +#define RESET_PWM5		15
-> +#define RESET_PWM6		16
-> +#define RESET_PWM7		17
-> +#define RESET_PWM8		18
-> +#define RESET_PWM9		19
-> +#define RESET_PWM10		20
-> +#define RESET_PWM11		21
-> +#define RESET_PWM12		22
-> +#define RESET_PWM13		23
-> +#define RESET_PWM14		24
-> +#define RESET_PWM15		25
-> +#define RESET_PWM16		26
-> +#define RESET_PWM17		27
-> +#define RESET_PWM18		28
-> +#define RESET_PWM19		29
-> +#define RESET_SSP3		30
-> +#define RESET_RTC		31
-> +#define RESET_TWSI0		32
-> +#define RESET_TWSI1		33
-> +#define RESET_TWSI2		34
-> +#define RESET_TWSI4		35
-> +#define RESET_TWSI5		36
-> +#define RESET_TWSI6		37
-> +#define RESET_TWSI7		38
-> +#define RESET_TWSI8		39
-> +#define RESET_TIMERS1		40
-> +#define RESET_TIMERS2		41
-> +#define RESET_AIB		42
-> +#define RESET_ONEWIRE		43
-> +#define RESET_SSPA0		44
-> +#define RESET_SSPA1		45
-> +#define RESET_DRO		46
-> +#define RESET_IR		47
-> +#define RESET_TSEN		48
-> +#define RESET_IPC_AP2AUD	49
-> +#define RESET_CAN0		50
-> +
->  /* APMU clocks */
->  #define CLK_CCI550		0
->  #define CLK_CPU_C0_HI		1
-> @@ -244,4 +300,76 @@
->  #define CLK_V2D			60
->  #define CLK_EMMC_BUS		61
->  
-> +/* APMU resets */
-> +#define RESET_CCIC_4X		0
-> +#define RESET_CCIC1_PHY		1
-> +#define RESET_SDH_AXI		2
-> +#define RESET_SDH0		3
-> +#define RESET_SDH1		4
-> +#define RESET_SDH2		5
-> +#define RESET_USBP1_AXI		6
-> +#define RESET_USB_AXI		7
-> +#define RESET_USB3_0		8
-> +#define RESET_QSPI		9
-> +#define RESET_QSPI_BUS		10
-> +#define RESET_DMA		11
-> +#define RESET_AES		12
-> +#define RESET_VPU		13
-> +#define RESET_GPU		14
-> +#define RESET_EMMC		15
-> +#define RESET_EMMC_X		16
-> +#define RESET_AUDIO		17
-> +#define RESET_HDMI		18
-> +#define RESET_PCIE0		19
-> +#define RESET_PCIE1		20
-> +#define RESET_PCIE2		21
-> +#define RESET_EMAC0		22
-> +#define RESET_EMAC1		23
-> +#define RESET_JPG		24
-> +#define RESET_CCIC2PHY		25
-> +#define RESET_CCIC3PHY		26
-> +#define RESET_CSI		27
-> +#define RESET_ISP_CPP		28
-> +#define RESET_ISP_BUS		29
-> +#define RESET_ISP		30
-> +#define RESET_ISP_CI		31
-> +#define RESET_DPU_MCLK		32
-> +#define RESET_DPU_ESC		33
-> +#define RESET_DPU_HCLK		34
-> +#define RESET_DPU_SPIBUS	35
-> +#define RESET_DPU_SPI_HBUS	36
-> +#define RESET_V2D		37
-> +#define RESET_MIPI		38
-> +#define RESET_MC		39
-> +
-> +/*	RCPU resets	*/
-> +#define RESET_RCPU_SSP0		0
-> +#define RESET_RCPU_I2C0		1
-> +#define RESET_RCPU_UART1		2
-> +#define RESET_RCPU_IR		3
-> +#define RESET_RCPU_CAN		4
-> +#define RESET_RCPU_UART0		5
-> +#define RESET_RCPU_HDMI_AUDIO	6
-> +
-> +/*	RCPU2 resets	*/
-> +#define RESET_RCPU2_PWM0		0
-> +#define RESET_RCPU2_PWM1		1
-> +#define RESET_RCPU2_PWM2		2
-> +#define RESET_RCPU2_PWM3		3
-> +#define RESET_RCPU2_PWM4		4
-> +#define RESET_RCPU2_PWM5		5
-> +#define RESET_RCPU2_PWM6		6
-> +#define RESET_RCPU2_PWM7		7
-> +#define RESET_RCPU2_PWM8		8
-> +#define RESET_RCPU2_PWM9		9
-> +
-> +/*	APBC2 resets	*/
-> +#define RESET_APBC2_UART1	0
-> +#define RESET_APBC2_SSP2	1
-> +#define RESET_APBC2_TWSI3	2
-> +#define RESET_APBC2_RTC		3
-> +#define RESET_APBC2_TIMERS0	4
-> +#define RESET_APBC2_KPC		5
-> +#define RESET_APBC2_GPIO	6
-> +
->  #endif /* _DT_BINDINGS_SPACEMIT_CCU_H_ */
-> -- 
-> 2.45.2
+>  .../devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
--- 
-Yixun Lan (dlan)
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250507215852.2748420-1-robh@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
