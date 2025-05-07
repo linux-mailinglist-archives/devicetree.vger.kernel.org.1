@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-174830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03FD1AAECFA
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 22:23:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D984BAAECF7
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 22:23:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF21C9E2685
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 20:22:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AB0E189C9DC
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 20:23:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50E228ECC6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D46B28F511;
 	Wed,  7 May 2025 20:22:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JnbPtlUp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y5scj15n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 195DA28ECFC
-	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 20:22:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD9F28ECC6
+	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 20:22:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746649365; cv=none; b=ptTaSMsgzM9T6aToHAQTMnj104cFu2X0K+HbM4GY2hXFIuAu0sD2T7ygrmeFP5M9SUazZGniJXrAavJDNIt4JMmYi5bjXBQBvn+vvyNaoMd0TKe65dMjRVPJX4i6FQkeKWU1ub7pHjoK3yt4VDV5/U2JPLsvSacZXtTIhSn+uY4=
+	t=1746649365; cv=none; b=K/5KIP+ecA3h4CeSllkGRYJeSA2tf3VRf/qte0orLklrXY0393vsuTP5oR8NfvaPZawn7le1QiUCzuuUKcKksnkB1wj07W15OQ1iX+PBDQWfmGbWsUT+Qqz/BR+GwgIx+LrUr7pQOmhaMc+WnXhnDfJ12Hx/TV3p88kcmx0v9KA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1746649365; c=relaxed/simple;
-	bh=bdDxkirV7/X304PhJ/J3+teqYXZovdfE+ye6RKbN0xg=;
+	bh=105MDarhqJaX0H3J6r3L38bq+RTGOwx1haSXsEHBquQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bkUVsNML0R7ZNVWopj83A+E1L6LZ7wM/gJi7Esae6dSU8SIKI5UWl9I9NgQ0pcYwY0Gma3f3vB2vBCAoOkomF/w50rVdwYrX4EaUqgGY9gVvsSp/ENcQmFdTfBpjQwgG6m31C6WHHOR5RpsgzZIVkjXHXeiZceDS7aRH08vrhSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JnbPtlUp; arc=none smtp.client-ip=209.85.210.49
+	 MIME-Version; b=KguaF4MvximqyULTk55fvZOlHZ9VGj1S4lqwUeybD/T7jg8Z2ED3N6KDwo3u12CDNcTCTTqf+de7x1dTfN59f1wscMINTpJ20tXcNKvTvJggF+PLaXyAptGq5vNUiIJex39DTgKOoOqMHLrLuCgDQIaHphMgOpfKPnY5Pw+UN6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y5scj15n; arc=none smtp.client-ip=209.85.210.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-72fffa03ac6so170232a34.3
-        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 13:22:41 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-7301c227512so140071a34.2
+        for <devicetree@vger.kernel.org>; Wed, 07 May 2025 13:22:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746649361; x=1747254161; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1746649362; x=1747254162; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=l94voh9nFi8NC+FZhT6bHJgs5D7hhrZlzdK4jTqxAoo=;
-        b=JnbPtlUptCssby45E9/UUkvNabje2Igwoda0bha5YzH1+F/3obU3YQ0FI0WGjis0ID
-         iBMb/5jwx9Cx0SPnPRD8w3N2XmdxS4lSOXlvEAmPuVLdPy7xZyp9AkrynH0g0nP2hUVq
-         Kxu62dTrDaIW3h/HWzFMSrpnv5ba+eA+987bIagW97/i0rHDNwLDuSFhsfP4m2mQzAL/
-         FSp+nOMod3p2GOEqqwNR0ytd15+zJqgTMRkeSTKpIlvUbKOGI5L7HWpAFITN+MS/mqj2
-         WwbpXNxGh2XEVbAk7vkQe/rryrB0m1U99ArY+mLMfY9qTyj8rxmVH2mbX8UXKz8SBfnM
-         dHTQ==
+        bh=NyxyGKOhdeBoSewax9mMg22YYljQWuA4ui8yO4vMooE=;
+        b=Y5scj15nGBPpK9cGO00SsqXwXCgHFtA0IA59LdmS16SfWarc/zfOY5ZfUQO8f/Z5cZ
+         Z1i4FZ3Rj2KPZ4PBp6I2Os+lWnMWWadj5yXJkRYdz3qNwAMlVcy2q0buQMOMUmTtF+ds
+         yy6g3d3ehll3+oLoRSZsTe8w5RpQmfmWa//ykUrfLGcwJ+GJtgY2B7L8T2Qz6BtrzP/G
+         HNcpNN+Bbtm4t/gJvNcJWY5tTCENEFDj0KF9yJm6+NYzeTGZuQuoN5SoZFM2dhwuIQGk
+         G29u1RssaKSfWEA6iMZJ0xWN6RwMCqmbFScr+eQWx2IS044Ax0/eliDmt8oMKZOax2ZI
+         FCnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746649361; x=1747254161;
+        d=1e100.net; s=20230601; t=1746649362; x=1747254162;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=l94voh9nFi8NC+FZhT6bHJgs5D7hhrZlzdK4jTqxAoo=;
-        b=na+JJDrL+5oz22lC3KO23fpZTuz2ZPKl7dn0pz6IdylkYPsS74OKJX/AcT8tF51Zxj
-         D8i7p+VvHziOJxobdYVdzi/Beb2wQZ0Tww9Eth7Ga80IB02YN+bjeQOqcmAwnZonme/h
-         iNXa0jfIA9EGskABuad/JTkEMuE2Lms475eDpXpDNOfGcrQL+ia5WcV9/CHQ6n/nVFOD
-         vpMLuSZRD+QtKcNJQm6vbQE3BdRBZIiVJfjubCN3jmVbhRGfaoI+Z3KagkowY9Cd5fLV
-         eGoVAHptdG/eIaX5hhoMtZF+ULdFH4swiG5CptLQOqYWaO//7MSTGTZLzTmF6FGowKTP
-         u7yw==
-X-Gm-Message-State: AOJu0Yz2n2RfvIxY/D+iCEJHbI7EP5tZtHh/mGLAVv6Yp8JfemuVTP/c
-	653iExoE8BpSFtgLlo7MSc2e0ac6pLRohGmY1xKTluObbwVrFMX1
-X-Gm-Gg: ASbGncvtsWYw0x1uSTm8+DN4w1LZpC1i8GQpCWrLpymkNKFZLQzaC1VeoJjLUY8Ulpq
-	PAWrUvAKvm8MQyC1hSjwoxm2OnwIeTH8IXmREvijOg/ilIdx1dZM50sv3q0ZbHaBvjrwrJyxDZn
-	eNpoX0+4afQzJdD0PurKjSZWkfAusGsOXJ9xLXh18nkH0gH6Qel3RitsjFMNodBmnXJZ8DLJtPd
-	ptWHQkUHWwkM40ehGynwkmusls7ndfMxPh/qSkYPCOHRp0FT2zD8hqK9bzlxbdY+kmu2PtD1jre
-	NdXjBaVJujQTntyPRwGFM3xWXLYiwZLUsXCBjcvXRO+jVEO3dPw+Kp3ZBTTi
-X-Google-Smtp-Source: AGHT+IEVQSwtup8hGlcNXSdOKoaKgaTojdmH8y9v80kzgTfNqzsMyv7A4MwSEPxNN6DhO6wxF1WRAg==
-X-Received: by 2002:a05:6830:418e:b0:72a:48d4:290b with SMTP id 46e09a7af769-73210b239a5mr3495482a34.26.1746649361106;
+        bh=NyxyGKOhdeBoSewax9mMg22YYljQWuA4ui8yO4vMooE=;
+        b=pva0EwBNDAMjPJTwfZEDpmftEkCr4xAyJXykZrAvS7P4fNEBgk2IexCf8K/0mVagO2
+         C19pj/xfY2qFoPUjIV+6OXvIwvnzHAi+h1RIrpVOK0KYEEVz2+L52mDhF2sv4k/Xt1PD
+         cfzLYRXgk8qNeucCWvM6W7UC5bXzjR2myLvnsOUwdNpfSrZQgOwZ/zBcCYZFVgKwD/HM
+         dkkAuLyIAG+l0pGPOUytIUjtOtKkteEoV/ozAKgDJR1MBRJRqoEhhciQMzk1CKJe6hD9
+         AB6PFkmSqV2t4DTXhNnQ9VrHQQzlHMlgqTpkbgVLSuUYOAvoICszBobhFhl5mOIBzGFd
+         0C2w==
+X-Gm-Message-State: AOJu0Yx+dbw1KaBDFz50l/Frwr1f1RWqL1X8kU6xlk424/gq7pEogd+V
+	BUiWV2r5auhiqdvePWkdDMRcDoigWWUJ21kHiiNTh6MWmU0AoRgJ
+X-Gm-Gg: ASbGncuE5hUAjAVJjt1j/TA5dj/Ij4yFH7apbvizYV4sTtUt7nGunlFFHxmxe48ufZX
+	j7disZZqJuG/jCZHvPIF5RI3VFpciZSRt/IWP6oDq6HSHBaPnO5IynOjjQr71aR8V16rdPU+dRt
+	5Xm3HMMf/xvoLgg2Zyb/G6CzDwQE4yYTc8t8Tl1peGSwe6b6rYpJUTS7PZgL2BQKczLy/40hu3y
+	fH2JEKhplH1/N8PcjKHSNYzYu4PYq1XiqPXAxSLQ98YDgXKnIu43iERtpm3PrkkTcSmPo9dVIC3
+	blCHBpsD6AppC74Oo9KPv+VN79UxRR/rDlglFh5P21oqhJs0Ykdm/l+eAhyoB0wJLR691+4=
+X-Google-Smtp-Source: AGHT+IHjxCL4ilnBbhzBiVvVv0rtl3RMnbLX5YjwRMZiBzGEtkE2X44D+/p+uvnENdOwMRWrcTLoQA==
+X-Received: by 2002:a05:6830:90b:b0:72a:d54:a780 with SMTP id 46e09a7af769-73210afb31dmr2552776a34.17.1746649361838;
         Wed, 07 May 2025 13:22:41 -0700 (PDT)
 Received: from localhost.localdomain ([2600:1700:fb0:1bcf:e46c:46ba:cecd:a52c])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-732109df2dcsm725945a34.9.2025.05.07.13.22.40
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-732109df2dcsm725945a34.9.2025.05.07.13.22.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 May 2025 13:22:40 -0700 (PDT)
+        Wed, 07 May 2025 13:22:41 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: linux-sunxi@lists.linux.dev
 Cc: devicetree@vger.kernel.org,
@@ -89,9 +89,9 @@ Cc: devicetree@vger.kernel.org,
 	conor+dt@kernel.org,
 	krzk+dt@kernel.org,
 	robh@kernel.org
-Subject: [PATCH V9 18/24] dt-bindings: display: Add R40 and H616 display engine compatibles
-Date: Wed,  7 May 2025 15:19:37 -0500
-Message-ID: <20250507201943.330111-19-macroalpha82@gmail.com>
+Subject: [PATCH V9 19/24] drm/sun4i: tcon: Add support for R40 LCD
+Date: Wed,  7 May 2025 15:19:38 -0500
+Message-ID: <20250507201943.330111-20-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250507201943.330111-1-macroalpha82@gmail.com>
 References: <20250507201943.330111-1-macroalpha82@gmail.com>
@@ -105,66 +105,48 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add display engine compatible for the R40 LCD controller, and for the
-H616 TV and LCD controller which is functionally identical to the R40.
+The Allwinner H616 and related SOCs have an LCD timing controller
+(TCON) which is compatible with the R40 SOC's controller and existing
+sun4i driver. The H616 does not expose this controller but the H700 and
+T507 (based on the same die) do. The controller supports LVDS and RGB
+output.
 
+Add quirks and compatible string to cover these SOCs.
+
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Signed-off-by: Ryan Walklin <ryan@testtoast.com>
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- .../bindings/display/allwinner,sun4i-a10-tcon.yaml     | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/sun4i/sun4i_tcon.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-index 724d93b9193b..caed517c68de 100644
---- a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-+++ b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-@@ -29,6 +29,7 @@ properties:
-       - const: allwinner,sun8i-a33-tcon
-       - const: allwinner,sun8i-a83t-tcon-lcd
-       - const: allwinner,sun8i-a83t-tcon-tv
-+      - const: allwinner,sun8i-r40-tcon-lcd
-       - const: allwinner,sun8i-r40-tcon-tv
-       - const: allwinner,sun8i-v3s-tcon
-       - const: allwinner,sun9i-a80-tcon-lcd
-@@ -53,9 +54,15 @@ properties:
-               - allwinner,sun50i-a64-tcon-tv
-           - const: allwinner,sun8i-a83t-tcon-tv
+diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+index 960e83c8291d..8cc8488483ec 100644
+--- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
++++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+@@ -1514,6 +1514,14 @@ static const struct sun4i_tcon_quirks sun8i_a83t_tv_quirks = {
+ 	.has_channel_1		= true,
+ };
  
-+      - items:
-+          - enum:
-+              - allwinner,sun50i-h616-tcon-lcd
-+          - const: allwinner,sun8i-r40-tcon-lcd
++static const struct sun4i_tcon_quirks sun8i_r40_lcd_quirks = {
++	.supports_lvds		= true,
++	.has_channel_0		= true,
++	.set_mux		= sun8i_r40_tcon_tv_set_mux,
++	.dclk_min_div		= 1,
++	.setup_lvds_phy		= sun6i_tcon_setup_lvds_phy,
++};
 +
-       - items:
-           - enum:
-               - allwinner,sun50i-h6-tcon-tv
-+              - allwinner,sun50i-h616-tcon-tv
-           - const: allwinner,sun8i-r40-tcon-tv
- 
-   reg:
-@@ -231,6 +238,7 @@ allOf:
-           contains:
-             enum:
-               - allwinner,sun8i-a83t-tcon-lcd
-+              - allwinner,sun8i-r40-tcon-lcd
-               - allwinner,sun8i-v3s-tcon
-               - allwinner,sun9i-a80-tcon-lcd
-               - allwinner,sun20i-d1-tcon-lcd
-@@ -280,6 +288,7 @@ allOf:
-               - allwinner,sun9i-a80-tcon-lcd
-               - allwinner,sun4i-a10-tcon
-               - allwinner,sun8i-a83t-tcon-lcd
-+              - allwinner,sun8i-r40-tcon-lcd
-               - allwinner,sun20i-d1-tcon-lcd
- 
-     then:
-@@ -297,6 +306,7 @@ allOf:
-               - allwinner,sun8i-a23-tcon
-               - allwinner,sun8i-a33-tcon
-               - allwinner,sun8i-a83t-tcon-lcd
-+              - allwinner,sun8i-r40-tcon-lcd
-               - allwinner,sun20i-d1-tcon-lcd
- 
-     then:
+ static const struct sun4i_tcon_quirks sun8i_r40_tv_quirks = {
+ 	.has_channel_1		= true,
+ 	.polarity_in_ch0	= true,
+@@ -1555,6 +1563,7 @@ const struct of_device_id sun4i_tcon_of_table[] = {
+ 	{ .compatible = "allwinner,sun8i-a33-tcon", .data = &sun8i_a33_quirks },
+ 	{ .compatible = "allwinner,sun8i-a83t-tcon-lcd", .data = &sun8i_a83t_lcd_quirks },
+ 	{ .compatible = "allwinner,sun8i-a83t-tcon-tv", .data = &sun8i_a83t_tv_quirks },
++	{ .compatible = "allwinner,sun8i-r40-tcon-lcd", .data = &sun8i_r40_lcd_quirks },
+ 	{ .compatible = "allwinner,sun8i-r40-tcon-tv", .data = &sun8i_r40_tv_quirks },
+ 	{ .compatible = "allwinner,sun8i-v3s-tcon", .data = &sun8i_v3s_quirks },
+ 	{ .compatible = "allwinner,sun9i-a80-tcon-lcd", .data = &sun9i_a80_tcon_lcd_quirks },
 -- 
 2.43.0
 
