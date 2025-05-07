@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-174464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A276EAAD51F
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:19:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFB50AAD525
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 07:20:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD30817243A
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 05:19:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6302E7B43F0
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 05:19:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DDAD1FDE14;
-	Wed,  7 May 2025 05:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A242135B3;
+	Wed,  7 May 2025 05:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YjmC+Tq0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kt7JDn3S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731D41FBCB5;
-	Wed,  7 May 2025 05:18:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6AAF213252;
+	Wed,  7 May 2025 05:18:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746595096; cv=none; b=FT9hgOs+EBKaGatRTCfTCTxes4ZTy5e6SEeng7sezlqju2faCyiq7sl3/NypWDoM+gQVB8AXE8vUthhUSLPkHJ60fAyGRctimf1zroKZCPErNTihqbBCFjCqMbGfGx2nEY9xreXMnjWrRfs6ivUqMi5fwUDCP2mIxRUpwdt93iQ=
+	t=1746595099; cv=none; b=Rqpc3qB08ZAaVVv5YNaGdhivPL6d1hw7ptG7SAfIwBTidZm64V0lp4znVYNX6fmLr3qMjJ0gfLnAT7ZuH/FPBp4+mh8wshyGKt/MxycGJ6qzwUlFmKJ7UW25jmFHWRVCoKbWnT+9CAK4yv31E3YjOfDy2xG7NeDDcaTxESo6VSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746595096; c=relaxed/simple;
-	bh=UquCdZvdPRvkoE0YDWtC9ZbYr71b/dQJaO25rDRHUVo=;
+	s=arc-20240116; t=1746595099; c=relaxed/simple;
+	bh=K+sGiS6wFSLN6qltmvD8F8BgT8XisD2FxVEm48pDpZA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Qo7MQ8PUaFwBOtESKTyc8EzKYDLQwZQQqK74QfkusdblOE0BCGSL/fy4MXvnCZvmn9isWwaJf2NhSZWs7QozyaAtHpCw0eulcVnzkDtjB8Lw0AMPaKOsgTPsVBm9ZvDGpcqV2niGQ0UcPt9nSHsWlgnR8TqblmJpq6OEbgEZjlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YjmC+Tq0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03BA9C4CEF0;
-	Wed,  7 May 2025 05:18:14 +0000 (UTC)
+	 MIME-Version:Content-Type; b=YcBYIyxec4jRTs83AoB2hm2uf9cj2/OoKzNjX+D/WyWodAo38QcLszKlqwYSCg+ksCXJR+UxTCoWaZgWTawfUylWuXs7FFIzopafQFQSgdeqxVs0G1xdc0q+x6ZBeaSe9WP3UBeYTWBK7p0+zjLdluCAtgKbScf4V5L92Ax1OAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kt7JDn3S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0941DC4CEFB;
+	Wed,  7 May 2025 05:18:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746595095;
-	bh=UquCdZvdPRvkoE0YDWtC9ZbYr71b/dQJaO25rDRHUVo=;
+	s=k20201202; t=1746595096;
+	bh=K+sGiS6wFSLN6qltmvD8F8BgT8XisD2FxVEm48pDpZA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=YjmC+Tq0huOXaDpbFaofHPAuBr1f3Z8LcRc351hDUNW+MAWz28Ogka31tN+KrxvcM
-	 rxwzKlvng8rlh4WSSS5sz6mgresGlKC1gYCz/qFb5BrMpzilR6VHVbUyAEEZQzTNKH
-	 8dk0bQqNUCU6XPwsUdgArxBToZdqIu4BMZwsaeHTxhXaNXuJEJpCJCIZYvdxSs+juj
-	 RLHIeOQ0063p4fMLd7SoyOrgYUeW3+4aSzktzZRWrFfFZ3O5gN9gIOyCqlDnQCtg76
-	 okzE/fsdQAM90MeDBrk415T2UGNXiy5KLSdynS3nxFPyPiB8/lEN5NO0QEZl9PWpzb
-	 TN4olLsfsKgYQ==
+	b=Kt7JDn3SKtRRwlXPRsteCPmb9cQGENlNiQ4Ja3A9d7BEqCv9nf2OLp6oZg7zdYOss
+	 kayY8X6eOh4tU/suQh8aeIiA49wW4Ku3Jen3+ZL5OfW49H4aR5ysJ+o9I+1sIY6REg
+	 VxXzsZdvZqzURhXFYlylrMiULHO4aWB2JTvK5jSu1OTnQ9oJxJSQeYuPI7pYnLmEsU
+	 G3oQ1gMjyv7jLRIJsv19H8E8EP2zv6N6sEqqc72sa4jmVw4Ck4SZyK7dugvpAIuBYT
+	 dN5VzFV+Wi4jSLSKe33fBXhRyQ0SiW6UY4PDm1DXBuIjmd6PksDcxRPS0werV1TQTa
+	 mWVcz4MRaPBzQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
+To: cros-qcom-dts-watchers@chromium.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Gabor Juhos <j4g8y7@gmail.com>
+	Neil Armstrong <neil.armstrong@linaro.org>
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: ipq6018: drop standalone 'smem' node
-Date: Tue,  6 May 2025 22:18:07 -0700
-Message-ID: <174659505803.5380.12093322197061572732.b4-ty@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: add UFS operating points
+Date: Tue,  6 May 2025 22:18:09 -0700
+Message-ID: <174659505815.5380.3150313012195240452.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250506-ipq6018-drop-smem-v1-1-af99d177be2f@gmail.com>
-References: <20250506-ipq6018-drop-smem-v1-1-af99d177be2f@gmail.com>
+In-Reply-To: <20250424-topic-sc7280-upstream-ufs-opps-v1-1-e63494d65f45@linaro.org>
+References: <20250424-topic-sc7280-upstream-ufs-opps-v1-1-e63494d65f45@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,22 +67,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 06 May 2025 15:37:47 +0200, Gabor Juhos wrote:
-> Since commit b5af64fceb04 ("soc: qcom: smem: Support reserved-memory
-> description") the SMEM device can be instantiated directly from a
-> reserved-memory node.
+On Thu, 24 Apr 2025 18:31:14 +0200, Neil Armstrong wrote:
+> Replace the deprecated freq-table-hz property with an operating
+> points table with all supported frequencies and power levels.
 > 
-> The 'smem' node is defined in this way for each modern IPQ SoCs except for
-> IPQ6018. In order to make it inline with the others, move the 'compatible'
-> and the 'hwlock' properties into the respective reserved-memory node, and
-> drop the standalone 'smem' node.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: ipq6018: drop standalone 'smem' node
-      commit: d8b462c44a0399e220a44c81cf562b909448bada
+[1/1] arm64: dts: qcom: sc7280: add UFS operating points
+      commit: 099f3401dc3b7f4b63f9fa8b2f44f244c5ab3e62
 
 Best regards,
 -- 
