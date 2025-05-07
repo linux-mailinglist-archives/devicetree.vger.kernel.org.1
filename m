@@ -1,183 +1,170 @@
-Return-Path: <devicetree+bounces-174612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0447AAADC6C
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 12:27:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35C2CAADC6A
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 12:27:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA2EA9A19EB
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:26:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CE227AE7DF
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C05172139D2;
-	Wed,  7 May 2025 10:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6762135D0;
+	Wed,  7 May 2025 10:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WBrecuvR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ftx4P80e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4C520FAA9;
-	Wed,  7 May 2025 10:26:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14A4A748D;
+	Wed,  7 May 2025 10:26:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746613593; cv=none; b=U1g8acIrjNO5/lslM46lk0PzobtdYFyow47slfIOVbpsBsAqE/8lbvd6uGnNZING9TjWVewQ9RVE4AINNxCLMAMqQfA9Gn1kRrg4jmrgR9vVpfzVQlMQdH8Q9a8/ovk/mbYRIeERY4wD2AXqOn/o/GiLlzOm3kdMjyPPQVd08SE=
+	t=1746613618; cv=none; b=cUN7po5RBr+Q4DGCqg8tKzFDh8t97kgVeSOhfg0hgwvHJsKEfUNp2tvVPproJeGqQmMb0HUQ+tzit1S6RthRC6Q49/SEvAa8vyUAcS3y3LppoA/W/0UOnEV7U0/h5ETTLuwMt0mrnk9gfGWmLEpA2lSqUnZ35jW4HGZpRBimBrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746613593; c=relaxed/simple;
-	bh=O56ww4V02YzszECqo/3kEkhXguEs9Ci/cpYP36NMcAM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RfvC5SWozMuvwLK+rjC3gCPqAZW+locPdythHbppZHXGPAozp7aYQTRATt+OShfWebRq/6dMzVWN1G74XMyjRwCNblxfGzM7UXWIBVZYEgeNQatD/WCZH52YAHzpa+8lGtsjUwqVKAh9a3A89MSqlXK9WCLyIwXvFDbtM+JqGw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WBrecuvR; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746613592; x=1778149592;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=O56ww4V02YzszECqo/3kEkhXguEs9Ci/cpYP36NMcAM=;
-  b=WBrecuvRejJbssVitky25jkbfI3low8nweZd/PELupkZkX/xhWx8HHLj
-   +Ny4Kc1/6H1LpBui13TpBJBBc86B1K0p+HhYQWolh95YBNUcmLsFw1Ztc
-   M+LHtsNjQlbRmOw68/Fx8xlWiSk8U529sAlq3/DWV8FqFz1yVlxdV3wKb
-   IEYxU1zIJd9f64okdMF3IX0L0zbFq8KpQQ5+b8gzsh7XwYrmPfFEIM3Eh
-   874gaPtgAOFs2Q1DTPxvMFNCxAlxGhnk6Bxp4gebWmnKP+SwrUocRPUr0
-   /+LS769Wx7CHx0tx82NgksQVvGzf4w5mgf10POg4dMxA93pEb3cO+t7PK
-   A==;
-X-CSE-ConnectionGUID: SDXt7MfoQVSPWzpFS9Md4g==
-X-CSE-MsgGUID: MYHWYXiEQWSQyD/kSg5yRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="48484153"
-X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; 
-   d="scan'208";a="48484153"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2025 03:26:16 -0700
-X-CSE-ConnectionGUID: zIZt6oQ4Sl6WvFAAJlgL1Q==
-X-CSE-MsgGUID: ip8sTLtRToWS54CzEeUhGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; 
-   d="scan'208";a="135819763"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 07 May 2025 03:26:13 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uCbyc-0007b1-23;
-	Wed, 07 May 2025 10:26:10 +0000
-Date: Wed, 7 May 2025 18:25:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Stefan Wahren <wahrenst@gmx.net>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH net-next 2/5] net: vertexcom: mse102x: Add warning about
- IRQ trigger type
-Message-ID: <202505071827.nbdcs1rW-lkp@intel.com>
-References: <20250505142427.9601-3-wahrenst@gmx.net>
+	s=arc-20240116; t=1746613618; c=relaxed/simple;
+	bh=hTf2JFbmwImuDMJsmrnZ6KPM6n8CTgRK0R+nYi85jUs=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=ldvo22PpSdT/Gk4Kr5PbS9R/PbVbputZz4VCl9EhqbJkqzMon/wIxcwLB2Mcusdm6G5aYF6app6rDrAn4v083CYJrwoDt92cNZgHt0CjQpmVx3OQA7Y6mi6yfKeXDgjz7egzSwEaeeTaegpOgP2olIcMATuXNhplLWRKU3Bny/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ftx4P80e; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5479wbIh002585;
+	Wed, 7 May 2025 10:26:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=O5RXwrkPNB3nTDXkrCliLR
+	zUkuPHUxKfsm6kiIgTxZc=; b=ftx4P80e7xciE0g+DBH6y5YVCG/nrjbgtmJJhd
+	DnbRF0ba2gmg+gCeFqo0BI9VZFElGWSvnOKP9ifK5/Wi0Y4uMizUyVAaBbwOtbFG
+	FBg+pzFpKJ1mRiljb12RlXeqb+K5ACVqMorudAyIJV0XLBUJHsHQbsVdYBhy3lwl
+	zOkU6/yYnYBpuzj/gwSLMvcJ0OR6k5tyvvfQbSU4vVY+vJr/tFKevhs6L/nmwwx9
+	/2ySKoRXQonC/dwXzvV9+/1xNKM4OnKui/eKQgxxQxYfEScfCnS3niMbqDEl10Ht
+	U0jiqj3IQTKWkL1MsyqDe50hYgBKeefKNEpHuBASxd+P17gg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46fsmt1vw3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 07 May 2025 10:26:53 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 547AQqDv024069
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 7 May 2025 10:26:52 GMT
+Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 7 May 2025 03:26:45 -0700
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+Subject: [PATCH v2 0/6] arm64: dts: qcom: qcs615: enable remoteprocs - ADSP
+ and CDSP
+Date: Wed, 7 May 2025 18:26:10 +0800
+Message-ID: <20250507-add_qcs615_remoteproc_support-v2-0-52ac6cb43a39@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250505142427.9601-3-wahrenst@gmx.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEM1G2gC/4XNSw6CMBSF4a2Qjq3pC6GM3IchhLS3cgfQ0gLRE
+ PZuxQU4/M/gOztJEBESaYqdRNgwoZ9yiEtBzNBPT6BocxPBRMlKVtHe2m426cbLLsLoFwjRmy6
+ tIfi4UFMLK5nTSkpLshEiOHyd/qPNPWBafHyfdxv/rj9ZCflH3jhltNfKQV1p7bi6zysanMzV+
+ JG0x3F8AEHTFRbMAAAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Lijuan Gao <quic_lijuang@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kyle Deng
+	<quic_chunkaid@quicinc.com>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746613604; l=1916;
+ i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
+ bh=hTf2JFbmwImuDMJsmrnZ6KPM6n8CTgRK0R+nYi85jUs=;
+ b=jXm531vnKgoiXCj3/fhpq6Ja40GQjwH9fr1MffMergNzsNszXTraiLSDIcy4jR00uvJ9yiZgS
+ iZMDoGhcptQBhK7kAmFsMut7wKusfqpegfbkavqFPzz1leAru5eF9wM
+X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
+ pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=U9KSDfru c=1 sm=1 tr=0 ts=681b356d cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=QfQTvixX5dd1oHoNGvgA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: TqZ6Y8a9RejXGxvMt2wXt6OW8AmwBMbW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA3MDA5NyBTYWx0ZWRfX79WrfpSp/X0g
+ tP9Az9HepTdRrxTEboI7nFlt9V1+18Pfgh8ZfVsvD6KBhU90jrh7Om7w9aWkpzQpSxpK9lkqVzn
+ zv9IMdePDml1jXWaSyNI4vszU5rNgTO5iUQAi4eMqy7m+2iTrBppzomBbaRNuSRVh0pBm1oOwfa
+ i4zRcP5pWb90kA8UlM6ju3R29S3UuEwV2qYxuvXAp3W0DCdh3PyM8bOgDvoWr3mNO5MfHSJnNac
+ 7WiHjiePJBNyVnYOuToW6L6MqKBRebHd7i6O1WopS9FN9UxQHAaHUizc8dkSq2W0GvE/n9iF7vk
+ 8w+hmAzIyY2iUyEw/PFqGtnnGp56uPc1shhmi2OmegUrquLsMifnlF+TljNlj77Jg7W0i0wEbwm
+ loTAB3nvooB6fTUvyboaXhVj8W/NPoDGnlk4l0+AS+8x6Ggpfbab3o55lP9F2sq9RvrgE1BC
+X-Proofpoint-ORIG-GUID: TqZ6Y8a9RejXGxvMt2wXt6OW8AmwBMbW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-07_03,2025-05-06_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 malwarescore=0 adultscore=0 bulkscore=0 spamscore=0
+ impostorscore=0 priorityscore=1501 mlxlogscore=812 phishscore=0 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2504070000 definitions=main-2505070097
 
-Hi Stefan,
+Enable the remote processor PAS loader for QCS615 ADSP and CDSP
+processors. This allows different platforms/architectures to control
+(power on, load firmware, power off) those remote processors while
+abstracting the hardware differences. Additionally, and add a PIL region
+in IMEM so that post mortem debug tools can collect ramdumps.
 
-kernel test robot noticed the following build errors:
+Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+---
+Changes in v2:
+- Remove the qcom prefix from smp2p node name.
+- Remove the unnecessary property qcom,ipc from smp2p node.
+- Remove the unused node apcs: syscon.
+- Remove the unused nodes from smp2p node, such as
+  sleepstate_smp2p_out/in, smp2p_rdbg2_out/in, smp2p_rdbg5_out/in.
+- Update the commit message for IMEM PIL info region.
+- Update the remoteproc node names.
+- Correct the size of register for remoteproc nodes.
+- Add empty line before status properties.
+- Link to v1: https://lore.kernel.org/r/20250423-add_qcs615_remoteproc_support-v1-0-a94fe8799f14@quicinc.com
 
-[auto build test ERROR on net-next/main]
+---
+Kyle Deng (1):
+      arm64: dts: qcom: qcs615: Add mproc node for SEMP2P
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Stefan-Wahren/dt-bindings-vertexcom-mse102x-Fix-IRQ-type-in-example/20250505-222628
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20250505142427.9601-3-wahrenst%40gmx.net
-patch subject: [PATCH net-next 2/5] net: vertexcom: mse102x: Add warning about IRQ trigger type
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20250507/202505071827.nbdcs1rW-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250507/202505071827.nbdcs1rW-lkp@intel.com/reproduce)
+Lijuan Gao (5):
+      dt-bindings: remoteproc: qcom,sm8150-pas: Document QCS615 remoteproc
+      dt-bindings: soc: qcom: add qcom,qcs615-imem compatible
+      arm64: dts: qcom: qcs615: Add IMEM and PIL info region
+      arm64: dts: qcom: qcs615: add ADSP and CDSP nodes
+      arm64: dts: qcom: qcs615-ride: enable remoteprocs
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505071827.nbdcs1rW-lkp@intel.com/
+ .../bindings/remoteproc/qcom,sm8150-pas.yaml       |  59 +++++----
+ .../devicetree/bindings/sram/qcom,imem.yaml        |   1 +
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           |  12 ++
+ arch/arm64/boot/dts/qcom/qcs615.dtsi               | 143 +++++++++++++++++++++
+ 4 files changed, 191 insertions(+), 24 deletions(-)
+---
+base-commit: 08710e696081d58163c8078e0e096be6d35c5fad
+change-id: 20250507-add_qcs615_remoteproc_support-c82d30f9433d
 
-All errors (new ones prefixed by >>):
-
-   drivers/net/ethernet/vertexcom/mse102x.c: In function 'mse102x_net_open':
->> drivers/net/ethernet/vertexcom/mse102x.c:525:37: error: implicit declaration of function 'irq_get_irq_data'; did you mean 'irq_set_irq_wake'? [-Wimplicit-function-declaration]
-     525 |         struct irq_data *irq_data = irq_get_irq_data(ndev->irq);
-         |                                     ^~~~~~~~~~~~~~~~
-         |                                     irq_set_irq_wake
->> drivers/net/ethernet/vertexcom/mse102x.c:525:37: error: initialization of 'struct irq_data *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
->> drivers/net/ethernet/vertexcom/mse102x.c:535:17: error: implicit declaration of function 'irqd_get_trigger_type'; did you mean 'led_get_trigger_data'? [-Wimplicit-function-declaration]
-     535 |         switch (irqd_get_trigger_type(irq_data)) {
-         |                 ^~~~~~~~~~~~~~~~~~~~~
-         |                 led_get_trigger_data
->> drivers/net/ethernet/vertexcom/mse102x.c:536:14: error: 'IRQ_TYPE_LEVEL_HIGH' undeclared (first use in this function)
-     536 |         case IRQ_TYPE_LEVEL_HIGH:
-         |              ^~~~~~~~~~~~~~~~~~~
-   drivers/net/ethernet/vertexcom/mse102x.c:536:14: note: each undeclared identifier is reported only once for each function it appears in
->> drivers/net/ethernet/vertexcom/mse102x.c:537:14: error: 'IRQ_TYPE_LEVEL_LOW' undeclared (first use in this function)
-     537 |         case IRQ_TYPE_LEVEL_LOW:
-         |              ^~~~~~~~~~~~~~~~~~
-
-
-vim +525 drivers/net/ethernet/vertexcom/mse102x.c
-
-   522	
-   523	static int mse102x_net_open(struct net_device *ndev)
-   524	{
- > 525		struct irq_data *irq_data = irq_get_irq_data(ndev->irq);
-   526		struct mse102x_net *mse = netdev_priv(ndev);
-   527		struct mse102x_net_spi *mses = to_mse102x_spi(mse);
-   528		int ret;
-   529	
-   530		if (!irq_data) {
-   531			netdev_err(ndev, "Invalid IRQ: %d\n", ndev->irq);
-   532			return -EINVAL;
-   533		}
-   534	
- > 535		switch (irqd_get_trigger_type(irq_data)) {
- > 536		case IRQ_TYPE_LEVEL_HIGH:
- > 537		case IRQ_TYPE_LEVEL_LOW:
-   538			break;
-   539		default:
-   540			netdev_warn_once(ndev, "Only IRQ type level recommended, please update your firmware.\n");
-   541			break;
-   542		}
-   543	
-   544		ret = request_threaded_irq(ndev->irq, NULL, mse102x_irq, IRQF_ONESHOT,
-   545					   ndev->name, mse);
-   546		if (ret < 0) {
-   547			netdev_err(ndev, "Failed to get irq: %d\n", ret);
-   548			return ret;
-   549		}
-   550	
-   551		netif_dbg(mse, ifup, ndev, "opening\n");
-   552	
-   553		netif_start_queue(ndev);
-   554	
-   555		netif_carrier_on(ndev);
-   556	
-   557		/* The SPI interrupt can stuck in case of pending packet(s).
-   558		 * So poll for possible packet(s) to re-arm the interrupt.
-   559		 */
-   560		mutex_lock(&mses->lock);
-   561		mse102x_rx_pkt_spi(mse);
-   562		mutex_unlock(&mses->lock);
-   563	
-   564		netif_dbg(mse, ifup, ndev, "network device up\n");
-   565	
-   566		return 0;
-   567	}
-   568	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Lijuan Gao <quic_lijuang@quicinc.com>
+
 
