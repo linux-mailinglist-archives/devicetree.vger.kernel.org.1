@@ -1,130 +1,134 @@
-Return-Path: <devicetree+bounces-174778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41161AAE6C3
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:33:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC5A6AAE6D5
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:36:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F3519E0125
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:33:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CFAB9C29D3
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:36:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C0D28B7E1;
-	Wed,  7 May 2025 16:33:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE86B28C03C;
+	Wed,  7 May 2025 16:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PNeuv9i4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X+di1bRy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D944B1E4B;
-	Wed,  7 May 2025 16:33:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA91C28C039;
+	Wed,  7 May 2025 16:36:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746635602; cv=none; b=AlJ0HfJYGaJ2+1kcSwAr5jD/AteD3Ihh/mhASMQol8opFrvdIWbUKUe1T5CWxr/DHwlo1bDvRoBO5zsTIE1KIkQ+mGYV3dxXe+V9CbD6oI6jwfKjQTM41NCJLN2Dzk9cvIj5yn1wQEKGHQEyT0Nvdvfc624zLaMn1eXku6aLYQ0=
+	t=1746635790; cv=none; b=moz9/QK+kN8jEYHzzR6i6w2Mn0w40+kWUgDYg4LMUZ4tPqSFnBf8+VFhP7CebthqhVhq3ekRJ4usycddJ5Vera+Sy0y6wPJHiDuq1mCT+IUiFukU4Nx4eCwXmmDtDUMcxHxc2jBjdx7dtBYTobVsLfwnDw8Gd29Mv5VoPZqIjLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746635602; c=relaxed/simple;
-	bh=5PNsaUkEGcwl6bLcWpVgvynTWCnJdydaJWuyO6roJWo=;
+	s=arc-20240116; t=1746635790; c=relaxed/simple;
+	bh=jodQBOUHL1Gt952eiPBvOHE9pzfV95ZMyn2l0xgzhNI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jzxG9il6SNaP0tv8br6e5gDqkv2iAoXESCad2vT4gDzMVr5vLUIvtgvyUAem9gelXO71a/xh4yBWVc59FtZSp9OS1i3kMgH5pD9FPyRzsOQMOXGMlAnRvOjYUinECjWoh5A4nC6090pWQtKjjj/ZZtqC5dbDNyqObu1R47Uogvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PNeuv9i4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16B81C4CEE2;
-	Wed,  7 May 2025 16:33:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746635602;
-	bh=5PNsaUkEGcwl6bLcWpVgvynTWCnJdydaJWuyO6roJWo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=PNeuv9i4FW68lrdYEIH+OvkPUun2GCl+X5bZ8d6QTCI93nFrsrCwxh50EN+kCBmlw
-	 mQCq5hjGlkHBeSI/DtB4qkLOeRO6XJEnBCDQvYV5SU9yHWchq0W1/WcjzwqjQQmeoM
-	 gReuu6roxmtjr4SJPq+7+HX7Z/x9vBn6MR1xA8uZZS53z8Xiu4Ak+JGc+xCXXLgpAz
-	 gy37jLwfjq4Iuko8jbQzuMcjfKUINz1h1pOmNM5Ueg9bEAktFG+36wnGDJJQ++BP/a
-	 d25WpFMg67fiNJ+EXaPmzC3Pv+UmvEzoB0n8ZKTyOfZD602hSMnPcXtViyJZfYJLQH
-	 6DzoXXb70/yeA==
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ac2902f7c2aso821066b.1;
-        Wed, 07 May 2025 09:33:22 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUzvxunn98yAPU19+qjcjVXAEGAAMoVNAZeY74V7rS26ADxX/ZCmWvjQhl6TYmrggTIaLi2F20eKGMGbnpC@vger.kernel.org, AJvYcCV3/2/OzhEds31GPIi55Bg4AZH7H4F181OLxtx6tJQbgYzYMoFq0WZjVW52Gtf/lmMnOl/qQjXm5cHCBGi7@vger.kernel.org, AJvYcCWpARgmEPAskhFfOU6ZPDVGt0TQi5pdZNB93mbn4DDA4F1ItcqU1qvf6XF/MC7hnCgXzu9/R70++Eqr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFavzO37A3rtjEqEZ0h7gbR8UN9V021ZkkOo5g2HRKL10uWXYV
-	dhyXr5CI2ASyaiE6hOBncdO34Rvj1NFIrTWIslvbIKqir5p1j18XwwiDJYoNRoPt4t7vovRewq/
-	FZqUR6R86ZYGjoQ0PjiAtKGFNqA==
-X-Google-Smtp-Source: AGHT+IFbXKkluOPn99/o7gDALkGZlj3EQIAiAnWfyaoAaMejb4qqqHeuVh2Qnro+FLlcAyfNU+PnEPf3FfamJcZhNoQ=
-X-Received: by 2002:a17:907:3e21:b0:ac7:f00d:52ec with SMTP id
- a640c23a62f3a-ad1e8d0db1bmr336967966b.58.1746635600709; Wed, 07 May 2025
- 09:33:20 -0700 (PDT)
+	 To:Cc:Content-Type; b=DuSLf7VWnPY+2EGXXrX99PHEHlub57OqPDWko8jlydnRCMMpTpaf1Znutdff/YDBmSmcEhbe6KA6hiFzycmzfZktLwwyocAAK7tJAl5NmCYv0drpgeAWmsrhR6PeuDMcJbgcGE/RLs1hQIYrtE5q/HnwEiKL3287VH15MvEgMDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X+di1bRy; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a0b933f214so60373f8f.0;
+        Wed, 07 May 2025 09:36:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746635787; x=1747240587; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=axt5Qbp2mD3JDBMkh2CUDM68i+V3fWWqBODx7JRunlE=;
+        b=X+di1bRy4H0E1YI5jauGFNQ2Nmsz5RbAd2Po/39/HscWNC+omMPJN6NyiluKdYKClS
+         gKkdIlLYadh0beLMtDIxP1GzyPn6LIH5Wbd2QdolQ4A3RZB8+O8O9X+HahHdousyWiIj
+         U4mTdT28rKE34v3Av0RbbkW0zPiFOjCAdzmnKQev5pocoZb1y1zUTbFnhxVWuvkBwYnD
+         QtbRlE2AU6cEU/ODVwqnT0QDAoIc4htRV6BZPJYIb4y6SgfiGOqCqXRq95j5KWvtHpNC
+         NnbErISEVvDiW/O9NFWNBVMa8S0neqVpao5JKZZEQfPUbdMvMCWEnFcsWN+6XaYrAuzj
+         YVQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746635787; x=1747240587;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=axt5Qbp2mD3JDBMkh2CUDM68i+V3fWWqBODx7JRunlE=;
+        b=oGYWXg4zOhmrpsDg0GDSL+7ISVVTzskCjMdZj50Cs9WJz4vNfIenYVN5e36qjIPBJb
+         K4ozJh02B1OChkZ59hVovv+fBfDCdeDv5R2voVhDhAcg5swe6OKbgdgXQWU8dRtQNwB9
+         oQPhVrBE/RbmdY5nDqz+6wcq3jxgniR/mAFF6SQKujbzXQMuUJZqlzCTRJX0M4gtemVB
+         4GdgtCp3oFTMuUPondULodJ8XQ/8G4DFFL437BXbalA9o9Yw8RlZVO7FCtmh/dIksYjk
+         R8/Nghwmtc1XVRZGvditLDHo2aKPS/7q75x5yPzkq2iXzJouLwlU4b7p1IqInTSwTflS
+         jS0g==
+X-Forwarded-Encrypted: i=1; AJvYcCUU/l9xpj43IXDZwluuB4X1YeBvAoqgBgE9vApoUgu/v1h7BfMpjy5+2WyF8qu0oNW6VW2KN8osvKl3@vger.kernel.org, AJvYcCV1YILll0+0qjPfsxh8p+0L/2ouF4tnG687rWtiY8IJ7I6RVcqiP9bjh/vRHZDSrYnSpLPACWu9urM5Lrjf@vger.kernel.org, AJvYcCXVo9uOL3Tcw3gUvXR0+moQiPBq24DurF4hwytIKw5yXwNymTjAatwtXh6wxtQ+jCMoPyW+841oBWFH@vger.kernel.org, AJvYcCXsuFCoZyqNsqUEgs3Mbz1OPuEYocLt0yN7nLjsjIzhhfCp+MbfDH534pwv2AHLCJ3eUSB+21TlQqs1BM/gPQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw07RrKca0qwJnjsamrP//gkrViFUNi1MzF9xBhcENUXwv/KpSU
+	IsZ5ZGLV5o6WYu7ZCCtdVE/DVgPn8fwMsSHZeFWH0JHeIW8d9g58wZBP44y2Y4K3/YwH3fktb9C
+	pe4ocT/ivr7wiejQBYnJcFPcEjg==
+X-Gm-Gg: ASbGncv/qXHWYRzHrbkYH8EzT1qfdGbvaTJrJShP0jdK4v0O750/e7yaz661b0AMTcx
+	NaWR+FLOEhtEBUGtuaRaI0qDZzKMo2QfjNwl792e/2DiBSC8XH8ycMHTE0y0GvlGdR1/HcG1TWe
+	Enfm8thxJRZKWmgPKb7cYKMaA=
+X-Google-Smtp-Source: AGHT+IG4TtEc4UHcL2gxaRWi5FT3jZwhYmsgKbgjQKUE4+xfZUIUK784DIMLSgMmX34KKba9PPpbydZq1seoxRWbt+U=
+X-Received: by 2002:a05:6000:ec6:b0:3a0:b4fa:e594 with SMTP id
+ ffacd0b85a97d-3a0b4fae636mr3071542f8f.33.1746635786642; Wed, 07 May 2025
+ 09:36:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250506220016.2545637-1-robh@kernel.org> <20250507165447.7e340d47@donnerap.manchester.arm.com>
-In-Reply-To: <20250507165447.7e340d47@donnerap.manchester.arm.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 7 May 2025 11:33:09 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKve4hXiR31ApMADEz3NqD_futjETWrPKEWz3tADsX7gA@mail.gmail.com>
-X-Gm-Features: ATxdqUFg1sT4pwdyybWgm-K9_ztHsP0q9-QRdWfCP7CwDJwHRKdVQ4NBVzTsuSU
-Message-ID: <CAL_JsqKve4hXiR31ApMADEz3NqD_futjETWrPKEWz3tADsX7gA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: serial: Convert arm,sbsa-uart to DT schema
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250426130203.37659-1-alex.vinarskis@gmail.com> <174659505811.5380.3561194017032215136.b4-ty@kernel.org>
+In-Reply-To: <174659505811.5380.3561194017032215136.b4-ty@kernel.org>
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Date: Wed, 7 May 2025 18:36:12 +0200
+X-Gm-Features: ATxdqUGYO_K7swrC_4mSQOoLVgxcVoKQsspTBMQaet4mxzcKeI5SjbJ6I6HJ0wA
+Message-ID: <CAMcHhXq1-=JeNspAZ61W0JqtjPkoKSi2W1sL07hoVsqFu5T--Q@mail.gmail.com>
+Subject: Re: (subset) [PATCH v4 0/4] X1E Asus Zenbook A14 support
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, maud_spierings@hotmail.com, 
+	dmitry.baryshkov@oss.qualcomm.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 7, 2025 at 10:54=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
-com> wrote:
+On Wed, 7 May 2025 at 07:18, Bjorn Andersson <andersson@kernel.org> wrote:
 >
-> On Tue,  6 May 2025 17:00:15 -0500
-> "Rob Herring (Arm)" <robh@kernel.org> wrote:
 >
-> > Convert the Arm SBSA UART binding to DT schema. It is a straight-forwar=
-d
-> > conversion.
+> On Sat, 26 Apr 2025 14:57:56 +0200, Aleksandrs Vinarskis wrote:
+> > Introduce support for the mentioned laptop.
 > >
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > Particular device exists in two model numbers:
+> > * UX3407QA: X1P-42-100 or X1-26-100 (as tested)
+> > * UX3407RA: X1E-78-100
 > >
-> > ---
-> >  .../bindings/serial/arm,sbsa-uart.yaml        | 38 +++++++++++++++++++
-> >  .../bindings/serial/arm_sbsa_uart.txt         | 10 -----
-> >  2 files changed, 38 insertions(+), 10 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/serial/arm,sbsa-u=
-art.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/serial/arm_sbsa_u=
-art.txt
+> > Mostly similar to other X1-based laptops. Notable differences are:
+> > * Wifi/Bluetooth combo being Qualcomm FastConnect 6900 on UX3407QA
+> >   and Qualcomm FastConnect 7800 on UX3407RA
+> > * USB Type-C retimers are Parade PS8833, appear to behave identical
+> >   to Parade PS8830
+> > * gpio90 is TZ protected
 > >
-> > diff --git a/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yam=
-l b/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml
-> > new file mode 100644
-> > index 000000000000..68e3fd64b1d8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml
-> > @@ -0,0 +1,38 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +---
-> > +$id: http://devicetree.org/schemas/serial/arm,sbsa-uart.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ARM SBSA UART
-> > +
-> > +maintainers:
-> > +  - Andre Przywara <andre.przywara@arm.com>
-> > +
-> > +description:
-> > +  This UART uses a subset of the PL011 registers and consequently live=
-s in the
-> > +  PL011 driver. It's baudrate and other communication parameters canno=
-t be
+> > [...]
 >
-> He said "driver" in a binding document!! ;-) I think you can remove that
-> part, or maybe rephrase it to say it could be supported by the same drive=
-r
-> that supports a PL011.
+> Applied, thanks!
+>
+> [2/4] dt-bindings: arm: qcom: Add Asus Zenbook A14
+>       commit: 9f2ae52acd5e6c95ddc55d1cc67f44860940a21b
 
-I know that's 'the rule', but I kind of think that's relevant in this
-case. If we're looking for improvements, defining SBSA here might be
-the place to start... But I'm not really as this is 1 of 1100
-remaining I've had chatgpt to convert and then I fix all the issues.
 
-Rob
+Thanks!
+
+I saw 2/4, 3/4 were applied. Is there a reason 4/4 was left behind,
+eg. Does it have to go through different trees like 1/4?
+I also saw that another later series with dtb changes for x1e devices
+[1] has landed, so 4/4 of the current series won't apply anymore...
+Would you like me to rebase & respin?
+
+Regards,
+Alex
+
+[1] https://lore.kernel.org/all/174659597008.7675.2301017495937908497.b4-ty@kernel.org/
+>
+> Best regards,
+> --
+> Bjorn Andersson <andersson@kernel.org>
 
