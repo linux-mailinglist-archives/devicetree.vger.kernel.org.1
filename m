@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-174762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D75DAAE525
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 17:43:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D8B2AAE52A
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 17:44:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9754A98837D
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 15:43:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02A69988A0A
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 15:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16CCE28B4ED;
-	Wed,  7 May 2025 15:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D42A28B7EA;
+	Wed,  7 May 2025 15:42:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="noyMKEK1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JhsprL40"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E01EA28BA91;
-	Wed,  7 May 2025 15:42:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 158F328B4EF;
+	Wed,  7 May 2025 15:42:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746632548; cv=none; b=SEeLe7HKa48Ua6oOpI3gpG8/RePwJh8e/sgHmbttgWS7dFM4lPjBAUdQm5Dyabi2YYIVqh5xQRa/ugFF6ZufwwFtKQj/FAY8pmjzBjurRv9FYfwiplBDAiM6cXhcgSpLnOi5CG8Ulh0G+fBMOarjP0rILW9eWDn37QLH+NYbCdI=
+	t=1746632570; cv=none; b=VrMwYtqyMJbFYSeWa76bAb0Jg2hhAy/4V4pzTgvp2HXrcMrTgTV3cQomDeG1H82j0x4lnQVIXCbIDwEWAeyAHwM8mza9+LMB5EaBWfgG53JkFlghoZXVn7XXluXEgMnRDhVvwNtDgIdlt2TxDRlv4DPL3Pa6FxxIaLsmTD1Vkgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746632548; c=relaxed/simple;
-	bh=UCG9uUCi1T07aauhMZzXc1mEyWGFALTK5OrhIqBgmqY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rL6cMf783/Txpzh/v5NDzOhtjrvR/5CQrA/SmqEQuyXW29EnTSQYs4l02UazMyu29u30N+XDGNDUy6I1inrWIAln0OyF90SZ5qWUyn833GX1YETw3f5wEoLzZXWDF8y4Kv7EE/ZU5x4FJ3I5Ru4V6eKyFLAXbiB3y9quBxjPfww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=noyMKEK1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E1EFC4CEEB;
-	Wed,  7 May 2025 15:42:27 +0000 (UTC)
+	s=arc-20240116; t=1746632570; c=relaxed/simple;
+	bh=Wq8+hagNHhDt0qgNoLvZp0IFuNFz4fjEvxG0I7XXFfg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VctdKIb8dYVVXEPG42MZoNHmyuLvIFKJJo0+AMqYMfaIfTlCGYR//+623ZQagnQ/teNmtDsnpuYzksaM8FgMLPjJspfvIGy616dqAvjiZSnaLtHUWeEdMt9P/Vwk8rg7ajIYxJIOXDc8SUE5Lu5Ty2WX48eJLgFN54M7Rjxvs+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JhsprL40; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74E47C4CEE9;
+	Wed,  7 May 2025 15:42:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746632547;
-	bh=UCG9uUCi1T07aauhMZzXc1mEyWGFALTK5OrhIqBgmqY=;
+	s=k20201202; t=1746632569;
+	bh=Wq8+hagNHhDt0qgNoLvZp0IFuNFz4fjEvxG0I7XXFfg=;
 	h=From:To:Cc:Subject:Date:From;
-	b=noyMKEK1FiH0vcsaVV6EVq7wZP01ngc3mnlvfZeKNNJzRYQiPexxYyQq7bv73W5q8
-	 rxYjuR0+FozHa/P/g+Nwwep4Xa1MYYsTmJwdLeJThbtG7KJX1NEqXPARJIHm1OIOBn
-	 jeac1QTqKgXeDfic/FPm8DBQOJZUIZKhTBCg5jzYldS+Rnqpp9fNhFbH3Lh8N+de2m
-	 0jEmeaqYPbw7vR43LycegMaYj61OykRzMxlJFYtp/omKnTpZ1ZbksbNnpa70L7yaFt
-	 6TaSghb7AGLrawMqosvsAbeaDEdycCfa1BFp3y737AcpWKsAepPIB/2xT3TjO+2FFO
-	 2Cu1bad8uJlFw==
+	b=JhsprL40DKDoJ/8ssEfDM8YpWELJdbYvICrLM7tteL1vAQ7odnDmbL5c7nH+KIfsY
+	 bgxyn8gORtmn/MaH3ZWTaT1CijwyPRqLQhkuhtABDVpXDFCjxa9kkZy2Fjxb6zZt/X
+	 FHJlNVQxhXO5Aqq9vX/dz8DvOa9VD/dUJPduhuJP5qdTWq9fMf+wFxswdxKJCeEl+6
+	 7AOxeeJHLYNms2Nx8cg65XW6njIxoLFVSwqSd5qMl0TTZ2J//JAuqkDiipeeO7UI6b
+	 3PenYl7wri6hT/2L9mNs/+6ZCWwW6g7MQ867i/749OxWMDNCrrZOmw19/6B4iiLv6l
+	 7XB331fdsW+KA==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+To: Christophe Leroy <christophe.leroy@csgroup.eu>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Frank Li <Frank.Li@nxp.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	linux-can@vger.kernel.org,
+Cc: linuxppc-dev@lists.ozlabs.org,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: can: microchip,mcp2510: Fix $id path
-Date: Wed,  7 May 2025 10:42:00 -0500
-Message-ID: <20250507154201.1589542-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: soc: fsl,qman-fqd: Fix reserved-memory.yaml reference
+Date: Wed,  7 May 2025 10:42:31 -0500
+Message-ID: <20250507154231.1590634-1-robh@kernel.org>
 X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -62,28 +61,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The "$id" value must match the relative path under bindings/ and is
-missing the "net" sub-directory.
+The reserved-memory.yaml reference needs the full path. No warnings were
+generated because the example has the wrong compatible string, so fix
+that too.
 
-Fixes: 09328600c2f9 ("dt-bindings: can: convert microchip,mcp251x.txt to yaml")
+Fixes: 304a90c4f75d ("dt-bindings: soc: fsl: Convert q(b)man-* to yaml format")
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../devicetree/bindings/net/can/microchip,mcp2510.yaml          | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
-index e0ec53bc10c6..1525a50ded47 100644
---- a/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
-+++ b/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/can/microchip,mcp2510.yaml#
-+$id: http://devicetree.org/schemas/net/can/microchip,mcp2510.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml
+index de0b4ae740ff..a975bce59975 100644
+--- a/Documentation/devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml
++++ b/Documentation/devicetree/bindings/soc/fsl/fsl,qman-fqd.yaml
+@@ -50,7 +50,7 @@ required:
+   - compatible
  
- title: Microchip MCP251X stand-alone CAN controller
+ allOf:
+-  - $ref: reserved-memory.yaml
++  - $ref: /schemas/reserved-memory/reserved-memory.yaml
+ 
+ unevaluatedProperties: false
+ 
+@@ -61,7 +61,7 @@ examples:
+         #size-cells = <2>;
+ 
+         qman-fqd {
+-            compatible = "shared-dma-pool";
++            compatible = "fsl,qman-fqd";
+             size = <0 0x400000>;
+             alignment = <0 0x400000>;
+             no-map;
 -- 
 2.47.2
 
