@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-174443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02093AAD466
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 06:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 001ACAAD479
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 06:32:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 620E64E739E
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 04:26:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 672794E767F
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 04:32:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0383F1D54FA;
-	Wed,  7 May 2025 04:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE5C3596F;
+	Wed,  7 May 2025 04:32:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cYsthnEg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dDoqXGCC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 310E22AD20;
-	Wed,  7 May 2025 04:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F79812CD88;
+	Wed,  7 May 2025 04:32:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746591990; cv=none; b=n1SGkuiCL6dbFwn0MxT1ldxULWmKlnnBZalHqSKWkShtsYbvYbXrcwYw7WUAf7AtO3dsJwjZFVUf6Qw2S2VAB4iaYd9+C4rFUueszKeWP+HoqvU3y3Sy6W+7hK2adaYUnfTVuEsqPRrJrHj5aPXpv3pz2NVlnDvYKSThUex8lFI=
+	t=1746592351; cv=none; b=dwQXjzYOtDrZEDLBPNnxZ+FmNp/b7EuxubEVsccr3swM033QRf1JSivAEad5+Uvdot+Jwo9U0URsnDdsYPt/ZGECQWz5HCVw2ChSmufHFCXN4A67TfcEXJwPk71E+mXRtd0lRY48KZyl2nSxL114/DYBEK0TYvcJx3/efy4/iu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746591990; c=relaxed/simple;
-	bh=biF5yZ3vpTesxPZQ/tMvL//RmTWjtQ1ORzVQuydb0NQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UB0s17UYoMdEyOY2vsYdyNiUU2r5NuHuVP1YgDQyRSir4U4kbO6ykeZychK6liv7rI+eJsfTGZhcPOK7lC7fB8X60URjgac1hm7wlY/BmgDWAoADpRH1zBwZYq2n/VKX9CQJBNSWhpZFGdmbGeM5dMbFRCg2cH3JQ+Ujew9DJpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cYsthnEg; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5471H7as022467;
-	Wed, 7 May 2025 04:26:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	w5+yz2q+hUjul7s+z3seVWpaNFf3JvMrntHxV3Q7ywU=; b=cYsthnEgQT6uuH85
-	voUoWZX9T64x/CmZfJIsMuSk+jtd0lhIB0416//UWsT1hlzD5fR2VepAo/O5VYBg
-	ruRxySyVdsdkP1BsQtXtc5IgqGdqxyGekrLu1Si0iTVHdceA1YA5iBUux6psAw4V
-	ihA/LhTzd9SCsJ1RPrnoNPVZkGNUwbRvtSV6m1kKXXRR3xiPVeil8lSqkxFT+AWe
-	VFiunBxKhC3M7qPJ/VxQXjrxE6H4/cLQMaU82r+G84gN8zkpqCHZLSH7KE4P9M7q
-	8twsANwqRlT9GNHFqJWj1si04dNWjDQSw7jo1Aviyonk7fLtZRXIHyIxL2Y0UiaM
-	ilm6Rg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46f5uuvf4h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 07 May 2025 04:26:16 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5474QFb8006724
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 7 May 2025 04:26:15 GMT
-Received: from [10.239.133.114] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 6 May 2025
- 21:26:12 -0700
-Message-ID: <4a6a8bad-e5d9-4613-a839-5a21491ef7c4@quicinc.com>
-Date: Wed, 7 May 2025 12:26:10 +0800
+	s=arc-20240116; t=1746592351; c=relaxed/simple;
+	bh=RxAxuqjkNuyb7pK7DVY+a4e48aW8eHXlzxHyDnyovqo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=O1rjKdpzNSRqws/HYgnSvsNyG8xN0eAJ2uL8cX+uQg51cwoQ2rVqV/t1+gT74yZX1f9imEO3yTWnlFpXc0qsaqWxAYjr0Sct5n8v+h6jRXuLKhGblWlWDobLS16DfmLIOw7Gct/qDYVAhQhRv7xR8qyidtXwvCG/v0hXs81TJxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dDoqXGCC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67E25C4CEE7;
+	Wed,  7 May 2025 04:32:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746592350;
+	bh=RxAxuqjkNuyb7pK7DVY+a4e48aW8eHXlzxHyDnyovqo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dDoqXGCCcWN9VAN+1x5gsQGjJvxJJaR5DHMiNST3AfrgUfXqpfM6tDf86Fze85BTb
+	 oy5KT91aRnqeLvyAxCKyzwoPyvv1zqJ4qFTyuaexDzFgGRSJ37RveCEQh74ci30WwB
+	 xfqu6BqVgLHHWjKtq2i0ilatLBUA8ptwYK5pUJJFKTvN8vlncFcLBkZtxcUoIBKxed
+	 /R8wMUgrKpt3tGV5Of741oLiYfBA5sogRhCwUHXAoDTyKK9rZja1NQeHM9S/B+nsJj
+	 KxBx3r8SsKimp0K/ohtGrtXejfMzFpYi7MBm7gsaUCStT/5wxsqt8voADFAcNQnMqF
+	 JkFDJl1PPnvKQ==
+Message-ID: <8d3c2ab5-dfc0-4a65-94c8-48a94c850aba@kernel.org>
+Date: Wed, 7 May 2025 06:32:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,130 +50,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] coresight: add coresight Trace Network On Chip
- driver
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>
-CC: <kernel@oss.qualcomm.com>, <linux-arm-msm@vger.kernel.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250411-trace-noc-v3-0-1f19ddf7699b@quicinc.com>
- <20250411-trace-noc-v3-2-1f19ddf7699b@quicinc.com>
- <23d02991-3bc6-41e2-bb8b-a38786071c43@arm.com>
- <257fb0a5-7bf7-4a04-9f8d-d8759351584c@quicinc.com>
- <9b75b9d1-a9ed-46c9-9dba-8e3eb261dcc0@arm.com>
+Subject: Re: [PATCH 3/3] ARM: dts: vt8500: list all four timer interrupts
+To: Alexey Charkov <alchark@gmail.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250507-vt8500-timer-updates-v1-0-6b76f7f340a6@gmail.com>
+ <20250507-vt8500-timer-updates-v1-3-6b76f7f340a6@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-In-Reply-To: <9b75b9d1-a9ed-46c9-9dba-8e3eb261dcc0@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=L9cdQ/T8 c=1 sm=1 tr=0 ts=681ae0e8 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10
- a=8OJl2JkUM1ULYFJJg_AA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: kIw5FctbMkclmRq0boSizRbNIFFYcxRX
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA3MDAzOCBTYWx0ZWRfX7DEhrK4ha02a
- otfpaBPjG9HTwWMRjm99Wtn+0dYOimkZd+rNDcRZJEVJtvXkEKks21o6IDvUnC804FZZt9TuzPf
- BDU4wfBEPIacRrAMiHoJQE8OEbbipMmN4N9vIAEBBGiCOgSOQPbFHsqepeOGt0/yPF9o8+YgzpZ
- fyco5V+MbdIcvGKt7ITQCL3YXcFgUFUuOF67ThJMeciF86jQOmAUHMMD26cab/aOhcV5gnjvoUM
- DJBEDw4eHCHGr/r05169oX0BC5o9XvY6OdEPhp7+O6mAp/9mUnTYNDugH2kjU11XkEsqeyoU675
- ICDQdJNfU89az8rmdshWvSbub5CAninyNYPXZwl/7nEeSNsr35JJ0XwOIbLjFuG7Bn+hQFj6kGc
- yRebftKHoxCnPKSwRKAzDZZH64Tvmnzx3/XzuxZPLiC8QszAvIVHUUW9fhFRpmPKeqyyKm9U
-X-Proofpoint-ORIG-GUID: kIw5FctbMkclmRq0boSizRbNIFFYcxRX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-07_01,2025-05-06_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 mlxlogscore=999 spamscore=0 suspectscore=0 impostorscore=0
- mlxscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 lowpriorityscore=0
- adultscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505070038
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250507-vt8500-timer-updates-v1-3-6b76f7f340a6@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-
-On 5/6/2025 7:20 PM, Suzuki K Poulose wrote:
-> On 14/04/2025 10:16, Yuanfang Zhang wrote:
->>
->>
->> On 4/11/2025 5:59 PM, Suzuki K Poulose wrote:
->>> On 11/04/2025 09:57, Yuanfang Zhang wrote:
->>>> Add a driver to support Coresight device Trace Network On Chip (TNOC),
->>>> which is an integration hierarchy integrating functionalities of TPDA
->>>> and funnels. It aggregates the trace and transports to coresight trace
->>>> bus.
->>>>
->>>> Compared to current configuration, it has the following advantages:
->>>> 1. Reduce wires between subsystems.
->>>> 2. Continue cleaning the infrastructure.
->>>> 3. Reduce Data overhead by transporting raw data from source to target.
->>>>
->>>>     +------------------------+                +-------------------------+
->>>>     | Video Subsystem        |                |Video Subsystem          |
->>>>     |       +-------------+  |                |       +------------+    |
->>>>     |       | Video TPDM  |  |                |       | Video TPDM |    |
->>>>     |       +-------------+  |                |       +------------+    |
->>>>     |            |           |                |              |          |
->>>>     |            v           |                |              v          |
->>>>     |   +---------------+    |                |        +-----------+    |
->>>>     |   | Video funnel  |    |                |        |Video TNOC |    |
->>>>     |   +---------------+    |                |        +-----------+    |
->>>>     +------------|-----------+                +------------|------------+
->>>>                  |                                         |
->>>>                  v-----+                                   |
->>>> +--------------------|---------+                         |
->>>> |  Multimedia        v         |                         |
->>>> |  Subsystem   +--------+      |                         |
->>>> |              |  TPDA  |      |                         v
->>>> |              +----|---+      |              +---------------------+
->>>> |                   |          |              |    Aggregator TNOC  |
->>>> |                   |          |              +----------|----------+
->>>> |                   +--        |                         |
->>>> |                     |        |                         |
->>>> |                     |        |                         |
->>>> |              +------v-----+  |                         |
->>>> |              |  Funnel    |  |                         |
->>>> |              +------------+  |                         |
->>>> +----------------|-------------+                         |
->>>>                    |                                       |
->>>>                    v                                       v
->>>>         +--------------------+                    +------------------+
->>>>         |   Coresight Sink   |                    |  Coresight Sink  |
->>>>         +--------------------+                    +------------------+
->>>
->>> If each NOC has TraceID, how do you reliably decode the trace ?
->>> Is there a single NOC/TPDA in the path from Source to sink ?
->>
->> Not each TNOC has TraceID, there is only one TNOC has TraceID for one path
->> from Source to sink. In the example, only the aggregator TNOC has traceID.
->> Decode trace relying on TraceID + Inport number.
->> It can has mutiple TNOC/TPDA in one path.
+On 06/05/2025 22:06, Alexey Charkov wrote:
+> VIA/WonderMedia SoC timer can generate up to four interrupts corresponding
+> to four timer match registers (firing when the 32-bit freerunning clock
+> source counter matches either of the match registers, respectively).
 > 
-> So do we only describe the TNOCs that need traceId in the DT ? (e.g., Aggregator TNOC above ?) How about Video TNOC ? Don't we allocate a
-> trace id for it by default, when it is described ?
+> List all four interrupts in device trees.
 > 
-> Suzuki
+> This also enables the system event timer to use a match register other
+> than 0, which can then in turn be used as a system watchdog (watchdog
+> function is not available on other channels)
 > 
-yes, now only describe the TNOCs which need traceID, Video TNOC is another type, it is interconnect TNOC which collects trace from subsystems
-and transfers Aggr TNOC, it doesn't have ATID. Its driver is different from this patch, I want to describe it when upstream its driver.
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> ---
+>  arch/arm/boot/dts/vt8500/vt8500.dtsi | 2 +-
+>  arch/arm/boot/dts/vt8500/wm8505.dtsi | 2 +-
+>  arch/arm/boot/dts/vt8500/wm8650.dtsi | 2 +-
+>  arch/arm/boot/dts/vt8500/wm8750.dtsi | 2 +-
+>  arch/arm/boot/dts/vt8500/wm8850.dtsi | 2 +-
+>  5 files changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/vt8500/vt8500.dtsi b/arch/arm/boot/dts/vt8500/vt8500.dtsi
+> index 2ba021585d4889f29777a12473964c29f999f3a0..d1dd37220d41becece5d24fbb19aa71b01723e35 100644
+> --- a/arch/arm/boot/dts/vt8500/vt8500.dtsi
+> +++ b/arch/arm/boot/dts/vt8500/vt8500.dtsi
+> @@ -111,7 +111,7 @@ clkuart3: uart3 {
+>  		timer@d8130100 {
+>  			compatible = "via,vt8500-timer";
+>  			reg = <0xd8130100 0x28>;
+> -			interrupts = <36>;
+> +			interrupts = <36>, <37>, <38>, <39>;
 
-Yuanfang
+You need to update the binding, preferably first convert it to DT schema.
 
 
 
-
-
-
+Best regards,
+Krzysztof
 
