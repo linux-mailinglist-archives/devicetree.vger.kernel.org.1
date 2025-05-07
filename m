@@ -1,145 +1,118 @@
-Return-Path: <devicetree+bounces-174717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6B10AAE2FD
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:32:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84B47AAE2EF
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:30:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F4CA9C55D6
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:25:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26169188C977
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:27:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122FA28A400;
-	Wed,  7 May 2025 14:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615B428BA82;
+	Wed,  7 May 2025 14:23:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="L2xJe1P+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P2t9wL/Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64FE728935D
-	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 14:19:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 335E825E816;
+	Wed,  7 May 2025 14:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746627588; cv=none; b=hkiKylaPFtVne6hqF2+kGd/wJDo1cvfQtxfBDypQ+sWFVGXrbFIpPiUZtU/9olwp+UOz/5xHL+3iPGgbGQ6xHA+X1gPG2Y4gnE4EKr0jP4OzZLz5lHjAfXOZHFVcYbw42muaO/v+wEXNSYVZJCj+upuF0CHZIwQp+x24a2N8xCs=
+	t=1746627784; cv=none; b=JCc1zUlIxe5qEanblpdpe+pA25l1NiKTUA0BiRz1CEAviuG82Cd8sBDwavJetcTDg2J3aBPSqiHoZ2sMssCDRfjVhl2SFF6omJ9hAzZbt5XHiEVaFn4FtUz9BLUCxaz4vRilPKiNJc/cKK1y1WaNFCoB7sABqw4QUN7GfYzKYHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746627588; c=relaxed/simple;
-	bh=+gSWaLrlSKvjhkkdwPTUbaGH52GIa8jFvFcv1TL+Qr0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=icqapX4NK1RDF1HAqf/A+dn10eOSOcJD5k8/BmuHwcBGN1/Bl4eSbnxWKB8RXmCiMPnXMzIeBD/hVIIGpoZX1qP5eQFbi/ucX2njJvOYGfbBvx1qMZPxtVqgHvX1TSb5y7ZPoINHapTP9Pmvc8nlcwHGRABTCxJUin6HnYXSQ4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=L2xJe1P+; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1746627585;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MweqEOF5l5jRk/Y5461YnFfXIpxXFbmEcdriDx9b/ng=;
-	b=L2xJe1P+56VlZZk2Dvcdk3VfzSQowbu4zvfdPADBqme+bBZa6SnlpTIzaz1WGGhBQLP0iE
-	J2t3lYQ36Ueg5xFvNdk3REpbUz3AASQD1jiyfYaE6P71FCSkmdZWPqM6WC7Ngl9Idg9Qvc
-	m3iyj45BfWDD9SyX5nrsJwKgn3gjLCw=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-588-MokWut8GP3WQFdyZTAATqA-1; Wed,
- 07 May 2025 10:19:40 -0400
-X-MC-Unique: MokWut8GP3WQFdyZTAATqA-1
-X-Mimecast-MFC-AGG-ID: MokWut8GP3WQFdyZTAATqA_1746627577
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 4DEDA1956050;
-	Wed,  7 May 2025 14:19:37 +0000 (UTC)
-Received: from [10.44.33.91] (unknown [10.44.33.91])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 5062D1800359;
-	Wed,  7 May 2025 14:19:31 +0000 (UTC)
-Message-ID: <7e7122b1-b5ff-4800-8e1d-b1532a7c1ecf@redhat.com>
-Date: Wed, 7 May 2025 16:19:29 +0200
+	s=arc-20240116; t=1746627784; c=relaxed/simple;
+	bh=SqiMRe5738eY7cluVKlqsmNjWnERIUVSiShN//tNEPk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U+zfBsk1tlAShuP0M08R0OKjzttfjki+WI0lu6JHU4A+mIuJtO30VSD73+XjzFVLwdZZWWXSs1Rv3SXkOdzBYMIRKohZfIXcBzYpvGkhkItO6vGyPjjBby9RHc5XxjSkphVea7oEvfCF60XuesixbJcrLgpNuShdfg2Hj87Nr1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P2t9wL/Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33D79C4CEE2;
+	Wed,  7 May 2025 14:23:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746627783;
+	bh=SqiMRe5738eY7cluVKlqsmNjWnERIUVSiShN//tNEPk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P2t9wL/QKq+lXcXzo2YLa13CmEtCsb96D/WYVVk47qQQTkcVywgwsEKt6Oh/WBH4D
+	 IBms+1NXipxhbfiZQcgzyjqO8o1fT3hfxsbFia9Oxugdac0+Mw/l22gAHWbh+C801Y
+	 8isRnFMd5ml8WAWMnhsFMwVaZYl/D5kEm9Yka3wf2w1i+rGTxWpKovcv0JifzqQyhB
+	 Xs4z4GuE5jRkexsmowVUgU4850UIYsQgsnTsNafYXIiQopPojSdNPvHJ7gUpC4Drul
+	 L3dBPtvUG4932YejH3WILJAR/UdPFTlkk0maJzWx8XlfxzeF3ZWPEflOPZt66KcSya
+	 WW4JaAilQb9lg==
+Date: Wed, 7 May 2025 15:22:58 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Pankit Garg <pankit.garg@nxp.com>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org,
+	alexandre.belloni@bootlin.com, vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com, daniel.aguirre@nxp.com,
+	shashank.rebbapragada@nxp.com, aman.kumarpandey@nxp.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: rtc: Add pcf85053a support
+Message-ID: <20250507-zap-dyslexia-924cfd1b6ec9@spud>
+References: <20250507072618.153960-1-pankit.garg@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 8/8] mfd: zl3073x: Register DPLL sub-device
- during init
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Lee Jones <lee@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20250507124358.48776-1-ivecera@redhat.com>
- <20250507124358.48776-9-ivecera@redhat.com>
- <CAHp75Ven0i05QhKz2djYx0UU9E9nipb7Qw3mm4e+UN+ZSF_enA@mail.gmail.com>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <CAHp75Ven0i05QhKz2djYx0UU9E9nipb7Qw3mm4e+UN+ZSF_enA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5nmx1imcW8zRLMjW"
+Content-Disposition: inline
+In-Reply-To: <20250507072618.153960-1-pankit.garg@nxp.com>
 
 
+--5nmx1imcW8zRLMjW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 07. 05. 25 3:41 odp., Andy Shevchenko wrote:
-> On Wed, May 7, 2025 at 3:45 PM Ivan Vecera <ivecera@redhat.com> wrote:
->>
->> Register DPLL sub-devices to expose the functionality provided
->> by ZL3073x chip family. Each sub-device represents one of
->> the available DPLL channels.
-> 
-> ...
-> 
->> +static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
->> +       { .channel = 0, },
->> +       { .channel = 1, },
->> +       { .channel = 2, },
->> +       { .channel = 3, },
->> +       { .channel = 4, },
->> +};
-> 
->> +static const struct mfd_cell zl3073x_devs[] = {
->> +       ZL3073X_CELL("zl3073x-dpll", 0),
->> +       ZL3073X_CELL("zl3073x-dpll", 1),
->> +       ZL3073X_CELL("zl3073x-dpll", 2),
->> +       ZL3073X_CELL("zl3073x-dpll", 3),
->> +       ZL3073X_CELL("zl3073x-dpll", 4),
->> +};
-> 
->> +#define ZL3073X_MAX_CHANNELS   5
-> 
-> Btw, wouldn't be better to keep the above lists synchronised like
-> 
-> 1. Make ZL3073X_CELL() to use indexed variant
-> 
-> [idx] = ...
-> 
-> 2. Define the channel numbers
-> 
-> and use them in both data structures.
-> 
-It could be possible to drop zl3073x_pdata array and modify ZL3073X_CELL
-this way:
+On Wed, May 07, 2025 at 12:56:17PM +0530, Pankit Garg wrote:
+> Add device tree bindings for NXP PCF85053a RTC chip.
+>=20
+> Signed-off-by: Pankit Garg <pankit.garg@nxp.com>
+> ---
+> V2 -> V3: Moved MAINTAINERS file changes to the driver patch
+> V1 -> V2: Handled dt-bindings by trivial-rtc.yaml
 
-#define ZL3073X_CHANNEL(_channel)                               \
-         &(const struct zl3073x_pdata) { .channel = _channel }
+You forgot to add my ack.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-#define ZL3073X_CELL(_name, _channel)                           \
-         MFD_CELL_BASIC(_name, NULL, ZL3073X_CHANNEL(_channel),  \
-                        sizeof(struct zl3073x_pdata), 0)
+>=20
+> ---
+>  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Doc=
+umentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> index 7330a7200831..47be7bbbfedd 100644
+> --- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> @@ -65,6 +65,8 @@ properties:
+>        - microcrystal,rv8523
+>        # NXP LPC32xx SoC Real-time Clock
+>        - nxp,lpc3220-rtc
+> +      # NXP PCF85053A Real Time Clock Module with I2C-Bus
+> +      - nxp,pcf85053a
+>        # I2C bus SERIAL INTERFACE REAL-TIME CLOCK IC
+>        - ricoh,r2025sd
+>        # I2C bus SERIAL INTERFACE REAL-TIME CLOCK IC
+> --=20
+> 2.25.1
+>=20
 
-WDYT?
+--5nmx1imcW8zRLMjW
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Ivan
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBtswgAKCRB4tDGHoIJi
+0hetAQDZFb6bBTURET8u5tSP7OaxYKBO21m+kAdZypUEsonwAwD+MgiaRwDkaySB
+JhAobKfGy7iy6AN+lvsBNbBpVbS/mgI=
+=o9Ub
+-----END PGP SIGNATURE-----
+
+--5nmx1imcW8zRLMjW--
 
