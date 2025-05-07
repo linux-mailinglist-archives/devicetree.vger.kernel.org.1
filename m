@@ -1,99 +1,177 @@
-Return-Path: <devicetree+bounces-174719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3069AAE30D
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:34:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DEECAAE32F
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:38:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25D8C9E03CE
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:26:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41CA1169D7D
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 14:33:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DCE025E816;
-	Wed,  7 May 2025 14:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDC928983F;
+	Wed,  7 May 2025 14:32:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="rKlEdAv9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JBE/PAt0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C6B623;
-	Wed,  7 May 2025 14:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82CA4289376;
+	Wed,  7 May 2025 14:32:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746627839; cv=none; b=KF/nwreA+r0ZLUAYx4O/VMgMZBSxNvuERbQ83yMYcI/9oUGq3cIKpFOCtPIcVVqo/wHZC4k8DoRKLsYM2u3JLbU4Bibu9t+0nT33duVPhUhu581riVmTRYs6l/aAhjc8mJf2qJCKRu/OWUQmOWnJW7sHtr9ogKbz7yINydWW3pY=
+	t=1746628370; cv=none; b=AYCvulA5kFabcMqhxnb7e3kSmnqe9TkZZZpkmrYLDRlMEv4P6WdMVoaS/jJOOynyFDgmgFRZeNFG+zW9nGJNCDDxy2rqIACfs9EoZfNjpj6E2ZM83AwHQ11kkhBUUdF5GsPAY1VxXctG0dO4/962Kr1a0acuEHBQAMKn6OT7GSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746627839; c=relaxed/simple;
-	bh=Uv0EcW7glq4I2xOqbyY8pJU9J0d/EtIXL20dRyfGk7M=;
+	s=arc-20240116; t=1746628370; c=relaxed/simple;
+	bh=vMCsAoGOR/jE9JYpIk0OdcLmxBTPV6g7aYkv5FPcsSU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J3CoCxRMpmcIow7mfm/WIT+ZynN7pXmonn/LPN/tBfELk1+TGYtUxvYBo7BhCbGbcFEXZAwRJkXo2ew8+80ZZyYtVVNLQ3QzJuTclZvdCCje6XyrD3DYWy0DOQLyM9kZSQH3td1GR6EMJfb3wd21STFNu7YGBW9CqStdwPrsksQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=rKlEdAv9; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ZYAy8h3huPEqHikgnxaieN04K7WhSCqt1OYSqSWNRlE=; b=rKlEdAv9rte4tbESf+4ajtYyGO
-	pATDuP6V8vr/V+uSDUo/e0JB1BezeHdUqzDGYjZn1q/NtDJNp9LnqErexEXf1sLKWbQvMx5SwhK91
-	NrnF1ryuC8HUGCACQbdP7jEQ9Q33dVADukzJM3nsrsCZ5C42JHvCCoxLNzBB5Pg5li1c=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uCfge-00BtPO-Nq; Wed, 07 May 2025 16:23:52 +0200
-Date: Wed, 7 May 2025 16:23:52 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	kernel@quicinc.com, kernel@oss.qualcomm.com
-Subject: Re: [PATCH 3/8] arm64: dts: qcom: sa8775p: Add ethernet card for
- ride & ride-r3
-Message-ID: <c445043d-2289-455d-af62-b18704bab749@lunn.ch>
-References: <20250507065116.353114-1-quic_wasimn@quicinc.com>
- <20250507065116.353114-4-quic_wasimn@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cbkQ2pk2xY7caScBdpLZMQecrsfyfbSqLln08BxmwfhVI7kGHv5q5wy4hjoVG6qz79fZPbhrLBgI8kHddAde/GogCu/9GcvRnx4LJw+dMij3HiOY7rhxhbwOotBUemCMa1hhjGAqXNACf9xILWZIpKC2jYGZkEayV7gEXi0WV8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JBE/PAt0; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-441d1ed82dbso16227525e9.0;
+        Wed, 07 May 2025 07:32:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746628367; x=1747233167; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4cK2GR+MTIxCdrAVL3u30qal7MJPY3+v+RkxSo+dm/A=;
+        b=JBE/PAt0KddAsUNH/Q/kX0qpc7CJQHUvtSBqqP3io+8HpkEg8J+MjC0ynOUK/ojRrs
+         hj0QFft0MJI2iWVfhl6ap2zisAQPOki6jBK9Wrl1tC+aoNZi6ybjedURX1QfBeOKz2KJ
+         7cLWY88ri0nRmhtGJ31lfaoLpOAhkr8zUj6N7yVI0ze9b18n3SCkcTOYsdrXduQCnIg6
+         2R9mjhSaBtCVDxh3mIBnuGt8PGG3qEITs9zJpzmfqmNqW6BsQOt3UALjApITaDoSYCQ6
+         8wJUdeNBjUaDgnxG/S8VcpZ5JtzE+XqQ82Qs/C9k0tn+L04Y1KR8BjLX8WsnZatYhGfd
+         Mmrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746628367; x=1747233167;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4cK2GR+MTIxCdrAVL3u30qal7MJPY3+v+RkxSo+dm/A=;
+        b=j3TuZNgRN8/8rJIOpRdco+0gregtHeDnb2aIX3cln8fZzotG9MJvMOD75vmIVPyVtA
+         8nWjgyL1SPhzlbzD4gsosRkxjHCObAiundvqGgQo0+XyT4qtbsc4DjByuUzECYYFGnWl
+         YucgQUDdtn3NBidDMq05Vcd/hgQoayWV/Aaoz9/q0OZuOhgCf5oGOdhwqDMJ7ZZcJoNp
+         Imm4PT1uW9/ej6H9Wrrtb5YMj4iCx7AUZITS0Gi2+zzaI5FwLg1f2hmCRcFCeZFXM2Lb
+         IB97+9vajKeeFTXtbQypRjvW+tDg72TMzCNEhb6e9lJKycSFE4BdV/I9K7V1w7qCZaGl
+         Y0Lg==
+X-Forwarded-Encrypted: i=1; AJvYcCXirXhFFERgLNwTZf6gEvZE3TzMJyKatV+Da6GBa3v/slNapq04BXsTbHnqVJXN0cuVBLUNJl2cU4if@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw66prL5sS0EkMb7a9pDWyGEmAxEdWDqEvsVbli+2E0PEECRVWb
+	25G5THcXB+65s/3y7OYywylwi+4qDGs6sXd+BAHuw52+huunCWu70GAoxQ==
+X-Gm-Gg: ASbGncsKcnVvvLDa0OG9bqSgnaQ9erTqzJtXCIMSrRHnNTE2zaYESUG36AgBWhKh+Re
+	wwZhOcI47VNbyOZ8++xY14KZqhOig+WimA6yapMz+/tyGiwhebvwAI450ie40C1P60/EihCGr9h
+	s1/eVejW6LgHTu6G6hw0EdJ/vN/BONtt5kJ9irOnVeGntoEesbuGppYRd+D8zCoPTLD9lnYaVmo
+	bMppRJYuAsFUH7ret2LXogbVgcvosR2TaQA2drBvuIe20UTTU2WqKNrE0s2HvO+pey+ARhlhIaA
+	C+gB+cld+eptc+of+MW+9Eor6OJDcR6lH+0yRcAnhVEUMvg2Fr92Z/ujw2xEs4u3oyDff4UGzjc
+	6HnN8HLMplQtOsKJpA01ivpCm1mE=
+X-Google-Smtp-Source: AGHT+IEd1QJ3UGhkjXTiuM6IWrT+bURzxPWFWLEi/P7RC8gos+sLg4dyG+3f7M+cmEZydt7eQ6bD3A==
+X-Received: by 2002:a05:600c:528c:b0:43d:300f:fa1d with SMTP id 5b1f17b1804b1-441d44e32cfmr34862855e9.31.1746628366474;
+        Wed, 07 May 2025 07:32:46 -0700 (PDT)
+Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd3af15bsm2800915e9.30.2025.05.07.07.32.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 May 2025 07:32:45 -0700 (PDT)
+Date: Wed, 7 May 2025 16:32:43 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: linux-tegra@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 07/11] soc/tegra: pmc: Add Tegra264 support
+Message-ID: <fknux7o27tbcykml6ze4rcuwkkfxuiv7uvbdkejf5ikermr6h7@57jse3b45wsz>
+References: <20250506133118.1011777-1-thierry.reding@gmail.com>
+ <20250506133118.1011777-8-thierry.reding@gmail.com>
+ <964d8b07-aeb1-437b-ac8e-c129c49b2a78@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wmguxf7cc2ndw7cd"
 Content-Disposition: inline
-In-Reply-To: <20250507065116.353114-4-quic_wasimn@quicinc.com>
+In-Reply-To: <964d8b07-aeb1-437b-ac8e-c129c49b2a78@nvidia.com>
 
-> +&ethernet0 {
-> +	phy-handle = <&sgmii_phy0>;
-> +	phy-mode = "sgmii";
-> +
-> +	pinctrl-0 = <&ethernet0_default>;
-> +	pinctrl-names = "default";
-> +
-> +	snps,mtl-rx-config = <&mtl_rx_setup>;
-> +	snps,mtl-tx-config = <&mtl_tx_setup>;
-> +	snps,ps-speed = <1000>;
 
-SGMII can only go up to 1000, so why is this property needed?
+--wmguxf7cc2ndw7cd
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 07/11] soc/tegra: pmc: Add Tegra264 support
+MIME-Version: 1.0
 
-> +&ethernet0 {
-> +	phy-handle = <&hsgmii_phy0>;
-> +	phy-mode = "2500base-x";
-> +
-> +	pinctrl-0 = <&ethernet0_default>;
-> +	pinctrl-names = "default";
-> +
-> +	snps,mtl-rx-config = <&mtl_rx_setup>;
-> +	snps,mtl-tx-config = <&mtl_tx_setup>;
-> +	snps,ps-speed = <1000>;
+On Wed, May 07, 2025 at 12:03:39PM +0100, Jon Hunter wrote:
+>=20
+> On 06/05/2025 14:31, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > The PMC block on Tegra264 has undergone a few small changes since it's
+> > Tegra234 predecessor. Match on the new compatible string to select the
+> > updated SoC-specific data.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >   drivers/soc/tegra/pmc.c | 132 +++++++++++++++++++++++++++++++++++++++-
+> >   1 file changed, 129 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
+> > index 51b9d852bb6a..6f1ea5b6b9db 100644
+> > --- a/drivers/soc/tegra/pmc.c
+> > +++ b/drivers/soc/tegra/pmc.c
+> > @@ -2892,9 +2892,14 @@ static int tegra_pmc_probe(struct platform_devic=
+e *pdev)
+> >   		if (IS_ERR(pmc->wake))
+> >   			return PTR_ERR(pmc->wake);
+> > -		pmc->aotag =3D devm_platform_ioremap_resource_byname(pdev, "aotag");
+> > -		if (IS_ERR(pmc->aotag))
+> > -			return PTR_ERR(pmc->aotag);
+> > +		res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "aotag");
+> > +		if (res) {
+> > +			pmc->aotag =3D devm_ioremap_resource(&pdev->dev, res);
+> > +			if (IS_ERR(pmc->aotag))
+> > +				return PTR_ERR(pmc->aotag);
+> > +		} else {
+> > +			pmc->aotag =3D NULL;
+> > +		}
+>=20
+> This part make aotag optional, if I understand this correctly. This is not
+> mentioned above and probably should be. Also, I believe that currently
+> dt-binding has this as required and so we should update the dt-binding doc
+> to make this optional too.
 
-This looks odd. 2500Base-X, yet 1000?
+Good catch. I actually noticed earlier, as I was going over the next set
+of patches once more, that there's actually an AOTAG region in the PMC's
+address space, so I'm leaning towards dropping the above hunk and leave
+the DT bindings as they are.
 
-	Andrew
+When it comes to these AOTAG registers, it's a bit difficult to tell
+because we don't ever use them after mapping them, even on older Tegra
+generations. Keeping it for now should be fine, and we can subsequently
+drop them (and the driver could always just continue ignoring them) if
+there's a good reason.
+
+Thierry
+
+--wmguxf7cc2ndw7cd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmgbbwsACgkQ3SOs138+
+s6GdBQ/+PXZtw/PwLe1C1WBwkC4dYdLtKOFbwk1qXEFlf+QhwRhwz1DHrNmutqFS
+Hc11IeCLgNnUdawS7IvX8PJWvw4voRcT6YHKgjyV1hHcGitARgYnVGEJ4nLyXjj0
+ThGzWWDpMhgoivYAuQxyfbAkTCYv8ef96LhdigB7v6xsvTYsWCago/S4miXVxQGd
+8FR6GXgckq1WLGoOh+scMF0TOoXDF3XRtX/A+okCt2+9MDwhhg6dKwaQXOn6fH0P
+eDOdholwnsNdji0oXviRybo8Beiku5YLX4/NBU51l+OZqWBhkb4GQIdEQBTzzTsz
+qLkbr/nsOvyALrS4gtGQQeatGx7Q9709OO2huURY8bk5EyNNfjFvH1YTDjSqdVJQ
+6jkipWcafg2JwlmtmMduR/c1mGVLyypK/9Vb6cFCOGyXHAi8YPtCrygT3jCpD+H+
++WGoBAENxSeqk4BhlEcTwlgqAqMgNJCzEx/3UZMjA9YO7wBxFjymtRwwpmQ7mYKO
+gMamMUL34Geyt08WEzZHuEIME1v4IL7W7t42D4/eBXp29ugxoUKXMJ7uKmzNCdRl
+ZDLc0BmTVujtP40ywIbN1EMwsWwbJXggovmxcEoYJyqBm9zUb9QP35yZba7+AbIj
+Ctno5Cfm3923b7Xsr7x9UwHD1rZy5EV3ksPO9bZrxSuUQDJBxdQ=
+=r/81
+-----END PGP SIGNATURE-----
+
+--wmguxf7cc2ndw7cd--
 
