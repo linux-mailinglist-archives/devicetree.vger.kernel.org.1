@@ -1,176 +1,206 @@
-Return-Path: <devicetree+bounces-174783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 644F6AAE6FF
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:42:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E63B6AAE737
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:56:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 613813B7B04
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:42:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C0B5522860
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5408D28BA82;
-	Wed,  7 May 2025 16:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9016428C2C7;
+	Wed,  7 May 2025 16:56:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QLE2837F"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Y7QuOjyR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3EBA1917FB;
-	Wed,  7 May 2025 16:42:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A92028C2A2;
+	Wed,  7 May 2025 16:56:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746636168; cv=none; b=hTjXHL52yq+CSmY1UDa7yfir0vx1qg2tpbk2Uur+LBzH9aHgLYk6xWHRI2Kn+xEnS7PGSKQhetN52fPma3WHVRNbJgPdl78EpCm5mrqGCm0bKSUFPoZAijItltaxRi++Brr2rNRRvibKKCyEIaSJK0SPPykulGuWPrH9ilOYiPA=
+	t=1746636988; cv=none; b=FtU0uVWl2tZxzg3q4KvtwAruqkORtxEvAwpNa72gS3KVHnCDGC0fDo9HBFwclVymYAb0CFZkYA+EkAKlMBVZFNh2xcI4ynabk8U3WaR+nkKB7UKbe/6LmZeuVTv9yNrZu+SmlZlYPn2/ZAPw+d95mep6Q6cz8wq4KKYsRO1IGto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746636168; c=relaxed/simple;
-	bh=GmqF0ZJgeQ9wyOYD0SQ2yXd+3NM8zKWnJXpW3wgTe6k=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Biz+WBPZlzX/7d7J+yO6jZWj3YP863o7FF7IyZPvIEp4w29VrgUM+Lo6tWD7pR1Hbtxsdt4J7amkIhl/eUlMTv/UsZAAYJyWbC1Foe76B4Mr2R12HcafO1RCpu+LLNMEkMFQcCZm/9rEEzk/WH1AcdO8Zc9avD3bYH5wGQpvcyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QLE2837F; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-736c1cf75e4so128577b3a.2;
-        Wed, 07 May 2025 09:42:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746636166; x=1747240966; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UrpAv5wRm5tVkVdVuPsn72RSEtYGripQsP5MpQKGhfk=;
-        b=QLE2837F05EnFqzcMIEe4W0awmV58aZUIWbjn0RALdRvxGqjIsZUaV2somrK2NeZWB
-         8ezf5iJYBrJtELFkSDYcgj/+qvQf+SVegqmX5lGQVHMcIZKmf1Y4s0Gt1z9nhFHhRK1n
-         tkiAq8UicHHUSKmkJXhrVAAvgDyIhFcampm/r3Irf5iWdgmfTeqlZevjiYsPFEJjAjpU
-         OHjU4SA0HtG5M2yv4DLx3Sqzek8xcHgxGCDq/bYM8zglj0c2zCmq8GddpJs8uhs4eZJK
-         o0qhRGOiTu4VRNSFPqjyAwETD/MqbObexa4WViqcGV6r67Yxneb22mJ5GnZSYwy1LlwO
-         HVfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746636166; x=1747240966;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UrpAv5wRm5tVkVdVuPsn72RSEtYGripQsP5MpQKGhfk=;
-        b=Fxe2/cLR8kwVxZ+NxVGjiDGsCwLzUVYK2Vch8Y3hOnHMo8nruGodTFGRuKlMsdcFhs
-         czgpGoPEJp+rys6PStAyxahA3OCDlCLm8yMFdJ6nB+ypaiHwopk5uwYOH+7qYhJfQok9
-         iaU0oR/2+LuqNwGng6h8otBVgu08pvszOyrddN638EDwQC09yTlbeah/8a64qvgQNd68
-         6sAhEV8UQNEgY1MSS/lQLbAu01NiQa/qEAFDxnOcdmWQgK7HnhkeYVtBDkPzF2WtfV7W
-         dfi/oAKL2ERXRRVaK5TEqTJG12Nq6S3xjITC01/SYKQcGW0IYJs7PJOMAi+51rqVNf4w
-         oLbA==
-X-Forwarded-Encrypted: i=1; AJvYcCVngyCpFWdC04dksZpeXM3yNBmb1EtCYMh1pVOXLqnOaw6MGnYVOWfEbb/brTEoDAeHcZK2pvLpisiakR2j@vger.kernel.org, AJvYcCVqaljU537LUESNlFqG+um6wx5I6ANXiea46Dt3gaDciCqbyLmpzSx/2EgcbvXgUI1PDa1mgEzeissy@vger.kernel.org, AJvYcCXfKgAJlPz5J5DC+IsZ5x9Cp+1sA6afEbJqVhzEftwUEsfw+2FEA50k58tLVjqIBGy8MeMlDeUX7cVm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3qCXCgjtuxjjUsCqyePedyMPin7RExsbYGG++IPzmW7lUGCBp
-	nCRUH+wX9D2zoekFSd1JHBQ6g7/abtxLFQf1voUc6JbBG9zdCD2x
-X-Gm-Gg: ASbGncuWWVIksRIJbflVsd5OTh4pxckBACg3ntj3EsaSFOT88B6dI11vqT0E1LQMKXj
-	5yA1HdS8GJ8H8P999WtdTP2rgioOe0RE6WnMyPRcEzpQuQX6qOxOyw4ipyCsWvMiWcCxUgpMeuQ
-	vMt4s86RtcPEThPsTlnM3gsRyCmMtknkV1EM39tq71wmGrdH8YjuwAr4nzs3WrPkbiW69VqDUZZ
-	UAjDCIAcXHzExwOKou4Mw3KhqcXvTI3OjIHyi/Vj1D8nIzE5r4ebHNNAsojEDaivkWu9Veq7jpb
-	x7gJN+Zq1R3KtdOjyOTr4nD/mTb2xJbIHIr7QEbiijTb7A7KnnbytJolxxyhv8rp
-X-Google-Smtp-Source: AGHT+IGJIkVx5zZt6zXCROkjsSU2I7/c8Y4B6zDviETofWcquGoGsY4tXjVou0oNL4hYBjlYRPpCgQ==
-X-Received: by 2002:a05:6a00:8d96:b0:73f:ebb:6cb2 with SMTP id d2e1a72fcca58-740a9966d64mr34295b3a.3.1746636165785;
-        Wed, 07 May 2025 09:42:45 -0700 (PDT)
-Received: from localhost.localdomain ([123.16.133.44])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74058d7b1c1sm11528004b3a.6.2025.05.07.09.42.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 May 2025 09:42:45 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: andy@kernel.org
-Cc: geert@linux-m68k.org,
-	pavel@ucw.cz,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	christophe.jaillet@wanadoo.fr,
-	corbet@lwn.net,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	florian.fainelli@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix LED driver
-Date: Wed,  7 May 2025 23:42:19 +0700
-Message-Id: <20250507164219.10083-1-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <CAHp75VcVmTwS-zw=o5=m1-x0XC67BKBVWae2mMKZQH=qLCxZwg@mail.gmail.com>
-References: <CAHp75VcVmTwS-zw=o5=m1-x0XC67BKBVWae2mMKZQH=qLCxZwg@mail.gmail.com>
+	s=arc-20240116; t=1746636988; c=relaxed/simple;
+	bh=G8yG7fiD+drVoJWsnr3QQsegC7Q9gGFV/6SDPFVmP6k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=gpuaoM8Fx6F3n8uodbgY2m7JIXOpYmR8Ylb/zvrhOEYUswf/hoWu5BLOY7LmB8H6Bx4uzaHoPsgXvMFjmeycx6ajLmA9eT+z8SwGDxQEdJZKGb1540UPEo8mWH0pPoOeSUscfItGfahL4wepc+8PEReB5YeeO05B26aREeLpwqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Y7QuOjyR; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 547GuEaL867288
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 7 May 2025 11:56:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746636974;
+	bh=jaKjSlRu1WXVw9EyzBu98dAha3ndJFifpvhWA7RJcL0=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Y7QuOjyRoihv73KpXsYifbOAk6x4QsVI6fW4QQBJdSrKOmKzhOjO4CvF7deYIM3WG
+	 3W+/fw6+VaZH8okE5sHfhXFC/dNjDXRCgFp5I5GCwYSSMmaUs2vPwhspDqWm1MxVdC
+	 rcCm+mdsuba4+nL+qLF115rV59CoL1eT7lr0h/Dc=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 547GuEOq064996
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 7 May 2025 11:56:14 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
+ May 2025 11:56:14 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 7 May 2025 11:56:14 -0500
+Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 547GuDWE130295;
+	Wed, 7 May 2025 11:56:14 -0500
+Message-ID: <d4f21cdc-bb0c-4c78-aeea-f6e5c75fa5f1@ti.com>
+Date: Wed, 7 May 2025 11:56:13 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/7] arm64: dts: ti: k3-am62a7-sk: Set wakeup-source
+ system-states
+To: Markus Schneider-Pargmann <msp@baylibre.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Vishal Mahaveer <vishalm@ti.com>,
+        Kevin
+ Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
+        Sebin Francis
+	<sebin.francis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>
+References: <20250421-topic-am62-dt-partialio-v6-15-v1-0-6ced30aafddb@baylibre.com>
+ <20250421-topic-am62-dt-partialio-v6-15-v1-6-6ced30aafddb@baylibre.com>
+Content-Language: en-US
+From: Kendall Willis <k-willis@ti.com>
+In-Reply-To: <20250421-topic-am62-dt-partialio-v6-15-v1-6-6ced30aafddb@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, 29 Apr 2025 Andy Shevchenko wrote:
-
-> On Tue, Apr 29, 2025 at 8:02 PM Nam Tran <trannamatk@gmail.com> wrote:
-> > On Mon, 28 Apr 2025 Pavel Machek wrote:
-> > > > On Mon, 28 Apr 2025 Geert Uytterhoeven wrote:
-> > >
-> > > > > > > > - Move driver to drivers/auxdisplay/ instead of drivers/leds/.
-> > > > > > > > - Rename files from leds-lp5812.c/.h to lp5812.c/.h.
-> > > > > > > > - Move ti,lp5812.yaml binding to auxdisplay/ directory,
-> > > > > > > >   and update the title and $id to match new path.
-> > > > > > > > - No functional changes to the binding itself (keep Reviewed-by).
-> > > > > > > > - Update commit messages and patch titles to reflect the move.
-> > > > > > > > - Link to v7: https://lore.kernel.org/linux-leds/20250422190121.46839-1-trannamatk@gmail.com/
-> > > > > > >
-> > > > > > > Out of sudden without discussing with auxdisplay maintainers/reviewers?
-> > > > > > > Thanks, no.
-> > > > > > > Please, put into the cover letter the meaningful summary of what's
-> > > > > > > going on and why this becomes an auxdisplay issue. Brief review of the
-> > > > > > > bindings sounds more likely like LEDS or PWM subsystems.
-> > > > > >
-> > > > > > It is 4x3 matrix. That means it is not suitable for LEDs. I don't
-> > > > > > believe it is suitable for PWM, either -- yes, it is 36 PWM outputs,
-> > > > > > but...
-> > > > >
-> > > > > Is it intended to be used as a 4x3 matrix, or is this just an internal
-> > > > > wiring detail, and should it be exposed as 12 individual LEDs instead?
-> > > >
-> > > > The 4×3 matrix is a real and fundamental aspect of the LP5812’s operation.
-> > > > It is not just an internal wiring detail.
-> > > > The device adopts a Time-Cross-Multiplexing (TCM) structure, where 4 output
-> > > > pins control 12 LED dots individually through scanning. Each pin includes
-> > > > both high-side and low-side drive circuits, meaning matrix multiplexing is
-> > > > required for proper operation — it cannot be treated as 12 completely
-> > > > independent LEDs.
-> > >
-> > > Scanning is really a detail.
-> > >
-> > > If this is used as rectangular 4x3 display, then it goes to auxdisplay.
-> > >
-> > > If this is used as a power LED, SD activity LED, capslock and numlock
-> > > ... placed randomly all around the device, then it goes LED subsystem.
-> >
-> > The LP5812 is used for LED status indication in devices like smart speakers,
-> > wearables, and routers, not as a structured rectangular display.
-> >
-> > Given that, it seems to match the LED subsystem better than auxdisplay, doesn't it?
+On 4/21/25 03:14, Markus Schneider-Pargmann wrote:
+> The CANUART pins of mcu_mcan0, mcu_mcan1, mcu_uart0 and wkup_uart0 are
+> powered during Partial-IO and IO+DDR and are capable of waking up the
+> system in these states. Specify the states in which these units can do a
+> wakeup on this board.
 > 
-> I have mixed feelings about all this. As per hardware organisation it
-> sounds more like a matrix (for example. keyboard), where all entities
-> are accessed on a scanline, but at the same time each of the entities
-> may have orthogonal functions to each other. Have you checked with DRM
-> for the sake of completeness?
-> Personally I lean more to the something special, which doesn't fit
-> existing subsystems. Auxdisplay subsystem more or less about special
-> alphanumeric displays (with the exception of some FB kinda devices,
-> that were even discussed to have drivers be removed). Also maybe FB
-> might have something suitable, but in any case it looks quite
-> non-standard...
+> Note that the UARTs are not capable of wakeup in Partial-IO because of
+> of a UART mux on the board not being powered during Partial-IO.
+> 
+> Add pincontrol definitions for mcu_mcan0 and mcu_mcan1 for wakeup from
+> Partial-IO. Add these as wakeup pinctrl entries for both devices.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 76 +++++++++++++++++++++++++++++++++
+>   1 file changed, 76 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> index 1c9d95696c839a51b607839abb9429a8de6fa620..724d9a6f3c575fe35496fdd9e17d6d8e33869f92 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> @@ -741,3 +741,79 @@ dpi1_out: endpoint {
+>   		};
+>   	};
+>   };
+> +
+> +&mcu_mcan0 {
+> +	pinctrl-names = "default", "wakeup";
+> +	pinctrl-0 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_default>;
+> +	pinctrl-1 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_wakeup>;
+> +	wakeup-source = <&system_partial_io>,
+> +			<&system_io_ddr>,
+> +			<&system_deep_sleep>,
+> +			<&system_mcu_only>,
+> +			<&system_standby>;
+> +	status = "okay";
+> +};
+> +
+> +&mcu_mcan1 {
+> +	pinctrl-names = "default", "wakeup";
+> +	pinctrl-0 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_default>;
+> +	pinctrl-1 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_wakeup>;
+> +	wakeup-source = <&system_partial_io>,
+> +			<&system_io_ddr>,
+> +			<&system_deep_sleep>,
+> +			<&system_mcu_only>,
+> +			<&system_standby>;
+> +	status = "okay";
+> +};
+> +
+> +&mcu_uart0 {
+> +	wakeup-source = <&system_io_ddr>,
+> +			<&system_deep_sleep>,
+> +			<&system_mcu_only>,
+> +			<&system_standby>;
+> +};
+> +
+> +&wkup_uart0 {
+> +	wakeup-source = <&system_io_ddr>,
+> +			<&system_deep_sleep>,
+> +			<&system_mcu_only>,
+> +			<&system_standby>;
+> +};
+Hi Markus,
 
-I understand your mixed feelings about where the LP5812 fits within
-the existing subsystems.
+I noticed wkup_uart0 is already referenced earlier in the dts. Could the 
+wakeup-source property be added into the first reference?
+> +
+> +&mcu_pmx0 {
+Same thing with mcu_pmx0. Is there a reason for separating it from when 
+it was referenced originally?
+> +	mcu_mcan0_tx_pins_default: mcu-mcan0-tx-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x034, PIN_OUTPUT, 0) /* (D6) MCU_MCAN0_TX */
+> +		>;
+> +	};
+> +
+> +	mcu_mcan0_rx_pins_default: mcu-mcan0-rx-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x038, PIN_INPUT, 0) /* (B3) MCU_MCAN0_RX */
+> +		>;
+> +	};
+> +
+> +	mcu_mcan0_rx_pins_wakeup: mcu-mcan0-rx-wakeup-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x038, PIN_INPUT | WKUP_EN, 0) /* (B3) MCU_MCAN0_RX */
+> +		>;
+> +	};
+> +
+> +	mcu_mcan1_tx_pins_default: mcu-mcan1-tx-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x03c, PIN_OUTPUT, 0) /* (E5) MCU_MCAN1_TX */
+> +		>;
+> +	};
+> +
+> +	mcu_mcan1_rx_pins_default: mcu-mcan1-rx-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x040, PIN_INPUT, 0) /* (D4) MCU_MCAN1_RX */
+> +		>;
+> +	};
+> +
+> +	mcu_mcan1_rx_pins_wakeup: mcu-mcan1-rx-wakeup-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x040, PIN_INPUT | WKUP_EN, 0) /* (D4) MCU_MCAN1_RX */
+> +		>;
+> +	};
+> +};Additionally, this patch does not apply cleanly to linux-next and needs 
+to be fixed and rebased.
 
-While the LP5812 uses a matrix-based structure for controlling LEDs,
-it is not intended for displaying structured text or graphics. Instead,
-it controls up to 4 RGB LEDs for status indication, where each RGB LED
-consists of 3 individual color LEDs: red, green, and blue. Based on this,
-I think it aligns more closely with the LED subsystem rather than DRM or FB.
+Best,
+Kendall Willis
+> 
 
-Best regards,
-Nam Tran
 
