@@ -1,235 +1,167 @@
-Return-Path: <devicetree+bounces-174576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BDCDAAD9E2
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:16:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF614AADA04
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 10:20:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE020985EA9
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:10:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BD5D3ADA4C
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 08:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F6B9221DA8;
-	Wed,  7 May 2025 08:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 118E4221287;
+	Wed,  7 May 2025 08:19:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="abVzUuQd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5147E22D4EF
-	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 08:05:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 771F6213E81;
+	Wed,  7 May 2025 08:19:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746605134; cv=none; b=K22P7xDST1WmKzNrXqNFZ3vjaN6PG4tSJL2Xx6KnSQH8jokDFJtZp1+YttzdSL9oQogdB3TNIrk2tcOFwLJtgmMIhzRt5M5OkqhwMPLG1GzbWE4KGd9FsxHBxl2IHQbw6V8PkX00DMkGRj/7+Fe92pvn5PSTDo5cq8nHG0MfMjc=
+	t=1746605976; cv=none; b=qVOpV0YmPdruqq39LXwRt57dUHwGX/cdTRCiZt8Z6/VWJAI9zqKE81yUiEjmXBSdW6cVcuL1BaAO8hoeWXOeiawgO5t/6Z95FiBrjVDa4+vAjznLnOqh8w+VlsL1MutXoRsqQclYBSzzxlNzMf9rqbUf/PEzvkx7U3byr+I6i/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746605134; c=relaxed/simple;
-	bh=nuE10YXTP2AEEebcF9P03Yz7YE72bjtBs/GDG5t5Z+U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a26ug0OWaRqv5HsRVScNf6D7S8aKV7beuTmrN/yaNjjto4a2BiX3BIxbaaI7lU6Ygcc1ns73ZypmIxpSjvrsqIVhomKluCzE4sprsE1l9zKdFpSf4ZiRGsU2DkPGSPGrCQ12/f/svthtDCxSVKaStaWOYKh+Lw0PGmJLhsCs2aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uCZmD-0006r1-RL; Wed, 07 May 2025 10:05:13 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uCZmD-001WaU-1R;
-	Wed, 07 May 2025 10:05:13 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uCZmD-008QHT-0y;
-	Wed, 07 May 2025 10:05:13 +0200
-Date: Wed, 7 May 2025 10:05:13 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@pengutronix.de,
-	Alvin =?iso-8859-15?Q?=A6ipraga?= <alsi@bang-olufsen.dk>
-Subject: Re: [PATCH v4 2/3] dt-bindings: clock: add TI CDCE6214 binding
-Message-ID: <aBsUObKHmJkBFN04@pengutronix.de>
-References: <20250430-clk-cdce6214-v4-0-9f15e7126ac6@pengutronix.de>
- <20250430-clk-cdce6214-v4-2-9f15e7126ac6@pengutronix.de>
- <3ba53493700561923c4ea9ab53a1a272@kernel.org>
+	s=arc-20240116; t=1746605976; c=relaxed/simple;
+	bh=jYMure5HfR9xY8R2EEl4NF4KRXBEPTw5WWnTNu58i84=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=PBRLdWq7eFW2UrJDQkM3/S+yXR/oLz9IBkIXYXqJXQXq9eUVgfV+wRYV9X0Ba/uYlU794g2KeU66vfJQZqsD8QkLLIfKXm9BLZ9FuxO4u0y+nGUnfAWo9nYd92EQ+LyRTCrlJMsa2Ag2rQE/euVgvNOLwgAhYNJq16VFOBu0XiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=abVzUuQd; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5471GtMt021520;
+	Wed, 7 May 2025 08:19:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tTbDVIg2eElIftbWZJV9dE8wLCXNVHs67i9kLvRpjbk=; b=abVzUuQdZBgqTsoS
+	lXgbuiM1BGrJBL+CeOGOAg3tcbTqQynwpBmtNBgi9bCh+GWa7qz1oNAFiQT7x7nP
+	s6/gr33oQJc1tGXQOrRRW4fqwdjIHLRIyMBeiohf5/gRUz4L9T0B1+VlD71/ZBVa
+	GOnUOdWzTJCuSFQvkRM76IFygV6b2tf3i7dMpn6uo45ZyM/L0yvLF36SNQEDkTJ6
+	iG3cxlIBvZCz1COWwjiMiJD1XJ3gX7TUi73/JTKyEUsPC1Z7D9vOShWOn4P7aUea
+	Fot3GhcRFHng/nkj4Frgq3wXkvVko48Ehw9zVU3H62ooC4/q9mpjgQZI8QF0Aegt
+	JljGgA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46fdwtur5e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 07 May 2025 08:19:21 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5478JLhH025949
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 7 May 2025 08:19:21 GMT
+Received: from [10.253.13.113] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 May 2025
+ 01:19:14 -0700
+Message-ID: <8fef4573-0527-44d8-a481-f3271d9ffa33@quicinc.com>
+Date: Wed, 7 May 2025 16:19:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3ba53493700561923c4ea9ab53a1a272@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/6] dt-bindings: PCI: qcom,pcie-sa8775p: document
+ qcs8300
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <neil.armstrong@linaro.org>,
+        <abel.vesa@linaro.org>, <manivannan.sadhasivam@linaro.org>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <quic_qianyu@quicinc.com>,
+        <quic_krichai@quicinc.com>, <quic_vbadigan@quicinc.com>
+References: <20250507031019.4080541-1-quic_ziyuzhan@quicinc.com>
+ <20250507031019.4080541-3-quic_ziyuzhan@quicinc.com>
+ <20250507-quixotic-handsome-wallaby-4560e3@kuoka>
+From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+In-Reply-To: <20250507-quixotic-handsome-wallaby-4560e3@kuoka>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=VPPdn8PX c=1 sm=1 tr=0 ts=681b1789 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
+ a=ikXEO7tarp_Agu9fICoA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: t4dsG6riyQwFXIemS2waFsuAtlPj0PpN
+X-Proofpoint-ORIG-GUID: t4dsG6riyQwFXIemS2waFsuAtlPj0PpN
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA3MDA3NiBTYWx0ZWRfXxFDs0yPDeK2U
+ mygi0tHEanrGqf+6r37pOGJVacwBouQoo/4sVKuVT5yAUiXc51GtP0eWSm7ArUclIZP7m8tymjW
+ pAc8g6S0VT1pE5ubDtlxTjFP8RZTmOpxzGi/9jtpmjTU9Y8kbrkE8hZ5hcWB83q68P6dySdTesX
+ s36k3wTTfUJ28nqsg07fuHdM2rTR0NiGHm/P5lWHvB2O3TWGR830lBcGlxhHxcEkMs6Ofc3pqut
+ jYj+a4XwPwAiKBvtwYlN+CqFzkbpFdISsHWLZ+L2ks5kVbjOZxF/fkzPQml5s4n/2SDxvADgbhK
+ BQZzaGmF966yFla1gUNLYKXLppe4we87hVOVBAg/9c379DfSokJKIEqzDphgagbpjfnsCyvARfb
+ WeBQQ5urynxy80kJ8zMEMv7ZUUNRUOsvrTFXNYe+8DL16IGTDiOme9gr5N2NY/yJdD8xCkKT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-07_03,2025-05-06_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0 mlxscore=0
+ bulkscore=0 clxscore=1015 lowpriorityscore=0 impostorscore=0 malwarescore=0
+ mlxlogscore=999 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505070076
 
-On Mon, May 05, 2025 at 10:50:49AM -0700, Stephen Boyd wrote:
-> Quoting Sascha Hauer (2025-04-30 02:01:35)
-> > diff --git a/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
-> > new file mode 100644
-> > index 0000000000000..d4a3a3df9ceb9
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
-> > @@ -0,0 +1,155 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/ti,cdce6214.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: TI CDCE6214 programmable clock generator with PLL
-> > +
-> > +maintainers:
-> > +  - Sascha Hauer <s.hauer@pengutronix.de>
-> > +
-> > +description: >
-> > +  Ultra-Low Power Clock Generator With One PLL, Four Differential Outputs,
-> > +  Two Inputs, and Internal EEPROM
-> > +
-> > +  https://www.ti.com/product/CDCE6214
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - ti,cdce6214
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +
-> > +  clock-names:
-> > +    minItems: 1
-> > +    maxItems: 1
-> > +    items:
-> > +      enum: [ priref, secref ]
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +  '#clock-cells':
-> > +    const: 1
-> > +
-> > +patternProperties:
-> > +  '^clk@[0-1]$':
-> > +    type: object
-> > +    description:
-> > +      optional child node that can be used to specify input pin parameters. The reg
-> > +      properties match the CDCE6214_CLK_* defines.
-> 
-> Presumably the EEPROM is typically used to configure all this stuff? Do
-> you actually need to program this from the kernel, or are you
-> implementing all this for development purposes?
 
-The EEPROM could be used to configure this. I don't know if the final
-product will have the EEPROM programmed, but even if it is, should we
-make this mandatory?
+On 5/7/2025 1:10 PM, Krzysztof Kozlowski wrote:
+> On Wed, May 07, 2025 at 11:10:15AM GMT, Ziyue Zhang wrote:
+>> Add compatible for qcs8300 platform, with sa8775p as the fallback.
+>>
+>> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+>> ---
+>>   .../bindings/pci/qcom,pcie-sa8775p.yaml       | 26 ++++++++++++++-----
+>>   1 file changed, 19 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>> index efde49d1bef8..154bb60be402 100644
+>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>> @@ -16,7 +16,12 @@ description:
+>>   
+>>   properties:
+>>     compatible:
+>> -    const: qcom,pcie-sa8775p
+>> +    oneOf:
+>> +      - const: qcom,pcie-sa8775p
+>> +      - items:
+>> +          - enum:
+>> +              - qcom,pcie-qcs8300
+>> +          - const: qcom,pcie-sa8775p
+>>   
+>>     reg:
+>>       minItems: 6
+>> @@ -45,7 +50,7 @@ properties:
+>>   
+>>     interrupts:
+>>       minItems: 8
+>> -    maxItems: 8
+>> +    maxItems: 9
+> I don't understand why this is flexible for sa8775p. I assume this
+> wasn't tested or finished, just like your previous patch suggested.
+>
+> Please send complete bindings once you finish them or explain what
+> exactly changed in the meantime.
+>
+> Best regards,
+> Krzysztof
 
-Speaking of the EEPROM I think we should make sure that the pin
-configuration in the device tree is optional so that we do not overwrite
-settings from the EEPROM if it contains valid values.
+Hi Krzysztof
+Global interrupt is optional in the PCIe driver. It is not present in 
+the SA8775p PCIe device tree node, but it is required for the QCS8300
+I did the DTBs and yaml checks before pushing this patch. This is how
+I became aware that `maxItem` needed to be changed to 9.
 
-> > +        enum: [ cmos, lvds, lp-hcsl ]
-> > +        description:
-> > +          Clock input format.
-> 
-> Is it "Clock output format"?
+BRs
+Ziyue
 
-Yes.
-
-> 
-> > +
-> > +      ti,cmosn-mode:
-> > +        enum: [ disabled, high, low ]
-> > +        description:
-> > +          CMOSN output mode.
-> > +
-> > +      ti,cmosp-mode:
-> > +        enum: [ disabled, high, low ]
-> > +        description:
-> > +          CMOSP output mode.
-> 
-> Would 'disabled' be the absence of the property? I think we could just
-> have ti,cmosn-mode = <0> or <1> for low or high.
-
-Yes. I think we can do that.
-
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - '#clock-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        clock-generator@67 {
-> > +            compatible = "ti,cdce6214";
-> > +            reg = <0x67>;
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +            #clock-cells = <1>;
-> > +            clocks = <&clock_ref25m>;
-> > +            clock-names = "secref";
-> > +
-> > +            clk@1 {
-> > +                reg = <1>; // CDCE6214_CLK_SECREF
-> > +                ti,clkin-fmt = "xtal";
-> > +                ti,xo-cload-femtofarads = <4400>;
-> > +                ti,xo-bias-current-microamp = <295>;
-> > +            };
-> > +
-> > +            clk@3 {
-> > +                reg = <3>; // CDCE6214_CLK_OUT1
-> > +                ti,clkout-fmt = "cmos";
-> > +                ti,cmosp-mode = "high";
-> > +                ti,cmosn-mode = "low";
-> > +            };
-> > +
-> > +            clk@4 {
-> > +                reg = <4>; // CDCE6214_CLK_OUT2
-> > +                ti,clkout-fmt = "lvds";
-> > +            };
-> > +
-> > +            clk@6 {
-> > +                reg = <6>; // CDCE6214_CLK_OUT4
-> 
-> Can you use the defines instead of numbers so we know they're the same?
-
-Yes, I could and have done that, but Krzysztof objected to it here:
-https://lore.kernel.org/all/5766d152-51e7-42f5-864f-5cb1798606a3@kernel.org/
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
