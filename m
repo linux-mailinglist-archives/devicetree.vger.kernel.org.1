@@ -1,189 +1,137 @@
-Return-Path: <devicetree+bounces-174775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEB8EAAE650
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:16:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C35F7AAE695
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 18:27:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C757B3A8FBB
-	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:13:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C52129C18B0
+	for <lists+devicetree@lfdr.de>; Wed,  7 May 2025 16:27:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7259A28BA8C;
-	Wed,  7 May 2025 16:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 638A028A3E1;
+	Wed,  7 May 2025 16:27:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="X0tvRK2q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BXKpjqzr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A683A215197
-	for <devicetree@vger.kernel.org>; Wed,  7 May 2025 16:13:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 880D7289821;
+	Wed,  7 May 2025 16:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746634424; cv=none; b=t6yqlaOKrQU560PSF/EQ7YWu1dNMfQBCwKY/n1DIHKSYcErc3duBKVFRoM1SiNdrIC/IDXHsBVfKVJypXU8ortrGoTiGAxxIFP6ZDPlZ7F2ReUwmxrSDjgJLmNyV95iZkUJQVryb/2COd5ARdKn1TDMdA6SBh9djMwO+0NUoK8w=
+	t=1746635233; cv=none; b=pHYKY9q9NH/CxSLZED+ip4oDY8GD6cUdTlSfoRGTI4qhByUktWFtCDfvTIJPp2i1TO1goWrFFzR5682MBpVVJ0X5cNkdkfuM0ME57zb9m61AbVg8PJa0Kgh4xlvzFC1vQO8Mcdl8aMgUDZD8dO7rnMzLT9D2Fbj8e+J52W6MU64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746634424; c=relaxed/simple;
-	bh=2ilPNKF6f/rDkMNB2UoP20P3lHsdIGcLFDsA/AUjOXo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=OpJw54xtnssTToAFXhIzW7fdP9pDpNRkAgsIMCqu/qANwT4gI9VJToL2EnmipBk9wbEnCu4sESkADXL935lbqnF6j2FQ1njliOqMjaV5IvzWhOZQllDt326K/XGXWfsRK14nJ2QlNu8nPlTMBjHVfop1ktC6PnJky/2Fc1PJkvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=X0tvRK2q; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1746634421;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=3/Vr0zVbcT7BzCMh97BIa3Lqx/NCn2qxIyCi3f2m9aU=;
-	b=X0tvRK2qHY7cbuwtgdsByKBmMmB4x77ClImcCx7br+8VNmE/8KsQYxBFW6ZWkZrwNaOxKb
-	b3w1AfbJcek+mcC+ahOpHUB2YvMuzLE1wlKd/47Ez4Qy7F1Q5SS4QSBZTJswuq2I6KCFWl
-	FHMhYPAXvQLSFZc3BPn5HIY17BEKgF0=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-190-SXPiZFViOwKTJHjCPGb2vw-1; Wed,
- 07 May 2025 12:13:36 -0400
-X-MC-Unique: SXPiZFViOwKTJHjCPGb2vw-1
-X-Mimecast-MFC-AGG-ID: SXPiZFViOwKTJHjCPGb2vw_1746634414
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id BE1B5195608B;
-	Wed,  7 May 2025 16:13:33 +0000 (UTC)
-Received: from [10.44.33.91] (unknown [10.44.33.91])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id B246A30001A1;
-	Wed,  7 May 2025 16:13:12 +0000 (UTC)
-Message-ID: <2c41caf5-0579-42d8-8f7e-4a9b1a0baa48@redhat.com>
-Date: Wed, 7 May 2025 18:13:11 +0200
+	s=arc-20240116; t=1746635233; c=relaxed/simple;
+	bh=/bkp1+ndxM6IUZavIiudg3yZ6BIozijVYfvBG//IBwU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JLF4YWzJ9fp5J1Vo9uKSa6NSY0lAunYV6s/4pBSi4O3rDhx0nm3NVt2t3VKsaIe4HBwGDl9mVr4I9+xFv4VJpNRtP8wW37ovVleZmgJlKOezavUaXCXpnxJt5x7hLNW6EhuJ5LBcdHav1WrMGX//CQBRoVhy87czwIaP1oLuoAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BXKpjqzr; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-326b683ac3aso1036151fa.0;
+        Wed, 07 May 2025 09:27:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746635228; x=1747240028; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/bkp1+ndxM6IUZavIiudg3yZ6BIozijVYfvBG//IBwU=;
+        b=BXKpjqzrZU/aK6BeKwUiNeBVcVsuvFwRaX8r2rvIf/c7nZfeDNwrvCETuR4C9Hh/fz
+         YEerQ0DqjXofVkKtV49lE7dMAmakQIu/gmpBad9AkL8uC/0aDENWAv54+4EOMbZIm7A2
+         zLl+HPhtfNdJaA+wrZI1ZhxjQTxfMJVc48LuNclgfCFgqG1afhN40Rz8Xavp4IoW2rEa
+         2vpr5XeCpzfFULpSTa8Sd5LAfAJnP8S7niCr8nSxQV2mndAr9ZM2NYwgAUZixihMlUlq
+         U/1ScTlRGXdcphSNpM9rck3jyXIwlnCrzaKfO/ToUlfrMphnctTcXXWJqeJmlUtrO27n
+         1xbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746635228; x=1747240028;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/bkp1+ndxM6IUZavIiudg3yZ6BIozijVYfvBG//IBwU=;
+        b=go/H1gshU1GgRdcQKZNjLLVECW8p1uEFwiL0p1rjwoSm8sAn9JoQJR0R4TZPPE7ykB
+         CyVWlGidfrsy7oHOY0Hj7mHuhPu0C8og/JTXWAybwbxj9JEi7ln5yr2cVH4d2bF34pCs
+         T12iNQC7PJDkAMHnQjR/ms+smY7TuhjwtFZgKKScqBCjV1PEj00JmRTVdD/y6LyBptwC
+         RhUXGrIFxpPcnPEIK13jwRZyOP/eMnGIeF6g3GLgzLSBsTEfOdH6SBJA/eAlybTsO1mB
+         4c75pszLO/W5iPK251zyjJ1E+UfrseIU5gPExLVydEXwz7CIWEQhuTBoE0WwQ7Y8V8mR
+         LIzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUFP80x14djxj9zsAJ23t17AgFkH1iVpF64tQCQk9yxdNR04SdEoyKcxcF0eC/pU7+NQ5vrXDdRvM2OLPU=@vger.kernel.org, AJvYcCUSoqq/xX34+Q2UtEL2f1S5Dkldc2xkalKzHcZtWMjt/gldi/pgp/BZggjT/ivNMyHRgIG6Y2zp/XH2@vger.kernel.org, AJvYcCWJUnBFcv/gDCW/N+0aGu+B15/kPvYigQf5jJo4XY6ExOMR//qWR0Vyyva7roChG2z31Qjr7MlNcSKXERgg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7QShvRKOrOAlL+HHmmTmbIs4FMfZ/tKmFRrPB6sfyvb1GF8Qi
+	JHk+gOAae7Cc2GOgy7/7+rOz4m55fZSXyXOBz0woD3izKRbP7HONPFWfa6oNhwLPTafNjuZTty/
+	7sjrKo1hzv5Hrd95Qvz3EaAEAr4c=
+X-Gm-Gg: ASbGncvpSwCkxVaU3MPnTKkGUX3+UFhpF0+/S1xOAwfaRb+mpQvLez47Tktz0bSqa1H
+	XkRR85Nq2T5yhJQ4f+xM0/R1wpJM3c+2+EwF2vl7P9q5Rt4UMVDeV50A35jSiI6nJxVAqqvaVpp
+	s+JfIjIcA+Xz6Rz30hPxFKowtwV22K56oRUg==
+X-Google-Smtp-Source: AGHT+IHOrELlfrPc4U6o94ZfK4oHdb0EgEpd9D53TLeAXQjPNrwN+J+jfBObUTEvdKwpYzy9vRNel+cJiNf8YN9WrPA=
+X-Received: by 2002:a2e:bc94:0:b0:30d:6270:a3b4 with SMTP id
+ 38308e7fff4ca-326b764f0bcmr720101fa.15.1746635228251; Wed, 07 May 2025
+ 09:27:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v8 0/8] Add Microchip ZL3073x support (part 1)
-From: Ivan Vecera <ivecera@redhat.com>
-To: netdev@vger.kernel.org
-Cc: Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Lee Jones <lee@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20250507152504.85341-1-ivecera@redhat.com>
-Content-Language: en-US
-In-Reply-To: <20250507152504.85341-1-ivecera@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+References: <20250419-tegra186-host1x-addr-size-v1-1-a7493882248d@gmail.com> <vegicz45jspxecpaitgju6ivvrefwoufg5yrzlvxudjatno7cr@rnvnqrmqofsk>
+In-Reply-To: <vegicz45jspxecpaitgju6ivvrefwoufg5yrzlvxudjatno7cr@rnvnqrmqofsk>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Wed, 7 May 2025 11:26:57 -0500
+X-Gm-Features: ATxdqUHPCKEwfrljQ_Y3mZLOd5OdP80bfGHGqvB8s0eKCloQAxHcEsxq3hWZt1Q
+Message-ID: <CALHNRZ8N=NnirL_vBYjsUt_w8hSXzu5z7H7ditFQTjuHH2Zs2A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: tegra: Bump #address-cells and #size-cells on Tegra186
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 07. 05. 25 5:24 odp., Ivan Vecera wrote:
-> Add support for Microchip Azurite DPLL/PTP/SyncE chip family that
-> provides DPLL and PTP functionality. This series bring first part
-> that adds the common MFD driver that provides an access to the bus
-> that can be either I2C or SPI.
-> 
-> The next part of the series is bringing the DPLL driver that will
-> covers DPLL functionality. Another series will bring PTP driver and
-> flashing capability via devlink in the MFD driver will follow soon.
-> 
-> Testing was done by myself and by Prathosh Satish on Microchip EDS2
-> development board with ZL30732 DPLL chip connected over I2C bus.
-> 
-> Patch breakdown
-> ===============
-> Patch 1 - Common DT schema for DPLL device and pin
-> Patch 2 - DT bindings for microchip,zl3073* devices
-> Patch 3 - Basic support for I2C, SPI and regmap configuration
-> Patch 4 - Devlink device registration and info
-> Patch 5 - Helpers for reading and writing register mailboxes
-> Patch 6 - Fetch invariant register values used by DPLL/PTP sub-drivers
-> Patch 7 - Clock ID generation for DPLL driver
-> Patch 8 - Register/create DPLL device cells
-> 
-> ---
-> v7->v8:
-> * replaced zl3073x_pdata array ZL3073X_PDATA macro in patch 8
-> v6->v7:
-> * pass channel number using platform data instead of mfd_cell->id
-> v5->v6:
-> * fixed devlink info firmware version to be running instead of fixed
-> * added documentation for devlink info versions
-> v4->v5:
-> * fixed DT patches description
-> * dropped mailbox API
-> * added type-safe register access functions
-> * added an ability to protect multi-op accesses
-> v3->v4:
-> * fixed shortcomings in DT patches
-> * completely reworked register access
-> * removed a need to manage locking during mailbox accesses by callers
-> * regcache switched to maple
-> * dev_err_probe() in probe path
-> * static mfd cells during sub-devices registration
-> v1->v3:
-> * dropped macros for generating register access functions
-> * register access functions are provided in <linux/mfd/zl3073x_regs.h>
-> * fixed DT descriptions and compatible wildcard usage
-> * reworked regmap locking
->    - regmap uses implicit locking
->    - mailbox registers are additionally protected by extra mutex
-> * fixed regmap virtual address range
-> * added regmap rbtree cache (only for page selector now)
-> * dropped patches for exporting strnchrnul and for supporting mfg file
->    this will be maybe added later
-> 
-> Ivan Vecera (8):
->    dt-bindings: dpll: Add DPLL device and pin
->    dt-bindings: dpll: Add support for Microchip Azurite chip family
->    mfd: Add Microchip ZL3073x support
->    mfd: zl3073x: Add support for devlink device info
->    mfd: zl3073x: Protect operations requiring multiple register accesses
->    mfd: zl3073x: Fetch invariants during probe
->    mfd: zl3073x: Add clock_id field
->    mfd: zl3073x: Register DPLL sub-device during init
-> 
->   .../devicetree/bindings/dpll/dpll-device.yaml |  76 ++
->   .../devicetree/bindings/dpll/dpll-pin.yaml    |  45 +
->   .../bindings/dpll/microchip,zl30731.yaml      | 115 +++
->   Documentation/networking/devlink/index.rst    |   1 +
->   Documentation/networking/devlink/zl3073x.rst  |  37 +
->   MAINTAINERS                                   |  11 +
->   drivers/mfd/Kconfig                           |  32 +
->   drivers/mfd/Makefile                          |   5 +
->   drivers/mfd/zl3073x-core.c                    | 872 ++++++++++++++++++
->   drivers/mfd/zl3073x-i2c.c                     |  68 ++
->   drivers/mfd/zl3073x-regs.h                    |  54 ++
->   drivers/mfd/zl3073x-spi.c                     |  68 ++
->   drivers/mfd/zl3073x.h                         |  31 +
->   include/linux/mfd/zl3073x-regs.h              |  88 ++
->   include/linux/mfd/zl3073x.h                   | 202 ++++
->   15 files changed, 1705 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/dpll/dpll-device.yaml
->   create mode 100644 Documentation/devicetree/bindings/dpll/dpll-pin.yaml
->   create mode 100644 Documentation/devicetree/bindings/dpll/microchip,zl30731.yaml
->   create mode 100644 Documentation/networking/devlink/zl3073x.rst
->   create mode 100644 drivers/mfd/zl3073x-core.c
->   create mode 100644 drivers/mfd/zl3073x-i2c.c
->   create mode 100644 drivers/mfd/zl3073x-regs.h
->   create mode 100644 drivers/mfd/zl3073x-spi.c
->   create mode 100644 drivers/mfd/zl3073x.h
->   create mode 100644 include/linux/mfd/zl3073x-regs.h
->   create mode 100644 include/linux/mfd/zl3073x.h
+On Wed, May 7, 2025 at 10:37=E2=80=AFAM Thierry Reding <thierry.reding@gmai=
+l.com> wrote:
+>
+> On Sat, Apr 19, 2025 at 10:30:31PM -0500, Aaron Kling via B4 Relay wrote:
+> > From: Aaron Kling <webgeek1234@gmail.com>
+> >
+> > This was done for Tegra194 and Tegra234 in 2838cfd, but Tegra186 was no=
+t
+> > part of that change. The same reasoning for that commit also applies to
+> > Tegra186, plus keeping the archs as close to each other as possible mak=
+es
+> > it easier to compare between them and support features concurrently.
+>
+> As explained in the commit that you referenced, the reason for making
+> these changes for Tegra194 and Tegra234 was so that the PCI and GPU
+> nodes could move back into the bus@0 node. This doesn't exist on
+> Tegra186, and the top-level already has #address-cells =3D <2> and
+> #size-cells =3D <2>.
 
-I apologize for this quick update not respecting the 24 hour grace
-period, I was not aware of such rule and otherwise I would not have been
-able to send the v8 before Monday.
+This isn't recursive, though. I had thought it was, but kept having
+issues. Then I found docs that say:
 
-Ivan
+The #address-cells and #size-cells properties are not inherited from
+ancestors in the devicetree. They shall be explicitly defined. [0]
 
+> Does this actually fix a bug? Just making this look more similar to
+> Tegra194/234 doesn't seem like the best of justifications for bloating
+> the DT.
+
+Tegra132 and Tegra210 also have size 2 on all these nodes. I probably
+should have mentioned that in the message too. But having Tegra186 as
+the only odd out tegra arm64 arch is confusing and makes for extra
+work when trying to implement things across all archs.
+
+What made me sit down and and type all this out was an attempt to get
+simplefb working for seamless display handoff. And I could not get the
+reserved-memory nodes and iommu-addresses and all to line up. Not
+until I made everything connected to that have #address-cells =3D <2>
+and #size-cells =3D <2>. Which happened to line up with every arm64
+tegra arch except t186, so I submitted this.
+
+Sincerely,
+Aaron Kling
+
+[0] https://devicetree-specification.readthedocs.io/en/stable/devicetree-ba=
+sics.html#address-cells-and-size-cells
 
