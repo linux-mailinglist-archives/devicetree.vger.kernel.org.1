@@ -1,88 +1,102 @@
-Return-Path: <devicetree+bounces-174944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A41DAAF545
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:16:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B028EAAF578
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:20:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBFE07ABE26
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:14:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DBD716E270
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:20:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6C32227581;
-	Thu,  8 May 2025 08:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D714822E41D;
+	Thu,  8 May 2025 08:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="bfgaKB4v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b9W/iAf0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4E79221FAF;
-	Thu,  8 May 2025 08:15:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A743222DF83;
+	Thu,  8 May 2025 08:20:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746692145; cv=none; b=iBTCzZ+BpO2MXB5VHOCicubbGd0zMc8Y3UYpUitayB3a6OSjEkgIoWpKSrvs3JKPJsnBwrsGOiEbrJYdIwZbglomNWUrF9AFsKYp0BWw8b3DfmmY+K6kSn0CRDSntupAY2xyxB3MDz70MOleKDxAemILpQ9/SnW9dRB6i4yTcgE=
+	t=1746692406; cv=none; b=XkVVLwS4N2y6krShwbttBHOFk8dZx92fgXNFD5Y9VwqyHT/KEttR+llkgGGIg5NOYVLn4b0Ait7s4CGzDr+pYEkO/HSzRMEOSuwrHFzUOaYqwBjyCspt7CD1+jSKuUftn0k9FQqR4KGTyiGA+Pv/rZBXxnHalje2DkuHqIwH4Ck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746692145; c=relaxed/simple;
-	bh=7r6OTGgvged4uco8BW+BLg38bSJrp+WvRqlr9YTSWRU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uSwSX0cv1O0PhXd3RKd7gvK5GerjcpkXoaMwEvMlnT25Yb2j/qRX2J2SlgwOrDOLdZ3SiVTlh+6iktbOYwGz+qfD7TmYhixJ9sXTJ8alQBxDcVOR40b000KJdTf4ZJ0YlZ3X//emPV1kqC+D9AJa8/LvoKXvFvlYVQ0hOMV858E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=bfgaKB4v; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1746692142;
-	bh=7r6OTGgvged4uco8BW+BLg38bSJrp+WvRqlr9YTSWRU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bfgaKB4vrzTursOZlFORwMk/wp4advCrn57O6uhdlNElcWsKrQilcXdLZQA5cYlJl
-	 OAKG6Inmp4uKTeuGkeNFlV153FIuunxAuY2iXaBWSvvMdewGtnPLDbkI7+K/LQiDJB
-	 I5oSwtc+AG7YaLGkj9k6W616zq/0E8Q/cvoU9hZdP02Bf3AvhuzzUngWEd685986bb
-	 P23lWwUmd9xuq+HCci8PCoe+lWyjltOo4eYUpfThnaKrcsO7tk393+hEGOD5gls2Cy
-	 meTxEVjbHFbMCTNW6cxIv5LYBphOGAUs7AX49xaiLCycgIv8YZw37sp+tj+pHkyJgv
-	 3M+2lQ+Y8eUZw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 47BB117E120C;
-	Thu,  8 May 2025 10:15:41 +0200 (CEST)
-Message-ID: <97ec1373-1662-49e5-aecd-407a2ab2c2aa@collabora.com>
-Date: Thu, 8 May 2025 10:15:41 +0200
+	s=arc-20240116; t=1746692406; c=relaxed/simple;
+	bh=CYQ/e7inFWvv5fdVT73hsrbTbLuCIkw9CeE/xLnCgH8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ikuL1BwbJr8IfznjoboahTKeoTz4RLyOAsRrrGDf2M8hD5Cd3lW4l3XrlowWtfWHgbm5Bplme/rcu8KdBYaRq2hAvv3WEEKhm3xrSwn8Tx51r5b/UNgW2wkzJZW/t6pm4gr5nfvM1AANqvGXRc/2GlbjJYYX+9+W+dnrsjlXyYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b9W/iAf0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CBD6C4AF0C;
+	Thu,  8 May 2025 08:20:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746692406;
+	bh=CYQ/e7inFWvv5fdVT73hsrbTbLuCIkw9CeE/xLnCgH8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b9W/iAf0YxhXtRJba0lkljhjgfCn3uxiLoEsUg7+SpTathmVLV7JOwQ1FBrYmIQAa
+	 +0yJ/9CtgY18d6beHZRRPPy5dHxjezAijm+E4KmC2l6ciqGD4F5FJ3TInZc0j9xNdR
+	 qi/bSRB7jstbUVGBe1wa0uLQLMEASPZzWNqVjbeddtq1Iid3j1GTYNgQ3uBYNXbMXK
+	 lM1e1/PrT/7q2gTbDsgAyz+d6HOD3nlHCHjkkdEL8gKyeBoSiIWKxF45eWolSj8EFY
+	 bIxfqrGZz1xfhyarrp7ViFrnS3e9+/AILpMhkrg1MhiiYAUrIULoBUrUEPJ5DsFn8p
+	 y2YWWvDz4Z9iA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uCwU6-000000007T8-248Z;
+	Thu, 08 May 2025 10:20:03 +0200
+Date: Thu, 8 May 2025 10:20:02 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Wenbin Yao <quic_wenbyao@quicinc.com>
+Cc: catalin.marinas@arm.com, will@kernel.org,
+	linux-arm-kernel@lists.infradead.org, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	vkoul@kernel.org, kishon@kernel.org, sfr@canb.auug.org.au,
+	linux-phy@lists.infradead.org, krishna.chundru@oss.qualcomm.com,
+	quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
+	quic_cang@quicinc.com, quic_qianyu@quicinc.com,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>
+Subject: Re: [PATCH v3 5/5] phy: qcom: qmp-pcie: add x1e80100 qref supplies
+Message-ID: <aBxpMuFGKgWrw1TV@hovoldconsulting.com>
+References: <20250508081514.3227956-1-quic_wenbyao@quicinc.com>
+ <20250508081514.3227956-6-quic_wenbyao@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: Add compatible for MediaTek
- MT8189
-To: Sirius Wang <sirius.wang@mediatek.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Sean Wang <sean.wang@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, wenst@chromium.org,
- xavier.chang@mediatek.com
-References: <20250508063546.289115-1-sirius.wang@mediatek.com>
- <20250508063546.289115-2-sirius.wang@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250508063546.289115-2-sirius.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250508081514.3227956-6-quic_wenbyao@quicinc.com>
 
-Il 08/05/25 08:35, Sirius Wang ha scritto:
-> This commit adds dt-binding documentation for the MediaTek MT8189
-> reference board.
+On Thu, May 08, 2025 at 04:15:14PM +0800, Wenbin Yao wrote:
+> From: Qiang Yu <quic_qianyu@quicinc.com>
 > 
-> Signed-off-by: Sirius Wang <sirius.wang@mediatek.com>
+> All PCIe PHYs on the X1E80100 SOC require the vdda-qref, which feeds QREF
+> clocks provided by the TCSR device.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+This still looks wrong and you never replied to why these supplies
+shouldn't be handled by the tcsr clock driver that supplies these
+clocks:
 
+	https://lore.kernel.org/lkml/aBHUmXx6N72_sCH9@hovoldconsulting.com/
 
+> Hence, restore the vdda-qref request for the 6th PCIe instance by reverting
+> commit 031b46b4729b ("phy: qcom: qmp-pcie: drop bogus x1e80100 qref
+> supplies"). For the 4th PCIe instance (Gen3 x2), add a new driver data
+> entry, namely x1e80100_qmp_gen3x2_pciephy_cfg, which is a copy of
+> sm8550_qmp_gen3x2_pciephy_cfg but uses sm8550_qmp_phy_vreg_l instead.
+> 
+> Fixes: 031b46b4729b ("phy: qcom: qmp-pcie: drop bogus x1e80100 qref supplies")
+> Fixes: 606060ce8fd0 ("phy: qcom-qmp-pcie: Add support for X1E80100 g3x2 and g4x2 PCIE")
+> Cc: Johan Hovold <johan+linaro@kernel.org>
+> Cc: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+> Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
+
+Johan
 
