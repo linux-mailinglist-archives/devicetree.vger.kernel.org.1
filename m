@@ -1,234 +1,159 @@
-Return-Path: <devicetree+bounces-175006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2B55AAF899
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:17:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC63AAF8A2
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:20:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC7E3188F659
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:17:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38DF84E162A
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF3C21B90B;
-	Thu,  8 May 2025 11:17:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D9021B90B;
+	Thu,  8 May 2025 11:20:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="Ry3d5bWe";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="Vm8iKbXq"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="BJlVa+0+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+Received: from out-173.mta1.migadu.com (out-173.mta1.migadu.com [95.215.58.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24C531F37D3;
-	Thu,  8 May 2025 11:17:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1560B1C3F02
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 11:20:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746703044; cv=none; b=jHs9m4fiPDbXriAJXQCt8lndnWheIDQMzaQlcMymjDoJrXOLOiGg+DekytaFbZT62a40oy3j6a32ch2vCvAJi1NUPNMFlH8wD0URE4pB21y5evshvb+q8Hmts0+qV43FC29DNGkJoDVlKEyuXmhiYBDOloCcur5XlPk2ZDqHqjk=
+	t=1746703209; cv=none; b=daeNSCoduI3/yOKxpAToTH/T1Qj0JM/UEv/+vW7vCLEpYET3Q6v7o3A7NQY07m7ne5w5ez2t8LOHVvsllUJghXYaJ53g3S+eJqldLCvTDlgNutHBAw9aF76RVrV0cftpAmPUaENwio7uiHQt87zb0lQNJgRFLfgce9RqlC0Ci9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746703044; c=relaxed/simple;
-	bh=mm+CgjLs+rS3CPxZ9/r7vxj50BUPBgnFChiiDX6Gy/s=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=P/wbnnU16sgPskbmCgtku5rPtBuSMKWKZIm3b7RbqtnpB0G+wW/lL3B9W8fQ+lKDF9PZEXN6rWmZZ9QZRLHUL1KJMlYsF8zPH1cGtvd65j7SGSZv+JFcLUmAglZiHFlFd1yOezingAG3XxYIejiW3gJUpfBFhXoXGOy90kNphVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=Ry3d5bWe; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=Vm8iKbXq; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 2983712FB439;
-	Thu, 08 May 2025 04:17:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1746703039; bh=mm+CgjLs+rS3CPxZ9/r7vxj50BUPBgnFChiiDX6Gy/s=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Ry3d5bWea+7xauZVZ7ybL5zSOz7/4fJvWBShpHx5mgLg9qDH7mXQSZmvG7gU8RUvv
-	 3fP15KZxSGIdmRxajfgWhr19kZTmaCj4lbeGqNruqg5fzBheMkJBjygI2gFEwoPHZx
-	 bzsPhYLvwgrzBj0yKwUAOC+lMXeaLUX7IropKU9sFoxuo4ZheJrmO7UTA+GYYAWWUJ
-	 b2Wy0N49WVxuQNi3iRaLeDMbY4Q9orCCWUX3U5XhXcRwIYVltOv+aQVyePhu8xbibd
-	 BryUGRZAmf0VB7XdENQdYX8TnA0oBywpv7sI0ALne702UltzRKLHQZ7C4ZO9PdT38H
-	 LiH4sDxRWYgFg==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Authentication-Results: bayard.4d2.org (amavisd-new); dkim=pass (2048-bit key)
- header.d=4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id dQzszsTujUZg; Thu,  8 May 2025 04:16:43 -0700 (PDT)
-Received: from localhost.localdomain (unknown [183.217.82.204])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id BC78712FB404;
-	Thu, 08 May 2025 04:16:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1746703003; bh=mm+CgjLs+rS3CPxZ9/r7vxj50BUPBgnFChiiDX6Gy/s=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Vm8iKbXqVO8iIBwHm42a6OkEWN0tug+I8+ACFnx3/SCcwRI1azQqo3d99inSTlBBm
-	 9MdpWKLO7VMHinZlA5yezaHI0cvYGP0DrIH8jfZlKbgNeU7MGA0cWH7qSR+d/UztEH
-	 DcCDmgvebzSAzCjr1SRz9Ag7WB7Tdi4cjYkHRdJ5ZSTDkRTLPHZfQ8teLm7nAT/Yr3
-	 5Rw/PVNuqWGfzc4yDeOoP6CkZaMHMYX/C+YkK6OcvAxeBbsTifV071Z4olDY+Sn8uW
-	 O+SatnDWAvS0WwBMKkJ8bt6J8VdIvg+5GH6n3+rvakThmtJ+u7LLMjJYA1oCgougb4
-	 rFNFF2FlK5eeA==
-From: Haylen Chu <heylenay@4d2.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>,
-	Yixun Lan <dlan@gentoo.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	Haylen Chu <heylenay@4d2.org>,
-	Alex Elder <elder@riscstar.com>
-Subject: [PATCH v9] riscv: dts: spacemit: Add clock tree for SpacemiT K1
-Date: Thu,  8 May 2025 11:15:29 +0000
-Message-ID: <20250508111528.10508-2-heylenay@4d2.org>
-X-Mailer: git-send-email 2.49.0
+	s=arc-20240116; t=1746703209; c=relaxed/simple;
+	bh=qmUs4qIBC6wDprL1ydyTgzd1zlarQEu2MTs0Yr6pFII=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=BRGm9WaSyaKssnF9hY1gV7BNytAWvEV+Tv+xNY2z9N14D7WzwPZOVwkYR8NPtedzfoGnVKB+ynzBfJ/sn9+g9/oLYI4hwLpTgowQTA+i4EaX6Lj6z/8SOXhGKFRA2z8AhNRqzJdPrSdpJQI36dAPqS5CDLq0R6BhmFE3xzIXMS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=BJlVa+0+; arc=none smtp.client-ip=95.215.58.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1746703202;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yi17/Vkdq9R6FiZpqWcbdFm6QOL9Y0VB6krPrbnS9FM=;
+	b=BJlVa+0+WontfuVqI4vZh54RL183AeHLT5X9+f++eEx6mvmZewyo3XlQ0RHix0+4rYkou0
+	lKoC9YQxAT0cS9wlvrF7XhLBkWMo7VTrBjF1WnGGeD2QAahIeUWJke5aQVG+NuZYsVYoKP
+	4DRv9zdopeovMuuMsgTgM3VtmwCTwCpymIsCW0wcaCK0w1Up277LfaSDRNel78J9hFn7Xn
+	wXh3xHBnxMZHZHQ78FeMkHMu7X1TA75iNv8MU9tXIa/mbZxWBAL/Z96JrlcU5AhxQQb3M4
+	usgz/07mLltWRzVFtswa6eOiRXsbBwX7Z2LN46svrEpHKu1hh7r6o/HQC+I6zQ==
+Content-Type: multipart/signed;
+ boundary=9346710a10d8538050465e6393575334389aa4745c1896d0f2c85fa3d6c7;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Thu, 08 May 2025 13:19:46 +0200
+Message-Id: <D9QQLQ6MVUY4.13OOYJ1B1NWQC@cknow.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: Update eMMC for NanoPi R5 series
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Peter Robinson" <pbrobinson@gmail.com>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Vasily
+ Khoruzhick" <anarsoul@gmail.com>, "Tianling Shen" <cnsztl@gmail.com>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>
+Cc: "Dragan Simic" <dsimic@manjaro.org>
+References: <20250506222531.625157-1-pbrobinson@gmail.com>
+In-Reply-To: <20250506222531.625157-1-pbrobinson@gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-Describe the PLL and system controllers that're capable of generating
-clock signals in the devicetree.
+--9346710a10d8538050465e6393575334389aa4745c1896d0f2c85fa3d6c7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Haylen Chu <heylenay@4d2.org>
-Reviewed-by: Alex Elder <elder@riscstar.com>
-Reviewed-by: Yixun Lan <dlan@gentoo.org>
----
+On Wed May 7, 2025 at 12:25 AM CEST, Peter Robinson wrote:
+> Add the 3.3v and 1.8v regulators that are connected to
+> the eMMC on the R5 series devices, as well as adding the
+> eMMC data strobe, and enable eMMC HS200 mode as the
+> Foresee FEMDNN0xxG-A3A55 modules support it.
 
-This originates the 5th patch from previous "Add clock controller
-support for SpacemiT K1" series[1] with node names of system
-controllers and PLL reworked[2].
+Foresee eMMC FEMDNN032G-A3A55 datasheet version 1.2 dd 2021-05-17
+mentions on page 4 that it supports HS400 and HS200.
+It also mentions in paragraph 5.2 "Power Consumption" on page 6 that
+``Vcc`` uses 3.3V and ``Vccq`` uses 1.8V.
 
-The patch is based on linux-spacemit/k1/clk-for-6.16. Yixun, please drop
-the previous version and pick this patch instead. Thanks for your work!
+In chapter 6 "Pin Assignment" on page 7 we can see the following pin
+assignments in "FBGA153 - Ball Array":
 
-[1]: https://lore.kernel.org/spacemit/20250416135406.16284-1-heylenay@4d2.org/
-[2]: https://lore.kernel.org/spacemit/aBxF81yqPgHP5oA_@ketchup/
+Vcc: E6+F5+J10+K9
+Vccq: C6+M4+N4+P3+P5
+Data Strobe(DS): H5
 
- arch/riscv/boot/dts/spacemit/k1.dtsi | 75 ++++++++++++++++++++++++++++
- 1 file changed, 75 insertions(+)
+In the NanoPi R5S schematic version 2204 on page 23 we can see
+eMMC_153FBGA/U9501 described.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index c670ebf8fa12..85c9730dd082 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -3,6 +3,8 @@
-  * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
-  */
- 
-+#include <dt-bindings/clock/spacemit,k1-syscon.h>
-+
- /dts-v1/;
- / {
- 	#address-cells = <2>;
-@@ -306,6 +308,36 @@ cluster1_l2_cache: l2-cache1 {
- 		};
- 	};
- 
-+	clocks {
-+		vctcxo_1m: clock-1m {
-+			compatible = "fixed-clock";
-+			clock-frequency = <1000000>;
-+			clock-output-names = "vctcxo_1m";
-+			#clock-cells = <0>;
-+		};
-+
-+		vctcxo_24m: clock-24m {
-+			compatible = "fixed-clock";
-+			clock-frequency = <24000000>;
-+			clock-output-names = "vctcxo_24m";
-+			#clock-cells = <0>;
-+		};
-+
-+		vctcxo_3m: clock-3m {
-+			compatible = "fixed-clock";
-+			clock-frequency = <3000000>;
-+			clock-output-names = "vctcxo_3m";
-+			#clock-cells = <0>;
-+		};
-+
-+		osc_32k: clock-32k {
-+			compatible = "fixed-clock";
-+			clock-frequency = <32000>;
-+			clock-output-names = "osc_32k";
-+			#clock-cells = <0>;
-+		};
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		interrupt-parent = <&plic>;
-@@ -314,6 +346,17 @@ soc {
- 		dma-noncoherent;
- 		ranges;
- 
-+		syscon_apbc: system-controller@d4015000 {
-+			compatible = "spacemit,k1-syscon-apbc";
-+			reg = <0x0 0xd4015000 0x0 0x1000>;
-+			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-+				 <&vctcxo_24m>;
-+			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-+				      "vctcxo_24m";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		uart0: serial@d4017000 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xd4017000 0x0 0x100>;
-@@ -409,6 +452,38 @@ pinctrl: pinctrl@d401e000 {
- 			reg = <0x0 0xd401e000 0x0 0x400>;
- 		};
- 
-+		syscon_mpmu: system-controller@d4050000 {
-+			compatible = "spacemit,k1-syscon-mpmu";
-+			reg = <0x0 0xd4050000 0x0 0x209c>;
-+			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-+				 <&vctcxo_24m>;
-+			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-+				      "vctcxo_24m";
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
-+		pll: clock-controller@d4090000 {
-+			compatible = "spacemit,k1-pll";
-+			reg = <0x0 0xd4090000 0x0 0x1000>;
-+			clocks = <&vctcxo_24m>;
-+			spacemit,mpmu = <&syscon_mpmu>;
-+			#clock-cells = <1>;
-+		};
-+
-+		syscon_apmu: system-controller@d4282800 {
-+			compatible = "spacemit,k1-syscon-apmu";
-+			reg = <0x0 0xd4282800 0x0 0x400>;
-+			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-+				 <&vctcxo_24m>;
-+			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-+				      "vctcxo_24m";
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		plic: interrupt-controller@e0000000 {
- 			compatible = "spacemit,k1-plic", "sifive,plic-1.0.0";
- 			reg = <0x0 0xe0000000 0x0 0x4000000>;
--- 
-2.49.0
+Pins E6+F5+J10+K9 are all labeled ``VDDF`` and those are connected to
+``VCC3V3_FLASH`` which is connected to ``VCC_3V3``.
 
+Pins C6+M4+N4+P3+P5 are all labeled ``VDD`` and those are connected to
+``VCCIO_FLASH`` which is connected to ``VCC_1V8``.
+
+Pin H5 is labeled ``Data Strobe`` and is connected to
+``eMMC_DATA_STROBE/FLASH_CLE`` which is connected to GPIO1_C6 which
+corresponds to ``emmc_datastrobe`` in ``rk3568-pinctrl.dtsi``.
+
+In the NanoPi R5C schematic version 2209 on page 22 we see the same pins
+labeled ``VDDF`` and also for ``VDD``, but here they are (directly)
+connected to ``VCC_3V3`` and ``VCC_1V8`` respectively.
+
+> Fixes: c8ec73b05a95d ("arm64: dts: rockchip: create common dtsi for NanoP=
+i R5 series")
+> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+> ---
+>
+> I had reports from some Fedora users that their eMMC didn't work
+> on the R5C and this fixes it, the schematic of the eMMC is the
+> same across all of the R5 series of devices.
+>
+>  arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi b/arch/a=
+rm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi
+> index 00c479aa18711..a28b4af10d13a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi
+> @@ -486,9 +486,12 @@ &saradc {
+>  &sdhci {
+>  	bus-width =3D <8>;
+>  	max-frequency =3D <200000000>;
+> +	mmc-hs200-1_8v;
+>  	non-removable;
+>  	pinctrl-names =3D "default";
+> -	pinctrl-0 =3D <&emmc_bus8 &emmc_clk &emmc_cmd>;
+> +	pinctrl-0 =3D <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe>;
+> +	vmmc-supply =3D <&vcc_3v3>;
+> +	vqmmc-supply =3D <&vcc_1v8>;
+
+The above is correctly describe in the dtsi file, so
+
+Reviewed-by: Diederik de Haas <didi.debian@cknow.org>
+
+>  	status =3D "okay";
+>  };
+> =20
+
+
+--9346710a10d8538050465e6393575334389aa4745c1896d0f2c85fa3d6c7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaByTWwAKCRDXblvOeH7b
+buKRAP49zfD/V9wWLpeyJsnq+oWtqZiAqVl6/uCaZgVuDjlTswD/ZKMoxBAaf0Ku
+fuAgPn7MQ4qEhw5m9HxmUzbA+VKtigk=
+=ts+m
+-----END PGP SIGNATURE-----
+
+--9346710a10d8538050465e6393575334389aa4745c1896d0f2c85fa3d6c7--
 
