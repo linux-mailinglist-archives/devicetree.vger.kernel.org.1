@@ -1,223 +1,155 @@
-Return-Path: <devicetree+bounces-175157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE940AAFF72
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:45:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBCE6AAFF7E
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:47:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5C169C5182
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:44:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 067731884F8D
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CAA02797A3;
-	Thu,  8 May 2025 15:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBB90277006;
+	Thu,  8 May 2025 15:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="RpU848U1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D5HY1Zwr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1374F21ADA3;
-	Thu,  8 May 2025 15:44:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746719096; cv=pass; b=Fd78F+mfp6Ik6feigKycQ1YJANlHtVAZlezm5FcoKA8BN2adZGwoTCoSZYMftxJpLOfAEUhgAD0PMqpAFtYyO+xYmY2sEgL+lNfSB1+nO33HauLLvLuEQTdRsFUloxcS31nvahanEkM8nuR4tyXB84QrVm0ZfMUaubKfPN/EEg8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746719096; c=relaxed/simple;
-	bh=/QJMe1FU3KRgGIp4JfDpUvczkHX6BPhSDRl3qX0SDBk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cWYVk1p8vkEn/esnx8mx6VR76ggaVkN94ekKCM2YzdBJyxS4X5ikjIOYmLuYe5DWJ7qZxSKC7IlNVsJepu60UFijKtwR1ir5uKdKY9+Vq6iwYNTXBNDbWkqbpfZ7RCFUf0W8i7NyMZpNoALMSyGJV3zQD/lvqX5KyIZwui6NXMQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=RpU848U1; arc=pass smtp.client-ip=185.185.170.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-127c-61ff-fee2-b97e.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:127c:61ff:fee2:b97e])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4Ztbzh16zLz49Q4L;
-	Thu,  8 May 2025 18:44:48 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1746719088;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sAam+l0OG4q0MqjsjSZBv6yyI6Tq+opJg9RRKMGreSQ=;
-	b=RpU848U1VeBWH8L28DoeJgeiQZZ6eDt9UJSWvd7R5GiTeLDV2akXIMfrs1SL0a+pavykB9
-	O86gupSZ1pm15uBWVbJoPO/smWFhnBclPPlQdQUk8+QKUK07uhL3Fw0QuhBLLFFzU02lRw
-	Iu8VcwxhR5+sIf+GYvHyq8/FrJvs52PkxYGjXHK8DUQDrUP/NoUyGE7wV4SZ5DLRN4feap
-	J1bbzJ0XGia0r1Drxre5mtouKEV8+eHTe98ObrPPiZhlKGoSgKDelhPeohmRzlDaxyxlte
-	BWludfw86zyb0h8oHjs8KBOfnyEg+0rgGMTXPSXgVvUqlbrzlk/iA6Z3v1OzzQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1746719088;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sAam+l0OG4q0MqjsjSZBv6yyI6Tq+opJg9RRKMGreSQ=;
-	b=tcSioKMUe/vUBTBf00+o+fnvrWUy4AX0BJuUUtoQw2GvvlWf3o4frpMWJn7bN9xLiC7xQh
-	3+z84IeflEWR2BjGXWsrx71yk/cBrW83sM9yxBb+ApYExqyCihVC+zfs8tIIXOyNnpSdFA
-	JkBAr9/UeQHzpi1mG6IzBmlVZgYYk/919PV4LtjeujmJBa+Wx4GAExjxMrgT3qMzxDkPWw
-	w+HxZXLZ0t/G+uI32Qn5oxeMlzIgBrL2GEToWWBGWANoDdgAso9JW1uhhmPUOhOP0jLIZz
-	pI/qH7flnhSzvULdC8HNH6UbDxHokBwImkwl9EghWk4jpzcuPfQ72nm1+Btnzg==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1746719088; a=rsa-sha256;
-	cv=none;
-	b=aJyklILiuQRiYeSB6wW7MgQvU5mQLgYmIRxomEcxcdX3U0ySVulvTQAhy/L6uoCQiMwcb3
-	RKZtNQ9G5ozsXKs2GB8unRDxabBN4yx4X6nNVO66sf0RpPxlXMCRAx0arcGv4mufp3UGDU
-	kXypTscFat9Y4BZNhScZlQWL5mer44cgN8LGBJQZzTEzbmbvpwEkg9Zm9lVWdqJL5gtRc8
-	Mam+8iwTfBBTA8LXe6nyg/0QMQgGGLA6Tiy8jTHDkSgAzfbuH7OEZgHZM/OpQ4dasB5Hml
-	eDpTKrTprodSJEXCrlN0ISqurY1zriNT7coI/TJBbOlWWooYNnVWOHtwoEs6rg==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id A028D634C93;
-	Thu,  8 May 2025 18:44:47 +0300 (EEST)
-Date: Thu, 8 May 2025 15:44:47 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: keke.li@amlogic.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com,
-	dan.scally@ideasonboard.com, jacopo.mondi@ideasonboard.com
-Subject: Re: [PATCH v9 08/10] media: platform: Add C3 ISP driver
-Message-ID: <aBzRb8ZKuGI3E_cu@valkosipuli.retiisi.eu>
-References: <20250427-c3isp-v9-0-e0fe09433d94@amlogic.com>
- <20250427-c3isp-v9-8-e0fe09433d94@amlogic.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948AE2CCC0;
+	Thu,  8 May 2025 15:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746719210; cv=none; b=XhjkR1omtNAxu7XVuntk/D8EhjE9m31PHoIUe3qgqjcdVVWaTo8PproLwFOb1GGSNJrR1O8mlFeGOHFPC2467LQ4Q3Kpj5WEK+7wyaw3N4U7iP/VgDs3FXgYYBf8d6OWc3qWxxU0litX1/1jFVD+fLyMcESiLHh+9D53LMjYOCA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746719210; c=relaxed/simple;
+	bh=WVNl1UucOs+smQzYYXeDE1rb2uZH6Y1zUacMJ3kwUjQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZMT+F8CeE5CaHaj9k+yiOJhaPbXckGvyRnmvFRzRm4Banjy0zC9RQ5C5PQITiDDNE7IUJrD+0g3SUYlGszwR2Mz+OFQeuEK+bee5KWFPBzCN/MJDjVz1eEnlTvgishCir5dj2/2w6sLoRfLINWA5cK0djrC63ilx3BY9RzJNCVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D5HY1Zwr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E906C4CEE7;
+	Thu,  8 May 2025 15:46:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746719210;
+	bh=WVNl1UucOs+smQzYYXeDE1rb2uZH6Y1zUacMJ3kwUjQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=D5HY1ZwrClJ9AJz20WrH4q3emRN5o++wM+P1DXvTLenUQbpLEJICK0Ijs+X+C5+g+
+	 LttJ/qmxA8LMZsoQ3qGqBGK07z9pmtW2cNYyvNOLlccDCCCYzoOUnctcDf+wLYAcsq
+	 uWW4G4y0zzNh7F9W97R6X6RlMMXmbMj3JsxPuwsXmkuF9pWRY6wVFdnEyWhtOi78e7
+	 le0rqS8hicWD71IuwmEuTHbHHfLl+smIqQujmP5ZM/dbFFSqnJh3Q5Omp8fAJG3a9l
+	 lm5+Aa1cRP/GjSjBsNimqW1MTyj3EFiHz6yUqYLELxBIjD9/tmFrpn1EICvpa+1mMx
+	 d9uHw2UX/P5Ig==
+Message-ID: <116bd8fb-406b-40ae-97b3-1f25759057ea@kernel.org>
+Date: Thu, 8 May 2025 17:46:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250427-c3isp-v9-8-e0fe09433d94@amlogic.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/3] dt-bindings: arm: ti: Add binding for AM62L SoCs
+To: Bryan Brattlof <bb@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250507-am62lx-v5-0-4b57ea878e62@ti.com>
+ <20250507-am62lx-v5-1-4b57ea878e62@ti.com>
+ <20250508-splendid-rapid-sawfish-f1ee18@kuoka>
+ <20250508131454.z7ihjlcxdlglypew@bryanbrattlof.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250508131454.z7ihjlcxdlglypew@bryanbrattlof.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Keke, Jacopo,
+On 08/05/2025 15:14, Bryan Brattlof wrote:
+> On May  8, 2025 thus sayeth Krzysztof Kozlowski:
+>> On Wed, May 07, 2025 at 10:09:19PM GMT, Bryan Brattlof wrote:
+>>> Add the binding for TI's AM62L family of devices.
+>>>
+>>> Signed-off-by: Bryan Brattlof <bb@ti.com>
+>>> ---
+>>> Changes in v1:
+>>>  - separated out devicetree bindings
+>>> ---
+>>
+>> <form letter>
+>> This is a friendly reminder during the review process.
+>>
+>> It looks like you received a tag and forgot to add it.
+>>
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>> versions of patchset, under or above your Signed-off-by tag, unless
+>> patch changed significantly (e.g. new properties added to the DT
+>> bindings). Tag is "received", when provided in a message replied to you
+>> on the mailing list. Tools like b4 can help here. However, there's no
+>> need to repost patches *only* to add the tags. The upstream maintainer
+>> will do that for tags received on the version they apply.
+>>
+>> Please read:
+>> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+>>
+>> If a tag was not added on purpose, please state why and what changed.
+>> </form letter>
+> 
+> My apologies the last version I assumed the Un-Acked[0] comment was a 
+> request to remove any trailers I picked up from you. I can add them back 
+> to this patch if you wish
 
-On Sun, Apr 27, 2025 at 02:27:16PM +0800, Keke Li via B4 Relay wrote:
-> diff --git a/drivers/media/platform/amlogic/c3/isp/c3-isp-params.c b/drivers/media/platform/amlogic/c3/isp/c3-isp-params.c
-> new file mode 100644
-> index 000000000000..0e0b5d61654a
-> --- /dev/null
-> +++ b/drivers/media/platform/amlogic/c3/isp/c3-isp-params.c
+So I brought this confusion. Binding is fine, the discussion was about
+syscons and devices and I unacked that syscon.yaml change. Anyway:
 
-...
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> +static int c3_isp_params_vb2_buf_prepare(struct vb2_buffer *vb)
-> +{
-> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
-> +	struct c3_isp_params_buffer *buf = to_c3_isp_params_buffer(vbuf);
-> +	struct c3_isp_params *params = vb2_get_drv_priv(vb->vb2_queue);
-> +	struct c3_isp_params_cfg *cfg = buf->cfg;
-> +	struct c3_isp_params_cfg *usr_cfg = vb2_plane_vaddr(vb, 0);
-> +	size_t payload_size = vb2_get_plane_payload(vb, 0);
-> +	size_t header_size = offsetof(struct c3_isp_params_cfg, data);
-> +	size_t block_offset = 0;
-> +	size_t cfg_size;
-> +
-> +	/* Payload size can't be greater than the destination buffer size */
-> +	if (payload_size > params->vfmt.fmt.meta.buffersize) {
-> +		dev_dbg(params->isp->dev,
-> +			"Payload size is too large: %zu\n", payload_size);
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Payload size can't be smaller than the header size */
-> +	if (payload_size < header_size) {
-> +		dev_dbg(params->isp->dev,
-> +			"Payload size is too small: %zu\n", payload_size);
-> +		return -EINVAL;
-> +	}
-> +
-> +	/*
-> +	 * Use the internal scratch buffer to avoid userspace modifying
-> +	 * the buffer content while the driver is processing it.
-> +	 */
-> +	memcpy(cfg, usr_cfg, payload_size);
-> +
-> +	/* Only v0 is supported at the moment */
-> +	if (cfg->version != C3_ISP_PARAMS_BUFFER_V0) {
-> +		dev_dbg(params->isp->dev,
-> +			"Invalid params buffer version: %u\n", cfg->version);
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Validate the size reported in the parameter buffer header */
-> +	cfg_size = header_size + cfg->data_size;
-> +	if (cfg_size != payload_size) {
-> +		dev_dbg(params->isp->dev,
-> +			"Data size %zu and payload size %zu are different\n",
-> +			cfg_size, payload_size);
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Walk the list of parameter blocks and validate them */
-> +	cfg_size = cfg->data_size;
-> +	while (cfg_size >= sizeof(struct c3_isp_params_block_header)) {
-> +		const struct c3_isp_params_block_header *block;
-> +		const struct c3_isp_params_handler *handler;
-> +
-> +		block = (struct c3_isp_params_block_header *)
-> +			&cfg->data[block_offset];
-> +
-> +		if (block->type >= ARRAY_SIZE(c3_isp_params_handlers)) {
-> +			dev_dbg(params->isp->dev,
-> +				"Invalid params block type\n");
-> +			return -EINVAL;
-> +		}
-> +
-> +		if (block->size > cfg_size) {
-> +			dev_dbg(params->isp->dev,
-> +				"Block size is greater than cfg size\n");
-> +			return -EINVAL;
-> +		}
-> +
-> +		if ((block->flags & (C3_ISP_PARAMS_BLOCK_FL_ENABLE |
-> +				     C3_ISP_PARAMS_BLOCK_FL_DISABLE)) ==
-> +		    (C3_ISP_PARAMS_BLOCK_FL_ENABLE |
-> +		     C3_ISP_PARAMS_BLOCK_FL_DISABLE)) {
-> +			dev_dbg(params->isp->dev,
-> +				"Invalid parameters block flags\n");
-> +			return -EINVAL;
-> +		}
-> +
-> +		handler = &c3_isp_params_handlers[block->type];
-> +		if (block->size != handler->size) {
-> +			dev_dbg(params->isp->dev,
-> +				"Invalid params block size\n");
-> +			return -EINVAL;
-> +		}
-> +
-> +		block_offset += block->size;
-> +		cfg_size -= block->size;
-> +	}
-> +
-> +	if (cfg_size) {
-> +		dev_dbg(params->isp->dev,
-> +			"Unexpected data after the params buffer end\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-
-The above looks very much like rkisp1_params_prepare_ext_params() in the
-Rockchip ISP driver. Instead of copying all this non-trivial code in
-verbatim here, could you instead refactor this so both the drivers could
-use the same implementation?
-
-The types are different so macros will be likely needed.
-
--- 
-Regards,
-
-Sakari Ailus
+Best regards,
+Krzysztof
 
