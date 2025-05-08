@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-175188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE3BAB00AF
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 18:45:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC94AB00D2
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 19:01:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F19DB1BA31C7
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 16:46:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 219F617B57F
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B1AF279916;
-	Thu,  8 May 2025 16:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD7922422D;
+	Thu,  8 May 2025 17:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="mICO/toI"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="k6v9v6wV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5881F1BD01D
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 16:45:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E6D17A2E2;
+	Thu,  8 May 2025 17:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746722755; cv=none; b=klo245jzz4WjwM7iVub/Oc7dZ7PpsAflt2VroWREJCXP/Uag+6A0kqhHhwL8WGhukShnEFuWrxI60nS2VI9hJGahB0j5pWX+03JC1GwzrPml12Ps0oS4y5c9kIcGNqCdbWG76+c25bpnpoAnhE9aZXCNXhYLMGalPU2xNG4/M7E=
+	t=1746723681; cv=none; b=mY7LCqpPfZN+85Q8H4oI4RFh5FVvRbIEXaLyIn4OIFpp6aFBSVzq3z8wJqBm16vADj1eKH/sHBwJGC15HdDIA/DxKvy/Tgi6SiL9tMom3yJ45NuyQh61OVNBbNNQzak3J39YxVoxT5rs0O8sq5mSa0cUG75j1FFgcYjQzbDr5Zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746722755; c=relaxed/simple;
-	bh=sYeZLtpHPeuyHV/41fg3SXOFV2Tg9CfQcSP+Mkt6FAw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=sKUlxh8PWkbddg5jHTjDlEHcmhaJdNKaWIYWydH40/5UdYlLNAYGlu3Z7P1mzVydUBOsw5Ib70w+yR4m5xJoSiG4LagaDSKUOP/UvpLy6uf0BsJMg4avTk5xEjgrhDgWGvB+Q1r3EYMZZVpPpsKh/IA/fi0rjrPflbs2D/YLrnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=mICO/toI; arc=none smtp.client-ip=209.85.210.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-73044329768so912355a34.3
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 09:45:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746722752; x=1747327552; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ZS1DAu/OGipdaeYyDVfVQy+AhcyRGZVYwm5fK44jnLQ=;
-        b=mICO/toIb/HlwX+vg9U5ispi7FBErVNzk5S+GKrVfiMt8Y2sUWYVUeEWT5Wi8nCr6v
-         02++H8yzwEV94bOjpiHlmNrmIkO6VgiFtwGM41DxDhAI5RvKBGFjuMAaYm9v8XJNE9J4
-         Cy8eM65qmTdTqF3zci1lPbGYttDTMqQ1LnAnWTD124bQc5HqUbtuHfgffbi136fLyfa8
-         /O6TdBwVDV83oL5z3ml/Z4RYP8CbJ6CBSv0ybsnE5WvfAy/uSZiRKYvBhb6WzDEAFT1+
-         F+UMXMva8AbhPui8DGHBcDu3M3kMIEc9NB2MlYOXan5WQUjOCf5bSnQSCJo/QJwkuEIs
-         NcVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746722752; x=1747327552;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZS1DAu/OGipdaeYyDVfVQy+AhcyRGZVYwm5fK44jnLQ=;
-        b=XQoKKDjUViG8+4jy+J1BvfSXWsjFscIPL9y7PcNuINRD9TL2EQnOoJjfgVrV65+Nf0
-         GHH2kQ+xA6VZ4Gww4CKUF2Cg+7fWyyxoKCOYo9gaZHP8Oxx3fl8YHrPNbV/zYgofoXzQ
-         zuby4ywi6Oe9EgFytFiz2/naCciX5B+CaNbbwzmlsGA0hR7V5Z43hnWTSgtlsK7P7/j/
-         4bm7MGdB+8OZ25RPXdcDp7zHZQZp7BWLC743b3r38U8AKaXemuoyzrJvC6UVxq9p2kk2
-         14e++PmYq58ez1oEJNyxlrHNKpucSEx8RnzGh83GmQkwqJdPiUGjWEsGJh+kOUBA6ZFB
-         aG1w==
-X-Forwarded-Encrypted: i=1; AJvYcCXFXShrSsqmEVte+oHN3xuBDOTrAANR8LwqICiEJqW3d0XLz2hTvaRV6TEmBdWHTrv04q/QTIsYiXUe@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxiwKr/gtMZICTeMxzkg1JlkKlWqnoNp5l2w1GBRlxNMqo3b+g
-	QbjfJdc1DlLJURGuR/EWqopg6EaQW3FihEhfuUOXmXWEv2/b0o9vYMXsUhSoTzQ=
-X-Gm-Gg: ASbGnctGjarKGbV4TPy91/BndznVm7ICBoM0rVKjXx7TwXC3rsVBSznmvPooa8BE7A3
-	/FAVkUwFWpugxkfhGIg9EIaBI+W0pXTbKHF26QQ4bhK8ZtuXmQWzm1PBl473CTeq8kiM1Ylzkf2
-	YqeZGIY4GBY4BYqZc17Oz99gWRiD3xqY83mrbA5HqZVWa6zQxJbJMogTr/wAeaeyJaQpgfRF8uX
-	4qSDC4SaYl1pjBAj401+b9Atim6Tt1TNIIjN54xtWcxh+fiRC2F8jxEL2KUXf94ObC8yLtw6yUh
-	LPN+B6tBqpZ8VEstd8OWA7R8xUepR/UPdNJiVCVeNpHNhFjMVVDB/LdGYx3vemo3Yi6oJwEn89P
-	kd2fOa1g8IUqdXmHi7g==
-X-Google-Smtp-Source: AGHT+IEZDZLOMxJDt8kLUDFqLwM51K2NVQLT54ITBkIlx9L3ppO4Dyj06GSMVCaofCpDgYIIbqiFjw==
-X-Received: by 2002:a05:6830:3788:b0:72c:10db:f210 with SMTP id 46e09a7af769-732269faf05mr352368a34.13.1746722752395;
-        Thu, 08 May 2025 09:45:52 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:1120:d1cf:c64a:ac7e? ([2600:8803:e7e4:1d00:1120:d1cf:c64a:ac7e])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-732264d59e1sm102555a34.34.2025.05.08.09.45.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 May 2025 09:45:51 -0700 (PDT)
-Message-ID: <37ae4941-da7e-4298-8269-b5faf29fffdd@baylibre.com>
-Date: Thu, 8 May 2025 11:45:50 -0500
+	s=arc-20240116; t=1746723681; c=relaxed/simple;
+	bh=5g5sNjmEbICuTiKl8J/PU1T+NoezNWvdYbd2+Uq4lsE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=FznavX5VdAw4peDeC8XhhrtoE9NLzE3Fm+EAWA6KmaQM7LwtCZvdWR178LN/kjYs6u5P+3IvcOKeuIPC0KNN2/pggrAk8Kl+9Pe8sirllUSNEzwGZfk+ixJqoM5mlDoPrrpBpxZJFluVDV14a7nM6E6GFEPD0XL8A9CVw/uvCfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=k6v9v6wV; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 548DAEmR002489;
+	Thu, 8 May 2025 17:01:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MX55mfn5ivAMl1yMEqz1iGMbuw3wI94Ny0zOyMZOhIo=; b=k6v9v6wV4odXR9WN
+	mPDlasT2QSG50I2NRlN4yEV4XJCReOqMf33mzRZQLmCkpzmtpU9gP2q3Sf8TBAU6
+	mIPmKZtWmguJaftk3hGyBgsJ/slNm92lL2gS+2e5fLIn+VuIzWia6uo9rqlU4/TR
+	0Fj6XnDpe/UKro/wUbbSAHZqx9yTfRoq25kfqf7cc2ctj8+9dvIIzYh/mCdWZfCi
+	e8jnOOudIOax0pFnnOs5htlboneKi0vKJn02KOcVlm1QzEzKPloWlDr5ebOmaAeR
+	1jUCEtimLjXXENciLyhIGXLNIiWRfanQeZ9iwZEEGtEG/ylVxIGElmYRHCoqJf9J
+	bAv8Jg==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46gnp5a0rw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 08 May 2025 17:01:11 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 548H1BxE013320
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 8 May 2025 17:01:11 GMT
+Received: from [10.216.33.253] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 8 May 2025
+ 10:01:06 -0700
+Message-ID: <c8097899-42f6-4fa6-bee1-6af9208283d7@quicinc.com>
+Date: Thu, 8 May 2025 22:31:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,94 +65,182 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] iio: adc: adi-axi-adc: add set decimation rate
-To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
- Dragos Bogdan <dragos.bogdan@analog.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Tobias Sperling <tobias.sperling@softing.com>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Alisa-Dariana Roman <alisadariana@gmail.com>,
- Esteban Blanc <eblanc@baylibre.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250508123107.3797042-1-pop.ioan-daniel@analog.com>
- <20250508123107.3797042-3-pop.ioan-daniel@analog.com>
-From: David Lechner <dlechner@baylibre.com>
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: qcm6490-idp: Add WSA8830
+ speakers and WCD9370 headset codec
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@oss.qualcomm.com>, Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+References: <20250429092430.21477-1-quic_pkumpatl@quicinc.com>
+ <20250429092430.21477-7-quic_pkumpatl@quicinc.com>
+ <7322bb2c-5778-48cd-8661-91308ea8cfc8@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20250508123107.3797042-3-pop.ioan-daniel@analog.com>
-Content-Type: text/plain; charset=UTF-8
+From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+In-Reply-To: <7322bb2c-5778-48cd-8661-91308ea8cfc8@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=XL0wSRhE c=1 sm=1 tr=0 ts=681ce358 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=P-IC7800AAAA:8
+ a=COk6AnOGAAAA:8 a=iqUyA3GN4URQhEV_7bsA:9 a=QEXdDO2ut3YA:10
+ a=d3PnA9EDa4IxuAV0gXij:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: kzJXbIsxnCYeLcGUX3cKM0n_Nn9pnWBq
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA4MDE0OSBTYWx0ZWRfX7JIL0ILTdcQj
+ h7g9qDCI7+amV/C0RC/3iB8ywINwZGH9uc/QUpnKme/Cfq+aHzoqCauqaEFA+cz9Q2kLezRgra1
+ 2mwAvYG6xN3EWelwj+qyjXYTHk1BzA5e/k4OWMWOBu7HqOV1OxslKq/Hc5+1p9PAU/nchoKJucm
+ A3+QSh6ZNYZUqtxPkmHYBC09DLWgyVxSw2L0KEYSTHwZBznAq42WbGk2lrDgU73BcWm9wV6Vdy3
+ aVX5y3XOZg2aveqZ/lXPx1BX41jXFcks7Wc+WxrLC66OEYLzxD1BlIb2UxiGhD43MtKVBotoYzo
+ t7eSKyGcwmfQSbHKb5z9LBnvVmjZyWxwTrZLfk7A/nvaKX8o540SuNl7dpC76aGm6Awe9ot9iyp
+ W+Sr+4kSEDpyHC6ouvH8GAMIUM26q1Clr94auvXhNsrTHYg7oBw74mt5fQzR8fCaMjjKe5rY
+X-Proofpoint-ORIG-GUID: kzJXbIsxnCYeLcGUX3cKM0n_Nn9pnWBq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-08_05,2025-05-08_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 mlxscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0
+ mlxlogscore=999 malwarescore=0 adultscore=0 priorityscore=1501 bulkscore=0
+ spamscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505080149
 
-On 5/8/25 7:30 AM, Pop Ioan Daniel wrote:
-> Add support for setting decimation rate.
+
+
+On 4/29/2025 4:31 PM, Konrad Dybcio wrote:
+> On 4/29/25 11:24 AM, Prasad Kumpatla wrote:
+>> From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>>
+>> Add nodes for WSA8830 speakers and WCD9370 headset codec
+>> on qcm6490-idp board.
+>>
+>> Enable lpass macros along with audio support pin controls.
+>>
+>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+>> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 162 +++++++++++++++++++++++
+>>   1 file changed, 162 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>> index 7a155ef6492e..1a59080cbfaf 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>> @@ -18,6 +18,7 @@
+>>   #include "pm7325.dtsi"
+>>   #include "pm8350c.dtsi"
+>>   #include "pmk8350.dtsi"
+>> +#include "qcs6490-audioreach.dtsi"
+>>   
+>>   /delete-node/ &ipa_fw_mem;
+>>   /delete-node/ &rmtfs_mem;
+>> @@ -169,6 +170,30 @@
+>>   		regulator-min-microvolt = <3700000>;
+>>   		regulator-max-microvolt = <3700000>;
+>>   	};
+>> +
+>> +	wcd9370: audio-codec-0 {
+>> +		compatible = "qcom,wcd9370-codec";
+>> +
+>> +		pinctrl-0 = <&wcd_reset_n>;
+>> +		pinctrl-1 = <&wcd_reset_n_sleep>;
+>> +		pinctrl-names = "default", "sleep";
 > 
-> Signed-off-by: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-> ---
-> changes in v2:
->  - update ADI_AXI_ADC_REG_CHAN_USR_CTRL_2 register in a per-channel register
->  - rename ADI_AXI_ADC_DEC_RATE_MASK in
->    ADI_AXI_ADC_CHAN_USR_CTRL_2_DEC_RATE_N_MASK
->  - add channel index parameter to keep axi_adc_set_dec_rate generic
->  - remove ad7405 chip-specific struct
->  drivers/iio/adc/adi-axi-adc.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+> Does audio work for you? For inexplicable reasons, it didn't for me
+> on rb2 when the sleep state was defined
 > 
-> diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
-> index 9e8c30230791..33eb8f337e0b 100644
-> --- a/drivers/iio/adc/adi-axi-adc.c
-> +++ b/drivers/iio/adc/adi-axi-adc.c
-> @@ -80,6 +80,9 @@
->  #define ADI_AXI_ADC_REG_CHAN_CTRL_3(c)		(0x0418 + (c) * 0x40)
->  #define   ADI_AXI_ADC_CHAN_PN_SEL_MASK		GENMASK(19, 16)
->  
-> +#define ADI_AXI_ADC_REG_CHAN_USR_CTRL_2(c)	(0x0424 + (c) * 0x40)
-> +#define   ADI_AXI_ADC_CHAN_USR_CTRL_2_DEC_RATE_N_MASK		GENMASK(15, 0)
-> +
->  /* IO Delays */
->  #define ADI_AXI_ADC_REG_DELAY(l)		(0x0800 + (l) * 0x4)
->  #define   AXI_ADC_DELAY_CTRL_MASK		GENMASK(4, 0)
-> @@ -242,6 +245,17 @@ static int axi_adc_test_pattern_set(struct iio_backend *back,
->  	}
->  }
->  
-> +static int axi_adc_set_dec_rate(struct iio_backend *back, unsigned int chan,
-> +				unsigned int rate)
-> +{
-> +	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
-> +
-> +	return regmap_update_bits(st->regmap,
-> +				  ADI_AXI_ADC_REG_CHAN_USR_CTRL_2(chan),
-> +				  ADI_AXI_ADC_CHAN_USR_CTRL_2_DEC_RATE_N_MASK,
-> +				  FIELD_PREP(ADI_AXI_ADC_CHAN_USR_CTRL_2_DEC_RATE_N_MASK, rate));
+For Qcm6490-IDP board Audio is working fine, Not sure about rb2, Could 
+you please provide more details about rb2 ?>> +
+>> +		reset-gpios = <&tlmm 83 GPIO_ACTIVE_HIGH>;
+>> +
+>> +		vdd-buck-supply = <&vreg_l17b_1p7>;
+>> +		vdd-rxtx-supply = <&vreg_l18b_1p8>;
+>> +		vdd-px-supply = <&vreg_l18b_1p8>;
+>> +		vdd-mic-bias-supply = <&vreg_bob_3p296>;
+>> +
+>> +		qcom,micbias1-microvolt = <1800000>;
+>> +		qcom,micbias2-microvolt = <1800000>;
+>> +		qcom,micbias3-microvolt = <1800000>;
+>> +
+>> +		qcom,rx-device = <&wcd937x_rx>;
+>> +		qcom,tx-device = <&wcd937x_tx>;
+>> +
+>> +		#sound-dai-cells = <1>;
+>> +	};
+>>   };
+>>   
+>>   &apps_rsc {
+>> @@ -536,6 +561,76 @@
+>>   	firmware-name = "qcom/qcm6490/a660_zap.mbn";
+>>   };
+>>   
+>> +&lpass_dmic01_clk {
+>> +	drive-strength = <8>;
+>> +	bias-disable;
+>> +};
+>> +
+>> +&lpass_dmic01_data {
+>> +	bias-pull-down;
+> 
+> As a testament to these definitions belonging in the soc dtsi, you
+> added them in the file you included already.
+> 
+> [...]
+Ack, Will move to soc dtsi file.>
+>>   &tlmm {
+>>   	gpio-reserved-ranges = <32 2>, /* ADSP */
+>>   			       <48 4>; /* NFC */
+>> @@ -725,6 +868,25 @@
+>>   		function = "gpio";
+>>   		bias-pull-up;
+>>   	};
+>> +
+>> +	sw_ctrl: sw-ctrl-state {
+>> +		pins = "gpio86";
+>> +		function = "gpio";
+>> +		bias-pull-down;
+>> +	};
+> 
+> Again, unused
+Ack>
+>> +
+>> +	wcd_reset_n: wcd-reset-n-state {
+>> +		pins = "gpio83";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+> 
+> Since the definition is otherwise identical to the sleep state,
+> you should define the (other) bias type that should be set when
+> active.
+> 
+Taken the reference from sc7280, which is working fine.
+Link for reference : 
+https://elixir.bootlin.com/linux/v6.15-rc5/source/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi#L841
 
-Rate is getting a bit far past 80 chars, so would be nice to wrap that line.
+Will cross check and modify if required.
 
-> +}
-> +
->  static int axi_adc_read_chan_status(struct adi_axi_adc_state *st, unsigned int chan,
->  				    unsigned int *status)
->  {
-> @@ -550,6 +564,7 @@ static const struct iio_backend_ops adi_axi_adc_ops = {
->  	.test_pattern_set = axi_adc_test_pattern_set,
->  	.chan_status = axi_adc_chan_status,
->  	.interface_type_get = axi_adc_interface_type_get,
-> +	.oversampling_ratio_set = axi_adc_set_dec_rate,
-
-Would make more sense if function was named axi_adc_oversampling_ratio_set.
-(Making the names match exactly (with namespace prefix added) make less info
-you have to hold in your head when reading the driver.)
-
->  	.debugfs_reg_access = iio_backend_debugfs_ptr(axi_adc_reg_access),
->  	.debugfs_print_chan_status = iio_backend_debugfs_ptr(axi_adc_debugfs_print_chan_status),
->  };
+Thanks,
+Prasad> Konrad
+>   > +	};
+>> +
+>> +	wcd_reset_n_sleep: wcd-reset-n-sleep-state {
+>> +		pins = "gpio83";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		bias-disable;
+>> +	};
+>>   };
+>>   
+>>   &uart5 {
 
 
