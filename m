@@ -1,120 +1,168 @@
-Return-Path: <devicetree+bounces-174954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AF19AAF5C0
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:34:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73B16AAF5D3
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:38:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2A841BA6A31
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:35:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C7D09C54AE
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:38:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9FF261595;
-	Thu,  8 May 2025 08:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9822627F9;
+	Thu,  8 May 2025 08:38:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lvHX6Jfr"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="PrNROnZx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8124B21D011;
-	Thu,  8 May 2025 08:34:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487E02620DE;
+	Thu,  8 May 2025 08:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746693292; cv=none; b=aWjN+SMyXZNRiLO1MApFm8dexQ/0+TaxJ2TWkLfZZOhboslJNe9c69E5sVAhb4yWGUW9nK5IGBZtzVeyBu3LNA6+mtuAHKCZfS+vk4CsjihkdorMhagCwDOidNKzhKInnoPtED++3iyDYHuNcncYy7i+As35c6mqz9blo5/Cv7g=
+	t=1746693512; cv=none; b=oyZaHNws0FeSRhSncKXvy98pvp6C81qhBmBBnrj3mJuv/in0e1uCrAD+voYHgkCHMz/qCq/T51iUUQKwE61SIX4e6I+DmNg8PF9kuDCKyDKmhn3oXpW6pGbq4naqQIH0cioLlMApJF+iioIlJW5Acdhcxw47IHCu6937fMCtDSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746693292; c=relaxed/simple;
-	bh=/yn0vOBSqs1gT1qgFskCzgf8UxOw44a5QvWI6DwYPmM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XqWjmCZcuSebtqHMqKckFs06lt6i6PKcKSxl3wPCqr6zMjCCc9VQQVrIxkkqlmmQ3tmBViN7W3xVL9AFmc369pFVotNstvU2wWUcRqGJL2YNgN1XqmtajIIVCsFwr5+HqZNq2zJd5XA3Px8KO5EiCNtThPoQdxXsbpCV64LzQEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=lvHX6Jfr; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1746693287;
-	bh=/yn0vOBSqs1gT1qgFskCzgf8UxOw44a5QvWI6DwYPmM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lvHX6Jfr7OJ3b9RU2pr9vKKmVzcczO72O3biC5VnlBbkLBYBi4j80YJi2EahlHN1c
-	 6I9FwWK2rI9vTlfgY0vX59fGYaiqUGpGcxReA8po/KwPkXIJBEPYgbVoK27U8P4nkQ
-	 X4QD/QaGCH6DAVicsxmX8fpMRCdFt6D/fag3nmUd43PN/6uB7xi1I6h2Cgt/WTqLpq
-	 SZEaWRHihGqfwPDfI/lIhJzyu9FoTR2A8LrpgfmZCRkdBpb7sSHMCQ9F4OpeDxNYKz
-	 VId7swgQvxQGPbEbgdeQEvtYfy088uRJpCZWNsQMmZX2KRcEXgt4abxmz6xz2/sV+O
-	 wA2RMcDIF2HaA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 62D3417E02BE;
-	Thu,  8 May 2025 10:34:46 +0200 (CEST)
-Message-ID: <ff8da58b-9e87-46d9-b4d2-4059ef05780d@collabora.com>
-Date: Thu, 8 May 2025 10:34:45 +0200
+	s=arc-20240116; t=1746693512; c=relaxed/simple;
+	bh=k2Zp0OCJhicYzRUQR/Kgk6rk1liK2EZ01nmsvcrs+gw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tW257IWPZRhxcxBoQtjIwXrFu9JmFLM5262uSXpAQUr1pr0h+KVPZMTUw6IzyCu3yhQzcVVTsig5C/bjAouG6h2vcEgq79GheYtVW4fbVAzxCDkku4ll54rld2MXL1dKLQ/QXhTnOEyJ+FpWI2X+SKOsfePuU237XlGFPgW6e9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=PrNROnZx; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id 119011C00AB; Thu,  8 May 2025 10:38:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1746693506;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ckLCaz9JTwf1JWFkvqfAI949tTAoo5JbgEelAt8RQvk=;
+	b=PrNROnZxCeea0Jho3SCM2w2/XQ838ikowGDgqD5QtqDpcbs2e38VTtLBxxZMMMgBH106hN
+	ElEgO86ZtWA95vGDx4pxSfOv1o9I+6k7QtMEG7l7O3C1NTem1cc1t5S4b7wJXNH5bXaSdM
+	eWoeYLiJhf2uUsYUbdE6G4bbk2b6sMs=
+Date: Thu, 8 May 2025 10:38:25 +0200
+From: Pavel Machek <pavel@ucw.cz>
+To: Nam Tran <trannamatk@gmail.com>
+Cc: andy@kernel.org, geert@linux-m68k.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	christophe.jaillet@wanadoo.fr, corbet@lwn.net,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix
+ LED driver
+Message-ID: <aBxtgZw6+BM36Rru@duo.ucw.cz>
+References: <aA/ineUBAM5IU79J@duo.ucw.cz>
+ <20250429170220.8145-1-trannamatk@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: iommu: mediatek: mt8195 Accept up to 5
- interrupts
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Julien Massot <julien.massot@collabora.com>, kernel@collabora.com,
- Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
- Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?=
- <nfraprado@collabora.com>, Hui Liu <hui.liu@mediatek.com>,
- Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Tinghan Shen <tinghan.shen@mediatek.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, iommu@lists.linux.dev
-References: <20250505-mt8395-dtb-errors-v1-0-9c4714dcdcdb@collabora.com>
- <20250505-mt8395-dtb-errors-v1-2-9c4714dcdcdb@collabora.com>
- <baeae909-4d12-4cbd-a063-7ad165304b96@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <baeae909-4d12-4cbd-a063-7ad165304b96@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="DXdxuze0uvDm4WRw"
+Content-Disposition: inline
+In-Reply-To: <20250429170220.8145-1-trannamatk@gmail.com>
 
-Il 08/05/25 08:03, Krzysztof Kozlowski ha scritto:
-> On 05/05/2025 15:23, Julien Massot wrote:
->>
->> Fixes: 3b5838d1d82e3 ("arm64: dts: mt8195: Add iommu and smi nodes")
->> Signed-off-by: Julien Massot <julien.massot@collabora.com>
->> ---
->>   Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
->> index 75750c64157c868725c087500ac81be4e282c829..035941c2db32170e9a69a5363d8c05ef767bb251 100644
->> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
->> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
->> @@ -97,7 +97,8 @@ properties:
->>       maxItems: 1
->>   
->>     interrupts:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 5
->>   
-> Every iommu or just some (as described in commit msg) can have 5
-> interrupts? Looks you miss here proper constraints per variant.
-> 
-Technically, all of the IOMMUs can have more than one interrupt - but it's not
-clear which one and why, as documentation is lacking.
 
-Let's restrict this discussion to MT8195 anyway, as it's the only one declaring
-those 5 interrupts...
-...all of the IOMMUs declare just one, and mediatek,mt8195-iommu-infra declares 5.
+--DXdxuze0uvDm4WRw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-P.S.: Nice catch!
+Hi!
 
-Cheers,
-Angelo
+> > > Thank you, Pavel, for the confirmation.
+> > > Thank you, Geert, for the review and the question.
+> > >=20
+> > > I would like to make it clearer.
+> > >=20
+> > > On Mon, 28 Apr 2025 Geert Uytterhoeven wrote:
+> > >=20
+> >=20
+> > > > > > > - Move driver to drivers/auxdisplay/ instead of drivers/leds/.
+> > > > > > > - Rename files from leds-lp5812.c/.h to lp5812.c/.h.
+> > > > > > > - Move ti,lp5812.yaml binding to auxdisplay/ directory,
+> > > > > > >   and update the title and $id to match new path.
+> > > > > > > - No functional changes to the binding itself (keep Reviewed-=
+by).
+> > > > > > > - Update commit messages and patch titles to reflect the move.
+> > > > > > > - Link to v7: https://lore.kernel.org/linux-leds/202504221901=
+21.46839-1-trannamatk@gmail.com/
+> > > > > >
+> > > > > > Out of sudden without discussing with auxdisplay maintainers/re=
+viewers?
+> > > > > > Thanks, no.
+> > > > > > Please, put into the cover letter the meaningful summary of wha=
+t's
+> > > > > > going on and why this becomes an auxdisplay issue. Brief review=
+ of the
+> > > > > > bindings sounds more likely like LEDS or PWM subsystems.
+> > > > >
+> > > > > It is 4x3 matrix. That means it is not suitable for LEDs. I don't
+> > > > > believe it is suitable for PWM, either -- yes, it is 36 PWM outpu=
+ts,
+> > > > > but...
+> > > >=20
+> > > > Is it intended to be used as a 4x3 matrix, or is this just an inter=
+nal
+> > > > wiring detail, and should it be exposed as 12 individual LEDs inste=
+ad?
+> > >=20
+> > > The 4=C3=973 matrix is a real and fundamental aspect of the LP5812=E2=
+=80=99s operation.
+> > > It is not just an internal wiring detail.
+> > > The device adopts a Time-Cross-Multiplexing (TCM) structure, where 4 =
+output
+> > > pins control 12 LED dots individually through scanning. Each pin incl=
+udes
+> > > both high-side and low-side drive circuits, meaning matrix multiplexi=
+ng is
+> > > required for proper operation =E2=80=94 it cannot be treated as 12 co=
+mpletely
+> > > independent LEDs.
+> >=20
+> > Scanning is really a detail.
+> >=20
+> > If this is used as rectangular 4x3 display, then it goes to auxdisplay.
+> >=20
+> > If this is used as a power LED, SD activity LED, capslock and numlock
+> > ... placed randomly all around the device, then it goes LED subsystem.
+>=20
+> The LP5812 is used for LED status indication in devices like smart speake=
+rs,
+> wearables, and routers, not as a structured rectangular display.
+
+Show us one device where it is used, photo would be best. I suspect
+that the router use might indeed qualify for LED subsystem.
+
+You described is at 4x3 display, but it is really used as 4xRGB?
+
+> Given that, it seems to match the LED subsystem better than auxdisplay, d=
+oesn't it?
+
+Seems so, yes. From description, I assumed it was 4x3xRGB, not 4xRGB.
+
+Best regards,
+								Pavel
+--=20
+I don't work for Nazis and criminals, and neither should you.
+Boycott Putin, Trump, and Musk!
+
+--DXdxuze0uvDm4WRw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaBxtgQAKCRAw5/Bqldv6
+8mN6AJwN7zf8tTTp+bxWAqTTF1AoTBaggQCbBSUYvVJF5PV+ahfMfUjtZcxAwkw=
+=EZPf
+-----END PGP SIGNATURE-----
+
+--DXdxuze0uvDm4WRw--
 
