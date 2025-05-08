@@ -1,175 +1,124 @@
-Return-Path: <devicetree+bounces-175079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B7CAAFC0C
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:51:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 212A8AAFC10
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:51:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A3341BC5AAE
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:51:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 724311BC5D82
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:51:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10A1A22D781;
-	Thu,  8 May 2025 13:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A585822D4C9;
+	Thu,  8 May 2025 13:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ojI6nTSz"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2CVR4VQ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188DE221DB3
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 13:50:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE1D31E5215;
+	Thu,  8 May 2025 13:51:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746712260; cv=none; b=eFUPVTv89Uu/sUFB9tdo8DeaxtwwifldCcDXnPp56rlExa2hgqECLMITX1LsEukTvVDgiF8iqTiNN0GvRijxWEZmzijD3W4GdsV9il6rBazSsETXAqj8pYuqxuamcdFr38XFRaf1XNz0TfFVusFFYuG6OLVlmGSd4D4ItcBcXRE=
+	t=1746712279; cv=none; b=hjfBcdgcup9Sh0ISerTNXAtatkrXNlMTre8mMIBe19AzS8HUKxVWe/lH0g9v3mVSDpGP77DgA7RhFGcy/zAndbHbITTxOp8UcQjfx4EMfih3C4YrJBut2gUdnnZefH75rcLW4o2wKVgt/G8cnLf5POCd5C1o7VakirXPt+reEHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746712260; c=relaxed/simple;
-	bh=lJyOeEHegvLhoKBd+hxBA2/76N09zRsPJWC0/e4pNcQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o2NKbJICnAYqi5s4c2rZnFJNn27pdrnclIaRflwy7Z7SPOR2Cu7moYrh/wqkp42LZyPfuTCOpOgyzzfkGHTpqBsDPQtVgNHHPJfAYcERqmo1Ue4tBHWWIN8lWF/aYIy4PDCKKi0097gyVEODTjuAUlxVf0aCkrDsVg1gcVnPG1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ojI6nTSz; arc=none smtp.client-ip=209.85.167.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3fea67e64caso912984b6e.2
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 06:50:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746712257; x=1747317057; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ouj0qfvFepL9kOLcYrh4tsGA66IJWwOPF0qOB3iRvnM=;
-        b=ojI6nTSzB0FAs45s8pBE4cuCm4RNFUzDbu6brVJPpeCqTiK1rHpJMug416boPAsCBp
-         T8cj653RqLyjvVhcF0HQp+UkFGlaQdPCdV6XwR7aIl1LH1M0y7Kj1x9GDbzu3NBEoikJ
-         5zC5y32kaQH32kEk0RvxfRGYhL6ncUqoPbvs7YH9jmjHl4FNeTY+ithJvc3GQjJhcmMN
-         hlLrtIsq2lh9/8y7T3nlQcqPGkMavbhSM1f0oy0Fx77dcgEohn8GbEQe5ks6e4A+T0/w
-         xmi28YkRmKPVMAT9ERHaoGqjsbAef7U0UfYbXJ3V0HCYmiKa0fmcB92PmahuOHlSl/TJ
-         LCsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746712257; x=1747317057;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ouj0qfvFepL9kOLcYrh4tsGA66IJWwOPF0qOB3iRvnM=;
-        b=BmD7++529s+4f+qyb7LI5SkNoah9+2ACijkjfzucS3PQ/sgEJMtD+o8D7VMWmf076Q
-         qhrx7OgG6ZTQK+Oo7b8wJPNf+U3Vx6ZzUtRn8mDd4q8a/V6BJc7iPPeLNXOXEyLtEc+M
-         WNbh2IPCgNAhuCD231GlZeNZbGFtLW5hLYQCZvgwkWW9rlluJaIlI+L+9Ni09mbylwVd
-         U5v0ZG7z0fKrvLPiJlGiMBG+IaIq2Le558FbEEF6d3MzmJuBdy7/Iv6JQpgutGw7K6qs
-         LHRX52uqndxV5Kazwq0UvdSzKdXCTKx3ajp54essSz7D0aJmEObPZH5sJabPeMV8WjT9
-         QOcw==
-X-Forwarded-Encrypted: i=1; AJvYcCVh0iZMNKvhY1iAxyxvYlWV+QNM9m/KB+BiGC77ls3SNz4/dLwovE2gj7JZltSsURm5/MJONVSTn2XJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFYl87xbPKTA7GEQOq4sern5QtcFT9FSIJndlUEyZjJOOhAbKr
-	HGdhd2bndb9iqVWQo7OWTQrjxgJK7334UF5vglOPgXwqxhRUMy3snyRFPolobZk=
-X-Gm-Gg: ASbGnctXKgHuaz38zhgz5O6gzM+AKgzb+YyH/xDu+gsSttx7qs/S7ncQaQy8ejOFrY0
-	oZazMrolc7k8z6zsOpf8hBKYNwlgFlNMGCRJKrbQJbTFjGAAait665wFI+q5T6X6TjOfspY9cqm
-	vyPRJWn7RSOowreGc8bFCB2U4DqRrvTQp/pTWVt2c2xeOEgSF5Tyy6EJZyBcSKbGdeV154zBK1E
-	Nt0OdYQBJ3MAFXZjlKstk6TQacx8PZ8M/JPTWXG7RB5Ig/ddUuz6rwMeBxkEqFB5OKSJmx0B0wZ
-	m5yEJBzBzY2ITmn2VjHFbMdLiVB7Pt+OpXhsZS1rOQUKW0CwHFolgh3xOUuPwnMbOA5pHrOe4q9
-	S93el5VurDeeCZvEd9w==
-X-Google-Smtp-Source: AGHT+IHCPN64NvcV87IbwF3LkvQkpqFNuSONFbX3+kLtH8kqD7JwExKv4iDlgXtZ/SWM+8ccZ3oj8w==
-X-Received: by 2002:a05:6808:6f96:b0:403:371d:e56b with SMTP id 5614622812f47-40377f88f0dmr2261392b6e.32.1746712257128;
-        Thu, 08 May 2025 06:50:57 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:1120:d1cf:c64a:ac7e? ([2600:8803:e7e4:1d00:1120:d1cf:c64a:ac7e])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-4036f3406fbsm1247028b6e.22.2025.05.08.06.50.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 May 2025 06:50:56 -0700 (PDT)
-Message-ID: <7f5f75c1-7750-4966-9362-2a46c5e5ba3e@baylibre.com>
-Date: Thu, 8 May 2025 08:50:56 -0500
+	s=arc-20240116; t=1746712279; c=relaxed/simple;
+	bh=6U4sCysadPAAKxSAmee2khkw+B2LWwszfo8nPySP0Fg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kvin+1jbkPGPyrn34j7PSrjG7/0HMWM1gDy3oZrbxD/xOw5kXIrDszD4amvKVcUZuUOp+Rvd94L6jeUcjlTr7CFgPalM3h+rFv4elw4eC9x6l1d/kf7L5bpdsULD8z10MJm5svboVWifdsulEJC4WqKQMjCl/AcCgX9NOldXS8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2CVR4VQ2; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=JDTh6xkMM8HQxsVT5/rBVpuKgI4QSLUTTTY/Sbbvo5Q=; b=2C
+	VR4VQ2M62NZxPSLLzrUzNUTFYv9AQDDuYnZtykMx5Wkgz7KgENeQqbaOZ3Tkvf3vIsYyee7AkfSPH
+	qknald7sN5FwxwrNmN2hgWFZFR8SdW8BJGMAHQxrXO4rY6OD6gW9q0yEOtGgAGyo5cx2TJnPuERO7
+	0q30G1rVlRaaAsA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uD1eZ-00C0VV-Ov; Thu, 08 May 2025 15:51:11 +0200
+Date: Thu, 8 May 2025 15:51:11 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Goran Radenovic <goran.radni@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?iso-8859-1?Q?B=F6rge_Str=FCmpfel?= <boerge.struempfel@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 4/4] ARM: dts: stm32: add initial support for
+ stm32mp157-ultra-fly-sbc board
+Message-ID: <1281b9c4-ff94-4dfc-a531-45e3dbee3dfe@lunn.ch>
+References: <20250505115827.29593-1-goran.radni@gmail.com>
+ <20250505115827.29593-5-goran.radni@gmail.com>
+ <2d0ff289-06f6-4bde-a238-097d22573d4e@lunn.ch>
+ <63665c17-da37-4b5b-9c2d-28d5a669680f@gmail.com>
+ <3a7ef1bd-2c0e-4637-b0b6-2c0b73388618@lunn.ch>
+ <35c08d79-1473-4c1e-b605-627c4ff00a92@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/5] iio: adc: ad7606: add gain calibration support
-To: Angelo Dureghello <adureghello@baylibre.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250506-wip-bl-ad7606-calibration-v3-0-6eb7b6e72307@baylibre.com>
- <20250506-wip-bl-ad7606-calibration-v3-5-6eb7b6e72307@baylibre.com>
- <c999800bb5f6c1f2687ff9b257079dcf719dd084.camel@gmail.com>
- <qaiqdak4pieewavl2ff4mpr2ywhw2bvnoob55buiinkisacar5@q6jhlb5klcf6>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <qaiqdak4pieewavl2ff4mpr2ywhw2bvnoob55buiinkisacar5@q6jhlb5klcf6>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <35c08d79-1473-4c1e-b605-627c4ff00a92@gmail.com>
 
-On 5/8/25 4:16 AM, Angelo Dureghello wrote:
-> Hi all,
-> On 07.05.2025 07:14, Nuno Sá wrote:
->> On Tue, 2025-05-06 at 23:03 +0200, Angelo Dureghello wrote:
->>> From: Angelo Dureghello <adureghello@baylibre.com>
->>>
-
-...
-
->>> +static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev,
->>> +					struct iio_chan_spec *chan)
->>> +{
->>> +	struct ad7606_state *st = iio_priv(indio_dev);
->>> +	unsigned int num_channels = st->chip_info->num_adc_channels;
->>> +	struct device *dev = st->dev;
->>> +	int ret;
->>> +
->>> +	device_for_each_child_node_scoped(dev, child) {
->>> +		u32 reg, r_gain;
->>> +
+On Thu, May 08, 2025 at 03:10:09PM +0200, Goran Radenovic wrote:
+> Hi Andrew,
 > 
-> working on further features, i noticed this function is called
-> for each channel, that is not correct, so need to fix this,
-> will send a v4.
-
-Why is this not correct? Each input could have an amplifier with different
-series resistor value so this seems correct to me.
-
+> thank You once again for helpful hint.
 > 
-> Regards,
-> angelo
+> Andrew Lunn wrote:
+> > > > > +	phy-handle = <&phy1>;
+> > > > > +
+> > > > > +	mdio {
+> > > > > +		#address-cells = <1>;
+> > > > > +		#size-cells = <0>;
+> > > > > +		compatible = "snps,dwmac-mdio";
+> > > > > +		phy1: ethernet-phy@1 {
+> > > > > +			reg = <1>;
+> > > > > +			interrupt-parent = <&gpiod>;
+> > > > > +			interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
+> > > > PHY interrupts are 99% time level, not edge.
+> > > That is correct, but I am facing strange behavior, when I set
+> > > IRQ_TYPE_LEVEL_LOW.
+> > > My board stops booting at:
+> > > 
+> > > [    2.343233] Waiting for root device /dev/mmcblk0p4...
+> > > [   12.638818] platform 5a006000.usbphyc: deferred probe pending
+> > > [   12.643192] platform 49000000.usb-otg: deferred probe pending
+> > > [   12.649029] platform 48003000.adc: deferred probe pending
+> > > [   12.654277] platform 5800d000.usb: deferred probe pending
+> > > [   12.659744] platform 5800c000.usb: deferred probe pending
+> > > [   12.665089] amba 58005000.mmc: deferred probe pending
+> > > [   12.670239] amba 58007000.mmc: deferred probe pending
+> > > [   12.675185] platform 50025000.vrefbuf: deferred probe pending
+> > > 
+> > > I must investigate this. If You have any idea, You are welcome to share it.
+> > Could be an interrupt storm. The interrupt is not getting cleared
+> > because of something missing in the PHY driver, so it just fires again
+> > and again.
 > 
->>> +		ret = fwnode_property_read_u32(child, "reg", &reg);
->>> +		if (ret)
->>> +			return ret;
->>> +
->>> +		/* channel number (here) is from 1 to num_channels */
->>> +		if (reg < 1 || reg > num_channels) {
->>> +			dev_warn(dev, "wrong ch number (ignoring): %d\n", reg);
->>> +			continue;
->>> +		}
->>> +
->>
->> Sorry Angelo, just realized this now. Any reason for not treating the above as a real
->> invalid argument? It's minor and not a big deal but odd enough...
->>
->> - Nuno Sá
->>
->>> +		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
->>> +					       &r_gain);
->>> +		if (ret == -EINVAL)
->>> +			/* Keep the default register value. */
->>> +			continue;
->>> +		if (ret)
->>> +			return ret;
->>> +
->>> +		if (r_gain > AD7606_CALIB_GAIN_MAX)
->>> +			return dev_err_probe(st->dev, -EINVAL,
->>> +					     "wrong gain calibration value.");
->>> +
->>> +		/* Chan reg is 1-based index. */
->>> +		ret = st->bops->reg_write(st, AD7606_CALIB_GAIN(reg - 1),
->>> +			DIV_ROUND_CLOSEST(r_gain, AD7606_CALIB_GAIN_STEP));
->>> +		if (ret)
->>> +			return ret;
->>> +	}
->>> +
->>> +	return 0;
->>> +}
->>> +
+> After a brief investigation, I tend to agree with your assessment that the
+> issue lies in the driver—likely the stmmac driver — which is outside the
+> scope of my changes.
+> 
+> Therefore, I would suggest keeping IRQ_TYPE_EDGE_FALLING for now, or
+> alternatively not using a hardware IRQ at all and falling back to polling,
+> as done in stm32mp15xx-dkx.dtsi.
+
+Since edge is wrong, please use polling.
+
+	Andrew
 
