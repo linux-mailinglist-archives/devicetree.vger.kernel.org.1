@@ -1,249 +1,149 @@
-Return-Path: <devicetree+bounces-175008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1434FAAF8D3
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:37:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4530FAAF8D7
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:38:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F3691C0480F
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:37:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5F327B7940
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:37:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8BBA221FB6;
-	Thu,  8 May 2025 11:37:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FBDC21D3F1;
+	Thu,  8 May 2025 11:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="weWreSGS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IEYaSFgM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00B2D1F7075
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 11:37:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5BCB1DF725;
+	Thu,  8 May 2025 11:38:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746704257; cv=none; b=B8wI0/JGoVQbQqE6EHduWbv6gYpA+Gp8wRY/32xjmdmJUCeXQxh0HHJv6pkcHhv9tp2Vulqsd1sQR4GttQVnqfratNcWtVwfYfnv7yffXuWiogz19vFRU1Dcf1duJBlhcAk1Qb0Z1SWFc5bKVe2lUBtAJzKnZMYEhOiuJrzR7Rc=
+	t=1746704301; cv=none; b=r3HTR4EYlq2wJzanSHEzn9KuCpoeF9pQskSCZUhaG1izxkLz40usEzwleBkLylWjmq14Ur0M/NpYl4zq7hX1JN9rCh9J4CcBPNNRb9viznsuYYqBi2osKRdcviRhGwYssdBIqmS7mq+TswxxfQlPz4I5UNgddnhB+aedcTUUMZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746704257; c=relaxed/simple;
-	bh=Gld9bO5UZHsxrcS7dtAgIiV7rnHI7vEtpstol+3c7Zk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V1UUCDkrk4oBKyS9Lgvy3mftYMLSH5Q0Q8FM4WFlJLDqNBtlaB1NQBfA2YJj31YDlv7OcVZEspEdNixMNGNql5bF2gdK3xk7R0FDkNKdOHVzaZihTeDR2T/zINImB7kXXbg79FSLhwzjfjUHBmDPecFP6Obil5DAboffi4fql9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=weWreSGS; arc=none smtp.client-ip=209.85.210.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-72fffa03ac6so659811a34.3
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 04:37:34 -0700 (PDT)
+	s=arc-20240116; t=1746704301; c=relaxed/simple;
+	bh=uuHO2oRBCQSuQMjs5OfmNWlTjsqum78D6J+5cQCoj2w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZkwEGuDV++Mwi0XJFdKxLI6u1Ab7pARixFj4eAEuKdYPm+w20bC60MTcufNJSJ+HhprdHOw2C5UeLYTD/QdhYzGZZjbkuGmTM3GIAS2Aa4dMLUxpCa0vkdTLreeDROg4o6joFxpkQTS1tW1Y9IpH+im6ttREYofTWjjpCn121hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IEYaSFgM; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ac25d2b2354so146004766b.1;
+        Thu, 08 May 2025 04:38:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1746704254; x=1747309054; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Cg8NwDyNFyKWIP/c9rQXDiR1cnoY6h6ESpb3NTgHnZE=;
-        b=weWreSGSqZFZ8sqkbaKek9+5Ssb8pL9j6NP8MatkJA1W3Bx5FK6S9nayOuXKdXAMKD
-         +6thFAGRLxggw+4FeRNq38zBqInYeYtQDylfcYuR5vkrgbab2VwpQCGf9M8t9WCcsCi8
-         dC2D6c5lGSHVV23/ijPu4SFT2qHA7+QpJVat7JlwVnycHGNG69LOrI7RHvR/LdJdcmMq
-         Dre2CLOqbaBXx5hxWAhkP5YteHCbHJ5zfHATeHIADlbo4Cbl1Pz0O891M/FAMmXHpY36
-         kZSu7IUM7B0EzRp9+TNgvw2dUp+vogfuG9+mXiTCnk5E3mH9oPHNDPrPOEXMvM67znO7
-         ittA==
+        d=gmail.com; s=20230601; t=1746704298; x=1747309098; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RoX1p7NNio7No+XgFcOQe29Y1CHCAlfDMy6GWzlAkJg=;
+        b=IEYaSFgMCfUmluOuzLyI+vxXDs36TKMsGKFpcUoumsKNJc19gxnnigA7tQLFwH0apv
+         MjMcNjdRVU7qica2lae4KneYGqnqqbghCKVficHL1R7VEWTUu3CI8A5GhVQBTsgUCWgV
+         TVU+vzZmCl1hIqkBSZr3OaMeBR3uarmeBwe2sSU9zbjxgJOSSOdzvSb9ZwY69yLLy1gR
+         ExC44WToLN9IgMqQntslOm34Nx45I38DGSEp6I8o8FqvQ6+Mph85A7vXb/QFVSnTj9zv
+         reTNaZ1+2j5my4IPpd2i3Z5OUj6ed6ccvifmA4HywnXMJuqODZ5I6QF9aQ57GNKz3YTq
+         8B0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746704254; x=1747309054;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cg8NwDyNFyKWIP/c9rQXDiR1cnoY6h6ESpb3NTgHnZE=;
-        b=B4vvnQTyt+L34pKD8tCZbjZB85ElGhD9wI0kWlS/ocvh8eTMBZXh5LaF/KxXPkkPCC
-         KqGEYdIxA6P3PwNAxKurbx+vM1DLgorL/JrVi0j4LZ7FtJXqKl94GBltM1ZE40Aw75v/
-         caH8JJQaItQ1tGwxKjdDKsj8EiKUAXNdgsHYRvMRWhbKa+l/yx8Bud7pwrwR2+Y1FkBg
-         dldvmQqPUZOLvvHRUM4jPle762ml99ix67ZVmA+Vy2ZXtzYDhVw6b+lqPQn6FCdW2lYc
-         ng1EvP2QTBOhKP+9JvLmPvY+ZLGxd6UWj+a3tcL7wdl2V3JwZnPvdfOz9TCU3NvC5p9M
-         Cu4A==
-X-Forwarded-Encrypted: i=1; AJvYcCW0jHn0aYeYzj2prjHbBiMvFCUF9abmchsT9dDqvFyZ/qwB53MMl+OwQ5RrW7X8nJtkhsBorvrHWQkv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOm7s1m0YWIs+c/UGYStQuN24SL+jrlHMv5BLeYPv5kfg5wmiu
-	lXKYr8Y/Fsvs7jIhTjA1281doJ13T+SCBO3NGcJT0ZbU/GgwrviSUTa08MCBqpY=
-X-Gm-Gg: ASbGncvUOzNgGyz3sLbBcph4EayEOXxX91pmejv7a44KUBQ/lok6XRngbAyHTsMMu1K
-	WLFUPw8haLtVot3d8LijZNV9HfIrQkzzn8JPyOdk4p5O9Cdc3HrMkE9deM83aVqNX9FunH+ouwH
-	EvsRG5/PGk5rY5Kwf644WqvoeY8s58oCnmgr84JZ4S3pprbOcFottCfxouDON7Cpy7484ea5ICT
-	Uq+9mq808qqhlZoA3Euyn9HQ3wam7sTIV9kjNRYQGYOEIg0oxASNaLPE6g5MFyMnj73IoSmdbWe
-	zzC21Sb4WUU0S0JJec6ASOlEah+RhiVy1Fgb7GACnP1Y4cvKtXoFo0FxhgU+v+QAsWPbiI+v43W
-	b8Avp
-X-Google-Smtp-Source: AGHT+IGJREoSnG46P/t20ngqdhpSB9tC4Fc2vmNOvK3IyD1PhX98abqWUE9cRzQMmElSLNeoAKXG8Q==
-X-Received: by 2002:a05:6870:e24e:b0:2b7:f58d:6dcf with SMTP id 586e51a60fabf-2db5bee487fmr3754145fac.18.1746704253907;
-        Thu, 08 May 2025 04:37:33 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2db5d0e551asm1394614fac.42.2025.05.08.04.37.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 May 2025 04:37:33 -0700 (PDT)
-Message-ID: <63f0d0c0-94cc-4397-9c8a-b8d117514fd9@riscstar.com>
-Date: Thu, 8 May 2025 06:37:31 -0500
+        d=1e100.net; s=20230601; t=1746704298; x=1747309098;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RoX1p7NNio7No+XgFcOQe29Y1CHCAlfDMy6GWzlAkJg=;
+        b=EkqMPscgjMwDQoCzwRG8u8ColrY1BgHVJpZLKu0+GUXaiG+M1jao4W9glalb6+9kZ1
+         HtRR+Gf1DKJ6tyVHF04XHGwqShxq1PTTZcrtkh1CxoiCB79cM1V2Tiem5283+/jVP7de
+         gq+xNriQnQ+0lkEbba9i7QB1tizOMG9q2XWGngWZ9Bsbag3UnSJNht2U/6OTFdKV6lhN
+         ZUR5dMwHAaU7/fxR4ig+UI3xAYQikufpASyhmSvbMDxfjXu+N76OOR2joEaERU+cFCq2
+         jkmxyNWWoGunDtYJ3Eze64857c2rSmLiU16otxDyyq8rWWeixsAWnTE8Bofer6QuQAYh
+         IaAg==
+X-Forwarded-Encrypted: i=1; AJvYcCU3qeJSpPb9NtwOr+eiSCYvwfK+zHG2wzuhqMUIR2arLd96t8plgKTlpYcbLlaq3/yLKutiX4wG7G0TlRdf@vger.kernel.org, AJvYcCVMJRIhBO1jBZ/yn3bc2RuRwTcllCA/WVlJ+FJc16jsbZHkSQfTckbPBdliAxfgNNjtTARK74aa1/yQMW4=@vger.kernel.org, AJvYcCXnzJaMvF5vAnVSIilNngCbfJocmRY3dOjTg5958UXVlWMd9rl4JilExxfymMspN9ChVTaVdSNJDOhE@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMY/T+WBQdSCueO3cUZ4QA/W+vFQcSUKV9OfP9O45stvUvjS75
+	ncOT4bLb6bwJ37Gd1e8+2b/4bXKnDzCbrzZ3O60pCrfez/3t3TGPaBOnaQyaIJHQpCWOQCsMBZn
+	SHs4zzZaRNODAnWFRtazLXhIRwjNlNf3UzypFjQ==
+X-Gm-Gg: ASbGncv4q7Ab3eDM9NQuP47dWfwLqJRwpcNuV0fM0lh/LvPqVWJHSUcSX1/Ze/i5tev
+	+T5NHg4JM7euHUsz3U21aIgRrwj9Ne5up7/Lre5qE5F4yF2ex5wFMTo31v0r1osrZIMfh5NiCpV
+	fDFwFOuv7h8O9ce5GOoNEknII=
+X-Google-Smtp-Source: AGHT+IHL6kf3GwkuPcdXHItn/riFASOsqpAVss26lgHk4t3WWUdpstvnWi6KUy0ubDmJmH/ncB78AeZjoDiLHBvoyNI=
+X-Received: by 2002:a05:6512:b9e:b0:54c:a49:d3de with SMTP id
+ 2adb3069b0e04-54fbfbe931emr1043825e87.10.1746704287025; Thu, 08 May 2025
+ 04:38:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9] riscv: dts: spacemit: Add clock tree for SpacemiT K1
-To: Haylen Chu <heylenay@4d2.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
- Yixun Lan <dlan@gentoo.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- spacemit@lists.linux.dev, Inochi Amaoto <inochiama@outlook.com>,
- Chen Wang <unicornxdotw@foxmail.com>, Jisheng Zhang <jszhang@kernel.org>,
- Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
-References: <20250508111528.10508-2-heylenay@4d2.org>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250508111528.10508-2-heylenay@4d2.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250508-tegra210-emc-dt-v2-0-d33dc20a1123@gmail.com> <qhhv27thjnbz7rtcfja767bpxjvwa6iivc2bphar7t2wobuzb7@aspkmrgp2ihy>
+In-Reply-To: <qhhv27thjnbz7rtcfja767bpxjvwa6iivc2bphar7t2wobuzb7@aspkmrgp2ihy>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Thu, 8 May 2025 06:37:53 -0500
+X-Gm-Features: ATxdqUFbPXQRfWn-AGLFquqSFysXpZ6dFC-963DIl71_DojWIckzVUVv9i9dN2w
+Message-ID: <CALHNRZ-q7W9CfeD4ipmwFVqHm7oGfTgJpwNoVhfbSXFPDxF91Q@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] memory: tegra210-emc: Support Device Tree EMC Tables
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5/8/25 6:15 AM, Haylen Chu wrote:
-> Describe the PLL and system controllers that're capable of generating
-> clock signals in the devicetree.
-> 
-> Signed-off-by: Haylen Chu <heylenay@4d2.org>
-> Reviewed-by: Alex Elder <elder@riscstar.com>
-> Reviewed-by: Yixun Lan <dlan@gentoo.org>
-> ---
-> 
-> This originates the 5th patch from previous "Add clock controller
-> support for SpacemiT K1" series[1] with node names of system
-> controllers and PLL reworked[2].
-> 
-> The patch is based on linux-spacemit/k1/clk-for-6.16. Yixun, please drop
-> the previous version and pick this patch instead. Thanks for your work!
-> 
-> [1]: https://lore.kernel.org/spacemit/20250416135406.16284-1-heylenay@4d2.org/
-> [2]: https://lore.kernel.org/spacemit/aBxF81yqPgHP5oA_@ketchup/
+On Thu, May 8, 2025 at 2:41=E2=80=AFAM Thierry Reding <thierry.reding@gmail=
+.com> wrote:
+>
+> On Thu, May 08, 2025 at 01:07:37AM -0500, Aaron Kling via B4 Relay wrote:
+> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > ---
+> > Changes in v2:
+> > - Add patch to describe the emc table bindings
+> > - Add patch to allow a fallback compatible on the tegra210 emc device t=
+o
+> >   match firmware expectations
+> > - Add a patch to include the baseline emc tables on p2180
+> > - Link to v1: https://lore.kernel.org/r/20250430-tegra210-emc-dt-v1-1-9=
+9896fa69341@gmail.com
+> >
+> > ---
+> > Aaron Kling (4):
+> >       dt-bindings: memory-controllers: Describe Tegra210 EMC Tables
+> >       dt-bindings: memory-controllers: tegra210: Allow fallback compati=
+ble
+> >       arm64: tegra: Add EMC timings to P2180
+> >       memory: tegra210-emc: Support Device Tree EMC Tables
+> >
+> >  .../nvidia,tegra21-emc-table.yaml                  |  1692 +
+> >  .../memory-controllers/nvidia,tegra210-emc.yaml    |    44 +-
+> >  arch/arm64/boot/dts/nvidia/tegra210-p2180-emc.dtsi | 49749 +++++++++++=
+++++++++
+> >  arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi     |     1 +
+> >  drivers/memory/tegra/tegra210-emc-core.c           |   246 +-
+> >  5 files changed, 51721 insertions(+), 11 deletions(-)
+>
+> We've had discussions about this in the past, and I don't think this is
+> going to go anywhere. Device tree maintainers have repeatedly said that
+> they won't accept this kind of binding, which is, admittedly, a bit non-
+> sensical. 50,000 lines of DT for EMC tables is just crazy.
+>
+> The existing binary table bindings were created to avoid the need for
+> this. I don't know how easy this is to achieve for all bootloaders, but
+> the expectation was that these tables should be passed in their native
+> format.
 
-What you changed was that previously you used "system-control" for
-syscon_apbc, pll, and syscon_apmu.  In this version, you name them
-all "system-controller", consistently.  Meanwhile syscon_mpmu had
-"system-controller" already.
+Mmm, this would definitely be an issue with my long term end goal of
+supporting the SHIELD t210 devices on mainline. The bootloader on
+those devices cannot be replaced due to secure boot and that variant
+of the bootloader only supports this dt table for emc. And support
+without emc reclocking would be rather unusable as a consumer media
+device. Unless the devices could get a bootloader update switching to
+the reserved memory tables before they go eol, but I don't see that as
+likely.
 
-For example:
-     syscon_apbc: system-control@d4015000 {
-is now:
-     syscon_apbc: system-controller@d4015000 {
+So I guess the question goes to Krzysztof. I didn't have the bindings
+or a copy of the tables in v1 of this series, mostly due to a
+misunderstanding, and was fairly asked to add them. That's this
+revision. Would you consider accepting this after any fixes? Or is
+this concept entirely dead in the water?
 
-This looks good to me.  Thanks for updating it.
-
-Reviewed-by: Alex Elder <elder@riscstar.com>
-
->   arch/riscv/boot/dts/spacemit/k1.dtsi | 75 ++++++++++++++++++++++++++++
->   1 file changed, 75 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> index c670ebf8fa12..85c9730dd082 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> @@ -3,6 +3,8 @@
->    * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
->    */
->   
-> +#include <dt-bindings/clock/spacemit,k1-syscon.h>
-> +
->   /dts-v1/;
->   / {
->   	#address-cells = <2>;
-> @@ -306,6 +308,36 @@ cluster1_l2_cache: l2-cache1 {
->   		};
->   	};
->   
-> +	clocks {
-> +		vctcxo_1m: clock-1m {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <1000000>;
-> +			clock-output-names = "vctcxo_1m";
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		vctcxo_24m: clock-24m {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <24000000>;
-> +			clock-output-names = "vctcxo_24m";
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		vctcxo_3m: clock-3m {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <3000000>;
-> +			clock-output-names = "vctcxo_3m";
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		osc_32k: clock-32k {
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <32000>;
-> +			clock-output-names = "osc_32k";
-> +			#clock-cells = <0>;
-> +		};
-> +	};
-> +
->   	soc {
->   		compatible = "simple-bus";
->   		interrupt-parent = <&plic>;
-> @@ -314,6 +346,17 @@ soc {
->   		dma-noncoherent;
->   		ranges;
->   
-> +		syscon_apbc: system-controller@d4015000 {
-> +			compatible = "spacemit,k1-syscon-apbc";
-> +			reg = <0x0 0xd4015000 0x0 0x1000>;
-> +			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-> +				 <&vctcxo_24m>;
-> +			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-> +				      "vctcxo_24m";
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
->   		uart0: serial@d4017000 {
->   			compatible = "spacemit,k1-uart", "intel,xscale-uart";
->   			reg = <0x0 0xd4017000 0x0 0x100>;
-> @@ -409,6 +452,38 @@ pinctrl: pinctrl@d401e000 {
->   			reg = <0x0 0xd401e000 0x0 0x400>;
->   		};
->   
-> +		syscon_mpmu: system-controller@d4050000 {
-> +			compatible = "spacemit,k1-syscon-mpmu";
-> +			reg = <0x0 0xd4050000 0x0 0x209c>;
-> +			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-> +				 <&vctcxo_24m>;
-> +			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-> +				      "vctcxo_24m";
-> +			#clock-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
-> +		pll: clock-controller@d4090000 {
-> +			compatible = "spacemit,k1-pll";
-> +			reg = <0x0 0xd4090000 0x0 0x1000>;
-> +			clocks = <&vctcxo_24m>;
-> +			spacemit,mpmu = <&syscon_mpmu>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		syscon_apmu: system-controller@d4282800 {
-> +			compatible = "spacemit,k1-syscon-apmu";
-> +			reg = <0x0 0xd4282800 0x0 0x400>;
-> +			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-> +				 <&vctcxo_24m>;
-> +			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-> +				      "vctcxo_24m";
-> +			#clock-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
->   		plic: interrupt-controller@e0000000 {
->   			compatible = "spacemit,k1-plic", "sifive,plic-1.0.0";
->   			reg = <0x0 0xe0000000 0x0 0x4000000>;
-
+Sincerely,
+Aaron
 
