@@ -1,188 +1,109 @@
-Return-Path: <devicetree+bounces-175041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B16D5AAFA26
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:37:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02052AAFA2D
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:39:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01E0E1896409
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:37:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39EAD16E429
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:39:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABEDA226520;
-	Thu,  8 May 2025 12:37:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB26226CE4;
+	Thu,  8 May 2025 12:38:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IRJI7sXU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wDMkLU/i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7957D225414;
-	Thu,  8 May 2025 12:37:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 683F514A4C7
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 12:38:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746707824; cv=none; b=FrYGuz93a4lDdaA/Rx1fth4Vak5dUZZCGxGLxXRqsv8uJ+zOYd0WJ0gBVwgX6aLeW15UT4zEitsIpR5hFywog0icDg3g1NVP6tViW5GcL/TxvCv9giSuRL0qLchn4qgh/MxNlvqOec7El1Uvu7iBre0N8I14maTOBdrGD1tfY6w=
+	t=1746707935; cv=none; b=B7dYx+bt1kv3k88lPHqPwGwaytgbzR1O48HUt1Tlg+/VISCJcNNf0KNM4/P4NP0XyGu4Uy9Nm2HbizrN/RFEO4yxf43gMFkt8U2r+s4cuGDdrpBQO4R8MdvEYQG/QY1rhinzbt0tjNd7kMHRs4bIw8S2Ndm/AZZ6i8LJCCBnkSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746707824; c=relaxed/simple;
-	bh=uf04WvtBTAcu8i+qtx/QIct6W3coW9VBYJe7IqLhV2o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PgCg9W4inFsICWYxTWCecW4IEj4qlRoqrb1uu4wQ0Z9OtpQ82mPAsnj4twX/fbA+a8AgUdL9dkPGtuN+E51eLwUyy5lTvR1tbhh+AfULpjwEGhuHapqOhJcvK21v2dBJa8RVM7ze+Pq6g2PpXyhMlHw6vEdOIj2xbqS6HugYxIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IRJI7sXU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 842DEC4CEE7;
-	Thu,  8 May 2025 12:36:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746707823;
-	bh=uf04WvtBTAcu8i+qtx/QIct6W3coW9VBYJe7IqLhV2o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IRJI7sXUUKmI6ml+03g/Xm8u/BTPBl5SxN3Yed3TQsdsIVV4mk1vFrjhcLjyD+9Xo
-	 t9B1sU06ki4/bdSxAQ7TG8sMz+VpvGxWupwpefs67sgj3tqO4QprZrwTwyBn3mPNAu
-	 /hcQrsKbGckuiIGXLvklOKpuKd/eEdd1m9NRMJRC84ZnQpmgoY8D86enFLmkb1jqpn
-	 mBqueOzpGpOwz5AE6P6YR2qZb8ZKzQptDXFWAthNcBR0P5arHHvtkhuc6vFa02dyH3
-	 QqdzXL6y4tR/KEOVRkA9NQbNs2UrpHl/Ukltr+tScVZdOEbDdLfnc/d1mm8aZun+38
-	 KrFX0c9m2rSsg==
-Message-ID: <2ce8b9e5-562e-454f-9e2b-f2796d309063@kernel.org>
-Date: Thu, 8 May 2025 14:36:57 +0200
+	s=arc-20240116; t=1746707935; c=relaxed/simple;
+	bh=ym/GGePTtcR6pPbHuXLLIC6Kw58vqtqImYgRJwNLr5w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MMKOmU/0jbRokF4Z5XZ3DhnJ9i1p2Gau+DcVeJQy8Hxs3gQeVWDUFd0M0Wcv4s/nvtrrt0WBs1UzP+XwH9k+omsa1Slk2WttfNMyXVyz+8UI3tDieYPXxyRf1aC7v2D1FqUqtVCDTVqdRDtBl4niIPiokOYleaFGrnf/DTUVFB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wDMkLU/i; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-317f68d0dffso10629461fa.2
+        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 05:38:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746707930; x=1747312730; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ym/GGePTtcR6pPbHuXLLIC6Kw58vqtqImYgRJwNLr5w=;
+        b=wDMkLU/iBTSt7ygMLhPJEzEH/GXw1jl/+0nNoklo5RhDLdpBZSGSCrr8ZMFgklmJa+
+         JhY67Wnia9PDKosZAf5iu4OQMMOhdW4SjOwZuwI2EDpogZEMCHQBtqkPl4oWenmw/yhW
+         Dwmt7Iw13Bz8HzRgb/SbHG+mnrNxDDX5z6Nq0O3v6maemtAnnG2hCgsdWn1JKAWmVed8
+         KeQ4/thfr0PFE7SFP+ovnUN8TsWWyOYHHWaUiq4uzICkRHwephI/hwOK9yoJB2/epGyt
+         8DJmSZZ3r1WuGwhmBMqWVp+cplxie10DV1UbR0GohfmIy+jjFZ8toG/h3enhAvP5eqBg
+         EU4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746707930; x=1747312730;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ym/GGePTtcR6pPbHuXLLIC6Kw58vqtqImYgRJwNLr5w=;
+        b=XYhzi9ssvsPAtgwzEAa5dLXh6WyKRUIdI8tE/y4HUzgyyKfS7xXfiYxyplySTy1jZJ
+         g6V8xmhs7sDuPGCn/RKcPdo14tqJ7hNYaTYAuszsqvw33i4LRnNRN35beDSNa0LZhCeP
+         S0XJg/iSmrgJbwBb+I9DxPLwheDYwla7ols2ypXJtIiqItZTXp7imvEX2TJH4yjtHZeL
+         NO4R2WCmBlR5ObRZb45jIEbLuGiXa2FEQyDRp1BSX9KYr8mhfSFkCoyFn1F/MqzN+sf0
+         WHvo3SHBHO0JGzvh1c8CtejhdlkjSCFIE7t5JVy9tcbEllWCP9zWv+F4+R0Ft9W+3Znd
+         34VA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtrGeZr0V3JPpXY2strCBSNF65/Iu2L9hCv/iCtC/PPczeSvxSLzVoCSoNCpKUNf9uPxmx+fO8InNd@vger.kernel.org
+X-Gm-Message-State: AOJu0YycVG/PoLE6R6MiKal4ymICA6ZJeLdbN49niqK/I/sUzsf+Kv/d
+	Ibxumd3Qaukheqhk+t0FJgejZXFhzqjJsepnNNn1pr8EB9AB6k+OT6vYX1e47xEGNXQG2R+X8By
+	ViENe4c9WU1A+BEjam58b/0YoiLl1IALRrj1qTA==
+X-Gm-Gg: ASbGnculztRbhyWi9IsnfQbQ84ljuWsK4CBNwWy2sItfRznn5WMljsqjwhJy+Q0I91j
+	j2vU9EnMqDcm/rdcVZGIZjZQrvBaEDxpnTvqoNvdBLFGp5NwLDNGkOCmeRhAnqSdqxsc66GiWKv
+	uR41BxYt+VeF00JLj2WVyCrg==
+X-Google-Smtp-Source: AGHT+IGJqMyrmkCUIQDg8PE9y89S4un8Sptn+ne9CkBnqLfvsuKGyDCGNoAKWRWwcnckQHjTgl6OjpG8jsiCqQsITZg=
+X-Received: by 2002:a2e:b893:0:b0:30b:d543:5a71 with SMTP id
+ 38308e7fff4ca-326ad17460dmr28868011fa.1.1746707930459; Thu, 08 May 2025
+ 05:38:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/6] dt-bindings: soc: spacemit: define spacemit,k1-ccu
- resets
-To: Alex Elder <elder@riscstar.com>, Yixun Lan <dlan@gentoo.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, heylenay@4d2.org, inochiama@outlook.com,
- guodong@riscstar.com, devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250506210638.2800228-1-elder@riscstar.com>
- <20250506210638.2800228-2-elder@riscstar.com>
- <20250507223554-GYA505240@gentoo>
- <22b7b5fc-6f5a-4ce8-ae12-a7423925c113@kernel.org>
- <1521c828-31f3-4e45-a651-750ce2e37364@riscstar.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <1521c828-31f3-4e45-a651-750ce2e37364@riscstar.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250506092718.106088-1-clamor95@gmail.com> <20250506092718.106088-2-clamor95@gmail.com>
+In-Reply-To: <20250506092718.106088-2-clamor95@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 8 May 2025 14:38:39 +0200
+X-Gm-Features: ATxdqUHd6nS8kMJuc0f8MXMDIRZHhCR46AYmqFnKzqCQqTYWz7YZni31Y68Ocio
+Message-ID: <CACRpkdZCv2RV1ioXsuJnLHsiErbrfv5jjzvPWMire94+OznY2g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: panel: Document Renesas
+ R61307 based DSI panel
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 08/05/2025 14:17, Alex Elder wrote:
-> On 5/8/25 7:02 AM, Krzysztof Kozlowski wrote:
->> On 08/05/2025 00:35, Yixun Lan wrote:
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            enum:
->>>> +              - spacemit,k1-syscon-apbc
->>>> +              - spacemit,k1-syscon-apmu
->>>> +              - spacemit,k1-syscon-mpmu
->>>> +    then:
->>>> +      required:
->>>> +        - clocks
->>>> +        - clock-names
->>>> +        - "#clock-cells"
->>>>   
->>>>   additionalProperties: false
->>>>   
->>>> diff --git a/include/dt-bindings/clock/spacemit,k1-syscon.h b/include/dt-bindings/clock/spacemit,k1-syscon.h
->>>> index 35968ae982466..f5965dda3b905 100644
->>>> --- a/include/dt-bindings/clock/spacemit,k1-syscon.h
->>>> +++ b/include/dt-bindings/clock/spacemit,k1-syscon.h
->>> would it be better to move all reset definition to its dedicated dir?
->>> which like: include/dt-bindings/reset/spacemit,k1-syscon.h?
->>
->> Please kindly trim the replies from unnecessary context. It makes it
->> much easier to find new content.
->>
->>
->> I don't get why such comments are appearing so late - at v6. There was
->> nothing from you about this in v1, v2 and v3, which finally got reviewed.
-> 
-> Stephen Boyd said "please rework this to use the auxiliary driver
-> framework" on version 5 of the series; it was otherwise "done" at
-> that point.
+On Tue, May 6, 2025 at 11:27=E2=80=AFAM Svyatoslav Ryhel <clamor95@gmail.co=
+m> wrote:
 
-Stephen is a subsystem maintainer so his comments are fine or acceptable
-to be late.
+> R61307 is liquid crystal driver for high-definition amorphous silicon
+> (a-Si) panels and is ideal for tablets and smartphones.
+>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 
-> 
-> Doing this meant there was a much clearer separation of the clock
-> definitions from the reset definitions.  And Yixun's suggestion
-> came from viewing things in that context.
+I see you have gone the extra mile and deduced the underlying
+display controller, excellent work.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Weren't they applicable to v1 as well? How bindings could change with
-change to auxiliary bus/driver?
-
-> 
-> Given the rework, I considered sending this as v1 of a new series
-> but did not.
-
-Sorry but no. Bindings headers at v1 are exactly the same or almost the
-same as now:
-
-https://lore.kernel.org/lkml/20250321151831.623575-2-elder@riscstar.com/
-
-so this idea could have been given at v1, v2, v3, v4, v5 (that would be
-late).... but at some point this is just unnecessary late nitpicking.
-
-So what then? Imagine that you prepare v7 and some other person gives
-you different comment about bindings or bindings headers. Then you
-prepare v8. And then someone comes with one more, different comment,
-because that person did not bother to review between v1-v8 (that
-imaginary future v8), so you need to prepare v9.
-
-I don't think this process is correct.
-
-Best regards,
-Krzysztof
+Yours,
+Linus Walleij
 
