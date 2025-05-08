@@ -1,137 +1,92 @@
-Return-Path: <devicetree+bounces-174921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFEC1AAF49E
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:23:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F76DAAF4A4
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:26:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11AA77B3A10
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:21:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92FBF1BC5113
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29B21220F42;
-	Thu,  8 May 2025 07:22:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A0E21E0AD;
+	Thu,  8 May 2025 07:26:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cytNPQ0V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9889A35979
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 07:22:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5DB21D3C0;
+	Thu,  8 May 2025 07:26:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746688961; cv=none; b=AlvKRsbYmNsDphiC9y9Cejml9Sb4xGmwOOnmu/9PsBIzJRJtQN37352S0Wihwo9G76QWRCHL+ckz9MDcVQl8jpEcnlmsK8t77pT5qRNbxiA4b0slfdCS/h1dIW4JaTDUjwE2XyBl+BcG0qFhy9DUA3SRHkw6hovtog0iNAnA7a4=
+	t=1746689187; cv=none; b=svd2G3XxA5Hb6/WUBN4uL3g99nPEFdCPGScBDcJ333C8RAIMR4jUH4VvIbgmUzc8JeJnvDbIF1b8fbEEtVFvaF4WVQ32Pje0Le5GFDZ6czpBpmPQMu2C/Lrp1Ey47U3cuai31qRkE10bheGGmhWUcKRDjldr51v3ak3eB2ds9JI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746688961; c=relaxed/simple;
-	bh=QGS1M/YT3mDdy/1Xp33jgSPbNLnApMgn9s4eyyzTfes=;
+	s=arc-20240116; t=1746689187; c=relaxed/simple;
+	bh=lDVhoE3V2KBUKc6XkA3MZUxna2iMhYxYrxfM8q0Hm0w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t/tGaR0WeQJa/2usq0mKgkPK5oOZP2AlHXLkKKS6PhL/vYGStj524BiJU/0TAb8tt0jV13/vo6vXB8KraEc2kknHFHm8ui50BH3zK8PD66rNqgOzNZMiyqO7wIlII2M6Lq5wVZzYmTjtNCIsHI336oi9x/9rS6iMdcKRhEAPENo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uCvaK-00056O-C2; Thu, 08 May 2025 09:22:24 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uCvaK-001ghe-00;
-	Thu, 08 May 2025 09:22:24 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uCvaJ-00ALKC-2r;
-	Thu, 08 May 2025 09:22:23 +0200
-Date: Thu, 8 May 2025 09:22:23 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@pengutronix.de,
-	Alvin =?iso-8859-15?Q?=A6ipraga?= <alsi@bang-olufsen.dk>
-Subject: Re: [PATCH v4 2/3] dt-bindings: clock: add TI CDCE6214 binding
-Message-ID: <aBxbr8CyKmdZQobS@pengutronix.de>
-References: <20250430-clk-cdce6214-v4-0-9f15e7126ac6@pengutronix.de>
- <20250430-clk-cdce6214-v4-2-9f15e7126ac6@pengutronix.de>
- <3ba53493700561923c4ea9ab53a1a272@kernel.org>
- <aBsUObKHmJkBFN04@pengutronix.de>
- <1f072e2e02bb6a66d10c50177e5c69a6@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=gD93cyBEFtw3WlCJKQOz/ASzy95c3KtO0tUNit5N4zxxhhvIwIBVPtDBjyryovP3QNJh++LhW8WYC7vX1onNI6wsi8biMBL9ut8MX3RV6Kz/CcCY9vfioVlin97XI1x+lNi2DzxdyJYsoW+gFoZ/M6gfygHF683KyjTkD9jGvqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cytNPQ0V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26533C4CEEB;
+	Thu,  8 May 2025 07:26:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746689186;
+	bh=lDVhoE3V2KBUKc6XkA3MZUxna2iMhYxYrxfM8q0Hm0w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cytNPQ0VyKQFqKkF0zNpjCyBrU/cPfvXhhlh6V3+EYdpgk0AGJKMDFRooHr6Gys6F
+	 4y5cUTxbdIvf0AV+VPyHFVca+7Azp8k43cJqOUZE7J750oLYwgr2TngpFFg6N5MdBq
+	 FIrkmB55/C3HDIbszl+qXOrL2szdf+LcGtLIqijM/5IBaJvK1QsFfzOAqNZvq9juIQ
+	 l+8tPFmzylgsQHLW0i74lBD05UWKCpt2IGHEAaU4Y1k2ncDh9q3yjYQO+sp2zYBpmu
+	 s5TMJfWF/AlAKnnG2c06/Sps4kHZ2/Dc63SJwVNUd0oVa+YK5Lua8Bi1q4+BwQ5og1
+	 dfajrgZDfaBjg==
+Date: Thu, 8 May 2025 09:26:24 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, ryan@testtoast.com, macromorgan@hotmail.com, 
+	p.zabel@pengutronix.de, tzimmermann@suse.de, maarten.lankhorst@linux.intel.com, 
+	simona@ffwll.ch, airlied@gmail.com, mripard@kernel.org, samuel@sholland.org, 
+	jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org, krzk+dt@kernel.org, 
+	robh@kernel.org
+Subject: Re: [PATCH V9 00/24] drm: sun4i: add Display Engine 3.3 (DE33)
+ support
+Message-ID: <20250508-foxhound-of-interesting-drizzle-34adae@kuoka>
+References: <20250507201943.330111-1-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1f072e2e02bb6a66d10c50177e5c69a6@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20250507201943.330111-1-macroalpha82@gmail.com>
 
-On Wed, May 07, 2025 at 01:11:31PM -0700, Stephen Boyd wrote:
-> Quoting Sascha Hauer (2025-05-07 01:05:13)
-> > On Mon, May 05, 2025 at 10:50:49AM -0700, Stephen Boyd wrote:
-> > > Quoting Sascha Hauer (2025-04-30 02:01:35)
-> > > > diff --git a/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
-> > > > new file mode 100644
-> > > > index 0000000000000..d4a3a3df9ceb9
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
-> > > > @@ -0,0 +1,155 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +
-> > > > +patternProperties:
-> > > > +  '^clk@[0-1]$':
-> > > > +    type: object
-> > > > +    description:
-> > > > +      optional child node that can be used to specify input pin parameters. The reg
-> > > > +      properties match the CDCE6214_CLK_* defines.
-> > > 
-> > > Presumably the EEPROM is typically used to configure all this stuff? Do
-> > > you actually need to program this from the kernel, or are you
-> > > implementing all this for development purposes?
-> > 
-> > The EEPROM could be used to configure this. I don't know if the final
-> > product will have the EEPROM programmed, but even if it is, should we
-> > make this mandatory?
+On Wed, May 07, 2025 at 03:19:19PM GMT, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> No I'm not asking about making the property/node required. I'm wondering
-> if you're actually using these bindings. If they're not used then I
-> worry we're putting a bunch of configuration in here that we'll never
-> use.
-
-At the moment we are using the device tree binding. I asked our customer if
-they plan to use it in production as well.
-
+> I've spoken with Ryan and he agreed to let me take over this series to
+> get the display engine working on the Allwinner H616. I've taken his
+> previous patch series for Display Engine 3.3 and combined it with the
+> LCD controller patch series. I've also fixed a few additional bugs and
+> made some changes to the device tree bindings.
 > 
-> > 
-> > Speaking of the EEPROM I think we should make sure that the pin
-> > configuration in the device tree is optional so that we do not overwrite
-> > settings from the EEPROM if it contains valid values.
-> 
-> Ok. Aren't the pinctrl settings already optional?
+> Changes since V8:
+>  - Combined the DE33 [1] series and the LCD [2] series to better track
+>    all patches necessary to output to an LCD display for the Allwinner
+>    H700.
 
-Yes, they are, but when the pin setup is missing I haven't explicitly taken
-care to not overwrite any settings made by the EEPROM. Likely the driver
-just does it right. Without pin setup the registers are just not
-touched.
+You have here three or four different subsystems. This does not make it
+easier, but it makes it a huge patchbomb with unspecific or complex
+base.
 
-Sascha
+Such combination makes no sense, because anyway it will have to be split
+per subsystem. You just know made it difficult for maintainers to review
+and apply, because they cannot apply entire set.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best regards,
+Krzysztof
+
 
