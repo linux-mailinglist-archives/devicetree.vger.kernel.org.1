@@ -1,181 +1,163 @@
-Return-Path: <devicetree+bounces-175069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D34FFAAFB48
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:25:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3EB9AAFB4A
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:27:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B68993BE9BB
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:25:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 075161C07AEC
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:27:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E338229B2C;
-	Thu,  8 May 2025 13:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47C6722B8C2;
+	Thu,  8 May 2025 13:27:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BV0fRHlB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C37223DC4
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 13:25:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1938D22B590;
+	Thu,  8 May 2025 13:27:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746710725; cv=none; b=mCrXCN6ww2KXrVtmip2B66AejNcxNisw5rJsjVbT92rdmSCKnYKzU6otGtj6CcnzFICSgbnd8veDT4BlpdZesuHOhvaX5StapBL5kxrdF2xL0XcbccaJ0BpnuDSM+Pko4xK69uzMhGCTlRShtMJJdWNtFVBW04GzTBZQRCIMSfQ=
+	t=1746710826; cv=none; b=TgWXDlSxCQxZpVWzCX8NnO52CfQheaTfMZ1XPtRCs01GdJ7oqcabEKZpQUaUeElFqGW5qQMPHDFjLAKgPMewbkPjYgXtnKvaQt5Lin5bfbBKHUuJI07/wSIsnTSlZzFVqAqVb1b7k2EJNL16/BacfUPDay0GG0EfcTcMtfLYlW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746710725; c=relaxed/simple;
-	bh=HkZDeZg7fHxjXfu9dnFJ/sfo06r5wVZujQg/IB6PQXk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VnZk59RXSC+lwartmGunLV98Nnvnlzd9nTri9kywfBEnzgebkxtTxohSe4wGqfyH3VAy1FYifl8IwjsyTsKQuU1CTs2iHfM3+o0Iuw9OV9jVmWJC2YLHy1A89m0HqSJ9pwL7M5rvXW44Nrgt/ASBJ51yr/a6qSJkNuovnet2Yws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 39F8D106F;
-	Thu,  8 May 2025 06:25:11 -0700 (PDT)
-Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C7E1C3F58B;
-	Thu,  8 May 2025 06:25:20 -0700 (PDT)
-Message-ID: <9183535a-2866-4fa5-9ed4-96695f0437ee@arm.com>
-Date: Thu, 8 May 2025 14:25:19 +0100
+	s=arc-20240116; t=1746710826; c=relaxed/simple;
+	bh=dPpL/RWC7aL+EKekjxh/7eMQ479I+XUcW0IXz2XLt8Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bIvIbKOtZlCPyd/fbMcBSPXCbDAzWOK+1oyY6MvRPvT3WhFoO/ddLFxC0YYOITjFaXmdiBTh85l7+nwZFqB/LX2LEyhaPo2WtuUVO2BgkDTYwA/eJNCtfPtbFiqS5cvYUn+um2ZK3iMxFN3iVtZajogZoo02FapG5tkrjHFKKso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BV0fRHlB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 549C5C4CEE7;
+	Thu,  8 May 2025 13:27:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746710825;
+	bh=dPpL/RWC7aL+EKekjxh/7eMQ479I+XUcW0IXz2XLt8Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BV0fRHlBCWobhfz8aMfe76eeZjjYo7R0yyCt4IKD8iUc7zvi3nuL+J0y7a5GVmNpN
+	 GHHIrGC4O/f/55i/H6Zhge8FiwqRMlz31Vt7ufJbEILC8XKa4MseEuDxDac6/d/HWf
+	 Pk/bwzw6aecim4iR1GVsXRJ6BvBjlHGa5GNLTHSNA7+V1CoiyG5ArUI8VSGSUlNJHZ
+	 CAFjzPh1GX45eJCZYHg8NZPKHvln9eHI8SvQTDYoHvJ8NOJ+K+l8lWSlVq4cGvaUSa
+	 4AS+OmW+HtQchYfdgS2uw3395A+D8KuUieSSrw7geSTsMQWYMbx5prxQwQ1ADGlHfQ
+	 pwc1IZL1ktqwA==
+Date: Thu, 8 May 2025 14:26:59 +0100
+From: Lee Jones <lee@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Nam Tran <trannamatk@gmail.com>, andy@kernel.org, geert@linux-m68k.org,
+	pavel@ucw.cz, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, christophe.jaillet@wanadoo.fr, corbet@lwn.net,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix
+ LED driver
+Message-ID: <20250508132659.GL3865826@google.com>
+References: <CAHp75VcVmTwS-zw=o5=m1-x0XC67BKBVWae2mMKZQH=qLCxZwg@mail.gmail.com>
+ <20250507164219.10083-1-trannamatk@gmail.com>
+ <CAHp75VcNuXouL25ZRiym97AjR9249=ENMPFDQ7imZ_ZoeKc3Ng@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: dts: fvp: Add CPU idle states for Rev C model
-To: Sudeep Holla <sudeep.holla@arm.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>, Leo Yan <leo.yan@arm.com>
-References: <20250508103225.354925-1-sudeep.holla@arm.com>
-Content-Language: en-US
-From: Ben Horgan <ben.horgan@arm.com>
-In-Reply-To: <20250508103225.354925-1-sudeep.holla@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VcNuXouL25ZRiym97AjR9249=ENMPFDQ7imZ_ZoeKc3Ng@mail.gmail.com>
 
-Hi,
+On Thu, 08 May 2025, Andy Shevchenko wrote:
 
-On 5/8/25 11:32, Sudeep Holla wrote:
-> Add CPU idle state definitions to the FVP Rev C device tree to enable
-> support for CPU lower power modes. This allows the system to properly
-> enter low power states during idle. It is disabled by default as it is
-> know to impact performance on the models.
+> First of all, I just noticed that you excluded Lee from the
+> distribution list. Don't do that as he is a stakeholder here as well
+> since it has not been decided yet where to go with your stuff.
 > 
-> Note that the power_state parameter(arm,psci-suspend-param) doesn't use
-> the Extended StateID format for compatibility reasons on FVP.
+> On Wed, May 7, 2025 at 7:42 PM Nam Tran <trannamatk@gmail.com> wrote:
+> > On Tue, 29 Apr 2025 Andy Shevchenko wrote:
+> > > On Tue, Apr 29, 2025 at 8:02 PM Nam Tran <trannamatk@gmail.com> wrote:
+> > > > On Mon, 28 Apr 2025 Pavel Machek wrote:
+> > > > > > On Mon, 28 Apr 2025 Geert Uytterhoeven wrote:
+> > > > >
+> > > > > > > > > > - Move driver to drivers/auxdisplay/ instead of drivers/leds/.
+> > > > > > > > > > - Rename files from leds-lp5812.c/.h to lp5812.c/.h.
+> > > > > > > > > > - Move ti,lp5812.yaml binding to auxdisplay/ directory,
+> > > > > > > > > >   and update the title and $id to match new path.
+> > > > > > > > > > - No functional changes to the binding itself (keep Reviewed-by).
+> > > > > > > > > > - Update commit messages and patch titles to reflect the move.
+> > > > > > > > > > - Link to v7: https://lore.kernel.org/linux-leds/20250422190121.46839-1-trannamatk@gmail.com/
+> > > > > > > > >
+> > > > > > > > > Out of sudden without discussing with auxdisplay maintainers/reviewers?
+> > > > > > > > > Thanks, no.
+> > > > > > > > > Please, put into the cover letter the meaningful summary of what's
+> > > > > > > > > going on and why this becomes an auxdisplay issue. Brief review of the
+> > > > > > > > > bindings sounds more likely like LEDS or PWM subsystems.
+> > > > > > > >
+> > > > > > > > It is 4x3 matrix. That means it is not suitable for LEDs. I don't
+> > > > > > > > believe it is suitable for PWM, either -- yes, it is 36 PWM outputs,
+> > > > > > > > but...
+> > > > > > >
+> > > > > > > Is it intended to be used as a 4x3 matrix, or is this just an internal
+> > > > > > > wiring detail, and should it be exposed as 12 individual LEDs instead?
+> > > > > >
+> > > > > > The 4×3 matrix is a real and fundamental aspect of the LP5812’s operation.
+> > > > > > It is not just an internal wiring detail.
+> > > > > > The device adopts a Time-Cross-Multiplexing (TCM) structure, where 4 output
+> > > > > > pins control 12 LED dots individually through scanning. Each pin includes
+> > > > > > both high-side and low-side drive circuits, meaning matrix multiplexing is
+> > > > > > required for proper operation — it cannot be treated as 12 completely
+> > > > > > independent LEDs.
+> > > > >
+> > > > > Scanning is really a detail.
+> > > > >
+> > > > > If this is used as rectangular 4x3 display, then it goes to auxdisplay.
+> > > > >
+> > > > > If this is used as a power LED, SD activity LED, capslock and numlock
+> > > > > ... placed randomly all around the device, then it goes LED subsystem.
+> > > >
+> > > > The LP5812 is used for LED status indication in devices like smart speakers,
+> > > > wearables, and routers, not as a structured rectangular display.
+> > > >
+> > > > Given that, it seems to match the LED subsystem better than auxdisplay, doesn't it?
+> > >
+> > > I have mixed feelings about all this. As per hardware organisation it
+> > > sounds more like a matrix (for example. keyboard), where all entities
+> > > are accessed on a scanline, but at the same time each of the entities
+> > > may have orthogonal functions to each other. Have you checked with DRM
+> > > for the sake of completeness?
+> > > Personally I lean more to the something special, which doesn't fit
+> > > existing subsystems. Auxdisplay subsystem more or less about special
+> > > alphanumeric displays (with the exception of some FB kinda devices,
+> > > that were even discussed to have drivers be removed). Also maybe FB
+> > > might have something suitable, but in any case it looks quite
+> > > non-standard...
+> >
+> > I understand your mixed feelings about where the LP5812 fits within
+> > the existing subsystems.
+> >
+> > While the LP5812 uses a matrix-based structure for controlling LEDs,
+> > it is not intended for displaying structured text or graphics. Instead,
+> > it controls up to 4 RGB LEDs for status indication, where each RGB LED
+> > consists of 3 individual color LEDs: red, green, and blue. Based on this,
 > 
-> Tested on the FVP Rev C model with PSCI support enabled firmware.
+> So, you probably should have started with this. As I read above that
+> this has to reside in drivers/leds/rgb for colour ones which seems to
+> me closest to your case. On top you might add an upper level
+> management to prevent users from using patterns whenever the LEDs are
+> requested individually. So, this driver should represent 4 RGB leds
+> and, possibly, the upper layer with those fancy stuff like breathing.
 > 
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> ---
->   arch/arm64/boot/dts/arm/fvp-base-revc.dts | 32 +++++++++++++++++++++++
->   1 file changed, 32 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> index 9e10d7a6b5a2..ff4e6f4d8797 100644
-> --- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> +++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> @@ -44,6 +44,30 @@ cpus {
->   		#address-cells = <2>;
->   		#size-cells = <0>;
->   
-> +		idle-states {
-> +			entry-method = "arm,psci";
-> +
-> +			CPU_SLEEP_0: cpu-sleep-0 {
-> +				compatible = "arm,idle-state";
-> +				local-timer-stop;
-> +				arm,psci-suspend-param = <0x0010000>;
-> +				entry-latency-us = <40>;
-> +				exit-latency-us = <100>;
-> +				min-residency-us = <150>;
-> +				status = "disabled";
-> +			};
-> +
-> +			CLUSTER_SLEEP_0: cluster-sleep-0 {
-> +				compatible = "arm,idle-state";
-> +				local-timer-stop;
-> +				arm,psci-suspend-param = <0x1010000>;
-> +				entry-latency-us = <500>;
-> +				exit-latency-us = <1000>;
-> +				min-residency-us = <2500>;
-> +				status = "disabled";
-> +			};
-> +		};
-Do we need a cpu-map so we know which cpus the cluster idle affects?
-> +
->   		cpu0: cpu@0 {
->   			device_type = "cpu";
->   			compatible = "arm,armv8";
-> @@ -56,6 +80,7 @@ cpu0: cpu@0 {
->   			d-cache-line-size = <64>;
->   			d-cache-sets = <256>;
->   			next-level-cache = <&C0_L2>;
-> +			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
->   		};
->   		cpu1: cpu@100 {
->   			device_type = "cpu";
-> @@ -69,6 +94,7 @@ cpu1: cpu@100 {
->   			d-cache-line-size = <64>;
->   			d-cache-sets = <256>;
->   			next-level-cache = <&C0_L2>;
-> +			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
->   		};
->   		cpu2: cpu@200 {
->   			device_type = "cpu";
-> @@ -82,6 +108,7 @@ cpu2: cpu@200 {
->   			d-cache-line-size = <64>;
->   			d-cache-sets = <256>;
->   			next-level-cache = <&C0_L2>;
-> +			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
->   		};
->   		cpu3: cpu@300 {
->   			device_type = "cpu";
-> @@ -95,6 +122,7 @@ cpu3: cpu@300 {
->   			d-cache-line-size = <64>;
->   			d-cache-sets = <256>;
->   			next-level-cache = <&C0_L2>;
-> +			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
->   		};
->   		cpu4: cpu@10000 {
->   			device_type = "cpu";
-> @@ -108,6 +136,7 @@ cpu4: cpu@10000 {
->   			d-cache-line-size = <64>;
->   			d-cache-sets = <256>;
->   			next-level-cache = <&C1_L2>;
-> +			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
->   		};
->   		cpu5: cpu@10100 {
->   			device_type = "cpu";
-> @@ -121,6 +150,7 @@ cpu5: cpu@10100 {
->   			d-cache-line-size = <64>;
->   			d-cache-sets = <256>;
->   			next-level-cache = <&C1_L2>;
-> +			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
->   		};
->   		cpu6: cpu@10200 {
->   			device_type = "cpu";
-> @@ -134,6 +164,7 @@ cpu6: cpu@10200 {
->   			d-cache-line-size = <64>;
->   			d-cache-sets = <256>;
->   			next-level-cache = <&C1_L2>;
-> +			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
->   		};
->   		cpu7: cpu@10300 {
->   			device_type = "cpu";
-> @@ -147,6 +178,7 @@ cpu7: cpu@10300 {
->   			d-cache-line-size = <64>;
->   			d-cache-sets = <256>;
->   			next-level-cache = <&C1_L2>;
-> +			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
->   		};
->   		C0_L2: l2-cache0 {
->   			compatible = "cache";
+> At least, based on the above it's my formal NAK from an auxdisplay perspective.
+
+This is fine.
+
+Just be aware, before you submit to LEDs again, that you need to use
+what is available in the LEDs subsystem to it's fullest, before
+hand-rolling all of your own APIs.  The first submission didn't use a
+single LED API.  This, as before, would be a big NACK also.
 
 -- 
-Thanks,
-
-Ben
-
+Lee Jones [李琼斯]
 
