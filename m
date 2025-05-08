@@ -1,87 +1,126 @@
-Return-Path: <devicetree+bounces-175092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B0BAAAFC96
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 16:14:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEEFBAAFCD0
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 16:24:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACD3A50213E
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:13:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43C901BA3111
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E5C2686A5;
-	Thu,  8 May 2025 14:11:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E896F268C42;
+	Thu,  8 May 2025 14:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WBk8BTtK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LUJXg9+E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 023AC26868E;
-	Thu,  8 May 2025 14:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43B4AD2C;
+	Thu,  8 May 2025 14:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746713502; cv=none; b=IFEU8DXBxS+LVMEzpaIc1Dg5PYmC+DvbO54UeMGvrvbq2eWEMxEISYS0yRXVy259fTuQP6MX3V6uS4GvwogbJ2aTztoyVP6okEEtO3UzKn6Do9P85V24Sjk58PERpagAcu2vzFsJZdx+7SbVTg5sR0Brt5IflvMwN+ZoJ9R3VFM=
+	t=1746714243; cv=none; b=r1ZZxh1kHs0lE6oTge8kfkAbSGM/Yy2u3NaThu4jNZS3X0XB0FqnGxHzy4kEYOp8PjPN+Ha+L3+lHt/CzRJl1ZX6Gpuux0Y61hS8Ux5Q7l5iDoVsnfRTC5Z+H4J6Nrfw9vZkjzF2VVRHu9348juBVzJ8fYGglMt/OE3ZZHLFTug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746713502; c=relaxed/simple;
-	bh=XGz7CN8xky35QV4MItpPqWXXsHZx6uiwV0aRCv3dPCU=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ELXz6wW4j1/CMMLHQO3+DMSKSEAjAcs2W7dFcxM30k7fLFrBF0qJa0eljA8nvqeLkyUiepKHD4bwX6skECTThvitnBCpvHbKgJFXT5MaSvscGkPXxZn6UQHmaWjALHVfcNQ+hvMD0VNM7QysEjRHAKqQqEL8WSNdQn1zWJsnBL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WBk8BTtK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BBD4C4CEE9;
-	Thu,  8 May 2025 14:11:37 +0000 (UTC)
+	s=arc-20240116; t=1746714243; c=relaxed/simple;
+	bh=aN9hg80J1XGlnHHGqshUqcMmNZK3k/Pr16f86dpLGK4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q61+dz5HDpnwdMQumVtUAvIhAG2utjs0r8ZRz4cmxqI4UOUYCdTeJsYEnwVlBfCSJys7aLF1qJnM5aGUzT9at2ykDwFaAEU5OJBF6HZ+L1ZQjCT56pDkI9/84Q1y2dhEzuaNB1X3Z5tV3zymN2kkuj4QZkWT3l+wsshGHMKwJYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LUJXg9+E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6E47C4CEE7;
+	Thu,  8 May 2025 14:24:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746713500;
-	bh=XGz7CN8xky35QV4MItpPqWXXsHZx6uiwV0aRCv3dPCU=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=WBk8BTtKO02TgGWcYPcv1mlySZz9Q5dKoCAuVLl5R+aQh9TN4vOv3n6Ja/vfwVjW+
-	 HiP242sFjU87vRNFVidYM7gOx9oWEPZS963ZsH7Kju7s+TTvdTsJ7o/lZnIdSnxKRy
-	 Bf1OXf6qEkZzrF2eFMlJIv42wOEgcrAHSD0E3QZ5WdbBCumD0JoJcyIgVmPRiKTwnF
-	 mhUv6b0HqbNau8j7i7/K70ak+NQxNS08S544TSROHK9hSYzEUysStWe/lN/qErOIL+
-	 2my3xpgeDr3aYGe0C8htcfSB0SwvkjtWSc/Nln3AyQpyChdREiaJknIOFZR3dRCAB+
-	 19qOcV9wyRlDA==
-From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Colin Foster <colin.foster@in-advantage.com>, 
- =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
- Marek Vasut <marek.vasut+renesas@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
- Jeff LaBundy <jeff@labundy.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250501145125.59952-3-krzysztof.kozlowski@linaro.org>
-References: <20250501145125.59952-3-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Drop unrelated nodes from DTS
- example
-Message-Id: <174671349784.2457426.16761659932735162963.b4-ty@kernel.org>
-Date: Thu, 08 May 2025 15:11:37 +0100
+	s=k20201202; t=1746714243;
+	bh=aN9hg80J1XGlnHHGqshUqcMmNZK3k/Pr16f86dpLGK4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LUJXg9+E4dDFp8Ia6fnrdDPwaid09PHVx9VhhTGoa9kTcDPn1mJMalx2ChucYoPuI
+	 mDB2uc5Lga36fK1QudOd2YpuI3kaV+zTs9Xn92+EYqmvj5MfQ7nW5Pr4ZW8PGLbv9Q
+	 +1Vv/1tUEesHWVpmDIuiS41gedt8QD+kGvJicTS2N/5laRtCzbdIF+iSM1gOS570EW
+	 7w0aSMotAUpuxuAujLvxLqBXp1Bz8vCiAvbucLYFsgVsvGszokCYtrRxFYajwDAZpE
+	 KL5fs11fKvVUxoye0CShpWcfRowD8r6AUswpuswhwmW5FyITlLQdO9833GppvBEvqW
+	 hKT10YiBehINA==
+Date: Thu, 8 May 2025 15:23:58 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Pankit Garg <pankit.garg@nxp.com>
+Cc: "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+	Vikash Bansal <vikash.bansal@nxp.com>,
+	Priyanka Jain <priyanka.jain@nxp.com>,
+	Daniel Aguirre <daniel.aguirre@nxp.com>,
+	Shashank Rebbapragada <shashank.rebbapragada@nxp.com>,
+	Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+Subject: Re: [EXT] Re: [PATCH v3 1/2] dt-bindings: rtc: Add pcf85053a support
+Message-ID: <20250508-goal-harmonics-e8c286f74954@spud>
+References: <20250507072618.153960-1-pankit.garg@nxp.com>
+ <20250507-zap-dyslexia-924cfd1b6ec9@spud>
+ <AM0PR04MB6515B27367279C935A295379E78BA@AM0PR04MB6515.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-39345
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Gw17r1zC+sZ3XFtH"
+Content-Disposition: inline
+In-Reply-To: <AM0PR04MB6515B27367279C935A295379E78BA@AM0PR04MB6515.eurprd04.prod.outlook.com>
 
-On Thu, 01 May 2025 16:51:26 +0200, Krzysztof Kozlowski wrote:
-> Binding example should not contain other nodes, e.g. consumers of
-> resource providers, because this is completely redundant and adds
-> unnecessary bloat.
-> 
-> 
 
-Applied, thanks!
+--Gw17r1zC+sZ3XFtH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1/2] dt-bindings: mfd: Drop unrelated nodes from DTS example
-      commit: a67c891b8e7da2afedb29ee3da68c52aa5e6902a
-[2/2] dt-bindings: mfd: Correct indentation and style in DTS example
-      commit: c3ddcd91220220c417850ede7303a9f37e222408
+On Thu, May 08, 2025 at 05:21:47AM +0000, Pankit Garg wrote:
+>=20
+>=20
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: Wednesday, May 7, 2025 7:53 PM
+> > To: Pankit Garg <pankit.garg@nxp.com>
+> > Cc: linux-rtc@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; conor+dt@kernel.org; robh@kernel.org;
+> > alexandre.belloni@bootlin.com; Vikash Bansal <vikash.bansal@nxp.com>;
+> > Priyanka Jain <priyanka.jain@nxp.com>; Daniel Aguirre
+> > <daniel.aguirre@nxp.com>; Shashank Rebbapragada
+> > <shashank.rebbapragada@nxp.com>; Aman Kumar Pandey
+> > <aman.kumarpandey@nxp.com>
+> > Subject: [EXT] Re: [PATCH v3 1/2] dt-bindings: rtc: Add pcf85053a suppo=
+rt
+> >=20
+> > On Wed, May 07, 2025 at 12:56:17PM +0530, Pankit Garg wrote:
+> > > Add device tree bindings for NXP PCF85053a RTC chip.
+> > >
+> > > Signed-off-by: Pankit Garg <pankit.garg@nxp.com>
+> > > ---
+> > > V2 -> V3: Moved MAINTAINERS file changes to the driver patch
+> > > V1 -> V2: Handled dt-bindings by trivial-rtc.yaml
+> >=20
+> > You forgot to add my ack.
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Yes, I forgot. I will add it in v4. Let me wait for more review/comments =
+for couple of days.
 
---
-Lee Jones [李琼斯]
+And if you don't get comments, don't resend just for that, the
+maintainer will gather the tag.
 
+--Gw17r1zC+sZ3XFtH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBy+egAKCRB4tDGHoIJi
+0gqPAQDe/4q/UyeP6dPWUPYthLWIvzfWSvgf4jTICXhQMmrOPAD/QVUS/o+OO7Xz
+FSM2vXiZMzuEZl2D5bhHzxlHikieMAs=
+=O+lW
+-----END PGP SIGNATURE-----
+
+--Gw17r1zC+sZ3XFtH--
 
