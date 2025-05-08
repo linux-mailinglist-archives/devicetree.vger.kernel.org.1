@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-175140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DFF2AAFED8
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:17:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0690EAAFF1D
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:26:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 548E04C2180
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:15:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACF017BD287
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6CD283146;
-	Thu,  8 May 2025 15:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D13227A93F;
+	Thu,  8 May 2025 15:12:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GkmD0J1l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lHdaHg/G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1746283127;
-	Thu,  8 May 2025 15:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1385E27979B;
+	Thu,  8 May 2025 15:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746717002; cv=none; b=AtrS4CCuDtQ8vuXHkV/Y2j3sUo6C+25ljtakZEzjIS+/lQnIuQffjeMpLPTrdoQXsVhlt7pvYKqeyyD/1tvL9A3GO26ga/YiaFGzDAK//wqfi8wdC5vYQ9onHldpZmZP7HYBmLMKvRR5MMvJYmjltTOcRuLpyug0T//SLIlEOt4=
+	t=1746717120; cv=none; b=iYUHvjI2HFnDZFp6bT13EF0vAMbUWoDZnEiF0YYMcNC3HkLRChbuXdn+g3UhricTwpHI3wf2tL8I7TU89A3N3rPtnqVWBhs7PMBcwmP35fhJ8J5gkXNToDpTAHtBcxhibE6OsDMkMv8gYFhQWGJWjVIS0VT4F+Pp8tISceVEJ/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746717002; c=relaxed/simple;
-	bh=rVR/N/7ODChG6fZhtF8ZvMaMmZ6Fx13049NqQCPPeMg=;
+	s=arc-20240116; t=1746717120; c=relaxed/simple;
+	bh=fztn7MttRqSxdvYoPCRXKYHR3iB8MxW14WSVwb+i/tA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NYVA/s+dFrrtML3YMLTI+/cwdIL1r8ZqOAWUODrrBCzeYTIlVcNyvWliUPbj2UBhsoCY4ydsS85Mjyalwf7O1ofcxz9EtH4nv62yduTVTovGone6ysrZ3q75UhW89PhW4MaACjRDiVzXGw8nR29KMPpQSZ88/7ELi+AgDhulth4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GkmD0J1l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22AECC4CEF0;
-	Thu,  8 May 2025 15:09:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=F3bC2eB5d3kod+hG9QFB1GHUdZLahTjPKDmA0MqCHafCo+v0Yae6YubwcC8jAADjyIGPz4pA6Lx18Rn1lSA1mHEgjd1ljPha9Dks/N2YRMY8g4SOV05uZLuAWpncPsJ74z8zsI9KdSuxqds7tursRQVKqa2YfCwfe1rw8DlUmYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lHdaHg/G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A065C4CEE7;
+	Thu,  8 May 2025 15:11:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746717001;
-	bh=rVR/N/7ODChG6fZhtF8ZvMaMmZ6Fx13049NqQCPPeMg=;
+	s=k20201202; t=1746717119;
+	bh=fztn7MttRqSxdvYoPCRXKYHR3iB8MxW14WSVwb+i/tA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GkmD0J1lOEP2v5R6Gl6VpW7bpQlNU+pvI1gjVPllebBtvu3VgZcVkbVEEUACCHxKA
-	 hITDaX6O72YKW7Abv8VD3qWeh0KvPv/oGLqBhNCazutTxVMaqx8kVCZmEtEO6TAfBP
-	 46u+J3V7ImhbwA+1hvN7ONIeaLBJ25VEkS29d6ZOU7GG8KfRNU1MGC3Ww2ZaEFGdEx
-	 eDKIrKCdFJ7FxhlrE0n5HeR31facf7qqtvPXnMMkl/8L+mzQ1cFAqsGNwsVwhqzDuJ
-	 LQ/rXhCaKJqR73NioMyZwo+eCDJ1zg0u//SIEb+IvDkg21Rds8Ptm260xSuIJdS644
-	 1cd60ulMzEOBQ==
-Date: Thu, 8 May 2025 16:09:56 +0100
+	b=lHdaHg/GNuL+WfvncI+0BryskX3dpDktrpQ5eh3jwU6ZYEbEmn+ALLfgGogl6wNYK
+	 Hu8Ues1ftHnlfmR+JR4sRgzCTL+dFY5mfi0yKNHJdWldWh+eBJVoankTkoPimC+7y8
+	 JhZvoahnMdPzWa4/ZGrduVT8hI9ZU7g7hJLPeC2RgltePCQs1xBv0Lc+gT9InZqbRH
+	 SvC/3FjcRl7WiAMuiLtbl/vBQlmthFIRTwJ6QLW0rpw03o4vznCbrKeTsruDKeAWsN
+	 z4afTxphyr+vd3RQLAOinh554V6yk1j7IZT5rRFspkT3duQxIyG9dGHhpsjVBbWqMW
+	 HyzvWjrOY9M6g==
+Date: Thu, 8 May 2025 16:11:56 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
-	ldewangan@nvidia.com, digetx@gmail.com, p.zabel@pengutronix.de,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: i2c: Specify reset as optional
-Message-ID: <20250508-atrocious-till-30aad5010c3e@spud>
-References: <20250506095936.10687-1-akhilrajeev@nvidia.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Birsan <cristian.birsan@microchip.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
+ microchip,pic32mzda-evic to DT schema
+Message-ID: <20250508-blandness-curled-0bb5e3595eca@spud>
+References: <20250505144754.1291072-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,67 +60,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="iwu+DycW32HAkSb8"
+	protocol="application/pgp-signature"; boundary="jBjbCEC2Z2qvjUxZ"
 Content-Disposition: inline
-In-Reply-To: <20250506095936.10687-1-akhilrajeev@nvidia.com>
+In-Reply-To: <20250505144754.1291072-1-robh@kernel.org>
 
 
---iwu+DycW32HAkSb8
+--jBjbCEC2Z2qvjUxZ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 06, 2025 at 03:29:33PM +0530, Akhil R wrote:
-> Specify reset as optional in the description for controllers that has an
-> internal software reset available
-
-Optionality of properties is not determined by text. The property is not
-marked required in the binding, and therefore is optionally on all
-platforms. If some platforms require it, you should submit a patch making
-it mandatory there (via the required keyword).
-
-Cheers,
-Conor.
-
+On Mon, May 05, 2025 at 09:47:53AM -0500, Rob Herring (Arm) wrote:
+> Convert the Microchip PIC32 interrupt controller binding to schema
+> format. It's a straight-forward conversion of the typical interrupt
+> controller.
 >=20
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> ---
->  Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yam=
-l b/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
-> index b57ae6963e62..19aefc022c8b 100644
-> --- a/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
-> @@ -97,7 +97,9 @@ properties:
-> =20
->    resets:
->      items:
-> -      - description: module reset
-> +      - description: |
-> +          Module reset. This property is optional for controllers in Teg=
-ra194 and later
-> +          chips where an internal software reset is available as an alte=
-rnative.
-> =20
->    reset-names:
->      items:
-> --=20
-> 2.43.2
->=20
->=20
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
---iwu+DycW32HAkSb8
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--jBjbCEC2Z2qvjUxZ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBzJRAAKCRB4tDGHoIJi
-0vgnAP9UM812drDNILFwXxq22fplvS0kxJiN9gGVH+/OGyOlEQD+JBBjHC1MU1Lt
-okfKuk6deNpkgC+viWGs12HgWWuu8g4=
-=9QSL
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBzJuwAKCRB4tDGHoIJi
+0trIAP4y5YqYxs+NB+g1vGgf1TUOtZmOl+uBGp+ME/3p0eIwQwEA4+u+bkGEJDb9
+hHR5CEspISBzZfs+yCzooC7F6CdYawI=
+=K2C6
 -----END PGP SIGNATURE-----
 
---iwu+DycW32HAkSb8--
+--jBjbCEC2Z2qvjUxZ--
 
