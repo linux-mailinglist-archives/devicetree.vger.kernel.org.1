@@ -1,235 +1,234 @@
-Return-Path: <devicetree+bounces-175005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C639AAF88D
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:14:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B55AAF899
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:17:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FCA47ABBAD
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:12:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC7E3188F659
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33B6C21504E;
-	Thu,  8 May 2025 11:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF3C21B90B;
+	Thu,  8 May 2025 11:17:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tZYMTcov"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="Ry3d5bWe";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="Vm8iKbXq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479F813635C
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 11:13:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24C531F37D3;
+	Thu,  8 May 2025 11:17:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746702838; cv=none; b=nQhnP+L2itT8yjWR94SVy5xIiQmTxB2LUhsrbBZ+dLzL7kfR6s+hnah/+z7N5JQ0qOyDgEavmQSJD8+fa3/g1psnNMVum+RQbWVlpzRUq50LFk0dMp1J/YZeKzsAj9ck93f2wF/pc3o2YPQ11FicyLPTxHBRsgnxYbU19RxWyV0=
+	t=1746703044; cv=none; b=jHs9m4fiPDbXriAJXQCt8lndnWheIDQMzaQlcMymjDoJrXOLOiGg+DekytaFbZT62a40oy3j6a32ch2vCvAJi1NUPNMFlH8wD0URE4pB21y5evshvb+q8Hmts0+qV43FC29DNGkJoDVlKEyuXmhiYBDOloCcur5XlPk2ZDqHqjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746702838; c=relaxed/simple;
-	bh=e4+TFnXdM69fcFGL/b3jY3DphIA64GgZdbMFENXZJHA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Hs5/ROdsKbHJWPt80hHpqelfEk4bBgt3h5WKqc3NyueESmiePcD7sGwkfETW/JbOoLm9PdmkhsuFcSKhxXqMkcwup0Ny5JjGoLXu4knfnO+BkX3CbBURQK74jADL1Ywqd1LoegnwrGzNO8xx9KdVatWBXyzU8cKjVLFH281CtGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tZYMTcov; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e7311e66a8eso864015276.2
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 04:13:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746702835; x=1747307635; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wz0l5OYYb4wZW+mHv+F5ZoKS8UyIRgGRSrQBEHKOgR8=;
-        b=tZYMTcovbyzll392TvpgLGSdrUqlUC5vYRm76NGpJsmQhZx4emt6TGKOIQfVvMcmrr
-         zu9v5g3EVbtrch8pCALsUJv2SFi4bnyMKtveQTE9oG5TExs/pLbt4rOSNooFSKlYaVMb
-         NgEv/E0O9BO2iaHmdfgQNzIRcgA1V8r+KXjT6UU0Ufsw/P8/fx40gYm7PaSh8lYfYo88
-         7XMN6rQ7WK24o5CZkgacvIn+UFYy9GS2LGWhWvy+vA1RPTE89OF4DBZROEZZAMGyKdKN
-         AB2Y0X2QPZK3r+6iEiqH6rkweRepeiTeJMKPyLiLy3PZ6TNfXQZ0dsJdOeel1kAAtZ3g
-         ajSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746702835; x=1747307635;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Wz0l5OYYb4wZW+mHv+F5ZoKS8UyIRgGRSrQBEHKOgR8=;
-        b=H690kJgJtSuEKTUFbER56Ec1xXg2Dz/KPvBBUuz7WOQHfrUsu2TA6f1fXXypDtRA+A
-         OAcV94Ke0ilye9UgbMXcWM5hgV4Sp2UoFtSyJMcqnycmTwZF5otAQrcf4LQIalGqHvmT
-         RenZk2pcoeedZjjaeVF8MbO9vD8g7L+QqU3O4dZBMTOkl8FBKMRKjg1dec1eT4CGEtwb
-         nm9Uws4B/DTiHCpALAqItl/LG/C35+wZseX3wjDxWzNni1XB2VmjqQxi/biI7Hn/M871
-         cwfZsmjyKR+5sGalNvrL3WD6yzmqnGrrTmYYA29uOa9XLU0M0D13/reJn3rcwFH8UVii
-         6bhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZB1An57+JX+KWzK62TE8hHGOO2lzrn2gS3Bk18RO8sxnoAlTwjuPW/DArWE43yKqQ42ZXqhGjcyJO@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxxoALKjJIk+9ho6JhsyuQVS5RD5vk2fU7zOTNHfIw1wkK4V6y
-	xLqqVY38gO0hRDQ+cyQEY87Roj4nU7TwUFA96VEdOayR48rt9lSp3DJsSarhwe4CLxl4rbtKdCY
-	0bgrw7J+mWMPsmpV1JVGfQFXa0S9sJz9Eh7L4ug==
-X-Gm-Gg: ASbGncvEqPNz2I2/CujeWCg9zQ6yUeu2xoiGwDn+2Eod4IMtX7cxEQqXw/cSuxRSzAd
-	iD2cFPXNFFcOUNqbL1gVIbrBX4UuwPdYFy04htJFLGBxIwjU2MoJ8XDGdmxy0RuUfzqpgzUgqxt
-	G8CHZzQxhhrRwxEKGlc5tYwOE=
-X-Google-Smtp-Source: AGHT+IFqQdI6e1trWbJBwK/oeHTdsQLNh5rp3zpOH+TfiAJBCwyBTZ7DbhV2v2lokDznxkf4DSHMOmiGIM30cUQx248=
-X-Received: by 2002:a05:6902:1b89:b0:e78:ed12:6d92 with SMTP id
- 3f1490d57ef6-e78ef73b5d7mr3479249276.40.1746702834996; Thu, 08 May 2025
- 04:13:54 -0700 (PDT)
+	s=arc-20240116; t=1746703044; c=relaxed/simple;
+	bh=mm+CgjLs+rS3CPxZ9/r7vxj50BUPBgnFChiiDX6Gy/s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=P/wbnnU16sgPskbmCgtku5rPtBuSMKWKZIm3b7RbqtnpB0G+wW/lL3B9W8fQ+lKDF9PZEXN6rWmZZ9QZRLHUL1KJMlYsF8zPH1cGtvd65j7SGSZv+JFcLUmAglZiHFlFd1yOezingAG3XxYIejiW3gJUpfBFhXoXGOy90kNphVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=Ry3d5bWe; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=Vm8iKbXq; arc=none smtp.client-ip=155.254.16.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id 2983712FB439;
+	Thu, 08 May 2025 04:17:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1746703039; bh=mm+CgjLs+rS3CPxZ9/r7vxj50BUPBgnFChiiDX6Gy/s=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Ry3d5bWea+7xauZVZ7ybL5zSOz7/4fJvWBShpHx5mgLg9qDH7mXQSZmvG7gU8RUvv
+	 3fP15KZxSGIdmRxajfgWhr19kZTmaCj4lbeGqNruqg5fzBheMkJBjygI2gFEwoPHZx
+	 bzsPhYLvwgrzBj0yKwUAOC+lMXeaLUX7IropKU9sFoxuo4ZheJrmO7UTA+GYYAWWUJ
+	 b2Wy0N49WVxuQNi3iRaLeDMbY4Q9orCCWUX3U5XhXcRwIYVltOv+aQVyePhu8xbibd
+	 BryUGRZAmf0VB7XdENQdYX8TnA0oBywpv7sI0ALne702UltzRKLHQZ7C4ZO9PdT38H
+	 LiH4sDxRWYgFg==
+X-Virus-Scanned: amavisd-new at 4d2.org
+Authentication-Results: bayard.4d2.org (amavisd-new); dkim=pass (2048-bit key)
+ header.d=4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id dQzszsTujUZg; Thu,  8 May 2025 04:16:43 -0700 (PDT)
+Received: from localhost.localdomain (unknown [183.217.82.204])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id BC78712FB404;
+	Thu, 08 May 2025 04:16:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1746703003; bh=mm+CgjLs+rS3CPxZ9/r7vxj50BUPBgnFChiiDX6Gy/s=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Vm8iKbXqVO8iIBwHm42a6OkEWN0tug+I8+ACFnx3/SCcwRI1azQqo3d99inSTlBBm
+	 9MdpWKLO7VMHinZlA5yezaHI0cvYGP0DrIH8jfZlKbgNeU7MGA0cWH7qSR+d/UztEH
+	 DcCDmgvebzSAzCjr1SRz9Ag7WB7Tdi4cjYkHRdJ5ZSTDkRTLPHZfQ8teLm7nAT/Yr3
+	 5Rw/PVNuqWGfzc4yDeOoP6CkZaMHMYX/C+YkK6OcvAxeBbsTifV071Z4olDY+Sn8uW
+	 O+SatnDWAvS0WwBMKkJ8bt6J8VdIvg+5GH6n3+rvakThmtJ+u7LLMjJYA1oCgougb4
+	 rFNFF2FlK5eeA==
+From: Haylen Chu <heylenay@4d2.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>,
+	Yixun Lan <dlan@gentoo.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	spacemit@lists.linux.dev,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <unicornxdotw@foxmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	Haylen Chu <heylenay@4d2.org>,
+	Alex Elder <elder@riscstar.com>
+Subject: [PATCH v9] riscv: dts: spacemit: Add clock tree for SpacemiT K1
+Date: Thu,  8 May 2025 11:15:29 +0000
+Message-ID: <20250508111528.10508-2-heylenay@4d2.org>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20250414185316eucas1p2c2dbd33788d9141773546f7a479ac288@eucas1p2.samsung.com>
- <20250414-apr_14_for_sending-v2-0-70c5af2af96c@samsung.com>
- <20250414-apr_14_for_sending-v2-3-70c5af2af96c@samsung.com>
- <CAPDyKFqX5cjQe3-MX3W9wMoQW3gzwSvb0QMf-_sTJuq_TeGsCg@mail.gmail.com> <5413f5c7-8049-4490-bdd6-8c03f6e2057f@samsung.com>
-In-Reply-To: <5413f5c7-8049-4490-bdd6-8c03f6e2057f@samsung.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 8 May 2025 13:13:19 +0200
-X-Gm-Features: ATxdqUFZBkfWWqLt3Ds_1EAZOWb0PLKmTy9yLzgOWSvL-CIrLIE3LaF4c8kkZg0
-Message-ID: <CAPDyKFpi6_CD++a9sbGBvJCuBSQS6YcpNttkRQhQMTWy1yyrRg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] pmdomain: thead: Add GPU-specific clock and reset
- handling for TH1520
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, 
-	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns <frank.binns@imgtec.com>, 
-	Matt Coster <matt.coster@imgtec.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	m.szyprowski@samsung.com, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, 30 Apr 2025 at 14:17, Michal Wilczynski
-<m.wilczynski@samsung.com> wrote:
->
->
->
-> On 4/25/25 10:50, Ulf Hansson wrote:
-> > + Bartosz
-> >
-> > On Mon, 14 Apr 2025 at 20:53, Michal Wilczynski
-> > <m.wilczynski@samsung.com> wrote:
-> >>
-> >> Extend the TH1520 power domain driver to manage GPU related clocks and
-> >> resets via generic PM domain start/stop callbacks.
-> >>
-> >> The TH1520 GPU requires a special sequence to correctly initialize:
-> >> - Enable the GPU clocks
-> >> - Deassert the GPU clkgen reset
-> >> - Delay for a few cycles to satisfy hardware requirements
-> >> - Deassert the GPU core reset
-> >>
-> >> This sequence is SoC-specific and must be abstracted away from the
-> >> Imagination GPU driver, which expects only a standard single reset
-> >> interface. Following discussions with kernel maintainers [1], this
-> >> logic is placed inside a PM domain, rather than polluting the clock or
-> >> reset frameworks, or the GPU driver itself.
-> >
-> > Speaking about special sequences for power-on/off devices like this
-> > one, that's a known common problem. We actually have a generic
-> > subsystem for this now, drivers/power/sequencing/*.
-> >
-> > Perhaps it's worth having a look at that, it should allow us to
-> > abstract things, so the GPU driver can stay more portable.
-> >
-> > Kind regards
-> > Uffe
->
->
-> Hi Ulf, Bartosz,
->
-> Thank you very much for your suggestion, Ulf. I took a look at the
-> drivers/power/sequencing/ API and agree that it seems like a suitable
-> framework to model the specific power-on/off sequence required for the
-> TH1520 GPU, allowing for better abstraction than embedding the logic
-> directly in genpd callbacks.
->
-> My plan is to refactor the series based on this approach. Here's how I
-> envision the implementation:
->
-> 1) Provider (th1520-pm-domains.c): This driver will register as both a
-> generic power domain provider and a power sequencer provider for the GPU
-> domain.
->
-> 2) pwrseq target Definition: A pwrseq target will be defined within the
-> provider to encapsulate the required sequence (enable clocks, deassert
-> clkgen reset, delay, deassert GPU core reset). The target will be
-> named using the GPU's first compatible string with a "-power" suffix.
->
-> Example GPU DT node, adhering to convention introduced here [1].
-> gpu: gpu@ffef400000 {
->         compatible = "thead,th1520-gpu", "img,img-bxm-4-64",
->                      "img,img-bxm", "img-rogue";
-> };
+Describe the PLL and system controllers that're capable of generating
+clock signals in the devicetree.
 
-I don't think the power-domain provider node is the correct place for
-this, from DT point of view.
+Signed-off-by: Haylen Chu <heylenay@4d2.org>
+Reviewed-by: Alex Elder <elder@riscstar.com>
+Reviewed-by: Yixun Lan <dlan@gentoo.org>
+---
 
-Instead, I would try to follow the same approach as
-Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml,
-which uses a separate device-node to describe the pwrseq provider.
+This originates the 5th patch from previous "Add clock controller
+support for SpacemiT K1" series[1] with node names of system
+controllers and PLL reworked[2].
 
->
-> [1] - https://lore.kernel.org/all/20250410-sets-bxs-4-64-patch-v1-v6-1-eda620c5865f@imgtec.com/#t
->
-> 3) Consumer (drm/imagination): In its probe function, the driver will
-> read the first compatible string of the device node. It will then
-> attempt devm_pwrseq_get(dev, compatible_string_with_suffix) (e.g.
-> devm_pwrseq_get(dev, "thead,th1520-gpu-power")). The result
+The patch is based on linux-spacemit/k1/clk-for-6.16. Yixun, please drop
+the previous version and pick this patch instead. Thanks for your work!
 
-Make sense, but we should probably use a more generic target-name,
-such as "gpu-power" or something along those lines.
+[1]: https://lore.kernel.org/spacemit/20250416135406.16284-1-heylenay@4d2.org/
+[2]: https://lore.kernel.org/spacemit/aBxF81yqPgHP5oA_@ketchup/
 
-> pvr_dev->pwrseq_desc will be stored (it will be NULL if no suitable
-> provider/target is found, or a valid descriptor if successful). The
-> driver will still acquire its necessary clock/reset handles via
-> devm_*_get in probe for potential use outside of RPM (like devfreq).
->
-> 4) Consumer Runtime PM Callbacks
-> (pvr_power_device_resume/suspend): These functions will check if
-> pvr_dev->pwrseq_desc is valid. If valid: Call pwrseq_power_on() in
-> resume and pwrseq_power_off() in suspend. The driver will not perform
-> its own clock/reset enabling/disabling for resources managed by the
-> sequence. If NULL: Execute the existing fallback logic (manually
-> enabling/disabling clocks/resets using the handles acquired in probe).
-> Unconditional logic (like FW booting/shutdown) will remain within the
-> RPM callbacks, executed after successful power on or before power off,
-> respectively.
->
-> 5) Resource Handling (via genpd callbacks): To allow the provider
-> (th1520-pm-domains.c) to access resources defined in the consumer's DT
-> node (specifically the clocks and gpu_reset needed in the sequence), I
-> plan to keep the attach_dev / detach_dev genpd callbacks as implemented
-> in the previous patch version. attach_dev will acquire the consumer's
-> resources (using the consumer_dev pointer) and store the handles in the
-> provider's context. The pwrseq unit callbacks will then access these
-> stored handles via the shared context. detach_dev will release these
-> resources. This seems necessary as the pwrseq API itself doesn't
-> currently provide a direct hook for the provider to get the consumer's
-> device pointer or manage its resources across the pwrseq_get/put
-> lifecycle.
+ arch/riscv/boot/dts/spacemit/k1.dtsi | 75 ++++++++++++++++++++++++++++
+ 1 file changed, 75 insertions(+)
 
-If we have a separate node describing the pwrseq, as
-Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml,
-it's should be rather easy to hook up and pwrseq driver for it too, as
-drivers/power/sequencing/pwrseq-qcom-wcn.c does it.
+diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+index c670ebf8fa12..85c9730dd082 100644
+--- a/arch/riscv/boot/dts/spacemit/k1.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+@@ -3,6 +3,8 @@
+  * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
+  */
+ 
++#include <dt-bindings/clock/spacemit,k1-syscon.h>
++
+ /dts-v1/;
+ / {
+ 	#address-cells = <2>;
+@@ -306,6 +308,36 @@ cluster1_l2_cache: l2-cache1 {
+ 		};
+ 	};
+ 
++	clocks {
++		vctcxo_1m: clock-1m {
++			compatible = "fixed-clock";
++			clock-frequency = <1000000>;
++			clock-output-names = "vctcxo_1m";
++			#clock-cells = <0>;
++		};
++
++		vctcxo_24m: clock-24m {
++			compatible = "fixed-clock";
++			clock-frequency = <24000000>;
++			clock-output-names = "vctcxo_24m";
++			#clock-cells = <0>;
++		};
++
++		vctcxo_3m: clock-3m {
++			compatible = "fixed-clock";
++			clock-frequency = <3000000>;
++			clock-output-names = "vctcxo_3m";
++			#clock-cells = <0>;
++		};
++
++		osc_32k: clock-32k {
++			compatible = "fixed-clock";
++			clock-frequency = <32000>;
++			clock-output-names = "osc_32k";
++			#clock-cells = <0>;
++		};
++	};
++
+ 	soc {
+ 		compatible = "simple-bus";
+ 		interrupt-parent = <&plic>;
+@@ -314,6 +346,17 @@ soc {
+ 		dma-noncoherent;
+ 		ranges;
+ 
++		syscon_apbc: system-controller@d4015000 {
++			compatible = "spacemit,k1-syscon-apbc";
++			reg = <0x0 0xd4015000 0x0 0x1000>;
++			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
++				 <&vctcxo_24m>;
++			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
++				      "vctcxo_24m";
++			#clock-cells = <1>;
++			#reset-cells = <1>;
++		};
++
+ 		uart0: serial@d4017000 {
+ 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
+ 			reg = <0x0 0xd4017000 0x0 0x100>;
+@@ -409,6 +452,38 @@ pinctrl: pinctrl@d401e000 {
+ 			reg = <0x0 0xd401e000 0x0 0x400>;
+ 		};
+ 
++		syscon_mpmu: system-controller@d4050000 {
++			compatible = "spacemit,k1-syscon-mpmu";
++			reg = <0x0 0xd4050000 0x0 0x209c>;
++			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
++				 <&vctcxo_24m>;
++			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
++				      "vctcxo_24m";
++			#clock-cells = <1>;
++			#power-domain-cells = <1>;
++			#reset-cells = <1>;
++		};
++
++		pll: clock-controller@d4090000 {
++			compatible = "spacemit,k1-pll";
++			reg = <0x0 0xd4090000 0x0 0x1000>;
++			clocks = <&vctcxo_24m>;
++			spacemit,mpmu = <&syscon_mpmu>;
++			#clock-cells = <1>;
++		};
++
++		syscon_apmu: system-controller@d4282800 {
++			compatible = "spacemit,k1-syscon-apmu";
++			reg = <0x0 0xd4282800 0x0 0x400>;
++			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
++				 <&vctcxo_24m>;
++			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
++				      "vctcxo_24m";
++			#clock-cells = <1>;
++			#power-domain-cells = <1>;
++			#reset-cells = <1>;
++		};
++
+ 		plic: interrupt-controller@e0000000 {
+ 			compatible = "spacemit,k1-plic", "sifive,plic-1.0.0";
+ 			reg = <0x0 0xe0000000 0x0 0x4000000>;
+-- 
+2.49.0
 
->
-> This approach uses the pwrseq framework for the sequence logic as
-> suggested, keeps the generic consumer driver free of SoC-specific
-> sequence details (by using the compatible string lookup for this), and
-> retains the genpd attach/detach mechanism to handle cross-node resource
-> dependencies.
->
-> Please let me know if this plan sounds reasonable.
->
-> Thanks !
-
-[...]
-
-That said, Bartosz is better with guidance around pwrseq
-providers/consumers. The above is just my view of it - and I might
-have missed something.
-
-Kind regards
-Uffe
 
