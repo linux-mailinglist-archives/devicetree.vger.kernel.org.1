@@ -1,167 +1,163 @@
-Return-Path: <devicetree+bounces-174923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8FF3AAF4AD
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:32:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13DF1AAF4B0
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:32:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7A2D7AFEC5
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:30:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 762A04C6C03
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0A521D011;
-	Thu,  8 May 2025 07:31:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8683321E096;
+	Thu,  8 May 2025 07:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L1cSEGmh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Sw6L/ZpE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B4E1F4C9D;
-	Thu,  8 May 2025 07:31:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1CFB21D011
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 07:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746689516; cv=none; b=hZOFEW84AMpVKT0eXKnNO4/Q4aRS1HE1W7p4650AcZtUgT6MBHHXwpc5LbQd7Ly8k/QiBqROXI7iNnjOew017D0Wo1oz2L5yBFWrxFrNYeamB7SuOQH51/7bSYzE6DI/jG9xvUkYnaFzPDuNwevwVxxvlDb0ZjPgiW908uRkaqo=
+	t=1746689566; cv=none; b=AsesbxQKa4TCr46Tv3caV0Ug3DhjhlaAabXsR8RnO5o3USrhkorQyf4EluNuPceNM5h+dXsF3G0QPxY9+uPY/63Zl1X3Ww5vNYl8bUlRy2geJuviThJyM0bWHuM52WmlzhIvJ8H7V7Pdu8P24PxI6qOCzQWTS3Mbg3MN1QYMXx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746689516; c=relaxed/simple;
-	bh=AgHutt4HjBaJU2TcQQpxJ89vhSA7SHhMm+HCmWKbMAg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BI7t768Liu28mXpK2lfaESgOH0Wy6t0n1D6Itdwjh+PWdZaUvpvpQNErzc0rHWayz9hbKVEylphcyC9TNcOWlq4/52zM6CcTWwgpo9UzKw19DEGkyEugbJWMeeHqVwTO+Xf/DM4l3kFQezJSgA3ge+sVirVXJHcXqytlkNvVMQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L1cSEGmh; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3a0b6aa08e5so959168f8f.1;
-        Thu, 08 May 2025 00:31:54 -0700 (PDT)
+	s=arc-20240116; t=1746689566; c=relaxed/simple;
+	bh=eJRhdf3y9fhrnSs+Zl4amR5N1JU/O4meIvkPsi6N5AI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X4j5hB6Ptio30CdhLvdQZwo9iNrQrHC+VqVB4POHDMqPvMrTQEl/cBTYiv+assw0Yh+yERoQ4SlyPnWW8r9scmySs3igfbw5kKTlsLqPSWFQq9U3E7nfz7WwqLmQ9rJUeTz1YFfliWSB+8DnXrcKC5o0fVrfZVnzpiSfD38es4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Sw6L/ZpE; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cf7c2c351so749555e9.0
+        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 00:32:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746689513; x=1747294313; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=aEjJzYsdHCDfg7DEYH2Vg3tOhB12CqNu2FmVJukJ7SE=;
-        b=L1cSEGmhzpsKKLorpfX6rSJvpJaFQkVeN7qRNuXBzqa64UTSTNQ5Xnx0XnuWMwWdhK
-         5Q/j05hJrc9wsSDG5xMPqvYhBDhfYHsY/n8jw8KtSz3wpK1cOoztTKXxsa1G0CizCHGY
-         hJjKqd2Dd8pDaTnfJHzQ+ZaXZ/0a9BRnMY4GRrL2Pt53tNZmFe0TSBm5QHPYek+eW2Rh
-         rnDPAba6uhiBaS5DNYvE/Dcas2i2jN6pCv84+ILH3Oh70qNaZ83Sh5vi6gZu6LYumP4e
-         7RjPl1bhadFgZljXgPNzcfN44+pDjyxwjEZv6jt+pzw6JK+d5V18/u9ckV/Z9dIAbErE
-         ZhWA==
+        d=linaro.org; s=google; t=1746689563; x=1747294363; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=HoRg830eZYrOz+RPuJ0T7jN6cyXedEMpV65ao6N00bc=;
+        b=Sw6L/ZpExEGp+BIFtlLmcD5QPT3atIIi+eJ+yKmMHoNsgg2bWoFyguIwZwlxrMCwzr
+         FvsDMrVi5Nj2x9ZTh3zCD7njwyDlBQh/WXaYDR5xeBN97cmWPcljp0/gNIuejZwL2bsH
+         OMOnjOCydyD68fqCJRKj1tN4nlc1EMUilOz8N1RC6ZV5n8jLGABOygXvb7rA5TWeemsW
+         edEnvE/DwIuy0xFK290gTjRaL8qXJbhVSZ4Mawu27OrbeO+SBuBz0yEJCJFbJVTkHSjY
+         Q9q4424Tbckg+kgKRhmGRdJvaLUsSs0+bkFedueGABXdAKxM4Y5v+9bsKGHwEVPBOMUt
+         Vg0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746689513; x=1747294313;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aEjJzYsdHCDfg7DEYH2Vg3tOhB12CqNu2FmVJukJ7SE=;
-        b=aENPfJizJ7rbFxOIGkMyp8j9p4QP8oVHxjH9KvmdP3gIeD8GYQRNsVGnw0U3JiDkIf
-         mlhkRj/3tKCnzdHr60eN57jOp4yBrMF3cdpPiVYDSAQ+SIHI6//tj76wOldydbw2o2/M
-         D7a/1ofAgZuA8MYq9mIZGGjbyicaALyqJAzu9WBhw1YmYdYYr+KBhhz5dCt3+01yI70U
-         i8JvR40g9XRVILxxgnhDPXw9MLqr9ffTQuyLnUqbwBSWn7UzwtUYUK6SEYHPb7hHb0Xh
-         3Ikk5aYNSH61f1gyjbgyr0rMaGAI1j3CnH8tpQThSDXy268t9p8oPZrEX7afkzrlTDv3
-         rwDg==
-X-Forwarded-Encrypted: i=1; AJvYcCWPU3eoXSiiYiCwLJh+NzjZvSn4uqyL61e7F3Y+Ilmi56By81EO8Not8ygXW0F/xMprwm666JdkfzXk@vger.kernel.org, AJvYcCXpRoT+TJCKsIMAqk0K9lZ4bNPbxEtBFVOP+kzX/RAMcBmX2WSAeV/QbxstgWP0cH/ZOppeDRSpxC0x+ig=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/f304FXMoRKJfOyjcT0v64OmRUjgCGEYpaDAnC3i0sxIj1qdR
-	FiX0NQrvjnZO1tPVkj5ASAzdLsK9eiW4zzm2B44PhEmoGzGk2Rj++gEFxw==
-X-Gm-Gg: ASbGncs+1KVzOrhAMzJ4jGvjYOyRwRebL9TP5AijUwBDmbH+ogPV8LaLNsZadBa1yTw
-	En+3WPSNrMqbPUnnTih6StfkH7w4jD0On8qNKOgdL0agCNdL8Ouha0WvUv5jOp4yb6AYJlTJHeu
-	b65wbxlW65uAGkHiBBS3rrNoVS6EoYPid8j1GnSgAo+vQmZxMA1HyEXAOIZwBSs3/ia0hD8AvFo
-	kBX+dql0do4uhjCbj8xDsWRHv36w4ugatHTD615VzAUg135rfRHa9DqCpl0qz1i36987jmvvO9F
-	BdVZNy6PUQxs43LDdEyTD7cPTWaIgjkStqFs0s3+Gg9sihXJRVQEnsdq59d5JINx2QTiU6eZDUG
-	7NcmmGMGdihzjRsXnEsVrpZ5sRkM=
-X-Google-Smtp-Source: AGHT+IG1yR4rGhWUtkmkWIDRYUZ1wU83cR5nh3D7k/LMR2j9TYQMYoaizk99YqloQtl2YMEFecyY4g==
-X-Received: by 2002:a5d:59a6:0:b0:3a0:b84d:816f with SMTP id ffacd0b85a97d-3a0b991fa38mr1910968f8f.14.1746689512640;
-        Thu, 08 May 2025 00:31:52 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a099ae3441sm18991273f8f.26.2025.05.08.00.31.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 May 2025 00:31:51 -0700 (PDT)
-Date: Thu, 8 May 2025 09:31:50 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 5/8] dt-bindings: memory: Add Tegra264 definitions
-Message-ID: <apxlsl54wyigk7yovtrb2tadhhsad5ti7hdvueisjcdjzfk443@4q3fv6pjaac5>
-References: <20250507143802.1230919-1-thierry.reding@gmail.com>
- <20250507143802.1230919-6-thierry.reding@gmail.com>
- <b6d4f40d-9ad2-48c7-a5a1-55b2ebc4e21d@kernel.org>
+        d=1e100.net; s=20230601; t=1746689563; x=1747294363;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HoRg830eZYrOz+RPuJ0T7jN6cyXedEMpV65ao6N00bc=;
+        b=In10yfumWi7PSjMAmvFXiLqTDzn63qXSihCsJmz8+ckDeFqijuxMlyExFmRSylQa5N
+         ZHBnezDHSxcVU8zuyLL2U2emCdigU0kVLY70vz46amsuoesuaL9LxHPFhpetQrXQe7HD
+         1CUSfYIF7v+Hw9+kFmNYe+J/lvepgy7XNmSsPOIs0kl2YAq4dM38CNgkvCeTjMLyII+6
+         xxgypq/PD8P6fogemDyj5KbegJGjZABD6gNOytqPzrRb7PIzxdFL8AfPErfeoagL10jl
+         w3XLp5NQnZ5rNG7Ti7id7sisO74jc8Qkf/eBabxnM5a/Z26FmeSQw7xmLaPB0kFh6XYw
+         HxCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV3kBMP2bqgQj5WcMxW1nBBhkXCuEPTCGfJTY1EZeymOSAwjKTzPd44RmFyzD/Ty/WyhswfrOsKx72S@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqGaIHIF1SAhWYBNMXSnvX5SQO5Ufe8k+ZMwSo/4+1aCkNSfxW
+	2r2ZPt5RvBwl+fGfEhSYt8C3lgQfuZY8EBjcgM4IpPVBEJHyjbI2KirMpZrt8eM=
+X-Gm-Gg: ASbGncs1bOuAY4ZXE0kvRwqyvExtk5FAlXT2wlDSC85AtI1Buw/VkSQ/93pMSJhh99Q
+	sMlM3iWjhAOlZEQWenJG7HW/OVr3R//0JSmDos7P9M3Rn6FyoocGZQbOX4Be5e76uds3RPqJJWR
+	YHLjkyvyyiJZflPgYiPn0YWCVkJwH0IcarjxLKiO6HI0n07KcMPopryQtTbrqWm7z8ByDirYmMF
+	G4GfkExvwNdngO8DpdY0sf69sVAel2S6GvWsjHQ5pUAP/eFRMUu4zI4FtuIXn5WtjcX3hCTkokX
+	e49I+eH9YmFmOe/av+Vf3/yP/o14lU6Qx5k86ix7MyGWGu1h7VQ85X6plmU=
+X-Google-Smtp-Source: AGHT+IEJFJSCXhWpEZ7xDqiQXhgOgnFF4xcAVyMI6lSXlVe1K3+fU9nEqIAR0SHlCZb6ZtZUjYNdcQ==
+X-Received: by 2002:a05:600c:1c97:b0:43d:301b:5508 with SMTP id 5b1f17b1804b1-441d44bc487mr20004935e9.2.1746689562952;
+        Thu, 08 May 2025 00:32:42 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.207.88])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd32b0d7sm27282745e9.7.2025.05.08.00.32.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 May 2025 00:32:42 -0700 (PDT)
+Message-ID: <84410317-6f83-46a9-aa5c-a84947b89f00@linaro.org>
+Date: Thu, 8 May 2025 09:32:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="e3xoqdmdt4ognzxn"
-Content-Disposition: inline
-In-Reply-To: <b6d4f40d-9ad2-48c7-a5a1-55b2ebc4e21d@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v8 1/8] dt-bindings: dpll: Add DPLL device and
+ pin
+To: Ivan Vecera <ivecera@redhat.com>, netdev@vger.kernel.org
+Cc: Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+ Lee Jones <lee@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20250507152504.85341-1-ivecera@redhat.com>
+ <20250507152504.85341-2-ivecera@redhat.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <20250507152504.85341-2-ivecera@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 07/05/2025 17:24, Ivan Vecera wrote:
+> Add a common DT schema for DPLL device and its associated pins.
+> The DPLL (device phase-locked loop) is a device used for precise clock
+> synchronization in networking and telecom hardware.
+> 
+> The device includes one or more DPLLs (channels) and one or more
+> physical input/output pins.
+> 
+One patchset per 24h. You already sent it today and immediately send
+next version without giving time for any actual review.
 
---e3xoqdmdt4ognzxn
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 5/8] dt-bindings: memory: Add Tegra264 definitions
-MIME-Version: 1.0
-
-On Thu, May 08, 2025 at 07:48:22AM +0200, Krzysztof Kozlowski wrote:
-> On 07/05/2025 16:37, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > This doesn't currently contain any stream ID or memory client ID
-> > definitions, but they will be added in subsquent patches.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
->=20
-> <form letter>
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC (and consider --no-git-fallback argument, so you will
-> not CC people just because they made one commit years ago). It might
-> happen, that command when run on an older kernel, gives you outdated
-> entries. Therefore please be sure you base your patches on recent Linux
-> kernel.
->=20
-> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-> people, so fix your workflow. Tools might also fail if you work on some
-> ancient tree (don't, instead use mainline) or work on fork of kernel
-> (don't, instead use mainline). Just use b4 and everything should be
-> fine, although remember about `b4 prep --auto-to-cc` if you added new
-> patches to the patchset.
-> </form letter>
-
-get_maintainers.pl lists 13 people and 7 lists. That's *way* too many
-recipients for something as trivial as this series, in my opinion, so I
-tend to curate the list of recipients manually. I guess I went a bit
-overboard and should've at least listed all DT maintainers explicitly.
-
-> > ---
-> >  include/dt-bindings/memory/tegra264-mc.h | 13 +++++++++++++
->=20
-> Filename based on compatible.
-
-The compatible string for this is nvidia,tegra264-mc, so I don't know
-how much more you'd like me to make it based on that. Do you expect me
-to add the nvidia, prefix? In that case it would be inconsistent with
-all of the 8 other Tegra MC includes that we have in that directory.
-
-Thierry
-
---e3xoqdmdt4ognzxn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmgcXeYACgkQ3SOs138+
-s6FnRhAAku1QkoTdXibdp5EpZgLKfuxNx35sXUWwmNNtesCln01v1iYHZOaLyb+K
-iwKOk7FgCfezvEJme9J9h3EV/8vIC+yb6mloPJoxTdAhlg3cdNZsoEP6S4DMSsrW
-075z/nHmiDElbmm/SvdI/rKzgLZpIR7AyLSdDPWCPJl37V4C1tjLsBbYvwh1D2Xg
-z4uwCrJxXHgXiK+AS4BD2sHFxJBkbiCjBHAPj1l6aVAs+sEbhryPYHihLaZeDcMr
-+5IcuQ5Uh7X+0U83bAPUoi+q0SwELcZA5ZMqnVSEAE/sCjc3Go5umZxXLXD3AevS
-oRRy3bks+flYkWoXNB6+V+Ii2hnUml7OunJglKk0o9aGiUjhabyylYWUv5BnrO+v
-/rLl9m7JdeTU5nywOP+du5ajzss+0LuQokF6ZJ4DcFob+vRrOYIsCUCzvpXvuwiN
-NCf7iDwl1fqG3yHZOI4l1KuwZjsdYQwKaek2U7SxcxuRoerdHPggNJ0i40hBNy6L
-oD8LRRTeblZ1XiIqkLEs4fiMNsANUHtTip11osb8OihjqhF/vHp7xi60vCwLjF2L
-YjQP/NTFeJP+vo8y4R2shkRC34en9Bw6kzQMdHjWRsFHpwJafVVU9Afti16r98eo
-5GnykrXF8WzThPYOT8e+VcJ7OXPwCHNbewJ2x1W3N3opQHbnUJc=
-=FUct
------END PGP SIGNATURE-----
-
---e3xoqdmdt4ognzxn--
+Best regards,
+Krzysztof
 
