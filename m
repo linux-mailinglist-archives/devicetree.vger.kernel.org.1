@@ -1,168 +1,151 @@
-Return-Path: <devicetree+bounces-174970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11766AAF663
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:11:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FD7CAAF684
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:15:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C567462D0B
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:11:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 080569E15FE
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:15:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F340725394C;
-	Thu,  8 May 2025 09:11:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7087B266572;
+	Thu,  8 May 2025 09:15:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RdUttfMh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CC7123E325
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 09:11:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69369265615;
+	Thu,  8 May 2025 09:15:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746695511; cv=none; b=NZgI33z6lczZK8LjVBxoyLgINQTl5JJsdc7RLTk+8gvM8lq7OB3veDNHSk+K7sWy+q4arZ/TJo2VdTRyineMWGNgbS7FyiRhuVI9BdYQzjnyyb+B2mKl4yncdlK49qd8TuURin2eBLiuD6qN8fSkNTtklFtcTEhcOz8krHiJGIE=
+	t=1746695720; cv=none; b=n3oLoT1V+7Qz26LqryzPsBxUwBZvZYQmjwXuYQm7tGoXBPxT7TEfSUZn0+esYm2b16CBQ2LfrQ+RkU+K5iEWI2G3uywpxG797A3Lptl1jZqpkvGnabPcd5knkenyfTUH1bDnSXHlkcbkt5+2AUECH4fAoe7DdypPAvPhq413eTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746695511; c=relaxed/simple;
-	bh=kSWdw8IVCVEdiiVxcwOCCea5RImdBd+3SVN/TuOIsmo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=B6Yp4lYnziv2kYaesWdI6u+xgFSJAHEPjhLcIY23P01PqGkDgUpTQynnmlhpXD7kYLjcew27Bf7uohUp/v4VZuiSS30j7rAvbAOhTK7QIBcrsNd9s1y/MNZM4coxOpU+ZZlxVKoPvD8bSgaEbfUG6S+zcPOdvZ0qLQe8m3Uw2fo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uCxHz-0001pr-Kw; Thu, 08 May 2025 11:11:35 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uCxHz-001hZ8-0z;
-	Thu, 08 May 2025 11:11:35 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uCxHz-0003qM-0i;
-	Thu, 08 May 2025 11:11:35 +0200
-Message-ID: <a3febd3718397d7cf067e2ae637c2d633388f89f.camel@pengutronix.de>
-Subject: Re: [PATCH v6 5/6] reset: spacemit: define three more CCUs
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Alex Elder <elder@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr,  dlan@gentoo.org
-Cc: heylenay@4d2.org, inochiama@outlook.com, guodong@riscstar.com, 
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- spacemit@lists.linux.dev,  linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Date: Thu, 08 May 2025 11:11:35 +0200
-In-Reply-To: <20250506210638.2800228-6-elder@riscstar.com>
-References: <20250506210638.2800228-1-elder@riscstar.com>
-	 <20250506210638.2800228-6-elder@riscstar.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1746695720; c=relaxed/simple;
+	bh=Sz+P8VUrjYWDsH77RFKtYsxSIw1Pbe/FMGn+UhFvkHQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BRgnyqmMedj5adWeF7bWbrRsBoil2IVD0HTQ6n8r5dP1ZwH3y33C5sXoUHU9Tid4nveW4gwGsa4BTly/HRz9wDS0tIVISLuuOPF79chBTlhJqGHngG3OdB3x/Ai+qhJ60qP/Rk11QQtX71IWSdYC4g09oV8T7jg/gk9ef6HXyG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RdUttfMh; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5489ErKI1632365
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 8 May 2025 04:14:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746695693;
+	bh=MyRaGoNoeSjypgIYgd0bWb96E1p/i2sZb3+1WmcOQYY=;
+	h=From:To:CC:Subject:Date;
+	b=RdUttfMhSD4iw2y9hv8OPdo+CNx4COkhoaf3fuk2/zTFme1caqs60NOn1FAOAh98h
+	 /0iqUsb96iTtDEKOh7Zlu6LO+skHwVqh61wZld2p/XnDGqtYXFhg6t5AL7W2zpV/Y5
+	 7/QHAlz3AwrBQIPgBXeD3MVDn1PhXTPgaVr0x5W0=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5489ErUM105930
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 May 2025 04:14:53 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
+ May 2025 04:14:52 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 8 May 2025 04:14:52 -0500
+Received: from localhost (ula0502350.dhcp.ti.com [172.24.227.38])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5489Eqd9110295;
+	Thu, 8 May 2025 04:14:52 -0500
+From: Paresh Bhagat <p-bhagat@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <khasim@ti.com>, <v-singh1@ti.com>, <afd@ti.com>
+Subject: [PATCH v3 0/3] Add support for AM62D2 SoC and EVM
+Date: Thu, 8 May 2025 14:44:19 +0530
+Message-ID: <20250508091422.288876-1-p-bhagat@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Di, 2025-05-06 at 16:06 -0500, Alex Elder wrote:
-> Three more CCUs on the SpacemiT K1 SoC implement only resets, not clocks.
-> Define these resets so they can be used.
->=20
-> Signed-off-by: Alex Elder <elder@riscstar.com>
-> ---
->  drivers/clk/spacemit/ccu-k1.c | 24 ++++++++++++++++
->  drivers/reset/spacemit/k1.c   | 54 +++++++++++++++++++++++++++++++++++
->  include/soc/spacemit/ccu_k1.h | 30 +++++++++++++++++++
->  3 files changed, 108 insertions(+)
->=20
-> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.=
-c
-> index 6b1845e899e5f..bddc83aff23cd 100644
-> --- a/drivers/clk/spacemit/ccu-k1.c
-> +++ b/drivers/clk/spacemit/ccu-k1.c
-> @@ -939,6 +939,18 @@ static const struct spacemit_ccu_data k1_ccu_apmu_da=
-ta =3D {
->  	.num		=3D ARRAY_SIZE(k1_ccu_apmu_hws),
->  };
-> =20
-> +static const struct spacemit_ccu_data k1_ccu_rcpu_data =3D {
+This patch series adds support for the AM62D SoC and its evaluation
+module (EVM) board. The AM62D SoC is a high-performance Digital
+Signal Processing (DSP) device with a quad-core Cortex-A53 cluster,
+dual Cortex-R5F cores, and a Cx7 DSP core with Matrix Multiplication
+Accelerator (MMA). It features a range of peripherals, including
+multichannel audio serial ports, Ethernet, UARTs, SPI, I2C, USB, and
+more.
 
-The /* No clocks in the RCPU CCU */ comment belongs here, instead of in
-the reset driver.
+The EVM board is a low-cost, expandable platform designed for the AM62D2
+SoC, having 4GB LPDDR4 RAM, Gigabit Ethernet expansion connectors, audio
+jacks, USB ports, and more.
 
-I wonder though, if these units have no clocks, why are they called
-CCUs? It doesn't make much sense to me to add their compatibles to the
-ccu-k1 driver only to load the reset aux driver. Why not just add a
-platform driver next to the aux driver in reset-spacemit.ko for these
-three?
+This SoC is part K3 AM62x family, which includes the AM62A and AM62P
+variants. While the AM62A and AM62D are largely similar, the AM62D is
+specifically targeted for general-purpose DSP applications, whereas the
+AM62A focuses on edge AI workloads. A key distinction is that the AM62D
+does not include multimedia components such as the video encoder/decoder,
+MJPEG encoder, Vision Processing Accelerator (VPAC) for image signal
+processing, or the display subsystem. Additionally, the AM62D has a
+different pin configuration compared to the AM62A, which impacts embedded
+software development.
 
-> +	.reset_name	=3D "rcpu-reset",
-> +};
-> +
-> +static const struct spacemit_ccu_data k1_ccu_rcpu2_data =3D {
-> +	.reset_name	=3D "rcpu2-reset",
-> +};
-> +
-> +static const struct spacemit_ccu_data k1_ccu_apbc2_data =3D {
-> +	.reset_name	=3D "apbc2-reset",
-> +};
-> +
->  static int spacemit_ccu_register(struct device *dev,
->  				 struct regmap *regmap,
->  				 struct regmap *lock_regmap,
-> @@ -1106,6 +1118,18 @@ static const struct of_device_id of_k1_ccu_match[]=
- =3D {
->  		.compatible	=3D "spacemit,k1-syscon-apmu",
->  		.data		=3D &k1_ccu_apmu_data,
->  	},
-> +	{
-> +		.compatible	=3D "spacemit,k1-syscon-rcpu",
-> +		.data		=3D &k1_ccu_rcpu_data,
-> +	},
-> +	{
-> +		.compatible	=3D "spacemit,k1-syscon-rcpu2",
-> +		.data		=3D &k1_ccu_rcpu2_data,
-> +	},
-> +	{
-> +		.compatible	=3D "spacemit,k1-syscon-apbc2",
-> +		.data		=3D &k1_ccu_apbc2_data,
-> +	},
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, of_k1_ccu_match);
-> diff --git a/drivers/reset/spacemit/k1.c b/drivers/reset/spacemit/k1.c
-> index 19a34f151b214..27434a1928261 100644
-> --- a/drivers/reset/spacemit/k1.c
-> +++ b/drivers/reset/spacemit/k1.c
-> @@ -137,6 +137,57 @@ static const struct ccu_reset_controller_data k1_apm=
-u_reset_data =3D {
->  	.count		=3D ARRAY_SIZE(apmu_resets),
->  };
-> =20
-> +static const struct ccu_reset_data rcpu_resets[] =3D {
-> +	[RESET_RCPU_SSP0]	=3D RESET_DATA(RCPU_SSP0_CLK_RST,	0, BIT(0)),
-> +	[RESET_RCPU_I2C0]	=3D RESET_DATA(RCPU_I2C0_CLK_RST,	0, BIT(0)),
-> +	[RESET_RCPU_UART1]	=3D RESET_DATA(RCPU_UART1_CLK_RST, 0, BIT(0)),
-> +	[RESET_RCPU_IR]		=3D RESET_DATA(RCPU_CAN_CLK_RST,	0, BIT(0)),
-> +	[RESET_RCPU_CAN]	=3D RESET_DATA(RCPU_IR_CLK_RST,	0, BIT(0)),
-> +	[RESET_RCPU_UART0]	=3D RESET_DATA(RCPU_UART0_CLK_RST, 0, BIT(0)),
-> +	[RESET_RCPU_HDMI_AUDIO]	=3D RESET_DATA(AUDIO_HDMI_CLK_CTRL, 0, BIT(0)),
-> +};
-> +
-> +static const struct ccu_reset_controller_data k1_rcpu_reset_data =3D {
-> +	/* No clocks in the RCPU CCU */
+This patch series includes updates to the dts and dtsi files, device tree
+bindings, and pin control header files to support the AM62D SoC and EVM
+board.
 
-This information is not useful in the reset driver.
+Bootlog-
+https://gist.github.com/paresh-bhagat12/1757cc54a39f1baf883341af2a383db6
+Tech Ref Manual-https://www.ti.com/lit/pdf/sprujd4
+Schematics Link-https://www.ti.com/lit/zip/sprcal5
 
-regards
-Philipp
+Note: This patch series should be applied after the below series 
+has been merged.
+https://lore.kernel.org/all/20250415153147.1844076-1-jm@ti.com/
+
+Change Log:
+V2 -> V3:
+	-Added bootph-all property to essential device nodes.
+	-Updated reserved memory for ATF.
+	-Introduce common dtsi files for AM62A and AM62D.
+
+V1 -> V2: Fixed indentation and build errors.
+
+Paresh Bhagat (3):
+  dt-bindings: arm: ti: Add bindings for AM62D2 SoC
+  arm64: dts: ti: Add pinctrl entries for AM62D2 family of SoCs
+  arm64: dts: ti: Add support for AM62D2-EVM
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |    6 +
+ arch/arm64/boot/dts/ti/Makefile               |    3 +
+ .../dts/ti/k3-am62a-am62d-common-main.dtsi    | 1013 +++++++++++++++++
+ ...cu.dtsi => k3-am62a-am62d-common-mcu.dtsi} |   26 +-
+ ...tsi => k3-am62a-am62d-common-thermal.dtsi} |    2 +-
+ ...dtsi => k3-am62a-am62d-common-wakeup.dtsi} |    2 +-
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     | 1005 ----------------
+ arch/arm64/boot/dts/ti/k3-am62a.dtsi          |    9 +-
+ arch/arm64/boot/dts/ti/k3-am62d.dtsi          |  123 ++
+ arch/arm64/boot/dts/ti/k3-am62d2-evm.dts      |  533 +++++++++
+ arch/arm64/boot/dts/ti/k3-am62d2.dtsi         |  155 +++
+ arch/arm64/boot/dts/ti/k3-pinctrl.h           |    3 +
+ 12 files changed, 1846 insertions(+), 1034 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62a-am62d-common-main.dtsi
+ rename arch/arm64/boot/dts/ti/{k3-am62a-mcu.dtsi => k3-am62a-am62d-common-mcu.dtsi} (86%)
+ rename arch/arm64/boot/dts/ti/{k3-am62a-thermal.dtsi => k3-am62a-am62d-common-thermal.dtsi} (94%)
+ rename arch/arm64/boot/dts/ti/{k3-am62a-wakeup.dtsi => k3-am62a-am62d-common-wakeup.dtsi} (97%)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62d.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62d2-evm.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62d2.dtsi
+
+-- 
+2.34.1
+
 
