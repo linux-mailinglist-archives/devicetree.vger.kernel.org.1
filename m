@@ -1,206 +1,117 @@
-Return-Path: <devicetree+bounces-175086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B52E4AAFC4E
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 16:03:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8437FAAFC86
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 16:12:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD89998854B
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:02:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAA57175FB7
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:12:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB5022E41C;
-	Thu,  8 May 2025 14:03:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7AFF253953;
+	Thu,  8 May 2025 14:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S4wet2nT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kD/TP8Dc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8E722D9F7;
-	Thu,  8 May 2025 14:03:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 353A52441AF;
+	Thu,  8 May 2025 14:11:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746712985; cv=none; b=u47xmWkY8KaqLlnakWTTSCfBpdJdkGKgyIAtZXvmPVyv/vb2H8ccES9uo70lHdMTQcxNgfWXEB1dN+eRrf1idIbmj2aHNpUSOLOoN8c5uHkx/zE3GKkGaBfmee2AAvOteL3mXxYIldIz9R+KPABY7twja8K0Lg6ybt9mOVKCfb4=
+	t=1746713472; cv=none; b=EJx04hp/F2pn7vgn4CUu1SiScw4MTrmvQrDAQkgYQZDRTumsd4vv6OlQcNg0Nq7fQUCLUf5Lb0IXuYhjOGJ7NJYcneDE7K+GGbo7QquYXt8xLCEW0Fkj8aVHRZz8vgSKiQ2C214K+m0jE0DjqQAXiI1pXs3bfn2F212P5HCCrgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746712985; c=relaxed/simple;
-	bh=C/L/pftHGTCWGdWgJfT7sKUaqugtRJmVqtPPXBpoS98=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U3Ozt6/MRLk4X1MA0hJG3/K1kCqyQBYhzjQLapcHh1RpvUyNuYBBs0oYWXVOF1t8j3rG0jSV0/KsOwYl1F277yul1/2s5hBM4zKtcnUN/vtD0SKXdUxmQz0Nn7OVnfQPIL3N4Bg2+lghTJtIBTeKmM15Fg6ZuvlwTQQLDJUlPQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S4wet2nT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3777C4CEE7;
-	Thu,  8 May 2025 14:03:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746712985;
-	bh=C/L/pftHGTCWGdWgJfT7sKUaqugtRJmVqtPPXBpoS98=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S4wet2nTFae/hq0ivrloA8WadwPEauM183hm9+Bu4YlWD2GkEMsbffzfnzdIYa8iy
-	 XUsPA30tiKJodYhuowT1dMdJWwlU3+XOnO/P6qK6MajeIsJzWIcopRtYo7mnp9LtIo
-	 2IE51HXnnaP3GYIFFO/fh8+OBvQtunqBJgkllvPicUyT2b2+jyO8gmIOGfkkp3taBP
-	 reI2//D4TvUWuAwwJklHmqglJe2fLRaPBiNohoQqJIXM2y2Ws6h4THDRxQ7mSUndyl
-	 2yakR5t27fi+iNZ75/KgbctlgpbjHN2yMe6t5fj9HchbYtEYh7xJa9VcAPnH+un7jB
-	 Ix8+r/CvflXYQ==
-Date: Thu, 8 May 2025 15:02:59 +0100
-From: Lee Jones <lee@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Srinivas Kandagatla <srini@kernel.org>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v9 4/6] mfd: max77759: add Maxim MAX77759 core mfd driver
-Message-ID: <20250508140259.GN3865826@google.com>
-References: <20250430-max77759-mfd-v9-0-639763e23598@linaro.org>
- <20250430-max77759-mfd-v9-4-639763e23598@linaro.org>
+	s=arc-20240116; t=1746713472; c=relaxed/simple;
+	bh=P97pxFBa0PGapt+u/u+jF+7T4Zbl6K/7q6zpAEC+eZo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=TI0epEkuV6yjaEF5izMbSv4jFczQq7XYnxNRnc8YOsKvFhBZPj5CmQKqgjlF2yA+K3z3sVBNBzSLHWPhzzbjmSz/DoBXV5yafPh3+WY7/6+191bMRTVJgHBD0Z4b6bmLlchF3lybtmzVNijd7F11yvyNraOxxi7ENkX/bSa+KGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kD/TP8Dc; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ac25d2b2354so171705866b.1;
+        Thu, 08 May 2025 07:11:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746713468; x=1747318268; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6ua4V92NoIFfsZQXFItvUEVFE3bhvGaNwUwjEPfQYZs=;
+        b=kD/TP8DcY9iayv8D1bVA5HaIdDqo8qNQRFCFTp9vP9gVRoY1qzTgPck9pq/fsP72NZ
+         hpjTLPD/cYKpPcq11ES6fFLaFztxa/bhLrsuXSsRjA+yK0+SKDOuvXYzh1SSsFwONT6F
+         xA5yTeAk8J9TweWeOGB5dhb1LbaZ4T1czmv1E4tkinjLpI3xMDTHkpbBDSYMI4Zd6n8g
+         IAyvj4lb2igqJWmHT5wtjISJdykol/PxrtPYalst2YofCuchHI3aJuvWnonAoCVXqSYq
+         Zale9z1Ncz3b+epXoTD8WtvR2SzqZ/Ar6qFplpLVwzdkJUQgLLjhv8G0tKJkQxYVxVCE
+         suUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746713468; x=1747318268;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6ua4V92NoIFfsZQXFItvUEVFE3bhvGaNwUwjEPfQYZs=;
+        b=qGmwgW8hPXwoDNSiZaY2d+s1tkn4kGfiS+Cc2xWsNM8WrzbsYLNp6+o7SOa7aS08xc
+         cow7ftRIxNVJOrOy8J5OPnpUuWXZjikVZKoZegoyOzLZTFZiTCugU38d1HneK8GtXmc2
+         4145BQ3X2nFr1tuO+cXm/tfZJ/WNxwbiXUV/OvAYdW4tcAY66zF2xxNh79tpWCEX8x53
+         aioG5UrizUhFFrH89aUeJ3c4L/xRoQBbIQln25lwvuu6mVtef34w3ao+S9Fgjs/Yakcw
+         hxl5IXemccbHJBRq7R2Svv31oWNDtlzUe9a7xnYz5ikuoDzTAPcYtpTRGKoZWOoqncv4
+         +gBw==
+X-Forwarded-Encrypted: i=1; AJvYcCUfUponH/dtDlAMkn6SDQvqqjwJEN2vi/Kj1p3LvsGzs/mAFk73Xs371ZygAmLsOZboX0M9Vt9iArNowMY=@vger.kernel.org, AJvYcCW5Hk4YCep4s14SEzkHCLct+kh3M43MO8AVHl40zlNnb2KB2KmifvBQSx5vP7zoABmXrN3RWW56ojs9@vger.kernel.org, AJvYcCXGi1teV/g4dHW6Ks/Jy6M4MjNlNTa6ZJi3JGRO0NsB62YyIwIuCn7pjj2EtRe6fGruFh2d9MtUXF8e3A17@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmOY525dbLXTzFanWQx+TF7r1OEvp6vyXzhman8Whp9PzeRokm
+	me92bbEGMvbdhQVzWf9Xjn2lyFOSxxaM2S+YFkkC+dnFRj74Mm2/1B0hjQ==
+X-Gm-Gg: ASbGncti5gEgeexz3srAz3sRcWwLBWxHCDt1Moebb7nBJ1V/ihRPCFff4yq6cCgAZsZ
+	2ZXSRIZ33fwC86RNRynieDJRJ4/froaIFgf8TK4zQsZ4DMnzXINNctXZoJqJYPWjjJZWEj4uGIb
+	wxK3eZn7hqHpFJuU68LkU57iW1Jng7JEwZHvj28zW1St0QYYMFR/P/ai2DXe4kcg6gQm5C4oIQs
+	dCH34N2gWOJEKTXjo0vn9MFG+lXxM+okrlRv3Kcabp6zdOp9h1Bx05BVRTr6HiqrI65S+T7rc4P
+	hgYFUq8/4Lue+hwAkmifORWZqbRXNaos+YNqY1z/N//LVBz/WnPw1AiIw9bPm+kwLobo0tvZqmZ
+	FJ+wW
+X-Google-Smtp-Source: AGHT+IE74nCsMrjWx1sNhOE7r+vEsthDSCktjhOI0HzucndfvBuhDWWhOESu2QR7Rl7L+nmpxU8msQ==
+X-Received: by 2002:a17:906:9c94:b0:aca:e2d6:508c with SMTP id a640c23a62f3a-ad1fe9e3cecmr334933366b.56.1746713468106;
+        Thu, 08 May 2025 07:11:08 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad18914d031sm1090262966b.20.2025.05.08.07.11.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 May 2025 07:11:07 -0700 (PDT)
+Date: Thu, 8 May 2025 16:11:05 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, phone-devel@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] Moto G (2013) DTS updates
+Message-ID: <cover.1746711762.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250430-max77759-mfd-v9-4-639763e23598@linaro.org>
 
-On Wed, 30 Apr 2025, André Draszik wrote:
+This series improves the accuracy of motorola-falcon's DTS.
 
-> The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
-> includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
-> Port Controller (TCPC), NVMEM, and a GPIO expander.
-> 
-> Fuel Gauge and TCPC have separate and independent I2C addresses,
-> register maps, and interrupt lines and are therefore excluded from the
-> MFD core device driver here.
-> 
-> The GPIO and NVMEM interfaces are accessed via specific commands to the
-> built-in microprocessor. This driver implements an API that client
-> drivers can use for accessing those.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> 
-> ---
-> v6: really use postinc
-> 
-> v5:
-> * update all (I hope) of Lee's comments:
-> * file header C comment (not C++)
-> * drop references to 'MFD'
-> * extra indent register bit definitions
-> * make 'struct max77759' public
-> * drop comments that were used for visual separation only
-> * drop MAX77759_*_REG_LAST_REGISTER defines
-> * add comments to regmap ranges
-> * use longer lines
-> * sort local variable in reverse christmas tree order
-> * update comments in max77759_maxq_command()
-> * drop BUILD_BUG_ON()
-> * use dev_err() in max77759_maxq_command()
-> * reflow max77759_create_i2c_subdev() slightly and update error messages
-> * drop useless comment in max77759_add_chained_maxq()
-> * reflow max77759_probe()
-> * consistent upper-/lower-case in messages
-> 
-> v4:
-> * add missing build_bug.h include
-> * update an irq chip comment
-> * fix a whitespace in register definitions
-> 
-> v2:
-> * add kernel doc for max77759_maxq_command() and related structs
-> * fix an msec / usec typo
-> * add missing error handling of devm_mutex_init() (Christophe)
-> * align sentinel in max77759_of_id[] with max77759_i2c_id[]
->   (Christophe)
-> * some tidy-ups in max77759_maxq_command() (Christophe)
-> 
-> max77759 Lee's updates
-> ---
->  MAINTAINERS                  |   2 +
->  drivers/mfd/Kconfig          |  20 ++
->  drivers/mfd/Makefile         |   1 +
->  drivers/mfd/max77759.c       | 690 +++++++++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/max77759.h | 165 +++++++++++
->  5 files changed, 878 insertions(+)
+As a side note, I wanted to ask how to describe the Hall effect sensor's
+vdd-supply. The sensor's currently described as part of the gpio-keys node.
+According to the schematic it's powered by pm8226_lvs1, but I don't see a way
+to describe this as part of the gpio-keys node (maybe it's always-on because
+of this? Downstream describes it as gpio-keys too). Any tips?
 
-This looks okay to me now.
+Stanislav Jakubek (4):
+  ARM: dts: qcom: msm8226-motorola-falcon: add clocks, power-domain to
+    simpleFB
+  ARM: dts: qcom: msm8226-motorola-falcon: add I2C clock frequencies
+  ARM: dts: qcom: msm8226-motorola-falcon: limit TPS65132 to 5.4V
+  ARM: dts: qcom: msm8226-motorola-falcon: specify vddio_disp output
+    voltage
 
-I assume the other patches depend on this one?
-
-[...]
-
-> diff --git a/drivers/mfd/max77759.c b/drivers/mfd/max77759.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..15723ac3ef49771eafd5c2e9984abc550eec7aa1
-> --- /dev/null
-> +++ b/drivers/mfd/max77759.c
-> @@ -0,0 +1,690 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright 2020 Google Inc
-> + * Copyright 2025 Linaro Ltd.
-> + *
-> + * Core driver for Maxim MAX77759 companion PMIC for USB Type-C
-> + */
-
-[...]
-
-> +int max77759_maxq_command(struct max77759 *max77759,
-> +			  const struct max77759_maxq_command *cmd,
-> +			  struct max77759_maxq_response *rsp)
-> +{
-> +	DEFINE_FLEX(struct max77759_maxq_response, _rsp, rsp, length, 1);
-> +	struct device *dev = regmap_get_device(max77759->regmap_maxq);
-> +	static const unsigned int timeout_ms = 200;
-> +	int ret;
-> +
-> +	if (cmd->length > MAX77759_MAXQ_OPCODE_MAXLENGTH)
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * As a convenience for API users when issuing simple commands, rsp is
-> +	 * allowed to be NULL. In that case we need a temporary here to write
-> +	 * the response to, as we need to verify that the command was indeed
-> +	 * completed correctly.
-> +	 */
-> +	if (!rsp)
-> +		rsp = _rsp;
-> +
-> +	if (!rsp->length || rsp->length > MAX77759_MAXQ_OPCODE_MAXLENGTH)
-> +		return -EINVAL;
-> +
-> +	guard(mutex)(&max77759->maxq_lock);
-> +
-> +	reinit_completion(&max77759->cmd_done);
-> +
-> +	/*
-> +	 * MaxQ latches the message when the DATAOUT32 register is written. If
-> +	 * cmd->length is shorter we still need to write 0 to it.
-> +	 */
-> +	ret = regmap_bulk_write(max77759->regmap_maxq,
-> +				MAX77759_MAXQ_REG_AP_DATAOUT0, cmd->cmd,
-> +				cmd->length);
-> +	if (!ret && cmd->length < MAX77759_MAXQ_OPCODE_MAXLENGTH)
-> +		ret = regmap_write(max77759->regmap_maxq,
-> +				   MAX77759_MAXQ_REG_AP_DATAOUT32, 0);
-> +	if (ret) {
-> +		dev_err(dev, "writing command failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* wait for response from MaxQ */
-
-If you have to respin this patch, please s/wait/Wait/.
-
-If not, please send a subsequent patch.
+ .../boot/dts/qcom/msm8226-motorola-falcon.dts | 22 +++++++++++++++----
+ 1 file changed, 18 insertions(+), 4 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
+2.43.0
+
 
