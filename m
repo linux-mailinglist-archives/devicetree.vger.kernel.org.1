@@ -1,176 +1,144 @@
-Return-Path: <devicetree+bounces-174992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F10D1AAF7AE
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:21:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC056AAF78A
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:10:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3CBB7B3B66
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:19:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 543C74C30C5
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 296C21F03D2;
-	Thu,  8 May 2025 10:20:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA5D1D8E10;
+	Thu,  8 May 2025 10:10:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZCueXSvd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q1JOiXu1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52DE61C5D59;
-	Thu,  8 May 2025 10:20:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DF842065;
+	Thu,  8 May 2025 10:10:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746699636; cv=none; b=dTsySMtjYCDWoV1OGcy5tMotgMpzdZlnNWGGKr+FRuRJT4EpM7/T3q5/1cih2sMKxJL3ZUziUorTTVx7dS0jb55LOcLtOxuT/rBtWlnLQstxU8QUQVE3d8ySrUO4+BFJJgNJ/KKqLn+AQqp7Jwf3JKTSdOc9rVEpdEv4hgSpV30=
+	t=1746699053; cv=none; b=GboERZ5JcVv5KBLiaQQxd6CWi43pum50pTouI147QQ4YGFhHDi+eBavJigz+lGsCNpqTVlZ582vCurbkJl3wHNrBBscnFSjyediEDWADM5rEetwg8K8FDBgxXV1nlecBu1bJNrd/6wR+aQPeOmBPDwXWjd2iWsPhMnJ6r2oqk74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746699636; c=relaxed/simple;
-	bh=lSqIRxUmZm4AWVQH4oJ/nSKKRTQD0/VeIZXwE743ONw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PZ1apwzpx6fO9GqnJZtmsOLy95p6BYkH3+7+/JoaBS1fPt7kCYKfOYwsORyVa4elHAXNJJbyrCtOdZcc5Nnxn2GiCs9McUxOOkzX56osPEYAkQciGNa1+JGniCx47fw4UR64gSNOWC/Z58kO1cJ845D4zbDdE0ELfNyPP5C1fSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZCueXSvd; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 548AKRIm1642666
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 8 May 2025 05:20:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746699627;
-	bh=MnVLBozF9fH/K3g5BWn/Ig8ulDGxgIJKkBYrwb5xGYU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=ZCueXSvdfjO7wS95upT+vBQuL6wpwA/S6Uk5ddWJNct+q5nth/B7dJ3h7Dg/m53M8
-	 Z+xM7m/U7EBKbZKN1aLTaeVd5FEekEjj/Bp7PVTIMigTRVwLiK85I8D7Nzddxj73bS
-	 oGFViyhOHijEHjkPZPUb4xJuBeIB3LVg2suKFd40=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 548AKRJJ032178
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 8 May 2025 05:20:27 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- May 2025 05:20:27 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 8 May 2025 05:20:27 -0500
-Received: from pratham-Workstation-PC (pratham-workstation-pc.dhcp.ti.com [172.24.227.40])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 548AKPtV008847;
-	Thu, 8 May 2025 05:20:26 -0500
-From: T Pratham <t-pratham@ti.com>
-To: T Pratham <t-pratham@ti.com>, Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Kamlesh Gurudasani <kamlesh@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        Manorit Chawdhry
-	<m-chawdhry@ti.com>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 1/2] dt-bindings: crypto: Add binding for TI DTHE V2
-Date: Thu, 8 May 2025 15:37:40 +0530
-Message-ID: <20250508101723.846210-3-t-pratham@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250508101723.846210-2-t-pratham@ti.com>
-References: <20250508101723.846210-2-t-pratham@ti.com>
+	s=arc-20240116; t=1746699053; c=relaxed/simple;
+	bh=al1FqgCmXx5VBt+1ZySNsT8ko0r+Xa1DTRkUn0hBPyk=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=B6BgOrxrXM7TE6t4Px4USi/t/EGbRPIGYNeXbRs/dRyE/3L3FoIo0F0ofQjAXSMUmXbfjgVTkcWDsblO2QxSarJSvNeYgoa5UoZKVWak+OOh+btQnwsgbljeg2rfjZI60GD2fS18aDBi3MfKQruV37nwEeW05f2tsxEjzO8AUwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q1JOiXu1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20669C4CEE7;
+	Thu,  8 May 2025 10:10:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746699053;
+	bh=al1FqgCmXx5VBt+1ZySNsT8ko0r+Xa1DTRkUn0hBPyk=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=q1JOiXu16Id6bmC4kxGhe9ggBpPRqbPahqHkUlMfgo0p8an0i/GHnXDs4t2wiQP8b
+	 0b0uD/z8QvtzY2RjZo6GJqmq98+WEaZuBUYWq0v5FgGBHQt9B5Zg04m2qVBFZBJDOY
+	 kq4nKxezAKb4Gc7xDn9lId3CSsQ+wetxWoty2nQ3WZ0b2UU3vaEVf1ZyX1g2GhYCfa
+	 HVWLvqkvxh9XGx6VIIhmVB4fB9PN2AkxJ9Bke2iY/HeK07QmyLGYnORxiMbHIRQYgD
+	 ULAOYek3vcRgGQTU8RqQFjMvSSz4l0rotmoOUcOSaLfOXAxlvzFosiYSljeWDVQUDe
+	 U7lQekgo0HFWw==
+Date: Thu, 08 May 2025 05:10:51 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: krzk+dt@kernel.org, afd@ti.com, devicetree@vger.kernel.org, 
+ vigneshr@ti.com, v-singh1@ti.com, kristo@kernel.org, 
+ linux-arm-kernel@lists.infradead.org, khasim@ti.com, nm@ti.com, 
+ conor+dt@kernel.org, praneeth@ti.com, linux-kernel@vger.kernel.org
+To: Paresh Bhagat <p-bhagat@ti.com>
+In-Reply-To: <20250508091422.288876-2-p-bhagat@ti.com>
+References: <20250508091422.288876-1-p-bhagat@ti.com>
+ <20250508091422.288876-2-p-bhagat@ti.com>
+Message-Id: <174669905140.3798918.8007695230469922299.robh@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: arm: ti: Add bindings for AM62D2
+ SoC
 
-Add DT binding for Texas Instruments DTHE V2 crypto accelerator.
 
-DTHE V2 is introduced as a part of TI AM62L SoC and can currently be
-only found in it.
+On Thu, 08 May 2025 14:44:20 +0530, Paresh Bhagat wrote:
+> The AM62D2 SoC belongs to the K3 Multicore SoC architecture with DSP core
+> targeted for applications needing high-performance Digital Signal
+> Processing. It is used in applications like automotive audio systems,
+> professional sound equipment, radar and radio for aerospace, sonar in
+> marine devices, and ultrasound in medical imaging. It also supports
+> precise signal analysis in test and measurement tools.
+> 
+> Some highlights of AM62D2 SoC are:
+> 
+> * Quad-Cortex-A53s (running up to 1.4GHz) in a single cluster. Dual/Single
+>   core variants are provided in the same package to allow HW compatible
+>   designs.
+> * One Device manager Cortex-R5F for system power and resource management,
+>   and one Cortex-R5F for Functional Safety or general-purpose usage.
+> * DSP with Matrix Multiplication Accelerator(MMA) (up to 2 TOPS) based on
+>   single core C7x.
+> * 3x Multichannel Audio Serial Ports (McASP) Up to 4/6/16 Serial Data Pins
+>   which can Transmit and Receive Clocks up to 50MHz, with multi-channel I2S
+>   and TDM Audio inputs and outputs.
+> * Integrated Giga-bit Ethernet switch supporting up to a total of two
+>   external ports with TSN capable to enable audio networking features such
+>   as, Ethernet Audio Video Bridging (eAVB) and Dante.
+> * 9xUARTs, 5xSPI, 6xI2C, 2xUSB2, 3xCAN-FD, 3x eMMC and SD, OSPI memory
+>   controller, 1x CSI-RX-4L for Camera, eCAP/eQEP, ePWM, among other
+>   peripherals.
+> * Dedicated Centralized Hardware Security Module with support for secure
+>   boot, debug security and crypto acceleration and trusted execution
+>   environment.
+> * One 32 bit DDR Subsystem that supports LPDDR4, DDR4 memory types.
+> * Low power mode support: Partial IO support for CAN/GPIO/UART wakeup.
+> 
+> This SoC is part K3 AM62x family, which includes the AM62A and AM62P
+> variants. While the AM62A and AM62D are largely similar, the AM62D is
+> specifically targeted for general-purpose DSP applications, whereas the
+> AM62A focuses on edge AI workloads. A key distinction is that the AM62D
+> does not include multimedia components such as the video encoder/decoder,
+> MJPEG encoder, Vision Processing Accelerator (VPAC) for image signal
+> processing, or the display subsystem. Additionally, the AM62D has a
+> different pin configuration compared to the AM62A, which impacts embedded
+> software development.
+> 
+> This adds dt bindings for TI's AM62D2 family of devices.
+> 
+> More details about the SoCs can be found in the Technical Reference Manual:
+> https://www.ti.com/lit/pdf/sprujd4
+> 
+> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
+> ---
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
-Signed-off-by: T Pratham <t-pratham@ti.com>
----
- .../bindings/crypto/ti,am62l-dthev2.yaml      | 50 +++++++++++++++++++
- MAINTAINERS                                   |  6 +++
- 2 files changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml b/Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
-new file mode 100644
-index 000000000000..5486bfeb2fe8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/ti,am62l-dthev2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: K3 SoC DTHE V2 crypto module
-+
-+maintainers:
-+  - T Pratham <t-pratham@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,am62l-dthev2
-+
-+  reg:
-+    maxItems: 1
-+
-+  dmas:
-+    items:
-+      - description: AES Engine RX DMA Channel
-+      - description: AES Engine TX DMA Channel
-+      - description: SHA Engine TX DMA Channel
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx1
-+      - const: tx2
-+
-+required:
-+  - compatible
-+  - reg
-+  - dmas
-+  - dma-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    crypto@40800000 {
-+        compatible = "ti,am62l-dthev2";
-+        reg = <0x40800000 0x10000>;
-+
-+        dmas = <&main_bcdma 0 0 0x4700 0>,
-+               <&main_bcdma 0 0 0xc701 0>,
-+               <&main_bcdma 0 0 0xc700 0>;
-+        dma-names = "rx", "tx1", "tx2";
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b119ae6b5f14..b990850b4994 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -24552,6 +24552,12 @@ S:	Odd Fixes
- F:	drivers/clk/ti/
- F:	include/linux/clk/ti.h
- 
-+TI DATA TRANSFORM AND HASHING ENGINE (DTHE) V2 CRYPTO ACCELERATOR DRIVER
-+M:	T Pratham <t-pratham@ti.com>
-+L:	linux-crypto@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
-+
- TI DAVINCI MACHINE SUPPORT
- M:	Bartosz Golaszewski <brgl@bgdev.pl>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
--- 
-2.43.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250508091422.288876-2-p-bhagat@ti.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
