@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-175023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DE03AAF98F
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:16:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2D52AAF999
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:17:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5A884C20EC
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:16:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABD1B3BBEF3
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:17:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A0F2221F38;
-	Thu,  8 May 2025 12:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C3E02253EA;
+	Thu,  8 May 2025 12:17:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dyPwIgM6"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="k3w/widk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ABFD1FF1D1;
-	Thu,  8 May 2025 12:16:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D951DE4C4
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 12:17:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746706591; cv=none; b=gdFG6iyMxgPSOSjZxvm4ZKSjN37Py74gUhvWsDo3TDsDlIeyhYpUNtdZXameyKpizkWTp3uCkHB8UUK22EODCsmZFjxbRwgZoQWjaA22ja5z8E3kVutk8p9bDmpWB5DweNoNIAt/rBcht7cG6pi1xfRkuw752QEHlN5FBmOBnwA=
+	t=1746706640; cv=none; b=ejuAcJf0kjMeEJzNVdwno5dtdT5lC4vLr0f2CuejirdSYkCezEgOgqnFrUlkRmBRS0UNFzbEsXQCo9ZmONzKgWiN7zluKd7PELsAy6OU7bZGaZ0uZCqOYwTBSlMeovEskTN5/CaXBlOp5PLg/I2O4vegrGJo4VdFP1vcIFlkFDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746706591; c=relaxed/simple;
-	bh=Djcg18yMQCKOd2P1yzVFKWVY4SUB0DOptBmvsDrjuUg=;
+	s=arc-20240116; t=1746706640; c=relaxed/simple;
+	bh=gI9+15/uiqpn2T7b42r1EP83YhqQAQmZi3IavWEk6Js=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W36vnd9twosRsZGTrItee9AbXUpNOVqIWUoqyVSftxhxrW7k91FhcP2r4H2PdmkS1HW+Le4JqedFplAXVm4LmcTo6z/RQbO/oIp3M9f35qfvspRGX2f5JNOu/32MlU9SZUACm9JPEdTlQBZ0LmYMedz2O3qtuy5wmhwyRsVaz6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dyPwIgM6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12359C4CEE7;
-	Thu,  8 May 2025 12:16:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746706590;
-	bh=Djcg18yMQCKOd2P1yzVFKWVY4SUB0DOptBmvsDrjuUg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dyPwIgM6dLRpPwAGJB+P+A0Tg46C/1980i9Ej2fwtdxfbsYKAlYxmgll9hE96OF3k
-	 BnMDLVvFRsoOlgR2Swvl/k5iX3dwwhj0HTQ0T/AC+KuEa6pH0PCkrRvwBlYmz0gPCV
-	 iUZEdqnQXr0nONr0dmRuwOitS/hhvjB9R7Vaht9lMlQPZtz2ktgc1yIU14q/g3WHM+
-	 E+dQ1HAKz4kW0myk5O5BGjMFOgBBud1y657kja9Mn2h/RW+R01zfyb5E44iVmfgHPt
-	 1IfQhKZ9efpI2F7gSt5p+jdYvZ3bktsxYhFG33WV9uK3T/A4C/wGNbLkKHeke04xU0
-	 Fmj4xuFCkVm0w==
-Message-ID: <32b295ae-4186-4d37-9bfb-15b81afaa5ec@kernel.org>
-Date: Thu, 8 May 2025 14:16:26 +0200
+	 In-Reply-To:Content-Type; b=j1azNlqsfPEBlMb75Y5UcM2gpigy9XzTmaXWMuk5BbTd+SHCsPGBmxXkU6qREdyyvpYEFSZI36RAgsXVd4XJp0/ufl7Q1oAMTvVee45teSOtoFmUMq8ziPsGsYoZXU26DgndOf/CorpoqoRcDE3qKcF9pEaZUiSZZ0mSL2dCbQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=k3w/widk; arc=none smtp.client-ip=209.85.166.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-85dac9729c3so74277939f.2
+        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 05:17:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1746706636; x=1747311436; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ITsof7vKMaX3jP45vYP8VvBDvnD7ar/ly91W1po1fYs=;
+        b=k3w/widkR97bsDT61lsM4hK+UnsGe+OLVgb5KbiBJQYmL7Idof7dIWDZQ5Aj5LJrKV
+         bZpxNWRFsDQtVkJC4jRsuxXKcunGSpiy691CTRdWzD9pnGhizU9V4lf5zD/14wKzk2Na
+         ShQCKJzCBKRFn1+nPMy0b7mZuEIsZ8Rb9OIV0VR4oAt/AFyhgMaGF+QBrhbS9+WCWaYv
+         lYZ8IVJTGxULjIswSIhurxkME4u6UUmu4o4daWrZD6OS7l7Ub7nlAtxsoumelTadM6m2
+         quwsUd9lD8NdnnkWHea/Z4sZI6S6bkE9QCLhSWXYePs+1Cb9XY+gggvcYO/s8IwnlfYD
+         eFqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746706636; x=1747311436;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ITsof7vKMaX3jP45vYP8VvBDvnD7ar/ly91W1po1fYs=;
+        b=SELZ70ihh293B8JxZBP/FwxSnZ00P/t0g12bjcVT4bBnuiqmJ26WZJsAHTLZZXvwIw
+         1fQdkN5v7J9mplUOSEW88hftFuBmucx08xcGUKeEYW+DvFwY3EqYGs3REkdmfss+4huM
+         l1xzQh94W8CZ6YrCT4lkBb/RzoLygXJTCBH+9TGg4mD5ZKAXwVgtmRtTUPe9DUQo2Vou
+         yMneuz5DBvyKvOuIoQYOMRcUR8ipAL5ZiT1A6OgjFR1MjAoKUhNaGHOOFyndWycRbTnD
+         NfeycbqLxZTnbrVb6oihFUf87kQt1lh4+eI9LSUIpZBbMlhEmSmvJ8Z6DmwdQG16id28
+         U2yw==
+X-Forwarded-Encrypted: i=1; AJvYcCUCt9NUT9WqQNMQLY+n7lYGThR+JNBEIoCCqqEgBJjU4zpq1Xqv4K+hJabSqJhyNzWoeBmuOgKMHYF9@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywg+eQlgtWb1d2T+VNL2RpQ8uTsRvWM/BhjOSI/2LqsZxZKWz0c
+	7emAQ3g5kfS59dODqIVCiJTodA75zHT5i907aPbPcNlFCKLI4AZ1FyJo+WgIO/s=
+X-Gm-Gg: ASbGnct4xOQ68vSYXPB6wiof3rFB9oVLERQDbAnFlPcNKennzaO9F5nduuRcWVugGOs
+	HCQvuDLkhj5AkppadbA5fbMqbz7cH/V+f7FLUx+tFHTniRUGbj6JRjwOh2inUjII4X3LHx5wzEn
+	/u5j/nQBUOI3i0qjpkj/eBhQRZ3Rx/wn9Yeeo8VPOOjOsU84SsUPwj1OJdcjYwuXLPxZNMds0Ct
+	KTl8y2e9eb+mhu8z5xPMOr/alccydyFZf2pSt9tNzhUMCywzaUs6UjpV/AGUHkvuHIpax/fNHsH
+	PXOfjfTwxawu9OHyUfJ5w1umx+eJ9jA/lVnRZ5R5YXwDTT+uyJDm4WY0xxmxrO4RcI8tj9kR+b+
+	yIWSS
+X-Google-Smtp-Source: AGHT+IEpsfxrAkflVw0/hRABTEz4CwO/hvBuswU8lzk6t7nrXFnCj3fyA636Nq30np0oFo7xbeEBJA==
+X-Received: by 2002:a05:6602:3f85:b0:867:3e9e:89db with SMTP id ca18e2360f4ac-867473170e3mr934513939f.8.1746706636487;
+        Thu, 08 May 2025 05:17:16 -0700 (PDT)
+Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-864aa2bb1bdsm294250539f.7.2025.05.08.05.17.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 May 2025 05:17:15 -0700 (PDT)
+Message-ID: <1521c828-31f3-4e45-a651-750ce2e37364@riscstar.com>
+Date: Thu, 8 May 2025 07:17:14 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,82 +82,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] dt-bindings: iio: magnetometer: qst: Add QMC5883L
- device tree binding
-To: Brajesh Patil <brajeshpatil11@gmail.com>, jic23@kernel.org,
- lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, marcelo.schmitt1@gmail.com,
- dlechner@baylibre.com
-References: <20250508120846.114262-1-brajeshpatil11@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v6 1/6] dt-bindings: soc: spacemit: define spacemit,k1-ccu
+ resets
+To: Krzysztof Kozlowski <krzk@kernel.org>, Yixun Lan <dlan@gentoo.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, heylenay@4d2.org, inochiama@outlook.com,
+ guodong@riscstar.com, devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250506210638.2800228-1-elder@riscstar.com>
+ <20250506210638.2800228-2-elder@riscstar.com>
+ <20250507223554-GYA505240@gentoo>
+ <22b7b5fc-6f5a-4ce8-ae12-a7423925c113@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250508120846.114262-1-brajeshpatil11@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <22b7b5fc-6f5a-4ce8-ae12-a7423925c113@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 08/05/2025 14:08, Brajesh Patil wrote:
-> Signed-off-by: Brajesh Patil <brajeshpatil11@gmail.com>
+On 5/8/25 7:02 AM, Krzysztof Kozlowski wrote:
+> On 08/05/2025 00:35, Yixun Lan wrote:
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - spacemit,k1-syscon-apbc
+>>> +              - spacemit,k1-syscon-apmu
+>>> +              - spacemit,k1-syscon-mpmu
+>>> +    then:
+>>> +      required:
+>>> +        - clocks
+>>> +        - clock-names
+>>> +        - "#clock-cells"
+>>>   
+>>>   additionalProperties: false
+>>>   
+>>> diff --git a/include/dt-bindings/clock/spacemit,k1-syscon.h b/include/dt-bindings/clock/spacemit,k1-syscon.h
+>>> index 35968ae982466..f5965dda3b905 100644
+>>> --- a/include/dt-bindings/clock/spacemit,k1-syscon.h
+>>> +++ b/include/dt-bindings/clock/spacemit,k1-syscon.h
+>> would it be better to move all reset definition to its dedicated dir?
+>> which like: include/dt-bindings/reset/spacemit,k1-syscon.h?
+> 
+> Please kindly trim the replies from unnecessary context. It makes it
+> much easier to find new content.
+> 
+> 
+> I don't get why such comments are appearing so late - at v6. There was
+> nothing from you about this in v1, v2 and v3, which finally got reviewed.
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+Stephen Boyd said "please rework this to use the auxiliary driver
+framework" on version 5 of the series; it was otherwise "done" at
+that point.
 
-...
+Doing this meant there was a much clearer separation of the clock
+definitions from the reset definitions.  And Yixun's suggestion
+came from viewing things in that context.
 
-> +
-> +  mount-matrix:
-> +    description: |
-> +      A 3x3 rotation matrix describing how the magnetometer is mounted
-> +      on the device. This is used to orient the sensor measurements
-> +      to match the device's coordinate system.
-No supplies?
+Given the rework, I considered sending this as v1 of a new series
+but did not.
 
-Best regards,
-Krzysztof
+> I just feel people wait for maintainers to review and only after they
+> will add their 2 cents of nitpicks or even some more important things
+> potentially invalidating the review. Lesson for me: do not review
+> people's work before it reaches v10, right?
+
+That's not what happened here--or at least, it's not as simple
+as that.  Your quick review was very much appreciated.
+
+Yixun:  Krzysztof was satisfied with things the way they're
+defined here.  Do you feel strongly I should make your suggested
+change?  Or are you OK with me just keeping things defined this
+way for the next version?  I'd like this question resolved before
+I send the next version.
+
+Thank you.
+
+					-Alex
+
+> Best regards,
+> Krzysztof
+
 
