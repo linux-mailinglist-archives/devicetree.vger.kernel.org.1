@@ -1,125 +1,112 @@
-Return-Path: <devicetree+bounces-174867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF916AAF203
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 06:14:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF1B6AAF221
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 06:37:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E93B91BC1576
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 04:14:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F90E4E0866
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 04:37:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D61B204090;
-	Thu,  8 May 2025 04:14:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4721FCFDB;
+	Thu,  8 May 2025 04:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="PzQsT6ED"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="jt5SNyfo";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="Jjm612SV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D2932CA9;
-	Thu,  8 May 2025 04:14:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6AB8C1E;
+	Thu,  8 May 2025 04:37:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746677674; cv=none; b=OVuPaikaHcCv9s8w8R1GuBR9jJTeaGg78JPlpmZyDUu6V9GslAs5opg+RrdMb6/GaoVHiVZNox6uWIu3TdrrUnzfRbZKINy4znb3/DZQvh35Eu0QEQU4iwnxdqw0qXZc6TcftLfRHSuYJqgRZQbs/LVcr5Z941G+nzly3SeBZU4=
+	t=1746679059; cv=none; b=h84ofrBzHh8Tgfkpd1L5dP+mj2RLD1EZ4xG8ZqWRJtdO4/kaNYkoXGJwlesa2KbODNoe29T0iPQeLofJxw69d6KS1CptM00/2ct+p1HVPvimZl5cqbXfkjhuV5rDGu0+GdydGOk5C5+PEq+uOPxxmFKf5uf0HY37T52qwp7gfKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746677674; c=relaxed/simple;
-	bh=kkFlGg5bNPTJPjCV1zeL3eKzkCAHsT7R0AsSJTUn46Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iGemK9K9QT+WUyGP5IpdHonn1HtJZd72gPao9JijuqfM2YqI1twMzbKC0Z8bbZoAN2vVbfckTv+jqCco3y4d1dzmBZUGNqX1LcfFoUV+pIWOkpNctjy+nk9AsZvqHBylXqrzDkGEGYS+UBXktVZfKhVXu5xThjoSy4vUR1oEUfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=PzQsT6ED; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [100.75.0.18] (unknown [40.78.12.246])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 042A121199E9;
-	Wed,  7 May 2025 21:14:30 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 042A121199E9
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1746677672;
-	bh=qjjRDbgXc5t2xS79DeCctPMPk2aN4d/AA83/fxurBo0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PzQsT6EDggx9vwP8aXC7LjcT1HCntXX6m7vqa+lTLGoggaeS1CMDAdPe3hRX0JtTX
-	 ZkOXEd7L8XILk7eyA626yAvp8XrLuRSMN6WdF/R9Rg0HUFHPHigw9Eqkt8WthSibWf
-	 8tXz5CW0LCJd+2KAr7oSf47/WJO+hD7RUPYZQfLM=
-Message-ID: <013cab30-7314-46bb-afd6-156632835fcc@linux.microsoft.com>
-Date: Wed, 7 May 2025 21:14:30 -0700
+	s=arc-20240116; t=1746679059; c=relaxed/simple;
+	bh=0FChnJQPzz1KtzDEL5Eiax95pO/O1yR1baYM2Fap6x4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mh6PS8Ko7zfnlGqCmvHclVd+rDVSk3vwJbXpeBAeGRq28ODASr9U0og3DMvuv4TcpaFM2psm8FMttrn7grc9tv0wfsOZLhAP1fwiNO3yBt0iA6gDxPeNHcBczU3J8JDfOmMB/a1j+SZpy26LVPYGx1oAVdvYZ9dXLjMr40LaMFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=jt5SNyfo; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=Jjm612SV; arc=none smtp.client-ip=155.254.16.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id 2D90112FB439;
+	Wed, 07 May 2025 21:16:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1746677811; bh=0FChnJQPzz1KtzDEL5Eiax95pO/O1yR1baYM2Fap6x4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jt5SNyfodEi1ogDoJwe3JVlS0f9ZGc0hP+3ydAncgh4TPciIv+WHzCwS7EA8wgOq2
+	 ExSv5WIqFKleXikDRurQOpnO9sLKKj8Q/CP5fhJNZn5kUh2jDrU5XTu7To6LIhEawe
+	 WFDjblpoeXZwDN+Ldqm/FxOAzlQInbwgIJDAP4esF4uBqYxSCC65cKhPbsMvR0Y0dV
+	 2eWXhRjgfICEPOWW9pW+yT7GhGlS9HPvkT9ilnJPqNAr00waKTa/Xfhhk40aQaIrUy
+	 rKQJM1VJ8PhBwDQOmkR96jpecRuVwXY4mbAnRIUwfTW/8DmRPc+eUC3xhm/I6Vqe+5
+	 a3VwjXheJfa4Q==
+X-Virus-Scanned: amavisd-new at 4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Fgf2V28gQU5G; Wed,  7 May 2025 21:16:14 -0700 (PDT)
+Received: from ketchup (unknown [183.217.82.204])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id 5306A12FB404;
+	Wed, 07 May 2025 21:16:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1746677774; bh=0FChnJQPzz1KtzDEL5Eiax95pO/O1yR1baYM2Fap6x4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jjm612SVbUIilb0k9QVvl0KVmSkGUikSuYuzbBvuBrSD+fnVAduVWKdebnCtcuPJS
+	 bOgSUhRzYaysNDP8XobasGJEG9gUQOPwQHRiysaB2L4RdM4mCDdLFKkD/DP0n6QBWm
+	 jtdMDoHluKfzN6CUl3jbvGPyi9z7FDSzt2K3FSqrjHf5qlKRqE8MCQrqbekSDULahk
+	 IOgfsFVcmz+2cXs/VEaIwmHDHYBzqylZjIp0rIg0NVDqocTjKGghXWegGWFPjRWR2W
+	 knFk9wGYe8h6H7KIIXOmNWK3T4/acDoX6Sow2npJ5medxWk0Cuv+FcPnY60vHHiJn2
+	 5mfxKRxbEIxGg==
+Date: Thu, 8 May 2025 04:16:05 +0000
+From: Haylen Chu <heylenay@4d2.org>
+To: Alex Elder <elder@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+	p.zabel@pengutronix.de, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	dlan@gentoo.org
+Cc: inochiama@outlook.com, guodong@riscstar.com, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/6] soc: spacemit: create a header for clock/reset
+ registers
+Message-ID: <aBwwBSfnkw6XUOLA@ketchup>
+References: <20250506210638.2800228-1-elder@riscstar.com>
+ <20250506210638.2800228-3-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v8 PATCH 0/2] Add L1 and L2 error detection for A53, A57 and A72
-To: Borislav Petkov <bp@alien8.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Tony Luck <tony.luck@intel.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, James Morse <james.morse@arm.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Richter
- <rric@kernel.org>, linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
- Tyler Hicks <code@tyhicks.com>, Marc Zyngier <maz@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, devicetree@vger.kernel.org
-References: <1746404860-27069-1-git-send-email-vijayb@linux.microsoft.com>
- <20250505091044.GCaBiAlCFqVgV7-3TJ@fat_crate.local>
-Content-Language: en-US
-From: Vijay Balakrishna <vijayb@linux.microsoft.com>
-In-Reply-To: <20250505091044.GCaBiAlCFqVgV7-3TJ@fat_crate.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250506210638.2800228-3-elder@riscstar.com>
 
-On 5/5/25 02:10, Borislav Petkov wrote:
-> On Sun, May 04, 2025 at 05:27:38PM -0700, Vijay Balakrishna wrote:
->> Hello,
->>
->> This is an attempt to revive [v5] series. I have attempted to address comments
->> and suggestions from Marc Zyngier since [v5]. Additionally, I have extended
+On Tue, May 06, 2025 at 04:06:33PM -0500, Alex Elder wrote:
+> Move the definitions of register offsets and fields used by the SpacemiT
+> K1 SoC CCUs into a separate header file, so that they can be shared by
+> the reset driver that will be found under drivers/reset.
 > 
-> I'd like to hear from ARM folks here, whether this makes sense to have still.
-> 
->> support for A72 processors. Testing the driver on a problematic A72 SoC
->> has led to the detection of Correctable Errors (CEs). Below are logs captured
->> from the problematic SoC during various boot instances.
->>
->> [  876.896022] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
->>
->> [ 3700.978086] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
->>
->> [  976.956158] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
->>
->> [ 1427.933606] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
->>
->> [  192.959911] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
->>
->> Our primary focus is on A72. We have a significant number of A72-based systems
-> 
-> Then zap the support for the other CPUs as supporting those is futile.
-> 
-> cortex_arm64_l1_l2.c - I don't want an EDAC driver per RAS functional unit.
-> Call this edac_a72 or whatever, which will contain all A72 RAS functionality
-> support. ARM folks will give you a good idea here if you don't have.
-> 
-> Also, I'd need at least a reviewer entry to MAINTAINERS for patches to this
-> driver because you'll be the only ones testing this as you have vested
-> interest in this working.
-> 
-> The dt patch needs a reviewed-by too.
-> 
-> Once that is addressed, I'll take a look.
-> 
-> Thx.
-> 
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> ---
+>  drivers/clk/spacemit/ccu-k1.c | 111 +--------------------------------
+>  include/soc/spacemit/ccu_k1.h | 113 ++++++++++++++++++++++++++++++++++
 
-Thank you, Boris.
+CCU is abbreviated from "clock controller unit" thus the filename seems
+a little strange to me. Will k1-syscon.h be a better name? We could put
+all syscon registers together when introducing the power-domain driver
+later, which could provide an overall view of register layout.
 
-I will soon be posting a new series featuring only A72 functionality. 
-Could the ARM folks on Cc please comment on additional changes we can 
-include for A72?
+>  2 files changed, 114 insertions(+), 110 deletions(-)
+>  create mode 100644 include/soc/spacemit/ccu_k1.h
 
-Tyler and I can serve as joint reviewers, and I'll update the 
-MAINTAINERS file accordingly.
-
-Krzysztof, I would appreciate your reviewed-by for the DT patch when I 
-post the next version.
-
-Thanks,
-Vijay
+Best regards,
+Haylen Chu
 
