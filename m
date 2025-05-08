@@ -1,153 +1,123 @@
-Return-Path: <devicetree+bounces-175077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B841AAFBED
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F009EAAFC00
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:49:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D05E16BE11
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:47:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97A0B4E242B
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:49:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B3119309C;
-	Thu,  8 May 2025 13:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4751B22D4C9;
+	Thu,  8 May 2025 13:49:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BwVQMrkK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GWX5qHs4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76FCC18A93F
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 13:46:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17826227E99;
+	Thu,  8 May 2025 13:49:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746712016; cv=none; b=C1ZBktziPod4IS+ZgAnOrJZTTvKH8CxrBA0hpTonlMrLx/34juMiIP1a3tb3zLZG5aV6YWhObckb+YrnHQ/nS2A1yvZ2RXHcj+m+gyUfClRdQM9Z155IwNtmv/C5EcJxe3Gg2eLy7+NiMvWmvxUTjpWSCoU8Y/UiIEKmSH8s9NQ=
+	t=1746712176; cv=none; b=lgagtN4udiuZC7VuuPFkBbSg7oV86+aoA1SzrwQf3cFr6GDM6yjIMn3wVD9S8L9Yvu4z/sFQkpmvAAL+irpbrY5RPBy61qHp1VLDet7pQpKA5NNQWqU8wEhOj+LbURfeeOig706zqett/nKlupJU6pAP5e03MGjcFMT9TIURBf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746712016; c=relaxed/simple;
-	bh=00UIv3EZjfp+e19Qr1XiCLjcZ87sY1P79LJK46Z757o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=mdQDdryOE+wLJYgyR4rPdY7sMoilF0+n8KvBlYR3rvJt5hfq8JlDl+66CQpHBts0ynhtowhfPvysLFzw/dHe99GfwJy//1goK3ML0BwgFyDTFq6O1q6sSa3Hvbamyxh9NaffvCDSyqVUoVymsc+XZbkHg7wAaWPigVnHRkeK4Dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BwVQMrkK; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 548DjI4x016353
-	for <devicetree@vger.kernel.org>; Thu, 8 May 2025 13:46:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=ria+LRyG0hX
-	Dtj4N4iCruKkzRBUm5VLACf/+IbNd4TY=; b=BwVQMrkKiNsph28DX9QKzvUrspU
-	/ZTJziXwCwQXhtbweglQ5xcPgl4vFRG6vXOpIlFy0HosBmw7NcsSYpIeEPbwejCG
-	f12f2W3rT+kAdFt9xBkhBKFyzZCz3O77VDUyrY4KFIEwvv42j9xu83TPYueFnaSv
-	UAozKH/R6XQ7eOCqut3tLNGuxKQ8vjOZV8uA0QtawpAPPZLo2Iy54TU87qx7xZyK
-	FUnL9R2wRoihLmqaUyGPAKDezT1ERa4SX6AcibplTXzbBK7DAtEJnk5rzWL3R9oU
-	vPjb96hLXj9Sw0H1IhMz7SVH17oUSV7kPyE1kBBYbhemaum6Dqp9u26bAsw==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46gnp8sfqm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 08 May 2025 13:46:53 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-22aa75e6653so8323115ad.0
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 06:46:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746712012; x=1747316812;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ria+LRyG0hXDtj4N4iCruKkzRBUm5VLACf/+IbNd4TY=;
-        b=BAfJE7pZyaqTBYLE5gaptrcz1QCkJh5s1tGFM8yoI+6GxpTT5LMMOZ0bMciYD5vHLM
-         grQsUushw9NtzQCCP9tHqB7FINbV3oKRXTNTEITHX1D5hVtibuLD1hYarEgLfOb0SctA
-         fR7WBfxeUIk6ZdB3b0jEyV2ISFjJo5z/H+zSrsGVkqmE625thTbQOlsPFkhAxI0kRaGJ
-         qtUGSCHcCVTwAjZo5Vn5eG11BClo4aGTBae7JXFTynIda0YkDA2BwLhBqiEP2757xNex
-         /D7x+6VED6i5+eH1sePYF3j8nWTE3FyVBC+N9Ox4xrGCDvHBKYSIOeWZgUwsYmMqKGTk
-         pFqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVCHPQxhyc5n+Kc3/LcPzZulE3paCDxRxUHbIgew9JCpZSRnBi3qzyByLhGTVQjRlvt6PaoJAEMxOhM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yza6wSz2FvB7I/jNJjH7gKJxXj7MRM0w3kDF1XJPxLpgxEvERER
-	EO8A9L5dna787YYssCvA6YAr6I3voeWXrS8Xnk4BnPEYisQE3gpdqH8eiaUjyUHA+jCtVGGPCKh
-	Fo6gHqcWnRI1lt7WTUuDCpLJi/B0HJfwZ+HBcxGZQ1fmws80kRBRJeVh7IgHO
-X-Gm-Gg: ASbGncsfaXKin+2m4oVjwtvjlD3fbo3/XWwEzkZ5HEwf+MJ4d6pLJLJr0EPkIEluXJV
-	cmuNaHpLwmcVVSlxCXG8JCYsFVcLzPWUl56nFMwh7P61hQNM0NIdcpRP5p1q3XYzOWkGbqxA55b
-	p9r9TB6WaCOX34mYKEIRTOYpXTHpR0IwikYgva45b4QGJGgTjwkAHBCzdYG14SG5VEsv9ZUaUfZ
-	4KzpG7gYsihy1RHGff6t25L+2dOZr+7kQ84UTUSRGK5nHU6eNaDMjVoon+ojmOp/+tLcD8QVLiU
-	ZH0fEkA+csnHz2TCmH7DVcln3pWd5zWqJw4hdOs=
-X-Received: by 2002:a17:902:e890:b0:223:3b76:4e22 with SMTP id d9443c01a7336-22e8560d03cmr40451225ad.6.1746712011983;
-        Thu, 08 May 2025 06:46:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFrRn+7wTjv8yheir8mwT9EEJRVfj2QZD+8KvMvdxJ/YMsQjewJtkW+KGPFMQztegPOr48xCg==
-X-Received: by 2002:a17:902:e890:b0:223:3b76:4e22 with SMTP id d9443c01a7336-22e8560d03cmr40450845ad.6.1746712011622;
-        Thu, 08 May 2025 06:46:51 -0700 (PDT)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22e150eb56dsm112250715ad.23.2025.05.08.06.46.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 May 2025 06:46:51 -0700 (PDT)
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 2/2] dt-bindings: arm: qcom,ids: add SoC ID for SM8750
-Date: Thu,  8 May 2025 19:16:35 +0530
-Message-Id: <20250508134635.1627031-2-mukesh.ojha@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250508134635.1627031-1-mukesh.ojha@oss.qualcomm.com>
-References: <20250508134635.1627031-1-mukesh.ojha@oss.qualcomm.com>
+	s=arc-20240116; t=1746712176; c=relaxed/simple;
+	bh=idCcibmkhRqSa9P+8RNhfbUG9+k8tsBQFf79Ul0o27Q=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i2oPfrPkDfP0KPG8McUK7YmRcK1J6wZuDg7T+W9w4wGQBT8abh6xPL97OoshhnK1uUEAdJpvVR7mwpuCaetzbQuu2jDwATzfhX1rnaqpWnJ0lXkGvlVcXGpQWqDqUa4s29ZTeItUmAkuIQ8zWbM177Rj1VVZZDOizIACp9avpbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GWX5qHs4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58430C4CEE7;
+	Thu,  8 May 2025 13:49:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746712175;
+	bh=idCcibmkhRqSa9P+8RNhfbUG9+k8tsBQFf79Ul0o27Q=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=GWX5qHs4CBM1a+jTqDYrpWLaPwXVld7S6ZmoHghki34g8CAhl0somM2AjxzImYgxG
+	 hyc1PPKKPlwJ21MbxFI0O8zVNWfyXxe4YEZS4dpiQ513ImBAKNMt9cfq5omvnav3Iw
+	 Old6kP6JCYQFVnUnDL+iGZDnrLR0/vJ7725S2C97X2dw1L3UAhhj9gbnGvX55FMN4U
+	 tn+0jz2QVbmiVPJVAfNDBWvS2WhWWO1h14einrEal4qvW9ZIx6TK7D9BxwFn1OlsbS
+	 Pa2BLyWHD5l7XiVc2+WCBnJiXBkOAwmuxfUMJL3KKleVXd7LllpDdMvp7Oe625mXnk
+	 JCOEDWTlWpc9Q==
+Date: Thu, 8 May 2025 14:49:30 +0100
+From: Lee Jones <lee@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	linux-renesas-soc@vger.kernel.org,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Pavel Machek <pavel@kernel.org>,
+	linux-leds <linux-leds@vger.kernel.org>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Subject: Re: [PATCH v3] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe
+ Debug LEDs
+Message-ID: <20250508134930.GM3865826@google.com>
+References: <20250417093256.40390-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdWN-QDrmogJ+7x8sdc6UmDAoF+0z0hZ3SQ7ajN2V2+mSw@mail.gmail.com>
+ <aBxjvofZCEi_1Fna@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: YcyKOsNHzPF4DCphmEQJ6rIxDAiTTuKL
-X-Proofpoint-ORIG-GUID: YcyKOsNHzPF4DCphmEQJ6rIxDAiTTuKL
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA4MDExNyBTYWx0ZWRfX+WEAPkrhwFLB
- xkQ1bPhfMpo9lHMnnjAsxT7Ed8tvzRsQ9DAq8WZdOJxg6f02UIJy9JkhK2OcL9I8Mxq2WSh+ZbV
- LGpBGFxHFab78dbpC4z3rDuTxlmW0C22jOFwhig0PzRw87DXaexMgOxl0AfO5fC52i4/w1RI9wP
- XAztuL5Hh4zrxjkA/fVORvfHXtHbb/aO8It+HAB7OTfT+8BMnKp4IjE672xGpCVPES0dxmWRFzn
- qL4Rto7phHjSfjW2WzD+oKyMXmTU6iPgBizOIKMAvmxxug0KVNFbvs+DRz7XZYU7O2KgUOC7H//
- 1O4Cm5NkJEsGU2PcfJ1fKiCNrJjMNXuApmi65VkxCMUOza0YnyJgzrIPB0KexIjTDO53aUvZzNO
- N1ue6C6QUot4RR9dkyKeNwQTTCqBP2UEF3BrNn0sP0FAEf2D2sLxxxvUCvs5AEttamch+yn4
-X-Authority-Analysis: v=2.4 cv=e/4GSbp/ c=1 sm=1 tr=0 ts=681cb5cd cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=nBpc0M3TKDbq6_S52-cA:9
- a=1OuFwYUASf3TG4hYMiVC:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-08_04,2025-05-07_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 adultscore=0 phishscore=0 clxscore=1015
- mlxlogscore=924 spamscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
- mlxscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505080117
+In-Reply-To: <aBxjvofZCEi_1Fna@shikoro>
 
-Add the unique ID for Qualcomm SM8750 SoC.
-This value is used to differentiate the SoC across qcom targets.
+On Thu, 08 May 2025, Wolfram Sang wrote:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
----
-Changes in v2:
- - Fixed the checkpatch warning.
+> On Thu, Apr 17, 2025 at 01:39:14PM +0200, Geert Uytterhoeven wrote:
+> > Hi Wolfram,
+> > 
+> > CC leds
+> > 
+> > On Thu, 17 Apr 2025 at 11:33, Wolfram Sang
+> > <wsa+renesas@sang-engineering.com> wrote:
+> > > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> > > ---
+> > >
+> > > Changes since v2:
+> > > * using function, color, function-enumerator properties now
+> > >
+> > > Honestly, this is better than using node names? With V2, the LEDs were
+> > > named as in the schematics, now they are called:
+> > >
+> > > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-0 -> ../../devices/platform/leds/leds/green:programming-0
+> > > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-1 -> ../../devices/platform/leds/leds/green:programming-1
+> > > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-2 -> ../../devices/platform/leds/leds/green:programming-2
+> > > ...
+> > >
+> > > Which gets even more confusing if we might later add LEDs not on this
+> > > board, but on the expansion board. 'green:programming-8' sits where?
+> > >
+> > > I really wonder, but if this is the official way now...
+> > 
+> > Good point!  So I'm inclined to take v2...
+> > 
+> > Let's raise this with the LED people. I don't want to fight Pavel when
+> > v2 hits the CiP tree ;-)
+> 
+> So, if there is no other opinion here, can we remove function, color,
+> function-enumerator and just use the node names which match the
+> schematics? Basically apply V2?
 
- include/dt-bindings/arm/qcom,ids.h | 1 +
- 1 file changed, 1 insertion(+)
+I didn't author the semantics nor the rules surrounding them, but I am
+obliged to enforce them.  Therefore "LED people" say, please stick to
+convention as stated in the present documentation:
 
-diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
-index 1b3e0176dcb7..897b8135dc12 100644
---- a/include/dt-bindings/arm/qcom,ids.h
-+++ b/include/dt-bindings/arm/qcom,ids.h
-@@ -277,6 +277,7 @@
- #define QCOM_ID_IPQ5302			595
- #define QCOM_ID_QCS8550			603
- #define QCOM_ID_QCM8550			604
-+#define QCOM_ID_SM8750			618
- #define QCOM_ID_IPQ5300			624
- #define QCOM_ID_IPQ5321			650
- #define QCOM_ID_IPQ5424			651
+https://docs.kernel.org/leds/leds-class.html#led-device-naming
+
+Please note that a "debug" (LED_FUNCTION_DEBUG) option already exists if
+that is more appropriate to your use-case.
+
+Let's also bring Jacek into the conversion, since I know that he did a
+bunch of work around this topic.
+
 -- 
-2.34.1
-
+Lee Jones [李琼斯]
 
