@@ -1,131 +1,121 @@
-Return-Path: <devicetree+bounces-175160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE02AAFF8D
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:50:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9273FAAFF97
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:53:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6508B7AC9D7
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:48:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E7843BC39C
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:52:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2078D2798F5;
-	Thu,  8 May 2025 15:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C3B27A441;
+	Thu,  8 May 2025 15:52:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rf7LwP4w"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LAAclLkR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4FCA4B1E6E;
-	Thu,  8 May 2025 15:49:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86B5627A130;
+	Thu,  8 May 2025 15:52:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746719397; cv=none; b=ipCU0hjvyXxTHTvsC3Lj+YokndySohkoJHI66lHyc0vzSVWMMTFPPfwO2z8+0aX+c/aVe1LYqRy5zACwmXQFup2R2Wm+vzhQupzINGiysgJEavEEDYr21ibmctVKT9ac9Mwt2HY3eeKNJz/uS+Uhvu1z9epHAjPKE47oUNzL6a0=
+	t=1746719555; cv=none; b=WB1kTkcJaEY4Dgnolh54HnBOZ9nQNDWFbsiz4hZK7hXjqFEMrnDePDE5XZzeQfOJx3kMZskCkJG8hsUz75/gJvaoJ7Jm6bdVZvEPqsYxYn6k9L3lpleX4MVGqLxu294p3QpNAbPQTHlu7UE7ks+xfvkq+MLi8OVszJa21jpEJCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746719397; c=relaxed/simple;
-	bh=Lc2CZFCR44hE50dWpJeIJDvDnCKIcWzfTHSzfQYODwY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NdqM06rSP3qWkbuBJ67MNzDMK4G6Nntms4ON/0XWUq7vZHSTrIwljpoEgaqsH/fWY/P1V20M77iJpVoxBDLdF6ErrMuIA5qwddvQHYsNnxqyrABwggP0JVCp9xm+hWLp/pUs/43KYcEqRfhnfeOZMwh+xaQHvt9wc8QVR/be+AM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rf7LwP4w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 369FAC4CEEB;
-	Thu,  8 May 2025 15:49:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746719396;
-	bh=Lc2CZFCR44hE50dWpJeIJDvDnCKIcWzfTHSzfQYODwY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rf7LwP4wlBz6XXs4jdSUQ+pYISIj9iaBQIdnXVhNG6537f0sFCEOcCTDpIexCTnXr
-	 vTfP1nAzrrk75+ohMePikRJe1YHIvktHqEByuEhBvD7Sf1Rsc1ZaBZMcByJmR4zDAi
-	 gNIdUytPkP32Y0yeKwS7BdA683KwxjRECHxiieJXAO7qdUm3E+XFKls2OmbrJ1wt5f
-	 QSjGtayeavG3shq0tLiGy9KVcsrRYPbb8Q6Nm1BShRGP4fYoVbP+sa626hbSIhrRZB
-	 2KSB9VyyImvE3RbhE1711fl9mbGkTzHEvFzh5Pts9sxK4AlU20JeAqyXs/MsAvYAR9
-	 dep1Gm5vOitYg==
-Message-ID: <a79ec14e-4285-45e6-ac65-076f9be83e8d@kernel.org>
-Date: Thu, 8 May 2025 17:49:52 +0200
+	s=arc-20240116; t=1746719555; c=relaxed/simple;
+	bh=bDljt5x97Esy7k1vLAkAoSydOOIMuNe6hGVYZXtLMto=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Dm6rlOUbo5dJMUo4PcH7HtuEAerJWf54MWAvAUSfDUWAi+Y9gg/BhzKuOxEOJC5awwmFZBnkrXrMv9y/jNZtOlNPeedkMCH4WhZD2E6LlqKgvQ8wQc0KAB9a+WWDBvdKSpduocqaVoUlRYUf9kRKQtl9qRIeycfkNKWeU4eHVIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LAAclLkR; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 548Fq7V51140288
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 8 May 2025 10:52:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746719528;
+	bh=22LK9KobhX2zXmGcP3CVrZLeL3cLsZDdzOWb2Q5CuXo=;
+	h=From:To:CC:Subject:Date;
+	b=LAAclLkR/xcZlvRvm2IqXjRJSHSs/QxYcoN5QtlU6RmuX5ix3Vn5325b1MtWgR2v8
+	 WWWR4n1Zfd7RU5FtmhUqVnGjnFyTdkVpDPna/Ss8UhdaDw0B63t54SpQIHQCiUPq7i
+	 T96qeBR4ObHAwSIoKCnV1ggDp9lAOeLTWtOIHvPI=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 548Fq74X084866
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 May 2025 10:52:07 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
+ May 2025 10:52:06 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 8 May 2025 10:52:07 -0500
+Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 548Fq2oK050794;
+	Thu, 8 May 2025 10:52:03 -0500
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <vaishnav.a@ti.com>, <u-kumar1@ti.com>, <r-donadkar@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <jai.luthra@linux.dev>, <linux-kernel@vger.kernel.org>,
+        <y-abhilashchandra@ti.com>
+Subject: [PATCH v2 0/4] Add overlays for IMX219 and OV5640 on J722S
+Date: Thu, 8 May 2025 21:21:30 +0530
+Message-ID: <20250508155134.2026300-1-y-abhilashchandra@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: vendor-prefixes: Add 'qst' for QST
- Corporation
-To: Brajesh Patil <brajeshpatil11@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, jic23@kernel.org,
- marcelo.schmitt1@gmail.com, dlechner@baylibre.com
-References: <20250508120834.114164-1-brajeshpatil11@gmail.com>
- <f929f25b-9032-49be-afbc-0201df4dc8a3@kernel.org>
- <CALJe6R14mpMCyzrmfN1w8DrDe-=xvH=6HpF5Hc=6tVEX4p+5Hw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CALJe6R14mpMCyzrmfN1w8DrDe-=xvH=6HpF5Hc=6tVEX4p+5Hw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 08/05/2025 15:09, Brajesh Patil wrote:
+This series adds IMX219 and OV5640 overlays to enable support
+for 4 sensors on J722S. This provides a reference for a user to
+enable a different sensor on any of the ports.
 
-...
+Changelog:
+Changes in v2:
+- J722S EVM has the CSI2RX routed to MIPI CSI connector and to 22-pin RPi
+  camera connector through an analog mux. Initially, the analog mux was modeled
+  in the overlay in v1, But following the convention used on other platforms,
+  the analog mux has been moved to the base device tree. So that an overlay
+  can control the mux state according to connected cameras.
+- Correct the vin-supply for RPI camera connectors. To do the same add missing
+  power regulators in the device tree.
+- Mark GPIO used in the comment
+- Add reset-gpios property for tevi-OV5640 overlay
 
-Do not top post.
+Test logs:
+IMX219: https://gist.github.com/Yemike-Abhilash-Chandra/8417af557ff2b82cf8d72be94d838c85
+OV5640: https://gist.github.com/Yemike-Abhilash-Chandra/ea782b0caa5eb171258dd2244cf9604b
 
-> 2. I ran scripts/checkpatch.pl on the patches, which reported some warnings
-> related to trailing whitespaces. I have fixed those manually. Additionally,
-> I used the --strict flag, but no errors or warnings were generated during
-> this run.
+v1: https://lore.kernel.org/all/20250505115700.500979-1-y-abhilashchandra@ti.com/
 
-I have doubts about this. I clearly see warning:
+Vaishnav Achath (2):
+  arm64: dts: ti: k3-j722s-evm: Add overlay for quad IMX219
+  arm64: dts: ti: k3-j722s-evm: Add overlay for TEVI OV5640
 
-$ scripts/checkpatch.pl
-0001-dt-bindings-vendor-prefixes-Add-qst-for-QST-Corporat.patch
-WARNING: Missing commit description - Add an appropriate one
-total: 0 errors, 1 warnings, 8 lines checked
+Yemike Abhilash Chandra (2):
+  arm64: dts: ti: j722s-evm: Add DT nodes for power regulators
+  arm64: dts: ti: j722s-evm: Add MUX to control CSI2RX
 
-Best regards,
-Krzysztof
+ arch/arm64/boot/dts/ti/Makefile               |   9 +
+ ...k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtso | 329 ++++++++++++++++++
+ .../k3-j722s-evm-csi2-quad-tevi-ov5640.dtso   | 322 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts       |  36 ++
+ 4 files changed, 696 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
+
+-- 
+2.34.1
+
 
