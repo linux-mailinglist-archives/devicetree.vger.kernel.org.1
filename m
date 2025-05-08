@@ -1,122 +1,150 @@
-Return-Path: <devicetree+bounces-175062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D6FAAFABA
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:58:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA46AAFAEC
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:10:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EBCA3AD098
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:57:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9887C3B6577
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:10:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D374E22A7FC;
-	Thu,  8 May 2025 12:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD04E22B8A9;
+	Thu,  8 May 2025 13:10:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P5q6afpg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GMTahloU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A6522A1C0
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 12:57:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E313122AE5D;
+	Thu,  8 May 2025 13:10:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746709078; cv=none; b=GJgJreuhw/N+BBQAf6WhRpM8hyE7TVWfZGZXmrXxt7m0LlCKkOE6kVfPFxfYiggxevwmJ2zS7/xiEw5at1tOI+0DK7ogDdtmNDt4Q58CQJ7UvZtSo66jo0L+lA3fBcvzdhjp3b5YvfFzUMQpV2CdYyFFpcKPOVaL1Jvu0YIbz9c=
+	t=1746709814; cv=none; b=b0XLyks+GCcxc7a4FLbz4f6v+sddByKbIoS7+Zgo7dHzGr9+zLEoa4PYnd/42AkSHXIAKJxpm2twCAnTl8xEq1ylbO6PJEKpTZdVawI1vS43yl3tU0FtisUp3gGfNIlU+r7vOvw0ISMkO8uyEvyvYv2q5BWxNpdMOjUbYKdStUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746709078; c=relaxed/simple;
-	bh=fie8ocClExZ/oy9M+sB0ZEiqCjjIW+Pu/7pCGbHETXU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Igu9+/oicya7X08MkPvZ1AkPaKdC23Pq+OSlisdlnU/boEO5OQJRZkvZS859tu1l/KyTprCYk4MJBbIixHN0ycrsQpqlBcGgr5J1FZXnmOwiTORlZqVlhn37lZWN4qnLNTX3jQW5fyFAUeKeoVIgb6uTiMsYf1XTBw5J8RBqk6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P5q6afpg; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43cf7c2c351so900185e9.0
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 05:57:56 -0700 (PDT)
+	s=arc-20240116; t=1746709814; c=relaxed/simple;
+	bh=1nCXsXmOyG+Pv6RWAre/pXlTAjQ5HdNmvbPbx7LtggI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ddgnrzo9uNguMFtPMqBfItJSGPcJXE6w1nw2utij/xBRDqCSlFCk0x3tzE5tCszQBomM63tqe8ueYQ1DkV5w1dUR/qZsZjSOo1bKr/56olcx43vnEizXEgXbsdOMnEjU0ksFMLCcrGIYNaPzzPL5TJqOega3Am/Xkgzm2xvUCPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GMTahloU; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ac2af2f15d1so125700966b.1;
+        Thu, 08 May 2025 06:10:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746709075; x=1747313875; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GyfX9coirJq8Cdaxq/W+11Z0EprDF7VsHit7r1SH4b0=;
-        b=P5q6afpgQqcbcquSjaWapD6Jfnidy/bHerAnQhp92Rv9w5QHyvw1EQdhcOAnMGTbTN
-         lxTZFH8kziCGqLdotsuSX9ifMnrGDffbZ9OTlj8xgEOPUb9gRIuU1ncho8jpiOCCyKSk
-         4ozCaUzTflpGYASma6JWjUhcWsSg5c9RoelcbG49bovnIUdFOHwKd2S4aryeY21jljlw
-         b2DCouK28BOXg5w5rD5SUJDl5YmlesDpUJ/H9w2ie35jILfYO26em366xpJC0EQbvKfh
-         hg43P+9uksSbKNUR7H/cvlT1FS4T0OT9S59A4gWkqh61YshKh6MRfj9CaaYAy1L1E3zw
-         fzkw==
+        d=gmail.com; s=20230601; t=1746709811; x=1747314611; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qMvBG083xP6dxkstmeCUA71FGvdXWAHknvGo9znoWPE=;
+        b=GMTahloURHxRXTzdYK2rRiwbLIh3LqPKhQ/mnupZwfr+6YMktQs/ZkwoVOTY0scPfb
+         em00sCpYKTaccbcxhHBRHWyEo1ttMzUoGhy/1pR72v9DoAupTzRz3Pzpa9mjhilJhkVy
+         7GE6h/0v3zP9Fe2LQxOiNBxLLkDIPQmPaCfBHE4Qq7CtlxBZMgeXw32/AODs0nkWJBgn
+         vCbhEGRfTKUOHHYlJ4GpQhdDKIn6hMvOYDfgX6KQMXOwi/OdczhZlG+sQyHrhQ763zPs
+         gbAV8VdiF/jmGULiFJx+6X34ezz+zemuy2PUTfyWjX091rD7zXWCPkAMfcJQT3OuItDw
+         uJng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746709075; x=1747313875;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GyfX9coirJq8Cdaxq/W+11Z0EprDF7VsHit7r1SH4b0=;
-        b=ZABirgsJELA5pcxJmN8xS7FDH+6Z/pYZSJgmsnk0CZe9pMquYMDXwODQJK33HybSS6
-         rKgBJ6DaGVUEpRu9vPj8KrVOQP8wbbBeFDVh1TgLnUbuSVSzJPrpuB2BM95St2JRUwXf
-         +ERLGIDdS57SFy1yt2sdJUuj7LHacP7bAZ4OcU3oXxNGYnXF9p3E3JcgqxC4+GQtVkH8
-         Fs+C1xJPhJ1mATNIf7OePAzYOvXaRYp4C8KK2WVJyQsDPLUfaerSwoReZv+sAVnNhBXT
-         efZyIO38Pr0Qs4FJa6YBN24CJIcICYXjptcvSTPcIMgBvP9zvglqHxucksXtB9jddgnl
-         6TpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUYhK/UL+g28j6j3GA55zqKqIOGrzerWtYMCPcRxeaghRY2irZgaZE679HqS6p/LGprkoZegEo7XVg4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNw45dJlMQFwUVxcwj0N7GD5aBOckl1zG9qgv5hziYjSW22lBh
-	ymueiU12KPQGaVFlc/I9VbbbIpW500CRanK/tP/Tz5hJVECjiWBma9pjM54jYz4=
-X-Gm-Gg: ASbGnctRic5KhPtRqm3wW1U8dqoNGNR4oD1nEekdi873tY9GEU0E+qmNAGU1xuf2gKl
-	6KqhUQCibCqnGJljTAEiOUwvdr/1SafBzDipO4pmGdl1fytiheN8aL/+zhlntPW/pk2zrBA2QmW
-	PkKcHh2QuUcdl9C0nNIEhyxQiG4lRz4sTOtxZ/+P2AYjMNTbriR2q8owpaRiYPo2RgDYl7rq+Pi
-	Ucchn2JLvDsky6utgPvGUnoRKdNlTGrr+lshUxxA4jhfP5MR8gJotEI0BC9M5cAx3VYoHYuGjD9
-	IjK+6RVosr0AZDduZivdjxjZbxLuz1C2SwQnT/4OBPCgtOtTec9r0QWTYmo=
-X-Google-Smtp-Source: AGHT+IEUVIi3T7YfyMxv2zjt1ItTGIIG2vX6ZluzfArIlt1K86WUAmIJcFc2kVGlurTkPNqOfZ9GHA==
-X-Received: by 2002:a05:600c:1da8:b0:439:a1c7:7b3a with SMTP id 5b1f17b1804b1-441d44bbf97mr24647605e9.1.1746709074954;
-        Thu, 08 May 2025 05:57:54 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd331221sm36183705e9.11.2025.05.08.05.57.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 May 2025 05:57:54 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: peda@axentia.se, broonie@kernel.org, andersson@kernel.org, 
- krzk+dt@kernel.org, srinivas.kandagatla@linaro.org
-Cc: ivprusov@salutedevices.com, luca.ceresoli@bootlin.com, 
- zhoubinbin@loongson.cn, paulha@opensource.cirrus.com, lgirdwood@gmail.com, 
- robh@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org, 
- perex@perex.cz, tiwai@suse.com, dmitry.baryshkov@oss.qualcomm.com, 
- linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- johan+linaro@kernel.org, Christopher Obbard <christopher.obbard@linaro.org>
-In-Reply-To: <20250327100633.11530-3-srinivas.kandagatla@linaro.org>
-References: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
- <20250327100633.11530-3-srinivas.kandagatla@linaro.org>
-Subject: Re: (subset) [PATCH v6 2/6] mux: gpio: add optional regulator
- support
-Message-Id: <174670907339.90037.743394782268502286.b4-ty@linaro.org>
-Date: Thu, 08 May 2025 14:57:53 +0200
+        d=1e100.net; s=20230601; t=1746709811; x=1747314611;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qMvBG083xP6dxkstmeCUA71FGvdXWAHknvGo9znoWPE=;
+        b=JJTedNRjVFqNudnR65CU542nWP//Da7yU+xvsY/lOyl+kPYvGwbj3nTGO9blcMu4Z9
+         4v8UpcrfuCA7DIQuweHArH4tusK7nKmPkL/kU8YGig8v8BkyBqsxtAw3A3KpU9hnAsik
+         FZzpfeNB/A2k8HjBb4Eqo/xz1EUGnaXGIfkOCwQ1xFCZOlvDBPPgm97ERfCCVtBRlDiI
+         L0Rk27ulGw9HWnYUWFqCkDMGect7qmOKml5q54xIBvUc48dlb9gRuaSh5tEvnsGB2KzT
+         fcH9qHv2+T2xgbe2H+6ELdBkmIymDqpyTXJz/qT1o6kHngDSksOgx3OHPD7YJihOYqkn
+         ZZ8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVwT0+4FyqwSEXogvHIXp7LRNiKXDIU6f+a2RtLyxgTsSsippyBTmRABDpWE/sbAGdHgTvNWH4PpUjcVmcD@vger.kernel.org, AJvYcCXqUQiFuod1B4DEHWvh2fE9MDDQAoCxL3ssh0VsuArAUD+geUkQm7NsuvcZA4VqwbFOh3rxuLsF9tQg@vger.kernel.org
+X-Gm-Message-State: AOJu0YyK4yVS+wzZTHY2eHn7Oz4JLkena9o7mMZE2RSFcOetQz6dDxex
+	EkezExKpMqtNwmKeoJXQp4xlVmmO5UT8yN3K2F777M4XSHdpGg1X
+X-Gm-Gg: ASbGncup0BGax182fX0KBJEewScHQ5BMdUPQP3kT+gtBGEkViCpRZNZHsuh0ewtLvvW
+	sBGVnmELbqR4VoEL80bTh4rJVhoP+s/TjrtZTf2XIi1u7OmK+JNbsBSXjyv42vSRMc4I05BMo41
+	s24LTLjqT8EsudQ8axrPOAwKpYokh1EvnwDdAcghxS8O9OQ611MiWmikfhPB03eJYgkGCaqHJvu
+	9P6BK1/NKaHl6G2zTmQRrfC91INjQyNXe3N1ILPuezCTMkIYa6SnK/fRX0OgLhYF+OkZCzd/ZAk
+	m+H1arW+e3oyGkefh1U1AFKgPE+V8eSbJc1/HOV569QVtE2kfQ==
+X-Google-Smtp-Source: AGHT+IEB6ljN3284yI5Xfi8yEjwnnAJXLsYkUNbO+pXteYAHjEfhnYbAgRfFH7dO7rz+OnQx0ARB+Q==
+X-Received: by 2002:a17:907:9629:b0:aca:b72b:4576 with SMTP id a640c23a62f3a-ad1e8c4043bmr738658966b.33.1746709810784;
+        Thu, 08 May 2025 06:10:10 -0700 (PDT)
+Received: from [192.168.1.130] ([188.193.103.108])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad1894c0371sm1074090066b.115.2025.05.08.06.10.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 May 2025 06:10:10 -0700 (PDT)
+Message-ID: <35c08d79-1473-4c1e-b605-627c4ff00a92@gmail.com>
+Date: Thu, 8 May 2025 15:10:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/4] ARM: dts: stm32: add initial support for
+ stm32mp157-ultra-fly-sbc board
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ =?UTF-8?B?QsO2cmdlIFN0csO8bXBmZWw=?= <boerge.struempfel@gmail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250505115827.29593-1-goran.radni@gmail.com>
+ <20250505115827.29593-5-goran.radni@gmail.com>
+ <2d0ff289-06f6-4bde-a238-097d22573d4e@lunn.ch>
+ <63665c17-da37-4b5b-9c2d-28d5a669680f@gmail.com>
+ <3a7ef1bd-2c0e-4637-b0b6-2c0b73388618@lunn.ch>
+Content-Language: en-US
+From: Goran Radenovic <goran.radni@gmail.com>
+In-Reply-To: <3a7ef1bd-2c0e-4637-b0b6-2c0b73388618@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+Hi Andrew,
 
-On Thu, 27 Mar 2025 10:06:29 +0000, srinivas.kandagatla@linaro.org wrote:
-> Some of the external muxes needs powering up using a regulator.
-> This is the case with Lenovo T14s laptop which has a external audio mux
-> to handle US/EURO headsets.
-> 
-> Add support to the driver to handle this optional regulator.
-> 
-> 
-> [...]
+thank You once again for helpful hint.
 
-Applied, thanks!
+Andrew Lunn wrote:
+>>>> +	phy-handle = <&phy1>;
+>>>> +
+>>>> +	mdio {
+>>>> +		#address-cells = <1>;
+>>>> +		#size-cells = <0>;
+>>>> +		compatible = "snps,dwmac-mdio";
+>>>> +		phy1: ethernet-phy@1 {
+>>>> +			reg = <1>;
+>>>> +			interrupt-parent = <&gpiod>;
+>>>> +			interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
+>>> PHY interrupts are 99% time level, not edge.
+>> That is correct, but I am facing strange behavior, when I set
+>> IRQ_TYPE_LEVEL_LOW.
+>> My board stops booting at:
+>>
+>> [    2.343233] Waiting for root device /dev/mmcblk0p4...
+>> [   12.638818] platform 5a006000.usbphyc: deferred probe pending
+>> [   12.643192] platform 49000000.usb-otg: deferred probe pending
+>> [   12.649029] platform 48003000.adc: deferred probe pending
+>> [   12.654277] platform 5800d000.usb: deferred probe pending
+>> [   12.659744] platform 5800c000.usb: deferred probe pending
+>> [   12.665089] amba 58005000.mmc: deferred probe pending
+>> [   12.670239] amba 58007000.mmc: deferred probe pending
+>> [   12.675185] platform 50025000.vrefbuf: deferred probe pending
+>>
+>> I must investigate this. If You have any idea, You are welcome to share it.
+> Could be an interrupt storm. The interrupt is not getting cleared
+> because of something missing in the PHY driver, so it just fires again
+> and again.
 
-[2/6] mux: gpio: add optional regulator support
-      https://git.kernel.org/krzk/linux/c/12d3c69ba2734b5908e0ac8ac2dcbd0cc28fef3a
+After a brief investigation, I tend to agree with your assessment that 
+the issue lies in the driver—likely the stmmac driver — which is outside 
+the scope of my changes.
+
+Therefore, I would suggest keeping IRQ_TYPE_EDGE_FALLING for now, or 
+alternatively not using a hardware IRQ at all and falling back to 
+polling, as done in stm32mp15xx-dkx.dtsi.
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Goran
 
