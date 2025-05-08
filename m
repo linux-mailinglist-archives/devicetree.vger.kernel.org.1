@@ -1,210 +1,230 @@
-Return-Path: <devicetree+bounces-175000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60823AAF83F
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:45:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6695AAF84C
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:46:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 729471885DC8
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:45:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73398461BB9
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:46:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE522165E2;
-	Thu,  8 May 2025 10:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4C80221DBA;
+	Thu,  8 May 2025 10:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lWJmVqVj"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Ga6j7iNa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2080.outbound.protection.outlook.com [40.107.220.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9304C2153CE;
-	Thu,  8 May 2025 10:44:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746701094; cv=none; b=PKRwE/ZOftllo9G92YO5ftdU9O/jzKg3k79dEx+Dl4f4XTO5zeLue+cqkWF+31fIthSKdIgi2pG7v8YR6L165JbgRF0qlUst70rBZa0vdSTJvkvlRg6sa+0t+FXpbSL9gMzbqUKRfOpyMvcbMXPu2HWaOIO8lfAWHxuDgH8LXIk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746701094; c=relaxed/simple;
-	bh=xqnW9kopq8l64iCs7XUKDphBW5xsrquQhMRe7SGLz5E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fE/0ePiS5/BHorft23gIQZ54iELlSaxiDg1J4ewe0TXbMIiOj8Q0iX+3obyq64rIvrFA9X8zb86Ecu4usMQCC8lrQ2Y14TEjPQNipvqZ644vjq1n3FehkH8ljUdzntWjIh58Uy4oRjz2p20ODf7pi/tCj/p2mLEpRoUXpSy4BiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lWJmVqVj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3043C4CEE7;
-	Thu,  8 May 2025 10:44:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746701094;
-	bh=xqnW9kopq8l64iCs7XUKDphBW5xsrquQhMRe7SGLz5E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lWJmVqVjUrPhFLOrmOrc8VrQDhLMQb1iYqhL9i4oEafgAhAvl/TqYIXHy3Ufs9UBJ
-	 xeiq9bCza5XLv4OV8VeSS5XZT84c7tpc8G6sjbaA/vipFOsT7FmLU4aoP2wdBbQXpC
-	 yt4XbnmbN0lIavQMNQQUKrLQE/Hyh3SxrRShDR0uWIMcXh3wdiKMC38xIgtYG3qpmu
-	 lcWWbhY2GdZuGSkXJ6E80ecvj+sD/Bqu1OZGdzIp/6n5Y3mQnbxo/7W3Dc/1dDzdTt
-	 2JXOUM3wqyOVSyrZP2pVpD3hZjyvD97cIYXiu6E/i8imGyuSvvt3JCj6aZJYsQnrsG
-	 XByNzTryEvqMw==
-Date: Thu, 8 May 2025 12:44:45 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 20/25] irqchip/gic-v5: Add GICv5 PPI support
-Message-ID: <aByLHdktOLUk8HCN@lpieralisi>
-References: <20250506-gicv5-host-v3-0-6edd5a92fd09@kernel.org>
- <20250506-gicv5-host-v3-20-6edd5a92fd09@kernel.org>
- <87zffpn5rk.ffs@tglx>
- <86a57ohjey.wl-maz@kernel.org>
- <87ecx0mt9p.ffs@tglx>
- <867c2sh6jx.wl-maz@kernel.org>
- <874ixwmpto.ffs@tglx>
- <aBxgceQBRA6vBK7o@lpieralisi>
- <864ixvh4ss.wl-maz@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D8C220F4D;
+	Thu,  8 May 2025 10:45:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746701123; cv=fail; b=UyvPBoWaUj417vXFOedaEwR3E5x8DBIOiNCXUuHpK6/0BDyrCwSHNZzUnQZYi/U8udQD/hmS6gMx0pSCv1u09QnJ8MzpyC4j2BXEyWm1ZY8TzPbIF5YX9sf+IdRMfWIr9hjkoyXx1djinmf8pQhwL29B8Dgf+iiMlXnw6iGlDeo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746701123; c=relaxed/simple;
+	bh=kLLG9nn3X85UlX2DlicETG+x5ZyTOGpYOZvAMbklBbw=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=PYS/hUl6SCVkUN/CUpdbaKaN/zRkEXHutxNE2uEXTfMEO++CACuWQ5AO4M9SdSOrRgUMFl9+s+PcvgzyQF3qDlCEaRDJ/7IH/POfojPPdtqKoYv6b6K53vjejiEXUcrXJphY6UDcfAB+sRVY1do2oau+tpaM+oJYZ2vXwWFaXZ4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Ga6j7iNa; arc=fail smtp.client-ip=40.107.220.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Q+NOMs46U1ltR0xCvIYD+KYMZXIutAR/kxqSyzggdCwc1JRmSvYxTGpudVa8enRglTz5vOTDh0T84C/dS2yLXnD+hBsjpqLB/98jrbXbIanYfW5PRZS4s5vHPseP/sCawnTL0Gs+cCzrMQs/xjaYwB4e1+HgT0orhVLi5jLg44OxRZ+t3Fyom3ggmCfjmVq1lVZMU4nfFwbipUUip4aF1JI9wPH1nOkBTtAE13cMS3ao9O7pghoY9DjDyKWQlHXtj83IXdVQkM+09YfaqYDzNKEjwgE0jLL85Iuxs2Gn5qGkqRH7nW2P1zTF1AwTNxn5wvQpYc4fPtz919YwUz6ynQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/D12xy12xvXlBwumMfDELx2tiBdtzDjgPBvGh20Px/g=;
+ b=aP/5QQt2ZoCJA004JhV5LXznfz3B5xBitMC3bBV0hgKLYoCWMiCE6tOGScrOGRzH6BWDLqesEVwcc4NulOZGOy0esPnYgnXa2SbKFcwy9YadQgt9+rGlPI6bxufaZnWsU2SES8vj5R77WpymysmVWTNvx8D51wanLdIxW43/HLXJ1OtL9GneJH95c08jc/eXlTeutvO1zWjheg50DEtbYPSxE+4bdleGY2J22EpSTeCr/cOFj5DNiBmkmDWSLfh5caOgii1PwGWJkoVUm2KE5ylkwoj86dm9OLjbNGIZP4DpmenNYR2P2RgD4C1IZpk8xrc2o1e5Kw/3f/WSWs4HJA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/D12xy12xvXlBwumMfDELx2tiBdtzDjgPBvGh20Px/g=;
+ b=Ga6j7iNaM97ve0wL4xxB7d+n6X2lc8fXeohRvGF5dRXqj+ljqrygr7HeY9hjDi+Rrn4/dKZF7CGxLXZRBFImVHr6C0pig11JqJqm9XQizBQ+WWTphMBzE6CC3gYIOTOLU9pYE7iDyY43gLlvX7XAYZzQpCtykJEmx01MK4cj5ivDEIyzTjIo7XsPizo0tovpcMQ7LAwoJ9bBrBhzVEISsVPBorbkAEq0couOp5VdmlZGl9IzaxUVYwzWvVO+EK7PoyL6XV6J+Sc8dYkCeLBPHZiVkJg8XzAN4iOxpzNg+U4VxMRP5iE3UeeewD30AzJ6C/pwew0Uy2H1Cg6loqnOGA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11)
+ by BL4PR12MB9533.namprd12.prod.outlook.com (2603:10b6:208:58f::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.24; Thu, 8 May
+ 2025 10:45:15 +0000
+Received: from SJ2PR12MB8784.namprd12.prod.outlook.com
+ ([fe80::1660:3173:eef6:6cd9]) by SJ2PR12MB8784.namprd12.prod.outlook.com
+ ([fe80::1660:3173:eef6:6cd9%3]) with mapi id 15.20.8699.022; Thu, 8 May 2025
+ 10:45:15 +0000
+Message-ID: <7a8cc7d9-30b9-404e-8456-8ad362440561@nvidia.com>
+Date: Thu, 8 May 2025 11:45:10 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] arm: dts: nvidia: tegra20,30: Rename the apbdma
+ nodename to match with common dma-controller binding
+To: Charan Pedumuru <charan.pedumuru@gmail.com>, Vinod Koul
+ <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250507-nvidea-dma-v4-0-6161a8de376f@gmail.com>
+ <20250507-nvidea-dma-v4-1-6161a8de376f@gmail.com>
+From: Jon Hunter <jonathanh@nvidia.com>
+Content-Language: en-US
+In-Reply-To: <20250507-nvidea-dma-v4-1-6161a8de376f@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO2P265CA0490.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:13a::15) To SJ2PR12MB8784.namprd12.prod.outlook.com
+ (2603:10b6:a03:4d0::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <864ixvh4ss.wl-maz@kernel.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB8784:EE_|BL4PR12MB9533:EE_
+X-MS-Office365-Filtering-Correlation-Id: 08dda5f4-0430-425f-112c-08dd8e1d6aaf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|1800799024|7416014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?b0F0TG9nUU8reGhQbysxb0ZNc2dSWStiRHcxTFBUQXRSZUJmVmFrRmxmKzlr?=
+ =?utf-8?B?aUIxbjhTd0hqODM2ZmxmTHluWHNhZjgvUWJMVmp1WlhyNktpSXVUZWJLbWp2?=
+ =?utf-8?B?T1NITUUyTkZnNzR6L2E3b1kvUmNOUEZPVkdxajhXYk9wQU04UDZzODBhdFMr?=
+ =?utf-8?B?M1ZqN1Z1dGtoR2NEbGpHUklTOVRNamp0R1ltaWlSeE9kVWlCL05uNHNHVXpB?=
+ =?utf-8?B?WXgxRGoxcWFxY3Y2K3hvNVNJVVh6VEVEeExKOERIUmE5ODRWVy82ZnBYdE1o?=
+ =?utf-8?B?bjVETXREY2svSjlBT3YvTTc5MVRMS1A2MHk2WGxvZWxZTlc4eWJtVkVudGVw?=
+ =?utf-8?B?K3lOaGpFR2FYR2p2R3ZJS25nZ0VuSVYwRyt0RlNBTTk2OUFKMCtvZXpMZDhH?=
+ =?utf-8?B?L1FPOGZWd2l0K3BnYVhXTmlaRFY5WDN2NUNIUDl6S0phVmJBbGx1WmZrZHJJ?=
+ =?utf-8?B?bjVvSXdUbmNWZm9TUTQ3d2s1Ym9ZcnV3M3d6R3FBV3pHWVZaWlZ3U2xid1BO?=
+ =?utf-8?B?a1pTbXN6SjNhTlR6WlBHODA5ZVBWQldMYWdBV3ZKWU5Ianl4ckhzM2dpSVh0?=
+ =?utf-8?B?UE13QzFwenVNV1M1ckMyL2tHellMaDVKNkpCNWFJL2dJWStIZVV6MUJlQjZa?=
+ =?utf-8?B?WVNJU3NtQkNWbTMvV0s4ZnhoTWU0N3ZNMjBKNW12OXZEN1hBVldNQUFybWhs?=
+ =?utf-8?B?cVhEQkg2YkpveGxLbkFHTGl5WjYrMDVLOEFxOHc4TWFSYzVuOCtRbk1jQXFr?=
+ =?utf-8?B?SmR5Y0dVbnJUT3laeTZoUldUS010MmtBZ0JIS3hxR0J1dHBuRVhFbXpKclUr?=
+ =?utf-8?B?aTRVQjBxT3ZUMHR3NWJFbWZsY3pQV2JBYlU4UFdzWDd6d2NNMTVSWHhBNENI?=
+ =?utf-8?B?eHIwa29WR3ZmZEVyY2J2WWt6aTRtak5PZjBIWUhFYkRJQWVnRm5DeE1HUDNN?=
+ =?utf-8?B?V21aNzl4eWdMMjBnQkVnc3AyYmIxenBxYjQyYVhCbUlWSGkwOEVzMitCUDBh?=
+ =?utf-8?B?UE5aZXUyMnpNOE94YkJXNTdVT3Ira0pWMStQOHlRNDZuVG9ZeWNEcXM1STVx?=
+ =?utf-8?B?NWFQSjZFS29oQmhBNll3NlpLUTFUaDVjQVhMY1lTd0tXQzZuSzB1c0FzM0V2?=
+ =?utf-8?B?VzhXQk9zbytEMSt1Q01IU2RQbm9Pa0gwMXdJVkZidEtGK2p4OHZYa0VBWXJS?=
+ =?utf-8?B?dXNLS1RJSEk5VHJ6YmJTRmJWczNQbVQ5b2Q4RnpCakczaldlSXNVZkJIbWtB?=
+ =?utf-8?B?aXpNWGhHZkU5NUVNUU5aUVJqWU5Gc2JzYUVPanNjNXM3UytZM01mZDhvMUtF?=
+ =?utf-8?B?VDU4YTNENTBPTGtsSVNIdld3aDFjZXdZYUxaV24zbnl5Z3J0YjVoOU9XdlRL?=
+ =?utf-8?B?S21tekh6M3U3YkFTeTZPL2RaeHFZcGdJL1c1UWRlTGFUbkkxYjNHUkwydkdh?=
+ =?utf-8?B?aitSYU9NU29INVdvQTJoeThFQ0oxTDJZaE1PamRpMlBVUnNIaHhVZUNDVXM2?=
+ =?utf-8?B?TVU2K0twdWxtWTRBOFRKUzNiaGh6QUViay9SOURsZS9XK01HemZKYmRuWnp2?=
+ =?utf-8?B?ZGtvWHMyMWdGTnNlL1BDa0pLV1U1d3hMZWt5S3hLTWVUN2VZZ0VNRzlYWUpr?=
+ =?utf-8?B?R1A3Wmh0azNsN0g3dWhCOURSZXBtWVJyQ2RDb0E4dTArQWVaRW1QSEcrVU9p?=
+ =?utf-8?B?MzUvSVFqSFR1emF2L2pHLzVaOTlZOTFPdHl1b1hXb29hdFVpVnY0OElGOFkv?=
+ =?utf-8?B?bVZUQ1laQ0FncmNUcUJLM0dhTEN3SUd5VDR4TkQreTdiS1VqQ2pBY0VCT25T?=
+ =?utf-8?B?R1ZZK3ZZRjVhR1R6QksyL0VUdVYxdU8rYjRIbHdoWGtiMm1qc2ZsenlwZnRp?=
+ =?utf-8?B?YnNQdFNaY2tMWXZ3WGFMWW5MRkphOHVsNFhJd2N5aDZhdEgySHNicUIvNnda?=
+ =?utf-8?Q?sg4dhwnSwr8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8784.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?T1pxY1dNZmpTUkZLRU5kZG80N2ZGTWxYbitLK3dJY1M1T2hSWDVDeW9rcVIr?=
+ =?utf-8?B?cklVbktTVE1yOXBqWlRxZHpTTWdZMFYzbUFzNXRYMjRQY3Nic0dWcDFydll2?=
+ =?utf-8?B?cy9WSFBuVmkwL3ovM0FQTHJFWnR3VEZ1SFVQc2hjL0lobHlON2k3Q3RJVFVL?=
+ =?utf-8?B?ZXdoZzlJYW5yNG51RzJNL2RsdWZDN1ZqQ3FlUG04UW9PcGYxZmo0OXJVUkUr?=
+ =?utf-8?B?MkdvR3Q3UVUrMEdiaXNxS3NqSWFtOHM4SUQ5cjl1RG9ZbndFbzErMld4ZldB?=
+ =?utf-8?B?Qi8vWGlpbFhpWnoyTmZacm5uRUphdlhUZGltU1RzK0llNjVwN0VJT3VONWlk?=
+ =?utf-8?B?UWlER2VQWFB6b3MrOHg5cnVTL0NpSzBQdDEvUEFmcVZtcVQxTlNuSUdnSnZv?=
+ =?utf-8?B?Mk9HZ1JOdk1BQlZuZzQrR2pwTlhUTVRKN0g4eEU2Z2xHTXp2aDN0NTBWVmN0?=
+ =?utf-8?B?NitCWGdCQTN1UGtTNnhEcXJJQlIxZmVhdWxTcFY4SUJKNUg2OHJ3WkdKc1dj?=
+ =?utf-8?B?WFZYM3Z4c1hwdlhMa2h2RUVlaWIxbnBEWFlwUklBM2Q4cnVoRTZ2Z0Z1c2Fq?=
+ =?utf-8?B?R0pqa0pXOTNDNXdEN3JLMFl4b3l2eWQ4M0Y4RDFoVWZCY3dpNkw4aGs0K2lX?=
+ =?utf-8?B?eHJuU0ViNVhVOWlTN1phV3BGTnlwL1Y2Y216TCtZaWl0anJOTW91MFZWVkV3?=
+ =?utf-8?B?Z0RQNXZURkk3SHFRMlpwT1JKMzhNOVFJTk5vbEZLcWF0bmxWeUdrQkNUMEc0?=
+ =?utf-8?B?RVY3TGpqc0dEUm9zaGlRRnRyOThsQW9tVmo2Rlp2TXhRemZEWVFsd3B1d010?=
+ =?utf-8?B?RE1nV1JXdTdtbjV1dnY0Rzg0RjV1RVYvb3ZYS0FkRnNZWm9uelpCMnBSVWlw?=
+ =?utf-8?B?bDdHZ2J3djBVRTcxN0RWaWg0bko3dEF6c3QweHRoM2ZzL08wQzd6aCtuK0cw?=
+ =?utf-8?B?QTV2MHoyTHowSmkyYW5XOEVGSk85N1ZwNExpS2pHZXJzTE5ISXU3N3B3VURp?=
+ =?utf-8?B?elZIdWRGSE1Ram1UN3BGNUJnOVZLZDFtMUVuY1puMTZZS1BKTTFBSXUrVHha?=
+ =?utf-8?B?dndyRWVwcm9JNms0WVRFZExBZzBsSXpQYjJFMm1pRHczcEFpcVhHWmlYWnU5?=
+ =?utf-8?B?UFNIY1F0a0NWSzBTOEN2NEVXc1pmL2dXMjI2MGxDLzNHK25ZMGN3U1oyamFW?=
+ =?utf-8?B?YVJzSjVNTnpvSC8yYnhwVnJMdzFreFZDQWpGZm01VzNvYWprUlNFTUFJY1NG?=
+ =?utf-8?B?ZzRkSkhnOEtJN3Z1VkJzM3NtTVprbjVtMEZPZnN1dGJwZFY1T2hnb013b1Z5?=
+ =?utf-8?B?aHlrUkxvT0xTNERyQVRldS83Snp6cFRYTVM0L1pMZ21xWktRWlFDeDA4Q2xV?=
+ =?utf-8?B?Ukc5a3JEME1ULzFsTmViNmR4Nnc1Uk1wdEwrK1UvQk1ONmJIYzZuRjVFelA3?=
+ =?utf-8?B?U3NwZWdvUXBKUEpLV1NCcmNVTHFLZ2REMEJjc1dHc1lOVnR0eHFmSlo5S08r?=
+ =?utf-8?B?NW1ra3dOZ29ZWFdNb1lMT1ViT01lRWF1YTRTN2lZRjBBVnp0NlIvWlI3M2Z5?=
+ =?utf-8?B?ejJmY1lPOVZ0TkdMYkZpKzduSHRRRFFQZ21xZXpOWkczdGRUOEtSckpNMEhj?=
+ =?utf-8?B?TEMxbFBmQUNhOGFUdytHRGJVYWpQbzZyeDRDaVJtdTMrN2I2MmhHZmkyLzMv?=
+ =?utf-8?B?MFRVdUJaNHFaR1ZnUjdhcjBhbWRYK3NhcWpaUmdabHkxY0h2TXRiTWlFSGxx?=
+ =?utf-8?B?b29LK05LMlZCU1JWdWc4b0tsdFZVdlpJR3B6VzZRZC9DQWRyc0xZclRCdldq?=
+ =?utf-8?B?czR2UGxlSjc0c1IwTnFndlRVK3d2TXhOdHlNcERqbWZ0dE4wdTk3ZXBzZURY?=
+ =?utf-8?B?UG1MYnkzNUZXaElBSmhYVkcwNzJmNGZ2cjlBSTdBakZyWXJPU2xWeUpNZFFk?=
+ =?utf-8?B?eEtmNDR2M3FGNlF2R3pRQ1dET09wUVhLbEMyaUx5c3hRdGtkRTJpVTlMT2NM?=
+ =?utf-8?B?em85a2h3WThuSFJBNTRWS2JlRGNJVVdNSXhRcDBVWmM4UXhZSitYNTZhZ2xR?=
+ =?utf-8?B?Y2V1NDJ2VEwxVVVZeTVHWFo0U25ZMnovSGlBTW4vR2hYRFVUNkd6ZU5EeWJv?=
+ =?utf-8?B?SDc5S2RsOXI3bWVXcjAyS2duc2hUKzAxNXdQRjVCcVdRNTVvcmlsQkZWd1Zl?=
+ =?utf-8?B?WGc9PQ==?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08dda5f4-0430-425f-112c-08dd8e1d6aaf
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8784.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2025 10:45:15.2954
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: H7Oo7AE0LtP7X8jlW7s9Ok2hOBc/D/3tlDVkR8g4jbUe/ZVg22E5wehzY4k9TN3eLUw+PzpbsFCWGFfY2eA1YA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR12MB9533
 
-On Thu, May 08, 2025 at 09:42:27AM +0100, Marc Zyngier wrote:
-> On Thu, 08 May 2025 08:42:41 +0100,
-> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> > 
-> > On Wed, May 07, 2025 at 04:57:07PM +0200, Thomas Gleixner wrote:
-> > > On Wed, May 07 2025 at 14:52, Marc Zyngier wrote:
-> > > > On Wed, 07 May 2025 14:42:42 +0100,
-> > > > Thomas Gleixner <tglx@linutronix.de> wrote:
-> > > >> 
-> > > >> On Wed, May 07 2025 at 10:14, Marc Zyngier wrote:
-> > > >> > On Tue, 06 May 2025 16:00:31 +0100,
-> > > >> > Thomas Gleixner <tglx@linutronix.de> wrote:
-> > > >> >> 
-> > > >> >> How does this test distinguish between LEVEL_LOW and LEVEL_HIGH? It only
-> > > >> >> tests for level, no? So the test is interesting at best ...
-> > > >> >
-> > > >> > There is no distinction between HIGH and LOW, RISING and FALLING, in
-> > > >> > any revision of the GIC architecture.
-> > > >> 
-> > > >> Then pretending that there is a set_type() functionality is pretty daft
-> > > >
-> > > > You still need to distinguish between level and edge when this is
-> > > > programmable (which is the case for a subset of the PPIs).
-> > > 
-> > > Fair enough, but can we please add a comment to this function which
-> > > explains this oddity.
-> > 
-> > Getting back to this, I would need your/Marc's input on this.
-> > 
-> > I think it is fair to remove the irq_set_type() irqchip callback for
-> > GICv5 PPIs because there is nothing to set, as I said handling mode
-> > for these IRQs is fixed. I don't think this can cause any trouble
-> > (IIUC a value within the IRQF_TRIGGER_MASK should be set on requesting
-> > an IRQ to "force" the trigger to be programmed and even then core code
-> > would not fail if the irq_set_type() irqchip callback is not
-> > implemented).
-> > 
-> > I am thinking about *existing* drivers that request GICv3 PPIs with
-> > values in IRQF_TRIGGER_MASK set (are there any ? Don't think so but you
-> > know better than I do), when we switch over to GICv5 we would have no
-> > irq_set_type() callback for PPIs but I think we are still fine, not
-> > implementing irqchip.irq_set_type() is correct IMO.
+
+On 07/05/2025 05:57, Charan Pedumuru wrote:
+> Rename the apbdma nodename from "dma@" to "dma-controller@" to align with
+> linux common dma-controller binding.
 > 
-> Nobody seems to use a hardcoded trigger (well, there is one exception,
-> but that's to paper over a firmware bug).
-
-That's what I get if I remove the PPI irq_set_type() callback (just one
-timer, removed others because they add nothing) and enable debug for
-kernel/irq/manage.c (+additional printout):
-
- genirq: No set_type function for IRQ 70 (GICv5-PPI)
-  __irq_set_trigger+0x13c/0x180
-  __setup_irq+0x3d8/0x7c0
-  __request_percpu_irq+0xbc/0x114
-  arch_timer_register+0x84/0x140
-  arch_timer_of_init+0x180/0x1d0
-  timer_probe+0x74/0x124
-  time_init+0x18/0x58
-  start_kernel+0x198/0x384
-  __primary_switched+0x88/0x90
-
- arch_timer: check_ppi_trigger irq 70 flags 8
- genirq: enable_percpu_irq irq 70 type 8
- genirq: No set_type function for IRQ 70 (GICv5-PPI)
-  __irq_set_trigger+0x13c/0x180
-  enable_percpu_irq+0x100/0x140
-  arch_timer_starting_cpu+0x54/0xb8
-  cpuhp_issue_call+0x254/0x3a8
-  __cpuhp_setup_state_cpuslocked+0x208/0x2c8
-  __cpuhp_setup_state+0x50/0x74
-  arch_timer_register+0xc4/0x140
-  arch_timer_of_init+0x180/0x1d0
-  timer_probe+0x74/0x124
-  time_init+0x18/0x58
-  start_kernel+0x198/0x384
-  __primary_switched+0x88/0x90
-
-I noticed that, if the irq_set_type() function is not implemented,
-we don't execute (in __irq_set_trigger()):
-
-irq_settings_set_level(desc);
-irqd_set(&desc->irq_data, IRQD_LEVEL);
-
-which in turn means that irqd_is_level_type(&desc->irq_data) is false
-for PPIs (ie arch timers, despite being level interrupts).
-
-An immediate side effect is that they show as edge in:
-
-/proc/interrupts
-
-but that's just what I could notice.
-
-Should I set them myself in PPI translate/alloc functions ?
-
-Removing the irq_set_type() for PPIs does not seem so innocuous, it is a
-bit complex to check all ramifications, please let me know if you spot
-something I have missed.
-
-> > On the other hand, given that on GICv5 PPI handling mode is fixed,
-> > do you think that in the ppi_irq_domain_ops.translate() callback,
-> > I should check the type the firmware provided and fail the translation
-> > if it does not match the HW hardcoded value ?
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   arch/arm/boot/dts/nvidia/tegra20.dtsi | 2 +-
+>   arch/arm/boot/dts/nvidia/tegra30.dtsi | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
 > 
-> Why? The fact that the firmware is wrong doesn't change the hardware
-> integration. It just indicates that whoever wrote the firmware didn't
-> read the documentation.
+> diff --git a/arch/arm/boot/dts/nvidia/tegra20.dtsi b/arch/arm/boot/dts/nvidia/tegra20.dtsi
+> index 8da75ccc44025bf2978141082332b78bf94c38a9..882adb7f2f26392db2be386b0a936453fc839049 100644
+> --- a/arch/arm/boot/dts/nvidia/tegra20.dtsi
+> +++ b/arch/arm/boot/dts/nvidia/tegra20.dtsi
+> @@ -284,7 +284,7 @@ flow-controller@60007000 {
+>   		reg = <0x60007000 0x1000>;
+>   	};
+>   
+> -	apbdma: dma@6000a000 {
+> +	apbdma: dma-controller@6000a000 {
+>   		compatible = "nvidia,tegra20-apbdma";
+>   		reg = <0x6000a000 0x1200>;
+>   		interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
+> diff --git a/arch/arm/boot/dts/nvidia/tegra30.dtsi b/arch/arm/boot/dts/nvidia/tegra30.dtsi
+> index f866fa7b55a509a0f66d3e49456565df0d74a678..2a4d93db81347e3e1dd942e6c10a1ff5683402e7 100644
+> --- a/arch/arm/boot/dts/nvidia/tegra30.dtsi
+> +++ b/arch/arm/boot/dts/nvidia/tegra30.dtsi
+> @@ -431,7 +431,7 @@ flow-controller@60007000 {
+>   		reg = <0x60007000 0x1000>;
+>   	};
+>   
+> -	apbdma: dma@6000a000 {
+> +	apbdma: dma-controller@6000a000 {
+>   		compatible = "nvidia,tegra30-apbdma", "nvidia,tegra20-apbdma";
+>   		reg = <0x6000a000 0x1400>;
+>   		interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
 > 
-> Even more, I wonder what the benefit of having that information in the
-> firmware tables if the only thing that matters in the immutable HW
-> view. Yes, having it in the DT/ACPI simplifies the job of the kernel
-> (only one format to parse). But it is overall useless information.
 
-Yes, that I agree but it would force firmware bindings to special case
-PPIs to remove the type (#interrupt-cells and co.).
+Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
 
-From what I read I understand I must ignore the PPI type provided by
-firmware.
+Thanks!
+Jon
 
-> > Obviously if firmware exposes the wrong type that's a firmware bug
-> > but I was wondering whether it is better to fail the firmware-to-Linux
-> > IRQ translation if the firmware provided type is wrong rather than carry
-> > on pretending that the type is correct (I was abusing the irq_set_type()
-> > callback to do just that - namely, check that the type provided by
-> > firmware matches HW but I think that's the wrong place to put it).
-> 
-> I don't think there is anything to do. Worse case, you spit a
-> pr_warn_once() and carry on.
+-- 
+nvpublic
 
-Thanks,
-Lorenzo
 
