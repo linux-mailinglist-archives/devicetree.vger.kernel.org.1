@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-175124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7768AAFDB9
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 16:50:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6315AAFDED
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 16:57:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C17B1BA42C2
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:50:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 879C4987730
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D03A27511A;
-	Thu,  8 May 2025 14:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B5DA2797AE;
+	Thu,  8 May 2025 14:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z+M9OZh3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BhxBGcla"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 603DA8460;
-	Thu,  8 May 2025 14:50:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB1A2797A3;
+	Thu,  8 May 2025 14:55:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746715809; cv=none; b=srd6SADYuU/HRJokX32cYpeO7ywE8FlWVvN4ctGeJAsyrQoRjNhtwelEiOF4IMUE9QyGYWKyQpm9sLY18MmuxtnrD57tGs+CgKrt5V+x6yQTzvR+xOBWxNo5dztidfRAkp8PLcxqxai28KYysmOGEH0CIaHdYXeNltbeoyuknKw=
+	t=1746716134; cv=none; b=h3RZntPAqXJnBn9bLHyvh8aBKOvBpgMkUjgiYqW95jOTLUD3uEIdb0LlE+EPvSDdB4yxNqOx95Mx0IfmBUzQb0ZYTCSHqqkHyX6yN1oPta8EsMH1/SupSO8K4exmImW4KAx+wTncNekMWEB/Rn4gvpFm/OnjvUu6s58SO4ynEFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746715809; c=relaxed/simple;
-	bh=Fy8C4VUCTqo3ySjqlhBabDqwrzsmZ4nkLoYPReSi/sY=;
+	s=arc-20240116; t=1746716134; c=relaxed/simple;
+	bh=1+vwrX2VH2xSClWzk21LoypRAIw4GKWmBFxIDy4xSKk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VCbUFYBsX7ZAnBZzJSAn49vUJtuooc4iRdEuEHPQttL9AYMQx4om6HX9glkYchlB3pyKuVVuJiNg81XLCSVh+8bCxNWpnWUk9bKN5Rt4VeZ4b26xG/79W4ya3qbRQsVVNN/rXqccjGCuawD2gJPC7dzHjC4E+oyTtkkKHYE/gPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z+M9OZh3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12324C4CEE7;
-	Thu,  8 May 2025 14:50:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EGNl7H8+lKjvtW69axbAJ4D3ZTjrLcM+VwU5LJRh6LjGjiP7lj7yLQzwALb4dm14UIpQy24XXrrioqDhcb25GC70CyAyC5ZKy2f0AnDOL517JXrTelukt1CR2+DqPnLYK+8cviJzfRCeSZegmt1w3f4KOC/y53SVRptEiE7ESz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BhxBGcla; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2740C4CEE7;
+	Thu,  8 May 2025 14:55:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746715808;
-	bh=Fy8C4VUCTqo3ySjqlhBabDqwrzsmZ4nkLoYPReSi/sY=;
+	s=k20201202; t=1746716133;
+	bh=1+vwrX2VH2xSClWzk21LoypRAIw4GKWmBFxIDy4xSKk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z+M9OZh3xL+Cbfb2Uz0mclgmyDMz0d2cCrjI45KKCaMFeJFYV2ND9fPzfuI7wKpW8
-	 RdL6nPCoIgRDfk8gvtSh4eGoNF1kFbPq5cCjJkTAXlb8HHREcON8e1hvUbwciyzyLH
-	 uMDTYjuxibaVUghc0nDrvO38ODUN4bS9pp+uokBU6W3uZqPT7lnIuVkjswFzrBCHI0
-	 Kfu81tcLA+Bvm14qTgk8hV8snvNse8/eTcgkA4ZxszPXfX8dUBQPHIqyQ4uyYAcDO1
-	 VyHkIYs4rPr+gM5vHjnZbaZN+H+5V5J0Me+uNjMN7FuQKMrZQ+gnVYfEze8sofIWQB
-	 nOWxokYERitpw==
-Date: Thu, 8 May 2025 15:50:04 +0100
+	b=BhxBGclanzLpmpop4xNy7mGbw62FZ/hY+7rR1r987RklleviyWtky9+UE+jPBjA4h
+	 G+D6gEhRnX2pm4JwhCrhcdMVMIG8dYLD2uIhdo8onOhmJ9hkQmzu2OPAtLa48+5Khp
+	 u2VtUe7Ht2OtK6/gIbG4PiQfKW2o87ymHiAdhfja9lM5nT4XPRPb9TY2f2KLdoJiJp
+	 X67l8rHWCAMxI1FVhg3j04CtkoSLvh76PJpSC4jiVfLd+IjYQUqn1oYY9asAxsm67w
+	 I+/6nR16xRSFDS+T36UVYSvSCi5HVXCc2Osd+SoL+STlXOgIpPpx3sp+FCUuaGYv4S
+	 ElBVJFgSDQpXA==
+Date: Thu, 8 May 2025 15:55:29 +0100
 From: Conor Dooley <conor@kernel.org>
 To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pinctrl: amlogic,pinctrl-a4: Add missing
- constraint on allowed 'group' node properties
-Message-ID: <20250508-friction-alkaline-eb7a13adfd32@spud>
-References: <20250507215852.2748420-1-robh@kernel.org>
+	Andrei Pistirica <andrei.pistirica@microchip.com>,
+	Chandra Mandal <purna.mandal@microchip.com>,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: serial: Convert microchip,pic32mzda-uart
+ to DT schema
+Message-ID: <20250508-refinish-legible-dbbfb9d2fd99@spud>
+References: <20250507154937.1603190-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,35 +63,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8tifkVQIif/uYh2+"
+	protocol="application/pgp-signature"; boundary="li47EMabrVGucmAs"
 Content-Disposition: inline
-In-Reply-To: <20250507215852.2748420-1-robh@kernel.org>
+In-Reply-To: <20250507154937.1603190-1-robh@kernel.org>
 
 
---8tifkVQIif/uYh2+
+--li47EMabrVGucmAs
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 07, 2025 at 04:58:51PM -0500, Rob Herring (Arm) wrote:
-> The "^group-[0-9a-z-]+$" nodes schema doesn't constrain the allowed
-> properties as the referenced common schemas don't have constraints.
-> Add the missing "unevaluatedProperties" constraint.
+On Wed, May 07, 2025 at 10:49:36AM -0500, Rob Herring (Arm) wrote:
+> Convert the Microchip PIC32 UART binding to DT schema. The binding was
+> unclear there are 3 interrupts. The functions were determined from the
+> driver. The 'cts-gpios' property is covered by serial.yaml schema.
 >=20
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---8tifkVQIif/uYh2+
+Although...
+
+> diff --git a/Documentation/devicetree/bindings/serial/microchip,pic32mzda=
+-uart.yaml b/Documentation/devicetree/bindings/serial/microchip,pic32mzda-u=
+art.yaml
+> new file mode 100644
+> index 000000000000..b176fd5b580e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/microchip,pic32mzda-uart.y=
+aml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/microchip,pic32mzda-uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip PIC32 UART
+> +
+> +maintainers:
+> +  - Andrei Pistirica <andrei.pistirica@microchip.com>
+> +  - Purna Chandra Mandal <purna.mandal@microchip.com>
+
+I don't think either of these people still work for Microchip.
+(I don't have any idea actually who works on this device)
+
+--li47EMabrVGucmAs
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBzEnAAKCRB4tDGHoIJi
-0oVDAQDMi8soyiPVhpBpLfEFuyYCWl4lF9cfYxPAEoX5IXL0bgEAha4WdDsoiQtW
-m2PJDug/Jx+98RsDsFgvfNbXOR1KtAQ=
-=+VMJ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBzF4QAKCRB4tDGHoIJi
+0gLCAP97mPtcpMhwP17y4SgfNnzizuUNps68bgwbeksNCXdyvgEA3c5uwk9EsAtj
+Z/vMir4Bvn2sTP2hqNLH4ilOlpy1pg0=
+=Xc3M
 -----END PGP SIGNATURE-----
 
---8tifkVQIif/uYh2+--
+--li47EMabrVGucmAs--
 
