@@ -1,205 +1,111 @@
-Return-Path: <devicetree+bounces-175135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D1CDAAFE0D
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:01:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6186FAAFE20
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:03:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25F9F3AC87C
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:01:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 639E8503718
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 334531ACEC8;
-	Thu,  8 May 2025 15:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE4C2222BD;
+	Thu,  8 May 2025 15:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RBHQT7pQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UdyC1MXO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051242797A1;
-	Thu,  8 May 2025 15:01:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ADFF1A239F;
+	Thu,  8 May 2025 15:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746716464; cv=none; b=VVy72q37e2E1xdpFSH08TGYGOlh2FTGDpRevpbuMMaZsTwEwu8+oJhrIQyIlR6UGqepif/ExJEIZdicRX9gtKG3Y38LHM6luyFQvBa5CO/KtxWLMwv/otX/OSAnynPk3NhRHOVXJfMLESL9F14W23BHCyttsAq/X9JI+paCS4r8=
+	t=1746716507; cv=none; b=sEw232yGG/BkdriNYat0KjnVTo19gUizAnkCxzCFrcHxs7h5NzEzWqNuRdtN4NLk1Tn9MFsvrPOaHDTS/mLTTnURbLxJpMrwzJhaKkYxeonsg0J3rGoHXIjJLssWVSJ3eZk9MXbXFJfi/UZ4GOGGCu9fQNUiWOlgGbAYyyWEKEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746716464; c=relaxed/simple;
-	bh=QIuc44QP0WM4Pw9F2ju2kBjf5vcyErqm+b11yGk5wuM=;
+	s=arc-20240116; t=1746716507; c=relaxed/simple;
+	bh=UCL8T8OKT2PHy7pDRaffVOpXZolm4PC/BuT7xeYhR0I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HBGKvw0zw48Unv6qTyOD7I2ZbsumFQnJNH9dSIqWXn0Kwi6qroHAkfJEz0MkEOuaDkuD4AzZptfBAmxjrtRKsZC4DfJtaXarwB1g7jAllS7yCutMurEffXGsi8Uw+ZXujswwywbl9k2tG+WAhLDvLTbpiPE2ZblAd1dEc7IJ9+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RBHQT7pQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A797C4CEF0;
-	Thu,  8 May 2025 15:01:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uTde4rL8LoqahMH9p2CBk727GladJh8RCZkrhR7SEJ3SElk5vCvHmsQAplmDx3GL9oxWZtdKwLp6pRBDGp+9tpN9J4VUCD+0Qx3e6vvoEryIVDzcEd4S64D76TBxWmzOiA9E5Mk2yS7hUpJ1T3iioNr0LVYMUKFs7Xih5ZH/Zhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UdyC1MXO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EEE2C4CEE7;
+	Thu,  8 May 2025 15:01:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746716463;
-	bh=QIuc44QP0WM4Pw9F2ju2kBjf5vcyErqm+b11yGk5wuM=;
+	s=k20201202; t=1746716506;
+	bh=UCL8T8OKT2PHy7pDRaffVOpXZolm4PC/BuT7xeYhR0I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RBHQT7pQVo7fKSgQwmUwh1Xg30z84+6ci8scyf6g4JbXlrkSx6a3j5f0+lbsesMPq
-	 zDk8zBB9/gKTavRQ/iTTgtJw8opwOVcpa8xWHHaLCpIvOZyu8VlFHFycE4J8TvbIdE
-	 OVm6qoPGEelCUGhdPCoXrRAnBwMcec05DWVqBDHvJBAXCn3m1c6tt/+xtepbMTs1on
-	 oy1lFs+KmrDUYwSPLeycTYsqCam2JImCXt+M+ijgjkWap2ByHIlsgaV8IzUy8AaYA7
-	 KyivPrSAIC51liUOSy+AWAgfkSwPGMrtz/vzg+sQaVukJYBesV7DMpkv5ha+Lk+MBY
-	 0gswxutPHjKPg==
-Date: Thu, 8 May 2025 16:00:59 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: mmc: Add Loongson-2K SD/SDIO/eMMC
- controller binding
-Message-ID: <20250508-snagged-amber-432ed9bf3d41@spud>
-References: <cover.1746581751.git.zhoubinbin@loongson.cn>
- <9b5a416143d5d5da7084f3a868cf01e6827cd653.1746581751.git.zhoubinbin@loongson.cn>
+	b=UdyC1MXOScXQQbTzI2b26rBkqoWxPE9uMO5DoT0rIVU220CuEWMgYwd7uRUnHNEkK
+	 A9CmAMN6aItLxDbL3vvAqpyQ/mZAFPQ/+TZdPqBnKdpxSqSPl3DevAL6cxaDETyswn
+	 2kqzwwaxpT+O7IZzg4HkTBSEMCODvn9kDYz1TcYUkguw17csLhR5xRtV5q8uFUl8JL
+	 vhnieXUkQmVEXiA/TC8yWo8YE6E+cguuhXQsiDhFOzlsxaUF3DY/U7JlnqCaWw2rTC
+	 FwIh6P9hRa+V6Lgp5j+KFqF/hyEFW/vhJgb2hbEEto+UcE820vy9wPYVOe4j0PKhzo
+	 AMPwuVwacdy1Q==
+Date: Thu, 8 May 2025 16:01:40 +0100
+From: Lee Jones <lee@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Nam Tran <trannamatk@gmail.com>, andy@kernel.org, geert@linux-m68k.org,
+	pavel@ucw.cz, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, christophe.jaillet@wanadoo.fr, corbet@lwn.net,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix
+ LED driver
+Message-ID: <20250508150140.GS3865826@google.com>
+References: <20250508132659.GL3865826@google.com>
+ <20250508142648.7978-1-trannamatk@gmail.com>
+ <CAHp75VcquXy11+mXW8eKgE0ndg3k0y6i=yKQ9_3N2Uh0viZKQg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="yxWiAtlT6kYeWJue"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <9b5a416143d5d5da7084f3a868cf01e6827cd653.1746581751.git.zhoubinbin@loongson.cn>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VcquXy11+mXW8eKgE0ndg3k0y6i=yKQ9_3N2Uh0viZKQg@mail.gmail.com>
 
+On Thu, 08 May 2025, Andy Shevchenko wrote:
 
---yxWiAtlT6kYeWJue
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Thu, May 8, 2025 at 5:27 PM Nam Tran <trannamatk@gmail.com> wrote:
+> > On Thu, 8 May 2025 Lee Jones wrote:
+> > > On Thu, 08 May 2025, Andy Shevchenko wrote:
+> > > > On Wed, May 7, 2025 at 7:42 PM Nam Tran <trannamatk@gmail.com> wrote:
+> 
+> ...
+> 
+> > > > At least, based on the above it's my formal NAK from an auxdisplay perspective.
+> > >
+> > > This is fine.
+> > >
+> > > Just be aware, before you submit to LEDs again, that you need to use
+> > > what is available in the LEDs subsystem to it's fullest, before
+> > > hand-rolling all of your own APIs.  The first submission didn't use a
+> > > single LED API.  This, as before, would be a big NACK also.
+> >
+> > Thanks for the clarification.
+> >
+> > Just to confirm — the current version of the driver is customized to allow
+> > user space to directly manipulate LP5812 registers and to support the
+> > device’s full feature set. Because of this, it doesn’t follow the standard
+> > LED interfaces.
+> 
+> But why? What's wrong with the LED ABI? (see also below question
+> before answering to this one)
+> 
+> > Given that, would it be acceptable to submit this driver under the misc subsystem instead?
+> 
+> But these are LEDs in the hardware and you can access them as 4
+> individual LEDs, right?
 
-On Wed, May 07, 2025 at 03:28:05PM +0800, Binbin Zhou wrote:
-> Add the Loongson-2K SoC's SD/SDIO/eMMC controller binding with DT schema
-> format using json-schema.
->=20
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  .../bindings/mmc/loongson,ls2k-mmc.yaml       | 69 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/loongson,ls2k-m=
-mc.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.yaml=
- b/Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.yaml
-> new file mode 100644
-> index 000000000000..97a0853399f1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/loongson,ls2k-mmc.yaml#
+Right.  Please work with the API you are offered in the first instance.
+My first assumption is always that this driver isn't as special as you
+think it might be.
 
-Filename matching a compatible please.
-Otherwise this looks okay to me.
-
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: The SD/SDIO/eMMC host controller for Loongson-2K family SoCs
-> +
-> +description:
-> +  The MMC host controller on the Loongson-2K0500/2K1000 (using an extern=
-ally
-> +  shared apbdma controller) provides the SD and SDIO device interfaces.
-> +
-> +maintainers:
-> +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - loongson,ls2k0500-mmc
-> +      - loongson,ls2k1000-mmc
-> +
-> +  reg:
-> +    items:
-> +      - description: Loongson-2K MMC controller registers.
-> +      - description: APB DMA config register for Loongson-2K MMC control=
-ler.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    maxItems: 1
-> +
-> +  dma-names:
-> +    const: rx-tx
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - dmas
-> +  - dma-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/loongson,ls2k-clk.h>
-> +
-> +    mmc@1fe2c000 {
-> +        compatible =3D "loongson,ls2k1000-mmc";
-> +        reg =3D <0x1fe2c000 0x68>,
-> +              <0x1fe00438 0x8>;
-> +        interrupt-parent =3D <&liointc0>;
-> +        interrupts =3D <31 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks =3D <&clk LOONGSON2_APB_CLK>;
-> +        dmas =3D <&apbdma1 0>;
-> +        dma-names =3D "rx-tx";
-> +        bus-width =3D <4>;
-> +        cd-gpios =3D <&gpio0 22 GPIO_ACTIVE_LOW>;
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 96b827049501..5bf74aa63299 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -13935,6 +13935,12 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
->  F:	drivers/soc/loongson/loongson2_guts.c
-> =20
-> +LOONGSON-2 SOC SERIES MMC/SD/SDIO CONTROLLER DRIVER
-> +M:	Binbin Zhou <zhoubinbin@loongson.cn>
-> +L:	linux-mmc@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.yaml
-> +
->  LOONGSON-2 SOC SERIES PM DRIVER
->  M:	Yinbo Zhu <zhuyinbo@loongson.cn>
->  L:	linux-pm@vger.kernel.org
-> --=20
-> 2.47.1
->=20
-
---yxWiAtlT6kYeWJue
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBzHKwAKCRB4tDGHoIJi
-0qOOAQDdUx174xNJP7VuO8Wx3FELbXXDU37gOWFiYDolPaiA6gEA8s2yAOMCa6KW
-GjvybMWKWRlXBEoZ16diEIzbh+Pk6wA=
-=4nOo
------END PGP SIGNATURE-----
-
---yxWiAtlT6kYeWJue--
+-- 
+Lee Jones [李琼斯]
 
