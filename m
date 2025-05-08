@@ -1,257 +1,129 @@
-Return-Path: <devicetree+bounces-174882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFA5FAAF335
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:56:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39C17AAF347
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:01:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9672B3AAC59
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 05:56:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0C824E0988
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 06:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A459215778;
-	Thu,  8 May 2025 05:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E33C1E0E00;
+	Thu,  8 May 2025 06:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="P2VzNdd5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tIu4DJEw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11013033.outbound.protection.outlook.com [52.101.127.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD8B215B102;
-	Thu,  8 May 2025 05:56:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.33
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746683786; cv=fail; b=NC8r+IurikS+uQZwbwTnK6WbHbrN/RtB6c68Yv7HSH3Ic1iF34WbmaJKqELMV1vVgl6b7c2O29MzsIlGYjU8JlEQEBmRPDu7lJ9dq8V0ZODcMeSPkhKqtl6LfEuM0yu1wtdm9S49vZzt2W+C738hN6pvkTUjr31qEAFc67dfdXs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746683786; c=relaxed/simple;
-	bh=Yuc9rvXoS2bwTM3+KfVZW4cZa5tZlV+A81IhAkW/YYA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=mENvSjWXvlRp8uUag076Dr3k0roqao0TqLfI0OiKav7St5ILMqUcrx+gZNS6fIYFSRzN9eGe3Ysg47pNQZmO5xDGBUhUnMNJ4gsgjD/pmOanCQlqQZ9ydoImvwFNAUgk6zdGMee0xxdUrylos8Qtopl+GAa8oMThZmwU/qzrLyI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=P2VzNdd5; arc=fail smtp.client-ip=52.101.127.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=H4BgVT+aT3bUwlcP4yHMroVDHwJ7iLZ83uhTtXONQjctterRUEQZsfwwr3QxqvBoogs8UuLKph+AYxh6HeF4ehSJqt3p58U/74pdlAD6JEGeW29/4TaWHNTDm8qorjQRHlGd99/M3Rvp3HlyL6yLscrXMptx1UdUI22uCRgmZPMkWXmcRxxNNiyv34Jr7q1YrKqBjcSpAT8EeRr5e8sF2nuqvF9p1V4qq9NHYv5J73nB0uzwwRG0WqwWCB6gJRD4Pq060q3yM7bIMK1Eup+HxrxGFuMQRk4zXfgLbDHt7+2RTKoRdqYS+Hbd6xdXdz0fyAGubcB7pPy1QpBYV3FE2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E9pT+X53FMlPm/ampBllVyPBsPRYDRC0bt9PWv7nsFw=;
- b=G/9JbC04zOwikdKflY9WxxWYcaf7ZAtT/+pYQksAn/7Wv0GsjVO8GFXYCrc3nCqgRgUbucB2rqaDumt5gZob03vbxBjDY7nuALp3IoIagVAlGlu8s2ILjiKZlwVBTv+F/zeJaig4kMV4MXu9m/5ZXel9ckBoNeGNx0xzr0axrnUEsJ5JFrDN5nL0XnP+nYW5JRmz3LZj2gU26hR7eYy5TAIgKNe/IvIU2WpVStYQx5XNSJNGZFQZYq+fK+U4PXUOo1eud5c+KtT99ge9pQ9WZHeWjbt5ZQtjH83PwvlmvkRzGG6HgHDS9FRaC92Hu648ygq44h1WOjDMZ/YyppkGIg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E9pT+X53FMlPm/ampBllVyPBsPRYDRC0bt9PWv7nsFw=;
- b=P2VzNdd5h9VRAPUdwB1rnsygktm8UghSP03P1ZO+V0dk4GiSiUCD0ctnjSlFQYqaT+TLoXkq/T0l84by3v2dg86pcsSzzqfleMAecV6AYNLcXley5TsiVXxgLZR2KZcGJZf/220ac9tychkQPAQP0PG94m5moez11QAbOr09q5k1/STR0pV/9IgSdAYw+bo/S+cjBdHCBW0JkuKWqoQQhOgoBu1fpgdIlGqt5j8IDb0JxGEKOL8pY3mbJ5AM/TQZAxsZBi5CxySamIwFgKuVDrjBz6p4CgJwPoTCNzY11oyu3lBtovQezw1nARoaoEuZWcDxZ6ZYZ3DnF4cHMGq8+g==
-Received: from SG2PR04CA0214.apcprd04.prod.outlook.com (2603:1096:4:187::17)
- by TY0PR04MB6254.apcprd04.prod.outlook.com (2603:1096:400:329::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.21; Thu, 8 May
- 2025 05:56:18 +0000
-Received: from SG1PEPF000082E8.apcprd02.prod.outlook.com
- (2603:1096:4:187:cafe::3) by SG2PR04CA0214.outlook.office365.com
- (2603:1096:4:187::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8722.23 via Frontend Transport; Thu,
- 8 May 2025 05:56:17 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- SG1PEPF000082E8.mail.protection.outlook.com (10.167.240.11) with Microsoft
- SMTP Server id 15.20.8722.18 via Frontend Transport; Thu, 8 May 2025 05:56:16
- +0000
-From: Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>,
-	Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] arm: dts: aspeed: yosemite4: add gpio name for uart mux sel
-Date: Thu,  8 May 2025 13:56:11 +0800
-Message-Id: <20250508055612.2613605-1-delphine_cc_chiu@wiwynn.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D482C1D63F2;
+	Thu,  8 May 2025 06:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746684084; cv=none; b=Urx6R1JKhLLqKnl+pUSOwPgTypl11bCLue1zO9u/rYFZbsnAfRyaOcU/Ae59jOLOeMR79U+rZjZkfDRDuY64/YZ6G/7crpPdnmF5fT1RxYHScpQ/FbT9/yoDALwsEPRPFp2GD187Ag3bHRIuxKnUEb8gUTRis7ODJfPHuumodIQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746684084; c=relaxed/simple;
+	bh=yp2VPPqQVYukwAWYetB7YiabOpfn/VGHrneqXAdRHN4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AeY6O5Qf3RWH9cqK0jXZqYvEY22yCUz81z55voHLyOV5idk+jdaZjxsww0M3l0CJQe/aeSEWCWdHy5PQjkNO2x32v5EIoHBjI5nNwJM/Oe6kPJbLjzHVzvHINyTTO91g98K4YzS+NJ4Gev+vpWlIe8zQU97ebA/EDDavKaPxWyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tIu4DJEw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E42E0C4CEEB;
+	Thu,  8 May 2025 06:01:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746684083;
+	bh=yp2VPPqQVYukwAWYetB7YiabOpfn/VGHrneqXAdRHN4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tIu4DJEw/UkLqGIVrC75kaJFTLViAvSzFiesuQsPHNnThP5bWO1OngxGen1svIsCw
+	 PbgPtFNRaoKpv7zS1ENqvqoR+2/XQ4DaJ/GYklbmSw2BmNNRhlP6IJn4ZmhFC03qK0
+	 JeeBV4WNmN6XD4cV5+dm5p9wUzMFONTsTgx4PZ91cERrirxTfl8oDjH0okTiF1XAkS
+	 sX23epz4d67WciZpW6KCC3EtE4ByfEd5vDp9KwDHQo8WuDuQbh8Uy1voTOnWQUuWu/
+	 /aP/HnOBU8yxLU7vC/HFWzmoZe4fFapbL9d83UEnovEsjhFGY+OyAn+x2JhAecOZfC
+	 TdAuvWNiLsPAw==
+Message-ID: <79148223-d87f-486e-9d51-979f9188a837@kernel.org>
+Date: Thu, 8 May 2025 08:01:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG1PEPF000082E8:EE_|TY0PR04MB6254:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: b9c1fcb2-18d2-4df1-23fe-08dd8df50c75
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|82310400026|1800799024|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?8HzAaJutdJo4Ni+2QkyO5Z+JJWBPSkGbglCqxPZBjiDQb/792qbDaVRXgcVk?=
- =?us-ascii?Q?Sn0UWEoPVzukVp7gx0WS0Cj8umFePYug0sDEIZP38rWfGBmDBuPLq9C//4dv?=
- =?us-ascii?Q?cmEPtBHyaPsedg2q2SuwE3gL25jk/jyYHWjFDwDOaYxIlsr1KXoJ4S1tTJdo?=
- =?us-ascii?Q?N8FTwRq3cfhCMVHphPyt7rFIRaVYL4PHI4FDPeFZT2uBU9Qx5mq6PTzfhZi9?=
- =?us-ascii?Q?4MR4ko39ksUeibTkj5A5boefIxP0fbji+BcUqnhGkrO9mDa4/R3f1KFZC7YM?=
- =?us-ascii?Q?jg/A6eOU6qu63gs0zvTC3EojroWAgqPrDP0j+6rNnJxee6hYLCuFWy+vJLjV?=
- =?us-ascii?Q?vuOpE72cm9WAP8RkEN+cCgx+/Van1JVhfnUUwdXygnd+6hp5Ksm+LoL33BgL?=
- =?us-ascii?Q?VQE65mEPTztMewlziW5uEWRDmrE25/Zc3uDkEGSCojT8XxqP7xf3Z1b3+m+R?=
- =?us-ascii?Q?6iWMY2CihmvLX433uMYK9faxrGSOnAoMYUNS/g7fICBLGxMgLZHb6so2FJ0k?=
- =?us-ascii?Q?tMUmf3VEi6N1dCTgGb1/2VkDYCgiGuarkIIvToHvKlNAvNe6TmVG1KosNbpC?=
- =?us-ascii?Q?y+0fFrsKchE08FxaOKkm03PcAI4oa9dVz0IE6eHGx8xCY1r7V+cC6O1a+ZHt?=
- =?us-ascii?Q?xcX3cNhKpM33EbUgSmnptHMFmYLC1dwe4nyUqmo0rHN0g1sFoWrisHIynIBH?=
- =?us-ascii?Q?FVpxaR9ksExwVsBcqNCzVMnnIOvT2ILJE9BDXc+dIuA/TyEN1fDI6ilnVIPy?=
- =?us-ascii?Q?5LoFxJb7eMn91ksMyQPIo8DoAHBAV/k4uIzwsCZkGFJxa/bVW/yQTFj15tJW?=
- =?us-ascii?Q?fV+a7Xqide5KOYyTV722Ikp+7/+r/O1cPpKffE5UwIpiS5HedGwD+AB4aXdp?=
- =?us-ascii?Q?PlvCo1PXPUcb7b6pvkdIzFcWiA0cQ9usdfMqlx2TXc2Rw5fL1vJ+erWXd8Xq?=
- =?us-ascii?Q?pydpGkwAFrqfPEmdoFbxoytDG4pPx7DKbfyU3G8h9sP7pO1HPox4kcKl93UQ?=
- =?us-ascii?Q?ZTN2gyZrnmqVEYvYzz6yfe0Pc0GN8u25R1qIvOWThG05LkTMcw4K4NUzsO5G?=
- =?us-ascii?Q?cYuqj2BiqwWN67M7nzJrP/DMF2Dpn1phD69Yiq+oMXJKXZ4fidf/cHdwAGo3?=
- =?us-ascii?Q?GVmqoNLKit5jm7NVYNIdZcbdeREt2KpqKKIucQoR6OEHrJQjD+GgNFVyjvz2?=
- =?us-ascii?Q?is+i9mabSfMIVK730wL6oMy0lx0wAPiJBvgQ2G11ORf+Ku6gQywpacFu+Lzn?=
- =?us-ascii?Q?fTMwToQIbVLP8lEpEpHkVj/KHxEklRMqvBbE1m436JcIbO1J1BOeuT2VXhhY?=
- =?us-ascii?Q?koc3VnrnvMECPUnaiRxqo1aPQuXyVNbFUQT8srKizYTyDYbuykxo9wy+Ab3j?=
- =?us-ascii?Q?KnjRUaE742pp829IGoF8obzeHgjZKoyFCje2F9vhE0r2+K70+Cw4ANs6ZFm7?=
- =?us-ascii?Q?/Mn0CpjUowt6qYhFkYxzrRH4jGYaleEBsXfGGLejrj6hJL2FtgFl1irXlGCI?=
- =?us-ascii?Q?N+gUym2CHsqqdfL4w0DzfKAy4gdTP2rbDyeI?=
-X-Forefront-Antispam-Report:
-	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(376014)(7416014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2025 05:56:16.4775
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9c1fcb2-18d2-4df1-23fe-08dd8df50c75
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG1PEPF000082E8.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR04MB6254
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: mediatek: mt6397: Add
+ #sound-dai-cells property
+To: Julien Massot <julien.massot@collabora.com>, kernel@collabora.com,
+ Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+ Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Hui Liu <hui.liu@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Tinghan Shen <tinghan.shen@mediatek.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, iommu@lists.linux.dev
+References: <20250505-mt8395-dtb-errors-v1-0-9c4714dcdcdb@collabora.com>
+ <20250505-mt8395-dtb-errors-v1-1-9c4714dcdcdb@collabora.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250505-mt8395-dtb-errors-v1-1-9c4714dcdcdb@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>
+On 05/05/2025 15:23, Julien Massot wrote:
+> The 'mt6359.dtsi' file already uses the '#sound-dai-cells' property.
+> Add the corresponding property to the binding to fix the following
+> dtb-check error:
+If this is a DAI, then you miss dai-common reference. If not, you need
+to explain it in commit msg.
 
-Add gpio line name to support multiplexed console
-
-Signed-off-by: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>
-Signed-off-by: Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>
----
- .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 41 +++++++++++++++++++
- 1 file changed, 41 insertions(+)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-index 29f224bccd63..ac0678aef7d2 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-@@ -189,6 +189,11 @@ gpio@22 {
- 		reg = <0x22>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		gpio-line-names = "SLOT1_UART_SEL0","SLOT1_UART_SEL1",
-+                                  "SLOT1_UART_SEL2","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","";
- 	};
- 
- 	gpio@23 {
-@@ -235,6 +240,11 @@ gpio@22 {
- 		reg = <0x22>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		gpio-line-names = "SLOT2_UART_SEL0","SLOT2_UART_SEL1",
-+                                  "SLOT2_UART_SEL2","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","";
- 	};
- 
- 	gpio@23 {
-@@ -281,6 +291,11 @@ gpio@22 {
- 		reg = <0x22>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		gpio-line-names = "SLOT3_UART_SEL0","SLOT3_UART_SEL1",
-+                                  "SLOT3_UART_SEL2","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","";
- 	};
- 
- 	gpio@23 {
-@@ -327,6 +342,12 @@ gpio@22 {
- 		reg = <0x22>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		gpio-line-names = "SLOT4_UART_SEL0","SLOT4_UART_SEL1",
-+                                  "SLOT4_UART_SEL2","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","";
-+
- 	};
- 
- 	gpio@23 {
-@@ -373,6 +394,11 @@ gpio@22 {
- 		reg = <0x22>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		gpio-line-names = "SLOT5_UART_SEL0","SLOT5_UART_SEL1",
-+				  "SLOT5_UART_SEL2","","","","","",
-+				  "","","","","","","","",
-+				  "","","","","","","","",
-+				  "","","","","","","","";
- 	};
- 
- 	gpio@23 {
-@@ -419,6 +445,11 @@ gpio@22 {
- 		reg = <0x22>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		gpio-line-names = "SLOT6_UART_SEL0","SLOT6_UART_SEL1",
-+                                  "SLOT6_UART_SEL2","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","";
- 	};
- 
- 	gpio@23 {
-@@ -465,6 +496,11 @@ gpio@22 {
- 		reg = <0x22>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		gpio-line-names = "SLOT7_UART_SEL0","SLOT7_UART_SEL1",
-+                                  "SLOT7_UART_SEL2","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","";
- 	};
- 
- 	gpio@23 {
-@@ -511,6 +547,11 @@ gpio@22 {
- 		reg = <0x22>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		gpio-line-names = "SLOT8_UART_SEL0","SLOT8_UART_SEL1",
-+                                  "SLOT8_UART_SEL2","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","",
-+                                  "","","","","","","","";
- 	};
- 
- 	gpio@23 {
--- 
-2.25.1
-
+Best regards,
+Krzysztof
 
