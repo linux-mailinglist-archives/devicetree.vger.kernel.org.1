@@ -1,188 +1,257 @@
-Return-Path: <devicetree+bounces-174881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D81BAAF326
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:50:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFA5FAAF335
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:56:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29D541C05087
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 05:50:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9672B3AAC59
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 05:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3ECC2153C5;
-	Thu,  8 May 2025 05:50:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A459215778;
+	Thu,  8 May 2025 05:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="mtVqxhw4";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="Q7g4GK4Q"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="P2VzNdd5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11013033.outbound.protection.outlook.com [52.101.127.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F57F20F081;
-	Thu,  8 May 2025 05:50:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746683423; cv=none; b=iZwTZ7HXsLYJRJBuP6upBq/WK+PQlMWvWwVrxDoBsi3keZrYwCBNZEMwXnsUCg08mRvvLAgOIkM9N1NG9vGZv6aa8//8H9MsrU804gwKX6/y4qJ+YYjqAyobtTV28jHXn3b42SPEkG8iLXm5kWVN0es7v2/BLE03IvhZdS6Tfkc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746683423; c=relaxed/simple;
-	bh=9h1xbURXxGWrvKx9QCcbV1QCEaBoQJVsir3FtKD2gCs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UbUNToMQnNSJgXPcJ8Z85vF+3EtXBLSpCqk7TfphV36+a2lqFEVno2lexcLqSCtin6AKrmMIi36RoI9/4Vk3THLVf4PmQnZQhOiNfdQy0knxpj7609eEZ/xLKccfNLJxkekLSXKq1qPgpZ+ouWHrxPonBqp01cfqKRDxLZ1a/5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=mtVqxhw4; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=Q7g4GK4Q; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 8305B12FB447;
-	Wed, 07 May 2025 22:50:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1746683421; bh=9h1xbURXxGWrvKx9QCcbV1QCEaBoQJVsir3FtKD2gCs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mtVqxhw4uMfcFkqkn2govDBg6HdQT72/yv4YNkMaAMZ2W/qkCfX1waLVpD32rUYE6
-	 pdyZx/XcDqW7FEI0x26rojU6SejdMYGe/ue0olk1cN1M3jjP0P9/WY0Cu1vCIuzZaX
-	 4yJiwaOIWJBgqJayp0uWrbcg6CLXnftxGNNr7W9bulaQVVHh9agzmhWYNvCAVrOwXA
-	 mKVXUDHfYTwxE6Sn7bdVukTP4KajT9Qr+bbBxqiKZJamvCdSKhRsTpqtGmYNThoySm
-	 z8J15ghInqO+VDIeEeL0Fnd6FZWcXvLr1tNLxd/PdkugaDfZV6e7EeMEv7mEaCH07w
-	 tcOdpUiTgVJgg==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id ZB89_tY-Ofmk; Wed,  7 May 2025 22:49:47 -0700 (PDT)
-Received: from ketchup (unknown [183.217.82.204])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 896BA12FB439;
-	Wed, 07 May 2025 22:49:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1746683387; bh=9h1xbURXxGWrvKx9QCcbV1QCEaBoQJVsir3FtKD2gCs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q7g4GK4QYHgbQRvVz6WueosEuJM3dTt/iuT/Z69kHnZRsG0/sUiBbIyX4qx/VniWK
-	 SWoAyq3+YdPBynkoZy8PMBLF/6a8XVwYF5jAGJaYVLPi5fEU+SGJdnbQm1UbgERhb2
-	 knsws/s/c6KJgz3BRpNDaspFV50aUkpi/tE9GlVs9uCLSXth8ItSS7xFnDrato4Z2E
-	 nEkHMItd74NUdWtAF7qFWr95LFveUeghbIFwWhVVsKLYQ8iaIJjqrJaDTOo3SpXXaV
-	 B9bNrtnQXXwriCcCMqxef2UHdfSuvxPu+lB/kcc2Sk0GnC4zYzfLEo9n64czP8mj89
-	 yRq0ef7LoXY0A==
-Date: Thu, 8 May 2025 05:49:39 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD8B215B102;
+	Thu,  8 May 2025 05:56:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.33
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746683786; cv=fail; b=NC8r+IurikS+uQZwbwTnK6WbHbrN/RtB6c68Yv7HSH3Ic1iF34WbmaJKqELMV1vVgl6b7c2O29MzsIlGYjU8JlEQEBmRPDu7lJ9dq8V0ZODcMeSPkhKqtl6LfEuM0yu1wtdm9S49vZzt2W+C738hN6pvkTUjr31qEAFc67dfdXs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746683786; c=relaxed/simple;
+	bh=Yuc9rvXoS2bwTM3+KfVZW4cZa5tZlV+A81IhAkW/YYA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=mENvSjWXvlRp8uUag076Dr3k0roqao0TqLfI0OiKav7St5ILMqUcrx+gZNS6fIYFSRzN9eGe3Ysg47pNQZmO5xDGBUhUnMNJ4gsgjD/pmOanCQlqQZ9ydoImvwFNAUgk6zdGMee0xxdUrylos8Qtopl+GAa8oMThZmwU/qzrLyI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=P2VzNdd5; arc=fail smtp.client-ip=52.101.127.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H4BgVT+aT3bUwlcP4yHMroVDHwJ7iLZ83uhTtXONQjctterRUEQZsfwwr3QxqvBoogs8UuLKph+AYxh6HeF4ehSJqt3p58U/74pdlAD6JEGeW29/4TaWHNTDm8qorjQRHlGd99/M3Rvp3HlyL6yLscrXMptx1UdUI22uCRgmZPMkWXmcRxxNNiyv34Jr7q1YrKqBjcSpAT8EeRr5e8sF2nuqvF9p1V4qq9NHYv5J73nB0uzwwRG0WqwWCB6gJRD4Pq060q3yM7bIMK1Eup+HxrxGFuMQRk4zXfgLbDHt7+2RTKoRdqYS+Hbd6xdXdz0fyAGubcB7pPy1QpBYV3FE2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E9pT+X53FMlPm/ampBllVyPBsPRYDRC0bt9PWv7nsFw=;
+ b=G/9JbC04zOwikdKflY9WxxWYcaf7ZAtT/+pYQksAn/7Wv0GsjVO8GFXYCrc3nCqgRgUbucB2rqaDumt5gZob03vbxBjDY7nuALp3IoIagVAlGlu8s2ILjiKZlwVBTv+F/zeJaig4kMV4MXu9m/5ZXel9ckBoNeGNx0xzr0axrnUEsJ5JFrDN5nL0XnP+nYW5JRmz3LZj2gU26hR7eYy5TAIgKNe/IvIU2WpVStYQx5XNSJNGZFQZYq+fK+U4PXUOo1eud5c+KtT99ge9pQ9WZHeWjbt5ZQtjH83PwvlmvkRzGG6HgHDS9FRaC92Hu648ygq44h1WOjDMZ/YyppkGIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E9pT+X53FMlPm/ampBllVyPBsPRYDRC0bt9PWv7nsFw=;
+ b=P2VzNdd5h9VRAPUdwB1rnsygktm8UghSP03P1ZO+V0dk4GiSiUCD0ctnjSlFQYqaT+TLoXkq/T0l84by3v2dg86pcsSzzqfleMAecV6AYNLcXley5TsiVXxgLZR2KZcGJZf/220ac9tychkQPAQP0PG94m5moez11QAbOr09q5k1/STR0pV/9IgSdAYw+bo/S+cjBdHCBW0JkuKWqoQQhOgoBu1fpgdIlGqt5j8IDb0JxGEKOL8pY3mbJ5AM/TQZAxsZBi5CxySamIwFgKuVDrjBz6p4CgJwPoTCNzY11oyu3lBtovQezw1nARoaoEuZWcDxZ6ZYZ3DnF4cHMGq8+g==
+Received: from SG2PR04CA0214.apcprd04.prod.outlook.com (2603:1096:4:187::17)
+ by TY0PR04MB6254.apcprd04.prod.outlook.com (2603:1096:400:329::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.21; Thu, 8 May
+ 2025 05:56:18 +0000
+Received: from SG1PEPF000082E8.apcprd02.prod.outlook.com
+ (2603:1096:4:187:cafe::3) by SG2PR04CA0214.outlook.office365.com
+ (2603:1096:4:187::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8722.23 via Frontend Transport; Thu,
+ 8 May 2025 05:56:17 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ SG1PEPF000082E8.mail.protection.outlook.com (10.167.240.11) with Microsoft
+ SMTP Server id 15.20.8722.18 via Frontend Transport; Thu, 8 May 2025 05:56:16
+ +0000
+From: Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>
+To: patrick@stwcx.xyz,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>, Yixun Lan <dlan@gentoo.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	spacemit@lists.linux.dev, Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	Alex Elder <elder@riscstar.com>
-Subject: Re: [PATCH v8 5/6] riscv: dts: spacemit: Add clock tree for SpacemiT
- K1
-Message-ID: <aBxF81yqPgHP5oA_@ketchup>
-References: <20250416135406.16284-1-heylenay@4d2.org>
- <20250416135406.16284-6-heylenay@4d2.org>
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>,
+	Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm: dts: aspeed: yosemite4: add gpio name for uart mux sel
+Date: Thu,  8 May 2025 13:56:11 +0800
+Message-Id: <20250508055612.2613605-1-delphine_cc_chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250416135406.16284-6-heylenay@4d2.org>
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG1PEPF000082E8:EE_|TY0PR04MB6254:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: b9c1fcb2-18d2-4df1-23fe-08dd8df50c75
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|82310400026|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?8HzAaJutdJo4Ni+2QkyO5Z+JJWBPSkGbglCqxPZBjiDQb/792qbDaVRXgcVk?=
+ =?us-ascii?Q?Sn0UWEoPVzukVp7gx0WS0Cj8umFePYug0sDEIZP38rWfGBmDBuPLq9C//4dv?=
+ =?us-ascii?Q?cmEPtBHyaPsedg2q2SuwE3gL25jk/jyYHWjFDwDOaYxIlsr1KXoJ4S1tTJdo?=
+ =?us-ascii?Q?N8FTwRq3cfhCMVHphPyt7rFIRaVYL4PHI4FDPeFZT2uBU9Qx5mq6PTzfhZi9?=
+ =?us-ascii?Q?4MR4ko39ksUeibTkj5A5boefIxP0fbji+BcUqnhGkrO9mDa4/R3f1KFZC7YM?=
+ =?us-ascii?Q?jg/A6eOU6qu63gs0zvTC3EojroWAgqPrDP0j+6rNnJxee6hYLCuFWy+vJLjV?=
+ =?us-ascii?Q?vuOpE72cm9WAP8RkEN+cCgx+/Van1JVhfnUUwdXygnd+6hp5Ksm+LoL33BgL?=
+ =?us-ascii?Q?VQE65mEPTztMewlziW5uEWRDmrE25/Zc3uDkEGSCojT8XxqP7xf3Z1b3+m+R?=
+ =?us-ascii?Q?6iWMY2CihmvLX433uMYK9faxrGSOnAoMYUNS/g7fICBLGxMgLZHb6so2FJ0k?=
+ =?us-ascii?Q?tMUmf3VEi6N1dCTgGb1/2VkDYCgiGuarkIIvToHvKlNAvNe6TmVG1KosNbpC?=
+ =?us-ascii?Q?y+0fFrsKchE08FxaOKkm03PcAI4oa9dVz0IE6eHGx8xCY1r7V+cC6O1a+ZHt?=
+ =?us-ascii?Q?xcX3cNhKpM33EbUgSmnptHMFmYLC1dwe4nyUqmo0rHN0g1sFoWrisHIynIBH?=
+ =?us-ascii?Q?FVpxaR9ksExwVsBcqNCzVMnnIOvT2ILJE9BDXc+dIuA/TyEN1fDI6ilnVIPy?=
+ =?us-ascii?Q?5LoFxJb7eMn91ksMyQPIo8DoAHBAV/k4uIzwsCZkGFJxa/bVW/yQTFj15tJW?=
+ =?us-ascii?Q?fV+a7Xqide5KOYyTV722Ikp+7/+r/O1cPpKffE5UwIpiS5HedGwD+AB4aXdp?=
+ =?us-ascii?Q?PlvCo1PXPUcb7b6pvkdIzFcWiA0cQ9usdfMqlx2TXc2Rw5fL1vJ+erWXd8Xq?=
+ =?us-ascii?Q?pydpGkwAFrqfPEmdoFbxoytDG4pPx7DKbfyU3G8h9sP7pO1HPox4kcKl93UQ?=
+ =?us-ascii?Q?ZTN2gyZrnmqVEYvYzz6yfe0Pc0GN8u25R1qIvOWThG05LkTMcw4K4NUzsO5G?=
+ =?us-ascii?Q?cYuqj2BiqwWN67M7nzJrP/DMF2Dpn1phD69Yiq+oMXJKXZ4fidf/cHdwAGo3?=
+ =?us-ascii?Q?GVmqoNLKit5jm7NVYNIdZcbdeREt2KpqKKIucQoR6OEHrJQjD+GgNFVyjvz2?=
+ =?us-ascii?Q?is+i9mabSfMIVK730wL6oMy0lx0wAPiJBvgQ2G11ORf+Ku6gQywpacFu+Lzn?=
+ =?us-ascii?Q?fTMwToQIbVLP8lEpEpHkVj/KHxEklRMqvBbE1m436JcIbO1J1BOeuT2VXhhY?=
+ =?us-ascii?Q?koc3VnrnvMECPUnaiRxqo1aPQuXyVNbFUQT8srKizYTyDYbuykxo9wy+Ab3j?=
+ =?us-ascii?Q?KnjRUaE742pp829IGoF8obzeHgjZKoyFCje2F9vhE0r2+K70+Cw4ANs6ZFm7?=
+ =?us-ascii?Q?/Mn0CpjUowt6qYhFkYxzrRH4jGYaleEBsXfGGLejrj6hJL2FtgFl1irXlGCI?=
+ =?us-ascii?Q?N+gUym2CHsqqdfL4w0DzfKAy4gdTP2rbDyeI?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(376014)(7416014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2025 05:56:16.4775
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9c1fcb2-18d2-4df1-23fe-08dd8df50c75
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG1PEPF000082E8.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR04MB6254
 
-Hi Yixun,
+From: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>
 
-On Wed, Apr 16, 2025 at 01:54:05PM +0000, Haylen Chu wrote:
-> Describe the PLL and system controllers that're capable of generating
-> clock signals in the devicetree.
-> 
-> Signed-off-by: Haylen Chu <heylenay@4d2.org>
-> Reviewed-by: Alex Elder <elder@riscstar.com>
-> Reviewed-by: Yixun Lan <dlan@gentoo.org>
-> ---
->  arch/riscv/boot/dts/spacemit/k1.dtsi | 75 ++++++++++++++++++++++++++++
->  1 file changed, 75 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> index c670ebf8fa12..584f0dbc60f5 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+Add gpio line name to support multiplexed console
 
-I found that I forgot to make the nodenames of syscons consistent:
-both "system-control" and "system-controller" are used, and pll should
-be named as "clock-controller" instead.
+Signed-off-by: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>
+Signed-off-by: Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>
+---
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 41 +++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
-Could you please drop the SoC devicetree patch then I could rework on
-it and correct the mistake? Or I could follow up a clean up patch if
-dropping isn't easy or doesn't follow the convention.
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index 29f224bccd63..ac0678aef7d2 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -189,6 +189,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT1_UART_SEL0","SLOT1_UART_SEL1",
++                                  "SLOT1_UART_SEL2","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -235,6 +240,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT2_UART_SEL0","SLOT2_UART_SEL1",
++                                  "SLOT2_UART_SEL2","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -281,6 +291,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT3_UART_SEL0","SLOT3_UART_SEL1",
++                                  "SLOT3_UART_SEL2","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -327,6 +342,12 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT4_UART_SEL0","SLOT4_UART_SEL1",
++                                  "SLOT4_UART_SEL2","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","";
++
+ 	};
+ 
+ 	gpio@23 {
+@@ -373,6 +394,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT5_UART_SEL0","SLOT5_UART_SEL1",
++				  "SLOT5_UART_SEL2","","","","","",
++				  "","","","","","","","",
++				  "","","","","","","","",
++				  "","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -419,6 +445,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT6_UART_SEL0","SLOT6_UART_SEL1",
++                                  "SLOT6_UART_SEL2","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -465,6 +496,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT7_UART_SEL0","SLOT7_UART_SEL1",
++                                  "SLOT7_UART_SEL2","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+@@ -511,6 +547,11 @@ gpio@22 {
+ 		reg = <0x22>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		gpio-line-names = "SLOT8_UART_SEL0","SLOT8_UART_SEL1",
++                                  "SLOT8_UART_SEL2","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","",
++                                  "","","","","","","","";
+ 	};
+ 
+ 	gpio@23 {
+-- 
+2.25.1
 
-Thanks for your work,
-Haylen Chu
-
-> @@ -314,6 +346,17 @@ soc {
->  		dma-noncoherent;
->  		ranges;
->  
-> +		syscon_apbc: system-control@d4015000 {
-> +			compatible = "spacemit,k1-syscon-apbc";
-> +			reg = <0x0 0xd4015000 0x0 0x1000>;
-> +			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-> +				 <&vctcxo_24m>;
-> +			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-> +				      "vctcxo_24m";
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
->  		uart0: serial@d4017000 {
->  			compatible = "spacemit,k1-uart", "intel,xscale-uart";
->  			reg = <0x0 0xd4017000 0x0 0x100>;
-> @@ -409,6 +452,38 @@ pinctrl: pinctrl@d401e000 {
->  			reg = <0x0 0xd401e000 0x0 0x400>;
->  		};
->  
-> +		syscon_mpmu: system-controller@d4050000 {
-> +			compatible = "spacemit,k1-syscon-mpmu";
-> +			reg = <0x0 0xd4050000 0x0 0x209c>;
-> +			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-> +				 <&vctcxo_24m>;
-> +			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-> +				      "vctcxo_24m";
-> +			#clock-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
-> +		pll: system-control@d4090000 {
-> +			compatible = "spacemit,k1-pll";
-> +			reg = <0x0 0xd4090000 0x0 0x1000>;
-> +			clocks = <&vctcxo_24m>;
-> +			spacemit,mpmu = <&syscon_mpmu>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		syscon_apmu: system-control@d4282800 {
-> +			compatible = "spacemit,k1-syscon-apmu";
-> +			reg = <0x0 0xd4282800 0x0 0x400>;
-> +			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-> +				 <&vctcxo_24m>;
-> +			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-> +				      "vctcxo_24m";
-> +			#clock-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
->  		plic: interrupt-controller@e0000000 {
->  			compatible = "spacemit,k1-plic", "sifive,plic-1.0.0";
->  			reg = <0x0 0xe0000000 0x0 0x4000000>;
-> -- 
-> 2.49.0
-> 
 
