@@ -1,181 +1,159 @@
-Return-Path: <devicetree+bounces-175286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C4D6AB05C0
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 00:00:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28C14AB05E9
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 00:20:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E2851BA2354
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 22:00:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 466251B60D37
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 22:20:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC86221FC3;
-	Thu,  8 May 2025 22:00:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91D0B224B01;
+	Thu,  8 May 2025 22:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gutgaRnf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XTZR0Nfg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 301CC202C5C;
-	Thu,  8 May 2025 22:00:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF67821FF3C
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 22:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746741621; cv=none; b=ShnZlMtJb908ZF5fSxSZF55q3dNwH6OmKVtbpl1Esgr4zxNiplPT1N+CvqkC/1m8UXWapr3TRmetQi6ITArJl62VfmAsx0JOa5a9r2RgisK9zrdhscqkfOODRWgF/K5Cv/UAeEPhLq6fPsxy8z2eHcNiJzDaGnBubWbV5LJfFxg=
+	t=1746742814; cv=none; b=BsBaYIjYxzhlnFNVbOL2zQ/lcESt8tMseeEdDAZIvdQMN1kadIQjz+1spy+LhDvneafERXVmzsJ8tTBE5gd5hBnSlFG5TFeGP6QXuJj4/eFmo+JrKVi4hKd+g2zbQAAOm3Im5HMiRq4US3tiomh6YmxN+B/kyTlhTnjnkPCvXog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746741621; c=relaxed/simple;
-	bh=KVvgX9Sz//6c92uZjhQoPSnIEHvJqDAnUBmUV/6XQAg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o7536Uy7yeJvEGvLOs5xRFBqWHGNHS36AuJqDndbfK6ZBDi1+QlkDSV91ydTQmEULO/9jInoKu9r9Uj4Qw/NQOJEitstv3BqnoBaA9lrM32xyOuzoGfJ7fq53acCXrcELrMRZBqdpgOjo0wPJPDSsp3lCzhfFRNWmdRxrNoUZ2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gutgaRnf; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-440685d6afcso16129675e9.0;
-        Thu, 08 May 2025 15:00:19 -0700 (PDT)
+	s=arc-20240116; t=1746742814; c=relaxed/simple;
+	bh=8jVG2Y4+gQ8pZk3n45eHG1gfNLG0R+Q+iYY7hvNL6OU=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=Tm2e5xxKlTB6PR5ibvsbD1SCzZ+ZSv0zxfDrXQi6VqcRSuCVM4d9hmU5Zh1TBJP38RQQnSd5rbNDBvC6+UuysSuUzilnwYZ/+SA99Q9AIXzaI6Sh9V7tbCdmW1K8kNXryG6o08DxCg+5p48LXX83Kg5dGWCvIlKlZNBr/zhr+rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XTZR0Nfg; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43edecbfb46so11445525e9.0
+        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 15:20:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746741618; x=1747346418; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jFPptVlWELbngFMrThLLYDU5tK5YqcQQHLUB6h2bqos=;
-        b=gutgaRnf5Qc+LAZCULIrIpdVDJH2TEmuP3+Gh7Z+2XopBIhU8pmxY64u2zJduP9+wH
-         Y6HL4RnI5Y5qq1KZ/43jJZPFbE8DmFJX2JsuFGBJEJEVoWQLl5k7snTI5PmjVg/ruA2r
-         oZdAniWueKygKm35f/JjwcAYfo4fjY7vjXqM3XzKjE1bvVXMZGyS3evNADZGbmRQzXg2
-         o8OrRz8toe889rojHunhUDvJmed7YyKs9I47ZCiJncYhWdYUo58mwjRxyfoeKCZA1E2g
-         pHxInrWoa2DYxJ7RN8CUSKCBifqtqtkDvNp8MfXxMfy77r+/89BxBuLaeOUQVQnfNXsz
-         3zEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746741618; x=1747346418;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1746742811; x=1747347611; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jFPptVlWELbngFMrThLLYDU5tK5YqcQQHLUB6h2bqos=;
-        b=YsxYANGbj71b6G9iASuugV0TvXy4TC5uZa7ZJcTd+WpJVX8Jz7sbmSoAyguHhOvtQj
-         wxHpragEPc7FNubH3TvdVd9MbyOCBEtvNNm9GXzwT/eggqyAMjIwu+QvzZnn18A7C5pL
-         xgHOTQn1gMl2uoHbcrGlnlxHdzgUOBdAVvCtehwQ+s6dVz85nrDKWfh7rEXrALMZGvZa
-         j+9T1Nc/qNweSZIN0J2K4J9BOYjeAWaHobQofD4MdavJMHxSTDVKfwws2xiwMymZ8Eht
-         4xP39vZnURfcsb5YFuqeojLzxRZAk4aPU7Giikl1wUJ/n4vHbHmEVjl0N65BsQH4S6bH
-         ghgw==
-X-Forwarded-Encrypted: i=1; AJvYcCVEyo8w/JMhJGyX/iCZ3bfNRfiktDgeHZPbNbyDfTXvtLy7ROr3QfXFSAH38bCXn426lK9FOp2U4PfZ@vger.kernel.org, AJvYcCWY6WkPH/kiENfHDBX6J22fSTy18Qef39YpxCgeJjR3HTwnIds7RDl7MTExVczpMAZjtR7BRz6n9VT/MMw=@vger.kernel.org, AJvYcCWnUmnAW3IyEug36AroYKoLQmh9LnGTr9O5T6lc/nt5XC4zzvW4fMpjxd83dmT7yjO9iq51cXcXKNVXPiI=@vger.kernel.org, AJvYcCXPMUhWHNL2VzyLB/V5NmodmJ6l8DeVDYpwgwmqAExRny6FPPa5txPq5MhMolxlzNVVRx5jvm6FXiSJs39N@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIY4GNJ7HfdnW9qjve3gMozpSFhrdM1bh73SgHMhNJUMm7JDQm
-	29pG5WVdSpxidQc6iSUfUy1wt2kaoJVcEjqvrFDoswve8TZDhjx8kaD48A==
-X-Gm-Gg: ASbGncvSgZfviQMu2XV8FVb+lFXwR+EzCCG7sR2grlvj8mxDfwdHiv9y2H88EB/iU31
-	6b3oKQu2xO6QdSgOMxwBY4ZdWeCNBJiwLnNFggW5TO9dZJx7LdJQJFtXdsKxHj8QxGxsE15giAQ
-	Y7nRuNi5k9woYC106SrTddRdM3ikdS9vbzBUBoFLTdk1MkKHoeGm3EtSGs88v9vxsUfzlj1kbBJ
-	jCJk8QOlVEEM6Bwwhn1TyqmKaDAxcLmknRvi6rX/z5OcMlzbZSm6Tk9Z/zaQntogDZ7NYEK+u9R
-	VwGoyNVG9lQbDKUmlltXp7NCrOgMAzTeg43iCLA7qDAMBHkySFGgs/4UuZZukG7BT05IsgkVnX8
-	GtVqrn73pvaAhE+RcEsvghCER5POfq/99N3Ofcg==
-X-Google-Smtp-Source: AGHT+IG3AYYCZjpiyNF33eGBd2NOxkGCG27jymfzWyrn6MCB6Fm4BvoruhYdcOJFuQliiCx3Ju+NDA==
-X-Received: by 2002:a05:600c:5027:b0:440:8fcd:cf16 with SMTP id 5b1f17b1804b1-442d6d6b6f7mr7776095e9.19.1746741618205;
-        Thu, 08 May 2025 15:00:18 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442d14e6d74sm41174815e9.21.2025.05.08.15.00.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 May 2025 15:00:17 -0700 (PDT)
-Date: Fri, 9 May 2025 00:00:15 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: webgeek1234@gmail.com
-Cc: Hans Verkuil <hverkuil@xs4all.nl>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 0/4] Tegra CEC Updates
-Message-ID: <almxxsmr2ppjisqyzufqkbkekx3pab6cdtnlbdf4epe77eidvs@s4qv7s5udnhq>
-References: <20250413-tegra-cec-v4-0-b6337b66ccad@gmail.com>
+        bh=9qeTG18LlcwANY+r6vVAi8oKprRlbWWzGEVKGSZnnmg=;
+        b=XTZR0NfgNFLjNDLO4QHqQWcluIGl5H+DYsSAEyl42rFy4WG6o/upybvrWyltHh6Ved
+         Mw02/x3HaQEk9oZQohtddVqT5p0lz4uTJW531LYoDYGWPQhRAVveAZp1J0TZZtoAtb+E
+         r5jsrrjsSz41juDr4KqurtA2NP2RdwrVo/WnoOysRekbE6+yQ6yjZb4IBOdUqllA0msJ
+         Wmslh41RGg0d6rn6D7IbcyGxEG6AoNAcPwRft+zQItpzf13Hv33zzA29faNAjRrIhWB9
+         BeHnpn8h8ORf2jO3+vTC0/Yq6/10A8RosLj2k+YsLV6tZTE4B6sZLEUW7IfPJlQXoKrP
+         yELg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746742811; x=1747347611;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=9qeTG18LlcwANY+r6vVAi8oKprRlbWWzGEVKGSZnnmg=;
+        b=eboifm1meS6raDU6OaDQMGTaF6GaLLWSvmoNWHYGnWb2GQP6oczJha96i9vl4Z+IgX
+         P83QtGOcKcL7R0igGwPZCFV1wwAokxXf0SzfRCZItFI40/ue+OZvqsuaxgdWrRtygIO4
+         bmYr/fiyZWAsiiuJzk1XROm+WHFk/4VFJZG7Iz6EexIAgp41h5Fx1C2LG8a2QZMK8ARS
+         DDiBpsNceAGolWOVm9hoLJAkPv57u9w0RdaeROsxeaLE1Q3HN8LWQeq7gcmIl1180No4
+         040QvhxXmX23SbNOciBQrnqXoR65vHNuN6LeH2cI3/afz2mnsLL7lJgy+g8P6cPq5k8r
+         FIMA==
+X-Forwarded-Encrypted: i=1; AJvYcCV9+1RPMgdZtv2M1G4ZHBaRh3SR9q8EmT57MVxvkumKsPCHxDmcMVQidn2uFT/GnIFHquYRtiGG2/xx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxg0MQ/5CwDq4ZS+2sgaNDCi9PjAYdU5DFY6rgPVRNQmdJmuTy7
+	ORzfraD672F9P1YyC7Bljc37OQMjLI7ow1/2Y1nQzj4/4Rv5JdsDY+o3FJNjvWI=
+X-Gm-Gg: ASbGncsmY+fZPbZXrwqKMbjf9nen7rOLGgczOR17GcwbsDHjqAo00UfjUiyWUGl7HXc
+	Cm7ZG8noqP9yXWwE3zS+0YFWjFnCAaogrNy/trqDLGyn+AG/XrAkJNCUEYCnPI165T79dycSCX0
+	hla/9onwIioPsR0xpDXOCDCa0ObgB5f/eywmOpRmCeWw6PYBWKtpMTtw0aqNiAM56oYks0i1njr
+	aheBWI+q6AG064i5Ny2ruAYkbboUrukveLdGJf67J2RKBRcSGLj+kbaYSzebDNssl3t2G9+FBWl
+	LXrhtBz9te5dbTaPaLn1Sdb6FJI/PPW2vcj+NGHN
+X-Google-Smtp-Source: AGHT+IFNJ7Gi970i7bPc0iWkD5GHmhHRZeXN9OkzflaFGz8KLIOBP4AoxOK+OI9a1TIMzF17BR9SKQ==
+X-Received: by 2002:a05:600c:609a:b0:43c:eeee:b706 with SMTP id 5b1f17b1804b1-442d6dd246dmr8546325e9.24.1746742811044;
+        Thu, 08 May 2025 15:20:11 -0700 (PDT)
+Received: from localhost ([2.216.7.124])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd34bd79sm50210065e9.23.2025.05.08.15.20.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 May 2025 15:20:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3epgod7wk6jifceo"
-Content-Disposition: inline
-In-Reply-To: <20250413-tegra-cec-v4-0-b6337b66ccad@gmail.com>
-
-
---3epgod7wk6jifceo
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 0/4] Tegra CEC Updates
-MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 08 May 2025 23:20:08 +0100
+Message-Id: <D9R4NCKH46WP.14C8F7W4M58ZQ@linaro.org>
+Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <srini@kernel.org>, <quic_ekangupt@quicinc.com>,
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8750: Add adsp fastrpc support
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>,
+ <andersson@kernel.org>, <konradybcio@kernel.org>,
+ <linux-arm-msm@vger.kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250502011539.739937-1-alexey.klimov@linaro.org>
+ <10f69da3-6f94-4249-a8f3-459dc48fa5e1@oss.qualcomm.com>
+In-Reply-To: <10f69da3-6f94-4249-a8f3-459dc48fa5e1@oss.qualcomm.com>
 
-On Sun, Apr 13, 2025 at 02:35:31PM -0500, Aaron Kling via B4 Relay wrote:
-> This series updates Tegra hdmi cec support to be usable out of the box
-> on Tegra210 through Tegra194.
->=20
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
-> Changes in v4:
-> - Fix review comment on patch 1
-> - Link to v3: https://lore.kernel.org/r/20250409-tegra-cec-v3-0-91640131d=
-fa2@gmail.com
->=20
-> Changes in v3:
-> - Update patch 1 to fix lint warnings
-> - Link to v2: https://lore.kernel.org/r/20250408-tegra-cec-v2-0-2f004fdf8=
-4e8@gmail.com
->=20
-> Changes in v2:
-> - Dropped patch 2, per request
-> - Added change to declare fallback compatibles instead, as per request
-> - Update patch 1 to allow fallback compatibles
-> - Link to v1: https://lore.kernel.org/r/20250407-tegra-cec-v1-0-e25dd9577=
-b5f@gmail.com
->=20
-> ---
-> Aaron Kling (4):
->       media: dt-bindings: Document Tegra186 and Tegra194 cec
->       arm64: tegra: Add fallback cec compatibles
->       arm64: tegra: Add CEC controller on Tegra210
->       arm64: tegra: Wire up cec to devkits
->=20
->  .../devicetree/bindings/media/cec/nvidia,tegra114-cec.yaml | 14 ++++++++=
-++----
->  arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts         |  6 ++++++
->  .../boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts     |  6 ++++++
->  arch/arm64/boot/dts/nvidia/tegra186.dtsi                   |  2 +-
->  arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts         |  6 ++++++
->  arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi        |  6 ++++++
->  arch/arm64/boot/dts/nvidia/tegra194.dtsi                   |  2 +-
->  arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts         |  6 ++++++
->  arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts         |  6 ++++++
->  arch/arm64/boot/dts/nvidia/tegra210.dtsi                   |  9 +++++++++
->  10 files changed, 57 insertions(+), 6 deletions(-)
-> ---
-> base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
-> change-id: 20250407-tegra-cec-7e3a7bef456f
->=20
-> Best regards,
-> --=20
-> Aaron Kling <webgeek1234@gmail.com>
+On Fri May 2, 2025 at 10:38 AM BST, Konrad Dybcio wrote:
+> On 5/2/25 3:15 AM, Alexey Klimov wrote:
+>> While at this, also add required memory region for fastrpc.
+>>=20
+>> Tested on sm8750-mtp device with adsprpdcd.
+>>=20
+>> Cc: Ekansh Gupta <quic_ekangupt@quicinc.com>
+>> Cc: Srinivas Kandagatla <srini@kernel.org>
+>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 70 ++++++++++++++++++++++++++++
+>>  1 file changed, 70 insertions(+)
+>>=20
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/=
+qcom/sm8750.dtsi
+>> index 149d2ed17641..48ee66125a89 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> @@ -7,6 +7,7 @@
+>>  #include <dt-bindings/clock/qcom,sm8750-gcc.h>
+>>  #include <dt-bindings/clock/qcom,sm8750-tcsr.h>
+>>  #include <dt-bindings/dma/qcom-gpi.h>
+>> +#include <dt-bindings/firmware/qcom,scm.h>
+>>  #include <dt-bindings/interconnect/qcom,icc.h>
+>>  #include <dt-bindings/interconnect/qcom,sm8750-rpmh.h>
+>>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> @@ -523,6 +524,14 @@ llcc_lpi_mem: llcc-lpi@ff800000 {
+>>  			reg =3D <0x0 0xff800000 0x0 0x800000>;
+>>  			no-map;
+>>  		};
+>> +
+>> +		adsp_rpc_remote_heap_mem: adsp-rpc-remote-heap {
+>> +			compatible =3D "shared-dma-pool";
+>> +			alloc-ranges =3D <0x0 0x00000000 0x0 0xffffffff>;
+>> +			alignment =3D <0x0 0x400000>;
+>> +			size =3D <0x0 0xc00000>;
+>> +			reusable;
+>> +		};
+>>  	};
+>> =20
+>>  	smp2p-adsp {
+>> @@ -2237,6 +2246,67 @@ q6prmcc: clock-controller {
+>>  						};
+>>  					};
+>>  				};
+>> +
+>> +				fastrpc {
+>> +					compatible =3D "qcom,fastrpc";
+>> +					qcom,glink-channels =3D "fastrpcglink-apps-dsp";
+>> +					label =3D "adsp";
+>> +					memory-region =3D <&adsp_rpc_remote_heap_mem>;
+>
+> IIUC the driver only considers this on the sensor DSP
 
-Applied, thanks.
+Memory region is required for audio protection domain + adsprpdcd as far as=
+ I know.
 
-Thierry
-
---3epgod7wk6jifceo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmgdKW8ACgkQ3SOs138+
-s6GYeA//XE2vyZqqYpifD0khPD5xG3gxB1YfHHKl0Y7ZSyvHLFJizd+hzzjUH9N/
-5vnczfETsqCuDvNZVlHJpjgCuM8ClyWY672WjZepl9doioFOp+tVi4PwknqLnHCy
-YYgyU6JK315UK7ktYxhWe6oInbFtZSUXRW/a1j3HJRAmpiNp2OToNcMFWFTDNuvn
-g2fxSEgTDfVEFpMhMVGc2iaCClGw7py7xk0mTaHo++FY8/kSH1GVybcwHDmFNHGk
-Z/0oOnZ2L7Lxjn+9QV8eWTZpIOYLN6Y+YlmFvaP+XfMSMw/MiaUWxhbSP1E8QAI6
-ANPd1/avzIcIqpbRqsBoB3AZxP67kWTjM9cMBMo5lADGmKGXdEONVkleT6VJ9XPs
-kC6pPuicSTCpon6HyGDyQ4CL/P78aMD+sDc1nYMtX1Qjo7zEzr/vPZ+WY2FLUMR7
-o2WLBdcp/bGVntyOqFU4C8JuXANU51W89nUHIdcUd4R00E7bzO9PYdE3xvXdr7GN
-3EeR3VbzKve8IqJs7hQL6VWBh9EwS1vPei/bg/Ma0MFk2U6Cut8DF3emqdDYh1em
-0X89IwEJCivye8EITGngb9k+uSqoVCQkOTnILgw0uzchzU8frEEe1YLQfoeGCYcY
-hAtxWHR9pHV/t4L6L+oabd1lEkZWzVezDMWw7lSNnZhtnEFeVM0=
-=1WMA
------END PGP SIGNATURE-----
-
---3epgod7wk6jifceo--
+Thanks,
+Alexey
 
