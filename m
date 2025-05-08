@@ -1,142 +1,148 @@
-Return-Path: <devicetree+bounces-174988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E83AAF794
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:14:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61105AAF7A2
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:18:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 138004C7D98
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:14:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DAC87A0484
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 841121917F4;
-	Thu,  8 May 2025 10:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 096151BBBE5;
+	Thu,  8 May 2025 10:18:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TlnZTc4O"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="M9Mtw4vE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AF2A4B1E7A;
-	Thu,  8 May 2025 10:14:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A23142E77
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 10:18:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746699289; cv=none; b=IA1BbYAN4+keQ7Oou/mwaqGBbOLJXjumbfwfqPGIVVAwgX0A3oukwnDySRh3KZ2+7S6ZLGGxcQ2wR9m+f45FX/7QcPP0BEa0gaVi3mwMVsgfLJm3V4MAG8a80enykAIdL+qkkD9nIpELzIMxcuOkvtJKckQ3GbBNuNWhtXxFrfM=
+	t=1746699515; cv=none; b=SOsF9SUpl8n8tMKEiiq5/5ZPfjpQ986JnJgGjlxcvKzwAmKG7jrnEd/XyHyBBz6QCuhW/0SGH+GS+L9yOBQLxF2uNtEfZayraXwslO/pRoHbvYkg3Tfw7cwiPMYu2/d4kOEZbAm1mHzWMSsBrKgysJkVbKhVAjQxczLiv1dDq9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746699289; c=relaxed/simple;
-	bh=PMqBEi28bw1727cbSbRMVXRM1MWzZoOLPDAhbfMUrI0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YvSK1iyVbt4/GUAkjJgqYxMq2a4DkZeyvJHbFnIlk9VpM6ZEAf8xOUcILlqeEXcc0yKGYRMzUDishZ1xxCh4mbq9wadhGcCYCZo2uqCmDetv32qlhhO/1TGlhhCS25fdApZw4bAviFCOkT6T5iAJCHadrmr4aqbC9ilFIgtUoj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TlnZTc4O; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746699288; x=1778235288;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PMqBEi28bw1727cbSbRMVXRM1MWzZoOLPDAhbfMUrI0=;
-  b=TlnZTc4OlUoDenB1MMouFCVzL15aRRvH/OZxTKNvyCEwlDCjiH32R4H7
-   kfNqAPSqG51WicqvXp2jT6YA08ZVAE07brxT0B13MAStx0rndgWIFytdF
-   GZwz6XXmCpf8bwz2Ew9Q/wWtwPr/DSPtPn7AnHPiP34/pGx0sL3Quxy/y
-   2kdLesR8PLSnxMNsX/LmNcf37btoiGSn+NWgBTaFsuLSFCJvuvTlIaf3l
-   G/68ody9JTsVVIKIQAZtSjimOG8fXWIIRA7jBAwDubvhrguM8imsXd+R3
-   c8CzaI2QjHXAzuJnCjfzSp75qD333P5yrFbP7rfXe7RDMiTGpReKOwQ3d
-   A==;
-X-CSE-ConnectionGUID: KqUnanDPRdWuA+V/qtZC/A==
-X-CSE-MsgGUID: 5r93BRDrTC6IJTKqn7XX+g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="48180685"
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; 
-   d="scan'208";a="48180685"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2025 03:14:47 -0700
-X-CSE-ConnectionGUID: SRXa/LJyS4eksKzRF5G2TA==
-X-CSE-MsgGUID: y5al3j0FSKmBtexD1DSqeA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; 
-   d="scan'208";a="141145247"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 08 May 2025 03:14:44 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uCyH3-000Ar9-2W;
-	Thu, 08 May 2025 10:14:41 +0000
-Date: Thu, 8 May 2025 18:13:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Binbin Zhou <zhoubinbin@loongson.cn>,
-	Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] mmc: loongson2: Add Loongson-2K SD/SDIO
- controller driver
-Message-ID: <202505081845.0NQYX2nS-lkp@intel.com>
-References: <1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1746699515; c=relaxed/simple;
+	bh=4+5xC11//k7SELncU7TsWsMFz+BlhXNj6YltonqzUPE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=FLB07h/jcwL3TdWbHoFUvy7VRkRqpR3M8m1WQWxskr//5omEz3QpsAcz7jlWyToMpsgzhLEcdjAjGi/tQOZE4c4S6E5RWDdPpOGTTlZtekpM2jy8TCLY5K7R1ixbwy5xWEv56iDkiGezN3u0/kSnRW6/q5SRxZ82g8SS1M69s/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=M9Mtw4vE; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 3A5E8240101
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 12:18:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+	t=1746699506; bh=4+5xC11//k7SELncU7TsWsMFz+BlhXNj6YltonqzUPE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:From;
+	b=M9Mtw4vEv6bpgKDIz15tCNIk7FQuaUi8d9hjJs/cz6v2WJBYX7otl4N25tkBpSVMq
+	 oRqvxoT0hrbzB3v2NJqjXprgRm+kzIXmI3+YcYN8l1gzCDI4R7JUVqQhh9h9VJO+3e
+	 6I4DGhlY4Hb1PmwmX8qtvNrq2n1Xhum0YwDZYRWmf62ymKKWMhhi0/MbiXV3sWMVak
+	 hy4Md6ac+dlLq10zpVFEFbXemuCEELsiG8g8PcJAv3M5goT/ya13pjjoBBy0C8CTM7
+	 UlltC5vQISPz7Kurw68RtoO1+spffHSRmCL4RGd3I/mS7tE251Lsd6xGAOHPUlgy7Q
+	 kj0b8smd1XHRA==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4ZtSl427Mcz6trs;
+	Thu,  8 May 2025 12:18:24 +0200 (CEST)
+From: =?UTF-8?q?Martin=20Kepplinger-Novakovi=C4=87?= <martink@posteo.de>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Martin=20Kepplinger-Novakovi=C4=87?= <martink@posteo.de>
+Subject: [PATCH] arm64: dts: imx8mp: Enable gpu passive throttling
+Date: Thu,  8 May 2025 10:18:02 +0000
+Message-Id: <20250508101802.489712-1-martink@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Binbin,
+Hook up the gpu as a passive cooling device to the thermal zones' alert
+trip point just like the cpu.
 
-kernel test robot noticed the following build errors:
+The gpu here consists of 3D GPU, 2D GPU and NPU.
 
-[auto build test ERROR on 9e12816f9a6195f1f5b7c5dc2e388c2458411b97]
+One way to test would be to set one "alert" trip point low enough
+and watch the cooling device state increase:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/dt-bindings-mmc-Add-Loongson-2K-SD-SDIO-eMMC-controller-binding/20250507-153435
-base:   9e12816f9a6195f1f5b7c5dc2e388c2458411b97
-patch link:    https://lore.kernel.org/r/1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin%40loongson.cn
-patch subject: [PATCH v2 2/4] mmc: loongson2: Add Loongson-2K SD/SDIO controller driver
-config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20250508/202505081845.0NQYX2nS-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250508/202505081845.0NQYX2nS-lkp@intel.com/reproduce)
+echo 10000 > /sys/class/thermal/thermal_zone0/trip_point_0_temp
+watch cat /sys/class/thermal/cooling_device*/cur_state
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505081845.0NQYX2nS-lkp@intel.com/
+And of course set the trip point back to its original value and watch
+the cooling device states jump to 0 again.
 
-All errors (new ones prefixed by >>):
+Signed-off-by: Martin Kepplinger-Novaković <martink@posteo.de>
+---
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
->> drivers/mmc/host/loongson2-mmc.c:605:20: error: initializer element is not a compile-time constant
-           .regmap_config          = ls2k1000_regmap_config,
-                                     ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/mmc/host/loongson2-mmc.c:637:20: error: initializer element is not a compile-time constant
-           .regmap_config          = ls2k1000_regmap_config,
-                                     ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/mmc/host/loongson2-mmc.c:684:39: warning: shift count >= width of type [-Wshift-count-overflow]
-           ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
-                                                ^~~~~~~~~~~~~~~~
-   include/linux/dma-mapping.h:73:54: note: expanded from macro 'DMA_BIT_MASK'
-   #define DMA_BIT_MASK(n) (((n) == 64) ? ~0ULL : ((1ULL<<(n))-1))
-                                                        ^ ~~~
-   1 warning and 2 errors generated.
-
-
-vim +605 drivers/mmc/host/loongson2-mmc.c
-
-   603	
-   604	static struct loongson2_mmc_pdata ls2k0500_mmc_pdata = {
- > 605		.regmap_config		= ls2k1000_regmap_config,
-   606		.reorder_cmd_data	= loongson2_mmc_reorder_cmd_data,
-   607		.setting_dma		= ls2k0500_mmc_set_external_dma,
-   608		.prepare_dma		= loongson2_mmc_prepare_external_dma,
-   609		.release_dma		= loongson2_mmc_release_external_dma,
-   610	};
-   611	
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 50a07c56faffc..dea9342d071c4 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -320,7 +320,10 @@ map0 {
+ 						<&A53_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+ 						<&A53_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+ 						<&A53_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-						<&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++						<&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&gpu3d THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&gpu2d THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&npu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+ 			};
+ 		};
+@@ -350,7 +353,10 @@ map0 {
+ 						<&A53_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+ 						<&A53_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+ 						<&A53_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-						<&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++						<&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&gpu3d THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&gpu2d THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&npu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+ 			};
+ 		};
+@@ -2229,6 +2235,7 @@ gpu3d: gpu@38000000 {
+ 				 <&clk IMX8MP_CLK_GPU_ROOT>,
+ 				 <&clk IMX8MP_CLK_GPU_AHB>;
+ 			clock-names = "core", "shader", "bus", "reg";
++			#cooling-cells = <2>;
+ 			assigned-clocks = <&clk IMX8MP_CLK_GPU3D_CORE>,
+ 					  <&clk IMX8MP_CLK_GPU3D_SHADER_CORE>;
+ 			assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
+@@ -2245,6 +2252,7 @@ gpu2d: gpu@38008000 {
+ 				 <&clk IMX8MP_CLK_GPU_ROOT>,
+ 				 <&clk IMX8MP_CLK_GPU_AHB>;
+ 			clock-names = "core", "bus", "reg";
++			#cooling-cells = <2>;
+ 			assigned-clocks = <&clk IMX8MP_CLK_GPU2D_CORE>;
+ 			assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
+ 			assigned-clock-rates = <1000000000>;
+@@ -2302,6 +2310,7 @@ npu: npu@38500000 {
+ 				 <&clk IMX8MP_CLK_ML_AXI>,
+ 				 <&clk IMX8MP_CLK_ML_AHB>;
+ 			clock-names = "core", "shader", "bus", "reg";
++			#cooling-cells = <2>;
+ 			power-domains = <&pgc_mlmix>;
+ 		};
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.39.5
+
 
