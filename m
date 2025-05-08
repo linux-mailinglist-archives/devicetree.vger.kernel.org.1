@@ -1,63 +1,81 @@
-Return-Path: <devicetree+bounces-175183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A711AAB0090
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 18:39:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3D4AB0096
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 18:42:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A33A3B07BB
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 16:38:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD15B17A253
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 16:42:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96AC72820CE;
-	Thu,  8 May 2025 16:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E96528315F;
+	Thu,  8 May 2025 16:41:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BHFSfP8C"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iKQlWLZR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 059621F462F;
-	Thu,  8 May 2025 16:38:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC454B1E7F
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 16:41:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746722336; cv=none; b=lxHq7ZS+IUJ5YLUnsHErOO9BM4l4ms5o+8jieEkzn5aNxDZ1nPDWC7wN3xkXo74LQrjby1OTuRgl8Kql9URH7/spALlcMVbv7HZdS+8NubDEkWlORyaYjlZTtGWBfLh1ATriOVZFKypvOSRajwEzhKv5RcVOhgFa+zQ0vca7fxA=
+	t=1746722516; cv=none; b=COqRNYa7Z7XDTPiMI+JiVdWRLHJg5NjuJ714+cO6zRaizgh3Z7lyH+aLkvGFQL+BInseqaFlRmuc2e31+EvW9ZIICCZ8cG8AFawbKiWyID3rccz1E+kZa5LIVDzWe3JROu8yRs3VEsxOUxS+O1zWDG6M3W+8pGVPqBb/rhweUbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746722336; c=relaxed/simple;
-	bh=Dw1RR1HygY5GCmHnUj+DW2JiapjZyJxWEOJRfjulfbA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aD8HCz0J9/ljSUZ9ATBbYQtlGweYph6/a9cLcdvkK0/sLHyv/aFdMfRk9YKG+sAjuZ2HdeZUqdWowTdBUWUPBfj8sk3zv+8yPatgvY6O8bc/wfyUmacthaiZU2qII5YbBjYFpOsx+JN0mKnUpreYis250RJp/tr6GMZL+TJRpTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BHFSfP8C; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 548D0Ol5008438;
-	Thu, 8 May 2025 16:38:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	CG024qvKHGgTF9642w4NMBizp9Z8Zc5tdu8BvOBtOdY=; b=BHFSfP8CC77p53mp
-	O+YdCv/m1fyRDDb5h7Iubq1C6JxytO7E086Ve5Av7lWF/NFu41HIpMULEF7cPhb0
-	wH6pLPoWCKb41pZJdXlnBfBVs5PTX3RvxsS+2dlL0sn5Ic2Lyy3jCiq+jqh6YKZn
-	epAdBja+NRVtnYtHWpSTyezEDmkqnGIW3QqOwpuURfwdI6BuUa/D/DMgqWnRU6L4
-	BMoLQvv2tMtof01etYcWm4hcMzZp9p2i30mtIyCP9nkJVltQlkpaBzosAvoO1zjA
-	ohrnOeFW/GTdhhmtevqIrmlOqqcz+/ZCOCOxbU4bNVuHyML4jwbKPCmvNVUb61TC
-	wIWZGA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46gnp5a04a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 08 May 2025 16:38:51 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 548GcoXj017462
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 8 May 2025 16:38:50 GMT
-Received: from [10.216.33.253] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 8 May 2025
- 09:38:45 -0700
-Message-ID: <82e6c229-8852-4ae9-add0-5fdc0a15f7c5@quicinc.com>
-Date: Thu, 8 May 2025 22:08:41 +0530
+	s=arc-20240116; t=1746722516; c=relaxed/simple;
+	bh=lQO1jHxaiYx52ybVdJLV2CjY0oqw5bUftoInQJ2KDP8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=QTIZtzjOkQYA+FKdASQG1GVviDK1GKtYY2bvSd3dupjOU8aJmAKJCGsM9CV4lqREYER1bRnKz7kC99GjE8LpCZMwDKq0c/zj89FhzveYVUkp5HLBDte0YhWcJEt2Ou7OEGE4eqZij8G7d2SobbQ45I92D6DQINOJNZR+kl6KItU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iKQlWLZR; arc=none smtp.client-ip=209.85.210.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-72ecb4d9a10so992050a34.3
+        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 09:41:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746722513; x=1747327313; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=SNOV3q6ACWoDC2oi9ipTkEmiaERn4Lb/0vudYXDkojM=;
+        b=iKQlWLZRmIgcFpoKq1X8P17IrPm0e0oIhqpT24TAjeaEEhz8DHgWQd1sHUXo+9yFDT
+         pm+Pu1aNRPS0lAMd07EEt35SOk6Owzh6/iQ4oDaPMDVgXaC52rK0RhYJo1zOte9QfjPk
+         WAm6ajepUQrmLPgu5cp7jJpsXRGE7hPI+16iveAOuWx+faPypBE2gPHOIN88u6Xkm7Vd
+         b2gtS+/11NfBJWlINQXXy4UpKkeaNnhGlXBHLM/6aHsIYN+wekjJmJJdCiA93YxOA2HQ
+         jNG1UlC8L8ieHX/hJwn4oK3NblRHt0VRW+bbAZM9ECTrwpsDDPXcFSrhKuelLsdZ0VJg
+         GAiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746722513; x=1747327313;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SNOV3q6ACWoDC2oi9ipTkEmiaERn4Lb/0vudYXDkojM=;
+        b=Zz5cwA2WQVtcsSA3FVA4jAuvUeJTJ9tm7JVWgC2aZpQUQwuBBEM+t1Y1jC6/JESl7z
+         JBy7mhbyAWIkscrq6rffwx6Yl24XLHfahQlJk24WldQDsjuStWEaMWL3LO5Lb4v1ClCO
+         9Gpbox7kEkvACVRC1gGxNgu5nMXQn/P2kzDmtzNtglBnIPRG6jsgh7j+EFb0GG/vH8zk
+         ElBVah0MpEs9jmukGMXPkGC26tDL4HstBNfE8vhN04GDn/rXA0+YBQ42CPTDRZvo/Xpa
+         sCEPdztXcEodjSGbtP6v72qDdz2lH43nP3ovTKz8TsZ8Q6HES5InsDVtlgYDcvscUTcN
+         uAMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWlAxqDissn4lsdWUS2IxTzYhyfgT2iSII4JPQz3s2loa/1YHOfvaP54ySkVezjTLukStmulTctVaeL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwD1X2CS+KxZU87K5DbItytwkUwQfEb01fG2Nv/NlzRYBgKR+lH
+	Bl8sAxJzEwEphJ2NLMVJ4wDn6gqFronjSN98y1XwGZD1bvzhsx6kap1JSfj/3avrN7I6mlpw8fU
+	p
+X-Gm-Gg: ASbGnctc7kfpB2fQPyxT/hbVYCEZPbG9JS5hqy+RPs7lB7nGMLSQZpSFjSOD0hPoKQX
+	vPqPyZ8LrQlhQZDZNwZkd5wSIBz0N9VCRPHrYzxLVChr84KptaA4p16bUlB/U68Wr5wzBKn4GBV
+	ZJB9NGBvxael16BAkdesa5keKF93LXX5ntPw/Sh9AxRHhqN0ADWqv5zQl89gEKYPy8iaW4LRZDY
+	dYNiy27tanZpi8GWUvag2X8JJVBoDTD0prPLVN/lpdOtkYgO4Ezz3X69G3DsGxf7ohRO0jRqZOz
+	tbT2I9ScnaJ3dkHE7mMfY09+HX1puAJRfxO3wZuEiqnDOWYqfMGQcU5ZvPpT4qqkBg8zxl0hgNB
+	5ctAnYits+mWSwIHvlg==
+X-Google-Smtp-Source: AGHT+IGNhnI7HfO8AULxSLmDUzdqJUBnRfjFQE3CN52ECHOPdXWRZ2JFQRrWSXPaydXFEJiS+fRYog==
+X-Received: by 2002:a05:6871:80d:b0:2d5:b7b7:2d6e with SMTP id 586e51a60fabf-2dba45e8ce5mr83184fac.38.1746722513514;
+        Thu, 08 May 2025 09:41:53 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:1120:d1cf:c64a:ac7e? ([2600:8803:e7e4:1d00:1120:d1cf:c64a:ac7e])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2dba0b7ebfesm127024fac.46.2025.05.08.09.41.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 May 2025 09:41:52 -0700 (PDT)
+Message-ID: <20c76ae9-02dd-4f77-8676-523892a33c1d@baylibre.com>
+Date: Thu, 8 May 2025 11:41:50 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,103 +83,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] arm64: dts: qcom: qcs6490-audioreach: Modify LPASS
- macros clock settings for audioreach
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@oss.qualcomm.com>, Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-References: <20250429092430.21477-1-quic_pkumpatl@quicinc.com>
- <20250429092430.21477-4-quic_pkumpatl@quicinc.com>
- <12ccf19f-10f9-42a7-b61d-fd54d5922bf7@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/4] iio: backend: update
+ iio_backend_oversampling_ratio_set
+To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
+ Dragos Bogdan <dragos.bogdan@analog.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Tobias Sperling <tobias.sperling@softing.com>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250508123107.3797042-1-pop.ioan-daniel@analog.com>
+ <20250508123107.3797042-2-pop.ioan-daniel@analog.com>
+From: David Lechner <dlechner@baylibre.com>
 Content-Language: en-US
-From: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-In-Reply-To: <12ccf19f-10f9-42a7-b61d-fd54d5922bf7@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <20250508123107.3797042-2-pop.ioan-daniel@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=Lu2Symdc c=1 sm=1 tr=0 ts=681cde1b cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=EkdEwCnvp131_jYCVQ4A:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: SN4UZCTYLQiUCmDajeFXvTges2PiM95O
-X-Proofpoint-ORIG-GUID: SN4UZCTYLQiUCmDajeFXvTges2PiM95O
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA4MDE0NSBTYWx0ZWRfX0U8hza35FXr7
- bgcZx3Oz38FdEWwUmvoM/LbYP6/ejuM/PB3+IywJ7eYOxChNltT0bXVCoHyj3FE6S+CX76A4B1L
- /Dj/5NsqOk6QXlI88FnAObW7Y1gkdwxcA97yKqYvdvbBatxss/eHeONrdqJfxbxXciTRYu9a/Wl
- +26ZE29FacamhCpDyZT4zIQKj4Pdh+vIseDAfc7aLy8qi3LgOoOHtrKKJbo6sVwLq7mUGj3cetM
- nGWwOGONMzMsy9GszwVGXbtjY3kQ9fKF4ry5gaqtIUsfBGeFowPVTsndy0xtee1AcPCDapeZbCu
- W8Khnk5bd89Cadk9QX6HKwMsaEEAjoy4a7uo0as2a1jzwTNoGQW0qzTo6l3NbX9D/XyVXOgGlmI
- /kK8k6+ow2C/INTSitD2OBOkVMJcxytOu9J5PjRYELD+V2lK4nY9F8vRHpl26pOw/92y1nCG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-08_05,2025-05-08_02,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=999
- priorityscore=1501 suspectscore=0 clxscore=1015 adultscore=0 malwarescore=0
- spamscore=0 impostorscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2504070000 definitions=main-2505080145
 
-
-
-On 4/29/2025 4:24 PM, Konrad Dybcio wrote:
-> On 4/29/25 11:24 AM, Prasad Kumpatla wrote:
->> From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->>
->> Modify and enable WSA, VA, RX and TX lpass macros and lpass_tlmm clock
->> settings. For audioreach solution mclk, npl and fsgen clocks are enabled
->> through the q6prm clock driver.
->>
->> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
->> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
->> ---
->>   .../boot/dts/qcom/qcs6490-audioreach.dtsi     | 48 +++++++++++++++++++
->>   1 file changed, 48 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi b/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
->> index b11b9eea64c1..f3859d805ea7 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
->> @@ -11,6 +11,54 @@
->>   #include <dt-bindings/sound/qcom,q6afe.h>
->>   #include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
->>   
->> +&lpass_rx_macro {
->> +	/delete-property/ power-domains;
->> +	/delete-property/ power-domain-names;
->> +	clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
->> +		 <&q6prmcc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+On 5/8/25 7:30 AM, Pop Ioan Daniel wrote:
+> In the function iio_backend_oversampling_ratio_set the chan parameter
+> was added. The function can be used in contexts where the channel
+> must be specified. All affected files have been modified.
 > 
-> TX -> RX?
+> Signed-off-by: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
+> ---
+> changes in v2:
+>  - remove iio_backend_set_dec_rate function and use 
+>    iio_backend_oversampling_ratio_set function
+>  drivers/iio/adc/ad4851.c           | 2 +-
+>  drivers/iio/adc/adi-axi-adc.c      | 3 ++-
+>  drivers/iio/industrialio-backend.c | 3 ++-
+>  include/linux/iio/backend.h        | 3 ++-
+>  4 files changed, 7 insertions(+), 4 deletions(-)
 > 
-> [...]
-> 
->> +&lpass_wsa_macro {
->> +	/delete-property/ power-domains;
->> +	/delete-property/ power-domain-names;
->> +	clocks = <&q6prmcc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
->> +		 <&q6prmcc LPASS_CLK_ID_TX_CORE_NPL_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> 
-> TX -> WSA?
+> diff --git a/drivers/iio/adc/ad4851.c b/drivers/iio/adc/ad4851.c
+> index 98ebc853db79..a943d5aac9e5 100644
+> --- a/drivers/iio/adc/ad4851.c
+> +++ b/drivers/iio/adc/ad4851.c
+> @@ -321,7 +321,7 @@ static int ad4851_set_oversampling_ratio(struct iio_dev *indio_dev,
+>  			return ret;
+>  	}
+>  
+> -	ret = iio_backend_oversampling_ratio_set(st->back, osr);
+> +	ret = iio_backend_oversampling_ratio_set(st->back, chan, osr);
 
-For qcs6490 RX drives clk from TX CORE which is mandated from DSP side, 
-Unlike sm8450 dedicated core clocks. Core TX clk is used for both RX and 
-WSA as per DSP recommendations.
+Isn't this a compile error? chan here is const struct iio_chan_spec *, not
+unsigned int.
 
-Thanks,
-Prasad>
-> Konrad
-
+>  	if (ret)
+>  		return ret;
+>  
 
