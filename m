@@ -1,184 +1,167 @@
-Return-Path: <devicetree+bounces-175049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54DCEAAFA49
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:42:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67E81AAFA50
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:44:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7248F1C21546
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:43:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4ECFA3AA2C9
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:44:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2D5227B8C;
-	Thu,  8 May 2025 12:42:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9C4F226170;
+	Thu,  8 May 2025 12:44:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="o3Oi/E6T"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cIjO0GS8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EBA3226D1C
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 12:42:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B85C62153CB;
+	Thu,  8 May 2025 12:44:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746708173; cv=none; b=YpCvdpdiItA4L0dW4K1Lq2YdsbxuQfz89E2MtMTe1qOnTZTbuy+C5CIskGB91dID8kQvUehlNAVqamB9L9xwx1zvtjuhcxsZ8GX+3wzlxmjr5susv3EX5J2pNMLzWsj23h3q6ALL+kjUmTT0Ahiyrk03IFNmsDARg54TN/Ic9ho=
+	t=1746708273; cv=none; b=hG5BD7Akbw62aWIDlkkeJHn4FrAKyIZ1/zQiWcGYEtHnO6FiYJK81T7wH6uBE0o+MFEvyW6KWI+IPqrd6ZJK9SF24VdN3GLwaTvwqlexeSu4kPtjiBCM8QQsxoCTkCAmEsNFl1WpBsBlAQ4ovHrHOvAgNkl/5bn0iKYUzyUob+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746708173; c=relaxed/simple;
-	bh=FJft4ykFn4r+3Ixy2UkaLsf7DlcyK2asv15fMXuVTE4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I3ScU8UnmBKSXJrkB9KY22qM+2A4tKyyKy0owDO3RbBnLpXrrFZcJHawHcp/4w0wIq2fJ/rGrpxkojpkjjp7DT6eFTPiWSs8FgShRccmHJXJxJUm83nXycPOeoPQt+/1R2d4YXVC+PCx9K9SqUH/abSgjCceiMixQEK/m6nIv2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=o3Oi/E6T; arc=none smtp.client-ip=209.85.166.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-3d91db4f0c3so4749045ab.3
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 05:42:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1746708170; x=1747312970; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZPxzY778BTzrpTVkXEIU0dpBm2FrQRvJ11cMwg4f8Tc=;
-        b=o3Oi/E6TRorMuEq17Anh0PEI7v8Blwst1FTqP3/YFEKRWx70dxmqTtlkYjh+t4+3gG
-         KMNiKRU7CrKlJ5J0qjdkq7UwXzBmv58BbdWfVig+DfxIEWod7RAS/Rv+e/qlHyv//GHI
-         w+p/vCDgoRzpjDNz+YN4B8ocqvjImZZtCYpVyntwvCoxT2ctjjCW3ym8f6RelYhOWh73
-         1aFpPM7cVShlBCNuQk97G9UnDoEdI4i4LyuJ2GfU8Fu+tlSzukxB4dPNgdkBdgHrb293
-         1Fqk9qgtWg9hsiFt/+53b14nk9jDZxVVBjQGGyQlcclTiDDICKYW/82P31MX+ebnqLTv
-         eS8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746708170; x=1747312970;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZPxzY778BTzrpTVkXEIU0dpBm2FrQRvJ11cMwg4f8Tc=;
-        b=NwvzyK1CHEXjIQWNhKoIBTN3A774ix1r2CGpCnFKtTDoV4Ok+y7gR2OhPYpcr4LXoj
-         ooGCgbC0YHDu4GAElk1r3IMhmTFR2Go9rN7mGDIGwjtS/r41mxkDCRTh9kZs2PAK8Oyr
-         MNluHW4eLXPZ4oKB4C1diPOA+TMlxMiaELCN+FGxha5jFAoiRBOSPCmeqgKqn1wG4q7J
-         KOBOdc999cvkFXGeRcc+umeOYKlSvgg6RxMlJRtq+dF3SoZXIZFJVkXmy3g6EVYDPHYw
-         DEv/Nbb8qyTXAbEYZvNzonrAjJmqeqTKtd8m3nw96ZKmvaWsvwc+Cj7gKTDTBpQhnes4
-         2hIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVMVfIrtloX7TUDq43P5VJ8TVaFxkiO3BOcwJiCXX27DPSOj2I49d9LqQ8llkOvhan0w9w+9uVgH/j7@vger.kernel.org
-X-Gm-Message-State: AOJu0YysJ/B6C1fkAT5NciLML88tTlxkjH2YeEoABGAjdzws/Le3PqUR
-	rRNWubkhohSJXDz4UNHP3HO1aAWy51XDTGe1dNBbzJSfisqSZfqhQQCJtmkdPdM=
-X-Gm-Gg: ASbGncttG16NGZxdrS5fleAZiHcljoYGEU+3hS79xYVMhxbi91YlmIp3Xs0Vwy4HhB2
-	GNEHSQtGp9yUUP6muoF9pQ3n5IA5zPCHVYXB6oSC6KXLJHR7RADpCBqjZh5mrs9f5LOcQtmFobP
-	WmNYweJ73khs/SAdJnJZAfVO0XuojKgQe1iGbk38LJEAq6aUtDS1Vvh8Zw2supCzH1ZOAZhjBl6
-	IFWqcM6whgfL3VOqk1KhzJErywhy7U+PV+3u2CXUPXxKINz4nOl6RPbxFG3BoQ2AXNJBQn1pbyb
-	/IlGUhUTZAbf0/gsjdpNq6OREGMIGCjBJUlpw9y/ea90+rKcj4Z507Nj3YfYnjGQs4Er91aJ/Uv
-	nCXAt
-X-Google-Smtp-Source: AGHT+IHinvHLNqxRhaY2b6afbVsRjVu3/5Tnou0kd+6vPsXAPuyDnBpQ8CoLFULaXpnrzUsemLIJvg==
-X-Received: by 2002:a92:cdaf:0:b0:3d8:975:b825 with SMTP id e9e14a558f8ab-3da738d5b28mr84407595ab.5.1746708170546;
-        Thu, 08 May 2025 05:42:50 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f88aa8e068sm3135636173.108.2025.05.08.05.42.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 May 2025 05:42:50 -0700 (PDT)
-Message-ID: <5799153a-c9dc-4145-9993-7e5d99a6a0b8@riscstar.com>
-Date: Thu, 8 May 2025 07:42:48 -0500
+	s=arc-20240116; t=1746708273; c=relaxed/simple;
+	bh=5+S6WOtSW5+xp4Q4Wv1CMtjgP3qalrD/+Wv37NFOBjo=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZpQahfpM1rrxFxIKqP/Os+vhBGU5/9t8bwJKcScX1DqAEZJjTmdnLxjFlXvc5WLM9dFeS6MZCehZBTnY2N6SH7fVg5c9crg6LuP1TuQbj54t6s6THC3GxwdutSo9dsMP+I26rQVjt91+ZJ1Yyg7i7Ye9WfewXsXvuoQtUwhZYaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cIjO0GS8; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 548Ci7w31100803
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 8 May 2025 07:44:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746708247;
+	bh=sTJliYfCtt4bgttWS5Hp986Wh6Lp9pytD8qb3eAhJ7U=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=cIjO0GS8qFsJ4lzYHSfhrXw7Xlg90ruLfJUbYB6a3PJYp9YxR4dlX8ZRRtPiVpIZC
+	 Gw9S+f3Z1W6kcV8xz+PXBufLihBYmPDVKiuok3Bm324ZnAn+oOE5hRhmk/ss7WVNeq
+	 91PJNeWirnnb9RrpwEZ1qt0tqb+POjtv98j2+0SI=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 548Ci7i5040304
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 May 2025 07:44:07 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
+ May 2025 07:44:06 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 8 May 2025 07:44:06 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 548Ci6lI040835;
+	Thu, 8 May 2025 07:44:06 -0500
+Date: Thu, 8 May 2025 07:44:06 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+CC: "Kumar, Udit" <u-kumar1@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <vaishnav.a@ti.com>, <r-donadkar@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <jai.luthra@linux.dev>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-j722s-evm: Add overlay for TEVI
+ OV5640
+Message-ID: <20250508124406.tb34bqhv66gqcb7j@swizzle>
+References: <20250505115700.500979-1-y-abhilashchandra@ti.com>
+ <20250505115700.500979-3-y-abhilashchandra@ti.com>
+ <a6329e9d-409e-4f62-b26d-c4d0e49d772c@ti.com>
+ <9cb4f94e-00e8-43d5-be7a-85dc1188e856@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/6] dt-bindings: soc: spacemit: define spacemit,k1-ccu
- resets
-To: Krzysztof Kozlowski <krzk@kernel.org>, Yixun Lan <dlan@gentoo.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, heylenay@4d2.org, inochiama@outlook.com,
- guodong@riscstar.com, devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250506210638.2800228-1-elder@riscstar.com>
- <20250506210638.2800228-2-elder@riscstar.com>
- <20250507223554-GYA505240@gentoo>
- <22b7b5fc-6f5a-4ce8-ae12-a7423925c113@kernel.org>
- <1521c828-31f3-4e45-a651-750ce2e37364@riscstar.com>
- <2ce8b9e5-562e-454f-9e2b-f2796d309063@kernel.org>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <2ce8b9e5-562e-454f-9e2b-f2796d309063@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9cb4f94e-00e8-43d5-be7a-85dc1188e856@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 5/8/25 7:36 AM, Krzysztof Kozlowski wrote:
-> On 08/05/2025 14:17, Alex Elder wrote:
->> On 5/8/25 7:02 AM, Krzysztof Kozlowski wrote:
->>> On 08/05/2025 00:35, Yixun Lan wrote:
->>>>> +  - if:
->>>>> +      properties:
->>>>> +        compatible:
->>>>> +          contains:
->>>>> +            enum:
->>>>> +              - spacemit,k1-syscon-apbc
->>>>> +              - spacemit,k1-syscon-apmu
->>>>> +              - spacemit,k1-syscon-mpmu
->>>>> +    then:
->>>>> +      required:
->>>>> +        - clocks
->>>>> +        - clock-names
->>>>> +        - "#clock-cells"
->>>>>    
->>>>>    additionalProperties: false
->>>>>    
->>>>> diff --git a/include/dt-bindings/clock/spacemit,k1-syscon.h b/include/dt-bindings/clock/spacemit,k1-syscon.h
->>>>> index 35968ae982466..f5965dda3b905 100644
->>>>> --- a/include/dt-bindings/clock/spacemit,k1-syscon.h
->>>>> +++ b/include/dt-bindings/clock/spacemit,k1-syscon.h
->>>> would it be better to move all reset definition to its dedicated dir?
->>>> which like: include/dt-bindings/reset/spacemit,k1-syscon.h?
->>>
->>> Please kindly trim the replies from unnecessary context. It makes it
->>> much easier to find new content.
->>>
->>>
->>> I don't get why such comments are appearing so late - at v6. There was
->>> nothing from you about this in v1, v2 and v3, which finally got reviewed.
->>
->> Stephen Boyd said "please rework this to use the auxiliary driver
->> framework" on version 5 of the series; it was otherwise "done" at
->> that point.
+On 17:46-20250508, Yemike Abhilash Chandra wrote:
+> Hi Udit,
+> Thanks for the review.
 > 
-> Stephen is a subsystem maintainer so his comments are fine or acceptable
-> to be late.
+> On 07/05/25 13:50, Kumar, Udit wrote:
+> > Hello Vaishnav/Abhilash
+> > 
+> > Thanks for patch
+> > 
+> > On 5/5/2025 5:27 PM, Yemike Abhilash Chandra wrote:
+> > > From: Vaishnav Achath <vaishnav.a@ti.com>
+> > > 
+> > > TechNexion TEVI OV5640 camera is a 5MP camera that can be used with
+> > > J722S EVM through the 22-pin CSI-RX connector. Add a reference overlay
+> > > for quad TEVI OV5640 modules on J722S EVM.
+> > > 
+> > > Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> > > Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> > > ---
+> > >   arch/arm64/boot/dts/ti/Makefile               |   4 +
+> > >   .../k3-j722s-evm-csi2-quad-tevi-ov5640.dtso   | 358 ++++++++++++++++++
+> > >   2 files changed, 362 insertions(+)
+> > >   create mode 100644
+> > > arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/ti/Makefile
+> > > b/arch/arm64/boot/dts/ti/Makefile
+> > > index 829a3b028466..76b750e4b8a8 100644
+> > > --- a/arch/arm64/boot/dts/ti/Makefile
+> > > +++ b/arch/arm64/boot/dts/ti/Makefile
+> > > @@ -123,6 +123,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
+> > >   dtb-$(CONFIG_ARCH_K3) += k3-am67a-beagley-ai.dtb
+> > >   dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
+> > >   dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
+> > > [..]
+> > > diff --git
+> > > a/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
+> > > b/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
+> > > new file mode 100644
+> > > index 000000000000..537224ea60e3
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
+> > > @@ -0,0 +1,358 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> > > +/*
+> > > + * 4 x TEVI OV5640 MIPI Camera module on RPI camera connector.
+> > > + *
+> > > + * Copyright (C) 2024 Texas Instruments Incorporated -
+> > > https://www.ti.com/
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +/plugin/;
+> > > +
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +#include "k3-pinctrl.h"
+> > > +
+> > > +&{/} {
+> > > +    clk_ov5640_fixed: clock-24000000 {
+> > > +        compatible = "fixed-clock";
+> > > +        #clock-cells = <0>;
+> > > +        clock-frequency = <24000000>;
+> > > +    };
+> > > +
+> > 
+> > Please check once , this is clock is 25M or 24M .
+> > 
+> > As I see CDC6CE025000ADLXT/U28 is marked as 25M OSC
+> > 
 > 
->>
->> Doing this meant there was a much clearer separation of the clock
->> definitions from the reset definitions.  And Yixun's suggestion
->> came from viewing things in that context.
-> 
-> Weren't they applicable to v1 as well? How bindings could change with
-> change to auxiliary bus/driver?
-> 
->>
->> Given the rework, I considered sending this as v1 of a new series
->> but did not.
-> 
-> Sorry but no. Bindings headers at v1 are exactly the same or almost the
-> same as now:
-> 
-> https://lore.kernel.org/lkml/20250321151831.623575-2-elder@riscstar.com/
-> 
-> so this idea could have been given at v1, v2, v3, v4, v5 (that would be
-> late).... but at some point this is just unnecessary late nitpicking.
-> 
-> So what then? Imagine that you prepare v7 and some other person gives
-> you different comment about bindings or bindings headers. Then you
-> prepare v8. And then someone comes with one more, different comment,
-> because that person did not bother to review between v1-v8 (that
-> imaginary future v8), so you need to prepare v9.
-> 
-> I don't think this process is correct.
+> This is the crystal clock with in the sensor.
 
-We'll stick with the original binding definition.	-Alex
+Please cross check this - the camera *module* has a BAW crystal which is the
+source of clock to the sensor.
 
 
-> 
-> Best regards,
-> Krzysztof
-
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
