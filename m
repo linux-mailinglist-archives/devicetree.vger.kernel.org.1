@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-174932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6391FAAF4E8
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:43:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D8A3AAF4E9
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:43:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA2811C0599D
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:43:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0E5F1C05554
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30849221DB9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46829224239;
 	Thu,  8 May 2025 07:43:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="dwYe0g5e"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="KCQUC4Qe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79987221D8D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0FB2222AD
 	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 07:43:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746690206; cv=none; b=IHwpSji2N1YhwzS6QCZPuVgbCTuzWpdKo/B0mFmSbJcLah62MHt9lbIow9hqUizeM0BP2JyJElhU4/oGO+SVVZddT1muPW+sT2v75tkHozFYodP7svW2Sd+Pd7wKQdl6/CJvRbHIG9I+zqwoD5WeVtV4cAkCBHdaEmueE47DJ1g=
+	t=1746690206; cv=none; b=OX/2rMWbLiH3PTKvSrohADNzOSgUmhMukDqVVnHP59BsubknfeIBTJevHF2YD0n0OqV//JzfhwYBeC/RRq9z4YXs67Pw51QoZ0H5BFooKTrDxbeXqsveZAAGEoQGBcY6hhy7pPn6BE9Sbi9UaHaovotTiTVvRwqnv8vliq5LaOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1746690206; c=relaxed/simple;
-	bh=N8WIrVHEFfG/PlA7AmSmKswvh3uXo/en90OIxy80blw=;
+	bh=RbivIt+RNJiE/Z6dsoLo0RKAvo1VweEt7+we8rg11bw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TtqzrWLR2ZRy5x3hCemvrFGHA9U5GSyi7Y7GIWXIK4tXpxYXi9jf4qkwXB7yyEuqyPl+/m772Oq1fVOW5XdyxArYTkVHAfh4RFVYVLWXss5XWpS/VUKdck3xBzSxWAsa2e1QBM7uz1nNU2ll6RyUpi2xrt9S3QITjtDCZ/KPSG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=dwYe0g5e; arc=none smtp.client-ip=194.117.254.33
+	 MIME-Version; b=VFNZqL4V81D1vC4x44a4LWW3i9GdeTqTYQw3THx2rBQ8szi+3TE9kO/vUN48ZOTyRHZLI9cucqEZz10nzWaUQzwQsgaoCu3XEeLJx7RdcgRwOLVTsB6ytkXNxMjawskTjt1dZY+OGa7CrRJZSLvX1kYF+6fQ+BRpdSjDEs2QT+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=KCQUC4Qe; arc=none smtp.client-ip=194.117.254.33
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	sang-engineering.com; h=from:to:cc:subject:date:message-id
 	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=fPxoPWllw0zJI5DQ1Z2pOI1pmSr79HZxGkSZaMYLxAI=; b=dwYe0g
-	5eBCtMwUS0NdQN8JtpBfPO5/7ZtZW8shSXDgsG9J+5C/9navX4forJCsrMtX9P2u
-	B/OrkTQKKS2LK99T/KJ52dYXqmxWKd0PRlL5urfXVmGHzlRmmGOMdax7bmxmMSyk
-	akSiV7nIfqwvloBWiwkWwaJTLVylqd7lSXpoR+9bQFVvisH3Sj+TELIVL4EU6hbR
-	UEx+OynZVadDhqUX2epKdtHThM7q1tgw2aEe1kgrrEdF43i+EVMcaRJHs+FreqMa
-	xhBIiHn93TPca+FMfWhdeRL8/R3c6K5FBhVJ9U2VXs04LmPtmGS1byJ/wYVe5GMA
-	thnnOo5iNY2+TUCQ==
-Received: (qmail 3712219 invoked from network); 8 May 2025 09:43:19 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 May 2025 09:43:19 +0200
-X-UD-Smtp-Session: l3s3148p1@uTHYAJs0gsMgAwDPXxyAAIlRla1HkD11
+	 s=k1; bh=zYH7l1qDluR4uZNcsoOblZcJLGUhttBGflEDpW4pTXQ=; b=KCQUC4
+	QeayDCkkyYmKAz8qZa/5OJCTlhzLlkJffgcuf9NSpXCDVFo8c5axDBR+tLdvj5dG
+	A7ygADcNXeM6z1apBihUFX14Qz1Swo8gib7ewWiwctojRMB6kBADxFXF6d6RYeHi
+	fKUj+4q5815DE2y4Lrr7RjpyTj3xWuSRmi9LuDE0JUlE2pDwxkjMKNwPjSOKuRLs
+	sy9BVZWdPQkiSUgxVJO3cbruV3xM1LeHU+4CBH8OvXkugh5BaqN2aTSb9Bffg9hk
+	JiBxvlsIHDVchAZ+xNBFKvBw/UiRRJXzzoeeo3MSf9gR2quJcyLPWE08Wa5awI95
+	iwd/2+S3IFb88C6g==
+Received: (qmail 3712261 invoked from network); 8 May 2025 09:43:20 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 May 2025 09:43:20 +0200
+X-UD-Smtp-Session: l3s3148p1@NYjkAJs0hMMgAwDPXxyAAIlRla1HkD11
 From: Wolfram Sang <wsa+renesas@sang-engineering.com>
 To: linux-renesas-soc@vger.kernel.org
 Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
@@ -53,9 +53,9 @@ Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] ARM: dts: renesas: r9a06g032-rzn1d400-db: add pinmux for the CPLD
-Date: Thu,  8 May 2025 09:43:13 +0200
-Message-ID: <20250508074311.20343-5-wsa+renesas@sang-engineering.com>
+Subject: [PATCH v2 2/2] ARM: dts: renesas: r9a06g032-rzn1d400-eb: enable USB host port
+Date: Thu,  8 May 2025 09:43:14 +0200
+Message-ID: <20250508074311.20343-6-wsa+renesas@sang-engineering.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20250508074311.20343-4-wsa+renesas@sang-engineering.com>
 References: <20250508074311.20343-4-wsa+renesas@sang-engineering.com>
@@ -67,42 +67,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The CPLD has no dedicated driver, so apply the pinmux settings with the
-pinmux driver instead.
+Can be used via the USB connector J20.
 
 Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
- arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-index 328cb35547d7..92b390f7f0e7 100644
---- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-+++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-@@ -170,6 +170,9 @@ &mii_conv5 {
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+index b3de325fb47f..fb74dc45bd25 100644
+--- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
++++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+@@ -238,3 +238,7 @@ &uart2 {
+ 	status = "okay";
+ 	uart-has-rtscts;
  };
- 
- &pinctrl {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pins_cpld>;
 +
- 	pins_can0: pins_can0 {
- 		pinmux = <RZN1_PINMUX(162, RZN1_FUNC_CAN)>,	/* CAN0_TXD */
- 			 <RZN1_PINMUX(163, RZN1_FUNC_CAN)>;	/* CAN0_RXD */
-@@ -226,6 +229,13 @@ pins_mdio1: pins_mdio1 {
- 		pinmux = <RZN1_PINMUX(152, RZN1_FUNC_MDIO1_SWITCH)>,
- 			 <RZN1_PINMUX(153, RZN1_FUNC_MDIO1_SWITCH)>;
- 	};
-+
-+	pins_cpld: pins-cpld {
-+		pinmux = <RZN1_PINMUX(119, RZN1_FUNC_USB)>,
-+			 <RZN1_PINMUX(120, RZN1_FUNC_USB)>,
-+			 <RZN1_PINMUX(121, RZN1_FUNC_USB)>,
-+			 <RZN1_PINMUX(122, RZN1_FUNC_USB)>;
-+	};
- };
- 
- &rtc0 {
++&pci_usb {
++	status = "okay";
++};
 -- 
 2.47.2
 
