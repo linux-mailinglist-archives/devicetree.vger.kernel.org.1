@@ -1,74 +1,76 @@
-Return-Path: <devicetree+bounces-175240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2EE5AB035C
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 21:05:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2C02AB035B
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 21:05:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E455A9E3FF7
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 19:05:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58B931C262A2
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 19:06:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8EE288CA3;
-	Thu,  8 May 2025 19:05:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DA4A288C96;
+	Thu,  8 May 2025 19:05:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DO0sR8H+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HkGuapmR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5530C288C97
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 19:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82592284B25
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 19:05:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746731146; cv=none; b=s0H3xE49mhldY04LciXZuFGBRNpFsxMjQ0NNJ67oR9cAWLegd/Vxdny1IEoER66/K0t/7B+kTpQ8jH/9m+H9djQjv9L/Dw67ydlH5NTmETxH0SQKOJPTMASDu6RIzR7RB7IA9Jq5XzEwgWRX3b9D6RB3GCdkjwy9fDwBzQou+Pc=
+	t=1746731149; cv=none; b=B8vYSt2SujUGdTmIcOCEH59hEF6mhpUjqhjWIYoZVqVYsMJMJokNwgJoiEqaCDoBuRyLjhH/tHSaWbsSprYsdKXxf/fYlOqkm5M8qGAVGwRneNt4duSl5VUzxBRwVO/AbFSzapAFUhlOyMZTx+OgDk4kIYX7Uh2CGJ2ONei2ink=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746731146; c=relaxed/simple;
-	bh=tiMZ88vuHUw2/pYskSA+DEkK0CL17n0Iwn37Qgf6vgg=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hRIbw3WQgPeX/aJtotLdN6xqDPX9K0B3xd7qrLA8LGCGHZckm4yrP7s+Wxr5K/ejqz4Yh/WaAL0KOd4cbD9ekZYGIYLJK+j9IJg6DVyDEiVjrwjR2DfaSoMw7EmcVnhf4hkdmDgBEW8e77ET8lOu8CAfzm0xwAZm2Ki1UOINQzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DO0sR8H+; arc=none smtp.client-ip=209.85.219.44
+	s=arc-20240116; t=1746731149; c=relaxed/simple;
+	bh=sn8V8z0Gjhw1CZXRd4I2Qhlri39dZfzZ2vvnaba0aZw=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Y+ImRBmazrsPSDH3B3SlezMbD0QgNk8jjFovilmMu27IpZzZLJ68VfDcOPaN+6Cr3wMLfMgi5WN87GckS0OlTFmOnTSVbY1BeElPlm95gbVlAlh0Jmlw+y/Lp5ZjLhxBTsoLaK1bxAwvoH3aRhsWgnVpx25V4gMHX97ULXQynPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HkGuapmR; arc=none smtp.client-ip=209.85.219.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6f0c30a1ca3so16920916d6.1
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 12:05:43 -0700 (PDT)
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6f545ae3c59so14263486d6.1
+        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 12:05:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746731143; x=1747335943; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9qu0kVYDa1LJAygHrKHPQPVcQppgU3bFJcwVxclK610=;
-        b=DO0sR8H+XmbqXIOOorZDh/UyTb5YX18eHBkP0JBYn2PD6vT2baGQubKnt5Mocyrdhy
-         5/EoBIfN95xEXz55RsEws313tJyk6e9UthZHyOjOJXgQqAiQRanArGqN5Ssw18C35kg1
-         wMEYLZsXMnPhAUHXOLr0PDP0uivY53cpqsIasG0/zRKJ9uitAbor1BtFavr+fl6W7+iu
-         KM0L33RPQY+zZq5F042BlnC1hQdbanmsVNIGNT0mlE5NyMI4alF0GI+6d07EiF83DEPF
-         Ur0iqV96/roBMsa/yiOA6wAv5WzWFNshiD3Zf+uiVtTxSJkFQZf8LNYXLDrwNkONajKo
-         x4eg==
+        d=gmail.com; s=20230601; t=1746731145; x=1747335945; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LX2AgnXjLZsaf/23m6DzBSsHeoFXJnMo+ci0aY0CQT8=;
+        b=HkGuapmRG5Z17tpnxgCB3m6p1sSQo/nglWc2dr9QCiBX5xb9tODerVG3TaQnbBbYMS
+         MrLgQLCgwJFiuSU/j3KZulPVAZuaRv07umroF+Xc4FqBrPm/lqYin7nE2FAbB1ltDnoo
+         dRttpEPbV2S6h7JLvXrnNDiKa/KckMdhYpaZ9SZCcWA5sY7QSG/lZpf+R7U1ZSgzDxTz
+         wEy18hN0qCxrXHlCXQ27gyvjB2T6spYNlMsVcfXOTWACKF45KPMrI1ZAjANLKprNNweH
+         yYqLxCGUX0vOTIc4+EllJ7bvad0YiEZv3maxJD0EMU+DzM7cjs39qxuiaDHWvebn7pbk
+         Ef4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746731143; x=1747335943;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9qu0kVYDa1LJAygHrKHPQPVcQppgU3bFJcwVxclK610=;
-        b=wHBmZ32slaM+/HNHtVoFnzJkCp7jlr3gvBaEMVsb3E5AQg3MjgrVzOd8eT0Uru6i+l
-         5B1pb87paYI5WfQy4QURF5IdNYf2xrclIo4PTvvVJbWmoUURg5VstLW0BMLfcZ99OFJ2
-         YG/JJ/Q9Tzzy6F+ohPPlGfagLYKlzbcuKXHiL8ofR+LcDDJ2PKxjZ05XkZU0gJcVOveT
-         wSZSXXTy6CBwo3nm1yNqB8+pttaKGJVpxJvGS+QSSqJ8qjTBzpNBhuh6WgTHIb4vSoYm
-         4b2MCHLtLEb+fOcpedKhX+UEJd6mqU7ZPJhNhsa9sqNEMaTfonksoG8WIDlEMR3JKzHU
-         rIvQ==
-X-Gm-Message-State: AOJu0YwiEGVDQa6lBSyIMLQMr1BGqlknmFP+cpkm6iHFwYr20GYabC2/
-	wy31WmAEgz9Godu/Nhgm8KUP0bwa/URsvkW+1rTdlnUmABYmTCr3
-X-Gm-Gg: ASbGnctQWKla8opC1b0GOj0wD7djs6L+NSF1eBB9gTVggFTbhfpn6HITAeCtI1x/rtJ
-	U4Br9dDmQo+jPEBTcLt/Om5GgKpLALy001Kc2Q0O65yY609Rhd7aU31jbT2uUVGYi1KxfbI/ipc
-	6QFOudvk94o9LF3rkL+byM05k6nThgUDXwQ5EcHIcdo08LspVIQA4oPWD1xD1jYkNLNDgEYlQGT
-	aSTeiw0k1sP6QgxC9J9WViCiZBlPtjOdKO+W6Hw06l+5IYyVDnGCfE1xNk6pk6BQcIzZgjQe1vS
-	V/Zndin35XOKjPgiPpp6kfMVHNVrXh0KkFFK+23O6oWQ5+B1Eibq
-X-Google-Smtp-Source: AGHT+IF3GvschKMoOsEYJDjP5Bh7wGJRXzNc7vFAvC5p6sW/i58t089hOCR/ZeKjvfIlvNXPZLbXAA==
-X-Received: by 2002:a05:6214:2405:b0:6f4:c824:9d4a with SMTP id 6a1803df08f44-6f6e47c339cmr5390056d6.13.1746731142883;
-        Thu, 08 May 2025 12:05:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1746731145; x=1747335945;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LX2AgnXjLZsaf/23m6DzBSsHeoFXJnMo+ci0aY0CQT8=;
+        b=Hr0zftJsTXPQAp6GXp6rLcH5q8gyBqzMPrsmlPOWL1oaG7cTHMTaIHeOEV6vf97DO0
+         l2wVkt6UOI1KF1DNNX0B+x2zTO4wAIi8kMopY4t4rD9pzUDtF/SMbf3Flk5GbZ7Fvkpg
+         kKR5mCMJLcVvq+6+q8TlnEzHyZ/YKII2Rz1K4VuMoEbGPMoGyg/JgcNxf2ChbgHLiwUr
+         ltRdkY8EWOGeE6TWCmVohxuHdsc/GxgUWJ0sswrp3mgLXSYXP8AsbDaaf6/bxuiwl7IE
+         pdZFmJGXQFMbo0HK7LnajpyM2QlW4Hb4m0jqc4QHWwI2+HRMPM0K2D6leALYt8xEjiY6
+         osbA==
+X-Gm-Message-State: AOJu0Yx79/omvVvHxyBefPgEtyG8RRQkomaPsNDusEl5zRek854nOyzI
+	gG+I1grbX/oienjmCC1bZfEh2LrgPfnyasvkfoHlkf+UCx2q5DYi
+X-Gm-Gg: ASbGncuH+rGffuSJIxrpDyO3OvLHLwgELkU7ybgrcY0/EnE0vZH2pQAy1MJ5YKmdEEG
+	h5rYO5HzhC5pZUb0ov1Af4V2g2rTgiFnPYaB4rAVKXoSSYrNmCMK/dAbjlFrjVUh0A/h6ISAMYF
+	B/ZmGtgfsZ0zoU8nMEgo8xFYXJOeJBsECNPMajhide0Zd4Z5ZYegG9t1GPRmKCyUWfHWDxGg8Yw
+	xY3cc3AZYmI+I0cpOyLNf3OEE1GEPL3dGVa3Cy4BIfiFxAeYiOoTk9p3QvcvLIzhhFhpyCTamVt
+	TvwBX/ApE1ucz/RQxBeCjHl1guOXgzM4ntEM7ZaacDX8cHt+pmvS
+X-Google-Smtp-Source: AGHT+IGQJAy79kpZKW+oDhN27XY9umGN2UC95aQk3iRXkusoy3k3nhQQ47YqegggCVq7A5ReOBYavw==
+X-Received: by 2002:a05:6214:ace:b0:6f5:3811:cc67 with SMTP id 6a1803df08f44-6f6e47e748bmr5964526d6.12.1746731145202;
+        Thu, 08 May 2025 12:05:45 -0700 (PDT)
 Received: from localhost.localdomain ([216.237.233.165])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f6e3a0bee8sm3148216d6.54.2025.05.08.12.05.41
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f6e3a0bee8sm3148216d6.54.2025.05.08.12.05.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 May 2025 12:05:42 -0700 (PDT)
+        Thu, 08 May 2025 12:05:44 -0700 (PDT)
 From: John Clark <inindev@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -81,10 +83,12 @@ Cc: devicetree@vger.kernel.org,
 	Andrew Lunn <andrew@lunn.ch>,
 	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
 	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 0/3] Add Luckfox Omni3576 Carrier Board support for RK3576
-Date: Thu,  8 May 2025 15:05:35 -0400
-Message-Id: <20250508190538.22295-1-inindev@gmail.com>
+Subject: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Add luckfox prefix
+Date: Thu,  8 May 2025 15:05:36 -0400
+Message-Id: <20250508190538.22295-2-inindev@gmail.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250508190538.22295-1-inindev@gmail.com>
+References: <20250508190538.22295-1-inindev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,98 +97,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This series adds device tree support for the Luckfox Omni3576 Carrier
-Board with the Core3576 Module, powered by the Rockchip RK3576 SoC
-(four Cortex-A72 cores, four Cortex-A53 cores, Mali-G52 MC3 GPU). It
-enables essential functionality for booting Linux and basic connectivity,
-with plans for future support of peripherals like WiFi, MIPI-DSI, HDMI,
-and Ethernet.
-
-Tested features (on Linux 6.15-rc4):
- - UART: Serial console operational
- - SD card: Mounts and reads/writes successfully
- - PCIe: NVMe SSD detected, mounted, and fully functional
- - USB 2.0: Host ports operational
- - RTC: Timekeeping and wake-up tested
- - LED: Heartbeat trigger functional
- - eMMC: Enabled in device tree, not populated on tested hardware
-
-The series includes three patches:
- 1. dt-bindings: vendor-prefixes: Add Luckfox vendor prefix
- 2. dt-bindings: arm: rockchip: Add Luckfox Omni3576 and Core3576 bindings
- 3. arm64: dts: rockchip: Add Luckfox Omni3576 board support
-
-The device tree is covered by the existing ROCKCHIP ARCHITECTURE entry in
-MAINTAINERS. I am aware of ongoing RK3576 upstreaming efforts (e.g., by
-Collabora) and welcome feedback or collaboration to align with mainline
-driver development.
-
-Changes in v4:
- - Patch 1: Unchanged, Acked-by: Conor Dooley <conor.dooley@microchip.com>.
- - Patch 2: Fixed binding for Omni3576 Carrier Board to use correct enum
-   syntax (enum: [luckfox,omni3576] instead of invalid const), added
-   luckfox,core3576 to compatible string to reflect module dependency.
- - Patch 3: Updated compatible string in rk3576-luckfox-omni3576.dts to
-   match revised binding ("luckfox,omni3576", "luckfox,core3576",
-   "rockchip,rk3576").
-
-Changes in v3:
- - Split device tree into rk3576-luckfox-core3576.dtsi (module) and
-   rk3576-luckfox-omni3576.dts (carrier board) for better modularity.
-   Previous Acked-by from Krzysztof Kozlowski for Patch 2 no longer applies
-   due to substantial changes.
- - Addressed Jonas Karlman's feedback on patch 3/3 (Luckfox Omni3576
-   device tree):
-   - Added pinctrl for green LED GPIO (gpio1 RK_PD5) for proper pin setup.
-   - Reordered regulator node properties for consistent sequence (e.g.,
-     regulator-name, regulator-min-microvolt, regulator-max-microvolt,
-     etc.).
-   - Updated regulator nodes (vcc_3v3_pcie, vbus_5v0_typec, vcc_5v0_host,
-     vcc_5v0_hdmi) to use 'gpios' property instead of deprecated 'gpio'.
-   - Removed pmic-power-off pinctrl state and pinctrl-1 from RK806 PMIC
-     node, as they are vendor-specific and undocumented in bindings.
-   - Removed pwrkey node from PMIC, as it lacks binding documentation.
-   - Added blank line between properties and child nodes in i2c2 node for
-     DT style compliance.
-   - Removed no-mmc property from sdmmc node to enable MMC support,
-     aligning with RK3576 SD v3.0 and MMC v4.51 capabilities, allowing TF
-     card slot to support MMC devices or eMMC via adapter.
- - Removed Ethernet support (gmac0/gmac1 nodes) per Andrew Lunn's
-   feedback, as it used the generic PHY driver with incorrect RGMII delay
-   settings, incompatible with the upcoming MAE0621A driver.
-   Collaborating with Andrew Lunn on a device driver, with Ethernet
-   support to be submitted separately when complete.
- - Addressed Rob Herring's DTB check warnings, other warnings (e.g., VOP,
-   PCIe, OTP, HDMI PHY) originate from rk3576.dtsi and are outside this
-   patchset scope.
- - Added RNG node to pick up Nicolas Frattaroli's "add RK3576 RNG node"
-   patch.
-
-Changes in v2:
- - Enabled HDMI node per feedback from Heiko Stuebner and Nicolas
-   Frattaroli; untested due to upstream driver issues.
- - Enabled Ethernet 1 node per Heiko's device tree philosophy; untested
-   due to suspected PHY driver or configuration issues (removed in v3 per
-   Andrew Lunn).
- - Clarified eMMC remains enabled but unpopulated on tested board, per
-   Heiko.
+Add vendor prefix for Shenzhen Luckfox Technology Co., Ltd., which
+produces development boards like the Luckfox Omni3576.
 
 Signed-off-by: John Clark <inindev@gmail.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
-John Clark (3):
-  dt-bindings: vendor-prefixes: Add luckfox prefix
-  dt-bindings: arm: rockchip: Add Luckfox Omni3576 and Core3576 bindings
-  arm64: dts: rockchip: Add Luckfox Omni3576 Board support
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../devicetree/bindings/arm/rockchip.yaml     |   7 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3576-luckfox-core3576.dtsi | 683 ++++++++++++++++++
- .../dts/rockchip/rk3576-luckfox-omni3576.dts  |  53 ++
- 5 files changed, 746 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-luckfox-omni3576.dts
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 86f6a19b28ae..9391e0c31bb8 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -892,6 +892,8 @@ patternProperties:
+     description: Liebherr-Werk Nenzing GmbH
+   "^lxa,.*":
+     description: Linux Automation GmbH
++  "^luckfox,.*":
++    description: Shenzhen Luckfox Technology Co., Ltd.
+   "^m5stack,.*":
+     description: M5Stack
+   "^macnica,.*":
 -- 
 2.39.5
 
