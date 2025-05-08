@@ -1,191 +1,143 @@
-Return-Path: <devicetree+bounces-175238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DA6BAB0316
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 20:45:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8810AB0349
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 21:00:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11AA9A00A13
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 18:45:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA5643AB108
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 18:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07A95286D40;
-	Thu,  8 May 2025 18:45:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RTDH8MnA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62198288C8C;
+	Thu,  8 May 2025 19:00:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C4C9279330
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 18:45:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BCA286D66;
+	Thu,  8 May 2025 19:00:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746729941; cv=none; b=UD6qgB8NvmNfRfdUx5Q3DsRFNno1aGwftirs/6LU7+s2QyAWWUmBjXGrhi7k6OvRvfUS8yukEjMu3o+v4UZwgJxm7PM5ePy9wBTQfVqxernXjFX3WZU8Jcz0IG5To/2N1pXgYPIm3z4qvoA1iH+vPDoLhLe4CMgns2+gcUnfTCw=
+	t=1746730816; cv=none; b=EVslYzh81wvJQdu/cxMRSm9fi/NnBt6CSXqQK6kNAZgx7lCTsrPCOYuKb1MXUSjM3YApuHaSb/8u5TFaUBGeC3KLQTXJ5Pd0GavOXmuv06n9g/c5IjUy2Z5ZARYWy17yzJNi6S+WSyu/fwLoK3zZuJCzhkKfyp6tHKmkz9LKcGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746729941; c=relaxed/simple;
-	bh=Uct7WpTbq1dVFAi32TSot7daA1ZweH7/AhYF2940CgM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BdI6EuTjd/hjm9aqC6ENqQQx7IyRevZ3yvTgJOIVHHNiM8fbwHwsYOdH9qXESOGANMOpDZSTzasfD8bwJYRscjg3UO2Du5fegaHkrzHoalqaDWafatyv2FRm9UaQ80ed2/Ow/D2F0JQmUQBuCvXoGGrpQzjvGOi4G8QWWoD5Tfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RTDH8MnA; arc=none smtp.client-ip=209.85.210.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-72c7336ed99so405191a34.0
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 11:45:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1746729938; x=1747334738; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7hks92hn75KYYjxsE5MEgCk2mRAPj5PUobg5bbR8tjA=;
-        b=RTDH8MnAtbEspuqAXR2hH9hYTlCrpWMqKSiY1PMVZ/5lX1oi8l9bYbETk9vHL9iB30
-         s/i1KDPIFeMNeUE/efK9FYSvA2C+xOg7OvyMorpf24oQ0qx2CcbC21KBQ/wyVsvrV9Uy
-         ZVWJ5SQMzctTw4uvJabU5FNwa9376WQznvvpIhMvStp92Kj94l7HPyQReUGL9Tj640ai
-         /WNNxzNPzMSNM1uDTHcrE5zr516/5wcwwJFYMDihUXPmTGgHd2KFmtm89D1/7C2OU0dO
-         b72JGo74bKZLs4XhusxjtPts6l8aum2URVcvGUna0lqfT0vAxUzXsvSY4c5/6vAk+FSR
-         XpdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746729938; x=1747334738;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7hks92hn75KYYjxsE5MEgCk2mRAPj5PUobg5bbR8tjA=;
-        b=dECA6hGxq8dJqhdAxJHIoITi3UrwinXM2DSw2cL3UVEDhunglwUrTl40IBb2pUTtfT
-         dfef6dU/wS7F2+oVjMfNB+CM/iUbwb7Ftyp5f73zOWfZ57aRluHtxS53LSLrLTStv4oo
-         xBY4ttj0oRG1/WC7O5K96yJ+LbmpH1Lgvqpmiwhs9lhqsQ8GmWzShKS2H5eIA1hl12Qa
-         lUhLAp00wJnQ0nd3lF9hK29pGXQfBxpUItUqWCOUqd+uW8og0ep2bi/rliMSYtG0DZEC
-         2P1hT7m1UfySwx2KQzmRwAL3Eudc1RCeGEPS9y3o81S9hNmBJUs6CLmqrFIwNPC5yQgG
-         ph9A==
-X-Forwarded-Encrypted: i=1; AJvYcCW/Z1/CApuiFrtm9LmtMO1OUeS5CbNXwrAflpnrPf2JiqhiaJBV9C2sRFa5ZS2yd6h69Oe0VfFPJF+5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuExBFXYOYmDFpQ7RElLTV+SIwBRpNlakqLP7fYt/YAaZ/Fs7h
-	rwOI+9H4gIqQOiPwYbJtJdn+9/pnXvXIis63NwbNDdNaukiVkFJWC6TALvYSQtM=
-X-Gm-Gg: ASbGncuX5RUwdIz7Mj93stwaE/RhVOzUybmDn88sGSRxo6Tx7hhVZlWAYa38BrxtLbn
-	R1WStU2zi34EgQlN+UrI2shkEe+JjYxe1BcUUnpldxJa2+qtSs3oJhGS7Vek+QqANwfldlEJAcV
-	POWBOx6LIFh3cgmjmMO5uqM3H9UhIFMR3cY5DlFu1TXJU4F/kXe5FwnJTdRO8Aa6FtKz/U5+cPC
-	5E3/+a/jNRvXJsSuuIWQh6b5/OiLyykyBsOuSwBMqc96pG+oRt/OlqUX3dOPo+kgikl3uvc+jiW
-	HYVbXmNr3J+b57W0+FLsom1m52Lzw09bw1rwR+p3zdXURiPvArMsggh/5H/bRbtsJbmtsujYMsN
-	dOc515ddZQVLoT1dE9VEAln1Y7LtJ
-X-Google-Smtp-Source: AGHT+IEV7HHfBnOTMYTqZ03O7GNZheqbXVNvcqho/27ZV2olGwgw41vQ4kxYrohJ8syOgcp1dkfrgQ==
-X-Received: by 2002:a05:6830:2589:b0:72b:9bb3:67cf with SMTP id 46e09a7af769-732269ce7e8mr741252a34.9.1746729938430;
-        Thu, 08 May 2025 11:45:38 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:1120:d1cf:c64a:ac7e? ([2600:8803:e7e4:1d00:1120:d1cf:c64a:ac7e])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-732265ce4c4sm168093a34.48.2025.05.08.11.45.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 May 2025 11:45:38 -0700 (PDT)
-Message-ID: <662fa2f9-b28c-4831-9f76-7d2af8267466@baylibre.com>
-Date: Thu, 8 May 2025 13:45:37 -0500
+	s=arc-20240116; t=1746730816; c=relaxed/simple;
+	bh=LCEbPff3OoPgMZ1212eZM05B+dddMMp2LVFvzweKsBY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cGQOk/iGNWbnCvFPZFCLc9QNgICvcynf1lPmxMla4CVg9fj0lvXZ7pwF9ah3JR/RlVT5slS0GASm24gjTXxI/nvmIRh4XOjzvtwIs+ylsO0UXHC1yA54bAFWBJQzYux5Fukd5HeXuYtQN3U7di/QOIEeBO91Q4L38dztRJSKazo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: 1P76WaSZSzakuq+yn2QCHg==
+X-CSE-MsgGUID: pF0LCqTRQuC4ihGE+yKZQw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="48616475"
+X-IronPort-AV: E=Sophos;i="6.15,273,1739865600"; 
+   d="scan'208";a="48616475"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2025 12:00:13 -0700
+X-CSE-ConnectionGUID: topa9xxbS4aY5lLo6/vMEA==
+X-CSE-MsgGUID: 2bfKK5PUQJm8MK/FvnZZhg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,273,1739865600"; 
+   d="scan'208";a="141139512"
+Received: from smile.fi.intel.com ([10.237.72.55])
+  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2025 12:00:10 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andy@kernel.org>)
+	id 1uD6TX-00000004Coa-02NT;
+	Thu, 08 May 2025 22:00:07 +0300
+Date: Thu, 8 May 2025 22:00:06 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Angelo Dureghello <adureghello@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 5/5] iio: adc: ad7606: add gain calibration support
+Message-ID: <aBz_Nlgx18UK2GIc@smile.fi.intel.com>
+References: <20250508-wip-bl-ad7606-calibration-v4-0-91a3f2837e6b@baylibre.com>
+ <20250508-wip-bl-ad7606-calibration-v4-5-91a3f2837e6b@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 09/12] iio: adc: ad7768-1: add support for
- Synchronization over SPI
-To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Cc: andy@kernel.org, nuno.sa@analog.com, Michael.Hennerich@analog.com,
- marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
- linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
- broonie@kernel.org, jonath4nns@gmail.com
-References: <cover.1746662899.git.Jonathan.Santos@analog.com>
- <b65b085b29dd08e4f24485f37e7063c463637475.1746662899.git.Jonathan.Santos@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <b65b085b29dd08e4f24485f37e7063c463637475.1746662899.git.Jonathan.Santos@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250508-wip-bl-ad7606-calibration-v4-5-91a3f2837e6b@baylibre.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 5/8/25 12:04 PM, Jonathan Santos wrote:
-> The synchronization method using GPIO requires the generated pulse to be
-> truly synchronous with the base MCLK signal. When it is not possible to
-> do that in hardware, the datasheet recommends using synchronization over
-> SPI, where the generated pulse is already synchronous with MCLK. This
-> requires the SYNC_OUT pin to be connected to the SYNC_IN pin.
+On Thu, May 08, 2025 at 12:06:09PM +0200, Angelo Dureghello wrote:
+> From: Angelo Dureghello <adureghello@baylibre.com>
 > 
-> Use trigger-sources property to enable device synchronization over SPI
-> and multi-device synchronization while replacing sync-in-gpios property.
+> Add gain calibration support, using resistor values set on devicetree,
+> values to be set accordingly with ADC external RFilter, as explained in
+> the ad7606c-16 datasheet, rev0, page 37.
 > 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> ---
+> Usage example in the fdt yaml documentation.
 
 ...
 
-> +static int ad7768_trigger_sources_get_sync(struct device *dev,
-> +					   struct ad7768_state *st)
+> +static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev)
 > +{
-> +	struct fwnode_reference_args args;
-> +	struct fwnode_handle *fwnode = dev_fwnode(dev);
+> +	struct ad7606_state *st = iio_priv(indio_dev);
+> +	unsigned int num_channels = st->chip_info->num_adc_channels;
+> +	struct device *dev = st->dev;
 > +	int ret;
 > +
 > +	/*
-> +	 * The AD7768-1 allows two primary methods for driving the SYNC_IN pin
-> +	 * to synchronize one or more devices:
-> +	 * 1. Using an external GPIO.
-> +	 * 2. Using a SPI command, where the SYNC_OUT pin generates a
-> +	 *    synchronization pulse that drives the SYNC_IN pin.
+> +	 * This function is called once, and parses all the channel nodes,
+> +	 * so continuing on next channel node on errors, informing of them.
 > +	 */
-> +	if (!fwnode_property_present(fwnode, "trigger-sources")) {
-> +		/*
-> +		 * In the absence of trigger-sources property, enable self
-> +		 * synchronization over SPI (SYNC_OUT).
-> +		 */
-> +		st->en_spi_sync = true;
-> +		return 0;
+> +	device_for_each_child_node_scoped(dev, child) {
+> +		u32 reg, r_gain;
+> +
+> +		ret = fwnode_property_read_u32(child, "reg", &reg);
+> +		if (ret)
+> +			continue;
+
+> +		/* Chan reg is a 1-based index. */
+> +		if (reg < 1 || reg > num_channels) {
+> +			dev_warn(dev, "wrong ch number (ignoring): %d\n", reg);
+> +			continue;
+> +		}
+
+But this will allow to have a broken DT. This check basically diminishes the
+effort of the DT schema validation. If there are limits one still would be able
+to create a DT that passes the driver but doesn't pass the validation.
+
+> +		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
+> +					       &r_gain);
+> +		if (ret)
+> +			/* Keep the default register value. */
+> +			continue;
+> +
+> +		if (r_gain > AD7606_CALIB_GAIN_MAX) {
+> +			dev_warn(dev, "wrong gain calibration value");
+> +			continue;
+> +		}
+> +
+> +		ret = st->bops->reg_write(st, AD7606_CALIB_GAIN(reg - 1),
+> +			DIV_ROUND_CLOSEST(r_gain, AD7606_CALIB_GAIN_STEP));
+> +		if (ret) {
+> +			dev_warn(dev, "error writing r_gain");
+> +			continue;
+> +		}
 > +	}
 > +
-> +	ret = fwnode_property_get_reference_args(fwnode,
-> +						 "trigger-sources",
-> +						 "#trigger-source-cells",
-> +						 0,
-> +						 AD7768_TRIGGER_SOURCE_SYNC_IDX,
-> +						 &args);
-> +	if (ret)
-> +		return ret;
-> +
-> +	fwnode = args.fwnode;
-> +	/*
-> +	 * First, try getting the GPIO trigger source and fallback to
-> +	 * synchronization over SPI in case of failure.
-> +	 */
-> +	st->gpio_sync_in = ad7768_trigger_source_get_gpio(dev, fwnode);
-> +	if (!IS_ERR(st->gpio_sync_in))
-> +		goto out_put_node;
-
-I think we want to return the error in some cases here, e.g. deferred probe
-so rather:
-
-	st->gpio_sync_in = ad7768_trigger_source_get_gpio(dev, fwnode);
-	ret = PTR_ERR_OR_ZERO(st->gpio_sync_in);
-	if (ret != -EINVAL)
-		goto out_put_node;
-
-	/*
-	 * EINVAL means that the trigger was not a gpio trigger and we should
-	 * try something else.
-	 */
-
-This is assuming devm_fwnode_gpiod_get_index() doesn't return EINVAL which
-could be confused as the return value for ad7768_trigger_source_get_gpio().
-
-Or just inline ad7768_trigger_source_get_gpio() here and avoid that possibility.
-
-> +
-> +	/*
-> +	 * TODO: Support the other cases when we have a trigger subsystem to
-> +	 * reliably handle other types of devices as trigger sources.
-> +	 *
-> +	 * For now, return an error message. For self triggering, omit the
-> +	 * trigger-sources property.
-> +	 */
-> +	ret = dev_err_probe(dev, -EOPNOTSUPP, "Invalid synchronization trigger source\n");
-> +
-> +out_put_node:
-> +	fwnode_handle_put(args.fwnode);
-> +	return ret;
+> +	return 0;
 > +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
