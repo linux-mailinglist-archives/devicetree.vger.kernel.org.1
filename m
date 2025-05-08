@@ -1,175 +1,246 @@
-Return-Path: <devicetree+bounces-174937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B81FAAF501
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:53:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6755EAAF508
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:56:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C0FC1BA62E8
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:53:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78C5D1C01CE1
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:57:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 195BC221576;
-	Thu,  8 May 2025 07:53:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 689B3221710;
+	Thu,  8 May 2025 07:56:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M7ARREVR"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="ZinmLTui"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4FC21018F;
-	Thu,  8 May 2025 07:53:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D122144CC
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 07:56:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746690804; cv=none; b=j56kMQ3jkj+mMLjSxSU1lMyYFKYkpnwEir1CxAeSJUhTUzkhKCn6nlI+l+ze7jCffF43IgkQOngASkUi38z84/1kC8ljTo/93/G5I0ukA5WZ/bAGzFoyCb89BI+DkNYypvqxVqwmklhZ/hpXljL6Esl9dYaSl/5PLvuFN6cBGcQ=
+	t=1746691011; cv=none; b=u07QovfjCtAAkDagRctFkyoUj6DcQf7Lo3qXB8d5rV02YGy0flBZej9CMbtBR6hAyozkxq07WF6CPUwR5bkfJbgVcY/g+rS1lPJeeBV0yhzl9yROVHy91xpqhtaNATzK6yXZHPuKR1IrNtJ1rTJXWJVoOf0dZAHS1ULaXw7N5MU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746690804; c=relaxed/simple;
-	bh=f2bnkkj/n2cyfpzr0hTegNi5pWsQKVQM0GZRdvtFFEI=;
+	s=arc-20240116; t=1746691011; c=relaxed/simple;
+	bh=PMQR1QiXDZm4+F6Y7mVD5R5HYND/3Fwpi8Ckd8X7MMg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f9Tw1YgPlABqVcwyjPpWnKXaDj0wb89lvP+++JrwyHRmtRA6d97e7sEOQLjScsxEiIJ9z7KhiXt68GtBe7gQlbRY2w6Q1p9ECfEaRjHYXPMphh2lbQoO6wnBok8+8+1uuWJrvTPxlQP7rI0FaEU5xit4xbPGa6Qz3LukcB5nk+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M7ARREVR; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43d0c18e84eso2859035e9.3;
-        Thu, 08 May 2025 00:53:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746690800; x=1747295600; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZjCNEO6c43Jy15stRDpxryP+REb893ZkVxfJRigOY9o=;
-        b=M7ARREVRKCYNHU4oil7jq1bo3o7TIteoAoUjQEGCM+cf+kHhJ0PT/pqgw72WO6ixUW
-         2OShMWUwQLFwPdVpDLn+8RPMXU5/TFXQ/UYKjVaA6EpmzvDn7V1L5x/c+v8v0h2XP8bt
-         a+x/h7Y6lpHXkGHoTpav/kC5JxE7OHTsRcJjKkSxDjjQEphrPRXjYxcdfxPleaQkoBVl
-         MH9gMc7rLiEosmkJbpvbJMhz4QxqofFjlLtxDNhKKOoJFW0kRobvy1+yuqk6LB7MHT6W
-         DfFCtLqNBT1I2lUrLPEJ8et34eDBWlgv4wHMTqB0yyS2B7AZmlb27sp1v9LahuIWhFk8
-         MlWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746690800; x=1747295600;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZjCNEO6c43Jy15stRDpxryP+REb893ZkVxfJRigOY9o=;
-        b=ElLjrfbMXOsmdPsA/bnE1IfBMlVrKkkKSu8ETkxoYUNzgHIHaj3EuDuXiFvrvHnkxn
-         ftYzvXgtQa/Ttzer5goVvkPzSR9UfbduPYWqbVtzAWw5iOczCtr1+/61p8jq/wHkLmPQ
-         LkUuu4xE4Ov30nIBqAH4+i17mxHuVjVP4iAIPHlgf54vT35z3XZLxavvOwKYq0QsArJR
-         i+9ZpacWhzkuEZIPTCH3pQOFpjV1/K+PAX0P9PNPmEyiZ/O0h6L8mZrq+MyUcOUu7Wkw
-         inCfnOTO4fynXKu0lhpo+g0IrBMU22LIC+KIQn/4iOvv0mHmyKiJLwWi7/hjikyD9l7D
-         i/hg==
-X-Forwarded-Encrypted: i=1; AJvYcCXMdP0h7BOWfvHw3FDzBIXGH5KLEU1Sj7ltHNKJSd2/ZoqJaXXLbkA58r4FD7FD7qua0XFlkIEYqSGjj8g=@vger.kernel.org, AJvYcCXP+GSrDG5CQaf09Nu4LMN5XEdTQASklxcweruG9Id4OR7zsrYrNhxoD52yr0tPvTLWT/uVoCzfPAEW@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCET+qOvRWM4dcqUOJg81f1Kp5R7bS7h2rtNnWWvnDNS9Mv8VA
-	w9BNJ0eeXOBTElWfo3V4Y2p/ZzqNbwrXVQCFV87up3CEvde6D4foXK+d8A==
-X-Gm-Gg: ASbGncvkM5TRfmSmFk6t8aO2o2BvbZIacwnKqw7DMwCa75TxuKZDSPcFZu0op+EAZ10
-	G8lnfE0Zq9EtRDAiWLQ/lUe2KkR6mP76Lyt1bQaNylasMxiJM1BvSFEutGexXCLXUSdM2LhPbDs
-	6d7D8QrRlcMdegpFnmXat80aNgb4S3IkDkkZhEvupR8YaSLIn7gNvcxwotnVZh5TAYKd5k/RDlb
-	W/kuuEU9bC6LqkuM8ZZ3CpjyG4+zX7HLDNem6kS3rA35zpnaCtfPGcKxz4epqcAMaktsBbKX8+c
-	gd4zLrEu8SfUXTKJFHKJZ5UPxMgNAvPwbq2j0PWyg0nuHRCqejUy7L0BKm9DKCQdg34DLrTr+z8
-	3/8BqCPdtIJOQDZ8LF7Svbll9wuQ=
-X-Google-Smtp-Source: AGHT+IEkK6XgFL1w7UDh06L0Z3MP75/mJB+jf599RZcC5KOle0Xkg/Tk+xGPkJOdI/Jkn+XogKb5+w==
-X-Received: by 2002:a05:600c:608f:b0:43c:f44c:72b7 with SMTP id 5b1f17b1804b1-442d02ed5abmr20082695e9.14.1746690800158;
-        Thu, 08 May 2025 00:53:20 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd3b7b83sm26816445e9.33.2025.05.08.00.53.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 May 2025 00:53:19 -0700 (PDT)
-Date: Thu, 8 May 2025 09:53:17 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/8] dt-bindings: Add Tegra264 clock and reset definitions
-Message-ID: <3gpirue4rr5hpgynzzadzlr6i2fvdhaugcutyqyfoeix2zf3fu@xpbdadb5nynu>
-References: <20250507143802.1230919-1-thierry.reding@gmail.com>
- <20250507143802.1230919-5-thierry.reding@gmail.com>
- <1ec7ed24-a4fe-450b-8f99-34aae6ed2c4d@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lt+CGsgYvcKTOBVzkPE3y/EjFwSFYJpPIwsdmSu8P+IDuL5WaYQ1E6oo++tV7JleWXr/OMtdtLs2ifwfz3UrpbopcbLGEWnGCTG72cW/bBrp1KbTeRDy41NX/FufTql/KVi3VZ5TBWQKn7rrklwfXQ0bBUHRJ5f0H2P5p9Ggddk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=ZinmLTui; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=Tp8P
+	P5Bb9eNZULmp+h8B7wsn4dQd9/hEYaSHDKF/PIs=; b=ZinmLTui7Li+eP0sjJi8
+	ACLTFzXSjaqZjtBfA4ffDgs7W9UQC9AzZ8JjnJ4xwYkB4YYWOsEyIiZOhbgeMPDY
+	ll+RyZHcySqS/Dw7qUhMSuq0Xh1/QjKfgBomX1LO8B+4fOX2N88hRqVi3A7GR3dW
+	QPT5CXELZWNvA9N9YpwdJlE5XGV5qzIP3E1pkIbuwceBPyYN/M1g31M2FGjMN2wr
+	q7W/eMrO5KdMzp9dSWqyufxBCjXpyFBFgvkotD6uX3R061vez48VutVm25lEnZ46
+	gR5xuBg0KUpLhSIn4TdKfYP5uGNcYSfceQcXkov3jDHmRXI+e3cGePcO5AU42ZJ0
+	6Q==
+Received: (qmail 3716686 invoked from network); 8 May 2025 09:56:47 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 May 2025 09:56:47 +0200
+X-UD-Smtp-Session: l3s3148p1@ZMP8MJs0YNEgAwDPXxyAAIlRla1HkD11
+Date: Thu, 8 May 2025 09:56:46 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	linux-leds <linux-leds@vger.kernel.org>
+Subject: Re: [PATCH v3] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe
+ Debug LEDs
+Message-ID: <aBxjvofZCEi_1Fna@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	linux-renesas-soc@vger.kernel.org,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	linux-leds <linux-leds@vger.kernel.org>
+References: <20250417093256.40390-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdWN-QDrmogJ+7x8sdc6UmDAoF+0z0hZ3SQ7ajN2V2+mSw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zuyd7grcpkx6nwpm"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="YKrTyb9Em6OWPxiH"
 Content-Disposition: inline
-In-Reply-To: <1ec7ed24-a4fe-450b-8f99-34aae6ed2c4d@kernel.org>
+In-Reply-To: <CAMuHMdWN-QDrmogJ+7x8sdc6UmDAoF+0z0hZ3SQ7ajN2V2+mSw@mail.gmail.com>
 
 
---zuyd7grcpkx6nwpm
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+--YKrTyb9Em6OWPxiH
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 4/8] dt-bindings: Add Tegra264 clock and reset definitions
-MIME-Version: 1.0
 
-On Thu, May 08, 2025 at 09:40:02AM +0200, Krzysztof Kozlowski wrote:
-> On 07/05/2025 16:37, Thierry Reding wrote:
-> > @@ -0,0 +1,9 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/* Copyright (c) 2022-2023, NVIDIA CORPORATION. All rights reserved. */
-> > +
-> > +#ifndef DT_BINDINGS_CLOCK_TEGRA264_CLOCK_H
-> > +#define DT_BINDINGS_CLOCK_TEGRA264_CLOCK_H
-> > +
-> > +#define TEGRA264_CLK_CLK_S			2U
+On Thu, Apr 17, 2025 at 01:39:14PM +0200, Geert Uytterhoeven wrote:
+> Hi Wolfram,
 >=20
-> Abstract IDs start from 0 or 1, not 2. Also drop "U".
+> CC leds
+>=20
+> On Thu, 17 Apr 2025 at 11:33, Wolfram Sang
+> <wsa+renesas@sang-engineering.com> wrote:
+> > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> > ---
+> >
+> > Changes since v2:
+> > * using function, color, function-enumerator properties now
+> >
+> > Honestly, this is better than using node names? With V2, the LEDs were
+> > named as in the schematics, now they are called:
+> >
+> > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programm=
+ing-0 -> ../../devices/platform/leds/leds/green:programming-0
+> > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programm=
+ing-1 -> ../../devices/platform/leds/leds/green:programming-1
+> > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programm=
+ing-2 -> ../../devices/platform/leds/leds/green:programming-2
+> > ...
+> >
+> > Which gets even more confusing if we might later add LEDs not on this
+> > board, but on the expansion board. 'green:programming-8' sits where?
+> >
+> > I really wonder, but if this is the official way now...
+>=20
+> Good point!  So I'm inclined to take v2...
+>=20
+> Let's raise this with the LED people. I don't want to fight Pavel when
+> v2 hits the CiP tree ;-)
 
-These are not abstract IDs, they are defined by the BPMP ABI. We cannot
-change them, otherwise it'll completely break.
+So, if there is no other opinion here, can we remove function, color,
+function-enumerator and just use the node names which match the
+schematics? Basically apply V2?
 
-For similar reasons I'd like to keep the "U". These definitions are for
-the most part directly imported from the BPMP ABI headers, though we do
-try to be selective about what we add, to avoid adding hundreds of new
-lines in one go, and several safety-checking tools run on these headers
-that happen to require the "U" suffix to make sure these have a defined
-type.
-
+>=20
+> > --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+> > +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+> > @@ -10,6 +10,7 @@
+> >
+> >  #include <dt-bindings/gpio/gpio.h>
+> >  #include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/leds/common.h>
+> >  #include <dt-bindings/net/pcs-rzn1-miic.h>
+> >  #include <dt-bindings/pinctrl/rzn1-pinctrl.h>
+> >
+> > @@ -86,7 +87,74 @@ switch-8 {
+> >                         debounce-interval =3D <20>;
+> >                         gpios =3D <&pca9698 15 GPIO_ACTIVE_LOW>;
+> >                 };
+> > +       };
 > > +
-> > +#endif /* DT_BINDINGS_CLOCK_TEGRA264_CLOCK_H */
-> > diff --git a/include/dt-bindings/reset/tegra264-reset.h b/include/dt-bi=
-ndings/reset/tegra264-reset.h
-> > new file mode 100644
-> > index 000000000000..31d89dcf62fa
-> > --- /dev/null
-> > +++ b/include/dt-bindings/reset/tegra264-reset.h
-> > @@ -0,0 +1,7 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/* Copyright (c) 2022-2023, NVIDIA CORPORATION. All rights reserved. */
+> > +       leds {
+> > +               compatible =3D "gpio-leds";
+> >
+> > +               led-dbg0 {
+> > +                       gpios =3D <&pca9698 0 GPIO_ACTIVE_HIGH>;
+> > +                       color =3D <LED_COLOR_ID_GREEN>;
+> > +                       function =3D LED_FUNCTION_PROGRAMMING;
+> > +                       function-enumerator =3D <0>;
+> > +                       default-state =3D "keep";
+> > +               };
 > > +
-> > +#ifndef DT_BINDINGS_RESET_TEGRA264_RESET_H
-> > +#define DT_BINDINGS_RESET_TEGRA264_RESET_H
+> > +               led-dbg1 {
+> > +                       gpios =3D <&pca9698 1 GPIO_ACTIVE_HIGH>;
+> > +                       color =3D <LED_COLOR_ID_GREEN>;
+> > +                       function =3D LED_FUNCTION_PROGRAMMING;
+> > +                       function-enumerator =3D <1>;
+> > +                       default-state =3D "keep";
+> > +               };
 > > +
-> This is empty, drop.
+> > +               led-dbg2 {
+> > +                       gpios =3D <&pca9698 2 GPIO_ACTIVE_HIGH>;
+> > +                       color =3D <LED_COLOR_ID_GREEN>;
+> > +                       function =3D LED_FUNCTION_PROGRAMMING;
+> > +                       function-enumerator =3D <2>;
+> > +                       default-state =3D "keep";
+> > +               };
+> > +
+> > +               led-dbg3 {
+> > +                       gpios =3D <&pca9698 3 GPIO_ACTIVE_HIGH>;
+> > +                       color =3D <LED_COLOR_ID_GREEN>;
+> > +                       function =3D LED_FUNCTION_PROGRAMMING;
+> > +                       function-enumerator =3D <3>;
+> > +                       default-state =3D "keep";
+> > +               };
+> > +
+> > +               led-dbg4 {
+> > +                       gpios =3D <&pca9698 4 GPIO_ACTIVE_HIGH>;
+> > +                       color =3D <LED_COLOR_ID_GREEN>;
+> > +                       function =3D LED_FUNCTION_PROGRAMMING;
+> > +                       function-enumerator =3D <4>;
+> > +                       default-state =3D "keep";
+> > +               };
+> > +
+> > +               led-dbg5 {
+> > +                       gpios =3D <&pca9698 5 GPIO_ACTIVE_HIGH>;
+> > +                       color =3D <LED_COLOR_ID_GREEN>;
+> > +                       function =3D LED_FUNCTION_PROGRAMMING;
+> > +                       function-enumerator =3D <5>;
+> > +                       default-state =3D "keep";
+> > +               };
+> > +
+> > +               led-dbg6 {
+> > +                       gpios =3D <&pca9698 6 GPIO_ACTIVE_HIGH>;
+> > +                       color =3D <LED_COLOR_ID_GREEN>;
+> > +                       function =3D LED_FUNCTION_PROGRAMMING;
+> > +                       function-enumerator =3D <6>;
+> > +                       default-state =3D "keep";
+> > +               };
+> > +
+> > +               led-dbg7 {
+> > +                       gpios =3D <&pca9698 7 GPIO_ACTIVE_HIGH>;
+> > +                       color =3D <LED_COLOR_ID_GREEN>;
+> > +                       function =3D LED_FUNCTION_PROGRAMMING;
+> > +                       function-enumerator =3D <7>;
+> > +                       default-state =3D "keep";
+> > +               };
+> >         };
+> >  };
+> >
+>=20
+> Gr{oetje,eeting}s,
+>=20
+>                         Geert
+>=20
+> --=20
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>=20
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
-We have three people currently working on additional drivers for this
-SoC and they all need to add to these two files. Adding the empty file
-here makes it a bit easier to coordinate things, making the resulting
-conflicts trivial to resolve.
-
-I know this looks out of place, but I promise this will soon gain
-content and won't stay empty forever. =3D)
-
-Thierry
-
---zuyd7grcpkx6nwpm
+--YKrTyb9Em6OWPxiH
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmgcYu0ACgkQ3SOs138+
-s6GlvA//TzkpS/Nemjcf+t1Lue6ZKkM63tyULSWi2sNg+LkhfmxFLykgv2SvNo/r
-pydd39bVODAD2U6bSDRj6JPADOrbiVJgt4s193nCOzANQeGHjHdgOlJYqApa7Qq4
-NufMJOCrqkKDTiRlkVDZ9jqfa5TFgL3aeo8WbUDy9gbGXbrmU+4S+Sh1Mz8HfeTR
-FyRqKNjwRdkk6S+yIMrKAOduaIUFua9i3Ysjid6rl9yHBWejINPduthxWo/F9Fgm
-fviIn2w7Vb6sVtxon2EAOvtRaG8bEcqJMiwl5XNOqai52rBUectR/D4GxFUrOr5C
-2C5XUKmRCz3w+wSamsWQHPZWYhdsbxP5wpMr09DIiQFcAPgqLjKFWYkMtQbuMqZM
-k3LaTIGnYJgsbVo9rqJDERhMU242F4f0ci0Yr49bbx5walyoeJ5XMWdqyDpbSu4X
-GGTNEjdD0hsYXtt8FXx/vbLPNRHYmnWzqj+slH7mhjE10L4ArOZSWUGiN4PZ9+8K
-k2pscGa1pQ08wyXQPvboitMrV73BY+jdbFB2EU0bhV6S4ByiwHL624hj/0bcchRb
-5K3kiWfeCOriN9+mGtotvPQuuWVeM9UNhLEOotlx63rt76Z0NGUwo6pMICXTSyUK
-sWz982natgliIbnbLvzF1ujgFy7i17dA4L3sCcr5CvaF1g9vk4Q=
-=9v4v
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmgcY7oACgkQFA3kzBSg
+KbbeFBAAkXngs7hdRkE8x1voqmXkKTM+L3oMl2xx1DG24cuGZfsPN3oM0M6A7YxS
+CKfegrT+JPeB034wQX+OWBku7CWObgzmg2uKGjZ2cEbLscxlhvxIm6PwwKlx2ibJ
+QY55OQWPXI+Yy1L0ZRMOyi2Ck+B4ikUO9ufu6Nkq8rRs5qG4AY5gbQ0wImGjLSHj
+uRMjrHPtpFpXLqqJN7SrVs3784/P5kcrGVkWmu/4vRV/bJMbsE5rS7LSnO2yy4WV
+xtj12P32aGL/EwFInt39b8mRXm73BZaEeZLpq9kFJI9xmXqKNNWxSqHM0yTRSsBI
+KBKumMGwKtnT+JWlfolx5CJ2FLdmtKuYAiEgGjNYGV5cueOJ1jboQ7RHIJwtDmYh
+OFsZktKbXYo5m1cpwfnjWqyzBvlsDy4vcggNd8EV44trkzxQhP/UUKyqacbOB8cY
+e/XJnbipd0vHoraOL0O9Oiyf025HTUR1ED2Yq56LBQ1bAT7kYknDj3dQRmJG7Q+O
+Mj4+ARnwFJGzUu7yZXblkP9E+gdJ0va+g8FNv48Nf8OT5ISyufsi84v/tXXpEMJa
+CA5hINEe16ofhh0SuZMzKGSeysLvDUusVFP1+bKLitKthaYnsOWnoHkbBvELSN19
+2TSBPXoYZM6rBPNxrvCpdCRt1J5wXE77GjMaCqXLprL1YiBQ1yA=
+=qL/O
 -----END PGP SIGNATURE-----
 
---zuyd7grcpkx6nwpm--
+--YKrTyb9Em6OWPxiH--
 
