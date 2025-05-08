@@ -1,188 +1,124 @@
-Return-Path: <devicetree+bounces-174990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1837AAF7A5
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:19:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06258AAF7B9
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:23:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B687F9E07BA
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:19:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAF383A9024
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:23:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D07B1C8612;
-	Thu,  8 May 2025 10:19:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349131E7648;
+	Thu,  8 May 2025 10:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PC0AygGp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JKIn6lrB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9541B2186
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 10:19:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B4E4B1E5C;
+	Thu,  8 May 2025 10:23:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746699585; cv=none; b=TKTzQY4HVF2L4Pu4aFzQqSEuS6eDvBRSuSF5bpKJlKUglB5XiewP4W7xKt/5mwO1ky2IcTBwoATBsEKU+k+VdPd4Ep5SN2Fr6JDtI/ffQcPNeBpVNWIaT9595L28mK07Vj3/70T9D0jQhpp2fXKNMv7330LVwY1++eqJYBHPR+k=
+	t=1746699829; cv=none; b=ZeBFd1bzGgX5tM4YUmJgcqJih3oIRAM87xd2quMh2+vTrTd+nQTh05/fA9vJd/47dC5OU4nwCn0S/wg4kPWNuFL2snuysc/nDDgncjPDmEZ3TcffexoLgIikGsVgv4rL9oBfF/W20ytrJwvokGbYpmZHFaQ60ibk2n2ptQIJYDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746699585; c=relaxed/simple;
-	bh=sP2VTvgEobbv3CXl+n4BZ8qjaHLld7o5UloKkZ+9cC8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=udn63nBJh1/dV2F7l53bYksE7eYzoIslbjPSMPmF9/Teo+06ZACJ4G30dj+WlMDpYNDLCKUqvmuaS5WnKc4RhgkkYNm5wRzx86ur3NUiGaLAuDVTVopjpdb+CI3l+NrUilT4cNBENFY0AP0ndLXolfaBIO4hTa97vAdIYgxTGSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PC0AygGp; arc=none smtp.client-ip=209.85.160.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-2d09d495c6cso270690fac.3
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 03:19:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746699582; x=1747304382; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fvv70pMgCJ3FiwAsjSiNoU6Z16zsSHQiIGX3w5dV3qE=;
-        b=PC0AygGpyjoT9fVSU24as7HpCzXAN68CtFy4FRz3K82WpvH2eLse5pP+nAt6iuYMbc
-         x7Pd8YAK7RBgrqT1JusHvlHr1Fm4pt2T97KU8iTYTmuON7p645x3MD9uX8t4pQL2a26t
-         nUco00AjqV2/9KP04u7C7c3FS75UcWmlIgJhaDW2VtJmw3OAQPMItzhpQrBgXhmVAbb7
-         kuNxJUMF0qd0OaxtfQN3HfD5uL8JEJIICjdSeLvwj5SImMvG+QQm5Rhd9ys1IaRknut0
-         NmKuACd77K0dRPfkWjASfwFa8jsJ/Pz0Dziadqqz+/xpe6ZK07NqAPoX9iFXYcqTbyn+
-         md1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746699582; x=1747304382;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fvv70pMgCJ3FiwAsjSiNoU6Z16zsSHQiIGX3w5dV3qE=;
-        b=Csyp4XlrKPPTH5efF35tXyl+odmjYjjSRLZg3SYvAc+OrE/XoUQgWxKDrHUqH7sCUE
-         FIZsKeNciGofBQT0HNdTctixwzt8y4YnfmIX+qevovMsDhxOLNS5IGHMQkV71b6P5Otk
-         0LfQz4Vfk5a/YpmUO1jysSw1KQRpGzGR/xeG5qNM+OXs+Y9RNAVqX8o1sB1H16HrbTsB
-         wypwjVSeNU2Jl502GqpwMXsEWgWy0UrJPREbRgwCRuOk8Ivyob0ea4JUHK9V0fCRWQRV
-         bJMZFGDkdWlqy5eebYEvGdm11hqeDBRPS+WqNVhThR7WBmg4O6ykvwe4VYdtJ7hvaVH6
-         X+lw==
-X-Forwarded-Encrypted: i=1; AJvYcCUnKyNMOj9Q1RK2floUPH43rKzwpGoGEYGA2J2epaCZL0W2cAYL07FRzhdn2uTRQlwE66HdKvdJ7TE5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUTu8XCdmQUgy3pX776rMczRiLJpU8et5zdFt5l01OfGerSAhd
-	uEeD13F/1pEEMxzfwSz4+thJJA/5nkl1oSQUIIlRGuKDJ2TgwoiDWHAvD/6K4XbPXwMsP6MU8BW
-	vHc2GzxtckTLVYTZ97QLf8Sw7XSp/MWuQvjpVhQ==
-X-Gm-Gg: ASbGnctaHAlhm4WOgSCmZMP4kDmxoCPZ5OjaE57XvZArvKrbEFmkxRILa6Yg7Wm05/2
-	rnQVLL8l+87Ha327U3z+J7hUBIATBk7n0wsWxR1ebU/ePnuKfcAzWH1xx7WQUOJA7Aubdycozce
-	IXpSMDMV0e99mt4Dy6DKr/kYQ=
-X-Google-Smtp-Source: AGHT+IF520N+kx+oR9rt9xJhtNWjWu/wTkoOchusiLD7WoO6maRQXw9xMSqaOd3WIebwagelwsLLqkPIqfbMN6EVIXc=
-X-Received: by 2002:a05:6870:7020:b0:2c2:2f08:5e5b with SMTP id
- 586e51a60fabf-2db5be3141amr4180433fac.13.1746699582240; Thu, 08 May 2025
- 03:19:42 -0700 (PDT)
+	s=arc-20240116; t=1746699829; c=relaxed/simple;
+	bh=ykl+qSE/o+ewTuX2K86dTy7zS4FJM7xNZq8Dik1n11U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=biGpKZVaRVrjsjti5z3HXRd2Tab9NYUAJp+Dh6aJ6lRPsuGooW6ucRekT1gFAN+V0L2t+S5cdr/lp38NKC2Hx5jdHIqqiWJV3Rf0bFE5Y5EaSJV8Vlc5V8tKY54b/oJDA/XjYuQpHup5O+KErkUnW9ccMRj/eukKApbPmuRU3f8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JKIn6lrB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54FFBC4CEF1;
+	Thu,  8 May 2025 10:23:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746699828;
+	bh=ykl+qSE/o+ewTuX2K86dTy7zS4FJM7xNZq8Dik1n11U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JKIn6lrBZ6QeRchHyrOxTKyVra23g1y0Th2o1nowCAA6gGwrzOT5q9T3Hw7oXORqN
+	 1Ntcs0y/VQsEA/XOS2vJ/eS9rCTAkM9T25hAMl9NSdv4L7OQOXWYPI4z3AW2ozG62k
+	 hsBzFejsR1/8TC/83SMFDz+/w7PibrK2kzo05tUEa+TBa/omAgSaXOF9J7ComZ2rC2
+	 y18lK34rNESZBQhfjogKMiPJz0xsB/XkQB6W9/ZYSwbw2pMV+lfgvb1E60HawJZfy/
+	 5HzB/+BfnB7Gffb5nIhwgPBAgTDwV8QivD8dI4K1kBNnO+cuBOZAzAQH+EFXEzJhlU
+	 9PBxAsWIv2TVQ==
+Message-ID: <c3739ed3-353b-4901-a65e-ced3f41a7f02@kernel.org>
+Date: Thu, 8 May 2025 12:23:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250402233407.2452429-1-willmcvicker@google.com> <20250402233407.2452429-6-willmcvicker@google.com>
-In-Reply-To: <20250402233407.2452429-6-willmcvicker@google.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Thu, 8 May 2025 11:19:30 +0100
-X-Gm-Features: ATxdqUFInfzL-Wd6UFpfOdOxzv03B4za9dTc_DPavO3LtoEQp9Xr8GSGsSU8UXU
-Message-ID: <CADrjBPpDs_itymvGckRYeuJDkMSOo5bc60tYTeRBtAu6Tm8O6Q@mail.gmail.com>
-Subject: Re: [PATCH v2 5/7] clocksource/drivers/exynos_mct: Fix uninitialized
- irq name warning
-To: Will McVicker <willmcvicker@google.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Thomas Gleixner <tglx@linutronix.de>, Saravana Kannan <saravanak@google.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Donghoon Yu <hoony.yu@samsung.com>, 
-	Hosung Kim <hosung0.kim@samsung.com>, kernel-team@android.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Youngmin Nam <youngmin.nam@samsung.com>, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: crypto: Add binding for TI DTHE V2
+To: T Pratham <t-pratham@ti.com>, Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Kamlesh Gurudasani <kamlesh@ti.com>, Vignesh Raghavendra
+ <vigneshr@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+ Manorit Chawdhry <m-chawdhry@ti.com>, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250508101723.846210-2-t-pratham@ti.com>
+ <20250508101723.846210-3-t-pratham@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250508101723.846210-3-t-pratham@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Will,
+On 08/05/2025 12:07, T Pratham wrote:
+> Add DT binding for Texas Instruments DTHE V2 crypto accelerator.
+> 
+> DTHE V2 is introduced as a part of TI AM62L SoC and can currently be
+> only found in it.
+> 
+> Signed-off-by: T Pratham <t-pratham@ti.com>
 
-On Thu, 3 Apr 2025 at 00:34, Will McVicker <willmcvicker@google.com> wrote:
->
-> The Exynos MCT driver doesn't set the clocksource name until the CPU
-> hotplug state is setup which happens after the IRQs are requested. This
-> results in an empty IRQ name which leads to the below warning at
-> proc_create() time. When this happens, the userdata partition fails to
-> mount and the device gets stuck in an endless loop printing the error:
->
->   root '/dev/disk/by-partlabel/userdata' doesn't exist or does not contain a /dev.
->
-> To fix this, we just need to initialize the name before requesting the
-> IRQs.
->
-> Warning from Pixel 6 kernel log:
->
-> [  T430] name len 0
-> [  T430] WARNING: CPU: 6 PID: 430 at fs/proc/generic.c:407 __proc_create+0x258/0x2b4
-> [  T430] Modules linked in: dwc3_exynos(E+)
-> [  T430]  ufs_exynos(E+) phy_exynos_ufs(E)
-> [  T430]  phy_exynos5_usbdrd(E) exynos_usi(E+) exynos_mct(E+) s3c2410_wdt(E)
-> [  T430]  arm_dsu_pmu(E) simplefb(E)
-> [  T430] CPU: 6 UID: 0 PID: 430 Comm: (udev-worker) Tainted:
->          ... 6.14.0-next-20250331-4k-00008-g59adf909e40e #1 ...
-> [  T430] Tainted: [W]=WARN, [E]=UNSIGNED_MODULE
-> [  T430] Hardware name: Raven (DT)
-> [...]
-> [  T430] Call trace:
-> [  T430]  __proc_create+0x258/0x2b4 (P)
-> [  T430]  proc_mkdir+0x40/0xa0
-> [  T430]  register_handler_proc+0x118/0x140
-> [  T430]  __setup_irq+0x460/0x6d0
-> [  T430]  request_threaded_irq+0xcc/0x1b0
-> [  T430]  mct_init_dt+0x244/0x604 [exynos_mct ...]
-> [  T430]  mct_init_spi+0x18/0x34 [exynos_mct ...]
-> [  T430]  exynos4_mct_probe+0x30/0x4c [exynos_mct ...]
-> [  T430]  platform_probe+0x6c/0xe4
-> [  T430]  really_probe+0xf4/0x38c
-> [...]
-> [  T430]  driver_register+0x6c/0x140
-> [  T430]  __platform_driver_register+0x28/0x38
-> [  T430]  exynos4_mct_driver_init+0x24/0xfe8 [exynos_mct ...]
-> [  T430]  do_one_initcall+0x84/0x3c0
-> [  T430]  do_init_module+0x58/0x208
-> [  T430]  load_module+0x1de0/0x2500
-> [  T430]  init_module_from_file+0x8c/0xdc
->
-> Signed-off-by: Will McVicker <willmcvicker@google.com>
-> ---
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-You could additionally consider adding a Fixes: tag and CC stable if
-you want this to land in LTS tree's.
-
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-
->  drivers/clocksource/exynos_mct.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/clocksource/exynos_mct.c b/drivers/clocksource/exynos_mct.c
-> index a5ef7d64b1c2..62febeb4e1de 100644
-> --- a/drivers/clocksource/exynos_mct.c
-> +++ b/drivers/clocksource/exynos_mct.c
-> @@ -465,8 +465,6 @@ static int exynos4_mct_starting_cpu(unsigned int cpu)
->                 per_cpu_ptr(&percpu_mct_tick, cpu);
->         struct clock_event_device *evt = &mevt->evt;
->
-> -       snprintf(mevt->name, sizeof(mevt->name), "mct_tick%d", cpu);
-> -
->         evt->name = mevt->name;
->         evt->cpumask = cpumask_of(cpu);
->         evt->set_next_event = exynos4_tick_set_next_event;
-> @@ -567,6 +565,14 @@ static int __init exynos4_timer_interrupts(struct device_node *np,
->         for (i = MCT_L0_IRQ; i < nr_irqs; i++)
->                 mct_irqs[i] = irq_of_parse_and_map(np, i);
->
-> +       for_each_possible_cpu(cpu) {
-> +               struct mct_clock_event_device *mevt =
-> +                   per_cpu_ptr(&percpu_mct_tick, cpu);
-> +
-> +               snprintf(mevt->name, sizeof(mevt->name), "mct_tick%d",
-> +                        cpu);
-> +       }
-> +
->         if (mct_int_type == MCT_INT_PPI) {
->
->                 err = request_percpu_irq(mct_irqs[MCT_L0_IRQ],
-> --
-> 2.49.0.472.ge94155a9ec-goog
->
+Best regards,
+Krzysztof
 
