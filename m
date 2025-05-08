@@ -1,81 +1,95 @@
-Return-Path: <devicetree+bounces-175156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30B65AAFF6B
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:43:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE940AAFF72
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:45:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F73C7A798D
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:42:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5C169C5182
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:44:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0671D27A10F;
-	Thu,  8 May 2025 15:43:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CAA02797A3;
+	Thu,  8 May 2025 15:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lAS+hsSb"
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="RpU848U1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03B77279900;
-	Thu,  8 May 2025 15:43:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746719002; cv=none; b=q8ms+EbJhpDAr48qx8+dG+kiQIaKYvtnVT9i/4nU3n1X3esqFuFkA4IgWmRKQWZL8n5k0FvueetqvcMSx9CfhrBlN5FfhkDz36s4Ct+yrJi/ld3BuUKh547CCxZwWE1ylEV0MXp3VHB/OOZZLfU1AtF7BFgAzJmlwliZZvvU/W8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746719002; c=relaxed/simple;
-	bh=7s/lCc95cwjSyVrILrpuwT3kDvb8Ll0Dx+xVCXz6qoE=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1374F21ADA3;
+	Thu,  8 May 2025 15:44:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746719096; cv=pass; b=Fd78F+mfp6Ik6feigKycQ1YJANlHtVAZlezm5FcoKA8BN2adZGwoTCoSZYMftxJpLOfAEUhgAD0PMqpAFtYyO+xYmY2sEgL+lNfSB1+nO33HauLLvLuEQTdRsFUloxcS31nvahanEkM8nuR4tyXB84QrVm0ZfMUaubKfPN/EEg8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746719096; c=relaxed/simple;
+	bh=/QJMe1FU3KRgGIp4JfDpUvczkHX6BPhSDRl3qX0SDBk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ayomCW2b+e/SZFyqQTLFomNa479PXNZ5bXBJEXlU3dBWCUDfwez8JJdgA5LYoSpj30JNBDrXqpo6f6rEOa5jC9Wkjv3k1rhr06fCq9Hkm5ySOF8Lswt8veWthj82YrTdRubEqfFogKAuYp+FKCqRouRBlp1czTZ/kg7POzj1diU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lAS+hsSb; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746719000; x=1778255000;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7s/lCc95cwjSyVrILrpuwT3kDvb8Ll0Dx+xVCXz6qoE=;
-  b=lAS+hsSb4r+0wbG5MtyDgvp3vglT6eIk+whlqFbe66fyqiWeprByOA/2
-   zg8tZltej1Vzs/v/fpL8c9IPkh7Jhxl1Zv0RvnYGsOHBRPOFsCgyV79YJ
-   agHMx4Uy6j5CMzIdw/IQZzllZlo74079h48idi6Jq7GeaxuEMoyXK3wh1
-   HnX/qyr37Kr/VOv8q+huO++4/4i7zZlyzKn8scrqy/ZkR5PlAYb+lg/wz
-   Tqh9iXoS8DW3FhDUN2xvqhFNzSxLdyeFW+xtThhmqx231Du6bifkqgpNp
-   bsx7YJMeoC1nmNII2Yks/7SxpdMKNkLs0VPnTCopYo8nQo0uvnd1jPkDt
-   Q==;
-X-CSE-ConnectionGUID: ZowUfHi9QSiSh0bBuMhRcA==
-X-CSE-MsgGUID: airJDLwrRzOv4IHfqm59lQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="48675962"
-X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; 
-   d="scan'208";a="48675962"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2025 08:43:17 -0700
-X-CSE-ConnectionGUID: aCRjluoISEKIYweJGTQg9A==
-X-CSE-MsgGUID: alOZR5A+Sjua+lG2Oud9qA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; 
-   d="scan'208";a="136262749"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 08 May 2025 08:43:14 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uD3Oy-000B7F-2C;
-	Thu, 08 May 2025 15:43:12 +0000
-Date: Thu, 8 May 2025 23:42:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: Convert marvell,armada-370-timer to
- DT schema
-Message-ID: <202505082358.dnIeqrs0-lkp@intel.com>
-References: <20250506022301.2588282-1-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cWYVk1p8vkEn/esnx8mx6VR76ggaVkN94ekKCM2YzdBJyxS4X5ikjIOYmLuYe5DWJ7qZxSKC7IlNVsJepu60UFijKtwR1ir5uKdKY9+Vq6iwYNTXBNDbWkqbpfZ7RCFUf0W8i7NyMZpNoALMSyGJV3zQD/lvqX5KyIZwui6NXMQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=RpU848U1; arc=pass smtp.client-ip=185.185.170.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-127c-61ff-fee2-b97e.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:127c:61ff:fee2:b97e])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4Ztbzh16zLz49Q4L;
+	Thu,  8 May 2025 18:44:48 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1746719088;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sAam+l0OG4q0MqjsjSZBv6yyI6Tq+opJg9RRKMGreSQ=;
+	b=RpU848U1VeBWH8L28DoeJgeiQZZ6eDt9UJSWvd7R5GiTeLDV2akXIMfrs1SL0a+pavykB9
+	O86gupSZ1pm15uBWVbJoPO/smWFhnBclPPlQdQUk8+QKUK07uhL3Fw0QuhBLLFFzU02lRw
+	Iu8VcwxhR5+sIf+GYvHyq8/FrJvs52PkxYGjXHK8DUQDrUP/NoUyGE7wV4SZ5DLRN4feap
+	J1bbzJ0XGia0r1Drxre5mtouKEV8+eHTe98ObrPPiZhlKGoSgKDelhPeohmRzlDaxyxlte
+	BWludfw86zyb0h8oHjs8KBOfnyEg+0rgGMTXPSXgVvUqlbrzlk/iA6Z3v1OzzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1746719088;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sAam+l0OG4q0MqjsjSZBv6yyI6Tq+opJg9RRKMGreSQ=;
+	b=tcSioKMUe/vUBTBf00+o+fnvrWUy4AX0BJuUUtoQw2GvvlWf3o4frpMWJn7bN9xLiC7xQh
+	3+z84IeflEWR2BjGXWsrx71yk/cBrW83sM9yxBb+ApYExqyCihVC+zfs8tIIXOyNnpSdFA
+	JkBAr9/UeQHzpi1mG6IzBmlVZgYYk/919PV4LtjeujmJBa+Wx4GAExjxMrgT3qMzxDkPWw
+	w+HxZXLZ0t/G+uI32Qn5oxeMlzIgBrL2GEToWWBGWANoDdgAso9JW1uhhmPUOhOP0jLIZz
+	pI/qH7flnhSzvULdC8HNH6UbDxHokBwImkwl9EghWk4jpzcuPfQ72nm1+Btnzg==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1746719088; a=rsa-sha256;
+	cv=none;
+	b=aJyklILiuQRiYeSB6wW7MgQvU5mQLgYmIRxomEcxcdX3U0ySVulvTQAhy/L6uoCQiMwcb3
+	RKZtNQ9G5ozsXKs2GB8unRDxabBN4yx4X6nNVO66sf0RpPxlXMCRAx0arcGv4mufp3UGDU
+	kXypTscFat9Y4BZNhScZlQWL5mer44cgN8LGBJQZzTEzbmbvpwEkg9Zm9lVWdqJL5gtRc8
+	Mam+8iwTfBBTA8LXe6nyg/0QMQgGGLA6Tiy8jTHDkSgAzfbuH7OEZgHZM/OpQ4dasB5Hml
+	eDpTKrTprodSJEXCrlN0ISqurY1zriNT7coI/TJBbOlWWooYNnVWOHtwoEs6rg==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id A028D634C93;
+	Thu,  8 May 2025 18:44:47 +0300 (EEST)
+Date: Thu, 8 May 2025 15:44:47 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: keke.li@amlogic.com
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+	dan.scally@ideasonboard.com, jacopo.mondi@ideasonboard.com
+Subject: Re: [PATCH v9 08/10] media: platform: Add C3 ISP driver
+Message-ID: <aBzRb8ZKuGI3E_cu@valkosipuli.retiisi.eu>
+References: <20250427-c3isp-v9-0-e0fe09433d94@amlogic.com>
+ <20250427-c3isp-v9-8-e0fe09433d94@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,44 +98,126 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250506022301.2588282-1-robh@kernel.org>
+In-Reply-To: <20250427-c3isp-v9-8-e0fe09433d94@amlogic.com>
 
-Hi Rob,
+Hi Keke, Jacopo,
 
-kernel test robot noticed the following build warnings:
+On Sun, Apr 27, 2025 at 02:27:16PM +0800, Keke Li via B4 Relay wrote:
+> diff --git a/drivers/media/platform/amlogic/c3/isp/c3-isp-params.c b/drivers/media/platform/amlogic/c3/isp/c3-isp-params.c
+> new file mode 100644
+> index 000000000000..0e0b5d61654a
+> --- /dev/null
+> +++ b/drivers/media/platform/amlogic/c3/isp/c3-isp-params.c
 
-[auto build test WARNING on tip/timers/core]
-[also build test WARNING on linus/master v6.15-rc5 next-20250508]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+...
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Rob-Herring-Arm/dt-bindings-timer-Convert-marvell-armada-370-timer-to-DT-schema/20250506-144131
-base:   tip/timers/core
-patch link:    https://lore.kernel.org/r/20250506022301.2588282-1-robh%40kernel.org
-patch subject: [PATCH] dt-bindings: timer: Convert marvell,armada-370-timer to DT schema
-reproduce: (https://download.01.org/0day-ci/archive/20250508/202505082358.dnIeqrs0-lkp@intel.com/reproduce)
+> +static int c3_isp_params_vb2_buf_prepare(struct vb2_buffer *vb)
+> +{
+> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
+> +	struct c3_isp_params_buffer *buf = to_c3_isp_params_buffer(vbuf);
+> +	struct c3_isp_params *params = vb2_get_drv_priv(vb->vb2_queue);
+> +	struct c3_isp_params_cfg *cfg = buf->cfg;
+> +	struct c3_isp_params_cfg *usr_cfg = vb2_plane_vaddr(vb, 0);
+> +	size_t payload_size = vb2_get_plane_payload(vb, 0);
+> +	size_t header_size = offsetof(struct c3_isp_params_cfg, data);
+> +	size_t block_offset = 0;
+> +	size_t cfg_size;
+> +
+> +	/* Payload size can't be greater than the destination buffer size */
+> +	if (payload_size > params->vfmt.fmt.meta.buffersize) {
+> +		dev_dbg(params->isp->dev,
+> +			"Payload size is too large: %zu\n", payload_size);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Payload size can't be smaller than the header size */
+> +	if (payload_size < header_size) {
+> +		dev_dbg(params->isp->dev,
+> +			"Payload size is too small: %zu\n", payload_size);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * Use the internal scratch buffer to avoid userspace modifying
+> +	 * the buffer content while the driver is processing it.
+> +	 */
+> +	memcpy(cfg, usr_cfg, payload_size);
+> +
+> +	/* Only v0 is supported at the moment */
+> +	if (cfg->version != C3_ISP_PARAMS_BUFFER_V0) {
+> +		dev_dbg(params->isp->dev,
+> +			"Invalid params buffer version: %u\n", cfg->version);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Validate the size reported in the parameter buffer header */
+> +	cfg_size = header_size + cfg->data_size;
+> +	if (cfg_size != payload_size) {
+> +		dev_dbg(params->isp->dev,
+> +			"Data size %zu and payload size %zu are different\n",
+> +			cfg_size, payload_size);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Walk the list of parameter blocks and validate them */
+> +	cfg_size = cfg->data_size;
+> +	while (cfg_size >= sizeof(struct c3_isp_params_block_header)) {
+> +		const struct c3_isp_params_block_header *block;
+> +		const struct c3_isp_params_handler *handler;
+> +
+> +		block = (struct c3_isp_params_block_header *)
+> +			&cfg->data[block_offset];
+> +
+> +		if (block->type >= ARRAY_SIZE(c3_isp_params_handlers)) {
+> +			dev_dbg(params->isp->dev,
+> +				"Invalid params block type\n");
+> +			return -EINVAL;
+> +		}
+> +
+> +		if (block->size > cfg_size) {
+> +			dev_dbg(params->isp->dev,
+> +				"Block size is greater than cfg size\n");
+> +			return -EINVAL;
+> +		}
+> +
+> +		if ((block->flags & (C3_ISP_PARAMS_BLOCK_FL_ENABLE |
+> +				     C3_ISP_PARAMS_BLOCK_FL_DISABLE)) ==
+> +		    (C3_ISP_PARAMS_BLOCK_FL_ENABLE |
+> +		     C3_ISP_PARAMS_BLOCK_FL_DISABLE)) {
+> +			dev_dbg(params->isp->dev,
+> +				"Invalid parameters block flags\n");
+> +			return -EINVAL;
+> +		}
+> +
+> +		handler = &c3_isp_params_handlers[block->type];
+> +		if (block->size != handler->size) {
+> +			dev_dbg(params->isp->dev,
+> +				"Invalid params block size\n");
+> +			return -EINVAL;
+> +		}
+> +
+> +		block_offset += block->size;
+> +		cfg_size -= block->size;
+> +	}
+> +
+> +	if (cfg_size) {
+> +		dev_dbg(params->isp->dev,
+> +			"Unexpected data after the params buffer end\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505082358.dnIeqrs0-lkp@intel.com/
+The above looks very much like rkisp1_params_prepare_ext_params() in the
+Rockchip ISP driver. Instead of copying all this non-trivial code in
+verbatim here, could you instead refactor this so both the drivers could
+use the same implementation?
 
-All warnings (new ones prefixed by >>):
-
-   Warning: Documentation/translations/zh_CN/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
-   Warning: Documentation/translations/zh_CN/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
-   Warning: Documentation/translations/zh_TW/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
-   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
->> Warning: drivers/clocksource/timer-armada-370-xp.c references a file that doesn't exist: Documentation/devicetree/bindings/timer/marvell,armada-370-xp-timer.txt
-   Can't build as 1 mandatory dependency is missing at ./scripts/sphinx-pre-install line 984.
-   make[2]: *** [Documentation/Makefile:121: htmldocs] Error 255
-   make[1]: *** [Makefile:1801: htmldocs] Error 2
-   make: *** [Makefile:248: __sub-make] Error 2
-   make: Target 'htmldocs' not remade because of errors.
+The types are different so macros will be likely needed.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+
+Sakari Ailus
 
