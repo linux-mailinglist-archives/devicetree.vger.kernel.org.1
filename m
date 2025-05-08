@@ -1,84 +1,83 @@
-Return-Path: <devicetree+bounces-174877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1379BAAF307
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:39:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F448AAF30C
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:43:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AED1462237
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 05:39:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CBF01C02689
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 05:43:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40A12147F7;
-	Thu,  8 May 2025 05:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 226F4215165;
+	Thu,  8 May 2025 05:43:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="bnXy1y85";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="1ZCSTR2U"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BZpYc3R1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D9DA2144B7;
-	Thu,  8 May 2025 05:38:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5D68472;
+	Thu,  8 May 2025 05:43:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746682736; cv=none; b=lBsB1V+FMd0pqscp/y7CCbweYJrkyLEliyoWvRYsbNM3CYgSoJ/MBiCdwB9enp7cWtpTOfWoV7qrXnW5PD1NxemB1ynEi9dBFvsV41hG69TTFvFfF+a1lz754hREayo7VEl4qBCUdsqyrDKI0rd4hMcT/qNeGJHCifBSQ2MnQO0=
+	t=1746682995; cv=none; b=cKl6dINV8LQw59EAXsZaYEGuAmikdaJq4ZhU7Ebpr4Y2eJagIFmFi41dl8FPMrzYFGDcyVR+bKSImMEAzck5u1/aqUT4nuqi2psZbOygJHK7bRXkFnCjii3qWtohEKJGLJ0xirDVgebQT+taoO3cKlAEZCN5Dn5TX7dy4XPVlqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746682736; c=relaxed/simple;
-	bh=dDCrl7bkwo/0S+4APKJnm3R6af9SQELqg9M5HZnlgFc=;
+	s=arc-20240116; t=1746682995; c=relaxed/simple;
+	bh=bJnTVWWAoPsi/gOCsSmayqk7WS4HGxFcME0P4yAMNnk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nUZ6++/Azuf1LfbidN9cvszLJiFGmpSyN+Bo9Bqgq5GG8yww3caNA6BP5z1PklUgN42+s9JdUSj0X0LoGbpXM7FWXMLDu3GJAn4BVniPU1TfWHGEBfUEALEiEySJauvHRpDqq0kgiVs8Nx2e7yTAMFSoPWxEfZ2L79Q04TT7G98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=bnXy1y85; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=1ZCSTR2U; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 96FA612FB444;
-	Wed, 07 May 2025 22:38:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1746682733; bh=dDCrl7bkwo/0S+4APKJnm3R6af9SQELqg9M5HZnlgFc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bnXy1y85/b2c9u9GelQ+EWxYmOcP25x/X4mu7n3Hk7WxQvGvHJTEKvMRInDeQGJON
-	 CJydroNKSYlW2P7BMVwe/YZsoPToMgaBv1AZQhOe4MJ9rZ2T3YKi3APDRyiStx2jB6
-	 8mblpqic/vFCLea7qgCZ8lrUA7iDUqsTZ3cBen8ckgA57SMXpbI2OjUfl/qJA1rV/1
-	 Whhf+bHiDao2TW1lh+UJ1ngRYdzfYU9Kp0krWuZA+EOAQhA/IOY6RoqBvAPWCMiBD+
-	 A76ndalXqqA/XDH1iao5VF9INz7gn2GDNBBKwSpa1zMapbYS1LlHzKoS4ex+QC1Vpi
-	 j0pMZEGkzPzeQ==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id oLEJHnSxcwgL; Wed,  7 May 2025 22:38:19 -0700 (PDT)
-Received: from ketchup (unknown [183.217.82.204])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 7773212FB404;
-	Wed, 07 May 2025 22:38:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1746682699; bh=dDCrl7bkwo/0S+4APKJnm3R6af9SQELqg9M5HZnlgFc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=1ZCSTR2UamB34rz6a0We4Hxm+i7shGD78C0zzsPrCYtO4ElKKXZ5B1r9CyF1Bnwvw
-	 3xhCO7GIr8ibHgQMnZKZJwMbIijgOg3JD/gtXWviUPE+cCwYtaKhJcIX8DVs90Z3Av
-	 it6iWm2SnKOY3j1fjQ3XUtkJLCPMaKxt6g93++gr1gJa5FqEe761gCbSIYgkX78atw
-	 j87r5jc5yIgagwzEmUGRnlzgZY1Vq4E1ENA5TUDStsGuFSrXbCCj70r+5sh8NAS6Si
-	 yPuNjkXVh5c7CWQmp0ZAygwvP6ei3Cq2evvtm3qUv7szHCke/dFSTDew6PEkysSGcS
-	 q1J5WYq0dbQpA==
-Date: Thu, 8 May 2025 05:38:11 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Alex Elder <elder@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-	p.zabel@pengutronix.de, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	dlan@gentoo.org
-Cc: inochiama@outlook.com, guodong@riscstar.com, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org, spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 4/6] reset: spacemit: add support for SpacemiT CCU
- resets
-Message-ID: <aBxDQ1_2xJjGlwNf@ketchup>
-References: <20250506210638.2800228-1-elder@riscstar.com>
- <20250506210638.2800228-5-elder@riscstar.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fcc8jVegTiqwSwHkYmyKUcGxoc8XYtsltS3K0tIBlcM24BEZrWU+MldrkjCMst4qJg7C4wG1ahGef0rFIuJROQH9UgNwD5g0eqMsNpKsFD7qhRoxEvKPCDlEjxICFDStJ7XQwuAM2rdxeCnzozsiKQUq5RUbHBcjNIqH0tgwQ+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BZpYc3R1; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1746682993; x=1778218993;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bJnTVWWAoPsi/gOCsSmayqk7WS4HGxFcME0P4yAMNnk=;
+  b=BZpYc3R1sqll+ImXZ6yHGHvbDArb/w/Qurug2T7Pt+qEeZdEM2vKPaYS
+   m0TpjB40exo+LytWwVYQV34HbtBjnPihUcW4vYyPbdhhhfOrEN8IBIPY0
+   zm66OcB997NfUjAN0AIThmeMPE4BGwIfm8+dDtSVAQfr3FzW3Y8OVc8sM
+   ZTyry7s3T+isFfVqWe57tWNeNI8CLNCQyeTlWg/pPSHFjNPimF2rRxqlN
+   5P5uLvzA5nNoi5o3pdZsGKxn7kJn5cYstbbHcTMBp2ti8Oys/fQd1xiv4
+   C9z+eOFyX6yFHuGGH5j3bX44Bt+Vb8h4EysdpvvYMwhxyBGlKDCXhqCVq
+   Q==;
+X-CSE-ConnectionGUID: LpZ76HDBQ1e1PIbiwHShQg==
+X-CSE-MsgGUID: J9j+G0dZSpS3rTUSyrplsA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="73829759"
+X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; 
+   d="scan'208";a="73829759"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2025 22:43:12 -0700
+X-CSE-ConnectionGUID: Wy1ixSdURoa0eiLmwwRbfA==
+X-CSE-MsgGUID: XdNwMjLTQf++QnlSFVtUhQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; 
+   d="scan'208";a="137177988"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 07 May 2025 22:43:06 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uCu2D-000AR5-0z;
+	Thu, 08 May 2025 05:43:05 +0000
+Date: Thu, 8 May 2025 13:42:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: luyulin <luyulin@eswincomputing.com>, linus.walleij@linaro.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kees@kernel.org,
+	gustavoars@kernel.org, brgl@bgdev.pl,
+	linux-hardening@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, zhengyu@eswincomputing.com,
+	ningyu@eswincomputing.com, huangyifeng@eswincomputing.com,
+	linmin@eswincomputing.com, fenglin@eswincomputing.com,
+	lianghujun@eswincomputing.com, luyulin <luyulin@eswincomputing.com>,
+	Samuel Holland <samuel.holland@sifive.com>
+Subject: Re: [PATCH 2/2] pinctrl: eswin: Add eic7700 pinctrl driver
+Message-ID: <202505081214.tUfDpIv3-lkp@intel.com>
+References: <20250506091241.941-1-luyulin@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,115 +86,316 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250506210638.2800228-5-elder@riscstar.com>
+In-Reply-To: <20250506091241.941-1-luyulin@eswincomputing.com>
 
-On Tue, May 06, 2025 at 04:06:35PM -0500, Alex Elder wrote:
-> Implement reset support for SpacemiT CCUs.  The code is structured to
-> handle SpacemiT resets generically, while defining the set of specific
-> reset controllers and their resets in an SoC-specific source file.  A
-> SpacemiT reset controller device is an auxiliary device associated with
-> a clock controller (CCU).
-> 
-> This initial patch defines the reset controllers for the MPMU, APBC, and
-> MPMU CCUs, which already defined clock controllers.
-> 
-> Signed-off-by: Alex Elder <elder@riscstar.com>
-> ---
->  drivers/reset/Kconfig           |   1 +
->  drivers/reset/Makefile          |   1 +
->  drivers/reset/spacemit/Kconfig  |  12 +++
->  drivers/reset/spacemit/Makefile |   7 ++
->  drivers/reset/spacemit/core.c   |  61 +++++++++++
->  drivers/reset/spacemit/core.h   |  39 +++++++
->  drivers/reset/spacemit/k1.c     | 177 ++++++++++++++++++++++++++++++++
->  7 files changed, 298 insertions(+)
->  create mode 100644 drivers/reset/spacemit/Kconfig
->  create mode 100644 drivers/reset/spacemit/Makefile
->  create mode 100644 drivers/reset/spacemit/core.c
->  create mode 100644 drivers/reset/spacemit/core.h
->  create mode 100644 drivers/reset/spacemit/k1.c
-> 
+Hi luyulin,
 
-...
+kernel test robot noticed the following build errors:
 
-> diff --git a/drivers/reset/spacemit/Kconfig b/drivers/reset/spacemit/Kconfig
-> new file mode 100644
-> index 0000000000000..4ff3487a99eff
-> --- /dev/null
-> +++ b/drivers/reset/spacemit/Kconfig
-> @@ -0,0 +1,12 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
-> +config RESET_SPACEMIT
-> +	bool
-> +
-> +config RESET_SPACEMIT_K1
-> +	tristate "SpacemiT K1 reset driver"
-> +	depends on ARCH_SPACEMIT || COMPILE_TEST
-> +	select RESET_SPACEMIT
-> +	default ARCH_SPACEMIT
-> +	help
-> +	  This enables the reset controller driver for the SpacemiT K1 SoC.
+[auto build test ERROR on linusw-pinctrl/devel]
+[also build test ERROR on linusw-pinctrl/for-next robh/for-next linus/master v6.15-rc5 next-20250507]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-With auxiliary bus introduced, Kconfig entries for both the reset and
-clock should select AUXILIARY_BUS, or building defconfig will fail with
-undefined references,
+url:    https://github.com/intel-lab-lkp/linux/commits/luyulin/pinctrl-eswin-Add-eic7700-pinctrl-driver/20250506-181212
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
+patch link:    https://lore.kernel.org/r/20250506091241.941-1-luyulin%40eswincomputing.com
+patch subject: [PATCH 2/2] pinctrl: eswin: Add eic7700 pinctrl driver
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20250508/202505081214.tUfDpIv3-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250508/202505081214.tUfDpIv3-lkp@intel.com/reproduce)
 
-        riscv64-unknown-linux-musl-ld: drivers/clk/spacemit/ccu-k1.o: in function `k1_ccu_probe':
-        ccu-k1.c:(.text+0x19c): undefined reference to `auxiliary_device_init'
-        riscv64-unknown-linux-musl-ld: ccu-k1.c:(.text+0x226): undefined reference to `__auxiliary_device_add'
-        riscv64-unknown-linux-musl-ld: drivers/reset/spacemit/k1.o: in function `spacemit_k1_reset_driver_init':
-        k1.c:(.init.text+0x1a): undefined reference to `__auxiliary_driver_register'
-        riscv64-unknown-linux-musl-ld: drivers/reset/spacemit/k1.o: in function `spacemit_k1_reset_driver_exit':
-        k1.c:(.exit.text+0x10): undefined reference to `auxiliary_driver_unregister'
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505081214.tUfDpIv3-lkp@intel.com/
 
-> diff --git a/drivers/reset/spacemit/Makefile b/drivers/reset/spacemit/Makefile
-> new file mode 100644
-> index 0000000000000..3a064e9d5d6b4
-> --- /dev/null
-> +++ b/drivers/reset/spacemit/Makefile
-> @@ -0,0 +1,7 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +obj-$(CONFIG_RESET_SPACEMIT)			+= reset_spacemit.o
+All errors (new ones prefixed by >>):
 
-As RESET_SPACEMIT is defined as bool, the reset driver will never be
-compiled as a module... so either the RESET_SPACEMIT_K1 should be
-limited to bool as well or you could take an approach similar to the
-clock driver.
+>> drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:123:9: note: in expansion of macro 'EIC7700_PIN'
+     123 |         EIC7700_PIN(0,   "chip_mode",           [0] = F_CHIP_MODE),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:123:9: note: in expansion of macro 'EIC7700_PIN'
+     123 |         EIC7700_PIN(0,   "chip_mode",           [0] = F_CHIP_MODE),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:123:9: note: in expansion of macro 'EIC7700_PIN'
+     123 |         EIC7700_PIN(0,   "chip_mode",           [0] = F_CHIP_MODE),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:124:9: note: in expansion of macro 'EIC7700_PIN'
+     124 |         EIC7700_PIN(1,   "mode_set0",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:124:9: note: in expansion of macro 'EIC7700_PIN'
+     124 |         EIC7700_PIN(1,   "mode_set0",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:124:9: note: in expansion of macro 'EIC7700_PIN'
+     124 |         EIC7700_PIN(1,   "mode_set0",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:125:9: note: in expansion of macro 'EIC7700_PIN'
+     125 |         EIC7700_PIN(2,   "mode_set1",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:125:9: note: in expansion of macro 'EIC7700_PIN'
+     125 |         EIC7700_PIN(2,   "mode_set1",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:125:9: note: in expansion of macro 'EIC7700_PIN'
+     125 |         EIC7700_PIN(2,   "mode_set1",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:126:9: note: in expansion of macro 'EIC7700_PIN'
+     126 |         EIC7700_PIN(3,   "mode_set2",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:126:9: note: in expansion of macro 'EIC7700_PIN'
+     126 |         EIC7700_PIN(3,   "mode_set2",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:126:9: note: in expansion of macro 'EIC7700_PIN'
+     126 |         EIC7700_PIN(3,   "mode_set2",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:127:9: note: in expansion of macro 'EIC7700_PIN'
+     127 |         EIC7700_PIN(4,   "mode_set3",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:127:9: note: in expansion of macro 'EIC7700_PIN'
+     127 |         EIC7700_PIN(4,   "mode_set3",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:127:9: note: in expansion of macro 'EIC7700_PIN'
+     127 |         EIC7700_PIN(4,   "mode_set3",           [0] = F_SDIO, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:128:9: note: in expansion of macro 'EIC7700_PIN'
+     128 |         EIC7700_PIN(5,   "xin",                 [0] = F_OSC),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:128:9: note: in expansion of macro 'EIC7700_PIN'
+     128 |         EIC7700_PIN(5,   "xin",                 [0] = F_OSC),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:128:9: note: in expansion of macro 'EIC7700_PIN'
+     128 |         EIC7700_PIN(5,   "xin",                 [0] = F_OSC),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:129:9: note: in expansion of macro 'EIC7700_PIN'
+     129 |         EIC7700_PIN(6,   "rtc_xin",             [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:129:9: note: in expansion of macro 'EIC7700_PIN'
+     129 |         EIC7700_PIN(6,   "rtc_xin",             [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:129:9: note: in expansion of macro 'EIC7700_PIN'
+     129 |         EIC7700_PIN(6,   "rtc_xin",             [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:130:9: note: in expansion of macro 'EIC7700_PIN'
+     130 |         EIC7700_PIN(7,   "rst_out_n",           [0] = F_RESET),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:130:9: note: in expansion of macro 'EIC7700_PIN'
+     130 |         EIC7700_PIN(7,   "rst_out_n",           [0] = F_RESET),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:130:9: note: in expansion of macro 'EIC7700_PIN'
+     130 |         EIC7700_PIN(7,   "rst_out_n",           [0] = F_RESET),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:131:9: note: in expansion of macro 'EIC7700_PIN'
+     131 |         EIC7700_PIN(8,   "key_reset_n",         [0] = F_RESET),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:131:9: note: in expansion of macro 'EIC7700_PIN'
+     131 |         EIC7700_PIN(8,   "key_reset_n",         [0] = F_RESET),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:131:9: note: in expansion of macro 'EIC7700_PIN'
+     131 |         EIC7700_PIN(8,   "key_reset_n",         [0] = F_RESET),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:132:9: note: in expansion of macro 'EIC7700_PIN'
+     132 |         EIC7700_PIN(9,   "rst_in_n",            [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+>> drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:132:9: note: in expansion of macro 'EIC7700_PIN'
+     132 |         EIC7700_PIN(9,   "rst_in_n",            [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:132:9: note: in expansion of macro 'EIC7700_PIN'
+     132 |         EIC7700_PIN(9,   "rst_in_n",            [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:133:9: note: in expansion of macro 'EIC7700_PIN'
+     133 |         EIC7700_PIN(10,  "por_in_n",            [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:133:9: note: in expansion of macro 'EIC7700_PIN'
+     133 |         EIC7700_PIN(10,  "por_in_n",            [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:133:9: note: in expansion of macro 'EIC7700_PIN'
+     133 |         EIC7700_PIN(10,  "por_in_n",            [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:134:9: note: in expansion of macro 'EIC7700_PIN'
+     134 |         EIC7700_PIN(11,  "por_out_n",           [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:134:9: note: in expansion of macro 'EIC7700_PIN'
+     134 |         EIC7700_PIN(11,  "por_out_n",           [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:134:9: note: in expansion of macro 'EIC7700_PIN'
+     134 |         EIC7700_PIN(11,  "por_out_n",           [0] = F_DISABLED),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:135:9: note: in expansion of macro 'EIC7700_PIN'
+     135 |         EIC7700_PIN(12,  "gpio0",               [0] = F_GPIO),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:135:9: note: in expansion of macro 'EIC7700_PIN'
+     135 |         EIC7700_PIN(12,  "gpio0",               [0] = F_GPIO),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:135:9: note: in expansion of macro 'EIC7700_PIN'
+     135 |         EIC7700_PIN(12,  "gpio0",               [0] = F_GPIO),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:136:9: note: in expansion of macro 'EIC7700_PIN'
+     136 |         EIC7700_PIN(13,  "por_sel",             [0] = F_RESET),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:136:9: note: in expansion of macro 'EIC7700_PIN'
+     136 |         EIC7700_PIN(13,  "por_sel",             [0] = F_RESET),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:136:9: note: in expansion of macro 'EIC7700_PIN'
+     136 |         EIC7700_PIN(13,  "por_sel",             [0] = F_RESET),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:119:39: error: expected expression before 'static'
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                       ^~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:137:9: note: in expansion of macro 'EIC7700_PIN'
+     137 |         EIC7700_PIN(14,  "jtag0_tck",           [0] = F_JTAG, [1] = F_SPI, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:119:72: error: expected '}' before '{' token
+     119 |                 .drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+         |                                                                        ^
+   drivers/pinctrl/pinctrl-eic7700.c:137:9: note: in expansion of macro 'EIC7700_PIN'
+     137 |         EIC7700_PIN(14,  "jtag0_tck",           [0] = F_JTAG, [1] = F_SPI, [2] = F_GPIO),
+         |         ^~~~~~~~~~~
+   drivers/pinctrl/pinctrl-eic7700.c:116:9: note: to match this '{'
+     116 |         { \
+         |         ^
+   drivers/pinctrl/pinctrl-eic7700.c:137:9: note: in expansion of macro 'EIC7700_PIN'
+     137 |         EIC7700_PIN(14,  "jtag0_tck",           [0] = F_JTAG, [1] = F_SPI, [2] = F_GPIO),
 
-> +reset_spacemit-y				:= core.o
-> +
-> +reset_spacemit-$(CONFIG_RESET_SPACEMIT_K1)	+= k1.o
 
-...
+vim +/static +119 drivers/pinctrl/pinctrl-eic7700.c
 
-> new file mode 100644
-> index 0000000000000..19a34f151b214
-> --- /dev/null
-> +++ b/drivers/reset/spacemit/k1.c
+   114	
+   115	#define EIC7700_PIN(_number, _name, ...) \
+   116		{ \
+   117			.number	= _number, \
+   118			.name = _name, \
+ > 119			.drv_data = (void *)&(static const struct eic7700_pin) { { __VA_ARGS__ } } \
+   120		}
+   121	
 
-...
-
-> +MODULE_DEVICE_TABLE(auxiliary, spacemit_k1_reset_ids);
-> +
-> +#undef K1_AUX_DEV_ID
-> +
-> +static struct auxiliary_driver spacemit_k1_reset_driver = {
-> +	.probe          = spacemit_k1_reset_probe,
-> +	.id_table       = spacemit_k1_reset_ids,
-> +};
-> +module_auxiliary_driver(spacemit_k1_reset_driver);
-> -- 
-> 2.45.2
-
-If you're willing to make the reset driver buildable as a module, please
-add MODULE_{LICENSE,DESCRIPTION} statements and possibly also
-MODULE_AUTHOR(), or modpost will complain,
-
-	ERROR: modpost: missing MODULE_LICENSE() in drivers/reset/spacemit/reset_spacemit.o
-	WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/reset/spacemit/reset_spacemit.o
-
-Best regards,
-Haylen Chu
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
