@@ -1,175 +1,169 @@
-Return-Path: <devicetree+bounces-174955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1122AAF5CD
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:38:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B17E9AAF5EC
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:42:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2ABEA4629BC
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:38:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CECE31C053F8
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:42:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F64262D29;
-	Thu,  8 May 2025 08:38:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDE9262FD0;
+	Thu,  8 May 2025 08:42:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="dERj47/e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o1ExFhJt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E00261596
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 08:38:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3509D21018F;
+	Thu,  8 May 2025 08:42:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746693493; cv=none; b=pVk1Q+6VSLfb4Eaw7Pcha21eEsnnHalCGu3pCk0DCRjMssHwwMdmQRAL7vOEZlrVKCVCW7qxhYozVF1Ao2olF+qkA4+mTO7L1iN/ATfzIs5h3PtXR/bsiOh1p2cMD+7DzaI0MhfftReRjKftafWf8YcTVcWPPhI5B5psdFziZIE=
+	t=1746693750; cv=none; b=JxfaRfW/wCKyxqK3ISu6/CRwmPD18q9wg3yv/8ETZeKpIhvJyVnEbLSuGxtzzdkCbU5N8m1aBhwkaht0UJLDj+KxoaT2nNssVfwimBH/n7720SGxNBdkIV6BSMwWhKv6WepKfKlqYYZOZVNzIwRe7M1MV85+SDp+lFaEX8y14IY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746693493; c=relaxed/simple;
-	bh=a2qUKyHbD7wFrfHoQBkc3lrz78v9ti8SashhJopPeDk=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iYdTdXvPlfA4hruYHA2f/GckvJcb4Ahp84yRO7bg2DO41GBmGpQzB83KvGZcAIN8Wi1Zr7oJVzRJ6KwV07lq8U4OTgs9GXK0kvEljvrxYVPMWCpDsls5KbL27/HNl3pbz/62YtsVIEyKVLpDcLN0JcHxghCSco3v7bBNWmWHIHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=dERj47/e; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-acec5b99052so122893166b.1
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 01:38:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1746693490; x=1747298290; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TN5BLghxBo/9cI/M/eSHpoxUXcqkl+83toZkzInNZmw=;
-        b=dERj47/eNtz5wa+JqEixrFHavwf/WQ3VS0m2xznrZvc+dNPjZtiidmwrXDMnDviH8p
-         aUcZQ23WuzdOBsvRKBLApTJaeLHZddHq9c5Ltu+hQ/AhZVyDwgnbtVGdwOREvznqmFMH
-         0gPr+iVlfNozzeZrl7BY+EmMP23nwosnn3E83oIZGkYmLhjCyw2B433AnWykzDtSC50P
-         sRnAKeWvo1uwiZTv5ijTqUQmUK+X+/FeoIkv3tETo6mu9WQCqtFlGuEcMHAGUq8Fwwtg
-         n1nHJZg9BxOJ4w2AOScTuVHvpMLXOK487GmRHGW3t0rpn96pNXjLu4ePtUv2wdsw/hsb
-         WiZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746693490; x=1747298290;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TN5BLghxBo/9cI/M/eSHpoxUXcqkl+83toZkzInNZmw=;
-        b=dplIqJg3/8sleuOdy8SK7U+zdjzqmayv0VU639Nfidsh3P/3P/wAB5/AQq3gpgsDsd
-         dZ02puCJmnh/2D6TaVrlpnXnYwT9sLPICOkSflq160cXoclJPzZvV0ncdSpIpnC5cJrS
-         1KUiy2w3Y6G6ubmtH5IVG6Iq7ytBK2fBEr1J6X9BvlAdvlh+ALTtypFcLB5U6vprP2Z2
-         tgocwG5gJV1H4XaSv4vW5uHyTWaqDhFfsd3K/eTwPtesteI3bD+2s3TXZzSUqJWk/tEv
-         jXeQjLzq3CrST6WcRcbSKl098AFfueeRWvN3zN9EStfVzRadGwK3iRaFKeI0JOd2P/XK
-         9cUA==
-X-Forwarded-Encrypted: i=1; AJvYcCW6tztIBG9RPXivrnckyeRzu7UM10LllNF8c2eoqL7bKoBfMVQ89eellOgZEZjE18SV3jmhGQYXoUfm@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiNprbRCHPzYZNR2r0bxzZSR5qCZnnEyOtE6NX/aQNUHL+Pnbl
-	KSCUVPXi51S+G9YP1VAbpAf9Qbgo7YChoq/A+Y8F8Uu0HhazW7M7zD8w6OaRr40=
-X-Gm-Gg: ASbGncuKbaS0FkEZQGLvUW3s4sLBIARH0bBG8guqHbo6JkrPSE6jRGhi0AAu45RYpeo
-	lTEJUSPNrkOmEtsGWajMwZwXwv+bruXRJRQYWlDdFGk4b1nOKD15MWRAUeyYP394jVB1wuSZwZM
-	bQKV1e92VDlOT/KVuBvp7aDlHlfczVbpQF2mW8z5V+vGNEYPS2KvjKZG8rnmZ3lxPYDbFm1nVQ6
-	/jTFJWBy9k1CWljak8AuY53+sgt33a5TQSO06AmciFf9HTRcCgtBt1kq0PbIPBYta2BCV8A/qE/
-	HLYLQLRMKbpoMszmkc4/BPBou1AkppYHBtg+LC4mVKI1GKPwoM3NBCqG5W7JvSjzV3l5pPYwzDt
-	neN1ldw==
-X-Google-Smtp-Source: AGHT+IFAz0hpCdqZar4HwvS30xYrKUVB/5CH1AYDISg2ZQz4Cx3c/u+PhQRq6xHbtI2Pon4FDK1RKg==
-X-Received: by 2002:a17:907:d7cb:b0:ac3:48e4:f8bb with SMTP id a640c23a62f3a-ad1fe947a69mr204692566b.41.1746693489868;
-        Thu, 08 May 2025 01:38:09 -0700 (PDT)
-Received: from localhost (93-44-188-26.ip98.fastwebnet.it. [93.44.188.26])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad1891a3f0fsm1059881366b.58.2025.05.08.01.38.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 May 2025 01:38:09 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 8 May 2025 10:39:38 +0200
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
+	s=arc-20240116; t=1746693750; c=relaxed/simple;
+	bh=r4rhd827Fnak6aKEMgLnJgrNTLGWxl8VcUCjQ0+pR6c=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=p2Yh8gRcuS+9NvcFhhluP2mDB27BjEmC3/zAJDVQKrRnCxR8ZuS958GbsARmKm8YKTWJPhBdf6pGqVU0dm4sQ2ZJqalUjTUqse2i8lxcx4V6k+LY8ot3DGoj8mk15JgwqvCFbeVILt5RLHfiKdYkFJKIo8GsxQxbQvgwTraGvcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1ExFhJt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D702C4CEE7;
+	Thu,  8 May 2025 08:42:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746693749;
+	bh=r4rhd827Fnak6aKEMgLnJgrNTLGWxl8VcUCjQ0+pR6c=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=o1ExFhJtUJGWLWfvwRKP+t5Nhas05Da6Xm1+IvL1UlXP/NqPHx1hDNUGWOZ1cG9Hg
+	 ZvAsxplF2LvV2IIDPZIlv2kmxjTpqKhxrml8Ty3viPQ2sB2MhbKb6EqYp/i4cuqxLE
+	 0yu0HdiirY6VYYLM6kBMxtkSLAhIPr3fjGvnumfN3oLjtSxvIwufoxvsV0MAUz+qtA
+	 Wwqt7FIYgfQWsR8v3ETkEIGYI1UrgEP9fIu2GpCa0Tkv9cpo0pxhXGsW0Uv3RqWgrx
+	 LF3E4chMDfjTE0ojemPPZtvjx/nxsTowQmypdUkTmjmPRUjCfMHIPTH80ixvtWE7/x
+	 xF/R63bxc/bAg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1uCwpn-00CwFr-F3;
+	Thu, 08 May 2025 09:42:27 +0100
+Date: Thu, 08 May 2025 09:42:27 +0100
+Message-ID: <864ixvh4ss.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
 	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Will Deacon <will@kernel.org>,
 	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	kernel-list@raspberrypi.com, Matthias Brugger <mbrugger@suse.com>
-Subject: Re: [PATCH v9 -next 04/12] clk: rp1: Add support for clocks provided
- by RP1
-Message-ID: <aBxtyvI3LUaM3P00@apocalypse>
-References: <cover.1745347417.git.andrea.porta@suse.com>
- <e8a9c2cd6b4b2af8038048cda179ebbf70891ba7.1745347417.git.andrea.porta@suse.com>
- <aBprHfQ7Afx1cxPe@apocalypse>
- <8513c30f597f757a199e4f9a565b0bf5@kernel.org>
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 20/25] irqchip/gic-v5: Add GICv5 PPI support
+In-Reply-To: <aBxgceQBRA6vBK7o@lpieralisi>
+References: <20250506-gicv5-host-v3-0-6edd5a92fd09@kernel.org>
+	<20250506-gicv5-host-v3-20-6edd5a92fd09@kernel.org>
+	<87zffpn5rk.ffs@tglx>
+	<86a57ohjey.wl-maz@kernel.org>
+	<87ecx0mt9p.ffs@tglx>
+	<867c2sh6jx.wl-maz@kernel.org>
+	<874ixwmpto.ffs@tglx>
+	<aBxgceQBRA6vBK7o@lpieralisi>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8513c30f597f757a199e4f9a565b0bf5@kernel.org>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, timothy.hayes@arm.com, Liam.Howlett@oracle.com, mark.rutland@arm.com, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-Hi Stephen,
-
-On 12:44 Wed 07 May     , Stephen Boyd wrote:
-> Quoting Andrea della Porta (2025-05-06 13:03:41)
-> > Hi Stephen,
-> > 
-> > On 20:53 Tue 22 Apr     , Andrea della Porta wrote:
-> > > RaspberryPi RP1 is an MFD providing, among other peripherals, several
-> > > clock generators and PLLs that drives the sub-peripherals.
-> > > Add the driver to support the clock providers.
-> > 
-> > Since subsequent patches in the set depends on this one and as the next
-> > merge window is approaching, assuming there are no blockers can I kindly ask
-> > if you can merge it on your tree for the upcoming pull request?
-> > 
-> > This patch should apply cleanly to your clk-next branch except for some fuzz
-> > lines on MAINTAINERS. Please let me know if you want me to adjust it.
-> > 
+On Thu, 08 May 2025 08:42:41 +0100,
+Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
 > 
-> I need to take the dt-binding header as well so it compiles. What's the
-> plan there? Do you want me to provide a branch with the clk driver and
-> binding header? Or do you want to send a PR to clk tree with the clk
-> driver and the binding header and then base your DTS patches on the
-> binding header and send that to the soc maintainers? I'm also happy to
-> give a Reviewed-by tag if that works for you and then you can just take
-> it through the soc tree.
+> On Wed, May 07, 2025 at 04:57:07PM +0200, Thomas Gleixner wrote:
+> > On Wed, May 07 2025 at 14:52, Marc Zyngier wrote:
+> > > On Wed, 07 May 2025 14:42:42 +0100,
+> > > Thomas Gleixner <tglx@linutronix.de> wrote:
+> > >> 
+> > >> On Wed, May 07 2025 at 10:14, Marc Zyngier wrote:
+> > >> > On Tue, 06 May 2025 16:00:31 +0100,
+> > >> > Thomas Gleixner <tglx@linutronix.de> wrote:
+> > >> >> 
+> > >> >> How does this test distinguish between LEVEL_LOW and LEVEL_HIGH? It only
+> > >> >> tests for level, no? So the test is interesting at best ...
+> > >> >
+> > >> > There is no distinction between HIGH and LOW, RISING and FALLING, in
+> > >> > any revision of the GIC architecture.
+> > >> 
+> > >> Then pretending that there is a set_type() functionality is pretty daft
+> > >
+> > > You still need to distinguish between level and edge when this is
+> > > programmable (which is the case for a subset of the PPIs).
+> > 
+> > Fair enough, but can we please add a comment to this function which
+> > explains this oddity.
+> 
+> Getting back to this, I would need your/Marc's input on this.
+> 
+> I think it is fair to remove the irq_set_type() irqchip callback for
+> GICv5 PPIs because there is nothing to set, as I said handling mode
+> for these IRQs is fixed. I don't think this can cause any trouble
+> (IIUC a value within the IRQF_TRIGGER_MASK should be set on requesting
+> an IRQ to "force" the trigger to be programmed and even then core code
+> would not fail if the irq_set_type() irqchip callback is not
+> implemented).
+> 
+> I am thinking about *existing* drivers that request GICv3 PPIs with
+> values in IRQF_TRIGGER_MASK set (are there any ? Don't think so but you
+> know better than I do), when we switch over to GICv5 we would have no
+> irq_set_type() callback for PPIs but I think we are still fine, not
+> implementing irqchip.irq_set_type() is correct IMO.
 
-Any of those would work for me, but I agree with you, we need a plan
-because this patchset is crossing the border of several subsystems, and
-as such there's also other dependencies between patches that will inevitably
-led to conflicts.
-The only decoupled pacthes are the pinctrl driver and its bindings, which 
-I guess could be taken by Linus Walleij, but all others have dependencies
-on either the bindings (clk driver) or dts (misc driver which embeds the
-dt overlay, and should be taken by Greg).
+Nobody seems to use a hardcoded trigger (well, there is one exception,
+but that's to paper over a firmware bug).
 
-So if Florian is willing to take the bindings and since it's already 
-taking many of the patches, it could be reasonable if he takes the
-entire patchset.
+> On the other hand, given that on GICv5 PPI handling mode is fixed,
+> do you think that in the ppi_irq_domain_ops.translate() callback,
+> I should check the type the firmware provided and fail the translation
+> if it does not match the HW hardcoded value ?
 
-I guess the final decision is up to Florian. Whatever you choose, I'll
-adjust the patches accordingly but be warned that there will be some
-(minor) conflicts down the merge path: one being the fact that linux-next
-bcm2712-rpi-5-b.dts has pcie nodes while Florian's devicetree/next has not.
-I'll do my best to help fixing those.
+Why? The fact that the firmware is wrong doesn't change the hardware
+integration. It just indicates that whoever wrote the firmware didn't
+read the documentation.
 
-Many thanks,
-Andrea
+Even more, I wonder what the benefit of having that information in the
+firmware tables if the only thing that matters in the immutable HW
+view. Yes, having it in the DT/ACPI simplifies the job of the kernel
+(only one format to parse). But it is overall useless information.
 
-- 
+> Obviously if firmware exposes the wrong type that's a firmware bug
+> but I was wondering whether it is better to fail the firmware-to-Linux
+> IRQ translation if the firmware provided type is wrong rather than carry
+> on pretending that the type is correct (I was abusing the irq_set_type()
+> callback to do just that - namely, check that the type provided by
+> firmware matches HW but I think that's the wrong place to put it).
+
+I don't think there is anything to do. Worse case, you spit a
+pr_warn_once() and carry on.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
