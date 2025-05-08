@@ -1,643 +1,148 @@
-Return-Path: <devicetree+bounces-175262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F495AB0481
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 22:20:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8707AB049C
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 22:28:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37EB21BA70AD
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 20:21:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B7EE1C00BEE
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 20:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2E528C001;
-	Thu,  8 May 2025 20:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5722428C001;
+	Thu,  8 May 2025 20:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="fhK4ZCtZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VrconPu9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6284F28B7E4
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 20:20:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1006C1E1E1D;
+	Thu,  8 May 2025 20:27:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746735644; cv=none; b=R7m8lBaxvYaNjE3WIxAtzQmTOl07QyQmmeUl6gREjPRlRwsXZVueoUCq2rIqQO7Jyink7Pp+++DAU2iozFHm5dJy0KyAtZ2hv3DyDgwV8NFF2u4DZkezz6l41BiuOVcFTBiLn68uvoEPAE8ZZQvC2smX0VlRM3x5bCBsca5Agf0=
+	t=1746736079; cv=none; b=rJmC8v7BUBXn/GhGXO/wtn+OKMR4S698mhzbR2gJFiSRmhgqI8xA074p3R5M0uszTMV+7WDKtnsKcokYzQbkr3sNitjnvJmQY4De8Zd6p1zx1O4wGDLCGZ6T1cfOFGPGXS8oDolbJhGKnnbFShUCrk7uSLwvWd1QccheKuJkweU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746735644; c=relaxed/simple;
-	bh=bTYyFAW/yeRI0k8vsOxZbUhU/gnf3b7gIfNhkQ9aK3k=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tGWy0kjDa6fxBkSFkvPyqVHY9+tczrmByfx3JnfZarvUvt3is0fisTDzfMsikzh4c3WIPfTaRMDFNUUfg9EAeZtXjfPGGkjtulqvQlF7IoKeawEBUEpcLaKFH623r6uA9BuN+QaY/sCxBkddr27CwN/xHwwmDdgNwEeuQB/XwW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=fhK4ZCtZ; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5fbeadf2275so2564869a12.2
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 13:20:41 -0700 (PDT)
+	s=arc-20240116; t=1746736079; c=relaxed/simple;
+	bh=IWqkUmC/HtU7UDGaSHEgVSzn5B33kawytOqertPrlMA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M20SYJcCNeA1hNbTHAPTuNORkPGXSbf0Pe71XMeO8CFFGamUBY0VI2nu+3sr97PDcNdlbn4sINEWpW4xUeuXHrHbKxWp5SfP0b7fYgXjmxCQLYCAqo1GXkHqT5CUhlrvKd99Im/sdB3IO6GponEPtc1PaFqInWZErYNLW+Hig0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VrconPu9; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43cebe06e9eso10641275e9.3;
+        Thu, 08 May 2025 13:27:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1746735640; x=1747340440; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1746736075; x=1747340875; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+0HDmOq93rWprCUfN2a1cuCbw50LvApIv2LTytQEH44=;
-        b=fhK4ZCtZxZvMTzkq4ShNqtqsF8JtZhMh5o7XJyFBcl45wKT2zLqwJRyl9SctRo1T2S
-         hKwY1dW9qIWl2smLjyrVXUGXyJkMf1E/zevmVNl3yaUItcewJ5NiLc0SX8D9fOWiaTqC
-         KzEzPzisIZfX+2Smbrd5fidTdGcD4catkYCPlO2WwIV8C6snnj4gOnhoxsodHDCdd0k/
-         nXDKmoMNWM6yz3Zx8vrXTiASkbtUc0PYCkxmxHzUlgp1aTIRiX87h4B4BRv5UqMke8VW
-         irRJaKAq2XvHlQRSP/nkEGIJyj+MwJESKKtrbwZePCiP4c8NCMsfhjYDeBQaYqzEwUV2
-         BGnw==
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YtJQMxYGFNll0psACjnIjhFMP7aU5XrgGwRcy9F2bBg=;
+        b=VrconPu9L/7ItdTaAtknvjg6rmV8QocFh0yjVYp+z/PXrdjhFQPKXzrYXYWw/nz6o8
+         MioM2Y8yADLc3uKEc9FFbo6Tktjs25zqUhUYYh5KIEM+wNas6vo69voEIdnv2jQaLawM
+         3X3sRhFWrGssFcGYNVozPVtuH9eR0k8wcSGshRT5hm3Z5u4kXnD9yxQQ4TXhW9DtYlxP
+         TWkX3/Y/W/zKM2ECiJNWYrdS461iyJ4SAEe00hk4Ai+vthciOMEXl2/V2c/NY6tTjwyH
+         WSOzyu8gXentgMdNCmm1GIcsPeSFFb/eKV+FkTMtd3WafA+GrKWA6sUEjcZ/NWeGTGFt
+         hmiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746735640; x=1747340440;
+        d=1e100.net; s=20230601; t=1746736075; x=1747340875;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+0HDmOq93rWprCUfN2a1cuCbw50LvApIv2LTytQEH44=;
-        b=O9Ki4qHGL0yAcMKKtlzvhBCPXFW18s8ffv5cKJvurLMMJxkq+GZMURZXikDweib8OV
-         6yfuQxxz9bGlKzLhbaN6lradxI5v6X+Mfo1+TMMyLqro7GZ9c0VtezUirS4nmA+qShJB
-         anPSqs8WIPRLav7Ozr2Gr4cYL+adtIeXXUl1nixSRxvPmZYQ1gYa+AQ5nQuaz1PfFXFs
-         jlvdS/JnrfTvRus4s6topVVZxG+FYcETGbqyGopmg431yojr6aIokE1t3TDdGFDQk1F0
-         KO2H5TSF/sHypK6k9ZCPOCdlPYeBJC/KwXgmit8GWe9FUhrDWhoqAUL0ASklhhEj77iG
-         /M3w==
-X-Forwarded-Encrypted: i=1; AJvYcCVC8awOg7e8q9/BWt0+/380P/2QNAYRRd7tG+MvYsKr2iF6rY5g+uiw6Z3+ENGz0Af5oSISzelBC9EQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2D5y+PJ4tmxH6TofKJjDXM9cdl3J2tCnKzpp3U0hChFfYhwMp
-	jzTLTuXj8GUApF2rpbXrFzFv1e/tahEq4f29+SMC4HsmxFZaiKCrpS0Ad21Mu8E=
-X-Gm-Gg: ASbGncs9IrkngFBa0wLhLXRofLLOO/zCP6jpdGiWGwL4spyajRbQPJU1y48lX3ZibRX
-	I3OBMKU17QRuK8p3Vnz3UWgyOVb4kOab37ANgnKF1t5N/xpE1m/7k8CWZdpOjSzvK5VsqvyBe97
-	6GNFMP9+IInWlo2Mvc8jomZFzIdyxVYcBrQsobRU6XhWRsD/JUS9Sa5Y/IXPHchJl3CZWxehzoz
-	TrcIIFgQDRYJdjAaqSm9K2+avwtZ3UE9nLeLpTEl7veV4ZH/6UJctwbszpwOTzAmoQ6E+vgOs5c
-	W+IyNxgpUF9WpA0d+eQ6EGQK3tYc6m1Fn5XMTOJx3buh5ZgVMt3oxinWGy/PMllY0xK4JJc=
-X-Google-Smtp-Source: AGHT+IEI/7uf0d58ww/vPGIkb9Rp22etgucrO2Ag5lYkTnkwmaIknxrOUtu+MUmCpl+havrQV2w1xw==
-X-Received: by 2002:a17:907:969f:b0:ace:bead:5ee1 with SMTP id a640c23a62f3a-ad219131246mr103603366b.42.1746735639533;
-        Thu, 08 May 2025 13:20:39 -0700 (PDT)
-Received: from localhost (93-44-188-26.ip98.fastwebnet.it. [93.44.188.26])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad2192cf5casm38239766b.2.2025.05.08.13.20.39
+        bh=YtJQMxYGFNll0psACjnIjhFMP7aU5XrgGwRcy9F2bBg=;
+        b=AXS4/I6oQTmldKciO6WAxTiR5jW7J9Uct76PXDoDz6aPB8+mw4eBKWXHdmKnVIXF6z
+         JXXr5YQJd/ymE0DrYkkGkdMFIf7yECi9BRe5JcQieTk1xAcwEfWp9Zd11oNEjQqRXQQd
+         /BYWD7ep12kBwFTMlwsDBeZyDYFtzm8cAcEIPBlhf+NNNSAo26lfHYVp5mOibz9BNiRZ
+         DYCUIDGzFRKeS6tqFCOqQQ5r73/orb/iiLKgoBlfZ6FjrtHvvesMNHvMps01b5+K8OIN
+         zSkflH0DWeSM6ESIMM9Wq67kyQM2i+rDaLjE3Tr6bKiET0yU3n4sF30DPcws6zaVwzJh
+         ufew==
+X-Forwarded-Encrypted: i=1; AJvYcCUa+UnXnJn5VwBgNm3lpWnvqUFbM3TNrB1nNskWCRCCxoCnOVwA8Kd9E17swNvb/QhgjW7wjIQIBUiT@vger.kernel.org, AJvYcCUaVFFm1N5t7G118QiRSh1YQQbpEFGsn9J1BiP5i0hTAFJMVRr5cqjpU1gYTjVg6rFR8sA0rtVeJ1jvCl7M@vger.kernel.org, AJvYcCVlNbpqi+ST5UHvqxBY6b3m+rV/Rux24gR9rTXBJpP6o67Co751K0NriX9j0wWy5kWNmEWElAMsrnNQ@vger.kernel.org, AJvYcCWetnK1wQx1G9+ct3XUR58H9naA+9Czayuu1QCpst1sstYdinKhRgxYYtpenynfLujm9y8oHAQxHG2FsRI=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyS+WurefoNjbDuRPdzcBDiokYPe5D1BQNJBcVSGWj9TCn0VO3o
+	h2gz68X+IcHGsBninF26TJk5b23reJuib/dWcZPRC66SvAcWw3pIj4c7lA==
+X-Gm-Gg: ASbGnct6a6s9kjKZx7S80pD2TYVuyIL6+qMgpINTgwIDEqC+VZ9wF5jpJcBkPR+1lZ5
+	VjFbHME3COQY9MFkEGERK46SSq/FhlTG9QudAKlceRALILnm1UnyXNaACNcqqNwMF7XzogqtKWw
+	lB6MdLrEnN1Q5okcTgj0LwhgPTeScAPGoeRQAepam1kSnzw9S1vhTdkuHZARL2oXJXix7UlkLlb
+	k4VEiXrmsY/danYDeQf9f1eUzTwgjRHZeYXel/ZaQxT0KEawXmdiYjF9TR0BFzgceMFSC3dTlwt
+	rLop//AdNe3rmQIFIRd1R2q7fgeOYe+C07UHMileVYGefbDC8bzysnXPGpHyEdqKShn2y9DAji+
+	v2g3uXCsmqjVefgTFOhwFsj++GgM=
+X-Google-Smtp-Source: AGHT+IFnWjQ33MMtDxBoEYIvCnklurS8mH7kZx1CC/YeUHC8q6GxC44TL9JcvWZRp5envBhfwaWZqw==
+X-Received: by 2002:a05:600c:6819:b0:43d:649:4e50 with SMTP id 5b1f17b1804b1-442d6d44db5mr6188455e9.13.1746736075099;
+        Thu, 08 May 2025 13:27:55 -0700 (PDT)
+Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd3aecb0sm49042075e9.28.2025.05.08.13.27.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 May 2025 13:20:39 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 8 May 2025 22:22:08 +0200
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Phi l Elwell <phil@raspberrypi.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v9 -next 04/12] clk: rp1: Add support for clocks provided
- by RP1
-Message-ID: <aB0ScIyG-HTLGVQ7@apocalypse>
-References: <cover.1745347417.git.andrea.porta@suse.com>
- <e8a9c2cd6b4b2af8038048cda179ebbf70891ba7.1745347417.git.andrea.porta@suse.com>
- <a61159b7b34c29323cdc428bb34acfa1@kernel.org>
+        Thu, 08 May 2025 13:27:53 -0700 (PDT)
+Date: Thu, 8 May 2025 22:27:51 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Vishwaroop A <va@nvidia.com>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, jonathanh@nvidia.com, skomatineni@nvidia.com, 
+	ldewangan@nvidia.com, kyarlagadda@nvidia.com, smangipudi@nvidia.com, 
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND 2/3] arm64: tegra: Configure QSPI clocks and add
+ DMA
+Message-ID: <lvzu2huonk6fm7ce77xej7kiwqtwupvbr7ilpn2yppq2cmtrnb@jw2ohtmicprs>
+References: <20250506152350.3370291-1-va@nvidia.com>
+ <20250506152350.3370291-2-va@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="gvljn3izqgvhquae"
 Content-Disposition: inline
-In-Reply-To: <a61159b7b34c29323cdc428bb34acfa1@kernel.org>
+In-Reply-To: <20250506152350.3370291-2-va@nvidia.com>
 
-Hi Stephen,
 
-On 13:01 Wed 07 May     , Stephen Boyd wrote:
-> Quoting Andrea della Porta (2025-04-22 11:53:13)
-> > diff --git a/drivers/clk/clk-rp1.c b/drivers/clk/clk-rp1.c
-> > new file mode 100644
-> > index 000000000000..6b0b76fc6977
-> > --- /dev/null
-> > +++ b/drivers/clk/clk-rp1.c
-> > @@ -0,0 +1,1510 @@
-> [...]
-> > +static u8 rp1_clock_get_parent(struct clk_hw *hw)
-> > +{
-> > +       struct rp1_clk_desc *clock = container_of(hw, struct rp1_clk_desc, hw);
-> > +       struct rp1_clockman *clockman = clock->clockman;
-> > +       const struct rp1_clock_data *data = clock->data;
-> > +       u32 sel, ctrl;
-> > +       u8 parent;
-> > +
-> > +       /* Sel is one-hot, so find the first bit set */
-> > +       sel = clockman_read(clockman, data->sel_reg);
-> > +       parent = ffs(sel) - 1;
-> > +
-> > +       /* sel == 0 implies the parent clock is not enabled yet. */
-> > +       if (!sel) {
-> > +               /* Read the clock src from the CTRL register instead */
-> > +               ctrl = clockman_read(clockman, data->ctrl_reg);
-> > +               parent = (ctrl & data->clk_src_mask) >> CLK_CTRL_SRC_SHIFT;
-> > +       }
-> > +
-> > +       if (parent >= data->num_std_parents)
-> > +               parent = AUX_SEL;
-> > +
-> > +       if (parent == AUX_SEL) {
-> > +               /*
-> > +                * Clock parent is an auxiliary source, so get the parent from
-> > +                * the AUXSRC register field.
-> > +                */
-> > +               ctrl = clockman_read(clockman, data->ctrl_reg);
-> > +               parent = FIELD_GET(CLK_CTRL_AUXSRC_MASK, ctrl);
-> > +               parent += data->num_std_parents;
-> > +       }
-> > +
-> > +       return parent;
-> > +}
-> > +
-> > +static int rp1_clock_set_parent(struct clk_hw *hw, u8 index)
-> > +{
-> > +       struct rp1_clk_desc *clock = container_of(hw, struct rp1_clk_desc, hw);
-> > +       struct rp1_clockman *clockman = clock->clockman;
-> > +       const struct rp1_clock_data *data = clock->data;
-> > +       u32 ctrl, sel;
-> > +
-> > +       spin_lock(&clockman->regs_lock);
-> > +       ctrl = clockman_read(clockman, data->ctrl_reg);
-> > +
-> > +       if (index >= data->num_std_parents) {
-> > +               /* This is an aux source request */
-> > +               if (index >= data->num_std_parents + data->num_aux_parents) {
-> > +                       spin_unlock(&clockman->regs_lock);
-> > +                       return -EINVAL;
-> > +               }
-> > +
-> > +               /* Select parent from aux list */
-> > +               ctrl &= ~CLK_CTRL_AUXSRC_MASK;
-> > +               ctrl |= FIELD_PREP(CLK_CTRL_AUXSRC_MASK, index - data->num_std_parents);
-> > +               /* Set src to aux list */
-> > +               ctrl &= ~data->clk_src_mask;
-> > +               ctrl |= (AUX_SEL << CLK_CTRL_SRC_SHIFT) & data->clk_src_mask;
-> > +       } else {
-> > +               ctrl &= ~data->clk_src_mask;
-> > +               ctrl |= (index << CLK_CTRL_SRC_SHIFT) & data->clk_src_mask;
-> > +       }
-> > +
-> > +       clockman_write(clockman, data->ctrl_reg, ctrl);
-> > +       spin_unlock(&clockman->regs_lock);
-> > +
-> > +       sel = rp1_clock_get_parent(hw);
-> > +       WARN_ONCE(sel != index, "(%s): Parent index req %u returned back %u\n",
-> > +                 clk_hw_get_name(hw), index, sel);
-> 
-> Is this debug code? Why do we need to read back the parent here?
+--gvljn3izqgvhquae
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH RESEND 2/3] arm64: tegra: Configure QSPI clocks and add
+ DMA
+MIME-Version: 1.0
 
-This is more of like a sanity check, but I agree that without taking action
-it is not very helpful. Maybe we can use this check to return an appropriate
-error code in case the parent check is failing. With appropriate changes, also
-rp1_clock_set_rate_and_parent() could benefit from that. So I'll drop the WARN
-and it turn into a conditional return -EINVAL, for the error to be propagated
-to the CCF.
+On Tue, May 06, 2025 at 03:23:49PM +0000, Vishwaroop A wrote:
+> For Tegra234 devices, set QSPI0_2X_PM to 199.99 MHz and QSPI0_PM to
+> 99.99 MHz using PLLC as the parent clock. These frequencies enable
+> Quad IO reads at up to 99.99 MHz, the maximum achievable given PLL
+> and clock divider limitations. Introduce IOMMU property which is
+> needed for internal dma transfers.
+>=20
+> Signed-off-by: Vishwaroop A <va@nvidia.com>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 
-> 
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int rp1_clock_set_rate_and_parent(struct clk_hw *hw,
-> > +                                        unsigned long rate,
-> > +                                        unsigned long parent_rate,
-> > +                                        u8 parent)
-> > +{
-> > +       struct rp1_clk_desc *clock = container_of(hw, struct rp1_clk_desc, hw);
-> > +       struct rp1_clockman *clockman = clock->clockman;
-> > +       const struct rp1_clock_data *data = clock->data;
-> > +       u32 div = rp1_clock_choose_div(rate, parent_rate, data);
-> > +
-> > +       WARN_ONCE(rate > data->max_freq,
-> > +                 "(%s): Requested rate (%lu) > max rate (%lu)\n",
-> > +                 clk_hw_get_name(hw), rate, data->max_freq);
-> 
-> If the determine_rate function is implemented properly this is
-> impossible because we round the rate before calling this clk_op.
+I've applied this now. The remaining discussions on the bindings patch
+are details about how to deal with IOMMU on older platforms, but this
+patch in isolation is just adding standard properties.
 
-Right, rp1_clock_choose_div_and_prate() which is called by rp1_clock_determine_rate()
-is doing the relevant check on max_freq, so I'll drop this WARN as it should never
-be true.
+Thanks,
+Thierry
 
-> 
-> > +
-> > +       if (WARN_ONCE(!div,
-> > +                     "clk divider calculated as 0! (%s, rate %lu, parent rate %lu)\n",
-> > +                     clk_hw_get_name(hw), rate, parent_rate))
-> > +               div = 1 << CLK_DIV_FRAC_BITS;
-> 
-> This one also looks weird, does it assume round_rate didn't constrain
-> the incoming rate?
-> 
+--gvljn3izqgvhquae
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Indeed, div can be 0 here but rp1_clock_determine_rate() would have returned an error,
-never reaching this conditional, so I think I can drop it.
+-----BEGIN PGP SIGNATURE-----
 
-> > +
-> > +       spin_lock(&clockman->regs_lock);
-> > +
-> > +       clockman_write(clockman, data->div_int_reg, div >> CLK_DIV_FRAC_BITS);
-> > +       if (data->div_frac_reg)
-> > +               clockman_write(clockman, data->div_frac_reg, div << (32 - CLK_DIV_FRAC_BITS));
-> > +
-> > +       spin_unlock(&clockman->regs_lock);
-> > +
-> > +       if (parent != 0xff)
-> > +               rp1_clock_set_parent(hw, parent);
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int rp1_clock_set_rate(struct clk_hw *hw, unsigned long rate,
-> > +                             unsigned long parent_rate)
-> > +{
-> > +       return rp1_clock_set_rate_and_parent(hw, rate, parent_rate, 0xff);
-> > +}
-> > +
-> > +static void rp1_clock_choose_div_and_prate(struct clk_hw *hw,
-> > +                                          int parent_idx,
-> > +                                          unsigned long rate,
-> > +                                          unsigned long *prate,
-> > +                                          unsigned long *calc_rate)
-> > +{
-> > +       struct rp1_clk_desc *clock = container_of(hw, struct rp1_clk_desc, hw);
-> > +       const struct rp1_clock_data *data = clock->data;
-> > +       struct clk_hw *parent;
-> > +       u32 div;
-> > +       u64 tmp;
-> > +
-> > +       parent = clk_hw_get_parent_by_index(hw, parent_idx);
-> > +
-> > +       *prate = clk_hw_get_rate(parent);
-> > +       div = rp1_clock_choose_div(rate, *prate, data);
-> > +
-> > +       if (!div) {
-> > +               *calc_rate = 0;
-> > +               return;
-> > +       }
-> > +
-> > +       /* Recalculate to account for rounding errors */
-> > +       tmp = (u64)*prate << CLK_DIV_FRAC_BITS;
-> > +       tmp = div_u64(tmp, div);
-> > +
-> > +       /*
-> > +        * Prevent overclocks - if all parent choices result in
-> > +        * a downstream clock in excess of the maximum, then the
-> > +        * call to set the clock will fail.
-> > +        */
-> > +       if (tmp > data->max_freq)
-> > +               *calc_rate = 0;
-> > +       else
-> > +               *calc_rate = tmp;
-> > +}
-> > +
-> > +static int rp1_clock_determine_rate(struct clk_hw *hw,
-> > +                                   struct clk_rate_request *req)
-> > +{
-> > +       struct clk_hw *parent, *best_parent = NULL;
-> > +       unsigned long best_rate = 0;
-> > +       unsigned long best_prate = 0;
-> > +       unsigned long best_rate_diff = ULONG_MAX;
-> > +       unsigned long prate, calc_rate;
-> > +       size_t i;
-> > +
-> > +       /*
-> > +        * If the NO_REPARENT flag is set, try to use existing parent.
-> > +        */
-> > +       if ((clk_hw_get_flags(hw) & CLK_SET_RATE_NO_REPARENT)) {
-> > +               i = rp1_clock_get_parent(hw);
-> > +               parent = clk_hw_get_parent_by_index(hw, i);
-> > +               if (parent) {
-> > +                       rp1_clock_choose_div_and_prate(hw, i, req->rate, &prate,
-> > +                                                      &calc_rate);
-> > +                       if (calc_rate > 0) {
-> > +                               req->best_parent_hw = parent;
-> > +                               req->best_parent_rate = prate;
-> > +                               req->rate = calc_rate;
-> > +                               return 0;
-> > +                       }
-> > +               }
-> > +       }
-> > +
-> > +       /*
-> > +        * Select parent clock that results in the closest rate (lower or
-> > +        * higher)
-> > +        */
-> > +       for (i = 0; i < clk_hw_get_num_parents(hw); i++) {
-> > +               parent = clk_hw_get_parent_by_index(hw, i);
-> > +               if (!parent)
-> > +                       continue;
-> > +
-> > +               rp1_clock_choose_div_and_prate(hw, i, req->rate, &prate,
-> > +                                              &calc_rate);
-> > +
-> > +               if (abs_diff(calc_rate, req->rate) < best_rate_diff) {
-> > +                       best_parent = parent;
-> > +                       best_prate = prate;
-> > +                       best_rate = calc_rate;
-> > +                       best_rate_diff = abs_diff(calc_rate, req->rate);
-> > +
-> > +                       if (best_rate_diff == 0)
-> > +                               break;
-> > +               }
-> > +       }
-> > +
-> > +       if (best_rate == 0)
-> > +               return -EINVAL;
-> > +
-> > +       req->best_parent_hw = best_parent;
-> > +       req->best_parent_rate = best_prate;
-> > +       req->rate = best_rate;
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static const struct clk_ops rp1_pll_core_ops = {
-> > +       .is_prepared = rp1_pll_core_is_on,
-> > +       .prepare = rp1_pll_core_on,
-> > +       .unprepare = rp1_pll_core_off,
-> > +       .set_rate = rp1_pll_core_set_rate,
-> > +       .recalc_rate = rp1_pll_core_recalc_rate,
-> > +       .round_rate = rp1_pll_core_round_rate,
-> > +};
-> > +
-> > +static const struct clk_ops rp1_pll_ops = {
-> > +       .set_rate = rp1_pll_set_rate,
-> > +       .recalc_rate = rp1_pll_recalc_rate,
-> > +       .round_rate = rp1_pll_round_rate,
-> > +};
-> > +
-> > +static const struct clk_ops rp1_pll_ph_ops = {
-> > +       .is_prepared = rp1_pll_ph_is_on,
-> > +       .prepare = rp1_pll_ph_on,
-> > +       .unprepare = rp1_pll_ph_off,
-> > +       .recalc_rate = rp1_pll_ph_recalc_rate,
-> > +       .round_rate = rp1_pll_ph_round_rate,
-> > +};
-> > +
-> > +static const struct clk_ops rp1_pll_divider_ops = {
-> > +       .is_prepared = rp1_pll_divider_is_on,
-> > +       .prepare = rp1_pll_divider_on,
-> > +       .unprepare = rp1_pll_divider_off,
-> > +       .set_rate = rp1_pll_divider_set_rate,
-> > +       .recalc_rate = rp1_pll_divider_recalc_rate,
-> > +       .round_rate = rp1_pll_divider_round_rate,
-> > +};
-> > +
-> > +static const struct clk_ops rp1_clk_ops = {
-> > +       .is_prepared = rp1_clock_is_on,
-> > +       .prepare = rp1_clock_on,
-> > +       .unprepare = rp1_clock_off,
-> > +       .recalc_rate = rp1_clock_recalc_rate,
-> > +       .get_parent = rp1_clock_get_parent,
-> > +       .set_parent = rp1_clock_set_parent,
-> > +       .set_rate_and_parent = rp1_clock_set_rate_and_parent,
-> > +       .set_rate = rp1_clock_set_rate,
-> > +       .determine_rate = rp1_clock_determine_rate,
-> > +};
-> > +
-> > +static struct clk_hw *rp1_register_pll(struct rp1_clockman *clockman,
-> > +                                      struct rp1_clk_desc *desc)
-> > +{
-> > +       int ret;
-> > +
-> > +       desc->clockman = clockman;
-> > +
-> > +       ret = devm_clk_hw_register(clockman->dev, &desc->hw);
-> > +
-> 
-> Please drop this newline.
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmgdE8cACgkQ3SOs138+
+s6EMIRAAliY7GR+xDac7+0PmuP71PKaV5MtA/YTnq/5d7xUbjCtUfR7kXzjUzqKG
+mWKbwmdx75U2U3ATorGUa+pTK0Tj9Ews2blJx+K+alww20/MGqKY4wHQTbjZW9vq
+EsBPJ3p4LLL6gtmf0NBpPBCjH7dJYCCLOwAUeRV62QKZ4qv22TBlpfS+m8Ff2zPc
+JCCazFWMajzIBafGZ+N3p9pqc5W7mcHppFOs+46fX2dCvjTkEBLkCbQqx/4gJBPO
++eIdhJSivuVN9KSuShTsVC3WnCvIF/HCqFRvrj1X3gkxGCS63N2jmyr1/B5z8WnD
+x4l7hfdJ87WhQtpiN8/AZUKG7T9jCg4RHsnTHzC55DlnMR08DitjaCmH9cQGamm+
+YEJAPlmlwf4ArUr9JR3FC2Ol8hBM+J8Jo7P7RI8pIi7ZSPTc0aoFTDhDFsu3HOYi
+pr3zndqEm+Em5AXP0WAJ2qUDIF6/FyuDGy8hH/6Q1ppF6Je5UMHIf0rIFryGQL/x
+gGTweqx8CgtG7/I/nYW7NwsRiTgzHmnDzoFXaMt7pNc6r9P3Hs807cAnkPllG1yo
+dOuhedLJq2pNKVSKC4JTGak66uJyij1VdbzeR7irooiAZ+vpKCvGP91QKE09udiD
+btDZrdgW8Kwl+Sg8OJvRQXMp1vCTXJ9hZAP2XToxNWC7ckfz9VM=
+=wjHe
+-----END PGP SIGNATURE-----
 
-Ack.
-
-> 
-> > +       if (ret)
-> > +               return ERR_PTR(ret);
-> > +
-> > +       return &desc->hw;
-> > +}
-> > +
-> > +static struct clk_hw *rp1_register_pll_divider(struct rp1_clockman *clockman,
-> > +                                              struct rp1_clk_desc *desc)
-> > +{
-> > +       const struct rp1_pll_data *divider_data = desc->data;
-> > +       int ret;
-> > +
-> > +       desc->div.reg = clockman->regs + divider_data->ctrl_reg;
-> > +       desc->div.shift = __ffs(PLL_SEC_DIV_MASK);
-> > +       desc->div.width = __ffs(~(PLL_SEC_DIV_MASK >> desc->div.shift));
-> > +       desc->div.flags = CLK_DIVIDER_ROUND_CLOSEST;
-> > +       desc->div.lock = &clockman->regs_lock;
-> > +       desc->div.hw.init = desc->hw.init;
-> > +       desc->div.table = pll_sec_div_table;
-> > +
-> > +       desc->clockman = clockman;
-> > +
-> > +       ret = devm_clk_hw_register(clockman->dev, &desc->div.hw);
-> > +
-> 
-> Please drop this newline.
-
-Ack.
-
-> 
-> > +       if (ret)
-> > +               return ERR_PTR(ret);
-> > +
-> > +       return &desc->div.hw;
-> > +}
-> > +
-> > +static struct clk_hw *rp1_register_clock(struct rp1_clockman *clockman,
-> > +                                        struct rp1_clk_desc *desc)
-> > +{
-> > +       const struct rp1_clock_data *clock_data = desc->data;
-> > +       int ret;
-> > +
-> > +       if (WARN_ON_ONCE(MAX_CLK_PARENTS <
-> > +              clock_data->num_std_parents + clock_data->num_aux_parents))
-> > +               return NULL;
-> 
-> Return an error pointer?
-
-Ack.
-
-> 
-> > +
-> > +       /* There must be a gap for the AUX selector */
-> > +       if (WARN_ON_ONCE(clock_data->num_std_parents > AUX_SEL &&
-> > +                        desc->hw.init->parent_data[AUX_SEL].index != -1))
-> 
-> Why is there a gap? Can't the parents that the clk framework sees be
-> 
-> 	[0, num_std_parents) + [num_std_parents, num_aux_parents + num_std_parents)
-> 
-> without an empty parent in the middle?
-
-Not sure why it was done that way. Need to check with Raspberry guys.
-
-> 
-> > +               return NULL;
-> 
-> Return an error pointer?
-
-Ack.
-
-> 
-> > +
-> > +       desc->clockman = clockman;
-> > +
-> > +       ret = devm_clk_hw_register(clockman->dev, &desc->hw);
-> > +
-> 
-> Drop this newline please.
-
-Ack.
-
-> 
-> > +       if (ret)
-> > +               return ERR_PTR(ret);
-> > +
-> > +       return &desc->hw;
-> > +}
-> [...]
-> > +
-> > +static const struct clk_parent_data clk_eth_parents[] = {
-> > +       { .hw = &pll_sys_sec_desc.div.hw },
-> > +       { .hw = &pll_sys_desc.hw },
-> > +};
-> > +
-> > +static struct rp1_clk_desc clk_eth_desc = REGISTER_CLK(
-> > +       .hw.init = CLK_HW_INIT_PARENTS_DATA(
-> > +               "clk_eth",
-> > +               clk_eth_parents,
-> > +               &rp1_clk_ops,
-> > +               0
-> > +       ),
-> > +       CLK_DATA(rp1_clock_data,
-> > +                .num_std_parents = 0,
-> > +                .num_aux_parents = 2,
-> > +                .ctrl_reg = CLK_ETH_CTRL,
-> > +                .div_int_reg = CLK_ETH_DIV_INT,
-> > +                .sel_reg = CLK_ETH_SEL,
-> > +                .div_int_max = DIV_INT_8BIT_MAX,
-> > +                .max_freq = 125 * HZ_PER_MHZ,
-> > +                .fc0_src = FC_NUM(4, 6),
-> > +       )
-> > +);
-> > +
-> > +static const struct clk_parent_data clk_sys_parents[] = {
-> > +       { .index = 0 },
-> > +       { .index = -1 },
-> 
-> Why is there a gap here?
-
-Same comment as above. Need to check.
-
-> 
-> > +       { .hw = &pll_sys_desc.hw },
-> > +};
-> > +
-> [...]
-> > +
-> > +static const struct regmap_config rp1_clk_regmap_cfg = {
-> > +       .reg_bits = 32,
-> > +       .val_bits = 32,
-> > +       .reg_stride = 4,
-> > +       .max_register = PLL_VIDEO_SEC,
-> > +       .name = "rp1-clk",
-> > +       .rd_table = &rp1_reg_table,
-> 
-> Do you want to set the 'disable_locking' field because you're
-> explicitly locking in this driver?
-
-Yes, let's avoid redundancy.
-
-> 
-> > +};
-> > +
-> > +static int rp1_clk_probe(struct platform_device *pdev)
-> > +{
-> > +       const size_t asize = ARRAY_SIZE(clk_desc_array);
-> > +       struct rp1_clk_desc *desc;
-> > +       struct device *dev = &pdev->dev;
-> > +       struct rp1_clockman *clockman;
-> > +       struct clk_hw **hws;
-> > +       unsigned int i;
-> > +
-> > +       clockman = devm_kzalloc(dev, struct_size(clockman, onecell.hws, asize),
-> > +                               GFP_KERNEL);
-> > +       if (!clockman)
-> > +               return -ENOMEM;
-> > +
-> > +       spin_lock_init(&clockman->regs_lock);
-> > +       clockman->dev = dev;
-> > +
-> > +       clockman->regs = devm_platform_ioremap_resource(pdev, 0);
-> > +       if (IS_ERR(clockman->regs))
-> > +               return PTR_ERR(clockman->regs);
-> > +
-> > +       clockman->regmap = devm_regmap_init_mmio(dev, clockman->regs,
-> > +                                                &rp1_clk_regmap_cfg);
-> > +       if (IS_ERR(clockman->regmap)) {
-> > +               dev_err_probe(dev, PTR_ERR(clockman->regmap),
-> > +                             "could not init clock regmap\n");
-> > +               return PTR_ERR(clockman->regmap);
-> > +       }
-> > +
-> > +       clockman->onecell.num = asize;
-> > +       hws = clockman->onecell.hws;
-> > +
-> > +       for (i = 0; i < asize; i++) {
-> > +               desc = clk_desc_array[i];
-> > +               if (desc && desc->clk_register && desc->data) {
-> > +                       hws[i] = desc->clk_register(clockman, desc);
-> > +                       if (IS_ERR_OR_NULL(hws[i]))
-> 
-> Why is NULL a possible return value?
-
-Right, IS_ERR() would be enough here since devm_clk_hw_register() in the rp1_register*()
-functions will return an error in faulty cases, and &desc->hw couldn't even be
-NULL.
- 
-> 
-> > +                               dev_err_probe(dev, PTR_ERR(hws[i]),
-> > +                                             "Unable to register clock: %s\n",
-> > +                                             clk_hw_get_name(hws[i]));
-> 
-> We pushed this into the core now so you can drop this. See commit
-> 12a0fd23e870 ("clk: Print an error when clk registration fails").
-
-Dropped.
-
-Many thanks,
-Andrea
-
-> 
-> > +               }
-> > +       }
-> > +
-> > +       platform_set_drvdata(pdev, clockman);
-> > +
-> > +       return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-> > +                                          &clockman->onecell);
-> > +}
-> > +
+--gvljn3izqgvhquae--
 
