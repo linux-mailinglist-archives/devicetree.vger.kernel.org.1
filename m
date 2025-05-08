@@ -1,140 +1,91 @@
-Return-Path: <devicetree+bounces-174908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 125D7AAF42F
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:57:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0362AAAF43C
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:03:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 561A41BC7A98
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 06:57:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C804C7AB017
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 07:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 949A521B18A;
-	Thu,  8 May 2025 06:57:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gcBVAZS3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A47C21CC40;
+	Thu,  8 May 2025 07:02:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE83AD5E;
-	Thu,  8 May 2025 06:57:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E455D1F561D
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 07:02:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746687423; cv=none; b=GtyG5hFF20DJHrU2CBm7d33fibYmpI2D+FTrSPE7TtHOL3LH7Rr/YqjrDPIjx54rY1yQYLiekSAqwkPtFgqsaWaFUZFwZL6FERFMSEF12hk+dg68NsfHgV9iwvKaeli+nBlfLt3/C824sHAt26yM+jkzWHY6ptxeIpfxJvGiv9Q=
+	t=1746687774; cv=none; b=Fp5I9GWKBDxshtcIcSMcC3uMn+PQDSoYylL4uXZ47h2+XVA2N8fp1u8prl4Tfb55xkdBR7ZQ6ztqaveTyIXevj+JbWVYnXZ3HX/lC3qpNd+6MsM6VpOvxoN2J3dTwm/W5uaQhAJZSpuKSTb3YavRqamcUvDqJ4upKa3FR6/39Kk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746687423; c=relaxed/simple;
-	bh=XB4/b73Zb1WJ9uRN4cXIwLjPTxb343IRITb034Y1ZDw=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=AJOrf+zmt8GLsbL/fPEdCT9KnM86mvq7j9JWG1g5uSyKhn5J3IPEcKeNuMXFpdFlmrwOz4UjGgYrMmf6ZVgsw+Dtx6BjdMStse1lLoXPW0myMx/g5EM6iT2s0TtHJ06ve1+UN21MsAQtsCpci5J+FrDB4aNnaU/OpvmMfMXgGeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gcBVAZS3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DC12C4CEEB;
-	Thu,  8 May 2025 06:57:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746687422;
-	bh=XB4/b73Zb1WJ9uRN4cXIwLjPTxb343IRITb034Y1ZDw=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=gcBVAZS3zXHPpHX0OWEr4fEPElXsfOQ0i54Poc/ubqqs0mVqiLIOlYYNNWdBKs0SL
-	 Nay3cB0q1C/rCgXOgqF/yIX5TsUUR1DcsEl9eqxxhYa64KYExG+Serc1+5szF3yEIw
-	 ugDgAxLFYigL2vLHrdVqM17tlOeCrUBzWki5cbk7ffNLi/ISIw9LQa8KHp/BoLLv2P
-	 7EcneJ9yuFzjGvUUSkC1H+PmRJmXjw30Ue3jT8cd9xkY7GdcXA1NPaB7ABHWlXKnXA
-	 SIOZT6wnzCavYnf5ugtCmvL7ijGvIT64PtfoTsyXUnlc26Rj3aFkLZ36qRRXOHRaHw
-	 bboaoc2hU0vFw==
-Message-ID: <bd33bfa6-9d31-457d-a1bf-66151e92900b@kernel.org>
-Date: Thu, 8 May 2025 08:56:58 +0200
+	s=arc-20240116; t=1746687774; c=relaxed/simple;
+	bh=+gwb78Cp7gl7Y1OEcb9BQRdAgzU/g+1ryLbendjWPn8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rYpPN0Rt6TDRIkPc72cPSVNxuVYcAocopmEgz9MS9RhGb0DvG+fzzd03G2oPmmMSHu0CXycuuC0/BybSRw1Um9h2dTQvwy/tA1va3eEmuaRzHYaSbTkf2oYc76GfWNnP9iN0BeETINeJHKHXtwPippQA4JsLUuUhh2ArVeXs8vQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.186])
+	by gateway (Coremail) with SMTP id _____8CxLGsXVxxoVmXZAA--.29006S3;
+	Thu, 08 May 2025 15:02:47 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.68.186])
+	by front1 (Coremail) with SMTP id qMiowMBxLscWVxxo6nO8AA--.25269S2;
+	Thu, 08 May 2025 15:02:46 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v1 0/3] LoongArch: dts: Add PWM controller node support 
+Date: Thu,  8 May 2025 15:02:33 +0800
+Message-ID: <cover.1746684614.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] arm64: dts: ti: k3-am62l: add initial
- infrastructure
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Bryan Brattlof <bb@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250507-am62lx-v5-0-4b57ea878e62@ti.com>
- <20250507-am62lx-v5-2-4b57ea878e62@ti.com>
- <20250508-illegal-caracara-from-hyperborea-b77eda@kuoka>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250508-illegal-caracara-from-hyperborea-b77eda@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowMBxLscWVxxo6nO8AA--.25269S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+	ZEXasCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29K
+	BjDU0xBIdaVrnRJUUUkjb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26c
+	xKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vE
+	j48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxV
+	AFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAF
+	wI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27w
+	Aqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE
+	14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCF04k20xvY0x
+	0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E
+	7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcV
+	C0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF
+	04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7
+	CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jnUUUUUUUU=
 
-On 08/05/2025 08:52, Krzysztof Kozlowski wrote:
-> On Wed, May 07, 2025 at 10:09:20PM GMT, Bryan Brattlof wrote:
->> +
->> +	uart6: serial@2860000 {
->> +		compatible = "ti,am64-uart", "ti,am654-uart";
->> +		reg = <0x00 0x02860000 0x00 0x100>;
->> +		interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
->> +		power-domains = <&scmi_pds 82>;
->> +		clocks = <&scmi_clk 322>;
->> +		clock-names = "fclk";
->> +		status = "disabled";
->> +	};
->> +
->> +	conf: syscon@9000000 {
->> +		compatible = "syscon", "simple-mfd";
-> 
-> Not much improved here. You cannot have such compatibles alone and the
-> bindings test this.
-> 
-> Are you sure you tested this?
-I now tested it and I am 100% sure you did not.
 
-Use tools and computers instead of humans for finding trivial issues.
-This is not really acceptable.
+Binbin Zhou (3):
+  LoongArch: dts: Add PWM support to Loongson-2K0500
+  LoongArch: dts: Add PWM support to Loongson-2K1000
+  LoongArch: dts: Add PWM support to Loongson-2K2000
 
-Best regards,
-Krzysztof
+ arch/loongarch/boot/dts/loongson-2k0500.dtsi  | 160 ++++++++++++++++++
+ .../boot/dts/loongson-2k1000-ref.dts          |  24 +++
+ arch/loongarch/boot/dts/loongson-2k1000.dtsi  |  42 ++++-
+ arch/loongarch/boot/dts/loongson-2k2000.dtsi  |  60 +++++++
+ 4 files changed, 285 insertions(+), 1 deletion(-)
+
+
+base-commit: b56175973e17e67e3005837346ceb79cc282187a
+-- 
+2.47.1
+
 
