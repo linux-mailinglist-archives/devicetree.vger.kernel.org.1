@@ -1,120 +1,145 @@
-Return-Path: <devicetree+bounces-175051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAC37AAFA54
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:46:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47601AAFA59
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:47:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EA474E5CCB
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:46:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30AD89C7F3E
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE37A54723;
-	Thu,  8 May 2025 12:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C3884A3E;
+	Thu,  8 May 2025 12:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eiiWyhiN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FWumNBRW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B35E2C190;
-	Thu,  8 May 2025 12:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13FE0450FE;
+	Thu,  8 May 2025 12:47:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746708360; cv=none; b=RlcUlSe6kKSNfmgedKkzWAPSQzOfkGmHyrvDf7uF+LMPm2/ByTQXKHTmyxvOnogNZDQ/l956mkxrXvbwL7s552N9XViXs3vkWG3bDOn4oU2p6S++U+vNLZozxFne5JAbBW9lTGgtnJR8o1P0CQZMFBwnNR3+9FI5KEYWuPMhcNo=
+	t=1746708437; cv=none; b=V0mPVE02rIybpn5UXKvFoDexkn5D3y2iVmaDDdTmT3rmwTDZIJc/Lyq5yWd7TXlXiHn/zTYykq3qoIWxssMbSbmGjDuvgK8+fB/34QiO6okEIoRIvZSRuWuVqT9zqyq5iPwpsguSDJd3ezWauUkE+AjwBGLgdDQzLMggdQsNYLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746708360; c=relaxed/simple;
-	bh=gtvcZNEeXpPInbrf7rQ7RG25lTI5aprhGw3x58onNJE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SSHwrSdtTQ+5JZn60siQ42dxqUxotBy+ypSKGAGFVmjVqYqo0IKB0ks8GF5tSko4ojn3Eq7P+Uz4Qo02Fthu0RyI49pvVBhaBya6P8QEnCFTU3Hp6MghNxnLQLiGinff79kAN9MOPeothyUQQIuqLHTUQmC77DtqTfRfzNaGGPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eiiWyhiN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EA45C4CEE7;
-	Thu,  8 May 2025 12:46:00 +0000 (UTC)
+	s=arc-20240116; t=1746708437; c=relaxed/simple;
+	bh=Cg9LiKsO62WC03KDMYk7bBWSNRTq/3iOY9JRA3tnxSU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X8gtHCRrjvwMTbubNK3NglL8cOXAFP0DAP4Ktu0YMCedoqRz0cef3lZgcJTaUw7iGnzUMx/UT8e8AoNalKv63IwGHNNXy3oijMey1Cizar6wyqG3GNSqp63RN9yUWUq85PUal9TUZY73PJArdhsuUihfvq2Ef03giGJBz5eR0Wo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FWumNBRW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2C0BC4CEE7;
+	Thu,  8 May 2025 12:47:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746708360;
-	bh=gtvcZNEeXpPInbrf7rQ7RG25lTI5aprhGw3x58onNJE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eiiWyhiNlquLFFMTKbOZdZ/Sfam9B40u4DIuYyja1QolOwigVPF2m+ASdGwk/RZDm
-	 eDpw9Q3/5vN1Ard1bQxeec+TcRtbtbB5cFJFVLopvIQRAzxwvSFtUED8fDwvy9WH+Q
-	 4xVdzKCsYZIP428lefgyGofVq58WYRd4VZLtQCD9VPkti92uqQ9wLF1ET+NIITvbIV
-	 9mOof9MXdVK5UWwk7sHTkRdvGH57uTpWwBi0CAUhEnPGYqTPfyaeq8K6Vl4lFtHXps
-	 k6ouHLUAeTD5xUTAxCse+hVv0Q8xYHCC7HFGu4sLV+H217idiafvK5oWXG2u8Hzfl9
-	 tRwvaUvtiqBWg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uD0dR-000000004UX-3MnV;
-	Thu, 08 May 2025 14:45:57 +0200
-Date: Thu, 8 May 2025 14:45:57 +0200
-From: Johan Hovold <johan@kernel.org>
-To: srinivas.kandagatla@linaro.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: peda@axentia.se, broonie@kernel.org, andersson@kernel.org,
-	krzk+dt@kernel.org, ivprusov@salutedevices.com,
-	luca.ceresoli@bootlin.com, zhoubinbin@loongson.cn,
-	paulha@opensource.cirrus.com, lgirdwood@gmail.com, robh@kernel.org,
-	conor+dt@kernel.org, konradybcio@kernel.org, perex@perex.cz,
-	tiwai@suse.com, dmitry.baryshkov@oss.qualcomm.com,
-	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	johan+linaro@kernel.org,
-	Christopher Obbard <christopher.obbard@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v6 2/6] mux: gpio: add optional regulator support
-Message-ID: <aBynhb6voxJvZtB7@hovoldconsulting.com>
-References: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
- <20250327100633.11530-3-srinivas.kandagatla@linaro.org>
- <Z-zvuhz2nkA5j4RZ@hovoldconsulting.com>
+	s=k20201202; t=1746708436;
+	bh=Cg9LiKsO62WC03KDMYk7bBWSNRTq/3iOY9JRA3tnxSU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FWumNBRWBkA1lIAzTUt8ckP2S6llrN29DQTv2v3QXgSCtiFG6ZkCfUSZwUhBF7+aw
+	 9w2wT9Pb92ofzLhy9b1i/zAArgDDWXCz0hIn/Gz/ggQ+80ksafRZanKqz80LUOh5fr
+	 QfRrnD5xf60w0U7I14kd0uJEgiIUWDzbQnRIQLzOwZ2+2bGVDD0ZA/JANREU+yFBnP
+	 +56xh9aKrYG27pcugFFqZhXZsN81p/pwM8qO45TJDhaH376ulBl+3ZM9WnEfbOqOmT
+	 ZSEiRqCNVcLJ9Xq3vMUTyGe2FJ4jKiLTZD+oWp0VvM8022XTGEZ5VyqHlSQ8D+Wkk2
+	 VRDjbG2VkOg2Q==
+Message-ID: <7a6e46ea-bc8f-4e4e-ba74-e01c977f25d5@kernel.org>
+Date: Thu, 8 May 2025 14:47:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z-zvuhz2nkA5j4RZ@hovoldconsulting.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: Document Tegra264 ADMA support
+To: "Sheetal ." <sheetal@nvidia.com>, vkoul@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+ thierry.reding@gmail.com, jonathanh@nvidia.com, ldewangan@nvidia.com
+References: <20250508123520.973675-1-sheetal@nvidia.com>
+ <20250508123520.973675-2-sheetal@nvidia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250508123520.973675-2-sheetal@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 02, 2025 at 10:05:14AM +0200, Johan Hovold wrote:
-> On Thu, Mar 27, 2025 at 10:06:29AM +0000, Srinivas Kandagatla wrote:
-> > From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > 
-> > Some of the external muxes needs powering up using a regulator.
-> > This is the case with Lenovo T14s laptop which has a external audio mux
-> > to handle US/EURO headsets.
-> > 
-> > Add support to the driver to handle this optional regulator.
-> > 
-> > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
+On 08/05/2025 14:35, Sheetal . wrote:
+> From: Sheetal <sheetal@nvidia.com>
 > 
-> > @@ -82,6 +83,10 @@ static int mux_gpio_probe(struct platform_device *pdev)
-> >  		mux_chip->mux->idle_state = idle_state;
-> >  	}
-> >  
-> > +	ret = devm_regulator_get_enable_optional(dev, "mux");
-> > +	if (ret && ret != -ENODEV)
-> > +		return dev_err_probe(dev, ret, "Couldn't retrieve/enable gpio mux supply\n");
+> Add Tegra264 ADMA support to the device tree bindings documentation.
+> The Tegra264 ADMA hardware supports 64 DMA channels and requires
+> specific register configurations.
 > 
-> nit: "failed to get/enable mux supply" may be more consistent with the
-> other (non-capitalised error) messages and avoids repeating "gpio mux"
-> which will be added by driver core.
-> 
-> > +
-> >  	ret = devm_mux_chip_register(dev, mux_chip);
-> >  	if (ret < 0)
-> >  		return ret;
-> 
-> Either way:
-> 
-> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-> Tested-by: Johan Hovold <johan+linaro@kernel.org>
+> The binding maintains compatibility with existing Tegra platforms
+> while adding support for Tegra264-specific features.
 
-Can someone please pick this one and the binding update up for 6.16?
+This is confusing sentence, because you did not make anything compatible
+there. Drop it.
 
-I see you recently volunteered to do so, Krzysztof? [1]
+> 
+> Signed-off-by: Sheetal <sheetal@nvidia.com>
+> ---
+>  Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
+> index d3f8c269916c..d204be46b90e 100644
+> --- a/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
+> @@ -19,6 +19,7 @@ properties:
+>        - enum:
+>            - nvidia,tegra210-adma
+>            - nvidia,tegra186-adma
+> +          - nvidia,tegra264-adma
 
-Johan
 
-[1] https://lore.kernel.org/all/20250501175303.144102-2-krzysztof.kozlowski@linaro.org/
+This is incomplete, missing constraints. Read *ENTIRE* binding, not top
+25 lines only.
+
+Best regards,
+Krzysztof
 
