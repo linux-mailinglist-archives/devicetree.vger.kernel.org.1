@@ -1,142 +1,184 @@
-Return-Path: <devicetree+bounces-175082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1388AAFC1A
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:53:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E088AAFC21
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 15:54:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74BBF3B1F81
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:53:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4749A1C05AD5
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:55:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE6622D4C9;
-	Thu,  8 May 2025 13:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D7B22D7A4;
+	Thu,  8 May 2025 13:54:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="CeX52Yag"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H0yIog/H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27276227E99;
-	Thu,  8 May 2025 13:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F4422D787
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 13:54:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746712412; cv=none; b=Kot0wZz8gj016WyUju3dOuiasH++7ChjX8VWWjkMscQAo8RD4ZbwSFEb3LKStlPAofERfYeehDZNqOjEoPKGLGa3SoFiOpc+L16S7CsbnHa0GDkFxlGStqE1UCbAqvc4zZAjkswexDOpjEYb5aPyOofdJ7Icfrb3Zv+KEy12Ono=
+	t=1746712477; cv=none; b=gwGzeKoa3QZGKn/Y6cn6JZcuTZqhotlI04gVTOy4m+gntFHLYPxlupbDf9MzqqgHNTU5FKLFL5y5y6nmDXrySmFqy0Ff2uCQYnAg4bgDm4ePZFXvle+ji8mm2RdYKyjYt8nrTryhlBsy7RuaQMuYf0sHYcos9lypcP9Imq5ZmBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746712412; c=relaxed/simple;
-	bh=QswFB5tgp/GHNhRRoFGsejr8xzEI9y2/TqU4JZ05+W4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=b7D66XjdeeqqkTayeMY+FpefSqYxubK/Rb8mEDwNSEmDBRlXYhVuCcLw32NpQyTJrtLu9xiubQnYQBTqsdqgsgLKMCUE+gY1sPcy1YkCLcG8uurqJgEqB9cgYpvwlN8aDJXjvlivkA+MaXmi3deGAkWFIANYXz8Dd66Q4HA7ODo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=CeX52Yag; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 8B00C25A8D;
-	Thu,  8 May 2025 15:53:29 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id YET6xmJWoQyn; Thu,  8 May 2025 15:53:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1746712409; bh=QswFB5tgp/GHNhRRoFGsejr8xzEI9y2/TqU4JZ05+W4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=CeX52YagXDvSu71pGGBEbmeF1p/mtDUMN+KlqsHvYvgwPMJN4A5WM73QpGIWfYfFt
-	 /52NnZYOdSX8UjzkCMdiToGxP1+ohK8Wn1zKRydSd9oVcnVOamLfQnkpt3vEua9PSH
-	 vosGBvQ+qEb7dnrCP6G2LLg9RcFM1dBxOiVcIYves5SsRkPdhasv+XRN5FEdxdPOxl
-	 Xfq29IvWaiIByiA6X/iVvwRk3n7BfVlGdRpwoWfdkFbCuMBdyLorjoK9m7N4XqhE8d
-	 ktWs3QjYJbae1ZH4iTAF35r7mmb3M6re2Na4x86cy27zYogid0knJ1+3VN3aOUoNFi
-	 8cnyZmmsBLRkw==
-From: Yao Zi <ziyao@disroot.org>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Yao Zi <ziyao@disroot.org>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Shresth Prasad <shresthprasad7@gmail.com>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	Jonas Karlman <jonas@kwiboo.se>
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] arm64: dts: rockchip: Add naneng-combphy for RK3528
-Date: Thu,  8 May 2025 13:53:07 +0000
-Message-ID: <20250508135307.14726-2-ziyao@disroot.org>
-In-Reply-To: <20250508134332.14668-2-ziyao@disroot.org>
-References: <20250508134332.14668-2-ziyao@disroot.org>
+	s=arc-20240116; t=1746712477; c=relaxed/simple;
+	bh=qRzs9PVcepQsfzI+91MDulpnTFZB7bYA8DD+AYQJXBg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sM59w3teY3uIjb2avQ3f3CE2FwfwDqa5qGl0UzUNQ91caefpw9ocQEA1KzBPvKwM7ng/8gTd/Pxtm5cT5CN9L8xHKQViWMtSLZKhK72bKiJ3lkIDyn0fF8IFhol0sjta3OV1k89GU4GlWM9Yc1f8bOiJZHfHSFOE7lrtCQmTvNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H0yIog/H; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3a0b3f62d1aso132987f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 06:54:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746712474; x=1747317274; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=OE2XfGjW9rbiEGA9DoJIt4ipIusyoB7R0P16CBqgBPM=;
+        b=H0yIog/HB6bZgr3/fYdOYKGCseCGqZSoA0NQyJ4AUqPHOJWtMoGBTJ4DN6DS/3W7iP
+         HJbaU8X3q5KIPBDVgKP+ElwgtYSqSvJa8qK2YdqtntZ9P52+63rO8ugQKoVM/ndc8pOj
+         Og6qHPCTPZBm8rTZV1HuBAI4gQbetbhUGvq9vTd0qLuG3rqLC4qmnWfyjBrMjLKtqLxl
+         8T3iS92pnMt9n1Z4Sm29bpBWzgIcOd5Cq4mgp4kZjCh3yssq8RclaYbNuPry5PpxSMwN
+         OSBCIhh0WnrFDPE7nP0m5CjQJExjwFE6mkZsmoD+tUpzgo+j8TDPXI130q1UGPHnB8tw
+         YC8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746712474; x=1747317274;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OE2XfGjW9rbiEGA9DoJIt4ipIusyoB7R0P16CBqgBPM=;
+        b=l4DHOl8TRzG0yNb99P8FBTbKQVBepTN3xQAZPPcQYUcyspCuwfWij74a8S6cOgeU0R
+         fEnnmX9BMkkO2/LPV3yyezGPOjlHm/48pecrGvoqfIO90PUt4rvkdl+S9bk+Nhks8qBl
+         4i00vP6BSFPdayYNVtpIJKWwhm41Lciw8FANHpv5HYYyxLFB6YlJVjZ1tfvA/v/mwMc0
+         ATXEYn8L8IdWumnNJF/q7VjqGO9Z7i2YtoscpPfVmvsWxyuDoh6xFTZoLmbxUGH+csYq
+         /qumE/LH+OcvYqXaKT7tCO52Qry43TEImrBuZGjpw21GYyQ4W49Y3Kfvgi7VpnuEJ/hT
+         M61g==
+X-Forwarded-Encrypted: i=1; AJvYcCUfbocDYg0rCtfdDcxvf3pueoomnQlD6E+yOQiziKcucFsC7O3l74Pn6eY9x6ixnCdSAwZ4jzHkEMfS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSt1X9PX4AeWveS+ukduBcW9/4OJ2t3bU26HScNzAIaiE+2rvi
+	1lrlQhjn4xsjRYM37kcqsRecOfECq8uFX2JeA9RNxYqkrLa26DwsT1UVRhZhHAw=
+X-Gm-Gg: ASbGncv646AMj77ePpD0Vx0DBJXqKXT8CgxQiY6Jo9Ax23xP0R1CUP8YLuGtHitT4pY
+	1HbTt9Hbu1SKl4ytOQ+7wWb8Ec6x0HH6JsYCFV4hCeLIYW57AqI5XsT/Q8k2OJirsEUEh25vXwp
+	QIU/KF386rUJRdPhE9vOvp+pp5Qc2EcL52cVL+m8DzwNbBBU9cBDK9iSqd9qYsfqGebi6IdUoSJ
+	pq2s6j6tenzGHlLF6EfqWSWtBUITz6e8jKNTPFwhnR750OoHEgGapzq/P9CdlOS+JXcrxWdDVMl
+	5TWu+YG+iNRG6At7O3hOGsVeyG43KsKil0vULGJMg5OZYeKy+tssjIb5f0fxTuNgUiWSSA==
+X-Google-Smtp-Source: AGHT+IGFsswoZdi7bBzt6mldCknC7FapGsMM1Gttk1zZwwuSCaJhWziPOOq27/+/xll1dWJ7kbC78Q==
+X-Received: by 2002:a05:6000:2703:b0:3a0:bd7a:7bab with SMTP id ffacd0b85a97d-3a0bd7a7d1fmr539248f8f.12.1746712473884;
+        Thu, 08 May 2025 06:54:33 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.207.88])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd32b0a9sm38507795e9.2.2025.05.08.06.54.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 May 2025 06:54:33 -0700 (PDT)
+Message-ID: <809ff3f7-612f-4e0b-8f81-59290d4bd0aa@linaro.org>
+Date: Thu, 8 May 2025 15:54:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/panel: Add Novatek NT37801 panel driver
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250505-sm8750-display-panel-v1-0-e5b5398482cc@linaro.org>
+ <20250505-sm8750-display-panel-v1-2-e5b5398482cc@linaro.org>
+ <CACRpkdZi3ryJ_D6NYaLS1Cmevp-Pmbdq6zTL5+a=cmXNq42N5g@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <CACRpkdZi3ryJ_D6NYaLS1Cmevp-Pmbdq6zTL5+a=cmXNq42N5g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Rockchip RK3528 ships a naneng-combphy that is shared by PCIe and USB
-3.0 controllers. Describe it and the pipe-phy grf which it depends on.
+On 08/05/2025 14:54, Linus Walleij wrote:
+> (...)
+>> +static int novatek_nt37801_on(struct novatek_nt37801 *ctx)
+>> +{
+>> +       struct mipi_dsi_device *dsi = ctx->dsi;
+>> +       struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
+>> +
+>> +       dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+>> +
+>> +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0,
+>> +                                    0x55, 0xaa, 0x52, 0x08, 0x01);
+> 
+> The above is obviously some kind of unlocking
+> sequence to open page 1 of some vendor registers.
+> 
+> We know this because the exact same sequence appear in
+> panel-innolux-p079zca.c  and panel-sony-tulip-truly-nt35521.c
+> and the last argument is the page, so there we added
+> a switch page macro making it clear what is going on.
+> Could you do the same here?
 
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
- arch/arm64/boot/dts/rockchip/rk3528.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+I don't have docs and this is auto-generated panel driver based on
+downstream DTS, but sure, I can prepare something similar based on above
+assumption.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-index 68059c7d7e80..cd6b9ddb3345 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/phy/phy.h>
- #include <dt-bindings/clock/rockchip,rk3528-cru.h>
- #include <dt-bindings/reset/rockchip,rk3528-cru.h>
- 
-@@ -334,6 +335,11 @@ vpu_grf: syscon@ff340000 {
- 			reg = <0x0 0xff340000 0x0 0x8000>;
- 		};
- 
-+		pipe_phy_grf: syscon@ff348000 {
-+			compatible = "rockchip,rk3528-pipe-phy-grf", "syscon";
-+			reg = <0x0 0xff348000 0x0 0x8000>;
-+		};
-+
- 		vo_grf: syscon@ff360000 {
- 			compatible = "rockchip,rk3528-vo-grf", "syscon";
- 			reg = <0x0 0xff360000 0x0 0x10000>;
-@@ -698,6 +704,23 @@ dmac: dma-controller@ffd60000 {
- 			arm,pl330-periph-burst;
- 		};
- 
-+		combphy: phy@ffdc0000 {
-+			compatible = "rockchip,rk3528-naneng-combphy";
-+			reg = <0x0 0xffdc0000 0x0 0x10000>;
-+			#phy-cells = <1>;
-+			clocks = <&cru CLK_REF_PCIE_INNER_PHY>, <&cru PCLK_PCIE_PHY>,
-+				 <&cru PCLK_PIPE_GRF>;
-+			clock-names = "ref", "apb",
-+				      "pipe";
-+			assigned-clocks = <&cru CLK_REF_PCIE_INNER_PHY>;
-+			assigned-clock-rates = <100000000>;
-+			resets = <&cru SRST_PCIE_PIPE_PHY>, <&cru SRST_P_PCIE_PHY>;
-+			reset-names = "phy", "apb";
-+			rockchip,pipe-grf = <&vpu_grf>;
-+			rockchip,pipe-phy-grf = <&pipe_phy_grf>;
-+			status = "disabled";
-+		};
-+
- 		pinctrl: pinctrl {
- 			compatible = "rockchip,rk3528-pinctrl";
- 			rockchip,grf = <&ioc_grf>;
--- 
-2.49.0
+> 
+> With this addressed:
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> 
+> Yours,
+> Linus Walleij
 
+
+Best regards,
+Krzysztof
 
