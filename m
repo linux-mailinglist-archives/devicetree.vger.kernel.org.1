@@ -1,197 +1,125 @@
-Return-Path: <devicetree+bounces-174899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F34AAF3D3
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:37:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E207AAF3FF
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:44:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADC103A3A6C
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 06:37:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BF57980905
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 06:44:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A8920E314;
-	Thu,  8 May 2025 06:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5389521D3C0;
+	Thu,  8 May 2025 06:44:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="WitwGPd4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
+Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C9A1A8F84;
-	Thu,  8 May 2025 06:37:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1CF721B1A3;
+	Thu,  8 May 2025 06:44:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746686271; cv=none; b=ovGB4gjEcgSBsAQkSJte83BMYQBHQRLDJG51mhaQ5ycmyWxM8JDQNC9AoUjl/+8vW88UqCM9OAkiLFF+au7R/ll/XE/wP0QzB0qNYwfZfucFf+NN+yPzTNwN5LzFPqcqteQL/A4Q1bSmKNIq5Ff15RdrUSfxNSa53PbqvcPbC3M=
+	t=1746686667; cv=none; b=P+YyId1Dn8e/9Kd0kWfy5+wC82zT/+TOvQwVCGCBYS5ofqrfZ1kGYXltFsuT3B1agq6f7i6Hme0k3SIWoFKGAEKdTJdNnvoAuK8kxoGYb/ySfaqJ8AfYnrCcSSM8YmOXtA2MvRsRRC/M1y3u/uFgn8LuLDmdgDt6CEA+5g6cCyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746686271; c=relaxed/simple;
-	bh=3Zl6mjGG1ou3Sz/cwJwlkQ6o772FtAwyLCq6piwjNnA=;
-	h=Date:From:To:Cc:Subject:References:Mime-Version:Message-ID:
-	 Content-Type; b=LKgxQ/Aa8ROwKFB7ZO7JLjtjUjt0wZ4PY/gefJMSxogTtMo0Qa24gt9LdRb3xlMhkNTctEH7U8OBcEgnFaaPOs10IobFFCm/Ve00KtkqBIfEBu2Y10KLtcS1tUjtNY3eGXsLC7v6thXPKKdCi1Fmpam3zQAlf/A33smJb9oATLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.com.cn; spf=pass smtp.mailfrom=kylinos.com.cn; arc=none smtp.client-ip=54.206.16.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kylinos.com.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kylinos.com.cn
-X-QQ-mid: zesmtpgz8t1746686255t48e8b585
-X-QQ-Originating-IP: l4BNTlEKuI9xXDkt9tPQ6HMCueCI3VQCiijBZ079qZE=
-Received: from DESKTOP-SUAVFFI ( [118.249.225.48])
+	s=arc-20240116; t=1746686667; c=relaxed/simple;
+	bh=HTkMbecgEA76J/DSUzXaE8ifmkpnDi8Sa23FEF9VYEU=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=HEaPLSEDkcpWhsobBbQcYI2PLW9Bus6secUtSWy8OJN9wgJnhPuVu4ssAR5A1z5UZo4S6qQz4ZipahWxlM8XUioyJ4oNrHIheoajmI00IfRcjUy01BgAuN53ygrlDX/3t8JgMU/wcaDMXK8PG78NmsvQMt8z3sRgA3h5OaQyRqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=WitwGPd4; arc=none smtp.client-ip=54.207.19.206
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1746686609;
+	bh=0pI2iREWW5cC2LwJLtCoMOYZhwY83h/z7B9+8q2WvaM=;
+	h=From:To:Subject:Date:Message-Id;
+	b=WitwGPd4ELUfHlcBca74VFrCqdUNdz9uI+Rc7hx3jM/z7Dus5aO4zKCd8/MkbMTCT
+	 0RztnDfv3gzZ9TKvLQp2lp2jJ6I9RidPpUTeAGo3Wzs2VQGjBIGmhPiVeG/C7Hm2AE
+	 RiwuS/GN2uPiZqp/pZXJWAlPOh3V9UvkjbY68AIM=
+X-QQ-mid: esmtpsz18t1746686608t123d24cd
+X-QQ-Originating-IP: Lb7KIkQyY8JilwbOns5Cl43BA/5Z8/J56hf/m1H92DY=
+Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 08 May 2025 14:37:32 +0800 (CST)
+	id ; Thu, 08 May 2025 14:43:26 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 7708864450750070913
-Date: Thu, 8 May 2025 14:38:04 +0800
-From: "liudalin@kylinos.com.cn" <liudalin@kylinos.com.cn>
-To: "Pankit Garg" <pankit.garg@nxp.com>, 
-	"Conor Dooley" <conor@kernel.org>
-Cc: linux-rtc <linux-rtc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"robh@kernel.org" <robh@kernel.org>, 
-	alexandre.belloni <alexandre.belloni@bootlin.com>, 
-	"Vikash Bansal" <vikash.bansal@nxp.com>, 
-	"Priyanka Jain" <priyanka.jain@nxp.com>, 
-	"Daniel Aguirre" <daniel.aguirre@nxp.com>, 
-	"Shashank Rebbapragada" <shashank.rebbapragada@nxp.com>, 
-	"Aman Kumar Pandey" <aman.kumarpandey@nxp.com>
-Subject: Re: RE: [EXT] Re: [PATCH v3 1/2] dt-bindings: rtc: Add pcf85053a support
-References: <20250507072618.153960-1-pankit.garg@nxp.com>, 
-	<20250507-zap-dyslexia-924cfd1b6ec9@spud>, 
-	 <AM0PR04MB6515B27367279C935A295379E78BA@AM0PR04MB6515.eurprd04.prod.outlook.com>
-X-Priority: 3
-X-GUID: 05D0529A-A065-4DA6-8B3E-D5E360349411
-X-Has-Attach: no
-X-Mailer: Foxmail 7.2.21.453[cn]
+X-BIZMAIL-ID: 4859509138922957751
+From: Chaoyi Chen <kernel@airkyi.com>
+To: Sandy Huang <hjc@rock-chips.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Convert Rockchip CDN DP binding to yaml
+Date: Thu,  8 May 2025 14:43:02 +0800
+Message-Id: <20250508064304.670-1-kernel@airkyi.com>
+X-Mailer: git-send-email 2.17.1
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: N3IC8um5pMyYiUTB++F8KmGWAz7BbvjjiJvjkp/Emlsn4bb47X4/ZJQi
+	3s93gkfxyyqyBFPaHO95ETcR+vn67It2LfIX0jXKOXkXWHipQnUY61PNk7v42XfLt2bUInW
+	b1CJIGt+gHy+SoabkJiwrra6tQkkj42SpsbbS03vIQR40QiBW1GVfYGJAosQekfFzr+CwRg
+	YwMqWTEMVM4z3suCQIV+m4DDk3oSPaviOUbZJ1dFHZFydMyGXoh3+7d5aTHitLvAonE8QgF
+	jeIEGebHMXzzEwvZ2qy3xzcsPYmyCbRBaWUDR/wovsrryAiK1OwxaGgyEjmpSNJL9dxQPQA
+	XIulur70ImXupPMIfD4g/cvF6SxuWkZPkIQkIn9rynumJIkXcJc6mHYGoz/qOuQHDdQ7SbN
+	F+CPCIanHXerXlwJOJhajxzhhBnPhbKASftNDzq9ZD4JfIfYape0q0ezZ8Ar9nrYrucZ/4a
+	3FwGKtAOVO01z2DpkBTgYShC8gJm4yzBkVDzRRnIlqQwpjht0zILw6So2G0RqS8mSz7aYIK
+	0ZXduco+VDbsd63wAHnLfiO659D6971lm00O1i7vpHIvVZ0rFXSEA76N/gJCjGUBk66yU16
+	h0hKvIeFpl7ilnJ24FNO8J7buPsBUNIPooKHKJmAWWLOAxB/iUPGGVcchiLR0YPtt1a2tG6
+	bUMR4pcsQhe+Pw4KCVpde0oz4eccAOhnEQg2MDPF6m4Q7lW0mcXPAJSpr/gfICE0bHHRA7R
+	BnaKLEyJ+IWakDzca2dX0+tz15yetBk95GlTAx58Emd25MrQ9rda/6yHJQrE3wS22Sy6+ZI
+	SRWByavJ1v1Z/xKQNObNDN5Oht3I7KmAwqiz0IhA9mpdPExOZZ4rzZe1BAYvukfHNXUxz7F
+	e2tfrMTeBn6x31JRJjWXREaL5MK6BBQqdCtwtXoCzkeA7QsaqWvgFrbT/Vh4XCcYyRgX8cW
+	VoHl3OzAjNz5v0Q==
+X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+X-QQ-RECHKSPAM: 0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Message-ID: <5A950D2F65D63A8F+2025050814380293645828@kylinos.com.cn>
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:kylinos.com.cn:qybglogicsvrgz:qybglogicsvrgz8a-0
-X-QQ-XMAILINFO: OJxrSQW+uqfyGp9G3KJ/J8wL80q04oSm4ebkw/1JcnTyvD5hBzb+g4FO
-	1pCk10fy9ryLQBskT2uYmvPrtxur88UZag0Fw9Y/QcmFkleo3j7HMyVf2Yt5CmK0mFoq+Xe
-	eTDf3phwj+CCTqnxI4h84dO1MuM2TTdnYeKRnxnoltOjTkFVSaftOYm9al9v0ui4HQiVX26
-	nFGjwsxc3g0L5DtVZ4YxaH2MLIxjjSVKlVm05A1cKndy//RUOTWEdSmB83jcsfnRBvtvizf
-	RGAvW+rs4UEGhFvgKw/CaXATSkCJjrlqb6V3wCUKEfEMybRde7WNkg5r4qtV4tWkgFWOY6o
-	49dmdxgdy62YOISk+oUnu8huc+P6FkPhAuvFL/cr14XbdVEH64FaIt7IQhxn9dKmvm8GkkF
-	42aiN6/O/XM5Syu6b0Cxeah5AjiK37/l0mALFUdyzL+63368r+2LpKodxFQE7nrniRlY47W
-	1x96+Qs+kfvTCXM/LMEnbZrhymAYZk7UaurUvDOgBAn84cHWFmvdrubJ3IKADEJJgVt49/N
-	g9vehU5eo/HIp+46PImrVmaOaGI7GMFTuTJeBBkyoyJU9mX895YH39RaPwUsFdxz9nn1t6h
-	UB/Aq77ug7haknhK6pYZfGxy1nuZ/HLQ/snoSOFZlXv2Q+4ZpF0PauKUl26d5F92Irmc/+D
-	acQMqpfCFYpCBxXsvfD2bGOLOakGM5Uf5VwBvnYMd00tqib4zdL1pedm5NitzXkSqQO+pVf
-	5gnSeRTOFyR6EK190Q4iFHmM4MrPH/T+6/B1J73sQXBJGX9S2MBd5CdEgWSPM16Ph/pa2WC
-	m9+hW/a8wKyrXJoAKjuJiK8a6y19XfvQP03nvrcv3erk5RKlq66Yws4WPq1DUnOex+yyjHX
-	6DhkSo1WHquuBoFgDaWA3MGnp7+OFzL+TpB1fU/PCo29RX5s8cIZeLcn8ioNyBOD1jFTuJl
-	a/0YlihZzddGpoXOOsm0PypqeeF7ApLYPkUB2bbnbFtbx9QRVUHOa+SCaORCffX73qZepST
-	vYotvBmw==
-X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
-X-QQ-RECHKSPAM: 0
 
-SGkgQmluYmluOgoKCgrCoMKgwqBUaGUgZGVzY3JpYmVkIGlzc3VlIGRvZXMgbm90IGhhcHBlbmVk
-wqAgd2l0aCBvciB3aXRob3V0IHRoZSBwYXRjaCBieSB0ZXN0LCBhcyB0aGUgaW50ZXJydXB0IGlz
-IG1hbmFnZWQgYnkgYWNwaS7CoAoKCgpUaGUgZGV2aWNlIGluZm8gYW5kIHRlc3QgcmVzdWx0IGFy
-ZSBhcyBmb2xsb3dzLgoKCgoxLiBEZXZpY2UgaW5mbwoKW+ezu+e7n+acqua/gOa0u11bcm9vdEBt
-YWlsIHRlc3RdIyBkbWlkZWNvZGUgLXEKQklPUyBJbmZvcm1hdGlvbgogICAgICAgIFZlbmRvcjog
-WkQtVEVDSAogICAgICAgIFZlcnNpb246IFYwOQogICAgICAgIFJlbGVhc2UgRGF0ZTogMDYvMTUv
-MjAyMgogICAgICAgIFJPTSBTaXplOiA4IE1CCiAgICAgICAgQ2hhcmFjdGVyaXN0aWNzOgogICAg
-ICAgICAgICAgICAgUENJIGlzIHN1cHBvcnRlZAogICAgICAgICAgICAgICAgQklPUyBpcyB1cGdy
-YWRlYWJsZQogICAgICAgICAgICAgICAgQklPUyBzaGFkb3dpbmcgaXMgYWxsb3dlZAogICAgICAg
-ICAgICAgICAgQm9vdCBmcm9tIENEIGlzIHN1cHBvcnRlZAogICAgICAgICAgICAgICAgU2VsZWN0
-YWJsZSBib290IGlzIHN1cHBvcnRlZAogICAgICAgICAgICAgICAgQklPUyBST00gaXMgc29ja2V0
-ZWQKICAgICAgICAgICAgICAgIFNlcmlhbCBzZXJ2aWNlcyBhcmUgc3VwcG9ydGVkIChpbnQgMTRo
-KQogICAgICAgICAgICAgICAgVVNCIGxlZ2FjeSBpcyBzdXBwb3J0ZWQKICAgICAgICAgICAgICAg
-IEZ1bmN0aW9uIGtleS1pbml0aWF0ZWQgbmV0d29yayBib290IGlzIHN1cHBvcnRlZAogICAgICAg
-ICAgICAgICAgVUVGSSBpcyBzdXBwb3J0ZWQKICAgICAgICBCSU9TIFJldmlzaW9uOiA0LjAKICAg
-ICAgICBGaXJtd2FyZSBSZXZpc2lvbjogMC40CgpTeXN0ZW0gSW5mb3JtYXRpb24KICAgICAgICBN
-YW51ZmFjdHVyZXI6IEdFSVQKICAgICAgICBQcm9kdWN0IE5hbWU6IFVUNjAwMC1MQjUKICAgICAg
-ICBWZXJzaW9uOiAxLjAKICAgICAgICBTZXJpYWwgTnVtYmVyOiBUQkQgYnkgT0VNCiAgICAgICAg
-VVVJRDogMDAxMTIyMzMtNDQ1NS02Njc3LTg4OTktYWFiYmNjZGRlZWZmCiAgICAgICAgV2FrZS11
-cCBUeXBlOiBQb3dlciBTd2l0Y2gKICAgICAgICBTS1UgTnVtYmVyOiBMb29uZ3Nvbl9TS1UKICAg
-ICAgICBGYW1pbHk6IFR5cGUxRmFtaWx5CgpCYXNlIEJvYXJkIEluZm9ybWF0aW9uCiAgICAgICAg
-TWFudWZhY3R1cmVyOiBHRUlUCiAgICAgICAgUHJvZHVjdCBOYW1lOiBHRy0zQTUwMDAtMDIKICAg
-ICAgICBWZXJzaW9uOiAxLjAKICAgICAgICBTZXJpYWwgTnVtYmVyOiBDaGFzc2lzIEJvYXJkIFNl
-cmlhbCNUbyBCZSBGaWxsZWQgQnkgTy5FLk0KICAgICAgICBBc3NldCBUYWc6IFR5cGUyIC0gQm9h
-cmQgQXNzZXQgVGFnCiAgICAgICAgRmVhdHVyZXM6CiAgICAgICAgICAgICAgICBCb2FyZCBpcyBh
-IGhvc3RpbmcgYm9hcmQKICAgICAgICAgICAgICAgIEJvYXJkIGlzIHJlcGxhY2VhYmxlCiAgICAg
-ICAgTG9jYXRpb24gSW4gQ2hhc3NpczogVHlwZTIgLSBCb2FyZCBDaGFzc2lzIExvY2F0aW9uCiAg
-ICAgICAgVHlwZTogTW90aGVyYm9hcmQKCi4uLgoKCjIuIFRoZSBzeXN0ZW0gZXhoaWJpdHMgYSB0
-aW1lb3V0IGVycm9yIHdoZW4gd2FpdGluZyBmb3IgYWxhcm0gc2lnbmFsIHJlc3BvbnNlwqB3aXRo
-b3V0IHRoZSBwYXRjaC4KClvns7vnu5/mnKrmv4DmtLtdW3Jvb3RAbWFpbCB0ZXN0XSMgY2F0IC9w
-cm9jL2ludGVycnVwdHMgfGdyZXAgYWNwaQogMjE6ICAgICAgICAgIDMgICAgICAgICAgMCAgICAg
-ICAgICAwICAgICAgICAgIDAgICBQQ0ggUElDICAgMSAgYWNwaQpb57O757uf5pyq5r+A5rS7XVty
-b290QG1haWwgdGVzdF0jClvns7vnu5/mnKrmv4DmtLtdW3Jvb3RAbWFpbCB0ZXN0XSMgLi9ydGMw
-MQpSVEMgUkVBRCBURVNUOgpSVEMgUkVBRCBURVNUIFBhc3NlZApDdXJyZW50IFJUQyBkYXRlL3Rp
-bWUgaXMgOC01LTIwMjUsIDA1OjUwOjA1LgpSVEMgQUxBUk0gVEVTVCA6QWxhcm0gdGltZSBzZXQg
-dG8gMDU6NTA6MTAuCldhaXRpbmcgNSBzZWNvbmRzIGZvciB0aGUgYWxhcm0uLi4KVGltZWQgb3V0
-IHdhaXRpbmcgZm9yIHRoZSBhbGFybQpSVEMgVVBEQVRFIElOVEVSUlVQVFMgVEVTVCA6ClJUQ19V
-SUVfT04gbm90IHN1cHBvcnRlZApSVEMgVGVzdHMgRG9uZSEKW+ezu+e7n+acqua/gOa0u11bcm9v
-dEBtYWlsIHRlc3RdIwpb57O757uf5pyq5r+A5rS7XVtyb290QG1haWwgdGVzdF0jIGNhdCAvcHJv
-Yy9pbnRlcnJ1cHRzIHxncmVwIGFjcGkKIDIxOiAgICAgICAgICA0ICAgICAgICAgIDAgICAgICAg
-ICAgMCAgICAgICAgICAwICAgUENIIFBJQyAgIDEgIGFjcGkKW+ezu+e7n+acqua/gOa0u11bcm9v
-dEBtYWlsIHRlc3RdIwoKCgoKMy4gVGhlcmUgaXMgbm8gZXJyb3Igd2l0aCB0aGUgcGF0Y2ggYXBw
-bGllZMKgYW5kIHRoZcKgaW50ZXJydXB0cyBhcmUgdHJpZ2dlcmVkIG9rClvns7vnu5/mnKrmv4Dm
-tLtdW3Jvb3RAbWFpbCB0ZXN0XSMgY2F0IC9wcm9jL2ludGVycnVwdHMgfGdyZXAgYWNwaQogMjE6
-ICAgICAgICAgIDAgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICBQQ0ggUElDICAg
-MSAgYWNwaQpb57O757uf5pyq5r+A5rS7XVtyb290QG1haWwgdGVzdF0jClvns7vnu5/mnKrmv4Dm
-tLtdW3Jvb3RAbWFpbCB0ZXN0XSMgLi9ydGMwMQpSVEMgUkVBRCBURVNUOgpSVEMgUkVBRCBURVNU
-IFBhc3NlZApDdXJyZW50IFJUQyBkYXRlL3RpbWUgaXMgOC01LTIwMjUsIDA2OjA5OjAzLgpSVEMg
-QUxBUk0gVEVTVCA6QWxhcm0gdGltZSBzZXQgdG8gMDY6MDk6MDguCldhaXRpbmcgNSBzZWNvbmRz
-IGZvciB0aGUgYWxhcm0uLi4KQWxhcm0gcmFuZy4KUlRDIEFMQVJNIFRFU1QgUGFzc2VkClJUQyBV
-UERBVEUgSU5URVJSVVBUUyBURVNUIDoKUlRDX1VJRV9PTiBub3Qgc3VwcG9ydGVkClJUQyBUZXN0
-cyBEb25lIQpb57O757uf5pyq5r+A5rS7XVtyb290QG1haWwgdGVzdF0jClvns7vnu5/mnKrmv4Dm
-tLtdW3Jvb3RAbWFpbCB0ZXN0XSMgY2F0IC9wcm9jL2ludGVycnVwdHMgfGdyZXAgYWNwaQogMjE6
-ICAgICAgICAgIDEgICAgICAgICAgMCAgICAgICAgICAwICAgICAgICAgIDAgICBQQ0ggUElDICAg
-MSAgYWNwaQpb57O757uf5pyq5r+A5rS7XVtyb290QG1haWwgdGVzdF0jCgoKCgoKCkZyb206wqBQ
-YW5raXQgR2FyZwoKCgpEYXRlOsKgMjAyNS0wNS0wOMKgMTM6MjEKCgoKVG86wqBDb25vciBEb29s
-ZXkKCgoKQ0M6wqBsaW51eC1ydGNAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2Vy
-bmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgY29ub3IrZHRAa2VybmVsLm9y
-Zzsgcm9iaEBrZXJuZWwub3JnOyBhbGV4YW5kcmUuYmVsbG9uaUBib290bGluLmNvbTsgVmlrYXNo
-IEJhbnNhbDsgUHJpeWFua2EgSmFpbjsgRGFuaWVsIEFndWlycmU7IFNoYXNoYW5rIFJlYmJhcHJh
-Z2FkYTsgQW1hbiBLdW1hciBQYW5kZXkKCgoKU3ViamVjdDrCoFJFOiBbRVhUXSBSZTogW1BBVENI
-IHYzIDEvMl0gZHQtYmluZGluZ3M6IHJ0YzogQWRkIHBjZjg1MDUzYSBzdXBwb3J0CgoKCsKgCgoK
-CsKgCgoKCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0KCgoKPiBGcm9tOiBDb25vciBEb29s
-ZXkgPGNvbm9yQGtlcm5lbC5vcmc+CgoKCj4gU2VudDogV2VkbmVzZGF5LCBNYXkgNywgMjAyNSA3
-OjUzIFBNCgoKCj4gVG86IFBhbmtpdCBHYXJnIDxwYW5raXQuZ2FyZ0BueHAuY29tPgoKCgo+IENj
-OiBsaW51eC1ydGNAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsg
-bGludXgtCgoKCj4ga2VybmVsQHZnZXIua2VybmVsLm9yZzsgY29ub3IrZHRAa2VybmVsLm9yZzsg
-cm9iaEBrZXJuZWwub3JnOwoKCgo+IGFsZXhhbmRyZS5iZWxsb25pQGJvb3RsaW4uY29tOyBWaWth
-c2ggQmFuc2FsIDx2aWthc2guYmFuc2FsQG54cC5jb20+OwoKCgo+IFByaXlhbmthIEphaW4gPHBy
-aXlhbmthLmphaW5AbnhwLmNvbT47IERhbmllbCBBZ3VpcnJlCgoKCj4gPGRhbmllbC5hZ3VpcnJl
-QG54cC5jb20+OyBTaGFzaGFuayBSZWJiYXByYWdhZGEKCgoKPiA8c2hhc2hhbmsucmViYmFwcmFn
-YWRhQG54cC5jb20+OyBBbWFuIEt1bWFyIFBhbmRleQoKCgo+IDxhbWFuLmt1bWFycGFuZGV5QG54
-cC5jb20+CgoKCj4gU3ViamVjdDogW0VYVF0gUmU6IFtQQVRDSCB2MyAxLzJdIGR0LWJpbmRpbmdz
-OiBydGM6IEFkZCBwY2Y4NTA1M2Egc3VwcG9ydAoKCgo+CgoKCj4gT24gV2VkLCBNYXkgMDcsIDIw
-MjUgYXQgMTI6NTY6MTdQTSArMDUzMCwgUGFua2l0IEdhcmcgd3JvdGU6CgoKCj4gPiBBZGQgZGV2
-aWNlIHRyZWUgYmluZGluZ3MgZm9yIE5YUCBQQ0Y4NTA1M2EgUlRDIGNoaXAuCgoKCj4gPgoKCgo+
-ID4gU2lnbmVkLW9mZi1ieTogUGFua2l0IEdhcmcgPHBhbmtpdC5nYXJnQG54cC5jb20+CgoKCj4g
-PiAtLS0KCgoKPiA+IFYyIC0+IFYzOiBNb3ZlZCBNQUlOVEFJTkVSUyBmaWxlIGNoYW5nZXMgdG8g
-dGhlIGRyaXZlciBwYXRjaAoKCgo+ID4gVjEgLT4gVjI6IEhhbmRsZWQgZHQtYmluZGluZ3MgYnkg
-dHJpdmlhbC1ydGMueWFtbAoKCgo+CgoKCj4gWW91IGZvcmdvdCB0byBhZGQgbXkgYWNrLgoKCgo+
-IEFja2VkLWJ5OiBDb25vciBEb29sZXkgPGNvbm9yLmRvb2xleUBtaWNyb2NoaXAuY29tPgoKCgrC
-oAoKCgpZZXMsIEkgZm9yZ290LiBJIHdpbGwgYWRkIGl0IGluIHY0LiBMZXQgbWUgd2FpdCBmb3Ig
-bW9yZSByZXZpZXcvY29tbWVudHMgZm9yIGNvdXBsZSBvZiBkYXlzLgoKCgrCoAoKCgo+CgoKCj4g
-PgoKCgo+ID4gLS0tCgoKCj4gPsKgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9y
-dGMvdHJpdmlhbC1ydGMueWFtbCB8IDIgKysKCgoKPiA+wqAgMSBmaWxlIGNoYW5nZWQsIDIgaW5z
-ZXJ0aW9ucygrKQoKCgo+ID4KCgoKPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3MvcnRjL3RyaXZpYWwtcnRjLnlhbWwKCgoKPiBiL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9ydGMvdHJpdmlhbC1ydGMueWFtbAoKCgo+ID4gaW5kZXggNzMz
-MGE3MjAwODMxLi40N2JlN2JiYmZlZGQgMTAwNjQ0CgoKCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvcnRjL3RyaXZpYWwtcnRjLnlhbWwKCgoKPiA+ICsrKyBiL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ydGMvdHJpdmlhbC1ydGMueWFtbAoKCgo+
-ID4gQEAgLTY1LDYgKzY1LDggQEAgcHJvcGVydGllczoKCgoKPiA+wqDCoMKgwqDCoMKgwqAgLSBt
-aWNyb2NyeXN0YWwscnY4NTIzCgoKCj4gPsKgwqDCoMKgwqDCoMKgICMgTlhQIExQQzMyeHggU29D
-IFJlYWwtdGltZSBDbG9jawoKCgo+ID7CoMKgwqDCoMKgwqDCoCAtIG54cCxscGMzMjIwLXJ0YwoK
-Cgo+ID4gK8KgwqDCoMKgwqAgIyBOWFAgUENGODUwNTNBIFJlYWwgVGltZSBDbG9jayBNb2R1bGUg
-d2l0aCBJMkMtQnVzCgoKCj4gPiArwqDCoMKgwqDCoCAtIG54cCxwY2Y4NTA1M2EKCgoKPiA+wqDC
-oMKgwqDCoMKgwqAgIyBJMkMgYnVzIFNFUklBTCBJTlRFUkZBQ0UgUkVBTC1USU1FIENMT0NLIElD
-CgoKCj4gPsKgwqDCoMKgwqDCoMKgIC0gcmljb2gscjIwMjVzZAoKCgo+ID7CoMKgwqDCoMKgwqDC
-oCAjIEkyQyBidXMgU0VSSUFMIElOVEVSRkFDRSBSRUFMLVRJTUUgQ0xPQ0sgSUMKCgoKPiA+IC0t
-CgoKCj4gPiAyLjI1LjEKCgoKPiA+CgoKCsKgCgoKCsKgCgoK
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+
+This series convert cdn-dp-rockchip.txt to yaml.
+
+PATCH 1 try to improve coding style on the existing rk3399 cdn-dp
+node.
+PATCH 2 try to convert cdn-dp-rockchip.txt to yaml.
+
+Tested with:
+
+1. make ARCH=arm64 dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/rockchip/rockchip,cdn-dp.yaml
+
+2. make ARCH=arm64 dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/rockchip/rockchip,cdn-dp.yaml
 
 
+Chaoyi Chen (2):
+  arm64: dts: rockchip: Improve coding style for rk3399 cdn_dp
+  dt-bindings: display: rockchip: Convert cdn-dp-rockchip.txt to yaml
+
+ .../display/rockchip/cdn-dp-rockchip.txt      |  74 ---------
+ .../display/rockchip/rockchip,cdn-dp.yaml     | 148 ++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3399-base.dtsi |  10 +-
+ 3 files changed, 157 insertions(+), 75 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/rockchip/cdn-dp-rockchip.txt
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,cdn-dp.yaml
+
+--
+2.49.0
 
 
