@@ -1,72 +1,92 @@
-Return-Path: <devicetree+bounces-175223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6860CAB02AF
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 20:27:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1427AAB02C5
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 20:31:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A61CC1B67726
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 18:27:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AB711B66F2C
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 18:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F59B2163BD;
-	Thu,  8 May 2025 18:27:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1502286D61;
+	Thu,  8 May 2025 18:31:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XlCGJeaX"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="OaPDzJii"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD101D618E;
-	Thu,  8 May 2025 18:27:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6314F1C84BF;
+	Thu,  8 May 2025 18:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746728828; cv=none; b=C2htkNlOp74ogFp+lAGsdZEvxyX610B+pzfaPl5JPnrXDU/PKCQh+YLbT0nwK8ed91a/VfqA2cB+kSbHfSZIBmZLz/QXzm+YlqIQ/7Y7mW0tQGTcpv1xjpEZpgQw71XsbJWUNto729MDgccvg50YrRyAD7mBKcjmULvrW55V5jE=
+	t=1746729069; cv=none; b=meP6ogWzUMOdvugNcfrAG6s28tB+68h8kDdGK0DtVtzyt8yBGRRauah2gHjMbSeVk6ncY9Q3BpxzkiBMpxufMW69h/6q/1JdFeUKmGZrSRObtyk7ez+qiZbBwzxQLAzVtHk0A9/6JAhXNsAL40H8htNRhEY8q5eEPUYI0kpNErQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746728828; c=relaxed/simple;
-	bh=Ruj0u8rskGKdo7w3BekulUpkYg71z28HR9DrbXnxtOk=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=N/+Bu+bgEelkAJVxSBG4f9TRynEYEKkDOXusU2otF90Wx3mLUmzIpMMToDCVoLOYKv4maJpk5PfQm4yiZ8RuWqYZKy7lyE+IWplltioVE42jet6rjICpahPjq620omSi+4ypVM/CJbtKkRYigkTvpDQPRAq7Sutm25kJzG6ehVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XlCGJeaX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73D35C4CEF0;
-	Thu,  8 May 2025 18:27:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746728826;
-	bh=Ruj0u8rskGKdo7w3BekulUpkYg71z28HR9DrbXnxtOk=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=XlCGJeaXIyCF67cYot0aGES11MhDa2HVYGyGEncQrpiMYtOmQBKqaFSLDlM5bOxrt
-	 2L3ONDp4ruVRR33DM6csVTzZjKqp9svGze9PyXaUWh8fWnRqojFbcq7nvsl0Ynsmg/
-	 tTVsZ92H2py4KiaFMRnoTFi5IPvcIoZhqgJSaFhSEzf1Z9cK5UHuLC00vpQPOo1jO4
-	 W2VyD4RqP2fe9RiODRZ0YwqiJIO+obOyGTD7D1MwzvD20rme/3hM09XXbMuDnxXiz/
-	 /tJ7uCYgKnYG+iS2kicl6bRiXHjgSarOpLkx+3JRwrtNvQ9pjffM0pccrCTX/rOlMj
-	 nFnVRcSXESK+Q==
-Message-ID: <1f51e79bd585701e5bea713b280414ee@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1746729069; c=relaxed/simple;
+	bh=ScCrgY66NWXVaZDOykxTT2JOn6uAsfZm64O1fUbmNxg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZLpok8q8qzs4cdP7qzM9NndeWvzpHIABmjNPNNll5U3pI8y9aU+LmYlF4aqNum2kZ0H2Zj1+ERgBxta/Q285O1RF3iNlyAVyOUHwHUs0ejXR6OP/T2ajQbcxWRGpnFM3Wr+eKycKE59uRxgr0pc9tL+T/WmhnUS7YJieJEWNMbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=OaPDzJii; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=T7KUB66ex20KKbW6a9zIjBnH56YYjFLFeSIV7Lf5sII=; b=OaPDzJii2050EtK1qhFtB8+nCi
+	X8I6PNRJgiMH3Ia5j9jJPVVCXT8ETlBAiKH/V47JhXbMmI61aeY6X19BfeQ4YV+cxZHGNzo5jQ59E
+	ynD3GdidrsNiGXoEvD/zs2lOAhMSWrtHb5yeeyK45PGFvMr04hPtt+onaCPXPXSX4QTGzCXBAQpew
+	0K2NpV0XDD9VWn1pnXzqG1g3V0IBVLrZDj6b1giKCan5m4dNQodoiH2MplrWjy97fcZEOmeDgzkJl
+	bBAn/qXRrdutShJN5xFCw+qB8nBMls1P9zu0f63sluAgoQsAjLww2ZSClqy5RCs5gZednLNC0n4IY
+	sOdScCyw==;
+Received: from [61.8.144.177] (helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uD61J-0000vi-Qa; Thu, 08 May 2025 20:30:57 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] arm64: dts: rockchip: rk3568: Move PCIe3 MSI to use GIC ITS
+Date: Thu,  8 May 2025 20:30:44 +0200
+Message-ID: <174672902820.1927548.18239697985612657696.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250308093008.568437-2-amadeus@jmu.edu.cn>
+References: <20250308093008.568437-1-amadeus@jmu.edu.cn> <20250308093008.568437-2-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <aBHZ1DvXiBcZkWmk@stanley.mountain>
-References: <aBHZ1DvXiBcZkWmk@stanley.mountain>
-Subject: Re: [PATCH] of: unittest: Unlock on error in unittest_data_add()
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-To: Dan Carpenter <dan.carpenter@linaro.org>, Frank Rowand <frowand.list@gmail.com>
-Date: Thu, 08 May 2025 11:27:04 -0700
-User-Agent: alot/0.12.dev8+g17a99a841c4b
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Quoting Dan Carpenter (2025-04-30 01:05:40)
-> The of_overlay_mutex_unlock() was accidentally deleted if "of_root" is
-> NULL.  Change this to a goto unlock.
->=20
-> Fixes: d1eabd218ede ("of: unittest: treat missing of_root as error instea=
-d of fixing up")
-> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
-> ---
 
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+On Sat, 08 Mar 2025 17:30:08 +0800, Chukun Pan wrote:
+> Following commit b956c9de9175 ("arm64: dts: rockchip: rk356x: Move
+> PCIe MSI to use GIC ITS instead of MBI"), change the PCIe3 controller's
+> MSI on rk3568 to use ITS, so that all MSI-X can work properly.
+> 
+> 
+
+Applied, thanks!
+
+[1/1] arm64: dts: rockchip: rk3568: Move PCIe3 MSI to use GIC ITS
+      commit: fbea35a661ed100cee2f3bab8015fb0155508106
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
