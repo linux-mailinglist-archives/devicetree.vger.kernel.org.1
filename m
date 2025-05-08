@@ -1,213 +1,146 @@
-Return-Path: <devicetree+bounces-175259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9189CAB046B
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 22:18:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2EFAAB0477
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 22:19:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABBBE7A127C
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 20:16:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 242331BA6F68
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 20:19:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3FAD28B51F;
-	Thu,  8 May 2025 20:18:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B68F28B7E9;
+	Thu,  8 May 2025 20:19:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="blz6d0mC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D4Qao+hF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F0828A3E1
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 20:17:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC81288C23;
+	Thu,  8 May 2025 20:19:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746735481; cv=none; b=QvGJO1TqiG4Cy0jBmWx5WayKbN3PzRcyHBIMf8K/VZ2T7CItIqjoqM5fOFmWrY/GtWCoIlgmRnFp26rMNC/IzFg1og8QffIhRZMZztJx+aCLz3qc4s2wJwxdYeGK8L0hIKQwGG0l1fldtOijRYYRtOEzXiGyffOJUS5wAtHl7hA=
+	t=1746735566; cv=none; b=mMUftu4c/sBq2x/G0gYT87/sOP4j+H2p9Ejnj3Od7G+/9E0Yk+rrNkE2BSlU/sGlsxYpkb4Fig/cl6QbKzvMRlfu69eTTZavrCetlRBNwdtbjb5ewcu30exITTTkujZDiszRFQiezWBQokK3Sz81Zu5Y/wRM0qEUQqp2NeytYSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746735481; c=relaxed/simple;
-	bh=kuj3J89E1w9k3j1xG7Kt4AOv+U92lZcafSs9ELxQOa4=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Dp0ab36VxnXphuqh9AVjQ9ZRi3M/bq1ix2NxL6hL11+DcWHSdaIYkxL4JNHI6cnY33Z00XsWZBcl5llSvCUD0oT1toGX3i1Toz8Oldh8Nfl/k2nexhXKSTeBU01ithQej87+fEOdXI6+qji5YnfijhT0VuaEo5+cWRLCfkuS8c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=blz6d0mC; arc=none smtp.client-ip=209.85.166.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3d8e9f26b96so11267575ab.1
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 13:17:59 -0700 (PDT)
+	s=arc-20240116; t=1746735566; c=relaxed/simple;
+	bh=5SncBGolfNK+2/YW5KYl+Ur9nYIs7iF0hpCOYtVJLgs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nIMlp1yn3GCrHon1TLFS9moVxyVTG4w0rP7aHl+NZqhDINhcJZZJB0eS4tbQFNXMh04jx2IoGHLTRN9acfobtQiYXmIUs8Tp2Op4+2UlCoDOdLaj/dyKLXnEXYb/mjX/EuwpvgPISWNVGbJdLBNwYiOIOPg7L4f86H7t/6TCu7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D4Qao+hF; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-39ee682e0ddso1055853f8f.1;
+        Thu, 08 May 2025 13:19:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1746735479; x=1747340279; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ETi+juIkyQnejMlNPha6WwCCX1oR6QtFi1j8HpYbzjk=;
-        b=blz6d0mCsx4vDd7XCkIFMY5atLEQN2zAan4ffmw3L2FAbrAMZ79WwQInFsmmI++VY1
-         ya8BZB2p9GQvwQRFfPUTGbD72vJySWnwlv8xg9R1A/sPY7QJwHhx73vY9JXA449tZkaA
-         95m0vpJGzCPPaU+3jI0wTXvrOyz/F/UrHxB/IJIDfEJ0RLkJMeDgjX3jZtTApMn+lSor
-         4l3H2BSrJ67FA33smt7kf1zlLDD+06IS/zN6xNI1bbrOJd80xYG94oFWZTXNqDJJyT5T
-         476kaYtNlbXGDvXQf/XTb8fUYPE39Hu8f82kiwqmlOlqTeOi53HMVBjX5qFlZqYJJfV3
-         3ZwA==
+        d=gmail.com; s=20230601; t=1746735563; x=1747340363; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dVLVnqmjBYNcz4O9cR0Vvpoe7UkalsaHxxkX+qgSFfw=;
+        b=D4Qao+hFY8xIL/S/xGf6baMCAkMBCoUqhWPtjv19KxTppxtj/owMJepRpNSyAFWK+b
+         XsIhHM2rO9kRBbLIR5NTBelaAHtQBWOBzNjATZzrx3Kpk9oie/3f5CLo815P4vgfA+Pt
+         KdsSsh8PLEM3yn8Vc6UrebO8iWYe9ceyIAWxvhu1WdqIFHxtrGUpVM7vG0vfTW7eBTZX
+         7Af+C+mHfnQLI9EcooTfSJz7kvgvN/qJkr8QqrrwZ9qJXREmJdktssUCyNRbJsGv8WVv
+         VhPc4uhh12SUkihYa/lMvORFrmJWye+eBTJbqA8fysh7a9ZxW0MLzJ1s6pzrVMtCRywq
+         MCbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746735479; x=1747340279;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ETi+juIkyQnejMlNPha6WwCCX1oR6QtFi1j8HpYbzjk=;
-        b=CdW8vuN3gmSeLK7bO1yFXqMHMYjg+nt1bVBg2SmsIPhDYHEVFxjJdmZkbnrnnT9Y5d
-         1dxG2wSMcKmOTFmVUYOtztWd4+jQYOUME0wJpGRhwqSq/d3ZJWUQe+jia6n+wCIAYH/r
-         QbLTT0sKEjBYFv8QrefvBqGm/bsp7was3qY04efwWhmrmd6tWRwvMLKlAXPD9RF1MH3J
-         K2LFUnXW4lDY8tDmC3PtBci95jrGS4jNWTFGtCVtm0xfEkN/N5VIab8eabapcEL6fFwO
-         axiQ2ok6Gu7DElB1yIV9ADqdTRvzUUR3FGkgpoKFMHZY7TPzyB9duWxUIRSZkG5GnW6J
-         goAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXePhVgd+HR1r1Vnd7CB0RIh8smy2tEwnL4IIqVB07//4j+agXKexvTt/gFfnjP0XggJIpGtUhPz5uV@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeGbHAMXsKJSplKKE/lEe6XbmSkcTnboBejamZo3I5pc836+q1
-	fI6RL9+4GTMCbv7lNm07Lr2Es0SKrl0P5iDxK5lGBSPWzvem/HggXHOyRGJB7Ck=
-X-Gm-Gg: ASbGncuZMaerNzj2H46shE5mJKDaoLJM4L9lTT287E9oujtkCAaRgyYNonMOMjNTe6J
-	lf2KF32wWymQ3+jTKTzmljN2oHvwfIW3cpCm4QzQ3rFyeLvquCJ0hIL8pccoTDVxMMLXCHkK7m+
-	agkjqhpOYaF1BLPjRgVHsJHdqCAQLu7ZjihQrXXiCQxSj27c1+zeQW1HqhjErYriOk1MktgCV2C
-	6uY9W37s7vaYQxWSyTkTlLlGVFxOl14I7ykx9XZBGb3wVCVKkAUnFQc2gC1uaVX2w30yQf81zpb
-	7ygSCsWX0DxGyGkl6dBHBu4huYO0xHuwtKb9+JiRWZrqMvI9//4wWptKP54tceA5wzZGo1bLnGf
-	g6Qgx
-X-Google-Smtp-Source: AGHT+IGJAd0oucTC9Dfp7hY2K4c9PGXfx+VquDL7ztVyi8dVyRm1MKOCjz+TCJ63cr0iCG2Azpd+Lg==
-X-Received: by 2002:a05:6e02:1605:b0:3d0:239a:c46a with SMTP id e9e14a558f8ab-3da7e1e6ff5mr13544025ab.9.1746735478876;
-        Thu, 08 May 2025 13:17:58 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3da7e0f9a5dsm1342015ab.15.2025.05.08.13.17.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 May 2025 13:17:58 -0700 (PDT)
-Message-ID: <ec118fe2-00c3-47d0-957d-cbd7a8ecfbb1@riscstar.com>
-Date: Thu, 8 May 2025 15:17:56 -0500
+        d=1e100.net; s=20230601; t=1746735563; x=1747340363;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dVLVnqmjBYNcz4O9cR0Vvpoe7UkalsaHxxkX+qgSFfw=;
+        b=PRlaD/nlB/MSMH6JT3KfvviMs9DhuSd+uVe2rWW+ICenzYMZvboUzIWARz71ycn/TC
+         r4wl9VQldeRSIer8VYjszspoPiQwmfu8hY+T6fikXAEakscaUZfTpU4QnK5p3exRJ2Xf
+         0bd1P5AtlbJp4F1s7QdNQqwvivkvSBnRB20DahiV5nX45o+wYc0duVmEyEYWDDjqACD2
+         KWrCNBRsHlH6aZuk4vOJgkC9+5qzSiX9S5K19R/CubbhEntobEOx5DVJemKd63SS34s2
+         6OR4TZwZDGwxOruq1AqUZ4zJIznx7dzBADGYOuf13xJILyicHqm6NYJo2frfGU4Tkzc8
+         ft8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUJkfHOVXTml7ueIIQJCD3wjhiw5Gt76GAKT4ZlihtvDVQLyY46S9ySNfu5X5Xidr69AE6tlgHXuX/+@vger.kernel.org, AJvYcCUX54ES9Jgv5MD1BEWblOthA/C4TmpJ5uBauxHnVv4BiB3BjA8UuPaGws0HIdr3TYuWuRsado17NBMOmwI=@vger.kernel.org, AJvYcCViQ4dw1iuGkFZUyCguMkcbmK5L0I/ci8hOBguKrjsFz9bZnwGHFimAv3be9wbt4nsCP7YSXO4tr40EAm4E@vger.kernel.org, AJvYcCXcVU+YUC/HaFExDk1MBLQcjY8iH1WmYFLXeRFyQxfoflWTc7sY102sJYrG7utLp7DJO5axmLUB49Cc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiNJdt9AzW8TEJxSa8da2FE+hZwmX/GspHQ62OxSsxOR9q8bw4
+	dghbwwfwNG7Y48TILk5jpk1dw48xRSvldGwjx+rru0wia9URLcXX
+X-Gm-Gg: ASbGnctXFSrbPhUAAQX3zKA/qOe6HjzZsVkUNGyx91+OfmlROPxa0hDwC4brUC99sKk
+	MD99beMtErob2DpWzeKk1eEFMUW0tNSXG/ZeRc8ugJgi15y4LvUtm2ZojjN6T/VgsjGocHDHEM4
+	ATIIBRCgB5pT4BQCLnziNCAfx0YkcrPSaLHZNewxODIMdjCdCthzg3RKSMcztlxabxCUJYnugwq
+	/oazZFdhTJsKrfndq6sOcdmOwI0llxfw2WRt4Jxn2A+GowS84Ckf4sTD1qWcpTZWkhdG2gZoYV+
+	xrsm0q1LqNbX3X18Nd6TC8m5IQkn1me98lOPSgtyp1T27UFgt9jZFYIUz9e81MQsDNMI5gstpqO
+	zvuDTsMFvRC1sxlUGkBxpAEh/pzk=
+X-Google-Smtp-Source: AGHT+IGGGmnU57jhBnGXZRcmxM5mqs699GMHM0BxQzEcI5zs1hwcZQuIVn9mMwtqOEzQ80DrO8F33w==
+X-Received: by 2002:a05:6000:4212:b0:39c:1f19:f0c3 with SMTP id ffacd0b85a97d-3a1f6487770mr742969f8f.46.1746735563337;
+        Thu, 08 May 2025 13:19:23 -0700 (PDT)
+Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a4c78fsm926225f8f.97.2025.05.08.13.19.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 May 2025 13:19:21 -0700 (PDT)
+Date: Thu, 8 May 2025 22:19:19 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 1/2] arm: dts: nvidia: tegra20,30: Rename the apbdma
+ nodename to match with common dma-controller binding
+Message-ID: <upqp23gzdwfrzb2wqipw2pbxp7dh3bl4glxjg7okkbx5eegp45@piyur2lwnwik>
+References: <20250507-nvidea-dma-v4-0-6161a8de376f@gmail.com>
+ <20250507-nvidea-dma-v4-1-6161a8de376f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/6] clk: spacemit: set up reset auxiliary devices
-From: Alex Elder <elder@riscstar.com>
-To: Haylen Chu <heylenay@4d2.org>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- p.zabel@pengutronix.de, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, dlan@gentoo.org
-Cc: inochiama@outlook.com, guodong@riscstar.com, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250506210638.2800228-1-elder@riscstar.com>
- <20250506210638.2800228-4-elder@riscstar.com> <aBw3KNwjMeCIfnNR@ketchup>
- <dcc42499-4c6b-450e-8449-414501d6ab62@riscstar.com>
-Content-Language: en-US
-In-Reply-To: <dcc42499-4c6b-450e-8449-414501d6ab62@riscstar.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="talwpauofrsaghcl"
+Content-Disposition: inline
+In-Reply-To: <20250507-nvidea-dma-v4-1-6161a8de376f@gmail.com>
 
-On 5/8/25 3:04 PM, Alex Elder wrote:
-> On 5/7/25 11:46 PM, Haylen Chu wrote:
->> On Tue, May 06, 2025 at 04:06:34PM -0500, Alex Elder wrote:
->>> Add a new reset_name field to the spacemit_ccu_data structure.  If it is
->>> non-null, the CCU implements a reset controller, and the name will be
->>> used as the name for the auxiliary device that implements it.
->>>
->>> Define a new type to hold an auxiliary device as well as the regmap
->>> pointer that will be needed by CCU reset controllers.  Set up code to
->>> initialize and add an auxiliary device for any CCU that implements reset
->>> functionality.
->>>
->>> Make it optional for a CCU to implement a clock controller.  This
->>> doesn't apply to any of the existing CCUs but will for some new ones
->>> that will be added soon.
->>>
->>> Signed-off-by: Alex Elder <elder@riscstar.com>
->>> ---
->>>   drivers/clk/spacemit/ccu-k1.c | 85 +++++++++++++++++++++++++++++++----
->>>   include/soc/spacemit/ccu_k1.h | 12 +++++
->>>   2 files changed, 89 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ 
->>> ccu-k1.c
->>> index 9545cfe60b92b..6b1845e899e5f 100644
->>> --- a/drivers/clk/spacemit/ccu-k1.c
->>> +++ b/drivers/clk/spacemit/ccu-k1.c
->>
->> ...
->>
->>> +static void spacemit_cadev_release(struct device *dev)
->>> +{
->>> +    struct auxiliary_device *adev = to_auxiliary_dev(dev);
->>> +
->>> +    kfree(to_spacemit_ccu_adev(adev));
->>> +}
->>
->> spacemit_ccu_adev structures are allocated with devm_kzalloc() in
->> spacemit_ccu_reset_register(), which means its lifetime is bound to the
->> driver and it'll be automatically released after driver removal; won't
->> there be a possibility of double-free? I think the release callback
->> could be simply dropped.
-> 
-> You are correct.  And unfortunately I didn't include the fix
-> for this in the patches I just posted, because somehow this
-> message was not included with the group in my mail program.
-> 
-> I'm going to send v8 after I fix this and verify it again.
 
-To be clear, the fix is to use kzalloc(), rather than calling
-devm_kzalloc() with the parent device as first argument.
+--talwpauofrsaghcl
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v4 1/2] arm: dts: nvidia: tegra20,30: Rename the apbdma
+ nodename to match with common dma-controller binding
+MIME-Version: 1.0
 
-I'll also include <linux/slab.h> to avoid the warning
-reported by the kernel test robot.
+On Wed, May 07, 2025 at 04:57:33AM +0000, Charan Pedumuru wrote:
+> Rename the apbdma nodename from "dma@" to "dma-controller@" to align with
+> linux common dma-controller binding.
+>=20
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm/boot/dts/nvidia/tegra20.dtsi | 2 +-
+>  arch/arm/boot/dts/nvidia/tegra30.dtsi | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 
-					-Alex
+Applied, though I did change the subject prefix to be more in line with
+what we usually use.
 
-> 
->                      -Alex
-> 
-> 
->> ...
->>
->>> +static int spacemit_ccu_reset_register(struct device *dev,
->>> +                       struct regmap *regmap,
->>> +                       const char *reset_name)
->>> +{
->>> +    struct spacemit_ccu_adev *cadev;
->>> +    struct auxiliary_device *adev;
->>> +    static u32 next_id;
->>> +    int ret;
->>> +
->>> +    /* Nothing to do if the CCU does not implement a reset 
->>> controller */
->>> +    if (!reset_name)
->>> +        return 0;
->>> +
->>> +    cadev = devm_kzalloc(dev, sizeof(*cadev), GFP_KERNEL);
->>
->> Here spacemit_ccu_adev is allocated.
->>
->>> +    if (!cadev)
->>> +        return -ENOMEM;
->>> +    cadev->regmap = regmap;
->>> +
->>> +    adev = &cadev->adev;
->>> +    adev->name = reset_name;
->>> +    adev->dev.parent = dev;
->>> +    adev->dev.release = spacemit_cadev_release;
->>> +    adev->dev.of_node = dev->of_node;
->>> +    adev->id = next_id++;
->>> +
->>> +    ret = auxiliary_device_init(adev);
->>> +    if (ret)
->>> +        return ret;
->>> +
->>> +    ret = auxiliary_device_add(adev);
->>> +    if (ret) {
->>> +        auxiliary_device_uninit(adev);
->>> +        return ret;
->>> +    }
->>> +
->>> +    return devm_add_action_or_reset(dev, spacemit_adev_unregister, 
->>> adev);
->>> +}
->>> +
->>
->> Best regards,
->> Haylen Chu
-> 
+Thanks,
+Thierry
 
+--talwpauofrsaghcl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmgdEccACgkQ3SOs138+
+s6EEKxAApm6wmNJ4mdUiKx25vzZHKY6HXYiJDeFPr6dWU0OE8L3d1vy71HsnEzfj
+wwV0oLb0YkZZHCUEPB1PXQoDFsXmKhDAK39h4i5UdzjJ978LRilUeUzEkxpe2PLT
+JXCsm8qo9NoJh5Zy+C3GD++0dkfWRamLDv+Qzf4UTqXAIQYkiQ50dA9wgfB6+aaX
+j541npp46Ij9CwZm4Pa+EQCkfBe6mrfdfFVKa2nWsenaNmxC50DLO0iB6X00/lc1
+iUWKCugn6X3+zErrASQFpJxmKOMMld+cFQEcZ1qiBAH9cv0HqXgbypL/f63nOYzO
+aM88Pkyh4oyDO27hZI2wzMEf+uSGmj5erLso0s5B/p1rqQyWar0VcccmV9GIJn5A
+j9pt/IXlMfowf2i/tcaRMjJnIEldeLin7uVbsvM/pk4ikH6a++4hHZ6bb0fx20pY
+47iuQiyssNt2BYVUbaosU3IW+KykmXzNu5OQx4b3EwKNG0CkEihU4XW5+5GBHvz7
+hy6L6IJCvDPZ8rKNFuMy+CWxOUdbv9rLTd9vSOtyaPbxTHuyc7x7Tsne9kkv/1eE
+GWhjBgUHfZADqquMp97cX+UF2BLXA1R2uYwNZXMkPXOGY293CzzGukzeqJC32S8H
+4utOVlBFpF4AVkNuzCTuHe/oi9h05FJF17o+vFbgevUwZneFMBc=
+=vkGk
+-----END PGP SIGNATURE-----
+
+--talwpauofrsaghcl--
 
