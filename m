@@ -1,131 +1,125 @@
-Return-Path: <devicetree+bounces-174866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97303AAF200
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 06:10:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF916AAF203
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 06:14:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BA131BC6FD8
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 04:10:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E93B91BC1576
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 04:14:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8080920B7FC;
-	Thu,  8 May 2025 04:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D61B204090;
+	Thu,  8 May 2025 04:14:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QHBl9B5h"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="PzQsT6ED"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE381DF99C;
-	Thu,  8 May 2025 04:10:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D2932CA9;
+	Thu,  8 May 2025 04:14:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746677444; cv=none; b=GmyMCT1F+i0Bp10NyVC3ulFpcFpp+LehVu/vkFnTMbvN6rrVKrqB/xVLKO+PMdQoWarFbCigwI3f5VY5pQJkZJJBnuNLWCr3kXQSu+azGiz4YUpRmiA6hZQohDJ/UqpofJWDqwWy7ushOozFUkjOpSPWjXlk6uWGlOHpKg/4hvs=
+	t=1746677674; cv=none; b=OVuPaikaHcCv9s8w8R1GuBR9jJTeaGg78JPlpmZyDUu6V9GslAs5opg+RrdMb6/GaoVHiVZNox6uWIu3TdrrUnzfRbZKINy4znb3/DZQvh35Eu0QEQU4iwnxdqw0qXZc6TcftLfRHSuYJqgRZQbs/LVcr5Z941G+nzly3SeBZU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746677444; c=relaxed/simple;
-	bh=4t0VL9wIhyMoUDpMaY3vKPF5EPbXzkRT87RGiJt5LO0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mRks5APvUvnqiWZhzX2nxYVuQ8FqMK1Eg/8sgLofZstqUgb1UM07LDROQgq+XOPD7GxgErwFSf8duXM080ncjogWEnvcLGCqsIjQAYtfO1BU0sUW/g8NmoDS8zEXOq+RGLincpAKdXm9+C1uMm6KuZH+QH1MioHct5QgngngSPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QHBl9B5h; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746677443; x=1778213443;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4t0VL9wIhyMoUDpMaY3vKPF5EPbXzkRT87RGiJt5LO0=;
-  b=QHBl9B5hIdMZc/qBSYC1o1HcVgNDpOTmkMe7uarHsE4ArLvRdBNhxwm9
-   ImrtEDHeziyA9NFxf83SAtyZUs0Xb8ZlcR0d3QYRDgug9TkNaIdLdMgmr
-   eT2qsu7XeG7hMb1mA0jA30343nC9+qeD/8i99ULzt4qZBgN24WJ+wKMFe
-   VI8+HUMSzEBH+9aKrqaD8G0JENPLuglv5/iz76SZQNXWUVkzk116X1G6N
-   D6qOPi4kuMzm4VIonvA5UugJkj+Yf9Q/EccdzwhoCsJ9P/eeZfygvzZ/t
-   EWhU0xFDCUBbOScQj2Lh0us2vcJ2Ktgug+1R+/+xpOb0HGQyQ6mXJh25q
-   w==;
-X-CSE-ConnectionGUID: rMC5IcL7Qzu0VIavATSPiw==
-X-CSE-MsgGUID: wlig+MXXQRKpsTzreOov0g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="48348656"
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; 
-   d="scan'208";a="48348656"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 May 2025 21:10:42 -0700
-X-CSE-ConnectionGUID: ag5YoI4LQxWU0p7NVqgzzw==
-X-CSE-MsgGUID: X/nnoFYxTgiCfx3a/XUv7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; 
-   d="scan'208";a="137089745"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 07 May 2025 21:10:37 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uCsag-0009xr-1I;
-	Thu, 08 May 2025 04:10:34 +0000
-Date: Thu, 8 May 2025 12:09:46 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alex Elder <elder@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-	p.zabel@pengutronix.de, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	dlan@gentoo.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, heylenay@4d2.org,
-	inochiama@outlook.com, guodong@riscstar.com,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 3/6] clk: spacemit: set up reset auxiliary devices
-Message-ID: <202505081113.CwKtDYbs-lkp@intel.com>
-References: <20250506210638.2800228-4-elder@riscstar.com>
+	s=arc-20240116; t=1746677674; c=relaxed/simple;
+	bh=kkFlGg5bNPTJPjCV1zeL3eKzkCAHsT7R0AsSJTUn46Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iGemK9K9QT+WUyGP5IpdHonn1HtJZd72gPao9JijuqfM2YqI1twMzbKC0Z8bbZoAN2vVbfckTv+jqCco3y4d1dzmBZUGNqX1LcfFoUV+pIWOkpNctjy+nk9AsZvqHBylXqrzDkGEGYS+UBXktVZfKhVXu5xThjoSy4vUR1oEUfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=PzQsT6ED; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from [100.75.0.18] (unknown [40.78.12.246])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 042A121199E9;
+	Wed,  7 May 2025 21:14:30 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 042A121199E9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1746677672;
+	bh=qjjRDbgXc5t2xS79DeCctPMPk2aN4d/AA83/fxurBo0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PzQsT6EDggx9vwP8aXC7LjcT1HCntXX6m7vqa+lTLGoggaeS1CMDAdPe3hRX0JtTX
+	 ZkOXEd7L8XILk7eyA626yAvp8XrLuRSMN6WdF/R9Rg0HUFHPHigw9Eqkt8WthSibWf
+	 8tXz5CW0LCJd+2KAr7oSf47/WJO+hD7RUPYZQfLM=
+Message-ID: <013cab30-7314-46bb-afd6-156632835fcc@linux.microsoft.com>
+Date: Wed, 7 May 2025 21:14:30 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250506210638.2800228-4-elder@riscstar.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v8 PATCH 0/2] Add L1 and L2 error detection for A53, A57 and A72
+To: Borislav Petkov <bp@alien8.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Tony Luck <tony.luck@intel.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, James Morse <james.morse@arm.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Richter
+ <rric@kernel.org>, linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Tyler Hicks <code@tyhicks.com>, Marc Zyngier <maz@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, devicetree@vger.kernel.org
+References: <1746404860-27069-1-git-send-email-vijayb@linux.microsoft.com>
+ <20250505091044.GCaBiAlCFqVgV7-3TJ@fat_crate.local>
+Content-Language: en-US
+From: Vijay Balakrishna <vijayb@linux.microsoft.com>
+In-Reply-To: <20250505091044.GCaBiAlCFqVgV7-3TJ@fat_crate.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Alex,
+On 5/5/25 02:10, Borislav Petkov wrote:
+> On Sun, May 04, 2025 at 05:27:38PM -0700, Vijay Balakrishna wrote:
+>> Hello,
+>>
+>> This is an attempt to revive [v5] series. I have attempted to address comments
+>> and suggestions from Marc Zyngier since [v5]. Additionally, I have extended
+> 
+> I'd like to hear from ARM folks here, whether this makes sense to have still.
+> 
+>> support for A72 processors. Testing the driver on a problematic A72 SoC
+>> has led to the detection of Correctable Errors (CEs). Below are logs captured
+>> from the problematic SoC during various boot instances.
+>>
+>> [  876.896022] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+>>
+>> [ 3700.978086] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+>>
+>> [  976.956158] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+>>
+>> [ 1427.933606] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+>>
+>> [  192.959911] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+>>
+>> Our primary focus is on A72. We have a significant number of A72-based systems
+> 
+> Then zap the support for the other CPUs as supporting those is futile.
+> 
+> cortex_arm64_l1_l2.c - I don't want an EDAC driver per RAS functional unit.
+> Call this edac_a72 or whatever, which will contain all A72 RAS functionality
+> support. ARM folks will give you a good idea here if you don't have.
+> 
+> Also, I'd need at least a reviewer entry to MAINTAINERS for patches to this
+> driver because you'll be the only ones testing this as you have vested
+> interest in this working.
+> 
+> The dt patch needs a reviewed-by too.
+> 
+> Once that is addressed, I'll take a look.
+> 
+> Thx.
+> 
 
-kernel test robot noticed the following build errors:
+Thank you, Boris.
 
-[auto build test ERROR on cb9c3aeae509b36afbdf46942a7a0a0dfc856ce7]
+I will soon be posting a new series featuring only A72 functionality. 
+Could the ARM folks on Cc please comment on additional changes we can 
+include for A72?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Elder/dt-bindings-soc-spacemit-define-spacemit-k1-ccu-resets/20250507-051019
-base:   cb9c3aeae509b36afbdf46942a7a0a0dfc856ce7
-patch link:    https://lore.kernel.org/r/20250506210638.2800228-4-elder%40riscstar.com
-patch subject: [PATCH v6 3/6] clk: spacemit: set up reset auxiliary devices
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20250508/202505081113.CwKtDYbs-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250508/202505081113.CwKtDYbs-lkp@intel.com/reproduce)
+Tyler and I can serve as joint reviewers, and I'll update the 
+MAINTAINERS file accordingly.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505081113.CwKtDYbs-lkp@intel.com/
+Krzysztof, I would appreciate your reviewed-by for the DT patch when I 
+post the next version.
 
-All errors (new ones prefixed by >>):
-
->> drivers/clk/spacemit/ccu-k1.c:998:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     998 |         kfree(to_spacemit_ccu_adev(adev));
-         |         ^
-   1 error generated.
-
-
-vim +/kfree +998 drivers/clk/spacemit/ccu-k1.c
-
-   993	
-   994	static void spacemit_cadev_release(struct device *dev)
-   995	{
-   996		struct auxiliary_device *adev = to_auxiliary_dev(dev);
-   997	
- > 998		kfree(to_spacemit_ccu_adev(adev));
-   999	}
-  1000	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks,
+Vijay
 
