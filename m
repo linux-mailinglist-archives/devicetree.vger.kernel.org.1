@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-174998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A323AAF7DA
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:33:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 105E1AAF826
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:40:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DB6E1BC71F6
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:33:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B57431C21F23
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:40:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA02120C46F;
-	Thu,  8 May 2025 10:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056AE17A310;
+	Thu,  8 May 2025 10:37:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QqBHP1f5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HYP3ht8/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE8D4B1E7C;
-	Thu,  8 May 2025 10:33:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84F92144C4
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 10:37:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746700405; cv=none; b=GThpgoRRT2J+g3Ncc0aHEGfs2oGJy4zDnTu+kMl55F7NxlHosroElu4iAmPzE0EDwii/s5r8B/jwzsUzGN2SvB9314UWrEgPc6iu+Fc28psCIOEczH67ku5lqo5N9PKzZvsYI1DwqO77EKdkA/sPZmBAik+q4dw/YaJ+X89r2S8=
+	t=1746700638; cv=none; b=Bm2Wxt72cmli60NmEMeLNxqaMQG+sCjWZLa5j7i4iWneUZM1isn9pR+dadG96WnEPoi9BEupdoW9GxRB1HoBLqt2/ij/JJk3mVQM2bqtJri+OYbXWq0+jToEP1UGYCKfIzw5FURGceP02Tgtf/23ngsy9SCtWuQ+1MEwOCKAkcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746700405; c=relaxed/simple;
-	bh=KXCwrE9THAPfscug2+gj+jAdPTqH3LseeH9M0xHo8b4=;
+	s=arc-20240116; t=1746700638; c=relaxed/simple;
+	bh=k61Wm8fICEDBJQkkSOr2DXiyI/ba/fX2/3gztAkXCZ8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YEyZseqOZ77h6Mi5w/XmW6rudwAApgW8eOrz59pfMcSKd2RTBHET3k336p9iOfPZg0/iW/NbioH7Ph2ibZMKnT9iWSf+S0zOJFU1l/hrYQvWmA4k7V6FWyMA04A3HDFoyPJCVjfZwHGNxcKFaWVnJH4risXj70qVBLaPYeJJcH8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QqBHP1f5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA5C3C4CEE7;
-	Thu,  8 May 2025 10:33:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746700405;
-	bh=KXCwrE9THAPfscug2+gj+jAdPTqH3LseeH9M0xHo8b4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QqBHP1f5S+e7c781wTsqEUm9lWq2wKfN4LJ2ppG70OX5abAMs+6pCsCdOCViv3AoG
-	 Kj7ivfSIAteXDqCCvesq+NwfKdrlQZ5QFWb2yI0Stzcl6Cim6CMoQ+UQQW60EqSBfM
-	 K9gPSaNyNXjkfXKQFHxtzPzO4yetBC9n+lIB+9E8vgHJ+3RPpgCB/VSqbo6bnLmd55
-	 UuBF4mSBWLJNOGAlcZsnjp6kEXaxXdUUbCoLWmyGCS36W5c1U9fB+pkO8/qvksvRz7
-	 IWX1i/9aAB6XbCK0uM9ykKp/1V+o2m2YrmkbikS4Ih2w6e5E7eXInODH2wZD/O7K9+
-	 pP8e7MdwxMhww==
-Message-ID: <dcd6fe48-9f2e-4bab-a791-a939a32cc184@kernel.org>
-Date: Thu, 8 May 2025 12:33:21 +0200
+	 In-Reply-To:Content-Type; b=K/pKDSUDUGPKBkym6WgDBjPIg4WmgjN0u8JJW4cnyEVCLgpQ3MgkPY7b9DYYrLPJT/+ZVEkuois+lWoU+hRhAczYFbFKpB02xCtuB+LfDdCzP6ExJZF7RxUtTThtbJXXCwf8CyANe3GQC3JRG7Y7uRUpmc5GmA/u+dTHu1YML4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HYP3ht8/; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a0b4c828c1so107326f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 03:37:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746700635; x=1747305435; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=EMe64DLuaUvItiJTh5N7eJuZ39Bu2jaMquPSmf78ahY=;
+        b=HYP3ht8/5XDFUonI5yFbyGLd4az+CSueXHhTOF2ydpGOdU2yenbJ9Ln/mA/7Uf3aIn
+         mSWkrBd4L0wVwnxnDBqSezKynTn02u1RIw891dwst6b6UBrzE7vFMKi6k94idnjE3smM
+         gWvAuOLLDlvUqAfNF8FLs6yooTd+VtsIhAItHwVOQ0ffT6oC5QkFGUPcF2EYhnqONq2m
+         7WWyv3GgzxhIdJkHsETccECEwzriX8Dq6JW3rgTGns9lmUiGmf4jxC27m7WiyOLDX8TL
+         c5gjTWfsY3KZcT8YeGCDGIngqJCLJfK4RhjzLBT06YFOn+4/x3Z5Xp7Q/JsroJ0qyky8
+         i1lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746700635; x=1747305435;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EMe64DLuaUvItiJTh5N7eJuZ39Bu2jaMquPSmf78ahY=;
+        b=vYvCzGZVnA9utsF5SNuWSkjweWrtm0P5fSwkhAobcq5/T1Tki+tONX+TBGrwxY+0RB
+         qg/z8n8Bg83X8j4gcgDL+A0SDA+QKouapX3e7/rlOdjoOlOVwmvzobHxoJU3WCsByrX5
+         TMHv9u7rcTPy6+MZa6FMgSkF/+zVdPyRSD8mfxo24uycUEZfwc5cXtNdVJPzwDba6sBr
+         WjOqwVXz2/JMEnKllp7YKJRvd750e9R1cZnWMim8DaQnn8l/hHMvNFnNJRIuE1tyIhxN
+         RO36l5A7omFA5eks0Ev3Ve2dPFwnBcxN8ziQ9W0m717q6zRiM9zRl1HyrLs5PtutBzOr
+         i8Ew==
+X-Forwarded-Encrypted: i=1; AJvYcCW0OpQtyLz1DOiAdD0YHvx7DihhAbPMx9LIdR8O7rsHSXxy7SsY1vRsTyFBgieY91Z1xucyq6KAQUae@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUdOU0KOfZnd5iQkcPFDA4grjvB4fzXeM1G0+9+ECGP0o5PAJP
+	K0rn3MJhEX/6ABH03yot3G3z4lmaSf22vFhITXmMUuFm7jCOao8M5crJjMxmSpI=
+X-Gm-Gg: ASbGncsnKtrGFsu3onr2WXNsIIS5T2MMh2R0w0f8gydzlSBbQZvOoQmgYBdhFYxzA8M
+	ya2L0hebpoSG1u/ItEmc99UwzORU7/kMhUFeEAr8kkss8Xb4W742ohgvA2BaaMKIEKqA0NNodxp
+	Ty/6/IPe9VSCyMPjEE9JmQKlPVzBD8SkwMP0j7NoaNk/SbcTdrRMciUBHo7FvBVYe5Acqv060D5
+	dZmFCJ4MMdkVNEfWBX7LiI3S1GiGKNh42wckCpHp/sSP99I4znDa5SFlaep0rP/U0bLPeCzQbAV
+	TSv7x7NkTUe5ETv1CFGurKbA/KdRW+MqtlJCzs5hzxCs0Vkg4o1jZO0cYoo=
+X-Google-Smtp-Source: AGHT+IEmRNQLIu6YqEm6R0RqMgKIlZ6E5GBW/10pHPAdewCUEFyBQMiQkoUKVy6kElqpING9uXiYLw==
+X-Received: by 2002:a5d:588b:0:b0:3a0:782e:9185 with SMTP id ffacd0b85a97d-3a0b49e9e45mr2266519f8f.2.1746700635034;
+        Thu, 08 May 2025 03:37:15 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.207.88])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a0b840737bsm3175324f8f.67.2025.05.08.03.37.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 May 2025 03:37:14 -0700 (PDT)
+Message-ID: <afda790f-0b5e-4569-a92b-904df936df85@linaro.org>
+Date: Thu, 8 May 2025 12:37:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +82,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: i2c: i2c-wmt: Convert to YAML
-To: Andi Shyti <andi.shyti@kernel.org>, Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250506-vt8500-i2c-binding-v3-1-401c3e090a88@gmail.com>
- <wt7du4fu44sxut5i4ymhmb4akhm46btm7yszz6xbya2sxq7gdp@al24jhhqdz5c>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8750: Add Soundwire nodes
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250424-sm8750-audio-part-2-v1-0-50133a0ec35f@linaro.org>
+ <20250424-sm8750-audio-part-2-v1-1-50133a0ec35f@linaro.org>
+ <e83b58ea-0124-4619-82a5-35134dc0a935@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -71,64 +104,100 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 a/A=
-In-Reply-To: <wt7du4fu44sxut5i4ymhmb4akhm46btm7yszz6xbya2sxq7gdp@al24jhhqdz5c>
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <e83b58ea-0124-4619-82a5-35134dc0a935@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/05/2025 12:31, Andi Shyti wrote:
-> Hi Alexey,
+On 25/04/2025 11:24, Konrad Dybcio wrote:
+> On 4/24/25 11:40 AM, Krzysztof Kozlowski wrote:
+>> Add Soundwire controllers on SM8750, fully compatible with earlier
+>> SM8650 generation.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 122 +++++++++++++++++++++++++++++++++++
+>>  1 file changed, 122 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> index 149d2ed17641a085d510f3a8eab5a96304787f0c..1e7aa25c675e76ce6aa571e04d7117b8c2ab25f8 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> @@ -2257,6 +2257,36 @@ lpass_wsa2macro: codec@6aa0000 {
+>>  			#sound-dai-cells = <1>;
+>>  		};
+>>  
+>> +		swr3: soundwire@6ab0000 {
+>> +			compatible = "qcom,soundwire-v2.0.0";
 > 
->> index 16037aaa770fc35efb45fc26555afaa5102e2640..4d18afdaf12bf6a5956793814f8db39b34074a12 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -3464,7 +3464,7 @@ M:	Krzysztof Kozlowski <krzk@kernel.org>
->>  L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
->>  S:	Odd Fixes
->>  F:	Documentation/devicetree/bindings/hwinfo/via,vt8500-scc-id.yaml
->> -F:	Documentation/devicetree/bindings/i2c/i2c-wmt.txt
->> +F:	Documentation/devicetree/bindings/i2c/wm,wm8505-i2c.yaml
+> They're v2.1.0, same on 8650, there's a number of new registers
+
+Sorry, but no. This the "generic" compatible and it is correct. Devices
+expose versions, which is perfectly usable, thus changing compatible to
+different one is not useful. We could go with soc specific compatibles
+and new generic one, but what would that solve? This one is generic
+enough - the device is compatible with v2.0.
+
+
 > 
-> this has caused some conflict. You are based on -next but i2c
-> hasn't received some of these changes, yet.
+> [...]
 > 
-> Anyway, I fixed the conflict and merged to i2c/i2c-host. Let's
-> see how it goes, but I believe we will receive some complaints in
-> the next days.
-Yes, few trees will have similar conflicts here. Expect them also when
-you send your pull to Linus. Conflicts should be trivial, though.
+> 
+>> +		swr2: soundwire@7630000 {
+>> +			compatible = "qcom,soundwire-v2.0.0";
+>> +			reg = <0 0x07630000 0 0x10000>;
+>> +			interrupts = <GIC_SPI 761 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 785 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-names = "core", "wakeup";
+>> +			clocks = <&lpass_txmacro>;
+>> +			clock-names = "iface";
+>> +			label = "TX";
+>> +
+>> +			pinctrl-0 = <&tx_swr_active>;
+>> +			pinctrl-names = "default";
+>> +
+>> +			qcom,din-ports = <4>;
+>> +			qcom,dout-ports = <0>;
+> 
+> There's 1 OUT port on this instance
+> 
+> otherwise (modulo the settings I don't have a reference for)
+
+Omitted on purpose, no port configuration available.
+
 
 Best regards,
 Krzysztof
