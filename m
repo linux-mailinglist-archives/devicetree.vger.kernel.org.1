@@ -1,145 +1,115 @@
-Return-Path: <devicetree+bounces-174884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3040AAF34E
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:03:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D13BAAF35B
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:07:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6ED1D7B4ECC
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 06:02:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 835444A022F
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 06:07:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D165D2010E3;
-	Thu,  8 May 2025 06:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4E3217670;
+	Thu,  8 May 2025 06:07:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rCi6BrZB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oNnZY8Ax"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0D991E0E00;
-	Thu,  8 May 2025 06:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF59C215F49;
+	Thu,  8 May 2025 06:07:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746684197; cv=none; b=myn42Rq2UJmNperusZr+1W0gZiEO96zhHbDt4ZIWY5jX5XC1EBTkjWj5faqxxJgjjDFEZ+RvheO0UpdbWgSAGsUKdwuApghX1fnauqQL7YrpL1rzsUXR34jy+MexKpeouJsP8+/E1z6z9/qk/S8fANfQtktoa4SH7AdlRkeIqK0=
+	t=1746684465; cv=none; b=Fl0xCObakmVmglSAX40e7VFD4JfwRxoIA+VXF2FemYnqkjICXiPolYdhmXaTw5nOCnkQ/350KCTmf3lxD+ZFuQrhyttzWTGLXpd4LZkI598f5Kzf0irYP2kQp01OAb5J1UQbscvIqFmvpjdORXOWFQT2kMEY9kUTL5BDpKGoZHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746684197; c=relaxed/simple;
-	bh=+/Vv9pHwjpSPUaXdt/7maaUK3r0Q9x16J2I3itnsR1A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VE9aW82aEHvg9XcvkMCS37AzBOwNyoFQSH4I9tNRNO0zmgFgCsiC8aMYqxlAssU4akWHfJfCLoLEPxx0WjusxyQOL4b71v6/zqcumU0maxh8xQydINvXGy4LizE0uR6ZtnoODdzrorZyoSoUYJp1615EyRhA6kiQO9z0SnGH3i4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rCi6BrZB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35FB9C4CEEB;
-	Thu,  8 May 2025 06:03:10 +0000 (UTC)
+	s=arc-20240116; t=1746684465; c=relaxed/simple;
+	bh=h+pfeE2YEuEkhstsQ/EywIS3qHB3FnGPIcU0/7ZAPTU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gASg1WLygT6sp6wkgRZmN2CfoGwqvr6CtyoDLF2aKzV9lDwdS7kvg1DnflSpzh8i+ENbKdPQWCM/gjq5Vh2XphiCO1TOHfIEtps559ivl68JJYV87nOYApDTFV4fohLp2qOq7l5vnl6CHkihLjLq+SIXUBIo/mQ6UmTM9y9XzlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oNnZY8Ax; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3C8D1C4CEEE;
+	Thu,  8 May 2025 06:07:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746684197;
-	bh=+/Vv9pHwjpSPUaXdt/7maaUK3r0Q9x16J2I3itnsR1A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rCi6BrZB1d8tiVvjah39SfBlbQ29Q92b/6Njh0KkHxw0pi+EDUl/VFH1AoUqyV4yj
-	 UmYHgZ9pN/gdZ6XGnHZUJH8JXWtpzolVu/QCyIK+dBeN20IgmpwDUGP6hxr1HpqyMv
-	 knX3gGLaaOWwXCJDvEEUYpwTt8c295E7lhwQ6D6JEW5+deLkkHsXX0i/T5+w8guN5o
-	 9hCQADIeOfj/ApynIajNt9gbFDH5JfBc9fwUW52JDh2LzcNvcXwJ9RLhSD1M1vGRKr
-	 jrLlngOB5QUF2/Y2RsJsimAr+cVQQhosA8TxqED459s0WLO8SB6Q6JPivG5/gLje9c
-	 oHGXRe3wunVng==
-Message-ID: <baeae909-4d12-4cbd-a063-7ad165304b96@kernel.org>
-Date: Thu, 8 May 2025 08:03:08 +0200
+	s=k20201202; t=1746684465;
+	bh=h+pfeE2YEuEkhstsQ/EywIS3qHB3FnGPIcU0/7ZAPTU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=oNnZY8AxUi54fgzC1pe5/5StosyfWF8rsZ3VcbEDy52pFh1ycjWwO+07QoFTswycI
+	 tcmJ3v8+7zWUE1WTO/S3QGMxmzuIvwHA/G+IgP5CbkzejWBezHvaOa534CSgF39UrQ
+	 sb/ID0qRZft7OVTA/MzGLZj9xV3gmK0Sgb2GY2cg0VH39ozK/dMeedMUagEh6ptJLP
+	 /AoKCFIGZVEJjttz+Aw9jt4OqDQinzP3M1+BRKNi/IvkGecHrvW6yNy8XarG/yGkNP
+	 2Le0ZdsfkqEssva2plEWaeANWq/JWiCCCkwG4Z8TfhEjeIvsBXEvq6LWFtkI0Jt1Eb
+	 SXOYxCPCJHPlw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 29276C3ABC0;
+	Thu,  8 May 2025 06:07:45 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH v2 0/4] memory: tegra210-emc: Support Device Tree EMC
+ Tables
+Date: Thu, 08 May 2025 01:07:37 -0500
+Message-Id: <20250508-tegra210-emc-dt-v2-0-d33dc20a1123@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: iommu: mediatek: mt8195 Accept up to 5
- interrupts
-To: Julien Massot <julien.massot@collabora.com>, kernel@collabora.com,
- Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
- Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Hui Liu <hui.liu@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Tinghan Shen <tinghan.shen@mediatek.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, iommu@lists.linux.dev
-References: <20250505-mt8395-dtb-errors-v1-0-9c4714dcdcdb@collabora.com>
- <20250505-mt8395-dtb-errors-v1-2-9c4714dcdcdb@collabora.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250505-mt8395-dtb-errors-v1-2-9c4714dcdcdb@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAClKHGgC/2WNQQ6CMBBFr0Jm7Zi2IDquvIdh0bQDTGKpaQnRE
+ O5uJe5cvpf891fInIQzXKsVEi+SJU4FzKECN9ppYBRfGIwyJ9UYwpmHZI1WyMGhn5HO3nFLyvq
+ GoayeiXt57cV7V3iUPMf03g8W/bW/Vq3+WotGjUQXanvbUt3o2xCsPI4uBui2bfsAPz21Hq4AA
+ AA=
+X-Change-ID: 20250429-tegra210-emc-dt-97dce690ad4e
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ devicetree@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746684461; l=1217;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=h+pfeE2YEuEkhstsQ/EywIS3qHB3FnGPIcU0/7ZAPTU=;
+ b=2sbjpz0NHNUxabBRxSPI3YxFl2lApicoZ+XOPwEzfS+fRBYBmvSKFAQVP6HGDOZW4jdMz3iCh
+ WEfRWwRIuxGBjZoADeWJnDqLPX8JjbqochzUpo/8/ZcN2dOBOHsDUR2
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
 
-On 05/05/2025 15:23, Julien Massot wrote:
-> 
-> Fixes: 3b5838d1d82e3 ("arm64: dts: mt8195: Add iommu and smi nodes")
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
-> ---
->  Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> index 75750c64157c868725c087500ac81be4e282c829..035941c2db32170e9a69a5363d8c05ef767bb251 100644
-> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> @@ -97,7 +97,8 @@ properties:
->      maxItems: 1
->  
->    interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 5
->  
-Every iommu or just some (as described in commit msg) can have 5
-interrupts? Looks you miss here proper constraints per variant.
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+Changes in v2:
+- Add patch to describe the emc table bindings
+- Add patch to allow a fallback compatible on the tegra210 emc device to
+  match firmware expectations
+- Add a patch to include the baseline emc tables on p2180
+- Link to v1: https://lore.kernel.org/r/20250430-tegra210-emc-dt-v1-1-99896fa69341@gmail.com
+
+---
+Aaron Kling (4):
+      dt-bindings: memory-controllers: Describe Tegra210 EMC Tables
+      dt-bindings: memory-controllers: tegra210: Allow fallback compatible
+      arm64: tegra: Add EMC timings to P2180
+      memory: tegra210-emc: Support Device Tree EMC Tables
+
+ .../nvidia,tegra21-emc-table.yaml                  |  1692 +
+ .../memory-controllers/nvidia,tegra210-emc.yaml    |    44 +-
+ arch/arm64/boot/dts/nvidia/tegra210-p2180-emc.dtsi | 49749 +++++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi     |     1 +
+ drivers/memory/tegra/tegra210-emc-core.c           |   246 +-
+ 5 files changed, 51721 insertions(+), 11 deletions(-)
+---
+base-commit: 8bac8898fe398ffa3e09075ecea2be511725fb0b
+change-id: 20250429-tegra210-emc-dt-97dce690ad4e
 
 Best regards,
-Krzysztof
+-- 
+Aaron Kling <webgeek1234@gmail.com>
+
+
 
