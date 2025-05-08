@@ -1,167 +1,135 @@
-Return-Path: <devicetree+bounces-175290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1DFBAB0667
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 01:14:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26045AB06C4
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 01:49:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 492DE7AD4B1
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 23:12:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 890AB7BD983
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 23:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF2C22DFB8;
-	Thu,  8 May 2025 23:13:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 448CD22154F;
+	Thu,  8 May 2025 23:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="ZWSyrQuD"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="OzDZXw2K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50DD122DF83;
-	Thu,  8 May 2025 23:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B9891F5F6;
+	Thu,  8 May 2025 23:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746746027; cv=none; b=URt795rffurzBFyncRJRfYfdfchDXbsQBeHxRc+sl3HpDuL//w7YCvZtyaJEfzOYIvMwluE4dDf1ivwKPVY9n5+W18CljniRUkX7ZeFDs7vN7aQk1haqLnSVAtKeu0f9DVXE4WU2zrTQ+++EH1YPYZltlxLhPpwj600fQNVC4tE=
+	t=1746748186; cv=none; b=S707OHpsB4ToktLH47bmqmGnvNdK2UR7p5S2Jgkk9aTPPOEAj/RD7hr+jOzIVFtyPoXEkYzJofLQ1aVWBkJ+wESS7gN+kX/ElkS3lxGbjmpMLmItxHbuWfOffIpw/migGua3rOlNqCNK0LCMqnOG561wAT1HKFM006m47llYKis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746746027; c=relaxed/simple;
-	bh=bB3j8fb6z811VpRpryPJkvawI3jg6GwtmMHB9Bn3MXQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t6V1bL1GHyKK/OmTdNx4JWk/uHC0mJsy2twH5cneD7SfbHkBkREp9iuwTLLTbLj/VDkFOML5V3q2fUZoFvc3bbq63dYb8mO4usFVnPAlk6Kptw8WhKSJnxIpnEHp/F76a9rssBi0skIh3xO9GcXNQWa8Z9pljB7vEUbJr/swtRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=ZWSyrQuD; arc=none smtp.client-ip=178.21.23.139
+	s=arc-20240116; t=1746748186; c=relaxed/simple;
+	bh=PHkzmazZbYNFsZ8Z3dXZDpcjBGKxVGnG8Eabx+LYYTM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lCBCrWzS6hRKsRsQYmgWTofmxPsWQg0+5y6f2TAp0Mva9w7qJUmuFXBXRgWKD8l2XORu1WL5+P0tJ9+aVioaayIARzAgJrNY+/I2IctxVYni77i4yGG7ZvrwK4I/j6HICVzSd5egC1SMvgMdraL9tWxHgaQyEIKgieTNNG71deE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=OzDZXw2K; arc=none smtp.client-ip=178.21.23.139
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
 Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 5FCE826161;
-	Fri,  9 May 2025 01:13:42 +0200 (CEST)
+	by disroot.org (Postfix) with ESMTP id 64BA326050;
+	Fri,  9 May 2025 01:49:42 +0200 (CEST)
 X-Virus-Scanned: SPAM Filter at disroot.org
 Received: from layka.disroot.org ([127.0.0.1])
  by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id HQQXvO6tkiyE; Fri,  9 May 2025 01:13:41 +0200 (CEST)
+ id wtwmwACksPdI; Fri,  9 May 2025 01:49:40 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1746746021; bh=bB3j8fb6z811VpRpryPJkvawI3jg6GwtmMHB9Bn3MXQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ZWSyrQuDh5IumxGz2OmiGWHrjY9wXY9i2F/vkQhU93LaOxvGebq9SifRwzhWk1e+a
-	 /BCMa9uycuIDQiRlie6FoiyqeYGEwyz9K5Qb/etHmQJ8F0BBbTEd9B1eu/0GPen1Je
-	 40bE/cwhkhAWP3IM91TNH0Py/q1Bqxcda/4stYi3S9RoI3C5WgLXHOfzMmdfTetG1N
-	 Wthk5CuMo78/PHYXtNtaO9hu/BLtEphcec5uWxKm06pAJbgSqKT3jCSnFom9XsFgTK
-	 nyMKN+AGLKfcErTnNtuBj61JeG8QwuQcjvayOpIn+mhVaj9U9RHCj48njfqS8jCbwq
-	 BXHAC7VmzKmuA==
-Date: Thu, 8 May 2025 23:13:25 +0000
+	t=1746748180; bh=PHkzmazZbYNFsZ8Z3dXZDpcjBGKxVGnG8Eabx+LYYTM=;
+	h=From:To:Cc:Subject:Date;
+	b=OzDZXw2KUUb2OxfCLHMDc5LhJyFyLcLncTZRGagZbFbXZSib+MDfa5fLDsyrrXbcz
+	 KnayWORxO1F2EXRhsYGZJnUf5tScLUP5a37+bfc2+opyr170FfD3de9ADU3pzOJKWv
+	 vbEleZo7153Nl0V5yF/dKmmE4KQIKQ6lWxeM4VQiz2+crq21WAeHrHA3KefodU1zKL
+	 Ts/cfYztat8qUHpHbPgQ8zVlXYAmyd4WLZl37732a6chki9c3y6CHDxDRAuSi1mkVH
+	 xRj1HMe5oW2GlkRy+l+c//NZkecCq0bzHNn1XBceyilB0ZmbHKfG+J048cfZx0QYmo
+	 PHUWdayt7oLrA==
 From: Yao Zi <ziyao@disroot.org>
-To: Heiko Stuebner <heiko@sntech.de>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Shresth Prasad <shresthprasad7@gmail.com>,
-	Chukun Pan <amadeus@jmu.edu.cn>, Jonas Karlman <jonas@kwiboo.se>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Yao Zi <ziyao@disroot.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] phy: rockchip: naneng-combphy: Add RK3528 support
-Message-ID: <aB06lQs9d0q8pMU_@pie.lan>
-References: <20250508134332.14668-2-ziyao@disroot.org>
- <20250508135307.14726-1-ziyao@disroot.org>
- <5349721.GXAFRqVoOG@phil>
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/2] Support SD/SDIO controllers on RK3528
+Date: Thu,  8 May 2025 23:48:28 +0000
+Message-ID: <20250508234829.27111-2-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <5349721.GXAFRqVoOG@phil>
 
-On Thu, May 08, 2025 at 07:26:13PM +0200, Heiko Stuebner wrote:
-> Am Donnerstag, 8. Mai 2025, 15:53:06 Mitteleuropäische Sommerzeit schrieb Yao Zi:
-> > Rockchip RK3528 integrates one naneng-combphy that is able to operate in
-> > PCIe and USB3 mode. The control logic is similar to previous variants of
-> > naneng-combphy but the register layout is apperantly different from the
-> > RK3568 one.
-> > 
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > ---
-> >  .../rockchip/phy-rockchip-naneng-combphy.c    | 180 +++++++++++++++++-
-> >  1 file changed, 179 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-> > index 1d1c7723584b..7c92f7ac3c7f 100644
-> > --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-> > +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-> > @@ -20,7 +20,40 @@
-> >  #define REF_CLOCK_25MHz			(25 * HZ_PER_MHZ)
-> >  #define REF_CLOCK_100MHz		(100 * HZ_PER_MHZ)
-> >  
-> > -/* COMBO PHY REG */
-> > +/* RK3528 COMBO PHY REG */
-> > +#define RK3528_PHYREG6				0x18
-> > +#define  RK3528_PHYREG6_PLL_KVCO		GENMASK(12, 10)
-> > +#define   RK3528_PHYREG6_PLL_KVCO_VALUE		0x2
-> > +#define  RK3528_PHYREG6_SSC_DIR			GENMASK(5, 4)
-> > +#define   RK3528_PHYREG6_SSC_UPWARD		0
-> > +#define   RK3528_PHYREG6_SSC_DOWNWARD		1
-> > +#define RK3528_PHYREG40				0x100
-> > +#define  RK3528_PHYREG40_SSC_EN			BIT(20)
-> > +#define  RK3528_PHYREG40_SSC_CNT		GENMASK(10, 0)
-> > +#define   RK3528_PHYREG40_SSC_CNT_VALUE		0x17d
-> > +#define RK3528_PHYREG42				0x108
-> > +#define  RK3528_PHYREG42_CKDRV_CLK_SEL		BIT(29)
-> > +#define   RK3528_PHYREG42_CKDRV_CLK_PLL		0
-> > +#define   RK3528_PHYREG42_CKDRV_CLK_CKRCV	1
-> > +#define  RK3528_PHYREG42_PLL_LPF_R1_ADJ		GENMASK(10, 7)
-> > +#define   RK3528_PHYREG42_PLL_LPF_R1_ADJ_VALUE	0x9
-> > +#define  RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ	GENMASK(6, 4)
-> > +#define   RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ_VALUE 0x7
-> > +#define  RK3528_PHYREG42_PLL_KVCO_ADJ		GENMASK(2, 0)
-> > +#define   RK3528_PHYREG42_PLL_KVCO_ADJ_VALUE	0x0
-> > +#define RK3528_PHYREG80				0x200
-> > +#define  RK3528_PHYREG80_CTLE_EN		BIT(17)
-> > +#define RK3528_PHYREG81				0x204
-> > +#define  RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X	BIT(5)
-> > +#define  RK3528_PHYREG81_SLEW_RATE_CTRL		GENMASK(2, 0)
-> > +#define   RK3528_PHYREG81_SLEW_RATE_CTRL_SLOW	0x7
-> > +#define RK3528_PHYREG83				0x20c
-> > +#define  RK3528_PHYREG83_RX_SQUELCH		GENMASK(2, 0)
-> > +#define   RK3528_PHYREG83_RX_SQUELCH_VALUE	0x6
-> > +#define RK3528_PHYREG86				0x218
-> > +#define  RK3528_PHYREG86_RTERM_DET_CLK_EN	BIT(14)
-> 
-> I'd think staying with one layout would be best, so not doing this
-> indentation here. Instead maybe follow the other ones like
+RK3528 features two SDIO controllers and one SD/MMC controller. This
+series brings the SD/MMC one up on Radxa E20C board. Both HS and SDR104
+modes are verified.
 
-Though seems more clear, it's reasonable to keep the style consistent.
+- Changed from v5
+  - Drop applied clock patches
+  - Rebase on top of linux-rockchip/for-next
+  - Link to v5: https://lore.kernel.org/all/20250506092206.46143-1-ziyao@disroot.org/
+- Changed from v4
+  - rk3528 clock driver
+    - Switch to auxiliary GRF
+    - drop rockchip_clk_register_grf_branches
+    - Rename branch_mmc_grf to branch_grf_mmc to make style consistent
+      (with branch_grf_gate)
+  - Link to v4: https://lore.kernel.org/all/20250417143647.43860-1-ziyao@disroot.org/
+- Changed from v3
+  - Drop applied binding patch of MMC controller
+  - Rebase on top of linux-rockchip/for-next
+  - Link to v3: https://lore.kernel.org/all/20250309055348.9299-1-ziyao@disroot.org/
+- Changed from v2
+  - Apply review tags
+  - Rebase on top of linux-rockchip/for-next and drop applied patches
+  - RK3528 devicetree
+    - Fix accidentally dropped status property of saradc node
+    - drop det and pwren pinctrls for SDIO{0,1} according to the
+      reference design
+    - Correct max-frequency for SDIO{0,1}
+  - rk3528-radxa-e20c devicetree
+    - Don't disable sdio for sdmmc as claimed in the hw design guide
+  - Link to v2: https://lore.kernel.org/all/20250305194217.47052-1-ziyao@disroot.org/
+- Changed from v1
+  - Apply review tags
+  - Rebase on top of linux-rockchip/for-next and saradc v2 series
+  - rk3528 clock driver:
+    - explicitly include minmax.h, replace MAX() with more robust max()
+    - readability improvements
+    - fix error checks: ERR_PTR(-ENODEV), instead of ERR_PTR(ENODEV), is
+      returned when syscon_regmap_lookup_by_compatible() fails for missing
+      such syscon
+  - RK3528 devicetree
+    - Add default pinctrl
+    - Move the per-SoC property, rockchip,default-sample-phase, into the
+      SoC devicetree
+  - rk3528-radxa-e20c devicetree
+    - Assign sdcard to mmc1
+    - Add missing regulators
+    - Apply no-sdio for the sdmmc controller
+    - Sort nodes
+  - Link to v1: https://lore.kernel.org/all/20250301104250.36295-1-ziyao@disroot.org/
 
-Will change it in v2, thanks.
+Thanks for your time and review.
 
-> #define RK3528_PHYREG6				0x18
-> #define RK3528_PHYREG6_PLL_KVCO		GENMASK(12, 10)
-> #define RK3528_PHYREG6_PLL_KVCO_VALUE		0x2
-> #define RK3528_PHYREG6_SSC_DIR			GENMASK(5, 4)
-> #define RK3528_PHYREG6_SSC_UPWARD		0
-> #define RK3528_PHYREG6_SSC_DOWNWARD		1
-> 
-> #define RK3528_PHYREG40				0x100
-> #define RK3528_PHYREG40_SSC_EN			BIT(20)
-> #define RK3528_PHYREG40_SSC_CNT		GENMASK(10, 0)
-> #define RK3528_PHYREG40_SSC_CNT_VALUE		0x17d
-> 
-> ...
-> 
-> i.e. register + bits + blank line
-> 
-> other than that
-> 
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> 
-> 
+Yao Zi (2):
+  arm64: dts: rockchip: Add SDMMC/SDIO controllers for RK3528
+  arm64: dts: rockchip: Enable SD-card interface on Radxa E20C
 
-Best regards,
-Yao Zi
+ .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 30 ++++++++
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 69 +++++++++++++++++++
+ 2 files changed, 99 insertions(+)
+
+-- 
+2.49.0
+
 
