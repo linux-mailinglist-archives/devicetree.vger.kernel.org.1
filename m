@@ -1,135 +1,249 @@
-Return-Path: <devicetree+bounces-175010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B49AAAF8E4
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:40:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9463BAAF8F0
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 13:45:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3CE2A7AC2B6
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:39:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB0BA178EEC
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:44:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 952E2221FD6;
-	Thu,  8 May 2025 11:40:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8629B2153CE;
+	Thu,  8 May 2025 11:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="1n4X3MHN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kBtrIoLL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D25221FD5
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 11:40:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C093B1917F4
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 11:44:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746704409; cv=none; b=lTgKgz2Cxmq49kYWHA0mh4tFCEpkuWEwCX6x27lUdO4qy24CC7poibXmAN61fZYYdUVuiEwoPF8qjtW0opMYtftxxnTBAwDGte1MZE0uaiU2C0sCh0mon4nVB9QykUcxDibC2tFl5wgplAt5Lh6H16vmMMnxvNP7KITJEzFVB2o=
+	t=1746704684; cv=none; b=YL/v086rlQezmrA9OsQvTh6Eq95OUMgNcht6psTsI5S4cfD+I+Baa9YOgljagoA3Q9SyDhuv5US7ovfiZNPmfELc/yXShWXiOyK17Y0DfbJUKcRLWZPJuoGnVb2QLtaQOApRe2UN/mrD9qLUoBlNXIqdvWZOpt5CxrK5nYL9Z9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746704409; c=relaxed/simple;
-	bh=Fx9zrUTk3i8S1DAJFlFt9wfUwkt0xKS/Y7jdzQ/hcQo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TRTbSZafDp63xzc5PggMj7fgeHu/fDoAp/Fhc4CC7m2DEgSYGNOQvQHy2jD/Tois6mFTATqOdx4EM5qUpojOsJd/kESv9p+WMF+D4D+LCTc28tFxz6Nfrnuhzv6vCryFaUDCeEqblgGnxp2VMH6NrKM9gRwIY0Pe9VdX4A+At2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=1n4X3MHN; arc=none smtp.client-ip=209.85.166.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-85e73562577so87727239f.0
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 04:40:07 -0700 (PDT)
+	s=arc-20240116; t=1746704684; c=relaxed/simple;
+	bh=mJFhbTThhLFHyqN/MbOoAtaZMkMAPKeRwEdqOwaJZ+o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JX2E5fyCeZd5IJ9wXzNqRrV4x81UngVYRlhEwiwSxW3Qhk5udzXcbSRqh06jkWsd3KQVzuZSLJf6pNcG6uLnV5amg+Lf8i1dPqVBJ96wHFOI+gJ42X0ZxUsvdRcUPECOxeRWnv7uRrzVaq3Qv3n0gbRtEwtm5Zg5uBfHmmh0GXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kBtrIoLL; arc=none smtp.client-ip=209.85.210.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-72c40235c34so261345a34.3
+        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 04:44:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1746704407; x=1747309207; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7gCgDIEvIXJ5HjkEoan0OBOu/905mhsNatvjj6Ubkh0=;
-        b=1n4X3MHNci+FmI0NH/1OGC3AVHX6Nlx2xFPTWjJRqDLQ4Ru1QsnOai4yo3oPbpUzGf
-         EFiDOHXk7jn0tW7QXV3aiJhhiai4rHO2Py8e0BtW2xSnfz9tl8t7Qt1NyeVpNHvrqUZg
-         h3FJA+141YBdjpLIZ/Gji6bJIH+cTvN+y2Ce5JhcES540B6djvp7CWJ2zY1gN8T5LmKs
-         fL3xzuJGHt1J7j7WjvSbk3ExrWP2lnRtNBH1fRP5dLKjRo+NC1/DMON0zaZ+JSSeiDBt
-         CU6IuwgFrzTGoRBnSID09Cud7iDG830VMVYzIZxXhhdplG6mBJ2ARlXCI9Z/Xu42vwly
-         3A3Q==
+        d=linaro.org; s=google; t=1746704681; x=1747309481; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/Hp/Zx088l7ufNM7/gEglcaYvteforqJCTr5utu/Y/M=;
+        b=kBtrIoLLAZO0lTnGfdXfrfkZT++uTq0sm5gKTFoX1tb9H6B4PYg5Gkj13McOvdqDRo
+         l+BJOQVPIrf3o+KTCbqMEpYMNyBdf8+vTep94k1y6iIchOllfvF/K0QvidGj8OOWGjVo
+         xHvew46nG0JzRgWbFzgE9wtVBF6My2vA5UhUHVPujEXLlLBmyoKaHFNzEvK26A3/aB1V
+         MziMzkAv56x4J+LnZNX7ECFhW6i+f4eKo7U3lJXF29y22XBJn4ostuB8PkY7mM3G6njS
+         c0fNqHwCHi8t41Sb/cB828k+mSSET7cmbOwdA+gFSm+X05sG3gulyL8VP8wY2v8ue609
+         nYkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746704407; x=1747309207;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7gCgDIEvIXJ5HjkEoan0OBOu/905mhsNatvjj6Ubkh0=;
-        b=p+qyV7ONEeANqPOyxcNiUrPnEc0IBKOS3EC3J6GF69OBj7QesS8BXOu/nSp+Q/iVLn
-         PgWluIxV6C+WNd0AWYXlSBTo5Xexn3d9BhoPRsoxdodmW5EEQAls53OECZqtHxDkAgC6
-         GDBcNpoWtdE6R9AhMScDBM5SajSsVxZmTOBkyYlL97G1DwJR0R3Btm402VslGgseexQ2
-         S7eEG8N3XgrsCSSimpTamhe9g4ae1rbu7bLZn+fQdnRpVkjij7rGl4gN7gcyj/whYm5V
-         2WZFXJZQXTbb/NDa6FxcfeYTAVU3nZRoVoAJel0e4N7Ei1JmkhD8Stx8FOTgPHpBEsqv
-         v9qg==
-X-Forwarded-Encrypted: i=1; AJvYcCVtuRpN7WWJ437TC1TJVa1wZ/lAYVZ+WQ2LqTHYGNvtS86SxGCigM/K6DAhoQCc68sUMiNO5/lE9qSk@vger.kernel.org
-X-Gm-Message-State: AOJu0YztQyPu1ZNVNV6ZN3wekENPrL/daKPxk4z0UZjY2Oba/gRZHUG4
-	toQCsgWsx+bQBVB8C+bWfww5NasQk6S2S/d2J2CyIGY0BAOLShjZucNFqpNrBl0=
-X-Gm-Gg: ASbGnctCj0le+YrcqPMxqj3bb7YH+M92L73PcakgnTtEHX822gGjMe3eMYcVTJovq9w
-	BDt/QpSFVG9F9wZ+1+nSKaGSN1Ru5RuQqgJShucSoGZQar1UcvY+L5zgUZK2G3EyrahFUgc5M5a
-	Mc0M9y4Y9Z5fWIekl2L5Rra2rne4fgmjja/W7qHXKy0ZJp4qsjakl6Uv300ovPlXiaSZ3VgW/ui
-	tYLI0m6RTxhyGuX8LVb7f2WO7ydaK+qPGmrSU7RcMqBZu3EJBVbHigX08RE7H3WbIxZTv7spDBR
-	XkjNsmAJwqqsNmUhqudOU6oAn2U+ETTJVvIMcXOiWlCecfRyee/vKyUml9LG4tv7alr0tSppRZK
-	NTRd0
-X-Google-Smtp-Source: AGHT+IEgQbpeES+TFJhbzId8HdAIkJfo3yOl1pgxcIDfMs+gyDWkgbwTLja1UcaM/Qo0ZByBfH3ZrA==
-X-Received: by 2002:a05:6e02:3805:b0:3a7:88f2:cfa9 with SMTP id e9e14a558f8ab-3da7390856dmr72096535ab.11.1746704406737;
-        Thu, 08 May 2025 04:40:06 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f88aa8e1f7sm3145496173.121.2025.05.08.04.40.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 May 2025 04:40:06 -0700 (PDT)
-Message-ID: <d6649f6f-574d-4ba6-8db7-d3087f421386@riscstar.com>
-Date: Thu, 8 May 2025 06:40:04 -0500
+        d=1e100.net; s=20230601; t=1746704681; x=1747309481;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/Hp/Zx088l7ufNM7/gEglcaYvteforqJCTr5utu/Y/M=;
+        b=XHxrCoWj5FFt3469u58Qatw1AbfcbCRA4YH+CIxNsM95wN6oH3t4OEklurIWOgWPEV
+         lEIfH/psEoePdUxGz+30ax22Q9hX5wh0cE6BMNhkpFLo1zcxIQCtn4E2uVL7kldSyjLX
+         g2RYFvl7yjgWFUbZLroj3ZLpkQDHeULgKyMtGE+W4kCO3jWrbCN7N1P7mPkwwV6n5gw+
+         BHLbtEe19Gmno6gMxTYYuss4Oz63EMRTBGwDpAwcPyeebL/KePhh4ha62sTdBSMyrH+G
+         20dY1N77TbK8FQ71f65wK3lDLOh9R8DtWkpoqhW06guE8flkuLPQYj+LTmD4aSYkbXZk
+         n/Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCVwb7feG/oBj+75hMvu7lrbbNXmQsxGjo1LZMMiRtntQqD6gBD22gFJ4jhCqLbo/FCdBEc8di35PPxI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFITMsux9NDohzGFdu1p6T7rLMMJgl10vaMD0ZvSBqtIExGZNk
+	y6jiwWfJ+0rvj8NSSJvlFYm0TXhYPeeXbLjzFx6QSVSfk6B4LaKGMyhxQH729D0j/W8rS96iYR7
+	jbSDUO84YVA6k+2Stkg0Q1kWchyjZ5u9ki3y6qg==
+X-Gm-Gg: ASbGncujg+m4+WWzjntCHsWvQpJvq3VfktY/rR7o7YvigsufbzOUYDd26WhyYUGwIaB
+	V7mU9eBOkY8oVj5W4/tDPhLvcUHpjI01Yv7ni4tbfxLJdA+Otl9wupo5KIKEZvfPM8c/7kb5GV+
+	QzTnhlyCT86lN4dRfn31VgQ6Y=
+X-Google-Smtp-Source: AGHT+IHR8KYLZfRaxr/JXt1MbDStXnfYLmh12kfUK55ebtZ9Q6Un3DnFf5DzZhGiLaPUsqdPll0N8Q4dykGFdmsvGsI=
+X-Received: by 2002:a05:6870:891b:b0:29e:69d9:8834 with SMTP id
+ 586e51a60fabf-2db5b915d6cmr3889315fac.0.1746704680699; Thu, 08 May 2025
+ 04:44:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/6] soc: spacemit: create a header for clock/reset
- registers
-To: Haylen Chu <heylenay@4d2.org>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- p.zabel@pengutronix.de, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, dlan@gentoo.org
-Cc: inochiama@outlook.com, guodong@riscstar.com, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250506210638.2800228-1-elder@riscstar.com>
- <20250506210638.2800228-3-elder@riscstar.com> <aBwwBSfnkw6XUOLA@ketchup>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <aBwwBSfnkw6XUOLA@ketchup>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250402233407.2452429-1-willmcvicker@google.com>
+ <20250402233407.2452429-7-willmcvicker@google.com> <Z_6OZHYfC0bC5289@mai.linaro.org>
+ <Z_7O1xi2-ZGhJ1r_@google.com> <Z_-RaYcXHR9--zXA@mai.linaro.org>
+In-Reply-To: <Z_-RaYcXHR9--zXA@mai.linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Thu, 8 May 2025 12:44:29 +0100
+X-Gm-Features: ATxdqUEvbDcAFOTGHzLMBK8svR6T90akaQxSMqcut79zelUxyv-arjNE7fwYfi0
+Message-ID: <CADrjBPoePtodu-yYaFBcOMmvv0r2x+gCAdVnZypJ=G_BN4Sn-w@mail.gmail.com>
+Subject: Re: [PATCH v2 6/7] clocksource/drivers/exynos_mct: Add module support
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: William McVicker <willmcvicker@google.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Donghoon Yu <hoony.yu@samsung.com>, Hosung Kim <hosung0.kim@samsung.com>, kernel-team@android.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Youngmin Nam <youngmin.nam@samsung.com>, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 5/7/25 11:16 PM, Haylen Chu wrote:
-> On Tue, May 06, 2025 at 04:06:33PM -0500, Alex Elder wrote:
->> Move the definitions of register offsets and fields used by the SpacemiT
->> K1 SoC CCUs into a separate header file, so that they can be shared by
->> the reset driver that will be found under drivers/reset.
->>
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> ---
->>   drivers/clk/spacemit/ccu-k1.c | 111 +--------------------------------
->>   include/soc/spacemit/ccu_k1.h | 113 ++++++++++++++++++++++++++++++++++
-> 
-> CCU is abbreviated from "clock controller unit" thus the filename seems
-> a little strange to me. Will k1-syscon.h be a better name? We could put
-> all syscon registers together when introducing the power-domain driver
-> later, which could provide an overall view of register layout.
+Hi Daniel,
 
-I'm OK with making that change.
+[..]
 
-To me the "CCU" was the that IP block that offered clock and
-reset controls (and maybe a few other things?).  But renaming
-it, given we're separating the functionality more clearly,
-is pretty reasonable.
+> > > On Wed, Apr 02, 2025 at 04:33:57PM -0700, Will McVicker wrote:
+> > > > From: Donghoon Yu <hoony.yu@samsung.com>
+> > > >
+> > > > On Arm64 platforms the Exynos MCT driver can be built as a module. On
+> > > > boot (and even after boot) the arch_timer is used as the clocksource and
+> > > > tick timer. Once the MCT driver is loaded, it can be used as the wakeup
+> > > > source for the arch_timer.
+> > >
+> > > From a previous thread where there is no answer:
 
-Thanks.
+Aside from the timer modularization part here which is proving a bit
+contentious are
+you OK with queueing the other parts of this MCT series?
 
-					-Alex
+As I need some of the MCT driver changes to enable CPUIdle on Pixel 6 upstream.
+Exiting from c2 idle state is broken for gs101 without some of these
+MCT changes.
 
->>   2 files changed, 114 insertions(+), 110 deletions(-)
->>   create mode 100644 include/soc/spacemit/ccu_k1.h
-> 
-> Best regards,
-> Haylen Chu
+[..]
 
+> > >
+> > > https://lore.kernel.org/all/c1e8abec-680c-451d-b5df-f687291aa413@linaro.org/
+> > >
+> > > I don't feel comfortable with changing the clocksource / clockevent drivers to
+> > > a module for the reasons explained in the aforementionned thread.
+> > >
+> > > Before this could be accepted, I really need a strong acked-by from Thomas
+> >
+> > Thanks for the response! I'll copy-and-paste your replies from that previous
+> > thread and try to address your concerns.
+> >
+> > >   * the GKI approach is to have an update for the 'mainline' kernel and
+> > > let the different SoC vendors deal with their drivers. I'm afraid this
+> > > will prevent driver fixes to be carry on upstream because they will stay
+> > > in the OoT kernels
+> >
+> > I can't speak for that specific thread or their intent, but I can speak to this
+> > thread and our intent.
+> >
+> > This whole patch series is about upstreaming the downstream changes. So saying
+> > this will prevent others from upstreaming changes is punishing the folks who
+> > are actually trying to upstream changes. I don't think that's a fair way to
+> > handle this.
+> >
+> > Also, rejecting this series will not prevent people from upstreaming their
+> > changes, it'll just make it more unlikely because they now have to deal with
+> > upstreaming more changes that were rejected in the past. That's daunting for
+> > someone who doesn't do upstreaming often. I'm telling this from experience
+> > dealing with SoC vendors and asking them to upstream stuff.
+> >
+> > With that said, let me try to address some of your technical concerns.
+>
+> I won't reject the series based on my opinion. Answering the technical concerns
+> will prevail.
+>
+> Why is it needed to convert the timer into a module ?
+
+MCT is hardware very specific to Exynos based SoCs. Forcing this
+built-in is just
+bloat for many other systems that will never use it.
+
+The aim of this series is to upstream the downstream OOT code with the goal of
+then switching over to the upstream version of the driver.
+
+I agree with your points though that we should be sure the timer framework can
+handle this, and we aren't introducing subtle bugs.
+
+>
+> > > * the core code may not be prepared for that, so loading / unloading
+> > > the modules with active timers may result into some issues
+> >
+> > We had the same concern for irqchip drivers. We can easily disable unloading
+> > for these clocksource modules just like we did for irqchip by making them
+> > permanent modules.
+>
+> In the clockevent / clocksource initialization process, depending on the
+> platform, some are needed very early and other can be loaded later.
+>
+> For example, the usual configuration is the architected timers are initialized
+> very early, then the external timer is loaded a bit later. And when this one is
+> loaded it does not take over the architected timers. It acts as a "broadcast"
+> timer to program the next timer event when the current CPU is going to an idle
+> state where the local timer is stopped.
+>
+> Other cases are the architected timers are not desired and the 'external' timer
+> is used in place when it is loaded with a higher rating. Some configuration can
+> mimic local timers by settting a per CPU timer.
+>
+> Some platforms could be without the architected timers, so the 'external' timer
+> is used.
+>
+> Let's imagine the system started, the timers are running and then we load a
+> module with a timer replacing the current ones. Does it work well ?
+>
+> Are we sure, the timer modularization is compatible with all the timer use cases ?
+
+It's a good question. We can say it's been used as a module on
+multiple generations
+of Pixel devices in production without issues. Whether that covers all
+timer use cases
+I can't say.
+
+>
+> > > * it may end up with some interactions with cpuidle at boot time and
+> > > the broadcast timer
+> >
+> > If I'm understanding this correctly, no driver is guaranteed to probe at
+> > initialization time regardless of whether it is built-in or a module. Taking
+> > a look at the other clocksource drivers, I found that the following drivers are
+> > all calling `clocksource_register_hz()` and `clockevents_config_and_register()`
+> > at probe time.
+> >
+> >   timer-sun5i.c
+> >   sh_tmu.c
+> >   sh_cmt.c
+> >   timer-tegra186.c
+> >   timer-stm32-lp.c (only calls clockevents_config_and_register())
+> >
+> > So this concern is unrelated to building these drivers are modules. Please let
+> > me know if I'm missing something here.
+>
+> We would have to check each platform individually to answer this question.
+>
+> The interaction between cpuidle and the timer module is about not having a
+> broadcast timer when cpuidle initializes and then having it later when the
+> module is loaded. Did you check the deep idle states are used after loading the
+> module ?
+
+For gs101 / Oriole deep idle states are used after loading the module as if the
+MCT timer *isn't* used then the CPU can't wake up from c2 and eventually there
+are no CPUs left leading to a hang.
+
+>
+> The discussion is not about only the Exynos MCT but as you are not the first
+> one asking to convert the timer driver to a module, we should check what could
+> be the impact on the time framework and the system in general.
+>
+> Others proposed to convert to module and I asked to investigate the impact.
+> Nobody came back with a clear answer and there is no feedback from Thomas.
+
+Hopefully the above answers go a little bit towards giving a degree of
+confidence
+that this is a safe change :)
+
+regards,
+
+Peter.
 
