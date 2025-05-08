@@ -1,66 +1,62 @@
-Return-Path: <devicetree+bounces-175129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5F1AAFE05
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:00:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8A84AAFE0A
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 17:01:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 793BD1C40AD2
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:59:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D46B4604BC
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E4052797AC;
-	Thu,  8 May 2025 14:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E9B278776;
+	Thu,  8 May 2025 14:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pIlT50GW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="owIkK/QB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E8D722A1F1;
-	Thu,  8 May 2025 14:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714201581E0;
+	Thu,  8 May 2025 14:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746716244; cv=none; b=u6TJbgGNihl8VUZZRDN3O18Gca9dIck6X69M+H2LyE4stQr9TFims3IS0eOhswDKQ/ndkn/7AwA1kGIF11QZKXbkKfk2SwLWAh+fMfRZG0pW1FwsYR3YIyvdb8voZghq8728gwDjpIGUkOvRAH1j1IaYJrGpBbLJFjnzEBABnmY=
+	t=1746716290; cv=none; b=ZRpikn7eWbmOzdVHr2x3F3S9EsgyQQwfail8rvBJRz99VcZRFeXg4WqfI4ZaViy9XofVcxB+rQqF6BJFBRt3MlsfJr8AKZWwY2sQYwZtWYNNKKi5vqysKZ4xVUD1+4Au9BpS2fvqbSpXW0k/EF8sXpUJ44b3oevWbNfkkazTisc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746716244; c=relaxed/simple;
-	bh=9ar8QWK+6HF5F4izWOQj3DNDEiLV3HwPtOjT2Z51yv8=;
+	s=arc-20240116; t=1746716290; c=relaxed/simple;
+	bh=2gQcav+TDe4DHa8UjsaDcHXzpSYYdWIU9InpqKfC1+I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CqTm1mfx53QLY3llxBkyYszSOmQM35DhiMgmj3l1Y5jEbUkkcl/vMyeW860aN1mEWxKLzeiuFXXwlYlA4cPoF+ukT4GpU3KU8LnFH7fuz7z0W2Bw38dQZctErQ6jUHv4b1Ptm3BQHUh0Tyjym/bgKUWek6yOXSFJyL/I1BHoyGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pIlT50GW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 932FCC4CEE7;
-	Thu,  8 May 2025 14:57:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XyMz+tVhoeV2N6bjufrWIlhUqUsOe2mnqBR0+pwta1WbgKXoVPoMwNyCDbrcouSFEaN9/87RfM9PfUqutKwUPZKcCSu2O7dKyXOeGS1QJRvBuL2nFka6d5/jy3m4MGvPwFjQxIzJyfsUxFJ7FPzC0YqhJ/C94W+l2rMsukg5ESA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=owIkK/QB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F1D4C4CEE7;
+	Thu,  8 May 2025 14:58:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746716244;
-	bh=9ar8QWK+6HF5F4izWOQj3DNDEiLV3HwPtOjT2Z51yv8=;
+	s=k20201202; t=1746716289;
+	bh=2gQcav+TDe4DHa8UjsaDcHXzpSYYdWIU9InpqKfC1+I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pIlT50GWBoJI3mnGqjyogC67R8vDxXxo5QD9Hey3kuPw2J1mg/o0BgVW8IFOGk6S7
-	 I/5njV5SUiyKkXWe2+BCOwM4tycbiHHyUS3MEIk2TmNhPJyIcirBYQ7J7zbRSbQrDh
-	 216P6kLlSXMqbmx1osR97GnbKQOlY9qs8yPTtGR4c2tf9IQeKjQWe7/NJIELFE9ms/
-	 rgWzpXJ+mZiigdN4fs1N6Ase7ywBylQLi4vOu18Gm59hJBISiguTicV/h5TRwCMrGq
-	 gGiKYGN9imc8fMdLJP2SLV6IPj1KD4V3NNYemGuIxvTXpBYjVXnOOA1yeO1xB6QLYM
-	 A5AtIaoEzmGBQ==
-Date: Thu, 8 May 2025 15:57:18 +0100
+	b=owIkK/QBGYZgWx9bh+VKbw5vWsNUHRjIrO8u3i35g7gmYmXF1D8j/DBulSUnoI3tc
+	 4i4hiUJY18XmcFnMjkF8yyxKrdZPyWOpn3IstzqFvzRGdIRAglwyFlds82Z1jE6jzG
+	 MsAd96NjpBf8CcPnnYHxDDwXE5ykqVVx3qY4fB2J3VEuZpS5npaT2xrBewN1rgaI1L
+	 27e1M8Lu4MlpOpPt13emMBSMlY00rKs5fQdgaDGjUBzl2ipkfR88vKa/jD0NSqDTSs
+	 zyKkU7TyNG+yWg1JlgzVtMLTB6OopjffTk1XYV3CEqUA3KoJj0qqG9W+210G4Qsf83
+	 q33I/jLA21V7Q==
+Date: Thu, 8 May 2025 15:58:06 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Yannic Moog <y.moog@phytec.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, upstream@lists.phytec.de,
-	Benjamin Hahn <b.hahn@phytec.de>,
-	Teresa Remmet <t.remmet@phytec.de>,
-	Yashwanth Varakala <y.varakala@phytec.de>,
-	Jan Remmet <j.remmet@phytec.de>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: add imx95-libra-rdk-fpsc
-Message-ID: <20250508-statistic-creation-ba17442921de@spud>
-References: <20250507-wip-y-moog-phytec-de-imx95-libra-v1-0-4b73843ad4cd@phytec.de>
- <20250507-wip-y-moog-phytec-de-imx95-libra-v1-1-4b73843ad4cd@phytec.de>
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: linux-usb@vger.kernel.org,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: usb: ti,usb8041: Add binding for TI
+ USB8044 hub controller
+Message-ID: <20250508-prewashed-jawline-37f53c0f9429@spud>
+References: <20250507131143.2243079-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.3e03400f-766d-4690-8f43-cbea2cac93d8@emailsignatures365.codetwo.com>
+ <20250507131143.2243079-2-mike.looijmans@topic.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,54 +64,81 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="uGPUkIg0ljVqE3bF"
+	protocol="application/pgp-signature"; boundary="3CJWpGckFSe2JlaA"
 Content-Disposition: inline
-In-Reply-To: <20250507-wip-y-moog-phytec-de-imx95-libra-v1-1-4b73843ad4cd@phytec.de>
+In-Reply-To: <20250507131143.2243079-2-mike.looijmans@topic.nl>
 
 
---uGPUkIg0ljVqE3bF
+--3CJWpGckFSe2JlaA
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 07, 2025 at 03:13:12PM +0200, Yannic Moog wrote:
-> imx95-libra-rdk-fpsc is a development board based on the phyCORE-i.MX 95
-> Plus FPSC SoM. Add its description and binding.
+On Wed, May 07, 2025 at 03:11:43PM +0200, Mike Looijmans wrote:
+> The TI USB8044 is similar to the USB8041.
+
+Similar how? Why's a fallback not suitable?
+
 >=20
-> Signed-off-by: Yannic Moog <y.moog@phytec.de>
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentati=
-on/devicetree/bindings/arm/fsl.yaml
-> index 447054b52ea391f69d11409d51751a88bb8b539a..783550c61cd7e9aa12ffe78bf=
-aa74478c19e0797 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1366,6 +1366,13 @@ properties:
->                - fsl,imx95-19x19-evk       # i.MX95 19x19 EVK Board
->            - const: fsl,imx95
+>  Documentation/devicetree/bindings/usb/ti,usb8041.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml b/Docu=
+mentation/devicetree/bindings/usb/ti,usb8041.yaml
+> index c2e29bd61e11..fd6b35a40a5b 100644
+> --- a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+> +++ b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/usb/ti,usb8041.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
 > =20
-> +      - description: PHYTEC i.MX 95 FPSC based Boards
-> +        items:
-> +          - enum:
-> +            - phytec,imx95-libra-rdk-fpsc     # Libra-i.MX 95 FPSC
-> +          - const: phytec,imx95-phycore-fpsc  # phyCORE-i.MX 95 FPSC
-> +          - const: fsl,imx95
+> -title: TI USB8041 USB 3.0 hub controller
+> +title: TI USB8041 and USB8044 USB 3.0 hub controllers
+> =20
+>  maintainers:
+>    - Alexander Stein <alexander.stein@ew.tq-group.com>
+> @@ -17,6 +17,8 @@ properties:
+>      enum:
+>        - usb451,8140
+>        - usb451,8142
+> +      - usb451,8440
+> +      - usb451,8442
+> =20
+>    reg: true
+> =20
+> --=20
+> 2.34.1
+>=20
+>=20
+> Met vriendelijke groet / kind regards,
+>=20
+> Mike Looijmans
+> System Expert
+>=20
+>=20
+> TOPIC Embedded Products B.V.
+> Materiaalweg 4, 5681 RJ Best
+> The Netherlands
+>=20
+> T: +31 (0) 499 33 69 69
+> E: mike.looijmans@topic.nl
+> W: www.topic.nl
+>=20
+> Please consider the environment before printing this e-mail
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---uGPUkIg0ljVqE3bF
+--3CJWpGckFSe2JlaA
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBzGTgAKCRB4tDGHoIJi
-0mIpAQDFZ7pwZBVIyTySKTZEy3Y13FwVLzSbzc+p71Y977kHbgEA8UuMBpqQg6DY
-l00dUGbvIZiCgpxFiB6rSMZ+Z+o2LQ8=
-=o519
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaBzGfQAKCRB4tDGHoIJi
+0ma7AQCYXSv4S/1olF9XH6ulUTdmcc5JJK/AU8jFkpD5MnJERgD9Ep63wcJybfZW
+LOsqIAeJ2CY5b8szOkBSmSwHapFXdAw=
+=qHIW
 -----END PGP SIGNATURE-----
 
---uGPUkIg0ljVqE3bF--
+--3CJWpGckFSe2JlaA--
 
