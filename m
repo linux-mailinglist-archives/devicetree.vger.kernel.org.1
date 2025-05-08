@@ -1,84 +1,129 @@
-Return-Path: <devicetree+bounces-174976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E364CAAF69C
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:20:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76821AAF702
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 11:45:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A9BF7A8D53
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:18:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E28C17B02D
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 09:45:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 671AF21CA03;
-	Thu,  8 May 2025 09:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346B21D7E41;
+	Thu,  8 May 2025 09:45:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LSX8cTI8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2E32F43
-	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 09:20:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 081CF1BEF7D;
+	Thu,  8 May 2025 09:45:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746696006; cv=none; b=Q0NLrrgzFbzspn7mbEgniQW5HpsgqCz4kKjWXfjBqRLlhR41q8mYWLiZnsLebRjaTM/khxget3zr9UVyV5ZWaG14/W4D4xeDhMmCyK7rOWO46YqxKPZoOSHFXS5IB63jAvTiQr1TENSjKQJHD5gsSrQUKXzibtwBSE+f+sLX620=
+	t=1746697519; cv=none; b=T0SVftNwQ9YYWPSLK3mYwJIGW18JHRnNlYNdNfD2dQL5OJ2/0tt+XO4oFT++hX2UO3YQwhQpW7CtmQkGA0dCddrPEaEwnkDgDiBrIGTht3hZPBWavYcFK94AbMnvFqBwqVFWYVhrS1Mu5Hj2ovlDPnC0AG3hEnD6zB/DXJIBbi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746696006; c=relaxed/simple;
-	bh=hnINcULJKHYJ9cO06p8JPKpFweoVVjduW6YYgmpYZaU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=AXlyRDgV5AHkT0c30MrRPvyWQOkypYFZnOFeyJ1kJEbA+oZ9uAMpqyCt8TWagWS6b14afG/Al/pnkdlUG77mJiADkkyGR/wGs1d/P/PvRzIeZYBTVaci4SBeIQZRY2hYOLCfn2HrnZDKN4IfSLbbgBAO+in1Qsh62METa1fJMbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uCxQ4-0003WE-Tb; Thu, 08 May 2025 11:19:56 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uCxQ3-001hZx-2i;
-	Thu, 08 May 2025 11:19:55 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uCxQ3-00049l-2O;
-	Thu, 08 May 2025 11:19:55 +0200
-Message-ID: <5a72aff989d9e3e00fdae7a66c39e746db2bf501.camel@pengutronix.de>
-Subject: Re: [PATCH v3 2/2] reset: canaan: add reset driver for Kendryte K230
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Junhui Liu <junhui.liu@pigmoral.tech>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Date: Thu, 08 May 2025 11:19:55 +0200
-In-Reply-To: <20250507-k230-reset-v3-2-c85240782ea5@pigmoral.tech>
-References: <20250507-k230-reset-v3-0-c85240782ea5@pigmoral.tech>
-	 <20250507-k230-reset-v3-2-c85240782ea5@pigmoral.tech>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1746697519; c=relaxed/simple;
+	bh=Cc1Skj2gto0ryJBoXR8ewyIYTGM/x6xJbXVwlCnskmU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dpx2k1juhOsk2c/vZXOhqF7Ac53l9cyE1ajfOx3jYGGbG2xFlZVdqFw6D29cuqJAPfXho3bFTiNq4tbsaZUteBI351Jjr7vNYpcJRY4jMzwzuxPtQC7cs3Sdj/czhQEH/Cz3afeGO9RH5MT+KZ7z1XAKczMfA/jyxiR5SdHXxrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LSX8cTI8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0453C4CEE7;
+	Thu,  8 May 2025 09:45:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746697518;
+	bh=Cc1Skj2gto0ryJBoXR8ewyIYTGM/x6xJbXVwlCnskmU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LSX8cTI8/vBABDZQ+rSYj4l9l4Wc8jSRifZt9YcFuePwFbmbajYbhXgA4oE3NGKhe
+	 uWi/ifztGcQTxDHqk0qc/NJsZXS2VYyMEf+uX3YwRJmSGjP6UEMti1pKk1FYVMQ6Xs
+	 bWeL65kOJcfpxSz0R7fnOhA8bOwr5aWMT6D99QL4RlAkW1QQKu0fx/LegWUsgHtdNL
+	 wgVYKKA3ziMeBm+wuNGFc14nlVJuKlEojt89fj9iJDt/tiVzNy5hnNYBNmWTDs5Zsg
+	 zai35rtmGOx0mZBACU/TO/IBhN3qMMUYSK1A7mchf7A0YsKb/juvK7s0/6cB6UmpmH
+	 rAjeMbbwH0+JQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uCxoa-000000000zp-0t46;
+	Thu, 08 May 2025 11:45:16 +0200
+Date: Thu, 8 May 2025 11:45:16 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Qiang Yu <quic_qianyu@quicinc.com>
+Cc: Wenbin Yao <quic_wenbyao@quicinc.com>, catalin.marinas@arm.com,
+	will@kernel.org, linux-arm-kernel@lists.infradead.org,
+	andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, vkoul@kernel.org, kishon@kernel.org,
+	sfr@canb.auug.org.au, linux-phy@lists.infradead.org,
+	krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com, quic_cang@quicinc.com,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>
+Subject: Re: [PATCH v3 5/5] phy: qcom: qmp-pcie: add x1e80100 qref supplies
+Message-ID: <aBx9LB_qQIvA0bj8@hovoldconsulting.com>
+References: <20250508081514.3227956-1-quic_wenbyao@quicinc.com>
+ <20250508081514.3227956-6-quic_wenbyao@quicinc.com>
+ <aBxpMuFGKgWrw1TV@hovoldconsulting.com>
+ <5fd4abe7-3621-4119-9482-de823b247b0d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5fd4abe7-3621-4119-9482-de823b247b0d@quicinc.com>
 
-On Mi, 2025-05-07 at 21:25 +0800, Junhui Liu wrote:
-> Add support for the resets on Canaan Kendryte K230 SoC. The driver
-> support CPU0, CPU1, L2 cache flush, hardware auto clear and software
-> clear resets.
->=20
-> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+On Thu, May 08, 2025 at 04:50:30PM +0800, Qiang Yu wrote:
+> 
+> On 5/8/2025 4:20 PM, Johan Hovold wrote:
+> > On Thu, May 08, 2025 at 04:15:14PM +0800, Wenbin Yao wrote:
+> >> From: Qiang Yu <quic_qianyu@quicinc.com>
+> >>
+> >> All PCIe PHYs on the X1E80100 SOC require the vdda-qref, which feeds QREF
+> >> clocks provided by the TCSR device.
+> > This still looks wrong and you never replied to why these supplies
+> > shouldn't be handled by the tcsr clock driver that supplies these
+> > clocks:
+> >
+> > 	https://lore.kernel.org/lkml/aBHUmXx6N72_sCH9@hovoldconsulting.com/
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Sorry, I thought Konrad had convinced you.
 
-regards
-Philipp
+IIRC, he just said you guys were told to add the QREF supply to the PHY.
+That's not an argument.
+
+> If the TCSR driver manages these supplies, would it be possible for tscr
+> driver to recognize when it needs to turn vdda-qref on or off for a
+> specific PCIe port?
+
+Sure, just add a lookup table to the driver and enable the required
+supplies when a ref clock is enabled.
+
+As I mentioned in the other thread, the T14s has the following QREF
+supplies:
+
+	
+	VDD_A_QREFS_1P2_A
+	VDD_A_QREFS_1P2_B
+
+	VDD_A_QREFS_0P875_A
+	VDD_A_QREFS_0P875_B
+	VDD_A_QREFS_0P875_0
+	VDD_A_QREFS_0P875_2
+	VDD_A_QREFS_0P875_3
+
+and it's not clear how these maps to the various consumer ref clocks,
+including the PCIe ones:
+
+	#define TCSR_PCIE_2L_4_CLKREF_EN
+	#define TCSR_PCIE_2L_5_CLKREF_EN
+	#define TCSR_PCIE_8L_CLKREF_EN
+	#define TCSR_PCIE_4L_CLKREF_EN
+
+That mapping can be done by the TCSR clock driver (which would also take
+care of the 1.2 V supplies).
+
+Johan
 
