@@ -1,143 +1,191 @@
-Return-Path: <devicetree+bounces-175239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8810AB0349
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 21:00:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2EE5AB035C
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 21:05:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA5643AB108
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 18:59:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E455A9E3FF7
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 19:05:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62198288C8C;
-	Thu,  8 May 2025 19:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8EE288CA3;
+	Thu,  8 May 2025 19:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DO0sR8H+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BCA286D66;
-	Thu,  8 May 2025 19:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5530C288C97
+	for <devicetree@vger.kernel.org>; Thu,  8 May 2025 19:05:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746730816; cv=none; b=EVslYzh81wvJQdu/cxMRSm9fi/NnBt6CSXqQK6kNAZgx7lCTsrPCOYuKb1MXUSjM3YApuHaSb/8u5TFaUBGeC3KLQTXJ5Pd0GavOXmuv06n9g/c5IjUy2Z5ZARYWy17yzJNi6S+WSyu/fwLoK3zZuJCzhkKfyp6tHKmkz9LKcGY=
+	t=1746731146; cv=none; b=s0H3xE49mhldY04LciXZuFGBRNpFsxMjQ0NNJ67oR9cAWLegd/Vxdny1IEoER66/K0t/7B+kTpQ8jH/9m+H9djQjv9L/Dw67ydlH5NTmETxH0SQKOJPTMASDu6RIzR7RB7IA9Jq5XzEwgWRX3b9D6RB3GCdkjwy9fDwBzQou+Pc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746730816; c=relaxed/simple;
-	bh=LCEbPff3OoPgMZ1212eZM05B+dddMMp2LVFvzweKsBY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cGQOk/iGNWbnCvFPZFCLc9QNgICvcynf1lPmxMla4CVg9fj0lvXZ7pwF9ah3JR/RlVT5slS0GASm24gjTXxI/nvmIRh4XOjzvtwIs+ylsO0UXHC1yA54bAFWBJQzYux5Fukd5HeXuYtQN3U7di/QOIEeBO91Q4L38dztRJSKazo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: 1P76WaSZSzakuq+yn2QCHg==
-X-CSE-MsgGUID: pF0LCqTRQuC4ihGE+yKZQw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="48616475"
-X-IronPort-AV: E=Sophos;i="6.15,273,1739865600"; 
-   d="scan'208";a="48616475"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2025 12:00:13 -0700
-X-CSE-ConnectionGUID: topa9xxbS4aY5lLo6/vMEA==
-X-CSE-MsgGUID: 2bfKK5PUQJm8MK/FvnZZhg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,273,1739865600"; 
-   d="scan'208";a="141139512"
-Received: from smile.fi.intel.com ([10.237.72.55])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2025 12:00:10 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1uD6TX-00000004Coa-02NT;
-	Thu, 08 May 2025 22:00:07 +0300
-Date: Thu, 8 May 2025 22:00:06 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] iio: adc: ad7606: add gain calibration support
-Message-ID: <aBz_Nlgx18UK2GIc@smile.fi.intel.com>
-References: <20250508-wip-bl-ad7606-calibration-v4-0-91a3f2837e6b@baylibre.com>
- <20250508-wip-bl-ad7606-calibration-v4-5-91a3f2837e6b@baylibre.com>
+	s=arc-20240116; t=1746731146; c=relaxed/simple;
+	bh=tiMZ88vuHUw2/pYskSA+DEkK0CL17n0Iwn37Qgf6vgg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hRIbw3WQgPeX/aJtotLdN6xqDPX9K0B3xd7qrLA8LGCGHZckm4yrP7s+Wxr5K/ejqz4Yh/WaAL0KOd4cbD9ekZYGIYLJK+j9IJg6DVyDEiVjrwjR2DfaSoMw7EmcVnhf4hkdmDgBEW8e77ET8lOu8CAfzm0xwAZm2Ki1UOINQzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DO0sR8H+; arc=none smtp.client-ip=209.85.219.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6f0c30a1ca3so16920916d6.1
+        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 12:05:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746731143; x=1747335943; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9qu0kVYDa1LJAygHrKHPQPVcQppgU3bFJcwVxclK610=;
+        b=DO0sR8H+XmbqXIOOorZDh/UyTb5YX18eHBkP0JBYn2PD6vT2baGQubKnt5Mocyrdhy
+         5/EoBIfN95xEXz55RsEws313tJyk6e9UthZHyOjOJXgQqAiQRanArGqN5Ssw18C35kg1
+         wMEYLZsXMnPhAUHXOLr0PDP0uivY53cpqsIasG0/zRKJ9uitAbor1BtFavr+fl6W7+iu
+         KM0L33RPQY+zZq5F042BlnC1hQdbanmsVNIGNT0mlE5NyMI4alF0GI+6d07EiF83DEPF
+         Ur0iqV96/roBMsa/yiOA6wAv5WzWFNshiD3Zf+uiVtTxSJkFQZf8LNYXLDrwNkONajKo
+         x4eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746731143; x=1747335943;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9qu0kVYDa1LJAygHrKHPQPVcQppgU3bFJcwVxclK610=;
+        b=wHBmZ32slaM+/HNHtVoFnzJkCp7jlr3gvBaEMVsb3E5AQg3MjgrVzOd8eT0Uru6i+l
+         5B1pb87paYI5WfQy4QURF5IdNYf2xrclIo4PTvvVJbWmoUURg5VstLW0BMLfcZ99OFJ2
+         YG/JJ/Q9Tzzy6F+ohPPlGfagLYKlzbcuKXHiL8ofR+LcDDJ2PKxjZ05XkZU0gJcVOveT
+         wSZSXXTy6CBwo3nm1yNqB8+pttaKGJVpxJvGS+QSSqJ8qjTBzpNBhuh6WgTHIb4vSoYm
+         4b2MCHLtLEb+fOcpedKhX+UEJd6mqU7ZPJhNhsa9sqNEMaTfonksoG8WIDlEMR3JKzHU
+         rIvQ==
+X-Gm-Message-State: AOJu0YwiEGVDQa6lBSyIMLQMr1BGqlknmFP+cpkm6iHFwYr20GYabC2/
+	wy31WmAEgz9Godu/Nhgm8KUP0bwa/URsvkW+1rTdlnUmABYmTCr3
+X-Gm-Gg: ASbGnctQWKla8opC1b0GOj0wD7djs6L+NSF1eBB9gTVggFTbhfpn6HITAeCtI1x/rtJ
+	U4Br9dDmQo+jPEBTcLt/Om5GgKpLALy001Kc2Q0O65yY609Rhd7aU31jbT2uUVGYi1KxfbI/ipc
+	6QFOudvk94o9LF3rkL+byM05k6nThgUDXwQ5EcHIcdo08LspVIQA4oPWD1xD1jYkNLNDgEYlQGT
+	aSTeiw0k1sP6QgxC9J9WViCiZBlPtjOdKO+W6Hw06l+5IYyVDnGCfE1xNk6pk6BQcIzZgjQe1vS
+	V/Zndin35XOKjPgiPpp6kfMVHNVrXh0KkFFK+23O6oWQ5+B1Eibq
+X-Google-Smtp-Source: AGHT+IF3GvschKMoOsEYJDjP5Bh7wGJRXzNc7vFAvC5p6sW/i58t089hOCR/ZeKjvfIlvNXPZLbXAA==
+X-Received: by 2002:a05:6214:2405:b0:6f4:c824:9d4a with SMTP id 6a1803df08f44-6f6e47c339cmr5390056d6.13.1746731142883;
+        Thu, 08 May 2025 12:05:42 -0700 (PDT)
+Received: from localhost.localdomain ([216.237.233.165])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f6e3a0bee8sm3148216d6.54.2025.05.08.12.05.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 May 2025 12:05:42 -0700 (PDT)
+From: John Clark <inindev@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	John Clark <inindev@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v4 0/3] Add Luckfox Omni3576 Carrier Board support for RK3576
+Date: Thu,  8 May 2025 15:05:35 -0400
+Message-Id: <20250508190538.22295-1-inindev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250508-wip-bl-ad7606-calibration-v4-5-91a3f2837e6b@baylibre.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 
-On Thu, May 08, 2025 at 12:06:09PM +0200, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
-> 
-> Add gain calibration support, using resistor values set on devicetree,
-> values to be set accordingly with ADC external RFilter, as explained in
-> the ad7606c-16 datasheet, rev0, page 37.
-> 
-> Usage example in the fdt yaml documentation.
+This series adds device tree support for the Luckfox Omni3576 Carrier
+Board with the Core3576 Module, powered by the Rockchip RK3576 SoC
+(four Cortex-A72 cores, four Cortex-A53 cores, Mali-G52 MC3 GPU). It
+enables essential functionality for booting Linux and basic connectivity,
+with plans for future support of peripherals like WiFi, MIPI-DSI, HDMI,
+and Ethernet.
 
-...
+Tested features (on Linux 6.15-rc4):
+ - UART: Serial console operational
+ - SD card: Mounts and reads/writes successfully
+ - PCIe: NVMe SSD detected, mounted, and fully functional
+ - USB 2.0: Host ports operational
+ - RTC: Timekeeping and wake-up tested
+ - LED: Heartbeat trigger functional
+ - eMMC: Enabled in device tree, not populated on tested hardware
 
-> +static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +	unsigned int num_channels = st->chip_info->num_adc_channels;
-> +	struct device *dev = st->dev;
-> +	int ret;
-> +
-> +	/*
-> +	 * This function is called once, and parses all the channel nodes,
-> +	 * so continuing on next channel node on errors, informing of them.
-> +	 */
-> +	device_for_each_child_node_scoped(dev, child) {
-> +		u32 reg, r_gain;
-> +
-> +		ret = fwnode_property_read_u32(child, "reg", &reg);
-> +		if (ret)
-> +			continue;
+The series includes three patches:
+ 1. dt-bindings: vendor-prefixes: Add Luckfox vendor prefix
+ 2. dt-bindings: arm: rockchip: Add Luckfox Omni3576 and Core3576 bindings
+ 3. arm64: dts: rockchip: Add Luckfox Omni3576 board support
 
-> +		/* Chan reg is a 1-based index. */
-> +		if (reg < 1 || reg > num_channels) {
-> +			dev_warn(dev, "wrong ch number (ignoring): %d\n", reg);
-> +			continue;
-> +		}
+The device tree is covered by the existing ROCKCHIP ARCHITECTURE entry in
+MAINTAINERS. I am aware of ongoing RK3576 upstreaming efforts (e.g., by
+Collabora) and welcome feedback or collaboration to align with mainline
+driver development.
 
-But this will allow to have a broken DT. This check basically diminishes the
-effort of the DT schema validation. If there are limits one still would be able
-to create a DT that passes the driver but doesn't pass the validation.
+Changes in v4:
+ - Patch 1: Unchanged, Acked-by: Conor Dooley <conor.dooley@microchip.com>.
+ - Patch 2: Fixed binding for Omni3576 Carrier Board to use correct enum
+   syntax (enum: [luckfox,omni3576] instead of invalid const), added
+   luckfox,core3576 to compatible string to reflect module dependency.
+ - Patch 3: Updated compatible string in rk3576-luckfox-omni3576.dts to
+   match revised binding ("luckfox,omni3576", "luckfox,core3576",
+   "rockchip,rk3576").
 
-> +		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
-> +					       &r_gain);
-> +		if (ret)
-> +			/* Keep the default register value. */
-> +			continue;
-> +
-> +		if (r_gain > AD7606_CALIB_GAIN_MAX) {
-> +			dev_warn(dev, "wrong gain calibration value");
-> +			continue;
-> +		}
-> +
-> +		ret = st->bops->reg_write(st, AD7606_CALIB_GAIN(reg - 1),
-> +			DIV_ROUND_CLOSEST(r_gain, AD7606_CALIB_GAIN_STEP));
-> +		if (ret) {
-> +			dev_warn(dev, "error writing r_gain");
-> +			continue;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
+Changes in v3:
+ - Split device tree into rk3576-luckfox-core3576.dtsi (module) and
+   rk3576-luckfox-omni3576.dts (carrier board) for better modularity.
+   Previous Acked-by from Krzysztof Kozlowski for Patch 2 no longer applies
+   due to substantial changes.
+ - Addressed Jonas Karlman's feedback on patch 3/3 (Luckfox Omni3576
+   device tree):
+   - Added pinctrl for green LED GPIO (gpio1 RK_PD5) for proper pin setup.
+   - Reordered regulator node properties for consistent sequence (e.g.,
+     regulator-name, regulator-min-microvolt, regulator-max-microvolt,
+     etc.).
+   - Updated regulator nodes (vcc_3v3_pcie, vbus_5v0_typec, vcc_5v0_host,
+     vcc_5v0_hdmi) to use 'gpios' property instead of deprecated 'gpio'.
+   - Removed pmic-power-off pinctrl state and pinctrl-1 from RK806 PMIC
+     node, as they are vendor-specific and undocumented in bindings.
+   - Removed pwrkey node from PMIC, as it lacks binding documentation.
+   - Added blank line between properties and child nodes in i2c2 node for
+     DT style compliance.
+   - Removed no-mmc property from sdmmc node to enable MMC support,
+     aligning with RK3576 SD v3.0 and MMC v4.51 capabilities, allowing TF
+     card slot to support MMC devices or eMMC via adapter.
+ - Removed Ethernet support (gmac0/gmac1 nodes) per Andrew Lunn's
+   feedback, as it used the generic PHY driver with incorrect RGMII delay
+   settings, incompatible with the upcoming MAE0621A driver.
+   Collaborating with Andrew Lunn on a device driver, with Ethernet
+   support to be submitted separately when complete.
+ - Addressed Rob Herring's DTB check warnings, other warnings (e.g., VOP,
+   PCIe, OTP, HDMI PHY) originate from rk3576.dtsi and are outside this
+   patchset scope.
+ - Added RNG node to pick up Nicolas Frattaroli's "add RK3576 RNG node"
+   patch.
+
+Changes in v2:
+ - Enabled HDMI node per feedback from Heiko Stuebner and Nicolas
+   Frattaroli; untested due to upstream driver issues.
+ - Enabled Ethernet 1 node per Heiko's device tree philosophy; untested
+   due to suspected PHY driver or configuration issues (removed in v3 per
+   Andrew Lunn).
+ - Clarified eMMC remains enabled but unpopulated on tested board, per
+   Heiko.
+
+Signed-off-by: John Clark <inindev@gmail.com>
+---
+John Clark (3):
+  dt-bindings: vendor-prefixes: Add luckfox prefix
+  dt-bindings: arm: rockchip: Add Luckfox Omni3576 and Core3576 bindings
+  arm64: dts: rockchip: Add Luckfox Omni3576 Board support
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   7 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3576-luckfox-core3576.dtsi | 683 ++++++++++++++++++
+ .../dts/rockchip/rk3576-luckfox-omni3576.dts  |  53 ++
+ 5 files changed, 746 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-luckfox-omni3576.dts
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.39.5
 
 
