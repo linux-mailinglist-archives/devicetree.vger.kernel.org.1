@@ -1,169 +1,170 @@
-Return-Path: <devicetree+bounces-174959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-174960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B17E9AAF5EC
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:42:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA30AAF5EF
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 10:42:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CECE31C053F8
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:42:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A77299814EF
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 08:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDE9262FD0;
-	Thu,  8 May 2025 08:42:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4716A262FD1;
+	Thu,  8 May 2025 08:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o1ExFhJt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kuHeH5Sh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3509D21018F;
-	Thu,  8 May 2025 08:42:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D6CF21018F;
+	Thu,  8 May 2025 08:42:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746693750; cv=none; b=JxfaRfW/wCKyxqK3ISu6/CRwmPD18q9wg3yv/8ETZeKpIhvJyVnEbLSuGxtzzdkCbU5N8m1aBhwkaht0UJLDj+KxoaT2nNssVfwimBH/n7720SGxNBdkIV6BSMwWhKv6WepKfKlqYYZOZVNzIwRe7M1MV85+SDp+lFaEX8y14IY=
+	t=1746693757; cv=none; b=VY9OUsQ0DGUXhf2Z47/y4g4GywNxxN5T9g22fTlm2paWeVM/y6A67Fgrxz+k0t/TfusQcwIzqJEl2ldbTkXBwhViajQeGZQkzHm6HWVlbqIko721bVNfQ16eFqPwchbgeE8XnWyQK9KPjXOkponqBxnCqqkKjYkT97lm77rlNl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746693750; c=relaxed/simple;
-	bh=r4rhd827Fnak6aKEMgLnJgrNTLGWxl8VcUCjQ0+pR6c=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=p2Yh8gRcuS+9NvcFhhluP2mDB27BjEmC3/zAJDVQKrRnCxR8ZuS958GbsARmKm8YKTWJPhBdf6pGqVU0dm4sQ2ZJqalUjTUqse2i8lxcx4V6k+LY8ot3DGoj8mk15JgwqvCFbeVILt5RLHfiKdYkFJKIo8GsxQxbQvgwTraGvcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1ExFhJt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D702C4CEE7;
-	Thu,  8 May 2025 08:42:29 +0000 (UTC)
+	s=arc-20240116; t=1746693757; c=relaxed/simple;
+	bh=P+E3NNjEk7mDbGoMuwRiIBIXW3l8dZzpasnSJi954yg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qL/7xOABrxseDtjpA1G1QEU5mlgp8odRBYSDjJHJj2FLRVCHHNsFJIJyN9Ojfl3jEJRoyDHd2Ae5qyydxHkY18AZIAk3uDvYnwTWUH7MMHujGGKqeRJy7uka/GW79TNLvasIDRJeyghgdFX9hwKRMzNOYY1ICv7GbbU9UcYBafQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kuHeH5Sh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34804C4CEE7;
+	Thu,  8 May 2025 08:42:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746693749;
-	bh=r4rhd827Fnak6aKEMgLnJgrNTLGWxl8VcUCjQ0+pR6c=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=o1ExFhJtUJGWLWfvwRKP+t5Nhas05Da6Xm1+IvL1UlXP/NqPHx1hDNUGWOZ1cG9Hg
-	 ZvAsxplF2LvV2IIDPZIlv2kmxjTpqKhxrml8Ty3viPQ2sB2MhbKb6EqYp/i4cuqxLE
-	 0yu0HdiirY6VYYLM6kBMxtkSLAhIPr3fjGvnumfN3oLjtSxvIwufoxvsV0MAUz+qtA
-	 Wwqt7FIYgfQWsR8v3ETkEIGYI1UrgEP9fIu2GpCa0Tkv9cpo0pxhXGsW0Uv3RqWgrx
-	 LF3E4chMDfjTE0ojemPPZtvjx/nxsTowQmypdUkTmjmPRUjCfMHIPTH80ixvtWE7/x
-	 xF/R63bxc/bAg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1uCwpn-00CwFr-F3;
-	Thu, 08 May 2025 09:42:27 +0100
-Date: Thu, 08 May 2025 09:42:27 +0100
-Message-ID: <864ixvh4ss.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 20/25] irqchip/gic-v5: Add GICv5 PPI support
-In-Reply-To: <aBxgceQBRA6vBK7o@lpieralisi>
-References: <20250506-gicv5-host-v3-0-6edd5a92fd09@kernel.org>
-	<20250506-gicv5-host-v3-20-6edd5a92fd09@kernel.org>
-	<87zffpn5rk.ffs@tglx>
-	<86a57ohjey.wl-maz@kernel.org>
-	<87ecx0mt9p.ffs@tglx>
-	<867c2sh6jx.wl-maz@kernel.org>
-	<874ixwmpto.ffs@tglx>
-	<aBxgceQBRA6vBK7o@lpieralisi>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20201202; t=1746693756;
+	bh=P+E3NNjEk7mDbGoMuwRiIBIXW3l8dZzpasnSJi954yg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kuHeH5Sh0nD/r5HLG1hp0CiM+1Lkc8z/qqMF7RHFI1PvGn7dqtl02dWR5TrLzp0Hd
+	 0FAylV8OyW3MUkwcHoh9GwHW1O8McNcCPcvFH05f92I2Z9raYujhNamPWQJd65bzOH
+	 jjVrrrmfvdlY7zd/vo3YGBUdwuAbuTXkOPl2ALa1FmVtiNv98s1Jyhs81zXSF9uXpv
+	 K/Me1kgLQkHTKE9plJUffAXkMn3rZT35mvJ8YZm66e6WRIzlAhiPNBcuoKvpoLk6l8
+	 rHzK68KceHudJBa9sbajJRAlVewddYawfKbX/6+Dm7/cJRpAXagCK5ytjwgOB0v1zj
+	 4+L0XevzkRXmg==
+Message-ID: <b20ad0cf-f49b-4c78-ab67-adf3a4c55cf0@kernel.org>
+Date: Thu, 8 May 2025 10:42:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, timothy.hayes@arm.com, Liam.Howlett@oracle.com, mark.rutland@arm.com, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/8] dt-bindings: Add Tegra264 clock and reset definitions
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20250507143802.1230919-1-thierry.reding@gmail.com>
+ <20250507143802.1230919-5-thierry.reding@gmail.com>
+ <1ec7ed24-a4fe-450b-8f99-34aae6ed2c4d@kernel.org>
+ <3gpirue4rr5hpgynzzadzlr6i2fvdhaugcutyqyfoeix2zf3fu@xpbdadb5nynu>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <3gpirue4rr5hpgynzzadzlr6i2fvdhaugcutyqyfoeix2zf3fu@xpbdadb5nynu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 08 May 2025 08:42:41 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+On 08/05/2025 09:53, Thierry Reding wrote:
+> On Thu, May 08, 2025 at 09:40:02AM +0200, Krzysztof Kozlowski wrote:
+>> On 07/05/2025 16:37, Thierry Reding wrote:
+>>> @@ -0,0 +1,9 @@
+>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+>>> +/* Copyright (c) 2022-2023, NVIDIA CORPORATION. All rights reserved. */
+>>> +
+>>> +#ifndef DT_BINDINGS_CLOCK_TEGRA264_CLOCK_H
+>>> +#define DT_BINDINGS_CLOCK_TEGRA264_CLOCK_H
+>>> +
+>>> +#define TEGRA264_CLK_CLK_S			2U
+>>
+>> Abstract IDs start from 0 or 1, not 2. Also drop "U".
 > 
-> On Wed, May 07, 2025 at 04:57:07PM +0200, Thomas Gleixner wrote:
-> > On Wed, May 07 2025 at 14:52, Marc Zyngier wrote:
-> > > On Wed, 07 May 2025 14:42:42 +0100,
-> > > Thomas Gleixner <tglx@linutronix.de> wrote:
-> > >> 
-> > >> On Wed, May 07 2025 at 10:14, Marc Zyngier wrote:
-> > >> > On Tue, 06 May 2025 16:00:31 +0100,
-> > >> > Thomas Gleixner <tglx@linutronix.de> wrote:
-> > >> >> 
-> > >> >> How does this test distinguish between LEVEL_LOW and LEVEL_HIGH? It only
-> > >> >> tests for level, no? So the test is interesting at best ...
-> > >> >
-> > >> > There is no distinction between HIGH and LOW, RISING and FALLING, in
-> > >> > any revision of the GIC architecture.
-> > >> 
-> > >> Then pretending that there is a set_type() functionality is pretty daft
-> > >
-> > > You still need to distinguish between level and edge when this is
-> > > programmable (which is the case for a subset of the PPIs).
-> > 
-> > Fair enough, but can we please add a comment to this function which
-> > explains this oddity.
+> These are not abstract IDs, they are defined by the BPMP ABI. We cannot
+> change them, otherwise it'll completely break.
+
+
+You mean from the firmware? Sure. You have entire commit msg to explain
+all unusual things here...
+
 > 
-> Getting back to this, I would need your/Marc's input on this.
+> For similar reasons I'd like to keep the "U". These definitions are for
+> the most part directly imported from the BPMP ABI headers, though we do
+> try to be selective about what we add, to avoid adding hundreds of new
+> lines in one go, and several safety-checking tools run on these headers
+> that happen to require the "U" suffix to make sure these have a defined
+> type.
 > 
-> I think it is fair to remove the irq_set_type() irqchip callback for
-> GICv5 PPIs because there is nothing to set, as I said handling mode
-> for these IRQs is fixed. I don't think this can cause any trouble
-> (IIUC a value within the IRQF_TRIGGER_MASK should be set on requesting
-> an IRQ to "force" the trigger to be programmed and even then core code
-> would not fail if the irq_set_type() irqchip callback is not
-> implemented).
+>>> +
+>>> +#endif /* DT_BINDINGS_CLOCK_TEGRA264_CLOCK_H */
+>>> diff --git a/include/dt-bindings/reset/tegra264-reset.h b/include/dt-bindings/reset/tegra264-reset.h
+>>> new file mode 100644
+>>> index 000000000000..31d89dcf62fa
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/reset/tegra264-reset.h
+>>> @@ -0,0 +1,7 @@
+>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+>>> +/* Copyright (c) 2022-2023, NVIDIA CORPORATION. All rights reserved. */
+>>> +
+>>> +#ifndef DT_BINDINGS_RESET_TEGRA264_RESET_H
+>>> +#define DT_BINDINGS_RESET_TEGRA264_RESET_H
+>>> +
+>> This is empty, drop.
 > 
-> I am thinking about *existing* drivers that request GICv3 PPIs with
-> values in IRQF_TRIGGER_MASK set (are there any ? Don't think so but you
-> know better than I do), when we switch over to GICv5 we would have no
-> irq_set_type() callback for PPIs but I think we are still fine, not
-> implementing irqchip.irq_set_type() is correct IMO.
+> We have three people currently working on additional drivers for this
+> SoC and they all need to add to these two files. Adding the empty file
+> here makes it a bit easier to coordinate things, making the resulting
+> conflicts trivial to resolve.
 
-Nobody seems to use a hardcoded trigger (well, there is one exception,
-but that's to paper over a firmware bug).
 
-> On the other hand, given that on GICv5 PPI handling mode is fixed,
-> do you think that in the ppi_irq_domain_ops.translate() callback,
-> I should check the type the firmware provided and fail the translation
-> if it does not match the HW hardcoded value ?
+Bindings are supposed to be complete (see writing bindings doc), this
+means also bindings headers. If the constants come from firmware, they
+are defined so I really do not understands why they cannot be published now.
 
-Why? The fact that the firmware is wrong doesn't change the hardware
-integration. It just indicates that whoever wrote the firmware didn't
-read the documentation.
+Unless you mean that this is a new SoC and the firmware is not yet
+fixed/finished, but all this must be explained in the commit msg.
 
-Even more, I wonder what the benefit of having that information in the
-firmware tables if the only thing that matters in the immutable HW
-view. Yes, having it in the DT/ACPI simplifies the job of the kernel
-(only one format to parse). But it is overall useless information.
-
-> Obviously if firmware exposes the wrong type that's a firmware bug
-> but I was wondering whether it is better to fail the firmware-to-Linux
-> IRQ translation if the firmware provided type is wrong rather than carry
-> on pretending that the type is correct (I was abusing the irq_set_type()
-> callback to do just that - namely, check that the type provided by
-> firmware matches HW but I think that's the wrong place to put it).
-
-I don't think there is anything to do. Worse case, you spit a
-pr_warn_once() and carry on.
-
-Thanks,
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Best regards,
+Krzysztof
 
