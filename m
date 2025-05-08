@@ -1,166 +1,169 @@
-Return-Path: <devicetree+bounces-175030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D91B3AAF9F7
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:30:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EC8DAAFA04
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 14:32:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C498B9C129F
-	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:30:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04894981311
+	for <lists+devicetree@lfdr.de>; Thu,  8 May 2025 12:32:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F971714B3;
-	Thu,  8 May 2025 12:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E882E2253F8;
+	Thu,  8 May 2025 12:32:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Kv7GTQmN"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="mDVw/Hh3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E4951DFCB;
-	Thu,  8 May 2025 12:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4373222332B;
+	Thu,  8 May 2025 12:32:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746707430; cv=none; b=spt3FJpbxgCif5L9iRLYM+2rKxRC0GUkdjj6cRReenjI/QhVarnguCMx0TRqxiXIAEAxCwD/ySjMGW/5V+1Wv8o+wvhSbBoQ87VawKlNnSwcinuo5qdy80xLFfPIDOQJpkoqL91VPNhYAhYC3JOl94YfdnrJsdzsKL1Z7nycLY4=
+	t=1746707544; cv=none; b=j+6Oe9bKLS2e8e6NKFqZQkIuooBJQsfCzONyEktmpsoBYVakFXAnEsLQkv6jh+TQr8Ijm69IGZp1d7lui+pI3MdDn+37LT0g2emt9IEGSE8Ti5fXwP56kopw1TxLnO9A61kWTi7HMNzM9zw2FxtkeUqYJgqJWzWBqHH88MfoRoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746707430; c=relaxed/simple;
-	bh=HeIcU31k0jUrshoLuqpcoqbbrejY7CBH2/uU+k3kuOc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RufyxzzWLlywlMaJkvFyXAriM/AaxfrgjMJhFSnTPUI87pUAzag91Jh15L4fPkQ7yLfuJSEugk2z88w/8GeTp09RCbuYj8mBu92Yim/iiad03h/4YPVPKO5/9QSVQh2vhOBoQbaTAjsfqGFmapawfT/L5/GcF/O/hYHFnyA3tP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Kv7GTQmN; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0845722A;
-	Thu,  8 May 2025 14:30:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1746707415;
-	bh=HeIcU31k0jUrshoLuqpcoqbbrejY7CBH2/uU+k3kuOc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Kv7GTQmNOjXfv5izHqX8NTODRxFtWXkeujrTKYNLX9iMKNX48d1lZt7nD7MQEh+lk
-	 u+RB9IMq+lBF21BjGUdzi4omacs5jYElXbmZ7mBw6p7xLnp7vVxGf5KfVJpOQzQs94
-	 s5/0zHW1UDWOZBJoPeVX/Ta62rjRKpELEezdfQdY=
-Message-ID: <5e5130c1-2967-41da-b8c4-352f676cced8@ideasonboard.com>
-Date: Thu, 8 May 2025 13:30:24 +0100
+	s=arc-20240116; t=1746707544; c=relaxed/simple;
+	bh=FfWX/IeclzWuUy2UMLpj5NDXkcVqdLqLvzGQ7lL5iek=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=glfb1ix7LYxE/17/QJ5E8HMkT8R/6I07lQIc//iSZwECG1L1pG10ulVwWv6AnWt6C6JnlEN3z8x/HoJZCASnIjgJm+8N6MS6SVorrYJsuGzIBPZAKUXqwcSrZtmJtPphMl99k0fsdx7QjsaMjOA1R6+06xLG5w+ha2Z6bdzm2T8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=mDVw/Hh3; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5489YIRW024036;
+	Thu, 8 May 2025 08:31:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=UIMfvjD8VG3LsqikLeso4LvFkme
+	urOmcl7jcar7/N6w=; b=mDVw/Hh3KI2y8zzl6Qrh+QESnGOw+L6mF2FjeSZ2GNw
+	o4a3UgiI3qHgUOYQthUmvxzh3RQ2kpZhdaXj+2XB5w5mUjQU+4XNVI3k1nYIkAR5
+	ucRb4K6EP0Q7S/Ono3in14wxPP2PK15Cn420bOklOEI+2w6o386yrBH7ZlhXdGNA
+	GKhA9TE+FLPizL200sda/L8O0j9+X24wvcePp8ffcEtTPXNN9UCPXvMiw3mo69w8
+	kiwnbyPdB4EM3bTb3S3eTTU4q7ygEjV9v2bK3UzOGBMfI7Y0kc1n73R+mqOb9jXF
+	FdMLlQyuSN3bTBsJ6y1R43LXxpqTEpLf9NGo0pMXGAw==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 46gpct9tum-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 08 May 2025 08:31:39 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 548CVcGY019167
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 May 2025 08:31:38 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 8 May 2025 08:31:38 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 8 May 2025 08:31:38 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 8 May 2025 08:31:38 -0400
+Received: from romlx5.adlk.analog.com ([10.48.65.73])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 548CVFtc002317;
+	Thu, 8 May 2025 08:31:18 -0400
+From: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        "David
+ Lechner" <dlechner@baylibre.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?=
+	<nuno.sa@analog.com>,
+        Andy Shevchenko <andy@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
+        "Dragos Bogdan" <dragos.bogdan@analog.com>,
+        Antoniu Miclaus
+	<antoniu.miclaus@analog.com>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+        Matti Vaittinen
+	<mazziesaccount@gmail.com>,
+        Tobias Sperling <tobias.sperling@softing.com>,
+        Alisa-Dariana Roman <alisadariana@gmail.com>,
+        Marcelo Schmitt
+	<marcelo.schmitt@analog.com>,
+        Trevor Gamblin <tgamblin@baylibre.com>,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+        "Ioan
+ Daniel" <pop.ioan-daniel@analog.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/4] Add support for AD7405/ADUM770x
+Date: Thu, 8 May 2025 15:30:53 +0300
+Message-ID: <20250508123107.3797042-1-pop.ioan-daniel@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] clk: renesas: r9a09g057-cpg: Add reset definitions
- for RZ/V2H ISP
-To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc: "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Daniel Scally <dan.scally+renesas@ideasonboard.com>
-References: <20250506121252.557170-1-dan.scally@ideasonboard.com>
- <20250506121252.557170-5-dan.scally@ideasonboard.com>
- <TY3PR01MB1208913AA506585FF622DD7D3C289A@TY3PR01MB12089.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
- 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
-In-Reply-To: <TY3PR01MB1208913AA506585FF622DD7D3C289A@TY3PR01MB12089.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA4MDEwMyBTYWx0ZWRfX4yItV59vM5xH
+ n1Cg5sz7MGwGgVVYvjIXLLD8WX2yoWlVMXn4vVkkN//AKGlmE0NRINEaZ94jtiohZd/IIfZ/sXa
+ KT4HbKuxO0ueyBKJkr8nOIqBas9Og4EW9BgIy1P6pnuILXZRI87KwZhvU8J99aemVnMpU3p90ue
+ QXG2z4pTVPf6U3rQ9eKfcgRvK9F1uCAF0KHKno/LaLs9fdEafxFYQP48YsOdH61pLA6KWA+6s2/
+ vYqiYS3QHjK+WI0QEO+YrlOR2CIzo0URSM/BZDL0BBuz8QyKIgYnIm4ySZOvzQmRoCrozEG0YS3
+ jLTW9253xP2jUpdlA1P4LL2Y5flBRNl7SWaQaR5Gxpvpsv44Xr+ULW0OoGA0MmBhPu9kWD2O1Fo
+ FfqHDQA+gMMTTBz+r36UpDKl9Ri14i8AsZiobLnHI0dEDCCCeTGGpHbHUhR9JggooJTnrwaI
+X-Authority-Analysis: v=2.4 cv=Ur5jN/wB c=1 sm=1 tr=0 ts=681ca42b cx=c_pps
+ a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=-b-aYdi1BcR_ETs2v9YA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: jOJbrgviCdB-g03iIsXEQGmW3TP-zJ_8
+X-Proofpoint-ORIG-GUID: jOJbrgviCdB-g03iIsXEQGmW3TP-zJ_8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-08_04,2025-05-07_02,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 suspectscore=0 adultscore=0 bulkscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 impostorscore=0 lowpriorityscore=0
+ mlxlogscore=856 clxscore=1011 phishscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2504070000 definitions=main-2505080103
 
-Hi Fabrizio
+The AD7405 is a high performance, second-order, Σ-Δ modulator
+that converts an analog input signal into a high speed, single-bit
+LVDS data stream, with on-chip digital isolation based on Analog
+Devices, Inc., iCoupler technology. The AD7405 operates from a
+4.5 V to 5.5 V (VDD1) power supply and accepts a differential input
+signal of ±250 mV (±320 mV full-scale). The differential input is ideally
+suited to shunt voltage monitoring in high voltage applications
+where galvanic isolation is required.
 
-On 06/05/2025 14:26, Fabrizio Castro wrote:
-> Hi Daniel,
->
-> Thanks for your patch!
->
->> From: Daniel Scally <dan.scally@ideasonboard.com>
->> Sent: 06 May 2025 13:13
->> Subject: [PATCH 4/4] clk: renesas: r9a09g057-cpg: Add reset definitions for RZ/V2H ISP
->>
->> From: Daniel Scally <dan.scally+renesas@ideasonboard.com>
->>
->> Add reset line definitions for the ISP of the RZ/V2H SoC
->>
->> Signed-off-by: Daniel Scally <dan.scally+renesas@ideasonboard.com>
->> ---
->>   drivers/clk/renesas/r9a09g057-cpg.c | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/drivers/clk/renesas/r9a09g057-cpg.c b/drivers/clk/renesas/r9a09g057-cpg.c
->> index cb001ae5f98b..6537654bbdfb 100644
->> --- a/drivers/clk/renesas/r9a09g057-cpg.c
->> +++ b/drivers/clk/renesas/r9a09g057-cpg.c
->> @@ -298,6 +298,10 @@ static const struct rzv2h_reset r9a09g057_resets[] __initconst = {
->>   	DEF_RST(12, 14, 5, 31),		/* CRU_3_PRESETN */
->>   	DEF_RST(12, 15, 6, 0),		/* CRU_3_ARESETN */
->>   	DEF_RST(13, 0, 6, 1),		/* CRU_3_S_RESETN */
->> +	DEF_RST(13, 1, 6, 2),		/* ISP_0_VIN_ARESETN */
->> +	DEF_RST(13, 2, 6, 3),		/* ISP_0_REG_ARESETN */
->> +	DEF_RST(13, 3, 6, 4),		/* ISP_0_ISP_SRESETN */
->> +	DEF_RST(13, 4, 6, 5),		/* ISP_0_PRESETN */
-> The numbers LGTM, but I think these changes belong with patch number 2.
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Pop Ioan Daniel (4):
+  iio: backend: update iio_backend_oversampling_ratio_set
+  iio: adc: adi-axi-adc: add set decimation rate
+  dt-bindings: iio: adc: add ad7405
+  iio: adc: ad7405: add ad7405 driver
 
-OK, I'll squash them.
+ .../bindings/iio/adc/adi,ad7405.yaml          |  60 ++++
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ad4851.c                      |   2 +-
+ drivers/iio/adc/ad7405.c                      | 264 ++++++++++++++++++
+ drivers/iio/adc/adi-axi-adc.c                 |  18 +-
+ drivers/iio/industrialio-backend.c            |   3 +-
+ include/linux/iio/backend.h                   |   3 +-
+ 8 files changed, 357 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7405.yaml
+ create mode 100644 drivers/iio/adc/ad7405.c
 
->
-> Cheers,
-> Fab
->
->>   };
->>
->>   const struct rzv2h_cpg_info r9a09g057_cpg_info __initconst = {
->> --
->> 2.34.1
->>
+-- 
+2.34.1
+
 
