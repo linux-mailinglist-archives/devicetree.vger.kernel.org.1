@@ -1,122 +1,190 @@
-Return-Path: <devicetree+bounces-175467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94180AB0F75
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:43:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C682AB0F89
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:48:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 740FD3AD16A
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:43:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29AFE1BA6739
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:48:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3051128CF62;
-	Fri,  9 May 2025 09:43:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FD2F28D8F5;
+	Fri,  9 May 2025 09:48:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="n8ShsXQ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDD026FA5C;
-	Fri,  9 May 2025 09:43:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1F7266B44;
+	Fri,  9 May 2025 09:48:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746783824; cv=none; b=Hc3N0ZgUnodyxQWAKwzc7sQocCz6O/IVDh8CwKR4tctLd2BALWokcKL0DYd32Escx7G6y7iuMPamgsxuUocoLwSEM86ymvkOPGJPf8eZZjFjPUKu+Qu4Tf9GJCcgNjGDvxH1kj3YCQKzRHN2mW+oRMOWxny9WiUduep7RmKl8UU=
+	t=1746784099; cv=none; b=Sz6H+p6DGEBPaM203oCSLVbOyLL0YLwz9ZUb0UGUaQcWgnUT0FeEBW+0qe80nafNa8zHmGc9gQHa9QC8KuXWtRT5aNr40rc6jwReZHEedgQ/3RBdhMkqpfvXgVLU3DgKJb6LZQcKfU6oAi8vXzvF5f0lbSW2zhtE35r6P+ap9is=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746783824; c=relaxed/simple;
-	bh=834zGv04IRnQteHT+UDNWIj6Z4grl57drScKWT9bOJ8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QhBh8LdLft6YJqs4mr+LegJp27/eBCWA5LXQqaritlru/Tl9hukDPB4nJywEUHCgJYNIElPCEhFwoaBoBXoTqWSlcR0tqdwoy49f0/DtSo9Uj18eC7ujiqcpqfhj81tS+V9oFoztqAJBxeaHf1v5geXzwtO/zFUOeBp9cv2gm34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-5240a432462so1225809e0c.1;
-        Fri, 09 May 2025 02:43:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746783820; x=1747388620;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cS4MQBXJCl1oqMu5q/7hz+EdEY4RzMbBhX3NYiefBfE=;
-        b=Oyuu1UEHTmbhBCqgIjeB1Szi+O/uN6jNe3XfjHx9c7TZHeYPRw8i65WeJ5ox88C+a5
-         kptj73P57YLzQ0F2UznFQopDoX1irFcR4VmpVafhsQJM8TaOeyFkOYMb5qCkrAq/V+69
-         4C46+nc8qu8F4pQYzwCF2ifUP2Upvv/sBUhUAqD8zj9UNDyS9A8PyULh+ho1nnI4niDS
-         E765Vk4mzqG5n7jDcyo5GTABNrvDmeYz9OqdLTXCADL1rIO1UAvMaiwCQ/EyvlvA5wY9
-         zEddN20dCYP1mwQZmDgdCaF9B5ozZKB4Kd6vdzQ3p8xFzDNJZojSbQ4ibQbzDTmdWtdV
-         bdpg==
-X-Forwarded-Encrypted: i=1; AJvYcCVUtITT6V/9V0ZN5VvVD6BzFUB+bJy/+i/xJtxwuuWHBRxbtrDqURvQDwpsAm7l/Evy1O/tNGufrSXH@vger.kernel.org, AJvYcCVuc8gq2h6dSNsJz7VU0J9z2Ye+IX8G4Xqa9MrPUW7EOGXbHHVfH/KRatGTyfdXEPFyw90NyWJvtNJn@vger.kernel.org, AJvYcCWAaHc5eVJ+T0Ko1S/rCKjiwHdmceTpYsNgHCGp/kKXU0Fa9yA0isn3gLpIGUxfWZyKmzNW12H0QVuizPs=@vger.kernel.org, AJvYcCWuB6j0Ot9J5BCDs9eCZAkGROrfUS+lpHbIztGlszZc5uz6Fpsg7OW3T/z+BO8Ik3QAcMXSr4LmZ7kxX7siv49JDBo=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqcPGlgTU9PsKX6mOJZfg1gh43orlMLDpuVEHkpCVLjkveFHK7
-	jSWJP1kpXICLq8/jE7/5nHESb9sJs+qqNpmTXCL9+HXHf4dGkoXPZzFmxwad
-X-Gm-Gg: ASbGncsFxhje7g4Vvf4tea8pHAxmx4lXVB5NTVRzyW6m0bcjBBtpQqIvnd+D9A3G+8O
-	ri7p/4bjVlfJnp6xVPMw9UBa+dfsTwVmfo6x/zPzDG9qZsXeRbRHVT3PIZSJx5bgo/zGxS+Fm/x
-	maqkwBzQztsoFffTzQv7v/FkPjwGbxfV0fHV33Ojhbp8Ln0Lq75mmms7khVXUXLKFFll2hWKuxp
-	gOHtGmEt9JetZ4YdVh73oARIhq5tnspO134ZHa252i+csFtBkH/NLWFwj3U51mohfpuXY07U1iQ
-	X3AEkEa3JHKa2HCFzrzr3CfFnH1UqsZxCyz9yyvBkPz8LeAGX9J9P51/RRp3YP5kzfGVj/abKr4
-	Swfw=
-X-Google-Smtp-Source: AGHT+IGnzN83hnsqtxTdYCKHNn4V9xtxZJCDqUmIOdoBDH1Xh1FKafRwo2jllrzXTGqjifKFOMpiEQ==
-X-Received: by 2002:a05:6122:c8:b0:523:eb47:2884 with SMTP id 71dfb90a1353d-52c44437f67mr5006067e0c.6.1746783819817;
-        Fri, 09 May 2025 02:43:39 -0700 (PDT)
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52c5372af6csm853937e0c.14.2025.05.09.02.43.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 May 2025 02:43:38 -0700 (PDT)
-Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4ddb9d80bffso856091137.0;
-        Fri, 09 May 2025 02:43:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUIvg3/b96AxfKTkyYn4UaiuTaH77MwwndzH4nR1MpHKSBcqIwL9PJ0SN09aWXzKwTqLZ6UgW7Ocm1m8hc=@vger.kernel.org, AJvYcCVsfFZh1qygGY5UanncokoLXRPyAEjKHR967wiRDeriGL0OFjyPSDEawKhG3XuHfwqaC9m01gqqVfa0ru+r/SBhNtA=@vger.kernel.org, AJvYcCW8CuRA0wJGV+Yqg0Ng7Yfnz4fXbcU/vqLBS3j4GyVot8svcpJpAnS/VKaCyI53uY9txlo5iOMcw1F3@vger.kernel.org, AJvYcCXf2YngmdKht8lIIha3t2wY+q2yvTme1lOAP1Sgh4V5TaKx2gnMiiaothVzGQlhdD4YFPPfw5txv6Vb@vger.kernel.org
-X-Received: by 2002:a67:e893:0:b0:4de:f0c7:e7bd with SMTP id
- ada2fe7eead31-4def0c7ec9bmr516832137.8.1746783818083; Fri, 09 May 2025
- 02:43:38 -0700 (PDT)
+	s=arc-20240116; t=1746784099; c=relaxed/simple;
+	bh=clXk6+TyzwGn7jst9KCUuBWidIZ/3lsFT8MeDrELOVI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=P1ZeR3NW7cO+aA1K+fF+SCytVtdiaJTcDPb7007JPQn2g3RAIGPIZLPAupuOVqg54L7DWU0KwdVThOyejLsWUpy0SmcQq1xQqXJs3j2PVo9YAwmqlScVLWsybRn9fNGHMvyKPmKEEhWLcbf67vuTJ7t1QR9F5dzWSwuOIuGDjlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=n8ShsXQ5; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5550341DF4;
+	Fri,  9 May 2025 09:48:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746784089;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=8klRadoLwDsuugPRdfkTBI5fHbN2cc7BUxlcxRublVA=;
+	b=n8ShsXQ5N9AfaM9I+nuF0nB7V0W6tS6DAeRJIakU8triwC/tjTW1B6rxifJZr5uVorXtQ0
+	5pWOOa2VbZWc2F1/VVh+rMKN5w3I0PHP1iU7wNbuLqnpGfrrfaFa5v+/+PzJ0SvQIl/WE5
+	RGwdUMSdZA0hClfo4RxxDfZGwFmewPPcUJeGuaxXeA0BFkRKwpYgjm+YihAP3OejX74+Yy
+	bou2p+smtRxzT0gYQ98LBWj6WBW1FZyUh95Wfz0hwG5Yprs69Ol5yGee5JK/NX5Mt+jkzZ
+	W65BTrPV87lHCx64xq76+bt3k9YzrApvCaH735sSjhq1a/PLPU07jZpdBqCHRA==
+From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Subject: [PATCH v8 0/2] riscv: pwm: sophgo: add pwm support for CV1800
+Date: Fri, 09 May 2025 11:45:42 +0200
+Message-Id: <20250509-pwm_sophgo-v8-0-cfaebeb8ee17@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <871ptq4blr.wl-kuninori.morimoto.gx@renesas.com>
- <87o6wu2wzm.wl-kuninori.morimoto.gx@renesas.com> <CAMuHMdUvtvS-R7cZe-uuUJ+HT5SofTYfh-LwZirY_cMNw379hA@mail.gmail.com>
- <871pt1cfg1.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <871pt1cfg1.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 9 May 2025 11:43:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVDWDCdF956VFgj95Cp-RxN9OOJ3QVgOV0C_wD+EXQktA@mail.gmail.com>
-X-Gm-Features: AX0GCFsyZGmx95i7hMWHQTatrG9GkM2iIfCYJG2cY9QxOU_CGeNsHMOWbwOsqtQ
-Message-ID: <CAMuHMdVDWDCdF956VFgj95Cp-RxN9OOJ3QVgOV0C_wD+EXQktA@mail.gmail.com>
-Subject: Re: [PATCH v4 9/9] arm64: defconfig: add Renesas MSIOF sound support
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-sound@vger.kernel.org, 
-	linux-spi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMbOHWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyLHQUlJIzE
+ vPSU3UzU4B8JSMDI1MDEwNz3YLy3Pji/IKM9HxdUwNjoyRjC1OLZCNzJaCGgqLUtMwKsGHRsbW
+ 1AKgEj4lcAAAA
+X-Change-ID: 20250407-pwm_sophgo-5032b3858c27
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+ Inochi Amaoto <inochiama@gmail.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+ sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Jingbao Qiu <qiujingbao.dlmu@gmail.com>, 
+ Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvledvfedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhufffkfggtgfgvfevofesthejredtredtjeenucfhrhhomhepvfhhohhmrghsuceuohhnnhgvfhhilhhlvgcuoehthhhomhgrshdrsghonhhnvghfihhllhgvsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekvdeggfefheektdevtdeuleffiefhveduhefhheekgeeujeevkeelfedutedvffenucffohhmrghinhepkhgvrhhnvghlrdhorhhgpdhgihhthhhusgdrtghomhenucfkphepvdgrtddumegtsgdugeemkeeflegtmeejtgdttdemrgegugejmeefvgelvgemvgekfedtmegsfegvtgenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeekfeeltgemjegttddtmegrgegujeemfegvlegvmegvkeeftdemsgefvggtpdhhvghloheplgduledvrdduieekrddurddufegnpdhmrghilhhfrhhomhepthhhohhmrghsrdgsohhnnhgvfhhilhhlvgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudehpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehukhhlvghinhgvkheskhgvrhhnvghlrdhor
+ hhgpdhrtghpthhtohepihhnohgthhhirghmrgesghhmrghilhdrtghomhdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehthhhomhgrshdrsghonhhnvghfihhllhgvsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehqihhujhhinhhgsggrohdrughlmhhusehgmhgrihhlrdgtohhmpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhm
+X-GND-Sasl: thomas.bonnefille@bootlin.com
 
-Hi Morimoto-san,
+The Sophgo CV1800 chip provides a set of four independent
+PWM channel outputs.
+This series adds PWM controller support for Sophgo cv1800.
 
-On Wed, 7 May 2025 at 04:39, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> > > Renesas V4H Sparrow Hawk board needs MSIOF Sound driver.
-> > > Support it.
-> > >
-> > > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > i.e. will queue in renesas-devel for v6.16.
->
-> Please let me know if I need to post patch for renesas_defconfig.
-> I'm happy if you can handle that.
+Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+[Thomas since v8]
+Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+---
+Changes in v8:
+- Rewrote supported frequency
+- Hardcoded HLPERIOD_BASE and PERIDO_BASE
+- Change usage of update_bits to set/clear bits when needed
+- Rewrote construct of enablement of PWM
+- Fixed OE activation
+- Fixed hw state modification in case where pwm value cannot be reached
+- Renamed variables
+- Errors out for new cases
+- Reworded some comments
 
-Looks like you beat me to it ;-)
-Thanks!
+v7: https://lore.kernel.org/linux-pwm/20240501083242.773305-1-qiujingbao.dlmu@gmail.com/
 
-Gr{oetje,eeting}s,
+Changes in v7:
+- add detailed Limitations
+- using BIT(n) instead BIT(0) << n
+- use 0 instead of disable macro
+- modify OE judgment criteria
+- add devm_regmap_init_mmio error message
+- delete unused variable
 
-                        Geert
+v6: https://lore.kernel.org/all/20240406063413.3334639-1-qiujingbao.dlmu@gmail.com/
 
+Changes in v6:
+- delete the OE function because we plan to use the counter subsystem
+  instead of capture, so there is no need to reuse this code.
+- fix set polarity reverse error.
+
+v5: https://lore.kernel.org/all/20240314100131.323540-1-qiujingbao.dlmu@gmail.com/
+
+Changes in v5:
+- drop filename
+- fix macro
+- optimize cv1800_pwm_set_polarity()
+- optimize cv1800_pwm_set_oe()
+- add comment for cv1800_pwm_set_oe()
+- use ticks replace tem
+- fix duty_cycle larger than period_val
+- use devm_clk_rate_exclusive_get() replace
+  clk_rate_exclusive_get()
+- map linux polarity to register polarity 
+
+v4: https://lore.kernel.org/all/20240304085933.1246964-1-qiujingbao.dlmu@gmail.com/
+
+datasheet Link: https://github.com/milkv-duo/duo-files/blob/main/duo/datasheet/CV1800B-CV1801B-Preliminary-Datasheet-full-en.pdf
+page 614
+
+Changes in v4:
+- use macro instead of npwm number
+- add support for polarity feature
+- add support for Output-Enable/OE feature
+
+v3: https://lore.kernel.org/all/20240223082014.109385-1-qiujingbao.dlmu@gmail.com/
+
+Changes in v3:
+- use 0x08 instead of macro
+- split if statements based on conditions
+- in order to round up, first calculate the
+  number of high-level cycles, then subtract
+  it from the PERIOD to obtain the number of HLPERIOD
+- use new pwmchip_alloc() API instead of old style
+
+v2: https://lore.kernel.org/all/20240212121729.1086718-1-qiujingbao.dlmu@gmail.com/
+
+Changes in v2:
+- drop full stop from subject
+- re-order maintainers and description
+- pass checkpatch.pl --strict
+- fix naming errors
+- add "Limitations" section
+- use a driver specific prefix for all defines
+- using bool instead u32 in cv1800_pwm_enable
+- check and set state->polarity
+- use mul_u64_u64_div_u64
+- use clk_rate_exclusive_get(), balance with clk_rate_exclusive_put()
+- using macro definitions instead of shift operations
+- remove shift operation on 0
+- use priv replace cv_pwm
+- hardcode npwm
+- set atomic to true
+- remove MODULE_ALIAS
+
+v1: https://lore.kernel.org/all/20240207055856.672184-1-qiujingbao.dlmu@gmail.com/
+
+---
+Jingbao Qiu (2):
+      dt-bindings: pwm: sophgo: add pwm for Sophgo CV1800 series SoC
+      pwm: sophgo: add pwm support for Sophgo CV1800 SoC
+
+ .../devicetree/bindings/pwm/sophgo,cv1800-pwm.yaml |  45 ++++
+ drivers/pwm/Kconfig                                |  10 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-cv1800.c                           | 294 +++++++++++++++++++++
+ 4 files changed, 350 insertions(+)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250407-pwm_sophgo-5032b3858c27
+
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Thomas Bonnefille <thomas.bonnefille@bootlin.com>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
