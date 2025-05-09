@@ -1,163 +1,94 @@
-Return-Path: <devicetree+bounces-175501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3C6BAB1111
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:47:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64807AB1007
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:11:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 472F0A00CDA
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:46:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C5F31C25298
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:11:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AA1921FF59;
-	Fri,  9 May 2025 10:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A4028EA69;
+	Fri,  9 May 2025 10:11:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="IkWzPTke"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="keWZgP8c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973174.qiye.163.com (mail-m1973174.qiye.163.com [220.197.31.74])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB8638FA3;
-	Fri,  9 May 2025 10:47:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.74
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E620328EA42;
+	Fri,  9 May 2025 10:11:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746787629; cv=none; b=guZrGe1GmzuIQcFHasi14MmOJ0N7pzYLSinydXoL3uXL8tRwneC7qU4RNeSh2yLGeQH1dnvABMdt8yC4S9NU28YJ5Mdjhpc2x1SCRtPrLWnBmDEfNmEmwnArh2ya5qnL7CioOJ07N4ps/kQkqemEK8plTJdHTdhimZtrI4P58mo=
+	t=1746785494; cv=none; b=LCD4NnnGtJ5k8s8T3wTTKeV8gax5niZ3iGCOkTJirC5kWvukqy2srZ4YIMqoKb7OEdrBGmyaDGd7oszmCzy5iwZW9xAiDIaCBmspjuOitSGlQpXSjlr7cYZ/pWkDrbjjFXpXikwkg8RCEgcByS2aVIJcAinDnEKCS2fGHxJ48IY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746787629; c=relaxed/simple;
-	bh=LcmBMXyNMZgbYzLO+VnNAkcoxEr0vxi/qOLZq58bBpk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=l47RMhfx/6ekHuk/dyRNVEVaLtgyH2SvD2ZYDJV23uhyWYat7Nt6R/fqvH+XFhq/rIUBKuwesBatxdW61F2bXhWVrxHZw92RMkqKlGeyqXbnhyrwEV1Vv+7mx326E/DSauXLKeO2qLdHYcfndlllDN6J168AvWwaoQ6DB2nrrMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=IkWzPTke; arc=none smtp.client-ip=220.197.31.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [103.29.142.67])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 147bfe059;
-	Fri, 9 May 2025 15:17:46 +0800 (GMT+08:00)
-From: Kever Yang <kever.yang@rock-chips.com>
-To: heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
-	Junhao Xie <bigfoot@classfun.cn>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Yao Zi <ziyao@disroot.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	devicetree@vger.kernel.org,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shresth Prasad <shresthprasad7@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	linux-kernel@vger.kernel.org,
-	Jimmy Hon <honyuenkwun@gmail.com>
-Subject: [PATCH v6 0/5] rockchip: Add rk3562 SoC and evb support
-Date: Fri,  9 May 2025 15:17:39 +0800
-Message-Id: <20250509071744.732412-1-kever.yang@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1746785494; c=relaxed/simple;
+	bh=lqziQpMlughBedTUO+EzYkiCIUZJo/QheOWVzWoKiJA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aORMfYla9nFZjw7dXYMk3lDtC7en5p2Fj3H/R19GHFGoTIjXVZEmYxdXvoMR+av+JyJTHv5lqFIxo1Op31oM+ujBQg++2ci0/ih9C5rGkb4XZ/wQlCyx9DJqPAuibC4UnExVeptMRmbLmLohPiP1mVkYMln9lPFSThJJKfv6Qcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=keWZgP8c; arc=none smtp.client-ip=220.197.32.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=izERVxm2+ntmpqePiAy07uUJR+42twLW2H2vEA4ju50=;
+	b=keWZgP8cSVuU62zuRHKBjK7P9EZ6VdTqDnuXp+dF4RFUw8G1hPbfC+oqhhKSIo
+	0z/GgMWQWsRPfTXQaiFjIzYwQRXF6vIEKlxxPSZ9zAm6E/Tu4gTiqyin50dfm9pP
+	mHbPVX1tuKgHvJCJPRONRH75Pd/xo8tQ4LofoslkyEcPM=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD31w6f1B1ol0OqAA--.12430S3;
+	Fri, 09 May 2025 18:10:40 +0800 (CST)
+Date: Fri, 9 May 2025 18:10:38 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Primoz Fiser <primoz.fiser@norik.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
+Subject: Re: [PATCH v4 00/15] Update PHYTEC i.MX93 DTS
+Message-ID: <aB3Unt2tKNaIBnBS@dragon>
+References: <20250422105644.2725168-1-primoz.fiser@norik.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDTE1DVh9KHRpDGEsZS0tPSVYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKS0hVSUJVSk9JVU1MWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09IVUpLS1
-	VKQktLWQY+
-X-HM-Tid: 0a96b3e847a003afkunm147bfe059
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mxg6PTo*DzJCDQIQFykyTE0N
-	TSwaChdVSlVKTE9NTExOS01CSExLVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQUhCSE03Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=IkWzPTkebX6Fze2/KqozB8z4QjcDSONOtF2h0go0X03o+lfmkbToC0XS7Jlnpwn6jOSOwFbdtKYlDDjE+DPXyBgL3E03Qa5K3XwWyCoPSLYgLWauKfLe/N/lpj86d24PGVWSdnd21Cz/fyLcUPHq7zGocvITXpUO15q/9vIbD08=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=VPSGPkK5ZMCFmDxL0qp9plqTEWD8XrvlwesQZtajotc=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250422105644.2725168-1-primoz.fiser@norik.com>
+X-CM-TRANSID:Ms8vCgD31w6f1B1ol0OqAA--.12430S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW7XF1rAFy5tr43Cr45ZFyrJFb_yoWkuFg_uF
+	4fWrn7Gr1kJrs3Aw15A3Wjq3s29FWYyFyrKFyUW3Z5tr9rGFnIkr9ru3yfGF4qgFnF9r17
+	CF18JwnaqrWYgjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUbfgA7UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRdIZWgdnHfvXAAAse
 
+On Tue, Apr 22, 2025 at 12:56:29PM +0200, Primoz Fiser wrote:
+> Primoz Fiser (15):
+>   arm64: dts: freescale: imx93-phycore-som: Add PMIC support
+>   arm64: dts: freescale: imx93-phycore-som: Add EEPROM support
+>   arm64: dts: freescale: imx93-phycore-som: Disable LED pull-up
+>   arm64: dts: freescale: imx93-phycore-som: Enhance eMMC pinctrl
+>   arm64: dts: freescale: imx93-phycore-som: Add eMMC no-1-8-v by default
+>   arm64: dts: freescale: imx93-phyboard-segin: Drop eMMC no-1-8-v flag
+>   arm64: dts: freescale: imx93-phyboard-segin: Disable SD-card
+>     write-protect
+>   arm64: dts: freescale: imx93-phyboard-segin: Fix SD-card pinctrl
+>   arm64: dts: freescale: imx93-phyboard-segin: Set CMD/DATA SION bit to
+>     fix ERR052021
+>   arm64: dts: freescale: imx93-phyboard-segin: Add RTC support
+>   arm64: dts: freescale: imx93-phyboard-segin: Add CAN support
+>   arm64: dts: freescale: imx93-phyboard-segin: Add USB support
+>   arm64: dts: freescale: imx93-phyboard-segin: Add I2S audio
+>   arm64: dts: freescale: imx93-phyboard-segin: Add EQOS Ethernet
+>   arm64: dts: freescale: imx93-phyboard-segin: Order node alphabetically
 
-Patch series v6 remove USB and watchdog nodes, for relate patches not
-land recently although they have got review tag. Let's make the main dts
-get land first and then add relate dts node back when the driver patches
-get land.
-
-Patch series V5 remove [v4 1/7] which had taken by Manivannan, and move
-scmi-shmem from soc node to reserved memory.
-
-Patch series V4 remove patches already landed, and remove dts nodes for
-modules still under review.
-
-This patch set adds rk3562 SoC and its evb support.
-
-I have split out patches need driver change for different subsystem.
-And all the modules with dt-binding document update in this patch set
-do not need any driver change. I put them together to make it clear we
-have a new SoC and board to use the new compatible. Please pick up the
-patch for your subsystem, or please let me know if the patch has to
-send separate.
-
-Test with USB, PCIe, EMMC, SD Card.
-
-V3:
-https://lore.kernel.org/linux-rockchip/20250227111913.2344207-1-kever.yang@rock-chips.com/
-V2:
-https://lore.kernel.org/linux-rockchip/b4df8a73-58a2-4765-a9e4-3513cb2bc720@rock-chips.com/T/
-
-
-Changes in v6:
-- Remove USB and watchdog nodes
-
-Changes in v5:
-- Update scmi-shmem from soc to reserved memory
-
-Changes in v4:
-- Collect ack tag
-- remove gmac and otp nodes
-- remove gmac nodes
-
-Changes in v3:
-- Collect the Acked-by tag
-- remove i2c/serial/spi alias
-- add soc node
-
-Changes in v2:
-- Update in sort order
-- remove grf in cru
-- Update some properties order
-
-Finley Xiao (2):
-  arm64: dts: rockchip: add core dtsi for RK3562 Soc
-  arm64: dts: rockchip: Add RK3562 evb2 devicetree
-
-Kever Yang (3):
-  dt-bindings: rockchip: pmu: Add rk3562 compatible
-  dt-bindings: soc: rockchip: Add rk3562 syscon compatibles
-  dt-bindings: arm: rockchip: Add rk3562 evb2 board
-
- .../devicetree/bindings/arm/rockchip.yaml     |    5 +
- .../devicetree/bindings/arm/rockchip/pmu.yaml |    2 +
- .../devicetree/bindings/soc/rockchip/grf.yaml |    7 +
- arch/arm64/boot/dts/rockchip/Makefile         |    1 +
- .../boot/dts/rockchip/rk3562-evb2-v10.dts     |  455 ++++
- .../boot/dts/rockchip/rk3562-pinctrl.dtsi     | 2352 +++++++++++++++++
- arch/arm64/boot/dts/rockchip/rk3562.dtsi      | 1187 +++++++++
- 7 files changed, 4009 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3562-evb2-v10.dts
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3562-pinctrl.dtsi
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3562.dtsi
-
--- 
-2.25.1
+Applied all, thanks!
 
 
