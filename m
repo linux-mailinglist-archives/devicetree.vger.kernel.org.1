@@ -1,370 +1,198 @@
-Return-Path: <devicetree+bounces-175471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFD6AAB0F97
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:50:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E944AB0F56
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:41:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C49ED9E23CC
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:49:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 848D31B681E8
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF34E28DB5E;
-	Fri,  9 May 2025 09:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CAA228C865;
+	Fri,  9 May 2025 09:41:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="R3a0EcBI"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="fzsRbbWB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55883221DB5
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 09:50:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF792701AC
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 09:41:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746784209; cv=none; b=h3zCK9zQ2m/OrcCtW3HzhHa8qQiWnbMAtlOC5Lg6IR8wZin7OzC8yGF/w9eZsyvwT9poJ24se4IWXGBeKNWbwGtuM7PUcWSTYoJ3RG02bj9KlxNAUMsFfR9pzX497yBjNjM4j784V2wBj52IpK9SRr3aEr4P7tedQ4JPsJivxEM=
+	t=1746783691; cv=none; b=lHRTFLnE6JIFfXJ/Ql0s43l4OFVs9LWv1WGKaCnf9ajr0F8rvj9h5sahSJNE+jWdhetACyek7V2rvWy9kOHenmlVEtT075EnkxaqfMdqhkS6nVdLEa7njOO30uooOn4G/hcz7zcDf3n3hjfdq2BwUDGIyEFFZv06dlhwR2OzeFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746784209; c=relaxed/simple;
-	bh=m0ToSqRpA76aRIJ99t1E3Fshd7EVpzsd9BnDKGrk42A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ur3P//alXYqhtBJuTz59j55j9C1A1YDYgNwqyFozOqhzVbINHa7IIgszGwgK4zCqSe/+R30wb/2Wj08Z/D/DjHWdTPOltv0md2XzSYi8sFjNPp0l6SZUkVrMPfi3CInIk5cOwBMmM6YvKeNDb47Lu1QeD3CSXwozEixHSZEsThE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=R3a0EcBI; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=9WG9PhoIBse+C4R6TgJ31lTJPeMdXVWIpUZTESVTwYc=;
-	b=R3a0EcBICoJz7JwYY40n8jx1Hv09FBvgjRBY8moTBqb4YwKdcvS3NKN1SVlP6t
-	y7e9jrrYMldkI3gc37tkdFHe4bngCerbeMyEo9TrbtErwHAREK1PlmoZagMSNosl
-	/Ajr5WgilgophkCMwlpU+Ns5GPO2dR3ZLPahJz5WebEpI=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgD3tweWzx1ornmlAA--.36186S3;
-	Fri, 09 May 2025 17:49:12 +0800 (CST)
-Date: Fri, 9 May 2025 17:49:10 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Jacky Bai <ping.bai@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de,
-	linus.walleij@linaro.org, kernel@pengutronix.de, festevam@gmail.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com,
-	peng.fan@nxp.com, frank.li@nxp.com
-Subject: Re: [PATCH v6 2/3] arm64: dts: freescale: Add basic dtsi for imx943
-Message-ID: <aB3Pll3A/0XGCLlQ@dragon>
-References: <20250421065139.3073232-1-ping.bai@nxp.com>
- <20250421065139.3073232-3-ping.bai@nxp.com>
+	s=arc-20240116; t=1746783691; c=relaxed/simple;
+	bh=/vWV4VzOd8ZFhgbykkxak6+ylyvoqGZrkRbjE+xOVUo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=asSOh2rVIVbNlXIZ/clyUyRhlyUfLJcXoq+MAB9VGHn1OxKtnX711bUTP7NEOPUoK1Enj3FdAYHWgQrbTqFZfxsqUEn6F19udgq6yr+4Z0NIggJbEzAkw09ZR87LHHlyowJrzaptdBdIZCBkON4akLoCnEeu+mQmA+od/4HAwyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=fzsRbbWB; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-227d6b530d8so19502125ad.3
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 02:41:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1746783689; x=1747388489; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0rfbYYFv5okSJ9FP6KBkPZgXmzWmufmKqi5XTuFZ00I=;
+        b=fzsRbbWBTTMAqz+R5jSTFVrwbvqQJ6B1naHCG0XK4G4UGEd7GKOX9z5WDRqctt79ZB
+         wl7TE8WTFA+9NGTHc9ezRk5E2ggEmTlksXb5xYqyFQ2Dna9tviqtPX6itbSZJeiA7efN
+         qTaKi1JZyn6mGhGNC0dDG7xZaDlB72p9jGg+pAKlNIdjG6XzwFHZ/3dM7lKj4FfjertQ
+         EVVFvGXiM3SOJLkzFBxv6As8vIRYS/y+0mUeNcbmE4tHGeZR6CEOMxL8JbRYsI3YnxBJ
+         moL2gv1NKP+4y+7ROPg7Pm7uqvNM2JCfviL+WjUdu6PquZtrmxO25CDX/JWICtJ5x1hL
+         5DWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746783689; x=1747388489;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0rfbYYFv5okSJ9FP6KBkPZgXmzWmufmKqi5XTuFZ00I=;
+        b=otmiEn1rmodMqkHNRYpkDRBwV+Q33Qp9dw4fxkaE/d1APAgXpHyQwdYvJL5pJxbgMe
+         hpsd6WIrOjkBz9w04x3W4+ZW39l0LCRiytH+WGzdD2QcohpsrZt8bqXE6L5HL7B7K34Z
+         asISN8iM1tChhIMVeXW7vMFD+T0WTI4+hLvwrpwGNalHPOzLOuT/R4R3yMcvZc/rk8Vr
+         9ahZkCuRyfRh98lmr5s60uLCo3kPXvQA3sUiX3OSbLcjKykKacBLWDL7eQfwUKUNhI17
+         xlASITuUrpnSwDYhCvdCEyvDOU+5fPIekyPgGDTHWUDxiqxTxoWiyGS4l4JFh1atijhj
+         FNBw==
+X-Forwarded-Encrypted: i=1; AJvYcCUsv6HsQ3pOA9++c0m1G4CV7iJ6dOp4JdzqcWX6M8GI2Pc0mJ8/XonHJ7/5w6m89GNda+bqVADCBVLI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFjZYYUxt6DwmuamBF3XuQt5ojxOTmlp6yp8ewGJ5u1Q8PGDyE
+	nwRfRNx0HtA1L5Y9ZSOREz38QLTGffaXNUmO6+0ukgCfTdq7wwrQYIqw/aJlgcQ=
+X-Gm-Gg: ASbGncv5+nhHeI/KI/ySagPY8ygkChDZuV6gz2lQTCYqCHtBoMvJgurZ6Y/mOr9m1EZ
+	opf7dXM1Ve4NrltktlWIeEFeCBvbViqrjKeQXqIdWufmsCyGtiAn2l357uPxgJ5GlPtQCC/DiTs
+	615TzhDpPtgBxTte9WqtooF2/wYR4SFEkl0PkLgsQ+FehbFBqS2uyI/edsVw8UgtBV0y+KK0KIg
+	k8tJZZgX4ppXN+C8g5hIldo1RIxC3et8dBoTgwLxD1qXDQUCeIOp1VYe7GZb3m+btrGcCs0dM/v
+	M6FKHdrnDDIJd9Y+xCkdQpW+niP6w0vpbPaH06xUO3wd1hiqp00FBGKQbdDbnQmpAgkJJY8bhf1
+	PGg==
+X-Google-Smtp-Source: AGHT+IGkkhlM5M+6Ld7nKmAFjVYH2kcGrb2uQx7YXLfMGH1JYPzi/20s2F/+C1+ZB+VEtlEdwAiPyA==
+X-Received: by 2002:a17:902:e84d:b0:223:653e:eb09 with SMTP id d9443c01a7336-22fc8b10842mr38716365ad.7.1746783689060;
+        Fri, 09 May 2025 02:41:29 -0700 (PDT)
+Received: from hsinchu36-syssw02.internal.sifive.com ([210.176.154.34])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc8271c38sm13271035ad.119.2025.05.09.02.41.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 May 2025 02:41:28 -0700 (PDT)
+From: Nylon Chen <nylon.chen@sifive.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: conor@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	samuel.holland@sifive.com,
+	Nylon Chen <nylon.chen@sifive.com>
+Subject: [PATCH v14 0/5] Change PWM-controlled LED pin active mode and algorithm
+Date: Fri,  9 May 2025 17:52:29 +0800
+Message-Id: <20250509095234.643890-1-nylon.chen@sifive.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250421065139.3073232-3-ping.bai@nxp.com>
-X-CM-TRANSID:M88vCgD3tweWzx1ornmlAA--.36186S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW3Zry3Aw1UWr13GFyDGrWDXFb_yoWDAw48pr
-	13AFy8Kr1qkan3Ww1vq3Wayr1xXw1UArWUWF15Xr47Ca93Ja4I9w4agr43JF9Yqrn5u3yU
-	Jr1ku3W5XF9rW3JanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UkOz3UUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNBh74Ggdz5gXawAA3p
+Content-Transfer-Encoding: 8bit
 
-On Mon, Apr 21, 2025 at 02:51:38PM +0800, Jacky Bai wrote:
-> Add the minimal dtsi support for i.MX943. i.MX943 is the first SoC of
-> i.MX94 Family, create a common dtsi for the whole i.MX94 family, and the
-> specific dtsi part for i.MX943.
-> 
-> The clock, power domain and perf index need to be used by the device nodes
-> for resource reference, add them along with the dtsi support.
-> 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> ---
->  - v6 changes:
->   - refine the indentation of edma irq property.
-> 
->  - v5 changes:
->   - remove the err irq of edma node as the err irq support in driver is not
->     ready. We can add it back when the driver is ready. No impact for current
->     edma support.
-> 
->  - v4 changes:
->   - reorder the cpu node compatible string property as suggested by Frank
-> 
->  - v3 changes:
->   - remove the blank line
->   - add PAD config macro define as suggested by Frank Li
->   - update the device nodes compatible strings for imx94 as suggested by Krzysztof
-> 
->  - v2 changes:
->   - remove the unnecessary macro define in clock header as suggested by Krzysztof
->   - split the dtsi into imx94.dtsi and imx943.dtsi
->   - use low case in the pinfunc header as Frank suggested
->   - reorder the device nodes and properties
-> ---
->  arch/arm64/boot/dts/freescale/imx94-clock.h   |  195 ++
+According to the circuit diagram of User LEDs - RGB described in the
+manual hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pdf[1].
 
-I forgot to ask when imx95-clock.h was first introduced.  But how will
-clk drivers use these clock IDs, or will clk drivers have their own copy
-of definitions?
+The behavior of PWM is acitve-high.
 
->  arch/arm64/boot/dts/freescale/imx94-pinfunc.h | 1570 +++++++++++++++++
->  arch/arm64/boot/dts/freescale/imx94-power.h   |   41 +
+According to the descriptionof PWM for pwmcmp in SiFive FU740-C000 Manual[2].
 
-Same question on the power IDs.
+The pwm algorithm is (PW) pulse active time  = (D) duty * (T) period.
+The `frac` variable is pulse "inactive" time so we need to invert it.
 
->  arch/arm64/boot/dts/freescale/imx94.dtsi      | 1148 ++++++++++++
->  arch/arm64/boot/dts/freescale/imx943.dtsi     |  148 ++
->  5 files changed, 3102 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx94-clock.h
->  create mode 100644 arch/arm64/boot/dts/freescale/imx94-pinfunc.h
->  create mode 100644 arch/arm64/boot/dts/freescale/imx94-power.h
->  create mode 100644 arch/arm64/boot/dts/freescale/imx94.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx943.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx94-clock.h b/arch/arm64/boot/dts/freescale/imx94-clock.h
-> new file mode 100644
-> index 000000000000..84ad3d53c29b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx94-clock.h
-> @@ -0,0 +1,195 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
-> +/*
-> + * Copyright 2024-2025 NXP
-> + */
-> +
-> +#ifndef __CLOCK_IMX94_H
-> +#define __CLOCK_IMX94_H
+So this patchset removes active-low in DTS and adds reverse logic to the driver.
 
-Can we name it __IMX94_CLOCK_H to match the file name?
+Links:
+- [0]: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf8453f8698_hifive-unleashed-a00-schematics-1.pdf
+- [1]: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce76f4192_hifive-unmatched-schematics-v3.pdf
+- [2]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf
 
-> +
-> +#define IMX94_CLK_EXT				0
-> +#define IMX94_CLK_32K				1
-> +#define IMX94_CLK_24M				2
-> +#define IMX94_CLK_FRO				3
-> +#define IMX94_CLK_SYSPLL1_VCO			4
-> +#define IMX94_CLK_SYSPLL1_PFD0_UNGATED		5
-> +#define IMX94_CLK_SYSPLL1_PFD0			6
-> +#define IMX94_CLK_SYSPLL1_PFD0_DIV2		7
-> +#define IMX94_CLK_SYSPLL1_PFD1_UNGATED		8
-> +#define IMX94_CLK_SYSPLL1_PFD1			9
-> +#define IMX94_CLK_SYSPLL1_PFD1_DIV2		10
-> +#define IMX94_CLK_SYSPLL1_PFD2_UNGATED		11
-> +#define IMX94_CLK_SYSPLL1_PFD2			12
-> +#define IMX94_CLK_SYSPLL1_PFD2_DIV2		13
-> +#define IMX94_CLK_AUDIOPLL1_VCO			14
-> +#define IMX94_CLK_AUDIOPLL1			15
-> +#define IMX94_CLK_AUDIOPLL2_VCO			16
-> +#define IMX94_CLK_AUDIOPLL2			17
-> +#define IMX94_CLK_RESERVED18			18
-> +#define IMX94_CLK_RESERVED19			19
-> +#define IMX94_CLK_RESERVED20			20
-> +#define IMX94_CLK_RESERVED21			21
-> +#define IMX94_CLK_RESERVED22			22
-> +#define IMX94_CLK_RESERVED23			23
-> +#define IMX94_CLK_ENCPLL_VCO			24
-> +#define IMX94_CLK_ENCPLL_PFD0_UNGATED		25
-> +#define IMX94_CLK_ENCPLL_PFD0			26
-> +#define IMX94_CLK_ENCPLL_PFD1_UNGATED		27
-> +#define IMX94_CLK_ENCPLL_PFD1			28
-> +#define IMX94_CLK_ARMPLL_VCO			29
-> +#define IMX94_CLK_ARMPLL_PFD0_UNGATED		30
-> +#define IMX94_CLK_ARMPLL_PFD0			31
-> +#define IMX94_CLK_ARMPLL_PFD1_UNGATED		32
-> +#define IMX94_CLK_ARMPLL_PFD1			33
-> +#define IMX94_CLK_ARMPLL_PFD2_UNGATED		34
-> +#define IMX94_CLK_ARMPLL_PFD2			35
-> +#define IMX94_CLK_ARMPLL_PFD3_UNGATED		36
-> +#define IMX94_CLK_ARMPLL_PFD3			37
-> +#define IMX94_CLK_DRAMPLL_VCO			38
-> +#define IMX94_CLK_DRAMPLL			39
-> +#define IMX94_CLK_HSIOPLL_VCO			40
-> +#define IMX94_CLK_HSIOPLL			41
-> +#define IMX94_CLK_LDBPLL_VCO			42
-> +#define IMX94_CLK_LDBPLL			43
-> +#define IMX94_CLK_EXT1				44
-> +#define IMX94_CLK_EXT2				45
-> +
+Updated patches: 1
+New patches: 0
+Unchanged patches: 4
 
-Why this newline?
+Changed in v14:
+ - Change `frac` from `u32` to `u64` and cast the constant in `min()` to
+   `u64`  so that `do_div(frac, state->period)` no longer triggers type-mismatch
 
-> +#define IMX94_CLK_ADC				46
-> +#define IMX94_CLK_BUSAON			47
-> +#define IMX94_CLK_CAN1				48
-> +#define IMX94_CLK_GLITCHFILTER			49
-> +#define IMX94_CLK_GPT1				50
-> +#define IMX94_CLK_I3C1SLOW			51
-> +#define IMX94_CLK_LPI2C1			52
-> +#define IMX94_CLK_LPI2C2			53
-> +#define IMX94_CLK_LPSPI1			54
-> +#define IMX94_CLK_LPSPI2			55
-> +#define IMX94_CLK_LPTMR1			56
-> +#define IMX94_CLK_LPUART1			57
-> +#define IMX94_CLK_LPUART2			58
-> +#define IMX94_CLK_M33				59
-> +#define IMX94_CLK_M33SYSTICK			60
-> +#define IMX94_CLK_PDM				61
-> +#define IMX94_CLK_SAI1				62
-> +#define IMX94_CLK_TPM2				63
-> +#define IMX94_CLK_A55				64
-> +#define IMX94_CLK_A55MTRBUS			65
-> +#define IMX94_CLK_A55PERIPH			66
-> +#define IMX94_CLK_DRAMALT			67
-> +#define IMX94_CLK_DRAMAPB			68
-> +#define IMX94_CLK_DISPAPB			69
-> +#define IMX94_CLK_DISPAXI			70
-> +#define IMX94_CLK_DISPPIX			71
-> +#define IMX94_CLK_HSIOACSCAN480M		72
-> +#define IMX94_CLK_HSIOACSCAN80M			73
-> +#define IMX94_CLK_HSIO				74
-> +#define IMX94_CLK_HSIOPCIEAUX			75
-> +#define IMX94_CLK_HSIOPCIETEST160M		76
-> +#define IMX94_CLK_HSIOPCIETEST400M		77
-> +#define IMX94_CLK_HSIOPCIETEST500M		78
-> +#define IMX94_CLK_HSIOPCIETEST50M		79
-> +#define IMX94_CLK_HSIOUSBTEST60M		80
-> +#define IMX94_CLK_BUSM70			81
-> +#define IMX94_CLK_M70				82
-> +#define IMX94_CLK_M70SYSTICK			83
-> +#define IMX94_CLK_BUSM71			84
-> +#define IMX94_CLK_M71				85
-> +#define IMX94_CLK_M71SYSTICK			86
-> +#define IMX94_CLK_BUSNETCMIX			87
-> +#define IMX94_CLK_ECAT				88
-> +#define IMX94_CLK_ENET				89
-> +#define IMX94_CLK_ENETPHYTEST200M		90
-> +#define IMX94_CLK_ENETPHYTEST500M		91
-> +#define IMX94_CLK_ENETPHYTEST667M		92
-> +#define IMX94_CLK_ENETREF			93
-> +#define IMX94_CLK_ENETTIMER1			94
-> +#define IMX94_CLK_ENETTIMER2			95
-> +#define IMX94_CLK_ENETTIMER3			96
-> +#define IMX94_CLK_FLEXIO3			97
-> +#define IMX94_CLK_FLEXIO4			98
-> +#define IMX94_CLK_M33SYNC			99
-> +#define IMX94_CLK_M33SYNCSYSTICK		100
-> +#define IMX94_CLK_MAC0				101
-> +#define IMX94_CLK_MAC1				102
-> +#define IMX94_CLK_MAC2				103
-> +#define IMX94_CLK_MAC3				104
-> +#define IMX94_CLK_MAC4				105
-> +#define IMX94_CLK_MAC5				106
-> +#define IMX94_CLK_NOCAPB			107
-> +#define IMX94_CLK_NOC				108
-> +#define IMX94_CLK_NPUAPB			109
-> +#define IMX94_CLK_NPU				110
-> +#define IMX94_CLK_CCMCKO1			111
-> +#define IMX94_CLK_CCMCKO2			112
-> +#define IMX94_CLK_CCMCKO3			113
-> +#define IMX94_CLK_CCMCKO4			114
-> +#define IMX94_CLK_BISS				115
-> +#define IMX94_CLK_BUSWAKEUP			116
-> +#define IMX94_CLK_CAN2				117
-> +#define IMX94_CLK_CAN3				118
-> +#define IMX94_CLK_CAN4				119
-> +#define IMX94_CLK_CAN5				120
-> +#define IMX94_CLK_ENDAT21			121
-> +#define IMX94_CLK_ENDAT22			122
-> +#define IMX94_CLK_ENDAT31FAST			123
-> +#define IMX94_CLK_ENDAT31SLOW			124
-> +#define IMX94_CLK_FLEXIO1			125
-> +#define IMX94_CLK_FLEXIO2			126
-> +#define IMX94_CLK_GPT2				127
-> +#define IMX94_CLK_GPT3				128
-> +#define IMX94_CLK_GPT4				129
-> +#define IMX94_CLK_HIPERFACE1			130
-> +#define IMX94_CLK_HIPERFACE1SYNC		131
-> +#define IMX94_CLK_HIPERFACE2			132
-> +#define IMX94_CLK_HIPERFACE2SYNC		133
-> +#define IMX94_CLK_I3C2SLOW			134
-> +#define IMX94_CLK_LPI2C3			135
-> +#define IMX94_CLK_LPI2C4			136
-> +#define IMX94_CLK_LPI2C5			137
-> +#define IMX94_CLK_LPI2C6			138
-> +#define IMX94_CLK_LPI2C7			139
-> +#define IMX94_CLK_LPI2C8			140
-> +#define IMX94_CLK_LPSPI3			141
-> +#define IMX94_CLK_LPSPI4			142
-> +#define IMX94_CLK_LPSPI5			143
-> +#define IMX94_CLK_LPSPI6			144
-> +#define IMX94_CLK_LPSPI7			145
-> +#define IMX94_CLK_LPSPI8			146
-> +#define IMX94_CLK_LPTMR2			147
-> +#define IMX94_CLK_LPUART10			148
-> +#define IMX94_CLK_LPUART11			149
-> +#define IMX94_CLK_LPUART12			150
-> +#define IMX94_CLK_LPUART3			151
-> +#define IMX94_CLK_LPUART4			152
-> +#define IMX94_CLK_LPUART5			153
-> +#define IMX94_CLK_LPUART6			154
-> +#define IMX94_CLK_LPUART7			155
-> +#define IMX94_CLK_LPUART8			156
-> +#define IMX94_CLK_LPUART9			157
-> +#define IMX94_CLK_SAI2				158
-> +#define IMX94_CLK_SAI3				159
-> +#define IMX94_CLK_SAI4				160
-> +#define IMX94_CLK_SWOTRACE			161
-> +#define IMX94_CLK_TPM4				162
-> +#define IMX94_CLK_TPM5				163
-> +#define IMX94_CLK_TPM6				164
-> +#define IMX94_CLK_USBPHYBURUNIN			165
-> +#define IMX94_CLK_USDHC1			166
-> +#define IMX94_CLK_USDHC2			167
-> +#define IMX94_CLK_USDHC3			168
-> +#define IMX94_CLK_V2XPK				169
-> +#define IMX94_CLK_WAKEUPAXI			170
-> +#define IMX94_CLK_XSPISLVROOT			171
-> +#define IMX94_CLK_XSPI1				172
-> +#define IMX94_CLK_XSPI2				173
-> +
+Changed in v13:
+ - Fix syntax error: Added missing closing parenthesis in do_div()
+   function call.
 
-And this?
+Changed in v12:
+ - Replace division with do_div() to fix __udivdi3 modpost error.
 
-> +#define IMX94_CLK_SEL_EXT			174
-> +#define IMX94_CLK_SEL_A55C0			175
-> +#define IMX94_CLK_SEL_A55C1			176
-> +#define IMX94_CLK_SEL_A55C2			177
-> +#define IMX94_CLK_SEL_A55C3			178
-> +#define IMX94_CLK_SEL_A55P			179
-> +#define IMX94_CLK_SEL_DRAM			180
-> +#define IMX94_CLK_SEL_TEMPSENSE			181
-> +#define IMX94_CLK_NPU_CGC			182
-> +
-> +#endif /* __CLOCK_IMX94_H */
-> diff --git a/arch/arm64/boot/dts/freescale/imx94-pinfunc.h b/arch/arm64/boot/dts/freescale/imx94-pinfunc.h
-> new file mode 100644
-> index 000000000000..00255db89185
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx94-pinfunc.h
-> @@ -0,0 +1,1570 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright 2024-2025 NXP
-> + */
-> +
-> +#ifndef __DTS_IMX94_PINFUNC_H
-> +#define __DTS_IMX94_PINFUNC_H
+Changed in v11:
+ - Fix rounding consistency in apply() and get_state()
+ - Add code comments to help clarify Reference Manual errors.
 
-<snip>
+Changed in v10:
+ - Add 'inactive' variable in apply() to match pwm_sifive_get_state()
+   style
+ - Update comment about hardware limitation - it cannot generate 0% duty
+   cycle rather than 100% duty cycle
 
-> +#endif /* __DTS_IMX94_PINFUNC_H */
-> diff --git a/arch/arm64/boot/dts/freescale/imx94-power.h b/arch/arm64/boot/dts/freescale/imx94-power.h
-> new file mode 100644
-> index 000000000000..282167494a1d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx94-power.h
-> @@ -0,0 +1,41 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> +/*
-> + *  Copyright 2024-2025 NXP
-> + */
-> +
-> +#ifndef __IMX94_POWER_H__
-> +#define __IMX94_POWER_H__
+Changed in v9:
+ - Fix commit message to adhere to 75 columns rule.
+ - Update commit message's subject.
+ - Add a variable for inactive logic.
 
-Other headers in this patch use pattern of __XXX_YYY_H.  Can we get them
-all aligned?
+Changed in v8:
+ - Fix Signed-off-by and Co-developed-by typo.
 
-Shawn
+Changed in v7:
+ - Remove active-low strings from hifive-unleashed-a00.dts file.
+
+Changed in v6:
+ - Separate the idempotent test bug fixes into a new patch.
+ - Move the reversing the duty before the line checking
+   state->enabled.
+ - Fix the algorithm and change it to take the minimum value first and
+   then reverse it.
+
+Changed in v5:
+ - Add the updates to the PWM algorithm based on version 2 back in.
+ - Replace div64_ul with DIV_ROUND_UP_ULL to correct the error in the
+   period value of the idempotent test in pwm_apply_state_debug.
+
+Changed in v4:
+ - Remove previous updates to the PWM algorithm.
+
+Changed in v3:
+ - Convert the reference link to standard link.
+ - Move the inverted function before taking the minimum value.
+ - Change polarity check condition(high and low).
+ - Pick the biggest period length possible that is not bigger than the
+   requested period.
+
+Changed in v2:
+ - Convert the reference link to standard link.
+ - Fix typo: s/sifive unmatched:/sifive: unmatched:/.
+ - Remove active-low from hifive-unleashed-a00.dts.
+ - Include this reference link in the dts and pwm commit messages.
+
+Nylon Chen (5):
+  riscv: dts: sifive: unleashed/unmatched: Remove PWM controlled LED's
+    active-low properties
+  pwm: sifive: change the PWM algorithm
+  pwm: sifive: Fix the error in the idempotent test within the
+    pwm_apply_state_debug function
+  pwm: sifive: Fix rounding issues in apply and get_state functions
+  pwm: sifive: clarify inverted compare logic in comments
+
+ .../boot/dts/sifive/hifive-unleashed-a00.dts  | 12 ++---
+ .../boot/dts/sifive/hifive-unmatched-a00.dts  | 12 ++---
+ drivers/pwm/pwm-sifive.c                      | 52 ++++++++++++++-----
+ 3 files changed, 47 insertions(+), 29 deletions(-)
+
+-- 
+2.34.1
 
 
