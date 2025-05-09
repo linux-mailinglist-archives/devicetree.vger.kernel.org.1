@@ -1,65 +1,56 @@
-Return-Path: <devicetree+bounces-175768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1BDAB1C07
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 20:09:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38462AB1C15
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 20:11:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D86877B9204
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 18:08:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F68C3ACEEA
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 18:11:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE3E23CF12;
-	Fri,  9 May 2025 18:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63CA623C384;
+	Fri,  9 May 2025 18:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Am4m4k/s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EEl8tBVe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41DD72192F3;
-	Fri,  9 May 2025 18:09:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3785223906A;
+	Fri,  9 May 2025 18:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746814158; cv=none; b=AV+XQIRY2ajK6FB/TPLfOb+Ax9glQM9L+rP3UxbHLCAMl8gAEEl1Bzz+aPlXrWYOZ8rKRuMlgkbJ9/e4/HMa/1RNM2rB3dr/hFMxBRHHyXn8aJeHvWQRyxN8UwnFkk0+Tgo3lM9L1eqGoTcvBQqA1y8GW18rSd5HDhdQv3uBOQ4=
+	t=1746814278; cv=none; b=qQb0rUnpLVyLTKvgMu0vU9cVABSCLBYda7OXa/PvC1V7OiRQjQZTV+54dWovEMrM/GVnLXdPvWCEeRIw4jXFcuWJh5cM18CYdj945Nd5gypY3BmMLfterkB2WlPCxy98/r3RjdcdisLUvTLyKNV0ztbvkkrjixmdLyfqJVOoXsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746814158; c=relaxed/simple;
-	bh=cmje0Gqin1UMwYrEQVfW/u3H9mdsF20Jozm64dt9YDI=;
+	s=arc-20240116; t=1746814278; c=relaxed/simple;
+	bh=VTLaSm3GQYCxJUAqX/0OssZlKJmO1W0tBL876r7AKvY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h6aIA6sRlO89hRF58QdIuyMlx6MubICa0nXiw4O1mhMDvE0/fVoLNDQKOGbQPZDf/18r2Z7oCVkds0dalkw/DAEd3h5nw0Vu4JylCzsFRf3iXTJafwjqlYBSKputsPo4jvHu/CBeMM0ftQf0mp4rlkT6986ZZCZgge+SMgRoakg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Am4m4k/s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78A6BC4CEE4;
-	Fri,  9 May 2025 18:09:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GNpZ3CGSaRbO5AHW8vYnFvD2CjK7nMBeqN4EJ8Z4isO2CLJG03gZUI1PKr1EnttXLYoTtedR1doYAQxY0z1D4X+n4wrtX3TgJkzbVmQvB2MlZWiRIKxHU+blofDQlweEFNwMjaKxe8yFRDTyzr4fZ5CHCNCnBg/IIQkOfsEsMx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EEl8tBVe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 759FBC4CEE4;
+	Fri,  9 May 2025 18:11:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746814157;
-	bh=cmje0Gqin1UMwYrEQVfW/u3H9mdsF20Jozm64dt9YDI=;
+	s=k20201202; t=1746814277;
+	bh=VTLaSm3GQYCxJUAqX/0OssZlKJmO1W0tBL876r7AKvY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Am4m4k/s/uSA+9iHikVl3vssi2y3uBjthLsNORupTj8CpJx4R8d2XbA1rdooSBpIH
-	 11Q02LEfmtKlE0P5UJUZuype0h1P/jK9rRg8fC7v/1uHiLcvfI2YeZ3rP3rwWHAeNd
-	 idg6a26cCvSWHcIVO2eVLYZx29cEickdDmQDWezJaknApzvNAsxme2jtXRqrqL8yQd
-	 0c8YsLfr3JMSgQFDSRfIo3Oqj1uUc3crl9PRuuMYaKy9H2eWKx9lZYPKdCcv9E4lGS
-	 aSm9HUjEE3I2KYYgjebF9mOV5Od2ULi4ngH200yQT8t1x4qzOMuZVTr0Y+jrHCxFkd
-	 4YtENvW0P6COg==
-Date: Fri, 9 May 2025 13:09:15 -0500
+	b=EEl8tBVeCMFdZ5KZIvdbeV5PRg+wc6+AAq/nzexA0bC7p4XERK1umLkkPsy0QbH/C
+	 nwCDplLJbyN+eWyKwfKNBlnBcRkMNeKsPV8hjiGUB/Dg37TjnZfqLUoCbTLxofIEX1
+	 Dn4u8eFZO+dZSokrxZxYtynPUUJnr/Tj8LSf28jrIwO5CA6e8Yho76Aum259cjrXUA
+	 QLKoI3o21qhK8QzMC8+l/eHnX/jpVEIUuWOvdlhzHJma7hAXAD8SjOB/0cz1WM0KJE
+	 5AxELyzSf2tS1Vz9y+cRsx/+2IcbTuNergMwAUC74c71MIkJLKec+BNdElqtQi1gJq
+	 7ipFV4FyRw6cg==
+Date: Fri, 9 May 2025 13:11:15 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: linux-sound@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
-	Jiaxin Yu <jiaxin.yu@mediatek.com>, Mark Brown <broonie@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2 05/13] ASoC: dt-bindings: mt8192-afe-pcm: Allow
- specifying reserved memory region
-Message-ID: <174681415530.3876555.5160678199255318947.robh@kernel.org>
-References: <20250424102509.1083185-1-wenst@chromium.org>
- <20250424102509.1083185-6-wenst@chromium.org>
+To: Matthew Gerlach <matthew.gerlach@altera.com>
+Cc: dinguyen@kernel.org, mturquette@baylibre.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	sboyd@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: clock: socfpga: convert to yaml
+Message-ID: <174681427510.3878879.9476467929074035789.robh@kernel.org>
+References: <20250424144341.45828-1-matthew.gerlach@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,21 +59,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250424102509.1083185-6-wenst@chromium.org>
+In-Reply-To: <20250424144341.45828-1-matthew.gerlach@altera.com>
 
 
-On Thu, 24 Apr 2025 18:24:59 +0800, Chen-Yu Tsai wrote:
-> It is desirable to reserve memory for the audio frontend.
+On Thu, 24 Apr 2025 07:43:41 -0700, Matthew Gerlach wrote:
+> Convert the clock device tree bindings to yaml for the Altera SoCFPGA
+> Cyclone5, Arria5, and Arria10 chip families. Since the clock nodes are
+> subnodes to Altera SOCFPGA Clock Manager, the yaml was added to
+> socfpga-clk-manager.yaml.
 > 
-> Allow the "memory-region" property, to be used to point to a reserved
-> memory region.
-> 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
 > ---
->  Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> v3:
+>  - Add a properties level to $defs to improve reuse.
+> 
+> v2:
+>  - Fix node name regexs.
+>  - Remove redundant type for clocks.
+>  - Put repeated properties under '$defs'.
+>  - Move reg property after compatible.
+> ---
+>  .../arm/altera/socfpga-clk-manager.yaml       | 102 +++++++++++++++++-
+>  .../bindings/clock/altr_socfpga.txt           |  30 ------
+>  2 files changed, 101 insertions(+), 31 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/altr_socfpga.txt
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
