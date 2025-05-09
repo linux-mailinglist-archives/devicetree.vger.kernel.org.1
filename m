@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-175659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 857F3AB1715
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:17:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E42C2AB1716
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:17:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DB321C43C33
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:17:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AB6F1C26204
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD02221930B;
-	Fri,  9 May 2025 14:16:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEBC2165E2;
+	Fri,  9 May 2025 14:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MZoqE8Gv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kQLZtBRA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0BB212FB0
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 14:16:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C360D7462;
+	Fri,  9 May 2025 14:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746800218; cv=none; b=PzcvaT0jp4D9tgf+jeAXLUDHKG9hyKXgCQ8gO/KLzf51oasaHzV3m9YBPWcBc69vGkW7PiLImn3CE2qV3F+Ww8SWzMA/C7r3RLKPrDX8bQua5zsgAu89Q2os/qk9z7/krLXW19xoBj6UcM+q3zc7g8Ywa03s+s/u8ecYRbfTl9c=
+	t=1746800220; cv=none; b=PgXgIVGvetWfDjZYYdtQ7jcOdXdeIM0birwAzYsMIYmioshd5+HG4JRiMVte/WUN2lW1BkH3R7JmEfYB9qdLMBkGXOuqouDw2AM4eZlYYGkdEfpyswyf0brlKlNCaRmszJsXfDCSDqQqbEhcZ7W8ln8VS+xnefUvsqO/xCC9tWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746800218; c=relaxed/simple;
-	bh=U+eIzfvbDzC+peDIexb8/J/VSJleddT2WMz6l2+u9Ao=;
+	s=arc-20240116; t=1746800220; c=relaxed/simple;
+	bh=ESz1GNUULayHykHNVsPHqqtOkerGF8/b4C3SuIOTQ8I=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=O/MJZmT15n1Amzfpy2mI1G+VLTujsksaj6opJeFhNBhWCXe31wBSUhn1OqAfGQ+FC5q74XyQfmuzYE/trokdUozI3lW4NM46nMFRKchaSAW+FDcbPR2JZ/YCYXIMx6XDM7WkyHShCEatUZNIqJ/D22mxJfEBikfXsNkYt4bwd0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MZoqE8Gv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE4B0C4CEE4;
-	Fri,  9 May 2025 14:16:57 +0000 (UTC)
+	 Message-Id:Subject; b=GHOmD8SDO7dsTVFQD1QvUcJc1hQ6HJbz6WuShNaVMdG4BGT6fbl3Gx08ScIq/iBcr5k+Pbsxa3EFTunxD28Znfg2yfmoYMzO4SfeV8isH25f/MS8U4AKxW1mtpY6iZCjcDlFceSwWKJNd6rRYms/urSqlom9XMnfO2P156SLKi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kQLZtBRA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01D74C4CEEB;
+	Fri,  9 May 2025 14:16:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746800218;
-	bh=U+eIzfvbDzC+peDIexb8/J/VSJleddT2WMz6l2+u9Ao=;
+	s=k20201202; t=1746800220;
+	bh=ESz1GNUULayHykHNVsPHqqtOkerGF8/b4C3SuIOTQ8I=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=MZoqE8GvExAd9uHeApXsM+CZVl7myYnzo8tKwSkcsY5XpLZOA3cwU2enpOPQGvWAI
-	 +iPFvYQq4k0crGCaMMUHJ0pRY7XBBhW85dC+n920KVYiNpm34RX+t/HuqmzZtGdxhO
-	 l0U3dgopbDBm6kohHVmsYiMolHbMVZKhCLksa8B2tyCU4COaaB75EZ68fWww5Ujnzu
-	 ua6fEDAMazplVp8o0MPHZiW9mIYyHGe8F0nos9qVNAYl3LR028/nH6ruZcptriNwCV
-	 YosgCn5rY4F7B+GvFsUz+OdI+vXB0ONNgGRxkgeg6At239Vjqsh3jsSysdV2ZzvDlV
-	 n+49iyJMpNfyQ==
-Date: Fri, 09 May 2025 09:16:54 -0500
+	b=kQLZtBRALHAvtEsHr/KEQlQ9wQCdYj6paMyy/rENs1LHGCwgueMv31iE063RTy3fH
+	 e8StGEkrl+vS+RYJ71N5xx0ztoytFoQjzaeGkKcuNOxCb0kfH0VO/WT8AfaBeu6YXR
+	 ROWrJ5p2zEvVVl1Weat51E3zSceCknUDnLRWej/u1mKZy9C/bwXSBZ72/h+2GPZ2Or
+	 jdGlVeJWWdONPDxtfL1MH6Cph/k9Zr2ghM7/W3vww1B7tHNg8mIjjfPK0fFvrxalyb
+	 p4JtEu8lJ6sNeIzfhLg2Repm8I6+0/TiLzBi+x4BQQh5SCo0qL0Gz8EdUlITWt4BrZ
+	 2YgPskyj/oBrg==
+Date: Fri, 09 May 2025 09:16:58 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,33 +51,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Leo Yan <leo.yan@arm.com>, 
- linux-arm-kernel@lists.infradead.org, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Liviu Dudau <liviu.dudau@arm.com>
-To: Sudeep Holla <sudeep.holla@arm.com>
-In-Reply-To: <20250508103225.354925-1-sudeep.holla@arm.com>
-References: <20250508103225.354925-1-sudeep.holla@arm.com>
-Message-Id: <174679984875.3368325.1365758165371282064.robh@kernel.org>
-Subject: Re: [PATCH 1/3] arm64: dts: fvp: Add CPU idle states for Rev C
- model
+Cc: linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, quentin.schulz@cherry.de, 
+ krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, 
+ linux-kernel@vger.kernel.org
+To: Heiko Stuebner <heiko@sntech.de>
+In-Reply-To: <20250508150955.1897702-1-heiko@sntech.de>
+References: <20250508150955.1897702-1-heiko@sntech.de>
+Message-Id: <174679984943.3368422.9645324507043955723.robh@kernel.org>
+Subject: Re: [PATCH 0/6] Add two board-families from Theobroma-Systems
 
 
-On Thu, 08 May 2025 11:32:23 +0100, Sudeep Holla wrote:
-> Add CPU idle state definitions to the FVP Rev C device tree to enable
-> support for CPU lower power modes. This allows the system to properly
-> enter low power states during idle. It is disabled by default as it is
-> know to impact performance on the models.
+On Thu, 08 May 2025 17:09:49 +0200, Heiko Stuebner wrote:
+> Both the Cobra and PP1516 boards are based around the PX30 SoC and can be
+> found with a variety of display options.
 > 
-> Note that the power_state parameter(arm,psci-suspend-param) doesn't use
-> the Extended StateID format for compatibility reasons on FVP.
+> As new boards should not use the deprecated snps,reset-* properties
+> in the gmac node, I also added a core mdio-node for the gmac and
+> converted the Theobroma Ringneck board over.
 > 
-> Tested on the FVP Rev C model with PSCI support enabled firmware.
+> Testing with the new node both before and after converting Ringneck
+> showed the board finding its network both when booting locally and
+> from the tftp/nfs.
 > 
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> ---
->  arch/arm64/boot/dts/arm/fvp-base-revc.dts | 32 +++++++++++++++++++++++
->  1 file changed, 32 insertions(+)
+> 
+> Heiko Stuebner (6):
+>   arm64: dts: rockchip: add basic mdio node to px30
+>   arm64: dts: rockchip: move reset to dedicated eth-phy node on ringneck
+>   dt-bindings: arm: rockchip: add PX30-Cobra boards from Theobroma
+>     Systems
+>   arm64: dts: rockchip: add px30-cobra base dtsi and board variants
+>   dt-bindings: arm: rockchip: add PX30-PP1516 boards from Theobroma
+>     Systems
+>   arm64: dts: rockchip: add px30-pp1516 base dtsi and board variants
+> 
+>  .../devicetree/bindings/arm/rockchip.yaml     |  18 +
+>  arch/arm64/boot/dts/rockchip/Makefile         |   6 +
+>  .../rockchip/px30-cobra-ltk050h3146w-a2.dts   |  39 ++
+>  .../dts/rockchip/px30-cobra-ltk050h3146w.dts  |  39 ++
+>  .../dts/rockchip/px30-cobra-ltk050h3148w.dts  |  39 ++
+>  .../dts/rockchip/px30-cobra-ltk500hd1829.dts  |  58 ++
+>  arch/arm64/boot/dts/rockchip/px30-cobra.dtsi  | 570 +++++++++++++++++
+>  .../rockchip/px30-pp1516-ltk050h3146w-a2.dts  |  39 ++
+>  .../dts/rockchip/px30-pp1516-ltk050h3148w.dts |  39 ++
+>  arch/arm64/boot/dts/rockchip/px30-pp1516.dtsi | 601 ++++++++++++++++++
+>  .../boot/dts/rockchip/px30-ringneck.dtsi      |  22 +-
+>  arch/arm64/boot/dts/rockchip/px30.dtsi        |   6 +
+>  12 files changed, 1473 insertions(+), 3 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w-a2.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3148w.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk500hd1829.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3146w-a2.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3148w.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/px30-pp1516.dtsi
+> 
+> --
+> 2.47.2
+> 
+> 
 > 
 
 
@@ -102,12 +135,20 @@ This patch series was applied (using b4) to base:
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/arm/' for 20250508103225.354925-1-sudeep.holla@arm.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250508150955.1897702-1-heiko@sntech.de:
 
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: idle-states: entry-method:0: 'psci' was expected
-	from schema $id: http://devicetree.org/schemas/cpu/idle-states.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: timer@2a810000 (arm,armv7-timer-mem): #size-cells: 1 was expected
-	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer_mmio.yaml#
+arch/arm64/boot/dts/rockchip/px30-cobra-ltk500hd1829.dtb: panel@0 (leadtek,ltk500hd1829): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/panel/leadtek,ltk500hd1829.yaml#
+arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3148w.dtb: panel@0 (leadtek,ltk050h3148w): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/panel/leadtek,ltk050h3146w.yaml#
+arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3148w.dtb: panel@0 (leadtek,ltk050h3148w): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/panel/leadtek,ltk050h3146w.yaml#
+arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w.dtb: panel@0 (leadtek,ltk050h3146w): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/panel/leadtek,ltk050h3146w.yaml#
+arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3146w-a2.dtb: panel@0 (leadtek,ltk050h3146w-a2): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/panel/leadtek,ltk050h3146w.yaml#
+arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w-a2.dtb: panel@0 (leadtek,ltk050h3146w-a2): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/panel/leadtek,ltk050h3146w.yaml#
 
 
 
