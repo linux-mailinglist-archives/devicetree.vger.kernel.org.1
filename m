@@ -1,188 +1,91 @@
-Return-Path: <devicetree+bounces-175813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88070AB1F6E
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 23:52:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EE4AAB1F95
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 00:03:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15DD1A228E9
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 21:52:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38CB798641A
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 22:03:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2149D264614;
-	Fri,  9 May 2025 21:51:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FBA525DB11;
+	Fri,  9 May 2025 22:03:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pxpVYRgb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KKKenb+H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6BF261591;
-	Fri,  9 May 2025 21:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544C8AD5E;
+	Fri,  9 May 2025 22:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746827515; cv=none; b=o+nRY/qe54gnVZ8hCbyX+NQgyU9WiJVWHf6xsNtbm4q74i8I3bOpBftdrkyCLEqE6ZOpQoq/xj8t2IVHu6OjLO20J6uJBkS7qBsZolgdn6AT0nbMiAZ/b/Qt+Q1dO52uGXXYf+XCJJcjRqytGBvVf38hPObfYMPpGGCCH2y6n2s=
+	t=1746828213; cv=none; b=kFwa0mFu+wLVyKYhq4PpADvW3Cltrt19VYryHkL5pUg1sUH2Uy7f5JPfPyg5qbZcUG8fy7TxQJ4wE7M6JL06k04cPnUDOdFe2Cw3zgDM0Sg9a1QNOX7G0he1+c1Tv6lledrbgmuECfUeLs0nU1OVUc25w5SZQyN9For20Pn9QiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746827515; c=relaxed/simple;
-	bh=CQWWcqMDBBBF5UcJdFGNxHIOQ0echENGKfhnm7IyDgM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JATEJ2ePIcnbeTuTh2Gv3V0hPN5iM/q9pDSep7I6rg/D6C9Giw7TyoxzOB/6Dd55uHdYoPJsD1TQlQi2J0/KkkELzYTup2mvI3A4+yrr7qaRY6D159XsfRAlWzeZrmzd0BJFot4n6iBRy5GXq8HvduNRIOkK+zzDDNPb/ysDDOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=pxpVYRgb; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2D92C1FCEF;
-	Fri,  9 May 2025 21:51:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746827511;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Q8XrbGrufMg9tkAyXi8gfe2wyJbMN7aGWkJh4GV5ffc=;
-	b=pxpVYRgb7MjCpc0odJr+r5pNssgZtTpZNH4Fohl8kfnyXPdyoUbAsqh7gPyPAlMcQTgNDp
-	8z3zsNYkuM87Y3UiNMsV/Y6TkMHNPhMSo/veQY5/6YP3r8P0G0X+QXcxHg8GoxnNJzGf+j
-	Jy1w/NOp1RlQWbfJ24Gx0rxe5lxK5uVL9S0fMwOVITXqsYI1WrpE2mKDKw5Oe8ijWcGL8K
-	f2cQSC+nIljQtkrzTyG+Qp5o15vHFjgxiiKDsUVYOYKFIcUumq62Y3S5coGRvI4HxjVxuG
-	8JtSaaNP1OjyotCnhd5ulPSloO0gMMgzRE65JAhrNrRl8i4oHM/7w6xDODARLg==
-From: Olivier Benjamin <olivier.benjamin@bootlin.com>
-Date: Fri, 09 May 2025 23:51:40 +0200
-Subject: [PATCH v3 4/4] arm64: dts: rockchip: describe the OV8858 user
- camera on PinePhone Pro
+	s=arc-20240116; t=1746828213; c=relaxed/simple;
+	bh=CW0sSNe6MztXpmpgZiLXHGBNXrv3XHCJSTcJb1kmYCU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VEvM3cQVHi4S34i5dUW2OYwbfJlw/Pg32MeVr/D3uiI7KquRz+p87iw0NU76LAFqnFAGy0GzBVvfq8A+w+68vJBR35tLC05wCeHsByWmxp3OFifAO2nqMLwYnFDfyVRcw4u1WqA20UaD7JoEEnb0pGd4NqzUfqEnChRe/DkuXnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KKKenb+H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70309C4CEE4;
+	Fri,  9 May 2025 22:03:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746828212;
+	bh=CW0sSNe6MztXpmpgZiLXHGBNXrv3XHCJSTcJb1kmYCU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KKKenb+HZAolgMcdij0Me9pwnJ4j0Y5oQNJ1gyVDskwvTyFX89NTvAOQunVX2YXgz
+	 n2Z0EMuWkojmkML2rxh19yIqZmBDEZ7UDV6I5HGdrB8H8PmgNWZ97Wp89zrSjKE3Wa
+	 Zt8rTyj6ajwD8sCIj9FCU4DwY+udHaCujRy165FlMwOW49BY3/+PlKrmzBlCQHqAJp
+	 UsjBHa6+JsAmLvOQBpheh7+zAtoTXagJIfYJdP0QfCzxF9PCCUZKi0UWs3hWT+n6Fu
+	 jZhprkK2zFVnbvJSLSiRpK9saJiEYb2jEWihNxEUdpwKmbTe6JtS+8hzdY3dG0GnmA
+	 7RfcJEjZrexMg==
+Date: Fri, 9 May 2025 17:03:30 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, linux-arm-msm@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Felipe Balbi <balbi@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Jaroslav Kysela <perex@perex.cz>, linux-usb@vger.kernel.org,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Takashi Iwai <tiwai@suse.com>, phone-devel@vger.kernel.org,
+	linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Srinivas Kandagatla <srini@kernel.org>
+Subject: Re: [PATCH v2 1/5] ASoC: dt-bindings: qcom,q6afe: Document q6usb
+ subnode
+Message-ID: <174682821024.69850.896927438133345795.robh@kernel.org>
+References: <20250501-fp4-usb-audio-offload-v2-0-30f4596281cd@fairphone.com>
+ <20250501-fp4-usb-audio-offload-v2-1-30f4596281cd@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250509-camera-v3-4-dab2772d229a@bootlin.com>
-References: <20250509-camera-v3-0-dab2772d229a@bootlin.com>
-In-Reply-To: <20250509-camera-v3-0-dab2772d229a@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
- Nicholas Roth <nicholas@rothemail.net>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
- imx@lists.linux.dev, Olivier Benjamin <olivier.benjamin@bootlin.com>, 
- Dragan Simic <dsimic@manjaro.org>, Ondrej Jirman <megi@xff.cz>
-X-Mailer: b4 0.14.2
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvleefjeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepqfhlihhvihgvrhcuuegvnhhjrghmihhnuceoohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeegueegiedvvdevveevvddufeejvefftdeugfffkeeileehheefieehgfelfeeileenucfkphepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeipdhhvghloheplgduledvrdduieekrddurddvtdgnpdhmrghilhhfrhhomhepohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopehkvghrnhgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepihhmgieslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrt
- ghpthhtohepshdrhhgruhgvrhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepfhgvshhtvghvrghmsehgmhgrihhlrdgtohhmpdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegushhimhhitgesmhgrnhhjrghrohdrohhrgh
-X-GND-Sasl: olivier.benjamin@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250501-fp4-usb-audio-offload-v2-1-30f4596281cd@fairphone.com>
 
-Add the description of the front/user camera (OV8858) on the PinePhone Pro
-to the device dts file.
-It receives commands over SCCB, an I2C-compatible protocol, at
-I2C address 0x36 and transmits data over CSI-MIPI.
-I confirmed this address experimentally.
 
-The pin control mapping was again extracted from the PinePhone Pro
-schematic v1.0 as well as the RK3399 datasheet revision 1.8.
+On Thu, 01 May 2025 08:48:47 +0200, Luca Weiss wrote:
+> Document the subnode for Q6USB, used for USB audio offloading.
+> 
+> Cc: Wesley Cheng <quic_wcheng@quicinc.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  Documentation/devicetree/bindings/sound/qcom,q6afe.yaml | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
 
-Table 2-3 in section 2.8 of the RK3399 datasheet contains the mapping
-of IO functions for the SoC pins. Page 52 shows GPIO1_A4, page 54 shows
-GPIO2_B4.
-
-For the reset (RESET) signal:
-page 11 quadrant D2             | p.18 q.B3-4 | p.18 q.C2
-RK3399_E.R28 -> GPIO1_A4 -> Camera2_RST -> MIPI_RST1 -> OV8858.12
-
-For the powerdown (PWDN) signal:
-page 9 quadrants D4-5          | p.18 q.B2
-RK3399_L.F31 -> GPIO2_B4 -> DVP_PDN0_H -> OV8858.14
-
-Helped-by: Dragan Simic <dsimic@manjaro.org>
-Co-developed-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
----
- .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 45 ++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index 588e2d8a049cc649aa227c7a885bd494f23fbdf8..460333915ed43ecc073dd7b5f4575402fb809876 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -480,6 +480,27 @@ wcam_lens: camera-lens@c {
- 		/* Same I2c bus as both cameras, depends on vcca1v8_codec for power. */
- 		vcc-supply = <&vcc1v8_dvp>;
- 	};
-+
-+	ucam: camera@36 {
-+		compatible = "ovti,ov8858";
-+		reg = <0x36>;
-+		clocks = <&cru SCLK_CIF_OUT>; /* MIPI_MCLK1, derived from CIF_CLK0 */
-+		clock-names = "xvclk";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ucam_rst &ucam_pwdn>;
-+		dovdd-supply = <&vcc1v8_dvp>;
-+		reset-gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_LOW>;
-+		powerdown-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
-+		orientation = <0>; /* V4L2_CAMERA_ORIENTATION_FRONT */
-+		rotation = <90>;
-+
-+		port {
-+			ucam_out: endpoint {
-+				remote-endpoint = <&mipi_in_ucam>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
- };
- 
- &i2c3 {
-@@ -524,6 +545,24 @@ &io_domains {
- 	status = "okay";
- };
- 
-+&isp0 {
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			mipi_in_ucam: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&ucam_out>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
-+};
-+
-+&isp0_mmu {
-+	status = "okay";
-+};
-+
- &isp1 {
- 	status = "okay";
- 
-@@ -599,6 +638,12 @@ camera {
- 		wcam_rst: wcam-rst {
- 			rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
-+		ucam_rst: ucam-rst {
-+			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		ucam_pwdn: ucam-pwdn {
-+			rockchip,pins = <2 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
- 	};
- 
- 	leds {
-
--- 
-2.48.1
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
