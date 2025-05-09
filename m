@@ -1,209 +1,140 @@
-Return-Path: <devicetree+bounces-175555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E51FAB1261
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:41:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAD76AB1275
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 635C81C409DD
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:42:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E016E4A6699
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:46:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 143C728D841;
-	Fri,  9 May 2025 11:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB93528FFEB;
+	Fri,  9 May 2025 11:46:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="ayri1AN/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="B0pp0+mq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E96DD22C322
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:41:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B5428FFD9;
+	Fri,  9 May 2025 11:46:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746790911; cv=none; b=FMbBRtV5iy9jdSGc29KkvRsAe6eKqi8aslQHvhcufndfC2IG8wH2CxzgdLDfBuuO0zRljDUsAmOKeC6hriRcZECaEwSWYKjGerhxoLb7eRyzy2qnJpDk429Kd7H7ibOBzplN3gQ//wG5Lxdmj9ikMr92BBmEWdHZL0DY8qBCuAw=
+	t=1746791173; cv=none; b=JV/pusjSo2aodJMDCY0ygiJoVX+Rt1ivU4Q/kirmQ79RIPuN8GNE8RxdtXE0rlIc07DBHqhwZEaU7kP2W9jrIHQr8kLYJdx49cOg1GxgChND6ETm0CyyxP+xNg212b8eCYF6vB+rkdP3ONrJsJQf3mdWkUIzN0P4EWekurCyjlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746790911; c=relaxed/simple;
-	bh=21R4CdsJlxo6ZIUB4aWnLHQhzIqhbI+E6wdmGGSh4zs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YQKSPA5VAhRYaQrcBHw9lKg42nOnRLsdqpUGOB6iBpIUFwBJbLZVOvRyNWkcgB7dBIylBcYjyGCHHTwPxjLva3UjDSpLv1FEsoTXayJI9g8Hdww3Iwi8uWOCRX+c3+PYPBIF8SCl+nEzKC+MlUJaW6Np4whZ9zXufpRjiorp95c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=ayri1AN/; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ad220f139adso101942066b.1
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:41:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1746790907; x=1747395707; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xqSqgdbr6mkrFUbRKHE1fLZLEEIHfO7KWsMJjVuS+q4=;
-        b=ayri1AN/SeBgJ2RHWOluJm//i1J26QV+grwv7cw760nXkqFlLPeqM3zfaIicoUnJQV
-         nR0ZkT2odUUfKWb61TYl5guqeewzxnJ9UpeOyzbuCRZq3DJltHrP/pBowx17XdQZ/+TM
-         bAYDL0AILCtYvyS+Hmq1aBlwNDmX5EknHeVUbG7SFjK6fDzCpNjhg4YxMlpkFfK7intx
-         5D9LEFukgf9Stu+h2kwp8wr9NIWnCYb4SyCCYZyvegjMqOGFnf/jHJ0+ghsaKYwkmoO/
-         rXLA0I5xGaS+lf9mnzuuHTw4q5BlxuBV4kJ/9/tMjl8hNqgZLskHGWJ2fKi0YE8s5yKI
-         tvEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746790907; x=1747395707;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xqSqgdbr6mkrFUbRKHE1fLZLEEIHfO7KWsMJjVuS+q4=;
-        b=pIQrpwtTgRi5JSoM81dV/uzz8acoEenTHdjtKlO4RZD7ocbhcjxZC4zWwSLE5aZSZd
-         8BYBX09ZIFMoltFbl1JOMQZVpZmBO/3uIZMFlheEHSdlmOtsOkBhNfmQ9dYB/nkPe569
-         g9Y2PQq8UsfH5kVkWYPLVSiB9KBWxnKguWYa1ORH8FLzA0VmDfvIveioQGkTOXpHfgpg
-         2awwpJui6OYeF9GpzZ5+JMqUDH2TyS8MjMawIBcJvTTWkWrozgd4rQ3cawJKM7sg+udT
-         8x2N/L226FbVVd1LNEbrhgj4M+t8pdDwueizaVJpD+GWanFFKLL6HWrE1K26wGIeCySB
-         y/3w==
-X-Forwarded-Encrypted: i=1; AJvYcCUQJKGRKchRylhMuutLdcqyZlb4rn9LutOW+1UJ6KvloAML4s0bN0Y33Qxiu6VQPPS5N9Cdkt0Zb4e1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVzCpLkUL2/Mc36BqbmmIEidlR3lRjwuai3ZK6JxdKMPx4RX8z
-	Zl5ukgrZaw9DpPHem/s5sD+Xy6jLesvCnH+4S8RIDC4SNkbQ571H23VFj1vyuS4=
-X-Gm-Gg: ASbGncv7UkGxYiVXucvhhnITIaphMKSNjSQNDHimTNif0u3y04sRqL2q3lghIkRyDSM
-	DmigFV2x7NgXhrC7zLox2xUoH0zQJYUEU4rD7Zg2BClXax038MOQiNknm80VT/s8+vAOJkmgQVM
-	U55OISn7Hqa13mSuJM9p9oDsaS5DWd0NScYv81IRCDXJ4eME5/R39VjaxOviTNLw8p2HGu7i8n3
-	BWUNyHgGGQTacKyrUZoNH4B2GToDJW6bSZkbZnthPJJz0z9m7mu6j6qR7CuQcLJ1yS+qZcsjn+G
-	I+9mEUxpJmbwwo9jxLm+dAaQIb7zG7W7qcWGy/qzQ3eHKXFp
-X-Google-Smtp-Source: AGHT+IG2j0Pea0l+03cwVMYbfwrcANbL1huFvD6sD/j4JhDPCTCSj3oUMBeHqG1csVa7s5Hq/oxNxw==
-X-Received: by 2002:a17:907:1907:b0:ac2:cae8:e153 with SMTP id a640c23a62f3a-ad218ea823fmr310536466b.4.1746790907122;
-        Fri, 09 May 2025 04:41:47 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.50])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad2197bd2a8sm138611966b.145.2025.05.09.04.41.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 May 2025 04:41:46 -0700 (PDT)
-Message-ID: <b4771b63-3198-47c8-a83d-5133ba80d39b@tuxon.dev>
-Date: Fri, 9 May 2025 14:41:44 +0300
+	s=arc-20240116; t=1746791173; c=relaxed/simple;
+	bh=SQkxBRiOnv36QIXTxodgUMy2H7LsOL+7k7SNq2aq4AA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l3QxvE3phjxX/dDrxolhaPQf9yM/KCR7vLh5/6EtHK6b7tdmgC+HLYOtPFftvZIzlbp1MVhC2xmssvyVATsM1/N1Z4pCoHPt2N6ZdEggQwZOFPu+6OC9y100XevQDqbKTBeufo+ZQ+GdfThiVpG3Bg0nleOm4z23xfaq9gNWxEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=B0pp0+mq; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1746791172; x=1778327172;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SQkxBRiOnv36QIXTxodgUMy2H7LsOL+7k7SNq2aq4AA=;
+  b=B0pp0+mqumq49Z72cQmahfiBvCMkxhK/hNo6FF/3O8VEPfcMnrrrTmHL
+   bl+V4dVE6mJGHSDY4sFFs3WA2kBMxuyJ87pdkYbvXQ4iLUxckehCah/e8
+   2kHXhiRkgGvSiwmdeG57buTCZkDUumhCWMhxcNsvI1PSOElVST6i3JuVo
+   kiIup89OxRF9SnvJXlJUlnpz+S3Uwrs4EGXHuxJ4lKJSA4iupI9Mfh8F5
+   z0yLBKdPnibk73IjwS4YZ2FY8v2f6q7Ef/SI3ShTb+tgv61hlxzHdMfZr
+   LxZe4cgSprkexNehBqz+B5DIqyG3kG7Ve59mtrdC86DYDEKRANQBWAT/t
+   g==;
+X-CSE-ConnectionGUID: zf+DzwbSSt+KRmzjh64gbw==
+X-CSE-MsgGUID: ibWD3MAXQJqwiJpWxsqvsA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="48774461"
+X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; 
+   d="scan'208";a="48774461"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2025 04:46:12 -0700
+X-CSE-ConnectionGUID: tSopib0KRZm1vWrW42CKjw==
+X-CSE-MsgGUID: hEhG9rRhT3+uXvkH80Z+bw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; 
+   d="scan'208";a="141816422"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 09 May 2025 04:46:07 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uDMB2-000C1r-1U;
+	Fri, 09 May 2025 11:46:04 +0000
+Date: Fri, 9 May 2025 19:45:31 +0800
+From: kernel test robot <lkp@intel.com>
+To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Tobias Sperling <tobias.sperling@softing.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Matteo Martelli <matteomartelli3@gmail.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v2 4/4] iio: adc: ad7405: add ad7405 driver
+Message-ID: <202505091958.k0P7xNyC-lkp@intel.com>
+References: <20250508123107.3797042-5-pop.ioan-daniel@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/8] PCI: rzg3s-host: Add Initial PCIe Host Driver for
- Renesas RZ/G3S SoC
-To: Philipp Zabel <p.zabel@pengutronix.de>, bhelgaas@google.com,
- lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
- sboyd@kernel.org, saravanak@google.com
-Cc: linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250430103236.3511989-1-claudiu.beznea.uj@bp.renesas.com>
- <20250430103236.3511989-6-claudiu.beznea.uj@bp.renesas.com>
- <42a5119e547685f171be6f91e476a9b595599cf9.camel@pengutronix.de>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <42a5119e547685f171be6f91e476a9b595599cf9.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250508123107.3797042-5-pop.ioan-daniel@analog.com>
 
-Hi, Philipp,
+Hi Pop,
 
-On 09.05.2025 13:51, Philipp Zabel wrote:
-> Hi Claudiu,
-> 
-> On Mi, 2025-04-30 at 13:32 +0300, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
->> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
->> only as a root complex, with a single-lane (x1) configuration. The
->> controller includes Type 1 configuration registers, as well as IP
->> specific registers (called AXI registers) required for various adjustments.
->>
->> Other Renesas RZ SoCs (e.g., RZ/G3E, RZ/V2H) share the same AXI registers
->> but have both Root Complex and Endpoint capabilities. As a result, the PCIe
->> host driver can be reused for these variants with minimal adjustments.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>  MAINTAINERS                              |    8 +
->>  drivers/pci/controller/Kconfig           |    7 +
->>  drivers/pci/controller/Makefile          |    1 +
->>  drivers/pci/controller/pcie-rzg3s-host.c | 1561 ++++++++++++++++++++++
->>  4 files changed, 1577 insertions(+)
->>  create mode 100644 drivers/pci/controller/pcie-rzg3s-host.c
->>
-> [...]
->> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/controller/pcie-rzg3s-host.c
->> new file mode 100644
->> index 000000000000..c3bce0acd57e
->> --- /dev/null
->> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
->> @@ -0,0 +1,1561 @@
-> [...]
->> +static int rzg3s_pcie_resets_bulk_set(int (*action)(int num, struct reset_control_bulk_data *rstcs),
->> +				      struct reset_control **resets, u8 num_resets)
->> +{
->> +	struct reset_control_bulk_data *data __free(kfree) =
->> +		kcalloc(num_resets, sizeof(*data), GFP_KERNEL);
->> +
->> +	if (!data)
->> +		return -ENOMEM;
->> +
->> +	for (u8 i = 0; i < num_resets; i++)
->> +		data[i].rstc = resets[i];
->> +
->> +	return action(num_resets, data);
->> +}
-> 
-> What is the purpose of this? Can't you just store struct
-> reset_control_bulk_data in struct rzg3s_pcie_host and call
-> reset_control_bulk_assert/deassert() directly?
+kernel test robot noticed the following build warnings:
 
-Yes, I can. I was trying to avoid storing also the reset_control_bulk_data
-in struct rzg3s_pcie_host since all that is needed can be retrieved from
-the already parsed in probe cfg_resets and power_resets.
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on linus/master v6.15-rc5 next-20250508]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> 
->> +static int
->> +rzg3s_pcie_resets_init(struct device *dev, struct reset_control ***resets,
->> +		       struct reset_control *(*action)(struct device *dev, const char *id),
->> +		       const char * const *reset_names, u8 num_resets)
->> +{
->> +	*resets = devm_kcalloc(dev, num_resets, sizeof(struct reset_control *), GFP_KERNEL);
->> +	if (!*resets)
->> +		return -ENOMEM;
->> +
->> +	for (u8 i = 0; i < num_resets; i++) {
->> +		(*resets)[i] = action(dev, reset_names[i]);
->> +		if (IS_ERR((*resets)[i]))
->> +			return PTR_ERR((*resets)[i]);
->> +	}
->> +
->> +	return 0;
->> +}
-> 
-> Why not use devm_reset_control_bulk_get_exclusive() directly?
+url:    https://github.com/intel-lab-lkp/linux/commits/Pop-Ioan-Daniel/iio-backend-update-iio_backend_oversampling_ratio_set/20250508-203339
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20250508123107.3797042-5-pop.ioan-daniel%40analog.com
+patch subject: [PATCH v2 4/4] iio: adc: ad7405: add ad7405 driver
+config: m68k-randconfig-r123-20250509 (https://download.01.org/0day-ci/archive/20250509/202505091958.k0P7xNyC-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 13.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20250509/202505091958.k0P7xNyC-lkp@intel.com/reproduce)
 
-I wasn't able to find a bulk_get_exclusive_deasserted() kind of API.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505091958.k0P7xNyC-lkp@intel.com/
 
-This IP needs particular sequence for configuration. First, after power on,
-the following resets need to be de-asserted:
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/adc/ad7405.c:19:20: sparse: sparse: symbol 'ad7405_dec_rates' was not declared. Should it be static?
 
-	const char * const power_resets[] = {
-		"aresetn", "rst_cfg_b", "rst_load_b",
-	};
+vim +/ad7405_dec_rates +19 drivers/iio/adc/ad7405.c
 
-then, after proper values are written into the configuration registers, the
-rest of the resets need to be de-asserted:
+    18	
+  > 19	const unsigned int ad7405_dec_rates[] = {
+    20		4096, 2048, 1024, 512, 256, 128, 64, 32,
+    21	};
+    22	
 
-	const char * const cfg_resets[] = {
-		"rst_b", "rst_ps_b", "rst_gp_b", "rst_rsm_b",
-	};
-
-So I was trying to get and de-assert the power_resets in probe and just get
-the cfg_resets in the 1st step of the initialization, and later to
-de-assert the cfg_resets as well.
-
-Now, after you pointed it out, maybe you are proposing to just
-get_exclusive everything in one shot and then to de-assert what is needed
-at proper moments with generic reset control APIs?
-
-Thank you for your review,
-Claudiu
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
