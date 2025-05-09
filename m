@@ -1,132 +1,128 @@
-Return-Path: <devicetree+bounces-175750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86D02AB1A97
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 18:35:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8BC4AB1B09
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 18:55:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B297AB438F6
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:33:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EDB95257F8
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5109239E86;
-	Fri,  9 May 2025 16:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48102238D27;
+	Fri,  9 May 2025 16:51:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="P/NX0RgH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A132376F2
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 16:31:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from out-173.mta1.migadu.com (out-173.mta1.migadu.com [95.215.58.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A382238C19;
+	Fri,  9 May 2025 16:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746808308; cv=none; b=OaPz+8dzeaPzYiN5eMQrYDgzSLpu8sZBnNsUA+SH++kXovg2VjBGCILhBShz8WqXhvb/ML7MDAGS4DzXc9BbNKef282iGeNKTCbnJNby6+eR5M9q4YoIqxioo+uo3Lfgi3BVN7fWfTghvDz+zTE5TJGe7kgu//6z69QbUmpHNuk=
+	t=1746809514; cv=none; b=IQOO3d7n881EXR1WlHoy9ALSpq8BoGJNoZLdhBfHWYVfSa7L5HT/0o7/rxSQUB/dvNd+FCZH5Sl9yKXKd+d0U6MYhJhgHOiyOfLILifomuLB0Dbl10u7166BIsnieNH0uDpg6IvmStYMnOrlA2Fffm7z4RplVPy1QSayVL5skZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746808308; c=relaxed/simple;
-	bh=IPNirIHSpDjovwxznpY6ihSgBAanz/C90tFNC4q9MaQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LOKgYcgurMawxeWS9a8KiPgCFki9p972IOPaYXWlI2urq2P61bYgiglZG/5EKtXlOz40pyq/ndQ547d2qTgaP5HgzX3k6splHqIHzZ4nS2DxqqkwAEtvS+LlQUi8pcc8+ZU26XjN9/lVkDDw6/4qwKuMgBt4sBPwL+cKxw9VjCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9E2B6175D;
-	Fri,  9 May 2025 09:31:34 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 54A303F5A1;
-	Fri,  9 May 2025 09:31:43 -0700 (PDT)
-Date: Fri, 9 May 2025 17:31:40 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Chris Morgan <macroalpha82@gmail.com>, <linux-sunxi@lists.linux.dev>,
- <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <ryan@testtoast.com>, <macromorgan@hotmail.com>, <p.zabel@pengutronix.de>,
- <tzimmermann@suse.de>, <maarten.lankhorst@linux.intel.com>,
- <simona@ffwll.ch>, <airlied@gmail.com>, <mripard@kernel.org>,
- <samuel@sholland.org>, <jernej.skrabec@gmail.com>, <conor+dt@kernel.org>,
- <krzk+dt@kernel.org>, <robh@kernel.org>
-Subject: Re: [PATCH V9 02/24] clk: sunxi-ng: h616: Add LVDS reset for LCD
- TCON
-Message-ID: <20250509173140.26611141@donnerap.manchester.arm.com>
-In-Reply-To: <CAGb2v65ZhA3_pdgbq9aVdy-0rQcTNfrHoE_AvJxOvin0a6tnMA@mail.gmail.com>
-References: <20250507201943.330111-1-macroalpha82@gmail.com>
-	<20250507201943.330111-3-macroalpha82@gmail.com>
-	<20250509151448.3191a3d8@donnerap.manchester.arm.com>
-	<CAGb2v65ZhA3_pdgbq9aVdy-0rQcTNfrHoE_AvJxOvin0a6tnMA@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1746809514; c=relaxed/simple;
+	bh=9tmfUQl7n6sCe4B6VOxGhrGgZC2hfLqoLZRw4v0V5dg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=joAaeE0UGAFZu2qvuXgh6cUIWW4n4A71OHEzfjfacLJ5AIs1U4J2gbtkY2C0nZsQr8nGZESuHuurmHAj2BBowQaCO7Z9Mm4GTg4EwN8i6FfVcfm6m6OwrGV1i9H4VqTxWE2U2+i2AOs57RyY54oY9xR7dMRwwyqcAOuiBNa72IE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=P/NX0RgH; arc=none smtp.client-ip=95.215.58.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1746809509;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ckl3vux5StOjvP2+47jrXU3fLRpLeSvxiApo1TU/VDQ=;
+	b=P/NX0RgHit5EEJXk2v6IpDcc0CmX9jjuKGJ8J8O5RFsGJ+rX/Zfmu63/p9HRzmJ0SEju20
+	pN/gP6SdukESlLnnl2aOcQMGBMKpLbRL94g/juVXzwRKDpD05cfRZQ8VUzJA29MnSUgMZo
+	ZY4jHyKEEzcKFwwvHSoce0HjegXD/XQoC3oHYQxUqnMJtD5Job1emTRTCTV1VNsFpYqyB4
+	jx8bXA/Cqycgs8BL93wm4v4emqKSe08tJV905bRCSeEdKjQlyHIPr69944V7VG5RAvu1H0
+	GyRVpehpmWhks+9m0/OocqJs2C+FWFdssWbUkQJHyPXeEUX0eMh99gpsf78PVA==
+Content-Type: multipart/signed;
+ boundary=3e23f8a3f7dd23a047277bc59f050a2e77210dee6735ec02b945a8d601bd;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Fri, 09 May 2025 18:51:21 +0200
+Message-Id: <D9RSA5K547DD.1LYPIZZM4XALS@cknow.org>
+Cc: "Conor Dooley" <conor+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Dragan Simic" <dsimic@manjaro.org>, "Rob Herring"
+ <robh@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 0/1] arm64: dts: rockchip: rk3568: Move PCIe3 MSI to use
+ GIC ITS
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Diederik de Haas" <didi.debian@cknow.org>, "Chukun Pan"
+ <amadeus@jmu.edu.cn>, "Heiko Stuebner" <heiko@sntech.de>
+References: <20250308093008.568437-1-amadeus@jmu.edu.cn>
+ <D9RQN76VZXO8.T3I0046FNVG3@cknow.org>
+In-Reply-To: <D9RQN76VZXO8.T3I0046FNVG3@cknow.org>
+X-Migadu-Flow: FLOW_OUT
+
+--3e23f8a3f7dd23a047277bc59f050a2e77210dee6735ec02b945a8d601bd
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-On Fri, 9 May 2025 23:29:50 +0900
-Chen-Yu Tsai <wens@csie.org> wrote:
+Hi again,
 
-> On Fri, May 9, 2025 at 11:14=E2=80=AFPM Andre Przywara <andre.przywara@ar=
-m.com> wrote:
-> >
-> > On Wed,  7 May 2025 15:19:21 -0500
-> > Chris Morgan <macroalpha82@gmail.com> wrote:
-> >
-> > Hi,
-> >
-> > despite the slightly ill fate of this series, I was wondering if we cou=
-ld
-> > get the non-controversial clock parts for instance already merged, to
-> > reduce the number of patches and mitigate the churn with dependencies? =
-=20
->=20
-> Sure. Are we expecting any of the DT bits to go in this cycle?
-> If not I won't have to split the DT header patch on a separate
-> branch.
+On Fri May 9, 2025 at 5:34 PM CEST, Diederik de Haas wrote:
+> On Sat Mar 8, 2025 at 10:30 AM CET, Chukun Pan wrote:
+>> For a long time, rk3568's MSI-X had bugs and could only work on one node=
+.
+>> e.g. [    7.250882] r8125 0002:01:00.0: no MSI/MSI-X. Back to INTx.
+>>
+>> Following commit b956c9de9175 ("arm64: dts: rockchip: rk356x: Move
+>> PCIe MSI to use GIC ITS instead of MBI"), change the PCIe3 controller's
+>> MSI on rk3568 to use ITS, so that all MSI-X can work properly.
+>>
+> I tested this patch on my NanoPi R5S with a 6.15-rc3 kernel + a number
+> of [vcc|phy]-supply patches that have been accepted for 6.16 (and a
+> small WIP LED patch).
+>
+> With this patch I get the following kernel warnings:
+>
+> pci 0001:10:00.0: Primary bus is hard wired to 0
+> pci 0002:20:00.0: Primary bus is hard wired to 0
+>
+> If I 'unapply' this patch, I don't see those warnings.
 
-I don't think so, the DT wouldn't make much sense on its own anyway. But
-I guess it would help if the bindings / binding headers would go in
-already?
+I was pretty sure I had seen those messages before, but couldn't find
+them before. But now I have: on my rk3588-rock-5b.
+
+> It's possible that this patch only brought a(nother) problem to light,
+
+So it looks indeed to be this.
 
 Cheers,
-Andre
+  Diederik
 
->=20
-> > > From: Chris Morgan <macromorgan@hotmail.com>
-> > >
-> > > Add the required LVDS reset for the LCD TCON. Note that while this
-> > > reset is exposed for the T507, H616, and H700 only the H700 has
-> > > an LCD controller.
-> > >
-> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > Signed-off-by: Ryan Walklin <ryan@testtoast.com> =20
-> >
-> > Matches the T507 manual:
-> >
-> > Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> >
-> > Cheers,
-> > Andre
-> > =20
-> > > ---
-> > >  drivers/clk/sunxi-ng/ccu-sun50i-h616.c | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
-> > > diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c b/drivers/clk/sun=
-xi-ng/ccu-sun50i-h616.c
-> > > index daa462c7d477..955c614830fa 100644
-> > > --- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-> > > +++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-> > > @@ -1094,6 +1094,7 @@ static const struct ccu_reset_map sun50i_h616_c=
-cu_resets[] =3D {
-> > >       [RST_BUS_TCON_LCD1]     =3D { 0xb7c, BIT(17) },
-> > >       [RST_BUS_TCON_TV0]      =3D { 0xb9c, BIT(16) },
-> > >       [RST_BUS_TCON_TV1]      =3D { 0xb9c, BIT(17) },
-> > > +     [RST_BUS_LVDS]          =3D { 0xbac, BIT(16) },
-> > >       [RST_BUS_TVE_TOP]       =3D { 0xbbc, BIT(16) },
-> > >       [RST_BUS_TVE0]          =3D { 0xbbc, BIT(17) },
-> > >       [RST_BUS_HDCP]          =3D { 0xc4c, BIT(16) }, =20
-> >
-> > =20
->=20
+>> Chukun Pan (1):
+>>   arm64: dts: rockchip: rk3568: Move PCIe3 MSI to use GIC ITS
+>>
+>>  arch/arm64/boot/dts/rockchip/rk3568.dtsi | 8 ++++----
+>>  1 file changed, 4 insertions(+), 4 deletions(-)
 
+
+--3e23f8a3f7dd23a047277bc59f050a2e77210dee6735ec02b945a8d601bd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaB4yngAKCRDXblvOeH7b
+btTxAP9xcOOm/DKb1fMqBqNcR6qUMiNnWv1MKSyU06BFXAH6LQEAocEqmFyRa4iT
+xDj91oyTLTpAr8k0/xJZDB//WWhFPgs=
+=V4q7
+-----END PGP SIGNATURE-----
+
+--3e23f8a3f7dd23a047277bc59f050a2e77210dee6735ec02b945a8d601bd--
 
