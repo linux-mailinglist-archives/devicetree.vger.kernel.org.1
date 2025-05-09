@@ -1,37 +1,38 @@
-Return-Path: <devicetree+bounces-175727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83CAAB1929
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:47:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8E61AB192D
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:47:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D81352418E
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:46:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D35B91BA1A05
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6DD022FE15;
-	Fri,  9 May 2025 15:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D046F22FF2B;
+	Fri,  9 May 2025 15:46:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 662C222FDE7
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 15:46:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F8A22FDE7
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 15:46:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746805606; cv=none; b=sMq57EnRVRDj4fIlEDCwqPu9o9svkKBSFdiDviCR1loAZTSKdGiG8oF1DLYxbzKNMhiU6XWvYOkLCvbT6TMT/83q5AqUvtTQ3BXyhSCWMTxub+qp+q40cw6U+P6aMBuDruyKDEigjc5PE0goKxQNW4mUjWVz7qrnwXu6UiWthAg=
+	t=1746805609; cv=none; b=UwvIiwOgtY7+n3WRU5fKTP2NEzIV4l+8f6ZsO7ZOUvtC8C4RQKZNI1Ju12expL09EkFFUjlfXt1Gxc3yfhvIa9cLy+5cXsmWIQ7pWntM8Cexb3T7IFfnfVWwoPCCrCCRLVeTv6ZsL4DLSsscl/9zmUnlVxgMl2DmqM9wA2qDLv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746805606; c=relaxed/simple;
-	bh=OgEfrEvJF0YBIBaa8gnQobHYaScrXg1Y0zS0s74tgi4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ZpGmywE+wlF72tg7HFJQkoJ3x5VgSfIYqucOU/nZcqYWzs8mGGjuCO7o/1QhfhLxBGHtHx1Lg4irk+1SW9YnoWHH8Bq4sGn92iNJpGwyEoZPHKKjVJ/q/o8RA7tHTA8PoOgHJPfGd+MBMojMo7u2ONXw9zgO57zz1bxFHCH55T4=
+	s=arc-20240116; t=1746805609; c=relaxed/simple;
+	bh=FzPXiNoT10Ss20R8+mmrWiC+zL5UsV9hM8hD7AcikDY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Sr/URoO+cwmkT5C2iLmdfyQ/2mzx3Dky0aMzYyCqus9rkLyO6VKwgoi9cIM3fm/wc0Vqj46+kPE2uYBFChlOajeCNT0m1ouKLsJadTOAaRA6DtmiAB+oUpiFWLwNLqapwmvmQXGC1qhBj2O8rmpFY8gbScN/BQaq0wpiCdTDgWw=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B7D97175D;
-	Fri,  9 May 2025 08:46:32 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5F7D61AC1;
+	Fri,  9 May 2025 08:46:35 -0700 (PDT)
 Received: from usa.arm.com (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 8CC923F58B;
-	Fri,  9 May 2025 08:46:42 -0700 (PDT)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 357CE3F58B;
+	Fri,  9 May 2025 08:46:45 -0700 (PDT)
 From: Sudeep Holla <sudeep.holla@arm.com>
 To: linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org
@@ -39,10 +40,12 @@ Cc: Sudeep Holla <sudeep.holla@arm.com>,
 	Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Liviu Dudau <liviu.dudau@arm.com>,
 	Leo Yan <leo.yan@arm.com>
-Subject: [PATCH v2 1/3] arm64: dts: fvp: Add system timer for broadcast during CPU idle
-Date: Fri,  9 May 2025 16:46:38 +0100
-Message-Id: <20250509154640.836093-1-sudeep.holla@arm.com>
+Subject: [PATCH v2 2/3] arm64: dts: fvp: Add CPU idle states for Rev C model
+Date: Fri,  9 May 2025 16:46:39 +0100
+Message-Id: <20250509154640.836093-2-sudeep.holla@arm.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250509154640.836093-1-sudeep.holla@arm.com>
+References: <20250509154640.836093-1-sudeep.holla@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,48 +54,125 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Introduce a system-level timer node in the FVP device tree to act as
-a broadcast timer when CPUs are in context losing idle states where
-the local timer stops on entering such low power states.
+Add CPU idle state definitions to the FVP Rev C device tree to enable
+support for CPU lower power modes. This allows the system to properly
+enter low power states during idle. It is disabled by default as it is
+know to impact performance on the models.
 
-This change complements recent CPU idle state additions.
+Note that the power_state parameter(arm,psci-suspend-param) doesn't use
+the Extended StateID format for compatibility reasons on FVP.
+
+Tested on the FVP Rev C model with PSCI support enabled firmware.
 
 Tested-by: Leo Yan <leo.yan@arm.com>
-Message-Id: <20250508103225.354925-2-sudeep.holla@arm.com>
+Message-Id: <20250508103225.354925-1-sudeep.holla@arm.com>
 Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 ---
- arch/arm64/boot/dts/arm/fvp-base-revc.dts | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ arch/arm64/boot/dts/arm/fvp-base-revc.dts | 32 +++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
 v1->v2:
-	- Dropped clock-frequency property
-	- Fixed #size-cell to 1 as expected by the schema
-	- Also update the ranges property and the frame reg property
+	- Change "arm,psci" to "psci" as in the schema
 
 diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-index 9e10d7a6b5a2..50b5993a2460 100644
+index 50b5993a2460..755b1407c4dc 100644
 --- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
 +++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-@@ -217,6 +217,19 @@ timer {
- 			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
- 	};
+@@ -44,6 +44,30 @@ cpus {
+ 		#address-cells = <2>;
+ 		#size-cells = <0>;
  
-+	timer@2a810000 {
-+		compatible = "arm,armv7-timer-mem";
-+		reg = <0x0 0x2a810000 0x0 0x10000>;
-+		ranges = <0 0x0 0x2a820000 0x20000>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		frame@2a830000 {
-+			frame-number = <1>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+			reg = <0x10000 0x10000>;
-+		};
-+	};
++		idle-states {
++			entry-method = "psci";
 +
- 	pmu {
- 		compatible = "arm,armv8-pmuv3";
- 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
++			CPU_SLEEP_0: cpu-sleep-0 {
++				compatible = "arm,idle-state";
++				local-timer-stop;
++				arm,psci-suspend-param = <0x0010000>;
++				entry-latency-us = <40>;
++				exit-latency-us = <100>;
++				min-residency-us = <150>;
++				status = "disabled";
++			};
++
++			CLUSTER_SLEEP_0: cluster-sleep-0 {
++				compatible = "arm,idle-state";
++				local-timer-stop;
++				arm,psci-suspend-param = <0x1010000>;
++				entry-latency-us = <500>;
++				exit-latency-us = <1000>;
++				min-residency-us = <2500>;
++				status = "disabled";
++			};
++		};
++
+ 		cpu0: cpu@0 {
+ 			device_type = "cpu";
+ 			compatible = "arm,armv8";
+@@ -56,6 +80,7 @@ cpu0: cpu@0 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <256>;
+ 			next-level-cache = <&C0_L2>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
+ 		cpu1: cpu@100 {
+ 			device_type = "cpu";
+@@ -69,6 +94,7 @@ cpu1: cpu@100 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <256>;
+ 			next-level-cache = <&C0_L2>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
+ 		cpu2: cpu@200 {
+ 			device_type = "cpu";
+@@ -82,6 +108,7 @@ cpu2: cpu@200 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <256>;
+ 			next-level-cache = <&C0_L2>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
+ 		cpu3: cpu@300 {
+ 			device_type = "cpu";
+@@ -95,6 +122,7 @@ cpu3: cpu@300 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <256>;
+ 			next-level-cache = <&C0_L2>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
+ 		cpu4: cpu@10000 {
+ 			device_type = "cpu";
+@@ -108,6 +136,7 @@ cpu4: cpu@10000 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <256>;
+ 			next-level-cache = <&C1_L2>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
+ 		cpu5: cpu@10100 {
+ 			device_type = "cpu";
+@@ -121,6 +150,7 @@ cpu5: cpu@10100 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <256>;
+ 			next-level-cache = <&C1_L2>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
+ 		cpu6: cpu@10200 {
+ 			device_type = "cpu";
+@@ -134,6 +164,7 @@ cpu6: cpu@10200 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <256>;
+ 			next-level-cache = <&C1_L2>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
+ 		cpu7: cpu@10300 {
+ 			device_type = "cpu";
+@@ -147,6 +178,7 @@ cpu7: cpu@10300 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <256>;
+ 			next-level-cache = <&C1_L2>;
++			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+ 		};
+ 		C0_L2: l2-cache0 {
+ 			compatible = "cache";
 -- 
 2.34.1
 
