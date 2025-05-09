@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-175785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEC8FAB1CCC
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 20:59:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F319AB1D3D
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 21:22:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAD663AABAF
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 18:58:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8333506A2C
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 19:22:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6219241122;
-	Fri,  9 May 2025 18:59:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B6425D1F0;
+	Fri,  9 May 2025 19:22:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SVhH2BHI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D4ju9s+Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825252163BD;
-	Fri,  9 May 2025 18:59:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBB933F3;
+	Fri,  9 May 2025 19:22:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746817140; cv=none; b=u2JLdl9BNW5B/bbsXfiR/d2erbGLlecfYxR9Vr00pm3NdRTMD8Q5AaT7Ncuyqfr6Whcdc4z6CIlUCnRIp9fn4g94fKlcvtTtv2lg/CN4OgucnOkQjR9eLYO67aMd+Y6wmh8BnbV+a2G5b50A/jozY/LkbzRqysnqRd6dWPxmAcs=
+	t=1746818534; cv=none; b=cC8zX6T2rOrJ4WT5uC1RvqqwaMPUh9K5Wy/Qn8Y9fU3naoX13NoFZrTqGcnkwv637e49V2m+785XOD8TPetsPIw2jEbH9r6Zsg5Nq8MHg+7Kjmd+9h2uLCeO33+5uoNkViFem2fH0j4AmkiJg+PejsBsboHqk/m4Tmzgke+7EzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746817140; c=relaxed/simple;
-	bh=2uB/UBFl793LBBu1ZjcvTxD2vU/Siid954qLuejgKi8=;
+	s=arc-20240116; t=1746818534; c=relaxed/simple;
+	bh=dA5hNV7xLnpRN9zoNb0MzWxcvFdMBNDlsrZb88qVmI0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cPYdkqcICk5isGLmlsqkFDfvHqckhJSb8qyXdg46kPid5KV/g5L/LvbjHXYR6lRkJw4umZxOOshg1CopIKyz4phXIIoUpDVDn6p+F/xn8/sV9dMAao74FyKW3jP/73dh0URg9s3tWddflRO/AQVdun77wdWbxpHsN6AvtnlM6/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SVhH2BHI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAC39C4CEE4;
-	Fri,  9 May 2025 18:58:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=k9mgardWLSTvwovUojSK3ldAXGV+Tu22i+NPzb33p5u0xWppAvM4CZp12PyjIBUAHenjhOk5fzF7H0NJJRUddu3Vz8fvTR55th9iVZBm0NE+B0pGrfsHr6p9GbFkUmcVzHKrCi5GexsoyTp4TL8YqA7H9pyx6QVnUH+uiYVNfDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D4ju9s+Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DE3BC4CEE4;
+	Fri,  9 May 2025 19:22:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746817139;
-	bh=2uB/UBFl793LBBu1ZjcvTxD2vU/Siid954qLuejgKi8=;
+	s=k20201202; t=1746818534;
+	bh=dA5hNV7xLnpRN9zoNb0MzWxcvFdMBNDlsrZb88qVmI0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SVhH2BHI4tpEYlrAAjKW5lF4U+VKFye9Zo6vkmk3O/RPuv95MPzH0VVgxPfpWYdXA
-	 /Koe4qjNW+YgVlSGjyMqWft+N7o8XzTY9NQBXvZe39yUCFpRkHNU/Ax9ScTLUFeiZa
-	 SvwWKp9oS/sBi4gq8xIMlbTGPH4FHTfwYKkfvhpRySwopHFvspsGiht893wYvD/dFU
-	 2xKMQ1chxsNbDZqkRgihROhho1fAFyNAC5E2BbdGrZ4anu9M7sPmBCbs7LX37IVz69
-	 uZdkTNZ+uzXOc70LV+8ZPaBBzKXJIcm+fN/SrLQnULtZ33mUxWy+7HTFBgbHr02BoE
-	 Kx0xNudMuWTeA==
-Date: Fri, 9 May 2025 13:58:58 -0500
+	b=D4ju9s+QFdb/2LZabo1Bq79ixSLpDlmAINoajemtD3nw1UpKRae4DJqcciiMm4sqr
+	 7Cnq4oW6n7MYrRwxBdroDCdVN71b/3mpWzf38F6TonthwysTGpjcVi1Z3yxqEIdLvl
+	 rQ6mTVHVljPdGec46M0pQkWWjOXpt/zVlF6DayDeaCE2yaJboElvrki4NSBJYwIcPS
+	 i+3El4sSURVvfny80qrKE1kjMEQGIR9cm2udi5YTAnt8bD/XijCBT0McFB0UMQHQjI
+	 Ime1AwEZ9lUmaJCq/6hVKr8u1y9KiSf+UQJi7Jq6d6knzhM9PRzYKke/gWR9PUJSsu
+	 YeQBofi6EC5zw==
+Date: Fri, 9 May 2025 14:22:12 -0500
 From: Rob Herring <robh@kernel.org>
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: thierry.bultel@linatsea.fr, linux-renesas-soc@vger.kernel.org,
-	geert@linux-m68k.org, paul.barker.ct@bp.renesas.com,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 01/11] dt-bindings: serial: Added secondary clock for
- RZ/T2H RSCI
-Message-ID: <20250509185858.GA3933854-robh@kernel.org>
-References: <20250429081956.3804621-1-thierry.bultel.yh@bp.renesas.com>
- <20250429081956.3804621-2-thierry.bultel.yh@bp.renesas.com>
+To: Aaron Kling <webgeek1234@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: Document Tegra186 pin
+ controllers
+Message-ID: <20250509192212.GA3945761-robh@kernel.org>
+References: <20250429-tegra186-pinctrl-v1-0-722c7c42394e@gmail.com>
+ <20250429-tegra186-pinctrl-v1-1-722c7c42394e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,39 +65,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250429081956.3804621-2-thierry.bultel.yh@bp.renesas.com>
+In-Reply-To: <20250429-tegra186-pinctrl-v1-1-722c7c42394e@gmail.com>
 
-On Tue, Apr 29, 2025 at 10:19:43AM +0200, Thierry Bultel wrote:
-> At boot, the default clock is the PCLKM core lock (synchronous
-> clock, which is enabled by the bootloader).
-> For different baudrates, the asynchronous clock input must be used.
-> Clock selection is made by an internal register of RCSI.
+On Tue, Apr 29, 2025 at 04:33:30PM -0500, Aaron Kling wrote:
+> Tegra186 contains two pin controllers. Document their compatible strings
+> and describe the list of pins and functions that they provide.
 > 
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 > ---
->  .../bindings/serial/renesas,rsci.yaml          | 18 +++++++++---------
->  1 file changed, 9 insertions(+), 9 deletions(-)
+>  .../bindings/pinctrl/nvidia,tegra186-pinmux.yaml   | 285 +++++++++++++++++++++
+>  1 file changed, 285 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-> index ea879db5f485..aa2428837a2f 100644
-> --- a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-> +++ b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-> @@ -35,10 +35,14 @@ properties:
->        - const: tei
->  
->    clocks:
-> -    maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/pinctrl/nvidia,tegra186-pinmux.yaml b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra186-pinmux.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..2fcf42869d7b68671ae3ce78bd33787901ae9203
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra186-pinmux.yaml
+> @@ -0,0 +1,285 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/nvidia,tegra186-pinmux.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVIDIA Tegra186 Pinmux Controller
+> +
+> +maintainers:
+> +  - Thierry Reding <thierry.reding@gmail.com>
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nvidia,tegra186-pinmux
+> +      - nvidia,tegra186-pinmux-aon
+> +
+> +  reg:
 > +    items:
-> +      - description: serial functional clock
-> +      - description: default core clock
->  
->    clock-names:
-> -    const: fck # UART functional clock
-> +    items:
-> +      - const: async
-> +      - const: bus
+> +      - description: pinmux registers
+> +
+> +patternProperties:
+> +  "^pinmux(-[a-z0-9-_]+)?$":
 
-This is an ABI change. You can't just drop 'fck' without good reasons.
+Is there really a case for having just 'pinmux'? Seems like there would 
+always be multiple nodes.
 
-Rob
+Don't use '_' in node names.
+
+> +    type: object
+> +
+> +    # pin groups
+> +    additionalProperties:
+
+Define a node name pattern here instead. Allowing any name was for 
+existing bindings.
+
+> +      $ref: nvidia,tegra-pinmux-common.yaml
+> +      unevaluatedProperties: false
+> +      properties:
+> +        nvidia,function:
 
