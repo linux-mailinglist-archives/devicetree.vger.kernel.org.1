@@ -1,289 +1,217 @@
-Return-Path: <devicetree+bounces-175760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83AFAAB1BBD
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 19:48:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4318FAB1BC3
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 19:51:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2EA152701C
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:48:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC34B541097
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 433032147E8;
-	Fri,  9 May 2025 17:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6B9122ACEF;
+	Fri,  9 May 2025 17:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="NhoBj1QY"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="j9GzPjuQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CFF6366;
-	Fri,  9 May 2025 17:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.155.224.40
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746812919; cv=none; b=ahqKoF0s+KUEOFeXljhwQMuMzH6wqkXH3p3+cEKjcpMKTina4H7Kz+yREsc6tKRIWdwytY+Beg7ZaKNwp/l9sndmj1D6Iv+u3tnckE6HiLeO5c/XsJu9yDE4NoSZn78kNRf+B0nFKlrOxOhTqFFFVw0fI+0f4+9Nq40+cL+PxRE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746812919; c=relaxed/simple;
-	bh=MQL7sM0qJ/BCl8og97nHQu0OUt08G7NLNV1712/Mad4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MPKEToc3ux2Vxpl6obiwNegDI5k19jXC9gGX8rGNEzCs2dVmishW/uv+0B6MrS8biAhPW1p+yhlz2v9d3NGlucecn0t7DcqHq383ivVTqj3VToG/RG1/iwylebjyylDEXVmGfeThzUmbHKsgT51JgWhLuHpOkXasCA5UN0fBq4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=NhoBj1QY; arc=none smtp.client-ip=23.155.224.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raptorengineering.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 31A0B82882C6;
-	Fri,  9 May 2025 12:38:45 -0500 (CDT)
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id XzAKUV7nPw7V; Fri,  9 May 2025 12:38:43 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 535B9828862A;
-	Fri,  9 May 2025 12:38:43 -0500 (CDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 535B9828862A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
-	t=1746812323; bh=K9JGrIUKvfc7UEflMqeOE4yQ5MgN2KCyEYjdeSJPyDw=;
-	h=From:To:Date:Message-Id:MIME-Version;
-	b=NhoBj1QYjxGddnah8Ywra87IPD7gmzlqOZG4eKRWQ1Ji5tClvwcfZKZAPtIz2u7DI
-	 9ABdvqP6YJPf78XMiAz6MfDmX34LbRYETdJGPrwjM9Ym6fszkC45YSS1pJOM60MDs+
-	 SCdRWCPVZr/rBZRadEDA540gdpoP/8UyxT9PXKdg=
-X-Virus-Scanned: amavisd-new at rptsys.com
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id s77b2BAWK_sp; Fri,  9 May 2025 12:38:43 -0500 (CDT)
-Received: from raptor-ewks-026.lan (5.edge.rptsys.com [23.155.224.38])
-	by mail.rptsys.com (Postfix) with ESMTPSA id 16F3982882C6;
-	Fri,  9 May 2025 12:38:41 -0500 (CDT)
-From: Shawn Anastasio <sanastasio@raptorengineering.com>
-To: linux-pci@vger.kernel.org,
-	"Lukas Wunner" <lukas@wunner.de>,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: "Bjorn Helgaas" <bhelgaas@google.com>,
-	"Lorenzo Pieralisi" <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	"Manivannan Sadhasivam" <manivannan.sadhasivam@linaro.org>,
-	"Rob Herring" <robh@kernel.o>,
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	"chaitanya chundru" <quic_krichai@quicinc.com>,
-	"Bjorn Andersson" <andersson@kernel.org>,
-	"Konrad Dybcio" <konradybcio@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	"Jingoo Han" <jingoohan1@gmail.com>,
-	"Bartosz Golaszewski" <brgl@bgdev.pl>,
-	quic_vbadigan@quicnic.com,
-	amitk@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	jorge.ramirez@oss.qualcomm.com,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Timothy Pearson <tpearson@raptorengineering.com>,
-	Shawn Anastasio <sanastasio@raptorengineering.com>
-Subject: 
-Date: Fri,  9 May 2025 12:38:33 -0500
-Message-Id: <20250509173833.2197248-1-sanastasio@raptorengineering.com>
-X-Mailer: git-send-email 2.30.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41BD8366;
+	Fri,  9 May 2025 17:51:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746813069; cv=pass; b=QoxU7J5xzyhT8k7Qsq84nvCkITnbwdxyxYWyI1a9Bufb1HspkbXC4dIwAivX45NkvStMaWJbv5ZbgwogzmJqiQ4BAhvVh22dVnaUKf1cj2ZJizUrtio5fzEG110tC7QfYpAscWI1Ey0kV8b5EqYM3cJYxCRMbIV8+9CyNxk5CYc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746813069; c=relaxed/simple;
+	bh=GYvkbU1dA55AIWI9soFaV13cwkF37VsgvVwRRYBrAOg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G1sAYlC1M+t8bsdCoemT8qAYyptkdb/G23/m6n5Ng9/4h217owGvRk7Um7MjeEao1D6z7/469n+b/3CExvO7F1MLyxdiicCmaZLEtxuZ+UhbFa8feW1iKwEk18ovv8FwY7jvfJnrx6roWYaJyOWKkJ7gUCnHZtBvxlWzYh0cx1Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=j9GzPjuQ; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1746813039; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=WD1GJHv265qHrwYpctoxZaOYaa/ZsV4LUQwylYV9H7R2rdemwnvYEMBIIzSWomua3qoAZ0W+lFIQC+++32an101/qGZftK0Vc5ViftIxtBXj6Y6MoCMS9R7MhauhsJ3Knywg3LH3bN8VThrgj0wWdl42/IY1abRizqkHSOPSFQ0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1746813039; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Xb3FAM9DukSaaQnWJ0ny0WfqjW4tD0jQW7N74zDuk9s=; 
+	b=g6V5tiV9ZrpcTJm4fi8a7nWvkD7mfwAIZG+FGk/R4g6SbnlFfNWhYYmt0zF8F2Yj/LNKE8HblrZWjxIGEGKIaWZTZRUlzH88+wQu0gGzIGC60Hy/KbSQrHQ1FuP7LPJlzMkubDW8z+oUR7f2yIgESuJ9WoMgDaeTxlNknpiSL3I=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1746813039;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=Xb3FAM9DukSaaQnWJ0ny0WfqjW4tD0jQW7N74zDuk9s=;
+	b=j9GzPjuQKtxd5MFrYPJU81cGLRQ8Sdf3UrUJ2q+/gwX+qT1c108DGuwFcoopLIgI
+	mUtAnqZkVR06BZbaizKjx1qlebwFuWhXjrKA4mVmaRd9Z/5lUstqmWD1MlwQH1n20ZX
+	4xhoS9nJiuyxG8utUgc5uQzkXDwDK0BzTt0cqs/g=
+Received: by mx.zohomail.com with SMTPS id 1746813037295349.70202147402665;
+	Fri, 9 May 2025 10:50:37 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id 395A518074B; Fri, 09 May 2025 19:50:33 +0200 (CEST)
+Date: Fri, 9 May 2025 19:50:33 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com, 
+	FUKAUMI Naoki <naoki@radxa.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 0/5] arm64: dts: rockchip: add ROCK 5B+ support
+Message-ID: <peq364nrf7x2zy6ou3tkxpilvs34dbcf3x2oxscf6z5aorq5eb@twxasrypjpl7>
+References: <20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org>
+ <174679985287.3369051.14227124355079340433.robh@kernel.org>
+ <1893373.atdPhlSkOF@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6qqwt57436zwj5dk"
+Content-Disposition: inline
+In-Reply-To: <1893373.atdPhlSkOF@diego>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.2/246.795.57
+X-ZohoMailClient: External
 
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 
-Date: Sat, 12 Apr 2025 07:19:56 +0530
-Subject: [PATCH v6] PCI: PCI: Add pcie_link_is_active() to determine if the
- PCIe link is active
+--6qqwt57436zwj5dk
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 0/5] arm64: dts: rockchip: add ROCK 5B+ support
+MIME-Version: 1.0
 
-Introduce a common API to check if the PCIe link is active, replacing
-duplicate code in multiple locations.
+Hi,
 
-Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
----
-This is an updated patch pulled from Krishna's v5 series:
-https://patchwork.kernel.org/project/linux-pci/list/?series=952665
+On Fri, May 09, 2025 at 05:12:22PM +0200, Heiko St=FCbner wrote:
+> Am Freitag, 9. Mai 2025, 16:17:02 Mitteleurop=E4ische Sommerzeit schrieb =
+Rob Herring (Arm):
+> >=20
+> > On Thu, 08 May 2025 19:48:49 +0200, Sebastian Reichel wrote:
+> > > This series adds support for the ROCK 5B+, which (as the name suggest=
+s)
+> > > is an improved version of the ROCK 5B. It also adds initial USB-C
+> > > support for both the ROCK 5B and the 5B+.
+> > >=20
+> > > Changes in PATCHv2:
+> > >  - Link to v1: https://lore.kernel.org/r/20250324-rock5bp-for-upstrea=
+m-v1-0-6217edf15b19@kernel.org
+> > >  - Replaced DT binding patch with the version from NAOKI
+> > >  - Dropped unused pinctrl for vcc5v0_host_en from the shared DT
+> > >  - Moved USB-C SBU DC pins to board specific files, since they differ
+> > >    between Rock 5B and Rock 5B+
+> > >  - Added pinmux for SBU DC pins
+> > >  - Rebased to latest version of Heiko's for-next branch
+> > >  - Disable USB-C on Rock 5B for now
+> > >=20
+> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > > ---
+> > > FUKAUMI Naoki (1):
+> > >       dt-bindings: arm: rockchip: Add Radxa ROCK 5B+
+> > >=20
+> > > Sebastian Reichel (4):
+> > >       arm64: dts: rockchip: move rock 5b to include file
+> > >       arm64: dts: rockchip: move rock 5b to include file
+> > >       arm64: dts: rockchip: add Rock 5B+
+> > >       arm64: dts: rockchip: add USB-C support for ROCK 5B+
+> > >=20
+> > >  .../devicetree/bindings/arm/rockchip.yaml          |    5 +
+> > >  arch/arm64/boot/dts/rockchip/Makefile              |    1 +
+> > >  .../boot/dts/rockchip/rk3588-rock-5b-plus.dts      |  129 +++
+> > >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts    |  970 +---------=
+--------
+> > >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi   | 1082 ++++++++++=
+++++++++++
+> > >  5 files changed, 1247 insertions(+), 940 deletions(-)
+> > > ---
+> > > base-commit: b7caeb9545db25649eda36ce593b70cc2aa804ab
+> > > change-id: 20250324-rock5bp-for-upstream-fd85b00b593b
+> > >=20
+> > > Best regards,
+> > > --
+> > > Sebastian Reichel <sre@kernel.org>
+> > >=20
+> > >=20
+> > >=20
+> >=20
+> >=20
+> > My bot found new DTB warnings on the .dts files added or changed in this
+> > series.
+> >=20
+> > Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> > are fixed by another series. Ultimately, it is up to the platform
+> > maintainer whether these warnings are acceptable or not. No need to rep=
+ly
+> > unless the platform maintainer has comments.
+> >=20
+> > If you already ran DT checks and didn't see these error(s), then
+> > make sure dt-schema is up to date:
+> >=20
+> >   pip3 install dtschema --upgrade
+> >=20
+> >=20
+> > This patch series was applied (using b4) to base:
+> >  Base: base-commit b7caeb9545db25649eda36ce593b70cc2aa804ab not known, =
+ignoring
+> >  Base: attempting to guess base-commit...
+> >  Base: tags/v6.15-rc1-40-g425af91c5802 (best guess, 2/3 blobs matched)
+> >
+> > If this is not the correct base, please add 'base-commit' tag
+> > (or use b4 which does this automatically)
 
-The following changes to Krishna's v5 were made by me:
-  - Revert pcie_link_is_active return type back to int per Lukas' review
-    comments
-  - Handle non-zero error returns at call site of the new function in
-    pci.c/pci_bridge_wait_for_secondary_bus
+Looks like I missed that the rebase to your latest for-next
+branch kept one patch, which you dropped ("Revert "dt-bindings: mfd:
+syscon: Add rk3528 QoS register compatible") resulting in the
+unknown base commit being specified by b4. FWIW the real base commit
+would have been e8adbfc19627.
 
- drivers/pci/hotplug/pciehp.h      |  1 -
- drivers/pci/hotplug/pciehp_ctrl.c |  2 +-
- drivers/pci/hotplug/pciehp_hpc.c  | 33 +++----------------------------
- drivers/pci/pci.c                 | 26 +++++++++++++++++++++---
- include/linux/pci.h               |  4 ++++
- 5 files changed, 31 insertions(+), 35 deletions(-)
+> > New warnings running 'make CHECK_DTBS=3Dy for arch/arm64/boot/dts/rockc=
+hip/' for 20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org:
+> >=20
+> > arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dtb: /edp@fdec0000: fa=
+iled to match any schema with compatible: ['rockchip,rk3588-edp']
+> > arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dtb: /edp@fded0000: fa=
+iled to match any schema with compatible: ['rockchip,rk3588-edp']
+>=20
+> This should be already fixed by the rk3588-edp addition in linux-next:
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commi=
+t/?id=3Df855146263b14abadd8d5bd0e280e54fbab3bd18
 
-diff --git a/drivers/pci/hotplug/pciehp.h b/drivers/pci/hotplug/pciehp.h
-index 273dd8c66f4e..acef728530e3 100644
---- a/drivers/pci/hotplug/pciehp.h
-+++ b/drivers/pci/hotplug/pciehp.h
-@@ -186,7 +186,6 @@ int pciehp_query_power_fault(struct controller *ctrl);
- int pciehp_card_present(struct controller *ctrl);
- int pciehp_card_present_or_link_active(struct controller *ctrl);
- int pciehp_check_link_status(struct controller *ctrl);
--int pciehp_check_link_active(struct controller *ctrl);
- void pciehp_release_ctrl(struct controller *ctrl);
+In any case it's unrelated to this series, since neither the ROCK
+5B, nor the 5B+ use or reference the edp node at all.
 
- int pciehp_sysfs_enable_slot(struct hotplug_slot *hotplug_slot);
-diff --git a/drivers/pci/hotplug/pciehp_ctrl.c b/drivers/pci/hotplug/pciehp_ctrl.c
-index d603a7aa7483..4bb58ba1c766 100644
---- a/drivers/pci/hotplug/pciehp_ctrl.c
-+++ b/drivers/pci/hotplug/pciehp_ctrl.c
-@@ -260,7 +260,7 @@ void pciehp_handle_presence_or_link_change(struct controller *ctrl, u32 events)
- 	/* Turn the slot on if it's occupied or link is up */
- 	mutex_lock(&ctrl->state_lock);
- 	present = pciehp_card_present(ctrl);
--	link_active = pciehp_check_link_active(ctrl);
-+	link_active = pcie_link_is_active(ctrl->pcie->port);
- 	if (present <= 0 && link_active <= 0) {
- 		if (ctrl->state == BLINKINGON_STATE) {
- 			ctrl->state = OFF_STATE;
-diff --git a/drivers/pci/hotplug/pciehp_hpc.c b/drivers/pci/hotplug/pciehp_hpc.c
-index 8a09fb6083e2..278bc21d531d 100644
---- a/drivers/pci/hotplug/pciehp_hpc.c
-+++ b/drivers/pci/hotplug/pciehp_hpc.c
-@@ -221,33 +221,6 @@ static void pcie_write_cmd_nowait(struct controller *ctrl, u16 cmd, u16 mask)
- 	pcie_do_write_cmd(ctrl, cmd, mask, false);
- }
+Makes me wonder, if it would also have triggered with the correct
+base (since the eDP DT binding is not in that branch).
 
--/**
-- * pciehp_check_link_active() - Is the link active
-- * @ctrl: PCIe hotplug controller
-- *
-- * Check whether the downstream link is currently active. Note it is
-- * possible that the card is removed immediately after this so the
-- * caller may need to take it into account.
-- *
-- * If the hotplug controller itself is not available anymore returns
-- * %-ENODEV.
-- */
--int pciehp_check_link_active(struct controller *ctrl)
--{
--	struct pci_dev *pdev = ctrl_dev(ctrl);
--	u16 lnk_status;
--	int ret;
--
--	ret = pcie_capability_read_word(pdev, PCI_EXP_LNKSTA, &lnk_status);
--	if (ret == PCIBIOS_DEVICE_NOT_FOUND || PCI_POSSIBLE_ERROR(lnk_status))
--		return -ENODEV;
--
--	ret = !!(lnk_status & PCI_EXP_LNKSTA_DLLLA);
--	ctrl_dbg(ctrl, "%s: lnk_status = %x\n", __func__, lnk_status);
--
--	return ret;
--}
--
- static bool pci_bus_check_dev(struct pci_bus *bus, int devfn)
- {
- 	u32 l;
-@@ -467,7 +440,7 @@ int pciehp_card_present_or_link_active(struct controller *ctrl)
- 	if (ret)
- 		return ret;
+-- Sebastian
 
--	return pciehp_check_link_active(ctrl);
-+	return pcie_link_is_active(ctrl_dev(ctrl));
- }
+--6qqwt57436zwj5dk
+Content-Type: application/pgp-signature; name="signature.asc"
 
- int pciehp_query_power_fault(struct controller *ctrl)
-@@ -584,7 +557,7 @@ static void pciehp_ignore_dpc_link_change(struct controller *ctrl,
- 	 * Synthesize it to ensure that it is acted on.
- 	 */
- 	down_read_nested(&ctrl->reset_lock, ctrl->depth);
--	if (!pciehp_check_link_active(ctrl))
-+	if (!pcie_link_is_active(ctrl_dev(ctrl)))
- 		pciehp_request(ctrl, PCI_EXP_SLTSTA_DLLSC);
- 	up_read(&ctrl->reset_lock);
- }
-@@ -884,7 +857,7 @@ int pciehp_slot_reset(struct pcie_device *dev)
- 	pcie_capability_write_word(dev->port, PCI_EXP_SLTSTA,
- 				   PCI_EXP_SLTSTA_DLLSC);
+-----BEGIN PGP SIGNATURE-----
 
--	if (!pciehp_check_link_active(ctrl))
-+	if (!pcie_link_is_active(ctrl_dev(ctrl)))
- 		pciehp_request(ctrl, PCI_EXP_SLTSTA_DLLSC);
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmgeQF0ACgkQ2O7X88g7
++poitw/+MHq79V24l1hjQHIuzvUXGjLZaEZfilPxIIKKwqfRXgozYO/1qo1Qr08y
+rgipI7lJEkwU+6LyXCkV85gip4HtjABRIvJT5U8QOmxHdCWaj/L/QoB3fehF+pFM
+OZ4bJf3uBaLhY7Icf5wEPRGLfiGvbCkiAxRGtAyyqF5PSMsQF1wpmsYE8cuf3LDz
+ZGwMUC/RSatYCdbPSnfQUAyUElyqppj/DDAKEu3ASN4dsNtDqENHZWhkIkWjhbM/
+RqSRXUqossAKXNVLngyJ8lOzI2g/hO7/KNDRC656BLcZO1tdo3TtGZgCFT7E/8bC
+k3fQ6h3GySO4rBH2ksheBF7CaxBc6b/YfNZv4Oc/rE0tKFsKqV/BCYRkqBmAUBSM
+v5dcUKf90u7m3SO0C8bWBJtZDbbjTwViVVJzVdSvCchkOFJuw591s12IfconMp9R
+jR35TA5n7RCuSrPbzwTpGwI646B9u9GWhYpbDmdPO0OmLWSoZ1ApIODNIYbaMMqk
+5CJBOgOYbWbLErGZyH8aNoJyaJpQHMuBeZulAWbBlS3xNQnjD8IXzu7bw/WtquDR
+1IM96K7AEs+bu+PZC8VslfUkMCIdzM1y+VEP7ibHNtn1I4ujZwjLMz5GxcwZza3G
+r0gAl6x8plUQNVMFYGVARO5zbvJXVtgram6hkRAbTY1+zHikEKg=
+=k755
+-----END PGP SIGNATURE-----
 
- 	return 0;
-diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-index e77d5b53c0ce..3bb8354b14bf 100644
---- a/drivers/pci/pci.c
-+++ b/drivers/pci/pci.c
-@@ -4926,7 +4926,6 @@ int pci_bridge_wait_for_secondary_bus(struct pci_dev *dev, char *reset_type)
- 		return 0;
-
- 	if (pcie_get_speed_cap(dev) <= PCIE_SPEED_5_0GT) {
--		u16 status;
-
- 		pci_dbg(dev, "waiting %d ms for downstream link\n", delay);
- 		msleep(delay);
-@@ -4942,8 +4941,7 @@ int pci_bridge_wait_for_secondary_bus(struct pci_dev *dev, char *reset_type)
- 		if (!dev->link_active_reporting)
- 			return -ENOTTY;
-
--		pcie_capability_read_word(dev, PCI_EXP_LNKSTA, &status);
--		if (!(status & PCI_EXP_LNKSTA_DLLLA))
-+		if (pcie_link_is_active(dev) <= 0)
- 			return -ENOTTY;
-
- 		return pci_dev_wait(child, reset_type,
-@@ -6247,6 +6245,28 @@ void pcie_print_link_status(struct pci_dev *dev)
- }
- EXPORT_SYMBOL(pcie_print_link_status);
-
-+/**
-+ * pcie_link_is_active() - Checks if the link is active or not
-+ * @pdev: PCI device to query
-+ *
-+ * Check whether the link is active or not.
-+ *
-+ * Return: link state, or -ENODEV if the config read failes.
-+ */
-+int pcie_link_is_active(struct pci_dev *pdev)
-+{
-+	u16 lnk_status;
-+	int ret;
-+
-+	ret = pcie_capability_read_word(pdev, PCI_EXP_LNKSTA, &lnk_status);
-+	if (ret == PCIBIOS_DEVICE_NOT_FOUND || PCI_POSSIBLE_ERROR(lnk_status))
-+		return -ENODEV;
-+
-+	pci_dbg(pdev, "lnk_status = %x\n", lnk_status);
-+	return !!(lnk_status & PCI_EXP_LNKSTA_DLLLA);
-+}
-+EXPORT_SYMBOL(pcie_link_is_active);
-+
- /**
-  * pci_select_bars - Make BAR mask from the type of resource
-  * @dev: the PCI device for which BAR mask is made
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 51e2bd6405cd..a79a9919320c 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1945,6 +1945,7 @@ pci_release_mem_regions(struct pci_dev *pdev)
- 			    pci_select_bars(pdev, IORESOURCE_MEM));
- }
-
-+int pcie_link_is_active(struct pci_dev *dev);
- #else /* CONFIG_PCI is not enabled */
-
- static inline void pci_set_flags(int flags) { }
-@@ -2093,6 +2094,9 @@ pci_alloc_irq_vectors(struct pci_dev *dev, unsigned int min_vecs,
- {
- 	return -ENOSPC;
- }
-+
-+static inline bool pcie_link_is_active(struct pci_dev *dev)
-+{ return false; }
- #endif /* CONFIG_PCI */
-
- /* Include architecture-dependent settings and functions */
---
-2.30.2
-
+--6qqwt57436zwj5dk--
 
