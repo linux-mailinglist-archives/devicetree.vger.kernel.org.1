@@ -1,83 +1,97 @@
-Return-Path: <devicetree+bounces-175688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1278AAB17C6
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C083AB17BD
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:51:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65D66189BF6D
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:52:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3CE51896AF6
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:52:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F0C230D14;
-	Fri,  9 May 2025 14:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA56B23184B;
+	Fri,  9 May 2025 14:51:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ANF7p8rN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="roz6jdw9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A61228632C;
-	Fri,  9 May 2025 14:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C22230D14;
+	Fri,  9 May 2025 14:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746802350; cv=none; b=ZYRLubSmhcpjEcgfXe/JfglIGU9c3KVHiM9e+PPyUPkLSBHd1eoSJGM7qoEvgKBqverwKD0kG0LuoD9a3xnnJSJftdi41cqjTd7BQ2kIdqIDUQPw+jUc/RCG4cMGph0WnQstpuapaFf1mlg9eY5HOr3DGy+nSZIy3nZQK4Bxvu0=
+	t=1746802311; cv=none; b=qvyzAyO/2lvxq6aY/ue6CCeBtr3bp30+jdLjnJjPcORqiRwJy9nS5MBnJrjnGy9+P5tG0SaLa6/cS4dS0hMbjq72ukzn96ztPzdxi7UGAhRxDP167h5NJNLO9YNb+0AcvxMSD23BhyGKv2FJtQx8IgJjCOTgT6k3dJ/Bzq9QRM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746802350; c=relaxed/simple;
-	bh=OTEN1DaOtUjbVq8sprWL2gVWbGZfMrJbFzgeJAqvJaY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gqTb2d/N2+McoJ3mkPqJ7wLmt4JfQ7VbmeTe0pyUc8E8Xods6ZtWETXVVxf/UHMgCLR7QSGMz1a6rjGBp1G/SbMPH9rLdEAOH0N5A9Y1aD1wPqPmcb6//SIIbdlHtN1WWWLtZdz0gFHGlQkN091OI0kbjXiFDsBaCijMPuJhqR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ANF7p8rN; arc=none smtp.client-ip=1.95.21.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=YuQstWxJDXR/04PVLTbjP9qbMp3yZCsqLaieSEbXh9o=;
-	b=ANF7p8rNE2VTcGJHz/ZlduVP9KN3auIwL60liLPmQLodnIBzBxcx4nTgpNN4Hu
-	FTMWfjc7/1lb/SH3e/Vkse2sbu3y1OdSKxb6CKXcMnXRKA6xNNx61Zl/zWfWqkLE
-	q1eCqk++4HmdwdXB7cW95QOZlmJdbTxdC0aelboymgDp8=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgDXTxNyFh5odDutAA--.16540S3;
-	Fri, 09 May 2025 22:51:32 +0800 (CST)
-Date: Fri, 9 May 2025 22:51:30 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Primoz Fiser <primoz.fiser@norik.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de
-Subject: Re: [PATCH v2 1/2] bindings: arm: fsl: Add PHYTEC
- phyBOARD-Nash-i.MX93 board
-Message-ID: <aB4Wcr0WtASkP0la@dragon>
-References: <20250505075107.2579801-1-primoz.fiser@norik.com>
+	s=arc-20240116; t=1746802311; c=relaxed/simple;
+	bh=yow+lntSz2MlCtXy+xkWXR8zt8RwshTgTwE/Pdd8ivk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TFUJ5qUFvE0OSU96PdBTDE24j7FlOnadXPswIYmxRjTbX5Kdi4uERDeFA4U6aSmV1y2gqY5zuyuW5af1iIc5zxlh6B7EuVPsu8T8mRBvkdyh3+Ily+tlsrgRWpx3yd/+w7dGVPYvWXUHjOmlhawsWv1SGDNa/iM3J8dlv0j89og=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=roz6jdw9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58B9FC4CEE4;
+	Fri,  9 May 2025 14:51:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746802310;
+	bh=yow+lntSz2MlCtXy+xkWXR8zt8RwshTgTwE/Pdd8ivk=;
+	h=From:Subject:Date:To:Cc:From;
+	b=roz6jdw9Eo/WA+UOrsBTXcOkhyJ1ts2cW5bv2rzfgwEBWwP/QdZMZv6xuk9depFbj
+	 4bEe+0CWE1//8ula1UMj6S6rAhFipyo9mEPVtbkcfgeV/tZLsAvSrs5iM95D1tPkBa
+	 4ZAYQQ8gzZ1oXpYPzP6fV6JYgufnPfdh9IK0JsoHGCKfs4x8fPBUNFp113PDC6BQly
+	 l56l3E5mE6w0Q/vp2K3tVB+C/iZiX6TkCF0iAT/QHD0IYBdK6ThRC58CT0/HZPQm/O
+	 /ySF3MzPIPYLCM0JKM1zieZ0ZeCb7f9a6YRu3K/YOAvOesWeQ6wdKsCK7sgQEX0f1x
+	 LLsKMYMSM5TkQ==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH net-next v2 0/2] Add the capability to allocate hw buffers
+ in SRAM for EN7581 SoC
+Date: Fri, 09 May 2025 16:51:32 +0200
+Message-Id: <20250509-airopha-desc-sram-v2-0-9dc3d8076dfb@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250505075107.2579801-1-primoz.fiser@norik.com>
-X-CM-TRANSID:Ms8vCgDXTxNyFh5odDutAA--.16540S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUO7KIDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNBREqWgeFnS9gAAA3k
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHQWHmgC/32NQQ6CMBBFr0Jm7ZhSqCSuvAdhMZQBJiolU0M0p
+ He3cgCX7yX//R0iq3CEa7GD8iZRwpLBngrwMy0TowyZwRrrjDMNkmhYZ8KBo8eo9MSRuK+YLr7
+ 3DvJuVR7lfTTbLvMs8RX0c1xs5c/+q20lGhxqa6qmrsp+pNuddeHHOegEXUrpC/sgeyyzAAAA
+X-Change-ID: 20250507-airopha-desc-sram-faeb3ea6cbc5
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org
+X-Mailer: b4 0.14.2
 
-On Mon, May 05, 2025 at 09:51:06AM +0200, Primoz Fiser wrote:
-> Add devicetree bindings for PHYTEC phyBOARD-Nash-i.MX93 board based on
-> the existing PHYTEC phyCORE-i.MX93 SoM (System-on-Module).
-> 
-> Adjust the compatibles for the existing phyBOARD-Segin-i.MX93 board, to
-> be able to add additional board based on the phyCORE-i.MX93 SoM.
-> 
-> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In order to improve packet processing and packet forwarding
+performances, EN7581 SoC supports allocating buffers for hw forwarding
+queues in SRAM instead of DRAM if available on the system.
+Rely on SRAM for buffers allocation if available on the system and use
+DRAM as fallback.
 
-Applied both, thanks!
+---
+Changes in v2:
+- fix sparse warnings
+- Link to v1: https://lore.kernel.org/r/20250507-airopha-desc-sram-v1-0-d42037431bfa@kernel.org
+
+---
+Lorenzo Bianconi (2):
+      dt-bindings: net: airoha: Add EN7581 memory-region property
+      net: airoha: Add the capability to allocate hw buffers in SRAM
+
+ .../devicetree/bindings/net/airoha,en7581-eth.yaml | 13 +++++
+ drivers/net/ethernet/airoha/airoha_eth.c           | 57 ++++++++++++++++++----
+ 2 files changed, 61 insertions(+), 9 deletions(-)
+---
+base-commit: a9ce2ce1800e04267e6d99016ed0fe132d6049a9
+change-id: 20250507-airopha-desc-sram-faeb3ea6cbc5
+
+Best regards,
+-- 
+Lorenzo Bianconi <lorenzo@kernel.org>
 
 
