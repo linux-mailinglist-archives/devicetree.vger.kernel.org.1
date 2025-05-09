@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-175549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B893AB121E
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:22:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 163CBAB121C
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:22:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 730F9189BF7A
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:22:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8365A17F0A8
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:22:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EF0B28ECEE;
-	Fri,  9 May 2025 11:21:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEDF42900AA;
+	Fri,  9 May 2025 11:21:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NwwOJdTm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pIDfMFGg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230F628FA80
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:21:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEBF628F948
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:21:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746789702; cv=none; b=ndepCiPDA/+juvjuJlYmoBIqDn3AdIb38vATZULGEfme714YW09hmxLjRdBKQ//MbkiUCtBivIQPJVLf09MpznCWHRshJfO6Uub3UaX/GAuzEkDSjSu8e+qkcdcOp897Y2g/T6DtkBv9xBhhHBrk/+Wi9+J8wBogFlUV1Id57xA=
+	t=1746789704; cv=none; b=MFyB7vw23yrttZ9wuhAHlDFaqwVlWjWWlNmnFspaOsFhVShdE8GfMvBckFdsvBIU7TB6fxkIONRUnvVzZXKLsOS1IWacymOvUU53iQWnA6/raC4Z9vrm2Ptnx4d2a5vDK8GseztFkQPe5zHx5WmdGbpVZMD05JCtvsa1wLnTNc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746789702; c=relaxed/simple;
-	bh=s66Afxw8a3xMB/SBhQiPMSJcaB2YeSJGVtDWMjyFv0E=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PXfT4X1tFPV0ulJzVs0AdR5Kew/kFhFEKD6cSkF4dies8aHyZR38qjgEDkTPmfKzrAwupBjdMaTQVSoZAs+lYXwxr6nrwH9Y6pOsGz5koWKLasWrZZGdDhe9rZA8YDF4XEWNAq9OZG/Ed07zKiMI3FCdOMG+X5wtZRVZkejukA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NwwOJdTm; arc=none smtp.client-ip=209.85.128.46
+	s=arc-20240116; t=1746789704; c=relaxed/simple;
+	bh=0BuO/miu0FNdGeIwKI4Igcv8UGoaQFfIol3GnMmPqqQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=DK5QP8b+damlSEelRF556VirnsmrZ4ACewSY+V9ePl22nkG0jiz2r5yBxNQXih44bsaAqU+UrckeNKDP0nWD7dASbPrEIrbvdbRZScmDwrkpd4Mk4K8+N9BWknBVkw9GwO6Onskx+/xm86xLFv72AMq9z2hWC1e2eFyDeFSPxow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pIDfMFGg; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-440668acbf3so717515e9.0
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:21:39 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43d4ff56136so1880585e9.3
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:21:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746789698; x=1747394498; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oKYrxiUxy0npi+Mk4ryYuieCR3b8bkKwTBnIOJMWofc=;
-        b=NwwOJdTmQxq/VG/dYTC6cSfE8YTviK5PrmwmJzCW1NZROf2OE48QjwMWKPgZWESYTZ
-         2v94o0+zRGE0j8nAl5mDBsKSVq5Sz5EoMyXhU6UozDovNhyZLLK/gtm2kvkj5fMZRYGR
-         nJLKKz0JNbkN22Zn5YBdsvAgJzi3AhX6fGrtCfOYUHjxjiSyU1r16zcoWW7FnNinGxrq
-         ro+fW5Hr9Pa+UP6d2F9V+Vg7GmeJwXQ3LHTscGcEGWfT/QBRcfnzDFWZV0O8dgI9bsG4
-         3aA/WZWOkUybS58A+huGulskl9Snz0fTx8qiMFeCG+U+noPqMoo85C/LXQ2ol5hGkkyB
-         sjWA==
+        d=linaro.org; s=google; t=1746789700; x=1747394500; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0zvaxLdQ0qhtC7Jg6xocbXcJy/vEo+u7LRWPS1JM5/o=;
+        b=pIDfMFGgO0Hrlt8MMl0kZ9RISa2qcjnwC3tO8RCk6eDiBXdZUcw+0Ar+QyClfzjjZy
+         q7rcmL7awLcC34ICwfPrZeq/wiwJaHqDPX6H/ajLjV466tOFN9TNhpAiOdW3yCwMdSr2
+         rOh36bgF1jWPEXBP+kcLn+mrYhM/1fGrb9R+UQBfyssoShzTwB9LV2LMet077oelBZnP
+         M7ievaT+a/NedGigYAbg8JbMIz2iNJvbcTjP7MJTQ6dWQ4zHRxOecc6PvWo1/s30197N
+         rIQY7W3sO/zbL6+WbkWpVsr3TBrPlskz6WJWPSNjiMYQ/bum8QWKus1rFmZlGJcagngz
+         Av8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746789698; x=1747394498;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oKYrxiUxy0npi+Mk4ryYuieCR3b8bkKwTBnIOJMWofc=;
-        b=RTUfRVfTdQTUNvIkfaUhw7WmWPeCs26hRLNz1w3IrbSyFE5osYLPKXZujB3ML2yW0v
-         wTxudM4+7uYGJhhzu415SnBJy/PANQVfyyXqAQ26YECS2pJsWWZYQsCy/iiSzfItPndE
-         745w/EeHdQ2b1/KvKyYGeIqm3V6Ovvt9kxxrkAmfXXVR69Oj/HrBkC8tZTx2N/sPRaPB
-         WCX5SaypVpmU7VcMPWtOa+8k9VWx11OJ/IKe/lmg2xRwIA61X8soSLulLtCXJEztffSr
-         KQVrdLSe3eU37s/o+k/1fGLMC9iCO+WjFYJrTBSeGWPkW5HKVJRZvb2opOblmLVLS6UX
-         /lmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW3qmhfZk8RHwwK9BBEwL7kmiJ7krUY5R4kGvc2dmBTecnhp8v6fwdsm+960iF3u670G/vlJEUG7FOp@vger.kernel.org
-X-Gm-Message-State: AOJu0YzA26bTsWEhT9FFcXkn41ipmBdZZoq0WAZgLtMLv1caS9dXmXjH
-	Bnc3pwXB5hwT+hqjVHyf1Jp4jGsGg7Nys2/kO78P7I0I2hVQSSpVwo5tSGfI/2g=
-X-Gm-Gg: ASbGncvijQtcq6p566TzO+dFa0/knJEO5CHhAdsdOQArhCH7DxRe0XxXpoqglcaocCd
-	QSHRnlXuKjoHV2euQq7MiL5s4ny+ZQ/mgQuasIngv2nLryRbcqa+Sjvgyj1MIBNQvsuN+xN1Cgg
-	oBngzWysr3mudQ0uRu1sAFt7b9hcok/EDMkyHSuFtInnz954F99xFjTKK6qjdX4o8nYLwrqpJb+
-	Qf/StnRLIuwfSf+N08OEJ4o70uv3NDEHgcY+N2x/qrwrw9WxP+O49JE8cNkrOwGF+Bxjkdp1qP6
-	NH8rZPd6/9GgHmlEpLlPA2xe+HmWdgDJnapFOfkWF3vvURfNMBy0wfbq4ncJ
-X-Google-Smtp-Source: AGHT+IFlbI/ktfksQQOpGjeIwbwt/o9L6Xz+ipgRzNOoWeXM2S9UxEpNqGKoq6dMD0VJeqXmsLSN+g==
-X-Received: by 2002:a05:600c:4451:b0:43b:c0fa:f9c4 with SMTP id 5b1f17b1804b1-442d6dc7d2dmr9532715e9.4.1746789698392;
-        Fri, 09 May 2025 04:21:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1746789700; x=1747394500;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0zvaxLdQ0qhtC7Jg6xocbXcJy/vEo+u7LRWPS1JM5/o=;
+        b=Rocv/FIGJ+NlvpMvtcMqJLtJUNvLOFhi+LOX9RXxeJvrJ+6QjlhuQgUAH96fIxwrU2
+         H+RKMa2NwYcOTJQllfuSVV1FN1YZrlBnkrAZpbiP3tOzkuQamF7y7Bd1OViZD6vbDbLA
+         v4qogQkK4RZE2bOS1B2begWb3LeBkltW8KXGoURGo/zyiqySDRoLfP1ZpD9wD2KtytJQ
+         L1jmk9aYEAtMdNq+sNb00s3ArknaKxot8eDxO7Q/EEtiIRnZD+Bsp+QO7OGEJHZJwM8U
+         tUsb7AWPr98xjoWFja+DrGx/tlgMj1JRqbkd8HQOtYgwMP/AOBnsnqAZgLBSvb4FvaBM
+         HKTg==
+X-Forwarded-Encrypted: i=1; AJvYcCVjyuh2FQabxJ/lmz27A4Zohhg/awCKabo9pUG6cHgsyl7F1bGpcZXNkk3B9/gZbSAALWIHMrBaeGMq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzj1tg8LOVs2etQ/tMcOhzKfE4Mpi/PJCQ2JpvW4M5k1HalaGdA
+	IZGhQc9guniWpTJAiJg7PgXibos2AZxF2+LPaFcerj5DxB7V5JZ5lWz6fZPS4mQ=
+X-Gm-Gg: ASbGncsXVvIFOYZ5KsoUU++p73zUlETrEBV+8rVfSoFPO89ATRXEGUb1S7PhwE4evD7
+	GPsNFShSZUfM1OODvI1uCbfkYa81puwZF/ahlaCkf1t1fE7+yBeJa5ZUYy8lfiB622PgEBDP0Pt
+	6os/mLce2MFjEpet9F7m8GT/EBU6CBdhF8F+J/j2gehJO1RKp3DKt3xK7U0blxgCnqxSLbxA/jc
+	J7ZBe7t4UqixgktbGXdwzF2W+HhzuJCPpqipIKoswLLJlkJhGJYYo9/Pz10JF8hBMhljE2+v65H
+	xtuA05agZHT/vBaZVaY4vkMO+1JwyW3BP8hZJKlxnJe+QHQZIw==
+X-Google-Smtp-Source: AGHT+IEuDuBg93OxIQQoW+nylcXuRFPBeBathaUSkxBNEQ4jD3mR42Jzx1DI1Z0ON8bFZOIloNRtJQ==
+X-Received: by 2002:a05:600c:1382:b0:439:a30f:2e49 with SMTP id 5b1f17b1804b1-442d6dd5413mr8885805e9.5.1746789699803;
+        Fri, 09 May 2025 04:21:39 -0700 (PDT)
 Received: from kuoka.. ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd328455sm69946945e9.2.2025.05.09.04.21.36
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd328455sm69946945e9.2.2025.05.09.04.21.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 May 2025 04:21:37 -0700 (PDT)
+        Fri, 09 May 2025 04:21:39 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Vladimir Oltean <olteanv@gmail.com>,
 	Mark Brown <broonie@kernel.org>,
@@ -84,69 +86,56 @@ To: Vladimir Oltean <olteanv@gmail.com>,
 	linux-kernel@vger.kernel.org,
 	openbmc@lists.ozlabs.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/2] spi: dt-bindings: fsl,dspi: Fix example indentation
-Date: Fri,  9 May 2025 13:21:31 +0200
-Message-ID: <20250509112130.123462-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] spi: dt-bindings: nuvoton,wpcm450-fiu: Drop unrelated nodes from DTS example
+Date: Fri,  9 May 2025 13:21:32 +0200
+Message-ID: <20250509112130.123462-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250509112130.123462-3-krzysztof.kozlowski@linaro.org>
+References: <20250509112130.123462-3-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1380; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=s66Afxw8a3xMB/SBhQiPMSJcaB2YeSJGVtDWMjyFv0E=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoHeU66+RBLo+l0lSwvGSnhzCY2cPM9tZGuIQ2p
- wsaUNeN9bOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaB3lOgAKCRDBN2bmhouD
- 17OnD/wKNyvGnBHJUSNZxdQlvkRO2cr4Gton4WSAWbZ2wKtlwLfNMdH+g91UdqFkXbytN2611vW
- RcWUGYGRpoCMqelb2OjY+fLEfn5HIJi2Wpxaxyx8h8fzjCUKngY7dfgLJDqbaFa/hLkmkCcimnG
- g3sFRdTXd+scm6fQHI++SP+ovsyGOHo/zHC60TCcusbm8CL8lweGzKuzVt+jdkbd3KYoSWsBH7X
- paH2jYlUqunABAf3g0XH6ay4Ib2CnW2dO9fdfN18DuiOl972ClrhYBKBcYYnEyaW1xSOl0fhaDD
- dVgvsd2JoQd0OC9ccfzCTSX9kQFZbR0zE0lTP5IBahHEut7bhUbr5tvGdnxYQK0XQvSMUHIXhNZ
- X8wfIDUGWRuygCbj0BdrLv6+m0OKJBOJjhjJo38KGkOW3LpqwmAd+47ottvB9ofZQoHfmg7DBvA
- HtyZ7r8C2siQqDa+N0Z2XYWKyB/ugPh4pw22tAOfJG+kZ72V8RksiGAFEIwuqzGt8ddNm6DE9SI
- BeSDarp7Jaqomm5eoDAYnxgff9GlYokHuol19yq9RDrFM37tvykY1ArwU2VTFPXs6vyf6MXUO1l
- xaSpQNs56nhvSp/MYbpZ7JfQo5ml5GGRp7mktfDKpWKJazgMpdteFiS5DRQwZpXgnPhC3L+e5oX iiM4xKX/3xOH2bg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=869; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=0BuO/miu0FNdGeIwKI4Igcv8UGoaQFfIol3GnMmPqqQ=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoHeU9Raekbf2tG03zWC6ko3skitxMRci9RwRJu
+ 8slhDM2iNaJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaB3lPQAKCRDBN2bmhouD
+ 14v3D/9iuwKe4zn277rUfVsmgt/II8fADdf1u/LFF8b+e1VT3f1aiSpH7QsV6sp6QMDJZT/Sjan
+ EA5EpUVZRySb6x1OoQPqh9geb8YTnuzu+1mWMxtmBwBzSqNa/ip2dEhYZIkq+zUlobn5dkMP6/N
+ z0P5+VQc/vFc6uFcTHXE4h3Ngj/l7NEMSlEJzaV5zdlAJh6LqF1L7x04TAc9S7KqAEwToyaJENd
+ LX0+FVaiwpPNKbElXgizKP16egYtBw+RTrZjsUxgOfIccAbaCPDSWQbw5Dd2tsfLhlD56fuQ//U
+ bkTV252AgvsA0CBs5BFD1CN7zHWsKzQF6SYkq+LlHWC8dTO8IViLSn09zJnknFgQCsUiYh8y5jE
+ xav332eHokzZ/JmqqM1BjdCrVPnlsxrvgaHLhJLu8h3bW4bucGZCs3LNUC+U2deDOeYbrAXE6D6
+ 5jqPWdMYxx5FLKVIJkMSJyDtTPV0YiXrqDmFsPJKYUNJAnIZFKGpN0Wpk6VYWZ9rDtepU0781rB
+ oO3zGPlWD4Snadvawz9PIqeEAueNplqWUjDezYjF3SvujhiPpmZpXkQ+Q1jV4stqNtnVPNXh3HW
+ nSGGYwfk/aaVVWfKANaOQqz0C69xQIXbDORTrC1Ts5aDxeQa4LgzFEkrxuJ4aZyTW7vw1Crk4AP WWtlsOiCaLqiCxg==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
 
-DTS example in the bindings should be indented with 2- or 4-spaces, so
-correct a mixture of different styles to keep consistent 4-spaces.
+Binding example should not contain other nodes, including other
+providers like syscon, because this is redundant and only adds
+unnecessary bloat.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
+ .../devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml         | 5 -----
+ 1 file changed, 5 deletions(-)
 
-No functional changes here, but saves some comments during reviews of
-new patches built on existing code.
----
- .../devicetree/bindings/spi/fsl,dspi.yaml          | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/spi/fsl,dspi.yaml b/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
-index 7ca8fceda717..bf9cce53c48d 100644
---- a/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
-+++ b/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
-@@ -105,12 +105,12 @@ examples:
-         big-endian;
- 
-         flash@0 {
--                compatible = "jedec,spi-nor";
--                reg = <0>;
--                spi-max-frequency = <16000000>;
--                spi-cpol;
--                spi-cpha;
--                spi-cs-setup-delay-ns = <100>;
--                spi-cs-hold-delay-ns = <50>;
-+            compatible = "jedec,spi-nor";
-+            reg = <0>;
-+            spi-max-frequency = <16000000>;
-+            spi-cpol;
-+            spi-cpha;
-+            spi-cs-setup-delay-ns = <100>;
-+            spi-cs-hold-delay-ns = <50>;
-         };
+diff --git a/Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml b/Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml
+index 4e0d391e1d69..c97bf48b56b4 100644
+--- a/Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml
++++ b/Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml
+@@ -59,8 +59,3 @@ examples:
+         reg = <0>;
+       };
      };
+-
+-    shm: syscon@c8001000 {
+-      compatible = "nuvoton,wpcm450-shm", "syscon";
+-      reg = <0xc8001000 0x1000>;
+-    };
 -- 
 2.45.2
 
