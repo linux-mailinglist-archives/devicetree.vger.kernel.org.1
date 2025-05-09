@@ -1,273 +1,256 @@
-Return-Path: <devicetree+bounces-175479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 261ABAB1008
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:12:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EE37AB1041
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:15:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FED67AB342
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:10:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7880F1C26777
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:15:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E684A28EA41;
-	Fri,  9 May 2025 10:11:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4E8F28ECD9;
+	Fri,  9 May 2025 10:14:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OUPmnkkT"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EzzwIC9z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89DB28E5F6;
-	Fri,  9 May 2025 10:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AE4428ECCD;
+	Fri,  9 May 2025 10:14:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746785515; cv=none; b=n6GQXExkOxDaSwogLKaJS8Qbp97AS6+H8/ftaX3HBxULh0YOGULNzapMFlcRuhOuDguAK63qIdQ1CRfvfAWPulcbMsYLMur/bubRwPIR4GTYTXeS3FyBCR/RXJB+mdFQ86CwGqX/LLZokCfHQNCE40aTwfdKTF45QPwR37kYiBc=
+	t=1746785672; cv=none; b=fYVpu5YdVJY6Z0GFkVYp877lAwWMHkQO+Um6IxSo5nXzO/EQEyJQ4hC2EkRgWCw+F3quIAHusDa35OpRnBySXmMOf/mer/qvAFvdgbDe/7mmRJxla+pJU5v8p0jrQvEy2OP6ulwFdg/E52i7p13fS6L799RHYd/HwZV4lxKyPUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746785515; c=relaxed/simple;
-	bh=RyRbJoQqShXjHqdPZDfdYWdVxMf5IuqJKffN44Ywzp4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZRQvDjAxPuu6Cp7+TzzwFxy9sFA17pdMVqZX0/fflhgHO5cXQNjOTRpKm56Gc68vFN6cM6Kshs4QGva4V2woqTvyhjPv/qcUMm9Zepn4v60/EhuuEqE2UGFPWenBg/cPm4wQDHTf/npAhVpbMcKM2+mRZ9/xvqIF9bhC6OJSAPg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OUPmnkkT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E247AC4CEE4;
-	Fri,  9 May 2025 10:11:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746785514;
-	bh=RyRbJoQqShXjHqdPZDfdYWdVxMf5IuqJKffN44Ywzp4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OUPmnkkTtYGDwDaLKEkXkpO1Y7+sXdtrNHxrGy9xkwvNkFjrqJy8O11cnT+q1ES3o
-	 4Y1/3eW29+MFL5dZacp7iSvT/sAHHYFa2O/8FClCvO3gF8LM/Slm/C0truwK5mZByv
-	 GI183gv5r+thHGwQfRprn23csSaD/Cfo7NdfqVEooqPrHj7z806vQMcU9BjnvbbI/B
-	 Z3dxvFSr4XpZ+SHSe3Cq5UYwkg6XnozVQcCB+5nHf3hy2Rz3P3GDm7WUa/LfrbBzXx
-	 QYAMw3jdv1cSZF1CAET6oC9RLDtA1B18la8BiqbrOlUHO4gBFZz8UFGfi9iiZ1kxys
-	 cPMWE3hSxNphA==
-Message-ID: <f1073f21-0885-486f-80c8-00f91dfd7448@kernel.org>
-Date: Fri, 9 May 2025 12:11:48 +0200
+	s=arc-20240116; t=1746785672; c=relaxed/simple;
+	bh=J3AVuez6F8/uBFou7ZP0zI9dTAr1AfcxcSWQ64Wq6Ho=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TmVpaLL8gdm560ah2jl3rKK3rlCOVoLSwb8uGWFl+xzEmS+MzWzWKZZe5Wz4LeMpxZ2lYVBt/ig3p1k0m8OkxrZGGz6zf8S70jsEcJlGLHYm+9lKdgtnsRKR6RTf/uc5+sI4+CiQHW90ab+GVXJt4Tjq3CKk1Xw12wTBUrKwf3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EzzwIC9z; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1746785668;
+	bh=J3AVuez6F8/uBFou7ZP0zI9dTAr1AfcxcSWQ64Wq6Ho=;
+	h=From:Subject:Date:To:Cc:From;
+	b=EzzwIC9zU9zuT3hTjvO4xKeOx1bOmO9tADkqCj3u/IDt6zrvyuVN9B/2xaOARHcLQ
+	 pASv9LvaTFRJmisriHl5v58i3zW78L2HNA/Bw/17UXTxgpzOuFNCdNxUHdNaeQcNUx
+	 pysEApWkgrO7HE2IPSBWK5uH8bE6LTpdWfpebEaTpVOF6WP2eHxMJvvnsRJwtComdo
+	 TDlfEW2M50VKt7b9xyA3Wom6XpPx2B+kh7Tk6PJnnwXEzEhyJbePeMegdxu6TgovqI
+	 TNJaHJDwI81sUam9fjmZlis1KGm+HOhCqcecKDSk5Nut66jTZoDIDpUBYzk8N+Dhdk
+	 qYYSECAPZ66Zw==
+Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id CC6DC17E0202;
+	Fri,  9 May 2025 12:14:26 +0200 (CEST)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Subject: [PATCH v6 0/5] Add Mali GPU support for Mediatek MT8370 SoC
+Date: Fri, 09 May 2025 12:12:46 +0200
+Message-Id: <20250509-mt8370-enable-gpu-v6-0-2833888cb1d3@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] dt-bindings: media: nxp: Add Wave6 video codec
- device
-To: Nas Chung <nas.chung@chipsnmedia.com>
-Cc: "mchehab@kernel.org" <mchehab@kernel.org>,
- "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
- "sebastian.fricke@collabora.com" <sebastian.fricke@collabora.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-imx@nxp.com" <linux-imx@nxp.com>, "marex@denx.de" <marex@denx.de>,
- "jackson.lee" <jackson.lee@chipsnmedia.com>,
- "lafley.kim" <lafley.kim@chipsnmedia.com>
-References: <20250422093119.595-1-nas.chung@chipsnmedia.com>
- <20250422093119.595-3-nas.chung@chipsnmedia.com>
- <20250425-romantic-truthful-dove-3ef949@kuoka>
- <SL2P216MB124656A87931B153F815820BFB8AA@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <SL2P216MB124656A87931B153F815820BFB8AA@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB7VHWgC/23OQW7DIBAF0KtYrEs1gMeYrHqPqgvA4wTJNil2r
+ FSR717iVEqksvwj/ffnxmZKgWZ2qG4s0RrmEKccmreK+ZOdjsRDlzOTIBGEQD4urdLAabJuIH4
+ 8X7hyTY8Ge9uojuXeOVEfrrv5+fXIib4vmV4eR+bsTNzHcQzLoZrouvCdR5DsXjiFeYnpZ/9pF
+ Xvjb74pzK+CAwfbON2SkejbDx+HwbqY7Hve2MVVvigKSorMihdYd9AK7ByWFPVUJOiSorKikYw
+ zIHvjRUmpXxQhSkp9V3RHTluNXqqSgk8lOyUFs2JakrV2CgT++2Xbtl8YqK9R/wEAAA==
+X-Change-ID: 20250115-mt8370-enable-gpu-3b6f595fa63d
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Steven Price <steven.price@arm.com>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746785666; l=7991;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=J3AVuez6F8/uBFou7ZP0zI9dTAr1AfcxcSWQ64Wq6Ho=;
+ b=zJOdklpSG6ehqy0yT39gJGPC2ayJ7OW+MMwKPkyB2JR+xh87mdflkvl1EIY+/pLmO/CbXx2Vn
+ x61pnKwk7deAF8w3Hsl2vmZ0iAvBdTxfNbr9ZSU2r/HRBNAS6YedDrI
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-On 09/05/2025 11:59, Nas Chung wrote:
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    #include <dt-bindings/clock/nxp,imx95-clock.h>
->>> +
->>> +    soc {
->>> +      #address-cells = <2>;
->>> +      #size-cells = <2>;
->>> +
->>> +      vpu: video-codec {
->>
->> Why this device does not have MMIO? Sorry, but makes little sense and if
->> you posted and tested your entire DTS you would see why.
-> 
-> I initially thought that if the reg property is declared in the child,
-> it would not need to be declared in the parent node.
-> I based this approach on the mediatek,mt8195-jpegenc.yaml binding,
-> where the parent node does not include MMIO.
+This patchset adds the support of the ARM Mali G57 MC2 GPU (Valhall-JM,
+dual core), integrated in the Mediatek MT8370 SoC, to the panfrost
+driver and to the mt8370.dtsi include file.
 
-Do you have access to mt8195 datasheet? What is the memory/register
-layout there?
+Since v4 patchset was sent, the [1] patchset adds in panfrost driver
+the AARCH64_4K page table format support and enablement for Mediatek
+SoC with integrated Arm Mali-G57, already supported in panfrost driver
+(like MT8188, MT8192, MT8195, MT8390, MT8395...).
+As MT8370 SoC is a less powerful variant of MT8390 (same GPU but with
+one less core for MT8370), I've reworked the second patch
+('drm/panfrost: Add support for Mali on the MT8370 SoC') to enable the
+AARCH64_4K mode on this SoC as well by adding specific MT8370 platform
+data to set the needed flag.
+The previous patch revision uses MT8186 platform data because despite
+having different GPU architecture (Mali G52 2EE MC2 for MT8186, making
+them not compatible), using the same plaform data, for describing the
+same power management features only, was okay.
+But now, the platform data also contains the GPU configuration quirk
+bitfield that needs to be modified to enable the AARCH64_4K page table
+format, and in order not to change MT8186 behaviour, I add specific
+MT8370 platform data.
 
-If you do not have access, why do you think these are similar devices?
+I've tested this patchset on a Mediatek Genio 510 EVK board,
+with a kernel based on linux-next (tag: next-20250502).
 
-> 
-> But, if this structure is problematic, I will address it in patch v3.
-> 
->>
->> Can we see the entire DTS?
-> 
-> Sure !
-> Below is the cnm.wave633c.example.dts file created from dt_binding_check.
+The panfrost driver probed with the following messages:
+```
+panfrost 13000000.gpu: clock rate = 390000000
+panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x0 status 0x0
+panfrost 13000000.gpu: features: 00000000,000019f7, issues: 00000003,
+  80000400
+panfrost 13000000.gpu: Features: L2:0x08130206 Shader:0x00000000
+  Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
+panfrost 13000000.gpu: shader_present=0x5 l2_present=0x1
+[drm] Initialized panfrost 1.3.0 for 13000000.gpu on minor 0
+```
 
-This is not the entire DTS.
+Running glmark2-es2-drm is also OK:
+```
+=======================================================
+    glmark2 2023.01
+=======================================================
+    OpenGL Information
+    GL_VENDOR:      Mesa
+    GL_RENDERER:    Mali-G57 (Panfrost)
+    GL_VERSION:     OpenGL ES 3.1 Mesa 25.0.3-1
+    Surface Config: buf=32 r=8 g=8 b=8 a=8 depth=24 stencil=0 samples=0
+    Surface Size:   1200x1920 fullscreen
+=======================================================
+[build] use-vbo=false: FPS: 952 FrameTime: 1.051 ms
+[build] use-vbo=true: FPS: 983 FrameTime: 1.018 ms
+[texture] texture-filter=nearest: FPS: 906 FrameTime: 1.105 ms
+[texture] texture-filter=linear: FPS: 908 FrameTime: 1.102 ms
+[texture] texture-filter=mipmap: FPS: 883 FrameTime: 1.134 ms
+[shading] shading=gouraud: FPS: 838 FrameTime: 1.194 ms
+[shading] shading=blinn-phong-inf: FPS: 778 FrameTime: 1.287 ms
+[shading] shading=phong: FPS: 583 FrameTime: 1.717 ms
+[shading] shading=cel: FPS: 553 FrameTime: 1.809 ms
+[bump] bump-render=high-poly: FPS: 573 FrameTime: 1.747 ms
+[bump] bump-render=normals: FPS: 868 FrameTime: 1.153 ms
+[bump] bump-render=height: FPS: 707 FrameTime: 1.415 ms
+[effect2d] kernel=0,1,0;1,-4,1;0,1,0;: FPS: 454 FrameTime: 2.204 ms
+[effect2d] kernel=1,1,1,1,1;1,1,1,1,1;1,1,1,1,1;: FPS: 172 FrameTime:
+  5.843 ms
+[pulsar] light=false:quads=5:texture=false: FPS: 770 FrameTime:
+  1.300 ms
+[desktop] blur-radius=5:effect=blur:passes=1:separable=true:windows=4:
+  FPS: 161 FrameTime: 6.235 ms
+[desktop] effect=shadow:windows=4: FPS: 484 FrameTime: 2.069 ms
+[buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction
+  =0.5:update-method=map: FPS: 512 FrameTime: 1.955 ms
+[buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction
+  =0.5:update-method=subdata: FPS: 513 FrameTime: 1.952 ms
+[buffer] columns=200:interleave=true:update-dispersion=0.9:update-fraction
+  =0.5:update-method=map: FPS: 577 FrameTime: 1.735 ms
+[ideas] speed=duration: FPS: 448 FrameTime: 2.235 ms
+[jellyfish] <default>: FPS: 226 FrameTime: 4.440 ms
+[terrain] <default>: FPS: 38 FrameTime: 26.861 ms
+[shadow] <default>: FPS: 328 FrameTime: 3.051 ms
+[refract] <default>: FPS: 72 FrameTime: 13.937 ms
+[conditionals] fragment-steps=0:vertex-steps=0: FPS: 844 FrameTime:
+  1.186 ms
+[conditionals] fragment-steps=5:vertex-steps=0: FPS: 685 FrameTime: 
+  1.462 ms
+[conditionals] fragment-steps=0:vertex-steps=5: FPS: 833 FrameTime:
+  1.201 ms
+[function] fragment-complexity=low:fragment-steps=5: FPS: 830 FrameTime:
+  1.205 ms
+[function] fragment-complexity=medium:fragment-steps=5: FPS: 525 FrameTime:
+  1.905 ms
+[loop] fragment-loop=false:fragment-steps=5:vertex-steps=5: FPS: 837
+  FrameTime: 1.195 ms
+[loop] fragment-steps=5:fragment-uniform=false:vertex-steps=5: FPS: 835 
+  FrameTime: 1.199 ms
+[loop] fragment-steps=5:fragment-uniform=true:vertex-steps=5: FPS: 550
+  FrameTime: 1.820 ms
+=======================================================
+                                  glmark2 Score: 611 
+=======================================================
+```
 
-> 
-> /dts-v1/;
-> /plugin/; // silence any missing phandle references
+[1] https://lore.kernel.org/dri-devel/20250324185801.168664-1-ariel.dalessandro@collabora.com/
 
-This is bindings example. I want to see entire DTS or DTSI of the SoC.
-Once you see entire DTS, you will notice that your current split is just
-not correct - it should be pretty obvious.
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+Changes in v6:
+- Add two new patches to commonize and drop duplicated data related to 
+  the power domain and supplies definitions for Mediatek SoC
+- Remove useless comment and rework MT8370 platform data to use
+  mediatek_pm_domains and default_supplies arrays in 'drm/panfrost: Add
+  support for Mali on the MT8370 SoC'
+- Update code-review trailer
+- Link to v5: https://lore.kernel.org/r/20250502-mt8370-enable-gpu-v5-0-98e247b30151@collabora.com
 
-And that's why we should keep rejecting such works which do not bring
-any DTS user, because the no one - neither we nor the contributors - see
-big picture and if someone saw the big picture then immediately would
-notice - it's just bollocks.
+Changes in v5:
+- Rebase on linux-next (tqg: next-2020501)
+- Rework 'drm/panfrost: Add support for Mali on the MT8370 SoC' patch
+  to have MT8370 support with its AARCH64_4K page table format support enabled 
+- Drop code-review trailers from 'drm/panfrost: Add support for Mali on
+  the MT8370 SoC' patch due to major changes in content and commit message
+- Add ack trailer for 'dt-bindings: gpu: mali-bifrost: Add compatible 
+  for MT8370 SoC' patch
+- Add glmark2-es2-drm benchmark results in cover letter
+- Link to v4: https://lore.kernel.org/r/20250211-mt8370-enable-gpu-v4-0-77deb7a75c23@collabora.com
 
-What you claim is:
+Changes in v4:
+- Add warning comment in mt8370.dtsi about GPU node override
+- Reword "dt-bindings: gpu: mali-bifrost: Add compatible for MT8370
+  SoC" commit message
+- Add code-review trailers
+- Link to v3: https://lore.kernel.org/r/20250207-mt8370-enable-gpu-v3-0-75e9b902f9c1@collabora.com
 
-soc@0 {
-  // MMIO bus
+Changes in v3:
+- Rebased on linux-next (tag: next-20250207)
+- Remove prerequisite change/patch ids
+- Reword commit messages to better explicit compatible needs
+- Link to v2: https://lore.kernel.org/r/20250130-mt8370-enable-gpu-v2-0-c154d0815db5@collabora.com
 
-  video-codec {
-    // which is a non-MMIO device and clearly a no-go.
+Changes in v2:
+- Rework "drm/panfrost: Add support for Mali on the MT8370 SoC" to avoid
+  data structure duplication, as requested by Krzysztof Kozlowski
+- Reword commit messages to use imperative mood and make new compatible
+  need more explicit
+- Link to v1: https://lore.kernel.org/r/20250116-mt8370-enable-gpu-v1-0-0a6b78e925c8@collabora.com
 
-Just look how DTS is organized and learn from it.
+---
+Louis-Alexis Eyraud (5):
+      dt-bindings: gpu: mali-bifrost: Add compatible for MT8370 SoC
+      drm/panfrost: Drop duplicated Mediatek supplies arrays
+      drm/panfrost: Commonize Mediatek power domain array definitions
+      drm/panfrost: Add support for Mali on the MT8370 SoC
+      arm64: dts: mediatek: mt8370: Enable gpu support
 
-> 
-> /{
->     compatible = "foo";
->     model = "foo";
->     #address-cells = <1>;
->     #size-cells = <1>;
-> 
-> 
->     example-0 {
->         #address-cells = <1>;
->         #size-cells = <1>;
-> 
->         
->         interrupt-parent = <&fake_intc0>;
->         fake_intc0: fake-interrupt-controller {
->             interrupt-controller;
->             #interrupt-cells = < 3 >;
->         };
-> 
-
-All of above are wrong for the SoC...
-
-> 
->         #include <dt-bindings/interrupt-controller/arm-gic.h>
->         #include <dt-bindings/clock/nxp,imx95-clock.h>
->         
->         soc {
->           #address-cells = <2>;
->           #size-cells = <2>;
->         
->           vpu: video-codec {
->             compatible = "nxp,imx95-vpu", "cnm,wave633c";
-
-What does this device represent? It is not "ctrl", because you made ctrl
-separate device node. Your binding description suggests that is the VPU
-control region.
-
->             clocks = <&scmi_clk 115>,
->                      <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
-
-For which sub devices these clocks are valid? For all of them?
-
->             clock-names = "vpu", "vpublk_wave";
->             power-domains = <&scmi_devpd 21>;
->             #address-cells = <2>;
->             #size-cells = <2>;
->             ranges;
->         
->             vpucore0: video-core@4c480000 {
->               compatible = "nxp,imx95-vpu-core";
->               reg = <0x0 0x4c480000 0x0 0x10000>;
->               interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
->             };
->         
->             vpucore1: video-core@4c490000 {
->               compatible = "nxp,imx95-vpu-core";
->               reg = <0x0 0x4c490000 0x0 0x10000>;
->               interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
->             };
->         
->             vpucore2: video-core@4c4a0000 {
->               compatible = "nxp,imx95-vpu-core";
->               reg = <0x0 0x4c4a0000 0x0 0x10000>;
->               interrupts = <GIC_SPI 301 IRQ_TYPE_LEVEL_HIGH>;
->             };
->         
->             vpucore3: video-core@4c4b0000 {
->               compatible = "nxp,imx95-vpu-core";
->               reg = <0x0 0x4c4b0000 0x0 0x10000>;
->               interrupts = <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>;
->             };
->         
->             vpuctrl: video-controller@4c4c0000 {
->               compatible = "nxp,imx95-vpu-ctrl";
->               reg = <0x0 0x4c4c0000 0x0 0x10000>;
->               memory-region = <&vpu_boot>;
->               power-domains = <&scmi_perf 10>;
->               #cooling-cells = <2>;
->               sram = <&sram1>;
->             };
->           };
->         };
-> 
->     };
-> };
-> 
->>
->> Best regards,
->> Krzysztof
-> 
-
+ .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |  5 +-
+ arch/arm64/boot/dts/mediatek/mt8370.dtsi           | 16 ++++++
+ drivers/gpu/drm/panfrost/panfrost_drv.c            | 61 ++++++++++++----------
+ 3 files changed, 53 insertions(+), 29 deletions(-)
+---
+base-commit: 1c51b1ba38c07e4f999802eb708bf798dd5f5d1b
+change-id: 20250115-mt8370-enable-gpu-3b6f595fa63d
 
 Best regards,
-Krzysztof
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+
 
