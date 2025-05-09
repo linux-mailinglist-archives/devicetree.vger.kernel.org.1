@@ -1,244 +1,110 @@
-Return-Path: <devicetree+bounces-175799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04C35AB1DA9
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 22:05:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67204AB1E51
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 22:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67D8217CAB7
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 20:05:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAC1517F5F3
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 20:30:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E1B253952;
-	Fri,  9 May 2025 20:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AB7C25F961;
+	Fri,  9 May 2025 20:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="q3zcnH13"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="e7S7OzB9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2021.outbound.protection.outlook.com [40.92.22.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA1823E342
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 20:05:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.22.21
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746821115; cv=fail; b=MiFiUDGGaxpqi8Wu4P35zhf8rSKv4nFLRrKUA3fG34p4PCKzAc5De2TBpmpN0Fl+TjEJJNZ0Db5lkbKGsO1mIIjYSkAoGxBsvQWk5RX3L+U2NIlpWZUiQJhCaGLt2+uS5Gbj/CXa4itYZU5EDfbHU5cgGT11xwzBJ0ZIvKyasZU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746821115; c=relaxed/simple;
-	bh=tFFVfFB3nswqWGGC41bctU5UMNN0jwcdj6h74mvI724=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=iO/FSGPeoR39tZtDcSYxbHJo5gtEoH1WPiZsGPGg8k/ebj8eCgC8RiM2lht7IQyNnIqN541lnF/1mivJ7v4VBUJEppKF6hm/C4Oz8RA+QCRxQnO02+ZKfl5nNYZkMtyDhXhh3IbyoTk8X/p7DWIg+VaR1k9kz7SzOgNa9/D69/0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=q3zcnH13; arc=fail smtp.client-ip=40.92.22.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BjF3cFOjyhDG26Lcw71HjcI3bdUZc1sdiVfC/NA+JEMktGLCIvP5irGnuEBKFvKhox9VhG0qgNVvcXgtz7LBWuDiWDu9yN3MSa8+XAQt+4jk0HWOK7e7NAhgQkiD/VS2JZf8GW7d6cpbRVzo2xZoOT6JzN907bYhKSyhwGhcC216F5jKwDMCgo16KwvKaEOnS3FY9he2T6bF/lu3/jPGP5BJbVYMLiVfd86whr9R1s3jqwMf1eCkg1PC/QvChhpp5ZAX9uHe76o32UiC2WtSZlKJ4YhjfsoeJ/fXWt5WExyZV7O6NazAlK4DH983fxXqZiQT4EWIbxcI20sLyIgdoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tOVonr1Tj1z1zZCapIpeC9Q8XUzJVXtmWy8NvnbXTO0=;
- b=GwpD8XCCtDm1SgEA+lzYyD+3ztZcCZTCMj2MSI62vSOHsaas74DgpzZ50Ll0Swz9JxF0nPh5jeNQaQQzNarAOQAdNej8oqA7nidzA8ccA9KLlJx/PHG6n384/z98SD/ZRd270j0/8f5fV+zstBEOgy520D2IBM6Zc4+Db1V7ESI9+lguicLDYQv7TgAFVMDohDL3VmDUtDH1lteR0zsXJ+5cgeuf6rQoFPV55cbupwfJ4p0dll7/xfkKVXFD7bfSzzjtGj3IfSD3EyH2DckDlA1hHYCDy5JgdseGXCQWjZ4OFdVYool3KiNDVPIjncexym8sPCxmfYSj+nr4/kqC+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tOVonr1Tj1z1zZCapIpeC9Q8XUzJVXtmWy8NvnbXTO0=;
- b=q3zcnH13sEexyT/xmBTgNKzjxmIUjxlXdc78aEjuS9e2/P1HME2MxlXOjHvJNcP4InUhQw64tx1iMR/QJUsW/33It7vrEuZqEhFSe1Pj3AS8hOMr1v6zOzB24st47W8/DI6IVYrOliggkFaOid1UahbOoEgiVS+XLdmoV0XdL+TQB2aG3AtBxMhXCTgQ+zOg0VtmBijjlKDRJ68eYSIWtP/nvhyB9Z42PfZm5pNGM7/Qd5SI3CSzMfJxsQyvlBPZ9YeE/wLKU/krq02nK1pWYuUmfNrG+y42UrEREyu1RQDeutNE0TVkLu3DpKTYn/xdJuYMijHxZRfIz/rEIMkFQQ==
-Received: from DM6PR19MB3722.namprd19.prod.outlook.com (2603:10b6:5:205::25)
- by PH0PR19MB5410.namprd19.prod.outlook.com (2603:10b6:510:fa::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.21; Fri, 9 May
- 2025 20:05:10 +0000
-Received: from DM6PR19MB3722.namprd19.prod.outlook.com
- ([fe80::bcae:8341:5687:fb8c]) by DM6PR19MB3722.namprd19.prod.outlook.com
- ([fe80::bcae:8341:5687:fb8c%2]) with mapi id 15.20.8699.019; Fri, 9 May 2025
- 20:05:10 +0000
-Date: Fri, 9 May 2025 15:05:06 -0500
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, Chris Morgan <macroalpha82@gmail.com>,
-	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, ryan@testtoast.com,
-	p.zabel@pengutronix.de, tzimmermann@suse.de,
-	maarten.lankhorst@linux.intel.com, simona@ffwll.ch,
-	airlied@gmail.com, mripard@kernel.org, samuel@sholland.org,
-	jernej.skrabec@gmail.com, conor+dt@kernel.org, krzk+dt@kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH V9 02/24] clk: sunxi-ng: h616: Add LVDS reset for LCD TCON
-Message-ID:
- <DM6PR19MB3722C30F0EAF4BBD4C014FEBA58AA@DM6PR19MB3722.namprd19.prod.outlook.com>
-References: <20250507201943.330111-1-macroalpha82@gmail.com>
- <20250507201943.330111-3-macroalpha82@gmail.com>
- <20250509151448.3191a3d8@donnerap.manchester.arm.com>
- <CAGb2v65ZhA3_pdgbq9aVdy-0rQcTNfrHoE_AvJxOvin0a6tnMA@mail.gmail.com>
- <20250509173140.26611141@donnerap.manchester.arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250509173140.26611141@donnerap.manchester.arm.com>
-X-ClientProxiedBy: SA9PR10CA0015.namprd10.prod.outlook.com
- (2603:10b6:806:a7::20) To DM6PR19MB3722.namprd19.prod.outlook.com
- (2603:10b6:5:205::25)
-X-Microsoft-Original-Message-ID: <aB5f8mTcuE2pQOQC@wintermute.localhost.fail>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF3D72620CD
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 20:24:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746822255; cv=none; b=dj/uo4HPFoQaWm9qWnAP7GjhH3emaeBfuwxI7R8bK0Afti5M7x/SZD2q397Gm1ExQb5ULtxjCBDiBoTwov7jETGwL8zJH/FkWBjgBcLM2pgu6wHLsnHqPzcGk1JHJ87SVFgdBB/uGCUYbreJDFOCaP/s9on1RbT9ux1tpSalzJU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746822255; c=relaxed/simple;
+	bh=1rOf5eV/GqxjoNeqfnZ5nSOruhLljUTw0xr6U1V8wUo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=o5eYf6xxAjIFIfK1MO7JEjuJu9iGTBQmNr0GixVuCNQujjoci4LuaOnO0WLoeW46Ytf50CpXJHwPRKVKafLrwjg7Q/3vN+seujSY5e/oOzCTvUKFDoZcC8txGFpDE3RpXT5/9LRE67ZmLHbHPduEdHp1aS8GTfrO4lro7WU+xC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=e7S7OzB9; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From; q=dns/txt; s=fe-e1b5cab7be; t=1746822252;
+ bh=ox/S3wEHdX6LK40h/zbAQGRFc9coOf0nkAtFa2lcQHo=;
+ b=e7S7OzB95EMPDTZ1kAY09B2RJ4XZcLWGi/v2XybiPyFYHVHoGL07dKz85f0q0liG4S91x7AIy
+ N1iyvykXKoP90+KRyuOLYJkFtRhBGobERdXILcaU9C70tfZxyiiyO3vRs+JnCFQnJADY7MGJ6Wb
+ 8hsBzG3GInz/VL9MR4Ip6+syvjjKg4fT7fwOEra7Av9OGRdNf1Nb+EAV0ITCdsSUN+lD2RlhNpd
+ /yHQgOLs3KLrEBtwOuk4cBj/j1Bntdwwihn9YLus+pF5AoZgNdaLaPXnjIkOqskgAfNhuFizuaL
+ 6OvurS5Ed/7pyZIMYyZSt/oni+SAiXHMxmwgHgfoC44A==
+X-Forward-Email-ID: 681e6468b323f1ffafd05d60
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.0.2
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Yao Zi <ziyao@disroot.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: [PATCH v3 0/2] rockchip: Enable Ethernet controller on Radxa E20C
+Date: Fri,  9 May 2025 20:23:56 +0000
+Message-ID: <20250509202402.260038-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR19MB3722:EE_|PH0PR19MB5410:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10871895-a845-4524-302d-08dd8f34cd0e
-X-MS-Exchange-SLBlob-MailProps:
-	WaIXnCbdHrMi34iUpeHrvUBJkG+6rPgnoMo2ZHPK1vAlSC486xx6H8bRufkWLhbiFHk09hS07/jK2N6aDz9Jg8VNOKOG/xbHpwm4lOWudl2vT3+nLjVKci+XED+Z+7B8m9aKwoEnKigVNJzUhNCFQyxubXRprtpioanbkjzjugB428740BRfZcGrfpzMbYQQbNBqs4r7hAtCcthPRb0eRRaLnNjaxBfdMiBRTJd/mAozDoiynZTF03r2mNKS2xCDms2/bqCXEp6FmVidVkp2+oV1a/+3dsCM5CpSRjWGgE+5nqVbmRdg+vBJZjhHzUiBZMMsm4z304y3MUHeUMUwRcv09KVwF5HVi9s/1+tD3tZKCfIidX8SBSYblexkPE+TshFi2kLkXPq/IMcV2Bkp3wkfh6u0CX1o0jvg9m+vrhXaa7Pkd7VUaU7rREExUWZ+8dhY63O0JxfB+nUI6uj72v8k6UFy5Xm7Y0V7uTbWA8ojfB5JYiOcHOdAjzUyXUo87k6PX9HWQPTu+5TcWS7KVBlYyAjwOJsB4Yjiv30EmGO2LOEp5D1hgLFGYbSm/9xuJHejuar1tHIgAqmosv5Gsr6a9bMrlmf7LucUJkUaRB4WFz0uZZXNsp4Wdbghwp+Ycz38fiF1EKABNJ0reIkslVHjNIzUEap87Vf0RcvUYY+Uj82BxjOX7FnYg/bC+ZDHIOfJghXHgfptx7kTDgbqyMKQMn7vG05QI4b6F1TicDYW64zjnd//tnqRhGmEoqcw9L0VckJALrE=
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|8060799009|19110799006|21061999006|7092599006|461199028|6090799003|15080799009|5072599009|3412199025|440099028;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?aDNNMm1Rd0NmU3E2OEM2ZHVRU21WY2VmT3djK2duc2RuYUtLdnNNbGgyeG4r?=
- =?utf-8?B?NWpBaVA0c3Y5aVBBVUlZV1FpT0tITUYyaWVNKzduaG9tS3gxa0lkNW15Wmdm?=
- =?utf-8?B?bUFmWW9oeVpyZlZxUjFtTGhyVFZBSEs1WDUreHpmVWQyRzdyK0s5bDBncHJL?=
- =?utf-8?B?NWduZCt5bjlaZVBYQVhvdUFuOVg0M09pVy9qS1VPMzdYSDFJM3M3Mzh2NGlj?=
- =?utf-8?B?UUU3aDRWZGljSHdXdi92UFZlNkx1Y3JGUlZ5bEd3MmptaEx4MktiSlQyaTNQ?=
- =?utf-8?B?S0pYUkMwKzFhVDNtSG4wNkVVM0NqN1F0RHJ3MkVONzErTjAyaXgxSW1lM1Zv?=
- =?utf-8?B?RXJLSDh5eHNBT0RaU2o1NHZsZWVFRkRzMklIK0J2dk8zOVdqNW95dXdWY3hG?=
- =?utf-8?B?YTJyZ1dPQkVBWk02MzJEaXB0UUQ5RFI1eGhFWW10c2xlMjY4eEJkZnNHQkNa?=
- =?utf-8?B?WDZwY3JremRheGZvY2l1eFNYTk5SdDFjcHZsbU44WlQ2dVhvZ3psa0RXNytJ?=
- =?utf-8?B?eUlkWHJHTmcxeHZyVm5wRERQR3UrL1p4cytRdUdhVEhBQ25uWjdWc2dnWURq?=
- =?utf-8?B?YndhZFlqZGh3SEFJY0NZUktTbDhubmEzalZpbGdIdG0rVWgyVmhpSkFFQ3NF?=
- =?utf-8?B?cHFoVDVLZ0RjOFRtaFlRQlNiVEx4cVoxbVlZQitQclZZeXYrVVlQNzR1dmZs?=
- =?utf-8?B?MEpONkdrN3kyeXUrOXZMQTJCOFdsQVBFdStPRjRwQmpyS2FNb2pxZE81Vm5x?=
- =?utf-8?B?ODg2bmJTNVhJOTFld2xLeEZFdnIyVUFNTUxkQ2hFYzJTbmU4TDZVYXB3OTc1?=
- =?utf-8?B?U1FvZVlSSFJjajBLdXB2L0cvU1YrZmM1OG55OTIvM203MmxYdHpSb1pOWkw4?=
- =?utf-8?B?eWFQTno0cXZTQmFRWjdmMUtOTnk2TDVhOEJSUlkyVytlVTlHS1RjcmFNZzFa?=
- =?utf-8?B?dEd6RnNTZjYxOTRQUEJudUtLMFc4WnZNbEZBSUthQ2Q1OXFmajdtN1JxZFA3?=
- =?utf-8?B?cGtRY0phN3Aybm1JSzdnZWVQQmErb0Rld0hPbXpXRnNvM0Rya3V4c3BNUWxH?=
- =?utf-8?B?eVdpc2R6aEoxMjBRRVJpeXJOUnlYNzQ3RHA2RitlV1RYNWlhSHY1MDdvZHZC?=
- =?utf-8?B?QWE5eXlaUnZmckJaYk9OZ0hSbWdCN0FZcmg4WmIzdVg5V3ZLT005QlNUS3li?=
- =?utf-8?B?ckxWQTlMd3FVZGdvakNoa0NvVlFCUGp2VUFGcXUwcE1UYTcvNXIyZE5lZkho?=
- =?utf-8?B?RjU1aTE3MDNhUitiSUQ2bVZHSER4aGZnQ000SzZSNUZWZEhUMFVMZDNMTkJj?=
- =?utf-8?B?a1VpWFFra3dqR0RnNEpqT1BESU9nMmVYNjUxN2lNQkI0eG00eWpXSmxLakF6?=
- =?utf-8?B?RUFRVDRxbWxxb3RFUVFUSU9QbkFIWnF3ZmN1N1hzb1J2NW5NU0RrY0s1cUxG?=
- =?utf-8?B?L0lJemNvcGFEMGZHbWdxR3VPNmEzM25sUnBLdGdobER1dndvL2dKakN5UE9H?=
- =?utf-8?B?RVpOSGpCRWxxMWVLenpTSS9rQTltSkxsaHVRSUwyRVFENXVNQ0VRTVJhcHA2?=
- =?utf-8?Q?yhln8ZfRw6YEt8XV0meKunFtE=3D?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?M0JaYTNlWktJblM5b2s5SlVzZTYyUy95NjZXT1JObHZVK0lRSWxlZm9HZWlo?=
- =?utf-8?B?WjM5U1I2QnloWU1QeENGVlYwRk1pRkhsZVZ1RzdtbjE3SldvOGJsZzlYVG1C?=
- =?utf-8?B?MjRtUUVvZ2NON29BTDZoOE0vYk1walQrL0xBa1pyeDRKbVEwOG50T2JBVFFN?=
- =?utf-8?B?SEUwKzRVNGthRndFNk9VUUl3TVZlQTlSZ0Eya3RFaUFOdTVYWEdwdE02TWhI?=
- =?utf-8?B?cDBXRkUwaFNjdk5Hc292aStpMFovMmQ4ZVFRR2VKMVRScW83VUozQS9VQWNG?=
- =?utf-8?B?UmtYZE9FeElVWjBWNGNrUHJJcjNFeHZwNUdVOFQ3RlNKZWJPczRGWHJpZzJW?=
- =?utf-8?B?d1gvOXk3RlBQbVFNdko4WG52L1ZwRWZHYkFLZ2dDT1hDcU1rcUVPSmtpOWZ2?=
- =?utf-8?B?cjFuSWhEZ0RlNzJvandxWVZreEVETTRsWmhhR0JtRmpvUkFTeC9sa0NjWUlt?=
- =?utf-8?B?M1Y5bnZ6ZkRvT0dzQ0tLR2ZGMmo3VmpEdUFZenFETHhyQmRkOUs2MEpheGo0?=
- =?utf-8?B?OUFOamxvTVZyM1ZETkZITGFhNSsyTzJiL01RWjYvZHE5L0hqVS8rU1YxWjlY?=
- =?utf-8?B?SG5BeVdzT1lEemZTUU5YOExscllWSGNqQ2RyTElBQW1yTDBYMER1NkFhWnkx?=
- =?utf-8?B?K0VyQXV6Y092Y1l0R0o5QkwxUEJSa3owVEJjbmtKUGlWZVU1aXUwMzFPRlIw?=
- =?utf-8?B?YWoyVE5zcWN6azFqOWJFSFl0b3labFBFaVVqR3hZN0tML0R5NWQ2Zjh6ZGsv?=
- =?utf-8?B?QnNqSGhQcXFkd2p3dXBac3ljY2pLTXZmOWltenlOUGd6TDdsaFFqQVZ1T3g0?=
- =?utf-8?B?YjIwaXBxKzNrbXJvaGFqMGpSNnl4aEp1RDN1MjJIa0ZsTVhyYVE2Q2VuYW93?=
- =?utf-8?B?T0h2Y1IvM1EyZVNKR083UDdUTVBGZHQ2YnhHV1hFd2hYMmNNUkYzMWo0cjVv?=
- =?utf-8?B?VWFQVUJWRDl4WUd5YjkvZ1dnY0wvd1JpL0NxL2JFM3VYbTJkSDlWRmxPTkkx?=
- =?utf-8?B?Wnh6Z2xyaXdvSTBxV2FCSGtIK0haenpFOHNPOXBnNGNoRG4zcDFLOEplU3Zu?=
- =?utf-8?B?RWR0SGFsZkNyZjJrNVdpdEYxT09qRjJGQ3BybWpoeThqa1VCMEZsaWtTMWdD?=
- =?utf-8?B?QTdWMHFVb2t0KzFMY0xDM0hiWHZSOVV4NGhTZGMzRnhSb1ZqUWMrWmozUHlH?=
- =?utf-8?B?RndCai9wZHB3aXl3N1ZsTFFMQytOQWJ6VVdlN1JMMDRtLzQ2WXlkZnNYRjFt?=
- =?utf-8?B?TUhqZnBTR3BIQkNNZGREZUl4NjlMV21xR3RpWG1yWlZCSFdKZDYzdDhlNjRN?=
- =?utf-8?B?c0RJVFVQQjZNOWZDU3B0L1V1NEp5dVIvK0dlWEp5NjVoQWxLTWh1ajExbGxj?=
- =?utf-8?B?RTFKai9pYm9zbVEwc2svNVdzbmYwWHkxblBPS2xYUy93Q3hoZ2NMdGxLdldo?=
- =?utf-8?B?UTQ5bTNkZzNoU1hNYXVhYUViRGhIWjM5ZWdBUWdGdjd6UVhjN2o4RFEwLzhW?=
- =?utf-8?B?WkRXd0M0TlVIVTVQWWZjQTdFYjN4ZkhkOVdzRGM2QU11Qytma0gvbjBXWTBt?=
- =?utf-8?B?Rnp0bFFoOUcxcjYyRUdXdXl2ZmxmaU5pUS9GMFlrN08xeWkvVzdCblVvbmVs?=
- =?utf-8?B?c3VOWWlMZE1iWlpxSXBHM1NQWjg0bXZWSlRTZlRoVXZlQmVuSlF6V3pYS0FS?=
- =?utf-8?B?b1UwS0NlRW51RC9ERForR1BCaVV1MFJPb1hCWGwycEpMZ0o5SEVzajNQckRh?=
- =?utf-8?Q?jNYH4lb2Fta+loFqjJ2/42+0KUWDGBwf2bS2Kul?=
-X-OriginatorOrg: sct-15-20-7741-18-msonline-outlook-c907d.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10871895-a845-4524-302d-08dd8f34cd0e
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR19MB3722.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2025 20:05:10.1761
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR19MB5410
+Content-Transfer-Encoding: 8bit
 
-On Fri, May 09, 2025 at 05:31:40PM +0100, Andre Przywara wrote:
-> On Fri, 9 May 2025 23:29:50 +0900
-> Chen-Yu Tsai <wens@csie.org> wrote:
-> 
-> > On Fri, May 9, 2025 at 11:14 PM Andre Przywara <andre.przywara@arm.com> wrote:
-> > >
-> > > On Wed,  7 May 2025 15:19:21 -0500
-> > > Chris Morgan <macroalpha82@gmail.com> wrote:
-> > >
-> > > Hi,
-> > >
-> > > despite the slightly ill fate of this series, I was wondering if we could
-> > > get the non-controversial clock parts for instance already merged, to
-> > > reduce the number of patches and mitigate the churn with dependencies?  
-> > 
-> > Sure. Are we expecting any of the DT bits to go in this cycle?
-> > If not I won't have to split the DT header patch on a separate
-> > branch.
-> 
-> I don't think so, the DT wouldn't make much sense on its own anyway. But
-> I guess it would help if the bindings / binding headers would go in
-> already?
-> 
-> Cheers,
-> Andre
+The Rockchip RK3528 has two Ethernet controllers, one 100/10 MAC to be
+used with the integrated PHY and a second 1000/100/10 MAC to be used
+with an external Ethernet PHY.
 
-I erred in combining everything into a large patch series, so I'm going
-to resubmit with things broken out by subsystem/in-order. Do you just
-want me to resubmit these two patches by themselves or can you take
-them now since they're the first 2? I won't need them until I add the
-LCD bindings into the sun50i-h616.dtsi file which will be towards the
-end of the commit chain.
+This series add device tree nodes for the Ethernet controllers found in
+RK3528 and enable the LAN interface on Radxa E20C.
 
-Thank you,
-Chris.
+This include a gmac0 node for the 100/10 MAC and its related integrated
+PHY node that only have recived limited testing. I have no board that
+expose an Ethernet port for the gmac0 and the integrated PHY. However,
+the PHY can be identified on addr 0x2 as 0044.1400 and in vendor kernel
+this relate to the Rockchip RK630 PHY. A proper PHY driver will be
+needed to support any real use of gmac0.
 
-> 
-> > 
-> > > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > >
-> > > > Add the required LVDS reset for the LCD TCON. Note that while this
-> > > > reset is exposed for the T507, H616, and H700 only the H700 has
-> > > > an LCD controller.
-> > > >
-> > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > > Signed-off-by: Ryan Walklin <ryan@testtoast.com>  
-> > >
-> > > Matches the T507 manual:
-> > >
-> > > Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> > >
-> > > Cheers,
-> > > Andre
-> > >  
-> > > > ---
-> > > >  drivers/clk/sunxi-ng/ccu-sun50i-h616.c | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >
-> > > > diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-> > > > index daa462c7d477..955c614830fa 100644
-> > > > --- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-> > > > +++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-> > > > @@ -1094,6 +1094,7 @@ static const struct ccu_reset_map sun50i_h616_ccu_resets[] = {
-> > > >       [RST_BUS_TCON_LCD1]     = { 0xb7c, BIT(17) },
-> > > >       [RST_BUS_TCON_TV0]      = { 0xb9c, BIT(16) },
-> > > >       [RST_BUS_TCON_TV1]      = { 0xb9c, BIT(17) },
-> > > > +     [RST_BUS_LVDS]          = { 0xbac, BIT(16) },
-> > > >       [RST_BUS_TVE_TOP]       = { 0xbbc, BIT(16) },
-> > > >       [RST_BUS_TVE0]          = { 0xbbc, BIT(17) },
-> > > >       [RST_BUS_HDCP]          = { 0xc4c, BIT(16) },  
-> > >
-> > >  
-> > 
-> 
+Changes in v3:
+- Rebase on top of latest mmind/for-next
+
+Changes in v2:
+- Split from the "Add GMAC support for RK3528" driver series [1]
+- Add ethernet-phy@2 for the integrated PHY
+- Rebase on top of the "Support I2C controllers in RK3528" series [2]
+
+[1] https://lore.kernel.org/r/20250309232622.1498084-1-jonas@kwiboo.se
+[2] https://lore.kernel.org/r/20250309070603.35254-1-ziyao@disroot.org
+
+Jonas Karlman (2):
+  arm64: dts: rockchip: Add GMAC nodes for RK3528
+  arm64: dts: rockchip: Enable Ethernet controller on Radxa E20C
+
+ .../boot/dts/rockchip/rk3528-radxa-e20c.dts   |  30 +++++
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 105 ++++++++++++++++++
+ 2 files changed, 135 insertions(+)
+
+-- 
+2.49.0
+
 
