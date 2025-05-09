@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-175661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C753AB171B
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:17:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC74CAB171C
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:18:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F60D1B649A7
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:17:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5C9F1C43A05
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:17:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24B6D21A453;
-	Fri,  9 May 2025 14:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F4B321ABB3;
+	Fri,  9 May 2025 14:17:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iJHrbdPR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U2q+dLGs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F390521A43D
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 14:17:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAE74213259;
+	Fri,  9 May 2025 14:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746800223; cv=none; b=ham464KDJz+6HPWbkZIwy9KLK53NFOAtMlUVLRsAu9rIQxJOCtLPA65IiaLGDHsypas41hou6HFAgQlfbaDNccHWbZPxuhT2ddstNlbjchHoYQ+vstTE2rnYXMs0YhGGQ6NUfrxXaHQcQfZr7CDPoB3q7dCBrI19qIAsA4nuO1Y=
+	t=1746800225; cv=none; b=clPV3JrCseA9o1X26sT95yddkc9ILLVcuQi4HuIQ/tYWHnjnjmyDlo4E4bZTQVEs3CzkZL6N+G6RM1q4xGsSjUxj9HchDrD0JLX9bpFdZ7xD2pm0cA3R/VtEhc0wBnobmxyqu+hheh5G/OZ3MutDWB41VCNK2ZkHiraJ/KJyx4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746800223; c=relaxed/simple;
-	bh=kFuKGQ5an19i2JENb5lALSPRYzO6h5w5ui0WYcZmv8A=;
+	s=arc-20240116; t=1746800225; c=relaxed/simple;
+	bh=hA+Ww4vy1WmPC6ngKo3l3xg9yMIXdOIipY2osC7nGmc=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=l43XyEYW1POrooG+w+IFUUJ2hCjWQEn4VRlcFyCcp2ZJqAKNoiLrRR9fQn1uMvznUakXa8zr4j5dgc5KMnzt9BJC+joQQ0TKL7Xvy5/3ft2Yv7EuhF0+ZCQE2cQhCxkBRMTsv7vytEp63OrQaeaC7PARxhWi/A8PZ4Kx32LvFG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iJHrbdPR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C02AC4CEEF;
-	Fri,  9 May 2025 14:17:02 +0000 (UTC)
+	 Message-Id:Subject; b=IOOq0mI46RONrskURKpJBvN6hinN+QczvtmeajvXsE8JwigEgebE0uJsVFDjYcViGskuZeqC/5pCCP5gw0cA64n9uvRKowse+8uA3bgusQXZGIvZ3tHGbtgAhQjiizzjXBbQMU3yJ+I2RuWWKkUO344slg1WCzZEksdJONzVa9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U2q+dLGs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45D22C4CEE4;
+	Fri,  9 May 2025 14:17:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746800222;
-	bh=kFuKGQ5an19i2JENb5lALSPRYzO6h5w5ui0WYcZmv8A=;
+	s=k20201202; t=1746800224;
+	bh=hA+Ww4vy1WmPC6ngKo3l3xg9yMIXdOIipY2osC7nGmc=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=iJHrbdPR8UWZAqLmiv7hRO6vG2NXFVUdvVIdB9xoZCRFaAghhDanhQlqLL5Xq9iqA
-	 aCm3My/J6HR2Si0UxIf0AhBizihOsfQg0pzwy3384v4hG5CSBu7no0SSNmYAxcjQ1c
-	 59GNK2MJXL6yXA+XLTSz9MlieK6p8QuwXJcdKQGRGwtd7ZT+O15ZBGK3C7XoEbBpsA
-	 ZBJLd9J5RYAqOJe9YvpE2Ij8vN4wxripauTm7WTQKe+a0eaAH9nVCXFbGLu+SY5jiV
-	 sPiVcU+1m3NRHIv4hZy+a8IQPN8+EogveuPGd6bv4K0rJNi1NgPPOJm2pNW/ZnWquO
-	 nqGxKACQp+h2A==
-Date: Fri, 09 May 2025 09:17:00 -0500
+	b=U2q+dLGsfJg1tCC/qbSehXOGekZyB7XemA6wb6gUXoawYhZ+aDMMv1ZFbMY6HUpnk
+	 c0YdwDI3/EMUekz8/xrb6JXfyG901ARY8SI/7eHeCInnyqkMA2WUq2N90dBSfCfzj6
+	 OQg5vMMlZ3a0FA+RxzGx82RhqHFQuvVr8CVLcotvKvRO03yk1A3itW6ceiqgtL5MLe
+	 1YFpGUCZp7wIwrFgIuLpj2XX0QR7O7NXHG0UiXXBNXFjaF0deecP7Gw6O1lMJruu+x
+	 53aKcIrEBamUjrpZPCimc6wIRyWbcGG7s/uFAPGdZyF9ISyrRXsYyg0xdWAV5r5mwR
+	 ebvEuOrTGbDJw==
+Date: Fri, 09 May 2025 09:17:02 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,37 +51,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Liviu Dudau <liviu.dudau@arm.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Sudeep Holla <sudeep.holla@arm.com>, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org
-To: Leo Yan <leo.yan@arm.com>
-In-Reply-To: <20250508161907.1152054-1-leo.yan@arm.com>
-References: <20250508161907.1152054-1-leo.yan@arm.com>
-Message-Id: <174679984987.3368571.16872352739655196662.robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: fvp: Add ETE and TRBE nodes for Rev C
- model
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com, 
+ FUKAUMI Naoki <naoki@radxa.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+In-Reply-To: <20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org>
+References: <20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org>
+Message-Id: <174679985287.3369051.14227124355079340433.robh@kernel.org>
+Subject: Re: [PATCH v2 0/5] arm64: dts: rockchip: add ROCK 5B+ support
 
 
-On Thu, 08 May 2025 17:19:07 +0100, Leo Yan wrote:
-> The FVP Rev C model includes CoreSight ETE and TRBE support.  These
-> features can be enabled by specifying parameters when launching the
-> model:
+On Thu, 08 May 2025 19:48:49 +0200, Sebastian Reichel wrote:
+> This series adds support for the ROCK 5B+, which (as the name suggests)
+> is an improved version of the ROCK 5B. It also adds initial USB-C
+> support for both the ROCK 5B and the 5B+.
 > 
->   -C cluster0.has_ete: 1
->   -C cluster1.has_ete: 1
->   -C cluster0.has_trbe: 1
->   -C cluster1.has_trbe: 1
+> Changes in PATCHv2:
+>  - Link to v1: https://lore.kernel.org/r/20250324-rock5bp-for-upstream-v1-0-6217edf15b19@kernel.org
+>  - Replaced DT binding patch with the version from NAOKI
+>  - Dropped unused pinctrl for vcc5v0_host_en from the shared DT
+>  - Moved USB-C SBU DC pins to board specific files, since they differ
+>    between Rock 5B and Rock 5B+
+>  - Added pinmux for SBU DC pins
+>  - Rebased to latest version of Heiko's for-next branch
+>  - Disable USB-C on Rock 5B for now
 > 
-> This change adds device tree bindings for the ETE and TRBE nodes.  They
-> are disabled by default to prevent kernel warnings from failed driver
-> probes, as the model does not enable the features unless explicitly
-> specified.
-> 
-> Signed-off-by: Leo Yan <leo.yan@arm.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  arch/arm64/boot/dts/arm/fvp-base-revc.dts | 62 +++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
+> FUKAUMI Naoki (1):
+>       dt-bindings: arm: rockchip: Add Radxa ROCK 5B+
+> 
+> Sebastian Reichel (4):
+>       arm64: dts: rockchip: move rock 5b to include file
+>       arm64: dts: rockchip: move rock 5b to include file
+>       arm64: dts: rockchip: add Rock 5B+
+>       arm64: dts: rockchip: add USB-C support for ROCK 5B+
+> 
+>  .../devicetree/bindings/arm/rockchip.yaml          |    5 +
+>  arch/arm64/boot/dts/rockchip/Makefile              |    1 +
+>  .../boot/dts/rockchip/rk3588-rock-5b-plus.dts      |  129 +++
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts    |  970 +-----------------
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi   | 1082 ++++++++++++++++++++
+>  5 files changed, 1247 insertions(+), 940 deletions(-)
+> ---
+> base-commit: b7caeb9545db25649eda36ce593b70cc2aa804ab
+> change-id: 20250324-rock5bp-for-upstream-fd85b00b593b
+> 
+> Best regards,
+> --
+> Sebastian Reichel <sre@kernel.org>
+> 
+> 
 > 
 
 
@@ -100,46 +123,17 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
+ Base: base-commit b7caeb9545db25649eda36ce593b70cc2aa804ab not known, ignoring
  Base: attempting to guess base-commit...
- Base: failed to guess base
+ Base: tags/v6.15-rc1-40-g425af91c5802 (best guess, 2/3 blobs matched)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/arm/' for 20250508161907.1152054-1-leo.yan@arm.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org:
 
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete0 (arm,embedded-trace-extension): 'arm,coresight-loses-context-with-cpu' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete0 (arm,embedded-trace-extension): $nodename:0: 'ete0' does not match '^ete(-[0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete1 (arm,embedded-trace-extension): 'arm,coresight-loses-context-with-cpu' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete1 (arm,embedded-trace-extension): $nodename:0: 'ete1' does not match '^ete(-[0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete2 (arm,embedded-trace-extension): 'arm,coresight-loses-context-with-cpu' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete2 (arm,embedded-trace-extension): $nodename:0: 'ete2' does not match '^ete(-[0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete3 (arm,embedded-trace-extension): 'arm,coresight-loses-context-with-cpu' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete3 (arm,embedded-trace-extension): $nodename:0: 'ete3' does not match '^ete(-[0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete4 (arm,embedded-trace-extension): 'arm,coresight-loses-context-with-cpu' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete4 (arm,embedded-trace-extension): $nodename:0: 'ete4' does not match '^ete(-[0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete5 (arm,embedded-trace-extension): 'arm,coresight-loses-context-with-cpu' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete5 (arm,embedded-trace-extension): $nodename:0: 'ete5' does not match '^ete(-[0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete6 (arm,embedded-trace-extension): 'arm,coresight-loses-context-with-cpu' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete6 (arm,embedded-trace-extension): $nodename:0: 'ete6' does not match '^ete(-[0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete7 (arm,embedded-trace-extension): 'arm,coresight-loses-context-with-cpu' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
-arch/arm64/boot/dts/arm/fvp-base-revc.dtb: ete7 (arm,embedded-trace-extension): $nodename:0: 'ete7' does not match '^ete(-[0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/arm/arm,embedded-trace-extension.yaml#
+arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dtb: /edp@fdec0000: failed to match any schema with compatible: ['rockchip,rk3588-edp']
+arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dtb: /edp@fded0000: failed to match any schema with compatible: ['rockchip,rk3588-edp']
 
 
 
