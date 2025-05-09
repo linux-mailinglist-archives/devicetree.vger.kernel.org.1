@@ -1,518 +1,287 @@
-Return-Path: <devicetree+bounces-175533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC9C6AB11BA
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:10:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED1FDAB11B0
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:10:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 753EC525198
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:09:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 233771C060E0
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:10:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D74292901;
-	Fri,  9 May 2025 11:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B5C28F940;
+	Fri,  9 May 2025 11:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KfmUwLzB"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DEQadB0W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3819629209E
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:07:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B7E28ECDA
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:10:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746788839; cv=none; b=Fv8SZxN/ER/DUoPnnH0CzLP/CCzCvZdAJwBxSXFdI4ITC7oh47gW3LgT/Ly0LiTc3bCsffgZqK+0mflbgx2jTLOZFzL489/w8tGnooB4f/TEAfrdhIc3wSEYAAGQE0gJV8T5PfESlYUaZXmMzyQwdsfchWedjXfcmiyanoRVnyo=
+	t=1746789026; cv=none; b=cyEm4cIO5Zl1WfwocMowgaho+OHRnWEJfLV+TlgJGPH1QdQiz3N5xIUUE101Ftqp+4tyrY64JxSwFWM4uNiWadem+eLux64vVhfC8fXQLzw5jop/ndE7qc3f/5eDJSEM8//mRW2tPiLH8xYhMO328ki2ZGJN54tgCifzOACz5Zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746788839; c=relaxed/simple;
-	bh=P6hkWNIB9LIlNth1/4VZQEEC7u2gPfD4GAPBE8iKT9s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SYnk2N3+U18P8FbcUjOoaSXVr/+R2q3QvqWgywM/8AlZpb4ZG0Ol0dtqv0uZSkx8flS02CRSOgZIJ83iGpmu9dma6j5yFkPmVtatyyC3/a3XyZxazNe9i9V7JUCL/AgTB6SKuRrzogkKX2KLVxuwh3/YaUvy/8fsE0rqoaWMVCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KfmUwLzB; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a1f8c85562so362622f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:07:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746788834; x=1747393634; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NfDBCe28zl/SAg4VVune9XblDhv/fAFglHkb6WzJx6s=;
-        b=KfmUwLzBjHPC5pi0gyAJTSo2qDdDWUEh84r/rIc+89q53TycDQVZ9aMPy7kah64Lp5
-         tHV0sz30+TDyc6nMLwio20CITy81jWuiqI+eOf2QLTOI3jszwpkt8f++AQqUTBl7wJqb
-         qPSAVl+lblsQhrqVGFY9LxWe68VKr9rA7OeWZo+7LSBiNALivryQNj5aH+K4W0+vkS1z
-         Hao1fvljukhjns1z8XTCbqdLd1I0EjVa6IZfyT51cT7JSgN34252CjwGGPPX86IIkOo7
-         nKC713yeHvMmIiwd58vxpw2b0NKqebzDBQ6FDRziGtjS8vVm6xdWdY8bw+TvCOa35QsK
-         spLw==
+	s=arc-20240116; t=1746789026; c=relaxed/simple;
+	bh=7dfdnysPwBMKS+82Clp896n3dU2RRsYEI+dYVYgZi0I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=M398xC4Jm62rOz3ujmpZlA/TXYaJwTNDksbCJqF53JIrVTewM9vssNmILoO/aQoeGntPNVLx0mqI0/bef3/0uZrzo7hEnvX25jkvDMyzt7lRi3n9w6A+wS5GKsCUCXgNERNP7QChfP9q6PnkFJK1WGfEyx70H/K4NSfbxD25Jt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DEQadB0W; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5493Mq91002555
+	for <devicetree@vger.kernel.org>; Fri, 9 May 2025 11:10:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=WChW6NT2y3bT2Dd/AmO3BGrFqcOhrO0ctaK
+	cTuAnPQ0=; b=DEQadB0Wx4paKl+O0rMDd+e5PkqMSktpxSPzcNt/mHl3boUJZ53
+	X8MpcQFpM3kI4Amx2zppnN2ALw6wj2tDhHmf9t0kSE/NrxEsJ1RnFguC8fX+a8/e
+	TaTCrkQjYe3KoZ+Vb59sOW96igq9eFMQXoQaXKhhMnxP2rpZmZ7EraDnpAcT1s7N
+	KSy3CBtMHZfptPf3tvU1uOeKcvA+W6E2gQB2NGJnCPXLdhq//Cpq+DrJPl+MXdvX
+	5yY8LajqNzU+F4IptUys9BWvEvIRUpGBnzL9xkTA+O47D1zppNDMp8ztAXW2sIep
+	7Grcd0Xn66ldTlLaPKAfK3ctVKDbJgOTmPg==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46gnp5cda0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 09 May 2025 11:10:22 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7395095a505so1537598b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:10:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746788834; x=1747393634;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NfDBCe28zl/SAg4VVune9XblDhv/fAFglHkb6WzJx6s=;
-        b=ZDITTRQgigqQqqyCHo3YmnhKLpdjFSwJOjcQ4gNPfG/ZpvihxtAyc3eO0j2k7rF8l9
-         8yL3WLTIypvUat4oYP2J4mstwMCqUD9Xel3RQUaPuVxtXtmwE8VgIN6vX3ouv7mxASRp
-         X+tDqzRCYm2iBfDrikfyBvY0toZqGlN4ZIVz/p5tYg+Fi450Bf8DXT/ZiYsQI562/ccd
-         ifPluQBkdMgtzwakD0Yn2LdzF6TNJQ3sRAPimi2rfeLOD30fxlj0ubiErFAnVNv6BAcy
-         I1H6hzB2c/r7Om0/aOl/Uu6Gp3Ra/NW/17xVGRclXM3p9byUZTbAah+GW60JCrxEB7gz
-         Ab2g==
-X-Forwarded-Encrypted: i=1; AJvYcCWiKxmuU2LOduWjahu9LithTcy6ipKbEU4CLPGigk9LCyr6FhE9y3jML1EcUemdla7gUJZxFC7b7ozY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKr1OgR2/spMyRQTKWedIRU3Xw2ebUU+1/PMHH0LHmE5Ydf+Dj
-	wcijOpRCX0zOu4KTXh64jRJUhyC2lRRONCn/rLO1hn4l6AEe41Y4U3As5nukGMs=
-X-Gm-Gg: ASbGnctb8BDQasNRuiWQGxAhKSUdZovAnafZW05AMRaeQlJRLZRAF9ZrMyLpnv44pL9
-	QArki0cHzHPWLRiJTKr6EZ96yBCLbO7PX/vwILKELo6QAUgAC6Vzhs9GOK882/xzqK/YigkH2IU
-	dN4llmkyRIQGNdRyO/mbaYyvjvG2dBw4lxQE3vN8MsxAy4o+bN6mUIFISeOsDxsWe9ft/m6UyXP
-	uSOBAGo2wSmAIqf7Sdza2S+W0e8xnqxd2JNAZVZ/CfBgIeijdGis1P/FlJ6dkFB0Odw+R5zbp8e
-	eoJVRrtL55ymf6Mlr0RDl9tHlrHodKK7uRivjCeq4Sw+mas=
-X-Google-Smtp-Source: AGHT+IEp3NLHKI4dsaZ2CvQTR4HmXAVodEDvfdIyQ8so2a8K6UPoMQBnrE+k8vgABY+2kwMQFLPTVA==
-X-Received: by 2002:a05:6000:4304:b0:3a0:b294:ccf2 with SMTP id ffacd0b85a97d-3a1f649cc02mr2743451f8f.52.1746788834336;
-        Fri, 09 May 2025 04:07:14 -0700 (PDT)
-Received: from ho-tower-lan.lan ([77.81.75.81])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ecadfsm2914797f8f.22.2025.05.09.04.07.13
+        d=1e100.net; s=20230601; t=1746789021; x=1747393821;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WChW6NT2y3bT2Dd/AmO3BGrFqcOhrO0ctaKcTuAnPQ0=;
+        b=HcJwn8+zOOdtdzsJh9nwmTD4xzm/r4ZiNT0zw9pR3Mq551b/OCgNLc40lhU3nKqnK+
+         ZMHKRlLuugDnKvFDjrHcAIDfHo3t9preD6xKfpm1pw6CgNrMcwRVClBzWpnLPjOHOQpA
+         sPo9NKvWZdfFyIuenX0tUPSVM3vCvGQUG1dDCASNA0ZPc/M9FCdW8aueFRJzWGmZic9P
+         0dxD1m9EnrKJHaLBwR/7mJNEm/qBRaX8csxCbkL6oxeBBl26BQycHMqC09NGYfGXK3dx
+         wHPQkaLrZzEFRFfmEYMJbh8yoznNkAWN8Trq4IrrK1j1S240vLglj5AOOj2Giff6X9T/
+         AePw==
+X-Forwarded-Encrypted: i=1; AJvYcCXAjmtxouFs2qRs8wXJI+4uMV3tGfa/xDD0Prm8Gx3CFmSjeKmYc7STi45M6h8pJK/Mz/qw+Q5KAKsl@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywn6Uq8Qh6xYNQ1RiJqyTttKonnTihIeQu9oKkYzjvOWRuz1hYD
+	8TxxXRI1COi2AJJshqUkObfnvVenNd9FH+fGBPn6+/WKgqxTHoGlD4VVPUJ200vII0bTwDGEtsV
+	dVwiLyzvHhc1z9WrRiq94OswY1sJsw0yCPiDZoVS5fU7OIT3LRZxTTijQCk0f
+X-Gm-Gg: ASbGncvxXp31xaogLn87lhvVPj37wa4VWT5pThZ4/+OxB5CGTZkaevXENT+qTMAV4Cz
+	P0ZRK+OFfTxPEVlnoIkiseD1tFg96udmDgBcpczVK4IAJUscr5ZCyNj5hrShG4JgWhx+OoQi5+B
+	N7L2yisxxzmqSOY2ISd+niAdu6b+nBsEg6n9jsSUx5hzzVSZfmgd3sHxVUmNvCBtUrubbeL9wPl
+	3tIFjGL7FkoMG2OYYIDPVKMhUe3F8urA9hBCtg2yatcHgDBR892GjaXvyCGQiOh2C5SmZUXcbRR
+	7RxEMN0NPReKv/8RsBKmcHQQ3qT8SQsf9YKO7eptTJDyfJ0=
+X-Received: by 2002:a05:6a00:1488:b0:736:5438:ccc with SMTP id d2e1a72fcca58-7423be886d6mr3590857b3a.9.1746789021312;
+        Fri, 09 May 2025 04:10:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF6B4hUPZkyN0EguRbayUTn9kR7wQ+X/PQBVDr7XZ2boU57acIR/MEr3SR0hxpbREh4Zp5GUg==
+X-Received: by 2002:a05:6a00:1488:b0:736:5438:ccc with SMTP id d2e1a72fcca58-7423be886d6mr3590816b3a.9.1746789020855;
+        Fri, 09 May 2025 04:10:20 -0700 (PDT)
+Received: from hu-jprakash-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74237734c4asm1556223b3a.57.2025.05.09.04.10.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 May 2025 04:07:13 -0700 (PDT)
-From: James Clark <james.clark@linaro.org>
-Date: Fri, 09 May 2025 12:06:01 +0100
-Subject: [PATCH 14/14] arm64: dts: Add DSPI entries for S32G platforms
+        Fri, 09 May 2025 04:10:20 -0700 (PDT)
+From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+To: jic23@kernel.org, robh@kernel.org, krzysztof.kozlowski@linaro.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, agross@kernel.org,
+        andersson@kernel.org, lumag@kernel.org,
+        dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
+        daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
+        thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
+        subbaraman.narayanamurthy@oss.qualcomm.com,
+        david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
+        quic_kamalw@quicinc.com
+Cc: rui.zhang@intel.com, lukasz.luba@arm.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        cros-qcom-dts-watchers@chromium.org, jishnu.prakash@oss.qualcomm.com,
+        quic_skakitap@quicinc.com, neil.armstrong@linaro.org,
+        stephan.gerhold@linaro.org
+Subject: [PATCH V6 0/5] Add support for QCOM SPMI PMIC5 Gen3 ADC
+Date: Fri,  9 May 2025 16:39:54 +0530
+Message-Id: <20250509110959.3384306-1-jishnu.prakash@oss.qualcomm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250509-james-nxp-spi-v1-14-32bfcd2fea11@linaro.org>
-References: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
-In-Reply-To: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
-To: Vladimir Oltean <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, larisa.grigore@nxp.com, arnd@linaro.org, 
- andrei.stefanescu@nxp.com, dan.carpenter@linaro.org
-Cc: linux-spi@vger.kernel.org, imx@lists.linux.dev, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- "Radu Pirea (NXP OSS)" <radu-nicolae.pirea@oss.nxp.com>, 
- Larisa Grigore <Larisa.Grigore@nxp.com>, 
- James Clark <james.clark@linaro.org>
-X-Mailer: b4 0.14.0
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=XL0wSRhE c=1 sm=1 tr=0 ts=681de29e cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=N0aDCOoQtnTZPCUHnXIA:9 a=zc0IvFSfCIW2DFIPzwfm:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: co7zqDoVRutMxLyubDRNHzi9_Q4FrRO8
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA5MDEwNyBTYWx0ZWRfX2ibtAZpav/fY
+ gXCtF9aMRtVmk9HjNxs6vMUcOOO2a0NDJjS+agVIUaESKCaQITSg8SoPAsGlIxu+TI+Vu/DuPZD
+ qdzFPzmSKBMdHU4xIY05H0Z7VLg3b+4IxU3SAY6oUj+86t3yoXdm2eo7eX8lTWBqG7pRydVnYtR
+ UVOteP/SGxHnIbo13gXx1XvQgUaq0Xgd1/N2lComlt9mlCyPnzy0e9U8QJftysXwBIa/g0A3gFP
+ iqbe9PDprGYGMJ2MwzoV6VI06+iJceT7EB5AK50EMyN+PP3q73xZ0ILRnzm2IAFHg3kXWOWDhSl
+ DMkC9rpbL5D6KYziTjqEiLku15eYhT4thPoRUgDljtd4aPh5sn2LNJggjeVhKMv+kTA+LG/qw5I
+ hk8uBBFloQMRIh2ZxSnG8FOGPV+yMLqaZrQBpseAsJmYRKw6rFdqpn42rreQel1FxTq6Jcx4
+X-Proofpoint-ORIG-GUID: co7zqDoVRutMxLyubDRNHzi9_Q4FrRO8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-09_04,2025-05-08_04,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 mlxscore=0 clxscore=1011 lowpriorityscore=0 suspectscore=0
+ mlxlogscore=999 malwarescore=0 adultscore=0 priorityscore=1501 bulkscore=0
+ spamscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505090107
 
-From: Larisa Grigore <larisa.grigore@nxp.com>
+PMIC5 Gen3 has a similar ADC architecture to that on PMIC5 Gen2,
+with all SW communication to ADC going through PMK8550 which
+communicates with other PMICs through PBS. The major difference is
+that the register interface used here is that of an SDAM present on
+PMK8550, rather than a dedicated ADC peripheral. There may be more than one
+SDAM used for ADC5 Gen3. Each ADC SDAM has eight channels, each of which may
+be used for either immediate reads (same functionality as previous PMIC5 and
+PMIC5 Gen2 ADC peripherals) or recurring measurements (same as PMIC5 and PMIC5
+Gen2 ADC_TM functionality). In this case, we have VADC and ADC_TM functionality
+combined into the same driver.
 
-S32G3 and S32G2 have the same 6 SPI devices, add the DT entries. Devices
-are all the same except spi0 has 8 chip selects instead of 5. Clock
-settings for the chip rely on ATF Firmware [1].
+Patch 1 is a cleanup, to move the QCOM ADC dt-bindings files from
+dt-bindings/iio to dt-bindings/iio/adc folder, as they are
+specifically for ADC devices. It also fixes all compilation errors
+with this change in driver and devicetree files and similar errors
+in documentation for dtbinding check.
 
-[1]: https://github.com/nxp-auto-linux/arm-trusted-firmware
-Co-developed-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
-Signed-off-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
-Signed-off-by: Larisa Grigore <Larisa.Grigore@nxp.com>
-Signed-off-by: James Clark <james.clark@linaro.org>
----
- arch/arm64/boot/dts/freescale/s32g2.dtsi        | 78 ++++++++++++++++++++++
- arch/arm64/boot/dts/freescale/s32g3.dtsi        | 78 ++++++++++++++++++++++
- arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi | 87 +++++++++++++++++++++++++
- arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi | 77 ++++++++++++++++++++++
- 4 files changed, 320 insertions(+)
+Patch 2 splits out the common ADC channel properties used on older
+VADC devices, which would also be reused on ADC5 Gen3.
 
-diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-index ea1456d361a3..68848575bf81 100644
---- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-@@ -376,6 +376,45 @@ uart1: serial@401cc000 {
- 			status = "disabled";
- 		};
- 
-+		spi0: spi@401d4000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x401d4000 0x1000>;
-+			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <8>;
-+			bus-num = <0>;
-+			dmas = <&edma0 0 7>, <&edma0 0 8>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi1: spi@401d8000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x401d8000 0x1000>;
-+			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <1>;
-+			dmas = <&edma0 0 10>, <&edma0 0 11>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi2: spi@401dc000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x401dc000 0x1000>;
-+			interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <2>;
-+			dmas = <&edma0 0 13>, <&edma0 0 14>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
- 		i2c0: i2c@401e4000 {
- 			compatible = "nxp,s32g2-i2c";
- 			reg = <0x401e4000 0x1000>;
-@@ -460,6 +499,45 @@ uart2: serial@402bc000 {
- 			status = "disabled";
- 		};
- 
-+		spi3: spi@402c8000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x402c8000 0x1000>;
-+			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <3>;
-+			dmas = <&edma0 1 7>, <&edma0 1 8>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi4: spi@402cc000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x402cc000 0x1000>;
-+			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <4>;
-+			dmas = <&edma0 1 10>, <&edma0 1 11>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi5: spi@402d0000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x402d0000 0x1000>;
-+			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <5>;
-+			dmas = <&edma0 1 13>, <&edma0 1 14>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
- 		i2c3: i2c@402d8000 {
- 			compatible = "nxp,s32g2-i2c";
- 			reg = <0x402d8000 0x1000>;
-diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-index 991dbfbfa203..4f883b1a50ad 100644
---- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-@@ -435,6 +435,45 @@ uart1: serial@401cc000 {
- 			status = "disabled";
- 		};
- 
-+		spi0: spi@401d4000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x401d4000 0x1000>;
-+			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <8>;
-+			bus-num = <0>;
-+			dmas = <&edma0 0 7>, <&edma0 0 8>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi1: spi@401d8000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x401d8000 0x1000>;
-+			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <1>;
-+			dmas = <&edma0 0 10>, <&edma0 0 11>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi2: spi@401dc000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x401dc000 0x1000>;
-+			interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <2>;
-+			dmas = <&edma0 0 13>, <&edma0 0 14>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
- 		i2c0: i2c@401e4000 {
- 			compatible = "nxp,s32g3-i2c",
- 				     "nxp,s32g2-i2c";
-@@ -524,6 +563,45 @@ uart2: serial@402bc000 {
- 			status = "disabled";
- 		};
- 
-+		spi3: spi@402c8000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x402c8000 0x1000>;
-+			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <3>;
-+			dmas = <&edma0 1 7>, <&edma0 1 8>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi4: spi@402cc000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x402cc000 0x1000>;
-+			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <4>;
-+			dmas = <&edma0 1 10>, <&edma0 1 11>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi5: spi@402d0000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x402d0000 0x1000>;
-+			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <5>;
-+			dmas = <&edma0 1 13>, <&edma0 1 14>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
- 		i2c3: i2c@402d8000 {
- 			compatible = "nxp,s32g3-i2c",
- 				     "nxp,s32g2-i2c";
-diff --git a/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi b/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi
-index d26af0fb8be7..812b37b0098b 100644
---- a/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi
-@@ -173,6 +173,77 @@ i2c4-gpio-grp1 {
- 			pinmux = <0x2d40>, <0x2d30>;
- 		};
- 	};
-+
-+	dspi1_pins: dspi1_pins {
-+		dspi1_grp0 {
-+			pinmux = <0x72>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi1_grp1 {
-+			pinmux = <0x62>;
-+			output-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi1_grp2 {
-+			pinmux = <0x83>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi1_grp3 {
-+			pinmux = <0x5F0>;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi1_grp4 {
-+			pinmux = <0x3D92>,
-+				 <0x3DA2>,
-+				 <0x3DB2>;
-+		};
-+	};
-+
-+	dspi5_pins: dspi5_pins {
-+		dspi5_grp0 {
-+			pinmux = <0x93>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi5_grp1 {
-+			pinmux = <0xA0>;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi5_grp2 {
-+			pinmux = <0x3ED2>,
-+				 <0x3EE2>,
-+				 <0x3EF2>;
-+		};
-+
-+		dspi5_grp3 {
-+			pinmux = <0xB3>;
-+			output-enable;
-+			slew-rate = <150>;
-+		};
-+		dspi5_grp4 {
-+			pinmux = <0xC3>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+	};
- };
- 
- &can0 {
-@@ -220,3 +291,19 @@ &i2c4 {
- 	pinctrl-1 = <&i2c4_gpio_pins>;
- 	status = "okay";
- };
-+
-+&spi1 {
-+	pinctrl-0 = <&dspi1_pins>;
-+	pinctrl-names = "default";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	spidev0: spidev@0 {
-+		compatible = "rohm,dh2228fv";
-+		spi-max-frequency = <4000000>;
-+		reg = <0>;
-+		fsl,spi-cs-sck-delay = <100>;
-+		fsl,spi-sck-cs-delay = <100>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi b/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
-index ba53ec622f0b..798b58fa9536 100644
---- a/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
-@@ -127,6 +127,77 @@ i2c4-gpio-grp1 {
- 			pinmux = <0x2d40>, <0x2d30>;
- 		};
- 	};
-+
-+	dspi1_pins: dspi1_pins {
-+		dspi1_grp0 {
-+			pinmux = <0x62>;
-+			output-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi1_grp1 {
-+			pinmux = <0x72>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi1_grp2 {
-+			pinmux = <0x83>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi1_grp3 {
-+			pinmux = <0x5F0>;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi1_grp4 {
-+			pinmux = <0x3D92>,
-+				 <0x3DA2>,
-+				 <0x3DB2>;
-+		};
-+	};
-+
-+	dspi5_pins: dspi5_pins {
-+		dspi5_grp0 {
-+			pinmux = <0x93>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi5_grp1 {
-+			pinmux = <0xA0>;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi5_grp2 {
-+			pinmux = <0x3ED2>,
-+				 <0x3EE2>,
-+				 <0x3EF2>;
-+		};
-+
-+		dspi5_grp3 {
-+			pinmux = <0xB3>;
-+			output-enable;
-+			slew-rate = <150>;
-+		};
-+		dspi5_grp4 {
-+			pinmux = <0xC3>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+	};
- };
- 
- &can0 {
-@@ -155,6 +226,12 @@ pcal6524: gpio-expander@22 {
- 	};
- };
- 
-+&spi1 {
-+	pinctrl-0 = <&dspi1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &i2c2 {
- 	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&i2c2_pins>;
+Patch 3 adds bindings for ADC5 Gen3 peripheral.
 
+Patch 4 adds the main driver for ADC5 Gen3.
+
+Patch 5 adds the auxiliary thermal driver which supports the ADC_TM
+functionality of ADC5 Gen3.
+
+Changes since v5:
+- Addressed some reviewer comments in documentation and driver patches.
+- Link to v5: https://lore.kernel.org/all/20250131183242.3653595-1-jishnu.prakash@oss.qualcomm.com/
+
+Changes since v4:
+- Split common ADC channel properties out into a separate file to use as 
+  ref for ADC5 Gen3 and moved ADC5 Gen3 documentation into a separate
+  file as suggested by reviewers.
+- Addressed few reviewer comments in driver patches.
+- Link to v4: https://lore.kernel.org/all/20241030185854.4015348-1-quic_jprakash@quicinc.com/
+
+Changes since v3:
+- Updated files affected by adc file path change in /arch/arm folder,
+  which were missed earlier.
+- Added ADC5 Gen3 documentation changes in existing qcom,spmi-vadc.yaml file
+  instead of adding separate file and addressed reviewer comments for all bindings.
+- Addressed review comments in driver patch. Split out TM functionality into
+  auxiliary driver in separate patch and added required changes in main driver.
+- Link to v3: https://lore.kernel.org/all/20231231171237.3322376-1-quic_jprakash@quicinc.com/
+
+Changes since v2:
+- Reordered patches to keep cleanup change for ADC files first.
+- Moved ADC5 Gen3 documentation into a separate file
+
+Changes since v1:
+- Dropped patches 1-5 for changing 'ADC7' peripheral name to 'ADC5 Gen2'.
+- Addressed reviewer comments for binding and driver patches for ADC5 Gen3.
+- Combined patches 8-11 into a single patch as requested by reviewers to make
+  the change clearer and made all fixes required in same patch.
+
+Jishnu Prakash (5):
+  dt-bindings: iio/adc: Move QCOM ADC bindings to iio/adc folder
+  dt-bindings: iio: adc: Split out QCOM VADC channel properties
+  dt-bindings: iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+  iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+  thermal: qcom: add support for PMIC5 Gen3 ADC thermal monitoring
+
+ .../bindings/iio/adc/qcom,spmi-adc5-gen3.yaml | 155 ++++
+ .../iio/adc/qcom,spmi-vadc-common.yaml        |  87 ++
+ .../bindings/iio/adc/qcom,spmi-vadc.yaml      |  81 +-
+ .../bindings/mfd/qcom,spmi-pmic.yaml          |   2 +-
+ .../bindings/thermal/qcom-spmi-adc-tm-hc.yaml |   2 +-
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml   |   6 +-
+ arch/arm/boot/dts/qcom/pm8226.dtsi            |   2 +-
+ arch/arm/boot/dts/qcom/pm8941.dtsi            |   2 +-
+ arch/arm/boot/dts/qcom/pma8084.dtsi           |   2 +-
+ arch/arm/boot/dts/qcom/pmx55.dtsi             |   2 +-
+ arch/arm64/boot/dts/qcom/pm4125.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pm6125.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pm6150.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pm6150l.dtsi         |   2 +-
+ arch/arm64/boot/dts/qcom/pm660.dtsi           |   2 +-
+ arch/arm64/boot/dts/qcom/pm660l.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pm7250b.dtsi         |   2 +-
+ arch/arm64/boot/dts/qcom/pm8150.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pm8150b.dtsi         |   2 +-
+ arch/arm64/boot/dts/qcom/pm8150l.dtsi         |   2 +-
+ arch/arm64/boot/dts/qcom/pm8916.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pm8937.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pm8950.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pm8953.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pm8994.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pm8998.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pmi632.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/pmi8950.dtsi         |   2 +-
+ arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi     |   2 +-
+ arch/arm64/boot/dts/qcom/pmp8074.dtsi         |   2 +-
+ arch/arm64/boot/dts/qcom/pms405.dtsi          |   2 +-
+ .../boot/dts/qcom/qcm6490-fairphone-fp5.dts   |   4 +-
+ .../boot/dts/qcom/qcm6490-shift-otter.dts     |   4 +-
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts  |   4 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts       |   2 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |   2 +-
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    |   4 +-
+ arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi   |   2 +-
+ .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts |   2 +-
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |   2 +-
+ .../dts/qcom/sc8280xp-microsoft-blackrock.dts |   2 +-
+ arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi  |   6 +-
+ .../boot/dts/qcom/sm7225-fairphone-fp4.dts    |   2 +-
+ .../boot/dts/qcom/sm7325-nothing-spacewar.dts |   6 +-
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts       |   8 +-
+ drivers/iio/adc/Kconfig                       |  30 +
+ drivers/iio/adc/Makefile                      |   2 +
+ drivers/iio/adc/qcom-adc5-gen3-common.c       | 104 +++
+ drivers/iio/adc/qcom-spmi-adc5-gen3.c         | 763 ++++++++++++++++++
+ drivers/iio/adc/qcom-spmi-adc5.c              |   2 +-
+ drivers/iio/adc/qcom-spmi-vadc.c              |   2 +-
+ drivers/thermal/qcom/Kconfig                  |   9 +
+ drivers/thermal/qcom/Makefile                 |   1 +
+ drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c | 531 ++++++++++++
+ .../iio/adc/qcom,pm8550-adc5-gen3.h           |  46 ++
+ .../iio/adc/qcom,pm8550b-adc5-gen3.h          |  85 ++
+ .../iio/adc/qcom,pm8550vx-adc5-gen3.h         |  22 +
+ .../iio/adc/qcom,pmk8550-adc5-gen3.h          |  52 ++
+ .../iio/{ => adc}/qcom,spmi-adc7-pm7325.h     |   2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-pm8350.h     |   2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-pm8350b.h    |   2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-pmk8350.h    |   2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-pmr735a.h    |   2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-pmr735b.h    |   2 +-
+ .../iio/{ => adc}/qcom,spmi-adc7-smb139x.h    |   2 +-
+ .../iio/{ => adc}/qcom,spmi-vadc.h            |  81 ++
+ include/linux/iio/adc/qcom-adc5-gen3-common.h | 193 +++++
+ 67 files changed, 2231 insertions(+), 139 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-adc5-gen3.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc-common.yaml
+ create mode 100644 drivers/iio/adc/qcom-adc5-gen3-common.c
+ create mode 100644 drivers/iio/adc/qcom-spmi-adc5-gen3.c
+ create mode 100644 drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
+ create mode 100644 include/dt-bindings/iio/adc/qcom,pm8550-adc5-gen3.h
+ create mode 100644 include/dt-bindings/iio/adc/qcom,pm8550b-adc5-gen3.h
+ create mode 100644 include/dt-bindings/iio/adc/qcom,pm8550vx-adc5-gen3.h
+ create mode 100644 include/dt-bindings/iio/adc/qcom,pmk8550-adc5-gen3.h
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm7325.h (98%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h (98%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h (99%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h (97%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h (95%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h (95%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-smb139x.h (93%)
+ rename include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h (77%)
+ create mode 100644 include/linux/iio/adc/qcom-adc5-gen3-common.h
+
+
+base-commit: 393d0c54cae31317deaa9043320c5fd9454deabc
 -- 
-2.34.1
+2.25.1
 
 
