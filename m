@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-175531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FBCCAB11A9
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:10:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0370EAB11AE
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:10:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0BB9179C75
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:09:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5216F506569
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3735F292080;
-	Fri,  9 May 2025 11:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 780BC292090;
+	Fri,  9 May 2025 11:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fHcu4fmR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HEQ49tpH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FEC913C816
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:07:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972332918EA
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:07:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746788835; cv=none; b=DCfBcUl1WIfAs9pQuMoOFeFpKkA5vDo3Au9Z6yJJWIU9yUwOqM6yHdupzUeLk4jQDEh/iiZThRHjbUHpRJokyxEHiev/jTZdATzoe9/+6XcI8nVdGPBC4Psg9yEIEIM3NC8ehr74PolUhY5rZSFQCeN2DFgkwsM/+MnHERk+y/w=
+	t=1746788836; cv=none; b=Dy6jZ1UzZf7R+UU4RUvsheMvebRxeQDlUNOaI8nwwp0QYrbr8S2B651lz8YOca4cXiUg+KPx/92exInoXFa/5d2SWvdw3FbFSLSYpMLlQh1UqkVkpDpbvaZ09jf6XEGm/lZN9JYGdft/LO+K/X/h8J4nOPrS+hesv4PGJXPDAtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746788835; c=relaxed/simple;
-	bh=mx5u03b5TB/f2q1YQ3KCyV5h99vYZyaZPDhhfpjU5fc=;
+	s=arc-20240116; t=1746788836; c=relaxed/simple;
+	bh=/1WgmjiUPsgAyXKXEEwEXpR87Eos0KeMZvFNpmziqFU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=p0C/73qzOyLJ9F11WGxoYIyiq0hDHgz2c/jQzMw8sCEBNn029UHnXejpCUKCbaZ73yGhG0sN/N09fHTwpVWqhcSAA1qvFv+1Q93V1ZiE++8wx/6y6wNp6OuUqjsoX0vMqRsO8MMcx3+UlbTEdEknPX1nbBTTKHztaj6TORN2O68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fHcu4fmR; arc=none smtp.client-ip=209.85.221.47
+	 In-Reply-To:To:Cc; b=WHJ5x5ur1hM58Vv7jzihhTykb6zJZd35Ho0mw51sQOvqrzBu0JYdv5cncLAQeHcY1EAuU2i5Cag9zzwPycQSObr9RzhffDUUms9QLWA+DCrF86H6jpS20SA79GllJzMm4p8uxW8x/bkqv9eiHBXQQoQtf/kNkxSPUUtde+lr7xo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HEQ49tpH; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a1d8c0966fso847406f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:07:12 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3a064a3e143so1098106f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:07:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746788831; x=1747393631; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1746788833; x=1747393633; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=OjvkkMIUxErk/9CbtL8I8hETKTjq9Ni1Xdc4V8HrKQc=;
-        b=fHcu4fmRqgAt/OAAqTExKWu9HZrsj8DvarkWF/BhT6M97ZW0V1BX7D69JGD7/I1nkl
-         RNVL6qzK3ED43OHgytRW7mbMOSUjBgvY0Ire5N0kizQ1Bq2By9wZ6dHAamnNaS7wSPZe
-         XuvemSQoz9jBqV16l3eLeMJznHtNwqxsormH0GC4qKnuC5E3AwBDefN9btpsIapYq2rW
-         v+7DWGqrAzhIWaJkxYKQ6so4qjSgDrKNvlpV6LcCFxzCVkOs3DfNaUM5hAYuBrQc6UNF
-         Z/EItATDoxhPLF+D/3EZbA+Pu8MWaU7cBHVZFmf8bLUuJ0kQVV84fH2LrRVW7gtS07Kh
-         WHHg==
+        bh=RMuvm3u0FO0tHSMEJjZ+2DIuKHjMVjXj0UsWrbU1Pz0=;
+        b=HEQ49tpHF/8MWJJvzi7xzrZVF1gUvVVz/Nc1uMt7YwNgI6rZV4HvgzzdvJfm8QwpKc
+         ISYkH/NazjU9KtE4ZSEnRSoGhzkKyceM09XjdHQFDopwbTWPIAeNDysqPw7zrX99ntrQ
+         U4+r/aehnPNg6rXyPXtB4WjZbITPoOR3x8qFTDeK4ba0eLoszsSlkjwjgDyUFlJuskMf
+         awRNwOmRgbQDaU/peWwEUD4WAy7Jo7us8MuIiV3iKGtTN84UzQaOyOH7kcPQTf+nGAWE
+         pysvi3kZRHsgbhL2GxeAGM3uo0mtPVJVO6ltBEk3Av9JibJ7ODV28h9rNbCAnj7d4g3E
+         aN8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746788831; x=1747393631;
+        d=1e100.net; s=20230601; t=1746788833; x=1747393633;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OjvkkMIUxErk/9CbtL8I8hETKTjq9Ni1Xdc4V8HrKQc=;
-        b=fY1yRvxNv9sqw9Nt2GNt5Ylu8juOb4unPDt+bKBGVnj4jgci3acHntTFOqxBDVsNLU
-         tu1g5ZG0kiwMtF6oOGAj11EC/jj1WSThr3pArqKHmo2c9yOCurAacrMYDR2xrDCuHdDS
-         F+7/hyxFTs8FgrU+1NuJ+QkCb/pWVTaVSrXxuxPIONXtyVSqqbHRhUcNWcu0gLamidcw
-         XAeHNEvTeF19jAe/f4IqAYZKovaBdAdOxGSRGAsCMkhGH5/XnRWvseP1li5HqAHON4F5
-         lu8uOuZ095ubqy5SAoXHJgOpBMF6UvD0mqn8F+lWBEO6piI0ueALP1es9xeKWlggPL9u
-         1NqA==
-X-Forwarded-Encrypted: i=1; AJvYcCXD9ONgL4oINVpm+rA64cFiMTR//fzlmdcWEXeZV0Ywpsoed3enjDO2E8FBAOLGNKrtp4t20gkdhwg2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQ5uhavLGo40mqXu70dfsAb0aIhizycTkgeuG4/AEytJ8VXVbn
-	yTFVfgFSCeTYUIWeLbtxZJDM+F1nU8RKg3jMgKXs2Tfh5/E284eS2ShgGavrS3U=
-X-Gm-Gg: ASbGncvd86dtB7zyWtBi/OpsCwxMz4jnpKNxmAY8z8M1sb1/DmFvSSHKJeeNg8kVFid
-	VfsoqGWUHlhfAQvT6sG1ddqk359yKBdZtA4wY+SSFYr445xfe6vIDdxVfbI+HwftW9JK6nPy2Hr
-	o+p/HIF346wfWA5/wfWqsE/0KrZCGf+9bEj/9fI370cHxyPleXOAPyOi9tVXE/o8HQDYt/vgf6U
-	rOaZ/Xd6KAwrbnR0cETuQl0S/chvZ8qocsP9RNhNLrOf1dDJ4/Vq+36h1SoXeIs6jZGufZ6kwaZ
-	GWh6PI1JQfJlnhWPKiKiJfPh9flHkvhDrC9k0ZspGI55F+8=
-X-Google-Smtp-Source: AGHT+IGJvDt+LaY1QQLl2SlTRe/DojIZ4tpeJAXa/uWwNzG6xIzfPYcQgejyyHruKfc7448qtaeZfA==
-X-Received: by 2002:a05:6000:228a:b0:3a0:b8ba:849f with SMTP id ffacd0b85a97d-3a1f6a0fc42mr2727736f8f.4.1746788831370;
-        Fri, 09 May 2025 04:07:11 -0700 (PDT)
+        bh=RMuvm3u0FO0tHSMEJjZ+2DIuKHjMVjXj0UsWrbU1Pz0=;
+        b=ON/BBJdRBN4et3RWmiYZkMNRVq08mtG5lAYu/zhnmCwpKqFj/seDB6HXqPD+952lHM
+         /kHaQxLCfu01ruLEg9cZaS++WzdPPNZWtUeoFOuH6vAYHpQzNOjj6/cLbsuZwtQDiaov
+         7en0OxQMY6kCSLft/MsgvjnhTUMAHCKNLrPAHwbiLoo5f+Se0aU9Zw7VXPb4xvugjJVJ
+         gtQBwkp2ydH64wIFeeHecKLzB4K7OlYnWLClmoOv2qHQjlf++8WF63+FhhkHMwZArkPM
+         zGViyAf/w57hmB4xvFVyh7GjHAFuOfD6mfr1rlA+YVPLd2cIpMPTk8UsTVtygF0U77hy
+         wj4g==
+X-Forwarded-Encrypted: i=1; AJvYcCW5hYPPHLC38G0CTRI/AdVbdYqZdaQiEeLr6paX0znW8aCI7HZLPaUeFQe1TmxmDhGrkaOvE0sp0LXj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxh+1LphYMpDXDPNVBV3jFLJAWOZ3sgNJmCWhytk9r8qQmKgkF8
+	yS4G8BmBKJcbMf13nPuko/V1mcOGArJ8H/YscAEPjGopYVXwBlElILwK1ql7EUY=
+X-Gm-Gg: ASbGncswppsUzgDz6DtGqzFGzTiZO1XiG6inqbfKXbpnmUtOXcxGpiK16S2LBPJrBWL
+	AUCpI5D+LDhzo9xyGyqTUhlgHTB5+m6V0UygvWd88ZRbNOLl1nZmATAPz7FI/gILJ88a/dsk6uM
+	BfNkDbbTqWZQET6PRHozxxIpU/Yr03jEHg/eUala56i3J3niSFfytEn17z4ooy3q46/QysqiAFC
+	0ML1xI6Jm4kAEgKiofNNeI+9hMggX+boLWtR+9U9WPjkbAJH4lOkJ1eMrY8dJqxeaLEkYi/iZoM
+	NeeggW1SUwQ9u/h488yebmXskDShsW6BxEB3/O2oEJZqUW8A8AFrvK5L2A==
+X-Google-Smtp-Source: AGHT+IEI/21cAkCpKqtXo/RJBX5fMArAhVFuko7+5QHt2vTuixWOjpsB6oyJPSHitDVLWZA2KHt5xA==
+X-Received: by 2002:a5d:64ce:0:b0:3a0:b8b0:441a with SMTP id ffacd0b85a97d-3a1f643ba6bmr2415644f8f.25.1746788832870;
+        Fri, 09 May 2025 04:07:12 -0700 (PDT)
 Received: from ho-tower-lan.lan ([77.81.75.81])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ecadfsm2914797f8f.22.2025.05.09.04.07.10
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ecadfsm2914797f8f.22.2025.05.09.04.07.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 May 2025 04:07:11 -0700 (PDT)
+        Fri, 09 May 2025 04:07:12 -0700 (PDT)
 From: James Clark <james.clark@linaro.org>
-Date: Fri, 09 May 2025 12:05:59 +0100
-Subject: [PATCH 12/14] dt-bindings: spi: dspi: Add S32G support
+Date: Fri, 09 May 2025 12:06:00 +0100
+Subject: [PATCH 13/14] spi: spi-fsl-dspi: Enable support for S32G platforms
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250509-james-nxp-spi-v1-12-32bfcd2fea11@linaro.org>
+Message-Id: <20250509-james-nxp-spi-v1-13-32bfcd2fea11@linaro.org>
 References: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
 In-Reply-To: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
 To: Vladimir Oltean <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -100,68 +100,63 @@ Cc: linux-spi@vger.kernel.org, imx@lists.linux.dev,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, 
  Ciprian Marian Costea <ciprianmarian.costea@nxp.com>, 
+ Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>, Dan Nica <dan.nica@nxp.com>, 
+ Larisa Grigore <Larisa.Grigore@nxp.com>, 
+ Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>, 
  James Clark <james.clark@linaro.org>
 X-Mailer: b4 0.14.0
 
 From: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
 
-Document S32G compatible strings. 's32g2' and 's32g3' use the same
-driver so 's32g2' must follow 's32g3'.
+Add compatible for S32G platforms, allowing DSPI to be used.
 
-The SPI controller node in dts can define both host and target pinctrl.
-The selection between them will be done based on pinctrl-names. The
-default pinctrl will be loaded first and will be used by the host. If
-the controller is configured as target (spi-slave property is added in
-the dts node), the driver will look for the "slave" pinctrl and apply it
-if found.
+Add a depends for ARCH_NXP which can replace LAYERSCAPE and also
+includes the new ARCH_S32 for S32G. Similarly, ARCH_MXC can replace
+SOC_VF610 || SOC_LS1021A which should avoid updating this for every new
+sub-platform in the future.
 
 Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+Signed-off-by: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
+Signed-off-by: Dan Nica <dan.nica@nxp.com>
+Signed-off-by: Larisa Grigore <Larisa.Grigore@nxp.com>
+Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
 Signed-off-by: James Clark <james.clark@linaro.org>
 ---
- Documentation/devicetree/bindings/spi/fsl,dspi.yaml | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ drivers/spi/Kconfig        | 4 ++--
+ drivers/spi/spi-fsl-dspi.c | 3 +++
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/fsl,dspi.yaml b/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
-index 7ca8fceda717..b5fac0bb142a 100644
---- a/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
-+++ b/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
-@@ -23,6 +23,7 @@ properties:
-           - fsl,ls2080a-dspi
-           - fsl,ls2085a-dspi
-           - fsl,lx2160a-dspi
-+          - nxp,s32g2-dspi
-       - items:
-           - enum:
-               - fsl,ls1012a-dspi
-@@ -37,6 +38,9 @@ properties:
-       - items:
-           - const: fsl,lx2160a-dspi
-           - const: fsl,ls2085a-dspi
-+      - items:
-+          - const: nxp,s32g3-dspi
-+          - const: nxp,s32g2-dspi
+diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+index ed38f6d41f47..ff26be07226b 100644
+--- a/drivers/spi/Kconfig
++++ b/drivers/spi/Kconfig
+@@ -647,10 +647,10 @@ config SPI_FSL_SPI
+ config SPI_FSL_DSPI
+ 	tristate "Freescale DSPI controller"
+ 	select REGMAP_MMIO
+-	depends on SOC_VF610 || SOC_LS1021A || ARCH_LAYERSCAPE || M5441x || COMPILE_TEST
++	depends on ARCH_MXC || ARCH_NXP || M54541x || COMPILE_TEST
+ 	help
+ 	  This enables support for the Freescale DSPI controller in master
+-	  mode. VF610, LS1021A and ColdFire platforms uses the controller.
++	  mode. S32, VF610, LS1021A and ColdFire platforms uses the controller.
  
-   reg:
-     maxItems: 1
-@@ -114,3 +118,17 @@ examples:
-                 spi-cs-hold-delay-ns = <50>;
-         };
-     };
-+  # S32G3 in target mode
-+  - |
-+    spi0: spi@401d4000 {
-+        compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+        reg = <0x401d4000 0x1000>;
-+        interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clks 26>;
-+        clock-names = "dspi";
-+        spi-num-chipselects = <8>;
-+        bus-num = <0>;
-+        dmas = <&edma0 0 7>, <&edma0 0 8>;
-+        dma-names = "tx", "rx";
-+        spi-slave;
-+    };
+ config SPI_FSL_ESPI
+ 	tristate "Freescale eSPI controller"
+diff --git a/drivers/spi/spi-fsl-dspi.c b/drivers/spi/spi-fsl-dspi.c
+index db921ee6305f..0982f27a9b2a 100644
+--- a/drivers/spi/spi-fsl-dspi.c
++++ b/drivers/spi/spi-fsl-dspi.c
+@@ -1311,6 +1311,9 @@ static const struct of_device_id fsl_dspi_dt_ids[] = {
+ 	}, {
+ 		.compatible = "fsl,lx2160a-dspi",
+ 		.data = &devtype_data[LX2160A],
++	}, {
++		.compatible = "nxp,s32g2-dspi",
++		.data = &devtype_data[S32G],
+ 	},
+ 	{ /* sentinel */ }
+ };
 
 -- 
 2.34.1
