@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-175424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B92CAB0E09
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:59:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 354ADAB0E12
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:01:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB4D0B24DD2
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:58:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 518CB178490
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D4042749FF;
-	Fri,  9 May 2025 08:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52182274FD4;
+	Fri,  9 May 2025 08:59:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gqxd1eP3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WQmUwce9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583C02741BD
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 08:59:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AB0826FA57
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 08:59:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746781188; cv=none; b=ell/ziLTXMcgRSgNIz0SmIFcAM9vKH6hiOLXv8+YYaIfKkj4hYVgefo/msUKmVMIZevSVA4PqQHrANpyt+deIg5Q8XKp9oDVyIAs4/Jmp2UaU4i1VRnj2/f3RAahewa4pFQzzNvQQIS2CMOkxFHISiw9fzNx2USuJ8+gf6DGAmE=
+	t=1746781189; cv=none; b=gsrymU878uGPdvr+jPWZQ+F/zA5+3LB43Ulu3E1b+7bfkmsJ0vKqYp8hsiNuCx95iqR39GebdyV6GzQT1XVTiJRw59593Xp08M/g9vt/+zivIbeMCy8+itYTPFlgA+kNVZ5T4JPNh153CqeG9krYlAX1EMBwVWTW6YDFKqdcYdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746781188; c=relaxed/simple;
-	bh=begbQC3Twc7/He76AAI8eeSeG2eczVhiBKL1kb6Uf2k=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qEzl6iO/dUOgvM/nfrRqecrJIrHMI6kIecRfUojsU8z48TNGX+44JOKYab1SBMHRsQfI/TQ173ljjoVUGnp65MfUgXuR4W0kTh1laf1wF6+c3pBUUtF/IYpszl4wyRKrDqDG8XCjs7jtzbZdSPEqnKcjeey/HFT0+TL1auwDDFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gqxd1eP3; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1746781189; c=relaxed/simple;
+	bh=rAFzUZAkSv653DMA1Gt82SdKNPVMD+FcAEb6O/SlSkw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=mQ8AJqwNIM1ZCKWsGpLvwxLI5gw2f1DM3Mk2UzV+c5MMifvDP0gJHeVpaR13/xveddUmBrBDrxmhb2oJ/F90cVNAmuCmQKsoF9dR5E7qKC+jRsBgWZ/qqXz/kkEKCLphIcsT0gocWY37xaQAr3XusrqrWVtQw8Q5fsBhExrHdJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WQmUwce9; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43cfa7e7f54so11775955e9.1
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43d0359b1fcso12729015e9.0
         for <devicetree@vger.kernel.org>; Fri, 09 May 2025 01:59:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746781184; x=1747385984; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gh/ALdVpxuaXhZUL5QFtMT28H7kuOgOyXFrKwM0kSAQ=;
-        b=Gqxd1eP3FucpHR5D1Fm5jmjwGwtF1LwOxgY8na0qx2e1QMxKTEN3f4Nug/RbtCYEr9
-         Or6dnV+ts86OK1Vu1t74lpVedzZZhUkSEWTIeR5/dW/S/bqrdTJ16LDiPOMKnfPPBTLQ
-         ZbTf4wNj1dDqRjAKMOfuR3LHTmZ0+QoYrdWXMtkMu+xQCxzDR6uKTSQWVb8ModUmMp8j
-         6KYlLj3eFcg+6QHbd1HDo75Guxz6JJMnVyDuP9xpSU0yO8zLDW2Q4LC34PtxJzMMP9BE
-         7dQfxcsXxe0dVP3ybaMVCnuYsYkGNvsLVACAzFs7g8jXIvgjyE64pGpxofsl02ih7jS7
-         oRsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746781184; x=1747385984;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1746781185; x=1747385985; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Gh/ALdVpxuaXhZUL5QFtMT28H7kuOgOyXFrKwM0kSAQ=;
-        b=ulA1Ye/94hmbQlFV/di5xmvE3v2EkSEp0DCt+/yF+CcnJ07Nvrn2gwv1Nx05HfL+Ni
-         woAKCkEsWc13yA4vlzN8GWDxIXNXI8uQGBt0UXPG9ryYTBHJMwY0kTYoy5KXXWvpxaA/
-         ylpqQULOurO/s/ZHPV26K7QrI3YAou2qLg05X/H1inOMS0801FqrJKe6IKixLR9DOIkv
-         BwTC1qjkTici/ueJCxrKFP2swG3TVAG1NYDoC5X1OlE1ZxsGz4I8wbN+JCjxgC1lnSBI
-         w6xoF8hNZOiyQVbpkpnE2bUogaySWaN6mJnmm5+UBJWaZT+eVujeqHskaXWLkgniZUgn
-         5oBw==
-X-Forwarded-Encrypted: i=1; AJvYcCVSEBfsJskd21+lMVZPr1iekfDSYvdfW7SzpKFcLdqzW3q6EeGT1KmufotoVGFbw5mRVWZIX9Jale+N@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTxaQl0JhsvPjZqqcXByusNjbfHJujzrAOTeQ273oEq8dgCcUX
-	oIAFwCx2PHJ1zUPah91XuEXbBNEknccNMl3quzsMpaMOG89nDKhSKvY5XZxYQSo=
-X-Gm-Gg: ASbGncviRtB3kBUruSo0pU15vKlqlgNdrfkF03fcJ6IlP9+Tm2b3Z2DxpdoskN0bpE7
-	h0+KbQPkythNca5bcEFWd+BXMxsEE91hPeV/JSupvbtkneklplCqD7rQXo3t5FLxpNe7scg5pOM
-	ztmdEzj7zjrW50MUbtBKWyAd/11Jl3lpe1dnz+OeeKAL1b53LkQxZ3lrvuVV563WMhasiHC0b0C
-	K/oCWowKA3x774FaA2I0KyOdl/SXm2ODDG0HbT32l2bKjqTod2VRED+ZuqeRyLCAT0uek/7Vo2C
-	9rp7YBRKH/gRhUEWDY2tWYVEGU4AI3WSgq+eMO2kQzv+hjTf1uFFNAxTyfY7Dg==
-X-Google-Smtp-Source: AGHT+IFFgVDU4MTbGBoj+CE2O5CNv1Tuh+orHpIHTEsK15CNC20+hPfSaqIvpAo8yJceBmfZVzw5/A==
-X-Received: by 2002:a05:600c:1e02:b0:439:9737:675b with SMTP id 5b1f17b1804b1-442d6db8213mr21706195e9.7.1746781184525;
-        Fri, 09 May 2025 01:59:44 -0700 (PDT)
+        bh=T3uAu3A4YUWMgeScFXrknXczo0EYOFrNx11xrsJM7O0=;
+        b=WQmUwce9vfpx+a/iQTF6SCrAPLWhOsUtEDYFv08+H4w/72eZyBSAu+G3ZFGFT3ceDG
+         tnbYSIje/Ky5YYroxYuxqx7xBZ74JLkmt6XFmG2fiVEVlkkwGBCoJHetGlWsM33QUiuP
+         9cY028rrP8ABoZzTahAorVfzuxLT4iuVfKCTZgTlWINFdeybFLNskgtfzwWF45G1yDrU
+         AYGbGAISv4qivfPSjUxbmuJaryps0vyth/sgs021HrNxtLjUEvRrk/SjUjxdcVeXRs2X
+         EdUvkC45fJe1Vjk3rHmddisUegMvawv2riKIG+QgVScwGy4QL1kQVTgHnt5ioyBDHwo8
+         bZDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746781185; x=1747385985;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=T3uAu3A4YUWMgeScFXrknXczo0EYOFrNx11xrsJM7O0=;
+        b=MxI6YMJrMPSFZQzWQYdzZ2GS87s2jbVZtK4GkzhzNgt6rm+D6mn6Vz58r6lwl8OT+W
+         6uqNZp67jTIbVfiU0F2KNmhGbLdwYc6j6LPR5Z/ytFklWO1qwpykQDU6IjroHWumCagV
+         K2HGq5SoLNHKhturTMQIdTFYHSctG9srCs57wpQznOlWI3Fv4+LmSKbduuTSHWOJ+1Nu
+         wu2QRZQxjETPvqMa2iGu91+n9cEnWUAmPuB77JZB0F+o8cI4kmIKZG5PVtjGcr52Dwe1
+         YNzUkzc1xsOw/eK9LnaQuB87OKKm6Tj/O9sjoWi8saek7Zg7BZujhFrcuZvhSjHY+sZx
+         Dq1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCX3Y95Tpbi0IO7bADIjI1nsmWl9x7So0lJHE3wAo6a91EHtK2SpJeJoBGcZOlCF+1yGnKOkwY5USoM4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzyu1gI2N2ZZc2LeSWSMipDnhGXRi5MFGAH6qJhNmcIByTG5ruh
+	DcdzWeLqWMTVBAkQs1C8Z0jKz7FUVOHRO6M23akPlb2JyVik/IicFkItA5FUh0Q=
+X-Gm-Gg: ASbGnctZzPgo7ZH/VsC8+8UjTLEs4EP7tVSy1UouiGv7px219grvY/YEylTfTz5/Oc8
+	8Ihsh8pg+ByTEXSeVoeaE+xbbsaDyMlwuwHYiYe+YEgBIXiyjau7jVZGPNFno2OwOO7ggWocd2B
+	5Y4aQsh7EPerIdCaft3dHylUsqNZPxfKWZAKCVqk047F0oxnn0lAs8+mkZxpu+SQQHwjTmoU9EE
+	RI4gVCYCZV93bDJUFOZKpQD81Zt4QUBeCRzwPU5lhXIx0ZUSd5gAqKpA3V8vRcUeT6ltklXtPEB
+	6Umky7opfM/HOxINI+RVmbQM0jqZ/GZq0Wx4U0R+o//iRzGRNFFXJtz5OaUJEA==
+X-Google-Smtp-Source: AGHT+IGGLXUusoILbS1CySmY5yLxrVw4d+a59DHYYC61SdUtYSIzuzu1CJOLjh+OwwTUyJ0NNUtfDQ==
+X-Received: by 2002:a05:600c:c1b:b0:440:6a68:826a with SMTP id 5b1f17b1804b1-442d6e05cf2mr22229985e9.13.1746781185559;
+        Fri, 09 May 2025 01:59:45 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442d67df639sm22369115e9.13.2025.05.09.01.59.43
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442d67df639sm22369115e9.13.2025.05.09.01.59.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 May 2025 01:59:44 -0700 (PDT)
+        Fri, 09 May 2025 01:59:45 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v2 0/6] panel: visionox-rm69299: modernize & support the
- variant found in the SHIFT6mq
-Date: Fri, 09 May 2025 10:59:38 +0200
-Message-Id: <20250509-topic-misc-shift6-panel-v2-0-c2c2d52abd51@linaro.org>
+Date: Fri, 09 May 2025 10:59:39 +0200
+Subject: [PATCH v2 1/6] dt-bindings: display: visionox-rm69299: document
+ new compatible string
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,11 +84,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAPrDHWgC/4WNQQ7CIBBFr9LM2jFASouuvIfpAnEok1RooGk0T
- e8u9gIu30v++xsUykwFrs0GmVYunGIFdWrABRtHQn5WBiWUFlr0uKSZHb64OCyB/dLhbCNNKB/
- CKO1M23cS6nrO5Pl9lO9D5cBlSflzHK3yZ/83V4kCu5YMXYz3yujbxNHmdE55hGHf9y/bqJ6Kv
- wAAAA==
-X-Change-ID: 20250507-topic-misc-shift6-panel-1b0825c84761
+Message-Id: <20250509-topic-misc-shift6-panel-v2-1-c2c2d52abd51@linaro.org>
+References: <20250509-topic-misc-shift6-panel-v2-0-c2c2d52abd51@linaro.org>
+In-Reply-To: <20250509-topic-misc-shift6-panel-v2-0-c2c2d52abd51@linaro.org>
 To: Jessica Zhang <quic_jesszhan@quicinc.com>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -100,62 +99,51 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Caleb Connolly <caleb@connolly.tech>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1553;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=997;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=begbQC3Twc7/He76AAI8eeSeG2eczVhiBKL1kb6Uf2k=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBoHcP86ecbUVbY8XGHkeOFwBPL0TeGmWc+Z5Tjdhbs
- 6uYaUG+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaB3D/AAKCRB33NvayMhJ0bmBD/
- 0RaW9R/7cvEWGoMd84BC18u1Z7WkHKT5aTnR++KlVIG2iFejVA8J6T+HhTV/u9wW1DseMnEBUOfHUP
- fPdUhPyv/3hFJyhH9gJ0P9R1lpTc0oS/xhJm15NvQXMDpN7jZCQKq1xg+rsXTMZd73g5lNyERftpOH
- fBDTme8/rVPIZWpj8fYMQ8r0PbmxEzBBVhP1p0MiZYLVpe0EVxjsxYtzGzZJ5lQcWyrKyJ9pCgOCwO
- SBos9KMIZy2tIBSONNTF+3csyebot7cuMlPBiHeob774/p85o63kswYI8kRVkFXjDLtNbzyME+EW/I
- ixMjrZaO6muGUSlyP1JhQIViA8O2QNEAZubTQZV3Ltk4RXU8UVCIChBbGetz8mquPx9994CUaMh9i5
- rUXzeKuYwYwCptctvKpDKEO8/GsXeefxQMD6KO5wpeV+tsDBj3zV9Lictpj1kDF9Wf9tGWq4vtCzKr
- /BvUGITtdOnjK/lmlgS/3ixkseugjD3ityU/7/LKQUDuOjb3tBwS+RLQAZeKQ6rxHoBX602Z3BQZ9S
- K67+rhYc8aFDGGxB4nPcW2EH5Ymfs9Hc3lV7AJJrNC34Xs3YkE5uKy+360KBODAn2P4sHlE6EGQZsD
- AC8+xmG0ViqfEmX5jCcBxbNAH+P+egAssc0Pn/yv09My3yVUvUIeaKiIt8+g==
+ bh=RZnJ7ALArB3S7wde3YqyxUd7RDqI3oA1G2B1Dr/Q+do=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBoHcP9MKcRO9eIXObPviW/V5gNHncIf/stkVaVtTSb
+ nYclvCuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaB3D/QAKCRB33NvayMhJ0QEzD/
+ 95LJQICNhRzxZ4fY78+fdBWGHMKqvJi3xCj4wryHyTDLLvc7cIb8RMbbk1fBjxzw0nKBXTBiHL+1Ws
+ wRhxpfIfw2EXYauyhjvDrJ+gDaODcxbRtR+VriZDWaTe61aXeYRiVTsSLeg56xhgQ64iTj7IGj834X
+ MsCeaIeJ8rOdsKpPt7aL/cChhG8jfmT3jYWEWD7FHc1DKPI7BSqFkx23ZycuyD+qOSsRZR7xdr+HbG
+ lNjRqJabzwvJ0mPQEsr9XCWpv70J6a6xOHscpjDO1A5XyTB+eGzlqo0Smc4sqFnLKT6VXhvsQbe0zG
+ x0f9HblXFIU7Myx9NeuQW3ui8vVVrlXL8P/KYRi+Q4kxCmhzD0OZUab79dH/QXmUOgrPXk2nxAWPqJ
+ 7/ZHliXq/zSjUh5hN034abXLvSS+tNB3/K8iZAWgYfGD5zGEOaBxMVntGn7HYiVj7mGPqB+0ZPH+fJ
+ 4c4oMcmxseBJr28aTrH+g465Rqtxiq8JBBsWw9+YzJQgQcBw4xANAH7Cu3RHahc0i1lP6B++vdHP84
+ TAsgdfMONKDvxthNkpBxz3Q/Tv0L4/gNt/WdbDqNwNpkzy9Yriwufe9qIu9LZCD2OWhPJQDbmt+lAB
+ PGvf3e5yEvM4mFFeuiUHgKBRywMPHiE7JzziZfxLO+3f3L83mT7eKhaqLYMQ==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Modernize the driver with panel_desc, _multi, const supplies and new panel
-init with refcounting.
+From: Caleb Connolly <caleb@connolly.tech>
 
-Re-spin of [1] and [2] to finally document and support this panel
-variant.
+Document a new compatible string for the second panel variant.
 
-[1] https://lore.kernel.org/all/20220123173650.290349-4-caleb@connolly.tech/
-[2] https://lore.kernel.org/all/20220123173650.290349-5-caleb@connolly.tech/
-
+Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Changes in v2:
-- Add panel_desc to support the variant
-- Switch to _multi calls
-- Switch to const supplies
-- Switch to new panel alloc
-- Fix shift panel init seq name
-- Link to v1: https://lore.kernel.org/r/20250507-topic-misc-shift6-panel-v1-0-64e8e98ff285@linaro.org
+ Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
----
-Caleb Connolly (2):
-      dt-bindings: display: visionox-rm69299: document new compatible string
-      drm/panel: visionox-rm69299: support the variant found in the SHIFT6mq
+diff --git a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
+index 30047a62fc111ff63cbbc275914ef8bb7cb4ffd6..f0a82f0ff79099cdccfd5c5001de0d319e94410f 100644
+--- a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
++++ b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
+@@ -18,7 +18,9 @@ allOf:
+ 
+ properties:
+   compatible:
+-    const: visionox,rm69299-1080p-display
++    enum:
++      - visionox,rm69299-1080p-display
++      - visionox,rm69299-shift
+ 
+   reg:
+     maxItems: 1
 
-Neil Armstrong (4):
-      drm/panel: visionox-rm69299: add plumbing to support panel variants
-      drm/panel: visionox-rm69299: switch to _multi variants
-      drm/panel: visionox-rm69299: switch to devm_regulator_bulk_get_const()
-      drm/panel: visionox-rm69299: switch to devm_drm_panel_alloc()
-
- .../bindings/display/panel/visionox,rm69299.yaml   |   4 +-
- drivers/gpu/drm/panel/panel-visionox-rm69299.c     | 253 +++++++++++++++------
- 2 files changed, 189 insertions(+), 68 deletions(-)
----
-base-commit: 08710e696081d58163c8078e0e096be6d35c5fad
-change-id: 20250507-topic-misc-shift6-panel-1b0825c84761
-
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
 
 
