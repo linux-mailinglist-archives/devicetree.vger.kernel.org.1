@@ -1,141 +1,127 @@
-Return-Path: <devicetree+bounces-175714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C25DAB18CD
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:35:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3484EAB18D6
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:36:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 369BD1C01769
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:35:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FE3D525508
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF32A22F757;
-	Fri,  9 May 2025 15:34:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CA3F22F767;
+	Fri,  9 May 2025 15:36:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="txjLPg+2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gW4iVNZ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E7E22DF89
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 15:34:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9073D22CBF9;
+	Fri,  9 May 2025 15:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746804888; cv=none; b=Dp5hFdW+HkCmr0+fSb0lf3UFkJ5EHv06YpHl/AP3dR1XIhBjlpmhYSrMam5QHEC5XrcY1uT5fzqh1htvOmtXCXnGKk4LVRkW9M6Jc3PibCgtguh0skZEN7+BIlSbZFqt2PPFZfBzAB4CllEXw3C+TPM6yWQVP3CtIYH0qz6kiMk=
+	t=1746804966; cv=none; b=LWVtBDvqb/Aqq9rV14ENgSfIHrpgH7bhxVdXk7MemlHRSfHqMgqhOc0stiv17lBwawy5RhBo7HFdCbcJACjFNCXC6Q5gepZv8nn7B5rBTuh7FVHphzXM3Xlyx0on+jdPeZorDlf1OZZvthpls78m5FgJUoFS0rRi86uGPExy/mU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746804888; c=relaxed/simple;
-	bh=M/D2bCLzM2dNhvHnPdTPWBYPQWBtWxVT62QHaSi/vdQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=uJzImVZau9kJErccgJ1atc59nT82zr0ZL0llOdc9LCsOWbrlzoQSRrGjjnmaF5QA+XCDohxgutn5nWplDoxYuL3Gaod2sNygCZHU2I6xlXmIN7gVpd2wN11MsdaESBjyPml1aSl8+HO5IwuuSqD7xZKaBwOcZdJqSNK37D7zunE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=txjLPg+2; arc=none smtp.client-ip=95.215.58.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1746804966; c=relaxed/simple;
+	bh=WE0fOY5xn/zRrNUuuDCsqORrXmpm6bWnZLnTYRbmxt0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EmsRUFnSdCit42kLBrbQwGITAxt5Pykr+wTjGJ9PVBedciUDoAOmWvRR2onZRUun7m7T0i3VXYIvoG7h1qHom2qSieTNXUcs6vq/Ex9s9G5nxcVWiSaIRZD8OLVJI4CWua1dVpAb8cv/RH69+hSNBBdmdMGFvr31Axv1gzVnwN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gW4iVNZ/; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43cf848528aso18362525e9.2;
+        Fri, 09 May 2025 08:36:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746804963; x=1747409763; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=w/Pedr7HjmxfXrC29fzWYuuyhJcKkZdd4/fbBOBGppo=;
+        b=gW4iVNZ/FpdJTSidO3VbxzMEq4YLZ2l8ux2UCAXdEuHt404MhIPyPH0QRin0U7R3Vi
+         XH5kWNqzsOCiZ6a61RNHrWej70KxUYplsCdoVxekoNe4jeN79aUa83796HKXLcr/X2mM
+         zxLOSKyPeVcxDwZXEjCKj01laRc4XqU5qSfXqr41KbBGyRQqBlWtXy83krqNtDKNxqSl
+         uy1tmUHHmMScw4Og2qj6lyBD3wKqtOOi23gr/kuGHbtlmWTCq/eK+IF5+WfSOWglkzEp
+         WyhqzCiKTZQp/8qqx0hmzzo99bkyrK0zKVhcDRuZogMGm+os4VS9ySEC1nThsMkpVMut
+         MUvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746804963; x=1747409763;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w/Pedr7HjmxfXrC29fzWYuuyhJcKkZdd4/fbBOBGppo=;
+        b=tR8kO0XZji6BA3NdbEEczpRM5xagSw2EG2YVjBSQHncMilkkYmINejqgHL00CbTbVN
+         6+xGh2jw6mVgP28u3FFbl0dMswKuuQOcZmiHzW9IRl/DC4IrF0eiJICNWvOOx/Bah4CT
+         tnWyaNtvaFjfYFxl7oBE44xQXrPGZvx9LXRbDe5ZkObQ7FV1FlYtMJBXJfwKYIBIBpgz
+         g0DFEX2PzhGGD5JaDTfQI4XDlCqZ23Nb3MkiWyLgyTb4h+XPDWjd0SWo8Nfsmk9uCZaI
+         yfoy2ZVs1DHhcNMX0rxO8r6Lxt+iwkkeUpR7s+5E6Uj4Py+oFGFggwBbb8HA9Wx+uT9d
+         dhJg==
+X-Forwarded-Encrypted: i=1; AJvYcCVthwr8CMH/1l0roGFQug0JA3J7E9clBZuFLZ5+0Ikcsk81sufyDnnVkSbfz+RZ490UMBOc+oyvmCgvIqXC@vger.kernel.org, AJvYcCWUIfeJzVvMX4uDvUVDxHYfueEb08gDq5zEfyvT91lrjBdey5bRPfYXhcKxH7E+4kjNvgu7/tLm+AG1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkYj+zV6a+cqV4l6H6IBljWPeIzchVOSw8nmdNWlAkMEOMYFep
+	Kg1QioqlsXj6vRowHdIJybH+/C6oO3mBE6AaYPoxMxPmrOqiYAI3Hij8LjGI
+X-Gm-Gg: ASbGncu2O7w0Of9hAPMNBwZuEfNjS9ADBmlbw3dgrv93W6ZiATjihVEpcfWzxdGXkzw
+	elbY/EfEkhweS4b2S4cOp6XFXpLuaGGhhUrnLsZtkRUP7Q/VdZYaTHZmuuo0ySkPYMfpOfqNxiv
+	mwSdsmwELivwNmi5RwZAYa5u3iMlaZU7FPuUSleskpcihKEA0C5F/N9mg7ELM3ntaDQgTGr4aKA
+	8JtPRk1H4OTv8+2HcKyqAI27lE4L9gS0Tepp1sf+MfkcY7crVOKnrtcJdkth+S9WcpmoUz+X30H
+	JkYEjm6pmmc1ALf6sbbHzHfVINxE5CWgbaa4xuEvhSGq8wm6IIJD0z21z7zk4MiTjQ==
+X-Google-Smtp-Source: AGHT+IGPY/e0+8DHiPQIjJTwVZD06Mfgb3x7QCyd3iQfpCfuALJcIMJxnBpC2cCNEePTbw6ruqhWFg==
+X-Received: by 2002:a05:6000:4287:b0:39f:7e99:5e8c with SMTP id ffacd0b85a97d-3a1f64c0df2mr3586609f8f.51.1746804962574;
+        Fri, 09 May 2025 08:36:02 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:40e3:34f3:a241:140c])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ec912sm3550781f8f.23.2025.05.09.08.36.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 May 2025 08:36:02 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/2] arm64: dts: renesas: Add GBETH support to R9A09G057 SoC
+Date: Fri,  9 May 2025 16:35:57 +0100
+Message-ID: <20250509153559.326603-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1746804875;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=K1E2b0XxNtqEsAhxKbHa26ec+Iv+4B3ST0nSXvkyMcE=;
-	b=txjLPg+2r2oCcSAmqMhRMoJ6ogAGxsVdesD30F5X6afQ/G6keHvb8TuZG8TPtcuMozvGZe
-	mSnluLjZf32SfIaFxu2kDCMJdwF5NkV7iI1pmMdBjCKWl8GvSPe9gB7DIrMEQiY4/xw76s
-	vZd3sx72Z/HPVrdL1gWryYxjPr2HZvDyhr/krmQsylu9GGhoaG2khy8Zk+sfCR+wlHEB1E
-	wZmiIhnXtDKkuuqp+YLzVcGVLLjLQ4oZiWjOI8bZQKJAMfsO21Nczv6cRcQA94Bg5XCucw
-	/7q1wq12+OQ3wF4FoP8vshSdux+lhiBfUi5nN/c1XxJYWGUJcEnBKwprc0dCHw==
-Content-Type: multipart/signed;
- boundary=7a05250e7073856251351d2d7eed564a7ba885e16373e9e67c2c1e611f0e;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Fri, 09 May 2025 17:34:21 +0200
-Message-Id: <D9RQN76VZXO8.T3I0046FNVG3@cknow.org>
-Cc: "Conor Dooley" <conor+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Dragan Simic" <dsimic@manjaro.org>, "Rob Herring"
- <robh@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 0/1] arm64: dts: rockchip: rk3568: Move PCIe3 MSI to use
- GIC ITS
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Chukun Pan" <amadeus@jmu.edu.cn>, "Heiko Stuebner" <heiko@sntech.de>
-References: <20250308093008.568437-1-amadeus@jmu.edu.cn>
-In-Reply-To: <20250308093008.568437-1-amadeus@jmu.edu.cn>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
---7a05250e7073856251351d2d7eed564a7ba885e16373e9e67c2c1e611f0e
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Hi,
+Hi All,
 
-On Sat Mar 8, 2025 at 10:30 AM CET, Chukun Pan wrote:
-> For a long time, rk3568's MSI-X had bugs and could only work on one node.
-> e.g. [    7.250882] r8125 0002:01:00.0: no MSI/MSI-X. Back to INTx.
->
-> Now the ITS of GICv3 on rk3568 has been fixed by commit b08e2f42e86b
-> ("irqchip/gic-v3-its: Share ITS tables with a non-trusted hypervisor")
-> and commit 2d81e1bb6252 ("irqchip/gic-v3: Add Rockchip 3568002 erratum
-> workaround").
->
-> Following commit b956c9de9175 ("arm64: dts: rockchip: rk356x: Move
-> PCIe MSI to use GIC ITS instead of MBI"), change the PCIe3 controller's
-> MSI on rk3568 to use ITS, so that all MSI-X can work properly.
->
-> ~# dmesg | grep -E 'GIC|ITS'
-> <snip>
->
-> ~# lspci -v | grep MSI-X
->         Capabilities: [b0] MSI-X: Enable- Count=3D1 Masked-
->         Capabilities: [b0] MSI-X: Enable- Count=3D128 Masked-
->         Capabilities: [b0] MSI-X: Enable+ Count=3D32 Masked-
->         Capabilities: [b0] MSI-X: Enable- Count=3D128 Masked-
->         Capabilities: [b0] MSI-X: Enable+ Count=3D32 Masked-
+This patch series adds support for the GBETH (Gigabit Ethernet) IP block
+to the R9A09G057 SoC. The first patch adds the GBETH nodes to the
+device tree source file for the R9A09G057 SoC, while the second patch
+enables the GBETH nodes on the RZ/V2H Evaluation Kit.
 
-I tested this patch on my NanoPi R5S with a 6.15-rc3 kernel + a number
-of [vcc|phy]-supply patches that have been accepted for 6.16 (and a
-small WIP LED patch).
-
-With this patch I get the following kernel warnings:
-
-pci 0001:10:00.0: Primary bus is hard wired to 0
-pci 0002:20:00.0: Primary bus is hard wired to 0
-
-If I 'unapply' this patch, I don't see those warnings.
-The output of the above mentioned ``dmesg`` and ``lspci`` commands is
-exactly the same in both cases.
-
-The PCI IDs refer to:
-PCI bridge: Rockchip Electronics Co., Ltd RK3568 Remote Signal Processor (r=
-ev 01)
-
-It's possible that this patch only brought a(nother) problem to light,
-but was I supposed to see an improvement and if so where/how?
+v1->v2:
+- Added missing power-domains property to the GBETH nodes.
+- Fixed interrupt number 745 -> 775 in eth0 node.
+- Added  snps,rx-sched-sp property to mtl_rx_setup1
 
 Cheers,
-  Diederik
+Prabhakar
 
-> Chukun Pan (1):
->   arm64: dts: rockchip: rk3568: Move PCIe3 MSI to use GIC ITS
->
->  arch/arm64/boot/dts/rockchip/rk3568.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+Lad Prabhakar (2):
+  arm64: dts: renesas: r9a09g057: Add GBETH nodes
+  arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable GBETH
 
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi    | 197 ++++++++++++++++++
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |  74 +++++++
+ 2 files changed, 271 insertions(+)
 
---7a05250e7073856251351d2d7eed564a7ba885e16373e9e67c2c1e611f0e
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.49.0
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaB4ghAAKCRDXblvOeH7b
-bl/EAQD+K7c6vUljn1EBtoIGabanVcKojXgvdX70yKiRNSvqPQEAvapmOAWC5jab
-K8JwHx8knw5EZOulmU6azbvFEkAZqAk=
-=bpa6
------END PGP SIGNATURE-----
-
---7a05250e7073856251351d2d7eed564a7ba885e16373e9e67c2c1e611f0e--
 
