@@ -1,464 +1,169 @@
-Return-Path: <devicetree+bounces-175453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D71C9AB0EC5
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:21:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80723AB0EED
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:26:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18368507D51
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:21:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67BB89E5F91
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:22:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B330827A44D;
-	Fri,  9 May 2025 09:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482A327A13D;
+	Fri,  9 May 2025 09:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RSgkL3b5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tXgxC1bV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964CE27A127;
-	Fri,  9 May 2025 09:19:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA6927A130;
+	Fri,  9 May 2025 09:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746782395; cv=none; b=IQpk2fCqC2EmYqdtkvjI7ALxrQwV2zfjhoFJaDokGC5TwVPiydWd27RpaZQa9KM83AANKqbqUrlVwEAOhhL4Ur14oLgcrTcDwVvnS0sDYaQJBfrRLbqhp5SdEkwcBOTv8coMaYcxLPal2im/SH9g3TPD88EERpFQfse311Xj2A8=
+	t=1746782499; cv=none; b=u/M4xpTWUX+Yovy0EW/P9sdQeHEp9SdNbKc/a4JwnD/8XBADnh2jRv03hsza6jaBCPHhpHJ0L4zDwK3RpFeEhkmYqfJ0DUzo5MGvWVNWi0D+z4kzACAe/xxgLeoAxclmb6d2pahicDlQ1S28uDmHcZx4R29y7DueXSmoyUap9Mc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746782395; c=relaxed/simple;
-	bh=ZmvBu6pK4R5J2b2dO+dgBez3gf/jvMjoBba3I3sEE/U=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QbCiWRgmYWzQs6W8GgxWHCuDsNuknTDXIu9apE9F1pGhJo1/dYf4frkHeYg2Igq80uPtYo0yYtc6IFgt9cqGXcx1eVUeoY+Vda0SaFxaL0OFc5/qHRInNuoS5prnJRpIsoksAJQAB2pS9q2Sblw8cZCw0oHsF6gELddKbBpnHk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RSgkL3b5; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5499JkdE1360996
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 9 May 2025 04:19:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746782386;
-	bh=u/nC/XdwxLZLIjaNaHB9iaXgqC7KbPwX+cIM97tewmg=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=RSgkL3b5YDjkmKfvKdLidrvw5DWNr/X8k43w4m7v5mUG7eC39G+1Fb0zTK0rtV2Wx
-	 nxqBRZDs7PYdV12DT60+IlCwi3IQq44Yqq2pGiDSy3x6lE7+DxmS3+kZOqkfnBdmUC
-	 zPq3CKiswrRZsc1xf/wjqz/LkIzoiApo6ks+uSFA=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5499JkPa123937
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 9 May 2025 04:19:46 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
- May 2025 04:19:45 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 9 May 2025 04:19:45 -0500
-Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [172.24.227.115])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5499JL7v070287;
-	Fri, 9 May 2025 04:19:42 -0500
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <vaishnav.a@ti.com>, <u-kumar1@ti.com>, <r-donadkar@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <jai.luthra@linux.dev>, <linux-kernel@vger.kernel.org>,
-        <y-abhilashchandra@ti.com>
-Subject: [PATCH v3 4/4] arm64: dts: ti: k3-j722s-evm: Add overlay for TEVI OV5640
-Date: Fri, 9 May 2025 14:49:11 +0530
-Message-ID: <20250509091911.2442934-5-y-abhilashchandra@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250509091911.2442934-1-y-abhilashchandra@ti.com>
-References: <20250509091911.2442934-1-y-abhilashchandra@ti.com>
+	s=arc-20240116; t=1746782499; c=relaxed/simple;
+	bh=YAiCFXDrUR9QpZfn6PRjLwyLkYo2hhAiphrjnSdS4GU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ikOP0/J5gfJsAACViZY33eCo5yX9xPM4eRE9Rx/p736r6P0HcJCl4xJtP3OIN0CLABAI/wuM0ORzmPBIjXpNqeIP/foRrmZ5d0Do+/7rGYM8hE7RHp5S7DUddHNGmtDYTd8pIz5riLw82COLMKcX0kngLEMdzwmlq67gPta/qS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tXgxC1bV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A3A1C4CEE4;
+	Fri,  9 May 2025 09:21:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746782498;
+	bh=YAiCFXDrUR9QpZfn6PRjLwyLkYo2hhAiphrjnSdS4GU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tXgxC1bVlKrgf8eGnuIC+stZBZLpvZEKl18Xr3q6+owfm4xWrKvnBz1wGG2+aoySQ
+	 DYm3QfirHRPe9BS66Il5sjgFiewUl4+jPSUm83wEgtp8b2Iabo+FRRaBCOaLiredZt
+	 9boEel/8mlE9oGBu/Zq/zTZDBU2f23p90bs+wzez4mjnFgTyCP17pihMIdztxWUJC/
+	 DuHv7Jcx7h0WJ1IZ8tCjGn1zlM18niw3ryiWbybf8sRzMD59pQPXtl6PV0+86tKayE
+	 1BGWT2KFPkxIXmh+c6hh8fgjn/Ok+E3bUhRsVKNbPD6OE4vxOtZIhXMY8JsnKtrNF1
+	 GcndGsDqZuSpg==
+Message-ID: <5c0a3b62-cf4f-46ec-b0e2-7d78ac499cb5@kernel.org>
+Date: Fri, 9 May 2025 11:21:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dt-bindings: display: rockchip: Convert
+ cdn-dp-rockchip.txt to yaml
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>, Chaoyi Chen
+ <kernel@airkyi.com>, Sandy Huang <hjc@rock-chips.com>,
+ Heiko Stuebner <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Dragan Simic <dsimic@manjaro.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250509070247.868-1-kernel@airkyi.com>
+ <20250509070247.868-3-kernel@airkyi.com>
+ <ccf4b15a-8399-4a7f-ae40-d01d0975921c@kernel.org>
+ <5a4f6229-1450-4c96-bfac-5257f66b2ddf@rock-chips.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <5a4f6229-1450-4c96-bfac-5257f66b2ddf@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Vaishnav Achath <vaishnav.a@ti.com>
+On 09/05/2025 09:34, Chaoyi Chen wrote:
+> Hi Krzysztof,
+> 
+> On 2025/5/9 15:11, Krzysztof Kozlowski wrote:
+>> On 09/05/2025 09:02, Chaoyi Chen wrote:
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: core-clk
+>>> +      - const: pclk
+>>> +      - const: spdif
+>>> +      - const: grf
+>>> +
+>>> +  extcon:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +    description:
+>>> +      Phandle to the extcon device providing the cable state for the DP PHY.
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  phys:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> Just phandle. If this is an array (but why?), you need maxItems for
+>> outer and inner dimensions.
 
-TechNexion TEVI OV5640 camera is a 5MP camera that can be used with
-J722S EVM through the 22-pin CSI-RX connector. Add a reference overlay
-for quad TEVI OV5640 modules on J722S EVM.
+Uh, sorry, that was supposed to be under extcon.
 
-Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
-Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
----
-Changelog:
-Changes in v3:
-- Add make file entries in alpha sorted order
-- Correct copyright year in tevi-OV5640 overlay
+> 
+> I think it could be phandle or phandle-array. Since the RK3399 DP has 
 
- arch/arm64/boot/dts/ti/Makefile               |   4 +
- .../k3-j722s-evm-csi2-quad-tevi-ov5640.dtso   | 323 ++++++++++++++++++
- 2 files changed, 327 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
+Here it is obviously not needed, that's a dtschema type.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 281a282fcbfb..c6171de9fe88 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -133,6 +133,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am67a-beagley-ai.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
- 
- # Boards with J784s4 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
-@@ -228,6 +229,8 @@ k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtbo
- k3-j722s-evm-csi2-quad-rpi-cam-imx219-dtbs := k3-j722s-evm.dtb \
- 	k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
-+k3-j722s-evm-csi2-quad-tevi-ov5640-dtbs := k3-j722s-evm.dtb \
-+	k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
- k3-j742s2-evm-usb0-type-a-dtbs := k3-j742s2-evm.dtb \
- 	k3-j784s4-j742s2-evm-usb0-type-a.dtbo
- k3-j784s4-evm-pcie0-pcie1-ep-dtbs := k3-j784s4-evm.dtb \
-@@ -267,6 +270,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-j721e-sk-csi2-dual-imx219.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtb \
- 	k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtb \
-+	k3-j722s-evm-csi2-quad-tevi-ov5640.dtb \
- 	k3-j742s2-evm-usb0-type-a.dtb \
- 	k3-j784s4-evm-pcie0-pcie1-ep.dtb \
- 	k3-j784s4-evm-quad-port-eth-exp1.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso b/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
-new file mode 100644
-index 000000000000..575113d7b481
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
-@@ -0,0 +1,323 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * DT Overlay for 4 x TEVI OV5640 MIPI Camera module on J722S-EVM board.
-+ *
-+ * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "k3-pinctrl.h"
-+
-+&main_pmx0 {
-+	cam0_reset_pins_default: cam0-default-reset-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x03c, PIN_OUTPUT, 7) /* (R22) GPIO0_15 */
-+		>;
-+	};
-+
-+	cam1_reset_pins_default: cam1-default-reset-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x044, PIN_OUTPUT, 7) /* (R26) GPIO0_17 */
-+		>;
-+	};
-+
-+	cam2_reset_pins_default: cam2-default-reset-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x04c, PIN_OUTPUT, 7) /* (T25) GPIO0_19 */
-+		>;
-+	};
-+
-+	cam3_reset_pins_default: cam3-default-reset-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x054, PIN_OUTPUT, 7) /* (T21) GPIO0_21 */
-+		>;
-+	};
-+};
-+
-+&{/} {
-+	clk_ov5640_fixed: clock-24000000 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
-+
-+	reg_2p8v: regulator-2p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "2P8V";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&vsys_3v3_exp>;
-+		regulator-always-on;
-+	};
-+
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1P8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vsys_3v3_exp>;
-+		regulator-always-on;
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3P3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vsys_3v3_exp>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&csi01_mux {
-+	idle-state = <1>;
-+};
-+
-+&csi23_mux {
-+	idle-state = <1>;
-+};
-+
-+&pca9543_0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* CAM0 I2C */
-+	i2c@0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0>;
-+
-+		ov5640_0: camera@3c {
-+			compatible = "ovti,ov5640";
-+			reg = <0x3c>;
-+			clocks = <&clk_ov5640_fixed>;
-+			clock-names = "xclk";
-+
-+			AVDD-supply = <&reg_2p8v>;
-+			DOVDD-supply = <&reg_1p8v>;
-+			DVDD-supply = <&reg_3p3v>;
-+
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&cam0_reset_pins_default>;
-+
-+			reset-gpios = <&main_gpio0 15 GPIO_ACTIVE_HIGH>;
-+
-+			port {
-+				csi2_cam0: endpoint {
-+					remote-endpoint = <&csi2rx0_in_sensor>;
-+					clock-lanes = <0>;
-+					data-lanes = <1 2>;
-+				};
-+			};
-+		};
-+	};
-+
-+	/* CAM1 I2C */
-+	i2c@1 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <1>;
-+
-+		ov5640_1: camera@3c {
-+			compatible = "ovti,ov5640";
-+			reg = <0x3c>;
-+			clocks = <&clk_ov5640_fixed>;
-+			clock-names = "xclk";
-+
-+			AVDD-supply = <&reg_2p8v>;
-+			DOVDD-supply = <&reg_1p8v>;
-+			DVDD-supply = <&reg_3p3v>;
-+
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&cam1_reset_pins_default>;
-+
-+			reset-gpios = <&main_gpio0 17 GPIO_ACTIVE_HIGH>;
-+
-+			port {
-+				csi2_cam1: endpoint {
-+					remote-endpoint = <&csi2rx1_in_sensor>;
-+					clock-lanes = <0>;
-+					data-lanes = <1 2>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&pca9543_1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* CAM0 I2C */
-+	i2c@0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0>;
-+
-+		ov5640_2: camera@3c {
-+			compatible = "ovti,ov5640";
-+			reg = <0x3c>;
-+			clocks = <&clk_ov5640_fixed>;
-+			clock-names = "xclk";
-+
-+			AVDD-supply = <&reg_2p8v>;
-+			DOVDD-supply = <&reg_1p8v>;
-+			DVDD-supply = <&reg_3p3v>;
-+
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&cam2_reset_pins_default>;
-+
-+			reset-gpios = <&main_gpio0 19 GPIO_ACTIVE_HIGH>;
-+
-+			port {
-+				csi2_cam2: endpoint {
-+					remote-endpoint = <&csi2rx2_in_sensor>;
-+					clock-lanes = <0>;
-+					data-lanes = <1 2>;
-+				};
-+			};
-+		};
-+	};
-+
-+	/* CAM1 I2C */
-+	i2c@1 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <1>;
-+
-+		ov5640_3: camera@3c {
-+			compatible = "ovti,ov5640";
-+			reg = <0x3c>;
-+			clocks = <&clk_ov5640_fixed>;
-+			clock-names = "xclk";
-+
-+			AVDD-supply = <&reg_2p8v>;
-+			DOVDD-supply = <&reg_1p8v>;
-+			DVDD-supply = <&reg_3p3v>;
-+
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&cam3_reset_pins_default>;
-+
-+			reset-gpios = <&main_gpio0 21 GPIO_ACTIVE_HIGH>;
-+
-+			port {
-+				csi2_cam3: endpoint {
-+					remote-endpoint = <&csi2rx3_in_sensor>;
-+					clock-lanes = <0>;
-+					data-lanes = <1 2>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&cdns_csi2rx0 {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		csi0_port0: port@0 {
-+			reg = <0>;
-+			status = "okay";
-+
-+			csi2rx0_in_sensor: endpoint {
-+				remote-endpoint = <&csi2_cam0>;
-+				bus-type = <4>; /* CSI2 DPHY */
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
-+&cdns_csi2rx1 {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		csi1_port0: port@0 {
-+			reg = <0>;
-+			status = "okay";
-+
-+			csi2rx1_in_sensor: endpoint {
-+				remote-endpoint = <&csi2_cam1>;
-+				bus-type = <4>; /* CSI2 DPHY */
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
-+&cdns_csi2rx2 {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		csi2_port0: port@0 {
-+			reg = <0>;
-+			status = "okay";
-+
-+			csi2rx2_in_sensor: endpoint {
-+				remote-endpoint = <&csi2_cam2>;
-+				bus-type = <4>; /* CSI2 DPHY */
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
-+&cdns_csi2rx3 {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		csi3_port0: port@0 {
-+			reg = <0>;
-+			status = "okay";
-+
-+			csi2rx3_in_sensor: endpoint {
-+				remote-endpoint = <&csi2_cam3>;
-+				bus-type = <4>; /* CSI2 DPHY */
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
-+&ti_csi2rx0 {
-+	status = "okay";
-+};
-+
-+&dphy0 {
-+	status = "okay";
-+};
-+
-+&ti_csi2rx1 {
-+	status = "okay";
-+};
-+
-+&dphy1 {
-+	status = "okay";
-+};
-+
-+&ti_csi2rx2 {
-+	status = "okay";
-+};
-+
-+&dphy2 {
-+	status = "okay";
-+};
-+
-+&ti_csi2rx3 {
-+	status = "okay";
-+};
-+
-+&dphy3 {
-+	status = "okay";
-+};
--- 
-2.34.1
+> two PHYs, if we put in two PHYs here, the driver will pick one PHY port 
+> that is already plugged into the DP for output. If we fill in only one 
+> PHY here, then output is only allowed on the corresponding PHY.
+> 
+> Will add restrictions and add more descriptions in v3.
+> 
+> 
+>>
+>>> +    description:
+>>> +      Phandle to the PHY device for DP output.
 
+You need to list the items with description iinstead.
+
+
+
+Best regards,
+Krzysztof
 
