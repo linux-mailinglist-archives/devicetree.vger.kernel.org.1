@@ -1,245 +1,206 @@
-Return-Path: <devicetree+bounces-175350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E54EAB0B42
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:10:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E55C8AB0B48
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:11:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44715166240
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 07:10:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 174351C21A87
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 07:11:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC755272E4A;
-	Fri,  9 May 2025 07:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EDF826FA78;
+	Fri,  9 May 2025 07:11:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cbbPfbdJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TEzYIo1C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2DAF26FD80
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 07:09:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05D0026D4C4;
+	Fri,  9 May 2025 07:11:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746774552; cv=none; b=PjIn9EQY9MN2vWn9fq8FE1wEfEgOAoSO9G23tf/AKG/LkvnAsVgGtQreLUAWFBLfEjRaMP+kNi99VU6/1w7Tn9Dwixv5IEeQa2vcfvDAxH4a/nl+NvfAFj+2oHA7/r6373tkJjZ/CaiDMhdfp/z6dypsaNn9eHXZHeDMb+9ftIs=
+	t=1746774674; cv=none; b=GmLQuPX+GgRNm8+I2MidxEWEkEiEpdRc5nVt+MBXWbfCMxea13eO4ALuQkSByrQSnIQAqDmkD3bqTFaW6wrMbh406K9m2pbWQyaZIUwLyVqltKfjeWV8yUvwiaipMWKUU+GL0v/v5t+KeTdgvuUCM3CDtg61ZJ291whSFAYDGSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746774552; c=relaxed/simple;
-	bh=ZVm8xeMld43/fYnh9mURv7CenW/hOS0NVnjxgb8fE18=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=h155Tlis+A+QBRtQ8DbemL/3sf31PNIYNbXOX1XGD+NIv/mcp8Bjxtd+MzPLstbTz0cPUyAQXdPVCrtmCokfqbbNDBn3vwLjFudrEILfiz2X7iBr35/im6GS/Og8egtQUd9ojBLWsW82M957MgsnNoHi0i/AuiR66RWL5AvlpCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cbbPfbdJ; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ac2af2f15d1so229942066b.1
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 00:09:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746774549; x=1747379349; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zvt2Rw9+YHtceEtGbayUtrZs0nBFqWCQNSzIC9wE3II=;
-        b=cbbPfbdJH9pKfJGD2b8gZOrYIjphHxFGpw9fUEL0dKUCXKwQ3NQBs++pbH2koSICVh
-         wkkcqiaNu89rDBQLuo6jpNHWPnFuTftS3mQ8IVKGJkT1QssN8A4A/q6vpzDMAiJqYA4j
-         cq1Mh54X1+GQgForiw1et5lz1vAyn/E3XaFt3UY4SDerNoi0fMEO+9ZQhMp2rZlYhZw/
-         SRJjcj0+fyxSdhfsG39DKzkn29PJClsK1RZVNe410CENbQNkDxwXR3gkWgSG3Oq8EdSF
-         NgxdDtel1QR9pavwng5MlBNSzny/+wylcaPWm6wPAzoZfX4I7Cz0ru+1Sndxyr/wDk5H
-         YCXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746774549; x=1747379349;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Zvt2Rw9+YHtceEtGbayUtrZs0nBFqWCQNSzIC9wE3II=;
-        b=ZD7Ncq1XjHaVCKDwXYfDp+xA5fYmcz3v7qfn02X8/wF0qfmZmWwpCTHetCXAgutQij
-         PMdWg8F4lon8Bg//tjsrUaWG4caBi+yuWw5mZzUOSsi4zgss+uT0sbrWwEIKyjlTL3d/
-         gCuqJyhluQJMydfDETCi8QJ2dJHzcPcFJTObgT2yKERzBRyOV8RO2CcPtUZfRsohwWVk
-         sVdQCfiPJZ/f7wqAeHg1Y4XWV8eGoeAS8/GwnsjmRA+cBMHgUKM7TqOanXStV9ktTnRa
-         i2fm7pdPeDMz809kgpOFExUjjHKRRtL8rrykokXv4r01r3dO8H2zrKrykHYbbcbSEygU
-         TRHw==
-X-Forwarded-Encrypted: i=1; AJvYcCWn7bhNKPue5U8CpqqBMF3wzIYLiJr/97QaYv8UJ/RETcXUNltAbioCgQnSLJK6xI+XkFt4ryKJsUzN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlXPWCIg2oXycu7F/dQ+ugmBbCZcXzAuaba0eztvNQv8L4TQgy
-	xf8GQUMU/9KH4IUin3/+L7MjgcNxuTvZot1/4jEYgqZYJisGCk+E5QzAN6taXWU=
-X-Gm-Gg: ASbGncu8ZhPrPuAm7xfLR2c8Z7njhhSl3N3kQJNe4u1zR0Gt7tF7xUpdBtPmgq8dhwY
-	hpMt6kJ+S+b94TL6WO6bOzoxp1BropVvQEUUspzq8PX3tOdy0/Yfyeo7d1mju2vlVZztFvejLuS
-	1oYaRiT9OCYb+6WtVpT7mICS5pxTskHZPe7UfAGba78uHvWEhYkEITON3s71fbkmdV/CV3BlTMI
-	fCxWD/yYYaisrmpizKHL7hkO9jbeIT8mqQdLq6GvoUVwMYVBb/yzCUbTTFIcVPWnHberO3nRMVq
-	QeDNzL4IZ1BSSDU11gEIJnogdOuf53zjoermerY=
-X-Google-Smtp-Source: AGHT+IHHKtYD3BVlXZien9UvwLeNx/sm24xmFu3jvyiLMD1Snoou0Mq/cMTOOhacbpKhpu86eCgn4A==
-X-Received: by 2002:a17:907:9689:b0:acb:5f17:624d with SMTP id a640c23a62f3a-ad21929f4bemr248898166b.57.1746774548934;
-        Fri, 09 May 2025 00:09:08 -0700 (PDT)
-Received: from [127.0.1.1] ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad2192caf92sm107353766b.3.2025.05.09.00.09.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 May 2025 00:09:08 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Fri, 09 May 2025 10:08:52 +0300
-Subject: [PATCH v2] arm64: dts: qcom: x1e80100-*: Drop useless DP3
- compatible override
+	s=arc-20240116; t=1746774674; c=relaxed/simple;
+	bh=u3ZfQBj5s6NVJZ5Nx5H/avFJ+A++2sTas5i3qAMXsII=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K0uDAFSMVkgKSV20fhpbuAVAyYagRecXuZGeXzxh1MbpAvdZ7sP9h8wQXK/fwjrA2EoJH8VR1Gc93ePJEdma0RW7AzKZHi4fKStuN2HdWYXBJfi2kNyTUn52ZfNgr1A7R76dowp2ADH6/Z76JhUjxl9tSqUjcasrK5fWWq6bVTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TEzYIo1C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA3A6C4CEE4;
+	Fri,  9 May 2025 07:11:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746774673;
+	bh=u3ZfQBj5s6NVJZ5Nx5H/avFJ+A++2sTas5i3qAMXsII=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TEzYIo1CRo6Vo2NET14ploXJ/8rRxm0rtJ/pwTjUKlOVBtqthh0gYvjj4r1kAmjAn
+	 rQcyEJi+zcM3h7J8lnJc/TrdaBLoxerGgxP88J7AcR/PeWSri5uq2lP66uWu3sDryK
+	 wMDZb/lGAML7O3dabV21YEFpHwvTrg/Zpy/h0XjLB0+EHvTaDBTaj7ZowHTFWquosF
+	 sS1S19ampaRvT3niN74xCM2fo3WlwHIvGnYODNELDZGY/NSVXIU42XlkZVyxdYml3I
+	 SGYIt2jhM6Hpq0rw0j2ghB5BbawKaC55Q1Mg5+wEFeGFyF3pso37998IfHWYZS/z9Z
+	 yvvjw5jklOgIw==
+Message-ID: <ccf4b15a-8399-4a7f-ae40-d01d0975921c@kernel.org>
+Date: Fri, 9 May 2025 09:11:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dt-bindings: display: rockchip: Convert
+ cdn-dp-rockchip.txt to yaml
+To: Chaoyi Chen <kernel@airkyi.com>, Sandy Huang <hjc@rock-chips.com>,
+ Heiko Stuebner <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+ Dragan Simic <dsimic@manjaro.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250509070247.868-1-kernel@airkyi.com>
+ <20250509070247.868-3-kernel@airkyi.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250509070247.868-3-kernel@airkyi.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250509-x1e80100-dts-drop-useless-dp-compatible-override-v2-1-126db05cb70a@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAAOqHWgC/6XOTQ6CMBAF4KuYrh0zbfiprryHYQHtCJMgJVNsM
- IS7W7mCy+8t3nubiiRMUd1OmxJKHDlMGeZ8Um5op56AfbYyaEoszBVWTRY1IvglgpcwwzvSSDF
- jBhdec7twNxKERCLsCXxny8q4qqudV7l2Fnryekw+muyB4xLkczxI+pf+MZY0IGBpbVFbXfga7
- yNPrYRLkF41+75/AecF+F3xAAAA
-X-Change-ID: 20250429-x1e80100-dts-drop-useless-dp-compatible-override-db8562c6b7cd
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>, Xilin Wu <wuxilin123@gmail.com>, 
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
- Srinivas Kandagatla <srini@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, 
- Sebastian Reichel <sre@kernel.org>, 
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Konrad Dybcio <quic_kdybcio@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5039; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=ZVm8xeMld43/fYnh9mURv7CenW/hOS0NVnjxgb8fE18=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBoHaoOTlSmAxcy1zImiBQn6CIqbQcS0TqJVpOP5
- liESPLvT8GJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaB2qDgAKCRAbX0TJAJUV
- VoM0D/9LA/64zq3EP3lbqwqltxQUZEyd52AH+ACtd7dmaAk/0hhxJtwDaXIG2281G4iO11RB1GL
- cJVeAtxb0O2mp5NaOTik/q94NCMltCZOa+lb8eGJoWzQH1VXgFrlKD0If6faEtXi+b5Tcvfd6XC
- iEbKm8V3cr9NptQAiFnZQIzYutnAzyYk4S37pvk7MHN0qrY+DmmdPmfgwAzzgzoSvM5yTZFiCS3
- QHWf3UFAKe7R2PyrSGjFibfVqnbT+gjOt/yTLp7V1Wmj6NoIX8kxBjj3MFJg4A09ym0rJDy2rYc
- ETkwYnb0eJK5OmayQ8nh1kwqLYH1rWa/PIZMARtmkSp3gYay+DF0zmBtRRGetH84DpuAvg8a6cZ
- 0YxtC6s86L1DoLf2dPu+T3gS71mpGDhIxwFFBB4vWPGaST99bK7yi0re6wiLcKmYdPMmpiY6lUJ
- qJhK9Kjd6rjoUXt846+ifBxbr9Dqg0rv7FvClDEuLzxUbVmFSy/aChGrly3/R/jTzZs0ifgU27B
- mI4jUW1xDOp6VY4OC15NAyrUDRFtEfdXuOiRIm0gD6JRc2pBOOC8sYtq7v5WA9GACW+EsK4Kah/
- oZTOw2SKmhbqJrLwmfgPOHRPFPBp+f26BhNAhsZ6f348OWk+urpxG8wL3lxXWNAs/UwkG6gYQ4K
- 9KAFliXWy5Nb2WQ==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-Back when display support was added initially to CRD, and we used to have
-two separate compatibles for eDP and DP, it was supposed to override the
-DP compatible with the eDP one in the board specific devicetree. Since
-then, the DP driver has been reworked to figure out the eDP/DP at runtime
-while only DP compatible remained in the end.
+On 09/05/2025 09:02, Chaoyi Chen wrote:
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core-clk
+> +      - const: pclk
+> +      - const: spdif
+> +      - const: grf
+> +
+> +  extcon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Phandle to the extcon device providing the cable state for the DP PHY.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  phys:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
 
-Even though the override does nothing basically, drop it to avoid
-further confusion. Drop it from all X Elite based platforms.
+Just phandle. If this is an array (but why?), you need maxItems for
+outer and inner dimensions.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
-Changes in v2:
-- Squashed all patches into a single one, as Johan suggested.
-- Picked up Johan's and Dmitry's R-b tags.
-- Link to v1: https://lore.kernel.org/r/20250429-x1e80100-dts-drop-useless-dp-compatible-override-v1-0-058847814d70@linaro.org
----
- arch/arm64/boot/dts/qcom/x1-crd.dtsi                        | 1 -
- arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi | 1 -
- arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts     | 1 -
- arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts       | 1 -
- arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts    | 1 -
- arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi    | 1 -
- arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                   | 1 -
- 7 files changed, 7 deletions(-)
+> +    description:
+> +      Phandle to the PHY device for DP output.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Input of the CDN DP
+> +        properties:
+> +          endpoint@0:
+> +            description: Connection to the VOPB
+> +          endpoint@1:
+> +            description: Connection to the VOPL
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Output of the CDN DP
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 4
+> +
+> +  reset-names:
+> +    items:
+> +      - const: spdif
+> +      - const: dptx
+> +      - const: apb
+> +      - const: core
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to GRF register to control HPD.
+> +
+> +  "#sound-dai-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - phys
+> +  - ports
+> +  - resets
+> +  - reset-names
+> +  - rockchip,grf
+> +
+> +additionalProperties: false
 
-diff --git a/arch/arm64/boot/dts/qcom/x1-crd.dtsi b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-index dbdf542c7ce5132ef37a68bfae293a09488b0a0a..c9f0d505267081af66b0973fe6c1e33832a2c86b 100644
---- a/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-@@ -1148,7 +1148,6 @@ &mdss_dp2_out {
- };
- 
- &mdss_dp3 {
--	compatible = "qcom,x1e80100-dp";
- 	/delete-property/ #sound-dai-cells;
- 
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-index 962fb050c55c4fd33f480a21a8c47a484d0c82b8..88cbf2a8186188acbc29baed13169fb940f83c73 100644
---- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-@@ -972,7 +972,6 @@ &mdss_dp1_out {
- };
- 
- &mdss_dp3 {
--	compatible = "qcom,x1e80100-dp";
- 	/delete-property/ #sound-dai-cells;
- 
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-index c94ddba5fbf1cb8ab2bf841cf51ac3553e1f95cb..a9ac4b81daf630853fe8c6cbe44aae5269d65958 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-@@ -479,7 +479,6 @@ &mdss {
- };
- 
- &mdss_dp3 {
--	compatible = "qcom,x1e80100-dp";
- 	/delete-property/ #sound-dai-cells;
- 
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
-index 199e256743521de82d98b38699f96697c5570e66..e3f9354aa8ab2e99a547bc8c8773b4c43d064c83 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
-@@ -1154,7 +1154,6 @@ &mdss_dp1_out {
- };
- 
- &mdss_dp3 {
--	compatible = "qcom,x1e80100-dp";
- 	/delete-property/ #sound-dai-cells;
- 
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-index 9fb306456e33a16db37522b3ce9099cfd58c14e2..873ebafa933aae7086b09f7fc8ee5099119e5b0c 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-@@ -615,7 +615,6 @@ &mdss {
- };
- 
- &mdss_dp3 {
--	compatible = "qcom,x1e80100-dp";
- 	/delete-property/ #sound-dai-cells;
- 
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-index da8cef62ae730266b8782ea0a7efedf51c9f547d..26ae19b34b37e0e3c67eb4543de898e94e62c678 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-@@ -945,7 +945,6 @@ &mdss {
- };
- 
- &mdss_dp3 {
--	compatible = "qcom,x1e80100-dp";
- 	/delete-property/ #sound-dai-cells;
- 
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-index c0c8ecb666e178752da8e1d5c22ec2b632776129..4dfba835af6a064dbc5ad65671cb8a6e4df79758 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-@@ -871,7 +871,6 @@ &mdss_dp2_out {
- };
- 
- &mdss_dp3 {
--	compatible = "qcom,x1e80100-dp";
- 	/delete-property/ #sound-dai-cells;
- 
- 	status = "okay";
+Well, if you added dai-common $ref then this could have stayed as
+unevaluatedProperties, so you will allow names for the DAI as well.
 
----
-base-commit: f48887a98b78880b7711aca311fbbbcaad6c4e3b
-change-id: 20250429-x1e80100-dts-drop-useless-dp-compatible-override-db8562c6b7cd
+> 
+
 
 Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
-
+Krzysztof
 
