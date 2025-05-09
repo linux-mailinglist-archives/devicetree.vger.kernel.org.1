@@ -1,131 +1,122 @@
-Return-Path: <devicetree+bounces-175808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35093AB1F5D
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 23:50:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCCD3AB1F61
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 23:51:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADA42160C29
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 21:50:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 892049E0A49
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 21:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C66562609CB;
-	Fri,  9 May 2025 21:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7D32609EB;
+	Fri,  9 May 2025 21:51:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="YfDduPD5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YdTG/lBL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C3725D1FC
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 21:50:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B6E2609CB;
+	Fri,  9 May 2025 21:51:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746827438; cv=none; b=ahflIwVSbdsnydRPEX1zwOW/P5NURVMOm/ZJrlPFZqm6+s5A2x/m5nlQpYTNN0fSSGrF2AuGvngJPj3Q7ljXPoG1x03TgF8LueG84krO0VUxLYobHc5+N/NnMz+oln4acdnu3Lmyu4cLXaU5GdfM/aFC/T4+DvIhYwLlCgRE/Is=
+	t=1746827511; cv=none; b=jPlpOwjHTfNMXiDv9FR6F5HaBzaPfHWPhysRrbQLmW7OlvjJJ2cS/hndtuKnf4tZPW+ZIw7jBkH3snZvb7mbLnqfcsIYexWMI4i3HIlurDqIp8NKoXxxSbNATIDmY3KK8t6ojBLjjHvBRLEYd36PYLAv7ayE/dhVP+5Lmg5o+lY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746827438; c=relaxed/simple;
-	bh=vOxqEgCrICifNtaKDhsZWxwqtUcwlYfTkQ0x/bD3oII=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nMWj1EXWXK6b8c38gZWPdSCfzOClKIZbtycUnI6KZ/ny3PW69P0jo8V8xPzBEVmNdU/9AKwj4mETIJrAmfuA2Z4ZwPK6IOPujVerox+dsr+mnFONLKXwG1+yGIP0J/e3ptsrZ81o6oKINdOgK++G6GcB6U9MM7RCM30raht5O8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=YfDduPD5; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1746827430;
- bh=Q/4hTUTysjyHMdWQYAFUoh8JWnAIFyUM8sIjXoykTqA=;
- b=YfDduPD5yZOQihPF8NfnDBrj6byh6JGzODHQjRh8KVQNKpVCAMttr3xhlsy7vzhDYv14RQDiF
- IFIfUeOwNvWgxylUBVoQNKDfG37Ye3t2rl3WSra/KS73rWKffImEIzhIxu4PFMGK88rctofdZEw
- GDpX4ZMcYf+21ESnau7E1ymnrD3zRt1F+9tjHO5j0gkwbfV6OlaetjrV96Yqp0NCbniVYSA4+NO
- 0JOgYHFD9kreZ0l1t8CavN9fGazNE6a1wf1fJFX6FLfPsIQj3F4i2inYw68ygabCtWMUPSHXuzN
- RPUCn69TbN/rwlIuPpVubItnYfuwVrOC5uEEN6OjIJKQ==
-X-Forward-Email-ID: 681e789856028bab66256880
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.0.2
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <36fb3b11-9a1d-4849-9333-5ef26a217106@kwiboo.se>
-Date: Fri, 9 May 2025 23:50:11 +0200
+	s=arc-20240116; t=1746827511; c=relaxed/simple;
+	bh=f9Q7oZzAD3nVBbCeFbQ5MfukDb6SqnYSXJSBVfzsRMg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=d/60Y3O7zQyx1lqdYZvWRR9tQSFk9PeU/Q9WN35W4elqE9izeXUKJypDtbca87hkuFT1xRP+rBQwLyw8J87RHsnDHFhCQPvtMu36VnlgAfhHnP04AVOzp5W77/TZPPAUmV5YOoClupOPz+2qUJTtQkVojVJ2IfrfZs7oMtLhc7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YdTG/lBL; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 938881FCE8;
+	Fri,  9 May 2025 21:51:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746827507;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=3ybU8O60AFFwP7YDQiZRFLzyAUOwV85K224Agh85zF0=;
+	b=YdTG/lBLqsugAmiwZTWnq6AeEi93etuaS35Q7flJL2B+hpTTc9PkVY3qgnxbOwAHG2GRrl
+	O92c0r5S+mCaPJ7rqhc6yJWAIf9E5Bx8EE4Vp6Z+u38Ozjo02E+kxxmdS1H/lqyVdU2TT8
+	nGXVOjPoqZCpWcesJnyj5GXxVccfK7Y+bJsO832Mk84drlVfMWkjQP5hLPNWQL1r9wOiYM
+	m+KIPg+wsYWilRSpctPT8lLI4Y4rlrk2EpZZAYOjcVjGNs0HXGqhsdpkjC2Reoa6LB4+GP
+	4+y/GL1Xq5Owm011apG+TLAawqecn4oeookjSGmeHF1BfjlcLsdkPA+ORJONzw==
+From: Olivier Benjamin <olivier.benjamin@bootlin.com>
+Subject: [PATCH v3 0/4] Describe the cameras in the PinePhone Pro dts
+Date: Fri, 09 May 2025 23:51:36 +0200
+Message-Id: <20250509-camera-v3-0-dab2772d229a@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] rockchip: Enable Ethernet controller on Radxa E20C
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
- Chukun Pan <amadeus@jmu.edu.cn>, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250509202402.260038-1-jonas@kwiboo.se>
- <2728051.BddDVKsqQX@diego>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <2728051.BddDVKsqQX@diego>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOh4HmgC/2WOQQ7CIBBFr9LMWgxMqS2uvIdxAThYElsMNETT9
+ O7SLjTG5fuZ9zIzJIqeEhyrGSJln3wYC9S7Cmyvxxsxfy0MyLHhiB2zeqCoWas7JQ057XQL5fg
+ RyfnnFjpfCvc+TSG+tm4W6/qXyIJxZhvRHZRTklR7MiFMdz/ubRhgjWT8ijXHj4hFrAUaKY0sf
+ 9hfcVmWN9ek20HXAAAA
+X-Change-ID: 20250228-camera-7a894befafa7
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+ Nicholas Roth <nicholas@rothemail.net>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
+ imx@lists.linux.dev, Olivier Benjamin <olivier.benjamin@bootlin.com>, 
+ Dragan Simic <dsimic@manjaro.org>, Ondrej Jirman <megi@xff.cz>
+X-Mailer: b4 0.14.2
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvleefjeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhufffkfggtgfgvfevofesthejredtredtjeenucfhrhhomhepqfhlihhvihgvrhcuuegvnhhjrghmihhnuceoohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedtudehfeeutdffjeeviefgjeetieeuleefkeefgfevfedvlefgiefhheejueejvdenucffohhmrghinheptghouggvsggvrhhgrdhorhhgpdhkvghrnhgvlhdrohhrghenucfkphepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvfeegmegvtgefkeemvdegvgdtmehfhegtvgemfhefgedvmeeiheekjeemfheiheeipdhhvghloheplgduledvrdduieekrddurddvtdgnpdhmrghilhhfrhhomhepohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopehkvghrnhgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepihhmgieslhhishhtshdrlhhinhhugidruggvv
+ hdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshdrhhgruhgvrhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepfhgvshhtvghvrghmsehgmhgrihhlrdgtohhmpdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegushhimhhitgesmhgrnhhjrghrohdrohhrgh
+X-GND-Sasl: olivier.benjamin@bootlin.com
 
-Hi Heiko,
+This series adds support for the Pine64 PinePhone Pro's rear and front
+cameras in Device Tree.
+This is based on some of Ondrej Jirman's patches hosted in his tree at
+https://codeberg.org/megi/linux, but I have also fully reviewed and
+re-written the code from the RK3399 datasheet, the PinePhone Pro
+schematic, and the IMX258-0AQH5 software reference manual.
 
-On 2025-05-09 23:40, Heiko Stübner wrote:
-> Am Freitag, 9. Mai 2025, 22:23:56 Mitteleuropäische Sommerzeit schrieb Jonas Karlman:
->> The Rockchip RK3528 has two Ethernet controllers, one 100/10 MAC to be
->> used with the integrated PHY and a second 1000/100/10 MAC to be used
->> with an external Ethernet PHY.
->>
->> This series add device tree nodes for the Ethernet controllers found in
->> RK3528 and enable the LAN interface on Radxa E20C.
->>
->> This include a gmac0 node for the 100/10 MAC and its related integrated
->> PHY node that only have recived limited testing. I have no board that
->> expose an Ethernet port for the gmac0 and the integrated PHY. However,
->> the PHY can be identified on addr 0x2 as 0044.1400 and in vendor kernel
->> this relate to the Rockchip RK630 PHY. A proper PHY driver will be
->> needed to support any real use of gmac0.
->>
->> Changes in v3:
->> - Rebase on top of latest mmind/for-next
->>
->> Changes in v2:
->> - Split from the "Add GMAC support for RK3528" driver series [1]
-> 
-> split from ... was that series merged already?
+I have tested these changes on my PinePhone Pro and am able to take
+photos from both cameras using libcamera's cam.
 
-Yes, sorry for not being more clear, the dt-bindings and driver has been
-merged and is already included in v6.15-rc1.
+Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
+---
+Changes in v3:
+- Fixed new DTB warnings reported by Rob Herring's bot
+- Link to v2: https://lore.kernel.org/r/20250302-camera-v2-0-312b44b4a89c@bootlin.com
 
-https://lore.kernel.org/r/174291544076.609648.8594782943472190694.git-patchwork-notify@kernel.org
+Changes in v2:
+- Rebase on mainline
+- Change patch subject to arm64: dts: rockchip
+- Rename new regulators to fit preferred form for fixed regulators
+- Link to v1: https://lore.kernel.org/r/20250228-camera-v1-0-c51869f94e97@bootlin.com
 
-Regards,
-Jonas
+---
+Olivier Benjamin (4):
+      dt-bindings: media: ov8858: inherit video-interface-devices properties
+      dt-bindings: media: imx258: inherit video-interface-devices properties
+      arm64: dts: rockchip: describe I2c Bus 1 and IMX258 world camera on PinePhone Pro
+      arm64: dts: rockchip: describe the OV8858 user camera on PinePhone Pro
 
-> 
-> The linked lore-thread only talks about the series needing to be reposted.
-> 
-> 
-> Heiko
-> 
->> - Add ethernet-phy@2 for the integrated PHY
->> - Rebase on top of the "Support I2C controllers in RK3528" series [2]
->>
->> [1] https://lore.kernel.org/r/20250309232622.1498084-1-jonas@kwiboo.se
->> [2] https://lore.kernel.org/r/20250309070603.35254-1-ziyao@disroot.org
->>
->> Jonas Karlman (2):
->>   arm64: dts: rockchip: Add GMAC nodes for RK3528
->>   arm64: dts: rockchip: Enable Ethernet controller on Radxa E20C
->>
->>  .../boot/dts/rockchip/rk3528-radxa-e20c.dts   |  30 +++++
->>  arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 105 ++++++++++++++++++
->>  2 files changed, 135 insertions(+)
-
+ .../devicetree/bindings/media/i2c/ovti,ov8858.yaml |   4 +-
+ .../devicetree/bindings/media/i2c/sony,imx258.yaml |   4 +-
+ .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 139 +++++++++++++++++++++
+ 3 files changed, 145 insertions(+), 2 deletions(-)
+---
+-- 
+Olivier Benjamin <olivier.benjamin@bootlin.com>
 
 
