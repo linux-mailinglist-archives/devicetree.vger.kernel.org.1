@@ -1,89 +1,137 @@
-Return-Path: <devicetree+bounces-175729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A94BAB192E
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:47:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2B9FAB1931
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:48:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B87B01BA218F
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:47:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F806189E044
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF90B230269;
-	Fri,  9 May 2025 15:46:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED52923182C;
+	Fri,  9 May 2025 15:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IjWuvd9r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A42F22FF58
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 15:46:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFD1722FDE7;
+	Fri,  9 May 2025 15:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746805609; cv=none; b=P7VEfdV5U9mzjz2+02/NUJRMiWFns98aqA8Vfc+V1qRxQhHVsu2cxnETK5W4OvR57CMReeVe86fkCstMOVl5oVZJ/OBaP4I6X/bRKEH5XL6lPl1Ni6kcZnkmBhZAYEYrV6MS3NG0KNfEmk2qe8MApviD5K1Q+bqpFTKMrZdpo0o=
+	t=1746805710; cv=none; b=GFH9P10SXVLfVZfx2sPgZJ3Vb0xhu8oCUn4/R3E62N3JMCp0N1sv8OhBEzDWLes0FQucZMomQX4Ei2gIun/giI/eUTzhiI/BZRUPcakUl8hLkx3q38Dal4ckgwG/jq9e8dGlLIIcPx3xUt+18y8CJplzW6WZBdcf7bgujTknLrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746805609; c=relaxed/simple;
-	bh=Gfu4cQXRM4nOnAic9N5Nn26h2MpZeLO7VAUP8M04fIU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VOeZx+AyQ+iAkTgGtoeG8oNIk65RkeXc10es2gucQ2BVIRbfNMqeBplpGHeU7FD25ruqE2VfYa8lpyEhNsinuGh+B0f7mvtW2JercTAxwerazlO+ZsCRt7zzazbmzbU6uMXZCAIWWCbc54pnkHCMkKj/QMVvMbM8QguhymzDFbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DD4F5175D;
-	Fri,  9 May 2025 08:46:36 -0700 (PDT)
-Received: from usa.arm.com (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id AA5733F58B;
-	Fri,  9 May 2025 08:46:46 -0700 (PDT)
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Leo Yan <leo.yan@arm.com>
-Subject: [PATCH v2 3/3] arm64: dts: fvp: Reserve 64MB for the FF-A firmware in memory map
-Date: Fri,  9 May 2025 16:46:40 +0100
-Message-Id: <20250509154640.836093-3-sudeep.holla@arm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250509154640.836093-1-sudeep.holla@arm.com>
-References: <20250509154640.836093-1-sudeep.holla@arm.com>
+	s=arc-20240116; t=1746805710; c=relaxed/simple;
+	bh=Z/ccOXoCEaNihcY6p2Y764mYYL45MJ+rALkM+IUwoe8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rdw9WDRV0EbmW1ioT8/bnTUcgYXO3nPJQ4/d2VE/6jX48am8Yb9NYsPuHzsfDTF6dcK1GDNpFvLqUHu3hRTMS/WilZ2VfnjKMqwD37+c5s91/4YEVP50Y/MBk9AkQkwOFeQu5iM/nb7UApEGvduE0/MXzvX5ugRdavfLgYBnP64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IjWuvd9r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4622BC4CEEF;
+	Fri,  9 May 2025 15:48:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746805710;
+	bh=Z/ccOXoCEaNihcY6p2Y764mYYL45MJ+rALkM+IUwoe8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IjWuvd9r7Fii+94cxA3vTZy6O0PSohuktwLs/ESa7TAcScbshAHwHs+MDfGMN9PVd
+	 BJ0HrtDxDkBmtM5aG2mnm5wIJ1ChHyEbib3TTm+SzK3Hxbl9pujKshBEc7prGkOy50
+	 CID/LqIok0SbvO4EEdzg6HtOBUQiAitMycu6crVcCR7JVMgu/yxWcVMqg5n732JzcZ
+	 DWPwwxiRINKNdw15G1mj+PL4iXMjYDanwJYKywWQ87f+2BhFruV/AQYq+RRtlC8XPr
+	 G5WRcy1j3I60HqaINX+pm2woaQQ6IeSxLI4zEBO0+xQf5/SszHTgKxtz9QCBRXTcIV
+	 qkjGGUqNjB9/g==
+Date: Fri, 9 May 2025 16:48:25 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: linux-usb@vger.kernel.org,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: usb: ti,usb8041: Add binding for TI
+ USB8044 hub controller
+Message-ID: <20250509-flagman-bootleg-ad27822f7d53@spud>
+References: <20250507131143.2243079-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.3e03400f-766d-4690-8f43-cbea2cac93d8@emailsignatures365.codetwo.com>
+ <20250507131143.2243079-2-mike.looijmans@topic.nl>
+ <20250508-prewashed-jawline-37f53c0f9429@spud>
+ <583dc73e-23d3-4c8a-a457-f2bf71190e6a@topic.nl>
+ <20250508-waving-sustainer-28fe228e01f8@spud>
+ <d4604713-ffb3-4cb2-bcd8-14c0519ad608@topic.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="n9g9I+OmmxWn4iaj"
+Content-Disposition: inline
+In-Reply-To: <d4604713-ffb3-4cb2-bcd8-14c0519ad608@topic.nl>
 
-Reserve 64MB of memory at the end of the first bank of DRAM on FVP model.
-This is mainly for FF-A firmware use, as required by various firmware
-configurations using the Firmware Framework for Arm (FF-A). This prevents
-the kernel from overwriting the firmware region.
 
-This is also useful when running other firmware configurations(non FF-A
-based) that rely on usage of 64MB at the end of first DRAM bank.
+--n9g9I+OmmxWn4iaj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Necessary for proper coexistence of firmware(FF-A partitions) and the OS.
+On Fri, May 09, 2025 at 07:56:35AM +0200, Mike Looijmans wrote:
+> On 08-05-2025 17:53, Conor Dooley wrote:
+> > On Thu, May 08, 2025 at 05:19:03PM +0200, Mike Looijmans wrote:
+> > > On 08-05-2025 16:58, Conor Dooley wrote:
+> > > > On Wed, May 07, 2025 at 03:11:43PM +0200, Mike Looijmans wrote:
+> > > > > The TI USB8044 is similar to the USB8041.
+> > > > Similar how? Why's a fallback not suitable?
+> > > I don't quite understand what is meant by "fallback" here?
+> > A fallback compatible, since you;re using the same match data as the
+> > 8041.
+>=20
+> I think it would work. It would look strange though, having to put an
+> additional vid/pid in the devicetree to make it work.
 
-Message-Id: <20250508103225.354925-3-sudeep.holla@arm.com>
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
----
- arch/arm64/boot/dts/arm/fvp-base-revc.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+That's how a huge number of other devices work in devicetree when
+handling differs between devices.
 
-diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-index 755b1407c4dc..a5024075e3f3 100644
---- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-+++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-@@ -201,7 +201,7 @@ C1_L2: l2-cache1 {
- 
- 	memory@80000000 {
- 		device_type = "memory";
--		reg = <0x00000000 0x80000000 0 0x80000000>,
-+		reg = <0x00000000 0x80000000 0 0x7c000000>,
- 		      <0x00000008 0x80000000 0 0x80000000>;
- 	};
- 
--- 
-2.34.1
+> > > It's similar in that the USB8044 provides the same functionality and =
+can use
+> > > the same driver as the USB8041, all that is needed is to add the PID/=
+VID
+> > > values.
+> > Is this onboard_dev_id_table table with the vid/pid used in combination
+> > with dt, or in-place of dt when device detection is dynamic? If the
+> > latter, why can't dt use a fallback compatible since the handling is
+> > identical to the 8041?
+>=20
+> My basic understanding is:
+>=20
+> The devicetree match creates a platform device that controls the reset pin
+> of the hub. It's basic task is to de-assert the reset, so the hub starts
+> negotiating. This part also works with the 8041 devicetree entry (which is
+> how I first tried to get it up and running).
+>=20
+> The VID/PID table then matches the hub on the USB bus, which can then be
+> associated with its platform device. Since the 8044 reports a different
+> VID/PID, this part only worked when I added the entries to the tables.
 
+Right, so you do actually need to use the dt entry /and/ the dynamic
+data? In that case, there's little value in a fallback, since you need
+non-fallback information in the driver for things to work. If that's a
+correct understanding,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--n9g9I+OmmxWn4iaj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaB4jyQAKCRB4tDGHoIJi
+0pfCAQCGCGWallUTglxaL9aGMoqKHpRUBAoqvKbvaSLxA9HlwwEAwOUAI1MU7toT
+1VyheNOnj9KtDpaBM0yYX5amE/4BHAA=
+=hpeN
+-----END PGP SIGNATURE-----
+
+--n9g9I+OmmxWn4iaj--
 
