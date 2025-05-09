@@ -1,68 +1,61 @@
-Return-Path: <devicetree+bounces-175741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BDDEAB1A09
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 18:14:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 188D3AB1A23
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 18:17:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3418716F3F6
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:10:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4466188E2A4
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:12:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC92C2367D1;
-	Fri,  9 May 2025 16:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E062356B3;
+	Fri,  9 May 2025 16:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qPC0FmTZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ir1PEOE6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC3462367B1;
-	Fri,  9 May 2025 16:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A0023504C;
+	Fri,  9 May 2025 16:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746806981; cv=none; b=Opp37p2/7SSjO2P/3Y0s5t2SRTNg/rCV/ggVQ5cvbeytq5cT5I+tfbMDSTFY7NpvMG3zvdxIaf9GLU1MnmNXJOFtTqnHkj59u1/WYHXTIG/ilXhfjIMptPzmzMJ9N7atPwWcoxjDeRkfhH1x+dVn9MCktLNydY2J+X+qz4fvhWw=
+	t=1746807117; cv=none; b=uQkpkOoM7V3cKF7NY5N00WUfLFMPrCY+2NsPnfnEuDbU4i4hIWGAI1XF7cb/bpdEBNedp0r2IpFdkc0xqrseCvvG0ngYwA4uoBIDxq31INmThpJAIwG3Btg/A7fStRkxBt3XoFGoU6lEEDvBisLyx0WkDo+41h9Oa9dekIla5bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746806981; c=relaxed/simple;
-	bh=UKE+0RPXtg1WdCPj4nwbiF1vj2IOeaeA5oRzi512CWU=;
+	s=arc-20240116; t=1746807117; c=relaxed/simple;
+	bh=bpNVUwzX/KLB/HdjbVioDgiKXANaTn52rgYDeJ5osuI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o68Mq+K5qw5R06f/ij7RHTwSOJmKVXkbo5eNZ1LeWZuiOpnG8rFhMC9J6KukHnJk1hEHAl9cVz5QXfrAg/2VWNkscDwtIGwUgkPnMhZWp5UOI5H0jzaWhJcxjFhhfRvgYIB3oYZ3WpQbZwjg7XeiWazm9Br7yrTIqdu9ckEPUvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qPC0FmTZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FE49C4CEE4;
-	Fri,  9 May 2025 16:09:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TvQqQORKoFHaxs+Q/fPBHQ39ZGXWVQXfsV7V89BVCNBohq/neQV4sKiBs8+ock1BWqFGPc3cPOvGnzzsW1jAHWHyANSjuDZbWZDgrpZQagAyAJ8pEBNVQbUGFU3w2fzOc81361LVP/EBpWmInICkSFuuY7WK+hv90IBr78zfkSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ir1PEOE6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82D78C4CEE4;
+	Fri,  9 May 2025 16:11:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746806981;
-	bh=UKE+0RPXtg1WdCPj4nwbiF1vj2IOeaeA5oRzi512CWU=;
+	s=k20201202; t=1746807116;
+	bh=bpNVUwzX/KLB/HdjbVioDgiKXANaTn52rgYDeJ5osuI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qPC0FmTZSPv2FVwCNKrUkVSSIOAQb7ciEg/NJH3r0zJToSXmZ25/70zo6e5/IUVfD
-	 DNBL5akw+oun8/VLTLGtgv0kRXgc6K1lvfFwpwu57oNjXohFlLXy+RVAQj80QpTYNY
-	 8iwuCW9VBpaMlzDurbxlWpXmpmRDn6ecCB4jI2gxrZl1pSGPlpRzJ3E1xYDKyV76up
-	 Hqo/Gstiq+dfpc36GbisWa/nxSUyL7eKSrJSQhE4UdJD8cjyIKOEOfSIZR7NnFS3pR
-	 PQihPX1gc/8KhHD5CfgAvAQ3IUBj1G5uR+VTVChdK9jcpJdEmwlLsKWl5cLtLkgEhs
-	 z/trChP54b+JQ==
-Date: Fri, 9 May 2025 17:09:35 +0100
+	b=ir1PEOE6NRXx99Cv95+SKi9Zmr3GL4q+cUUQ6ACo61GxcHuclOom1BQ/sPtrFIU8p
+	 5LMXHOnsSIAe+nvPrFDd0yCSxiBprXis4n79sI2pdHhEysHwI35W2USx55uU2MxvvA
+	 AxAr/MDNALUSpPe1qIEzDG/pkYoWyt+DOxJGozKT+IvqFhS2c727Ov5LJL9rrxMsZu
+	 uVqJ3G6caDo9wOpv3nc+LMBiFFPsY6kHhWFImwZLYTwlQaGHFuWuByjEE1CZ9kNeTf
+	 mZK/oB4LV7bTxIrwCQL5qLsl3WmZZ5kV8Mm0L5LSmCkkIIVjOiPk8uefgZJsjpss0v
+	 25OivlVSWx2hQ==
+Date: Fri, 9 May 2025 17:11:50 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Chuan Liu <chuan.liu@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-	robh+dt <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	devicetree <devicetree@vger.kernel.org>,
-	linux-clk <linux-clk@vger.kernel.org>,
-	linux-amlogic <linux-amlogic@lists.infradead.org>,
-	linux-kernel <linux-kernel@vger.kernel.org>,
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 1/6] dt-bindings: clock: add Amlogic T7 PLL clock
- controller
-Message-ID: <20250509-straddle-parish-92306b78486b@spud>
-References: <20250509074825.1933254-1-jian.hu@amlogic.com>
- <20250509074825.1933254-2-jian.hu@amlogic.com>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	andy@kernel.org, nuno.sa@analog.com, Michael.Hennerich@analog.com,
+	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+	linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+	broonie@kernel.org, jonath4nns@gmail.com, dlechner@baylibre.com
+Subject: Re: [PATCH v7 02/12] dt-bindings: trigger-source: add generic GPIO
+ trigger source
+Message-ID: <20250509-quickly-culprit-3334c8ec27aa@spud>
+References: <cover.1746662899.git.Jonathan.Santos@analog.com>
+ <f62bcaabde172e0b2880f7d05dce97d684cc04ca.1746662899.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,34 +63,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0Fuzjvst7gC5JW8H"
+	protocol="application/pgp-signature"; boundary="nyVvxJAmvCbunl+H"
 Content-Disposition: inline
-In-Reply-To: <20250509074825.1933254-2-jian.hu@amlogic.com>
+In-Reply-To: <f62bcaabde172e0b2880f7d05dce97d684cc04ca.1746662899.git.Jonathan.Santos@analog.com>
 
 
---0Fuzjvst7gC5JW8H
+--nyVvxJAmvCbunl+H
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 09, 2025 at 07:48:19AM +0000, Jian Hu wrote:
-> Add DT bindings for the PLL clock controller of the Amlogic T7 SoC family.
+On Thu, May 08, 2025 at 02:03:17PM -0300, Jonathan Santos wrote:
+> Inspired by pwm-trigger, create a new binding for using a GPIO
+> line as a trigger source.
 >=20
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Link: https://lore.kernel.org/linux-iio/20250207-dlech-mainline-spi-engin=
+e-offload-2-v8-3-e48a489be48c@baylibre.com/
+> Reviewed-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
 
-Looks like Rob's comments got resolved,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---0Fuzjvst7gC5JW8H
+--nyVvxJAmvCbunl+H
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaB4ovwAKCRB4tDGHoIJi
-0r1NAP9mZrXhZY6WXko9PL6fkCqKeL/fwtgoQwBt3GzCJr/9MQD+LeFD+itCESb7
-ZGtjYJ+O87BFn1X8MeYi+O4FZ6CYMw8=
-=bC3h
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaB4pRgAKCRB4tDGHoIJi
+0gqtAP9nbXRFuq8u75ysr6luGBqA1gRayOtqphoqvo+HTpRQxQEAzDkebqEPZycd
+XtiM1brQPnJdDp3w5Ef0u3qWs5OfKgM=
+=Ei/f
 -----END PGP SIGNATURE-----
 
---0Fuzjvst7gC5JW8H--
+--nyVvxJAmvCbunl+H--
 
