@@ -1,80 +1,79 @@
-Return-Path: <devicetree+bounces-175553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C582AB124B
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:36:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E51FAB1261
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:41:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83B281B66664
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:36:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 635C81C409DD
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:42:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E11C27A925;
-	Fri,  9 May 2025 11:36:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 143C728D841;
+	Fri,  9 May 2025 11:41:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W17HQEZf"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="ayri1AN/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0445E223702
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:36:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E96DD22C322
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:41:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746790568; cv=none; b=jr2m1bhk3XJ+McU85CZxtSaGEZI+1EifewwEU80c7wIivCcx1cYSUQ6wrhNj1yKCafF1DsQIQ0bmzzUESV2VLTVDg5HJkOs53HGsPf7hqn2ifT1alssLwtwey7TkXejWZPA80ZKLt2D1iXu371l+65uyc4Y4XNt5C+cFobesQrk=
+	t=1746790911; cv=none; b=FMbBRtV5iy9jdSGc29KkvRsAe6eKqi8aslQHvhcufndfC2IG8wH2CxzgdLDfBuuO0zRljDUsAmOKeC6hriRcZECaEwSWYKjGerhxoLb7eRyzy2qnJpDk429Kd7H7ibOBzplN3gQ//wG5Lxdmj9ikMr92BBmEWdHZL0DY8qBCuAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746790568; c=relaxed/simple;
-	bh=xBU++8c6J4fZ4GQ8du/8VqKT/VdxBXVcSwhpuUJudOI=;
+	s=arc-20240116; t=1746790911; c=relaxed/simple;
+	bh=21R4CdsJlxo6ZIUB4aWnLHQhzIqhbI+E6wdmGGSh4zs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f1sD/h7Nmo12ftVWr624lTMFgDK6iMvPXBIXNegemmoMS12Wfy8IJa1sUNLga1Z7I6HBM7qGfOAUi89BhlJ3bARMvJUDk0Q9MFWC69ZKkCcopxz4Chi/Om8vonphOEp+Yca+Dw7rOV5Yk8VMv+sWAoMhpas6nPtYF+JvPabXmnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W17HQEZf; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-440668acbf3so726965e9.0
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:36:05 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=YQKSPA5VAhRYaQrcBHw9lKg42nOnRLsdqpUGOB6iBpIUFwBJbLZVOvRyNWkcgB7dBIylBcYjyGCHHTwPxjLva3UjDSpLv1FEsoTXayJI9g8Hdww3Iwi8uWOCRX+c3+PYPBIF8SCl+nEzKC+MlUJaW6Np4whZ9zXufpRjiorp95c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=ayri1AN/; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ad220f139adso101942066b.1
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:41:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746790564; x=1747395364; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=tPnQGbJY6qzXsG54dxOhAsZfcJwhZhWhqpOSIo2IWUY=;
-        b=W17HQEZfKtSyM+JorV5hh8Q+JHQmwajr9KWKaQ5c2PU7SPi46ygPZQ7UGt5rOEP+0w
-         26s39da+4ESD2nuTRWFfTRxO0D4yrukmWIu4KR5opDKXJXNVdrFHzuxkMczwPEutqibv
-         uy3TAvj/Bk/ZHsvbB4qRYAptifuAjSAj+1Ck1nOL1PfxnqKU1x7oOD/8ORAxtvrB+bCk
-         dRPXF0nBiebU691AnEtp/kBWduba5xcs/mK9IYYfB2O1nH+6gl05euiueR9CeMrLUCzy
-         E2YDd0EdenCiYE6DpdI4/48oKmed4M755SE7V8UCI4YppXepMo1kES14gkObs3ROixRy
-         pu8Q==
+        d=tuxon.dev; s=google; t=1746790907; x=1747395707; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xqSqgdbr6mkrFUbRKHE1fLZLEEIHfO7KWsMJjVuS+q4=;
+        b=ayri1AN/SeBgJ2RHWOluJm//i1J26QV+grwv7cw760nXkqFlLPeqM3zfaIicoUnJQV
+         nR0ZkT2odUUfKWb61TYl5guqeewzxnJ9UpeOyzbuCRZq3DJltHrP/pBowx17XdQZ/+TM
+         bAYDL0AILCtYvyS+Hmq1aBlwNDmX5EknHeVUbG7SFjK6fDzCpNjhg4YxMlpkFfK7intx
+         5D9LEFukgf9Stu+h2kwp8wr9NIWnCYb4SyCCYZyvegjMqOGFnf/jHJ0+ghsaKYwkmoO/
+         rXLA0I5xGaS+lf9mnzuuHTw4q5BlxuBV4kJ/9/tMjl8hNqgZLskHGWJ2fKi0YE8s5yKI
+         tvEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746790564; x=1747395364;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tPnQGbJY6qzXsG54dxOhAsZfcJwhZhWhqpOSIo2IWUY=;
-        b=FcyYyUTajvCjr+BTFqkCECHzD/n0NzVmV5HepdPVFZn+Qd4DALeYtRqcy771sfriUo
-         T/CI6hSJxzRm/Y+pLJxZ3euY8sYyHF6ne2Gic/DEa/Zj3md3gdvERuB4jeMMmhEecSJl
-         xb++GZEFUja4Ke6LcSqcM8GUPW+Gd6jyWonuE8+hkdak5yORHLu7U0o+kTjP+AQsaP0t
-         npyzEi/aYm5S6Aiytb8ML50BtTKl+3A/aQbkfbRzZbHQ9e+IdOfTkvHfz2iTvJNrYuJ8
-         +5KyAeWAdOUvpWg7AW/34kMDAXIKDpTlGIbcpj9d7WZbCsevvacBJq2pxvupXAcbkOxE
-         7JyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUQqAtcszPKAfCZeH1NNXvz15aT+5ESu/cXc/0+krszj1cXL29YpzeUGEHTX60G94xcCeiKgH7TP+BG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEBPkKUNqLT36FfMfjtK6BMYcTrdN0lKOa2aCz8IeBMvwFvzTQ
-	BK0rScr7HNlU7ylyrDcPv1RWzeJ5uXVSKdxXYnFP2PQayhZ1YfKUq4k1L4W5HR0=
-X-Gm-Gg: ASbGncvfrX0AzcRWk34S7G+esOOJoKPcFLiE1qf519PvgKiU9rjl3MfZveCxOODyYs6
-	HjyFVdVM4hPizqOw6nipXSDiWmIxWOtQ2O/oxb0GOUA6tOIA2W22/AK5HK1oR6ABLq77Y3KfcVg
-	QLv4R8U6B8cmFYdZ0oy9xR0Tbnn9qEmFIwpeMWGElTd+ZgbMUblTXK6UD5az5Ae6/9QS3AvjIsc
-	RNqa2WzpD/O2ScJcZdxu6s54xNHY5JtqiSYxnqddGTMFdhoMwWKmU5f58hMC0VTWYjUTWgBLwmi
-	+k/DlA5KTQph/boHovlBKpTotiMF/Ndi5Kgbe2+f2Tu28dNepVdrW1peCGE=
-X-Google-Smtp-Source: AGHT+IEgrPuM7S4VVAaNtLdBoJxKXTA/1M96VqclVtrFn/BtmxjJuTsUGVTrZ8ByY2d+iylVicPD5A==
-X-Received: by 2002:a05:600c:5118:b0:439:88bb:d00b with SMTP id 5b1f17b1804b1-442d6dc560cmr7713535e9.5.1746790564255;
-        Fri, 09 May 2025 04:36:04 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd32f3c2sm69392795e9.15.2025.05.09.04.36.02
+        d=1e100.net; s=20230601; t=1746790907; x=1747395707;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xqSqgdbr6mkrFUbRKHE1fLZLEEIHfO7KWsMJjVuS+q4=;
+        b=pIQrpwtTgRi5JSoM81dV/uzz8acoEenTHdjtKlO4RZD7ocbhcjxZC4zWwSLE5aZSZd
+         8BYBX09ZIFMoltFbl1JOMQZVpZmBO/3uIZMFlheEHSdlmOtsOkBhNfmQ9dYB/nkPe569
+         g9Y2PQq8UsfH5kVkWYPLVSiB9KBWxnKguWYa1ORH8FLzA0VmDfvIveioQGkTOXpHfgpg
+         2awwpJui6OYeF9GpzZ5+JMqUDH2TyS8MjMawIBcJvTTWkWrozgd4rQ3cawJKM7sg+udT
+         8x2N/L226FbVVd1LNEbrhgj4M+t8pdDwueizaVJpD+GWanFFKLL6HWrE1K26wGIeCySB
+         y/3w==
+X-Forwarded-Encrypted: i=1; AJvYcCUQJKGRKchRylhMuutLdcqyZlb4rn9LutOW+1UJ6KvloAML4s0bN0Y33Qxiu6VQPPS5N9Cdkt0Zb4e1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVzCpLkUL2/Mc36BqbmmIEidlR3lRjwuai3ZK6JxdKMPx4RX8z
+	Zl5ukgrZaw9DpPHem/s5sD+Xy6jLesvCnH+4S8RIDC4SNkbQ571H23VFj1vyuS4=
+X-Gm-Gg: ASbGncv7UkGxYiVXucvhhnITIaphMKSNjSQNDHimTNif0u3y04sRqL2q3lghIkRyDSM
+	DmigFV2x7NgXhrC7zLox2xUoH0zQJYUEU4rD7Zg2BClXax038MOQiNknm80VT/s8+vAOJkmgQVM
+	U55OISn7Hqa13mSuJM9p9oDsaS5DWd0NScYv81IRCDXJ4eME5/R39VjaxOviTNLw8p2HGu7i8n3
+	BWUNyHgGGQTacKyrUZoNH4B2GToDJW6bSZkbZnthPJJz0z9m7mu6j6qR7CuQcLJ1yS+qZcsjn+G
+	I+9mEUxpJmbwwo9jxLm+dAaQIb7zG7W7qcWGy/qzQ3eHKXFp
+X-Google-Smtp-Source: AGHT+IG2j0Pea0l+03cwVMYbfwrcANbL1huFvD6sD/j4JhDPCTCSj3oUMBeHqG1csVa7s5Hq/oxNxw==
+X-Received: by 2002:a17:907:1907:b0:ac2:cae8:e153 with SMTP id a640c23a62f3a-ad218ea823fmr310536466b.4.1746790907122;
+        Fri, 09 May 2025 04:41:47 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.50])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad2197bd2a8sm138611966b.145.2025.05.09.04.41.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 May 2025 04:36:03 -0700 (PDT)
-Message-ID: <4f7b44f0-128c-4615-96cf-2d9d8bc54cdb@linaro.org>
-Date: Fri, 9 May 2025 13:36:01 +0200
+        Fri, 09 May 2025 04:41:46 -0700 (PDT)
+Message-ID: <b4771b63-3198-47c8-a83d-5133ba80d39b@tuxon.dev>
+Date: Fri, 9 May 2025 14:41:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,107 +81,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASPEED: bmc: Add device tree for Meta(Facebook) Clemente
- compute-tray.
-To: leo.jt.wang@gmail.com, robh+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, keescook@chromium.org, tony.luck@intel.com,
- gpiccoli@igalia.com, geert+renesas@glider.be, magnus.damm@gmail.com,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, george.kw.lee@fii-foxconn.com,
- leo.jt.wang@fii-foxconn.com
-References: <681dc3eb.170a0220.1fd80.c9ce@mx.google.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 5/8] PCI: rzg3s-host: Add Initial PCIe Host Driver for
+ Renesas RZ/G3S SoC
+To: Philipp Zabel <p.zabel@pengutronix.de>, bhelgaas@google.com,
+ lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, saravanak@google.com
+Cc: linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20250430103236.3511989-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250430103236.3511989-6-claudiu.beznea.uj@bp.renesas.com>
+ <42a5119e547685f171be6f91e476a9b595599cf9.camel@pengutronix.de>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <681dc3eb.170a0220.1fd80.c9ce@mx.google.com>
+In-Reply-To: <42a5119e547685f171be6f91e476a9b595599cf9.camel@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/05/2025 10:59, leo.jt.wang@gmail.com wrote:
-> From: Leo Wang <leo.jt.wang@fii-foxconn.com>
+Hi, Philipp,
+
+On 09.05.2025 13:51, Philipp Zabel wrote:
+> Hi Claudiu,
 > 
-> Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
+> On Mi, 2025-04-30 at 13:32 +0300, Claudiu wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
+>> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
+>> only as a root complex, with a single-lane (x1) configuration. The
+>> controller includes Type 1 configuration registers, as well as IP
+>> specific registers (called AXI registers) required for various adjustments.
+>>
+>> Other Renesas RZ SoCs (e.g., RZ/G3E, RZ/V2H) share the same AXI registers
+>> but have both Root Complex and Endpoint capabilities. As a result, the PCIe
+>> host driver can be reused for these variants with minimal adjustments.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> ---
+>>  MAINTAINERS                              |    8 +
+>>  drivers/pci/controller/Kconfig           |    7 +
+>>  drivers/pci/controller/Makefile          |    1 +
+>>  drivers/pci/controller/pcie-rzg3s-host.c | 1561 ++++++++++++++++++++++
+>>  4 files changed, 1577 insertions(+)
+>>  create mode 100644 drivers/pci/controller/pcie-rzg3s-host.c
+>>
+> [...]
+>> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/controller/pcie-rzg3s-host.c
+>> new file mode 100644
+>> index 000000000000..c3bce0acd57e
+>> --- /dev/null
+>> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
+>> @@ -0,0 +1,1561 @@
+> [...]
+>> +static int rzg3s_pcie_resets_bulk_set(int (*action)(int num, struct reset_control_bulk_data *rstcs),
+>> +				      struct reset_control **resets, u8 num_resets)
+>> +{
+>> +	struct reset_control_bulk_data *data __free(kfree) =
+>> +		kcalloc(num_resets, sizeof(*data), GFP_KERNEL);
+>> +
+>> +	if (!data)
+>> +		return -ENOMEM;
+>> +
+>> +	for (u8 i = 0; i < num_resets; i++)
+>> +		data[i].rstc = resets[i];
+>> +
+>> +	return action(num_resets, data);
+>> +}
+> 
+> What is the purpose of this? Can't you just store struct
+> reset_control_bulk_data in struct rzg3s_pcie_host and call
+> reset_control_bulk_assert/deassert() directly?
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+Yes, I can. I was trying to avoid storing also the reset_control_bulk_data
+in struct rzg3s_pcie_host since all that is needed can be retrieved from
+the already parsed in probe cfg_resets and power_resets.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+> 
+>> +static int
+>> +rzg3s_pcie_resets_init(struct device *dev, struct reset_control ***resets,
+>> +		       struct reset_control *(*action)(struct device *dev, const char *id),
+>> +		       const char * const *reset_names, u8 num_resets)
+>> +{
+>> +	*resets = devm_kcalloc(dev, num_resets, sizeof(struct reset_control *), GFP_KERNEL);
+>> +	if (!*resets)
+>> +		return -ENOMEM;
+>> +
+>> +	for (u8 i = 0; i < num_resets; i++) {
+>> +		(*resets)[i] = action(dev, reset_names[i]);
+>> +		if (IS_ERR((*resets)[i]))
+>> +			return PTR_ERR((*resets)[i]);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+> 
+> Why not use devm_reset_control_bulk_get_exclusive() directly?
 
-You CC-ed an address, which suggests you do not work on mainline kernel
-or you do not use get_maintainers.pl/b4/patman. Please rebase and always
-work on mainline or start using mentioned tools, so correct addresses
-will be used.
+I wasn't able to find a bulk_get_exclusive_deasserted() kind of API.
 
+This IP needs particular sequence for configuration. First, after power on,
+the following resets need to be de-asserted:
 
-...
+	const char * const power_resets[] = {
+		"aresetn", "rst_cfg_b", "rst_load_b",
+	};
 
-> +&io_expander13 {
-> +	gpio-line-names =
-> +		"rmc_en_dc_pwr_on","",
-> +		"","",
-> +		"","",
-> +		"","",
-> +		"leak_config_0","leak_config_1",
-> +		"leak_config_2","leak_config_3",
-> +		"mfg_led_test_mode_l","small_leak_err_inj",
-> +		"large_leak_err_inj","";
-> +};
-> \ No newline at end of file
+then, after proper values are written into the configuration registers, the
+rest of the resets need to be de-asserted:
 
-You have patch warning.
+	const char * const cfg_resets[] = {
+		"rst_b", "rst_ps_b", "rst_gp_b", "rst_rsm_b",
+	};
 
-Best regards,
-Krzysztof
+So I was trying to get and de-assert the power_resets in probe and just get
+the cfg_resets in the 1st step of the initialization, and later to
+de-assert the cfg_resets as well.
+
+Now, after you pointed it out, maybe you are proposing to just
+get_exclusive everything in one shot and then to de-assert what is needed
+at proper moments with generic reset control APIs?
+
+Thank you for your review,
+Claudiu
 
