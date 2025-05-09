@@ -1,162 +1,112 @@
-Return-Path: <devicetree+bounces-175576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5ACEAB130A
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:12:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E03FBAB1318
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:15:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3C591C02F2D
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:13:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76F043B329D
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE38627FD57;
-	Fri,  9 May 2025 12:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF102900BF;
+	Fri,  9 May 2025 12:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QlnPJ3BQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B05B22D9ED;
-	Fri,  9 May 2025 12:12:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1372900B7;
+	Fri,  9 May 2025 12:15:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746792775; cv=none; b=BTycYaWJIlEUsbsoojYNcV+Byx2PUwOBGuyWR66v22UO1cyyQITuALJwk2zOvkh3KtnhbxfaXo4X3ENLhv3IYErJqcgt/jC3Hg8uegHLtJXFXASi08s5HnQv5QSdtWLWUZik8oMU96YBdj3tdMKHH5m/Hd2Vivi4ij9ZU0AtYGg=
+	t=1746792928; cv=none; b=bA37NcD0XO3kruUU3cy5KV19iAyumt9arRDq9jq6NgF8gGkpAimo+DTT6IB5qnDN0312PfjjPQPoysGUY/olkgAEXI/+olm37ABZEYtiIRxVq+HMI6Jv7EX9cvoXUOdGCtoDXRr+jncODNMD9drQ5BkGOTHuROJFpbTW6cQG42A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746792775; c=relaxed/simple;
-	bh=e9uGctgyGje+9ab4oVRHbX5YpVrprf8/+tUzJvWbA+s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Zgl4jYZbWAgVyenmx1bKoOdVOE/KupN6FmDHo6dUgtW1Qdntlisi1R+bLwLIaO0wD4gEyPdD7yuzarAIDu/HE3G3uZLSQXOHBXKBthi6YeBunPvloRUPWzR4v7B+Td2RlTN1fWSn4GmakkJ83k3Xoh+uACp/UQILZ1YYEOcuxF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1746792928; c=relaxed/simple;
+	bh=jdDwlEDN05U0AGWNi15ITRXxy0SmyKbmQQzX7OkEV4I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aRyIHW6ry8CMsL6yFVmNlg4p1hIdvsF/ipnwd9+j+9idiICr21UidcyiR9xF8wgpn0918TNSpJv/9UMcIrDIu43FCT1iCyXjIa5bxckEs/ROyU60i/zD7RjJ6lSTG7YE2tAvnPhnN4TbkY7mIEdmYw/W8aH9fNVM/G7XLRjaRgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QlnPJ3BQ; arc=none smtp.client-ip=209.85.219.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4c32d6ddd50so710092137.0;
-        Fri, 09 May 2025 05:12:52 -0700 (PDT)
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6f5440fcf81so37147776d6.0;
+        Fri, 09 May 2025 05:15:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746792925; x=1747397725; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PgRuZAJGVmPbGddsW8s6rmMSC40r4mQ4B4GOLIObhOw=;
+        b=QlnPJ3BQbgZjG9KDrEiayKhnn0Nz/QTRSnYRrPefUpE4W30OJlv/Lua/zKvrdFJe4q
+         PaqkllKGsTB6LLi+oel2jqzb77WbulAM6iuaqYgc81D7cl3l7Ujeo0YUCi3YFyr3BV+G
+         afxZLysvEx57AbcwLoGoUpSXEUibeFJQReBQCzHnchx+SiNeuymGb3mkhyFZsSCqvwGs
+         QsTEDSIbI3m2eInddvvlHCIDVTill7qkA1xIBwodRJjvur7if5NDVBfKbRALugBrjx1s
+         VmT+qnuJw4G10E5xL0jdyfLidOH3G7K+tXYDQpzWAYv6W+jihVfaqoYRAGkjufR0qb2f
+         LvZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746792770; x=1747397570;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AjyxLwVk3cM57BeUSe1116GyUpWvRecglMRaKmGPDvk=;
-        b=ibSiQ64RaIvkSfw3BgROx//eXw65L66J8E+OHGmOTpSKSkpk6gAC62i0A5MxOFQ33Q
-         YGwHQ8D8yz3a/z12pxacrjwO0/q1jgk7i1XaiVMEwE2pUWL461ghwTU0iCxfllimXAIh
-         6COuh18Vt6TJ6Ywc4HTgFzv4kyVOmYGkTjm9KOQMILQ77GNec0pC68SIN1VCOpyOFvW6
-         Mgqrv6aaYzROPzkvaiRXco3krChIZv1yv2TPVB9XN9PEoNnn61uOFxGWZa3u9XYSjPK4
-         leIm64m7ht/FN2qJh+c5srfbAo6+pfpqCo8DahLNJ/MThk3puqYYJSo8FXn9C6egXadG
-         ZEQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUS0ml5ks8GHYbTN0LyNF+0JOB2QkmBv3mlGUbsS//pDoepQF4jAz23UTNmZtmjU5Es2U4P8DGaLAZV@vger.kernel.org, AJvYcCVYToCHjZZzTNy0kp2aC2FS/rdTWPauHFoZ45gL7cpZzcPIo4VFgUWutK5L5cc+xEY7C8riY/8hkSgpCV2j@vger.kernel.org, AJvYcCXWwQ2M8TbREW9VcSR1exhhQUGgI2+ihgjHXVsTjLgwbyVMeUyU1Mf/gTbUHw57cTZJrY3dOEEOl7Fd/CVr1jFjQBg=@vger.kernel.org, AJvYcCXavM5I7Ws3ttKxoyzTfnPzA7LJ2pQM/+D3d62epCBCAYDGiM6qClLrLQC6zNrnZdTBZihVGvOdeS8e@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhJS41DVwBYOe70Hl/hNlVcuIxWbdsP6A/9T0CuEJGJ13dBCAz
-	8fAEA/DtMp8CRd/ICf9sIYAQbssXzc1fTpd3INGiQCEgWpgg7p8QNKcgw/Ao
-X-Gm-Gg: ASbGncvN1768eZ6bBlVZ1JiUQgysdAc9KyABWmqx8ypwnukA/KRC8h+LcnlpSL3rly6
-	647w7W6wSEG1tUAyTuEW9uE/ywX0tlRM3cYTDH5PrSoj4toCQNVXaVhhLpPT+wLGh/0Xl06iQbE
-	lXMAAI8bmMz+oHL4ToTtxHCHq6m7urt1lYDK5WDLtSeqbKV9Q1/cjMFvs9gyKocO8jQ2aBX6fSo
-	UdKXf+LxKI+XReA97ud6TF7jxTLITl3DW1DSbBjivqGm4SSLnkrNV2UhpqR/792g2E/YpbT9GGS
-	SOqfOVT/+eYQBJYeoOSDfr3oziNzsClyVrgeKoBVPipNFuD20VFTO3ixmaFFkrToWaQzYO1wNyQ
-	GRGI=
-X-Google-Smtp-Source: AGHT+IFxvb51dlFv8wOWArWiobszwjYTEusV2NvJo2voUswPvDpUyjuVzD4nyIBnwXnAS0labrVyUg==
-X-Received: by 2002:a05:6102:fa8:b0:4dd:b95c:a43b with SMTP id ada2fe7eead31-4deed3d47f4mr2246403137.18.1746792770140;
-        Fri, 09 May 2025 05:12:50 -0700 (PDT)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4deb203c26bsm959576137.27.2025.05.09.05.12.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 May 2025 05:12:49 -0700 (PDT)
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4c9cea30173so739027137.3;
-        Fri, 09 May 2025 05:12:48 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU9nNDQgnv+8dR+0J/DsuGGQodSo8zGrAxjmoVvvlhPEUinM/Cr0owNayi6yRzquomsVCKybahRiG3D@vger.kernel.org, AJvYcCUfWC/9DHx1jIoI9X/LunK8EfNJjyMhPc56sFBeEE3Sxc2/cXXTG3GlEn/+cJ1/ui1q1zdi/898CQAAcdW9ICjSfBA=@vger.kernel.org, AJvYcCXUKtI8Q/ekOcElxLnKLEaZMdn+ucM4pMcMEARC1qKntguZM5g1xxpRm0ghBszgyPALrFG2PfczHGWL+l85@vger.kernel.org, AJvYcCXjDkXb8ADJcughEbpIeLu0lBe6Tzbd3JAPYleXrgeeyRT3QlejX7p64IXDzfbKSY0QAfKnAjKRVYR5@vger.kernel.org
-X-Received: by 2002:a05:6102:3e04:b0:4b6:d108:cac1 with SMTP id
- ada2fe7eead31-4deed338f13mr2697599137.9.1746792768489; Fri, 09 May 2025
- 05:12:48 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1746792925; x=1747397725;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PgRuZAJGVmPbGddsW8s6rmMSC40r4mQ4B4GOLIObhOw=;
+        b=g5zNkzi5YWIbn3hdxCHD5fH+MkkAVWB7jzdPFx9fsiqWEwSSw9yE98Ejb/fnTZ1oQO
+         i0KiRFu/gbag4fMVrFI8hJkNLu0Ik6mf5teNsletYrijSjLSUs/4GMF8TShczyd86ULN
+         AbN1LkJUH0zLeOgi8ORHA84A1tdYXnyjwpfNaCYq4wl8ZIZR11QWUGmkfMs2xV3vuI24
+         ZUBfgyUJwQixoeJd9KGLIzHIYrbt7nIbUdSlaeklN7Jim46rvBW72JbHdmYFVvj+QIXl
+         5qPwpircZY+GTZbPWHjongsZ0Dx2kf7zLCemYv20f8gyvNsP/fAanCfsefRHxLQ/H9Op
+         2Glw==
+X-Forwarded-Encrypted: i=1; AJvYcCVKO67sOtQEyUAryFXqCSURCgtWcHpDtPrSGvv6lHb2tvVS3qdw30u2v9lT6yjTFZcJdBua/U3HnLv9hUjN@vger.kernel.org, AJvYcCVi7qqKe9B0rRk1F0OzHg9oaiaoGd8Jjl4ENN/sYy1A6qBOlBt2rt/xhOOn67zFdb751ZG1Ts7ssK9V@vger.kernel.org, AJvYcCXMDmVkiBj69vJheCwwyz9liLtwjzmvKHVpv1Ob1ML9/1Fyz8drnCwZy7zyFTtOyLqP/7ODs8692v19@vger.kernel.org
+X-Gm-Message-State: AOJu0YzR6KrQxzYjExzAGHhExmQD52+rnpwER8NUG2jFK1zylZBBO14c
+	AKJdmPaKT7Ktzm7zYsqt5OhM8sdFONej0f3LY3p2nZIy2LRBT/bk
+X-Gm-Gg: ASbGncsRqnOhU9OwMgauv0SYaoaaUAAG7Grf5862h4CI6RwOaXfTEzVpeJD7JO5breQ
+	zM9oNDHCrvPp5xCL4E3k0Ygd161RbPUcO1unzr2EHRDzJNYbkmMbjf33AuzJVqMOBOpAEavtWHO
+	jDCNOHO3r7uBsIS9F8lpPQdsfUQCmiJ+vet+rrharPy2KAWYhJgC+DQsuIDSONXhfUHGsgtl5G8
+	ixPDa/BP6Hzu4aCpbxfWAyDilMepf9HyLKDJE/sjdl1YvXZCng+rVY9RcWAT1yHPwJIWVhMW0dD
+	uvFMQZx+SxmCKYpx
+X-Google-Smtp-Source: AGHT+IGlDl+KwhD+opMZqZ8CkvISLydM7AoDmJhojnTg5u8fwNB+nRJ38uGYL7LaCFZ4Cmf7wUWC6w==
+X-Received: by 2002:ad4:5aa5:0:b0:6e8:ff2a:a658 with SMTP id 6a1803df08f44-6f6e47cafc3mr44984176d6.5.1746792925233;
+        Fri, 09 May 2025 05:15:25 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6f6e3a472b3sm12728456d6.77.2025.05.09.05.15.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 May 2025 05:15:24 -0700 (PDT)
+Date: Fri, 9 May 2025 20:14:57 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v8 0/2] riscv: pwm: sophgo: add pwm support for CV1800
+Message-ID: <sfqdke7xkxg3sr2acber6kjzbcnoay6bnu3enda2xe5wzdi6id@eqiqmkdeovlb>
+References: <20250509-pwm_sophgo-v8-0-cfaebeb8ee17@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250410140628.4124896-1-claudiu.beznea.uj@bp.renesas.com>
- <20250410140628.4124896-4-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdU00apiWYCPiwqGr66Ucg9KgWMhhm8FW_KBoeN2ceos+w@mail.gmail.com> <8a14cf38-9a7b-462b-80d1-ec5026b5a565@tuxon.dev>
-In-Reply-To: <8a14cf38-9a7b-462b-80d1-ec5026b5a565@tuxon.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 9 May 2025 14:12:36 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWOihhQtpi+J9t-4bApEHx+f6_q7NtdEiLVi63krZnK=w@mail.gmail.com>
-X-Gm-Features: AX0GCFuMEPN26ASMgvw_arsNY2nl7S1yq6Skm-p6Er9eIIofHnH_CGJa3k1lcRQ
-Message-ID: <CAMuHMdWOihhQtpi+J9t-4bApEHx+f6_q7NtdEiLVi63krZnK=w@mail.gmail.com>
-Subject: Re: [PATCH 3/7] clk: renesas: rzg2l-cpg: Add support for MSTOP in
- clock enable/disable API
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250509-pwm_sophgo-v8-0-cfaebeb8ee17@bootlin.com>
 
-Hi Claudiu,
+On Fri, May 09, 2025 at 11:45:42AM +0200, Thomas Bonnefille wrote:
+> The Sophgo CV1800 chip provides a set of four independent
+> PWM channel outputs.
+> This series adds PWM controller support for Sophgo cv1800.
+> 
+> Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> [Thomas since v8]
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> ---
 
-On Fri, 9 May 2025 at 12:58, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
-> On 07.05.2025 18:47, Geert Uytterhoeven wrote:
-> > On Thu, 10 Apr 2025 at 16:06, Claudiu <claudiu.beznea@tuxon.dev> wrote:
-> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>
-> >> The RZ/{G2L, V2L, G3S} CPG versions support a feature called MSTOP. Each
-> >> module has one or more MSTOP bits associated with it, and these bits need
-> >> to be configured along with the module clocks. Setting the MSTOP bits
-> >> switches the module between normal and standby states.
-> >>
-> >> Previously, MSTOP support was abstracted through power domains
-> >> (struct generic_pm_domain::{power_on, power_off} APIs). With this
-> >> abstraction, the order of setting the MSTOP and CLKON bits was as follows:
-> >>
-> >> Previous Order:
-> >> A/ Switching to Normal State (e.g., during probe):
-> >> 1/ Clear module MSTOP bits
-> >> 2/ Set module CLKON bits
-> >>
-> >> B/ Switching to Standby State (e.g., during remove):
-> >> 1/ Clear CLKON bits
-> >> 2/ Set MSTOP bits
-> >>
-> >> However, in some cases (when the clock is disabled through devres), the
-> >> order may have been (due to the issue described in link section):
-> >>
-> >> 1/ Set MSTOP bits
-> >> 2/ Clear CLKON bits
-> >>
-> >> Recently, the hardware team has suggested that the correct order to set
-> >> the MSTOP and CLKON bits is:
-> >>
-> >> Updated Order:
-> >> A/ Switching to Normal State (e.g., during probe):
-> >> 1/ Set CLKON bits
-                  ^^^^
-                  plural
+As now we have pwm support for SG2042, I suggest sharing driver code and
+binding file with SG2042.
 
-> >> 2/ Clear MSTOP bits
-                    ^^^^
-                    plural
-
-> > What is the recommended order in case multiple clocks map to
-> > the same module? Clear the MSTOP bit(s) after enabling the first clock,
-> > or clear the MSTOP bit(s) after enabling all clocks?
->
-> I can't find anything about this in the HW manual.
->
-> > I believe the code implements the former?
->
-> The proposed implementation clears the MSTOP after enabling the first clock
-> taking into account that there might be cases where 2 clocks sharing the
-> same MSTOP may not be both enabled for a particular functionality.
-
-I am wondering if all clocks must be enabled before clearing MSTOP,
-as the recommendation from the hardware team uses the plural bits.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Regards,
+Inochi
 
