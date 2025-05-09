@@ -1,428 +1,370 @@
-Return-Path: <devicetree+bounces-175470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5299CAB0F90
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:48:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFD6AAB0F97
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:50:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E8017AF06E
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:47:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C49ED9E23CC
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:49:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FC3928DEF9;
-	Fri,  9 May 2025 09:48:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF34E28DB5E;
+	Fri,  9 May 2025 09:50:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="H2vOUS0u"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="R3a0EcBI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FB028D840;
-	Fri,  9 May 2025 09:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55883221DB5
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 09:50:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746784101; cv=none; b=awdgjRCRsUbpSSehDb/nts5Hd9pi+PGm/RNp3rStwG4fJ/RTtDWgBR4cBSJFERdpjxj3O0Bs6q9FL9+9zsyQRByM8sDRhcirMzvwqjVLkFEcL0zGRwh4sxORkpHyeAKl2VAUTemPAG7P8ghC5V+d8tqs0Xqd1yzX8MdXtmN4FFI=
+	t=1746784209; cv=none; b=h3zCK9zQ2m/OrcCtW3HzhHa8qQiWnbMAtlOC5Lg6IR8wZin7OzC8yGF/w9eZsyvwT9poJ24se4IWXGBeKNWbwGtuM7PUcWSTYoJ3RG02bj9KlxNAUMsFfR9pzX497yBjNjM4j784V2wBj52IpK9SRr3aEr4P7tedQ4JPsJivxEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746784101; c=relaxed/simple;
-	bh=XRzZnkx/rCvLH5gjjBlFfgJ1Y4g/7gPdDVjJMpFxq84=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=T2PN4/HSCUSgO5ucLvzpuaGDAeVlRFkze+p0nAIirAdzYEWZFOnaxQCale4rAbsJyD6ChTD9YzaypQ2LrS8HCgZByLFuta8Zdw1/6Ihx1kJVCRHMuOUM54Tbh6bwzNHREzR3Gn6PPMzDk9FGVxjyFUqt0hVVjCLm2NngZMXROcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=H2vOUS0u; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 19B7943AEF;
-	Fri,  9 May 2025 09:48:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746784090;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XO5jmDfTQYOtrhnjFDYRyo0QIM7Jb/EP6v2mQntXvlE=;
-	b=H2vOUS0u6y8QzUUcxUh1MHsuIldx5h01+PChLWPErrZ/HImhI1ppOKKfV1Wek8TzyecGvD
-	dgxKViNGdzIpnmUzHB3YA9O5nejy2fOErEYo8JeLjS50kX2Ku+RtqbOXM3Y93fmEviU3t2
-	jtLM8YC4oPyAOex56G5AjkTq9j+6ZE5qCofeypmcVDAttEJ0t+sU2y/V7Uq1RWfWpQXoiV
-	2guPj5cGtooBuzYH2PMyT4TN1BuC79vWkINsm5QXBkbnpR2lUwYk2PYF0eQkxW8RSjlzmI
-	Ijh+pu4QhachqURAufiFp6Jzl6lVsZGVVBderIYCS+TpwflpyXqBq5Zo4v6gRQ==
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Date: Fri, 09 May 2025 11:45:44 +0200
-Subject: [PATCH v8 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
+	s=arc-20240116; t=1746784209; c=relaxed/simple;
+	bh=m0ToSqRpA76aRIJ99t1E3Fshd7EVpzsd9BnDKGrk42A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ur3P//alXYqhtBJuTz59j55j9C1A1YDYgNwqyFozOqhzVbINHa7IIgszGwgK4zCqSe/+R30wb/2Wj08Z/D/DjHWdTPOltv0md2XzSYi8sFjNPp0l6SZUkVrMPfi3CInIk5cOwBMmM6YvKeNDb47Lu1QeD3CSXwozEixHSZEsThE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=R3a0EcBI; arc=none smtp.client-ip=1.95.21.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=9WG9PhoIBse+C4R6TgJ31lTJPeMdXVWIpUZTESVTwYc=;
+	b=R3a0EcBICoJz7JwYY40n8jx1Hv09FBvgjRBY8moTBqb4YwKdcvS3NKN1SVlP6t
+	y7e9jrrYMldkI3gc37tkdFHe4bngCerbeMyEo9TrbtErwHAREK1PlmoZagMSNosl
+	/Ajr5WgilgophkCMwlpU+Ns5GPO2dR3ZLPahJz5WebEpI=
+Received: from dragon (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgD3tweWzx1ornmlAA--.36186S3;
+	Fri, 09 May 2025 17:49:12 +0800 (CST)
+Date: Fri, 9 May 2025 17:49:10 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Jacky Bai <ping.bai@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de,
+	linus.walleij@linaro.org, kernel@pengutronix.de, festevam@gmail.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com,
+	peng.fan@nxp.com, frank.li@nxp.com
+Subject: Re: [PATCH v6 2/3] arm64: dts: freescale: Add basic dtsi for imx943
+Message-ID: <aB3Pll3A/0XGCLlQ@dragon>
+References: <20250421065139.3073232-1-ping.bai@nxp.com>
+ <20250421065139.3073232-3-ping.bai@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250509-pwm_sophgo-v8-2-cfaebeb8ee17@bootlin.com>
-References: <20250509-pwm_sophgo-v8-0-cfaebeb8ee17@bootlin.com>
-In-Reply-To: <20250509-pwm_sophgo-v8-0-cfaebeb8ee17@bootlin.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
- Inochi Amaoto <inochiama@gmail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Jingbao Qiu <qiujingbao.dlmu@gmail.com>, 
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-X-Mailer: b4 0.14.2
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvledvfedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepvfhhohhmrghsuceuohhnnhgvfhhilhhlvgcuoehthhhomhgrshdrsghonhhnvghfihhllhgvsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekfffhteefueeutdekieelueeuvdeuvdejgedtveefffdvvdffgfeufffguddvhfenucfkphepvdgrtddumegtsgdugeemkeeflegtmeejtgdttdemrgegugejmeefvgelvgemvgekfedtmegsfegvtgenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeekfeeltgemjegttddtmegrgegujeemfegvlegvmegvkeeftdemsgefvggtpdhhvghloheplgduledvrdduieekrddurddufegnpdhmrghilhhfrhhomhepthhhohhmrghsrdgsohhnnhgvfhhilhhlvgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudegpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehukhhlvghinhgvkheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepihhnohgthhhirghmrgesghhmrghilhdrtghom
- hdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehthhhomhgrshdrsghonhhnvghfihhllhgvsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehqihhujhhinhhgsggrohdrughlmhhusehgmhgrihhlrdgtohhmpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhm
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250421065139.3073232-3-ping.bai@nxp.com>
+X-CM-TRANSID:M88vCgD3tweWzx1ornmlAA--.36186S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW3Zry3Aw1UWr13GFyDGrWDXFb_yoWDAw48pr
+	13AFy8Kr1qkan3Ww1vq3Wayr1xXw1UArWUWF15Xr47Ca93Ja4I9w4agr43JF9Yqrn5u3yU
+	Jr1ku3W5XF9rW3JanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UkOz3UUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNBh74Ggdz5gXawAA3p
 
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+On Mon, Apr 21, 2025 at 02:51:38PM +0800, Jacky Bai wrote:
+> Add the minimal dtsi support for i.MX943. i.MX943 is the first SoC of
+> i.MX94 Family, create a common dtsi for the whole i.MX94 family, and the
+> specific dtsi part for i.MX943.
+> 
+> The clock, power domain and perf index need to be used by the device nodes
+> for resource reference, add them along with the dtsi support.
+> 
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> ---
+>  - v6 changes:
+>   - refine the indentation of edma irq property.
+> 
+>  - v5 changes:
+>   - remove the err irq of edma node as the err irq support in driver is not
+>     ready. We can add it back when the driver is ready. No impact for current
+>     edma support.
+> 
+>  - v4 changes:
+>   - reorder the cpu node compatible string property as suggested by Frank
+> 
+>  - v3 changes:
+>   - remove the blank line
+>   - add PAD config macro define as suggested by Frank Li
+>   - update the device nodes compatible strings for imx94 as suggested by Krzysztof
+> 
+>  - v2 changes:
+>   - remove the unnecessary macro define in clock header as suggested by Krzysztof
+>   - split the dtsi into imx94.dtsi and imx943.dtsi
+>   - use low case in the pinfunc header as Frank suggested
+>   - reorder the device nodes and properties
+> ---
+>  arch/arm64/boot/dts/freescale/imx94-clock.h   |  195 ++
 
-Implement the PWM driver for CV1800.
+I forgot to ask when imx95-clock.h was first introduced.  But how will
+clk drivers use these clock IDs, or will clk drivers have their own copy
+of definitions?
 
-Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
----
- drivers/pwm/Kconfig      |  10 ++
- drivers/pwm/Makefile     |   1 +
- drivers/pwm/pwm-cv1800.c | 294 +++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 305 insertions(+)
+>  arch/arm64/boot/dts/freescale/imx94-pinfunc.h | 1570 +++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx94-power.h   |   41 +
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 4731d5b90d7edcc61138e4a5bf7e98906953ece4..d0a3d9c4f625820ac2e6cf81bae11527124c68a2 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -202,6 +202,16 @@ config PWM_CROS_EC
- 	  PWM driver for exposing a PWM attached to the ChromeOS Embedded
- 	  Controller.
- 
-+config PWM_CV1800
-+	tristate "Sophgo CV1800 PWM driver"
-+	depends on ARCH_SOPHGO || COMPILE_TEST
-+	help
-+	  Generic PWM framework driver for the Sophgo CV1800 series
-+	  SoCs.
-+
-+	  To compile this driver as a module, build the dependencies
-+	  as modules, this will be called pwm-cv1800.
-+
- config PWM_DWC_CORE
- 	tristate
- 	depends on HAS_IOMEM
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 539e0def3f82fcb866ab83a0346a15f7efdd7127..20c49abde6082dc9b0dc0fa3eb68a0b57bceeeb1 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -16,6 +16,7 @@ obj-$(CONFIG_PWM_CLK)		+= pwm-clk.o
- obj-$(CONFIG_PWM_CLPS711X)	+= pwm-clps711x.o
- obj-$(CONFIG_PWM_CRC)		+= pwm-crc.o
- obj-$(CONFIG_PWM_CROS_EC)	+= pwm-cros-ec.o
-+obj-$(CONFIG_PWM_CV1800)	+= pwm-cv1800.o
- obj-$(CONFIG_PWM_DWC_CORE)	+= pwm-dwc-core.o
- obj-$(CONFIG_PWM_DWC)		+= pwm-dwc.o
- obj-$(CONFIG_PWM_EP93XX)	+= pwm-ep93xx.o
-diff --git a/drivers/pwm/pwm-cv1800.c b/drivers/pwm/pwm-cv1800.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..d5ba6f6e7e167789d1b3785ae3d262d954e2295d
---- /dev/null
-+++ b/drivers/pwm/pwm-cv1800.c
-@@ -0,0 +1,294 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Sophgo CV1800 PWM driver
-+ * Author: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-+ *
-+ * Limitations:
-+ * - The hardware emits the inactive level when disabled.
-+ * - This pwm device supports dynamic loading of PWM parameters. When PWMSTART
-+ *   is written from 0 to 1, the register value (HLPERIODn, PERIODn) will be
-+ *   temporarily stored inside the PWM. If you want to dynamically change the
-+ *   waveform during PWM output, after writing the new value to HLPERIODn and
-+ *   PERIODn, write 1 and then 0 to PWMUPDATE[n] to make the new value effective.
-+ * - Supports output frequency ranging from input_clock_rate/(2^30-1) to input_clock_rate/2.
-+ * - By setting HLPERIODn to 0, can produce 100% duty cycle.
-+ * - This hardware could support inverted polarity. By default, the value of the
-+ *   POLARITY register is 0x0. This means that HLPERIOD represents the number
-+ *   of low level beats.
-+ * - This hardware supports input mode and output mode, implemented through the
-+ *   Output-Enable/OE register. However, this driver has not yet implemented
-+ *   capture callback.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/regmap.h>
-+
-+#define PWM_CV1800_POLARITY         0x40
-+#define PWM_CV1800_START            0x44
-+#define PWM_CV1800_DONE             0x48
-+#define PWM_CV1800_UPDATE           0x4c
-+#define PWM_CV1800_OE               0xd0
-+
-+#define PWM_CV1800_HLPERIOD(n)      (0x00 + ((n) * 0x08))
-+#define PWM_CV1800_PERIOD(n)        (0x04 + ((n) * 0x08))
-+
-+#define PWM_CV1800_UPDATE_MASK(n)   BIT(n)
-+#define PWM_CV1800_OE_MASK(n)       BIT(n)
-+#define PWM_CV1800_START_MASK(n)    BIT(n)
-+#define PWM_CV1800_POLARITY_MASK(n) BIT(n)
-+
-+#define PWM_CV1800_MAXPERIOD        0x3fffffff
-+#define PWM_CV1800_MINPERIOD        2
-+#define PWM_CV1800_CHANNELS         4
-+#define PWM_CV1800_PERIOD_RESET     BIT(1)
-+#define PWM_CV1800_HLPERIOD_RESET   BIT(0)
-+#define PWM_CV1800_REG_ENABLE(n)    BIT(n)
-+
-+struct cv1800_pwm {
-+	struct regmap *map;
-+	struct clk *clk;
-+	unsigned long clk_rate;
-+};
-+
-+static inline struct cv1800_pwm *to_cv1800_pwm_dev(struct pwm_chip *chip)
-+{
-+	return pwmchip_get_drvdata(chip);
-+}
-+
-+static const struct regmap_config cv1800_pwm_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.cache_type = REGCACHE_RBTREE,
-+	.reg_stride = 4,
-+};
-+
-+static int cv1800_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm,
-+			     bool enable)
-+{
-+	struct cv1800_pwm *priv = to_cv1800_pwm_dev(chip);
-+	u32 pwm_enabled;
-+
-+	regmap_read(priv->map, PWM_CV1800_START, &pwm_enabled);
-+	pwm_enabled &= PWM_CV1800_START_MASK(pwm->hwpwm);
-+
-+	/*
-+	 * If the parameters are changed during runtime, Register needs
-+	 * to be updated to take effect.
-+	 */
-+
-+	if (!enable) {
-+		if (pwm_enabled)
-+			regmap_clear_bits(priv->map, PWM_CV1800_START, BIT(pwm->hwpwm));
-+		return 0;
-+	} else if (pwm_enabled) {
-+		/*
-+		 * Updating the PWM parameters dynamically requires to send a pulse on the
-+		 * PWMUPDATE register's nth bit, the value is updated only once a zero has been
-+		 * written back to this nth bit
-+		 */
-+		regmap_set_bits(priv->map, PWM_CV1800_UPDATE, BIT(pwm->hwpwm));
-+		regmap_clear_bits(priv->map, PWM_CV1800_UPDATE, BIT(pwm->hwpwm));
-+	} else {
-+		regmap_set_bits(priv->map, PWM_CV1800_START, BIT(pwm->hwpwm));
-+	}
-+
-+	/* check and set OE/Output-Enable mode */
-+	regmap_set_bits(priv->map, PWM_CV1800_OE, BIT(pwm->hwpwm));
-+
-+	return 0;
-+}
-+
-+static void cv1800_pwm_set_polarity(struct pwm_chip *chip,
-+				    struct pwm_device *pwm,
-+				    enum pwm_polarity polarity)
-+{
-+	struct cv1800_pwm *priv = to_cv1800_pwm_dev(chip);
-+	u32 config_polarity = 0;
-+
-+	if (pwm->state.enabled)
-+		cv1800_pwm_enable(chip, pwm, false);
-+
-+	if (polarity == PWM_POLARITY_NORMAL)
-+		config_polarity = PWM_CV1800_POLARITY_MASK(pwm->hwpwm);
-+
-+	regmap_update_bits(priv->map, PWM_CV1800_POLARITY,
-+			   PWM_CV1800_POLARITY_MASK(pwm->hwpwm),
-+			   config_polarity);
-+}
-+
-+static int cv1800_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			    const struct pwm_state *state)
-+{
-+	struct cv1800_pwm *priv = to_cv1800_pwm_dev(chip);
-+	u32 period_ticks, hlperiod_ticks;
-+	u64 ticks;
-+
-+	/*
-+	 * This hardware use PERIOD and HLPERIOD registers to represent PWM waves.
-+	 *
-+	 * The meaning of PERIOD is how many clock cycles (from the clock source)
-+	 * are used to represent PWM waves.
-+	 * PERIOD = rate(MHz) / target(MHz)
-+	 * PERIOD = period(ns) * rate(Hz) / NSEC_PER_SEC
-+	 */
-+	ticks = mul_u64_u64_div_u64(state->period, priv->clk_rate,
-+				    NSEC_PER_SEC);
-+	if (ticks < PWM_CV1800_MINPERIOD)
-+		return -EINVAL;
-+
-+	if (ticks > PWM_CV1800_MAXPERIOD)
-+		ticks = PWM_CV1800_MAXPERIOD;
-+	period_ticks = (u32)ticks;
-+
-+	/*
-+	 * The HLPERIOD register value represents the duration of the active portion
-+	 * of the PWM signal, which matches the polarity of the duty cycle.
-+	 * HLPERIOD = rate(MHz) / duty(MHz)
-+	 * HLPERIOD = duty(ns) * rate(Hz) / NSEC_PER_SEC
-+	 */
-+	ticks = mul_u64_u64_div_u64(state->duty_cycle, priv->clk_rate,
-+				    NSEC_PER_SEC);
-+	if (ticks > period_ticks)
-+		ticks = period_ticks;
-+	hlperiod_ticks = (u32)ticks;
-+
-+	if (state->polarity != pwm->state.polarity)
-+		cv1800_pwm_set_polarity(chip, pwm, state->polarity);
-+
-+	regmap_write(priv->map, PWM_CV1800_PERIOD(pwm->hwpwm), period_ticks);
-+	regmap_write(priv->map, PWM_CV1800_HLPERIOD(pwm->hwpwm), hlperiod_ticks);
-+
-+	cv1800_pwm_enable(chip, pwm, state->enabled);
-+
-+	return 0;
-+}
-+
-+static int cv1800_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+				struct pwm_state *state)
-+{
-+	struct cv1800_pwm *priv = to_cv1800_pwm_dev(chip);
-+	u32 period_val, hlperiod_val;
-+	u64 period_ns = 0, duty_ns = 0;
-+	u32 enable = 0, polarity = 0;
-+
-+	regmap_read(priv->map, PWM_CV1800_PERIOD(pwm->hwpwm), &period_val);
-+	regmap_read(priv->map, PWM_CV1800_HLPERIOD(pwm->hwpwm), &hlperiod_val);
-+
-+	if (period_val != PWM_CV1800_PERIOD_RESET ||
-+	    hlperiod_val != PWM_CV1800_HLPERIOD_RESET) {
-+		period_ns = DIV_ROUND_UP_ULL(period_val * NSEC_PER_SEC,
-+					     priv->clk_rate);
-+		duty_ns = DIV_ROUND_UP_ULL(hlperiod_val * NSEC_PER_SEC,
-+					   priv->clk_rate);
-+
-+		regmap_read(priv->map, PWM_CV1800_START, &enable);
-+		enable &= PWM_CV1800_START_MASK(pwm->hwpwm);
-+
-+		regmap_read(priv->map, PWM_CV1800_POLARITY, &polarity);
-+		polarity &= PWM_CV1800_POLARITY_MASK(pwm->hwpwm);
-+	}
-+
-+	state->period = period_ns;
-+	state->duty_cycle = duty_ns;
-+	state->enabled = enable;
-+
-+	/*
-+	 * To ensure that duty and hlperiod represent the same polarity
-+	 * the following mapping needs to be completed.
-+	 *
-+	 * |----------|------------|------------|-----------|
-+	 * |  Linux   |  register  |    duty    | register  |
-+	 * | polarity |  polarity  |            | hlperiod  |
-+	 * |----------|------------|------------|-----------|
-+	 * |    1     |      0     | low level  | low level |
-+	 * |----------|------------|------------|-----------|
-+	 * |    0     |      1     | high level | high level|
-+	 * |----------|------------|------------|-----------|
-+	 */
-+	state->polarity = polarity ? PWM_POLARITY_NORMAL :
-+					   PWM_POLARITY_INVERSED;
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops cv1800_pwm_ops = {
-+	.apply = cv1800_pwm_apply,
-+	.get_state = cv1800_pwm_get_state,
-+};
-+
-+static int cv1800_pwm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct cv1800_pwm *priv;
-+	struct pwm_chip *chip;
-+	void __iomem *base;
-+	int ret;
-+
-+	chip = devm_pwmchip_alloc(dev, 4, sizeof(*priv));
-+	if (!chip)
-+		return PTR_ERR(chip);
-+	priv = to_cv1800_pwm_dev(chip);
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	priv->map = devm_regmap_init_mmio(&pdev->dev, base,
-+					  &cv1800_pwm_regmap_config);
-+	if (IS_ERR(priv->map))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(priv->map),
-+				     "Couldn't create PWM regmap\n");
-+
-+	priv->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-+	if (IS_ERR(priv->clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(priv->clk),
-+				     "clk not found\n");
-+
-+	ret = devm_clk_rate_exclusive_get(dev, priv->clk);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "failed to get exclusive rate\n");
-+
-+	priv->clk_rate = clk_get_rate(priv->clk);
-+	if (!priv->clk_rate)
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				     "Invalid clock rate: %lu\n",
-+				     priv->clk_rate);
-+	else if (priv->clk_rate > NSEC_PER_SEC)
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				     "Clock rate too high: %lu\n",
-+				     priv->clk_rate);
-+	 ;
-+
-+	chip->ops = &cv1800_pwm_ops;
-+
-+	ret = devm_pwmchip_add(dev, chip);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to add PWM chip\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id cv1800_pwm_dt_ids[] = {
-+	{ .compatible = "sophgo,cv1800-pwm" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, cv1800_pwm_dt_ids);
-+
-+static struct platform_driver cv1800_pwm_driver = {
-+	.probe = cv1800_pwm_probe,
-+	.driver	= {
-+		.name = "cv1800-pwm",
-+		.of_match_table = cv1800_pwm_dt_ids,
-+	},
-+};
-+module_platform_driver(cv1800_pwm_driver);
-+
-+MODULE_AUTHOR("Jingbao Qiu");
-+MODULE_DESCRIPTION("Sophgo cv1800 PWM Driver");
-+MODULE_LICENSE("GPL");
+Same question on the power IDs.
 
--- 
-2.49.0
+>  arch/arm64/boot/dts/freescale/imx94.dtsi      | 1148 ++++++++++++
+>  arch/arm64/boot/dts/freescale/imx943.dtsi     |  148 ++
+>  5 files changed, 3102 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx94-clock.h
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx94-pinfunc.h
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx94-power.h
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx94.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx943.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx94-clock.h b/arch/arm64/boot/dts/freescale/imx94-clock.h
+> new file mode 100644
+> index 000000000000..84ad3d53c29b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx94-clock.h
+> @@ -0,0 +1,195 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
+> +/*
+> + * Copyright 2024-2025 NXP
+> + */
+> +
+> +#ifndef __CLOCK_IMX94_H
+> +#define __CLOCK_IMX94_H
+
+Can we name it __IMX94_CLOCK_H to match the file name?
+
+> +
+> +#define IMX94_CLK_EXT				0
+> +#define IMX94_CLK_32K				1
+> +#define IMX94_CLK_24M				2
+> +#define IMX94_CLK_FRO				3
+> +#define IMX94_CLK_SYSPLL1_VCO			4
+> +#define IMX94_CLK_SYSPLL1_PFD0_UNGATED		5
+> +#define IMX94_CLK_SYSPLL1_PFD0			6
+> +#define IMX94_CLK_SYSPLL1_PFD0_DIV2		7
+> +#define IMX94_CLK_SYSPLL1_PFD1_UNGATED		8
+> +#define IMX94_CLK_SYSPLL1_PFD1			9
+> +#define IMX94_CLK_SYSPLL1_PFD1_DIV2		10
+> +#define IMX94_CLK_SYSPLL1_PFD2_UNGATED		11
+> +#define IMX94_CLK_SYSPLL1_PFD2			12
+> +#define IMX94_CLK_SYSPLL1_PFD2_DIV2		13
+> +#define IMX94_CLK_AUDIOPLL1_VCO			14
+> +#define IMX94_CLK_AUDIOPLL1			15
+> +#define IMX94_CLK_AUDIOPLL2_VCO			16
+> +#define IMX94_CLK_AUDIOPLL2			17
+> +#define IMX94_CLK_RESERVED18			18
+> +#define IMX94_CLK_RESERVED19			19
+> +#define IMX94_CLK_RESERVED20			20
+> +#define IMX94_CLK_RESERVED21			21
+> +#define IMX94_CLK_RESERVED22			22
+> +#define IMX94_CLK_RESERVED23			23
+> +#define IMX94_CLK_ENCPLL_VCO			24
+> +#define IMX94_CLK_ENCPLL_PFD0_UNGATED		25
+> +#define IMX94_CLK_ENCPLL_PFD0			26
+> +#define IMX94_CLK_ENCPLL_PFD1_UNGATED		27
+> +#define IMX94_CLK_ENCPLL_PFD1			28
+> +#define IMX94_CLK_ARMPLL_VCO			29
+> +#define IMX94_CLK_ARMPLL_PFD0_UNGATED		30
+> +#define IMX94_CLK_ARMPLL_PFD0			31
+> +#define IMX94_CLK_ARMPLL_PFD1_UNGATED		32
+> +#define IMX94_CLK_ARMPLL_PFD1			33
+> +#define IMX94_CLK_ARMPLL_PFD2_UNGATED		34
+> +#define IMX94_CLK_ARMPLL_PFD2			35
+> +#define IMX94_CLK_ARMPLL_PFD3_UNGATED		36
+> +#define IMX94_CLK_ARMPLL_PFD3			37
+> +#define IMX94_CLK_DRAMPLL_VCO			38
+> +#define IMX94_CLK_DRAMPLL			39
+> +#define IMX94_CLK_HSIOPLL_VCO			40
+> +#define IMX94_CLK_HSIOPLL			41
+> +#define IMX94_CLK_LDBPLL_VCO			42
+> +#define IMX94_CLK_LDBPLL			43
+> +#define IMX94_CLK_EXT1				44
+> +#define IMX94_CLK_EXT2				45
+> +
+
+Why this newline?
+
+> +#define IMX94_CLK_ADC				46
+> +#define IMX94_CLK_BUSAON			47
+> +#define IMX94_CLK_CAN1				48
+> +#define IMX94_CLK_GLITCHFILTER			49
+> +#define IMX94_CLK_GPT1				50
+> +#define IMX94_CLK_I3C1SLOW			51
+> +#define IMX94_CLK_LPI2C1			52
+> +#define IMX94_CLK_LPI2C2			53
+> +#define IMX94_CLK_LPSPI1			54
+> +#define IMX94_CLK_LPSPI2			55
+> +#define IMX94_CLK_LPTMR1			56
+> +#define IMX94_CLK_LPUART1			57
+> +#define IMX94_CLK_LPUART2			58
+> +#define IMX94_CLK_M33				59
+> +#define IMX94_CLK_M33SYSTICK			60
+> +#define IMX94_CLK_PDM				61
+> +#define IMX94_CLK_SAI1				62
+> +#define IMX94_CLK_TPM2				63
+> +#define IMX94_CLK_A55				64
+> +#define IMX94_CLK_A55MTRBUS			65
+> +#define IMX94_CLK_A55PERIPH			66
+> +#define IMX94_CLK_DRAMALT			67
+> +#define IMX94_CLK_DRAMAPB			68
+> +#define IMX94_CLK_DISPAPB			69
+> +#define IMX94_CLK_DISPAXI			70
+> +#define IMX94_CLK_DISPPIX			71
+> +#define IMX94_CLK_HSIOACSCAN480M		72
+> +#define IMX94_CLK_HSIOACSCAN80M			73
+> +#define IMX94_CLK_HSIO				74
+> +#define IMX94_CLK_HSIOPCIEAUX			75
+> +#define IMX94_CLK_HSIOPCIETEST160M		76
+> +#define IMX94_CLK_HSIOPCIETEST400M		77
+> +#define IMX94_CLK_HSIOPCIETEST500M		78
+> +#define IMX94_CLK_HSIOPCIETEST50M		79
+> +#define IMX94_CLK_HSIOUSBTEST60M		80
+> +#define IMX94_CLK_BUSM70			81
+> +#define IMX94_CLK_M70				82
+> +#define IMX94_CLK_M70SYSTICK			83
+> +#define IMX94_CLK_BUSM71			84
+> +#define IMX94_CLK_M71				85
+> +#define IMX94_CLK_M71SYSTICK			86
+> +#define IMX94_CLK_BUSNETCMIX			87
+> +#define IMX94_CLK_ECAT				88
+> +#define IMX94_CLK_ENET				89
+> +#define IMX94_CLK_ENETPHYTEST200M		90
+> +#define IMX94_CLK_ENETPHYTEST500M		91
+> +#define IMX94_CLK_ENETPHYTEST667M		92
+> +#define IMX94_CLK_ENETREF			93
+> +#define IMX94_CLK_ENETTIMER1			94
+> +#define IMX94_CLK_ENETTIMER2			95
+> +#define IMX94_CLK_ENETTIMER3			96
+> +#define IMX94_CLK_FLEXIO3			97
+> +#define IMX94_CLK_FLEXIO4			98
+> +#define IMX94_CLK_M33SYNC			99
+> +#define IMX94_CLK_M33SYNCSYSTICK		100
+> +#define IMX94_CLK_MAC0				101
+> +#define IMX94_CLK_MAC1				102
+> +#define IMX94_CLK_MAC2				103
+> +#define IMX94_CLK_MAC3				104
+> +#define IMX94_CLK_MAC4				105
+> +#define IMX94_CLK_MAC5				106
+> +#define IMX94_CLK_NOCAPB			107
+> +#define IMX94_CLK_NOC				108
+> +#define IMX94_CLK_NPUAPB			109
+> +#define IMX94_CLK_NPU				110
+> +#define IMX94_CLK_CCMCKO1			111
+> +#define IMX94_CLK_CCMCKO2			112
+> +#define IMX94_CLK_CCMCKO3			113
+> +#define IMX94_CLK_CCMCKO4			114
+> +#define IMX94_CLK_BISS				115
+> +#define IMX94_CLK_BUSWAKEUP			116
+> +#define IMX94_CLK_CAN2				117
+> +#define IMX94_CLK_CAN3				118
+> +#define IMX94_CLK_CAN4				119
+> +#define IMX94_CLK_CAN5				120
+> +#define IMX94_CLK_ENDAT21			121
+> +#define IMX94_CLK_ENDAT22			122
+> +#define IMX94_CLK_ENDAT31FAST			123
+> +#define IMX94_CLK_ENDAT31SLOW			124
+> +#define IMX94_CLK_FLEXIO1			125
+> +#define IMX94_CLK_FLEXIO2			126
+> +#define IMX94_CLK_GPT2				127
+> +#define IMX94_CLK_GPT3				128
+> +#define IMX94_CLK_GPT4				129
+> +#define IMX94_CLK_HIPERFACE1			130
+> +#define IMX94_CLK_HIPERFACE1SYNC		131
+> +#define IMX94_CLK_HIPERFACE2			132
+> +#define IMX94_CLK_HIPERFACE2SYNC		133
+> +#define IMX94_CLK_I3C2SLOW			134
+> +#define IMX94_CLK_LPI2C3			135
+> +#define IMX94_CLK_LPI2C4			136
+> +#define IMX94_CLK_LPI2C5			137
+> +#define IMX94_CLK_LPI2C6			138
+> +#define IMX94_CLK_LPI2C7			139
+> +#define IMX94_CLK_LPI2C8			140
+> +#define IMX94_CLK_LPSPI3			141
+> +#define IMX94_CLK_LPSPI4			142
+> +#define IMX94_CLK_LPSPI5			143
+> +#define IMX94_CLK_LPSPI6			144
+> +#define IMX94_CLK_LPSPI7			145
+> +#define IMX94_CLK_LPSPI8			146
+> +#define IMX94_CLK_LPTMR2			147
+> +#define IMX94_CLK_LPUART10			148
+> +#define IMX94_CLK_LPUART11			149
+> +#define IMX94_CLK_LPUART12			150
+> +#define IMX94_CLK_LPUART3			151
+> +#define IMX94_CLK_LPUART4			152
+> +#define IMX94_CLK_LPUART5			153
+> +#define IMX94_CLK_LPUART6			154
+> +#define IMX94_CLK_LPUART7			155
+> +#define IMX94_CLK_LPUART8			156
+> +#define IMX94_CLK_LPUART9			157
+> +#define IMX94_CLK_SAI2				158
+> +#define IMX94_CLK_SAI3				159
+> +#define IMX94_CLK_SAI4				160
+> +#define IMX94_CLK_SWOTRACE			161
+> +#define IMX94_CLK_TPM4				162
+> +#define IMX94_CLK_TPM5				163
+> +#define IMX94_CLK_TPM6				164
+> +#define IMX94_CLK_USBPHYBURUNIN			165
+> +#define IMX94_CLK_USDHC1			166
+> +#define IMX94_CLK_USDHC2			167
+> +#define IMX94_CLK_USDHC3			168
+> +#define IMX94_CLK_V2XPK				169
+> +#define IMX94_CLK_WAKEUPAXI			170
+> +#define IMX94_CLK_XSPISLVROOT			171
+> +#define IMX94_CLK_XSPI1				172
+> +#define IMX94_CLK_XSPI2				173
+> +
+
+And this?
+
+> +#define IMX94_CLK_SEL_EXT			174
+> +#define IMX94_CLK_SEL_A55C0			175
+> +#define IMX94_CLK_SEL_A55C1			176
+> +#define IMX94_CLK_SEL_A55C2			177
+> +#define IMX94_CLK_SEL_A55C3			178
+> +#define IMX94_CLK_SEL_A55P			179
+> +#define IMX94_CLK_SEL_DRAM			180
+> +#define IMX94_CLK_SEL_TEMPSENSE			181
+> +#define IMX94_CLK_NPU_CGC			182
+> +
+> +#endif /* __CLOCK_IMX94_H */
+> diff --git a/arch/arm64/boot/dts/freescale/imx94-pinfunc.h b/arch/arm64/boot/dts/freescale/imx94-pinfunc.h
+> new file mode 100644
+> index 000000000000..00255db89185
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx94-pinfunc.h
+> @@ -0,0 +1,1570 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright 2024-2025 NXP
+> + */
+> +
+> +#ifndef __DTS_IMX94_PINFUNC_H
+> +#define __DTS_IMX94_PINFUNC_H
+
+<snip>
+
+> +#endif /* __DTS_IMX94_PINFUNC_H */
+> diff --git a/arch/arm64/boot/dts/freescale/imx94-power.h b/arch/arm64/boot/dts/freescale/imx94-power.h
+> new file mode 100644
+> index 000000000000..282167494a1d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx94-power.h
+> @@ -0,0 +1,41 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +/*
+> + *  Copyright 2024-2025 NXP
+> + */
+> +
+> +#ifndef __IMX94_POWER_H__
+> +#define __IMX94_POWER_H__
+
+Other headers in this patch use pattern of __XXX_YYY_H.  Can we get them
+all aligned?
+
+Shawn
 
 
