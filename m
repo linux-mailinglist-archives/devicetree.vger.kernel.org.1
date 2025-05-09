@@ -1,144 +1,125 @@
-Return-Path: <devicetree+bounces-175566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D36BCAB12E1
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:03:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05B0AB13C0
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:46:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6DA87AA43B
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:02:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9861952262B
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2108B28FFD8;
-	Fri,  9 May 2025 12:03:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB84291176;
+	Fri,  9 May 2025 12:45:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="mlGh+L/e"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="WMF1dXzx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
+Received: from mail-m1973171.qiye.163.com (mail-m1973171.qiye.163.com [220.197.31.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCF3A274643;
-	Fri,  9 May 2025 12:03:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55AA2139B;
+	Fri,  9 May 2025 12:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.71
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746792228; cv=none; b=sybXniYEXp3SGQFRvQbLBBkX6/YnqYCZpXtoZUkjPNWsUMx3VxvqECRkxQN5/oLHsBKJZhNhOg1pKQe0PoO/36ovYjP6qdFkrdB/tGLL/6pI6YvyBwpVkNnbl2wxlOk6zQPTSl21JMdzIaswp+z5FpKEy94K3/Dw5gFtHpXu9ck=
+	t=1746794752; cv=none; b=VpDn4YBBr7h7pI8XIXWkjKcOqBJe55YNa0pN/qTEL41P2CpdZWZ9WpTRnNl9qjspFee8akW87Pvfft96z8QdWXazLojxNGdJg3yNg1FAAcM+me7bf/Ujgiq5uxUSc1GSR8coibrYZPRIGh9yD+YVyd0+XLWvfdsa6iDPxQbf8ro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746792228; c=relaxed/simple;
-	bh=zMk3Ur7keZic+WklbtXFWS6gObTJIJhCYMILZ9CiGdg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SpGHQ1/Di7rEduh1/OwMiIlV3lIO9ziKLFlVhY+tJkx58h0pRTZS2FrI53AcRF5v3e++k4CtV7oL5u75o2Mnnrcbx8Gv54NyOi4IRB695zmANMoGQF6hxeVenltg1bfkiP5HT06jxLUeESI+73ZjunjZyUvFfWJiA10HHsCspek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=mlGh+L/e; arc=none smtp.client-ip=220.197.32.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=uZznWLba/NrZlGr5Qa9wgXdmAIeUPmYseOlEvibVjwc=;
-	b=mlGh+L/e3yD5Rzxyt5H4YE5WgU95NUq48DtszJYSAK09t/qKPMO2tb5qPO1ANa
-	CO673MDq3NgqiHbSRopshU79k8zJukP3ey48IEnX4Qkfdka1wZIaOXr7jETDafFC
-	6D0y8KiZxyUvBGEnGDjZ8UUDzIl3iL/FuD1aBPN4ml7Gw=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgC3N_Ke7h1oXnOrAA--.65461S3;
-	Fri, 09 May 2025 20:01:36 +0800 (CST)
-Date: Fri, 9 May 2025 20:01:34 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>, Stephen Boyd <sboyd@kernel.org>,
-	linux-amarula@amarulasolutions.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	s=arc-20240116; t=1746794752; c=relaxed/simple;
+	bh=ArHSIh5k0FtMdOsuHqQJwpz7frwsB3sZf+zpyfLc9JU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=fKSKsxfcgICiQmegNdZvDPKQLSaP06yqPasJx0nZrA0zmA/0Q4k/bCfkAX/gDlR6jmiguXNRNPRIqt3kBHtiORKg/fmFD/YYy31eFBcfJemrdIgTx+lTsSjQ5ewFFDe731DODIGE+MTQ40fWKJIJHyWa5EuDj/IFdKx/axRY+cE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=WMF1dXzx; arc=none smtp.client-ip=220.197.31.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1483147dd;
+	Fri, 9 May 2025 18:23:15 +0800 (GMT+08:00)
+From: Kever Yang <kever.yang@rock-chips.com>
+To: heiko@sntech.de
+Cc: linux-rockchip@lists.infradead.org,
+	Kever Yang <kever.yang@rock-chips.com>,
 	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-Subject: Re: (subset) [PATCH v12 00/19] Support spread spectrum clocking for
- i.MX8M PLLs
-Message-ID: <aB3unsCzCFUkdp9i@dragon>
-References: <20250424062154.2999219-1-dario.binacchi@amarulasolutions.com>
- <174643143452.2950397.16722215892279685541.b4-ty@linaro.org>
- <CABGWkvrkVLRocFsZs9JLni4KDZCDyYDZxMzwA9AzAwipmUyTzQ@mail.gmail.com>
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Yao Zi <ziyao@disroot.org>,
+	linux-kernel@vger.kernel.org,
+	Shresth Prasad <shresthprasad7@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH v7 2/5] dt-bindings: soc: rockchip: Add rk3562 syscon compatibles
+Date: Fri,  9 May 2025 18:23:05 +0800
+Message-Id: <20250509102308.761424-3-kever.yang@rock-chips.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250509102308.761424-1-kever.yang@rock-chips.com>
+References: <20250509102308.761424-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABGWkvrkVLRocFsZs9JLni4KDZCDyYDZxMzwA9AzAwipmUyTzQ@mail.gmail.com>
-X-CM-TRANSID:Ms8vCgC3N_Ke7h1oXnOrAA--.65461S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxXw1kGFWrCr1furWUWr13CFg_yoW5WrWUpa
-	4SkayqyrWDJFy8GF9Fyr45ta40qw4DZay8Jw1Ygr90v34YqF15JFW7Kry5KFyUG3yfC39r
-	tay5Xw1ku3WYvFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j4c_fUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCxNIZWgd37UzoAAAs5
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkwaH1YdQk1PGU0fGRlNGUxWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
+	1VSktLVUpCWQY+
+X-HM-Tid: 0a96b492175503afkunm1483147dd
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MVE6NCo4KzJDFQFDM09CMCpI
+	HCFPCQxVSlVKTE9NTENNSkJNQ05MVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJTkJPNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=WMF1dXzxwMdFQ3uiPlJZfUC9pW0fnyoUE6tcJfc8kVsaid0W/0HjZhNDTvNFlPSIM8qxbtWkMbht1N47ggdh9PQJTeP/VQzwJSiJMG9fPohG+E2eoQZaOQdQzRbhxJWPlDG0fQ4jKVX4zTo0tyJiKfEgU6E2smTHTis9N087OhQ=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=0wo+VkSsab6C/JpBBT+y/yBauqlRn7TCbXRtxMgbQnM=;
+	h=date:mime-version:subject:message-id:from;
 
-On Thu, May 08, 2025 at 10:32:10AM +0200, Dario Binacchi wrote:
-> Hello Shawn,
-> 
-> On Mon, May 5, 2025 at 9:52 AM Abel Vesa <abel.vesa@linaro.org> wrote:
-> >
-> >
-> > On Thu, 24 Apr 2025 08:21:30 +0200, Dario Binacchi wrote:
-> > > This version keeps the version v9 patches that can be merged and
-> > > removes the patches that will need to be modified in case Peng's
-> > > PR https://github.com/devicetree-org/dt-schema/pull/154 is accepted.
-> > > The idea is to speed up the merging of the patches in the series
-> > > that have already been reviewed and are not dependent on the
-> > > introduction of the assigned-clocks-sscs property, and postpone
-> > > the patches for spread spectrum to a future series once it becomes
-> > > clear what needs to be done.
-> > >
-> > > [...]
-> >
-> > Applied, thanks!
-> >
-> > [01/19] dt-bindings: clock: imx8mm: add VIDEO_PLL clocks
-> >         commit: 20e5d201b5d8f830e702d7d183f6b1b246b78d8a
-> > [02/19] clk: imx8mm: rename video_pll1 to video_pll
-> >         commit: 26a33196b5b68cf199b6c4283a254aa92d2aaf4b
-> > [03/19] dt-bindings: clock: imx8mp: add VIDEO_PLL clocks
-> >         commit: 2d50415e2457c6f6621c2faa3b01b11150fb9c67
-> > [04/19] clk: imx8mp: rename video_pll1 to video_pll
-> >         commit: 21bb969f608cefd8d847cf6eb50a193d9f1fbb87
-> > [05/19] dt-bindings: clock: imx8m-anatop: add oscillators and PLLs
-> >         commit: 2ba124053687c933031a6dc5b2e16ceaca250934
-> > [10/19] clk: imx: add hw API imx_anatop_get_clk_hw
-> >         commit: 17e3c1a272d97e49b4f3fbfe1f1b889e120d2be8
-> > [11/19] clk: imx: add support for i.MX8MM anatop clock driver
-> >         commit: 3cbc38cf42ca42d2dc9a93c949e0381ff919df71
-> > [12/19] clk: imx: add support for i.MX8MN anatop clock driver
-> >         commit: 80badb1d7264e83b512475898e7459f464a009c9
-> > [13/19] clk: imx: add support for i.MX8MP anatop clock driver
-> >         commit: 4c82bbe8b5437c7f16b2891ce33210c0f1410597
-> > [14/19] clk: imx8mp: rename ccm_base to base
-> >         commit: 1a77907dbbecfbe5e6a1aec28afd49a1dc184b7a
-> > [16/19] dt-bindings: clock: imx8m-clock: add PLLs
-> >         commit: 6a55647af3334f1d935ece67de4a838a864b53fc
-> >
-> 
-> Please check the remaining patches, as they are required for correctly
-> building the
-> ones merged by Abel. The kernel test robot has already reported build errors.
+Add all syscon compatibles for rk3562.
 
-I assume the remaining patches are DTS ones?  If so, I do not see how
-clock drivers would require DTS change to build correctly.  Do you have
-a pointer to the reported build errors?
+Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+---
 
-My understanding about the build dependency is the opposite, i.e. the
-DTS changes require clock defines merged by Abel to build?  In that
-case, I suggest Abel pick up the whole series with my ack on DTS changes.
+Changes in v7: None
+Changes in v6: None
+Changes in v5: None
+Changes in v4:
+- Collect ack tag
 
-Acked-by: Shawn Guo <shawnguo@kernel.org>
+Changes in v3: None
+Changes in v2: None
 
-Alternatively, I can pick up the remaining patches after clock changes
-land on mainline (the next -rc1).
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Shawn
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index 2f61c1b95fea..8cbf5b6772dd 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -18,6 +18,12 @@ properties:
+               - rockchip,rk3528-ioc-grf
+               - rockchip,rk3528-vo-grf
+               - rockchip,rk3528-vpu-grf
++              - rockchip,rk3562-ioc-grf
++              - rockchip,rk3562-peri-grf
++              - rockchip,rk3562-pipephy-grf
++              - rockchip,rk3562-pmu-grf
++              - rockchip,rk3562-sys-grf
++              - rockchip,rk3562-usbphy-grf
+               - rockchip,rk3566-pipe-grf
+               - rockchip,rk3568-pcie3-phy-grf
+               - rockchip,rk3568-pipe-grf
+@@ -82,6 +88,7 @@ properties:
+               - rockchip,rk3368-pmugrf
+               - rockchip,rk3399-grf
+               - rockchip,rk3399-pmugrf
++              - rockchip,rk3562-pmu-grf
+               - rockchip,rk3568-grf
+               - rockchip,rk3568-pmugrf
+               - rockchip,rk3576-ioc-grf
+-- 
+2.25.1
 
 
