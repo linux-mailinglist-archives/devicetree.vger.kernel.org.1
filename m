@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-175801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BFDEAB1E4D
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 22:31:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 334EFAB1E53
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 22:31:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AD7EA2460F
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 20:30:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31297A24E44
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 20:30:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79FE1262807;
-	Fri,  9 May 2025 20:24:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A130263F3A;
+	Fri,  9 May 2025 20:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="xbwddUkK"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="EcZgoLEn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DCFD2620D5
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 20:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C222638A0
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 20:24:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746822258; cv=none; b=nzg2YGpQUcm1jDuYx8iU6oxTFhh2zNtKkR+ANQ9MExJZABM2GiRmTXDULgqw0FkuCmJ78VbU6IXHPBNLDKnoJ1VyPyBg0SWKvk9d3IqvtY9Xkv5lV+7uhllxCMZJUVTAjRCd3DYhRokGDK10dMNvEKTKhM9LxdjyNAUWuBy75LY=
+	t=1746822264; cv=none; b=furKhiKsh50iAgFloAcYGMFs6Zd+WiiN74QgsgiE0Ek2nMv447jje+MlBlZpIf0DHEyFZILPOPWRxuR5MIvTsQ5APw8V3bi/BUGxsWvjiR6ST+spsMEfABgynE3vFldJpwxR+8mkSuRU/3zjVBvylAGE6yH3l9inb9JCe/U2luQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746822258; c=relaxed/simple;
-	bh=LLIxxoBDzxYG2uJACxJxA1r+yY2RSipZNIL8OPUJ/mI=;
+	s=arc-20240116; t=1746822264; c=relaxed/simple;
+	bh=sLj//1AcXpvIwBqzWW3CI6S+W+1lUK/SIwxIUMmLcqM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WnQZtSF+dkByuC3pB5dtTf9KkQRrnZReVT/fdeR/eA9uXjJUm82tvZzuM1fU4+JrOx2R7c8hRH5rw7llmPb69CpuMYWzs0pp1IwOA9VX/1u4/FVXmn5ByOtkpm6XhcrChDrZA2C4kKabO8ZSygUee/rA63RrIyx8NcUZjcuT0nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=xbwddUkK; arc=none smtp.client-ip=121.127.44.73
+	 MIME-Version; b=JHMUSuouPwDaD+5m6TTKnKPIET8W6yJ0201lXZeor7Zx6eonpjmOnh/3Jo2fOCaaP1QRlbbCFir57uutGp/oxVMFvQu3fe0EEmgx3a2/yrPpMvjHKD2444ryrSNHYKnQBzZTkFjamOkJSPfjJhPPefZnjtElrbrNpB+yU1s1eT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=EcZgoLEn; arc=none smtp.client-ip=121.127.44.73
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1746822255; bh=P7gThKkrMd1a1lQEc13hoEpYQxfaSplFlrYwQwnShkc=;
- b=xbwddUkKV7NmBe8h4fy0WmF2iClgrq7KUYh4IhQLGlRgX24hFFjrxFLF53GKuDYYrTEQ7Q1Yx
- 4bwSTHwGnUhChmlpQadJsnD9Tb27EiAFDhzX/KtFrXVEyIMFOxi43tbu3+z6Bm+byn9dKR4QJSL
- TN2L77BuFOsOoHHkWvJymW8FawSqztTPo2mK8vBjrDU+yds/yWU7IvFhqO/lLr/00f+mmcqdIHn
- Ht+oTI7Ks1fqgg2BACewQ4vSHg+q1i/sD6aZIlxZEL4K/II01IwdKqutoz2FeLcrMfjs1zpTiRs
- kZB55tP5O60+WOANag/ZPXW+ucHmVZEUcFnb312AWeFg==
-X-Forward-Email-ID: 681e646cb323f1ffafd05d85
+ t=1746822260; bh=ehstcimJR9z+3Rt/ETv7WL7WqYg2RyHiNK4ycKLwqgc=;
+ b=EcZgoLEnz7ewv6ZRBdjX+KGGQuc/XP86n3R48eMgXo3sk8HIJTPUUBeBDW1VVMXzcfpFAZpNd
+ GwuSLWAbt2QnpEjkgDlUdjNJ5DFQsXlR0I9PUVN+pAbJoDN7jVCmbgSU8rOOLINCnSqwb0uhs9E
+ gdsuhMCICRiQ/UohvqrkdGuImbhsPWqXt0W2wu00KtWEjugIpCAuelod7sbQlMENUwi7y3R9pmB
+ XfKZMT2nu4s+0lFmJ32lhehrEKJvMmb6fBjNlaCcGhKZuGdSetDUaX9ahgFozmWDMSJ7SV+Ji+s
+ qUAR3Pk8fGquT6CHNX4vx9/Rd5Vw7G1PFFqIvfYIvoRQ==
+X-Forward-Email-ID: 681e6470b323f1ffafd05da1
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
  121.127.44.73
 X-Forward-Email-Version: 1.0.2
@@ -60,9 +60,9 @@ Cc: Yao Zi <ziyao@disroot.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH v3 1/2] arm64: dts: rockchip: Add GMAC nodes for RK3528
-Date: Fri,  9 May 2025 20:23:57 +0000
-Message-ID: <20250509202402.260038-2-jonas@kwiboo.se>
+Subject: [PATCH v3 2/2] arm64: dts: rockchip: Enable Ethernet controller on Radxa E20C
+Date: Fri,  9 May 2025 20:23:58 +0000
+Message-ID: <20250509202402.260038-3-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250509202402.260038-1-jonas@kwiboo.se>
 References: <20250509202402.260038-1-jonas@kwiboo.se>
@@ -74,143 +74,81 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Rockchip RK3528 has two Ethernet controllers based on Synopsys DWC
-Ethernet QoS IP.
+The Radxa E20C has two GbE ports, LAN and WAN. The LAN port is provided
+using a GMAC controller and a YT8531C PHY and the WAN port is provided
+by an RTL8111H PCIe Ethernet controller.
 
-Add device tree nodes for the two Ethernet controllers in RK3528.
+Enable support for the LAN port on Radxa E20C.
 
 Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
 Changes in v3:
-- No change
+- Rebase on top of latest mmind/for-next
 
 Changes in v2:
-- Add ethernet-phy@2 for the integrated PHY
+- Rebase on top of the "Support I2C controllers in RK3528" series [1]
 
-I have no board that expose an Ethernet port for the gmac0 and the
-integrated PHY. However, the PHY can be identified on addr 0x2 as
-0044.1400 and in vendor kernel this relate to the Rockchip RK630 PHY.
-A proper PHY driver will be needed to support real use of gmac0.
+[1] https://lore.kernel.org/r/20250309070603.35254-1-ziyao@disroot.org
 ---
- arch/arm64/boot/dts/rockchip/rk3528.dtsi | 105 +++++++++++++++++++++++
- 1 file changed, 105 insertions(+)
+ .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-index 193b84b5e912..cd8ef389ccf3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-@@ -677,6 +677,111 @@ saradc: adc@ffae0000 {
- 			status = "disabled";
- 		};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+index d45b6594b2de..506d54337ece 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+@@ -17,6 +17,7 @@ / {
+ 	compatible = "radxa,e20c", "rockchip,rk3528";
  
-+		gmac0: ethernet@ffbd0000 {
-+			compatible = "rockchip,rk3528-gmac", "snps,dwmac-4.20a";
-+			reg = <0x0 0xffbd0000 0x0 0x10000>;
-+			clocks = <&cru CLK_GMAC0_SRC>, <&cru CLK_GMAC0_RMII_50M>,
-+				 <&cru CLK_GMAC0_RX>, <&cru CLK_GMAC0_TX>,
-+				 <&cru PCLK_MAC_VO>, <&cru ACLK_MAC_VO>;
-+			clock-names = "stmmaceth", "clk_mac_ref",
-+				      "mac_clk_rx", "mac_clk_tx",
-+				      "pclk_mac", "aclk_mac";
-+			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq", "eth_wake_irq";
-+			phy-handle = <&rmii0_phy>;
-+			phy-mode = "rmii";
-+			resets = <&cru SRST_A_MAC_VO>;
-+			reset-names = "stmmaceth";
-+			rockchip,grf = <&vo_grf>;
-+			snps,axi-config = <&gmac0_stmmac_axi_setup>;
-+			snps,mixed-burst;
-+			snps,mtl-rx-config = <&gmac0_mtl_rx_setup>;
-+			snps,mtl-tx-config = <&gmac0_mtl_tx_setup>;
-+			snps,tso;
-+			status = "disabled";
+ 	aliases {
++		ethernet0 = &gmac1;
+ 		mmc0 = &sdhci;
+ 		mmc1 = &sdmmc;
+ 	};
+@@ -184,6 +185,17 @@ &cpu3 {
+ 	cpu-supply = <&vdd_arm>;
+ };
+ 
++&gmac1 {
++	clock_in_out = "output";
++	phy-handle = <&rgmii_phy>;
++	phy-mode = "rgmii-id";
++	phy-supply = <&vcc_3v3>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&rgmii_miim>, <&rgmii_tx_bus2>, <&rgmii_rx_bus2>,
++		    <&rgmii_rgmii_clk>, <&rgmii_rgmii_bus>;
++	status = "okay";
++};
 +
-+			mdio0: mdio {
-+				compatible = "snps,dwmac-mdio";
-+				#address-cells = <0x1>;
-+				#size-cells = <0x0>;
+ &i2c1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c1m0_xfer>;
+@@ -198,7 +210,25 @@ eeprom@50 {
+ 	};
+ };
+ 
++&mdio1 {
++	rgmii_phy: ethernet-phy@1 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0x1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&gmac1_rstn_l>;
++		reset-assert-us = <20000>;
++		reset-deassert-us = <100000>;
++		reset-gpios = <&gpio4 RK_PC2 GPIO_ACTIVE_LOW>;
++	};
++};
 +
-+				rmii0_phy: ethernet-phy@2 {
-+					compatible = "ethernet-phy-ieee802.3-c22";
-+					reg = <0x2>;
-+					clocks = <&cru CLK_MACPHY>;
-+					phy-is-integrated;
-+					pinctrl-names = "default";
-+					pinctrl-0 = <&fephym0_led_link>,
-+						    <&fephym0_led_spd>;
-+					resets = <&cru SRST_MACPHY>;
-+				};
-+			};
-+
-+			gmac0_stmmac_axi_setup: stmmac-axi-config {
-+				snps,blen = <0 0 0 0 16 8 4>;
-+				snps,rd_osr_lmt = <8>;
-+				snps,wr_osr_lmt = <4>;
-+			};
-+
-+			gmac0_mtl_rx_setup: rx-queues-config {
-+				snps,rx-queues-to-use = <1>;
-+				queue0 {};
-+			};
-+
-+			gmac0_mtl_tx_setup: tx-queues-config {
-+				snps,tx-queues-to-use = <1>;
-+				queue0 {};
-+			};
+ &pinctrl {
++	ethernet {
++		gmac1_rstn_l: gmac1-rstn-l {
++			rockchip,pins = <4 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
 +		};
++	};
 +
-+		gmac1: ethernet@ffbe0000 {
-+			compatible = "rockchip,rk3528-gmac", "snps,dwmac-4.20a";
-+			reg = <0x0 0xffbe0000 0x0 0x10000>;
-+			clocks = <&cru CLK_GMAC1_SRC_VPU>,
-+				 <&cru CLK_GMAC1_RMII_VPU>,
-+				 <&cru PCLK_MAC_VPU>,
-+				 <&cru ACLK_MAC_VPU>;
-+			clock-names = "stmmaceth",
-+				      "clk_mac_ref",
-+				      "pclk_mac",
-+				      "aclk_mac";
-+			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq", "eth_wake_irq";
-+			resets = <&cru SRST_A_MAC>;
-+			reset-names = "stmmaceth";
-+			rockchip,grf = <&vpu_grf>;
-+			snps,axi-config = <&gmac1_stmmac_axi_setup>;
-+			snps,mixed-burst;
-+			snps,mtl-rx-config = <&gmac1_mtl_rx_setup>;
-+			snps,mtl-tx-config = <&gmac1_mtl_tx_setup>;
-+			snps,tso;
-+			status = "disabled";
-+
-+			mdio1: mdio {
-+				compatible = "snps,dwmac-mdio";
-+				#address-cells = <0x1>;
-+				#size-cells = <0x0>;
-+			};
-+
-+			gmac1_stmmac_axi_setup: stmmac-axi-config {
-+				snps,blen = <0 0 0 0 16 8 4>;
-+				snps,rd_osr_lmt = <8>;
-+				snps,wr_osr_lmt = <4>;
-+			};
-+
-+			gmac1_mtl_rx_setup: rx-queues-config {
-+				snps,rx-queues-to-use = <1>;
-+				queue0 {};
-+			};
-+
-+			gmac1_mtl_tx_setup: tx-queues-config {
-+				snps,tx-queues-to-use = <1>;
-+				queue0 {};
-+			};
-+		};
-+
- 		sdhci: mmc@ffbf0000 {
- 			compatible = "rockchip,rk3528-dwcmshc",
- 				     "rockchip,rk3588-dwcmshc";
+ 	gpio-keys {
+ 		user_key: user-key {
+ 			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
 -- 
 2.49.0
 
