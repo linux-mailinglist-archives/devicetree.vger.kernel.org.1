@@ -1,97 +1,98 @@
-Return-Path: <devicetree+bounces-175731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A073AB193A
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:50:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21DD4AB1944
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:50:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE09D1BC177C
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:50:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20E9D1BC28F9
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26F822F76C;
-	Fri,  9 May 2025 15:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F29B22FF30;
+	Fri,  9 May 2025 15:50:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="srAOc6HL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="agPE/e38"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53F322F16C;
-	Fri,  9 May 2025 15:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300D92A1BB;
+	Fri,  9 May 2025 15:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746805797; cv=none; b=ooUPd4isczw+aQyCxAkXe1GPXnAx1M3HGYuTGl1gdVL+qDh4w8UZcXF3DSekkoFceFkz07H5usZokB3zN+i7rUlWbqRU2M6cExd0jfpBe2iKhZ0hCGuXFYqfHOqmzGukfYr2Aw3eMAXvhV6efY73okCEl+aGNWk53lEJbXj35iM=
+	t=1746805831; cv=none; b=FO62oZC9uxuI8p6WqlJHMp6kUWQI0ekKfDuw7UcSV+YUxV+TKiOw0ntFZPeFgegc2x60HNIBBD6OcZd1uB9LanTccK62cBteli5ncJVwKBRWdRK7oGJ/0A/VuSlyOCnisozIf08WzDcxahyUstoaq58n2Oh8tHcW0ztNb/XIKnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746805797; c=relaxed/simple;
-	bh=f3uau16VPtaZdA3scq0IH4AZktliB26KN3ZGkhgmX7M=;
+	s=arc-20240116; t=1746805831; c=relaxed/simple;
+	bh=MWAkGidqBX5HBclIK0w8IRw+9+HbrMS7tiBfUakCTeQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZgbkwPR5XR6Cq6AGVajAQDsljMhiH3NX32DsvmVr4qwccLYxRBb8k/48SBVuhKZFb1Pb8Hq4GVYopWF/6NoUn3OjW2wXX+SVYGasQFkzcSVYO1R541tTTAqRZVmcZdu0L8WWOSOYQ1vt/lcdMo1ixjeUUHlHGKKKx03KcpIbWKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=srAOc6HL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 060D7C4CEE4;
-	Fri,  9 May 2025 15:49:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=B0Wz7N5pU86DsHvufIg8Q3aOs60gji4G2cYFDY2SbxwikOo4LnokAnspmfpUsWQKBCRDInxNYgybc9Jt/hzMkXcEUdjGZ4n4UOHIy2At1nfGpEuupZxauvTF8QuG5w7M0qvjlG/hi6v7EOCK3iLCx9f+StYE2DhasPXidJ+45so=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=agPE/e38; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25259C4CEE4;
+	Fri,  9 May 2025 15:50:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746805797;
-	bh=f3uau16VPtaZdA3scq0IH4AZktliB26KN3ZGkhgmX7M=;
+	s=k20201202; t=1746805830;
+	bh=MWAkGidqBX5HBclIK0w8IRw+9+HbrMS7tiBfUakCTeQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=srAOc6HLhwtsApzFbOF2GhhwMQs2hcjYGetDCxlMeaRcxENt+3VTrhMat/8ljxH8j
-	 gNo05C4zfp6ezLHZf7oBcM4su2l9YwdvOVl/npmJObAF16vIR54eI0Mavsyl+H6hYD
-	 cwPmcigCulY5z/U6Rb+c+2/bllH0Aw+A86wgwAdzRqTGZjZT+n8sgUN957DpMZHl39
-	 l0vFIA1yq6dh7vT+BOwyQsr0mGksRcWWwpsKQFbJcd7UZ30pDuQ7qWRknIMZJlJcXs
-	 IZOcyoNgwlgtrJDWFLeteCxki+/BgLm5VoxWC2D6rIGHcUwBgvn9tszqERG0khS3Pm
-	 2Md4hKwe6ajhQ==
-Date: Fri, 9 May 2025 10:49:55 -0500
-From: Rob Herring <robh@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	b=agPE/e38PsyLDYEY7NP19Kk/S3Aki2UA+OUsmF/Ur0wiu8MwfK13WMkYRpSoktZ3x
+	 qYhMlflMGek/F7qJiDASfOQAKDQ6iFuoBSsknUIWyjckHs6AZdS7ZrXCECZMGA31zE
+	 henLbXb4ceM4pH+zqlVlSM4xAyb55uw08vNs1Ym1d//KHxWGl/adzIG9kTipPnwVAy
+	 0sSfriM3YS2b34KI8jzLtNhpKru+SAeetkxbzMyHW02ewuvB/G71gm9lu/RiCOtc2S
+	 KJMndkwXkLJqRZDKcI8jvOv2pjcUAvQI6J0KaWcVHwUSz8qPEQmE7ZNFXzpw9z/G/u
+	 irnqM44abmMJA==
+Date: Fri, 9 May 2025 16:50:25 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Vladimir Oltean <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display/msm: hdmi: Fix constraints on
- additional 'port' properties
-Message-ID: <20250509154955.GA3546604-robh@kernel.org>
-References: <20250507215912.2748964-1-robh@kernel.org>
- <fvrvrcqilnhma774kkojytlgwglsvgaxgukm2fc3gennaii4jz@dufjv3obqc7b>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+	Frank Li <Frank.Li@nxp.com>, linux-spi@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
+Subject: Re: [PATCH 1/2] spi: dt-bindings: fsl,dspi: Fix example indentation
+Message-ID: <20250509-anew-slept-032f64ac6034@spud>
+References: <20250509112130.123462-3-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="JLtz9K+e58T54EQF"
+Content-Disposition: inline
+In-Reply-To: <20250509112130.123462-3-krzysztof.kozlowski@linaro.org>
+
+
+--JLtz9K+e58T54EQF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <fvrvrcqilnhma774kkojytlgwglsvgaxgukm2fc3gennaii4jz@dufjv3obqc7b>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 08, 2025 at 07:03:17AM +0300, Dmitry Baryshkov wrote:
-> On Wed, May 07, 2025 at 04:59:12PM -0500, Rob Herring (Arm) wrote:
-> > The MSM HDMI port nodes are missing any restrictions on additional
-> > properties. The $ref should be to "/properties/port" rather than
-> > "/$defs/port-base" as there are not additional properties in the nodes
-> > to define.
-> > 
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/display/msm/hdmi.yaml | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> 
-> I've verified, it applies on top of msm-next and produces no errors. I
-> don't see a meaningful error in the bot's message (Rob, is there a
-> chance to fix the bot?).
+On Fri, May 09, 2025 at 01:21:31PM +0200, Krzysztof Kozlowski wrote:
+> DTS example in the bindings should be indented with 2- or 4-spaces, so
+> correct a mixture of different styles to keep consistent 4-spaces.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The problem was I broke dtschema on python 3.11 and earlier. It's now 
-fixed.
+For both
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Rob
+(idc about both appearing in tree with an ack Mark)
+
+--JLtz9K+e58T54EQF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaB4kQQAKCRB4tDGHoIJi
+0qShAQCd9ufBaxXRPbap/bGPVseVhTYkT+wTdHHy2pa1ltrV8QD+Jy6vOTleDf2K
+GCgM3WPo4O3ActnatJPM376WaePb7AE=
+=7huX
+-----END PGP SIGNATURE-----
+
+--JLtz9K+e58T54EQF--
 
