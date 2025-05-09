@@ -1,108 +1,165 @@
-Return-Path: <devicetree+bounces-175690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A021AB17D3
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:57:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39FCFAB17E1
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:03:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB0D04C5D06
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:57:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88EDA7A9563
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:02:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753C723185C;
-	Fri,  9 May 2025 14:57:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB6CC2343C7;
+	Fri,  9 May 2025 15:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qtOyIt7r"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="HD8AOkb3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2043.outbound.protection.outlook.com [40.107.103.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AC00142E83;
-	Fri,  9 May 2025 14:57:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746802662; cv=none; b=mszd/k5yWFeFhbuS6nlXV1LXLVfXa9RoKWpHi3JJc0rAaEtHjApHUXoRAQY+V3JlgvmRrgoW/qb+halwmfcT21YORiLS4iwJtsdnU3cQ1EEZ6ftL1Kg1AgfWbP5tIT0Zju6hgCZROfrnsnblS+eSNsU1FWcC6r1F/iIqPn7iIJQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746802662; c=relaxed/simple;
-	bh=2ULhiX/sx2ZhXn330YQk4+98fuJt2QBfaxpf96HwbhM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V4YVSPrKEDySmxLaGoGtvS655rFLn2qww0W9wum9Q/KHM3Yec0bu2SCfs86C9s7rXNQGhDt18w8A0Z8XJPUj4m52X5cngev1HPDh9zGR8ZbS+rHBbngIWJ3KQKGOZY4ZkmwRpG7laqEJaG1Yf2sd0V07NC2YMSSZQCQrerhnivU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qtOyIt7r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAA72C4CEEE;
-	Fri,  9 May 2025 14:57:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746802661;
-	bh=2ULhiX/sx2ZhXn330YQk4+98fuJt2QBfaxpf96HwbhM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qtOyIt7r63xVa2TFttLbLYvhxW/5E2kNkFc4HgmSapbfi7jbggZgcq5YqP3yC3DCT
-	 ADIGRaLdWN5Cd3Ga4+CUSd9P1FJ6QnU+WG0oseq+H59A3UeRxB/WivhQAPs9eJBNM9
-	 3q5QGUm/ju2FQJT3QqmXlvcWf8NYQTpIQqll3Qo78SihOzCANPTB2pZUksXpO11rli
-	 T0+beAGs2FDsgRFnj41eloL6g+tj18BIu9fwkjhJmV1NoSObduVSYQaanA2pHC4K3j
-	 06TFVSva+FZ7dvcajGbcBrlpRcnU1d4FmyZ8dn1YVr5SOV5Vev0xmo+zokVgcO03wY
-	 Bh4s5Epe00t6w==
-Date: Fri, 9 May 2025 15:57:36 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ben Zong-You Xie <ben717@andestech.com>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	tglx@linutronix.de, daniel.lezcano@linaro.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, tim609@andestech.com
-Subject: Re: [PATCH v2 6/9] dt-bindings: cache: ax45mp-cache: allow variable
- cache-sets for Andes L2 cache
-Message-ID: <20250509-anatomy-marry-a4e1513c613e@spud>
-References: <20250503151829.605006-1-ben717@andestech.com>
- <20250503151829.605006-7-ben717@andestech.com>
- <20250506-clammy-punctuate-6cb07dd0e81e@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E435225A24;
+	Fri,  9 May 2025 15:03:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746802989; cv=fail; b=mW6Wvq/9iRRO/0whJA768uTLX079Fo+g7XqS+DlLci0dtDVCYlVGkNwdQ+XMKZWHFopvb7AimAW12wTEGPo7YrFD1+tYLW69N9VwKkVWLaIfVd76IeeSuP9PkuQpymHjX1KTmY8itisRQo60RDsmJK02k2NUzLJOA4tn9B79XM8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746802989; c=relaxed/simple;
+	bh=H6uaLSpgzYmn0ptSIR+MSOV28dGzDFT4xXr6wzB0OUg=;
+	h=From:To:CC:Subject:In-Reply-To:Message-ID:Date:MIME-Version:
+	 Content-Type; b=WEAuOIII+H498ucVFhokD4PTsYU1PpN38hPAqhUoZ2s6tpVOiTgioj3NaIqRdy0CDLwo9HuWgIi0FN/L8wkAffbjxnkhbcmD66MmWHoVzl3Z90Zn3DfwGf7x92Uwdju9ls86bZZ9gv/X1Au2lAszt2wpIYScDwMD0Q6j3d0hENU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=HD8AOkb3; arc=fail smtp.client-ip=40.107.103.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JFMYQpz7nMFIp9jnn4df7uFP2RnfK95QN3qh9Zde3Z0Ayi2VppvS4qiTO3G5nbHjRANyfISc/fdLobPC9jf5jhXLbbFjxtW3Tpj/X5tvPaBpTKIDTleS/DhddAEBJDD+CFBY/fywbpxfHn1aPcWl1sG9XQWtk/qWX2KnFD2Cs7y7ON1bxDjKRWbnf8RUf9uWUwQ0Z3H31q+mrsTeEkL4FfckJXK/lIlr3YA3q8I6TujfqGnhEqIMiORN3HbaOoAXFU3/wJP5M1cyGdi0h1/VY8/JTJkxq4ibgLx2D3vmBYvZVDG/ZcIgeTMO+t74wC+YnBbT70q7u5jpDmcYAX209A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0tttphWuIhqioKpwSr98inPZMXLsHl/3wBng9IqsvNQ=;
+ b=O5ZkaAUgjWykQK8Ko/0C6d3fjDIstDiQnbRnBWrSAMGKwSQFiE9u5zTCD4SRV2KsOp+lhh0SPt6DHy4ZD50fCvr/+/+lNw3JSuvLpLbF0K5v13PTPAfPabrMRQdzfr5bS76cZx7EVWGKxQ9PuZVmGlXakXkCjC6n/C1K9gJguw8CUH0RJFekXC/FKE0SwqEVj4Yl1fU/4tPwi/UCs4fwk/xWyq0YF/M43yGEa2rxFDoMVmX8wl5ZN0ZpDTWNkpqCSjCbsbccfeLbP6gpTsMVQse8QRJxEhCLP+uHKQBoUanXhjAX3seYwpDH3E1gs4PAsvze+DwXzGO3ftL6pjNQ6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0tttphWuIhqioKpwSr98inPZMXLsHl/3wBng9IqsvNQ=;
+ b=HD8AOkb3Zr5Ozcfee4KIqy3R8FdqMEOBPC4HwZN9+ftVMSkWP4OJhet2g0IoV220JsrxRLJ80tEagIpvb1rpRMnsdMQ9l5c0hSA9eh+ViQaFjwJbUn9eLdO+D5sU4+OQzvBRYChOasNA9yQbT1ZEWjmdGjW7yWbSbrmyDmZGMl0=
+Received: from DU7P195CA0028.EURP195.PROD.OUTLOOK.COM (2603:10a6:10:54d::28)
+ by GV2PR02MB9422.eurprd02.prod.outlook.com (2603:10a6:150:e3::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.12; Fri, 9 May
+ 2025 15:03:04 +0000
+Received: from DB1PEPF000509F1.eurprd03.prod.outlook.com
+ (2603:10a6:10:54d:cafe::c3) by DU7P195CA0028.outlook.office365.com
+ (2603:10a6:10:54d::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8722.23 via Frontend Transport; Fri,
+ 9 May 2025 15:03:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ DB1PEPF000509F1.mail.protection.outlook.com (10.167.242.75) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8722.18 via Frontend Transport; Fri, 9 May 2025 15:03:04 +0000
+Received: from pc52311-2249 (10.4.0.13) by se-mail01w.axis.com (10.20.40.7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 9 May
+ 2025 17:03:02 +0200
+From: Waqar Hameed <waqar.hameed@axis.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+CC: <kernel@axis.com>, Rob Herring <robh@kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Nicera
+In-Reply-To: <cover.1746802541.git.waqar.hameed@axis.com>
+User-Agent: a.out
+Message-ID: <dea070f1b9acf755a28537a62d91bb224bf5d3b6.1746802541.git.waqar.hameed@axis.com>
+Date: Fri, 9 May 2025 17:03:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xZGzDY3EIIpq4MLF"
-Content-Disposition: inline
-In-Reply-To: <20250506-clammy-punctuate-6cb07dd0e81e@spud>
+Content-Type: text/plain
+X-ClientProxiedBy: se-mail01w.axis.com (10.20.40.7) To se-mail01w.axis.com
+ (10.20.40.7)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB1PEPF000509F1:EE_|GV2PR02MB9422:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3587dd79-ca24-411c-6d8c-08dd8f0a9967
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?523H+9g4sZg7dkOiuRQK/oYLasEZQJJVPsIZlZTshIVJ2G91MfgBY+GujpwP?=
+ =?us-ascii?Q?04Y0rDpVhJ/UzsdDVBZQ+wNtHc+R33f2xvj51VWcurxAYXdQtDzn5Zjy0BSZ?=
+ =?us-ascii?Q?b//gM6AeY+pH52fDO6SFOjpg+bzrpGz6kAZmE6E6ig5EnwFnUaEW2LjrEkaf?=
+ =?us-ascii?Q?3zsYHiVSYcKbLC4YDGUDRxmyOZo12uRATxC3Yp7eFwFAHEeBgnM43qsGneW/?=
+ =?us-ascii?Q?0tIujM/pr8IQuPjGtd+ATSOuBscTeSafMbF9Y9lhGNWIZpW1/v9gciz/E25y?=
+ =?us-ascii?Q?s4SH5pKVc1eo5bY5SJTBH20sSgZECz5yeZ17VXKYKuQlRDROpwzz5fIjlhV7?=
+ =?us-ascii?Q?aaohmb0ugVD0tQcNvaLe8Pf/36mjufrwOK3OD3mbRzjNsLdt2ArN+K7k/xY1?=
+ =?us-ascii?Q?H0qAeKNZ6IxLksFv8vEjOItOMcNNNQIiJN7oRigzrs+d1caGzi9Jv4wxT6jg?=
+ =?us-ascii?Q?L0gfqzUk+ZwX9I95Py+ShvjagtAh60xf7PkeoO6921qVvVu7c4b6Q5tavf1m?=
+ =?us-ascii?Q?0r2DjLV558QqOUbrMacrEq9cDcUW1JR3OXIPyAT/JNYPd2uJ+FqCI4I0sO7K?=
+ =?us-ascii?Q?oERu9fyUaOuRtykytvJhX3wwy9wi728250wgq8Rz4N1WovrsSie3ab9V+IPp?=
+ =?us-ascii?Q?RxEKqYowRshBhQLqAMZ9pYtJopI7nM7tonlex/ata4hRV9YQWreIni/Grbm7?=
+ =?us-ascii?Q?8i27/L26bVTnsZ1Nl6EJkA+H4LYYlZUAI5rVMf77iUUoGm+OsHqQ+tfTP7ef?=
+ =?us-ascii?Q?ZPe0fNPvL1ils4JNLDjGKtNNbs0Txp21y6m0hFa+Yj1Qpl25GofGRAUlXxxK?=
+ =?us-ascii?Q?C5RhlAdCZ3z9zdq35yk8TYNhjM5TL+/zYWIYNKY/LvmRPCCXwJcwvAS3GgcK?=
+ =?us-ascii?Q?GfHsB9D+53q2cHr+gCiiVgZvxnXy5AxEOy4XhHprnhspHVqd9QQq0XeClB91?=
+ =?us-ascii?Q?QiKUiJG0saivOOQS2rNjk416agkl/DK7wH8PT/RvRZ4quX/2D2bP1SfDjeBr?=
+ =?us-ascii?Q?+D1vVCn/p5tBDbON06onsSFZ1pG04c48MgMFkkzKSqmz+6sJyTY50zHO4kUP?=
+ =?us-ascii?Q?ZQ4571Dfv2mNbDhV7tgzToxFxcq38EH3/CG7dh1mclrmV7EK3fq5GCEXjjy/?=
+ =?us-ascii?Q?ehnDk24ra0EMP+62gXXALCj2psyBsq6xBhRt5K+aJcBlSsC7X0pK/018Xyuc?=
+ =?us-ascii?Q?GaXNVG6s91DSDHriFNCUmDdru9m5BRqOEzWakEPqFPODZSoeyIbCgExh/klj?=
+ =?us-ascii?Q?MGuF3n98+7lWrg/2KvEawcaqjIAfgMyldhupkUIt3MsZ2oLPUOVGTF6Kwk/Q?=
+ =?us-ascii?Q?EL4ol+/BeJux4cuaSrjTKwIt/HAmPqEkHYVQ8H8X1IJj+xDqXTBAfLr1rKUk?=
+ =?us-ascii?Q?HUDWpMXdkQAr3WMDmQO9zEai7gj0hAi6BC/Ijcw6uh4I78kAu9lsESQ9uXQi?=
+ =?us-ascii?Q?9aGvMUpVY0K9mAY2pzw9xchCdnWTSu9kUlCFcXkRpHrGgrekGTFqyZ4qC1+9?=
+ =?us-ascii?Q?Z6Y8YHuxvxI5s4BxAkBvucHhpShuX2yOzC7O?=
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2025 15:03:04.2097
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3587dd79-ca24-411c-6d8c-08dd8f0a9967
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF000509F1.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR02MB9422
 
+Nicera (Nippon Ceramic Co.) is a manufacturer of a wide range of
+sensors. For example infrared, ultrasonic, gas sensors and much more.
 
---xZGzDY3EIIpq4MLF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On Tue, May 06, 2025 at 05:23:21PM +0100, Conor Dooley wrote:
-> On Sat, May 03, 2025 at 11:18:26PM +0800, Ben Zong-You Xie wrote:
-> > The current device tree binding for the Andes AX45MP L2 cache enforces
-> > a fixed number of cache-sets (1024). However, there are 2048 cache-sets=
- in
-> > the QiLai SoC. This change allows both 1024 and 2048 as valid values for
-> > "cache-sets".
-> >=20
-> > Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
-> > Acked-by: Rob Herring (Arm) <robh@kernel.org>
->=20
-> Applied, thanks.
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 86f6a19b28ae..e01bb70405a2 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1061,6 +1061,8 @@ patternProperties:
+     description: Next Thing Co.
+   "^ni,.*":
+     description: National Instruments
++  "^nicera,.*":
++    description: Nippon Ceramic Co., Ltd.
+   "^nintendo,.*":
+     description: Nintendo
+   "^nlt,.*":
+-- 
+2.39.5
 
-You know what, I am starting to have second thoughts here. Why does the
-qilai not have a specific compatible like the plic etc? I think you
-should have one, and only allow the 2048 cache-sets there. I'm going to
-go and drop this patch, and please do that for the next version.
-
-Prabhakar, should we add a specific one for the rz/five too?
-
---xZGzDY3EIIpq4MLF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaB4X4AAKCRB4tDGHoIJi
-0i+qAQC9iBtavy0hTp+A64DvVYTEh716pjoR6R6D8EMqDgbsuQEA5A0t5+8Bvqs3
-WbNQu9XqKvPxbXPdDeX4CzuUZJ+1pQU=
-=n5zh
------END PGP SIGNATURE-----
-
---xZGzDY3EIIpq4MLF--
 
