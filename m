@@ -1,140 +1,219 @@
-Return-Path: <devicetree+bounces-175436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 068B5AB0E59
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:12:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBC19AB0E69
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:14:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77B784E1185
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:12:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 879D63B0585
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:14:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E7A12749EA;
-	Fri,  9 May 2025 09:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E242F2750FC;
+	Fri,  9 May 2025 09:14:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E+cjk0yy"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OA5zzACj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009B34964E;
-	Fri,  9 May 2025 09:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD0562749EA;
+	Fri,  9 May 2025 09:14:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746781946; cv=none; b=kyOEGhbDRO6LUeyx9BN6Th5/f5hDJrbyMe2ICBaVUyplpFonpMcaNsEZ8CXbnGuVq7npzV1eodpruIyVrRa5PbHU3K3JJvkKutW5MmT2DD9NEjdRUu2dKw8sw2j7+B9nWZ4ahPYjmdUfxiYXoTw7OHfSWyKk2+Xj6Tsnhba2xak=
+	t=1746782089; cv=none; b=El9cvOBnlMnUSo8KrlRDAQ7l6lz94MywM/u0Yn/6WBxLu//7H9bJgbs8TjOU7WNntC0CInmD+RVdPpuPUKQvA+6yf9t9FStYeqvVdHndKGcdquCEsGvENhl4k7PZWxWDAp5VT26SdMtPoB8VRq2gnZWOB0E1YrGL579sBHeA4Bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746781946; c=relaxed/simple;
-	bh=LRDCv2DLLNlrGCaFKvlPxw4rdYXFaY3NsGc82HtsQTw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hlsWo1psyCRpJYWGyFkBlDtMglz+GlRd0k/sGxeb3mvC+lR1oq93/569Q5g7Y0mLeUWp7JHdJXRzoNi7Oske6T/V71x2QrfHMFTSUxHOhHlTaL0CsVL9DASKyntUiXEdnTqjWrJ4Sqsimel6ZtMG5Vko3wBkJKPVEN/VGlUg5TE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E+cjk0yy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76DA5C4CEEE;
-	Fri,  9 May 2025 09:12:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746781945;
-	bh=LRDCv2DLLNlrGCaFKvlPxw4rdYXFaY3NsGc82HtsQTw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E+cjk0yyG0nPD29rJU+wSm3TBB71u8BKQsXWAwzKGNhcSIlA6WUKGY2I7FKikbZfS
-	 0anlG0tgVAyYoPZJmN9zkJbFDTUXeyPcIW+rEGYUIBFq+TALZbQxn7aKuIriNcA5QF
-	 7dwXTh9OKRn54uodCphSNn1yNv6/fgREU9VX/T5FXq1gASC5elkLVTFBIn36IJt7E1
-	 9m0EgZl+0ApiFlFD5oObfzhEvi4sdvmSivCySveJrrbTJoJS7iyVKgHbBsnwkoxJ4d
-	 nn1sNP6jKSb5ctyMid0XgdDr1ouAqTmN60B6Q5ENAh90B89Ct8QgsNQ8E4X0NbbWwG
-	 yQ+dRdQVsMxqg==
-Date: Fri, 9 May 2025 10:12:20 +0100
-From: Lee Jones <lee@kernel.org>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH v3 2/2] leds: tps6131x: add support for Texas Instruments
- TPS6131X flash LED driver
-Message-ID: <20250509091220.GB2492385@google.com>
-References: <20250423-leds-tps6131x-v3-0-ca67d346a4ea@emfend.at>
- <20250423-leds-tps6131x-v3-2-ca67d346a4ea@emfend.at>
- <20250501110306.GF1567507@google.com>
- <74577715-b644-4281-8e9b-b481d2a026f3@emfend.at>
- <20250508143146.GP3865826@google.com>
- <8220a150-b114-441a-a13a-62dc5dbf0ade@emfend.at>
+	s=arc-20240116; t=1746782089; c=relaxed/simple;
+	bh=Pjl3EREY5LiWOhcSvNDn75zyN/l4OFQm6DQH1t57WZg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RLSZfgwzv1ourLSbgjsVW9kA+fPuGX9AEDoukMGA0Ojw1m7JVnGZlRYIMNoZIUlb/ESqUoI4+kXj4v7E1x30+lGCzKSrtXJZLB5flCgdX4pl4+rYYjMDBreqjO3qjQktNyet+GeyZSp69UYXCODiRIVu124L/I1k1sKyc6viq8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OA5zzACj; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A71A31FCE8;
+	Fri,  9 May 2025 09:14:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1746782084;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=hVntwzxyBXjpBTpUWsOOR228EJ/vNqlIhJFXSCTCUsI=;
+	b=OA5zzACjhZAzqxCj4VsWpBQ/16ZwXBfKVU7Hcx9Ug7+fWbdGqMDpd0oT3r4hCWtNMTyx2u
+	8jf7MTAQ/0Sx3rgSaI4U0ur1g9+mt9yqkT76ZSB68uHIL7NYhRxaA+sIypWhLlLsJIVX3L
+	S4u8KxQYMWKgYXD6lgiHZRBXnxYY27Muc6lEV9MmHOX34Opf30NYee9GC6kbz9KKEWf0l4
+	yt1eEV3YFXR1eOKVDKwF7W/4s0cqymMtWiqN471/R41e6I9snWrpCNhpp6b32aTFubm9k6
+	BROGJxdjnBCRnQDO/tQLhLo9uSK8VbZvb0awd+mXwWjNceYM+41v995t4FENzg==
+From: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Subject: [PATCH v8 00/11] Add support for MAX7360
+Date: Fri, 09 May 2025 11:14:34 +0200
+Message-Id: <20250509-mdb-max7360-support-v8-0-bbe486f6bcb7@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8220a150-b114-441a-a13a-62dc5dbf0ade@emfend.at>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHrHHWgC/33Qy2rDMBAF0F8JWldFmtGzq/5H6UIvN4I6MrZrU
+ oL/vXKgOMV2l3fQHF3pRobU5zSQl9ON9GnKQy6XGszTiYSzu3wkmmPNBBgIDtzSNnrauqtGxej
+ w1XWlHykAOhOSkN4hqZtdn5p8vatv7zWf8zCW/vt+ycSX6f/exCmjJhnkWprl2KsvZfzMl+dQW
+ rKIEzwogPsKVAW1MxEgoEpxq+CvIhnnBwpWxUpuvXDBM7/TRawKcLGviOVFDmVQ0Xur1FaRq4L
+ c7CuyKo0H5l1jdXRsq6hVEezgd1VVtAOJ0miV0G4V/aDAQRddFZGYYiYyp5vmrzLP8w8Z5u0tX
+ AIAAA==
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Kamel Bouhara <kamel.bouhara@bootlin.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
+ linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com, 
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1746782082; l=5604;
+ i=mathieu.dubois-briand@bootlin.com; s=20241219; h=from:subject:message-id;
+ bh=Pjl3EREY5LiWOhcSvNDn75zyN/l4OFQm6DQH1t57WZg=;
+ b=ef8zZbW4m70jesD6XP8nEOXP+q9ThhCvizPmHWlqwtx37AiXgapg+qEYEa3p/wkZIdhcmZB/1
+ nDN7Hm44j+2CBjHFEY+6JZlzNbedAhmI5h8eQeYRyfZboZbRs0whSkN
+X-Developer-Key: i=mathieu.dubois-briand@bootlin.com; a=ed25519;
+ pk=1PVTmzPXfKvDwcPUzG0aqdGoKZJA3b9s+3DqRlm0Lww=
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvledvvdefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhufffkfggtgfgvfevofesthejredtredtjeenucfhrhhomhepofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefhkeffueegvdekiefhfeejueeukeekgeegjeeghefgvdekveevvdekieetkeelveenucffohhmrghinhepkhgvrhhnvghlrdhorhhgpddugedqrhgtvddrqdhlihhnkhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvhedprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrn
+ hgvlhdrohhrghdprhgtphhtthhopehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrihihrdhshhgvvhgthhgvnhhkoheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehlihhnuhigqdhpfihmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopehukhhlvghinhgvkheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On Fri, 09 May 2025, Matthias Fend wrote:
+This series implements a set of drivers allowing to support the Maxim
+Integrated MAX7360 device.
 
-> Hi Lee,
-> 
-> thank you for your answers and additional explanations.
-> Except for one point, I think I understand the rest and will amend it
-> accordingly.
-> 
-> Am 08.05.2025 um 16:31 schrieb Lee Jones:
-> > On Fri, 02 May 2025, Matthias Fend wrote:
-> > 
-> > > Hi Lee,
-> > > 
-> > > thank you for taking the time for this review.
-> > > 
-> > > Am 01.05.2025 um 13:03 schrieb Lee Jones:
-> > > > On Wed, 23 Apr 2025, Matthias Fend wrote:
-> > > > 
-> > > > > The TPS61310/TPS61311 is a flash LED driver with I2C interface. Its power
-> > > > > stage is capable of supplying a maximum total current of roughly 1500mA.
-> > > > > The TPS6131x provides three constant-current sinks, capable of sinking up
-> > > > > to 2 × 400mA (LED1 and LED3) and 800mA (LED2) in flash mode. In torch mode
-> > > > > each sink (LED1, LED2, LED3) supports currents up to 175mA.
-> > > > > 
-> > > > > Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
-> > > > > ---
-> > > > >    MAINTAINERS                        |   7 +
-> > > > >    drivers/leds/flash/Kconfig         |  11 +
-> > > > >    drivers/leds/flash/Makefile        |   1 +
-> > > > >    drivers/leds/flash/leds-tps6131x.c | 798 +++++++++++++++++++++++++++++++++++++
-> > > > >    4 files changed, 817 insertions(+)
+The MAX7360 is an I2C key-switch and led controller, with following
+functionalities:
+- Keypad controller for a key matrix of up to 8 rows and 8 columns.
+- Rotary encoder support, for a single rotary encoder.
+- Up to 8 PWM outputs.
+- Up to 8 GPIOs with support for interrupts and 6 GPOs.
 
-[...]
+Chipset pins are shared between all functionalities, so all cannot be
+used at the same time.
 
-> > > > > +static int tps6131x_probe(struct i2c_client *client)
-> > > > > +{
-> > > > > +	struct tps6131x *tps6131x;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	tps6131x = devm_kzalloc(&client->dev, sizeof(*tps6131x), GFP_KERNEL);
-> > > > > +	if (!tps6131x)
-> > > > > +		return -ENOMEM;
-> > > > > +
-> > > > > +	tps6131x->dev = &client->dev;
-> > > > > +	i2c_set_clientdata(client, tps6131x);
-> > > > 
-> > > > If you already have client, to fetch this, you'll already have access to dev.
-> > > 
-> > > I understand that in principle. However, I'm still not entirely sure what
-> > > exactly I should change. Could you please provide me with some further
-> > > guidance?
-> > 
-> > Yes, don't store 'dev' in 'tps6131x'.
-> 
-> Ah, I see. Yes, the functions currently using 'dev' are all called from the
-> probe path, so I could just pass 'dev' as a separate argument and remove it
-> from 'tps6131x'.
-> But since I now also output a message with dev_err in
-> tps6131x_torch_refresh_handler() in case of an error, I need 'tps6131x->dev'
-> there. I haven't thought of any other way to get 'dev' here.
-> 
-> In this context, is it okay for you if 'dev' remains a member of 'tps6131x'?
+Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+---
+Changes in v8:
+- Small changes in drivers.
+- Rebased on v6.15-rc5
+- Link to v7: https://lore.kernel.org/r/20250428-mdb-max7360-support-v7-0-4e0608d0a7ff@bootlin.com
 
-Ah yes.  Looks like you do need it then.  No problem.
+Changes in v7:
+- Add rotary encoder absolute axis support in device tree bindings and
+  driver.
+- Lot of small changes in keypad, rotary encoder and GPIO drivers.
+- Rebased on v6.15-rc4
+- Link to v6: https://lore.kernel.org/r/20250409-mdb-max7360-support-v6-0-7a2535876e39@bootlin.com
 
+Changes in v6:
+- Rebased on v6.15-rc1.
+- Use device_set_of_node_from_dev() instead of creating PWM and Pinctrl
+  on parent device.
+- Various small fixes in all drivers.
+- Fix pins property pattern in pinctrl dt bindings.
+- Link to v5: https://lore.kernel.org/r/20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com
+
+Changes in v5:
+- Add pinctrl driver to replace the previous use of request()/free()
+  callbacks for PORT pins.
+- Remove ngpios property from GPIO device tree bindings.
+- Use GPIO valid_mask to mark unusable keypad columns GPOs, instead of
+  changing ngpios.
+- Drop patches adding support for request()/free() callbacks in GPIO
+  regmap and gpio_regmap_get_ngpio().
+- Allow gpio_regmap_register() to create the associated regmap IRQ.
+- Various fixes in MFD, PWM, GPIO and KEYPAD drivers.
+- Link to v4: https://lore.kernel.org/r/20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com
+
+Changes in v4:
+- Modified the GPIO driver to use gpio-regmap and regmap-irq.
+- Add support for request()/free() callbacks in gpio-regmap.
+- Add support for status_is_level in regmap-irq.
+- Switched the PWM driver to waveform callbacks.
+- Various small fixes in MFD, PWM, GPIO drivers and dt bindings.
+- Rebased on v6.14-rc2.
+- Link to v3: https://lore.kernel.org/r/20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com
+
+Changes in v3:
+- Fix MFD device tree binding to add gpio child nodes.
+- Fix various small issues in device tree bindings.
+- Add missing line returns in error messages.
+- Use dev_err_probe() when possible.
+- Link to v2: https://lore.kernel.org/r/20241223-mdb-max7360-support-v2-0-37a8d22c36ed@bootlin.com
+
+Changes in v2:
+- Removing device tree subnodes for keypad, rotary encoder and pwm
+  functionalities.
+- Fixed dt-bindings syntax and naming.
+- Fixed missing handling of requested period in PWM driver.
+- Cleanup of the code
+- Link to v1: https://lore.kernel.org/r/20241219-mdb-max7360-support-v1-0-8e8317584121@bootlin.com
+
+---
+Kamel Bouhara (2):
+      mfd: Add max7360 support
+      pwm: max7360: Add MAX7360 PWM support
+
+Mathieu Dubois-Briand (9):
+      dt-bindings: mfd: gpio: Add MAX7360
+      pinctrl: Add MAX7360 pinctrl driver
+      regmap: irq: Add support for chips without separate IRQ status
+      gpio: regmap: Allow to allocate regmap-irq device
+      gpio: regmap: Allow to provide init_valid_mask callback
+      gpio: max7360: Add MAX7360 gpio support
+      input: keyboard: Add support for MAX7360 keypad
+      input: misc: Add support for MAX7360 rotary
+      MAINTAINERS: Add entry on MAX7360 driver
+
+ .../bindings/gpio/maxim,max7360-gpio.yaml          |  83 ++++++
+ .../devicetree/bindings/mfd/maxim,max7360.yaml     | 191 +++++++++++++
+ MAINTAINERS                                        |  13 +
+ drivers/base/regmap/regmap-irq.c                   |  99 ++++---
+ drivers/gpio/Kconfig                               |  12 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-max7360.c                        | 257 +++++++++++++++++
+ drivers/gpio/gpio-regmap.c                         |  22 +-
+ drivers/input/keyboard/Kconfig                     |  12 +
+ drivers/input/keyboard/Makefile                    |   1 +
+ drivers/input/keyboard/max7360-keypad.c            | 308 +++++++++++++++++++++
+ drivers/input/misc/Kconfig                         |  10 +
+ drivers/input/misc/Makefile                        |   1 +
+ drivers/input/misc/max7360-rotary.c                | 192 +++++++++++++
+ drivers/mfd/Kconfig                                |  14 +
+ drivers/mfd/Makefile                               |   1 +
+ drivers/mfd/max7360.c                              | 170 ++++++++++++
+ drivers/pinctrl/Kconfig                            |  11 +
+ drivers/pinctrl/Makefile                           |   1 +
+ drivers/pinctrl/pinctrl-max7360.c                  | 214 ++++++++++++++
+ drivers/pwm/Kconfig                                |  10 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-max7360.c                          | 186 +++++++++++++
+ include/linux/gpio/regmap.h                        |  18 ++
+ include/linux/mfd/max7360.h                        | 109 ++++++++
+ include/linux/regmap.h                             |   3 +
+ 26 files changed, 1907 insertions(+), 33 deletions(-)
+---
+base-commit: 92a09c47464d040866cf2b4cd052bc60555185fb
+change-id: 20241219-mdb-max7360-support-223a8ce45ba3
+
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+
 
