@@ -1,112 +1,99 @@
-Return-Path: <devicetree+bounces-175726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3EB6AB1917
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:44:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A83CAAB1929
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:47:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58C59A0599E
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:44:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D81352418E
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:46:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5086122DF82;
-	Fri,  9 May 2025 15:44:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EPxU1U5h"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6DD022FE15;
+	Fri,  9 May 2025 15:46:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2227E17C208;
-	Fri,  9 May 2025 15:44:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 662C222FDE7
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 15:46:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746805463; cv=none; b=SLjhXN97laaR8BlbVHJD3WzjBDZ1KZYi9mFyTPJEH2yo5/RdlH1z1K/v++5AbvV8T92EDqk6PQ210w8GOkkOWcfeb/bvlincd819RPw8APbOdJfvXHmnguvU4fEbnjCt4KgN7Li97hKVoiFg/RjbaQcZMkdl5GvEdsKsg+D9YV8=
+	t=1746805606; cv=none; b=sMq57EnRVRDj4fIlEDCwqPu9o9svkKBSFdiDviCR1loAZTSKdGiG8oF1DLYxbzKNMhiU6XWvYOkLCvbT6TMT/83q5AqUvtTQ3BXyhSCWMTxub+qp+q40cw6U+P6aMBuDruyKDEigjc5PE0goKxQNW4mUjWVz7qrnwXu6UiWthAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746805463; c=relaxed/simple;
-	bh=IMXhmQQ2lWO0KiQ0KnSj8yQCSD7P7FRsgDDD17Jfbs0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WtzqEhBj60d1d2dQVoW3py2YPIyUwqipFLx1L7JCvChDJXAOj2FprNrmMAMS1oOqN9h8ToMQVYx3pc/BYeAeIhTYPt8TWTJKX8OZRt9ctgcM9/Ma4rcVBC1N1AVJ73kDWj6p0vD8pie/l4hRxSIXd+q02+9jMQMrWkLHn8Qshg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EPxU1U5h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2098C4CEE4;
-	Fri,  9 May 2025 15:44:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746805462;
-	bh=IMXhmQQ2lWO0KiQ0KnSj8yQCSD7P7FRsgDDD17Jfbs0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EPxU1U5hYKZ9lQxrZY4kxYVxUmRXrbi6StJM5Se5n7emSq6H4CCwSp1PvU+8lZBWu
-	 HbfNfwQ8AcE3ZokS+TWPkwMsUIKc0x+56XDheqWT0qF8298RYe9A4q38mFWZ7Lk9ve
-	 akBoJ0shcCVTV726rUnUs8VixrBSHZGpKtaQOca6w8+ck2exdtHEdpuuchiPDZfLAB
-	 88C9cULAhL//1QOWsfNefOfDOT35BpoGmWBlTgM2FjHO4U4idlU9jfnih4UrpUoNO2
-	 gI4DJN+4mUatc8d66IbD2/dmYNB7RaWDOD594gGKIlFi6yew1MO1+P+CFHYKfF2XYQ
-	 UwDcwZiYYwNuQ==
-Date: Fri, 9 May 2025 16:44:18 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Richard Hu <richard.hu@technexion.com>, sascha.hauer@pengutronix.de,
-	Shawn Guo <shawnguo@kernel.org>, imx@lists.linux.dev,
-	ray.chang@technexion.com, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mp: Add TechNexion EDM-G-IMX8M-PLUS
- SoM on WB-EDM-G carrier board
-Message-ID: <20250509-dripping-colonial-aa805906a189@spud>
-References: <20250509071242.12098-1-richard.hu@technexion.com>
- <8173a798-b5d7-485c-8ce3-b46f4a097d83@kernel.org>
- <83401d0a-ca96-4cfd-9016-13a8604beb9c@kernel.org>
+	s=arc-20240116; t=1746805606; c=relaxed/simple;
+	bh=OgEfrEvJF0YBIBaa8gnQobHYaScrXg1Y0zS0s74tgi4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ZpGmywE+wlF72tg7HFJQkoJ3x5VgSfIYqucOU/nZcqYWzs8mGGjuCO7o/1QhfhLxBGHtHx1Lg4irk+1SW9YnoWHH8Bq4sGn92iNJpGwyEoZPHKKjVJ/q/o8RA7tHTA8PoOgHJPfGd+MBMojMo7u2ONXw9zgO57zz1bxFHCH55T4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B7D97175D;
+	Fri,  9 May 2025 08:46:32 -0700 (PDT)
+Received: from usa.arm.com (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 8CC923F58B;
+	Fri,  9 May 2025 08:46:42 -0700 (PDT)
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Cc: Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Leo Yan <leo.yan@arm.com>
+Subject: [PATCH v2 1/3] arm64: dts: fvp: Add system timer for broadcast during CPU idle
+Date: Fri,  9 May 2025 16:46:38 +0100
+Message-Id: <20250509154640.836093-1-sudeep.holla@arm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="OD4wdRO1911HDruQ"
-Content-Disposition: inline
-In-Reply-To: <83401d0a-ca96-4cfd-9016-13a8604beb9c@kernel.org>
+Content-Transfer-Encoding: 8bit
 
+Introduce a system-level timer node in the FVP device tree to act as
+a broadcast timer when CPUs are in context losing idle states where
+the local timer stops on entering such low power states.
 
---OD4wdRO1911HDruQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This change complements recent CPU idle state additions.
 
-On Fri, May 09, 2025 at 03:58:32PM +0200, Krzysztof Kozlowski wrote:
-> On 09/05/2025 15:21, Krzysztof Kozlowski wrote:
-> >=20
-> > No, that's not a spi controller.
-> >=20
-> > Node names should be generic. See also an explanation and list of
-> > examples (not exhaustive) in DT specification:
-> > https://devicetree-specification.readthedocs.io/en/latest/chapter2-devi=
-cetree-basics.html#generic-names-recommendation
-> >=20
-> >=20
-> >> +		compatible =3D "rohm,dh2228fv";
-> >=20
-> > I doubt that. Drop the node or fix the compatible.
->=20
-> ... especially that dh2228fv does not exist. There is no such device
-> from ROHM. If you claim otherwise, please share this imaginary device
-> datasheet.
+Tested-by: Leo Yan <leo.yan@arm.com>
+Message-Id: <20250508103225.354925-2-sudeep.holla@arm.com>
+Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+---
+ arch/arm64/boot/dts/arm/fvp-base-revc.dts | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-To be clear, the thing to do if you have some device without a kernel
-driver and want to use spidev for it, is to add a binding for the
-device and add the device specific compatible to spidev.c.
-If it is a simple device with no unusual properties (maybe it has an
-interrupt, that's fine) add it to trivial-devices.yaml instead of
-writing a dedicated binding.
+v1->v2:
+	- Dropped clock-frequency property
+	- Fixed #size-cell to 1 as expected by the schema
+	- Also update the ranges property and the frame reg property
 
---OD4wdRO1911HDruQ
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+index 9e10d7a6b5a2..50b5993a2460 100644
+--- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
++++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+@@ -217,6 +217,19 @@ timer {
+ 			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+ 	};
+ 
++	timer@2a810000 {
++		compatible = "arm,armv7-timer-mem";
++		reg = <0x0 0x2a810000 0x0 0x10000>;
++		ranges = <0 0x0 0x2a820000 0x20000>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		frame@2a830000 {
++			frame-number = <1>;
++			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
++			reg = <0x10000 0x10000>;
++		};
++	};
++
+ 	pmu {
+ 		compatible = "arm,armv8-pmuv3";
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaB4i0gAKCRB4tDGHoIJi
-0rTIAQCvC0a5Fu0qeL8RJpXo9801tjpYBm1ES+9QEWTFRWEB4AEAuwO8YdFqpXuB
-siGWDtLPid4o2efFJvy1i/+/LuJXeAA=
-=VP1b
------END PGP SIGNATURE-----
-
---OD4wdRO1911HDruQ--
 
