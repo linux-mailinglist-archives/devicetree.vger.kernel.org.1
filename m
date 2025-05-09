@@ -1,161 +1,132 @@
-Return-Path: <devicetree+bounces-175410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF84BAB0D0C
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:22:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA97CAB0D1C
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:25:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25D845072FF
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:22:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DCEE16C290
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:25:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 522DC2741CD;
-	Fri,  9 May 2025 08:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7427D274653;
+	Fri,  9 May 2025 08:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Lxb8pcyl"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xELnqpi5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A133C2741A2;
-	Fri,  9 May 2025 08:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DDC32741C2;
+	Fri,  9 May 2025 08:25:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746778957; cv=none; b=UnIkkOxxp64EABzZX5C6f4P0gGplih4wVPhtMb5mFps5k5Ixd9VDJiBEu8UZQkshnd5aS+6mPWh8d1ZcOBg1pR0CA/AP023zSFLgltGXzqyr/LSthEmTNqYo1In/c4gHScBArlb8w+Gz2I5vhNA04QterR7wT7BMlhqRMckMDcE=
+	t=1746779121; cv=none; b=mRypnUfNKENWC+c1h7k04MNIaiLVMFK8Yroc3H8AYMIrd6IQrjMF4WIN+upbMA9emDOpWBPTmL8FROy5qZ42YHiJ4IVzj/XClzjG0EKq+A6loYDL7+DR63xYEkn/n7i0pUCliHELs9B/ImKL8hUoDmkCa3fOPT2csyI4zfVG3ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746778957; c=relaxed/simple;
-	bh=ZgfpwXf47H0sjw/yTO/dwGcNRdm+QTm6jGT1IELMhCA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NvqXIbBuRH4t7PEVe79SEeamzDO1AROZHGb40jx54LZc5kl2OrYZ9ig8ktnzcBX08rj4hSjh/xZZFTY4U6bR+kCQYZtd8D+k/6d2aKtCSB+u32IYMFOUg7RJkRBTZ+4dhu85Ptre/Of1YaXseSI5/0rx6wnHR9mINILGxDjiEKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Lxb8pcyl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5491uDDD010146;
-	Fri, 9 May 2025 08:22:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	hD3AhBSexN8dKcUfCMt/UQu8YlpNMmyvL115YoYW9xI=; b=Lxb8pcylzjbFhUiN
-	wqmcNiz8FY1Qr2IxtzxTyxsWYNueOxeQZz0bu+vuz2rCqS5yzhIS1kaXXnuCPAhS
-	lW7NewEwb+P/33vkfYun8Vyrk8P7FxITskWBUn94FrVSHnHNMlOZm4NaA0JR4l0j
-	mEj1pnZm7X8nrfU+kKe7r+XA30IJL4ng2lk50TTaH2PiVsVDBaS3XTlnM50e8GXR
-	MqldTuu3rEvSv1G72VDL2K9q+8PUlGYj2HFtwUOceuOMGl+0F/MLebK75UYH9xzv
-	vhptjl/9d2RLbxL89acCTqmag/lLe90OVPk7+kiYqCCqHDylJo7IBEMEv4NYsK2k
-	WEa67w==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46gnp7c01u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 09 May 2025 08:22:30 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5498MUWe022086
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 9 May 2025 08:22:30 GMT
-Received: from [10.239.132.205] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 9 May 2025
- 01:22:24 -0700
-Message-ID: <53dd6e80-b0d1-4b1e-9354-851fa2473191@quicinc.com>
-Date: Fri, 9 May 2025 16:22:20 +0800
+	s=arc-20240116; t=1746779121; c=relaxed/simple;
+	bh=FZBqXwcIMmYLzGhJ9dLe2kFxSIhbEIMwpZODYkuQj44=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u06+10bR95pvtnb5q4E5dmzvMzRpJlmYEPxyurst1hefCQbaQGs2kSFjx5AVYa4JdRTfkRbxxA2NgDzbGetKqDQp2RQOUeFYJQ+R9RITY7XOzb2iXcMc0Q5SWPF6lYSzDWHbg2SByRUkJKneY5qvj/yEvnE+zProfetc3FPk6oY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xELnqpi5; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5498PAbZ1345842
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 9 May 2025 03:25:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746779110;
+	bh=HCP/12rAyQwOl5LrFAi4QTkdDpc/orvAD1e4tN/2d7M=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=xELnqpi5bJF6eitop24E6D+ONFUP6vAFMe4viDUsGo918leyJuxKbUUP/VzPAV2qS
+	 xoV9sxH7fdjs5eTTB19jWdnUxuk4C0HVcMUIHD1x+X7l5lvEGOtH3csGwW340ZpscN
+	 sJJyR8R3NOE2W292EGMNF42N05Q62iAFN+TEgtvE=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5498PAm6095237
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 9 May 2025 03:25:10 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
+ May 2025 03:25:09 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 9 May 2025 03:25:10 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5498P9uR003472;
+	Fri, 9 May 2025 03:25:09 -0500
+Date: Fri, 9 May 2025 03:25:09 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Prasanth Babu Mantena <p-mantena@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e-common-proc-board: Enable
+ OSPI1 on J721E
+Message-ID: <20250509082509.ogfs2ulyfgk6etxc@unshaved>
+References: <20250507050701.3007209-1-p-mantena@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: qcs615: Add mproc node for
- SEMP2P
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Kyle Deng <quic_chunkaid@quicinc.com>
-References: <20250507-add_qcs615_remoteproc_support-v2-0-52ac6cb43a39@quicinc.com>
- <20250507-add_qcs615_remoteproc_support-v2-3-52ac6cb43a39@quicinc.com>
- <a8a1aa0e-f53d-4a77-9199-958878563b9f@oss.qualcomm.com>
-From: Lijuan Gao <quic_lijuang@quicinc.com>
-In-Reply-To: <a8a1aa0e-f53d-4a77-9199-958878563b9f@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA5MDA4MCBTYWx0ZWRfX58zFMaRItmjz
- 9alu29I0M93JkywUjpjgBMmZJGxt7SL+0b+Z6Rr95ILxoPnswZLr0jvqbqj+ide7X/Ig6MlQG3e
- 771vQU55xoyfdvWm++0nnittT/DvQd5Wz/1EbRU5CSLLTCxHwRMXguJaie/8MKhm5LMjwVcqnX+
- PewbAFhQ0VXY7KghCebGvyNrzKdD8Z0SHW96JJorBan843EyU0fAOxQJ+B9fwlv+Z6YWdTlcUso
- glrPyLInukZ5lBt/esGlRc0hT9+Qib0nAv1amNz0K2BUlB8s1vtIEc2/9AzLOx4RB/AYMY8bXqF
- gN8pdvXOw6/ijVUnHG8EaQp2r6xTDZmSgmCztNKgkkI52eqRk9aGHdMXag9SxJ9gM+Wyg9xkpqV
- eL+MXxlAflIcucJmydxUCMduthiEHCLmBm7wExPeRkKGxeiaTAK2ugdB7EohPyHfszxEV/BG
-X-Proofpoint-GUID: RDBh5Unx_pGstZ2IhAcuE5e9-fpN5SoV
-X-Authority-Analysis: v=2.4 cv=B/G50PtM c=1 sm=1 tr=0 ts=681dbb46 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=01Tm6292DNX8F8ESNB4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: RDBh5Unx_pGstZ2IhAcuE5e9-fpN5SoV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-09_03,2025-05-08_04,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0 spamscore=0
- suspectscore=0 phishscore=0 priorityscore=1501 bulkscore=0 adultscore=0
- mlxlogscore=999 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505090080
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250507050701.3007209-1-p-mantena@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+On 10:37-20250507, Prasanth Babu Mantena wrote:
+> J721E SoM has MT25QU512AB Serial NOR flash connected to
+> OSPI1 controller. Enable ospi1 node in device tree.
+>
+> Fixes: cb27354b38f3b ("arm64: dts: ti: k3-j721e: Add DT nodes for few peripherials")
 
+Yes, cb27354b38f3b ("arm64: dts: ti: k3-j721e: Add DT nodes for few
+peripherials") did not enable the node, But back then, we used to
+ensure all nodes were left default (okay) and then disable unused
+nodes in board dts.
 
-在 5/8/2025 10:40 PM, Konrad Dybcio 写道:
-> On 5/7/25 12:26 PM, Lijuan Gao wrote:
->> From: Kyle Deng <quic_chunkaid@quicinc.com>
->>
->> The Shared Memory Point to Point (SMP2P) protocol facilitates
->> communication of a single 32-bit value between two processors.
->> Add these two nodes for remoteproc enablement on QCS615 SoC.
->>
->> Signed-off-by: Kyle Deng <quic_chunkaid@quicinc.com>
->> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs615.dtsi | 43 ++++++++++++++++++++++++++++++++++++
->>   1 file changed, 43 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->> index 7c377f3402c1..53661e3a852e 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->> @@ -332,6 +332,49 @@ mc_virt: interconnect-2 {
->>   		qcom,bcm-voters = <&apps_bcm_voter>;
->>   	};
->>   
->> +	smp2p-adsp {
->> +		compatible = "qcom,smp2p";
->> +		qcom,smem = <443>, <429>;
->> +		interrupts = <GIC_SPI 172 IRQ_TYPE_EDGE_RISING>;
->> +		mboxes = <&apss_shared 26>;
-> 
-> 26 will poke at the SLPI instead
+BUT, we ended up having a bunch of maintenance issues and board bring
+up problems and looking at the rest of the ARM ecosystems (you can
+check the mailing list for all the discussions on the topic), we
+flipped the order for peripherals that need board level connectivity
+for functionality to be disabled in SoC.dtsi and enabled explicitly at
+board level and when that occurred, specifically:
+73676c480b72 ("arm64: dts: ti: k3-j721e: Enable OSPI nodes at the board
+level") which enabled ospi0 at SoM level, but missed fixing this up,
+whoops!
 
-SLPI has not been enabled in QCS615, so the sensor will be in ADSP.  And 
-26 is being used dowstream, so it should be correct.
-> 
-> Konrad
+I will fix this up locally when I apply this patch. but FYI.
+
+> Signed-off-by: Prasanth Babu Mantena <p-mantena@ti.com>
+> ---
+> Test log : https://gist.github.com/PrasanthBabuMantena/9dda540dce88282117de7e0e945e24ca
+>  arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> index e3d0ef6913b2..45311438315f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> @@ -573,6 +573,7 @@ &usb1 {
+>  &ospi1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&mcu_fss0_ospi1_pins_default>;
+> +	status = "okay";
+>
+>  	flash@0 {
+>  		compatible = "jedec,spi-nor";
+> --
+> 2.34.1
+>
+>
 
 -- 
-Thx and BRs
-Lijuan Gao
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
