@@ -1,232 +1,167 @@
-Return-Path: <devicetree+bounces-175494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DF08AB1070
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:22:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E545CAB125B
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:39:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D2003BBB1C
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:21:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1905A1C41F46
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:39:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B7528EA48;
-	Fri,  9 May 2025 10:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A028D28ECFE;
+	Fri,  9 May 2025 11:38:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OFf/DZvi"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="WWJjVbXv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from mail-m32122.qiye.163.com (mail-m32122.qiye.163.com [220.197.32.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A696728D841;
-	Fri,  9 May 2025 10:22:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9586F22AE68;
+	Fri,  9 May 2025 11:38:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746786124; cv=none; b=UGmMLcaqgoYgIE0XdhYko55vr/+O5cAUm+LkB5qj0sJZ15Hh7/8/kCLPFqeuYey5oBQ0YdIz7/GDHzcgi7VAeDbA8Rlfb2ZVIYBT5jdSLVx5WdiC7qApTIdm43xWNkhMopNU2HjSdULcW3/RC4M7g7cSqJ8TryUDSHmX++/G1gY=
+	t=1746790732; cv=none; b=oCS+BHdcM7xEEODVhPtDUFZ0yH3mMQGIPyE9dMuK4GcEKFQxwVr7U5gGcEeER9oVZlTr7j6qac3XXPX0nQkGGj7UxWIaGPqbx46NttnuYYvh/54qTYZx8IOoXPAxFI60JRCDIZ67k+Jb+l+BczLPhap3jKzi3vqN5/2C2qcrVQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746786124; c=relaxed/simple;
-	bh=u0FdmcLCzWAN0OgJO+9XszGN9E14Xi6UpgFN0H7wVRU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=poyepx22o2/8HG1pG5J8kB9WPSRUyVPV7hOwRsjEVFqSpvq4j2kmDMFHn5+rwr6hle8GBC/5CweRLcGjVXFUC+lWUjxgA7kLRbowFg+NmeY8+bXvF1yo5ce095Kkg8hpD3zSmZn0oxKlulHxV+wK78QU98/aL/jU1Y7xKjs4I7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OFf/DZvi; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746786123; x=1778322123;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=u0FdmcLCzWAN0OgJO+9XszGN9E14Xi6UpgFN0H7wVRU=;
-  b=OFf/DZviM+d9aQK3G0Nd7zSDVk3krGTOY0SfV3HPmdI9QTe/MBVafH37
-   s+yg6wGmk+jlWcvVPj9oR144HMlQG0iEpRl5QvjpJGGwruT+hWEY6QmiP
-   CvEZeOD8FcNQeyB7pysqclCZPqujubgvO4ZlUgtdaIibhFMrmvR6Fs+CY
-   MP+RTz73uYFcjQKwHImbHs6mpECYM3zVI3fxPEbYgXCLYXO7y1CFL9PF4
-   KI676URhIYyXfy46qHqdXpiWDtM+6nIdTsJ3//GsCIqVjsNMyjEsOGISA
-   Ys1BHzWVilX2/5YOIYK+5rDCmTR5rIKsHS728j1QtJXWA7vj6x+UAoSiQ
-   g==;
-X-CSE-ConnectionGUID: Drz52SWMRsOOv3TPi/SEPA==
-X-CSE-MsgGUID: 4GD/0geGQUWu+IToI6zYzg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="48725846"
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; 
-   d="scan'208";a="48725846"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2025 03:22:02 -0700
-X-CSE-ConnectionGUID: DwlI8GfKRSeoSrKIj+e3mw==
-X-CSE-MsgGUID: LEpLa6rRSGu1qx1TTsl+hw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; 
-   d="scan'208";a="140631455"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 09 May 2025 03:21:57 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uDKra-000Bvn-2Y;
-	Fri, 09 May 2025 10:21:54 +0000
-Date: Fri, 9 May 2025 18:21:11 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	s=arc-20240116; t=1746790732; c=relaxed/simple;
+	bh=DJR3eFCyzjUjZ3oWHHgp8vQrcBC3ctmP33bMKnnn/Gw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=uSIRoePi0J/mc+fh3Pd/qbg+0KlnyDeu+JCdDdD2i3ROOEIPBQK1+BJAukYs3nGXNP6FLLOZzJrOCBEUjWLRi48p5nEXG2ZKn563QYYUyKzqe2y9B5FwbwNzJv4HDOK1MPmAfvlQi7GJ5LQeqjKIZT9rRscnPv8tXCEjQRV2EsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=WWJjVbXv; arc=none smtp.client-ip=220.197.32.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1483147cb;
+	Fri, 9 May 2025 18:23:11 +0800 (GMT+08:00)
+From: Kever Yang <kever.yang@rock-chips.com>
+To: heiko@sntech.de
+Cc: linux-rockchip@lists.infradead.org,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Yao Zi <ziyao@disroot.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Johan Jonker <jbx6244@gmail.com>,
+	Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>,
+	Junhao Xie <bigfoot@classfun.cn>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
-	Dragos Bogdan <dragos.bogdan@analog.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v2 1/4] iio: backend: update
- iio_backend_oversampling_ratio_set
-Message-ID: <202505091838.a9sKlbJN-lkp@intel.com>
-References: <20250508123107.3797042-2-pop.ioan-daniel@analog.com>
+	Finley Xiao <finley.xiao@rock-chips.com>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	devicetree@vger.kernel.org,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Rob Herring <robh@kernel.org>,
+	Shresth Prasad <shresthprasad7@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	linux-kernel@vger.kernel.org,
+	Jimmy Hon <honyuenkwun@gmail.com>
+Subject: [PATCH v7 0/5] rockchip: Add rk3562 SoC and evb support
+Date: Fri,  9 May 2025 18:23:03 +0800
+Message-Id: <20250509102308.761424-1-kever.yang@rock-chips.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250508123107.3797042-2-pop.ioan-daniel@analog.com>
-
-Hi Pop,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.15-rc5 next-20250508]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Pop-Ioan-Daniel/iio-backend-update-iio_backend_oversampling_ratio_set/20250508-203339
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20250508123107.3797042-2-pop.ioan-daniel%40analog.com
-patch subject: [PATCH v2 1/4] iio: backend: update iio_backend_oversampling_ratio_set
-config: nios2-randconfig-001-20250509 (https://download.01.org/0day-ci/archive/20250509/202505091838.a9sKlbJN-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250509/202505091838.a9sKlbJN-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505091838.a9sKlbJN-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/iio/adc/ad4851.c: In function 'ad4851_set_oversampling_ratio':
->> drivers/iio/adc/ad4851.c:324:60: warning: passing argument 2 of 'iio_backend_oversampling_ratio_set' makes integer from pointer without a cast [-Wint-conversion]
-     324 |         ret = iio_backend_oversampling_ratio_set(st->back, chan, osr);
-         |                                                            ^~~~
-         |                                                            |
-         |                                                            const struct iio_chan_spec *
-   In file included from drivers/iio/adc/ad4851.c:26:
-   include/linux/iio/backend.h:212:53: note: expected 'unsigned int' but argument is of type 'const struct iio_chan_spec *'
-     212 |                                        unsigned int chan,
-         |                                        ~~~~~~~~~~~~~^~~~
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0weTVYZQxoeTxlNTkkeHRpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a96b492097d03afkunm1483147cb
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MDo6NBw4CDICQgEuFUkPMCIY
+	TUswCz9VSlVKTE9NTENNSkJITEpJVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFPS0lONwY+
+DKIM-Signature:a=rsa-sha256;
+	b=WWJjVbXvavx4WZJgAvQ5PpWXYuytRa7c0y0UK+ZLln61JYfXa0iW95dVokF9XBlciZ93nmGVICTykpOzRkm2WxXSYTf9C3GccZEzr/E0rvsgito3By9+4vVkR/QV9zdWRQeZ/vtuW7Egj713TTewUg0yDHj6TRU9pvxcm2SQXsY=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=hNsCUG7hJCtfNGZx6jKpw5OFKEQ5Blj2M3hqO1EINGw=;
+	h=date:mime-version:subject:message-id:from;
 
 
-vim +/iio_backend_oversampling_ratio_set +324 drivers/iio/adc/ad4851.c
+Patch series v6 remove USB and watchdog nodes, for relate patches not
+land recently although they have got review tag. Let's make the main dts
+get land first and then add relate dts node back when the driver patches
+get land.
 
-   295	
-   296	static int ad4851_set_oversampling_ratio(struct iio_dev *indio_dev,
-   297						 const struct iio_chan_spec *chan,
-   298						 unsigned int osr)
-   299	{
-   300		struct ad4851_state *st = iio_priv(indio_dev);
-   301		int val, ret;
-   302	
-   303		guard(mutex)(&st->lock);
-   304	
-   305		if (osr == 1) {
-   306			ret = regmap_clear_bits(st->regmap, AD4851_REG_OVERSAMPLE,
-   307						AD4851_OS_EN_MSK);
-   308			if (ret)
-   309				return ret;
-   310		} else {
-   311			val = ad4851_osr_to_regval(osr);
-   312			if (val < 0)
-   313				return -EINVAL;
-   314	
-   315			ret = regmap_update_bits(st->regmap, AD4851_REG_OVERSAMPLE,
-   316						 AD4851_OS_EN_MSK |
-   317						 AD4851_OS_RATIO_MSK,
-   318						 FIELD_PREP(AD4851_OS_EN_MSK, 1) |
-   319						 FIELD_PREP(AD4851_OS_RATIO_MSK, val));
-   320			if (ret)
-   321				return ret;
-   322		}
-   323	
- > 324		ret = iio_backend_oversampling_ratio_set(st->back, chan, osr);
-   325		if (ret)
-   326			return ret;
-   327	
-   328		switch (st->info->resolution) {
-   329		case 20:
-   330			switch (osr) {
-   331			case 0:
-   332				return -EINVAL;
-   333			case 1:
-   334				val = 20;
-   335				break;
-   336			default:
-   337				val = 24;
-   338				break;
-   339			}
-   340			break;
-   341		case 16:
-   342			val = 16;
-   343			break;
-   344		default:
-   345			return -EINVAL;
-   346		}
-   347	
-   348		ret = iio_backend_data_size_set(st->back, val);
-   349		if (ret)
-   350			return ret;
-   351	
-   352		if (osr == 1 || st->info->resolution == 16) {
-   353			ret = regmap_clear_bits(st->regmap, AD4851_REG_PACKET,
-   354						AD4851_PACKET_FORMAT_MASK);
-   355			if (ret)
-   356				return ret;
-   357	
-   358			st->resolution_boost_enabled = false;
-   359		} else {
-   360			ret = regmap_update_bits(st->regmap, AD4851_REG_PACKET,
-   361						 AD4851_PACKET_FORMAT_MASK,
-   362						 FIELD_PREP(AD4851_PACKET_FORMAT_MASK, 1));
-   363			if (ret)
-   364				return ret;
-   365	
-   366			st->resolution_boost_enabled = true;
-   367		}
-   368	
-   369		if (st->osr != osr) {
-   370			ret = ad4851_scale_fill(indio_dev);
-   371			if (ret)
-   372				return ret;
-   373	
-   374			st->osr = osr;
-   375		}
-   376	
-   377		return 0;
-   378	}
-   379	
+Patch series V5 remove [v4 1/7] which had taken by Manivannan, and move
+scmi-shmem from soc node to reserved memory.
+
+Patch series V4 remove patches already landed, and remove dts nodes for
+modules still under review.
+
+This patch set adds rk3562 SoC and its evb support.
+
+I have split out patches need driver change for different subsystem.
+And all the modules with dt-binding document update in this patch set
+do not need any driver change. I put them together to make it clear we
+have a new SoC and board to use the new compatible. Please pick up the
+patch for your subsystem, or please let me know if the patch has to
+send separate.
+
+Test with USB, PCIe, EMMC, SD Card.
+
+V3:
+https://lore.kernel.org/linux-rockchip/20250227111913.2344207-1-kever.yang@rock-chips.com/
+V2:
+https://lore.kernel.org/linux-rockchip/b4df8a73-58a2-4765-a9e4-3513cb2bc720@rock-chips.com/T/
+
+
+Changes in v7:
+- update regulator names, and re-order some properties in dts node.
+
+Changes in v6:
+- Remove USB and watchdog nodes
+- Remove USB relate nodes
+
+Changes in v5:
+- Update scmi-shmem from soc to reserved memory
+
+Changes in v4:
+- Collect ack tag
+- Collect ack tag
+- remove gmac and otp nodes
+- remove gmac nodes
+
+Changes in v3:
+- Collect the Acked-by tag
+- remove i2c/serial/spi alias
+- add soc node
+
+Changes in v2:
+- Update in sort order
+- remove grf in cru
+- Update some properties order
+
+Finley Xiao (2):
+  arm64: dts: rockchip: add core dtsi for RK3562 Soc
+  arm64: dts: rockchip: Add RK3562 evb2 devicetree
+
+Kever Yang (3):
+  dt-bindings: rockchip: pmu: Add rk3562 compatible
+  dt-bindings: soc: rockchip: Add rk3562 syscon compatibles
+  dt-bindings: arm: rockchip: Add rk3562 evb2 board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |    5 +
+ .../devicetree/bindings/arm/rockchip/pmu.yaml |    2 +
+ .../devicetree/bindings/soc/rockchip/grf.yaml |    7 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+ .../boot/dts/rockchip/rk3562-evb2-v10.dts     |  456 ++++
+ .../boot/dts/rockchip/rk3562-pinctrl.dtsi     | 2352 +++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3562.dtsi      | 1187 +++++++++
+ 7 files changed, 4010 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3562-evb2-v10.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3562-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3562.dtsi
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
