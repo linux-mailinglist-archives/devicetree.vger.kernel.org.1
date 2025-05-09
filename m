@@ -1,111 +1,98 @@
-Return-Path: <devicetree+bounces-175703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9418DAB1873
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 312BAAB1891
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:34:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59BC4A01E52
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:29:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF876A01A04
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C17222E01E;
-	Fri,  9 May 2025 15:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD2922DF8D;
+	Fri,  9 May 2025 15:32:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ISAhfEKp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E859322D9F1
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 15:30:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8205622A1C5;
+	Fri,  9 May 2025 15:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746804605; cv=none; b=UpnXtaEwhf4oYa4vKPWnb53D3hIQE4bwk0BXfXDbqnUa/uubVYJ873JFRGpT4ataWiCx1EQGzRqCIjAJAhxLbqCjNEw/Gkx0yxuU0IUruqk6lC5dWEHYxuC4tBC3mKlenFuuhCBwlVgctFBcMgxqsEtYQ5mBj9kEtns1zMzf1Hs=
+	t=1746804732; cv=none; b=ZvZQhSg4EytP7VI7Aib8DaismJIFsBgafgoSuP9cCzJw9E+qmKoPbAWNLxE8cO/nkFrBN2vB0blRZMjD1qwu+pHRfUFK8I+8fnwgq3016IabD2nW2e02p+HdHDQ1A1YgaKqWQP6kbu8WhV2anylPU0Zbct6YIbDZZ37oe9GwTAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746804605; c=relaxed/simple;
-	bh=43hBNHVVROnSnMosJNMeWBMdFsCmClTQFFRCkn2HDQw=;
+	s=arc-20240116; t=1746804732; c=relaxed/simple;
+	bh=qcrU3PLuyJ39f7Grm0C17ELUE5ZOgr1KxGpTaj1TKpE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NXJga09iz+VGY9mnAKE0GS7m/3M2xZDnqbuVRRvJcSjFTor2w0izHp8c8jOU8P+kWSDLTtduxVvEBwfOBsRweec0JFsy4KyzzCWAhxSF+i7fTz4u/7yUpmpfSWH5B7aL70rnCjYRfUamfGf42hwypsrK1pIOCN9DXkyMH0YlAaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 203531595;
-	Fri,  9 May 2025 08:29:50 -0700 (PDT)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E8D253F58B;
-	Fri,  9 May 2025 08:29:59 -0700 (PDT)
-Date: Fri, 9 May 2025 16:29:57 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Leo Yan <leo.yan@arm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>
-Subject: Re: [PATCH 1/3] arm64: dts: fvp: Add CPU idle states for Rev C model
-Message-ID: <20250509-lurking-hidden-shellfish-cf2bbb@sudeepholla>
-References: <20250508103225.354925-1-sudeep.holla@arm.com>
- <174679984875.3368325.1365758165371282064.robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=XybCuxPdJgkljzkia72ko6aKXh7PkcHniRC5SxzpeOHkK25SgN4CozUbHXE6FxO4G0mdAa0Frg7jKcKwbwTv4XsnGf2kLEC/XqIiPLuPf++222glVRlpRsQBGVg0f6m9YlOZlGmRWcKWnVtdhrh5E9Wl90f92GOTter1GW0gzsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=ISAhfEKp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FD6FC4CEE4;
+	Fri,  9 May 2025 15:32:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1746804729;
+	bh=qcrU3PLuyJ39f7Grm0C17ELUE5ZOgr1KxGpTaj1TKpE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ISAhfEKpgjA+Gl/PiXUPhkGgj8Oxjru+p7WwtbAHP5Xrd/7kGAl4Ai7/Ri3hbvTCK
+	 evaainhsJHxSGH8KRrUcHMowIQRZZASKx19Nv3RZ49rf8GY+OaARY83wJ+4KUndiRC
+	 1iIIBBm83Nn3EeLGG8CBImaZ/A9orzgOJjebgPLo=
+Date: Fri, 9 May 2025 17:30:24 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Taichi Sugaya <sugaya.taichi@socionext.com>,
+	Takao Orito <orito.takao@socionext.com>,
+	Thierry Reding <treding@nvidia.com>, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: serial: Convert
+ socionext,milbeaut-usio-uart to DT schema
+Message-ID: <2025050912-snide-spoiling-0f7c@gregkh>
+References: <20250507154924.1602842-1-robh@kernel.org>
+ <2025050935-suffocate-snazzy-c5f3@gregkh>
+ <CAL_JsqKjssqGOO6H9RCneo86fKop4bQtiKNcCq_95fOk2CP+eA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <174679984875.3368325.1365758165371282064.robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqKjssqGOO6H9RCneo86fKop4bQtiKNcCq_95fOk2CP+eA@mail.gmail.com>
 
-On Fri, May 09, 2025 at 09:16:54AM -0500, Rob Herring (Arm) wrote:
+On Fri, May 09, 2025 at 10:29:07AM -0500, Rob Herring wrote:
+> On Fri, May 9, 2025 at 9:51 AM Greg Kroah-Hartman
+> <gregkh@linuxfoundation.org> wrote:
+> >
+> > On Wed, May 07, 2025 at 10:49:22AM -0500, Rob Herring (Arm) wrote:
+> > > Convert the Socionext Milbeaut UART binding to DT schema. It is a
+> > > straight-forward conversion.
+> > >
+> > > Reviewed-by: Thierry Reding <treding@nvidia.com>
+> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > > ---
+> > > v2:
+> > >  - Fix $id path
+> > > ---
+> > >  .../bindings/serial/milbeaut-uart.txt         | 21 -------
+> > >  .../serial/socionext,milbeaut-usio-uart.yaml  | 56 +++++++++++++++++++
+> > >  2 files changed, 56 insertions(+), 21 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/serial/milbeaut-uart.txt
+> > >  create mode 100644 Documentation/devicetree/bindings/serial/socionext,milbeaut-usio-uart.yaml
+> >
+> > Are you wanting all of these serial "convert to dt schema" patches to go
+> > through the tty/serial tree, or will you be taking them?  Either is fine
+> > with me, your choice.
 > 
-> On Thu, 08 May 2025 11:32:23 +0100, Sudeep Holla wrote:
-> > Add CPU idle state definitions to the FVP Rev C device tree to enable
-> > support for CPU lower power modes. This allows the system to properly
-> > enter low power states during idle. It is disabled by default as it is
-> > know to impact performance on the models.
-> > 
-> > Note that the power_state parameter(arm,psci-suspend-param) doesn't use
-> > the Extended StateID format for compatibility reasons on FVP.
-> > 
-> > Tested on the FVP Rev C model with PSCI support enabled firmware.
-> > 
-> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> > ---
-> >  arch/arm64/boot/dts/arm/fvp-base-revc.dts | 32 +++++++++++++++++++++++
-> >  1 file changed, 32 insertions(+)
-> > 
-> 
-> 
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->   pip3 install dtschema --upgrade
-> 
-> 
-> This patch series was applied (using b4) to base:
->  Base: attempting to guess base-commit...
->  Base: tags/v6.15-rc1-1-g59529bbe642d (exact match)
-> 
-> If this is not the correct base, please add 'base-commit' tag
-> (or use b4 which does this automatically)
-> 
-> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/arm/' for 20250508103225.354925-1-sudeep.holla@arm.com:
-> 
-> arch/arm64/boot/dts/arm/fvp-base-revc.dtb: idle-states: entry-method:0: 'psci' was expected
-> 	from schema $id: http://devicetree.org/schemas/cpu/idle-states.yaml#
-> arch/arm64/boot/dts/arm/fvp-base-revc.dtb: timer@2a810000 (arm,armv7-timer-mem): #size-cells: 1 was expected
-> 	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer_mmio.yaml#
->
+> You can take them. With all of them, we're done converting serial drivers!
 
-Thanks for the report. Now fixed locally.
+Ok, I'll queue them up in a day or so, thanks!
 
--- 
-Regards,
-Sudeep
+greg k-h
 
