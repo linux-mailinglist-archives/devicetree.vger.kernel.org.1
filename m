@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-175312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 772E8AB09C2
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 07:39:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9CB8AB09D6
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 07:42:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D725717718C
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 05:39:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35A76987872
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 05:42:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21F22255F4B;
-	Fri,  9 May 2025 05:39:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 316182690E7;
+	Fri,  9 May 2025 05:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PYsk1Uja"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a7E7HWqF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDF8079FE
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 05:39:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4600E139D1B
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 05:42:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746769153; cv=none; b=oP6K41wqqvazRvCAfmDgIJHkawq2maxki3IzPUepZOnYgOYb5OuOmKmYQoupvY40bJt26unL7yXuCjTYpoamV0CmN7rucrovy9nVqyZ/Zp78b3HhKd4hHuUF7p4oOHj0VRyRd6EF5iwcbbOSHpjxCwCibFOLS/Gx+IzaygmV6Q8=
+	t=1746769357; cv=none; b=iEcPUhLCxVsdJV/lZj0icvB1HKNx5aZtyaGcrGBDm262R8G3Kd9ohbDZibDm0iRRzT86V3jsoUmSxpte1vnq6xKqlrmQA9PBxlTNJW093Xs//ZtfaC/uVGFAujIo4fMBN/XP6pw7dxO/ODjiAMyBFe5LZq9lvNaIBcbe39SHIUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746769153; c=relaxed/simple;
-	bh=XbfzCV4uWcLHl1vLdNb8xbNXRQt/a2tgFXpki7w2mIM=;
+	s=arc-20240116; t=1746769357; c=relaxed/simple;
+	bh=nlEmbJ8kowVWrxtp8ZPPnA24ZVcc7YXBJ3NRexlf0qc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VUNaSYrKrVNYaQt6/N3bh+MZAo8LUm35sCHhrJ7a9ggOKNcrCp6Da4ck0x0zrnj3F+U0xUzCtmtVcz3r4zdqPfn9VcntFz1luqZqiPM7gQ7ocvaHoC93cQfHKRSiWl762zvSrd6l037q8JaGUkjOv6ysSzKZejdEMpbvguX5mWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PYsk1Uja; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:Content-Type; b=grQltemIVFWwX7BCva2pX+3fwju+Pm2MowwnUaSQjMhox7Ig7Kl4U7In0/8lcoavY2rnMOxhktWf1paHSJ0C1CHYYDYAukWlDusB86zJVXwYJ278Sm6SaY6WGLaDC6ZCCEP6DVLOvR5xkhZU2CkNMQcrX7hQOeX5gd6S45cWfFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a7E7HWqF; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-39c2688e2bbso206024f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 22:39:10 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-39d73b97500so146505f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 22:42:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746769149; x=1747373949; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1746769353; x=1747374153; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=w4Uql9FGLTVlEeTvTiR6Hv2yM3XCt18Cz9u3UYLPICs=;
-        b=PYsk1UjaVyGaPwLZ6NN5Fpqif250f2QrlKETNpP4pdyXSaERaqFSPRidBMOgra4/rt
-         /bYK2sZxgi3gifZWIZ6DZVsUaheeIM975BuiBmUu9TyeeSl9lTx6kijL23FhJ/grC/H5
-         ZtlVhbGzM+P6xQEJwrQ6cOq7kpAqEnw/yaFKBjJPRv2N7uVv+vIsOQBvNsrypiQ06qRq
-         NEHeDOBs72pKAnmei9iVUA7/61prG40GzBuOQWKRPgm5aRErq6CVONg2XZIoijxi31Io
-         Zxtx2IqsbGXf0IhG4m/dgOC3cJGNCzKvmAjMK0ozdqKLuVuz9T4XgHLZdBuyWqOKgw9e
-         fzQA==
+        bh=VDVR1Thqfw1bgEDLPyd4Iuy7qTJd3mmQiIKanFQKIDQ=;
+        b=a7E7HWqFdLPI8Hzp66Sy18g7JGpg5XBv+O96py9wdxVbbp991l8FGIE+TKK9nFK5R9
+         aN513L4ttwGEnZHHBnX5Kd/uWSSWB6w8VdeVopghOZ4JgIx9UwQ1EWj1tb4JumdD4WF3
+         vNtpbMj0CF1Ejd/0DTKQzLDoMG4kGZzGpwblqnf06tUgVPkkY+Orw1m1PDngoi8skYZ6
+         U+KAh0yf/5f8uHqPyenoIXkG4iP93WzOQV590xjSw8UX3VGi7V94lQQ2ZEU3NimTYU3Q
+         Sv8Wj2qw/+b2Sn7Qs73XCmKnVJ0c/P9/vuuB8ZqYn6U9N/pri2FstfrM3us5tAdVG+3v
+         VjOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746769149; x=1747373949;
+        d=1e100.net; s=20230601; t=1746769353; x=1747374153;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=w4Uql9FGLTVlEeTvTiR6Hv2yM3XCt18Cz9u3UYLPICs=;
-        b=BHaMXnNIfF0bQN6Pa7swu3mhWg8uNNgkjXcMjIO7hLA2p0YTBCULWyVhoo27uKC3SJ
-         XM6OfTFpXB/oAByYH5MyMDTbBo6Us9Yl7G8/msxkIjy2c4DwZ1l/oa+hm4SoKdksHG+B
-         Y/+RPVknW5GpBGhhJmPeb9drxPh8iuLbpqQhp19diDcahnrr8VRc8A+e+6/2We7ZoN1n
-         AwnMbFtRYGSQc9mjcAM9uAjW0iurqcGAZF3+MsfbESmT7qaQV9Jv29jnVtMnp3Hm42nr
-         mAlhpV/9y9/J2FPWpKfHx7lxCyhtBbpeb2IqSbRZMfj5rRlqvXK3M7XxgNdGBfwV0Fsf
-         J5ZA==
-X-Gm-Message-State: AOJu0Ywlm5tb8dB67PpWh4cA9BfIfn8R6wuLsNP87hJzZKjV/0ju104j
-	Q1snIPAH/9IGGMo7k+nYcVq1E3G8KzYzhnhxwdR8zhwICHsWpbAZNooIFkKvKRo=
-X-Gm-Gg: ASbGncuZAVimXa6P9c5Ho+zjc1ibIGPyk4/lHi4KMSp1T0XLw/5Q38/ekjrAI7GirT1
-	tpMsmx9OFfqAEuabjV18/UdJzg/MfGVbizgmuaYfACHXIoA89rYEIJvXaRfISY59S8pS9xax435
-	9jDfhu8An3ikLTE7JgfssBqHs6/E+nLSe43wRvRLCKoUf2z4sYc2DWq1kdU0ZI0pTFCVEJqsHah
-	f0NZd+qQsCVUqwuTPx6ghEXL6VMfN6dgZ308fXxu4iasPM9NSjn2rGTvYJxu6G/Do9+9yPPeYaB
-	a9S/Eh0yH2mTCMt3mMORcy62ZbnXqMQTiihyGw3N3XBk5CTHqJT9QwCEfHs=
-X-Google-Smtp-Source: AGHT+IGPG/rVZrbIMQc5TYblcq4TmgDizGdIwPJnmiWxzsz2F9LWgmGSpQ+eSYFI9k+rCPof4hbudg==
-X-Received: by 2002:a05:600c:3490:b0:439:9b3f:2dd9 with SMTP id 5b1f17b1804b1-442d6ddd6a8mr4892685e9.7.1746769149115;
-        Thu, 08 May 2025 22:39:09 -0700 (PDT)
+        bh=VDVR1Thqfw1bgEDLPyd4Iuy7qTJd3mmQiIKanFQKIDQ=;
+        b=RPmP6RRoso3nDU5u8yRlOUBcdf+p17pkY+far1AQ+fPhuv26n6p0/HBhasfsuFnoHA
+         3k1UqekHF1AlXFU5J8Ae4+G5qbTOB4N7xYab/w8/U3qzq8MUZd5ewhwjtGtXlDGaqxos
+         LUQzAmwol3bmTzOBNsDCd3SzhK3mnbyzYKVzy9/j63EWRyBqCZ5liCgbUh7lOu5hEMyn
+         BIOTkyEa/GJOQD8nKc22IGIotXhn/+0xGtGULfH7LJjB4i0k59BX/bpDShr7wX36EI9Q
+         nEm2HMreQjTJa1ui5nFPzJGzeWPK+KUZ7WGt+3T2pAu8bdubgqb5eamieweVjbzqsknF
+         haIg==
+X-Forwarded-Encrypted: i=1; AJvYcCV/toYbHurtBJg1qsRcG3HCfbqFIzZPcrx9IHl7TTQpKFcOthkMbvPeOCmpg1JhJGrVlMtN+x2aYTsA@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLlrKYHNjBi8RWVyg2iUY9fB8xUg0LDaqolYqeerOGLtNLayWY
+	BbYEfXCUDLdX79J9Coy6XTkYvX2gwG4xj+5fdRdBF5DpQdGFlwttpWyoO+X8zlY=
+X-Gm-Gg: ASbGncvk7bZ+XYDgjHci4SMKSdXZTQoCTZvfxr3nx3Gj/AenHlzB2QBSn0k20U9CvuJ
+	eaEvrQ9VdBN7aJ+7YKVBY2sAMe0IHrWXFpMTpng8UTXSHavCdr4j00bZbaFKN8wBHzzwmHSuqN9
+	YSyUqZSFTb9w0O6rMDKRVmDYD9+zYvkujXAkXxjCwfit8TBWpvLaxTqWg9ustz5zVLX3j1Nr6TT
+	vH+K7OS2Z89nJho72hrIxppC0QNFNW5ksWh7+80Du4tYX0ce+dYCjft2eo2mDYmxKF7KDCvUvpV
+	8caAl6l5O4YEc97566iKVhKcf4dWiSduDhdYQ+EPc6nH1KK1DOISN6x/ezM=
+X-Google-Smtp-Source: AGHT+IEpdJaYB/kvIU1c1XgAwSfpcq+dMJR2nY0PEUGwwcTbhYeeqOtCvMZ9IctlLuH6l2gHlQ+lKw==
+X-Received: by 2002:a5d:5f8f:0:b0:3a0:75ff:261f with SMTP id ffacd0b85a97d-3a1f6487679mr488337f8f.11.1746769353563;
+        Thu, 08 May 2025 22:42:33 -0700 (PDT)
 Received: from [192.168.1.29] ([178.197.207.88])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442d67ee275sm17155305e9.19.2025.05.08.22.39.07
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ecadfsm2103911f8f.22.2025.05.08.22.42.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 May 2025 22:39:08 -0700 (PDT)
-Message-ID: <6e119dcd-1952-488c-8456-22990f46cd83@linaro.org>
-Date: Fri, 9 May 2025 07:39:06 +0200
+        Thu, 08 May 2025 22:42:32 -0700 (PDT)
+Message-ID: <7b36aa5d-8c81-42c6-a69f-38f9b157a361@linaro.org>
+Date: Fri, 9 May 2025 07:42:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,16 +82,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Add luckfox prefix
-To: John Clark <inindev@gmail.com>, Rob Herring <robh@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Jonas Karlman <jonas@kwiboo.se>,
- Andrew Lunn <andrew@lunn.ch>,
- Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20250508190538.22295-1-inindev@gmail.com>
- <20250508190538.22295-2-inindev@gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: display/msm/gmu: Add Adreno 623 GMU
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>, Rob Clark
+ <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Dmitry Baryshkov <lumag@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Jie Zhang <quic_jiezh@quicinc.com>
+References: <20250508-a623-gpu-support-v3-0-3cb31799d44e@quicinc.com>
+ <20250508-a623-gpu-support-v3-1-3cb31799d44e@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -137,37 +145,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  h0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1qwom6QbU06ltb
  vJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHpcwzYbmi/Et7T
  2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20250508190538.22295-2-inindev@gmail.com>
+In-Reply-To: <20250508-a623-gpu-support-v3-1-3cb31799d44e@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/05/2025 21:05, John Clark wrote:
-> Add vendor prefix for Shenzhen Luckfox Technology Co., Ltd., which
-> produces development boards like the Luckfox Omni3576.
+On 08/05/2025 18:19, Akhil P Oommen wrote:
+> From: Jie Zhang <quic_jiezh@quicinc.com>
 > 
-> Signed-off-by: John Clark <inindev@gmail.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-You already got this feedback and still did not respond to it.
+> Document Adreno 623 GMU in the dt-binding specification.
+> 
+> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
+> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-<form letter>
-This is a friendly reminder during the review process.
+Drop. You changed patch significantly, like 90%!
 
-It looks like you received a tag and forgot to add it.
+> ---
+>  .../devicetree/bindings/display/msm/gmu.yaml       | 34 ++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Documentation/devicetree/bindings/display/msm/gmu.yaml
+> index 4392aa7a4ffe2492d69a21e067be1f42e00016d8..afc1879357440c137cadeb2d9a74ae8459570a25 100644
+> --- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
+> @@ -124,6 +124,40 @@ allOf:
+>            contains:
+>              enum:
+>                - qcom,adreno-gmu-623.0
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
+I don't understand. 623 is already here, you document nothing new. This
+makes no sense, I never, absolutely never reviewed code like this.
 
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+NAK
 
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
 
 Best regards,
 Krzysztof
