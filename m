@@ -1,356 +1,119 @@
-Return-Path: <devicetree+bounces-175804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2CECAB1EB1
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 23:08:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 994BAAB1F28
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 23:41:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C28B9E7AD1
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 21:07:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08AEA1C44FBE
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 21:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D14325F7A4;
-	Fri,  9 May 2025 21:08:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26BDB25F96B;
+	Fri,  9 May 2025 21:41:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N1We5LSV"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Rzyaa8sQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345D625394A;
-	Fri,  9 May 2025 21:08:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D381325F961;
+	Fri,  9 May 2025 21:41:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746824883; cv=none; b=eop5iszi3W/uth8hHBRR0prgxvv3Eqx39hDwbVWwMIl+BgCKmK2MDp//TsMJBRPGY+VjIZmF3PG0i50KPmnHUsjhQVSLyHL2Zm+jJ0+Lq2N8wWYbyLPzS9GBj+Oi9Ym/P8crFStZ2Av81SGDuPH7w+yoJSIpIPusIWXcLK45dYI=
+	t=1746826869; cv=none; b=C6KoyLtscVBtiKlD6FMfkkLsgcvSvYXiW2wCPdYRvj5CIlo67z8LSSdBtj4NOk+AIvDaZ0XS8iXWWC1iXmeWfFleIxKN9pminp8fuzILYgftiesgJC4bnEeff2+D/qtSQgj0OgvxcLan+lrGRipFnBjhpiKgOZHnLlnKw5GZ/RI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746824883; c=relaxed/simple;
-	bh=CAxTMPR8YPvt69jMr9a/HnbcXSU4cctemxa+AVtAFbs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kSpl+t2yU4TWXZA+cWcC7Svz8QeN4PjVdHQRdy/XxIoul5/lRglCzX8mdCnHM8kdmD2/aiETOXzYPcrIrwxZcMiEyt21g1HgxeLDY7C2xcltNHQ0wp8w1Q3QENg0F71+J2juSUTMlli04SNdXzR9/xkzPw3Tf2H3OCBSwaSY1lA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N1We5LSV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A72E5C4CEE4;
-	Fri,  9 May 2025 21:08:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746824882;
-	bh=CAxTMPR8YPvt69jMr9a/HnbcXSU4cctemxa+AVtAFbs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N1We5LSVZ15+LhFsS3loTqYybJgPreqHIReEJy176pHa414yKvrmoykEIuRo4INxJ
-	 9tmo0mlpg82B/zeb1OcfORrFivYHERRq75Yv6Vdp/9dgYqcoYwSuJlecEw/gLS4BAu
-	 oSCsEwzKgHF9HBs2Wy5dS2QnW5SLLZ/GJVCTDyqvKxK/F1/6FRX8KiMgHoTWG3qC6a
-	 6N4Y4bwzkA6EOkV5ULEsiXW5ej77xwcstcqJeCw4VJGmbphc8g9GFR9AnDCy0WqWdM
-	 ZJ2Pgnklq9pxgw2YzALlThXNoxta6p5G+xD9OaEgPPtXQVnhs2Q/5Due7BvPpALYOv
-	 FlUOoI4RB3oGA==
-Date: Fri, 9 May 2025 16:08:00 -0500
-From: Rob Herring <robh@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
-	mturquette@baylibre.com, sboyd@kernel.org, saravanak@google.com,
-	p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH 4/8] dt-bindings: PCI: renesas,r9a08g045s33-pcie: Add
- documentation for the PCIe IP on Renesas RZ/G3S
-Message-ID: <20250509210800.GB4080349-robh@kernel.org>
-References: <20250430103236.3511989-1-claudiu.beznea.uj@bp.renesas.com>
- <20250430103236.3511989-5-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1746826869; c=relaxed/simple;
+	bh=CeptbMj8Es7NbetOd37wgFr6qLJPRhceR8D9rh79e5s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KsFi/LOukVcmfLyMMkr7UAENOTYw3bH3y8qArtvBL5FhvbX2WAVt/FA7kCJzzATbc3BWdXhq0++whYMMW7k/tei3P0wk7Cin3zpgkVzSxH2bZ0TiTb7wPJlo3rZh5fDifzSxjCAcnCTnLeEbevHP5SA8zz9CcyIQTUWf41hwV1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Rzyaa8sQ; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=4NnvhEy7eKpv6yWsDNTdTDOS3gwfxi78lgDlzZL6Ozw=; b=Rzyaa8sQrkA51gLAga5MF6OA6C
+	QOyGED9EqCuzTyEvYER4V7TSxNtPA5sBxfNFJhytT6GuGwLJ/cS9/TCsXxMZ9hC/KkZl1+MSuy1RD
+	FNgeAraozsudfuwXEz6m7bVKnBXN2GsBW1tBQ77FseLXglNfzqCcKPe6pnP4zuQiL/uYulYW2sR1E
+	N4d72gCl8sUhivv2Grw2NiQFAaYc1AxJ/aJuEpOfZqKi0AENAygPpbzTX0Mxe3Ik0kHo5RAVog1iz
+	Z8syAbwzL9LnDxSkWl6/C6UKZ2gz4wA8LxZIkfdrlHhrkXJQ8DeSvPXoO7QzsyG9RrVnpQpNk8qxQ
+	8OhbNE3g==;
+Received: from i53875a1d.versanet.de ([83.135.90.29] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uDVSj-0006A9-LB; Fri, 09 May 2025 23:40:57 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>
+Cc: Yao Zi <ziyao@disroot.org>, Chukun Pan <amadeus@jmu.edu.cn>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Jonas Karlman <jonas@kwiboo.se>
+Subject: Re: [PATCH v3 0/2] rockchip: Enable Ethernet controller on Radxa E20C
+Date: Fri, 09 May 2025 23:40:56 +0200
+Message-ID: <2728051.BddDVKsqQX@diego>
+In-Reply-To: <20250509202402.260038-1-jonas@kwiboo.se>
+References: <20250509202402.260038-1-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250430103236.3511989-5-claudiu.beznea.uj@bp.renesas.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Wed, Apr 30, 2025 at 01:32:32PM +0300, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> The PCIe IP available on the Renesas RZ/G3S complies with the PCI Express
-> Base Specification 4.0. It is designed for root complex applications and
-> features a single-lane (x1) implementation. Add documentation for it.
-> The interrupts, interrupt-names, resets, reset-names, clocks, clock-names
-> description were obtained from the hardware manual.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->  .../pci/renesas,r9a08g045s33-pcie.yaml        | 242 ++++++++++++++++++
->  1 file changed, 242 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml b/Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml
-> new file mode 100644
-> index 000000000000..354f9c3be139
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml
-> @@ -0,0 +1,242 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/renesas,r9a08g045s33-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G3S PCIe host controller
-> +
-> +maintainers:
-> +  - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> +
-> +description:
-> +  Renesas RZ/G3S PCIe host controller complies with PCIe Base Specification
-> +  4.0 and supports up to 5 GT/s (Gen2).
-> +
-> +properties:
-> +  compatible:
-> +    const: renesas,r9a08g045s33-pcie # RZ/G3S
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: System error interrupt
-> +      - description: System error on correctable error interrupt
-> +      - description: System error on non-fatal error interrupt
-> +      - description: System error on fatal error interrupt
-> +      - description: AXI error interrupt
-> +      - description: INTA interrupt
-> +      - description: INTB interrupt
-> +      - description: INTC interrupt
-> +      - description: INTD interrupt
-> +      - description: MSI interrupt
-> +      - description: Link bandwidth interrupt
-> +      - description: PME interrupt
-> +      - description: DMA interrupt
-> +      - description: PCIe event interrupt
-> +      - description: Message interrupt
-> +      - description: All interrupts
-> +
-> +  interrupt-names:
-> +    items:
-> +      - description: int_serr
-> +      - description: int_ser_cor
-> +      - description: int_serr_nonfatal
-> +      - description: int_serr_fatal
-> +      - description: axi_err_int
-> +      - description: inta_rc
-> +      - description: intb_rc
-> +      - description: intc_rc
-> +      - description: intd_rc
-> +      - description: intmsi_rc
+Am Freitag, 9. Mai 2025, 22:23:56 Mitteleurop=C3=A4ische Sommerzeit schrieb=
+ Jonas Karlman:
+> The Rockchip RK3528 has two Ethernet controllers, one 100/10 MAC to be
+> used with the integrated PHY and a second 1000/100/10 MAC to be used
+> with an external Ethernet PHY.
+>=20
+> This series add device tree nodes for the Ethernet controllers found in
+> RK3528 and enable the LAN interface on Radxa E20C.
+>=20
+> This include a gmac0 node for the 100/10 MAC and its related integrated
+> PHY node that only have recived limited testing. I have no board that
+> expose an Ethernet port for the gmac0 and the integrated PHY. However,
+> the PHY can be identified on addr 0x2 as 0044.1400 and in vendor kernel
+> this relate to the Rockchip RK630 PHY. A proper PHY driver will be
+> needed to support any real use of gmac0.
+>=20
+> Changes in v3:
+> - Rebase on top of latest mmind/for-next
+>=20
+> Changes in v2:
+> - Split from the "Add GMAC support for RK3528" driver series [1]
 
-Isn't every interrupt for the root complex?
+split from ... was that series merged already?
 
-> +      - description: int_link_bandwidth
-> +      - description: int_pm_pme
-> +      - description: dma_int
-> +      - description: pcie_evt_int
-> +      - description: msg_int
-> +      - description: int_all
+The linked lore-thread only talks about the series needing to be reposted.
 
-'int_' or '_int' is redundant (and inconsistent). Drop.
 
-> +
-> +  clocks:
-> +    items:
-> +      - description: System clock
-> +      - description: PM control clock
-> +
-> +  clock-names:
-> +    items:
-> +      - description: aclk
-> +      - description: clkl1pm
+Heiko
 
-'l1pm' or 'pm'
+> - Add ethernet-phy@2 for the integrated PHY
+> - Rebase on top of the "Support I2C controllers in RK3528" series [2]
+>=20
+> [1] https://lore.kernel.org/r/20250309232622.1498084-1-jonas@kwiboo.se
+> [2] https://lore.kernel.org/r/20250309070603.35254-1-ziyao@disroot.org
+>=20
+> Jonas Karlman (2):
+>   arm64: dts: rockchip: Add GMAC nodes for RK3528
+>   arm64: dts: rockchip: Enable Ethernet controller on Radxa E20C
+>=20
+>  .../boot/dts/rockchip/rk3528-radxa-e20c.dts   |  30 +++++
+>  arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 105 ++++++++++++++++++
+>  2 files changed, 135 insertions(+)
+>=20
+>=20
 
-> +
-> +  resets:
-> +    items:
-> +      - description: AXI2PCIe Bridge reset
-> +      - description: Data link layer/transaction layer reset
-> +      - description: Transaction layer (ACLK domain) reset
-> +      - description: Transaction layer (PCLK domain) reset
-> +      - description: Physical layer reset
-> +      - description: Configuration register reset
-> +      - description: Configuration register reset
-> +
-> +  reset-names:
-> +    items:
-> +      - description: aresetn
-> +      - description: rst_b
-> +      - description: rst_gp_b
-> +      - description: rst_ps_b
-> +      - description: rst_rsm_b
-> +      - description: rst_cfg_b
-> +      - description: rst_load_b
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  dma-ranges:
-> +    description:
-> +      A single range for the inbound memory region.
-> +    maxItems: 1
-> +
-> +  renesas,sysc:
-> +    description: System controller phandle
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +  vendor-id:
-> +    const: 0x1912
-> +
-> +  device-id:
-> +    const: 0x0033
-> +
-> +  legacy-interrupt-controller:
-> +    description: Interrupt controller node for handling legacy PCI interrupts
-> +    type: object
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 0
-> +
-> +      "#interrupt-cells":
-> +        const: 1
-> +
-> +      interrupt-controller: true
-> +
-> +      interrupts:
-> +        items:
-> +          - description: INTA interrupt
-> +          - description: INTB interrupt
-> +          - description: INTC interrupt
-> +          - description: INTD interrupt
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#interrupt-cells"
-> +      - interrupt-controller
-> +      - interrupts
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - resets
-> +  - reset-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +  - power-domains
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - "#interrupt-cells"
-> +  - renesas,sysc
-> +  - vendor-id
-> +  - device-id
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r9a08g045-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        gic: interrupt-controller {
-> +            interrupt-controller;
-> +            #interrupt-cells = <3>;
-> +        };
 
-Drop. Don't need to show provider nodes for the example.
 
-> +
-> +        pcie@11e40000 {
-> +            compatible = "renesas,r9a08g045s33-pcie";
-> +            reg = <0 0x11e40000 0 0x10000>;
-> +            ranges = <0x03000000 0 0x30000000 0 0x30000000 0 0x8000000>;
-> +            dma-ranges = <0x42000000 0 0x48000000 0 0x48000000 0 0x8000000>;
-> +            bus-range = <0x0 0xff>;
-> +            clocks = <&cpg CPG_MOD R9A08G045_PCI_ACLK>,
-> +                     <&cpg CPG_MOD R9A08G045_PCI_CLKL1PM>;
-> +            clock-names = "aclk", "clkl1pm";
-> +            resets = <&cpg R9A08G045_PCI_ARESETN>,
-> +                     <&cpg R9A08G045_PCI_RST_B>,
-> +                     <&cpg R9A08G045_PCI_RST_GP_B>,
-> +                     <&cpg R9A08G045_PCI_RST_PS_B>,
-> +                     <&cpg R9A08G045_PCI_RST_RSM_B>,
-> +                     <&cpg R9A08G045_PCI_RST_CFG_B>,
-> +                     <&cpg R9A08G045_PCI_RST_LOAD_B>;
-> +            reset-names = "aresetn", "rst_b", "rst_gp_b", "rst_ps_b",
-> +                          "rst_rsm_b", "rst_cfg_b", "rst_load_b";
-> +            interrupts = <GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
 
-It is very odd that you have the INTx interrupts here and below.
-
-As I mentioned in the driver, you don't need the legacy node any more. 
-Just add 'interrupt-controller' to this node and point interrupt-map to 
-this node.
-
-> +                         <GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 405 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 408 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "int_serr", "int_serr_cor", "int_serr_nonfatal",
-> +                              "int_serr_fatal", "axi_err_int", "inta_rc",
-> +                              "intb_rc", "intc_rc", "intd_rc",
-> +                              "intmsi_rc", "int_link_bandwidth", "int_pm_pme",
-> +                              "dma_int", "pcie_evt_int", "msg_int",
-> +                              "int_all";
-> +            #interrupt-cells = <1>;
-> +            interrupt-map-mask = <0 0 0 7>;
-> +            interrupt-map = <0 0 0 1 &pcie_intx 0>, /* INT A */
-> +                            <0 0 0 2 &pcie_intx 1>, /* INT B */
-> +                            <0 0 0 3 &pcie_intx 2>, /* INT C */
-> +                            <0 0 0 4 &pcie_intx 3>; /* INT D */
-> +            device_type = "pci";
-> +            num-lanes = <1>;
-> +            #address-cells = <3>;
-> +            #size-cells = <2>;
-> +            power-domains = <&cpg>;
-> +            renesas,sysc = <&sysc>;
-> +            vendor-id = <0x1912>;
-> +            device-id = <0x0033>;
-> +
-> +            pcie_intx: legacy-interrupt-controller {
-> +                interrupt-controller;
-> +                #interrupt-cells = <1>;
-> +                #address-cells = <0>;
-> +                interrupt-parent = <&gic>;
-> +                interrupts = <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
-> +                             <GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
-> +                             <GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
-> +                             <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.43.0
-> 
 
