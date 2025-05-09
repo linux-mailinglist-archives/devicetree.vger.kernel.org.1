@@ -1,59 +1,73 @@
-Return-Path: <devicetree+bounces-175404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1CCFAB0CA8
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:08:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F29BFAB0CB7
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:10:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 648F3501619
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:08:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC2763A986E
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C7B02741BE;
-	Fri,  9 May 2025 08:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BCF827467F;
+	Fri,  9 May 2025 08:07:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="YlaJVlDD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PSwbqDGH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B9CE2749F4;
-	Fri,  9 May 2025 08:07:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 415BA272E79;
+	Fri,  9 May 2025 08:07:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746778030; cv=none; b=d/iJIIPFCebFWfoJ3bP28aUT4SHfuLzAJtAHOLnOO5wAqHs0Z1/hFkTsjzwIyezYIK5t36FpE7JrcvDg7JZZyCIYki6gF17RV4D2WDy0/C4ZLFceFTUgGDWF/FZXDvhzZpZSx9rbDWCVW9XYkzJa82BKwuBmhMOYJ65LV6h3E3M=
+	t=1746778071; cv=none; b=OHRsa8TKSghHMBZqGtum/18t4BPWs92KbNuNZKX62IH7AorRreSY2Irw7c2OLNUQu8U1DGX8t2qxyVFceRjs7/XSoGw1zOoPY+p9D3joxhoYUfctdv08ofsoxHWWT9fbCzLtqkZZdhamWJRF16f+0Ma3JvgQGU16QTKbewy8vFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746778030; c=relaxed/simple;
-	bh=GmgLDcYQyIw/YSz839e+qQM5KL6RDCNHqO2F1hLqyEY=;
+	s=arc-20240116; t=1746778071; c=relaxed/simple;
+	bh=G+2xW4f4im1ZGvz/fL91IZspYYNNNbveNgpD+exM6VQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NTTYVpcvavIavLy/N6sLkAX97EMQ1dcFldiqWJUmvVOhyy8oXWFkkQICa67sygkunlmNX+fe58G9kkGjb+jMSPM58pE74+tsXhuDmthbaQLs38BlpZyqvc5oiP4gTg+5OchlDGGD6fz9VQxpiSv3MepIy/ucTtMQBXbydwTs3t0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=YlaJVlDD; arc=none smtp.client-ip=220.197.32.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=NayRbH+Za6jxrlNZRjNmkKSqs2Xv5DXjaUGWLMkJCjA=;
-	b=YlaJVlDDmaVnGqHNZVFamQwncF6km7Bx+FItRKfR6TspwW098A0Gi/STDfSGNh
-	53Jc+stXuN+KoneyrNrCEGUJYaSHct5O1gKM4V/8paX/mrQQK8FptEj0dGhKgrMk
-	IhxHMPaESFJinRDI0mdIYQLMs87pgjUJ5lC4zD6SpatFs=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAnPuNhtx1ojC+mAA--.27459S3;
-	Fri, 09 May 2025 16:05:55 +0800 (CST)
-Date: Fri, 9 May 2025 16:05:52 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: maudspierings@gocontroll.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v6 2/8] arm64: dts: imx8mp: Add pinctrl config definitions
-Message-ID: <aB23YOkCMnA4F3hV@dragon>
-References: <20250417-initial_display-v6-0-3c6f6d24c7af@gocontroll.com>
- <20250417-initial_display-v6-2-3c6f6d24c7af@gocontroll.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AClNcSNNrtt67HfJarZCz5Ze0MqTeCG+albDzt7fY021p/EkTAg+HQE5WaEA/D/ujIHGNukHoLGO+eqhoKoR7BiTrQpuoSCFbR/ZHxW2wiY07CcUhckIwsIq1oo+94xYhpFEPta35bfL0gOVeaZqeQhpRuD+jlKm6WtW9xTYG60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PSwbqDGH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 191EEC4CEE4;
+	Fri,  9 May 2025 08:07:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746778071;
+	bh=G+2xW4f4im1ZGvz/fL91IZspYYNNNbveNgpD+exM6VQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PSwbqDGHnH/Ce03Zkp0UtJvHSDZBjCj92DxlbpzMIcYwXitlGXVv36ko7XZ76KD93
+	 uENkmmzWQv6EdtCeNdy9NDTn5upRmaX9sYqj2E17WWHwQSTk6EWwlDQbIRVsgLCbMX
+	 ff8M0p82GkwB9Sveef05u57tY6/goSV+w/Hm/Dq9JsVEHkbz46xv1jrEd31WQXsnG7
+	 Q5otO3uHFswBtbaKWREpsBb3yNR61frsfm0jxM8H5lg/+DObSFzBeNKpn+uEiCc67G
+	 n2DvNZbHbCL+RL3R42ex8xvcwcROW36A+jbTzYKdjsgpG0TFeBFkHrqVOLlVTDgUKO
+	 NUabyvv/2AxDg==
+Date: Fri, 9 May 2025 10:07:44 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Marc Zyngier <maz@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 20/25] irqchip/gic-v5: Add GICv5 PPI support
+Message-ID: <aB230INCy2h7X1KY@lpieralisi>
+References: <20250506-gicv5-host-v3-0-6edd5a92fd09@kernel.org>
+ <20250506-gicv5-host-v3-20-6edd5a92fd09@kernel.org>
+ <87zffpn5rk.ffs@tglx>
+ <86a57ohjey.wl-maz@kernel.org>
+ <87ecx0mt9p.ffs@tglx>
+ <867c2sh6jx.wl-maz@kernel.org>
+ <874ixwmpto.ffs@tglx>
+ <aBxgceQBRA6vBK7o@lpieralisi>
+ <864ixvh4ss.wl-maz@kernel.org>
+ <aByLHdktOLUk8HCN@lpieralisi>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,94 +76,81 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250417-initial_display-v6-2-3c6f6d24c7af@gocontroll.com>
-X-CM-TRANSID:Mc8vCgAnPuNhtx1ojC+mAA--.27459S3
-X-Coremail-Antispam: 1Uf129KBjvJXoWxAFW5XF1kWrWrGryUuF45ZFb_yoW5Gw43pF
-	yqkry3Zr18tF47Gw1Sv3Wayrs0v3Z3XF47u3y7WrW5tF4DAw18XF1Ygw4Ygr1Yqrsag3yF
-	9F1qvw1I93sxGrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jeE__UUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEgVIZWgdtb4IEAAAsc
+In-Reply-To: <aByLHdktOLUk8HCN@lpieralisi>
 
-On Thu, Apr 17, 2025 at 12:14:03PM +0200, Maud Spierings via B4 Relay wrote:
-> From: Maud Spierings <maudspierings@gocontroll.com>
+On Thu, May 08, 2025 at 12:44:45PM +0200, Lorenzo Pieralisi wrote:
+
+[...]
+
+> I noticed that, if the irq_set_type() function is not implemented,
+> we don't execute (in __irq_set_trigger()):
 > 
-> Currently to configure each IOMUXC_SW_PAD_CTL_PAD the raw value of this
-> register is written in the dts, these values are not obvious. Add defines
-> which describe the fields of this register which can be or-ed together to
-> produce readable settings.
+> irq_settings_set_level(desc);
+> irqd_set(&desc->irq_data, IRQD_LEVEL);
+
+I don't get why the settings above are written only if the irqchip
+has an irq_set_type() method, maybe they should be updated in
+irqdomain code (?) where:
+
+irqd_set_trigger_type()
+
+is executed after creating the fwspec mapping ?
+
+Is it possible we never noticed because we have always had irqchips that
+do implement irq_set_type() ?
+
+Again, I don't know the history behind the IRQD_LEVEL flag so it is just
+a question, I'd need to get this clarified though please if I remove the
+PPI irq_set_type() callback.
+
+Thanks,
+Lorenzo
+
+> which in turn means that irqd_is_level_type(&desc->irq_data) is false
+> for PPIs (ie arch timers, despite being level interrupts).
 > 
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
-> ---
-> This patch has already been sent in a different group of patches: [1]
-> It was requested there to submit it along with a user, this series also
-> includes some users for it.
+> An immediate side effect is that they show as edge in:
 > 
-> [1]: https://lore.kernel.org/all/20250218-pinctrl_defines-v2-2-c554cad0e1d2@gocontroll.com/
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h | 33 ++++++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
+> /proc/interrupts
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
-> index 0fef066471ba607be02d0ab15da5a048a8a213a7..19a23d148246f4fb990050a9d06d20b6e769f254 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
-> @@ -6,6 +6,39 @@
->  #ifndef __DTS_IMX8MP_PINFUNC_H
->  #define __DTS_IMX8MP_PINFUNC_H
->  
-> +/* Drive Strength */
-> +#define MX8MP_DSE_X1 0x0
-> +#define MX8MP_DSE_X2 0x4
-> +#define MX8MP_DSE_X4 0x2
-> +#define MX8MP_DSE_X6 0x6
-> +
-> +/* Slew Rate */
-> +#define MX8MP_FSEL_FAST 0x10
-> +#define MX8MP_FSEL_SLOW 0x0
-> +
-> +/* Open Drain */
-> +#define MX8MP_ODE_ENABLE 0x20
-> +#define MX8MP_ODE_DISABLE 0x0
-> +
-> +#define MX8MP_PULL_DOWN 0x0
-> +#define MX8MP_PULL_UP 0x40
-> +
-> +/* Hysteresis */
-> +#define MX8MP_HYS_CMOS 0x0
-> +#define MX8MP_HYS_SCHMITT 0x80
-> +
-> +#define MX8MP_PULL_ENABLE 0x100
-> +#define MX8MP_PULL_DISABLE 0x0
-> +
-> +/* SION force input mode */
-> +#define MX8MP_SION 0x40000000
-
-Can we have all these indents aligned on the same column using tabs?
-
-> +
-> +/* long defaults */
-> +#define MX8MP_USDHC_DATA_DEFAULT (MX8MP_FSEL_FAST | MX8MP_PULL_UP | \
-> +								  MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-
-Can we indent like this?
-
-#define MX8MP_USDHC_DATA_DEFAULT (MX8MP_FSEL_FAST | MX8MP_PULL_UP | \
-				  MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-
-Shawn
-
-> +#define MX8MP_I2C_DEFAULT (MX8MP_DSE_X6 | MX8MP_PULL_UP | MX8MP_HYS_SCHMITT | \
-> +						   MX8MP_PULL_ENABLE | MX8MP_SION)
-> +
->  /*
->   * The pin function ID is a tuple of
->   * <mux_reg conf_reg input_reg mux_mode input_val>
+> but that's just what I could notice.
 > 
-> -- 
-> 2.49.0
+> Should I set them myself in PPI translate/alloc functions ?
 > 
+> Removing the irq_set_type() for PPIs does not seem so innocuous, it is a
+> bit complex to check all ramifications, please let me know if you spot
+> something I have missed.
 > 
-
+> > > On the other hand, given that on GICv5 PPI handling mode is fixed,
+> > > do you think that in the ppi_irq_domain_ops.translate() callback,
+> > > I should check the type the firmware provided and fail the translation
+> > > if it does not match the HW hardcoded value ?
+> > 
+> > Why? The fact that the firmware is wrong doesn't change the hardware
+> > integration. It just indicates that whoever wrote the firmware didn't
+> > read the documentation.
+> > 
+> > Even more, I wonder what the benefit of having that information in the
+> > firmware tables if the only thing that matters in the immutable HW
+> > view. Yes, having it in the DT/ACPI simplifies the job of the kernel
+> > (only one format to parse). But it is overall useless information.
+> 
+> Yes, that I agree but it would force firmware bindings to special case
+> PPIs to remove the type (#interrupt-cells and co.).
+> 
+> From what I read I understand I must ignore the PPI type provided by
+> firmware.
+> 
+> > > Obviously if firmware exposes the wrong type that's a firmware bug
+> > > but I was wondering whether it is better to fail the firmware-to-Linux
+> > > IRQ translation if the firmware provided type is wrong rather than carry
+> > > on pretending that the type is correct (I was abusing the irq_set_type()
+> > > callback to do just that - namely, check that the type provided by
+> > > firmware matches HW but I think that's the wrong place to put it).
+> > 
+> > I don't think there is anything to do. Worse case, you spit a
+> > pr_warn_once() and carry on.
+> 
+> Thanks,
+> Lorenzo
 
