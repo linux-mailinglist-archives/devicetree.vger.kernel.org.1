@@ -1,128 +1,129 @@
-Return-Path: <devicetree+bounces-175449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8980AB0EAA
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:18:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76787AB0EBD
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:21:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E005A01ACB
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:16:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA88A17EF7B
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:20:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5B6280302;
-	Fri,  9 May 2025 09:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 431D327587F;
+	Fri,  9 May 2025 09:19:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JZWCusfr"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="isek1app"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83B9274FE6;
-	Fri,  9 May 2025 09:14:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51597269D16;
+	Fri,  9 May 2025 09:19:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746782099; cv=none; b=oQxa1oF1akq6v4+bV3RQigRIEC5pETsDzXnaBtDW3z/HzWVCOHGvQxuL4LK3CiDDyVW0KCrj1NtCXAy3YiiQMJ1Pi+hQvyaTWi9AMC4pTCUx4qY6/xE6tOMMObHmGERWN6dxNCFPsdv+cKmxWvH6WMudRdt46NMzn79LEzuOVkY=
+	t=1746782383; cv=none; b=XJM93TZZMs2kBC6BQqQAh1DNBwN5qJQBN6/UdvG5WQgGVBD5ACjhySTwAdlQiR+gEhRYbbBbI9dr10+3Lh3SeCspjIDtJrp2oGr1CENmmkJS6hgrP+G4WpGKBGD42CFDZyeJ8P6WWMLZglbZH/HP2x24/S4WZGX0ed6wkQvoUEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746782099; c=relaxed/simple;
-	bh=TKtExURtBBoXKlQbeQ8pWXApgKHf6ZVWdlros+uARmM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JHPHmPz/rYicdD5baglDJA1EIW56C4yW1FLI9ex1L+UhLTYKCD7OjleaMSJDz0NsilVwlS0NOp0W6dnvV9iY384pqCnMoTmlN/kQsrHN5QjnEl5u/vKGv2oHA0NZCCH9aRPA0Cmxo6BIkQhjlRr3Hcu8CSVMnFSxeMlT1pzJaRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JZWCusfr; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6BEAF1FCF5;
-	Fri,  9 May 2025 09:14:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1746782094;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Gde4hNbGxjPKI0oyqAoqLRnO/q5Opqk9gHiDD4/OSps=;
-	b=JZWCusfrlYLCg6m+fsMYQMhT81Q4zpF5XWxl2BqYHgCuIFQBJaGHVRUCUZAkjT2yjtxK7W
-	C7VXs1Bs+36nVN0RSFDXSXxSV7kwAM6kd587wS4vr0Ewsp4YwDaxQIxTvav3FVN/rZmX/g
-	LiNDK9qen7DtUFMzlil3va3+nLCtFUB6C0sYwV0SGsVR7whRebivwrskJAjNs3IzeOdQ3v
-	rPcycdaI1+cWEk94XLNqYWqpYNT7KnRdiWSW5WeZJ3yzz4YC5x2+080NWdB8PHhKV5odae
-	qqWu/aJkv6bZ+UxEZ4nMjuLvVixENisUQEsHBghd1gTJEyeqjMOKuhwEBEFtMA==
-From: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Date: Fri, 09 May 2025 11:14:45 +0200
-Subject: [PATCH v8 11/11] MAINTAINERS: Add entry on MAX7360 driver
+	s=arc-20240116; t=1746782383; c=relaxed/simple;
+	bh=7E6JixTTQlmYCGiIyla3382hYFRKaVT8ZVCS3yybov4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gcOEUTpdl9XB3EiQ+AkOm4rnOnj1LeBAxHAB9ahU4XVu5EaHOEVZAV7mIyjEJ5ULzsU7YVvCFbUY253++mppBqo1irHTiU5KfrddhMwXWJVuPTcA2WdiRCqXb6DMjtMVjEuImD/CNvQ4/sbLhF7S0dA+tooy4MxrVdYGN4l64PY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=isek1app; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5499JQXW2126646
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 9 May 2025 04:19:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746782366;
+	bh=W6/iRFYzPNHtnA5edzxBiliTVPFalD8x1Cxf9opghRw=;
+	h=From:To:CC:Subject:Date;
+	b=isek1appXOplxDelovhP2CQ+QdYp1bFsyp9Gtw/sQciNXHYsnmVNdYjbO+XVHhm0H
+	 t8idkFQnGWf4Ibx4R645/qzqqpih2paTsdMspNIjKF27XuWdvaKevBkKuxsnA2HqdY
+	 Jib51lRN2AGXdkso4xiKvzcoNQwLugKxeYtw/zwY=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5499JQ9i029335
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 9 May 2025 04:19:26 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
+ May 2025 04:19:25 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 9 May 2025 04:19:25 -0500
+Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5499JL7r070287;
+	Fri, 9 May 2025 04:19:21 -0500
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <vaishnav.a@ti.com>, <u-kumar1@ti.com>, <r-donadkar@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <jai.luthra@linux.dev>, <linux-kernel@vger.kernel.org>,
+        <y-abhilashchandra@ti.com>
+Subject: [PATCH v3 0/4] Add overlays for IMX219 and OV5640 on J722S
+Date: Fri, 9 May 2025 14:49:07 +0530
+Message-ID: <20250509091911.2442934-1-y-abhilashchandra@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250509-mdb-max7360-support-v8-11-bbe486f6bcb7@bootlin.com>
-References: <20250509-mdb-max7360-support-v8-0-bbe486f6bcb7@bootlin.com>
-In-Reply-To: <20250509-mdb-max7360-support-v8-0-bbe486f6bcb7@bootlin.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kamel Bouhara <kamel.bouhara@bootlin.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1746782082; l=1082;
- i=mathieu.dubois-briand@bootlin.com; s=20241219; h=from:subject:message-id;
- bh=TKtExURtBBoXKlQbeQ8pWXApgKHf6ZVWdlros+uARmM=;
- b=CMDG8YSlAlGrqlxkCid3SuWH7o0bAwM/CEVJqPj3z8HcWSgv4CR5lEPkoizJm+E7fE0safH4u
- gieoskHK3BbD0I2dRZ7fkanEynMO6YZL2IEHFwVOEMFIpGQ5Qgydt9Z
-X-Developer-Key: i=mathieu.dubois-briand@bootlin.com; a=ed25519;
- pk=1PVTmzPXfKvDwcPUzG0aqdGoKZJA3b9s+3DqRlm0Lww=
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvledvvdefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedthfegtedvvdehjeeiheehheeuteejleektdefheehgfefgeelhfetgedttdfhteenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgepieenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehmrghthhhivghurdguuhgsohhishdqs
- ghrihgrnhgusegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhugidqphifmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegurghkrheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhgpdhrtghpthhtohepuhhklhgvihhnvghksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrgh
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add myself as maintainer of Maxim MAX7360 driver and device-tree bindings.
+This series adds IMX219 and OV5640 overlays to enable support
+for 4 sensors on J722S. This provides a reference for a user to
+enable a different sensor on any of the ports.
 
-Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
----
- MAINTAINERS | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Test logs:
+IMX219: https://gist.github.com/Yemike-Abhilash-Chandra/88d4803378d4a3e20f1cbd3b9ada91ac
+Ov5640: https://gist.github.com/Yemike-Abhilash-Chandra/738737fa5b1b635d260d9601ae2e85aa 
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 69511c3b2b76..7e6d95ee103c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14576,6 +14576,19 @@ L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	drivers/iio/temperature/max30208.c
- 
-+MAXIM MAX7360 KEYPAD LED MFD DRIVER
-+M:	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
-+F:	Documentation/devicetree/bindings/mfd/maxim,max7360.yaml
-+F:	drivers/gpio/gpio-max7360.c
-+F:	drivers/input/keyboard/max7360-keypad.c
-+F:	drivers/input/misc/max7360-rotary.c
-+F:	drivers/mfd/max7360.c
-+F:	drivers/pinctrl/pinctrl-max7360.c
-+F:	drivers/pwm/pwm-max7360.c
-+F:	include/linux/mfd/max7360.h
-+
- MAXIM MAX77650 PMIC MFD DRIVER
- M:	Bartosz Golaszewski <brgl@bgdev.pl>
- L:	linux-kernel@vger.kernel.org
+Changelog:
+Changes in v3:
+- Add make file entries in alpha sorted order in Patch 3/4 and 4/4
+- Change vcc_3v3_exp to vsys_3v3_exp as per schematics in Patch 1/4
+- Change "model that so that" to "model mux so that" in commit message of Patch 2/4
+- Correct copyright year in tevi-OV5640 overlay in Patch 4/4
+
+v2: https://lore.kernel.org/all/20250508155134.2026300-1-y-abhilashchandra@ti.com/
+
+Changes in v2:
+- J722S EVM has the CSI2RX routed to MIPI CSI connector and to 22-pin RPi
+  camera connector through an analog mux. Initially, the analog mux was modeled
+  in the overlay in v1, But following the convention used on other platforms,
+  the analog mux has been moved to the base device tree. So that an overlay
+  can control the mux state according to connected cameras.
+- Correct the vin-supply for RPI camera connectors. To do the same add missing
+  power regulators in the device tree.
+- Mark GPIO used in the comment
+- Add reset-gpios property for tevi-OV5640 overlay
+
+v1: https://lore.kernel.org/all/20250505115700.500979-1-y-abhilashchandra@ti.com
+
+Vaishnav Achath (2):
+  arm64: dts: ti: k3-j722s-evm: Add overlay for quad IMX219
+  arm64: dts: ti: k3-j722s-evm: Add overlay for TEVI OV5640
+
+Yemike Abhilash Chandra (2):
+  arm64: dts: ti: j722s-evm: Add DT nodes for power regulators
+  arm64: dts: ti: j722s-evm: Add MUX to control CSI2RX
+
+ arch/arm64/boot/dts/ti/Makefile               |   9 +
+ ...k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtso | 329 ++++++++++++++++++
+ .../k3-j722s-evm-csi2-quad-tevi-ov5640.dtso   | 323 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts       |  36 ++
+ 4 files changed, 697 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm-csi2-quad-tevi-ov5640.dtso
 
 -- 
-2.39.5
+2.34.1
 
 
