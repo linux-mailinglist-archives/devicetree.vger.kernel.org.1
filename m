@@ -1,145 +1,159 @@
-Return-Path: <devicetree+bounces-175511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66FE6AB1137
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:52:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA3E8AB1143
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:53:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55CA2A215C9
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:52:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16E079843B7
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:52:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12422291161;
-	Fri,  9 May 2025 10:50:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="u6J4fl1U"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4631428F932;
+	Fri,  9 May 2025 10:51:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F98328F51F;
-	Fri,  9 May 2025 10:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAFCB28ECE0
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 10:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746787849; cv=none; b=nw0LZiGn+MkXbbYPgBJI+N3Xmn4MN8UniXTP/4Ai9T/e9my3GGaa5AxNsZD+dSK9l1BZbbuSGIv+xyOBi+tZ1kpTGMHPTzHLYoKXx8qfd737q8s9O97JqjxK13zpeZBNtnybP1wwO3QueQt+6VgeTYZB3+y9l6F6D6a6kPuGpgM=
+	t=1746787913; cv=none; b=PKY/3/9CyJuS+y/mLbhRP8KzZnVAdKYGOOZIuhA5K52CpLRG8sj+7uetTOmjHlUsli0Gne5EdOjySn0E8OweVhacpHI73nYi2KrHNTE01j/7enIauhmew0KhW7ycdPrn7QYYskbcOur/p3U7KYHdjW5NC1L9QPDGsYUvbt07xv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746787849; c=relaxed/simple;
-	bh=J/wcDT6qZyY5vPNBfpk3pjfrmURCBKSmkchRCipnz2U=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=L9RCEfQoak+gX++338ApGq5PmjNvl4W+KdKagi83GTN4jrQK3BiEPMTssvBRsJuLSVqB+j0hl9W62cedt9pQMaynlDZvvfgrGAvuHHOtqecotetisX9VeuLQH2BTGKDuUXG1n4liPzoqriZwJjSKOiitvRfPhqHMpv8kKXNGm/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=u6J4fl1U; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 549AH0JL001889;
-	Fri, 9 May 2025 06:50:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=RSI4p
-	duHjkvPzIQQUDZW5Kd3nXOFACdk0nUJaWx4USU=; b=u6J4fl1UKG8+QWyrMDkTa
-	ub6LPHAFiAchgriywnJAw7FB+5gukKSuS1abmwLxNkPzNvwJtc0Uf8Q+PwbBdUGp
-	imgdAZtgr98HGG7wIdRGaKDyOyeLjtYqO4IDNlPCEHPhG/lauyRqV7vyFGr6wRQE
-	w3hKDKoAyDtRk1gM8+PXnSXspNGp8XMb5hKlRjqo3AZix/pDFKg0K6TGhtA3DeAg
-	G7mUV8SjTrFjDXxW0Woe8dAGjWTHd/Cz4KIu3whVxkvMbsCPwFIyQNPpL7WUs+H8
-	LU8DZa0ZgBACmAwZ/wBLEbuFc1nLW/Olv3+ASXAVrWkn/j9hZLskWYohq80w8yIm
-	g==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 46hftdr3w3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 09 May 2025 06:50:43 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 549AogsX049072
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 9 May 2025 06:50:42 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Fri, 9 May 2025 06:50:42 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Fri, 9 May 2025 06:50:42 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Fri, 9 May 2025 06:50:42 -0400
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.148])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 549AoK1A014223;
-	Fri, 9 May 2025 06:50:37 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v5 10/10] Documetation: ABI: add sinc1 and sinc5+pf1 filter
-Date: Fri, 9 May 2025 13:50:19 +0300
-Message-ID: <20250509105019.8887-11-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250509105019.8887-1-antoniu.miclaus@analog.com>
-References: <20250509105019.8887-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1746787913; c=relaxed/simple;
+	bh=g0KgczyW2X2V0q0zRlKqpqDPt/VrfeQIylxugulKuP0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=LyBQVlNDPbGJ36PnPhb5o2nzkEwkzNeB1WjYxGX0kt59MOKMbLmCKgCqHaKbhFGSQruIl5uOZIS1DSakB+R+XpdGGxTbs2IPsVhHcY0UXHF6LdyV7xOGsGU7DeVIb0AmIqKbJe1q1V9JncEWHluG0vKZzf/xR4YXaHjlHCcy4TM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uDLKA-0002Si-2x; Fri, 09 May 2025 12:51:26 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uDLK8-001sIP-2c;
+	Fri, 09 May 2025 12:51:24 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uDLK8-0006Lv-2I;
+	Fri, 09 May 2025 12:51:24 +0200
+Message-ID: <42a5119e547685f171be6f91e476a9b595599cf9.camel@pengutronix.de>
+Subject: Re: [PATCH 5/8] PCI: rzg3s-host: Add Initial PCIe Host Driver for
+ Renesas RZ/G3S SoC
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Claudiu <claudiu.beznea@tuxon.dev>, bhelgaas@google.com, 
+ lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be,  magnus.damm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org,  saravanak@google.com
+Cc: linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, Claudiu
+ Beznea <claudiu.beznea.uj@bp.renesas.com>
+Date: Fri, 09 May 2025 12:51:24 +0200
+In-Reply-To: <20250430103236.3511989-6-claudiu.beznea.uj@bp.renesas.com>
+References: <20250430103236.3511989-1-claudiu.beznea.uj@bp.renesas.com>
+	 <20250430103236.3511989-6-claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=CP4qXQrD c=1 sm=1 tr=0 ts=681dde03 cx=c_pps
- a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
- a=dt9VzEwgFbYA:10 a=gAnH3GRIAAAA:8 a=Jj58fO0nKZ7HuPVzIAUA:9
- a=+jEqtf1s3R9VXZ0wqowq2kgwd+I=:19
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA5MDEwNCBTYWx0ZWRfXxwcASVNlwIty
- 79hUZp+9UmMPvY0lb9av97PRzCdJIVV/VBpVwY+wCElFWP/pvmTdhgsz6CFp5fobI1TLB0EaM5Q
- JltUHfV41CDc7iA54KOCQdCHWdTv2hFby/rgqm5MToQ5ZGuTFVF4qcb1cEjONtGGWcTBizN/ECW
- Px2NSJZe22q+z0lF+ECNLKinSvpx3WzBN4neEqgvWFF0DLNJDX3eU4V8tvLteXxQKcdvFYdZxEM
- XbmAk74WJXOeUiFuSVkIl10l3iCTZcXMbT51/OC84TZjsLJR5X3spTqeCYQ/5kEybZcURbOV4VS
- ezYi5TFGx+czojr8YpBDnN2EwdAH5BjRJKiL7Id+eJf5QyUfaB/iZIVcDLmC3/V9GlbCLtcRRss
- pARst0UgEMVWgAkGNLt9/N0lgqzVEOMeGLIWfZyUn9kS+4BxZbCElikodfyyWNsPlG0k3aSr
-X-Proofpoint-GUID: 0KVRNoHHTKS91nuxIGGFS9TXgbPSuWOS
-X-Proofpoint-ORIG-GUID: 0KVRNoHHTKS91nuxIGGFS9TXgbPSuWOS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-09_04,2025-05-08_04,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 impostorscore=0 mlxscore=0 mlxlogscore=947
- suspectscore=0 lowpriorityscore=0 malwarescore=0 phishscore=0 spamscore=0
- bulkscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505090104
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add sinc1 and sinc5+pf1 filter types used for ad4080 device.
+Hi Claudiu,
 
-Add these two options into the filter_type available attribute.
+On Mi, 2025-04-30 at 13:32 +0300, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>=20
+> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
+> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
+> only as a root complex, with a single-lane (x1) configuration. The
+> controller includes Type 1 configuration registers, as well as IP
+> specific registers (called AXI registers) required for various adjustment=
+s.
+>=20
+> Other Renesas RZ SoCs (e.g., RZ/G3E, RZ/V2H) share the same AXI registers
+> but have both Root Complex and Endpoint capabilities. As a result, the PC=
+Ie
+> host driver can be reused for these variants with minimal adjustments.
+>=20
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>  MAINTAINERS                              |    8 +
+>  drivers/pci/controller/Kconfig           |    7 +
+>  drivers/pci/controller/Makefile          |    1 +
+>  drivers/pci/controller/pcie-rzg3s-host.c | 1561 ++++++++++++++++++++++
+>  4 files changed, 1577 insertions(+)
+>  create mode 100644 drivers/pci/controller/pcie-rzg3s-host.c
+>=20
+[...]
+> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/contr=
+oller/pcie-rzg3s-host.c
+> new file mode 100644
+> index 000000000000..c3bce0acd57e
+> --- /dev/null
+> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
+> @@ -0,0 +1,1561 @@
+[...]
+> +static int rzg3s_pcie_resets_bulk_set(int (*action)(int num, struct rese=
+t_control_bulk_data *rstcs),
+> +				      struct reset_control **resets, u8 num_resets)
+> +{
+> +	struct reset_control_bulk_data *data __free(kfree) =3D
+> +		kcalloc(num_resets, sizeof(*data), GFP_KERNEL);
+> +
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	for (u8 i =3D 0; i < num_resets; i++)
+> +		data[i].rstc =3D resets[i];
+> +
+> +	return action(num_resets, data);
+> +}
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
- Documentation/ABI/testing/sysfs-bus-iio | 3 +++
- 1 file changed, 3 insertions(+)
+What is the purpose of this? Can't you just store struct
+reset_control_bulk_data in struct rzg3s_pcie_host and call
+reset_control_bulk_assert/deassert() directly?
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-index b8838cb92d38..2dfb74b5a990 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio
-+++ b/Documentation/ABI/testing/sysfs-bus-iio
-@@ -2275,6 +2275,8 @@ Description:
- 		Reading returns a list with the possible filter modes. Options
- 		for the attribute:
- 
-+		* "sinc1" - The digital sinc1 filter. Fast 1st
-+		  conversion time. Poor noise performance.
- 		* "sinc3" - The digital sinc3 filter. Moderate 1st
- 		  conversion time. Good noise performance.
- 		* "sinc4" - Sinc 4. Excellent noise performance. Long
-@@ -2290,6 +2292,7 @@ Description:
- 		* "sinc3+pf2" - Sinc3 + device specific Post Filter 2.
- 		* "sinc3+pf3" - Sinc3 + device specific Post Filter 3.
- 		* "sinc3+pf4" - Sinc3 + device specific Post Filter 4.
-+		* "sinc5+pf1" - Sinc5 + device specific Post Filter 1.
- 
- What:		/sys/bus/iio/devices/iio:deviceX/filter_type
- What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY-voltageZ_filter_type
--- 
-2.49.0
+> +static int
+> +rzg3s_pcie_resets_init(struct device *dev, struct reset_control ***reset=
+s,
+> +		       struct reset_control *(*action)(struct device *dev, const char =
+*id),
+> +		       const char * const *reset_names, u8 num_resets)
+> +{
+> +	*resets =3D devm_kcalloc(dev, num_resets, sizeof(struct reset_control *=
+), GFP_KERNEL);
+> +	if (!*resets)
+> +		return -ENOMEM;
+> +
+> +	for (u8 i =3D 0; i < num_resets; i++) {
+> +		(*resets)[i] =3D action(dev, reset_names[i]);
+> +		if (IS_ERR((*resets)[i]))
+> +			return PTR_ERR((*resets)[i]);
+> +	}
+> +
+> +	return 0;
+> +}
 
+Why not use devm_reset_control_bulk_get_exclusive() directly?
+
+
+regards
+Philipp
 
