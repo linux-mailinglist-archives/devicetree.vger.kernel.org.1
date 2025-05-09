@@ -1,199 +1,145 @@
-Return-Path: <devicetree+bounces-175334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BFFCAB0AD0
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:44:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02AE4AB0ADE
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:48:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 426CB168C76
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 06:44:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 731A84E720C
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 06:48:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BF3E26C386;
-	Fri,  9 May 2025 06:43:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6101826E145;
+	Fri,  9 May 2025 06:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="GWPV3u53"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IYY8x33g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2080.outbound.protection.outlook.com [40.107.247.80])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2042726B965
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 06:43:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746773028; cv=fail; b=rDX++JqgE7WmmkKvsiFGTCGeUHb6M36iyDrN04Ci3Dj7LNqQnERGQkvGBA4ywfHUXs0l3ON7WN2lAnMbiAKCghWUALvBVzX/UL5TyencvHSFve8OMYZ2pB3ZgUoIUAMaxCvjazID9T9BfIimt9EUcu18Tm5ZMpicMgzra8fCsBc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746773028; c=relaxed/simple;
-	bh=d3Ho8WpB66kdYR1qTQRN+41SeKzdId5hsn5rh9W5BPs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=lirSC/AysMtF0hrp+iSlkuU+kMLtrUbOSHxRHVDYPh584Xxx5aShpyNYUjEYnRmEXMbuCYOQcxkmS4YOFXM+dfzVZeLzCi18x8vonoNnoNFTn0A+aQorsqwBGmUs1gEsQIfeEnWI85vvg80/J24RyXQTKo6d5TMCS/C+MV7uTxY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=GWPV3u53; arc=fail smtp.client-ip=40.107.247.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Tci7cFSaNBvFvYjFCRzZESpP9VDwWDvEf1Iv4D5H0OQryjxgWIHjgeQWU26ljl5cZIU01xexpKjNsZke4jqLE1bTmRWRTPR5mqa0o3nuARMhmNM1izU15AvSy36/0MHq+1LdLcY+cGSA0f9DsZKD64pSuDc0v6gTj3cRLrdbD5eFrhLhOu9dvHN2bxuUYrVSg4rmg6njFd6kQb3mFYzE4GYedXcpfL8W+qWfrPfT93GAkZ82Mnn+sptWDXr0kOS2dpsPgIr7MfcEU2zdVRESzw45QK3YjTubMwAnknYFuyLc3S+ltxqfU5KLceqLUs9UKXtjXmIk8uqACLyTyYDWqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TKbv3WWiu8QkRuvWqYWi9ZdWE7iXDCgSxnaZVH/eY2s=;
- b=gSvh69ADBNVOzootbaa1/Sn43qX8Nz76EP3UJ/DrX0amcKckUBK92HlTXeU2wYaauUMEKHVbeHa8PICHv53IE03j4pdme8eLzczd3RFnRpd+P7+A233rb7TwdX0ljVaytK4inHXqYERJmSNa2AxrViZ8/PbXymY/fsptt55s39bgoPjsQd+cWLInXQ2cRN56uYUib0/dzcffJuVPVJlXxJ9Kp6nyvtuCFfvT0VdFB3N7z1eRvPtFAUO7P8sW77n4RuCYpm8lqgTq01SjREyHbDZYlAklbBHyI/L/EvzCMtav84hOVdnksaVXoYcFs3UuWMViCV3cc5FlQs3rP//3IQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TKbv3WWiu8QkRuvWqYWi9ZdWE7iXDCgSxnaZVH/eY2s=;
- b=GWPV3u53MEAlTGzqMwbqNlZfAygJKJ0disjWczE9zzhBnwkGDm2JHLZTirJOeUS8nvxnm5mxa3k7gLasmCTFmeih38oyFIEVH2ij3xcfC9H+SzC0vhKf5GFTis1q5+RETUM6vQFn51ZIvvhewZfaOUL20ttZKw748IS1J1o3sRbc7WaSUA4yfhxr02XNlHMJ1cg4wQmX9RrLcNjZBI/1D4WUMybbAEFRdN6CsQsApk9vRuhoYg3zOaBxjL65pQgtVIYopbHx47SVMQURYYNFYktGCFVMaW01wL4BNbcl2leO1mJ+MNQlpwaIshUpcrgIYMxgBg79UvVB5P+c9cqorw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by AM8PR04MB7763.eurprd04.prod.outlook.com (2603:10a6:20b:246::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.23; Fri, 9 May
- 2025 06:43:42 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.8722.021; Fri, 9 May 2025
- 06:43:42 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: krzk@kernel.org,
-	myungjoo.ham@samsung.com,
-	cw00.choi@samsung.com,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	gregkh@linuxfoundation.org
-Cc: swboyd@chromium.org,
-	heikki.krogerus@linux.intel.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	jun.li@nxp.com
-Subject: [PATCH v3 4/4] extcon: ptn5150: Support USB role switch via connector fwnode
-Date: Fri,  9 May 2025 14:45:26 +0800
-Message-Id: <20250509064526.3767729-4-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250509064526.3767729-1-xu.yang_2@nxp.com>
-References: <20250509064526.3767729-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2P153CA0010.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:140::13) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E45E126D4E7;
+	Fri,  9 May 2025 06:48:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746773288; cv=none; b=sj2slf7kHSbgA+yXp+BTELh7GjmX30Xle+D7SeI8z3XcRF+h28JjRbhmPJHW7HW1p3vr6RUdbyr5P+x2zN7UpQCy5ek3Ex7CxnV0UIKPuX5+MfWchqTeyui5kdhpOC3og9+hNjnCTEEJZAbD4iRG2A9Jc2ncwEkahQ0t9qGA0Ig=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746773288; c=relaxed/simple;
+	bh=ESJOOpRDytjC3x/YAXpHHqQZnAge3a/YGaZJeN2c9PE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dWdIAEyWJsvh1YhSzEPUcia3yBx2K2qiKVoVjKLGw0ulF4qko20Q4ER4xyikXBJ2YMjYzxoop52/i2y7mIyd0GvrJk0zPmlYaaFWgodNvoDid7lgQVIouD6oCG28zqXm4DvALUwrqcC2E3qtWNRybYFlB6aY5N4otbsZM4gFG5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IYY8x33g; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5496lrAE1327694
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 9 May 2025 01:47:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746773273;
+	bh=eK58TLlJnYs4DpvxbqSmQLRIluJEvRYUiOzTtDtI3+c=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=IYY8x33gKiwejVo0tvlfS8U5sVeupJ9RbHkt+/GPceStVRaZ93dV8Grw0nF+ZRC2+
+	 Cn942mk1WhviXOHInDyPkrUnVVSBieUosnHfgxLinhlU7WDoUcvMdgK3ite0zaiRtE
+	 I8/514C+CT/sspGPoW6+oMt95CgnxXmUKADnCQI0=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5496lrrQ014593
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 9 May 2025 01:47:53 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
+ May 2025 01:47:53 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 9 May 2025 01:47:53 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5496lrlj014571;
+	Fri, 9 May 2025 01:47:53 -0500
+Date: Fri, 9 May 2025 01:47:53 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am625-sk: Add power/temperature
+ sensors
+Message-ID: <20250509064753.4ntxyozwlebnskod@compound>
+References: <20250505-am625-sk-sensors-v1-1-688fb928b390@pengutronix.de>
+ <20250507120104.4mhuaabe5auukarn@banter>
+ <aB2hdA8mfKGlk8d8@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|AM8PR04MB7763:EE_
-X-MS-Office365-Filtering-Correlation-Id: a86f8bfc-ec99-4cd7-643e-08dd8ec4d6c2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|1800799024|7416014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?M9l9B9M3UtbjVuxvD8AhkLA8TixTJJlPg2azp37hA+TOhns1ZcCRubd/Y/sP?=
- =?us-ascii?Q?jnvjkPKnFxgXDxq30zkb3yet20UORcMRQ3ftg0EzAMUjSYWoKxTpWuNmYirH?=
- =?us-ascii?Q?bSR+mjeBV8iOSmyMRXZh20l91/3ipYDpQrCtWXTIdQH4kZdPcwHKvFFdoszg?=
- =?us-ascii?Q?zER4xYpaji9YnWbuCUyTTtOZEaoAv6YuPTODW+CE3j3Orud28zy5ij/Y8Wrm?=
- =?us-ascii?Q?hEKPV7dxt8591FvaxA6HQWttBAYryjVWLqFz58Jc0NYh+Zwv3Sv5WM9B2YkC?=
- =?us-ascii?Q?HglbTqaaFpM7whYhSY+A/B25Eoci/FhBgHkwQLcrCaMPM0jymmM/uk3dBJqA?=
- =?us-ascii?Q?EVZp6BEC3+wwlrttvEC6KFCxUcxMRlxPjz0vsqVbepHV+QLu33guWApBQSWn?=
- =?us-ascii?Q?r0T/DtqEp0qxTpDRVA1JihFAkqW9OGtvAEmTPhPrY5rXoCzvIxOPMAeLa/DJ?=
- =?us-ascii?Q?Uh9WKHQhzbsHELPieIslwM1WiEO+qiYfSttZxAgbSdZpgt4GcxUvFNNF1oG6?=
- =?us-ascii?Q?hyQdqPnP8Tu7YJDkkIC9TA/4o1LbD6uHOVQ1WdioeKixsPsSIzW7udQxnGp4?=
- =?us-ascii?Q?c594WOwhrVZN3yHAzV4MiwETlKk3rDnZtwDINK5kbT6a3mmLt4+n+JBJyAST?=
- =?us-ascii?Q?Nk0GOINWdskCy1glvitgCOk7AL2jYXNd4t0dzNy0FKtm7TpMVoWy7sGNIezy?=
- =?us-ascii?Q?Pld4fIEYz+W37FCFpXirC5EW7R0jh03QQdj6QxJSMA9/cJkqVkkyIKpCUr7o?=
- =?us-ascii?Q?SBqCAoRwi59co+JCSKEZppYM2n8ywbbh1jNO/M06s/ia0tQzKiCAw9jwxueR?=
- =?us-ascii?Q?TzGXi7xu8giEL/xfHSnLZ5Pp0DTCcBjosXll0TnEyuI7wuiuoFAtgzApyaPc?=
- =?us-ascii?Q?8Su4ZJQm6CWBrgKcfIGq5Gigxn51mjS4UdJuqLxJ8SJkw5rX/Ubq4jK1cwcV?=
- =?us-ascii?Q?StKhmTWIGHcW1uWGiTjnYYoTTp7hShpYvgdmKFQQWcsjHJpjHDtY/+0lvPxS?=
- =?us-ascii?Q?0bgLtC73pG09PTuStfW6aUNV1G2m6J8Lyu6OGwKwlrTdkeSD2NgMR9AYoVv4?=
- =?us-ascii?Q?L4fhWPy1VScwtk3E//LdWFr1uBzaq7KUfyFCzCaBDR9BjCDLUGdBBbxH+3Eq?=
- =?us-ascii?Q?xOCy70P10H/2b2uFFOVivdP2MDTThYpQ+ZBvkywAza6aARXRaoOCnmAQOw6V?=
- =?us-ascii?Q?UOFgmfzF2LxXuMcOxFBe1W22N6xRTrO4dGeZvEbyhVo0+pifY0Ry1nBJoc12?=
- =?us-ascii?Q?MJUnsUdExc7HHQfN2MrTNo8iCUi3Hrf4gjwGMN9R0W/2dXGHtZ180h71EQxr?=
- =?us-ascii?Q?AUwYlI2P9nHvKn0jLFaUpUgOY4szHVQno+wr7JquHUKOedR2NfCen08xDlCU?=
- =?us-ascii?Q?Q+dta3kJA45rSbQNqrK/QuXR/P0mQ1aJw95OVSLfeiwAi13IcmfQ3EEalPLa?=
- =?us-ascii?Q?YQI6V3vrat2g/n/EjjV+NjSooAymXEjhlA1jCLBqsyT+sVOa6pBMLw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(1800799024)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?j5LRS9IXxG58ZbbUdUz4sfle9OHv+6+NzAuB9zxfZ7mX3rFAa01YHqeBNsT6?=
- =?us-ascii?Q?Oqzn6suHiMhVXhAVUvktFxT/4P/F+gvJugfLT12ioVwyPAloq3uO5jANw+p4?=
- =?us-ascii?Q?lYwNkoif54tAhY8cNrddXHpQlqejyn9wrju2Qg6oxHeUL5zhX5a5TMZggl93?=
- =?us-ascii?Q?lYrdK0sezyvQrqNS6zgrcMCSRwOWHEw6jE4wqBa5BDrFofl/qyvvk51mdtFE?=
- =?us-ascii?Q?R+Axtsrz32JE7A5ZWKjVQdwL6DXSF0PHqeBUx9q848zq6aKNGwxcY9QTn0f9?=
- =?us-ascii?Q?yTedjsWBL3tEJfFqpLZPRNRgBXCjNG0+1NAWeGJD8tkPgXT8zodwH9v9gkQN?=
- =?us-ascii?Q?ivcsU4M0cM3S0B5d04qDRdF6NBJLW1tzQMovlx347mRsuPZrGZr13h7zeSNN?=
- =?us-ascii?Q?1niCGTuhnvD1EFzbkoTATBSHZRPlelAmit95fSYOy8i60wm+HLTA6PWphTjy?=
- =?us-ascii?Q?9xyQq2rnROpEFoVyi/MWPWdCdtPH55Yk3q6/Q3VhxdQHg+EKpRyVsJmCKd4+?=
- =?us-ascii?Q?fPoE7Khw8maCvgEIX96WY05VZk8duwNo/1yriQy2GvSFQZHft7h+FXTk70Gh?=
- =?us-ascii?Q?iHH7nJSakS1k3rCZvp+OCHWnPodcoM1Cw6tckA25cqCrIHxgyCTrqSlJK+ge?=
- =?us-ascii?Q?zCkRHQzgrYGKfLPTeiDPPH4+c6YWYib4jddhgUZ1w1sFp8ajJvXiGUjjpZOZ?=
- =?us-ascii?Q?CrHAq4Jq4KW9jLwt+fjH0qQhYjGtJ0QaKXU8pI8b93kAdZLd2IJB8JDFFIhk?=
- =?us-ascii?Q?DHrTfF3oBXDMSaO1rpLu759HrDPH1fHAN8GlJiLSa9xVsXpV+3qV8WHDGF2i?=
- =?us-ascii?Q?zE2WbLB4dgnAxD/JJl0cUsSuTKsQGrmw0R5BC8Qy29fAbyN32IYS0JLmdPxo?=
- =?us-ascii?Q?mWdIU1SSlnBKrjqYt5tiTj8tq23hptzQVw/vD6LGEOdWQGX0SN19B0hSG7gd?=
- =?us-ascii?Q?U3rf4ersEJRhGbyC3fzfgDI/i8Ht0mX2frOgK7Jev7CvKYBEhxtn/DoTQOZ3?=
- =?us-ascii?Q?OjTarISaijldW0GyN1QP888wsSbVfoSQfdvU5LB48WlE0lu+abL9aml5ANxY?=
- =?us-ascii?Q?o4KobTl6vsOWc3NP61N4OWw8eIKDPbEXbAiEZ6YU1e5g+sTEfh4vRD3r7Eoa?=
- =?us-ascii?Q?dupKqsrSrpPDtI/TP6gAP3ZGOGezjNkIxsJ9a4N4zCKJNspyVmy+/20NP56K?=
- =?us-ascii?Q?1w18dkaN9sVK4vIvoX7n6sGd21ZzjFpXd7SQp2jHH8LaG5mKOlTdPxHdFmq4?=
- =?us-ascii?Q?PMkiLhFH7+GdfJimvZhzpYKgzcGaukURO0hiaPhm9MuiQNUVy0Ry0o7zDwPK?=
- =?us-ascii?Q?Q6ZrQjfnkH5egaDYVxA+aps2jLtn00T8RykwrlgH8w4lVbeuI44NpevZOumY?=
- =?us-ascii?Q?zDxsEKMISlYHhR9DKtiqOv7LmbMNIF7NX741O2Rb/G6pyci5udGRxyrnCB0P?=
- =?us-ascii?Q?9Qd4LEtfNEwDUh/cSM8fnx2CYwNQXjfWr8ZkmDQbJj0gfGMyDuD8hklIoqd0?=
- =?us-ascii?Q?2jkcOC8Lp4Y4/aHk7lFEYIAKWYjzIbfsASCyEOYL5BuJY8e3Ut3k952faR31?=
- =?us-ascii?Q?+zsve91rqV+qJeIpzmqy4lent2i6zHbMyKTscnO0?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a86f8bfc-ec99-4cd7-643e-08dd8ec4d6c2
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2025 06:43:42.7328
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: En7dC1ZyeSDHzNQH35efCioIswg/s06r7zLoRCXB9ZdZYGaOWe6dfTSJh1AoDW8E/owz2MlEv67uz4JfOwnmfA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7763
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <aB2hdA8mfKGlk8d8@pengutronix.de>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Since the PTN5150 is a Type-C chip, it's common to describe related
-properties under the connector node. To align with this, the port
-node will be located under the connector node in the future.
+On 08:32-20250509, Sascha Hauer wrote:
+> Hi Nishanth,
+> 
+> On Wed, May 07, 2025 at 07:01:04AM -0500, Nishanth Menon wrote:
+> > On 15:24-20250505, Sascha Hauer wrote:
+> > > The AM625-SK has six power sensors and two temperature sensors connected
+> > > to I2C. Add them to the device tree.
+> > > 
+> > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > > ---
+> > > The AM625-SK has six power sensors and two temperature sensors connected
+> > > to I2C. Add them to the device tree.
+> > 
+> > Sascha,
+> > 
+> > I suggest making this as overlay. The reason is as follows: AM625-SK
+> > among other TI evms do have automated power measurement capability from
+> > XDS110 (accessible via USB port for jtag - appears as a rudimentary
+> > menu option). The way this works is that it uses TM4C1294NCPDT to use
+> > I2C commands to control the INA226/231 depending on the evm.
+> > 
+> > This firmware should be flashed by default on production boards (if
+> > not, starting up CCS[1], autodetects older firmware and updates - at
+> > least to my understanding) - by the way, this firmware also does test
+> > automation, such as boot mode switch control, reset control etc.
+> > 
+> > This is the primary framework meant to be used by test automation and
+> > indeed it is the default inside TI.
+> > 
+> > Challenge here is this: if we make this default in Linux, the test
+> > automation system configures the INA226/231 in a different sampling
+> > mode depending on usecase etc Vs what Linux does (even though the
+> > shunt and the bus voltage for a given INA is the same). And just like
+> > Linux, the firmware power measurement logic has changed over the
+> > years.
+> > 
+> > Anyways, while I know that the SoC and TM4C can both handle
+> > multi-master, the challenge is the same INA controlled and
+> > mix-configured by two masters (and there is no synchronization between
+> > the two).
+> > 
+> > To avoid this entire conflict and headache, I suggest adding it as
+> > overlay that can be applied depending on the preference of measurement
+> > desired.
+> 
+> Thanks for this explanation. I'll go for the overlay then.
 
-To support this layout, retrieve the USB role switch using the
-connector's fwnode. For compatibility with existing device trees,
-keep the usb_role_switch_get() function.
+Thanks. do check if the default defconfig needs to be updated as well -
+i didn't get a chance to cross verify - will be good to ensure deferred
+devices are 0. if something to be enabled, do enable them as modules,
+i'd gladly pull it in.
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+just a headsup - i plan on closing the window today and pick last set of
+patches and tag on monday. a bit tight given the window currently..
 
----
-Changes in v3:
- - no changes
-Changes in v2:
- - improve commit message
----
- drivers/extcon/extcon-ptn5150.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/extcon/extcon-ptn5150.c b/drivers/extcon/extcon-ptn5150.c
-index 768428d306ce..f33f80e103c2 100644
---- a/drivers/extcon/extcon-ptn5150.c
-+++ b/drivers/extcon/extcon-ptn5150.c
-@@ -352,6 +352,8 @@ static int ptn5150_i2c_probe(struct i2c_client *i2c)
- 	}
- 
- 	info->role_sw = usb_role_switch_get(info->dev);
-+	if (!info->role_sw && connector)
-+		info->role_sw = fwnode_usb_role_switch_get(connector);
- 	if (IS_ERR(info->role_sw))
- 		return dev_err_probe(info->dev, PTR_ERR(info->role_sw),
- 				     "failed to get role switch\n");
 -- 
-2.34.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
