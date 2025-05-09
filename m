@@ -1,743 +1,1518 @@
-Return-Path: <devicetree+bounces-175433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD569AB0E25
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:04:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC359AB0E29
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:05:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2067D177868
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:04:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 739F03A39CE
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604E22749E8;
-	Fri,  9 May 2025 09:04:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 873DC2749EC;
+	Fri,  9 May 2025 09:04:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="YyX5vuk8";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="azGe7LnB"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BfvpxRAP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E047014F98;
-	Fri,  9 May 2025 09:04:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746781451; cv=fail; b=uhvyltrT52cXtZ+Q52VEQh+mNkOqDeTFDRQNiho0Dh9mcO/GvlSGR7uHsET3s0fB37Y18GeCvlz+Yjcua9/sCCVl5jTGK0A7sC4PExBl/itbXBE11+mChafsYI0Zt9tOgA9UVWW1weCDCgPPy6E5ZVoBTZZXYLBgvkTf6qrmXHY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746781451; c=relaxed/simple;
-	bh=mgMjtNEvk11DPyqPcsl0oneDIbexx4J+l6C0HMtWcGw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=hVG/OBrndThFW3QZGjwxnA5v5uSzJUrwwFu9tHoOk8KoPlX8isaVOpCDGQLVF1Ck5loPOxvKFVmL9am2UWWlgU8wBMON1OfHhjbiZA8mIrUe4xZXYOrxuPe/0gjm40WN9mYueQ5njq5rYWfYC393enzv6D80HR9mIqoF/3qbgZo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=YyX5vuk8; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=azGe7LnB; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 888716162cb411f0813e4fe1310efc19-20250509
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=mgMjtNEvk11DPyqPcsl0oneDIbexx4J+l6C0HMtWcGw=;
-	b=YyX5vuk8Mf1ICRTRdo3BPNF+X4flmUXtXc+nbpam8C4Bq2wBwcgVvr8zv1/u1+7vr2L6kME9yKloRQcaibLfA1oZsmVaWCLm4PUB12RtdoDxi+QfStVNm16Y/lVdWx8ozbnDQazOJCq0l+yos0+MWgHWYeBxaN/Jh689yZZh7oI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:3a7d845b-4d35-4c43-b665-3bd7592c3d12,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:0ef645f,CLOUDID:382d87b7-5e6b-4d0f-a080-a5e9cb36bea6,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111,TC:nil,Conte
-	nt:0|50,EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,
-	OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 888716162cb411f0813e4fe1310efc19-20250509
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
-	(envelope-from <sirius.wang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1607285932; Fri, 09 May 2025 17:03:54 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Fri, 9 May 2025 17:03:52 +0800
-Received: from SEYPR02CU001.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Fri, 9 May 2025 17:03:52 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QzaX72zWPRlm6oZmVzsQOJ91pWP3QJUFINK0XkUEoEB4yNxc/ttx7Q0wkF1sExrUJAeVbKX2DW0Mcra8kUf9OHT7Cg8l8daTVy+KKNUrozD7W3Lm7kiWdwDxAsTDFp/2rtKs7gSvXeRo0uTOYWLTurfHeBFphPGTpOOymGL3LhwltvSHELjmEKH/WuGsVj/mSrcLyaUs6IV/kOsVE0HSmykjAczi32GpV3VhREVcrGzxTowu7D+sPZRkHdSbyF3AeJAzIk1IYOX0e0IddbIHOp2Drvt9y2/vU7Z0Gt5Q9sO6HCgfYbYIopT5/RG0LWus030DPQNZMmJsHMT+sjnz6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mgMjtNEvk11DPyqPcsl0oneDIbexx4J+l6C0HMtWcGw=;
- b=xz5rNXqDbtqh6Lw/m3SiFNqpVA/7xLv3qHPQ7uFL4NBPjGbb7cIC7zKrUwPqAJLEYw1PJbVkEk6Aop3it5xuhPBVGTtlTX1f7zdov7Vp8HJnfithGsSellzd3xTaApQHrXgmLZJLySgc+rw7/I/zhFEyczlqjN5CFs1CqqT+hoOuUcJj4qR6iGem4ULy9HBSXzWa2yMg+U8O9a9dcRX1B372qFv/ZxDTyeQpH4/ZPCg6ng5zRfD8LLkTvUKTdYixoOAAOrM8YFPqpBiCKYNbqpDx0K74kUcvRDcBZWwZ3W4M2E1sSpER4ctqGS95nquHtJ9cz5Nh5JfTV9iXG8/quQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mgMjtNEvk11DPyqPcsl0oneDIbexx4J+l6C0HMtWcGw=;
- b=azGe7LnBinslLFuzCSyeBBLiO3p1bvza0qcNuVcz+GCXREi7ss08jFGo8cc8tjjALA430TtBavefI/sAkk4QvOhNFY8TV9+f3b5Y1dB1s8k/RWqt6Sv83ms610qTmnYyX8Pg20VqVIAlex+w4S94LvCkEFt6vxGqRh2uMldhhnc=
-Received: from TYZPR03MB6493.apcprd03.prod.outlook.com (2603:1096:400:1ca::11)
- by TY1PPF5E6276BA7.apcprd03.prod.outlook.com (2603:1096:408::a59) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.21; Fri, 9 May
- 2025 09:03:50 +0000
-Received: from TYZPR03MB6493.apcprd03.prod.outlook.com
- ([fe80::a3e2:fc8c:cc7b:4e12]) by TYZPR03MB6493.apcprd03.prod.outlook.com
- ([fe80::a3e2:fc8c:cc7b:4e12%4]) with mapi id 15.20.8722.018; Fri, 9 May 2025
- 09:03:49 +0000
-From: =?utf-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>
-To: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>, "Sean
- Wang" <Sean.Wang@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-CC: "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "wenst@chromium.org" <wenst@chromium.org>,
-	=?utf-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: mt8189: Add mt8189 dts evaluation
- board and Mafefile
-Thread-Topic: [PATCH v2 3/3] arm64: dts: mt8189: Add mt8189 dts evaluation
- board and Mafefile
-Thread-Index: AQHbv+OV7L5hoQCEpUG/FIym9qb8K7PIYvkAgAGfzAA=
-Date: Fri, 9 May 2025 09:03:49 +0000
-Message-ID: <73c8b326d961ca6a00422b45454890a47e4c6d7b.camel@mediatek.com>
-References: <20250508063546.289115-1-sirius.wang@mediatek.com>
-	 <20250508063546.289115-4-sirius.wang@mediatek.com>
-	 <7abf1685-0dee-4ef4-8e8c-bc01509ed3e3@collabora.com>
-In-Reply-To: <7abf1685-0dee-4ef4-8e8c-bc01509ed3e3@collabora.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB6493:EE_|TY1PPF5E6276BA7:EE_
-x-ms-office365-filtering-correlation-id: cca0377e-2e3c-4c87-bb09-08dd8ed869ca
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?RjhMZTRRT3J1RXRycDlUM04veEhxWll3R0l1cTY2UWNRM1VsV1F5TElBRi9H?=
- =?utf-8?B?WnFwNzJoc1F1UmlTVkg5Qldna285M3hBOXlRZVZ5M3J0d2tTWFBhUUZTQ1pE?=
- =?utf-8?B?cWgrdlpsYkJPVmpFK2QvUVBMWXNUVU1TdU5uaktrZVp2QlFwRFRNcndhWExI?=
- =?utf-8?B?QlFDU2ZCK3VuOWFSRjhOVGtsOWFkWFlERy94Tk5hL3hJUldGZlFtTjdXYXBR?=
- =?utf-8?B?cG9PV3pRcDdIMU8ySkoybC9xejJRYWVHV3AwL3RIWWY4VDRwdHhmb3FqYWdT?=
- =?utf-8?B?Vm0xdjRSVXJpZjR0Yk5KS2RmbVY4WFZkblhpS014ZHhDYktEVjFmMzh2SjFl?=
- =?utf-8?B?dDVUMHZhYWZKaXF2dnlGS2IrV3dhU3piVGVvcnhYUEJtaFRadUM5Q3R3SlF1?=
- =?utf-8?B?ZlNya25POG1KdjlEMkxreXJESk5QdGFDMHFqcEpUSTEvY1NmSzlHYnJES0R0?=
- =?utf-8?B?bTdXMGVtMFI0cGVuTDRZNlZBY2EvQWN1N3pFZDFqSXduTEgxZ3gyeXNmMDhv?=
- =?utf-8?B?TnRjNmRuS3BJZlRFbVB5aFFUcStxUlRhc2E0bnhsclFTUUwvUnFkQjJkbFlL?=
- =?utf-8?B?RW5rK3ZMbEg0amp5UDIyMkhodFBuYy9UK29YZ2FOUkhGMDFmNXJDald0Q0dT?=
- =?utf-8?B?UUtORmpkelFzbzd2amowSjMxakZtSlRCV0kxUWh3NzRLUyt0bEE5aGtzVGgz?=
- =?utf-8?B?M1RLYWxFdzhNUkJMVHZUaEFpQlVQdExGWmpxaDhoaCt1YkR3dDVlbTBxUk1F?=
- =?utf-8?B?eHVXTW55ZjV3VGV6WVNQREJCa0Qvc0RZK00rT2x4Wjg0WEJ0eFdSclBmUC9h?=
- =?utf-8?B?VEpLSkpWVDc3OUgrRGhjUmFzRlNhem1ZNGcvWlRZNk9mSXByMmo0MHZlUk92?=
- =?utf-8?B?aDZwY1lrRm5jaEFRT0k3b1NrTEtGOXFYTlltNHpiSmdFcGRaU283MExDVmpt?=
- =?utf-8?B?Qmd1anB3dllJNjJIVnV4YkFtWER4Z3d6WHdqcjJ5NllwdkhVcGxQbTMyaXFv?=
- =?utf-8?B?elUzL0dpYmljcnRBU29NeUVpbGxMZlI4U1BFVGNtQkxERzhMS3UvekVFdWg5?=
- =?utf-8?B?NjlSL0VSMjYrZ2VWK3JGcGdLVGR4R0VmSjlLS2F4aVlXaksyTFliQjBwbGhy?=
- =?utf-8?B?MEI0M1pRQ3NuNWVISWkycUFpdE1HTmZRc1dNakNacFBoelJzMVM4clFIdUIw?=
- =?utf-8?B?clZzbHFDbGtvQWNJMVkwRDhtMWl5Y0xNR21iVVV4OGdjbTl0Y2h3VnZCWW5H?=
- =?utf-8?B?MDlKSm1BV3Q2bUp0d3IvTisva2FvVjJSVFYyWTVSNmM1U21TVHgydVpIQ0FZ?=
- =?utf-8?B?YnlBdnlIRTdNRkZzN3JLa0E3amVTZGJxNjdpUzRMeThxVnRzaERIT2RCTXJr?=
- =?utf-8?B?WmVFKzRLU2pRaDlKOWtXT0s2SnFEQjlWeGx5d0dOd2F0ZUs0WW1YdmhqVE5C?=
- =?utf-8?B?ckJYU2haVi9IUmgxMUY4SnBOdFpIcFkyazRMTzFNYSsrUk5pbmc3Q2t3L3pl?=
- =?utf-8?B?WnZuTXRJUDcrUmNvd1BUWTJSY1g1bExOWHozSy9sQkw2Y0hQVm9ESkdQekM2?=
- =?utf-8?B?OExYN1F6cXp1bVJrak4vRG9sUDBSQW1ZWThBUXNhTmV0TVlxeXk1YXA1aG1T?=
- =?utf-8?B?bFhwNTJqdnRwN1BLSlYyV2ZVWWJLZ3dFbzZZS2RUNys5ZmIzRlR6VDZ2Z0xV?=
- =?utf-8?B?MG1KMHlCK0RXYjJ4ZXF6S3Z4MWMvK2J3N043clBqcGJVY0JsU2txcVZhRW52?=
- =?utf-8?B?MFVBeWk5bGRFTWd0dEVkeDl4dmVHb3ZxVVdWRHNZNlV2bUFra1VCWnJJdVpN?=
- =?utf-8?B?eTdlaEtQTk5oU0tITGhzaTA0ZWZ0NGc3M3Q2aFlTdjk4S1B0TUFSQnNrSkpS?=
- =?utf-8?B?QnkrYXZ6T1lOY09MV2RlaEpxNkVmWVJDall2ZGFweE44VkZreDEvN1cwYmwx?=
- =?utf-8?B?anhFMzI5UlRxdUJMd01qRTV5ejBURklZV05MQ3RTcGRKdmlXVUxONWFIOGZC?=
- =?utf-8?B?d2RvR1Q0WWpnPT0=?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6493.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UHhJYUFPVUJVNnM2bEFRb01sWUpHVzdGOUNVR0NHWXdnbmZYR0NhRTI4ODM5?=
- =?utf-8?B?elRPQUZtSXB5NzNiTDBVN1RmME1xYWFaUks3N1UzOTQ3VDVDU08vUXhYODEv?=
- =?utf-8?B?VXNkdzFwdENHZDR1UmlXZG10VUljZllFRldsY1U2MEEyWTJYSysyVStCVEFq?=
- =?utf-8?B?OGxkNWg3V05wQnJnSkI2T2ljQXA2UGFDY0JsSDNEMER4SDQzczBmcWppNnIx?=
- =?utf-8?B?QVVBczBpZzVxTWd6V2NDazlneW5jY29icU9mdGtXekpPOEhiUEJnWmpGMFdC?=
- =?utf-8?B?SU5UcWJyWENuOTA3czlRUlhJY3ZxMDhkMzVrTENDN1ZTaklYbVRhekxhSXhv?=
- =?utf-8?B?dGtJRTlzY0xPSEJaRkYrSEdVTnVMNW92L2tZZ0dBUnRyVjh0amhkL3hLUjhu?=
- =?utf-8?B?U2F4M2NTSnd3YkpCT29WQVhGZ2w4ZHpKRW1OWWxhbVRiZXhaN0FiQk9QUTR1?=
- =?utf-8?B?UVpPRkp2cTcvTzRESEltRHJiKzRMUWRPWkpyL2xsTjc2UXFVWUJQL2JZVEx0?=
- =?utf-8?B?R3JldHJVdmdkSWNtYjg4TkxXSE9wcFRHMWtFb084NFZIV2xuRTlkL2R2UWNR?=
- =?utf-8?B?RjVuV1pxSWR5eUUzRis2UE5Kb09uMm1Mc1JvR0VLM1kvRXFCcXNEQ3FxYzFq?=
- =?utf-8?B?MGxDM1VrTk41QWJlMkJYTGx6eDhZVjFOcWYrRys5UXh6Zm1mcVJPSTE2MjFo?=
- =?utf-8?B?d0IxZ0Yybm02czZaUU9QSVowU3ZiQjVVVy9Td3ZtbStodHN1a3dTdFRnRkVq?=
- =?utf-8?B?aEhWKzlteHNHYy9ocUtkOUxVNVc0aUxpZVh3WEREano5bWlKVWtkZ0VZRXN0?=
- =?utf-8?B?T0tHRS9scHNNSlJsdVQ1bGFaYlQ3cjBkT2tHTzk1V3VOVS9GNTE4b1hiTFF6?=
- =?utf-8?B?THJ6SGgxdEx3ZC9PYWx1c2lmRE1qT0lNYU1CaHhnSUhlc1hJUmsrVENQTnJo?=
- =?utf-8?B?dlU1a2lNckQ1Z2VIbHQwQUNvUk1UV09MUVVDV3hBbDVpbmlwOHhrNGFXZGtV?=
- =?utf-8?B?S1llVHJnUXhKd0tYZVQ3bG5Jcm85azEzeDdVMzlVK2xQc3pDWHZJQXRoZ3FM?=
- =?utf-8?B?Yko4UUFGd1RxQjNTYlFISnBBT25uYnNTekc1RXR6T1Y4cDBScHJ0R01MeEMv?=
- =?utf-8?B?ejgxbHh5NDFTRkFTckJPUWxoWm92Uyt1bUlESTEvQkNHclJZUXBwNlkzZ1JQ?=
- =?utf-8?B?YXNINWFBTmYxUmMxbXVtMWVIaEhyWklocmYzWkhzVWNxQ3UrZGJwc0YxMkFt?=
- =?utf-8?B?cS9yOFkxZ3F0UXQxWWh1QUZrYUk5Q3pxSFpiL2p0S3pyMEc1TWFiaFhqZ21D?=
- =?utf-8?B?SUZ5VGhGN095bXJWQkhpUFJvTVJ3clIrL3FUNk9DeGJNeTJXTjNsZzNkbUlZ?=
- =?utf-8?B?ZWROREJhTEkzWW1Jd2RiNlJYVVU3V2VMTjhzM05PaXk3TXBYcmgvejlQR3dK?=
- =?utf-8?B?VU5OTUo2OXhCOGJYMGJiZE0xZG0ycFhmalZsTmU4WmFtR00xaXFJMHpkblcz?=
- =?utf-8?B?OHByUWZXNENORTRaV3dNVWpTRzNubiswN04wY0R6bjZIRVFya0FJTlBPbHB5?=
- =?utf-8?B?Y2dST0JiVTBqLzFTWUxFdVl4VXVQQTlzaHFUdzZ2MG0xSVJOT3VmeHJYd3JH?=
- =?utf-8?B?VC9NOXBSVloxbm10aGhscUdrR1JKcndZUG9tUmVmcTQwbUhlVURVRTEyeHJ2?=
- =?utf-8?B?QTN6YmxpUFpISHpveTdiMHZseHAzQ3Q3U0MrRSs2LzE4a011cmZ4bGpEQXpJ?=
- =?utf-8?B?Zk9UNXFRWVlFQWFQc2xBRjdrUnhmS21ma1B5RW1zOEdKVVNkNnhzcHErUHdm?=
- =?utf-8?B?aGxFZ08vM0xycUI0S0VXa0ZoRUZUcGl5azRUYXlsbTl0M3dIY0FLRkZUdXVv?=
- =?utf-8?B?Y1B1YlZiTUQyNTk1RE1PV3pGQ2JnWjlac211UExXZmxrdHJEQm1XK0s1VVV4?=
- =?utf-8?B?TWhSaXRDdzhycXVUTWJOd2pOVnpLREFwc294ZG5CdHVmdmpYY2dyczFlTERF?=
- =?utf-8?B?Y1NWcGlIclI0SEpmdEZWRGx3Zm4yOUE2bHVwYWt2ZHdBanFXd2ZCRlVsQklJ?=
- =?utf-8?B?MSs3aFc3MHhRNmVjQld2cnE3NWp2MWpNK2pIN0szQU9XWmtFTkxMVW5zWHd3?=
- =?utf-8?B?RE9HWWVqWjE3VklEVHRkS2pYTHRNcGlxMk9xaUlEZnB4aEFFdWEyVTJYRnUr?=
- =?utf-8?B?Tmc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <051B76A1EF732F489B47B5C9D09EA649@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AC5D14F98;
+	Fri,  9 May 2025 09:04:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746781499; cv=none; b=RY2CWqkdYA46ZqWq0V7ITOAby+7ngEqtByHuiKTlh21gXGAJ6TARdSrKDlGFnvjltlytM6vVhOdirsM5JE9ZJbokpZjK56k7NQeC31KLSfM/oxu9tCem0UyYaL4GreKEJYWQ2oMyID8pEDWuva6DXwpplUIot3uKR4DUT6CAS8o=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746781499; c=relaxed/simple;
+	bh=JGd5i72ThlrogtHCEaGOxq42lE1oGvY9fSE9VgyDGnM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IwdyO9e382cKHJ87bXheNqDjJpXoy4xLg0+KVX/6Grvnc4U8VWr4+Ix4jVvRYle/ZxwnyfogcGOGGqphqfQXFxCyDQNGl5Oxu3dDcD07+2i7a/57hcHUN1ElAn6axcBnJ2g5zN5/o2ZLzk8Hp6ERxUVUTwhT58AxP4GqL34UucM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BfvpxRAP; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5492p98U014025;
+	Fri, 9 May 2025 09:04:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=A3odr35s6tv9PqWsu8M7o4FkEvj0CbJZSMd
+	+HZ+36Xs=; b=BfvpxRAPTBAIH9AcQs+7xAzZI6hlpguHHkcpfabQd+TWa8SmtW/
+	0crdiCcFwrr34B55PdusT66ifDAGsi47EpA0JVYaJhYrHXmJFYXfGKtuEmsz3Z6w
+	BE1r0Ue5U/ErfUSgjOZ7oph0S/sv7aF4KRWT4HpGWpWaPwcNzTEVBF2BqXpZ8Gzc
+	xFoDszWISCi+dtvTanzkGapjshQE0YJriX1D71iqKKXYQLLkvYeO4a0cNaV8BKTU
+	84eH9Pwe65+x6QG8vVJvxjP8nhAgJXP16xgfd1yAqoN995UP2dvuw0FgPgkdWJw/
+	aysi0jwJ4UQHfBJ5c93lmb2gur3imGN3Srg==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46gnp4m2h9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 May 2025 09:04:50 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 54994kMF010428;
+	Fri, 9 May 2025 09:04:46 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 46dc7neh0e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 May 2025 09:04:46 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 54994kuh010420;
+	Fri, 9 May 2025 09:04:46 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.252])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 54994jQ9010415
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 May 2025 09:04:46 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4047106)
+	id 1412553B; Fri,  9 May 2025 14:34:45 +0530 (+0530)
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
+        Viken Dadhaniya <quic_vdadhani@quicinc.com>
+Subject: [PATCH v4] arm64: dts: qcom: sa8775p: Add default pin configurations for QUP SEs
+Date: Fri,  9 May 2025 14:34:43 +0530
+Message-Id: <20250509090443.4107378-1-quic_vdadhani@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6493.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cca0377e-2e3c-4c87-bb09-08dd8ed869ca
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 May 2025 09:03:49.5060
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fiTOKcmF+7+J3gfKSK79fMc7+ao4RrBZoforpNivNrulk8oLAYeU9wLF1euNmM92zo7lUUpcT1uEGPqhIFcQ23VisMeVItxis/xW3/Lypik=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PPF5E6276BA7
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: h7TuQTRCF4T5psdlWDi6E7hciDWZkDB2
+X-Authority-Analysis: v=2.4 cv=E5XNpbdl c=1 sm=1 tr=0 ts=681dc532 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=lqsRHiIH3VniaWXTxtcA:9
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA5MDA4NyBTYWx0ZWRfXxVC/gQdFSn0M
+ 05gpWjXgUmlIB+fWPhr5AK4wZaSfZ4UvCxDNBM/f+f+5Q8NOjutWj0+xE/x8Q8yFcabUW8DLvov
+ clTCuXmI2VF5XX452vDxezZLUwKv51Z3elSizJsASEcu87/TvvZY3SB0RbgnloRUF/NerHhUD7B
+ /wIgKm7NZg39YNsVuTiyji8Of7lIQMwJLhWUEpG0WdZvTOeP5FpyVBwpcRAclzra64qvNOM7Bhj
+ tVY0x6dR8eCgsqnNX8UVyO8tSbRswO+GMAPQdIcUs+ge6JThkpobrCEkTXFeVIFykZlL8P2K8ms
+ XWjqkdksN+0UKGDxY1f1KXSySht3IOgln3MUgrGhrDt7qQ4haFzCkDjuekAvdMxfexsII5peJu3
+ TeuFl4FUabuB5YVriIEQ4ro4cQzG2bWcBRr2zLdqtvgxPNU2qPSCPgOGz6X9FukjmSwySujT
+X-Proofpoint-ORIG-GUID: h7TuQTRCF4T5psdlWDi6E7hciDWZkDB2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-09_03,2025-05-08_04,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 adultscore=0 mlxscore=0 malwarescore=0
+ bulkscore=0 phishscore=0 spamscore=0 priorityscore=1501 mlxlogscore=923
+ lowpriorityscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2504070000 definitions=main-2505090087
 
-T24gVGh1LCAyMDI1LTA1LTA4IGF0IDEwOjE1ICswMjAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToKPiAKPiBFeHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlu
-a3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bnRpbAo+IHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBzZW5k
-ZXIgb3IgdGhlIGNvbnRlbnQuCj4gCj4gCj4gSWwgMDgvMDUvMjUgMDg6MzUsIFNpcml1cyBXYW5n
-IGhhIHNjcml0dG86Cj4gPiBBZGQgbXQ4MTg5IGR0cyBldmFsdWF0aW9uIGJvYXJkIGFuZCBNYWZl
-ZmlsZQo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBTaXJpdXMgV2FuZyA8c2lyaXVzLndhbmdAbWVk
-aWF0ZWsuY29tPgo+ID4gLS0tCj4gPiDCoCBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL01h
-a2VmaWxlwqDCoMKgwqDCoMKgIHzCoMKgIDEgKwo+ID4gwqAgYXJjaC9hcm02NC9ib290L2R0cy9t
-ZWRpYXRlay9tdDgxODktZXZiLmR0cyB8wqAgMjAgKwo+ID4gwqAgYXJjaC9hcm02NC9ib290L2R0
-cy9tZWRpYXRlay9tdDgxODkuZHRzacKgwqDCoCB8IDQzMAo+ID4gKysrKysrKysrKysrKysrKysr
-KysKPiA+IMKgIDMgZmlsZXMgY2hhbmdlZCwgNDUxIGluc2VydGlvbnMoKykKPiA+IMKgIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4OS1ldmIuZHRz
-Cj4gPiDCoCBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9t
-dDgxODkuZHRzaQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRp
-YXRlay9NYWtlZmlsZQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL01ha2VmaWxl
-Cj4gPiBpbmRleCAzYWEwNjQ3NmM2YzAuLmFkMmFjOWUxYmI3OSAxMDA2NDQKPiA+IC0tLSBhL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvTWFrZWZpbGUKPiA+ICsrKyBiL2FyY2gvYXJtNjQv
-Ym9vdC9kdHMvbWVkaWF0ZWsvTWFrZWZpbGUKPiA+IEBAIC04Nyw2ICs4Nyw3IEBAIGR0Yi0kKENP
-TkZJR19BUkNIX01FRElBVEVLKSArPSBtdDgxODgtZ2VyYWx0LQo+ID4gY2lyaS1za3U0LmR0Ygo+
-ID4gwqAgZHRiLSQoQ09ORklHX0FSQ0hfTUVESUFURUspICs9IG10ODE4OC1nZXJhbHQtY2lyaS1z
-a3U1LmR0Ygo+ID4gwqAgZHRiLSQoQ09ORklHX0FSQ0hfTUVESUFURUspICs9IG10ODE4OC1nZXJh
-bHQtY2lyaS1za3U2LmR0Ygo+ID4gwqAgZHRiLSQoQ09ORklHX0FSQ0hfTUVESUFURUspICs9IG10
-ODE4OC1nZXJhbHQtY2lyaS1za3U3LmR0Ygo+ID4gK2R0Yi0kKENPTkZJR19BUkNIX01FRElBVEVL
-KSArPSBtdDgxODktZXZiLmR0Ygo+ID4gwqAgZHRiLSQoQ09ORklHX0FSQ0hfTUVESUFURUspICs9
-IG10ODE5Mi1hc3VyYWRhLWhheWF0by1yMS5kdGIKPiA+IMKgIGR0Yi0kKENPTkZJR19BUkNIX01F
-RElBVEVLKSArPSBtdDgxOTItYXN1cmFkYS1zcGhlcmlvbi1yMC5kdGIKPiA+IMKgIGR0Yi0kKENP
-TkZJR19BUkNIX01FRElBVEVLKSArPSBtdDgxOTItZXZiLmR0Ygo+ID4gZGlmZiAtLWdpdCBhL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTg5LWV2Yi5kdHMKPiA+IGIvYXJjaC9hcm02
-NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODktZXZiLmR0cwo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2
-NDQKPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uZTVkOWNlMWI4ZTYxCj4gPiAtLS0gL2Rldi9udWxs
-Cj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4OS1ldmIuZHRzCj4g
-PiBAQCAtMCwwICsxLDIwIEBACj4gPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwt
-Mi4wIE9SIE1JVCkKPiA+ICsvKgo+ID4gKyAqIENvcHlyaWdodCAoQykgMjAyNSBNZWRpYVRlayBJ
-bmMuCj4gPiArICogQXV0aG9yOiBTaXJpdXMgV2FuZyA8c2lyaXVzLndhbmdAbWVkaWF0ZWsuY29t
-Pgo+ID4gKyAqLwo+ID4gKy9kdHMtdjEvOwo+ID4gKyNpbmNsdWRlICJtdDgxODkuZHRzaSIKPiA+
-ICsKPiA+ICsvIHsKPiA+ICvCoMKgwqDCoCBtb2RlbCA9ICJNZWRpYVRlayBNVDgxODkgZXZhbHVh
-dGlvbiBib2FyZCI7Cj4gPiArwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODkt
-ZXZiIiwgIm1lZGlhdGVrLG10ODE4OSI7Cj4gPiArCj4gPiArwqDCoMKgwqAgY2hvc2VuOiBjaG9z
-ZW4gewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdGRvdXQtcGF0aCA9ICJzZXJpYWww
-OjExNTIwMG44IjsKPiA+ICvCoMKgwqDCoCB9Owo+ID4gK307Cj4gPiArCj4gPiArJnVhcnQwIHsK
-PiA+ICvCoMKgwqDCoCBzdGF0dXMgPSAib2theSI7Cj4gPiArfTsKPiA+IGRpZmYgLS1naXQgYS9h
-cmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4OS5kdHNpCj4gPiBiL2FyY2gvYXJtNjQv
-Ym9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTg5LmR0c2kKPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4g
-PiBpbmRleCAwMDAwMDAwMDAwMDAuLjUwYzdhMzgxMWUwZgo+ID4gLS0tIC9kZXYvbnVsbAo+ID4g
-KysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODkuZHRzaQo+ID4gQEAgLTAs
-MCArMSw0MzAgQEAKPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAgT1Ig
-TUlUKQo+ID4gKy8qCj4gPiArICogQ29weXJpZ2h0IChjKSAyMDI1IE1lZGlhVGVrIEluYy4KPiA+
-ICsgKi8KPiA+ICsKPiA+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xs
-ZXIvYXJtLWdpYy5oPgo+ID4gKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJv
-bGxlci9pcnEuaD4KPiA+ICsKPiA+ICsvIHsKPiA+ICvCoMKgwqDCoCBjb21wYXRpYmxlID0gIm1l
-ZGlhdGVrLG10ODE4OSI7Cj4gPiArwqDCoMKgwqAgaW50ZXJydXB0LXBhcmVudCA9IDwmZ2ljPjsK
-PiA+ICvCoMKgwqDCoCAjYWRkcmVzcy1jZWxscyA9IDwyPjsKPiA+ICvCoMKgwqDCoCAjc2l6ZS1j
-ZWxscyA9IDwyPjsKPiA+ICsKPiA+ICvCoMKgwqDCoCBhbGlhc2VzIHsKPiA+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgc2VyaWFsMCA9ICZ1YXJ0MDsKPiA+ICvCoMKgwqDCoCB9Owo+ID4gKwo+
-ID4gK8KgwqDCoMKgIGNsazMyazogb3NjaWxsYXRvci1jbGszMmsgewo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImZpeGVkLWNsb2NrIjsKPiA+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgI2Nsb2NrLWNlbGxzID0gPDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBjbG9jay1mcmVxdWVuY3kgPSA8MzIwMDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBjbG9jay1vdXRwdXQtbmFtZXMgPSAiY2xrMzJrIjsKPiA+ICvCoMKgwqDCoCB9Owo+
-ID4gKwo+ID4gK8KgwqDCoMKgIGNsazEzbTogb3NjaWxsYXRvci1jbGsxM20gewo+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImZpeGVkLWZhY3Rvci1jbG9jayI7Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICNjbG9jay1jZWxscyA9IDwwPjsKPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgY2xvY2tzID0gPCZjbGsyNm0+Owo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBjbG9jay1tdWx0ID0gPDE+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBjbG9jay1kaXYgPSA8Mj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNsb2Nr
-LW91dHB1dC1uYW1lcyA9ICJjbGsxM20iOwo+ID4gK8KgwqDCoMKgIH07Cj4gPiArCj4gPiArwqDC
-oMKgwqAgY2xrMjZtOiBvc2NpbGxhdG9yLWNsazI2bSB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIGNvbXBhdGlibGUgPSAiZml4ZWQtY2xvY2siOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCAjY2xvY2stY2VsbHMgPSA8MD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IGNsb2NrLWZyZXF1ZW5jeSA9IDwyNjAwMDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIGNsb2NrLW91dHB1dC1uYW1lcyA9ICJjbGsyNm0iOwo+ID4gK8KgwqDCoMKgIH07Cj4gPiAr
-Cj4gPiArwqDCoMKgwqAgY2xrMTA0bTogb3NjaWxsYXRvci1jbGsxMDRtIHsKPiA+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJmaXhlZC1mYWN0b3ItY2xvY2siOwo+ID4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAjY2xvY2stY2VsbHMgPSA8MD47Cj4gPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIGNsb2NrcyA9IDwmY2xrMjZtPjsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgY2xvY2stbXVsdCA9IDw0PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgY2xvY2stZGl2ID0gPDE+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9jay1v
-dXRwdXQtbmFtZXMgPSAiY2xrMTA0bSI7Cj4gPiArwqDCoMKgwqAgfTsKPiAKPiB1bHBvc2MgYW5k
-IHVscG9zYzMgZ28gaGVyZS4KSXQgd2lsbCBiZSBmaXhlZCBvbiBuZXh0IHZlcnNpb24uCj4gCj4g
-PiArCj4gPiArwqDCoMKgwqAgY3B1cyB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICNh
-ZGRyZXNzLWNlbGxzID0gPDE+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAjc2l6ZS1j
-ZWxscyA9IDwwPjsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY3B1MDogY3B1
-QDAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2aWNl
-X3R5cGUgPSAiY3B1IjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0gPDB4MDAwPjsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7Cj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9jay1mcmVxdWVuY3kg
-PSA8MjAwMDAwMDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBjYXBhY2l0eS1kbWlwcy1taHogPSA8NzQyPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdS1pZGxlLXN0YXRlcyA9IDwmY3B1X29mZl9sPiwKPiA+
-IDwmY3B1X2NsdXN0ZXJfb2ZmX2w+LCA8JmNwdV9tY3VzeXNfb2ZmX2w+LAo+ID4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgPCZjcHVfc3lzdGVtX3Zjb3JlPiwKPiA+IDwmY3B1X3MyaWRsZT47Cj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpLWNhY2hlLXNpemUgPSA8
-MzI3Njg+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaS1j
-YWNoZS1saW5lLXNpemUgPSA8NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgaS1jYWNoZS1zZXRzID0gPDEyOD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkLWNhY2hlLXNpemUgPSA8MzI3Njg+Owo+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZC1jYWNoZS1saW5lLXNpemUgPSA8
-NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZC1jYWNo
-ZS1zZXRzID0gPDEyOD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBuZXh0LWxldmVsLWNhY2hlID0gPCZsMl8wPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBlcmZvcm1hbmNlLWRvbWFpbnMgPSA8JnBlcmZvcm1hbmNl
-IDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI2Nvb2xp
-bmctY2VsbHMgPSA8Mj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiArCj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdTE6IGNwdUAxMDAgewo+ID4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2aWNlX3R5cGUgPSAiY3B1IjsKPiA+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAi
-YXJtLGNvcnRleC1hNTUiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgcmVnID0gPDB4MTAwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9jay1mcmVxdWVuY3kgPSA8MjAwMDAwMDAwMD47Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjYXBhY2l0eS1kbWlw
-cy1taHogPSA8NzQyPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIGNwdS1pZGxlLXN0YXRlcyA9IDwmY3B1X29mZl9sPiwKPiA+IDwmY3B1X2NsdXN0ZXJfb2Zm
-X2w+LCA8JmNwdV9tY3VzeXNfb2ZmX2w+LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPCZjcHVf
-c3lzdGVtX3Zjb3JlPiwKPiA+IDwmY3B1X3MyaWRsZT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpLWNhY2hlLXNpemUgPSA8MzI3Njg+Owo+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaS1jYWNoZS1saW5lLXNpemUgPSA8
-NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaS1jYWNo
-ZS1zZXRzID0gPDEyOD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBkLWNhY2hlLXNpemUgPSA8MzI3Njg+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgZC1jYWNoZS1saW5lLXNpemUgPSA8NjQ+Owo+ID4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZC1jYWNoZS1zZXRzID0gPDEyOD47Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBuZXh0LWxldmVsLWNh
-Y2hlID0gPCZsMl8wPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHBlcmZvcm1hbmNlLWRvbWFpbnMgPSA8JnBlcmZvcm1hbmNlIDA+Owo+ID4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI2Nvb2xpbmctY2VsbHMgPSA8Mj47Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIGNwdTI6IGNwdUAyMDAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgZGV2aWNlX3R5cGUgPSAiY3B1IjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOwo+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0gPDB4MjAw
-PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVuYWJsZS1t
-ZXRob2QgPSAicHNjaSI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBjbG9jay1mcmVxdWVuY3kgPSA8MjAwMDAwMDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjYXBhY2l0eS1kbWlwcy1taHogPSA8NzQyPjsKPiA+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdS1pZGxlLXN0YXRl
-cyA9IDwmY3B1X29mZl9sPiwKPiA+IDwmY3B1X2NsdXN0ZXJfb2ZmX2w+LCA8JmNwdV9tY3VzeXNf
-b2ZmX2w+LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPCZjcHVfc3lzdGVtX3Zjb3JlPiwKPiA+
-IDwmY3B1X3MyaWRsZT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBpLWNhY2hlLXNpemUgPSA8MzI3Njg+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgaS1jYWNoZS1saW5lLXNpemUgPSA8NjQ+Owo+ID4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaS1jYWNoZS1zZXRzID0gPDEyOD47Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkLWNhY2hlLXNpemUg
-PSA8MzI3Njg+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-ZC1jYWNoZS1saW5lLXNpemUgPSA8NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgZC1jYWNoZS1zZXRzID0gPDEyOD47Cj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBuZXh0LWxldmVsLWNhY2hlID0gPCZsMl8wPjsKPiA+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBlcmZvcm1hbmNlLWRv
-bWFpbnMgPSA8JnBlcmZvcm1hbmNlIDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgI2Nvb2xpbmctY2VsbHMgPSA8Mj47Cj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIH07Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdTM6IGNw
-dUAzMDAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2
-aWNlX3R5cGUgPSAiY3B1IjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOwo+ID4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0gPDB4MzAwPjsKPiA+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9jay1mcmVxdWVu
-Y3kgPSA8MjAwMDAwMDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBjYXBhY2l0eS1kbWlwcy1taHogPSA8NzQyPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdS1pZGxlLXN0YXRlcyA9IDwmY3B1X29mZl9sPiwK
-PiA+IDwmY3B1X2NsdXN0ZXJfb2ZmX2w+LCA8JmNwdV9tY3VzeXNfb2ZmX2w+LAo+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgPCZjcHVfc3lzdGVtX3Zjb3JlPiwKPiA+IDwmY3B1X3MyaWRsZT47Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpLWNhY2hlLXNpemUg
-PSA8MzI3Njg+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-aS1jYWNoZS1saW5lLXNpemUgPSA8NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgaS1jYWNoZS1zZXRzID0gPDEyOD47Cj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkLWNhY2hlLXNpemUgPSA8MzI3Njg+Owo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZC1jYWNoZS1saW5lLXNpemUg
-PSA8NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZC1j
-YWNoZS1zZXRzID0gPDEyOD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBuZXh0LWxldmVsLWNhY2hlID0gPCZsMl8wPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBlcmZvcm1hbmNlLWRvbWFpbnMgPSA8JnBlcmZvcm1h
-bmNlIDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI2Nv
-b2xpbmctY2VsbHMgPSA8Mj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiAr
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdTQ6IGNwdUA0MDAgewo+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2aWNlX3R5cGUgPSAiY3B1IjsK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUg
-PSAiYXJtLGNvcnRleC1hNTUiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgcmVnID0gPDB4NDAwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7Cj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9jay1mcmVxdWVuY3kgPSA8MjAwMDAwMDAwMD47
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjYXBhY2l0eS1k
-bWlwcy1taHogPSA8NzQyPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIGNwdS1pZGxlLXN0YXRlcyA9IDwmY3B1X29mZl9sPiwKPiA+IDwmY3B1X2NsdXN0ZXJf
-b2ZmX2w+LCA8JmNwdV9tY3VzeXNfb2ZmX2w+LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPCZj
-cHVfc3lzdGVtX3Zjb3JlPiwKPiA+IDwmY3B1X3MyaWRsZT47Cj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpLWNhY2hlLXNpemUgPSA8MzI3Njg+Owo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaS1jYWNoZS1saW5lLXNpemUg
-PSA8NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaS1j
-YWNoZS1zZXRzID0gPDEyOD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBkLWNhY2hlLXNpemUgPSA8MzI3Njg+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgZC1jYWNoZS1saW5lLXNpemUgPSA8NjQ+Owo+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZC1jYWNoZS1zZXRzID0gPDEyOD47
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBuZXh0LWxldmVs
-LWNhY2hlID0gPCZsMl8wPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHBlcmZvcm1hbmNlLWRvbWFpbnMgPSA8JnBlcmZvcm1hbmNlIDA+Owo+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI2Nvb2xpbmctY2VsbHMgPSA8Mj47
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIGNwdTU6IGNwdUA1MDAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgZGV2aWNlX3R5cGUgPSAiY3B1IjsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUi
-Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0gPDB4
-NTAwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVuYWJs
-ZS1tZXRob2QgPSAicHNjaSI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBjbG9jay1mcmVxdWVuY3kgPSA8MjAwMDAwMDAwMD47Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjYXBhY2l0eS1kbWlwcy1taHogPSA8NzQyPjsK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdS1pZGxlLXN0
-YXRlcyA9IDwmY3B1X29mZl9sPiwKPiA+IDwmY3B1X2NsdXN0ZXJfb2ZmX2w+LCA8JmNwdV9tY3Vz
-eXNfb2ZmX2w+LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPCZjcHVfc3lzdGVtX3Zjb3JlPiwK
-PiA+IDwmY3B1X3MyaWRsZT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBpLWNhY2hlLXNpemUgPSA8MzI3Njg+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgaS1jYWNoZS1saW5lLXNpemUgPSA8NjQ+Owo+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaS1jYWNoZS1zZXRzID0gPDEyOD47
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkLWNhY2hlLXNp
-emUgPSA8MzI3Njg+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgZC1jYWNoZS1saW5lLXNpemUgPSA8NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgZC1jYWNoZS1zZXRzID0gPDEyOD47Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBuZXh0LWxldmVsLWNhY2hlID0gPCZsMl8wPjsK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBlcmZvcm1hbmNl
-LWRvbWFpbnMgPSA8JnBlcmZvcm1hbmNlIDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgI2Nvb2xpbmctY2VsbHMgPSA8Mj47Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIH07Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdTY6
-IGNwdUA2MDAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-ZGV2aWNlX3R5cGUgPSAiY3B1IjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNzgiOwo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0gPDB4NjAwPjsKPiA+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9jay1mcmVx
-dWVuY3kgPSA8MzAwMDAwMDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBjYXBhY2l0eS1kbWlwcy1taHogPSA8OTU4PjsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdS1pZGxlLXN0YXRlcyA9IDwmY3B1X29mZl9t
-PiwKPiA+IDwmY3B1X2NsdXN0ZXJfb2ZmX20+LCA8JmNwdV9tY3VzeXNfb2ZmX20+LAo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgPCZjcHVfc3lzdGVtX3Zjb3JlPiwKPiA+IDwmY3B1X3MyaWRsZT47
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpLWNhY2hlLXNp
-emUgPSA8NjU1MzY+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgaS1jYWNoZS1saW5lLXNpemUgPSA8NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgaS1jYWNoZS1zZXRzID0gPDI1Nj47Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkLWNhY2hlLXNpemUgPSA8NjU1MzY+Owo+ID4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZC1jYWNoZS1saW5lLXNp
-emUgPSA8NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-ZC1jYWNoZS1zZXRzID0gPDI1Nj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBuZXh0LWxldmVsLWNhY2hlID0gPCZsMl8xPjsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBlcmZvcm1hbmNlLWRvbWFpbnMgPSA8JnBlcmZv
-cm1hbmNlIDE+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-I2Nvb2xpbmctY2VsbHMgPSA8Mj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4g
-PiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdTc6IGNwdUA3MDAgewo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2aWNlX3R5cGUgPSAiY3B1
-IjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGli
-bGUgPSAiYXJtLGNvcnRleC1hNzgiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgcmVnID0gPDB4NzAwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9jay1mcmVxdWVuY3kgPSA8MzAwMDAwMDAw
-MD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjYXBhY2l0
-eS1kbWlwcy1taHogPSA8OTU4PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIGNwdS1pZGxlLXN0YXRlcyA9IDwmY3B1X29mZl9tPiwKPiA+IDwmY3B1X2NsdXN0
-ZXJfb2ZmX20+LCA8JmNwdV9tY3VzeXNfb2ZmX20+LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-PCZjcHVfc3lzdGVtX3Zjb3JlPiwKPiA+IDwmY3B1X3MyaWRsZT47Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpLWNhY2hlLXNpemUgPSA8NjU1MzY+Owo+ID4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaS1jYWNoZS1saW5lLXNp
-emUgPSA8NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-aS1jYWNoZS1zZXRzID0gPDI1Nj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBkLWNhY2hlLXNpemUgPSA8NjU1MzY+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZC1jYWNoZS1saW5lLXNpemUgPSA8NjQ+Owo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZC1jYWNoZS1zZXRzID0gPDI1
-Nj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBuZXh0LWxl
-dmVsLWNhY2hlID0gPCZsMl8xPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIHBlcmZvcm1hbmNlLWRvbWFpbnMgPSA8JnBlcmZvcm1hbmNlIDE+Owo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI2Nvb2xpbmctY2VsbHMgPSA8
-Mj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiArCj4gPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGNwdS1tYXAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgY2x1c3RlcjAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvcmUwIHsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgY3B1ID0gPCZjcHUwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvcmUxIHsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgY3B1ID0gPCZjcHUxPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvcmUyIHsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgY3B1ID0gPCZjcHUyPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvcmUzIHsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgY3B1ID0gPCZjcHUzPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvcmU0IHsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgY3B1ID0gPCZjcHU0PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvcmU1IHsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgY3B1ID0gPCZjcHU1PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgfTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIGNsdXN0ZXIxIHsKPiAKPiBJcyB0aGlzIHJlYWxseSBhbiBvbGQtc3R5bGUg
-ZHVhbCBjbHVzdGVyIFNvQywgb3IgaXMgdGhpcyBBUk0gRHluYW1JUT8KPiAKPiBJZiB0aGlzIGlz
-IHRoZSBsYXR0ZXIgKGFuZCBJIGJlbGlldmUgaXQgaXMpLCB0aGlzIFNvQyBmZWF0dXJlcyBhCj4g
-InNpbmdsZSwgZnVsbHkKPiBpbnRlZ3JhdGVkIGNsdXN0ZXIiLgpJdCB3aWxsIGJlIGZpeGVkIG9u
-IG5leHQgdmVyc2lvbi4KPiAKPiAKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb3JlMCB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNw
-dSA9IDwmY3B1Nj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgfTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb3JlMSB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNw
-dSA9IDwmY3B1Nz47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgfTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIH07Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiArCj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlkbGUtc3RhdGVzIHsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVudHJ5LW1ldGhvZCA9ICJwc2NpIjsKPiA+ICsK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNwdV9vZmZfbDog
-Y3B1LW9mZi1sIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImFybSxpZGxlLXN0YXRlIjsKPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBhcm0s
-cHNjaS1zdXNwZW5kLXBhcmFtID0KPiA+IDwweDAwMDEwMDAwPjsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBsb2NhbC10aW1lci1z
-dG9wOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIGVudHJ5LWxhdGVuY3ktdXMgPSA8OTc+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGV4aXQtbGF0ZW5jeS11cyA9
-IDwyNTI+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIG1pbi1yZXNpZGVuY3ktdXMgPSA8NjcxMD47Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY3B1X29mZl9tOiBjcHUtb2ZmLW0gewo+IAo+IHdo
-YXQgZG9lcyAibSIgc3RhbmQgZm9yPwo+IAo+IHNob3VsZCB0aGlzIGJlIGNwdS1vZmYtYiAod2hl
-cmUgYj09YmlnIGFuZCBsPT1saXR0bGUpIGluc3RlYWQ/Cm0gZm9yIG1lZGl1bSBjb3JlLgpJdCB3
-aWxsIGJlIGZpeGVkIHRvIGNvcnJlY3QgbmFtZSBiPT1iaWcuCj4gCj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9
-ICJhcm0saWRsZS1zdGF0ZSI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYXJtLHBzY2ktc3VzcGVuZC1wYXJhbSA9Cj4gPiA8MHgw
-MDAxMDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgbG9jYWwtdGltZXItc3RvcDsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBlbnRyeS1sYXRlbmN5LXVzID0g
-PDUzPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBleGl0LWxhdGVuY3ktdXMgPSA8MTQzPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtaW4tcmVzaWRlbmN5LXVz
-ID0gPDIxMjA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-fTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNw
-dV9jbHVzdGVyX29mZl9sOiBjcHUtY2x1c3Rlci1vZmYtbCB7Cj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJh
-cm0saWRsZS1zdGF0ZSI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgYXJtLHBzY2ktc3VzcGVuZC1wYXJhbSA9Cj4gPiA8MHgwMTAx
-MDAwMT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgbG9jYWwtdGltZXItc3RvcDsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBlbnRyeS1sYXRlbmN5LXVzID0gPDEw
-OT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgZXhpdC1sYXRlbmN5LXVzID0gPDMyNT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbWluLXJlc2lkZW5jeS11cyA9
-IDw2NzEwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07
-Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjcHVf
-Y2x1c3Rlcl9vZmZfbTogY3B1LWNsdXN0ZXItb2ZmLW0gewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiYXJt
-LGlkbGUtc3RhdGUiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIGFybSxwc2NpLXN1c3BlbmQtcGFyYW0gPQo+ID4gPDB4MDEwMTAw
-MDE+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIGxvY2FsLXRpbWVyLXN0b3A7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZW50cnktbGF0ZW5jeS11cyA9IDw1OT47
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgZXhpdC1sYXRlbmN5LXVzID0gPDE4OD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbWluLXJlc2lkZW5jeS11cyA9IDwy
-MTIwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4g
-PiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjcHVfbWN1
-c3lzX29mZl9sOiBjcHUtbWN1c3lzLW9mZi1sIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImFybSxpZGxl
-LXN0YXRlIjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBhcm0scHNjaS1zdXNwZW5kLXBhcmFtID0KPiA+IDwweDAyMDEwMDA3PjsK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBsb2NhbC10aW1lci1zdG9wOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVudHJ5LWxhdGVuY3ktdXMgPSA8MTM1Nz47Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgZXhpdC1sYXRlbmN5LXVzID0gPDgzNT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbWluLXJlc2lkZW5jeS11cyA9IDw2NzEw
-PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiAr
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjcHVfbWN1c3lz
-X29mZl9tOiBjcHUtbWN1c3lzLW9mZi1tIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImFybSxpZGxlLXN0
-YXRlIjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBhcm0scHNjaS1zdXNwZW5kLXBhcmFtID0KPiA+IDwweDAyMDEwMDA3PjsKPiA+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBsb2NhbC10aW1lci1zdG9wOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVudHJ5LWxhdGVuY3ktdXMgPSA8MTIwMj47Cj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-ZXhpdC1sYXRlbmN5LXVzID0gPDY3OT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbWluLXJlc2lkZW5jeS11cyA9IDwyMTIwPjsK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiArCj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjcHVfc3lzdGVtX3Zj
-b3JlOiBjcHUtc3lzdGVtLXZjb3JlIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImFybSxpZGxlLXN0YXRl
-IjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBhcm0scHNjaS1zdXNwZW5kLXBhcmFtID0KPiA+IDwweDAyMDEwMGZmPjsKPiA+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBs
-b2NhbC10aW1lci1zdG9wOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVudHJ5LWxhdGVuY3ktdXMgPSA8OTQwPjsKPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBleGl0
-LWxhdGVuY3ktdXMgPSA8MzUwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbWluLXJlc2lkZW5jeS11cyA9IDwzNTIwMD47Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gKwo+ID4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY3B1X3MyaWRsZTogY3B1
-LXMyaWRsZSB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJhcm0saWRsZS1zdGF0ZSI7Cj4gPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYXJtLHBz
-Y2ktc3VzcGVuZC1wYXJhbSA9Cj4gPiA8MHgwMjAxODBmZj47Cj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbG9jYWwtdGltZXItc3Rv
-cDsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBlbnRyeS1sYXRlbmN5LXVzID0gPDEwMDAwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBleGl0LWxhdGVuY3ktdXMg
-PSA8MTAwMDA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIG1pbi1yZXNpZGVuY3ktdXMgPSA8NDI5NDk2NzI5NT47Cj4gPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Owo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCB9Owo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBsMl8w
-OiBsMi1jYWNoZTAgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgY29tcGF0aWJsZSA9ICJjYWNoZSI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBjYWNoZS1sZXZlbCA9IDwyPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNhY2hlLXNpemUgPSA8MTMxMDcyPjsKPiA+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNhY2hlLWxpbmUtc2l6ZSA9IDw2ND47
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjYWNoZS1zZXRz
-ID0gPDUxMj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBu
-ZXh0LWxldmVsLWNhY2hlID0gPCZsM18wPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGNhY2hlLXVuaWZpZWQ7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIH07Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGwyXzE6IGwyLWNhY2hl
-MSB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRp
-YmxlID0gImNhY2hlIjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIGNhY2hlLWxldmVsID0gPDI+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgY2FjaGUtc2l6ZSA9IDwyNjIxNDQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY2FjaGUtbGluZS1zaXplID0gPDY0PjsKPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNhY2hlLXNldHMgPSA8NTEyPjsK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG5leHQtbGV2ZWwt
-Y2FjaGUgPSA8JmwzXzA+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgY2FjaGUtdW5pZmllZDsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPiA+
-ICsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgbDNfMDogbDMtY2FjaGUgewo+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJjYWNo
-ZSI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjYWNoZS1s
-ZXZlbCA9IDwzPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IGNhY2hlLXNpemUgPSA8MTA0ODU3Nj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBjYWNoZS1saW5lLXNpemUgPSA8NjQ+Owo+ID4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY2FjaGUtc2V0cyA9IDwyMDQ4PjsKPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNhY2hlLXVuaWZpZWQ7Cj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07Cj4gPiArwqDCoMKgwqAgfTsKPiA+ICsKPiA+ICvC
-oMKgwqDCoCBwc2NpIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9
-ICJhcm0scHNjaS0xLjAiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtZXRob2QgPSAi
-c21jIjsKPiA+ICvCoMKgwqDCoCB9Owo+ID4gKwo+ID4gK8KgwqDCoMKgIG1lbW9yeTogbWVtb3J5
-QDQwMDAwMDAwIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2aWNlX3R5cGUgPSAi
-bWVtb3J5IjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0gPDAgMHg0MDAwMDAw
-MCAwIDB4QzAwMDAwMDA+Owo+ID4gK8KgwqDCoMKgIH07Cj4gPiArCj4gCj4gcHNjaSBnb2VzIGhl
-cmUKSXQgd2lsbCBiZSBmaXhlZCBvbiBuZXh0IHZlcnNpb24uCj4gCj4gUmVnYXJkcywKPiBBbmdl
-bG8KPiAKPiA+ICvCoMKgwqDCoCB0aW1lcjogdGltZXIgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBjb21wYXRpYmxlID0gImFybSxhcm12OC10aW1lciI7Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIGludGVycnVwdC1wYXJlbnQgPSA8JmdpYz47Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIGludGVycnVwdHMgPSA8R0lDX1BQSSAxMyBJUlFfVFlQRV9MRVZFTF9ISUdI
-IDA+LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIDxHSUNfUFBJIDE0IElSUV9UWVBFX0xFVkVMX0hJR0ggMD4sCj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPEdJQ19QUEkgMTEgSVJRX1RZ
-UEVfTEVWRUxfSElHSCAwPiwKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCA8R0lDX1BQSSAxMCBJUlFfVFlQRV9MRVZFTF9ISUdIIDA+Owo+ID4g
-K8KgwqDCoMKgIH07Cj4gPiArCj4gPiArwqDCoMKgwqAgc29jIHsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgY29tcGF0aWJsZSA9ICJzaW1wbGUtYnVzIjsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgI2FkZHJlc3MtY2VsbHMgPSA8Mj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgICNzaXplLWNlbGxzID0gPDI+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBy
-YW5nZXM7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRtYS1yYW5nZXMgPSA8MHgwIDB4
-MCAweDAgMHgwIDB4MTAgMHgwPjsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-cGVyZm9ybWFuY2U6IHBlcmZvcm1hbmNlLWNvbnRyb2xsZXJAMTFiYzEwIHsKPiA+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWss
-Y3B1ZnJlcS1odyI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCByZWcgPSA8MCAweDAwMTFiYzEwIDAgMHgxMjA+LCA8MCAweDAwMTFiZDMwIDAKPiA+IDB4MTIw
-PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICNwZXJmb3Jt
-YW5jZS1kb21haW4tY2VsbHMgPSA8MT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH07
-Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdpYzogaW50ZXJydXB0LWNvbnRy
-b2xsZXJAYzAwMDAwMCB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBjb21wYXRpYmxlID0gImFybSxnaWMtdjMiOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgI2ludGVycnVwdC1jZWxscyA9IDw0PjsKPiA+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICNhZGRyZXNzLWNlbGxzID0gPDI+Owo+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgI3NpemUtY2VsbHMg
-PSA8Mj47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpbnRl
-cnJ1cHQtcGFyZW50ID0gPCZnaWM+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgaW50ZXJydXB0LWNvbnRyb2xsZXI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MCAweGMwMDAwMDAgMCAweDQwMDAwPiwgLyog
-ZGlzdHJpYnV0b3IKPiA+ICovCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCA8MCAweGMwNDAwMDAgMCAweDIwMDAwMD47IC8qCj4gPiByZWRp
-c3RyaWJ1dG9yICovCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBpbnRlcnJ1cHRzID0gPEdJQ19QUEkgOSBJUlFfVFlQRV9MRVZFTF9ISUdICj4gPiAwPjsKPiA+
-ICsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHBwaS1wYXJ0
-aXRpb25zIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBwcGlfY2x1c3RlcjA6IGludGVycnVwdC1wYXJ0aXRpb24tMCB7Cj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGFmZmluaXR5ID0gPCZjcHUwICZjcHUxICZjcHUyCj4gPiAmY3B1MyAm
-Y3B1NCAmY3B1NT47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgfTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwcGlfY2x1c3RlcjE6IGludGVycnVwdC1w
-YXJ0aXRpb24tMSB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGFmZmluaXR5ID0gPCZjcHU2ICZjcHU3
-PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCB9Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-fTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgdWFydDA6IHNlcmlhbEAxMTAwMTAwMCB7Cj4gPiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4
-OS11YXJ0IiwKPiA+ICJtZWRpYXRlayxtdDY1NzctdWFydCI7Cj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MCAweDExMDAxMDAwIDAgMHgxMDAwPjsK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGludGVycnVwdHMg
-PSA8R0lDX1NQSSAzOTcgSVJRX1RZUEVfTEVWRUxfSElHSAo+ID4gMD47Cj4gPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjbG9ja3MgPSA8JmNsazI2bT4sIDwmY2xr
-MjZtPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNsb2Nr
-LW5hbWVzID0gImJhdWQiLCAiYnVzIjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHN0YXR1cyA9ICJkaXNhYmxlZCI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIH07Cj4gPiArwqDCoMKgwqAgfTsKPiA+ICsKPiA+ICvCoMKgwqDCoCB1bHBvc2M6IG9z
-Y2lsbGF0b3ItdWxwb3NjIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJs
-ZSA9ICJmaXhlZC1jbG9jayI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICNjbG9jay1j
-ZWxscyA9IDwwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY2xvY2stZnJlcXVlbmN5
-ID0gPDUyMDAwMDAwMD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNsb2NrLW91dHB1
-dC1uYW1lcyA9ICJ1bHBvc2MiOwo+ID4gK8KgwqDCoMKgIH07Cj4gPiArCj4gPiArwqDCoMKgwqAg
-dWxwb3NjMzogb3NjaWxsYXRvci11bHBvc2MzIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgY29tcGF0aWJsZSA9ICJmaXhlZC1jbG9jayI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgICNjbG9jay1jZWxscyA9IDwwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY2xv
-Y2stZnJlcXVlbmN5ID0gPDI2MDAwMDAwPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-Y2xvY2stb3V0cHV0LW5hbWVzID0gInVscG9zYzMiOwo+ID4gK8KgwqDCoMKgIH07Cj4gPiArfTsK
-PiAKPiAKVGhhbmtzIGZvciB5b3VyIHJldmlldy4KClJlZ2FyZHMsClNpcml1cwo=
+Default pinctrl configurations for all QUP (Qualcomm Universal Peripheral)
+Serial Engines (SEs) are missing in the SoC device tree. These
+configurations are required by client teams when enabling any SEs as I2C,
+SPI, or Serial protocols.
+
+Add default pin configurations for Serial Engines (SEs) for all supported
+protocols, including I2C, SPI, and UART, to the sa8775p device tree.  This
+change facilitates slave device driver clients to enable usecase with
+minimal modifications.
+
+Remove duplicate pin configurations from target-specific file as same pin
+configuration is included in the SoC device tree.
+
+Acked-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+---
+v3 -> v4:
+
+- Move pin configuration declarations into a label-based format in the target-specific file.
+- Add Acked-by tag.
+
+v3 Link: https://lore.kernel.org/linux-arm-msm/20250429173334.303003-1-quic_vdadhani@quicinc.com/
+
+v2 -> v3:
+
+- Remove duplicate pin configurations from target-specific file.
+
+v2 Link: https://lore.kernel.org/lkml/20250324151047.842648-1-quic_vdadhani@quicinc.com/
+
+v1 -> v2:
+
+- Drop drive-strength and bias property from soc dtsi.
+- Update commit log.
+
+v1 Link: https://lore.kernel.org/lkml/20250225154136.3052757-1-quic_vdadhani@quicinc.com/
+---
+---
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 133 ++--
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 750 +++++++++++++++++++++
+ 2 files changed, 797 insertions(+), 86 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+index 967913169539..3ae416ab66e8 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+@@ -508,15 +508,11 @@ queue3 {
+ 
+ &i2c11 {
+ 	clock-frequency = <400000>;
+-	pinctrl-0 = <&qup_i2c11_default>;
+-	pinctrl-names = "default";
+ 	status = "okay";
+ };
+ 
+ &i2c18 {
+ 	clock-frequency = <400000>;
+-	pinctrl-0 = <&qup_i2c18_default>;
+-	pinctrl-names = "default";
+ 	status = "okay";
+ };
+ 
+@@ -663,6 +659,53 @@ &qupv3_id_2 {
+ 	status = "okay";
+ };
+ 
++&qup_spi16_default {
++	drive-strength = <6>;
++	bias-disable;
++};
++
++&qup_i2c11_default {
++	drive-strength = <2>;
++	bias-pull-up;
++};
++
++&qup_i2c18_default {
++	drive-strength = <2>;
++	bias-pull-up;
++};
++
++&qup_uart12_cts {
++	bias-disable;
++};
++
++&qup_uart12_rts {
++	bias-pull-down;
++};
++
++&qup_uart12_tx {
++	bias-pull-up;
++};
++
++&qup_uart12_rx {
++	bias-pull-down;
++};
++
++&qup_uart17_cts {
++	bias-disable;
++};
++
++&qup_uart17_rts {
++	bias-pull-down;
++};
++
++&qup_uart17_tx {
++	bias-pull-up;
++};
++
++&qup_uart17_rx {
++	bias-pull-down;
++};
++
+ &serdes0 {
+ 	phy-supply = <&vreg_l5a>;
+ 	status = "okay";
+@@ -678,8 +721,6 @@ &sleep_clk {
+ };
+ 
+ &spi16 {
+-	pinctrl-0 = <&qup_spi16_default>;
+-	pinctrl-names = "default";
+ 	status = "okay";
+ };
+ 
+@@ -712,84 +753,6 @@ ethernet0_mdio: ethernet0-mdio-pins {
+ 		};
+ 	};
+ 
+-	qup_uart10_default: qup-uart10-state {
+-		pins = "gpio46", "gpio47";
+-		function = "qup1_se3";
+-	};
+-
+-	qup_spi16_default: qup-spi16-state {
+-		pins = "gpio86", "gpio87", "gpio88", "gpio89";
+-		function = "qup2_se2";
+-		drive-strength = <6>;
+-		bias-disable;
+-	};
+-
+-	qup_i2c11_default: qup-i2c11-state {
+-		pins = "gpio48", "gpio49";
+-		function = "qup1_se4";
+-		drive-strength = <2>;
+-		bias-pull-up;
+-	};
+-
+-	qup_i2c18_default: qup-i2c18-state {
+-		pins = "gpio95", "gpio96";
+-		function = "qup2_se4";
+-		drive-strength = <2>;
+-		bias-pull-up;
+-	};
+-
+-	qup_uart12_default: qup-uart12-state {
+-		qup_uart12_cts: qup-uart12-cts-pins {
+-			pins = "gpio52";
+-			function = "qup1_se5";
+-			bias-disable;
+-		};
+-
+-		qup_uart12_rts: qup-uart12-rts-pins {
+-			pins = "gpio53";
+-			function = "qup1_se5";
+-			bias-pull-down;
+-		};
+-
+-		qup_uart12_tx: qup-uart12-tx-pins {
+-			pins = "gpio54";
+-			function = "qup1_se5";
+-			bias-pull-up;
+-		};
+-
+-		qup_uart12_rx: qup-uart12-rx-pins {
+-			pins = "gpio55";
+-			function = "qup1_se5";
+-			bias-pull-down;
+-		};
+-	};
+-
+-	qup_uart17_default: qup-uart17-state {
+-		qup_uart17_cts: qup-uart17-cts-pins {
+-			pins = "gpio91";
+-			function = "qup2_se3";
+-			bias-disable;
+-		};
+-
+-		qup_uart17_rts: qup0-uart17-rts-pins {
+-			pins = "gpio92";
+-			function = "qup2_se3";
+-			bias-pull-down;
+-		};
+-
+-		qup_uart17_tx: qup0-uart17-tx-pins {
+-			pins = "gpio93";
+-			function = "qup2_se3";
+-			bias-pull-up;
+-		};
+-
+-		qup_uart17_rx: qup0-uart17-rx-pins {
+-			pins = "gpio94";
+-			function = "qup2_se3";
+-			bias-pull-down;
+-		};
+-	};
+-
+ 	pcie0_default_state: pcie0-default-state {
+ 		perst-pins {
+ 			pins = "gpio2";
+@@ -917,8 +880,6 @@ &remoteproc_gpdsp1 {
+ 
+ &uart10 {
+ 	compatible = "qcom,geni-debug-uart";
+-	pinctrl-0 = <&qup_uart10_default>;
+-	pinctrl-names = "default";
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index 5bd0c03476b1..3261c243940c 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -913,6 +913,8 @@ i2c14: i2c@880000 {
+ 				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c14_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -938,6 +940,8 @@ spi14: spi@880000 {
+ 				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi14_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -961,6 +965,8 @@ uart14: serial@880000 {
+ 				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart14_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -978,6 +984,8 @@ i2c15: i2c@884000 {
+ 				interrupts = <GIC_SPI 583 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c15_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1003,6 +1011,8 @@ spi15: spi@884000 {
+ 				interrupts = <GIC_SPI 583 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi15_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1026,6 +1036,8 @@ uart15: serial@884000 {
+ 				interrupts = <GIC_SPI 583 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart15_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1043,6 +1055,8 @@ i2c16: i2c@888000 {
+ 				interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S2_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c16_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1066,6 +1080,8 @@ spi16: spi@888000 {
+ 				interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S2_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi16_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1091,6 +1107,8 @@ uart16: serial@888000 {
+ 				interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S2_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart16_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1108,6 +1126,8 @@ i2c17: i2c@88c000 {
+ 				interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c17_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1133,6 +1153,8 @@ spi17: spi@88c000 {
+ 				interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi17_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1156,6 +1178,8 @@ uart17: serial@88c000 {
+ 				interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart17_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1171,6 +1195,8 @@ i2c18: i2c@890000 {
+ 				interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S4_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c18_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1198,6 +1224,8 @@ spi18: spi@890000 {
+ 				interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S4_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi18_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1221,6 +1249,8 @@ uart18: serial@890000 {
+ 				interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S4_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart18_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1238,6 +1268,8 @@ i2c19: i2c@894000 {
+ 				interrupts = <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c19_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1263,6 +1295,8 @@ spi19: spi@894000 {
+ 				interrupts = <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi19_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1286,6 +1320,8 @@ uart19: serial@894000 {
+ 				interrupts = <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart19_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1303,6 +1339,8 @@ i2c20: i2c@898000 {
+ 				interrupts = <GIC_SPI 834 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S6_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c20_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1328,6 +1366,8 @@ spi20: spi@898000 {
+ 				interrupts = <GIC_SPI 834 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S6_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi20_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1351,6 +1391,8 @@ uart20: serial@898000 {
+ 				interrupts = <GIC_SPI 834 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP2_S6_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart20_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1404,6 +1446,8 @@ i2c0: i2c@980000 {
+ 				interrupts = <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c0_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1429,6 +1473,8 @@ spi0: spi@980000 {
+ 				interrupts = <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi0_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1452,6 +1498,8 @@ uart0: serial@980000 {
+ 				interrupts = <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart0_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1469,6 +1517,8 @@ i2c1: i2c@984000 {
+ 				interrupts = <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c1_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1494,6 +1544,8 @@ spi1: spi@984000 {
+ 				interrupts = <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi1_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1517,6 +1569,8 @@ uart1: serial@984000 {
+ 				interrupts = <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart1_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1534,6 +1588,8 @@ i2c2: i2c@988000 {
+ 				interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c2_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1559,6 +1615,8 @@ spi2: spi@988000 {
+ 				interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi2_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1582,6 +1640,8 @@ uart2: serial@988000 {
+ 				interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart2_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1599,6 +1659,8 @@ i2c3: i2c@98c000 {
+ 				interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c3_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1624,6 +1686,8 @@ spi3: spi@98c000 {
+ 				interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi3_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1647,6 +1711,8 @@ uart3: serial@98c000 {
+ 				interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart3_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1664,6 +1730,8 @@ i2c4: i2c@990000 {
+ 				interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c4_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1689,6 +1757,8 @@ spi4: spi@990000 {
+ 				interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi4_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1712,6 +1782,8 @@ uart4: serial@990000 {
+ 				interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart4_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1729,6 +1801,8 @@ i2c5: i2c@994000 {
+ 				interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c5_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1754,6 +1828,8 @@ spi5: spi@994000 {
+ 				interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi5_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1777,6 +1853,8 @@ uart5: serial@994000 {
+ 				interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart5_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1829,6 +1907,8 @@ i2c7: i2c@a80000 {
+ 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c7_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1854,6 +1934,8 @@ spi7: spi@a80000 {
+ 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi7_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1877,6 +1959,8 @@ uart7: serial@a80000 {
+ 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-names = "se";
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
++				pinctrl-0 = <&qup_uart7_default>;
++				pinctrl-names = "default";
+ 				interconnect-names = "qup-core", "qup-config";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+@@ -1895,6 +1979,8 @@ i2c8: i2c@a84000 {
+ 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c8_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1920,6 +2006,8 @@ spi8: spi@a84000 {
+ 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi8_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1943,6 +2031,8 @@ uart8: serial@a84000 {
+ 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-names = "se";
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
++				pinctrl-0 = <&qup_uart8_default>;
++				pinctrl-names = "default";
+ 				interconnect-names = "qup-core", "qup-config";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+@@ -1961,6 +2051,8 @@ i2c9: i2c@a88000 {
+ 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c9_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -1986,6 +2078,8 @@ spi9: spi@a88000 {
+ 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi9_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2009,6 +2103,8 @@ uart9: serial@a88000 {
+ 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart9_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2026,6 +2122,8 @@ i2c10: i2c@a8c000 {
+ 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c10_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2051,6 +2149,8 @@ spi10: spi@a8c000 {
+ 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi10_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2074,6 +2174,8 @@ uart10: serial@a8c000 {
+ 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-names = "se";
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
++				pinctrl-0 = <&qup_uart10_default>;
++				pinctrl-names = "default";
+ 				interconnect-names = "qup-core", "qup-config";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 0
+ 						 &clk_virt SLAVE_QUP_CORE_1 0>,
+@@ -2092,6 +2194,8 @@ i2c11: i2c@a90000 {
+ 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c11_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2117,6 +2221,8 @@ spi11: spi@a90000 {
+ 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi11_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2140,6 +2246,8 @@ uart11: serial@a90000 {
+ 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
+ 				clock-names = "se";
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
++				pinctrl-0 = <&qup_uart11_default>;
++				pinctrl-names = "default";
+ 				interconnect-names = "qup-core", "qup-config";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+@@ -2158,6 +2266,8 @@ i2c12: i2c@a94000 {
+ 				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c12_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2183,6 +2293,8 @@ spi12: spi@a94000 {
+ 				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi12_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2206,6 +2318,8 @@ uart12: serial@a94000 {
+ 				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_uart12_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2223,6 +2337,8 @@ i2c13: i2c@a98000 {
+ 				interrupts = <GIC_SPI 836 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP1_S6_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c13_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2276,6 +2392,8 @@ i2c21: i2c@b80000 {
+ 				interrupts = <GIC_SPI 831 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP3_S0_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_i2c21_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS
+ 						&clk_virt SLAVE_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS>,
+ 					   <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2301,6 +2419,8 @@ spi21: spi@b80000 {
+ 				interrupts = <GIC_SPI 831 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GCC_QUPV3_WRAP3_S0_CLK>;
+ 				clock-names = "se";
++				pinctrl-0 = <&qup_spi21_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS
+ 						&clk_virt SLAVE_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS>,
+ 					   <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -2325,6 +2445,8 @@ uart21: serial@b80000 {
+ 				clock-names = "se";
+ 				clocks = <&gcc GCC_QUPV3_WRAP3_S0_CLK>;
+ 				interconnect-names = "qup-core", "qup-config";
++				pinctrl-0 = <&qup_uart21_default>;
++				pinctrl-names = "default";
+ 				interconnects = <&clk_virt MASTER_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS
+ 						 &clk_virt SLAVE_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS>,
+ 						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+@@ -4412,6 +4534,634 @@ tlmm: pinctrl@f000000 {
+ 			#interrupt-cells = <2>;
+ 			gpio-ranges = <&tlmm 0 0 149>;
+ 			wakeup-parent = <&pdc>;
++
++			qup_i2c0_default: qup-i2c0-state {
++				pins = "gpio20", "gpio21";
++				function = "qup0_se0";
++			};
++
++			qup_i2c1_default: qup-i2c1-state {
++				pins = "gpio24", "gpio25";
++				function = "qup0_se1";
++			};
++
++			qup_i2c2_default: qup-i2c2-state {
++				pins = "gpio36", "gpio37";
++				function = "qup0_se2";
++			};
++
++			qup_i2c3_default: qup-i2c3-state {
++				pins = "gpio28", "gpio29";
++				function = "qup0_se3";
++			};
++
++			qup_i2c4_default: qup-i2c4-state {
++				pins = "gpio32", "gpio33";
++				function = "qup0_se4";
++			};
++
++			qup_i2c5_default: qup-i2c5-state {
++				pins = "gpio36", "gpio37";
++				function = "qup0_se5";
++			};
++
++			qup_i2c7_default: qup-i2c7-state {
++				pins = "gpio40", "gpio41";
++				function = "qup1_se0";
++			};
++
++			qup_i2c8_default: qup-i2c8-state {
++				pins = "gpio42", "gpio43";
++				function = "qup1_se1";
++			};
++
++			qup_i2c9_default: qup-i2c9-state {
++				pins = "gpio46", "gpio47";
++				function = "qup1_se2";
++			};
++
++			qup_i2c10_default: qup-i2c10-state {
++				pins = "gpio44", "gpio45";
++				function = "qup1_se3";
++			};
++
++			qup_i2c11_default: qup-i2c11-state {
++				pins = "gpio48", "gpio49";
++				function = "qup1_se4";
++			};
++
++			qup_i2c12_default: qup-i2c12-state {
++				pins = "gpio52", "gpio53";
++				function = "qup1_se5";
++			};
++
++			qup_i2c13_default: qup-i2c13-state {
++				pins = "gpio56", "gpio57";
++				function = "qup1_se6";
++			};
++
++			qup_i2c14_default: qup-i2c14-state {
++				pins = "gpio80", "gpio81";
++				function = "qup2_se0";
++			};
++
++			qup_i2c15_default: qup-i2c15-state {
++				pins = "gpio84", "gpio85";
++				function = "qup2_se1";
++			};
++
++			qup_i2c16_default: qup-i2c16-state {
++				pins = "gpio86", "gpio87";
++				function = "qup2_se2";
++			};
++
++			qup_i2c17_default: qup-i2c17-state {
++				pins = "gpio91", "gpio92";
++				function = "qup2_se3";
++			};
++
++			qup_i2c18_default: qup-i2c18-state {
++				pins = "gpio95", "gpio96";
++				function = "qup2_se4";
++			};
++
++			qup_i2c19_default: qup-i2c19-state {
++				pins = "gpio99", "gpio100";
++				function = "qup2_se5";
++			};
++
++			qup_i2c20_default: qup-i2c20-state {
++				pins = "gpio97", "gpio98";
++				function = "qup2_se6";
++			};
++
++			qup_i2c21_default: qup-i2c21-state {
++				pins = "gpio13", "gpio14";
++				function = "qup3_se0";
++			};
++
++			qup_spi0_default: qup-spi0-state {
++				pins = "gpio20", "gpio21", "gpio22", "gpio23";
++				function = "qup0_se0";
++			};
++
++			qup_spi1_default: qup-spi1-state {
++				pins = "gpio24", "gpio25", "gpio26", "gpio27";
++				function = "qup0_se1";
++			};
++
++			qup_spi2_default: qup-spi2-state {
++				pins = "gpio36", "gpio37", "gpio38", "gpio39";
++				function = "qup0_se2";
++			};
++
++			qup_spi3_default: qup-spi3-state {
++				pins = "gpio28", "gpio29", "gpio30", "gpio31";
++				function = "qup0_se3";
++			};
++
++			qup_spi4_default: qup-spi4-state {
++				pins = "gpio32", "gpio33", "gpio34", "gpio35";
++				function = "qup0_se4";
++			};
++
++			qup_spi5_default: qup-spi5-state {
++				pins = "gpio36", "gpio37", "gpio38", "gpio39";
++				function = "qup0_se5";
++			};
++
++			qup_spi7_default: qup-spi7-state {
++				pins = "gpio40", "gpio41", "gpio42", "gpio43";
++				function = "qup1_se0";
++			};
++
++			qup_spi8_default: qup-spi8-state {
++				pins = "gpio42", "gpio43", "gpio40", "gpio41";
++				function = "qup1_se1";
++			};
++
++			qup_spi9_default: qup-spi9-state {
++				pins = "gpio46", "gpio47", "gpio44", "gpio45";
++				function = "qup1_se2";
++			};
++
++			qup_spi10_default: qup-spi10-state {
++				pins = "gpio44", "gpio45", "gpio46", "gpio47";
++				function = "qup1_se3";
++			};
++
++			qup_spi11_default: qup-spi11-state {
++				pins = "gpio48", "gpio49", "gpio50", "gpio51";
++				function = "qup1_se4";
++			};
++
++			qup_spi12_default: qup-spi12-state {
++				pins = "gpio52", "gpio53", "gpio54", "gpio55";
++				function = "qup1_se5";
++			};
++
++			qup_spi14_default: qup-spi14-state {
++				pins = "gpio80", "gpio81", "gpio82", "gpio83";
++				function = "qup2_se0";
++			};
++
++			qup_spi15_default: qup-spi15-state {
++				pins = "gpio84", "gpio85", "gpio99", "gpio100";
++				function = "qup2_se1";
++			};
++
++			qup_spi16_default: qup-spi16-state {
++				pins = "gpio86", "gpio87", "gpio88", "gpio89";
++				function = "qup2_se2";
++			};
++
++			qup_spi17_default: qup-spi17-state {
++				pins = "gpio91", "gpio92", "gpio93", "gpio94";
++				function = "qup2_se3";
++			};
++
++			qup_spi18_default: qup-spi18-state {
++				pins = "gpio95", "gpio96", "gpio97", "gpio98";
++				function = "qup2_se4";
++			};
++
++			qup_spi19_default: qup-spi19-state {
++				pins = "gpio99", "gpio100", "gpio84", "gpio85";
++				function = "qup2_se5";
++			};
++
++			qup_spi20_default: qup-spi20-state {
++				pins = "gpio97", "gpio98", "gpio95", "gpio96";
++				function = "qup2_se6";
++			};
++
++			qup_spi21_default: qup-spi21-state {
++				pins = "gpio13", "gpio14", "gpio15", "gpio16";
++				function = "qup3_se0";
++			};
++
++			qup_uart0_default: qup-uart0-state {
++				qup_uart0_cts: qup-uart0-cts-pins {
++					pins = "gpio20";
++					function = "qup0_se0";
++				};
++
++				qup_uart0_rts: qup-uart0-rts-pins {
++					pins = "gpio21";
++					function = "qup0_se0";
++				};
++
++				qup_uart0_tx: qup-uart0-tx-pins {
++					pins = "gpio22";
++					function = "qup0_se0";
++				};
++
++				qup_uart0_rx: qup-uart0-rx-pins {
++					pins = "gpio23";
++					function = "qup0_se0";
++				};
++			};
++
++			qup_uart1_default: qup-uart1-state {
++				qup_uart1_cts: qup-uart1-cts-pins {
++					pins = "gpio24";
++					function = "qup0_se1";
++				};
++
++				qup_uart1_rts: qup-uart1-rts-pins {
++					pins = "gpio25";
++					function = "qup0_se1";
++				};
++
++				qup_uart1_tx: qup-uart1-tx-pins {
++					pins = "gpio26";
++					function = "qup0_se1";
++				};
++
++				qup_uart1_rx: qup-uart1-rx-pins {
++					pins = "gpio27";
++					function = "qup0_se1";
++				};
++			};
++
++			qup_uart2_default: qup-uart2-state {
++				qup_uart2_cts: qup-uart2-cts-pins {
++					pins = "gpio36";
++					function = "qup0_se2";
++				};
++
++				qup_uart2_rts: qup-uart2-rts-pins {
++					pins = "gpio37";
++					function = "qup0_se2";
++				};
++
++				qup_uart2_tx: qup-uart2-tx-pins {
++					pins = "gpio38";
++					function = "qup0_se2";
++				};
++
++				qup_uart2_rx: qup-uart2-rx-pins {
++					pins = "gpio39";
++					function = "qup0_se2";
++				};
++			};
++
++			qup_uart3_default: qup-uart3-state {
++				qup_uart3_cts: qup-uart3-cts-pins {
++					pins = "gpio28";
++					function = "qup0_se3";
++				};
++
++				qup_uart3_rts: qup-uart3-rts-pins {
++					pins = "gpio29";
++					function = "qup0_se3";
++				};
++
++				qup_uart3_tx: qup-uart3-tx-pins {
++					pins = "gpio30";
++					function = "qup0_se3";
++				};
++
++				qup_uart3_rx: qup-uart3-rx-pins {
++					pins = "gpio31";
++					function = "qup0_se3";
++				};
++			};
++
++			qup_uart4_default: qup-uart4-state {
++				qup_uart4_cts: qup-uart4-cts-pins {
++					pins = "gpio32";
++					function = "qup0_se4";
++				};
++
++				qup_uart4_rts: qup-uart4-rts-pins {
++					pins = "gpio33";
++					function = "qup0_se4";
++				};
++
++				qup_uart4_tx: qup-uart4-tx-pins {
++					pins = "gpio34";
++					function = "qup0_se4";
++				};
++
++				qup_uart4_rx: qup-uart4-rx-pins {
++					pins = "gpio35";
++					function = "qup0_se4";
++				};
++			};
++
++			qup_uart5_default: qup-uart5-state {
++				qup_uart5_cts: qup-uart5-cts-pins {
++					pins = "gpio36";
++					function = "qup0_se5";
++				};
++
++				qup_uart5_rts: qup-uart5-rts-pins {
++					pins = "gpio37";
++					function = "qup0_se5";
++				};
++
++				qup_uart5_tx: qup-uart5-tx-pins {
++					pins = "gpio38";
++					function = "qup0_se5";
++				};
++
++				qup_uart5_rx: qup-uart5-rx-pins {
++					pins = "gpio39";
++					function = "qup0_se5";
++				};
++			};
++
++			qup_uart7_default: qup-uart7-state {
++				qup_uart7_cts: qup-uart7-cts-pins {
++					pins = "gpio40";
++					function = "qup1_se0";
++				};
++
++				qup_uart7_rts: qup-uart7-rts-pins {
++					pins = "gpio41";
++					function = "qup1_se0";
++				};
++
++				qup_uart7_tx: qup-uart7-tx-pins {
++					pins = "gpio42";
++					function = "qup1_se0";
++				};
++
++				qup_uart7_rx: qup-uart7-rx-pins {
++					pins = "gpio43";
++					function = "qup1_se0";
++				};
++			};
++
++			qup_uart8_default: qup-uart8-state {
++				qup_uart8_cts: qup-uart8-cts-pins {
++					pins = "gpio42";
++					function = "qup1_se1";
++				};
++
++				qup_uart8_rts: qup-uart8-rts-pins {
++					pins = "gpio43";
++					function = "qup1_se1";
++				};
++
++				qup_uart8_tx: qup-uart8-tx-pins {
++					pins = "gpio40";
++					function = "qup1_se1";
++				};
++
++				qup_uart8_rx: qup-uart8-rx-pins {
++					pins = "gpio41";
++					function = "qup1_se1";
++				};
++			};
++
++			qup_uart9_default: qup-uart9-state {
++				qup_uart9_cts: qup-uart9-cts-pins {
++					pins = "gpio46";
++					function = "qup1_se2";
++				};
++
++				qup_uart9_rts: qup-uart9-rts-pins {
++					pins = "gpio47";
++					function = "qup1_se2";
++				};
++
++				qup_uart9_tx: qup-uart9-tx-pins {
++					pins = "gpio44";
++					function = "qup1_se2";
++				};
++
++				qup_uart9_rx: qup-uart9-rx-pins {
++					pins = "gpio45";
++					function = "qup1_se2";
++				};
++			};
++
++			qup_uart10_default: qup-uart10-state {
++				pins = "gpio46", "gpio47";
++				function = "qup1_se3";
++			};
++
++			qup_uart11_default: qup-uart11-state {
++				qup_uart11_cts: qup-uart11-cts-pins {
++					pins = "gpio48";
++					function = "qup1_se4";
++				};
++
++				qup_uart11_rts: qup-uart11-rts-pins {
++					pins = "gpio49";
++					function = "qup1_se4";
++				};
++
++				qup_uart11_tx: qup-uart11-tx-pins {
++					pins = "gpio50";
++					function = "qup1_se4";
++				};
++
++				qup_uart11_rx: qup-uart11-rx-pins {
++					pins = "gpio51";
++					function = "qup1_se4";
++				};
++			};
++
++			qup_uart12_default: qup-uart12-state {
++				qup_uart12_cts: qup-uart12-cts-pins {
++					pins = "gpio52";
++					function = "qup1_se5";
++				};
++
++				qup_uart12_rts: qup-uart12-rts-pins {
++					pins = "gpio53";
++					function = "qup1_se5";
++				};
++
++				qup_uart12_tx: qup-uart12-tx-pins {
++					pins = "gpio54";
++					function = "qup1_se5";
++				};
++
++				qup_uart12_rx: qup-uart12-rx-pins {
++					pins = "gpio55";
++					function = "qup1_se5";
++				};
++			};
++
++			qup_uart14_default: qup-uart14-state {
++				qup_uart14_cts: qup-uart14-cts-pins {
++					pins = "gpio80";
++					function = "qup2_se0";
++				};
++
++				qup_uart14_rts: qup-uart14-rts-pins {
++					pins = "gpio81";
++					function = "qup2_se0";
++				};
++
++				qup_uart14_tx: qup-uart14-tx-pins {
++					pins = "gpio82";
++					function = "qup2_se0";
++				};
++
++				qup_uart14_rx: qup-uart14-rx-pins {
++					pins = "gpio83";
++					function = "qup2_se0";
++				};
++			};
++
++			qup_uart15_default: qup-uart15-state {
++				qup_uart15_cts: qup-uart15-cts-pins {
++					pins = "gpio84";
++					function = "qup2_se1";
++				};
++
++				qup_uart15_rts: qup-uart15-rts-pins {
++					pins = "gpio85";
++					function = "qup2_se1";
++				};
++
++				qup_uart15_tx: qup-uart15-tx-pins {
++					pins = "gpio99";
++					function = "qup2_se1";
++				};
++
++				qup_uart15_rx: qup-uart15-rx-pins {
++					pins = "gpio100";
++					function = "qup2_se1";
++				};
++			};
++
++			qup_uart16_default: qup-uart16-state {
++				qup_uart16_cts: qup-uart16-cts-pins {
++					pins = "gpio86";
++					function = "qup2_se2";
++				};
++
++				qup_uart16_rts: qup-uart16-rts-pins {
++					pins = "gpio87";
++					function = "qup2_se2";
++				};
++
++				qup_uart16_tx: qup-uart16-tx-pins {
++					pins = "gpio88";
++					function = "qup2_se2";
++				};
++
++				qup_uart16_rx: qup-uart16-rx-pins {
++					pins = "gpio89";
++					function = "qup2_se2";
++				};
++			};
++
++			qup_uart17_default: qup-uart17-state {
++				qup_uart17_cts: qup-uart17-cts-pins {
++					pins = "gpio91";
++					function = "qup2_se3";
++				};
++
++				qup_uart17_rts: qup0-uart17-rts-pins {
++					pins = "gpio92";
++					function = "qup2_se3";
++				};
++
++				qup_uart17_tx: qup0-uart17-tx-pins {
++					pins = "gpio93";
++					function = "qup2_se3";
++				};
++
++				qup_uart17_rx: qup0-uart17-rx-pins {
++					pins = "gpio94";
++					function = "qup2_se3";
++				};
++			};
++
++			qup_uart18_default: qup-uart18-state {
++				qup_uart18_cts: qup-uart18-cts-pins {
++					pins = "gpio95";
++					function = "qup2_se4";
++				};
++
++				qup_uart18_rts: qup-uart18-rts-pins {
++					pins = "gpio96";
++					function = "qup2_se4";
++				};
++
++				qup_uart18_tx: qup-uart18-tx-pins {
++					pins = "gpio97";
++					function = "qup2_se4";
++				};
++
++				qup_uart18_rx: qup-uart18-rx-pins {
++					pins = "gpio98";
++					function = "qup2_se4";
++				};
++			};
++
++			qup_uart19_default: qup-uart19-state {
++				qup_uart19_cts: qup-uart19-cts-pins {
++					pins = "gpio99";
++					function = "qup2_se5";
++				};
++
++				qup_uart19_rts: qup-uart19-rts-pins {
++					pins = "gpio100";
++					function = "qup2_se5";
++				};
++
++				qup_uart19_tx: qup-uart19-tx-pins {
++					pins = "gpio84";
++					function = "qup2_se5";
++				};
++
++				qup_uart19_rx: qup-uart19-rx-pins {
++					pins = "gpio85";
++					function = "qup2_se5";
++				};
++			};
++
++			qup_uart20_default: qup-uart20-state {
++				qup_uart20_cts: qup-uart20-cts-pins {
++					pins = "gpio97";
++					function = "qup2_se6";
++				};
++
++				qup_uart20_rts: qup-uart20-rts-pins {
++					pins = "gpio98";
++					function = "qup2_se6";
++				};
++
++				qup_uart20_tx: qup-uart20-tx-pins {
++					pins = "gpio95";
++					function = "qup2_se6";
++				};
++
++				qup_uart20_rx: qup-uart20-rx-pins {
++					pins = "gpio96";
++					function = "qup2_se6";
++				};
++			};
++
++			qup_uart21_default: qup-uart21-state {
++				qup_uart21_cts: qup-uart21-cts-pins {
++					pins = "gpio13";
++					function = "qup3_se0";
++				};
++
++				qup_uart21_rts: qup-uart21-rts-pins {
++					pins = "gpio14";
++					function = "qup3_se0";
++				};
++
++				qup_uart21_tx: qup-uart21-tx-pins {
++					pins = "gpio15";
++					function = "qup3_se0";
++				};
++
++				qup_uart21_rx: qup-uart21-rx-pins {
++					pins = "gpio16";
++					function = "qup3_se0";
++				};
++			};
+ 		};
+ 
+ 		sram: sram@146d8000 {
+-- 
+2.34.1
+
 
