@@ -1,190 +1,265 @@
-Return-Path: <devicetree+bounces-175601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09436AB13B0
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:44:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90579AB13B9
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:45:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C55213BDC7D
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:43:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2BF11C27DBE
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:45:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FDCB290D8B;
-	Fri,  9 May 2025 12:44:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF98F290D9E;
+	Fri,  9 May 2025 12:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="QSy7tZtK"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="ImuD8IbR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B55290BA0
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 12:44:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7C5628ECDC
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 12:45:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746794654; cv=none; b=ZokqwjvfLDMtr4EFWUo4bOCruPYhtRocg8xnqLhZNVCp647edD9Lvrsryc0jS8gSPAF4GS8yrGDGuu8hX0Mc+z+fBP1XUFW04w8eqop2xlF8B9rLLNVoTG54AMcQ5rVp+W4NylZaqL6JUJfM/ktL4oeq4IUhoeD/fOxLFVXWohQ=
+	t=1746794722; cv=none; b=PZ32wjh4LixTiFw1X7sHPwEoM590Vw5FD8TwIKZAX2WLzLzRAnUNYFl2pafaEOjqbEuT9zCx2JpS9bh32KD/K0W5IT7WvOpuTGVaC7KmmCgWkzHLSn9AkNWVrJGO3atnS3AARGqF2HMaZfqbyELVUM63BiIKVUzrwLhiHZJkLiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746794654; c=relaxed/simple;
-	bh=zAnIDzk1Ex30r2AWghF2/dzpVcrnWZnWMuTaApVel18=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XTRJuhznIzOR/ipDeRhn9ySz9+4E6ziF2Zcfz31kvKxqTdPKMg4mJ94FFAA7EVKD6Vn3CbG8JnHnc1qOqLhNTXR9azX69crMrKi184Hmo7mVoDUfvSWeFE78cTDLwCyzAJHcm3xIgO93rrXCXQl+hHkFbT6cGVkAjtkHKR+tZsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=QSy7tZtK; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5f63ac6ef0fso4144849a12.1
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 05:44:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1746794650; x=1747399450; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/paEfu3znIo+odjzOzegwzTx47yQ+AdAhjxebl79aIw=;
-        b=QSy7tZtKyHElp0AA0uw54tMbkJp7f8xL6nb/G6EExiUGFE8Wg+XZf/VqYmemPv0UPS
-         G1EJhbG98zNpDe8yzDIxZrVhwNZJTMz/mus2gfUdkfVQdwoHfB//2H/2JhnSQS0wYi0Q
-         X0py3SVGjkDiam+0dM8un3k3TlaRUPmd5Ta0p0Kxlp5yE2oHNHwadepF63kIZkBwcYSY
-         wKPCGcMxgRl7fN6QlNFbWNGyfddmSJ0VdaFVSUnxhDeDY3Y9GPsY3QZsUitaj5Cp44Xw
-         uGzC6800t5tk0tPl0Sfcmnjeb+JKKivTZPud/lnkjXG+FAQdR8S004FGmCdRKL7ZIAzH
-         QxFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746794650; x=1747399450;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/paEfu3znIo+odjzOzegwzTx47yQ+AdAhjxebl79aIw=;
-        b=h+XcpFBFTXLGgnpFgdANuPntPZLR3czYNcNHVqWb5kVp+d1VU+nN69KRNt/t6Xsbha
-         gnP9QcoGkWIl3+KTzzBQqs+XYmPrDfqjCSkubfE6pjq2mG26UdicObQlQ3VulBX1FiC0
-         lAte2IgQ4cyckW6bFE2V8AaFFVm1bInKMUlhQjGepXqaow/vwoG+bzXYbPtM1CMf77S5
-         YSUJLm4b+UxtuIJPzNBgE0YlXf4VgDYU13x03JkvTN6Mlmq2SdGMZOjaJ2f905n73gpc
-         9oJmZFG+ryHleiCFQt0QkYLDts0yFPqHNDvm9WlB+aA69iybqVHfi1BmBUp2a6LnIFLS
-         PWUg==
-X-Forwarded-Encrypted: i=1; AJvYcCVAt8oNSycR9WGIhJbYxUk22bvq2OZArnRodi9j1KVm1OfHkTEvm70xOJdm6AX+4qTKW63r+NLj5awN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyao8fFy5NZMvQhzBN7w9gA7Bx4PEkWw9Eqtts2ziL9ApHCSmIK
-	SklAZ/a8a/L1ItEIKUhuZ0pf6ee46Q5CFKPfs7QulW353JaJunFN35r0zMka45Q=
-X-Gm-Gg: ASbGncuAn6tvFyj9rYG9G7zuKQXvnmqYOGRUORGXEP1ca+EdmJby4Af38nDyTmLVAno
-	zPfwhs5WefsFN4DAvVCLDXhc+JMlvquGNyjduyDakVU6tFI3E8jEFzfcH6mXBjge4C2e9Jtef3w
-	1dk1b5pTeZUuTfUvMOfs98Rsjsv3kUmRnyJqVRfo7C/Ql3AufT3Lk1Zylk6WA2VGHsJyZ49wCL1
-	PZqCHWLDLqDyw5GoHHBpt1mhoJiV8SKUjkbbYbxk8WjfpyeeZN5UBQXlYp2xfAI2N4OAlVtrgc6
-	J9QkkbnViPXmqwbZxcLwwMouITjdTajVJdlSHlgjL5zMghVhNG1BVWKOTmI=
-X-Google-Smtp-Source: AGHT+IEXHjPdBs2wbTDrgigjAAWt1V/NRiT3NNjsGB4lXS/D8KzGHFymOigZLIExpISjX/zYVIeYTA==
-X-Received: by 2002:a05:6402:2549:b0:5fc:8d75:4a25 with SMTP id 4fb4d7f45d1cf-5fc8d754c6cmr4828222a12.7.1746794650507;
-        Fri, 09 May 2025 05:44:10 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.50])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5fc9cc26710sm1334871a12.21.2025.05.09.05.44.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 May 2025 05:44:10 -0700 (PDT)
-Message-ID: <bcbd993f-59e7-4017-b592-11e514e8f186@tuxon.dev>
-Date: Fri, 9 May 2025 15:44:08 +0300
+	s=arc-20240116; t=1746794722; c=relaxed/simple;
+	bh=5hWc92BIAJybu8SJz53/NZw6BpLdce7GUubnVuWwujw=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=o4d5Gs3oMGK/vfuN3Ug3DoVzouj07rvw/XxZ4njJzNRLfRd1Ct7UzMKWbZHJl5SMZ25litrnzYl3BOsa+Yr/SJSTdMtP998xs1W1EgZ4BH0fLf8gKdyNbGevuBO7db+ZKMUkrWbWD792AYWacsMEZgcoOgeqhc5Z0BbF1jB4m+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=ImuD8IbR; arc=none smtp.client-ip=91.218.175.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] clk: renesas: rzg2l-cpg: Add support for MSTOP in
- clock enable/disable API
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com,
- linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250410140628.4124896-1-claudiu.beznea.uj@bp.renesas.com>
- <20250410140628.4124896-4-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdU00apiWYCPiwqGr66Ucg9KgWMhhm8FW_KBoeN2ceos+w@mail.gmail.com>
- <8a14cf38-9a7b-462b-80d1-ec5026b5a565@tuxon.dev>
- <CAMuHMdWOihhQtpi+J9t-4bApEHx+f6_q7NtdEiLVi63krZnK=w@mail.gmail.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <CAMuHMdWOihhQtpi+J9t-4bApEHx+f6_q7NtdEiLVi63krZnK=w@mail.gmail.com>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1746794706;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=KW4KBcGtJSrAqFPHP5H5PG7TlnbU9UpApL0n436QVo4=;
+	b=ImuD8IbRIqKE/CNpdy4WPO3H6jwtC1fJZQatK6NXOjntc5zPYY0Hini8qWMmbczkWJBfkA
+	ngxt4TAajwKHgWWQVXc+p0IYLaaWurIOD87JeLM1V0R/fYqCuKcGKVAEi7lw758doECP/l
+	UPVVsgeGriocqzrprVLErqTCAq65AlolVSZo77ifnvUka01goaVwjItz+4WU1pBiimJoI0
+	X5wTj02NhPFroV0UJohtv/paQRC4NbD08j7/roreBlL0GN+VlIVwAgx4q2Qq3Zw6HL1MXY
+	f9AXHD9tgg4nzE5F+EE3opvXO2Rn0ULldCSPleRIbDnmgSH8eCVqYgOLFcRyIg==
+Content-Type: multipart/signed;
+ boundary=a8e812d93356676e6d3194396309dd33e90e10afd882605b15d3904c7ce0;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Fri, 09 May 2025 14:44:57 +0200
+Message-Id: <D9RN1HZAXH1M.3H228KWQJ9CR0@cknow.org>
+Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <kernel@collabora.com>
+Subject: Re: [PATCH v2 2/5] arm64: dts: rockchip: move rock 5b to include
+ file
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Sebastian Reichel" <sebastian.reichel@collabora.com>, "Heiko Stuebner"
+ <heiko@sntech.de>
+References: <20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org>
+ <20250508-rock5bp-for-upstream-v2-2-677033cc1ac2@kernel.org>
+In-Reply-To: <20250508-rock5bp-for-upstream-v2-2-677033cc1ac2@kernel.org>
+X-Migadu-Flow: FLOW_OUT
+
+--a8e812d93356676e6d3194396309dd33e90e10afd882605b15d3904c7ce0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-Hi, Geert,
+Hi,
 
-On 09.05.2025 15:12, Geert Uytterhoeven wrote:
-> Hi Claudiu,
-> 
-> On Fri, 9 May 2025 at 12:58, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
->> On 07.05.2025 18:47, Geert Uytterhoeven wrote:
->>> On Thu, 10 Apr 2025 at 16:06, Claudiu <claudiu.beznea@tuxon.dev> wrote:
->>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>
->>>> The RZ/{G2L, V2L, G3S} CPG versions support a feature called MSTOP. Each
->>>> module has one or more MSTOP bits associated with it, and these bits need
->>>> to be configured along with the module clocks. Setting the MSTOP bits
->>>> switches the module between normal and standby states.
->>>>
->>>> Previously, MSTOP support was abstracted through power domains
->>>> (struct generic_pm_domain::{power_on, power_off} APIs). With this
->>>> abstraction, the order of setting the MSTOP and CLKON bits was as follows:
->>>>
->>>> Previous Order:
->>>> A/ Switching to Normal State (e.g., during probe):
->>>> 1/ Clear module MSTOP bits
->>>> 2/ Set module CLKON bits
->>>>
->>>> B/ Switching to Standby State (e.g., during remove):
->>>> 1/ Clear CLKON bits
->>>> 2/ Set MSTOP bits
->>>>
->>>> However, in some cases (when the clock is disabled through devres), the
->>>> order may have been (due to the issue described in link section):
->>>>
->>>> 1/ Set MSTOP bits
->>>> 2/ Clear CLKON bits
->>>>
->>>> Recently, the hardware team has suggested that the correct order to set
->>>> the MSTOP and CLKON bits is:
->>>>
->>>> Updated Order:
->>>> A/ Switching to Normal State (e.g., during probe):
->>>> 1/ Set CLKON bits
->                   ^^^^
->                   plural
+On Thu May 8, 2025 at 7:48 PM CEST, Sebastian Reichel wrote:
+> Radxa released some more boards, which are based on the original
+> Rock 5B. Move its board description into an include file to avoid
+> unnecessary duplication.
 
-This is a mistake from my side. Apologies for it. I was trying to keep it
-as simple as possible to avoid any confusion but I failed. The HW team
-recommended to follow the sequence described in Figure 41.5 Module Standby
-Mode Procedure, from chapter 41.2.2. Operation
-:
+Aren't you moving it *out of* an/the include file?
+If so, the patch Subject and the above line should be updated so that
+they correctly reflect what is changed in this patch.
 
-This is a copy-paste from the communication with them:
+The above text is correct (and the same ...) as patch 1, but in this
+patch you move things out of the dtsi which are unique per board.
 
-"To enter the module standby:
-1/ set the CPG_BUS_***_MSTOP register
-2/ set the CPG_CLKON_*** register
+> NOTE: this should be merged with the previous commit to ensure
+> bisectability. The rename happens in a separete commit during
+> development because git does not properly detect the rename when
+> the original filename is reused in the same commit. This means
+>
+> 1. it's a lot harder to review the changes
+> 2. it's a lot harder to rebase the patch series
 
-To start the module:
-3/ set the CPG_CLKON_*** register
-4/ set the CPG_BUS_***_MSTOP register"
+Or did I fall prey to the exact thing you described here?
 
-> 
->>>> 2/ Clear MSTOP bits
->                     ^^^^
->                     plural
+Cheers,
+  Diederik
 
-Same here
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts  | 52 ++++++++++++++++++=
+++++++
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi | 40 ------------------
+>  2 files changed, 52 insertions(+), 40 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64=
+/boot/dts/rockchip/rk3588-rock-5b.dts
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..9407a7c9910ada1f6c803d2e1=
+5785a9cbd9bd655
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> @@ -0,0 +1,52 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include "rk3588-rock-5b.dtsi"
+> +
+> +/ {
+> +	model =3D "Radxa ROCK 5B";
+> +	compatible =3D "radxa,rock-5b", "rockchip,rk3588";
+> +};
+> +
+> +&sdio {
+> +	max-frequency =3D <200000000>;
+> +	no-sd;
+> +	no-mmc;
+> +	non-removable;
+> +	bus-width =3D <4>;
+> +	cap-sdio-irq;
+> +	disable-wp;
+> +	keep-power-in-suspend;
+> +	wakeup-source;
+> +	sd-uhs-sdr12;
+> +	sd-uhs-sdr25;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-sdr104;
+> +	vmmc-supply =3D <&vcc3v3_pcie2x1l0>;
+> +	vqmmc-supply =3D <&vcc_1v8_s3>;
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&sdiom0_pins>;
+> +	status =3D "okay";
+> +};
+> +
+> +&uart6 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&uart6m1_xfer &uart6m1_ctsn &uart6m1_rtsn>;
+> +	status =3D "okay";
+> +};
+> +
+> +&pinctrl {
+> +	usb {
+> +		vcc5v0_host_en: vcc5v0-host-en {
+> +			rockchip,pins =3D <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +};
+> +
+> +&vcc5v0_host {
+> +	enable-active-high;
+> +	gpio =3D <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&vcc5v0_host_en>;
+> +};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi b/arch/arm6=
+4/boot/dts/rockchip/rk3588-rock-5b.dtsi
+> index 17f4fd054cd3d1c4e23ccfe014a9c4b9d7ad1a06..6052787d2560978d2bae6cfbe=
+ea5fc1d419d583a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
+> @@ -8,9 +8,6 @@
+>  #include "rk3588.dtsi"
+> =20
+>  / {
+> -	model =3D "Radxa ROCK 5B";
+> -	compatible =3D "radxa,rock-5b", "rockchip,rk3588";
+> -
+>  	aliases {
+>  		mmc0 =3D &sdhci;
+>  		mmc1 =3D &sdmmc;
+> @@ -139,10 +136,6 @@ vcc5v0_host: regulator-vcc5v0-host {
+>  		regulator-always-on;
+>  		regulator-min-microvolt =3D <5000000>;
+>  		regulator-max-microvolt =3D <5000000>;
+> -		enable-active-high;
+> -		gpio =3D <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
+> -		pinctrl-names =3D "default";
+> -		pinctrl-0 =3D <&vcc5v0_host_en>;
+>  		vin-supply =3D <&vcc5v0_sys>;
+>  	};
+> =20
+> @@ -488,12 +481,6 @@ pcie3_vcc3v3_en: pcie3-vcc3v3-en {
+>  			rockchip,pins =3D <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
+>  		};
+>  	};
+> -
+> -	usb {
+> -		vcc5v0_host_en: vcc5v0-host-en {
+> -			rockchip,pins =3D <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+> -		};
+> -	};
+>  };
+> =20
+>  &pwm1 {
+> @@ -530,27 +517,6 @@ &sdmmc {
+>  	status =3D "okay";
+>  };
+> =20
+> -&sdio {
+> -	max-frequency =3D <200000000>;
+> -	no-sd;
+> -	no-mmc;
+> -	non-removable;
+> -	bus-width =3D <4>;
+> -	cap-sdio-irq;
+> -	disable-wp;
+> -	keep-power-in-suspend;
+> -	wakeup-source;
+> -	sd-uhs-sdr12;
+> -	sd-uhs-sdr25;
+> -	sd-uhs-sdr50;
+> -	sd-uhs-sdr104;
+> -	vmmc-supply =3D <&vcc3v3_pcie2x1l0>;
+> -	vqmmc-supply =3D <&vcc_1v8_s3>;
+> -	pinctrl-names =3D "default";
+> -	pinctrl-0 =3D <&sdiom0_pins>;
+> -	status =3D "okay";
+> -};
+> -
+>  &sfc {
+>  	pinctrl-names =3D "default";
+>  	pinctrl-0 =3D <&fspim2_pins>;
+> @@ -566,12 +532,6 @@ flash@0 {
+>  	};
+>  };
+> =20
+> -&uart6 {
+> -	pinctrl-names =3D "default";
+> -	pinctrl-0 =3D <&uart6m1_xfer &uart6m1_ctsn &uart6m1_rtsn>;
+> -	status =3D "okay";
+> -};
+> -
+>  &spi2 {
+>  	status =3D "okay";
+>  	assigned-clocks =3D <&cru CLK_SPI2>;
 
-> 
->>> What is the recommended order in case multiple clocks map to
->>> the same module? Clear the MSTOP bit(s) after enabling the first clock,
->>> or clear the MSTOP bit(s) after enabling all clocks?
->>
->> I can't find anything about this in the HW manual.
->>
->>> I believe the code implements the former?
->>
->> The proposed implementation clears the MSTOP after enabling the first clock
->> taking into account that there might be cases where 2 clocks sharing the
->> same MSTOP may not be both enabled for a particular functionality.
-> 
-> I am wondering if all clocks must be enabled before clearing MSTOP,
-> as the recommendation from the hardware team uses the plural bits.
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
 
+--a8e812d93356676e6d3194396309dd33e90e10afd882605b15d3904c7ce0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaB34zAAKCRDXblvOeH7b
+bspkAQDgrjd4oJNZSgatYk5e0hVQKf7yl7XI/rQr2kM9asNPSAEAlw0l4olpMeDx
+eBT79vJHA5+VVMCa7wErGOK6rQi7+gc=
+=5PU0
+-----END PGP SIGNATURE-----
+
+--a8e812d93356676e6d3194396309dd33e90e10afd882605b15d3904c7ce0--
 
