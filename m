@@ -1,137 +1,161 @@
-Return-Path: <devicetree+bounces-175695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47757AB181C
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:13:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBE53AB1824
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:15:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA2105418D7
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:10:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6F513B2B03
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FE43235040;
-	Fri,  9 May 2025 15:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 800F9235040;
+	Fri,  9 May 2025 15:12:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="erbcXESn"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Xrnt6M6Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B2D231A24;
-	Fri,  9 May 2025 15:09:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69754226CF8;
+	Fri,  9 May 2025 15:12:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746803362; cv=none; b=WEUKXcAvPCLqxHqzYmdepyHb/w37l7idRTHjMOumwyLBmst4WpzFaQ25Kkz6Ulqk9Zf7WYCGLE4OPImMyNZDZ4tlTAjBP9KP7YTUTvfQEDhhQEgtPj9HAhq/3VQkfhKJZpTbvWGBPG+agWuX3u+QZYnc5c8qhEIpc0LZJ9Snfus=
+	t=1746803555; cv=none; b=AUl5O6157yCGJZDbeTgfJSreVnqrjYOd4g60G+UoeADtCh+UigwRHGeSHZps2aSkUv05Sk+ksX4UwXm7VXmFi4XF1YuOFCfKBbbymL4VjK/EZ6MmlrE0N/xyNDpcLEHBt1xRhA9HBrBr7V9OGi7bYV2KC31SqN8O5KzLZuNImSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746803362; c=relaxed/simple;
-	bh=I9V/dhjsNxfWC46Xl6Mbu18eDiGWVHBlGkQ7AoGmqJk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ecXM4pP65DJU42cG/jiVQskQl6b6cr6fbPORqDDoTkNZ2PgXxZOdL/HM+hlyV+Ojg1xDLcA1CiRbtb1yw7iFgLrMMFnU8rh/Ft3qJu8iLdkTYHpeyJYRDnHXhxSzzhHMhN4t4XFIXLx/WQFiu7XAFU7mCghQiMdPp0fF6Y7inUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=erbcXESn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70797C4CEE4;
-	Fri,  9 May 2025 15:09:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746803361;
-	bh=I9V/dhjsNxfWC46Xl6Mbu18eDiGWVHBlGkQ7AoGmqJk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=erbcXESnJQ4KYhWJZEW0TclCNDB0atvxUxn3nm+isz/e5jXDtYK658N8XAWB3uanK
-	 rqXXC9L1QzZVV7Th6bYPYVjnyEVDX1dDQ+7wxtVoXUTI6BhOlSMc15wJKh4iVI5NUS
-	 y/7oRq8sU5DlpPUnklXtIvtHlUSkgZ5sGWPTFNpuCy7vaUjm1Vbc98MU8sI+rV+Iv0
-	 oCb/Fs2pt9e7ATjFJ0vcAW4W82wJ1mpcX0rT9YKeqX7frJB41d4b8F0BfSvPmGF9pZ
-	 Am2Chj4MQhy1p99rMZ0xgqsxq4sapP3I/jHU3+3x4sfCEindpBklERPuQHvbTutwKd
-	 aNfi1Pfdb+0+g==
-Message-ID: <d746c1b4-4794-498d-9a6c-a1ac1c58357c@kernel.org>
-Date: Fri, 9 May 2025 17:09:17 +0200
+	s=arc-20240116; t=1746803555; c=relaxed/simple;
+	bh=J+mhORO04a0IKQVCAqhH6DWfdwrC86bRiVuc5Rjobf8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DPyor9obRkFql3yMDxGgV3Hz2Fs1XE/fEkiVbsuzeHPMedLDx2YJeOvD1Md4WYnQOngYciUU1jffEIKnW+3anjbIr74NjEjBuZ8k7o/pmQB/ngh4P5Y9QgTorj7EkdAXXCRSuCQt5Dh1TWRzkbuvAnBrxaZThLcuXZh2keDwXtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Xrnt6M6Z; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=b08n98Unj3RXD1x5xIwGhemBZssytc919TmwiiYZy+s=; b=Xrnt6M6Za2VeS267+y4ojCxHxr
+	py/RBMo7NCKATjxxO1eXfWb94Kpe/E1n04rJA2Hs1riZZxCKRs/9SNSMMwwoX5yaxBu+TXZb2mSTH
+	sXn13t/GOhZ7shQSdeodBbM6xf6wbNlOm5xzj8s6YtE6AXn34OMO87iavQoF/467zcoSFbJTib3oE
+	LMbhHpUGNY/ezfXd7uD5KB/SsGM7QzRGkTwLAJeXVs2z/3vsoMXmDxP6iaSd+Vk0oqNV/faZo0lsP
+	70RQllGYrQIyTVFqHm5bLHssTK7NSe+W+P4isdalSXoU40PPseF7S0DiFHu3hzU/ilXG9lIS53EcD
+	FcEaycog==;
+Received: from i53875a1d.versanet.de ([83.135.90.29] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uDPOh-0007hm-QA; Fri, 09 May 2025 17:12:23 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com,
+ FUKAUMI Naoki <naoki@radxa.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 0/5] arm64: dts: rockchip: add ROCK 5B+ support
+Date: Fri, 09 May 2025 17:12:22 +0200
+Message-ID: <1893373.atdPhlSkOF@diego>
+In-Reply-To: <174679985287.3369051.14227124355079340433.robh@kernel.org>
+References:
+ <20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org>
+ <174679985287.3369051.14227124355079340433.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] Add driver for Nicera D3-323-AA PIR sensor
-To: Waqar Hameed <waqar.hameed@axis.com>, Jonathan Cameron
- <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: kernel@axis.com, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <cover.1746802541.git.waqar.hameed@axis.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <cover.1746802541.git.waqar.hameed@axis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 09/05/2025 17:03, Waqar Hameed wrote:
-> Nicera D3-323-AA is a PIR sensor for human detection. It has support for
-> raw data measurements and detection notification. The communication
-> protocol is custom made and therefore needs to be GPIO bit banged.
-> 
-> Previously, there has been an attempt to add a driver for this device
-> [1]. However, that driver was written for the wrong sub-system. `hwmon`
+Am Freitag, 9. Mai 2025, 16:17:02 Mitteleurop=C3=A4ische Sommerzeit schrieb=
+ Rob Herring (Arm):
+>=20
+> On Thu, 08 May 2025 19:48:49 +0200, Sebastian Reichel wrote:
+> > This series adds support for the ROCK 5B+, which (as the name suggests)
+> > is an improved version of the ROCK 5B. It also adds initial USB-C
+> > support for both the ROCK 5B and the 5B+.
+> >=20
+> > Changes in PATCHv2:
+> >  - Link to v1: https://lore.kernel.org/r/20250324-rock5bp-for-upstream-=
+v1-0-6217edf15b19@kernel.org
+> >  - Replaced DT binding patch with the version from NAOKI
+> >  - Dropped unused pinctrl for vcc5v0_host_en from the shared DT
+> >  - Moved USB-C SBU DC pins to board specific files, since they differ
+> >    between Rock 5B and Rock 5B+
+> >  - Added pinmux for SBU DC pins
+> >  - Rebased to latest version of Heiko's for-next branch
+> >  - Disable USB-C on Rock 5B for now
+> >=20
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> > FUKAUMI Naoki (1):
+> >       dt-bindings: arm: rockchip: Add Radxa ROCK 5B+
+> >=20
+> > Sebastian Reichel (4):
+> >       arm64: dts: rockchip: move rock 5b to include file
+> >       arm64: dts: rockchip: move rock 5b to include file
+> >       arm64: dts: rockchip: add Rock 5B+
+> >       arm64: dts: rockchip: add USB-C support for ROCK 5B+
+> >=20
+> >  .../devicetree/bindings/arm/rockchip.yaml          |    5 +
+> >  arch/arm64/boot/dts/rockchip/Makefile              |    1 +
+> >  .../boot/dts/rockchip/rk3588-rock-5b-plus.dts      |  129 +++
+> >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts    |  970 +-----------=
+=2D-----
+> >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi   | 1082 ++++++++++++=
+++++++++
+> >  5 files changed, 1247 insertions(+), 940 deletions(-)
+> > ---
+> > base-commit: b7caeb9545db25649eda36ce593b70cc2aa804ab
+> > change-id: 20250324-rock5bp-for-upstream-fd85b00b593b
+> >=20
+> > Best regards,
+> > --
+> > Sebastian Reichel <sre@kernel.org>
+> >=20
+> >=20
+> >=20
+>=20
+>=20
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>=20
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>=20
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>=20
+>   pip3 install dtschema --upgrade
+>=20
+>=20
+> This patch series was applied (using b4) to base:
+>  Base: base-commit b7caeb9545db25649eda36ce593b70cc2aa804ab not known, ig=
+noring
+>  Base: attempting to guess base-commit...
+>  Base: tags/v6.15-rc1-40-g425af91c5802 (best guess, 2/3 blobs matched)
+>=20
+> If this is not the correct base, please add 'base-commit' tag
+> (or use b4 which does this automatically)
+>=20
+> New warnings running 'make CHECK_DTBS=3Dy for arch/arm64/boot/dts/rockchi=
+p/' for 20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org:
+>=20
+> arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dtb: /edp@fdec0000: fail=
+ed to match any schema with compatible: ['rockchip,rk3588-edp']
+> arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dtb: /edp@fded0000: fail=
+ed to match any schema with compatible: ['rockchip,rk3588-edp']
 
-So that's a v2. Mark your patches correctly.
+This should be already fixed by the rk3588-edp addition in linux-next:
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/=
+?id=3Df855146263b14abadd8d5bd0e280e54fbab3bd18
 
-> is clearly not a suitable framework for a proximity device.
-> 
-> In this series, we add a driver for support for event notification for
-> detections through IIO (the more appropriate sub-system!). The various
-> settings have been mapped to existing `sysfs` ABIs in the IIO framework.
-> 
-> The public datasheet [2] is quite sparse. A more detailed version can be
-> obtained through the company.
-> 
-> [1] https://lore.kernel.org/lkml/20241212042412.702044-2-Hermes.Zhang@axis.com/
-Read the comments given in that review:
-https://lore.kernel.org/lkml/wy7nyg3cztixe5y5rg4kbsbbly32h547hwumwwvrfme4fdgsj5@znfpypleebrb/
 
-You repeated same mistakes, which means I did same review second time
-which is waste of my time.
-
-Best regards,
-Krzysztof
 
