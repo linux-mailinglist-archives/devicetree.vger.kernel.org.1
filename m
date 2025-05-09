@@ -1,205 +1,114 @@
-Return-Path: <devicetree+bounces-175590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A74D9AB135E
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:29:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04E84AB1372
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:32:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A0AF16E5BF
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:29:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D39C189D569
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:32:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F203290D87;
-	Fri,  9 May 2025 12:29:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F71227700C;
+	Fri,  9 May 2025 12:32:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EuBvdW/d"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="cfht1BMG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DEF3290098;
-	Fri,  9 May 2025 12:29:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746793756; cv=none; b=joRrcijoqmTBlAPTmHZxPaKXdcAO3h95uz0jWzgvc1RBm63OmM8RZbQMFGdsoQ4nCe9/Yys3A3nmDwhCHw+zD1KNd0kegx72zqz7oJTMZTIqsbjSgQSM5J38VDigcT0zxf9VedWn8vI/CxbBhnCvEyKSYQ0vtjRAG1K+WI2j1Z0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746793756; c=relaxed/simple;
-	bh=PzYfM4U0oRLonPlgfQq8pnsotxVOcUZeYx58AFSn078=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PrjLiezcWOW0xvPwMe2UEmFNTheS92sKc+WCbKmt9dg4aWIHRuhR3S44auLIPkD8HjC6K1aHU8IPuai3BcXiXhhI4dyP7O79u1bl4PbH7uFx/4Slpf1AyTuVfL2k++fx75FR0Y6swSA98dJNcF969obBhTOrJrkH7eGPHJwSggc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EuBvdW/d; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746793754; x=1778329754;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PzYfM4U0oRLonPlgfQq8pnsotxVOcUZeYx58AFSn078=;
-  b=EuBvdW/dAc20W9ccB6mbJgWUJ2jEnNcQNzcLIDbvmpi3EJzW4dkL8I0A
-   8RFFJqdXh2Vvd2+yaJA7Tao7w4No5FjjGo8BfEbg4Z8QtCTqbhBxTArIT
-   JNtl73MVfXkqHVvKjM2BSkrA9QvdOI0RyjdnXf9VR3EYm41JvCLNoO0K/
-   dtOYRRESZeeIM5SPbEwovT36WVrNQd7nauWMdQJmXcJYcXwd+js1bGcfq
-   CejDbZL0deHBmTLQKUEJ6419WUhNVH9L/3oQb/uYaET0FoiVfohDHfi+D
-   42G4a5EEaMPAqWAbX6VqJEemneOI1Ggn6/6ttGHIbOqISPgzqNUIxm2tt
-   g==;
-X-CSE-ConnectionGUID: lsbw+6MSSFmbXWDLYBvofg==
-X-CSE-MsgGUID: r9XpN3L1Q1ejMulLjgkMrA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="59963904"
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; 
-   d="scan'208";a="59963904"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2025 05:29:13 -0700
-X-CSE-ConnectionGUID: AEAKygE/R5OtNhb1QY27qw==
-X-CSE-MsgGUID: xc5/UoSQQ/Wj9mtgwrwTYg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; 
-   d="scan'208";a="137101795"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 09 May 2025 05:29:11 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uDMqi-000C4B-29;
-	Fri, 09 May 2025 12:29:08 +0000
-Date: Fri, 9 May 2025 20:28:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
-	linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
-	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	vikash.bansal@nxp.com, priyanka.jain@nxp.com,
-	shashank.rebbapragada@nxp.com, Frank.Li@nxp.com,
-	Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-Subject: Re: [PATCH v2 2/2] drivers: i3c: Add driver for NXP P3H2x4x i3c-hub
- device
-Message-ID: <202505092036.D5saUso4-lkp@intel.com>
-References: <20250508045711.2810207-2-aman.kumarpandey@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E221DFFD;
+	Fri,  9 May 2025 12:32:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746793949; cv=pass; b=QnWfRzbyRs+ND8trNKvTulpqxO5xJj9blyTrcW8l9Gu417TLybpj0RT4KMh0BwrIplLDqhogXlW9tzX/EgZNt9gvRrgXVhFT6VtWWMg1BitzgUPSa5cfA2tQyYnPT4GL56eLROi4u4Q3Yh87M/dX4xdtRq1V5D/MyQaiZ4AQJPA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746793949; c=relaxed/simple;
+	bh=h7ROkYdEph2UNyCBR1npDb7lsuYPrrJqcQ1YbFpaJC8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iJKVqpIXCYonnQWHOt6eprf110LxsekB32PbEAXZZT+tL1PucGXcgVhIgUyxEn9hSm+62bEMNmm4Kpm48MpBlRscMm6j65XvdQMgibla6bMmoW+rPELVV+xz3cC1fMOLFi6ro0eQMa+DXUS24Z5KC47sdpBb0toX2V18+zi8OFo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=cfht1BMG; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1746793931; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=fJfDGihC/BZGHYWAPMRRQ7ArXPcBm00NUiTgRssqn+w4LGPCKxdPc77hVpJ9pIIp1Pq51ydZqBuhCPDSJjZSNwZNhXKG8bl8h0CVjM7dx3qebNHk0M4TsLhg3DdJv6mgXf3R7OLeKYvn5mNsISKk3yNp9/ncLvm+TtN3KW28BHE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1746793931; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=4ceenuKVT9zJ9XIykC37iSEzCKLI5XrntZhOTp1GUzo=; 
+	b=eX13l1ZwaLlOge/lh92a2Su/5Ds3fsb1wIoVUkRY0hxgfLGRlEjSpuntP1Vc6wgafwBkJGYhLHiKZYlQNvQojt3t6foczJxAbqa1UUkyFtnMu6gRLEs80M1XvLMgUl78PSsowennyryKDwGH3rRD08dVsGKbu/3VN5vFUYj9wnw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1746793931;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=4ceenuKVT9zJ9XIykC37iSEzCKLI5XrntZhOTp1GUzo=;
+	b=cfht1BMGXhIgdANTyBcERZUxVZ5o8rZrKQE4Pq49bKawOMbxTp2+h+JZSl5SQOKF
+	zjoA9NMBW+qYkBnXwJCJt9QFZFQiU3c0wzxtnPtoeVBWjI+gsUgznbLrkmUaCDGu6vZ
+	v6OgKRE9/UtLiUBU39LWjljGRFxjHY5jevHrB4fs=
+Received: by mx.zohomail.com with SMTPS id 1746793930283950.4244953090428;
+	Fri, 9 May 2025 05:32:10 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH 0/3] Add RADXA ROCK 5T support
+Date: Fri, 09 May 2025 14:31:40 +0200
+Message-Id: <20250509-add-rock5t-v1-0-cff1de74eced@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250508045711.2810207-2-aman.kumarpandey@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKz1HWgC/zWNQQ6CMBREr0K69ptSAggxxnsYFqX9YIOl+FsIC
+ eHuIujyzWTeLMwjGfSsjBZGOBlvXL9BfIqYesq+RTB6Yya4SHnKC5BaAznVpQEajWkhco1JVrN
+ tMBA2Zt5lj+pgwve4OcMRslp6BOWsNaGMepwD/LyX796i93J/LKPrvzjO6gEaRzAOPhBKC5MAD
+ lme8yRRKpZK3DukHl9nR+2NVev6AZmP2iDZAAAA
+X-Change-ID: 20250509-add-rock5t-fde5927de36b
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.2
 
-Hi Aman,
+This is a small series, depending on Sebastian Reichel's ROCK 5B+
+series[1], to also add support for the ROCK 5T.
 
-kernel test robot noticed the following build errors:
+The ROCK 5T is quite similar to the ROCK 5B+ and the ROCK 5B, so to
+share as much DT boilerplate between them as we can, this series
+reorganises things a bit and then adds the ROCK 5T .dts.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.15-rc5 next-20250508]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Link: https://lore.kernel.org/linux-rockchip/20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org/T/ [1]
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Nicolas Frattaroli (3):
+      dt-bindings: arm: rockchip: add RADXA ROCK 5T
+      arm64: dts: rockchip: reorganise common rock5* nodes
+      arm64: dts: rockchip: add ROCK 5T device tree
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Aman-Kumar-Pandey/drivers-i3c-Add-driver-for-NXP-P3H2x4x-i3c-hub-device/20250508-125929
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250508045711.2810207-2-aman.kumarpandey%40nxp.com
-patch subject: [PATCH v2 2/2] drivers: i3c: Add driver for NXP P3H2x4x i3c-hub device
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20250509/202505092036.D5saUso4-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250509/202505092036.D5saUso4-lkp@intel.com/reproduce)
+ .../devicetree/bindings/arm/rockchip.yaml          |    5 +
+ arch/arm64/boot/dts/rockchip/Makefile              |    1 +
+ .../boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi   | 1012 ++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi   | 1012 +-------------------
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts    |  105 ++
+ 5 files changed, 1131 insertions(+), 1004 deletions(-)
+---
+base-commit: 19c541fe872387798a25df947f56a26212aa9a97
+change-id: 20250509-add-rock5t-fde5927de36b
+prerequisite-message-id: <20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org>
+prerequisite-patch-id: 02bf159533bb53d2cb1b6c8c7caf1d3fcfbfa4ea
+prerequisite-patch-id: fc153d1d48f19d63520086a6eaadfec2db960470
+prerequisite-patch-id: f445b893edf31ccf3311e146a53e5d24861c2475
+prerequisite-patch-id: 5dc410a438ad5a7aa8962e380d2733782f5d7d18
+prerequisite-patch-id: c70ae0e30be2a3385d2f2a09f474ff2b76293843
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505092036.D5saUso4-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/i3c/hub/p3h2840_i3c_hub_common.c:125:12: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     125 |                 value |= P3H2x4x_TP0145_PULLUP_CONF(p3h2x4x_pullup_dt_to_reg
-         |                          ^
-   drivers/i3c/hub/p3h2840_i3c_hub.h:93:3: note: expanded from macro 'P3H2x4x_TP0145_PULLUP_CONF'
-      93 |                 FIELD_PREP(P3H2x4x_TP0145_PULLUP_CONF_MASK, x)
-         |                 ^
-   drivers/i3c/hub/p3h2840_i3c_hub_common.c:131:12: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     131 |                 value |= P3H2x4x_TP2367_PULLUP_CONF(p3h2x4x_pullup_dt_to_reg
-         |                          ^
-   drivers/i3c/hub/p3h2840_i3c_hub.h:96:3: note: expanded from macro 'P3H2x4x_TP2367_PULLUP_CONF'
-      96 |                 FIELD_PREP(P3H2x4x_TP2367_PULLUP_CONF_MASK, x)
-         |                 ^
-   drivers/i3c/hub/p3h2840_i3c_hub_common.c:168:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     168 |                 val = P3H2x4x_CP0_VCCIO_LDO_VOLTAGE(p3h2x4x_ldo_dt_to_reg
-         |                       ^
-   drivers/i3c/hub/p3h2840_i3c_hub.h:68:3: note: expanded from macro 'P3H2x4x_CP0_VCCIO_LDO_VOLTAGE'
-      68 |                 FIELD_PREP(P3H2x4x_CP0_VCCIO_LDO_VOLTAGE_MASK, x)
-         |                 ^
-   drivers/i3c/hub/p3h2840_i3c_hub_common.c:178:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     178 |                 val = P3H2x4x_CP1_VCCIO_LDO_VOLTAGE(p3h2x4x_ldo_dt_to_reg
-         |                       ^
-   drivers/i3c/hub/p3h2840_i3c_hub.h:71:3: note: expanded from macro 'P3H2x4x_CP1_VCCIO_LDO_VOLTAGE'
-      71 |                 FIELD_PREP(P3H2x4x_CP1_VCCIO_LDO_VOLTAGE_MASK, x)
-         |                 ^
-   drivers/i3c/hub/p3h2840_i3c_hub_common.c:188:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     188 |                 val = P3H2x4x_TP0145_VCCIO_LDO_VOLTAGE(p3h2x4x_ldo_dt_to_reg
-         |                       ^
-   drivers/i3c/hub/p3h2840_i3c_hub.h:74:3: note: expanded from macro 'P3H2x4x_TP0145_VCCIO_LDO_VOLTAGE'
-      74 |                 FIELD_PREP(P3H2x4x_TP0145_VCCIO_LDO_VOLTAGE_MASK, x)
-         |                 ^
-   drivers/i3c/hub/p3h2840_i3c_hub_common.c:198:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     198 |                 val = P3H2x4x_TP2367_VCCIO_LDO_VOLTAGE(p3h2x4x_ldo_dt_to_reg
-         |                       ^
-   drivers/i3c/hub/p3h2840_i3c_hub.h:77:3: note: expanded from macro 'P3H2x4x_TP2367_VCCIO_LDO_VOLTAGE'
-      77 |                 FIELD_PREP(P3H2x4x_TP2367_VCCIO_LDO_VOLTAGE_MASK, x)
-         |                 ^
-   drivers/i3c/hub/p3h2840_i3c_hub_common.c:246:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     246 |                 val = P3H2x4x_CP0_IO_STRENGTH(p3h2x4x_io_strength_dt_to_reg
-         |                       ^
-   drivers/i3c/hub/p3h2840_i3c_hub.h:59:3: note: expanded from macro 'P3H2x4x_CP0_IO_STRENGTH'
-      59 |                 FIELD_PREP(P3H2x4x_CP0_IO_STRENGTH_MASK, x)
-         |                 ^
-   drivers/i3c/hub/p3h2840_i3c_hub_common.c:252:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     252 |                 val = P3H2x4x_CP1_IO_STRENGTH(p3h2x4x_io_strength_dt_to_reg
-         |                       ^
-   drivers/i3c/hub/p3h2840_i3c_hub.h:62:3: note: expanded from macro 'P3H2x4x_CP1_IO_STRENGTH'
-      62 |                 FIELD_PREP(P3H2x4x_CP1_IO_STRENGTH_MASK, x)
-         |                 ^
-   drivers/i3c/hub/p3h2840_i3c_hub_common.c:258:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     258 |                 val = P3H2x4x_TP0145_IO_STRENGTH(p3h2x4x_io_strength_dt_to_reg
-         |                       ^
-   drivers/i3c/hub/p3h2840_i3c_hub.h:53:3: note: expanded from macro 'P3H2x4x_TP0145_IO_STRENGTH'
-      53 |                 FIELD_PREP(P3H2x4x_TP0145_IO_STRENGTH_MASK, x)
-         |                 ^
-   drivers/i3c/hub/p3h2840_i3c_hub_common.c:264:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     264 |                 val = P3H2x4x_TP2367_IO_STRENGTH(p3h2x4x_io_strength_dt_to_reg
-         |                       ^
-   drivers/i3c/hub/p3h2840_i3c_hub.h:56:3: note: expanded from macro 'P3H2x4x_TP2367_IO_STRENGTH'
-      56 |                 FIELD_PREP(P3H2x4x_TP2367_IO_STRENGTH_MASK, x)
-         |                 ^
-   10 errors generated.
-
-
-vim +/FIELD_PREP +125 drivers/i3c/hub/p3h2840_i3c_hub_common.c
-
-   117	
-   118	static int p3h2x4x_configure_pullup(struct device *dev)
-   119	{
-   120		struct p3h2x4x *priv = dev_get_drvdata(dev);
-   121		u8 mask = 0, value = 0;
-   122	
-   123		if (priv->settings.tp0145_pullup != P3H2x4x_TP_PULLUP_NOT_SET) {
-   124			mask |= P3H2x4x_TP0145_PULLUP_CONF_MASK;
- > 125			value |= P3H2x4x_TP0145_PULLUP_CONF(p3h2x4x_pullup_dt_to_reg
-   126							    (priv->settings.tp0145_pullup));
-   127		}
-   128	
-   129		if (priv->settings.tp2367_pullup != P3H2x4x_TP_PULLUP_NOT_SET) {
-   130			mask |= P3H2x4x_TP2367_PULLUP_CONF_MASK;
-   131			value |= P3H2x4x_TP2367_PULLUP_CONF(p3h2x4x_pullup_dt_to_reg
-   132							    (priv->settings.tp2367_pullup));
-   133		}
-   134	
-   135		return regmap_update_bits(priv->regmap, P3H2x4x_LDO_AND_PULLUP_CONF,
-   136					  mask, value);
-   137	}
-   138	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
 
