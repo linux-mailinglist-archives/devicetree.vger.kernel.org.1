@@ -1,128 +1,227 @@
-Return-Path: <devicetree+bounces-175301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C01E9AB0747
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 02:48:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 138DBAB0767
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 03:22:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BF6A522CA6
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 00:48:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBB7B7B2CFA
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 01:21:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41A3417BCE;
-	Fri,  9 May 2025 00:48:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C87538FB0;
+	Fri,  9 May 2025 01:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Vb/MblTj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OpnSyjbC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1BE17BA9;
-	Fri,  9 May 2025 00:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DDB1BA53;
+	Fri,  9 May 2025 01:22:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746751690; cv=none; b=HN03bVgsLAR4QLat/jSduswUlPj3SzCqrJZoTX+kCH/6/CzMsEzOAhWRrTOd0TEYbMlgWG4YBEQak1njoW1eLHWK5ypxytybcZkwQwi96eg82/fJs2ByAO0yXm2qhJ+TTaAUdKUd3/Ru9ysxovRJYeJjIaBTTrauhFE/AbbUx68=
+	t=1746753741; cv=none; b=By/HVePNzcgqa819vlB3LguqSYE7DKkjtLspiY0oitFygOEkoOifwIR0rHXfPC/ZSW5VKVgm7F1okizGZ4Xb7sBaDcyt4mFmWQEjwrrtKMjc518CQStbpGfYfLpEU/PkzVpog9tTPCgjGnPBEk3JziEZOjfk4vIN7EAKLlJny1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746751690; c=relaxed/simple;
-	bh=9l4UtHuSQviUswa9qLhvtxA1wFY9WmoH5OETvZtJ/+o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IVxtEGEY+UzxKcrsLd9IrQ7PxUOQmGk+G+vs1+sFRk9khXSBX6V1lpCPNHUw1ClhO5OJttnkakyG2vL+nokZ3urfqJaU5taIsFVNosxCYQMLAWI2Ymducon9yQ6U7KGvyHXTjYqHQtnHrSJbscZ1s2qTHVZxpcgp+n+DVEowlss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Vb/MblTj; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746751688; x=1778287688;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9l4UtHuSQviUswa9qLhvtxA1wFY9WmoH5OETvZtJ/+o=;
-  b=Vb/MblTjRqdlZTHZchd5cE71NZOidMT7c2xCU2u78yQzjQwrZNZbmhgD
-   SLiKhDr4jluUjaSD5w94pFGwtKwxjCi0UAvNjOcGa6Xs4zftN7cO2mBFa
-   ASww8pUM117KDbHeh4uaQHyg86je/ZVDfEv/gr6cZzToqlxq99OSw4BNH
-   rPtydZ6YF4+0UarSbwbvysdxAqrSjXHfxM2GoP2StNxTuS4/kuAaL6Y85
-   rzTN/+KbMOziyTL1s1B7zSxYFKkl1JRP8v0EDf2nTfKiGTObxPZ2knzl+
-   dyIoqcos0fA7l2KuuPMEGnTMfky0y0X8H8czOxUi8EWWciHwThePrWJFH
-   A==;
-X-CSE-ConnectionGUID: qij3FJ03SUyzs5Tn7nS+Nw==
-X-CSE-MsgGUID: 9j2viXX1Tnqvw65UXyjTMg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="48471302"
-X-IronPort-AV: E=Sophos;i="6.15,273,1739865600"; 
-   d="scan'208";a="48471302"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2025 17:48:08 -0700
-X-CSE-ConnectionGUID: puZOYG22Q1q76b9afePLiA==
-X-CSE-MsgGUID: 4Tb1fB3hSKWfSBG8Pmij3A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,273,1739865600"; 
-   d="scan'208";a="141372306"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 08 May 2025 17:48:04 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uDBuE-000BVr-0Y;
-	Fri, 09 May 2025 00:48:02 +0000
-Date: Fri, 9 May 2025 08:47:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>
-Subject: Re: [PATCH v3 24/25] irqchip/gic-v5: Add GICv5 ITS support
-Message-ID: <202505090857.dvSPkqHI-lkp@intel.com>
-References: <20250506-gicv5-host-v3-24-6edd5a92fd09@kernel.org>
+	s=arc-20240116; t=1746753741; c=relaxed/simple;
+	bh=K4PGaR75ciFMqUOd832iToV1R6IR+RU5ebaSxi/j4Qw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=biOE+1oeBqlAlpTxIjAhWjWfDTizDsIz9wF0F1PFfYo0XvTkPFxKdTaOS+vW4YoskNdYAT37OHqRyh82vLzGMEuPs1sqDmR4tObBkEga8XCQkHrlj9AyJbEm63sDlosnasysPS6dhAgNAM+CCQZzLqTyXyxD3zoYNOaoNpVMPgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OpnSyjbC; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5fca7c14715so314059a12.3;
+        Thu, 08 May 2025 18:22:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746753738; x=1747358538; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=urXW+BAEYO0CkFqXFETFIXtaSE/jSUmIp1lzCTyc1Ko=;
+        b=OpnSyjbCUV7VJEzq6CcZlTxeB7qoCeBPokq4t3sKCp+9jAmV1wBmt+RLacwXv52xIo
+         dRaUc+0euqsRY4pSiAe0UeWB9QfEPokFdjiDv+c75OpQkMqpf6hGdI8czX2HCUMo3q6R
+         Pf7shq8PcO8IY/5fq62Q3JO65FTOeH3C/vrzpZ16sadU06gtUkiCDzRZpjQROKp5Hmzr
+         6MfX3IQ7GHjGNGf/10ollDvatA/FeOOwrTeq0L9VycR8r6/DsRApPLWFnN5LJKA0hqD6
+         pKCgUI0oI2y26REYEDKKbF5KFcc6MDSMuTLrRgjtkLjZsrBQY8ddfJA2MDIV7RVO2HhD
+         yRhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746753738; x=1747358538;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=urXW+BAEYO0CkFqXFETFIXtaSE/jSUmIp1lzCTyc1Ko=;
+        b=v5nwXs4IgJ/vaZJkmDkQgUL2CKzACTCUFsjma6OJFv1u1FemYQfenXoOkCqjr/Ajl7
+         Zlqq/a/aM1VseqTsuJDYGlj3IG88nrHjdNy5PiuM73RBxdDJ6QPnxQ39snHsayzwBdF0
+         4wJO9zIRgyH6VvUI259Q4fZBPIQLXsjJx89W0Mdmwtz+ZHr1x6QdyqxvLQy1VpyU/dD6
+         xAY1vRRTrryq1Ipg2zTXzdmIsJxK6VXRPZJEAnlpob/PRaT1ws0+dptNZaJlFuwG2rgo
+         0xkQnq0JlnkOZk7S+5JTC3j6YDeo6djQsF7bw/ZevekAQX7pxMtARb1SUsQ7oBdWuIeN
+         SaQA==
+X-Forwarded-Encrypted: i=1; AJvYcCUuTbnXX5lQiRzcMa4gHUr54luwLuITAtoJGU7KDPH+axGsD6y9/eKBSVNW4RY80EfIH7LLUIs123eD@vger.kernel.org, AJvYcCWuwO3cuaTW33GOkahnrJ99/w4S28PyjWwm5+U/y/oIorvP7GLgc7rSdTkI1QCP9wb2yPDBoY4UKFJB@vger.kernel.org
+X-Gm-Message-State: AOJu0YztrRVrL/q6oxB1HDaaFH4+AtkD5KJcCVnblF9cz452FX6LNtUV
+	YDruw+2X/A+md523sGDha130f1GaJqvI03s/K3IVgEJkZkcVNd2FZflRFNyK+MGuE/Nc7QtHHcV
+	HYWFsbe1/3vxVFsafEgbcXixrsDZoPcuFeoMicg==
+X-Gm-Gg: ASbGncvfOPCIGP3IMxBp65VXhLo0pc4BIrEr0+IeCScC43wJdZQCxcHHHPDgIj7dDsS
+	6PgUpIWbFM5gvkoGu3E3HlrJ6vXhVUeopwwH0xmxIjaTy5Q6pgkUBI/mjQPqt6lhbGG2G1Yel2m
+	pBT17LGDDBulyt67Me4WP1WTA=
+X-Google-Smtp-Source: AGHT+IG2yYw5OGqGhpOyx+XnDgtzOgA6aRoQHB5oRpX+l9WDFgc4JXXQWpqa2bxCVpEseQx7FJIg89wUOdn5bAAsT6g=
+X-Received: by 2002:a17:907:a08b:b0:acb:5583:6fe0 with SMTP id
+ a640c23a62f3a-ad218f46a45mr159357766b.15.1746753737638; Thu, 08 May 2025
+ 18:22:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250506-gicv5-host-v3-24-6edd5a92fd09@kernel.org>
+References: <cover.1746581751.git.zhoubinbin@loongson.cn> <9b5a416143d5d5da7084f3a868cf01e6827cd653.1746581751.git.zhoubinbin@loongson.cn>
+ <20250508-snagged-amber-432ed9bf3d41@spud>
+In-Reply-To: <20250508-snagged-amber-432ed9bf3d41@spud>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Fri, 9 May 2025 09:22:04 +0800
+X-Gm-Features: AX0GCFszpYExKXqggR86Q3nXf_ADQFMcMy3VvuQnohu3_YCcAHHZlnBuOYM2quk
+Message-ID: <CAMpQs4LXvdd-=r15t2Fbm1xjQKBp8nvxQMR=UU7n0bXHS3MDHQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: mmc: Add Loongson-2K SD/SDIO/eMMC
+ controller binding
+To: Conor Dooley <conor@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-mmc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Lorenzo,
+Hi Conor:
 
-kernel test robot noticed the following build warnings:
+Thanks for your review.
 
-[auto build test WARNING on 0af2f6be1b4281385b618cb86ad946eded089ac8]
+On Thu, May 8, 2025 at 11:01=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Wed, May 07, 2025 at 03:28:05PM +0800, Binbin Zhou wrote:
+> > Add the Loongson-2K SoC's SD/SDIO/eMMC controller binding with DT schem=
+a
+> > format using json-schema.
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  .../bindings/mmc/loongson,ls2k-mmc.yaml       | 69 +++++++++++++++++++
+> >  MAINTAINERS                                   |  6 ++
+> >  2 files changed, 75 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mmc/loongson,ls2k=
+-mmc.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.ya=
+ml b/Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.yaml
+> > new file mode 100644
+> > index 000000000000..97a0853399f1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.yaml
+> > @@ -0,0 +1,69 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mmc/loongson,ls2k-mmc.yaml#
+>
+> Filename matching a compatible please.
+> Otherwise this looks okay to me.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Pieralisi/dt-bindings-interrupt-controller-Add-Arm-GICv5/20250506-203528
-base:   0af2f6be1b4281385b618cb86ad946eded089ac8
-patch link:    https://lore.kernel.org/r/20250506-gicv5-host-v3-24-6edd5a92fd09%40kernel.org
-patch subject: [PATCH v3 24/25] irqchip/gic-v5: Add GICv5 ITS support
-compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
+Yes, I forgot about this point, it will be renamed to
+loongson,ls2k0500-mmc.yaml.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505090857.dvSPkqHI-lkp@intel.com/
+>
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: The SD/SDIO/eMMC host controller for Loongson-2K family SoCs
+> > +
+> > +description:
+> > +  The MMC host controller on the Loongson-2K0500/2K1000 (using an exte=
+rnally
+> > +  shared apbdma controller) provides the SD and SDIO device interfaces=
+.
+> > +
+> > +maintainers:
+> > +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> > +
+> > +allOf:
+> > +  - $ref: mmc-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - loongson,ls2k0500-mmc
+> > +      - loongson,ls2k1000-mmc
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: Loongson-2K MMC controller registers.
+> > +      - description: APB DMA config register for Loongson-2K MMC contr=
+oller.
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  dmas:
+> > +    maxItems: 1
+> > +
+> > +  dma-names:
+> > +    const: rx-tx
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - dmas
+> > +  - dma-names
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/clock/loongson,ls2k-clk.h>
+> > +
+> > +    mmc@1fe2c000 {
+> > +        compatible =3D "loongson,ls2k1000-mmc";
+> > +        reg =3D <0x1fe2c000 0x68>,
+> > +              <0x1fe00438 0x8>;
+> > +        interrupt-parent =3D <&liointc0>;
+> > +        interrupts =3D <31 IRQ_TYPE_LEVEL_HIGH>;
+> > +        clocks =3D <&clk LOONGSON2_APB_CLK>;
+> > +        dmas =3D <&apbdma1 0>;
+> > +        dma-names =3D "rx-tx";
+> > +        bus-width =3D <4>;
+> > +        cd-gpios =3D <&gpio0 22 GPIO_ACTIVE_LOW>;
+> > +    };
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 96b827049501..5bf74aa63299 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -13935,6 +13935,12 @@ S:   Maintained
+> >  F:   Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yam=
+l
+> >  F:   drivers/soc/loongson/loongson2_guts.c
+> >
+> > +LOONGSON-2 SOC SERIES MMC/SD/SDIO CONTROLLER DRIVER
+> > +M:   Binbin Zhou <zhoubinbin@loongson.cn>
+> > +L:   linux-mmc@vger.kernel.org
+> > +S:   Maintained
+> > +F:   Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.yaml
+> > +
+> >  LOONGSON-2 SOC SERIES PM DRIVER
+> >  M:   Yinbo Zhu <zhuyinbo@loongson.cn>
+> >  L:   linux-pm@vger.kernel.org
+> > --
+> > 2.47.1
+> >
 
-includecheck warnings: (new ones prefixed by >>)
->> include/linux/irqchip/arm-gic-v5.h: linux/iopoll.h is included more than once.
-
-vim +8 include/linux/irqchip/arm-gic-v5.h
-
-     7	
-   > 8	#include <linux/iopoll.h>
-     9	
-    10	#include <asm/cacheflush.h>
-  > 11	#include <linux/iopoll.h>
-    12	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--
+Thanks.
+Binbin
 
