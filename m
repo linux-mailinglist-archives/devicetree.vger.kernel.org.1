@@ -1,104 +1,142 @@
-Return-Path: <devicetree+bounces-175724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF882AB18F3
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:39:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B32F7AB18E8
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 17:38:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B8291B602C1
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:39:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F382B7B3604
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:37:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6425225766;
-	Fri,  9 May 2025 15:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4672C22F766;
+	Fri,  9 May 2025 15:38:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="meSdd+cQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TQcWVgYa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976ED136672;
-	Fri,  9 May 2025 15:39:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443AB225766
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 15:38:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746805172; cv=none; b=mo1vxRKQbOOphxU6iCCXpEed7/KBBLNclRDZfjektKsh/Zqbbg7a/r+HdR+bodNuc7cOcUlpS1rizk+B2aPzyUvnGdcxkjB5glYRWQL01tI3EWdh0KUvG44BSa7uu8Dw5f0U4PK3NmSWscXusGrH3x+iq5GyXEOtyzQeYdepg0M=
+	t=1746805105; cv=none; b=NWMMYOwxcbm7IpziOss3QOTYmtTEkC/Bv2+GkTnIJEhsxVhNEouuU1rfCKegXwvkfaOZjuORxtfwwHegMMUWhnZqdKMyfrwZXGjfZyKXLbZX7HA3yE/dQeuSGrXkd6z4ra+tAgbIEnpwW4eaaZy7lbSu8n2EVbitgUHEyUgp/V4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746805172; c=relaxed/simple;
-	bh=h35KYhyDIY5FYpoH0z1DlbM6R9T4ekv/dXpUMKacj7c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qx5QE1IGG+e1rVSv6G7OCeDqnZAxamM9uLWIlifNGajZT+IQuFd6fxrWOZr5zvG+sv7vYT8PJr+qW+OSKdHoPG21vPyUCPV+byQp05NFxJeOCJbodLCKGkkGnZYMJFa/WbDoVLtPd1Tuxwd+9nmwISKuFRGJRMHAlAGVNdhAnCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=meSdd+cQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3CE8C4CEE4;
-	Fri,  9 May 2025 15:39:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746805171;
-	bh=h35KYhyDIY5FYpoH0z1DlbM6R9T4ekv/dXpUMKacj7c=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=meSdd+cQkAcZMRTu/XE5E9PC5QCOgy4oI2z0NCbqt89fIE/gZbnMkd0Zw/jbXO9Qj
-	 nWH9PWj3OTf8KbvTBCnXnpJw50jcjl1OlhtHbHTqdMo8pViaBBdT3xuIhxqUWE2MOf
-	 TjBxgsWGx6kB11wgPls+veS+qTTdaaGxURCTw4BCzDwKt7V2Aj0JvJJlbsuIn/M4Oo
-	 tRzTYCAVVls9vUlMMzw2GN+CAaKDq/a929hBst+U2+wfwG60EJ1htnOqOLI1EoRfoD
-	 sjnkWPhuew0yyZ130ZelHWGnQNyCsRfI4uOPc4EcnFWAUU1pDwZzOxphCozb9fyOkR
-	 aaXJNbVf8bt7w==
-From: Conor Dooley <conor@kernel.org>
-To: linux-renesas-soc@vger.kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Ben Zong-You Xie <ben717@andestech.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v1 2/2] riscv: dts: renesas: add specific RZ/Five cache compatible
-Date: Fri,  9 May 2025 16:37:59 +0100
-Message-ID: <20250509-mantra-trickery-56f699596346@spud>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250509-sapling-exhale-72815a023ac1@spud>
-References: <20250509-sapling-exhale-72815a023ac1@spud>
+	s=arc-20240116; t=1746805105; c=relaxed/simple;
+	bh=noz0Li/huB4LRgS81b/FMznl0BJ4hfLjaKLd0QhACsA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=B8S0ug8iv8BBeKzBmF6fYkpiwzFpd8neJUtfG0I62a8FvO7twQI4I0jFxKpZkH6cAN1P+Ti5NQ1ecgvxS/pkyPFQasb2WvQDbJ9VPBZWoz14ht515iG/VqkNvEoZHRyQSA39nrNLNVp6XdiT2gw0ywovxdWJG/5L5KfwYF7meWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TQcWVgYa; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43cfa7e7f54so14412155e9.1
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 08:38:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746805101; x=1747409901; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TBLBH35fihBkmIGbw4EWVRYhi7XRZ3Q7hPPc7aK4Fu4=;
+        b=TQcWVgYapErxyiuiUxkCA4XgilRQIRMsIfFJ7HMCzVSqg5dHLK7NqWLK1vBcy1M9Tn
+         ToD2KP+NREE7/M8+hyG9WgEiLWBZZdc/C3cNpj2RKXPb1FKvVkWkqhgp06Ka4k+Hr0ep
+         a/q3ZVWQEvXfoM5+s+ZPRdC11qy3S+AwCtsfr52HN7+XM3s5VdxHppkd2GOdqhjQbNZl
+         1guYNN/0+7UCQUXJfXUsr9rd68E/NRzXlm52L1GBzhoAnfdGOAEDkHe2PFz4hGMcy4fe
+         cQKaG81hVZyR78zRcCWCU4sR/UHrsJW1xVeia9MfFhbGohuwboJkeY2+8sfYRNJEVMhJ
+         00EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746805101; x=1747409901;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TBLBH35fihBkmIGbw4EWVRYhi7XRZ3Q7hPPc7aK4Fu4=;
+        b=kufGRqPgNED9G3O/fIZQXwkoREykUcBucRViNHmtDz1MUJOz+xImpQSzk4jL2c3EAN
+         1GUSi1NjFS64yzQnOa/5tase+62e9sb2PK9OT1gek/Nnr4AFfVy5upKYuG949zhUZg4U
+         Iqn9uK6Bgm6f1ECO1ljT7gnf9sv2eQtAKjzFOr3h5M0Rs9GSmthJsHFasWoRqiulsWMe
+         3V5eBgjjkRFf5p55C4rRhI0Sb6dlNbxvEEs9lG4+0dVHYUecw7X9YSLftMDJFi/NVJSG
+         /ChWIyAfucAp8t+kipocBGzfXXEz70FFNWjK6r/nNfWAH5LADl8oUkGrP7uy5TinruTC
+         OlTA==
+X-Gm-Message-State: AOJu0YzqtvIjRI0yJTRRHJE1zmOYBq5BrX0ysZI7gbIrs13jdoW0S4gW
+	Otk2QQG6WhmjSDbxZR569tCw4rROklldHQ4KupTCv0VAyAS0H4dimNMumYSPJy4=
+X-Gm-Gg: ASbGncsqK4c7VucK9/FVhuGAS/qaMlw9M0r3ztJc49W18B3f6tROLnpjYThbK8jKbU1
+	RRmf28ncX/gAl1LHvNWClfngtnw/kbB4cpnvGqnAyZcTDkAuPPKdnRAJF0fsUkJHd+Trj0aNRS6
+	QOXCcpnrvVlLY48Y2lDfifaLyVD2iXXJ/h4ysOmv5XUY0ZcWwQTzXHvJ58h/Y6UpBY1faIZGQuv
+	twgaWJTXgVioDNZSs8i1OlHyjln3vdmBJe+RblS0HiGQm14lLiDw5o3di0OUegstU8DeFQHS7RD
+	cen/73xyyXR/GqW//mzxwwMnPIK05/UEUFJ6WUny89FD8awbB6H9+wdot8vj0ZnfRz0362+t
+X-Google-Smtp-Source: AGHT+IH4IMLRaSDitW8aRp2/HH30bVFdM1w5jTbdL4Xe/FdZrAqsFjuKiUSdh0mozDMKtmaE8Kz62A==
+X-Received: by 2002:a05:600c:8205:b0:43b:c857:e9d7 with SMTP id 5b1f17b1804b1-442d6d98a88mr32790695e9.5.1746805101395;
+        Fri, 09 May 2025 08:38:21 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ebe4fsm3663912f8f.39.2025.05.09.08.38.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 May 2025 08:38:21 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20250323-fernsehfee-v1-0-2621341cd37a@posteo.net>
+References: <20250323-fernsehfee-v1-0-2621341cd37a@posteo.net>
+Subject: Re: [PATCH 0/3] Board support for Fernsehfee 3.0
+Message-Id: <174680510066.3108291.15538800849859736861.b4-ty@linaro.org>
+Date: Fri, 09 May 2025 17:38:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1190; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=VAAp3Lqucp6m4bL2Y2Prj3TWCfZjW9uhGkbCvekmR9Y=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDBlyiqFHm4XeKr7gPH9WNImJWzb92b/l70VeO2W5hrbuW 6B7ulmjo5SFQYyDQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABOJusHwV+5u25LDDZ6sHx3y klT3ydy9+8Y74L6kjX7Y2t8zFW5L7GH4H8n/7XzO5kjn+U8n/CueGbTjTOMTdx19r+64Y0Kr2lf mMQIA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.14.2
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Hi,
 
-When the binding was originally written, it was assumed that all
-ax45mp-caches had the same properties etc. This has turned out to be
-incorrect, as the QiLai SoC has a different number of cache-sets.
+On Sun, 23 Mar 2025 13:37:49 +0100, J. Neuschäfer wrote:
+> Fernsehfee[1] ("TV fairy") is a family of set-top boxes marketed as
+> ad-blocking appliances. This patchset adds board support in the form of
+> a device tree for the third generation, Fernsehfee 3.0.
+> 
+> [1]: https://fernsehfee.de/ (German), https://www.telefairy.com/ (English)
+> 
+> 
+> [...]
 
-Add a specific compatible for the RZ/Five for property enforcement and
-in case there turns out to be additional differences between these
-implementations of the cache controller.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.16/arm-dt)
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/renesas/r9a07g043f.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[1/3] dt-bindings: vendor-prefixes: Add TC Unterhaltungselektronik AG
+      https://git.kernel.org/amlogic/c/40f983aa2d809b4934a260c76b82e9ff19c09a88
+[2/3] dt-bindings: arm: amlogic: Add TCU Fernsehfee 3.0 board
+      https://git.kernel.org/amlogic/c/eb7af1268e0042e83607918229cd62c3669cdcb8
+[3/3] ARM: dts: amlogic: Add TCU Fernsehfee 3.0
+      https://git.kernel.org/amlogic/c/dac928757928a8ea06eaf5694d5deae53a21616f
 
-diff --git a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-index e0ddf8f602c79..66c6fe0cd162f 100644
---- a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-+++ b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-@@ -143,7 +143,7 @@ plic: interrupt-controller@12c00000 {
- 	};
- 
- 	l2cache: cache-controller@13400000 {
--		compatible = "andestech,ax45mp-cache", "cache";
-+		compatible = "renesas,r9a07g043f-cache", "andestech,ax45mp-cache", "cache";
- 		reg = <0x0 0x13400000 0x0 0x100000>;
- 		interrupts = <SOC_PERIPHERAL_IRQ(476) IRQ_TYPE_LEVEL_HIGH>;
- 		cache-size = <0x40000>;
+These changes has been applied on the intermediate git tree [1].
+
+The v6.16/arm-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
 -- 
-2.45.2
+Neil
 
 
