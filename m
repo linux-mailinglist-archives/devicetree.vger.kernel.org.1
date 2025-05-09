@@ -1,80 +1,40 @@
-Return-Path: <devicetree+bounces-175515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79512AB1153
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:58:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15ED1AB1156
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:59:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4934B9C019A
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:58:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D82779C00AD
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D2728F523;
-	Fri,  9 May 2025 10:58:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="iEkFmp6o"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FDA28F51C;
+	Fri,  9 May 2025 10:59:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC21269AEE
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 10:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE382206B8;
+	Fri,  9 May 2025 10:59:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746788322; cv=none; b=jA0GMh2Kw9tvz6pDwyD0niBHN8FK7gOUyNWz6J6bNq4yG76b+gxmw9aw2ED/taeT7W4R2UxcBA9988T0PREdvkwO4O4waR4TgfweuipZzL+WdH8dtO6udj1N2TEKJ8duc/eKN9G0Za8LG1suNK+YRWZeI4yaP1kibPgGBu+tLaQ=
+	t=1746788356; cv=none; b=FQwhA5cgcGE56QWVIE0PCtoEL10b8dXqfvtwAy0ZzRx5t0vfjWyJ9N4p0NltpY3eF7QIQhpAaWWxG8Mt1WLfk7MaNvTYhwgWrauFLpl2qLdx1JAzKOE2VLkcMCTKzU9iISqrX6tKNRKTu44RnWw9aFvjxPy8EA/vJd4qfGHuzAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746788322; c=relaxed/simple;
-	bh=2nk5dPqyhxM88VSx3v0lc2vY03eLZ/CpvYHcyrM+f4I=;
+	s=arc-20240116; t=1746788356; c=relaxed/simple;
+	bh=bjmHADaGbExZpMCbe/putcyOzu4lvKOfHE+anJK9xLQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ecWq9/wqcERSlibTpWrnZ1R73f1G92cm8vd7U6j46r+63xYXcLUOH/rNSQSjCHnB6RvuC9hYO2fhkt0kGPzWvK2fuAWNL5hPl3jCpApOyqojlmVBDYhJn9DH3onQhN0DYoqVNtQ+2Nd2ZEtuZty3RZNEJm8oZ+We2jPUG9a797g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=iEkFmp6o; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ac3b12e8518so400443666b.0
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 03:58:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1746788319; x=1747393119; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nZbHuHRIDWS4UNIfVAz8PWvS0NgpTKjqW2wDiJXiI4s=;
-        b=iEkFmp6oA0+kHrIEOYOlqtVmGVUUGsJ5pw0PcoQM6jye4u+XIo54/kXNrONptCF4aw
-         TdwGf8KB5hifwloh/N6mzBnqkw3Mpw9e5+BSEiziHZ9m18WE5z/oGRln2g9Fl7ilC03k
-         cOlycibYrDERDw+OHLtPFuaugWoRj5cW5tu9bf7hHBzd1Rq7LxKiNDS/7r/jJIDMYMeW
-         bFcaF+6cP9CWGVlIU9/v0MYiTJhsa9ZyF1cCvfjel6KfNAdtLPZtVgBUq3jLNuFHg4im
-         bTgruLOU0F5zAZqrPj3Mo9A8RSbUfcd5tyGopggQTEf1NAnHAXTRvWbJzlER+ntNgjm8
-         PTEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746788319; x=1747393119;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nZbHuHRIDWS4UNIfVAz8PWvS0NgpTKjqW2wDiJXiI4s=;
-        b=t6HEFku/TfpgyEPxkU8sCmqe3vp6EXn+u7O5sZLE/Dfeh/l1m0QXC9kZ7cjdgFMNjG
-         wGlMtX3S2STHbSJ5F+XMjskMTV4EY1q8URDjssuolHmMN6aXmdzzftHBDeCFAesbGtmS
-         0zeRyXu1ZUWwM4BuFrlZhoHBPhIXaz1V16QMh3CmJZ700n8SONqFhGJemi8E6w/a38KO
-         8igB+9splbyiRUAy/bJ3pn2EiHuaSCm08FKATlINwJNtlL5suyJUvk/mR5BZeJQJDeWT
-         ewpyKBX34w46LPNWESfBSAgYUosFeSAJvqzBCfY5j2rS/vEYaqUMz55EDvRsBLkDeP+V
-         JxXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXdDXrsIQydZ7fYQSuTQ23UUNaRPD+Zx/LQIjB0VcPRIg/hwXKqpmYIhTmXbclhpI+oK++/emDQwHru@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrVHAeH2IaQaSAfUfssGqF+joQe1c6jkdj9FLhnF8jmS2liQMH
-	6ram5/EXbK+ITH0L5kTk4AFNyJ9C50x7GdsCiZ3buWk/1KZaMa/bHiA/X0eHbwZ4Ey2JwuEeVNs
-	y
-X-Gm-Gg: ASbGncu5ffy36E6uDXv9pFHVFO468m/6UT/PaVqTGSqtqIJH4uVnvyeLRkONGtCUlkJ
-	HDZfmPo3lMQTWx3tjKI0iGmDZGS/huaDT17P4j1rpab4xgTOgSNJX2OQZ+FBJaSKwGA230mcsjL
-	YrXuQi7j+NWlpn7B+JMCWrZ1V5wyqZZHszab0AysZCRlXjGgYjFQysoImASeHHnSsZ9EJpw+ILA
-	X/A8ha+n3ueYj+HjuSqp64pDev+S3JbtiU6SSHbDcvudnUZ3SBHvM0fYEOEHTivX8E7/z9qCP45
-	SIWlFS/Fmog+Q4ZIPlEnbv25gJ6SU5izjhTRe8U29NTDjzp7
-X-Google-Smtp-Source: AGHT+IE8zKJ0SlPd06ZZ9+XoxKnWzap/lSuxcblf1RpgkOVSS1IxrVf5VthK9xYufsLEWTuocUBDwA==
-X-Received: by 2002:a17:907:8992:b0:ad2:16ce:7c3b with SMTP id a640c23a62f3a-ad218f54cc4mr280469866b.22.1746788319022;
-        Fri, 09 May 2025 03:58:39 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.50])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad219746ca6sm132664766b.99.2025.05.09.03.58.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 May 2025 03:58:38 -0700 (PDT)
-Message-ID: <8a14cf38-9a7b-462b-80d1-ec5026b5a565@tuxon.dev>
-Date: Fri, 9 May 2025 13:58:37 +0300
+	 In-Reply-To:Content-Type; b=Uv4OMzHTlmBVHCXui4lAdLtdlYgcPX2MGWfWIuk8OKgubdAA5BRjIceJ3956fKK3h8VJ7bXhkcshgWdNlrQOLGAIemYwaFV9up1bAqwsEbeVUGh1Hr5hlXd1v8ZVd0kyFwFnHOjKuYkGL/xwQnzy/N+xawrkec7lDsWmOeqE2lI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 469351595;
+	Fri,  9 May 2025 03:59:02 -0700 (PDT)
+Received: from [10.1.35.18] (e122027.cambridge.arm.com [10.1.35.18])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DAB863F58B;
+	Fri,  9 May 2025 03:59:09 -0700 (PDT)
+Message-ID: <124b8718-1a8e-4cf2-99e2-604fe63ae132@arm.com>
+Date: Fri, 9 May 2025 11:59:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,75 +42,113 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] clk: renesas: rzg2l-cpg: Add support for MSTOP in
- clock enable/disable API
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com,
- linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+Subject: Re: [PATCH v6 2/5] drm/panfrost: Drop duplicated Mediatek supplies
+ arrays
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250410140628.4124896-1-claudiu.beznea.uj@bp.renesas.com>
- <20250410140628.4124896-4-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdU00apiWYCPiwqGr66Ucg9KgWMhhm8FW_KBoeN2ceos+w@mail.gmail.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <CAMuHMdU00apiWYCPiwqGr66Ucg9KgWMhhm8FW_KBoeN2ceos+w@mail.gmail.com>
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20250509-mt8370-enable-gpu-v6-0-2833888cb1d3@collabora.com>
+ <20250509-mt8370-enable-gpu-v6-2-2833888cb1d3@collabora.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250509-mt8370-enable-gpu-v6-2-2833888cb1d3@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi, Geert,
-
-On 07.05.2025 18:47, Geert Uytterhoeven wrote:
-> Hi Claudiu,
+On 09/05/2025 11:12, Louis-Alexis Eyraud wrote:
+> In the panfrost driver, the platform data of several Mediatek SoC
+> declares and uses custom supplies array definitions
+> (mediatek_mt8192_supplies, mediatek_mt8183_b_supplies), that are the
+> same as default_supplies (used by default platform data).
 > 
-> On Thu, 10 Apr 2025 at 16:06, Claudiu <claudiu.beznea@tuxon.dev> wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> The RZ/{G2L, V2L, G3S} CPG versions support a feature called MSTOP. Each
->> module has one or more MSTOP bits associated with it, and these bits need
->> to be configured along with the module clocks. Setting the MSTOP bits
->> switches the module between normal and standby states.
->>
->> Previously, MSTOP support was abstracted through power domains
->> (struct generic_pm_domain::{power_on, power_off} APIs). With this
->> abstraction, the order of setting the MSTOP and CLKON bits was as follows:
->>
->> Previous Order:
->> A/ Switching to Normal State (e.g., during probe):
->> 1/ Clear module MSTOP bits
->> 2/ Set module CLKON bits
->>
->> B/ Switching to Standby State (e.g., during remove):
->> 1/ Clear CLKON bits
->> 2/ Set MSTOP bits
->>
->> However, in some cases (when the clock is disabled through devres), the
->> order may have been (due to the issue described in link section):
->>
->> 1/ Set MSTOP bits
->> 2/ Clear CLKON bits
->>
->> Recently, the hardware team has suggested that the correct order to set
->> the MSTOP and CLKON bits is:
->>
->> Updated Order:
->> A/ Switching to Normal State (e.g., during probe):
->> 1/ Set CLKON bits
->> 2/ Clear MSTOP bits
+> So drop these duplicated definitions and use default_supplies instead.
+> Also, rename mediatek_mt8183_supplies to a more generic name too
+> (legacy_supplies).
 > 
-> What is the recommended order in case multiple clocks map to
-> the same module? Clear the MSTOP bit(s) after enabling the first clock,
-> or clear the MSTOP bit(s) after enabling all clocks?
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-I can't find anything about this in the HW manual.
+Thanks for doing this.
 
-> I believe the code implements the former?
+Reviewed-by: Steven Price <steven.price@arm.com>
 
-The proposed implementation clears the MSTOP after enabling the first clock
-taking into account that there might be cases where 2 clocks sharing the
-same MSTOP may not be both enabled for a particular functionality.
+> ---
+>  drivers/gpu/drm/panfrost/panfrost_drv.c | 24 +++++++++++-------------
+>  1 file changed, 11 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> index f1ec3b02f15a0029d20c7d81046ded59854e885c..7b899a9b2120c608e61dab9ca831ab8e907e8139 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> @@ -797,19 +797,18 @@ static const struct panfrost_compatible amlogic_data = {
+>   * On new devicetrees please use the _b variant with a single and
+>   * coupled regulators instead.
+>   */
+> -static const char * const mediatek_mt8183_supplies[] = { "mali", "sram", NULL };
+> +static const char * const legacy_supplies[] = { "mali", "sram", NULL };
+>  static const char * const mediatek_mt8183_pm_domains[] = { "core0", "core1", "core2" };
+>  static const struct panfrost_compatible mediatek_mt8183_data = {
+> -	.num_supplies = ARRAY_SIZE(mediatek_mt8183_supplies) - 1,
+> -	.supply_names = mediatek_mt8183_supplies,
+> +	.num_supplies = ARRAY_SIZE(legacy_supplies) - 1,
+> +	.supply_names = legacy_supplies,
+>  	.num_pm_domains = ARRAY_SIZE(mediatek_mt8183_pm_domains),
+>  	.pm_domain_names = mediatek_mt8183_pm_domains,
+>  };
+>  
+> -static const char * const mediatek_mt8183_b_supplies[] = { "mali", NULL };
+>  static const struct panfrost_compatible mediatek_mt8183_b_data = {
+> -	.num_supplies = ARRAY_SIZE(mediatek_mt8183_b_supplies) - 1,
+> -	.supply_names = mediatek_mt8183_b_supplies,
+> +	.num_supplies = ARRAY_SIZE(default_supplies) - 1,
+> +	.supply_names = default_supplies,
+>  	.num_pm_domains = ARRAY_SIZE(mediatek_mt8183_pm_domains),
+>  	.pm_domain_names = mediatek_mt8183_pm_domains,
+>  	.pm_features = BIT(GPU_PM_CLK_DIS) | BIT(GPU_PM_VREG_OFF),
+> @@ -817,8 +816,8 @@ static const struct panfrost_compatible mediatek_mt8183_b_data = {
+>  
+>  static const char * const mediatek_mt8186_pm_domains[] = { "core0", "core1" };
+>  static const struct panfrost_compatible mediatek_mt8186_data = {
+> -	.num_supplies = ARRAY_SIZE(mediatek_mt8183_b_supplies) - 1,
+> -	.supply_names = mediatek_mt8183_b_supplies,
+> +	.num_supplies = ARRAY_SIZE(default_supplies) - 1,
+> +	.supply_names = default_supplies,
+>  	.num_pm_domains = ARRAY_SIZE(mediatek_mt8186_pm_domains),
+>  	.pm_domain_names = mediatek_mt8186_pm_domains,
+>  	.pm_features = BIT(GPU_PM_CLK_DIS) | BIT(GPU_PM_VREG_OFF),
+> @@ -826,20 +825,19 @@ static const struct panfrost_compatible mediatek_mt8186_data = {
+>  
+>  /* MT8188 uses the same power domains and power supplies as MT8183 */
+>  static const struct panfrost_compatible mediatek_mt8188_data = {
+> -	.num_supplies = ARRAY_SIZE(mediatek_mt8183_b_supplies) - 1,
+> -	.supply_names = mediatek_mt8183_b_supplies,
+> +	.num_supplies = ARRAY_SIZE(default_supplies) - 1,
+> +	.supply_names = default_supplies,
+>  	.num_pm_domains = ARRAY_SIZE(mediatek_mt8183_pm_domains),
+>  	.pm_domain_names = mediatek_mt8183_pm_domains,
+>  	.pm_features = BIT(GPU_PM_CLK_DIS) | BIT(GPU_PM_VREG_OFF),
+>  	.gpu_quirks = BIT(GPU_QUIRK_FORCE_AARCH64_PGTABLE),
+>  };
+>  
+> -static const char * const mediatek_mt8192_supplies[] = { "mali", NULL };
+>  static const char * const mediatek_mt8192_pm_domains[] = { "core0", "core1", "core2",
+>  							   "core3", "core4" };
+>  static const struct panfrost_compatible mediatek_mt8192_data = {
+> -	.num_supplies = ARRAY_SIZE(mediatek_mt8192_supplies) - 1,
+> -	.supply_names = mediatek_mt8192_supplies,
+> +	.num_supplies = ARRAY_SIZE(default_supplies) - 1,
+> +	.supply_names = default_supplies,
+>  	.num_pm_domains = ARRAY_SIZE(mediatek_mt8192_pm_domains),
+>  	.pm_domain_names = mediatek_mt8192_pm_domains,
+>  	.pm_features = BIT(GPU_PM_CLK_DIS) | BIT(GPU_PM_VREG_OFF),
+> 
 
-Thank you for your review,
-Claudiu
 
