@@ -1,140 +1,135 @@
-Return-Path: <devicetree+bounces-175556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAD76AB1275
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:46:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1322AB127D
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:50:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E016E4A6699
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:46:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 797CA3B28B9
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:50:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB93528FFEB;
-	Fri,  9 May 2025 11:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C1F928F95D;
+	Fri,  9 May 2025 11:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="B0pp0+mq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rDMP5Xzr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B5428FFD9;
-	Fri,  9 May 2025 11:46:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0246A28936C
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:50:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746791173; cv=none; b=JV/pusjSo2aodJMDCY0ygiJoVX+Rt1ivU4Q/kirmQ79RIPuN8GNE8RxdtXE0rlIc07DBHqhwZEaU7kP2W9jrIHQr8kLYJdx49cOg1GxgChND6ETm0CyyxP+xNg212b8eCYF6vB+rkdP3ONrJsJQf3mdWkUIzN0P4EWekurCyjlU=
+	t=1746791433; cv=none; b=mnZEKK6jseYGgYE3opTM7jbeQIOSwlg0RJguAsonkWpQJ/wTUksmXZAJmKqb4aTqbOchkGiteduvMwdmY0osvHbxrHCGh/Af54TePzBn/Eb7dwG6TMZjn8S846tmPSInsjVSUaJCCV4iFYITVUz74FXrIeVHX/rUgezKolNOBVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746791173; c=relaxed/simple;
-	bh=SQkxBRiOnv36QIXTxodgUMy2H7LsOL+7k7SNq2aq4AA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l3QxvE3phjxX/dDrxolhaPQf9yM/KCR7vLh5/6EtHK6b7tdmgC+HLYOtPFftvZIzlbp1MVhC2xmssvyVATsM1/N1Z4pCoHPt2N6ZdEggQwZOFPu+6OC9y100XevQDqbKTBeufo+ZQ+GdfThiVpG3Bg0nleOm4z23xfaq9gNWxEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=B0pp0+mq; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746791172; x=1778327172;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SQkxBRiOnv36QIXTxodgUMy2H7LsOL+7k7SNq2aq4AA=;
-  b=B0pp0+mqumq49Z72cQmahfiBvCMkxhK/hNo6FF/3O8VEPfcMnrrrTmHL
-   bl+V4dVE6mJGHSDY4sFFs3WA2kBMxuyJ87pdkYbvXQ4iLUxckehCah/e8
-   2kHXhiRkgGvSiwmdeG57buTCZkDUumhCWMhxcNsvI1PSOElVST6i3JuVo
-   kiIup89OxRF9SnvJXlJUlnpz+S3Uwrs4EGXHuxJ4lKJSA4iupI9Mfh8F5
-   z0yLBKdPnibk73IjwS4YZ2FY8v2f6q7Ef/SI3ShTb+tgv61hlxzHdMfZr
-   LxZe4cgSprkexNehBqz+B5DIqyG3kG7Ve59mtrdC86DYDEKRANQBWAT/t
-   g==;
-X-CSE-ConnectionGUID: zf+DzwbSSt+KRmzjh64gbw==
-X-CSE-MsgGUID: ibWD3MAXQJqwiJpWxsqvsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="48774461"
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; 
-   d="scan'208";a="48774461"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2025 04:46:12 -0700
-X-CSE-ConnectionGUID: tSopib0KRZm1vWrW42CKjw==
-X-CSE-MsgGUID: hEhG9rRhT3+uXvkH80Z+bw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; 
-   d="scan'208";a="141816422"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 09 May 2025 04:46:07 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uDMB2-000C1r-1U;
-	Fri, 09 May 2025 11:46:04 +0000
-Date: Fri, 9 May 2025 19:45:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
-	Dragos Bogdan <dragos.bogdan@analog.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v2 4/4] iio: adc: ad7405: add ad7405 driver
-Message-ID: <202505091958.k0P7xNyC-lkp@intel.com>
-References: <20250508123107.3797042-5-pop.ioan-daniel@analog.com>
+	s=arc-20240116; t=1746791433; c=relaxed/simple;
+	bh=6bSX9UNo+ut9uhyeztVWH22aZ+WPLHdTGC7kWwCUCXg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dWhcnopxQ7hUbTCUwYAftTepTwC8kzqLm00FDD/XrIqVRfBE2mvEjK+Vfv3fMBZvYSOcv0a/uDrHDcKigl5MCQUY7Pu96ySGH+vtzBbuzZU9nrTpE9wiaqLAHSffB/G0ZK1fOI/o+bRAjmDHktr/BeXRTT8hDgO9Gwm0eMQpIp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rDMP5Xzr; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3104ddb8051so20415231fa.1
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:50:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746791430; x=1747396230; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6bSX9UNo+ut9uhyeztVWH22aZ+WPLHdTGC7kWwCUCXg=;
+        b=rDMP5XzrQ88umTP+9l67/zJpEOw9Tf5QRqmG8aid0Jm776jOYiSyw2ws4geCLljooS
+         JCnksf09yvbYgNnZrOpyZ4cmJktwmGqdGkqo2vEo5Io5P24KiCjl3aKESEHxnLLWs1NH
+         2lUA37eKUFR5c5QlKodJORWKFRN6wN+LCC8S3RKJcsImFCoknUUjmZiIZOSlyaFI/ftQ
+         iz02M+0jkawlqKfEL0vbGX54kzdzRkX5lP4Sge71epwG0v5DENaKpj/P1FEBxYwk9PeI
+         eRdTUV4XUD5FraSmI5vLEuJ+K5PdCjHH3uAAxFV/2TVnQpF1qz7ZGwUW01bx2ByhIc/c
+         LIFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746791430; x=1747396230;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6bSX9UNo+ut9uhyeztVWH22aZ+WPLHdTGC7kWwCUCXg=;
+        b=XaCaxrocPHKjKvznstC2uY9HmcrnaMalVFknrVCtcoKFSWBKZePZW1QsQ7YKJ1pwlt
+         /0XM9yj3jOo1u7Ew7lLgBam14XQvFOGNUwFaFNOssz9GQXnVZJdpOKHoluRESEC+v6/3
+         WUTb4iX9UTrDmrfgT5WZPU3DyNvnfJX7NdhY4L/Nvc/t8/nghpnR283R54VvQDVvp6in
+         VQXrLGVlSu5uwGmLlB85Nv05H2OJxJ7pGluYafsqGCBrRSFoCCDrZkVOlkWEni3omurI
+         sqQOqsfdWZHmLIh3CvDgk6XCqpgT8Ocwge301GdHevb8vkw8qGLmAmiiyirbbv3TBLeA
+         Tc2A==
+X-Forwarded-Encrypted: i=1; AJvYcCUKbqkPcg62UZRfslQkGbowrDn4/hw2NKoVViML9AUdg0TuZqFRzfuwOxINazjSvRhdq3CnveWUoFbd@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfuJL5Nbzz+Jcp1RUVPQ04nx3j9+gwu4Gw3Pnr4/qSElqGCIJS
+	NHC2IOd1w0Q1sV52d0nv8jhApfBn2lrCP+Dp9MG18GPorHstNaZERJglH9Puar0Mh57BMLC/n3c
+	JZyaouiW766vjU+7DZHFIhAx/dj8R/i3e7Glfrg==
+X-Gm-Gg: ASbGncsrBz9DGp1qSv56RW/HCYkK2G1AamtoYqqrFclqPgf2acvNewo4Gha5PpA6qPL
+	pm31rfe7O1oPAr1tiFJAhdhgKSh7C9Sl+6P42ET8Cm1C6/bltlz3QP+iA9Etdkk8WNenVtvV+fa
+	BIb40yk76+3IQBlET/2cDOLcxC9jIOWLVb
+X-Google-Smtp-Source: AGHT+IE9OA/TgX88UK8wnm39DMsSy6I7xruaMSROXFg88YbOwzBbcaNlmJPRpQ8Ckx3l33XEBcNwePAgT7TtPdM2+0E=
+X-Received: by 2002:a2e:a991:0:b0:300:26bc:4311 with SMTP id
+ 38308e7fff4ca-326c4575642mr10757241fa.18.1746791429976; Fri, 09 May 2025
+ 04:50:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250508123107.3797042-5-pop.ioan-daniel@analog.com>
+References: <20250424-01-sun55i-emac0-v2-0-833f04d23e1d@gentoo.org>
+ <20250424-01-sun55i-emac0-v2-3-833f04d23e1d@gentoo.org> <CAGb2v66a4ERAf_YhPkMWJjm26SsfjO3ze_Zp=QqkXNDLaLnBRg@mail.gmail.com>
+ <20250425104128.14f953f3@donnerap.manchester.arm.com> <CAGb2v65QUrCjgHXWAb72Sdppqg1AUxXyD_ZcXShtkRSHCQBbOg@mail.gmail.com>
+ <20250425160535.5a18adbb@donnerap.manchester.arm.com>
+In-Reply-To: <20250425160535.5a18adbb@donnerap.manchester.arm.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 9 May 2025 13:50:18 +0200
+X-Gm-Features: ATxdqUG6U2bPxTcfQiBy-oW1Lju29rGeV9-TYLkpQrHjbRn14HSqGi03f0yvO10
+Message-ID: <CACRpkdZH+NnP0-GkLe+nHK-Oi_Z=FzPaM=k1U-gZddp+P2+DTw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] arm64: dts: allwinner: a523: Add EMAC0 ethernet MAC
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Chen-Yu Tsai <wens@csie.org>, Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Maxime Ripard <mripard@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Corentin Labbe <clabbe.montjoie@gmail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Pop,
+On Fri, Apr 25, 2025 at 5:05=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+> On Fri, 25 Apr 2025 22:35:59 +0800
+> Chen-Yu Tsai <wens@csie.org> wrote:
+>
+> adding LinusW for a more generic pinctrl question ...
 
-kernel test robot noticed the following build warnings:
+OK!
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.15-rc5 next-20250508]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > There isn't any assumption, as in we were fine with either the reset
+> > default or whatever the bootloader left it in. However in projects at
+> > work I learned that it's better to have explicit settings despite
+> > working defaults.
+>
+> I totally agree, but my point was that this applies basically to every
+> pinctrl user. I usually think of the bias settings as "do we need
+> pull-ups or pull-downs", and if nothing is specified, I somewhat assume
+> bias-disable.
+>
+> So I am fine with this being added here, but was wondering if we should
+> look at a more generic solution.
+>
+> Linus: is bias-disable assumed to be the default, that pinctrl drivers
+> should set in absence of explicit properties? Or is this "whatever is in
+> the registers at boot" the default we have to live with?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Pop-Ioan-Daniel/iio-backend-update-iio_backend_oversampling_ratio_set/20250508-203339
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20250508123107.3797042-5-pop.ioan-daniel%40analog.com
-patch subject: [PATCH v2 4/4] iio: adc: ad7405: add ad7405 driver
-config: m68k-randconfig-r123-20250509 (https://download.01.org/0day-ci/archive/20250509/202505091958.k0P7xNyC-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 13.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20250509/202505091958.k0P7xNyC-lkp@intel.com/reproduce)
+We have never hammered down the semantics of that, so it's a bit
+up to the specific driver how they implement it (yeah a grey area...)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505091958.k0P7xNyC-lkp@intel.com/
+There are many drivers that are carful to not touch register boot
+values but others who set them to some default, and people
+have different opinions on that.
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/iio/adc/ad7405.c:19:20: sparse: sparse: symbol 'ad7405_dec_rates' was not declared. Should it be static?
-
-vim +/ad7405_dec_rates +19 drivers/iio/adc/ad7405.c
-
-    18	
-  > 19	const unsigned int ad7405_dec_rates[] = {
-    20		4096, 2048, 1024, 512, 256, 128, 64, 32,
-    21	};
-    22	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Yours,
+Linus Walleij
 
