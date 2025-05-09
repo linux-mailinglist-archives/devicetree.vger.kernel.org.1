@@ -1,227 +1,119 @@
-Return-Path: <devicetree+bounces-175302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 138DBAB0767
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 03:22:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27FE6AB07AF
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 03:59:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBB7B7B2CFA
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 01:21:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F3201C2063F
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 01:59:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C87538FB0;
-	Fri,  9 May 2025 01:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD5821C18C;
+	Fri,  9 May 2025 01:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OpnSyjbC"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="lUKDgkep"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DDB1BA53;
-	Fri,  9 May 2025 01:22:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAC4512D758;
+	Fri,  9 May 2025 01:59:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746753741; cv=none; b=By/HVePNzcgqa819vlB3LguqSYE7DKkjtLspiY0oitFygOEkoOifwIR0rHXfPC/ZSW5VKVgm7F1okizGZ4Xb7sBaDcyt4mFmWQEjwrrtKMjc518CQStbpGfYfLpEU/PkzVpog9tTPCgjGnPBEk3JziEZOjfk4vIN7EAKLlJny1s=
+	t=1746755964; cv=none; b=QxHrIs6Ql3SEjvD2N68W5jGqHeawpxJmQON/YjQz3vEXe0C+jWx+VXIs2k5t/Hk9aOBZYCnaWts9BYEBCtGKsvrDRsiHoNRrvKyWPM4VGF9CY4Ugo1s15QTONlmDDaALHO6NnGxhSjO9hpf9cZNgVE/fpt8JPIBRuRQtfo3hhqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746753741; c=relaxed/simple;
-	bh=K4PGaR75ciFMqUOd832iToV1R6IR+RU5ebaSxi/j4Qw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=biOE+1oeBqlAlpTxIjAhWjWfDTizDsIz9wF0F1PFfYo0XvTkPFxKdTaOS+vW4YoskNdYAT37OHqRyh82vLzGMEuPs1sqDmR4tObBkEga8XCQkHrlj9AyJbEm63sDlosnasysPS6dhAgNAM+CCQZzLqTyXyxD3zoYNOaoNpVMPgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OpnSyjbC; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5fca7c14715so314059a12.3;
-        Thu, 08 May 2025 18:22:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746753738; x=1747358538; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=urXW+BAEYO0CkFqXFETFIXtaSE/jSUmIp1lzCTyc1Ko=;
-        b=OpnSyjbCUV7VJEzq6CcZlTxeB7qoCeBPokq4t3sKCp+9jAmV1wBmt+RLacwXv52xIo
-         dRaUc+0euqsRY4pSiAe0UeWB9QfEPokFdjiDv+c75OpQkMqpf6hGdI8czX2HCUMo3q6R
-         Pf7shq8PcO8IY/5fq62Q3JO65FTOeH3C/vrzpZ16sadU06gtUkiCDzRZpjQROKp5Hmzr
-         6MfX3IQ7GHjGNGf/10ollDvatA/FeOOwrTeq0L9VycR8r6/DsRApPLWFnN5LJKA0hqD6
-         pKCgUI0oI2y26REYEDKKbF5KFcc6MDSMuTLrRgjtkLjZsrBQY8ddfJA2MDIV7RVO2HhD
-         yRhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746753738; x=1747358538;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=urXW+BAEYO0CkFqXFETFIXtaSE/jSUmIp1lzCTyc1Ko=;
-        b=v5nwXs4IgJ/vaZJkmDkQgUL2CKzACTCUFsjma6OJFv1u1FemYQfenXoOkCqjr/Ajl7
-         Zlqq/a/aM1VseqTsuJDYGlj3IG88nrHjdNy5PiuM73RBxdDJ6QPnxQ39snHsayzwBdF0
-         4wJO9zIRgyH6VvUI259Q4fZBPIQLXsjJx89W0Mdmwtz+ZHr1x6QdyqxvLQy1VpyU/dD6
-         xAY1vRRTrryq1Ipg2zTXzdmIsJxK6VXRPZJEAnlpob/PRaT1ws0+dptNZaJlFuwG2rgo
-         0xkQnq0JlnkOZk7S+5JTC3j6YDeo6djQsF7bw/ZevekAQX7pxMtARb1SUsQ7oBdWuIeN
-         SaQA==
-X-Forwarded-Encrypted: i=1; AJvYcCUuTbnXX5lQiRzcMa4gHUr54luwLuITAtoJGU7KDPH+axGsD6y9/eKBSVNW4RY80EfIH7LLUIs123eD@vger.kernel.org, AJvYcCWuwO3cuaTW33GOkahnrJ99/w4S28PyjWwm5+U/y/oIorvP7GLgc7rSdTkI1QCP9wb2yPDBoY4UKFJB@vger.kernel.org
-X-Gm-Message-State: AOJu0YztrRVrL/q6oxB1HDaaFH4+AtkD5KJcCVnblF9cz452FX6LNtUV
-	YDruw+2X/A+md523sGDha130f1GaJqvI03s/K3IVgEJkZkcVNd2FZflRFNyK+MGuE/Nc7QtHHcV
-	HYWFsbe1/3vxVFsafEgbcXixrsDZoPcuFeoMicg==
-X-Gm-Gg: ASbGncvfOPCIGP3IMxBp65VXhLo0pc4BIrEr0+IeCScC43wJdZQCxcHHHPDgIj7dDsS
-	6PgUpIWbFM5gvkoGu3E3HlrJ6vXhVUeopwwH0xmxIjaTy5Q6pgkUBI/mjQPqt6lhbGG2G1Yel2m
-	pBT17LGDDBulyt67Me4WP1WTA=
-X-Google-Smtp-Source: AGHT+IG2yYw5OGqGhpOyx+XnDgtzOgA6aRoQHB5oRpX+l9WDFgc4JXXQWpqa2bxCVpEseQx7FJIg89wUOdn5bAAsT6g=
-X-Received: by 2002:a17:907:a08b:b0:acb:5583:6fe0 with SMTP id
- a640c23a62f3a-ad218f46a45mr159357766b.15.1746753737638; Thu, 08 May 2025
- 18:22:17 -0700 (PDT)
+	s=arc-20240116; t=1746755964; c=relaxed/simple;
+	bh=osuC42Dwrv2df4r7kNlB1NVy515oimGVDFQx8xKLrm8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=CY+vHlN4Y+9vlbGICfD+N25qIrntSFx/Nvsl4mSNMG9G6GvkHwqfnmCR3EllknO+sXJ1Co7UESpVxQ/d9DdDu8t1NsfK1FwYWTxyrL/ZrrJa7a92gyPgR11hZv1BWWcqnT+gUB/4U56qCclyTwCrCBabZu3cOhIXUQhpiZG2I9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=lUKDgkep reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=55PNgOcKj2H7fTf4hRgwZb8Ew5SPSaRTUmV47X0Ho0A=; b=l
+	UKDgkep97B/9Unz+gncswaNSIeZ+Lh0gamZ2w9JJlrUfo70hmw63fXntBNO4gb3W
+	/eFGKOx5QBt2tR8fy3czCtzSLOqcr8TzOfxpcqKpn5afVpsqhBbMSXboBReZ2ld7
+	QjqW+a+m3Dng7rbhT7CVZI2eELaTKFpaPmbnlb0s4g=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-104 (Coremail) ; Fri, 9 May 2025 09:58:09 +0800 (CST)
+Date: Fri, 9 May 2025 09:58:09 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
+Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, conor+dt@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org, hjc@rock-chips.com,
+	mripard@kernel.org, neil.armstrong@linaro.org, knaerzche@gmail.com,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	"Andy Yan" <andy.yan@rock-chips.com>
+Subject: Re:Re: [PATCH v4 0/7] Convert inno hdmi to drm bridge
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2025 www.mailtech.cn 163com
+In-Reply-To: <nco27hnwykffzgirhocskltrkcds32tefkix23nfknf3e5m3zd@mkrrbw6kogsi>
+References: <20250422070455.432666-1-andyshrk@163.com>
+ <9503607.rMLUfLXkoz@diego>
+ <nco27hnwykffzgirhocskltrkcds32tefkix23nfknf3e5m3zd@mkrrbw6kogsi>
+X-NTES-SC: AL_Qu2fBPueukAj7yafYOkfmkcVgOw9UcO5v/Qk3oZXOJF8jC7pxyUYZFlTGWvs7PCDJim1nQiHezZt88JTXIVAZqUNMere4kRSvPWFUR2XLkygWQ==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1746581751.git.zhoubinbin@loongson.cn> <9b5a416143d5d5da7084f3a868cf01e6827cd653.1746581751.git.zhoubinbin@loongson.cn>
- <20250508-snagged-amber-432ed9bf3d41@spud>
-In-Reply-To: <20250508-snagged-amber-432ed9bf3d41@spud>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Fri, 9 May 2025 09:22:04 +0800
-X-Gm-Features: AX0GCFszpYExKXqggR86Q3nXf_ADQFMcMy3VvuQnohu3_YCcAHHZlnBuOYM2quk
-Message-ID: <CAMpQs4LXvdd-=r15t2Fbm1xjQKBp8nvxQMR=UU7n0bXHS3MDHQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: mmc: Add Loongson-2K SD/SDIO/eMMC
- controller binding
-To: Conor Dooley <conor@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-mmc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Message-ID: <1a07d69.1e47.196b2c3aa12.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:aCgvCgD335UxYR1opDYAAA--.2599W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBkBdIXmgdXGlOSwAEsQ
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-Hi Conor:
-
-Thanks for your review.
-
-On Thu, May 8, 2025 at 11:01=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Wed, May 07, 2025 at 03:28:05PM +0800, Binbin Zhou wrote:
-> > Add the Loongson-2K SoC's SD/SDIO/eMMC controller binding with DT schem=
-a
-> > format using json-schema.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  .../bindings/mmc/loongson,ls2k-mmc.yaml       | 69 +++++++++++++++++++
-> >  MAINTAINERS                                   |  6 ++
-> >  2 files changed, 75 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mmc/loongson,ls2k=
--mmc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.ya=
-ml b/Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.yaml
-> > new file mode 100644
-> > index 000000000000..97a0853399f1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.yaml
-> > @@ -0,0 +1,69 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mmc/loongson,ls2k-mmc.yaml#
->
-> Filename matching a compatible please.
-> Otherwise this looks okay to me.
-
-Yes, I forgot about this point, it will be renamed to
-loongson,ls2k0500-mmc.yaml.
-
->
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: The SD/SDIO/eMMC host controller for Loongson-2K family SoCs
-> > +
-> > +description:
-> > +  The MMC host controller on the Loongson-2K0500/2K1000 (using an exte=
-rnally
-> > +  shared apbdma controller) provides the SD and SDIO device interfaces=
-.
-> > +
-> > +maintainers:
-> > +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> > +
-> > +allOf:
-> > +  - $ref: mmc-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - loongson,ls2k0500-mmc
-> > +      - loongson,ls2k1000-mmc
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: Loongson-2K MMC controller registers.
-> > +      - description: APB DMA config register for Loongson-2K MMC contr=
-oller.
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  dmas:
-> > +    maxItems: 1
-> > +
-> > +  dma-names:
-> > +    const: rx-tx
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - dmas
-> > +  - dma-names
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/clock/loongson,ls2k-clk.h>
-> > +
-> > +    mmc@1fe2c000 {
-> > +        compatible =3D "loongson,ls2k1000-mmc";
-> > +        reg =3D <0x1fe2c000 0x68>,
-> > +              <0x1fe00438 0x8>;
-> > +        interrupt-parent =3D <&liointc0>;
-> > +        interrupts =3D <31 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks =3D <&clk LOONGSON2_APB_CLK>;
-> > +        dmas =3D <&apbdma1 0>;
-> > +        dma-names =3D "rx-tx";
-> > +        bus-width =3D <4>;
-> > +        cd-gpios =3D <&gpio0 22 GPIO_ACTIVE_LOW>;
-> > +    };
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 96b827049501..5bf74aa63299 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -13935,6 +13935,12 @@ S:   Maintained
-> >  F:   Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yam=
-l
-> >  F:   drivers/soc/loongson/loongson2_guts.c
-> >
-> > +LOONGSON-2 SOC SERIES MMC/SD/SDIO CONTROLLER DRIVER
-> > +M:   Binbin Zhou <zhoubinbin@loongson.cn>
-> > +L:   linux-mmc@vger.kernel.org
-> > +S:   Maintained
-> > +F:   Documentation/devicetree/bindings/mmc/loongson,ls2k-mmc.yaml
-> > +
-> >  LOONGSON-2 SOC SERIES PM DRIVER
-> >  M:   Yinbo Zhu <zhuyinbo@loongson.cn>
-> >  L:   linux-pm@vger.kernel.org
-> > --
-> > 2.47.1
-> >
-
---
-Thanks.
-Binbin
+CkhpIERtaXRyeSwKCiBUaGFua3MgZm9yIHlvdSByZXZpZXcuCgrlnKggMjAyNS0wNS0wNSAwMDox
+NjozNe+8jCJEbWl0cnkgQmFyeXNoa292IiA8ZG1pdHJ5LmJhcnlzaGtvdkBvc3MucXVhbGNvbW0u
+Y29tPiDlhpnpgZPvvJoKPk9uIFNhdCwgTWF5IDAzLCAyMDI1IGF0IDA0OjQyOjA0UE0gKzAyMDAs
+IEhlaWtvIFN0w7xibmVyIHdyb3RlOgo+PiBBbSBEaWVuc3RhZywgMjIuIEFwcmlsIDIwMjUsIDA5
+OjA0OjM5IE1pdHRlbGV1cm9ww6Rpc2NoZSBTb21tZXJ6ZWl0IHNjaHJpZWIgQW5keSBZYW46Cj4+
+ID4gRnJvbTogQW5keSBZYW4gPGFuZHkueWFuQHJvY2stY2hpcHMuY29tPgo+PiA+IAo+PiA+IFdo
+ZW4gcHJlcGFyaW5nIHRvIGNvbnZlcnQgdGhlIGN1cnJlbnQgaW5ubyBoZG1pIGRyaXZlciBpbnRv
+IGEKPj4gPiBicmlkZ2UgZHJpdmVyLCBJIGZvdW5kIHRoYXQgdGhlcmUgYXJlIHNldmVyYWwgaXNz
+dWVzIGN1cnJlbnRseQo+PiA+IGV4aXN0aW5nIHdpdGggaXQ6Cj4+ID4gCj4+ID4gMS4gV2hlbiB0
+aGUgc3lzdGVtIHN0YXJ0cyB1cCwgdGhlIGZpcnN0IHRpbWUgaXQgcmVhZHMgdGhlIEVESUQsIGl0
+Cj4+ID4gICAgd2lsbCBmYWlsLiBUaGlzIGlzIGJlY2F1c2UgUkszMDM2IEhETUkgRERDIGJ1cyBy
+ZXF1aXJlcyBpdCdzIFBIWSdzCj4+ID4gICAgcmVmZXJlbmNlIGNsb2NrIHRvIGJlIGVuYWJsZWQg
+Zmlyc3QgYmVmb3JlIG5vcm1hbCBEREMgY29tbXVuaWNhdGlvbgo+PiA+ICAgIGNhbiBiZSBjYXJy
+aWVkIG91dC4KPj4gPiAKPj4gPiAyLiBUaGUgc2lnbmFsIGlzIHVuc3RhYmxlLiBXaGVuIHJ1bm5p
+bmcgdGhlIGdsbWFyazIgdGVzdCBvbiB0aGUgc2NyZWVuLAo+PiA+ICAgIHRoZXJlIGlzIGEgc21h
+bGwgcHJvYmFiaWxpdHkgb2Ygc2VlaW5nIHNvbWUgc2NyZWVuIGZsaWNrZXJpbmcuCj4+ID4gICAg
+VGhpcyBpcyBiZWNhdXNlIFRoZSBIU1lOQy9WU1lOQyBwb2xhcml0eSBvZiByazMwMzYgSERNSSBh
+cmUgY29udHJvbGxlZAo+PiA+ICAgIGJ5IEdSRi4gVGhpcyBwYXJ0IGlzIG1pc3NpbmcgaW4gdGhl
+IGN1cnJlbnQgZHJpdmVyLgo+PiA+IAo+PiA+IFBBVENIIDF+NiBhcmUgdHJ5IHRvIEZpeCBEb2N1
+bWVudCBpbiB0aGUgZHQtYmluZGluZywgdGhlbiBhZGQgdGhlCj4+ID4gbWlzc2luZyBwYXJ0IGlu
+IGRyaXZlciBhbmQgZHRzLgo+PiA+IFBBVENIIDcgY29udmVydHMgdGhlIGN1cnJlbiBkcml2ZXIg
+dG8gZHJtIGJyaWRnZSBtb2RlLgo+PiAKPj4gQWZ0ZXIgcmVzdXJyZWN0aW5nIG15IHJrMzAzNi1r
+eWxpbiB3aGljaCBoYXNuJ3Qgc3VjZXNzZnVsbHkgYm9vdGVkIGluIGEKPj4gd2hpbGUsIEkgY291
+bGQgdmVyeWlmeSB0aGlzIHNlcmllcywgc28gb24gYSByazMwMzYta3lsaW4KPj4gCj4+IFRlc3Rl
+ZC1ieTogSGVpa28gU3R1ZWJuZXIgPGhlaWtvQHNudGVjaC5kZT4KPj4gCj4+IAo+PiBJJ2xsIHBy
+b2JhYmx5IGFwcGx5IHBhdGNoZXMgMS00IHRvIGRybS1taXNjIGxhdGVyIHRvZGF5LCBhcyB0aGF0
+IHNvbGVseQo+PiB0b3VjaGVzIHRoZSBSb2NrY2hpcCAoYW5kIG9ubHkgcmszMDM2LSlzaWRlIGFu
+ZCBwYXRjaGVzIDUrNiB0byB0aGUKPj4gcm9ja2NoaXAgdHJlZS4KPj4gCj4+IFBhdGNoIDcgc2hv
+dWxkIHByb2JhYmx5IGdldCBzb21lIGF0dGVudGlvbiBieSBwZW9wbGUgbW9yZSBmYW1pbGlhciB3
+aXRoCj4+IGRybS1icmlkZ2VzLCBzbyBJJ2xsIGxldCB0aGF0IHNpdCBmb3IgYSBiaXQgbG9uZ2Vy
+Lgo+Cj5JIHdpbGwgdGFrZSBhIGxvb2sgbGF0ZXIsIGJ1dCBvbiB0aGUgZmlyc3QgZ2xhbmNlIGl0
+IGxvb2tzIGxpa2UgdGhlcmUKPmFyZSB0b28gbWFueSB0aGluZ3MgZ29pbmcgb24gaW4gdGhhdCBw
+YXRjaCwgaW5jbHVkaW5nIHNvbWUgdW5uZWNlc3NhcnkKPmZuY3Rpb24gbW92ZW1lbnRzIGFuZCBk
+ZWZpbmUgbW92ZW1lbnRzLCBldGMuIEkgd291bGQga2luZGx5IGFzayB0byBzcGxpdAoKVGhlc2Ug
+cmVnaXN0ZXJzIHdlcmUgaW5pdGlhbGx5IGRlZmluZWQgaW4gYSBzZXBhcmF0ZSBoZWFkZXIgZmls
+ZShpbm5vX2hkbWkuaCksIApidXQgdGhleSB3ZXJlIG9ubHkgdXNlZCBieSBhIHNpbmdsZSBDIGZp
+bGUsIHNvIEkgdGhpbmsgaXQncyBub3QgbmVjZXNzYXJ5IHRvIHB1dAp0aGVtIGluIGEgc2VwYXJh
+dGUgaGVhZGVyIGZpbGUuIEkgZGVjaWRlZCB0byBzaW1wbHkgbWVyZ2UgdGhlbSBpbnRvIHRoZSBp
+bm5vX2hkbWkuYyBmaWxlLiAKSWYgSSBmaXJzdCBjcmVhdGUgYSBwYXRjaCBhbmQgc2VwYXJhdGVs
+eSBjYXJyeSBvdXQgdGhlIG1lcmdpbmcgb2YgdGhpcyByZWdpc3RlciBkZWZpbml0aW9uLCB3b3Vs
+ZCB0aGF0IGJlIHBvc3NpYmxlPwoKQW5kIEkgd2lsbCB0cnkgdG8gYXZvaWQgZnVuY3Rpb24gbW92
+ZW1lbnRzIGluIG5leHQgdmVyc2lvbi4KCgo+dGhlIG5vbi1mdW5jdGlvbmFsIHJlZmFjdG9yaW5n
+cyBhbmQgdGhlIGZ1bmN0aW9uYWwgb25lcyAoc3BsaXR0aW5nIHRvIGEKPmxpYnJhcnksIGV0Yyku
+CgpXaWxsIGRvIGluIG5leHQgdmVyc2lvbi4KCj4KPj4gCj4+IAo+PiBUaGFua3MgYSBsb3QgZm9y
+IHdvcmtpbmcgb24gYWxsIHRoaXMKPj4gSGVpa28KPj4gCj4+IAo+Cj4tLSAKPldpdGggYmVzdCB3
+aXNoZXMKPkRtaXRyeQo=
 
