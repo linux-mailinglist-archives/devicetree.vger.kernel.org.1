@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-175457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD867AB0EE0
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:25:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FC37AB0F00
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:29:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA4CD1B61443
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:24:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4ABF77BAEBD
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:28:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 517B42698AC;
-	Fri,  9 May 2025 09:24:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30C9227F198;
+	Fri,  9 May 2025 09:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YcsE6bxP"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="O8VXS6no"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-19.smtpout.orange.fr [80.12.242.19])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E8F220F58;
-	Fri,  9 May 2025 09:24:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C01627A925;
+	Fri,  9 May 2025 09:29:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746782655; cv=none; b=FBmSqG4PguJ+aF9ktAhDH7Urvtb3Pqhhr0Kqiz3gD5CZ4z6maibsD7q2G4huhcvGwJ1zl9Kujz2UkIGfGJlcg3zYPEetQmJ+4wsrdBOQoaf3cjAOIwuX9X9C9oU9AXEUoJFIsa8OhYyv8T9gi5ZMixi7mDiRKYZbttccnoYPczg=
+	t=1746782962; cv=none; b=TkREs4L5q1olPUs/Coxbp6/H9cB1BxUPzMzDJtf5K4LZjYNKit5SkJAXhjpGVn2ENOjhPtStmXqT9smDKu3u4GouA6+mzqZmPJ7luZmlWQfUfLPVStZS5OnCyJGQ43ddriO+Ent9UudiIgJ5FIcFZgewN1d3mq1rDyt7Qob4QIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746782655; c=relaxed/simple;
-	bh=NO8fViOIlWT6Uf6dz/qzvniQhtjlz89wsnpB5ZiCryM=;
+	s=arc-20240116; t=1746782962; c=relaxed/simple;
+	bh=JyK+fdEHecKizeMVTygzuAz5bKu1jHxKGa1EMszfEYI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VNZeTVwAQVZ4NuqfGA52u6UAb5RF4dJsnsv/Z4ETnoXL+AV2vs3YPmBzZyy1OSGO84pkuW8QG+izSY3lF/FvPWRWuinnHk5tH8NFQTqg3pfDxsUbRWoR1QjUeXrBhCd2saTGryyTVddPvGN1FWy+GzMcI5YtXPPb/oRmAgruwME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YcsE6bxP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79335C4CEE4;
-	Fri,  9 May 2025 09:24:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746782655;
-	bh=NO8fViOIlWT6Uf6dz/qzvniQhtjlz89wsnpB5ZiCryM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YcsE6bxPHtlMeGoEfUWsu3amaw+TmioeejKx71LNLw179IKHsce9U5b8pk45DCRfT
-	 WwccidsN1Im/ep9KLIjVLN+amMGhlOAygi36S/ByDfdbUUB1zGW52Af6NdBpUmkeaZ
-	 V2saQszdSuspUrTMT5tCwZXd6hT9+LTdjUUlfNiZDo855LVC4KXbxGH3AHCcK6gkB1
-	 mAqwSt5NQ82QB2aX5tEWqjy4lYpjvzjQuqT2I6+TE2Rk9gfDmxjxtbicXY2re1FbdV
-	 viP1/+fWm3UJWLbfwjZydJVHifkW+N1A1nn9RlQAloFcxXtFrRjN/XBfn4Qwg3kFiE
-	 FuFlHAKQ/x9hg==
-Message-ID: <6937a4da-303b-4c89-88d1-1b698127bfb7@kernel.org>
-Date: Fri, 9 May 2025 11:24:10 +0200
+	 In-Reply-To:Content-Type; b=risEY+ZXVVHgE25yhJKh+ri17WZscZJfIWlOH7yZLy8ktacDqUtfChrRYTvumhU3VmwJsWxKNfDKEaN2lIVempa3YbiW4d/qMoAhl04J606r3ynkNWjYgAvxKc5bXnroVlWfiiU/J0Bxo8JW3bG6H6KA/Rjvbzadr1CtpeCjddw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=O8VXS6no; arc=none smtp.client-ip=80.12.242.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id DK2buS2m2CaH2DK2cuYVme; Fri, 09 May 2025 11:29:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1746782956;
+	bh=9k2mrQAl7Cj0IfvW/DTZv9DLLgVCT9UG9X9Gsz14CR4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=O8VXS6no49EtUOlSCetHI/Ib9q5NYZWAyyA2caN5K3Yqu7v7UAUwvWweX1jllzu17
+	 R8PfTV9jrdLqxY5lr+hZKGE4O/chsNlbb8jMlVD9BtRPIFb7FZGX/wpQuQDmv0qYlx
+	 iS2mGpqfMP1QwOlKRQ/iJVvQSfoTDlh+01uMBm9myo8l8gXgrMcvctmUkLTAZw/z5/
+	 cW+iDS/J3SSOH7FWKMRJNi3KeypOXcVARnlotR4biDp7+xLY91bwUQtQCztEZ/5kUF
+	 i7HHJswAe1ORvUClwsyH1iskLBRkFROoPKL7lVmFlWkjqMT18FrPTsBPSceOS7jcet
+	 gs+f9DWJ5bKrw==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Fri, 09 May 2025 11:29:16 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <69f72478-7102-4cfd-98d7-a93dcfe5a1a0@wanadoo.fr>
+Date: Fri, 9 May 2025 11:29:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,77 +57,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ARM: dts: rockchip: Sonoff-iHost: adjust SDIO for
- stability
-To: Hao Zhang <hao.zhang@coolkit.cn>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- tim@feathertop.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250509085657.309934-1-hao.zhang@coolkit.cn>
- <20250509085657.309934-2-hao.zhang@coolkit.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250509085657.309934-2-hao.zhang@coolkit.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v8 02/11] mfd: Add max7360 support
+To: mathieu.dubois-briand@bootlin.com, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kamel Bouhara
+ <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com,
+ =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20250509-mdb-max7360-support-v8-0-bbe486f6bcb7@bootlin.com>
+ <20250509-mdb-max7360-support-v8-2-bbe486f6bcb7@bootlin.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20250509-mdb-max7360-support-v8-2-bbe486f6bcb7@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 09/05/2025 10:56, Hao Zhang wrote:
-> From: "hao.zhang" <hao.zhang@coolkit.cn>
+Le 09/05/2025 à 11:14, mathieu.dubois-briand@bootlin.com a écrit :
+> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
 > 
-> Reduce max-frequency from 50MHz to 25MHz to improve WiFi module stability
-> on some Sonoff iHost units. Remove unsupported or redundant properties,
-> and keep only minimal, validated configuration.
+> Add core driver to support MAX7360 i2c chip, multi function device
+> with keypad, GPIO, PWM, GPO and rotary encoder submodules.
 > 
-> Signed-off-by: hao.zhang <hao.zhang@coolkit.cn>
+> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> Co-developed-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> ---
 
-Do not use login as name, especially that you did it right for the email
-address you sent it from.
+Hi,
 
+...
 
-Best regards,
-Krzysztof
+> +static int max7360_mask_irqs(struct regmap *regmap)
+> +{
+> +	struct device *dev = regmap_get_device(regmap);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	/*
+> +	 * GPIO/PWM interrupts are not masked on reset: as the MAX7360 "INTI"
+> +	 * interrupt line is shared between GPIOs and rotary encoder, this could
+> +	 * result in repeated spurious interrupts on the rotary encoder driver
+> +	 * if the GPIO driver is not loaded. Mask them now to avoid this
+> +	 * situation.
+> +	 */
+> +	for (unsigned int i = 0; i < MAX7360_PORT_PWM_COUNT; i++) {
+> +		ret = regmap_write_bits(regmap, MAX7360_REG_PWMCFG(i),
+> +					MAX7360_PORT_CFG_INTERRUPT_MASK,
+> +					MAX7360_PORT_CFG_INTERRUPT_MASK);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to write MAX7360 port configuration");
+
+Nitpick: Missing \n
+
+> +	}
+> +
+> +	/* Read GPIO in register, to ACK any pending IRQ. */
+> +	ret = regmap_read(regmap, MAX7360_REG_GPIOIN, &val);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to read GPIO values: %d\n", ret);
+
+Nitpick: ret is not needed in the error message.
+
+> +
+> +	return 0;
+> +}
+
+...
+
+CJ
 
