@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-175529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85439AB11FC
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:16:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FBCCAB11A9
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:10:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0BE71891334
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:16:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0BB9179C75
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:09:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC682918D7;
-	Fri,  9 May 2025 11:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3735F292080;
+	Fri,  9 May 2025 11:07:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pmaxi3bZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fHcu4fmR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAFF229188B
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:07:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FEC913C816
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:07:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746788833; cv=none; b=HuZpoqxi3aapAXk5fRQLBGUxiDd66QRjD+iY4dOmq2RVWOGmNx5oV/frSrX22Gmav+GFu0XVP/deBkFTSQ2ERpE879sj7Erp4MqnEG2BL4/KOzzZ5VbY7cqcDytaJfMbEoAndWdgXYY2r2Z9LDHlwXfBAPkz2vFGZ2HeS+fh824=
+	t=1746788835; cv=none; b=DCfBcUl1WIfAs9pQuMoOFeFpKkA5vDo3Au9Z6yJJWIU9yUwOqM6yHdupzUeLk4jQDEh/iiZThRHjbUHpRJokyxEHiev/jTZdATzoe9/+6XcI8nVdGPBC4Psg9yEIEIM3NC8ehr74PolUhY5rZSFQCeN2DFgkwsM/+MnHERk+y/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746788833; c=relaxed/simple;
-	bh=gdl/1A2tWVRhxiGr8HNdkp2uLbfVXUsZjNQ28NMiOx8=;
+	s=arc-20240116; t=1746788835; c=relaxed/simple;
+	bh=mx5u03b5TB/f2q1YQ3KCyV5h99vYZyaZPDhhfpjU5fc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=t+fidWUENLguqUajODcz3g/DfC3D39bM86qO/pF4d3+Op8LhNxKnbUqO+Tq6u3KJZrcC/kgZfEXM0vXrsl999nU9NEu6hWNlHiziooe75LcQH182UDrqppp61WjBGXMJ5h+5oEVGR3hdQYK9IAMgy1DCAXgKMx4OzKgdBLM92Yo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pmaxi3bZ; arc=none smtp.client-ip=209.85.221.53
+	 In-Reply-To:To:Cc; b=p0C/73qzOyLJ9F11WGxoYIyiq0hDHgz2c/jQzMw8sCEBNn029UHnXejpCUKCbaZ73yGhG0sN/N09fHTwpVWqhcSAA1qvFv+1Q93V1ZiE++8wx/6y6wNp6OuUqjsoX0vMqRsO8MMcx3+UlbTEdEknPX1nbBTTKHztaj6TORN2O68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fHcu4fmR; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3a0ba0b6b76so1285083f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:07:11 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a1d8c0966fso847406f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:07:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746788830; x=1747393630; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1746788831; x=1747393631; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vT4KOWN4uTm3QxGCYySEGWVVZs5ryN1meRZIg3C7iIY=;
-        b=Pmaxi3bZofSKwLRoCUCzIEbE5/Lu5kjLWEk9PtGeOrnuvCIUz+A7JgaBJQL/w70EoP
-         0l58zf0jvEdr/sB3fNm9hsClKKh4/otudy/e6EYhN+kMGJMoy0dP2dybces2FX8mXNpM
-         2LRMVNIAHKxNwWCEA7rRXhTYk8t40MJpWj5mhM2o7hUkVdEK+DT+41Heu7OgEGWr3xpR
-         T65kWL29NgfavXiuNKPum31SsjQpY/dyLXfCYiyIvmlWxfai5RgDQTJU5BX3luxOKxNM
-         D+Q4BWtAPM7fjOv8SCVoZHJEh+PpsDkZOPjI7IZaLZzlYv967F+9jbHlZZ4xlRFP/bs4
-         O/6w==
+        bh=OjvkkMIUxErk/9CbtL8I8hETKTjq9Ni1Xdc4V8HrKQc=;
+        b=fHcu4fmRqgAt/OAAqTExKWu9HZrsj8DvarkWF/BhT6M97ZW0V1BX7D69JGD7/I1nkl
+         RNVL6qzK3ED43OHgytRW7mbMOSUjBgvY0Ire5N0kizQ1Bq2By9wZ6dHAamnNaS7wSPZe
+         XuvemSQoz9jBqV16l3eLeMJznHtNwqxsormH0GC4qKnuC5E3AwBDefN9btpsIapYq2rW
+         v+7DWGqrAzhIWaJkxYKQ6so4qjSgDrKNvlpV6LcCFxzCVkOs3DfNaUM5hAYuBrQc6UNF
+         Z/EItATDoxhPLF+D/3EZbA+Pu8MWaU7cBHVZFmf8bLUuJ0kQVV84fH2LrRVW7gtS07Kh
+         WHHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746788830; x=1747393630;
+        d=1e100.net; s=20230601; t=1746788831; x=1747393631;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vT4KOWN4uTm3QxGCYySEGWVVZs5ryN1meRZIg3C7iIY=;
-        b=spcboPddfBbTUhh0ADCtcD8jvxNUWXDKXswIW17Z+pX81PLd7bgNbxhtTWUDkC0Kfi
-         aQwiBS3f6LppOF25h66rM7dSgsGwv45e2j8xawoQAn+OC7yKzNPaxZnl53VAJDsLA881
-         805NamPRD81JFqGtrLpTsLecv/CKuTGLr7TUfa1GTqLOLcHoa4eh6ycqfIC8ABkyI4ct
-         s1jDqEgRHF2UTfNKhMtpWOCF10Ow+wCfSTPVFpSpSf9EUGw1/ROuUwY11f2PeEO6JHjc
-         ZWOyyEYf2WtlJZjKlM8bl63HvG25LZyY4KAD4/JNCGwezio5/2u16tZz0e8arxF0MsG2
-         O+VA==
-X-Forwarded-Encrypted: i=1; AJvYcCW/XYF/jb1J3mxBj+7P2oZ7CoQMzORGzYslYKuLCy46Xr+ld6XDxFOLtvK6R8hQUGmI2VGBFpH9fZDF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSmGOEu6OMfZ7ev3TArFs4IayhGG8bNt6Vip0K8L8U8SnaoPB3
-	SV2nPN115ckrJCvutg+1wcXK9hyrJHR1f+7m05Tg8nHJsJBvdTdFY1x1oxIdIKU=
-X-Gm-Gg: ASbGncvGwH2d3oO4PLJtx+iLWdrIsbEAqAJNgBcbCgbE+tNy22hZbUjAvtSEqXFoEp3
-	aBx4/kQlJJ09j6NJOFRxFsxBXPhzAChR+r9PZno5OWS1AQkEt9sx03sws64Y2Xn6G6sMJ4VZ9kf
-	g90cE7IwW+zTFLb/d+/XYpiJgQ+9MDydQb0C/rv4a0JwDRoqPhhMkP5DWll8jt0tYdYHSijjiJd
-	DRB+8fyv6kx+lwaowRxVM3gGI+pKvM8QOVeXZrkVXmHAhVbDl1Hpro+QYD1DptzzBTuslU+u7iC
-	GKQWxCxwGPAq0KH0p8HeKG+VJCmThTkmrsrsYqX95xpg9v4=
-X-Google-Smtp-Source: AGHT+IGGXkJ58sLQbmi3wU/ta+YdLpsygJwEMpejLEliNzR91iBPwbbisuUDIlnG+jy75pghXWkjdg==
-X-Received: by 2002:a05:6000:1ac5:b0:39a:cb5b:78fe with SMTP id ffacd0b85a97d-3a1f647a5b5mr2514501f8f.34.1746788829944;
-        Fri, 09 May 2025 04:07:09 -0700 (PDT)
+        bh=OjvkkMIUxErk/9CbtL8I8hETKTjq9Ni1Xdc4V8HrKQc=;
+        b=fY1yRvxNv9sqw9Nt2GNt5Ylu8juOb4unPDt+bKBGVnj4jgci3acHntTFOqxBDVsNLU
+         tu1g5ZG0kiwMtF6oOGAj11EC/jj1WSThr3pArqKHmo2c9yOCurAacrMYDR2xrDCuHdDS
+         F+7/hyxFTs8FgrU+1NuJ+QkCb/pWVTaVSrXxuxPIONXtyVSqqbHRhUcNWcu0gLamidcw
+         XAeHNEvTeF19jAe/f4IqAYZKovaBdAdOxGSRGAsCMkhGH5/XnRWvseP1li5HqAHON4F5
+         lu8uOuZ095ubqy5SAoXHJgOpBMF6UvD0mqn8F+lWBEO6piI0ueALP1es9xeKWlggPL9u
+         1NqA==
+X-Forwarded-Encrypted: i=1; AJvYcCXD9ONgL4oINVpm+rA64cFiMTR//fzlmdcWEXeZV0Ywpsoed3enjDO2E8FBAOLGNKrtp4t20gkdhwg2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQ5uhavLGo40mqXu70dfsAb0aIhizycTkgeuG4/AEytJ8VXVbn
+	yTFVfgFSCeTYUIWeLbtxZJDM+F1nU8RKg3jMgKXs2Tfh5/E284eS2ShgGavrS3U=
+X-Gm-Gg: ASbGncvd86dtB7zyWtBi/OpsCwxMz4jnpKNxmAY8z8M1sb1/DmFvSSHKJeeNg8kVFid
+	VfsoqGWUHlhfAQvT6sG1ddqk359yKBdZtA4wY+SSFYr445xfe6vIDdxVfbI+HwftW9JK6nPy2Hr
+	o+p/HIF346wfWA5/wfWqsE/0KrZCGf+9bEj/9fI370cHxyPleXOAPyOi9tVXE/o8HQDYt/vgf6U
+	rOaZ/Xd6KAwrbnR0cETuQl0S/chvZ8qocsP9RNhNLrOf1dDJ4/Vq+36h1SoXeIs6jZGufZ6kwaZ
+	GWh6PI1JQfJlnhWPKiKiJfPh9flHkvhDrC9k0ZspGI55F+8=
+X-Google-Smtp-Source: AGHT+IGJvDt+LaY1QQLl2SlTRe/DojIZ4tpeJAXa/uWwNzG6xIzfPYcQgejyyHruKfc7448qtaeZfA==
+X-Received: by 2002:a05:6000:228a:b0:3a0:b8ba:849f with SMTP id ffacd0b85a97d-3a1f6a0fc42mr2727736f8f.4.1746788831370;
+        Fri, 09 May 2025 04:07:11 -0700 (PDT)
 Received: from ho-tower-lan.lan ([77.81.75.81])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ecadfsm2914797f8f.22.2025.05.09.04.07.08
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ecadfsm2914797f8f.22.2025.05.09.04.07.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 May 2025 04:07:09 -0700 (PDT)
+        Fri, 09 May 2025 04:07:11 -0700 (PDT)
 From: James Clark <james.clark@linaro.org>
-Date: Fri, 09 May 2025 12:05:58 +0100
-Subject: [PATCH 11/14] spi: spi-fsl-dspi: Halt the module after a new
- message transfer
+Date: Fri, 09 May 2025 12:05:59 +0100
+Subject: [PATCH 12/14] dt-bindings: spi: dspi: Add S32G support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250509-james-nxp-spi-v1-11-32bfcd2fea11@linaro.org>
+Message-Id: <20250509-james-nxp-spi-v1-12-32bfcd2fea11@linaro.org>
 References: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
 In-Reply-To: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
 To: Vladimir Oltean <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -100,104 +99,69 @@ To: Vladimir Oltean <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>,
 Cc: linux-spi@vger.kernel.org, imx@lists.linux.dev, 
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, 
- Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>, 
+ Ciprian Marian Costea <ciprianmarian.costea@nxp.com>, 
  James Clark <james.clark@linaro.org>
 X-Mailer: b4 0.14.0
 
-From: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+From: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
 
-The XSPI mode implementation in this driver still uses the EOQ flag to
-signal the last word in a transmission and deassert the PCS signal.
-However, at speeds lower than ~200kHZ, the PCS signal seems to remain
-asserted even when SR[EOQF] = 1 indicates the end of a transmission.
-This is a problem for target devices which require the deassertation of
-the PCS signal between transfers.
+Document S32G compatible strings. 's32g2' and 's32g3' use the same
+driver so 's32g2' must follow 's32g3'.
 
-Hence, this commit 'forces' the deassertation of the PCS by stopping the
-module through MCR[HALT] after completing a new transfer. According to
-the reference manual, the module stops or transitions from the Running
-state to the Stopped state after the current frame, when any one of the
-following conditions exist:
-- The value of SR[EOQF] = 1.
-- The chip is in Debug mode and the value of MCR[FRZ] = 1.
-- The value of MCR[HALT] = 1.
+The SPI controller node in dts can define both host and target pinctrl.
+The selection between them will be done based on pinctrl-names. The
+default pinctrl will be loaded first and will be used by the host. If
+the controller is configured as target (spi-slave property is added in
+the dts node), the driver will look for the "slave" pinctrl and apply it
+if found.
 
-This shouldn't be done if the last transfer in the message has cs_change
-set.
-
-Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
 Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
 Signed-off-by: James Clark <james.clark@linaro.org>
 ---
- drivers/spi/spi-fsl-dspi.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ Documentation/devicetree/bindings/spi/fsl,dspi.yaml | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/drivers/spi/spi-fsl-dspi.c b/drivers/spi/spi-fsl-dspi.c
-index 31521dac1580..db921ee6305f 100644
---- a/drivers/spi/spi-fsl-dspi.c
-+++ b/drivers/spi/spi-fsl-dspi.c
-@@ -64,6 +64,7 @@
- #define SPI_SR_TFIWF			BIT(18)
- #define SPI_SR_RFDF			BIT(17)
- #define SPI_SR_CMDFFF			BIT(16)
-+#define SPI_SR_TXRXS			BIT(30)
- #define SPI_SR_CLEAR			(SPI_SR_TCFQF | \
- 					SPI_SR_TFUF | SPI_SR_TFFF | \
- 					SPI_SR_CMDTCF | SPI_SR_SPEF | \
-@@ -1056,9 +1057,20 @@ static int dspi_transfer_one_message(struct spi_controller *ctlr,
- 	struct spi_transfer *transfer;
- 	bool cs = false;
- 	int status = 0;
-+	u32 val = 0;
-+	bool cs_change = false;
+diff --git a/Documentation/devicetree/bindings/spi/fsl,dspi.yaml b/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
+index 7ca8fceda717..b5fac0bb142a 100644
+--- a/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
++++ b/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
+@@ -23,6 +23,7 @@ properties:
+           - fsl,ls2080a-dspi
+           - fsl,ls2085a-dspi
+           - fsl,lx2160a-dspi
++          - nxp,s32g2-dspi
+       - items:
+           - enum:
+               - fsl,ls1012a-dspi
+@@ -37,6 +38,9 @@ properties:
+       - items:
+           - const: fsl,lx2160a-dspi
+           - const: fsl,ls2085a-dspi
++      - items:
++          - const: nxp,s32g3-dspi
++          - const: nxp,s32g2-dspi
  
- 	message->actual_length = 0;
- 
-+	/* Put DSPI in running mode if halted. */
-+	regmap_read(dspi->regmap, SPI_MCR, &val);
-+	if (val & SPI_MCR_HALT) {
-+		regmap_update_bits(dspi->regmap, SPI_MCR, SPI_MCR_HALT, 0);
-+		while (regmap_read(dspi->regmap, SPI_SR, &val) >= 0 &&
-+		       !(val & SPI_SR_TXRXS))
-+			;
-+	}
-+
- 	list_for_each_entry(transfer, &message->transfers, transfer_list) {
- 		dspi->cur_transfer = transfer;
- 		dspi->cur_msg = message;
-@@ -1088,6 +1100,7 @@ static int dspi_transfer_one_message(struct spi_controller *ctlr,
- 				dspi->tx_cmd |= SPI_PUSHR_CMD_CONT;
- 		}
- 
-+		cs_change = transfer->cs_change;
- 		dspi->tx = transfer->tx_buf;
- 		dspi->rx = transfer->rx_buf;
- 		dspi->len = transfer->len;
-@@ -1125,6 +1138,15 @@ static int dspi_transfer_one_message(struct spi_controller *ctlr,
- 			dspi_deassert_cs(spi, &cs);
- 	}
- 
-+	if (status || !cs_change) {
-+		/* Put DSPI in stop mode */
-+		regmap_update_bits(dspi->regmap, SPI_MCR,
-+				   SPI_MCR_HALT, SPI_MCR_HALT);
-+		while (regmap_read(dspi->regmap, SPI_SR, &val) >= 0 &&
-+		       val & SPI_SR_TXRXS)
-+			;
-+	}
-+
- 	message->status = status;
- 	spi_finalize_current_message(ctlr);
- 
-@@ -1306,6 +1328,8 @@ static int dspi_init(struct fsl_dspi *dspi)
- 	if (!spi_controller_is_target(dspi->ctlr))
- 		mcr |= SPI_MCR_HOST;
- 
-+	mcr |= SPI_MCR_HALT;
-+
- 	regmap_write(dspi->regmap, SPI_MCR, mcr);
- 	regmap_write(dspi->regmap, SPI_SR, SPI_SR_CLEAR);
- 
+   reg:
+     maxItems: 1
+@@ -114,3 +118,17 @@ examples:
+                 spi-cs-hold-delay-ns = <50>;
+         };
+     };
++  # S32G3 in target mode
++  - |
++    spi0: spi@401d4000 {
++        compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
++        reg = <0x401d4000 0x1000>;
++        interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clks 26>;
++        clock-names = "dspi";
++        spi-num-chipselects = <8>;
++        bus-num = <0>;
++        dmas = <&edma0 0 7>, <&edma0 0 8>;
++        dma-names = "tx", "rx";
++        spi-slave;
++    };
 
 -- 
 2.34.1
