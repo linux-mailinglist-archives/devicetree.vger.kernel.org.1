@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-175385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16419AB0C2B
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D65BFAB0C2C
 	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:50:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C86C17003F
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 07:49:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF8F2A02E06
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 07:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 588DE276048;
-	Fri,  9 May 2025 07:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E891C277031;
+	Fri,  9 May 2025 07:47:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="lG9ge3Ej"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="DUmcRCL/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f201.google.com (mail-pl1-f201.google.com [209.85.214.201])
+Received: from mail-pg1-f202.google.com (mail-pg1-f202.google.com [209.85.215.202])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B736C27587F
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 07:47:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A250276057
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 07:47:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.202
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746776841; cv=none; b=hjrGoHATRE92oadwBhVu1F9GjyNgBjox8fJVFbmMBpx939SIAzNocuz23ycWjnYiZGP7AIgs4COyU/9L2sMM+JDDeJFNB5i0pGHDvYtwxnFtmtKWmI2VBmJYOmF0HX4DPFYAwOPKjUo3M3VpOz17OG1cZqnV/Uix6O0fwP5shgY=
+	t=1746776842; cv=none; b=VFHqWhusd2P2ohiUa9NF5PHDcQshOA2hEwUERQJzgBEoN0NsmBc3HOkOxOFUApfxsf40ApWTGYWH7Bf5+CmHVGc+NoIIukILVFFXjXANW7Az8gnYsQD91ozy24rQomXhjjMwLYaQ2CFLnDNQPkQR3Qklm0BeN9zlXQPGZUvKndI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746776841; c=relaxed/simple;
-	bh=VNknyeUt8cJ6f4wd2Ppf5nWXa2ZCYQ1F//Zjgt2ZeTo=;
+	s=arc-20240116; t=1746776842; c=relaxed/simple;
+	bh=kSKKgY850CX/ifrD5dVjlw2AkivsGza0IeGifE5IqhA=;
 	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=OKyUillUQIVGUElGK3VSX3Zxo6AZbflrxvSjM1MqoTZ/Xx29LirfMOumH572Veqr+7Fl4OehraUiW5lp9AR8KYSFeXxn9btrtsxyJEvrVsE/pxogiE8YqiGt2jEcj+hG92DqHA7Js10fsBQd6d75Y4JraAdMNNRFzQhIKC/HFyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=lG9ge3Ej; arc=none smtp.client-ip=209.85.214.201
+	 To:Cc:Content-Type; b=lOPfYNSt9IjyQILh2QDC0PhhV9L2rOmYdvSBVymokOOF3L8Em77t1vu2duYO/8tuo0yJWPsyZpXkI6jjgoPk5KDSMzyG/j5VOa9dK0UJNlEVKVWsFbRX2jvRiluaEVCOatATHpb5PRM9yZuJTlV7Hr9KUpuQ5wvBMQbJfVNCrxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=DUmcRCL/; arc=none smtp.client-ip=209.85.215.202
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com
-Received: by mail-pl1-f201.google.com with SMTP id d9443c01a7336-22c31b55ac6so25324145ad.0
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 00:47:19 -0700 (PDT)
+Received: by mail-pg1-f202.google.com with SMTP id 41be03b00d2f7-af8e645a1d1so1298065a12.3
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 00:47:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1746776839; x=1747381639; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1746776841; x=1747381641; darn=vger.kernel.org;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/uG6GiCi+k4QeVIeYPGdrcHOaMWapGzdHMs1nMnrsrc=;
-        b=lG9ge3Ej+9pkz+rV4yVQ4cnVhgvbElRBoPEq0B2NEqG5AOF7ZCwqMxSe4iVYcdOAyI
-         9FTkc1LO0Q9nwVfmz046EnSa5VdhL2j3Tc1AfCwzQ3tW0YX7C1SXtJPMHUTtpsbClUrX
-         ydyWRyGw1ShtjBjG2HVIdXQFvKBOgXYR4/MHt1gRd18gGZcLRNmDzrFHGNl1o1yD8PWM
-         6yt89zNXV2NjiV2OZYFMsT4fauj5/4cDGWty9OJz9my/BrExD6/MGEx5N1UzYklWQjH0
-         BBFJvKkyle6V1HUslxK37f/ObCG+J//NMqxqZ870ag5WXgVVLsDyTUQJfFAPrtgY5vbT
-         mlog==
+        bh=BTLAwJfpzTnDn2tZfb8KpMGtzN7vq08hC8THCvjwurw=;
+        b=DUmcRCL/eY9FVGa9L2ee8C7kOWdNpbg/gcFN2GVVmw18LjLnNNkhdRvkHWBuPKz9rq
+         F15bd2iFalMyw9jb5f7B6iV0/m6L/UlQZqCEtFcvPJjJjgwlry6HZGKeWpvhYiFHLHMY
+         oS4FnuebRTvocfi+FGrAJE8JtobctZEs8Dm/+NMZzAArfof6o8pwHb2sRDtsx6B+YYS/
+         mluEhFFkxDB6A1Xzk0ZZSQ5pPWbEMUzDy16OVjqvYtpGXSxnVwM9Qb+f6jwREkFTNnKd
+         SnXqvELAjSj7j6dGt6hM/txNgtcxt/sU1pPFDiVxJ4I4Ss2NTbiueEwQFMiUPk/qRc8t
+         M19Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746776839; x=1747381639;
+        d=1e100.net; s=20230601; t=1746776841; x=1747381641;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/uG6GiCi+k4QeVIeYPGdrcHOaMWapGzdHMs1nMnrsrc=;
-        b=P46NIC9jn3/MqpONASDFaeXUqsDpWfy1lmMdEmbI7nEiN04pKHbUmoY7r1A2fzRXdx
-         Sqf448iq+ylc18V0cCxLf+BEpCx8b9mUoqgKTHCU5BdShKmDTBN0HKsXslxuT/3rO2pu
-         jP7kVDmAOOXEAWulmp7NagdN4EAfx2fucWWQxSgKavF5DpltX8vHu642Tz2fCHntzzyh
-         79BD2O0y5CuaC9R37iHSXHEsTVi2Z9kq1gHCkU5HHpTQMS/UqDAGXVvGDtVy7KvcUcSa
-         H5UaWapOUAbcpzROdakTt8XL+eRJIT75niiW4FsMlfKLCirQwQihTheYNU6rYE3TOG1x
-         cUOA==
-X-Forwarded-Encrypted: i=1; AJvYcCUB81LM3b8I2a4hYS2B+WTiO0q0zYB22f6JOH1wC7LhcP0dbbsrCdLdvvW049SZC4LcSMzJqZy3vgzQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwsHIyEND2guNFQFOXReVfSDbGSKKaGhEP9yrOWRz8sDNTPZHbG
-	H6ApblFxaW7qaFeF7fOAs0NuS2EmnqJz43+brPks0PIzojz47qyVt0ymtN1+l8YB7lVO/KHdZNw
-	/kw2y3PcXsy7D0p+nbQ==
-X-Google-Smtp-Source: AGHT+IEtYvgMQD/fc6wFPgnt6KgYb8JeNInbNpZgGejD3McBZNxXkmne49Y8Hn9OW1r//Ao+vz75n4rLQVAMCRw5
-X-Received: from plnr4.prod.google.com ([2002:a17:903:1904:b0:22e:4a61:5545])
+        bh=BTLAwJfpzTnDn2tZfb8KpMGtzN7vq08hC8THCvjwurw=;
+        b=Mdf+Vh2oiBU6FaYD5f2KpSvHmGL9w5iT/iYHkuPrWHxi/lhkUVg7bOb1Wdk8xpPJnj
+         uqvL4pHKSehYrTqfO7MTL0kUntPgNtHTL1bH7qEmSgRhZ0h+KxT+uu4Q5b28dJIWfx2t
+         4CNRdJQjxVzkT03jj4eMJN7h1srGMVBVEHf3RoCMNbdyc2QjsGFxz1LoUZ4TMB2c5y4s
+         T0Ea1QzabE6/AaLBcceC2mVPycK06wxRMs27pQ+UA7H5ejsVJwsh0EFSSf6lJTfxr/JQ
+         2zaMEuTVGxdEJWEEPFAABDugOpQdOHU5Y1aTTKYEwr2BjcsQ2/ZpyfQwNAMibmowgjOr
+         jlwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWDbNqEgEZW0nQHRUHwxQW8oFwWDFO69oH707v7RN3c6TMEFK+N8QQb/qomA8TG7M7xv1HzbVIe+l3j@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMU6nXlydnLSXNHjGNOxO02xnqgjojPII4gm0C+Exf2SKLF9WY
+	meSKj/j1mD9LJcyITTxawnqPobR5wsWNI1vIyDS+ZtoV68CR1Gf7P2IlLc83A3bP4MILN2mpAqZ
+	QRr1G+4SvO9zieuJM9w==
+X-Google-Smtp-Source: AGHT+IEztQLwT7ajncZsBNt/V8Xiws9Mgn93m4FZrCV2u6FrzGGzzz/PUz6yE5EWUGsiWeksHLXg/JFNc4GUnrxd
+X-Received: from pgmw23.prod.google.com ([2002:a63:9357:0:b0:b23:6a88:a54f])
  (user=changyuanl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:3ba7:b0:224:c76:5e57 with SMTP id d9443c01a7336-22fc8e99d3fmr26734465ad.39.1746776839015;
- Fri, 09 May 2025 00:47:19 -0700 (PDT)
-Date: Fri,  9 May 2025 00:46:31 -0700
+ 2002:a05:6a21:9004:b0:1f5:55b7:1bb2 with SMTP id adf61e73a8af0-215ababa2afmr3522816637.6.1746776840848;
+ Fri, 09 May 2025 00:47:20 -0700 (PDT)
+Date: Fri,  9 May 2025 00:46:32 -0700
 In-Reply-To: <20250509074635.3187114-1-changyuanl@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -74,9 +74,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
 References: <20250509074635.3187114-1-changyuanl@google.com>
 X-Mailer: git-send-email 2.49.0.1015.ga840276032-goog
-Message-ID: <20250509074635.3187114-14-changyuanl@google.com>
-Subject: [PATCH v8 13/17] x86/boot: make sure KASLR does not step over KHO
- preserved memory
+Message-ID: <20250509074635.3187114-15-changyuanl@google.com>
+Subject: [PATCH v8 14/17] x86/Kconfig: enable kexec handover for 64 bits
 From: Changyuan Lyu <changyuanl@google.com>
 To: akpm@linux-foundation.org, linux-kernel@vger.kernel.org
 Cc: anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com, 
@@ -95,24 +94,8 @@ Content-Type: text/plain; charset="UTF-8"
 
 From: Alexander Graf <graf@amazon.com>
 
-During kexec handover (KHO) memory contains data that should be
-preserved and this data would be consumed by kexec'ed kernel.
-
-To make sure that the preserved memory is not overwritten, KHO uses
-"scratch regions" to bootstrap kexec'ed kernel. These regions are
-guaranteed to not have any memory that KHO would preserve and are used as
-the only memory the kernel sees during the early boot.
-
-The scratch regions are passed in the setup_data by the first kernel with
-other KHO parameters. If the setup_data contains the KHO parameters, limit
-randomization to scratch areas only to make sure preserved memory won't get
-overwritten.
-
-Since all the pointers in setup_data are represented by u64, they require
-double casting (first to unsigned long and then to the actual pointer type)
-to compile on 32-bits. This looks goofy out of context, but it is
-unfortunately the way that this is handled across the tree. There are at
-least a dozen instances of casting like this.
+Add ARCH_SUPPORTS_KEXEC_HANDOVER for 64 bits to allow enabling of
+KEXEC_HANDOVER configuration option.
 
 Signed-off-by: Alexander Graf <graf@amazon.com>
 Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
@@ -120,77 +103,23 @@ Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
 Co-developed-by: Changyuan Lyu <changyuanl@google.com>
 Signed-off-by: Changyuan Lyu <changyuanl@google.com>
 ---
- arch/x86/boot/compressed/kaslr.c | 50 +++++++++++++++++++++++++++++++-
- 1 file changed, 49 insertions(+), 1 deletion(-)
+ arch/x86/Kconfig | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/x86/boot/compressed/kaslr.c b/arch/x86/boot/compressed/kaslr.c
-index f03d59ea6e40f..3b0948ad449f9 100644
---- a/arch/x86/boot/compressed/kaslr.c
-+++ b/arch/x86/boot/compressed/kaslr.c
-@@ -760,6 +760,49 @@ static void process_e820_entries(unsigned long minimum,
- 	}
- }
+diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
+index 4b9f378e05f6b..d1fb81ffdaafa 100644
+--- a/arch/x86/Kconfig
++++ b/arch/x86/Kconfig
+@@ -2029,6 +2029,9 @@ config ARCH_SUPPORTS_KEXEC_BZIMAGE_VERIFY_SIG
+ config ARCH_SUPPORTS_KEXEC_JUMP
+ 	def_bool y
  
-+/*
-+ * If KHO is active, only process its scratch areas to ensure we are not
-+ * stepping onto preserved memory.
-+ */
-+static bool process_kho_entries(unsigned long minimum, unsigned long image_size)
-+{
-+	struct kho_scratch *kho_scratch;
-+	struct setup_data *ptr;
-+	struct kho_data *kho;
-+	int i, nr_areas = 0;
++config ARCH_SUPPORTS_KEXEC_HANDOVER
++	def_bool X86_64
 +
-+	if (!IS_ENABLED(CONFIG_KEXEC_HANDOVER))
-+		return false;
-+
-+	ptr = (struct setup_data *)(unsigned long)boot_params_ptr->hdr.setup_data;
-+	while (ptr) {
-+		if (ptr->type == SETUP_KEXEC_KHO) {
-+			kho = (struct kho_data *)(unsigned long)ptr->data;
-+			kho_scratch = (void *)(unsigned long)kho->scratch_addr;
-+			nr_areas = kho->scratch_size / sizeof(*kho_scratch);
-+			break;
-+		}
-+
-+		ptr = (struct setup_data *)(unsigned long)ptr->next;
-+	}
-+
-+	if (!nr_areas)
-+		return false;
-+
-+	for (i = 0; i < nr_areas; i++) {
-+		struct kho_scratch *area = &kho_scratch[i];
-+		struct mem_vector region = {
-+			.start = area->addr,
-+			.size = area->size,
-+		};
-+
-+		if (process_mem_region(&region, minimum, image_size))
-+			break;
-+	}
-+
-+	return true;
-+}
-+
- static unsigned long find_random_phys_addr(unsigned long minimum,
- 					   unsigned long image_size)
- {
-@@ -775,7 +818,12 @@ static unsigned long find_random_phys_addr(unsigned long minimum,
- 		return 0;
- 	}
+ config ARCH_SUPPORTS_CRASH_DUMP
+ 	def_bool X86_64 || (X86_32 && HIGHMEM)
  
--	if (!process_efi_entries(minimum, image_size))
-+	/*
-+	 * During kexec handover only process KHO scratch areas that are known
-+	 * not to contain any data that must be preserved.
-+	 */
-+	if (!process_kho_entries(minimum, image_size) &&
-+	    !process_efi_entries(minimum, image_size))
- 		process_e820_entries(minimum, image_size);
- 
- 	phys_addr = slots_fetch_random();
 -- 
 2.49.0.1015.ga840276032-goog
 
