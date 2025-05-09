@@ -1,84 +1,109 @@
-Return-Path: <devicetree+bounces-175744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C407AB1A3A
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 18:19:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EDAFAB1A5A
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 18:22:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A528C1B656D0
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:14:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 128659E3E2E
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 16:18:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE41623537B;
-	Fri,  9 May 2025 16:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9EA2367B6;
+	Fri,  9 May 2025 16:19:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wi2eOpED"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YXEfiWzH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0E91EEF9;
-	Fri,  9 May 2025 16:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D106212B05;
+	Fri,  9 May 2025 16:19:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746807229; cv=none; b=dSDjTCzxpmCGnStXlm3XUhZnUKm1wrvmdA1vRXQN1l+ahoIpJQqesYujj3IHQ0SDvarnFLbz7okZC3BKTALoAfx0D9x2NowlP8SB+wFFjLFkc4ds7ddwul5BltoDrKDYbtR70rV+69VaHbE9khlIw031nHmNNwyE+C4gDaNr7r0=
+	t=1746807542; cv=none; b=LRIMbTGcGwvcRQZO2Kc6vB2Ar0hU3Cf4FnnCwa9gY6XLsikjtvlmwg8VOW54sj68mCkxHX2Wqm0YM9aFwL59WgRh1xE8XlN/kTvW4AdosGpuu47eep1AkrV9ADJ9M/HdmA5lobvyGef69o+cl7NfafOjvGyxhYOASAFWqE/AB2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746807229; c=relaxed/simple;
-	bh=uFFdv/hSTyJmM0f7WK/XFsk1+vMgNlfUpcrghzEP2XE=;
+	s=arc-20240116; t=1746807542; c=relaxed/simple;
+	bh=yxU9epCjfjrkhmIjvYnzwdMNf3n/vyyPrAQQiuM40Qg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DCplkAyDtmfy2JhHCz3q6TeCtIkOgSSjv8zEGMZevjavMNPjmCM+RTqCl2J1tRCTodtgB+k187mpkjjY1IkeGNN+kI0QPMxYFxBw0K2KAId0gbj9J/hn7BfNSGKcuPRBbGNsW5hB8Abtl9r8WVzOaiXRQG8AE+lLZoEdB/fO6Rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wi2eOpED; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23388C4CEE4;
-	Fri,  9 May 2025 16:13:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VA5DAAz+aH4K5kg3y6ZVt1lKlWnInVJ/YJHQ1ccNhPiuAED2PMjcaW/z7lJi6ycoYQRpqmrZtTORcYc1SUIzjjbXygmAdAzF/z4VLsYLRoPCKtMRDtxEZZ07DUhbkV15KHVBeuIeUj7xJN/w1+7aLhI4FjQ3CvL7ousn4/tboiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YXEfiWzH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8C63C4CEED;
+	Fri,  9 May 2025 16:18:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746807229;
-	bh=uFFdv/hSTyJmM0f7WK/XFsk1+vMgNlfUpcrghzEP2XE=;
+	s=k20201202; t=1746807541;
+	bh=yxU9epCjfjrkhmIjvYnzwdMNf3n/vyyPrAQQiuM40Qg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wi2eOpEDOyXzvkIhsnn6NHqrfcEmbeGXEIQxGP06AbyFg/9w52FzuVFmEtkHfPv6H
-	 5VtwnQEdkojBMjZsp0GqNcfFVJd01ZHPOyzNHL4Af363bJ5W+9x8FNRHtEOzb9Mzf3
-	 PzglM4ThFEKfd3wNua8iWe1ofWa9gay+WcN4iCcLHAskN/s6VLjwvJ84SGw7GRNMEI
-	 eyLBeBpNYr9S1GEuN7Lv40NzLZM6MiL3ExOw/EXTxXnH9aR3JsfkjhIpx1YdAmonjc
-	 K+v2fHcIwz9v7stgsf2iSmpxG0x84tBxx7WopbrxrnHH2Vnvht7W8NxYeV0Ptt7Vyp
-	 yFBh/VKdsV3xg==
-Date: Fri, 9 May 2025 11:13:47 -0500
-From: Rob Herring <robh@kernel.org>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v8 1/2] dt-bindings: pwm: sophgo: add pwm for Sophgo
- CV1800 series SoC
-Message-ID: <20250509161347.GA3649553-robh@kernel.org>
-References: <20250509-pwm_sophgo-v8-0-cfaebeb8ee17@bootlin.com>
- <20250509-pwm_sophgo-v8-1-cfaebeb8ee17@bootlin.com>
+	b=YXEfiWzHYGkIc4V+1gCXViTz3bPgcHWSLcceefx4jNBukedCr7lPTzS/9dspnhlih
+	 BrYtXXZ+QqXKI+S9vjT7KWL/ZfteVLPG0fWGdTvS7F4HgQE1nA2e9Jk9hX7ngcD8pA
+	 D2NuzIn5vSpry2tMrbtT9MQ48t89bewTuyvJPeG108xOJK8/8In0QQlx6QThwdT9ZT
+	 I5vNPtyyuiU48t0j/qSaou6v92r/5eIY9L9PIDuVxV5bLehF64deG/Cm+29hXbzzbY
+	 bM+F/AFlUfHWfiGsqZUGipObfb/Chg/wPR8Xmc1vPhH023rStfyzg6fzya+4HqO0KX
+	 a+n12/fe+fk+A==
+Date: Fri, 9 May 2025 17:18:55 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	andy@kernel.org, nuno.sa@analog.com, Michael.Hennerich@analog.com,
+	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+	linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+	broonie@kernel.org, jonath4nns@gmail.com, dlechner@baylibre.com,
+	David Lechner <dlechner@baylirbe.com>
+Subject: Re: [PATCH v7 03/12] dt-bindings: iio: adc: ad7768-1: add
+ trigger-sources property
+Message-ID: <20250509-gala-unfiled-fd273655b89d@spud>
+References: <cover.1746662899.git.Jonathan.Santos@analog.com>
+ <731196750f27eee0bad5493647edb2f67a05a6e2.1746662899.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Y3HCj6m+kwEOd5rj"
+Content-Disposition: inline
+In-Reply-To: <731196750f27eee0bad5493647edb2f67a05a6e2.1746662899.git.Jonathan.Santos@analog.com>
+
+
+--Y3HCj6m+kwEOd5rj
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250509-pwm_sophgo-v8-1-cfaebeb8ee17@bootlin.com>
 
-On Fri, May 09, 2025 at 11:45:43AM +0200, Thomas Bonnefille wrote:
-> From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> 
-> Add devicetree binding to describe the PWM for Sophgo CV1800 SoC.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+On Thu, May 08, 2025 at 02:03:30PM -0300, Jonathan Santos wrote:
+> +dependencies:
+> +  adi,sync-in-gpios:
+> +    not:
+> +      required:
+> +        - trigger-sources
+> +  trigger-sources:
+> +    not:
+> +      required:
+> +        - adi,sync-in-gpios
 
-As the sender, you have to add your S-o-b as well.
+Actually, this is normally not written like this. Usually it is done as
+an allOf entry:
+  - if:
+      required:
+        - maxim,gpio-poc
+    then:
+      properties:
+        poc-supply: false
+        gpio-controller: false
 
-Rob
+--Y3HCj6m+kwEOd5rj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaB4q7wAKCRB4tDGHoIJi
+0oZzAPwPUKSBLiMIGUSmw/L5ltSvNBqEyK6Kdh0T6Z4SFo4SSgD/drQHaWB2p1zs
+WNQunAze+EjQ+qmUatfORHhmzm4yNwM=
+=m/bM
+-----END PGP SIGNATURE-----
+
+--Y3HCj6m+kwEOd5rj--
 
