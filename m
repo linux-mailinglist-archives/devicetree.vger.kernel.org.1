@@ -1,94 +1,153 @@
-Return-Path: <devicetree+bounces-175572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E81BCAB12F0
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:05:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F321AB12EC
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:05:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 623AD1BC375E
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:05:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20C37A029CB
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F1A290D8D;
-	Fri,  9 May 2025 12:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9FD290BA8;
+	Fri,  9 May 2025 12:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bTSWlaQd"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="fHoepJuZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F0428FFF2
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 12:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C51290BA0;
+	Fri,  9 May 2025 12:04:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746792295; cv=none; b=QRAOgorgtDhF+CWgkHNKnXlnRUjMOdAieA7mzKxt64aeXN2JAKlA46853ge3L3muNB9DRIsFFA5NsjySJOt6XfzaDK3CqQD4DZStWa58nI925UdwVx6/LbkRFiH0yluGIEMnW9byShIogpGrD829u8gums0Q67y/rTIESGsw6cY=
+	t=1746792289; cv=none; b=ALW3tguReN1l06gkJj86eq71O9EYSj8qaxHByBUJhqoskguO4cKhTuprMLAQGZN8m37cDHBPldhG7VNYhZAhlqdeJ37rLgQlOadyzgt1SSJkd5a45ec/pT0VY2Zd8IRNSteYyFcqRZAjQvgRhF2sRKF7E63Kuko9r1ysq0i/6rQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746792295; c=relaxed/simple;
-	bh=YYcaMDlGSy91VIYiFJ+u8TWuMfpHa6BMLlG+POxKXXs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RpKmSvPw2TxWmcmfmlIlK1JOQFtdWiQwY7QtywIASodZvOypkHcED/mvtX+1HEdCZD4jL4RmfhHIMqorszMY3IqJesOZ8wxK8sBrDAh864kHfvIUa5RQQoOrzUH9g+12fRCyHflb2gMZP8VRZKlIWhRXUF/aD2mb3+mn0foHHhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bTSWlaQd; arc=none smtp.client-ip=220.197.32.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=ozfwuFVEUTDToHBc2ETkpFdylwQ3tcpGJCK/felzs/w=;
-	b=bTSWlaQdJy9Bsv9fnjqq9LEg0I6uljrRGlf6Kp2Dz0BsRNfrT1BVXJm0BI4/KT
-	lMUm3j8dKIthxDKC/u5Dg2534izQ7DwnmvKIGN2HzYo1cWVBpQcULHQxQJsvXKTS
-	LSyfx2OzDl0sONOQNwbNctjjd9ArnFebHo/8c0WMYFpNg=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgD3L_8V7x1oHuWmAA--.37606S3;
-	Fri, 09 May 2025 20:03:35 +0800 (CST)
-Date: Fri, 9 May 2025 20:03:33 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Jacky Bai <ping.bai@nxp.com>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	Aisheng Dong <aisheng.dong@nxp.com>, Frank Li <frank.li@nxp.com>
-Subject: Re: [PATCH v6 2/3] arm64: dts: freescale: Add basic dtsi for imx943
-Message-ID: <aB3vFciYEIIITRHv@dragon>
-References: <20250421065139.3073232-1-ping.bai@nxp.com>
- <20250421065139.3073232-3-ping.bai@nxp.com>
- <aB3Pll3A/0XGCLlQ@dragon>
- <PAXPR04MB8459189E9DF97A15DB7386EA888AA@PAXPR04MB8459.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1746792289; c=relaxed/simple;
+	bh=vmfHZSIt1ejNXSsXOb9OK4hl3H/Az8e5YvWTRNvnHco=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LehHB+A7oY7m4qe9nwFU5FmtJo4zKU3kpx4EvyIuHLsvH1XMQc9EDfaINSO3UCjssqJP/hxGhZBoAOMKPDX7zr3Hey2U+JONd5R5GAxlp39EUiRlR2J3fuTYW4fqdVJoew9+o7Ly4Tzw2p6byzFWIaSzPjFNRIBzCj+CobR6oCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=fHoepJuZ; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1746792281; x=1747397081; i=wahrenst@gmx.net;
+	bh=QxpyD8wMaxzufHPxLkJGzjDohgxWzZQt3Fz5KBSlXWA=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:
+	 MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=fHoepJuZ70LFp+vZioi09wU9QpWsOAcfEjkNW9/TBXtcwghEk6NxuF6YEJLdFQ9E
+	 1XzMK4yaLoutdy2puYNhTyQ63wrOHdAD1t95Ci2sTy1ahbOp/6aUADXjNfFxqHHM+
+	 xuh5ORmJiT6GWwUFPIR9rHv2A9OZ86JIddaMk2wyQtK3yVTSeyJy1G6DJ3NNwigZ/
+	 KdBShJ4BxqraXuGklmkclocT7OH0Jua8IkkUZ616FcWRbxl5zGuVxQUHwTXCzQeRk
+	 62haz2ve0cm01GeeUSOjXj0VSEa7aMfhqPOPbPcK4os6XKy9DAR5UBOrXbwXHASev
+	 Z5F7xnf3paSKRhZoxQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from stefanw-SCHENKER ([91.41.216.208]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MxlzC-1uwnwd1mLG-00szjw; Fri, 09
+ May 2025 14:04:41 +0200
+From: Stefan Wahren <wahrenst@gmx.net>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: [PATCH net-next V3 0/6] net: vertexcom: mse102x: Improve RX handling
+Date: Fri,  9 May 2025 14:04:29 +0200
+Message-Id: <20250509120435.43646-1-wahrenst@gmx.net>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PAXPR04MB8459189E9DF97A15DB7386EA888AA@PAXPR04MB8459.eurprd04.prod.outlook.com>
-X-CM-TRANSID:M88vCgD3L_8V7x1oHuWmAA--.37606S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU289NDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiBAhIZWgduuzANAAAs2
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:fIIU0TixX7JuZNaBOzYHIoHs97yGSGYkWSCGKsaOYSmjfwkuCVp
+ 7CSAlRmWyf+A8gXoyZI/28Y4HkF3iYejPjuyyxbbd/kifgW/tMw0J8Ch7MzzHjT6FU9UUEX
+ TKMadkToPLmkui5DmadBJMwy7j1df3DdaKszXwGYoES3GqhgRW0RjL15sYoRl+OiIERWPIy
+ KuZvZpd2MszNoZar5fcLw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:/plVsZjKjQg=;pvdxhsm3EB11ajolSrpwWbNCLYL
+ 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
 
-On Fri, May 09, 2025 at 10:35:40AM +0000, Peng Fan wrote:
-> > I forgot to ask when imx95-clock.h was first introduced.  But how will
-> > clk drivers use these clock IDs, or will clk drivers have their own copy of
-> > definitions?
-> 
-> We are using SCMI for i.MX95/i.MX94. Per DT maintainers,
-> the IDs should not be in dt-bindings, they are SCMI firmware
-> defined IDs.
-> 
-> clk drivers is drivers/clk/clk-scmi.c, this is a SCMI generic
-> clk driver, it will talk with SCMI firmware to get IDs.
+This series is the second part of two series for the Vertexcom driver.
+It contains some improvements for the RX handling of the Vertexcom MSE102x=
+.
 
-Ah, nice!  Thanks for the information, Peng!
+Changes in V3:
+- Fix whitespace issue in patch 4
 
-Shawn
+Changes in V2:
+- Add Andrew's Reviewed-by to patch 1-2
+- Fix build issue reported by Jakub & kernel test bot in patch 2
+- Use Andrew's suggestion for netdev_warn_once in patch 2
+- Improve commit logs for patch 3 & 5
+- Add new patch 4 to compensate loss of invalid CMD counter
+
+Stefan Wahren (6):
+  dt-bindings: vertexcom-mse102x: Fix IRQ type in example
+  net: vertexcom: mse102x: Add warning about IRQ trigger type
+  net: vertexcom: mse102x: Drop invalid cmd stats
+  net: vertexcom: mse102x: Implement flag for valid CMD
+  net: vertexcom: mse102x: Return code for mse102x_rx_pkt_spi
+  net: vertexcom: mse102x: Simplify mse102x_rx_pkt_spi
+
+ .../bindings/net/vertexcom-mse102x.yaml       |  2 +-
+ drivers/net/ethernet/vertexcom/mse102x.c      | 80 +++++++++++--------
+ 2 files changed, 47 insertions(+), 35 deletions(-)
+
+=2D-=20
+2.34.1
 
 
