@@ -1,255 +1,260 @@
-Return-Path: <devicetree+bounces-175335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13012AB0AD3
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:45:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91E70AB0ACC
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:44:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3106016A021
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 06:45:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39ED3160DBC
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 06:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C30CE26F475;
-	Fri,  9 May 2025 06:45:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6924E26D4EA;
+	Fri,  9 May 2025 06:43:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gBKQArXb"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="M15/ZXg+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2063.outbound.protection.outlook.com [40.107.241.63])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE6626F44C
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 06:45:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746773118; cv=none; b=ZUlBQodvgIpVIH5krh7M7u67SAcaufewqrszScpg+xrM+tgTBxnrw2vREtgj9c+EIMz2cjhBXtLfUWgYx7HJemQhELcOFqgNkcDz4hKGJVW98Kmh4t3QxpLMmprek6ooa4etnMYBgdLGvUh+99iWCcE2jWHj8l6RZr6GMPNoz0o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746773118; c=relaxed/simple;
-	bh=27kGMBB3C0h9ODtKKrLc1VupFSWATrFKfY3kj/JBugQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bMi3p/mb578RyvV1TGd9BNRi+fzY0EfxspwfcfZYFpunZES8wORYQFw3N6bRtMy/l43ffWFlL8swyr8hvojWFLKqgMeA42gGHZ84i3a8qxopCPa3AOscqH4cjhJ82VBIqg+myeTKuj6GL0Z15iaYNyFXwcX42rGwU7EYNTnc5Eo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gBKQArXb; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a0b7fbdde7so1547939f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 08 May 2025 23:45:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746773114; x=1747377914; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=UVJ2TuNUBUpO94IHTiYXs30ZxdePvcvCPymvMj2I2OQ=;
-        b=gBKQArXbZYzhy6ncASQWGKwcq4h7+Eags9bxpk5gVSOz2TXAV+OT1chirGqpK9XcNU
-         jhBQ0zsiMDqEQc6yD8NBC0d5J+EHhWiJ+NtywTApGVCrzKmsptuBhuV4QfP5ueTTJv1s
-         eCW8hYB/p3ADp5TeXFdXDVHf2ZjN4ktecvEF3bFXy2GztWSgVeARyMmeEkt6NhhTGKiJ
-         uh80Ns+ZR7mWdwHWzGCQzrDi/UoA2xb8fhMDZrUbZjkxXiWqgdUsMJaoVa+YsWmcBQpr
-         WBMfMG8z9Dj/cfU6Tc3468u9rRMx0FyWSdRniU8hgODh/k7IFaqtSLPtmssWWxylnpTX
-         0ytg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746773114; x=1747377914;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UVJ2TuNUBUpO94IHTiYXs30ZxdePvcvCPymvMj2I2OQ=;
-        b=URWsOhldAr8s3yhUwT51WJtc/lNuukNO+JJNFeh/xGocrUCEBbZD4iMnDfN4/gojDe
-         hEDz31gvCqH9ETtOOjPxRNMZw/7NrURNLyPm6Uhd1u6nO1SoXy6ACOa1NqpHCziI6m3l
-         iNVEsg1eAJZYdJGrvJANcYElIrz+WpY7ra1A7LMSle5i6wwDj4y39+GN/+JPRkfJ4/bq
-         iNYzZ/HvYXj0aUCCR1U06FTPA+fyNJh4QaPZhZZGQM1w0hExkXyIJi/swbL3Y5YqFR8F
-         ln9e8fPes/xhh/TXOTPCl9WLspkFI0grhrWFCHtq4Okji/0hBLVy5kCoFXlxuH772Qkz
-         FReg==
-X-Forwarded-Encrypted: i=1; AJvYcCVEQfNSJOm7loISGtXm1wJ0QeeTIdl5omGlH2ig3Ci4cvg9KcZGxYYjliYM/6jXOcq49i4XRPw8KG35@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzv7+NHGzfUiqVHN/Arj5ANNgSHJtmSRG1AVcJZ0APy9RmWGUtE
-	1ZDgWC5IvWjoBdY+weWYm53rIS/ZJIqXnKFnCmxtU5CraNDvQfQeOg8PeA81S2c=
-X-Gm-Gg: ASbGncuD6RGBY7Qgjd+trE/rmPE28KhZYZ45UEDFQ9DugJ2wYug3ZNgvxkoF6RC9zPj
-	WoyPAqzlgKMxrtrIEXkzGuc1Ucxz1fl4n9bSRyCyEPUjQ8c9qM0n7DFr6+ZgQL46sDXPBWEgVkX
-	K/U4d8hV7lrV3faTYNcEoAWdHn25m/3810UPR7uvzWxAz5+Cck7L4HT6Fs23yMd7pvhv7EcdGDV
-	5lAExpit+wE1f+9CfeTbunpZucCxh9jGaMdSR6yo2PYkwIKXmEazuMUVexbFd8/YMnVZFKN/HxN
-	YrNBn5/EwxOApPJJ651gUAh3/dElIAKpMrAnEfwlV5Sx
-X-Google-Smtp-Source: AGHT+IH18FSd6kFBMFpH6Tgr5SOpt1kgXIcmqF5vBZmAhp4BLHkkT7JEQaYeI4Zj3eGt5omTIFhStw==
-X-Received: by 2002:a5d:59a7:0:b0:3a0:8325:8090 with SMTP id ffacd0b85a97d-3a1f64374d6mr1856560f8f.18.1746773114003;
-        Thu, 08 May 2025 23:45:14 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f57ddde0sm2302928f8f.14.2025.05.08.23.45.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 May 2025 23:45:12 -0700 (PDT)
-Message-ID: <eb8c820c864717d6348cd11f16e6899c744a92ed.camel@linaro.org>
-Subject: Re: [PATCH v9 4/6] mfd: max77759: add Maxim MAX77759 core mfd driver
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski	 <brgl@bgdev.pl>, Srinivas
- Kandagatla <srini@kernel.org>, Kees Cook	 <kees@kernel.org>, "Gustavo A. R.
- Silva" <gustavoars@kernel.org>, Peter Griffin	 <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker
- <willmcvicker@google.com>, kernel-team@android.com,
- linux-kernel@vger.kernel.org, 	devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org, 	linux-hardening@vger.kernel.org
-Date: Fri, 09 May 2025 07:45:11 +0100
-In-Reply-To: <20250508140259.GN3865826@google.com>
-References: <20250430-max77759-mfd-v9-0-639763e23598@linaro.org>
-	 <20250430-max77759-mfd-v9-4-639763e23598@linaro.org>
-	 <20250508140259.GN3865826@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.55.2-1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2FEE26C380
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 06:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.63
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1746773018; cv=fail; b=SIzGGEb4U+xWc+q53Q8Pzy9IPcD09dogQCh7XsZaJ2hBwgVgjSSkYK2ZIVu1USPBMWOW0xF78cujl9QY2ABRxYHDc+n35NLpCapwkOdqF0zG5FmFk0Y9nUZg/avtMycVZxSvSv5v0Wu0b/QwtGudJaX25XFEjGD1zIq3zmZ84K4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1746773018; c=relaxed/simple;
+	bh=eruk6oH/KXd3sxjHZCBBkNnd5bVIJgQJEOn1hOXYlUM=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Zp3vZ8N5t/lVJJYDSBWvGam18qXpK4i7Iq3X3vCGSWOZ9K1W0pKdDU9FYaDMmnZsMyxr4lIzMmlD0b7CZijOCDZZwiGYQ4T8BTMXnuO+jrnCFJauBIPpUYo8noTgIXPKYyFFdVlbwG+8HmfaKgwlpG1OeJmOuorYk+nqeSG5YJ0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=M15/ZXg+; arc=fail smtp.client-ip=40.107.241.63
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XD+9P+p4wLe3zF1TqO9cY8dX1OowWTgt/z0+TCNcLKHRLWF7uft4ugc8Qd1XtErgqTvIq4J13UFHceyNulWbFgojXHCMhg8olM1TyrP5s+QxOcnu0xhVAZa58Jcs5PH6xyiiRtoYA9QOjIs6PirPack77eh+/h8nUXvYnACAfg1uGI1SSv7BEwCSL/+ItVRDiQQoiv5BFWN8F8nkqN9fcIKJkSiBfgZiloEMbP5toURaSQHaoN3cZpMocO+Lkoivi9Z650hNhrOim8tDCyIoyLBAHbEuNn5r0RWeWwo+cboZ0ABkcTfDdTDckXkKXfYa4jbqeKLOmh3bMDbPU4zfNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KrJf9w4FwnFey9cpTWtm+raIFBIKZQxDDMAJZzFPqVo=;
+ b=Fi8Qhs4Oq2y9nlprHFYTBv4EYGx8V2Cv+h4xgFA3yaeVraknlTkgZnHNI4FvNT2ifCmorwCgMDhtkWFscSILK1dtCDdVJT/soX1Od6Ok7Mph/QA6aYKEewzF9gxIC1811luHSR6xjeVonbMIyxxg0u4P8GWHWA/KeFvSjBBRat+bFW2PaSzmwPZRQs+r20xUPbo2M8VaWHgNIxbUzoTwi7bAjFmVMRGlaAAM7ZWkQjv19g+xU4mVZ8frHIWSfsVQBI2bQKv4R9ytiX1coY5XMJAjrOHFfs3OUAsPpWLpHUfToychx+/zQRDshqdA06E96VmeGcebp9GFdH0+jvK0xg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KrJf9w4FwnFey9cpTWtm+raIFBIKZQxDDMAJZzFPqVo=;
+ b=M15/ZXg+UIbUBGoOQpurh0fOwXe9JEawIhsRpNcycXp+BCJ//c0FfNKIA6sSE0KJcY2N6WZUTKRpM4jwa5RXIGh448SpKKCxd4bb4DwoeS6/F1P7MaBzBvoxP3Tc3Ah3PqgvCjrzOMShIvkq4e1AxWqpwQLuid0bzhBZ+RpyGwOGfsMFuZOlJ8QqghYtXbdHvZIuGHc1WFX7Fpq9AALwiv48q4wojJpsD54oqEz9YN234hEPuWFKaOUCfEOvgCcLBpIblU6+HiCQv0vKloH58XY6gRH+eOFmQ5RwbzNazbquQd2sSTRYVyBlX87GVF3Mw2a7v1vS2HSmU5NB2nEZ+g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+ by AM8PR04MB7763.eurprd04.prod.outlook.com (2603:10a6:20b:246::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.23; Fri, 9 May
+ 2025 06:43:31 +0000
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.8722.021; Fri, 9 May 2025
+ 06:43:31 +0000
+From: Xu Yang <xu.yang_2@nxp.com>
+To: krzk@kernel.org,
+	myungjoo.ham@samsung.com,
+	cw00.choi@samsung.com,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	gregkh@linuxfoundation.org
+Cc: swboyd@chromium.org,
+	heikki.krogerus@linux.intel.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	jun.li@nxp.com
+Subject: [PATCH v3 1/4] usb: typec: Stub out typec_switch APIs when CONFIG_TYPEC=n
+Date: Fri,  9 May 2025 14:45:23 +0800
+Message-Id: <20250509064526.3767729-1-xu.yang_2@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2P153CA0010.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:140::13) To DU2PR04MB8822.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|AM8PR04MB7763:EE_
+X-MS-Office365-Filtering-Correlation-Id: 124d0d4c-af5e-4f71-6493-08dd8ec4cfe8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|1800799024|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?XpIG1oFiyVB8xMrceyuBUuA85OxCUxze6BwYhOpXlFipChZXKSkIC1WvwK1R?=
+ =?us-ascii?Q?ay9qozRoNs+tJ4vbgk2B2Ab3cDCwDsoYgM3ixSFJR7GVOfVJTbbAlwolpR5R?=
+ =?us-ascii?Q?F1Zkyt1Dq1GTHORH6Pfabks+ZuV9fhejOQQeA6Yi7Y4+knTRGGXMxrOZOkPZ?=
+ =?us-ascii?Q?jKUF7pHTTPqYJwI/s7JfINXN2+qGEhOQIXEzIwBSxika4tit0oMTsN1sVkdA?=
+ =?us-ascii?Q?RahTq6QJr8BRieTz1UtmpxkqjyolSdZQWOPuRT22Mu5Cte6AFU18Wb4TTgRt?=
+ =?us-ascii?Q?iPDcp4EXBoHtoYtngyPQ1m1vCPr1XghgOK3g29JQB7rAxOLf4ORkAWxGGqGp?=
+ =?us-ascii?Q?ynwCmPUz+iVjH2hQW87hi/ccohHozHKbHyUwt4T2Twe2DwPXZ4Tpx9Ir2XU4?=
+ =?us-ascii?Q?knMZ0HpDL6gkIz+8id8OevvGLU3Kb39BwIa3p8lIL1UBp2vL0RtJiggnmgMo?=
+ =?us-ascii?Q?EwBv7+5AcJWMGXe/wFMQNiulfXWG/ev0YReaGzLpJxBxU3ILKMAJF+5etwnO?=
+ =?us-ascii?Q?9XIEJdkkwMOJk37odNFuE5fKGVz3rlb9fZEUv7bzicdjMQPqPziP6xvMHWKs?=
+ =?us-ascii?Q?evMoxkVtog79oBzNPyZkzD+6/Ap3JQyjQUC1WyhwD31uPc9F/DsGWMdqEC0v?=
+ =?us-ascii?Q?LsnOH/RZ0AFcFIOZ/wTAE7qK7tRpAjq8Vtkppy/X3Plr9pYPBqDZPMgUhZP6?=
+ =?us-ascii?Q?UyRaLjhJRgC1km1VXhUW97v8m07dAEvqc3Bcz+6/jhOz7YJsh6nnj3me4bJy?=
+ =?us-ascii?Q?ARt3Z4UsZHFuP+PNqw8lqgZ6xhk6uDZbT7jJmRIffPoVqbrj/7N4IFh1IP34?=
+ =?us-ascii?Q?eWwKUtvIUAUgVF++lTWH0yuw/AmdbW9T04Atp0uRpu1Onz9Ju1ntTyJWuyRr?=
+ =?us-ascii?Q?GmusRS4R5welPF/nqy3fQFKR0C1rgsEqOM5/Mt3jLXhsq24NENWfKUbF0b5T?=
+ =?us-ascii?Q?fqhYwXkILeIBHuWritkH6HHtdqQVANb+S0Jlw6PKCjxQ4uX9kA6AXrJFWJsx?=
+ =?us-ascii?Q?go2vy1rX0OKsom+YRPDTnQiozZAlnXNSG+BaKDQJwe8EzmUWGk1U5Tn8MkFf?=
+ =?us-ascii?Q?JCzW6ukhMWBS1sKrO59E2axjPK2QFmsYfz968WNkM8BHcEu6CXVwcQe7ayuC?=
+ =?us-ascii?Q?229ouwznaWqGXB9lQP8PM4xIBUjEoJWFG4Ke+jgYqYW2mvRALCJMp/o7ZQoc?=
+ =?us-ascii?Q?/5yUyNvlDxU92ZBY6HCCP+7/7BxyBgQ1FkNMCNmMCJkktC4FJmKt4ba9kT2O?=
+ =?us-ascii?Q?BDkXMslYaqOxTqmUzNAO/UG/dotP6ic89iMZnUySyeZaZq9/fXr1BjYqWTd7?=
+ =?us-ascii?Q?5lqpNi6JUzlaT2ht3uWER9t73LmbAgVQKAlB7gLIc15cGvUZ/vLBu5mGJ4WI?=
+ =?us-ascii?Q?rOKfNHfRWCSRF2lP+7islrjFCBsM+W1VtFiJl4/n3b/x/IJBDptoq1dRFc56?=
+ =?us-ascii?Q?aT8plpj6EpjIUsXJQeLyvD9RmmWC1xWY/aWBQNd3amK+ivv4l0IWThZms3WU?=
+ =?us-ascii?Q?c51lwguerRFBzpM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(1800799024)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?RFWnFDKA5zjB214e3HtPZrcp0IrbQ797zCZQW/GScVSBrZgUYMEuC8iY9Hos?=
+ =?us-ascii?Q?Lq2O4PTqU8WxPhAwF+quqeQRCrnDS070nHPkjJCFYBgfvkzL2Uyc9wjhozja?=
+ =?us-ascii?Q?bjGhFPbl2erE0uBCWUrhTX8/gVkfAyCDP+x8qIrvdg968Lsl0/Ff9+NgX4cK?=
+ =?us-ascii?Q?y2Y6j0UwkUKZ9c5baSisCTrnZY9j+Icf4qAaBz7mDyain+49zuvGkwDFWG5R?=
+ =?us-ascii?Q?Fts5LPE7HeMaqIGBc7h4hwvUJxHcgU8vylHfWWns6yUJpI0DzTfvEucr7Xyt?=
+ =?us-ascii?Q?VbpjDfs6dOtH2sQLh6GZy/f7HBjwbvSGhTv3vtHzzRH0+lbvktRbAvKW8xdb?=
+ =?us-ascii?Q?Th3CsjsKHWuLjBmsLNXVnugFMVfxzpJXUqjlb+o2ayAfsXTJM+6R0qa+2gia?=
+ =?us-ascii?Q?b4O8TOaMI+PQc74oxI59dnNsKp7sxC6asxEvpAgh7SUGImHhQPpFEjUPvCgZ?=
+ =?us-ascii?Q?sjYHxIoy6GVmDUitcb6k5C/NmN9eyG8gw0gSHsayA4D4a5EGz2kOggypigbo?=
+ =?us-ascii?Q?Nrd5b2SqjagrCqcbpjgP2vb5KOnagnBxycy7hS1MFMqoeoCJlOIEK2sKLylA?=
+ =?us-ascii?Q?vu5O8J1GE9t430ErlWY5YB70DLgiLV/zMXAti9CEAEKouXBZ41ie1Ey26pYR?=
+ =?us-ascii?Q?/7u6UoeKW6dKqeH74alCDRuzqXHO9fcHIjHdIhqC9LNox85gqRc+urorP7My?=
+ =?us-ascii?Q?j4PjBaKROwhZgBmcuDlzktieRPuUi5mNMii77jZVYXQGL7W6M2hXxb+Pn7Gx?=
+ =?us-ascii?Q?TKTLRNhClMOshXZy2Gwqa+OgLUYrz6atg6CG5BnpVQToGmWCUB0d4tcuCDYx?=
+ =?us-ascii?Q?NjWsElWKr7mYFTE8QHRzDY2GkmT+V3e2yVz7MVDSbncCdnqMSkcWn74dM6ls?=
+ =?us-ascii?Q?R3edWzkDPMhM0q6pXXNtgCQih85vrtV8VmJ5rhJDkvakwRnatDuK6aVvx3B8?=
+ =?us-ascii?Q?nAa3LNW+LL8xejVkk5ghXgd+449FgIsDfNC/pztJ67zP9N5swDRAkksVHSIl?=
+ =?us-ascii?Q?EXsQ3o7BFxh6/iSwzvO8xpX617+58iCJwmjtSH5/MPPPdgbHpn+/xE/LR64X?=
+ =?us-ascii?Q?oCwb/M1veJpTlpYvWWkTzihN0RHLpeNooeceTwOk68q6TtN56TetTK2aHkFr?=
+ =?us-ascii?Q?3DknzQu+JJOUXTJ3+giIS0HCukkmyxgFiSs02LpHuXpnI7EWppaYotN3qVDa?=
+ =?us-ascii?Q?0VZoQssVN94nI/XmU2ms6NMiiItZJThFwjDZoIi8A0QCExplRYVREAXpRF3f?=
+ =?us-ascii?Q?SM/+VmSt+ilT/hr+1KPC9Wnrs2D67M6s4czt7XhvR+LJWKsl2N4TZUnkckEz?=
+ =?us-ascii?Q?1TCMdpNPOu7dRN4neYGLmmZzrdSAK5DJzUtP+vOwAu8QLRLrTpBmXdYX3WXd?=
+ =?us-ascii?Q?rFcAlxj7QGmHFqWx0KeOz0EkWiZ6+99M/cwSbec5qVikZTLxi747Qhu8yX/7?=
+ =?us-ascii?Q?4QQcgQkBeBxsE0L0g1W/R7hrf+RtTYYX+Al0KEoSEMOsYnAOKocufJKjZp7j?=
+ =?us-ascii?Q?1+XaBx8ikkHs1bqD+DKgwSvdB258ImXuv7X91P+1PrdKgyRnRSDlIcIzr5ij?=
+ =?us-ascii?Q?9nuh4KlRp+KE99XN7dHoDJg89mH7o4WGEXXwPjhJ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 124d0d4c-af5e-4f71-6493-08dd8ec4cfe8
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2025 06:43:31.5589
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oxTgjoL6WiW7IwpIA/z1Trr8SBnllwMM32IFez8TAl3lXHYz3QD4oC8j+b+SBx2zjGTgk5iZ+vcW5SUIbr8/SA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7763
 
-Hi Lee,
+From: Stephen Boyd <swboyd@chromium.org>
 
-On Thu, 2025-05-08 at 15:02 +0100, Lee Jones wrote:
-> On Wed, 30 Apr 2025, Andr=C3=A9 Draszik wrote:
->=20
-> > The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
-> > includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
-> > Port Controller (TCPC), NVMEM, and a GPIO expander.
-> >=20
-> > Fuel Gauge and TCPC have separate and independent I2C addresses,
-> > register maps, and interrupt lines and are therefore excluded from the
-> > MFD core device driver here.
-> >=20
-> > The GPIO and NVMEM interfaces are accessed via specific commands to the
-> > built-in microprocessor. This driver implements an API that client
-> > drivers can use for accessing those.
-> >=20
-> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> >=20
-> > ---
-> > v6: really use postinc
-> >=20
-> > v5:
-> > * update all (I hope) of Lee's comments:
-> > * file header C comment (not C++)
-> > * drop references to 'MFD'
-> > * extra indent register bit definitions
-> > * make 'struct max77759' public
-> > * drop comments that were used for visual separation only
-> > * drop MAX77759_*_REG_LAST_REGISTER defines
-> > * add comments to regmap ranges
-> > * use longer lines
-> > * sort local variable in reverse christmas tree order
-> > * update comments in max77759_maxq_command()
-> > * drop BUILD_BUG_ON()
-> > * use dev_err() in max77759_maxq_command()
-> > * reflow max77759_create_i2c_subdev() slightly and update error message=
-s
-> > * drop useless comment in max77759_add_chained_maxq()
-> > * reflow max77759_probe()
-> > * consistent upper-/lower-case in messages
-> >=20
-> > v4:
-> > * add missing build_bug.h include
-> > * update an irq chip comment
-> > * fix a whitespace in register definitions
-> >=20
-> > v2:
-> > * add kernel doc for max77759_maxq_command() and related structs
-> > * fix an msec / usec typo
-> > * add missing error handling of devm_mutex_init() (Christophe)
-> > * align sentinel in max77759_of_id[] with max77759_i2c_id[]
-> > =C2=A0 (Christophe)
-> > * some tidy-ups in max77759_maxq_command() (Christophe)
-> >=20
-> > max77759 Lee's updates
-> > ---
-> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> > =C2=A0drivers/mfd/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 20 ++
-> > =C2=A0drivers/mfd/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 1 +
-> > =C2=A0drivers/mfd/max77759.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 690 =
-+++++++++++++++++++++++++++++++++++++++++++
-> > =C2=A0include/linux/mfd/max77759.h | 165 +++++++++++
-> > =C2=A05 files changed, 878 insertions(+)
->=20
-> This looks okay to me now.
+Ease driver development by adding stubs for the typec_switch APIs when
+CONFIG_TYPEC=n. Copy the same method used for the typec_mux APIs to be
+consistent.
 
-Thanks :-)
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
-> I assume the other patches depend on this one?
+---
+Changes in v3:
+ - add my Signed-off-by
+ - add Acked-by tag
+Changes in v2:
+ - pick up this patch to fix build error in v1
+ - refer to https://lore.kernel.org/linux-usb/Ztb1sI2W7t5k2yT7@kuha.fi.intel.com/
+---
+ include/linux/usb/typec_mux.h | 43 +++++++++++++++++++++++++++++++----
+ 1 file changed, 38 insertions(+), 5 deletions(-)
 
-Yes, that is correct.
->=20
-> [...]
->=20
-> > diff --git a/drivers/mfd/max77759.c b/drivers/mfd/max77759.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..15723ac3ef49771eafd5c2e=
-9984abc550eec7aa1
-> > --- /dev/null
-> > +++ b/drivers/mfd/max77759.c
-> > @@ -0,0 +1,690 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright 2020 Google Inc
-> > + * Copyright 2025 Linaro Ltd.
-> > + *
-> > + * Core driver for Maxim MAX77759 companion PMIC for USB Type-C
-> > + */
->=20
-> [...]
->=20
-> > +int max77759_maxq_command(struct max77759 *max77759,
-> > +			=C2=A0 const struct max77759_maxq_command *cmd,
-> > +			=C2=A0 struct max77759_maxq_response *rsp)
-> > +{
-> > +	DEFINE_FLEX(struct max77759_maxq_response, _rsp, rsp, length, 1);
-> > +	struct device *dev =3D regmap_get_device(max77759->regmap_maxq);
-> > +	static const unsigned int timeout_ms =3D 200;
-> > +	int ret;
-> > +
-> > +	if (cmd->length > MAX77759_MAXQ_OPCODE_MAXLENGTH)
-> > +		return -EINVAL;
-> > +
-> > +	/*
-> > +	 * As a convenience for API users when issuing simple commands, rsp i=
-s
-> > +	 * allowed to be NULL. In that case we need a temporary here to write
-> > +	 * the response to, as we need to verify that the command was indeed
-> > +	 * completed correctly.
-> > +	 */
-> > +	if (!rsp)
-> > +		rsp =3D _rsp;
-> > +
-> > +	if (!rsp->length || rsp->length > MAX77759_MAXQ_OPCODE_MAXLENGTH)
-> > +		return -EINVAL;
-> > +
-> > +	guard(mutex)(&max77759->maxq_lock);
-> > +
-> > +	reinit_completion(&max77759->cmd_done);
-> > +
-> > +	/*
-> > +	 * MaxQ latches the message when the DATAOUT32 register is written. I=
-f
-> > +	 * cmd->length is shorter we still need to write 0 to it.
-> > +	 */
-> > +	ret =3D regmap_bulk_write(max77759->regmap_maxq,
-> > +				MAX77759_MAXQ_REG_AP_DATAOUT0, cmd->cmd,
-> > +				cmd->length);
-> > +	if (!ret && cmd->length < MAX77759_MAXQ_OPCODE_MAXLENGTH)
-> > +		ret =3D regmap_write(max77759->regmap_maxq,
-> > +				=C2=A0=C2=A0 MAX77759_MAXQ_REG_AP_DATAOUT32, 0);
-> > +	if (ret) {
-> > +		dev_err(dev, "writing command failed: %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	/* wait for response from MaxQ */
->=20
-> If you have to respin this patch, please s/wait/Wait/.
->=20
-> If not, please send a subsequent patch.
-
-I guess I might as well send another version, given this series is still
-waiting for Srini's ACK.
-
-Cheers,
-Andre'
+diff --git a/include/linux/usb/typec_mux.h b/include/linux/usb/typec_mux.h
+index 2489a7857d8e..efb5ed32b813 100644
+--- a/include/linux/usb/typec_mux.h
++++ b/include/linux/usb/typec_mux.h
+@@ -3,6 +3,7 @@
+ #ifndef __USB_TYPEC_MUX
+ #define __USB_TYPEC_MUX
+ 
++#include <linux/err.h>
+ #include <linux/property.h>
+ #include <linux/usb/typec.h>
+ 
+@@ -24,16 +25,13 @@ struct typec_switch_desc {
+ 	void *drvdata;
+ };
+ 
++#if IS_ENABLED(CONFIG_TYPEC)
++
+ struct typec_switch *fwnode_typec_switch_get(struct fwnode_handle *fwnode);
+ void typec_switch_put(struct typec_switch *sw);
+ int typec_switch_set(struct typec_switch *sw,
+ 		     enum typec_orientation orientation);
+ 
+-static inline struct typec_switch *typec_switch_get(struct device *dev)
+-{
+-	return fwnode_typec_switch_get(dev_fwnode(dev));
+-}
+-
+ struct typec_switch_dev *
+ typec_switch_register(struct device *parent,
+ 		      const struct typec_switch_desc *desc);
+@@ -42,6 +40,41 @@ void typec_switch_unregister(struct typec_switch_dev *sw);
+ void typec_switch_set_drvdata(struct typec_switch_dev *sw, void *data);
+ void *typec_switch_get_drvdata(struct typec_switch_dev *sw);
+ 
++#else
++
++static inline struct typec_switch *
++fwnode_typec_switch_get(struct fwnode_handle *fwnode)
++{
++	return NULL;
++}
++static inline void typec_switch_put(struct typec_switch *sw) {}
++static inline int typec_switch_set(struct typec_switch *sw,
++		     enum typec_orientation orientation)
++{
++	return 0;
++}
++
++static inline struct typec_switch_dev *
++typec_switch_register(struct device *parent,
++		      const struct typec_switch_desc *desc)
++{
++	return ERR_PTR(-EOPNOTSUPP);
++}
++static inline void typec_switch_unregister(struct typec_switch_dev *sw) {}
++
++static inline void typec_switch_set_drvdata(struct typec_switch_dev *sw, void *data) {}
++static inline void *typec_switch_get_drvdata(struct typec_switch_dev *sw)
++{
++	return ERR_PTR(-EOPNOTSUPP);
++}
++
++#endif /* CONFIG_TYPEC */
++
++static inline struct typec_switch *typec_switch_get(struct device *dev)
++{
++	return fwnode_typec_switch_get(dev_fwnode(dev));
++}
++
+ struct typec_mux_state {
+ 	struct typec_altmode *alt;
+ 	unsigned long mode;
+-- 
+2.34.1
 
 
