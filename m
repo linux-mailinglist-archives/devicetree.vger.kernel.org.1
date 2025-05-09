@@ -1,226 +1,151 @@
-Return-Path: <devicetree+bounces-175370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817B6AB0BF1
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:41:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB2A7AB0BFA
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 09:45:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D301A7BE128
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 07:40:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 433D61C207FB
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 07:45:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 402572701AC;
-	Fri,  9 May 2025 07:41:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8C8921FF54;
+	Fri,  9 May 2025 07:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LxW/AdrP"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xZmqCO9B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8555E26FA6C;
-	Fri,  9 May 2025 07:41:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86FBA23D2AE;
+	Fri,  9 May 2025 07:45:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746776494; cv=none; b=NG1PBqQKO7M/Ph4OlhQf2Wi3kxzv/RImJiRSsyp7pTolltUngDEgg+c7D5k9vpPTDcEVwA85AyGkcpFw+EHkFcfdaN+CpLgrJdEjNzf81oHf9Pj/kL11SWKpwxb9ffS3uhzLdxioZuEJ33fWS0LOA+Z295kh1ebA2E84Ir0z5TM=
+	t=1746776724; cv=none; b=tjmqIrUK6lCidcLsSMOtprfmjG2gZufzYLm5UuRYGKod6Zzr+d/xtJjY/AMmA0qPseV33VTIFwxrWde4ujIXTNENZz55a9a2f0AbHJvT1eZ9fT5FVU5HPLZCTICZMEgWRq3cPPNT7qkyV/35v9g4zjdUtC6It6kDnfSNqQzYM+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746776494; c=relaxed/simple;
-	bh=jyO31/jl+RDl/d/ZdCzc5ZoO0zv88j+FCcX6tIa4kvA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=e4JjyQSeZeEl+XhYq+Da1SDmIqYJBtCcEFcZpEFb+JNhSWJgjw+O2Mjis/kCjOXH+engEVTv/mqy5yWv++5WL67D4sBkVOG1OeCy0eK7rQ9zprMjknRf/4TpxwIMrZH8YeSfrcLbnin81wFj7MLeVFh/J6hvQFcYC2YuYtsRb0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LxW/AdrP; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-708a853c362so17142697b3.2;
-        Fri, 09 May 2025 00:41:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746776491; x=1747381291; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ye7rIPGO7oKTOhURnZxVJsCn/qQWh5VCeJGEhsIu90E=;
-        b=LxW/AdrPPTEWFDzmLrK89bae22NsAaXFucsHc03Pda8EQVHVpUEPVv4d7uhCitvVun
-         nPnOWdrECeKbkDyne5kIEdSdpDeCuRNdQWgF78sGxhA0pqcTGcVIFB/O4IaH/HcEqSvU
-         +MRRKCAifF3IV8yq4diW5vntQQKb5FhklL46AUlg7Y8AqICfnwdCGSFSPCkPdxJo5v/F
-         YwR1bWJk6H2NpIQ2Jrsx+pK7Pe7p8mcyEStRDe7vm7pVhq8mhsVjKxBVz4UnO0Sqjme4
-         evZ7wp3iXVr3dY9GYCzXikS0rI2BTR4BIb68/Qw2EJsgYVkT4TMdqKhdUVoNnm525AZu
-         mcOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746776491; x=1747381291;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ye7rIPGO7oKTOhURnZxVJsCn/qQWh5VCeJGEhsIu90E=;
-        b=tg6wzBEEtlJuA5jlGznLW6d9+4WtY+wxxwRa4kkCg0nAFuCJRnEjYMr/BiFH2m5HX1
-         wPJyxZKIymUTiAk3ykVeGb7i5th8IbMeILxu69CFKx6OqukMRDzfpMX2ZX3jeaS0D+/G
-         TkMKscCTYEeST0/6P+SDJ9hi1/k4OfXQsEQqqc+bMDgeHcq84fx7OtTqbfspqrDh6cs4
-         zDUr5yI8c/9SQRdqftxHfEqp4/mB4Rj1tXyNPpZy9Z+HpdwTJkuI56WAKbaRhCE9V0/v
-         ZLlFVya4+6Gc7cJE6FjYDRbJ+IiLksZXUawSOxTeoTeEEHLgZUs2YYLVId5z1H4FuLf2
-         09BQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUCPXr4Hr54Hrol4Iwe416AtYphl/px6qUkdzKl4BppMGI0Vc3Ps03XMX9kIngGTrun8WtgxqAqXhOc@vger.kernel.org, AJvYcCVJgSCNO0gloOt/q1yvu2Pv7ejy/S1bcmseBgqO46+wwfiHjC3hY6BsgkymAwINZZ6uycXoEFrbeQYU@vger.kernel.org, AJvYcCWSj3cW9Sdv00NC1kr2IKkpVFV/DAGpi14CGaPGN58YVrpFN+eZr+qr+uVYSIBkBYj4/ENp616leq1fXX8I@vger.kernel.org
-X-Gm-Message-State: AOJu0YywbP7CJqpLkXB6NEfzNjtBfq8tHXFvieKe7K8QpRuvhfK4cusT
-	qlD+r07q8RKKPii9J5T8YlenTVwm5W4TiqWJB+xNnWAZq+GKZeefDIxHY+WptZZkndZvBkG1hZT
-	WermsXXTq5qpI0uDbSoevWdLChuY=
-X-Gm-Gg: ASbGncv/fLW6p3oOcOXeeO+SZjrsnNKvbPNC0JTgDo9e7r7JTgGbOiFjc3YZkuOSuSv
-	lcyFBjGq5Fdlm9boYlXs87YA7SHKnxlp7G2tIXzs2zqMC7q7Zkp5bkLfHw9Wn8PhvmsTqdDsbMp
-	3CP62/4xS1mDtAp4NSltfKsSI=
-X-Google-Smtp-Source: AGHT+IGvkBefmqT0OnG87syXeRA3zl+7ZbjUE1o+Op5MMkoHcI93LSKQldFIuzU5TcJjgkm7YP+ahU+NuCOdLYn387w=
-X-Received: by 2002:a05:690c:3606:b0:708:be8b:8415 with SMTP id
- 00721157ae682-70a3f9ec7bamr32338747b3.1.1746776491333; Fri, 09 May 2025
- 00:41:31 -0700 (PDT)
+	s=arc-20240116; t=1746776724; c=relaxed/simple;
+	bh=z4C4WONX3TOnzmmaH8eHlIFN6WS75ODbCTdWA15mScE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=qwdM13PGvZfOyaI3FETZLhtqtupPkRQP/TTwIlrBQkpQJNzhbLkB/EZo3OImAUBcdy4gwpiuHp6vzkv8gmY4tjqGjkzQWqIvZ/ulIOeWZIwHEW1E2KAQ1idR7VziTUJ5Nej8AsXiDDDZ4kBkfQ6ObE1Bp7zdjcbAxdzFHzmyOFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xZmqCO9B; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5497j1ha1337449
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 9 May 2025 02:45:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1746776701;
+	bh=7pJtxLJJ+miQ++NXFqYy8TUdT11UyzqqW+ZW0cRbZWw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=xZmqCO9Bk3Mc0tdHYa9F5AFIfSVolMsBr3yLguxR+oYpB0LxvOVVBiOL2sGIBiZA8
+	 bvc4seLQazHXLpoqpNTpb4OI2fjrGX4/rj38g/FwtGTF+ym6o8dAJyw8hBBMPWeNFN
+	 mLftfT8VlhsF5TzVbVpp8kzG2yuEMhTA/M05DVU8=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 5497j1AU126579
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 9 May 2025 02:45:01 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
+ May 2025 02:45:00 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 9 May 2025 02:45:00 -0500
+Received: from [172.24.19.187] (lt5cd2489kgj.dhcp.ti.com [172.24.19.187])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5497itUM115553;
+	Fri, 9 May 2025 02:44:56 -0500
+Message-ID: <e4fc72ea-ae36-457f-b1a6-0305e06022af@ti.com>
+Date: Fri, 9 May 2025 13:14:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250509065237.2392692-1-paweldembicki@gmail.com>
- <20250509065237.2392692-2-paweldembicki@gmail.com> <272301e5-6561-499a-91eb-615fed4727fa@kernel.org>
-In-Reply-To: <272301e5-6561-499a-91eb-615fed4727fa@kernel.org>
-From: =?UTF-8?Q?Pawe=C5=82_Dembicki?= <paweldembicki@gmail.com>
-Date: Fri, 9 May 2025 09:41:20 +0200
-X-Gm-Features: ATxdqUHXjtSflO8ksX9UgpKJ0JRin_SxPFkWNwLey2-t_RPh9BHyKI_7T9j8Rjk
-Message-ID: <CAJN1KkxPOuZqRwysx3zu_5ChODn2wnizKXzfEZHD2AiHAbd0ig@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] hwmon: pmbus: mpq8785: Prepare driver for multiple
- device support
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, 
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Noah Wang <noahwang.wang@outlook.com>, 
-	Naresh Solanki <naresh.solanki@9elements.com>, Fabio Estevam <festevam@gmail.com>, 
-	Michal Simek <michal.simek@amd.com>, Grant Peltier <grantpeltier93@gmail.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Shen Lichuan <shenlichuan@vivo.com>, 
-	Peter Zijlstra <peterz@infradead.org>, Greg KH <gregkh@linuxfoundation.org>, 
-	Charles Hsu <ythsu0511@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-pt., 9 maj 2025 o 09:03 Krzysztof Kozlowski <krzk@kernel.org> napisa=C5=82(=
-a):
->
-> On 09/05/2025 08:51, Pawel Dembicki wrote:
-> > Refactor the driver to support multiple Monolithic Power Systems device=
-s.
-> > Introduce chip ID handling based on device tree matching.
-> >
-> > No functional changes intended.
-> >
-> > Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
-> >
-> > ---
-> > v2:
-> >  - no changes done
-> > ---
-> >  drivers/hwmon/pmbus/mpq8785.c | 38 +++++++++++++++++++++++++++--------
-> >  1 file changed, 30 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/drivers/hwmon/pmbus/mpq8785.c b/drivers/hwmon/pmbus/mpq878=
-5.c
-> > index 331c274ca892..00ec21b081cb 100644
-> > --- a/drivers/hwmon/pmbus/mpq8785.c
-> > +++ b/drivers/hwmon/pmbus/mpq8785.c
-> > @@ -8,6 +8,8 @@
-> >  #include <linux/of_device.h>
-> >  #include "pmbus.h"
-> >
-> > +enum chips { mpq8785 };
->
-> Use Linux coding style, so:
-> 1. missing wrapping after/before each {}
-> 2. missing descriptive name for the type (mpq8785_chips)
-> 3. CAPITALICS see Linux coding style - there is a chapter exactly about
-> this.
->
->
-
-Sorry, I was thinking that it is a local pmbus tradition.
-Many drivers have the same enum without capitalics :
-
-grep -r "enum chips {" .
-./isl68137.c:enum chips {
-./bel-pfe.c:enum chips {pfe1100, pfe3000};
-./mp2975.c:enum chips {
-./ucd9200.c:enum chips { ucd9200, ucd9220, ucd9222, ucd9224, ucd9240,
-ucd9244, ucd9246,
-./zl6100.c:enum chips { zl2004, zl2005, zl2006, zl2008, zl2105,
-zl2106, zl6100, zl6105,
-./ucd9000.c:enum chips { ucd9000, ucd90120, ucd90124, ucd90160,
-ucd90320, ucd9090,
-./max16601.c:enum chips { max16508, max16600, max16601, max16602 };
-./q54sj108a2.c:enum chips {
-./bpa-rs600.c:enum chips { bpa_rs600, bpd_rs600 };
-./adm1275.c:enum chips { adm1075, adm1272, adm1273, adm1275, adm1276,
-adm1278, adm1281, adm1293, adm1294 };
-./max20730.c:enum chips {
-./mp2856.c:enum chips { mp2856, mp2857 };
-./tps53679.c:enum chips {
-./ltc2978.c:enum chips {
-./max34440.c:enum chips {
-./pim4328.c:enum chips { pim4006, pim4328, pim4820 };
-./fsp-3y.c:enum chips {
-./lm25066.c:enum chips { lm25056, lm25066, lm5064, lm5066, lm5066i };
-
-> > +
-> >  static int mpq8785_identify(struct i2c_client *client,
-> >                           struct pmbus_driver_info *info)
-> >  {
-> > @@ -53,26 +55,46 @@ static struct pmbus_driver_info mpq8785_info =3D {
-> >               PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-> >               PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-> >               PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP,
-> > -     .identify =3D mpq8785_identify,
-> > -};
-> > -
-> > -static int mpq8785_probe(struct i2c_client *client)
-> > -{
-> > -     return pmbus_do_probe(client, &mpq8785_info);
-> >  };
-> >
-> >  static const struct i2c_device_id mpq8785_id[] =3D {
-> > -     { "mpq8785" },
-> > +     { "mpq8785", mpq8785 },
-> >       { },
-> >  };
-> >  MODULE_DEVICE_TABLE(i2c, mpq8785_id);
-> >
-> >  static const struct of_device_id __maybe_unused mpq8785_of_match[] =3D=
- {
-> > -     { .compatible =3D "mps,mpq8785" },
-> > +     { .compatible =3D "mps,mpq8785", .data =3D (void *)mpq8785 },
-> >       {}
-> >  };
-> >  MODULE_DEVICE_TABLE(of, mpq8785_of_match);
-> >
-> > +static int mpq8785_probe(struct i2c_client *client)
-> > +{
-> > +     struct device *dev =3D &client->dev;
-> > +     struct pmbus_driver_info *info;
-> > +     enum chips chip_id;
-> > +
-> > +     info =3D devm_kmemdup(dev, &mpq8785_info, sizeof(*info), GFP_KERN=
-EL);
-> > +     if (!info)
-> > +             return -ENOMEM;
-> > +
-> > +     if (dev->of_node)
-> > +             chip_id =3D (uintptr_t)of_device_get_match_data(dev);
->
-> (kernel_ulong_t) instead
->
-> > +     else
-> > +             chip_id =3D i2c_match_id(mpq8785_id, client)->driver_data=
-;
->
-> Do not open-code i2c_get_match_data().
->
->
-> Best regards,
-> Krzysztof
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] arm64: dts: ti: j722s-evm: Add DT nodes for power
+ regulators
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <vaishnav.a@ti.com>, <r-donadkar@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <jai.luthra@linux.dev>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
+References: <20250508155134.2026300-1-y-abhilashchandra@ti.com>
+ <20250508155134.2026300-2-y-abhilashchandra@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250508155134.2026300-2-y-abhilashchandra@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 
+On 5/8/2025 9:21 PM, Yemike Abhilash Chandra wrote:
+> Add device tree nodes for two regulators on the J722S-EVM. VSYS_3V3 is the
+> output of LM5141-Q1, and it serves as an input to TPS22990 which produces
+> VSYS_3V3_EXP [1]. VSYS_3V3_EXP serves as vin-supply to CSI RPI Connectors.
+>
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+>
+> [1]: https://www.ti.com/lit/zip/sprr495
+> ---
+>   arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 22 ++++++++++++++++++++++
+>   1 file changed, 22 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> index 34b9d190800e..0f18fe710929 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> @@ -141,6 +141,17 @@ vsys_5v0: regulator-vsys5v0 {
+>   		regulator-boot-on;
+>   	};
+>   
+> +	vsys_3v3: regulator-vsys3v3 {
+> +		/* output of LM5141-Q1 */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vsys_3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vmain_pd>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+>   	vdd_mmc1: regulator-mmc1 {
+>   		/* TPS22918DBVR */
+>   		compatible = "regulator-fixed";
+> @@ -153,6 +164,17 @@ vdd_mmc1: regulator-mmc1 {
+>   		bootph-all;
+>   	};
+>   
+> +	vcc_3v3_exp: regulator-TPS22990 {
 
-Best regards,
-Pawe=C5=82 Dembicki
+Please align this name with commit message
+
+with change of vcc_3v3_exp to vsys_3v3_exp
+
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+
+
+> +		/* output of TPS22990 */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_3v3_exp";
+
+This name as well, please to vss_3v3_exp
+
+
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vsys_3v3>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+>   	vdd_sd_dv: regulator-TLV71033 {
+>   		compatible = "regulator-gpio";
+>   		regulator-name = "tlv71033";
 
