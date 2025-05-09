@@ -1,267 +1,145 @@
-Return-Path: <devicetree+bounces-175604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAAAEAB13E3
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:54:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B097AB13E9
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:55:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B6FF7B0C60
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:53:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66911981EBE
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:54:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E01928FFC9;
-	Fri,  9 May 2025 12:54:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F5D290DBC;
+	Fri,  9 May 2025 12:54:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Qs9CY6NC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z1B+YBYN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A74290D80;
-	Fri,  9 May 2025 12:54:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE65290DA4;
+	Fri,  9 May 2025 12:54:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746795251; cv=none; b=jcfp33Y/Yv6dVmawAbm9pXnJ8y1+lcXfg2W10ObNdNN5DzvgZSsaT1q981CsTLqPh4k+nNqEN8u8wl2nfcYaIO3iYqar/grkYHhikopmmy6/frRI7XxCNWQPKGLfQ8+hRcKnpLKLwzhICMmh1eVIQl55krpGndhBsXmcLbNcsfk=
+	t=1746795293; cv=none; b=HrcsQFhHjLI1aJf8f0wPK5H13M5BQG9RZd9nLnuxusKgU3z22ZJA+NNarpd0/0lNX50jXFOwEKDB1LcAxXHlPgVr956LVYsX5iflRcM0nT+OkaT8STg52FQKKkrcV7UAH4ywe4FjR67jW9aKOtn31KwWM7yJjDHW0TRwTBZkFBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746795251; c=relaxed/simple;
-	bh=DcwkRXNgEvRvHOzSApJNgPnA4OWWt5LOWujrHc8SEQs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SNWC685IzMu5Mzb23T0DPD6BpO9W0csMwFBeteK/y13YZGXKknjdiWwSIclQ/H+idIT4NtxI8EcbKQAz6Q5BJaILRSIUrokjlqsGsnDaXODa6uuP4UoePypgjYwbDRgXcM+iWJOpeBULIYsVaZDucF4TN8OGyzSOmYR75ldwSH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Qs9CY6NC; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=R7GJ7qvzsdrqnYobrx3s7aB7m2F5mPpRtkMxGcl8bYk=; b=Qs9CY6NCsFtAMSdALPcnM0RY2S
-	hVgMAFTAAEUXMZyhGOpCuicXYXbd+xpjtl+ZKbBmx18g+7UDSQMqnBCod+UOoDm02c0WmB3srf0YP
-	Yq/WlJ74jJ8+4Ci62cu+ELaeTFc7b+w4jJKuDCQZwZyF5TrOSmBN9iMruMsxb7rsMkuvR9bw+CBwG
-	XVim9lAnfXCwTGnBezG8zdJlIvYirt6kBoHhxj2dv3ldAjIC3PatC8rHzgET+OSU/fHBCVu1ztqYq
-	AKSa8RmV1pSYSH6pCb1yDSdUkzdRFmIf9n88dSQEbCtgU39Rqf1gfOjYXZnhPTY5YGx8N4PGmAbxY
-	UGmKiKgw==;
-Received: from i53875a1d.versanet.de ([83.135.90.29] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uDNEn-0005A8-SH; Fri, 09 May 2025 14:54:01 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>,
- Diederik de Haas <didi.debian@cknow.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v2 2/5] arm64: dts: rockchip: move rock 5b to include file
-Date: Fri, 09 May 2025 14:54:00 +0200
-Message-ID: <2653568.Lt9SDvczpP@diego>
-In-Reply-To: <D9RN1HZAXH1M.3H228KWQJ9CR0@cknow.org>
-References:
- <20250508-rock5bp-for-upstream-v2-0-677033cc1ac2@kernel.org>
- <20250508-rock5bp-for-upstream-v2-2-677033cc1ac2@kernel.org>
- <D9RN1HZAXH1M.3H228KWQJ9CR0@cknow.org>
+	s=arc-20240116; t=1746795293; c=relaxed/simple;
+	bh=mdjay/bt0YQTImzRRyNTf7+nM7Iqt5fpIRc4hBQRXqU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gDWRsP3qi9GezEztZimq+yNWnc+O12xAo4Ox30nQvUpTbd7gw2VmdXF71+zPe72ivQEG5a8cksrNqT0uqfIOYF+GcUVg5et3I//RvF+XKm1I7J6n2tpWMEPyD+6xSpuquAWGnp8g/ibBN61w9b//ZOvEZ1Oay2VJYQlnQo3it8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z1B+YBYN; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-549963b5551so2368672e87.2;
+        Fri, 09 May 2025 05:54:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746795290; x=1747400090; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VUkV8BywuFWcK3XlHlfeRzzwdT0Xtem3jQh4BxB4+2M=;
+        b=Z1B+YBYNXVt1LA+Hh6w9jB7h0xJ2UsTL8rSCZVMHD53bt2VZcOGiDOQ9vloHS/Wep0
+         Hl5Z2BvnGAZstrnlTUMYFS+cehwDJVN9I5G4vE59Vg0nLTA9+j5Fm9Rzt+ecRfwZvxQS
+         CGKWR78YyF71XE9md9/QjV3ui4aE5FOw7cudDNI+NJVlnXLL4hstB75VRfjVw313NNji
+         IXO9D81+1BMPLY/nIQPv1gAKRiyxNj4d7PzZ30AQY7D9jQ3Hvq+TZ561JpyssJMpwj0g
+         BxjP4hBgQmuoeqlwNW0kqmhVbl9VMPe2afu8SCdMfnBYj0cNMI0NRk7dIQL61n5hNw5n
+         HCFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746795290; x=1747400090;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VUkV8BywuFWcK3XlHlfeRzzwdT0Xtem3jQh4BxB4+2M=;
+        b=K9+ezftC0MtxQNJ48OAhX1aJX4E0V9xLZsitABtybuz+tBF01rb1UzKoOKJ2yBUAMU
+         SSZqKG1BAegXy6pHrluqk3zqUFC2hRodtkYJfEXZJT1w+h10xRtFtQCoXVuI5Gk4b9i2
+         VXXlsK6QdhJkJxqp/dm4J09fZQl1TtmqBmaJWLSWRIzix28MkjU7HuNHo7C+wy1ormgS
+         mRhIsYdYpMHuUVZjydHcgUsxS9UxbGYx+iK7j9jeypRCRJOLkh54/PN25NKCaMpUe6UT
+         yJe7RTZ3VNgAwiPLKqHqW4mgPzkbiyRXtxwpXzOpENV0WfWo4UzLkDwMyfztxi8dhJpJ
+         pgjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVupWFRF0ncXbWOyM5eWpa+I+MyiwzfgGdBjwV1bpD5wKN2P8wEKRczitRLnmYRLdnWkb9fhXS99/8P4Dad@vger.kernel.org, AJvYcCXA3XcDG+gSu7ah5NrIrkwVb/6FL0ZBoI2D3a89TdaqGd42xtoLc47VZWdOzpOz9oI47uob8ADglLyf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzs/0TBDrEYAWrwXG+S2ul9NMJTV/VfYWNoWUCNB/ZkFt48ypj8
+	Zb0VbTvzvCUPm+S+i2ePXAdQtbylzaPxA354sxSFnAqFxklhZWK2
+X-Gm-Gg: ASbGncszHBOo6TL3OdmrDRLdlRPjkD5Aq3uXvsuKHfiRDcUEamuRzga7ejMtIoTvTUr
+	dnsAz2cK/cl2HNLp6hoHAmDiPQvfzg0uBdBLIatYoTPzgP9TzVS7MRXjOA/CQ0MnfQxJ2BQ0vV2
+	+/VF5D3IoIpz3GiY68zXoQrkN1Q5FC9tDJaRAhuJmW4qr/aF+rUo8mrORZGcm10Wuc9d7zY5xfP
+	y5WmVDF3i++FpZ3aa9anHxdNLNRmR3DlYeH3vHovL3BfGKdgpCG9VEfYzb0IVAKGyCxe4uaJu9Y
+	09GRDTBvDByaUhoLtm87agFxSBCHLL6H3lns3TaNqi2rq2CdSoqo4NsNSccVGbgn/ig5Ao72HGm
+	tOb0hiO9QikpUQ80YPoTVPOLUpOQbLud2
+X-Google-Smtp-Source: AGHT+IGB0rBm4Sd2c2ZAuOBq1Wdz7EzM8zgvpzQWNHnTdOFbsdIwxpR9iWs0VxeI4bDlh0fT/50rUQ==
+X-Received: by 2002:a05:6512:6506:b0:54f:c074:f91b with SMTP id 2adb3069b0e04-54fc67c95damr1229451e87.24.1746795289472;
+        Fri, 09 May 2025 05:54:49 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54fc645cdcbsm270564e87.69.2025.05.09.05.54.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 May 2025 05:54:48 -0700 (PDT)
+Message-ID: <16e91572-b132-4246-9fa9-8e8bc4c24f40@gmail.com>
+Date: Fri, 9 May 2025 15:54:47 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 14/14] arm64: dts: Add DSPI entries for S32G platforms
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ James Clark <james.clark@linaro.org>, Vladimir Oltean <olteanv@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+ NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, larisa.grigore@nxp.com, arnd@linaro.org,
+ andrei.stefanescu@nxp.com, dan.carpenter@linaro.org
+Cc: linux-spi@vger.kernel.org, imx@lists.linux.dev,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ "Radu Pirea (NXP OSS)" <radu-nicolae.pirea@oss.nxp.com>
+References: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
+ <20250509-james-nxp-spi-v1-14-32bfcd2fea11@linaro.org>
+ <3ddde799-76b5-43f9-971e-a52ec322e9b1@kernel.org>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <3ddde799-76b5-43f9-971e-a52ec322e9b1@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Am Freitag, 9. Mai 2025, 14:44:57 Mitteleurop=C3=A4ische Sommerzeit schrieb=
- Diederik de Haas:
-> Hi,
->=20
-> On Thu May 8, 2025 at 7:48 PM CEST, Sebastian Reichel wrote:
-> > Radxa released some more boards, which are based on the original
-> > Rock 5B. Move its board description into an include file to avoid
-> > unnecessary duplication.
->=20
-> Aren't you moving it *out of* an/the include file?
-> If so, the patch Subject and the above line should be updated so that
-> they correctly reflect what is changed in this patch.
->=20
-> The above text is correct (and the same ...) as patch 1, but in this
-> patch you move things out of the dtsi which are unique per board.
->=20
-> > NOTE: this should be merged with the previous commit to ensure
-> > bisectability. The rename happens in a separete commit during
-> > development because git does not properly detect the rename when
-> > the original filename is reused in the same commit. This means
-> >
-> > 1. it's a lot harder to review the changes
-> > 2. it's a lot harder to rebase the patch series
->=20
-> Or did I fall prey to the exact thing you described here?
+On 09/05/2025 14:26, Krzysztof Kozlowski wrote:
+> On 09/05/2025 13:06, James Clark wrote:
+>> +&spi1 {
+>> +	pinctrl-0 = <&dspi1_pins>;
+>> +	pinctrl-names = "default";
+>> +	#address-cells = <1>;
+>> +	#size-cells = <0>;
+>> +	status = "okay";
+>> +
+>> +	spidev0: spidev@0 {
+> 
+> 
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> 
+>> +		compatible = "rohm,dh2228fv";
+> 
+> 
+> Nah, I really doubt. That's not the device you have there. It's
+> possible, though, so can you share schematics?
 
-I think Sebastian's idea  is, that I squash both patches when applying.
-This split makes it easy(er) to review because patch1 is just a rename.
+Actually, not even possible. There is no DH2228FV from ROHM. There is 
+BH2228FV though:
+https://www.rohm.com/products/data-converter/d-a-converters/8bit-d-a/bh2228fv-product
 
-And merging them when applying then makes it again not break bisectability.
+but as you know, it is unlikely this is the part populated on the board.
 
+For the author:
+https://lore.kernel.org/linux-rockchip/20250213-calamity-smuggler-5d606993be32@spud/T/
 
-Heiko
-
-
-> Cheers,
->   Diederik
->=20
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts  | 52 ++++++++++++++++=
-++++++++
-> >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi | 40 ----------------=
-=2D-
-> >  2 files changed, 52 insertions(+), 40 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm=
-64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..9407a7c9910ada1f6c803d2=
-e15785a9cbd9bd655
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> > @@ -0,0 +1,52 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "rk3588-rock-5b.dtsi"
-> > +
-> > +/ {
-> > +	model =3D "Radxa ROCK 5B";
-> > +	compatible =3D "radxa,rock-5b", "rockchip,rk3588";
-> > +};
-> > +
-> > +&sdio {
-> > +	max-frequency =3D <200000000>;
-> > +	no-sd;
-> > +	no-mmc;
-> > +	non-removable;
-> > +	bus-width =3D <4>;
-> > +	cap-sdio-irq;
-> > +	disable-wp;
-> > +	keep-power-in-suspend;
-> > +	wakeup-source;
-> > +	sd-uhs-sdr12;
-> > +	sd-uhs-sdr25;
-> > +	sd-uhs-sdr50;
-> > +	sd-uhs-sdr104;
-> > +	vmmc-supply =3D <&vcc3v3_pcie2x1l0>;
-> > +	vqmmc-supply =3D <&vcc_1v8_s3>;
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&sdiom0_pins>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&uart6 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&uart6m1_xfer &uart6m1_ctsn &uart6m1_rtsn>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&pinctrl {
-> > +	usb {
-> > +		vcc5v0_host_en: vcc5v0-host-en {
-> > +			rockchip,pins =3D <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&vcc5v0_host {
-> > +	enable-active-high;
-> > +	gpio =3D <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&vcc5v0_host_en>;
-> > +};
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi b/arch/ar=
-m64/boot/dts/rockchip/rk3588-rock-5b.dtsi
-> > index 17f4fd054cd3d1c4e23ccfe014a9c4b9d7ad1a06..6052787d2560978d2bae6cf=
-beea5fc1d419d583a 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
-> > @@ -8,9 +8,6 @@
-> >  #include "rk3588.dtsi"
-> > =20
-> >  / {
-> > -	model =3D "Radxa ROCK 5B";
-> > -	compatible =3D "radxa,rock-5b", "rockchip,rk3588";
-> > -
-> >  	aliases {
-> >  		mmc0 =3D &sdhci;
-> >  		mmc1 =3D &sdmmc;
-> > @@ -139,10 +136,6 @@ vcc5v0_host: regulator-vcc5v0-host {
-> >  		regulator-always-on;
-> >  		regulator-min-microvolt =3D <5000000>;
-> >  		regulator-max-microvolt =3D <5000000>;
-> > -		enable-active-high;
-> > -		gpio =3D <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
-> > -		pinctrl-names =3D "default";
-> > -		pinctrl-0 =3D <&vcc5v0_host_en>;
-> >  		vin-supply =3D <&vcc5v0_sys>;
-> >  	};
-> > =20
-> > @@ -488,12 +481,6 @@ pcie3_vcc3v3_en: pcie3-vcc3v3-en {
-> >  			rockchip,pins =3D <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-> >  		};
-> >  	};
-> > -
-> > -	usb {
-> > -		vcc5v0_host_en: vcc5v0-host-en {
-> > -			rockchip,pins =3D <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-> > -		};
-> > -	};
-> >  };
-> > =20
-> >  &pwm1 {
-> > @@ -530,27 +517,6 @@ &sdmmc {
-> >  	status =3D "okay";
-> >  };
-> > =20
-> > -&sdio {
-> > -	max-frequency =3D <200000000>;
-> > -	no-sd;
-> > -	no-mmc;
-> > -	non-removable;
-> > -	bus-width =3D <4>;
-> > -	cap-sdio-irq;
-> > -	disable-wp;
-> > -	keep-power-in-suspend;
-> > -	wakeup-source;
-> > -	sd-uhs-sdr12;
-> > -	sd-uhs-sdr25;
-> > -	sd-uhs-sdr50;
-> > -	sd-uhs-sdr104;
-> > -	vmmc-supply =3D <&vcc3v3_pcie2x1l0>;
-> > -	vqmmc-supply =3D <&vcc_1v8_s3>;
-> > -	pinctrl-names =3D "default";
-> > -	pinctrl-0 =3D <&sdiom0_pins>;
-> > -	status =3D "okay";
-> > -};
-> > -
-> >  &sfc {
-> >  	pinctrl-names =3D "default";
-> >  	pinctrl-0 =3D <&fspim2_pins>;
-> > @@ -566,12 +532,6 @@ flash@0 {
-> >  	};
-> >  };
-> > =20
-> > -&uart6 {
-> > -	pinctrl-names =3D "default";
-> > -	pinctrl-0 =3D <&uart6m1_xfer &uart6m1_ctsn &uart6m1_rtsn>;
-> > -	status =3D "okay";
-> > -};
-> > -
-> >  &spi2 {
-> >  	status =3D "okay";
-> >  	assigned-clocks =3D <&cru CLK_SPI2>;
->=20
->=20
-
-
-
-
+Yours,
+	-- Matti
 
