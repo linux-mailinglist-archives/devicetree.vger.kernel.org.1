@@ -1,184 +1,132 @@
-Return-Path: <devicetree+bounces-175323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63878AB0A3E
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:05:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21E3EAB0A99
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:32:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D6463AC9EC
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 06:04:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9366E4E0F2A
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 06:32:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC276269832;
-	Fri,  9 May 2025 06:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k8hE/SkL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7FE522FDE8;
+	Fri,  9 May 2025 06:32:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF3F267B74;
-	Fri,  9 May 2025 06:04:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA382746C
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 06:32:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746770699; cv=none; b=dkUZQnArh2ITxj/XfbiBWFJh9XUTYq4WK0Lt4l60gjGORyAFAw0qlDniaHrhDiYAeVC7gTd1279PEjx9xzzx+junTt84BdL6b30LnT8KBqRqqRnd9Z3cXJu+uO5SDxeSozp3SGCQWFo6tpljJ+QTAR2pY4JqcFKS7euJtX0CXVY=
+	t=1746772358; cv=none; b=Hbr4Ku1GGvgQi/R4ZJJF+DaoOiS+/E/lVxGeHQsYNOvlk0IoLSmLSt6FArZt3db6JbwobbrtnXAzE9OSReV8PHRFpZqKqd+TBMh7sMSA7t11XEuf9W4H5tqE7iNY8nqaGX+D2zmqjD6/xUpMijVVOTRFCotykZwOqXqONGfkeBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746770699; c=relaxed/simple;
-	bh=C5/G1pjgdh5IkDeQym4rHiYsnzlKdEPrrZm8Ybiuxlc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UzYUhb6WlQpDJbxWmtZNaAXGQPxKYfAJx0HUp9HeQD+ghhEfQJ2TMAkqx+OWn4M2yb2nOLRhFSFZrhxRauHQOTbMUSd08UIj1QaUbIHgVDWx2K+9YgHdxa03jf+X3NdqZc28A3gIARAHDWWuv3LTTDcZY9vwZZuzM3gbb+qG3j8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k8hE/SkL; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-39ee5a5bb66so1267849f8f.3;
-        Thu, 08 May 2025 23:04:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746770696; x=1747375496; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+YH+J7PBU/JVJvTRTJ5fWHu9R175kV/9VAq5m9JiwHE=;
-        b=k8hE/SkL6hH5teOcrV88AYMyZBdeP6NLxoaJqoAK71McZUlXBXwdkD61TNQyBBpH1+
-         3h7kROGSGbwroEj0Xyeaaxztllx8kM8viWHnsFKw+z7JXa+QNyrTuwRcy9B9sucBGwNs
-         nXmWML/gJiw4+Zg3VhiwlFHeeoB5UdsWGO0/Gabsa3inzATS8g+ujU63CBc36ZKpGtFE
-         O+a6YTuiTsC1OEhQlJ9zUF0sUk5Dphis7IQKfQwtDA1CEPTiBh6d5FOSMFG83RYFfn/c
-         GzHeDFKfiL244lTLtYhZa7kl3w0Y0VSrxfP38SjGyfwILuEQQjol3UgvZVuTC0azPo0t
-         wXnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746770696; x=1747375496;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+YH+J7PBU/JVJvTRTJ5fWHu9R175kV/9VAq5m9JiwHE=;
-        b=ugQP7rDSRzPrAqAke9lHHtqy+E1FuU23RszFgUIX/ja6aaSOUbUPViNOcWfxlM8qry
-         ybXTJBswhNfxiBKUHT9F9mHzwCOKGfUWu7ydRwxN87PDYdQXCjImjJEvt6aK5bZ6ZLZS
-         hYORnSyKNklxdoUY6TIxClXSyMk7iuNz/G04GU2rUtr5N3LOJFeldIXMrZpGroRfNtfj
-         n7h8M6eaQxFoRvmo4HDQxRYX5pDGXXBgsiLMcI/Cvd/9iyrD76yHaZsie3Qa3zC/mosK
-         /S4UStZirt7TXG+LjggFem1FD11xYlB2fgZfqcqMJJEcS/4y7fTyWwHW2ZrLbG5dp2x+
-         DJuA==
-X-Forwarded-Encrypted: i=1; AJvYcCWLHzxwkA8Ze6dxrAeQ/oDdUqbtHNmb2lV3z9gd/+pYfmkjSUg7yvlRhy8Lt/gUpqG9isBqdqaM6ri5@vger.kernel.org, AJvYcCXrt6C/P6jrDLbB/rjsf8okp7s214mz34LPKgv5bIoDwmrLlIeUwakK78Adbfx0QRFVtNvS5vbjtaUp3Bt6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFfGLgtNQp/F8fZfR8Zruc58WyYItx5/yk0lem6AVIdu0Fs7Uo
-	Jlv8uR/JTa7AFKlCm4VxDQmlpVLO1LaMM3b6KtRYLUer6m3x4E0FZtf3ZzH0DvCJEWTn844pvcx
-	S5ymE4MsB1NvbKJ+RTZmScXlyhRQ=
-X-Gm-Gg: ASbGncvbVFoPby3RGf3QvpAKI7UjWh90PBaa04+kOCyci9ht9gCz7Uu6MNuDGyG3nwh
-	D/IpcyH7loHFHsF1QIj/i/lemq0O+ox59acSwQfzqW0tQRb8m6hBrr+ZMAXj9YFrNS/9ynYNU+r
-	nsZy4i5sb3E9ibymcSEXUqbEFNNfYHEfoQ1A==
-X-Google-Smtp-Source: AGHT+IEoTNTrBaYbkjgRbGjpus29JTMUvaAhSH12iOiVqjFnAX+vMaEZKKf9Cq3jByjlaiW/E63KH8HOE7hW1bhzXd8=
-X-Received: by 2002:a05:6000:4287:b0:3a0:b635:ea40 with SMTP id
- ffacd0b85a97d-3a1f64a3e3dmr1665593f8f.55.1746770695189; Thu, 08 May 2025
- 23:04:55 -0700 (PDT)
+	s=arc-20240116; t=1746772358; c=relaxed/simple;
+	bh=6yge8Z7fgMDQq1fOPrhoP43XME2PXCMdqXuEEXQnyPA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JpaLBvgZL3yB07jNaJ4NxWtr8gtla19rrzxrmhq0Z4uphRb5y4y7DIGeOGnsosK5LGYQitS8oQ4U9RnLhEoHUabFhRp4dpxC3/2MJyNIezqkFwyrd7Fo03WTVb5NsNC9C2iVL0784lHn/LU0u3+kn/bmJzNSeMfe45pFZfkinBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uDHHR-00046g-Ca; Fri, 09 May 2025 08:32:21 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uDHHQ-001qPI-1J;
+	Fri, 09 May 2025 08:32:20 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uDHHQ-00CHwN-0v;
+	Fri, 09 May 2025 08:32:20 +0200
+Date: Fri, 9 May 2025 08:32:20 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Nishanth Menon <nm@ti.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: ti: k3-am625-sk: Add power/temperature
+ sensors
+Message-ID: <aB2hdA8mfKGlk8d8@pengutronix.de>
+References: <20250505-am625-sk-sensors-v1-1-688fb928b390@pengutronix.de>
+ <20250507120104.4mhuaabe5auukarn@banter>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250506093340.106575-1-clamor95@gmail.com> <20250506093340.106575-3-clamor95@gmail.com>
- <48472736-4182-4d47-9980-6d63541f6975@wanadoo.fr>
-In-Reply-To: <48472736-4182-4d47-9980-6d63541f6975@wanadoo.fr>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Fri, 9 May 2025 09:04:44 +0300
-X-Gm-Features: AX0GCFv_03eCqlR5fKQ8OMhAozBUTZ4dDTAVo2y7TPMRcWAJrTLnSJhD2n38a3U
-Message-ID: <CAPVz0n0DF6NUBc8BfAyOS7JCwjT0yrCwYgqPyfivA0o_onQzDg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] drm: bridge: Add support for Solomon SSD2825
- RGB/DSI bridge
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: Laurent.pinchart@ideasonboard.com, airlied@gmail.com, 
-	andrzej.hajda@intel.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com, jonas@kwiboo.se, 
-	krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	neil.armstrong@linaro.org, rfoss@kernel.org, robh@kernel.org, simona@ffwll.ch, 
-	tzimmermann@suse.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250507120104.4mhuaabe5auukarn@banter>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-=D0=B2=D1=82, 6 =D1=82=D1=80=D0=B0=D0=B2. 2025=E2=80=AF=D1=80. =D0=BE 20:49=
- Christophe JAILLET
-<christophe.jaillet@wanadoo.fr> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> Le 06/05/2025 =C3=A0 11:33, Svyatoslav Ryhel a =C3=A9crit :
-> > SSD2825 is a cost-effective MIPI Bridge Chip solution targeting mainly
-> > smartphones. It can convert 24bit RGB interface into 4-lane MIPI-DSI
-> > interface to drive display modules of up to 800 x 1366, while supportin=
-g
-> > AMOLED, a-si LCD or LTPS panel technologies for smartphone applications=
-.
->
-> Hi,
->
-> ...
->
-> > +config DRM_SOLOMON_SSD2825
-> > +     tristate "SSD2825 RGB/DSI bridge"
-> > +     depends on SPI_MASTER && OF
-> > +     select DRM_MIPI_DSI
-> > +     select DRM_KMS_HELPER
-> > +     select DRM_PANEL
-> > +     help
-> > +       Say Y here if you want support for the Solomon SSD2825 RGB/DSI
-> > +       SPI bridge driver.
-> > +
-> > +       Say M here if you want to support this hardware as a module.
-> > +       The module will be named "solomon-ssd2825".
->
-> Is it "solomon-ssd2825" or just "ssd2825"?
->
-> > +
-> >   config DRM_THINE_THC63LVD1024
-> >       tristate "Thine THC63LVD1024 LVDS decoder bridge"
-> >       depends on OF
->
-> ...
->
-> > +static int ssd2825_read_raw(struct ssd2825_priv *priv, u8 cmd, u16 *da=
-ta)
-> > +{
-> > +     struct spi_device *spi =3D priv->spi;
-> > +     struct spi_message msg;
-> > +     struct spi_transfer xfer[2];
-> > +     u8 tx_buf[2];
-> > +     u8 rx_buf[2];
-> > +     int ret;
-> > +
-> > +     memset(&xfer, 0, sizeof(xfer));
-> > +
-> > +     tx_buf[1] =3D (cmd & 0xFF00) >> 8;
-> > +     tx_buf[0] =3D (cmd & 0x00FF);
-> > +
-> > +     xfer[0].tx_buf =3D tx_buf;
-> > +     xfer[0].bits_per_word =3D 9;
-> > +     xfer[0].len =3D 2;
-> > +
-> > +     xfer[1].rx_buf =3D rx_buf;
-> > +     xfer[1].bits_per_word =3D 16;
-> > +     xfer[1].len =3D 2;
-> > +
-> > +     spi_message_init(&msg);
-> > +     spi_message_add_tail(&xfer[0], &msg);
-> > +     spi_message_add_tail(&xfer[1], &msg);
-> > +
-> > +     ret =3D spi_sync(spi, &msg);
-> > +     if (ret)
-> > +             dev_err(&spi->dev, "spi_sync_read failed %d\n", ret);
->
-> Maybe, just spi_sync in the message?
->
-> > +
-> > +     *data =3D rx_buf[1] | (rx_buf[0] << 8);
-> > +
-> > +     return 0;
->
-> Is it on purpose that ret is never returned?
-> Is it safe to update *data if ret is not 0?
->
-> > +}
->
+Hi Nishanth,
 
-Acknowledged, thank you
+On Wed, May 07, 2025 at 07:01:04AM -0500, Nishanth Menon wrote:
+> On 15:24-20250505, Sascha Hauer wrote:
+> > The AM625-SK has six power sensors and two temperature sensors connected
+> > to I2C. Add them to the device tree.
+> > 
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > ---
+> > The AM625-SK has six power sensors and two temperature sensors connected
+> > to I2C. Add them to the device tree.
+> 
+> Sascha,
+> 
+> I suggest making this as overlay. The reason is as follows: AM625-SK
+> among other TI evms do have automated power measurement capability from
+> XDS110 (accessible via USB port for jtag - appears as a rudimentary
+> menu option). The way this works is that it uses TM4C1294NCPDT to use
+> I2C commands to control the INA226/231 depending on the evm.
+> 
+> This firmware should be flashed by default on production boards (if
+> not, starting up CCS[1], autodetects older firmware and updates - at
+> least to my understanding) - by the way, this firmware also does test
+> automation, such as boot mode switch control, reset control etc.
+> 
+> This is the primary framework meant to be used by test automation and
+> indeed it is the default inside TI.
+> 
+> Challenge here is this: if we make this default in Linux, the test
+> automation system configures the INA226/231 in a different sampling
+> mode depending on usecase etc Vs what Linux does (even though the
+> shunt and the bus voltage for a given INA is the same). And just like
+> Linux, the firmware power measurement logic has changed over the
+> years.
+> 
+> Anyways, while I know that the SoC and TM4C can both handle
+> multi-master, the challenge is the same INA controlled and
+> mix-configured by two masters (and there is no synchronization between
+> the two).
+> 
+> To avoid this entire conflict and headache, I suggest adding it as
+> overlay that can be applied depending on the preference of measurement
+> desired.
 
-> ...
->
-> CJ
+Thanks for this explanation. I'll go for the overlay then.
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
