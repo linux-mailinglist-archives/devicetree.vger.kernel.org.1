@@ -1,62 +1,68 @@
-Return-Path: <devicetree+bounces-175606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF857AB143A
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:01:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23398AB1459
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:05:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AF8A1892ADE
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:01:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96290985FBF
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:05:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906F128F507;
-	Fri,  9 May 2025 13:01:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8198C29114C;
+	Fri,  9 May 2025 13:05:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="b4Qbd4mF"
+	dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b="tIgn3Xe2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 237CA28EA45;
-	Fri,  9 May 2025 13:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C22E28ECEF
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 13:05:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.185
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746795665; cv=none; b=VZ6ducTcmqZztxCP4E+8L5YDNnYjsMWDqimtqT2Gs5n4ZEknw+hzJCUnLWLCRsdo+BYeRpFKdowCVUe/Z0Mk8QgyJkcjdhweoa/UbWSWUcbyJkOQOi2OgZ+RNmvvAc7neDvdKJtvKCy7mruOXW+cXtSXW+GoxI6msjcg3PWQ4vc=
+	t=1746795932; cv=none; b=sITsC0473VKPdc885Isd0amgT2iFpKVivOzwuB2r31e3BThlSeThGtTYtFB5fPLzJpuD5hX2QTwW0IjRSil79dvIRP7g4zagiekU0D9jhig/E16R/PVwTTb/pUBljtmkDRzTV7gp9cX2gzRsE8oHkaZX78LzJgXRlDC6CzWI4io=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746795665; c=relaxed/simple;
-	bh=4golUNbzkJaW4FGVhyb62ZVAkVMJaWk67Gx8S8QZnKw=;
+	s=arc-20240116; t=1746795932; c=relaxed/simple;
+	bh=wf5aooCRDYeY8UPU0Zbj2NphFSO7stnqv3aY4IenlGk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bIGI6nqEBYg3Rnu83dpCYOR7TPaNlwjOvBwa5y+ZRVDao01Rx+k0GDVW1Mw5uNni3MwJ/EmEblpHIHuHTd2ngN9jK1PNbPXnpslLHZEZb7LT5Uu3USMAzQh+FNcpknFnoS7HHfkKV3hFvE6qBsFuHdXisT7kudgSHUO6u1j9yiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=b4Qbd4mF; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=AfEelIj+BBvQA3qNO9D9UmBF4ba/BqaL4KcD9NEPvFk=; b=b4Qbd4mFlKccaQ6pTjFzKmIxvJ
-	7UxlLabbpE8L6hNRiAZYvKuJCdyW7pRWF2sUuETLFxviVxZ3x8ELYu7ZHKYUCaev5kVwGpcwxtfR0
-	WEwO3aOlmgx1as/vK5eSKGBJSE+3BiN8PPtG/Lr74jl+Xd9s2wsOV7G4JuNEiJFGQRQU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uDNL9-00C70E-Uz; Fri, 09 May 2025 15:00:35 +0200
-Date: Fri, 9 May 2025 15:00:35 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: leo.jt.wang@gmail.com
-Cc: robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
-	keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
-	geert+renesas@glider.be, magnus.damm@gmail.com,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, george.kw.lee@fii-foxconn.com,
-	leo.jt.wang@fii-foxconn.com
-Subject: Re: [PATCH] ASPEED: bmc: Add device tree for Meta(Facebook) Clemente
- compute-tray.
-Message-ID: <d8e561ec-e600-4b51-b901-6fd125eef8cc@lunn.ch>
-References: <681dc3eb.170a0220.1fd80.c9ce@mx.google.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JvDKTqp74+nLCYwclosltpbKEEALspYLQwDPCokIuf1edhOV7LKCFKOOMzhbFyzbsz32NbdPAjHXcek/wrMnZGcecLuRmGgCykqQ/sBTIHHL9Hlv12gHEXjrjJxlBkqPRBzFba0OpCgQy+PucU+Nu00+OLs2m2OPq8+TeVJ4aNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io; spf=pass smtp.mailfrom=rosenzweig.io; dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b=tIgn3Xe2; arc=none smtp.client-ip=91.218.175.185
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rosenzweig.io
+Date: Fri, 9 May 2025 09:05:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rosenzweig.io;
+	s=key1; t=1746795918;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gzSnmSwk0nGHtv2iF4t+ebWzcjSFYhcwYVYNbytSiHk=;
+	b=tIgn3Xe2JeGm376gk4FVSfq+FmP0ZaFCgb4UHTE7K3hNLhS/FqRBYeGELvYgW5MxqZGVZ4
+	n0kBVS1euuaTESPcXx/31E0/NnalAoUrBvZt5CdQsj7zWa61fB8zdwAYSvsr1yGN6ayaw6
+	FhsDNP1jUAZnni0KgqScKToufJJ3m8+WS8U12YoV9ufY1G6w2sASlEza3I+RbTJWkAvvd6
+	kEJQbO8AIxAufRvXll84vR04nBi3tqBtyjeo0QTFDI2fCwGmFETIm6EGohBbQg4tfZu+St
+	UjkMTd89YeYTR25UgS7gTl4cm3jzqLDzzBP6s9JlKlRkSU2SLBnk78pEA/ds7A==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+To: sven@svenpeter.dev
+Cc: Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>,
+	Hector Martin <marcan@marcan.st>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
+	Marc Zyngier <maz@kernel.org>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 6/9] power: reset: macsmc-reboot: Add driver for
+ rebooting via Apple SMC
+Message-ID: <aB39iJm9759RYAKW@blossom>
+References: <20250503-smc-6-15-v4-0-500b9b6546fc@svenpeter.dev>
+ <20250503-smc-6-15-v4-6-500b9b6546fc@svenpeter.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,19 +71,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <681dc3eb.170a0220.1fd80.c9ce@mx.google.com>
+In-Reply-To: <20250503-smc-6-15-v4-6-500b9b6546fc@svenpeter.dev>
+X-Migadu-Flow: FLOW_OUT
 
-> +&mac0 {
-> +	status = "okay";
-> +	phy-mode = "rgmii-rxid";
+> +	for (i = 0; i < ARRAY_SIZE(ac_power_mode_map); i++)
+> +		if (mode == ac_power_mode_map[i])
+> +			len += scnprintf(buf+len, PAGE_SIZE-len,
+> +					 "[%s] ", ac_power_modes[i]);
+> +		else
+> +			len += scnprintf(buf+len, PAGE_SIZE-len,
+> +					 "%s ", ac_power_modes[i]);
 
-Please see:
+Nit: { braces } at least on the for loop...
 
-https://patchwork.kernel.org/project/netdevbpf/patch/20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch/
+(And might be more concise as
 
-Aspeed are supposed to be fixing their MAC driver, which is currently
-broken. You might want to apply some pressure to them to get the fixed
-merge. Until then, you should drop this broken node.
+    for (i = 0; i < ARRAY_SIZE(ac_power_mode_map); i++) {
+        bool match = (mode == ac_power_mode_map[i]);
+        len += scnprintf(buf+len, PAGE_SIZE-len,
+                 match ? "[%s] " : "%s ", ac_power_modes[i]);
+    }
 
-	Andrew
+though IDK how people feel about it.)
+
+> +		mdelay(100);
+> +		WARN_ON(1);
+
+...What?
+
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Failed to register power-off handler\n");
+> +
+> +
+> +	ret = devm_register_sys_off_handler(&pdev->dev, SYS_OFF_MODE_RESTART_PREPARE,
+> +					    SYS_OFF_PRIO_HIGH, macsmc_prepare_atomic, reboot);
+
+Nit: squash double blank-line
 
