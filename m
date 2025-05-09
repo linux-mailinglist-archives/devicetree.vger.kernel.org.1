@@ -1,358 +1,127 @@
-Return-Path: <devicetree+bounces-175824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0760AB1FDA
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 00:23:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE691AB1FE3
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 00:28:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 267741BC37A8
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 22:24:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6F157AFBCF
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 22:26:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A7DC26156A;
-	Fri,  9 May 2025 22:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BF20262FD8;
+	Fri,  9 May 2025 22:27:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RfbLc/W7"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="q0tflXen"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E80D2609C3;
-	Fri,  9 May 2025 22:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F39F3261399
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 22:27:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746829424; cv=none; b=A+C2swVPUWKYnocZhuMdc/UIvrpwKzpCKV6KP4ZZ+f1cIqEvfu0B1WHLsFLvMtytXvh59P8Ef059f3YyGltKKKyumbNdZT4e5vw4jGUxb5xxLZ+pfhZjwp5WvMrqZHuU3nxehEi9QRvSA7MQSbwC8HWDfiSbrUrOhojAYPQaasA=
+	t=1746829676; cv=none; b=sgq9Z4ATliZRuwleMZFzuewVmpVJnoiWfimrdIP3M30MZXNUTBJrCkNTQF160kxRAxB1DKxwEsVHLjSuy49L+vJbOi08MIqjDk8pzCVzh0swZscUHgLicBEKKezXCivRsLibcflkfNp6fKduCbXKdRdDYjPHtwJCSgDEtfLFB9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746829424; c=relaxed/simple;
-	bh=gkF1iBmfa995sCmBCk6c8+T9mHJSG8t8B52ptEzcenk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WSAUnq+Frino6tP6KdwXsMT3SBIHj/ks7Qbhe7CRD0aZWqgqFtKzVErBgh8F4V6h/w0uzx9P29HLkAF1Ky/WkFItTIANGZpNHBUzOXndTtrixj/6l6ujT45TVW/x+Rs8n74pnpPVP8X4RzC7FJqIDqCbmk/wv5V/vIxrLrcCBI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RfbLc/W7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8024C4CEE4;
-	Fri,  9 May 2025 22:23:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746829424;
-	bh=gkF1iBmfa995sCmBCk6c8+T9mHJSG8t8B52ptEzcenk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RfbLc/W7nKx3W2LvZGCaQB6YYlS1E4CYO26pTc4H/SxQyJMmEgAzLBVu8/uJu4Eof
-	 XjlFXdPu6LIuGrDhPTdjAVHseeYh0CTNg7/FA548wEmz6jnIelPfd2LE3GKe24OjPe
-	 iyqFxz6/kj71MouugcJn5tcXScw6ftYrYZz9lDHyZcoXrxFpZq+cY65ceXU3z6P3zV
-	 cycXS/HhbC5GditcgtcYBhy/ziiADbP6B7KlhN9YToWK68+uaiyDn/C/YWjzoXXBNK
-	 srIq2MhmR/jWed+160wyl6NwJFyG9KFh5FTG8wDe4LibRh+SMV5P+kYq1LKo2cnDZi
-	 eFshsbC8wUZCw==
-Date: Fri, 9 May 2025 17:23:42 -0500
-From: Rob Herring <robh@kernel.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, kernel-list@raspberrypi.com
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
- brcm,bcm2835-armctrl-ic to DT schema
-Message-ID: <20250509222342.GA85203-robh@kernel.org>
-References: <20250505144618.1287539-1-robh@kernel.org>
- <ee082ba2-d452-43a1-bb94-3c04c407ea31@gmx.net>
+	s=arc-20240116; t=1746829676; c=relaxed/simple;
+	bh=fpcCe5Pe3DQ99Xt5/ZVJQxg4XXuoBQ3TXj482waHmN0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=dE/2hMZ+aPEvmnirL+OxlxOPPyGd3lWocRfF0H4mq8a5/wvl2rWx/fXUe1EneKUcNGa3sb2smzu3X7G0GDV2gOTh4VPepKydudFjSmp3hs5/hAJsB7kJngO7UyjffkndmYL7OIQ/yyMCPkyBgXrZLL0gz8S5xvbgvZEdX/aB3+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=q0tflXen; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7415d28381dso2025186b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 15:27:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1746829671; x=1747434471; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SlfY6HFrt6KjD7LtGN0cH5vsLg4tj5XTdmzdfNRbZFQ=;
+        b=q0tflXenaF26nFZQ0OZLF+enPQSgKw/Q+/e0AzkZnyuKvBWkpTeo6TE+3aOQuzUqkO
+         GN4JdiJCyQJ8z0rTYlCVrZKC+ZYgykT4zlXCME1NZYf1OI4aTvs7bSnWSIOhi1HrDFNp
+         HS1zBS6ueMR/X3rKPbxpCmank5R/HYYJb1WxpuPwfCGJRt1OVdgdAv1AvI7kHQJypKpR
+         T8FFAU8PJm9ygd7g/KzJ7gZe/Jxhfqr0HtO8VEU/ponA8zDvwCFMDDKUnRuosTOoKk+I
+         p5SADGfzAwXDdSmIH+J5cFLxAAHhk0rbN22USSIhYVhy8vkpvojXB6IM0FJV9HV065zC
+         ALrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746829671; x=1747434471;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SlfY6HFrt6KjD7LtGN0cH5vsLg4tj5XTdmzdfNRbZFQ=;
+        b=L8mdHBR7ZTjfsRdL/Iz2jJKwoxffoUX8hxUz/0QMnj9RhhzjevFSxYb5FyT4W8qD1H
+         sSjEg93TwjDUkf/moA2gJaEVr0/Mvb1Hw4pZPi009X+T9SclhQY1Lwkz3x4TXUQYcbZE
+         PLNdeqbkAZunhyqb1KBE5bxlrxAllBM5b3D+K24YvBZRHr9jEg6xBQj5MqTtCL6HlLUZ
+         sPVswAjoW4QKYb8QSTjuYdXFBlihZN2TbM4VOcI4C8r978OCdyLBHE/GJwpqs1pmQINs
+         ncTXQw4VsWHfZb1yVK23uwjGQWpU5VKjpm5q77NPOWcNfAWRx1Jz8TLRX6fJvCU9bJiX
+         p+uw==
+X-Forwarded-Encrypted: i=1; AJvYcCUPwvi9u/44eIdMsAaLzEhQ1wmT7q1yNUAAHS7VO1Ohj1Q5blRAMP4OqQZCua1nLnbhdKZxA4nKK+8C@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlYEnETNj5UTTqlH8vB1nPfPULje5c7sLDchbWqP2KiEW0zizM
+	sj1razd+3P7X70YaDqm2V8cnTagvid0jlFy8zOw5wch1845FDYsADTormp+FEG4=
+X-Gm-Gg: ASbGncvNz3LdX1+fWEUemntC93vFYbFmoA8Tzq5Fe69cXz7BVcOV8mH0JfXNnRHLjY9
+	AtARSCndR8PAd1MUFHORL7QLMdhx0/PnqxbzoAwY+xYS2OMehs2ttrWqmiba258egwx+wRbTMIp
+	H/vytlcoPAf01nvkA7ju43rFf7iAE7bVt6Rg5pbdbi5gB6fJRdd4lWbXRzOGImzLCjm518Tfa4w
+	m3w6eE4lppkzUB8gWf29SAYtsefDSmyr4bam44aNuBRmcXx29w/jWli+UnF9ewdxPZhgO8aJ1zu
+	PpB33dPf7dZILq+I8yOeYKDIP4Q108xzN1xlQZZeVGzWr6KzhmCq2DXYXQ==
+X-Google-Smtp-Source: AGHT+IENf7Kcb8dJPQCDteAQPpxoaSfjEOkbSR/iBVh1JMloeodx77VyrnDGlCBUYNSjh2bS0sBuDQ==
+X-Received: by 2002:a17:903:41c2:b0:22e:62da:2e66 with SMTP id d9443c01a7336-22fc8c78182mr82262675ad.24.1746829671116;
+        Fri, 09 May 2025 15:27:51 -0700 (PDT)
+Received: from x1 (97-120-122-6.ptld.qwest.net. [97.120.122.6])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc82a0e52sm22426175ad.216.2025.05.09.15.27.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 May 2025 15:27:50 -0700 (PDT)
+Date: Fri, 9 May 2025 15:27:48 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: soc@kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>, Conor Dooley <conor@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: T-HEAD Devicetrees for v6.16
+Message-ID: <aB6BZMWDXoRXrZVf@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ee082ba2-d452-43a1-bb94-3c04c407ea31@gmx.net>
 
-On Mon, May 05, 2025 at 06:03:29PM +0200, Stefan Wahren wrote:
-> Hi Rob,
-> 
-> Am 05.05.25 um 16:46 schrieb Rob Herring (Arm):
-> > Convert the Broadcom BCM2835 ARMCTRL interrupt controller binding to
-> > schema format. It's a straight-forward conversion of the typical
-> > interrupt controller.
-> i send a similiar patch on May 2nd:
-> https://lore.kernel.org/linux-devicetree/20250502105213.39864-1-wahrenst@gmx.net/
-> 
-> I would prefer your version, but ...
-> > 
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> >   .../brcm,bcm2835-armctrl-ic.txt               | 131 --------------
-> >   .../brcm,bcm2835-armctrl-ic.yaml              | 161 ++++++++++++++++++
-> >   2 files changed, 161 insertions(+), 131 deletions(-)
-> >   delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt
-> >   create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt
-> > deleted file mode 100644
-> > index bdd173056f72..000000000000
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt
-> > +++ /dev/null
-> > @@ -1,131 +0,0 @@
-> > -BCM2835 Top-Level ("ARMCTRL") Interrupt Controller
-> > -
-> > -The BCM2835 contains a custom top-level interrupt controller, which supports
-> > -72 interrupt sources using a 2-level register scheme. The interrupt
-> > -controller, or the HW block containing it, is referred to occasionally
-> > -as "armctrl" in the SoC documentation, hence naming of this binding.
-> > -
-> > -The BCM2836 contains the same interrupt controller with the same
-> > -interrupts, but the per-CPU interrupt controller is the root, and an
-> > -interrupt there indicates that the ARMCTRL has an interrupt to handle.
-> > -
-> > -Required properties:
-> > -
-> > -- compatible : should be "brcm,bcm2835-armctrl-ic" or
-> > -                 "brcm,bcm2836-armctrl-ic"
-> > -- reg : Specifies base physical address and size of the registers.
-> > -- interrupt-controller : Identifies the node as an interrupt controller
-> > -- #interrupt-cells : Specifies the number of cells needed to encode an
-> > -  interrupt source. The value shall be 2.
-> > -
-> > -  The 1st cell is the interrupt bank; 0 for interrupts in the "IRQ basic
-> > -  pending" register, or 1/2 respectively for interrupts in the "IRQ pending
-> > -  1/2" register.
-> > -
-> > -  The 2nd cell contains the interrupt number within the bank. Valid values
-> > -  are 0..7 for bank 0, and 0..31 for bank 1.
-> > -
-> > -Additional required properties for brcm,bcm2836-armctrl-ic:
-> > -- interrupts : Specifies the interrupt on the parent for this interrupt
-> > -  controller to handle.
-> > -
-> > -The interrupt sources are as follows:
-> > -
-> > -Bank 0:
-> > -0: ARM_TIMER
-> > -1: ARM_MAILBOX
-> > -2: ARM_DOORBELL_0
-> > -3: ARM_DOORBELL_1
-> > -4: VPU0_HALTED
-> > -5: VPU1_HALTED
-> > -6: ILLEGAL_TYPE0
-> > -7: ILLEGAL_TYPE1
-> > -
-> > -Bank 1:
-> > -0: TIMER0
-> > -1: TIMER1
-> > -2: TIMER2
-> > -3: TIMER3
-> > -4: CODEC0
-> > -5: CODEC1
-> > -6: CODEC2
-> > -7: VC_JPEG
-> > -8: ISP
-> > -9: VC_USB
-> > -10: VC_3D
-> > -11: TRANSPOSER
-> > -12: MULTICORESYNC0
-> > -13: MULTICORESYNC1
-> > -14: MULTICORESYNC2
-> > -15: MULTICORESYNC3
-> > -16: DMA0
-> > -17: DMA1
-> > -18: VC_DMA2
-> > -19: VC_DMA3
-> > -20: DMA4
-> > -21: DMA5
-> > -22: DMA6
-> > -23: DMA7
-> > -24: DMA8
-> > -25: DMA9
-> > -26: DMA10
-> > -27: DMA11-14 - shared interrupt for DMA 11 to 14
-> > -28: DMAALL - triggers on all dma interrupts (including channel 15)
-> > -29: AUX
-> > -30: ARM
-> > -31: VPUDMA
-> > -
-> > -Bank 2:
-> > -0: HOSTPORT
-> > -1: VIDEOSCALER
-> > -2: CCP2TX
-> > -3: SDC
-> > -4: DSI0
-> > -5: AVE
-> > -6: CAM0
-> > -7: CAM1
-> > -8: HDMI0
-> > -9: HDMI1
-> > -10: PIXELVALVE1
-> > -11: I2CSPISLV
-> > -12: DSI1
-> > -13: PWA0
-> > -14: PWA1
-> > -15: CPR
-> > -16: SMI
-> > -17: GPIO0
-> > -18: GPIO1
-> > -19: GPIO2
-> > -20: GPIO3
-> > -21: VC_I2C
-> > -22: VC_SPI
-> > -23: VC_I2SPCM
-> > -24: VC_SDIO
-> > -25: VC_UART
-> > -26: SLIMBUS
-> > -27: VEC
-> > -28: CPG
-> > -29: RNG
-> > -30: VC_ARASANSDIO
-> > -31: AVSPMON
-> > -
-> > -Example:
-> > -
-> > -/* BCM2835, first level */
-> > -intc: interrupt-controller {
-> > -	compatible = "brcm,bcm2835-armctrl-ic";
-> > -	reg = <0x7e00b200 0x200>;
-> > -	interrupt-controller;
-> > -	#interrupt-cells = <2>;
-> > -};
-> > -
-> > -/* BCM2836, second level */
-> > -intc: interrupt-controller {
-> > -	compatible = "brcm,bcm2836-armctrl-ic";
-> > -	reg = <0x7e00b200 0x200>;
-> > -	interrupt-controller;
-> > -	#interrupt-cells = <2>;
-> > -
-> > -	interrupt-parent = <&local_intc>;
-> > -	interrupts = <8>;
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.yaml b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.yaml
-> > new file mode 100644
-> > index 000000000000..4edc4c3ff6bd
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.yaml
-> > @@ -0,0 +1,161 @@
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/interrupt-controller/brcm,bcm2835-armctrl-ic.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: BCM2835 ARMCTRL Interrupt Controller
-> > +
-> > +maintainers:
-> > +  - Florian Fainelli <florian.fainelli@broadcom.com>
-> I would suggest to add
-> 
-> - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
 
-Ok, added.
+  Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
 
-> > +
-> > +description: >
-> > +  The BCM2835 contains a custom top-level interrupt controller, which supports
-> > +  72 interrupt sources using a 2-level register scheme. The interrupt
-> > +  controller, or the HW block containing it, is referred to occasionally as
-> > +  "armctrl" in the SoC documentation, hence naming of this binding.
-> > +
-> > +  The BCM2836 contains the same interrupt controller with the same interrupts,
-> > +  but the per-CPU interrupt controller is the root, and an interrupt there
-> > +  indicates that the ARMCTRL has an interrupt to handle.
-> > +
-> > +  The interrupt sources are as follows:
-> > +
-> > +  Bank 0:
-> > +    0: ARM_TIMER
-> > +    1: ARM_MAILBOX
-> > +    2: ARM_DOORBELL_0
-> > +    3: ARM_DOORBELL_1
-> > +    4: VPU0_HALTED
-> > +    5: VPU1_HALTED
-> > +    6: ILLEGAL_TYPE0
-> > +    7: ILLEGAL_TYPE1
-> > +
-> > +  Bank 1:
-> > +    0: TIMER0
-> > +    1: TIMER1
-> > +    2: TIMER2
-> > +    3: TIMER3
-> > +    4: CODEC0
-> > +    5: CODEC1
-> > +    6: CODEC2
-> > +    7: VC_JPEG
-> > +    8: ISP
-> > +    9: VC_USB
-> > +    10: VC_3D
-> > +    11: TRANSPOSER
-> > +    12: MULTICORESYNC0
-> > +    13: MULTICORESYNC1
-> > +    14: MULTICORESYNC2
-> > +    15: MULTICORESYNC3
-> > +    16: DMA0
-> > +    17: DMA1
-> > +    18: VC_DMA2
-> > +    19: VC_DMA3
-> > +    20: DMA4
-> > +    21: DMA5
-> > +    22: DMA6
-> > +    23: DMA7
-> > +    24: DMA8
-> > +    25: DMA9
-> > +    26: DMA10
-> > +    27: DMA11-14 - shared interrupt for DMA 11 to 14
-> > +    28: DMAALL - triggers on all dma interrupts (including channel 15)
-> > +    29: AUX
-> > +    30: ARM
-> > +    31: VPUDMA
-> > +
-> > +  Bank 2:
-> > +    0: HOSTPORT
-> > +    1: VIDEOSCALER
-> > +    2: CCP2TX
-> > +    3: SDC
-> > +    4: DSI0
-> > +    5: AVE
-> > +    6: CAM0
-> > +    7: CAM1
-> > +    8: HDMI0
-> > +    9: HDMI1
-> > +    10: PIXELVALVE1
-> > +    11: I2CSPISLV
-> > +    12: DSI1
-> > +    13: PWA0
-> > +    14: PWA1
-> > +    15: CPR
-> > +    16: SMI
-> > +    17: GPIO0
-> > +    18: GPIO1
-> > +    19: GPIO2
-> > +    20: GPIO3
-> > +    21: VC_I2C
-> > +    22: VC_SPI
-> > +    23: VC_I2SPCM
-> > +    24: VC_SDIO
-> > +    25: VC_UART
-> > +    26: SLIMBUS
-> > +    27: VEC
-> > +    28: CPG
-> > +    29: RNG
-> > +    30: VC_ARASANSDIO
-> > +    31: AVSPMON
-> > +
-> Don't we need something like
-> 
-> allOf:
->   - $ref: /schemas/interrupt-controller.yaml#
-> 
-> ?
+are available in the Git repository at:
 
-No. It's not needed because you have to define the constraints here 
-anyways. Really, only schemas with child nodes or that have properties 
-without further constraints need the reference. It doesn't hurt to have 
-it either. It just gets applied twice.
+  git@github.com:pdp7/linux.git tags/thead-dt-for-v6.16
 
-This could change though. Early on when there were not many device 
-schemas, it was useful to apply interrupt-controller.yaml on all nodes 
-named 'interrupt-controller', but that need has diminished.
+for you to fetch changes up to a4c95b924d513728df8631471eb3b1c300909e21:
 
-Rob
+  riscv: dts: thead: Add device tree VO clock controller (2025-05-07 23:38:41 -0700)
+
+----------------------------------------------------------------
+T-HEAD Devicetrees for v6.16
+
+There are several additions for the T-Head TH1520 SoC:
+
+ - AON (Always-On) node which serves as a power-domain controller
+ - Reset controller node
+ - VO (Video Output) clock controller node
+
+These changes have all been tested in linux-next with the corresponding
+driver patches.
+
+Signed-off-by: Drew Fustini <drew@pdp7.com>
+
+----------------------------------------------------------------
+Michal Wilczynski (3):
+      riscv: dts: thead: Introduce power domain nodes with aon firmware
+      riscv: dts: thead: Introduce reset controller node
+      riscv: dts: thead: Add device tree VO clock controller
+
+ arch/riscv/boot/dts/thead/th1520.dtsi | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
