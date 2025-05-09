@@ -1,132 +1,158 @@
-Return-Path: <devicetree+bounces-175584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5CBEAB1333
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:21:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 377F6AB1339
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 14:23:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FAB21BA6208
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:21:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFD131BC6B71
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 12:23:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1805128F52F;
-	Fri,  9 May 2025 12:21:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 280E7290BAA;
+	Fri,  9 May 2025 12:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="aHIBkRQb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="J+PZEqEd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 451B928ECE9;
-	Fri,  9 May 2025 12:21:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EB1528FA88
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 12:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746793274; cv=none; b=FtPDbfj4Q42aDM+g+URzAdfrdQjdo2O0Zmkkx6Mu7hiI1/IRT1VgBeS1HiZRZ8tM1I94vUXfLTkH9ptxxiLkGRNaBCIsAX+2Fvr5To9+GVBwJsKEJV9G8SXtaxgMtvCipJnrWnqGcV5MDGxwAMyfn4zZCfjYn9Wawa7+TVpngwE=
+	t=1746793405; cv=none; b=iuuU5e/0Qqw8lRuQm1arhJE/h8Z5NfJJNuz9nmkPiJGkeEpajHKFLQWdUVRKYTkUTc/i3CI2wm1CyjkqG5YPwqR7kblLbhdfKKSxfj5TmsvpY8QoItxJH2eDrzWyRQjkuHAeLH1BJDEjRTxRvEE689rOll0aBArBarmttmItWQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746793274; c=relaxed/simple;
-	bh=NoeuLOpRGRu25SGuPhuZ8S7zFoXJi2CcumQOXl3cSnU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Tq0fHTIxSVZW1uFHSOpCul5Xj9jysb8eXb5DKDpxEyw6ECymBAT7BxCp/7pC9BeZ7vWfh/N5yBMwPwYLVkBteKjrKfRBtwyTXX3Jh6RTq1G5YXfeuh9x8GYiogFvdgc0429jVldSM0SUTGslyQKIuHEJCIfusYlLl0qQKdH0FjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=aHIBkRQb; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 549CKwMW1380492
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 9 May 2025 07:20:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1746793258;
-	bh=n+zfqk/2UPvR9IM2h+JQmRugqvCX6/gJ7s0fllqMlcY=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=aHIBkRQb2TXbmRjspytwNOCIE+piNtA1uOPmNKdYsLt00iSDlq+21C9ZvL3kNEZhM
-	 MbHtmyRh2Crhkjv9H7jLY1Oe3zhlYEhoA5J4qnFTkznzJjdyPmG/yWPTircsZDf01x
-	 QwD1fSjOHIH2Goz+TD8mu3HrI2VTPBwjefW6J9Gk=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 549CKwMf099555
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 9 May 2025 07:20:58 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
- May 2025 07:20:58 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 9 May 2025 07:20:58 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 549CKw5F015480;
-	Fri, 9 May 2025 07:20:58 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        Yemike Abhilash Chandra
-	<y-abhilashchandra@ti.com>
-CC: Nishanth Menon <nm@ti.com>, <vaishnav.a@ti.com>, <u-kumar1@ti.com>,
-        <r-donadkar@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <jai.luthra@linux.dev>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/4] Add overlays for IMX219 and OV5640 on J722S
-Date: Fri, 9 May 2025 07:20:56 -0500
-Message-ID: <174679325113.1568978.6497764622589156474.b4-ty@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250509091911.2442934-1-y-abhilashchandra@ti.com>
-References: <20250509091911.2442934-1-y-abhilashchandra@ti.com>
+	s=arc-20240116; t=1746793405; c=relaxed/simple;
+	bh=BPTqbhqBNKF7eXF603y1EFlEzMSdfVj/K5RsaXM8QAE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KUSa/jL507Y8M0IIkxSyn2mYkzrHv6QMqAgJ7noLerlgOjYLqPIv2BSMlLWmWysRphyp9bTtXRmEUoXQoMrKP5fetOxCLlOzvDSIq+JrTqaiv8ipehG9ce8IZ7y48N2ASVpqqhamFberQKPCuyuNpAS5/eukzayxDwGNGLUuV40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=J+PZEqEd; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 549BOjjJ011683
+	for <devicetree@vger.kernel.org>; Fri, 9 May 2025 12:23:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1f/JYxetqb8RgZlUy4cv59FbC1e8F5GR8Vi4igmQdNk=; b=J+PZEqEd9BepWbVD
+	iex2vj5XBGALhIf/4pMYKcDfLKs+p4pNKeZ9JDUxf5DFigiVGR1+E4jh4qRg6nCf
+	HGjI11DGa0llDaZesu2jl7sHJaPzvYqyT+8NjYbclu2MQ80pVRQoI4yWp6tLq+rz
+	n5+MeI4ipNvNsSuBf/KJnqb5qPcVOgEenfYOtWS8055VIz5hPju1xBtJBPknQueT
+	t9uMcYjLm7lLgR9CdFEFt3HY2OQV+EWE31Tb1Uy7hGIacvDmmZ/vVKGOBXlSR9U5
+	sW5ax9HCPx7tY+scTHuA8QU/H1A6qC2xwiabR9og9cW25U2F7Fwd/0vl4qr5Zran
+	aCPG2g==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46gnpmmmen-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 09 May 2025 12:23:21 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6f5402ec95dso1408476d6.3
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 05:23:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746793400; x=1747398200;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1f/JYxetqb8RgZlUy4cv59FbC1e8F5GR8Vi4igmQdNk=;
+        b=lpZ4/gLC6kIDoJCK5yx/0lKffntFCr12PBvA8us+0zquwYUEIRKBN5u7LFd/Kmt7BQ
+         qkzhIq1tKxKxjKzHsxxhdIxLxTwsGCJvwikT/UT8mgyPHnXFhTQRxzYF+6Ergfpc8vYj
+         LXtf+D1uaRxLNV+BaBsfE/tiZ7O3KsKImkCllsFq8gbHWqEpKZPX3fkUmpsnRc184Dom
+         kfgSvlv4qCcLmMZ/J6nZu3N6J/XwkKfwRP0oo1TuAoVtjfGP8ojdepjRly7eLpY48ddF
+         2BDE23+38/Xn3qvL14PYN6ixZxOprMRU2Eefb9ry9fD7wk1T4YlDgrkt2FPpGi4bTYDn
+         RS0w==
+X-Forwarded-Encrypted: i=1; AJvYcCWz1TJBWQJLtjloBUzQhcX6lkzMpg3Dmiuodwa0iYxv9n0TQOzBn489ep8nPHel9QYryzm4AJHk5UiI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHyBdQUYoGqqYq6Ik2ec36ps9ZxPX12selGGHUyOhzlhENqtYm
+	bU3Qk815ugJInCjepLYHduMqolU4NrE+5cgL6VQ/dvbPIMn5bNkFIWJaopfmQEXqFfbxk+H3KKA
+	OA7Z5dTScq6D4iZjwBOEmhcFkwTf1zl6PMIfYaeqWMEezOouEl/J+BAE6MwRq
+X-Gm-Gg: ASbGncveUAMyPzybgdSMk0ARe7jTfZH1Uu6b7DAh7VrizPbnSe5R7laDCIVK1y1IKzv
+	vIw+lo4IhvA1GliWNFoVChv4ue259aouECPyA3LVL78+KZpP1MTir71yAXBOVSqndE9aJ/13ajX
+	hXNowWgilp4/44BeUmUboFCKvYP/Qghk+9BzL+KUeDz50s1lcm0alFL0i8XYsnsZ2E7ZAc2wk+r
+	Mg81k1B48X/U3yH6ds8SqP9drsqhwxz9nPJEPSwUZ8xxOK3XbYkRNk+EYDDPSUkdqguM8IXJJsM
+	PUE/2r32LkSgLUkowdCqzFTscKj4F73xhZd4BnRfk5/QygWefQujWswssy4PWaZLFxE=
+X-Received: by 2002:a05:6214:5197:b0:6e4:4034:5ae8 with SMTP id 6a1803df08f44-6f6e47bc895mr17154206d6.5.1746793399920;
+        Fri, 09 May 2025 05:23:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHb7jn/fkRrS+0pNmBt25lIF4IJKWPlbMbX3OP46mB2qIDzck4hs/EEPTKkaXlUd5qrFgS1nA==
+X-Received: by 2002:a05:6214:5197:b0:6e4:4034:5ae8 with SMTP id 6a1803df08f44-6f6e47bc895mr17154106d6.5.1746793399605;
+        Fri, 09 May 2025 05:23:19 -0700 (PDT)
+Received: from [192.168.65.105] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5fc9d700579sm1336922a12.51.2025.05.09.05.23.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 May 2025 05:23:19 -0700 (PDT)
+Message-ID: <0ebf9eb5-6906-47af-a4f2-99a4587150be@oss.qualcomm.com>
+Date: Fri, 9 May 2025 14:23:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100-*: Drop useless DP3
+ compatible override
+To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Xilin Wu <wuxilin123@gmail.com>,
+        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        Srinivas Kandagatla <srini@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+        Sebastian Reichel
+ <sre@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <quic_kdybcio@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20250509-x1e80100-dts-drop-useless-dp-compatible-override-v2-1-126db05cb70a@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250509-x1e80100-dts-drop-useless-dp-compatible-override-v2-1-126db05cb70a@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=TpjmhCXh c=1 sm=1 tr=0 ts=681df3b9 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
+ a=KKAkSRfTAAAA:8 a=oFAjQAwgCFvTbsaC9pkA:9 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: MCESAzyZmTfN_TVBf1DMMJO2g6S2ny0J
+X-Proofpoint-GUID: MCESAzyZmTfN_TVBf1DMMJO2g6S2ny0J
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTA5MDEyMCBTYWx0ZWRfX7s1IG87rxgAf
+ rwNDCevAem9wZ6xcvMrkxf1uZwYPNU7fH3JOEqQO1BkG11qWc1si+ZAhsrS97+LGqPTSv1Ma/yR
+ EKeE0HpsKBJUx8rU3PlGGI0M7NvoMfpjb3KvGxityAaCgZiO5UAAy4tNv3kXJjXULXuYU89kpua
+ Xr2+bbcy24F8OoURJOhUT3S/dP/w9plQ/JFi2iKUlEHxrQLN4itC92QPVa79pP4KCvcKrs+vp7W
+ sNIsxbiFO3VDmGtjCcDnMrJsPOd8Npz9E+/L/B/Mna0sMBkTtanGsQhJOPZtwrwY01ACR5ZvQZg
+ W0YJelXebaJHS1wNPoqk84bXPIBhBN+k7KaVUr6Sx7tyLHr1dURsD8ge6EhYBHuhV3gXrs+shsZ
+ 6g0b5Cu60FS/nZopZwun6k+rvbWYgLRmdUaPBtFCgi3XN82wr4WcQS0KeLABVM/jWYcD8MoW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-09_05,2025-05-08_04,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 bulkscore=0 lowpriorityscore=0 suspectscore=0
+ clxscore=1015 adultscore=0 malwarescore=0 mlxlogscore=792 spamscore=0
+ impostorscore=0 mlxscore=0 phishscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2504070000 definitions=main-2505090120
 
-Hi Yemike Abhilash Chandra,
-
-On Fri, 09 May 2025 14:49:07 +0530, Yemike Abhilash Chandra wrote:
-> This series adds IMX219 and OV5640 overlays to enable support
-> for 4 sensors on J722S. This provides a reference for a user to
-> enable a different sensor on any of the ports.
+On 5/9/25 9:08 AM, Abel Vesa wrote:
+> Back when display support was added initially to CRD, and we used to have
+> two separate compatibles for eDP and DP, it was supposed to override the
+> DP compatible with the eDP one in the board specific devicetree. Since
+> then, the DP driver has been reworked to figure out the eDP/DP at runtime
+> while only DP compatible remained in the end.
 > 
-> Test logs:
-> IMX219: https://gist.github.com/Yemike-Abhilash-Chandra/88d4803378d4a3e20f1cbd3b9ada91ac
-> Ov5640: https://gist.github.com/Yemike-Abhilash-Chandra/738737fa5b1b635d260d9601ae2e85aa
+> Even though the override does nothing basically, drop it to avoid
+> further confusion. Drop it from all X Elite based platforms.
 > 
-> [...]
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-[1/4] arm64: dts: ti: j722s-evm: Add DT nodes for power regulators
-      commit: 9bb89ec393e368cf26a65c04cfd4a14851368df0
-[2/4] arm64: dts: ti: j722s-evm: Add MUX to control CSI2RX
-      commit: 2e8861103a08e4220e99b673ab247aff108ddef5
-[3/4] arm64: dts: ti: k3-j722s-evm: Add overlay for quad IMX219
-      commit: 646bcbcbdfad22818d32c8771583844aab4e05dd
-[4/4] arm64: dts: ti: k3-j722s-evm: Add overlay for TEVI OV5640
-      commit: 6a9d340b1f9910f0f88e0819c464938b91610765
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+Konrad
 
