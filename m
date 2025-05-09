@@ -1,94 +1,73 @@
-Return-Path: <devicetree+bounces-175413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8C40AB0D2C
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:32:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F17D1AB0D36
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 10:35:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F8FE1BC6A1F
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:32:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 055267A501E
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 08:34:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DADF2741CF;
-	Fri,  9 May 2025 08:32:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C982272E55;
+	Fri,  9 May 2025 08:35:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z7OEvrvt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H9IyVdIC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11D3230BC9
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 08:32:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F2F22D9EF;
+	Fri,  9 May 2025 08:35:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746779532; cv=none; b=ahQDIqlj6Lv8v6d8P8QwBKEPyTXlkIg8YNys9xu/mEDAKs8Bx5Ux2bLTgn1AvIyQU1N3jB+5rXEi2Nm4wmWWZ/ail5XYK/TfSItp0t8Tcr2W8OYhtvA/Xv6kXmi4c8vvvMDNQBg8990fSmDLj7llFblkPoKlnaCkyqKiE+WfL1M=
+	t=1746779733; cv=none; b=TcFXBKQZCMHiYlq9nCliq8+lUnnerQMEbkwLpXdMLnZhOUWN+HcHHPCx9oHi5R8PtXEJIBUPWNwSOOg7tZ3PaYqhiSdos7YK7d1gMWpuCJitzm2kKaERmosMlnQ/s3tLNkhRUW8EbSfsScvelVUh0oSpS6FzVbSHRJk3fVA5PHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746779532; c=relaxed/simple;
-	bh=mi786CI0+Ajj0O8fo9KC0phpG5QVo4LT3C2GYKvg2rw=;
+	s=arc-20240116; t=1746779733; c=relaxed/simple;
+	bh=rT1+07xUMuQWJf5ZXEO//iIf5MgKUtLBdpIGIIMnfmE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pcsuz04OA940lovrMofgV6/82R7TGuVPqLx2cONbD23/gIHmrFD3URy7rkzDL22CCqEDSw26Qpi9wkJOPHJskMq2UwENzK1dRfdCL97CoSxM++Mj9PvtF8cwaxgJOvkkmFpmJqO1IXK700sgiW/3HSMOyIQmK6eIE7mauK7jtww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z7OEvrvt; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3a0ebf39427so1071887f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 01:32:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746779528; x=1747384328; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jiF1pbiit8RXJodj15L4E9c2gnVhsdzQP7MvMTnz+gk=;
-        b=Z7OEvrvtIbXeqP1l7ANG90AQpx/yU+GOR/tvIO11ys//hI0fR9nUu2TQ11ZjU4F/zp
-         dqincUQXBYpoWwWBRY5kDoylcnUNNP741m7ENpzan55CDpHFH8L2bQHoBjvYrAE6iqdU
-         Wu7QZdMZ61sSODErF16v7NNmLwvphyXkDw3gwpCnSyAebQrWOWT5k+5BGiny9wiQFQGr
-         3rRjDKbHuAorYXVMYWlROLfqkwqWPLQPOZ1TBQcnorWal0Kp1QZTN88nX/pRKHLqvibO
-         8ij+RBFSQUw7PN/JqSrcha0pLawJ07MxH9B1eLT9ekkw9RBRQa6V7L2du3nWrqcwI7YO
-         ZNtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746779528; x=1747384328;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jiF1pbiit8RXJodj15L4E9c2gnVhsdzQP7MvMTnz+gk=;
-        b=Q3h693SSjC/Qwibj0nLJvQacaVVWJ10/TaxyI9MsGQlN0fNOU/AqLi5UpAEaLsJxge
-         fBgJyCGESNNs38o16YQw28t1xQ+WmgkiUyrDhCsumgbTsiKQ3oYZR2qKJDr9Zmk+K+Tp
-         bHIYUBrVe1a9lMxkwTeFUw6DkphIB/Qdq6qKtAoy1TyiYKmXGBbFS4JD4Uj5dTGynpzE
-         LgPWjCIQ3nXK115rpe+0Du7I4L51hqYyuc92VHcaaCRt0GPwd9pNlgFyH55xWENKHlc6
-         kYaRcqlcWLvMy0quLTg5srwXPAgqqbFWg/IDmK+T5ASRHePvEbDIR5ouhDss0LIG/85V
-         oC+A==
-X-Forwarded-Encrypted: i=1; AJvYcCWnPbV63awD6W2Kc5JXHW/gEf2OAjCVcTytG72GS4f2kwPP1bgQwwmxNl9pAlDfZJjbMMnuanOlEFeX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWljJzIXbVJphopbOzEx7SpJdccfT7ihP5ru1ryZJdhcVJUpVM
-	9dSCbT6Z6UNDqqxpjd1vlwSS93ddQp1pHwHYL8rdmxoWgSLjPvxwCO52BUACAjQ=
-X-Gm-Gg: ASbGncvxJkk6uKDaAIugZFQsd7ZdMUVa1wrCp3m0t+ulRN8b21RnxTpkKUc0aNHs+3E
-	DbQmUWV9UYuWZMj+7Us2GxTgV1w8n64mfFfUfDHb8Y7XR1cUrKtov+1dbrjc40c3e6JkaFLUSry
-	LySNNK+kaYZ3TVQL9O/JTHVSJah4fFIEzAofA4RxjwjP90OrldYvxvgFt47JE6h0maH+WSfEK54
-	smq2W+3zey56mAxQNBmut7b+JRpI8Rj/CbT1KW7zYTddfgoO1mNKuYpEooKndnNlR1eio5bmeCl
-	bxZuFcHPXHGqTvPVIZ7/pKzNbwkNBrjgUCys5ciRMDFXdQoYswleBXPc
-X-Google-Smtp-Source: AGHT+IGo7ag956w5i3W9+O4Hysr5DbRbNHyxYYXKoci+clSYLagmnbvGr8QjyCHV5wNtMeLk2ElqtQ==
-X-Received: by 2002:a05:6000:2485:b0:39c:13f5:dba0 with SMTP id ffacd0b85a97d-3a1f64328bbmr2116798f8f.13.1746779527863;
-        Fri, 09 May 2025 01:32:07 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a1f5a4bbf0sm2480709f8f.82.2025.05.09.01.32.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 May 2025 01:32:07 -0700 (PDT)
-Date: Fri, 9 May 2025 11:32:04 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Patrice Chotard <patrice.chotard@foss.st.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z0AjSpaeQ74xdqDdjOJrehbR8fjpmNM/k3RGJitBRyUiReoSZP380xYfR+JgKceHnqvdOlth8s/ZS2Ocryh/8DieW+4zRh7JYYRVh/3oPFRf1wyjLW4J74XYOxR8W2M0+Q2Q6+Thh9icCXxbWWGgYPxcZ9XdyERqaukJRHXb6hQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H9IyVdIC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2209C4CEE4;
+	Fri,  9 May 2025 08:35:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746779732;
+	bh=rT1+07xUMuQWJf5ZXEO//iIf5MgKUtLBdpIGIIMnfmE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=H9IyVdICYyn1bbIiba3LsykLZ19QH2Nc3A7c6nmeyEB6imPkITNRQWJ6wNCodpWV4
+	 tbQc1Gb0dW1zKDJUgcbnmWZZfFRnSNqN+JP9hcxSVSFMXv9EhBWWOF3u6P6FMU/Gy7
+	 qDEfjOqvZevc1wE4OiDhwCrriqNNUXjKxsvD066VSg9S+ZdbN+FGi1qfOcXcV78Xar
+	 bxvFZARu6c9n5aGD9BMhLYPb9n8Y94eBUp1tPZV7qTJQUi5153MhhQV1F/+B7Hlw1I
+	 zroeYbV5E5VYdbMUw48ygAtmozdx8UaoRUg8RyrRvblCUIqYLKtylN/FNX/b03PO5k
+	 /Kf/M2xe1qz8w==
+Date: Fri, 9 May 2025 10:35:25 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Marc Zyngier <maz@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, christophe.kerello@foss.st.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v11 2/3] memory: Add STM32 Octo Memory Manager driver
-Message-ID: <aB29hOrv0nU73RCn@stanley.mountain>
-References: <20250428-upstream_ospi_v6-v11-0-1548736fd9d2@foss.st.com>
- <20250428-upstream_ospi_v6-v11-2-1548736fd9d2@foss.st.com>
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 20/25] irqchip/gic-v5: Add GICv5 PPI support
+Message-ID: <aB2+TRSiGYL2eTWH@lpieralisi>
+References: <20250506-gicv5-host-v3-20-6edd5a92fd09@kernel.org>
+ <87zffpn5rk.ffs@tglx>
+ <86a57ohjey.wl-maz@kernel.org>
+ <87ecx0mt9p.ffs@tglx>
+ <867c2sh6jx.wl-maz@kernel.org>
+ <874ixwmpto.ffs@tglx>
+ <aBxgceQBRA6vBK7o@lpieralisi>
+ <864ixvh4ss.wl-maz@kernel.org>
+ <aByLHdktOLUk8HCN@lpieralisi>
+ <aB230INCy2h7X1KY@lpieralisi>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,76 +76,88 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250428-upstream_ospi_v6-v11-2-1548736fd9d2@foss.st.com>
+In-Reply-To: <aB230INCy2h7X1KY@lpieralisi>
 
-On Mon, Apr 28, 2025 at 10:58:31AM +0200, Patrice Chotard wrote:
-> +static int stm32_omm_toggle_child_clock(struct device *dev, bool enable)
-> +{
-> +	struct stm32_omm *omm = dev_get_drvdata(dev);
-> +	int i, ret;
-> +
-> +	for (i = 0; i < omm->nb_child; i++) {
-> +		if (enable) {
-> +			ret = clk_prepare_enable(omm->clk_bulk[i + 1].clk);
-> +			if (ret) {
-> +				dev_err(dev, "Can not enable clock\n");
-> +				goto clk_error;
-> +			}
-> +		} else {
-> +			clk_disable_unprepare(omm->clk_bulk[i + 1].clk);
-> +		}
-> +	}
-> +
-> +	return 0;
-> +
-> +clk_error:
-> +	while (i--)
-> +		clk_disable_unprepare(omm->clk_bulk[i + 1].clk);
-> +
-> +	return ret;
-> +}
-> +
-> +static int stm32_omm_disable_child(struct device *dev)
-> +{
-> +	struct stm32_omm *omm = dev_get_drvdata(dev);
-> +	struct reset_control *reset;
-> +	int ret;
-> +	u8 i;
-> +
-> +	ret = stm32_omm_toggle_child_clock(dev, true);
-> +	if (!ret)
-            ^^^^
-I'm pretty sure this was intended to be if (ret) and the ! is a typo.
+On Fri, May 09, 2025 at 10:07:44AM +0200, Lorenzo Pieralisi wrote:
+> On Thu, May 08, 2025 at 12:44:45PM +0200, Lorenzo Pieralisi wrote:
+> 
+> [...]
+> 
+> > I noticed that, if the irq_set_type() function is not implemented,
+> > we don't execute (in __irq_set_trigger()):
+> > 
+> > irq_settings_set_level(desc);
+> > irqd_set(&desc->irq_data, IRQD_LEVEL);
+> 
+> I don't get why the settings above are written only if the irqchip
+> has an irq_set_type() method, maybe they should be updated in
+> irqdomain code (?) where:
+> 
+> irqd_set_trigger_type()
+> 
+> is executed after creating the fwspec mapping ?
+> 
+> Is it possible we never noticed because we have always had irqchips that
+> do implement irq_set_type() ?
+> 
+> Again, I don't know the history behind the IRQD_LEVEL flag so it is just
+> a question, I'd need to get this clarified though please if I remove the
+> PPI irq_set_type() callback.
 
-> +		return ret;
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/powerpc/platforms/52xx/mpc52xx_pic.c?h=v6.15-rc5#n218
 
-If it's not a typo please write this as:
+There are other examples in powerpc, this does not look right to me.
 
-	if (!ret)
-		return 0;
+Lorenzo
 
-regards,
-dan carpenter
-
-> +
-> +	for (i = 0; i < omm->nb_child; i++) {
-> +		/* reset OSPI to ensure CR_EN bit is set to 0 */
-> +		reset = omm->child_reset[i];
-> +		ret = reset_control_acquire(reset);
-> +		if (ret) {
-> +			stm32_omm_toggle_child_clock(dev, false);
-> +			dev_err(dev, "Can not acquire resset %d\n", ret);
-> +			return ret;
-> +		}
-> +
-> +		reset_control_assert(reset);
-> +		udelay(2);
-> +		reset_control_deassert(reset);
-> +
-> +		reset_control_release(reset);
-> +	}
-> +
-> +	return stm32_omm_toggle_child_clock(dev, false);
-> +}
-
+> Thanks,
+> Lorenzo
+> 
+> > which in turn means that irqd_is_level_type(&desc->irq_data) is false
+> > for PPIs (ie arch timers, despite being level interrupts).
+> > 
+> > An immediate side effect is that they show as edge in:
+> > 
+> > /proc/interrupts
+> > 
+> > but that's just what I could notice.
+> > 
+> > Should I set them myself in PPI translate/alloc functions ?
+> > 
+> > Removing the irq_set_type() for PPIs does not seem so innocuous, it is a
+> > bit complex to check all ramifications, please let me know if you spot
+> > something I have missed.
+> > 
+> > > > On the other hand, given that on GICv5 PPI handling mode is fixed,
+> > > > do you think that in the ppi_irq_domain_ops.translate() callback,
+> > > > I should check the type the firmware provided and fail the translation
+> > > > if it does not match the HW hardcoded value ?
+> > > 
+> > > Why? The fact that the firmware is wrong doesn't change the hardware
+> > > integration. It just indicates that whoever wrote the firmware didn't
+> > > read the documentation.
+> > > 
+> > > Even more, I wonder what the benefit of having that information in the
+> > > firmware tables if the only thing that matters in the immutable HW
+> > > view. Yes, having it in the DT/ACPI simplifies the job of the kernel
+> > > (only one format to parse). But it is overall useless information.
+> > 
+> > Yes, that I agree but it would force firmware bindings to special case
+> > PPIs to remove the type (#interrupt-cells and co.).
+> > 
+> > From what I read I understand I must ignore the PPI type provided by
+> > firmware.
+> > 
+> > > > Obviously if firmware exposes the wrong type that's a firmware bug
+> > > > but I was wondering whether it is better to fail the firmware-to-Linux
+> > > > IRQ translation if the firmware provided type is wrong rather than carry
+> > > > on pretending that the type is correct (I was abusing the irq_set_type()
+> > > > callback to do just that - namely, check that the type provided by
+> > > > firmware matches HW but I think that's the wrong place to put it).
+> > > 
+> > > I don't think there is anything to do. Worse case, you spit a
+> > > pr_warn_once() and carry on.
+> > 
+> > Thanks,
+> > Lorenzo
 
