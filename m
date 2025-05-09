@@ -1,338 +1,194 @@
-Return-Path: <devicetree+bounces-175630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC427AB1515
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:28:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01A6CAB1553
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:35:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01C90A0292D
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:24:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D07F188DF19
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C3EC293B5E;
-	Fri,  9 May 2025 13:22:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F19329186E;
+	Fri,  9 May 2025 13:35:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e1+TuFbL"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="i+VTSVIW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3203029346E
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 13:22:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9FC76BB5B
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 13:35:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746796969; cv=none; b=DnwzGP1lFmDpVrmZwlSIqbmEbo06fsaSz3n/A6yLrn53SqzAJNq+jSQRgTnFphq56oUoT1GAkk9huQRnzHWlZ0BVEbpU44ryYERo0dCA1CchYqFjEhvgX1j7tn/KvVTYaC9LwXCHmnjrfVnAG/iP1v20yEJCUKlHXf8TqXfceks=
+	t=1746797737; cv=none; b=J605uk9Rr6i01oPw3fFhbKpD/HeQ9Ahls9ZVnBKHmrwnMbUwz6TR7rqIRnV1DmYXmJJaZ6+aLDhBQK86j9WzcCI/VY6RBsr7H2AHBn0o46yWb0hqM2jOxOpwxMeRWsBs2rfGTr6LWCbUvcGcSxY22+82henzWVfziQ7nKlbrhqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746796969; c=relaxed/simple;
-	bh=/mZP2OrE28e5JyoqtSS7fqAL/4QF+o0BXmWLnuT0cI4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kUu4rAUH+5TKinI/v+eecSVxLLL5osgiKtTWRGxZlc8h0wrSO1jBlItlW/LOxqdl7Z74rfnXOuGWuzu0G6uea+lPgCWWF/JBcBwa7/h3pZVkY3e4opCrHtBZF/QO9yZwd+Q7nuNkrX/Xsf4ivKXraYNL2VZN9lf4IgMw8tgBD0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e1+TuFbL; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ad220f139adso120974866b.1
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 06:22:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746796964; x=1747401764; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F1wPx9dQB2TQWNZZh5fQKMJn2HZQ5KR14ZSSeMoTM34=;
-        b=e1+TuFbLjNgvEONcFmWHQE98uSbZUELO5LQ+t3K7NeqyTztf4TzIclLJb0ogIQ4MSo
-         Jri+UGdRuL04bKhdt3v2QVwKC/pBB+dcEUSG/2DcgiesBtBz6xZT3L+2589CDNmIbJ3O
-         NnEUbKEQYDNWmwR/4urCJnlB3DU3AHeTTyQhZHGMY+14K4G5hkMTMLYvcSvRqPS2Dn6w
-         F7d6xybHOxxSTKk6vgKpDaItHZWkSELE/Yn3hZKJnkazNpgBxDCARaGojR5iIknOYU10
-         j+Gx1QMgcihbQwnjM1IlNEoOXNE/VVuT8BJklBm0ApaiOTtOvN0feyiCe2dEOXk8F1gJ
-         ktgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746796964; x=1747401764;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F1wPx9dQB2TQWNZZh5fQKMJn2HZQ5KR14ZSSeMoTM34=;
-        b=bnpuA8r0Otp5rOo07szDrg5G4k4h10cafbiukTfnbXZcHzjqZFY/hs0kGyPFlQeJOU
-         RnJJ/kMtkNziJhnPZmuGqkQ0BNlEqe2Jb6r1Tp/Pd0bNKR28tcEAr1lJ07QmUSqVO2FH
-         uirC+cAeivWqp+WOym4qy9W36tfDDFBwTM3Xebw8q1njyEn7N1QUCjtWbvB+uOko1Mb8
-         NSMd8eo7+BWjHBlnPH393QpX0YFp/PEI+Cp2LuJT4qHT3SaO0HkA7zXD8G0lAIEf9PBB
-         FfABfCmgHFibfVvbwP9Perb/90vkh8w69FhbaT2Q6OGxkGGfry3wWxSCiOaiYyGtik+h
-         j+WA==
-X-Forwarded-Encrypted: i=1; AJvYcCUPz9x0cmuJPgoKBMjQk/oJON8Vpw8q6go8KEE0sptKOVvzCd+Jjg8/b+gxUfNRmtX4duVO7BmXSfXd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVCIMOZoegCI9nViD82B6NbRbANttfjQvIkrX4CHpyZbdvyuck
-	LA7wR+2LcN7YS8W7mcpGc7AJvLBxQyViat5UuDOwpkoL1BGp8dYgRkqsNS+UFfdgIQ7rnExVakn
-	juV0=
-X-Gm-Gg: ASbGncu9chhgICkRXJcx5KLE5i9gCFDr5jkkq4ue8iHM0IJ78sy2usJStPWf6sbPKcr
-	pAHnpoIuN21hoI9XSxdDTT9PvYDmk/jjJYyUlbO+uEKiFEeiQOrXz4//HHZrhfW6BCxc2NgcURB
-	cTMRQD1dQ97fyQY/iv58gmwHS/PlGEVP0+ZZJkQhKTHUHvECCJ1lwIFT6IEFyoE2Yk3xZqt/D6X
-	S47tS5JhQKhk+waBKTr+euzYtVksZcumE2v+9oA6jM2ZlTkT4SpnQFZxWJVmEvu7qmagBTrRTnD
-	VFydQNKI3M/OObnDSCI4KIFU4LmKUtb74zLl1yky3C36bMIZ4fFCvu8QueSMs0apP9ga0NJUgMT
-	bFqnIXsAS4emoNraQu8IQFwVb6vTnHJseIus=
-X-Google-Smtp-Source: AGHT+IElOX4UcWIkgnqhMX1+vmiD0oL3vla4hxS81C5YoTG8Oto1jX93zcwxVElHT4N6w7YONmHV4A==
-X-Received: by 2002:a17:907:a784:b0:ad2:2a2f:7069 with SMTP id a640c23a62f3a-ad22a2f719emr76769966b.17.1746796963840;
-        Fri, 09 May 2025 06:22:43 -0700 (PDT)
-Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad21947abcasm149041966b.84.2025.05.09.06.22.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 May 2025 06:22:43 -0700 (PDT)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Fri, 09 May 2025 14:22:41 +0100
-Subject: [PATCH v10 3/3] nvmem: max77759: add Maxim MAX77759 NVMEM driver
+	s=arc-20240116; t=1746797737; c=relaxed/simple;
+	bh=HT4vGYib1vkdrhrAux+8AkJRUgQhALHudbO2KB1R0Ws=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=mR5rsu/jD4fLkmucX2uqwEELjqqdejWPnqUEAdhXKyig4KWsAWEAIjfHGbqfh96ftTx9yCT/PxuYORQmn9uUYrae/ivpPpzW0v/5WAR1rAg5KFiQv4JD5TdQWolooXzvUL6zppIATbGT4ku/N0IVxdRHICaPkMgjRahozq1BtxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=i+VTSVIW; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250509133532epoutp013f5f31bb1b06123b4868cb5969cd2b90~930iAMaxQ2124821248epoutp01M
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 13:35:32 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250509133532epoutp013f5f31bb1b06123b4868cb5969cd2b90~930iAMaxQ2124821248epoutp01M
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1746797733;
+	bh=uJ5xv2x3X+CRQNWp7iVnE+JtSDZ7GFWFYjczehxiho4=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=i+VTSVIWQo2OHtACmCTOYnEtFEs+AsI1FbspSS0Z7T87WOgKSxC9iL6z4WI36KPoJ
+	 lMuel5I7Kp91C1DyusZYYghlGi5ImkOSAXjN99u/UUzUX90FRpdHQPHWh2vd+ExWjX
+	 YpEswFkogWCUYH+Z9GpDft4ot7QGkueW+nYLreI8=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250509133532epcas5p21941906580941e4d09b5537939fd6155~930hZsG6t1470614706epcas5p2b;
+	Fri,  9 May 2025 13:35:32 +0000 (GMT)
+Received: from epcas5p2.samsung.com (unknown [182.195.38.183]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4Zv9423nBYz6B9m5; Fri,  9 May
+	2025 13:35:30 +0000 (GMT)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250509131427epcas5p1fe29ea19cb7624dc828935d6ec47854b~93iH5KmMz0480904809epcas5p1q;
+	Fri,  9 May 2025 13:14:27 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250509131427epsmtrp11595d142fc3783a9bfbb5144812b6041~93iH4U90x3116831168epsmtrp1S;
+	Fri,  9 May 2025 13:14:27 +0000 (GMT)
+X-AuditID: b6c32a52-40bff70000004c16-87-681dffb3509c
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	E0.8D.19478.3BFFD186; Fri,  9 May 2025 22:14:27 +0900 (KST)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250509131425epsmtip1df3d977fb138a2f14c4f522f592f98f0~93iFuuKrU2903429034epsmtip1b;
+	Fri,  9 May 2025 13:14:25 +0000 (GMT)
+From: Raghav Sharma <raghav.s@samsung.com>
+To: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
+	alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
+	robh@kernel.org, conor+dt@kernel.org, sunyeal.hong@samsung.com,
+	shin.son@samsung.com
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Raghav Sharma <raghav.s@samsung.com>
+Subject: [PATCH v1] dt-bindings: clock: exynosautov920: add hsi2 clock
+ definitions
+Date: Fri,  9 May 2025 18:54:14 +0530
+Message-Id: <20250509132414.3752159-1-raghav.s@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250509-max77759-mfd-v10-3-962ac15ee3ef@linaro.org>
-References: <20250509-max77759-mfd-v10-0-962ac15ee3ef@linaro.org>
-In-Reply-To: <20250509-max77759-mfd-v10-0-962ac15ee3ef@linaro.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Srinivas Kandagatla <srini@kernel.org>, 
- Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.14.2
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrGLMWRmVeSWpSXmKPExsWy7bCSnO7m/7IZBncmmVo8mLeNzWLN3nNM
+	Fte/PGe1mH/kHKvF+fMb2C02Pb7GavGx5x6rxeVdc9gsZpzfx2Rx8ZSrxfeVdxgt/u/ZwW5x
+	+E07q8W/axtZLCYfX8tq0bRsPZODgMf7G63sHptWdbJ5bF5S79G3ZRWjx+dNcgGsUVw2Kak5
+	mWWpRfp2CVwZvW/2shb8Eam4eeQbUwPjZf4uRk4OCQETiePzfrF3MXJxCAlsZ5TYf+8vI0RC
+	QmLf/99QtrDEyn/PoYreMkr0b53OBJJgE9CSuLL9HRuILSLwjlFi0zoxkCJmgQuMEp9e/gTq
+	5uAQFgiSmD8jC6SGRUBV4v/2yywgNq+AtcSxHe0sEAvkJfYfPMsMEReUODnzCVicGSjevHU2
+	8wRGvllIUrOQpBYwMq1iFE0tKM5Nz00uMNQrTswtLs1L10vOz93ECA56raAdjMvW/9U7xMjE
+	wXiIUYKDWUmE93mnTIYQb0piZVVqUX58UWlOavEhRmkOFiVxXuWczhQhgfTEktTs1NSC1CKY
+	LBMHp1QDk+yeR6wrc6z2JWd49lw4XXc2Rnn6sR0M3CxLt1VN/eEt5PlsupX6rcfpa2wufn+6
+	/UB4qrqY5qwP5VJdp2X93XbIHPd3+8gv/iK8nUVafpuLUqOFs4OA9mvdG6dOO5207UjgMupp
+	+MDxKKpNZNns35wX7t3JX+j6M2v/v+7E9HtWu89/COwwvLBz3vMbDKvF18YdFDl4UWOmWMdu
+	7Qt13/+uc+JjWl3wvNrs3k0b5ZeVn0TtN/P+v+h04tyJ36+sVv38Z2ArGxLq3/0ro+BWzrVf
+	wR/zvuzUE1nCvHQul+0Tbaa36zOkfyxTuXg8LVa7IaEurqhiaePmmlXFu/afuT7vwwG/1SuZ
+	TzOdPD3b/7ESS3FGoqEWc1FxIgDhAktx6QIAAA==
+X-CMS-MailID: 20250509131427epcas5p1fe29ea19cb7624dc828935d6ec47854b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-543,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250509131427epcas5p1fe29ea19cb7624dc828935d6ec47854b
+References: <CGME20250509131427epcas5p1fe29ea19cb7624dc828935d6ec47854b@epcas5p1.samsung.com>
 
-The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
-includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
-Port Controller (TCPC), NVMEM, and a GPIO expander.
+Add device tree clock binding definitions for CMU_HSI2
 
-This driver exposes the non volatile memory using the platform device
-registered by the core MFD driver.
-
-Acked-by: Srinivas Kandagatla <srini@kernel.org>
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
+Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
 ---
-v9:
-* drop superfluous max77759_nvmem_is_valid() (Srini)
+ .../clock/samsung,exynosautov920-clock.yaml   | 29 +++++++++++++++++--
+ .../clock/samsung,exynosautov920.h            |  9 ++++++
+ 2 files changed, 36 insertions(+), 2 deletions(-)
 
-v8:
-* replace MODULE_ALIAS() with .id_table (Krzysztof)
-* drop previous tags
-
-v5:
-* follow API updates of max77759 core driver
-
-v2:
-* align sentinel in max77759_nvmem_of_id[] with other max77759 drivers
- (Christophe)
----
- MAINTAINERS                    |   1 +
- drivers/nvmem/Kconfig          |  12 ++++
- drivers/nvmem/Makefile         |   2 +
- drivers/nvmem/max77759-nvmem.c | 145 +++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 160 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 96d6891c06e99c288125cb6c0df8a966a031ac42..c3174de20ca7f25c9ce884ab5e4e46cdd047e1ce 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14721,6 +14721,7 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/*/maxim,max77759*.yaml
- F:	drivers/gpio/gpio-max77759.c
- F:	drivers/mfd/max77759.c
-+F:	drivers/nvmem/max77759-nvmem.c
- F:	include/linux/mfd/max77759.h
+diff --git a/Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml
+index 6961a68098f4..3cbb1dc8d828 100644
+--- a/Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml
+@@ -41,14 +41,15 @@ properties:
+       - samsung,exynosautov920-cmu-misc
+       - samsung,exynosautov920-cmu-hsi0
+       - samsung,exynosautov920-cmu-hsi1
++      - samsung,exynosautov920-cmu-hsi2
  
- MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index 114140c89906b43cfdc807f9c77cd538fc60a05f..d370b2ad11e7eb3a3549a75edaada2d84c1e8dd7 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -167,6 +167,18 @@ config NVMEM_LPC18XX_OTP
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called nvmem_lpc18xx_otp.
+   clocks:
+     minItems: 1
+-    maxItems: 4
++    maxItems: 5
  
-+config NVMEM_MAX77759
-+	tristate "Maxim Integrated MAX77759 NVMEM Support"
-+	depends on MFD_MAX77759
-+	default MFD_MAX77759
-+	help
-+	  Say Y here to include support for the user-accessible storage found
-+	  in Maxim Integrated MAX77759 PMICs. This IC provides space for 30
-+	  bytes of storage.
+   clock-names:
+     minItems: 1
+-    maxItems: 4
++    maxItems: 5
+ 
+   "#clock-cells":
+     const: 1
+@@ -201,6 +202,30 @@ allOf:
+             - const: usbdrd
+             - const: mmc_card
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: samsung,exynosautov920-cmu-hsi2
 +
-+	  This driver can also be built as a module. If so, the module
-+	  will be called nvmem-max77759.
++    then:
++      properties:
++        clocks:
++          items:
++            - description: External reference clock (38.4 MHz)
++            - description: CMU_HSI2 NOC clock (from CMU_TOP)
++            - description: CMU_HSI2 NOC UFS clock (from CMU_TOP)
++            - description: CMU_HSI2 UFS EMBD clock (from CMU_TOP)
++            - description: CMU_HSI2 ETHERNET clock (from CMU_TOP)
 +
- config NVMEM_MESON_EFUSE
- 	tristate "Amlogic Meson GX eFuse Support"
- 	depends on (ARCH_MESON || COMPILE_TEST) && MESON_SM
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index 89a3c252c2c8dad9ed7bc6ac9841f63ff85c00d5..2021d59688dbd58ee6895d36610fe670d9479ef5 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -36,6 +36,8 @@ obj-$(CONFIG_NVMEM_LPC18XX_EEPROM)	+= nvmem_lpc18xx_eeprom.o
- nvmem_lpc18xx_eeprom-y			:= lpc18xx_eeprom.o
- obj-$(CONFIG_NVMEM_LPC18XX_OTP)		+= nvmem_lpc18xx_otp.o
- nvmem_lpc18xx_otp-y			:= lpc18xx_otp.o
-+obj-$(CONFIG_NVMEM_MAX77759)		+= nvmem-max77759.o
-+nvmem-max77759-y			:= max77759-nvmem.o
- obj-$(CONFIG_NVMEM_MESON_EFUSE)		+= nvmem_meson_efuse.o
- nvmem_meson_efuse-y			:= meson-efuse.o
- obj-$(CONFIG_NVMEM_MESON_MX_EFUSE)	+= nvmem_meson_mx_efuse.o
-diff --git a/drivers/nvmem/max77759-nvmem.c b/drivers/nvmem/max77759-nvmem.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..c9961ad0e232e152e924b5b06d7d93172760ac3a
---- /dev/null
-+++ b/drivers/nvmem/max77759-nvmem.c
-@@ -0,0 +1,145 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// Copyright 2020 Google Inc
-+// Copyright 2025 Linaro Ltd.
-+//
-+// NVMEM driver for Maxim MAX77759
++        clock-names:
++          items:
++            - const: oscclk
++            - const: noc
++            - const: ufs
++            - const: embd
++            - const: ethernet
 +
-+#include <linux/dev_printk.h>
-+#include <linux/device.h>
-+#include <linux/device/driver.h>
-+#include <linux/err.h>
-+#include <linux/mfd/max77759.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/overflow.h>
-+#include <linux/platform_device.h>
-+#include <linux/string.h>
+ required:
+   - compatible
+   - "#clock-cells"
+diff --git a/include/dt-bindings/clock/samsung,exynosautov920.h b/include/dt-bindings/clock/samsung,exynosautov920.h
+index 5e6896e9627f..93e6233d1358 100644
+--- a/include/dt-bindings/clock/samsung,exynosautov920.h
++++ b/include/dt-bindings/clock/samsung,exynosautov920.h
+@@ -286,4 +286,13 @@
+ #define CLK_MOUT_HSI1_USBDRD_USER	3
+ #define CLK_MOUT_HSI1_USBDRD		4
+ 
++/* CMU_HSI2 */
++#define FOUT_PLL_ETH                    1
++#define CLK_MOUT_HSI2_NOC_UFS_USER      2
++#define CLK_MOUT_HSI2_UFS_EMBD_USER     3
++#define CLK_MOUT_HSI2_ETHERNET          4
++#define CLK_MOUT_HSI2_ETHERNET_USER     5
++#define CLK_DOUT_HSI2_ETHERNET          6
++#define CLK_DOUT_HSI2_ETHERNET_PTP      7
 +
-+#define MAX77759_NVMEM_OPCODE_HEADER_LEN 3
-+/*
-+ * NVMEM commands have a three byte header (which becomes part of the command),
-+ * so we need to subtract that.
-+ */
-+#define MAX77759_NVMEM_SIZE (MAX77759_MAXQ_OPCODE_MAXLENGTH \
-+			     - MAX77759_NVMEM_OPCODE_HEADER_LEN)
-+
-+struct max77759_nvmem {
-+	struct device *dev;
-+	struct max77759 *max77759;
-+};
-+
-+static int max77759_nvmem_reg_read(void *priv, unsigned int offset,
-+				   void *val, size_t bytes)
-+{
-+	struct max77759_nvmem *nvmem = priv;
-+	DEFINE_FLEX(struct max77759_maxq_command, cmd, cmd, length,
-+		    MAX77759_NVMEM_OPCODE_HEADER_LEN);
-+	DEFINE_FLEX(struct max77759_maxq_response, rsp, rsp, length,
-+		    MAX77759_MAXQ_OPCODE_MAXLENGTH);
-+	int ret;
-+
-+	cmd->cmd[0] = MAX77759_MAXQ_OPCODE_USER_SPACE_READ;
-+	cmd->cmd[1] = offset;
-+	cmd->cmd[2] = bytes;
-+	rsp->length = bytes + MAX77759_NVMEM_OPCODE_HEADER_LEN;
-+
-+	ret = max77759_maxq_command(nvmem->max77759, cmd, rsp);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (memcmp(cmd->cmd, rsp->rsp, MAX77759_NVMEM_OPCODE_HEADER_LEN)) {
-+		dev_warn(nvmem->dev, "protocol error (read)\n");
-+		return -EIO;
-+	}
-+
-+	memcpy(val, &rsp->rsp[MAX77759_NVMEM_OPCODE_HEADER_LEN], bytes);
-+
-+	return 0;
-+}
-+
-+static int max77759_nvmem_reg_write(void *priv, unsigned int offset,
-+				    void *val, size_t bytes)
-+{
-+	struct max77759_nvmem *nvmem = priv;
-+	DEFINE_FLEX(struct max77759_maxq_command, cmd, cmd, length,
-+		    MAX77759_MAXQ_OPCODE_MAXLENGTH);
-+	DEFINE_FLEX(struct max77759_maxq_response, rsp, rsp, length,
-+		    MAX77759_MAXQ_OPCODE_MAXLENGTH);
-+	int ret;
-+
-+	cmd->cmd[0] = MAX77759_MAXQ_OPCODE_USER_SPACE_WRITE;
-+	cmd->cmd[1] = offset;
-+	cmd->cmd[2] = bytes;
-+	memcpy(&cmd->cmd[MAX77759_NVMEM_OPCODE_HEADER_LEN], val, bytes);
-+	cmd->length = bytes + MAX77759_NVMEM_OPCODE_HEADER_LEN;
-+	rsp->length = cmd->length;
-+
-+	ret = max77759_maxq_command(nvmem->max77759, cmd, rsp);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (memcmp(cmd->cmd, rsp->rsp, cmd->length)) {
-+		dev_warn(nvmem->dev, "protocol error (write)\n");
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
-+static int max77759_nvmem_probe(struct platform_device *pdev)
-+{
-+	struct nvmem_config config = {
-+		.dev = &pdev->dev,
-+		.name = dev_name(&pdev->dev),
-+		.id = NVMEM_DEVID_NONE,
-+		.type = NVMEM_TYPE_EEPROM,
-+		.ignore_wp = true,
-+		.size = MAX77759_NVMEM_SIZE,
-+		.word_size = sizeof(u8),
-+		.stride = sizeof(u8),
-+		.reg_read = max77759_nvmem_reg_read,
-+		.reg_write = max77759_nvmem_reg_write,
-+	};
-+	struct max77759_nvmem *nvmem;
-+
-+	nvmem = devm_kzalloc(&pdev->dev, sizeof(*nvmem), GFP_KERNEL);
-+	if (!nvmem)
-+		return -ENOMEM;
-+
-+	nvmem->dev = &pdev->dev;
-+	nvmem->max77759 = dev_get_drvdata(pdev->dev.parent);
-+
-+	config.priv = nvmem;
-+
-+	return PTR_ERR_OR_ZERO(devm_nvmem_register(config.dev, &config));
-+}
-+
-+static const struct of_device_id max77759_nvmem_of_id[] = {
-+	{ .compatible = "maxim,max77759-nvmem", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, max77759_nvmem_of_id);
-+
-+static const struct platform_device_id max77759_nvmem_platform_id[] = {
-+	{ "max77759-nvmem", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(platform, max77759_nvmem_platform_id);
-+
-+static struct platform_driver max77759_nvmem_driver = {
-+	.driver = {
-+		.name = "max77759-nvmem",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+		.of_match_table = max77759_nvmem_of_id,
-+	},
-+	.probe = max77759_nvmem_probe,
-+	.id_table = max77759_nvmem_platform_id,
-+};
-+
-+module_platform_driver(max77759_nvmem_driver);
-+
-+MODULE_AUTHOR("André Draszik <andre.draszik@linaro.org>");
-+MODULE_DESCRIPTION("NVMEM driver for Maxim MAX77759");
-+MODULE_LICENSE("GPL");
-
+ #endif /* _DT_BINDINGS_CLOCK_EXYNOSAUTOV920_H */
 -- 
-2.49.0.1015.ga840276032-goog
+2.34.1
 
 
