@@ -1,182 +1,238 @@
-Return-Path: <devicetree+bounces-175540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81B09AB11F8
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:14:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF143AB1207
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:20:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6B5F1743DA
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:14:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E86BD1BC39CF
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9834F28F92E;
-	Fri,  9 May 2025 11:14:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0630A28F94C;
+	Fri,  9 May 2025 11:20:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OvzeELq8"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="vhG5qcTB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6336128ECE9;
-	Fri,  9 May 2025 11:14:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 871A528ECD9
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:20:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746789252; cv=none; b=pailuKZwQ8Iwf/1p4YkXcmdKNG8zaeBysjsvDGmzNuU/z48HuV94uXogML7wkM4M0pNKBXK9cbptX+GZj1KKH4J0LR9YOxwP6/dENbidxwKr9zTllKMnAr+QN0uATLYB+cqMmTtLMDZkL/emWKRSbwkUDM+nGXj5AculQ7e3VNA=
+	t=1746789640; cv=none; b=jCBN8duJSDLKnb3ygbw4Thh9bjWBI4wAV2d5VNQqkoEA9uOn7PlWZVWIoJKyVegAVM7NK0L+Y5pDnBC7uNpoj27r3/lygOeec7S2qXY2IufZQ9fxihpQ/QTNAX1hH1OAcVkeJluZhjmbLCTd5PiDwOMT7sXMLB4/VaraaiBxF0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746789252; c=relaxed/simple;
-	bh=k7G921yPgxgQuLbDV/CqmiMWdYexVQs7eW3UyOEo0Ek=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SPGQGfKOBpOZikgkG9J6k8q7Vs/FHp6larSPj8nfO9G4AfgbFszkBYsfmOs95Ex9ku5XepiMAw7rhDmv4IpwtZEV03pr12UOUHU1KNfFuI6tlOF19gH+ZFXycUYDo2GIuwJhUQUvq9275j8XXYAyrXPi3bOqHTLVmIe2LW+HtCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OvzeELq8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2D81C4CEE4;
-	Fri,  9 May 2025 11:14:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746789251;
-	bh=k7G921yPgxgQuLbDV/CqmiMWdYexVQs7eW3UyOEo0Ek=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OvzeELq8205dZHReoAgw/C+jcPMr8OGOfXcpco7HYR/uXWR4ANWzNWs81MgGG8wZI
-	 BoYb53Iv96Bc8LpnpQ4coOkYzh++HKMtB0+fmYYI0jDOiv0V6c6G57Try7lwYiDFoA
-	 +eit/isGJe+f11iTuUevq86gdpIUdYP1L0KVV3WGTWWdNiXr3LpqwcMyBTHzTsdJfS
-	 4grInBkhvdymaF/+7+NHRtvdskP6aOUYmcQfr/pnSfojI7mmxrbEjt3dWwJsMNNeZs
-	 yZ3/hLBIVJZ8gnfdWuwIgNSPXika8t9sT1jtFnlzo7fplLcV0ThBdEijOzMS26Nh0F
-	 486C94kqORNEw==
-Message-ID: <af92e978-e6f1-43db-8a84-334e7dd0d43d@kernel.org>
-Date: Fri, 9 May 2025 13:14:04 +0200
+	s=arc-20240116; t=1746789640; c=relaxed/simple;
+	bh=yoTxnq74WPNkNddj+21/14jDBfGMw7QYijOl5YQWEpI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=i4x9UYd9nwz878N4uL46Y73/EAmONuK13rTWp+F5aMnRCh6cnG3xSiz/3kgTLRLrm50FbujhVzctlpp5n0pbIbq5Qvl9DUx5jVF2NQwb+lNR5hIaWNnow1kHdHjOv491uaA51hMdg1iOhDQBdG9djttssNu3VO+7VyF1DHGQdFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=vhG5qcTB; arc=none smtp.client-ip=209.85.166.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-3d7f4cb7636so6433955ab.3
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:20:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1746789636; x=1747394436; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NTSX0/tw8NEx2HZiz9FcVkfctrtBy+rS4Bs93fohJKY=;
+        b=vhG5qcTBTHn5t8HmquDxULE57jUHAhkCG/BLT5mnQnDaF3xwHBU6mUFXqKKVOSNTwE
+         6wLYcyCKHrmcKD1abxN4RyyknUG2W71301FwDHnWSA/iO7xPrOGRGR/n3hUUrDeyfY8B
+         QZ0DxJzSjzewGzFxvjKKAKFemNgxADsd+c/vRUYygdIO8LAz8XKMo1dMx1+NiZum7zzo
+         pVsXL3Ccsi6yzMCpAha4Htq6nzQEZz3qk5kdQj+v8v+VvT8/rPoHU+pchFBBTnGN6Yts
+         nAgYL9eEAmchZZmF8ikdTNlZcGoTaB7v9JocMhyq8ZpbHdF2k8ZuZGR299zL/v0zDYDQ
+         GDaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746789636; x=1747394436;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NTSX0/tw8NEx2HZiz9FcVkfctrtBy+rS4Bs93fohJKY=;
+        b=Uw+E5SN2IFhMCwFICR+Cj8e0bjZPNHj9jk60cB5r1bR70pFdZc9ehG9+XlAm3/lQOQ
+         uW1hX39b4f15lVwgxMK6nybgDe8FkulssgeQX1ErkXrTBC+qxDLmuRrKT2UDygX7P68u
+         DDNCCszSZZrF3r79XzpQnDaj5P63TuUC9neanm+4iBolHAALamuJRyhavVvcOYGQnU/e
+         8inCkCXL/AL/6PNdE7EsqKS3rMxUd1JUhd0t10PmlwyTD8tJaX+t9/oDDcVslgNkimng
+         zSzu6eWkOaqYRAxSfmqJ3eiUeRRxq2SE2c4CRgiepDl+lTxZn/cWCmj3OHeGqyIFdlgU
+         XuJA==
+X-Forwarded-Encrypted: i=1; AJvYcCX0hsYCZ0fy14EUtygEIt61fJEVQYAdqSKbiEk8meSIYcocmC09UqrBCFs0fPCcs0vdKspMYZTSnCqb@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRGnxXNtyznM+UeQIIBl0TCcaGyxtCXfq9DrZBkiRiIlcRNb3Y
+	DBuckDDyFDq4XHWB1pIpHWpbJJbPic0zhfWiMuJfwse5rebvj2F8cUv7Hybja9Y=
+X-Gm-Gg: ASbGncslZezcmXK3Ga7lJtYlIqGnVWo4954G2waXIQ5akEYdZ0Hvy52Vm3CTgfylOu/
+	HOIE1hpLL36cEYimTXtTCqTbI/AMRApweR5k4d/ltEhkdDJ1BcwKWNHDA0i8H0jGgSlYL+yrLlT
+	3x9gQubDTWQo/BYc3n8vSTnws/6mmEpsxjHrHjt9ekDfhQdKa8RuyYE/zSehYoWFl23hS5Okgy1
+	gLvmWvEK5HSunA75vMnk1GOiw3yqj8qPFkOwV14UQyQulXjeTZXAllwG+qAyE7DtkqLiEoDDc64
+	+a/RwClvXOizFeBnAY9wlL4bT9ZOZwlCmy1Q4HxqPWVCJWInMpWWkCLYzZhm3DQ40iWwd5gKTa+
+	8P0ni13B7CSe26Q==
+X-Google-Smtp-Source: AGHT+IF05PBHHDZrwWQcLeXCbxDAB8MCaPu4N0jfY4wA0OvXddQCJwebAgEaZT9GlDpW3ltbOgzKXQ==
+X-Received: by 2002:a05:6e02:2489:b0:3da:6f46:5c1a with SMTP id e9e14a558f8ab-3da7e1e1b12mr36660425ab.2.1746789636400;
+        Fri, 09 May 2025 04:20:36 -0700 (PDT)
+Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3da7e10549fsm5136325ab.23.2025.05.09.04.20.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 May 2025 04:20:35 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	p.zabel@pengutronix.de,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	dlan@gentoo.org
+Cc: heylenay@4d2.org,
+	inochiama@outlook.com,
+	guodong@riscstar.com,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v8 0/6] reset: spacemit: add K1 reset support
+Date: Fri,  9 May 2025 06:20:25 -0500
+Message-ID: <20250509112032.2980811-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/14] dt-bindings: spi: dspi: Add S32G support
-To: James Clark <james.clark@linaro.org>, Vladimir Oltean
- <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>,
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, larisa.grigore@nxp.com, arnd@linaro.org,
- andrei.stefanescu@nxp.com, dan.carpenter@linaro.org
-Cc: linux-spi@vger.kernel.org, imx@lists.linux.dev,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-References: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
- <20250509-james-nxp-spi-v1-12-32bfcd2fea11@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250509-james-nxp-spi-v1-12-32bfcd2fea11@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 09/05/2025 13:05, James Clark wrote:
-> From: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> 
-> Document S32G compatible strings. 's32g2' and 's32g3' use the same
-> driver so 's32g2' must follow 's32g3'.
-> 
-> The SPI controller node in dts can define both host and target pinctrl.
-> The selection between them will be done based on pinctrl-names. The
-> default pinctrl will be loaded first and will be used by the host. If
-> the controller is configured as target (spi-slave property is added in
-> the dts node), the driver will look for the "slave" pinctrl and apply it
-> if found.
+This series adds reset controller support for the SpacemiT K1 SoC.
+A SpacemiT reset controller is implemented as an auxiliary device
+associated with a clock controller (CCU).  A new header file
+holds definitions used by both the clock and reset drivers.
+
+This code builds upon the clock controller driver from Haylen Chu.
+
+The only difference from v7 is that the structure containing
+the auxiliary device struct is now allocated using kzalloc().
+Previously devm_kzalloc() was used, passing the parent device
+pointer as its first argument, and as Haylen pointed out, it
+was being (doubly) freed in the auxiliary device release
+function.  Everything else is essentially identical to v7.
+
+This series is based on the "for-next" branch in the SpacemiT
+repository:
+  https://github.com/spacemit-com/linux/tree/for-next
+
+All of these patches are available here:
+  https://github.com/riscstar/linux/tree/outgoing/reset-v8
+
+					-Alex
+
+Between version 7 and version 8:
+  - The structure containing the auxiliary device is now allocated
+    using kzalloc().  That means its lifetime is not tied to the
+    parent device, and auxiliary device's release function is
+    correct in freeing the structure.
+
+Here is version 7 of this series.
+  https://lore.kernel.org/lkml/20250508195409.2962633-1-elder@riscstar.com/
+
+Between version 6 and version 7:
+  - The new shared header file is now named "k1-syscon.h" (suggested
+    by Haylen Chu)
+  - The SPACEMIT_CCU_K1 config option has been removed (suggested
+    by Philipp Zabel)
+  - The SPACEMIT_CCU config option is now tristate, and selects
+    AUXILIARY_BUS (suggested by Haylen Chu)
+  - All code is concentrated into a single file "reset-spacemit.c"
+    rather than in a directory (suggested by Philipp Zabel)
+  - A bogus return value has been fixed, and a few irrelevant comments
+    have been removed (suggested by Philipp Zabel)
+  - MODULE_AUTHOR(), MODULE_DESCRIPTION(), and MODULE_LICENSE() are
+    now supplied (suggested by Haylen Chu)
+
+Here is version 6 of this series.
+  https://lore.kernel.org/lkml/20250506210638.2800228-1-elder@riscstar.com/
+
+Between version 5 and version 6:
+  - Reworked the code to use the auxiliary device framework.
+  - Moved the code supporting reset under drivers/reset/spacemit.
+  - Created a new header file shared by reset and clock.
+  - Separated generic from SoC-specific code in the reset driver.
+  - Dropped two Reviewed-by tags.
+
+Here is version 5 of this series.
+  https://lore.kernel.org/lkml/20250418145401.2603648-1-elder@riscstar.com/
+
+Between version 4 and version 5:
+  - Added Haylen's Reviewed-by on the second patch.
+  - Added Philipp's Reviewed-by on the third patch.
+  - In patch 4, added a const qualifier to some structures, and removed
+    parentheses surrounding integer constants, as suggested by Philipp
+  - Now based on the SpacemiT for-next branch
+
+Here is version 4 of this series.
+  https://lore.kernel.org/lkml/20250414191715.2264758-1-elder@riscstar.com/
+
+Between version 3 and version 4:
+  - Now based on Haylen Chu's v7 clock code, built on v6.15-rc2.
+  - Added Krzysztof's Reviewed-by on the first patch.
+
+Here is version 3 of this series.
+  https://lore.kernel.org/lkml/20250409211741.1171584-1-elder@riscstar.com/
+
+Between version 2 and version 3 there was no feedback, however:
+  - Haylen posted v6 of the clock series, and it included some changes
+    that affected the logic in this reset code.
+  - I was informed that defining CCU nodes without any clocks led to
+    warnings about "clocks" being a required property when running
+    "make dtbs_check".  For that reason, I made clock properties
+    optional for reset-only CCU nodes.
+  - This code is now based on v6.15-rc1, which includes a few commits
+    that were listed as dependencies previously.
+
+Here is version 2 of this series.
+  https://lore.kernel.org/lkml/20250328210233.1077035-1-elder@riscstar.com/
+
+Between version 1 and version 2:
+  - Added Rob's Reviewed-by tag on the first patch
+  - Renamed the of_match_data data type (and one or two other symbols) to
+    use "spacemit" rather than "k1".
+  - Replaced the abbreviated "rst" or "RST" in names of newly-defined
+    sympols with "reset" or "RESET" respectively.
+  - Eliminated rcdev_to_controller(), which was only used once.
+  - Changed a function that unsafely did a read/modify/write of a register
+    to use regmap_update_bits() instead as suggested by Haylen.
+  - Eliminated a null check for a pointer known to be non-null.
+  - Reordered the assignment of reset controller device fields.
+  - Added a "sentinel" comment as requested by Yixun.
+  - Updated to be based on Linux v6.14 final.
+
+Here is the first version of this series.
+  https://lore.kernel.org/lkml/20250321151831.623575-1-elder@riscstar.com/
+
+Alex Elder (6):
+  dt-bindings: soc: spacemit: define spacemit,k1-ccu resets
+  soc: spacemit: create a header for clock/reset registers
+  clk: spacemit: set up reset auxiliary devices
+  reset: spacemit: add support for SpacemiT CCU resets
+  reset: spacemit: define three more CCUs
+  riscv: dts: spacemit: add reset support for the K1 SoC
+
+ .../soc/spacemit/spacemit,k1-syscon.yaml      |  29 +-
+ arch/riscv/boot/dts/spacemit/k1.dtsi          |  18 ++
+ drivers/clk/spacemit/Kconfig                  |   1 +
+ drivers/clk/spacemit/ccu-k1.c                 | 225 +++++++------
+ drivers/reset/Kconfig                         |   9 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-spacemit.c                | 297 ++++++++++++++++++
+ .../dt-bindings/clock/spacemit,k1-syscon.h    | 128 ++++++++
+ include/soc/spacemit/k1-syscon.h              | 160 ++++++++++
+ 9 files changed, 741 insertions(+), 127 deletions(-)
+ create mode 100644 drivers/reset/reset-spacemit.c
+ create mode 100644 include/soc/spacemit/k1-syscon.h
 
 
-I do not see any changes in the binding related to above paragraph, so I
-do not understand why are you explaining driver?
+base-commit: cb9c3aeae509b36afbdf46942a7a0a0dfc856ce7
+-- 
+2.45.2
 
-> 
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: James Clark <james.clark@linaro.org>
-> ---
->  Documentation/devicetree/bindings/spi/fsl,dspi.yaml | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/fsl,dspi.yaml b/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
-> index 7ca8fceda717..b5fac0bb142a 100644
-> --- a/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
-> @@ -23,6 +23,7 @@ properties:
->            - fsl,ls2080a-dspi
->            - fsl,ls2085a-dspi
->            - fsl,lx2160a-dspi
-> +          - nxp,s32g2-dspi
->        - items:
->            - enum:
->                - fsl,ls1012a-dspi
-> @@ -37,6 +38,9 @@ properties:
->        - items:
->            - const: fsl,lx2160a-dspi
->            - const: fsl,ls2085a-dspi
-> +      - items:
-> +          - const: nxp,s32g3-dspi
-> +          - const: nxp,s32g2-dspi
->  
->    reg:
->      maxItems: 1
-> @@ -114,3 +118,17 @@ examples:
->                  spi-cs-hold-delay-ns = <50>;
->          };
->      };
-> +  # S32G3 in target mode
-> +  - |
-> +    spi0: spi@401d4000 {
-
-Drop unused label.
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
 
