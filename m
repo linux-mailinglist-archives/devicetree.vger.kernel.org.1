@@ -1,121 +1,162 @@
-Return-Path: <devicetree+bounces-175641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D3D6AB15C6
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:51:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 726A7AB15B4
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 15:49:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 149E11896B24
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:49:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BDF637A7DC8
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:48:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA078293469;
-	Fri,  9 May 2025 13:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 751BC293B42;
+	Fri,  9 May 2025 13:46:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iHMEwdP2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q/2ONir3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F811293464;
-	Fri,  9 May 2025 13:45:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C80B29374B
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 13:46:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746798331; cv=none; b=aSvuXxYYxCBtff4Ov74vicAjV5yAgCUBXPBaNw4LhbSI6/k0vtYoRmK7ElKw0zZzWPMXyACnccvs/XQEvv3B/PpHvJH2UVv+ywz6Euye+wzCPwZdhoYN+c5hIQ4CEaGX0ZhKy+xalYHE23LGWtLho/5j0APBbI4a+nC6uVTdIt8=
+	t=1746798388; cv=none; b=UqUFVOz7F/jpWJFzQOSc+u54SH8N2OjzkeURiRvoDm+LFe4d+QvEeIykWsO+uC3REX5sRTXyhRqjDEDwy/IAR7i9f2t/CRuGOzlRKrUOF752Bu2tl3qR4CUfS9vg6vfycWzUqB8+jMfaqjDGtip/MSb2JN0OjfhUFDnQUOwCVpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746798331; c=relaxed/simple;
-	bh=v5Uak0RcmfjhTO5Ysk+NhysPrBjg5pgA9cE1Hgd2gfE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=oP8WXgJtf1Z7WD2vQN1DGymTt9bMlboqXqZN0jD58nx9DmugQT6cJPghq10u00ZtoR6KEhhUGfB4FCuxj8aW7IXiVH+wOp/SgH+IcAYjtrvAjbXsHP381THv3uoquiXS8wnMg1+tFcf+xUwZgT6b/8rqg3v4KGlwf3QqTHZnU8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iHMEwdP2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42DC6C4CEEF;
-	Fri,  9 May 2025 13:45:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746798331;
-	bh=v5Uak0RcmfjhTO5Ysk+NhysPrBjg5pgA9cE1Hgd2gfE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=iHMEwdP23ywmij2dIw06QIo1o6RyOrSI+/zsCUo5nDKnUyppRzFrGEvOZ5PXwhj/F
-	 HMaL5F7Jd+nsTV2PeECplWgyg998OJc2hYhu0RYzRRzdUi39Hr7hZ+dEE96nl4KanE
-	 Mf7qKeRNhFFHkUHpkgMbdpEu8el4vEHEb8cjcLbIVIQgBjPQyzPpQ+gRJkfsrexTkk
-	 TJUd/vwH+S6QEvA2mxVyMV4q4QIXAlQYHgAU8eek2BOkuGqMFdCL1Cu4Im9S4Y4Asy
-	 X5ALlmXBPwdgyXhNwqVPVZRU5vJaVnqW2yv3ewUpZm1hFQqcPjfwNokpZNt6FarIvL
-	 nAxP6/23PbmFg==
-Date: Fri, 09 May 2025 08:45:29 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1746798388; c=relaxed/simple;
+	bh=XO/wK7V6mXY9xU1mcWlD2Ct18mmjFn+FYLp11z65N7M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Alqti6hknvdVLdQvcgk8CfpnrTDBoc7RC2Vow/RZuhlEi3V0E1XtZlDk2Dn5XfGkWvnUOm6kkj1fhjEgc6dD+NPpZOT7p3+vaL8AoB2rTfFQwgxbe1DI/jstItq1At5HD3j83Iaw7S0of2bzwWCC4W4bRNKLOzbVVtbI1L0XRGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q/2ONir3; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a1b8e8b2b2so868935f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 06:46:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1746798384; x=1747403184; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PZUF6Q4Qc9CPUkc04ir0Y5K/i90KczoIYGaKnAPCoYU=;
+        b=q/2ONir32GkMPFC6dT/uDWYlpzm2wytlHIoVmvWpLmYwgZOs6JxM06D/RXz4jLvFNV
+         Gm65lYDwf/zt7/ZRFp5/ew7R0dtj7mTooxybtt8hzKWf0ldHaLE9jhW41AqdJUm+Qlg0
+         jI6NtJvztVK0aTY4uOJ4rxYv8j1fj3rsTs8nfiwLAVZEueU0GP3CEQtcO/VvDKQv71/L
+         IeYYVjMlT82hiCJM1Y0HN3C1CGQtFa7HAFpCRhfNXFxwdJISGyERrgSpwGwGZVOpQDsx
+         oOMH8jkCNGyzfPEhHrOs+2dhsmTuWMsVrlFWMpO6OCVOwiG4DjLyBnVYyvKERNr8Rply
+         g3Bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746798384; x=1747403184;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PZUF6Q4Qc9CPUkc04ir0Y5K/i90KczoIYGaKnAPCoYU=;
+        b=KXQPf/kWB6Sdbfs+RLep7Pe+3TCGtA81KTFtxlHAG6MPMHiBGNMi3KWH5BfBHCHRLW
+         yYZipbZ6lvMW6tTC0CC/hrreL5RgReH+lsndncaalSDCaK1IDOdOqHa/d2i493SeZsYR
+         qzlWL2GZ2s8xA8yh520Vk1m6UoAWd+FW/5EDRfVpCGhorwyj0gFlY6rdzQQlTWl9JqXM
+         9OZccGu8iV8d2SL4r8CXjTzh7UUYEmEh/vuWQSSkqR1PFa44ZMfGH8IJe/Hu/Gqvh4Nv
+         yemJ0W9WeR8YQDPkDN/mYVdGbY+VaQaIt3KtOBRRXvYjsj6UL4lltJcEfxqAvse+M8om
+         oi6g==
+X-Forwarded-Encrypted: i=1; AJvYcCXtp9oIgNbx10MVFD3Vd/wNw9mXRJsRZ7ZGYUW5WGrtjKgiNE/O8ksacY/M+K0m/V2e05oomPpwVteS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUBJ1xhAiytSaZtLm0uDvL9sjSr9x7mp+elilcCGCN1zkm6PAf
+	Y82vBpkfFvdmTGIGmNPBAPmKu81g5EMMrjkrxw1P7MpcwEUIj4DZA0pQNNGvAtM=
+X-Gm-Gg: ASbGncvzhMo1zb1y04ftX9w8VUaipSk4ik0TR1QyEwEO8av0a7rXo04P6RgF5gFkbNg
+	ZMZFyW0sYjyenL79dl8s4SJV0VV086sq2EAYlN4JbLSNOYaLYNsjRoUmrFmlbDGGVOwGf5Pg1QD
+	yy5gMQv/+MEe9LwQVODsF0cIweKv0IA1h+MjviY5jYAVCsxEcbLfCnMn3UCHupSxqFH5knjtyVf
+	zB2Aftz2vdHv4grIYd9PuBlSph4rQAQQiTucUqSWT00RJfNtWvNJ6N431mH7M/QQ0qswEmsbsUd
+	nhJxMFhol2X2qEKop9eb1V2ztJi8hVIyyII+hxuWYsaRXuD77+/5Tg==
+X-Google-Smtp-Source: AGHT+IEo0jYrQRcALBtqnax8NWcKiAGj6scBJ0uiGs5jTKoY3ij/ij8y04Oz3H5GiqMjPbUsL8YJBQ==
+X-Received: by 2002:a5d:5f95:0:b0:3a0:b84c:7c64 with SMTP id ffacd0b85a97d-3a1f6435b6fmr3000885f8f.13.1746798384562;
+        Fri, 09 May 2025 06:46:24 -0700 (PDT)
+Received: from [192.168.1.3] ([77.81.75.81])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ecaeasm3290573f8f.28.2025.05.09.06.46.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 May 2025 06:46:24 -0700 (PDT)
+Message-ID: <bc871cb9-0b50-4132-8bdb-3a764bc98180@linaro.org>
+Date: Fri, 9 May 2025 14:46:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
- Simona Vetter <simona@ffwll.ch>, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Sandy Huang <hjc@rock-chips.com>, linux-arm-kernel@lists.infradead.org, 
- Heiko Stuebner <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>
-To: Chaoyi Chen <kernel@airkyi.com>
-In-Reply-To: <20250509070247.868-3-kernel@airkyi.com>
-References: <20250509070247.868-1-kernel@airkyi.com>
- <20250509070247.868-3-kernel@airkyi.com>
-Message-Id: <174679832782.3268212.14187145716217204354.robh@kernel.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: display: rockchip: Convert
- cdn-dp-rockchip.txt to yaml
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 14/14] arm64: dts: Add DSPI entries for S32G platforms
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-spi@vger.kernel.org, imx@lists.linux.dev,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ "Radu Pirea (NXP OSS)" <radu-nicolae.pirea@oss.nxp.com>,
+ Vladimir Oltean <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+ NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, larisa.grigore@nxp.com, arnd@linaro.org,
+ andrei.stefanescu@nxp.com, dan.carpenter@linaro.org
+References: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
+ <20250509-james-nxp-spi-v1-14-32bfcd2fea11@linaro.org>
+ <3ddde799-76b5-43f9-971e-a52ec322e9b1@kernel.org>
+ <16e91572-b132-4246-9fa9-8e8bc4c24f40@gmail.com>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <16e91572-b132-4246-9fa9-8e8bc4c24f40@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-On Fri, 09 May 2025 15:02:47 +0800, Chaoyi Chen wrote:
-> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+
+On 09/05/2025 1:54 pm, Matti Vaittinen wrote:
+> On 09/05/2025 14:26, Krzysztof Kozlowski wrote:
+>> On 09/05/2025 13:06, James Clark wrote:
+>>> +&spi1 {
+>>> +    pinctrl-0 = <&dspi1_pins>;
+>>> +    pinctrl-names = "default";
+>>> +    #address-cells = <1>;
+>>> +    #size-cells = <0>;
+>>> +    status = "okay";
+>>> +
+>>> +    spidev0: spidev@0 {
+>>
+>>
+>> Node names should be generic. See also an explanation and list of
+>> examples (not exhaustive) in DT specification:
+>> https://devicetree-specification.readthedocs.io/en/latest/chapter2- 
+>> devicetree-basics.html#generic-names-recommendation
+>>
+>>
+>>> +        compatible = "rohm,dh2228fv";
+>>
+>>
+>> Nah, I really doubt. That's not the device you have there. It's
+>> possible, though, so can you share schematics?
 > 
-> Convert cdn-dp-rockchip.txt to yaml.
+> Actually, not even possible. There is no DH2228FV from ROHM. There is 
+> BH2228FV though:
+> https://www.rohm.com/products/data-converter/d-a-converters/8bit-d-a/ 
+> bh2228fv-product
 > 
-> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> ---
+> but as you know, it is unlikely this is the part populated on the board.
 > 
-> Changes in v2:
-> - Rename binding file name to match compatible
-> - Add more description about grf/phy/extcon
-> - Fix coding style
+> For the author:
+> https://lore.kernel.org/linux-rockchip/20250213-calamity- 
+> smuggler-5d606993be32@spud/T/
 > 
-> 
->  .../display/rockchip/cdn-dp-rockchip.txt      |  74 --------
->  .../rockchip/rockchip,rk3399-cdn-dp.yaml      | 158 ++++++++++++++++++
->  2 files changed, 158 insertions(+), 74 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/cdn-dp-rockchip.txt
->  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml
-> 
+> Yours,
+>      -- Matti
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Correct, I believe these go straight to a header and aren't connected, 
+so this device is just an example placeholder for a 'generic' SPI device.
 
-yamllint warnings/errors:
+It might be more accurate to remove this, and then anyone using the 
+board for development would have to fill in themselves whatever device 
+is attached to it.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
- 	 $id: http://devicetree.org/schemas/display/rockchip/rockchip,cdn-dp.yaml
- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250509070247.868-3-kernel@airkyi.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Thanks
+James
 
 
