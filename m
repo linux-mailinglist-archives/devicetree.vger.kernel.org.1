@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-175527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7664CAB11A2
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:09:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 780FCAB119B
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 13:08:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A94AD9E674D
-	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:08:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E09AB1C05B45
+	for <lists+devicetree@lfdr.de>; Fri,  9 May 2025 11:08:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E96291171;
-	Fri,  9 May 2025 11:07:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126E3291876;
+	Fri,  9 May 2025 11:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gGLnv/Tl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fcmkc4NY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90926290D93
-	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED339291156
+	for <devicetree@vger.kernel.org>; Fri,  9 May 2025 11:07:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746788829; cv=none; b=pBSnFJFSzi/hNaslwECHAGGSs9cIg1btYYWUt3vqIHrrbqMAn/u9WhnFNFrs8E9hxmOON3OvIlm59p9XTuStX7rM1+smLVCSa2lGpp7UmfyHSTLZK57xpG1oSfaYzVaeQN+67tiv4oX/aFMhZmBK4ND1tp2Ye8fVa6K+QRUpeOQ=
+	t=1746788831; cv=none; b=EE9yWwPwz/uX/LnaE6urbJbuLyShyH4nAgZZTn8twa/Iz7Er8WZ1JuHXJyKqR0yj6+G2/S+k4rwkFn61knBV2ra1BR9DSc0mTdVCQVcYpEcRdKgxuxDjLzb9oE6sOqbOuRBJd9LanBKxsKcXroVEkuXu5gQJc+wjqR9vOppFKGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746788829; c=relaxed/simple;
-	bh=Wzbi1SX9mtAF2E7Mjcw8XjP0xTVKnkUioAGI/9ufBe8=;
+	s=arc-20240116; t=1746788831; c=relaxed/simple;
+	bh=S/bLVRCZo0bzcqIxKXf/hzh5QW5OR0CMl07vRP4K15U=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=f5ImUw+L92EtBtq4UYwHdcN/6XOUEvcuq+fuOdHRJsP7CvJBsYfSfLiUP8T2FoS9RPg/zD+cW5G7daVgYKBxzoxoQ7z7CoSx+TdOCDc/yIpPgrHALv3CtrEmQefaq1pFo0FZ1ycaSAEecdPmYrWOPNCsoxpGntIO2KgnAnf/NvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gGLnv/Tl; arc=none smtp.client-ip=209.85.221.52
+	 In-Reply-To:To:Cc; b=L4bq2vece91K+obNO3oSccAJUmLB3kJ4H14QuBlj7w4f3jTVL36LY+KnsBoyYD2Ws7N6m5E4XLx46td+qzVnLiJLCkry1veSKQT9o7riCyyoVj03lsUoy4fUfxCVBoO+n+wceOxRlYXNnA6V9Q2BW89aRIjBvLJVzKJNg88Jzuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fcmkc4NY; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a1c85e77d7so799075f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:07:07 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3a0b637db6eso1184953f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 09 May 2025 04:07:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746788826; x=1747393626; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1746788827; x=1747393627; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=X9YN8+8rnHDsp/b09Y/xOR9H3TlYqB2jpDQsHdPnIdk=;
-        b=gGLnv/Tl8Sm21KyMwuvCdXbd/QsLcu66maSgRkpo7Zjrz41eM6Ml3NXnPwDdguOBmG
-         yk7DlIZHnti3+8ZO+ATC171E9QAeblcJk8IuII7C33S8y8yHFobCehDUvDXFLyG3klEY
-         G2o1ggip1ye+gdIRxc5L6+biWMJpkd+LuJWXjHYCU+WeNriNDbBiaA3SVfmBAucptSKk
-         u7NMYImjM3YTkLZo3WgIAXhgOqqtNAM232Cl+J7xwLZwXT9ro9HEPq0VZTIYT75WaOYT
-         sSLIpiR2GKXhs2ACMBuTh/DY0nBLPbzOqJ826zjR3GBZ6sLwfIttmmkONeR4ZQe64DDT
-         9/qw==
+        bh=fEyehrM+Fx4o61r/yR0u4BgsTY9lmtx/SKx/NBJ8aCc=;
+        b=fcmkc4NY3e06M3r35eJcaaQJvrglBrg2+8r5I4v18Qq1gGy52ko2ucK/R26ePMG9dU
+         vq1sWhdRdgnILOA2bcPC6tONNH8hsZu0Xw5WOZhKbZK0KJES76T4Cv+R/MXPd52SXh8G
+         zjhVE1s83JZfCXIEnAYo33slZ6GMqnjsk8YInsjZJEcvNVmWCrT1uklRkEuzmsvn1F5M
+         t+aYIAGgDTBOeU62TTcF1ebW9NNm0owXqioMS91rO2FlldYXsGitBj3YCJFQ6lB27SXR
+         Zsf3scFjYvik8nIu9PQndeNVMJQMc18QJFT5LSsPSmEgwWF9L0t7tZDbsboakbNYtuIm
+         wnPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746788826; x=1747393626;
+        d=1e100.net; s=20230601; t=1746788827; x=1747393627;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=X9YN8+8rnHDsp/b09Y/xOR9H3TlYqB2jpDQsHdPnIdk=;
-        b=uMuRgt7xoAWYaLDihL6JpFvbfpCAggdpJMKq+qR3yp2NnNUhQ83BbGaOzF+g72O6Kg
-         DwpzhVgJ8bV0Z8xa5i7ZQLcJQQ339/nUauM0smkmV+Xxd0mSLPrno475e7YSFDoRnp/0
-         SJe5kDHTZtCkCJyfMbZh5kVMOsB4BVZU4j3V3EjIg7+/YLxoET+KSvhv4Sh6yv4W2EYy
-         gOwX/0EQtHP3MmrFAwYXw0VoVCLGGEoqfD0IdplokHy8PL6RgbuiftY1hcND+49xtUEc
-         P1P+zLfrVgvRsCOgAbXk2dpoRRHNcrwXjLzT/s0kiMCtaub3ZXZO/jj1BFJUadufiJsg
-         HQpg==
-X-Forwarded-Encrypted: i=1; AJvYcCUzLhXD/dd5uWFp03Q51JTNmPg92+4HCzeZExNgXKiMb1zOjM35r2RkW6CntmgcRewBiX5yy5fgtKIc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzH52yDcPGcd9WodJQ1GXCAKCxpt8DXNvtfr06IJiDRLUElKh1A
-	PW2seZIGDujqFHU0qkXueUMYl0WIggVw3SbhF3gGzh5fWwAsUCO2Hj4LcHzI4es=
-X-Gm-Gg: ASbGncuHJS5ZpqjQr81y1NOz01sYxuiJeduq5d+8DTwsTXW7ZHeUSb5F6j3/cuG+N6F
-	gz7VYEhs6UHoX1E5W+1FkWMMHGccWPtxEXC+juW5NtRdV+ohL7/8PnLaiVLk7VnmhhaqxLGxhAx
-	Csr5Ub49gOeIhNKSkEWn4+mN6pvjvfqJtQzyyjHa4B3wVe40uF3HJmQNZBxzNb/eFfku+3a01jH
-	Agu+MivU6K9J1Ii4wzO0WTdDc1ESYvUFGphzmpjxJ8rgXzatb4RcxLRDejgNqgzQWCMcIM5c3VL
-	j3HbB+5o5gz1E+eO2zvTTaQe4xIquGzpaG2/advCCNvjsSM=
-X-Google-Smtp-Source: AGHT+IGTcDbYuLQC5gOTqBLxhDeYoC8oTLnNT0OALiU2xxGu34CRv1e+8uSkOAx/4GXBO/mVq1Dayg==
-X-Received: by 2002:a5d:584b:0:b0:3a1:f635:1136 with SMTP id ffacd0b85a97d-3a1f6487d80mr2603233f8f.28.1746788825706;
-        Fri, 09 May 2025 04:07:05 -0700 (PDT)
+        bh=fEyehrM+Fx4o61r/yR0u4BgsTY9lmtx/SKx/NBJ8aCc=;
+        b=R7Bng8FTIRe7m1qaadVe4mRTVxU/o4V6HM3yPRKhWLV4lypYSiT06ccf7NjfoZL3bC
+         tQ5Z84q46rS9tkHfR13n/+jdnSzklHtxdhWWuukTkTEsUaFNuBQnBW9oJJcBqZwmb6g3
+         iOp9MeDKSu/k8WRKVjfYpMxg2/4F1f/M+0LZ+eAUkC3AiXcc0sF2HId1eTy1NE/DHqvJ
+         4ChhtAw9eeHDMFC+HCI5e2j7vbRvyC8QFDHsaKAaQy0Tt9K1JnrUr8fcZ8Bhwtm9BWur
+         roFXGS5knl174AN1YJcPHBIpNJ3la1hPAm1dX7HRwN6v9YNeT3ecHxRysVOJcNEJcNwD
+         OhOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX2j7i+Tj+7lMFTcTLPRDDOv35zyCXAS2jIU3QrytPycdCU/zIgUii/D91Nr+g/tBxpJ1g4GFNf81zu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yycu3Y+s65c00dYS0ggjhaEYf4TWcSiBsOpqMNjN25+GcD0EMvE
+	SLcoV1HBXdAqC+SrncsHIFBJnN8OIblIvlfRNMYXX+voOerDUrURzocPD99NPvg=
+X-Gm-Gg: ASbGnctPwViH8TyhaiVOTQ+xWTJz1IQGm2VUWZRTQObCxarRjMoN40YTfM3ouOSC3oo
+	sdE0N3duRFtLr0S6/izRwpRlp7FMlN55ycey1B8DlapX577+4rcbvlwJu7+JVy0WvjQ8wbAu4Bk
+	IMTqmK94jfiRUYWM4EkSysQqdcBZTZYentbwdPL6QOUYxyjd1ek3Bgh2HTUuf5U6TPyyjKIQ0cr
+	gGE3TXrMObrT5a4Q626r2g+sHc/zlG3js/Snl/1BtFWWhs7Sx+SwjkuZPeBLkTRweN+iCgICpWu
+	UW9+yBCmkmeqbPZ3hHq+CdL0fFc0Sjsns5taOq4oNKrIGGw=
+X-Google-Smtp-Source: AGHT+IEQntKAHHe5FBbl7TvKgw8FWGCOZDWYXdtRsViQGulRTo3e/GMO/aV0MJn1nNmDeMFHI32nUQ==
+X-Received: by 2002:a05:6000:2506:b0:3a0:a0e5:d28b with SMTP id ffacd0b85a97d-3a1f6421ecemr2453655f8f.3.1746788827070;
+        Fri, 09 May 2025 04:07:07 -0700 (PDT)
 Received: from ho-tower-lan.lan ([77.81.75.81])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ecadfsm2914797f8f.22.2025.05.09.04.07.04
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ecadfsm2914797f8f.22.2025.05.09.04.07.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 May 2025 04:07:05 -0700 (PDT)
+        Fri, 09 May 2025 04:07:06 -0700 (PDT)
 From: James Clark <james.clark@linaro.org>
-Date: Fri, 09 May 2025 12:05:55 +0100
-Subject: [PATCH 08/14] spi: spi-fsl-dspi: Use DMA for S32G controller in
- target mode
+Date: Fri, 09 May 2025 12:05:56 +0100
+Subject: [PATCH 09/14] spi: spi-fsl-dspi: Reinitialize DSPI regs after
+ resuming for S32G
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250509-james-nxp-spi-v1-8-32bfcd2fea11@linaro.org>
+Message-Id: <20250509-james-nxp-spi-v1-9-32bfcd2fea11@linaro.org>
 References: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
 In-Reply-To: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
 To: Vladimir Oltean <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -99,99 +99,118 @@ To: Vladimir Oltean <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>,
  andrei.stefanescu@nxp.com, dan.carpenter@linaro.org
 Cc: linux-spi@vger.kernel.org, imx@lists.linux.dev, 
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Ciprian Marian Costea <ciprianmarian.costea@nxp.com>, 
- James Clark <james.clark@linaro.org>
+ linux-arm-kernel@lists.infradead.org, James Clark <james.clark@linaro.org>
 X-Mailer: b4 0.14.0
 
 From: Larisa Grigore <larisa.grigore@nxp.com>
 
-Switch to DMA for target mode otherwise the controller is too slow to
-feed TX FIFO and UNDERFLOW occurs frequently. DMA can work only with 8
-and 16 bits per word. 32bits per word is not supported, this is a
-hardware limitation, so we keep the controller mode in TCFQ mode.
+After resuming, DSPI registers (MCR and SR) need to be reinitialized for
+S32G platforms.
 
 Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
 Signed-off-by: James Clark <james.clark@linaro.org>
 ---
- drivers/spi/spi-fsl-dspi.c | 28 +++++++++++++++++++++++++++-
- 1 file changed, 27 insertions(+), 1 deletion(-)
+ drivers/spi/spi-fsl-dspi.c | 73 +++++++++++++++++++++++++---------------------
+ 1 file changed, 40 insertions(+), 33 deletions(-)
 
 diff --git a/drivers/spi/spi-fsl-dspi.c b/drivers/spi/spi-fsl-dspi.c
-index b7363cfc649d..50cec3b94322 100644
+index 50cec3b94322..0613642d769d 100644
 --- a/drivers/spi/spi-fsl-dspi.c
 +++ b/drivers/spi/spi-fsl-dspi.c
-@@ -137,7 +137,8 @@ enum {
- 	LX2160A,
- 	MCF5441X,
- 	VF610,
--	S32G
-+	S32G,
-+	S32G_TARGET
+@@ -1258,6 +1258,39 @@ static const struct of_device_id fsl_dspi_dt_ids[] = {
  };
+ MODULE_DEVICE_TABLE(of, fsl_dspi_dt_ids);
  
- static const struct regmap_range dspi_yes_ranges[] = {
-@@ -182,6 +183,7 @@ static const struct regmap_access_table dspi_volatile_table = {
- 
- enum {
- 	DSPI_REGMAP,
-+	S32G_DSPI_REGMAP,
- 	DSPI_XSPI_REGMAP,
- 	S32G_DSPI_XSPI_REGMAP,
- 	DSPI_PUSHR
-@@ -197,6 +199,15 @@ static const struct regmap_config dspi_regmap_config[] = {
- 		.wr_table	= &dspi_access_table,
- 		.rd_table	= &dspi_access_table
- 	},
-+	[S32G_DSPI_REGMAP] = {
-+		.reg_bits	= 32,
-+		.val_bits	= 32,
-+		.reg_stride	= 4,
-+		.max_register	= 0x8C,
-+		.volatile_table	= &dspi_volatile_table,
-+		.wr_table	= &s32g_dspi_access_table,
-+		.rd_table	= &s32g_dspi_access_table,
-+	},
- 	[DSPI_XSPI_REGMAP] = {
- 		.reg_bits	= 32,
- 		.val_bits	= 32,
-@@ -294,6 +305,12 @@ static const struct fsl_dspi_devtype_data devtype_data[] = {
- 		.max_clock_factor	= 1,
- 		.fifo_size		= 5,
- 		.regmap			= &dspi_regmap_config[S32G_DSPI_XSPI_REGMAP]
-+	},
-+	[S32G_TARGET] = {
-+		.trans_mode		= DSPI_DMA_MODE,
-+		.max_clock_factor	= 1,
-+		.fifo_size		= 5,
-+		.regmap			= &dspi_regmap_config[S32G_DSPI_REGMAP]
- 	}
- };
- 
-@@ -350,6 +367,12 @@ struct fsl_dspi {
- 	void (*dev_to_host)(struct fsl_dspi *dspi, u32 rxdata);
- };
- 
-+static bool is_s32g_dspi(struct fsl_dspi *data)
++static int dspi_init(struct fsl_dspi *dspi)
 +{
-+	return data->devtype_data == &devtype_data[S32G] ||
-+	       data->devtype_data == &devtype_data[S32G_TARGET];
++	unsigned int mcr;
++
++	/* Set idle states for all chip select signals to high */
++	mcr = SPI_MCR_PCSIS(GENMASK(dspi->ctlr->max_native_cs - 1, 0));
++
++	if (dspi->devtype_data->trans_mode == DSPI_XSPI_MODE)
++		mcr |= SPI_MCR_XSPI;
++	if (!spi_controller_is_target(dspi->ctlr))
++		mcr |= SPI_MCR_HOST;
++
++	regmap_write(dspi->regmap, SPI_MCR, mcr);
++	regmap_write(dspi->regmap, SPI_SR, SPI_SR_CLEAR);
++
++	switch (dspi->devtype_data->trans_mode) {
++	case DSPI_XSPI_MODE:
++		regmap_write(dspi->regmap, SPI_RSER, SPI_RSER_CMDTCFE);
++		break;
++	case DSPI_DMA_MODE:
++		regmap_write(dspi->regmap, SPI_RSER,
++			     SPI_RSER_TFFFE | SPI_RSER_TFFFD |
++			     SPI_RSER_RFDFE | SPI_RSER_RFDFD);
++		break;
++	default:
++		dev_err(&dspi->pdev->dev, "unsupported trans_mode %u\n",
++			dspi->devtype_data->trans_mode);
++		return -EINVAL;
++	}
++
++	return 0;
 +}
 +
- static void dspi_native_host_to_dev(struct fsl_dspi *dspi, u32 *txdata)
+ #ifdef CONFIG_PM_SLEEP
+ static int dspi_suspend(struct device *dev)
  {
- 	switch (dspi->oper_word_size) {
-@@ -1398,6 +1421,9 @@ static int dspi_probe(struct platform_device *pdev)
- 		dspi->pushr_tx = 0;
- 	}
- 
-+	if (spi_controller_is_target(ctlr) && is_s32g_dspi(dspi))
-+		dspi->devtype_data = &devtype_data[S32G_TARGET];
+@@ -1284,6 +1317,13 @@ static int dspi_resume(struct device *dev)
+ 	if (ret)
+ 		return ret;
+ 	spi_controller_resume(dspi->ctlr);
 +
- 	if (dspi->devtype_data->trans_mode == DSPI_XSPI_MODE)
- 		ctlr->bits_per_word_mask = SPI_BPW_RANGE_MASK(4, 32);
- 	else
++	ret = dspi_init(dspi);
++	if (ret) {
++		dev_err(dev, "failed to initialize dspi during resume\n");
++		return ret;
++	}
++
+ 	if (dspi->irq)
+ 		enable_irq(dspi->irq);
+ 
+@@ -1293,39 +1333,6 @@ static int dspi_resume(struct device *dev)
+ 
+ static SIMPLE_DEV_PM_OPS(dspi_pm, dspi_suspend, dspi_resume);
+ 
+-static int dspi_init(struct fsl_dspi *dspi)
+-{
+-	unsigned int mcr;
+-
+-	/* Set idle states for all chip select signals to high */
+-	mcr = SPI_MCR_PCSIS(GENMASK(dspi->ctlr->max_native_cs - 1, 0));
+-
+-	if (dspi->devtype_data->trans_mode == DSPI_XSPI_MODE)
+-		mcr |= SPI_MCR_XSPI;
+-	if (!spi_controller_is_target(dspi->ctlr))
+-		mcr |= SPI_MCR_HOST;
+-
+-	regmap_write(dspi->regmap, SPI_MCR, mcr);
+-	regmap_write(dspi->regmap, SPI_SR, SPI_SR_CLEAR);
+-
+-	switch (dspi->devtype_data->trans_mode) {
+-	case DSPI_XSPI_MODE:
+-		regmap_write(dspi->regmap, SPI_RSER, SPI_RSER_CMDTCFE);
+-		break;
+-	case DSPI_DMA_MODE:
+-		regmap_write(dspi->regmap, SPI_RSER,
+-			     SPI_RSER_TFFFE | SPI_RSER_TFFFD |
+-			     SPI_RSER_RFDFE | SPI_RSER_RFDFD);
+-		break;
+-	default:
+-		dev_err(&dspi->pdev->dev, "unsupported trans_mode %u\n",
+-			dspi->devtype_data->trans_mode);
+-		return -EINVAL;
+-	}
+-
+-	return 0;
+-}
+-
+ static int dspi_target_abort(struct spi_controller *host)
+ {
+ 	struct fsl_dspi *dspi = spi_controller_get_devdata(host);
 
 -- 
 2.34.1
