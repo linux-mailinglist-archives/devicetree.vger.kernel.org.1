@@ -1,151 +1,210 @@
-Return-Path: <devicetree+bounces-175900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19770AB2433
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 16:57:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B369AB243E
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 17:11:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FC4A7B1D31
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 14:56:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AB9D1BA47F2
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 15:11:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8595D22C355;
-	Sat, 10 May 2025 14:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D96222B8BD;
+	Sat, 10 May 2025 15:11:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MiV2PBxO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MHG6DaJ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B4651E260A;
-	Sat, 10 May 2025 14:57:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1BE1CA4B;
+	Sat, 10 May 2025 15:11:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746889069; cv=none; b=monR3COJOTZWsHH+sDPj/8+3Pjd2Ce5cn+KPbqM+NvpjFLdQo2+Sp1OaVOcgo7JHDCJxVLVL7wOJTf2YrpQQuSRvbw6UUybZ9Iesm/0BfDgPmJNHQWOSr1wvntk9YNPQGkkvJTWsT4QzY/K4Ss4+3ch2SJV7I7pu/qh7pQavM1I=
+	t=1746889891; cv=none; b=n8zIhzApYQm1e8z2h8Z62Y62nHp85Ef/TqSq9nhAKDOiBptE0upw1nglltIqSwLiJQuJTOnZlreo77tf0qroc1a7mtpheomI4ENk0DeEciUO9gmaZfuiopeVDDkr3sFxx/oFO7VDRmw1YiyCpinXiHkHsO66+Dy8u8bttpbG63g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746889069; c=relaxed/simple;
-	bh=8XQr2/jS84aTFXHAEsOCWY3yvq4E8JgjzYfT+OuPl80=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=imGmh9MlZroWm/+IegG0lPle0k9sK3XKLOI2ktnKiaGcY7t+Ubvn47d/rLkXGDPQTk+KZQXvPTpEL1SpesL5Iiq6TZ758MDDsv04nttucdaHFouLaxMdGyu2rfyrNbPyEOSo1/2Y4/K3pStS71scLuCoei6H/FhLNNJOC5ZVrP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MiV2PBxO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B488C4CEE2;
-	Sat, 10 May 2025 14:57:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746889068;
-	bh=8XQr2/jS84aTFXHAEsOCWY3yvq4E8JgjzYfT+OuPl80=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MiV2PBxOk5cf4X+DLPSeNIIdYbZckLCENiBAdZGyS6wDWE2bGpZT1cvHgKAunnV5d
-	 Z91ulT/L9farpefy4O9jVDl8raf/qFk6q1OWt4QOtEfOtLz7i4tsa7uX5QonRutBsw
-	 17pAHWY+tUoNMbaK2t7XrJmLJTeCUbsZpFimm979IeAQnVKnK9z2m+qfrmJ0PJAzvF
-	 5fUU8MQSnF3THevm8iqBDhcZ+zL+gIH5/Ls/HowNxVtRrF0u8xsfo3QLAhoA/1p+UM
-	 owQFUdpaR6iJufayk3f4k10XwkFAocxpH8aWRq/ALfGfOoprN1uSq6geaItRsrkiNw
-	 dLnkni2/OvVGA==
-Message-ID: <c91d99c9-0ecb-4dcd-9beb-5a1e9fadc619@kernel.org>
-Date: Sat, 10 May 2025 16:57:44 +0200
+	s=arc-20240116; t=1746889891; c=relaxed/simple;
+	bh=IImZvUkpMAnwhvmBNPBZuUuP3+ZC7bdMT4Tj48zkB6M=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IK/zC+5vTqt7QYRUwxW+7whbQDkdkIOtBwFSt9jF5uE/2NsDDU4CR3pFk2y2zSU68U7JjYgwlij1QXALJtxBbwoNiJ/RwXzMagJpDwMuN51hn9mhr4YM407THmynWmGeu14+c47Tefehauybf1hFNmH9+uSL3NTTudMZXCSYryk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MHG6DaJ1; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7394945d37eso2770286b3a.3;
+        Sat, 10 May 2025 08:11:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746889889; x=1747494689; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sR6qkQWtty2THn9HV/oPVYY8q0oy4myszmIk0XskAD4=;
+        b=MHG6DaJ13nnrq+X52DC0JsljBXR+mTK0j4zb91ZTKJnG4dfDJC/ZCBsnC/n/5ja0Uq
+         SrW7ejKIZ0GxZ2SOHgUv9OcRrBDcJ2x7wxbtfdLY0XKITdseOViaZEWJj4JUnxQIBtqI
+         CGryMW2yLQ9QTCqseWSBFmgcm1xSuKSiRW+upYnKXXYqyosYKp+rV4i0HasddsyiZoQq
+         Gxv6aIcZDv96sQPIt/VdBq2urX/VvYREOhVVIYpKdIKb8s4IF/9Bb7C9OJCiGCPEj01K
+         kosR53JZibJucKeleGdaeJQmqormCSxfhig5pTEZrwe2pghVI9FvTnUmbuz1qAOh716x
+         KhEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746889889; x=1747494689;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sR6qkQWtty2THn9HV/oPVYY8q0oy4myszmIk0XskAD4=;
+        b=nMefc4g/JBWul+cmHy0ox6tdhvjn0baz5+BWZ/TvjkCE4Skf19zPTMB2APrfU5XF2r
+         G/RaQFMZI7xRXnWKYMAyA8Jlk2wF9XfN0CXMFSDzLiR3LtLXeCNyGPvHhi6F4jgtaOjC
+         ApQzU7GBN/wAjfTBpmDZfuI8+ZHFmk3Bq5pM7aTyUB8VNnpkS6M2PcPHqgpwRzeOPtv9
+         aPXY7CjTrzQ9YPozDPCSjoXS+tjId36HrsmJueaSr7H3Dzx4hb64S3rWU9YNJE5oD10h
+         GrjYVw8Uss+ZGQtyq1rFrFqziPtiUOCbervgjZkY9xT0MRw/llnfaLjsXBv72QP4TyAs
+         avcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUiGmkupbOMeeaNJnI8CJSSEkS9OfR9pKpvv1DybasFCOA/anQU4VzpOokJj9GjqHJ2XNH4JKe0foe3@vger.kernel.org, AJvYcCUxV3h2vefEB1vm98wWG3Y2S6jpGWkMy91Aq+E2RpKJs9iXl+PKliiaw1/+74WfHZU286rRTaokNgVwCAeY@vger.kernel.org, AJvYcCUymjgYonaRfl7x8QVFIHGn8SlmhktvWK+YORZp2si7X/s6M9lDVCIdS2c4ImFfC6HPOxBMsCUfwxcUXNAkhO/q4Q==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yww6q2G0uIntcqDcmeBkMA76yg1cvz0fJQFyjjet4NVUsFyqkAV
+	fdb0CebE9p6RvOzvcjTUONZ0aSeJ969/Menjw/vZLqXKJ9t+1W5a
+X-Gm-Gg: ASbGnctDg8n0bQYecsFFRgKwkbPNYZdGwb7rtc4Md1qnAPxDytN+z4XmtUwBjOTXv/y
+	QX1vruCOdNXsDE6yUW7VZgk0138Q5tqlfpaiF8dg8z3oCallYA3gqqSDzl7c4SVu5xkxeQbWMbO
+	22NM0utyjYRzXUq8yb0HF9AMHtj3DKVhx2Wd5n6OIsoCEjOSIyy6XWruQeYdLYYpJ2quuJM7a00
+	h/k73Z1DnYW9EqzMNYbnGhXy3ZQofukaA5VX+WTNmtb2Wf/ZKgNN7ZJ3JWj9Y1+7DXyAqBha1v5
+	ScqaZoZU0x+Tc2HDICPJft8pD8CAU9tyBqrAKL3VdcsH0v5rVkKPPg==
+X-Google-Smtp-Source: AGHT+IFqdmSlPKPteFj6aFoaXv53VGI6hMJqHMy/+z2wasnrmqyzjdM63pzuW5ZpYok0awQTBpZ+xg==
+X-Received: by 2002:a05:6a20:c6c8:b0:1f5:7873:304f with SMTP id adf61e73a8af0-215abcb169cmr11920239637.37.1746889888698;
+        Sat, 10 May 2025 08:11:28 -0700 (PDT)
+Received: from [127.0.1.1] ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id 41be03b00d2f7-b2350ddca3asm2990493a12.58.2025.05.10.08.11.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 10 May 2025 08:11:28 -0700 (PDT)
+From: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH v7 00/21] drivers/perf: apple_m1: Add Apple A7-A11, T2 SoC
+ support
+Date: Sat, 10 May 2025 23:10:41 +0800
+Message-Id: <20250510-apple-cpmu-v7-0-bd505cb6c520@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: power: Add SiFive Domain Management
- controllers
-To: Conor Dooley <conor@kernel.org>
-Cc: Nick Hu <nick.hu@sifive.com>, Cyan Yang <cyan.yang@sifive.com>,
- Samuel Holland <samuel.holland@sifive.com>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>
-References: <20250509021605.26764-1-nick.hu@sifive.com>
- <20250509-small-graceful-limpet-d0ea41@kuoka>
- <20250509-subtract-caramel-08d47ed3281c@spud>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250509-subtract-caramel-08d47ed3281c@spud>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHFsH2gC/3XOQWrDMBCF4asErasijSRr3FXvEbqYSKNEEMfGb
+ k1K8N0rB0otQ5dv4PuZh5h4zDyJt8NDjDznKfe3MvzLQYQL3c4scyxbgAKnQGtJw3BlGYbuSzp
+ yZCKZ1qIRBQwjp3x/xo4fZV/y9NmP38/2rNfrbwa2mVlLJRMGn4CC9ta8nzvK19fQd2LNzLClp
+ qJQKPqTaXRrgBH31PxPTaEn9gkpckSd9tRuqa2oXR9OgRRbp63nPXUbClhRV2jLGmyIgBztnjZ
+ /1Cpf0aZQYgyQAFyoH16W5QdDpCuiywEAAA==
+X-Change-ID: 20250211-apple-cpmu-5a5a3da39483
+To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Sven Peter <sven@svenpeter.dev>, 
+ Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ Neal Gompa <neal@gompa.dev>
+Cc: Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
+ asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Nick Chan <towinchenmi@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4111; i=towinchenmi@gmail.com;
+ h=from:subject:message-id; bh=IImZvUkpMAnwhvmBNPBZuUuP3+ZC7bdMT4Tj48zkB6M=;
+ b=owEBbQKS/ZANAwAKAQHKCLemxQgkAcsmYgBoH2yHw4CuFivJusE7hlGbbgqG9szRqZ0CujA+7
+ 0Cf7L4U69mJAjMEAAEKAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCaB9shwAKCRABygi3psUI
+ JPFFEACjXZ1zkTpXhVHIBbRagB67W1YYYd1s69NMFjN6J086u6h0kJPWk9bwFUXgVaemwUZMZBV
+ AEcyPcPPaSI0suoozIWe4JQb2Gg/dp/m+/T2XApZGAZRiilFi+QNnKOO0Sobgkt6iXvrRZ3KRXp
+ u9FXdsXxxoabckir6nvpH72iE9f3W0V0Z9Hn5wdmVExSPtq0eudWTMEtH3VkncU/4kD96uK2hrn
+ hAe+BpWQQZt+AOiqa6fRgtcuWWLt+sYGQgidT2zXWXFiYmZ+gPGH2SqqqEbk1vpm+QsrGXsmL/J
+ MGjgXR4ziP4qsoW5Ma3cdKfrpP21hcmqIDh1cKCCsX6ZlJtpwhjrTjKu6s/+o4FrWdRBirggO3A
+ whENu/e8sEX/EcwzwYamt0bNQuweGptXfB4nAope7nVo0O7NrtYDoVSotGgxMYnyK1dzGkUPDNc
+ N4I6veIVcn+MsiERtigpbeBLW33lmJvcEqcQ3NQXuO7j3al91tbABzQ2LC8KMYUgKoeYj+4bqiN
+ HKkOk0fQonVU5JVruGDE4BlJQNHWlfPen+44A2ioNGQPJ4B2lB5f7rK/I2iOM6PLf6Tn49CHs0E
+ g4q9XSgp5Cs4gc7Uz7+wkflr+ceIg2xQLFKZwp2Vvzy7Mc3L2gULSGdYjxRNqXV1X7iJsBtIpxO
+ Vpaaq8ZLrM/OYFA==
+X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
+ fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
 
-On 09/05/2025 17:57, Conor Dooley wrote:
->>> +          - pattern: "^sifive,[ts]mc1$"
->>> +      - items:
->>> +          - {}
->>> +          - const: sifive,cmc3
->>> +          - const: sifive,cmc2
->>> +      - items:
->>> +          - {}
->>> +          - const: sifive,cmc2
->>
->> All of this is just unexpected. Why any compatible should come with
->> these?
-> 
-> It's also not quite correct either, right? Or may not be correct at
-> least. It permits "xxx", "tmc2", "smc1" and "xxx", "smc2", "tmc1"
-> which mean that the smc and tmc must be identical in terms of
-> programming model.
+This series adds support for the CPU PMU in the older Apple A7-A11, T2
+SoCs. These PMUs may have a different event layout, less counters, or
+deliver their interrupts via IRQ instead of a FIQ. Since some of those
+older SoCs support 32-bit EL0, counting for 32-bit EL0 also need to
+be enabled by the driver where applicable.
 
-Yep
+Patch 1 adds the DT bindings.
+Patch 2-7 prepares the driver to allow adding support for those
+older SoCs.
+Patch 8-12 adds support for the older SoCs.
+Patch 13-21 are the DT changes.
 
-> 
->> You need to use SoC specific compatibles.
-> 
-> I think there's some slack to provide here, sifive are upstreaming it in
-> advance of there being customers (or customers ready to upstream) and this
-> format allows us to accept bindings/drivers and the customer will have
-> to add a soc-specific compatible in order to actually use these in a
-> dts. I think it's better to accept something along these lines than
+Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+---
+Changes in v7:
+- Fix a W=1 compile warning in apple_pmu_get_event_idx() as appearently using GENMASK()
+in a function prototype causes a warning in GCC.
+- Link to v6: https://lore.kernel.org/r/20250407-apple-cpmu-v6-0-ae8c2f225c1f@gmail.com
 
-Sure, commit msg should explain that and probably these {} wildcards
-should have comment as well.
+Changes in v6:
+- Rebased on top of v6.15-rc1 (Conflict with FEAT_PMUv3 support for KVM on Apple Hardware)
+- Add patch to skip initialization of PMUv3 remap in EL1 even though not strictly needed
+- Include DT patches
+- Link to v5: https://lore.kernel.org/r/20250228-apple-cpmu-v5-0-9e124cd28ed4@gmail.com
 
-> stall out until a customer decides to upstream their user. That said, I
-> would expect this to come (as you mentioned above) with the driver.
-> 
+Changes in v5:
+- Slightly change "drivers/perf: apple_m1: Add Apple A11 Support", to keep things in
+chronological order.
+- Link to v4: https://lore.kernel.org/r/20250214-apple-cpmu-v4-0-ffca0e45147e@gmail.com
+
+Changes in v4:
+- Support per-implementation event attr group
+- Fix Apple A7 event attr groups
+- Link to v3: https://lore.kernel.org/r/20250213-apple-cpmu-v3-0-be7f8aded81f@gmail.com
+
+Changes in v3:
+- Configure PMC8 and PMC9 for 32-bit EL0
+- Remove redundant _common suffix from shared functions
+- Link to v2: https://lore.kernel.org/r/20250213-apple-cpmu-v2-0-87b361932e88@gmail.com
+
+Changes in v2:
+- Remove unused flags parameter from apple_pmu_init_common()
+- Link to v1: https://lore.kernel.org/r/20250212-apple-cpmu-v1-0-f8c7f2ac1743@gmail.com
+
+---
+Nick Chan (21):
+      dt-bindings: arm: pmu: Add Apple A7-A11 SoC CPU PMU compatibles
+      drivers/perf: apple_m1: Only init PMUv3 remap when EL2 is available
+      drivers/perf: apple_m1: Support per-implementation event tables
+      drivers/perf: apple_m1: Support a per-implementation number of counters
+      drivers/perf: apple_m1: Support configuring counters for 32-bit EL0
+      drivers/perf: apple_m1: Support per-implementation PMU startup
+      drivers/perf: apple_m1: Support per-implementation event attr group
+      drivers/perf: apple_m1: Add Apple A7 support
+      drivers/perf: apple_m1: Add Apple A8/A8X support
+      drivers/perf: apple_m1: Add A9/A9X support
+      drivers/perf: apple_m1: Add Apple A10/A10X/T2 Support
+      drivers/perf: apple_m1: Add Apple A11 Support
+      arm64: dts: apple: s5l8960x: Add CPU PMU nodes
+      arm64: dts: apple: t7000: Add CPU PMU nodes
+      arm64: dts: apple: t7001: Add CPU PMU nodes
+      arm64: dts: apple: s800-0-3: Add CPU PMU nodes
+      arm64: dts: apple: s8001: Add CPU PMU nodes
+      arm64: dts: apple: t8010: Add CPU PMU nodes
+      arm64: dts: apple: t8011: Add CPU PMU nodes
+      arm64: dts: apple: t8012: Add CPU PMU nodes
+      arm64: dts: apple: t8015: Add CPU PMU nodes
+
+ Documentation/devicetree/bindings/arm/pmu.yaml |   6 +
+ arch/arm64/boot/dts/apple/s5l8960x.dtsi        |   8 +
+ arch/arm64/boot/dts/apple/s800-0-3.dtsi        |   8 +
+ arch/arm64/boot/dts/apple/s8001.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t7000.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t7001.dtsi           |   9 +
+ arch/arm64/boot/dts/apple/t8010.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t8011.dtsi           |   9 +
+ arch/arm64/boot/dts/apple/t8012.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t8015.dtsi           |  24 +
+ arch/arm64/include/asm/apple_m1_pmu.h          |   3 +
+ drivers/perf/apple_m1_cpu_pmu.c                | 807 +++++++++++++++++++++++--
+ 12 files changed, 871 insertions(+), 35 deletions(-)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250211-apple-cpmu-5a5a3da39483
 
 Best regards,
-Krzysztof
+-- 
+Nick Chan <towinchenmi@gmail.com>
+
 
