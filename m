@@ -1,146 +1,126 @@
-Return-Path: <devicetree+bounces-175894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FD63AB2382
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 13:04:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1334CAB239B
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 13:36:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02FB8A05920
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 11:04:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77E921BA555A
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 11:36:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E4F1235074;
-	Sat, 10 May 2025 11:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6A525525A;
+	Sat, 10 May 2025 11:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zi9iS54B"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="Pnd2hPr8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542C1259C;
-	Sat, 10 May 2025 11:04:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C02BA29A0;
+	Sat, 10 May 2025 11:36:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746875062; cv=none; b=otkS4tZaTjbdp1+DlR/NzOydhwGvMIO1VG2r/+WkYHRYJ0dYqGVZXG63T75DKjUOwW3McaAep9+8/Hz3u+L8l4iD4c95fP/0jCQwWYdksnjhNW4v6XjfdTWC8IurtCT132sO5ZPfMJouwXNzkhr6M7edbrQ54ac3KS/+ln/2Lck=
+	t=1746876981; cv=none; b=bNvD+D5lEr9Kgz34r5aQ1QAZTmEKc3RQi2k566Ny6vBcKcFRjHYWlc9OIPyicWAUildneZtdpjPBXVmjfPW6TFviIgSYojYBUKSuOOQHMoksNaf/7nR1HXUlSDgh8KeTNd/52G3s60g8bnf+5NrXsq3SAOrb8TS7pzBERX42DWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746875062; c=relaxed/simple;
-	bh=LnCr8g0K3kFovNAfIBhC2oA0dXw5uMqRwlfONu06Ff4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sXxIR3FQQLjwE4uhyJGIu9Vv1m68LfUHadVQby9UfLS82h4wwhHUyUunURqXv6O3kSXMAynwzIrqcIrmWlhd8jsrkQsXdSNZkySiRf48Gf/TfLT0driyAi2ZrhLK1O2bJEDA7B8+uSesMZEZwKuxc5BGTxKdHGcrkRx/0hNjVwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zi9iS54B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BEAEC4CEE2;
-	Sat, 10 May 2025 11:04:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746875061;
-	bh=LnCr8g0K3kFovNAfIBhC2oA0dXw5uMqRwlfONu06Ff4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zi9iS54BLj0T5mXRojSJXhPL94LXj7hCQ+/I1xdk2P4NXw+CAhe/Wf16Tkh+1LeWL
-	 I2HULSYCpdvR9Ec/a/lV0cBaUEv5yPIkIGg7uZQFb10tVi+k0ADJ2bEqFqYy5f0PoT
-	 zOAVMhR0OiHhYFKU5Zd3vh8EVkbxof0lF5yQemN0sDDJ3oXLBPfkIPfr0FVs7JlzTV
-	 0NMNjnIgfiQLgzZLAmdBYuVbxUfywp5GlK1lSGv2mgPNjPMafWt3Z9wAovA4Zax31l
-	 rJIVFoZCkZ/5eXPA2hFuU8UyNNuf07KWWbSU92+AKjxgBLDQ2nIGoKz6Xt9Ujmsui2
-	 ij+0/jcsMlu1Q==
-Date: Sat, 10 May 2025 13:04:16 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>,
-	dlemoal@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: pci-ep: Add ref-clk-mode
-Message-ID: <aB8ysBuQysAR-Zcp@ryzen>
-References: <20250425092012.95418-2-cassel@kernel.org>
- <7xtp5i3jhntfev35uotcunur3qvcgq4vmcnkjde5eivajdbiqt@n2wsivrsr2dk>
- <aBHOaJFgZiOfTrrT@ryzen>
- <dxgs3wuekwjh6f22ftkmi7dcw7xpw3fa7lm74fwm5thvol42z3@wuovkynp3jey>
- <20250509181827.GA3879057-robh@kernel.org>
- <a7rfa6rlygbe7u3nbxrdc3doln7rk37ataxjrutb2lunctbpuo@72jnf6odl5xp>
+	s=arc-20240116; t=1746876981; c=relaxed/simple;
+	bh=CSbtJfYpYv6dmlPOIorqeT7hfT+eDvX+w78jdbBKPZE=;
+	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
+	 In-Reply-To:References; b=XEnpNVlMbIDZH0wYdmINTjf/HMfu84qXVVJRHkiM91UaH58/rsVoGPIvMDmlsyT2HQsIRA8t4Rktu+DUxgON6WTvzwr9EAcHsHmBNc1TmvpmImGg0NnqEmBUk+sE0YuHsA1/Vipa//yfeFmOSFRH10nWk4gXszOreJZ+txD1Vz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=Pnd2hPr8; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1746876956; x=1747481756; i=frank-w@public-files.de;
+	bh=CSbtJfYpYv6dmlPOIorqeT7hfT+eDvX+w78jdbBKPZE=;
+	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
+	 Content-Type:Date:In-Reply-To:References:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=Pnd2hPr8NhqTEOL0Z894K9VvrtLD5MuuqAinM2SfezN7eEDHyzrMnIfWmv/kWzmG
+	 xjJRi+BAhkgP1yzT+g5veLa7RgEFSKupdLOqgRQgSPIW9+9p3z/2+8bb3SgbCQqkS
+	 Kn2G6ePJMwEgySMCXdcInTrczpW7C1kx7YmdGG6/dPH09Mt5cuIEhsHTP6wdeYsck
+	 80/AGE4RQixvrwwaMyw0FajjARgIsZe4aha5quzhc+p18t/xe55tlPiDhXWu49oPJ
+	 m0BoHvE8PRdt66o7Y36dyB48P1s4BqdIuZvU84nmwGTdQp/1vG0sTCItSIhp6AhAS
+	 m8sDppr++ybIg8nkDA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [157.180.226.129] ([157.180.226.129]) by
+ trinity-msg-rest-gmx-gmx-live-74d694d854-5prkz (via HTTP); Sat, 10 May 2025
+ 11:35:56 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a7rfa6rlygbe7u3nbxrdc3doln7rk37ataxjrutb2lunctbpuo@72jnf6odl5xp>
+Message-ID: <trinity-02bca72f-3997-456e-8182-d5ef1358ac9f-1746876955936@trinity-msg-rest-gmx-gmx-live-74d694d854-5prkz>
+From: Frank Wunderlich <frank-w@public-files.de>
+To: linux@fw-web.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, lee@kernel.org, chunfeng.yun@mediatek.com,
+ vkoul@kernel.org, kishon@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com
+Cc: rafal@milecki.pl, daniel@makrotopia.org, sean.wang@mediatek.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-phy@lists.infradead.org
+Subject: Aw: [PATCH v4 0/8] Add Bananapi R4 variants and add xsphy
+Content-Type: text/plain; charset=UTF-8
+Date: Sat, 10 May 2025 11:35:56 +0000
+In-Reply-To: <20250422132438.15735-1-linux@fw-web.de>
+References: <20250422132438.15735-1-linux@fw-web.de>
+X-UI-CLIENT-META-MAIL-DROP: W10=
+X-Provags-ID: V03:K1:/4ZNXZpfFmBkVPBZv3pK2+f9+sAC8ipN/KCUrOlFJ+XI0q2pfnjGjudw95LSMJy3sYr+r
+ p40VQEXpm3ViXsio5PTNuBijsGczQ6tP9BAwub1Pm9SljuJoKuDJLDotP1VcRVWGHVfsMzO4cGIf
+ b+ABPFKpfaoqcbvk8bW8w4jlwQra6/motLhEWqxquYLikgV+ZDP/bCxBpsEL2fXfBz7LNeE9ZdTP
+ LAoZDCRCcadw+/LGXoOjUTdsgZXA0Mwo5yEo+MrPoR9uwPo9ulqAjionYURV0jM7FspBjvmZ9uev
+ SnRgsU70+803FMCzjV/eHZ56Eaj6mf1Xh7mnRKTHNgHfFuKo7iEr8iSt5OhVGYHP2s=
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ixHZ7+EpIYA=;iIZSgtviXbFJOi5roYS8ZQLGurG
+ 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
 
-On Sat, May 10, 2025 at 01:01:51AM +0530, Manivannan Sadhasivam wrote:
-> On Fri, May 09, 2025 at 01:18:27PM -0500, Rob Herring wrote:
-> > > > > 
-> > > > > > +    description: Reference clocking architechture
-> > > > > > +    enum:
-> > > > > > +      - common-clk        # Common Reference Clock (provided by RC side)
-> > > > > 
-> > > > > Can we use 'common-clk-host' so that it is explicit that the clock is coming
-> > > > > from the host side?
-> > > > 
-> > > > Sure.
-> > > > 
-> > > > I take it that you prefer 'common-clk-host' over 'common-clk-rc' ?
-> > > > 
-> > > 
-> > > That's what I intended previously, but thinking more, I feel that we should
-> > > stick to '-rc'i, as that's what the PCIe spec uses.
-> > 
-> > Couldn't this apply to any link, not just a RC? Is there PCIe 
-> > terminology for upstream and downstream ends of a link?
-> > 
-> 
-> Usually, the refclk comes from the host machine to the endpoint, but doesn't
-> necessarily from the root complex. Since the refclk source could very well be
-> from the motherboard or the host system PCB, controlled by the host software.
-> 
-> > The 'common-clk' part seems redundant to me with '-rc' or whatever we 
-> > end up with added.
-> > 
-> 
-> No. It could be the other way around. We can drop the '-rc' suffix if it seem
-> redundant. Maybe that is a valid argument also since root complex doesn't
-> necessarily provide refclk and the common refclk usually comes from the host.
+Hi
 
-When the RC and EP uses a common clock (rather than separate clocks),
-the clock can either be provided by the host side or the EP side.
+just a gentle ping. is something missing or can this series be applied?
 
-The most common by far (if using a common clock) is that it the common
-clock is provided by the host side. That is why my patch just named it
-'common-clk' instead of 'common-clk-host' or 'common-clk-rc'.
-
-I can use whatever name we agree on. I indend to send out V2 of this
-patch as part of a series that adds SRIS support to the dw-rockchip
-driver, in order to address Krzysztof's comment.
-
-
-> 
-> > Finally, this[1] seems related. Figure out a common solution.
-
-I don't see the connection.
-
-https://lore.kernel.org/all/20250406144822.21784-2-marek.vasut+renesas@mailbox.org/
-
-does specify a reference clock, but that is in a host side DT binding.
-
-
-This patch adds a refclk-mode property to an endpoint side DT binding.
-
-This property is needed such that the endpoint can configure the bits
-in its own PCIe Link Control Register before starting the link.
-
-Perhaps the host side could also make use of a similar property, but I'm not
-sure, you don't know from the host side which endpoint will be plugged in.
-
-From the EP side, you do know if your SoC only supports common-clock or
-SRNS/SRIS, since that depends on if the board can source the clock from
-the PCIe slot or not (of all the DWC based drivers, only Qcom and Tegra
-can do so, rest uses SRNS/SRIS), so this property definitely makes sense
-in an EP side DT binding.
-
-
-Kind regards,
-Niklas
+regards Frank
 
