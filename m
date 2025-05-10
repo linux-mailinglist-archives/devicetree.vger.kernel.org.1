@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-175898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8512AB23D7
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 14:43:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B670AAB2429
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 16:37:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D9071BA5183
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 12:44:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F6E24A2F5E
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 14:37:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41949255E2B;
-	Sat, 10 May 2025 12:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA82322FE17;
+	Sat, 10 May 2025 14:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GvdgU2l0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TaTbuUaq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B6F21E2823;
-	Sat, 10 May 2025 12:43:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988782747B;
+	Sat, 10 May 2025 14:37:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746881032; cv=none; b=AMwIxIDfZH0JrxlHh3VoqCNC9FALRWlNuwK/jj7dYuPlEKT0QuZ1Ti0JzMb1/a+ETrNTD3r0Ci/NblQ1HaKPJYtTDoq9lyQSv6lJRvzkgR7WlbxousJ4Z9n0IXY+WCD0QlWTlHTNQNBphgVavOp64iZgBatR4fTxQNTURy/YApA=
+	t=1746887826; cv=none; b=T3Y/KWX5H6Zg2I8vjpQ4MNlMnPlsUxTbXeMdRxdBpY2/VWX1ER4b0I52glnI3ON5v0R4OG+UfrcKt6+A1y7WemM/Z9CSIjtv+KSIWj1JrP+a9UDnKti8FcwVTlR4yqAcXfOwWwhn3jo1LGDNlcd3WcqCg29cMe2DQ5v61F8vwkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746881032; c=relaxed/simple;
-	bh=trncF2ch2f9wThK0XhP2o7y6aAgeGr4VGQNU8FblCxY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Cc4zBRYHiFAQhcGqEdE+fYr13doLu2RHeu9UzKbD/S55d5xJ1Qq4hNGoTKjTs084/IKoSTAHIVhKtzidq2i1h6AgEzbKUYqiJg3wkPznmrwAY2ZAmBFkQ6/IEFEzutxgT51L6rvTGJB50fP/hIZ93XB6zeY3zG74mRt8ZQQuoG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GvdgU2l0; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1746887826; c=relaxed/simple;
+	bh=cXKYXDUGIvJ8XJqAcE3axA0eN/VtAOwr+gbT5qxDUtg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CAYTdFtaX5YQoH+G6adVhyrNPb9lUvtMhhWRYAOv3Kxy020kSbzAHeyvzmEBh+MGSxmMLrX6rkvleubw4fwwrwuzS4Rs2QrOEwzMwlphOZBv/GX3rHhRHYeQ+uK8mTkDMYi2zBG7PRsrTBLWIrZ+ZWwm1fjn+NKTs7D2PTo3qDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TaTbuUaq; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ace3b03c043so475881666b.2;
-        Sat, 10 May 2025 05:43:49 -0700 (PDT)
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7415d28381dso2329680b3a.1;
+        Sat, 10 May 2025 07:37:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746881028; x=1747485828; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ubcPxVSJoCjrOpHWdJpI4Qq6nS9/mQgyw8SAiSHnS8Y=;
-        b=GvdgU2l0EUGmM8b4ihCk04JyVO6g0+NX1TJipk0sRRj+jH1g9AajK7rVmjmtSoztan
-         iEztdT9F2jBeT3aP46NwSU3sI3Ei/vpdd5N/n+W/spHC6XmV9ARPXatabwOzyC/nJc43
-         CH8xXtZRB0ht0y8TpIJZtgWqUoLFIzBR3rpe8xsimkHjGY0VQazTIvLYPNfeW3QcsCdu
-         KtkN4hsyc6IrOlp3icUt2KRHsHKilogfHxBvBqvbyuwg01Pl7gLSsSk0S75OPRaBiYqV
-         5az8M9Sx4CBxzTTRfHPnUcTNI/ybawWWvnU5jSHA+shTzKcbTwKwCS0pqfYFw/olM6rx
-         yX2A==
+        d=gmail.com; s=20230601; t=1746887824; x=1747492624; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=ia0OowHQimB3R2cgVF/bKFgpv7NDBWk1Z1mPJcaYRVk=;
+        b=TaTbuUaqUqBmRKpI6Cv9Eqw+Dq+H66zhNbcDnxd/aCxyI445yuqNoEjkKiwgr9/Sj1
+         uc9s01+JysJ0bfxsIuUg32eDlBcylPI66yOrwFoNVPugIBVmFFEi39DMAXibSGfqmRlH
+         sS5/1LPbyBnKMou9O7tSNa4OWLtf8/QfJgfbp1QS1zQeG81XDj4DPhKj8FbvhodWjE3j
+         WHlmDuroqYBam+s+sSoV7x+UqCOCXju390IunXVIRhA2bCMu9b0wt683Ip2zM55z4izX
+         9cYw+EXBPOB2SXEYVNdNU9cAtnNXwu4FL3snT1ES7hCQ1DnFyQiwpepsEt76YRwFYljl
+         a3Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746881028; x=1747485828;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ubcPxVSJoCjrOpHWdJpI4Qq6nS9/mQgyw8SAiSHnS8Y=;
-        b=Leo3T3KeDW/RM9GDLeO8A2NmoPWZYrHgdKPm1ix7W+gR1v4Lv/fkORGYFUIA4vsM4I
-         6dUfHe8wIoXQ9R4/umQjXtVK4r2eqI25grIvs1Nn632YkIxTkPKKvz7uYPBQKXLnrXRA
-         g4/tJEwtQV6eMxRrqeU7Yfl8+evefn5TeBJevu88Mm/7gq7oP8o2/cZdbdtjNmsZ6G/g
-         jaIh+2XfjSFesPfm1tiyJGbvJ4y4UQ+OrQtVm0Nan8YvwrV3uAi1uJAf/y0ZiG3It7Gs
-         VMrieBHpRW0uanRDI0R9LAVHaeGvRu14xuDtV+BWtTIiZR+HCKrQqF6ViGhEFhWOWDUh
-         w8VQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUlZbA5j+nnfD993DHD4WI+B2gKnEj7VWcx5Q6fp5jlPbUPJmWzDYPmsmRWveWi4ctaQ4qjfKYI9Mnc@vger.kernel.org, AJvYcCWV+ksC4EVNszfqgFH0LoqsTTbVExfy+bBkq7ivsmT3ST9+Ep9xiUupZok6vN577FyHaDBs/nFVWE5jJA==@vger.kernel.org, AJvYcCXlTPh/5zaTr1rcZNZcrZ0nEZAywnW5A3427Gp2gQT8kisU+x1se2jxQryiTyOH5GSd2IIQy/VRHvrkPtw9lAqRdbs=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFeGpDMDjvbNRZhnxsSeFRyhXaaI3PbuVL4ci+5JPi1QGFEZt7
-	FJkcrfc4Hr8aSHraMDMvGi2vGimPQEWe94sN35wY0SeCjeVZ3gm0
-X-Gm-Gg: ASbGncuqcyrHFqYHig3HDtXc4nF3pDLsfGoAyWAd+blUIyjhFz4WNqoa5Do2IwolYSK
-	2fGE90CZ8RzuWYqTpjYsIF9Zf2JNRAkKkxjyaBeM147snkWJyprUcqgTGv7HKiIBuYb3ibqKsms
-	LgVxzMigZ0puO1xNuXBU97d59Gp+DDLTWFZ31bibbPSBAvlLdWRn62Ei/BjvgKlxJCVUahkno5O
-	b84UTzaUEpBerPFicDSQH6Rmu5P9OglTsYfbTJnl6mCILi00hjFFh9YCmygdQOcg5gKpzI9JLWi
-	s9Tj+UPdsqehdPypoMyH9PBJygqj4xZ0bEpzPK11/zwxyKZfCdkTw02sadUsm9oSFZ99EIvXHxk
-	=
-X-Google-Smtp-Source: AGHT+IGCOa0FPbF9zop9VsT0ViWLdGmKzNJps6ZrrRToviv16o7BPM+Glk4iGbUKHtctCaWusK1zsQ==
-X-Received: by 2002:a17:907:7856:b0:ad2:1f65:8569 with SMTP id a640c23a62f3a-ad21f65877amr425571366b.28.1746881027734;
-        Sat, 10 May 2025 05:43:47 -0700 (PDT)
-Received: from [192.168.0.131] ([194.183.54.57])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad2192c81bfsm312421466b.33.2025.05.10.05.43.46
+        d=1e100.net; s=20230601; t=1746887824; x=1747492624;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ia0OowHQimB3R2cgVF/bKFgpv7NDBWk1Z1mPJcaYRVk=;
+        b=GttqIWa84piBgA6ZcTWPIJYX7p0a0ipKEOPAmyyWaGj3ynOue8P2MPJW6kcFgUBUIq
+         scjQs1/1pvauGIyWJflakSa39stIP4+okgtvuxkqwJyu9ITaB20prXUZVtEf5rlj9djV
+         oGefK1KPkhnk829wQdnUh2s9BPTCiFgKFTSkUY8TrQypd746echwvSq3vlV3l5KK6eF0
+         tUE/4h8y7xULuh409Ecfh8up+2ZjsNWnf9O8A7Qlnv//5O+f1m/5dCIQW2S4hclgEA2h
+         0Z17SowJQ7bW1xxo/ysWn5gFGFfIHcZ4HTywaSU3h0DvUQzVxRQXuOZCii005r3Hq433
+         YVQA==
+X-Forwarded-Encrypted: i=1; AJvYcCVeWDNTTpyfLc+sRvWre7R1+u1WHCjTpGjsBU9zTDfY4In11IRHk/XBLcYFtLMS2bJGBNlASOtg4yEN@vger.kernel.org, AJvYcCW5VYoxs9nDanUEyQK3cnbTncmc8bGTusYkOcl490UBG4dhhagG9Pe6fzTAcox7B0Y25+Jy7tQZyH6R@vger.kernel.org, AJvYcCWRgKiCS0rwn5835MuVm4VbtbB7rx4DMrJazs4egQhC3XfrAz4elu3tEYeS31h6S0+bugOGHMnioLaquU0=@vger.kernel.org, AJvYcCXskMn/VQFkBSKbQFGde+m0j3mxfIetRZ4EG6G4Znofad9yuZvgxzGtNsXVFbGWtf4gMS5y643Zzy1SuMEu@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTxcDgZcCE3G/AEjNzuwfygYyHp3ERMVCKYkQYeEJltd6HRanV
+	aTpC16oux6BFmLhSNe7VL9kYA1ZqD9FY5Uy7p5bsQ0Pk+0ets/ZT7PW7Vg==
+X-Gm-Gg: ASbGncuD4AqYrBlGBXkZ2OOCwke6Y4rhMTWFX5p07mkLuszwO7J/UGmiZBdFj5JaILv
+	nYdE43zMrJyQPGWA8jCMUlCh6EU7rOjI1pRg8rs+bCjyII7Q4nEvp6Tu8W/HuGfV/80hEXhTOaV
+	kDKlqiLzfliOBy4YTySVnaInibo+/UrkctwHJ4NYoqapeu6ZWdukewdP29g5VmZdWhapd771LGT
+	dEUDGkyL8oc7FQp4+xZHWN28ZBb/eah6Z9x03D3PZuvKxKigE/UxsIXwqOpXexruNnVwPBNumfD
+	Mrg2THtJQNHrBd93gEjRfqNxzO5m6/3DPjj/bUE/dmCsHSVkLxTaZYuZQBDhMdZgU8qd4/kkSlY
+	50i1FWiVxkBm/JsBKpPIkxKQ+
+X-Google-Smtp-Source: AGHT+IEb3O+BNHNgwNY8TNW7k5LdtOxkw8k7MPRUikWvDGlEtUNPWTvFfV7myj0qFAyh5umM73hWEw==
+X-Received: by 2002:a05:6a00:3e16:b0:73e:2d76:9eb1 with SMTP id d2e1a72fcca58-7423be886e6mr9553697b3a.10.1746887823633;
+        Sat, 10 May 2025 07:37:03 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74237a8f4ffsm3255578b3a.162.2025.05.10.07.37.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 May 2025 05:43:47 -0700 (PDT)
-Message-ID: <18b78845-3f01-444d-835a-aa39f84a2689@gmail.com>
-Date: Sat, 10 May 2025 14:43:45 +0200
+        Sat, 10 May 2025 07:37:02 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <77d0e89a-6085-4470-b530-74196a174e20@roeck-us.net>
+Date: Sat, 10 May 2025 07:37:01 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,95 +84,228 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe
- Debug LEDs
-To: Lee Jones <lee@kernel.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Pavel Machek <pavel@kernel.org>, linux-leds <linux-leds@vger.kernel.org>
-References: <20250417093256.40390-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdWN-QDrmogJ+7x8sdc6UmDAoF+0z0hZ3SQ7ajN2V2+mSw@mail.gmail.com>
- <aBxjvofZCEi_1Fna@shikoro> <20250508134930.GM3865826@google.com>
+Subject: Re: [PATCH v3 4/5] hwmon: pmbus: mpq8785: Add support for MPM82504
+To: Pawel Dembicki <paweldembicki@gmail.com>, linux-hwmon@vger.kernel.org
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Noah Wang <noahwang.wang@outlook.com>, Fabio Estevam <festevam@gmail.com>,
+ Naresh Solanki <naresh.solanki@9elements.com>,
+ Michal Simek <michal.simek@amd.com>, Grant Peltier
+ <grantpeltier93@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Peter Zijlstra <peterz@infradead.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Shen Lichuan <shenlichuan@vivo.com>, Charles Hsu <ythsu0511@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20250510091937.2298256-1-paweldembicki@gmail.com>
+ <20250510091937.2298256-5-paweldembicki@gmail.com>
 Content-Language: en-US
-From: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-In-Reply-To: <20250508134930.GM3865826@google.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20250510091937.2298256-5-paweldembicki@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi all,
-
-On 5/8/25 15:49, Lee Jones wrote:
-> On Thu, 08 May 2025, Wolfram Sang wrote:
+On 5/10/25 02:18, Pawel Dembicki wrote:
+> Add support for the Monolithic Power Systems MPM82504 digital voltage
+> regulator. MPM82504 uses PMBus direct format for voltage output.
 > 
->> On Thu, Apr 17, 2025 at 01:39:14PM +0200, Geert Uytterhoeven wrote:
->>> Hi Wolfram,
->>>
->>> CC leds
->>>
->>> On Thu, 17 Apr 2025 at 11:33, Wolfram Sang
->>> <wsa+renesas@sang-engineering.com> wrote:
->>>> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
->>>> ---
->>>>
->>>> Changes since v2:
->>>> * using function, color, function-enumerator properties now
->>>>
->>>> Honestly, this is better than using node names? With V2, the LEDs were
->>>> named as in the schematics, now they are called:
->>>>
->>>> lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-0 -> ../../devices/platform/leds/leds/green:programming-0
->>>> lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-1 -> ../../devices/platform/leds/leds/green:programming-1
->>>> lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-2 -> ../../devices/platform/leds/leds/green:programming-2
->>>> ...
->>>>
->>>> Which gets even more confusing if we might later add LEDs not on this
->>>> board, but on the expansion board. 'green:programming-8' sits where?
->>>>
->>>> I really wonder, but if this is the official way now...
->>>
->>> Good point!  So I'm inclined to take v2...
->>>
->>> Let's raise this with the LED people. I don't want to fight Pavel when
->>> v2 hits the CiP tree ;-)
->>
->> So, if there is no other opinion here, can we remove function, color,
->> function-enumerator and just use the node names which match the
->> schematics? Basically apply V2?
+> Tested with device tree based matching.
 > 
-> I didn't author the semantics nor the rules surrounding them, but I am
-> obliged to enforce them.  Therefore "LED people" say, please stick to
-> convention as stated in the present documentation:
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 > 
-> https://docs.kernel.org/leds/leds-class.html#led-device-naming
+> ---
+> v3:
+>    - fix alphabetical order in multiple places
+>    - change PMBUS_READ_TEMPERATURE_1_SIGN macro name to
+>      MPM82504_READ_TEMPERATURE_1_SIGN
+>    - use sign_extend32()
+>    - fix typo in documentation
+> v2:
+>    - fixed signedess for temperatures < 0 deg C
+>    - removed empty lines
+> ---
+>   Documentation/hwmon/mpq8785.rst | 20 +++++++++++++++-----
+>   drivers/hwmon/pmbus/mpq8785.c   | 33 ++++++++++++++++++++++++++++++++-
+>   2 files changed, 47 insertions(+), 6 deletions(-)
 > 
-> Please note that a "debug" (LED_FUNCTION_DEBUG) option already exists if
-> that is more appropriate to your use-case.
-> 
-> Let's also bring Jacek into the conversion, since I know that he did a
-> bunch of work around this topic.
+> diff --git a/Documentation/hwmon/mpq8785.rst b/Documentation/hwmon/mpq8785.rst
+> index bf8176b87086..b91fefb1a84c 100644
+> --- a/Documentation/hwmon/mpq8785.rst
+> +++ b/Documentation/hwmon/mpq8785.rst
+> @@ -5,6 +5,7 @@ Kernel driver mpq8785
+>   
+>   Supported chips:
+>   
+> +  * MPS MPM82504
+>     * MPS MPQ8785
+>   
+>       Prefix: 'mpq8785'
+> @@ -14,6 +15,14 @@ Author: Charles Hsu <ythsu0511@gmail.com>
+>   Description
+>   -----------
+>   
+> +The MPM82504 is a quad 25A, scalable, fully integrated power module with a PMBus
+> +interface. The device offers a complete power solution that achieves up to 25A
+> +per output channel. The MPM82504 has four output channels that can be paralleled
+> +to provide 50A, 75A, or 100A of output current for flexible configurations.
+> +The device can also operate in parallel with the MPM3695-100 and additional
+> +MPM82504 devices to provide a higher output current. The MPM82504 operates
+> +at high efficiency across a wide load range.
+> +
+>   The MPQ8785 is a fully integrated, PMBus-compatible, high-frequency, synchronous
+>   buck converter. The MPQ8785 offers a very compact solution that achieves up to
+>   40A output current per phase, with excellent load and line regulation over a
+> @@ -23,18 +32,19 @@ output current load range.
+>   The PMBus interface provides converter configurations and key parameters
+>   monitoring.
+>   
+> -The MPQ8785 adopts MPS's proprietary multi-phase digital constant-on-time (MCOT)
+> +The devices adopts MPS's proprietary multi-phase digital constant-on-time (MCOT)
+>   control, which provides fast transient response and eases loop stabilization.
+> -The MCOT scheme also allows multiple MPQ8785 devices to be connected in parallel
+> -with excellent current sharing and phase interleaving for high-current
+> +The MCOT scheme also allows multiple devices or channels to be connected in
+> +parallel with excellent current sharing and phase interleaving for high-current
+>   applications.
+>   
+>   Fully integrated protection features include over-current protection (OCP),
+>   over-voltage protection (OVP), under-voltage protection (UVP), and
+>   over-temperature protection (OTP).
+>   
+> -The MPQ8785 requires a minimal number of readily available, standard external
+> -components, and is available in a TLGA (5mmx6mm) package.
+> +All supported modules require a minimal number of readily available, standard
+> +external components. The MPM82504 is available in a BGA (15mmx30mmx5.18mm)
+> +package and the MPQ8785 is available in a TLGA (5mmx6mm) package.
+>   
+>   Device compliant with:
+>   
+> diff --git a/drivers/hwmon/pmbus/mpq8785.c b/drivers/hwmon/pmbus/mpq8785.c
+> index 2e7c0d0c3f81..1e12e7267a7f 100644
+> --- a/drivers/hwmon/pmbus/mpq8785.c
+> +++ b/drivers/hwmon/pmbus/mpq8785.c
+> @@ -4,14 +4,19 @@
+>    */
+>   
+>   #include <linux/i2c.h>
+> +#include <linux/bitops.h>
+>   #include <linux/module.h>
+>   #include <linux/property.h>
+>   #include <linux/of_device.h>
+>   #include "pmbus.h"
+>   
+> -enum chips { mpq8785 };
+> +#define MPM82504_READ_TEMPERATURE_1_SIGN	BIT(9)
+> +#define MPM82504_READ_TEMPERATURE_1_SIGN_POS	9
+> +
+> +enum chips { mpm82504, mpq8785 };
+>   
+>   static u16 voltage_scale_loop_max_val[] = {
+> +	[mpm82504] = GENMASK(9, 0),
+>   	[mpq8785] = GENMASK(10, 0),
+>   };
+>   
+> @@ -41,6 +46,23 @@ static int mpq8785_identify(struct i2c_client *client,
+>   	return 0;
+>   };
+>   
+> +static int mpm82504_read_word_data(struct i2c_client *client, int page,
+> +				   int phase, int reg)
+> +{
+> +	int ret;
+> +
+> +	ret = pmbus_read_word_data(client, page, phase, reg);
+> +
+> +	if (ret < 0 || reg != PMBUS_READ_TEMPERATURE_1)
+> +		return ret;
+> +
+> +	/* Fix PMBUS_READ_TEMPERATURE_1 signedness */
+> +	if (ret & MPM82504_READ_TEMPERATURE_1_SIGN)
 
-The question is if the LED name from the schematics tells anything to
-the user of the equipment?
+When using sign_extend32() is that the conditional is not needed.
 
-The idea behind LED naming is to facilitate matching the LED class
-device name as reported by the system with the LED location on the
-equipment.
+Guenter
 
-The LED naming standardization intended to enforce consistent
-LED naming, and not allowing to add multiple interchangeable
-names like wifi/wlan. It also helps to keep LED name sections order in
-accordance with Linux documentation, which before had been often
-abused by allowing to assign anything to the now deprecated 'label'
-DT property.
+> +		ret = sign_extend32(ret, MPM82504_READ_TEMPERATURE_1_SIGN_POS) & 0xffff;
+> +
+> +	return ret;
+> +}
+> +
+>   static struct pmbus_driver_info mpq8785_info = {
+>   	.pages = 1,
+>   	.format[PSC_VOLTAGE_IN] = direct,
+> @@ -63,12 +85,14 @@ static struct pmbus_driver_info mpq8785_info = {
+>   };
+>   
+>   static const struct i2c_device_id mpq8785_id[] = {
+> +	{ "mpm82504", mpm82504 },
+>   	{ "mpq8785", mpq8785 },
+>   	{ },
+>   };
+>   MODULE_DEVICE_TABLE(i2c, mpq8785_id);
+>   
+>   static const struct of_device_id __maybe_unused mpq8785_of_match[] = {
+> +	{ .compatible = "mps,mpm82504", .data = (void *)mpm82504 },
+>   	{ .compatible = "mps,mpq8785", .data = (void *)mpq8785 },
+>   	{}
+>   };
+> @@ -92,6 +116,13 @@ static int mpq8785_probe(struct i2c_client *client)
+>   		chip_id = (kernel_ulong_t)i2c_get_match_data(client);
+>   
+>   	switch (chip_id) {
+> +	case mpm82504:
+> +		info->format[PSC_VOLTAGE_OUT] = direct;
+> +		info->m[PSC_VOLTAGE_OUT] = 8;
+> +		info->b[PSC_VOLTAGE_OUT] = 0;
+> +		info->R[PSC_VOLTAGE_OUT] = 2;
+> +		info->read_word_data = mpm82504_read_word_data;
+> +		break;
+>   	case mpq8785:
+>   		info->identify = mpq8785_identify;
+>   		break;
 
-Regarding expansion boards - we never have control over what
-LED names DT overlays will define, thus LED core adds numeric suffix to
-the LED class device name in case of the name clash.
-
--- 
-Best regards,
-Jacek Anaszewski
 
