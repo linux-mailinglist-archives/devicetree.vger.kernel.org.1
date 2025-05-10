@@ -1,208 +1,212 @@
-Return-Path: <devicetree+bounces-175856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62535AB21C5
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 09:45:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9AA0AB21CD
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 09:48:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43A5C4C2D64
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 07:45:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D75023A6685
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 07:48:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F0D21EF38C;
-	Sat, 10 May 2025 07:45:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 209351E1E13;
+	Sat, 10 May 2025 07:48:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UwhO4hHz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iBCBRg2n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1230C1EA7E6;
-	Sat, 10 May 2025 07:45:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 686F919DF61;
+	Sat, 10 May 2025 07:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746863111; cv=none; b=ne0UJO8VW2SeHPAhpywx3g2IsVMwFHupI57jjJq7zOXoHR+MQfZTSpufWsbk1HxFU3hGxt3dICLNChwg+XN0zP52tNqFMis1CYxBzHOhv2mm0ACVFVFoxJPlUbOHAfYkdg+38h7jEBnA+bV41tICR4FS1ZcVd7qx5UWaFkcdOOU=
+	t=1746863312; cv=none; b=jYHaLRWvKUIWcMk1119TizuKhSy44IRIhCo4LpNRUUy/UKegLGgHrDDEIrwZSrDguoye6st0PEFRKwVcMIedfnRWlkrnNTyw+WrTAuSva+U6O48BuuCkAgENvTUYBJCkK0ymFsxJNMr1mz19CWAFTbgl/sw9QIUUuee8zyQQHpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746863111; c=relaxed/simple;
-	bh=UDYWDg2Yz1nJiRbj7Z8QC9FBgMmCSf4p9oWrfm2p7xg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fjF+3ugIcpPGGeSeUmnRyY9kl/ZodySqUYz4u1cYcXX5csJo0oUdAq66evdaZtQL4+QLwC2gc6S6mQQ3VgW7VX6d4s9tClsmkhUIzGSpV/+qyyZ9S2tG4iXE0NIuL1EaBtfP/aIOHfXiHGlmRRe5iZCRhTrqaoJ9j66TaMzUDyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UwhO4hHz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4FDEBC4CEEE;
-	Sat, 10 May 2025 07:45:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746863109;
-	bh=UDYWDg2Yz1nJiRbj7Z8QC9FBgMmCSf4p9oWrfm2p7xg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=UwhO4hHzvTUyEUINoVyRSWnnIgJzC5hOQVCO9nDINmlMcBN3nuVHK3PkpmD5WQx3s
-	 qPcF5oa4erEFUPF5LGF6+AEKGjbrr74VxRSx/nJiNQ5MeFrolF5Xc4B0WRaYDxXVWy
-	 4nu1eqS1UAhHhmFoZsd40s8KiZp35qpYYQVAw10EFEpQpbXBrh5uBSvHsev0kAcr31
-	 5br9k4qZW3S1FCQxtCs1bxRLAH9/MDrX6CAPKnjh6kJbhFyCisQyxFw7ONNdyyLlFr
-	 w91QEUWn8KsN/1p2Ocyeg1f32koQM5Eq5mGj64VpDbxa6SHZb5Yz0Cm47/c1irjgVT
-	 9CbefdFbMZZuQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 47295C3ABCE;
-	Sat, 10 May 2025 07:45:09 +0000 (UTC)
-From: Sven Peter via B4 Relay <devnull+sven.svenpeter.dev@kernel.org>
-Date: Sat, 10 May 2025 07:44:47 +0000
-Subject: [PATCH 7/7] arm64: dts: apple: t8112: Add eFuses node
+	s=arc-20240116; t=1746863312; c=relaxed/simple;
+	bh=vWrA/aLxnv+Gt1yqg93gXQ4yKlfAm21eIGBwFQ2wlNE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eeOpla+6IGSjtJWYmKNXDYHgw3cQ+8bIKtHq5ywmRI066d+ipCFNhMceHItR8DvjFNGbmceVw3MT2jcLvGfTroHEZsY5dsB8hUZPGC34TawbdRxO/iMDBJjxtsC0X4uSn4tbJ7Ua+UkotWNp6hgGiCqI8dMKqE5MWAQcOgdsgBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iBCBRg2n; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7396f13b750so3163904b3a.1;
+        Sat, 10 May 2025 00:48:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746863309; x=1747468109; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S2i541JactdL/Fn0WUUK9pFnqlbvY//X527+EunCRdg=;
+        b=iBCBRg2nQcb49UYq+xC0binMQmscuiBsHeZ0Q/xNYpa9fJXY6WZ0cK2QWf7eFWj8yS
+         2Sk12+j4DrE9KsVp7vV78xzhejbtdaRynp0YpKY4YMbS0RMR0q/113LDQGgvEG6chLyD
+         FEkWkQDOZbvgiQnMF0Bbc+MkM9zyTE4FQ6LhEP8kQCX/nOx2P7+eTnsKPuWdnQswukoC
+         Rbx4e9n8ITCt86e40JI5UWYg3u/DLo78+zBtVRu+tLj0wJAT7GYhmbkQ5F0mm7thbKqY
+         Nm6pjvbCmCTMuqNlypkPfSzwBTJjGNWJSuQ5XTAnIoewc645VPz9v+1QK/yicQvI1Fk+
+         PP7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746863309; x=1747468109;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S2i541JactdL/Fn0WUUK9pFnqlbvY//X527+EunCRdg=;
+        b=knaPhYAc8BZ23a9plOuDAO0inBFeaA2tqRIbqYq9dgKyacbj0X2QgjozOxs9ThtAm+
+         RMNyL2omIpIHJNUo9D20lpA7iBGqU04g00FLERudXBHvEBhUNJ91tOCikmdId91BrM1M
+         cfMBZFdhu/gZIXkzxynJua68iHTtB0zEkAJPe106EgbVhOr0mp7gxucUgvG2skSykzf/
+         gp/SrKjcUyN37VHZ8aujNxCieVNlDQrm8o+ObeiRcLSKZlCvAb/CpeeFqVSf6TUY0sDp
+         IEReewzmsBgsm8+cVNzp7u6w7+Vvf7KPQkexFEUOgqs8sEzlOYWBFISa7FcQKJe6R8oU
+         HlzA==
+X-Forwarded-Encrypted: i=1; AJvYcCVdwyIZAEsXu/WORfmDFfGjNpp1hMYuAYJoGf6Q8p+ENx/WKmmK6QUXbxBWMO95KyT3Kjy2+ETByeAMfQf6@vger.kernel.org, AJvYcCVyJ1uQKtc3cyD4zj53ypQxSRhcNGXdn2Tf7IarI0vo3tIyfhbSKDg9QkbtcD4AGGpXhFBOkC8qlFQ0@vger.kernel.org, AJvYcCXfrb5rsctza3j0Y0InJqU4pGETJdu8nEX+EBB8Q7RYtpAy/YFMlXWUX4XtdRfScbjDsu3q0VLUcCdr@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmVbKcdwe1yqWi2GDNiaJ2iKSUT+OtxIINj6fCQ9xR2n8g4FhT
+	VwhjhvVdS0dMxqTYpDhBLwmVC277buOBRAKz9fjkKPtUaCCzQgm1
+X-Gm-Gg: ASbGncvR8Uy2/mLEqsKRMs/xRbcoIqV249yIX+WL0qdONKIqLNcdoOMpjFTMaCm85PH
+	haBcRVsyuhYZQ82oNgcS+AT3bhIe5ilmeI3ke2v8E9VUWIzZCVUqm/bVb1t3YRi6wm2aags+0/K
+	eBeTAinEYoOGTtgpFcbSDSC9RjYHCc82ccL9czk9ul/Nie//Y5pBZFHSf/svPuxfEGNpT1UtKmc
+	1ZKqDNLeRni6pVuBk2YC4nhRejIE4eeGJ+nYW6vzhTzfDwlD49kJSRjV8EaNv38VY1UOUqCSRy8
+	C7Vn2CVkuS0WlxCP5IdzNYabjB8W6PaD3+/vpZXW0FxkbpGqC5LBtzR06R8Amj+y3Q==
+X-Google-Smtp-Source: AGHT+IECkuXLke0wLP6OjjKu1jeRoUh4dn5bHDx4utT68jzSDAJKgBulXvY4StbjFDz8y/Tlrjm0sw==
+X-Received: by 2002:a05:6a00:2d08:b0:740:67ce:1d8b with SMTP id d2e1a72fcca58-7423bbf68e9mr9400091b3a.7.1746863309456;
+        Sat, 10 May 2025 00:48:29 -0700 (PDT)
+Received: from localhost.localdomain ([14.181.130.216])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-74237a1088csm2752610b3a.113.2025.05.10.00.48.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 10 May 2025 00:48:28 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: lee@kernel.org
+Cc: andy@kernel.org,
+	geert@linux-m68k.org,
+	pavel@ucw.cz,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	christophe.jaillet@wanadoo.fr,
+	corbet@lwn.net,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix LED driver
+Date: Sat, 10 May 2025 14:48:02 +0700
+Message-Id: <20250510074802.8400-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250508150140.GS3865826@google.com>
+References: <20250508150140.GS3865826@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250510-nvmem-dt-v1-7-eccfa6e33f6a@svenpeter.dev>
-References: <20250510-nvmem-dt-v1-0-eccfa6e33f6a@svenpeter.dev>
-In-Reply-To: <20250510-nvmem-dt-v1-0-eccfa6e33f6a@svenpeter.dev>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, asahi@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- Sven Peter <sven@svenpeter.dev>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2946; i=sven@svenpeter.dev;
- h=from:subject:message-id;
- bh=j8UAIvDfj4+sxfGUjSBnpN2Tc+COrCSgMqHTgCD6qaE=;
- b=owGbwMvMwCHmIlirolUq95LxtFoSQ4Y8C5Pvvb3nd1S1va7TWWZrYM+v6bqTeS8fM9ssXjbtb
- PmbkmodpSwMYhwMsmKKLNv325s+efhGcOmmS+9h5rAygQxh4OIUgImEBjH8FXX64lD5sPT+0iwf
- owVXjNfdcTAz+rX278Qvz60knwV4ODEyrGq35UgWbrn35/0rpRd8fzw/vs7JcPXXSZl47aTtUvH
- fPAA=
-X-Developer-Key: i=sven@svenpeter.dev; a=openpgp;
- fpr=A1E3E34A2B3C820DBC4955E5993B08092F131F93
-X-Endpoint-Received: by B4 Relay for sven@svenpeter.dev/default with
- auth_id=167
-X-Original-From: Sven Peter <sven@svenpeter.dev>
-Reply-To: sven@svenpeter.dev
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-From: Janne Grunau <j@jannau.net>
+On Thu, 8 May 2025 Lee Jones wrote:
 
-Add the eFuse controller and the nvmem cells required for both Type-C
-PHYs
+> On Thu, 08 May 2025, Andy Shevchenko wrote:
+> > On Thu, May 8, 2025 at 5:27 PM Nam Tran <trannamatk@gmail.com> wrote:
+> > > On Thu, 8 May 2025 Lee Jones wrote:
+> > > > On Thu, 08 May 2025, Andy Shevchenko wrote:
+> > > > > On Wed, May 7, 2025 at 7:42 PM Nam Tran <trannamatk@gmail.com> wrote:
+> > 
+> > ...
+> > 
+> > > > > At least, based on the above it's my formal NAK from an auxdisplay perspective.
+> > > >
+> > > > This is fine.
+> > > >
+> > > > Just be aware, before you submit to LEDs again, that you need to use
+> > > > what is available in the LEDs subsystem to it's fullest, before
+> > > > hand-rolling all of your own APIs.  The first submission didn't use a
+> > > > single LED API.  This, as before, would be a big NACK also.
+> > >
+> > > Thanks for the clarification.
+> > >
+> > > Just to confirm — the current version of the driver is customized to allow
+> > > user space to directly manipulate LP5812 registers and to support the
+> > > device’s full feature set. Because of this, it doesn’t follow the standard
+> > > LED interfaces.
+> > 
+> > But why? What's wrong with the LED ABI? (see also below question
+> > before answering to this one)
+> > 
+> > > Given that, would it be acceptable to submit this driver under the misc subsystem instead?
+> > 
+> > But these are LEDs in the hardware and you can access them as 4
+> > individual LEDs, right?
+> 
+> Right.  Please work with the API you are offered in the first instance.
+> My first assumption is always that this driver isn't as special as you
+> think it might be.
 
-Signed-off-by: Janne Grunau <j@jannau.net>
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
----
- arch/arm64/boot/dts/apple/t8112.dtsi | 97 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 97 insertions(+)
+In direct mode, we can access them as individual LEDS. User doesn't need
+to select LEDs. In this mode, it is a simple LED driver.
 
-diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
-index d9b966d68e4fae2dfb21d6fb7a97ebba81643ae8..4dec6415ef73e922dd574997569ad0e6acbc9658 100644
---- a/arch/arm64/boot/dts/apple/t8112.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8112.dtsi
-@@ -782,6 +782,103 @@ wdt: watchdog@23d2b0000 {
- 			interrupts = <AIC_IRQ 379 IRQ_TYPE_LEVEL_HIGH>;
- 		};
+However, user must select LEDs in scan mode. The hardware uses 4 pin to
+display 12 LEDs (or 4 RGB LEDs). Ordering of LED selection also impact
+to display capacibility. That why, I need to support another interface
+for user to controll hardware's registers.
+
+In mix mode, we can control an individual LED and up to 6 scan LEDs.
+However, user must select the order of single LED and which LEDs will be
+use for scan function.
+
+The main point is user must have capacibility in write information to
+hardware's registers to select LEDs in scan mode and mix mode.
  
-+		efuse@23d2c8000 {
-+			compatible = "apple,t8112-efuses", "apple,efuses";
-+			reg = <0x2 0x3d2c8000 0x0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			atcphy0_auspll_rodco_bias_adjust: efuse@480,20 {
-+				reg = <0x480 4>;
-+				bits = <20 3>;
-+			};
-+
-+			atcphy0_auspll_rodco_encap: efuse@480,23 {
-+				reg = <0x480 4>;
-+				bits = <23 2>;
-+			};
-+
-+			atcphy0_auspll_dtc_vreg_adjust: efuse@480,25 {
-+				reg = <0x480 4>;
-+				bits = <25 3>;
-+			};
-+
-+			atcphy0_auspll_fracn_dll_start_capcode: efuse@480,28 {
-+				reg = <0x480 4>;
-+				bits = <28 2>;
-+			};
-+
-+			atcphy0_aus_cmn_shm_vreg_trim: efuse@480,30 {
-+				reg = <0x480 8>;
-+				bits = <30 5>;
-+			};
-+
-+			atcphy0_cio3pll_dco_coarsebin0: efuse@484,3 {
-+				reg = <0x484 4>;
-+				bits = <3 6>;
-+			};
-+
-+			atcphy0_cio3pll_dco_coarsebin1: efuse@484,9 {
-+				reg = <0x484 4>;
-+				bits = <9 6>;
-+			};
-+
-+			atcphy0_cio3pll_dll_start_capcode: efuse@484,15 {
-+				reg = <0x484 4>;
-+				bits = <15 2>;
-+			};
-+
-+			atcphy0_cio3pll_dtc_vreg_adjust: efuse@484,17 {
-+				reg = <0x484 0x4>;
-+				bits = <17 3>;
-+			};
-+
-+			atcphy1_auspll_rodco_bias_adjust: efuse@484,30 {
-+				reg = <0x484 8>;
-+				bits = <30 3>;
-+			};
-+
-+			atcphy1_auspll_rodco_encap: efuse@488,1 {
-+				reg = <0x488 8>;
-+				bits = <1 2>;
-+			};
-+
-+			atcphy1_auspll_dtc_vreg_adjust: efuse@488,3 {
-+				reg = <0x488 4>;
-+				bits = <3 3>;
-+			};
-+
-+			atcphy1_auspll_fracn_dll_start_capcode: efuse@488,6 {
-+				reg = <0x488 4>;
-+				bits = <6 2>;
-+			};
-+
-+			atcphy1_aus_cmn_shm_vreg_trim: efuse@488,8 {
-+				reg = <0x488 4>;
-+				bits = <8 5>;
-+			};
-+
-+			atcphy1_cio3pll_dco_coarsebin0: efuse@488,13 {
-+				reg = <0x488 4>;
-+				bits = <13 6>;
-+			};
-+
-+			atcphy1_cio3pll_dco_coarsebin1: efuse@488,19 {
-+				reg = <0x488 4>;
-+				bits = <19 6>;
-+			};
-+
-+			atcphy1_cio3pll_dll_start_capcode: efuse@488,25 {
-+				reg = <0x488 4>;
-+				bits = <25 2>;
-+			};
-+
-+			atcphy1_cio3pll_dtc_vreg_adjust: efuse@488,27 {
-+				reg = <0x488 0x4>;
-+				bits = <27 3>;
-+			};
-+		};
-+
- 		pinctrl_smc: pinctrl@23e820000 {
- 			compatible = "apple,t8112-pinctrl", "apple,pinctrl";
- 			reg = <0x2 0x3e820000 0x0 0x4000>;
+Besides system modes (direct mode, scan mode, mix mode), each LED has
+manual mode and autonomous mode.
+ 
+A example steps to display a LED in manual mode
+# Set drive mode is Scan mode with 4 scan. Scan order 0 is out_0,
+# Scan order 1 is out_1, Scan order 2 is out_2, and Scan order 3 is out_3
+echo tcmscan:4:0:1:2:3 > /sys/bus/i2c/drivers/lp5812/1-001b/lp5812_chip_setup/dev_config
+# Enable led_A0
+echo 1 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/activate
+# Enable manual mode
+echo manual > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/mode
+# Set Dot Current
+echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/manual_dc
+# Set Manual PWM
+echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/manual_pwm
+ 
+However in autonomous mode, the steps are complicated
+# Set drive mode is Scan mode with 4 scan. Scan order 0 is out_0,
+# Scan order 1 is out_1, Scan order 2 is out_2, and Scan order 3 is out_3
+echo tcmscan:4:0:1:2:3 > /sys/bus/i2c/drivers/lp5812/1-001b/lp5812_chip_setup/dev_config
+# Enable led_A0
+echo 1 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/activate
+# Enable autonomous mode
+echo autonomous > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/mode
+# Config autonomous animation mode: (only use AEU1, start pause time: 3.04s,
+# stop pause time: 3.04s, playback time: infinite time)
+echo 1:10:10:15 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/mode
+# Config AEU1 playback times
+echo 1 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/playback_time
+# Config PWM
+echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/pwm1
+echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/pwm2
+echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/pwm3
+echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/pwm4
+echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/pwm5
+# Config slope time
+echo 5 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/slope_time_t1
+echo 5 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/slope_time_t2
+echo 5 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/slope_time_t3
+echo 5 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/slope_time_t4
+# Start autonomous
+echo start > /sys/bus/i2c/drivers/lp5812/1-001b/lp5812_chip_setup/device_command
+ 
+I think setting PWM also same as brightness_set API. However, there are
+many PWM config for a LED and it is one of other config to make autonomous mode work.
+Therefore, standard led API can use in some use cases only.
 
--- 
-2.34.1
+Please see the link below for a better visualization of how to configure the LP5812.
+https://dev.ti.com/gallery/view/LED/LP581x/ver/0.10.0/
 
-
+Best regards,
+Nam Tran
 
