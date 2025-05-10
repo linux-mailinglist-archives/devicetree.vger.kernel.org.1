@@ -1,224 +1,169 @@
-Return-Path: <devicetree+bounces-175926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97BBBAB24CA
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 19:20:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D75CAB24CF
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 19:25:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 120AE4A5B65
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 17:20:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 562F31BA0E4D
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 17:26:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C38DF221FBE;
-	Sat, 10 May 2025 17:20:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C70243968;
+	Sat, 10 May 2025 17:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O0b0loSu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y8c7BKCt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D2751022;
-	Sat, 10 May 2025 17:20:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF92231837;
+	Sat, 10 May 2025 17:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746897649; cv=none; b=I94PHBNG1BthXGuUupSRscUc/1s46Mb/nQof4o5wL9Vw33yHSOaQU5jZ58U1LPk6fXfrdEup2ly9DzSDv8SkbIDVe/26SGICENVbBonZ7s8kqO8cTjMjWDc8CQlK4fwIwzZQgNKKnccH2dvGzahTCkSniNzrmNgD96m9S5ufiic=
+	t=1746897943; cv=none; b=aqTRUmbDlpxOw5mEz24umUspGj2NwODVO2YuF1PGNlQPnMjY8XREhhUtP+MvDwhQoXPu84BUaNpEooqaj9Yw6r1zmzmy3q20AgNDr44TR8Zxc+SDf79XD8cWKWml9fFVAlZ/wFvLo3XhKjN9YD38lzl4lCcnVKTW9hAuv6WZ40M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746897649; c=relaxed/simple;
-	bh=q3eiTex1Caxf9IO4ImTo8aQWY5JusUh0pQVD3KAlQnc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RwrjIDHqCue6M2xhQKCErXA7S2CivOWg2AmwQ9QVe3EiEKFLhmSD7dqKLdTEbNblzE4cqGEv8od6sLwTzTyrHDp5ayW+A16FZ7srwDmY6lReD2hszqWZHILKivqFMgXh58qA7BXmqdOPlE15drGZYgFZhcDvwI70L234nDUHWtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O0b0loSu; arc=none smtp.client-ip=209.85.214.178
+	s=arc-20240116; t=1746897943; c=relaxed/simple;
+	bh=PVR2/5euqOuyaXdAuwW8N/x5gcI97G4iFgoEvQ6Vw9o=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=pC0H24nS1BTzJQdY9myymJSahLKp/Q8nL+y23hrM+SSp6Pj+zWuNG95RfB1OZk1RRovb+wJ7vZ8xPkivU1O/C7OFCaMU/pNJx0vVFHSVeuke33RycQ2Dve4JaZDgxzjY7mz94P2NuAxvUtA4WQ5gsnkIsT2enTz5o80hmy/j6xc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y8c7BKCt; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-22e3b069f23so31168655ad.2;
-        Sat, 10 May 2025 10:20:47 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3995ff6b066so1712278f8f.3;
+        Sat, 10 May 2025 10:25:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746897647; x=1747502447; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wrbQG8EFeF/6pwQUZJBfCk+p6E1aOkgOBFugu5p2OKk=;
-        b=O0b0loSuwfXJ8fcML1ThN4jon12pMD/AX7OqnQAS0vfE8cGh0r/v7/vKUTwie4BcPq
-         m8ZmA2F+VTgc1DHMcr0Isb8ysORcNErFjChK0z4To7J6fQ2KZOJtn2FU+9/s6gSrdf3r
-         UYCmI3+Hwo+ZLZR/Ia4gNlm6ZNFaIqart1mh3Uq//yCWI3EokaawI9zk0ttTXeGhJVY8
-         Ma5cmiSA3LJfc0+TJxkKzPB8D2C3MaAjAX6APMwLIaTO1T2+KnVenYyjmRQyB09GRIvv
-         JrmXcvqjKyV1OxKUbPLrNQ9IV3X7LFRw5xor16HQm16MyTBXoZV+PO1cSgn2UHcJEiXj
-         Kg1g==
+        d=gmail.com; s=20230601; t=1746897940; x=1747502740; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=loWaUTc3ItqSmmSDVC847qIYyYkmIRUdKWPahuJRyf0=;
+        b=Y8c7BKCtGx2gO3tS/VeTYAd0ac+bya9uVNemUMCr8RefaiPr5U9RvtUpHix8LZ11RK
+         ap4c6rlfo2SzPlqFqI7XQRgNCYAKLJtt4Hwa2eM/4jtXkhEo0vSzH+J1Fe4k9RKKLYS0
+         NAYd2tOajmbF2yd76t1J3Ofk/pgCkcImsmBmOkXJ0mtexQyB8lWZ388FH5TPI6gtDc1R
+         Kh5+09U1GpxLM4jjjLjJ3ErCTHJ+6sHO/sZQg9Vn/eiDkzJ322wyC7xgr4VUrL6B/Act
+         8grA64PVUlyKnszMWc+7SyIVL+4nNTYGuiceckZIfBdZsMoUZIWVPav33eez6h0sOcCQ
+         3UCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746897647; x=1747502447;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wrbQG8EFeF/6pwQUZJBfCk+p6E1aOkgOBFugu5p2OKk=;
-        b=gReQwLmMta+uKtZAGyohX5fXNBbNdyh9/tk6rMBgf7G4sf1rJcLayGwuUxMcm23CXH
-         2jEzyAanNzzJZiMibagL7jMatVRC7ha8DZAXT4k5eLuAGn6Q3DxugMu49wkcbevGjXP6
-         ZwmPHn1uFr1pwjTN0GpxscLlPzGSxV8Tz18ypANWJAZy7fALgKcUImVJ/UU6Gv5SUypc
-         iBf/LuayziVDZI1nxjJxwqD+IjKG1Bnraq8m5Hpih3GErSk1SMSFKs6EJ7AJpgVOwzA1
-         hQMeyOH91CfzI3J6mmd46AAr+f6GL5iJ/1fq8IkFsQZg1byxlAEI9D2aIf5bzoLilsb3
-         NtBg==
-X-Forwarded-Encrypted: i=1; AJvYcCVDFu8vzq7iEyqwOusiNRkocFEtwrNsz2KSA9GObTRsTOBUM/KupOCWRD8XUUPT6L3DogrZiIyAZ4VZUpzq@vger.kernel.org, AJvYcCXB801iTKFoWv6vOfIG7u7ZAIHlfG7Fytl2OqmGkAx3IrYVAj30bL7zd44ZYk3pZp82tlhN1s2M46uO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyonin54/9JQv9keAseKbmWV9tfydVoiRfQiGqbEnndRwUibobh
-	4eHGLuxCHdzFTpbk8gT4qU/IR4tmWUOXCcZYpb45VGpoW7VNzI6KlAG6HA==
-X-Gm-Gg: ASbGnctQJVzwonF9hCgx4X0EVGSRd5lHD6hTuVgAUTRfDj4LiES6A1g6G+6Rqd1wj3F
-	aeViqJEeBy8kdWhOALvJFztHyuLautbDzHSh7zkyfc/0IW8xAl2+oOBKssOxy1jEVNOvCXYCyX/
-	Gh2w6kzbDhyEiJCY9nGdufYRnxhUGPzegLwnt2hMCQQARiGGmWtvzOVnNuaYLgpb368qbedkNA8
-	9SYSFwLBJwnEzBP0KR8p/E4VV25oaW35WZeh+D3UVexuPgazLNhlU0bYg3giltFMVM6OTShZFSh
-	8oZtoxwMYm7804QWdkM51dujCeqZ5AO8MNZHdkD32VWWyYMQWrksSJVpXiIuGdltviY1iM8kWos
-	qTQ==
-X-Google-Smtp-Source: AGHT+IHdd1itBgn8zaWroCmwk4p10HaAMsDE+3H5E0ouXn7FoUohnCOeOsuOyI2G0WcCLX23BbHgrA==
-X-Received: by 2002:a17:902:e54f:b0:224:191d:8a79 with SMTP id d9443c01a7336-22fc8c7b6bbmr108714995ad.27.1746897647294;
-        Sat, 10 May 2025 10:20:47 -0700 (PDT)
-Received: from [192.168.1.5] ([136.185.237.194])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc7544e33sm35065975ad.16.2025.05.10.10.20.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 May 2025 10:20:46 -0700 (PDT)
-Message-ID: <b18bc629-6bf6-4490-be98-033b771ecda7@gmail.com>
-Date: Sat, 10 May 2025 22:50:41 +0530
+        d=1e100.net; s=20230601; t=1746897940; x=1747502740;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=loWaUTc3ItqSmmSDVC847qIYyYkmIRUdKWPahuJRyf0=;
+        b=R84cmP6+Ezmd9UPKxvYSWxLfXcx066PJGuV7L8hoDGNVmG+oGh7NeAg6F+rAT+g7ui
+         PzUtjuKNKlgslUay7h2GEHNBxHvRR41DtPZYy+qIZ3luqppDEWg5z5TwqlGK22KiJHqp
+         8odVdFBabFbuXDgE5oPGcVHC0ss39HSBiaCFuWn4i71TWA6SZPh80Gbup+R3iIcRDjPT
+         dlzohC0pqUcVold50UnbZmTysciAcUpM7Iw+P8N9N1ejkqPo8tgc/RQNfXuL0C95kB/o
+         /VkROV5lIbf6piQf5PZ+Chg+57Q0gindayoNEbz6q2CXnkYVrAbUU4fue0skGQKmu+tE
+         JbJg==
+X-Forwarded-Encrypted: i=1; AJvYcCUBwVGXoTFN4dgklmdyNjtGdJywvOjXRveu2FYyllfSxN97l0J9iSbQoCguUeIPVCDRqzq9kb3bXrnj@vger.kernel.org, AJvYcCXNOgebeYbeGPoXMWiPbLkMF9FBXjuWw5sB7AtyumvVYH/wYLjbsSCYQ6jFoBdiVoEG1dacHgGkJGQ=@vger.kernel.org, AJvYcCXp73BJzOwuFZM6v0wYurIhSYaf5h0FhUeTiopsZdU7PfpKmUu5jmzesjnlzTBIhHdXXzyYRr8f96763tIC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCssrR7rPtrHQSo6FlnIch+vt1fcy4H2cEXHJNP8MfrkXOJu4n
+	1o+UcrhAPKEnatbSkw16+SWqiWflVr/sds0XwXyVJ35w5AltsREU
+X-Gm-Gg: ASbGnctm05to+r1bLFcs80leVukimcJOaxsODAa1472/FtkwUyQs7WOOaJGGNwUHF32
+	hzmecYbwkmDeQ0bTAbrQ8kDeRO1/dlv6kRxjLfv4wJgy7ll+S6lug7tdZvLEk1MVys7l8qUcaIT
+	51CavoKyzLAH2pbjSJyQoVDnRiJRjz6ViaNSXiDw7dtLmT3zYJTyzbs4ZITUpnwjq0pdilc0wDy
+	aIhO1HRqHMyGaSQYmLVwvul/7gK9Q63uBNosTrOZlyudmwRvybGD209BdO0YhzCj0KxXWpuFYdA
+	XSLvMhh8fjoWJTxUWEgpdkeP9qzOFI8AyTsMaNqtulvjHO+Rc2Y399Z8YO1qQRInklkGyhy88tc
+	i1+2JdifnZkbM0XA78N2h
+X-Google-Smtp-Source: AGHT+IGbq9qkv/gQaa4vYjk1kyBAHtxX/8ZAWD7AWGJwOJ9AAPk0sMxB6VvwhFWwD1gF6So1rIVe0g==
+X-Received: by 2002:a5d:5f48:0:b0:3a0:8298:143d with SMTP id ffacd0b85a97d-3a1f647ae37mr6557233f8f.13.1746897939956;
+        Sat, 10 May 2025 10:25:39 -0700 (PDT)
+Received: from localhost.localdomain (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a1f57dde6bsm7032009f8f.13.2025.05.10.10.25.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 10 May 2025 10:25:39 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 1/2] dt-bindings: thermal: Add support for Airoha EN7581 thermal sensor
+Date: Sat, 10 May 2025 19:25:01 +0200
+Message-ID: <20250510172509.2547273-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mmc: ti-omap: convert text based binding to
- json schema
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250510-ti-omap-v1-1-588b0ccb1823@gmail.com>
-Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <20250510-ti-omap-v1-1-588b0ccb1823@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+Add support for Airoha EN7581 thermal sensor and monitor. This is a
+simple sensor for the CPU or SoC Package that provide thermal sensor and
+trip point for hot low and critical condition to fire interrupt and
+react on the abnormal state.
 
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Changes v2:
+- Add Reviewed-by tag
 
-On 10-05-2025 22:07, Charan Pedumuru wrote:
-> Convert TI MMC host controller binding to YAML format. It's a
-> straight-forward conversion of the typical mmc host controller.
-> 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
-> ---
->  Documentation/devicetree/bindings/mmc/ti-omap.txt  | 26 ---------
->  Documentation/devicetree/bindings/mmc/ti-omap.yaml | 61 ++++++++++++++++++++++
->  2 files changed, 61 insertions(+), 26 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/ti-omap.txt b/Documentation/devicetree/bindings/mmc/ti-omap.txt
-> deleted file mode 100644
-> index 02fd31cf361d6ed893ec2f9eb8368b358ab2bae1..0000000000000000000000000000000000000000
-> --- a/Documentation/devicetree/bindings/mmc/ti-omap.txt
-> +++ /dev/null
-> @@ -1,26 +0,0 @@
-> -* TI MMC host controller for OMAP1 and 2420
-> -
-> -The MMC Host Controller on TI OMAP1 and 2420 family provides
-> -an interface for MMC, SD, and SDIO types of memory cards.
-> -
-> -This file documents differences between the core properties described
-> -by mmc.txt and the properties used by the omap mmc driver.
-> -
-> -Note that this driver will not work with omap2430 or later omaps,
-> -please see the omap hsmmc driver for the current omaps.
-> -
-> -Required properties:
-> -- compatible: Must be "ti,omap2420-mmc", for OMAP2420 controllers
-> -- ti,hwmods: For 2420, must be "msdi<n>", where n is controller
-> -  instance starting 1
-> -
-> -Examples:
-> -
-> -	msdi1: mmc@4809c000 {
-> -		compatible = "ti,omap2420-mmc";
-> -		ti,hwmods = "msdi1";
-> -		reg = <0x4809c000 0x80>;
-> -		interrupts = <83>;
-> -		dmas = <&sdma 61 &sdma 62>;
-> -		dma-names = "tx", "rx";
-> -	};
-> diff --git a/Documentation/devicetree/bindings/mmc/ti-omap.yaml b/Documentation/devicetree/bindings/mmc/ti-omap.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..3660f54550e0ee46d3a7cfa3f531d95802f1e2fb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/ti-omap.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/ti-omap.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI MMC host controller for OMAP1 and 2420
-> +
-> +description:
-> +  The MMC Host controller for TI OMAP1 and 2420 family provides
-> +  an interface for MMC, SD and SDIO types of memory cards.
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml
-> +
-> +maintainers:
-> +  - Ulf Hansson <ulf.hansson@linaro.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,omap2420-mmc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    maxItems: 2
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
-> +
-> +  ti,hwmods:
-> +    items:
-> +      pattern: "^msdi[0-9]+$"
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - dmas
-> +  - dma-names
-> +  - ti,hwmods
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    mmc@4809c000 {
-> +        compatible = "ti,omap2420-mmc";
-> +        ti,hwmods = "msdi1";
-> +        reg = <0x4809c000 0x80>;
-> +        interrupts = <83>;
+ .../thermal/airoha,en7581-thermal.yaml        | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
 
-Forgot to include irq interrupt-controller header and use it for the interrupts, will change in next revision.
-
-
-> +        dmas = <&sdma 61 &sdma 62>;
-> +        dma-names = "tx", "rx";
-> +    };
-> +...
-> 
-> ---
-> base-commit: 3e039dcc9c1320c0d33ddd51c372dcc91d3ea3c7
-> change-id: 20250502-ti-omap-12655fa9db3e
-> 
-> Best regards,
-
+diff --git a/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+new file mode 100644
+index 000000000000..ca0242ef0378
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/airoha,en7581-thermal.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Airoha EN7581 Thermal Sensor and Monitor
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++
++properties:
++  compatible:
++    const: airoha,en7581-thermal
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  airoha,chip-scu:
++    description: phandle to the chip SCU syscon
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  '#thermal-sensor-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - airoha,chip-scu
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    thermal-sensor@1efbd800 {
++        compatible = "airoha,en7581-thermal";
++        reg = <0x1efbd000 0xd5c>;
++        interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
++        airoha,chip-scu = <&chip_scu>;
++
++        #thermal-sensor-cells = <0>;
++    };
 -- 
-Best Regards,
-Charan.
+2.48.1
 
 
