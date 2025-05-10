@@ -1,60 +1,51 @@
-Return-Path: <devicetree+bounces-175842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64C2BAB20E3
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 03:51:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BF23AB20F1
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 04:01:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5ACB47AAC86
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 01:50:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 506253B09F7
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 02:01:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 519BC266F16;
-	Sat, 10 May 2025 01:51:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d8qycWpG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 091D8267729;
+	Sat, 10 May 2025 02:01:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 229211754B;
-	Sat, 10 May 2025 01:51:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0DFB158218;
+	Sat, 10 May 2025 02:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746841883; cv=none; b=agdEXMSqWiTWPuiyLcCsald5LWmooiUlcHrFaa1B+2LCB6tvlvDEIP4+jhvA2setbWwkfpHihJ//W99uKyMzgSFz3hcXEEf7ExnqlJv8mSUNE8TPhHvrVg1oXI9s1TG5U5eyIH9+paQ4k8YT2n8eS2K9dqP1OCw6QHeJKD92rKo=
+	t=1746842504; cv=none; b=n6hA4ckIcL5tkd7GHPXh0fnzN4tYWQxHUJGbXchI3GH2sshgdywGhmIp51EZX1l4NUZS1wq5PoQNFyunhQg+SpqtTKnh1NzMNp0Jxx5jYhGmTqg5WsjlLWQgn1F7lvezhF7MG3W/0Wo3lHiqpZ3FSd2aVFYgv9wcgaPfYnYgAkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746841883; c=relaxed/simple;
-	bh=97RdXJzhWuNgO+NHgDHCu6JgmKsxcavy2vgt0LibjAs=;
+	s=arc-20240116; t=1746842504; c=relaxed/simple;
+	bh=yOBnIXqcbufAcDhjkNEiYONxoGtRX5AIaNvgV7j5bGs=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=moMf4PxwvkwTHp/yQ8ymp7U/hKLVTDx1Jd7PMWd6bNy/KgEQj2xBkLQxlCLN6sJ9DOmdm3e+EI387pQgwf6b60v3SLGZfo72LpJsWumYesghc0KcKGIMXoGykRx995LgV2Cy/Ln0hBYmBN2/4xz71GINA3Bb4StbM5m257ywttQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d8qycWpG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0BE7C4CEE4;
-	Sat, 10 May 2025 01:51:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746841883;
-	bh=97RdXJzhWuNgO+NHgDHCu6JgmKsxcavy2vgt0LibjAs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=d8qycWpGU+AGABgxrrU6VoNPAPryCBC2bxzMnA6/J/cMbYKFM5nfIt2qCrGwG7oid
-	 NSf4ChlQqo5tl2ZhTJ4UNaMGVMWzCj/nlD9cGPsNHP4/VcRa3y7ggJsLt4stIZR1wH
-	 Y37kvm4o7rH4Can0bXnBpuT9ruUIWkZTSSEpS6dolU+FXHry0cDX8miZwWim+I+15v
-	 ZuVgKGHsrB7XKsX38zmUWaSHGEtBQd0BB8dXTCPugn2H1pMwADBcEu+S5hh4INW2Eq
-	 8GHIGBUJ3kcoStQ/HDXS2bZNgmzONQS7aaN6XIBrgOu86NCsVOQT0ryrLuP0QqDKIG
-	 p7By0dSD4aRMg==
-From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>
-Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- linux-spi@vger.kernel.org, 
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
- Biju Das <biju.das.au@gmail.com>
-In-Reply-To: <20250424090000.136804-1-biju.das.jz@bp.renesas.com>
-References: <20250424090000.136804-1-biju.das.jz@bp.renesas.com>
-Subject: Re: (subset) [PATCH v5 0/7] Add RZ/G3E xSPI support
-Message-Id: <174684188045.50878.18296470644838923077.b4-ty@kernel.org>
-Date: Sat, 10 May 2025 10:51:20 +0900
+	 MIME-Version:Content-Type; b=l4vMTpINfU6uJQ3qyTcXiMByLJfXvXvgSBQ5g76orBR5ytGAHvSvRSBqU6Dk2jNkjMmSuj9E5Skt7W/Y69eInA6v/j7GAQswyBNrJGDwnLbxCfkP5cmUfyYbDxYa2jtMJmV7Ql/LxsPkTfJUj/7pyP5g6SJBBiWrmwIstjaQFyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CBFDC4CEE4;
+	Sat, 10 May 2025 02:01:44 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id EAC495FA73;
+	Sat, 10 May 2025 10:01:41 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: linux-sunxi@lists.linux.dev, Chris Morgan <macroalpha82@gmail.com>
+Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ ryan@testtoast.com, macromorgan@hotmail.com, p.zabel@pengutronix.de, 
+ tzimmermann@suse.de, maarten.lankhorst@linux.intel.com, simona@ffwll.ch, 
+ airlied@gmail.com, mripard@kernel.org, samuel@sholland.org, 
+ jernej.skrabec@gmail.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
+ robh@kernel.org
+In-Reply-To: <20250507201943.330111-1-macroalpha82@gmail.com>
+References: <20250507201943.330111-1-macroalpha82@gmail.com>
+Subject: Re: (subset) [PATCH V9 00/24] drm: sun4i: add Display Engine 3.3
+ (DE33) support
+Message-Id: <174684250193.2454659.15468367756832902378.b4-ty@csie.org>
+Date: Sat, 10 May 2025 10:01:41 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,47 +54,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
+X-Mailer: b4 0.14.2
 
-On Thu, 24 Apr 2025 09:59:48 +0100, Biju Das wrote:
-> The xSPI IP found on RZ/G3E SoC similar to RPC-IF interface, but it
-> can support writes on memory-mapped area. Even though the registers are
-> different, the rpcif driver code can be reused for xSPI by adding wrapper
-> functions.
+On Wed, 07 May 2025 15:19:19 -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Merge strategy:
->  Patch#7 in this series is spi related patch and has build dependency on
->  patch#6. Maybe an Ack from SPI maintainer is required so that it can go
->  through memory subsystem.
+> I've spoken with Ryan and he agreed to let me take over this series to
+> get the display engine working on the Allwinner H616. I've taken his
+> previous patch series for Display Engine 3.3 and combined it with the
+> LCD controller patch series. I've also fixed a few additional bugs and
+> made some changes to the device tree bindings.
 > 
 > [...]
 
-Applied to
+Applied to sunxi/clk-for-6.16 in local tree, thanks!
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+[01/24] dt-bindings: clock: sun50i-h616-ccu: Add LVDS reset
+        commit: 20fb4ac9cda06527cf60c5ec7dda7c463c9c81be
+[02/24] clk: sunxi-ng: h616: Add LVDS reset for LCD TCON
+        commit: 390e4cfe87cb99c80614235cbc4651c3b315a9c9
 
-Thanks!
-
-[7/7] spi: rpc-if: Add write support for memory-mapped area
-      commit: b0b8d3aeadb5c49bf78305a1bc844e5a9378257c
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
 
 
