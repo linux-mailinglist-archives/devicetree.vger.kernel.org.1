@@ -1,361 +1,146 @@
-Return-Path: <devicetree+bounces-175892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B75A2AB2371
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 12:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FD63AB2382
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 13:04:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5174A20210
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 10:26:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02FB8A05920
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 11:04:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0EAD24678A;
-	Sat, 10 May 2025 10:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E4F1235074;
+	Sat, 10 May 2025 11:04:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UqvLFBR4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zi9iS54B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D902472B9;
-	Sat, 10 May 2025 10:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542C1259C;
+	Sat, 10 May 2025 11:04:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746872684; cv=none; b=Wg9SV3qDcMmQ4FDvCEeRmhaSZAQWvCy/ujfOUpcQXB/na/TlOmATotxmCpMDdOCYoN74pmKINjLPtK/lhLAON1DeJ9ZI3RzRvcPo2188w+CjjaCZzEzqGYqIQi0Fxa54QgUwvQ2sgaP42fN0ole5Aqfh7HufX+ezAaqv8MfAd3g=
+	t=1746875062; cv=none; b=otkS4tZaTjbdp1+DlR/NzOydhwGvMIO1VG2r/+WkYHRYJ0dYqGVZXG63T75DKjUOwW3McaAep9+8/Hz3u+L8l4iD4c95fP/0jCQwWYdksnjhNW4v6XjfdTWC8IurtCT132sO5ZPfMJouwXNzkhr6M7edbrQ54ac3KS/+ln/2Lck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746872684; c=relaxed/simple;
-	bh=XGK02BPGGxgATahRNdlE3joMWQ12mGGe3VfQtMEUIt4=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lc003sgJzg6vUWN3iO3T48a7iOYgjTBu3Vy3tj+rfiM3Q0PAFdKk4JYDaS6+yWYIIJR8z48rhTuHXk+udA7IAzpW4o3PlMikq92wwC6cF5yTWhx690wZtgPY+YkYhtHTQqW68BHR6EXC3JWfDROsD0Qz/L4Qnnxh10MDm/vS0qg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UqvLFBR4; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a1d8c0966fso1477017f8f.1;
-        Sat, 10 May 2025 03:24:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746872680; x=1747477480; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6P2IsG4NpDD2fbYW/iI8BvKjWMNl+8X1z9p0WNQNKVQ=;
-        b=UqvLFBR44q69QvUshXtqY0EWNrWI40GTUI7gEqHtOYl3ff5iyDcrEk6nfhc4EdqB6B
-         9RApPikKk2YZHYSOuPmsdJkAZJoaLHkqDXk/3erIMVPufTLnAdbAYKZsZVYq+7c8lwPc
-         Ixi6js73/ctFP3N1u/lmjEjXrph0Mjb9qe5GLz4m+ujGQjTTTb/hLZ4pKdhHaNXIrQz8
-         f9d4U1Xg1sPn7aGKTQFadS/+3i9MA2vFf1O6AHfQjGSz6JbA60PVkVhF0dKnBztTph5c
-         weRpr/FDOyucWeMZJQCeTa3cXqNs4rO+TIetgVtF4sGGWCLPGEST9TPAVrPRGJS+9d19
-         nAOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746872680; x=1747477480;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6P2IsG4NpDD2fbYW/iI8BvKjWMNl+8X1z9p0WNQNKVQ=;
-        b=Mmby4iCB6KAxLUomO7uBHtnOflDTj7GspgiR/vEC5AnccGBWNcgp9Ex6E8a0LHcMZr
-         uQYrhD8T6CaG20Z1ZnThv++1ttQjp7wJunZlTMxL18bzmUvw+FDkyOts8eGktpol9kmI
-         pP8DkXy6mUaElbeqAHcrfhvELpMB+tmwcKagnTVFMDgdumxvlwhlFSBc/XnuyapK86TA
-         Uuaxepei7MgMuVfYA4Po1Omw0wrf/aiTvUoTOidc2g4jzg7/H7oYsOsJqieatFKJbteG
-         ruYYm+uW88Bvbqj3TuT9m/jAKi/wS2TSI62F/LqzuEjoHdh7ykCtBCtOnMCuu9P5dkW5
-         /ksg==
-X-Forwarded-Encrypted: i=1; AJvYcCVH3UISUTGID13oT7ZoH71ULzUqbNa9FTLPc+1CHpgwg26/gH3S1YHKq1sKMBzdvCMHDZw5HSfKxAt4GJAw@vger.kernel.org, AJvYcCWR2xB6cbidsKvZ4SaNH0JfE15GbSPH6G99sY70oXWK3eWN2bJlroTwwTcjYTSyMv6kzYeDILk5@vger.kernel.org, AJvYcCXjb9r5wJ65EOazkz3/WTR/oRZKh+QvD9bFmBwyM4l+qXOG2TZdOX/dLiAAX+/M/N7xfa6/r1Pzzw3D@vger.kernel.org
-X-Gm-Message-State: AOJu0YyN0ah/VGRBaarh9XeX/ejkwpQdv6ChGZLt4WkkIdXlpabYnot4
-	HmNwoQfTmSXUEi1wei3rHUO+j97YHxL0LqP31XeX3T8REsLvdkUH
-X-Gm-Gg: ASbGncsrar+ucizkmk/ePntMHtXZG1Tc8URcmdFtnGGuziFBNyXT5lUd188NJlL3Zbf
-	NXD6AKfXtoScn17SyxzfvYYII/kCHz+L8mnkuOJFz3sD4Rf51gyBltUFvpUTwTKIhv0puPt+in4
-	VZUVUw4Pu9Wj1myo4/z4BzL8vihzqII0APwXsjk893gx3q2w7EE3EMepkOdEBEvuI0nrORbVFNN
-	ExpoiZYOyHqWZrH/68cVTGiPI6FrcwHmcgqmrKHUalXiYrFmCIBgVu2+N7K8Lwu73T1T/J3joVo
-	gw2B5ESWfXsiscfVMV1ZtU12UrXtppL7Cd0YAkUVdjMGDk4CoveS3dNMYCXHgcOADkvVTi7tnF7
-	7F0UXnRQJYiAjRnxU5s8t
-X-Google-Smtp-Source: AGHT+IGaAcxFH348QW/5C7QPg9ecKePMXYXEMnalPhZCY4oj4yf2UPL3DkEaoRM26UOdLaNwKJl6Hw==
-X-Received: by 2002:a05:6000:1a8c:b0:3a1:f538:d9d5 with SMTP id ffacd0b85a97d-3a1f538da17mr6327826f8f.28.1746872680525;
-        Sat, 10 May 2025 03:24:40 -0700 (PDT)
-Received: from localhost.localdomain (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-442d67df639sm57981265e9.13.2025.05.10.03.24.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 May 2025 03:24:40 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1746875062; c=relaxed/simple;
+	bh=LnCr8g0K3kFovNAfIBhC2oA0dXw5uMqRwlfONu06Ff4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sXxIR3FQQLjwE4uhyJGIu9Vv1m68LfUHadVQby9UfLS82h4wwhHUyUunURqXv6O3kSXMAynwzIrqcIrmWlhd8jsrkQsXdSNZkySiRf48Gf/TfLT0driyAi2ZrhLK1O2bJEDA7B8+uSesMZEZwKuxc5BGTxKdHGcrkRx/0hNjVwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zi9iS54B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BEAEC4CEE2;
+	Sat, 10 May 2025 11:04:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746875061;
+	bh=LnCr8g0K3kFovNAfIBhC2oA0dXw5uMqRwlfONu06Ff4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zi9iS54BLj0T5mXRojSJXhPL94LXj7hCQ+/I1xdk2P4NXw+CAhe/Wf16Tkh+1LeWL
+	 I2HULSYCpdvR9Ec/a/lV0cBaUEv5yPIkIGg7uZQFb10tVi+k0ADJ2bEqFqYy5f0PoT
+	 zOAVMhR0OiHhYFKU5Zd3vh8EVkbxof0lF5yQemN0sDDJ3oXLBPfkIPfr0FVs7JlzTV
+	 0NMNjnIgfiQLgzZLAmdBYuVbxUfywp5GlK1lSGv2mgPNjPMafWt3Z9wAovA4Zax31l
+	 rJIVFoZCkZ/5eXPA2hFuU8UyNNuf07KWWbSU92+AKjxgBLDQ2nIGoKz6Xt9Ujmsui2
+	 ij+0/jcsMlu1Q==
+Date: Sat, 10 May 2025 13:04:16 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [net-next PATCH v3 11/11] net: airoha: add phylink support for GDM2/3/4
-Date: Sat, 10 May 2025 12:23:31 +0200
-Message-ID: <20250510102348.14134-12-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250510102348.14134-1-ansuelsmth@gmail.com>
-References: <20250510102348.14134-1-ansuelsmth@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>,
+	dlemoal@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: pci-ep: Add ref-clk-mode
+Message-ID: <aB8ysBuQysAR-Zcp@ryzen>
+References: <20250425092012.95418-2-cassel@kernel.org>
+ <7xtp5i3jhntfev35uotcunur3qvcgq4vmcnkjde5eivajdbiqt@n2wsivrsr2dk>
+ <aBHOaJFgZiOfTrrT@ryzen>
+ <dxgs3wuekwjh6f22ftkmi7dcw7xpw3fa7lm74fwm5thvol42z3@wuovkynp3jey>
+ <20250509181827.GA3879057-robh@kernel.org>
+ <a7rfa6rlygbe7u3nbxrdc3doln7rk37ataxjrutb2lunctbpuo@72jnf6odl5xp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a7rfa6rlygbe7u3nbxrdc3doln7rk37ataxjrutb2lunctbpuo@72jnf6odl5xp>
 
-Add phylink support for GDM2/3/4 port that require configuration of the
-PCS to make the external PHY or attached SFP cage work.
+On Sat, May 10, 2025 at 01:01:51AM +0530, Manivannan Sadhasivam wrote:
+> On Fri, May 09, 2025 at 01:18:27PM -0500, Rob Herring wrote:
+> > > > > 
+> > > > > > +    description: Reference clocking architechture
+> > > > > > +    enum:
+> > > > > > +      - common-clk        # Common Reference Clock (provided by RC side)
+> > > > > 
+> > > > > Can we use 'common-clk-host' so that it is explicit that the clock is coming
+> > > > > from the host side?
+> > > > 
+> > > > Sure.
+> > > > 
+> > > > I take it that you prefer 'common-clk-host' over 'common-clk-rc' ?
+> > > > 
+> > > 
+> > > That's what I intended previously, but thinking more, I feel that we should
+> > > stick to '-rc'i, as that's what the PCIe spec uses.
+> > 
+> > Couldn't this apply to any link, not just a RC? Is there PCIe 
+> > terminology for upstream and downstream ends of a link?
+> > 
+> 
+> Usually, the refclk comes from the host machine to the endpoint, but doesn't
+> necessarily from the root complex. Since the refclk source could very well be
+> from the motherboard or the host system PCB, controlled by the host software.
+> 
+> > The 'common-clk' part seems redundant to me with '-rc' or whatever we 
+> > end up with added.
+> > 
+> 
+> No. It could be the other way around. We can drop the '-rc' suffix if it seem
+> redundant. Maybe that is a valid argument also since root complex doesn't
+> necessarily provide refclk and the common refclk usually comes from the host.
 
-These needs to be defined in the GDM port node using the pcs-handle
-property.
+When the RC and EP uses a common clock (rather than separate clocks),
+the clock can either be provided by the host side or the EP side.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/net/ethernet/airoha/airoha_eth.c  | 138 ++++++++++++++++++++++
- drivers/net/ethernet/airoha/airoha_eth.h  |   3 +
- drivers/net/ethernet/airoha/airoha_regs.h |  12 ++
- 3 files changed, 153 insertions(+)
+The most common by far (if using a common clock) is that it the common
+clock is provided by the host side. That is why my patch just named it
+'common-clk' instead of 'common-clk-host' or 'common-clk-rc'.
 
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ethernet/airoha/airoha_eth.c
-index 16c7896f931f..17521be820b5 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.c
-+++ b/drivers/net/ethernet/airoha/airoha_eth.c
-@@ -7,6 +7,7 @@
- #include <linux/of_net.h>
- #include <linux/platform_device.h>
- #include <linux/tcp.h>
-+#include <linux/pcs/pcs.h>
- #include <linux/u64_stats_sync.h>
- #include <net/dst_metadata.h>
- #include <net/page_pool/helpers.h>
-@@ -79,6 +80,11 @@ static bool airhoa_is_lan_gdm_port(struct airoha_gdm_port *port)
- 	return port->id == 1;
- }
- 
-+static bool airhoa_is_phy_external(struct airoha_gdm_port *port)
-+{
-+	return port->id != 1;
-+}
-+
- static void airoha_set_macaddr(struct airoha_gdm_port *port, const u8 *addr)
- {
- 	struct airoha_eth *eth = port->qdma->eth;
-@@ -1613,6 +1619,17 @@ static int airoha_dev_open(struct net_device *dev)
- 	struct airoha_gdm_port *port = netdev_priv(dev);
- 	struct airoha_qdma *qdma = port->qdma;
- 
-+	if (airhoa_is_phy_external(port)) {
-+		err = phylink_of_phy_connect(port->phylink, dev->dev.of_node, 0);
-+		if (err) {
-+			netdev_err(dev, "%s: could not attach PHY: %d\n", __func__,
-+				   err);
-+			return err;
-+		}
-+
-+		phylink_start(port->phylink);
-+	}
-+
- 	netif_tx_start_all_queues(dev);
- 	err = airoha_set_vip_for_gdm_port(port, true);
- 	if (err)
-@@ -1665,6 +1682,11 @@ static int airoha_dev_stop(struct net_device *dev)
- 		}
- 	}
- 
-+	if (airhoa_is_phy_external(port)) {
-+		phylink_stop(port->phylink);
-+		phylink_disconnect_phy(port->phylink);
-+	}
-+
- 	return 0;
- }
- 
-@@ -2795,6 +2817,110 @@ bool airoha_is_valid_gdm_port(struct airoha_eth *eth,
- 	return false;
- }
- 
-+static void airoha_mac_link_up(struct phylink_config *config, struct phy_device *phy,
-+			       unsigned int mode, phy_interface_t interface,
-+			       int speed, int duplex, bool tx_pause, bool rx_pause)
-+{
-+	struct airoha_gdm_port *port = container_of(config, struct airoha_gdm_port,
-+						    phylink_config);
-+	struct airoha_qdma *qdma = port->qdma;
-+	struct airoha_eth *eth = qdma->eth;
-+	u32 frag_size_tx, frag_size_rx;
-+
-+	switch (speed) {
-+	case SPEED_10000:
-+	case SPEED_5000:
-+		frag_size_tx = 8;
-+		frag_size_rx = 8;
-+		break;
-+	case SPEED_2500:
-+		frag_size_tx = 2;
-+		frag_size_rx = 1;
-+		break;
-+	default:
-+		frag_size_tx = 1;
-+		frag_size_rx = 0;
-+	}
-+
-+	/* Configure TX/RX frag based on speed */
-+	if (port->id == 4) {
-+		airoha_fe_rmw(eth, REG_GDMA4_TMBI_FRAG, GDMA4_SGMII0_TX_FRAG_SIZE,
-+			      FIELD_PREP(GDMA4_SGMII0_TX_FRAG_SIZE, frag_size_tx));
-+
-+		airoha_fe_rmw(eth, REG_GDMA4_RMBI_FRAG, GDMA4_SGMII0_RX_FRAG_SIZE,
-+			      FIELD_PREP(GDMA4_SGMII0_RX_FRAG_SIZE, frag_size_rx));
-+	}
-+}
-+
-+static const struct phylink_mac_ops airoha_phylink_ops = {
-+	.mac_link_up = airoha_mac_link_up,
-+};
-+
-+static int airoha_setup_phylink(struct net_device *dev)
-+{
-+	struct airoha_gdm_port *port = netdev_priv(dev);
-+	struct device_node *np = dev->dev.of_node;
-+	struct phylink_pcs **available_pcs;
-+	phy_interface_t phy_mode;
-+	struct phylink *phylink;
-+	unsigned int num_pcs;
-+	int err;
-+
-+	err = of_get_phy_mode(np, &phy_mode);
-+	if (err) {
-+		dev_err(&dev->dev, "incorrect phy-mode\n");
-+		return err;
-+	}
-+
-+	port->phylink_config.dev = &dev->dev;
-+	port->phylink_config.type = PHYLINK_NETDEV;
-+	port->phylink_config.mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
-+						MAC_10 | MAC_100 | MAC_1000 | MAC_2500FD |
-+						MAC_5000FD | MAC_10000FD;
-+
-+	err = fwnode_phylink_pcs_parse(dev_fwnode(&dev->dev), NULL, &num_pcs);
-+	if (err)
-+		return err;
-+
-+	available_pcs = kcalloc(num_pcs, sizeof(*available_pcs), GFP_KERNEL);
-+	if (!available_pcs)
-+		return -ENOMEM;
-+
-+	err = fwnode_phylink_pcs_parse(dev_fwnode(&dev->dev), available_pcs,
-+				       &num_pcs);
-+	if (err)
-+		goto out;
-+
-+	port->phylink_config.available_pcs = available_pcs;
-+	port->phylink_config.num_available_pcs = num_pcs;
-+
-+	__set_bit(PHY_INTERFACE_MODE_SGMII,
-+		  port->phylink_config.supported_interfaces);
-+	__set_bit(PHY_INTERFACE_MODE_1000BASEX,
-+		  port->phylink_config.supported_interfaces);
-+	__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-+		  port->phylink_config.supported_interfaces);
-+	__set_bit(PHY_INTERFACE_MODE_USXGMII,
-+		  port->phylink_config.supported_interfaces);
-+
-+	phy_interface_copy(port->phylink_config.pcs_interfaces,
-+			   port->phylink_config.supported_interfaces);
-+
-+	phylink = phylink_create(&port->phylink_config,
-+				 of_fwnode_handle(np),
-+				 phy_mode, &airoha_phylink_ops);
-+	if (IS_ERR(phylink)) {
-+		err = PTR_ERR(phylink);
-+		goto out;
-+	}
-+
-+	port->phylink = phylink;
-+out:
-+	kfree(available_pcs);
-+
-+	return err;
-+}
-+
- static int airoha_alloc_gdm_port(struct airoha_eth *eth,
- 				 struct device_node *np, int index)
- {
-@@ -2873,6 +2999,12 @@ static int airoha_alloc_gdm_port(struct airoha_eth *eth,
- 	if (err)
- 		return err;
- 
-+	if (airhoa_is_phy_external(port)) {
-+		err = airoha_setup_phylink(dev);
-+		if (err)
-+			return err;
-+	}
-+
- 	return register_netdev(dev);
- }
- 
-@@ -2967,6 +3099,9 @@ static int airoha_probe(struct platform_device *pdev)
- 		struct airoha_gdm_port *port = eth->ports[i];
- 
- 		if (port && port->dev->reg_state == NETREG_REGISTERED) {
-+			if (airhoa_is_phy_external(port))
-+				phylink_destroy(port->phylink);
-+
- 			unregister_netdev(port->dev);
- 			airoha_metadata_dst_free(port);
- 		}
-@@ -2994,6 +3129,9 @@ static void airoha_remove(struct platform_device *pdev)
- 			continue;
- 
- 		airoha_dev_stop(port->dev);
-+		if (airhoa_is_phy_external(port))
-+			phylink_destroy(port->phylink);
-+
- 		unregister_netdev(port->dev);
- 		airoha_metadata_dst_free(port);
- 	}
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
-index 53f39083a8b0..73a500474076 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.h
-+++ b/drivers/net/ethernet/airoha/airoha_eth.h
-@@ -498,6 +498,9 @@ struct airoha_gdm_port {
- 	struct net_device *dev;
- 	int id;
- 
-+	struct phylink *phylink;
-+	struct phylink_config phylink_config;
-+
- 	struct airoha_hw_stats stats;
- 
- 	DECLARE_BITMAP(qos_sq_bmap, AIROHA_NUM_QOS_CHANNELS);
-diff --git a/drivers/net/ethernet/airoha/airoha_regs.h b/drivers/net/ethernet/airoha/airoha_regs.h
-index d931530fc96f..71c63108f0a8 100644
---- a/drivers/net/ethernet/airoha/airoha_regs.h
-+++ b/drivers/net/ethernet/airoha/airoha_regs.h
-@@ -357,6 +357,18 @@
- #define IP_FRAGMENT_PORT_MASK		GENMASK(8, 5)
- #define IP_FRAGMENT_NBQ_MASK		GENMASK(4, 0)
- 
-+#define REG_GDMA4_TMBI_FRAG		0x2028
-+#define GDMA4_SGMII1_TX_WEIGHT		GENMASK(31, 26)
-+#define GDMA4_SGMII1_TX_FRAG_SIZE	GENMASK(25, 16)
-+#define GDMA4_SGMII0_TX_WEIGHT		GENMASK(15, 10)
-+#define GDMA4_SGMII0_TX_FRAG_SIZE	GENMASK(9, 0)
-+
-+#define REG_GDMA4_RMBI_FRAG		0x202c
-+#define GDMA4_SGMII1_RX_WEIGHT		GENMASK(31, 26)
-+#define GDMA4_SGMII1_RX_FRAG_SIZE	GENMASK(25, 16)
-+#define GDMA4_SGMII0_RX_WEIGHT		GENMASK(15, 10)
-+#define GDMA4_SGMII0_RX_FRAG_SIZE	GENMASK(9, 0)
-+
- #define REG_MC_VLAN_EN			0x2100
- #define MC_VLAN_EN_MASK			BIT(0)
- 
--- 
-2.48.1
+I can use whatever name we agree on. I indend to send out V2 of this
+patch as part of a series that adds SRIS support to the dw-rockchip
+driver, in order to address Krzysztof's comment.
 
+
+> 
+> > Finally, this[1] seems related. Figure out a common solution.
+
+I don't see the connection.
+
+https://lore.kernel.org/all/20250406144822.21784-2-marek.vasut+renesas@mailbox.org/
+
+does specify a reference clock, but that is in a host side DT binding.
+
+
+This patch adds a refclk-mode property to an endpoint side DT binding.
+
+This property is needed such that the endpoint can configure the bits
+in its own PCIe Link Control Register before starting the link.
+
+Perhaps the host side could also make use of a similar property, but I'm not
+sure, you don't know from the host side which endpoint will be plugged in.
+
+From the EP side, you do know if your SoC only supports common-clock or
+SRNS/SRIS, since that depends on if the board can source the clock from
+the PCIe slot or not (of all the DWC based drivers, only Qcom and Tegra
+can do so, rest uses SRNS/SRIS), so this property definitely makes sense
+in an EP side DT binding.
+
+
+Kind regards,
+Niklas
 
