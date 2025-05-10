@@ -1,159 +1,136 @@
-Return-Path: <devicetree+bounces-175848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52C4EAB21AC
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 09:26:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54DABAB21BA
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 09:45:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42A6B7AB481
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 07:24:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA0194C2BD1
+	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 07:45:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B18EB1E5B9B;
-	Sat, 10 May 2025 07:25:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2F011E573F;
+	Sat, 10 May 2025 07:45:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KERH6vmo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YYy0kgX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1502E2747B;
-	Sat, 10 May 2025 07:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 807B11E5B9C;
+	Sat, 10 May 2025 07:45:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746861957; cv=none; b=P+okNdlLYqHaERBrwz48ONMWlyB9NuR3ytlupMrl57Rqh5gM/wK5AA7NEkMArn0tJ3clpeE4hPUc4+oBvENvyzXaCTMb5UXKdoJTjZ/oYG79QHLCRWx6viB86RWJU+LWaK4vzmAZeS1Dgk97I5myCQn/M7g3b5AYCnG4iMGhl3Q=
+	t=1746863109; cv=none; b=d3LZilRjGB6v/fJ1Rcu25F0Fbc7j1EYp3nLr8jiMhKRCaFGSiW4tpJMIfh6gAt08sopeFiko5wup91q46XSdJLJvciAt13FGfLNiTFA/ghycGppdqk/jFrhOmJfhsHss1w/tP3DAmqTKOku5U+BkeahJYL7wUE81l0Y3J5HVIxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746861957; c=relaxed/simple;
-	bh=LKQuDg71kuc86yeHdsMwQmlJfEnl+jVcYcFCHZUJGNM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GzhGPMITCO/J659iNBSndDww7uuesUK9/ZYI3pBLiB1YUX9m92EUBJQCOR/kl6x5QJn6Boat3DQ2obDFFjHoheGLULU62fl2X5OI6wtNADrqI6ETIMOJWHbiCzZd72dIi1BpG2yuVoQPb4rW5T7QYovJnbagyVDERYcSfaduaXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KERH6vmo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54A7Gkxj024974;
-	Sat, 10 May 2025 07:25:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WcYqoQI9erN/w1hZyVlXxbtVQPPAA2u3o/mXslFUsLA=; b=KERH6vmoe+b5nFb/
-	nPAuO3eoFuySiY6XRz55rRLHRJtGCt6mNRKXmDk/PiJs1bWTlSx0CNbWO9hnRVlr
-	d59zS0F7ekkTeDfSdCOzm5RqKlBwqmF+fMJ/fccxPk88AmSpO818M0ubywGofh8A
-	+X2SBEZN7XpWWCjpFMn4+nKR9yx0fx5X+nPuctc4tegE07pyKF8Hfx8n1tUQ0+hf
-	Txhvj5+JjPdjInKgQ4t1rF5IYNK6MV4XNxhrG2In5yvopctCSZZZ2+432EvOLZTm
-	6BmKNujM4KSQxpjE+WcAv88EO6QsiVmZvhY8woFOebd4XPoFVuUWcoObpVwmbLn0
-	YI/2fg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46j03b85m1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 10 May 2025 07:25:36 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54A7PZxl004605
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 10 May 2025 07:25:35 GMT
-Received: from [10.204.73.14] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 10 May
- 2025 00:25:30 -0700
-Message-ID: <6449b4ed-4ae6-453d-a717-8b0771ecb475@quicinc.com>
-Date: Sat, 10 May 2025 12:55:27 +0530
+	s=arc-20240116; t=1746863109; c=relaxed/simple;
+	bh=CUo/MimrCW1xHj5d7fHDtNMddbwaaGdTDWDyY+tLI84=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FE3O6fAqJNuMl/ZUusmHgOH/rMh2XX94LanYhCTljAu3AF6nCx5nrE7jYj+aht2ho0zr0v9S2v3S35Hcn34auuv841OiNYbXScWQCoTyRY28rkNyofqX9nKd/CcNTYcTBfDdNXewdKpwcWlo3ACA6T7MRJrfu64u+D7ZK+qw8uk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YYy0kgX5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E4BB3C4CEE2;
+	Sat, 10 May 2025 07:45:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746863109;
+	bh=CUo/MimrCW1xHj5d7fHDtNMddbwaaGdTDWDyY+tLI84=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=YYy0kgX5lVaXFTKrYRGliD8DTCl5jxlh4Nayz0Wb+66AFxLc20MuO/3+CziqiiX/x
+	 qk24j8sGwyjrh8CeEdEkoEefu9qPheo8X7iuxHUITn2Vw7hwyZ+FFBH4eIeiI+d+pP
+	 9tqajp4y7JgSFrn3BB89zd9YjsYRu4G2Uhm50EOTDRbBSlq8Egg0krIFauzT9XwQyn
+	 7Z5FKogs/CrHxr8MQX9+rKkvBq8v7xlbNMEQA+5CxoAfvuzhz8ttoZLNwjf0PYyaWG
+	 ij7O7LjRz0CU1n0K1u1LIqBqhPtE7yrqndTXcscYbZYEoFOjP4NyT5nNPFNRJQBFQr
+	 HfCNhkezxwIGw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2891C3ABC3;
+	Sat, 10 May 2025 07:45:08 +0000 (UTC)
+From: Sven Peter via B4 Relay <devnull+sven.svenpeter.dev@kernel.org>
+Subject: [PATCH 0/7] Support exposing bits of any byte as NVMEM cells
+Date: Sat, 10 May 2025 07:44:40 +0000
+Message-Id: <20250510-nvmem-dt-v1-0-eccfa6e33f6a@svenpeter.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC/WIP v2 5/9] media: qcom: camss: Add sa8775p compatible
-To: Vikram Sharma <quic_vikramsa@quicinc.com>, <rfoss@kernel.org>,
-        <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
-        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-        <cros-qcom-dts-watchers@chromium.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250427070135.884623-1-quic_vikramsa@quicinc.com>
- <20250427070135.884623-6-quic_vikramsa@quicinc.com>
-Content-Language: en-US
-From: Suresh Vankadara <quic_svankada@quicinc.com>
-In-Reply-To: <20250427070135.884623-6-quic_vikramsa@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 55a1xE1HaKYhcbz2PAI7jSgNUoWpaMT7
-X-Authority-Analysis: v=2.4 cv=DOuP4zNb c=1 sm=1 tr=0 ts=681eff70 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=XdGAH4ZiSAM6yD7sjqcA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: 55a1xE1HaKYhcbz2PAI7jSgNUoWpaMT7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEwMDA3MiBTYWx0ZWRfXzyrQ3ieUETXZ
- ze01T8G0Vw7w/6q8/RivkFy6f+J0qZauGqmUWNRiirBLxJh4+3oJZhBkyxNEo4bDuMTs9vlZ8sG
- jiYQDVy6mGdhJDBctZFONHwlSLJO9Mn5bP/hmPimIAs685PAJiQiKmONSF32E+oRqyqTyb7J9Gi
- Wmkk6s01ZMx5xDFfhC7xZAoLhTTkPJQPobRNQ5Noat0AgAcxwTRU/jpVs07Lkec0ulH7S+bn3tb
- Wc7Q8a6RcVWbsdUO0Im/Dq7nfY8TUuh3oibk53CVRWMuwENYkLJp2KjbCk8v/RJcOtSIxWOWpA0
- hyZ+CaQyEvFywuV7oNnnJMd4C4FcjvEYDj73QsRi/OwjiMUv4yAFWCCpG/ejq0UaAMuOvLDbDDB
- ApSF63xCRtYrkNmgjjK3igww1NApzeWH1Qp10sFVPhoRA1DJ0VWv+o0q8nBoY4pbOXDwvhDm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-10_03,2025-05-09_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 adultscore=0 spamscore=0 clxscore=1015 suspectscore=0
- lowpriorityscore=0 bulkscore=0 malwarescore=0 phishscore=0 impostorscore=0
- priorityscore=1501 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2504070000 definitions=main-2505100072
+X-B4-Tracking: v=1; b=H4sIAOgDH2gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDUwML3byy3NRc3ZQS3ZRUw0RDCxOjVAsLYyWg8oKi1LTMCrBR0bG1tQD
+ ysA7VWgAAAA==
+X-Change-ID: 20250508-nvmem-dt-de1a1842e883
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, asahi@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ Sven Peter <sven@svenpeter.dev>, R <rqou@berkeley.edu>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1867; i=sven@svenpeter.dev;
+ h=from:subject:message-id;
+ bh=CUo/MimrCW1xHj5d7fHDtNMddbwaaGdTDWDyY+tLI84=;
+ b=owGbwMvMwCHmIlirolUq95LxtFoSQ4Y886+JhUwn/3XVWSgdXLxSLkhOtF73koo070H5hzV9l
+ sqLejk7SlkYxDgYZMUUWbbvtzd98vCN4NJNl97DzGFlAhnCwMUpABMpF2b4K/xC+RXPE+Plrf6O
+ 8U5L98/5yRi1snSb6Ukhv1e+M3wP+DMyzC4UmveQ9UfFm/Qf//fd1WmRubpx9tnEs/vKKqM4DW5
+ v4QMA
+X-Developer-Key: i=sven@svenpeter.dev; a=openpgp;
+ fpr=A1E3E34A2B3C820DBC4955E5993B08092F131F93
+X-Endpoint-Received: by B4 Relay for sven@svenpeter.dev/default with
+ auth_id=167
+X-Original-From: Sven Peter <sven@svenpeter.dev>
+Reply-To: sven@svenpeter.dev
 
+Hi,
 
+I'm preparing USB3 support for Apple Silicon Macs for upstreaming right
+now and this series is the first dependency. The Type-C PHY requires
+configuration values encoded in fuses for which we already have a
+driver.
+Unfortunately, the fuses on these machines are only accessibly as 32bit
+words but the Type-C PHY configuration values are individual bits which
+are sometimes spread across multiple fuses.
+Right now this is not supported by the nvmem core which only allows a
+subset of bits within the first byte to be exposed as a nvmem cell. This
+small series adds support for exposing arbitrary bits as nvmem cells.
 
-On 4/27/2025 12:31 PM, Vikram Sharma wrote:
-> Add CAMSS_8775P enum, SA8775P compatible and sa8775p camss driver
-> private data, the private data just include some basic information
-> now, later changes will enumerate with csiphy, tpg, csid and vfe
-> resources.
-> 
-> Co-developed-by: Suresh Vankadara <quic_svankada@quicinc.com>
-> Signed-off-by: Suresh Vankadara <quic_svankada@quicinc.com>
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
-> ---
->   drivers/media/platform/qcom/camss/camss.c | 23 +++++++++++++++++++++++
->   drivers/media/platform/qcom/camss/camss.h |  1 +
->   2 files changed, 24 insertions(+)
-> 
-> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-> index 467f7ff4b042..9e0e1bf855bd 100644
-> --- a/drivers/media/platform/qcom/camss/camss.c
-> +++ b/drivers/media/platform/qcom/camss/camss.c
-> @@ -2483,6 +2483,19 @@ static const struct resources_icc icc_res_sm8550[] = {
->   	},
->   };
->   
-> +static const struct resources_icc icc_res_sa8775p[] = {
-> +	{
-> +		.name = "ahb",
-> +		.icc_bw_tbl.avg = 38400,
-> +		.icc_bw_tbl.peak = 76800,
-> +	},
-> +	{
-> +		.name = "hf_0",
-> +		.icc_bw_tbl.avg = 2097152,
-> +		.icc_bw_tbl.peak = 2097152,
-Recheck these values
+The second part of the series then adds the nvmem cells required for the
+Type-C PHY to our device trees. While it's technically independent I've
+included those changes in this series for context.
 
-> @@ -3865,6 +3887,7 @@ static const struct of_device_id camss_dt_match[] = {
->   	{ .compatible = "qcom,msm8916-camss", .data = &msm8916_resources },
->   	{ .compatible = "qcom,msm8953-camss", .data = &msm8953_resources },
->   	{ .compatible = "qcom,msm8996-camss", .data = &msm8996_resources },
-> +	{ .compatible = "qcom,sa8775p-camss", .data = &sa8775p_resources },
-Address compatible string based on DTS comment
+Best,
 
-Regards,
-Suresh Vankadara.
+Sven
+
+Signed-off-by: Sven Peter <sven@svenpeter.dev>
+---
+Janne Grunau (2):
+      Revert "nvmem: core: Print error on wrong bits DT property"
+      arm64: dts: apple: t8112: Add eFuses node
+
+R (1):
+      arm64: dts: apple: t600x: Add eFuses node
+
+Sven Peter (4):
+      nvmem: core: allow bit offset > 8
+      nvmem: core: round up to word_size
+      dt-bindings: nvmem: apple: Add T8112 compatible
+      arm64: dts: apple: t8103: Add eFuses node
+
+ .../devicetree/bindings/nvmem/apple,efuses.yaml    |   1 +
+ arch/arm64/boot/dts/apple/t600x-dieX.dtsi          | 187 +++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8103.dtsi               | 102 +++++++++++
+ arch/arm64/boot/dts/apple/t8112.dtsi               |  97 +++++++++++
+ drivers/nvmem/core.c                               |  24 +--
+ 5 files changed, 401 insertions(+), 10 deletions(-)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250508-nvmem-dt-de1a1842e883
+
+Best regards,
+-- 
+Sven Peter <sven@svenpeter.dev>
+
 
 
