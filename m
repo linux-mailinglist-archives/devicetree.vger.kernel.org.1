@@ -1,99 +1,125 @@
-Return-Path: <devicetree+bounces-176043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2091DAB295E
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 17:32:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA8D1AB2966
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 17:37:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 951673B73E6
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 15:32:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 882C47AB222
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 15:36:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9354C199FB2;
-	Sun, 11 May 2025 15:32:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C3025C6F8;
+	Sun, 11 May 2025 15:37:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="KU5RE11T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E9NHa5Me"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E592113F434;
-	Sun, 11 May 2025 15:32:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D55259CB8;
+	Sun, 11 May 2025 15:37:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746977559; cv=none; b=k5piZmH5sXUqKHQg03cdxwzOTMXBgVwrHtGR0qEUCRTKolqY6nibgIaaPREuT9elFaIhanu9KpnvvKw3a+hc8y6zk/gmxjnKZIqWCottssLuGgY9I4YJBjOZUzKUmXgQCzRAoTgbf0gqssB0G6Oz4agAASP8SwGSLTYWUfBlAeU=
+	t=1746977868; cv=none; b=S+MwzceETIM16FoMDtQHE3nBDeuwwrdMSO/numbdrn+IuclgmTbGPiEjRfg0lAIaEZdibths2gxWVxLQQbmPAYAhjmYx7ha+DGq2n/e7N3EurYZkwc4h0+qqTWTunlaBqVEepUkw3+UTA8FG1JDOshZpglWSloUHVVE1gD3kH6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746977559; c=relaxed/simple;
-	bh=wCTwfokvHjEpQQ1VOv/z864xcLS8sNTw1JEGMHTERw0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=INTNT2pVSK++cxtU75BNBUFl4W3R1zFzz1BwxGeitdtwjINQjcohYPuy/cinl+NmBgI6+wYSSGfO96JNnkLAK7SOfS3mcu+BzQ74Tn4xOUHjErQbrT3RxGQ7yXQb/61bci4fUiomNlWdDT49MpNWyT8dNYL9WTeES3w6Lz5++04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=KU5RE11T; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=PRFRSL4n+C5Ljmoz7zXxqe6F+2Vxs8e68R7K0G+IUDg=; b=KU5RE11TXzjKXsnuOH57r+OCky
-	p3sAUfWcD4yMEvwgOuA+lslZfvovBV3A5kdr+q5XFYa5gXd+Iz5QUnVKIeOkgRTWjWMniiugaHLf1
-	egiVETrR7pGLWeSqTd+9FTT7MiXBSOQFSdFZkPdHU883hGfU14E0wSNkOBdqtjwtf7R5OMnpGpoNi
-	Hg9bK8oysxMomikVSGmNrU0XGKIvbB8Q7Zhyx9n3XhR+edbVNyFSsTyf5NU1RSA2tj60bx5UXDzDw
-	BZcVr3rW7ATFZ49aun9Nf0mZsB6KUTN5yi8UfQFdt35i4OKh3qRITLfhcY3wpWnt8xJYk2TeRtv0z
-	li1qLw4g==;
-Received: from i53875a1d.versanet.de ([83.135.90.29] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uE8fH-0000IX-8U; Sun, 11 May 2025 17:32:31 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: amadeus@jmu.edu.cn, ziyao@disroot.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v7 4/5] arm64: dts: rockchip: add core dtsi for RK3562 SoC
-Date: Sun, 11 May 2025 17:32:30 +0200
-Message-ID: <6747980.G0QQBjFxQf@diego>
-In-Reply-To: <20250511150101.51273-1-amadeus@jmu.edu.cn>
-References:
- <3317829.AJdgDx1Vlc@diego> <20250511150101.51273-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1746977868; c=relaxed/simple;
+	bh=9nNTh6uI2n0PJZ3sXQWFfPFzfXZgtX+EZm6hEopK2K8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pAjGxakjk0SS04e0jFGANx/8fNvvR9jFwFCq9mpHJArqJYyqcdc0R/TQXQnzSg174tp8WDZ+eqmNPKyszQk50ERJQNjgMIUilgq3hfbYYuee57yF37PPrAQ4kroSs+omoaF4tQrqTIPmwtwjOAHm7Ax22CV+kKLeysWG353St8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E9NHa5Me; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 156D5C4CEE4;
+	Sun, 11 May 2025 15:37:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746977867;
+	bh=9nNTh6uI2n0PJZ3sXQWFfPFzfXZgtX+EZm6hEopK2K8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=E9NHa5MeM64PZa5pdDgGbAnvvhV5Sd55RhREXEDwQE2Lw5bTJzeaeG5ydxLrF5bSV
+	 ttAAhphVqawc03QnD+weq3CZSLSzyoMZKW1bBRMcmo5s9v6C1fEQjAWxyJJAShinqK
+	 B6WAgdifcIGrpt8UB/LRWIJeZ+8VH/M/SzhfRHirgOoWzGCWNqNw2W5JWGjaYzXzaq
+	 L7mJ5d3tah4cnqJZSs7X0moLArLJy/4SND48595JvyvSo/8p+tmiehH4ArJ8T5Mv8h
+	 vZ6qZmqF1/cHrjPhKjGoIEa+VgeWMby+V/sUtG8NYveVI+s5RbHFGXE+Z8ZU+gi1ef
+	 PzuqZNdBYe1fA==
+Date: Sun, 11 May 2025 16:37:39 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Angelo Dureghello <adureghello@baylibre.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/5] Documentation: ABI: IIO: add calibconv_delay
+ documentation
+Message-ID: <20250511163739.6612ced4@jic23-huawei>
+In-Reply-To: <20250508-wip-bl-ad7606-calibration-v4-1-91a3f2837e6b@baylibre.com>
+References: <20250508-wip-bl-ad7606-calibration-v4-0-91a3f2837e6b@baylibre.com>
+	<20250508-wip-bl-ad7606-calibration-v4-1-91a3f2837e6b@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Am Sonntag, 11. Mai 2025, 17:01:01 Mitteleurop=C3=A4ische Sommerzeit schrie=
-b Chukun Pan:
-> Hi,
->=20
-> > I might be blind, but I don't see a tab missing here? #adress-cells and
-> > #size-cells are in the same level of indentation as the other properties
-> > of spi0? I did move the -cells down though now.
->=20
-> Sorry I didn't make it clear. This refers to -cells.
->=20
-> > hopefully caught all pwms now
->=20
-> The pinctrl-names of pwm4 to pwm15 are still "active".
->=20
-> > +		saradc0: adc@ff730000 {
-> > +			compatible =3D "rockchip,rk3562-saradc";
-> > +			reg =3D <0x0 0xff730000 0x0 0x100>;
-> > +			interrupts =3D <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
-> > +			#io-channel-cells =3D <1>;
->=20
-> > > `#io-channel-cells` should be put above `status =3D "disabled";`
-> >
-> > moved now :-)
->=20
-> It looks like saradc0 forgot to change.
+On Thu, 08 May 2025 12:06:05 +0200
+Angelo Dureghello <adureghello@baylibre.com> wrote:
 
-adapted the rk3562 dtsi again, with those last remants :-)
+> From: Angelo Dureghello <adureghello@baylibre.com>
+> 
+> Add new IIO calibconv_delay documentation.
+> 
+> The ad7606 implements a phase calibation feature, in nanoseconds.
+> Being this a time delay, using the conv_delay suffix.
+> 
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> ---
+>  Documentation/ABI/testing/sysfs-bus-iio | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
+> index 190bfcc1e836b69622692d7c056c0092e00f1a9b..9ced916895fbef146d46d17b5fdc932784b4c1df 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-iio
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio
+> @@ -559,6 +559,30 @@ Description:
+>  		- a small discrete set of values like "0 2 4 6 8"
+>  		- a range specified as "[min step max]"
+>  
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_convdelay
+> +KernelVersion:  6.16
+> +Contact:        linux-iio@vger.kernel.org
+> +Description:
+> +		Delay of start of conversion in seconds from common reference
+> +		point shared by all channels. Can be writable when used to
+> +		compensate for delay variation introduced by external filters
+> +		feeding a simultaneous sampling ADC.
+> +
+> +		I.e., for the ad7606 ADC series, this value is intended as a
+> +		configurable time delay in seconds, to correct delay introduced
 
+Drop the 'in seconds' here as that is repeating the generic bit above. The rest is
+fine subject to formatting Andy noted.
+
+> +		by an optional external filtering circuit.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_convdelay_available
+> +KernelVersion:	6.16
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Available values of convdelay. Maybe expressed as:
+> +
+> +		- a range specified as "[min step max]"
+> +
+> +		If shared across all channels, <type>_calibconv_delay_available
+> +		is used.
+> +
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_accel_x_calibscale
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_accel_y_calibscale
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_accel_z_calibscale
+> 
 
 
