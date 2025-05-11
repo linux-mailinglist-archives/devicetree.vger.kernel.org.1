@@ -1,80 +1,56 @@
-Return-Path: <devicetree+bounces-175964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E77BAB2789
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 11:54:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1B14AB279C
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 12:07:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D5D77A2339
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 09:52:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB2713B11BE
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 10:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F58C1C8613;
-	Sun, 11 May 2025 09:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B746D1C862B;
+	Sun, 11 May 2025 10:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FnGTEvYB"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="WF48+tIE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4A61898E9
-	for <devicetree@vger.kernel.org>; Sun, 11 May 2025 09:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A94524D8D1;
+	Sun, 11 May 2025 10:07:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746957230; cv=none; b=jlI2uyGRVbjmccsGj8pe+0B8e8PZpBlX1ptSbKGy3pr67FJbd8jD8325hDx+GJYIk/mlvJ324BPfWFnDCP/F4y+oG9KgUlBwf3e/3uqnJEpN4nVu0We2RX9CkPjoQhUNw0z9z+TeBB1xGD/4UUzYLIwCqds0JBaK5eU9dD9Um+s=
+	t=1746958054; cv=none; b=AJz+MZYT9jJSKbFNhaKE/6gG0AR73ToEKF81GhfdsIp/4HZ6/Xz9mK/oeruEYPADQ3gvdxLfXbeV8q1neZDiNaPdLIEQ5PU9+ssHoe8qT5j8VMgCeoX1napEdUHZpWqZog5M9mCBExgV2EFAMRcr/mdcxxee3Auo8FQTC5K8cUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746957230; c=relaxed/simple;
-	bh=LZUKTqSRIzcTe3Oi+qurbGORduHQ3aDEWoEgQumaS/E=;
+	s=arc-20240116; t=1746958054; c=relaxed/simple;
+	bh=V1jNPYr/TZyRJN0kAHvxyfDu0yvFkpnF9UQE83zxJkU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mXn4m8kLIQsGabKK7sZK/pB88M/JreUMi3lp4J03rZGXkmbHCPYOSTiYbGAR5OAdwbin7FLU8aFDfji5/wq303XJB2D0zhpkHTYzZCGYn1iZLEUMwJwpp6296gm5Dlp2+5KiVOyKeN8GlskI9wiCV+AXppXyK/LxV2wSlDQLu2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FnGTEvYB; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-441d1ed82faso23879295e9.0
-        for <devicetree@vger.kernel.org>; Sun, 11 May 2025 02:53:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746957226; x=1747562026; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=svOIBgOqEfJz5rl1KUebw1DSPQLmx16oiBp9+Pj6aYI=;
-        b=FnGTEvYBuQPrh6lZoo+7yjOEfmZXAOnlTG6rsaoRM4P5pLlpA5ojiAd8CCJeBQPGcU
-         HmIBdOyBijm8yXQyE6vQGRL1eK/rK36zM7QvA2mmplueo62QbKex1OAtnE6sCTmKDmic
-         Vb+k8Bi5MMYVpdWJJQTZlPg1N6KpwWTbFE1yKkTTDb5ooM0RkIJGbQGT2jbO0Pvgk+GW
-         RyMflzzzzJ6WOLNwp/SWWyI7OcWVLmDxElYAO087eE18aUjJSc//ERu4sjndnwlY7Tc5
-         cHVjAKcjyLovstlcFgJYU9ElhEkZ3sGXRjtYWsiYoMd5WB7YT5nEAUqm05HUrp/k+Oh6
-         IS7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746957226; x=1747562026;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=svOIBgOqEfJz5rl1KUebw1DSPQLmx16oiBp9+Pj6aYI=;
-        b=TYy/GRgwJLUX4MG9lUr1iDHBhJPhOVaT9Hf6Dk1BfAiIWSn4Tvq4NnHduriudHXWK8
-         0cJWEtCI8W7xdA5BoaWEQYAn09QSsxZhJi7jzl9/dGw/z1N/d/LlOkmWbBFcnE5/BtAH
-         JzXcOT4on/pdam0MGrZEghogQe29e0DiEA46jeSZjypa2IdYCfaxtj58KzbbCq3c4EmW
-         hCHszVtMkHsfKyDQQniFIscTrKnkS44C1xmyjxxqiQbzlXoO/CgtDI456P3YW1+wDWhG
-         uXK0Jtp4BAU3HcnpBRvm3BsGeihP1fpth25/XFdIsJSdbP1sr7bCmcyxYwM0+1Q3ZS1d
-         PuFg==
-X-Forwarded-Encrypted: i=1; AJvYcCXu9jemT5sz4WEntdNjlvQocb0bevosuJLh8NCMEKKp1MyCuW3sphwFkGWoyFMrI1wBhmX7frk6hCzI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2xhndLZ/No4F+wSd1JROLD1PBpX4I887IsYef+I7Fk27eMKa6
-	+pFEKhn+VAuuozMhQ50Y8Vh1UwNu0zcSi5/FmulYqcHYx7IOWaOXkOWKMhX3id4=
-X-Gm-Gg: ASbGncsT5/5We553tc0gQy0HYgR9P4VawrhGC6I3bIaqPeWHdTtLUMEUM6MNnVdDuAK
-	nH0V6RNu13gWHWTPhM0XLk1jP/4f3TgdQy6S2nMI3duqCU9MYMMc6q0+o88OFpip+Yes4TOIhoZ
-	XxW10+h6IIpGhmlW8RNhZn3JMwDgVfO3cjvjugyVliV+iEbr7X7N2hyJQZQRE4m+vFvOt/r6pwQ
-	9yNhh3G+AfI81IYdG3Bb/Z+ke81NHuaU9hcSy2Xxja4+M9bKW3zU8fdc0c8SPfjKiDQgcQAMxX+
-	5LHi58vN8BB72DftpjyOstX5zPWyACZNkcszS4rMtuC4ojMvQQL4s0ySkv5UdkbTPySFv5ylcDW
-	Vzefx6EuOjb2Sw4Oo
-X-Google-Smtp-Source: AGHT+IEaXwLtr3ulVMHDoKRGiNLV/K4UKtErrKqyimNqORo5mIpZHz11BKqYDHNoxO5NUXC77uulTA==
-X-Received: by 2002:a05:600c:4e45:b0:43d:46de:b0eb with SMTP id 5b1f17b1804b1-442d6d44814mr82270705e9.12.1746957225872;
-        Sun, 11 May 2025 02:53:45 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442d687ae10sm87083295e9.37.2025.05.11.02.53.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 May 2025 02:53:44 -0700 (PDT)
-Message-ID: <cfe66826-fe23-47c6-8292-74066f021330@linaro.org>
-Date: Sun, 11 May 2025 10:53:43 +0100
+	 In-Reply-To:Content-Type; b=tixUkP0LKpYgfFtDJHs9bBLb53AJt//VL1r00oIUV4d0FoFqGBjWbFdXMMiZkAwvULxahPoY3SyDb2fl3bk141U6oo/b5AmYl5yjYLL1n3paHXJrtSomnTE5DgE1SgYgsQudDNULbxQExgVhbXShTJIlqEJYqDpv+u7QCyWjiR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=WF48+tIE; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1746958049; x=1747562849; i=wahrenst@gmx.net;
+	bh=CN0O5V+IZ0q5N1/S2ZaMh6s5R0LVHxEQYL797WECSaA=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=WF48+tIE5DgO07f0Pf3a2wrnwmRkzKaMUwdUN2XUFFfMMQNQojCgdhtweo+6r49N
+	 QDQ2OpuJ2NUZZkcmejqZoRiYOazrG/33dpF1Ube7m7yP+CqEHH9vn2spOdyRheW3e
+	 8zHqcwErqUvsXoHwwsg3Wh5F39/le9ob/XzdieeEpA8mgd5qcWuBDL2iMpjx4TNwj
+	 yTm/vo4pLj86FB1E67wqJIbewr/D1rM8hItw2BrcNXuo2VnIypjT66GM6K3eB8wFK
+	 GnQwDRrWOBunzLMewcwvzq1Vy+XXtD1LIBpeRbh7y49fvmKgIMIaM9AY51NTk0/cn
+	 FDbdxiiFaSmNy7H7aA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.104] ([91.41.216.208]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MplXz-1umWKa1gPF-00o6TN; Sun, 11
+ May 2025 12:07:29 +0200
+Message-ID: <678528db-67bc-4bb7-a866-7b8aeb4f4510@gmx.net>
+Date: Sun, 11 May 2025 12:07:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,159 +58,231 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC/WIP v2 4/9] arm64: dts: qcom: sa8775p: Add support for
- camss
-To: Suresh Vankadara <quic_svankada@quicinc.com>,
- Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
- konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
- cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250427070135.884623-1-quic_vikramsa@quicinc.com>
- <20250427070135.884623-5-quic_vikramsa@quicinc.com>
- <cfc85bc0-1808-42ac-b0b0-41e4935ec74d@quicinc.com>
+Subject: Re: [PATCH v5 07/10] power: reset: macsmc-reboot: Add driver for
+ rebooting via Apple SMC
+To: sven@svenpeter.dev, Janne Grunau <j@jannau.net>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>,
+ Hector Martin <marcan@marcan.st>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Lee Jones <lee@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20250511-smc-6-15-v5-0-f5980bdb18bd@svenpeter.dev>
+ <20250511-smc-6-15-v5-7-f5980bdb18bd@svenpeter.dev>
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <cfc85bc0-1808-42ac-b0b0-41e4935ec74d@quicinc.com>
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <20250511-smc-6-15-v5-7-f5980bdb18bd@svenpeter.dev>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Z8FPqSBn0iAN+Jp67wKOEpFqtfhamLrhOFm81Yp8T3if6bMooSD
+ DZ5TtUwyguT5Eu1lxG/b+xzBZYSQPJhEdqZA3DdQKgzS+xOcY/2aPl3BVkiNqOjWUvGvPTr
+ GJI1YIyUr6PXi6Bavv+oh+f1SGQa4bU8rzDHL5BH2O2bw3n/BCGBbaqUKjnWEucPhsVxRI1
+ WjDuFZ7u5fgnm1aVwNAkQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:eUVeXrlNwho=;qLOTI09OeU4/WUdYhgQd5zVTy3u
+ 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
 
-On 10/05/2025 08:14, Suresh Vankadara wrote:
-> 
-> 
-> On 4/27/2025 12:31 PM, Vikram Sharma wrote:
->> Add changes to support the camera subsystem on the SA8775P.
->>
->> Co-developed-by: Suresh Vankadara <quic_svankada@quicinc.com>
->> Signed-off-by: Suresh Vankadara <quic_svankada@quicinc.com>
->> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 187 ++++++++++++++++++++++++++
->>   1 file changed, 187 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/ 
->> dts/qcom/sa8775p.dtsi
->> index 5bd0c03476b1..81eadb2bb663 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> @@ -7,6 +7,7 @@
->>   #include <dt-bindings/interconnect/qcom,icc.h>
->>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>   #include <dt-bindings/clock/qcom,rpmh.h>
->> +#include <dt-bindings/clock/qcom,sa8775p-camcc.h>
->>   #include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
->>   #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
->>   #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
->> @@ -3940,6 +3941,192 @@ videocc: clock-controller@abf0000 {
->>               #power-domain-cells = <1>;
->>           };
->> +        camss: isp@ac7a000 {
->> +            compatible = "qcom,sa8775p-camss";
-> If more number of nodes are added for CAMSS, adding isp in compatible 
-> string helps to differentiate.
+Hi Sven,
 
-We need to keep a consistent upstream schema.
+Am 11.05.25 um 10:18 schrieb Sven Peter via B4 Relay:
+> From: Hector Martin <marcan@marcan.st>
+>
+> This driver implements the reboot/shutdown support exposed by the SMC
+> on Apple Silicon machines, such as Apple M1 Macs.
+>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> ---
+>   MAINTAINERS                         |   1 +
+>   drivers/power/reset/Kconfig         |  11 ++
+>   drivers/power/reset/Makefile        |   1 +
+>   drivers/power/reset/macsmc-reboot.c | 363 ++++++++++++++++++++++++++++=
+++++++++
+>   4 files changed, 376 insertions(+)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index fa3a5f9ee40446bcc725c9eac2a36651e6bc7553..84f7a730eb2260b7c1e0487d=
+18c8eb3de82f5206 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2303,6 +2303,7 @@ F:	drivers/mfd/macsmc.c
+>   F:	drivers/nvme/host/apple.c
+>   F:	drivers/nvmem/apple-efuses.c
+>   F:	drivers/pinctrl/pinctrl-apple-gpio.c
+> +F:	drivers/power/reset/macsmc-reboot.c
+>   F:	drivers/pwm/pwm-apple.c
+>   F:	drivers/soc/apple/*
+>   F:	drivers/spi/spi-apple.c
+> diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
+> index 60bf0ca64cf395cd18238fc626611c74d29844ee..6e8dfff64fdc001d09b6c006=
+30cd8b7e2fafdd8e 100644
+> --- a/drivers/power/reset/Kconfig
+> +++ b/drivers/power/reset/Kconfig
+> @@ -128,6 +128,17 @@ config POWER_RESET_LINKSTATION
+>  =20
+>   	  Say Y here if you have a Buffalo LinkStation LS421D/E.
+>  =20
+> +config POWER_RESET_MACSMC
+> +	tristate "Apple SMC reset/power-off driver"
+> +	depends on ARCH_APPLE || COMPILE_TEST
+> +	depends on MFD_MACSMC
+> +	depends on OF
+> +	help
+> +	  This driver supports reset and power-off on Apple Mac machines
+> +	  that implement this functionality via the SMC.
+> +
+> +	  Say Y here if you have an Apple Silicon Mac.
+> +
+>   config POWER_RESET_MSM
+>   	bool "Qualcomm MSM power-off driver"
+>   	depends on ARCH_QCOM
+> diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
+> index 10782d32e1da39f4b8b4566e8a885f2e13f65130..887dd9e49b7293b69b9429dd=
+c0c1571194a153cf 100644
+> --- a/drivers/power/reset/Makefile
+> +++ b/drivers/power/reset/Makefile
+> @@ -13,6 +13,7 @@ obj-$(CONFIG_POWER_RESET_GPIO) +=3D gpio-poweroff.o
+>   obj-$(CONFIG_POWER_RESET_GPIO_RESTART) +=3D gpio-restart.o
+>   obj-$(CONFIG_POWER_RESET_HISI) +=3D hisi-reboot.o
+>   obj-$(CONFIG_POWER_RESET_LINKSTATION) +=3D linkstation-poweroff.o
+> +obj-$(CONFIG_POWER_RESET_MACSMC) +=3D macsmc-reboot.o
+>   obj-$(CONFIG_POWER_RESET_MSM) +=3D msm-poweroff.o
+>   obj-$(CONFIG_POWER_RESET_MT6323) +=3D mt6323-poweroff.o
+>   obj-$(CONFIG_POWER_RESET_QCOM_PON) +=3D qcom-pon.o
+> diff --git a/drivers/power/reset/macsmc-reboot.c b/drivers/power/reset/m=
+acsmc-reboot.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..d82339e427886667be4ad2de=
+0d1d5c04d2383059
+> --- /dev/null
+> +++ b/drivers/power/reset/macsmc-reboot.c
+> @@ -0,0 +1,363 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Apple SMC Reboot/Poweroff Handler
+> + * Copyright The Asahi Linux Contributors
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/macsmc.h>
+> +#include <linux/module.h>
+> +#include <linux/nvmem-consumer.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reboot.h>
+> +#include <linux/slab.h>
+> +
+> +struct macsmc_reboot_nvmem {
+> +	struct nvmem_cell *shutdown_flag;
+> +	struct nvmem_cell *pm_setting;
+> +	struct nvmem_cell *boot_stage;
+> +	struct nvmem_cell *boot_error_count;
+> +	struct nvmem_cell *panic_count;
+> +};
+> +
+> +static const char * const nvmem_names[] =3D {
+> +	"shutdown_flag",
+> +	"pm_setting",
+> +	"boot_stage",
+> +	"boot_error_count",
+> +	"panic_count",
+> +};
+> +
+> +enum boot_stage {
+> +	BOOT_STAGE_SHUTDOWN		=3D 0x00, /* Clean shutdown */
+> +	BOOT_STAGE_IBOOT_DONE		=3D 0x2f, /* Last stage of bootloader */
+> +	BOOT_STAGE_KERNEL_STARTED	=3D 0x30, /* Normal OS booting */
+> +};
+> +
+> +enum pm_setting {
+> +	PM_SETTING_AC_POWER_RESTORE	=3D 0x02,
+> +	PM_SETTING_AC_POWER_OFF		=3D 0x03,
+> +};
+> +
+> +static const char * const ac_power_modes[] =3D { "off", "restore" };
+> +
+> +static int ac_power_mode_map[] =3D {
+> +	PM_SETTING_AC_POWER_OFF,
+> +	PM_SETTING_AC_POWER_RESTORE,
+> +};
+> +
+> +struct macsmc_reboot {
+> +	struct device *dev;
+> +	struct apple_smc *smc;
+> +	struct notifier_block reboot_notify;
+> +
+> +	union {
+> +		struct macsmc_reboot_nvmem nvm;
+> +		struct nvmem_cell *nvm_cells[ARRAY_SIZE(nvmem_names)];
+> +	};
+> +};
+> +
+> +/* Helpers to read/write a u8 given a struct nvmem_cell */
+> +static int nvmem_cell_get_u8(struct nvmem_cell *cell)
+> +{
+> +	size_t len;
+> +	u8 val;
+> +	void *ret =3D nvmem_cell_read(cell, &len);
+in case this series needs a respin, please rename the pointer (e.g.=20
+buf). This is very unusual, because ret is usually of type int.
 
-If we were adding other hardware blocks - say the BPS it would just be 
-appended to the end here, declared as another v4l2 device and then 
-wired-together from user-space via likely a qcom specific libcamera 
-pipeline.
-
-> 
->> +            reg-names = "csid0",
->> +                    "csid1",
->> +                    "csid_lite0",
->> +                    "csid_lite1",
->> +                    "csid_lite2",
->> +                    "csid_lite3",
->> +                    "csid_lite4",
->> +                    "csid_wrapper",
-> csid wrapper is top register set, which is applicable for both csid 0 
-> and csid 1. It is logical to keep along with csid0 and csid1, instead of 
-> alpha numerical order.
-
-We've had it feels like an eternity of debates about this and 
-compromised on alphanum sort of of node-names as the most consistent 
-with prior art.
-
-> 
->> +
->> +            clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
->> +                 <&camcc CAM_CC_CORE_AHB_CLK>,
->> +                 <&camcc CAM_CC_CPAS_AHB_CLK>,
->> +                 <&camcc CAM_CC_CPAS_FAST_AHB_CLK>,
->> +                 <&camcc CAM_CC_CPAS_IFE_LITE_CLK>,
->> +                 <&camcc CAM_CC_CPAS_IFE_0_CLK>,
->> +                 <&camcc CAM_CC_CPAS_IFE_1_CLK>,
->> +                 <&camcc CAM_CC_CSID_CLK>,
->> +                 <&camcc CAM_CC_CSIPHY0_CLK>,
->> +                 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
->> +                 <&camcc CAM_CC_CSIPHY1_CLK>,
->> +                 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
->> +                 <&camcc CAM_CC_CSIPHY2_CLK>,
->> +                 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
->> +                 <&camcc CAM_CC_CSIPHY3_CLK>,
->> +                 <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
->> +                 <&camcc CAM_CC_CSID_CSIPHY_RX_CLK>,
->> +                 <&gcc GCC_CAMERA_HF_AXI_CLK>,
->> +                 <&gcc GCC_CAMERA_SF_AXI_CLK>,
->> +                 <&camcc CAM_CC_ICP_AHB_CLK>,
->> +                 <&camcc CAM_CC_IFE_0_CLK>,
->> +                 <&camcc CAM_CC_IFE_0_FAST_AHB_CLK>,
->> +                 <&camcc CAM_CC_IFE_1_CLK>,
->> +                 <&camcc CAM_CC_IFE_1_FAST_AHB_CLK>,
->> +                 <&camcc CAM_CC_IFE_LITE_CLK>,
->> +                 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
->> +                 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
->> +                 <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
->> +            clock-names = "camnoc_axi",
->> +                      "core_ahb",
->> +                      "cpas_ahb",
->> +                      "cpas_fast_ahb_clk",
->> +                      "cpas_ife_lite",
->> +                      "cpas_vfe0",
->> +                      "cpas_vfe1",
-> Maintain consistency on vfe/ife in complete camss node. In reg section, 
-> vfe is used for full and lite version. in clock-names section ife lite 
-> and vfe are used. As clock IDs upstream and ife is used for full and 
-> lite, this convention will be followed in camss node as well.
-> 
->> +                      "csid",
->> +                      "csiphy0",
->> +                      "csiphy0_timer",
->> +                      "csiphy1",
->> +                      "csiphy1_timer",
->> +                      "csiphy2",
->> +                      "csiphy2_timer",
->> +                      "csiphy3",
->> +                      "csiphy3_timer",
->> +                      "csiphy_rx",
->> +                      "gcc_axi_hf",
->> +                      "gcc_axi_sf",
->> +                      "icp_ahb",
-> sf and icp_ahb clocks needed?
-> 
->> +
->> +            interconnects = <&gem_noc MASTER_APPSS_PROC 
->> QCOM_ICC_TAG_ACTIVE_ONLY
->> +                     &config_noc SLAVE_CAMERA_CFG 
->> QCOM_ICC_TAG_ACTIVE_ONLY>,
->> +                    <&mmss_noc MASTER_CAMNOC_HF QCOM_ICC_TAG_ALWAYS
->> +                     &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->> +                    <&mmss_noc MASTER_CAMNOC_SF QCOM_ICC_TAG_ACTIVE_ONLY
->> +                     &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
->> +            interconnect-names = "ahb",
->> +                         "hf_0",
->> +                         "sf_0";
-> sf_0 needed?
-> 
->> +
->> +            iommus = <&apps_smmu 0x3400 0x20>;
-> 
-> 
-> Regards,
-> Suresh Vankadara.
+Regards
 
