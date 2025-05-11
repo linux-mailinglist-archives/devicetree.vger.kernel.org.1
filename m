@@ -1,106 +1,91 @@
-Return-Path: <devicetree+bounces-176064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45DC5AB2A69
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 20:42:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C23ADAB2A6E
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 20:50:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FE8F3A718F
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 18:42:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E5123A733E
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 18:50:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23962638A3;
-	Sun, 11 May 2025 18:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB82618E050;
+	Sun, 11 May 2025 18:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GDkV+Tlc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CQQZyC0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A3426561A;
-	Sun, 11 May 2025 18:40:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05AAE2576;
+	Sun, 11 May 2025 18:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746988833; cv=none; b=EKo1GQQPz8gDOXOYuIOzKDTzpkSUfrk/lbiPV/NiMIi9cazJnselGe0lFZ8BWC5HyI6N/s6zHEUDPW+BmvzruwS+SP9tuaX9ZKMAobp8wLZue7IoaA9asbu0EQ7NfTrQYEAuNLQQw6O8Mq/7ijKt90oklIDjw17t6uyKLglVQlA=
+	t=1746989439; cv=none; b=EMfmoAry2GOJfaM0haTySNwPi+2Qb57cSTVbPoCcoZouhsr0jMwS0M20/oHzeGpn7z4Nk09dmyQNjKw+hZtRDq3HgWobZj6BMhWT27h8xM8XdQC0vxN7iyeCvnenN1F2jE11ox13ZdNhYbf+DcabCfvmzmEcV7EA7/DtFHPQzWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746988833; c=relaxed/simple;
-	bh=p1ogddfKyDLswZD+8Lq4q/ukt2Ed9aQburf2hvVJ6Ro=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IBkUc/VObJxN7DWNFH3PjeCfWuK82oVyiJ1CsPhZawG/Q5vsgvzVsV0tXo2ddO7Q8+RQhXvzlNz2EaIGZds6duZbl0+JEiS7Fel25nPek4XfbXJg6zsaPC6q/rmgUlzbgqRUmOhwDpysvctTL/8gsKKOD7PHqyafd6IDEBFG3us=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GDkV+Tlc; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1746989439; c=relaxed/simple;
+	bh=PVR2/5euqOuyaXdAuwW8N/x5gcI97G4iFgoEvQ6Vw9o=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=XG7p8h+TCDmR7NbUR6twfqnD2+zAqU8YOpzIkagNvcLre9SkDdt75PjxRPtQAHm9TBv8T/UJrwM33qNrcvvY/CGqpt9M3iOUgBYlvaUJjGlaiXf9G9Sb1ZW8J3mcPDAqmt/bFhlfSXMF0egoOG0GY6Ei/mGlpPVc6axB78vDkG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CQQZyC0s; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43edb40f357so24693435e9.0;
-        Sun, 11 May 2025 11:40:30 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-442d146a1aaso35024465e9.1;
+        Sun, 11 May 2025 11:50:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746988829; x=1747593629; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uezwVFz0Zcagk+1GhVcJ7am3l2Fc5VtSdFSVCAllSAg=;
-        b=GDkV+Tlc3WlIsEGdUsMO6rJsEPR5xQhF2Te0UEu1MwqfGB4pa5Q+IHuEvUmg+AJ0Ud
-         ZYZ7hVoPtCnHmjKTE0wenTbFNcHIAcpe9ivu3U0JWGDOWJ5liiyulLsG3Zf9bvwmJNSW
-         JEmot8/szIkPiYTIPVCphZdHjurE9JXlYlth4VeBew+KuG1HamD/bwqJnlMMN1cUMWII
-         EKqn+UBng21OXHDMf6b7Gdqr6FoctOGmU6GyjHCUYymexjyzttuawtbp6xge8r8gFMXB
-         jpe578LAQ2vxDk1ZwkefIqDzh5SlAlGekHjD+lJ5TItYA6t1zvYf/HxPvnOCRshOjnuG
-         OusA==
+        d=gmail.com; s=20230601; t=1746989436; x=1747594236; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=loWaUTc3ItqSmmSDVC847qIYyYkmIRUdKWPahuJRyf0=;
+        b=CQQZyC0sRaIceplsYaGptsOaZydqT52+sBjAB6CB4eu+3GCvhYHmVLXI6pr/M3S45c
+         RBRAQW1BzBgdGBThSRP/tcsh4wkpws6sR+K7LKdCPUe+3Y24bW0Z9rZGoR+3khkJkjal
+         tHYW+THs45Viwj53DBRwhFyfcVeJuXdy4+hDxzz0PyUDFiFGIots8XxxqV/3aPjUkCxZ
+         5ExPbuGMqF+JW3TuWScEhtfkrKUnJH+NzPR5fZxBAJ5H/BijK8KbOf8ql4pN9eU+qBZ8
+         xxgEfYEcSZfum1QNvs5oCX83oH+DCNfoJTXf3dfhznVtu+ykpvPZhEEAG3RTDkuvc81z
+         zzvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746988829; x=1747593629;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uezwVFz0Zcagk+1GhVcJ7am3l2Fc5VtSdFSVCAllSAg=;
-        b=B26ml9bbmNhMeR/981+gZXkhN4aCJOWGXbDJjL/U78U+34Zn+vH3uzEaSag4nzAec5
-         f77rxGPGhdlXYb2sYLz+b02Nd6vCuy8VoSgCQQ7l3J5KHx6PYhOlVKouG+WrVQ7sDYJT
-         O3csjzjTfx80n9l+tV4yqY5tmId/bTap+eOQKej6y0Wa8seb5axAbW1RXDs7WAMVYM5/
-         2ZMSjc+jRV5o3EKofPDr4K2YMxq2ZWXw98XFeIgqW9scjQDOjQR/kO1I1LY7VL9R7drz
-         NA5i8AgvmmXEr6usC8Me+XlbQYapibyO9Xl3YdCHJdrOna9Kt3wKz69W49FE72VrLWOv
-         MXgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU26YQGhcAJbib0Qhj/Tz+kxLsBx9xUramPGpfpJW75STB0yInor6oczz0qSDnN5Gic1Mn9LvIWeqp2@vger.kernel.org, AJvYcCUXYYbQA4vJmnxd30p5yviHJRSstwGl6kduJ8CsRz0P6qgqAKKZEvLozAgfLFYAtIc66Z2DdLybHzMmy8Z9@vger.kernel.org, AJvYcCWu3BrADRCNsxpr2sx5MzMKX5WnD+o5Snx4UWDzQ/9oxaMXaWnZ1u2ukQLUB0sodftE7D630tZv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNy0/euWYL8b95STngi9hCwBNcb7Kg89Yxhf+orQ3/RxaxlcQK
-	NFiKZz0RWv1M8k2V6sES0+LSn7ATqm+eM/xzRoQTZ40QqEy3i46m
-X-Gm-Gg: ASbGnctuooDf+29B2Hx2daMzr+XkIP4JkvOlrjYx97pKg8cCWC8+QJ055gIx7Bx9O3S
-	E1v63wR26/EM5RBVNuV6ycy0ygntusubzb1KhpKBfJDvkGVHdKoFgQSw4xZnvuybnMoePTvU9zo
-	9P+hXgiSq1wlJFlBcrni7MU3CPEecLyqCoU4hJM21SwZWRqR+pE3oCg0e+D8GDemiTcOT7vq++x
-	MXUWNZSi3Lsinb3vGpbWZ93CVballaNCM5dXrbCRwq4b7PGZUu8NGrI3K5RSCLjLFWXqxddyBvr
-	qeP2CvyCJ3UhvURpsNGCP1way4BkhJULhR5z/Jv6cVKy6FRbKbU2VuSAi44c+P9PDeY8Sx69XRd
-	CTAZMXqDRDNNsdA1GzVpI
-X-Google-Smtp-Source: AGHT+IGPjqsU0Ip7uh8YSG5JzxxEBr4k3RRUbVfTQt+wUKn8t+Nq0pI8B+VtSjQZzfxKUTtTNDf3yA==
-X-Received: by 2002:a05:600c:8207:b0:43c:ee62:33f5 with SMTP id 5b1f17b1804b1-442d6ddcf2dmr84090325e9.27.1746988828786;
-        Sun, 11 May 2025 11:40:28 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1746989436; x=1747594236;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=loWaUTc3ItqSmmSDVC847qIYyYkmIRUdKWPahuJRyf0=;
+        b=e4QlKtKnXVrdnoKnLAjYWQBuLOnMtiwt/hGhNFU1bWnzhfZ40rs9Hb3PoJct4ctizb
+         84++hpE4HiBRuu2t0pebu9QMJW0SGgJjMuphLIbnLjEURASiHwk5opzhM0KNLnF0SiEo
+         8pkr5F6f0eGDJLyjffJnC162SKYtmnmOCWDsXf6fPsLLfzxC94v7gB0VbCcnBAproXDS
+         nmzEadf2RI8xG6G8i3+vQYc1Qv3E4qHmjIjAYg2iCb8JSi8s0XGxtEifUV78E3kh/M1H
+         ere9UmKwIrKtvUVYvmhSIZK2roggpe1i/wbtywxj4z4a/gBMNi04TGmMjhWxi4cgfhth
+         Sd4g==
+X-Forwarded-Encrypted: i=1; AJvYcCUwLM7xeFm9huYytCCquCCp/Mv+o3hN8F1p2utYisXopHAQYRFHj7XTruc8a96yF2fZh/5XUexoBmE=@vger.kernel.org, AJvYcCVxF8BnNSGZedVvTO7VbhURH12OKQyKvIrChossyPlFsOqZInjip9fgl+oT6p+TDaGbYGRGE9YXfplaL/0N@vger.kernel.org, AJvYcCX+9nFZ+8gV93n/ww9iftdXu51fEP1uTFMO7V1YFy/ik1BfpLjj+z8uFJ0213xP7igYU/zn5fgi3Oqo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1CVvW3FIFs7Y6jbSN64jEZE+uZuVPF0kgdKO0hRKplGC22CfA
+	eb+oDbexmIKNZNCub5oF2V63zKcisTt+zCAFPyLbaSuGQbXsmKQG
+X-Gm-Gg: ASbGncvqVUhF81E3X/33R/EyivhHu5OoDncffXTEw6+mQCpwrCVs2vL9QKulDqj7wX8
+	muSPsUs5xklrgo9jjYWVzUn0t+SqGoxu0T+d7BdE2uhx7opRc7NZKN5WLhfpSlNdDFZ65Rd+Dq/
+	Cquyds+xhZ3b9VMQjQKb2LwwUfb3uJqD0hgc+6nCtOBGToIbP9LJAFOH7374lK0kptPpUlzHI10
+	eB4I9Ej4/s4TNp2YNQsJrNlaJQP8OE4bp2NryEIYBJPzTeNerEdasMTTf0FlqOhJkTTQ4aE0ylg
+	Ce7G2f/C0EuBEpzBOOECWj5rNCaV+gSOygtyvvOYdiLhcZS85dF2eG59PYx1prVUqZ8ibF77obj
+	isbPylqN+3CyxZJgrPGTiyMos9haVM6Y=
+X-Google-Smtp-Source: AGHT+IG51dzBBCDBR2uiDSd2l5oLlZrdptUt2qiEMrM0hguJxCgHfALPfGmRu+IVZfqSfApN6uqRyw==
+X-Received: by 2002:a05:600c:46c7:b0:43c:ec28:d31b with SMTP id 5b1f17b1804b1-442d6d3e373mr99987515e9.10.1746989435961;
+        Sun, 11 May 2025 11:50:35 -0700 (PDT)
 Received: from localhost.localdomain (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-442d76b7fd6sm61020615e9.0.2025.05.11.11.40.27
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-442cd34be0csm141257725e9.18.2025.05.11.11.50.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 May 2025 11:40:28 -0700 (PDT)
+        Sun, 11 May 2025 11:50:35 -0700 (PDT)
 From: Christian Marangi <ansuelsmth@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Andrei Botila <andrei.botila@oss.nxp.com>,
-	Sabrina Dubroca <sd@queasysnail.net>,
-	Michael Klein <michael@fossekall.de>,
-	Daniel Golle <daniel@makrotopia.org>,
-	netdev@vger.kernel.org,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-pm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [net-next PATCH v9 6/6] dt-bindings: net: Document support for Aeonsemi PHYs
-Date: Sun, 11 May 2025 20:39:30 +0200
-Message-ID: <20250511183933.3749017-7-ansuelsmth@gmail.com>
+Subject: [PATCH v7 1/2] dt-bindings: thermal: Add support for Airoha EN7581 thermal sensor
+Date: Sun, 11 May 2025 20:49:54 +0200
+Message-ID: <20250511185003.3754495-1-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250511183933.3749017-1-ansuelsmth@gmail.com>
-References: <20250511183933.3749017-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,163 +94,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add Aeonsemi PHYs and the requirement of a firmware to correctly work.
-Also document the max number of LEDs supported and what PHY ID expose
-when no firmware is loaded.
+Add support for Airoha EN7581 thermal sensor and monitor. This is a
+simple sensor for the CPU or SoC Package that provide thermal sensor and
+trip point for hot low and critical condition to fire interrupt and
+react on the abnormal state.
 
-Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
-AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
-AS21210PB1 that all register with the PHY ID 0x7500 0x9410 on C45
-registers before the firmware is loaded.
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../bindings/net/aeonsemi,as21xxx.yaml        | 122 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 123 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+Changes v2:
+- Add Reviewed-by tag
 
-diff --git a/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+ .../thermal/airoha,en7581-thermal.yaml        | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+
+diff --git a/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
 new file mode 100644
-index 000000000000..69eb29dc4d7b
+index 000000000000..ca0242ef0378
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
-@@ -0,0 +1,122 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/net/aeonsemi,as21xxx.yaml#
++$id: http://devicetree.org/schemas/thermal/airoha,en7581-thermal.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Aeonsemi AS21XXX Ethernet PHY
++title: Airoha EN7581 Thermal Sensor and Monitor
 +
 +maintainers:
 +  - Christian Marangi <ansuelsmth@gmail.com>
 +
-+description: |
-+  Aeonsemi AS21xxx Ethernet PHYs requires a firmware to be loaded to actually
-+  work. The same firmware is compatible with various PHYs of the same family.
-+
-+  A PHY with not firmware loaded will be exposed on the MDIO bus with ID
-+  0x7500 0x7500 or 0x7500 0x9410 on C45 registers.
-+
-+  This can be done and is implemented by OEM in 2 different way:
-+    - Attached SPI flash directly to the PHY with the firmware. The PHY
-+      will self load the firmware in the presence of this configuration.
-+    - Manually provided firmware loaded from a file in the filesystem.
-+
-+  Each PHY can support up to 5 LEDs.
-+
-+  AS2xxx PHY Name logic:
-+
-+  AS21x1xxB1
-+      ^ ^^
-+      | |J: Supports SyncE/PTP
-+      | |P: No SyncE/PTP support
-+      | 1: Supports 2nd Serdes
-+      | 2: Not 2nd Serdes support
-+      0: 10G, 5G, 2.5G
-+      5: 5G, 2.5G
-+      2: 2.5G
-+
-+allOf:
-+  - $ref: ethernet-phy.yaml#
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - ethernet-phy-id7500.9410
-+          - ethernet-phy-id7500.9402
-+          - ethernet-phy-id7500.9412
-+          - ethernet-phy-id7500.9422
-+          - ethernet-phy-id7500.9432
-+          - ethernet-phy-id7500.9442
-+          - ethernet-phy-id7500.9452
-+          - ethernet-phy-id7500.9462
-+          - ethernet-phy-id7500.9472
-+          - ethernet-phy-id7500.9482
-+          - ethernet-phy-id7500.9492
-+  required:
-+    - compatible
-+
 +properties:
++  compatible:
++    const: airoha,en7581-thermal
++
 +  reg:
 +    maxItems: 1
 +
-+  firmware-name:
-+    description: specify the name of PHY firmware to load
++  interrupts:
 +    maxItems: 1
++
++  airoha,chip-scu:
++    description: phandle to the chip SCU syscon
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  '#thermal-sensor-cells':
++    const: 0
 +
 +required:
 +  - compatible
 +  - reg
++  - interrupts
++  - airoha,chip-scu
 +
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: ethernet-phy-id7500.9410
-+then:
-+  required:
-+    - firmware-name
-+else:
-+  properties:
-+    firmware-name: false
-+
-+unevaluatedProperties: false
++additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/leds/common.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
 +
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
++    thermal-sensor@1efbd800 {
++        compatible = "airoha,en7581-thermal";
++        reg = <0x1efbd000 0xd5c>;
++        interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
++        airoha,chip-scu = <&chip_scu>;
 +
-+        ethernet-phy@1f {
-+            compatible = "ethernet-phy-id7500.9410",
-+                         "ethernet-phy-ieee802.3-c45";
-+
-+            reg = <31>;
-+            firmware-name = "as21x1x_fw.bin";
-+
-+            leds {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                led@0 {
-+                    reg = <0>;
-+                    color = <LED_COLOR_ID_GREEN>;
-+                    function = LED_FUNCTION_LAN;
-+                    function-enumerator = <0>;
-+                    default-state = "keep";
-+                };
-+
-+                led@1 {
-+                    reg = <1>;
-+                    color = <LED_COLOR_ID_GREEN>;
-+                    function = LED_FUNCTION_LAN;
-+                    function-enumerator = <1>;
-+                    default-state = "keep";
-+                };
-+            };
-+        };
++        #thermal-sensor-cells = <0>;
 +    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 39f66be67729..6ef492ffbaaf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -650,6 +650,7 @@ AEONSEMI PHY DRIVER
- M:	Christian Marangi <ansuelsmth@gmail.com>
- L:	netdev@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
- F:	drivers/net/phy/as21xxx.c
- 
- AF8133J THREE-AXIS MAGNETOMETER DRIVER
 -- 
 2.48.1
 
