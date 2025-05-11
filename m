@@ -1,125 +1,127 @@
-Return-Path: <devicetree+bounces-176044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8D1AB2966
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 17:37:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 486DCAB2975
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 18:06:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 882C47AB222
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 15:36:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D9101887947
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 16:06:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C3025C6F8;
-	Sun, 11 May 2025 15:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E68A225B1E2;
+	Sun, 11 May 2025 16:06:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E9NHa5Me"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="gdm7Ftz1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D55259CB8;
-	Sun, 11 May 2025 15:37:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DCE42566F4;
+	Sun, 11 May 2025 16:06:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746977868; cv=none; b=S+MwzceETIM16FoMDtQHE3nBDeuwwrdMSO/numbdrn+IuclgmTbGPiEjRfg0lAIaEZdibths2gxWVxLQQbmPAYAhjmYx7ha+DGq2n/e7N3EurYZkwc4h0+qqTWTunlaBqVEepUkw3+UTA8FG1JDOshZpglWSloUHVVE1gD3kH6U=
+	t=1746979600; cv=none; b=hAfIadLkboGPKt6uFLPpPu+Q2HaRVvmExpBG70WlnUUTW9B+VQpXtiAqmGifkiL+L3pjiE+TFC19ke0IfVbX64B0Oa4BIA2ITL/hzulXwJ/SBgUht0eodil998uP3jPLWj7NTduSjpgfljZvExi75+wfjV2QyzV0BRseY1RODus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746977868; c=relaxed/simple;
-	bh=9nNTh6uI2n0PJZ3sXQWFfPFzfXZgtX+EZm6hEopK2K8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pAjGxakjk0SS04e0jFGANx/8fNvvR9jFwFCq9mpHJArqJYyqcdc0R/TQXQnzSg174tp8WDZ+eqmNPKyszQk50ERJQNjgMIUilgq3hfbYYuee57yF37PPrAQ4kroSs+omoaF4tQrqTIPmwtwjOAHm7Ax22CV+kKLeysWG353St8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E9NHa5Me; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 156D5C4CEE4;
-	Sun, 11 May 2025 15:37:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746977867;
-	bh=9nNTh6uI2n0PJZ3sXQWFfPFzfXZgtX+EZm6hEopK2K8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=E9NHa5MeM64PZa5pdDgGbAnvvhV5Sd55RhREXEDwQE2Lw5bTJzeaeG5ydxLrF5bSV
-	 ttAAhphVqawc03QnD+weq3CZSLSzyoMZKW1bBRMcmo5s9v6C1fEQjAWxyJJAShinqK
-	 B6WAgdifcIGrpt8UB/LRWIJeZ+8VH/M/SzhfRHirgOoWzGCWNqNw2W5JWGjaYzXzaq
-	 L7mJ5d3tah4cnqJZSs7X0moLArLJy/4SND48595JvyvSo/8p+tmiehH4ArJ8T5Mv8h
-	 vZ6qZmqF1/cHrjPhKjGoIEa+VgeWMby+V/sUtG8NYveVI+s5RbHFGXE+Z8ZU+gi1ef
-	 PzuqZNdBYe1fA==
-Date: Sun, 11 May 2025 16:37:39 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/5] Documentation: ABI: IIO: add calibconv_delay
- documentation
-Message-ID: <20250511163739.6612ced4@jic23-huawei>
-In-Reply-To: <20250508-wip-bl-ad7606-calibration-v4-1-91a3f2837e6b@baylibre.com>
-References: <20250508-wip-bl-ad7606-calibration-v4-0-91a3f2837e6b@baylibre.com>
-	<20250508-wip-bl-ad7606-calibration-v4-1-91a3f2837e6b@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1746979600; c=relaxed/simple;
+	bh=7jcXa1duGB4RLgLwkFP/05XRZV0fBz4a7PjTgDhagIQ=;
+	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
+	 In-Reply-To:References; b=sQNtXRudMd9DMIJ3IdFm1CT2wcKqFiwf0zs0YvOqBGosfxtjqi+/NKbsFvzGft6gIWhVhyvmr94V351Oxd+dRW0wUQU+WXcFZ98DBFTLgwNt2/PkG5hrCBb2Gu17dEzCU45LK8aox9YTc4ui6+1HVjHNnv4esgqdpMC0/Hwf5N8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=gdm7Ftz1; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1746979584; x=1747584384; i=frank-w@public-files.de;
+	bh=7jcXa1duGB4RLgLwkFP/05XRZV0fBz4a7PjTgDhagIQ=;
+	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
+	 Content-Type:Date:In-Reply-To:References:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=gdm7Ftz1w0u8z5QRFsnmx9AkK+ztIEv1syuJamnLPXKg/UjwnePHm2lzQlbNv70q
+	 MT80DfyqpF2aMWdI85fR0EJhS6KQW/yIG9oJoNELcGTRHfjkwcIoDtZQoHfj68Ekt
+	 JeVCjzqLP78rm+/1MwrpRIkwOpNOntvDd8gbA0nU88rZE6RfuGvPG6Q0rpKU6SGlz
+	 MgZQ6bHiedEQ00L4rSwSvrtAhozCYEaSHPzTw5SLpljHl5L3gYr0agrx9Jwx6GEC5
+	 jl4a7Sop7hpxcOgV9+ZwrH9RD1rU2N10y1b75QzArrFLeXf0Wj7gw+oxh8LNTqXEt
+	 fFG7BanYwLRZ3ry6Gw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [194.15.84.99] ([194.15.84.99]) by
+ trinity-msg-rest-gmx-gmx-live-74d694d854-wjlx8 (via HTTP); Sun, 11 May 2025
+ 16:06:24 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Message-ID: <trinity-9fe03bba-54ab-4395-b6ae-4cf1d91e1b72-1746979584333@trinity-msg-rest-gmx-gmx-live-74d694d854-wjlx8>
+From: Frank Wunderlich <frank-w@public-files.de>
+To: linux@fw-web.de, andrew@lunn.ch, olteanv@gmail.com, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com
+Cc: arinc.unal@arinc9.com, Landen.Chao@mediatek.com, dqfext@gmail.com,
+ sean.wang@mediatek.com, daniel@makrotopia.org, lorenzo@kernel.org,
+ nbd@nbd.name, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Subject: Aw: [PATCH v1 00/14] further mt7988 devicetree work
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 11 May 2025 16:06:24 +0000
+In-Reply-To: <20250511141942.10284-1-linux@fw-web.de>
+References: <20250511141942.10284-1-linux@fw-web.de>
+X-UI-CLIENT-META-MAIL-DROP: W10=
+X-Provags-ID: V03:K1:P12+K2uFVSHcFESudIJQAhZEXoN0/qrWcaFHgGWi5rtrJDP3lhLhp0PRD15yk4yAD+Qei
+ GdAejadAzkqN4wLdsaLo+PeZgfCS7PfzDC2C7cBTmAFLM+4PX1k4Aiz7OxMcszIjwJshP9SP22HU
+ had3NWgewgnIyNelCik44jSVjhqrps9IdeI5NujdDhVrzIJejURMOXEpTIM1Ap9FTWB+ZtwvHB0V
+ FU0bkw+3BFGfuEyt5jyEWZLTiAQ6KLjxGPShaF+KvPjOsCtWlN3uA8EaCXdE57Uc/+SDjQH+3YR5
+ RnBmETZbhYJYzaro2rI2HK33ZiXcf7dUeYQTdLgsXyIyl+em7IfbDl0gqW24uV7DLU=
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:SixuLMgmyWM=;wNTrUbF3xMJPnUgIaLZ/oGRbd1P
+ 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
 
-On Thu, 08 May 2025 12:06:05 +0200
-Angelo Dureghello <adureghello@baylibre.com> wrote:
+sorry for splitted series and duplicate part 9
 
-> From: Angelo Dureghello <adureghello@baylibre.com>
-> 
-> Add new IIO calibconv_delay documentation.
-> 
-> The ad7606 implements a phase calibation feature, in nanoseconds.
-> Being this a time delay, using the conv_delay suffix.
-> 
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> ---
->  Documentation/ABI/testing/sysfs-bus-iio | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-> index 190bfcc1e836b69622692d7c056c0092e00f1a9b..9ced916895fbef146d46d17b5fdc932784b4c1df 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-iio
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio
-> @@ -559,6 +559,30 @@ Description:
->  		- a small discrete set of values like "0 2 4 6 8"
->  		- a range specified as "[min step max]"
->  
-> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_convdelay
-> +KernelVersion:  6.16
-> +Contact:        linux-iio@vger.kernel.org
-> +Description:
-> +		Delay of start of conversion in seconds from common reference
-> +		point shared by all channels. Can be writable when used to
-> +		compensate for delay variation introduced by external filters
-> +		feeding a simultaneous sampling ADC.
-> +
-> +		I.e., for the ad7606 ADC series, this value is intended as a
-> +		configurable time delay in seconds, to correct delay introduced
+my mail provider responded with "5.7.1 Command rejected" at part 9 and i had to use another one.
 
-Drop the 'in seconds' here as that is repeating the generic bit above. The rest is
-fine subject to formatting Andy noted.
-
-> +		by an optional external filtering circuit.
-> +
-> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_convdelay_available
-> +KernelVersion:	6.16
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Available values of convdelay. Maybe expressed as:
-> +
-> +		- a range specified as "[min step max]"
-> +
-> +		If shared across all channels, <type>_calibconv_delay_available
-> +		is used.
-> +
->  What:		/sys/bus/iio/devices/iio:deviceX/in_accel_x_calibscale
->  What:		/sys/bus/iio/devices/iio:deviceX/in_accel_y_calibscale
->  What:		/sys/bus/iio/devices/iio:deviceX/in_accel_z_calibscale
-> 
-
+regards Frank
 
