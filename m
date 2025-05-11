@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-176046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9883AAB298A
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 18:29:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09994AB2992
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 18:34:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 736B07A2434
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 16:27:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8146D1748B4
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 16:34:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636BA25C802;
-	Sun, 11 May 2025 16:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48A43256C6A;
+	Sun, 11 May 2025 16:34:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="nVgnMzQq"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="kjR51rpY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A790219E8;
-	Sun, 11 May 2025 16:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE1C1171CD;
+	Sun, 11 May 2025 16:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746980937; cv=none; b=oHi6fiLS4r9NuXPIjqWhwtdcyHucdzs6a3IC0Y2OPTBWVdlt0Vv1OYztAWEgsDjnYOzvUztYOqS0VERBKKzBW061FsCvkghmvOq61OX/T5mM0IqIWj59vheowrm9kql94ZKX08Y7jbdyEpHHb4jfYhWtczjWunqQdtg+/cpusj8=
+	t=1746981293; cv=none; b=mjPk/KM02qSmFXT7hXeWEXx1el2PuM1dIMGNtiV6d78JQY+KPT7F7jFNgpH4EWmQrTzieoscZBmis3u1koVDn8Q22X52GHqxDfRK/sfc1BzOhSu3/HJaVybMSnMr6uzwb4b1ctkdbOrHWxZVgJ/zwzYA8t5XSfdC+njJ+T7Lkas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746980937; c=relaxed/simple;
-	bh=A8vZFKnCSu4vBom4UjxNtK2aLZLxMmQ6qXACDT1kgF8=;
+	s=arc-20240116; t=1746981293; c=relaxed/simple;
+	bh=TTK5hApmDktwxjtstn/gjd4zwlLM3Hk/2UuacF8qcR4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=htRkKQX64tIxwSlgunzd1pln1WDt60xWM2TjfvNvC7RBPt5DxP3RYqN8OD6OldABPjpJkVY5F8vbgebZZrmeVGcJJdfxgxrWIYVDjqLd/qd7TW9RBa+y/mr7LjGp3QSWBNuI+azr97nGr2nU6edAQX1WVbQZdyUqXFBVk2swHYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=nVgnMzQq; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=N/DBFDSlq6mFchT8c5CjKE/kGZlMu5Rahfe8p/6GFini86t3IduWUWSPctPPfV+nX3D9PB7w1IrIA8CQ6IP2glfQ53rmHhKapZJPYo0yrEHSRfBvg6vdpnruzGrDmPA5H2TEd3l8rx4+Xa2filfXnaQ8cNnd+FysQTEjIizJs60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=kjR51rpY; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,37 +36,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=mn34+aBjpz+mpyZ8/TjtYHeQxAKDEeoodXqicYun3dY=; b=nVgnMzQqoZEoRdDgLmy9BoeIPD
-	C1LeyQeIZ92tbw8E9ZL4PMWlii/b4hek0CJh5Qq44eEZUGeEOut/EJUlzJ626asoREi3BFaOCU8mb
-	H2D3HWHyo4mc7nvo0J+T5oj/lKPxe1RFmpeTa81IY91aI5gUA6aK65w4N10D5UGPL4jo=;
+	bh=rTKtw5p9cRT6gfKtPcv5QRCZhaiO1JqQg2Jdb1SHkWI=; b=kjR51rpY2dh3I+eCPGZ7vHjCeC
+	p0tO6yLVqBOpo2bnc/7frYv/SJfceT77OD57oqjAqKf7g54Bw0E0FHLLdpx4HWhKptEX7sZWHFm4G
+	rgDlSDo0vY8/4BeT5LdBgRUVeciHoYo3UaMIzljNElKLhbJfZ9fr1fLBbK5faSMRC8ME=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1uE9XZ-00CGED-0q; Sun, 11 May 2025 18:28:37 +0200
-Date: Sun, 11 May 2025 18:28:37 +0200
+	id 1uE9dG-00CGGX-Fk; Sun, 11 May 2025 18:34:30 +0200
+Date: Sun, 11 May 2025 18:34:30 +0200
 From: Andrew Lunn <andrew@lunn.ch>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: Vladimir Oltean <olteanv@gmail.com>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Andrei Botila <andrei.botila@oss.nxp.com>,
-	Sabrina Dubroca <sd@queasysnail.net>,
-	Michael Klein <michael@fossekall.de>,
-	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH v8 5/6] net: phy: Add support for Aeonsemi
- AS21xxx PHYs
-Message-ID: <7e8b6fc7-b587-4b89-a71c-bbd23e33f6d4@lunn.ch>
-References: <20250510220556.3352247-1-ansuelsmth@gmail.com>
- <20250510220556.3352247-6-ansuelsmth@gmail.com>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+	Landen Chao <Landen.Chao@mediatek.com>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v1 02/14] dt-bindings: net: dsa: mediatek,mt7530: add
+ dsa-port definition for mt7988
+Message-ID: <043d1a0a-1932-42f3-bcd8-17fad10c5543@lunn.ch>
+References: <20250511141942.10284-1-linux@fw-web.de>
+ <20250511141942.10284-3-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,23 +77,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250510220556.3352247-6-ansuelsmth@gmail.com>
+In-Reply-To: <20250511141942.10284-3-linux@fw-web.de>
 
-> +++ b/drivers/net/phy/Kconfig
-> @@ -117,6 +117,18 @@ config AMCC_QT2025_PHY
->  	help
->  	  Adds support for the Applied Micro Circuits Corporation QT2025 PHY.
->  
-> +config AS21XXX_PHY
-> +	tristate "Aeonsemi AS21xxx PHYs"
+On Sun, May 11, 2025 at 04:19:18PM +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Add own dsa-port binding for SoC with internal switch where only phy-mode
+> 'internal' is valid.
 
-nitpick: This file is sorted by tristate. That means Aeonsemi comes
-before Airoha.
+So these internal PHYs don't have LEDs?
 
-With that fixed: Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-
-    Andrew
-
----
-pw-bot: cr
+	Andrew
 
