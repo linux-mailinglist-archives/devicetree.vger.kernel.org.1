@@ -1,232 +1,231 @@
-Return-Path: <devicetree+bounces-175988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2823DAB2850
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 15:11:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B16B2AB288B
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 15:40:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5EC23AC3C1
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 13:11:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10EBA18929AD
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 13:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6082256C86;
-	Sun, 11 May 2025 13:11:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDBB02571A3;
+	Sun, 11 May 2025 13:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CiiZ4j+P"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="SvEIRyoM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F7A986344;
-	Sun, 11 May 2025 13:11:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA001519B8
+	for <devicetree@vger.kernel.org>; Sun, 11 May 2025 13:40:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746969093; cv=none; b=TLN5d2ojHs8bJjP+7dcb37Azsv3KkXnY3svAY2MpBW+RqYuEgfo6JyFXvw6M8Ce09v0hfqIBLpMQMH9Xa5LJ1MvM+FMqwJQy99kdSL2RFQUnt4M+HexZIPvI3e4zZ7aqukSIheHxytI1x35Yew3Dvx+UWv8He3zKL9gX5zfCnbY=
+	t=1746970807; cv=none; b=KM/3/+da4Ics16jxwwM0gs26dAwTXrYuRA3GYshS0sFi9p+nXIvqaakjaxCet+f5x0FOnWFZzUOJp2MjFQsP3FOxtwG1hJnTt5/8J/5H0vkkpKU5p8Nt607owYrCumUvjIpQM8hSO6UcVuEITsXfMJ0Y7RS9nSn7vKI0mRfT87U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746969093; c=relaxed/simple;
-	bh=M9OR5ZiUK3Fib7rUpLHTME7xYEsacjwm0GZp+YtVLFI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sPcdSa1pY3m7+3JUOQcLshsbulgIaRhun5nNq+6d82cLUXcPJlYJZpIvyOOBwBaSWBqRS/8otkB6+SpOLb+bSabubCfCGXdKu86ao3qp6HH/FDlIEXqoevpOnVh+JmWLvyClad8tf6wd2ezDHJ9l1ZQRlrbIpSB/bLmvAIuO4JE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CiiZ4j+P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBF56C4CEE4;
-	Sun, 11 May 2025 13:11:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746969093;
-	bh=M9OR5ZiUK3Fib7rUpLHTME7xYEsacjwm0GZp+YtVLFI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=CiiZ4j+Pm5nln0qCzGDKhaytmCTZsXccEXxLEmQEKPpDb7xSQ8F+W5QpWsLJDFCUz
-	 lq7o4AorDi/Mu3qRKT3oQkdZQQM+XVlvu78hc6WZ4b1+TDGmSpwln2wjb+jlfPNweR
-	 rlV4CkZEdi+8u4Elxyt8q+A94qH/Fbzw16egmX/qdFzSdiHP42RXG3foA38j06JdyM
-	 72qsM9KSkadcy/mcehhofSi4Pao7Ha2+epeeGFX7c57ulv5zfMam4T+Q+BnLmE/AZl
-	 YlxeY9FI5ko2c975zIa6diCTE7+OT7g154ppt+orpKddY8yc+AEtUgs1NKNH09toGA
-	 RNcJeFbhjMluA==
-Date: Sun, 11 May 2025 14:11:20 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Cc: robh@kernel.org, krzysztof.kozlowski@linaro.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
- lumag@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
- konradybcio@kernel.org, daniel.lezcano@linaro.org, sboyd@kernel.org,
- amitk@kernel.org, thara.gopinath@gmail.com, lee@kernel.org,
- rafael@kernel.org, subbaraman.narayanamurthy@oss.qualcomm.com,
- david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
- quic_kamalw@quicinc.com, rui.zhang@intel.com, lukasz.luba@arm.com,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org,
- quic_skakitap@quicinc.com, neil.armstrong@linaro.org,
- stephan.gerhold@linaro.org
-Subject: Re: [PATCH V6 5/5] thermal: qcom: add support for PMIC5 Gen3 ADC
- thermal monitoring
-Message-ID: <20250511141120.58941a45@jic23-huawei>
-In-Reply-To: <20250509110959.3384306-6-jishnu.prakash@oss.qualcomm.com>
-References: <20250509110959.3384306-1-jishnu.prakash@oss.qualcomm.com>
-	<20250509110959.3384306-6-jishnu.prakash@oss.qualcomm.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1746970807; c=relaxed/simple;
+	bh=HGHg9nY8u9T8EijBXpElYgMjpPIpbIwca+aoW36YdV8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MD7RI7jUvmAa+FnpUl7tkOxBTNAZ3wAvITiwCUVCov+VtsAFSkf3T/2spOnLB/CvygBfWuPQRmD6IyNdQAy9H+g35hnlPX+xud6fwzVk91icNzUEgiOqZSKLKzir4VgVo0HXpCRYa77ccAcjTb6Bj9uu5dgXodyWP2tpLrIQ2fo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=SvEIRyoM; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-879d2e419b9so2991382a12.2
+        for <devicetree@vger.kernel.org>; Sun, 11 May 2025 06:40:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1746970804; x=1747575604; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+2X7+jVVNL7UrA8dHN/YI8a62ZSrvEZ5auq7El/7vY8=;
+        b=SvEIRyoMycW1wzPzAWjzEYNi/f0IRNgf8H9mndmyUqgFOZXGandEr6S6dG8BiGwVDy
+         1LTXgyxK1S8hkJr9NCwuKFXExGSPwpt6yvmGPu1NknkMtwOEk6C68TIOmrg7no8+cAaz
+         I81wSyq71DwyiKr8zy37QGbB8UUCemcm4RpfCMN+Niyh4gF/ByaURjRvEnrAFYmE8vkX
+         b6JE7pls4Q38VwhaOv5XoboENJdcJZF632YlKrUAP2a1sm2yfDMqOoa6BipMouekazFw
+         xd2hbJUvZC4KfCi2zDz3t+F3LvG2kqmJQJJWbFIskVlhJqpzlk34zf87RKFJM2sNKIP/
+         oaEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746970804; x=1747575604;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+2X7+jVVNL7UrA8dHN/YI8a62ZSrvEZ5auq7El/7vY8=;
+        b=HNRTr+vtqcjLmnsIsPgwttEyqsTvOxqm8Ie7xkzJ2XEW43dpsXwWH93AzIov0Uejvi
+         d1wRIBnZQcXTUNeNDDqku5W5SQb8Cvfc+WGpLqd1xKNjv+8nIRjQJESLzndCMcXSyEfY
+         cMGi71AvHiLWB1YLrhfDiAxY9ib5jB/bZAajYM6pIM5kR04ZngNfrP7KJX6OjOqxy6Y/
+         w0TWVKouYPdYu6mC2caNAObsLB2+M7Ke4FFqCqB3p4j0AjcY8kBYc6O0GaZ5QKgVF+Ci
+         /QqINPjcn2jSev0Vo+tzUnCZu3YjMwP7BtRljs+nfPfOX+v75xMUmxSZyeoOsW0K5bG3
+         KdtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXrZ0xnTAFQgpkMKVFrAWL5HHmi9vVJjB5WHbZZ0a9cy1F0ZkxrDmUHkqmQolEQw3wsHCJYlqKRNok5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwD7XgEmNJoeCg8JBEAID7+fP6ZzwBDFvwW54PCHYVDY8IbiMM/
+	LlzWiB82F0uMJwO9kv2KgoiXC2XS9ZUiEj/67PszcCw/nJenpOXvKtYdwuxNdVU=
+X-Gm-Gg: ASbGncuiWVul2KcK7CwnuTv/itpAzFyz0TaIC7PbUDRnefcDVLZVeXm16JR65G5g3nb
+	hlKRyty6gWurBHxsyquWkEo4FNZmFk3mk7OrAFJoq8cV+v+goMsCCQwduAcPZzLpUnvhsFGaonN
+	gnqG0yS+5ZjM5WZsp9opJHNDeGLQEHl+JePsjTYakK3nF/knrcCTuUKAdAsywqDnReAZ3jbZQ4m
+	GoqLGBeL53TgXikUVpbyAv9hNYJM/7lfXSkPWIoi6XbF+VrXhMDImKKXvOy2rpLjMiwWCaakq7v
+	QKo8YsFeF/+htEZIkUO5iehyKfH9yKhRB/qK7rvztwOS22bH9SKMGFIqzaTP2cL+IBgZz2TQurI
+	ujNhD5mendHYgYw==
+X-Google-Smtp-Source: AGHT+IFeovprhIUjCenVGzvCSweIJ9z5nY2eghETFdt8kR3joqVLkksTBy7OfdfpRIPRnZrpPXtoAg==
+X-Received: by 2002:a17:903:32c1:b0:224:c46:d167 with SMTP id d9443c01a7336-22fc8b51a28mr143434215ad.16.1746970803926;
+        Sun, 11 May 2025 06:40:03 -0700 (PDT)
+Received: from anup-ubuntu-vm.localdomain ([122.171.17.86])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc754785bsm46665805ad.20.2025.05.11.06.39.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 May 2025 06:40:03 -0700 (PDT)
+From: Anup Patel <apatel@ventanamicro.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v3 00/23] Linux SBI MPXY and RPMI drivers
+Date: Sun, 11 May 2025 19:09:16 +0530
+Message-ID: <20250511133939.801777-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Fri,  9 May 2025 16:39:59 +0530
-Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
+The SBI v3.0 (MPXY extension) [1] and RPMI v1.0 [2] specifications
+are frozen and in public review at the RISC-V International.
 
-> Add support for ADC_TM part of PMIC5 Gen3.
-> 
-> This is an auxiliary driver under the Gen3 ADC driver, which implements the
-> threshold setting and interrupt generating functionalities of QCOM ADC_TM
-> drivers, used to support thermal trip points.
-> 
-> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Hi Jishnu,
+Currently, most of the RPMI and MPXY drivers are in OpenSBI whereas
+Linux only has SBI MPXY mailbox controller driver, RPMI clock driver
+and RPMI system MSI driver This series also includes ACPI support
+for SBI MPXY mailbox controller and RPMI system MSI drivers.
 
-A few minor things inline.
+These patches can be found in the riscv_sbi_mpxy_mailbox_v3 branch
+at: https://github.com/avpatel/linux.git
 
-Jonathan
+To test these patches, boot Linux on "virt,rpmi=on,aia=aplic-imsic"
+machine with OpenSBI and QEMU from the dev-upstream branch at:
+https://github.com/ventanamicro/opensbi.git
+https://github.com/ventanamicro/qemu.git
 
-> diff --git a/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c b/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
-> new file mode 100644
-> index 000000000000..c63822635f10
-> --- /dev/null
-> +++ b/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
+[1] https://github.com/riscv-non-isa/riscv-sbi-doc/releases
+[2] https://github.com/riscv-non-isa/riscv-rpmi/releases
 
-> +static int adc_tm5_register_tzd(struct adc_tm5_gen3_chip *adc_tm5)
-> +{
-> +	unsigned int i, channel;
-> +	struct thermal_zone_device *tzd;
-> +
-> +	for (i = 0; i < adc_tm5->nchannels; i++) {
-> +		channel = V_CHAN(adc_tm5->chan_props[i].common_props);
-> +		tzd = devm_thermal_of_zone_register(adc_tm5->dev, channel,
-> +						    &adc_tm5->chan_props[i],
-> +						    &adc_tm_ops);
-> +
-> +		if (IS_ERR(tzd)) {
-> +			if (PTR_ERR(tzd) == -ENODEV) {
-> +				dev_warn(adc_tm5->dev,
-> +					 "thermal sensor on channel %d is not used\n",
-> +					 channel);
-> +				continue;
-> +			}
-> +			return dev_err_probe(adc_tm5->dev, PTR_ERR(tzd),
-> +					     "Error registering TZ zone:%ld for channel:%d\n",
-> +					     PTR_ERR(tzd), channel);
-> +		}
-> +		adc_tm5->chan_props[i].tzd = tzd;
-> +		devm_thermal_add_hwmon_sysfs(adc_tm5->dev, tzd);
+Changes since v2:
+ - Dropped the "RFC" tag from series since the SBI v3.0 and
+   RPMI v1.0 specifications are now frozen
+ - Rebased the series on Linux-6.15-rc5
+ - Split PATCH8 of v2 into two patches adding separate DT
+   bindings for "riscv,rpmi-mpxy-clock" and "riscv,rpmi-clock"
+ - Split PATCH10 of v2 into two patches adding separate DT
+   bindings for "riscv,rpmi-mpxy-system-msi" and
+   "riscv,rpmi-system-msi"
+ - Addressed comments from TGLX on PATCH11 of v2 adding irqchip
+   driver for RPMI system MSI
+ - Addressed ACPI related comments in PATCH15 and PATCH16 of v2
+ - New PATCH17 and PATCH18 in this series
 
-Can fail so unusual not to see an error check.  Add a comment if intended.
+Changes since v1:
+ - Addressed DT bindings related comments in PATCH2, PATCH3, and
+   PATCH7 of v1 series
+ - Addressed comments in PATCH6 and PATCH8 of v1 series
+ - New PATCH6 in v2 series to allow fwnode based mailbox channel
+   request
+ - New PATCH10 and PATCH11 to add RPMI system MSI based interrupt
+   controller driver
+ - New PATCH12 to PATCH16 which adds ACPI support in SBI MPXY
+   mailbox driver and RPMI system MSI driver
+ - New PATCH17 to enable required kconfig option to allow graceful
+   shutdown on QEMU virt machine
 
-> +	}
-> +	return 0;
-> +}
+Anup Patel (14):
+  riscv: Add new error codes defined by SBI v3.0
+  dt-bindings: mailbox: Add bindings for RPMI shared memory transport
+  dt-bindings: mailbox: Add bindings for RISC-V SBI MPXY extension
+  RISC-V: Add defines for the SBI message proxy extension
+  mailbox: Add common header for RPMI messages sent via mailbox
+  mailbox: Allow controller specific mapping using fwnode
+  mailbox: Add RISC-V SBI message proxy (MPXY) based mailbox driver
+  dt-bindings: clock: Add RPMI clock service message proxy bindings
+  dt-bindings: clock: Add RPMI clock service controller bindings
+  dt-bindings: Add RPMI system MSI message proxy bindings
+  dt-bindings: Add RPMI system MSI interrupt controller bindings
+  irqchip: Add driver for the RPMI system MSI service group
+  RISC-V: Enable GPIO keyboard and event device in RV64 defconfig
+  MAINTAINERS: Add entry for RISC-V RPMI and MPXY drivers
 
-> +
-> +static int adc_tm5_probe(struct auxiliary_device *aux_dev,
-> +			 const struct auxiliary_device_id *id)
-> +{
-> +	struct adc_tm5_gen3_chip *adc_tm5;
-> +	struct tm5_aux_dev_wrapper *aux_dev_wrapper;
-> +	struct device *dev = &aux_dev->dev;
-> +	int i, ret;
-> +
-> +	adc_tm5 = devm_kzalloc(&aux_dev->dev, sizeof(*adc_tm5), GFP_KERNEL);
+Rahul Pathak (1):
+  clk: Add clock driver for the RISC-V RPMI clock service group
 
-Use dev
+Sunil V L (8):
+  ACPI: property: Refactor acpi_fwnode_get_reference_args()
+  ACPI: property: Add support for cells property
+  ACPI: scan: Update honor list for RPMI System MSI
+  ACPI: RISC-V: Create interrupt controller list in sorted order
+  ACPI: RISC-V: Add support to update gsi range
+  ACPI: RISC-V: Add RPMI System MSI to GSI mapping
+  mailbox/riscv-sbi-mpxy: Add ACPI support
+  irqchip/riscv-rpmi-sysmsi: Add ACPI support
 
-> +	if (!adc_tm5)
-> +		return -ENOMEM;
-> +
-> +	aux_dev_wrapper = container_of(aux_dev, struct tm5_aux_dev_wrapper,
-> +				       aux_dev);
-> +
-> +	adc_tm5->dev = dev;
-> +	adc_tm5->dev_data = aux_dev_wrapper->dev_data;
-> +	adc_tm5->nchannels = aux_dev_wrapper->n_tm_channels;
-> +	adc_tm5->chan_props = devm_kcalloc(adc_tm5->dev, aux_dev_wrapper->n_tm_channels,
+ .../bindings/clock/riscv,rpmi-clock.yaml      |   61 +
+ .../bindings/clock/riscv,rpmi-mpxy-clock.yaml |   64 ++
+ .../riscv,rpmi-mpxy-system-msi.yaml           |   67 ++
+ .../riscv,rpmi-system-msi.yaml                |   74 ++
+ .../mailbox/riscv,rpmi-shmem-mbox.yaml        |  148 +++
+ .../bindings/mailbox/riscv,sbi-mpxy-mbox.yaml |   51 +
+ MAINTAINERS                                   |   15 +
+ arch/riscv/configs/defconfig                  |    2 +
+ arch/riscv/include/asm/irq.h                  |    6 +
+ arch/riscv/include/asm/sbi.h                  |   72 ++
+ drivers/acpi/property.c                       |  118 +-
+ drivers/acpi/riscv/irq.c                      |   80 +-
+ drivers/acpi/scan.c                           |    2 +
+ drivers/base/property.c                       |    2 +-
+ drivers/clk/Kconfig                           |    8 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/clk-rpmi.c                        |  601 ++++++++++
+ drivers/irqchip/Kconfig                       |    7 +
+ drivers/irqchip/Makefile                      |    1 +
+ drivers/irqchip/irq-riscv-rpmi-sysmsi.c       |  315 ++++++
+ drivers/mailbox/Kconfig                       |   11 +
+ drivers/mailbox/Makefile                      |    2 +
+ drivers/mailbox/mailbox.c                     |   48 +-
+ drivers/mailbox/riscv-sbi-mpxy-mbox.c         | 1007 +++++++++++++++++
+ include/linux/mailbox/riscv-rpmi-message.h    |  235 ++++
+ include/linux/mailbox_controller.h            |    3 +
+ 26 files changed, 2925 insertions(+), 76 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/riscv,rpmi-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/riscv,rpmi-mpxy-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,rpmi-mpxy-system-msi.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,rpmi-system-msi.yaml
+ create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml
+ create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,sbi-mpxy-mbox.yaml
+ create mode 100644 drivers/clk/clk-rpmi.c
+ create mode 100644 drivers/irqchip/irq-riscv-rpmi-sysmsi.c
+ create mode 100644 drivers/mailbox/riscv-sbi-mpxy-mbox.c
+ create mode 100644 include/linux/mailbox/riscv-rpmi-message.h
 
-Might as well use dev here too.
-
-> +					   sizeof(*adc_tm5->chan_props), GFP_KERNEL);
-> +	if (!adc_tm5->chan_props)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < adc_tm5->nchannels; i++) {
-> +		adc_tm5->chan_props[i].common_props = aux_dev_wrapper->tm_props[i];
-> +		adc_tm5->chan_props[i].timer = MEAS_INT_1S;
-> +		adc_tm5->chan_props[i].sdam_index = (i + 1) / 8;
-> +		adc_tm5->chan_props[i].tm_chan_index = (i + 1) % 8;
-> +		adc_tm5->chan_props[i].chip = adc_tm5;
-> +	}
-> +
-> +	ret = devm_add_action_or_reset(adc_tm5->dev, adc5_gen3_disable, adc_tm5);
-> +	if (ret)
-> +		return ret;
-> +
-> +	INIT_WORK(&adc_tm5->tm_handler_work, tm_handler_work);
-> +
-> +	/*
-> +	 * Skipping first SDAM IRQ as it is requested in parent driver.
-> +	 * If there is a TM violation on that IRQ, the parent driver calls
-> +	 * the notifier (tm_event_notify) exposed from this driver to handle it.
-> +	 */
-> +	for (i = 1; i < adc_tm5->dev_data->num_sdams; i++) {
-> +		ret = devm_request_threaded_irq(adc_tm5->dev,
-> +						adc_tm5->dev_data->base[i].irq,
-> +						NULL, adctm5_gen3_isr, IRQF_ONESHOT,
-> +						adc_tm5->dev_data->base[i].irq_name,
-> +						adc_tm5);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	/*
-> +	 * This drvdata is only used in the function (adctm_event_handler)
-> +	 * called by parent ADC driver in case of TM violation on the first SDAM.
-> +	 */
-> +	auxiliary_set_drvdata(aux_dev, adc_tm5);
-> +
-> +	ret = devm_add_action(adc_tm5->dev, adc5_gen3_clear_work, adc_tm5);
-
-I'd add a comment on what this is undoing as normally devm clean up matches
-something being started and there is no obvious sign of what that is here.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = adc_tm5_register_tzd(adc_tm5);
-
-return adc_tm5...
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-
-> +static int __init adctm5_init_module(void)
-> +{
-> +	return auxiliary_driver_register(&adctm5gen3_auxiliary_drv.adrv);
-> +}
-> +
-> +static void __exit adctm5_exit_module(void)
-> +{
-> +	auxiliary_driver_unregister(&adctm5gen3_auxiliary_drv.adrv);
-> +}
-> +
-> +module_init(adctm5_init_module);
-> +module_exit(adctm5_exit_module);
-
-module_auxiliary_driver() not work for some reason?
-
-> +
-> +MODULE_DESCRIPTION("SPMI PMIC Thermal Monitor ADC driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS("QCOM_SPMI_ADC5_GEN3");
+-- 
+2.43.0
 
 
