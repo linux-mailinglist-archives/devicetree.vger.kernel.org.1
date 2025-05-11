@@ -1,107 +1,221 @@
-Return-Path: <devicetree+bounces-175950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF153AB26C8
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 07:31:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50E02AB2725
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 10:19:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79A0B3A5905
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 05:31:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFF883A8965
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 08:18:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0660E14A4E0;
-	Sun, 11 May 2025 05:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3801AB52D;
+	Sun, 11 May 2025 08:19:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VjD1TorC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q7Ma8ohw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8110728682;
-	Sun, 11 May 2025 05:31:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C7A32F872;
+	Sun, 11 May 2025 08:19:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746941478; cv=none; b=kaN7lRLLK2QWeP3BDo8Bhilf4wtv+uE4dvk5H0mul98e9F3GPaAjCXJNTcZ+Xbumz0Hrb7CYIaIoRilmKgvBsxASkaWIx5k4LYcwfLAytcLlkgmY7m9VgikYOW4tVLvSeCvKGMtAxqHxy/fPbfhy/2H2n39PA+jUndEJ7a/N5A8=
+	t=1746951549; cv=none; b=Or/abx+nVqc9Wm5/mcUWsasWTpsuQD6cVkPhbUvyRuM6xDVJ+OJ8nSrTVcPIfA5Wd+NvaiBgOlqyxa0zrVGqbQqkQAzWRcs9Qc5TDuVqT2XzDv0Tms3XDoXRotj+/HDfqZJtL6yclQBV8j5f8SW7l8NWBfftiOlV6XVF+c6DNuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746941478; c=relaxed/simple;
-	bh=d//miLxsYdK46hcO8hpWyDpzobyjmIfskI9ta4bRPgg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YNAS8B3Mqwl2BTMlzHr2Z8tyrL1CvVKPuec0C+dxQ08oBfgvVhGWEjeDqmDs6ihlfQTqtkKP9viLQMyGE0CBPsjAPEwZSalYWFzjBI0NFIyKgWmqtw/ud7Tn9DIgVqzPWgVIosef+kLVq00cz9gvKfbQarlOytl1cFxy5SjbKOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VjD1TorC; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7399a2dc13fso4774223b3a.2;
-        Sat, 10 May 2025 22:31:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746941477; x=1747546277; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0AEgFs1Nv4eYPXttTiWzqOYnkKOmm3w2DjtfoMTVxNM=;
-        b=VjD1TorCP+/r+apE38xT0xatVrb41k2t1I76n8yG+PcJxtKjOqujYnjNDdNAAa2b9M
-         rvpbtr9loCvn3Rx1tb0T66XHjwEqhTd/7151tDpBEbJZvHUqo+m5lfrto0Hojp0NoaIW
-         29ujZQi3+5evOtjmWW6ScbBjQSrPZgEygSdHT+juVQL47ZfCFsEY9sNZM3duMfynbqPf
-         wpDrRR/Dbc4OWsMRJ1WWMvNIDQjejLzfwJdBhQnUtJcTFJyXDMwcQSzX+Y/10TFzsfGh
-         OYj6o+ZcA4GJh0KxlPreSUPpGCK2uTSQ3sbaR0j6O2LxNxOaC5glWQ9Vxgl45pUAv9up
-         IR7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746941477; x=1747546277;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0AEgFs1Nv4eYPXttTiWzqOYnkKOmm3w2DjtfoMTVxNM=;
-        b=NKuTYiwaBuWkpq0VfEXccNAC4tZQ3mUow/FPFs4tqULx1G3hhF4TRC7nwaUkPHsxay
-         +0KbaiZMeiLn34598hvzsnu9Q781eDsrMQHPNphHGV+k9AVWJ4g1QJYSekpTEpQ9bo2T
-         dR9sBRZxopvK5nMCB578KbJ250Aj7pi9n47dpT6iob7wWVgWnoV6WOhK7pYBDvQN/mRI
-         vF1JqdPilhP4cUE6z2mu5rooIDGXAWRsQXzX8lkrNydqM3m2BcXSqgbeMR7UCiJX4PSA
-         RMb49Ad707V+lB8LWhN5UKuj5bUMDlOjP4XEScZolWZZ/bcN5YcN2xRa2LqceyJvjo7c
-         J/xA==
-X-Forwarded-Encrypted: i=1; AJvYcCU6+Yne1mlJbhL2YVtgOQbUWYrqPjEOkQxTDDYdWJyIQ9v3Ua1B42bGJHhrDFsIJUC4IGNiryGeBa2kPF8=@vger.kernel.org, AJvYcCWEBEY6SBiL7YqTwXdO5Q5vokHicvrAWgyJeMnNIKn+2Z6ZzbjbcbRBGgvhc/gtj1MgE9aZqgar84463ZY6@vger.kernel.org, AJvYcCWlWM4k+vkPCjO1sl+7Opl72cNn8vnCv1koU9/mIhDgHcjdt/n5Y2ldQi8LOmvUphqa+sTk/HhZJH4o@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFctTqyDnodp79QPmcGQ0xRy4Qho8DpM0MQ/UM13XZ/RFO2Sq/
-	ZdsVYejnbvEOfUmhMu/p/MCHZDJamb9LJsrcYjVVqp5aUkWsaSLu
-X-Gm-Gg: ASbGncsyscyG6DrUtK1BMgPi3QOCx0182d6dkbrC++mJZjKFN4C86k+z4toqegvbhgr
-	EUX2xHzIolxYLpxlvfoHbDCOJudLu3Du54N2VHFepkbJeAVSd+DBQ9JOm8Sq7+JA/19teuFr6Tb
-	+tabNDbel47HdRNBUaBNPh5HvAu4JBk16hl94r9rGfn7tfJhlEemQ8v2gosjc8iw+DQdRetjqsU
-	2K+N/C+DRJ9p03sBgtS0ClFg4iTZ/Dy3M2kBVsDNFE44pJUppNwx8vBfSzO7RS80g9o356zNlrd
-	vd5SvOT6dBOTPqHRV/AaDgsconTTpiokpHh2b5DAqM9pvEjg0q6v
-X-Google-Smtp-Source: AGHT+IEVJ8WdfaI3FOZbUGunTkULlN67Bom5jAh6wSoZcO8l8ojdHk3Z9iUIrv/JKoGKSqkmpAQvWA==
-X-Received: by 2002:a05:6a20:12d2:b0:1fd:f8eb:d232 with SMTP id adf61e73a8af0-215abb3fa81mr14692076637.24.1746941476425;
-        Sat, 10 May 2025 22:31:16 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:81cd:844c:3bd7:4808])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30ad4ffa91fsm6565075a91.42.2025.05.10.22.31.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 May 2025 22:31:15 -0700 (PDT)
-Date: Sat, 10 May 2025 22:31:13 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Support Opensource <support.opensource@diasemi.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Roy Im <roy.im.opensource@diasemi.com>, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v4 0/2] input: convert dlg,da7280.txt to dt-schema &
- update MAINTAINERS
-Message-ID: <kh5les7yznemq6gtvy6wknaazsheejtgmvxu7sfup63xcu6sql@nugenb5u2qfa>
-References: <20250306-topic-misc-da7280-convert-v4-0-2972c4e81cb5@linaro.org>
+	s=arc-20240116; t=1746951549; c=relaxed/simple;
+	bh=AN3OnTybScRz8x1B3JwySPq8GXU7Hvcbq2tPBjfW/n0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GyaE1LRO3ovKrM7P74GYIYYisXDHSWLGZY5it2NUMz9K4sb+t0aHd+MaFi3CgTIKa08jiv8qIvOOhc3HKHHNC0h0RD/OOWNaZOoI0SR7WXS7ilvVAC2+WjpBq4ZophpqzryDppAp5JhR/xxEiwgIK7DxA4qncnumqVDInmKcl9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q7Ma8ohw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EB36EC4CEE4;
+	Sun, 11 May 2025 08:19:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746951549;
+	bh=AN3OnTybScRz8x1B3JwySPq8GXU7Hvcbq2tPBjfW/n0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=q7Ma8ohwFoDUrmJDzDIFxmQ6Fsd8YeUZ0BhnqbttPT0q+UrhXeiXTcaGcxl8Ea61r
+	 IS+nMNFgDIGykTm1weLFgy5BYrMYaIrTBBRe4tuCBtph0tEAus6Vt5J4YKZIE8+z0V
+	 LOVJDISNfQWsM/REfEz4VnwyG6gwjsZPm1FSR2boit9N4K/Qj+rn3NEL5MaadGvOrm
+	 yzxLsmpUIwDWHCJ8HfKc82z9nAcWtYlOUcWg6z5ezZZO/WF3x/5v92VcaIrNcXEznw
+	 EBp122VDudfBrXC+D3eESN8aoW8uu5P3Skn08EJ1KiwRjtgC/ii3sLRJ5f004mc6Lx
+	 YkXWcT/tdunRw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D4320C3ABC3;
+	Sun, 11 May 2025 08:19:08 +0000 (UTC)
+From: Sven Peter via B4 Relay <devnull+sven.svenpeter.dev@kernel.org>
+Subject: [PATCH v5 00/10] Apple Mac System Management Controller
+Date: Sun, 11 May 2025 08:18:35 +0000
+Message-Id: <20250511-smc-6-15-v5-0-f5980bdb18bd@svenpeter.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250306-topic-misc-da7280-convert-v4-0-2972c4e81cb5@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFtdIGgC/0XMQQ6CMBCF4auQWTtmgLYJrryHYSHtVGZhIS1pN
+ KR3t+LC5f/y8u2QOAonuDQ7RM6SZAk19KkBO9/Dg1Fcbeio09STwvS0aLDV6ImdaQfuW6eg3tf
+ IXl4HdRtrz5K2Jb4POavv+kMq80eyQkJNNA2T0cp4e02Zw8obx7PjDGMp5QNSkX/ipAAAAA==
+X-Change-ID: 20250304-smc-6-15-f0ed619e31d4
+To: Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, 
+ Hector Martin <marcan@marcan.st>, Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+ Lee Jones <lee@kernel.org>, Marc Zyngier <maz@kernel.org>, 
+ "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6421; i=sven@svenpeter.dev;
+ h=from:subject:message-id;
+ bh=AN3OnTybScRz8x1B3JwySPq8GXU7Hvcbq2tPBjfW/n0=;
+ b=owGbwMvMwCHmIlirolUq95LxtFoSQ4ZCbP76RVVTdtyuPLtryc3W9mPHL8iuPXfiS9z/ttADf
+ 6MV1mgwdZSyMIhxMMiKKbJs329v+uThG8Glmy69h5nDygQyhIGLUwAmolrIyPCBZf+EH2G/FDyP
+ cx97lqOvuPXdAubPb2rLN8Wl/DKc22vD8FfwXeDTj26HLNSO1Fs/u7rk+4uKjR5uve8ndehxm9j
+ UlfACAA==
+X-Developer-Key: i=sven@svenpeter.dev; a=openpgp;
+ fpr=A1E3E34A2B3C820DBC4955E5993B08092F131F93
+X-Endpoint-Received: by B4 Relay for sven@svenpeter.dev/default with
+ auth_id=167
+X-Original-From: Sven Peter <sven@svenpeter.dev>
+Reply-To: sven@svenpeter.dev
 
-On Thu, Mar 06, 2025 at 11:56:18AM +0100, Neil Armstrong wrote:
-> Convert the Dialog Semiconductor DA7280 Low Power High-Definition
-> Haptic Driver bindings to dt-schema. and update the corresponding
-> MAINTAINERS entry.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Hi,
 
-Applied the lot, thank you.
+This series adds support for the System Management Controller found in
+Apple Silicon devices which we model as a mfd. It also includes support
+for the GPIO block and the power/reset block as sub-devices.
 
+Changes between v4 and v5:
+  - Alyssa's comments:
+    - Made the WARN_ON in the reboot driver more obvious
+    - Added missing brackets around a for loop in the reboot driver
+    - Used min instead of open-coded variant inside the gpio driver
+    - Reoder struct memebers to prevent padding inside the mfd driver
+  - Lee's comments:
+    - All comments now start with an uppercase letter
+    - Removed apple_smc_read_ioft_scaled and apple_smc_read_f32_scaled
+      since these are not yet used and likely don't belong into
+      drivers/mfd
+    - Relaced if (ret != 0) with if (ret) when possible
+    - Used devm_platform_get_and_ioremap_resource to get and map the
+      SRAM resource
+    - Used reverse Christmas-tree formating when declaring variables
+    - Dropped _platform left-overs from probe and remove functions
+    - Removed dev_dbg prints which are no long required after
+      development
+    - Reworked is_alive/is_initialized so that it's obvious how errors
+      during boot are propagated from the callback to the probe function
+    - Used dev_warn instead of dev_err in a few places
+    - Removed no-op apple_smc_rtkit_shmem_destroy; this required an
+      additional change in rtkit.c because we had a check there that's a
+      bit too strict
+    - Removed struct resource in apple_smc_rtkit_shmem_setup and
+      open-coded resource_contains instead
+    - Unwrapped lines with less than 100 chars
+    - Made sure to compile with W=1 and ran scripts/kernel-doc -v
+      on macsmc.h once and fixed any fallout
+  - Removed first_key/last_key from struct smc and moved
+    apple_smc_find_first_key_index to the gpio driver since it's only
+    used there anyway to find the index of the first GPIO key (gP00)
+  - Return -EIO when a command fails instead of whatever SMC returns
+    which does not map to Linux errnos on errors
+
+Changes between v3 and v4:
+  - Added documentation for all functions and structs
+  - Fixed dt-bindings and re-ordered commits so that the mfd one comes
+    last and can include the gpio subdevice
+  - Added the reset driver and corresponding bindings
+  - Reworked the atomic mode inside SMC since the previous implementation
+    called mutex_lock from atomic context
+  - Removed the backend split for now which lead to a quite intense discussion
+    for the previous versions which hadn't been solved as far as I could tell
+    from the old threads.
+    It's also been 2+ years and I haven't heard of any backend implementation
+    for T2 or even older macs. It's also unclear to me which sub-devices
+    are actually useful there because at least GPIO and shutdown/reboot
+    from this series will not work as-is there.
+    I'd rather have this initial version which only supports M1+ macs upstream
+    and then iterate there if any other backend is developed.
+    I'll gladly help to re-introduce backend support if it's ever required.
+
+Dependencies:
+The code and dt-bindings themselves apply cleanly to 6.15-rc1 but
+the device tree changes require the already merged SPMI controller
+and SPMI NVMEM series which will be part of 6.16.
+The series is also using the printf format specifiers which will
+land in 6.16 via the drm-misc tree.
+A tree with all dependencies for testing is available at
+https://github.com/AsahiLinux/linux/commits/sven/smc-v5/.
+
+Merging:
+The dt-binding patches all depend on each other such that they all
+should probably go together with the mfd device itself.
+The following commits also depend on mfd due to the new header file and
+will either have to go through the mfd tree as well or we'll need an
+immutable branch there or we just wait one kernel release and I'll
+re-submit the rest then.
+I'll take the device tree updates through our tree which also has the
+previous device tree updates these depend on.
+
+v4: https://lore.kernel.org/asahi/20250503-smc-6-15-v4-0-500b9b6546fc@svenpeter.dev/
+v3: https://lore.kernel.org/asahi/Y2qEpgIdpRTzTQbN@shell.armlinux.org.uk/
+v2: https://lore.kernel.org/asahi/YxdInl2qzQWM+3bs@shell.armlinux.org.uk/
+v1: https://lore.kernel.org/asahi/YxC5eZjGgd8xguDr@shell.armlinux.org.uk/
+
+Best,
+
+Sven
+
+---
+Hector Martin (5):
+      gpio: Add new gpio-macsmc driver for Apple Macs
+      power: reset: macsmc-reboot: Add driver for rebooting via Apple SMC
+      arm64: dts: apple: t8103: Add SMC node
+      arm64: dts: apple: t8112: Add SMC node
+      arm64: dts: apple: t600x: Add SMC node
+
+Russell King (Oracle) (2):
+      dt-bindings: gpio: Add Apple Mac SMC GPIO block
+      dt-bindings: mfd: Add Apple Mac System Management Controller
+
+Sven Peter (3):
+      dt-bindings: power: reboot: Add Apple Mac SMC Reboot Controller
+      soc: apple: rtkit: Make shmem_destroy optional
+      mfd: Add Apple Silicon System Management Controller
+
+ .../devicetree/bindings/gpio/apple,smc-gpio.yaml   |  37 ++
+ .../devicetree/bindings/mfd/apple,smc.yaml         |  71 +++
+ .../bindings/power/reset/apple,smc-reboot.yaml     |  52 +++
+ MAINTAINERS                                        |   7 +
+ arch/arm64/boot/dts/apple/t600x-die0.dtsi          |  35 ++
+ arch/arm64/boot/dts/apple/t8103.dtsi               |  35 ++
+ arch/arm64/boot/dts/apple/t8112.dtsi               |  35 ++
+ drivers/gpio/Kconfig                               |  10 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-macsmc.c                         | 293 ++++++++++++
+ drivers/mfd/Kconfig                                |  15 +
+ drivers/mfd/Makefile                               |   1 +
+ drivers/mfd/macsmc.c                               | 506 +++++++++++++++++++++
+ drivers/power/reset/Kconfig                        |  11 +
+ drivers/power/reset/Makefile                       |   1 +
+ drivers/power/reset/macsmc-reboot.c                | 363 +++++++++++++++
+ drivers/soc/apple/rtkit.c                          |   3 +-
+ include/linux/mfd/macsmc.h                         | 277 +++++++++++
+ 18 files changed, 1751 insertions(+), 2 deletions(-)
+---
+base-commit: 5abab6ab4ebacfff5857b63bd349902a6568d2e8
+change-id: 20250304-smc-6-15-f0ed619e31d4
+
+Best regards,
 -- 
-Dmitry
+Sven Peter <sven@svenpeter.dev>
+
+
 
