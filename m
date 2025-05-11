@@ -1,155 +1,287 @@
-Return-Path: <devicetree+bounces-176012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DA71AB28D0
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 15:46:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5AC8AB28DF
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 15:49:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7283F1899A95
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 13:44:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFE88164612
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 13:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83ADE258CF3;
-	Sun, 11 May 2025 13:43:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4177A81720;
+	Sun, 11 May 2025 13:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="D0/ceyjj"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="tMYYoGuq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09279257438
-	for <devicetree@vger.kernel.org>; Sun, 11 May 2025 13:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD27256C92;
+	Sun, 11 May 2025 13:49:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746971004; cv=none; b=a2l0eIKyUw+kDw9ERn79w3xG4uoHZv/+tNUu4ql96xERmrlWzblBCSK66gzIO+9UiS4hZ+WMF/XNrzPX4rQ/+su+DDY5sBg5mlDOVVeTlRoMvGt4/BYOWbjAsVuy48dP2V4wr/RpQs10gcs6qpZRaKgtNKE354LKlAbJv/HbwTo=
+	t=1746971344; cv=none; b=sxo1HsGTvODvnqutavrPgxmYsbwBIeaVeu66KbYTA9j9psldWF1mwL0IE35/LloyoxJw2jHRIk4bnaOI8y7li2JhwE7vRibjn7rI2je07eV1ogYybzpU20Su/Cu6FuPYka1NxgwyDWuueEn86SAVw2WuCWpB5SM6emGzpvBzeII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746971004; c=relaxed/simple;
-	bh=DGrIKW6QLI5GXj0WJzMWfVKaiU3ubl+sUPYQLJ6Uq80=;
+	s=arc-20240116; t=1746971344; c=relaxed/simple;
+	bh=iVDDATECt9gfhXNkrkHoCiPF6PoyhYBhPrjq8+PFV9o=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GzQ9ylNm1V2BjsKa4Gt0iXmel4tH/8mbboo+O2rw38kjuXMw6gc7K0TvpCEz6sd9tE106fiZIU3otSki7fV+9iwWtr43Bpr/zH4CxvcOSc1uAewkhh/jikrzEN0543JOCGTCJjOvx0SUenVo1QGcUwslTY0Hv8XBbV181h5W65g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=D0/ceyjj; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-22fb33898bbso42691175ad.3
-        for <devicetree@vger.kernel.org>; Sun, 11 May 2025 06:43:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1746971001; x=1747575801; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xYGn3XecLxKlXcXghuizRd0ORyv4dXXBBqocKLMzEs4=;
-        b=D0/ceyjj/QYLGGdm+n7zPKKEr6+WNeSJD4jliTP0+tsdOMKIQgW9I3xlZU63U6euOF
-         ZZG1Rsk7L2CQtpB0RZ8iktR4UqZlSWITCrqePgn+sWAGZjXzGAE6uj8BIh4AAdpCkmQ5
-         gtZXLus6S1IhBF50FPZ1JSXejnPsV+JTjmGgFX2pJAR0KC2wZgz+TCA9jQv0yCS5cW1s
-         6RPKLbNxs0a1jnRIh1DI+bb7Usd6BEfCpCX3mexoFL4ChW0iV1hv7ExjrKjsz61d5+Jo
-         6BGLDzkXEEFYHKENrdr4ERa9aaN9SwmW62PKJOZdaChj7/L8Qz1ymGe18wa3XP7c4opO
-         qbjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746971001; x=1747575801;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xYGn3XecLxKlXcXghuizRd0ORyv4dXXBBqocKLMzEs4=;
-        b=PLd9zPUluJdAy2rCMh1o8Jf149OPg28/J8P4Qx7FfpB8xoB2Vp8aowmQTr+D/ojiyw
-         tf4G0N9eoNews4gF3NaAo5e0As6FWcPhhoPi9qPFmCpoTsaflYKBdrDTe/MJTkzo65Po
-         IKvzaeWclNbwLhPi34FBVsc8n6Fl5UOp7BLx6U0zHcPAjp86ot3syT0iWP/ZgGclJ91n
-         Meb/ouk3C3qgiEqDQvGRWzBGNdf+hrwnn8t5IjUCerTeiQDV+6vtpNUb8LTtMBebm1DU
-         mcT977JO+iyfe/EgTSTjaZKLnnJXkmhjUUdKT0u70I1lTuBpQF77xZN3wwDiJWNxtb7g
-         2LVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZI4kTv+FmVy0tb4aQ8upsfWH799GJeQwriAlXb5b+j1AkJYjHa5ZShNhQQ/pfVLJutLCkv2MSgGK7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBNmjKwiUpBqTXc2PzGWKGL4Ph/ZboHKmgfAcHV7VAlnVe0qJM
-	zjjzKJXwop+4DMjJLy3nsQ96apeN9/gLR8rubkdmqWs3PNbdmQIR+hIjfdMzFtg=
-X-Gm-Gg: ASbGncs6jDauklFE7sPUkP9XDBUxO1q2SN8u1GpfvzBuPLMdI3Vbftjs+iWzdnzMs0E
-	FQ2tj7xnwVpwV6g0q+lxBziH8b/S+BvwrbVXYmR8w9+v3Upvl25u8KCUBfL6qgGYhBiyey0FVPh
-	byuBBz7XfyTtxd2ZztJgN1i+1nrBY8TSf5irTzk6c2IBje6ff0DOiOUqknCcB05A13jjX+fMyh0
-	MAA/3BkG0uZyEza97QEqXi5gOgrwaTjrkv6eIQJb8ZCMDU1+l0GXRIFASgaRdOd0HSPi1Gfo4ov
-	9hEqDqZA4Jk6l3Cf1c+b4KEOwC2LdOUsrxTjh++KbzzIU3iJvVpJ1R5q2y1PrtcHm8zjY+wyJ/I
-	OY9PXThwNhm3LmA==
-X-Google-Smtp-Source: AGHT+IG52LyOtdqyYBdOZ0QKQPhVZkpzaGbfXrQI34jhYPtmLfmrXHBFBAebuBhiCsLhxrZFt4LIYA==
-X-Received: by 2002:a17:902:e94d:b0:227:e6fe:2908 with SMTP id d9443c01a7336-22fc91a8448mr169477755ad.48.1746971001231;
-        Sun, 11 May 2025 06:43:21 -0700 (PDT)
-Received: from anup-ubuntu-vm.localdomain ([122.171.17.86])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc754785bsm46665805ad.20.2025.05.11.06.43.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 May 2025 06:43:20 -0700 (PDT)
-From: Anup Patel <apatel@ventanamicro.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v3 23/23] MAINTAINERS: Add entry for RISC-V RPMI and MPXY drivers
-Date: Sun, 11 May 2025 19:09:39 +0530
-Message-ID: <20250511133939.801777-24-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250511133939.801777-1-apatel@ventanamicro.com>
-References: <20250511133939.801777-1-apatel@ventanamicro.com>
+	 MIME-Version:Content-Type; b=OATMc7NtPRW2DpWO/FybxEceIScWi/ajuIi4zd3L+qcv4brgH9TcRCgk2AI500/7MEozkkUMekdAGw8JpS24WHDQqOZxqsqN8oCEA9Tkcqt9ZeJ6r6nJEnJlJ1u9qvCxGYMClDRF64rbwaJUStza/3VsRHiLRc2chpfh2qV/qAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=tMYYoGuq; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=55b2MXHN1ae6ZgEcDHzWaK1s3f7kfPOhMW8piFdTCOg=; b=tMYYoGuqY+aLskzruhSEzrfhYm
+	3updh2wCSjrXhRH9dN+KBGTlti7qmJnNuWpzgDA730IaYf3gPQHCRbDaDHqY1qdG1sIgusibybcWC
+	gkZDZC1T3MlB1L/6awN2g5mVWY96XAH4LPZ2UuIXear5YZPwpRwL0rOkvLRSMPAYUpXL3aVrxzRhw
+	wYK1SwbwyWmnAYirxa32HA9ROzvYhGtoVBF/MlQC6mKUwdXqX0BL8X5fzZvAKod9YKe3IX1FrQOWy
+	Un7Zz5plT/hyr5IMxk5kVq5KZ7ybIm6dzFn/ug48j/cFhCxTQ+3zW5t/6TOZhKiH3mZqnDZDXE6LS
+	OyLjqY3A==;
+Received: from i53875a1d.versanet.de ([83.135.90.29] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uE72j-0006vF-1j; Sun, 11 May 2025 15:48:37 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: amadeus@jmu.edu.cn, andyshrk@163.com, conor+dt@kernel.org,
+ damon.ding@rock-chips.com, devicetree@vger.kernel.org, didi.debian@cknow.org,
+ dsimic@manjaro.org, jbx6244@gmail.com, jing@jing.rocks, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, sebastian.reichel@collabora.com,
+ ziyao@disroot.org
+Subject: Re: [PATCH v7 4/5] arm64: dts: rockchip: add core dtsi for RK3562 SoC
+Date: Sun, 11 May 2025 15:48:35 +0200
+Message-ID: <3317829.AJdgDx1Vlc@diego>
+In-Reply-To: <20250511120009.37031-1-amadeus@jmu.edu.cn>
+References:
+ <13758471.dW097sEU6C@diego> <20250511120009.37031-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Add Rahul and myself as maintainers for RISC-V RPMI and MPXY drivers.
+Am Sonntag, 11. Mai 2025, 14:00:09 Mitteleurop=C3=A4ische Sommerzeit schrie=
+b Chukun Pan:
+> > First of all, thanks for noticing all the bits and pieces to improve.
+> > I di think I have now fixed up all the "regular" pieces you mentioned
+> > and amended the commit accordingly:
+> >
+> > https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.gi=
+t/commit/?id=3D1d2f65fa98ddcafdfd1ebcdb87105141861b584a
+>=20
+> Thanks a lot for the quick fix! It seems there is still a little problem:
+>=20
+> > <snip>
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3562.dtsi
+> > <snip>
+> +	gpu_opp_table: opp-table-gpu {
+> +		compatible =3D "operating-points-v2";
+> +
+> +		opp-300000000 {
+> +			opp-hz =3D /bits/ 64 <300000000>;
+> +			opp-microvolt =3D <825000 825000 1000000>;
+> +		};
+> +		opp-400000000 {
+> +		opp-hz =3D /bits/ 64 <400000000>;
+>=20
+> This line is missing a tab.
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
----
- MAINTAINERS | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+fixed :-) .
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 69511c3b2b76..46a0909a17d9 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20885,6 +20885,21 @@ F:	drivers/perf/riscv_pmu.c
- F:	drivers/perf/riscv_pmu_legacy.c
- F:	drivers/perf/riscv_pmu_sbi.c
- 
-+RISC-V RPMI AND MPXY DRIVERS
-+M:	Rahul Pathak <rahul@summations.net>
-+M:	Anup Patel <anup@brainfault.org>
-+L:	linux-riscv@lists.infradead.org
-+F:	Documentation/devicetree/bindings/clock/riscv,rpmi-clock.yaml
-+F:	Documentation/devicetree/bindings/clock/riscv,rpmi-mpxy-clock.yaml
-+F:	Documentation/devicetree/bindings/interrupt-controller/riscv,rpmi-mpxy-system-msi.yaml
-+F:	Documentation/devicetree/bindings/interrupt-controller/riscv,rpmi-system-msi.yaml
-+F:	Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml
-+F:	Documentation/devicetree/bindings/mailbox/riscv,sbi-mpxy-mbox.yaml
-+F:	drivers/clk/clk-rpmi.c
-+F:	drivers/irqchip/irq-riscv-rpmi-sysmsi.c
-+F:	drivers/mailbox/riscv-sbi-mpxy-mbox.c
-+F:	include/linux/mailbox/riscv-rpmi-message.h
-+
- RISC-V SPACEMIT SoC Support
- M:	Yixun Lan <dlan@gentoo.org>
- L:	linux-riscv@lists.infradead.org
--- 
-2.43.0
+> +			opp-microvolt =3D <825000 825000 1000000>;
+> +		};
+> > <snip>
+> +		spi0: spi@ff220000 {
+> +			compatible =3D "rockchip,rk3562-spi", "rockchip,rk3066-spi";
+> +			reg =3D <0x0 0xff220000 0x0 0x1000>;
+> +			interrupts =3D <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+>=20
+> Also needed here.
+
+I might be blind, but I don't see a tab missing here? #adress-cells and
+#size-cells are in the same level of indentation as the other properties
+of spi0? I did move the -cells down though now.
+
+
+> > <snip>
+> > +		pwm3: pwm@ff230030 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff230030 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+>=20
+> Missed here.
+
+adapted like the other pwm-nodes
+
+> > <snip>
+> > +				power-domain@12 {
+> > +					reg =3D <12>;
+> > +					#power-domain-cells =3D <1>;
+> > +					#address-cells =3D <1>;
+> > +					#size-cells =3D <0>;
+> > ...
+> > +				power-domain@13 {
+> > +					reg =3D <13>;
+> > +					#power-domain-cells =3D <1>;
+>=20
+> Does #power/#address/#size need to be put under pm_qos?
+
+moved
+
+> > <snip>
+> > +		spi1: spi@ff640000 {
+> > +			compatible =3D "rockchip,rk3066-spi";
+> > +			reg =3D <0x0 0xff640000 0x0 0x1000>;
+> > +			interrupts =3D <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
+> > +			#address-cells =3D <1>;
+> > +			#size-cells =3D <0>;
+> > ...
+> > +		spi2: spi@ff650000 {
+> > +			compatible =3D "rockchip,rk3066-spi";
+> > +			reg =3D <0x0 0xff650000 0x0 0x1000>;
+> > +			interrupts =3D <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
+> > +			#address-cells =3D <1>;
+> > +			#size-cells =3D <0>;
+>=20
+> Same here.
+
+moved
+
+>=20
+> > <snip>
+> > +		pwm4: pwm@ff700000 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff700000 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+> > ...
+> > +		pwm5: pwm@ff700010 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff700010 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+> > ...
+> > +		pwm6: pwm@ff700020 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff700020 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+> > ...
+> > +		pwm7: pwm@ff700030 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff700030 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+> > ...
+> > +		pwm8: pwm@ff710000 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff710000 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+> > ...
+> > +		pwm9: pwm@ff710010 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff710010 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+> > ...
+> > +		pwm10: pwm@ff710020 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff710020 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+> > ...
+> > +		pwm11: pwm@ff710030 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff710030 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+> > ...
+> > +		pwm12: pwm@ff720000 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff720000 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+> > ...
+> > +		pwm13: pwm@ff720010 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff720010 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+> > ...
+> > +		pwm14: pwm@ff720020 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff720020 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+> > ...
+> > +		pwm15: pwm@ff720030 {
+> > +			compatible =3D "rockchip,rk3562-pwm", "rockchip,rk3328-pwm";
+> > +			reg =3D <0x0 0xff720030 0x0 0x10>;
+> > +			#pwm-cells =3D <3>;
+> > +			pinctrl-names =3D "active";
+>=20
+> pinctrl and #pwm-cells forgot to change.
+
+hopefully caught all pwms now
+
+
+> > <snip>
+> > +		sdmmc0: mmc@ff880000 {
+> > +			compatible =3D "rockchip,rk3562-dw-mshc",
+> > +				     "rockchip,rk3288-dw-mshc";
+> > +			reg =3D <0x0 0xff880000 0x0 0x10000>;
+> > +			interrupts =3D <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
+> > +			max-frequency =3D <200000000>;
+> > ...
+> > +		sdmmc1: mmc@ff890000 {
+> > +			compatible =3D "rockchip,rk3562-dw-mshc",
+> > +				     "rockchip,rk3288-dw-mshc";
+> > +			reg =3D <0x0 0xff890000 0x0 0x10000>;
+> > +			interrupts =3D <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+> > +			max-frequency =3D <200000000>;
+>=20
+> max-frequency should be placed below clock
+
+moved and also moved fifo-depth upwards between clock-names
+and max-frequency
+
+
+> > <snip>
+> > +		saradc0: adc@ff730000 {
+> > +			compatible =3D "rockchip,rk3562-saradc";
+> > +			reg =3D <0x0 0xff730000 0x0 0x100>;
+> > +			interrupts =3D <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> > +			#io-channel-cells =3D <1>;
+> > ...
+> > +		saradc1: adc@ffaa0000 {
+> > +			compatible =3D "rockchip,rk3562-saradc";
+> > +			reg =3D <0x0 0xffaa0000 0x0 0x100>;
+> > +			interrupts =3D <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
+> > +			#io-channel-cells =3D <1>;
+>=20
+> `#io-channel-cells` should be put above `status =3D "disabled";`
+
+moved now :-)
+
+Hopefully this now caught all the smallish issues.
+
+
+Thanks a lot
+Heiko
+
 
 
