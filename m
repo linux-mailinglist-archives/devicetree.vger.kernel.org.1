@@ -1,105 +1,143 @@
-Return-Path: <devicetree+bounces-175942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D38EDAB260F
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 03:55:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F4A0AB266C
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 05:57:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FDE2189A6A4
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 01:55:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C8121896E3A
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 03:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51DC11411DE;
-	Sun, 11 May 2025 01:55:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8BB81519BA;
+	Sun, 11 May 2025 03:57:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O7dVw8nG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L/wFz/RD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E52DEEA8;
-	Sun, 11 May 2025 01:55:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EF602F2E;
+	Sun, 11 May 2025 03:57:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746928502; cv=none; b=JWhNEOsUaPTUUngqIi9jWY2qzvgFoX7tmxs0ANJifrtnL7hffy90nzFwfMQZepYuR/DyD1qMLEM9UmPU/yHEVJEn//ASQfpCP7SHiw5vPBdHV7onMhp9Yj/5yOiM4uFbsiCvkpR8OvTmGsTvsmbB576HY65uxhDLsjuN24axTMc=
+	t=1746935833; cv=none; b=eHlzfk17nToZC/16FZwz8euktsQcNM4vsmHnVQFp6mYYAxqsxOGeltasFcDM9otSg1wAyvFLSM0kCGEzGR4IpymomP6Mc3ZSwH9l47GsH7/0kqwyVhhXfxqEYFyo6+UB1HA1uv9yZM4lKBy7Ad9XPGpkBz/kl1iv/CWalgZu8XI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746928502; c=relaxed/simple;
-	bh=ig4DYJ3RXrVpEeq3aerEl+Ap4/cbUODtqNdrvm1zJko=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=tr0Ry1l4NcN3w+QjC1nAQr7XCgRFZhw/5SlKo5PLMrTVA6voAM34Kt1yEBQQoQngI4qdQeRKKSWhAMSHA1BuRD9y2IbFFtcnjdfAdYbpkz66Q8Mpqttd+ZUGqF1dctKTfMy/OZmUY3DCGRgU7387e0YSSAdIzT/bw/1EqmKnYGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O7dVw8nG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B011C4CEE2;
-	Sun, 11 May 2025 01:54:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1746928501;
-	bh=ig4DYJ3RXrVpEeq3aerEl+Ap4/cbUODtqNdrvm1zJko=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=O7dVw8nGOAjKUBvvPSiCXB25ADmuwKNiprixu+5FFh04GZ2ucVCvxN8jFlQtEHjeY
-	 ImxJlGApNuSuCtgpPcorxA+7CoZbJo6J8RF9JzivuA2wstZQ9u/gngjZH0/JR9OQni
-	 NuIbGRShNPb/deGAzgu8zTrvA06yHiAAZVwOCwmQ8/4wL3Ui2RFpJEXanFKDkQ6nK/
-	 XP1e12gz8+AdtJghb/wfFNlryapmHqAQbBA8DRyscCRk7coru9UYkZ0GTLlfpLAsd5
-	 iX2LV4Vf/e9o4wyclhxLzZ+c93b5lWOALqlCUcfAlxmJymj60l6ewr87wcT8kXrma+
-	 yNbTpHKoV8yEA==
-From: Mark Brown <broonie@kernel.org>
-To: Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
- Frank Li <Frank.Li@nxp.com>, linux-spi@vger.kernel.org, imx@lists.linux.dev, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- openbmc@lists.ozlabs.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250509112130.123462-3-krzysztof.kozlowski@linaro.org>
-References: <20250509112130.123462-3-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 1/2] spi: dt-bindings: fsl,dspi: Fix example
- indentation
-Message-Id: <174692849876.61256.337596049686049621.b4-ty@kernel.org>
-Date: Sun, 11 May 2025 10:54:58 +0900
+	s=arc-20240116; t=1746935833; c=relaxed/simple;
+	bh=BFWDG7x7PxyrK87vVrq1U1GU7n1/sZ65EzhbnGNGff0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ioTNCncnUrdQRqOesBkLKDkQbIVdTuaH2wstJyKEChQoZXJBRJJuF/IBEzvX16/+84GyyrnNAXAhFLlhvtOA9S5ikK8aSXp/7JrCBiNi+cF7mUwK6ec7VZ4So4XcNLY8vC7dJm0sJKDiOjn3/fDU0qK9DJCy9I1mBE+yDCkxiTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L/wFz/RD; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43ce71582e9so24492235e9.1;
+        Sat, 10 May 2025 20:57:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746935828; x=1747540628; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SHEFdiF6nfDH2zTUJn06c/V9fo7ZCyft1hJ7/VuJE3I=;
+        b=L/wFz/RDaDZr/u+TLu1KebCkF2FfJEGxpdSdsKNvmn9lokEmxJfgJ94GFGKpPbLi5J
+         5r4Ytjmedjw/dV9hzEqAmrpesrUwD7DQIr5uC2jMQqsb7OmWUVbDyJ578cpcFg+8/Isk
+         IjugUbHcFBjPi+oRIXDe3fKXX5B02cYgNOjpgTgMNNO+Thpstx9B2ffjln5OdBsGZazI
+         UWd0DDsvBDglmlByGYjdLB72Svux8ToPPnqI6NiIw6KH4X6v21xZdtWvvgDuIYDZBvHx
+         GuIhL5GbXPRWP4ron7GCTB7Q0FCRv7ZR0CVgs0nvc1bk1yJWcGxM9hCrWqedj3KI4DFe
+         Qx/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746935828; x=1747540628;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SHEFdiF6nfDH2zTUJn06c/V9fo7ZCyft1hJ7/VuJE3I=;
+        b=CQZJtSXL78o0uSeQ2z1IcWEezInEBpZogkudPA2nz5Ck0YTQE9rrqogXbjtOZ+5Ll5
+         34YuobpyI+tUvcK96cxT6SU++809CNR0YVDjk7M66cgd+7rMxUiDFavo1Jp0IdOCAqew
+         tv+AS9t2UY2hq3ZWVzDOOakwuztKvFsY4//MJfeCkWV8Tc1RJoeAjUAUr3Mul7yJVWnq
+         tYPevOTafo6VbD+o/8zJ4+ooZh9jkiOJnaV81Ejy1dXSsZIegtbH5Hjv2e5J0ANnaJJ5
+         XZI81xZrRkxmHRuIL7SOxqKxo9FC3LaqFiBuZjwpvjojBbLOHPSt5unayHUdY4G8XzK3
+         QwRA==
+X-Forwarded-Encrypted: i=1; AJvYcCURh6q3hzOikR6snK2HivVUDXeCpKHonFthQaDzpKIMIc0grPHruBuM738j9LvqQdHXQc/pKUUa1eVO@vger.kernel.org, AJvYcCV9XIl3uEbAf4aVwa/yXZQM0991UtTBUSc4mhPgreBs/rrizdja/EcDCON6VbhBpLF3oVAqoBFyZ6iMpmSd@vger.kernel.org, AJvYcCWVarnoZtzK3pGCKK1GAQXTxKQCHo7Y+a9lFpKxL9ZUCQg0Z3yelHgcX7vVI95coTnPI/DPUaVCvoRx@vger.kernel.org
+X-Gm-Message-State: AOJu0YywonlYR027rm3PSO1cmzOk7FYUwIYHWLix4a3jDGbbX80mcKkm
+	tqgE4/UQdZ1jeV7DgqypJFNioI/ItcBHE5DIctKYzO9Ebe+C2sCbkpSYim21
+X-Gm-Gg: ASbGncsFar6/XiB7jhBEpt5d57zVdmbQizl6+O+lZoSWhnO9nm8EBSgQzC4VRe4kbWE
+	z/wPdd1QOmYTFZTfftHw+UZlSxJNbXCV+v2nxhDuv8ZcG9Eri5xUnTjNbUDpdx0YmBmcq92BGU3
+	GrT/zZHnnq5OTfkhrNrcBnYHDvBqhh+eavi0xN9ohcWeOVVpSSH4euYu1W6Stgt97DfQTvRKvqI
+	8VOlfx1LDyLvxeOzm+ox8+1UoSR+sq6HK6jry5x2JljTX9HyfRALRAfdLlTVccoysMjYO402Sdr
+	aDzey+4keUbR+esz1TSC5SVlocx8LGJFXQh7bsscw2xsIcQJseVLOQZ/hkgB8dWXEf/ffcJEZuo
+	3
+X-Google-Smtp-Source: AGHT+IG0HTz6bxAK+xcJs42AI1myp6Y5c6S5+NDyZdHDXX1hxf3FhP1qJKA43nP75LRB1FiCiMkAAQ==
+X-Received: by 2002:a05:6000:402a:b0:3a0:a19f:2f47 with SMTP id ffacd0b85a97d-3a1f6487fa9mr7029885f8f.42.1746935827811;
+        Sat, 10 May 2025 20:57:07 -0700 (PDT)
+Received: from tempest2.110.lan (xt27dd.stansat.pl. [83.243.39.221])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a4c76dsm8163963f8f.92.2025.05.10.20.57.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 10 May 2025 20:57:07 -0700 (PDT)
+From: Pawel Dembicki <paweldembicki@gmail.com>
+To: linux-hwmon@vger.kernel.org
+Cc: Pawel Dembicki <paweldembicki@gmail.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Noah Wang <noahwang.wang@outlook.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Grant Peltier <grantpeltier93@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Greg KH <gregkh@linuxfoundation.org>,
+	Shen Lichuan <shenlichuan@vivo.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Charles Hsu <ythsu0511@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH v4 0/5] hwmon: pmbus: Add support for MPM82504 and MPM3695 family
+Date: Sun, 11 May 2025 05:55:43 +0200
+Message-ID: <20250511035701.2607947-1-paweldembicki@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
+Content-Transfer-Encoding: 8bit
 
-On Fri, 09 May 2025 13:21:31 +0200, Krzysztof Kozlowski wrote:
-> DTS example in the bindings should be indented with 2- or 4-spaces, so
-> correct a mixture of different styles to keep consistent 4-spaces.
-> 
-> 
+This series extends the hwmon PMBus driver for the MPS MPQ8785 to support
+two additional Monolithic Power Systems devices: the MPM82504 and
+MPM3695 family.
 
-Applied to
+The driver is restructured to support multiple devices using device tree
+matching. It also introduces an optional
+"mps,vout-fb-divider-ratio-permille" property to configure the
+VOUT_SCALE_LOOP PMBus register, which adjusts reported output voltages
+depending on the external feedback divider.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Device tree bindings are updated accordingly.
 
-Thanks!
+Changes have been tested on hardware with device-tree based matching
+using the MPM82504 and MPM3695-10.
 
-[1/2] spi: dt-bindings: fsl,dspi: Fix example indentation
-      commit: 846656f278e803cb60161f0cba4ee90a058440cc
-[2/2] spi: dt-bindings: nuvoton,wpcm450-fiu: Drop unrelated nodes from DTS example
-      commit: a4ca02454821cbc411e0bf16e527d392f188c218
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Pawel Dembicki (5):
+  dt-bindings: hwmon: Add bindings for mpq8785 driver
+  hwmon: pmbus: mpq8785: Prepare driver for multiple device support
+  hwmon: pmbus: mpq8785: Implement VOUT feedback resistor divider ratio
+    configuration
+  hwmon: pmbus: mpq8785: Add support for MPM82504
+  hwmon: pmbus: mpq8785: Add support for MPM3695 family
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+ .../bindings/hwmon/pmbus/mps,mpq8785.yaml     | 74 +++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  2 -
+ Documentation/hwmon/mpq8785.rst               | 27 ++++--
+ drivers/hwmon/pmbus/mpq8785.c                 | 91 +++++++++++++++++--
+ 4 files changed, 178 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq8785.yaml
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.43.0
 
 
