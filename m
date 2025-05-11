@@ -1,185 +1,138 @@
-Return-Path: <devicetree+bounces-175979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E801AB27C5
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 12:42:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E851AB27E5
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 13:13:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3703176165
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 10:42:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EEF73BB3DD
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 11:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9091DAC95;
-	Sun, 11 May 2025 10:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E07F1DB366;
+	Sun, 11 May 2025 11:13:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="gKldsTgC";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="kqQI1rkB"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ra9bLu/M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b7-smtp.messagingengine.com (fhigh-b7-smtp.messagingengine.com [202.12.124.158])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B56931A3141;
-	Sun, 11 May 2025 10:42:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76D5B1891AB;
+	Sun, 11 May 2025 11:13:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746960170; cv=none; b=q4OiPzTUjJK+VyMLO907btAD+PK4AdKcjqIHDGWIZOCIddGG3Amn7XISARNCStBaZbNaeFR0Hk/ZMV67wum0f8+Kz7nXBSVnn0wMWoYuxx5L0pWvwXofH1xECV9zfW29hsu5aF4mE0zVusWcLts/X+H3ghs1cohUT0JAw/NXZTk=
+	t=1746962019; cv=none; b=nWglPsW12BvGpqmSOUfF1O6+2AfbeAeVaw0lA2h1JtaHKbvTsnOxgGLLmrpbP+OlyJbR2B1+gVvuMaV4D/CzgwNQvWlgKPUrFia6VC57kkusdUe3BdgNK+5T+0miWY/2ZB0fKWlwhszo1SY4d4HrbDB49EKPbK35pOQ7os0bR4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746960170; c=relaxed/simple;
-	bh=01SGTuUZq2iCNSFxmrHHonQPTVrC55gR7rrcTjpaVnc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=J3KfWQBWV8QlzprEj9kwufBREpWXhMHEP6dpM0TYUkcyR7qMArPvha3o77FcoRoin+gXcyW03I780DfBU+OdssgvsnPuoVrO64PMXlEaK7NK3uuP3z0g+9yccXgAXVypkMhrcxw/VIFgAGmxNfhAhBblvqGoU/X1AKNyHBujKkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=gKldsTgC; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=kqQI1rkB; arc=none smtp.client-ip=202.12.124.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 5C12025400F4;
-	Sun, 11 May 2025 06:42:47 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-04.internal (MEProxy); Sun, 11 May 2025 06:42:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1746960167; x=
-	1747046567; bh=7NkCp18/Yuhg5ybR4dfOeqyUzMpfRweO1qk/tseFdhw=; b=g
-	KldsTgCXJfspWmNdSRasTperLwxKyFxccxFxY7JVhIZhU+/xXHVIElgRKumUC6Ju
-	8SoIiljNxgXFXNGvfSnlL48E6PPQCNXYTtDmbwGStVDBn9OVWQr32ug8MQQRyVp1
-	0QUTgAjev+W1vNMK906GV4+PQTOAyfeXBNcnN9PfNh1scglDHuPgMf8jaZEEGcxV
-	UBQZNDvwX0jcfAyNbBrZ+Jztj049Li9vwRSae2l2ieZcPaICKm7IUf88v/YUMz2K
-	oaLC5vpiesDz6Tefc8p16dLZrqBE5UQy6i9HKbjkwY0R/iQm98FKIhPQzJepJZBH
-	pRKpikfj0hmGuvFEWL6sA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1746960167; x=1747046567; bh=7
-	NkCp18/Yuhg5ybR4dfOeqyUzMpfRweO1qk/tseFdhw=; b=kqQI1rkBWBH1FNaY4
-	ArOOsRF+cP/pgONE6mE3WWEp+tHLIY84b+/VKgvpCvwK7uFHfFSAOhxP29AVrcHT
-	TB3MRBrKUu5E5WiJYsBJmMS7x/6dEkhL2KzIZo57jjMGm8bCMZtek5V17p9/65o3
-	8GDgYCZF37tfDFzed9Cn7+ZHbn1NSbLQEWY/+t0f0sWA/uFRlq6jGvmOWPJxQFMX
-	AMf29OyC6EFWtezypE7HzZIF5PGJ/Gth64h4OLYAgb+MsTAPw5Sv+Zd8TZnUKfPY
-	47+DnxHvslPnXcTYL3jM4qFLPAXlDEC7BH535nv7MpbjwaprIpgZPcJZqpjc7Tle
-	OcvMQ==
-X-ME-Sender: <xms:J38gaG6QG0RI_PIhZfeiQYLMH-oic8cE2IqOiA_8ZC64k7pLndDA2A>
-    <xme:J38gaP5u3ZTU0J6aGbZ9-mzI0QKN1ktMvGYcIB47HMm1lExKRB8NjRw5zgKCb5Ylt
-    bkPaJ4Hrye4xcvUVQ>
-X-ME-Received: <xmr:J38gaFfOiOFwjTqF3pGEwGptwFzCmoPFfp5eH_qzSWdFu2-aC6YohquGK3YHiIizGbB1OlSa27e6BIIhlDb-ur7ZZmtR3D__hSPFkQjLEkP2>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvleekudejucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredt
-    tdenucfhrhhomheptfihrghnucghrghlkhhlihhnuceorhihrghnsehtvghsthhtohgrsh
-    htrdgtohhmqeenucggtffrrghtthgvrhhnpeffheeiffegtdfgffejteevgeefkeelieel
-    keevueetffetteduffevgeeiieehteenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
-    grmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgspghr
-    tghpthhtohepvdegpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehmrhhiphgrrh
-    gusehkvghrnhgvlhdrohhrghdprhgtphhtthhopeifvghnshestghsihgvrdhorhhgpdhr
-    tghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidrihhnthgvlh
-    drtghomhdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghp
-    thhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopegurghnihgvlh
-    esfhhffihllhdrtghhpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgr
-    ihhlrdgtohhmpdhrtghpthhtohepshgrmhhuvghlsehshhholhhlrghnugdrohhrghdprh
-    gtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:J38gaDJxud_CuDBWQVoA8-UeF-aoPyo_jfc4mB5JjXuomLwnjO-Row>
-    <xmx:J38gaKLiA9Cg5dIeYMGAV5m8WWXtQqfme7LV6JZuum3IdPO3AH1-3Q>
-    <xmx:J38gaEyng_l6ChDOEUbehRQ7iPxyS99mEQWi0S39B-bU14Z4cuLfqA>
-    <xmx:J38gaOIUChpbLxw5F4yNKAm0nblR-sQjBEQUcjwR2gjT4JPPUbChyg>
-    <xmx:J38gaMx0cWjOkIIUKyWdDQSfnm2rqQotyBFRD33kYiAYgiAjs-w9HxMM>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 11 May 2025 06:42:40 -0400 (EDT)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Maxime Ripard <mripard@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
+	s=arc-20240116; t=1746962019; c=relaxed/simple;
+	bh=1rAsgwZYIQE6e6R96BL5uR52KMCv8+3yF9wTwCO3IdI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZDYd1oFzkziW7+E3mHYUNllu1R8YrcNfYBeFx/cZj5MPy45aSaGxPQwR1uv8MqEtTPNTw1e8XUVmQJlRmcyjV4An98GGN4VOiSvG/thT+WzbGL/1tbw/t08xS/vxI8jnRrKWT42cskr+FH8eRALNHQL6ReDtxTm4BydsSABMz4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ra9bLu/M; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1746962018; x=1778498018;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1rAsgwZYIQE6e6R96BL5uR52KMCv8+3yF9wTwCO3IdI=;
+  b=Ra9bLu/MhareMqizcctI/oZ/m8L6tuhpNmt5t8cNCGeGNcA5AGOHvN6T
+   TrHuu967t3WluBaKA1vjpTgBozBLE1Ha23op9T7JJ2v30vjdA2daf+0pu
+   SOfK3JrN65KfjcOnB6Jfauh0QvaQ8Jx2+kzb9ee7A694YfsgfKTZvqKey
+   zPbLTZynIyYbmot4h83P8spOokW5iqSnGACLNDz3A3m8kJe61BO9j1rRX
+   WbAkL/t6kzlbGy1lNjc2hn810miGSO8AAIbbTqHu2zeNy2b5lkyhu0PCb
+   Io03h/x0DVZLNrWlF928M7idE+dWbQT8ZVEsyn76RktXIvoLcJKObyWDb
+   w==;
+X-CSE-ConnectionGUID: R0sdyaZbT9OJUWfZp1/nHQ==
+X-CSE-MsgGUID: eEnA/QB8TXuFH4n2adn8+A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11429"; a="47873550"
+X-IronPort-AV: E=Sophos;i="6.15,280,1739865600"; 
+   d="scan'208";a="47873550"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2025 04:13:37 -0700
+X-CSE-ConnectionGUID: kXTEaESAQbGa6BLvEcG9BA==
+X-CSE-MsgGUID: cG3jbXnLQ2qq1JMScR/teQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,280,1739865600"; 
+   d="scan'208";a="137603556"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 11 May 2025 04:13:34 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uE4cc-000Djb-1r;
+	Sun, 11 May 2025 11:13:30 +0000
+Date: Sun, 11 May 2025 19:13:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alexey Charkov <alchark@gmail.com>, Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH v10 11/11] drm: sun4i: de33: mixer: add mixer configuration for the H616
-Date: Sun, 11 May 2025 22:31:20 +1200
-Message-ID: <20250511104042.24249-12-ryan@testtoast.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250511104042.24249-1-ryan@testtoast.com>
-References: <20250511104042.24249-1-ryan@testtoast.com>
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	Alexey Charkov <alchark@gmail.com>
+Subject: Re: [PATCH 2/3] mtd: spi-nor: Add a driver for the VIA/WonderMedia
+ serial flash controller
+Message-ID: <202505111905.tlinDurh-lkp@intel.com>
+References: <20250510-wmt-sflash-v1-2-02a1ac6adf12@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250510-wmt-sflash-v1-2-02a1ac6adf12@gmail.com>
 
-From: Jernej Skrabec <jernej.skrabec@gmail.com>
+Hi Alexey,
 
-The H616 (and related SoC packages sharing the same die) carry the new
-DE33 display engine.
+kernel test robot noticed the following build errors:
 
-Add the mixer configuration and a compatible string for the H616 to the
-mixer.
+[auto build test ERROR on ed61cb3d78d585209ec775933078e268544fe9a4]
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+url:    https://github.com/intel-lab-lkp/linux/commits/Alexey-Charkov/dt-bindings-spi-Add-VIA-WonderMedia-serial-flash-controller/20250511-034459
+base:   ed61cb3d78d585209ec775933078e268544fe9a4
+patch link:    https://lore.kernel.org/r/20250510-wmt-sflash-v1-2-02a1ac6adf12%40gmail.com
+patch subject: [PATCH 2/3] mtd: spi-nor: Add a driver for the VIA/WonderMedia serial flash controller
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20250511/202505111905.tlinDurh-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250511/202505111905.tlinDurh-lkp@intel.com/reproduce)
 
---
-Changelog v7..v8:
-- Separate DE33 support and H616 enablement in the mixer.
----
- drivers/gpu/drm/sun4i/sun8i_mixer.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505111905.tlinDurh-lkp@intel.com/
 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.c b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-index 0d4695132dae..f774b693634d 100644
---- a/drivers/gpu/drm/sun4i/sun8i_mixer.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-@@ -799,6 +799,17 @@ static const struct sun8i_mixer_cfg sun50i_h6_mixer0_cfg = {
- 	.vi_num		= 1,
- };
- 
-+static const struct sun8i_mixer_cfg sun50i_h616_mixer0_cfg = {
-+	.ccsc		= CCSC_MIXER0_LAYOUT,
-+	.de_type	= sun8i_mixer_de33,
-+	.mod_rate	= 600000000,
-+	.scaler_mask	= 0xf,
-+	.scanline_yuv	= 4096,
-+	.ui_num		= 3,
-+	.vi_num		= 1,
-+	.map		= {0, 6, 7, 8},
-+};
-+
- static const struct of_device_id sun8i_mixer_of_table[] = {
- 	{
- 		.compatible = "allwinner,sun8i-a83t-de2-mixer-0",
-@@ -844,6 +855,10 @@ static const struct of_device_id sun8i_mixer_of_table[] = {
- 		.compatible = "allwinner,sun50i-h6-de3-mixer-0",
- 		.data = &sun50i_h6_mixer0_cfg,
- 	},
-+	{
-+		.compatible = "allwinner,sun50i-h616-de33-mixer-0",
-+		.data = &sun50i_h616_mixer0_cfg,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, sun8i_mixer_of_table);
+All errors (new ones prefixed by >>):
+
+   drivers/mtd/spi-nor/controllers/wmt-sflash.c: In function 'wmt_sflash_pcmd_mode':
+>> drivers/mtd/spi-nor/controllers/wmt-sflash.c:132:16: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
+     132 |         reg |= FIELD_PREP(SF_PROG_CMD_MOD, enable);
+         |                ^~~~~~~~~~
+
+
+vim +/FIELD_PREP +132 drivers/mtd/spi-nor/controllers/wmt-sflash.c
+
+   126	
+   127	static void wmt_sflash_pcmd_mode(struct wmt_sflash_host *host, bool enable)
+   128	{
+   129		u32 reg = readl(host->regbase + SF_SPI_INTF_CFG);
+   130	
+   131		reg &= ~SF_PROG_CMD_MOD;
+ > 132		reg |= FIELD_PREP(SF_PROG_CMD_MOD, enable);
+   133		writel(reg, host->regbase + SF_SPI_INTF_CFG);
+   134	}
+   135	
+
 -- 
-2.49.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
