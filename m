@@ -1,138 +1,123 @@
-Return-Path: <devicetree+bounces-175980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E851AB27E5
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 13:13:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B16F7AB2815
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 14:00:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EEF73BB3DD
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 11:13:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26A843B297D
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 12:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E07F1DB366;
-	Sun, 11 May 2025 11:13:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B2661DC9A3;
+	Sun, 11 May 2025 12:00:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ra9bLu/M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eCJfUw6s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76D5B1891AB;
-	Sun, 11 May 2025 11:13:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311721EA80;
+	Sun, 11 May 2025 12:00:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746962019; cv=none; b=nWglPsW12BvGpqmSOUfF1O6+2AfbeAeVaw0lA2h1JtaHKbvTsnOxgGLLmrpbP+OlyJbR2B1+gVvuMaV4D/CzgwNQvWlgKPUrFia6VC57kkusdUe3BdgNK+5T+0miWY/2ZB0fKWlwhszo1SY4d4HrbDB49EKPbK35pOQ7os0bR4k=
+	t=1746964840; cv=none; b=es2udiXvgeUbNsdxzS1iTiD6qbr9D8EfisGVr1V9sIFtmH7qJkswHopEmRVAGZOiLZ/1NVwCLYYf6WNYBkOItmZO2/FTvUFkGCKK8n/Tc6PzwR9KiSaEs5sPrIVjc1HiNDVdBnJEOuM6ag9VFN0iYg45r4fsCeiwDMIav6g5Sbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746962019; c=relaxed/simple;
-	bh=1rAsgwZYIQE6e6R96BL5uR52KMCv8+3yF9wTwCO3IdI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZDYd1oFzkziW7+E3mHYUNllu1R8YrcNfYBeFx/cZj5MPy45aSaGxPQwR1uv8MqEtTPNTw1e8XUVmQJlRmcyjV4An98GGN4VOiSvG/thT+WzbGL/1tbw/t08xS/vxI8jnRrKWT42cskr+FH8eRALNHQL6ReDtxTm4BydsSABMz4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ra9bLu/M; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1746962018; x=1778498018;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1rAsgwZYIQE6e6R96BL5uR52KMCv8+3yF9wTwCO3IdI=;
-  b=Ra9bLu/MhareMqizcctI/oZ/m8L6tuhpNmt5t8cNCGeGNcA5AGOHvN6T
-   TrHuu967t3WluBaKA1vjpTgBozBLE1Ha23op9T7JJ2v30vjdA2daf+0pu
-   SOfK3JrN65KfjcOnB6Jfauh0QvaQ8Jx2+kzb9ee7A694YfsgfKTZvqKey
-   zPbLTZynIyYbmot4h83P8spOokW5iqSnGACLNDz3A3m8kJe61BO9j1rRX
-   WbAkL/t6kzlbGy1lNjc2hn810miGSO8AAIbbTqHu2zeNy2b5lkyhu0PCb
-   Io03h/x0DVZLNrWlF928M7idE+dWbQT8ZVEsyn76RktXIvoLcJKObyWDb
-   w==;
-X-CSE-ConnectionGUID: R0sdyaZbT9OJUWfZp1/nHQ==
-X-CSE-MsgGUID: eEnA/QB8TXuFH4n2adn8+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11429"; a="47873550"
-X-IronPort-AV: E=Sophos;i="6.15,280,1739865600"; 
-   d="scan'208";a="47873550"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2025 04:13:37 -0700
-X-CSE-ConnectionGUID: kXTEaESAQbGa6BLvEcG9BA==
-X-CSE-MsgGUID: cG3jbXnLQ2qq1JMScR/teQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,280,1739865600"; 
-   d="scan'208";a="137603556"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 11 May 2025 04:13:34 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uE4cc-000Djb-1r;
-	Sun, 11 May 2025 11:13:30 +0000
-Date: Sun, 11 May 2025 19:13:00 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alexey Charkov <alchark@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	Alexey Charkov <alchark@gmail.com>
-Subject: Re: [PATCH 2/3] mtd: spi-nor: Add a driver for the VIA/WonderMedia
- serial flash controller
-Message-ID: <202505111905.tlinDurh-lkp@intel.com>
-References: <20250510-wmt-sflash-v1-2-02a1ac6adf12@gmail.com>
+	s=arc-20240116; t=1746964840; c=relaxed/simple;
+	bh=D3PBTXrFAxlY+eEyaTNWwLnmg3A31RD4Y7uGWUvDGfk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JzFDjM1EvnpOlnzi7bSTuuRhUfleZlaAQYtjSrniWGm+2QddxaXKEXinl4KGdKx4AyfGzBuqrpsp7/OM1LhEdTQfmK9NcqJ2H+q3kPZB00CQ+KDMKUHBqE9FQ1aT+W4qRLvUIzwx2MABDRiPHddsKQYcDeuvr6ko81J0YPEsbX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eCJfUw6s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95362C4AF09;
+	Sun, 11 May 2025 12:00:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746964839;
+	bh=D3PBTXrFAxlY+eEyaTNWwLnmg3A31RD4Y7uGWUvDGfk=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=eCJfUw6spCRRHlMrGdomB/Mnz/KA4rcdWP4MR54Bq/efo41zwyMXQ/NRcOzNhWas+
+	 IsmdIeU0a11Y0BCK758sOn4hvqTQ/y1ASfukz3SOoFI0KhLGijp+kG6oxdYV3yuwaU
+	 2j7Nlz6SWXmYczmuzzXPT5YKgHuydyhWnyjNlJTsjxbzdXgSpwKe4XGcP2FptDi+oB
+	 26T1GKNWKsJK+H6w/ptqLO0C7DQnq3CzdgssDBqP7eMFI4Xh1aalHzb7Qqu8fCzGIY
+	 OTXqK2nmVrELpBMufXS6EWl1GE/uwClYXGL2/J0qYP8OOWJuJut90dPm9vh1qvpGfg
+	 6YB4OSBgaMKdA==
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-2c2ada8264aso3166593fac.2;
+        Sun, 11 May 2025 05:00:39 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUd41QF8SzrsuzhPXdnO2OH5ilELlwDoyKYwyy85VJ6LajmhHjcMxKSQyvZRSnUExIsSrTsplcf/ye68ltU@vger.kernel.org, AJvYcCW68aHwN0Oh6uanq/adtEjS71xdCjV0toMhX7b/u4dONr7mG/Tz+cSpWlOaViIgDTc+5M2wqQP6l2Dh@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfwxdK+l8CLyL1I3VzU1kKC5QEKjs53Xojt1iKLdTMqTadr2fn
+	06p0518QtYZgenPLj8glCI5MZbpUARVWSgffjn5UY3ztFHGlbkwcb0057neRn4+OI/5srwej4A4
+	/lEkzMEWumIuh2t/3GvuOyG/7YvY=
+X-Google-Smtp-Source: AGHT+IFqyQGigILFU2ECSi6E5ms65UwoVAMiMzenjbRMrpkaDFwmJRcd/7RXGw2dJa09ArKgbIl9L33U3JoB2mMZHAk=
+X-Received: by 2002:a05:6871:5824:b0:2d5:4f51:37fa with SMTP id
+ 586e51a60fabf-2dba44e3613mr6045354fac.31.1746964838994; Sun, 11 May 2025
+ 05:00:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250510-wmt-sflash-v1-2-02a1ac6adf12@gmail.com>
+References: <20250506073216.43059-1-clamor95@gmail.com>
+In-Reply-To: <20250506073216.43059-1-clamor95@gmail.com>
+From: Chanwoo Choi <chanwoo@kernel.org>
+Date: Sun, 11 May 2025 21:00:02 +0900
+X-Gmail-Original-Message-ID: <CAGTfZH3hTGYL-QnK0nFhCkY58w+VU0NWDFFj96Coj3nuS9wmMg@mail.gmail.com>
+X-Gm-Features: AX0GCFvoSjIMUxgTWRraiTkKSskn-Lbl3BVtgo9u3LYtsHCmsgZhvMr9LXSITG8
+Message-ID: <CAGTfZH3hTGYL-QnK0nFhCkY58w+VU0NWDFFj96Coj3nuS9wmMg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] extcon: add basic Maxim MAX14526 MUIC support
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: MyungJoo Ham <myungjoo.ham@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Alexey,
+Hi,
 
-kernel test robot noticed the following build errors:
+Applied them.
 
-[auto build test ERROR on ed61cb3d78d585209ec775933078e268544fe9a4]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexey-Charkov/dt-bindings-spi-Add-VIA-WonderMedia-serial-flash-controller/20250511-034459
-base:   ed61cb3d78d585209ec775933078e268544fe9a4
-patch link:    https://lore.kernel.org/r/20250510-wmt-sflash-v1-2-02a1ac6adf12%40gmail.com
-patch subject: [PATCH 2/3] mtd: spi-nor: Add a driver for the VIA/WonderMedia serial flash controller
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20250511/202505111905.tlinDurh-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250511/202505111905.tlinDurh-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505111905.tlinDurh-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/mtd/spi-nor/controllers/wmt-sflash.c: In function 'wmt_sflash_pcmd_mode':
->> drivers/mtd/spi-nor/controllers/wmt-sflash.c:132:16: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-     132 |         reg |= FIELD_PREP(SF_PROG_CMD_MOD, enable);
-         |                ^~~~~~~~~~
+Thanks,
 
 
-vim +/FIELD_PREP +132 drivers/mtd/spi-nor/controllers/wmt-sflash.c
+On Tue, May 6, 2025 at 5:09=E2=80=AFPM Svyatoslav Ryhel <clamor95@gmail.com=
+> wrote:
+>
+> The MAX14526 is a simple multiplexer of common inputs on a single
+> mini/micro USB for portable devices.
+>
+> ---
+> Changes on switching from v2 to v3:
+> - fixed overflow issue with ~USB_DET_DIS
+>
+> Changes on switching from v1 to v2:
+> - added port and connector to schema
+> - removed -muic suffix
+> - removed unneded comment header
+> - removed unneded gpios in private data
+> - improved code formatting
+> ---
+>
+> Svyatoslav Ryhel (2):
+>   dt-bindings: extcon: Document Maxim MAX14526 MUIC
+>   extcon: Add basic support for Maxim MAX14526 MUIC
+>
+>  .../bindings/extcon/maxim,max14526.yaml       |  80 +++++
+>  drivers/extcon/Kconfig                        |  12 +
+>  drivers/extcon/Makefile                       |   1 +
+>  drivers/extcon/extcon-max14526.c              | 302 ++++++++++++++++++
+>  4 files changed, 395 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/extcon/maxim,max145=
+26.yaml
+>  create mode 100644 drivers/extcon/extcon-max14526.c
+>
+> --
+> 2.48.1
+>
+>
 
-   126	
-   127	static void wmt_sflash_pcmd_mode(struct wmt_sflash_host *host, bool enable)
-   128	{
-   129		u32 reg = readl(host->regbase + SF_SPI_INTF_CFG);
-   130	
-   131		reg &= ~SF_PROG_CMD_MOD;
- > 132		reg |= FIELD_PREP(SF_PROG_CMD_MOD, enable);
-   133		writel(reg, host->regbase + SF_SPI_INTF_CFG);
-   134	}
-   135	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
 
