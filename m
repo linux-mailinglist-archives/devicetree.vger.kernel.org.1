@@ -1,272 +1,105 @@
-Return-Path: <devicetree+bounces-175941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813E5AB2590
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 00:08:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D38EDAB260F
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 03:55:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCF4F7AFA1B
-	for <lists+devicetree@lfdr.de>; Sat, 10 May 2025 22:06:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FDE2189A6A4
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 01:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5484228751B;
-	Sat, 10 May 2025 22:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51DC11411DE;
+	Sun, 11 May 2025 01:55:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lWcg04ID"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O7dVw8nG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C4422579E;
-	Sat, 10 May 2025 22:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E52DEEA8;
+	Sun, 11 May 2025 01:55:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746914801; cv=none; b=KyqJdmCn9hhLc0AFZPJl1apMJYqNt2A648AWp+UeZq1yC1ZdhupB4+H2/kGtwcyiojWgUYINrxCYuR5edGsS1dTGLZKkpdgr+EwYXlgwH79IfGuTtwwGO6/LcsjxZJ5vAgmXm83VOnFpDh2aYl7ixfzEFwH1gtcLe9cWY8JQMRk=
+	t=1746928502; cv=none; b=JWhNEOsUaPTUUngqIi9jWY2qzvgFoX7tmxs0ANJifrtnL7hffy90nzFwfMQZepYuR/DyD1qMLEM9UmPU/yHEVJEn//ASQfpCP7SHiw5vPBdHV7onMhp9Yj/5yOiM4uFbsiCvkpR8OvTmGsTvsmbB576HY65uxhDLsjuN24axTMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746914801; c=relaxed/simple;
-	bh=p1ogddfKyDLswZD+8Lq4q/ukt2Ed9aQburf2hvVJ6Ro=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oeGY9qm9x0HczwsUq+UmqqLfC3Z8g0puplv1lDFEzFZzfdDnGT8PzpCzpsQ0MiF8zUlwqGH31+8yrtRUFA+c5fcCQAFhL6dfuLhxFmG2cMeF8lHNFO5LL5lmbOL6D/a7EIr5uR52drkDMZFO1pvFzRsdyyl1F7X9+veieCuJ7RM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lWcg04ID; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43ce70f9afbso35110515e9.0;
-        Sat, 10 May 2025 15:06:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746914797; x=1747519597; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uezwVFz0Zcagk+1GhVcJ7am3l2Fc5VtSdFSVCAllSAg=;
-        b=lWcg04IDq3BCA1pvoTn8FYr8MjgvvRLPwU6rrMOpcsrTalnTGbUUfjmd+Uv8r6cgjL
-         WcNAHn3MNgfhGEKP9E9GqwzAiGzRB/jAmgKNkJqcIabwJPkoj4BBv01c/OfXUo8NGlHk
-         uine2OKT3Pc9R13FlJoKZZDv3+2wwP2s/dL/zhqXPp4N969oTQtgWOJZcau3To6ru5S1
-         cb73cPYRQfoIiNT9tKJ951EIz0Lw3izDIXFaxy69KffHehj02WJYraJ1EbHafltyQ+xO
-         olkp4RwGdGZDmgi1OMIXoATcaYqdBVER9VT1C1UEZcbdePydeQjKQFWnM4x6n6Ut1OVK
-         VhMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746914797; x=1747519597;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uezwVFz0Zcagk+1GhVcJ7am3l2Fc5VtSdFSVCAllSAg=;
-        b=bhyinN7kbvGTGggrSqnK04YFeemHJoBxwhD/eLUpLsMDYVgTVOFaC58Ap5MfLMJy5t
-         HAM7y2nVAxdjBfp0hlN7+sOLL7vZczjgYUdpkCOVbSA/E41+0a15Y+yr6+mWqg39B4uA
-         3QvF9BpC+Ih3BIYBuhicdteZwFVUNbqbBUWh09MGINYoo37Fl0j69GRaNLRnVwW5LgaD
-         x7FfhaPEhR5+tT8vN5aComzc31TNGg5cbN31Z/fQQ003MFwdfsSazphbFbJ97PbsdbbP
-         7Kf3QsHpU2UBcyw3vdH5xMxOPekfZjtrAcdHCqU9yyY8Gyma0i6ZCv5ukfhpD0zQklRI
-         a95g==
-X-Forwarded-Encrypted: i=1; AJvYcCUJo4NUQb7HlsktBh5hqIdHCnmbKpT1zZ5z3+yK/EbmGDQ1Dvkf2sOP8LewqOo3SECEiV8YLWqeQB18@vger.kernel.org, AJvYcCWMmQEFx5yjy3U3U82p4GPNB73hU8DyypAp2U2kMthMVGLS7pzaFsedFzrfQxFppZYcPQUedYl0@vger.kernel.org, AJvYcCX1qxGMU3kxOfXz/cJrceZDx9qVEOwbKZReNzFk3iWa94Wa2e/+P98qYZb1lBmOqzMdKfxI+TCd63eLXjPf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzx+GER47P0HXPyNaYtlqdP0bDxaEzJO3ysW0CqT9dVbH7zhRMg
-	87GJpiaVKmQH7ArRbyWmHbztIsKA1z5wfF2IcNXWMCz1mWXaGyuH
-X-Gm-Gg: ASbGncsLGOBPUtEjyIQOFXukzDstx+BHZFSXZ2iq2KPPun2x7giMiEuY30nqTlOo2S8
-	qyphJaJEZwX3FeaJMKlkFEHlyVpEEeegtDC+00CYli+rd/1t1o8QLMldr0AQGVpEAE/bxCICyN+
-	NcD7uPVb6i73RyfLpXvt6tTHZnhwhX6p7uL6I1sr0oFSQy6QonDedSv816bI9ioWrSB2hH0PkA8
-	g5Y11v0Ti/3iPJuy+8Evh66XjU0beiQ9UBT2fAGyGwPg0YuS6jDy6YMKpb6JyUzzt+mO7TAJgUV
-	USAYhWZmrJ7Gbc1M4QFavYOk56WCNG/qyNtHwi1gjfaRWS13U491aFRFM2YKvmEbChFmY8spT+s
-	xWmXiib0wkaF+qTOvWrS2yT+6URNmxcQ=
-X-Google-Smtp-Source: AGHT+IGP9JfMyxekVc49km65Rk0d9HbKRAhjfd1C75cL8/jzdZRAROY8vu1ehsolWNWgvvfXgjkUhw==
-X-Received: by 2002:a05:6000:2ce:b0:39a:c8a8:4fdc with SMTP id ffacd0b85a97d-3a1f6437880mr6624763f8f.16.1746914797475;
-        Sat, 10 May 2025 15:06:37 -0700 (PDT)
-Received: from localhost.localdomain (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a1f5a2d2e9sm7477940f8f.75.2025.05.10.15.06.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 May 2025 15:06:36 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Andrei Botila <andrei.botila@oss.nxp.com>,
-	Sabrina Dubroca <sd@queasysnail.net>,
-	Michael Klein <michael@fossekall.de>,
-	Daniel Golle <daniel@makrotopia.org>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [net-next PATCH v8 6/6] dt-bindings: net: Document support for Aeonsemi PHYs
-Date: Sun, 11 May 2025 00:05:48 +0200
-Message-ID: <20250510220556.3352247-7-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250510220556.3352247-1-ansuelsmth@gmail.com>
-References: <20250510220556.3352247-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1746928502; c=relaxed/simple;
+	bh=ig4DYJ3RXrVpEeq3aerEl+Ap4/cbUODtqNdrvm1zJko=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=tr0Ry1l4NcN3w+QjC1nAQr7XCgRFZhw/5SlKo5PLMrTVA6voAM34Kt1yEBQQoQngI4qdQeRKKSWhAMSHA1BuRD9y2IbFFtcnjdfAdYbpkz66Q8Mpqttd+ZUGqF1dctKTfMy/OZmUY3DCGRgU7387e0YSSAdIzT/bw/1EqmKnYGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O7dVw8nG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B011C4CEE2;
+	Sun, 11 May 2025 01:54:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1746928501;
+	bh=ig4DYJ3RXrVpEeq3aerEl+Ap4/cbUODtqNdrvm1zJko=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=O7dVw8nGOAjKUBvvPSiCXB25ADmuwKNiprixu+5FFh04GZ2ucVCvxN8jFlQtEHjeY
+	 ImxJlGApNuSuCtgpPcorxA+7CoZbJo6J8RF9JzivuA2wstZQ9u/gngjZH0/JR9OQni
+	 NuIbGRShNPb/deGAzgu8zTrvA06yHiAAZVwOCwmQ8/4wL3Ui2RFpJEXanFKDkQ6nK/
+	 XP1e12gz8+AdtJghb/wfFNlryapmHqAQbBA8DRyscCRk7coru9UYkZ0GTLlfpLAsd5
+	 iX2LV4Vf/e9o4wyclhxLzZ+c93b5lWOALqlCUcfAlxmJymj60l6ewr87wcT8kXrma+
+	 yNbTpHKoV8yEA==
+From: Mark Brown <broonie@kernel.org>
+To: Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+ Frank Li <Frank.Li@nxp.com>, linux-spi@vger.kernel.org, imx@lists.linux.dev, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ openbmc@lists.ozlabs.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250509112130.123462-3-krzysztof.kozlowski@linaro.org>
+References: <20250509112130.123462-3-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/2] spi: dt-bindings: fsl,dspi: Fix example
+ indentation
+Message-Id: <174692849876.61256.337596049686049621.b4-ty@kernel.org>
+Date: Sun, 11 May 2025 10:54:58 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-c25d1
 
-Add Aeonsemi PHYs and the requirement of a firmware to correctly work.
-Also document the max number of LEDs supported and what PHY ID expose
-when no firmware is loaded.
+On Fri, 09 May 2025 13:21:31 +0200, Krzysztof Kozlowski wrote:
+> DTS example in the bindings should be indented with 2- or 4-spaces, so
+> correct a mixture of different styles to keep consistent 4-spaces.
+> 
+> 
 
-Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
-AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
-AS21210PB1 that all register with the PHY ID 0x7500 0x9410 on C45
-registers before the firmware is loaded.
+Applied to
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- .../bindings/net/aeonsemi,as21xxx.yaml        | 122 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 123 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-diff --git a/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
-new file mode 100644
-index 000000000000..69eb29dc4d7b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
-@@ -0,0 +1,122 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/aeonsemi,as21xxx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Aeonsemi AS21XXX Ethernet PHY
-+
-+maintainers:
-+  - Christian Marangi <ansuelsmth@gmail.com>
-+
-+description: |
-+  Aeonsemi AS21xxx Ethernet PHYs requires a firmware to be loaded to actually
-+  work. The same firmware is compatible with various PHYs of the same family.
-+
-+  A PHY with not firmware loaded will be exposed on the MDIO bus with ID
-+  0x7500 0x7500 or 0x7500 0x9410 on C45 registers.
-+
-+  This can be done and is implemented by OEM in 2 different way:
-+    - Attached SPI flash directly to the PHY with the firmware. The PHY
-+      will self load the firmware in the presence of this configuration.
-+    - Manually provided firmware loaded from a file in the filesystem.
-+
-+  Each PHY can support up to 5 LEDs.
-+
-+  AS2xxx PHY Name logic:
-+
-+  AS21x1xxB1
-+      ^ ^^
-+      | |J: Supports SyncE/PTP
-+      | |P: No SyncE/PTP support
-+      | 1: Supports 2nd Serdes
-+      | 2: Not 2nd Serdes support
-+      0: 10G, 5G, 2.5G
-+      5: 5G, 2.5G
-+      2: 2.5G
-+
-+allOf:
-+  - $ref: ethernet-phy.yaml#
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - ethernet-phy-id7500.9410
-+          - ethernet-phy-id7500.9402
-+          - ethernet-phy-id7500.9412
-+          - ethernet-phy-id7500.9422
-+          - ethernet-phy-id7500.9432
-+          - ethernet-phy-id7500.9442
-+          - ethernet-phy-id7500.9452
-+          - ethernet-phy-id7500.9462
-+          - ethernet-phy-id7500.9472
-+          - ethernet-phy-id7500.9482
-+          - ethernet-phy-id7500.9492
-+  required:
-+    - compatible
-+
-+properties:
-+  reg:
-+    maxItems: 1
-+
-+  firmware-name:
-+    description: specify the name of PHY firmware to load
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: ethernet-phy-id7500.9410
-+then:
-+  required:
-+    - firmware-name
-+else:
-+  properties:
-+    firmware-name: false
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-phy@1f {
-+            compatible = "ethernet-phy-id7500.9410",
-+                         "ethernet-phy-ieee802.3-c45";
-+
-+            reg = <31>;
-+            firmware-name = "as21x1x_fw.bin";
-+
-+            leds {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                led@0 {
-+                    reg = <0>;
-+                    color = <LED_COLOR_ID_GREEN>;
-+                    function = LED_FUNCTION_LAN;
-+                    function-enumerator = <0>;
-+                    default-state = "keep";
-+                };
-+
-+                led@1 {
-+                    reg = <1>;
-+                    color = <LED_COLOR_ID_GREEN>;
-+                    function = LED_FUNCTION_LAN;
-+                    function-enumerator = <1>;
-+                    default-state = "keep";
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 39f66be67729..6ef492ffbaaf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -650,6 +650,7 @@ AEONSEMI PHY DRIVER
- M:	Christian Marangi <ansuelsmth@gmail.com>
- L:	netdev@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
- F:	drivers/net/phy/as21xxx.c
- 
- AF8133J THREE-AXIS MAGNETOMETER DRIVER
--- 
-2.48.1
+Thanks!
+
+[1/2] spi: dt-bindings: fsl,dspi: Fix example indentation
+      commit: 846656f278e803cb60161f0cba4ee90a058440cc
+[2/2] spi: dt-bindings: nuvoton,wpcm450-fiu: Drop unrelated nodes from DTS example
+      commit: a4ca02454821cbc411e0bf16e527d392f188c218
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
