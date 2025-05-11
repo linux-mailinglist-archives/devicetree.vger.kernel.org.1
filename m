@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-175990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-175991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C409AB288E
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 15:40:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B632CAB2891
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 15:40:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A2883ADBE5
-	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 13:40:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 256E73B9420
+	for <lists+devicetree@lfdr.de>; Sun, 11 May 2025 13:40:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A69CB2571A7;
-	Sun, 11 May 2025 13:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A03E2571CD;
+	Sun, 11 May 2025 13:40:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="drY56icV"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="OpoUpqWS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4317822DF84
-	for <devicetree@vger.kernel.org>; Sun, 11 May 2025 13:40:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A809256C92
+	for <devicetree@vger.kernel.org>; Sun, 11 May 2025 13:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1746970816; cv=none; b=e8cmlVCXwSh5acn5H+l8HaQgpyfcke5IHkERtMTuPQboZeEhGrU43gwCNXfIO2Zf+JyB33WuMElPdn+cr0lZX1847FWGUCq1qEIJKn5x8Dy2sY1yX7UpcW+7MnkNeYK3PtSBIkO+hhU2FtE990zkIzWAR9UG3Rk1ZSVzzJvJL8Y=
+	t=1746970823; cv=none; b=a1243bFF9HIG/zIMKi/0q8S1GAw0w2LTq2S5uaAY7EDoMfWng5k3iNgvJ5VRPO6UYoxE9pQNMpuzyq6lnJ9E9sHyUdcMKtgqw/6SBBbvoIclmziu5b1naw8JMJBhlsPOba7nHktaLT8xliPDaKqgjbbHglR4vIhjtzRBhMV/Qzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1746970816; c=relaxed/simple;
-	bh=gv8a347ZgM8grLLMwGRczaN5bCj8XaY5cQilQ8vIa5k=;
+	s=arc-20240116; t=1746970823; c=relaxed/simple;
+	bh=Yl8n+NuSj0Dh4NoYbgYuQLhM+H3lJRU0XlWccNljPto=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=U0wEetGLsx/syf7D4D19keO2YMBThUycLvxMSBXr7F/dpzxuvDTwALYI61bmF2uGtCGxKtWxLdsS08lyyE95HlrZnwuAYKn3g4tSViHUC+ejVTdzLUQcASjS2Z77CQyaZWMz/AcPHYlPrAcAqdWlodAvDxvAHJCHdwsSWmXfgWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=drY56icV; arc=none smtp.client-ip=209.85.215.178
+	 MIME-Version; b=lSp+Es5ztW58FU7/8stcZjqeSQSc8X9e61ib5yepGgnzUPqn2s+fdPTCrC85uT+F4V1YwJIhZFuOFnzR8kLHNd0KUGeKUdGKewjtzx75+s+iekXseGC+F5POXhuimgCyGqs5f+e6sIszLtlBCm5Fjvrp1oR26i+UuAESwX+69/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=OpoUpqWS; arc=none smtp.client-ip=209.85.210.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-b07d607dc83so2798796a12.1
-        for <devicetree@vger.kernel.org>; Sun, 11 May 2025 06:40:13 -0700 (PDT)
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-74068f95d9fso3322142b3a.0
+        for <devicetree@vger.kernel.org>; Sun, 11 May 2025 06:40:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1746970813; x=1747575613; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1746970822; x=1747575622; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DVsERMSdIf5sKMRIf3zMFFXP9slyQDAj89Ix8Yi7kgA=;
-        b=drY56icV6tdieKz+DAnOABe29F2zlSM4UxxLw5e1Q/VjViRxcUkhmtyE4fxM0ckqTn
-         oeyHiqE10+QPXhzpjIpFiWHFEfIWHUInTvhAE4+GEmrUNhZJoKKu5y/O63PnOoo9ghBy
-         jn4kZI4imIYj9cAUMNDjkdTgpxvpe1erahQJhsNyRBG9mK6p1dxsLzfNnW3D5QLYZi33
-         b2ocBYnP8F7ntxGxnkc0OHEq0X6jBb8HK3m88Gme234VcA0T8fdFmu2XMwN2ZaTV4Ica
-         EXne0WVzRcD1nlkY7qwpAIplPi7DYEJZ/iecEimh8dpGMO4LxVm7yCSkx38grrvTUpnP
-         acqw==
+        bh=XZ6NtnG6XOe7TLAPrIn93jkcqu9DK5X4kG8nXgTaGD4=;
+        b=OpoUpqWSgIU1YqIIIhjkFIpLOwEXPzDAfvX+hRR7rEdwNu244g20mRHhjovN/qyCtP
+         DQnKV8FWFpq71mWzV0eKoRMBERYhvVT2k8FkHpli1I7KtMnXBVR6p6jqzUDHQo3HIoLX
+         oV/elgmgnNoamAOLomnA/JUDQcbY//MhnqHzQo9U2XvLHypQ857V2v6AGwOCclvdv5A+
+         V2y8f+X75JgoSQwEny8b3CgNk2O7bGtnleREZ9antNDZLYu9KJBF3O1u/uV+wUGJaHtY
+         EjIYiyAgspmvYNeN8noYQX8nqw79kK7OSzPsew20SQC4d9r723FQklC/MLZIb4RdErgu
+         6kQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746970813; x=1747575613;
+        d=1e100.net; s=20230601; t=1746970822; x=1747575622;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DVsERMSdIf5sKMRIf3zMFFXP9slyQDAj89Ix8Yi7kgA=;
-        b=jUsikTZKCPogPUfgTnT+nPF7YdEUkMC927FLvKOP2/pC2EUakXbaCF9oyrqF91o0Ig
-         2iIZgu8sYcglBT74VCwusHuNyy3xlVj9jAnY9Wb73iWEc3SKyTvZt17LWgm53e65VcUS
-         C9FxRItsppwvK/5lL9q9fwmD42D5cUcFFaI8y7AO1IK8NRAoow6uzwg5Sf/vwRVXeRVk
-         +18HQJS4gio0RfMrqiUMhwvw+C9T6gA+Wb3/ENV4qvlzGjCCE2MyyvFQHdKzp4gk6jV8
-         LsnqTeNvDG/i+WXSMjfRZZ3M8OscoOp6BDe4SnaF06WInIK0XEve+I0HL8+W8/H018my
-         jiiw==
-X-Forwarded-Encrypted: i=1; AJvYcCWwvy0VNE0azjiymklqwhdGUR7QMpDfKje6s7GHQ6VPH8eJREN+7m+mJwLAkEL0wLcCYyUKYpQo6g2r@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQuYkKHakhVYKtmRRfgcQsmR29r6RSZk4ck3wO+ponI6LOJKT0
-	jlZo5DAls1bOwtBCM1GDgG0JT7jUT8cv2F2NDjA7WLHzSGrJGpXDdxCaqgdQYh0=
-X-Gm-Gg: ASbGncs6DnTwXsrSvttjbuymktCIajhqQ9fJKEBIWtUap1FEgrwY3j7fuk5TdrPSb6Y
-	XmS9SjE99Y9kJPjnUKIlLb8xWZwPUXG4TDd0yAyNbNFoBKYtLp+j024k+hmOa0lewgGvhB4qZyc
-	4FvJBW3Sgj95j94ETvDOAj2lhRko5O67oQPMSTJtkyFgmDEm5UNef/vf+358ACfTff5Cfk40VD7
-	a9qYu2sLvHjXwgsHrKfHLQAk6FcuZzeNa8iYWBFUMVTbsau8KK9voWttU0IoQsWze1POTGQwYbv
-	ePHn+AhFZekhHU9Mi+r3E8O+Ibiq8MOQDlsiPd7VVPnRKfMbRRdkJ7xydGH2zOWcy93MrTiSMvk
-	ghWXFeFoC532HsA==
-X-Google-Smtp-Source: AGHT+IHFdwKqWqDeRPUbNBSRmc+vSywbFgnPqE/8PACRgl2hkEeI3vsdadNPhXxEMsmI76yi2E/0hw==
-X-Received: by 2002:a17:902:e952:b0:22e:3b65:9279 with SMTP id d9443c01a7336-22fc91cbb8amr136349565ad.53.1746970813374;
-        Sun, 11 May 2025 06:40:13 -0700 (PDT)
+        bh=XZ6NtnG6XOe7TLAPrIn93jkcqu9DK5X4kG8nXgTaGD4=;
+        b=JvNZ4jKucT/j/vA3Bl95B4B6OjgqPUJJE3sgBN2/JZS4illt4atE3zwtmbv8Y/kq9e
+         R+EkCZ85OC3UZXPPTMCj31zli1V20gXodrFwurO78eo3EyCJc8vMbZnlKIP5pjxGm32g
+         LA/vFfXsWthLanLtlTjGathKba1Ami0eOgv3Diko4mIr98Trvl+D0ExvzXaeDKlS0INn
+         uHajTNfxQgirJDGgonks5onSKAA9382fU4Jv2EwW3kPGnqVwNJ1GAfhB/IailQ5l3T6V
+         UDqX32J1NEDGTCqixcHRsri3TBIawqdUafZ6K1h4J36YpVOFZSBFni9l11seu9+IOsGr
+         FbYA==
+X-Forwarded-Encrypted: i=1; AJvYcCV1Z/RwMsyEgKCR5Vc3J9QPlZtP1YcgV3b5+iNQkBh8BvHIISKZZHDEqI5tDL4RpWuDbVwBp2RQG9Ss@vger.kernel.org
+X-Gm-Message-State: AOJu0YyoE388VBxl8nJPd6MB074AFbDawPWFkvfeKw/nPOFGYv3CjYZ1
+	FIzMpCqHs0y2JNslUf3XsHj6XOT4Hg5Ep/8D5q/DDFRn6x5YYr/DGfK0r8Z73jw=
+X-Gm-Gg: ASbGncvhqpye6Mf4MOfWAkETfPmrsakCVW0RJbdzR3CMM6OcSCIyy4dMLk0sl86D+mM
+	urxvXHn6JQAStO0glxGgYVsY9oAbSIJEX0ySduUNz9Tgi2rkToiO63JnGFPQ6d0tza6nK8jAVRL
+	WIpvSdlAJnrEFePWgoY7w62A/jTde0bQi4L5v8P9hweqoBhWlcTSB+PyD+ucu0fiCgCfoUknlOe
+	XmrePFUf2Rq1Obz1qFkqM5qr0GliVZsViVzjjm72+mhwszbr4qCaYOyW2EEW/vapocHVo19AcC3
+	MRbCHHZNqysDREukThArTeHsJOm4ZGBunyWv1HpRkjm93o3ZuENVvxTN1PicmG8IPKmjqMWvhQD
+	/LrR/RqB8nDgiPw==
+X-Google-Smtp-Source: AGHT+IEKA4j7Q1E0TWQZL/8OAzQGwFqUuLE93vOIqHVrlSrdxnqy3RYvhsFLnF5FwYsIyUhhIsd/mQ==
+X-Received: by 2002:a17:903:2349:b0:22e:50e1:746 with SMTP id d9443c01a7336-22fc8e96196mr143712685ad.36.1746970821472;
+        Sun, 11 May 2025 06:40:21 -0700 (PDT)
 Received: from anup-ubuntu-vm.localdomain ([122.171.17.86])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc754785bsm46665805ad.20.2025.05.11.06.40.04
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc754785bsm46665805ad.20.2025.05.11.06.40.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 May 2025 06:40:11 -0700 (PDT)
+        Sun, 11 May 2025 06:40:20 -0700 (PDT)
 From: Anup Patel <apatel@ventanamicro.com>
 To: Michael Turquette <mturquette@baylibre.com>,
 	Stephen Boyd <sboyd@kernel.org>,
@@ -102,9 +102,9 @@ Cc: Palmer Dabbelt <palmer@dabbelt.com>,
 	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v3 01/23] riscv: Add new error codes defined by SBI v3.0
-Date: Sun, 11 May 2025 19:09:17 +0530
-Message-ID: <20250511133939.801777-2-apatel@ventanamicro.com>
+Subject: [PATCH v3 02/23] dt-bindings: mailbox: Add bindings for RPMI shared memory transport
+Date: Sun, 11 May 2025 19:09:18 +0530
+Message-ID: <20250511133939.801777-3-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250511133939.801777-1-apatel@ventanamicro.com>
 References: <20250511133939.801777-1-apatel@ventanamicro.com>
@@ -116,49 +116,169 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The SBI v3.0 defines new error codes so add these new error codes
-to the asm/sbi.h for use by newer SBI extensions.
+Add device tree bindings for the common RISC-V Platform Management
+Interface (RPMI) shared memory transport as a mailbox controller.
 
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 ---
- arch/riscv/include/asm/sbi.h | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../mailbox/riscv,rpmi-shmem-mbox.yaml        | 148 ++++++++++++++++++
+ 1 file changed, 148 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml
 
-diff --git a/arch/riscv/include/asm/sbi.h b/arch/riscv/include/asm/sbi.h
-index 3d250824178b..4dd6aafb8468 100644
---- a/arch/riscv/include/asm/sbi.h
-+++ b/arch/riscv/include/asm/sbi.h
-@@ -419,6 +419,11 @@ enum sbi_ext_nacl_feature {
- #define SBI_ERR_ALREADY_STARTED -7
- #define SBI_ERR_ALREADY_STOPPED -8
- #define SBI_ERR_NO_SHMEM	-9
-+#define SBI_ERR_INVALID_STATE	-10
-+#define SBI_ERR_BAD_RANGE	-11
-+#define SBI_ERR_TIMEOUT		-12
-+#define SBI_ERR_IO		-13
-+#define SBI_ERR_DENIED_LOCKED	-14
- 
- extern unsigned long sbi_spec_version;
- struct sbiret {
-@@ -503,11 +508,18 @@ static inline int sbi_err_map_linux_errno(int err)
- 	case SBI_SUCCESS:
- 		return 0;
- 	case SBI_ERR_DENIED:
-+	case SBI_ERR_DENIED_LOCKED:
- 		return -EPERM;
- 	case SBI_ERR_INVALID_PARAM:
-+	case SBI_ERR_INVALID_STATE:
-+	case SBI_ERR_BAD_RANGE:
- 		return -EINVAL;
- 	case SBI_ERR_INVALID_ADDRESS:
- 		return -EFAULT;
-+	case SBI_ERR_TIMEOUT:
-+		return -ETIMEDOUT;
-+	case SBI_ERR_IO:
-+		return -EIO;
- 	case SBI_ERR_NOT_SUPPORTED:
- 	case SBI_ERR_FAILURE:
- 	default:
+diff --git a/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml b/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml
+new file mode 100644
+index 000000000000..3194c066d952
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml
+@@ -0,0 +1,148 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/riscv,rpmi-shmem-mbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RISC-V Platform Management Interface (RPMI) shared memory mailbox
++
++maintainers:
++  - Anup Patel <anup@brainfault.org>
++
++description: |
++  The RISC-V Platform Management Interface (RPMI) [1] defines a common shared
++  memory based RPMI transport. This RPMI shared memory transport integrates as
++  mailbox controller in the SBI implementation or supervisor software whereas
++  each RPMI service group is mailbox client in the SBI implementation and
++  supervisor software.
++
++  ===========================================
++  References
++  ===========================================
++
++  [1] RISC-V Platform Management Interface (RPMI)
++      https://github.com/riscv-non-isa/riscv-rpmi/releases
++
++properties:
++  compatible:
++    const: riscv,rpmi-shmem-mbox
++
++  reg:
++    oneOf:
++      - items:
++          - description: A2P request queue base address
++          - description: P2A acknowledgment queue base address
++          - description: P2A request queue base address
++          - description: A2P acknowledgment queue base address
++          - description: A2P doorbell address
++      - items:
++          - description: A2P request queue base address
++          - description: P2A acknowledgment queue base address
++          - description: P2A request queue base address
++          - description: A2P acknowledgment queue base address
++      - items:
++          - description: A2P request queue base address
++          - description: P2A acknowledgment queue base address
++          - description: A2P doorbell address
++      - items:
++          - description: A2P request queue base address
++          - description: P2A acknowledgment queue base address
++
++  reg-names:
++    oneOf:
++      - items:
++          - const: a2p-req
++          - const: p2a-ack
++          - const: p2a-req
++          - const: a2p-ack
++          - const: a2p-doorbell
++      - items:
++          - const: a2p-req
++          - const: p2a-ack
++          - const: p2a-req
++          - const: a2p-ack
++      - items:
++          - const: a2p-req
++          - const: p2a-ack
++          - const: a2p-doorbell
++      - items:
++          - const: a2p-req
++          - const: p2a-ack
++
++  interrupts:
++    maxItems: 1
++    description:
++      The RPMI shared memory transport supports wired interrupt specified by
++      this property as the P2A doorbell.
++
++  msi-parent:
++    description:
++      The RPMI shared memory transport supports P2A doorbell as a system MSI
++      and this property specifies the target MSI controller.
++
++  riscv,slot-size:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 64
++    description:
++      Power-of-2 RPMI slot size of the RPMI shared memory transport.
++
++  riscv,a2p-doorbell-value:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0x1
++    description:
++      Value written to the 32-bit A2P doorbell register.
++
++  riscv,p2a-doorbell-sysmsi-index:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The RPMI shared memory transport supports P2A doorbell as a system MSI
++      and this property specifies system MSI index to be used for configuring
++      the P2A doorbell MSI.
++
++  "#mbox-cells":
++    const: 1
++    description:
++      The first cell specifies RPMI service group ID.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - riscv,slot-size
++  - "#mbox-cells"
++
++anyOf:
++  - required:
++      - interrupts
++  - required:
++      - msi-parent
++
++additionalProperties: false
++
++examples:
++  - |
++    // Example 1 (RPMI shared memory with only 2 queues):
++    mailbox@10080000 {
++        compatible = "riscv,rpmi-shmem-mbox";
++        reg = <0x10080000 0x10000>,
++              <0x10090000 0x10000>;
++        reg-names = "a2p-req", "p2a-ack";
++        msi-parent = <&imsic_mlevel>;
++        riscv,slot-size = <64>;
++        #mbox-cells = <1>;
++    };
++  - |
++    // Example 2 (RPMI shared memory with only 4 queues):
++    mailbox@10001000 {
++        compatible = "riscv,rpmi-shmem-mbox";
++        reg = <0x10001000 0x800>,
++              <0x10001800 0x800>,
++              <0x10002000 0x800>,
++              <0x10002800 0x800>,
++              <0x10003000 0x4>;
++        reg-names = "a2p-req", "p2a-ack", "p2a-req", "a2p-ack", "a2p-doorbell";
++        msi-parent = <&imsic_mlevel>;
++        riscv,slot-size = <64>;
++        riscv,a2p-doorbell-value = <0x00008000>;
++        #mbox-cells = <1>;
++    };
 -- 
 2.43.0
 
