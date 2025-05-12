@@ -1,113 +1,77 @@
-Return-Path: <devicetree+bounces-176328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3751DAB376C
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 14:40:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC26AAB3788
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 14:40:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57BB23A9A41
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 12:39:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F7A8189E7CC
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 12:40:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B4D92957AD;
-	Mon, 12 May 2025 12:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB198258CFB;
+	Mon, 12 May 2025 12:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QXs0jhC5"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="dMHF7P12"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC1A295511;
-	Mon, 12 May 2025 12:38:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC22E4A08;
+	Mon, 12 May 2025 12:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747053540; cv=none; b=uCxX6PXR01xDRofZD4vwqgq0WXNTQok00qNwD3GeVp1WeeKZJgJlUJ1LG5dRsa5o1XRICskOmIneWaJAtcG77scOHpS0oX9VKQMYgp88c6n/wWj/BxwRRwZOhgHKu85TX3RgmlNP2TM3pposUD6qYuK8BYd5QF/0a11PZfKkYEs=
+	t=1747053633; cv=none; b=UItw5Sk807hTKsEp/w8UXtDFM0uBR6ZYFlB1ZE4CI1B/j5uNYtu0qaIzxcTkGJrUY8Jr/XchAgwpg+6cvIXxn7aC39+ohD4RiaYxejmKl1LxaISOa1oY7RwdSD5M/FPrkK72/OxZUwkrEzW2RY47M26MYaWFguAoZ26iP1BBRhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747053540; c=relaxed/simple;
-	bh=b3QpbHDoX+KSKhGr1oHIV9UzBf4xMsgrZHQ0d7I2XII=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Qb6HDZBLeHAJi9OQlqaVNb8fabyajvMc0ZitXxqYOwQ9LHo6i89bvGRdPV3wtvCFSvRRzzjWgZFACxSnwRr8jDuQoTz9N9uA3A+vhaBDFPbydB+93aTuuFyW4b6UPhBK1HfyEXSkrSfKbe5OHx4z4QiryGrxU6mSohRBJje1+Mo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QXs0jhC5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AB68EC4CEF7;
-	Mon, 12 May 2025 12:38:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747053539;
-	bh=b3QpbHDoX+KSKhGr1oHIV9UzBf4xMsgrZHQ0d7I2XII=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=QXs0jhC5JG6e7b0BCRdmyq8AwnATbJ6GUaTbma1u4dWZ4/lp7G1dMhN87LyS+dM5D
-	 3y1yMpZbrkVpH6dyeEPuMY4ntEF9Tu0FQ36QrXBo7FxZlUIrvSCvxfhNOz5u3YnUYh
-	 Op5oz0aSit7e0hxFEBLG0akraPs1860cUQ0Wjm0Zp/zJPhTWzzI2lHA89Xvh51BfCn
-	 EyvHedtTF6kaWkEZMso74rV6wgMAS2p+GVp/EC8xDr7wwVqf/f2l0rnnQ3vFZlQsZ6
-	 qNwxxiUNzo3Q5b7pd0Z0GNcqGLAFlTk/P6OGRxQ62893iaGLckCxs3ONunrOjnAN7M
-	 ItFdPHQufZZxw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96C6EC3ABD4;
-	Mon, 12 May 2025 12:38:59 +0000 (UTC)
-From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
-Date: Mon, 12 May 2025 13:39:14 +0100
-Subject: [PATCH v3 22/22] pwm: adp5585: make sure to include
- mod_devicetable.h
+	s=arc-20240116; t=1747053633; c=relaxed/simple;
+	bh=/ukxj9qdimOgS8VFqzk+LcwsLVlKjsFYky8cJDTvX58=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cyXKk/G5dSHeeNWfljZVvycP2nD8c1rNFrIxjegGBj8jGKqJX6i0Kr28AeLQTw2HmMwkiQEu6v9lyInSdjQglm8vkYvHkyuoZ59NQMn9Y0uLPgIOLjEqbVA4iItlRM+dS+3YLjy/klmYT6v3M7PhYirwfkgZvLuGQUBU3XA74KU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=dMHF7P12; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=lo0m91Rehd6bgZG0QLkCun4bgSY/wiPJXWGmO2i2Vw0=; b=dMHF7P12CyWbyi6Lt2DBaFT42h
+	UltO+mXfugcoI/aNx0B9AUqY/vj281F7eA0tuVbbxFob3Mxi1rAgv4eFf9QwBOVxAqZGQmn8Ebx+k
+	eUpy8a5Lm55lvr5ENppTsMzEEhQz3pz9bMaep8BP/CSOWJojFgmdixn2M4Vh7GgaYRQg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uESS4-00CKp0-VS; Mon, 12 May 2025 14:40:12 +0200
+Date: Mon, 12 May 2025 14:40:12 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: leo.jt.wang@gmail.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	george.kw.lee@fii-foxconn.com, leo.jt.wang@fii-foxconn.com
+Subject: Re: [ARM: dts: aspeed: clemente: add Meta Clemente BMC] ARM: dts:
+ aspeed: clemente: add Meta Clemente BMC
+Message-ID: <224aec6e-6dab-4634-a7a0-220616f455de@lunn.ch>
+References: <6821dbe7.170a0220.3b15e.ab77@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250512-dev-adp5589-fw-v3-22-092b14b79a88@analog.com>
-References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
-In-Reply-To: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
-To: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Liu Ying <victor.liu@nxp.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747053537; l=739;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=7qqRv2NdSBhPS6hh0D7Nz9u+Cn76QfW1seayq7g6/eY=;
- b=m76GUvHoTQlZX5KCbaOfpmAJncrdRkO1u7jE9HGDp0wCD87D3ER3qdJhrhF6kVIjLuXh1rkjV
- vO9qmQCKn9WDjYtyKrb+OvWiEiBCjg7H2rR6OeYuWhEcDN55erJyePv
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
- auth_id=100
-X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-Reply-To: nuno.sa@analog.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6821dbe7.170a0220.3b15e.ab77@mx.google.com>
 
-From: Nuno Sá <nuno.sa@analog.com>
+> +&mac0 {
+> +	status = "disabled";
+> +	/* phy-mode = "rgmii-rxid"; */
 
-Explicitly include mod_devicetable.h for struct platform_device_id.
+This is very likely to be wrong. Please see:
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
- drivers/pwm/pwm-adp5585.c | 1 +
- 1 file changed, 1 insertion(+)
+https://patchwork.kernel.org/project/netdevbpf/patch/20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch/
 
-diff --git a/drivers/pwm/pwm-adp5585.c b/drivers/pwm/pwm-adp5585.c
-index f26054c19c2e154d05780af09aee1b2431eba2eb..93d0294d048abfe1a009161025e658b58b669cd9 100644
---- a/drivers/pwm/pwm-adp5585.c
-+++ b/drivers/pwm/pwm-adp5585.c
-@@ -20,6 +20,7 @@
- #include <linux/mfd/adp5585.h>
- #include <linux/minmax.h>
- #include <linux/module.h>
-+#include <linux/mod_devicetable.h>
- #include <linux/platform_device.h>
- #include <linux/pwm.h>
- #include <linux/regmap.h>
-
--- 
-2.49.0
-
-
+	Andrew
 
