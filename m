@@ -1,128 +1,170 @@
-Return-Path: <devicetree+bounces-176414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A2BAB3DFD
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:45:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58A3EAB3E0D
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:49:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74DFC17CDD1
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:45:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF110188D949
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:49:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA5C25395A;
-	Mon, 12 May 2025 16:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A69253954;
+	Mon, 12 May 2025 16:49:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KcSLFvsG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vJny5x2q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B41B6253B73;
-	Mon, 12 May 2025 16:45:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A051C84DE;
+	Mon, 12 May 2025 16:49:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747068324; cv=none; b=j0X3hlrNUSqK+CyHREULo7p4BOahDLl8T1otKw8MiO3CbHs8l3w36CSSTVcE297kC7hdSysmjmtf3yreMKfahQOtRTbo0ZYOhE5LSRH/q8mRpnDaBodwsEZDTKKcPVw/XB278+AQLsfiqodziX0GCyTk2800B2nJmae/dK5DwaM=
+	t=1747068575; cv=none; b=Uy3B23i5m7/Er15/0sZUlhWqPp/XRfoBAkT9XINXyB2Pncm2AITLSGKqicpvnhEH0ALyMTW6jv6GOpBrxSWSZIRhFSXdqf6IvAzR8SagNoW5baI6dLJ/JFoWGky6Hqse49RVuQBOkXcDfGHfGSc0qc/lX9ojYIdzFTlc0bSNE3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747068324; c=relaxed/simple;
-	bh=G9uC19IB6B6f0yAjhFQ0OLv5o00h5/N5UucVN4+eq+I=;
+	s=arc-20240116; t=1747068575; c=relaxed/simple;
+	bh=/yvw1nnqbyiVtf/uj+S0pMN9yyaV6992GcjalVXEwT4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H4Z0OXFhhDhTI6fZBJ0fyUPmmDpb4JR/gWR9ktNox9gn1pqKLmJJ1B+XgrXBxAVcQnsSR8C9D2juyK3i4DtzZU9XKFmYuqohlvXEcrUts+21uHYw3Y3MDPZbV/TJQ8hqq5jRWuH2MPuFyxbruk7gjw0P26/RfSmTf+XpVQMXFOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KcSLFvsG; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-22fa47f295aso30549075ad.0;
-        Mon, 12 May 2025 09:45:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747068322; x=1747673122; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=leb36LUt2vGzy5dxLVtm7d5Xfz424GGjA1cjDpH8X4o=;
-        b=KcSLFvsGU+iTyRSPNXUOPV44JKNoFwkZxt8PBl0gfKVJbihWel6b8bcjNQhglAVWI2
-         VJlouQBk+JOmwdiZ4Srs60aEzORVL1EUJXsMpifopL/im6xVd2uoqY8pY3/wxqx1igRY
-         wQhEGu7qwdeNb8Kv9jD0qCA57KKcr2KWytLGnbjT20scwPtrEtNJZ3I/UpZzLwXgYiwd
-         VcViIVkN56TdZ/lz7hWpgbWJCspz1F4eoxQTj7HcncZ3osCZuSuVL9ad/htcFilUvjjS
-         ExS1t2wlXnJqh1q40BeHyr0hgKIzeq6PbkGeG1GS7paMPKGuk/LCkFBW7kKsNEiw6YYO
-         fUpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747068322; x=1747673122;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=leb36LUt2vGzy5dxLVtm7d5Xfz424GGjA1cjDpH8X4o=;
-        b=QDuyOH9oJqK7COCcj4+x0TyjGyIQ4g8QOkE3VRfJkez7XbQIpgcDae/GCib36hRlj7
-         pWICnbAMR+C4tdQw8rYILvk5lh61qfhswd5W5Mk92O5GIhn/lcmZEfA8bCKP7KEq78fF
-         EWeBlQ35R/C+yPYBrYxECT7TExqAAlz0vq8vi7HbuT6M/LDPb0m411k6FJXu70BeHHlg
-         p9UjPOHlR+5FeB7LFgYG0qLLBV+PQcgGkBL5wcOsgvkcmikwWUnsQ9AIqEDPMrbhRjzv
-         M2qJBFpKkeAMm2POZ3KpHGbnrAMCfuL8L7DGo5jlvCO2ykngVnzfPr4P4AoiwPg4VX/N
-         +X9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW9XjbE/GwFbHjS7lgNNXbjT+r6dSnnhPBLBG3+tWb1WfvE1yUi8CIPZVV/4gr/G/jZjKo3CYU6xtrC@vger.kernel.org, AJvYcCX1vJvA7neHetaz7ph3IhaKzVmTMFgsHcVRYlwc/isFaTq+x+IH8DKlS8K3w6+Q1Vw6pixssPMI840BiPFA@vger.kernel.org, AJvYcCXDDVcbeMisWhU4K9AxW5XP0+prXlrlYOavxP8+qdMspmpjAJJNpZQgafZ1JLLUbgHFk0NeXB/N4ziz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRDxOLKHZIAbTLmrCGkYzX6AB3J91jNEiK7In3euw5lAt/1wYy
-	mRzrlr/838eBDIA8Cyzg/nRgc9Ji7BuObp9+Kg4Zz6HUA5fhfFOD
-X-Gm-Gg: ASbGncuFfyInuvocOXjqVHWtnmMyLC/jUjhcan0KcliJolLw25hPs88vAzmPcinwW3j
-	9R9MReVkqIaO+Uk2ttx2Pfn1GeO/1G3wQaB10r/VVipkLqJEKI64wum7WvTHmBnzQHIYN/VgKVe
-	uWwfrP+TTB6puI3yROcgPjgNLaZ00CyO0mqg77y0v3Dt4/HuFUMbWVVJUZABy/no47j+n2zIQ7s
-	HbbWiJuIWBc7fyqD9JlawUQHCY1kOwKs6rbnlK242TPktVCjImBbtJ4WgY1RCZpcRxc2oolG+9x
-	1AG7cHDe05s1D2SUXmVtRA37SVRjvGs6B/iByFNro07zAlV6ecewgg5wgRoOsZKC
-X-Google-Smtp-Source: AGHT+IF2x6rdoDlHR7WSudAXdT29fCwrnluQ58/3FaSNpzlwjKVeB6HYku6XzNHZuTMlPlBv6jL3SA==
-X-Received: by 2002:a17:902:ecc2:b0:211:e812:3948 with SMTP id d9443c01a7336-22fc8946f85mr203102535ad.0.1747068321874;
-        Mon, 12 May 2025 09:45:21 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc75469d3sm65133225ad.41.2025.05.12.09.45.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 May 2025 09:45:21 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 12 May 2025 09:45:20 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Pawel Dembicki <paweldembicki@gmail.com>
-Cc: linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Noah Wang <noahwang.wang@outlook.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Grant Peltier <grantpeltier93@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Shen Lichuan <shenlichuan@vivo.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Greg KH <gregkh@linuxfoundation.org>,
-	Charles Hsu <ythsu0511@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] hwmon: pmbus: mpq8785: Add support for MPM3695
- family
-Message-ID: <ac41da4c-d1e8-4648-9a4b-932e1fd50cb8@roeck-us.net>
-References: <20250511035701.2607947-1-paweldembicki@gmail.com>
- <20250511035701.2607947-6-paweldembicki@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=utt2Rj1e7PPGcQQ7o3C6M6PsDszAl3jNM/btye0a157KvO14HnXGOAas3wHdn7x4kriQ4yM8DrOiqm+iQ9v9pai5y+s3lE1/KTJ/rPYDvcW8B3ku6JW7Z0sCe74ri7xSetBVU/HrvaPT/saMNR4M2Y+0/7PUQIMFDleBdNLchJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vJny5x2q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B91D2C4CEE7;
+	Mon, 12 May 2025 16:49:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747068574;
+	bh=/yvw1nnqbyiVtf/uj+S0pMN9yyaV6992GcjalVXEwT4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vJny5x2q4gf3xJGNPgU7Nodhe9m8fzdkqw1uAIgor8FXemN3ONwapqcMFXU6eg9TB
+	 oi7xEmSdK3lZmS198wi6IcnsyuAjpL3everT/F5Jr/aCrZIv5FA+HPC/4gJA1ZSYi1
+	 WO+VY0tI/K1XOZCEKOiQLYjoPLBEQG0mYUXWtG/4IWfDo9kUi4RuwW2nWam7yatAu/
+	 KPw0Uy76pKNWj28mdBAs0VxE30hHwxm1+2j0QxxCN7KI1hYsEYNmbbTq2fWzsxqF6y
+	 30dVyAr1lloZ2irFv5PaLcLE7hwbNitqbDc4rcEwpk1b1TS1bc/+54UDmTtk9GGs4V
+	 ONXt0r+xl2iNg==
+Date: Mon, 12 May 2025 17:49:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Vishwaroop A <va@nvidia.com>
+Cc: krzk@kernel.org, broonie@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
+	jonathanh@nvidia.com, skomatineni@nvidia.com, ldewangan@nvidia.com,
+	kyarlagadda@nvidia.com, smangipudi@nvidia.com, bgriffis@nvidia.com,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3 RESEND 1/2] dt-bindings: spi: tegra: Document IOMMU
+ property for Tegra234 QSPI
+Message-ID: <20250512-observant-rental-21927c85c709@spud>
+References: <20250509165409.311912-1-va@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="b7v6v0TWl91jPaKU"
+Content-Disposition: inline
+In-Reply-To: <20250509165409.311912-1-va@nvidia.com>
+
+
+--b7v6v0TWl91jPaKU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250511035701.2607947-6-paweldembicki@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, May 11, 2025 at 05:55:48AM +0200, Pawel Dembicki wrote:
-> Add support for the Monolithic Power Systems MPM3695 family.
-> It contains four devices with suffixes: -10, -20, -25 and -100.
-> The device is PMBus compliant and shares characteristics with the
-> MPM82504.
-> 
-> MPM3695-25 has different VOLTAGE_SCALE_LOOP register size [11:0]
-> and it needs to be separated because it will be configured in the next
-> commit.
-> 
-> Tested with device tree based matching (MPM3695-10).
-> 
-> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+On Fri, May 09, 2025 at 04:54:08PM +0000, Vishwaroop A wrote:
+> Add the 'iommus' property to the Tegra QSPI device tree binding.
+> The property is needed for Tegra234 when using the internal DMA
+> controller, and is not supported on other Tegra chips, as DMA is
+> handled by an external controller.
+>=20
+> Signed-off-by: Vishwaroop A <va@nvidia.com>
+> ---
+>  .../bindings/spi/nvidia,tegra210-quad.yaml    | 19 ++++++++++++++++---
+>  1 file changed, 16 insertions(+), 3 deletions(-)
+>=20
+> Changes since v2:
+> - Fixed version number to match the actual version
+> - Added proper changelog section
+> - No functional changes from v2
+>=20
+> Changes since v1:
+> - Fixed subject prefix to match subsystem (dt-bindings: spi: tegra)
+> - Improved commit message formatting to follow Linux coding style
+> - Clarified that IOMMU is only required for Tegra234 platform
+> - Added explicit disallow for IOMMU on other platforms
+> - Removed redundant explanations of what the patch does
+> - Fixed commit message to use imperative mood
+>=20
+> Initial Version:
+> - Initial implementation of IOMMU property documentation
+> - Added iommus property to device tree binding
+> - Added support for Tegra234 platform
+> - Added explanation of DMA and IOMMU requirements
+>=20
+> diff --git a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.y=
+aml b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+> index 48e97e240265..04d3b1a47392 100644
+> --- a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+> +++ b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+> @@ -10,9 +10,6 @@ maintainers:
+>    - Thierry Reding <thierry.reding@gmail.com>
+>    - Jonathan Hunter <jonathanh@nvidia.com>
+> =20
+> -allOf:
+> -  - $ref: spi-controller.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -47,6 +44,9 @@ properties:
+>        - const: rx
+>        - const: tx
+> =20
+> +  iommus:
+> +    maxItems: 1
+> +
+>  patternProperties:
+>    "@[0-9a-f]+$":
+>      type: object
+> @@ -69,6 +69,19 @@ required:
+> =20
+>  unevaluatedProperties: false
+> =20
+> +allOf:
+> +  - $ref: spi-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: nvidia,tegra234-qspi
 
-Aplied, after updating above statement about MPM3695-25 and the next commit.
+> +    then:
+> +      properties:
+> +        iommus: true
 
-Thanks,
-Guenter
+This is a NOP, no?
+Just invert the case above and drop a clause.
+
+> +    else:
+> +      properties:
+> +        iommus: false
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/tegra210-car.h>
+> --=20
+> 2.17.1
+>=20
+
+--b7v6v0TWl91jPaKU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCImmQAKCRB4tDGHoIJi
+0nCdAP0SwhcOv3w78KUp3q+/132CGvA5hXO8+nprMYHRBeAVJwD/Z4Jiu2d4tJ6/
+Q3o7E6/SGMTjBqGnVwJK9M/+r8H+XwQ=
+=qS0d
+-----END PGP SIGNATURE-----
+
+--b7v6v0TWl91jPaKU--
 
