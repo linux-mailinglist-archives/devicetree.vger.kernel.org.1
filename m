@@ -1,285 +1,145 @@
-Return-Path: <devicetree+bounces-176211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEE60AB3246
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 10:53:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C33B2AB3283
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:00:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62303169435
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:53:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C66D189C857
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D517C259CB8;
-	Mon, 12 May 2025 08:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BAE425A345;
+	Mon, 12 May 2025 08:57:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lBG7UIt5"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="D1Uaidzq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 954DF13CF9C;
-	Mon, 12 May 2025 08:53:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A950B25A32E
+	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 08:57:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747039993; cv=none; b=Bwy5aaDRp7aXp7ISv60jDoifhALf2vP75z+S0lRpGm3t8iIp8ZotIOEfJ5jBl+hH62oF1rofr7ezcWu8JDbhD+MbP3zVI590JrGpdwz8qpvzpbT5oerfVuQATgO0foPAwwNxjBHAdyArZFq6oBqAP34HtMkHTOk/e28Fs+xYrHA=
+	t=1747040242; cv=none; b=dn3QRpZFqHBJWTHlJxtlUtqbXWjEhLJ0txiIzAaMt2qA3ZoCDoC3NYfVBzUS5NIHlVdcauSWpWqhQuQtBWC6W1Bu9JqJ0uITLtDyHNxhRHwZEGPsiGyz6R86JjRYqE8sBFbm7YKR546kDEqFXmoiFb4vcoGQbjWIGBRt4CvpVag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747039993; c=relaxed/simple;
-	bh=fsWgRkwmt6EGHHzL1OY4aktipP2bQAekjWjb0dTW1Pg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rf5PKk7V2+WfLJV9a4AbQ0UyX45FtAcckx4ZEimoz3p04PhRhT4zUcYbS2p2vI2TZehKXsIc9Gq6YZxe6k/tU6oPpEtxj2CFeAlJPEvrZT+PgE1stQgk3/tfT9Xbia1rb3kIbPeEkOszbfi/GjistL9vCqAsjaod3DGe8HAyUGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lBG7UIt5; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6CF1242E81;
-	Mon, 12 May 2025 08:53:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1747039983;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yA/eTMzqXcqngbyrssJwNvzYOWsbESQyZm6H3kZk8L8=;
-	b=lBG7UIt5aAR95XLDJpx4h0groRjbQ7cC+771rNBnHcOs/94nE086dixVYC0fRD1iwxQQFO
-	aKCbr63LjBf4d+42WQKBJ5Gj3MBHms52zHhc2SOUVMrBpbN6dRmkbuus/T9frcy7yku00d
-	WwbZPqsJNhLb7BFHD0hk+Tm10nL0ggKrppz5eJi6XkpCQAjrfwZorCInO14ffZ7WxRtLAK
-	Bhr43r0ybCBFikQcAxyeBt5xtK6yQw5pngSH2juAVhboRKSVaBQmVDJBj1pjYegXzCJPhQ
-	UrKmQ0EGeO4zVa6wtEuTSAn8EvJtBhJzJI1hQvz1c6/TV1wgwZBPvZuVayKDWQ==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: davem@davemloft.net, Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
- Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
- linux-arm-kernel@lists.infradead.org,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>,
- =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>,
- Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>,
- =?UTF-8?B?Tmljb2zDsg==?= Veronese <nicveronese@gmail.com>,
- Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
- Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject:
- Re: [PATCH net-next v6 12/14] net: phy: Only rely on phy_port for PHY-driven
- SFP
-Date: Mon, 12 May 2025 10:52:55 +0200
-Message-ID: <3690479.R56niFO833@fw-rgant>
-In-Reply-To: <20250507135331.76021-13-maxime.chevallier@bootlin.com>
-References:
- <20250507135331.76021-1-maxime.chevallier@bootlin.com>
- <20250507135331.76021-13-maxime.chevallier@bootlin.com>
+	s=arc-20240116; t=1747040242; c=relaxed/simple;
+	bh=JhLyS8OlAvaLP9r7KbQp2hC6ezEHKIzbqXNmUbZHJpI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nc5mbRL6Al6c3oNWIWB2qp/POD9EPzh0kHRDDZgDIlLRdeXeqelJObYZUTwEsCGXVFjPfKxzX9UPvoepzjB6+oGsckKQIhGMfHzbdlv4seg40+bexdL7lCVaUDPPerjf7LCssBu8Qj7nDg+Do/eoMLzWC3g1LAkSfigpRcCkSTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=D1Uaidzq; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-74068f95d9fso3779213b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 01:57:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1747040240; x=1747645040; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sc3CqNV/8Mi2zP04knLd5VAdkGEl8lYzJxAs+HQXCEQ=;
+        b=D1UaidzqpoK8gIulW9n1/Bsx8Ekb5WoxuQhpfF1z5uBRux3hsCDFNo7zNHYqBGDgZl
+         CeuQ1ux0KNKMYNODDa+mV5+KkseMK8cJpdf7QNhrawYkjidcIVpNH1BdKcuohzpkUbhW
+         H6OPN+E6uxWcZ8TiyAaooZbZvVbgrPO/+dx6xiqDCUywjer71y4j6E02z++N7wVyozLc
+         Tu2vclbwMDZawKoou3vuUNFLo2pZL/r2FZn+y7dZuGppA3bis57GWmW3mZGVoFrEc6sn
+         UPAYt6fOdNkIMqa8bLneDh4oVgiKEsxVpti/1u+LdyY14pvc+1BrWXQ0IAfzDtVRFeGy
+         7kpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747040240; x=1747645040;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Sc3CqNV/8Mi2zP04knLd5VAdkGEl8lYzJxAs+HQXCEQ=;
+        b=QA69r3paUYVJa2rqI7w+Y4fPprSaKfm/vV0HmTur/EHB7u/qaEQaX75QG2NUHQc1KZ
+         hblF8F4tafAAXizZeOk7x1k5SMr4iE6gaNJQSzcFKsHNSSBeIPDH3fZyl2fEt3MHP5eH
+         6mHAG/PQgXNZG0VYtbnZ2LqzyEdANQXe08McWN6izkoSDNFe3ozRyMeSaxyXNQJzsiyO
+         r8cTWzG8u9HxvpcESk41oC5e5zv1QdTrhDLJ+WcKeVpo9eCdw5l2J+D3o6RfnF3uzTsI
+         5GRhxqUXamvdE5Bb485ujrJVFW7POjs30/5vYWDtvx96FoP9Xnxl71TulUsCC/Itf+NM
+         Bqfg==
+X-Forwarded-Encrypted: i=1; AJvYcCXg1MpknksWcx5c5JJpggsVR37NmB0QuFlgZWP4/XBaivpZmO2oCOqOw9RPhHZdwyqSWkLgseho2gl2@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLZTMRoT/51siTKgXLV9mNsDsiIzyi7ddpfhNBLYCfKEnvD4e6
+	Isi4zhVOfMNSDt9oFh1eC4+uqQoeL0YhDVQ8eYfqvfjITQLopn+eiiAbPZ+0GnA=
+X-Gm-Gg: ASbGncuYh0BpSdDJ5ncfK9vRQgaMFZlELoVJzYryrT8gKEQM2j/i3X0n/W0Hjn40GzM
+	WnAiWGVoTVakUj1lpPncl3MTgP3jCTZriRF0eirwNocxpcvPGDJiLMahUY/yi13T2UFpwIxqyJs
+	/IX/pQrSvjB9uLUWUNRk33HrtE0U7pRKHnT5iggBgGVLpRSLOS1yvw6ZJi4ozDipNw7QJG26WiL
+	9bsA9sviKPOI80vgMnzh3nypqIPj46RpNKDu/vX2Qb/jJ+6qj8gDPP4wtfBFWRxe2se1CyRFeen
+	AC+Vf4H3FxFRved3gifFqiJ6QjaWPVdor4Whk5BBdrCM7TjOZIHI4q95UHQ=
+X-Google-Smtp-Source: AGHT+IFWgBjdZaW68l9bQibLY9baPAwDqAl5/2YWyRVkP0+/oKFF3fyXGC7vyJbnIM52riOnSv7fSQ==
+X-Received: by 2002:a05:6a20:8792:b0:215:d4be:b0ad with SMTP id adf61e73a8af0-215d4beb697mr3485599637.28.1747040239872;
+        Mon, 12 May 2025 01:57:19 -0700 (PDT)
+Received: from sunil-laptop ([103.97.166.196])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b234a0b29casm4459423a12.28.2025.05.12.01.57.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 May 2025 01:57:19 -0700 (PDT)
+Date: Mon, 12 May 2025 14:27:05 +0530
+From: Sunil V L <sunilvl@ventanamicro.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 20/23] mailbox/riscv-sbi-mpxy: Add ACPI support
+Message-ID: <aCG34XoERpmESesO@sunil-laptop>
+References: <20250511133939.801777-1-apatel@ventanamicro.com>
+ <20250511133939.801777-21-apatel@ventanamicro.com>
+ <aCGjEdNVH3ughITd@smile.fi.intel.com>
+ <aCGzFVXFBVRbMUKz@sunil-laptop>
+ <aCG1kqi2w2EUKWyO@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3819238.MHq7AAxBmi";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftddtkeefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkfgjfhggtgesghdtreertddtjeenucfhrhhomheptfhomhgrihhnucfirghnthhoihhsuceorhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefhvdelkeevgfeijedtudeiheefffejhfelgeduuefhleetudeiudektdeiheelgfenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepfhifqdhrghgrnhhtrdhlohgtrghlnhgvthdpmhgrihhlfhhrohhmpehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfedtpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepnhgvthguvghvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrk
- hgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqmhhsmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehthhhomhgrshdrphgvthgriiiiohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aCG1kqi2w2EUKWyO@smile.fi.intel.com>
 
---nextPart3819238.MHq7AAxBmi
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Mon, 12 May 2025 10:52:55 +0200
-Message-ID: <3690479.R56niFO833@fw-rgant>
-In-Reply-To: <20250507135331.76021-13-maxime.chevallier@bootlin.com>
-MIME-Version: 1.0
-
-On Wednesday, 7 May 2025 15:53:28 CEST Maxime Chevallier wrote:
-> Now that all PHY drivers that support downstream SFP have been converted
-> to phy_port serdes handling, we can make the generic PHY SFP handling
-> mandatory, thus making all phylib sfp helpers static.
+On Mon, May 12, 2025 at 11:47:14AM +0300, Andy Shevchenko wrote:
+> On Mon, May 12, 2025 at 02:06:37PM +0530, Sunil V L wrote:
+> > On Mon, May 12, 2025 at 10:28:17AM +0300, Andy Shevchenko wrote:
+> > > On Sun, May 11, 2025 at 07:09:36PM +0530, Anup Patel wrote:
 > 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> ---
->  drivers/net/phy/phy_device.c | 28 +++++++++-------------------
->  include/linux/phy.h          |  6 ------
->  2 files changed, 9 insertions(+), 25 deletions(-)
+> ...
 > 
-> diff --git a/drivers/net/phy/phy_device.c b/drivers/net/phy/phy_device.c
-> index aca3a47cbb66..7f319526a7fe 100644
-> --- a/drivers/net/phy/phy_device.c
-> +++ b/drivers/net/phy/phy_device.c
-> @@ -1384,7 +1384,7 @@ static DEVICE_ATTR_RO(phy_standalone);
->   *
->   * Return: 0 on success, otherwise a negative error code.
->   */
-> -int phy_sfp_connect_phy(void *upstream, struct phy_device *phy)
-> +static int phy_sfp_connect_phy(void *upstream, struct phy_device *phy)
->  {
->  	struct phy_device *phydev = upstream;
->  	struct net_device *dev = phydev->attached_dev;
-> @@ -1394,7 +1394,6 @@ int phy_sfp_connect_phy(void *upstream, struct
-> phy_device *phy)
+> > > > +#ifdef CONFIG_ACPI
+> > > > +	if (!acpi_disabled)
+> > > 
+> > > Hmm... Why do you need this check? What for?
+> > > 
+> > When we boot with DT, ACPI_COMPANION(dev) will return NULL which will
+> > cause a crash in acpi_dev_clear_dependencies(). Let me know if I am
+> > missing something.
 > 
->  	return 0;
->  }
-> -EXPORT_SYMBOL(phy_sfp_connect_phy);
+> Yes, just check that the companion is NULL, rather than the above.
 > 
->  /**
->   * phy_sfp_disconnect_phy - Disconnect the SFP module's PHY from the
-> upstream PHY @@ -1406,7 +1405,7 @@ EXPORT_SYMBOL(phy_sfp_connect_phy);
->   * will be destroyed, re-inserting the same module will add a new phy with
-> a * new index.
->   */
-> -void phy_sfp_disconnect_phy(void *upstream, struct phy_device *phy)
-> +static void phy_sfp_disconnect_phy(void *upstream, struct phy_device *phy)
->  {
->  	struct phy_device *phydev = upstream;
->  	struct net_device *dev = phydev->attached_dev;
-> @@ -1414,7 +1413,6 @@ void phy_sfp_disconnect_phy(void *upstream, struct
-> phy_device *phy) if (dev)
->  		phy_link_topo_del_phy(dev, phy);
->  }
-> -EXPORT_SYMBOL(phy_sfp_disconnect_phy);
+> 	struct acpi_device *adev;
 > 
->  /**
->   * phy_sfp_attach - attach the SFP bus to the PHY upstream network device
-> @@ -1423,7 +1421,7 @@ EXPORT_SYMBOL(phy_sfp_disconnect_phy);
->   *
->   * This is used to fill in the sfp_upstream_ops .attach member.
->   */
-> -void phy_sfp_attach(void *upstream, struct sfp_bus *bus)
-> +static void phy_sfp_attach(void *upstream, struct sfp_bus *bus)
->  {
->  	struct phy_device *phydev = upstream;
+> 	adev = ACPI_COMPANION(dev);
+> 	if (adev)
+> 		acpi_dev_clear_dependencies(adev);
 > 
-> @@ -1431,7 +1429,6 @@ void phy_sfp_attach(void *upstream, struct sfp_bus
-> *bus) phydev->attached_dev->sfp_bus = bus;
->  	phydev->sfp_bus_attached = true;
->  }
-> -EXPORT_SYMBOL(phy_sfp_attach);
-> 
->  /**
->   * phy_sfp_detach - detach the SFP bus from the PHY upstream network device
-> @@ -1440,7 +1437,7 @@ EXPORT_SYMBOL(phy_sfp_attach);
->   *
->   * This is used to fill in the sfp_upstream_ops .detach member.
->   */
-> -void phy_sfp_detach(void *upstream, struct sfp_bus *bus)
-> +static void phy_sfp_detach(void *upstream, struct sfp_bus *bus)
->  {
->  	struct phy_device *phydev = upstream;
-> 
-> @@ -1448,7 +1445,6 @@ void phy_sfp_detach(void *upstream, struct sfp_bus
-> *bus) phydev->attached_dev->sfp_bus = NULL;
->  	phydev->sfp_bus_attached = false;
->  }
-> -EXPORT_SYMBOL(phy_sfp_detach);
-> 
->  static int phy_sfp_module_insert(void *upstream, const struct sfp_eeprom_id
-> *id) {
-> @@ -1591,10 +1587,8 @@ static int phy_setup_sfp_port(struct phy_device
-> *phydev) /**
->   * phy_sfp_probe - probe for a SFP cage attached to this PHY device
->   * @phydev: Pointer to phy_device
-> - * @ops: SFP's upstream operations
->   */
-> -int phy_sfp_probe(struct phy_device *phydev,
-> -		  const struct sfp_upstream_ops *ops)
-> +static int phy_sfp_probe(struct phy_device *phydev)
->  {
->  	struct sfp_bus *bus;
->  	int ret = 0;
-> @@ -1606,7 +1600,7 @@ int phy_sfp_probe(struct phy_device *phydev,
-> 
->  		phydev->sfp_bus = bus;
-> 
-> -		ret = sfp_bus_add_upstream(bus, phydev, ops);
-> +		ret = sfp_bus_add_upstream(bus, phydev, &sfp_phydev_ops);
->  		sfp_bus_put(bus);
->  	}
-> 
-> @@ -1615,7 +1609,6 @@ int phy_sfp_probe(struct phy_device *phydev,
-> 
->  	return ret;
->  }
-> -EXPORT_SYMBOL(phy_sfp_probe);
-> 
->  static bool phy_drv_supports_irq(const struct phy_driver *phydrv)
->  {
-> @@ -3432,12 +3425,9 @@ static int phy_setup_ports(struct phy_device *phydev)
-> if (ret)
->  		return ret;
-> 
-> -	/* Use generic SFP probing only if the driver didn't do so already */
-> -	if (!phydev->sfp_bus) {
-
-Alright, since you removed this, my earlier review comment about potentially 
-making phy_sfp_probe() legacy doesn't apply.
-
-> -		ret = phy_sfp_probe(phydev, &sfp_phydev_ops);
-> -		if (ret)
-> -			goto out;
-> -	}
-> +	ret = phy_sfp_probe(phydev);
-> +	if (ret)
-> +		goto out;
-> 
->  	if (phydev->n_ports < phydev->max_n_ports) {
->  		ret = phy_default_setup_single_port(phydev);
-> diff --git a/include/linux/phy.h b/include/linux/phy.h
-> index aef13fab8882..4df1c951dcf2 100644
-> --- a/include/linux/phy.h
-> +++ b/include/linux/phy.h
-> @@ -1796,12 +1796,6 @@ int phy_suspend(struct phy_device *phydev);
->  int phy_resume(struct phy_device *phydev);
->  int __phy_resume(struct phy_device *phydev);
->  int phy_loopback(struct phy_device *phydev, bool enable, int speed);
-> -int phy_sfp_connect_phy(void *upstream, struct phy_device *phy);
-> -void phy_sfp_disconnect_phy(void *upstream, struct phy_device *phy);
-> -void phy_sfp_attach(void *upstream, struct sfp_bus *bus);
-> -void phy_sfp_detach(void *upstream, struct sfp_bus *bus);
-> -int phy_sfp_probe(struct phy_device *phydev,
-> -	          const struct sfp_upstream_ops *ops);
->  struct phy_device *phy_attach(struct net_device *dev, const char *bus_id,
->  			      phy_interface_t interface);
->  struct phy_device *phy_find_first(struct mii_bus *bus);
+Ah Ok. Sure. Will update.
 
 Thanks!
-
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nextPart3819238.MHq7AAxBmi
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEYFZBShRwOvLlRRy+3R9U/FLj284FAmghtugACgkQ3R9U/FLj
-286tRA/8CMHL0mlMvcipbO0UAYI2bvd8TqwmNyeTFpqoCUvQneMTWKBZNd/O3ohq
-6G7bGjsCfdv5rR6aESx0p0RQHsTrsIOACH0BXGynyAkVW564j2+ZANE2GGQChlGu
-09o9ZbRK3GhmvDx4O5PZjfBm9cde5iea9OB1JC+Z5P/qlutvr3YsD1cteOg1qWbL
-x7+RNdKUWD6v0aRYVlWrEiEMu7kwiGWW2ehlojG1ogz7nR6O7rtIvdfzdChZthry
-B7UZ2C2BII9NOH9LU9JfV4s0bDiwXtfrryOrBoPfWmuPkAZ+V4mBSZvVHPuXVG0n
-/J9m3Yhejm4TcmPx58E5ucsW9xuTgkEKH8L+yZK9rByZErqy+XIPmL1FZqPVPMCr
-kw1gDCK0mAdKMCYv0CN1EcuTtpZw3R0HmnlTbY/+5vorE0VmY6ZLDswqclDXOiBC
-1YrINywTybi8DQHXmuTgyO0M746EKIWDSwCS+Tc5KT/1132iRDGs/7zWmHETpyaa
-SdeQ0OZl+CpLzNSlXhH1mHP7tLEo18kic3w4oBVZkkv3Or9vjT2OllsoWw3T+3wg
-ZwV3FPvLpPZo3U6pbEyqiM9gCaebuURzgRldP3uvkZVwhmQvOed2+eFfg0j5wJ9K
-Hj8U7/tj/pEAU9AX6e5IKaJa+i/Fm4ev4hkjO0qOmBW3LApBVD4=
-=KKOr
------END PGP SIGNATURE-----
-
---nextPart3819238.MHq7AAxBmi--
-
-
-
+Sunil
 
