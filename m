@@ -1,121 +1,147 @@
-Return-Path: <devicetree+bounces-176400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40666AB3D5A
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:23:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A55EAB3D73
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:26:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 440BE1887B36
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:21:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E8453BE13E
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:21:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2162248F7D;
-	Mon, 12 May 2025 16:21:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2392248F72;
+	Mon, 12 May 2025 16:21:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qjWDW5ip"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9062F247288
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 16:21:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF6F246782;
+	Mon, 12 May 2025 16:21:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747066873; cv=none; b=IPItubwEpq5SFyeaEYWmPje4l/AlYWprlNZLpr4/lVa37oXqj+sXe+il+f+nmEV5EHKA6mAN4me/3VQatp1o78CHA/NTF1IjgeglrQ/iePXSo2rL3ENr74mCHTvtoAPS8SMOkWlhW3Y/nH1fz+ZFCa97OgrcRA1QbGU3IDODLxg=
+	t=1747066912; cv=none; b=JahNOFsvfkL4vuiiO2bOP4zTu3FkD0Li2wqeHqSRghqWPCcdh+Y2soNro/0o9+f7qXTgbASef7OddDkQLExlgiszXLcry20Ny5GF1y6Pfo8mLuEgTlnudv2D2d9AlzrkVrOxakO7m03kM9TRQoYxUIRy/tvbSvao22rdYutUHQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747066873; c=relaxed/simple;
-	bh=RePUUGOBxDJjMozkfbHau1maZS5C052bA5fRrMmph3s=;
+	s=arc-20240116; t=1747066912; c=relaxed/simple;
+	bh=Cw16mLp8GBEQCcOKwuFSOtn+PoZCJYu4QwEC/5THH6Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fvYXQTCvEE1QVucA3bedBPTrRAtHZKm1a8IALuXvQL1aALJzShQxO5eoOxxeWOanZ+2Gg0/qrs2Y+5MQ7N54AbTyVUt/xilZDzkbsgkCmR+jYmp63w056eN3ESz2okVEwMpLD+GZ0l/BAG6YPxoC8r8LIHPrnsREuO60McjyoGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A9E6C150C
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 09:20:59 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 6F0453F63F
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 09:21:10 -0700 (PDT)
-Date: Mon, 12 May 2025 17:21:03 +0100
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Leo Yan <leo.yan@arm.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: fvp: Add system timer for broadcast
- during CPU idle
-Message-ID: <aCIf71dwiloB-Mrm@e110455-lin.cambridge.arm.com>
-References: <20250509154640.836093-1-sudeep.holla@arm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pVUpAHFG6YqOcrUYKIKohocLM6I64QRWtlxg0Jc4pc/pZYHVMhosJNcNSDweJJVTFCYEO4NdmN/hjjjxKOzWr4FTTbg1adzku4NRgzxDMt/Mt0phtKZzh/8q9Titl5ehT/UdG48koBBBjE75BYNxDbrtR7i75LDRKDq/aBwE+2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qjWDW5ip; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E3D0C4CEE7;
+	Mon, 12 May 2025 16:21:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747066912;
+	bh=Cw16mLp8GBEQCcOKwuFSOtn+PoZCJYu4QwEC/5THH6Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qjWDW5ipMKXBnBTQnDL//oE57mzcvjgoU1Ton8qgojjwFyPxcD/zG/sLf/+qoX0WA
+	 onl7eoXYzFz98ul7cCauOz3vwSqHsjTMNXxy4MHoHFByrilbQ4G9jTZ/dSzd5XRBlq
+	 JoPfIQU7+w81uzvYu3dFmIRKPmCaTWTq9D31Lnn704gy42p4Ipyte1Djh82MKghM+d
+	 lJri9FOcBdfu27jie/UdYAgPVIehCS1Pmqyq5mrNMpXxxVOcM8CBzesTbQcOolL+JT
+	 /aI2JhND0tKPf20Mk8yLGONCN8t52y6fENYrsyoMvnIGT34Ki8SDew58BKGAfMIC7E
+	 P+tql2ye6ipcQ==
+Date: Mon, 12 May 2025 17:21:45 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+	Landen Chao <Landen.Chao@mediatek.com>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v1 01/14] dt-bindings: net: mediatek,net: update for
+ mt7988
+Message-ID: <20250512-nibble-freemason-69e0279f2f99@spud>
+References: <20250511141942.10284-1-linux@fw-web.de>
+ <20250511141942.10284-2-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="BeH6zc2zJClOlCJ9"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250509154640.836093-1-sudeep.holla@arm.com>
+In-Reply-To: <20250511141942.10284-2-linux@fw-web.de>
 
-On Fri, May 09, 2025 at 04:46:38PM +0100, Sudeep Holla wrote:
-> Introduce a system-level timer node in the FVP device tree to act as
-> a broadcast timer when CPUs are in context losing idle states where
-> the local timer stops on entering such low power states.
-> 
-> This change complements recent CPU idle state additions.
-> 
-> Tested-by: Leo Yan <leo.yan@arm.com>
-> Message-Id: <20250508103225.354925-2-sudeep.holla@arm.com>
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 
-For the whole series:
+--BeH6zc2zJClOlCJ9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
-
-Best regards,
-Liviu
-
+On Sun, May 11, 2025 at 04:19:17PM +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+>=20
+> Update binding for mt7988 which has 3 gmac and 2 reg items.
+>=20
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
->  arch/arm64/boot/dts/arm/fvp-base-revc.dts | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> v1->v2:
-> 	- Dropped clock-frequency property
-> 	- Fixed #size-cell to 1 as expected by the schema
-> 	- Also update the ranges property and the frame reg property
-> 
-> diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> index 9e10d7a6b5a2..50b5993a2460 100644
-> --- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> +++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-> @@ -217,6 +217,19 @@ timer {
->  			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
->  	};
->  
-> +	timer@2a810000 {
-> +		compatible = "arm,armv7-timer-mem";
-> +		reg = <0x0 0x2a810000 0x0 0x10000>;
-> +		ranges = <0 0x0 0x2a820000 0x20000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		frame@2a830000 {
-> +			frame-number = <1>;
-> +			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> +			reg = <0x10000 0x10000>;
-> +		};
-> +	};
-> +
->  	pmu {
->  		compatible = "arm,armv8-pmuv3";
->  		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> -- 
-> 2.34.1
-> 
+>  Documentation/devicetree/bindings/net/mediatek,net.yaml | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Do=
+cumentation/devicetree/bindings/net/mediatek,net.yaml
+> index 9e02fd80af83..5d249da02c3a 100644
+> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> @@ -28,7 +28,8 @@ properties:
+>        - ralink,rt5350-eth
+> =20
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
 
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+This should become an items list, with an explanation of what each of
+the reg items represents.
+
+> =20
+>    clocks:
+>      minItems: 2
+> @@ -381,8 +382,12 @@ allOf:
+>              - const: xgp2
+>              - const: xgp3
+> =20
+> +        reg:
+> +          minItems: 2
+> +          maxItems: 2
+> +
+>  patternProperties:
+> -  "^mac@[0-1]$":
+> +  "^mac@[0-2]$":
+>      type: object
+>      unevaluatedProperties: false
+>      allOf:
+> --=20
+> 2.43.0
+>=20
+
+--BeH6zc2zJClOlCJ9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCIgGQAKCRB4tDGHoIJi
+0kdJAQD7lUldL2lyECoq6kz6Xgzpc9L4CU21TH0X3mhKWLc3KAEAkBFq4G5y02M6
+M2qDeF8a2MAP3H9Vr3AIiT3T4ZG04gg=
+=Vo8k
+-----END PGP SIGNATURE-----
+
+--BeH6zc2zJClOlCJ9--
 
