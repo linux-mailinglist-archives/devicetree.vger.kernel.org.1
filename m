@@ -1,58 +1,61 @@
-Return-Path: <devicetree+bounces-176498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24EBAAB452F
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 21:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE7EAB456A
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 22:25:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A4858C25C3
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 19:50:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8A0B8C1893
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 20:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD06C25525E;
-	Mon, 12 May 2025 19:50:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 949CE298CBF;
+	Mon, 12 May 2025 20:25:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mHZLs4Yu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PXPz5tqE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0901CA84;
-	Mon, 12 May 2025 19:50:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D31F25742F;
+	Mon, 12 May 2025 20:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747079423; cv=none; b=GYuLPl0wzswJQg9InElDKGzEeLTtLcZxmmBY2YLiVTBYvaSimZbQffYN/T2aey/querks3yl/X1FvJR+sGeqcsivVbf6oSCJ4wwjPRrFvRwdl0KDK2XL+2Im9H5HpYHXX+xx6FKEn3eKVXw9t9x1Xxqt3Zzp8nE+0+t8awlMuLM=
+	t=1747081553; cv=none; b=GSZbrNd8OxTjGd2n96J5xYyO9SgyTI1YWLsb031xgABymRkGin74iZOp3Pmofg4Ar4Maj4qSXLnjNsw6qMxADbBnKInz2ZitQX7fVoeYxRQRBCGFkhsqxorNYklsfEstES8p5ygl8ik68612aSMECwZ2jsLI3WIk1KP6sSBiJTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747079423; c=relaxed/simple;
-	bh=yQi4reQtnYQYLf5UFhxYGFIxYYxyY/Zpe3d6jmIEJyY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LFa5tO/lrkrYNxry5IvnihfaDlBJAP6H9uDXWVs9xl5gKDVy6dN9M+F9WtdMiVb7/hUnj7+IPrejHswz0evkW9eZHzOVp38K2fbtjVHH3okIl6XtsUMQyFV0LTw0IdXbtPfWU2Xf9WQKz7QyFBYFztCUJveUuPYor762RAU4dtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mHZLs4Yu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C87A1C4CEE7;
-	Mon, 12 May 2025 19:50:22 +0000 (UTC)
+	s=arc-20240116; t=1747081553; c=relaxed/simple;
+	bh=cln9IOQi28YDju/Nx39q/YI+6TzFSaKpgzcvW+4KHUg=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=hMjfe/1Zyh0j52obAWOMbgSwGvfs10+989+MwMeTLFeWmln/jtCxyIDZi9su/SMporTayFnA+hLk5zCxtGBt9ZI60bRZkhI/aFLG4fsRuodW0aDKbJIGTXGgMYiTNs0BH3Nmzf9jtUs3WKglCZBUrU+50lw60Po/5YrmM7eS4GU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PXPz5tqE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69D75C4CEE9;
+	Mon, 12 May 2025 20:25:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747079423;
-	bh=yQi4reQtnYQYLf5UFhxYGFIxYYxyY/Zpe3d6jmIEJyY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mHZLs4YuaJOSe+zdghR3qGbYnycC0C4TjNNE5E19H1DHJvubrA9JUp6g0euX6nWj1
-	 15BrdBv7QCNBqbxRrIxFZU5ecUv6RPG3tX9mzd0+DUETJW7gxwTV3XK0sdIxmjtwCe
-	 Jylp0xSv/rRDpioRA7yfXKXrISaFVu/0W0z/Vo0S9ro2sWyzvQKxWpXkleoT2h01fi
-	 TQ8pkmF/0upftdTajVmBR/VQnlXi5ETy5qjVi1wvbnEklEaB/Jcy4uZuml/qKAUV6o
-	 EeIp/68edQ/g/bsXOOrw63ePQwXKFFnO/v81q0gX5Prpp5aHnamcAc6E6Fm28uVrw7
-	 7jXoeK2t1LTyg==
-Date: Mon, 12 May 2025 14:50:20 -0500
-From: Rob Herring <robh@kernel.org>
-To: David Bauer <mail@david-bauer.net>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: input: add Semtech SX951x binding
-Message-ID: <20250512195020.GA3882546-robh@kernel.org>
-References: <20250505203847.86714-1-mail@david-bauer.net>
- <cbf42385-9803-4bea-bf99-a6f31f1454f6@linaro.org>
- <8c9e5e74-966b-4969-9776-7655863fd197@david-bauer.net>
+	s=k20201202; t=1747081552;
+	bh=cln9IOQi28YDju/Nx39q/YI+6TzFSaKpgzcvW+4KHUg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=PXPz5tqEEn7YI/LRDehuE9Wx6021yCNOYYo8cP2QO6KrLVRqheGAh6KVLIurBZPZq
+	 broMq3BnJXbatqkcOe9VxUqh8ZKa7yASR+/sANZ9lhLacbi0FrGIgsuL/ZwnP3sUaH
+	 x/SkxdHzcMtNkPCABpEvBW0xkeCXk3fHkCwVq7LIv1Tz9mM20PaKAa1qaCxMuYKiHm
+	 DimDcNqefDelEy2YoFZh7lnW9eFvbMx9q1VDBIRDZkohVJjnK7tR1jw6r4a1hnmiKf
+	 HXxw57fBCS3TKYxskUxwBF/6Rge8WGH2mnq9HfXitl6abar40pW9FMswo3O00CyBsn
+	 Yq+Ur1t4mHu2w==
+Date: Mon, 12 May 2025 15:25:50 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
+	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
+	saravanak@google.com, p.zabel@pengutronix.de,
+	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH 5/8] PCI: rzg3s-host: Add Initial PCIe Host Driver for
+ Renesas RZ/G3S SoC
+Message-ID: <20250512202550.GA1126561@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,195 +64,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8c9e5e74-966b-4969-9776-7655863fd197@david-bauer.net>
+In-Reply-To: <26bdfbd6-7bf5-4688-b793-5d0f613d340b@tuxon.dev>
 
-On Tue, May 06, 2025 at 12:05:43PM +0200, David Bauer wrote:
-> Hi Krzysztof,
+On Mon, May 05, 2025 at 02:26:43PM +0300, Claudiu Beznea wrote:
+> On 01.05.2025 23:12, Bjorn Helgaas wrote:
+> > On Wed, Apr 30, 2025 at 01:32:33PM +0300, Claudiu wrote:
+> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>
+> >> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
+> >> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
+> >> only as a root complex, with a single-lane (x1) configuration. The
+> >> controller includes Type 1 configuration registers, as well as IP
+> >> specific registers (called AXI registers) required for various adjustments.
+> >>
+> >> Other Renesas RZ SoCs (e.g., RZ/G3E, RZ/V2H) share the same AXI registers
+> >> but have both Root Complex and Endpoint capabilities. As a result, the PCIe
+> >> host driver can be reused for these variants with minimal adjustments.
+> ...
+
+> >> +static void rzg3s_pcie_irqs_init(struct rzg3s_pcie_host *host)
+> > 
+> > This and many of the following functions have names that don't
+> > correspond to anything in other drivers, which makes it harder to
+> > transfer knowledge between the drivers.  If you can find a pattern
+> > somewhere to follow, it will make it easier for others to read the
+> > driver.
 > 
-> thanks for the review.
+> OK, I'll think about it. Do you have a recomentation?
+
+Not really.  Maybe pick a driver with recent activity.
+
+> >> +static int rzg3s_pcie_probe(struct platform_device *pdev)
+> >> +{
+> >> +	struct device *dev = &pdev->dev;
+> >> +	void *devres_group_id;
+> >> +	int ret;
+> >> +
+> >> +	devres_group_id = devres_open_group(dev, NULL, GFP_KERNEL);
+> >> +	if (!devres_group_id)
+> >> +		return -ENOMEM;
+> > 
+> > What's the benefit of using devres_open_group()?  No other PCI
+> > controller drivers use it.
 > 
-> On 5/6/25 08:21, Krzysztof Kozlowski wrote:
-> > On 05/05/2025 22:38, David Bauer wrote:
-> > > Add device-tree binding for the Semtech SX9512/SX9513 family of touch
-> > > controllers with integrated LED driver.
-> > > 
-> > > Signed-off-by: David Bauer <mail@david-bauer.net>
-> > 
-> > You CC-ed an address, which suggests you do not work on mainline kernel
-> > or you do not use get_maintainers.pl/b4/patman. Please rebase and always
-> > work on mainline or start using mentioned tools, so correct addresses
-> > will be used.
-> I'm a bit unsure what you are referring to - maybe I've set the options
-> for get_maintainer.pl wrong, but i use
+> This driver uses devm_add_action_or_reset() to keep the error path simpler.
+> Some of the action or reset registered handlers access the controller
+> registers. Because the driver is attached to the platform bus and the
+> dev_pm_domain_detach() is called right after driver remove [1] having devm
+> action or reset handlers accessing controller register will later lead to
+> hangs when the device_unbind_cleanup() -> devres_release_all() will be
+> called on remove path. Other issue described in [2] may arries when doing
+> continuous unbind/bind if the driver has runtime PM API (not case for this
+> driver at the moment) that access directly controller registers.
 > 
-> get_maintainer.pl --nogit --nogit-fallback --norolestats --nol
+> This is because the dev_pm_domain_detach() drops the clocks from PM domain
+> and any subsequent pm_runtime_resume() (or similar function) call will lead
+> to no runtime resume of the device.
 > 
-> to determine TO recipients and
+> There is a solution proposed to this here [2] but it slowly progresses.
+> Until this will be solved I chosed the appraoch of having the devres group
+> opened here. If you agree with it, I had the intention to drop this call if
+> there will be an accepted solution for it. If you are OK with going forward
+> like this, for the moment, would to prefer me to add a comment about the
+> reason the devres_open_group() is used here?
 > 
-> get_maintainer.pl --nogit --nogit-fallback --norolestats --nom
+> This is not PCIe specific but platform bus specific. There are other
+> affected drivers on this side (e.g. rzg2l-adc [3], rzg3s-thermal [4]).
 > 
-> for CC destinations.
-> 
-> Granted, my tree was a bit out of date but it was from mainline
-> and after rebase both commands returned consistent results.
-> 
-> Hope you can provide me with some guidance there.
+> A similar solution as [2] is already used by the i2c subsystem.
 
-Probably that I don't use 'robh+dt' for a while now. Just 'robh'.
+OK.  Is there something unique about rzg3s that means it needs
+devres_open_group(), while other PCI controller drivers do not?  Or
+should the other drivers be using it too?  Maybe they have similar
+latent defects that should be fixed.
 
-> > 
-> > Please use scripts/get_maintainers.pl to get a list of necessary people
-> > and lists to CC (and consider --no-git-fallback argument, so you will
-> > not CC people just because they made one commit years ago). It might
-> > happen, that command when run on an older kernel, gives you outdated
-> > entries. Therefore please be sure you base your patches on recent Linux
-> > kernel.
-> > 
-> > Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-> > people, so fix your workflow. Tools might also fail if you work on some
-> > ancient tree (don't, instead use mainline) or work on fork of kernel
-> > (don't, instead use mainline). Just use b4 and everything should be
-> > fine, although remember about `b4 prep --auto-to-cc` if you added new
-> > patches to the patchset.
-> > 
-> > 
-> > > ---
-> > >   .../bindings/input/semtech,sx951x.yaml        | 180 ++++++++++++++++++
-> > >   1 file changed, 180 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/input/semtech,sx951x.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/input/semtech,sx951x.yaml b/Documentation/devicetree/bindings/input/semtech,sx951x.yaml
-> > > new file mode 100644
-> > > index 000000000000..e4f938decd86
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/input/semtech,sx951x.yaml
-> > > @@ -0,0 +1,180 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/input/semtech,sx951x.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Semtech SX9512/SX9513 based capacitive touch sensors
-> > > +
-> > > +description: |
-> > 
-> > Do not need '|' unless you need to preserve formatting.
-> > 
-> > > +  The Semtech SX9512/SX9513 Family of capacitive touch controllers
-> > > +  with integrated LED drivers. The device communication is using I2C only.
-> > > +
-> > > +maintainers:
-> > > +  - David Bauer <mail@david-bauer.net>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - semtech,sx9512
-> > > +      - semtech,sx9513
-> > 
-> > Devices are not compatible? What are the differences?
-> 
-> The SX9513 is a cost-reduced version which does not
-> support proximity sensing. With the current support
-> of the driver they work identical. Should i add this
-> information as a comment?
+If there's something unique about rzg3s, please add a brief comment
+about what it is so we know why it needs devres_open_group().
 
-In the 'description' above, but not the driver support part.
-
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  '#address-cells':
-> > > +    const: 1
-> > > +
-> > > +  '#size-cells':
-> > > +    const: 0
-> > > +
-> > > +  poll-interval:
-> > > +    default: 100
-> > > +    description: |
-> > 
-> > Do not need '|' unless you need to preserve formatting. Same comment
-> > everywhere.
-> > 
-> > > +      The polling interval for touch events in milliseconds.
-> > 
-> > Missing -ms property unit suffix... unless you are using existing
-> > property from common schema, but I do not see any reference (and thus
-> > unevaluatedProperties at the end).
-> > 
-> > > +
-> > > +patternProperties:
-> > > +  "^channel@[0-7]$":
-> > > +    $ref: input.yaml#
-> > > +    type: object
-> > > +    description: |
-> > > +      Each node represents a channel of the touch controller.
-> > > +      Each channel provides a capacitive touch sensor input and
-> > > +      an LED driver output.
-> > > +
-> > > +    properties:
-> > > +      reg:
-> > > +        enum: [0, 1, 2, 3, 4, 5, 6, 7]
-
-maximum: 7
-
-> > > +
-> > > +      linux,keycodes:
-> > > +        maxItems: 1
-> > > +        description: |
-> > > +          Specifies an array of numeric keycode values to
-> > > +          be used for the channels. If this property is
-> > > +          omitted, the channel is not used as a key.
-> > > +
-> > > +      semtech,cin-delta:
-> > 
-> > Use proper unit suffix and express it in pF.
-> 
-> To represent 2.3 and 3.8 pF, would it be better to represent in
-> femtofarad?
-
-Yes.
-
-
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > +        minimum: 0
-> > > +        maximum: 3
-> > > +        default: 3
-> > > +        description: |
-> > > +          The capacitance delta which is used to detect a touch
-> > > +          or release event. The property value is mapped to a
-> > > +          farad range between 7pF and 2.3pF internally. The delta
-> > > +          becomes smaller the higher the value is.
-> > > +
-> > > +      semtech,sense-threshold:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > +        minimum: 0
-> > > +        maximum: 255
-> > > +        default: 4
-> > > +        description: |
-> > > +          The threshold value after which the channel detects a touch.
-> > > +          Refer to the datasheet for the internal calculation of the
-> > > +          resulting touch sensitivity.
-> > > +
-> > > +      led:
-> > 
-> > I think subnode is here not needed. This should be part of the channel,
-> > probably.
-> 
-> Just to be sure - you mean to have a property "led" upon which instructs
-> the channel to be used to drive an LED and include the LED specific
-> properties in the node of the channel?
-
-Actually, I think it is fine as-is if the LED driver works 
-simultaneously with the touch input and isn't mutually exclusive. The 
-'led' node is for the LED. The parent node is the driver/controller.
-
-If they are mutually exclusive, then I'd say you want channel@[0-7] and 
-led@[0-7] nodes at the same level.
-
-Rob
-
+Bjorn
 
