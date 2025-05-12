@@ -1,157 +1,255 @@
-Return-Path: <devicetree+bounces-176497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4A9EAB4529
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 21:49:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24EBAAB452F
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 21:50:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 343AC16D2D4
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 19:49:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A4858C25C3
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 19:50:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8099125525E;
-	Mon, 12 May 2025 19:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD06C25525E;
+	Mon, 12 May 2025 19:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H7kH0Za6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mHZLs4Yu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B65CC1CA84;
-	Mon, 12 May 2025 19:49:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0901CA84;
+	Mon, 12 May 2025 19:50:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747079374; cv=none; b=Fl2OuNgFKX65BURydHhHoh/DCe3QXAW47TM6wn8d/jnVCw7L50kStglnCf7yRP1LaI6UrGCPQ3bNy2MYQ5OLwbl1S2E2cqgHfU7Eeqq7LcYgPdFscyjh3Cz9x+HId/MRlDa+5UAwGViQM7RdHNYwBTzUeH2rZefG4E0xHxQPjWc=
+	t=1747079423; cv=none; b=GYuLPl0wzswJQg9InElDKGzEeLTtLcZxmmBY2YLiVTBYvaSimZbQffYN/T2aey/querks3yl/X1FvJR+sGeqcsivVbf6oSCJ4wwjPRrFvRwdl0KDK2XL+2Im9H5HpYHXX+xx6FKEn3eKVXw9t9x1Xxqt3Zzp8nE+0+t8awlMuLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747079374; c=relaxed/simple;
-	bh=0ea+jq9tawsp4ep8x5s5ibmfKZ+OoRVIjOhLxVL+Gbs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hgjDzzyKuin3gYLjSGAisMC008AHXURjKxVHw6k0T04fTaIhB9fhTYqIM30GiPlb1sIDvKvFVmNzOXC5IGZLiLFOF2YNFA8LDfBIN72kOb47r2Qs1JuGAGgZxpJl0dbwaQfJPR2gyM3s8wdXBU6C0GFizVnYaVUlhoJ77m3zShw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H7kH0Za6; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43cfebc343dso32753535e9.2;
-        Mon, 12 May 2025 12:49:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747079371; x=1747684171; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RSiiTyR+SUvpOZu3w9u+267WlZQzAWddC0oSI9XaOBA=;
-        b=H7kH0Za6P+h3RSjj9U+G7itqUiAaxr2Dg0X5WjFHyNbde6yqsO6CVrlBfHuzTXdJUr
-         7z0els8SNSwLbizYojtk8NcxscdxtQNPqfw7UVq1Xv7/PAGYTADc9LKDMzJzJesx2DM4
-         bjV5ndsUMhJt3/ydhreVU1Xz48GdiDeiGQ0XUTDcnfokZVOpVw2duOXmJq93tKH7+P1U
-         ccx9VwywrH12BpEPh8Z8rLvq8eBM8LMEdvUXtmphKCmnP7e44FqRkWh10L9zce6UXyG3
-         uLGgcgJVP84wtaSpVU0HnxKVpVqfm+hm/fq8rdjSunZbTFye+W+ORytZSDmK+ISqXYzd
-         7OoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747079371; x=1747684171;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RSiiTyR+SUvpOZu3w9u+267WlZQzAWddC0oSI9XaOBA=;
-        b=cbDX4vumZ50vubTbLsZEIRfIbUPbp0EwOzBZyzkKFwCLlbCJekMF4M7TkRqpnH17wp
-         vCCbegahv+oMIKxyLYKtL/GXCFcESH4HV1abrG+AdkMMSrV+D6E+Ef/3Aq8xPvW/3zVr
-         XIwd5RM160B4kEhKvtgWiyAEKPyGgA+hoSt1QlikZ3zU9Z4m/HgonRXA2EdRnyP8pz8d
-         LgQ02dLd5tzXWVPGfmYPpaegBBv3d2XcDvTA4c61de+ZdTnmEZ+pnqJtvSUDIsgGtrXA
-         6fJZkgudrV4J5nLLG4LWX7N2sbGmxDgJ2XkiM30Z14NsTCEPm56Xl83tlAXOdGYEPck5
-         ng3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWDdBOXGydEkeejJ3eIdDBlTRMxvNLyfZWqYkFC75TfJCcayHbX0XODadsiOIBChoxzZL4OHC4mRP3X@vger.kernel.org, AJvYcCX7vDH+Bwm+jA/a44QuqDClwCo2lJ2vNSmIoXw+NXYmweYLtBkAlbC0enfjW+p2jFIrn3jLYeAWPCKm6waxzFuJxMg=@vger.kernel.org, AJvYcCXKPu9fmTAMdI7Xf3osMfeqCDgIhr9zdbWMznz/TOpLN2k9h5DpK3Nidll65X3183Hb9nM0UuXbcE7texX7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8K9jDGs5qvwo2301uCZ5b50LRt26J26joXEaDWMegIWJing6L
-	NzEYyzVxEAGHMGEl8jWJiDOKkZwMr7yN23TkgN6Prk7pEKWE/FdjPhjibtiXL3UUQA/e+sxFQk6
-	8n3if+jIWtEHh1R5RsFryhd3iYQmV6lS6
-X-Gm-Gg: ASbGncslkkbJBgwEtSJXBrJ5K0VV5DGapCez+2EiGTJJDzeATpNregr2ge0hVNI+0jD
-	47wtNQDD4AsGMV7vpOC4seEVdIysOXiWkRgHXTcIUkwEaZd58gidoaroeeZgLNrHk5sEzKKo75Y
-	AOs8KJ5RwNSY3dpiDIysmJF8N6FYYnYSw=
-X-Google-Smtp-Source: AGHT+IHXn9bcwnRyYmCRV8MG1JG7GKW2zAKb4s3goQRCkyctTQW+k259Qx4iLBqZmc9e+QxhawLs1wgHdnIQEM0q8rQ=
-X-Received: by 2002:a05:600c:4e55:b0:43c:f1b8:16ad with SMTP id
- 5b1f17b1804b1-442d6ddefb8mr146970545e9.30.1747079370563; Mon, 12 May 2025
- 12:49:30 -0700 (PDT)
+	s=arc-20240116; t=1747079423; c=relaxed/simple;
+	bh=yQi4reQtnYQYLf5UFhxYGFIxYYxyY/Zpe3d6jmIEJyY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LFa5tO/lrkrYNxry5IvnihfaDlBJAP6H9uDXWVs9xl5gKDVy6dN9M+F9WtdMiVb7/hUnj7+IPrejHswz0evkW9eZHzOVp38K2fbtjVHH3okIl6XtsUMQyFV0LTw0IdXbtPfWU2Xf9WQKz7QyFBYFztCUJveUuPYor762RAU4dtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mHZLs4Yu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C87A1C4CEE7;
+	Mon, 12 May 2025 19:50:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747079423;
+	bh=yQi4reQtnYQYLf5UFhxYGFIxYYxyY/Zpe3d6jmIEJyY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mHZLs4YuaJOSe+zdghR3qGbYnycC0C4TjNNE5E19H1DHJvubrA9JUp6g0euX6nWj1
+	 15BrdBv7QCNBqbxRrIxFZU5ecUv6RPG3tX9mzd0+DUETJW7gxwTV3XK0sdIxmjtwCe
+	 Jylp0xSv/rRDpioRA7yfXKXrISaFVu/0W0z/Vo0S9ro2sWyzvQKxWpXkleoT2h01fi
+	 TQ8pkmF/0upftdTajVmBR/VQnlXi5ETy5qjVi1wvbnEklEaB/Jcy4uZuml/qKAUV6o
+	 EeIp/68edQ/g/bsXOOrw63ePQwXKFFnO/v81q0gX5Prpp5aHnamcAc6E6Fm28uVrw7
+	 7jXoeK2t1LTyg==
+Date: Mon, 12 May 2025 14:50:20 -0500
+From: Rob Herring <robh@kernel.org>
+To: David Bauer <mail@david-bauer.net>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: input: add Semtech SX951x binding
+Message-ID: <20250512195020.GA3882546-robh@kernel.org>
+References: <20250505203847.86714-1-mail@david-bauer.net>
+ <cbf42385-9803-4bea-bf99-a6f31f1454f6@linaro.org>
+ <8c9e5e74-966b-4969-9776-7655863fd197@david-bauer.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250509153559.326603-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250509153559.326603-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWnaujCjK+gu8RFfrZ4a2axf=xffEOAdwsjFMvUHcfw1w@mail.gmail.com>
-In-Reply-To: <CAMuHMdWnaujCjK+gu8RFfrZ4a2axf=xffEOAdwsjFMvUHcfw1w@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 12 May 2025 20:49:04 +0100
-X-Gm-Features: AX0GCFtT9ypb887tyBvjkPornOofDipwEh_uuhsFcpkzTJjevvAivBwRNUps-s8
-Message-ID: <CA+V-a8vrF178XqqtECqNrXJRSWD8MGmBZvCbutsi2uggJWDjWQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: renesas: r9a09g057h44-rzv2h-evk:
- Enable GBETH
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8c9e5e74-966b-4969-9776-7655863fd197@david-bauer.net>
 
-Hi Geert,
+On Tue, May 06, 2025 at 12:05:43PM +0200, David Bauer wrote:
+> Hi Krzysztof,
+> 
+> thanks for the review.
+> 
+> On 5/6/25 08:21, Krzysztof Kozlowski wrote:
+> > On 05/05/2025 22:38, David Bauer wrote:
+> > > Add device-tree binding for the Semtech SX9512/SX9513 family of touch
+> > > controllers with integrated LED driver.
+> > > 
+> > > Signed-off-by: David Bauer <mail@david-bauer.net>
+> > 
+> > You CC-ed an address, which suggests you do not work on mainline kernel
+> > or you do not use get_maintainers.pl/b4/patman. Please rebase and always
+> > work on mainline or start using mentioned tools, so correct addresses
+> > will be used.
+> I'm a bit unsure what you are referring to - maybe I've set the options
+> for get_maintainer.pl wrong, but i use
+> 
+> get_maintainer.pl --nogit --nogit-fallback --norolestats --nol
+> 
+> to determine TO recipients and
+> 
+> get_maintainer.pl --nogit --nogit-fallback --norolestats --nom
+> 
+> for CC destinations.
+> 
+> Granted, my tree was a bit out of date but it was from mainline
+> and after rebase both commands returned consistent results.
+> 
+> Hope you can provide me with some guidance there.
 
-Thank you for the review.
+Probably that I don't use 'robh+dt' for a while now. Just 'robh'.
 
-On Mon, May 12, 2025 at 8:05=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Fri, 9 May 2025 at 17:36, Prabhakar <prabhakar.csengg@gmail.com> wrote=
-:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Enable the GBETH nodes on the RZ/V2H Evaluation Kit.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> LGTM, so
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> > --- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-> > +++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-> > @@ -78,6 +80,68 @@ &audio_extal_clk {
-> >         clock-frequency =3D <22579200>;
-> >  };
-> >
-> > +&eth0 {
-> > +       pinctrl-0 =3D <&eth0_pins>;
-> > +       pinctrl-names =3D "default";
-> > +       phy-handle =3D <&phy0>;
-> > +       phy-mode =3D "rgmii-id";
-> > +       status =3D "okay";
-> > +
-> > +       mdio {
-> > +               #address-cells =3D <1>;
-> > +               #size-cells =3D <0>;
-> > +               compatible =3D "snps,dwmac-mdio";
->
-> I am just wondering if the above parts of the mdio subnodes should be
-> moved to the SoC-specific .dtsi instead, as it is part of the SoC and
-> fairly static?
->
-Agreed, I will move this to SoC DTSI.
+> > 
+> > Please use scripts/get_maintainers.pl to get a list of necessary people
+> > and lists to CC (and consider --no-git-fallback argument, so you will
+> > not CC people just because they made one commit years ago). It might
+> > happen, that command when run on an older kernel, gives you outdated
+> > entries. Therefore please be sure you base your patches on recent Linux
+> > kernel.
+> > 
+> > Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+> > people, so fix your workflow. Tools might also fail if you work on some
+> > ancient tree (don't, instead use mainline) or work on fork of kernel
+> > (don't, instead use mainline). Just use b4 and everything should be
+> > fine, although remember about `b4 prep --auto-to-cc` if you added new
+> > patches to the patchset.
+> > 
+> > 
+> > > ---
+> > >   .../bindings/input/semtech,sx951x.yaml        | 180 ++++++++++++++++++
+> > >   1 file changed, 180 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/input/semtech,sx951x.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/input/semtech,sx951x.yaml b/Documentation/devicetree/bindings/input/semtech,sx951x.yaml
+> > > new file mode 100644
+> > > index 000000000000..e4f938decd86
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/input/semtech,sx951x.yaml
+> > > @@ -0,0 +1,180 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/input/semtech,sx951x.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Semtech SX9512/SX9513 based capacitive touch sensors
+> > > +
+> > > +description: |
+> > 
+> > Do not need '|' unless you need to preserve formatting.
+> > 
+> > > +  The Semtech SX9512/SX9513 Family of capacitive touch controllers
+> > > +  with integrated LED drivers. The device communication is using I2C only.
+> > > +
+> > > +maintainers:
+> > > +  - David Bauer <mail@david-bauer.net>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - semtech,sx9512
+> > > +      - semtech,sx9513
+> > 
+> > Devices are not compatible? What are the differences?
+> 
+> The SX9513 is a cost-reduced version which does not
+> support proximity sensing. With the current support
+> of the driver they work identical. Should i add this
+> information as a comment?
 
-> Both approaches seem to be popular: e.g. rk3568.dtsi[1] has the mdio
-> subnode in the SoC part, and rk3568-nanopi-r5s.dts[2] extends the
-> subnode, while rk3399-orangepi.dts[3] has the full subnode in the
-> board part.
->
-> [1] arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> [2] arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
-> [3] arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
->
+In the 'description' above, but not the driver support part.
 
-[3] was added earlier, [1]/[2] seem more recent. So let's go with the
-mdio node in SoC DTSI.
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  '#address-cells':
+> > > +    const: 1
+> > > +
+> > > +  '#size-cells':
+> > > +    const: 0
+> > > +
+> > > +  poll-interval:
+> > > +    default: 100
+> > > +    description: |
+> > 
+> > Do not need '|' unless you need to preserve formatting. Same comment
+> > everywhere.
+> > 
+> > > +      The polling interval for touch events in milliseconds.
+> > 
+> > Missing -ms property unit suffix... unless you are using existing
+> > property from common schema, but I do not see any reference (and thus
+> > unevaluatedProperties at the end).
+> > 
+> > > +
+> > > +patternProperties:
+> > > +  "^channel@[0-7]$":
+> > > +    $ref: input.yaml#
+> > > +    type: object
+> > > +    description: |
+> > > +      Each node represents a channel of the touch controller.
+> > > +      Each channel provides a capacitive touch sensor input and
+> > > +      an LED driver output.
+> > > +
+> > > +    properties:
+> > > +      reg:
+> > > +        enum: [0, 1, 2, 3, 4, 5, 6, 7]
 
-Cheers,
-Prabhakar
+maximum: 7
+
+> > > +
+> > > +      linux,keycodes:
+> > > +        maxItems: 1
+> > > +        description: |
+> > > +          Specifies an array of numeric keycode values to
+> > > +          be used for the channels. If this property is
+> > > +          omitted, the channel is not used as a key.
+> > > +
+> > > +      semtech,cin-delta:
+> > 
+> > Use proper unit suffix and express it in pF.
+> 
+> To represent 2.3 and 3.8 pF, would it be better to represent in
+> femtofarad?
+
+Yes.
+
+
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +        minimum: 0
+> > > +        maximum: 3
+> > > +        default: 3
+> > > +        description: |
+> > > +          The capacitance delta which is used to detect a touch
+> > > +          or release event. The property value is mapped to a
+> > > +          farad range between 7pF and 2.3pF internally. The delta
+> > > +          becomes smaller the higher the value is.
+> > > +
+> > > +      semtech,sense-threshold:
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +        minimum: 0
+> > > +        maximum: 255
+> > > +        default: 4
+> > > +        description: |
+> > > +          The threshold value after which the channel detects a touch.
+> > > +          Refer to the datasheet for the internal calculation of the
+> > > +          resulting touch sensitivity.
+> > > +
+> > > +      led:
+> > 
+> > I think subnode is here not needed. This should be part of the channel,
+> > probably.
+> 
+> Just to be sure - you mean to have a property "led" upon which instructs
+> the channel to be used to drive an LED and include the LED specific
+> properties in the node of the channel?
+
+Actually, I think it is fine as-is if the LED driver works 
+simultaneously with the touch input and isn't mutually exclusive. The 
+'led' node is for the LED. The parent node is the driver/controller.
+
+If they are mutually exclusive, then I'd say you want channel@[0-7] and 
+led@[0-7] nodes at the same level.
+
+Rob
+
 
