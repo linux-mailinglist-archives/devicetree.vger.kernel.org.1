@@ -1,230 +1,107 @@
-Return-Path: <devicetree+bounces-176340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3CFEAB3812
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:06:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71415AB3979
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:39:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CD5A3A86E4
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:06:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15631188504B
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E70288507;
-	Mon, 12 May 2025 13:06:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4176F29375D;
+	Mon, 12 May 2025 13:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="LJvp4ISM"
+	dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b="rpYck2It"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out162-62-57-49.mail.qq.com (out162-62-57-49.mail.qq.com [162.62.57.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB995293B60
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 13:06:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE51F3987D;
+	Mon, 12 May 2025 13:39:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747055182; cv=none; b=bxbHhuqM+eSARrs+Yr2JL5PT3lf6gkr2xKk8LrkmkK7y7oKMphdfA6lMQWMSH+O7Zl5z0hu/Qjc4AbdTEEIhlP7tDrO2u8Rb0EiuFkgGanbS6fRjVV3e1XsD8ZfRIIAp4Y1R/U5ydRjIItH0vDx+fvb3Vma3LMeB00gRmNvO+g8=
+	t=1747057179; cv=none; b=DEmQhJvbbouiDxTpgd2MRzuhf3nbeubsiOKwjBQ3m5iId31zYzW8xljos4TKRfocs6g1KoKFFZHJSzWkoU2Oy07o7B9a0A3kocQkQq72uD7rvSQ+UgSoQsXoUD5RubaYkZIxk9p5NdNcnu/8az5aA+PL/9wL8RxiqNivb2LIWl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747055182; c=relaxed/simple;
-	bh=B2qswoOjLVM2nS59nvVf0KZP2T+2j2I7BmhymfLq6xs=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=m82fJpMnohrRa/nsXs+GAKhGQwOmoieI+sqWKdSHreRv3UQSu5TWADLp0QpjB497rRIRk2H5I62YeSsraICR/nLO4YkHySkyhG1N/0B0wLv3MdX6LFKPUVtWplRBsfGZlBTgtgaDF90Yiqlwkyau4xJRp2EsbPSIGdm4FiZ65no=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=LJvp4ISM; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a0b308856fso3282604f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 06:06:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1747055178; x=1747659978; darn=vger.kernel.org;
-        h=autocrypt:content-transfer-encoding:mime-version:message-id
-         :references:in-reply-to:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=DihJy5N0sB1kkH1tX0aCbw65bN6rRxYJvuZ8x/mq9w4=;
-        b=LJvp4ISMnbHKP+Qi5FnmlkvvlbY2ecnnnHK/X99xnM0R+JPgKn2smoSWV2orYe8dez
-         XwLLTdH2FbxQyLdr/LEOuhKRYUADK/wgb0klbxHwOWfekXjW7dw+6jKdnFL5zNVgkjfz
-         smqw2zw1rKZ5wvc1KiXv4fJAWfj2iSB6LW8Z8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747055178; x=1747659978;
-        h=autocrypt:content-transfer-encoding:mime-version:message-id
-         :references:in-reply-to:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DihJy5N0sB1kkH1tX0aCbw65bN6rRxYJvuZ8x/mq9w4=;
-        b=l3NrkQUHLVaAAdoDlkrDcjV3OIb/pC3bXTzEcmHDKlEGoG2ROQ4MZDbSg8ZwYJpQtI
-         FO3Z3NYeAMYoX2Q/GkzfokHd40VcrzOkZLuKB/49wGNzZ43FcSlYsxxKVWrfgXClWCeU
-         RhSwVtQIdK0nbKdw6Jx7S02fvdobBMIV9Cjb3if9wZkoksbwcGn2/w+0PqaU516hyHVx
-         r7F8Ilw+xhHL2Rs4O90/QO6DKqZ4D6IndzMjqZR7r2CIq8+R4ELe7/3WxFzkX3MVZo11
-         HYD8+URVAU53xkKTW9us2ZWimL6kc5F7+1IPkWyvVof0SK8CgC+u6nwnxtzEbdZMuzqy
-         m5Zg==
-X-Forwarded-Encrypted: i=1; AJvYcCUsXITvtGHvh867I4/ckkGmuy9XwH4Jxwl2AzSr9ivV8EDz34sdbRD6oEeN8/9ZGIVkstuYIws4w581@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/M3FHv99+eRz6adQWsVn+IXfQbmUSt2XiAnxxTOUXzZzclnXP
-	+NPUIVlmSM4QiGWb3kz+wlcFe/rTLYADg4EpBfG5ls8GndKv4hiK0oqA8ZYcLQ==
-X-Gm-Gg: ASbGnculVeO9f9iJ3Kfm7vbEyoOf/ftjzkOiHFy7bL73ORozQgvEt238D2MNJCjDFfh
-	s4LuXTrVnEk2AQW7RIezpI4lS7OI5V4ZTwVOd23lu1CtFf5VsSo01667XbYImVFQY/q7R+apEVq
-	9uZ1Po9VIcB6gBuQQvZMXO8XTi2rY1puLUnBCxcoCIxv8rjCrZNkd5Y3LXpgmLTqTPryGGpCpLh
-	5TsVQjWvBSJyOhmYNWJrhqxct3JsY4ayvunh1oHDedsbUgJ7j4tf310SHXMk/l2iJjU2ssxKpes
-	eECRUgM3zqUQuDSQm7QCXxodP0J8An+phYlP2n/a8ZUcj7mi96D/6DWJeXzJjvRKBeaFQBaurs1
-	gh0SZkc4VJVdIa+Me0vkDe1js6KegdxI=
-X-Google-Smtp-Source: AGHT+IFHHW+tO0oBp3s24DoLvcCzI4LBz7QAtY4LH5Z3+bpnPSagfLujXuQW5+ah6tGWIrHi6wlRcw==
-X-Received: by 2002:a5d:584a:0:b0:3a1:fd60:883 with SMTP id ffacd0b85a97d-3a1fd600accmr6854719f8f.23.1747055177878;
-        Mon, 12 May 2025 06:06:17 -0700 (PDT)
-Received: from [127.0.0.1] (90-47-60-187.ftth.fr.orangecustomers.net. [90.47.60.187])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a2ce36sm12497030f8f.71.2025.05.12.06.06.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 May 2025 06:06:17 -0700 (PDT)
-Date: Mon, 12 May 2025 15:06:15 +0200
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: Andrea della Porta <andrea.porta@suse.com>
-CC: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
- Masahiro Yamada <masahiroy@kernel.org>, kernel-list@raspberrypi.com
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v9_-next_08/12=5D_arm64=3A_dts=3A_bcm271?=
- =?US-ASCII?Q?2=3A_Add_external_clock_for_RP1_chipset_on_Rpi5?=
-In-Reply-To: <aB0d8kNVtAEoW8Ts@apocalypse>
-References: <cover.1745347417.git.andrea.porta@suse.com> <38514415df9c174be49e72b88410d56c8de586c5.1745347417.git.andrea.porta@suse.com> <aBp1wye0L7swfe1H@apocalypse> <96272e42-855c-4acc-ac18-1ae9c5d4617f@broadcom.com> <aBtqhCc-huQ8GzyK@apocalypse> <779ae10a-3174-4dbb-9130-008393b59745@broadcom.com> <aB0d8kNVtAEoW8Ts@apocalypse>
-Message-ID: <CDB01DD9-27C7-4A4D-8340-F091865876A8@broadcom.com>
+	s=arc-20240116; t=1747057179; c=relaxed/simple;
+	bh=AYku5jN+0OmBk98j9JNh57LME0Csb8yr4YA+DR9zGzA=;
+	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=VsrRSrRsF5DMRDgyozqH+K13Y1fmbC3WHNWcXI6j4sQBWpUcv4LZE6p5Wlkwztz8e37uiys+j75noFfx92zTjR8Tu4dV7GMfKG+pihu/iqDBFYUxb/SYOXQ2m03XudwHwJJkClXjsLSRkHMkcQ9KZE6bWoZJhJMVkZsZdN6S35U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com; spf=pass smtp.mailfrom=foxmail.com; dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b=rpYck2It; arc=none smtp.client-ip=162.62.57.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foxmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+	s=s201512; t=1747056871;
+	bh=XiZXeriwtNmD0C5rumTsjv/pcxn0w65lxRr71QDYu34=;
+	h=From:To:Cc:Subject:Date;
+	b=rpYck2ItuM2aaeT+l5e1nfYIloPaQgPtPojYQJskHlQ07uO8tHSsVZRwnBoMAfWz5
+	 JklF771y3pWxlA4BMZK03xUnImuMxjjhrpun+kIUbQdKqbbvoLZhg4HsLDTlgDY6+i
+	 snZfcVmt5GgtWoR4k2hpoyBrClRqpO4W0SexsAew=
+Received: from localhost.localdomain ([182.245.65.132])
+	by newxmesmtplogicsvrszgpuc5-0.qq.com (NewEsmtp) with SMTP
+	id 531AAC00; Mon, 12 May 2025 21:20:49 +0800
+X-QQ-mid: xmsmtpt1747056049th6ukru0a
+Message-ID: <tencent_D5C17F39C684CD6491505763B23BACCE5106@qq.com>
+X-QQ-XMAILINFO: OAkMgjsCL21CLWoSijloNZ8D3K/VcR2BT8UYQcTgS3cymMCmEi2kyqjEkcmjST
+	 JFCA1Y75FOEsVBqYs2d1+9hsWzPfSU5S7izWMysBdY4aD+JKY6KJMkw3o9nOmKh9UjiYC8Nm+Qv5
+	 xwSll3Qhj3cihal+Y0T14XFVYc8vGmHg/YZsqA3ERRzPx2hP0GSKxtUp/HpHQF6fh8IfLgK5lDhg
+	 IdSFha+jrlZT7BBUaOycXevaiukcxrGqAkoqyqPRGyyDiZBgidUQQsp/GD0AlkfWLDIiqLH9r1Cs
+	 URGtD8YoG3RmCdBkS39q8zV2sBqG4HTl+Jw3jK9KNd7ucq2WlCdFqFeN/I8ktIx/9x7xaD8FM/6w
+	 wwCw+8ZmEIdQXo+Cs2mSU6hymk2rSZz9qNZRF6hA0VgoE8thW2ZoGUdmpmooEVucNxM92pIsDx4v
+	 aThk+IPYX4kz1Ba97zU3elCSRVCFAwZtvnU36izN7a9XyN2f8JJSZYKUbMaBnp1we6in1iC8bGnh
+	 tfYBfA7ImSEEIgWNDc8hnUFpQLDDMqcFvToUIropz7GrjmMkKEViVGf4NGNjihjG+J1JX8p2rZUv
+	 D+DuVKI/v6XTiJEKwozTlr6RzFw+6mPqgGUTCWiOZSJbmsPVra5GgmfVgO2s059NYgFdSjZv2Tj4
+	 wyR9e15gfxgjylpHeYJ3svRrfMs2HVzhIIPYn0p95yvtav93UUxbnqWO3fv8iC7oq6Ue/dLXFDSp
+	 L/DGurahKuGVHokwDtbQq0QLVDFK1x5tUXnc6Q7DjZ9vtJ1V58A6bZsnkpZfv8hR/2ezjPTmrOYb
+	 2nZ6SCtk+8BEvJD2ycLtUoYlWNAoS0YDAmFbDg7/WnIxfumbxXTqE5bR2U7hE6zG3StUZ8n2tHXT
+	 fS/pkADXaj+sgwZtIp+cC1EPexEWQeYhrq+gaXX3iFt44CyuCHLexwuz/SyvsM+ILrNJv2XEzVpW
+	 rgiSDy3gzF1AvXxL/+hzV38lEJn7f7njRAEzKGim8UxuzECD0d74BoYMQN0wD/nVYebWY36ZJEVa
+	 k+FENO5HDNArgOIdaNUqQ9yHnLxx+i/wcJzwLSeuHdZUlLZFy/rl/Bg1ag/8LLR9VM8fKpBw==
+X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
+From: chainsx@foxmail.com
+To: robh@kernel.org
+Cc: chainsx@foxmail.com,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	sfr@canb.auug.org.au,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH v1 0/2] Add support for Firefly Station-M3/ROC-RK3588S-PC
+Date: Mon, 12 May 2025 21:20:48 +0800
+X-OQ-MSGID: <20250512132048.312772-1-chainsx@foxmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- mQENBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeTM0Tx
- qn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4GhsJrZOBru6
- rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQPcycQnYKTVpq
- E95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQKQuc39/i/Kt6XLZ/
- RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEBAAG0MEZsb3JpYW4gRmFp
- bmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPokB4QQQAQgAywUCZWl41AUJI+Jo
- +hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFrZXktdXNhZ2UtbWFza0BwZ3AuY29t
- jDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2RpbmdAcGdwLmNvbXBncG1pbWUICwkIBwMC
- AQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29tLm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYh
- BNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIExtcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc
- 0ZlDsBFv91I3BbhGKI5UATbipKNqG13ZTsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm
- +hrkO5O9UEPJ8a+0553VqyoFhHqAzjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsL
- MYvLmIDNYlkhMdnnzsSUAS61WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uL
- EuTIazGrE3MahuGdjpT2IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Y
- k4nDS7OiBlu5AQ0EU8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5Lh
- qSPvk/yJdh9k4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0
- qsxmxVmUpu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6
- BdbsMWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAYkCWAQY
- AQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+obFABEp5
- Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3PN/DFWcNKcAT3
- Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16sCcFlrN8vD066RKev
- Fepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdmC2Kztm+h3Nkt9ZQLqc3w
- sPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5wDByhWHx2Ud2R7SudmT9XK1e
- 0x7W7a5z11Q6vrzuED5nQvkhACEJEIExtcQpvGagFiEE1dkql+eRXN7X5HxogTG1xCm8ZqC6BwgA
- l3kRh7oozpjpG8jpO8en5CBtTl3G+OpKJK9qbQyzdCsuJ0K1qe1wZPZbP/Y+VtmqSgnExBzjStt9
- drjFBK8liPQZalp2sMlS9S7csSy6cMLF1auZubAZEqpmtpXagbtgR12YOo57Reb83F5KhtwwiWdo
- TpXRTx/nM0cHtjjrImONhP8OzVMmjem/B68NY++/qt0F5XTsP2zjd+tRLrFh3W4XEcLt1lhYmNmb
- JR/l6+vVbWAKDAtcbQ8SL2feqbPWV6VDyVKhya/EEq0xtf84qEB+4/+IjCdOzDD3kDZJo+JBkDnU
- 3LBXw4WCw3QhOXY+VnhOn2EcREN7qdAKw0j9Sw==
+Content-Transfer-Encoding: 8bit
 
-On May 8, 2025 11:11:14 PM GMT+02:00, Andrea della Porta <andrea=2Eporta@su=
-se=2Ecom> wrote:
->Hi Florian,
->
->On 19:10 Wed 07 May     , Florian Fainelli wrote:
->>=20
->>=20
->> On 5/7/2025 4:13 PM, 'Andrea della Porta' via BCM-KERNEL-FEEDBACK-LIST,=
-PDL
->> wrote:
->> > Hi Florian
->> >=20
->> > On 09:32 Wed 07 May     , Florian Fainelli wrote:
->> > >=20
->> > >=20
->> > > On 5/6/2025 10:49 PM, Andrea della Porta wrote:
->> > > > Hi Florian,
->> > > >=20
->> > > > On 20:53 Tue 22 Apr     , Andrea della Porta wrote:
->> > > > > The RP1 found on Raspberry Pi 5 board needs an external crystal=
- at 50MHz=2E
->> > > > > Add clk_rp1_xosc node to provide that=2E
->> > > > >=20
->> > > > > Signed-off-by: Andrea della Porta <andrea=2Eporta@suse=2Ecom>
->> > > > > Reviewed-by: Florian Fainelli <florian=2Efainelli@broadcom=2Eco=
-m>
->> > > >=20
->> > > > A gentle reminder for patches 8 through 12 of this series, which =
-I guess
->> > > > would ideally be taken by you=2E Since the merge window is approa=
-ching, do
->> > > > you think it's feasible to iterate a second pull request to Arnd =
-with my
->> > > > patches too?
->> > > >=20
->> > > > With respect to your devicetree/next branch, my patches have the =
-following
->> > > > conflicts:
->> > > >=20
->> > > > PATCH 9:
->> > > > - arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b=2Edts: &pcie1 and =
-&pcie2
->> > > >     reference at the end, my patch was rebased on linux-next whic=
-h has them
->> > > >     while your devicetree branch has not=2E This is trivial to fi=
-x too=2E
->> > > >=20
->> > > > PATCH 9 and 10:
->> > > > - arch/arm64/boot/dts/broadcom/Makefile on your branch has a line=
- recently
->> > > >     added by Stefan's latest patch for RPi2=2E The fix is trivial=
-=2E
->> > > >=20
->> > > > PATCH 11 and 12:
->> > > > - arch/arm64/configs/defconfig: just a couple of fuzz lines=2E
->> > > >=20
->> > > > Please let me know if I should resend those patches adjusted for =
-your tree=2E
->> > >=20
->> > > Yes please resend them today or tomorrow so I can send them the fol=
-lowing
->> > > day=2E Thanks
->> >=20
->> > Sorry, what's the best wasy to provide the updated patch 8 to 12 to y=
-ou?
->> >=20
->> > 1) Resend the entire patchset (V10) with relevant patches updated
->> > 2) Send only updated patches 8 through 12 (maybe as an entirely new p=
-atchset with
->> >     only those specific patches)
->>=20
->> Either of those two options would work=2E Maybe let's do option 2) in t=
-he
->> interest of keeping the traffic low for people=2E
->
->Could you please take a look at this:
->
->https://lore=2Ekernel=2Eorg/all/aBxtyvI3LUaM3P00@apocalypse/#t
->
->besides patches 8 through 12, would you like to take also binding patches=
- + clock
->driver (patches 1 to 4, if Linux Walleij is not willing to take patch 2 h=
-imself),
->and maybe also misc driver and its dts (patches 6 and 7 unless Greg has d=
-ifferent
->ideas)? I know this is almost the entire patchset, but it's getting hard =
-to escape
->the dependency maze=2E
->I'm open to any alternative solutions, more details in the link above=2E
+From: Hsun Lai <chainsx@foxmail.com>
 
-If I am taking the whole patchset I would need maintainers to provide the =
-adequate tags=2E I would prefer to only take the DT changes, with an unders=
-tanding that drivers wouldn't be active unless the relevant DT entries are =
-present as well=2E
+This series add support for Firefly Station-M3/ROC-RK3588S-PC.
 
-I am out of the office until the end of this week, so there may be some de=
-lay (more than usual) with my responses=2E
+Info of device can be found at:
+https://wiki.t-firefly.com/en/Station-M3/index.html
 
-Florian
+Changes in v1:
+- Add support for Firefly ROC-RK3588S-PC
+
+Hsun Lai (2):
+  dt-bindings: arm: rockchip: Add Firefly ROC-RK3588S-PC
+  arm64: dts: rockchip: add DTs for Firefly ROC-RK3588S-PC
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588s-roc-pc.dts      | 911 ++++++++++++++++++
+ 3 files changed, 917 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
+
+-- 
+2.34.1
+
 
