@@ -1,66 +1,55 @@
-Return-Path: <devicetree+bounces-176353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CC7EAB39B6
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:54:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7044FAB39BA
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:54:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 082303A40EF
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:54:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7647189A6BF
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:54:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580FC1DACA1;
-	Mon, 12 May 2025 13:54:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pyqmf/SL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD4B1DB125;
+	Mon, 12 May 2025 13:54:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C571D932F;
-	Mon, 12 May 2025 13:54:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6DBF1B3956;
+	Mon, 12 May 2025 13:54:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747058054; cv=none; b=g0YrnZiyycnPgFYlofu+8dIMi2ih1yFbgT48gIg/Newsj/O5eFOX32fxZh61Wqp2Ti7R+RBEs9AT0dqBtsQ81H39s/wtAYUlLN9tR1hpDuTi2h388T57blsmqQV1P8ApY9ngk6F0o1gL4qkqLBGZiBR4tldzh9Yg/veb5NQr/3o=
+	t=1747058081; cv=none; b=qfqLBr+VDu9MDu4rdnPndajZhkTF33zbU2e0c4SBfJZaZRD4FQqjZdxNjf4vqMZpOauBxA9Jr8o9zX/ivCWuhSbN9WjMXMV9PgpTo/WvSWyPnRqrdqt6BPvW6jqC58Nxua3uLotf2djlxjynlt7Sh8bezEhMUg2lW56NMryMT+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747058054; c=relaxed/simple;
-	bh=kkei6kQ/IroDw4Fur6pVY2ogMklH5DkvVsA3sBxm1tI=;
+	s=arc-20240116; t=1747058081; c=relaxed/simple;
+	bh=uWFgPnEf6SnCZ4dyfllxv7eJLNeqfcKdcos2J8D+o50=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Frs3RysJjDf9rSTjfTEBCDDY64Df0nVy0GxtpxOBwvXJ//51SA5zA2bzPBWqntLE7OjlnzfB5ojFXIxTFs2zcztY0SCG/tLeRl8+HUVw7tI7dKAQsZIoj18pjdvSyJ2g2usTmQeTfKbfKhM0Kj439r01i+wY8rqMSZLUqyM3/SM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pyqmf/SL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BD09C4CEED;
-	Mon, 12 May 2025 13:54:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747058053;
-	bh=kkei6kQ/IroDw4Fur6pVY2ogMklH5DkvVsA3sBxm1tI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pyqmf/SLA/LwKJg+pwa5MUD/nxp2c7FWrFKH1D9IT4ZwCUnaDqX7//vN9MD4Yfdbu
-	 h9UxRliqc4Mx8pOlV5yDf6KFPUYKL6eJyb6THtLFYOgqMgZHNt949QRSKQGllEkzay
-	 rVLMsD/QbYmkgGyqwvxHhb+TAVverxe/Hl2tZAgANNbgCTBsJr/4/ip/L3VvWUjIEm
-	 E8dUHxzWVR3/65v7MA10Jznv/WUYteythFNX+gMsTObgJYLZAxwuyqG3gYRPr8+5f8
-	 dQbKviVJEISyxF60XIzek9+6zEo79om7Y78KeIR+mcTs9e1Y9Kxjybifz6bNJZTgyW
-	 l9q8FedEXwnYw==
-Date: Mon, 12 May 2025 15:54:07 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Remo Senekowitsch <remo@buenzli.dev>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v4 9/9] samples: rust: platform: Add property read
- examples
-Message-ID: <aCH9f35BJ93ebWiB@pollux>
-References: <20250504173154.488519-1-remo@buenzli.dev>
- <20250504173154.488519-10-remo@buenzli.dev>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZFswU7/HaaGNTIMX9hRnc3EU/RnE5YOWl/9Evw1wIrp8qHP0f+hXsEhLs2wceoZ8B1pa4OCEXjxZKF/GYHzWCIFAyl2v20Z8Ffibjk7S1yRQlSYkfOkJusFLPE6M1UalpVrP2IvMUgTkR8PlJkmcm5mldf34EsiEGEcunkIkxxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.56])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 79D9F3434F9;
+	Mon, 12 May 2025 13:54:38 +0000 (UTC)
+Date: Mon, 12 May 2025 13:54:29 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, heylenay@4d2.org, inochiama@outlook.com,
+	guodong@riscstar.com, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 3/6] clk: spacemit: set up reset auxiliary devices
+Message-ID: <20250512135429-GYA517867@gentoo>
+References: <20250509112032.2980811-1-elder@riscstar.com>
+ <20250509112032.2980811-4-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,162 +58,257 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250504173154.488519-10-remo@buenzli.dev>
+In-Reply-To: <20250509112032.2980811-4-elder@riscstar.com>
 
-On Sun, May 04, 2025 at 07:31:54PM +0200, Remo Senekowitsch wrote:
-> Add some example usage of the device property read methods for
-> DT/ACPI/swnode properties.
+On 06:20 Fri 09 May     , Alex Elder wrote:
+> Add a new reset_name field to the spacemit_ccu_data structure.  If it is
+> non-null, the CCU implements a reset controller, and the name will be
+> used in the name for the auxiliary device that implements it.
 > 
-> Co-developed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+> Define a new type to hold an auxiliary device as well as the regmap
+> pointer that will be needed by CCU reset controllers.  Set up code to
+> initialize and add an auxiliary device for any CCU that implements reset
+> functionality.
+> 
+> Make it optional for a CCU to implement a clock controller.  This
+> doesn't apply to any of the existing CCUs but will for some new ones
+> that will be added soon.
+> 
+> Signed-off-by: Alex Elder <elder@riscstar.com>
 > ---
->  drivers/of/unittest-data/tests-platform.dtsi |  3 +
->  samples/rust/rust_driver_platform.rs         | 71 +++++++++++++++++++-
->  2 files changed, 72 insertions(+), 2 deletions(-)
+> v8: Allocate the auxiliary device using kzalloc(), not devm_kzalloc()
 > 
-> diff --git a/drivers/of/unittest-data/tests-platform.dtsi b/drivers/of/unittest-data/tests-platform.dtsi
-> index 4171f43cf01cc..50a51f38afb60 100644
-> --- a/drivers/of/unittest-data/tests-platform.dtsi
-> +++ b/drivers/of/unittest-data/tests-platform.dtsi
-> @@ -37,6 +37,9 @@ dev@100 {
->  			test-device@2 {
->  				compatible = "test,rust-device";
->  				reg = <0x2>;
+>  drivers/clk/spacemit/Kconfig     |  1 +
+>  drivers/clk/spacemit/ccu-k1.c    | 90 ++++++++++++++++++++++++++++----
+>  include/soc/spacemit/k1-syscon.h | 12 +++++
+>  3 files changed, 93 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/clk/spacemit/Kconfig b/drivers/clk/spacemit/Kconfig
+> index 4c4df845b3cb2..3854f6ae6d0ea 100644
+> --- a/drivers/clk/spacemit/Kconfig
+> +++ b/drivers/clk/spacemit/Kconfig
+> @@ -3,6 +3,7 @@
+>  config SPACEMIT_CCU
+>  	tristate "Clock support for SpacemiT SoCs"
+>  	depends on ARCH_SPACEMIT || COMPILE_TEST
+> +	select AUXILIARY_BUS
+>  	select MFD_SYSCON
+>  	help
+>  	  Say Y to enable clock controller unit support for SpacemiT SoCs.
+> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
+> index 801150f4ff0f5..551df9d076859 100644
+> --- a/drivers/clk/spacemit/ccu-k1.c
+> +++ b/drivers/clk/spacemit/ccu-k1.c
+> @@ -5,12 +5,14 @@
+>   */
+>  
+>  #include <linux/array_size.h>
+> +#include <linux/auxiliary_bus.h>
+>  #include <linux/clk-provider.h>
+>  #include <linux/delay.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/minmax.h>
+>  #include <linux/module.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/slab.h>
+>  #include <soc/spacemit/k1-syscon.h>
+>  
+>  #include "ccu_common.h"
+> @@ -21,6 +23,7 @@
+>  #include <dt-bindings/clock/spacemit,k1-syscon.h>
+>  
+>  struct spacemit_ccu_data {
+> +	const char *reset_name;
+see my comment below..
+
+>  	struct clk_hw **hws;
+>  	size_t num;
+>  };
+> @@ -710,8 +713,9 @@ static struct clk_hw *k1_ccu_pll_hws[] = {
+>  };
+>  
+>  static const struct spacemit_ccu_data k1_ccu_pll_data = {
+> -	.hws	= k1_ccu_pll_hws,
+> -	.num	= ARRAY_SIZE(k1_ccu_pll_hws),
+> +	/* The PLL CCU implements no resets */
+> +	.hws		= k1_ccu_pll_hws,
+> +	.num		= ARRAY_SIZE(k1_ccu_pll_hws),
+>  };
+>  
+>  static struct clk_hw *k1_ccu_mpmu_hws[] = {
+> @@ -751,8 +755,9 @@ static struct clk_hw *k1_ccu_mpmu_hws[] = {
+>  };
+>  
+>  static const struct spacemit_ccu_data k1_ccu_mpmu_data = {
+> -	.hws	= k1_ccu_mpmu_hws,
+> -	.num	= ARRAY_SIZE(k1_ccu_mpmu_hws),
+> +	.reset_name	= "mpmu-reset",
+> +	.hws		= k1_ccu_mpmu_hws,
+> +	.num		= ARRAY_SIZE(k1_ccu_mpmu_hws),
+>  };
+>  
+>  static struct clk_hw *k1_ccu_apbc_hws[] = {
+> @@ -859,8 +864,9 @@ static struct clk_hw *k1_ccu_apbc_hws[] = {
+>  };
+>  
+>  static const struct spacemit_ccu_data k1_ccu_apbc_data = {
+> -	.hws	= k1_ccu_apbc_hws,
+> -	.num	= ARRAY_SIZE(k1_ccu_apbc_hws),
+> +	.reset_name	= "apbc-reset",
+> +	.hws		= k1_ccu_apbc_hws,
+> +	.num		= ARRAY_SIZE(k1_ccu_apbc_hws),
+>  };
+>  
+>  static struct clk_hw *k1_ccu_apmu_hws[] = {
+> @@ -929,8 +935,9 @@ static struct clk_hw *k1_ccu_apmu_hws[] = {
+>  };
+>  
+>  static const struct spacemit_ccu_data k1_ccu_apmu_data = {
+> -	.hws	= k1_ccu_apmu_hws,
+> -	.num	= ARRAY_SIZE(k1_ccu_apmu_hws),
+> +	.reset_name	= "apmu-reset",
+> +	.hws		= k1_ccu_apmu_hws,
+> +	.num		= ARRAY_SIZE(k1_ccu_apmu_hws),
+>  };
+>  
+>  static int spacemit_ccu_register(struct device *dev,
+> @@ -941,6 +948,10 @@ static int spacemit_ccu_register(struct device *dev,
+>  	struct clk_hw_onecell_data *clk_data;
+>  	int i, ret;
+>  
+> +	/* Nothing to do if the CCU does not implement any clocks */
+> +	if (!data->hws)
+> +		return 0;
 > +
-> +				test,u32-prop = <0xdeadbeef>;
-> +				test,i16-array = /bits/ 16 <1 2 (-3) (-4)>;
->  			};
->  		};
->  
-> diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
-> index 8b42b3cfb363a..a04ff4afb1325 100644
-> --- a/samples/rust/rust_driver_platform.rs
-> +++ b/samples/rust/rust_driver_platform.rs
-> @@ -2,7 +2,7 @@
->  
->  //! Rust Platform driver sample.
->  
-> -use kernel::{c_str, device::Core, of, platform, prelude::*, types::ARef};
-> +use kernel::{c_str, device::Core, of, platform, prelude::*, str::CString, types::ARef};
->  
->  struct SampleDriver {
->      pdev: ARef<platform::Device>,
-> @@ -25,18 +25,85 @@ fn probe(
->          pdev: &platform::Device<Core>,
->          info: Option<&Self::IdInfo>,
->      ) -> Result<Pin<KBox<Self>>> {
-> +        let dev = pdev.as_ref();
-> +
->          dev_dbg!(pdev.as_ref(), "Probe Rust Platform driver sample.\n");
->  
->          if let Some(info) = info {
-> -            dev_info!(pdev.as_ref(), "Probed with info: '{}'.\n", info.0);
-> +            dev_info!(dev, "Probed with info: '{}'.\n", info.0);
-
-You switch to use dev here, but not for dev_dbg() above.
-
->          }
->  
-> +        Self::properties_parse(dev)?;
-
-Let's just use pdev.as_ref() here too.
-
-> +
->          let drvdata = KBox::new(Self { pdev: pdev.into() }, GFP_KERNEL)?;
->  
->          Ok(drvdata.into())
->      }
+>  	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, data->num),
+>  				GFP_KERNEL);
+>  	if (!clk_data)
+> @@ -981,9 +992,63 @@ static int spacemit_ccu_register(struct device *dev,
+>  	return ret;
 >  }
 >  
-> +impl SampleDriver {
-> +    fn properties_parse(dev: &kernel::device::Device) -> Result<()> {
+> +static void spacemit_cadev_release(struct device *dev)
+why this function define as _cadev_ prefix, while below as _adev_
+is it a typo? or c short for ccu, I just feel it isn't consistent..
 
-Please refer to this as &device::Device, i.e. import kernel::device. You should
-also be able to just use Result, without the generic.
-
-> +        let fwnode = dev.fwnode().ok_or(ENOENT)?;
+> +{
+> +	struct auxiliary_device *adev = to_auxiliary_dev(dev);
 > +
-> +        if let Ok(idx) =
-> +            fwnode.property_match_string(c_str!("compatible"), c_str!("test,rust-device"))
-> +        {
-> +            dev_info!(dev, "matched compatible string idx = {}\n", idx);
-> +        }
-> +
-> +        if let Ok(str) = fwnode
-> +            .property_read::<CString>(c_str!("compatible"))
-> +            .required_by(dev)
-> +        {
-> +            dev_info!(dev, "compatible string = {:?}\n", str);
-> +        }
-
-And else? Why do you ignore a potential error?
-
-> +
-> +        let prop = fwnode.property_read_bool(c_str!("test,bool-prop"));
-> +        dev_info!(dev, "bool prop is {}\n", prop);
-
-Let's use a consistent style for all those prints, e.g. '$name'='$value'. For
-instance:
-
-	let name = c_str!("test,bool-prop");
-	let prop = fwnode.property_read_bool(name);
-	dev_info!(dev, "'{}'='{}'\n", name, prop);
-
-> +        if fwnode.property_present(c_str!("test,u32-prop")) {
-> +            dev_info!(dev, "'test,u32-prop' is present\n");
-
-Given the above, I'd keep this one as it is.
-
-> +        }
-> +
-> +        let prop = fwnode
-> +            .property_read::<u32>(c_str!("test,u32-optional-prop"))
-> +            .or(0x12);
-> +        dev_info!(
-> +            dev,
-> +            "'test,u32-optional-prop' is {:#x} (default = {:#x})\n",
-> +            prop,
-> +            0x12
-> +        );
-> +
-> +        // Missing property without a default will print an error
-
-Maybe additionally add that you discard the Result intentionally in order to not
-make properties_parse() fail in this case.
-
-> +        let _ = fwnode
-> +            .property_read::<u32>(c_str!("test,u32-required-prop"))
-> +            .required_by(dev);
-> +
-> +        let prop: u32 = fwnode
-> +            .property_read(c_str!("test,u32-prop"))
-> +            .required_by(dev)?;
-> +        dev_info!(dev, "'test,u32-prop' is {:#x}\n", prop);
-> +
-> +        let prop: [i16; 4] = fwnode
-> +            .property_read(c_str!("test,i16-array"))
-> +            .required_by(dev)?;
-> +        dev_info!(dev, "'test,i16-array' is {:?}\n", prop);
-> +        dev_info!(
-> +            dev,
-> +            "'test,i16-array' length is {}\n",
-> +            fwnode.property_count_elem::<u16>(c_str!("test,i16-array"))?,
-> +        );
-> +
-> +        let prop: KVec<i16> = fwnode
-> +            .property_read_array_vec(c_str!("test,i16-array"), 4)?
-> +            .required_by(dev)?;
-> +        dev_info!(dev, "'test,i16-array' is KVec {:?}\n", prop);
-> +
-> +        Ok(())
-> +    }
+> +	kfree(to_spacemit_ccu_adev(adev));
 > +}
 > +
->  impl Drop for SampleDriver {
->      fn drop(&mut self) {
->          dev_dbg!(self.pdev.as_ref(), "Remove Rust Platform driver sample.\n");
+> +static void spacemit_adev_unregister(void *data)
+> +{
+> +	struct auxiliary_device *adev = data;
+> +
+> +	auxiliary_device_delete(adev);
+> +	auxiliary_device_uninit(adev);
+> +}
+> +
+> +static int spacemit_ccu_reset_register(struct device *dev,
+> +				       struct regmap *regmap,
+> +				       const char *reset_name)
+> +{
+> +	struct spacemit_ccu_adev *cadev;
+> +	struct auxiliary_device *adev;
+> +	static u32 next_id;
+> +	int ret;
+> +
+> +	/* Nothing to do if the CCU does not implement a reset controller */
+> +	if (!reset_name)
+> +		return 0;
+> +
+> +	cadev = kzalloc(sizeof(*cadev), GFP_KERNEL);
+> +	if (!cadev)
+> +		return -ENOMEM;
+add one blank line here?
+
+> +	cadev->regmap = regmap;
+> +
+> +	adev = &cadev->adev;
+> +	adev->name = reset_name;
+> +	adev->dev.parent = dev;
+> +	adev->dev.release = spacemit_cadev_release;
+> +	adev->dev.of_node = dev->of_node;
+[..]
+> +	adev->id = next_id++;
+so I'd assume the underlying device doesn't really care the id?
+but with different order of registration, it will result random id for the device
+
+how about define a reset struct, and group reset_name and next_id together,
+then we can intialize them with fixed value
+(this will also let us dropping 'static next_id' variable)
+
+with this change, it's more easy to extend in the future (a weak reason)..
+
+> +
+> +	ret = auxiliary_device_init(adev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = auxiliary_device_add(adev);
+> +	if (ret) {
+> +		auxiliary_device_uninit(adev);
+> +		return ret;
+> +	}
+> +
+> +	return devm_add_action_or_reset(dev, spacemit_adev_unregister, adev);
+> +}
+> +
+>  static int k1_ccu_probe(struct platform_device *pdev)
+>  {
+>  	struct regmap *base_regmap, *lock_regmap = NULL;
+> +	const struct spacemit_ccu_data *data;
+>  	struct device *dev = &pdev->dev;
+>  	int ret;
+>  
+> @@ -1012,11 +1077,16 @@ static int k1_ccu_probe(struct platform_device *pdev)
+>  					     "failed to get lock regmap\n");
+>  	}
+>  
+> -	ret = spacemit_ccu_register(dev, base_regmap, lock_regmap,
+> -				    of_device_get_match_data(dev));
+> +	data = of_device_get_match_data(dev);
+> +
+> +	ret = spacemit_ccu_register(dev, base_regmap, lock_regmap, data);
+>  	if (ret)
+>  		return dev_err_probe(dev, ret, "failed to register clocks\n");
+>  
+> +	ret = spacemit_ccu_reset_register(dev, base_regmap, data->reset_name);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to register resets\n");
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/include/soc/spacemit/k1-syscon.h b/include/soc/spacemit/k1-syscon.h
+> index 039a448c51a07..53eff7691f33d 100644
+> --- a/include/soc/spacemit/k1-syscon.h
+> +++ b/include/soc/spacemit/k1-syscon.h
+> @@ -5,6 +5,18 @@
+>  #ifndef __SOC_K1_SYSCON_H__
+>  #define __SOC_K1_SYSCON_H__
+>  
+> +/* Auxiliary device used to represent a CCU reset controller */
+> +struct spacemit_ccu_adev {
+> +	struct auxiliary_device adev;
+> +	struct regmap *regmap;
+> +};
+> +
+> +static inline struct spacemit_ccu_adev *
+> +to_spacemit_ccu_adev(struct auxiliary_device *adev)
+> +{
+> +	return container_of(adev, struct spacemit_ccu_adev, adev);
+> +}
+> +
+>  /* APBS register offset */
+>  #define APBS_PLL1_SWCR1			0x100
+>  #define APBS_PLL1_SWCR2			0x104
 > -- 
-> 2.49.0
+> 2.45.2
 > 
+> 
+
+-- 
+Yixun Lan (dlan)
 
