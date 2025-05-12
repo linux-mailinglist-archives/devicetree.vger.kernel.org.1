@@ -1,98 +1,146 @@
-Return-Path: <devicetree+bounces-176556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FBE9AB47D8
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 01:21:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0178DAB47E0
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 01:26:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3B6B4A1B34
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 23:21:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 927211B42A14
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 23:26:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2397726563B;
-	Mon, 12 May 2025 23:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47059267F65;
+	Mon, 12 May 2025 23:26:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ceDZAcOK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G/miODGV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E965925A633;
-	Mon, 12 May 2025 23:20:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCB322338;
+	Mon, 12 May 2025 23:26:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747092059; cv=none; b=OSbsIvZMbZ40b3x+2xtCQvuTHPbSY3+4KLNdKNqCaMIa0XqJVanxvORWDIaL8t6jSuWHrbT1v73bNCL8qw2H9sS6l1SYT+wwxoF+2NdXXOxXdRqd7MjaRNEQ4uhq5XLobM6E69i/0imjJ/I7T01x5AxgTTkwl+cgruon/YzqaUg=
+	t=1747092361; cv=none; b=U1g9gY1OL9kxcOYS+ljGjKIazSiOMVdATHyZersVgq7t3SghbhkhTeUwVHyN9eQtMcwVPhwL25xHlgga2Wijun5HP07+ZjXs2A7gQm7cjyJdcGK9MWhIPxOenQEOeUykmbd2KwYI+UeLAgg8M+GsPzecfGpqlB44sPfTI0GbavA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747092059; c=relaxed/simple;
-	bh=72Gw75hLLReEVg4P1Uy5kzFmeadOnBEzQln3lvoXjCU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XjkaeSx5vYkYb3K9+9mY9aDyyy4Ra6uWQ9c7E1w270eEjCWIQBTn2T4H4kANEJVJ8PdHyFp6Iy0QHaVHpFlzr09CtJwMsAHvaztc71hChwnsbwLfOtKRxpH7AdmK4CZvwGPAsXgyrDrUacE3GSFOLYMmQUMiMKgpGUojJ8/LsTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ceDZAcOK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5E6BC4CEE7;
-	Mon, 12 May 2025 23:20:57 +0000 (UTC)
+	s=arc-20240116; t=1747092361; c=relaxed/simple;
+	bh=ocrZSi8DrO1EDikoZUP7oF3uAlxlKAV4CCYK0E7ESY8=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=WsHt2OKnc5WXTbQaNlS+Uz7n6phS+3UHbj78FMFkqh7prg/+ZO1RICKOd25p1P53A/rcCYIzB2u6QfL5niuOJp6ZkCQmLzgCkGCq+4q1u1k+Zl7Z9Kno0rD6AsOOLK3JgOrYNn4LZklOci+fgsKwk6xiIZThgnXfJL1ah8+Ii7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G/miODGV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FD71C4CEE7;
+	Mon, 12 May 2025 23:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747092058;
-	bh=72Gw75hLLReEVg4P1Uy5kzFmeadOnBEzQln3lvoXjCU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ceDZAcOK3UByprrPu9caFvlFb1I6Toyf5eXaV5aZjaZtULt0KbQpcVt902Vud4Sj2
-	 m+zgvK6TUc3aAWvEQJl+mCZwL2Dcd1tVtKk5R01TIk6bYGRSU3PORMpLmvFd9QCgtr
-	 EBLBOtw0+QNk5YIbwYhivizHhlLP33W72DhiE3qxnOfSs/JI74YhjE7GIJ6CAOzIRt
-	 R6M+FS8WTbXzpB5tUEbCMLnsdqXlv2sRm0DM8mdFh3wndHcoFNIWLK9qGjq7ixPUuA
-	 MB7ycY3ZyUEcT2XdxeJ2RfTd/SaCYc8SngEkiuA/CNt54FP1F1BwGhGQyeaMRFzwzI
-	 YN+nvZogpM4Wg==
-Date: Tue, 13 May 2025 01:20:54 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	thierry.reding@gmail.com, jonathanh@nvidia.com, ldewangan@nvidia.com, digetx@gmail.com, 
-	p.zabel@pengutronix.de, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: i2c: Specify reset as optional
-Message-ID: <vua7cq4nu5piz67as7asrfklimflpj2hznnd6oadcy36bglunt@ljhzegmt2jry>
-References: <20250506095936.10687-1-akhilrajeev@nvidia.com>
+	s=k20201202; t=1747092360;
+	bh=ocrZSi8DrO1EDikoZUP7oF3uAlxlKAV4CCYK0E7ESY8=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=G/miODGVrcGeq496mvoRikgxy5uBNnOkysR4Bjkvdh99lpImJjlM0Q5BY/YOvD2eX
+	 Tphg+iiW8oLW9MrYAirmoLLIf+pWgv0NN0Zk9AcXiXyDOzLVLNem6tdFThiaJGVPmN
+	 15PcatmTdyI7Ze3ctlGjCRzcnYK33f2W6MXt7KXMSpKfzycAYk0STYuZkp3uKIuVUI
+	 k+diB3b7yfILzHv2GmGN/ceT6plbGrTysUtzmgENfnumE3CYdoWsmKvoxqQfNfc46P
+	 D1nIFgQTzLfQuUP5n0LDuCL/V7cexibccQXFb3mQqBCAeX6jGDDqlvTPgrFGHqhPOg
+	 KR1Fk1UXvw5pQ==
+Date: Mon, 12 May 2025 18:25:58 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250506095936.10687-1-akhilrajeev@nvidia.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Tommaso Merciai <tomm.merciai@gmail.com>, Liu Ying <victor.liu@nxp.com>, 
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Dan Carpenter <dan.carpenter@linaro.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, devicetree@vger.kernel.org, 
+ Dongcheng Yan <dongcheng.yan@intel.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Ross Burton <ross.burton@arm.com>, Will Deacon <will@kernel.org>, 
+ Eric Biggers <ebiggers@google.com>, 
+ Julien Massot <julien.massot@collabora.com>, linux-media@vger.kernel.org, 
+ =?utf-8?q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>, 
+ Taniya Das <quic_tdas@quicinc.com>, Mark Brown <broonie@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ linux-staging@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Ricardo Ribalda <ribalda@chromium.org>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Zhi Mao <zhi.mao@mediatek.com>, 
+ Cosmin Tanislav <cosmin.tanislav@analog.com>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Hans Verkuil <hverkuil@xs4all.nl>, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
+ Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Cosmin Tanislav <demonsingur@gmail.com>
+In-Reply-To: <20250512212832.3674722-15-demonsingur@gmail.com>
+References: <20250512212832.3674722-1-demonsingur@gmail.com>
+ <20250512212832.3674722-15-demonsingur@gmail.com>
+Message-Id: <174709235870.686179.16618194990565341079.robh@kernel.org>
+Subject: Re: [PATCH v3 14/19] dt-bindings: media: i2c: add MAX9296A,
+ MAX96716A, MAX96792A
 
-Hi Akhil,
 
-I am assuming you are going to send a v2 for patches 1 to 3 with
-the proposed changes?
-
-Andi
-
-On Tue, May 06, 2025 at 03:29:33PM +0530, Akhil R wrote:
-> Specify reset as optional in the description for controllers that has an
-> internal software reset available
+On Tue, 13 May 2025 00:28:23 +0300, Cosmin Tanislav wrote:
+> The MAX9296A deserializer converts single or dual serial inputs to MIPI
+> CSI-2 outputs. The GMSL2 links operate at a fixed rate of 3Gbps or 6Gbps
+> in the forward direction and 187.5Mbps in the reverse direction.
+> In GMSL1 mode, each serial link can be paired with 3.12Gbps or 1.5Gbps
+> GMSL1 serializers or operate up to 4.5Gbps with GMSL2 serializers with
+> GMSL1 backward compatibility. The MAX9296A supports mixed GMSL2 and
+> GMSL1 links. The serial inputs operate independently, allowing videos
+> with different timings and resolutions to be received on each input.
 > 
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> MAX96716A supports both tunnel and pixel mode.
+> MAX96792A supports both tunnel and pixel mode, and has two GMSL3 links.
+> 
+> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
 > ---
->  Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  .../bindings/media/i2c/maxim,max9296a.yaml    | 242 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 +
+>  2 files changed, 248 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml b/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
-> index b57ae6963e62..19aefc022c8b 100644
-> --- a/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
-> @@ -97,7 +97,9 @@ properties:
->  
->    resets:
->      items:
-> -      - description: module reset
-> +      - description: |
-> +          Module reset. This property is optional for controllers in Tegra194 and later
-> +          chips where an internal software reset is available as an alternative.
->  
->    reset-names:
->      items:
-> -- 
-> 2.43.2
-> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.example.dtb: serializer@40 (maxim,max96717): compatible: 'oneOf' conditional failed, one must be fixed:
+	['maxim,max96717'] is too short
+	'maxim,max96717' is not one of ['maxim,max9295a', 'maxim,max96717f']
+	from schema $id: http://devicetree.org/schemas/media/i2c/maxim,max96717.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.example.dtb: serializer@40 (maxim,max96717): compatible: 'oneOf' conditional failed, one must be fixed:
+	['maxim,max96717'] is too short
+	'maxim,max96717' is not one of ['maxim,max9295a', 'maxim,max96717f']
+	from schema $id: http://devicetree.org/schemas/media/i2c/maxim,max96717.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250512212832.3674722-15-demonsingur@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
