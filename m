@@ -1,222 +1,97 @@
-Return-Path: <devicetree+bounces-176349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0815EAB3983
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:42:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F515AB3995
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:48:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80EB91787B8
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:42:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAFFF1895EEE
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:48:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E82362951BA;
-	Mon, 12 May 2025 13:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CDF41AA1E0;
+	Mon, 12 May 2025 13:48:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="zP5U3VrW";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="gvKon7yM";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="mrNRbP0b";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="a5UtLZDe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GHkm0veZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34850255F51
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 13:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D82F219E4;
+	Mon, 12 May 2025 13:48:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747057365; cv=none; b=HsowctcLuYLYaaDSdVKrns0+XIBDh+WresD21CqObjUEeY79VMri05fhWvj1D3rjHw9m+04n53ByE7WAHTZbo/KAc4Uj+Qq/PTBIxmiWitCo69YaE9+6F/EjGsUEIMjOtNsDDHzKhU/vdaoT+7HFrUIqmNeQDh3N/t9I+f2i9lQ=
+	t=1747057705; cv=none; b=uAeRwatSbJqyNhkJ5WWIDySzzXnVbOCYItYS8/z6w1yWn5hR390dtCikVcgvFCxINDI2hCDoP2qLRmnCzewoOgwEMcDy9fk3y5KYhCfIRtWGmQfQ7vUGwBDEEaF26EwnpXm7Z/Ot+rjkBDmYd6gIlNGZwQ6foAi4aLNnzB1Hb3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747057365; c=relaxed/simple;
-	bh=VeCDMgkzyL+iMixGYU/gMkR9Q15A/DHrJuIO2Xaxb8w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tGXnxO6Y997YUpAnxLja7f5A4yjQjBMKu61g5aUUMQ03BJXBO1A2wxXMulomEzmPnela0an1PKJKpuYdvt2CCfJ8nDriNPvNLysv8GuMGVVSnDxupkOkCk+ute0b15/6f1FmudpMGYNYtS8WeXmijx84c/xOJytzruCzSDb4Gyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=zP5U3VrW; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=gvKon7yM; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=mrNRbP0b; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=a5UtLZDe; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 77C721F38C;
-	Mon, 12 May 2025 13:42:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1747057362; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CrpU8YxLS+4Al6Udh0YnCVnyLmsN5nb6vSk+X5R1cE0=;
-	b=zP5U3VrW3t8DldETQ2m3ra/g9SR/7BfZECcIwt1ffozAv53i4FQNTbZqDlArwMGydwaBj6
-	rtCzxLUs79hYV9o0Zzc4IUjfIraGG048FWChP1WvdFVRQhYgY2kGiXmYA2HbBvn4MP7iQJ
-	GSdeERGDIVxWiZR/A6vqbWOAeUUfRIU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1747057362;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CrpU8YxLS+4Al6Udh0YnCVnyLmsN5nb6vSk+X5R1cE0=;
-	b=gvKon7yMqsoG257e/+tjFmrYEyugtB0QHKk7RcncstuvNHkWJgUu0gzu6xzHS1AJNvI2QX
-	OVlRskUcVxR7BmBg==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1747057361; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CrpU8YxLS+4Al6Udh0YnCVnyLmsN5nb6vSk+X5R1cE0=;
-	b=mrNRbP0beD+FA3kIigtZ4Axve0L82Sl8oc2EvXufjmPE8pwINqFDZxkHovVpcbgQ/vNB0m
-	vqZplir1glSp40FziCgR2C0aHfwbrJD8wBoBU9Cl2dt07JUr0xad4PyPKPg0CEt0K23we7
-	KQHa5h307RnZsk+FTfdGFKXqvDVJ65I=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1747057361;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CrpU8YxLS+4Al6Udh0YnCVnyLmsN5nb6vSk+X5R1cE0=;
-	b=a5UtLZDe1eN/4R0G6f8q7lUB9f46NVeH/gmYLEhqmnN5Pvsl5Tq/jEozyj/EDghnESjMQr
-	YROgoHf7h4tvWhAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 539C613A30;
-	Mon, 12 May 2025 13:42:41 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id 2MYKEtH6IWi/LQAAD6G6ig
-	(envelope-from <iivanov@suse.de>); Mon, 12 May 2025 13:42:41 +0000
-Date: Mon, 12 May 2025 16:42:40 +0300
-From: "Ivan T. Ivanov" <iivanov@suse.de>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, florian.fainelli@broadcom.com,
-	andrea.porta@suse.com, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Arend van Spriel <aspriel@gmail.com>, kernel-list@raspberrypi.com
-Subject: Re: [PATCH 6/7] arm64: dts: broadcom: bcm2712: Add second SDHCI
- controller node
-Message-ID: <20250512134240.hg4we6sxemxeufka@localhost.localdomain>
-References: <20240731062814.215833-1-iivanov@suse.de>
- <20240731062814.215833-7-iivanov@suse.de>
- <a563971a-45f4-4404-a622-21c940d96250@gmx.net>
+	s=arc-20240116; t=1747057705; c=relaxed/simple;
+	bh=DNYSN+ylh/jXEnA3iZxmH6KlXH1W+/6ULPk8mmvd8G4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Nt5VIWhy/lqrWQoM5GcRTsoUfHDaLu533/9jU9Teu9sdZThgVvZ9Z63tR3skM7VCYw5MEOw0Jdqw6dv6IRGuKxIIdG9PPG81LV51Zu3XePMIvxwEZ0ncvHSu8hNqrRk9ocAUoyWgUTUuNy/oKcmibjQoUEmwpWFjbME9S/XHVnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GHkm0veZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 828E2C4CEE7;
+	Mon, 12 May 2025 13:48:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747057704;
+	bh=DNYSN+ylh/jXEnA3iZxmH6KlXH1W+/6ULPk8mmvd8G4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=GHkm0veZOZ/FoxV80eSVOD4Kew8bfqr5GdmoxS/810uPy9ujlUa8EGENgrmkaMOL1
+	 kZzz69xN6IV7bnNhH5PuZAtG1D153oaqfEw19buthRaEpsb/r8Wxx3CeM2YVjUy9VV
+	 uFwHVjt5Q0BpZz0NLVTjpw+Oaihzm3q918W9QTMQpFj1ceBtx/x7SbTouvpR8Zetn3
+	 TMSwMJHoKajnAm6aP2XI5b+IQ4cADJyyiNsQYnKYX/8KT6os5fTk2tLyxn+AtBAo0H
+	 8qNEySIyqllucoYVfnVkgZ2GyfYS9SbFpxJWeBi5mLM1m+DntkzNEAGZ5WRhq/7s5O
+	 Teq/kSXUPCSng==
+From: Conor Dooley <conor@kernel.org>
+To: linux-renesas-soc@vger.kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Ben Zong-You Xie <ben717@andestech.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v2 0/2] Add specific RZ/Five cache compatible
+Date: Mon, 12 May 2025 14:48:13 +0100
+Message-ID: <20250512-daily-saga-36a3a017dd42@spud>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a563971a-45f4-4404-a622-21c940d96250@gmx.net>
-X-Spam-Flag: NO
-X-Spam-Score: -2.80
-X-Spam-Level: 
-X-Spamd-Result: default: False [-2.80 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	RCVD_TLS_ALL(0.00)[];
-	ARC_NA(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[dt];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_TO(0.00)[gmx.net];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.net];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,broadcom.com,suse.com,vger.kernel.org,lists.infradead.org,gmail.com,raspberrypi.com];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,imap1.dmz-prg2.suse.org:helo]
+X-Developer-Signature: v=1; a=openpgp-sha256; l=893; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=OdJgFJtV7rKCQc1yIMfDPlfVFN9LSEtX5xUnvHIIr74=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDBmKf2T+mLgdDxV+fTzLfIZ75BsxlgCDvnsH/LaxnP3Re q+Xeee3jlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEykVYiRYb+CoFo/yyb3l5sk qrWuPV91Ou1CYmUXxwHnnONmNy2SAhkZvjL768y5e4Dnz7b7LFPfCE7yOxez5WrjGgmGJZv1f/k 95AcA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-Hi,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-I am sorry so long delayed answer. Shifting priorities.
+v2: add "-ax45mp" to compatible string.
 
-On 08-02 21:01, Stefan Wahren wrote:
-> 
-> Hi,
-> 
-> [add Arend and Raspberry Pi devs]
-> 
-> Am 31.07.24 um 08:28 schrieb Ivan T. Ivanov:
-> > Add SDIO2 node. On RPi5 it is connected to WiFi chip.
-> > Add related pin, gpio and regulator definitions and
-> > add WiFi node. With this and firmware already provided by
-> > distributions, at least on openSUSE Tumbleweed, this is
-> > sufficient to make WiFi operational on RPi5 \o/.
-> > 
-> > Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
-> > ---
-> >   .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     | 55 +++++++++++++++++++
-> >   arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 13 +++++
-> >   2 files changed, 68 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-> > index 06e926af16b7..b6bfe0abb774 100644
-> > --- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-> > +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-> > @@ -46,6 +46,20 @@ sd_vcc_reg: sd-vcc-reg {
-> >   		gpios = <&gio_aon 4 GPIO_ACTIVE_HIGH>;
-> >   	};
-> > 
-> > +	wl_on_reg: wl-on-reg {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "wl-on-regulator";
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +		pinctrl-0 = <&wl_on_pins>;
-> > +		pinctrl-names = "default";
-> > +
-> > +		gpio = <&gio 28 GPIO_ACTIVE_HIGH>;
-> > +
-> > +		startup-delay-us = <150000>;
-> > +		enable-active-high;
-> > +	};
-> I don't think this GPIO is a regulator from hardware perspective. I
-> guess it's the same reset pin we have on the older Raspberry Pis. Please
-> look at bcm283x-rpi-wifi-bt.dtsi for the wifi power sequence.
+CC: Ben Zong-You Xie <ben717@andestech.com>
+CC: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Geert Uytterhoeven <geert+renesas@glider.be>
+CC: Magnus Damm <magnus.damm@gmail.com>
+CC: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+CC: linux-renesas-soc@vger.kernel.org
+CC: linux-riscv@lists.infradead.org (open list:RISC-V ARCHITECTURE)
 
-FWICS, "mmc-pwrseq-simple" is more about proper reset sequence while
-here we need power to be applied to the connected device.
+Conor Dooley (2):
+  dt-bindings: cache: add specific RZ/Five compatible to ax45mp
+  riscv: dts: renesas: add specific RZ/Five cache compatible
 
-And this is not a precedent. Just grep for "vmmc-supply = <&wlan"
+ .../devicetree/bindings/cache/andestech,ax45mp-cache.yaml     | 4 +++-
+ arch/riscv/boot/dts/renesas/r9a07g043f.dtsi                   | 3 ++-
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
-> > +
-> >   	pwr-button {
-> >   		compatible = "gpio-keys";
-> > 
-> > @@ -80,6 +94,25 @@ &sdio1 {
-> >   	cd-gpios = <&gio_aon 5 GPIO_ACTIVE_LOW>;
-> >   };
-> > 
-> > +/* SDIO2 drives the WLAN interface */
-> > +&sdio2 {
-> > +	pinctrl-0 = <&sdio2_30_pins>;
-> > +	pinctrl-names = "default";
-> > +	bus-width = <4>;
-> > +	vmmc-supply = <&wl_on_reg>;
-> > +	sd-uhs-ddr50;
-> > +	non-removable;
-> > +	status = "okay";
-> > +	#address-cells = <1>;
-> > +	#size-cells = <0>;
-> > +
-> > +	wifi: wifi@1 {
-> > +		reg = <1>;
-> > +		compatible = "brcm,bcm4329-fmac";
-> > +		local-mac-address = [00 00 00 00 00 00];
-> I think we can drop this?
-
-Sure.
-
-Regards,
-Ivan
+-- 
+2.45.2
 
 
