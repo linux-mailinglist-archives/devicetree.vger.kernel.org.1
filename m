@@ -1,157 +1,209 @@
-Return-Path: <devicetree+bounces-176438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CC98AB402C
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 19:50:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2409FAB407F
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 19:54:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0BAD466810
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:50:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99A3C19E7B27
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:55:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1700F2550A3;
-	Mon, 12 May 2025 17:50:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D876255222;
+	Mon, 12 May 2025 17:54:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ljFQYBCR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L18I7cpD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0FF254879;
-	Mon, 12 May 2025 17:50:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B4812550D0;
+	Mon, 12 May 2025 17:54:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747072241; cv=none; b=mcxBk9Samq1kFxK9AtRmqfWla4N/WQr3Vf2ZxNgk0ltdkakcGBrC0O1hcl83ueK0GpBY/NMm5xPHDqb5io29Vcs2V8KtflO7Jchz8F82UxASYAUzE4x8J03Pzj2UhfTL+m4yx3KjYw4ZayHa72mzuL4amH/ef6rHNhOYKyVZTds=
+	t=1747072495; cv=none; b=BA1psxcu9BwHDDhyaLup/bMgNBBvlZTpCRrSBsLg0W7LKYxkSdMzCETjSnd51i280eutIixdrvmoVfbo4Meg8GKsxM1w0QbJ6gEtHaQNYwcHOJqsoT7EZBhweuPSXMnAdje2SlKQwasYI8Mwk0p/T8xIln/LEuf9GrGkM2tbGgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747072241; c=relaxed/simple;
-	bh=50J+L6yppvWnD5FxHuOHSb8jlzLe4Y+CMyEYV6+hIsY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YJGnN1gNx+dPygB+Mq4mDlZ2S5Zq71/RC0pBXj8qfax7CLZWKIIzXe16CGdzmRg4YH8NDNpVIA5MZMaGf3VjnlKwQRJMIlkb5Eyuf9JoIdc0z27RIb0BtCylBmYgVWsqJZKZfUHpnYjDjF/iGYJVEw7ImIUZznkdF3yS8Zg+xPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ljFQYBCR; arc=none smtp.client-ip=209.85.160.177
+	s=arc-20240116; t=1747072495; c=relaxed/simple;
+	bh=W+cYK9ITPo664dkM5LrWET5c4Pp0BmrymUTIQeGymT8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PqZura04xjYSuqpw9NXj7jlJ6Sgw6G44USJ1WmIqaW/9Aoonj9mZuWEx191xhlUrd+KEpRgqZxFOloIFzhH+CsnyhTFj4nmsoIkYERDyHQhZ1ZafunoZYxJ7jAb29rbEK0NNZn4d3v4UFI6ZwgdKBlxEPmP+9LjG5dl5ic95Twg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L18I7cpD; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-4768f90bf36so51318811cf.0;
-        Mon, 12 May 2025 10:50:38 -0700 (PDT)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-acb5ec407b1so827321366b.1;
+        Mon, 12 May 2025 10:54:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747072238; x=1747677038; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iSoxyHvUrLiSc3/psAWBZmLYF3TjkhwktVK+c+jvBxs=;
-        b=ljFQYBCRYzWPi+svJQW+dLUgjPLRPrvmbTS3kHl1a/fCEAdSKyvT4HCYuEWxnF9k8L
-         Lm/+PwEqXMFoxzvjPzZSHBKu5BiR80h0KTBzpcmsIGZe+2SCQ0f7+cpXylQBNSlN28ft
-         0WjaHjp/L187d33UxQJRA39XaAVe1IbEfWWsscQhg7n+yUgEO6DrxCjIYYxGs9HNm9tG
-         rvC1+Hl2rhf0Me5++u89fJBuWcEaxt9g1mJD+glRln0qE+r4NcmsPBp7+fo22DJgof8D
-         SpsebPLpui6CuWRy4PwtSm4T59HaxGPBn01quwqHnyCc08FBxzWycaidj4xD8E3Z1QVS
-         FAMA==
+        d=gmail.com; s=20230601; t=1747072491; x=1747677291; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JgvoCOwXjWIE8mFgjOg/q+OJocGn0SRHVfdafB1Adu0=;
+        b=L18I7cpDaS/Yj0CwhkeQIon8dr18PGkJHMlVWrjyGnB1AQoUTdU1eSoPDXWYma6zl9
+         S0gjZYGEt0EsmTjtQe0ZAfHco8k1WHnPsGVx63+icZ7K4I+O/3J0UV7QkjvW+7k+VAdN
+         OX5HQ2OoamTlXEHvmIqeOULC43bowngybNaXK9KT/S3O/ekwsZaBTSTdD1psvPFyaMQW
+         znaFDZfo25JEwFANIF1yA1o6E4nmDoXgCMNhrtjYx5pfauYeYnKxnz2p6pU0nXC512hJ
+         NdePc/2dxu01mFIv578tOWbkSPEJYZpxtckX/slvLu8qQ9MRR8b9kzNew0m248Xxpjs2
+         wYAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747072238; x=1747677038;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iSoxyHvUrLiSc3/psAWBZmLYF3TjkhwktVK+c+jvBxs=;
-        b=tB6J9e2rfy8p+IEkVl1P85WKs/XPlrBX2GBtwbLizrzwVbFOY14bUIRto9pwsf7I7A
-         Qgoa7CAzuORCpVFvVhp2GcoMnZQFM+aP5G4t/3yuUdSz1JPKu0/4LYz05wik3o5NO8Wj
-         KLx9ByyQiSuY302yV9FR+LglVgkCiaYtDRKG+yDpfnwm0S30igvKrSDHAHahUWT+dqsx
-         IPPhkJFJeSuQvhyNeZZeIPQ8sJmL/JvjBZr9NoqffCMBb8ZtE9vuh2hZ9z2fhBXgktif
-         fIcI5BY/L3YdLKvUvNmPR543R2PI213EKEEcSd5yL25l7qqFSH/99wa5o7XSDC0LEsWL
-         XZZg==
-X-Forwarded-Encrypted: i=1; AJvYcCV7s/RI9IVLxHqN8Oav3HhHOzgID1axgnVvk/TLjKf5VWQvB0vbGJ9hhe9PelPcUfHM4E68AqG4vN05uCRy@vger.kernel.org, AJvYcCVogW6vZrkIN+tUS4+qiwfBE59YG1EuG4mlEWQdpSoP/MWe55BXCoMGZFkPj2+FHj1g72CXjQYSn7KH@vger.kernel.org, AJvYcCX5C7SmtzGsuFkYTt31tfr5swiazETnUN0Te44RVGk3elzr3IePA6AM9RyAUu64rv8BBUl04W/UecJR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrrwQZw/6ACD+7rcn6RrfE2t8wbO/3+Izk3ZXYSwN+7FYbFN1k
-	Wiuw2kwfnHjla/QzPYNeTLQBipYICBApFkqj1egMCLvAmQAYMjrWxgyyBzP1LiTMN2I2qXAurQx
-	sdZyaF48GASE3jKfHB+JZAGjooqQ=
-X-Gm-Gg: ASbGncvmMXItb5DRfpC0YB/PTCe37XZcue29sukFkrHYiocMZNELc8m3Z2dbJAQdbng
-	GgyP77R65tRPdpw2gt8enU9u//ClXHKIe3xLepQ4hcaYhmm/NaThnI4XbWWhEP8TJUXckn4yD35
-	MueXfaTh0lqp/heR/PdoWB3HFWHtZf/vQ=
-X-Google-Smtp-Source: AGHT+IGkeH40cXRztWXpSrCJ5q6XKPbNvx7k9EkmvL+Je1u1a0S2VQUWKi48NLpznn1NHqP6LSPKlLPZSwHilThRqUc=
-X-Received: by 2002:ac8:5f91:0:b0:476:a895:7e87 with SMTP id
- d75a77b69052e-494527f40e7mr184965391cf.48.1747072237855; Mon, 12 May 2025
- 10:50:37 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747072491; x=1747677291;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JgvoCOwXjWIE8mFgjOg/q+OJocGn0SRHVfdafB1Adu0=;
+        b=gWZJU1EmrOQOvyAzIqSkuX8Aeyh8FELZtmglvO1j9Rf1rUhrDHS9jgzV4AuNaD0yS9
+         1ikkzs/QYubrEcueHiQPhPRV/8PnRUWvPhyVKBeqgvWDXK+pR5jBW15TVut4JrDyb3Sy
+         JDn2iGbYDaU6wkStUaaryPv6wyTQ51hJCkLBsha2UOj/sKp0qAKSdmXKCNDhtoMi+tCc
+         3+TG1ApXvRj5fyq/B9CHMNiDq2Qnli1eBdz5fm60de3SkQjO3rJBWCRSZYlyfhYaeLC5
+         MI5Pl9HJrCrQqsHpLkEhXQknPUQZp9crssdyLl0Q7fvMIN2MwGfrXZ7JAWSDIbzrCQaS
+         gk5g==
+X-Forwarded-Encrypted: i=1; AJvYcCUqsCeUpfgJNZfJJdKWyNEcR0MXt8/qeZcoP2H21CKqzj7m01X38C6TtaYOzzmBYx6lFsuUSTW8L0mR0iWwZTxqRlw=@vger.kernel.org, AJvYcCWe/BzpX2+6VIDqRRyPNXyAUtvS2xOkJ9ZsVO+xPpT4kL2cEic1Igo6jr5m9gm/ab1gCMVAm/y0V/4eSg==@vger.kernel.org, AJvYcCWojndDjOrdTgpHEAR1SB1lV6YnZFW8PUk9EcUfdZ1kIWtoubWSbQQg/MMPUpUvU1Uto16MjdkiaLgC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqeV1yhYPgO7B9FPShfEn63c1tr7ihh0E2/q40csF3x5RrlcBQ
+	sPGLX0Dbc4wDDgTK2u8eO8eqLMTcNhq0Mwdxp6f/rY6LqMv//CRT
+X-Gm-Gg: ASbGnctVgYgTgt1lrwAh134NayqxAwlIrmyZUAAL/xP3WSLFX/TrdHcSviazDWkxhJT
+	xeloiFuPbA/sRhqNqrP1KnJXMhl54JWVSsRNLmzWlMfqEEyRzsbl86WW8Sv73oBnY/7pKobDrRJ
+	xH3usCAS37OVRgwKShJXkE2EVtuVVZ2wF0R9kaNGK+zPH1+PH780I6CcMEYDOLJsPxE5hVLE1il
+	7rcvpUazf+N2V48Of5hc10pFC7c9oMrNj/h8An/toPiNtuUce6KLwlHhMH2+fTS9cAOO7WPux3K
+	XNvbI+sJ2DypPTa0C1JOcm3KhEjWiQL1BOEg15ouDUbZWEwWStwv6vqwBCBp4+MINKo4ehWb1mU
+	=
+X-Google-Smtp-Source: AGHT+IE5XLkS6iNiZBAhCKnwDI5UrEGId9RLGaIEQw8M6sC/PYnL+4gjrD34QfwVKGjX0jJf7gWvMg==
+X-Received: by 2002:a17:906:4796:b0:ac6:fc40:c996 with SMTP id a640c23a62f3a-ad218f22586mr1373648166b.23.1747072491143;
+        Mon, 12 May 2025 10:54:51 -0700 (PDT)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad21974701dsm642160066b.116.2025.05.12.10.54.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 May 2025 10:54:50 -0700 (PDT)
+Message-ID: <ebb257c6-33f9-4841-b9af-c2744b59e513@gmail.com>
+Date: Mon, 12 May 2025 19:54:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250510-wmt-sflash-v1-0-02a1ac6adf12@gmail.com>
- <20250510-wmt-sflash-v1-2-02a1ac6adf12@gmail.com> <mafs01psu89sx.fsf@kernel.org>
-In-Reply-To: <mafs01psu89sx.fsf@kernel.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Mon, 12 May 2025 21:50:26 +0400
-X-Gm-Features: AX0GCFuTn2-A7ifRuVywFd5v331R4uCu7HoPZVJQ7gQFF2XE3zSvat71MlVoTDs
-Message-ID: <CABjd4YyRScBgDbi8Sk0D3vxcmLF8+YBetUdkfhrS_4Y7M+gS1g@mail.gmail.com>
-Subject: Re: [PATCH 2/3] mtd: spi-nor: Add a driver for the VIA/WonderMedia
- serial flash controller
-To: Pratyush Yadav <pratyush@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Michael Walle <mwalle@kernel.org>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzk@kernel.org>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe
+ Debug LEDs
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Lee Jones <lee@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Pavel Machek <pavel@kernel.org>, linux-leds <linux-leds@vger.kernel.org>
+References: <20250417093256.40390-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdWN-QDrmogJ+7x8sdc6UmDAoF+0z0hZ3SQ7ajN2V2+mSw@mail.gmail.com>
+ <aBxjvofZCEi_1Fna@shikoro> <20250508134930.GM3865826@google.com>
+ <18b78845-3f01-444d-835a-aa39f84a2689@gmail.com>
+ <CAMuHMdW1Hn51R-6MstS1Ojuu-CR0eNs504YEruPbe2L-H_zBHA@mail.gmail.com>
+Content-Language: en-US
+From: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+In-Reply-To: <CAMuHMdW1Hn51R-6MstS1Ojuu-CR0eNs504YEruPbe2L-H_zBHA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Pratyush,
+Hi Geert,
 
-On Mon, May 12, 2025 at 1:20=E2=80=AFPM Pratyush Yadav <pratyush@kernel.org=
-> wrote:
->
-> Hi Alexey,
->
-> On Sat, May 10 2025, Alexey Charkov wrote:
->
-> > The controller is tailored to SPI NOR flash memory and abstracts away a=
-ll
-> > SPI communications behind a small set of MMIO registers and a physical
-> > memory mapping of the actual chip contents.
-> >
-> > It doesn't expose chip probing functions beyond reading the ID though, =
-so
-> > use lower level chip opcodes via the "programmable command mode" of the
-> > controller and the kernel's SPI NOR framework to avoid hard-coding chip
-> > parameters for each ID the way the vendor kernel does it.
-> >
-> > Currently tested on a WonderMedia WM8950 SoC with a Macronix MX25L4005A
-> > flash chip (APC Rock board), but should work on all VIA/WonderMedia SoC=
-s
-> >
-> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > ---
-> >  MAINTAINERS                                  |   1 +
-> >  drivers/mtd/spi-nor/controllers/Kconfig      |  14 +
-> >  drivers/mtd/spi-nor/controllers/Makefile     |   1 +
-> >  drivers/mtd/spi-nor/controllers/wmt-sflash.c | 525 +++++++++++++++++++=
-++++++++
->
-> Drivers in drivers/mtd/spi-nor/controllers/ are deprecated, and we want
-> to eventually get rid of the API. The expected way is for drivers to use
-> SPI MEM (drivers/spi/spi-mem.c). SPI MEM drivers are usually more
-> general and not tailored specifically to SPI NOR flashes, so it might be
-> a bit tricky to write drivers for specialized hardware with it. But I
-> think the drivers/spi/spi-intel.c driver is written for similar kind of
-> hardware so it should be possible.
+On 5/12/25 09:13, Geert Uytterhoeven wrote:
+> Hi Jacek,
+> 
+> Thanks for your answer!
 
-Oops. I've had a look at spi-mem, and it seems like it's not a
-particularly fitting abstraction for this controller.
+You're welcome.
 
-From what I understood, spi-mem primarily expects to be talking SPI
-opcodes to the controller, and for the controller/driver to bring
-their own chip probing routines. This controller on the other hand
-abstracts the opcodes away, and wants someone to tell it what its
-flash chip can do (the controller itself can only get a chip ID in
-"normal" mode, and it needs to somehow know the chip size and
-standard/fast read capability of the chip). So pretty much the
-opposite, huh.
+> On Sat, 10 May 2025 at 14:43, Jacek Anaszewski
+> <jacek.anaszewski@gmail.com> wrote:
+>> On 5/8/25 15:49, Lee Jones wrote:
+>>> On Thu, 08 May 2025, Wolfram Sang wrote:
+>>>> On Thu, Apr 17, 2025 at 01:39:14PM +0200, Geert Uytterhoeven wrote:
+>>>>> On Thu, 17 Apr 2025 at 11:33, Wolfram Sang
+>>>>> <wsa+renesas@sang-engineering.com> wrote:
+>>>>>> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>>>>>> ---
+>>>>>>
+>>>>>> Changes since v2:
+>>>>>> * using function, color, function-enumerator properties now
+>>>>>>
+>>>>>> Honestly, this is better than using node names? With V2, the LEDs were
+>>>>>> named as in the schematics, now they are called:
+>>>>>>
+>>>>>> lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-0 -> ../../devices/platform/leds/leds/green:programming-0
+>>>>>> lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-1 -> ../../devices/platform/leds/leds/green:programming-1
+>>>>>> lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-2 -> ../../devices/platform/leds/leds/green:programming-2
+>>>>>> ...
+>>>>>>
+>>>>>> Which gets even more confusing if we might later add LEDs not on this
+>>>>>> board, but on the expansion board. 'green:programming-8' sits where?
+>>>>>>
+>>>>>> I really wonder, but if this is the official way now...
+>>>>>
+>>>>> Good point!  So I'm inclined to take v2...
+>>>>>
+>>>>> Let's raise this with the LED people. I don't want to fight Pavel when
+>>>>> v2 hits the CiP tree ;-)
+>>>>
+>>>> So, if there is no other opinion here, can we remove function, color,
+>>>> function-enumerator and just use the node names which match the
+>>>> schematics? Basically apply V2?
+>>>
+>>> I didn't author the semantics nor the rules surrounding them, but I am
+>>> obliged to enforce them.  Therefore "LED people" say, please stick to
+>>> convention as stated in the present documentation:
+>>>
+>>> https://docs.kernel.org/leds/leds-class.html#led-device-naming
+>>>
+>>> Please note that a "debug" (LED_FUNCTION_DEBUG) option already exists if
+>>> that is more appropriate to your use-case.
+>>>
+>>> Let's also bring Jacek into the conversion, since I know that he did a
+>>> bunch of work around this topic.
+>>
+>> The question is if the LED name from the schematics tells anything to
+>> the user of the equipment?
+> 
+> As this is a development board and not a finished product, I would
+> answer yes.
 
-In the end, I only need something like spi_nor_detect() and can do the
-rest directly on top of the MTD framework without touching any SPI
-opcodes after the detection is done. Is there any other non-deprecated
-framework that can provide something like this? Maybe physmap? It
-looks even older than SPI NOR though :)
+OK.
 
+>> The idea behind LED naming is to facilitate matching the LED class
+>> device name as reported by the system with the LED location on the
+>> equipment.
+>>
+>> The LED naming standardization intended to enforce consistent
+>> LED naming, and not allowing to add multiple interchangeable
+>> names like wifi/wlan. It also helps to keep LED name sections order in
+>> accordance with Linux documentation, which before had been often
+>> abused by allowing to assign anything to the now deprecated 'label'
+>> DT property.
+> 
+> I agree this all makes perfect sense for a final product, where the
+> purpose of each LED is clear, and sometimes indicated by an icon
+> on the case.
+> For a development board, some LEDs may have a fixed purpose.
+> But typically there is also a collection of generic user LEDs, which
+> do not have a fixed purpose, and are identified by a label on the
+> schematics.  Imposing an arbitrary numbering scheme on the latter is
+> confusing for the user (developer).
+
+Using DT child node name for LED class device name is only
+a last resort fallback. However if it is devboard and we want to have
+a reference to the schematics then I'd say it makes sense to take
+LED names from DT nodes. What about the colors? Are the LEDs replaceable
+or soldered?
+
+>> Regarding expansion boards - we never have control over what
+>> LED names DT overlays will define, thus LED core adds numeric suffix to
+>> the LED class device name in case of the name clash.
+> 
+> FTR, the RZN1D400 Expansion Board does not use a DT overlay.
+> Linux carries a DTS for it, which just includes the base board .dts,
+> and treats it as a single system.
+
+Ack.
+
+-- 
 Best regards,
-Alexey
+Jacek Anaszewski
+
 
