@@ -1,121 +1,248 @@
-Return-Path: <devicetree+bounces-176365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E2E7AB3ACD
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:37:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78BD3AB3ADE
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:43:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EEE03B3CD9
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 14:36:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6825E3BB964
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 14:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16076229B2E;
-	Mon, 12 May 2025 14:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B4B229B0E;
+	Mon, 12 May 2025 14:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m0cFB3JP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CyZfOtlZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAF4D22839A;
-	Mon, 12 May 2025 14:37:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1019C1E25F2;
+	Mon, 12 May 2025 14:42:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747060627; cv=none; b=CSJs+xB9Wh8MZlQUjFsMxyfGoHKa17izxyea150fHK6Ee9TRCzM5na3a5g/z65++kwpamwnyL5jLN01ZRRlxPOLwM5FeHRTcJxzKLsI0I+z0dNgANkwpLMvpalQDOhCOd92sevNUC5z5XxffvfJnFRjnANq0zOoaRt+NiHS3VVk=
+	t=1747060976; cv=none; b=aT0qAa54OpHQh01p2DKJY2bsvN2JcWt3VPhj0k6BbdtknRPJnnFtFZne6xlJb537J3nM1QWtXrHXyp19yb532vXJa2aOrQHKImqUK2Art7dORh5DQa7MjLWcTsrg/z7Nu3Gg663OHx5FGJWdb1VlLeuU9sdppoKLM3d1Lthncuc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747060627; c=relaxed/simple;
-	bh=0LAPDXa5I0NdmsoCsYbDuS1YJZWQGmhLYM6Mki0Mgc4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uf9f13GdnCwZ3UOfEeySPMNVTk7YMJGTGFZOFU6jAsqciAAOlXCwr+GyVI6oic/LRZUABA5gfG4YCwr2vypp3EukkyJj6mpkmWV2JraraSH7DCu0ZC78CrLIYvWuLu7Ay1FP4XzcDroPYK7epqZGZ3RA+JBWhBVKcAW9D3qNvPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m0cFB3JP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9A8A8C4CEF4;
-	Mon, 12 May 2025 14:37:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747060626;
-	bh=0LAPDXa5I0NdmsoCsYbDuS1YJZWQGmhLYM6Mki0Mgc4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=m0cFB3JPEoyG5mXQJqXFk513jDuvGFS2x6oPrtP7UfCRCvbSHB45vK5Bi0ZcKWh9X
-	 FvFT7s1atJt2z2XIM/SGjK28Y2ycPMGk/hMx2iZ8gXLfyEGLZGOEcBZa+WpFVCshmF
-	 vTIEvTAST9ox1Ev8ow8lkZeqhn5yI2xLx3myPQStLTulQLqjvEVM5FOU2hgvIeqjgq
-	 X+BJTOKEeLLU/fyEPKGmV91ajPLvj9sT+UUpyVJ60mFggbz5iZyCSOuC0noxufz6np
-	 /K/A6Og3I58z1jgcX30YK96P7ZURfAORS/AgBLI1UHI7MXKvaQGALbpvji5Qe4FyeW
-	 PN22VI1V8I7kA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86AF2C3ABC3;
-	Mon, 12 May 2025 14:37:06 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Mon, 12 May 2025 18:36:47 +0400
-Subject: [PATCH 2/2] arm64: dts: qcom: ipq5018: enable the download mode
- support
+	s=arc-20240116; t=1747060976; c=relaxed/simple;
+	bh=+MJuFyHlrR+N6ADcybjZTr/tKCQxt58f7yFbm/GyQdc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y36GIrm1yn3kFBsgyp6zuzaFmQ/1ZyzIqwDyJ4SqrI/sqzvT/ONsjUqOYzMmX5A3DKMtFM+U8PJw6SGNUPUeYGmVys9KeE/NbIkxFlnB538cNV250ZxiboyA6TuLOzcnK2iJ8FjfEJqRqD/k9McKuEeOxb7Cm9DJIRmfjEMipOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CyZfOtlZ; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3a0b7fbdde7so4330133f8f.2;
+        Mon, 12 May 2025 07:42:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747060973; x=1747665773; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dgS0gFzPJkgOZrUm2WjFUj6B4kBtJbfFOU+fHqfvDz4=;
+        b=CyZfOtlZMwhI2ytBYVolpJukcDTKDduV605WV+0VWL175F46c3JmRJown1ZW2C5PiS
+         KJwVngu2N9q45UQZw0Kq69+ZPLXBGNrswWnpV4evdYJqE9veefR2oxGKDdmhdrQWIrOe
+         DlUyIgPpmlEnznE3Amhk72cFEDR1aOmZTR3230ERn5UiFCVlNacPfLrLiRifyKPe7m8M
+         eiM+5IK7XVj/dThrua4eYzBB09M8znrA9FDx5GBBdS/GwQEisYFFrLK7OL1sNRp7iRuv
+         XWDbIUSWgs4C7nZYbAiJqvY6eWMl+N+/0YYunxFpW3eHzGPnNhuTUeTB9tmGUP3qloch
+         FfGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747060973; x=1747665773;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dgS0gFzPJkgOZrUm2WjFUj6B4kBtJbfFOU+fHqfvDz4=;
+        b=GyEz+E+ve8agk8+GSuiaUY60+gasNBycJ42PJx9c4X9TlRmmoDM1L5PKOuLwRuf8dq
+         PjXsXf2DG+I+iVx0hkt1P92UtbNHdR9x/hWknX4oDK71kbH1ugzDbXrSQbJ7zl3I8AMd
+         sr6bgm32ZZxjyTMHWzuu2fOJMpgnN7hqqRm2Hoc295J78wW7jkRGKA33Ovf0gmH0ZJhh
+         b9zt5FS1kYoo6PSIT9kKJ0TJBRs7maaZEKSUhYH7tROTpf2Acl3IYOgLfeNv6GAiv0vu
+         W7Iunnh6JhEKjcMz3BitvBh1+NJaLom50lFZLEYvSNFmNrcN+hLxnASur7ViydESqiPJ
+         YLxg==
+X-Forwarded-Encrypted: i=1; AJvYcCURQMAESDR+iIbEEk3TSu3SdyOgW7kOE3acGm67q7+P1CcKEL9tRNhluUGzSdXgFYjapuggBKE5W866@vger.kernel.org, AJvYcCUSJGTC+baqO+rmCxKfGKey8FLWP9QdM2Fkxb3GCz+gLFRyGayPDnvq0OW5EgdPfwAyAtX0lbu1oVxa@vger.kernel.org, AJvYcCWk7IvrAWAI8ggtK5hCOMidx1YcufsHGIcZShhDrwtOLshpT2Rj/9paF0cpZAPet0Tdn5AxC5qdLtkUDnZMPiMc9MY=@vger.kernel.org, AJvYcCXGuNAw90yxeoA6BS2Nqt/kul7g9AqzX4YJHAbkoavRP1koHFiJKLQ4GSCII14RjjQiVP6LobJqKUnQE8HA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2VcaRCSC5xnfG12yXnT6sOcGKmfH6kAs6/hGe7OVlzuDH5Xi5
+	fw2vIwV4+l/ldZQ0dZ9ZnRy2/1qNrZAV2i/pnaSOC1xUlBeJAL6ifTonnNe1JFrO1FBgcYOyN6o
+	K7GUwd/Z4NEWlaOzVI0o8DqmHmrQ=
+X-Gm-Gg: ASbGncsbha4xoh7aRlqiBgsKrJorsWjVyJHw7oxDdg8vzukznctO9P/FcECjmDlXAb9
+	E0uRNOSahMkI+qPED1AV7nXGC85Ibj2OHmpgsEr+A1UWZBuf5kOWdUHrFTza3+x1cm4WAv1JegZ
+	UMjFbvSQVhTFq7O6B1DECVphUoGfpY47w=
+X-Google-Smtp-Source: AGHT+IGgeCmhN6ZRg/tTj5xtux+YtjBRmxlsL0nR+eKs2oGnS9tHIOYCy15h6BCp659yOebsuWHJvxi2oHiACilW0rA=
+X-Received: by 2002:a05:6000:420d:b0:3a2:39d:f51d with SMTP id
+ ffacd0b85a97d-3a2039df76fmr5286273f8f.23.1747060972990; Mon, 12 May 2025
+ 07:42:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250512-ipq5018-syscon-v1-2-eb1ad2414c3c@outlook.com>
-References: <20250512-ipq5018-syscon-v1-0-eb1ad2414c3c@outlook.com>
-In-Reply-To: <20250512-ipq5018-syscon-v1-0-eb1ad2414c3c@outlook.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747060624; l=1075;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=zfAYNmt44Rxqlg/ZxmVRJXn5Sdnp96Uz5P6gJVc6Rpc=;
- b=otGj6mDMvVAeW3DAnmE1Q52E32RMPaedTO6pqYspuD6W7nLLCdgSbUcoPZ8FCW9RkP3EoOjvK
- vpkAT0R9w69DE2lsQLoC8nc9mo+VGfpPJ3n1Os6uxVbMzXJRwGyZzy1
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
+References: <20250430204112.342123-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250430204112.342123-9-prabhakar.mahadev-lad.rj@bp.renesas.com> <TY3PR01MB11346F143A2F83CAD8733BD2E868F2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB11346F143A2F83CAD8733BD2E868F2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 12 May 2025 15:42:26 +0100
+X-Gm-Features: AX0GCFtIfNOD3yNLytAtJM5Aw-ApuQ_ToGcv-oRoFGArlVXSiaJ6rYqqvhWKN_4
+Message-ID: <CA+V-a8sCY38_KZTaEsEyF2cXNA=+3R4405FdJwx+GbgUcogWeA@mail.gmail.com>
+Subject: Re: [PATCH v4 08/15] drm: renesas: rz-du: mipi_dsi: Use VCLK for
+ HSFREQ calculation
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, "laurent.pinchart" <laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: George Moussalem <george.moussalem@outlook.com>
+Hi Biju,
 
-Enable support for download mode to collect RAM dumps in case of a
-system crash, allowing post mortem analysis.
+Thank you for the review.
 
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- arch/arm64/boot/dts/qcom/ipq5018.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Sun, May 4, 2025 at 1:33=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
+> wrote:
+>
+> Hi Prabhakar,
+>
+> > -----Original Message-----
+> > From: Prabhakar <prabhakar.csengg@gmail.com>
+> > Sent: 30 April 2025 21:41
+> > Subject: [PATCH v4 08/15] drm: renesas: rz-du: mipi_dsi: Use VCLK for H=
+SFREQ calculation
+> >
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Update the RZ/G2L MIPI DSI driver to calculate HSFREQ using the actual =
+VCLK rate instead of the mode
+> > clock. The relationship between HSCLK and VCLK is:
+> >
+> >     vclk * bpp <=3D hsclk * 8 * lanes
+> >
+> > Retrieve the VCLK rate using `clk_get_rate(dsi->vclk)`, ensuring that H=
+SFREQ accurately reflects the
+> > clock rate set in hardware, leading to better precision in data transmi=
+ssion.
+> >
+> > Additionally, use `DIV_ROUND_CLOSEST_ULL` for a more precise division w=
+hen computing `hsfreq`. Also,
+> > update unit conversions to use correct scaling factors for better clari=
+ty and correctness.
+> >
+> > Since `clk_get_rate()` returns the clock rate in Hz, update the HSFREQ =
+threshold comparisons to use Hz
+> > instead of kHz to ensure correct behavior.
+> >
+> > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v3->v4:
+> > - Used MILLI instead of KILO
+> >
+> > v2->v3:
+> > - No changes
+> >
+> > v1->v2:
+> > - No changes
+> > ---
+> >  .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 27 ++++++++++---------
+> >  1 file changed, 15 insertions(+), 12 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c b/drivers/g=
+pu/drm/renesas/rz-
+> > du/rzg2l_mipi_dsi.c
+> > index c5f698cd74f1..911c955a3a76 100644
+> > --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+> > +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+> > @@ -8,6 +8,7 @@
+> >  #include <linux/delay.h>
+> >  #include <linux/io.h>
+> >  #include <linux/iopoll.h>
+> > +#include <linux/math.h>
+> >  #include <linux/module.h>
+> >  #include <linux/of.h>
+> >  #include <linux/of_graph.h>
+> > @@ -15,6 +16,7 @@
+> >  #include <linux/pm_runtime.h>
+> >  #include <linux/reset.h>
+> >  #include <linux/slab.h>
+> > +#include <linux/units.h>
+> >
+> >  #include <drm/drm_atomic.h>
+> >  #include <drm/drm_atomic_helper.h>
+> > @@ -199,7 +201,7 @@ static int rzg2l_mipi_dsi_dphy_init(struct rzg2l_mi=
+pi_dsi *dsi,
+> >       /* All DSI global operation timings are set with recommended sett=
+ing */
+> >       for (i =3D 0; i < ARRAY_SIZE(rzg2l_mipi_dsi_global_timings); ++i)=
+ {
+> >               dphy_timings =3D &rzg2l_mipi_dsi_global_timings[i];
+> > -             if (hsfreq <=3D dphy_timings->hsfreq_max)
+> > +             if (hsfreq <=3D (dphy_timings->hsfreq_max * MILLI))
+> >                       break;
+> >       }
+> >
+> > @@ -258,7 +260,7 @@ static void rzg2l_mipi_dsi_dphy_exit(struct rzg2l_m=
+ipi_dsi *dsi)  static int
+> > rzg2l_mipi_dsi_startup(struct rzg2l_mipi_dsi *dsi,
+> >                                 const struct drm_display_mode *mode)  {
+> > -     unsigned long hsfreq;
+> > +     unsigned long hsfreq, vclk_rate;
+> >       unsigned int bpp;
+> >       u32 txsetr;
+> >       u32 clstptsetr;
+> > @@ -269,6 +271,12 @@ static int rzg2l_mipi_dsi_startup(struct rzg2l_mip=
+i_dsi *dsi,
+> >       u32 golpbkt;
+> >       int ret;
+> >
+> > +     ret =3D pm_runtime_resume_and_get(dsi->dev);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     clk_set_rate(dsi->vclk, mode->clock * MILLI);
+> >       /*
+> >        * Relationship between hsclk and vclk must follow
+> >        * vclk * bpp =3D hsclk * 8 * lanes
+> > @@ -280,13 +288,8 @@ static int rzg2l_mipi_dsi_startup(struct rzg2l_mip=
+i_dsi *dsi,
+> >        * hsclk(bit) =3D hsclk(byte) * 8 =3D hsfreq
+> >        */
+> >       bpp =3D mipi_dsi_pixel_format_to_bpp(dsi->format);
+> > -     hsfreq =3D (mode->clock * bpp) / dsi->lanes;
+> > -
+> > -     ret =3D pm_runtime_resume_and_get(dsi->dev);
+> > -     if (ret < 0)
+> > -             return ret;
+> > -
+> > -     clk_set_rate(dsi->vclk, mode->clock * 1000);
+> > +     vclk_rate =3D clk_get_rate(dsi->vclk);
+>
+> Not sure, If there is a requested vclk for example, 108.45 MHz and get_ra=
+te() is returning
+> only 108MHz, do we need to propagate/print this error(like requested vs a=
+ctual, if there is a mismatch)
+> as there is change in resolution?
+>
+OK, I'll add the below:
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-index 8914f2ef0bc47fda243b19174f77ce73fc10757d..0abb00cfe4ce2f9bdea73deebedad8297f56322c 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-@@ -79,6 +79,7 @@ opp-1008000000 {
- 	firmware {
- 		scm {
- 			compatible = "qcom,scm-ipq5018", "qcom,scm";
-+			qcom,dload-mode = <&tcsr 0x6100>;
- 			qcom,sdi-enabled;
- 		};
- 	};
-@@ -187,6 +188,11 @@ tcsr_mutex: hwlock@1905000 {
- 			#hwlock-cells = <1>;
- 		};
- 
-+		tcsr: syscon@1937000 {
-+			compatible = "qcom,tcsr-ipq5018", "syscon";
-+			reg = <0x01937000 0x21000>;
-+		};
-+
- 		sdhc_1: mmc@7804000 {
- 			compatible = "qcom,ipq5018-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x7804000 0x1000>;
+       if (vclk_rate !=3D mode->clock * MILLI)
+               dev_info(dsi->dev, "Requested vclk rate %lu, actual %lu
+mismatch\n",
+                        mode->clock * MILLI, vclk_rate);
 
--- 
-2.49.0
+> Otherwise LGTM
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+>
 
-
+Cheers,
+Prabhakar
 
