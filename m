@@ -1,168 +1,112 @@
-Return-Path: <devicetree+bounces-176158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04777AB2F5A
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:10:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11AC5AB2F6E
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:18:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75D253A6338
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 06:10:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95BAD18991FF
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 06:18:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02682255247;
-	Mon, 12 May 2025 06:10:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dNN5zwrW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9C42550AB;
+	Mon, 12 May 2025 06:17:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C47080B;
-	Mon, 12 May 2025 06:10:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9EBF191F6A
+	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 06:17:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747030252; cv=none; b=elJbxexivvIfKK/QTOc2Q5zhvfaAfcPxzK+2Pc6DfMJY+g12vmN396YwdVw+TWbOiOAcLJwNgexM9t/wKlp5IfR0rQnwDMSJvCsHys8i0nOeF27DAB0MKqK7LAv00JyMhaJcyf3L2s7W7ioqYSZN9Uf/2irfLlYzYH6LUe4+Mes=
+	t=1747030677; cv=none; b=LZHNxpiUnEHWUTFoJfMg+6O0WUx23EHdZcPHAlHVQ9CWCaVL35Gn5iU9zuU3VhhxQgLL4ueZKmakph8uVTpYeq5agXmQdUwoyfb6ert72iqB87iTeca+rU1Q4JZUM5TYAsyqdRnrtJFoBm6oKTmSpmybUiOfIYDe6zj0lq607sY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747030252; c=relaxed/simple;
-	bh=6lhNFOoojKX3eUP7C5eh/HI9G9rsFuJ8URXW7oBpebE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KZwYXGUUUWppvkLJWmua5whcdQnrmkhOZOYlAcWiSyP0ZE3XkBHDOvRrL1JSd1Ao+6RWafs/y7a0iDBCokf3N95LaR6z/c0VGv/RzmK2hT3Mpz1n58wIR/cosJ3AJEoDrnf/fHFJS+PsOIi3izHtyH8LoJBD2q2ovMOXKDaSR0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dNN5zwrW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54BLeEA0016839;
-	Mon, 12 May 2025 06:10:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KwlDUaySrakDWPxDjjyqX13omrVCtFWxy05G5JTsJZs=; b=dNN5zwrWeThRBYFE
-	TWpcK7pfMS0oWHoEE/FZrpIscAnphTUk+AIoXJBGMKlvXbPEJ/IDoe35uWAGYxuM
-	/k5STQjI00CBbOydBnwskHov119FUhXdo3KLHoAg787PvMYm19602nLqZHDpW3Di
-	lxfVK/YhxHBTnc4ljHMEeq9NrT5Rap6CgTo7VpNGuPMEQil21DKUgx79jOLE7TLD
-	ZtjS01E7y7me1rO1jPugZLe4RyCsIM5YIIfU4Qwd9FlmN9XoHTTgCEMpy7pa/qkS
-	5vdvK3jFgof6f4dhMSFjoKdk0i8zgLW3jvNrh4DXQNVzThLuKAGkeG1CMrA210zp
-	LJc3wA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46hyynu5gw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 May 2025 06:10:47 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54C6Ak2N002076
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 May 2025 06:10:46 GMT
-Received: from [10.50.62.222] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 11 May
- 2025 23:10:41 -0700
-Message-ID: <f54bbef9-aa48-efa5-e7eb-477035ef069b@quicinc.com>
-Date: Mon, 12 May 2025 11:40:27 +0530
+	s=arc-20240116; t=1747030677; c=relaxed/simple;
+	bh=X6l2NY96xDhiFItBX2VqZRO1nDIzDA+IKenMV0QTV3Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R4Vi3HmuAFlGccJGDbiAcsXTiMu0Fcf0V9owb8ywu8UfLFyaanfNQic3AomWMOlz6Ww4ucEd8wu11kfJWnXTKIEjIxJDZ4ijk4nGu3nLGNv0qNL89dftAjGP/TbB5PtWhZ/uFjvTiPSysvgRAoBRSXDW4GAA3TX2DKGCxIlNm88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uEMTu-0002PJ-UB; Mon, 12 May 2025 08:17:42 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uEMTu-002KAO-0e;
+	Mon, 12 May 2025 08:17:42 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uEMTu-000RQ1-08;
+	Mon, 12 May 2025 08:17:42 +0200
+Date: Mon, 12 May 2025 08:17:42 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 2/3] pinctrl: imx-scmi: Get daisy register offset from DT
+Message-ID: <aCGShsaItUTf2Z14@pengutronix.de>
+References: <20250512-pin-v1-0-d9f1555a55ad@nxp.com>
+ <20250512-pin-v1-2-d9f1555a55ad@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v5 0/3] media: qcom: iris: add support for SA8775P
-Content-Language: en-US
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konradybcio@kernel.org>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Bryan
- O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-References: <20250421-dtbinding-v5-0-363c1c05bc80@quicinc.com>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <20250421-dtbinding-v5-0-363c1c05bc80@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEyMDA2MyBTYWx0ZWRfX3qSlDVqpYAcg
- 7I/fzkTIFgeZIvy0kWLakMhtAsH8479Yzr8+LM5CTcMzXTd6jYDyBTg2iYqtPe6KK6RzQixjSSe
- JHXTWZ74pm1A3Teg8nGKRyCNcdg1FrBXkG3ZQd+BnKYF272bL6+zUCZ3Orq8aJxJYpIxYtA6ztN
- JVpMJDNw4d3koSdo4AoWU5OTG7tNSTVhGeo5kUqoFZRGcBvgs+iYFM6Sb6BXhhkS79mzqOvoGVB
- oGDoWH6RvoOuB+hsuIrYMCynC45+csTJm9WgfHCn5kSolFThsJRwbR1XPnP2LsFWf/ci+AZT/m5
- /vPej2FFU0HIISGBK5m6Idc/sf0zDrQoY7rP6vz+U5D6qPXLtNdU4A8Bb7MHI6M1j3lLay/5r9k
- zpj4O/HAphkBUSZFe6l1XQqwQKO1bb6lo0Jq39af47k05YSAothME6zJ7oIPuHnnqzA/ujgP
-X-Proofpoint-ORIG-GUID: mm_8SYX_yh3bqaJhT32Zt6fYgaWbW5n_
-X-Authority-Analysis: v=2.4 cv=Uo9jN/wB c=1 sm=1 tr=0 ts=682190e7 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=3NXaMSWaM5VxNsQXxBMA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: mm_8SYX_yh3bqaJhT32Zt6fYgaWbW5n_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-12_02,2025-05-09_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 phishscore=0 mlxscore=0 adultscore=0
- impostorscore=0 suspectscore=0 bulkscore=0 spamscore=0 mlxlogscore=999
- lowpriorityscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2504070000 definitions=main-2505120063
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250512-pin-v1-2-d9f1555a55ad@nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-On 4/21/2025 8:16 PM, Vikash Garodia wrote:
-> add support for video hardware acceleration on SA8775P platform.
+On Mon, May 12, 2025 at 10:14:15AM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+> Parsing the "nxp,iomuxc-daisy-off" to get the daisy register offset,
+> then no need to hardcode the register offset in driver for new SoCs.
+> 
+> To keep backwards comatibility, still keep the register offset for i.MX95.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
-> Changes in v5:
-> - Fix clock corner and a power domain specifier
-> - Link to v4: https://lore.kernel.org/all/20250321-dtbinding-v4-0-6abd4575bff4@quicinc.com
+>  drivers/pinctrl/freescale/pinctrl-imx-scmi.c | 26 +++++++++++++++-----------
+>  1 file changed, 15 insertions(+), 11 deletions(-)
 > 
-> Changes in v4:
-> - Fix the order of video node.
-> - Link to v3: https://lore.kernel.org/r/20250320-dtbinding-v3-0-2a16fced51d5@quicinc.com
-> 
-> Changes in v3:
-> - Fix nit review comments.
-> - Link to v2: https://lore.kernel.org/r/20250320-dtbinding-v2-0-8d8eaa4e76cc@quicinc.com
-> 
-> Changes in v2:
-> - Drop 01/04 patch as it was not needed.
-> - Introduce sa8775p as fallback compatible to sm8550.
-> - Move firmware files to board DT
-> - Link to v1: https://lore.kernel.org/r/20250311-dtbinding-v1-0-5c807d33f7ae@quicinc.com
-> 
-> ---
-> Vikash Garodia (3):
->       dt-bindings: media: qcom,sm8550-iris: document SA8775p IRIS accelerator
->       arm64: dts: qcom: sa8775p: add support for video node
->       arm64: dts: qcom: sa8775p-ride: enable video
-> 
->  .../bindings/media/qcom,sm8550-iris.yaml           |  7 ++-
->  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi         |  6 ++
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 71 ++++++++++++++++++++++
->  3 files changed, 83 insertions(+), 1 deletion(-)
-> ---
+> @@ -315,6 +307,18 @@ static int scmi_pinctrl_imx_probe(struct scmi_device *sdev)
+>  	if (!pmx)
+>  		return -ENOMEM;
+>  
+> +	ret = device_property_read_u32(dev, "nxp,iomuxc-daisy-off", &pmx->daisy_off);
 
-When do u plan to pick DT patches (2/3 and 3/3) from this series ? I just saw
-the PR for 6.16 and i did not see these patches, would like to know what is
-pending ?
+"off" is really a poor acronym for "offset" as it unnecessarily confuses
+the reader by suggesting this is about turning some feature off. Please
+add the three bytes and just call it offset.
 
-Regards,
-Vikash
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
