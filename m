@@ -1,124 +1,121 @@
-Return-Path: <devicetree+bounces-176250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A65E9AB3448
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:59:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE6EAB345A
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 12:01:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BF4F3A81F3
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:58:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63E363AADEF
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 10:01:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D9C25EF80;
-	Mon, 12 May 2025 09:59:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C69211AAA11;
+	Mon, 12 May 2025 10:01:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eKIZxZgU"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="S2t2lVKC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE00425A2AB;
-	Mon, 12 May 2025 09:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F8AB19E97C;
+	Mon, 12 May 2025 10:01:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747043950; cv=none; b=Cpr233+0Pzbl1K1zCIt326sNpC2nIWJujEEwJq2pMBp2NE/3MzXxOhOzv1KIA49PsAHwGvH9CYHhHVu3WKkifwrGUj7OmTcE916UoMzJfUsiDIYhui6YJ5s/mtalFA8Na1F9cxMdlX2aD7bohks2gFZ28wl4loj2ARl3ZBJt1Wk=
+	t=1747044115; cv=none; b=QDDk/89ibKsKwnKfaM9bdz7P8tqeDOuSzZEOKVDPpHO8S7mM07iMdR4Q1V3fJfUTGY+IBSGXEId99WDQAhHxmLySg+cqwW6uWalR8kO9F4hdOYdD7A/Z1foR520c1Z454IWuAtkTrHarBs21sJmTnCAIUMJL688DstJM95WTIyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747043950; c=relaxed/simple;
-	bh=hQq4dgkefAJ7TlKM+qmR+trX2qmtOXQN1XFTxNeYjv4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WJsO2QegsOGFABZaqVRn9TAQtS8UWZe8zKDQ/rIAcDJgwT6sYpJa2S5A8OaGpVoAoyZ0sVo4b3bLgmeRsAAjyV66Q0Auz5b7O6b+a2n/LkdG9dGqeeOQMETMWBdR+xBDHckWQ3N3nSCeq47LmKa7QVmdtYoWoUkRVHffBygIxVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eKIZxZgU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2088AC4CEE9;
-	Mon, 12 May 2025 09:59:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747043949;
-	bh=hQq4dgkefAJ7TlKM+qmR+trX2qmtOXQN1XFTxNeYjv4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eKIZxZgUcpIdJIgPHWL0aesXJ2smhpbgLsD6Jr6VKaT7jbdAkX49iBGHc58mzpD2i
-	 gWmtaagi/Hl12iaVzIWdyOxu768wRILascShFnYhipazodOmQ5sP4/CuPIRPzJWL3g
-	 /QEYv8kSKIyeOlhiWYXdor0VtlmO3fgs6CAnC9e71fB5pdY4Bg2XOYdbbeHw8aMk8i
-	 mnU+lPNu+pyAGbCscGXMk3sRFdybT1K3r6r3E0EqxxbZEm0x2a9IR9TGuPfFQUpcsI
-	 0IVrKa/+JDUcZYgl6lKm819JXi9Z1XfQqDNmsdMxy65e9GMGpOYTh9ttE99zMRqO3B
-	 HIXs8lszHhKvQ==
-Date: Mon, 12 May 2025 10:59:04 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Ben Zong-You Xie <ben717@andestech.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: cache: add specific RZ/Five
- compatible to ax45mp
-Message-ID: <20250512-disaster-plaster-9dc63205cd6e@spud>
-References: <20250509-sapling-exhale-72815a023ac1@spud>
- <20250509-dwindle-remold-98b3d03d0631@spud>
- <CAMuHMdVWznEm4Kg-MvgCT5+cBtdwGi9YrzFK6mBaoPJ+VK8S+Q@mail.gmail.com>
+	s=arc-20240116; t=1747044115; c=relaxed/simple;
+	bh=Lvpug9FEpAMKnwLUgy1E94q5V5F3Hp/cYHFhJlR7iIo=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=bZcs7jv7GBmvsa1zPyNPhZe4eI3iNGxjbFVDYAMQ9OcKN7INALDdUBNCbBB44amvBXoIWyYNyavBdCCvRjrPsX0/Mw6h8lgm9eTp0K9Qf7+XJeNwdkbyZPofPYwbZdE4eM277uQf7bsA5+w7YVzGuRicU46qtN6ycQXJ9pnCU8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=S2t2lVKC; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E5419433E9;
+	Mon, 12 May 2025 10:01:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1747044111;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=23/KllP1Vs2xVFOmNRG8GlctBkDoHOk55ezgK8BXOUY=;
+	b=S2t2lVKCHSX+Pvb0Cy6ezCRITtuaBvgqqxJxHdHge7MRpTtFm6Fc74aZuRFzNCExVU7uej
+	JsvO2Q/6gxMMV5CeOML88qNGwLBKAfjcy5x81fhr3FFIZ752NFvgXQi17jtQQl1rIVJPgR
+	Fdi13vV00/fYO6CU7anq4ynM8HI6vIxq6XyTee6haGxsIp5kXSBRQNqD+yl7Yp/V3jggC2
+	d3NusWAq0bgwsW8TtJs1PFjC4pOYD+374mBBoaU1Jm8jhUOTVDz9TKeMAzsZP/JEQZXVtK
+	iOVk0II5ppF0936fAYEsrm29BU/vN/JDQD9nU8mFFJKKyrYe20oBzqlEvMLxLQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: "Mahapatra, Amit Kumar" <amit.kumar-mahapatra@amd.com>
+Cc: "richard@nod.at" <richard@nod.at>,  "vigneshr@ti.com" <vigneshr@ti.com>,
+  "robh@kernel.org" <robh@kernel.org>,  "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>,  "conor+dt@kernel.org" <conor+dt@kernel.org>,
+  "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+  "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,  "git
+ (AMD-Xilinx)" <git@amd.com>,  "amitrkcian2002@gmail.com"
+ <amitrkcian2002@gmail.com>,  Bernhard Frauendienst
+ <kernel@nospam.obeliks.de>
+Subject: Re: [PATCH v12 3/3] mtd: Add driver for concatenating devices
+In-Reply-To: <IA0PR12MB76994BA493127004B569F2AEDC832@IA0PR12MB7699.namprd12.prod.outlook.com>
+	(Amit Kumar Mahapatra's message of "Wed, 30 Apr 2025 14:18:34 +0000")
+References: <20250205133730.273985-1-amit.kumar-mahapatra@amd.com>
+	<20250205133730.273985-4-amit.kumar-mahapatra@amd.com>
+	<8734fa8hed.fsf@bootlin.com>
+	<IA0PR12MB76994BA493127004B569F2AEDC832@IA0PR12MB7699.namprd12.prod.outlook.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Mon, 12 May 2025 12:01:50 +0200
+Message-ID: <87o6vyjgfl.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="NMTCdSap5S5GkUZg"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdVWznEm4Kg-MvgCT5+cBtdwGi9YrzFK6mBaoPJ+VK8S+Q@mail.gmail.com>
-
-
---NMTCdSap5S5GkUZg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftddtleejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffgefhjedtfeeigeduudekudejkedtiefhleelueeiueevheekvdeludehiedvfeenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduvddprhgtphhtthhopegrmhhithdrkhhumhgrrhdqmhgrhhgrphgrthhrrgesrghmugdrtghomhdprhgtphhtthhopehrihgthhgrrhgusehnohgurdgrthdprhgtphhtthhopehvihhgnhgvshhhrhesthhirdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvr
+ hhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqmhhtugeslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Mon, May 12, 2025 at 11:01:26AM +0200, Geert Uytterhoeven wrote:
-> Hi Conor,
->=20
-> On Fri, 9 May 2025 at 17:39, Conor Dooley <conor@kernel.org> wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > When the binding was originally written, it was assumed that all
-> > ax45mp-caches had the same properties etc. This has turned out to be
-> > incorrect, as the QiLai SoC has a different number of cache-sets.
-> >
-> > Add a specific compatible for the RZ/Five for property enforcement and
-> > in case there turns out to be additional differences between these
-> > implementations of the cache controller.
-> >
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> Thanks for your patch!
->=20
-> > --- a/Documentation/devicetree/bindings/cache/andestech,ax45mp-cache.ya=
-ml
-> > +++ b/Documentation/devicetree/bindings/cache/andestech,ax45mp-cache.ya=
-ml
-> > @@ -28,6 +28,7 @@ select:
-> >  properties:
-> >    compatible:
-> >      items:
-> > +      - const: renesas,r9a07g043f-cache
->=20
-> This name looks a bit too generic to me, as this is not a generic
-> cache on the R9A07G043F SoC, but specific to the CPU cores.
 
-So "reneasas,r9...-cpu-cache"?
+>> > +           mtd->dev.parent =3D concat->subdev[0]->dev.parent;
+>> > +           mtd->dev =3D concat->subdev[0]->dev;
+>> > +
+>> > +           /* Register the platform device */
+>> > +           ret =3D mtd_device_register(mtd, NULL, 0);
+>> > +           if (ret)
+>> > +                   goto destroy_concat;
+>> > +   }
+>> > +
+>> > +   return 0;
+>> > +
+>> > +destroy_concat:
+>> > +   mtd_concat_destroy(mtd);
+>> > +
+>> > +   return ret;
+>> > +}
+>> > +
+>> > +late_initcall(mtd_virt_concat_create_join);
+>>
+>> The current implementation does not support probe deferrals, I believe i=
+t should be
+>> handled.
+>
+> I see that the parse_mtd_partitions() API can return -EPROBE_DEFER during
+> MTD device registration, but this behavior is specific to the
+> parse_qcomsmem_part parser. None of the other parsers appear to support
+> probe deferral. As discussed in RFC [1], the virtual concat feature is
+> purely a fixed-partition capability, and based on my understanding, the
+> fixed-partition parser does not support probe deferral.
+> Please let me know if you can think of any other probe deferral scenarios
+> that might impact the virtual concat driver.
 
---NMTCdSap5S5GkUZg
-Content-Type: application/pgp-signature; name="signature.asc"
+That's true, but I kind of dislike the late_initcall, I fear it might
+break in creative ways.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCHGaAAKCRB4tDGHoIJi
-0h8xAP9xn+oRWIL9u932ivjRElxLh5Z6yxeCLMgzrNL2ZuQIVwEAxGvRg0THrVnD
-gBIkCnCEprfllLwvU04AG68v/uxxAgY=
-=I1/M
------END PGP SIGNATURE-----
-
---NMTCdSap5S5GkUZg--
+Thanks,
+Miqu=C3=A8l
 
