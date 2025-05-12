@@ -1,168 +1,226 @@
-Return-Path: <devicetree+bounces-176140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1722AB2EB1
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 07:06:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68468AB2ECE
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 07:18:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81D0F7A97B1
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 05:04:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8DCF1784EB
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 05:18:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF922550BF;
-	Mon, 12 May 2025 05:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E881EE03B;
+	Mon, 12 May 2025 05:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SuvWY6nM"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="fwGl85j+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2053.outbound.protection.outlook.com [40.107.220.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1586254B05;
-	Mon, 12 May 2025 05:05:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747026336; cv=none; b=AnEAzRJY7lwui4gPqihYGCx/m+PateFwd9V1T9XaVCIfbP5IYWcXd9q15A1yh+LNCS2gSQB54ku9L5qBO8ISuiOzOjSftE7SMVf2Mn/ynEkQoHW/P7jBnHGGz9Jyw3LXAP/ih3E9nkXaf//DmojRDCk8LPe7CtFv+pTfLXm3oBU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747026336; c=relaxed/simple;
-	bh=zbvnlFVWj0XKZR0nvcVIWzHP+vCohCj3wb6obVt2udg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=Lr3aTNbXcqgaoKGxtwH2qoXt3QF8PezRPfS2wnKGsP+Y4TKvRNPGlq5Ii+FkwXBpY00Rz111MnKkFZRTB/OdvXKD13N6jAYX3YBfAWO6Tbw7p9BOuq+OC1Sbtsa2ccyTiLJGItFdxNumGw6kFJRUyOrWlYGGxVi3wW5MCGv93xw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SuvWY6nM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54BMdbHP020526;
-	Mon, 12 May 2025 05:05:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0i+DaVo6pdGgXdnezJYZ73V9TZmxM2s3l3IAPHGSMRI=; b=SuvWY6nMZo0WmMOV
-	aLzVkepBIgI4mi9FfVanBKEUr79xA83T6dPDIbz+VSFsxIZXShpTCfa67jAgl/YN
-	C/ccO+NsylGvPSnChWKKPel72EGpRG0n/oTaqIjYFbqiOa1WsUxRzMOzHpoPE1o6
-	TNJ2WdKJ1puOP0ju70+FRkEgv8K3uU+A8UDF3xBtuZVA7BLuboaw/1cSz19O0bVj
-	su9BRN+fRg01d8HmKoKKslbpsxlr8N0iUC3Yvc2mg802n3yyt6sX4GO14KNuvC9Q
-	MecwvKL63MMd1BAX19dTEBEfN41HGikD1nkk+C02oqG9itT6UWJGPjMKjDXDGgoM
-	S0uLVg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46hy15u3mp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 May 2025 05:05:31 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54C55VAG019031
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 May 2025 05:05:31 GMT
-Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 770751C84CE;
+	Mon, 12 May 2025 05:18:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747027106; cv=fail; b=oNmuEFr6T8WA3t/cmIm3cq8KHSk/0EJBepjAM1iceLtjk3ASubmqvMpN4MaOkZ8d30uDfME1SSMzujfEjMnXUJMaim2rEPdZFSSWBF/EutPkrRky/ttXCBmtj+sHf/LhF0ylJd3oTNnZ0kgv2hI/jDYgw+W5u8OpoDfnuuL+3Ik=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747027106; c=relaxed/simple;
+	bh=+vLnCjAOOD/gZLkdze2+NnHO01+PS0xxwCospN4OCAA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NXBQgXGjr08PHEy/4PpLCiVks7XCm+LovGWK61odNEQFsd9iVQn4Kqlv1F4I1T4+Jbh0W0Bpq8lfeKIBa8b9pu11BGBn1Su3kNT791mV78NcD+nbyu9tFv4iC0cGul1BywJ6LK5xFrHkVFhWJTs69VHMcTZJQSXzdq/f89JdERw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=fwGl85j+; arc=fail smtp.client-ip=40.107.220.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=a+pdN+e3JSoMTFVIfMx5cWgEKWLI456tTdFh+NNo1gsCtXoToSjVeNPJw4ldOczaibbih+ptykNmfRkZtEbmQ8KQQ39RGB6jYSJbmNbZxkzEWiIyl6Qz0byuVqZ79fv1KjaNINunTtQQ4XSOufzZd8pOJknoR5320eoCrywdK05ntaa+uM1PRhZkeVjAW+DgQYZ8B7oN4vXFfojkEci/xFUeevicXTgly+Ybx7Uf0QEIEyaR8q7g/PFPpuI/4ZfvpLrkwb7nL2vXBje58uawK/dEC0l3E5Zn45Xn8W+abUBpykKk2V1hDanq8w1O4q2KzjCcn3hQ951scRRH5RpNeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l06MVKnAhsfIT7OUscP4euuPsU5o0NylXDcvtwt37l4=;
+ b=pT9InikDRuOgHYtFkCeFa0m/Qza1skfbL/NKGFJAy4onN0+7/CxfaY9sJAd1R2tiPlA1bOLyAbqdPOxT+RPPOeGqu9DFk9rfmcUZdwx+/65SGFprjiMeYDuB/XtuSe9LFyiPaWO5Aa8jYWBsnn7QU5iJ8A0VhNN4Q8mnaKkcUl7YSy70Gfnv/7v89jrpl3kQY9f+tJ8LV149pbKpFQNLWlOl7iJRXo4bMqbHNb1jndkqcTXu5OblggarLy3/MLbtjZ84cfD3II+4aN+Sb+FfzbIY04eQrnek1Nc91UssmdSpVKPY5/q9zh+ZzxTWQWBK2BxM6z9W6+LL9mu7OUQtxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.233) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l06MVKnAhsfIT7OUscP4euuPsU5o0NylXDcvtwt37l4=;
+ b=fwGl85j+vH/mZ+CgOMJjwu44+z6DxMgJmVKsHiIgy7yQJ6vHLOYr/Xk5/jslyladap6GcEzqIim2WXasdRJ7QTDaiEvnsvFcuRbE0PQTk/cDTpyn1MovH++/4GAdu1+GLpLebwRgYv4dE/WfJVTgLTiCPNBYxGD/ZcFwUjEk9NZ2FIxY8YIPKkEEtbArxJoWBG9wfj45avA/vE6BpxsF5kV7KcqK7co3k2aqhq/xlj/d/vc63X9vJO4HC5T1+RzBVjRXiIy/f4JcmgSQi0lHJ7/jAY8F0MglyKj+5xsOASD+DMsGzkj2AReSXBr2dw/5aAWi8s+e4SgehxfeYN9Bzw==
+Received: from CYXPR02CA0083.namprd02.prod.outlook.com (2603:10b6:930:ce::18)
+ by SJ0PR12MB6831.namprd12.prod.outlook.com (2603:10b6:a03:47d::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.26; Mon, 12 May
+ 2025 05:18:18 +0000
+Received: from CY4PEPF0000EE3D.namprd03.prod.outlook.com
+ (2603:10b6:930:ce:cafe::21) by CYXPR02CA0083.outlook.office365.com
+ (2603:10b6:930:ce::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8722.30 via Frontend Transport; Mon,
+ 12 May 2025 05:18:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.233) by
+ CY4PEPF0000EE3D.mail.protection.outlook.com (10.167.242.15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8722.18 via Frontend Transport; Mon, 12 May 2025 05:18:17 +0000
+Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
+ (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Sun, 11 May
+ 2025 22:18:05 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 11 May 2025 22:05:26 -0700
-From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Date: Mon, 12 May 2025 10:34:39 +0530
-Subject: [PATCH v4 4/4] arm64: dts: qcom: Add camera clock controller for
- sc8180x
+ 15.2.1544.14; Sun, 11 May 2025 22:18:05 -0700
+Received: from build-sheetal-bionic-20250305.nvidia.com (10.127.8.13) by
+ mail.nvidia.com (10.126.190.180) with Microsoft SMTP Server id 15.2.1544.14
+ via Frontend Transport; Sun, 11 May 2025 22:18:05 -0700
+From: "Sheetal ." <sheetal@nvidia.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<lgirdwood@gmail.com>, <broonie@kernel.org>
+CC: <perex@perex.cz>, <tiwai@suse.com>, <devicetree@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>, <thierry.reding@gmail.com>,
+	<jonathanh@nvidia.com>, <spujar@nvidia.com>, <mkumard@nvidia.com>, Sheetal
+	<sheetal@nvidia.com>
+Subject: [PATCH v3 00/11] Add Tegra264 support in AHUB drivers
+Date: Mon, 12 May 2025 05:17:36 +0000
+Message-ID: <20250512051747.1026770-1-sheetal@nvidia.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250512-sc8180x-camcc-support-v4-4-8fb1d3265f52@quicinc.com>
-References: <20250512-sc8180x-camcc-support-v4-0-8fb1d3265f52@quicinc.com>
-In-Reply-To: <20250512-sc8180x-camcc-support-v4-0-8fb1d3265f52@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Jagadeesh
- Kona" <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Satya Priya Kakitapalli
-	<quic_skakitap@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Z3Dri9qWpMo3AfekdnBYOAt1ZDMOFH3t
-X-Proofpoint-ORIG-GUID: Z3Dri9qWpMo3AfekdnBYOAt1ZDMOFH3t
-X-Authority-Analysis: v=2.4 cv=P9U6hjAu c=1 sm=1 tr=0 ts=6821819b cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=fv2zVKLHILqpzYTyU3AA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEyMDA1MSBTYWx0ZWRfX6gN48BOHd49Z
- PHRjLl0Z1PjfGJ/esf2RGt1Gw5hu85tTwx4213rwakAkX7poL+hYHqjuSAH4pttnE+2V15I2rwm
- llcoazEUldmUNHJTAOLe++b5tw0jXQrwRyOxxVWqQTMJMQNnhg8VZOs7yxJwehlKIDXjzNpIbDn
- cAojxOMrngzvcvNl7Wb9gGmkDYlJgTjN1joDCAwRfyUSOW09cw63bUnG8VwgXEgM/RWDwJMfu/T
- NUc3j3l6Ahpc12SLPf/FnwH4IKrK5FCpQqs2DVae+KMhFciWBj5FZ/FblOgcolmnzu3BZw/BNKw
- /VzdoiCZHT0NaxhPTj79croottPq6XdkpDR38Cna04ilUochXU2KPN5M/T1dr5S8NLkv/Rg8/Gd
- tDYiuYhkqD2+ikZFFGGjqaySxTQ5gGhFxDPERHqO8w0BKKSjAj1DR0In2o8nqg8EwjR5Dzpd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-12_01,2025-05-09_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 suspectscore=0 impostorscore=0 bulkscore=0 priorityscore=1501
- mlxscore=0 adultscore=0 mlxlogscore=852 malwarescore=0 lowpriorityscore=0
- phishscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505120051
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-NV-OnPremToCloud: AnonymousSubmission
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3D:EE_|SJ0PR12MB6831:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4bb81371-f5f6-441a-315c-08dd91146759
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|82310400026|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UzhuRUpWNkk3K1EvcjZTOHVyR0Nka0dVV2p4Y2NTc0FnWmxRd2xPYW5vSzFH?=
+ =?utf-8?B?RDhSKzhDajJhbHBNaTVoZFdORzVleWlGWGJFOFBFSmJLb1hORS9PTXZUR2Iw?=
+ =?utf-8?B?WlgvUXoyOXpIWGZYTWhqSmVjblBoelNPdEh2WlkrVHlTdlpJOUtPWFlwb1JX?=
+ =?utf-8?B?QmIzTHJScHVsNEprU0V6MUFiTGZNM21GUXJuQUErRUNGcks5cXdBVlJUQWFC?=
+ =?utf-8?B?MHl2bGRZZzdMU3o0bXcxa3ZaTDNFeDRpRStJaUhJSHpIY0I0aWh6ZnAvUndU?=
+ =?utf-8?B?cW5zR1pNaG5TZTc2S0k5c3pyVytocTVhM0kxR243MkJJekVicXM0WnExQ052?=
+ =?utf-8?B?QklmQXpKVXNzVjB1YlFXK1VuVHU2ZTRCSVBydzJoMU5iMnkvN2RBWlMxQXBW?=
+ =?utf-8?B?NFo3UUg1Z3prcVV4WEF4Z25RRjBkdnNxdmU1RTJIamcwenZEQ3FCL1lWdEUv?=
+ =?utf-8?B?OXVmdVNUTmxaeExYQjIwejBhdFFpdmJXeXBvVUtJbm90cDZRSGdidW1vZVVj?=
+ =?utf-8?B?bEtSSWw0Ri92ZGp0azRHRTg1aEJXZ3BVb1ZPUTVDaGdqa3VLaStiTW9uK1FD?=
+ =?utf-8?B?U21GY2c3bGROaE44WGw1bVAwV0dJTlQ4UEJMMG1kLzFseDNVRE9CQnZnM0pn?=
+ =?utf-8?B?WjlmU0xQdlV4WU5SN0tQMzA0ZXRCQkV3QlJnZUEwSHQyWU54VkozTjE5RnZQ?=
+ =?utf-8?B?NzF0bzBFTjdLZVZoaHdZeG8vbkE2NzRjaUhUM2gwbStHM0lYZVRlbE1IOHRl?=
+ =?utf-8?B?NWcyM3pXTVEyN3ljSnB4bHdSSWpwc0owMHcveFRaVUN6WEZuY1FGZnRxWG56?=
+ =?utf-8?B?b1piLzYzNjF6WWttZHNxeE5iU3VpTE00UDJPenpEa3QvT3NQNXRDdGtJK1Nr?=
+ =?utf-8?B?TjMvS0lpQmZyTjJhMFB6VFRxNU9zcGpQcnVaeXE5bTlQSEdlTndBSVo0Tmcx?=
+ =?utf-8?B?RVRwZXhHWDVLZ1Q5K3NVaWYwaXl2YnlrRkpKclEyVUtDRWt1RmFyejRTeWtB?=
+ =?utf-8?B?c2VpckFIQkFWRW9jWE5TTTJPRjk2aUlIb2cxbzJmQ3UyUjJFdjY4dTM1eVc3?=
+ =?utf-8?B?RitteVdZZzVYdDBJYVBVRnYweWRrWHVHODA3cWVuWVlTWFc4SnZ1N3YxcHFH?=
+ =?utf-8?B?Umc3VDV2ZU1TV3o2c2ZhbytOVHFnQWdZeWJpOFN1dVl2WXlkeFp5Um9jQmhh?=
+ =?utf-8?B?eFU2M29lc0c0a2hDT3VwRFBYcmlLbU9LMzF4QmJSTm5LQzdJL0NRcEEvR2VC?=
+ =?utf-8?B?dER0ZmFqV2NNakxETmNwaUo2azdjYmVHWVZkZkFWbWlGbndBSGFpNXhDS3F6?=
+ =?utf-8?B?aUlNeXJZQTZnREJZTDA3M1FGYmJrN2YzUmtRc2J4RnZ5WjFUS0RSTDFvYzRv?=
+ =?utf-8?B?Smhic2NXZFFBdjNLbnNuM2tVeWFxS21IYUNOSnZwcmRYNWpDMU85L1Z6WmI5?=
+ =?utf-8?B?aGZ2L1M1aDhFRnZhWmxuakx6bzN4VGM2T3Bqck1mdkFpNFVaTXk1Z2hCemlD?=
+ =?utf-8?B?VGhWSlJab2lvVDh5SWwwRFpNV3dKc3duU1hZdjdzTzVnUkV3UDVqSkFqSnVC?=
+ =?utf-8?B?TW1zTzN2Zi9LLytlM2FJcHlTQXFSTUFMMkF0U0RvdGFJeExGWU9ZcUoyNGIy?=
+ =?utf-8?B?VmxVc0VJQ2xURE82SWJ2cmtkSXpQTEtUcTQ5LytZNUZWZGxleTBSbUpTeU15?=
+ =?utf-8?B?V1VEWStmZkU0aW5ZdE54V216M255d1lMbDN6blBqdzhOUDFVb0cvQnBEL3N6?=
+ =?utf-8?B?a0JObEw0b3VqUHllRjJrdWVxYkFuSEkzSmVqdUpEeHAxYURqVDVTRW9yeElI?=
+ =?utf-8?B?SDE0NDgzeHdtNnFKVXdlVG1tZ0gvMDQ3RWhBTFM3U0IzMnRiR3NEczZGeCtB?=
+ =?utf-8?B?TDY0d0lzOURZV2IxMU9Nem8xcFFmOW00N0IrWDRnSDlCbklrZ29FeEhieFZy?=
+ =?utf-8?B?VW1tTHdtcTQxMmpvRVRNYzJsTDdrL0RocGFnQ3U5ck8yWWs2OC9QbCtMZFFs?=
+ =?utf-8?B?OWdmaXZ4R1gvTUo2T1ZldCtaNFl1YUtyMnBGMlpueG9rM3N0V0NkK2xjMndx?=
+ =?utf-8?Q?t3zktz?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2025 05:18:17.4723
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4bb81371-f5f6-441a-315c-08dd91146759
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000EE3D.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6831
 
-Add device node for camera clock controller on Qualcomm
-SC8180X platform.
+From: Sheetal <sheetal@nvidia.com>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc8180x.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+The patch series includes the necessary changes to enable
+support for the Tegra264 platforms in AHUB drivers.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-index b84e47a461a014871ef11e08d18af70bec8e2d63..e53c242fda12b2b53a27e549e2e2e2ead9e88cf1 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/clock/qcom,gcc-sc8180x.h>
- #include <dt-bindings/clock/qcom,gpucc-sm8150.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sc8180x-camcc.h>
- #include <dt-bindings/interconnect/qcom,icc.h>
- #include <dt-bindings/interconnect/qcom,osm-l3.h>
- #include <dt-bindings/interconnect/qcom,sc8180x.h>
-@@ -2934,6 +2935,19 @@ usb_sec_dwc3_ss: endpoint {
- 			};
- 		};
- 
-+		camcc: clock-controller@ad00000 {
-+			compatible = "qcom,sc8180x-camcc";
-+			reg = <0 0x0ad00000 0 0x20000>;
-+			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&sleep_clk>;
-+			power-domains = <&rpmhpd SC8180X_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		mdss: mdss@ae00000 {
- 			compatible = "qcom,sc8180x-mdss";
- 			reg = <0 0x0ae00000 0 0x1000>;
+Changelog
+=========
+v2 -> v3:
+--------
+ - Patch 1/11: Update commit message and update binding doc with info
+   that the properties are not relevant for Tegra210.
+
+v1 -> v2:
+---------
+ - Patch 1/11: New patch to resolve the dtbs_check error on base yaml
+   file which is modified in Patch2 for Tegra264 support.
+ - Patch 2/11: Fix Tegra264 SoC compatible string order.
+
+Sheetal (11):
+  dt-bindings: ASoC: admaif: Add missing properties
+  dt-bindings: ASoC: Document Tegra264 APE support
+  ASoC: tegra: CIF: Add Tegra264 support
+  ASoC: tegra: ADMAIF: Add Tegra264 support
+  ASoC: tegra: ASRC: Update ARAM address
+  ASoC: tegra: Update PLL rate for Tegra264
+  ASoC: tegra: I2S: Add Tegra264 support
+  ASoC: tegra: AMX: Add Tegra264 support
+  ASoC: tegra: ADX: Add Tegra264 support
+  ASoC: tegra: AHUB: Add Tegra264 support
+  ASoC: tegra: Tegra264 support in isomgr_bw
+
+ .../bus/nvidia,tegra210-aconnect.yaml         |   1 +
+ .../sound/nvidia,tegra-audio-graph-card.yaml  |   1 +
+ .../bindings/sound/nvidia,tegra186-asrc.yaml  |   4 +-
+ .../bindings/sound/nvidia,tegra186-dspk.yaml  |   1 +
+ .../sound/nvidia,tegra210-admaif.yaml         |  17 +
+ .../bindings/sound/nvidia,tegra210-adx.yaml   |   4 +-
+ .../bindings/sound/nvidia,tegra210-ahub.yaml  |   1 +
+ .../bindings/sound/nvidia,tegra210-amx.yaml   |   6 +-
+ .../bindings/sound/nvidia,tegra210-dmic.yaml  |   1 +
+ .../bindings/sound/nvidia,tegra210-i2s.yaml   |   4 +-
+ .../bindings/sound/nvidia,tegra210-mbdrc.yaml |   1 +
+ .../bindings/sound/nvidia,tegra210-mixer.yaml |   1 +
+ .../bindings/sound/nvidia,tegra210-mvc.yaml   |   1 +
+ .../bindings/sound/nvidia,tegra210-ope.yaml   |   1 +
+ .../bindings/sound/nvidia,tegra210-peq.yaml   |   1 +
+ .../bindings/sound/nvidia,tegra210-sfc.yaml   |   1 +
+ sound/soc/tegra/tegra186_asrc.c               |  18 +-
+ sound/soc/tegra/tegra186_asrc.h               |  12 +-
+ sound/soc/tegra/tegra210_admaif.c             | 223 ++++-
+ sound/soc/tegra/tegra210_admaif.h             |  78 ++
+ sound/soc/tegra/tegra210_adx.c                | 229 ++++-
+ sound/soc/tegra/tegra210_adx.h                |  36 +-
+ sound/soc/tegra/tegra210_ahub.c               | 848 +++++++++++++++++-
+ sound/soc/tegra/tegra210_ahub.h               |  52 +-
+ sound/soc/tegra/tegra210_amx.c                | 229 ++++-
+ sound/soc/tegra/tegra210_amx.h                |  34 +-
+ sound/soc/tegra/tegra210_i2s.c                | 231 ++++-
+ sound/soc/tegra/tegra210_i2s.h                |  51 +-
+ sound/soc/tegra/tegra_audio_graph_card.c      |  14 +-
+ sound/soc/tegra/tegra_cif.h                   |  30 +-
+ sound/soc/tegra/tegra_isomgr_bw.c             |   7 +-
+ 31 files changed, 1981 insertions(+), 157 deletions(-)
 
 -- 
-2.25.1
+2.17.1
 
 
