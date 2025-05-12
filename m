@@ -1,119 +1,102 @@
-Return-Path: <devicetree+bounces-176409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DE68AB3DD3
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:41:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E51FAB3DEA
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:43:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EECC07AB5D6
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:39:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEB323AFBEE
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:42:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9156C253954;
-	Mon, 12 May 2025 16:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A7B25332E;
+	Mon, 12 May 2025 16:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="N66RJsPj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QqTEHOPh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D9CC253357
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 16:40:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 564062522B9;
+	Mon, 12 May 2025 16:42:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747068046; cv=none; b=hU+e72A5K/xQcSY2zCXxC8pl7MrfVnslQuJbUpNFs2UmbXxZdesOqwtss3A0lTYXOQ9QbK0PVA6/hePoiSNgcHIw7Dj/yoPvSefzQEGSztXO1AQ/eBoFqqnlsq8SzECtnoRGo76c7Nc+12ig0nYh/XkS/S8X8VAAJtWmLm/eNvU=
+	t=1747068175; cv=none; b=WfbNbOhrOEzbG5P4gSJhwIQHdb2KblTK394QSG7/9POBE9m9cUxxLktry87gDdCXA6ICSHybn6gf7jCuGyrspu8SPPJmX5/wK0wp4OKWk7HNRClHpOleikeWWXaW0lJiCBQRl/DBaTBfao9PaBvwzKN2QofsNLrVe9FAz2hwIsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747068046; c=relaxed/simple;
-	bh=taQfZsoyyaRRbTWAkHLnXl3ay+rpXqUCTLQHraZLZ2s=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JwWC0Xh+XdWjjbIz2y9AbfRuh8w+7ro8OO286cvhWf88ZVtyxK2bYieOB+SWy42ek7lZ22dMNTOsa7aTIqmpRBkkOX0TYvfr7HtHuZgYYvNEpLFYNvYRkqkwjc4rFw2KQIuN8+mWVThIaHetu74ogr9JOFWs+VkqNQj/nqSn5SE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=N66RJsPj; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ad2452e877aso291999066b.3
-        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 09:40:43 -0700 (PDT)
+	s=arc-20240116; t=1747068175; c=relaxed/simple;
+	bh=dMz+NAbGlDLxH+dS4ZxCuUbYbiWmDkNk5lBm7JIkX7g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sDQRvKxCRgLWhZumpvVC2IWJ5xtjFR6SEJn/gL6FUIdNIfF3zJYmQgftpymPVgh2J/KYUkfnbFweU/Vc+Kw/2b0NPHDjfO53VsegGM70b1lSz4EQvlIZYk7/4NVbqUSa7/lrq1+fF6h0OLsDt7Wm/5ITM0A1o8KLbqaL4sbkX9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QqTEHOPh; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-7425bd5a83aso1445352b3a.0;
+        Mon, 12 May 2025 09:42:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1747068042; x=1747672842; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1747068173; x=1747672973; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TokNH1Htr1RVPQd8EncDveS8lHW7ErFNLxi6svxi5ss=;
-        b=N66RJsPjr6vGVmKz6JQUmsBLeEjNqH4AiECN8Z49HBrt7m0+umD+lZ8NGIdDVPZg+P
-         R4sIL2l1TyF0gwGvJUq3C4ZypyJuL8sxqRYHvmge9qnelO8ZZzZWu1OM2Gi4EfUntqiL
-         HRULdtAbBn1u2pMOwalw602tQ3YQXw/U3o/3ykJwfUtEKzElkgVROz4FZ1zryO4j7WwS
-         hFWOLU1WQdgzhh4ZGaLltWgdD9RPZdAxuSQjebHfPtyJcbAvnDKuW2oVI7t0Zi6CqPYX
-         /rkgytHI3Q4UUz2+N6kj+YGZtvwYzWr62Stvh4G0JpLZfSV4Mw39pMmQ1elHzmheQiQE
-         E0Ow==
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Mos+vpa4zy8TYMWQiX/PGzB+92H+jeIUKLm8V1FWFQ4=;
+        b=QqTEHOPh4TtNidbX/00kwVTmBVA4Dx87PSXrqHu8MDTEtKrFxKI700ZsPj6Du5n48b
+         U596F0umT34K7P22RSnqiCDBeuMBI7p+TtMTQ31yKbhGwqhvdy2bTsQsTHszR6wzchgU
+         rZlFQ8FFnxt3JQ2Na48p3lvuRzFS4WEcmTQNjagWbyx+vIfym9reMN7BwbLemJZO3BJr
+         fEPdSG7FuljILCVFWY6iVwUFqWRThuYkrL7PqSHqR2clDfu/IJBW0nWiBLb7RLM+7hot
+         abR7VzwqK0hggN19TQA1RJE5kdNWoEApIde83fU9oMEve2oxAuQepSDXnK7CZzXr9Lqz
+         6FQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747068042; x=1747672842;
+        d=1e100.net; s=20230601; t=1747068173; x=1747672973;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TokNH1Htr1RVPQd8EncDveS8lHW7ErFNLxi6svxi5ss=;
-        b=vFtQ6bXy1imSydi3isxjzDbsmIodAojW/9VOIA8i4Sxh39v+HAamAyAQu+8np2lip0
-         tiTlrayPVfkN3UXuySV7mwndAgEYAF8/I7jpryArr7giPxvAz7VdTrdfIfAoLAZuOidi
-         b0NLjpaWmyeVLdOVNqg0uqDjJb6b7aT93btgygnmnSKEMWbfvogPSZJNG0eUWgxhMDX/
-         0nXgigeropUxGGQXPBAeISLO9pRqVdmhcpK+Tf38gs2931Yc2HL0/pVMMn4f9DX3M9jq
-         eYZe9O16ye50Fdn5wBbvMINCrtz+5DEIhqXBmnh0KH1ySnmtYlj1ooqZmOquHKbDqSar
-         Nu1w==
-X-Forwarded-Encrypted: i=1; AJvYcCWZVwDqpzeOOOXECwciAFGPqoG70UMlcwCcie3PZnSGOiYYN0ScJ4rTlf3pVBV3MJqVjIWFDayhpIJa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzj4byMjEJp5NPgOVfRoW7M++0mL5V69FBlJaALVyDZVGheYhRO
-	29hZ8XN1YKMjMVZqjcy7x5UBPRZ6VYujyeTkr1hT9D17EK9A7xlciqUkLBa7UWM=
-X-Gm-Gg: ASbGncvLxPiIz19lUGJIBFe+tJ/GYmk1hGMgABb1P/IaH4lCZnyFDv9lNjJyXOsSGDD
-	T/RrsbXli25tQGivC61n/IpzlD1UR1nbyFX5ZalnriSA7dIGolqnEpMzYOiyYouMFArDcLSJGyM
-	P0n5Ol+htV1NiNi2Wua2Pcy54i5UY4BL3Qfxg+QJ0FT64Z9zTy950bYuRRC3ko/ZOF7Bhi55J/1
-	WOY6GIPMmuNvhkfnS3B1PoBhOUB5uSy9TDZQYGFdzuI1o8QNQNgi1HIPE0BDR2wkpY1H3cRpe9t
-	5BikySWTKTI7AhuFzNseTJIhb/DyzQkzjPEvCrTErezeMmwU1Ka7RGRd03Ij/P4MwUGAgUENBqq
-	jznV45g==
-X-Google-Smtp-Source: AGHT+IEe9HBXk5aMisXuJwzJQBcZUmggyJeRK/MRVhfeKfh2p+XusCVvgZz40RfLsmwKRD482heZsg==
-X-Received: by 2002:a17:907:6c13:b0:ad2:2eb4:1525 with SMTP id a640c23a62f3a-ad22eb4166dmr823140566b.44.1747068042371;
-        Mon, 12 May 2025 09:40:42 -0700 (PDT)
-Received: from localhost (93-44-188-26.ip98.fastwebnet.it. [93.44.188.26])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad21934d4d0sm636444766b.73.2025.05.12.09.40.41
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Mos+vpa4zy8TYMWQiX/PGzB+92H+jeIUKLm8V1FWFQ4=;
+        b=aj9XhYqrRMKhcRXmmvZPUGWERNmKGCdS+JclWsiPADF9FOPs2XzqLBUsGL6SNBAftt
+         Z7/SRlMBNumO5zpKy+KF6+AL8feo4akWRPdkr1LuzkdF/2ErHY4fplzZhtlRGeuivwYn
+         mLeKvXu0OWsmSU+pCRN/j110uR4q1WcRFfWJ11VzQ5j8gjwnocosqG/VWzqlNb9nWTbw
+         6uDABVpdtwpQ4PTJwrRjFr9O02zaACi8ZNh3DNC4mFEYEvTNwHULGnQ39wcu3E1A4/lQ
+         IkQniXV5EaYUpY1tESnx3RjJKJVpZDaJ6as8g7WHq4PanMc8FAs6DbYwoTmcvWiRrqnA
+         p6jw==
+X-Forwarded-Encrypted: i=1; AJvYcCUMs23K86rAf3w1tNAY6NJlgvkHpp9FmoIARDYT7XRkof1Y4DW0S4gIzm6BUB1QbUC3K1j/Vl6ayuCPuLpD@vger.kernel.org, AJvYcCWXnI9ikD9swsRsp/nsOCReMIAX6qI5m8M3YmxMleekAsJXCQD5wBQxirH+sDk4ogKxz3l3RJQkJ7Oh@vger.kernel.org, AJvYcCWYIKdNNaxNTAn0isvjX9AZzTksHGVwLG2n2vSm9yHWmospmpp8yL9WDNJo2JQstMuvTI4dtG7kv6lM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx63DF/QFyI38rhLguuVG5RpStkuhfXqF2QVT3LfA3gBo0iBVQ+
+	cpgp/dx8Tuq45B81dH4TlU2/gcCrIG2Tl3gJ7wyugFr3y8OdXquA
+X-Gm-Gg: ASbGncvfbNg2u3uuxbnlHlLprUHfT89TK785zJHoo7qC2oIEZZUyCM9GBmO/xBeEGvZ
+	NuyqZ+XW53VR42LOW6/0AVoeVM2FFL7pM3D2Q/GiKOSXQh5GKwUzzXSj2SiyWTyPC9ngZvaWSU6
+	pChMt7k5Ev5TEDmF3hfhVqSk+MUvFQsqoRA6YfC9+UI2I6YhlvC68OvAX+gL7auwgZTsF72+DFc
+	rXbwRIl/escYetzHiCG7AnjTLbnhxwZN79fhigmrhTzIjI9LK1T+szoVQBPjtMLIbsrhJEXo6Sw
+	POb619K24JyaTmOTbpyn7j1129LMVstAw07T1qCZPlxdXDgth30lZN9gMpeuGt91
+X-Google-Smtp-Source: AGHT+IHZ1n+/Vs9sZklUWIa/Tu9598UYD+75acb2h8g969lq71eZX2epii5Gc/UjjB3dLArb6l9IZQ==
+X-Received: by 2002:a17:90b:2789:b0:2ff:62f8:9a12 with SMTP id 98e67ed59e1d1-30c3d62e4d4mr19610460a91.23.1747068173449;
+        Mon, 12 May 2025 09:42:53 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30ad4ffb6f1sm9127616a91.47.2025.05.12.09.42.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 May 2025 09:40:41 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Mon, 12 May 2025 18:42:11 +0200
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Mon, 12 May 2025 09:42:52 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 12 May 2025 09:42:52 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Pawel Dembicki <paweldembicki@gmail.com>
+Cc: linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	kernel-list@raspberrypi.com, Matthias Brugger <mbrugger@suse.com>
-Subject: Re: [PATCH v9 -next 08/12] arm64: dts: bcm2712: Add external clock
- for RP1 chipset on Rpi5
-Message-ID: <aCIk40642nXZ3arz@apocalypse>
-References: <cover.1745347417.git.andrea.porta@suse.com>
- <38514415df9c174be49e72b88410d56c8de586c5.1745347417.git.andrea.porta@suse.com>
- <aBp1wye0L7swfe1H@apocalypse>
- <96272e42-855c-4acc-ac18-1ae9c5d4617f@broadcom.com>
- <CAO50JKVF6x_=MUuzjhdK0QotcdUgHysMb9v1g0UvWjaJF2fjDA@mail.gmail.com>
- <48AFA657-5683-42A4-888E-3E98A515F3B1@broadcom.com>
+	Jonathan Corbet <corbet@lwn.net>,
+	Noah Wang <noahwang.wang@outlook.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Grant Peltier <grantpeltier93@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Shen Lichuan <shenlichuan@vivo.com>,
+	Greg KH <gregkh@linuxfoundation.org>,
+	Charles Hsu <ythsu0511@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v4 2/5] hwmon: pmbus: mpq8785: Prepare driver for
+ multiple device support
+Message-ID: <614b3eea-f659-4b37-8081-945dac25f4c7@roeck-us.net>
+References: <20250511035701.2607947-1-paweldembicki@gmail.com>
+ <20250511035701.2607947-3-paweldembicki@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -122,48 +105,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <48AFA657-5683-42A4-888E-3E98A515F3B1@broadcom.com>
+In-Reply-To: <20250511035701.2607947-3-paweldembicki@gmail.com>
 
-Hi Florian,
-
-On 15:02 Mon 12 May     , Florian Fainelli wrote:
-> On May 7, 2025 5:01:05 PM GMT+02:00, Andrea della Porta <andrea.porta@suse.com> wrote:
-> >Hi Florian, to accept the patches, what would work best for you?
-> >
-> >1) Send only the relevant updated patches (maybe as an entirely new
-> >patchset with
-> >   only those specific patches)
+On Sun, May 11, 2025 at 05:55:45AM +0200, Pawel Dembicki wrote:
+> Refactor the driver to support multiple Monolithic Power Systems devices.
+> Introduce chip ID handling based on device tree matching.
 > 
-> Only the updated patches work for me. I don't think there is that much coupling between the DT changes and the non-DT changes (other than without DT entries nothing is activated)
-
-It's a little bit more involved than that: 
-
-- Patch 7 (misc driver) depends on 6 (RP1 common dts) which in turn
-  depends on 1 (clock binding header). Should be taken by Greg.
-
-- Patch 9 and 10 (board dts) depends on 6 (RP1 common dts) which again
-  depends on 1 (clock binding header). Should be taken by Florian.
-
-- Patch 4 (clock driver) depends on 1 (clock binding header) and
-  should be taken by Stephen.
-
-So patches 6 and 1 are in common between Florian and Greg, while patch 1
-is in common between everyone in the pool.
-
-If I uniquely assign the patches in common to one of you, the others
-won't be able to compile their own branch because they will be missing
-the dependent patch.
-
-If, on the other hand, I duplicate common patches to each of you to
-make the kernel compile for veryone, you should remember that there
-will be conflicts due to duplicated patches among different trees
-down the merge path.
-
-Any advice about how to proceed is appreciated.
-
-Many thanks,
-Andrea
-
+> No functional changes intended.
 > 
-> Florian
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+
+Applied.
+
+Thanks,
+Guenter
 
