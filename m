@@ -1,73 +1,96 @@
-Return-Path: <devicetree+bounces-176550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2241CAB474B
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 00:33:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31C1FAB4761
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 00:40:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DD0D864A17
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 22:32:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF47B19E5858
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 22:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF8625EFB9;
-	Mon, 12 May 2025 22:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1511F29A33F;
+	Mon, 12 May 2025 22:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MLZ1KgzQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="P8Ayp3F9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41BCC186A;
-	Mon, 12 May 2025 22:33:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ECC929A31A;
+	Mon, 12 May 2025 22:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747089184; cv=none; b=d34MhThXQ05YY705fntZxXUM3/aCWfpZvf71ovMtIUT/9XQMYCCMTxt65+QwibZRXXzXNnktwmKm/vkgm5/ElRK7gpTa0OJ8yEO6sf1YH147obE5sXLIBi1WC/A5wxFbr09btVSae1tJoXVDRhTzJXfSJvBz7TdKGY/6x1EY0ac=
+	t=1747089636; cv=none; b=U/I9R27uRB8VAInVAd/muMoCiJcO3Ba8ElFOmJ1mNPTIoxaHfBPd3hUdxjH22YJYFhP5P5HUNsnCjrRYDYd2OMIPBA/n+VR+HdyPXXVhWqdF2ZkqHfKyifddpDAVGJFx482/yELvU5jzyUWhDn40vFlEDeMaKeeLJj1i/zZuzG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747089184; c=relaxed/simple;
-	bh=7uaPkVruATXm9Huody3+3MZx6tE8WbKbRuYqnjKm0pI=;
+	s=arc-20240116; t=1747089636; c=relaxed/simple;
+	bh=IsFdOGeVB9Z4dwg7zB3kN/cGUL5kif9E+VoJLXZIFoU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M6L0Oa6RfpotKk2a/7URWTjFPE9sJ1IwANHcOSJEsblALhs/aIc4qp1KM7ysixxaCTXjuVkzX/JmWZL9tg3Zduv2i4GXqBEvnXXxGr9tqqrZNat/78ocipwnnX8CphjQruPjpg6fs6mTIEcjAbvkk5i+ILw1PuSGde2mfDOhB54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MLZ1KgzQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D80E1C4CEE7;
-	Mon, 12 May 2025 22:33:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747089183;
-	bh=7uaPkVruATXm9Huody3+3MZx6tE8WbKbRuYqnjKm0pI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MLZ1KgzQOJhVUAg9HL/gG+/R//L7FAoO/kB/yvK5yZYA02+YkydJW15gu7HC4e1/l
-	 TwDqKmCGX8QJ1BMBsPkhEMfaHO0CeBjM16ODGskLNGUuuwssFGg9Zg2pN2cZMZhkxz
-	 yZftrJotY5E5fl3AFwbv/ZA0XqmSjhZUZ3j4L05gEo4q0Gd71DcA7BPV0j+n88AqC/
-	 /lXlbS0VrgwPwF4yyi7g4nUmRvIHmlMf4NUEQUPT6Bwunk1fLQ09V4q/NQG5V8APL6
-	 zyyz1I7mHgeS9gkiYzuw+Zlc0XZcHmMtcT8e3ZxeSTWAKYT4a64llabhgqhbPyg1lX
-	 Ent9sEQe4ZTww==
-Date: Tue, 13 May 2025 00:32:59 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Peter Rosin <peda@axentia.se>, Derek Kiernan <derek.kiernan@amd.com>, 
-	Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Wolfram Sang <wsa@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org, 
-	Allan Nielsen <allan.nielsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 19/26] i2c: busses: at91: Add MCHP_LAN966X_PCI
- dependency
-Message-ID: <t362y4tvg3y2q5yop3vnqme3qi6wxxehpbyzbx6qp7zbrihqkr@5bvsxvd2ti7i>
-References: <20250507071315.394857-1-herve.codina@bootlin.com>
- <20250507071315.394857-20-herve.codina@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ak7fnE3gwjGHwf0AeZ0reh02h1FSEccA3VP/QVJ07I05MEXpEr4c28u1J60ZRULjwQ9pDhsfOVdS4hvxJ3mk9PJjFRMshtaqDhg/bQfmZvKBjRRJDdDKmcPPyDVn86JZevTolrB2l2qYmG6L+dLtbkHuPosm4H9X2hYI1mID8Yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=P8Ayp3F9; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747089634; x=1778625634;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=IsFdOGeVB9Z4dwg7zB3kN/cGUL5kif9E+VoJLXZIFoU=;
+  b=P8Ayp3F9pZf7ATSuIk3Z4Q+WkUqcdvZ3x/8qDpT822TE6/TTkkUVaipD
+   MOrToJrMZWbboAbhWF9ZrXPon0FkOYNvM6sb5yR2J0XKCrwlzXggqJMf3
+   xD4a4zV6vh+krfdmUpsxE+STAqQKi8ROCAI6Nj9PiDj/O8bePizRwOcK/
+   LfqbKaNTlxD+xOcUMmU5dsYkfv7fxHhWRlCR3RZgr/tbE/+mn2cjVR2QL
+   R6ZmQlMni9eiSp3gmL/tmIdDSnf1vUa+RJDr/l7Ja/20TrikmuUe2mFdM
+   xdI2EwnKjRUhilQ3zvCqLkBq7mBYCTXNTEmJkwboNl06/CQtiVUbCstfN
+   Q==;
+X-CSE-ConnectionGUID: fA7lbqFOQxKwWhE6YpluOQ==
+X-CSE-MsgGUID: 11QxJwmoQoqfyLYdY8Uq4A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="59571288"
+X-IronPort-AV: E=Sophos;i="6.15,283,1739865600"; 
+   d="scan'208";a="59571288"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2025 15:40:34 -0700
+X-CSE-ConnectionGUID: ZDqxwHf/RZuEU1s9gaIttA==
+X-CSE-MsgGUID: vRw+cxwTQgWXLQrlP7QOxA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,283,1739865600"; 
+   d="scan'208";a="137981734"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 12 May 2025 15:40:28 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uEbow-000FUb-10;
+	Mon, 12 May 2025 22:40:26 +0000
+Date: Tue, 13 May 2025 06:39:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>,
+	Michael Tretter <m.tretter@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Michal Simek <monstr@monstr.eu>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>,
+	Aradhya Bhatia <a-bhatia1@ti.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Andrzej Pietrasiewicz <andrzejtp2010@gmail.com>,
+	Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	Wolfram Sang <wsa-dev@sang-engineering.com>,
+	Gaosheng Cui <cuigaosheng1@huawei.com>,
+	Ricardo Ribalda <ribalda@chromium.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org
+Subject: Re: [PATCH 2/3] media: allegro-dvt: Add Gen 3 IP stateful decoder
+ driver
+Message-ID: <202505130610.joo2DpuX-lkp@intel.com>
+References: <20250511144752.504162-3-yassine.ouaissa@allegrodvt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +99,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250507071315.394857-20-herve.codina@bootlin.com>
+In-Reply-To: <20250511144752.504162-3-yassine.ouaissa@allegrodvt.com>
 
-Hi Herve,
+Hi Yassine,
 
-On Wed, May 07, 2025 at 09:13:01AM +0200, Herve Codina wrote:
-> The AT91 I2C driver depends on ARCH_AT91.
-> 
-> This I2C controller can be used by the LAN966x PCI device and so
-> it needs to be available when the LAN966x PCI device is enabled.
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+kernel test robot noticed the following build errors:
 
-Acked-by: Andi Shyti <andi.shyti@kernel.org>
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.15-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Thanks,
-Andi
+url:    https://github.com/intel-lab-lkp/linux/commits/Yassine-Ouaissa/media-allegro-dvt-Move-the-current-driver-to-a-subdirectory/20250511-225629
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250511144752.504162-3-yassine.ouaissa%40allegrodvt.com
+patch subject: [PATCH 2/3] media: allegro-dvt: Add Gen 3 IP stateful decoder driver
+config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20250513/202505130610.joo2DpuX-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250513/202505130610.joo2DpuX-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505130610.joo2DpuX-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+WARNING: modpost: missing MODULE_DESCRIPTION() in arch/arm/probes/kprobes/test-kprobes.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in mm/kasan/kasan_test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in lib/tests/slub_kunit.o
+>> ERROR: modpost: "__bad_udelay" [drivers/media/platform/allegro-dvt/al300/al300-vdec.ko] undefined!
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
