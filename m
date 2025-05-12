@@ -1,112 +1,135 @@
-Return-Path: <devicetree+bounces-176159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11AC5AB2F6E
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:18:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86619AB2FD0
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:40:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95BAD18991FF
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 06:18:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AA891895C59
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 06:40:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9C42550AB;
-	Mon, 12 May 2025 06:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 937B0255E2C;
+	Mon, 12 May 2025 06:40:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="HW1wDHX4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9EBF191F6A
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 06:17:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A3822550AE;
+	Mon, 12 May 2025 06:40:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747030677; cv=none; b=LZHNxpiUnEHWUTFoJfMg+6O0WUx23EHdZcPHAlHVQ9CWCaVL35Gn5iU9zuU3VhhxQgLL4ueZKmakph8uVTpYeq5agXmQdUwoyfb6ert72iqB87iTeca+rU1Q4JZUM5TYAsyqdRnrtJFoBm6oKTmSpmybUiOfIYDe6zj0lq607sY=
+	t=1747032021; cv=none; b=Dqz4Nx6RG5Nj1Vhv/amhM4B8ogrRuFF4JGjND2XXvGsoNXfaucGVa64dti+B2T1WVe1IWO8b9QgiZ2pMgntF56gVRimwbVWeugWzsGlkfuTs/cqUVTNbdgdB2C85wTwO1hrKt10t1bcgQqeL6i/mOhBcni8fET+29zptAGapoBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747030677; c=relaxed/simple;
-	bh=X6l2NY96xDhiFItBX2VqZRO1nDIzDA+IKenMV0QTV3Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R4Vi3HmuAFlGccJGDbiAcsXTiMu0Fcf0V9owb8ywu8UfLFyaanfNQic3AomWMOlz6Ww4ucEd8wu11kfJWnXTKIEjIxJDZ4ijk4nGu3nLGNv0qNL89dftAjGP/TbB5PtWhZ/uFjvTiPSysvgRAoBRSXDW4GAA3TX2DKGCxIlNm88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uEMTu-0002PJ-UB; Mon, 12 May 2025 08:17:42 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uEMTu-002KAO-0e;
-	Mon, 12 May 2025 08:17:42 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uEMTu-000RQ1-08;
-	Mon, 12 May 2025 08:17:42 +0200
-Date: Mon, 12 May 2025 08:17:42 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 2/3] pinctrl: imx-scmi: Get daisy register offset from DT
-Message-ID: <aCGShsaItUTf2Z14@pengutronix.de>
-References: <20250512-pin-v1-0-d9f1555a55ad@nxp.com>
- <20250512-pin-v1-2-d9f1555a55ad@nxp.com>
+	s=arc-20240116; t=1747032021; c=relaxed/simple;
+	bh=6FEozqC4uF74o1AdmgOn6U/NWk4EQrvRnEAFCbr4JRc=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=p27+0Uc3hOtAZSnXxsEIAhGL0YAciOkvwb+7wgCjLaVOQa3O9HRWkKovDFpFSEQOOmyI4ionL6H5YNfuE2mBp1VpmVltl9TvNcKHCjgu1KIvnbMaVI98sbebDbzvZIcsYVtXZlCY14lQi0xq8Yr7Ag/nYJi65qzR6BCK9QJWJW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=HW1wDHX4; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54BMG0Xq027496;
+	Mon, 12 May 2025 08:30:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=xEvO38UxR3TTkIts3bIi48
+	jhoAAjtchguqrU+RI62HM=; b=HW1wDHX4Qlx6OJht/bWKC3Dh3vYO6re6KsO+Uv
+	nhTdTTAG56fDwHJlLcO+pF7yyrht76c95x9kMlQW8GkMD3pVtvSyaNVPz6sPm5z2
+	aAHhopqPiEMs9KHQpq+MdoDXAZUBJAa3cgNoADHvrvnDYFK9dE+4tIvgkAeuUl9L
+	s7dOOJ6CGd7i22GhPnshQmTHZUnozxt73ZOLzbyQjoiuoDMr3V1u6KuIaDuqQQ1y
+	D3pFABosKN3dlA2AvD5ScLzuFkp2GpOG/5OdEZ11kFqyOV2a4q3DdvPvL9it0uZS
+	49vZZPsEmVuuQvr5OtzNHvXS0e/S6HxwZjTdcKj1g66VW8YQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46jgc437yc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 May 2025 08:30:55 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id E6FF64006D;
+	Mon, 12 May 2025 08:29:58 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4D124A4B610;
+	Mon, 12 May 2025 08:29:38 +0200 (CEST)
+Received: from localhost (10.48.87.62) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 12 May
+ 2025 08:29:38 +0200
+From: Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: [PATCH v10 0/3] arm64: dts: st: Add SPI NOR support for
+ stm32mp257f-ev1
+Date: Mon, 12 May 2025 08:29:30 +0200
+Message-ID: <20250512-upstream_omm_ospi_dts-v10-0-fca0fbe6d10a@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250512-pin-v1-2-d9f1555a55ad@nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEqVIWgC/3WNwQ6CMBBEf8Xs2ZJlA2o9+R+GECiL7AFKupVoC
+ P9uJV49zOFNMm9WUA7CCtfDCoEXUfFTghyPB3BDMz3YSJcKIKQSixzNc9YYuBlrP6boLHUX1WD
+ R2rNzSFwSpO0cuJfXLr5XiQfR6MN7/1nst/0Z6fLHuFiD5kQlUZu3aIluvVfNNGbOj1Bt2/YBQ
+ ZZHdL0AAAA=
+X-Change-ID: 20250410-upstream_omm_ospi_dts-04b97cc02e52
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-12_02,2025-05-09_01,2025-02-21_01
 
-On Mon, May 12, 2025 at 10:14:15AM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Parsing the "nxp,iomuxc-daisy-off" to get the daisy register offset,
-> then no need to hardcode the register offset in driver for new SoCs.
-> 
-> To keep backwards comatibility, still keep the register offset for i.MX95.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/pinctrl/freescale/pinctrl-imx-scmi.c | 26 +++++++++++++++-----------
->  1 file changed, 15 insertions(+), 11 deletions(-)
-> 
-> @@ -315,6 +307,18 @@ static int scmi_pinctrl_imx_probe(struct scmi_device *sdev)
->  	if (!pmx)
->  		return -ENOMEM;
->  
-> +	ret = device_property_read_u32(dev, "nxp,iomuxc-daisy-off", &pmx->daisy_off);
+Add SPI NOR support for stm32mp257f-ev1 board by adding:
+  _ Octo memory Manager node in stm32mp251.dtsi
+  _ OSPI port1 pinctrl entries in stm32mp25-pinctrl.dtsi
+  _ Add SPI NOR support for stm32mp257f-ev1.dts
 
-"off" is really a poor acronym for "offset" as it unnecessarily confuses
-the reader by suggesting this is about turning some feature off. Please
-add the three bytes and just call it offset.
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+To: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
 
-Sascha
+Changes in v10:
+- rebase on top of next-20250509 to fix DTB warnings.
+- Link to v9: https://lore.kernel.org/r/20250428-upstream_omm_ospi_dts-v9-0-62522b1b0922@foss.st.com
 
+Changes in v9:
+  - split patchset by susbsystem, current one include only DTS related
+    patches.
+  - Link to v8: https://lore.kernel.org/r/20250407-upstream_ospi_v6-v8-0-7b7716c1c1f6@foss.st.com
+
+---
+Patrice Chotard (3):
+      arm64: dts: st: Add OMM node on stm32mp251
+      arm64: dts: st: Add ospi port1 pinctrl entries in stm32mp25-pinctrl.dtsi
+      arm64: dts: st: Add SPI NOR flash support on stm32mp257f-ev1 board
+
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 51 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        | 54 +++++++++++++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    | 32 ++++++++++++++++
+ 3 files changed, 137 insertions(+)
+---
+base-commit: ed61cb3d78d585209ec775933078e268544fe9a4
+change-id: 20250410-upstream_omm_ospi_dts-04b97cc02e52
+
+Best regards,
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Patrice Chotard <patrice.chotard@foss.st.com>
+
 
