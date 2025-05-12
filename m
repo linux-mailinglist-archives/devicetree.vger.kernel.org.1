@@ -1,103 +1,173 @@
-Return-Path: <devicetree+bounces-176511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80C6EAB45CD
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 22:56:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF277AB45E3
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 23:01:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 407DD7B440F
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 20:55:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 232A63ACE85
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 21:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4916A29AAEE;
-	Mon, 12 May 2025 20:55:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1136256C9A;
+	Mon, 12 May 2025 21:01:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j91pA5Yq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TnnkW34r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B60C29AAE5;
-	Mon, 12 May 2025 20:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 823C22AEE1;
+	Mon, 12 May 2025 21:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747083301; cv=none; b=Yw/azJazzp8oTdoLd/4mTh7P3zRoSMcy2BVIP6P+YERd/5YVNyTXIWTkxZsqHonMBw03K87FI++GghXqd2T/EG6dB2S6rQQTYtvM1uDjXPiqR4U8VEKY8wKPj4xZ8Y4abTynwfE7GB+VcB0hA0hvveJPdhC5tXi17084umOFT0Q=
+	t=1747083678; cv=none; b=U6V7WPa8sewfiZyPHZX49OEvpO4Z8rEh3GqkrmW8ZMXhEmTdwQiwgeaS06tugPBtLxc1TNbxI3B+ZtFpcVe+4d3+1Buwbvhn2USnPOqV6xhiYSm6VRF3jfBuYD+ncS4QZ1kRft34IrbXOMjAYE2d5bbDv43OVZsCYjXE+7Zh0UQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747083301; c=relaxed/simple;
-	bh=1Wb+WsqVMEuJbQLKe8Gt2DrmhyU52bmcmcDDaS0ZKGM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=STTvfd5MzFS9vZLc2McOMiVUSpCkrul6IlKMxFhElMWV1ad8HFU+vKcIiDc7JTY/ZRCRWRpE1gW5HDWnNP5DOYnM5170W8mmwk3slWTD1s46n99sXLRCjmGxQR//LPc5lQ5OnhDPiGC+VbQqKAf/3P6vyS3fKJZ4Jte5F8hyWKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j91pA5Yq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59535C4CEF2;
-	Mon, 12 May 2025 20:55:00 +0000 (UTC)
+	s=arc-20240116; t=1747083678; c=relaxed/simple;
+	bh=LKLLONeCVjQVAaNx8UdwNrH4MsosiV3gnDGhpSa48kE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OmyXDFkthXPHBGAFP/e/ncxStW5ViGpZOosfv5g6oVVoyaExUvLAfId9u/A95Bgf9ShzCjgqBwLt8zEGUtA96bDI5G7EBKvAJez4wSiKGNr8YzARmT29KEwJ8awxGxv6V0mViYzFksjEL1GKt4CULHeBNfFgSKSgORW4hTHL8D0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TnnkW34r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52D88C4CEE7;
+	Mon, 12 May 2025 21:01:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747083300;
-	bh=1Wb+WsqVMEuJbQLKe8Gt2DrmhyU52bmcmcDDaS0ZKGM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=j91pA5YqJOECZEmryiT5l3eX4hV0AuxbWjsTsrMlWWDn5zyzR47CwRWqoZHtT9dBr
-	 /UjK3+vR48nO1OS29TJe+i2IYrwZhC81RB5ufv4bhlhUF1R93NsqNjrh9PUW5P/kYy
-	 kaox+g6mX6dw+D0WwjUvR1YqGpBjAvKASKjPen4oybX/MZW/rVm+BXrKvw4Aj/2ZHd
-	 8FQv3oElcivsirQYuC1D7c+aBdrBPohHH6VRTGDedaxDP6FjOqiteP0Q9V4rvb/L1O
-	 YoXYXggIrTTPcpxJIVg33jvU0p9EZVHemdjOFl4YuZ4bKc5RLH7SctCIKuTSJZLlPN
-	 Rnxip5KxZHOsw==
-Date: Mon, 12 May 2025 15:54:59 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1747083676;
+	bh=LKLLONeCVjQVAaNx8UdwNrH4MsosiV3gnDGhpSa48kE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TnnkW34rYr5Yyflxu0il8Q6hxkNKCrMwwjOkRS9FklhqXnePrp6HXUjGqvpL4XveL
+	 0TQtB92rfaDcCOH9e1pk1D4ic/agrs6hwpXMPFHudeKeZfQv6yDSJqQ/pKThu+ODJl
+	 +ZLPwdtj02aYTXg3oHIzEKxV4sVVl8qKceifsWcIwomKVeXCId61MWxQOtp6u4lRVv
+	 CgKLLVTRCdXXttrvq7J0fBw19etyehXiK43NerTW3Pka1615TKQTSJ1dvAKD0XCPLK
+	 Z5sSDHt4VOVGJ821FN9XRSa6rlwy8iN4fBlbq+MKhSamPyjSZ1KDZxsM+b72sDA1k6
+	 U3GTEQA7oIZDA==
+Date: Mon, 12 May 2025 22:01:10 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+	Landen Chao <Landen.Chao@mediatek.com>,
+	DENG Qingfang <dqfext@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v1 01/14] dt-bindings: net: mediatek,net: update for
+ mt7988
+Message-ID: <20250512-spooky-overbuilt-abc946ba1f55@spud>
+References: <20250511141942.10284-1-linux@fw-web.de>
+ <20250511141942.10284-2-linux@fw-web.de>
+ <20250512-nibble-freemason-69e0279f2f99@spud>
+ <05760B5E-955E-4E0E-9B69-E762783CC37B@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, davem@davemloft.net, 
- alexandre.belloni@bootlin.com, nicolas.ferre@microchip.com, 
- olivia@selenic.com, devicetree@vger.kernel.org, 
- linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- conor+dt@kernel.org, claudiu.beznea@tuxon.dev, krzk+dt@kernel.org, 
- herbert@gondor.apana.org.au
-To: Ryan.Wanner@microchip.com
-In-Reply-To: <ea33a6222dda7c60fd404a4b0e9c4824e19ee1bf.1747077616.git.Ryan.Wanner@microchip.com>
-References: <cover.1747077616.git.Ryan.Wanner@microchip.com>
- <ea33a6222dda7c60fd404a4b0e9c4824e19ee1bf.1747077616.git.Ryan.Wanner@microchip.com>
-Message-Id: <174708329457.4035885.12979027152382055790.robh@kernel.org>
-Subject: Re: [PATCH 3/9] dt-bindings: crypto: add sama7d65 in Atmel TDES
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ihom2EqWEYhuIF8/"
+Content-Disposition: inline
+In-Reply-To: <05760B5E-955E-4E0E-9B69-E762783CC37B@fw-web.de>
 
 
-On Mon, 12 May 2025 12:27:29 -0700, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
-> 
-> Add DT bindings for SAMA7D65 SoC Atmel TDES.
-> 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
-> ---
->  .../devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml    | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+--ihom2EqWEYhuIF8/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Mon, May 12, 2025 at 07:33:22PM +0200, Frank Wunderlich wrote:
+> Am 12. Mai 2025 18:21:45 MESZ schrieb Conor Dooley <conor@kernel.org>:
+> >On Sun, May 11, 2025 at 04:19:17PM +0200, Frank Wunderlich wrote:
+> >> From: Frank Wunderlich <frank-w@public-files.de>
+> >>=20
+> >> Update binding for mt7988 which has 3 gmac and 2 reg items.
+> >>=20
+> >> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> >> ---
+> >>  Documentation/devicetree/bindings/net/mediatek,net.yaml | 9 +++++++--
+> >>  1 file changed, 7 insertions(+), 2 deletions(-)
+> >>=20
+> >> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b=
+/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> >> index 9e02fd80af83..5d249da02c3a 100644
+> >> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> >> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> >> @@ -28,7 +28,8 @@ properties:
+> >>        - ralink,rt5350-eth
+> >> =20
+> >>    reg:
+> >> -    maxItems: 1
+> >> +    minItems: 1
+> >> +    maxItems: 2
+> >
+> >This should become an items list, with an explanation of what each of
+> >the reg items represents.
+>=20
+> I would change to this
+>=20
+>   reg:
+>     items:
+>       - description: Register for accessing the MACs.
+>       - description: SoC internal SRAM used for DMA operations.
+>     minItems: 1
+>=20
+> Would this be OK this way?
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml:19:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+Ye, that looks good.
 
-dtschema/dtc warnings/errors:
+>=20
+> >> =20
+> >>    clocks:
+> >>      minItems: 2
+> >> @@ -381,8 +382,12 @@ allOf:
+> >>              - const: xgp2
+> >>              - const: xgp3
+> >> =20
+> >> +        reg:
+> >> +          minItems: 2
+> >> +          maxItems: 2
 
-doc reference errors (make refcheckdocs):
+You also shouldn't need to set maxItems here, since the list has 2 items
+total.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/ea33a6222dda7c60fd404a4b0e9c4824e19ee1bf.1747077616.git.Ryan.Wanner@microchip.com
+> >> +
+> >>  patternProperties:
+> >> -  "^mac@[0-1]$":
+> >> +  "^mac@[0-2]$":
+> >>      type: object
+> >>      unevaluatedProperties: false
+> >>      allOf:
+> >> --=20
+> >> 2.43.0
+> >>=20
+>=20
+> Hi Conor
+>=20
+> Thank you for review.
+> regards Frank
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+--ihom2EqWEYhuIF8/
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+-----BEGIN PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCJhlgAKCRB4tDGHoIJi
+0np2AP9tRdqvR8H53faGqXax224YS7YArSQXFuynwo25eICEhgEAntebUayynsz/
++miUO3kJllRjEAYIKIHnvI4YCHk0Wws=
+=8MP/
+-----END PGP SIGNATURE-----
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--ihom2EqWEYhuIF8/--
 
