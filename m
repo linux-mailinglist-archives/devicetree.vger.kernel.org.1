@@ -1,426 +1,524 @@
-Return-Path: <devicetree+bounces-176243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38D32AB3385
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:30:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE586AB33D7
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:39:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B2B17AD752
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:29:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97A033AD6D7
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:39:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53DBF265CC4;
-	Mon, 12 May 2025 09:27:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0BB25C82D;
+	Mon, 12 May 2025 09:39:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HvniRrJ1"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cLePiQvH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 229BB1A239B;
-	Mon, 12 May 2025 09:27:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B933225A63D;
+	Mon, 12 May 2025 09:39:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747042043; cv=none; b=hxsAojdD7HhhfFdgYLcjV81J9IT+uYjd+ETBCfKLSzU+likjoK060GiMchcsS3eGlVAX2NZeS37CjeOngoom9IDEFqDwcMAGtbm7sehEca/JAs/t/TIZ5bAF0jlEUIvoY/KtTNfECK5KyrDt5IEL5ljmf0z1vZJzw4JKJv2oBuI=
+	t=1747042780; cv=none; b=dOsL/CINYHyNfP8SO3BBJWvzoPPejZeEWbDVqnQKKW9H3dheB/wkBRgBRyYWit43ISFceeHOb+65qARSsfZ5Lslbz1KwivcQDWctB0Hyjt3roW/N8mvjVzE8ioglXEf9raQaBDlqlAou3izadxE8C/tDrdML3hgoh2CKO/dQAfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747042043; c=relaxed/simple;
-	bh=tOe2lgKCbgqYYIMOtKeKhAwAOjWlZcBSaNqvUehU9UQ=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j6p8I+cUU5brPmx9am+fvUELFnNQJAM6vjykXqrSqZPz62tbdwQ3YJoveR2frxla21EhV7gCa6ckDeQtupC19TwIsRsiRrY9Q6hfjFpbFsB7UDvu8VilSefLvnFMo0n5A4RoXsg9yJqax/xiJmm7eOk13tAHb6IyKwUaCads62I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HvniRrJ1; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a1d8c09683so2201419f8f.0;
-        Mon, 12 May 2025 02:27:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747042039; x=1747646839; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=EP5ciUrJhx2qjL/YTEW+Ro+6nfUBpD7HupJKLYyZ5WU=;
-        b=HvniRrJ1lLMp75VJvD7FHd4Z30I4++nF6Eg8lJY6u8S2cem1NWxRyzeLjPyEuVx3WO
-         oqA0i9EPDPWk5CXYq2Ju/A0hyXrgs+Cq6XP3rXumIlmXBHIQQB9i2FOUnlGt2icLm3RI
-         2kmjgLKPBxDuG3qLblWSqaruZl2HkOjhkjutbL6t+l7rfhzSAYvAll3pfYdMXXyXPuxV
-         31mmNsoDskGhZgXFUwEKDSP0dgL2wY5YTXMYZrihdKYtAf5cFSfiQTGEo0+B0eNJfRfG
-         NbjlHtgng97hz75t/FXNk3fliV21FJk4EJlfzE5vIPZJXdNhJtlTtAZxCb1aIaHfcnys
-         nTPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747042039; x=1747646839;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EP5ciUrJhx2qjL/YTEW+Ro+6nfUBpD7HupJKLYyZ5WU=;
-        b=i0CtRlaaPSeu2DXST+OALX2fRF9wPZHNok6YbNU/43tWrXgQOaUwMjKyC3sE7m8rH5
-         1QD0S+iJQLwY9xDRpCytFpWNU4322/r2mRLrdIdwHFVMHS/sMj9LBAJfZgMweHzTtigD
-         gb7yZKPXC2YqKbEp01qnSslQcYm9l5gKdBZ+/GW2AWtiyelRwgZoe7OD6/IdEviNPZk8
-         TsXNkdlXqwHBAcqIg+39f519hgbDRgniOAgCFWkHJ7c+R5PbnskVEdE+VDiayjDL3eQC
-         i5LxhyeY0s3jPI14ABcF2LlvmbSlzKQypeKxMWh2BO+txHhcx136534pqhkI8Cls5MqP
-         j2jg==
-X-Forwarded-Encrypted: i=1; AJvYcCXYeX0Bl7w0zL+ZWRkJ+TVnD9c94RaHtpvaPejwYcXKK/nEf5lHKPmCUXmDEo9NBt5ahXNlprIHzT55nUb6@vger.kernel.org, AJvYcCXbnIM24LBRn5XXUyM3JPlbh/S0F93wF7rMSIJUaqH6HTFZhoKFhraVIP3P55s3IWZ6lXtq0rPcwTBY@vger.kernel.org, AJvYcCXyZhrxQDtub657LQnRja1DDTJ5jTVEeo/KbrT+vTTAvqqAZorCr7rN/PhsLbyHnk+X0LLiS9At@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzQcvm3F3aZJbkBdLaBSicRRYZA9DaJ2tP6/1PY+sKfopWuftq
-	JmxqHqk2RIzEZkhtnAHXKMU8mCqMoEek+rpxo1Qw6pUNHpBJ9EmO
-X-Gm-Gg: ASbGncvNe/QlmdneEIkqDU55TsFN21KHlcI1bdCme56IuIlXPBWjHfLzQAInwpZErpJ
-	G8rCA76oEh84i2Q4DcQw+A/zfPzJ6Ewl8hqNbYdstItRP7cuRdeOkZLImv98GWmq7TaK0owWyV7
-	85W13wo2MYGbHukVaj8iLoqy1AcVRZUjMfLs9o7xBIoNWrNt/g1rGm7KG2iayqo3dGlK8BxRX+C
-	pYEn0EYSJQvsAVmdJn75xodLaH6hMXNJ7rFPZTlXf9EHvSyFjRRK0SJxJXQiUgpMqOFFsSO7QJ3
-	P5U5SnpSbfqYUX38eCLvE1TIr/C150HtP5MZghYvygyLcz5AQPB7vy/p+RZjpy7ya4fEurvmLie
-	ItsgTc7k=
-X-Google-Smtp-Source: AGHT+IEIx2dngjb6axDv4lWuQJCqhwKHcwmf+wk9ypXMGeGlR42a1KIrb2TLCO+LYY/WGRgWY7SQ1Q==
-X-Received: by 2002:a05:6000:430d:b0:3a0:b378:a4eb with SMTP id ffacd0b85a97d-3a1f6487e1amr9306477f8f.40.1747042038492;
-        Mon, 12 May 2025 02:27:18 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a2d96csm11933224f8f.69.2025.05.12.02.27.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 May 2025 02:27:17 -0700 (PDT)
-Message-ID: <6821bef5.5d0a0220.319347.d533@mx.google.com>
-X-Google-Original-Message-ID: <aCG-8mJYlQoa_4ls@Ansuel-XPS.>
-Date: Mon, 12 May 2025 11:27:14 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>,
-	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, llvm@lists.linux.dev
-Subject: Re: [net-next PATCH v4 11/11] net: airoha: add phylink support for
- GDM2/3/4
-References: <20250511201250.3789083-1-ansuelsmth@gmail.com>
- <20250511201250.3789083-12-ansuelsmth@gmail.com>
- <aCG9q6i7HomgilI6@lore-desk>
+	s=arc-20240116; t=1747042780; c=relaxed/simple;
+	bh=8pIofJX98o0cdPyYqZkkS+G0EsgCpIFSgSko0exkC/A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YIIejRLYXKkDosECJkiVkCckIKGYjg4bQJ6XHB0lWm4FGMWqXdkv/LinUlhst8ROHg4kJB4OLYp6v/ANciPXcO+ie/WV4bmIjLbChtzGGt+G1sydBE6Ux7O2QIWuhvCgLk+sUDHh8DhBWz2faDsA+IzomVXcSjQhrUgqN9kr2V0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=cLePiQvH; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1747042769;
+	bh=8pIofJX98o0cdPyYqZkkS+G0EsgCpIFSgSko0exkC/A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cLePiQvHIO7Or+Bk1M9a799SsIP2jkdNVY5Yma0C2x0XderpsBMLejrR+Xpp+qymN
+	 ytpRRUVP3+rDC2jknnWTB6NvWKfO+vkRQj0E0PlekQPT8Pav03OV9efpX+IoDJ82Ia
+	 rdZbzAWR7WcGb5/S+vG+eOqVuhQlid4f4NaLHPi8IgMv+wcpWkMedftHdyvyBKnqMl
+	 jbolJjGDV8+TXEi5jFP843u9qKahOIAIB9SbwrOufMcvoGPx9pSS+eBBHx3IVV9vJF
+	 RELmmQ5kacueviEq1rKW4weL+Eiju9OgzdT5jkUfPhkUW8THOdNd1C3XRF7SjYadve
+	 Wd9K47Oibm+QQ==
+Received: from [10.40.0.100] (185-251-200-162.lampert.tv [185.251.200.162])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6D32017E049F;
+	Mon, 12 May 2025 11:39:28 +0200 (CEST)
+Message-ID: <b9135684-5623-4d87-94ea-b9699b7fec44@collabora.com>
+Date: Mon, 12 May 2025 11:39:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aCG9q6i7HomgilI6@lore-desk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 06/13] media: rockchip: add a driver for the rockchip
+ camera interface
+To: Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans Verkuil <hans@jjverkuil.nl>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Gerald Loacker <gerald.loacker@wolfvision.net>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Paul Kocialkowski <paulk@sys-base.io>,
+ Alexander Shiyan <eagle.alexander923@gmail.com>,
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ Mehdi Djait <mehdi.djait@bootlin.com>
+References: <20240220-rk3568-vicap-v6-0-d2f5fbee1551@collabora.com>
+ <20240220-rk3568-vicap-v6-6-d2f5fbee1551@collabora.com>
+ <fx5zweayuzo2vcov7i5d6itlizw4bwmr3wwbd4m6mdjsiou5zb@osl3u2ijv3uj>
+ <90192c74-f5ca-404b-8b95-3df0819e4bc9@collabora.com>
+ <pmjd65zzypo7kyi3mkpqd4pf6dqz5ssxxhwnicav57trzxt3ni@ph665okjfo2s>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <pmjd65zzypo7kyi3mkpqd4pf6dqz5ssxxhwnicav57trzxt3ni@ph665okjfo2s>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, May 12, 2025 at 11:21:47AM +0200, Lorenzo Bianconi wrote:
-> > Add phylink support for GDM2/3/4 port that require configuration of the
-> > PCS to make the external PHY or attached SFP cage work.
-> > 
-> > These needs to be defined in the GDM port node using the pcs-handle
-> > property.
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  drivers/net/ethernet/airoha/airoha_eth.c  | 155 +++++++++++++++++++++-
-> >  drivers/net/ethernet/airoha/airoha_eth.h  |   3 +
-> >  drivers/net/ethernet/airoha/airoha_regs.h |  12 ++
-> >  3 files changed, 169 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ethernet/airoha/airoha_eth.c
-> > index 16c7896f931f..3be1ae077a76 100644
-> > --- a/drivers/net/ethernet/airoha/airoha_eth.c
-> > +++ b/drivers/net/ethernet/airoha/airoha_eth.c
-> > @@ -7,6 +7,7 @@
-> >  #include <linux/of_net.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/tcp.h>
-> > +#include <linux/pcs/pcs.h>
-> >  #include <linux/u64_stats_sync.h>
-> >  #include <net/dst_metadata.h>
-> >  #include <net/page_pool/helpers.h>
-> > @@ -79,6 +80,11 @@ static bool airhoa_is_lan_gdm_port(struct airoha_gdm_port *port)
-> >  	return port->id == 1;
-> >  }
-> >  
-> > +static bool airhoa_is_phy_external(struct airoha_gdm_port *port)
-> > +{
-> > +	return port->id != 1;
-> > +}
-> > +
-> >  static void airoha_set_macaddr(struct airoha_gdm_port *port, const u8 *addr)
-> >  {
-> >  	struct airoha_eth *eth = port->qdma->eth;
-> > @@ -1613,6 +1619,17 @@ static int airoha_dev_open(struct net_device *dev)
-> >  	struct airoha_gdm_port *port = netdev_priv(dev);
-> >  	struct airoha_qdma *qdma = port->qdma;
-> >  
-> > +	if (airhoa_is_phy_external(port)) {
-> > +		err = phylink_of_phy_connect(port->phylink, dev->dev.of_node, 0);
-> 
-> nit: even if it is not strictly required, in order to align with the rest of the
-> codebase, can you please stay below 79 columns?
-> 
-> > +		if (err) {
-> > +			netdev_err(dev, "%s: could not attach PHY: %d\n", __func__,
-> > +				   err);
-> 
-> same here
-> 
-> > +			return err;
-> > +		}
-> > +
-> > +		phylink_start(port->phylink);
-> > +	}
-> > +
-> >  	netif_tx_start_all_queues(dev);
-> >  	err = airoha_set_vip_for_gdm_port(port, true);
-> >  	if (err)
-> > @@ -1665,6 +1682,11 @@ static int airoha_dev_stop(struct net_device *dev)
-> >  		}
-> >  	}
-> >  
-> > +	if (airhoa_is_phy_external(port)) {
-> > +		phylink_stop(port->phylink);
-> > +		phylink_disconnect_phy(port->phylink);
-> > +	}
-> > +
-> >  	return 0;
-> >  }
-> >  
-> > @@ -2795,6 +2817,115 @@ bool airoha_is_valid_gdm_port(struct airoha_eth *eth,
-> >  	return false;
-> >  }
-> >  
-> > +static void airoha_mac_link_up(struct phylink_config *config, struct phy_device *phy,
-> > +			       unsigned int mode, phy_interface_t interface,
-> > +			       int speed, int duplex, bool tx_pause, bool rx_pause)
-> 
-> ditto.
-> 
-> > +{
-> > +	struct airoha_gdm_port *port = container_of(config, struct airoha_gdm_port,
-> > +						    phylink_config);
-> 
-> ditto.
-> 
-> > +	struct airoha_qdma *qdma = port->qdma;
-> > +	struct airoha_eth *eth = qdma->eth;
-> > +	u32 frag_size_tx, frag_size_rx;
-> > +
-> > +	if (port->id != 4)
-> > +		return;
-> > +
-> > +	switch (speed) {
-> > +	case SPEED_10000:
-> > +	case SPEED_5000:
-> > +		frag_size_tx = 8;
-> > +		frag_size_rx = 8;
-> > +		break;
-> > +	case SPEED_2500:
-> > +		frag_size_tx = 2;
-> > +		frag_size_rx = 1;
-> > +		break;
-> > +	default:
-> > +		frag_size_tx = 1;
-> > +		frag_size_rx = 0;
-> > +	}
-> > +
-> > +	/* Configure TX/RX frag based on speed */
-> > +	airoha_fe_rmw(eth, REG_GDMA4_TMBI_FRAG,
-> > +		      GDMA4_SGMII0_TX_FRAG_SIZE_MASK,
-> > +		      FIELD_PREP(GDMA4_SGMII0_TX_FRAG_SIZE_MASK,
-> > +				 frag_size_tx));
-> > +
-> > +	airoha_fe_rmw(eth, REG_GDMA4_RMBI_FRAG,
-> > +		      GDMA4_SGMII0_RX_FRAG_SIZE_MASK,
-> > +		      FIELD_PREP(GDMA4_SGMII0_RX_FRAG_SIZE_MASK,
-> > +				 frag_size_rx));
-> > +}
-> > +
-> > +static const struct phylink_mac_ops airoha_phylink_ops = {
-> > +	.mac_link_up = airoha_mac_link_up,
-> > +};
-> > +
-> > +static int airoha_setup_phylink(struct net_device *dev)
-> > +{
-> > +	struct airoha_gdm_port *port = netdev_priv(dev);
-> > +	struct device_node *np = dev->dev.of_node;
-> > +	struct phylink_pcs **available_pcs;
-> > +	phy_interface_t phy_mode;
-> > +	struct phylink *phylink;
-> > +	unsigned int num_pcs;
-> > +	int err;
-> > +
-> > +	err = of_get_phy_mode(np, &phy_mode);
-> > +	if (err) {
-> > +		dev_err(&dev->dev, "incorrect phy-mode\n");
-> > +		return err;
-> > +	}
-> > +
-> > +	port->phylink_config.dev = &dev->dev;
-> > +	port->phylink_config.type = PHYLINK_NETDEV;
-> > +	port->phylink_config.mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
-> > +						MAC_10 | MAC_100 | MAC_1000 | MAC_2500FD |
-> > +						MAC_5000FD | MAC_10000FD;
-> 
-> over 79 columns
-> 
-> > +
-> > +	err = fwnode_phylink_pcs_parse(dev_fwnode(&dev->dev), NULL, &num_pcs);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	available_pcs = kcalloc(num_pcs, sizeof(*available_pcs), GFP_KERNEL);
-> 
-> I guess you can use devm_kcalloc() and get rid of kfree() here.
->
+Hi Mehdi,
 
-I forgot to answer to this in the previous revision. No devm can't be
-used there available_pcs is just an array allocated for phylink_config.
-
-Phylink then copy the data in it and doesn't use it anymore hence it
-just needs to be allocated here and doesn't need to stay till the driver
-gets removed.
-
-> > +	if (!available_pcs)
-> > +		return -ENOMEM;
-> > +
-> > +	err = fwnode_phylink_pcs_parse(dev_fwnode(&dev->dev), available_pcs,
-> > +				       &num_pcs);
-> > +	if (err)
-> > +		goto out;
-> > +
-> > +	port->phylink_config.available_pcs = available_pcs;
-> > +	port->phylink_config.num_available_pcs = num_pcs;
-> > +
-> > +	__set_bit(PHY_INTERFACE_MODE_SGMII,
-> > +		  port->phylink_config.supported_interfaces);
-> > +	__set_bit(PHY_INTERFACE_MODE_1000BASEX,
-> > +		  port->phylink_config.supported_interfaces);
-> > +	__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-> > +		  port->phylink_config.supported_interfaces);
-> > +	__set_bit(PHY_INTERFACE_MODE_USXGMII,
-> > +		  port->phylink_config.supported_interfaces);
-> > +
-> > +	phy_interface_copy(port->phylink_config.pcs_interfaces,
-> > +			   port->phylink_config.supported_interfaces);
-> > +
-> > +	phylink = phylink_create(&port->phylink_config,
-> > +				 of_fwnode_handle(np),
-> > +				 phy_mode, &airoha_phylink_ops);
-> > +	if (IS_ERR(phylink)) {
-> > +		err = PTR_ERR(phylink);
-> > +		goto out;
-> > +	}
-> > +
-> > +	port->phylink = phylink;
-> > +out:
-> > +	kfree(available_pcs);
-> > +
-> > +	return err;
-> > +}
-> > +
-> >  static int airoha_alloc_gdm_port(struct airoha_eth *eth,
-> >  				 struct device_node *np, int index)
-> >  {
-> > @@ -2873,7 +3004,23 @@ static int airoha_alloc_gdm_port(struct airoha_eth *eth,
-> >  	if (err)
-> >  		return err;
-> >  
-> > -	return register_netdev(dev);
-> > +	if (airhoa_is_phy_external(port)) {
-> > +		err = airoha_setup_phylink(dev);
+On 5/7/25 11:36, Mehdi Djait wrote:
+> Hi Michael,
 > 
-> This will re-introduce the issue reported here:
-> https://lore.kernel.org/netdev/5c94b9b3850f7f29ed653e2205325620df28c3ff.1746715755.git.christophe.jaillet@wanadoo.fr/
+> On Tue, May 06, 2025 at 10:32:59PM +0200, Michael Riesch wrote:
+>> Hi Mehdi,
+>>
+>> Thanks for your review!
+>>
+>> On 5/6/25 12:37, Mehdi Djait wrote:
+>>> Hi Michael,
+>>>
+>>> Thank you for the patch!
+>>>
+>>> Is it possible to sent the v4l2-compliance output in the next version ?
+
+Missed that remark. Yes, I'll take care to send the output (maybe as
+reply to v7, though).
+
+>>>
+>>> On Wed, Apr 30, 2025 at 11:15:55AM +0200, Michael Riesch via B4 Relay wrote:
+>>>> From: Michael Riesch <michael.riesch@wolfvision.net>
+>>>>
+>>>
+>>> SNIP
+>>>
+>>>> +irqreturn_t rkcif_dvp_isr(int irq, void *ctx)
+>>>> +{
+>>>> +	struct device *dev = ctx;
+>>>> +	struct rkcif_device *rkcif = dev_get_drvdata(dev);
+>>>> +	struct rkcif_stream *stream;
+>>>> +	u32 intstat, lastline, lastpix, cif_frmst;
+>>>> +	irqreturn_t ret = IRQ_NONE;
+>>>> +
+>>>> +	if (!rkcif->match_data->dvp)
+>>>> +		return ret;
+>>>> +
+>>>> +	intstat = cif_dvp_read(rkcif, RKCIF_DVP_INTSTAT);
+>>>> +	cif_frmst = cif_dvp_read(rkcif, RKCIF_DVP_FRAME_STATUS);
+>>>> +	lastline = RKCIF_FETCH_Y(cif_dvp_read(rkcif, RKCIF_DVP_LAST_LINE));
+>>>> +	lastpix = RKCIF_FETCH_Y(cif_dvp_read(rkcif, RKCIF_DVP_LAST_PIX));
+>>>> +
+>>>> +	if (intstat & RKCIF_INTSTAT_FRAME_END) {
+>>>> +		cif_dvp_write(rkcif, RKCIF_DVP_INTSTAT,
+>>>> +			      RKCIF_INTSTAT_FRAME_END_CLR |
+>>>> +				      RKCIF_INTSTAT_LINE_END_CLR);
+>>>> +
+>>>> +		stream = &rkcif->interfaces[RKCIF_DVP].streams[RKCIF_ID0];
+>>>> +
+>>>> +		if (stream->stopping) {
+>>>> +			cif_dvp_stop_streaming(stream);
+>>>> +			wake_up(&stream->wq_stopped);
+>>>> +			return IRQ_HANDLED;
+>>>> +		}
+>>>> +
+>>>> +		if (lastline != stream->pix.height) {
+>>>> +			v4l2_err(&rkcif->v4l2_dev,
+>>>> +				 "bad frame, irq:%#x frmst:%#x size:%dx%d\n",
+>>>> +				 intstat, cif_frmst, lastpix, lastline);
+>>>> +
+>>>> +			cif_dvp_reset_stream(rkcif);
+>>>> +		}
+>>>> +
+>>>> +		rkcif_stream_pingpong(stream);
+>>>> +
+>>>> +		ret = IRQ_HANDLED;
+>>>
+>>> just return IRQ_HANDLED like above ?
+>>
+>> I think I'll go along Bryan's suggestion to make it more consistent.
+>>
+>>>
+>>>> +	}
+>>>> +
+>>>> +	return ret;
+>>>> +}
+>>>> +
+>>>> +int rkcif_dvp_register(struct rkcif_device *rkcif)
+>>>> +{
+>>>> +	struct rkcif_interface *interface;
+>>>> +	int ret, i;
+>>>> +
+>>>> +	if (!rkcif->match_data->dvp)
+>>>> +		return 0;
+>>>> +
+>>>> +	interface = &rkcif->interfaces[RKCIF_DVP];
+>>>> +	interface->index = RKCIF_DVP;
+>>>> +	interface->type = RKCIF_IF_DVP;
+>>>> +	interface->in_fmts = rkcif->match_data->dvp->in_fmts;
+>>>> +	interface->in_fmts_num = rkcif->match_data->dvp->in_fmts_num;
+>>>> +	interface->set_crop = rkcif_dvp_set_crop;
+>>>> +	ret = rkcif_interface_register(rkcif, interface);
+>>>> +	if (ret)
+>>>> +		return 0;
+>>> 		|
+>>> 		+-> Copy-paste error ?
+>>
+>> Hm. It's not a mistake. But maybe it is a bit misleading.
+>>
+>> The point here is that if something fails with registering the DVP, the
+>> driver may continue to register other entities, such as the MIPI capture
+>> thing.
 > 
+> what if you want to register the DVP interface and it fails ? Maybe two
+> separate function for rkcif_{dvp,mipi}_interface_register(), call one of
+> them based on match_data and verify the ret code --> fail if non-zero ?
 
-I'm confused about this. The suggestion wasn't that register_netdev
-might fail and I need to destroy phylink? Or the linked patch was merged
-and I need to rebase on top of net-next?
+Seems I prepared everything in rkcif-dev.c, but failed to complete it in
+rkcif_{dvp,mipi}_capture :-/
 
-I didn't include that change to not cause conflicts but once it's merged
-I will rebase and include that fix.
+rkcif_register() in rkcif-dev.c tolerates -ENODEV, so if e.g. DVP is not
+available on a board, the function will proceed to call
+rkcif_mipi_register. So we should return ret; here. Sounds reasonable?
 
-> > +		if (err)
-> > +			return err;
-> > +	}
-> > +
-> > +	err = register_netdev(dev);
-> > +	if (err)
-> > +		goto free_phylink;
-> > +
-> > +	return 0;
-> > +
-> > +free_phylink:
-> > +	if (airhoa_is_phy_external(port))
-> > +		phylink_destroy(port->phylink);
-> > +
-> > +	return err;
-> >  }
-> >  
-> >  static int airoha_probe(struct platform_device *pdev)
-> > @@ -2967,6 +3114,9 @@ static int airoha_probe(struct platform_device *pdev)
-> >  		struct airoha_gdm_port *port = eth->ports[i];
-> >  
-> >  		if (port && port->dev->reg_state == NETREG_REGISTERED) {
-> > +			if (airhoa_is_phy_external(port))
-> > +				phylink_destroy(port->phylink);
-> > +
-> >  			unregister_netdev(port->dev);
-> >  			airoha_metadata_dst_free(port);
-> >  		}
-> > @@ -2994,6 +3144,9 @@ static void airoha_remove(struct platform_device *pdev)
-> >  			continue;
-> >  
-> >  		airoha_dev_stop(port->dev);
-> > +		if (airhoa_is_phy_external(port))
-> > +			phylink_destroy(port->phylink);
-> > +
-> >  		unregister_netdev(port->dev);
-> >  		airoha_metadata_dst_free(port);
-> >  	}
-> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
-> > index 53f39083a8b0..73a500474076 100644
-> > --- a/drivers/net/ethernet/airoha/airoha_eth.h
-> > +++ b/drivers/net/ethernet/airoha/airoha_eth.h
-> > @@ -498,6 +498,9 @@ struct airoha_gdm_port {
-> >  	struct net_device *dev;
-> >  	int id;
-> >  
-> > +	struct phylink *phylink;
-> > +	struct phylink_config phylink_config;
-> > +
-> >  	struct airoha_hw_stats stats;
-> >  
-> >  	DECLARE_BITMAP(qos_sq_bmap, AIROHA_NUM_QOS_CHANNELS);
-> > diff --git a/drivers/net/ethernet/airoha/airoha_regs.h b/drivers/net/ethernet/airoha/airoha_regs.h
-> > index d931530fc96f..54f7079b28b0 100644
-> > --- a/drivers/net/ethernet/airoha/airoha_regs.h
-> > +++ b/drivers/net/ethernet/airoha/airoha_regs.h
-> > @@ -357,6 +357,18 @@
-> >  #define IP_FRAGMENT_PORT_MASK		GENMASK(8, 5)
-> >  #define IP_FRAGMENT_NBQ_MASK		GENMASK(4, 0)
-> >  
-> > +#define REG_GDMA4_TMBI_FRAG		0x2028
-> > +#define GDMA4_SGMII1_TX_WEIGHT_MASK	GENMASK(31, 26)
-> > +#define GDMA4_SGMII1_TX_FRAG_SIZE_MASK	GENMASK(25, 16)
-> > +#define GDMA4_SGMII0_TX_WEIGHT_MASK	GENMASK(15, 10)
-> > +#define GDMA4_SGMII0_TX_FRAG_SIZE_MASK	GENMASK(9, 0)
-> > +
-> > +#define REG_GDMA4_RMBI_FRAG		0x202c
-> > +#define GDMA4_SGMII1_RX_WEIGHT_MASK	GENMASK(31, 26)
-> > +#define GDMA4_SGMII1_RX_FRAG_SIZE_MASK	GENMASK(25, 16)
-> > +#define GDMA4_SGMII0_RX_WEIGHT_MASK	GENMASK(15, 10)
-> > +#define GDMA4_SGMII0_RX_FRAG_SIZE_MASK	GENMASK(9, 0)
-> > +
-> >  #define REG_MC_VLAN_EN			0x2100
-> >  #define MC_VLAN_EN_MASK			BIT(0)
-> >  
-> > -- 
-> > 2.48.1
-> > 
+> 
+>>
+>> I'll have another look over this mechanism and will try to make it more
+>> comprehensible.
+>>
+>>>
+>>>> +
+>>>> +	if (rkcif->match_data->dvp->setup)
+>>>> +		rkcif->match_data->dvp->setup(rkcif);
+>>>> +
+>>>> +	interface->streams_num = rkcif->match_data->dvp->has_ids ? 4 : 1;
+>>>> +	for (i = 0; i < interface->streams_num; i++) {
+>>>> +		struct rkcif_stream *stream = &interface->streams[i];
+>>>> +
+>>>> +		stream->id = i;
+>>>> +		stream->interface = interface;
+>>>> +		stream->out_fmts = rkcif->match_data->dvp->out_fmts;
+>>>> +		stream->out_fmts_num = rkcif->match_data->dvp->out_fmts_num;
+>>>> +		stream->queue_buffer = cif_dvp_queue_buffer;
+>>>> +		stream->start_streaming = cif_dvp_start_streaming;
+>>>> +		stream->stop_streaming = cif_dvp_stop_streaming;
+>>>> +
+>>>> +		ret = rkcif_stream_register(rkcif, stream);
+>>>> +		if (ret)
+>>>> +			goto err_streams_unregister;
+>>>> +	}
+>>>> +	return 0;
+>>>> +
+>>>> +err_streams_unregister:
+>>>> +	for (; i >= 0; i--)
+>>>> +		rkcif_stream_unregister(&interface->streams[i]);
+>>>> +	rkcif_interface_unregister(interface);
+>>>> +
+>>>> +	return ret;
+>>>> +}
+>>>> +
+>>>
+>>> SNIP
+>>>
+>>>> +static inline struct rkcif_buffer *to_rkcif_buffer(struct vb2_v4l2_buffer *vb)
+>>>> +{
+>>>> +	return container_of(vb, struct rkcif_buffer, vb);
+>>>> +}
+>>>> +
+>>>> +static inline struct rkcif_stream *to_rkcif_stream(struct video_device *vdev)
+>>>> +{
+>>>> +	return container_of(vdev, struct rkcif_stream, vdev);
+>>>> +}
+>>>> +
+>>>> +static struct rkcif_buffer *rkcif_stream_pop_buffer(struct rkcif_stream *stream)
+>>>> +{
+>>>> +	struct rkcif_buffer *buffer = NULL;
+>>>> +	unsigned long lock_flags;
+>>>> +
+>>>> +	spin_lock_irqsave(&stream->driver_queue_lock, lock_flags);
+>>>
+>>> guard(spinlock_irqsave)(&stream->driver_queue_lock) will simplify this function.
+>>
+>> I'll guard up these methods in v7.
+>>
+>>>
+>>>> +
+>>>> +	if (list_empty(&stream->driver_queue))
+>>>> +		goto err_empty;
+>>>> +
+>>>> +	buffer = list_first_entry(&stream->driver_queue, struct rkcif_buffer,
+>>>> +				  queue);
+>>>> +	list_del(&buffer->queue);
+>>>> +
+>>>> +err_empty:
+>>>> +	spin_unlock_irqrestore(&stream->driver_queue_lock, lock_flags);
+>>>> +	return buffer;
+>>>> +}
+>>>> +
+>>>> +static void rkcif_stream_push_buffer(struct rkcif_stream *stream,
+>>>> +				     struct rkcif_buffer *buffer)
+>>>> +{
+>>>> +	unsigned long lock_flags;
+>>>> +
+>>>> +	spin_lock_irqsave(&stream->driver_queue_lock, lock_flags);
+>>>> +	list_add_tail(&buffer->queue, &stream->driver_queue);
+>>>> +	spin_unlock_irqrestore(&stream->driver_queue_lock, lock_flags);
+>>>> +}
+>>>> +
+>>>> +static inline void rkcif_stream_return_buffer(struct rkcif_buffer *buffer,
+>>>> +					      enum vb2_buffer_state state)
+>>>> +{
+>>>> +	struct vb2_v4l2_buffer *vb = &buffer->vb;
+>>>> +
+>>>> +	vb2_buffer_done(&vb->vb2_buf, state);
+>>>> +}
+>>>> +
+>>>> +static void rkcif_stream_complete_buffer(struct rkcif_stream *stream,
+>>>> +					 struct rkcif_buffer *buffer)
+>>>> +{
+>>>> +	struct vb2_v4l2_buffer *vb = &buffer->vb;
+>>>> +
+>>>> +	vb->vb2_buf.timestamp = ktime_get_ns();
+>>>> +	vb->sequence = stream->frame_idx;
+>>>> +	vb2_buffer_done(&vb->vb2_buf, VB2_BUF_STATE_DONE);
+>>>> +	stream->frame_idx++;
+>>>> +}
+>>>> +
+>>>> +void rkcif_stream_pingpong(struct rkcif_stream *stream)
+>>>> +{
+>>>> +	struct rkcif_buffer *buffer;
+>>>> +
+>>>> +	buffer = stream->buffers[stream->frame_phase];
+>>>> +	if (!buffer->is_dummy)
+>>>> +		rkcif_stream_complete_buffer(stream, buffer);
+>>>
+>>> You can actually keep this frame dropping mechanism without using the
+>>> dummy buffer.
+>>>
+>>> You can set a drop flag to TRUE: keep overwriting the buffer you already have
+>>> without returning it to user-space until you can get another buffer, set
+>>> the flag again to FALSE and resume returning the buffers to user-space.
+>>
+>> The approach you describe is what the downstream driver does and I am
+>> not really happy with it. A perfectly fine frame is sacrificed in a
+>> buffer starvation situation.
+> 
+> Oh I thought the downstream driver does it with the dummy buffer.
+> 
+>>
+>> The approach in the patch series at hand follows the example in the
+>> rkisp1 driver, which should be a good reference.
+> 
+> Ack.
 
+Just FWIW: after some discussions off-list I am not sure anymore that
+the dummy buffer approach is a good idea. However, maybe we can defer
+this -- this is something that can be changed anytime once the initial
+driver is mainline.
 
+> 
+>>
+>>>> +
+>>>> +	buffer = rkcif_stream_pop_buffer(stream);
+>>>> +	if (buffer) {
+>>>> +		stream->buffers[stream->frame_phase] = buffer;
+>>>> +		stream->buffers[stream->frame_phase]->is_dummy = false;
+>>>> +	} else {
+>>>> +		stream->buffers[stream->frame_phase] = &stream->dummy.buffer;
+>>>> +		stream->buffers[stream->frame_phase]->is_dummy = true;
+>>>> +		dev_warn(stream->rkcif->dev,
+>>>> +			 "no buffer available, frame will be dropped\n");
+>>>
+>>> This warning can quickly flood the kernel logs if the user-space is too slow in
+>>> enqueuing the buffers.
+>>
+>> True. dev_warn_ratelimited(...)?
+>>
+> 
+> Does frame dropping deserve a warning ? If you don't think so, maybe a
+> debug or info ?
 
--- 
-	Ansuel
+_dbg sounds reasonable for that.
+
+> 
+>>>
+>>>> +	}
+>>>> +
+>>>> +	if (stream->queue_buffer)
+>>>> +		stream->queue_buffer(stream, stream->frame_phase);
+>>>
+>>> is this if statement really needed ?
+>>
+>> I find it good practice to check the callbacks before calling them. But
+>> this is a matter of taste, of course.
+>>
+>>>
+>>>> +
+>>>> +	stream->frame_phase = 1 - stream->frame_phase;
+>>>> +}
+>>>> +
+>>>> +static int rkcif_stream_init_buffers(struct rkcif_stream *stream)
+>>>> +{
+>>>> +	struct v4l2_pix_format_mplane *pix = &stream->pix;
+>>>> +	int i;
+>>>> +
+>>>> +	stream->buffers[0] = rkcif_stream_pop_buffer(stream);
+>>>> +	if (!stream->buffers[0])
+>>>> +		goto err_buff_0;
+>>>> +
+>>>> +	stream->buffers[1] = rkcif_stream_pop_buffer(stream);
+>>>> +	if (!stream->buffers[1])
+>>>> +		goto err_buff_1;
+>>>> +
+>>>> +	if (stream->queue_buffer) {
+>>>> +		stream->queue_buffer(stream, 0);
+>>>> +		stream->queue_buffer(stream, 1);
+>>>> +	}
+>>>> +
+>>>> +	stream->dummy.size = pix->num_planes * pix->plane_fmt[0].sizeimage;
+>>>> +	stream->dummy.vaddr =
+>>>> +		dma_alloc_attrs(stream->rkcif->dev, stream->dummy.size,
+>>>> +				&stream->dummy.buffer.buff_addr[0], GFP_KERNEL,
+>>>> +				DMA_ATTR_NO_KERNEL_MAPPING);
+>>>> +	if (!stream->dummy.vaddr)
+>>>> +		goto err_dummy;
+>>>> +
+>>>> +	for (i = 1; i < pix->num_planes; i++)
+>>>> +		stream->dummy.buffer.buff_addr[i] =
+>>>> +			stream->dummy.buffer.buff_addr[i - 1] +
+>>>> +			pix->plane_fmt[i - 1].bytesperline * pix->height;
+>>>> +
+>>>> +	return 0;
+>>>> +
+>>>> +err_dummy:
+>>>> +	rkcif_stream_return_buffer(stream->buffers[1], VB2_BUF_STATE_QUEUED);
+>>>> +	stream->buffers[1] = NULL;
+>>>> +
+>>>> +err_buff_1:
+>>>> +	rkcif_stream_return_buffer(stream->buffers[0], VB2_BUF_STATE_QUEUED);
+>>>> +	stream->buffers[0] = NULL;
+>>>> +err_buff_0:
+>>>> +	return -EINVAL;
+>>>> +}
+>>>> +
+>>>
+>>> SNIP
+>>>
+>>>> +static int rkcif_stream_init_vb2_queue(struct vb2_queue *q,
+>>>> +				       struct rkcif_stream *stream)
+>>>> +{
+>>>> +	q->type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+>>>> +	q->io_modes = VB2_MMAP | VB2_DMABUF;
+>>>> +	q->drv_priv = stream;
+>>>> +	q->ops = &rkcif_stream_vb2_ops;
+>>>> +	q->mem_ops = &vb2_dma_contig_memops;
+>>>> +	q->buf_struct_size = sizeof(struct rkcif_buffer);
+>>>> +	q->min_queued_buffers = CIF_REQ_BUFS_MIN;
+>>>
+>>> If I recall correctly min_queued_buffers should be the strict minimum
+>>> number of buffers you need to start streaming. So in this case it should
+>>> be 3 = 2 pingpong buffers + 1 dummy buffer.
+>>
+>> The dummy buffer is allocated separately and does not need to be
+>> accounted for.
+>>
+>> Two pingpong buffers is what the hardware can queue, but in practice, to
+>> start (and, above all, keep on) streaming you'll need more.
+>>
+>>> VIDIOC_REQBUFS will allocate min_queued_buffers + 1 and user-space will
+>>> probably allocate even more anyway.
+>>
+>> Is that so? I found that user space relies too much on this minimum
+>> buffer count and experienced several buffer starvation situations
+>> because kernel AND user space were to cheap in terms of buffer count.
+>> Maybe 8 is too many, but in practice four buffers are required at least
+>> for a decent 2160p stream (one ready for DMA write, one ongoing DMA
+>> write, one stable for processing (maybe DRM scanout or whatever the
+>> application is), one spare).
+>>
+>> I am open to suggestions but please keep real life situations in mind
+>> and move away from theoretical stand-alone-capture-hw setups.
+> 
+> so the documentation says:
+> --------------------------------------------------------------------------
+> min_queued_buffers is used when a DMA engine cannot be started unless at
+> least this number of buffers have been queued into the driver.
+> --------------------------------------------------------------------------
+> 
+> and:
+> --------------------------------------------------------------------------
+> VIDIOC_REQBUFS will ensure at least @min_queued_buffers + 1
+> buffers will be allocated.
+> --------------------------------------------------------------------------
+> 
+> I also found theses patches:
+> https://lore.kernel.org/linux-media/20231211133251.150999-1-benjamin.gaignard@collabora.com/
+> https://lore.kernel.org/all/20241007124225.63463-1-jacopo.mondi@ideasonboard.com/
+> 
+> If I understood correctly there is a difference between:
+> 
+> - the minimal number of buffers to be allocated with VIDIOC_REQBUFS
+> - the minimal number of buffers to make it possible to start streaming
+> 
+> what you are setting is the latter, which means you need 8 buffers to
+> even start streaming which should not be the case for rkcif, which
+> should only need two (of course when using pingpong)
+> 
+> what you mentioned with the minimum number of buffers for a decent stream seems
+> to point more towards @min_reqbufs_allocation:
+> --------------------------------------------------------------------------
+> Drivers can set this if there has to be a certain number of
+> buffers available for the hardware to work effectively.
+> --------------------------------------------------------------------------
+> 
+> of course this being said I am not the expert here so feel free to ask
+> @Laurent @Hans
+
+Thanks a lot for digging out all this info. In particular, the pointer
+to Jacopo's change to the rkisp1 is interesting. I feel kind of stupid
+now because I stumbled over this exact issue when I tried to capture a
+single frame with the rkisp1 driver.
+
+So in general we should let user space decide, as user space knows best
+about the exact application (one-shot capture, stream capture, stream
+capture with extended postprocessing = deeper pipeline, ...).
+
+And following Jacopo's reasoning for the rkisp1 we should set the value
+to 1 here, as we also have a dummy buffer approach.
+
+Best regards,
+Michael
+
+> 
+> --
+> Kind Regards
+> Mehdi Djait
+
 
