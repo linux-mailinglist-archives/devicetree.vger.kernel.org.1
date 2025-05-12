@@ -1,130 +1,188 @@
-Return-Path: <devicetree+bounces-176215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D4EAB32E3
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:17:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E28AB3337
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:23:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 252533B0E74
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:17:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46F0F3A56A1
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:22:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBED325B1F6;
-	Mon, 12 May 2025 09:17:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0950D25B666;
+	Mon, 12 May 2025 09:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="niTPjWWk"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="DKOdR/Sv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F15825B1EB;
-	Mon, 12 May 2025 09:17:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 693E425A32C;
+	Mon, 12 May 2025 09:22:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747041429; cv=none; b=AsahrPOlKgOezZACQkvt6Xhby+2YIBQeWiZwLZ4TRsx+F6LQsRL6PIag/zinJ1kYxwuYZHhUZlpCa4usa6EBGnyYS4c8THXnf6HdIhMYVzQdzNUtskIZRfDRGJEoTZXe2hrLkmuNuLQIqa0L5S/ML8nVaidZ5eUpuSu44Q7v8Vw=
+	t=1747041781; cv=none; b=bszxPQ7RJG0rV1AhoNYXtjE3y6OyMh0YhMgiLLbztwTJXPS5rfBmYrSUW8gdNWdmd8eewxlZ2ex/J+OrmU0d2qKxWx3aPTRN3kXxGIwD4Do8Yr5lp07qIrxYrnF1gH+4jGB83SxPwCV3TGYeG8Hv1kvd+2+tgLtt0x+tGeXsc10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747041429; c=relaxed/simple;
-	bh=cgUSxdmTkxSWldGPZVwO4SD35vXXBfCC9O7HiCH+Pro=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EAOCaFUGvE3bMrf1/haj7cVdQtFeUaYYK9ykXESzLBJRLyfwUzwAuWXD9O5UMGGGpK3MrUw41h+IQJnn5fNHeJJ4rxxa/wO5kK3IEg5D0VhHZHhXd3o7tPy7b128UAZZQyumKftp8+Q54HvrGmCdXh0oeaHaC8SPlKiDJQZBK7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=niTPjWWk; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747041428; x=1778577428;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cgUSxdmTkxSWldGPZVwO4SD35vXXBfCC9O7HiCH+Pro=;
-  b=niTPjWWkeSxaMbIoxVMIRiSNok9wnOlMBbeZHNBWPPUW5yU2kj4+DS9u
-   FJ0vvpqige0q0kc3gPfHwGRq37kUeksMly3g/hQBHMdH12Tzu28LeRBWS
-   xU6widoUrtb/ZB5meCfHsvd2ga3Mu6PhnGBVVKHFhNrq9R3N0x63bl5/L
-   HqxgndUcxbTcoJmjCPV5PldGVz3un0zpk4nwPfE9+tX/UlqRQC1ri8Nd+
-   nVxFxvktUGOphFHq7LRxg718tAAYU6d4xKF2EV9DrbIt1twtcn6SUkHhP
-   UPpPzREXaVguxRcC2gjJGko4PiBjfz+xjc+vpkASN+TcVK+vEcf8lJjIz
-   g==;
-X-CSE-ConnectionGUID: YVDTJUd3ReGpMXtDKOlPOg==
-X-CSE-MsgGUID: wAWsuRVEQtWF0T1yGc8CxA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="66234206"
-X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
-   d="scan'208";a="66234206"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2025 02:17:08 -0700
-X-CSE-ConnectionGUID: f7BfdpYJTnudnygZhtCYJw==
-X-CSE-MsgGUID: J6JM5ZZ0Tkuif9fYGYnj5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
-   d="scan'208";a="137816683"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2025 02:17:02 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uEPHP-00000000sAu-2meb;
-	Mon, 12 May 2025 12:16:59 +0300
-Date: Mon, 12 May 2025 12:16:59 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v8 03/11] pinctrl: Add MAX7360 pinctrl driver
-Message-ID: <aCG8i-wjZZk48vDH@smile.fi.intel.com>
-References: <20250509-mdb-max7360-support-v8-0-bbe486f6bcb7@bootlin.com>
- <20250509-mdb-max7360-support-v8-3-bbe486f6bcb7@bootlin.com>
+	s=arc-20240116; t=1747041781; c=relaxed/simple;
+	bh=cMRDD9njltGQZU4m56ixjyBL0oBdxzE2Vnm1RAr6Bcw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rD7a7NDwkpxwP5jpv/l1KTNMfr1HBiQ3L+r6SrB+dE5lOHCM6B1w2XYc6Q9lsnHE8g26u9Z0XsltNjDXJMJqNunZ6qlm99OjKDg1mi0wgL67CvaxY3AgErX+8YsmwHs+QIf8CtHAnoa6ZmfyaZrv3lRPWjOIitqWXxkWnRZXOms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=DKOdR/Sv; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: af6d6efa2f1211f0813e4fe1310efc19-20250512
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=NTzy79ofiVc6TDcVhdbfFFnTmmvqRTAhzr03Xm9I0jU=;
+	b=DKOdR/Svxh2FP1Elym9SdmOTY1QjJ0e88YwTon460HoiLNuYkyVwSAAnYno9DaMxYGVUKhqttMr3zIXYFM51VPK7snBh1iWb0zFnZwTWIektbrnXnfjCVzWmJcUdWjjIm1sq1bmeK6xrObPL4B/qVE4ZsVUoFv0RtEp2K0nuGOE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:b555ae60-88ea-45c6-9a57-6e26510d126d,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:0ef645f,CLOUDID:bab5dce0-512b-41ef-ab70-9303a9a81417,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:99|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,
+	LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: af6d6efa2f1211f0813e4fe1310efc19-20250512
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
+	(envelope-from <jason-jh.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 518506628; Mon, 12 May 2025 17:22:54 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Mon, 12 May 2025 17:22:51 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Mon, 12 May 2025 17:22:51 +0800
+From: Jason-JH Lin <jason-jh.lin@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>
+CC: Matthias Brugger <matthias.bgg@gmail.com>, Jason-JH Lin
+	<jason-jh.lin@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>, Singo Chang
+	<singo.chang@mediatek.com>, Paul-PL Chen <paul-pl.chen@mediatek.com>, Moudy
+ Ho <moudy.ho@mediatek.com>, Xavier Chang <xavier.chang@mediatek.com>,
+	Xiandong Wang <xiandong.wang@mediatek.com>, Sirius Wang
+	<sirius.wang@mediatek.com>, Fei Shao <fshao@chromium.org>, Chen-yu Tsai
+	<wenst@chromium.org>, <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-media@vger.kernel.org>
+Subject: [PATCH RESEND v5 00/20] Add GCE support for MT8196
+Date: Mon, 12 May 2025 17:19:22 +0800
+Message-ID: <20250512092252.905629-1-jason-jh.lin@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250509-mdb-max7360-support-v8-3-bbe486f6bcb7@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On Fri, May 09, 2025 at 11:14:37AM +0200, Mathieu Dubois-Briand wrote:
-> Add driver for Maxim Integrated MAX7360 pinctrl on the PORT pins. Pins
-> can be used either for GPIO, PWM or rotary encoder functionalities.
+This patch series adds support for the MediaTek MT8196 SoC in the CMDQ
+driver and related subsystems. The changes include adding compatible
+names and iommus property, updating driver data to accommodate hardware
+changes, and modifying the usage of CMDQ APIs to support non-subsys ID
+hardware.
 
-...
+---
+Change in RESEND v5:
+1. Separate the removal of cmdq_get_shift_pa() from [PATCH v5 03/19] to a
+   single patch [PATCH RESEND v5 10/20].
 
-> +#include <linux/array_size.h>
-> +#include <linux/dev_printk.h>
-> +#include <linux/device.h>
-> +#include <linux/device/devres.h>
-> +#include <linux/err.h>
-> +#include <linux/init.h>
-> +#include <linux/mfd/max7360.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
+Change in v5:
+1. Rebase on tag: next-20250424 + patch [1].
+2. Split adding driver data for MT8196 patch to 3 independent patch
+   and add more detail commit message to each patch.
+3. Refine passing shift_pa as the parameter in API to storing it into
+   the cmdq_pkt.
+4. Refine DMA address potential issue in cmdq mailbox driver.
+5. Change the mminfra_offset related mbox API to passing it by cmdq_pkt.
+6. Add new cmdq_pkt_write_pa() and cmdq_pkt_write_subsys() APIs to
+   replace the cmdq_pkt_write().
 
-+ stddef.h
+[1] mailbox: mtk-cmdq: Refine GCE_GCTL_VALUE setting
+- https://patchwork.kernel.org/project/linux-mediatek/patch/20250421035650.441383-1-jason-jh.lin@mediatek.com/
 
-(you use NULL and true at least)
+Change in v4:
+1. Remove dt-binding header and add a gce header in dts folder.
+2. Remove dot in sign-off name.
+3. Change addr type from u32 to dma_addr_t for cmdq_reg_shift_addr() and
+   cmdq_reg_revert_addr().
 
-...
+Change in v3:
+1. Merge 2 dt-bindings pathes together and add more detail commit message.
+2. Change type u32 to phys_addr_t for pa_base of struct cmdq_client_reg.
+3. Remove cmdq_subsys_is_valid() and subsys_num in CMDQ driver.
+4. Add CMDQ_SUBSYS_INVALID to check subsys instead of using
+   cmdq_subsys_is_invalid().
+5. Make use of CMDQ_THR_SPR0 define to the parameter of CMDQ APIs.
+6. Rebase on the new MACRO in mtk-mdp3-comp.h.
 
-With the above being addressed
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Change in v2:
+1. Remove the constant and fix warning in dt-bindings.
+2. Remove the pa_base parameter of CMDQ APIs and related modification.
+3. Move subsys checking to client drivers and use 2 alternative
+   CMDQ APIs to achieve the same functionality.
+---
+
+Jason-JH Lin (20):
+  arm64: dts: mediatek: Add GCE header for MT8196
+  mailbox: mtk-cmdq: Refine DMA address handling for the command buffer
+  mailbox: mtk-cmdq: Add cmdq private data to cmdq_pkt for generating
+    instruction
+  soc: mediatek: mtk-cmdq: Add cmdq_get_mbox_priv() in cmdq_pkt_create()
+  soc: mediatek: mtk-cmdq: Add cmdq_pkt_jump_rel_temp() for removing
+    shift_pa
+  media: platform: mtk-mdp3: Change cmdq_pkt_jump_rel() to
+    cmdq_pkt_jump_rel_temp()
+  soc: mediatek: mtk-cmdq: Remove shift_pa parameter from
+    cmdq_pkt_jump()
+  media: platform: mtk-mdp3: Use cmdq_pkt_jump_rel() without shift_pa
+  soc: mediatek: mtk-cmdq: Remove cmdq_pkt_jump() and
+    cmdq_pkt_jump_rel_temp()
+  mailbox: mtk-cmdq: Remove unsued cmdq_get_shift_pa()
+  mailbox: mtk-cmdq: Add GCE hardware virtualization configuration
+  mailbox: mtk-cmdq: Add mminfra_offset configuration for DRAM
+    transaction
+  mailbox: mtk-cmdq: Add driver data to support for MT8196
+  soc: mediatek: mtk-cmdq: Add pa_base parsing for hardware without
+    subsys ID support
+  soc: mediatek: mtk-cmdq: Add new APIs to replace cmdq_pkt_write() and
+    cmdq_pkt_write_mask()
+  soc: mediatek: mtk-cmdq: Add mminfra_offset adjustment for DRAM
+    addresses
+  soc: mediatek: Add programming flow for unsupported subsys ID hardware
+  drm/mediatek: Add programming flow for unsupported subsys ID hardware
+  media: mediatek: mdp3: Add programming flow for unsupported subsys ID
+    hardware
+  soc: mediatek: mtk-cmdq: Remove cmdq_pkt_write() and
+    cmdq_pkt_write_mask()
+
+ arch/arm64/boot/dts/mediatek/mt8196-gce.h     | 612 ++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.c       |  24 +-
+ drivers/mailbox/mtk-cmdq-mailbox.c            | 115 +++-
+ .../platform/mediatek/mdp3/mtk-mdp3-cmdq.c    |  16 +-
+ .../platform/mediatek/mdp3/mtk-mdp3-comp.h    |  70 +-
+ .../platform/mediatek/mdp3/mtk-mdp3-core.c    |   2 -
+ .../platform/mediatek/mdp3/mtk-mdp3-core.h    |   1 -
+ drivers/soc/mediatek/mtk-cmdq-helper.c        |  68 +-
+ drivers/soc/mediatek/mtk-mmsys.c              |  12 +-
+ drivers/soc/mediatek/mtk-mutex.c              |   8 +-
+ include/linux/mailbox/mtk-cmdq-mailbox.h      |  19 +-
+ include/linux/soc/mediatek/mtk-cmdq.h         |  83 ++-
+ 12 files changed, 941 insertions(+), 89 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8196-gce.h
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
