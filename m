@@ -1,173 +1,123 @@
-Return-Path: <devicetree+bounces-176261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3547AB3581
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:02:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50CB0AB3578
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:01:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2280E16BA02
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 10:59:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AA28188D6C9
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11EA9269830;
-	Mon, 12 May 2025 10:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0BFB265CC1;
+	Mon, 12 May 2025 11:00:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="ShP2Q1lh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P0BaDP0x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BDC0268FF2
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 10:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75140255F51;
+	Mon, 12 May 2025 11:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747047555; cv=none; b=ZwthU/F5Gr9vbvC64PJK1x3QCTdfFDsQ54/IoXLkz/oWw2a+XrwStuGdQsfRlQAHuW6+AEcY10iEeGb972Bzu4ESkl3dpU2T5vNjFSvGyOg56XaG4OE3dK+tmXbk622SZPOBKm/xaZqvx80dn/qMks2/+VvfuvCyOyOnr8mqcFA=
+	t=1747047636; cv=none; b=PKImSOjCFQrhBkfkE2j5TAKbqEKEkGCxenRIi3KM4yXnfIy9RB/KmJZNfFRzGfbvvLwCH6bOUA/KVSlOCOviEJ1Wr8gK0sE5x+4QmgsiKMps6XudjhGzWMt6ZtqG844f/nJeCfQWy4FuCzyZ1ZXftXPSavl3gSQDtm3mIeMAXGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747047555; c=relaxed/simple;
-	bh=KOKI1TT7Ffxa/5Huul2yUCdIH6bNQbnt9ywZxg209f0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=eq6+MgxgtEWTlX4VWUjg7ahNZwqcYtakWzAP07GyurxsuL8x2xSQU/AEPKGBEpbLeuluHVZIR+BJkp1iliUvli5FsqoC3G2p7whStcQsiQiuWmxW4ynPrL5BpXDytrtYh+C6yjeOoWbjLjMawQlMOsQv6MDomH202SowN9ZtBCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=ShP2Q1lh; arc=none smtp.client-ip=91.218.175.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1747047636; c=relaxed/simple;
+	bh=3CUeLBiq43ESS07ytjkjdkGSrLDtW10YLcITOlNk0Us=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mf5Ref8nrOQ/GkyLQZaXc/HDp1is4hwB6Zo9Rhwbuj00Wlir+MkT73HVzaQ0V0a/hb7tlYggchB3vz5DyKHE65recEH+H530Hp2Pm4hHQWKBYuLRqn0YlBZ9vP5umZfVuZwJ2OWcKsLpIjvt5lWFdfNHAJWoZHmDqu1Gj2t6qp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P0BaDP0x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD321C4CEE7;
+	Mon, 12 May 2025 11:00:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747047635;
+	bh=3CUeLBiq43ESS07ytjkjdkGSrLDtW10YLcITOlNk0Us=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P0BaDP0x3WYI5lv7vmNU8AMs6gtkYE2dUP0ykAHciRG9tYSCsCICTSaYaxeO8xytD
+	 wujdXaZOCugbAv+NZ7Pc5vRAou8ssrkOHgDPAVf52G0d2RXxR5H1AgjMZ0iefRz/38
+	 LpRCf3Ap2ijHsvu35NFPnf/w8b0aQMLRA1kJlPr9uYgEUbn6IE68VJWSiomXOKjypS
+	 FsQXGs551zVyQwg+XBgvt1fJjyXg0tkj9PszzDYtvjuzC7FswuFsLvksk5IJFXH24D
+	 d0M3mec49KJdrJ03MYJYPsmfmhPBXUVeMfp0Vz8ACRQpMizJ7hYeZi54QIMrpKRRzU
+	 WpRYVY9KnLSng==
+Date: Mon, 12 May 2025 12:00:31 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Nick Hu <nick.hu@sifive.com>, Cyan Yang <cyan.yang@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>
+Subject: Re: [PATCH] dt-bindings: power: Add SiFive Domain Management
+ controllers
+Message-ID: <20250512-popcorn-clustered-7ab2c57c7f39@spud>
+References: <20250509021605.26764-1-nick.hu@sifive.com>
+ <20250509-small-graceful-limpet-d0ea41@kuoka>
+ <CAKddAkAzDGL-7MbroRqQnZzPXOquUMKNuGGppqB-d_XZXbcvBA@mail.gmail.com>
+ <bd001136-eb48-44f0-8724-09eeb022df8e@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1747047550;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=T8/Ht4vLH47yQgnyA3aHoKEjFyY3IKH+TxDUhnG4Pis=;
-	b=ShP2Q1lh0QUy9ERDnw/XyUESNdFmosr43cn7zNMQgNobgnz3j/jedkv9j5CKVBYNm+8vDn
-	N0gyToplqVDXrQrVDcUo6cyt5E4+/YT8KJ5L9dFRdOWn2PZXu6NEvup8tYnORw9ZAUZpov
-	VBU9NUrFQ69gEAFU4nxCCclW/gFw4YVNjlPQD19mamiA/0ygoD4YmyVflSybIMuGtxGRbb
-	Gc17pDEGSpSW9spEv7cHsnlo+Uy1UYeDbt4WgEBK4KiHyKOTaeX1RbQkohfqK/VXiiRBOx
-	vhvHoPWtq25Yuek/wANmqPZYLaLtTNlXPQF/SbXXdC9/fLBBJNlNr1jTIdOMhA==
-Content-Type: multipart/signed;
- boundary=f5128d620a41dad2d3ab473cb7c3567b2921ffecd91198bee2646459e69b;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Mon, 12 May 2025 12:58:51 +0200
-Message-Id: <D9U4NW0TLBIE.2WTOIETA78EVQ@cknow.org>
-Subject: Re: [PATCH 0/1] arm64: dts: rockchip: rk3568: Move PCIe3 MSI to use
- GIC ITS
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Chukun Pan" <amadeus@jmu.edu.cn>, <linux-pci@vger.kernel.org>
-Cc: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
- <dsimic@manjaro.org>, <heiko@sntech.de>, <krzk+dt@kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <linux-rockchip@lists.infradead.org>
-References: <D9RSA5K547DD.1LYPIZZM4XALS@cknow.org>
- <20250512070009.336989-1-amadeus@jmu.edu.cn>
-In-Reply-To: <20250512070009.336989-1-amadeus@jmu.edu.cn>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="rEAzhEWO5LPl9b4j"
+Content-Disposition: inline
+In-Reply-To: <bd001136-eb48-44f0-8724-09eeb022df8e@kernel.org>
 
---f5128d620a41dad2d3ab473cb7c3567b2921ffecd91198bee2646459e69b
+
+--rEAzhEWO5LPl9b4j
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On Mon, May 12, 2025 at 12:39:37PM +0200, Krzysztof Kozlowski wrote:
+> On 12/05/2025 05:20, Nick Hu wrote:
+> > On Fri, May 9, 2025 at 2:40=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel=
+=2Eorg> wrote:
+> >>
+> >> On Fri, May 09, 2025 at 10:16:04AM GMT, Nick Hu wrote:
+> >>> SiFive Domain Management controller includes the following components
+> >>> - SiFive Tile Management Controller
+> >>> - SiFive Cluster Management Controller
+> >>> - SiFive Core Complex Management Controller
+> >>>
+> >>> These controllers control the clock and power domain of the
+> >>> corresponding domain.
+> >>>
+> >>> Signed-off-by: Nick Hu <nick.hu@sifive.com>
+> >>> Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+> >>> ---
+> >>>  .../devicetree/bindings/power/sifive,tmc.yaml | 89 +++++++++++++++++=
+++
+> >>
+> >> Where is a patch with the driver (user of the binding)?
+> >>
+> > We are hoping the driver can be submitted at a later stage.
+> > The driver that handles the MMIO is implemented in OpenSBI and depends
+> > on some prerequisite patches [1], so it will follow afterward.
+>=20
+> This patch alone makes little sense and brings little benefit. Post this
+> with user.
 
-Added linux-pci ML to "To".
+Unless the justification is that they're submitting a driver to OpenSBI
+that uses this binding, but in that case link it in the commit message
+and explain.
 
-On Mon May 12, 2025 at 9:00 AM CEST, Chukun Pan wrote:
->> > With this patch I get the following kernel warnings:
->> >
->> > pci 0001:10:00.0: Primary bus is hard wired to 0
->> > pci 0002:20:00.0: Primary bus is hard wired to 0
->> >
->> > If I 'unapply' this patch, I don't see those warnings.
->
->> I was pretty sure I had seen those messages before, but couldn't find
->> them before. But now I have: on my rk3588-rock-5b.
->
-> Thanks for the reminder, I didn't notice this before.
-> The BSP kernel also has this warning.
->
-> Before this patch:
-> [    2.997725] pci_bus 0001:01: busn_res: can not insert [bus 01-ff] unde=
-r [bus 00-0f] (conflicts with (null) [bus 00-0f])
-> [    3.009990] pci 0001:00:00.0: BAR 6: assigned [mem 0xf2200000-0xf220ff=
-ff pref]
-> [    3.018100] pci 0001:00:00.0: PCI bridge to [bus 01-ff]
-> ...
-> [    3.401416] pci_bus 0002:01: busn_res: can not insert [bus 01-ff] unde=
-r [bus 00-0f] (conflicts with (null) [bus 00-0f])
-> ...
-> [    3.545459] pci 0002:00:00.0: PCI bridge to [bus 01-ff]
->
-> After this patch:
-> [    3.037779] pci 0001:10:00.0: Primary bus is hard wired to 0
-> [    3.044120] pci 0001:10:00.0: bridge configuration invalid ([bus 01-ff=
-]), reconfiguring
-> [    3.053362] pci_bus 0001:11: busn_res: [bus 11-1f] end is updated to 1=
-1
-> [    3.068920] pci 0001:10:00.0: PCI bridge to [bus 11]
-> ...
-> [    3.451429] pci 0002:20:00.0: Primary bus is hard wired to 0
-> [    3.457793] pci 0002:20:00.0: bridge configuration invalid ([bus 01-ff=
-]), reconfiguring
-> ...
-> [    3.535794] pci_bus 0002:21: busn_res: [bus 21-2f] end is updated to 2=
-1
-> ...
-> [    3.612893] pci 0002:20:00.0: PCI bridge to [bus 21]
->
-> Looks like a harmless warning.
-
-I see various messages which look odd or suboptimal to me:
-- (conflicts with (null) [bus 00-0f])
-- bridge configuration invalid ([bus 01-ff]), reconfiguring
-
-But those are informational messages, so I guess that is considered
-normal. Looking a bit further and it does look that the severities in
-``drivers/pci/probe.c`` are chosen deliberately. So even though my NVMe
-drives seem to work, I'm not ready yet to ignore a WARNING.
-
-In my view, a warning is something that should be fixed or if it's
-indeed harmless, then its severity should be downgraded.
-
-So I looked where that warning came from and found commit
-71f6bd4a2313 ("PCI: workaround hard-wired bus number V2")
-
-And its commit message does not make it clear to *me* if it's valid:
-
-    Fixes PCI device detection on IBM xSeries IBM 3850 M2 / x3950 M2
-    when using ACPI resources (_CRS).
-    This is default, a manual workaround (without this patch)
-    would be pci=3Dnocrs boot param.
-
-    V2: Add dev_warn if the workaround is hit. This should reveal
-    how common such setups are (via google) and point to possible
-    problems if things are still not working as expected.
-
-This could be interpreted as "let's make it a warning so people will put
-it in a search engine (and not just ignore it) and then we can find out
-via that, if it's a common issue".
-
-It would be helpful if the people (way) more familiar with the PCI
-subsystem then me to tell me/us whether the severity is appropriate (and
-thus should be fixed?) or if this should be an info or dbg level message
-instead.
-
-Cheers,
-  Diederik
-
---f5128d620a41dad2d3ab473cb7c3567b2921ffecd91198bee2646459e69b
+--rEAzhEWO5LPl9b4j
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaCHUdwAKCRDXblvOeH7b
-brPcAQDFLvLOr4MVv6bPcn//tl4F4G7GpE+qkYliDw8IQiSYpAEAmxHUXv878qId
-zZdpqj/69uyB2oVZDR5clQaoGkkD7wU=
-=2NDu
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCHUzwAKCRB4tDGHoIJi
+0scJAQDCCNZPASUEEC0yp7XmtvMCNjrvSTAqlpkpw56Mt5WVggD/f3/eerb2ZMfz
+pnUobj4FK/24InsyO75VNNGPP8KTHgU=
+=Z7nY
 -----END PGP SIGNATURE-----
 
---f5128d620a41dad2d3ab473cb7c3567b2921ffecd91198bee2646459e69b--
+--rEAzhEWO5LPl9b4j--
 
