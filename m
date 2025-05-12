@@ -1,571 +1,205 @@
-Return-Path: <devicetree+bounces-176287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E51CCAB365D
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:56:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AC18AB3662
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:56:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86EB319E118C
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:55:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BEEC97ADA10
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:55:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B45F62949EB;
-	Mon, 12 May 2025 11:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D956329374A;
+	Mon, 12 May 2025 11:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="r1WDX5XQ"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="UChsZNBX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E222329375A;
-	Mon, 12 May 2025 11:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208EC2920A1
+	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 11:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747050866; cv=none; b=ltHcU/byzQStn2A2Jizw330flJjFv1AcnYJ504G51jHT3TfjxXPivisF3D5+i/zSGJ961dsV0/c+ikJguiBk869lKwi5OVU26svl+hJeFj0+1AClMomH14rk2I0cCwiCnTZHQKFwiLE2S5RdclpuJmOWPx85vbaWdcBQcZiQFOo=
+	t=1747050927; cv=none; b=ZR6Dz1/3eJIl1DxA1yJXmnzoS1o1a7ZgVpLgfM/gEQJ5nVUNeJ9eYtr7BJ9HCuPEhlem26xDZfeGQYPN0me5QGToyidRwQTU8cqVo0SLGL+bPJZLFbHuLIZZfOlrxd07NEcBW6O8VFIx1hYu7EBvL4EWOqXncA3Zvmj34vAPz4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747050866; c=relaxed/simple;
-	bh=AWiyMOSUWI1xpcVr5qumVSmz05nOADxVuhiOFrFZWuw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RKpgDD1atqRYAOwCo/DXev/f2jxV9NdasRA2GG/LGNj5OH7ZBakA542KgxzIEq2EeGZ3ZmLY3XUgbYHwab55v16blpZQg6t56rRHKrKS1CQSN/aRnB6Z5wlAbqvazEjXWE+hco8hQOwa1+0afeTH0w2MjUivxMD7WF+oD7qWCgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=r1WDX5XQ; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: d5e135162f2711f0813e4fe1310efc19-20250512
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=mMAmWTSN5/VWRNWvKT1Dc7Go7O0Bi/OwblPq1HlvnXY=;
-	b=r1WDX5XQGxVq7RRYgmbTyo0KoTYb8CKEJGYSeRSO6fWg8YHn5PMJtM9AtoMft14FWmdqOKZ1DdGY6ZR2MATfaX/BZctH65ZMNMZh2lqIqxegq1gijicUgT754NY5koB2V8r+4aX8YdNlZIRf2bHMF4vBpnLLtzq4Y1w2L4/1rkU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:6c391005-3778-457c-a24d-013b19e14fb6,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:0ef645f,CLOUDID:58e0dde0-512b-41ef-ab70-9303a9a81417,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: d5e135162f2711f0813e4fe1310efc19-20250512
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
-	(envelope-from <sirius.wang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 244395188; Mon, 12 May 2025 19:54:18 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Mon, 12 May 2025 19:54:15 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Mon, 12 May 2025 19:54:15 +0800
-From: Sirius Wang <sirius.wang@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@mediatek.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <wenst@chromium.org>,
-	<xavier.chang@mediatek.com>, Sirius Wang <sirius.wang@mediatek.com>
-Subject: [PATCH v3 3/3] arm64: dts: mt8189: Add mt8189 dts evaluation board and Mafefile
-Date: Mon, 12 May 2025 19:53:50 +0800
-Message-ID: <20250512115355.923342-4-sirius.wang@mediatek.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250512115355.923342-1-sirius.wang@mediatek.com>
-References: <20250512115355.923342-1-sirius.wang@mediatek.com>
+	s=arc-20240116; t=1747050927; c=relaxed/simple;
+	bh=fpKuJ2+4jefwS/IKbyRXQB4RvXukKzGtBFAU7YzBq0M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hJamoyWdptN88OuaI3KT0g3stJ06F1wS2uDR4cEmvH0teafJvbEdUzic/lvwGsdbZOkBDb8z21tRsNSd9014cprsgKCu/TnGRstGSM0CTdleVD050gLc9uRBAlkX2xEEEYEnRkMPxINBXQZ++/MivyX9ZnX4TtJHxXQA6u7b/94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=UChsZNBX; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1747050924;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m3w6DrVzh6eoUVhtoXnjZ8ZVgMOpqb53FdE8SSrAvQ0=;
+	b=UChsZNBXM7BcNERUEAUJi+F85HaQsz5rofrtMVBtzHlWkPARsTfa4VQaJfVxD5wCp5Ejqr
+	MLC/ciwlEMd/AKETYyknQ/RPPu8TtUV4BlRU21yQnvHDc8WpkIkej6yhYx0qZbSf3FkR3t
+	AJJhfH5qE0QinBSVB5soFSzf1NB0ByU=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-351-Qddqo7gNMl6Iadh20AKurg-1; Mon,
+ 12 May 2025 07:55:21 -0400
+X-MC-Unique: Qddqo7gNMl6Iadh20AKurg-1
+X-Mimecast-MFC-AGG-ID: Qddqo7gNMl6Iadh20AKurg_1747050919
+Received: from mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.40])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id BEBFA1956077;
+	Mon, 12 May 2025 11:55:18 +0000 (UTC)
+Received: from [10.44.34.215] (unknown [10.44.34.215])
+	by mx-prod-int-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id D89DA19560A3;
+	Mon, 12 May 2025 11:55:12 +0000 (UTC)
+Message-ID: <b095ffb9-c274-4520-a45e-96861268500b@redhat.com>
+Date: Mon, 12 May 2025 13:55:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v7 8/8] mfd: zl3073x: Register DPLL sub-device
+ during init
+To: Lee Jones <lee@kernel.org>, Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: netdev@vger.kernel.org, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+ Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20250507124358.48776-1-ivecera@redhat.com>
+ <20250507124358.48776-9-ivecera@redhat.com>
+ <CAHp75Ven0i05QhKz2djYx0UU9E9nipb7Qw3mm4e+UN+ZSF_enA@mail.gmail.com>
+ <2e3eb9e3-151d-42ef-9043-998e762d3ba6@redhat.com>
+ <aBt1N6TcSckYj23A@smile.fi.intel.com> <20250507152609.GK3865826@google.com>
+Content-Language: en-US
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <20250507152609.GK3865826@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.40
 
-Add mt8189 dts evaluation board and Mafefile
+On 07. 05. 25 5:26 odp., Lee Jones wrote:
+> On Wed, 07 May 2025, Andy Shevchenko wrote:
+> 
+>> On Wed, May 07, 2025 at 03:56:37PM +0200, Ivan Vecera wrote:
+>>> On 07. 05. 25 3:41 odp., Andy Shevchenko wrote:
+>>>> On Wed, May 7, 2025 at 3:45 PM Ivan Vecera <ivecera@redhat.com> wrote:
+>>
+>> ...
+>>
+>>>>> +static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
+>>>>> +       { .channel = 0, },
+>>>>> +       { .channel = 1, },
+>>>>> +       { .channel = 2, },
+>>>>> +       { .channel = 3, },
+>>>>> +       { .channel = 4, },
+>>>>> +};
+>>>>
+>>>>> +static const struct mfd_cell zl3073x_devs[] = {
+>>>>> +       ZL3073X_CELL("zl3073x-dpll", 0),
+>>>>> +       ZL3073X_CELL("zl3073x-dpll", 1),
+>>>>> +       ZL3073X_CELL("zl3073x-dpll", 2),
+>>>>> +       ZL3073X_CELL("zl3073x-dpll", 3),
+>>>>> +       ZL3073X_CELL("zl3073x-dpll", 4),
+>>>>> +};
+>>>>
+>>>>> +#define ZL3073X_MAX_CHANNELS   5
+>>>>
+>>>> Btw, wouldn't be better to keep the above lists synchronised like
+>>>>
+>>>> 1. Make ZL3073X_CELL() to use indexed variant
+>>>>
+>>>> [idx] = ...
+>>>>
+>>>> 2. Define the channel numbers
+>>>>
+>>>> and use them in both data structures.
+>>>>
+>>>> ...
+>>>
+>>> WDYM?
+>>>
+>>>> OTOH, I'm not sure why we even need this. If this is going to be
+>>>> sequential, can't we make a core to decide which cell will be given
+>>>> which id?
+>>>
+>>> Just a note that after introduction of PHC sub-driver the array will look
+>>> like:
+>>> static const struct mfd_cell zl3073x_devs[] = {
+>>>         ZL3073X_CELL("zl3073x-dpll", 0),  // DPLL sub-dev for chan 0
+>>>         ZL3073X_CELL("zl3073x-phc", 0),   // PHC sub-dev for chan 0
+>>>         ZL3073X_CELL("zl3073x-dpll", 1),  // ...
+>>>         ZL3073X_CELL("zl3073x-phc", 1),
+>>>         ZL3073X_CELL("zl3073x-dpll", 2),
+>>>         ZL3073X_CELL("zl3073x-phc", 2),
+>>>         ZL3073X_CELL("zl3073x-dpll", 3),
+>>>         ZL3073X_CELL("zl3073x-phc", 3),
+>>>         ZL3073X_CELL("zl3073x-dpll", 4),
+>>>         ZL3073X_CELL("zl3073x-phc", 4),   // PHC sub-dev for chan 4
+>>> };
+>>
+>> Ah, this is very important piece. Then I mean only this kind of change
+>>
+>> enum {
+>> 	// this or whatever meaningful names
+>> 	..._CH_0	0
+>> 	..._CH_1	1
+>> 	...
+>> };
+>>
+>> static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
+>>         { .channel = ..._CH_0, },
+>>         ...
+>> };
+>>
+>> static const struct mfd_cell zl3073x_devs[] = {
+>>         ZL3073X_CELL("zl3073x-dpll", ..._CH_0),
+>>         ZL3073X_CELL("zl3073x-phc", ..._CH_0),
+>>         ...
+>> };
+> 
+> This is getting hectic.  All for a sequential enumeration.  Seeing as
+> there are no other differentiations, why not use IDA in the child
+> instead?
 
-Signed-off-by: Sirius Wang <sirius.wang@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/Makefile       |   1 +
- arch/arm64/boot/dts/mediatek/mt8189-evb.dts |  20 +
- arch/arm64/boot/dts/mediatek/mt8189.dtsi    | 427 ++++++++++++++++++++
- 3 files changed, 448 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8189-evb.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8189.dtsi
+For that, there have to be two IDAs, one for DPLLs and one for PHCs...
+The approach in my second reply in this thread is simpler and taken
+in v8.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 3aa06476c6c0..ad2ac9e1bb79 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -87,6 +87,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku4.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku5.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku6.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku7.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8189-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-spherion-r0.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8189-evb.dts b/arch/arm64/boot/dts/mediatek/mt8189-evb.dts
-new file mode 100644
-index 000000000000..e5d9ce1b8e61
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8189-evb.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2025 MediaTek Inc.
-+ * Author: Sirius Wang <sirius.wang@mediatek.com>
-+ */
-+/dts-v1/;
-+#include "mt8189.dtsi"
+<cite>
++#define ZL3073X_PDATA(_channel)			\
++	(&(const struct zl3073x_pdata) {	\
++		.channel = _channel,		\
++	})
 +
-+/ {
-+	model = "MediaTek MT8189 evaluation board";
-+	compatible = "mediatek,mt8189-evb", "mediatek,mt8189";
++#define ZL3073X_CELL(_name, _channel)				\
++	MFD_CELL_BASIC(_name, NULL, ZL3073X_PDATA(_channel),	\
++		       sizeof(struct zl3073x_pdata), 0)
 +
-+	chosen: chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
++static const struct mfd_cell zl3073x_devs[] = {
++	ZL3073X_CELL("zl3073x-dpll", 0),
++	ZL3073X_CELL("zl3073x-dpll", 1),
++	ZL3073X_CELL("zl3073x-dpll", 2),
++	ZL3073X_CELL("zl3073x-dpll", 3),
++	ZL3073X_CELL("zl3073x-dpll", 4),
 +};
-+
-+&uart0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8189.dtsi b/arch/arm64/boot/dts/mediatek/mt8189.dtsi
-new file mode 100644
-index 000000000000..f8794c6fba7b
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8189.dtsi
-@@ -0,0 +1,427 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (c) 2025 MediaTek Inc.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	compatible = "mediatek,mt8189";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	clk32k: oscillator-clk32k {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32000>;
-+		clock-output-names = "clk32k";
-+	};
-+
-+	clk13m: oscillator-clk13m {
-+		compatible = "fixed-factor-clock";
-+		#clock-cells = <0>;
-+		clocks = <&clk26m>;
-+		clock-mult = <1>;
-+		clock-div = <2>;
-+		clock-output-names = "clk13m";
-+	};
-+
-+	clk26m: oscillator-clk26m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <26000000>;
-+		clock-output-names = "clk26m";
-+	};
-+
-+	clk104m: oscillator-clk104m {
-+		compatible = "fixed-factor-clock";
-+		#clock-cells = <0>;
-+		clocks = <&clk26m>;
-+		clock-mult = <4>;
-+		clock-div = <1>;
-+		clock-output-names = "clk104m";
-+	};
-+
-+	ulposc: oscillator-ulposc {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <520000000>;
-+		clock-output-names = "ulposc";
-+	};
-+
-+	ulposc3: oscillator-ulposc3 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <26000000>;
-+		clock-output-names = "ulposc3";
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x000>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_cluster_off_l>, <&cpu_mcusys_off_l>,
-+					  <&cpu_system_vcore>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_cluster_off_l>, <&cpu_mcusys_off_l>,
-+					  <&cpu_system_vcore>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x200>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_cluster_off_l>, <&cpu_mcusys_off_l>,
-+					  <&cpu_system_vcore>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x300>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_cluster_off_l>, <&cpu_mcusys_off_l>,
-+					  <&cpu_system_vcore>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu4: cpu@400 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x400>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_cluster_off_l>, <&cpu_mcusys_off_l>,
-+					  <&cpu_system_vcore>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu5: cpu@500 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x500>;
-+			enable-method = "psci";
-+			clock-frequency = <2000000000>;
-+			capacity-dmips-mhz = <742>;
-+			cpu-idle-states = <&cpu_off_l>, <&cpu_cluster_off_l>, <&cpu_mcusys_off_l>,
-+					  <&cpu_system_vcore>, <&cpu_s2idle>;
-+			i-cache-size = <32768>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <32768>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_0>;
-+			performance-domains = <&performance 0>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu6: cpu@600 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x600>;
-+			enable-method = "psci";
-+			clock-frequency = <3000000000>;
-+			capacity-dmips-mhz = <958>;
-+			cpu-idle-states = <&cpu_off_b>, <&cpu_cluster_off_b>, <&cpu_mcusys_off_b>,
-+					  <&cpu_system_vcore>, <&cpu_s2idle>;
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_1>;
-+			performance-domains = <&performance 1>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu7: cpu@700 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x700>;
-+			enable-method = "psci";
-+			clock-frequency = <3000000000>;
-+			capacity-dmips-mhz = <958>;
-+			cpu-idle-states = <&cpu_off_b>, <&cpu_cluster_off_b>, <&cpu_mcusys_off_b>,
-+					  <&cpu_system_vcore>, <&cpu_s2idle>;
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_1>;
-+			performance-domains = <&performance 1>;
-+			#cooling-cells = <2>;
-+		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+				core2 {
-+					cpu = <&cpu2>;
-+				};
-+				core3 {
-+					cpu = <&cpu3>;
-+				};
-+				core4 {
-+					cpu = <&cpu4>;
-+				};
-+				core5 {
-+					cpu = <&cpu5>;
-+				};
-+				core6 {
-+					cpu = <&cpu6>;
-+				};
-+				core7 {
-+					cpu = <&cpu7>;
-+				};
-+			};
-+		};
-+
-+		idle-states {
-+			entry-method = "psci";
-+
-+			cpu_off_l: cpu-off-l {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x00010000>;
-+				local-timer-stop;
-+				entry-latency-us = <97>;
-+				exit-latency-us = <252>;
-+				min-residency-us = <6710>;
-+			};
-+
-+			cpu_off_b: cpu-off-b {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x00010000>;
-+				local-timer-stop;
-+				entry-latency-us = <53>;
-+				exit-latency-us = <143>;
-+				min-residency-us = <2120>;
-+			};
-+
-+			cpu_cluster_off_l: cpu-cluster-off-l {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x01010001>;
-+				local-timer-stop;
-+				entry-latency-us = <109>;
-+				exit-latency-us = <325>;
-+				min-residency-us = <6710>;
-+			};
-+
-+			cpu_cluster_off_b: cpu-cluster-off-b {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x01010001>;
-+				local-timer-stop;
-+				entry-latency-us = <59>;
-+				exit-latency-us = <188>;
-+				min-residency-us = <2120>;
-+			};
-+
-+			cpu_mcusys_off_l: cpu-mcusys-off-l {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x02010007>;
-+				local-timer-stop;
-+				entry-latency-us = <1357>;
-+				exit-latency-us = <835>;
-+				min-residency-us = <6710>;
-+			};
-+
-+			cpu_mcusys_off_b: cpu-mcusys-off-b {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x02010007>;
-+				local-timer-stop;
-+				entry-latency-us = <1202>;
-+				exit-latency-us = <679>;
-+				min-residency-us = <2120>;
-+			};
-+
-+			cpu_system_vcore: cpu-system-vcore {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x020100ff>;
-+				local-timer-stop;
-+				entry-latency-us = <940>;
-+				exit-latency-us = <3500>;
-+				min-residency-us = <35200>;
-+			};
-+
-+			cpu_s2idle: cpu-s2idle {
-+				compatible = "arm,idle-state";
-+				arm,psci-suspend-param = <0x020180ff>;
-+				local-timer-stop;
-+				entry-latency-us = <10000>;
-+				exit-latency-us = <10000>;
-+				min-residency-us = <4294967295>;
-+			};
-+		};
-+
-+		l2_0: l2-cache0 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-size = <131072>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			next-level-cache = <&l3_0>;
-+			cache-unified;
-+		};
-+
-+		l2_1: l2-cache1 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			next-level-cache = <&l3_0>;
-+			cache-unified;
-+		};
-+
-+		l3_0: l3-cache {
-+			compatible = "cache";
-+			cache-level = <3>;
-+			cache-size = <1048576>;
-+			cache-line-size = <64>;
-+			cache-sets = <2048>;
-+			cache-unified;
-+		};
-+	};
-+
-+	memory: memory@40000000 {
-+		device_type = "memory";
-+		reg = <0 0x40000000 0 0xC0000000>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	timer: timer {
-+		compatible = "arm,armv8-timer";
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		dma-ranges = <0x0 0x0 0x0 0x0 0x10 0x0>;
-+
-+		performance: performance-controller@11bc10 {
-+			compatible = "mediatek,cpufreq-hw";
-+			reg = <0 0x0011bc10 0 0x120>, <0 0x0011bd30 0 0x120>;
-+			#performance-domain-cells = <1>;
-+		};
-+
-+		gic: interrupt-controller@c000000 {
-+			compatible = "arm,gic-v3";
-+			#interrupt-cells = <4>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			interrupt-parent = <&gic>;
-+			interrupt-controller;
-+			reg = <0 0xc000000 0 0x40000>, /* distributor */
-+			      <0 0xc040000 0 0x200000>; /* redistributor */
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+			ppi-partitions {
-+				ppi_cluster0: interrupt-partition-0 {
-+					affinity = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
-+				};
-+
-+				ppi_cluster1: interrupt-partition-1 {
-+					affinity = <&cpu6 &cpu7>;
-+				};
-+			};
-+		};
-+
-+		uart0: serial@11001000 {
-+			compatible = "mediatek,mt8189-uart", "mediatek,mt6577-uart";
-+			reg = <0 0x11001000 0 0x1000>;
-+			interrupts = <GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>, <&clk26m>;
-+			clock-names = "baud", "bus";
-+			status = "disabled";
-+		};
-+	};
-+};
--- 
-2.45.2
+</cite>
+
+Lee, WDYT?
+
+Thanks,
+Ivan
 
 
