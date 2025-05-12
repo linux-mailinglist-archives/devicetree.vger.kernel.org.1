@@ -1,85 +1,89 @@
-Return-Path: <devicetree+bounces-176228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4CE4AB3347
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:24:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C6EAB33BA
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:35:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68F853BDBD3
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:23:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BE413AB7D7
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE68926460F;
-	Mon, 12 May 2025 09:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2302D269820;
+	Mon, 12 May 2025 09:27:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="O1BBzG+R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CSfeU+Ol"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D593E25C828;
-	Mon, 12 May 2025 09:23:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00AF7267F44;
+	Mon, 12 May 2025 09:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747041786; cv=none; b=ZGOvfu3karOAYXsAyebWCOy5dqgwjwbIzdpyGeB8CSzcrSaFmKMHORexgMzeyp2s/obuQVAigipKubptEaFGT/s3zu/bNZsFJyl1tnOMBYPCGOi5cqYm4jTXeuBQEhVO+brKqAsIdZz/brd7qtmjpX7UyTiMAl892mHGUIs6QL0=
+	t=1747042073; cv=none; b=QQy4LE5mjmQ7otIAHD+luCTTSidbg3IY3NTr31A5iBaItBaGtxiX4GalzDLCl+ZOTNF0WTDPd6yFIuSg03Uc9sTYkx+K1Azi1W4chMtp16L/RRmyq5CdXtchMAnSHTM9ZKfTQ+VF0Jefp09NubVHsYTFhbabYKoANRCHJihFepk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747041786; c=relaxed/simple;
-	bh=cXmqpQ2zVMpAk5TOXk5ulNe5nKFWFV8jUE90oXY/TUk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=X55pKdodis+q/3ufwnvhbOMv4LQGh+GWJuixT7A7mQ/HrojOTxwNrEw8rDRUO8Kvot8Ac57k18Pv8tNhawxLCh79KVlNsCTop//iAybCo8LfU1ZfiqT+d04bHzPuS7eWcYp7a3PRbftSL8u1VnS2fV9L+NL21nFkd1o+mNJO3gQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=O1BBzG+R; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: b0f63cf22f1211f082f7f7ac98dee637-20250512
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=6VbUAEeV39eL80nnS9lHM6fAPeFr3119Wt/l0LVAUKA=;
-	b=O1BBzG+RGWV3E/CUJrNCj+iQEReByPNN5P9SOm/ZwCF2zAa55QP8lcVVnxg0Hh8yyZkdfPwoAV/M8fvHw/YPQOQ6G/oSys/SBX2EH01YecVuypf/qn0nrgJ8EmAkyT8gbOlv77ZeoczWVMJVYZGh57GqlE8jV503m6OQKwlYx0w=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:0b58a377-129b-42b6-bd3c-0e4d336745b1,IP:0,UR
-	L:0,TC:0,Content:41,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:41
-X-CID-META: VersionHash:0ef645f,CLOUDID:4c75ebf9-d2be-4f65-b354-0f04e3343627,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:4|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: b0f63cf22f1211f082f7f7ac98dee637-20250512
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw02.mediatek.com
-	(envelope-from <jason-jh.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1293081345; Mon, 12 May 2025 17:22:57 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Mon, 12 May 2025 17:22:55 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Mon, 12 May 2025 17:22:55 +0800
-From: Jason-JH Lin <jason-jh.lin@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>
-CC: Matthias Brugger <matthias.bgg@gmail.com>, Jason-JH Lin
-	<jason-jh.lin@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>, Singo Chang
-	<singo.chang@mediatek.com>, Paul-PL Chen <paul-pl.chen@mediatek.com>, Moudy
- Ho <moudy.ho@mediatek.com>, Xavier Chang <xavier.chang@mediatek.com>,
-	Xiandong Wang <xiandong.wang@mediatek.com>, Sirius Wang
-	<sirius.wang@mediatek.com>, Fei Shao <fshao@chromium.org>, Chen-yu Tsai
-	<wenst@chromium.org>, <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-media@vger.kernel.org>
-Subject: [PATCH RESEND v5 20/20] soc: mediatek: mtk-cmdq: Remove cmdq_pkt_write() and cmdq_pkt_write_mask()
-Date: Mon, 12 May 2025 17:19:42 +0800
-Message-ID: <20250512092252.905629-21-jason-jh.lin@mediatek.com>
+	s=arc-20240116; t=1747042073; c=relaxed/simple;
+	bh=daQmruAQAI8gRPt/6goQ02a/HIENBKV5TCpMi1jKuKM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lugs2zG0nIsOyYIKBLMsysEwR3iK0uVJ8oNaB9I9lP40+tJQE/mSXGfzhJ3KWdAqEk3nJtcToJ8FQNsjYaKewJdDjuJmsAS+sMJrF0mpW+2ZzAvomZrcJz47pwIXAL5gGpUdK82PUh9blQ3Lh9SAooHIpk8DdHcBHpjcUk2Hb1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CSfeU+Ol; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5fbee322ddaso7889503a12.0;
+        Mon, 12 May 2025 02:27:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747042069; x=1747646869; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2lCCYqSSDOknXdDD+W0wbgP1Fgi8UCHS+A7wnJsRnVQ=;
+        b=CSfeU+OlPO07v6yQU0sJMb6DimjIIvsXZDeIfj70psReZW27pynSxBjn+GATwCB+E6
+         MDeBJwiWyozHZtujqiuPJyOV2dyhUdTyfosYNhKUk4UT3kR5HpJKwJOEgVQ37XQaa/Kr
+         kpKcZ1sshQzlP5+wMmsMIcD1iTXFFUQQsEUn4z58yA2j49OId2Y4AocZsZiuLzIZu6P8
+         nh1SKUh1L0m0km67Xpmx6LxepBcQFmKfuDp8REeDLPyWOTMm7sz3xWne0ULtKy4TQkNE
+         Pf6yghIFFHUZwtwN8dvAKEBXVbWISi3gubee5YCdGGFOMcF4TQbzpYzI9r4zaRKot/o3
+         rz+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747042069; x=1747646869;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2lCCYqSSDOknXdDD+W0wbgP1Fgi8UCHS+A7wnJsRnVQ=;
+        b=ra5cK/X7/quPaaY9mS6vaJWHubRXutcmgSheBZFy0Qc1n8sXhd9Qtk3IcMgzubJtiN
+         iSBHYmiKMMdT93TFQgfbykMmrQjkdWI/5wiZDq94noZNOJteHTyvk+N5cmL2lgwjINOJ
+         hohh9kGPbm+YldP+uGkaGvK7/6tdsKg5l8XV3ZGB3Y/O5xUvp+tLp83aa9YewA9THb6b
+         ZdfuErpv5vTOGse0fAhMiw9HPaIM7C0HMGCbbbJXe3wyBqfyyjV0mciwVzRvlPrarTcm
+         AMLvWnXFyWff3+qcscnYRQFrueHn4rZ0gD0kozYzlIuIzZ0ooIa8z7dwo7Wj985xeaw3
+         judg==
+X-Forwarded-Encrypted: i=1; AJvYcCUpaeVpxOeAs5z5eCJSuntqw4BpGi3TbAivFRUalMSIkwrXYxvZ/Kn3JUkd/qBhB2nN9J+16eV1JLCV@vger.kernel.org, AJvYcCVbVtvIDKjn0Xcg4rIOTBUiLngXkYP7vkBO1RCkS0GkzxkeNkk1hxNxVXJIg4zL0NgzbyEfN0rZUKHF@vger.kernel.org, AJvYcCXAmzZY1+AvVR3qSluv/tTT3nDQSUiwOyMRhEckbLp7oy8kWgw3dwbTzTm+MWhB1Lg9VUSP/o0OA7Ha2ii+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyagVAA9btnk1flRdkJ8Z+4KvmI1Xh4vJCogfiQbB8olxE8CU2N
+	pCS2TlGBChoQE+8Wbhwval+mec5jvp/x6AfzIEEgCk3MgFmHZoqspmvgw7rTFQ==
+X-Gm-Gg: ASbGncuYhP0OjFgjXHG/gwPgzEVukmoZeTz2E3IG/1K/Ojjm5r3LDx6D3Mr6oBT++LE
+	8eyAJxFL6rBpOcw42ebpu5liqeWhfQT87hDSAOavGdm2m7WMpgBOJ/gBVihBHbSynqgc4eJQdB/
+	7K/CL+k5rqdlHEOajCW/QUlhF9Sn3KKg1Dua9AZdRJCwylR3mH1GaMh1Xo36t2J78Mbd1U7toc6
+	fYHjbhgviqIMT2NQzhE+bJSv40s5e9cWOqeee1FrxXQNtWfVzljauk62ZUx+YJ0pkp/2zAsEgwd
+	EOcB3w0kGRbvlKGVTwRM7mIJTsYL4O5KumLRqbICF3upKYeKylBsQZor
+X-Google-Smtp-Source: AGHT+IFGCB1qaH/mNnABT9Qdsc4NUqQKYY0073rH6RsL7N0wJygie7S5IY08v+IN8TKTRd1Y0fiP6Q==
+X-Received: by 2002:a05:6402:5386:b0:5fc:a3df:9469 with SMTP id 4fb4d7f45d1cf-5fca3df9987mr8177705a12.29.1747042068431;
+        Mon, 12 May 2025 02:27:48 -0700 (PDT)
+Received: from alex-x1.lan ([84.226.118.249])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5fc9cc26483sm5480242a12.22.2025.05.12.02.27.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 May 2025 02:27:48 -0700 (PDT)
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+To: Abel Vesa <abel.vesa@linaro.org>,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Subject: [PATCH v4 0/1] Add Parade PS8833 Type-C retimer variant
+Date: Mon, 12 May 2025 11:20:27 +0200
+Message-ID: <20250512092745.249293-1-alex.vinarskis@gmail.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250512092252.905629-1-jason-jh.lin@mediatek.com>
-References: <20250512092252.905629-1-jason-jh.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,167 +91,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
 
-The original cmdq_pkt_write() and cmdq_pkt_write_mask() only supported
-generating GCE instructions with subsys ID. They have been replaced by
-cmdq_pkt_write_pa(), cmdq_pkt_write_subsys(), cmdq_pkt_write_mask_pa()
-and cmdq_pkt_write_mask_subsys().
+Introduce PS8833 variant, which appears to be similar to PS8830.
+Present on some Snapdragon X1E devices, eg. Asus Zenbook A14.
 
-These 2 functions can now be removed as they are no longer in use.
+This patch is part of Asus Zenbook A14 support series [1]. Resending
+1/4 separately, as the rest of abovementioned series either already
+landed (2/4, 3/4 in qcom tree for 6.16), or awaiting for this patch to
+make it to linux-next (4/4).
 
-Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
----
- drivers/soc/mediatek/mtk-cmdq-helper.c | 49 ++++++++++----------------
- include/linux/soc/mediatek/mtk-cmdq.h  | 35 ------------------
- 2 files changed, 18 insertions(+), 66 deletions(-)
+[1] https://lore.kernel.org/all/20250426130203.37659-1-alex.vinarskis@gmail.com/
 
-diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
-index 0a718ffa5f3b..5822a3d13bda 100644
---- a/drivers/soc/mediatek/mtk-cmdq-helper.c
-+++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
-@@ -201,18 +201,6 @@ static int cmdq_pkt_mask(struct cmdq_pkt *pkt, u32 mask)
- 	return cmdq_pkt_append_command(pkt, inst);
- }
- 
--int cmdq_pkt_write(struct cmdq_pkt *pkt, u8 subsys, u16 offset, u32 value)
--{
--	struct cmdq_instruction inst = {
--		.op = CMDQ_CODE_WRITE,
--		.value = value,
--		.offset = offset,
--		.subsys = subsys
--	};
--	return cmdq_pkt_append_command(pkt, inst);
--}
--EXPORT_SYMBOL(cmdq_pkt_write);
--
- int cmdq_pkt_write_pa(struct cmdq_pkt *pkt, u8 subsys /*unused*/, u32 pa_base,
- 		      u16 offset, u32 value)
- {
-@@ -229,27 +217,16 @@ EXPORT_SYMBOL(cmdq_pkt_write_pa);
- int cmdq_pkt_write_subsys(struct cmdq_pkt *pkt, u8 subsys, u32 pa_base /*unused*/,
- 			  u16 offset, u32 value)
- {
--	return cmdq_pkt_write(pkt, subsys, offset, value);
-+	struct cmdq_instruction inst = {
-+		.op = CMDQ_CODE_WRITE,
-+		.value = value,
-+		.offset = offset,
-+		.subsys = subsys
-+	};
-+	return cmdq_pkt_append_command(pkt, inst);
- }
- EXPORT_SYMBOL(cmdq_pkt_write_subsys);
- 
--int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u8 subsys,
--			u16 offset, u32 value, u32 mask)
--{
--	u16 offset_mask = offset;
--	int err;
--
--	if (mask != GENMASK(31, 0)) {
--		err = cmdq_pkt_mask(pkt, mask);
--		if (err < 0)
--			return err;
--
--		offset_mask |= CMDQ_WRITE_ENABLE_MASK;
--	}
--	return cmdq_pkt_write(pkt, subsys, offset_mask, value);
--}
--EXPORT_SYMBOL(cmdq_pkt_write_mask);
--
- int cmdq_pkt_write_mask_pa(struct cmdq_pkt *pkt, u8 subsys /*unused*/, u32 pa_base,
- 			   u16 offset, u32 value, u32 mask)
- {
-@@ -267,7 +244,17 @@ EXPORT_SYMBOL(cmdq_pkt_write_mask_pa);
- int cmdq_pkt_write_mask_subsys(struct cmdq_pkt *pkt, u8 subsys, u32 pa_base /*unused*/,
- 			       u16 offset, u32 value, u32 mask)
- {
--	return cmdq_pkt_write_mask(pkt, subsys, offset, value, mask);
-+	u16 offset_mask = offset;
-+	int err;
-+
-+	if (mask != GENMASK(31, 0)) {
-+		err = cmdq_pkt_mask(pkt, mask);
-+		if (err < 0)
-+			return err;
-+
-+		offset_mask |= CMDQ_WRITE_ENABLE_MASK;
-+	}
-+	return cmdq_pkt_write_subsys(pkt, subsys, pa_base, offset_mask, value);
- }
- EXPORT_SYMBOL(cmdq_pkt_write_mask_subsys);
- 
-diff --git a/include/linux/soc/mediatek/mtk-cmdq.h b/include/linux/soc/mediatek/mtk-cmdq.h
-index 4a2acceb8581..f4663fbfb5a0 100644
---- a/include/linux/soc/mediatek/mtk-cmdq.h
-+++ b/include/linux/soc/mediatek/mtk-cmdq.h
-@@ -113,17 +113,6 @@ int cmdq_pkt_create(struct cmdq_client *client, struct cmdq_pkt *pkt, size_t siz
-  */
- void cmdq_pkt_destroy(struct cmdq_client *client, struct cmdq_pkt *pkt);
- 
--/**
-- * cmdq_pkt_write() - append write command to the CMDQ packet
-- * @pkt:	the CMDQ packet
-- * @subsys:	the CMDQ sub system code
-- * @offset:	register offset from CMDQ sub system
-- * @value:	the specified target register value
-- *
-- * Return: 0 for success; else the error code is returned
-- */
--int cmdq_pkt_write(struct cmdq_pkt *pkt, u8 subsys, u16 offset, u32 value);
--
- /**
-  * cmdq_pkt_write_pa() - append write command to the CMDQ packet with pa_base
-  * @pkt:	the CMDQ packet
-@@ -150,19 +139,6 @@ int cmdq_pkt_write_pa(struct cmdq_pkt *pkt, u8 subsys /*unused*/,
- int cmdq_pkt_write_subsys(struct cmdq_pkt *pkt, u8 subsys,
- 			  u32 pa_base /*unused*/, u16 offset, u32 value);
- 
--/**
-- * cmdq_pkt_write_mask() - append write command with mask to the CMDQ packet
-- * @pkt:	the CMDQ packet
-- * @subsys:	the CMDQ sub system code
-- * @offset:	register offset from CMDQ sub system
-- * @value:	the specified target register value
-- * @mask:	the specified target register mask
-- *
-- * Return: 0 for success; else the error code is returned
-- */
--int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u8 subsys,
--			u16 offset, u32 value, u32 mask);
--
- /**
-  * cmdq_pkt_write_mask_pa() - append write command with mask to the CMDQ packet with pa
-  * @pkt:	the CMDQ packet
-@@ -460,11 +436,6 @@ static inline int cmdq_pkt_create(struct cmdq_client *client, struct cmdq_pkt *p
- 
- static inline void cmdq_pkt_destroy(struct cmdq_client *client, struct cmdq_pkt *pkt) { }
- 
--static inline int cmdq_pkt_write(struct cmdq_pkt *pkt, u8 subsys, u16 offset, u32 value)
--{
--	return -ENOENT;
--}
--
- static inline int cmdq_pkt_write_pa(struct cmdq_pkt *pkt, u8 subsys /*unused*/,
- 				    u32 pa_base, u16 offset, u32 value)
- {
-@@ -477,12 +448,6 @@ static inline int cmdq_pkt_write_subsys(struct cmdq_pkt *pkt, u8 subsys,
- 	return -ENOENT;
- }
- 
--static inline int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u8 subsys,
--				      u16 offset, u32 value, u32 mask)
--{
--	return -ENOENT;
--}
--
- static inline int cmdq_pkt_write_mask_pa(struct cmdq_pkt *pkt, u8 subsys /*unused*/,
- 					 u32 pa_base, u16 offset, u32 value, u32 mask)
- {
+Aleksandrs Vinarskis (1):
+  dt-bindings: usb: Add Parade PS8833 Type-C retimer variant
+
+ Documentation/devicetree/bindings/usb/parade,ps8830.yaml | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
 -- 
-2.43.0
+2.45.2
 
 
