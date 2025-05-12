@@ -1,191 +1,181 @@
-Return-Path: <devicetree+bounces-176156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55F25AB2F48
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:06:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22C92AB2F50
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:08:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 873DB7A8D6E
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 06:04:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82BCE1899699
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 06:09:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698F8255223;
-	Mon, 12 May 2025 06:05:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F59D255E46;
+	Mon, 12 May 2025 06:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JG46GzaI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63E163C38;
-	Mon, 12 May 2025 06:05:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2BA23C38;
+	Mon, 12 May 2025 06:08:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747029954; cv=none; b=pYQwuMdsdH3bepN0Bxxsz6/bWpdEh28cmLujAfKkm6JASplzSXbJyjsM4lfT9sLtBo+y6RFka0+42uqAuLxHRtMSMwF7Asrkv+CyAbcJIWu1Tx4tSF8jVIX1kXeu5scOkrJaNzFMHWYBC8xYyC/ZbdfL0aa93W7hYfZsB3jNnqs=
+	t=1747030124; cv=none; b=nPGdawsJ0KDAas+yZZsm2lJVBBUuB4AXhj03PF7olaWtOdilsD9XdAbTVpO7nEuP4av0dGwErXclcXPq8FHmpQu2ogMEKNlaf2vgewQzQHgTv6AoOqxGQv3TMsvHHyDfIDsE1sSLf1cKMO8e/bNFw6U2waKL8OUDC3BkNgQ0fVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747029954; c=relaxed/simple;
-	bh=NTc3FeP617UNT0Cm5oz67c3iovvWOowrJHX1AVRa8mQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j3cIQsIa5/rTE+Ut/GBGmc9bQDH0CFMdM0XjvEeIIEZeXQNHTpzApK1CHIB1+KSaKvEaVTcJ6+fC8IGlx+6W4jEtU6iwXDmsfV3PA8K4QHCPlKrFyob01VdZW0vQYgTOLyTPRRg9DAiidzVpRlAB9tcnv17hDyrpVNK9/iFZz2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: s1vmBrXHSrWb+uUgOFwpAw==
-X-CSE-MsgGUID: CcYww/YmSF2B9XLZscAeNQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="48963052"
-X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
-   d="scan'208";a="48963052"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2025 23:05:51 -0700
-X-CSE-ConnectionGUID: bxRpOiD7R1uKTkZlZBLPoQ==
-X-CSE-MsgGUID: l0s9Hr4aRCGnANvYeI0kaA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
-   d="scan'208";a="137202143"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2025 23:05:48 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1uEMIK-00000000pFH-2LBW;
-	Mon, 12 May 2025 09:05:44 +0300
-Date: Mon, 12 May 2025 09:05:44 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Nam Tran <trannamatk@gmail.com>
-Cc: lee@kernel.org, geert@linux-m68k.org, pavel@ucw.cz, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	christophe.jaillet@wanadoo.fr, corbet@lwn.net,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, florian.fainelli@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix
- LED driver
-Message-ID: <aCGPuKtfprIvwADa@smile.fi.intel.com>
-References: <20250508150140.GS3865826@google.com>
- <20250510074802.8400-1-trannamatk@gmail.com>
+	s=arc-20240116; t=1747030124; c=relaxed/simple;
+	bh=aeBo/HtHc7JVSi8gCCikzWTDfo2c+IE0WmhaGHAMUcY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Jy2bU1o+dY39jbq/WM7u8dZfQYwGz6FsiOdV1m0IqjT9DUGayk2CKQaRLhQwUwSZSan57KzklQPPa2vAN6QHgkJkOge/NvOaU7vZNP1yqZDz54CFee/PYWqgrf9w8n3I5KHQdTp/7VaeAmVaw/DA9NPkkpdG9oYFvQstLaUbk7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JG46GzaI; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54BNTuoR013680;
+	Mon, 12 May 2025 06:08:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ZAg73qctMdAHl6qXg7azYTSd5wdfKLHTQzj8wlUwENs=; b=JG46GzaIghBXd6z7
+	iYG15YdxYHaoaS14TUuTpN7Y1YUcFsV/tGWIy5brD3wUKWvPTvAyfwuN4AJFgZ/b
+	U+b5l/qcOpbyUhUV59M0/nBclhPpvr5tbeccPqEFTp6PlfqafPrs4+xU0PDsfj+d
+	dz3PqO7lt0CbNE5tgqWCQNl3Veh/bC1bdEPKcMuplfQrreTIB9JxpDmfl69KQzLv
+	JiYzZiYqZKxauIiwO/hTHwKGWfQ2wM9iGJ76mHDBVtKjO/SBtfkLlvLnM4gzsRCY
+	2Xzii8Q69rXappyCaeNTP2TK2/+oGI2KGLB5mvOXZd2+Qx394fpbMR71Hpv6D8zG
+	tnx4/Q==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46hwt939hq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 May 2025 06:08:38 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54C68aDw030763
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 May 2025 06:08:36 GMT
+Received: from [10.50.62.222] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 11 May
+ 2025 23:08:32 -0700
+Message-ID: <7de5bf3f-12e6-99ca-38fd-45435de5773f@quicinc.com>
+Date: Mon, 12 May 2025 11:38:18 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250510074802.8400-1-trannamatk@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v7 0/5] media: qcom: iris: add support for QCS8300
+Content-Language: en-US
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250501-qcs8300_iris-v7-0-b229d5347990@quicinc.com>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <20250501-qcs8300_iris-v7-0-b229d5347990@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEyMDA2MyBTYWx0ZWRfXx6pfsOXrxel7
+ fCkaKHrTriL2FLbFdT2nR68gK5UK0sADv4ZyjYrxnkyiuJc4Arf3OTA1U73Ce50hg8DTDyVJFXg
+ n6EK6gWPWsLyo6HIXsfjr9B3ly3nTT7q8ansefxscLF6nDPogPG+nj9j3hnHmWOYXZ913l9NhLl
+ HiPcSKPnXQrBcnht6oJ7/AbcO6KJ5lxawtD1V3i5ABJFY2AK6rMqO6SewrVvSvs+G4HaNY0e4Zv
+ zzYoyBRG7CoO3z9IO2PkZhgQJdWDi4Zfms588ajYcJcfWmXIgiGO3v+Tqt1/YnT7gJAmenGP95c
+ p/Q4xzfnN0bBWe6dn5jMjrow/FQg39sqC4C0C07cXyfl+E/kRspF1Lyq7OaqXOvmISLb0uetcXV
+ iK9jFNA8BhjHXQeMgqK1znsvslwYJZNSak+8/hG6lMveBGHylWqasVLh1rVPhRtPq9iwaTCC
+X-Proofpoint-ORIG-GUID: b9szylcn0rVwlWotNU-Krm6vnodLKfTs
+X-Proofpoint-GUID: b9szylcn0rVwlWotNU-Krm6vnodLKfTs
+X-Authority-Analysis: v=2.4 cv=a58w9VSF c=1 sm=1 tr=0 ts=68219066 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
+ a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=-hBaU0KkIdV-hY_gRgQA:9 a=QEXdDO2ut3YA:10
+ a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-12_02,2025-05-09_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0 lowpriorityscore=0 mlxlogscore=999 malwarescore=0
+ clxscore=1015 impostorscore=0 mlxscore=0 spamscore=0 bulkscore=0 adultscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505120063
 
-On Sat, May 10, 2025 at 02:48:02PM +0700, Nam Tran wrote:
-> On Thu, 8 May 2025 Lee Jones wrote:
-> > On Thu, 08 May 2025, Andy Shevchenko wrote:
-> > > On Thu, May 8, 2025 at 5:27 PM Nam Tran <trannamatk@gmail.com> wrote:
-> > > > On Thu, 8 May 2025 Lee Jones wrote:
-> > > > > On Thu, 08 May 2025, Andy Shevchenko wrote:
-> > > > > > On Wed, May 7, 2025 at 7:42 PM Nam Tran <trannamatk@gmail.com> wrote:
+Hi Bjorn,
 
-...
-
-> > > > > > At least, based on the above it's my formal NAK from an auxdisplay perspective.
-> > > > >
-> > > > > This is fine.
-> > > > >
-> > > > > Just be aware, before you submit to LEDs again, that you need to use
-> > > > > what is available in the LEDs subsystem to it's fullest, before
-> > > > > hand-rolling all of your own APIs.  The first submission didn't use a
-> > > > > single LED API.  This, as before, would be a big NACK also.
-> > > >
-> > > > Thanks for the clarification.
-> > > >
-> > > > Just to confirm — the current version of the driver is customized to allow
-> > > > user space to directly manipulate LP5812 registers and to support the
-> > > > device’s full feature set. Because of this, it doesn’t follow the standard
-> > > > LED interfaces.
-> > > 
-> > > But why? What's wrong with the LED ABI? (see also below question
-> > > before answering to this one)
-> > > 
-> > > > Given that, would it be acceptable to submit this driver under the misc subsystem instead?
-> > > 
-> > > But these are LEDs in the hardware and you can access them as 4
-> > > individual LEDs, right?
-> > 
-> > Right.  Please work with the API you are offered in the first instance.
-> > My first assumption is always that this driver isn't as special as you
-> > think it might be.
+On 5/1/2025 2:16 AM, Vikash Garodia wrote:
+> add support for video hardware acceleration on QCS8300 platform.
 > 
-> In direct mode, we can access them as individual LEDS. User doesn't need
-> to select LEDs. In this mode, it is a simple LED driver.
+> This series depends on
+> https://lore.kernel.org/all/20250417-topic-sm8x50-iris-v10-v7-1-f020cb1d0e98@linaro.org/
 > 
-> However, user must select LEDs in scan mode. The hardware uses 4 pin to
-> display 12 LEDs (or 4 RGB LEDs). Ordering of LED selection also impact
-> to display capacibility. That why, I need to support another interface
-> for user to controll hardware's registers.
+> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+> ---
+> Changes in v7:
+> - Fix clock corner.
+> - Link to v6: https://lore.kernel.org/r/20250430-qcs8300_iris-v6-0-a2fa43688722@quicinc.com
 > 
-> In mix mode, we can control an individual LED and up to 6 scan LEDs.
-> However, user must select the order of single LED and which LEDs will be
-> use for scan function.
+> Changes in v6:
+> - Address a comment related the commit title.
+> - Link to v5: https://lore.kernel.org/r/20250424-qcs8300_iris-v5-0-f118f505c300@quicinc.com
 > 
-> The main point is user must have capacibility in write information to
-> hardware's registers to select LEDs in scan mode and mix mode.
->  
-> Besides system modes (direct mode, scan mode, mix mode), each LED has
-> manual mode and autonomous mode.
->  
-> A example steps to display a LED in manual mode
-> # Set drive mode is Scan mode with 4 scan. Scan order 0 is out_0,
-> # Scan order 1 is out_1, Scan order 2 is out_2, and Scan order 3 is out_3
-> echo tcmscan:4:0:1:2:3 > /sys/bus/i2c/drivers/lp5812/1-001b/lp5812_chip_setup/dev_config
-> # Enable led_A0
-> echo 1 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/activate
-> # Enable manual mode
-> echo manual > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/mode
-> # Set Dot Current
-> echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/manual_dc
-> # Set Manual PWM
-> echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/manual_pwm
->  
-> However in autonomous mode, the steps are complicated
-> # Set drive mode is Scan mode with 4 scan. Scan order 0 is out_0,
-> # Scan order 1 is out_1, Scan order 2 is out_2, and Scan order 3 is out_3
-> echo tcmscan:4:0:1:2:3 > /sys/bus/i2c/drivers/lp5812/1-001b/lp5812_chip_setup/dev_config
-> # Enable led_A0
-> echo 1 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/activate
-> # Enable autonomous mode
-> echo autonomous > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/mode
-> # Config autonomous animation mode: (only use AEU1, start pause time: 3.04s,
-> # stop pause time: 3.04s, playback time: infinite time)
-> echo 1:10:10:15 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/mode
-> # Config AEU1 playback times
-> echo 1 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/playback_time
-> # Config PWM
-> echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/pwm1
-> echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/pwm2
-> echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/pwm3
-> echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/pwm4
-> echo 100 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/pwm5
-> # Config slope time
-> echo 5 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/slope_time_t1
-> echo 5 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/slope_time_t2
-> echo 5 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/slope_time_t3
-> echo 5 > /sys/bus/i2c/drivers/lp5812/1-001b/led_A0/AEU1/slope_time_t4
-> # Start autonomous
-> echo start > /sys/bus/i2c/drivers/lp5812/1-001b/lp5812_chip_setup/device_command
->  
-> I think setting PWM also same as brightness_set API. However, there are
-> many PWM config for a LED and it is one of other config to make autonomous mode work.
-> Therefore, standard led API can use in some use cases only.
+> Changes in v5:
+> - Fix order in dt bindings.
+> - Drop an unrelated sentence from commit description.
+> - Link to v4: https://lore.kernel.org/r/20250424-qcs8300_iris-v4-0-6e66ed4f6b71@quicinc.com
 > 
-> Please see the link below for a better visualization of how to configure the LP5812.
-> https://dev.ti.com/gallery/view/LED/LP581x/ver/0.10.0/
+> Changes in v4:
+> - Introduce a patch to fix existing order of compat strings.
+> - Fix the order of header inclusions.
+> - Link to v3: https://lore.kernel.org/r/20250423-qcs8300_iris-v3-0-d7e90606e458@quicinc.com
+> 
+> Changes in v3:
+> - Fix commit description to better describe about QCS8300.
+> - Fix the order of the patch.
+> - Collect the review tags.
+> - Link to v2: https://lore.kernel.org/r/20250418-qcs8300_iris-v2-0-1e01385b90e9@quicinc.com
+> 
+> Changes in v2:
+> - Added dependent info in binding patch as well.
+> - Fix a sparse error.
+> - Link to v1: https://lore.kernel.org/r/20250418-qcs8300_iris-v1-0-67792b39ba21@quicinc.com
+> 
+> ---
+> Vikash Garodia (5):
+>       dt-bindings: media: qcom,sm8550-iris: document QCS8300 IRIS accelerator
+>       media: iris: fix the order of compat strings
+>       media: iris: add qcs8300 platform data
+>       arm64: dts: qcom: qcs8300: add video node
+>       arm64: dts: qcom: qcs8300-ride: enable video
+> 
+>  .../bindings/media/qcom,sm8550-iris.yaml           |   1 +
+>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts          |   4 +
+>  arch/arm64/boot/dts/qcom/qcs8300.dtsi              |  71 ++++++++++++
+>  .../platform/qcom/iris/iris_platform_common.h      |   1 +
+>  .../media/platform/qcom/iris/iris_platform_gen2.c  |  57 ++++++++++
+>  .../platform/qcom/iris/iris_platform_qcs8300.h     | 124 +++++++++++++++++++++
+>  drivers/media/platform/qcom/iris/iris_probe.c      |  16 ++-
+>  7 files changed, 268 insertions(+), 6 deletions(-)
+> ---
+When do u plan to pick DT patches (4/5 and 5/5) from this series ? I just saw
+the PR for 6.16 and i did not see these patches, would like to know what is
+pending ?
 
-To me it sounds like you should start from the small steps, i.e. do not
-implement everything at once. And starting point of the 4 RGB LEDs sounds
-the best approach to me. Then, if needed, you can always move on with
-fancy features of this hardware on top of the existing code.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Regards,
+Vikash
 
