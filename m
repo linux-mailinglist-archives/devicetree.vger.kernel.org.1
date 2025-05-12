@@ -1,124 +1,130 @@
-Return-Path: <devicetree+bounces-176403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58299AB3D9F
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:32:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1850CAB3DB4
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:35:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D6F386029C
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:27:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EB85161BF1
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:34:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33307248F5C;
-	Mon, 12 May 2025 16:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F354025178E;
+	Mon, 12 May 2025 16:34:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="A70uVjpl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CmcUDIuu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E92724503C
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 16:27:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F73246768;
+	Mon, 12 May 2025 16:34:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747067250; cv=none; b=WXTMUvpzlUQGo1hEN8exd9clrSzrCEz5f7t1qghXhbg87/hmZQnjQOf0+U8WTGU7T4oSt+MpCKnEB46pq3cYo6YNE3Q+RuDaviz7XLCKl4lxowietktZePNrCeHTfSmqN8JzZHGiYdwt5JfTVMwjU+SBiNqGX068JNX7p1TcL8w=
+	t=1747067655; cv=none; b=sqQ6yUkvOZW6K9uoR9AjXNCuTiKNiX1cj9wmWNDxfpYEI9/1GLGO5+B3XigQClQKK2dXwgzonltAo+DUWzlpqZ5uWH0vXY3dAx/j45muzuHqSBofuruG+sInwDbonazZdluzFWc7fO293Y8kFCnVniN/P2ajlsy/tBBks2th3Nw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747067250; c=relaxed/simple;
-	bh=J2u66nb+ZRnekPNZzRKWIEEdjXCW8XvffK8/9kLcR0Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DHfuZnYoZX7oM7insm5u3H2SZNZw1iHtptZwNQBfHRa+mklylGUIch2EREMVkzT7Uau7IcAYn03/xsiqWEgrqpkA0eC2jdDT+VIatKvMlqpB7Kj4ASNAu7d9WNg4bhujR5wP5k7uTZPl+leqF1jvh06AZkVJuaond+kSVXREBMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=A70uVjpl; arc=none smtp.client-ip=209.85.166.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3d93deba52fso13222455ab.0
-        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 09:27:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1747067247; x=1747672047; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tAY5Ws/2zHP7f1+msXoBsYcHSMzdc5Is7v349rd+4sk=;
-        b=A70uVjplBv+wFWsd/jSj5yauDdVTs+6S/1N7+wMeIzVei8NkuzeTk0wpvsIFNd20Ci
-         rzrnc9PPkMk8m+rO8p5ku6DJC5x4yXsllRltFpj5DM+E002l+orWuawQtJTiKImziyLQ
-         acDmyrl6cpJnZLLFXklomezMuVOdlhud/ZkLrrzMy4HNGPC7mHe1qeQ2zLM6/LNr+lSq
-         JKHs+5YcDzRYUO2JVOH/LCMLYOJAd8jnne7eI+A/BAMa1XZlPEnuLLkW1411S/rQsaHV
-         pw8Jlk/gdD/JqyhKV9tCPLlFyM6HniklbPw4xVmc4r9mnq9RB3mwe8L9IIz71hj/2yb2
-         j2Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747067247; x=1747672047;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tAY5Ws/2zHP7f1+msXoBsYcHSMzdc5Is7v349rd+4sk=;
-        b=m9nVZmh8OXrplWnSC5CDws4oR3Om+1ROlM4sEKNowtGBnEL/HJGXpa0NHu7JFV7eo3
-         MiIHlvOGPNyFD+uIryOEgLJE1GYBSR85UHAny+sqNI7nJMasLabMIY6SX4xwTzdK8slF
-         HZBr3sfgCc0JJrbD3vJqdyQ3hSWDbd3TzPgyNCWJkREfEjI1lLPB+QBcXnhvmWb5jbjN
-         9O98Jz0rQ/ZgWxF+3dpvhW8PnA+OprkmTs8B+F+L0TCSSMEt8/bbNyiVMHH15QKu7wod
-         3NTl0+XvSsIPV1q6aqMshwOZ9D6n3rR2b8feZ5R6sV7dgBByu7nkY+ZJhVS189dKjQgH
-         DTiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXjx+O73yXnnyuteLMKbjQt0HNZiSH6OsGsjNJ3XSU3e9Fu0NBKdUfajGS3lYnCo3tqKWCMyAdQIOZm@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDiFFlGIcsJ3cT3W2Ysf8basXyY5Zfr8y6/GJ7dlvTEBWi54zq
-	eMUkdoDgLxs05pvhgBfydefFoKubiz4fZFsSbkhmc4jRwzg4YvpszZDkZCIlu+w=
-X-Gm-Gg: ASbGncv6bT7QZi7PvddcPWBybqytnFDh6y5a3nZM/UIPMupY3yzgWK6KWstfbkli/hO
-	iVLWCGzR84uPObJbW/7as1vIo5i4xeveWnEw0NM+I/W5POZ8Z7LhwtjHajZLIa0vDzKKr+5Qmxr
-	T3gj4WO088nQiyMO7Rp395x8eau4YAFib73rNOaf+gzdwF9rmnxVrV1Ay9B+AeBKsRrt1hj4x9M
-	lWLpy0fKQghu+s7EAuy83RReRfg82QTQRgmlYPhy9Tvu+ub1tsX/va1roehnmcNA0+Fy5txoUZz
-	4fatwBRNK7R1LfIIgbQZEzVmok5/d7nHOyuBJaZgKNsCLQKxLjzYTghfOF83B3NSRdpmmD3OEVc
-	K1rQdFbbQII6T/hZWJFrdkWZS9w==
-X-Google-Smtp-Source: AGHT+IHMljbBOih9XI5ChNfY5x9ORAxK3ZQZvd0UNipzv1F6zPCMndWOAl1ZZJYumsZfCVB/PanfHw==
-X-Received: by 2002:a92:cda7:0:b0:3d9:66c7:d1e8 with SMTP id e9e14a558f8ab-3da7e165314mr150329395ab.0.1747067247243;
-        Mon, 12 May 2025 09:27:27 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4fa2a9ac275sm1503877173.80.2025.05.12.09.27.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 May 2025 09:27:26 -0700 (PDT)
-Message-ID: <5674cfb0-fabe-4b58-98fd-8479c4d3ff79@riscstar.com>
-Date: Mon, 12 May 2025 11:27:25 -0500
+	s=arc-20240116; t=1747067655; c=relaxed/simple;
+	bh=Lk35CP8LZmPslpsnxWnA0SM9IdKc0rO8t7ScWnmdFIQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=egDWN2DWvE3OqM+V2cKgvh+Hpie1Q0notlRXLH8jDhT32ufui9ER5dOliun5VfiEGZY1BPH1gNScg15WXSO7CcVmf2kIxGgOew9T3nafDnJ/zDANoezqQINtgMOZ0t5jg1YeA9aQjsZTAgnZ/VyZr9qTsNsbCPbH9OCaUhvLH2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CmcUDIuu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADE71C4CEE7;
+	Mon, 12 May 2025 16:34:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747067655;
+	bh=Lk35CP8LZmPslpsnxWnA0SM9IdKc0rO8t7ScWnmdFIQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CmcUDIuuOHPFo4k8FQ8G660Ixz6AEAHLKmXznOPhu0w0IXzB0oyIo5gjHB01vB9kf
+	 ZchRsFHHKQpLt/VVANRBPVZYqXRTnWqWPU2zcKLHTDYvIFv+ul1xY9uXlOi+LLHf8y
+	 xRxnBw/xgR9adwcF8zmQdxatg3PK6EFXJ2biKECNfwpjjj23ICfFDJN9koeofULoXz
+	 XuC8I/qBi3Yfm/PMN14RdTUPyyU3m7vlaL0agLpC8441DvNvEHz6qoA1JqeSwdPxhs
+	 54zCmta26CjV6GuGl2lZY0SkCTFwvn0gh9nwUYc65IV8w/jgTA5/JOjfAqwyjSQf2h
+	 SbTXqSvYG8BIw==
+Date: Mon, 12 May 2025 17:34:09 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Yunfei Dong <yunfei.dong@mediatek.com>
+Cc: =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
+	Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Nathan Hebert <nhebert@chromium.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH 01/14] dt-bindings: media: mediatek: vcodec: add decoder
+ dt-bindings for mt8196
+Message-ID: <20250512-cilantro-aviation-4328d79e02b6@spud>
+References: <20250510075357.11761-1-yunfei.dong@mediatek.com>
+ <20250510075357.11761-2-yunfei.dong@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/6] clk: spacemit: set up reset auxiliary devices
-To: Philipp Zabel <p.zabel@pengutronix.de>, Yixun Lan <dlan@gentoo.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, heylenay@4d2.org,
- inochiama@outlook.com, guodong@riscstar.com, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250509112032.2980811-1-elder@riscstar.com>
- <20250509112032.2980811-4-elder@riscstar.com>
- <20250512135429-GYA517867@gentoo>
- <abfd4c78-2592-4b8a-97be-109a8fd1bed6@riscstar.com>
- <91afcfde275a28127ba0df962a9abf4d07ba6b8b.camel@pengutronix.de>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <91afcfde275a28127ba0df962a9abf4d07ba6b8b.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="sMtwU4b+uIOkGgh2"
+Content-Disposition: inline
+In-Reply-To: <20250510075357.11761-2-yunfei.dong@mediatek.com>
 
-On 5/12/25 10:46 AM, Philipp Zabel wrote:
->>> so I'd assume the underlying device doesn't really care the id?
->>> but with different order of registration, it will result random id for the device
->> These things are identified in DTS files by their index values
->> defined in "spacemit,k1-syscon.h".  If there is a need for the
->> assigned device ID to be consistent, I'm not aware of it.  Can
->> you think of one?  I think all that matters is that they're
->> unique, and this ensures that (for up to 2^32 PMICs).
-> If there are multiple reset controllers and the driver can be unbound,
-> it's trivial to provoke a collision by keeping one device bound and
-> unbinding/binding the second one until next_id wraps.
-> This could be fixed by using ida_alloc/free to manage the id.
-> 
-> regards
-> Philipp
 
-OK thank you.  I'll put together v9 of this series and will use
-an IDA to set the device ID.  Thanks again for the explanation.
+--sMtwU4b+uIOkGgh2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-					-Alex
+On Sat, May 10, 2025 at 03:53:31PM +0800, Yunfei Dong wrote:
+> Add compatible for video decoder on MT8196 platform, which is a
+> lat + single core architecture.
+
+Please mention what makes this different from the existing devices since
+a fallback compatible is not permitted.
+
+>=20
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
+>  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml           | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subd=
+ev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-s=
+ubdev-decoder.yaml
+> index bf8082d87ac0..74e1d88d3056 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-deco=
+der.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-deco=
+der.yaml
+> @@ -76,6 +76,7 @@ properties:
+>        - mediatek,mt8186-vcodec-dec
+>        - mediatek,mt8188-vcodec-dec
+>        - mediatek,mt8195-vcodec-dec
+> +      - mediatek,mt8196-vcodec-dec
+> =20
+>    reg:
+>      minItems: 1
+> --=20
+> 2.46.0
+>=20
+>=20
+
+--sMtwU4b+uIOkGgh2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCIjAQAKCRB4tDGHoIJi
+0k0QAQDsVpMhJhlm50bTaTI++/O1PIGlsmy6yib9ZYoDAbRqIgEA3qnCMVVPvuhw
+eIG5A1Me4vqECJW3lsXvK002oVvo+gg=
+=OPXB
+-----END PGP SIGNATURE-----
+
+--sMtwU4b+uIOkGgh2--
 
