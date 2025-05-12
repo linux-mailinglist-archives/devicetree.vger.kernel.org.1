@@ -1,158 +1,130 @@
-Return-Path: <devicetree+bounces-176383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D475AB3CB5
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:51:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF68AB3CBC
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:54:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA2A67A7FBF
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:50:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DE948647CE
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:53:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F1B623C4EF;
-	Mon, 12 May 2025 15:51:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6520B23FC54;
+	Mon, 12 May 2025 15:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fx8KFETA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GJQuR80l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8771A1758B;
-	Mon, 12 May 2025 15:51:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3585C23D29F;
+	Mon, 12 May 2025 15:54:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747065090; cv=none; b=tW/4P74h7RYNNGtEPX7gx9HZmbRzLX66E+RzCGJSc/bDz/W2Cluq7JRtNcz4N9KW0NrprGmmTL7SP3egs7SuecdWiOIacNr+TSzVfEKnpjGcc1p6ObKPoo4GlAXPstLViIQjlyfhZkfeo/g1PSCiw3HrvOJe7ddxXhqt6TSV9CQ=
+	t=1747065249; cv=none; b=LbX/VZZGbEarKnR2b6bRCdKyRzin4Z+/+ooCTvWMfNkNWCsrS8yq6yWnDtTUBvDSgDocFdox3jbEDluT5xA2MtXh/rLHDmSz4rW7LHanKpoU5IJVqYsAFliHF8tMx3uH/E85eCMECZ2GUROVxo7Aaj/kPDvffCkldaiqetM1eco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747065090; c=relaxed/simple;
-	bh=4ozyet6Am4uOrDkpvVbP07Tzp8wHAIN5Eeov69emIjo=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YhHhBtd4HgsPExoSJN3/Phj9vF+5aVuQLR+RuPwW+bZo64izFgVKMD4J6SmWEjMPubJEgWp246/B93k2LvlmKQcj9bsxsjSWPZlwXBWwlw+t2JurOglDwLvm5SCTjEDDYCbzLzkeDPn3eqAOUNCh2BY+g6e+0Ncy6AYZT7wQ8sk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fx8KFETA; arc=none smtp.client-ip=209.85.210.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-72c3b863b8eso3310381a34.2;
-        Mon, 12 May 2025 08:51:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747065087; x=1747669887; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ld9Mq7+qdXV9AhMC/9M7vzrYD56VNJUHYiEJWfb0qDk=;
-        b=fx8KFETAqOcdZLLYgt0VKtK1GhAlTRebjWF5t8Cx672DymKfXy+U1zaO3rPm2yPHXx
-         2na5oioKe8GU1gO/fX2uq6XJKAGg57fbxH19WoRjYDgDLvJ78wThogVMWFEYaq5XW8pO
-         BHJt8T04xSBky7z/KlRhXb5T5WVISGDYU/PEA22gTOHXfipahVxqUoejLClPBoPRIy+N
-         8V9ue4qQpqUQriYzR8pBa3xQzByrJXPCC0mDvxX24SkJV4AuSkUZG8OExUWAosPVcEfa
-         LrGWgl8OjHWJiczj311kEZMxwd7saqHWh63BoXT3SMKg+L8vGEY6EhIS9bt7p+dLSJIp
-         9XHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747065087; x=1747669887;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ld9Mq7+qdXV9AhMC/9M7vzrYD56VNJUHYiEJWfb0qDk=;
-        b=Sc/8aE8EaJnY95f+4a0CHuNBS1HzMDdStznzeXdNY2je3teiOuoNBnELPondGkGpwP
-         EwbonIwKyeo1jbyVWgbcqwDSRA69kvrp9S0DS2WE+LOo3z7q/Q8+dormrIzVqpYUu6c5
-         v/SBPUpbrceZrevbbY9ch0Mwtl1xlHUvYoHiFzKVBWcb4Vf1DdE8U3qk2VjDfGYpG6Oy
-         QEkfvUrGi538DDsZLGFVmFidJ89snK5eh4n+fLqDTUSm/Y6ef0V39YSnIj1/CNwKZlUb
-         WUXvJ06e60R4+GeXcgYMOYM0MbtBX33RqAtMdN0s+1XG2urCavnelT31sTLuGp49dj6u
-         +dmw==
-X-Forwarded-Encrypted: i=1; AJvYcCVCdqSZlW7xtonR4t7ADWL7MFTcHFraMpDOnKw6E+EPGrfAPio5z6kdDhIKBUR61Ms5AL250rpFxwjM@vger.kernel.org, AJvYcCVHmaLlxnTKVOEwDVJZervdYKU4ztw/QUmV9B3BmGPRgiXl9ne+TSYq/iLtQdx02AYhZN9og4v3qGSm@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCBLVsBczR0ncTLup7zje+GT6th+odXw6kpQMvxjUs94WvYh6m
-	94YB+SFuD2QOMAdIQn7+MN3aMP4J4ZGUW6JWcWhso2zln7Bw5Kv6
-X-Gm-Gg: ASbGncucNnaIy2lWwTrlaBe0SzVkS56Lbc05Lnin0T4TzYUjyPEbMCTD/uWRV7ybP+w
-	0yy44NqCfOunlB2CD9SWi+R9+gpA+xX2jYnViXdX25M4brcj6SykYUwliUVYoWall3JvywPP7hb
-	EU2q9C05Hk1zxlQOqjfm165PXjvZD1LT85v52OXtG115JJ5Gym78FJRGfScfJFnblDVfvQ34Fa+
-	8gpmBIVuiNx3lduEfSMSW/8Foefw4mmRnfX9u6+BWUUGOrjx5G09p2p8mN/RnESMlVu8XF5+PD1
-	qvX65HaB35aLQxT/Tr3+C1C6+XbQySZBGWzCINrQ6iPYJZYXRjvYN6b4uMdThz8xtXQTmw==
-X-Google-Smtp-Source: AGHT+IE29HCnAnqJs70fjiVznu2cWndCXxPM0MBn2LaCtm8l99A+94DcdAaY4Wmxo+5EpZLx6ztYiA==
-X-Received: by 2002:a05:6830:6f44:b0:72a:45bf:18c2 with SMTP id 46e09a7af769-732269c4577mr9487337a34.9.1747065087378;
-        Mon, 12 May 2025 08:51:27 -0700 (PDT)
-Received: from neuromancer. ([2600:1700:fb0:1bcf:25f1:2610:e3fc:c8ec])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-732264dd290sm1579539a34.40.2025.05.12.08.51.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 May 2025 08:51:27 -0700 (PDT)
-Message-ID: <682218ff.050a0220.149fee.dd6e@mx.google.com>
-X-Google-Original-Message-ID: <aCIY_ca5PEdgItxE@neuromancer.>
-Date: Mon, 12 May 2025 10:51:25 -0500
-From: Chris Morgan <macroalpha82@gmail.com>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1747065249; c=relaxed/simple;
+	bh=ardgSaLF+Xzy6IuCgpd3Vkzram81Uc0c2cE1fOWBWbI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KpvkLEEN6NgzLwkvWnDQH/5YCVvRgcUX2jWc7GqhSzowg2TwVUASGP74WI4xDB6PKf0VAA/HDglLV3UjxRdLjzP7HuwPx/NWYz6IXfNXGZSwr5sJ6ydhros9zBJSCU2CEtlkJsmpyMFy0UQ9sTxxx8B6oW6Sdc52YuCXIETX8OI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GJQuR80l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B0F0C4CEEE;
+	Mon, 12 May 2025 15:54:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747065248;
+	bh=ardgSaLF+Xzy6IuCgpd3Vkzram81Uc0c2cE1fOWBWbI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GJQuR80lByNZISu3PMcvRfdar/46craiwyvRfxH6qwaBIaKgVN9lld7eN6lMOenYm
+	 nYxeWccZ1cW4nZCKj2VchptdnthkDFu/uEesq1e9irdeXR/Xfwa4g1liYvMm2QQabc
+	 syC5HEpxoUPK5Za/KRD5vYFMMYCznB0U2cbH1bDqNajhPeqaxTQpcvuFZR38gn8Kr7
+	 elQ9XuucoHOSFEIhetmwBTlVPGDs9klgcQHSr9hNPsWVGnNcySwKn5KIGxK7iYGCfi
+	 +cuj5O0+5l1OHUiqLy2ROwMtTQyXUSRuuMZyTvtm/p4bi/cfnmm22o3Pq1WBZV/xX0
+	 Hu7OYGL3mXhCg==
+Date: Mon, 12 May 2025 16:54:04 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Ben Zong-You Xie <ben717@andestech.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v10 00/11] drm: sun4i: add Display Engine 3.3 (DE33)
- support
-References: <20250511104042.24249-1-ryan@testtoast.com>
+	Magnus Damm <magnus.damm@gmail.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] riscv: dts: renesas: add specific RZ/Five cache
+ compatible
+Message-ID: <20250512-neglector-scope-65dd0e24db8f@spud>
+References: <20250512-daily-saga-36a3a017dd42@spud>
+ <20250512-sphere-plenty-8ce4cd772745@spud>
+ <CAMuHMdVwBqC3jHgwLJkLcNZo8W0Aw9ZfoXL1tRaL7B2EpKuWvg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Z6jVGgc2yAbBL/YK"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdVwBqC3jHgwLJkLcNZo8W0Aw9ZfoXL1tRaL7B2EpKuWvg@mail.gmail.com>
+
+
+--Z6jVGgc2yAbBL/YK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250511104042.24249-1-ryan@testtoast.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, May 11, 2025 at 10:31:09PM +1200, Ryan Walklin wrote:
-> Hi all,
-> 
-> v10 of this patch series adding support for the Allwinner DE33 display engine. This version is largely based on the previous v8 patch, with Chris's changes to the mixer bindings in particular from v9 to add names for the new register blocks. As discussed, the H616 LCD support patchset (which are largely device-tree now that the clock/reset binding definitions from v9 have been taken as a subset) will be sent separately with the rest of Chris' updates.
-> 
-> As noted previously the new YUV support in the DE3/DE33 and RCQ/DMA shadowing in the DE33 requires more work and discussion, so that support was removed from v8 and this patch supports RGB output only.
-> 
-> Regards,
-> 
-> Ryan
+On Mon, May 12, 2025 at 03:57:41PM +0200, Geert Uytterhoeven wrote:
+> Hi Conor,
+>=20
+> On Mon, 12 May 2025 at 15:48, Conor Dooley <conor@kernel.org> wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >
+> > When the binding was originally written, it was assumed that all
+> > ax45mp-caches had the same properties etc. This has turned out to be
+> > incorrect, as the QiLai SoC has a different number of cache-sets.
+> >
+> > Add a specific compatible for the RZ/Five for property enforcement and
+> > in case there turns out to be additional differences between these
+> > implementations of the cache controller.
+> >
+> > Acked-by: Ben Zong-You Xie <ben717@andestech.com>
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Thanks for the update!
+>=20
+> > --- a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+> > +++ b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+> > @@ -143,7 +143,8 @@ plic: interrupt-controller@12c00000 {
+> >         };
+> >
+> >         l2cache: cache-controller@13400000 {
+> > -               compatible =3D "andestech,ax45mp-cache", "cache";
+> > +               compatible =3D "renesas,r9a07g043f-ax45mp-cache", "ande=
+stech,ax45mp-cache",
+> > +                            "cache";
+> >                 reg =3D <0x0 0x13400000 0x0 0x100000>;
+> >                 interrupts =3D <SOC_PERIPHERAL_IRQ(476) IRQ_TYPE_LEVEL_=
+HIGH>;
+> >                 cache-size =3D <0x40000>;
+>=20
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v6.16 if there are no objections.
 
-Thank you Ryan, I will just defer to you moving forward to ensure no
-further confusion on this series and will help out wherever I can.
+I'll grab the binding then on that basis. :+1:
 
--Chris
+--Z6jVGgc2yAbBL/YK
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
-> Jernej Skrabec (7):
->   drm: sun4i: de2/de3: add mixer version enum
->   drm: sun4i: de2/de3: refactor mixer initialisation
->   drm: sun4i: de2/de3: add generic blender register reference function
->   drm: sun4i: de2/de3: use generic register reference function for layer
->     configuration
->   drm: sun4i: de33: vi_scaler: add Display Engine 3.3 (DE33) support
->   drm: sun4i: de33: mixer: add Display Engine 3.3 (DE33) support
->   drm: sun4i: de33: mixer: add mixer configuration for the H616
-> 
-> Ryan Walklin (4):
->   dt-bindings: allwinner: add H616 DE33 bus binding
->   dt-bindings: allwinner: add H616 DE33 clock binding
->   dt-bindings: allwinner: add H616 DE33 mixer binding
->   clk: sunxi-ng: ccu: add Display Engine 3.3 (DE33) support
-> 
->  .../bus/allwinner,sun50i-a64-de2.yaml         |   4 +-
->  .../clock/allwinner,sun8i-a83t-de2-clk.yaml   |   1 +
->  .../allwinner,sun8i-a83t-de2-mixer.yaml       |  34 +++-
->  drivers/clk/sunxi-ng/ccu-sun8i-de2.c          |  25 +++
->  drivers/gpu/drm/sun4i/sun8i_csc.c             |   4 +-
->  drivers/gpu/drm/sun4i/sun8i_mixer.c           | 168 ++++++++++++++----
->  drivers/gpu/drm/sun4i/sun8i_mixer.h           |  30 +++-
->  drivers/gpu/drm/sun4i/sun8i_ui_layer.c        |  27 ++-
->  drivers/gpu/drm/sun4i/sun8i_ui_scaler.c       |   2 +-
->  drivers/gpu/drm/sun4i/sun8i_vi_layer.c        |  14 +-
->  drivers/gpu/drm/sun4i/sun8i_vi_scaler.c       |   6 +-
->  11 files changed, 252 insertions(+), 63 deletions(-)
-> 
-> -- 
-> 2.49.0
-> 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCIZnAAKCRB4tDGHoIJi
+0qXTAPwP/YNKxUjnsoWI2eR0P927XpvMHJh8iXZEVodQF9EU0wEAtk1y4MXzjY2B
+SKRgAqtfnm7hZ972QpmZqhPgXVaxGwk=
+=xOTE
+-----END PGP SIGNATURE-----
+
+--Z6jVGgc2yAbBL/YK--
 
