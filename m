@@ -1,102 +1,101 @@
-Return-Path: <devicetree+bounces-176425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28588AB3E8C
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:59:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3134AB3EA8
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 19:08:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A390F467C25
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:58:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 598B63B3751
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8B82951C4;
-	Mon, 12 May 2025 16:55:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BFF829551C;
+	Mon, 12 May 2025 17:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tFUd65pA"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="mkoks5cL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D46A225D1F8;
-	Mon, 12 May 2025 16:55:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23F018467;
+	Mon, 12 May 2025 17:07:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747068952; cv=none; b=WS/Qtz2uGcj3rW62tEY6IgH0Zvde3+9bUy9aU8kD97oMDIcQ/R4UMIU1jumbbhzCHWfsfhY1y2TRHiVM6WkGLAFmQQEvgl9VSCkGKTtHZ1T8b5zpB0DjR0K2VkF/orwhdSXAXJAwTk4EwU70sour2jxDr8t9dwOTfN5L3MYbNOs=
+	t=1747069676; cv=none; b=CkM8tCkKBFmm5JaMEcfMJ+GRx6hoDQPgV1leT8zQfAygsTji8rNJFxWJXxRmgTMmyXM09sDDHwUmz7ZWXcnkFBlab39vLYjD27VH/SXkjF4/DAK1RgErFgOo5tUR1nOUp62pCCuDFVKNSWUNOrxQrrfrnN4aI1fZ4OiAqgSQ/vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747068952; c=relaxed/simple;
-	bh=9ukROqIAcSp6SGFl1zPfpFs7IwcWq7BQhrYCV/TWWaE=;
+	s=arc-20240116; t=1747069676; c=relaxed/simple;
+	bh=mLmEqOzVCecMhSZ9SrTL+1guOX+BsjLm7ABFb3jdDGM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r0mfE/CtVvMpPtd854y2cZ5oW/7FJSeAhd40fTJJw75h1kyg9AXbDkndHsBn2z8lICY43I3NIb6kNuy7TojZA1jqH7qtpEIRTKPBzAAWl1y+TwwK7lomTBf0Yx94mvyzXfg5nT1fOQqqHGA14I9Go5qyN4AJUdXytEC2bF8Cdss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tFUd65pA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 262B4C4CEE7;
-	Mon, 12 May 2025 16:55:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747068952;
-	bh=9ukROqIAcSp6SGFl1zPfpFs7IwcWq7BQhrYCV/TWWaE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tFUd65pAwGgdDgiskglFWRC19O7TZgunG+m587xb2744vL1wpB8H6WZsRB5NtIHGH
-	 DG9IuIXkKqBwBCTlNrod9hmtZz4mLviVjRbEAkD35+2F7k1zbovgc9PhDglyUrXuNv
-	 fHET4Xw8VvwzvfOAlm752J7uJOd5Rnk5R4vKqXpCm4wK1EYxsES9vVMqDoNr5qCA+V
-	 ehAM35Ox8ndPenlG5FGYv2bbZaLotgViz/X/BzGFVP2zPWytfrjhs1mcpA4+s/uZ8t
-	 LWn2Ns2iAR3JWtH29jMyA4WD8w0qmtOlz0hGPn7jpmLlJwsZs59K+xe/p+KZQhuJLZ
-	 TRR753BPmJJaw==
-Date: Mon, 12 May 2025 18:55:50 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nitin Rawat <quic_nitirawa@quicinc.com>
-Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org, 
-	krzk+dt@kernel.org, robh@kernel.org, mani@kernel.org, conor+dt@kernel.org, 
-	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com, beanhuo@micron.com, 
-	peter.wang@mediatek.com, linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V2 1/3] scsi: ufs: dt-bindings: Document UFS Disable LPM
- property
-Message-ID: <20250512-dynamic-wisteria-manatee-def67b@kuoka>
-References: <20250506163705.31518-1-quic_nitirawa@quicinc.com>
- <20250506163705.31518-2-quic_nitirawa@quicinc.com>
- <667e43a7-a33c-491b-83ca-fe06a2a5d9c3@kernel.org>
- <9974cf1d-6929-4c7f-8472-fd19c7a40b12@quicinc.com>
- <8ebe4439-eab8-456a-ac91-b53956eab633@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=OFFERQbjTg4XteUVKluBGC4nBKXzzsGerWBkBuT1LntsXOLv3rrxc2WtFdrBib32C6TvAq2l4hQj5GWF512dLlRtENBp4ZILbZRjADXnHTH5iI7GFPxqPSrHiS0M0NHFWIh6tSVt/g4cRdcIKWqxCPLqlz1wFC59VOne1eB4Ipg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=mkoks5cL; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=AIX9i9XOoogJsxM2MKGz+jWDm2A2YEEjwp/MY1BWXgM=; b=mk
+	oks5cLithMxuvu28S06tNcTQiAzT/5r6o6bwui5XQdulLQr352SjyHoSJnO5cbfs9qO2h0SIGat5q
+	sgW7QMmNRAsLza8+iTgsIcYO09hzsLjmQfBTmZyeQzYDm2FfDZxlBjOG1WXI9K7LwRUWsqpULe4av
+	eqqrJLe6239WeTk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uEWcr-00CMd6-AR; Mon, 12 May 2025 19:07:37 +0200
+Date: Mon, 12 May 2025 19:07:37 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Damien =?iso-8859-1?Q?Ri=E9gel?= <damien.riegel@silabs.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Silicon Labs Kernel Team <linux-devel@silabs.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
+	Alex Elder <elder@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	greybus-dev@lists.linaro.org
+Subject: Re: [RFC net-next 00/15] Add support for Silicon Labs CPC
+Message-ID: <6fea7d17-8e08-42c7-a297-d4f5a3377661@lunn.ch>
+References: <20250512012748.79749-1-damien.riegel@silabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <8ebe4439-eab8-456a-ac91-b53956eab633@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250512012748.79749-1-damien.riegel@silabs.com>
 
-On Mon, May 12, 2025 at 09:45:49AM GMT, Nitin Rawat wrote:
+On Sun, May 11, 2025 at 09:27:33PM -0400, Damien Riégel wrote:
+> Hi,
 > 
 > 
-> On 5/7/2025 8:34 PM, Nitin Rawat wrote:
-> > 
-> > 
-> > On 5/6/2025 11:46 PM, Krzysztof Kozlowski wrote:
-> > > On 06/05/2025 18:37, Nitin Rawat wrote:
-> > > > Disable UFS low power mode on emulation FPGA platforms or other
-> > > > platforms
-> > > 
-> > > Why wouldn't you like to test LPM also on FPGA designs? I do not see
-> > > here correlation.
-> > 
-> > Hi Krzysztof,
-> > 
-> > Since the FPGA platform doesn't support UFS Low Power Modes (such as the
-> > AutoHibern8 feature specified in the UFS specification), I have included
-> > this information in the hardware description (i.e dts).
-> 
-> 
-> Hi Krzysztof,
-> 
-> Could you please share your thoughts on my above comment? If you still see
-> concerns, I may need to consider other options like modparam.
+> This patchset brings initial support for Silicon Labs CPC protocol,
+> standing for Co-Processor Communication. This protocol is used by the
+> EFR32 Series [1]. These devices offer a variety for radio protocols,
+> such as Bluetooth, Z-Wave, Zigbee [2].
 
-It still looks like policy here. If this is soc specific, then I don't
-get why SoC compatible would not be enough?
+Before we get too deep into the details of the patches, please could
+you do a compare/contrast to Greybus.
 
-Best regards,
-Krzysztof
+The core of Greybus is already in the kernel, with some more bits
+being in staging. I don't know it too well, but at first glance it
+looks very similar. We should not duplicate that.
 
+Also, this patch adds Bluetooth, you talk about Z-Wave and Zigbee. But
+the EFR32 is a general purpose SoC, with I2C, SPI, PWM, UART. Greybus
+has support for these, although the code is current in staging. But
+for staging code, it is actually pretty good.
+
+Why should we add a vendor implementation when we already appear to
+have something which does most of what is needed?
+
+	Andrew
 
