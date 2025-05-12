@@ -1,168 +1,695 @@
-Return-Path: <devicetree+bounces-176178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7425AB30B2
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:41:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D9EFAB30CF
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:53:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5A5A189BAEA
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 07:41:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F92A179222
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 07:53:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D97B52571D5;
-	Mon, 12 May 2025 07:41:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24D02571C9;
+	Mon, 12 May 2025 07:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Tm9kUkgM"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bRFOCzcL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 533F31B4F2C
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 07:41:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B36C5256C89;
+	Mon, 12 May 2025 07:53:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747035680; cv=none; b=VzAlsieMHHiOSs11SPMcU9goYoPJhQaMRAl2ChVmrlaNqdPcUTe5S2AOBVYQ8iRKzCZuNoCq3wzvvvOQKl8sN0957Lyx78QufDLZQZJwpKUMj7ZXDKAt6FOOYK/MUCwBvVY509On+ITBoR4wMqMsswSHHRSyrf7DGwq2VvJ7DRA=
+	t=1747036408; cv=none; b=p4HFIlXGT/6K2gEKlBrRI6G8Bpj/+Sm/ERTHLNfdtEbUyoPd8l2n82IXpAkG+GkYFuMUnFU+jKA07ilf1oelfVqNPTNnVrDXoNR2PcHU0fsYNaoBwGzX+oxzOz0uXwQhNWHeDbPl5RyQA5681HDqiqJx4U0I2GJ9WvGKZkFYJm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747035680; c=relaxed/simple;
-	bh=yZ0CGA29M3rcJ+MvhLe+QeIcohtu6StaRYQuN2haPIM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qH3QR5hAb1aZ82qywktCOsggMcxkoLiYwMXBOZAx6mKIJAf3GZOH7PNF8qCCE6VdA2FoR6RGofgBWVGblgwWuC8h+Ih2mdxrsnxyR3c0Nv9E2kdLM9doot+SLMtOz/xPIkYKvLPLOboSsmD8xUXy6porJsIeJqkhvsjVIyMdZ/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Tm9kUkgM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54BMLk3a015839
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 07:41:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=07H7J1WxUG240fs/pO939g9t
-	ouj+8gGhAGiadw9TC9M=; b=Tm9kUkgMjp9XD0j7794zYjC7Kxhh1QR6KXzGcaA8
-	+43GUr4yz4Sx8zIBf6Pf0hjlZ8HdtTLqUTNtdqPuZdkVqs3fWT3Dz/X3Y0xt9U9C
-	2QYkWYRPl7l9rJsiPFj6C8NcxLXwnNfmkBvHi78ynvvTpRzzCkKL4ns3fdhbB1R8
-	K3VqOor2CfWQpQspWtEpBh9q/kNm3VsPg/csw6i5GLjRhE/SNRSas7124NPsQNWl
-	kPH23mVKSkes+j+RKRHnRwkxXvJPwVBmdgnVqPl3ts9jRFg2/Bn/VLYItZKbF2dS
-	ZvwPNDIpB1GIxzRx2+ELxYyO2UfaO8EgmX9TxPRmGfseWw==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46hx4k3kck-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 07:41:17 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3086107d023so4569073a91.2
-        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 00:41:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747035676; x=1747640476;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=07H7J1WxUG240fs/pO939g9touj+8gGhAGiadw9TC9M=;
-        b=fjKLaqWV9cE1IOeblMM/nCVo6McqDfl+zOH4qEZrSn5fgAzqoCm2Cjw0axM02JjvJv
-         593hklEhUkLOGKw4t8Pz1FH7SZAIqcClCUft2/AdgPjQ7yKTzw/Ztvz9e0diNfOrGFbA
-         aSU8Qlf4kw1YeTM0NPUMyKH3lxxie4nN7HCr7rxIerfZ6Ndc0twqtK2S/S8VW7FO9sjG
-         1iK9Xy1zJdbQ300O4B2Rv37JFqRQxTWGlzvcdXvo4NkuwOxfKe9YGOtd6jG03g1+nRvD
-         IuowvU0A7CBluhoEejyJdI8mP/H1Jil8zDTW7x+E137zJxOvi4HB9x+Fmmqz1cHmBliQ
-         JoGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUtqSfFeASXu9zixgZRgapZQDFrba6Thh6w4Wlkir6mBw8keJWJ5afm+Fro20lUS3NXwoynXWyN0V4T@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeiAcoK28Ma/zDC95dNPEcAuocR2mT6Idi0euyUYbkA8NmwObe
-	9tQ30B/a4tVjmeiMwKmcIfbck0cYYhy0Aihjb2SpstExhDFLGmt2+e+q+sXsVQDvZf2WcIIdmtP
-	w4NEW3b594dPP3WUTBRXXadH9T2m/TWupld8Osz6Le+fXgs8DaDMqyfBEVc7b
-X-Gm-Gg: ASbGncuJB/P5YKYw/V7aMaWVe4ORth0wcyg/ejFq9Zw3pa74+hoBmoWtQ/WAYvHVYYp
-	zUPwbadLlMC1Smgd9RaEKO+srnPj6KD0u5T3MmIUM3aS95mQE7LISD6dRAMYHoYIY6PdXXQjcIU
-	ORod5IHJGZRiMNxHRUx3qjeYG0v//FMKSw6+iklR9WUgXjlYGq+HZwi3nXyeTw1oGEAENSv9Dkg
-	Sc/qfPzEyf2Rm+f+mEPoas5yyg44tqHWtx7TEY/ZQvCPo9+7eYghL/oX26vs7fg0O9LIRLYY6K/
-	oMv/NSp0MyVBFNJd3BqQNjdZeLPT
-X-Received: by 2002:a17:90b:2d06:b0:2ee:edae:780 with SMTP id 98e67ed59e1d1-30c3d2e2e67mr21168292a91.15.1747035675990;
-        Mon, 12 May 2025 00:41:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IExWuL72ZS+7tugxJHglTxQK96hvhpMFxtO0vu/JY9uRC/XDAlkU5cQR07NvobNtlJ6mInbyg==
-X-Received: by 2002:a17:90b:2d06:b0:2ee:edae:780 with SMTP id 98e67ed59e1d1-30c3d2e2e67mr21168238a91.15.1747035675558;
-        Mon, 12 May 2025 00:41:15 -0700 (PDT)
-Received: from hu-pkondeti-hyd ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30c39e76062sm6007792a91.44.2025.05.12.00.41.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 May 2025 00:41:15 -0700 (PDT)
-Date: Mon, 12 May 2025 13:11:08 +0530
-From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-To: Nitin Rawat <quic_nitirawa@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, alim.akhtar@samsung.com,
-        avri.altman@wdc.com, bvanassche@acm.org, krzk+dt@kernel.org,
-        robh@kernel.org, mani@kernel.org, conor+dt@kernel.org,
-        James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com,
-        beanhuo@micron.com, peter.wang@mediatek.com,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V2 1/3] scsi: ufs: dt-bindings: Document UFS Disable LPM
- property
-Message-ID: <852e3d10-5bf8-4b2e-9447-fe15c1aaf3ba@quicinc.com>
-References: <20250506163705.31518-1-quic_nitirawa@quicinc.com>
- <20250506163705.31518-2-quic_nitirawa@quicinc.com>
- <667e43a7-a33c-491b-83ca-fe06a2a5d9c3@kernel.org>
- <9974cf1d-6929-4c7f-8472-fd19c7a40b12@quicinc.com>
- <8ebe4439-eab8-456a-ac91-b53956eab633@quicinc.com>
+	s=arc-20240116; t=1747036408; c=relaxed/simple;
+	bh=1lzGNgdiOiHRdHshusc2BAhpbDQalgP3ikQNwUBzgDs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UyKJdoMNq4YlmqlJSN/1dehB7VDb5lnQDUoAX/OQPltLdf7Cx1nOa14EcQzGQjuf4hsa+AJaOMGAei9GDCcO8Q5Ohep0Bmt/Y/sueeiur15XLS+D3I7RSb2i+MQ+9i2r25qQO3KPkM8QPsIEAwQxz5gb0PRWpYA8hors0aZp0o0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bRFOCzcL; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id ECBE343A22;
+	Mon, 12 May 2025 07:53:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1747036397;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3JdVmFAPsR+3WBG7Vk3r7Za7/cXwc/fNQ3fTQWewBDY=;
+	b=bRFOCzcLVeA7kSsmluzXLv7xk0WdvNErm8O2DAc+qJ+jmWI7K5bwa1n5XMgnHJuSeoUZ4f
+	gBn2hmIWk9TJ6EZtW8NJhNgnjJTjoqEyy+Sk83cLy6YdrI/P3rs2VDXEj8fHFiPEoSGaQg
+	XK1TcdFPBD2mpZYzm7p74ZWllX0oN2k956wh1wXAV+it1+TF/u4kiruXXZL7PD3gGYwSpJ
+	LwtzBMPcOP1wCSDImlRqHAlAjvVEe/Bb0DXMeudDn3Lc/WSrh1xvSECi/LLQCor+zr/4po
+	WeVACAq3VE3W/rIW+xDoHjVEs/czub1SivH/MaNGgZdkdOz+e/ur3bc3f6fOhw==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: davem@davemloft.net, Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+ Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
+ linux-arm-kernel@lists.infradead.org,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>,
+ Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>,
+ =?UTF-8?B?Tmljb2zDsg==?= Veronese <nicveronese@gmail.com>,
+ Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+ Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, Daniel Golle <daniel@makrotopia.org>,
+ Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Subject:
+ Re: [PATCH net-next v6 03/14] net: phy: Introduce PHY ports representation
+Date: Mon, 12 May 2025 09:53:09 +0200
+Message-ID: <3878435.kQq0lBPeGt@fw-rgant>
+In-Reply-To: <20250507135331.76021-4-maxime.chevallier@bootlin.com>
+References:
+ <20250507135331.76021-1-maxime.chevallier@bootlin.com>
+ <20250507135331.76021-4-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8ebe4439-eab8-456a-ac91-b53956eab633@quicinc.com>
-X-Authority-Analysis: v=2.4 cv=ReqQC0tv c=1 sm=1 tr=0 ts=6821a61d cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=kj9zAlcOel0A:10 a=dt9VzEwgFbYA:10 a=gDD5y9GCQ-Lx19kb1DEA:9
- a=CjuIK1q_8ugA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-GUID: TyXViy6CFgB2fBrl__KVba9vWloUdlCb
-X-Proofpoint-ORIG-GUID: TyXViy6CFgB2fBrl__KVba9vWloUdlCb
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEyMDA4MCBTYWx0ZWRfXz6rw0jloFgit
- kleLD64qqfjrw8j5Gf6SbTiLKaYMWTDLFA2kFfGWpnqYdTH1Vr2BGBHkcbS5hvUX12i0NwvVIEr
- lY4ROjzyCSNgbLJ68NK1B14lMVGsaYynqEI2HnTPBs/RTvDPZWXckYWXo0hX/9p2PgsEP0itEZ8
- bihz05j2/3QtQ7V4olucGpUwJYM6qaF6oSaq7WYzXFs9rBl8YOxS6i6I+zpIpasZtKUQlZApI1j
- VGTcIf577pee0bVRMfMK0C1rwXc/AerQAepjtLvyawYiLaazsrrG+QC5RS7FcInbzX9R8TmmR72
- /rv7qfacdvcRF9kLiXhODiMDuuzMMTMpn99i/8pWsUnpUHfJy9QuaR6l/B3yceoBlMkAWA20ubL
- HWC6UFSklU0kD06gckRIlDmWZCAKet2ceNDMhgkImvm3yWNJd3LyEcXee+bJjCsXLSClNqbU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-12_03,2025-05-09_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 mlxscore=0 mlxlogscore=999 phishscore=0 suspectscore=0
- spamscore=0 priorityscore=1501 impostorscore=0 bulkscore=0 clxscore=1011
- adultscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505120080
+Content-Type: multipart/signed; boundary="nextPart3629297.iIbC2pHGDl";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftddtjeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkfgjfhggtgesghdtreertddtjeenucfhrhhomheptfhomhgrihhnucfirghnthhoihhsuceorhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefhvdelkeevgfeijedtudeiheefffejhfelgeduuefhleetudeiudektdeiheelgfenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepfhifqdhrghgrnhhtrdhlohgtrghlnhgvthdpmhgrihhlfhhrohhmpehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfedtpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepnhgvthguvghvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrk
+ hgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqmhhsmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehthhhomhgrshdrphgvthgriiiiohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: romain.gantois@bootlin.com
 
-On Mon, May 12, 2025 at 09:45:49AM +0530, Nitin Rawat wrote:
-> 
-> 
-> On 5/7/2025 8:34 PM, Nitin Rawat wrote:
-> > 
-> > 
-> > On 5/6/2025 11:46 PM, Krzysztof Kozlowski wrote:
-> > > On 06/05/2025 18:37, Nitin Rawat wrote:
-> > > > Disable UFS low power mode on emulation FPGA platforms or other
-> > > > platforms
-> > > 
-> > > Why wouldn't you like to test LPM also on FPGA designs? I do not see
-> > > here correlation.
-> > 
-> > Hi Krzysztof,
-> > 
-> > Since the FPGA platform doesn't support UFS Low Power Modes (such as the
-> > AutoHibern8 feature specified in the UFS specification), I have included
-> > this information in the hardware description (i.e dts).
-> 
-> 
-> Hi Krzysztof,
-> 
-> Could you please share your thoughts on my above comment? If you still see
-> concerns, I may need to consider other options like modparam.
-> 
+--nextPart3629297.iIbC2pHGDl
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+Date: Mon, 12 May 2025 09:53:09 +0200
+Message-ID: <3878435.kQq0lBPeGt@fw-rgant>
+In-Reply-To: <20250507135331.76021-4-maxime.chevallier@bootlin.com>
+MIME-Version: 1.0
 
-I understand why you are inclining towards the module param here. Before
-we take that route,
+Hi Maxime,
 
-Is it possible to use a different compatible (for ex: qcom,sm8650-emu-ufshc) for UFS controller
-on the emulation platform and apply the quirk in the driver based on the device_get_match_data()
-based detection?
+On Wednesday, 7 May 2025 15:53:19 CEST Maxime Chevallier wrote:
+> Ethernet provides a wide variety of layer 1 protocols and standards for
+> data transmission. The front-facing ports of an interface have their own
+> complexity and configurability.
+> 
+...
+> +
+> +static int phy_default_setup_single_port(struct phy_device *phydev)
+> +{
+> +	struct phy_port *port = phy_port_alloc();
+> +
+> +	if (!port)
+> +		return -ENOMEM;
+> +
+> +	port->parent_type = PHY_PORT_PHY;
+> +	port->phy = phydev;
+> +	linkmode_copy(port->supported, phydev->supported);
+> +
+> +	phy_add_port(phydev, port);
+> +
+> +	/* default medium is copper */
+> +	if (!port->mediums)
+> +		port->mediums |= BIT(ETHTOOL_LINK_MEDIUM_BASET);
 
-Thanks,
-Pavan
+Could this be moved to phy_port_alloc() instead? That way, you'd avoid the 
+extra conditional and the "default medium == baseT" rule would be enforced as 
+early as possible.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int of_phy_ports(struct phy_device *phydev)
+> +{
+> +	struct device_node *node = phydev->mdio.dev.of_node;
+> +	struct device_node *mdi;
+> +	struct phy_port *port;
+> +	int err;
+> +
+> +	if (!IS_ENABLED(CONFIG_OF_MDIO))
+> +		return 0;
+> +
+> +	if (!node)
+> +		return 0;
+> +
+> +	mdi = of_get_child_by_name(node, "mdi");
+> +	if (!mdi)
+> +		return 0;
+
+There are a lot of different possible failure paths here, so some specific error 
+messages would be relevant IMO.
+
+> +
+> +	for_each_available_child_of_node_scoped(mdi, port_node) {
+> +		port = phy_of_parse_port(port_node);
+> +		if (IS_ERR(port)) {
+> +			err = PTR_ERR(port);
+> +			goto out_err;
+> +		}
+> +
+> +		port->parent_type = PHY_PORT_PHY;
+> +		port->phy = phydev;
+> +		err = phy_add_port(phydev, port);
+> +		if (err)
+> +			goto out_err;
+> +	}
+> +	of_node_put(mdi);
+> +
+> +	return 0;
+> +
+> +out_err:
+> +	phy_cleanup_ports(phydev);
+> +	of_node_put(mdi);
+> +	return err;
+> +}
+> +
+> +static int phy_setup_ports(struct phy_device *phydev)
+> +{
+> +	__ETHTOOL_DECLARE_LINK_MODE_MASK(ports_supported);
+> +	struct phy_port *port;
+> +	int ret;
+> +
+> +	ret = of_phy_ports(phydev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (phydev->n_ports < phydev->max_n_ports) {
+> +		ret = phy_default_setup_single_port(phydev);
+> +		if (ret)
+> +			goto out;
+> +	}
+
+Couldn't the function return at this point if phydev->n_ports is 0? That 
+would eliminate the need for the linkmode_empty() check later.
+
+> +
+> +	linkmode_zero(ports_supported);
+> +
+> +	/* Aggregate the supported modes, which are made-up of :
+> +	 *  - What the PHY itself supports
+> +	 *  - What the sum of all ports support
+> +	 */
+> +	list_for_each_entry(port, &phydev->ports, head)
+> +		if (port->active)
+> +			linkmode_or(ports_supported, ports_supported,
+> +				    port->supported);
+> +
+> +	if (!linkmode_empty(ports_supported))
+> +		linkmode_and(phydev->supported, phydev->supported,
+> +			     ports_supported);
+> +
+> +	/* For now, the phy->port field is set as the first active port's type 
+*/
+> +	list_for_each_entry(port, &phydev->ports, head)
+> +		if (port->active)
+> +			phydev->port = phy_port_get_type(port);
+> +
+> +	return 0;
+> +
+> +out:
+> +	phy_cleanup_ports(phydev);
+> +	return ret;
+> +}
+> +
+>  /**
+>   * fwnode_mdio_find_device - Given a fwnode, find the mdio_device
+>   * @fwnode: pointer to the mdio_device's fwnode
+> @@ -3339,6 +3500,11 @@ static int phy_probe(struct device *dev)
+>  		phydev->is_gigabit_capable = 1;
+> 
+>  	of_set_phy_supported(phydev);
+> +
+> +	err = phy_setup_ports(phydev);
+> +	if (err)
+> +		goto out;
+> +
+>  	phy_advertise_supported(phydev);
+> 
+>  	/* Get PHY default EEE advertising modes and handle them as 
+potentially
+> @@ -3414,6 +3580,8 @@ static int phy_remove(struct device *dev)
+> 
+>  	phydev->state = PHY_DOWN;
+> 
+> +	phy_cleanup_ports(phydev);
+> +
+>  	sfp_bus_del_upstream(phydev->sfp_bus);
+>  	phydev->sfp_bus = NULL;
+> 
+> diff --git a/drivers/net/phy/phy_port.c b/drivers/net/phy/phy_port.c
+> new file mode 100644
+> index 000000000000..c69ba0d9afba
+> --- /dev/null
+> +++ b/drivers/net/phy/phy_port.c
+> @@ -0,0 +1,171 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/* Framework to drive Ethernet ports
+> + *
+> + * Copyright (c) 2024 Maxime Chevallier <maxime.chevallier@bootlin.com>
+> + */
+> +
+> +#include <linux/linkmode.h>
+> +#include <linux/of.h>
+> +#include <linux/phy_port.h>
+> +
+> +/**
+> + * phy_port_alloc() - Allocate a new phy_port
+> + *
+> + * Returns: a newly allocated struct phy_port, or NULL.
+> + */
+> +struct phy_port *phy_port_alloc(void)
+> +{
+> +	struct phy_port *port;
+> +
+> +	port = kzalloc(sizeof(*port), GFP_KERNEL);
+> +	if (!port)
+> +		return NULL;
+> +
+> +	linkmode_zero(port->supported);
+> +	INIT_LIST_HEAD(&port->head);
+> +
+> +	return port;
+> +}
+> +EXPORT_SYMBOL_GPL(phy_port_alloc);
+> +
+> +/**
+> + * phy_port_destroy() - Free a struct phy_port
+> + * @port: The port to destroy
+> + */
+> +void phy_port_destroy(struct phy_port *port)
+> +{
+> +	kfree(port);
+> +}
+> +EXPORT_SYMBOL_GPL(phy_port_destroy);
+> +
+> +static void ethtool_medium_get_supported(unsigned long *supported,
+> +					 enum ethtool_link_medium medium,
+> +					 int lanes)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < __ETHTOOL_LINK_MODE_MASK_NBITS; i++) {
+> +		/* Special bits such as Autoneg, Pause, Asym_pause, etc. are
+> +		 * set and will be masked away by the port parent.
+> +		 */
+> +		if (link_mode_params[i].mediums == 
+BIT(ETHTOOL_LINK_MEDIUM_NONE)) {
+> +			linkmode_set_bit(i, supported);
+> +			continue;
+
+If you change the subsequent "if" into an "else if", you'll avoid having to 
+use "continue" here, which IMO would make things a bit clearer.
+
+> +		}
+> +
+> +		/* For most cases, min_lanes == lanes, except for 10/100BaseT 
+that work
+> +		 * on 2 lanes but are compatible with 4 lanes mediums
+> +		 */
+> +		if (link_mode_params[i].mediums & BIT(medium) &&
+> +		    link_mode_params[i].lanes >= lanes &&
+> +		    link_mode_params[i].min_lanes <= lanes) {
+> +			linkmode_set_bit(i, supported);
+> +		}
+> +	}
+> +}
+> +
+> +static enum ethtool_link_medium ethtool_str_to_medium(const char *str)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < __ETHTOOL_LINK_MEDIUM_LAST; i++)
+> +		if (!strcmp(phy_mediums(i), str))
+> +			return i;
+> +
+> +	return ETHTOOL_LINK_MEDIUM_NONE;
+> +}
+> +
+> +/**
+> + * phy_of_parse_port() - Create a phy_port from a firmware representation
+> + * @dn: device_node representation of the port, following the
+> + *	ethernet-connector.yaml binding
+> + *
+> + * Returns: a newly allocated and initialized phy_port pointer, or an
+> ERR_PTR. + */
+> +struct phy_port *phy_of_parse_port(struct device_node *dn)
+> +{
+> +	struct fwnode_handle *fwnode = of_fwnode_handle(dn);
+> +	enum ethtool_link_medium medium;
+> +	struct phy_port *port;
+> +	struct property *prop;
+> +	const char *med_str;
+> +	u32 lanes, mediums = 0;
+> +	int ret;
+> +
+> +	ret = fwnode_property_read_u32(fwnode, "lanes", &lanes);
+> +	if (ret)
+> +		lanes = 0;
+
+Checking if this property exists before calling fwnode_property_read_u32() 
+would avoid masking potential error conditions where the property exists, but 
+something goes wrong while reading it.
+
+> +
+> +	ret = fwnode_property_read_string(fwnode, "media", &med_str);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	of_property_for_each_string(to_of_node(fwnode), "media", prop, 
+med_str) {
+> +		medium = ethtool_str_to_medium(med_str);
+> +		if (medium == ETHTOOL_LINK_MEDIUM_NONE)
+> +			return ERR_PTR(-EINVAL);
+> +
+> +		mediums |= BIT(medium);
+> +	}
+> +
+> +	if (!mediums)
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	port = phy_port_alloc();
+> +	if (!port)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	port->lanes = lanes;
+> +	port->mediums = mediums;
+> +
+> +	return port;
+> +}
+> +EXPORT_SYMBOL_GPL(phy_of_parse_port);
+> +
+> +/**
+> + * phy_port_update_supported() - Setup the port->supported field
+> + * @port: the port to update
+> + *
+> + * Once the port's medium list and number of lanes has been configured
+> based + * on firmware, straps and vendor-specific properties, this function
+> may be + * called to update the port's supported linkmodes list.
+> + *
+> + * Any mode that was manually set in the port's supported list remains set.
+> + */
+> +void phy_port_update_supported(struct phy_port *port)
+> +{
+> +	__ETHTOOL_DECLARE_LINK_MODE_MASK(supported);
+> +	int i, lanes = 1;
+> +
+> +	/* If there's no lanes specified, we grab the default number of
+> +	 * lanes as the max of the default lanes for each medium
+> +	 */
+> +	if (!port->lanes)
+> +		for_each_set_bit(i, &port->mediums, __ETHTOOL_LINK_MEDIUM_LAST)
+> +			lanes = max_t(int, lanes, phy_medium_default_lanes(i));
+> +
+> +	for_each_set_bit(i, &port->mediums, __ETHTOOL_LINK_MEDIUM_LAST) {
+> +		linkmode_zero(supported);
+
+ethtool_medium_get_supported() can only set bits in "supported", so you could 
+just do:
+
+```
+for_each_set_bit(i, &port->mediums, __ETHTOOL_LINK_MEDIUM_LAST)
+	ethtool_medium_get_supported(port->supported, i, port->lanes);
+```
+
+unless you're wary of someone modifying ethtool_medium_get_supported() in a 
+way that breaks this in the future?
+
+> +		ethtool_medium_get_supported(supported, i, port->lanes);
+> +		linkmode_or(port->supported, port->supported, supported);
+> +	}
+> +}
+> +EXPORT_SYMBOL_GPL(phy_port_update_supported);
+> +
+> +/**
+> + * phy_port_get_type() - get the PORT_* attribut for that port.
+> + * @port: The port we want the information from
+> + *
+> + * Returns: A PORT_XXX value.
+> + */
+> +int phy_port_get_type(struct phy_port *port)
+> +{
+> +	if (port->mediums & ETHTOOL_LINK_MEDIUM_BASET)
+> +		return PORT_TP;
+> +
+> +	if (phy_port_is_fiber(port))
+> +		return PORT_FIBRE;
+> +
+> +	return PORT_OTHER;
+> +}
+> +EXPORT_SYMBOL_GPL(phy_port_get_type);
+> diff --git a/include/linux/ethtool.h b/include/linux/ethtool.h
+> index c1d805d3e02f..0d3063af5905 100644
+> --- a/include/linux/ethtool.h
+> +++ b/include/linux/ethtool.h
+> @@ -226,6 +226,10 @@ extern const struct link_mode_info link_mode_params[];
+> 
+>  extern const char ethtool_link_medium_names[][ETH_GSTRING_LEN];
+> 
+> +#define ETHTOOL_MEDIUM_FIBER_BITS (BIT(ETHTOOL_LINK_MEDIUM_BASES) | \
+> +				   BIT(ETHTOOL_LINK_MEDIUM_BASEL) | \
+> +				   BIT(ETHTOOL_LINK_MEDIUM_BASEF))
+> +
+>  static inline const char *phy_mediums(enum ethtool_link_medium medium)
+>  {
+>  	if (medium >= __ETHTOOL_LINK_MEDIUM_LAST)
+> @@ -234,6 +238,17 @@ static inline const char *phy_mediums(enum
+> ethtool_link_medium medium) return ethtool_link_medium_names[medium];
+>  }
+> 
+> +static inline int phy_medium_default_lanes(enum ethtool_link_medium medium)
+> +{
+> +	/* Let's consider that the default BaseT ethernet is BaseT4, i.e.
+> +	 * Gigabit Ethernet.
+> +	 */
+> +	if (medium == ETHTOOL_LINK_MEDIUM_BASET)
+> +		return 4;
+> +
+> +	return 1;
+> +}
+> +
+>  /* declare a link mode bitmap */
+>  #define __ETHTOOL_DECLARE_LINK_MODE_MASK(name)		\
+>  	DECLARE_BITMAP(name, __ETHTOOL_LINK_MODE_MASK_NBITS)
+> diff --git a/include/linux/phy.h b/include/linux/phy.h
+> index d62d292024bc..0180f4d4fd7d 100644
+> --- a/include/linux/phy.h
+> +++ b/include/linux/phy.h
+> @@ -299,6 +299,7 @@ static inline long rgmii_clock(int speed)
+>  struct device;
+>  struct kernel_hwtstamp_config;
+>  struct phylink;
+> +struct phy_port;
+>  struct sfp_bus;
+>  struct sfp_upstream_ops;
+>  struct sk_buff;
+> @@ -590,6 +591,9 @@ struct macsec_ops;
+>   * @master_slave_state: Current master/slave configuration
+>   * @mii_ts: Pointer to time stamper callbacks
+>   * @psec: Pointer to Power Sourcing Equipment control struct
+> + * @ports: List of PHY ports structures
+> + * @n_ports: Number of ports currently attached to the PHY
+> + * @max_n_ports: Max number of ports this PHY can expose
+>   * @lock:  Mutex for serialization access to PHY
+>   * @state_queue: Work queue for state machine
+>   * @link_down_events: Number of times link was lost
+> @@ -724,6 +728,10 @@ struct phy_device {
+>  	struct mii_timestamper *mii_ts;
+>  	struct pse_control *psec;
+> 
+> +	struct list_head ports;
+> +	int n_ports;
+> +	int max_n_ports;
+> +
+>  	u8 mdix;
+>  	u8 mdix_ctrl;
+> 
+> @@ -1242,6 +1250,27 @@ struct phy_driver {
+>  	 * Returns the time in jiffies until the next update event.
+>  	 */
+>  	unsigned int (*get_next_update_time)(struct phy_device *dev);
+> +
+> +	/**
+> +	 * @attach_port: Indicates to the PHY driver that a port is detected
+> +	 * @dev: PHY device to notify
+> +	 * @port: The port being added
+> +	 *
+> +	 * Called when a port that needs to be driven by the PHY is found. The
+> +	 * number of time this will be called depends on phydev->max_n_ports,
+> +	 * which the driver can change in .probe().
+> +	 *
+> +	 * The port that is being passed may or may not be initialized. If it 
+is
+> +	 * already initialized, it is by the generic port representation from
+> +	 * devicetree, which superseeds any strapping or vendor-specific
+> +	 * properties.
+> +	 *
+> +	 * If the port isn't initialized, the port->mediums and port->lanes
+> +	 * fields must be set, possibly according to stapping information.
+> +	 *
+> +	 * Returns 0, or an error code.
+> +	 */
+> +	int (*attach_port)(struct phy_device *dev, struct phy_port *port);
+>  };
+>  #define to_phy_driver(d) container_of_const(to_mdio_common_driver(d),		
+\
+>  				      struct phy_driver, mdiodrv)
+> @@ -1968,6 +1997,7 @@ void phy_trigger_machine(struct phy_device *phydev);
+>  void phy_mac_interrupt(struct phy_device *phydev);
+>  void phy_start_machine(struct phy_device *phydev);
+>  void phy_stop_machine(struct phy_device *phydev);
+> +
+>  void phy_ethtool_ksettings_get(struct phy_device *phydev,
+>  			       struct ethtool_link_ksettings *cmd);
+>  int phy_ethtool_ksettings_set(struct phy_device *phydev,
+> diff --git a/include/linux/phy_port.h b/include/linux/phy_port.h
+> new file mode 100644
+> index 000000000000..70aa75f93096
+> --- /dev/null
+> +++ b/include/linux/phy_port.h
+> @@ -0,0 +1,93 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> +
+> +#ifndef __PHY_PORT_H
+> +#define __PHY_PORT_H
+> +
+> +#include <linux/ethtool.h>
+> +#include <linux/types.h>
+> +#include <linux/phy.h>
+> +
+> +struct phy_port;
+> +
+> +/**
+> + * enum phy_port_parent - The device this port is attached to
+> + *
+> + * @PHY_PORT_PHY: Indicates that the port is driven by a PHY device
+> + */
+> +enum phy_port_parent {
+> +	PHY_PORT_PHY,
+> +};
+> +
+> +struct phy_port_ops {
+> +	/* Sometimes, the link state can be retrieved from physical,
+> +	 * out-of-band channels such as the LOS signal on SFP. These
+> +	 * callbacks allows notifying the port about state changes
+> +	 */
+> +	void (*link_up)(struct phy_port *port);
+> +	void (*link_down)(struct phy_port *port);
+> +
+> +	/* If the port acts as a Media Independent Interface (Serdes port),
+> +	 * configures the port with the relevant state and mode. When enable is
+> +	 * not set, interface should be ignored
+> +	 */
+> +	int (*configure_mii)(struct phy_port *port, bool enable, 
+phy_interface_t
+> interface); +};
+> +
+> +/**
+> + * struct phy_port - A representation of a network device physical
+> interface + *
+> + * @head: Used by the port's parent to list ports
+> + * @parent_type: The type of device this port is directly connected to
+> + * @phy: If the parent is PHY_PORT_PHYDEV, the PHY controlling that port
+> + * @ops: Callback ops implemented by the port controller
+> + * @lanes: The number of lanes (diff pairs) this port has, 0 if not
+> applicable + * @mediums: Bitmask of the physical mediums this port provides
+> access to + * @supported: The link modes this port can expose, if this port
+> is MDI (not MII) + * @interfaces: The MII interfaces this port supports, if
+> this port is MII + * @active: Indicates if the port is currently part of
+> the active link. + * @is_serdes: Indicates if this port is Serialised MII
+> (Media Independent + *	       Interface), or an MDI (Media Dependent
+> Interface).
+> + */
+> +struct phy_port {
+> +	struct list_head head;
+> +	enum phy_port_parent parent_type;
+> +	union {
+> +		struct phy_device *phy;
+> +	};
+> +
+> +	const struct phy_port_ops *ops;
+> +
+> +	int lanes;
+> +	unsigned long mediums;
+> +	__ETHTOOL_DECLARE_LINK_MODE_MASK(supported);
+> +	DECLARE_PHY_INTERFACE_MASK(interfaces);
+> +
+> +	unsigned int active:1;
+> +	unsigned int is_serdes:1;
+> +};
+> +
+> +struct phy_port *phy_port_alloc(void);
+> +void phy_port_destroy(struct phy_port *port);
+> +
+> +static inline struct phy_device *port_phydev(struct phy_port *port)
+> +{
+> +	return port->phy;
+> +}
+> +
+> +struct phy_port *phy_of_parse_port(struct device_node *dn);
+> +
+> +static inline bool phy_port_is_copper(struct phy_port *port)
+> +{
+> +	return port->mediums == BIT(ETHTOOL_LINK_MEDIUM_BASET);
+
+BaseC is also "copper" right? Maybe this should be renamed to 
+"phy_port_is_tp"?
+
+> +}
+> +
+> +static inline bool phy_port_is_fiber(struct phy_port *port)
+> +{
+> +	return !!(port->mediums & ETHTOOL_MEDIUM_FIBER_BITS);
+> +}
+> +
+> +void phy_port_update_supported(struct phy_port *port);
+> +
+> +int phy_port_get_type(struct phy_port *port);
+> +
+> +#endif
+
+Thanks!
+
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart3629297.iIbC2pHGDl
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEYFZBShRwOvLlRRy+3R9U/FLj284FAmghqOUACgkQ3R9U/FLj
+284NzA//aRirexrSNYDxqPN1AU2dLltouAjTNhLz4In1RqjLR1MEzy6Iu5gDZrRl
+PYZLzYIi7LzbGS846G/VCyFdJMu3eXeBBRFq0NYg9iBN/uUxgyUhru+v6QzpOVcv
+1vhIb3vazATaZqD0+vbhvcV/nKpGkQrzURlAxu7G9++Xha+zQtf2S9jmCCGdOuWX
+uLbZ2ENGE+dF3/q86evGT+CXHg+trilLEEwzM0Tdvfqs3sXsO6aaJCVd+fHof71M
+wJdq7aXzPt1liZaY8pDcbIZVDxplHc5ZJYY96jG0qRLleIWREUNNbr+IShk5D6Wd
+GsIVQjg+0uN/ju9SiL7vPF1L+dKYEOoXvMqcZLdI1ynKhP6fPff/ZW1K/5NLgSF9
+jVi004GAOb1+la83eAe2T189TceMaDeSJy0GM3Gw2AliFi3Nmy1ZsZjDEdCZbNUw
+x3sK2pyj8x1Pftb5aI2mgeZ5c7iJ/PmAIgD29AxU8IX/IDXteBk02tWzjm14VF+O
+AIH/AozrAA9A+bpKL4XdAD1Ui2bs1rYJteJoYTOMol9fj/br80UvmTOb6QlgPAI8
+OhEc8IgEYScJtkbQ1yFveOvdxdwbphiTd9hEo21sWekR7hVwOaWmkPaL7jz+IqZj
+dzWNT1p6gNeEA1iDMhEOVqU+0nA9DVfQHE0O1Ls1owRpNb6fT08=
+=tsnT
+-----END PGP SIGNATURE-----
+
+--nextPart3629297.iIbC2pHGDl--
+
+
+
 
