@@ -1,55 +1,71 @@
-Return-Path: <devicetree+bounces-176378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCD88AB3C08
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:26:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B693BAB3C20
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:32:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51209178BE8
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:26:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50C721892EA4
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:32:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D100223A9B4;
-	Mon, 12 May 2025 15:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A911A23A99F;
+	Mon, 12 May 2025 15:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ys8qdg1E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MR0KDEB3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9489235077;
-	Mon, 12 May 2025 15:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78AEE2367B3;
+	Mon, 12 May 2025 15:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747063570; cv=none; b=B0eyc+RC0yVxPbTylPva61E8MQQnHeTOQl5GFFY974xW1KajLd+KzKHqZJpF36w23nkrhNIAUk29itNTwG79fruPWXP/bmlSU0MSXgN48ZRDALHPDPe3IFU8gpmK98enyPDvDAPbPDey/grrtVsf8+HFetHpPozYJ5b6U54Gi58=
+	t=1747063947; cv=none; b=IbUh2wszjHtBN0bu3hmub92oQ9zJoJucjdY13qf9tDMAg2yq/iRsso0iCGpcmns2xLmTP+dDVl5X7saJ7r05rMIrjMOpmniKzUFuEYe8ZuHHY0RxoxtYlcAycOjwcKMWOr2XZRlm0L5zQte6lSMX69510AgM91bFBo39syCWt/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747063570; c=relaxed/simple;
-	bh=5EkUf1PscTHPkCMWeXYpTdT9UJVhoVSs8dc2HVxVZvk=;
+	s=arc-20240116; t=1747063947; c=relaxed/simple;
+	bh=G8STc3nYG2oGE9loL8qWjLffTpgukBF65jhgCRfvXq4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nGUjp7APnejlF9gphNoXnTaB+RzQh98DC2lzrCF3ehaa3tPekjG/fvwkjNJXQapGhJhSsB/LvJvhbjIot8pNUWsbTSmSwUUgEoaBhdx7URSVTsASSx9LPL7eqgSJ2a7FNLcM9MjFWb2TgTvqjUBUT+M1grp6CJGN+BWoCkSD4vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ys8qdg1E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD749C4CEE7;
-	Mon, 12 May 2025 15:26:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=N6EejHCQd3kIzS1RQlWsCxtjnnbn+cZBZpcVVLsYauzuT5liqbfiBHvxFT2GJd/1m5ksYd1t8mX9bfo2b4u6d/lwBzqYleIzn/wnuBpR/uKUnmaxMhyTrnOxeiXbE8paBxQaRzGDAfGSPLz5dRcJRibGccBMgOeDBjkdSRdQEIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MR0KDEB3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9DAEC4CEE7;
+	Mon, 12 May 2025 15:32:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747063570;
-	bh=5EkUf1PscTHPkCMWeXYpTdT9UJVhoVSs8dc2HVxVZvk=;
+	s=k20201202; t=1747063946;
+	bh=G8STc3nYG2oGE9loL8qWjLffTpgukBF65jhgCRfvXq4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ys8qdg1EFUGfsN9N4QbOF4640oc7xz7B0Ty06jMqCwZR37ReBvhPVs22RkbkqGu3e
-	 zjiyqPbTvg/WxVhg1xjnqMwtiDx2PrVwarph58glmnzZlSGwKcQ62/4syWdgATOl73
-	 qsGSCNxSIGqsRBUvYcf6WKqogNvhxRmMWVjqL+Uxl4dyjjuVBxyjRz0q9U1XwCA34U
-	 1yxboNSqu9j1xykWaVrSkILG3q7SMc1FWRP/P6DMA4GL7op4oU7Vizl/HIHFxQqxCz
-	 wGVGne1PtBqJ02B/HL03MrnTcudnWkQAUeZrYRBFkVV8DmtyXFiY+Cl+IYfQLRG3v4
-	 IWmWOKfFdy13w==
-Date: Mon, 12 May 2025 10:26:07 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	conor+dt@kernel.org, krzk+dt@kernel.org,
-	~lkcamp/patches@lists.sr.ht
-Subject: Re: [PATCH] dt-bindings: trivial-devices: Add Maxim max30208
-Message-ID: <174706356668.3377581.9001459605267583230.robh@kernel.org>
-References: <20250503190509.33074-1-rodrigo.gobbi.7@gmail.com>
+	b=MR0KDEB3P9q9DlkdVZZ8h0q0xI/q4GTgP7wYrn6KDFMcHB2dGam49torlGAxf16Eq
+	 +Hobwti4JcLvGepcPASZ1VVYZ7UPkhzSb+9H5zeVf1WjG6qGFZoQdogX5hVXNxgzCa
+	 vKqS1GmCm7sq67W902Z8BihGab71tqnbCa/E6DUkPwX3baIEm+r2ioRmnzFMcQGkR2
+	 3Cvkuat4FJXqLJJwY5wcPFD/dY4+qY+Be3mX+wkVVD445QmTscsx9+9WfUaayp6f3r
+	 fsSqANCLOcZIfF8CX7LYz08UQRp3Kondi5ADJmiqbN8wTcUZxs0ipIadhmEecKdKrD
+	 hgqZt111ExdXg==
+Date: Mon, 12 May 2025 10:32:24 -0500
+From: Rob Herring <robh@kernel.org>
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, x86@kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org,
+	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
+	Ricardo Neri <ricardo.neri@intel.com>
+Subject: Re: [PATCH v3 06/13] dt-bindings: reserved-memory: Wakeup Mailbox
+ for Intel processors
+Message-ID: <20250512153224.GA3377771-robh@kernel.org>
+References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
+ <20250503191515.24041-7-ricardo.neri-calderon@linux.intel.com>
+ <20250504-original-leopard-of-vigor-5702ef@kuoka>
+ <20250506051610.GC25533@ranerica-svr.sc.intel.com>
+ <20250506-pompous-meaty-crane-97efce@kuoka>
+ <20250507032339.GA27243@ranerica-svr.sc.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,26 +74,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250503190509.33074-1-rodrigo.gobbi.7@gmail.com>
+In-Reply-To: <20250507032339.GA27243@ranerica-svr.sc.intel.com>
 
-
-On Sat, 03 May 2025 16:01:01 -0300, Rodrigo Gobbi wrote:
-> The temperature sensor for maxim is a simple i2c driver,
-> it's eligible to trivial devices.
+On Tue, May 06, 2025 at 08:23:39PM -0700, Ricardo Neri wrote:
+> On Tue, May 06, 2025 at 09:10:22AM +0200, Krzysztof Kozlowski wrote:
+> > On Mon, May 05, 2025 at 10:16:10PM GMT, Ricardo Neri wrote:
+> > > > If this is a device, then compatibles specific to devices. You do not
+> > > > get different rules than all other bindings... or this does not have to
+> > > > be binding at all. Why standard reserved-memory does not work for here?
+> > > > 
+> > > > Why do you need compatible in the first place?
+> > > 
+> > > Are you suggesting something like this?
+> > > 
+> > > reserved-memory {
+> > > 	# address-cells = <2>;
+> > > 	# size-cells = <1>;
+> > > 
+> > > 	wakeup_mailbox: wakeupmb@fff000 {
+> > > 		reg = < 0x0 0xfff000 0x1000>
+> > > 	}
+> > > 
+> > > and then reference to the reserved memory using the wakeup_mailbox
+> > > phandle?
+> > 
+> > Yes just like every other, typical reserved memory block.
 > 
-> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-> ---
-> Inspecting the code of max30208.c digital temperature sensor (i2c),
-> I can see that the probe method does not support additional properties
-> and only does a few things related to the IIO subsystem.
-> Also, since was added in the tree, there is no binding file.
-> I'm suggesting a change to add that compatible to the trivial-devices file.
-> Tks and regards.
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+> Thanks! I will take this approach and drop this patch.
 
-Applied, thanks!
+If there is nothing else to this other than the reserved region, then 
+don't do this. Keep it like you had. There's no need for 2 nodes.
 
+Rob
 
