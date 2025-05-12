@@ -1,241 +1,288 @@
-Return-Path: <devicetree+bounces-176381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FC3FAB3C74
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:42:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B901AB3CA6
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:47:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08AAC8648D3
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:42:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C623B16F414
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:47:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D231F23C500;
-	Mon, 12 May 2025 15:41:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="jL8JZhYU";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="pxC6oBya"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2A101DED6D;
+	Mon, 12 May 2025 15:47:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b1-smtp.messagingengine.com (fhigh-b1-smtp.messagingengine.com [202.12.124.152])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A627239567;
-	Mon, 12 May 2025 15:41:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A901B1A38E4
+	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 15:47:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747064519; cv=none; b=QXpvn5FvUhMTCFldLCxe6fRf9gd4oEwgz+jAP4uycjqlBhqjulkJiUCn+WoNd6Za8eUFcXtrkSiksHIz+q/IZofPnZ7buFxlIj8hx/xHFLDp/P5uU0sWOjzUtd0UmiW+Vn7fpehElMQ1iILtZpDKmNjOcVh2KrP7mCnUdcHLFeA=
+	t=1747064838; cv=none; b=In2+YR7HtjaBfRIt/OQkErf42mOnTL4fPr7sc7VH6duQ/ywLIldHxj6s4dCxZFI3paCNDCTnoqIgLsDGmxfropZu+eV/F2+K/ZdUyrmYVUl7cncNrbZYa9sN9B/lg6Cz7hZBFa7E4cHQpypvbfgQvwJjEWQoI69V4WOWdyNRRoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747064519; c=relaxed/simple;
-	bh=+4oLiO4GFHU12kRH/cBJ0soX/a+bXHdHYP8wcVfW7ZU=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=l+PEBVXQmkLJfLGUf24CsopV1+vaUVJ+I57XlgqASaeeXToURAYDwvYfYmbhE/qZuW+YYkYmOQ3FYscryCI0hMgP33re58d5v+yjZnpAJx/feY2NyWEoWuoR3hE2YRmVvJOjPuVNrTHffwWgzdONGopLyqS7jSp3nj3U7tT8ngU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=jL8JZhYU; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=pxC6oBya; arc=none smtp.client-ip=202.12.124.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 21A5925400D8;
-	Mon, 12 May 2025 11:41:54 -0400 (EDT)
-Received: from phl-imap-12 ([10.202.2.86])
-  by phl-compute-04.internal (MEProxy); Mon, 12 May 2025 11:41:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
-	 t=1747064513; x=1747150913; bh=A/ri/6ZjxW7RCFovjRl8X2bDl9rq/UBN
-	CApnh0pl15I=; b=jL8JZhYU/eNhS1Dbxm8P0HfZ5uJ0f9c89R1Xokb5AT19RPm5
-	+UMawNHN9e+gdyVjzbmeX0UKUI35c234NQmPyK/mQN1vlgMpkP+3fQ+z7WYvLzUG
-	sceVXAUgUxkf5tiVfvmbw4vMxinru9KcJcufIOr8wRBYK0VIpTg7cCnCpCXG63Oh
-	vRv1TLt6VN54bh03c1nN2wI8LocK8MRenPos2cZSlGgVs0sErjULY+GDJ7MKSHHr
-	MDBkG0xm/dhyS/UpDBDXBJbUcXF6tYYybOXiIpQERyDgr5NDKJVU6fdAOl8WkyH8
-	3uRz2iYtOXuvSg6H7fpRdeXvD8iDbLPr8R4dyQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1747064513; x=
-	1747150913; bh=A/ri/6ZjxW7RCFovjRl8X2bDl9rq/UBNCApnh0pl15I=; b=p
-	xC6oByaTqzWJwlrUULPV7S5tdE3lUUlVajj+ozI2sdYQCKWMgpFqxhnNp6sQ/y3Y
-	p8bnDHQOwqQ/WqZdvo8+vkHIsA/pUzAxfOWQGRR/Q9tRWYXCfq/j+OiIDeBLGjhh
-	FMWtTGLYAZ7nbIeleqlohvHNw1IbFxAGLbJ3fIDKY8rUEoV1BOx2+vDkyBtq5QAM
-	O2wvUDSEmgPxFwTiea0QShiLok1j9VwG5slUFcddocxg18gYxzdxeDIiDJtd/lNa
-	KyTyG0FwUBWoJY3cwKOADqIRnwYgcZvdbmg3E3j2hGR7cK1GVhqQec4Ws4V2Zwk9
-	RT1cigP76djJ9Yz+g6hHg==
-X-ME-Sender: <xms:wBYiaFNvahD2L0uAISA-4GNPY-XHMqVkfJCBRUPL7Uvkv83DCo0tOA>
-    <xme:wBYiaH8U0H8aSWHE257TqtISn56uYU87w7rZURaBjDJPUK09AVw70q4qCmQh_L5Oj
-    b1V3uXVnZJoZL6QUHI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftdduieegucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertder
-    tddtnecuhfhrohhmpedfufhvvghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvth
-    gvrhdruggvvheqnecuggftrfgrthhtvghrnhepleefteeugeduudeuudeuhfefheegveek
-    ueefffdvffektdffffelveffvddvueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
-    hrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghvpdhnsggp
-    rhgtphhtthhopeduledpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheprhhmkhdokh
-    gvrhhnvghlsegrrhhmlhhinhhugidrohhrghdruhhkpdhrtghpthhtohepsghrghhlsegs
-    ghguvghvrdhplhdprhgtphhtthhopehsvggsrghsthhirghnrdhrvghitghhvghlsegtoh
-    hllhgrsghorhgrrdgtohhmpdhrtghpthhtohepnhgvrghlsehgohhmphgrrdguvghvpdhr
-    tghpthhtohepjhesjhgrnhhnrghurdhnvghtpdhrtghpthhtoheptghonhhorhdoughtse
-    hkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhr
-    ghdprhgtphhtthhopehlvggvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehmrgiise
-    hkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:wBYiaEQsd1xvdtdJJ1WfCDmYgfhkFuWZm0lxil1__WEgKGWQUR0-5A>
-    <xmx:wBYiaBtdFny8lKddpw7XUOJHW7bSUw9R_n012ooBLLVM6JlUq0Nj3A>
-    <xmx:wBYiaNeqU2j49KazqgorE4hyn67K84YsrCQN126k-JyVdi2Ck_kauQ>
-    <xmx:wBYiaN2DNwhMgAxOfYxgOmMN8aQfZCmK0CIhYyyTJgzfnV1YBPVl9A>
-    <xmx:wRYiaDO07QpmSUH25G9IVJMjlkEKU2glNIRaTFN6QHOUrCApyau3cbWu>
-Feedback-ID: i51094778:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id B65281C20067; Mon, 12 May 2025 11:41:52 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1747064838; c=relaxed/simple;
+	bh=tUkGeaZlP3x1PEPFhPd7Xaku48ipwY2NnrpefVgMago=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=cpt17SeaP9GiCtYPuctL2HeWt7iAnoG6E398niQRdw3JGZPhzBG0mKvOZx7HsE4wetGcAjQN7+O6vUYPdNox4c1PZEwdYyhq7ZZhwgwJ1RuMYGCQJRNtvKuZDuDFyMU58QOaCPt+7kehmRSWwhpoB0rgzy60ZAY4Uxxp3vC6pmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uEVMh-0002iA-9Q; Mon, 12 May 2025 17:46:51 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uEVMe-002OVJ-27;
+	Mon, 12 May 2025 17:46:49 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uEVMf-000IW0-01;
+	Mon, 12 May 2025 17:46:49 +0200
+Message-ID: <91afcfde275a28127ba0df962a9abf4d07ba6b8b.camel@pengutronix.de>
+Subject: Re: [PATCH v8 3/6] clk: spacemit: set up reset auxiliary devices
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Alex Elder <elder@riscstar.com>, Yixun Lan <dlan@gentoo.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ mturquette@baylibre.com, sboyd@kernel.org, paul.walmsley@sifive.com, 
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, heylenay@4d2.org,
+  inochiama@outlook.com, guodong@riscstar.com, devicetree@vger.kernel.org, 
+ linux-clk@vger.kernel.org, spacemit@lists.linux.dev, 
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Mon, 12 May 2025 17:46:48 +0200
+In-Reply-To: <abfd4c78-2592-4b8a-97be-109a8fd1bed6@riscstar.com>
+References: <20250509112032.2980811-1-elder@riscstar.com>
+	 <20250509112032.2980811-4-elder@riscstar.com>
+	 <20250512135429-GYA517867@gentoo>
+	 <abfd4c78-2592-4b8a-97be-109a8fd1bed6@riscstar.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: Tee5e6786d5fc82a3
-Date: Mon, 12 May 2025 17:41:32 +0200
-From: "Sven Peter" <sven@svenpeter.dev>
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: "Janne Grunau" <j@jannau.net>, "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
- "Neal Gompa" <neal@gompa.dev>, "Hector Martin" <marcan@marcan.st>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Lee Jones" <lee@kernel.org>,
- "Marc Zyngier" <maz@kernel.org>, "Russell King" <rmk+kernel@armlinux.org.uk>,
- asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-Message-Id: <438dc401-a531-4b07-b77c-92748acadf85@app.fastmail.com>
-In-Reply-To: 
- <2mhqiy6twurcidtwe7rhtobq5mivb2meoq6ik3dt45zwerkwrd@ebudw64trryq>
-References: <20250511-smc-6-15-v5-0-f5980bdb18bd@svenpeter.dev>
- <20250511-smc-6-15-v5-7-f5980bdb18bd@svenpeter.dev>
- <2mhqiy6twurcidtwe7rhtobq5mivb2meoq6ik3dt45zwerkwrd@ebudw64trryq>
-Subject: Re: [PATCH v5 07/10] power: reset: macsmc-reboot: Add driver for rebooting via
- Apple SMC
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Sebastian,
+On Mo, 2025-05-12 at 10:34 -0500, Alex Elder wrote:
+> On 5/12/25 8:54 AM, Yixun Lan wrote:
+> > On 06:20 Fri 09 May     , Alex Elder wrote:
+> > > Add a new reset_name field to the spacemit_ccu_data structure.  If it=
+ is
+> > > non-null, the CCU implements a reset controller, and the name will be
+> > > used in the name for the auxiliary device that implements it.
+> > >=20
+> > > Define a new type to hold an auxiliary device as well as the regmap
+> > > pointer that will be needed by CCU reset controllers.  Set up code to
+> > > initialize and add an auxiliary device for any CCU that implements re=
+set
+> > > functionality.
+> > >=20
+> > > Make it optional for a CCU to implement a clock controller.  This
+> > > doesn't apply to any of the existing CCUs but will for some new ones
+> > > that will be added soon.
+> > >=20
+> > > Signed-off-by: Alex Elder <elder@riscstar.com>
+> > > ---
+> > > v8: Allocate the auxiliary device using kzalloc(), not devm_kzalloc()
+> > >=20
+> > >   drivers/clk/spacemit/Kconfig     |  1 +
+> > >   drivers/clk/spacemit/ccu-k1.c    | 90 ++++++++++++++++++++++++++++-=
+---
+> > >   include/soc/spacemit/k1-syscon.h | 12 +++++
+> > >   3 files changed, 93 insertions(+), 10 deletions(-)
+> > >=20
+> > > diff --git a/drivers/clk/spacemit/Kconfig b/drivers/clk/spacemit/Kcon=
+fig
+> > > index 4c4df845b3cb2..3854f6ae6d0ea 100644
+> > > --- a/drivers/clk/spacemit/Kconfig
+> > > +++ b/drivers/clk/spacemit/Kconfig
+> > > @@ -3,6 +3,7 @@
+> > >   config SPACEMIT_CCU
+> > >   	tristate "Clock support for SpacemiT SoCs"
+> > >   	depends on ARCH_SPACEMIT || COMPILE_TEST
+> > > +	select AUXILIARY_BUS
+> > >   	select MFD_SYSCON
+> > >   	help
+> > >   	  Say Y to enable clock controller unit support for SpacemiT SoCs.
+> > > diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu=
+-k1.c
+> > > index 801150f4ff0f5..551df9d076859 100644
+> > > --- a/drivers/clk/spacemit/ccu-k1.c
+> > > +++ b/drivers/clk/spacemit/ccu-k1.c
+> > > @@ -5,12 +5,14 @@
+> > >    */
+> > >  =20
+> > >   #include <linux/array_size.h>
+> > > +#include <linux/auxiliary_bus.h>
+> > >   #include <linux/clk-provider.h>
+> > >   #include <linux/delay.h>
+> > >   #include <linux/mfd/syscon.h>
+> > >   #include <linux/minmax.h>
+> > >   #include <linux/module.h>
+> > >   #include <linux/platform_device.h>
+> > > +#include <linux/slab.h>
+> > >   #include <soc/spacemit/k1-syscon.h>
+> > >  =20
+> > >   #include "ccu_common.h"
+> > > @@ -21,6 +23,7 @@
+> > >   #include <dt-bindings/clock/spacemit,k1-syscon.h>
+> > >  =20
+> > >   struct spacemit_ccu_data {
+> > > +	const char *reset_name;
+> > see my comment below..
+> >=20
+> > >   	struct clk_hw **hws;
+> > >   	size_t num;
+> > >   };
+> > > @@ -710,8 +713,9 @@ static struct clk_hw *k1_ccu_pll_hws[] =3D {
+> > >   };
+> > >  =20
+> > >   static const struct spacemit_ccu_data k1_ccu_pll_data =3D {
+> > > -	.hws	=3D k1_ccu_pll_hws,
+> > > -	.num	=3D ARRAY_SIZE(k1_ccu_pll_hws),
+> > > +	/* The PLL CCU implements no resets */
+> > > +	.hws		=3D k1_ccu_pll_hws,
+> > > +	.num		=3D ARRAY_SIZE(k1_ccu_pll_hws),
+> > >   };
+> > >  =20
+> > >   static struct clk_hw *k1_ccu_mpmu_hws[] =3D {
+> > > @@ -751,8 +755,9 @@ static struct clk_hw *k1_ccu_mpmu_hws[] =3D {
+> > >   };
+> > >  =20
+> > >   static const struct spacemit_ccu_data k1_ccu_mpmu_data =3D {
+> > > -	.hws	=3D k1_ccu_mpmu_hws,
+> > > -	.num	=3D ARRAY_SIZE(k1_ccu_mpmu_hws),
+> > > +	.reset_name	=3D "mpmu-reset",
+> > > +	.hws		=3D k1_ccu_mpmu_hws,
+> > > +	.num		=3D ARRAY_SIZE(k1_ccu_mpmu_hws),
+> > >   };
+> > >  =20
+> > >   static struct clk_hw *k1_ccu_apbc_hws[] =3D {
+> > > @@ -859,8 +864,9 @@ static struct clk_hw *k1_ccu_apbc_hws[] =3D {
+> > >   };
+> > >  =20
+> > >   static const struct spacemit_ccu_data k1_ccu_apbc_data =3D {
+> > > -	.hws	=3D k1_ccu_apbc_hws,
+> > > -	.num	=3D ARRAY_SIZE(k1_ccu_apbc_hws),
+> > > +	.reset_name	=3D "apbc-reset",
+> > > +	.hws		=3D k1_ccu_apbc_hws,
+> > > +	.num		=3D ARRAY_SIZE(k1_ccu_apbc_hws),
+> > >   };
+> > >  =20
+> > >   static struct clk_hw *k1_ccu_apmu_hws[] =3D {
+> > > @@ -929,8 +935,9 @@ static struct clk_hw *k1_ccu_apmu_hws[] =3D {
+> > >   };
+> > >  =20
+> > >   static const struct spacemit_ccu_data k1_ccu_apmu_data =3D {
+> > > -	.hws	=3D k1_ccu_apmu_hws,
+> > > -	.num	=3D ARRAY_SIZE(k1_ccu_apmu_hws),
+> > > +	.reset_name	=3D "apmu-reset",
+> > > +	.hws		=3D k1_ccu_apmu_hws,
+> > > +	.num		=3D ARRAY_SIZE(k1_ccu_apmu_hws),
+> > >   };
+> > >  =20
+> > >   static int spacemit_ccu_register(struct device *dev,
+> > > @@ -941,6 +948,10 @@ static int spacemit_ccu_register(struct device *=
+dev,
+> > >   	struct clk_hw_onecell_data *clk_data;
+> > >   	int i, ret;
+> > >  =20
+> > > +	/* Nothing to do if the CCU does not implement any clocks */
+> > > +	if (!data->hws)
+> > > +		return 0;
+> > > +
+> > >   	clk_data =3D devm_kzalloc(dev, struct_size(clk_data, hws, data->nu=
+m),
+> > >   				GFP_KERNEL);
+> > >   	if (!clk_data)
+> > > @@ -981,9 +992,63 @@ static int spacemit_ccu_register(struct device *=
+dev,
+> > >   	return ret;
+> > >   }
+> > >  =20
+> > > +static void spacemit_cadev_release(struct device *dev)
+> > why this function define as _cadev_ prefix, while below as _adev_
+> > is it a typo? or c short for ccu, I just feel it isn't consistent..
+>=20
+> It is not a typo.  Yes, it was intended to represent CCU
+> Auxiliary device, while "adev" represents just Auxiliary
+> Device.  It is releasing (freeing) a spacemit_ccu_adev
+> structure.
+>=20
+> > > +{
+> > > +	struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
+> > > +
+> > > +	kfree(to_spacemit_ccu_adev(adev));
+> > > +}
+> > > +
+>=20
+> This function is operating on an auxiliary_device structure,
+> so "adev" is used in its name.
+>=20
+> > > +static void spacemit_adev_unregister(void *data)
+> > > +{
+> > > +	struct auxiliary_device *adev =3D data;
+> > > +
+> > > +	auxiliary_device_delete(adev);
+> > > +	auxiliary_device_uninit(adev);
+> > > +}
+> > > +
+> > > +static int spacemit_ccu_reset_register(struct device *dev,
+> > > +				       struct regmap *regmap,
+> > > +				       const char *reset_name)
+> > > +{
+> > > +	struct spacemit_ccu_adev *cadev;
+> > > +	struct auxiliary_device *adev;
+> > > +	static u32 next_id;
+> > > +	int ret;
+> > > +
+> > > +	/* Nothing to do if the CCU does not implement a reset controller *=
+/
+> > > +	if (!reset_name)
+> > > +		return 0;
+> > > +
+> > > +	cadev =3D kzalloc(sizeof(*cadev), GFP_KERNEL);
+> > > +	if (!cadev)
+> > > +		return -ENOMEM;
+> > add one blank line here?
+>=20
+> If I do a new version that's easy but this was intentional.
+>=20
+> > > +	cadev->regmap =3D regmap;
+> > > +
+> > > +	adev =3D &cadev->adev;
+> > > +	adev->name =3D reset_name;
+> > > +	adev->dev.parent =3D dev;
+> > > +	adev->dev.release =3D spacemit_cadev_release;
+> > > +	adev->dev.of_node =3D dev->of_node;
+> > [..]
+> > > +	adev->id =3D next_id++;
+> > so I'd assume the underlying device doesn't really care the id?
+> > but with different order of registration, it will result random id for =
+the device
+>=20
+> These things are identified in DTS files by their index values
+> defined in "spacemit,k1-syscon.h".  If there is a need for the
+> assigned device ID to be consistent, I'm not aware of it.  Can
+> you think of one?  I think all that matters is that they're
+> unique, and this ensures that (for up to 2^32 PMICs).
 
-thanks for the review!
+If there are multiple reset controllers and the driver can be unbound,
+it's trivial to provoke a collision by keeping one device bound and
+unbinding/binding the second one until next_id wraps.
+This could be fixed by using ida_alloc/free to manage the id.
 
-On Mon, May 12, 2025, at 00:16, Sebastian Reichel wrote:
-> Hi,
->
-> On Sun, May 11, 2025 at 08:18:42AM +0000, Sven Peter via B4 Relay wrote:
->> From: Hector Martin <marcan@marcan.st>
->> 
->> This driver implements the reboot/shutdown support exposed by the SMC
->> on Apple Silicon machines, such as Apple M1 Macs.
->> 
->> Signed-off-by: Hector Martin <marcan@marcan.st>
->> Signed-off-by: Sven Peter <sven@svenpeter.dev>
->> ---
->>  MAINTAINERS                         |   1 +
->>  drivers/power/reset/Kconfig         |  11 ++
->>  drivers/power/reset/Makefile        |   1 +
->>  drivers/power/reset/macsmc-reboot.c | 363 ++++++++++++++++++++++++++++++++++++
->>  4 files changed, 376 insertions(+)
->> 
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index fa3a5f9ee40446bcc725c9eac2a36651e6bc7553..84f7a730eb2260b7c1e0487d18c8eb3de82f5206 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -2303,6 +2303,7 @@ F:	drivers/mfd/macsmc.c
->>  F:	drivers/nvme/host/apple.c
->>  F:	drivers/nvmem/apple-efuses.c
->>  F:	drivers/pinctrl/pinctrl-apple-gpio.c
->> +F:	drivers/power/reset/macsmc-reboot.c
->>  F:	drivers/pwm/pwm-apple.c
->>  F:	drivers/soc/apple/*
->>  F:	drivers/spi/spi-apple.c
->> diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
->> index 60bf0ca64cf395cd18238fc626611c74d29844ee..6e8dfff64fdc001d09b6c00630cd8b7e2fafdd8e 100644
->> --- a/drivers/power/reset/Kconfig
->> +++ b/drivers/power/reset/Kconfig
->> @@ -128,6 +128,17 @@ config POWER_RESET_LINKSTATION
->>  
->>  	  Say Y here if you have a Buffalo LinkStation LS421D/E.
->>  
->> +config POWER_RESET_MACSMC
->> +	tristate "Apple SMC reset/power-off driver"
->> +	depends on ARCH_APPLE || COMPILE_TEST
->> +	depends on MFD_MACSMC
->> +	depends on OF
->
-> This can also be 'OF || COMPILE_TEST'. But I would expect this
-> driver to just have 'depends on MFD_MACSMC' and then manage the
-> checks for ARCH_APPLE and OF in the MFD Kconfig.
-
-Makes sense, it'll just depend on MFD_MACSMC then and I'll move the ARCH_APPLE,
-OF, etc. depends to the MFD Kconfig.
-
->
-[...]
->> +#include <linux/delay.h>
->> +#include <linux/mfd/core.h>
->> +#include <linux/mfd/macsmc.h>
->> +#include <linux/module.h>
->> +#include <linux/nvmem-consumer.h>
->> +#include <linux/of.h>
->
-> Once of_get_child_by_name() is no lnger used the correct include for
-> the remaining 'struct of_device_id' is <linux/mod_devicetable.h>
-> instead of <linux/of.h>.
-
-Fixed.
-
->
-[...]
->> +
->> +	pdev->dev.of_node = of_get_child_by_name(pdev->dev.parent->of_node, "reboot");
->
-> Why is this needed? The of_node should already be set correctly when
-> probed via the of_match_table.
-
-Leftovers from a previous version that didn't use of_match_table.
-I'll remove it.
-
->
-[...]
->> +
->> +	if (device_create_file(&pdev->dev, &dev_attr_ac_power_mode))
->> +		dev_warn(&pdev->dev, "could not create sysfs file\n");
->
-> custom sysfs files must be documented in Documentation/ABI.
-
-This sysfs file allows to configure if the system reboots automatically after
-power loss. But now that I'm looking at this again I'm not sure this driver
-is even the proper place for this (the nvmem cell is kinda unrelated to SMC)
-or if we need this at all in the kernel since the nvmem cell is already
-exposed to sysfs just with a less convenient interface at 
-/sys/bus/nvmem/devices/spmi_nvmem0/cells/pm-setting@d001,0.
-
-I'm going to drop it for now and revisit this later.
-
-
->
->> +
-[...]
->> +MODULE_LICENSE("Dual MIT/GPL");
->> +MODULE_DESCRIPTION("Apple SMC reboot/poweroff driver");
->> +MODULE_AUTHOR("Hector Martin <marcan@marcan.st>");
->> +MODULE_ALIAS("platform:macsmc-reboot");
->
-> Why is the MODULE_ALIAS needed?
-
-No idea, my best guess is it was copy/pasted without a good reason.
-I'll drop it.
-
-
-Thanks,
-
-
-Sven
+regards
+Philipp
 
