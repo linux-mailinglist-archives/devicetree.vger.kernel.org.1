@@ -1,65 +1,60 @@
-Return-Path: <devicetree+bounces-176389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08C4CAB3CE3
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:01:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BF50AB3CED
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:02:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB56419E390B
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:01:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 584503B24CE
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D885578F44;
-	Mon, 12 May 2025 16:00:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09639246770;
+	Mon, 12 May 2025 16:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b5DMF1CC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q2fAoPc3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA94E7E9;
-	Mon, 12 May 2025 16:00:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3993246762;
+	Mon, 12 May 2025 16:02:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747065656; cv=none; b=ewA/G54JZRy6j4fVkhELI7cQUYkYMD9ChTRhN4XHb9EN7cIq/+saoh3OY/oI5Tg2ddEGw78TuvCtypWjRfuOjYgfO54oh6hq4giT5RWNxnCp7Ys1L29OgCG967/sJ4aRBr4bTKFI3ef51E20Vl98e60N3eSgqYUZioeTfnObI5w=
+	t=1747065754; cv=none; b=W30GkXZMcnpgKE93lAyAzFhQIx2VKJGVqbmQWQMwNgTK0n0avkXdQ3lqA5yg8t8a3QhPMD7HeC+XW7t4sSBJAsLR9QKcJsmBITZ+NNRfCLwDOiI3TDQWR8Ru/xPwKWiolRymLliqCoqu+pqnnn5vF9A7EcK4v4dK8RMJOTbNkiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747065656; c=relaxed/simple;
-	bh=5ULX35j9SB3R6eiMUzUDP5ujKYpZ2GypHAV7cJiBd7Y=;
+	s=arc-20240116; t=1747065754; c=relaxed/simple;
+	bh=TCE6Uw7LiVPLM8NbyISS0pYOwHNQf36YyFcNYjE50+s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eB5B6Plp0krcLMw7no1I58yDLuZeJNsHaprdYJxmf5X/CAdKvPNZQXGqRHYfvc2j6aYAwyxEbiBxu4RohbS7jP7oF4DeqM6gLXd84uOU+u2OIMr/Fhjv+mYjEwl7Ejg/cHQjPy9fkb8yPNnqeFJ407gglSjVO/SxJH2nyPMhTnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b5DMF1CC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30853C4CEE7;
-	Mon, 12 May 2025 16:00:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ANhLX0vxBu7b4xq9YgfVAUlnPMU4pYZgyAyj2qyAkVTDl/jnZvE+ut6OAOwNlTsq1JKGfKfHhxpz76WKaoSD1YcHTl2HcJpKrPJPe6xp8eE7G8c7CuFyae93+EDt/o7H7uDb3U4X5dg6hvPpOfTLmT9GCF7AgT6x8mmdW0ZKym8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q2fAoPc3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E78F8C4CEE7;
+	Mon, 12 May 2025 16:02:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747065656;
-	bh=5ULX35j9SB3R6eiMUzUDP5ujKYpZ2GypHAV7cJiBd7Y=;
+	s=k20201202; t=1747065754;
+	bh=TCE6Uw7LiVPLM8NbyISS0pYOwHNQf36YyFcNYjE50+s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b5DMF1CCQwsfnuCZaPECRkzPsK/Ylv2qXn7ckN/KWEtDtYIrlbcOMYTq8jpsWcCVQ
-	 tTfYxCeg0COyKSK1Wk/ihRFGbww2B4gp5WRNa4aaAxduRShX6TyZqZdh4mQPO4l6Gk
-	 UTf/wOh/sVwG66z9zT+nlVfg7Y2PBtI2yLeVJl/SWjbvjWejrtfcpC/4fuz7fiK8F7
-	 xR5MXrl4muuymo/c0jQeRjoUeVgWK8Q+uWXs2CgvbsQIFr4yHWEYKOH048D+e8twQS
-	 Vm+oHutQCDbw5BPW/keHAd0aQPcyYL1/mJj8nFkI5/DzRpjzmDzKqwMT4M1DXfdmvq
-	 LJTBcngtPWtbA==
-Date: Mon, 12 May 2025 17:00:50 +0100
+	b=q2fAoPc3oOidpqW2oxA1Nde74ERkCSXCK24/ljWYm+Eo+1nRNRqalv9bNLoxASorO
+	 hfGrJOfu78egh50rDYD5YArzBmCDAzs8O0R5lSnJKfUidw2OHNrRVrhbTHWcKgCooY
+	 V1pwpvywTIJuEEPraQRqeXLTcc89FpM8trEfhReW4pJUUwNA23cx7ASD3wF4DoTzAc
+	 Xr7fHguA5SL6YyPl9vRpEunmR9KGkIdhpdWEIUyzmFpiNxLBpM5WCHSQ3wNQzc8v8Y
+	 TPU3SRRPw7+F3XsTT/ebKZ0yvaDYxwcCs/ArxU6IAHcXpea3+9ZlNe6dtB0B5A4JxS
+	 X8oJGBnWh75qQ==
+Date: Mon, 12 May 2025 17:02:29 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Sirius Wang <sirius.wang@mediatek.com>
+To: leo.jt.wang@gmail.com
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, wenst@chromium.org,
-	xavier.chang@mediatek.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm: Add compatible for MediaTek
- MT8189
-Message-ID: <20250512-ferret-willed-348cdc19fe4e@spud>
-References: <20250512115355.923342-1-sirius.wang@mediatek.com>
- <20250512115355.923342-2-sirius.wang@mediatek.com>
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	george.kw.lee@fii-foxconn.com, leo.jt.wang@fii-foxconn.com
+Subject: Re: [dt-bindings: arm: aspeed: add Meta Clemente board] dt-bindings:
+ arm: aspeed: add Meta Clemente board
+Message-ID: <20250512-activism-dispute-e2549ab2b210@spud>
+References: <20250512113026.264785-1-LeoWang>
+ <6821dbfb.170a0220.3b15e.aba8@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,60 +62,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BrIJKWHwbpK/JFHA"
+	protocol="application/pgp-signature"; boundary="EEzvPtStEzaz9LSn"
 Content-Disposition: inline
-In-Reply-To: <20250512115355.923342-2-sirius.wang@mediatek.com>
+In-Reply-To: <6821dbfb.170a0220.3b15e.aba8@mx.google.com>
 
 
---BrIJKWHwbpK/JFHA
+--EEzvPtStEzaz9LSn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 12, 2025 at 07:53:48PM +0800, Sirius Wang wrote:
-> This commit adds dt-binding documentation for the MediaTek MT8189
-> reference board.
+On Mon, May 12, 2025 at 07:30:26PM +0800, leo.jt.wang@gmail.com wrote:
+> From: Leo Wang <leo.jt.wang@fii-foxconn.com>
 >=20
-> Signed-off-by: Sirius Wang <sirius.wang@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
+> Document the new compatibles used on Meta Clemente.
+>=20
+> Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Please fix your subject lines for future submissions.
+[dt-bindings: arm: aspeed: add Meta Clemente board] dt-bindings: arm: aspee=
+d: add Meta Clemente board
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+None of this looks like standard output from git.
+Take a look at what other patches and the kernel docs do.
+
 > ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docume=
-ntation/devicetree/bindings/arm/mediatek.yaml
-> index fa1646bc0bac..05e827076a7f 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -372,6 +372,10 @@ properties:
->            - enum:
->                - mediatek,mt8188-evb
->            - const: mediatek,mt8188
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt8189-evb
-> +          - const: mediatek,mt8189
->        - description: Google Hayato
->          items:
->            - const: google,hayato-rev1
+> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/D=
+ocumentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> index a3736f134130..4416a40dcd86 100644
+> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> @@ -81,6 +81,7 @@ properties:
+>                - asus,x4tf-bmc
+>                - facebook,bletchley-bmc
+>                - facebook,catalina-bmc
+> +              - facebook,clemente-bmc
+>                - facebook,cloudripper-bmc
+>                - facebook,elbert-bmc
+>                - facebook,fuji-bmc
 > --=20
-> 2.45.2
+> 2.43.0
 >=20
 
---BrIJKWHwbpK/JFHA
+--EEzvPtStEzaz9LSn
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCIbMgAKCRB4tDGHoIJi
-0kTOAQDIrab/1dzT8IHi2s3bi/oJO11J04QcoOlpQG0eV2hgJwD/Xw8+792O52zo
-lP7EobzCjq5NJW4XO0avY+MeprkoxA0=
-=6Pyl
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCIblQAKCRB4tDGHoIJi
+0naYAP0YicZzkSoOLCHibdodAKfacK/bNJ38DYRNkT10N/l7XwD7B0kGA/gb7PRD
+fZiB0rMbZNOPNyKk+FZszA5zj5HCpw4=
+=t6md
 -----END PGP SIGNATURE-----
 
---BrIJKWHwbpK/JFHA--
+--EEzvPtStEzaz9LSn--
 
