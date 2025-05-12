@@ -1,66 +1,58 @@
-Return-Path: <devicetree+bounces-176358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0D0DAB39E8
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:00:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A44B8AB3A22
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:12:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7610F3A57AD
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:59:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BD6119E0282
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 14:12:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37FB91DE4FF;
-	Mon, 12 May 2025 13:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0E5D1E3769;
+	Mon, 12 May 2025 14:12:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rF1Ro00w"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fnjp1Dab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109041DE4E6;
-	Mon, 12 May 2025 13:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82899475;
+	Mon, 12 May 2025 14:12:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747058352; cv=none; b=eESiIovnKxXDdpVEPceGoQgryj4XdSXTTYvHKIfH3ByiqcL000ZWcr6ZQwngKdXJMdIyGQd2dvAcFqRh3H8AemiB8dnw9eZ8dddaaQfPXEfcFYR8j0k1TjqFSjKZxmVe5V3nztnPfDm9DbfYAJZcSu09XznNw6pGe9aTgdCBoFQ=
+	t=1747059142; cv=none; b=XkZvaOwK53eKrJzDc6g+jtduwjOEjCRrj0tT4oXJlqobnC4uA1WNtZq8jAQEEBS58ZFeY3qmZ0pIHSesoGyik9BpH0ejlsEiInaagNV4XwXUQ4xgOukwVv61/wYCqTlaFAkJ1KajpHzChc4OdOG50a+skRxt89uJSrjQFGgTodU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747058352; c=relaxed/simple;
-	bh=3qQEJIUiN5/1spp7/oWnT/Aquzhhj4IjrdDSjaDXCdk=;
+	s=arc-20240116; t=1747059142; c=relaxed/simple;
+	bh=lEjopDmJ45b2jh+CxOfurwes08Z4xyMnTZAP+o23E0I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hHWiLBFStS7y9qRgf70aY+KvenGkwqwf1+kjzM/JnsvoeYyUHljQVda8aKCy/TMSQ/jvfpg+fb+pH+5jKauK6CFldXaToO2FaJKYNkzRlFscPKRb0jqZLgAm1IBZL63mQ2ZLsPo45RyJI+fXH6ZSm/PslPT5o/hGnaFtA+HKnck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rF1Ro00w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B8F1C4AF0C;
-	Mon, 12 May 2025 13:59:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747058351;
-	bh=3qQEJIUiN5/1spp7/oWnT/Aquzhhj4IjrdDSjaDXCdk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rF1Ro00wlJqFU7hZnRcuMUaDXVzMollDmF9eHqm5TBwoYtCrRCvpV4h9Q9vdr60X7
-	 rbhTlg0cmvy14/sCJ2gnufdUsKrDTkV9F9fEDDlp+fl02Uj2nM85IIC3zJWWIpcuJK
-	 iZaFdRBmbD4sQeZ0mtIiEmUasrLBtD4M1t7NLWEUFJCJCecQZAuhi8KiwahMq8mdo/
-	 0cWRQl8kSIN2yFn3Bl9X78IXLbkaGJfA/06c6Q1cfDU2mMJt3sdzGnyMNrFBnywNQH
-	 Nu6kyZIGAkv6BH2LfN1w8eBHqrM7iVyeNf8Vk1AoMjDfpWpNpfTFmugZjs/vd8ridU
-	 TqTeGGR0qS1dw==
-Date: Mon, 12 May 2025 08:59:09 -0500
-From: Rob Herring <robh@kernel.org>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>,
-	dlemoal@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: pci-ep: Add ref-clk-mode
-Message-ID: <20250512135909.GA3177343-robh@kernel.org>
-References: <20250425092012.95418-2-cassel@kernel.org>
- <7xtp5i3jhntfev35uotcunur3qvcgq4vmcnkjde5eivajdbiqt@n2wsivrsr2dk>
- <aBHOaJFgZiOfTrrT@ryzen>
- <dxgs3wuekwjh6f22ftkmi7dcw7xpw3fa7lm74fwm5thvol42z3@wuovkynp3jey>
- <20250509181827.GA3879057-robh@kernel.org>
- <a7rfa6rlygbe7u3nbxrdc3doln7rk37ataxjrutb2lunctbpuo@72jnf6odl5xp>
- <aB8ysBuQysAR-Zcp@ryzen>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WwPmzFNBC9ajuodMOhttfP9Ho+zkE56GvFO5+n7iSXBssyRtHzEa7RZV7q0A757h5lz3EL2j7tkzcrnyz7BUMw/rApEeHJOoSJEOlHnGMJD5CQh8m9m93FmPPxADG/DwQLKrmStMMW/v4heAQZvGtba4VGN5gpCIC6cCwtYe37o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fnjp1Dab; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Bze3a/JOPk45eJ7Lh92/3/o7MFlz1ZNCNXNC/pYynXQ=; b=fnjp1DabeiPSvaolRzf3cHYblO
+	J6Glucad8ZfG+GzT4h/Re4yZxiSnix1g5n0FEcLpqVR11CuHeGwZP5XO5ZgMyy2LLa7ur1wdKUpZR
+	Tqyz+fjeWMwSvardh7aNDFCFGg8ilSedebDoaHd4/Sa2aRNHYXwKGkIZbRUTB71NFWjg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uETso-00CLR0-Ae; Mon, 12 May 2025 16:11:54 +0200
+Date: Mon, 12 May 2025 16:11:54 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: chainsx@foxmail.com
+Cc: f.blogs@napier.co.nz, conor+dt@kernel.org, heiko@sntech.de,
+	krzk+dt@kernel.org, robh@kernel.org, sfr@canb.auug.org.au,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v1 2/2] arm64: dts: rockchip: add DTs for Firefly
+ ROC-RK3588S-PC
+Message-ID: <e85ca75a-b4e0-4dc7-b6ce-ca827cc9d447@lunn.ch>
+References: <tencent_173762F0D99C15A5751D2777C0061E75FF0A@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,86 +61,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aB8ysBuQysAR-Zcp@ryzen>
+In-Reply-To: <tencent_173762F0D99C15A5751D2777C0061E75FF0A@qq.com>
 
-On Sat, May 10, 2025 at 01:04:16PM +0200, Niklas Cassel wrote:
-> On Sat, May 10, 2025 at 01:01:51AM +0530, Manivannan Sadhasivam wrote:
-> > On Fri, May 09, 2025 at 01:18:27PM -0500, Rob Herring wrote:
-> > > > > > 
-> > > > > > > +    description: Reference clocking architechture
-> > > > > > > +    enum:
-> > > > > > > +      - common-clk        # Common Reference Clock (provided by RC side)
-> > > > > > 
-> > > > > > Can we use 'common-clk-host' so that it is explicit that the clock is coming
-> > > > > > from the host side?
-> > > > > 
-> > > > > Sure.
-> > > > > 
-> > > > > I take it that you prefer 'common-clk-host' over 'common-clk-rc' ?
-> > > > > 
-> > > > 
-> > > > That's what I intended previously, but thinking more, I feel that we should
-> > > > stick to '-rc'i, as that's what the PCIe spec uses.
-> > > 
-> > > Couldn't this apply to any link, not just a RC? Is there PCIe 
-> > > terminology for upstream and downstream ends of a link?
-> > > 
-> > 
-> > Usually, the refclk comes from the host machine to the endpoint, but doesn't
-> > necessarily from the root complex. Since the refclk source could very well be
-> > from the motherboard or the host system PCB, controlled by the host software.
-> > 
-> > > The 'common-clk' part seems redundant to me with '-rc' or whatever we 
-> > > end up with added.
-> > > 
-> > 
-> > No. It could be the other way around. We can drop the '-rc' suffix if it seem
-> > redundant. Maybe that is a valid argument also since root complex doesn't
-> > necessarily provide refclk and the common refclk usually comes from the host.
-> 
-> When the RC and EP uses a common clock (rather than separate clocks),
-> the clock can either be provided by the host side or the EP side.
-> 
-> The most common by far (if using a common clock) is that it the common
-> clock is provided by the host side. That is why my patch just named it
-> 'common-clk' instead of 'common-clk-host' or 'common-clk-rc'.
-> 
-> I can use whatever name we agree on. I indend to send out V2 of this
-> patch as part of a series that adds SRIS support to the dw-rockchip
-> driver, in order to address Krzysztof's comment.
-> 
-> 
-> > 
-> > > Finally, this[1] seems related. Figure out a common solution.
-> 
-> I don't see the connection.
-> 
-> https://lore.kernel.org/all/20250406144822.21784-2-marek.vasut+renesas@mailbox.org/
-> 
-> does specify a reference clock, but that is in a host side DT binding.
-> 
-> 
-> This patch adds a refclk-mode property to an endpoint side DT binding.
+> +&gmac1 {
+> +	clock_in_out = "output";
+> +	phy-handle = <&rgmii_phy1>;
+> +	phy-mode = "rgmii-rxid";
 
-If we are dealing with the same property of the link, it doesn't matter 
-which side. What we don't need is 2 different solutions.
+This is probably wrong. Please see:
 
-> This property is needed such that the endpoint can configure the bits
-> in its own PCIe Link Control Register before starting the link.
-> 
-> Perhaps the host side could also make use of a similar property, but I'm not
-> sure, you don't know from the host side which endpoint will be plugged in.
-> 
-> >From the EP side, you do know if your SoC only supports common-clock or
-> SRNS/SRIS, since that depends on if the board can source the clock from
-> the PCIe slot or not (of all the DWC based drivers, only Qcom and Tegra
-> can do so, rest uses SRNS/SRIS), so this property definitely makes sense
-> in an EP side DT binding.
+https://patchwork.kernel.org/project/netdevbpf/patch/20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch/
 
-I don't understand why we need this in DT in the first place. Seems like 
-needing to specify this breaks discoverability? Perhaps this information 
-is only relevant after initial link is up and the host can read the EP 
-registers?
-
-Rob
+	Andrew
 
