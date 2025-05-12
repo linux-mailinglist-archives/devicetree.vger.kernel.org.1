@@ -1,145 +1,117 @@
-Return-Path: <devicetree+bounces-176282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDD6DAB3646
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:53:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE08FAB3655
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:55:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F83717C60A
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:53:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE15919E05FD
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:55:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2FB7267B0C;
-	Mon, 12 May 2025 11:53:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8515D29293F;
+	Mon, 12 May 2025 11:54:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uhykW5tW"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="RZyazV4/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74818259CBE;
-	Mon, 12 May 2025 11:53:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD0919443;
+	Mon, 12 May 2025 11:54:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747050808; cv=none; b=D34THRyVroN0LWkZ4WjVg5R2ue1l7hfq1az9l+6WOuaNV+vEz4mosFQQhvDCDq2q2Utl1hEEryXgQ9Znabhcs+cptNRS2KYsu9+yWgwrHUbfgRQWrVk2zOhciGOsOLDfd+xERLD2Wx3LaojS+GEGqKNqAHgVWccqRq7HcUR3RYI=
+	t=1747050861; cv=none; b=jyUH/agXgCb8PxOTIe13faJZM/Qq/ce6JdEli2A3/f11ckP22hddTfW0yBaT64QqA9i/njOfN7bSLeEvkPxjNmsVqfRs1hNqjcyJCL9waSfvychZGLjJp6v5cCWwD3hW0zdwjdIP9cO5LTFMoshEylMyBSHLaZUSi6YH82zIRMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747050808; c=relaxed/simple;
-	bh=XRTRdFsjTIvQFPCYdsS7RtuGeazpj8HDdc2C/0Tr0+A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NBfoSUlVfpDNFVzvOBKdAjkq+hgJkgTB6/s+3+Gb8PDhKqHC9bFRjU2dsm7dUWdHzGGld75n1LiM6DNGAridbK80ovJfMx5Vgx+3eVXYfbP5lYAjouzAwLLtu46PbJ/uMBDZhmnaorcavtY83eM+8FidVBLhSntNaNbncY8Jt9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uhykW5tW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FBD1C4CEE7;
-	Mon, 12 May 2025 11:53:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747050808;
-	bh=XRTRdFsjTIvQFPCYdsS7RtuGeazpj8HDdc2C/0Tr0+A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uhykW5tWkylsMRnTtM4JyB85xGedLRJaWdAGBR7SS6gscZl1OaRFbhfhwIQYpna1U
-	 1YhecEAWlQutPONxvc/+ZDIyHIoZzBci0wwJsLTb9YqoCswKOD41ANXLtE5cKWpJJb
-	 fRgFHktHPiJnsPQ8rmXju3B+58MLO8fz/I1Vcos1Q3g0wGjaVD7NoeF+EB24qQgobw
-	 /6U1kLuFYWgNG/3VS/HxZc7dP2CiznjHRZ0QDHE5YSthWRjjpikOMFqd2i1K4KwH/n
-	 yVHAeJRX1JbdWYZ9ONTt61IhB8x4BCvk/52FoeTNiDMzM+MPlQaVEb6rNOR6Ds221/
-	 R3EsBllOXQFKw==
-Date: Mon, 12 May 2025 12:53:23 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Ben Zong-You Xie <ben717@andestech.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: cache: add specific RZ/Five
- compatible to ax45mp
-Message-ID: <20250512-unbundle-outgoing-92aeed9c60f4@spud>
-References: <20250509-sapling-exhale-72815a023ac1@spud>
- <20250509-dwindle-remold-98b3d03d0631@spud>
- <CAMuHMdVWznEm4Kg-MvgCT5+cBtdwGi9YrzFK6mBaoPJ+VK8S+Q@mail.gmail.com>
- <20250512-disaster-plaster-9dc63205cd6e@spud>
- <CA+V-a8sJUsNsF+AT1v3ySLiH9RGwDukMHHOC44JuV4JE3YKEpg@mail.gmail.com>
- <CAMuHMdWcfH7RfYnX+1vx6zFo83oGAW25kSAH0fW8Nb_LQ4PV_w@mail.gmail.com>
+	s=arc-20240116; t=1747050861; c=relaxed/simple;
+	bh=yoCr8Cw7ciWuvaGQmZFA8dVvKMkIHB9m6FCuH2oE/l0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=M0Y6PFmwJaz+ea/Dqyh/X7gn60XUhNSgz/hJmZIbIA56JX4NOjyOaOXeqJ7QKtZyROKpCC3TDmVhLo+yA1LQw1UQUGda/GZtexcKNeSKpIqu442uRh7e73O8RSk8uJ7o58Mp2TqkZ4JxbBRXfvjqLG9FOy9akZobcLs9IGqN138=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=RZyazV4/; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: ccf1cb782f2711f082f7f7ac98dee637-20250512
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=vavH7lvXqySuJa+hx0NcjRm6IStTczVgtkHsC8BjBGw=;
+	b=RZyazV4/RyTPi/+5WH+QsjjRG0t6Fq77Pp683SyPVctZr6OfP978f0/nL2oVIDk6E9ZHtTNoix+UAbmkFeH+v9xzRxZ9p4UGMra/roJAx76iIBtj1seQzTgBe+v+efoGB7gkzT9GgUGSZoqIPe4n62B6ABDxP5kNPKFXMxGr/HI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:3ec886dc-fd60-4353-b08d-64741768f283,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:0ef645f,CLOUDID:9ab09db7-5e6b-4d0f-a080-a5e9cb36bea6,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: ccf1cb782f2711f082f7f7ac98dee637-20250512
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
+	(envelope-from <sirius.wang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 347709756; Mon, 12 May 2025 19:54:03 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Mon, 12 May 2025 19:54:00 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Mon, 12 May 2025 19:54:00 +0800
+From: Sirius Wang <sirius.wang@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@mediatek.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-serial@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <wenst@chromium.org>,
+	<xavier.chang@mediatek.com>, Sirius Wang <sirius.wang@mediatek.com>
+Subject: [PATCH v3 0/3] Add mt8189 dts evalution board and Makefile
+Date: Mon, 12 May 2025 19:53:47 +0800
+Message-ID: <20250512115355.923342-1-sirius.wang@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RsJS8sFLG1dSwYiq"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdWcfH7RfYnX+1vx6zFo83oGAW25kSAH0fW8Nb_LQ4PV_w@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+
+We add basic chip support for Mediatek MT8189 on evalution board.
+
+In this series, we also add dt-bindings document definition for MT8189.
+
+This series is based on tag: next-20250509
+
+Changs in v3:
+ - Move ulposc and ulposc3 before cpu nodes.
+ - Refactor cpu-map to a single cluster0.
+ - Change cpu nodes name from medium core to big core.
+ - Move psci before timer nodes.
+
+Changs in v2:
+ - Fix warning issues for make CHECK_DTBS=y
+ - Add mediatek,uart.yaml document
 
 
---RsJS8sFLG1dSwYiq
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Sirius Wang (3):
+  dt-bindings: arm: Add compatible for MediaTek MT8189
+  dt-bindings: serial: mediatek,uart: Add compatible for MT8189
+  arm64: dts: mt8189: Add mt8189 dts evaluation board and Mafefile
 
-On Mon, May 12, 2025 at 01:05:13PM +0200, Geert Uytterhoeven wrote:
-> On Mon, 12 May 2025 at 12:05, Lad, Prabhakar <prabhakar.csengg@gmail.com>=
- wrote:
-> > On Mon, May 12, 2025 at 10:59=E2=80=AFAM Conor Dooley <conor@kernel.org=
-> wrote:
-> > > On Mon, May 12, 2025 at 11:01:26AM +0200, Geert Uytterhoeven wrote:
-> > > > On Fri, 9 May 2025 at 17:39, Conor Dooley <conor@kernel.org> wrote:
-> > > > > From: Conor Dooley <conor.dooley@microchip.com>
-> > > > >
-> > > > > When the binding was originally written, it was assumed that all
-> > > > > ax45mp-caches had the same properties etc. This has turned out to=
- be
-> > > > > incorrect, as the QiLai SoC has a different number of cache-sets.
-> > > > >
-> > > > > Add a specific compatible for the RZ/Five for property enforcemen=
-t and
-> > > > > in case there turns out to be additional differences between these
-> > > > > implementations of the cache controller.
-> > > > >
-> > > > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > > >
-> > > > Thanks for your patch!
-> > > >
-> > > > > --- a/Documentation/devicetree/bindings/cache/andestech,ax45mp-ca=
-che.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/cache/andestech,ax45mp-ca=
-che.yaml
-> > > > > @@ -28,6 +28,7 @@ select:
-> > > > >  properties:
-> > > > >    compatible:
-> > > > >      items:
-> > > > > +      - const: renesas,r9a07g043f-cache
-> > > >
-> > > > This name looks a bit too generic to me, as this is not a generic
-> > > > cache on the R9A07G043F SoC, but specific to the CPU cores.
-> > >
-> > > So "reneasas,r9...-cpu-cache"?
-> >
-> > Maybe "renesas,r9a07g043f-riscv-cache" ?
->=20
-> "renesas,r9a07g043f-ax45mp-cache"?
->=20
-> There don't seem to be many vendor-specific derivatives of standardized
-> caches, except for "brcm,bcm11351-a2-pl310-cache".
+ .../devicetree/bindings/arm/mediatek.yaml     |   4 +
+ .../bindings/serial/mediatek,uart.yaml        |   1 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+ arch/arm64/boot/dts/mediatek/mt8189-evb.dts   |  20 +
+ arch/arm64/boot/dts/mediatek/mt8189.dtsi      | 427 ++++++++++++++++++
+ 5 files changed, 453 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8189-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8189.dtsi
 
-The sifive stuff is all "vendor,soc-cache" into "sifive,ccache" but
-there's little ambiguity about there being an arm version of the same
-soc there. I don't mind the "renesas,r9...-ax45mp-cache" one you
-suggested, feels better than "riscv" to me.
+-- 
+2.45.2
 
---RsJS8sFLG1dSwYiq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCHhMwAKCRB4tDGHoIJi
-0lJdAQDZmT6/q6Y+3Bxx5FSNDxRX2GP522P/d6ovCDdXuDAXKQEAtZHf0hmuuKUK
-Qg/Xu5NA7V10fSgeZavhNiZEaWlFdgI=
-=4rqL
------END PGP SIGNATURE-----
-
---RsJS8sFLG1dSwYiq--
 
