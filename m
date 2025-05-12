@@ -1,147 +1,172 @@
-Return-Path: <devicetree+bounces-176401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A55EAB3D73
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:26:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C80AB3D70
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:26:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E8453BE13E
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:21:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79A987AA5F7
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:25:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2392248F72;
-	Mon, 12 May 2025 16:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0F83248F7F;
+	Mon, 12 May 2025 16:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qjWDW5ip"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fPTRWWvz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF6F246782;
-	Mon, 12 May 2025 16:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8105E248F49;
+	Mon, 12 May 2025 16:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747066912; cv=none; b=JahNOFsvfkL4vuiiO2bOP4zTu3FkD0Li2wqeHqSRghqWPCcdh+Y2soNro/0o9+f7qXTgbASef7OddDkQLExlgiszXLcry20Ny5GF1y6Pfo8mLuEgTlnudv2D2d9AlzrkVrOxakO7m03kM9TRQoYxUIRy/tvbSvao22rdYutUHQw=
+	t=1747067082; cv=none; b=dqWPS5jEZukh03/nUzhf3aMdqzs1UyyQ+s++rZK+PKXzKhRMtWck+qHfVOHENiU9z+M5rZW/dj0OY3LddGtn9bo68yV3R0yzLVjZoDgtFYK1rEjpGaJ2D2hrHbMmHf/YZogKQmBgjvQt1u/JaGppfYpzBIHylJunCA6BEqCy3wE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747066912; c=relaxed/simple;
-	bh=Cw16mLp8GBEQCcOKwuFSOtn+PoZCJYu4QwEC/5THH6Q=;
+	s=arc-20240116; t=1747067082; c=relaxed/simple;
+	bh=r/UZNmFYWgtwLiPQR7YXnDQZ1KJqs2OKZNrQQbttzmM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pVUpAHFG6YqOcrUYKIKohocLM6I64QRWtlxg0Jc4pc/pZYHVMhosJNcNSDweJJVTFCYEO4NdmN/hjjjxKOzWr4FTTbg1adzku4NRgzxDMt/Mt0phtKZzh/8q9Titl5ehT/UdG48koBBBjE75BYNxDbrtR7i75LDRKDq/aBwE+2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qjWDW5ip; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E3D0C4CEE7;
-	Mon, 12 May 2025 16:21:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=X6bOvRgZ2WOf1RXFJ4zr+s989/vJ+ZPFIu2zqZB3/IHgFx1JXrtAQhUvzfg5x6GMpbt+fpPlu/prJJ0S/WmBsnQsWG6hKnZLGqIxba7QEeq0pvMOIV+hrX6nBGhv0uWc0FIjNBJWbTup1Rm9p9BMPy2ALCGwOuO5BdKSdnu1WmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fPTRWWvz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0AF6C4CEE7;
+	Mon, 12 May 2025 16:24:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747066912;
-	bh=Cw16mLp8GBEQCcOKwuFSOtn+PoZCJYu4QwEC/5THH6Q=;
+	s=k20201202; t=1747067082;
+	bh=r/UZNmFYWgtwLiPQR7YXnDQZ1KJqs2OKZNrQQbttzmM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qjWDW5ipMKXBnBTQnDL//oE57mzcvjgoU1Ton8qgojjwFyPxcD/zG/sLf/+qoX0WA
-	 onl7eoXYzFz98ul7cCauOz3vwSqHsjTMNXxy4MHoHFByrilbQ4G9jTZ/dSzd5XRBlq
-	 JoPfIQU7+w81uzvYu3dFmIRKPmCaTWTq9D31Lnn704gy42p4Ipyte1Djh82MKghM+d
-	 lJri9FOcBdfu27jie/UdYAgPVIehCS1Pmqyq5mrNMpXxxVOcM8CBzesTbQcOolL+JT
-	 /aI2JhND0tKPf20Mk8yLGONCN8t52y6fENYrsyoMvnIGT34Ki8SDew58BKGAfMIC7E
-	 P+tql2ye6ipcQ==
-Date: Mon, 12 May 2025 17:21:45 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=fPTRWWvznMT4g7LeNUe1n5ADd7juAK2snyBKEcY79qo22TS8TdCeF9q1SqWAeZV8V
+	 TMck4o4LVEe1HUyZuahUCqeMOHSQuCf6PAqowUwWCKMPnwRIngfgV2arZhV2p0V/uB
+	 gEiKJimRZiPDQUZuOFFHJ5UZiUbe7cWRe2JmDUHgiKbOCNfY9180LDQO7Yk5hV6/tr
+	 +4dOa5uXIqkuhOI4td7Cg6r5gn7Kh/MWi00m0ocynLvgPCrfF+tlJbkm8K7tga4rTe
+	 X0SvEKJPGvuUzbZqcsjr3+3qEh0TGl0X5ClAme3GHUquGjPmIvuup0zPMuRfhrzWNI
+	 K6VbMvryH5QnQ==
+Date: Mon, 12 May 2025 11:24:39 -0500
+From: Rob Herring <robh@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v1 01/14] dt-bindings: net: mediatek,net: update for
- mt7988
-Message-ID: <20250512-nibble-freemason-69e0279f2f99@spud>
-References: <20250511141942.10284-1-linux@fw-web.de>
- <20250511141942.10284-2-linux@fw-web.de>
+	Thierry Reding <treding@nvidia.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: display: tegra: document EPP, ISP,
+ MPE and TSEC for Tegra114+
+Message-ID: <20250512162439.GA3441216-robh@kernel.org>
+References: <20250504092324.10802-1-clamor95@gmail.com>
+ <20250504092324.10802-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BeH6zc2zJClOlCJ9"
-Content-Disposition: inline
-In-Reply-To: <20250511141942.10284-2-linux@fw-web.de>
-
-
---BeH6zc2zJClOlCJ9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250504092324.10802-2-clamor95@gmail.com>
 
-On Sun, May 11, 2025 at 04:19:17PM +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
->=20
-> Update binding for mt7988 which has 3 gmac and 2 reg items.
->=20
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+On Sun, May 04, 2025 at 12:23:22PM +0300, Svyatoslav Ryhel wrote:
+> The current EPP, ISP and MPE schemas are largely compatible with Tegra114+,
+> requiring only minor adjustments. Additionally, the TSEC schema for the
+> Security engine, which is available from Tegra114 onwards, is included.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  Documentation/devicetree/bindings/net/mediatek,net.yaml | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Do=
-cumentation/devicetree/bindings/net/mediatek,net.yaml
-> index 9e02fd80af83..5d249da02c3a 100644
-> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> @@ -28,7 +28,8 @@ properties:
->        - ralink,rt5350-eth
-> =20
->    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
-
-This should become an items list, with an explanation of what each of
-the reg items represents.
-
-> =20
->    clocks:
->      minItems: 2
-> @@ -381,8 +382,12 @@ allOf:
->              - const: xgp2
->              - const: xgp3
-> =20
-> +        reg:
-> +          minItems: 2
-> +          maxItems: 2
+>  .../display/tegra/nvidia,tegra114-tsec.yaml   | 79 +++++++++++++++++++
+>  .../display/tegra/nvidia,tegra20-epp.yaml     | 14 +++-
+>  .../display/tegra/nvidia,tegra20-isp.yaml     | 15 +++-
+>  .../display/tegra/nvidia,tegra20-mpe.yaml     | 18 +++--
+>  4 files changed, 113 insertions(+), 13 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml
+> new file mode 100644
+> index 000000000000..ed0a5a8a091b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/tegra/nvidia,tegra114-tsec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  patternProperties:
-> -  "^mac@[0-1]$":
-> +  "^mac@[0-2]$":
->      type: object
->      unevaluatedProperties: false
->      allOf:
-> --=20
-> 2.43.0
->=20
+> +title: NVIDIA Tegra Security co-processor
+> +
+> +maintainers:
+> +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> +  - Thierry Reding <thierry.reding@gmail.com>
+> +
+> +description: Tegra Security co-processor, an embedded security processor used
+> +  mainly to manage the HDCP encryption and keys on the HDMI link.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - nvidia,tegra114-tsec
+> +          - nvidia,tegra124-tsec
+> +          - nvidia,tegra210-tsec
+> +
+> +      - items:
+> +          - const: nvidia,tegra132-tsec
+> +          - const: nvidia,tegra124-tsec
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: tsec
 
---BeH6zc2zJClOlCJ9
-Content-Type: application/pgp-signature; name="signature.asc"
+Drop -names properties if there is only 1.
 
------BEGIN PGP SIGNATURE-----
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: tsec
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  operating-points-v2: true
+> +
+> +  power-domains:
+> +    items:
+> +      - description: phandle to the core power domain
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCIgGQAKCRB4tDGHoIJi
-0kdJAQD7lUldL2lyECoq6kz6Xgzpc9L4CU21TH0X3mhKWLc3KAEAkBFq4G5y02M6
-M2qDeF8a2MAP3H9Vr3AIiT3T4ZG04gg=
-=Vo8k
------END PGP SIGNATURE-----
+Instead, just 'maxItems: 1'.
 
---BeH6zc2zJClOlCJ9--
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - resets
+> +  - reset-names
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/tegra114-car.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    tsec@54500000 {
+> +        compatible = "nvidia,tegra114-tsec";
+> +        reg = <0x54500000 0x00040000>;
+> +        interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&tegra_car TEGRA114_CLK_TSEC>;
+> +        resets = <&tegra_car TEGRA114_CLK_TSEC>;
+> +        reset-names = "tsec";
+> +    };
 
