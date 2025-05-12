@@ -1,127 +1,139 @@
-Return-Path: <devicetree+bounces-176270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24EE3AB35EA
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:31:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE02EAB35F9
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:40:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 878C33A423B
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:31:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B23B7A5B4D
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:39:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE29728FA93;
-	Mon, 12 May 2025 11:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D902920A9;
+	Mon, 12 May 2025 11:40:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bj4tFEEJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D3Ay/FpS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2340613BC02;
-	Mon, 12 May 2025 11:31:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83D732918F3;
+	Mon, 12 May 2025 11:40:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747049483; cv=none; b=JZaFzphS/ryrbwtKrbHCV8kjl4JOAoRXyfGaBLQc3+D7PkRtCDXBZRXte3fFsgv8X7v2vp4Jcl3zFB3gGx0p762b9HUMnmAp5g+6EoGteqHms//xRffrOiBl5tbI+EANmLqNlCLSH5tHo9mU0qFaLEwB6t/d4DWTLGA3UvcndJY=
+	t=1747050019; cv=none; b=gecH5+3wHD5SWwBqUi4XfGxLS6G98Luv8t3llcdzpJqsjZ5JLuGlJgP/S8jSRLuL+lSyBAqTBKQPJA1zPdk3S00o6tgUeFwEe4QCXQB/f+GVPAJx9Oi5oHQDtUnunR1YmTvmCyOArqRCYcQJdWZ71j8XGUEu20JH9Mk9uFFGvLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747049483; c=relaxed/simple;
-	bh=hh8W8SFL2O5tLYPxqifp5xrBtBcma9ivlfB8ylnUYQM=;
-	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version; b=ehhTosqXy5dFaNyHhIwdNzAJhqiuY4VGPGfZ6EHakvb8ZmKjVWZEKuteubAfkUCITFLxb5tc6GIChn9JiOEhSn2ez24BaJThlz/iUD2qQKtiereRqYim5PxD+bUG2h68ZlfkuPxOewgaxB40qne58X2nE3ZS6Tu071e50ZQr9xM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bj4tFEEJ; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-22e45088d6eso55274285ad.0;
-        Mon, 12 May 2025 04:31:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747049478; x=1747654278; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to:date
-         :subject:cc:to:from:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DcuJtm+iInMJ4xEpzdwpahbYr7IroCfNfGVeO9DKr0A=;
-        b=Bj4tFEEJ8Zj7C7VqcCHbNTCoelW3DKSl9XQoGc6oHTIl2KCxm4IpUYDD3/oRW6wxZm
-         W3XQwT302irUsVaXtWf+utaN2cixjPI1Ki3methWar5rDv/3Uz77YiXGxsVf3C47Dqp9
-         FPYoesm/W7xbqqCtEycjfDRSVnSvufmIWrKf22nXgV0wMk+0iM2c5wqrY4n1qqz8yMWH
-         3po1IF0TDdcnL106mPfSxmAhhKOYxn/ORQkeQ3tBJzkUYXNJopg9zZQ7xeR2CMMcKMHh
-         rgB+VrMHegITFzaKyaAqodNqoX7eyKswKiv4nIbt4mtgeHaz08d3b/FINkbW2TIppM1J
-         fBcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747049478; x=1747654278;
-        h=content-transfer-encoding:mime-version:references:in-reply-to:date
-         :subject:cc:to:from:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=DcuJtm+iInMJ4xEpzdwpahbYr7IroCfNfGVeO9DKr0A=;
-        b=TbJC1KtX9/mzsr00a60wpBrOvCnpoE6gA+yAiQjfSqYn410ZFt43YaYOHugSQdV3/T
-         X1wLlOncdwjZXCr0s88n24Bm+d+hnV4dQH9ioUb5T7Xj0Z6s4NzGkDqACNU/gNrhraS9
-         UU3KfJjumRrb046081Tf9zB+2QYejVXheF9KkdxM15cmm9YGI1V7kuOmQfJSn+17AV9J
-         hCtfUAPQvUvq2mf21KxbukuNMLSw37PtLnRJKLMVO1VuIdEMzpuxjrhVTuQkSh8fUThw
-         GKQ9Y1eLz/Ny69GmgixBX1QdtOV5SrSYUfz8zfVLOUOtXQPx3Oohu7MMp05MDdmr9Uat
-         J36w==
-X-Forwarded-Encrypted: i=1; AJvYcCWeo1nBMz87zahBs7J6Nsubes3uqsPoKh5tc4mnxTVhFyg/FHHvp79HmsqI4ztjIU1ALrThvg6kbwyASnE=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw51aXR0fZjm+VHz/MH+YBYadcsGtasCVmZlGdPpqMRbRrIBmv2
-	WDtDmaujljrKBQtrfdQQ1v/obEwWWDwg/CjsSyG9Ao3KgSyy6+kdv73Fyw==
-X-Gm-Gg: ASbGncvRWFhDSPnbnaDvCl+rZ7iBUOEuM+OebO2PuSSfimk23CnrCe392kkzOJqBTuA
-	xroQDMJ9X8QOjGdEradOP+a0gHQ8xwld8s1r3/GGb//4ly/PMzidhbhQ48GeaNg0ypaoM36mLyx
-	tQOKzHUuagmkKuna5akGg62t9Pk2srzkgHPBNBbvJ6zOm+R3JQJdGk5prlOG9lB0I2/Qdsbp8Nz
-	ZyhF8zGrZXKl/RkcflpVTQP/izUM9kdAndksdc0K0SRT66lfLrGPkcq936DdNrOc4P6IIFvbzS9
-	C4QdEI83Qjipn9UA9iVE2KWdZWhymWBLFqwF245RQrbcMUPK8epq8VgkxTrpLSoZZR+SHkBF
-X-Google-Smtp-Source: AGHT+IExxyFiytciXzSdjgPQ7rTz097bkIWdvh5taz9amgHJiu7hfwWP19TIewHg/quu33Cj0p6pYg==
-X-Received: by 2002:a17:902:e747:b0:22e:5e70:b2d3 with SMTP id d9443c01a7336-22fc8afeec8mr186571865ad.1.1747049467733;
-        Mon, 12 May 2025 04:31:07 -0700 (PDT)
-Received: from dea88b1475bb.. (125-227-29-20.hinet-ip.hinet.net. [125.227.29.20])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc7742ce2sm61074145ad.80.2025.05.12.04.31.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 May 2025 04:31:07 -0700 (PDT)
-Message-ID: <6821dbfb.170a0220.3b15e.aba8@mx.google.com>
-X-Google-Original-Message-ID: <20250512113026.264785-2-LeoWang>
-From: leo.jt.wang@gmail.com
-X-Google-Original-From: LeoWang
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	george.kw.lee@fii-foxconn.com,
-	leo.jt.wang@fii-foxconn.com
-Subject: [dt-bindings: arm: aspeed: add Meta Clemente board] dt-bindings: arm: aspeed: add Meta Clemente board
-Date: Mon, 12 May 2025 19:30:26 +0800
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250512113026.264785-1-LeoWang>
-References: <20250512113026.264785-1-LeoWang>
+	s=arc-20240116; t=1747050019; c=relaxed/simple;
+	bh=xrLqGr/A7KBzm6992uLWeERh4hVm6A4U+dV5uqSfpIQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UmkjDgDmHzkBKjwVQE8L+3sNx/8vRilCyuo1s18aPkSeiLDluNInnOrfhyHJ9H1jyisDy/5PhJVmULqgbE8mkFQVu56TOm3KagRjUiu0TPaH+6x44K9NNZh8bjh+0B7z1i+lTOdLHM/YS/wmB7PlWWP3Y3SC/QOX38rzoEe34fI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D3Ay/FpS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E00A5C4CEED;
+	Mon, 12 May 2025 11:40:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747050018;
+	bh=xrLqGr/A7KBzm6992uLWeERh4hVm6A4U+dV5uqSfpIQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=D3Ay/FpSmJxBhmUzRkeFDrk219bgrsI5vlhJGZ0DZqVo8MHWquLY0epeG37h0Ds3y
+	 lWBVoNHjIdRNr0l+QV0iLzwEnZDawP7wXwpdIEU4dQbFnWJLJG/SWdJXwQz4b1Yx2/
+	 vagFxZoqafPEOPKYfEiqzxNHtQ7VDZB20S0dhHRXxSjXUA+dQg87hrw4/kEi/N6wCG
+	 jhxwYrbvyazUi48MWcFD52ASkrnjQpwLZcf142CV/Kd5PG5jy6hRnlnzOlcFvWW28I
+	 5AgmlSF8BE3DKfMy2NDyBsm4gDs9rSALlElHn+bnFJvYHjFMxw0VySH26xZWQQnJ85
+	 RZewM+3fhRBfw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D50BDC3ABBC;
+	Mon, 12 May 2025 11:40:18 +0000 (UTC)
+From: Mahesh Rao via B4 Relay <devnull+mahesh.rao.altera.com@kernel.org>
+Subject: [PATCH v2 0/7] stratix10: Add framework for asynchronous
+ communication with SDM
+Date: Mon, 12 May 2025 19:39:50 +0800
+Message-Id: <20250512-sip_svc_upstream-v2-0-fae5c45c059d@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAbeIWgC/2WP3YrCMBCFX6XkeiP5aWzrle+xSIlxogOm7WZiU
+ KTvvmlkr/ZuzsD5Ps6bEUQEYofmzSJkJJynEtRXw9zNTlfgeCmZKaGMkFpywmWk7MbHQimCDRy
+ 6/tK74dxqbVipLRE8Pivy+/TJEX4ehZw+TxaAyFZyEW1cJVpOs/PL1Y5//IDkeNZc8P3Q+c5Lo
+ 523R5wS3HduDpvqbAl4uQOmQ5P3O2l4dC3brDekNMdX3ZVl1VZVq9T/CVkWjeh7YQY5CK/l0d4
+ TRFs9p3VdfwEs7PruJwEAAA==
+X-Change-ID: 20250131-sip_svc_upstream-e78d8c9b4335
+To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>
+Cc: Matthew Gerlach <matthew.gerlach@altera.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747050016; l=2502;
+ i=mahesh.rao@altera.com; s=20250107; h=from:subject:message-id;
+ bh=xrLqGr/A7KBzm6992uLWeERh4hVm6A4U+dV5uqSfpIQ=;
+ b=ku0EdbMV76Oe+dVxInq5QTEgMFlwm/BkweImQTxhU9f8QuQqXAS3feO94whUR0VMLdUoPGpd5
+ /2U5IhU7RMHAPtyftESsvyQ32G7bINQQCmpHC6EVhZJ1qj3MHqzCHyf
+X-Developer-Key: i=mahesh.rao@altera.com; a=ed25519;
+ pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
+X-Endpoint-Received: by B4 Relay for mahesh.rao@altera.com/20250107 with
+ auth_id=337
+X-Original-From: Mahesh Rao <mahesh.rao@altera.com>
+Reply-To: mahesh.rao@altera.com
 
-From: Leo Wang <leo.jt.wang@fii-foxconn.com>
+The patch set includes the following changes:
 
-Document the new compatibles used on Meta Clemente.
+- Add protection for querying memory objects in
+  multi-threaded flow.
+- Add support to generate and maintain message id
+  and client id for asynchronous communication with SDM.
+- Add framework to communicate with Secure Device
+  Manager(SDM) asynchronously by sending a request
+  and polling for response.
+- Add interrupt definition in Agilex devicetree
+  for asynchronous communication.
+- Add SDM interrupt support for Agilex platform
+  supporting asynchronous communication.
+- Add support to optionally notify the clients if
+  response is available using interrupts from SDM.
+- Add commands for querying temperature and voltage
+  from SDM.
 
-Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
 ---
- Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v2:
+- Added Reviewed by tag from Rob Herring for dt-binding
+  patch.
+- Resending the patch-set as there is no response from
+  the maintainers for the previous patch submission.
 
-diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-index a3736f134130..4416a40dcd86 100644
---- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-+++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-@@ -81,6 +81,7 @@ properties:
-               - asus,x4tf-bmc
-               - facebook,bletchley-bmc
-               - facebook,catalina-bmc
-+              - facebook,clemente-bmc
-               - facebook,cloudripper-bmc
-               - facebook,elbert-bmc
-               - facebook,fuji-bmc
+- Link to v1: https://lore.kernel.org/r/20250422-sip_svc_upstream-v1-0-088059190f31@altera.com
+
+---
+Mahesh Rao (7):
+      firmware: stratix10-svc: Add mutex lock and unlock in stratix10 memory allocation/free
+      firmware: stratix10-svc: Implement ID pool management for asynchronous operations
+      firmware: stratix10-svc: Add initial support for asynchronous communication with Stratix 10 service channel
+      dt-bindings: firmware: Add interrupt specification for Intel Stratix 10 Service Layer.
+      dts: agilex: Add support for SDM mailbox interrupt for Intel Agilex SoC FPGA.
+      firmware: stratix10-svc: Add for SDM mailbox doorbell interrupt
+      firmware: stratix10-svc: Add support for HWMON temperature and voltage read command.
+
+ .../bindings/firmware/intel,stratix10-svc.yaml     |  10 +
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi      |   2 +
+ drivers/firmware/stratix10-svc.c                   | 981 ++++++++++++++++++++-
+ include/linux/firmware/intel/stratix10-smc.h       |  84 ++
+ .../linux/firmware/intel/stratix10-svc-client.h    |  99 +++
+ 5 files changed, 1165 insertions(+), 11 deletions(-)
+---
+base-commit: 39d6783f6488786301f36b0e7c619f220c3e8d2c
+change-id: 20250131-sip_svc_upstream-e78d8c9b4335
+prerequisite-message-id: 20250204-socfpga_sip_svc_misc-v3-0-697f7f153cfa@intel.com
+prerequisite-patch-id: 6a4223bd2c01a0fd20925e597c906dc64e11ec2f
+prerequisite-patch-id: 33ca4dbe8b8e18d3e51145c6bcaae55170878b22
+prerequisite-patch-id: a02bca91874f4405191e60704574a0c99f37d184
+
+Best regards,
 -- 
-2.43.0
+Mahesh Rao <mahesh.rao@altera.com>
+
 
 
