@@ -1,242 +1,277 @@
-Return-Path: <devicetree+bounces-176278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDF62AB35FE
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:40:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93DB7AB3625
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:45:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B219817AEA7
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:40:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C4177AA723
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269AC292928;
-	Mon, 12 May 2025 11:40:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 505891A316E;
+	Mon, 12 May 2025 11:45:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="avqs1XCH"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="m6ZKdbuV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2075.outbound.protection.outlook.com [40.107.21.75])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8E78292908;
-	Mon, 12 May 2025 11:40:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747050020; cv=none; b=ZMipHTBcheA//owxyyW+Xx6qscOAqXfBxAuaeaFvp4wwLr7UrT5nTE/VyQPEi2yjMFNGfuaEtgJJMj/5i/vVrauJr+mRBtFBnyTKFU6KbC7AGYY+uyTeEbOlz/GQ3hCpNR1uWzyUc75McJ1xsTo8YZ5YF0Nwa85u22U3CzHihfc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747050020; c=relaxed/simple;
-	bh=3+mgovEH2U7GbbwYUPvC67milPze1pciOWU6d6iilto=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Gq5G5IBkotUKh6nBXz5Q8BabxTtxsiQwI05K2C7iZ8ozbVV+RO7YQ5K+ruM+PX/2q8MlJfuE79HIsNhlKj5ska9Ovg753XedLxxPyPuBITLuYaatBSG90pDfTqk1Q725QVNezQQFfQbqTQgHH6ELx8wa94CABISxNfuDpjvupOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=avqs1XCH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4CA24C4CEFA;
-	Mon, 12 May 2025 11:40:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747050019;
-	bh=3+mgovEH2U7GbbwYUPvC67milPze1pciOWU6d6iilto=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=avqs1XCHJl6ivrYl7leI2E1pFPlIXcyNPQIm1xjOVYCkUVeL6CtyRL982bThKjpOo
-	 m80UJLEobUCC/0ilsYNuOlNuHZAqYPEgMkCX2GCm7GHDzyUWSHfesLB8vPJkO3wcDL
-	 pnG/4aOyG/y2LAzf1M3WMg2SHcrzU6WTF0FK20sDJ90GAUc0oWUGeT9o4WGAs7qhxf
-	 Tm+y7Sa+d78ENKxpB8Ikc4M8N02SBIuMrWmuzmKYKmoU+nPl/h9/ajlWofsGYGu8Sp
-	 DMKt85MdOPRpYRNmlTua9RzakEP+teafsf9y6TCsQzHogcLFje1liB6dqrJlemi2pM
-	 hnHTReGK7klKQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 43C63C3ABD2;
-	Mon, 12 May 2025 11:40:19 +0000 (UTC)
-From: Mahesh Rao via B4 Relay <devnull+mahesh.rao.altera.com@kernel.org>
-Date: Mon, 12 May 2025 19:39:57 +0800
-Subject: [PATCH v2 7/7] firmware: stratix10-svc: Add support for HWMON
- temperature and voltage read command.
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEBCD27E;
+	Mon, 12 May 2025 11:45:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.75
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747050340; cv=fail; b=jDTUyvjkXwdPJ+zMmpJZkam+ElRZrV9gff5sIzLyscLnKZO6ADEPglmo4yDazrpVQAt3AP4byOhbNkEC1/XBfKsiq54Z4SAdMg3Sgci6q14g2jrgq+hIXiWYpDlkC28NUrRAzK7PeWdZy/oBHZExxVvWOfb3WQ5iDJ062dwx7kY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747050340; c=relaxed/simple;
+	bh=+MXwNdgEVv9sY3VL1QWO8+w/IcJyia8GhxPII6KjU0Q=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=quG30cdBGhQy+6amv40MFOfbvCSv7hXMJDIg0VtoyOkzGhVWqd9INnSXEGVj478pRXGct9F953Mffav+OmG0geFGTdaEfcQR6bGCSI/4gxvaGczVOuLp0ZuBPYLapNPRjOq7vaX+Ea1ZuFLZy6fEX7JGbyGKGvMMYjZ/tIG7htA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=m6ZKdbuV; arc=fail smtp.client-ip=40.107.21.75
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MKs064IruKrXu+Fe99ifu+jpUaQpqrU4p8ZWaczFgwNR4y9c0T9Tph2Gbm+yqUcsZJaEX+WBqeRBxAN5rtdQ4myypPMXrJBqqjx0YF0S5RRF+RnZC9Jw6qYNcbYMTMDMfSgx95SlIaGcaCHKF9PxLkRxfMMoZt1m9yKupyPklpEzoABfe1oMAIXzJbeVxTTFwP5kqhmd1qkvQO0fp4RwushNneBdasHjrnUhU9P0jD1opScjLxzuFmcH1g6HWt+4BNlevdCDOoktA9Pv75wDVg/Dv51f2fNnDo7oUHU9igr22RpizoDUy9J/e7CaM8cr/f+BVGmZQOXvsHeB2N59uA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U464PipND+XOMo9DixC3W5dCkpnvQqv3wW5sb7z96/8=;
+ b=Cglcs+N2cCBV/KzREc054ZXQCRwc85xcPyRkacLoPxkWX6YCNMWMUeXyzp8SXOSjoxnMUAZnWyDN3wy+C8VOFzTGPHWeP0xxnRGj2LSJIT2CLlQlfWWyItlpTzt5obaCiv1UlDN5pbHgdO2BJA8BQmXXS1ulfwwvsKLenaRqi0MqU25RKMdHmVHOMJDPhfSe1pX4y2dMONcxTiHQ7GQd7V/mohZCWy5WBBxqnB2h4JMEBJmNTgrNmn038WyfUVrLeHbZ2NT6Ux7y82jDMuoU5PWdJX0voNwm+amjPF+nO3e4mthJsi5vHpf6FDrqiGUFFblJT262++AklZ4qYdmp/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U464PipND+XOMo9DixC3W5dCkpnvQqv3wW5sb7z96/8=;
+ b=m6ZKdbuVIMjRgF9oug2gbKwc2vK9GOzYOlkfetemInJ5FNqfXSFPXTq4jlVqxX0WoMu8Hc4BmosG74bxH+1BiOIkjzpOGHZs+gnyY3H71zA6ktecVv23AoUA4Y31zy3r0pMVz4iMKQgEhdmE6mhsJejMlp5pTUa+shSdWXwvu2OVuMOgnHePHH0h+r/rFAv+yFzi/HjQd+Dq6bnAb7Zvei8VjHe8xJSM8DbykFFXA6r2hA7hmoqXvUxeSa9b4JcQk022u1u9mZTp6W6Sg+1G0Yc70v8sYFhPaea3m73JeW+/SY/Tyx3ufOEAJEZhTGMnL8NG6E1xSOaB3TghWaRr4Q==
+Received: from GVXPR04MB9778.eurprd04.prod.outlook.com (2603:10a6:150:110::18)
+ by DUZPR04MB9982.eurprd04.prod.outlook.com (2603:10a6:10:4db::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.23; Mon, 12 May
+ 2025 11:45:33 +0000
+Received: from GVXPR04MB9778.eurprd04.prod.outlook.com
+ ([fe80::9b3c:ef2d:7475:5df8]) by GVXPR04MB9778.eurprd04.prod.outlook.com
+ ([fe80::9b3c:ef2d:7475:5df8%5]) with mapi id 15.20.8699.019; Mon, 12 May 2025
+ 11:45:33 +0000
+From: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-i3c@lists.infradead.org"
+	<linux-i3c@lists.infradead.org>, "alexandre.belloni@bootlin.com"
+	<alexandre.belloni@bootlin.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+CC: Vikash Bansal <vikash.bansal@nxp.com>, Priyanka Jain
+	<priyanka.jain@nxp.com>, Shashank Rebbapragada
+	<shashank.rebbapragada@nxp.com>, Frank Li <frank.li@nxp.com>
+Subject: RE: [EXT] Re: [PATCH v2 1/2] dt-bindings: i3c: Add NXP P3H2x4x
+ i3c-hub support
+Thread-Topic: [EXT] Re: [PATCH v2 1/2] dt-bindings: i3c: Add NXP P3H2x4x
+ i3c-hub support
+Thread-Index: AQHbv9WxLs+GN/P+tU+g0QBzNTKyabPIP2GAgAahe9A=
+Date: Mon, 12 May 2025 11:45:33 +0000
+Message-ID:
+ <GVXPR04MB9778335A5DFAB37CC8D011FC9997A@GVXPR04MB9778.eurprd04.prod.outlook.com>
+References: <20250508045711.2810207-1-aman.kumarpandey@nxp.com>
+ <17145d2f-5d07-4939-8381-74e27cde303c@kernel.org>
+In-Reply-To: <17145d2f-5d07-4939-8381-74e27cde303c@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: GVXPR04MB9778:EE_|DUZPR04MB9982:EE_
+x-ms-office365-filtering-correlation-id: 341f0502-741b-4c7c-b4b1-08dd914a810b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?cZPvllU+OM79I3LY3IniOapGu8aDuRy+StuN2YRJt+maWYym/lalbNaeH7Wi?=
+ =?us-ascii?Q?jxvDG/WDAsB2tWFaYRZfAzSWM3yo/eQ2zLZpDlI+xi7kw0w4PjN1aHmGGfzA?=
+ =?us-ascii?Q?HQnQaqRe18/bW4xh8BXMmlCy0rbvPDE+27JbIPVcgA/1vGOPR1JzccPQQSog?=
+ =?us-ascii?Q?RBhsIbZzdSmX4CeI2HKp6LezEJBS0wx+glXCT29y0zABIkOo2zEBMK3eeRuI?=
+ =?us-ascii?Q?MSil2zyUDwH7zTSJXKsMXumHRNUn4jUrX+LfflBeDq+JJMN2azSuHcAERF51?=
+ =?us-ascii?Q?Rtp6HTXNKTB5O75pPb7OE6l8e/0TzRatqgOobrAmqAVevbJiM8KpyxcTc/sj?=
+ =?us-ascii?Q?7/uusWdRkt8MGlLolCnH4SxFbuG/qbG5HRoCDiCLGGoxtwzZuTwI/tpWbEtn?=
+ =?us-ascii?Q?vyqeFFFQZEkHJpIigNkZyHrP22y4HuVa8fG2AgtFDHvSczv3wSpR0SeFGGgB?=
+ =?us-ascii?Q?vW8QVcjxeMXml4YPYUtp+tpdkT8w9uYg1TNwEK9XykKgJK0y1Hm4fD3UVXj1?=
+ =?us-ascii?Q?t52gYmMAcMGfgJwyTjSnF2uC3gkjzkIhdyL97/DZv60pHhnHTbsQxbAso8YI?=
+ =?us-ascii?Q?fXPw6TP0SYX5dNSWn0EJ0CtqwyxCc9jybDwhmj+orxoWE0PzXUDXfcbMkkt2?=
+ =?us-ascii?Q?fSIB4ttUbMtpwwb5h8oqerKw6l8HMxl6d9e3ijM35TUi9HhFJve2NSdCDOcZ?=
+ =?us-ascii?Q?veex7Tlb+E6SkzXPzj8KDOHUuend46++BeD+ME5U77eBE/0MtdBDJhhhM1h6?=
+ =?us-ascii?Q?OIn9qbhie/xY9mk4W/eB0v55wf6D34HGcKuigI61/OItXiSvzA+awgj18r14?=
+ =?us-ascii?Q?9t3Onc18VK5eVplj7tQX9CsVvWdM4zB3yVRnNrn6WyNejF4sEaS2DSY5tk8R?=
+ =?us-ascii?Q?DkpFF0sxSQCXAZi37gHZj3+UXNn+PvYFRIeOjpdEUCyDtMXeh7DrIkJYP/7l?=
+ =?us-ascii?Q?/QEzXFGlrwOt382UyfUluuZ0GqiXaA8eVmoX0hqzcmY3WgrWuNIYrbUjbN/v?=
+ =?us-ascii?Q?K4fe/NwdfNxIngBX5FacE4jId6eOOPFlPaJsbBLdhQdUcOYd0Ze7ep5i6djO?=
+ =?us-ascii?Q?EJwdjkpfsmyCSQ0NoI1162x+uvRyxzPiQUESmrXlqiyaYemPH9julagzWsEB?=
+ =?us-ascii?Q?+7m3lptxSTncEKuJH/47ACnpyJ5i3sTDAflrFDbVv5A+zFI1vCfUMaXXfxLg?=
+ =?us-ascii?Q?b4LAMHAA0tHiuoIWMZ/WtN96Dkz+bbRAiguoUFZVMdHLjhB4k9pH0B1LVtoZ?=
+ =?us-ascii?Q?A7qBjoKuKAbPTgeVtBeBInhAW/D2xAa4IIdRkaUvN1aTn9jUURVgNG2c1ZVv?=
+ =?us-ascii?Q?MU8FwnP5GaV/AUm0c33mAqRmqMR4EN02XfgKbm95dEX2V8aMGF+WwVliFvml?=
+ =?us-ascii?Q?Ty8FhRUOQJyDK+GDYpaUCgsVdfNbOEtu8f/NPA3uR7HfDHS4betelU2L0itN?=
+ =?us-ascii?Q?59P4MkmHP3AXuhDQ+9WPzXkEIuXm+rgeg6e3UTRC+u2pEWfroVxjwN6qHxCo?=
+ =?us-ascii?Q?BmRnCEElI2/rz34=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB9778.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?pBo+7FC063xb9p05M2ZpBg2PmxIX0imgFHKcvsbbjv5eGFAcq4fovGSiXbtP?=
+ =?us-ascii?Q?5Bb0ZAYWtHDx2Tpw7yJAh3APIFs+moTcQZ27DMI2Q6eFmIvofKlSLKNelprW?=
+ =?us-ascii?Q?5J+yR10C//agi6lrBxrkNAsPs0mCYKUjZBODlHokdsE553xakFb/pG2VygeK?=
+ =?us-ascii?Q?zcxrosMh3UcddKjiP7NZD5I++vnlBBYO6bhHV4pF9vDutToJ2xhWiO0JECeM?=
+ =?us-ascii?Q?0vuPrBet7EBpADDnCNKu3NxPI/oyjDXjI470gEX9udQD76Dbubjf9NZ8O7fZ?=
+ =?us-ascii?Q?uY2kz5mVJNIlbzWR+v4Kq00pZvYpwKnt/c/TMESHxmvcv/DjFw0Cp3ozsTfY?=
+ =?us-ascii?Q?r+Vp19TiwMoia84kE+YL/Rvx1dToVDIffXW6/mOUgTQGw67PEA4JBIHUFKXX?=
+ =?us-ascii?Q?wNVmPIyDPKO6f7FbnaKXxYaaJMYNJ3ZObOhDf2mTZDYpzNcKFG89kf6tbmHN?=
+ =?us-ascii?Q?B3+tVA+w3oJe5zMAEs2sswJlCuwqdns2B/ZUCteXeHQmu6N+3GelvUr+IKeS?=
+ =?us-ascii?Q?kJ+854/JO2F8hR/OQHgl6hhuW2ohAu4XLzILpa5WYEburVc4e14+kzqekoNy?=
+ =?us-ascii?Q?wkhgj9jxqAp6ZPVNZBZGU50V4/COQeZnxAnDhMsqmwSg12lOBpSjlTWdsvQL?=
+ =?us-ascii?Q?upuUPD9/71wrpMh4x6rPE8e37qeb90hb2ogGZ6Uw63SCGwej8pfAud7piVhL?=
+ =?us-ascii?Q?ZBR6raaLCZVKq0qJm5RdVnZzzAXtixxchvVaUvuxMgOn+gnTmccaIdE9e0LT?=
+ =?us-ascii?Q?1C2IiBa/3LV+xEmH4nNOyqcZLpDt/cncLjZQHuLAc3nmR5FQTzsJWQj04HfH?=
+ =?us-ascii?Q?8+QYoTzLupImRAkcEyqFtqljhgPeJvHmSk5IZPqT+ugk2dt11W3TP7S5VS6r?=
+ =?us-ascii?Q?OT/X//9jcP1GHpn8NQHctB/rrBRgTdtmwdc68EA0HiIhuLiqqvXdMPHUQIor?=
+ =?us-ascii?Q?FEkWGEZ1pQZJ0oJvADM4TBa83rNy6b2ZlVZd32vGvHzXf6eQjCA04xQq4dEN?=
+ =?us-ascii?Q?fodGyIVpupiQBqDLlQVxkECayGsd9PUeWIjjS2lNYmEbjuwjiXhN3LA/M8ea?=
+ =?us-ascii?Q?mb6oiUs0BZc/OBAFORBLzv48dodmS63VYwQE37FJTzknTD/hqTpEmp9a61Et?=
+ =?us-ascii?Q?AFPtSbOt+n7AVqdMQIwkosbwYzBm/7+UEO503q+fzjuq4U7q7pAgztryzCSX?=
+ =?us-ascii?Q?CkF2+pJgZ57aYZB933xXFD5pNbxhgvwP/IUO8ld9NQVnIi79LMIJ0cNKgETf?=
+ =?us-ascii?Q?Vgwi/vVnq9XX2FCbssjCTtRf9spLrUzu0+mTxWXm42sWS7aJmGFRn36233MB?=
+ =?us-ascii?Q?YfU7VbqdMj5kj0n7/LNZl8BU1eN4V/Vu2d/nNDKovG9vIB1cV2z/uqibolaR?=
+ =?us-ascii?Q?rguPHaAJuBR2Zuf82GWKjbwGlz/skrGqnp8sr0HBhvJ7lOPaC/+XB9QO5D1X?=
+ =?us-ascii?Q?dUo1+WO2b5Gb1c4Uh3wTXmdJtr/lCnPG7ACEwgkydXWTv/VKE/UeozrCoQml?=
+ =?us-ascii?Q?x/Rre4B5Tl79WrLvDAxgmbuIC48n+Ua1XOk2l/JBkUym3mcGlkCScVLcmsf6?=
+ =?us-ascii?Q?l3RonBThuSti1oOwU5DiPqJ6m3W0d8pu0qN8QOe0?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250512-sip_svc_upstream-v2-7-fae5c45c059d@altera.com>
-References: <20250512-sip_svc_upstream-v2-0-fae5c45c059d@altera.com>
-In-Reply-To: <20250512-sip_svc_upstream-v2-0-fae5c45c059d@altera.com>
-To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>
-Cc: Matthew Gerlach <matthew.gerlach@altera.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747050016; l=5773;
- i=mahesh.rao@altera.com; s=20250107; h=from:subject:message-id;
- bh=JivcqKDOJIt5kDrV3wGuv8X3Vtjgv7lk5n3TnWoduZM=;
- b=xvCa7P+zu3SXxb5VoGVvj7apxcDojRruWUKgEzgdh8aYApRyzNDxkENG3zTcShsT4DyjnpeCK
- qfg1wojZZApDLgXaEqOorsS42kjoujDCBlLzv7kivAD6JaEvej6cAs2
-X-Developer-Key: i=mahesh.rao@altera.com; a=ed25519;
- pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
-X-Endpoint-Received: by B4 Relay for mahesh.rao@altera.com/20250107 with
- auth_id=337
-X-Original-From: Mahesh Rao <mahesh.rao@altera.com>
-Reply-To: mahesh.rao@altera.com
-
-From: Mahesh Rao <mahesh.rao@altera.com>
-
-Add support for HWMON commands in stratix10
-Asynchronous communication
-
-Signed-off-by: Mahesh Rao <mahesh.rao@altera.com>
-Reviewed-by: Matthew Gerlach <matthew.gerlach@altera.com>
----
- drivers/firmware/stratix10-svc.c                   | 20 +++++++++++-
- include/linux/firmware/intel/stratix10-smc.h       | 38 ++++++++++++++++++++++
- .../linux/firmware/intel/stratix10-svc-client.h    | 11 +++++++
- 3 files changed, 68 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/firmware/stratix10-svc.c b/drivers/firmware/stratix10-svc.c
-index d60808cc077da6d88ca6cc1043f6da46df31ebad..4ee89980319dcde5198d7112d08708b543881f73 100644
---- a/drivers/firmware/stratix10-svc.c
-+++ b/drivers/firmware/stratix10-svc.c
-@@ -40,7 +40,7 @@
-  * timeout is set to 30 seconds (30 * 1000) at Intel Stratix10 SoC.
-  */
- #define SVC_NUM_DATA_IN_FIFO			32
--#define SVC_NUM_CHANNEL				3
-+#define SVC_NUM_CHANNEL				4
- #define FPGA_CONFIG_DATA_CLAIM_TIMEOUT_MS	200
- #define FPGA_CONFIG_STATUS_TIMEOUT_SEC		30
- #define BYTE_TO_WORD_SIZE              4
-@@ -1429,6 +1429,14 @@ int stratix10_svc_async_send(struct stratix10_svc_chan *chan, void *msg, void **
- 		STRATIX10_SIP_SMC_SET_TRANSACTIONID_X1(handle->transaction_id);
- 
- 	switch (p_msg->command) {
-+	case COMMAND_HWMON_READTEMP:
-+		args.a0 = INTEL_SIP_SMC_ASYNC_HWMON_READTEMP;
-+		args.a2 = p_msg->arg[0];
-+		break;
-+	case COMMAND_HWMON_READVOLT:
-+		args.a0 = INTEL_SIP_SMC_ASYNC_HWMON_READVOLT;
-+		args.a2 = p_msg->arg[0];
-+		break;
- 	default:
- 		dev_err(ctrl->dev, "Invalid command ,%d\n", p_msg->command);
- 		ret = -EINVAL;
-@@ -1508,6 +1516,11 @@ static int stratix10_svc_async_prepare_response(struct stratix10_svc_chan *chan,
- 	data->status = STRATIX10_GET_SDM_STATUS_CODE(handle->res.a1);
- 
- 	switch (p_msg->command) {
-+	case COMMAND_HWMON_READTEMP:
-+	case COMMAND_HWMON_READVOLT:
-+		data->kaddr1 = (void *)&handle->res.a2;
-+		break;
-+
- 	default:
- 		dev_alert(ctrl->dev, "Invalid command\n ,%d", p_msg->command);
- 		return -ENOENT;
-@@ -2136,6 +2149,11 @@ static int stratix10_svc_drv_probe(struct platform_device *pdev)
- 	chans[2].name = SVC_CLIENT_FCS;
- 	spin_lock_init(&chans[2].lock);
- 
-+	chans[3].scl = NULL;
-+	chans[3].ctrl = controller;
-+	chans[3].name = SVC_CLIENT_HWMON;
-+	spin_lock_init(&chans[3].lock);
-+
- 	list_add_tail(&controller->node, &svc_ctrl);
- 	platform_set_drvdata(pdev, controller);
- 
-diff --git a/include/linux/firmware/intel/stratix10-smc.h b/include/linux/firmware/intel/stratix10-smc.h
-index ee00f17ea9f6c7a1114fb617d4d6393f2c27e2a9..78055b0234cee990515f01a509a75e1c8142c68b 100644
---- a/include/linux/firmware/intel/stratix10-smc.h
-+++ b/include/linux/firmware/intel/stratix10-smc.h
-@@ -625,6 +625,44 @@ INTEL_SIP_SMC_FAST_CALL_VAL(INTEL_SIP_SMC_FUNCID_FPGA_CONFIG_COMPLETED_WRITE)
- #define INTEL_SIP_SMC_FCS_GET_PROVISION_DATA \
- 	INTEL_SIP_SMC_FAST_CALL_VAL(INTEL_SIP_SMC_FUNCID_FCS_GET_PROVISION_DATA)
- 
-+/**
-+ * Request INTEL_SIP_SMC_ASYNC_HWMON_READTEMP
-+ * Async call to request temperature
-+ *
-+ * Call register usage:
-+ * a0 INTEL_SIP_SMC_ASYNC_FUNCID_HWMON_READTEMP
-+ * a1 transaction job id
-+ * a2 Temperature Channel
-+ * a3-a17 not used
-+ *
-+ * Return status
-+ * a0 INTEL_SIP_SMC_STATUS_OK ,INTEL_SIP_SMC_STATUS_REJECTED
-+ * or INTEL_SIP_SMC_STATUS_BUSY
-+ * a1-a17 not used
-+ */
-+#define INTEL_SIP_SMC_ASYNC_FUNCID_HWMON_READTEMP (0xE8)
-+#define INTEL_SIP_SMC_ASYNC_HWMON_READTEMP \
-+	INTEL_SIP_SMC_ASYNC_VAL(INTEL_SIP_SMC_ASYNC_FUNCID_HWMON_READTEMP)
-+
-+/**
-+ * Request INTEL_SIP_SMC_ASYNC_HWMON_READVOLT
-+ * Async call to request voltage
-+ *
-+ * Call register usage:
-+ * a0 INTEL_SIP_SMC_ASYNC_HWMON_READVOLT
-+ * a1 transaction job id
-+ * a2 Voltage Channel
-+ * a3-a17 not used
-+ *
-+ * Return status
-+ * a0 INTEL_SIP_SMC_STATUS_OK ,INTEL_SIP_SMC_STATUS_REJECTED
-+ * or INTEL_SIP_SMC_STATUS_BUSY
-+ * a1-17 not used
-+ */
-+#define INTEL_SIP_SMC_ASYNC_FUNCID_HWMON_READVOLT (0xE9)
-+#define INTEL_SIP_SMC_ASYNC_HWMON_READVOLT \
-+	INTEL_SIP_SMC_ASYNC_VAL(INTEL_SIP_SMC_ASYNC_FUNCID_HWMON_READVOLT)
-+
- /**
-  * Request INTEL_SIP_SMC_ASYNC_POLL
-  * Async call used by service driver at EL1 to query mailbox response from SDM.
-diff --git a/include/linux/firmware/intel/stratix10-svc-client.h b/include/linux/firmware/intel/stratix10-svc-client.h
-index bda837815bae35fbf4df6280dba5bc02d747426e..032e780c7b545e2e238f9dea712779d979e491d6 100644
---- a/include/linux/firmware/intel/stratix10-svc-client.h
-+++ b/include/linux/firmware/intel/stratix10-svc-client.h
-@@ -16,6 +16,7 @@
- #define SVC_CLIENT_FPGA			"fpga"
- #define SVC_CLIENT_RSU			"rsu"
- #define SVC_CLIENT_FCS			"fcs"
-+#define SVC_CLIENT_HWMON		"hwmon"
- 
- /*
-  * Status of the sent command, in bit number
-@@ -71,6 +72,7 @@
- #define SVC_RSU_REQUEST_TIMEOUT_MS              300
- #define SVC_FCS_REQUEST_TIMEOUT_MS		2000
- #define SVC_COMPLETED_TIMEOUT_MS		30000
-+#define SVC_HWMON_REQUEST_TIMEOUT_MS		2000
- 
- struct stratix10_svc_chan;
- 
-@@ -142,6 +144,12 @@ struct stratix10_svc_chan;
-  *
-  * @COMMAND_FCS_RANDOM_NUMBER_GEN: generate a random number, return status
-  * is SVC_STATUS_OK, SVC_STATUS_ERROR
-+ *
-+ * @COMMAND_HWMON_READTEMP: read temperature from the hardware sensor connected
-+ * to the FPGA, return status is SVC_STATUS_OK, SVC_STATUS_ERROR
-+ *
-+ * @COMMAND_HWMON_READVOLT: read voltage from the hardware sensor connected
-+ * to the FPGA, return status is SVC_STATUS_OK, SVC_STATUS_ERROR
-  */
- enum stratix10_svc_command_code {
- 	/* for FPGA */
-@@ -172,6 +180,9 @@ enum stratix10_svc_command_code {
- 	COMMAND_MBOX_SEND_CMD = 100,
- 	/* Non-mailbox SMC Call */
- 	COMMAND_SMC_SVC_VERSION = 200,
-+	/* for HWMON */
-+	COMMAND_HWMON_READTEMP,
-+	COMMAND_HWMON_READVOLT
- };
- 
- /**
-
--- 
-2.35.3
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB9778.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 341f0502-741b-4c7c-b4b1-08dd914a810b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 May 2025 11:45:33.4776
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: J33RoT6mcP1qJkhYKI8aglQU7MN5kyt6aKhk5uGL/6Z0ugWtcnuYvhtYcbN6NQkrxcBYnCnS+UaQIyLCIUugKHGDeMYEIvJwOF6bVFb7LLQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9982
 
 
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+> Sent: Thursday, May 8, 2025 11:38 AM
+> To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>; linux-
+> kernel@vger.kernel.org; linux-i3c@lists.infradead.org;
+> alexandre.belloni@bootlin.com; krzk+dt@kernel.org; robh@kernel.org;
+> conor+dt@kernel.org; devicetree@vger.kernel.org
+> Cc: Vikash Bansal <vikash.bansal@nxp.com>; Priyanka Jain
+> <priyanka.jain@nxp.com>; Shashank Rebbapragada
+> <shashank.rebbapragada@nxp.com>; Frank Li <frank.li@nxp.com>
+> Subject: [EXT] Re: [PATCH v2 1/2] dt-bindings: i3c: Add NXP P3H2x4x i3c-h=
+ub
+> support
+>=20
+> Caution: This is an external email. Please take care when clicking links =
+or
+> opening attachments. When in doubt, report the message using the 'Report
+> this email' button
+>=20
+>=20
+> On 08/05/2025 06:57, Aman Kumar Pandey wrote:
+> > Add bindings for the NXP P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841)
+> > multiport I3C hub family. These devices connect to a host via
+> > I3C/I2C/SMBus and allow communication with multiple downstream
+> > peripherals.
+> >
+> > Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+> > Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
+> > ---
+> > V1 -> V2: Cleaned up coding style and addressed review comments
+> > ---
+> >  .../bindings/i3c/p3h2840-i3c-hub.yaml         | 332 ++++++++++++++++++
+>=20
+> Not much improved. I have doubts that you really looked at other bindings=
+.
+>=20
+> Filename matching compatible.
+>=20
+>=20
+
+Thanks for reviewing the patch.
+There is no existing entry like this one. It is the first device tree entry=
+ for any i3c target device being added to Linux upstream.=20
+For I3C target device, compatible is not required as per i3c.yml. I am addi=
+ng compatible for backward compatibility with i2c binding ( i3c target devi=
+ce have backward compatibility).=20
+Should I use compatible matching filename in this case ?
+
+> >  MAINTAINERS                                   |   8 +
+> >  2 files changed, 340 insertions(+)
+=20
+=20
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^hub@[@.*]+,[0-9a-f]+$"
+>=20
+> Drop
+>=20
+
+Sorry, did not understand your point. Could you please give some clarificat=
+ion ?
+
+> > +
+
+> > +
+> > +  cp0-ldo-enable:
+> > +    type: boolean
+> > +    description:
+> > +      Enables the on-die LDO for controller Port 0.
+> > +
+> > +  cp1-ldo-enable:
+> > +    type: boolean
+> > +    description:
+> > +      Enables the on-die LDO for controller Port 1.
+> > +
+> > +  tp0145-ldo-enable:
+> > +    type: boolean
+> > +    description:
+> > +      Enables the on-die LDO for target ports 0/1/4/5.
+> > +
+> > +  tp2367-ldo-enable:
+> > +    type: boolean
+> > +    description:
+> > +      Enables the on-die LDO for target ports 2/3/6/7.
+> > +
+>=20
+> NAK for all above properties.
+>=20
+
+These are not vender specific properties. all these properties are as per i=
+3c hub specification.
+ What should I change for above properties ?
+
+> > +  cp0-ldo-microvolt:
+>=20
+> Do you see anywhere device properties named like that? Without prefix?
+>=20
+> I am not going to review the rest. You did not try hard enough to fulfill
+> previous review request, you did not really test it.
+>=20
+> Start from scratch from latest accepted schema or from example-schema.
+>=20
+
+
+> Best regards,
+> Krzysztof
 
