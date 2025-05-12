@@ -1,327 +1,188 @@
-Return-Path: <devicetree+bounces-176171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21F7FAB303D
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:08:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C7EAB3057
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:14:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E6291891F9B
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 07:08:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76FF6162E50
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 07:14:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD8452561C5;
-	Mon, 12 May 2025 07:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mb5DRkWr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 059DB2561D7;
+	Mon, 12 May 2025 07:13:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A184E2AD11;
-	Mon, 12 May 2025 07:08:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F7212550CC;
+	Mon, 12 May 2025 07:13:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747033689; cv=none; b=d+GXmGQgk1tzTu9RXxOtsuOnIdIrostni356XBsJ8X8FUj5TXOyNBE8QOP/nwyAXV2aGrrusgVLoXTERhWVJnAUP7QSfZe2E/ZTYEn6AmgKdT+gu7IfhrfZPKIix7KJtc3m5WLliu9MXTsgzBl8bwGkpUIpLtd+mNos8X3Rzqe0=
+	t=1747034035; cv=none; b=ZUf9yY7WSTaO18qc/0STizTtc2tH9ti7jry+XxnhZ6WXQ9OvQi0a7jKB0i9+wP8uQI1IfPk3sCg+S9KNOziuK/vBccEnZu2DZcaqsQW5L2f+RYu4qx3iCZYeYfsDB18dZtIgdv65lVozdw3iuVT5MMAw81CY7CCKC6q3cR7LdZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747033689; c=relaxed/simple;
-	bh=Mul8tNeRrypv/NSAZe83gZO8+DlWm98zYe0h3LwG4jg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UL8PbMYg2E7YyvxAF8VPg+9dI2xGOoK52wNA3wR7PpnD7GsxVJGweH1FiNfx+HrQZped0R7TK14YQU+DzN94m+53gZJ518WsCySWUX6IRsL/FwsNpy4prY4TKrwuxpPl2PJt9cAjrTyVYVdMVCTjFaFNilTWaAd3frpZwymoIng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mb5DRkWr; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747033688; x=1778569688;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Mul8tNeRrypv/NSAZe83gZO8+DlWm98zYe0h3LwG4jg=;
-  b=mb5DRkWrGJvnAdL32F2ztPSRwxcEv2tViRGrHjaAGQ24+FmHhs/HKR3+
-   mLCJEfsE/iHsSdnklQeASC+EpJGfWplDSNpEe7P8cPTjk8nZLj/Fp0/nC
-   adD8hEXTm0Sa3IS+eLg5lhdwn7LxdL5F0E6AAp39odijDeDpF6z/tu9uo
-   U6+sSzUvP9g59bQqO+rh3L3Mt3XjA+o9/MqYTVcLlev9EMWxV3KaSD28F
-   zEgfvOtRTx59/dTMQpnK0iy/KqJqXB0ArZmUw6XtH/OsOLMWDCz3roMEG
-   uxm3SiijVAl1QGBdCxzt0XNi8e2H8TR+HqIN6LzjWAlE6r6Yn1cSGKo75
-   A==;
-X-CSE-ConnectionGUID: /AgWA6jBSoqMKjcNtP1ZwQ==
-X-CSE-MsgGUID: 6u7NJRIGSg6CfnnJzRhREg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="66355112"
-X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
-   d="scan'208";a="66355112"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2025 00:08:07 -0700
-X-CSE-ConnectionGUID: +NC4/pH6QHKeJIQkvRlB3Q==
-X-CSE-MsgGUID: zFExEVxoRFiOmm8OdIwj5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
-   d="scan'208";a="174434482"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2025 00:08:00 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uENGX-00000000qLL-0P5S;
-	Mon, 12 May 2025 10:07:57 +0300
-Date: Mon, 12 May 2025 10:07:56 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 10/23] clk: Add clock driver for the RISC-V RPMI clock
- service group
-Message-ID: <aCGeTPS4WiGYMTTo@smile.fi.intel.com>
-References: <20250511133939.801777-1-apatel@ventanamicro.com>
- <20250511133939.801777-11-apatel@ventanamicro.com>
+	s=arc-20240116; t=1747034035; c=relaxed/simple;
+	bh=MiHYB400XPXzuVuSmbmy6Ae2GnTT2SFpWdfVL+mLBH8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qsdnJHCrf+SDLL7Hi2Nuev0aMi/a4hLxwquHPePAX0rYYsSigwHBKBtkh6j3zuwX9Ltsu3AEo2e+DlbRvFiXxwRE8ERxvXz9TvzBx4iVinOqDS12RPJ96EidxXAniZwNitXXgr59/tK9c0zO4Gp6gEoencxYBaDDpn0VnOWm3q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4ddbb0fc1e7so1173100137.2;
+        Mon, 12 May 2025 00:13:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747034032; x=1747638832;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GXUxCsC3gl+d/1qqVBV5rMq7iPm0soQTOdcW0w9ozEo=;
+        b=RLa1AD7Tj6fL75udwKEtw0aLkanSxMbnpK6n9uhNau7Sz8oaAbCySO5ZfGYYHpTmVm
+         5BxYZIbgxKdJoOVV4unmISUw3WnsJR0+6i7bCTgkVWYTcyYqR+ynHjUjHnNBgxToQON2
+         +gtLvBvQLm/5dLF8v4oJ+fAVv88fQCZfTLjbwfqTxRlp99NbxG2M44nJre/KvFj8qNZ6
+         RLNBT4FDTLOxQkMaPu9DAL71k2Y/KNl5cgsbHlTgkRlaMC/EeClHHUGxFbPDmf5AdBlE
+         YQT/isS1tha1piZdr06a6wJ36AvbJb6pLNRUCefuSMW5j2D9hKFLYg4MbZc2vubX//q9
+         gnwg==
+X-Forwarded-Encrypted: i=1; AJvYcCWT333K7rOZjaqfbopu99/CL1lU/9aiy8ImwCeml4C0hHxSrAR2gLnZ75FxI8+RdqYi3rWft0/59uoIOg==@vger.kernel.org, AJvYcCX7m3XwxAOlHOZsLwFgWn9m8Rz0GECG+PkYtNPNV8v89Ib61I50LKYWxweYJ1Y18o+asoDK+ijhOhMQnezgurXm+r4=@vger.kernel.org, AJvYcCXRGvbz/SdjViyavDsjAFejRl1jiQgz5shz8D82FvSe0TsgawgrFTMo6HeVo6z+/sWIAglzinBR7wZi@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYiWZQ9PzymHap79VBikpG4VRj7cxckbpWHdiwemnCrLKeYMCe
+	Gu3SVuIjt8qCMde++lWoIwV1OzjsTGpZZr4GHDGWlZ9pR0+kDMFVC/k71IEY
+X-Gm-Gg: ASbGncuIqihY2Cmlw8tze+lUuubLnjulVN2Cauu3b3fGg9MQgwQmC3b1jsVfV8TYcRc
+	4eBMMIYhl5xqyTzyUgF+2VD9xntC9OIqUosvthXze1fRZ6207OEZHMtzdySmfvM6DWbsAoR3B95
+	yqM7PA9EBdEMXcZwV4H/JfeQ6v2MBrwKaPyZ197Q94wcFXXXZsoX9qJpeGop77AUHAXiT0OEsxI
+	VrxC+u7Dz85jU1a4TymazkZ4UehMkCYfyOw0sZ99PZNmN36EWFwdBhoZgREQTyRbQJYsZ2LERiT
+	HOxyVNAhAX+D/mLgXfdxwZrzcNvb6XgfJvx9ZHeIrQKnOIuw5AwmAXu9tk1/mhG8mza8TZbKdvl
+	hMR+7dUiDQEMorQ==
+X-Google-Smtp-Source: AGHT+IFMe26aLVTNktEBUTpQ9150F7qv/ZkZcYYEfF0do5NNkPXSizjfd9HA+hM7PO4Vf5tc9X6vfw==
+X-Received: by 2002:a05:6102:2b99:b0:4cb:5e02:754a with SMTP id ada2fe7eead31-4deed367340mr10432804137.11.1747034031905;
+        Mon, 12 May 2025 00:13:51 -0700 (PDT)
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-879f613b570sm4690679241.7.2025.05.12.00.13.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 May 2025 00:13:51 -0700 (PDT)
+Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4c9cea30173so1546487137.3;
+        Mon, 12 May 2025 00:13:51 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVlp7/CVaq1AJCrGGn3oxC/apmBFKKEclykcPDCA9KftLg2b5935RellWy6a+UUWxCTMmdzHt85RWBW@vger.kernel.org, AJvYcCWIT99DbMUetk/xYnODv28+KuhStuA9cFKZ+3rnAlARwI/c9evM3TFFydXCEh+zLKWiB7ypbxZmfpIZ6w==@vger.kernel.org, AJvYcCXjBnvDUnGwUsbO5nybOlr5SFxBdDflBYFuyWsVtDDaxoZQfbW+uF40IbdgSI8ErVUvmXZr6cG0sHLt11Am6LT2u6g=@vger.kernel.org
+X-Received: by 2002:a05:6102:15a0:b0:4c1:a66f:a468 with SMTP id
+ ada2fe7eead31-4deed3ec0c3mr9681496137.22.1747034031568; Mon, 12 May 2025
+ 00:13:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250511133939.801777-11-apatel@ventanamicro.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250417093256.40390-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdWN-QDrmogJ+7x8sdc6UmDAoF+0z0hZ3SQ7ajN2V2+mSw@mail.gmail.com>
+ <aBxjvofZCEi_1Fna@shikoro> <20250508134930.GM3865826@google.com> <18b78845-3f01-444d-835a-aa39f84a2689@gmail.com>
+In-Reply-To: <18b78845-3f01-444d-835a-aa39f84a2689@gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 12 May 2025 09:13:39 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW1Hn51R-6MstS1Ojuu-CR0eNs504YEruPbe2L-H_zBHA@mail.gmail.com>
+X-Gm-Features: AX0GCFsUkDUlBrPJqlQydDJkEnvu_GkmiELRETEKx3ApDmYs_k_btrWooRQ2Qa4
+Message-ID: <CAMuHMdW1Hn51R-6MstS1Ojuu-CR0eNs504YEruPbe2L-H_zBHA@mail.gmail.com>
+Subject: Re: [PATCH v3] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe
+ Debug LEDs
+To: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, Pavel Machek <pavel@kernel.org>, 
+	linux-leds <linux-leds@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Jacek,
+
+Thanks for your answer!
+
+On Sat, 10 May 2025 at 14:43, Jacek Anaszewski
+<jacek.anaszewski@gmail.com> wrote:
+> On 5/8/25 15:49, Lee Jones wrote:
+> > On Thu, 08 May 2025, Wolfram Sang wrote:
+> >> On Thu, Apr 17, 2025 at 01:39:14PM +0200, Geert Uytterhoeven wrote:
+> >>> On Thu, 17 Apr 2025 at 11:33, Wolfram Sang
+> >>> <wsa+renesas@sang-engineering.com> wrote:
+> >>>> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> >>>> ---
+> >>>>
+> >>>> Changes since v2:
+> >>>> * using function, color, function-enumerator properties now
+> >>>>
+> >>>> Honestly, this is better than using node names? With V2, the LEDs were
+> >>>> named as in the schematics, now they are called:
+> >>>>
+> >>>> lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-0 -> ../../devices/platform/leds/leds/green:programming-0
+> >>>> lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-1 -> ../../devices/platform/leds/leds/green:programming-1
+> >>>> lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-2 -> ../../devices/platform/leds/leds/green:programming-2
+> >>>> ...
+> >>>>
+> >>>> Which gets even more confusing if we might later add LEDs not on this
+> >>>> board, but on the expansion board. 'green:programming-8' sits where?
+> >>>>
+> >>>> I really wonder, but if this is the official way now...
+> >>>
+> >>> Good point!  So I'm inclined to take v2...
+> >>>
+> >>> Let's raise this with the LED people. I don't want to fight Pavel when
+> >>> v2 hits the CiP tree ;-)
+> >>
+> >> So, if there is no other opinion here, can we remove function, color,
+> >> function-enumerator and just use the node names which match the
+> >> schematics? Basically apply V2?
+> >
+> > I didn't author the semantics nor the rules surrounding them, but I am
+> > obliged to enforce them.  Therefore "LED people" say, please stick to
+> > convention as stated in the present documentation:
+> >
+> > https://docs.kernel.org/leds/leds-class.html#led-device-naming
+> >
+> > Please note that a "debug" (LED_FUNCTION_DEBUG) option already exists if
+> > that is more appropriate to your use-case.
+> >
+> > Let's also bring Jacek into the conversion, since I know that he did a
+> > bunch of work around this topic.
+>
+> The question is if the LED name from the schematics tells anything to
+> the user of the equipment?
+
+As this is a development board and not a finished product, I would
+answer yes.
+
+> The idea behind LED naming is to facilitate matching the LED class
+> device name as reported by the system with the LED location on the
+> equipment.
+>
+> The LED naming standardization intended to enforce consistent
+> LED naming, and not allowing to add multiple interchangeable
+> names like wifi/wlan. It also helps to keep LED name sections order in
+> accordance with Linux documentation, which before had been often
+> abused by allowing to assign anything to the now deprecated 'label'
+> DT property.
+
+I agree this all makes perfect sense for a final product, where the
+purpose of each LED is clear, and sometimes indicated by an icon
+on the case.
+For a development board, some LEDs may have a fixed purpose.
+But typically there is also a collection of generic user LEDs, which
+do not have a fixed purpose, and are identified by a label on the
+schematics.  Imposing an arbitrary numbering scheme on the latter is
+confusing for the user (developer).
+
+> Regarding expansion boards - we never have control over what
+> LED names DT overlays will define, thus LED core adds numeric suffix to
+> the LED class device name in case of the name clash.
+
+FTR, the RZN1D400 Expansion Board does not use a DT overlay.
+Linux carries a DTS for it, which just includes the base board .dts,
+and treats it as a single system.
 
-On Sun, May 11, 2025 at 07:09:26PM +0530, Anup Patel wrote:
-> From: Rahul Pathak <rpathak@ventanamicro.com>
-> 
-> The RPMI specification defines a clock service group which can be
-> accessed via SBI MPXY extension or dedicated S-mode RPMI transport.
-> 
-> Add mailbox client based clock driver for the RISC-V RPMI clock
-> service group.
+Gr{oetje,eeting}s,
 
-...
-
-> +#include <linux/clk-provider.h>
-> +#include <linux/err.h>
-> +#include <linux/mailbox_client.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/mailbox/riscv-rpmi-message.h>
-
-Just to point out again that the above misses a lot of headers definitions
-and/or APIs this driver uses. Follow IWYU principle.
-
-...
-
-> +#define GET_RATE_U64(hi_u32, lo_u32)	((u64)(hi_u32) << 32 | (lo_u32))
-
-Hmm... Perhaps add this kind of macro to wordpart.h ? IIRC not only this driver
-uses something like this.
-
-...
-
-> +enum rpmi_clk_type {
-> +	RPMI_CLK_DISCRETE = 0,
-> +	RPMI_CLK_LINEAR = 1,
-
-> +	RPMI_CLK_TYPE_MAX_IDX,
-
-No comma for the terminator. Please, clean all these cases.
-
-> +};
-
-...
-
-> +union rpmi_clk_rates {
-> +	u64 discrete[RPMI_CLK_DISCRETE_MAX_NUM_RATES];
-> +	struct {
-> +		u64 min;
-> +		u64 max;
-> +		u64 step;
-> +	} linear;
-
-Have you looked at the linear ranges library we have in the kernel? Can you
-utilise it here?
-
-> +};
-
-...
-
-> +struct rpmi_clk {
-> +	struct rpmi_clk_context *context;
-> +	u32 id;
-> +	u32 num_rates;
-> +	u32 transition_latency;
-> +	enum rpmi_clk_type type;
-> +	union rpmi_clk_rates *rates;
-> +	char name[RPMI_CLK_NAME_LEN];
-> +	struct clk_hw hw;
-
-Just a reminder to use `pahole` to check that your data layout is optimised for
-memory consumption.
-
-> +};
-
-...
-
-> +struct rpmi_get_supp_rates_rx {
-> +	u32 status;
-> +	u32 flags;
-> +	u32 remaining;
-> +	u32 returned;
-> +	u32 rates[];
-> +};
-
-Is it ABI? (I mean if this is interface with some kind of FW)
-If so, Use proper endianess aware types. Same Q for all data
-types defined in this driver.
-
-...
-
-> +			for (j = 0; j < rx->returned; j++) {
-> +				if (rateidx >= (clk_rate_idx + rx->returned))
-
-Too many parentheses.
-
-> +					break;
-> +				rpmi_clk->rates->discrete[rateidx++] =
-> +					GET_RATE_U64(rate_discrete[j].hi,
-> +						     rate_discrete[j].lo);
-> +			}
-> +		}
-
-...
-
-> +	devm_kfree(context->dev, rx);
-
-Why?! This is a red flag to point that here is misunderstanding or abuse of
-managed resources approach. Either use __Free() from cleanup.h or don't call
-devm_kfree(). The latter must have a very good justification to explain why.
-
-> +	return 0;
-
-(this is even not an error path, where it might have a little argument for)
-
-...
-
-> +	/* Keep the requested rate if the clock format
-> +	 * is of discrete type. Let the platform which
-> +	 * is actually controlling the clock handle that.
-> +	 */
-
-/*
- * Use proper style for the multi-line comments. You can
- * refer to this comment as an example.
- */
-
-...
-
-> +out:
-
-Redundant label. Note, the labels are recommended to be named after the flow
-they will run if goto. This one can be named as out_literally_with_return_0,
-which makes it obvious how useless it is.
-
-> +	return 0;
-
-...
-
-> +	rates = devm_kzalloc(dev, sizeof(union rpmi_clk_rates), GFP_KERNEL);
-
-sizeof(*...)
-
-> +	if (!rates)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	rpmi_clk = devm_kzalloc(dev, sizeof(struct rpmi_clk), GFP_KERNEL);
-
-Ditto.
-
-> +	if (!rpmi_clk)
-> +		return ERR_PTR(-ENOMEM);
-
-...
-
-> +	ret = rpmi_clk_get_supported_rates(clkid, rpmi_clk);
-> +	if (ret)
-> +		return dev_err_ptr_probe(dev, ret,
-> +			"Get supported rates failed for clk-%u, %d\n", clkid, ret);
-
-Indentation issues. Repetitive ret in the message. Please, get familiar with
-the format dev_err_probe() uses.
-
-...
-
-> +	int ret, num_clocks, i;
-
-Why is 'i' signed?
-
-...
-
-> +	/* Allocate RPMI clock context */
-> +	context = devm_kzalloc(dev, sizeof(*context), GFP_KERNEL);
-
-Ha-ha, you have even inconsistent style in the same file! So, go through the
-whole series and make sure that the style used in each file is consistent.
-
-> +	if (!context)
-> +		return -ENOMEM;
-
-...
-
-> +	/* Validate RPMI specification version */
-> +	rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_SPEC_VERSION);
-> +	ret = rpmi_mbox_send_message(context->chan, &msg);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Failed to get spec version\n");
-> +		goto fail_free_channel;
-
-This is simply wrong. You should not do goto before any devm_*() calls.
-The error path and ->remove(), if present) is broken. Fix it accordingly.
-
-Here should be
-
-		return dev_err_probe(...);
-
-it's your homework to understand how to achieve that. Plenty of the examples in
-the kernel.
-
-> +	}
-
-...
-
-> +enum rpmi_clock_service_id {
-> +	RPMI_CLK_SRV_ENABLE_NOTIFICATION = 0x01,
-> +	RPMI_CLK_SRV_GET_NUM_CLOCKS = 0x02,
-> +	RPMI_CLK_SRV_GET_ATTRIBUTES = 0x03,
-> +	RPMI_CLK_SRV_GET_SUPPORTED_RATES = 0x04,
-> +	RPMI_CLK_SRV_SET_CONFIG = 0x05,
-> +	RPMI_CLK_SRV_GET_CONFIG = 0x06,
-> +	RPMI_CLK_SRV_SET_RATE = 0x07,
-> +	RPMI_CLK_SRV_GET_RATE = 0x08,
-
-> +	RPMI_CLK_SRV_ID_MAX_COUNT,
-
-No comma in the terminator line.
-
-> +};
+                        Geert
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
