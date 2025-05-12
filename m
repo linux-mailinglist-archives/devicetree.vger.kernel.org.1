@@ -1,307 +1,265 @@
-Return-Path: <devicetree+bounces-176168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DCE8AB2FE6
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:44:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53C66AB300D
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:50:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C6F73BB98C
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 06:43:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1278189B9ED
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 06:50:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01DE92566F9;
-	Mon, 12 May 2025 06:43:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0396824BC04;
+	Mon, 12 May 2025 06:50:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="IAXB+/Vi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WAWpT7mN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2062.outbound.protection.outlook.com [40.107.243.62])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3C92561CB;
-	Mon, 12 May 2025 06:43:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747032215; cv=fail; b=ALlA0ncBW1xfDDVk5vaAsDczmlqrpp//nox3VnL3YERvjb6Ix8jMX4jXpgfr20T1A0G5jdafgKe/dW75EKiOOV2KTpiuJS0Yg/Q1fuyRQEj3FzVZyGlP3WewhglSztnUlVx0sDXyEjzc2L0lXl+GIZRTTysfBHcd/Ost0zVxpdY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747032215; c=relaxed/simple;
-	bh=teDxLu5DsHlpOqqKq5EOrTaltmR9rHlN6B3UDgTGs6Y=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qav6GreDUdPxouPsBZK9+CYHtnKl/dZAiUZid9RRinAlB79EsFB8tHQv9b2E+eAUlREgTgCDL/T7IiJD4JvhwQaY17wF5XPTAgAbnwRzX6Tm9Byx6JpKzuli6Dm83NQJRCR5y3b1a4bu3Ga4WiEi8kQsHZmmmzNGmD3eL+5P9lk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=IAXB+/Vi; arc=fail smtp.client-ip=40.107.243.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OXTglyIkfSLGRxEhyvq1zjV0sKRjwBa/7AnblBjB1pqpzYyzLgYlZnUBwQSb8xRkeDEENLsCqSImulPqR7CpWi7zkRNlUbkMbxfmfHIdKcfx/xx9n9oPWJ8ABmNd3f8jLw6rbhDdUpmI9+sYSx88X51bWuxm2IZDJs/Vh6AVXBsF6ZaVvhtjAVDZJ/HWLTT/NPKF5YWy8c7+FeroWvIDOGpSQm/74eByZ1qy33n+ZtL8M9KIlkPj5hxRaHU+IRyfGB4RIRc3a+S9yiQOGqwLE+3YxIke1IhD3sPCmdt07gIK6i5sqzwbmfvJDx0HzqJjKFXsQOvy87+a0i7F2iX/eQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/ObXZ4ovDQ1HqvOZOOo2uNpzUqri2fkqo6/3Mtg/f/Y=;
- b=a7WCz4Jgs++pp4hIuE/cYjFrRzruULLhb2HE8FCJLYdF9lamtFk4aUYAcct+QqUf9tP1Kz6ImgtbUeKq1wCaSEuLqdQQcyvG9pycpq2frmhHn9Q4DQKwfup/wFhug5HX7QvTyCPD/zRnK6gLoWzoqSZc+LDq98I46xlsJSfKE2rcHTS1ouo7W7RaSIBNF4/O7rmtO+A3+g14p8ptIAX27Nb8AldE+Cu7Yx9fchMRT0PYl1jjq5uy9LC4ZrN/6HJ/62ydCETxJDdSJf5KGwoM0yuCTd2GPgVkIITxzA1nFDlKSf+2nQIICxfh5nT7BSzwEqhGYaIUTNtuwYzr7vNimw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/ObXZ4ovDQ1HqvOZOOo2uNpzUqri2fkqo6/3Mtg/f/Y=;
- b=IAXB+/Vi8i3GWs3gRM0OQF6EaSEzDLmHRbO3id/q6WvWfRNz+Nm+GJhe/ima1gz1zsFNX5Ak4LDbueh1NTuMHl7GplUiI4+ZTWg7IbxnhVOSHG3ZucW6o1Ue7COAR0SoqPH0iaXYE29YYeETncj2BHh9+QoeUiueTU8fYsn0Yw8kLa52+lOQWteGqsR7g1yPVjBrOBVVMKkYP8NY4fkPLQb29BtKQgXfL89BjwkY1LV+7i1QMnHSo0IyvW90FEeBa99eTE5Lnr2kq4/axTimJ3pFVRku7KKHQzXKazxbg5BQQcnembblYMCV3f3ThA4+FwkfsvOKV6VFkci09jWyOA==
-Received: from DS7PR05CA0087.namprd05.prod.outlook.com (2603:10b6:8:56::9) by
- PH8PR12MB7136.namprd12.prod.outlook.com (2603:10b6:510:22b::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8722.26; Mon, 12 May 2025 06:43:29 +0000
-Received: from DS2PEPF00003446.namprd04.prod.outlook.com
- (2603:10b6:8:56:cafe::5c) by DS7PR05CA0087.outlook.office365.com
- (2603:10b6:8:56::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8746.9 via Frontend Transport; Mon,
- 12 May 2025 06:43:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- DS2PEPF00003446.mail.protection.outlook.com (10.167.17.73) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8722.18 via Frontend Transport; Mon, 12 May 2025 06:43:29 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Sun, 11 May
- 2025 23:43:18 -0700
-Received: from drhqmail202.nvidia.com (10.126.190.181) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Sun, 11 May 2025 23:43:17 -0700
-Received: from build-sheetal-bionic-20250305.nvidia.com (10.127.8.13) by
- mail.nvidia.com (10.126.190.181) with Microsoft SMTP Server id 15.2.1544.14
- via Frontend Transport; Sun, 11 May 2025 23:43:17 -0700
-From: "Sheetal ." <sheetal@nvidia.com>
-To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<thierry.reding@gmail.com>, <jonathanh@nvidia.com>, <perex@perex.cz>,
-	<tiwai@suse.com>, Mohan Kumar D <mkumard@nvidia.com>, Sheetal
-	<sheetal@nvidia.com>
-Subject: [PATCH 3/3] ALSA: hda/tegra: Add Tegra264 support
-Date: Mon, 12 May 2025 06:42:58 +0000
-Message-ID: <20250512064258.1028331-4-sheetal@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250512064258.1028331-1-sheetal@nvidia.com>
-References: <20250512064258.1028331-1-sheetal@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF2D20326;
+	Mon, 12 May 2025 06:50:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747032628; cv=none; b=UkRJf5/8+dQ5aOvuA6Hv50Wk/B59a4GE1EQZ+0sItEnYCn7VQCgNzfJ91w+xTSWhAHOxD6lFm7HdZBO8NSJ5g5NeyToR9XfOmx555gkJ6rH5NpkfFwDbZLDOOk+pztsD5iiKcnYc1/vNwjMGUjPsx+L1pJForpJRClEqWRQq2Zc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747032628; c=relaxed/simple;
+	bh=rpwMv2y5lJIMTCuyi92paGgTBZ+I6o4sAEGRlxKoMIk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q2CyAYuAGooVjbLYI1ul6vxIK3Y1zbf5rDcxdQ9XAivWVgDLbKvA+Ig7iLD4++VqTMbHpio7RebZ6y90mp7XkiTa/JcuQBMRldJND3lupo9AN7ZaqASlY2Zh8CqTszy3Hul8IwwSmhst9qUbb21lWR0dmKeMETa4FGpGJ2NHWBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WAWpT7mN; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747032628; x=1778568628;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=rpwMv2y5lJIMTCuyi92paGgTBZ+I6o4sAEGRlxKoMIk=;
+  b=WAWpT7mNg7JO+KCUVi4jumtAB0ZnhQ0EKWwZd30j66xciMDu2OEZP5f4
+   6l/CWkqUKZMYZHVb6IoqMoFKNzAqHy0UYhpcyJ4npg/UF+lDcfVRsX68o
+   2tGVWVQbLlAAYm9AykJXBOrEPQ+AO0se4g4iHFp1Q5qEagfPhhSvjry5P
+   yPxHxZidRqQ5jP/OcsCbhFBlhQCPkCzm8/XsidsYEfUM3N0r6QhTP+i67
+   kYH+Accf7vRL2tSaXRcp54KZNlDy8WTzS7ffTabsOvhvzlUw8OFAKdfyh
+   7PeUGUlTCsfLAblixpwMG5LitLcIVrYCbooOwW+idvzSMlv75ofuFi6HF
+   w==;
+X-CSE-ConnectionGUID: Pq8jc8F+STmWFn/fuMVbVQ==
+X-CSE-MsgGUID: BsMPO52XTsqj9ePCYnyTYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="52626346"
+X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
+   d="scan'208";a="52626346"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2025 23:50:27 -0700
+X-CSE-ConnectionGUID: zTNUU3H2QJ+U/O/rAvYgXA==
+X-CSE-MsgGUID: N9xxRReTSjSo9U4ytmnxrQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
+   d="scan'208";a="142488645"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2025 23:50:20 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uEMzR-00000000q6E-1z14;
+	Mon, 12 May 2025 09:50:17 +0300
+Date: Mon, 12 May 2025 09:50:17 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 13/23] irqchip: Add driver for the RPMI system MSI
+ service group
+Message-ID: <aCGaKXOOWyM4JQMg@smile.fi.intel.com>
+References: <20250511133939.801777-1-apatel@ventanamicro.com>
+ <20250511133939.801777-14-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003446:EE_|PH8PR12MB7136:EE_
-X-MS-Office365-Filtering-Correlation-Id: eb53fce9-b24e-46d8-daa6-08dd91204e30
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|82310400026|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Jy4avTdDfHhEYRtStWJ2bX4Sw5lQOR/I3U1CNotSYJXM5ehvrqwXfdy2kaI1?=
- =?us-ascii?Q?RSlawRo8X5odf7aapO6DuNzTe3krmE4O/PVPbwHCdvTWiU/jvYMUyEg5NUvw?=
- =?us-ascii?Q?GNvpBjaBmjU3Jeq2DTJ8m+JqRDlnk+YHICv8WbdwW7cJIB+t/nuVRV65/y8+?=
- =?us-ascii?Q?HmTx0sQU1uT/n2tSvOECUFBkrM2vTPDPWLGV3W1qMETZqETBRmHybRWQ8Foi?=
- =?us-ascii?Q?rtOUVvusWT29nbHjuIQjLNGwv1ucZUrXXLyDG8GcNEJCQ126m/5yPXMUDNem?=
- =?us-ascii?Q?xI//sNh6Zz0IPTs5jH/g4d8Sx01SQQ0754ZKGMNLoJZ5X1vCTXA5NgJSuIDU?=
- =?us-ascii?Q?8llqujUNx5BqnMsjyLiuPwqI0waObZx3ZJGtPP3w8m5WynJgk5gbyzRERuqf?=
- =?us-ascii?Q?4r0gWCr5Nye2rNZJMiIiG0swlZMSM72tbDCZL2GxYz7rts3TVBPYd4mJwNOh?=
- =?us-ascii?Q?VtDRLglqC749Ckchi7dz+Pe+jCGfuW7GDun5arcURQHgj4ZrogE1HHPffGYU?=
- =?us-ascii?Q?nIs6q99+0ycZaa34KtztstpN3Gq4z5caPFdk+SQa3eb37DqgfN1kl50bhwVv?=
- =?us-ascii?Q?GLYIOaHmm221nfig87BQlzHNmOm3T7MP6CdqsKurYdPsOVbXjwAzVhrKN0EV?=
- =?us-ascii?Q?F8VRmqbg2ImFIzybnCoa9A/AkbOGp76jDn+CpVL2zM6SquWIEvOVJLy+6fLA?=
- =?us-ascii?Q?j9TWVx8XmVXXsO+DO9UbB83ZvOO9VfYPO9YO3X/SG32WMYQoAu9jdbbdJqBb?=
- =?us-ascii?Q?2ZeC84+rLu2pxVJMLsOlmSWAdCNxSNp8gEFDauPXWtrYU+2CUtvkCpGbx3I4?=
- =?us-ascii?Q?xWaz22mjZDoU/dyFjQQeU+lcOYU3IdduOEXGizpHgJ6eVnTDdfPZ/6Gxqf3k?=
- =?us-ascii?Q?ngP0IPHY3ZS4KL5GeeNl2CSNi0GDDXxJy1fv3ayqMEUClpxiccwF4B5MUcPv?=
- =?us-ascii?Q?ld+aG04B8nkrBQcg+e3GbXryjXbHU7DtoRop1nSiKDVrO5DA0hHChCwFwtZ7?=
- =?us-ascii?Q?HlQk3CpQJTQg6b/uTHgV1vpioyDqziFxrmGMca1yzbU3+duElnqyx5jIwx58?=
- =?us-ascii?Q?PFDutBnoJ6Y6CWL3Xu2b9XQ/01CUcO3cV4ngbwyzlIhNrTeqyowjMkFMd/U5?=
- =?us-ascii?Q?aHO3j690o/nIDfGIyNlOMQ/xEZmBeCtHuZ62uMWpsqwW+D7E0bGcXlDsSFTX?=
- =?us-ascii?Q?9Vo5N/7uzypSa9iBfBAl1jfiOwkBFLihngO+h8TjAOZLrHOMG1XuOzfHy1t5?=
- =?us-ascii?Q?sKFipYlv067f/KdXTZFD1/CpUCxNwJW59Z1KPES0b3Q9oVgVe1gY8o+ia6aV?=
- =?us-ascii?Q?7yFLCB30x96kVaLMLWEeEngnllQrg5g6VYjreJO4FVSNb00HL9fY0kXvJqax?=
- =?us-ascii?Q?BmllYrMq+BVeIEosL6aU/yQUaYcetC9otsKy20Ak3fhaufagDZt6upWyvoqR?=
- =?us-ascii?Q?yDGVBGadLcwuwFmmw/qIJ1qsyvwIhVmm0k+S7H6DpwlfkpYp+StjaY4NwIH2?=
- =?us-ascii?Q?V2vQt60qCCXobe1s1MTPl/ghKnvraKS6rYDc?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(7416014)(82310400026)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2025 06:43:29.1937
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: eb53fce9-b24e-46d8-daa6-08dd91204e30
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS2PEPF00003446.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7136
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250511133939.801777-14-apatel@ventanamicro.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-From: Mohan Kumar D <mkumard@nvidia.com>
+On Sun, May 11, 2025 at 07:09:29PM +0530, Anup Patel wrote:
+> The RPMI specification defines a system MSI service group which
+> allows application processors to receive MSIs upon system events
+> such as graceful shutdown/reboot request, CPU hotplug event, memory
+> hotplug event, etc.
+> 
+> Add an irqchip driver for the RISC-V RPMI system MSI service group
+> to directly receive system MSIs in Linux kernel.
 
-Update HDA driver to support Tegra264 differences from legacy HDA,
-which includes: clocks/resets, always power on, and hardware-managed
-FPCI/IPFS initialization. The driver retrieves this chip-specific
-information from soc_data.
+...
 
-Signed-off-by: Mohan Kumar D <mkumard@nvidia.com>
-Signed-off-by: Sheetal <sheetal@nvidia.com>
----
- sound/pci/hda/hda_tegra.c  | 51 +++++++++++++++++++++++++++++++++-----
- sound/pci/hda/patch_hdmi.c |  1 +
- 2 files changed, 46 insertions(+), 6 deletions(-)
+> +/*
+> + * Copyright (C) 2025 Ventana Micro Systems Inc.
+> + */
 
-diff --git a/sound/pci/hda/hda_tegra.c b/sound/pci/hda/hda_tegra.c
-index a590d431c5ff..8c0dd439f5a5 100644
---- a/sound/pci/hda/hda_tegra.c
-+++ b/sound/pci/hda/hda_tegra.c
-@@ -72,6 +72,10 @@
- struct hda_tegra_soc {
- 	bool has_hda2codec_2x_reset;
- 	bool has_hda2hdmi;
-+	bool has_hda2codec_2x;
-+	bool input_stream;
-+	bool always_on;
-+	bool requires_init;
- };
- 
- struct hda_tegra {
-@@ -187,7 +191,9 @@ static int hda_tegra_runtime_resume(struct device *dev)
- 	if (rc != 0)
- 		return rc;
- 	if (chip->running) {
--		hda_tegra_init(hda);
-+		if (hda->soc->requires_init)
-+			hda_tegra_init(hda);
-+
- 		azx_init_chip(chip, 1);
- 		/* disable controller wake up event*/
- 		azx_writew(chip, WAKEEN, azx_readw(chip, WAKEEN) &
-@@ -250,7 +256,8 @@ static int hda_tegra_init_chip(struct azx *chip, struct platform_device *pdev)
- 	bus->remap_addr = hda->regs + HDA_BAR0;
- 	bus->addr = res->start + HDA_BAR0;
- 
--	hda_tegra_init(hda);
-+	if (hda->soc->requires_init)
-+		hda_tegra_init(hda);
- 
- 	return 0;
- }
-@@ -323,7 +330,7 @@ static int hda_tegra_first_init(struct azx *chip, struct platform_device *pdev)
- 	 * starts with offset 0 which is wrong as HW register for output stream
- 	 * offset starts with 4.
- 	 */
--	if (of_device_is_compatible(np, "nvidia,tegra234-hda"))
-+	if (!hda->soc->input_stream)
- 		chip->capture_streams = 4;
- 
- 	chip->playback_streams = (gcap >> 12) & 0x0f;
-@@ -419,7 +426,6 @@ static int hda_tegra_create(struct snd_card *card,
- 	chip->driver_caps = driver_caps;
- 	chip->driver_type = driver_caps & 0xff;
- 	chip->dev_index = 0;
--	chip->jackpoll_interval = msecs_to_jiffies(5000);
- 	INIT_LIST_HEAD(&chip->pcm_list);
- 
- 	chip->codec_probe_mask = -1;
-@@ -436,7 +442,16 @@ static int hda_tegra_create(struct snd_card *card,
- 	chip->bus.core.sync_write = 0;
- 	chip->bus.core.needs_damn_long_delay = 1;
- 	chip->bus.core.aligned_mmio = 1;
--	chip->bus.jackpoll_in_suspend = 1;
-+
-+	/*
-+	 * HDA power domain and clocks are always on for Tegra264 and
-+	 * the jack detection logic would work always, so no need of
-+	 * jack polling mechanism running.
-+	 */
-+	if (!hda->soc->always_on) {
-+		chip->jackpoll_interval = msecs_to_jiffies(5000);
-+		chip->bus.jackpoll_in_suspend = 1;
-+	}
- 
- 	err = snd_device_new(card, SNDRV_DEV_LOWLEVEL, chip, &ops);
- 	if (err < 0) {
-@@ -450,22 +465,44 @@ static int hda_tegra_create(struct snd_card *card,
- static const struct hda_tegra_soc tegra30_data = {
- 	.has_hda2codec_2x_reset = true,
- 	.has_hda2hdmi = true,
-+	.has_hda2codec_2x = true,
-+	.input_stream = true,
-+	.always_on = false,
-+	.requires_init = true,
- };
- 
- static const struct hda_tegra_soc tegra194_data = {
- 	.has_hda2codec_2x_reset = false,
- 	.has_hda2hdmi = true,
-+	.has_hda2codec_2x = true,
-+	.input_stream = true,
-+	.always_on = false,
-+	.requires_init = true,
- };
- 
- static const struct hda_tegra_soc tegra234_data = {
- 	.has_hda2codec_2x_reset = true,
- 	.has_hda2hdmi = false,
-+	.has_hda2codec_2x = true,
-+	.input_stream = false,
-+	.always_on = false,
-+	.requires_init = true,
-+};
-+
-+static const struct hda_tegra_soc tegra264_data = {
-+	.has_hda2codec_2x_reset = true,
-+	.has_hda2hdmi = false,
-+	.has_hda2codec_2x = false,
-+	.input_stream = false,
-+	.always_on = true,
-+	.requires_init = false,
- };
- 
- static const struct of_device_id hda_tegra_match[] = {
- 	{ .compatible = "nvidia,tegra30-hda", .data = &tegra30_data },
- 	{ .compatible = "nvidia,tegra194-hda", .data = &tegra194_data },
- 	{ .compatible = "nvidia,tegra234-hda", .data = &tegra234_data },
-+	{ .compatible = "nvidia,tegra264-hda", .data = &tegra264_data },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, hda_tegra_match);
-@@ -520,7 +557,9 @@ static int hda_tegra_probe(struct platform_device *pdev)
- 	hda->clocks[hda->nclocks++].id = "hda";
- 	if (hda->soc->has_hda2hdmi)
- 		hda->clocks[hda->nclocks++].id = "hda2hdmi";
--	hda->clocks[hda->nclocks++].id = "hda2codec_2x";
-+
-+	if (hda->soc->has_hda2codec_2x)
-+		hda->clocks[hda->nclocks++].id = "hda2codec_2x";
- 
- 	err = devm_clk_bulk_get(&pdev->dev, hda->nclocks, hda->clocks);
- 	if (err < 0)
-diff --git a/sound/pci/hda/patch_hdmi.c b/sound/pci/hda/patch_hdmi.c
-index 7167989a8d86..6c860fda6648 100644
---- a/sound/pci/hda/patch_hdmi.c
-+++ b/sound/pci/hda/patch_hdmi.c
-@@ -4551,6 +4551,7 @@ HDA_CODEC_ENTRY(0x10de002e, "Tegra186 HDMI/DP1", patch_tegra_hdmi),
- HDA_CODEC_ENTRY(0x10de002f, "Tegra194 HDMI/DP2", patch_tegra_hdmi),
- HDA_CODEC_ENTRY(0x10de0030, "Tegra194 HDMI/DP3", patch_tegra_hdmi),
- HDA_CODEC_ENTRY(0x10de0031, "Tegra234 HDMI/DP", patch_tegra234_hdmi),
-+HDA_CODEC_ENTRY(0x10de0034, "Tegra264 HDMI/DP",	patch_tegra234_hdmi),
- HDA_CODEC_ENTRY(0x10de0040, "GPU 40 HDMI/DP",	patch_nvhdmi),
- HDA_CODEC_ENTRY(0x10de0041, "GPU 41 HDMI/DP",	patch_nvhdmi),
- HDA_CODEC_ENTRY(0x10de0042, "GPU 42 HDMI/DP",	patch_nvhdmi),
+It can occupy a single line instead of 3 LoCs.
+
+...
+
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/cpu.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/mailbox_client.h>
+> +#include <linux/mailbox/riscv-rpmi-message.h>
+> +#include <linux/module.h>
+> +#include <linux/msi.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/printk.h>
+> +#include <linux/smp.h>
+
++ types.h
+
+Actually this one is most clean, the rest of the patches where the new code
+is introduced has semi-random list of the inclusions, please, follow the IWYU
+principle.
+
+...
+
+> +static void rpmi_sysmsi_irq_mask(struct irq_data *d)
+> +{
+> +	struct rpmi_sysmsi_priv *priv = irq_data_get_irq_chip_data(d);
+> +	int ret;
+> +
+> +	ret = rpmi_sysmsi_set_msi_state(priv, d->hwirq, 0);
+
+Please, use the respective getter and the type:
+
+	irq_hw_number_t hwirq = irqd_to_hwirq(d);
+
+Ditto for all other similar cases.
+
+> +	if (ret) {
+> +		dev_warn(priv->dev, "Failed to mask hwirq %d (error %d)\n",
+> +			 (u32)d->hwirq, ret);
+
+No, this is wrong in two ways: usage of specified for signed value and
+passing the unsigned; using explicit casting to something unsigned.
+Instead ofa the explicit casting, find the best formatting specifier
+and use it.
+
+Ditto for  all your code.
+
+> +	}
+> +	irq_chip_mask_parent(d);
+> +}
+
+...
+
+> +static int rpmi_sysmsi_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct rpmi_sysmsi_priv *priv;
+> +	int rc;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +	priv->dev = dev;
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	/* Setup mailbox client */
+> +	priv->client.dev		= priv->dev;
+> +	priv->client.rx_callback	= NULL;
+> +	priv->client.tx_block		= false;
+> +	priv->client.knows_txdone	= true;
+> +	priv->client.tx_tout		= 0;
+> +
+> +	/* Request mailbox channel */
+> +	priv->chan = mbox_request_channel(&priv->client, 0);
+> +	if (IS_ERR(priv->chan))
+> +		return PTR_ERR(priv->chan);
+> +
+> +	/* Get number of system MSIs */
+> +	rc = rpmi_sysmsi_get_num_msi(priv);
+> +	if (rc < 1) {
+> +		mbox_free_channel(priv->chan);
+> +		return dev_err_probe(dev, -ENODEV, "No system MSIs found\n");
+
+Can rc be negative holding an error code? If so, why does the code shadow that?
+
+> +	}
+> +	priv->nr_irqs = rc;
+> +
+> +	/* Set the device MSI domain if not available */
+> +	if (!dev_get_msi_domain(dev)) {
+> +		/*
+> +		 * The device MSI domain for OF devices is only set at the
+> +		 * time of populating/creating OF device. If the device MSI
+> +		 * domain is discovered later after the OF device is created
+> +		 * then we need to set it explicitly before using any platform
+> +		 * MSI functions.
+> +		 */
+> +		if (is_of_node(dev_fwnode(dev)))
+> +			of_msi_configure(dev, to_of_node(dev_fwnode(dev)));
+> +
+> +		if (!dev_get_msi_domain(dev))
+> +			return -EPROBE_DEFER;
+> +	}
+> +
+> +	if (!msi_create_device_irq_domain(dev, MSI_DEFAULT_DOMAIN,
+> +					  &rpmi_sysmsi_template,
+> +					  priv->nr_irqs, priv, priv))
+> +		return dev_err_probe(dev, -ENOMEM, "failed to create MSI irq domain\n");
+> +
+> +	dev_info(dev, "%d system MSIs registered\n", priv->nr_irqs);
+> +	return 0;
+> +}
+
+...
+
+> +/** RPMI system MSI service IDs */
+
+Why does this have a kernel-doc marker?
+
+> +enum rpmi_sysmsi_service_id {
+> +	RPMI_SYSMSI_SRV_ENABLE_NOTIFICATION = 0x01,
+> +	RPMI_SYSMSI_SRV_GET_ATTRIBUTES = 0x2,
+> +	RPMI_SYSMSI_SRV_GET_MSI_ATTRIBUTES = 0x3,
+> +	RPMI_SYSMSI_SRV_SET_MSI_STATE = 0x4,
+> +	RPMI_SYSMSI_SRV_GET_MSI_STATE = 0x5,
+> +	RPMI_SYSMSI_SRV_SET_MSI_TARGET = 0x6,
+> +	RPMI_SYSMSI_SRV_GET_MSI_TARGET = 0x7,
+
+Please, be consistent in the style of values.
+
+> +	RPMI_SYSMSI_SRV_ID_MAX_COUNT,
+
+No comma in the terminator entry.
+
+> +};
+
 -- 
-2.17.1
+With Best Regards,
+Andy Shevchenko
+
 
 
