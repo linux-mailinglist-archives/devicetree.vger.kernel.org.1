@@ -1,146 +1,200 @@
-Return-Path: <devicetree+bounces-176557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0178DAB47E0
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 01:26:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2FCAAB47F0
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 01:35:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 927211B42A14
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 23:26:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 222C8174823
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 23:35:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47059267F65;
-	Mon, 12 May 2025 23:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61348263C68;
+	Mon, 12 May 2025 23:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G/miODGV"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ZCVjcz7K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from PNZPR01CU001.outbound.protection.outlook.com (mail-centralindiaazolkn19011033.outbound.protection.outlook.com [52.103.68.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCB322338;
-	Mon, 12 May 2025 23:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747092361; cv=none; b=U1g9gY1OL9kxcOYS+ljGjKIazSiOMVdATHyZersVgq7t3SghbhkhTeUwVHyN9eQtMcwVPhwL25xHlgga2Wijun5HP07+ZjXs2A7gQm7cjyJdcGK9MWhIPxOenQEOeUykmbd2KwYI+UeLAgg8M+GsPzecfGpqlB44sPfTI0GbavA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747092361; c=relaxed/simple;
-	bh=ocrZSi8DrO1EDikoZUP7oF3uAlxlKAV4CCYK0E7ESY8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=WsHt2OKnc5WXTbQaNlS+Uz7n6phS+3UHbj78FMFkqh7prg/+ZO1RICKOd25p1P53A/rcCYIzB2u6QfL5niuOJp6ZkCQmLzgCkGCq+4q1u1k+Zl7Z9Kno0rD6AsOOLK3JgOrYNn4LZklOci+fgsKwk6xiIZThgnXfJL1ah8+Ii7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G/miODGV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FD71C4CEE7;
-	Mon, 12 May 2025 23:26:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747092360;
-	bh=ocrZSi8DrO1EDikoZUP7oF3uAlxlKAV4CCYK0E7ESY8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=G/miODGVrcGeq496mvoRikgxy5uBNnOkysR4Bjkvdh99lpImJjlM0Q5BY/YOvD2eX
-	 Tphg+iiW8oLW9MrYAirmoLLIf+pWgv0NN0Zk9AcXiXyDOzLVLNem6tdFThiaJGVPmN
-	 15PcatmTdyI7Ze3ctlGjCRzcnYK33f2W6MXt7KXMSpKfzycAYk0STYuZkp3uKIuVUI
-	 k+diB3b7yfILzHv2GmGN/ceT6plbGrTysUtzmgENfnumE3CYdoWsmKvoxqQfNfc46P
-	 D1nIFgQTzLfQuUP5n0LDuCL/V7cexibccQXFb3mQqBCAeX6jGDDqlvTPgrFGHqhPOg
-	 KR1Fk1UXvw5pQ==
-Date: Mon, 12 May 2025 18:25:58 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70E55253F2D;
+	Mon, 12 May 2025 23:35:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.68.33
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747092903; cv=fail; b=PgdgegkruB61CSIVRGK8dMDSVEc86tJE30BDVMwDHN6yXci7p8RFSanCaaMiaXsU7n5VUnS46iQ8ih32XqIXy7w5O4s/s5wR4TOLEiSivTlL2OjknX0UxnujF1K5dpmf5Na2BU15jtDm6ctb6jpxqs4hpLv+IU2/dnKIOpvf70Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747092903; c=relaxed/simple;
+	bh=XGwUAb4kMgHd4JHEANOFe1I9Ebs+RqHQYN2ESKEaKNU=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=hI37G4F6EZ0W6J2b9xh6F56GzOLGcgW1BNsvDJN19KtWXEERixhybPAmRJZlWr+oQ11mpnZsuG7lLjJCLf2Gn1DYICh9ClOX0nDrtjwhStLcwI1hFrIlgy53NRcKW9l3mVh5hbaitSG7Dl77trjPvjnQJlC3ACpJZmMKzfmKnPI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ZCVjcz7K; arc=fail smtp.client-ip=52.103.68.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=t5TVJNgWXOk6GirCWxcOH9CpihPERo/Pr1visrDHc004/OaQggw/xxCXJLn0UZdVJNRGyZGmnVzO5s4H3HEMHsUGEkTHdfYkRdGS0wwX0TgM1ba5A+C814+SwyzU4UdsOMqxuC/KIJQ1gL5beW0zr3tWAaJ2PjVcNgVQs6eEYRVS23oEBwXPoXk/EvF9etXfVmjT8iXDAL3+RqLtP8NI0HcUoTRLiv79JE1kXGz1FpzAMxP4KGLR/sWiZPKoo8etolaiOKtTKuZNNTqTh0R1K6ZTtLfubcKOrda/BLcZi+zvmgF8Qw83F58cCtTvF4r/zhw7MzE6itYnRCtnbulH4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ByQaxxVmotj32spGeQpF6syeRDepQ/CNJXIVMNiHDME=;
+ b=Q7jjXUbBWpDbF31pinjn8rQebUir0jNzERMi/y4BFzKRAIqcZoa2eBIAEhMZLN8e5M+jrBEQ1I6wDVRHJuHYSh0gylbZsKJziKxKG35FjlYW20o5cj3FgvK73EjtA2OrVRO+QapzeVrmhDj21qdc+Jm4JTd7mpKS5W0N6w/CKYMzykntDeJd2NjcfWmc7caBda6ClzebvtkloXxoJxsedwZGeaKPbvMw/rDcalRUdXkwanfNqLLwYN+9fG0VUj9Kyvs8fV8ot+Iu6kpVsof63qzJAd4W1YovzALV5YYm/F1FFiuPRuZ6Nz+1Fa7nWlW8R5sv1YlYM1sVXEJ1pc5cHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ByQaxxVmotj32spGeQpF6syeRDepQ/CNJXIVMNiHDME=;
+ b=ZCVjcz7KxWs6CbQBERj7q0mJiSOKauMu4lxba28Yq7NYzOVHzMdYGeF1DXuhXwD843mYkrT3wz20GgPPDxox45pHn2Z4IKQ8j6LMZa/gIPdDnLz7cEz84ZAy2hNiihMVyJC7ncDUYe6odBzTT6enMRHR+Ax9cXVsUt7zIsTbDLhnokrdvalW59sF5TAF4d/BmMeD60+KWJcyxx4ezBzi+/lGcT0XRqo2sl3DPH9/4arbV7h1GXbk633FRd1wN28NzRiKAkxK/Gap6vxcpkiTQ4GVBG9uZVF6vORe6jqrkcxkqM6jC+QPZD7UsyLl++s6Dt5/MwFGU4bzLWdwYfyKsw==
+Received: from MA0P287MB2262.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:100::6)
+ by PN3P287MB1798.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1a4::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.30; Mon, 12 May
+ 2025 23:34:53 +0000
+Received: from MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ca81:3600:b1e4:fcf4]) by MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ca81:3600:b1e4:fcf4%5]) with mapi id 15.20.8722.027; Mon, 12 May 2025
+ 23:34:53 +0000
+Message-ID:
+ <MA0P287MB22621824B2FD5E2A64006174FE97A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+Date: Tue, 13 May 2025 07:34:49 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: riscv: add Sophgo x8 EVB bindings
+To: Han Gao <rabenda.cn@gmail.com>, devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>,
+ Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+ Guo Ren <guoren@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
+ sophgo@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1746811744.git.rabenda.cn@gmail.com>
+ <59c175c7bccbd4b5ad241c39b66b0303e0facf81.1746811744.git.rabenda.cn@gmail.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <59c175c7bccbd4b5ad241c39b66b0303e0facf81.1746811744.git.rabenda.cn@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: TY4P286CA0024.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:405:2b0::8) To MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:100::6)
+X-Microsoft-Original-Message-ID:
+ <5108e6af-5d35-41ff-ae0d-160dbcc09567@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Tommaso Merciai <tomm.merciai@gmail.com>, Liu Ying <victor.liu@nxp.com>, 
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
- Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Dan Carpenter <dan.carpenter@linaro.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, devicetree@vger.kernel.org, 
- Dongcheng Yan <dongcheng.yan@intel.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Ross Burton <ross.burton@arm.com>, Will Deacon <will@kernel.org>, 
- Eric Biggers <ebiggers@google.com>, 
- Julien Massot <julien.massot@collabora.com>, linux-media@vger.kernel.org, 
- =?utf-8?q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>, 
- Taniya Das <quic_tdas@quicinc.com>, Mark Brown <broonie@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- linux-staging@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>, 
- Ricardo Ribalda <ribalda@chromium.org>, 
- linux-arm-kernel@lists.infradead.org, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Zhi Mao <zhi.mao@mediatek.com>, 
- Cosmin Tanislav <cosmin.tanislav@analog.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Hans Verkuil <hverkuil@xs4all.nl>, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
- Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, 
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
- Conor Dooley <conor+dt@kernel.org>
-To: Cosmin Tanislav <demonsingur@gmail.com>
-In-Reply-To: <20250512212832.3674722-15-demonsingur@gmail.com>
-References: <20250512212832.3674722-1-demonsingur@gmail.com>
- <20250512212832.3674722-15-demonsingur@gmail.com>
-Message-Id: <174709235870.686179.16618194990565341079.robh@kernel.org>
-Subject: Re: [PATCH v3 14/19] dt-bindings: media: i2c: add MAX9296A,
- MAX96716A, MAX96792A
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2262:EE_|PN3P287MB1798:EE_
+X-MS-Office365-Filtering-Correlation-Id: 54c753db-f05e-4e16-e17e-08dd91ad9851
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|8060799009|7092599006|19110799006|15080799009|5072599009|6090799003|461199028|3412199025|440099028|34005399003|10035399007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?T3NjM0ZxUm1YbUZBTTdJczZWSUZKcUVPYXU0YVN1cEJPMUhUdm1UL0F0R3lt?=
+ =?utf-8?B?UDZBaVJtSlc1N2Z5RHBCek5XRUkzOEQ3WHhRQTRnLzNraEFFa3l5MGttZENC?=
+ =?utf-8?B?Nmd6clNXblkvelBXeDVkSnBHQ001MFo0VWgwM0pjcUk0aXBIUkRFQTJVZWN6?=
+ =?utf-8?B?UmJKZ2FGUzZvOUgrc1dFOElOeFdzWUJ0SDA3Z1NobUsyQkQrTHFJQmpjUS9a?=
+ =?utf-8?B?V0VEbld3ZzlNc1pYbU0yZTlraEVUU1A2dlNnM0FNZnlWTFJGc0NxbVgyM0xH?=
+ =?utf-8?B?L2hoMGRMN1A3bWlHbVlycVdFSFcvb1Z6UGxlMUtlUHVRYW9ZOGxsTEJ6dW83?=
+ =?utf-8?B?RkIyZncvYmQ3QmphR0pzMFdwVW52M1k0SFVjbmRpUldEMWxxTEYxcVg5ck02?=
+ =?utf-8?B?eWYwb21rc1hzZW5BWXVGUnBHN1lzV2FnT2ZoaDB3R1pZZUQrTFRDaVhCT0ts?=
+ =?utf-8?B?TU55cjNDOW9xTkg0eDRyVFJXUlorRzNTUnJ4S2lBbWpibm5qeWxVdGVKUkxO?=
+ =?utf-8?B?V29ONWJVWlp6UHRxSmsraVBSazZ0NDVzUUtPN3ByNFNtR1J3THViZHVLbGF5?=
+ =?utf-8?B?OTdhODQzRWNWckVSUlRicTl5Ri84YSswZEpRV2NiUEIrUTlXT011VWNtRjBR?=
+ =?utf-8?B?T0lkRUlvNDZFWkkxSzNTTXVVNVJ4d0FGYlpaU0Nza1pnR2VuYzdRT2lBQ21Y?=
+ =?utf-8?B?OWFDRHNSbmVSZDRMUHFMNHpmdnVnQmhtdWRPZzRGRGFHSUZNZ1V5MXRCQTFX?=
+ =?utf-8?B?NW9wUnQxWW8yNlViek9QY0FWRmFRZ0ZqVTdGM0tFc01QeU1WUlhtRmJ3ejdj?=
+ =?utf-8?B?UTM4QVJMNUlNTVQ0cXFpTk1EWVpNWlB1eG1Zc2I3aEhXczhmdHlMeXV4MnUv?=
+ =?utf-8?B?TlFMdFpQUitLaENQUnp4Ynp0QVo5QUIwTmVpTUcyLzBBeVpucyszU2dETW5N?=
+ =?utf-8?B?aGFtTzVSR2FaU2V0ZWp2WlRudmRmZ2JFZkxWZEIybUhrQ09uZ2VZOFRDYTM2?=
+ =?utf-8?B?QkJlbDY1RnhPVmhqdnFuMkxOeGlsVnNiQjg4MkpSMldEZ0R0WkpCNjRadnVE?=
+ =?utf-8?B?SXJabjhwM0Q2TDBjVGpVWU9BeWxoWTdKL2kwdmtpa3gvTjhqaHJKU3FvcGI2?=
+ =?utf-8?B?NVNFWWUxclF4TjFCMzhuTUJsMFlRRnZCTGJVVytlWnB6ZjA2NlNaUmpneHlD?=
+ =?utf-8?B?M0trREwyQTlDczdjaXBEVGZWemMvMzVrQitUdmN1VDMyNWQvdkM2N0VEWSta?=
+ =?utf-8?B?ZzV6akkzdmpQYk5mTU1iSm1hRHN1d0hHK0g0Q3pYWUZzcFBOM3FraC81OGV3?=
+ =?utf-8?B?UmlYaGUrVUhTMlJldzNTMnM0YUZEMmdXNFZkakFjM25LQ1MxSlBVQWlGYVZV?=
+ =?utf-8?B?OTQyTXBuRGRrK1UzaHVyK0M3aGJ1UEtpMERsRGd4MkZKbkd0RitBTGxlU3BN?=
+ =?utf-8?B?T1VWUzA3ZnBoS0hheTRCSzE4UlA0SGVlV0dtVHQxNjMxTmNMcDJ0Q0lUZm5O?=
+ =?utf-8?B?WlJaRXBWeGtWeEU5MFdUVlRnK1BqVWhHazFLbjhpa2Ivckl4eURrRC90RzJE?=
+ =?utf-8?B?dllqbjF0QWxFVTNMTDlCbVNZeU4rS1E4MERhQ3lLSFo3SkdiZDJRRW05Mmlw?=
+ =?utf-8?Q?61DiQJL+zYhYtqlwY/9zmeQKUVrDP+ZYekoeULMzAIcI=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?c1Y4WG96ZGRRK2dpY1RWZ3V6bERzTnlVWFBKN2FReUx1QndCdUhYZGduR1FV?=
+ =?utf-8?B?RFlBcW9GaGY1WHVRejQycVZJU1FpR0liY1hXV3VvdWVyamt6UEROWWdoSFE0?=
+ =?utf-8?B?VHU4cy9nWEdtc1l3MFpiUUZNV2NXa3ZHNTUyUzg5YUNHdE1JSXJPUzRFanZy?=
+ =?utf-8?B?RjloRUlOd01xVnJRVGhpSnRvVTBlclVCWW9EeW9NVnVEYm8rcE81ZGNDaUpj?=
+ =?utf-8?B?M3M0TkhyUXRnUlk5VTBLWVpUem94d2ZTMlNlWmNITEpiVXFvVE5GU0xQQU9W?=
+ =?utf-8?B?S1c0UDZ5MFBteEk1aWpwR3U4TzdCLzByam9FcUlqMHUzdHZqRVQvKzlsbENo?=
+ =?utf-8?B?Rk1iYys1Wmt6ZFhrUGtac1R6dVZqUjNhbXNWcTJFd3RhWEhnWGI5UlJLZS81?=
+ =?utf-8?B?SVdodUp5YW5uOEFGSUY5NGRGLzFQNXk2QytiUzFxVTdEdmQ5T3ZKaWJUMVBa?=
+ =?utf-8?B?Zmw4RnF6MHhPRnZWbnBzSW94YzdHaUF5cUhJeHcwTUJISnJUUHFoR3ZOOUFN?=
+ =?utf-8?B?aFg5UnVVYi91WUpiY2FtczVkZ3E1NUttcHlnbGVzSmV5NXExZjlYOWxHVnZh?=
+ =?utf-8?B?TTl3clg0MTlmMENLTFAvYzZlcEpKdmlLY0RPdWd2UU93Y1M5cm9JUTZyOGxK?=
+ =?utf-8?B?MndEYUNGc2JpVWhIckpMWmdoc20zY2ZiSkZ0VUJQTXliazJPeTREb1JLa3BO?=
+ =?utf-8?B?S1FpZ3RMK0RLY3FWaXBqRnVIekl6WXR2Tko4dlNNWFIrSHI3YktWdmcyWjA2?=
+ =?utf-8?B?ZEJncGYzcEpoSlpEUkpCZWtqNThDV0tQRGdzVzEzZU9NenlSb1UvckhiN0N0?=
+ =?utf-8?B?djhZVTB2WVVvb0llSHJ2SnQ2bmU4OExxSnFySGZDamVSUW9kRmVCZDltM0Fo?=
+ =?utf-8?B?U3pwa0hkSlpnWG5pTDZlZ2VTWEthUHZmL0dJOUs5cGI3WTFMRFBqbUFRQnRt?=
+ =?utf-8?B?aHB4d2RoSVdpdjdQc0o5YmF2SEdhQ2gzNCtWRGtTR29hTEVSTjRkcC9xazgw?=
+ =?utf-8?B?QWs0NC90UllyYTdUcUh1dGJMU2F3enFOU0Q4RUlsZ2VWcW9NRGhMTEpoVS9R?=
+ =?utf-8?B?ZTBhZ0ZDa05NWGlHU21uNHdZaE5GVTVDR25LTU9id3hFeEkvcjF6VjZKa091?=
+ =?utf-8?B?MklkRzJQWU4xUDJjc0NOQjJCOHBjd1N1YzA0K3BsLzlCbk5ubGdHdGtFTTZn?=
+ =?utf-8?B?Q0IxQS9pQlhNZUNmZG84NkUxMXlVQTRUTEJJdDlob2s4Q2Y1dEQrVm1pTXZm?=
+ =?utf-8?B?YWVVVFdkN0FMZUk1aEkyQ1hha3I5UDNIdXJac2NhamhYNzFMem13cWdTK0dE?=
+ =?utf-8?B?V1MvUHJPcWFqS1BRdDVSU2ZqMmhzOER1eTI0KzJ5bFpncmNnTm0rS24yVTZm?=
+ =?utf-8?B?QTArSm5uenhURnFmZW96UVZCUS9VRnNPRFpWc1ZTci9vMk1tN25HUTdVY2FV?=
+ =?utf-8?B?R1ZWeUUyVmhvOGJGQWFqL3NUdC91aHNaa2xMQlArMHBObkdpMm1SMnhOQW1j?=
+ =?utf-8?B?RG5OVG8vOGtibVU2elFDYy8wc0ZqYTBpQUQ5RzI1b3ZWS3hISktiV2RDd3M4?=
+ =?utf-8?B?WTE5V2FXUFViNVpZSzZTMzdPWUVxVU9IOExaSkxPWHYzYUk5UjBHMFYrWmRs?=
+ =?utf-8?B?bWhzV0hIYkdTSC81a2xkVUpCRDFOWjlveEF1KzQ2Q0t2LzdKeUJVQXkxbmhw?=
+ =?utf-8?B?M0pxeGdZVDRLcDNHdUtyNGUzYk91SlpDQTZlWjBRbG84TmF2OUFKcFV6R0Zz?=
+ =?utf-8?Q?nGBOjFxA6N+4AURiAeEWNmAbtxLddZJhUWYy1FV?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54c753db-f05e-4e16-e17e-08dd91ad9851
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2262.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2025 23:34:53.1823
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB1798
 
 
-On Tue, 13 May 2025 00:28:23 +0300, Cosmin Tanislav wrote:
-> The MAX9296A deserializer converts single or dual serial inputs to MIPI
-> CSI-2 outputs. The GMSL2 links operate at a fixed rate of 3Gbps or 6Gbps
-> in the forward direction and 187.5Mbps in the reverse direction.
-> In GMSL1 mode, each serial link can be paired with 3.12Gbps or 1.5Gbps
-> GMSL1 serializers or operate up to 4.5Gbps with GMSL2 serializers with
-> GMSL1 backward compatibility. The MAX9296A supports mixed GMSL2 and
-> GMSL1 links. The serial inputs operate independently, allowing videos
-> with different timings and resolutions to be received on each input.
-> 
-> MAX96716A supports both tunnel and pixel mode.
-> MAX96792A supports both tunnel and pixel mode, and has two GMSL3 links.
-> 
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
+On 2025/5/10 2:13, Han Gao wrote:
+> Add DT binding documentation for the Sophgo x8 EVB board [1].
+>
+> Link: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG2042-x8-EVB [1]
+>
+> Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 > ---
->  .../bindings/media/i2c/maxim,max9296a.yaml    | 242 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  2 files changed, 248 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
-> 
+>   Documentation/devicetree/bindings/riscv/sophgo.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> index a14cb10ff3f0..ee244c9f75cc 100644
+> --- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> @@ -34,6 +34,7 @@ properties:
+>         - items:
+>             - enum:
+>                 - milkv,pioneer
+> +              - sophgo,sg2042-x8evb
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I wonder the product name is x8evb or sg2042-x8evb?
 
-yamllint warnings/errors:
+The same question to x4evb.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.example.dtb: serializer@40 (maxim,max96717): compatible: 'oneOf' conditional failed, one must be fixed:
-	['maxim,max96717'] is too short
-	'maxim,max96717' is not one of ['maxim,max9295a', 'maxim,max96717f']
-	from schema $id: http://devicetree.org/schemas/media/i2c/maxim,max96717.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.example.dtb: serializer@40 (maxim,max96717): compatible: 'oneOf' conditional failed, one must be fixed:
-	['maxim,max96717'] is too short
-	'maxim,max96717' is not one of ['maxim,max9295a', 'maxim,max96717f']
-	from schema $id: http://devicetree.org/schemas/media/i2c/maxim,max96717.yaml#
+Regards,
 
-doc reference errors (make refcheckdocs):
+Chen
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250512212832.3674722-15-demonsingur@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>             - const: sophgo,sg2042
+>   
+>   additionalProperties: true
 
