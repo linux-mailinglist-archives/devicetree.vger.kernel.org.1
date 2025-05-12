@@ -1,114 +1,116 @@
-Return-Path: <devicetree+bounces-176305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AF14AB36A6
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 14:07:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E0DAB36C9
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 14:14:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74B2516CB25
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 12:07:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37F4A19E14C7
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 12:14:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0DA828E61F;
-	Mon, 12 May 2025 12:07:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF68229345D;
+	Mon, 12 May 2025 12:14:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XMUMeQXc"
+	dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b="woIls9se"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out162-62-57-210.mail.qq.com (out162-62-57-210.mail.qq.com [162.62.57.210])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EAC5267B92
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 12:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22084267B92;
+	Mon, 12 May 2025 12:14:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.210
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747051624; cv=none; b=gCztuoEhd5W7A6k271TnAOODok5tWQUocQbfQgThtXxRkcDBNJO65M1T6cmw5pinHjm33sXxMnbER3Q8RoH38w2rMqSKGigib1ytpr7BO2fPF6BIxvOQHaz80BtXV5+yQ0VxkoDFDK5FzRXBAVcC31K/KfAm3U2OWzG/U0CWyIo=
+	t=1747052052; cv=none; b=nqGXayE7Y1N3ji0IrXzNmGOxRECtIwO+7QGSsfyqXCnOOK5aLV4iuVabhsQCRQM7YlbHZ8qwwccHnkLiG9o/tCvQf9wXBdkI3r8uT36axrj+srfMJ/jzeCCYCfrHa0rhQ6ADJBKlp6iWFVlhxnH9nebuXQpYOYR2DoGibYWA4d8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747051624; c=relaxed/simple;
-	bh=8WWWgeWVvcbHTtv0RBP4r1XUoDGKd++Wm/OvMpeSFds=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cc/Zr8f8fJ1Kchq64uBneTmXOcNLj8wsvoswMXGl9eE0W2oTxd+rpn0Av1x88jSokYZp5Bye+pxYqMvuMHNwD/EljcsTn3pP0c8F0+7uTMvoKVVAN2ubj20AjNoOV4J9DKXLCKDZsgHyq0ZYpT40NqEKSAi+XozmH3HLmvQmrzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XMUMeQXc; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-54fc35a390eso5173104e87.3
-        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 05:07:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747051621; x=1747656421; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8WWWgeWVvcbHTtv0RBP4r1XUoDGKd++Wm/OvMpeSFds=;
-        b=XMUMeQXcovQjNx2ZimJu/UlqDDyOLDgmgXlXFs61Pa1G1nF55+GUxWlksRbU6CUwhT
-         gmCp0iTOGcZmx/l/og07QRf7BcOtbvtJg66+/2vv8CNLGfxqJ2X91Ti3FB61BQ23No03
-         /lsxpICPQtwjBYskvVugWN10OsPnA8r4LLx0aLKJ05M05erHs9c9VoanTcvRX4f2ZAmO
-         4XfOqlTHcJuYkq+KPFRHt/KxGioYhc6omWxxXaqRBiwrJC/TxZFiABx2EvJVKPkxJCEr
-         aC9c5tBv0y3WcczQHl/dbkjO63tR4Yzd9ob2JfbJjEgI2k5nTjgCjvjNc/7Z8mf8Om9D
-         NyDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747051621; x=1747656421;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8WWWgeWVvcbHTtv0RBP4r1XUoDGKd++Wm/OvMpeSFds=;
-        b=KCKXActLJZoAftEOTG5e2xSjybPWhHn3QKbjK3eWJwG0lAWmW7u6GE/r+kKmxTDAGQ
-         QuSTl3WLGm6qMvOLZiREsY9il8L2GUqX37vc/7jgd49bd9+oo6a6e5FzGVJnLiuAsEpZ
-         lEVccl5q3KxjKERJL+qLi4wzCJTP4bjlJbSvxQUBCzu3AQ6pyRPEWARtJC8+XFTvcugo
-         pnoQsKr2gugnG6lpIuNAfVAY6hvUEz5jRelLOMUSqdSOlgVtZar/5iF7TQ8jonqljczB
-         /ZzGxcErt2LfHa+hixX1Kq8Z1kQP5yOldxFRcefX+EAu5Y9oqLtQu7MxHM/vIizb9IYy
-         qmOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXZS02Y54E5sDXw7pCjiqU8SawhH9GeUjTcc8Ej5yA8HJDT/GS+3uf7AnogevrOSg4epERlpJZl7inj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGP1A8uGjqncYNRYhYsvcfBXFe4J4PNbyG5xvIAXK8iWG+ri15
-	N2pVxxUsDsDc6bGVXytfu7ZJJ7glccDr2TYwSQdUTMugl59/0yLzbdnLXqhH4XrHQO0HVJjhLhm
-	e7UJQa1pQRU6HbTtCNEHrJHGtNPhddOBjOSMDhg==
-X-Gm-Gg: ASbGncsV1s8pKL1jCi2T0QA5/iIMOjnsgfnvFj4M8QY63O4qd7zzdnx83Ze8yL16cQ1
-	MHN0HfI/X8TNtFy2wRHAURXPKMAPPzw5w9R/nWtnSuztFTlh0M7TqCnxakDKB3eqnrPxjgK+MKV
-	yfKw3jPovsNGiE8zzHGIe/Dq2tOPae/9he
-X-Google-Smtp-Source: AGHT+IEx8k4So5xIBQnsOvPLJlE1JiI/knZvAo1IR6NtL1z/XpXpp8RjehZWw4mU/3r3Q3kmxi4fVz2sQoxO2BBk9mc=
-X-Received: by 2002:a05:6512:6602:b0:549:38eb:d694 with SMTP id
- 2adb3069b0e04-54fc67c477emr3402667e87.26.1747051621225; Mon, 12 May 2025
- 05:07:01 -0700 (PDT)
+	s=arc-20240116; t=1747052052; c=relaxed/simple;
+	bh=zUXcpTiNwVX79Zx15n1oeoDkLSOX/YrrhzcvuYhRDZs=;
+	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=OXfcY7M5Q2CCWQDzB0Q6c0xm+87XOhUA6dty1KxWx+fVWfoCybA4w7r0Xh2+2YBrqKowlbe8WiNfkJOzp81g+cHLH73Irx6YuQT7AaeTpYFTYsARQOcKItf2AugbnhBgvBBI5pgZOqZN+NwnBWSZMxvQD7Sp3EWYS17wtAPCdJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com; spf=pass smtp.mailfrom=foxmail.com; dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.b=woIls9se; arc=none smtp.client-ip=162.62.57.210
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foxmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foxmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+	s=s201512; t=1747051736;
+	bh=7CKmsvauDc0q8NWP+HLO/2UN2L/FIYQsPE5ctif+Wxg=;
+	h=From:To:Cc:Subject:Date;
+	b=woIls9se4oA0i7RAFYBh/8lHmi+kO68uKGIzRJhl2TjuxebBm32YSVLjuLdE34y8B
+	 xq66cuRhI06oAeoontuFsh8Bdy+PS0RgwUi1Rh/uBbJMpM56mIjeyMm5u9J6RJ3X+m
+	 JZiREGRsO5phBcLszOWdxweCyCnsv8wqzEhNKSk4=
+Received: from localhost.localdomain ([116.249.112.84])
+	by newxmesmtplogicsvrszb21-0.qq.com (NewEsmtp) with SMTP
+	id 2359703F; Mon, 12 May 2025 20:08:53 +0800
+X-QQ-mid: xmsmtpt1747051733tj987rezy
+Message-ID: <tencent_5236EB88E1BF1243C286A768AC4B24391905@qq.com>
+X-QQ-XMAILINFO: MmPNY57tR1XnXYXlfrFDWzpe97pRfIDW0PFyQw7LDr1JC8m5UvghYLPZRLn8OW
+	 nJZEo4XDeN1rtphaQmE09D5/UWynH8zQczD0OaC/Tn/rnMIwMrjSaVk+03SYRXdcpaw0X5yWzoGQ
+	 Oxs50Zpx4/5B7Hi/HHKeKU8J1VgjO9YL6kSk3wuAZEjNMuckHwTwCEhMSfE4XYeEMn1cgYks9O6o
+	 qoB+1ORIkqEHv/pJIOc//xsqHm6nHzhtJxER0rNc7UIxqami6bkny9cYT+gkqN4eJgmRrP6L/9b5
+	 9dg8wJW3/rmfuztfAC+Cel+p8lSty7PXlrgC0zMHgFfvwQ3KaudtuCNoFhVS9gmKLekyNo7uDQgC
+	 K8w2i9jAvCmhbP0p9mv7plAmW6wetw49aoy+wbYMpR0Vj/o/yKuknhHMQXWzPbUQ8X5f11nzxNRt
+	 wF8uZOhrA/wR3t0bu3BN0TNmkwMIWazahDS/OitozRc1nZ6r0fvbAW1eo9phW3iEaaGtOzH5FbTn
+	 sm9u6bKyQL4HoSwJXkR5IB54ZofjcldGBi0L9XLN4LiQ2Hm8yB+0LuyBHPkbNxS6HLtgSiJ6CLug
+	 DMgSfix6PrgjSaiHx9RiZ2nT5sxzPx4xvuCngvkOAcMdBmh2WobjKlcUX4ZkVlAgk+80eAtXazTA
+	 tS38IxV5qX3+3pb1FM7QfbFDpLMG4G20SjVc1MtPROCzgROjmB23PQLif57hQh9oxVwVg+o9DeVk
+	 RpEBY+lT7U9wLBYeT+1ENFJRULEFwycGu2qqCrwOmd+x12Tp+1OoBJFQ7aRN8J10nwUTdFO6SlxN
+	 RmiTsKgM3OBu/uA4TfNOYUJ+l6ciXSlT/6oq/Ag//SR2mM66qdjgJdwuv+DL8VqyTvOu/LMDc1nu
+	 zfGOMBEFu4LShLS7sHSVuIkTc7xJKFuTukWNehJxbOK4878QR0jBesHW/IcmFHZzqMyndknyIheZ
+	 tf71rrnHCCZIAzFQ56ScjWiWd/hMPj+krdAR+y6DEv0QUR4DJJfU7qyTwHXVjI1eaXedXTJYyEvF
+	 ZgguMeySC/I2bRv7DHZvYsCqOu0mc=
+X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
+From: chainsx@foxmail.com
+To: f.blogs@napier.co.nz
+Cc: chainsx@foxmail.com,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	sfr@canb.auug.org.au,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH v1 1/2] dt-bindings: arm: rockchip: Add Firefly ROC-RK3588S-PC
+Date: Mon, 12 May 2025 20:08:49 +0800
+X-OQ-MSGID: <20250512120849.312547-1-chainsx@foxmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250406-bcmbca-peripherals-arm-v2-0-22130836c2ed@linaro.org>
- <dc47e9ba-e23d-45d2-bae1-cac8bac2310b@broadcom.com> <ac86467d6f0b2c531f7d1356ade78e17@mail.gmail.com>
-In-Reply-To: <ac86467d6f0b2c531f7d1356ade78e17@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 12 May 2025 14:06:50 +0200
-X-Gm-Features: AX0GCFuoFVJJ2KLgVFQoQTOvfp299H6PlFukenI3FYuId0cEte28aXrmVaRLmh4
-Message-ID: <CACRpkdY0_u_7J_6JLAiVRz-oX+UZViUhyD0fSfi2u3ogVOPdbA@mail.gmail.com>
-Subject: Re: [PATCH v2 00/12] ARM: bcm: Add some BCMBCA peripherals
-To: William Zhang <william.zhang@broadcom.com>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Anand Gore <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Olivia Mackall <olivia@selenic.com>, 
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Sat, May 10, 2025 at 3:11=E2=80=AFAM William Zhang
-<william.zhang@broadcom.com> wrote:
+From: Hsun Lai <chainsx@foxmail.com>
 
-> > Linus can you resubmit a v3 addressing William's feedback? I will drop
-> > your series for now. Thanks!
-> > --
-> > Florian
->
-> I wonder if you get a chance to review my feedbacks on this series?
-> Let me know if you have any questions.
+This documents Firefly ROC-RK3588S-PC which is a SBC based on RK3588S SoC.
 
-Sorry William, it fell off my radar!
+Link: https://wiki.t-firefly.com/en/Station-M3/index.html
 
-I fixed up the patch set and resent a v3 now!
+Signed-off-by: Hsun Lai <chainsx@foxmail.com>
+---
 
-Yours,
-Linus Walleij
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 455fbb290..13d5dcbc7 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -258,6 +258,11 @@ properties:
+           - const: firefly,rk3566-roc-pc
+           - const: rockchip,rk3566
+ 
++      - description: Firefly Station M3
++        items:
++          - const: firefly,rk3588s-roc-pc
++          - const: rockchip,rk3588s
++
+       - description: Firefly Station P2
+         items:
+           - const: firefly,rk3568-roc-pc
+-- 
+2.34.1
+
 
