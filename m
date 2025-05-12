@@ -1,180 +1,197 @@
-Return-Path: <devicetree+bounces-176199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61B51AB31AC
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 10:31:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 373E2AB31B1
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 10:32:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD7A07A958F
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:30:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A29937ACF20
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B8E2550D4;
-	Mon, 12 May 2025 08:31:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B22B7255F21;
+	Mon, 12 May 2025 08:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="N987vsIX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QKzqAtmY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DF8413AD1C
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 08:31:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24033194AD5;
+	Mon, 12 May 2025 08:32:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747038670; cv=none; b=EZn6Wzmymjr/ooIsIouBBCeb7Y0V7OAu72JYCb00RNY/eYsz5L9VE6CDIRpoSEQ7TivLX2k85viq/N5G3M2N5wLyt4oTMTXDbornmcQIDrhkUY5D/7l2CHHjBbQFpKpA0cDMYbu/vplh5CaGxHwiCauBn1DCKuuSJYEafPQCWM0=
+	t=1747038728; cv=none; b=foox+hlRMp3vJiYfAJFzaNP7ovtLT3KRIyMh1AfD0sSVANcYZOcSlwXW2gP2PIGxWbDCJj6zLoGYJlBzdCiTp6dR5d1zzNoJpQj5RACozY8VCyOSxb27aEbdr56AnuYLTx105NnPqx8QFJ5kM/tcI6Rv9yIPvX1x+bFdPlbn0Pc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747038670; c=relaxed/simple;
-	bh=VbIsCmNofx1yYvLRGUCQKtW0w8/8EizRNsmeIZAEhcc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MKgJhaMydGLo6jA1LoE89Wv9J1/jhROgKYcWkH8RTxTiaO6QAZ15J8PgSuDPU66zQ6cyaqMk3dolE2ilQtvDKvTfqNA/1VEU7vaLUZDP5cPKMsdxbMBf41hDfqNptz7z0pkuOA0oRahfHD9sjkZLNEHb0rYviQXsYoMQGFkO1w8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=N987vsIX; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-30a9718de94so3911494a91.0
-        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 01:31:08 -0700 (PDT)
+	s=arc-20240116; t=1747038728; c=relaxed/simple;
+	bh=tgkpiobekE7Cn7LJ4mWhcfMhTuOqb9sE4K63agvt3c8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IkQHkojsWMFPp8vc5T7ZAvIjKmJlkFoaOGxE86+5amGHuGZWcyslYJOf9WAKJ8yOxIT6o8VrOeHIpbK1ga8IiOMdo8yv0bjW2fF8DIGjFwltjDW/YLSSSu+acSl2siHBSpsyfyNwI9BAXLu+ry+0oJcgwYVJ/Dr44SVXcRMaYJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QKzqAtmY; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-73972a54919so3992812b3a.3;
+        Mon, 12 May 2025 01:32:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1747038668; x=1747643468; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IzzZU6pvyYy7YIZ/GFIFCMgtFSutDNrqjC/VQVHvmcs=;
-        b=N987vsIX6LpBw0SS18D9yiW/8DRwzA6CgPE+ns/F5ohGEQ29zi6a83pTaTqflqioeG
-         KS+Fak6H8zfA7f8xR1JhZHXDdSP8xAbqUtZAPre+sASSwZ+9AuLXYHO1XIHeZQLbW9dg
-         zTtjur3pdhurmiFcWOfeWzznqU6/cvXmTsTZDb9bkIpZrfsBX7KOPeGZBN/czeZyaGne
-         dU2ArzdeEJFNNXudyH+HEKMC2NZSGbRX5rFULJWFkmlR0pbD2O9axXYMeDF6WIBJp/RP
-         0/yJayE3Vnk2CILa7XIFZsFHwHIZfMHEk2TiLj4q+ZcbyWQeL+329VBwyyjLmy58J/+f
-         klgg==
+        d=gmail.com; s=20230601; t=1747038726; x=1747643526; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LRf34OhlthoCURRJkrNeUdtCiJjtjYzGmozcb5W06cc=;
+        b=QKzqAtmYlDCk/45ryTU3aebdD9xk1oPLfql+GiCPSalnFL0vbbuVQNkuk/vNSdCHgM
+         hpBHdKy9wApZMcTf9B3boOlbxI75mGZPLt1C6It2iaT2INaH18fbo5IaXfr053ngHjf8
+         /2L4Z/fyoLPhlY2EduETlYxq2JTfQTMN9xiPilBodK0waJoZwSAjuxiuS7hOU+c4zhS6
+         WZfh1UJnmZTDmu6TPhLI0gKxrppg86RHAVjQ3CiAzWT9FvXQxrsiT88ezOL3knIQ2O8g
+         cFL1DMpyR+ZpF0K5M/ffE4UxkQrPgat9TWrfag/NomI+gzCcn3OG4ygrMal0Dd9KIGF3
+         7jlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747038668; x=1747643468;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IzzZU6pvyYy7YIZ/GFIFCMgtFSutDNrqjC/VQVHvmcs=;
-        b=a6gJHG7Rxic/yulansd6ZmvTG2Q5ZgoJ+PyaaEr5Sk5CH6QfwDI9K3NKZe+HY+PjhQ
-         UgAjBP5tSFPalsuU7d8Fb+4XHeBeelvp0e6jPbFc7iIGcvmrFA0+fJ1d0G8bwbxgcv0B
-         QbZ9a55Pmb2eOZyAJXGKZywGo5p7O09vMNe0qmmPw16qLTE+5J1Myea28bSwvp0wl1sK
-         TzrAlAmJvxF6AbFGwTMoIq2GAhSIoGonuTrSsAlBdpI7FA+r7dLoj8RiH5QdB7+P3zFJ
-         FTEpECf+S5TxrSSm3BNLiDaNZvDGiKuwT9wVHdS8r9R88VS+DIfNNl7FGG01drlLq/rB
-         rX9g==
-X-Forwarded-Encrypted: i=1; AJvYcCUieGRkQfh5OrcJpAFFhF1zr7MCBVllYku+Zlzpzn91RXCjTIP9XbAPMTzuq4vDhXEAli34M2stpms+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYVmyd0PoK+jwex83J6n50ZWk3QhFGRE91tSbR1gegNn0ApTZr
-	e+FyphZwL317gu2uO5rE8rWGr1Z2ZBAtjAi0NNnAiutKy/d3qrxTwY/939ASlUY=
-X-Gm-Gg: ASbGncsxHDj/FrN0gc1lWSL4UT/d5+iQO9TO9EYaINGausJyHVpGuYNrSK5kVzvQ4lU
-	3TMw1Cp0jgfxKaBH52EEOs8OcVHk1nOz3SS6VLZcl92KqUw1nqCureL3/jr1MYbdlLZd9PIeeJB
-	Hy/W8rfEOOgF7mIv1y+WxJ7aHdIF59IZJR/dqiiR5RHppZ5JIqi0bXpehbA6/KihaaM5oCiRCxr
-	PeAq2pUyChrCKbcFn/6Ou6J3vUAspwEBh8mpGKwOCRidD/yoxGoWU5OdM0EZieYIQamNRshGWo6
-	B5qXhiqrg8hJ+WP5R6QD6UEE8Fr4sgdTaMHD6iY7z+DpK5VNXFoBoRk7sWQ=
-X-Google-Smtp-Source: AGHT+IGHNaTbk9KHcwLFc1JRN2apw3Jv/AHhjSrIdSWvDZ8yqVhUcJckbF0S8Q0geEc46Wby78RCbQ==
-X-Received: by 2002:a17:90b:3945:b0:2ee:c6c8:d89f with SMTP id 98e67ed59e1d1-30c3cefe5c1mr22528948a91.14.1747038668235;
-        Mon, 12 May 2025 01:31:08 -0700 (PDT)
-Received: from sunil-laptop ([103.97.166.196])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30ad4fe21a6sm9135565a91.31.2025.05.12.01.30.58
+        d=1e100.net; s=20230601; t=1747038726; x=1747643526;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LRf34OhlthoCURRJkrNeUdtCiJjtjYzGmozcb5W06cc=;
+        b=bE7M/Sj6sUiGZz8BlVksJIxSl/ZG+ZItdHREtvLlLq3nGA81j2/8uarEMx8BQu5IR4
+         3ibjJ1y6CfIeHkVGvBALWi8aDH+o4dQLWuiVTM4DDDPSzVFMz1sDrp0yGN9MvA2VzlDO
+         5+wQozFDIgXMfeVvkgKRzi8HnJDH0KP4R7rPQHPzESTrLwBLBBC8Ay7TVjomVHfTvgJ4
+         Qaz7uGjGwVtLQ2GgWrZWo9rF7dO50SHVn9i6ZZ1mv/D//n31Ir7gHrXY5E6aW8vo7N0/
+         3i7OKijOLrtMjGE11TsPoHGL23JrMtRAj73JbxhYmrjE3qpqp0qyVRp7bhVChfzvZOq0
+         AP9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUfJU/zxjnWQ0APxF7edwJVHgF5cbGE/PC1qSrgkq8HJavo74wLp/RnIDrbxcJ1t6715p/l8qanU6h6@vger.kernel.org, AJvYcCXbhVWE3BdSOVOTYZPSIf6I/gi5PEhY96WcOXm0mrsB4vqa0nK2VXIsJojuQYScTYd8zcFngONWYWiAqJ2w@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgsxBJ0pS4h20zyNpRcumH1g+B3/gaYrp4NDy8dpveLq8I54Nf
+	ZBeIYu50VV1d9XWVGAO3hS3SQJC5G3Epo24TpAnmd3M3SwMsEb+q
+X-Gm-Gg: ASbGncu7Dgqm22LTLwyV7sFpjeFcHVR43xrEEixbHT9Y9S1BTA0Mdcwc81tlxPABoL5
+	5oE2xEq3LGUEBwSTvaYBycwSAKv74Ja2USCW4Pm9y7Nw8t0tpF6atQf81pOAYSNq2rlvaR3odgc
+	sCXoM2JAR10Ffbk0dTip3DVWlhCR3ki7qm1aWWG8IY0A7vw4AoSZed5hJBaXWRSeiCBekH98aUe
+	1idCSpVnjiRs9rnEjjzJlLOusPgewkiKCRK2omjiqv72IuVMU1ysxSfb6Jrw61R2I8rZBwm5sKj
+	5kFr4tjJT4h2tlOdbj//w9Ezh783MNLXHN1vKhugXMFgQlYFkGFB59yDG1iu2cNHSZx1jB/QShc
+	1hdRW05Dla96YaELIqw==
+X-Google-Smtp-Source: AGHT+IFLyw1+CeQAVbmtUz13q1ykyf1UFPus/S6f19r9WIbdnqk2dyGgz47b1uiYjFrRtbD324WHdw==
+X-Received: by 2002:a05:6a21:9017:b0:1f5:7007:9eb8 with SMTP id adf61e73a8af0-215abb046dbmr15477846637.16.1747038726187;
+        Mon, 12 May 2025 01:32:06 -0700 (PDT)
+Received: from openbmc.. (211-23-34-211.hinet-ip.hinet.net. [211.23.34.211])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7423772752csm5437232b3a.45.2025.05.12.01.32.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 May 2025 01:31:07 -0700 (PDT)
-Date: Mon, 12 May 2025 14:00:54 +0530
-From: Sunil V L <sunilvl@ventanamicro.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Anup Patel <apatel@ventanamicro.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 15/23] ACPI: property: Add support for cells property
-Message-ID: <aCGxvuHwd7TzfDOS@sunil-laptop>
-References: <20250511133939.801777-1-apatel@ventanamicro.com>
- <20250511133939.801777-16-apatel@ventanamicro.com>
- <aCGgZPJUQdAnWa-z@smile.fi.intel.com>
+        Mon, 12 May 2025 01:32:05 -0700 (PDT)
+From: Eason Yang <j2anfernee@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	javier.carrasco.cruz@gmail.com,
+	andriy.shevchenko@linux.intel.com,
+	alisadariana@gmail.com,
+	gstols@baylibre.com,
+	olivier.moysan@foss.st.com,
+	tgamblin@baylibre.com,
+	antoniu.miclaus@analog.com,
+	eblanc@baylibre.com,
+	stefan.popa@analog.com,
+	angelogioacchino.delregno@collabora.com,
+	marcelo.schmitt@analog.com,
+	tobias.sperling@softing.com,
+	chanh@os.amperecomputing.com,
+	KWLIU@nuvoton.com,
+	yhyang2@nuvoton.com
+Cc: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Eason Yang <j2anfernee@gmail.com>
+Subject: [PATCH v10 0/2] iio: adc: add Nuvoton NCT7201 ADC driver
+Date: Mon, 12 May 2025 16:31:54 +0800
+Message-Id: <20250512083156.3300006-1-j2anfernee@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aCGgZPJUQdAnWa-z@smile.fi.intel.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Andy,
+Change since version 10:
+ - Fix comments
+ - Add interrupt handler function to call iio_push_event()
 
-On Mon, May 12, 2025 at 10:16:52AM +0300, Andy Shevchenko wrote:
-> On Sun, May 11, 2025 at 07:09:31PM +0530, Anup Patel wrote:
-> > 
-> > Currently, ACPI doesn't support cells property when
-> > fwnode_property_get_reference_args() is called. ACPI always expects the
-> > number of arguments to be passed. However,
-> > fwnode_property_get_reference_args() being a common interface for OF and
-> > ACPI, it is better to have single calling convention which works for
-> > both. Hence, add support for cells property on the reference device to
-> > get the number of arguments dynamically.
-> 
-> You can reformat above to make it deviate less (in terms of line lengths):
-> 
-> Currently, ACPI doesn't support cells property when
-> fwnode_property_get_reference_args() is called. ACPI always expects
-> the number of arguments to be passed. However, the above mentioned
-> call being a common interface for OF and ACPI, it is better to have
-> single calling convention which works for both. Hence, add support
-> for cells property on the reference device to get the number of
-> arguments dynamically.
->
-Sure. Let me update in the next revision. Thanks!
- 
-> ...
-> 
-> > +			if (nargs_prop) {
-> > +				if (!acpi_dev_get_property(device, nargs_prop,
-> > +							   ACPI_TYPE_INTEGER, &obj)) {
-> > +					args_count = obj->integer.value;
-> > +				}
-> > +			}
-> > +
-> 
-> > +			if (nargs_prop) {
-> > +				device = to_acpi_device_node(ref_fwnode);
-> > +				if (!acpi_dev_get_property(device, nargs_prop,
-> > +							   ACPI_TYPE_INTEGER, &obj)) {
-> > +					args_count = obj->integer.value;
-> > +				}
-> > +			}
-> 
-> These two seems to me enough duplicative to have a common helper:
-> 
-> static unsigned int ...(struct acpi_dev *adev, ...)
-> {
-> 	// define an obj variable?
-> 
-> 	if (!nargs_prop)
-> 		return 0;
-> 
-> 	if (acpi_dev_get_property(adev, nargs_prop, ACPI_TYPE_INTEGER, &obj))
-> 		return 0;
-> 
-> 	return obj->integer.value;
-> }
-> 
-> Yes, the nember of LoCs most likely will increase, but the point here is better
-> maintenance experience.
-> 
-Makes sense. Let me do it in the next version.
+Change since version 9:
+ - Fix comments
+ - Change vin_mask and mask from CPU-endian to little-endian
+ - Fix access to restricted __le16
 
-Thanks!
-Sunil
+Change since version 8:
+ - dev_err_probe(), move the definition from device.h to dev_printk.h
+ - Use USEC_PER_MSEC rather than the hard coded value of 1000
+ - Use one dev for both regmap and regmap16
+
+Change since version 7:
+ - Fix comments
+ - Derive dev from the respective regmap
+ - Generate the mask from the number of voltage input channels 
+
+Change since version 6:
+ - Fix comments
+ - Add use_single_read in regmap_config
+ - Remove unused definitions
+ - Do not shadow the return code by -EIO and let regmap API caller to decide
+ - Use simple English in all error messages
+ - Use a local variable for the struct device pointers. This increases 
+   code readability with shortened lines.
+ - Use `fsleep` instead of `mdelay`
+ - Use 16 bits type __le16 instead of u8 data[2]
+
+Change since version 5:
+ - Fix comments
+ - Add NUVOTON NCT7201 IIO DRIVER section in MAINTAINERS
+ - Add vdd-supply and vref-supply to the DT example
+ - Remove mutex since the regmap should already have an internal lock
+ - Remove redundant assigning values
+ - Check errors on regmap_write
+
+Change since version 4:
+ - Fix comments
+ - Add interrupts and reset-gpios to the DT example
+ - Use the FIELD_PREP and FIELD_GET
+ - Add use_single_write in regmap_config
+ - Use regmap_access_table
+
+Change since version 3:
+ - Fix comments
+ - Don't put nct720"x" in the name, just call it nct7201
+ - Remove differential inputs until conversions are finished
+ - Add NCT7201_ prefix in all macros and avoid the tables
+ - Correct event threshold values in raw units
+ - Add with and without interrupt callback function to have the event
+   config part and one that doesn't
+ - Remove print an error message if regmap_wirte failed case
+
+Change since version 2:
+ - Remvoe read-vin-data-size property, default use read word vin data
+ - Use regmap instead of i2c smbus API
+ - IIO should be IIO_CHAN_INFO_RAW and _SCALE not _PROCESSED
+ - Use dev_xxx_probe in probe function and dev_xxx in other functions
+ - Use devm_iio_device_register replace of iio_device_register
+ - Use guard(mutex) replace of mutex_lock
+ - Use get_unaligned_le16 conversion API
+
+Changes since version 1:
+ - Add new property in iio:adc binding document
+ - Add new driver for Nuvoton NCT720x driver
+
+Eason Yang (2):
+  dt-bindings: iio: adc: add NCT7201 ADCs
+  iio: adc: add support for Nuvoton NCT7201
+
+ .../bindings/iio/adc/nuvoton,nct7201.yaml     |  70 +++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/nct7201.c                     | 501 ++++++++++++++++++
+ 5 files changed, 590 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+ create mode 100644 drivers/iio/adc/nct7201.c
+
+-- 
+2.34.1
+
 
