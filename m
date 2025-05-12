@@ -1,152 +1,108 @@
-Return-Path: <devicetree+bounces-176370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 372B9AB3B66
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:55:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6CDBAB3B8E
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:01:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AD093A3F29
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 14:54:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D99819E2408
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:01:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8DA22A1CA;
-	Mon, 12 May 2025 14:55:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A46C23506B;
+	Mon, 12 May 2025 15:01:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="TkQi7MMm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gYvK4ft2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939371DDA1E
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 14:55:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B9A819CC3A;
+	Mon, 12 May 2025 15:01:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747061704; cv=none; b=P06BYeiWguyc4OU2yXHTL033zyQzYcyI7yrIB8dDInnGAIpT3i2Y23lo6wZEvygKML8GN+hCbtcqpNsgYdh5q9hR8JoGGGmNUeZyaztTp5dNOFdNLEFNN57HJothsabJJb9pQ06eI0Mljf4PRjejtwSQGZ8AC/hkHsml91NwYUk=
+	t=1747062063; cv=none; b=FgAwKo0LZE48yYOzbnQZPRaXpC0MC9uGiW9CescIyeykAONI60LzxpMI1fCnTmYyTOjZWnY40K67idstjsB6LYJcPy55/B5h1x9z+ABxQNlEREWsk2BF1Ji2ozbeizYmR4FfFVFhXjgMx163H/z12/yzRntGqRiBIePTKganJHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747061704; c=relaxed/simple;
-	bh=TfizoN1PNxcvVqOJuMUUMdGEwZIx1hKgrz4wCFMOkOo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aapymrWI0StSqTLJNSTWBDJjUf1iYiUc9OCEaM0RH9KDeV5bHsy4BGXv9Ex4BiscTGNqh0mXI0KjghhbtNiH16j4RdGcDx4PtomdH4cOjp9UMtkq3V2xRQxhDH5/w9UlyaiKeY3xyiQF+sHzU2LmoJ//eiL3zKqIiwiDHaG4iXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=TkQi7MMm; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b07d607dc83so3661355a12.1
-        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 07:55:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1747061702; x=1747666502; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=LXdFLk6nepNHBrwLcBaN4w/pS5VkviFYE67anrdFimA=;
-        b=TkQi7MMm39wAdd/5PZF4lXT1T0QTHJkej7pfD9WGD79jz3+MW5/InJzVi9o9DcHjKL
-         cvnznMB+2v4iBtJFoQ8cxnOoHVdli42v7isnOH6qH75Qh/w/lAxeOodEVIIj8jgLlRTW
-         t7tb0ACjRatrxJVZbPwGaSy6PoyRGwGgmeZIc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747061702; x=1747666502;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LXdFLk6nepNHBrwLcBaN4w/pS5VkviFYE67anrdFimA=;
-        b=vctt1qrG8SetByqlRHYC1cZG0pWRosk9z5O2cVPvqJB4k/J7RYla10tLRylUdeLJtA
-         fNuySM2/N0CWOgm9YknnZVEhZMVB+uE6f6s/06MpBsJd+kxygnbjK6lbEruln6uFumx8
-         ou86+t6sGXQ5scdRL1nmfI0+//vxHjWeuGE536C0SorwpGtAxb+x2xyrWdgshGt5xBcl
-         Tvx3BKcdTiLigTHptJnMmthEy8Yk+D1g4rJZLuIaBEHlRks8fYJzRqfBRXplsjPSXH/G
-         eSYXxZiD1DJKwsI+p/4g1PAbW/af9MpgUMqziMVT0aqKyJL1w7f2wu2zyy5esY+uNZvj
-         CzjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVaGCa5AVoVdbn2cxjADw8rng5JfYWW7rvvehTZBFnyhTVqyGEonIJW62uhRRhfoJNtJROqSAuL3EmP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVeEqQnuLDXoqJbSKbX/G8lqmxh+QfeQMMSynC8TixnC4KQtHR
-	R3qUPrxgusIniNV8CbYRYfQIE6mVUIFIJdo6awslmiUSby4duw9FC1waYl3hyg==
-X-Gm-Gg: ASbGnctOEJThjNkqAHViBAvgKCgVYrl9MFjV5Do4yfzdUBpDQtq/BusS3B8VdHXN1VR
-	99DBl1uPAF8msTyKoyJIQVBK5IqNMtVaFmuR9mX8lm66+V6ud60hHZdSUhddlA6V75OBqbZJPBP
-	YvBdwwieVp6WElmxF3AqJ36Cja6LmONrFNVQj+Ha55rrSBhj3wVoRLdnXyfmmdd6Cr2LQvr4W9A
-	ilpcLKk0FljbMhfp+jCzdhQDeLja3RjZt8KJVLCYg0Wm7c32mqAEwNpjh85zICe4oipnFe8Tb62
-	naCgEYxYJndgScse/iCdq7lxkt3i4UjvTYmUudJWIwnQOXVNwAblj47IDSXZk75PTnT1S9/u6mo
-	ErYbgnVPxTbGoK24052+3gb6LdzIbjR9cVZqgv8nuOzpJCGj0psaaJlPLHfzS
-X-Google-Smtp-Source: AGHT+IF2eeSkct7kmHVNH+zwvxbIVsOk3mVXIlF7fNDcpleXoS5FPH8wXIk+h8uVG94zBR2yl4YGbQ==
-X-Received: by 2002:a17:902:e5cf:b0:223:5e54:c521 with SMTP id d9443c01a7336-22fc894f1f8mr189215195ad.0.1747061701820;
-        Mon, 12 May 2025 07:55:01 -0700 (PDT)
-Received: from [192.168.1.24] (90-47-60-187.ftth.fr.orangecustomers.net. [90.47.60.187])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc82c175asm63172555ad.247.2025.05.12.07.54.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 May 2025 07:55:01 -0700 (PDT)
-Message-ID: <ab042f6e-4b2c-48e2-be35-22070273ddcc@broadcom.com>
-Date: Mon, 12 May 2025 16:54:55 +0200
+	s=arc-20240116; t=1747062063; c=relaxed/simple;
+	bh=5C7uw2IAzf+0ahfXX4uyiw4RInjyFvh4Zkir6Ku/wHo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fjFS3o2l+weOLkD0UsSJ6QyebVaJyHPqGyIOd5lM72ZZCqltCM0SQcmKIFO6bU3WzUhjoiDJdlkgwj7NeSTrRmJeqdsJhmKikt2X8rdaNra88mKlfDdyrZqO8LE9PKowuUmQV/SbafQElRcTCNYCmvKWizPslpiPW9pQueUtPFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gYvK4ft2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 786BCC4CEF2;
+	Mon, 12 May 2025 15:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747062062;
+	bh=5C7uw2IAzf+0ahfXX4uyiw4RInjyFvh4Zkir6Ku/wHo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=gYvK4ft2GqhQv20+FT1wp5aUuEc6T1B9JqsClPd9XNOJneKgc1yFmDSf23LIZyAbw
+	 2X4Bdb+dAvMrvelWtS4qmVUkXAHIqHrlMo/XelGJmbk/jHgiXfxgve41fE3vHkN3Ie
+	 9PduUHH2Rv1ycZsMB7rLXT5O/SVYAk3ma1/ZqwKBJf8KNKAT1QC5dFEXtjVxRMthtc
+	 U7LV5qSbK1I4eYHvdFqEmvM13kTSuC1xSeabn7mX/J3x7V8VNL6gB0hRRrFZ6HHsbv
+	 8Pgw6s+yK8EOa8ZHIqjVJBMp1ugHny5zvwWfkdnZTpMZeZz83MMdSN6xD03y7iDNiC
+	 bcGm0et8s6h7A==
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5f6fb95f431so10753842a12.0;
+        Mon, 12 May 2025 08:01:02 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUUJ2CLrKB2JKFxQn0pSLET43AxZVFfByUFa8z4/KplHoApxhWYYGU9/uGirYqJ6fCuKc5TFWetVMZ8@vger.kernel.org, AJvYcCW6Rs//ROvR7RWINq/7U8AgpqOEUBzL0ktr9a51QOUdd9ubp84ZHpo2oQnO3yKe79LB31Js/MNqQsZG0Pd8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDn0+mzdye/B4r6xHo3OpCr2+ii17+gF6Ujo9W0sEV5bUXqJE2
+	ojkNPSUeYEtoV/3ZQpxRIdT4EeNtnzS+cRS1FIOKJdU9otDVouRoa4EVVCylTHutj96AIS6aZus
+	VbWLL0sYPznPncBEPize+4HYE8g==
+X-Google-Smtp-Source: AGHT+IFZbfWKF0hU1sr3jQtNq4U5pRwRKJjmtoMDmn21t01KNRswIOplfLvn34abEZt/poBPFf25QG0+oFit4G41q2A=
+X-Received: by 2002:a17:906:f142:b0:ad2:1255:d95a with SMTP id
+ a640c23a62f3a-ad21255f466mr1132229266b.30.1747062061044; Mon, 12 May 2025
+ 08:01:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: brcm,stb-pcie: Add num-lanes
- property
-To: Jim Quinlan <james.quinlan@broadcom.com>, linux-pci@vger.kernel.org,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250509222815.7082-1-james.quinlan@broadcom.com>
- <20250509222815.7082-2-james.quinlan@broadcom.com>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+References: <20250509222815.7082-1-james.quinlan@broadcom.com> <20250509222815.7082-2-james.quinlan@broadcom.com>
 In-Reply-To: <20250509222815.7082-2-james.quinlan@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 12 May 2025 10:00:49 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKrbCtiMdxCusBwX8-xewQbi1_X6V8rTN+2vfxh4e=Hjw@mail.gmail.com>
+X-Gm-Features: AX0GCFuumEiFtgCX1SqyapCoe6c8e5kN11_tTXkwoByqbbccTk1WS35qw-28a4Y
+Message-ID: <CAL_JsqKrbCtiMdxCusBwX8-xewQbi1_X6V8rTN+2vfxh4e=Hjw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: brcm,stb-pcie: Add num-lanes property
+To: Jim Quinlan <james.quinlan@broadcom.com>
+Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
+	bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 5/10/2025 12:28 AM, Jim Quinlan wrote:
+On Fri, May 9, 2025 at 5:28=E2=80=AFPM Jim Quinlan <james.quinlan@broadcom.=
+com> wrote:
+>
 > Add optional num-lanes property Broadcom STB PCIe host controllers.
-> 
+>
 > Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> ---
+>  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/D=
+ocumentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> index 29f0e1eb5096..f31d654ac3a0 100644
+> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> @@ -107,6 +107,8 @@ properties:
+>        - const: bridge
+>        - const: swinit
+>
+> +  num-lanes: true
 
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
--- 
-Florian
+Why do you need this? It is already allowed by the referenced schemas.
+Though maybe you don't support 16 lanes and need to limit this to
+something less? I would also set 'default' if you do that.
 
+Rob
 
