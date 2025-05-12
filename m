@@ -1,148 +1,142 @@
-Return-Path: <devicetree+bounces-176433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 044AAAB3F44
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 19:33:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82A26AB3F4D
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 19:38:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C97C3A8A86
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:33:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A85A189D44B
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 17:38:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04EB9296D1F;
-	Mon, 12 May 2025 17:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B841295DA6;
+	Mon, 12 May 2025 17:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="kE/5vxOH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gJyN/XEf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02926248F71;
-	Mon, 12 May 2025 17:33:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D872A25178A;
+	Mon, 12 May 2025 17:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747071213; cv=none; b=bn9x78LyOBFheNr3zUhQcJvPAmUDEHblXvTomI61GsLae6LzwENRXKMLcm7PqSWJ7JqJNvkT9MTKVysJW1nuh9XuHFWNVRERpCT//usGffNkgYy4hQ8U1OFhmsN5zIItA7peXpIvmlcvDWN2DTx/f6xHjizf/F2kaMtlv+cPh/s=
+	t=1747071509; cv=none; b=T5/sZto9D3QSbrNqT+Yjse/MSdn+6f/Y++d8F2JSZZGGidnA5yFy0kCSFWdMZAA7PaEVEhB/3FAY2jG6IvmAAQHjH1/BKiTEitI+9BNBnquSROTjswbgmZeaWA6n5765XMUBe7F+hUUNMv97u47wRt7gRBLRPzencrLWavlTkBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747071213; c=relaxed/simple;
-	bh=hUF1s567+qbSPtX2zIZBeWkAIaJckfoue1ZdzRXxzXE=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=N59O1QoFQ71PVEPdNdE+C5xx6RS6mXHSWlONst+isxM8S9X4Ea3wMaHYp7qzaLrU71B7nQA2DhccXVHqR2VZ4tVAq74xuOPIaLvGdBVeLa57PM+YxQ+1SGSnWvMRjxNThdrQkc7hpRkpomObusZ473I7CXEGkiszRbDcQAw1aSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=kE/5vxOH; arc=none smtp.client-ip=134.0.28.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-	by mxout2.routing.net (Postfix) with ESMTP id 6EBA6601D8;
-	Mon, 12 May 2025 17:33:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1747071203;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fOnx2nS8BUGOff4qxVjsY99Ec3z57H2RyW27rvY/0bw=;
-	b=kE/5vxOHk4WeXfDsBzUVJQU1s7TuLuM8EKYi/1mLuGdaNckHloGXV27dRjex99Aw/g9tCf
-	5sOD403GIqwnucydRJ13DZ2OjWkkVt4yPY5+KBN9PYb5IZDHQ8v5WcKJLQ47B1i3U8Utt0
-	p6Te9xqfKW9dvjVR2RoENhB4uVrdvXg=
-Received: from [127.0.0.1] (fttx-pool-194.15.84.99.bambit.de [194.15.84.99])
-	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 238C6360303;
-	Mon, 12 May 2025 17:33:22 +0000 (UTC)
-Date: Mon, 12 May 2025 19:33:22 +0200
-From: Frank Wunderlich <linux@fw-web.de>
-To: Conor Dooley <conor@kernel.org>
-CC: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Frank Wunderlich <frank-w@public-files.de>,
- =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v1_01/14=5D_dt-bindings=3A_n?=
- =?US-ASCII?Q?et=3A_mediatek=2Cnet=3A_update_for_mt7988?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20250512-nibble-freemason-69e0279f2f99@spud>
-References: <20250511141942.10284-1-linux@fw-web.de> <20250511141942.10284-2-linux@fw-web.de> <20250512-nibble-freemason-69e0279f2f99@spud>
-Message-ID: <05760B5E-955E-4E0E-9B69-E762783CC37B@fw-web.de>
+	s=arc-20240116; t=1747071509; c=relaxed/simple;
+	bh=B4UItmh+eVsLgvCOj3orMp50Q1ZLsCdK5SSSrPRn+/0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MyclVCeQDv937qQz/VJ8otu8J+/lygdrchKzt4Zt/+n0PL643AE22erzJdmJ9EVyWjmv/ocTEAFw6vMim1KEecreV4o81SCoH82wqm221JoULg69M2lxJvu7oGad4Uzd0WJ1W6vFVl95LGkEyBgONogNm9ZihK+5nvzDPL32YdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gJyN/XEf; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-22e16234307so50451875ad.0;
+        Mon, 12 May 2025 10:38:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747071507; x=1747676307; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=agBj1Oj+HZoy7ZieZW7PiYBsW88KoSoWswOv+iUWnyQ=;
+        b=gJyN/XEfVoT0xjTXqrlQzLH9I6NQj86xPDgiA2MJd8GEtwLyD8oDmgyJhZdMywVGf4
+         8nPyBX9mgxIeAO6Lx8hMfPFqeMXfnKirfuCPypH2Lg+iV0mjkzyw15YmLyNDgfYkDwRS
+         02GuYpKuDD9q7CFdORwZ8LZ9BtgYPOZPNHUH/6Sc7rBXdTxw140KFHeC0wnaBfYLKhW2
+         YdFAl4BVAS8i1TmCIyWDGiAFCDmEt3xLcPLajZIkV3sDLnrFtZ2nJMGQx5BMCnOsihD+
+         GilropPLCCjWZoekk/YuVvltUvJ8Zkwt9JM/fUxzxKQzSyAA2wnn0ZITP7fo+SUZclbB
+         w9dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747071507; x=1747676307;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=agBj1Oj+HZoy7ZieZW7PiYBsW88KoSoWswOv+iUWnyQ=;
+        b=ZIooBxfavrmuCw0VqXZRi8GOcCcjvcTQuD/Cqouygxrz8r5pYA2Yyptm9X3/QDYzDe
+         NNUKD+LS/pwe3ScpOJGoK3Gu8XjiPfE0njlqHcqAiI7C44/q+8kliaN18R0pFl9SHjtu
+         DvwMex4VYM1mK/q/jyDxUDE8hdBfHrOw7wHxSMN2bTbcIMyuIp8bKK+dyPl6jjQWHuQ4
+         r5h7wePN9s4+9J7UZnw8v6cS7jiopeixuPkUildzGZoBM39dlGdXJk+w/0ypdUeR7rBl
+         CzDoExq3lLuvqf69Y0j+Sb/jI8wiROVXY2V2q3Cs3qre188v8CGV1t0arVMrpF4zxX1e
+         HoEg==
+X-Forwarded-Encrypted: i=1; AJvYcCVD3/iO0Cy62WRWn3OsCUiRHZ+2iOMMkvh8/cM9w2Ik6pxRCixwBVXp4h04SI4lVPL0uMJ/gJ3xO5Li@vger.kernel.org, AJvYcCVRqxD82vc/HxUqNqWH3wwLrZDxEDZ5/ROrlgojt9UGZ1ljE/5hiGwu4ZJigypI0KtqkgDIqhT7Qnrb@vger.kernel.org, AJvYcCW4w/OJgu1NKEg7+YWxBZQHBL3vk0KNk4ebzFKLhwv724xvkslBLynvD3eSGFm0UfBLfQth83ML3FM8vU5v@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5FXqoJrgu7CNhI5jr6vghi0mFlHlZPD1nbF6Ndstjv3Fk/QPA
+	BYKO2oaliIdNdxu+m5R9SxM0QSicrvVtS0OtVsNKFQBo+iSmBXxa
+X-Gm-Gg: ASbGncsKXkAaFZsJtE0cwBVmlNOW1A79K6dyqw7SGNINI8xzU8tC3cbIdEM5NZiCrfy
+	r7ihHNIFHa4KkZIEIIuGIh6tvG1sxqcz75QjOckHg799AMRGIL+ewnkr+dEPRB2rCaB4JHsrTs5
+	bvbBIMbx7F4pscFSMuipASL9j4aEWHell7kF3G4SDvAS0673ila5T0Ekpr2XuMowDzzlLi6kBJn
+	mF6GfWgMvgjSLe1SZ4EH0S7b9OlYBVe5EMM5FPDv2xMlNwvO+t+rQOeXTs8isg9Ar5+dj7RLkrm
+	EqwESaiEalE6oPI3SVXRnm2EN4lmFDuDwd7ls1NfjyOYBg5dlpE8GfRe2enalCXO
+X-Google-Smtp-Source: AGHT+IHQ7QSKHLeCHc3i6ANYoaeCnxFeiKS26unigu1BpiSeyWlgVDCMwVdGWqKDeoN5OkQN+yGMfg==
+X-Received: by 2002:a17:903:1252:b0:22e:457d:3989 with SMTP id d9443c01a7336-2317c40892amr5417005ad.0.1747071506647;
+        Mon, 12 May 2025 10:38:26 -0700 (PDT)
+Received: from localhost.localdomain ([123.16.133.44])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc773e87csm65912945ad.64.2025.05.12.10.38.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 May 2025 10:38:26 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: andy@kernel.org
+Cc: lee@kernel.org,
+	geert@linux-m68k.org,
+	pavel@ucw.cz,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	christophe.jaillet@wanadoo.fr,
+	corbet@lwn.net,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix LED driver
+Date: Tue, 13 May 2025 00:38:00 +0700
+Message-Id: <20250512173800.6767-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <aCGPuKtfprIvwADa@smile.fi.intel.com>
+References: <aCGPuKtfprIvwADa@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mail-ID: 374a0106-a2a0-463f-a626-6a3e8e2d7734
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Am 12=2E Mai 2025 18:21:45 MESZ schrieb Conor Dooley <conor@kernel=2Eorg>:
->On Sun, May 11, 2025 at 04:19:17PM +0200, Frank Wunderlich wrote:
->> From: Frank Wunderlich <frank-w@public-files=2Ede>
->>=20
->> Update binding for mt7988 which has 3 gmac and 2 reg items=2E
->>=20
->> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
->> ---
->>  Documentation/devicetree/bindings/net/mediatek,net=2Eyaml | 9 +++++++-=
--
->>  1 file changed, 7 insertions(+), 2 deletions(-)
->>=20
->> diff --git a/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml =
-b/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
->> index 9e02fd80af83=2E=2E5d249da02c3a 100644
->> --- a/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
->> +++ b/Documentation/devicetree/bindings/net/mediatek,net=2Eyaml
->> @@ -28,7 +28,8 @@ properties:
->>        - ralink,rt5350-eth
->> =20
->>    reg:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 2
->
->This should become an items list, with an explanation of what each of
->the reg items represents=2E
+On Mon, 12 May 2025 Andy Shevchenko wrote:
 
-I would change to this
+> On Sat, May 10, 2025 at 02:48:02PM +0700, Nam Tran wrote:
+> > On Thu, 8 May 2025 Lee Jones wrote:
+> > > On Thu, 08 May 2025, Andy Shevchenko wrote:
+> > > > On Thu, May 8, 2025 at 5:27 PM Nam Tran <trannamatk@gmail.com> wrote:
+> > > > > On Thu, 8 May 2025 Lee Jones wrote:
+> > > > > > On Thu, 08 May 2025, Andy Shevchenko wrote:
 
-  reg:
-    items:
-      - description: Register for accessing the MACs=2E
-      - description: SoC internal SRAM used for DMA operations=2E
-    minItems: 1
+...
 
-Would this be OK this way?
+> > I think setting PWM also same as brightness_set API. However, there are
+> > many PWM config for a LED and it is one of other config to make autonomous mode work.
+> > Therefore, standard led API can use in some use cases only.
+> > 
+> > Please see the link below for a better visualization of how to configure the LP5812.
+> > https://dev.ti.com/gallery/view/LED/LP581x/ver/0.10.0/
+> 
+> To me it sounds like you should start from the small steps, i.e. do not
+> implement everything at once. And starting point of the 4 RGB LEDs sounds
+> the best approach to me. Then, if needed, you can always move on with
+> fancy features of this hardware on top of the existing code.
 
->> =20
->>    clocks:
->>      minItems: 2
->> @@ -381,8 +382,12 @@ allOf:
->>              - const: xgp2
->>              - const: xgp3
->> =20
->> +        reg:
->> +          minItems: 2
->> +          maxItems: 2
->> +
->>  patternProperties:
->> -  "^mac@[0-1]$":
->> +  "^mac@[0-2]$":
->>      type: object
->>      unevaluatedProperties: false
->>      allOf:
->> --=20
->> 2=2E43=2E0
->>=20
+Thanks for the suggestion.
+I understand your point and agree that starting with standard LED APIs is the preferred approach.
 
-Hi Conor
+However, the LP5812 hardware offers more advanced features, and I’d like to support end users all
+features as shown in the link: https://dev.ti.com/gallery/view/LED/LP581x/ver/0.10.0/.
+It is easy for end user to investigate and use driver.
 
-Thank you for review=2E
-regards Frank
+If I want to keep the current driver interface to meet this expectation, would it be acceptable
+to move it to the misc subsystem to better support the hardware?
+
+Best regards,
+Nam Tran
 
