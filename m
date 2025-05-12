@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-176248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB39CAB33F7
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:49:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD169AB33FD
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 11:51:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51B0F1895FE7
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:49:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56ED83A16D1
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AA6A25DD15;
-	Mon, 12 May 2025 09:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AD6B25E45B;
+	Mon, 12 May 2025 09:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fZ4tdJ9K"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DSQdNf3y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3B9625D534;
-	Mon, 12 May 2025 09:49:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C29EC25E474;
+	Mon, 12 May 2025 09:51:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747043360; cv=none; b=cFYj4a9y3UzcLL+l2wJBToF0cJ+Rm2gdAoMx6K5eoNVYyFYiNDH9RSNJE6fNOcTdkF8xst24W10HzpqRcklvg3HhN0sBaXh3h3pN6NALPS0yIKEMXYrXHcZBj4Xk06FUUOBBHd8ipdfWEEhvLTOhUqMDDrVPfRfAaVPJd6tjlYM=
+	t=1747043468; cv=none; b=qAn5Juh4Pk3Zd9tqfOxiHKldYh+XcWBxhFvQ0wnPYuUBooEw2OghtIazfKR+VKvtAdNwyHbmJiwRPFsDCgDYBVH+ET6kmY0MPpKbJK9rFV4GGNd5iZcIvuSb2IBff8ppdq4J2AneSUfY2DUih+T3J62Eu2fpcnF5ne2+8eTyjf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747043360; c=relaxed/simple;
-	bh=jpYUvz75qO13LAZDlSbg8XgjPSCxJnXcxftlVmMNOSg=;
+	s=arc-20240116; t=1747043468; c=relaxed/simple;
+	bh=Qwlu2yntddOz2xUBXEOYnssCZII0Hcy7TnXS2EoQYe8=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=s15njTwhKm+NSEhbQ8N9G69krKcFgAVdpO3HK5fc64JxItEeTMEvnUpIBXkGxdUG8xwCd+BdAR9bmzYeA6D4+kUWmKdMOgWGS0sKxheqn67Ef+o7T/xu+kPtJG9Mk78jjQs0bNtIzUAilPfnMCfr+172Lj01/Xczyd8GnKYOX5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fZ4tdJ9K; arc=none smtp.client-ip=217.70.183.200
+	 MIME-Version:Content-Type; b=ITI1zUprGGgj+N7Cm9a//cbxsmHqIqeslyYZeiebnEaxoIhdxMmEMwxrdxC291gMGFgAQg3kjRJlsBYHpuKD2PzcGDvyQN4fr5zXshrICYN2XYNqzmrqGRfWKy+kjGdAFwx+lh1FDA4T/IaapkZA/Z8WIacQht1fuUaZ60CT2W4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DSQdNf3y; arc=none smtp.client-ip=217.70.183.199
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D05C442D83;
-	Mon, 12 May 2025 09:49:08 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C2D3843970;
+	Mon, 12 May 2025 09:51:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1747043349;
+	t=1747043464;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=jpYUvz75qO13LAZDlSbg8XgjPSCxJnXcxftlVmMNOSg=;
-	b=fZ4tdJ9KQbsp22OuFMUVDIoibqSTugGHnTuexS8Q7TnU8lnSNJhKITvRX/k1pSa27/MvFa
-	swg2lYq+4nuKY6/Hu3dWOR9ps05l2mZzupOrWpmV6VK9bp/3QBjC09Z81xn+apFEi6QWkp
-	bno8YiEoN9rT3rqCxFgm5XL5VLnofQgJtDQinFsuS9WnhRsyRREa5wgRMqIWULdF66pd4R
-	N2vKc3zHMaTPJPnliSTXRBKlEkB5DgXoaCNXdsZpdyOeV103zWFD/+5M5/wFw6VjV9g6Hg
-	Ef1tND6ASnxYLjGse5MZx51Y4NEsfuWj+UQKnV9RUQrSatugDhsBh+tCyryD4A==
+	bh=Qwlu2yntddOz2xUBXEOYnssCZII0Hcy7TnXS2EoQYe8=;
+	b=DSQdNf3yW/iryNmk7IOo4G5I/t6K7F2b8jEIo58/Ep46NmadG3TCBTP2SRVGLCqXvVjpcg
+	hTYXLsDpvo6hcVZKcb7YdspxB3Cde6hP8PkbA3f8mhTi1HMJkFPq/PJh1pRok6WFg9v70h
+	1TiFqxLUD6K6DIx7h9RXId8LEob+kyRxqPG15ITWymiADY2MQNa72v86z5c2GHAqS+2Bp0
+	Bt+PO4DaEA2utWQ1VqWbLGC+s3AaYMZa3g/4ZEPn2UIn2RY+0enSlICl6ckpPW3o+vWWGc
+	RtxH+NJzRPnEAYu6oFXhH/0I7f67i3Ix/npcX4Jq0ZX6kv+CwSOc3daXP1VXRA==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
 To: "Rob Herring (Arm)" <robh@kernel.org>
 Cc: Thomas Gleixner <tglx@linutronix.de>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>,  linux-kernel@vger.kernel.org,
-  devicetree@vger.kernel.org
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+  linux-kernel@vger.kernel.org,  devicetree@vger.kernel.org
 Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
- marvell,cp110-icu to DT schema
-In-Reply-To: <20250505144524.1285795-1-robh@kernel.org> (Rob Herring's message
-	of "Mon, 5 May 2025 09:45:23 -0500")
-References: <20250505144524.1285795-1-robh@kernel.org>
+ marvell,ap806-sei to DT schema
+In-Reply-To: <20250505144749.1290862-1-robh@kernel.org> (Rob Herring's message
+	of "Mon, 5 May 2025 09:47:48 -0500")
+References: <20250505144749.1290862-1-robh@kernel.org>
 User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Mon, 12 May 2025 11:49:08 +0200
-Message-ID: <878qn2kvl7.fsf@bootlin.com>
+Date: Mon, 12 May 2025 11:51:03 +0200
+Message-ID: <87wmamjgxk.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,25 +68,20 @@ Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-GND-State: clean
 X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftddtleehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffgefhjedtfeeigeduudekudejkedtiefhleelueeiueevheekvdeludehiedvfeenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeejpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehtghhlgieslhhinhhuthhrohhnihigrdguvgdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhug
- idqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftddtleegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffgefhjedtfeeigeduudekudejkedtiefhleelueeiueevheekvdeludehiedvfeenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeeipdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehtghhlgieslhhinhhuthhrohhnihigrdguvgdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhit
+ ggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
 X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hi Rob,
+On 05/05/2025 at 09:47:48 -05, "Rob Herring (Arm)" <robh@kernel.org> wrote:
 
-On 05/05/2025 at 09:45:23 -05, "Rob Herring (Arm)" <robh@kernel.org> wrote:
-
-> Convert the Marvell ICU interrupt controller to DT schema format.
+> Convert the Marvell SEI interrupt controller binding to schema format.
+> It's a straight-forward conversion of the typical interrupt controller.
 >
-> Add the missing addressing properties to read and translate child node
-> addresses.
->
-> Drop the legacy binding description and example.
-
-I thought these should be kept, but in general I am fine dropping
-them. Thanks for the conversion.
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
 
 Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
+Thanks,
 Miqu=C3=A8l
 
