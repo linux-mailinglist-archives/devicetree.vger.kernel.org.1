@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-176369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1AA6AB3B42
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:48:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 372B9AB3B66
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:55:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF2AA863F39
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 14:47:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AD093A3F29
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 14:54:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C629722AE7A;
-	Mon, 12 May 2025 14:47:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8DA22A1CA;
+	Mon, 12 May 2025 14:55:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="BN/zqeUq"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="TkQi7MMm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A698322A7E1
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 14:47:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939371DDA1E
+	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 14:55:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747061243; cv=none; b=BxBKXbQP19gSh7te/ZU7adgU3mfQl1Ii0gHWJlno+W18fFWDUi9FWEc+l+kLQ6p9cfRYkGkmtkkTlx6e2BELr4Ieq5Wn/ZRCPYM9nve+6Sdq/vYuj1rTrsgTD3SQ/+tCcg92MCffTQH36xeMo8iCFl/srmaqrISKRcauCcCDOjU=
+	t=1747061704; cv=none; b=P06BYeiWguyc4OU2yXHTL033zyQzYcyI7yrIB8dDInnGAIpT3i2Y23lo6wZEvygKML8GN+hCbtcqpNsgYdh5q9hR8JoGGGmNUeZyaztTp5dNOFdNLEFNN57HJothsabJJb9pQ06eI0Mljf4PRjejtwSQGZ8AC/hkHsml91NwYUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747061243; c=relaxed/simple;
-	bh=V4Ph5xtnAXExwa0AvHsQNBY96hLABXlDrBOSwKl/GUc=;
+	s=arc-20240116; t=1747061704; c=relaxed/simple;
+	bh=TfizoN1PNxcvVqOJuMUUMdGEwZIx1hKgrz4wCFMOkOo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EAvCEE8hLlQy1yaVIi1QhoUCIdCtNeDs0NBxG69m+5eTWuA8ZiDpvPxq++9aGLC2QkSrynEsnFjjCLTlk8sSbOphwjFbUFbBdEnskllh609iYUi5zxhxX+s0T2Pzfh/K5HH/9ApCzlJupFM1n+qq+vaUzPc3VwgTyngf2DQrppM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=BN/zqeUq; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5fc5bc05f99so8766920a12.3
-        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 07:47:20 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=aapymrWI0StSqTLJNSTWBDJjUf1iYiUc9OCEaM0RH9KDeV5bHsy4BGXv9Ex4BiscTGNqh0mXI0KjghhbtNiH16j4RdGcDx4PtomdH4cOjp9UMtkq3V2xRQxhDH5/w9UlyaiKeY3xyiQF+sHzU2LmoJ//eiL3zKqIiwiDHaG4iXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=TkQi7MMm; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b07d607dc83so3661355a12.1
+        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 07:55:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1747061239; x=1747666039; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=m14oScEaTjZatQKNom70YWJQE9ioUexgQ6aHqmSRsUg=;
-        b=BN/zqeUqrqXDS3i7sbj4A93tntjS2lUYe4YIdTli//alO9Xe1SMlTSE0PBmdP84AOY
-         dZqKTZoRLYC7GV/TYX+i3D0dJG6f42cLJfoQXuHhYeOZoqumQSdr0KdIiMH9wPfiQ5lx
-         QY2wZdc5R5Lw0mciAi2Q84Jqs0kA4xbc9v2y9z34F8OzwFvyCMuH5xlioSOYCbkEvbc4
-         Xdk2o2Gw6+Z/M4KGjMlaPnZmyfcct6klZ4EpuP/o3BsDd/8J9UcygcNenNOL7bLb9GE8
-         bfmc1Zx+xnZXVHclRebhHpgiQBOARVoXKjSZjx6rQqv5GvuFHrEyMB4v3G1DKNZK7hJ4
-         xSXg==
+        d=broadcom.com; s=google; t=1747061702; x=1747666502; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=LXdFLk6nepNHBrwLcBaN4w/pS5VkviFYE67anrdFimA=;
+        b=TkQi7MMm39wAdd/5PZF4lXT1T0QTHJkej7pfD9WGD79jz3+MW5/InJzVi9o9DcHjKL
+         cvnznMB+2v4iBtJFoQ8cxnOoHVdli42v7isnOH6qH75Qh/w/lAxeOodEVIIj8jgLlRTW
+         t7tb0ACjRatrxJVZbPwGaSy6PoyRGwGgmeZIc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747061239; x=1747666039;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m14oScEaTjZatQKNom70YWJQE9ioUexgQ6aHqmSRsUg=;
-        b=D7m4xRmylkudyCG72IH9y7AK9dU4Imku5io+YesrYR2rBak5tdrGwTkPMZEnWgMJq1
-         CA2b15WsEQtQnCch+2DUpfcZTsRSjukVTpW/eqVFdp66qBPkkjeLkpxnQm/tTzViIJ3Q
-         b4YPnId3BENW4lqSTVPE+YMTwMn1Aql7gzwaTVQc+pRazogjKdjwngUfVMYD+TeBB/9L
-         8ho+NOEpgRxvBcyEcqoGizFjkTSHn30ub1eq3Nu+/PnQhU7cdBxCl7HhCWgo7dClVgC2
-         ScscHigXAehhxADTiFiQvrr4K6i0gHB3M5nuYyhmB00P29gcdLZraAb2xFVTK8xv0SOC
-         CtFQ==
-X-Gm-Message-State: AOJu0YzM6RUdBoZVqs0qAFi4V5jqrDLWgjOVOjkZ72XhzF6PtqN74CvS
-	MvpappSA5Un8dyIMqhAKPTczIiabGswy1azCN+Iw+306KNCj3F2wY361zewscOE=
-X-Gm-Gg: ASbGnctKBlW3Z8WDMtkDxrTJ4eF72gnSRnJ2QiIlo5xMfdbxgSimMfjzLDrKi/If6c8
-	+TrlxJ/iDGc8RrbzNs6W6UOY9yyraR0jsy4LC04ZmyevgM1X59W2HZ7BmXHjLtbdd9O0rMvw0mB
-	BVqMoiFp3aNku+TXBw14O/7yaUoogUxRpQq8lX29A3aol8UgclRK4DOTf+nDooMtQytk0rQmBMJ
-	6Ihg0wl4yTj4ScVoakq9EhIac6G2+eBQFqNBOB+0NcaxK4kny8rk3/Q9O/IeQFc1pFNHKARn5Yu
-	jYrPc5emUavdATkMWjxSwelbZlThCLvtQNG9cdmV7UaxaojwH+Q8133lb84=
-X-Google-Smtp-Source: AGHT+IE/hLZQy5Y7DCvbr4+of/4o1aU9oPBRNPSjrbd3z0hNDt9f/aX/QapKka7eYc2tafxRyG/spA==
-X-Received: by 2002:a05:6402:42c9:b0:5fc:954e:efb6 with SMTP id 4fb4d7f45d1cf-5fca073136fmr10674228a12.6.1747061238595;
-        Mon, 12 May 2025 07:47:18 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.50])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5fc9cc26483sm5844513a12.22.2025.05.12.07.47.17
+        d=1e100.net; s=20230601; t=1747061702; x=1747666502;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LXdFLk6nepNHBrwLcBaN4w/pS5VkviFYE67anrdFimA=;
+        b=vctt1qrG8SetByqlRHYC1cZG0pWRosk9z5O2cVPvqJB4k/J7RYla10tLRylUdeLJtA
+         fNuySM2/N0CWOgm9YknnZVEhZMVB+uE6f6s/06MpBsJd+kxygnbjK6lbEruln6uFumx8
+         ou86+t6sGXQ5scdRL1nmfI0+//vxHjWeuGE536C0SorwpGtAxb+x2xyrWdgshGt5xBcl
+         Tvx3BKcdTiLigTHptJnMmthEy8Yk+D1g4rJZLuIaBEHlRks8fYJzRqfBRXplsjPSXH/G
+         eSYXxZiD1DJKwsI+p/4g1PAbW/af9MpgUMqziMVT0aqKyJL1w7f2wu2zyy5esY+uNZvj
+         CzjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVaGCa5AVoVdbn2cxjADw8rng5JfYWW7rvvehTZBFnyhTVqyGEonIJW62uhRRhfoJNtJROqSAuL3EmP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVeEqQnuLDXoqJbSKbX/G8lqmxh+QfeQMMSynC8TixnC4KQtHR
+	R3qUPrxgusIniNV8CbYRYfQIE6mVUIFIJdo6awslmiUSby4duw9FC1waYl3hyg==
+X-Gm-Gg: ASbGnctOEJThjNkqAHViBAvgKCgVYrl9MFjV5Do4yfzdUBpDQtq/BusS3B8VdHXN1VR
+	99DBl1uPAF8msTyKoyJIQVBK5IqNMtVaFmuR9mX8lm66+V6ud60hHZdSUhddlA6V75OBqbZJPBP
+	YvBdwwieVp6WElmxF3AqJ36Cja6LmONrFNVQj+Ha55rrSBhj3wVoRLdnXyfmmdd6Cr2LQvr4W9A
+	ilpcLKk0FljbMhfp+jCzdhQDeLja3RjZt8KJVLCYg0Wm7c32mqAEwNpjh85zICe4oipnFe8Tb62
+	naCgEYxYJndgScse/iCdq7lxkt3i4UjvTYmUudJWIwnQOXVNwAblj47IDSXZk75PTnT1S9/u6mo
+	ErYbgnVPxTbGoK24052+3gb6LdzIbjR9cVZqgv8nuOzpJCGj0psaaJlPLHfzS
+X-Google-Smtp-Source: AGHT+IF2eeSkct7kmHVNH+zwvxbIVsOk3mVXIlF7fNDcpleXoS5FPH8wXIk+h8uVG94zBR2yl4YGbQ==
+X-Received: by 2002:a17:902:e5cf:b0:223:5e54:c521 with SMTP id d9443c01a7336-22fc894f1f8mr189215195ad.0.1747061701820;
+        Mon, 12 May 2025 07:55:01 -0700 (PDT)
+Received: from [192.168.1.24] (90-47-60-187.ftth.fr.orangecustomers.net. [90.47.60.187])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc82c175asm63172555ad.247.2025.05.12.07.54.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 May 2025 07:47:18 -0700 (PDT)
-Message-ID: <bcf3089b-04d3-40ad-8673-db0e727fa72e@tuxon.dev>
-Date: Mon, 12 May 2025 17:47:16 +0300
+        Mon, 12 May 2025 07:55:01 -0700 (PDT)
+Message-ID: <ab042f6e-4b2c-48e2-be35-22070273ddcc@broadcom.com>
+Date: Mon, 12 May 2025 16:54:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,62 +80,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] clk: at91: sama7d65: Add missing clk_hw to
- parent_data
-To: Ryan.Wanner@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, mturquette@baylibre.com, sboyd@kernel.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <cover.1746561722.git.Ryan.Wanner@microchip.com>
- <41611e4b1eb2abd867523f707791292c6cdbc8b5.1746561722.git.Ryan.Wanner@microchip.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: brcm,stb-pcie: Add num-lanes
+ property
+To: Jim Quinlan <james.quinlan@broadcom.com>, linux-pci@vger.kernel.org,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+ <linux-rpi-kernel@lists.infradead.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20250509222815.7082-1-james.quinlan@broadcom.com>
+ <20250509222815.7082-2-james.quinlan@broadcom.com>
 Content-Language: en-US
-In-Reply-To: <41611e4b1eb2abd867523f707791292c6cdbc8b5.1746561722.git.Ryan.Wanner@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20250509222815.7082-2-james.quinlan@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi, Ryan,
 
-On 06.05.2025 23:04, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+
+On 5/10/2025 12:28 AM, Jim Quinlan wrote:
+> Add optional num-lanes property Broadcom STB PCIe host controllers.
 > 
-> The main_xtal clk_hw struct is not passed into parent_data.hw causing
-> the main_osc to not have a parent causing a corrupted clock tree.
-> Passing the main_xtal struct into the parent_data struct will
-> ensure the correct parent structure for main_osc and a correct clock
-> tree.
-> 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
-> ---
->  drivers/clk/at91/sama7d65.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/at91/sama7d65.c b/drivers/clk/at91/sama7d65.c
-> index a5d40df8b2f2..1e9d3c393883 100644
-> --- a/drivers/clk/at91/sama7d65.c
-> +++ b/drivers/clk/at91/sama7d65.c
-> @@ -1100,7 +1100,7 @@ static void __init sama7d65_pmc_setup(struct device_node *np)
->  	struct regmap *regmap;
->  	struct clk_hw *hw, *main_rc_hw, *main_osc_hw, *main_xtal_hw;
->  	struct clk_hw *td_slck_hw, *md_slck_hw;
-> -	static struct clk_parent_data parent_data;
-> +	static struct clk_parent_data parent_data = {0};
->  	struct clk_hw *parent_hws[10];
->  	bool bypass;
->  	int i, j;
-> @@ -1138,6 +1138,7 @@ static void __init sama7d65_pmc_setup(struct device_node *np)
->  
->  	parent_data.name = main_xtal_name;
->  	parent_data.fw_name = main_xtal_name;
-> +	parent_data.hw = main_xtal_hw;
+> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
 
-Is this line still needed with the initialization of parent data above:
-
-	static struct clk_parent_data parent_data = {0};
-
->  	main_osc_hw = at91_clk_register_main_osc(regmap, "main_osc", NULL,
->  						 &parent_data, bypass);
->  	if (IS_ERR(main_osc_hw))
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+-- 
+Florian
 
 
