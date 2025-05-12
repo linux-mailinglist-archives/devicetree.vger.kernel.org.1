@@ -1,67 +1,94 @@
-Return-Path: <devicetree+bounces-176160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C538AB2F9C
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:31:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6349AB2FC7
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:39:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D772C3AAB76
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 06:31:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B744189AB58
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 06:39:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33987248F6F;
-	Mon, 12 May 2025 06:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B1D12561A9;
+	Mon, 12 May 2025 06:38:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="aLXGTR5D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vpAZ3/Wm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64600383;
-	Mon, 12 May 2025 06:31:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1042561DC
+	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 06:38:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747031505; cv=none; b=mbO55KQUEABCAo8FRIt8Nu0dYV+C3SUNoWBlVufyi5Iarv5hFELjWNg8u5jYDuVDfopRkVn0NT+Hilb2xWSWfW4lU+aVqZqLEClandBjC11pmcMiGP06KXxuX/Qs8nF7yPBD5y/OMHmsrkdLg2kZcz6WpMtearh8t03j5Nh7HzY=
+	t=1747031929; cv=none; b=FMAkSjqImM6YX3YEB34e5bihLGLQYsqZel6hhMXQa7LZkd3OUvdi1afnIlchfaJEGBflYcKCmma2vfo66kHna+hnfGMsL4K2ShA40/Rnm4RYf9vczoMP1ohR1273AOLA7SCca+kDaFUoyNxBCyZ7xiczDue4AKZBObMXW6a3TIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747031505; c=relaxed/simple;
-	bh=Gcds0uGVhApI2OBDfQK2o4mQTitj8FZo+k89iEOc5ZE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=XF16LK1vRro8xHoV2PN10n6YSu6B8OsaUcAz3gQBaC93nEH3bE+0aOC+OhRpr9Lx1R8V0/rS1294uZdZYoQy6vWsNjlKSB5912JpYxqLPhelHnBP8PNSPbO3GliJepGf4/UsjQLsNk+Zse1XBh65+LJlTGE+xUroIgyWss5GsTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=aLXGTR5D; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54C0FDf2020605;
-	Mon, 12 May 2025 08:31:22 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	sUoE004pjadBnoyOzbjhr4dsGQzt+uhGUkn+RUm/jfg=; b=aLXGTR5Dm8ahbAPz
-	h/QnOMDYyQkQJIF3eVhfKDPuRprrwAD5lFkDgUDHGcYp5UrPOh/yl1IS1DkL0Ybe
-	1a0SRPKUUPfsVHv4F1LDAlIT8mParW3Sf5Td+majFqCEdBFFbaDw0DwwaE3rQfor
-	mVsTnCxVDvPPBvVxbcMjw09CFghV0qqGQbojeoMlok9S9JPlS63uPF1Ce12ABxGN
-	umhshQp4+N/AgDH4ipkcwjDCHS55zcJflyBbyKVvmAvAMmUqlmf0pVYgit0rnBdP
-	4abwiwfuVU9TqQrM5w64RwKiCbpUG/LQJTkonqimRxyCJJ8/jH7ornatrCYkmYHP
-	ZQRi0A==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46jhrmtx8u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 May 2025 08:31:22 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 628C04005C;
-	Mon, 12 May 2025 08:30:28 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B2CFFA4BA4A;
-	Mon, 12 May 2025 08:29:40 +0200 (CEST)
-Received: from localhost (10.48.87.62) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 12 May
- 2025 08:29:40 +0200
-From: Patrice Chotard <patrice.chotard@foss.st.com>
-Date: Mon, 12 May 2025 08:29:33 +0200
-Subject: [PATCH v10 3/3] arm64: dts: st: Add SPI NOR flash support on
- stm32mp257f-ev1 board
+	s=arc-20240116; t=1747031929; c=relaxed/simple;
+	bh=SRofOzVkLTrjhEafbeny8N/bESQdDcOpa1YIDYgmAQ4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=b/ja+Zpm1cFovD7A8uffO8ZB3rIiuQ4o+ESH5wvKlA3o7/DbbEiPoBkoExXFJu0CkJLcjl+hQ2HKViEZyVQ2nVdCeE4YU6ZDnjb5VCv2Otz5AbJzHq2VMOSqJocXFjU5vTSoctHPcPGU924DQwYNLowWKWmVvN4JsEKI8Y8Daw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vpAZ3/Wm; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ab7098af6fdso44673566b.2
+        for <devicetree@vger.kernel.org>; Sun, 11 May 2025 23:38:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747031926; x=1747636726; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EJjA/FXfjTD2FQE71QWuHDCBdzjs/ZNL3lM7sCOkk4k=;
+        b=vpAZ3/Wm/OSsNODrduuEB52zBBcYzTxvdXIvIxfQiNt83ye7nHKdjKn0WYTfouEmEH
+         zsHjsburAnQooOfn865sQ9P6L8wWpHNE6wGi7AZjv60ewrhuuZVlv3P6S31IcjHMIIQW
+         MxXaCPmVZBOauuupi6woAUhFNQYqbgWeVtsCqh+2yr35O2lARUa+dNIb/Utxw0bM3AHF
+         6J96Ma58WMk7DMJPwyAIv7YMgPQe712DMaHTqYLJjPMn9pUI9jHc1lf/MLkoUBZrHseG
+         QgMtV5gRTHdOx/IXJ71OUKMehLpyI07C+ssINUq0AxAf4bZNZvdrtkoZcVaRCzmOkNUh
+         OPCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747031926; x=1747636726;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EJjA/FXfjTD2FQE71QWuHDCBdzjs/ZNL3lM7sCOkk4k=;
+        b=l5M/8R0rawrf2RwCLIqfTZXZjpvMxQYJ7MNicXEHTRJ6louYXrSaUT43G2jaOz4UID
+         P60DXOyccQF2qzMm5QPHIkloHZh5cu427FQlY+asoY+VYG/CIS+gbaxJpPv9TAGwd3uO
+         15qqnTIcZmmykUB2yLM6o9vRYCZd/px9Z4kFZ0sj97sANKiUm3BJ72/1a4gPBzum3ovH
+         8raKYcEAbOz6SAboD8j7y61EJd6Y58ng3Df9sD8Xddf8j84m0xyC4qQUb7wa3k+ED5bi
+         pPuRXyc4q1vLlDEmiLggUiAew2c3qBiPCfVjCBd4q4zJqWhRTEN7dSJFIdKxu0/Y7Zbz
+         q+6g==
+X-Forwarded-Encrypted: i=1; AJvYcCVhHkdnGxKILlPxXte0fISj5bMd8e96I93+2WGGlPHVAncKAkJaVTcG+xJ5wRqaiH2fXWljWU43y+vh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzjHnUJ7KNa9qD8mh1o2/ae8M/T7InahsKyVpWfPCp0S3GRAmO
+	4Hrw8Dy6G1nOEZwQEiBm/l/kcX8iCOreB6GOJ0ru04GX7ufLSDtrJN4ZsDDkrdF79IxJjw5qhBH
+	U
+X-Gm-Gg: ASbGnctMo1CWHYeoECJo3/ZURdfa+Lnh/Q9pCvxE6tXPMMmnjwUSWhhJ8db8Ae8vNMy
+	IXnAwOl1R8jKsMwbeDnBXIGMHpSIi+SON/f4B0AvBuuF+uLRjkX0qADQxNnI0wVa5xKg5aRieF0
+	JWGtJEYG+ugIXthJkSQlDy0R0rzW8EziUw3URMCsZJ2tYgJmOTdGm7p5Q/cAUX2AvuG3N0kYuKs
+	ZiMmChJ4NzfpE3mA+HGHKgCHbwgkqBAUZngej/HpT5AtrXi74nFGuEAVlaO8wvl1ZoYOoJyfmi5
+	tvK9hfoBm8kBTSb0acUqVlxVsNRxh06zbLVlJs8UvAvnUbRYnzQSbaO2U7hzTCpGAy6cX2U=
+X-Google-Smtp-Source: AGHT+IHbNmFFgqP2TaNoo3r8XCJ2lXf2VHRvee7H9H7Ew0FqMOfSppy5wk3G+RtUy3MhkVtZA75gyQ==
+X-Received: by 2002:a17:907:2894:b0:acb:7dde:d88f with SMTP id a640c23a62f3a-ad21975a11fmr359134666b.5.1747031925716;
+        Sun, 11 May 2025 23:38:45 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.222.234])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad219851314sm565951966b.161.2025.05.11.23.38.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 May 2025 23:38:45 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Alexey Charkov <alchark@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20250507-vt8500-timer-updates-v2-4-65e5d1b0855e@gmail.com>
+References: <20250507-vt8500-timer-updates-v2-0-65e5d1b0855e@gmail.com>
+ <20250507-vt8500-timer-updates-v2-4-65e5d1b0855e@gmail.com>
+Subject: Re: (subset) [PATCH v2 4/4] ARM: dts: vt8500: list all four timer
+ interrupts
+Message-Id: <174703192445.30990.13638059295757874601.b4-ty@linaro.org>
+Date: Mon, 12 May 2025 08:38:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,83 +97,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250512-upstream_omm_ospi_dts-v10-3-fca0fbe6d10a@foss.st.com>
-References: <20250512-upstream_omm_ospi_dts-v10-0-fca0fbe6d10a@foss.st.com>
-In-Reply-To: <20250512-upstream_omm_ospi_dts-v10-0-fca0fbe6d10a@foss.st.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
 X-Mailer: b4 0.14.2
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-12_02,2025-05-09_01,2025-02-21_01
 
-Add SPI NOR flash nor support on stm32mp257f-ev1 board.
 
-Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 32 ++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+On Wed, 07 May 2025 10:58:33 +0400, Alexey Charkov wrote:
+> VIA/WonderMedia SoC timer can generate up to four interrupts corresponding
+> to four timer match registers (firing when the 32-bit freerunning clock
+> source counter matches either of the match registers, respectively).
+> 
+> List all four interrupts in device trees.
+> 
+> This also enables the system event timer to use a match register other
+> than 0, which can then in turn be used as a system watchdog (watchdog
+> function is not available on other channels)
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 1b88485a62a1f837770654eee6c970208fef6edc..9d1a1155e36ccc283cb73e51b91f3200ee54a4aa 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -80,6 +80,11 @@ fw@80000000 {
- 			reg = <0x0 0x80000000 0x0 0x4000000>;
- 			no-map;
- 		};
-+
-+		mm_ospi1: mm-ospi@60000000 {
-+			reg = <0x0 0x60000000 0x0 0x10000000>;
-+			no-map;
-+		};
- 	};
- };
- 
-@@ -190,6 +195,33 @@ &i2c8 {
- 	status = "disabled";
- };
- 
-+&ommanager {
-+	memory-region = <&mm_ospi1>;
-+	pinctrl-0 = <&ospi_port1_clk_pins_a
-+		     &ospi_port1_io03_pins_a
-+		     &ospi_port1_cs0_pins_a>;
-+	pinctrl-1 = <&ospi_port1_clk_sleep_pins_a
-+		     &ospi_port1_io03_sleep_pins_a
-+		     &ospi_port1_cs0_sleep_pins_a>;
-+	pinctrl-names = "default", "sleep";
-+	status = "okay";
-+
-+	spi@0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		memory-region = <&mm_ospi1>;
-+		status = "okay";
-+
-+		flash0: flash@0 {
-+			compatible = "jedec,spi-nor";
-+			reg = <0>;
-+			spi-rx-bus-width = <4>;
-+			spi-tx-bus-width = <4>;
-+			spi-max-frequency = <50000000>;
-+		};
-+	};
-+};
-+
- &rtc {
- 	status = "okay";
- };
+Applied, thanks!
 
+[4/4] ARM: dts: vt8500: list all four timer interrupts
+      https://git.kernel.org/krzk/linux-dt/c/e58afb3e1f365badd69aad6f0d53a2c66a63f689
+
+Best regards,
 -- 
-2.25.1
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
