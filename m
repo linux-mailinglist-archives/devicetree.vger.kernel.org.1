@@ -1,145 +1,139 @@
-Return-Path: <devicetree+bounces-176208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEF39AB3206
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 10:46:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7401AB3220
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 10:48:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53DEF3ABA69
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:46:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C37453BDE4F
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89BC2E645;
-	Mon, 12 May 2025 08:46:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC708259CB5;
+	Mon, 12 May 2025 08:47:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MV8Jd179"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538383234;
-	Mon, 12 May 2025 08:46:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15718254872;
+	Mon, 12 May 2025 08:47:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747039591; cv=none; b=npS0ZklR+oTl2MmbNhJE3JZHPRUi927GhSlC3Cgege2GU8ve23J4ufa3RF/MWm2Bv5IOXVaW4IL6TJ8DoEDSiYMoNX4BLsIDB4Bfc6FrYceuqBxdr7WS08b17uPe1ybbaLQBgDV3qC7YaorWTmBQ4Gt+5RsHoGR0LRHAgzhXboI=
+	t=1747039646; cv=none; b=eV8iOmlpyfiJY9x0OmLRM+jBDPBMd7822N4lyppnOpImAUs0dO/+W7lOoeLxRSx1SbYjR04+B2JB31SjjvrXHxhOlaoZbZmevSwxkd2/a7s1yu/NfZDEn5no0jr0voJV7F6VycTMlheVjOoIb/vFxi/WcVjATxrhiZNqMZC8/AM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747039591; c=relaxed/simple;
-	bh=Io5UFZTqm8Lw9JYk0VCOf0VK26C26TuHAeEeKuuS8hg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KdTQIfctZh+/lUo7iF1qBXDvmqA4cfMDjEXynhpmwiSWue39iMvrYMxgDqBURDJBsbb4/V05jnAYj6U9CNMTObkhf0DYi/FWDY8pvGIxCfk62KBOFks3xFKZaQNt4NWlXgks5KXb8VLM+P6Bhoug8FHD3t5+Tpv+9cPQQO8/5WU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-5259327a93bso1464942e0c.2;
-        Mon, 12 May 2025 01:46:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747039587; x=1747644387;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jKOi5KiEbUlTkmRJMN7ZFl6uLQWf/hx3AnyYinhNvrk=;
-        b=rmqWvetrfQeveikRgD+kT1FNvPaUgbLpkJceSelYBd+xfO4lzgwI5QfDxZsSMHTx4g
-         Q6Naf0BhVQHn4EoPRtTY8txhMCfaPqNcZxaLQrQbKq5gS1VgFhcHwAXqnIOsNzPLsl+8
-         xTrv4mZSB245bBCfaq0VmUiUe+LxUdOX3cDzqvuHrq45FSDPe0qUOV7l+b0CUoP2J+zO
-         ZejKaNelH2JKvFddOicHcMhBH7QuqfSbIKhmIrFl8V9ebjadutZF78f3LIR3FefvH7ZV
-         7DltzQDMjBakrTTaafJSwf68Pg6QdJypkB1dAWyQHFQs2akyKpiVotAxZP4zfzooCGqU
-         9bgA==
-X-Forwarded-Encrypted: i=1; AJvYcCV1G+Ov+3CyPln2XeKnnpF9fark4Gq/M8H6rkp4H675II+P7bo/eCtsjq5B4c4IWvoeEY7zrQk2PNx7Sg==@vger.kernel.org, AJvYcCVgPLJdrq328xFOdO302k0Q73IKA78tzexBQGEqtDVJTL/VzW8VvpQaLZRaJyYbSKvyOB5c1Tkf+lfBgjZ/@vger.kernel.org, AJvYcCVj+93n6O9WNcAKUQ8fNwJzHLxUkmjc9Cx8K1/a5nnG4nDscsohc+fFGpPtGMySruA5HiXYvK4mZoFmsQ==@vger.kernel.org, AJvYcCWepsTvNM5U+B95GNomOU3+IUQYTpqxYdDxbTKBTBcYyE+LV7Q4cpPJYBFnFX1UiaSYzXmDwpLqBwV2BePrY4ulCg1f@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywe4aD3lB4GugW7nzU/rG/S85Tzmn9s6nW4ZBbEHdo9FwcCfy2X
-	dxE+Qud8dFB0qGVg4493b+XUMx2PE5LjZUWtfyk8TWNFOq1cXQutDWTre5Tc
-X-Gm-Gg: ASbGncv9t3nrGqC3tN6CvHr6Za0v0ZRjC7NlOWhMaMjEDC+iAMg3tL678INtNDphwbN
-	clfqSCQ//a2M7sYukqz24gDt/V+CBQc70Z5/tRS/Ew4XcnjNXCn7wUtir0BUtf53DzV3QztzARA
-	ac9pRsbxoCVCEvSyS4FZzQ2urTnLKbAPtEOjJtjYTizZ9bXkicipGvvccUSCNnBWuk9dOs8s8yx
-	yNx9CAl2IlfQJN7NF+Y25Ph6I7J7RDucVf/RLchkyNqrmDjurEXAoG65o0gascbf5SM7gru04lo
-	iEmLf2P1xWi3wibVAXCmI4DqFwO/VswVZsJhg3J9RPfR0TWnziray3TZu+oCGNNUJhhXyNg/P5F
-	lglanPaXxTZxsGg==
-X-Google-Smtp-Source: AGHT+IHpKG/i4WSB6zhjanRq5d5u8RVaYmC5MGxRr8rBFabaILxB80pEi39pX72QSQxvrPQ6+JDbDA==
-X-Received: by 2002:a05:6122:1da4:b0:529:373:fcb7 with SMTP id 71dfb90a1353d-52c53cebf52mr7705752e0c.10.1747039587359;
-        Mon, 12 May 2025 01:46:27 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52c538a6f4fsm5237087e0c.43.2025.05.12.01.46.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 May 2025 01:46:26 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4def13d3f01so1028733137.1;
-        Mon, 12 May 2025 01:46:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU9l2OFEUve0PySFuztN1nDsv0bBNijNbeI1sFh9YeZU47U3awebwvhWC+bwudvVQTZ5A0SW0jZTzDVs83NVJhuQ8H6@vger.kernel.org, AJvYcCWEArj0bnTOAc1kjpmROmmZ/fRCnMt0Tl9qUerIybbt+64vGPHDUEWVDFqb1xfh8Ef7DvWZPUfM6S24euKm@vger.kernel.org, AJvYcCWMhjqV8AkRgaLLMJpJTiUwEedSEx2AZWg2goLvSZJlWnSFoAuCdwTw9Rvla/SyIsIn7c7hx9Pwv23dBg==@vger.kernel.org, AJvYcCWNBM2b9KNNigcz6CByJMjBiCECnbqh+kIrmY3B+BEHiT74Tfsk0GEPbE0lKOmREIbFOIHcssx+qonbRA==@vger.kernel.org
-X-Received: by 2002:a05:6102:fa8:b0:4c3:6568:3e18 with SMTP id
- ada2fe7eead31-4deed37048dmr8678078137.15.1747039586713; Mon, 12 May 2025
- 01:46:26 -0700 (PDT)
+	s=arc-20240116; t=1747039646; c=relaxed/simple;
+	bh=pOvpQydW9G7mOb+Bx1viFb769PJHsmY5rTbfQP3cF/g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hl7ELt7A0PZdpaxTsYsd2Qkk8uw4pHgP0pL58u80pE8uxEOLz3YvOqxbfVcIt06sg1D784BGVXdZr9yyNUW/0No1mJGStolypd7X/V8bGX6QNRrcC1hM+x/kLOVXl6YlmZ4F/x+PhDcVCk1C4/NcPWR42KA17u7N/r2JP2K6tVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MV8Jd179; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747039645; x=1778575645;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pOvpQydW9G7mOb+Bx1viFb769PJHsmY5rTbfQP3cF/g=;
+  b=MV8Jd17956e0I6wrDoHp77t7uMKBFrq27XpeS3k6nWx7VIYoXpYsFZWJ
+   IxMMqJDUXkizriVWWtIsO2wzNNzj6NxL2hsegRGsPtHvMaYR24NVCO1Na
+   CeOUsfTUXDorDuQlFaILKUi+j8WAbRXd7GNoleAUUYwfn29PqQqLwLgSs
+   QQaX0t20OT04AANDv5fyGGAVh/EIpWMzGX2M5vy1HZuOGknfyCBGx/hEd
+   lT3EdxjPjvPhNPZergq53j/NZ1WwXYl9SKo0aa7Dy3vdmgfGKxGyNhXPI
+   358KMid0x1bpIWW1/+3g3SDKRKSor6PYTOnsA+dQnmbs/SSuM6h0EivPm
+   Q==;
+X-CSE-ConnectionGUID: htLpHsWXSyieBPqiealx2Q==
+X-CSE-MsgGUID: q+/IkamTRMKRD29AsxjjIA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="48519947"
+X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
+   d="scan'208";a="48519947"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2025 01:47:24 -0700
+X-CSE-ConnectionGUID: 1zLdvAZzQ9qvLMn4jpioTw==
+X-CSE-MsgGUID: l8SgDcjCRKaeYnBn8vMg7A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
+   d="scan'208";a="137005543"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2025 01:47:18 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uEOoc-00000000rkH-49kY;
+	Mon, 12 May 2025 11:47:14 +0300
+Date: Mon, 12 May 2025 11:47:14 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Sunil V L <sunilvl@ventanamicro.com>
+Cc: Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 20/23] mailbox/riscv-sbi-mpxy: Add ACPI support
+Message-ID: <aCG1kqi2w2EUKWyO@smile.fi.intel.com>
+References: <20250511133939.801777-1-apatel@ventanamicro.com>
+ <20250511133939.801777-21-apatel@ventanamicro.com>
+ <aCGjEdNVH3ughITd@smile.fi.intel.com>
+ <aCGzFVXFBVRbMUKz@sunil-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250506192033.77338015@canb.auug.org.au> <CAMuHMdX_K7EA4kE2mqxv+BkfR_oQmcpek2B3LxiYxMjSMfwjAw@mail.gmail.com>
- <CAL_JsqJRw18vN+gXL1H11hMRNQ-6HGS1z2533z7Rb293tSvW6g@mail.gmail.com>
-In-Reply-To: <CAL_JsqJRw18vN+gXL1H11hMRNQ-6HGS1z2533z7Rb293tSvW6g@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 12 May 2025 10:46:15 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXiVW0p5J5tki47YzvYz5eU87kGVdx8dFq522Zv5Qdw5w@mail.gmail.com>
-X-Gm-Features: AX0GCFufQxBxiXNWp_ZGdOOrG3lhvKdPMrPtLr8VTsff-VdHayWXxDxwfI2YNk0
-Message-ID: <CAMuHMdXiVW0p5J5tki47YzvYz5eU87kGVdx8dFq522Zv5Qdw5w@mail.gmail.com>
-Subject: Re: linux-next: build warnings after merge of the renesas tree
-To: Rob Herring <robh@kernel.org>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
-	Linux Next Mailing List <linux-next@vger.kernel.org>, 
-	Devicetree Compiler <devicetree-compiler@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aCGzFVXFBVRbMUKz@sunil-laptop>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Rob,
+On Mon, May 12, 2025 at 02:06:37PM +0530, Sunil V L wrote:
+> On Mon, May 12, 2025 at 10:28:17AM +0300, Andy Shevchenko wrote:
+> > On Sun, May 11, 2025 at 07:09:36PM +0530, Anup Patel wrote:
 
-On Fri, 9 May 2025 at 20:25, Rob Herring <robh@kernel.org> wrote:
-> On Tue, May 6, 2025 at 5:05=E2=80=AFAM Geert Uytterhoeven <geert@linux-m6=
-8k.org> wrote:
-> > On Tue, 6 May 2025 at 11:20, Stephen Rothwell <sfr@canb.auug.org.au> wr=
-ote:
-> > > After merging the renesas tree, today's linux-next build (arm64 defco=
-nfig)
-> > > produced these warnings:
-> > >
-> > > arch/arm64/boot/dts/renesas/r8a779g0.dtsi:1269.24-1283.5: Warning (sp=
-i_bus_bridge): /soc/spi@e6ea0000: incorrect #address-cells for SPI bus
-> > >   also defined at arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.d=
-ts:463.9-478.3
-> > > arch/arm64/boot/dts/renesas/r8a779g0.dtsi:1269.24-1283.5: Warning (sp=
-i_bus_bridge): /soc/spi@e6ea0000: incorrect #size-cells for SPI bus
-> > >   also defined at arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.d=
-ts:463.9-478.3
-> > > arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dtb: Warning (spi_b=
-us_reg): Failed prerequisite 'spi_bus_bridge'
-> > >
-> > > Introduced by commit
-> > >
-> > >   c29748ccad88 ("arm64: dts: renesas: sparrow-hawk: Add MSIOF Sound s=
-upport")
-> >
-> > Thanks, this is a known conflict between SPI bus bindings and dtc:
-> >   - Serial engines that can be SPI controllers must use "spi" as their
-> >     node names,
-> >   - Dtc assumes nodes named "spi" are always SPI controllers.
->
-> I think you can disable 'spi_bus_bridge' warning by overriding or
-> appending DTC_FLAGS in arch/arm64/boot/dts/renesas/Makefile.
+...
 
-Thx, I've sent a fix
-https://lore.kernel.org/fbad3581f297d5b95a3b2813bbae7dba25a523fd.1747039399=
-.git.geert+renesas@glider.be
+> > > +#ifdef CONFIG_ACPI
+> > > +	if (!acpi_disabled)
+> > 
+> > Hmm... Why do you need this check? What for?
+> > 
+> When we boot with DT, ACPI_COMPANION(dev) will return NULL which will
+> cause a crash in acpi_dev_clear_dependencies(). Let me know if I am
+> missing something.
 
-Gr{oetje,eeting}s,
+Yes, just check that the companion is NULL, rather than the above.
 
-                        Geert
+	struct acpi_device *adev;
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+	adev = ACPI_COMPANION(dev);
+	if (adev)
+		acpi_dev_clear_dependencies(adev);
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> > > +		acpi_dev_clear_dependencies(ACPI_COMPANION(dev));
+> > > +#endif
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
