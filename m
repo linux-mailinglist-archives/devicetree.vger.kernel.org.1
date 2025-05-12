@@ -1,69 +1,66 @@
-Return-Path: <devicetree+bounces-176404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1850CAB3DB4
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:35:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD48BAB3DBD
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:37:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EB85161BF1
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:34:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4C1C3AD5BD
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 16:35:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F354025178E;
-	Mon, 12 May 2025 16:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E8F251790;
+	Mon, 12 May 2025 16:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CmcUDIuu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SSyE2Rsh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F73246768;
-	Mon, 12 May 2025 16:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06BBF250BFE;
+	Mon, 12 May 2025 16:36:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747067655; cv=none; b=sqQ6yUkvOZW6K9uoR9AjXNCuTiKNiX1cj9wmWNDxfpYEI9/1GLGO5+B3XigQClQKK2dXwgzonltAo+DUWzlpqZ5uWH0vXY3dAx/j45muzuHqSBofuruG+sInwDbonazZdluzFWc7fO293Y8kFCnVniN/P2ajlsy/tBBks2th3Nw=
+	t=1747067762; cv=none; b=G9Cvk+N7eEAW83w2itgErpRbgtlnMP9WhYunTQICffEROBmlddhroCGAhSZIaIn4hg/3K/7863TxeEjrL1ONr2N4J/2lYDKA9JO6jV29pXhQeN94Gaqlgy5NhRuFDtMzCv3/lWF0LyFhZwvt3Qs7Y+oFlStgdseCNsICXIojBRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747067655; c=relaxed/simple;
-	bh=Lk35CP8LZmPslpsnxWnA0SM9IdKc0rO8t7ScWnmdFIQ=;
+	s=arc-20240116; t=1747067762; c=relaxed/simple;
+	bh=UutJlU+U+PC5vuoNA8XGRVHw2fxOnOzKGMbcX7lytaA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=egDWN2DWvE3OqM+V2cKgvh+Hpie1Q0notlRXLH8jDhT32ufui9ER5dOliun5VfiEGZY1BPH1gNScg15WXSO7CcVmf2kIxGgOew9T3nafDnJ/zDANoezqQINtgMOZ0t5jg1YeA9aQjsZTAgnZ/VyZr9qTsNsbCPbH9OCaUhvLH2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CmcUDIuu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADE71C4CEE7;
-	Mon, 12 May 2025 16:34:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=piJsmuPkMxdcZsJiQu3a/LA1mkd+duo78I5/zFFLV8k4nzd5FkId/ZHTVcpOoWR2LngSjuHsuqAtVcZlXU0YzOWkiViad3xaDKxTvB+dwy3vJn1eg46qe8gi7iyVVt2P5WrCMeg0hrVpORE128AEtNdJ8CUlcBe81drQq4UW4Vc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SSyE2Rsh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47DF3C4CEE7;
+	Mon, 12 May 2025 16:35:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747067655;
-	bh=Lk35CP8LZmPslpsnxWnA0SM9IdKc0rO8t7ScWnmdFIQ=;
+	s=k20201202; t=1747067761;
+	bh=UutJlU+U+PC5vuoNA8XGRVHw2fxOnOzKGMbcX7lytaA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CmcUDIuuOHPFo4k8FQ8G660Ixz6AEAHLKmXznOPhu0w0IXzB0oyIo5gjHB01vB9kf
-	 ZchRsFHHKQpLt/VVANRBPVZYqXRTnWqWPU2zcKLHTDYvIFv+ul1xY9uXlOi+LLHf8y
-	 xRxnBw/xgR9adwcF8zmQdxatg3PK6EFXJ2biKECNfwpjjj23ICfFDJN9koeofULoXz
-	 XuC8I/qBi3Yfm/PMN14RdTUPyyU3m7vlaL0agLpC8441DvNvEHz6qoA1JqeSwdPxhs
-	 54zCmta26CjV6GuGl2lZY0SkCTFwvn0gh9nwUYc65IV8w/jgTA5/JOjfAqwyjSQf2h
-	 SbTXqSvYG8BIw==
-Date: Mon, 12 May 2025 17:34:09 +0100
+	b=SSyE2Rshzk/e7uG3PUwLrxTCh8AkVdBjpx8zmMElp5s2/yjKvmA21DCqT7ros70hC
+	 pbYTmPG8PCxKXvs6IH50TBkQMP/ANIPXjlmQZXxVKZySs+CuCQ8Pf3v1WdOX0ES8dl
+	 dzvSo+pa9CJ5f68urBDVTA7nkH71oVoUMO1hidWV59KzBw4OhxcS01bQhx5JJQUwxi
+	 SBNjxwuAdF0DtjnPmv0T6x2U5pgROpKx2cIB/dJd9algKOwgoJ9HWNzNfvyft6fQlF
+	 0j1JFPKPpogfZ/8Ozgz7QRk7/7ohynTL9Bptk+ycXlA4sfpUeOpoq8/wHmmCLyJwIJ
+	 ae5MElyQ/OTAg==
+Date: Mon, 12 May 2025 17:35:56 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Yunfei Dong <yunfei.dong@mediatek.com>
-Cc: =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Nathan Hebert <nhebert@chromium.org>,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH 01/14] dt-bindings: media: mediatek: vcodec: add decoder
- dt-bindings for mt8196
-Message-ID: <20250512-cilantro-aviation-4328d79e02b6@spud>
-References: <20250510075357.11761-1-yunfei.dong@mediatek.com>
- <20250510075357.11761-2-yunfei.dong@mediatek.com>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Guo Ren <guoren@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] dt-bindings: riscv: add Sophgo x4 EVB bindings
+Message-ID: <20250512-dugout-twenty-4eaf88653c5d@spud>
+References: <cover.1746811744.git.rabenda.cn@gmail.com>
+ <4a9236b67a368423c1bb1a86720dfcd7593f0d1b.1746811744.git.rabenda.cn@gmail.com>
+ <5hn5ywklwlc2cfjeesarg7hcf2knsujloxijzp46o26ox33yzo@6kuf3bkqqigf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,60 +68,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="sMtwU4b+uIOkGgh2"
+	protocol="application/pgp-signature"; boundary="VG9g93rQvIs17bvF"
 Content-Disposition: inline
-In-Reply-To: <20250510075357.11761-2-yunfei.dong@mediatek.com>
+In-Reply-To: <5hn5ywklwlc2cfjeesarg7hcf2knsujloxijzp46o26ox33yzo@6kuf3bkqqigf>
 
 
---sMtwU4b+uIOkGgh2
+--VG9g93rQvIs17bvF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, May 10, 2025 at 03:53:31PM +0800, Yunfei Dong wrote:
-> Add compatible for video decoder on MT8196 platform, which is a
-> lat + single core architecture.
+On Sat, May 10, 2025 at 06:37:00AM +0800, Inochi Amaoto wrote:
+> On Sat, May 10, 2025 at 02:13:29AM +0800, Han Gao wrote:
+> > Add DT binding documentation for the Sophgo x4 EVB board [1].
+> >=20
+> > Link: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG20=
+42-x4-EVB [1]
+> >=20
+> > Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/riscv/sophgo.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Docu=
+mentation/devicetree/bindings/riscv/sophgo.yaml
+> > index ee244c9f75cc..0f93f4cbfc6c 100644
+> > --- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> > @@ -35,6 +35,7 @@ properties:
+> >            - enum:
+> >                - milkv,pioneer
+> >                - sophgo,sg2042-x8evb
+> > +              - sophgo,sg2042-x4evb
+> >            - const: sophgo,sg2042
+> > =20
+> >  additionalProperties: true
+> > --=20
+> > 2.47.2
+> >=20
+>=20
+> Please keep alphabetical order.
 
-Please mention what makes this different from the existing devices since
-a fallback compatible is not permitted.
+Additionally, I think it'd be pretty reasonable to add both of these
+compatibles at the same time since they're variants p much.
 
->=20
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
->  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml           | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subd=
-ev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-s=
-ubdev-decoder.yaml
-> index bf8082d87ac0..74e1d88d3056 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-deco=
-der.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-deco=
-der.yaml
-> @@ -76,6 +76,7 @@ properties:
->        - mediatek,mt8186-vcodec-dec
->        - mediatek,mt8188-vcodec-dec
->        - mediatek,mt8195-vcodec-dec
-> +      - mediatek,mt8196-vcodec-dec
-> =20
->    reg:
->      minItems: 1
-> --=20
-> 2.46.0
->=20
->=20
-
---sMtwU4b+uIOkGgh2
+--VG9g93rQvIs17bvF
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCIjAQAKCRB4tDGHoIJi
-0k0QAQDsVpMhJhlm50bTaTI++/O1PIGlsmy6yib9ZYoDAbRqIgEA3qnCMVVPvuhw
-eIG5A1Me4vqECJW3lsXvK002oVvo+gg=
-=OPXB
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCIjbAAKCRB4tDGHoIJi
+0tR+AP9b1shg4Lu3AUTKYTsqnHrJDBmUrhh7PZoACkE4XpNE9gEAuE9hd5Hl+qrd
+3/aiIfboh3RAGHvZudETddxnf5DulwY=
+=GPQK
 -----END PGP SIGNATURE-----
 
---sMtwU4b+uIOkGgh2--
+--VG9g93rQvIs17bvF--
 
