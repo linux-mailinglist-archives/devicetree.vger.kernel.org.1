@@ -1,265 +1,186 @@
-Return-Path: <devicetree+bounces-176169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53C66AB300D
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:50:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64678AB30C8
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 09:53:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1278189B9ED
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 06:50:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7C083B106C
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 07:52:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0396824BC04;
-	Mon, 12 May 2025 06:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B6D5256C89;
+	Mon, 12 May 2025 07:53:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WAWpT7mN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h23yl+ZA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF2D20326;
-	Mon, 12 May 2025 06:50:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 525FC256C73;
+	Mon, 12 May 2025 07:53:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747032628; cv=none; b=UkRJf5/8+dQ5aOvuA6Hv50Wk/B59a4GE1EQZ+0sItEnYCn7VQCgNzfJ91w+xTSWhAHOxD6lFm7HdZBO8NSJ5g5NeyToR9XfOmx555gkJ6rH5NpkfFwDbZLDOOk+pztsD5iiKcnYc1/vNwjMGUjPsx+L1pJForpJRClEqWRQq2Zc=
+	t=1747036386; cv=none; b=hZCoAH2vmn5aYoDAeoWVjobjdj5mQysEMtOGCplSfWrbQVzFuuTaDB0WXoeRfe4leDrtt4BbI7OTleXZnEnI7tpPvQq6l6Djd6WWlrWwcPb4fwpfgrO+3ryUvhbNdJXAdTcjjZ0QCmKq4VKhaviwRfBtG9gMGuDI9y64zj2rHKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747032628; c=relaxed/simple;
-	bh=rpwMv2y5lJIMTCuyi92paGgTBZ+I6o4sAEGRlxKoMIk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q2CyAYuAGooVjbLYI1ul6vxIK3Y1zbf5rDcxdQ9XAivWVgDLbKvA+Ig7iLD4++VqTMbHpio7RebZ6y90mp7XkiTa/JcuQBMRldJND3lupo9AN7ZaqASlY2Zh8CqTszy3Hul8IwwSmhst9qUbb21lWR0dmKeMETa4FGpGJ2NHWBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WAWpT7mN; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747032628; x=1778568628;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rpwMv2y5lJIMTCuyi92paGgTBZ+I6o4sAEGRlxKoMIk=;
-  b=WAWpT7mNg7JO+KCUVi4jumtAB0ZnhQ0EKWwZd30j66xciMDu2OEZP5f4
-   6l/CWkqUKZMYZHVb6IoqMoFKNzAqHy0UYhpcyJ4npg/UF+lDcfVRsX68o
-   2tGVWVQbLlAAYm9AykJXBOrEPQ+AO0se4g4iHFp1Q5qEagfPhhSvjry5P
-   yPxHxZidRqQ5jP/OcsCbhFBlhQCPkCzm8/XsidsYEfUM3N0r6QhTP+i67
-   kYH+Accf7vRL2tSaXRcp54KZNlDy8WTzS7ffTabsOvhvzlUw8OFAKdfyh
-   7PeUGUlTCsfLAblixpwMG5LitLcIVrYCbooOwW+idvzSMlv75ofuFi6HF
-   w==;
-X-CSE-ConnectionGUID: Pq8jc8F+STmWFn/fuMVbVQ==
-X-CSE-MsgGUID: BsMPO52XTsqj9ePCYnyTYQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="52626346"
-X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
-   d="scan'208";a="52626346"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2025 23:50:27 -0700
-X-CSE-ConnectionGUID: zTNUU3H2QJ+U/O/rAvYgXA==
-X-CSE-MsgGUID: N9xxRReTSjSo9U4ytmnxrQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; 
-   d="scan'208";a="142488645"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2025 23:50:20 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uEMzR-00000000q6E-1z14;
-	Mon, 12 May 2025 09:50:17 +0300
-Date: Mon, 12 May 2025 09:50:17 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 13/23] irqchip: Add driver for the RPMI system MSI
- service group
-Message-ID: <aCGaKXOOWyM4JQMg@smile.fi.intel.com>
-References: <20250511133939.801777-1-apatel@ventanamicro.com>
- <20250511133939.801777-14-apatel@ventanamicro.com>
+	s=arc-20240116; t=1747036386; c=relaxed/simple;
+	bh=isnbYV8jTH6SMpXcosxx1uwezjwExTjsCQIyI0kAwLo=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=n+IGU0mctGOscAnEFYlDTFNU854WVMDtLXVCqY4bhgfpo0781oiX7LV3HVJobVGJTuEcFVHKbeI9lfLYaYudpSVWMzHQB5QlhzKCEfbS17lL7LCwexlnuS77V4/90jEGO1AP4SaIHtu7vpOUj4axOHrHJPOmAczUP7oyOyCqcMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h23yl+ZA; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a0bd7f4cd5so3475738f8f.0;
+        Mon, 12 May 2025 00:53:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747036382; x=1747641182; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zPk+W/jcKj4KahuD3Ov6QRv0TumK9Na5GoaM8Yh7J6k=;
+        b=h23yl+ZAcu2jaUvdupzmj+1h3Sf+aUuDIwvMpZiiZNlKOQqQhFk2BxselezgLX56/C
+         iSer2FigSc1G2/PTG5zGbzToCc0ANPtqHECm1faRauDPmKtJYuY6coYzypWJcjVLuraN
+         xfBt7RlyZG9n032Qv3Jpwynrjuu3QOyJwwGfNAb2MzixfgeeiDHDdh14Ud2rxL1Hzsuj
+         o2k+Duz4sTFJM3CmW/usw01Ig7sChSYfMK7L2KExmQ4yEfLuvRcwuenAM5kDn/EsqW7j
+         sZU2XpvCSDo/rnPZqSk8XXZEipDL60FZAkFLsn6YcrtcpigNmbC4y1B8WYdYBLAEHXgd
+         mTsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747036382; x=1747641182;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=zPk+W/jcKj4KahuD3Ov6QRv0TumK9Na5GoaM8Yh7J6k=;
+        b=kMVdP49lxvVRGOJ3Mn5Wj04bI1PKNaFLvl4tyOiaatMM3rQ//pe83pTd99XdvbT7zd
+         4oj3wlxUzn714m3SC6sNYYFwyUv6OO3iqWU3j/QTFP7QIa2HkVPzZa9OrJxBE3IWZojk
+         +VgJpqw0LhVYHMdN5jx+bo57f91iSl9v5I4dUcJFA2mETzgaTqdvmSoyn6CSn/U0F+TC
+         6OXqURu9MBvQsUVzY/0k+n2kkbLK4Whqd3FPLglNTgMo2HRuZESzbIXFW6F69ySbYDO5
+         qNgZrgTsBn1s+i3RNZBtfDEFAcrsdaXlQma9/uDskUGQp1dzGhi5mvYZvmNPHbLTeMv6
+         xaKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUQoAqve/MAltGwlguTCquV6nnyWGVlAJ8b7KPXtStPhQaPrllhYv7WMDpoAHCrOH9S5kvksFtCcPIh@vger.kernel.org, AJvYcCWSQ146PDzCqzddIsIAEr8asl6NfCUobYCl23XfBx2o77wKfQd7KjFcfWCKLpWL3+Rug+Lb66oJiMIM@vger.kernel.org, AJvYcCWSYxNCAMTZM/VhjENNbU1NQfCVuSExDAyefDIay5yf5z6P8PdhU1lkfRYYH15DKT7kxUETZebI4q2NHnTr@vger.kernel.org
+X-Gm-Message-State: AOJu0YwunfbCEg6lruyzrK3X4ugTLuir4QwSjAbS2h4+yk8EyNSo5w8I
+	62lPFY59Iv9LkQ0G9CVJ83dlw7BazJ6FBHrIoHPM9FStHtgW6Thv
+X-Gm-Gg: ASbGnctx2drIOS7xVhcQMypFyb4ylD9IsVDTL9nAzCrKD0LOUa0wozDvWaNStS+802b
+	zIvFucPG2apn1EXwOqEvTZlSfCaiTVaKSyHCZphIc0BUPugmqsCEQSRq+sxaw4GzP6Ow6UezBCM
+	1BCxDuJ0snsPIaZW7o8CCxb6pc5cp9AHcwTauR6zDJsl2pCCHvCunsc5R7VCdScAoYqrhhHvxur
+	mxtLOhfikExsuYs+X9bPlYHVWvkm9jpx/zTlL3+xl/rnkTO2NS6gku+Hs5tqwpXe4fD3j5Bknht
+	YxbRjWfQ9mdxiFRkU98iZPTcP7QE76tTv4aEKfgLaZWYLLT/D5r4RLikncCgedYcWI1sSuuL/iJ
+	5VUooMf39fW0nNmZSQk+RzNnOqw==
+X-Google-Smtp-Source: AGHT+IGOQ+EFDLGkYtWQu+16fjBJc63uVRNsF6+99EfyeVrzgyeYWZISjDFaq+Wr5JblZR6ChVMnXg==
+X-Received: by 2002:a05:6000:186f:b0:39f:fd4:aec7 with SMTP id ffacd0b85a97d-3a1f643a593mr9745003f8f.7.1747036382394;
+        Mon, 12 May 2025 00:53:02 -0700 (PDT)
+Received: from ?IPv6:2001:818:ea56:d000:56e0:ceba:7da4:6673? ([2001:818:ea56:d000:56e0:ceba:7da4:6673])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a2cf1bsm11686801f8f.72.2025.05.12.00.53.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 May 2025 00:53:01 -0700 (PDT)
+Message-ID: <cb2eabee32d1cb6128a7ef15aae749806ca19541.camel@gmail.com>
+Subject: Re: [PATCH v5 02/10] iio: backend: add support for data alignment
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org, 
+	robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Mon, 12 May 2025 07:53:27 +0100
+In-Reply-To: <20250509105019.8887-3-antoniu.miclaus@analog.com>
+References: <20250509105019.8887-1-antoniu.miclaus@analog.com>
+	 <20250509105019.8887-3-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250511133939.801777-14-apatel@ventanamicro.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Sun, May 11, 2025 at 07:09:29PM +0530, Anup Patel wrote:
-> The RPMI specification defines a system MSI service group which
-> allows application processors to receive MSIs upon system events
-> such as graceful shutdown/reboot request, CPU hotplug event, memory
-> hotplug event, etc.
-> 
-> Add an irqchip driver for the RISC-V RPMI system MSI service group
-> to directly receive system MSIs in Linux kernel.
+On Fri, 2025-05-09 at 13:50 +0300, Antoniu Miclaus wrote:
+> Add backend support for staring the capture synchronization.
+> When activated, it initates a proccess that aligns the sample's most
+> significant bit (MSB) based solely on the captured data, without
+> considering any other external signals.
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
 
-...
+Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
 
-> +/*
-> + * Copyright (C) 2025 Ventana Micro Systems Inc.
+> changes in v5:
+> =C2=A0- add description for data_align function
+> =C2=A0- add suffix for timeout parameter.
+> =C2=A0drivers/iio/industrialio-backend.c | 23 +++++++++++++++++++++++
+> =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 3 +++
+> =C2=A02 files changed, 26 insertions(+)
+>=20
+> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industriali=
+o-
+> backend.c
+> index 038c9e1e2857..545923310f1f 100644
+> --- a/drivers/iio/industrialio-backend.c
+> +++ b/drivers/iio/industrialio-backend.c
+> @@ -796,6 +796,29 @@ int iio_backend_filter_type_set(struct iio_backend *=
+back,
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL_NS_GPL(iio_backend_filter_type_set, "IIO_BACKEND");
+> =C2=A0
+> +/**
+> + * iio_backend_data_align - Perform the data alignment process.
+> + * @back: Backend device
+> + * @timeout_us: Timeout value in us.
+> + *
+> + * When activated, it initates a proccess that aligns the sample's most
+> + * significant bit (MSB) based solely on the captured data, without
+> + * considering any other external signals.
+> + *
+> + * The timeout_us value must be greater than 0.
+> + *
+> + * RETURNS:
+> + * 0 on success, negative error number on failure.
 > + */
-
-It can occupy a single line instead of 3 LoCs.
-
-...
-
-> +#include <linux/bitfield.h>
-> +#include <linux/bitops.h>
-> +#include <linux/cpu.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/irqchip.h>
-> +#include <linux/mailbox_client.h>
-> +#include <linux/mailbox/riscv-rpmi-message.h>
-> +#include <linux/module.h>
-> +#include <linux/msi.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/printk.h>
-> +#include <linux/smp.h>
-
-+ types.h
-
-Actually this one is most clean, the rest of the patches where the new code
-is introduced has semi-random list of the inclusions, please, follow the IWYU
-principle.
-
-...
-
-> +static void rpmi_sysmsi_irq_mask(struct irq_data *d)
+> +int iio_backend_interface_data_align(struct iio_backend *back, u32 timeo=
+ut_us)
 > +{
-> +	struct rpmi_sysmsi_priv *priv = irq_data_get_irq_chip_data(d);
-> +	int ret;
+> +	if (!timeout_us)
+> +		return -EINVAL;
 > +
-> +	ret = rpmi_sysmsi_set_msi_state(priv, d->hwirq, 0);
-
-Please, use the respective getter and the type:
-
-	irq_hw_number_t hwirq = irqd_to_hwirq(d);
-
-Ditto for all other similar cases.
-
-> +	if (ret) {
-> +		dev_warn(priv->dev, "Failed to mask hwirq %d (error %d)\n",
-> +			 (u32)d->hwirq, ret);
-
-No, this is wrong in two ways: usage of specified for signed value and
-passing the unsigned; using explicit casting to something unsigned.
-Instead ofa the explicit casting, find the best formatting specifier
-and use it.
-
-Ditto for  all your code.
-
-> +	}
-> +	irq_chip_mask_parent(d);
+> +	return iio_backend_op_call(back, interface_data_align, timeout_us);
 > +}
-
-...
-
-> +static int rpmi_sysmsi_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct rpmi_sysmsi_priv *priv;
-> +	int rc;
+> +EXPORT_SYMBOL_NS_GPL(iio_backend_interface_data_align, "IIO_BACKEND");
 > +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +	priv->dev = dev;
-> +	platform_set_drvdata(pdev, priv);
-> +
-> +	/* Setup mailbox client */
-> +	priv->client.dev		= priv->dev;
-> +	priv->client.rx_callback	= NULL;
-> +	priv->client.tx_block		= false;
-> +	priv->client.knows_txdone	= true;
-> +	priv->client.tx_tout		= 0;
-> +
-> +	/* Request mailbox channel */
-> +	priv->chan = mbox_request_channel(&priv->client, 0);
-> +	if (IS_ERR(priv->chan))
-> +		return PTR_ERR(priv->chan);
-> +
-> +	/* Get number of system MSIs */
-> +	rc = rpmi_sysmsi_get_num_msi(priv);
-> +	if (rc < 1) {
-> +		mbox_free_channel(priv->chan);
-> +		return dev_err_probe(dev, -ENODEV, "No system MSIs found\n");
-
-Can rc be negative holding an error code? If so, why does the code shadow that?
-
-> +	}
-> +	priv->nr_irqs = rc;
-> +
-> +	/* Set the device MSI domain if not available */
-> +	if (!dev_get_msi_domain(dev)) {
-> +		/*
-> +		 * The device MSI domain for OF devices is only set at the
-> +		 * time of populating/creating OF device. If the device MSI
-> +		 * domain is discovered later after the OF device is created
-> +		 * then we need to set it explicitly before using any platform
-> +		 * MSI functions.
-> +		 */
-> +		if (is_of_node(dev_fwnode(dev)))
-> +			of_msi_configure(dev, to_of_node(dev_fwnode(dev)));
-> +
-> +		if (!dev_get_msi_domain(dev))
-> +			return -EPROBE_DEFER;
-> +	}
-> +
-> +	if (!msi_create_device_irq_domain(dev, MSI_DEFAULT_DOMAIN,
-> +					  &rpmi_sysmsi_template,
-> +					  priv->nr_irqs, priv, priv))
-> +		return dev_err_probe(dev, -ENOMEM, "failed to create MSI irq domain\n");
-> +
-> +	dev_info(dev, "%d system MSIs registered\n", priv->nr_irqs);
-> +	return 0;
-> +}
-
-...
-
-> +/** RPMI system MSI service IDs */
-
-Why does this have a kernel-doc marker?
-
-> +enum rpmi_sysmsi_service_id {
-> +	RPMI_SYSMSI_SRV_ENABLE_NOTIFICATION = 0x01,
-> +	RPMI_SYSMSI_SRV_GET_ATTRIBUTES = 0x2,
-> +	RPMI_SYSMSI_SRV_GET_MSI_ATTRIBUTES = 0x3,
-> +	RPMI_SYSMSI_SRV_SET_MSI_STATE = 0x4,
-> +	RPMI_SYSMSI_SRV_GET_MSI_STATE = 0x5,
-> +	RPMI_SYSMSI_SRV_SET_MSI_TARGET = 0x6,
-> +	RPMI_SYSMSI_SRV_GET_MSI_TARGET = 0x7,
-
-Please, be consistent in the style of values.
-
-> +	RPMI_SYSMSI_SRV_ID_MAX_COUNT,
-
-No comma in the terminator entry.
-
-> +};
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> =C2=A0/**
+> =C2=A0 * iio_backend_ddr_enable - Enable interface DDR (Double Data Rate)=
+ mode
+> =C2=A0 * @back: Backend device
+> diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+> index 5526800f5d4a..a971a83121b7 100644
+> --- a/include/linux/iio/backend.h
+> +++ b/include/linux/iio/backend.h
+> @@ -109,6 +109,7 @@ enum iio_backend_filter_type {
+> =C2=A0 * @debugfs_print_chan_status: Print channel status into a buffer.
+> =C2=A0 * @debugfs_reg_access: Read or write register value of backend.
+> =C2=A0 * @filter_type_set: Set filter type.
+> + * @interface_data_align: Perform the data alignment process.
+> =C2=A0 * @ddr_enable: Enable interface DDR (Double Data Rate) mode.
+> =C2=A0 * @ddr_disable: Disable interface DDR (Double Data Rate) mode.
+> =C2=A0 * @data_stream_enable: Enable data stream.
+> @@ -161,6 +162,7 @@ struct iio_backend_ops {
+> =C2=A0				=C2=A0 unsigned int writeval, unsigned int *readval);
+> =C2=A0	int (*filter_type_set)(struct iio_backend *back,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum iio_backend_filter_typ=
+e type);
+> +	int (*interface_data_align)(struct iio_backend *back, u32 timeout_us);
+> =C2=A0	int (*ddr_enable)(struct iio_backend *back);
+> =C2=A0	int (*ddr_disable)(struct iio_backend *back);
+> =C2=A0	int (*data_stream_enable)(struct iio_backend *back);
+> @@ -203,6 +205,7 @@ int devm_iio_backend_request_buffer(struct device *de=
+v,
+> =C2=A0				=C2=A0=C2=A0=C2=A0 struct iio_dev *indio_dev);
+> =C2=A0int iio_backend_filter_type_set(struct iio_backend *back,
+> =C2=A0				enum iio_backend_filter_type type);
+> +int iio_backend_interface_data_align(struct iio_backend *back, u32 timeo=
+ut_us);
+> =C2=A0int iio_backend_ddr_enable(struct iio_backend *back);
+> =C2=A0int iio_backend_ddr_disable(struct iio_backend *back);
+> =C2=A0int iio_backend_data_stream_enable(struct iio_backend *back);
 
 
