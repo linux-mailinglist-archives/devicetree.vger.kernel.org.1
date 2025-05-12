@@ -1,232 +1,180 @@
-Return-Path: <devicetree+bounces-176198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BCB9AB319A
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 10:28:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61B51AB31AC
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 10:31:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1122E171D9E
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:28:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD7A07A958F
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 08:30:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09849258CE4;
-	Mon, 12 May 2025 08:27:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B8E2550D4;
+	Mon, 12 May 2025 08:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="COXvj/n/"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="N987vsIX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D22962586EB;
-	Mon, 12 May 2025 08:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DF8413AD1C
+	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 08:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747038477; cv=none; b=a9fXrd5aLLAZLEqa9kTG/fGJvlhFUWwoqpnO/ircLzqJouClyqyQz/QsUFrBURDrSxY4Um6EmXgeoVDecxvvbYJGAGMGRKwQYGTlgdy7B8ERhw3CplIvklaxN5kysts80kckr7z9Nm4RGIVJBMH914f0w84uYxkwYSzdjrJbiX8=
+	t=1747038670; cv=none; b=EZn6Wzmymjr/ooIsIouBBCeb7Y0V7OAu72JYCb00RNY/eYsz5L9VE6CDIRpoSEQ7TivLX2k85viq/N5G3M2N5wLyt4oTMTXDbornmcQIDrhkUY5D/7l2CHHjBbQFpKpA0cDMYbu/vplh5CaGxHwiCauBn1DCKuuSJYEafPQCWM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747038477; c=relaxed/simple;
-	bh=foL6Xem9CuBv60/odwYwPM/LICxRkGWLh1HoI9B+9hQ=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=c8WH+QHTMc2RzRYncDk+Qbfn6Y827cLm/k/fZCpIWgbVliqpA/bs2zaDPksyN/6orV3QL/AkLJO/NXBeDN/YpnVFlnx6ZbzGx9FK5sVv5sDHVTGWuLEYNG69GK012MHrsplCTOuZ1GKtThd4xFM9PKA9xGEH1ZyTE/rotG2zCzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=COXvj/n/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32C4EC4CEE7;
-	Mon, 12 May 2025 08:27:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747038477;
-	bh=foL6Xem9CuBv60/odwYwPM/LICxRkGWLh1HoI9B+9hQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=COXvj/n/lGafd9If+jgBkNCvHKMU0efW8jaBs4dmWfGerY8XVfFKuSvPR/+XItlmd
-	 p2EzelamKg7qq/76j6pRBD3toEZ0vX9ZuNW2J/npfSYyLwA6kwKMFcvTPOBozSYWIJ
-	 XqdeOC5DkITmfs12+mzxaiY16usfA9MJwfYNk2qhgueOJRWAS0ebqOqkpdsJuYUk/4
-	 U5m2JyztXdJa8omEIr7u/r6vIyu4G6a6NlDIvzktMlt1uIJTt0AUoXwqvZbkYfVSwh
-	 DlYKKgkUlb4AiKBmSLSP30dXedisMgNJsH2EJLDlczkkmkVFTxjaK/U8nSEJhW+JkK
-	 ghVsz9GcxxNoA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1uEOVu-00E2gE-OX;
-	Mon, 12 May 2025 09:27:54 +0100
-Date: Mon, 12 May 2025 09:27:54 +0100
-Message-ID: <86y0v2fd2t.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1747038670; c=relaxed/simple;
+	bh=VbIsCmNofx1yYvLRGUCQKtW0w8/8EizRNsmeIZAEhcc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MKgJhaMydGLo6jA1LoE89Wv9J1/jhROgKYcWkH8RTxTiaO6QAZ15J8PgSuDPU66zQ6cyaqMk3dolE2ilQtvDKvTfqNA/1VEU7vaLUZDP5cPKMsdxbMBf41hDfqNptz7z0pkuOA0oRahfHD9sjkZLNEHb0rYviQXsYoMQGFkO1w8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=N987vsIX; arc=none smtp.client-ip=209.85.216.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-30a9718de94so3911494a91.0
+        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 01:31:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1747038668; x=1747643468; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=IzzZU6pvyYy7YIZ/GFIFCMgtFSutDNrqjC/VQVHvmcs=;
+        b=N987vsIX6LpBw0SS18D9yiW/8DRwzA6CgPE+ns/F5ohGEQ29zi6a83pTaTqflqioeG
+         KS+Fak6H8zfA7f8xR1JhZHXDdSP8xAbqUtZAPre+sASSwZ+9AuLXYHO1XIHeZQLbW9dg
+         zTtjur3pdhurmiFcWOfeWzznqU6/cvXmTsTZDb9bkIpZrfsBX7KOPeGZBN/czeZyaGne
+         dU2ArzdeEJFNNXudyH+HEKMC2NZSGbRX5rFULJWFkmlR0pbD2O9axXYMeDF6WIBJp/RP
+         0/yJayE3Vnk2CILa7XIFZsFHwHIZfMHEk2TiLj4q+ZcbyWQeL+329VBwyyjLmy58J/+f
+         klgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747038668; x=1747643468;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IzzZU6pvyYy7YIZ/GFIFCMgtFSutDNrqjC/VQVHvmcs=;
+        b=a6gJHG7Rxic/yulansd6ZmvTG2Q5ZgoJ+PyaaEr5Sk5CH6QfwDI9K3NKZe+HY+PjhQ
+         UgAjBP5tSFPalsuU7d8Fb+4XHeBeelvp0e6jPbFc7iIGcvmrFA0+fJ1d0G8bwbxgcv0B
+         QbZ9a55Pmb2eOZyAJXGKZywGo5p7O09vMNe0qmmPw16qLTE+5J1Myea28bSwvp0wl1sK
+         TzrAlAmJvxF6AbFGwTMoIq2GAhSIoGonuTrSsAlBdpI7FA+r7dLoj8RiH5QdB7+P3zFJ
+         FTEpECf+S5TxrSSm3BNLiDaNZvDGiKuwT9wVHdS8r9R88VS+DIfNNl7FGG01drlLq/rB
+         rX9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUieGRkQfh5OrcJpAFFhF1zr7MCBVllYku+Zlzpzn91RXCjTIP9XbAPMTzuq4vDhXEAli34M2stpms+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYVmyd0PoK+jwex83J6n50ZWk3QhFGRE91tSbR1gegNn0ApTZr
+	e+FyphZwL317gu2uO5rE8rWGr1Z2ZBAtjAi0NNnAiutKy/d3qrxTwY/939ASlUY=
+X-Gm-Gg: ASbGncsxHDj/FrN0gc1lWSL4UT/d5+iQO9TO9EYaINGausJyHVpGuYNrSK5kVzvQ4lU
+	3TMw1Cp0jgfxKaBH52EEOs8OcVHk1nOz3SS6VLZcl92KqUw1nqCureL3/jr1MYbdlLZd9PIeeJB
+	Hy/W8rfEOOgF7mIv1y+WxJ7aHdIF59IZJR/dqiiR5RHppZ5JIqi0bXpehbA6/KihaaM5oCiRCxr
+	PeAq2pUyChrCKbcFn/6Ou6J3vUAspwEBh8mpGKwOCRidD/yoxGoWU5OdM0EZieYIQamNRshGWo6
+	B5qXhiqrg8hJ+WP5R6QD6UEE8Fr4sgdTaMHD6iY7z+DpK5VNXFoBoRk7sWQ=
+X-Google-Smtp-Source: AGHT+IGHNaTbk9KHcwLFc1JRN2apw3Jv/AHhjSrIdSWvDZ8yqVhUcJckbF0S8Q0geEc46Wby78RCbQ==
+X-Received: by 2002:a17:90b:3945:b0:2ee:c6c8:d89f with SMTP id 98e67ed59e1d1-30c3cefe5c1mr22528948a91.14.1747038668235;
+        Mon, 12 May 2025 01:31:08 -0700 (PDT)
+Received: from sunil-laptop ([103.97.166.196])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30ad4fe21a6sm9135565a91.31.2025.05.12.01.30.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 May 2025 01:31:07 -0700 (PDT)
+Date: Mon, 12 May 2025 14:00:54 +0530
+From: Sunil V L <sunilvl@ventanamicro.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 20/25] irqchip/gic-v5: Add GICv5 PPI support
-In-Reply-To: <aByLHdktOLUk8HCN@lpieralisi>
-References: <20250506-gicv5-host-v3-0-6edd5a92fd09@kernel.org>
-	<20250506-gicv5-host-v3-20-6edd5a92fd09@kernel.org>
-	<87zffpn5rk.ffs@tglx>
-	<86a57ohjey.wl-maz@kernel.org>
-	<87ecx0mt9p.ffs@tglx>
-	<867c2sh6jx.wl-maz@kernel.org>
-	<874ixwmpto.ffs@tglx>
-	<aBxgceQBRA6vBK7o@lpieralisi>
-	<864ixvh4ss.wl-maz@kernel.org>
-	<aByLHdktOLUk8HCN@lpieralisi>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 15/23] ACPI: property: Add support for cells property
+Message-ID: <aCGxvuHwd7TzfDOS@sunil-laptop>
+References: <20250511133939.801777-1-apatel@ventanamicro.com>
+ <20250511133939.801777-16-apatel@ventanamicro.com>
+ <aCGgZPJUQdAnWa-z@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, sascha.bischoff@arm.com, timothy.hayes@arm.com, Liam.Howlett@oracle.com, mark.rutland@arm.com, jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aCGgZPJUQdAnWa-z@smile.fi.intel.com>
 
-On Thu, 08 May 2025 11:44:45 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> 
-> On Thu, May 08, 2025 at 09:42:27AM +0100, Marc Zyngier wrote:
-> > On Thu, 08 May 2025 08:42:41 +0100,
-> > Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> > > 
-> > > On Wed, May 07, 2025 at 04:57:07PM +0200, Thomas Gleixner wrote:
-> > > > On Wed, May 07 2025 at 14:52, Marc Zyngier wrote:
-> > > > > On Wed, 07 May 2025 14:42:42 +0100,
-> > > > > Thomas Gleixner <tglx@linutronix.de> wrote:
-> > > > >> 
-> > > > >> On Wed, May 07 2025 at 10:14, Marc Zyngier wrote:
-> > > > >> > On Tue, 06 May 2025 16:00:31 +0100,
-> > > > >> > Thomas Gleixner <tglx@linutronix.de> wrote:
-> > > > >> >> 
-> > > > >> >> How does this test distinguish between LEVEL_LOW and LEVEL_HIGH? It only
-> > > > >> >> tests for level, no? So the test is interesting at best ...
-> > > > >> >
-> > > > >> > There is no distinction between HIGH and LOW, RISING and FALLING, in
-> > > > >> > any revision of the GIC architecture.
-> > > > >> 
-> > > > >> Then pretending that there is a set_type() functionality is pretty daft
-> > > > >
-> > > > > You still need to distinguish between level and edge when this is
-> > > > > programmable (which is the case for a subset of the PPIs).
-> > > > 
-> > > > Fair enough, but can we please add a comment to this function which
-> > > > explains this oddity.
-> > > 
-> > > Getting back to this, I would need your/Marc's input on this.
-> > > 
-> > > I think it is fair to remove the irq_set_type() irqchip callback for
-> > > GICv5 PPIs because there is nothing to set, as I said handling mode
-> > > for these IRQs is fixed. I don't think this can cause any trouble
-> > > (IIUC a value within the IRQF_TRIGGER_MASK should be set on requesting
-> > > an IRQ to "force" the trigger to be programmed and even then core code
-> > > would not fail if the irq_set_type() irqchip callback is not
-> > > implemented).
-> > > 
-> > > I am thinking about *existing* drivers that request GICv3 PPIs with
-> > > values in IRQF_TRIGGER_MASK set (are there any ? Don't think so but you
-> > > know better than I do), when we switch over to GICv5 we would have no
-> > > irq_set_type() callback for PPIs but I think we are still fine, not
-> > > implementing irqchip.irq_set_type() is correct IMO.
+Hi Andy,
+
+On Mon, May 12, 2025 at 10:16:52AM +0300, Andy Shevchenko wrote:
+> On Sun, May 11, 2025 at 07:09:31PM +0530, Anup Patel wrote:
 > > 
-> > Nobody seems to use a hardcoded trigger (well, there is one exception,
-> > but that's to paper over a firmware bug).
+> > Currently, ACPI doesn't support cells property when
+> > fwnode_property_get_reference_args() is called. ACPI always expects the
+> > number of arguments to be passed. However,
+> > fwnode_property_get_reference_args() being a common interface for OF and
+> > ACPI, it is better to have single calling convention which works for
+> > both. Hence, add support for cells property on the reference device to
+> > get the number of arguments dynamically.
 > 
-> That's what I get if I remove the PPI irq_set_type() callback (just one
-> timer, removed others because they add nothing) and enable debug for
-> kernel/irq/manage.c (+additional printout):
+> You can reformat above to make it deviate less (in terms of line lengths):
 > 
->  genirq: No set_type function for IRQ 70 (GICv5-PPI)
->   __irq_set_trigger+0x13c/0x180
->   __setup_irq+0x3d8/0x7c0
->   __request_percpu_irq+0xbc/0x114
->   arch_timer_register+0x84/0x140
->   arch_timer_of_init+0x180/0x1d0
->   timer_probe+0x74/0x124
->   time_init+0x18/0x58
->   start_kernel+0x198/0x384
->   __primary_switched+0x88/0x90
+> Currently, ACPI doesn't support cells property when
+> fwnode_property_get_reference_args() is called. ACPI always expects
+> the number of arguments to be passed. However, the above mentioned
+> call being a common interface for OF and ACPI, it is better to have
+> single calling convention which works for both. Hence, add support
+> for cells property on the reference device to get the number of
+> arguments dynamically.
+>
+Sure. Let me update in the next revision. Thanks!
+ 
+> ...
 > 
->  arch_timer: check_ppi_trigger irq 70 flags 8
->  genirq: enable_percpu_irq irq 70 type 8
->  genirq: No set_type function for IRQ 70 (GICv5-PPI)
->   __irq_set_trigger+0x13c/0x180
->   enable_percpu_irq+0x100/0x140
->   arch_timer_starting_cpu+0x54/0xb8
->   cpuhp_issue_call+0x254/0x3a8
->   __cpuhp_setup_state_cpuslocked+0x208/0x2c8
->   __cpuhp_setup_state+0x50/0x74
->   arch_timer_register+0xc4/0x140
->   arch_timer_of_init+0x180/0x1d0
->   timer_probe+0x74/0x124
->   time_init+0x18/0x58
->   start_kernel+0x198/0x384
->   __primary_switched+0x88/0x90
+> > +			if (nargs_prop) {
+> > +				if (!acpi_dev_get_property(device, nargs_prop,
+> > +							   ACPI_TYPE_INTEGER, &obj)) {
+> > +					args_count = obj->integer.value;
+> > +				}
+> > +			}
+> > +
 > 
-> I noticed that, if the irq_set_type() function is not implemented,
-> we don't execute (in __irq_set_trigger()):
+> > +			if (nargs_prop) {
+> > +				device = to_acpi_device_node(ref_fwnode);
+> > +				if (!acpi_dev_get_property(device, nargs_prop,
+> > +							   ACPI_TYPE_INTEGER, &obj)) {
+> > +					args_count = obj->integer.value;
+> > +				}
+> > +			}
 > 
-> irq_settings_set_level(desc);
-> irqd_set(&desc->irq_data, IRQD_LEVEL);
+> These two seems to me enough duplicative to have a common helper:
 > 
-> which in turn means that irqd_is_level_type(&desc->irq_data) is false
-> for PPIs (ie arch timers, despite being level interrupts).
+> static unsigned int ...(struct acpi_dev *adev, ...)
+> {
+> 	// define an obj variable?
 > 
-> An immediate side effect is that they show as edge in:
+> 	if (!nargs_prop)
+> 		return 0;
 > 
-> /proc/interrupts
+> 	if (acpi_dev_get_property(adev, nargs_prop, ACPI_TYPE_INTEGER, &obj))
+> 		return 0;
 > 
-> but that's just what I could notice.
+> 	return obj->integer.value;
+> }
 > 
-> Should I set them myself in PPI translate/alloc functions ?
+> Yes, the nember of LoCs most likely will increase, but the point here is better
+> maintenance experience.
+> 
+Makes sense. Let me do it in the next version.
 
-When I say "do it in alloc", I mean "do whatever is needed to set
-things up so that we can safely ignore the absence of the
-.irq_set_type() callback -- this may even include some slight
-modification of the core code, but that's not big deal".
-
-> Removing the irq_set_type() for PPIs does not seem so innocuous, it is a
-> bit complex to check all ramifications, please let me know if you spot
-> something I have missed.
-
-See above.
-
-> 
-> > > On the other hand, given that on GICv5 PPI handling mode is fixed,
-> > > do you think that in the ppi_irq_domain_ops.translate() callback,
-> > > I should check the type the firmware provided and fail the translation
-> > > if it does not match the HW hardcoded value ?
-> > 
-> > Why? The fact that the firmware is wrong doesn't change the hardware
-> > integration. It just indicates that whoever wrote the firmware didn't
-> > read the documentation.
-> > 
-> > Even more, I wonder what the benefit of having that information in the
-> > firmware tables if the only thing that matters in the immutable HW
-> > view. Yes, having it in the DT/ACPI simplifies the job of the kernel
-> > (only one format to parse). But it is overall useless information.
-> 
-> Yes, that I agree but it would force firmware bindings to special case
-> PPIs to remove the type (#interrupt-cells and co.).
-> 
-> From what I read I understand I must ignore the PPI type provided by
-> firmware.
-
-You could warn on spotting that is inconsistent, but the HW view is
-the only one that actually matters.
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Thanks!
+Sunil
 
