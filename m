@@ -1,106 +1,230 @@
-Return-Path: <devicetree+bounces-176352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A227AB39A3
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:48:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CC7EAB39B6
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 15:54:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBB6517FB6E
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:48:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 082303A40EF
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 13:54:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E9531B87C9;
-	Mon, 12 May 2025 13:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580FC1DACA1;
+	Mon, 12 May 2025 13:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dVcbS+6a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pyqmf/SL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33CD7219E4;
-	Mon, 12 May 2025 13:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C571D932F;
+	Mon, 12 May 2025 13:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747057713; cv=none; b=R7nPNwtjpL8y/jk2QxUc5m1A6BcREiYeSaEZVD52iJtMV9h8OTFY6oOO6inAYslB2D5ywLWJWPN0017V10xujZcaRg11679u6+wGmA0zJg00m9GQPd3gOLtImP0pmJGvc5b/RWMnU3NAtFC4rcP4sbpAIGOzv2rLdCowoCtBjE0=
+	t=1747058054; cv=none; b=g0YrnZiyycnPgFYlofu+8dIMi2ih1yFbgT48gIg/Newsj/O5eFOX32fxZh61Wqp2Ti7R+RBEs9AT0dqBtsQ81H39s/wtAYUlLN9tR1hpDuTi2h388T57blsmqQV1P8ApY9ngk6F0o1gL4qkqLBGZiBR4tldzh9Yg/veb5NQr/3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747057713; c=relaxed/simple;
-	bh=ZtcN5AbkC6JRxscSzpTZ6yhbH1um53//UF1LbMyQjx8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=F5wA7IQiXy9J6+dNfYOU1qlTFVVGVC3Oj/JN/6k4VJWTt9AWilsrhVfAExdxCNXGBqlM5jtQ+tMJy77P6f/o0oH1fT1EkJJFyz8KNN+4hNOClT3/obUx0sfaiVbeu9Hfm/QxCUplprqARnfzousgSGKGBSsGv71TDovNWNXfyZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dVcbS+6a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BA2BC4CEEF;
-	Mon, 12 May 2025 13:48:29 +0000 (UTC)
+	s=arc-20240116; t=1747058054; c=relaxed/simple;
+	bh=kkei6kQ/IroDw4Fur6pVY2ogMklH5DkvVsA3sBxm1tI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Frs3RysJjDf9rSTjfTEBCDDY64Df0nVy0GxtpxOBwvXJ//51SA5zA2bzPBWqntLE7OjlnzfB5ojFXIxTFs2zcztY0SCG/tLeRl8+HUVw7tI7dKAQsZIoj18pjdvSyJ2g2usTmQeTfKbfKhM0Kj439r01i+wY8rqMSZLUqyM3/SM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pyqmf/SL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BD09C4CEED;
+	Mon, 12 May 2025 13:54:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747057711;
-	bh=ZtcN5AbkC6JRxscSzpTZ6yhbH1um53//UF1LbMyQjx8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=dVcbS+6a89aPGN7YF1tPHEst6vPTmCaJEw3geIxrbuxAZY7qMMT6GEQHe2sm98oCn
-	 CmAdmkp5b5Y6ykcZrLjp6rKhEXOofLIuIs+L1HBAK9n5qmvok9JYtK4uucb3luySvX
-	 xenRAyO7edwT+3OD6NOxtRm1iyhdvKeUsBGr2NAgqOEGE5CNROG+5FpxA1L/E9xc4M
-	 hjUy5cP4/jXoVcCFcoYKSZnI6y3E9SpGJ0Zz5S5X2AuTbQ8CQ7pVtzsTMyg0H4dXc/
-	 c/YM3/oV4skQ38V57vibpr2kW3XX/6trfXQAEBdPQGrNhKu1fXSvZ8Elv5Y0dOjM76
-	 OhM+/+O1Kiw7g==
-From: Conor Dooley <conor@kernel.org>
-To: linux-renesas-soc@vger.kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Ben Zong-You Xie <ben717@andestech.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v2 2/2] riscv: dts: renesas: add specific RZ/Five cache compatible
-Date: Mon, 12 May 2025 14:48:15 +0100
-Message-ID: <20250512-sphere-plenty-8ce4cd772745@spud>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250512-daily-saga-36a3a017dd42@spud>
-References: <20250512-daily-saga-36a3a017dd42@spud>
+	s=k20201202; t=1747058053;
+	bh=kkei6kQ/IroDw4Fur6pVY2ogMklH5DkvVsA3sBxm1tI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Pyqmf/SLA/LwKJg+pwa5MUD/nxp2c7FWrFKH1D9IT4ZwCUnaDqX7//vN9MD4Yfdbu
+	 h9UxRliqc4Mx8pOlV5yDf6KFPUYKL6eJyb6THtLFYOgqMgZHNt949QRSKQGllEkzay
+	 rVLMsD/QbYmkgGyqwvxHhb+TAVverxe/Hl2tZAgANNbgCTBsJr/4/ip/L3VvWUjIEm
+	 E8dUHxzWVR3/65v7MA10Jznv/WUYteythFNX+gMsTObgJYLZAxwuyqG3gYRPr8+5f8
+	 dQbKviVJEISyxF60XIzek9+6zEo79om7Y78KeIR+mcTs9e1Y9Kxjybifz6bNJZTgyW
+	 l9q8FedEXwnYw==
+Date: Mon, 12 May 2025 15:54:07 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v4 9/9] samples: rust: platform: Add property read
+ examples
+Message-ID: <aCH9f35BJ93ebWiB@pollux>
+References: <20250504173154.488519-1-remo@buenzli.dev>
+ <20250504173154.488519-10-remo@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1260; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=ybCPqZEqw4uWvO05OQd8ua1QcdWR7/7pRvsx7RcK7bg=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDBmKf2QnyJscNLaJb6tofyZ/7prgnseHPl9o4bW49FpbY Tn72WrpjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEzkWBDDX5FTBssymqYJrnuS 997tyvr+/fHndz+JcrBd4LfqYsKPLA6GfzorrtV+q2jR4S5c5nZoPueNJxoan99dPskQufvrvkn 2l1kB
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250504173154.488519-10-remo@buenzli.dev>
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Sun, May 04, 2025 at 07:31:54PM +0200, Remo Senekowitsch wrote:
+> Add some example usage of the device property read methods for
+> DT/ACPI/swnode properties.
+> 
+> Co-developed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+> ---
+>  drivers/of/unittest-data/tests-platform.dtsi |  3 +
+>  samples/rust/rust_driver_platform.rs         | 71 +++++++++++++++++++-
+>  2 files changed, 72 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/of/unittest-data/tests-platform.dtsi b/drivers/of/unittest-data/tests-platform.dtsi
+> index 4171f43cf01cc..50a51f38afb60 100644
+> --- a/drivers/of/unittest-data/tests-platform.dtsi
+> +++ b/drivers/of/unittest-data/tests-platform.dtsi
+> @@ -37,6 +37,9 @@ dev@100 {
+>  			test-device@2 {
+>  				compatible = "test,rust-device";
+>  				reg = <0x2>;
+> +
+> +				test,u32-prop = <0xdeadbeef>;
+> +				test,i16-array = /bits/ 16 <1 2 (-3) (-4)>;
+>  			};
+>  		};
+>  
+> diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
+> index 8b42b3cfb363a..a04ff4afb1325 100644
+> --- a/samples/rust/rust_driver_platform.rs
+> +++ b/samples/rust/rust_driver_platform.rs
+> @@ -2,7 +2,7 @@
+>  
+>  //! Rust Platform driver sample.
+>  
+> -use kernel::{c_str, device::Core, of, platform, prelude::*, types::ARef};
+> +use kernel::{c_str, device::Core, of, platform, prelude::*, str::CString, types::ARef};
+>  
+>  struct SampleDriver {
+>      pdev: ARef<platform::Device>,
+> @@ -25,18 +25,85 @@ fn probe(
+>          pdev: &platform::Device<Core>,
+>          info: Option<&Self::IdInfo>,
+>      ) -> Result<Pin<KBox<Self>>> {
+> +        let dev = pdev.as_ref();
+> +
+>          dev_dbg!(pdev.as_ref(), "Probe Rust Platform driver sample.\n");
+>  
+>          if let Some(info) = info {
+> -            dev_info!(pdev.as_ref(), "Probed with info: '{}'.\n", info.0);
+> +            dev_info!(dev, "Probed with info: '{}'.\n", info.0);
 
-When the binding was originally written, it was assumed that all
-ax45mp-caches had the same properties etc. This has turned out to be
-incorrect, as the QiLai SoC has a different number of cache-sets.
+You switch to use dev here, but not for dev_dbg() above.
 
-Add a specific compatible for the RZ/Five for property enforcement and
-in case there turns out to be additional differences between these
-implementations of the cache controller.
+>          }
+>  
+> +        Self::properties_parse(dev)?;
 
-Acked-by: Ben Zong-You Xie <ben717@andestech.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/renesas/r9a07g043f.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Let's just use pdev.as_ref() here too.
 
-diff --git a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-index e0ddf8f602c79..a8bcb26f42700 100644
---- a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-+++ b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-@@ -143,7 +143,8 @@ plic: interrupt-controller@12c00000 {
- 	};
- 
- 	l2cache: cache-controller@13400000 {
--		compatible = "andestech,ax45mp-cache", "cache";
-+		compatible = "renesas,r9a07g043f-ax45mp-cache", "andestech,ax45mp-cache",
-+			     "cache";
- 		reg = <0x0 0x13400000 0x0 0x100000>;
- 		interrupts = <SOC_PERIPHERAL_IRQ(476) IRQ_TYPE_LEVEL_HIGH>;
- 		cache-size = <0x40000>;
--- 
-2.45.2
+> +
+>          let drvdata = KBox::new(Self { pdev: pdev.into() }, GFP_KERNEL)?;
+>  
+>          Ok(drvdata.into())
+>      }
+>  }
+>  
+> +impl SampleDriver {
+> +    fn properties_parse(dev: &kernel::device::Device) -> Result<()> {
 
+Please refer to this as &device::Device, i.e. import kernel::device. You should
+also be able to just use Result, without the generic.
+
+> +        let fwnode = dev.fwnode().ok_or(ENOENT)?;
+> +
+> +        if let Ok(idx) =
+> +            fwnode.property_match_string(c_str!("compatible"), c_str!("test,rust-device"))
+> +        {
+> +            dev_info!(dev, "matched compatible string idx = {}\n", idx);
+> +        }
+> +
+> +        if let Ok(str) = fwnode
+> +            .property_read::<CString>(c_str!("compatible"))
+> +            .required_by(dev)
+> +        {
+> +            dev_info!(dev, "compatible string = {:?}\n", str);
+> +        }
+
+And else? Why do you ignore a potential error?
+
+> +
+> +        let prop = fwnode.property_read_bool(c_str!("test,bool-prop"));
+> +        dev_info!(dev, "bool prop is {}\n", prop);
+
+Let's use a consistent style for all those prints, e.g. '$name'='$value'. For
+instance:
+
+	let name = c_str!("test,bool-prop");
+	let prop = fwnode.property_read_bool(name);
+	dev_info!(dev, "'{}'='{}'\n", name, prop);
+
+> +        if fwnode.property_present(c_str!("test,u32-prop")) {
+> +            dev_info!(dev, "'test,u32-prop' is present\n");
+
+Given the above, I'd keep this one as it is.
+
+> +        }
+> +
+> +        let prop = fwnode
+> +            .property_read::<u32>(c_str!("test,u32-optional-prop"))
+> +            .or(0x12);
+> +        dev_info!(
+> +            dev,
+> +            "'test,u32-optional-prop' is {:#x} (default = {:#x})\n",
+> +            prop,
+> +            0x12
+> +        );
+> +
+> +        // Missing property without a default will print an error
+
+Maybe additionally add that you discard the Result intentionally in order to not
+make properties_parse() fail in this case.
+
+> +        let _ = fwnode
+> +            .property_read::<u32>(c_str!("test,u32-required-prop"))
+> +            .required_by(dev);
+> +
+> +        let prop: u32 = fwnode
+> +            .property_read(c_str!("test,u32-prop"))
+> +            .required_by(dev)?;
+> +        dev_info!(dev, "'test,u32-prop' is {:#x}\n", prop);
+> +
+> +        let prop: [i16; 4] = fwnode
+> +            .property_read(c_str!("test,i16-array"))
+> +            .required_by(dev)?;
+> +        dev_info!(dev, "'test,i16-array' is {:?}\n", prop);
+> +        dev_info!(
+> +            dev,
+> +            "'test,i16-array' length is {}\n",
+> +            fwnode.property_count_elem::<u16>(c_str!("test,i16-array"))?,
+> +        );
+> +
+> +        let prop: KVec<i16> = fwnode
+> +            .property_read_array_vec(c_str!("test,i16-array"), 4)?
+> +            .required_by(dev)?;
+> +        dev_info!(dev, "'test,i16-array' is KVec {:?}\n", prop);
+> +
+> +        Ok(())
+> +    }
+> +}
+> +
+>  impl Drop for SampleDriver {
+>      fn drop(&mut self) {
+>          dev_dbg!(self.pdev.as_ref(), "Remove Rust Platform driver sample.\n");
+> -- 
+> 2.49.0
+> 
 
