@@ -1,157 +1,230 @@
-Return-Path: <devicetree+bounces-176460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85AC5AB438E
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 20:36:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59B4FAB43A6
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 20:38:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4D087A480B
-	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:34:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 901C417F65B
+	for <lists+devicetree@lfdr.de>; Mon, 12 May 2025 18:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E1E2980B3;
-	Mon, 12 May 2025 18:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55526299935;
+	Mon, 12 May 2025 18:33:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="oDT9UmQX"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="clzaCWA3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79F31297B76
-	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 18:32:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3344299932
+	for <devicetree@vger.kernel.org>; Mon, 12 May 2025 18:33:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747074747; cv=none; b=X5JmV1X7sbYS4FLSSDJc6Y52OquvdxtpM3wuBe8+cvIdHCEQPFR+Yb+S7YsOq02GKr1a++dtYt2M9WqZIfhkyZNCFhJoHbpQR7JVaqqLORilXqk8PwF2pVdDPZIPyVccPqVNVSFz8KpPu93w8UkAAnF3NQHFqK1E902I+djm1/o=
+	t=1747074810; cv=none; b=ZBSHqnD8wuSG0XZlO8gFDLQdSRVy+Dyn65vOE6IMljhJXiaZ5bqY5PU+LKRiphLuUwgt4m5t1iFwHuqOOELYKaTbPhPUApDaUYqYbvzWKFicHACVvf9/I9pe/dMzieM4JQ6KyKlzwEe3VMMF/w6hoyR/+NQP040GCNyfsr0Ne8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747074747; c=relaxed/simple;
-	bh=KZJEwnPF2oP9YPtwzisRM5EnPhICPVWmlwFr/un/FRc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=brvd15IhP9NX6l3pvZ/i3f1MHn5Eq0TbeyfID8tRs5w7RLEQ61h0PqSblQcjJdg9eaf5C5oxDz9EuxFocTVSP0hE+kBdOyQX0z7rPczO24Y9fHdv8CoCinGnlMGDTc8TDdhRiutUw0TXgAs8gUScSpZjrixVHwk5SQr07O/KTAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=oDT9UmQX; arc=none smtp.client-ip=209.85.166.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-85e15dc801aso475201539f.2
-        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 11:32:25 -0700 (PDT)
+	s=arc-20240116; t=1747074810; c=relaxed/simple;
+	bh=x5b3RkApijDzB3c+z2XBCDEOfAq0it5/QmazdGMGowM=;
+	h=From:References:In-Reply-To:MIME-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LmC6YYw5XFVN3RQxtAsgBZw0GG30j5ogWQTU4eSYyuU7dO8Gb2fqrTRHV7NgR1wxf+Pvuc7JSPC2bEmT9Q0eeNe1DIhLa2gtL7bohQ/CFPqz1LcLA5rLnjofBvaXiWQkwY8zpGoO/92/zUzhmdyxLuEbRJ28KwmXBhzu2pIj/2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=clzaCWA3; arc=none smtp.client-ip=209.85.221.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-52c58804270so2841590e0c.0
+        for <devicetree@vger.kernel.org>; Mon, 12 May 2025 11:33:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1747074744; x=1747679544; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EyAsDOHX0TzSNx8TRSfIb8QCj6vETa2EWwj7A6u+8bU=;
-        b=oDT9UmQXV8dBmXK5S+NLUe6HI2cW15SYDuOUdyf7xEiSQrqM5aV5Z6+to25+RUHFjf
-         j14aNFd64PHAYjzBfVLIF/MBOkWTFguQhgf4cnKF7cyX7CN58AwGkVpVcmYhSgmhmp1z
-         UGnSNaZgyvWz5V1ItUyK7wsNhcu3RwVRxU9AyEl0nCUutftlxoZBtsBr12OjTOThtZyv
-         n7c8XU3Ph3aPWVTh2XAgG+rexeF+TU1mBAkUCygYdOJX3z3oE9F/vbzNNM2C13oqT01h
-         Co/HYWhVggZ/Uh6BjDjNrVbjxW5ln0kZaNisdNJyAvBYBKXswqM5Oi+br3a8/JZGJWPY
-         1GdA==
+        d=broadcom.com; s=google; t=1747074806; x=1747679606; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:thread-index:mime-version:in-reply-to
+         :references:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qanagnhvc8ML7QbUqqfKNq3DNbdR4e5HJ947dPtyS+4=;
+        b=clzaCWA3CXKCXjmJZHWeJJJLFW+ilmSI7xIhWD+KV7sf5gLOo79NzYiDzsiDeaSeob
+         KmM11ULTl7PV/tKh0QH8TkCXwr1XjyDQkcvC4TH9uh8XmmUSPmF3343EaFSbrKskDTu/
+         7MU12j53WdtCES7oAE4wSGVJiTdPrklSxLbNo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747074744; x=1747679544;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EyAsDOHX0TzSNx8TRSfIb8QCj6vETa2EWwj7A6u+8bU=;
-        b=JDDr41O32B2bmmAUxuy9iVf81JI+nK/pDjhCHQmq4w6G3h/PKtFMzlYbK+1btSv7Nd
-         42sEDmH0wS92/2rt018S6UJQX0McTTHEKGwHPA6CiYykVBgCcMzKwa865aeUfQtvwS0/
-         CbW3U36BQfsCIUd13DcYqTlXLzMMAEd9cKntxbMH27nsMJWc/gCpsggdtrzC3JnSwL7M
-         Wcn4PgIO1V9ONs6T+YZnQJnwrEwF+lLSSuellvHO8Cyt1CosU5dceeC+JHnft4+v+4DJ
-         Jz2vq7nmb7D+5joCOpyZpgzM65Obys4lEI8k0fiO/Toa8yVzvpec1IK6cV8HQanttgih
-         46xg==
-X-Forwarded-Encrypted: i=1; AJvYcCXHSXE7uo8YH4fBRR+Wl4izxSiUi1Ps82yaJxmbwPR3po62SSaJUGggbfNDf/qoGzUbGxKZiPJw8KpA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFxV8D9IZ658WGbpPbdlkKN5uwzO+/BiOhyaddPPhA5n3AQ4Ca
-	QcACudZkKfuMH/4na+bh64uN7NIrl2aD5oFon+xP02lMrC0FDUq98WxR+pR4LMI=
-X-Gm-Gg: ASbGncsM85UfWHysxOizRBqPTTYpbnqnRrLxMlLpXM4/ADo/88rZ04flQcNzYakfPpr
-	voMHrZtZLULWgdzAY8nbRD3Y/z5FN3qHaifh4DRFrPWg//1fu9M3jvxC3P8qSmxRMidZEN5c97w
-	BMs+Ms99WBNl4PqvuffjUAmKdUgDc+iVYGbaFBHwUgVppVvYTMDqWBBqsUIYUl8mqN2mP7fDy2r
-	zoHYK/rnXsdOJrZVaZqe8+xFe5+N7yhh8GlaJLGg62Dg1M+2ghA9D/7Z+bSZBlj71pEHmL4/KXl
-	JVwSXMDS/emZHliJUQ7P5U8v1L/Eoh9DIt3NppQFS372xEHJ5SCs9YuUsRzJ4v8mH2tfXEw+hsx
-	N+O5JkI4mAu5U+tOxWcOn9Vmm
-X-Google-Smtp-Source: AGHT+IFp8y0gq7FRiygtuXYQxumD0qfklzDcQqew2MqXSZ32JaN7tFBN5F+L1BBzUbVI3IjffHBXLA==
-X-Received: by 2002:a05:6e02:3784:b0:3d8:1dc7:ca7a with SMTP id e9e14a558f8ab-3da7e1e1acbmr157948855ab.5.1747074744563;
-        Mon, 12 May 2025 11:32:24 -0700 (PDT)
-Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4fa22496e9fsm1740333173.11.2025.05.12.11.32.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 May 2025 11:32:24 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	p.zabel@pengutronix.de,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	dlan@gentoo.org
-Cc: heylenay@4d2.org,
-	inochiama@outlook.com,
-	guodong@riscstar.com,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v9 6/6] riscv: dts: spacemit: add reset support for the K1 SoC
-Date: Mon, 12 May 2025 13:32:11 -0500
-Message-ID: <20250512183212.3465963-7-elder@riscstar.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250512183212.3465963-1-elder@riscstar.com>
-References: <20250512183212.3465963-1-elder@riscstar.com>
+        d=1e100.net; s=20230601; t=1747074806; x=1747679606;
+        h=cc:to:subject:message-id:date:thread-index:mime-version:in-reply-to
+         :references:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Qanagnhvc8ML7QbUqqfKNq3DNbdR4e5HJ947dPtyS+4=;
+        b=AZhYVE2+2VL1nzYYOseW2jaJi40alskFr90XvJsTPfBQruBD6OOAE5oiOlexqdvxek
+         RebZPXhFAT2Y5tvDmLjUFSedLp4C1+VwJrCPT3lYVmMpt/kwKG9ku7Ix6dPDVgOZQbfo
+         4iHfUUoUCPrNoFMjs2rC1anU5kxQ4DNaB7FwrMvx2wQ1eZr0bFk29gSBtmaPA2UyOsQg
+         ybqH6V4CLfHbjgjPcBY1sbMZ5vhvqXJ0lyUljtC7zlbKU21xCVMsQSopqIu1G+Axc3cX
+         ChN55BHfTyfkLRNYb1nEx8cRYf8H21msTLk87yie1le7b+MqzcGuO5IOAInlDq5NLjaJ
+         Fu4Q==
+X-Gm-Message-State: AOJu0Yyt76RzY9nmgrnNe+GThTjUBuFDJBgW2ohk2KN4b7HqfZI4JVKF
+	IvyhKFBcoB8rADKO7GbAtauAmXB27OAZHHEc9XWfkLY+GKLKqBijaKPGXlDaw3XOVDd2/0CV9i6
+	1Tljh5lH0WLQtTDBUUdy1j589GVJFoJ36X2dy
+X-Gm-Gg: ASbGncvstnfVpzCFl614BY4FifDS8tXDCJWuzb5RrhJOaRXwxlC4xvZjskoA/35Fbqe
+	Q2V0VH4BYx/VKxz7tI4n571pRQCRWvPq13Qvd8L+KgLDMCADPd+jj9hkHEMC73tAhVBaPtxRwoL
+	mg9W/8f/bkL1ry5PZTOaUuOzE9AvKKhGJbCA==
+X-Google-Smtp-Source: AGHT+IHylLeFiX0/jOjc7tZLG1SWJHnHRO5fCNoH+2OPd+5ggJlukXJ3UYv0a9Yraf1DcZcmuj8KAoPiMX8SYalxd58=
+X-Received: by 2002:a05:6122:7d0:b0:529:2644:676f with SMTP id
+ 71dfb90a1353d-52c53dc0a0cmr10668772e0c.8.1747074805701; Mon, 12 May 2025
+ 11:33:25 -0700 (PDT)
+From: William Zhang <william.zhang@broadcom.com>
+References: <20250512-bcmbca-peripherals-arm-v3-0-86f97ab4326f@linaro.org> <20250512-bcmbca-peripherals-arm-v3-1-86f97ab4326f@linaro.org>
+In-Reply-To: <20250512-bcmbca-peripherals-arm-v3-1-86f97ab4326f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHRV/QBxSS57P/922lUlscQxKMBIAIzb36Ls9KKdhA=
+Date: Mon, 12 May 2025 11:33:28 -0700
+X-Gm-Features: AX0GCFsvvJjo7lZGW1XDf5kkTQRQuOqq2eUt2YqkCbrc2gnYY-IwjX3SxDadsDo
+Message-ID: <c7e0d00a7593151a6ada898a2438e941@mail.gmail.com>
+Subject: RE: [PATCH v3 01/12] ARM: dts: bcm6878: Correct UART0 IRQ number
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Anand Gore <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Olivia Mackall <olivia@selenic.com>, 
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+	Florian Fainelli <f.fainelli@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-crypto@vger.kernel.org
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="0000000000003500e20634f48dec"
 
-Define syscon nodes for the RCPU, RCPU2, and APBC2 SpacemiT CCUS, which
-currently support resets but not clocks in the SpacemiT K1.
+--0000000000003500e20634f48dec
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Alex Elder <elder@riscstar.com>
----
- arch/riscv/boot/dts/spacemit/k1.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+> -----Original Message-----
+> From: Linus Walleij <linus.walleij@linaro.org>
+> Sent: Monday, May 12, 2025 5:06 AM
+> To: Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+> <krzk+dt@kernel.org>;
+> Conor Dooley <conor+dt@kernel.org>; William Zhang
+> <william.zhang@broadcom.com>; Anand Gore <anand.gore@broadcom.com>;
+> Kursad Oney <kursad.oney@broadcom.com>; Florian Fainelli
+> <florian.fainelli@broadcom.com>; Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.p=
+l>;
+> Broadcom
+> internal kernel review list <bcm-kernel-feedback-list@broadcom.com>;
+> Olivia
+> Mackall <olivia@selenic.com>; Ray Jui <rjui@broadcom.com>; Scott Branden
+> <sbranden@broadcom.com>; Florian Fainelli <f.fainelli@gmail.com>
+> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> linux-
+> crypto@vger.kernel.org; Linus Walleij <linus.walleij@linaro.org>
+> Subject: [PATCH v3 01/12] ARM: dts: bcm6878: Correct UART0 IRQ number
+>
+> According to the vendor file 6878_intr.h the UART0 has IRQ
+> 92, not 32.
+>
+> Assuming this is a copy-and-paste error.
+>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  arch/arm/boot/dts/broadcom/bcm6878.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/broadcom/bcm6878.dtsi
+> b/arch/arm/boot/dts/broadcom/bcm6878.dtsi
+> index
+> 70cf23a65fdb5ac7ed9eabc986f4ebb4df263c43..43eb678e14d04be487af39c936
+> 5186b6fb919cf3 100644
+> --- a/arch/arm/boot/dts/broadcom/bcm6878.dtsi
+> +++ b/arch/arm/boot/dts/broadcom/bcm6878.dtsi
+> @@ -137,7 +137,7 @@ nandcs: nand@0 {
+>  		uart0: serial@12000 {
+>  			compatible =3D "arm,pl011", "arm,primecell";
+>  			reg =3D <0x12000 0x1000>;
+> -			interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupts =3D <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks =3D <&uart_clk>, <&uart_clk>;
+>  			clock-names =3D "uartclk", "apb_pclk";
+>  			status =3D "disabled";
+>
+> --
+> 2.49.0
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index c0f8c5fca975d..de403bda2b878 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -346,6 +346,18 @@ soc {
- 		dma-noncoherent;
- 		ranges;
- 
-+		syscon_rcpu: system-controller@c0880000 {
-+			compatible = "spacemit,k1-syscon-rcpu";
-+			reg = <0x0 0xc0880000 0x0 0x2048>;
-+			#reset-cells = <1>;
-+		};
-+
-+		syscon_rcpu2: system-controller@c0888000 {
-+			compatible = "spacemit,k1-syscon-rcpu2";
-+			reg = <0x0 0xc0888000 0x0 0x28>;
-+			#reset-cells = <1>;
-+		};
-+
- 		syscon_apbc: system-controller@d4015000 {
- 			compatible = "spacemit,k1-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
-@@ -553,6 +565,12 @@ clint: timer@e4000000 {
- 					      <&cpu7_intc 3>, <&cpu7_intc 7>;
- 		};
- 
-+		syscon_apbc2: system-controller@f0610000 {
-+			compatible = "spacemit,k1-syscon-apbc2";
-+			reg = <0x0 0xf0610000 0x0 0x20>;
-+			#reset-cells = <1>;
-+		};
-+
- 		sec_uart1: serial@f0612000 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xf0612000 0x0 0x100>;
--- 
-2.45.2
+Reviewed-by: William Zhang <william.zhang@broadcom.com>
 
+--0000000000003500e20634f48dec
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
+6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
+xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
+VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
+/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
+0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
+urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJg
+MIICXAIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
+JOEwDQYJYIZIAWUDBAIBBQCggccwLwYJKoZIhvcNAQkEMSIEIKL2RQO2+6ZDvtLAXF69QDzb8jsR
+l7bxNCh1U83bcX5NMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI1
+MDUxMjE4MzMyNVowXAYJKoZIhvcNAQkPMU8wTTALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQcwCwYJYIZIAWUDBAIBMA0GCSqGSIb3
+DQEBAQUABIIBAI1Lz5oyEyPpB6mPsoPArtyPiJVW0F88NkRM9Gc816EORtw8SF48TYxJTN63Bkpd
+hv4KOEmB8i/OjwGAaEWrmc8YhhvkbfCtmy+qEvKmiPK8QAFZ0AZ3lhHLeHCeQZjyL8zo7WbwtZEj
+GC1IJSjhr6Vy47Mhc7pu3KFBDre2ZPa9xKGIM1S0n0/YXpmDWqRAY7c52C2RssmygPL9QAkZo40P
+G10W+GiselvX/Ka41fa2kaURgm8m+jBFFGYaFaTwhGTTXrNgZ4xQU7BChHqLNliogcvdkG9w5reF
+QpbABFRZDHVo46kZnAjzoZoxfBkZJaYhIN5sqCDCw8r4e3ovUw0=
+--0000000000003500e20634f48dec--
 
