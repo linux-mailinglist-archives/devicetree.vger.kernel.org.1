@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-176757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8C87AB56EE
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:23:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CF78AB56EF
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:23:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D758169188
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:23:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84AC018988D1
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3169F28E5E9;
-	Tue, 13 May 2025 14:23:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6108B292080;
+	Tue, 13 May 2025 14:23:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FsF7JP6L"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eznOsdzK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F5E1917C2
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 14:23:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9CCA28F538
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 14:23:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747146218; cv=none; b=SO3xnnZ0LthG1+RsCZ6mJ8baIYHgwgSOEEbobghSqk9NkD9Icm7DwIEI9Hvvo2Zq/F/WYry+EDKD1THmxLGWrawdAE8STJEQy5rf/I5FPlItRX0cuOgPgSO9IJTjbd4Pm9/kR5r+b33fXsU+jHPOruCFUPJu7s4TwPG66jnW0Uc=
+	t=1747146221; cv=none; b=k2HhpXzFuAVRauVRDU/K2USy0bvTIiUwhicJZYqcyt0LEijj/vNQAUOHjISU+XGVxs1aTWjE8hyUJ7/nc9wjZ1z2ZUkBYAhL+s+IBBSRvmLGzsPpheiDzRCTX0RumvdXXyYdOeKcfqKKA0fAKIW5ddzzgP/paf1g4gA2bA9Heoc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747146218; c=relaxed/simple;
-	bh=niVeO1JI48jUXIhYsjOcP+FrTTwOsvAnEGcnPCsRgqE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=roLteJFfweLi8TcWgjeIEc3CPpGg1QVG9xvHmmhxCp5dblnIFk7SfatnLu6uS9tjHP1mnTG6OLAdwC5OdbLy5wgKL6vahjvHYBLAwOrO+uSv5ZOuvMnykIVrP6pTSISFza2xwYyJFCy1Emx5iRTla4qs4lLgH39fBSvknmuw8c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FsF7JP6L; arc=none smtp.client-ip=209.85.222.47
+	s=arc-20240116; t=1747146221; c=relaxed/simple;
+	bh=/MkHJSCvoUk6wpioAROWSyWxvDXntLxjx4aAWY01jNg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=UR4iszvcRbaWqhL0mrs/CytrdNudyWoEyLMJF/OqdHsCVYi66HOVY+kvEMLyXNrKGPglSCVPvxE4bLfuVpt3/he/DXVUDNkwVfYI4da6B0QhurgB1fuD6tBeqrkJXIei8OiAUhEyBd+teHx2TcRBiM0OUCMEdAxUVW1qr4iQINM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eznOsdzK; arc=none smtp.client-ip=209.85.217.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-878627ac2ddso1375751241.0
-        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 07:23:36 -0700 (PDT)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4def06b6f87so1658404137.0
+        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 07:23:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747146215; x=1747751015; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GezTh7CEZSGNy/hj5QCxQQLoFC/kezBwPCYdh6zNgK8=;
-        b=FsF7JP6LiomP76XMRXs6er6PbL9keWI9Ja2d3mVE3yjYnoeKFe9xgKIEtLznDHDrD9
-         sWCTVLZrHO032ulNWuuOFCSJNgjVRhXyKZOvabDu1ny1kwNJ5mvndvDq3Y4y+O40GhRh
-         f73elXsi3y5AJLxUHQOt0pUytCofKbdPU1o6Oj4jZkQ3N8DNItx8fYZVlyoaZ+rJuzxw
-         GYNf5pcwjLMlwDta+F7hI5imvI7Cd2KVUalf8oPYsBJ7Ek8fqmOE3V2xjUUZBhl4UJfq
-         yjh/DwtT4RnC+QZTMacJmBhCKxx0mPpAib/pgTkbgHokpEiwqwsgVYfCKRYTp2E2uUr4
-         X2VQ==
+        d=gmail.com; s=20230601; t=1747146218; x=1747751018; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7Uzgz/IJ5yrsCl91qH+8t4wQoX41kDj9fnW0ZCwuEXw=;
+        b=eznOsdzKkWPzldKKc3yKTqw5UNatzR3AQ/TAPhdVeHuPI3baRICSr3D0GlM8cOQAas
+         mmEN0e/KJNaSfrfJBZi0COXNSzTpPevL5l55F+JvFVdL461TSfxO9bEWEHD3zEM85B3c
+         tfY6fmr5eIpHy5YbYp53/pTgSRkgb19ttCM6ceuahJowYZbrg6Wkq9zX6ZbW7XLBgSE0
+         emSVroNn10UxSe9fAG23P0sQ6+w0THm/Wgnx8afXpER/qa42IXMhQ924Zhu82Br3EYND
+         4A7fv0y4rD1+RHnm9F7fA3nMZE2yI0+yyhh5ypgiPmq+Qq+PjS6PPNHeuTKJ7hcdrjs6
+         3zFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747146215; x=1747751015;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GezTh7CEZSGNy/hj5QCxQQLoFC/kezBwPCYdh6zNgK8=;
-        b=pyGauzsilSUDd/ziL5G63EfilmehQkQu4cRyk/VKDfqzTikSNDQwTwx38FzU4bTm8Q
-         bXQQKWKkQqGmAUWkHS74WRyJP9dzrcAlpibBUBqobThZRGWBTWjYPLw28PEH30m3W1jb
-         okUsIKAMHIgIyv0xuGXupNmQWbATWvnvkL8W/Rl8U+jtx9Iv7k2BeQSQV2ygT/nwHJYg
-         6RH+AFEDBKP2PXxvGl4MOP3WxP9meb2w+VE7/T8RNcjgPPbqRGS9FuNHhpbZhv2zzjbs
-         AykGR8HPoAt932816p1tA0zZyID7MfbwlPcqH8QL5G9S5eLX2Whi++75WKO5DIEG6C0f
-         34EQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW5dhphYkINUeGW8366gVYTWh2keN93uA2DvL6eQuPOobFSv3h2Tst5+hdHdE9jofCGC3Xc6hGm1SsH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcLL6UNr3F1zsPuTdv0RNO7hF2dyyXa4MPRYlWfAh6gnD8+mXX
-	hQg6TX7yuiNONWVtkUkvUfenXH7MaJjEnt+Vj6CirfR9SRr9fH3H
-X-Gm-Gg: ASbGncsvqOFZPi3UhLoA9diffxd2UOIhzH6QPKepcXpzaTGcFrHJA9UjlbL23tKBY2q
-	Tg33p4wuLGqrxbu/BBkBXvRrRbz7WPyshTzhEEcyNsg0vIRymNg1eF8JodqiU2pzgJWdfxHF8v3
-	38FtyirhG0yN5KPuNIGgIp68GdUd/MbAV7P4niZIvRk33ANdHi4AZZH6G7mFjX7tmAYTGpPQcvk
-	a7v/USs4z4Wa3eFWJXQOJMkktU4Fn23NFrcLrv8Bn1BlGsn5TpdcaKplqyabcliuo6/iU6/k8XS
-	xBeQL2bChwCa7oILkIqqVoBYoWSIbSs97qg9loDlyGNyFVve+w6sg3QfuATHDqHCZQ==
-X-Google-Smtp-Source: AGHT+IHGcQgMwPPAEGBJfJrJEY9x7HjJUxv3RHs7/BaUYX3k0+VoevK10R8gdqCI56LzymOxCbK2Hg==
-X-Received: by 2002:a05:6102:1586:b0:4c1:924e:1a1d with SMTP id ada2fe7eead31-4deed3cba69mr12923184137.18.1747146215203;
-        Tue, 13 May 2025 07:23:35 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747146218; x=1747751018;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7Uzgz/IJ5yrsCl91qH+8t4wQoX41kDj9fnW0ZCwuEXw=;
+        b=jYMAVqvmqYmvJU7d3gwCpdoJ259bN6hcJ8SLqmikYAZbCaWMBC9m0DAr3gr6tFDpvY
+         Pz9OsaYZFJ8gKZBdnDQlj383gUZ7vBsIFmVWUCd6vadzfPpmWt8D4j+srqBMqrLcmhJq
+         VnluYPcSbw1jV1OUr8IIGV0P+oHXoyLtxMvTcS9HzjorpVEP86SccgMbkSBk5fGP0/2n
+         H/yEy7DMGRHZ+KNUZSUUb9HvxCuDySVgFb5ZQYZpQgeYM3X1dYHDw0XexBw1yausbPcM
+         JdUy1ysuVcCU+A+lx2dPZQHVez0FGfoq5Kxkr+uemR+1yqUdAmG8Oc0c5AajHLTzTTby
+         SI0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXe4X18jD1RjtXUmow93GRkzGeYTyhgjGJRR27HqhD+XQZnRQQ7Hfrz+JKNNxmhiHPpeB15oIPKISow@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhS4RiL0Tg6YYOivKMb6pbQe/05pElVDOhiigLGA/3GfiRBheo
+	9pUn1K4DOH5JBq0d4AjTzHEebseL3KNHH7TrgYeY84SWg/PnMabjamk3aw==
+X-Gm-Gg: ASbGnctPqfbx2rFeoxPuukbMQ0KcNY03PuXa9miGW3JB80taCYVXK9eHGSm2MXS8bCa
+	ilgp7bek8coBQGsS+RABQDfnyOuJ7FOmBCm+CS24p6YdhcPIySEukN9C5FPShnC+HGb5qy+zdf9
+	/N4Di7TUOhYfQgaAS/ztqrM1pG39i0UA1X5QvLz09F641UJU4gnAwg7DpMJJBB20BfqaHqP7ZIq
+	aM5Jqz6HNRKzz60EExaE0ulU9aawMHyVrok5fNKsQkG1A3jhWTDxCrOQ+ToaxlJxiobkWuINXfV
+	6RRNSznLj7WkPyNDYySrfz3z/iO4IZg6aZQ0Y/mX2VeXEzBJwxap24Tbb5jOVZzfMg==
+X-Google-Smtp-Source: AGHT+IEFobOfhF6Q0zjJGc5PoNdvF02XzIXIzVwsYXq3HCC3Jx979kft8C4WQQVQTvNxXMdPfdO5pg==
+X-Received: by 2002:a05:6102:fa8:b0:4c3:64bd:93ba with SMTP id ada2fe7eead31-4deed376091mr15377049137.11.1747146218479;
+        Tue, 13 May 2025 07:23:38 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:5c18:acd6:b894:dc8f])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4deb203c26bsm6630965137.27.2025.05.13.07.23.31
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4deb203c26bsm6630965137.27.2025.05.13.07.23.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 May 2025 07:23:34 -0700 (PDT)
+        Tue, 13 May 2025 07:23:38 -0700 (PDT)
 From: Fabio Estevam <festevam@gmail.com>
 To: shawnguo@kernel.org
 Cc: robh@kernel.org,
@@ -79,10 +81,12 @@ Cc: robh@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	imx@lists.linux.dev,
 	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH 1/3] ARM: dts: imx7s-warp: Improve the Bluetooth description
-Date: Tue, 13 May 2025 11:23:18 -0300
-Message-Id: <20250513142320.4036324-1-festevam@gmail.com>
+Subject: [PATCH 2/3] ARM: dts: imx7s-warp: Improve the Wifi description
+Date: Tue, 13 May 2025 11:23:19 -0300
+Message-Id: <20250513142320.4036324-2-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250513142320.4036324-1-festevam@gmail.com>
+References: <20250513142320.4036324-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,54 +95,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-GPIO5_17 is connected to the BCM43455 BT_REG_ON pin.
+GPIO5_10 is connected to the BCM43455 WL_REG_ON pin and it is better
+descrbed via mmc-pwrseq-simple.yaml.
 
-Improve the Bluetooth devicetree description by using a more accurate
-description of the hardware as per brcm,bluetooth.yaml.
+Also improve the Wifi devicetree description by passing a compatible
+string that describes the BCM43455 presence as per brcm,bcm4329-fmac.yaml.
 
 Signed-off-by: Fabio Estevam <festevam@gmail.com>
 ---
- arch/arm/boot/dts/nxp/imx/imx7s-warp.dts | 20 ++++++++------------
- 1 file changed, 8 insertions(+), 12 deletions(-)
+ arch/arm/boot/dts/nxp/imx/imx7s-warp.dts | 29 +++++++++++++-----------
+ 1 file changed, 16 insertions(+), 13 deletions(-)
 
 diff --git a/arch/arm/boot/dts/nxp/imx/imx7s-warp.dts b/arch/arm/boot/dts/nxp/imx/imx7s-warp.dts
-index af4acc311572..b66e612d3329 100644
+index b66e612d3329..f2cd95e992e7 100644
 --- a/arch/arm/boot/dts/nxp/imx/imx7s-warp.dts
 +++ b/arch/arm/boot/dts/nxp/imx/imx7s-warp.dts
-@@ -43,18 +43,6 @@ reg_brcm: regulator-brcm {
- 		startup-delay-us = <200000>;
+@@ -31,18 +31,6 @@ back {
+ 		};
  	};
  
--	reg_bt: regulator-bt {
+-	reg_brcm: regulator-brcm {
 -		compatible = "regulator-fixed";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_bt_reg>;
 -		enable-active-high;
--		gpio = <&gpio5 17 GPIO_ACTIVE_HIGH>;
--		regulator-name = "bt_reg";
+-		gpio = <&gpio5 10 GPIO_ACTIVE_HIGH>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_brcm_reg>;
+-		regulator-name = "brcm_reg";
 -		regulator-min-microvolt = <3300000>;
 -		regulator-max-microvolt = <3300000>;
--		regulator-always-on;
+-		startup-delay-us = <200000>;
 -	};
 -
  	reg_peri_3p15v: regulator-peri-3p15v {
  		compatible = "regulator-fixed";
  		regulator-name = "peri_3p15v_reg";
-@@ -288,6 +276,14 @@ &uart3  {
- 	assigned-clock-parents = <&clks IMX7D_PLL_SYS_MAIN_240M_CLK>;
- 	uart-has-rtscts;
+@@ -51,6 +39,14 @@ reg_peri_3p15v: regulator-peri-3p15v {
+ 		regulator-always-on;
+ 	};
+ 
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_brcm_reg>;
++		post-power-on-delay-ms = <200>;
++		reset-gpios = <&gpio5 10 GPIO_ACTIVE_LOW>;
++	};
++
+ 	sound {
+ 		compatible = "simple-audio-card";
+ 		simple-audio-card,name = "imx7-sgtl5000";
+@@ -301,14 +297,21 @@ &usbotg1 {
+ };
+ 
+ &usdhc1 {
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usdhc1>;
+ 	bus-width = <4>;
+ 	keep-power-in-suspend;
+ 	no-1-8-v;
+ 	non-removable;
+-	vmmc-supply = <&reg_brcm>;
++	mmc-pwrseq = <&sdio_pwrseq>;
  	status = "okay";
 +
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_bt_reg>;
-+		shutdown-gpios = <&gpio5 17 GPIO_ACTIVE_HIGH>;
-+		max-speed = <3000000>;
++	wifi@0 {
++		compatible = "brcm,bcm43455-fmac", "brcm,bcm4329-fmac";
++		reg = <0>;
 +	};
  };
  
- &uart6 {
+ &usdhc3 {
 -- 
 2.34.1
 
