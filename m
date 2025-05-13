@@ -1,179 +1,159 @@
-Return-Path: <devicetree+bounces-176576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D824AB4924
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 04:04:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F32D2AB4947
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 04:10:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4699C8C2DC4
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 02:03:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B92623A86B7
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 02:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E88861B0F19;
-	Tue, 13 May 2025 02:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F061B21AD;
+	Tue, 13 May 2025 02:09:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hp9k/4Ph"
 X-Original-To: devicetree@vger.kernel.org
-Received: from HK3PR03CU002.outbound.protection.outlook.com (mail-eastasiaazon11021115.outbound.protection.outlook.com [52.101.129.115])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0250F19D093;
-	Tue, 13 May 2025 02:03:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.129.115
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747101818; cv=fail; b=JVnYo/8Q0HqNF4q0rgHsVejMIqOnfe16WQJFxBzRx7uGSTctnhyub2+ZFng2Q+4yuV6bkOSomBJAYi/Ru0u/nQBfJ7oErte6ceaeqPfF4sTDjUNQnwrtnc8F+Nl2RQJGcMAHfBwdhHMOlB2/jRCWMDsPP9Br+IRkhvPEkSsl/qU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747101818; c=relaxed/simple;
-	bh=Tx0CeK12rw8fNnV+a43EhPsd3vEgR7B3QwBn0narui0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fiigAsS8znCFABGT/MpAcp+rYmp2d/P1Q8H5ZxGdhIwejEqyoY74YjXRA8qzedrqUpsLInkRdqT6vJuRg3fjb+kQ/VWF0Y8QCPA8jQEy0pViC60i+Xc2vhjWrzWJKGWHPivsdiPOch98yQmDnDGRTJCWeWCqgoLDFXw961cFot4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.129.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IcFujacqYxnnEZSx4fC/DxPq1zVb1WRTzTQWBcEVbtYegFpxIbeSEg6jdoNbZI7q7d38K+WOOlQa9fItSt5y2dq2jQfw1B8nsS2rFT4anYFkzvZhGGN8TgOgMRmbwn5ykKKs0rcLb1nbeT47EFczI1Mu/y+St4CuF+FJjRTr90jOYPkB5mhgF5FHQkRBHiwiw7ZqyBRgS7IjAnrNm6qUE/XExTu0YVfg04keTdt5HbsIzQxEp0uyr3GuhzY0Aq/d+KGYVoHUo19ohe4SNCAZ94KvopuAGqYFq8OmFhYQXrqGyjITaE3v+vrxGAd0bV1AI1f8yOroZAgQrHm/j8aNJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pheMVA4F2yQ/mZAq2Tm3+5kIP/DPHkXoE3b5n9yj7P4=;
- b=bo8WJOd/byWK4xP4B/5H57V6IeEmzSBj+x5E/77cAY2EvAzihnFGExzQ68l4/+IeDh5ndOjaB+PeFZtPqYMLh8neqel0RFvhb7PMhD+OCTtLper0d3uHoe0TMIrsCf4wBXYBH5N6DlZm5BdSd9gVd9flLaIIJ+M/KM0EF4/uV3+/D4u4vzshtqBRSOz5xnPEcmRgvzVcA4mDyPiXVEEyaUFVyXbuXOwi9TOIP5s+qULLYWx6Nfbreo90jOzFFtfCVhXLJjTdQ0HD62fbjZmceGslByB+uh6tl+rRwNSYywJvqe2LKQqRHFN9Q/mDCRhHxN8N9DRY0rooUor5m+r5OQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from TYCP286CA0212.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:3c5::16)
- by SI2PR06MB5244.apcprd06.prod.outlook.com (2603:1096:4:1e4::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.28; Tue, 13 May
- 2025 02:03:31 +0000
-Received: from OSA0EPF000000CD.apcprd02.prod.outlook.com
- (2603:1096:400:3c5:cafe::4b) by TYCP286CA0212.outlook.office365.com
- (2603:1096:400:3c5::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8722.30 via Frontend Transport; Tue,
- 13 May 2025 02:03:31 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000CD.mail.protection.outlook.com (10.167.240.59) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8722.18 via Frontend Transport; Tue, 13 May 2025 02:03:30 +0000
-Received: from localhost.localdomain (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id CBAD5416051D;
-	Tue, 13 May 2025 10:03:27 +0800 (CST)
-From: Peter Chen <peter.chen@cixtech.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	arnd@arndb.de,
-	jassisinghbrar@gmail.com
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	maz@kernel.org,
-	sudeep.holla@arm.com,
-	kajetan.puchalski@arm.com,
-	eballetb@redhat.com,
-	Peter Chen <peter.chen@cixtech.com>,
-	Fugang Duan <fugang.duan@cixtech.com>
-Subject: [PATCH v8 9/9] MAINTAINERS: Add CIX SoC maintainer entry
-Date: Tue, 13 May 2025 10:03:27 +0800
-Message-Id: <20250513020327.414017-10-peter.chen@cixtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250513020327.414017-1-peter.chen@cixtech.com>
-References: <20250513020327.414017-1-peter.chen@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D7591A4F12;
+	Tue, 13 May 2025 02:09:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747102197; cv=none; b=lRIZmdn4bmjKNKCm7A4OTAIkhBCZjPRS6fZpfhvvZQmCDtM+sRSh+I+kVWZ0cKrbMQ5nb0uxBZKyR8dzyWcnGzZfwOM6MbDCsQQzgbfEoI/V56WQ37PlnXbNuat+FevL+qKBCX3jUDUL/PVwGz+rnwlSuIAFAmtvRYeLkOjb+58=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747102197; c=relaxed/simple;
+	bh=jli27B/5jY90qrTVnL5B2hPffaX2OOJy3Y08w33Rh5k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FuN1kQ1lhNPiplEbd/L/jfkcqGuONW2jd0K9zXYGumPDxofO/Fz2kg2xfX/vTdMkRFE8UcTpRhHyi49NphpNVe5yx5NjWfk2+9PlhUG48fFBBjZU6yq16z3U7mRVW9Gf4NrWaE6BT1F0K+X3Fxhgh72DatQSNH2Ff6PpT0fpweE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hp9k/4Ph; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747102195; x=1778638195;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jli27B/5jY90qrTVnL5B2hPffaX2OOJy3Y08w33Rh5k=;
+  b=hp9k/4PhH6ghE1rnd/ara5/AxElT6QQCUyO7gmtydZvIoTvJLDkD8vJU
+   PTbx+BPAyNqFdfBL5kODfEvBX8+/WSOBg4UVTCp3hjIRu7rt157hfgY2W
+   0GVFdb2ReIsCJ/2sxdGTUBkjocQPtb6QxSk8sgC5lmBghP4BIVYYyhXiJ
+   zvOTfSHrBre94rQ0Brck8Wz79+2g05llqdyZS7exAdnFvxEwUjlAD+Jwn
+   tneFra/yQll+OP64dHBJSJlRT/u4dw1sol6iL/veXFEOVePaudlmJXkbn
+   gMAl9zsbBe76FSB8gY4tndiG+QZZ4HFJmmPMrklnsQeJ+H1uCJFL0xNYi
+   g==;
+X-CSE-ConnectionGUID: KGf8opHJRVedZndU3LAJBQ==
+X-CSE-MsgGUID: JAsDETEUQEiObh63foGZsw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="59929229"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; 
+   d="scan'208";a="59929229"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2025 19:09:55 -0700
+X-CSE-ConnectionGUID: 4KmA8ZP2Q1Kxb+NIqTdIWA==
+X-CSE-MsgGUID: 3YBxHFhgQvCuzV2Ed3pDKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; 
+   d="scan'208";a="168642027"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 12 May 2025 19:09:51 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uEf5Z-000FaV-2Y;
+	Tue, 13 May 2025 02:09:49 +0000
+Date: Tue, 13 May 2025 10:09:40 +0800
+From: kernel test robot <lkp@intel.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>
+Cc: oe-kbuild-all@lists.linux.dev, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-mmc@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] mmc: loongson2: Add Loongson-2K SD/SDIO
+ controller driver
+Message-ID: <202505130918.uanOGxju-lkp@intel.com>
+References: <1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000CD:EE_|SI2PR06MB5244:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 369420d8-b6f5-4092-97cd-08dd91c25bf5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?NWLa8YfJ+eAqFwvtZSvthPrVTL/ujNgxcfKxZ1+hczzdxihA20iDQ795ZE94?=
- =?us-ascii?Q?jLBItgQljwtD6uwoTJPlwJYfY6lOTkon+nacoUv40hwRWrdTJYwrZ6Eu6DUw?=
- =?us-ascii?Q?E0HRhJ5MHSV/ad87pVO0oUQsg0lYZDEPxbfVQLNguoj3fzTJnx5f0hp4N9My?=
- =?us-ascii?Q?GDtbyeIykvW1Qaob+PtnNs5wetVy1WZPyDxORaqiq+uQChVpHilyuW67gaFD?=
- =?us-ascii?Q?MvQty7w5QlDtBXeywItcjvto7wmusc7R/rxNd19Ock+1A0ZylkzXFK8uK5k6?=
- =?us-ascii?Q?oL/H/X1vwkD7ULDNddUIUsAzrX820imn3sN/KECb8zhp9BgxSTwV5OWox+G2?=
- =?us-ascii?Q?BmLWttf3+Kc+moNDSg3tF6aDboTAEUg5SJzOzf7Khwds2RnrhIzxdzav+0rk?=
- =?us-ascii?Q?2fubgcIzjD/tCgbK6jQJ2olKHUwubYdRzdjE/PMWV9W2aCpGLrMWwvu71jaG?=
- =?us-ascii?Q?9vM3pna/40slLF26POhCw9cKPK33WHVJ9179hY8qa0eO8W9Oj9sYeSUR9zNU?=
- =?us-ascii?Q?Wb1n33EbSWGt20hJjvDSTxxeaRfTGYV3y0gSG6qtwwbIwdin+24F6MxC1rqb?=
- =?us-ascii?Q?tW3rwN8C4+V7BIW3hcQF0bUxfI8EKI+v5RPAC7pkFSldMkhQSrJ1IHmKstRU?=
- =?us-ascii?Q?aULbijqjcvnpxAwREEX65lLHbbaQcW1kreMolPYl+O1H1GzRPLg/FUEKR0Fw?=
- =?us-ascii?Q?ohr4lsmOhss3d8F5G8U7pTZXM4MNWa0q810jHTi0drv6ECd4wXISETXLpNLb?=
- =?us-ascii?Q?3ogjEU6Tq109WUES4OiFAhWt5RuCiN06afR/pmEUBj/fZdhrtZ0RsxFLjFwP?=
- =?us-ascii?Q?JBIiixUfqF/lu2Mlno5nrjULwXtfjb0if3ivsT1Oq1CakyY3ls5Gc9RJhHr/?=
- =?us-ascii?Q?aH5mPEC1udvAEdAaNVU1/8iJuXrWTmq/rxuoEzzlUikAtm1aEb0ebVDTjXfH?=
- =?us-ascii?Q?M4nD3c0gg82RMMOGktWXViPzSpp128SCL8ErOno+wFwCcU1/QLx9jnLOK72X?=
- =?us-ascii?Q?8uBx3GEKASQ4J1KWjOYTPW6tcPOrAJufhgo16Efgd1sDH3F3wBN4KH8b3wY/?=
- =?us-ascii?Q?Wy7WokgHmL5L1vSsjRf+tW+DY9HgpleDQVdcIHWYP0IzSVH9LWnI5beAxM5Z?=
- =?us-ascii?Q?zHbmwYiLWtGXtoprbMrm6orZ/0aPU4dX8amvmf+QTqlYeOq9szwnC1MZ4I3O?=
- =?us-ascii?Q?2Ah0dzk0gr0QEWnvMX2AsFVSc1Z0RKj6w7JmgrqV2SA+UbXCAc1mL7+YBiGW?=
- =?us-ascii?Q?zE7+FW28XNb9XCzspnWFmKxWTOqy/RGQcZej2ukH6NPyZlQzrSkCA6C7HQ/G?=
- =?us-ascii?Q?88oRY4/7nTyIdVZkTZvjeb74Bg06JtYmbit/I3MdaBpugHrwU1WsavBiqvgz?=
- =?us-ascii?Q?C+cBBdoWhSlSvIPfMG+Ec9/eYz7o/4Dd0arXi/IdRP70dSdXvBppPiDJeUC/?=
- =?us-ascii?Q?D3PXekjq/jg9OZwpS9B/pLy+bzl7B9/a8VZVkFtRCgEupL8Inj1PBo9s29IP?=
- =?us-ascii?Q?mU/Z8lPNJncxDSF4wTWTcuHwl8h5HjsBBxLm?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2025 02:03:30.6443
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 369420d8-b6f5-4092-97cd-08dd91c25bf5
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000CD.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR06MB5244
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin@loongson.cn>
 
-Using this entry as the maintainers information for CIX SoCs.
+Hi Binbin,
 
-Acked-by: Fugang Duan <fugang.duan@cixtech.com>
-Signed-off-by: Peter Chen <peter.chen@cixtech.com>
----
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c59316109e3f..169b89eabea3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2404,6 +2404,17 @@ F:	arch/arm/boot/compressed/misc-ep93xx.h
- F:	arch/arm/mach-ep93xx/
- F:	drivers/iio/adc/ep93xx_adc.c
- 
-+ARM/CIX SOC SUPPORT
-+M:	Peter Chen <peter.chen@cixtech.com>
-+M:	Fugang Duan <fugang.duan@cixtech.com>
-+R:	CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Maintained
-+T:	git git://git.kernel.org/pub/scm/linux/kernel/git/peter.chen/cix.git
-+F:	Documentation/devicetree/bindings/arm/cix.yaml
-+F:	arch/arm64/boot/dts/cix/
-+K:	\bcix\b
-+
- ARM/CLKDEV SUPPORT
- M:	Russell King <linux@armlinux.org.uk>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+[auto build test WARNING on 9e12816f9a6195f1f5b7c5dc2e388c2458411b97]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/dt-bindings-mmc-Add-Loongson-2K-SD-SDIO-eMMC-controller-binding/20250507-153435
+base:   9e12816f9a6195f1f5b7c5dc2e388c2458411b97
+patch link:    https://lore.kernel.org/r/1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin%40loongson.cn
+patch subject: [PATCH v2 2/4] mmc: loongson2: Add Loongson-2K SD/SDIO controller driver
+config: csky-randconfig-r112-20250513 (https://download.01.org/0day-ci/archive/20250513/202505130918.uanOGxju-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 14.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20250513/202505130918.uanOGxju-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505130918.uanOGxju-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/mmc/host/loongson2-mmc.c:534:41: sparse: sparse: incorrect type in assignment (different base types) @@     expected unsigned int [usertype] @@     got restricted __be32 [usertype] @@
+   drivers/mmc/host/loongson2-mmc.c:534:41: sparse:     expected unsigned int [usertype]
+   drivers/mmc/host/loongson2-mmc.c:534:41: sparse:     got restricted __be32 [usertype]
+
+vim +534 drivers/mmc/host/loongson2-mmc.c
+
+   500	
+   501	static int loongson2_reorder_cmd_list[] = { SD_APP_SEND_SCR, SD_APP_SEND_NUM_WR_BLKS,
+   502						    SD_APP_SD_STATUS, MMC_SEND_WRITE_PROT,
+   503						    SD_SWITCH };
+   504	
+   505	/*
+   506	 * According to SD spec, ACMD13, ACMD22, ACMD51 and CMD30
+   507	 * response datas has different byte order with usual data packets.
+   508	 * However sdio controller will send these datas in usual data format,
+   509	 * so we need to adjust these datas to a protocol consistent byte order.
+   510	 */
+   511	static void loongson2_mmc_reorder_cmd_data(struct loongson2_mmc_host *host,
+   512						   struct mmc_command *cmd)
+   513	{
+   514		struct scatterlist *sg;
+   515		u32 *data;
+   516		int i, j;
+   517	
+   518		if (mmc_cmd_type(cmd) != MMC_CMD_ADTC)
+   519			return;
+   520	
+   521		for (i = 0; i < ARRAY_SIZE(loongson2_reorder_cmd_list); i++)
+   522			if (cmd->opcode == loongson2_reorder_cmd_list[i])
+   523				break;
+   524	
+   525		if (i == ARRAY_SIZE(loongson2_reorder_cmd_list))
+   526			return;
+   527	
+   528		for_each_sg(cmd->data->sg, sg, cmd->data->sg_len, i) {
+   529			data = sg_virt(&sg[i]);
+   530			for (j = 0; j < (sg_dma_len(&sg[i]) / 4); j++)
+   531				if (cmd->opcode == SD_SWITCH)
+   532					data[j] = bitrev8x4(data[j]);
+   533				else
+ > 534					data[j] = cpu_to_be32(data[j]);
+   535		}
+   536	}
+   537	
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
