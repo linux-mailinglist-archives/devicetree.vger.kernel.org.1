@@ -1,141 +1,80 @@
-Return-Path: <devicetree+bounces-176772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC9F6AB5759
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:39:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D0C4AB5764
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:41:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F52B3AE824
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:39:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B46637A964A
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:40:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE94720E03C;
-	Tue, 13 May 2025 14:39:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o7/yAH93"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C805211486;
+	Tue, 13 May 2025 14:41:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8194B1E5B9E;
-	Tue, 13 May 2025 14:39:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A8F1AF0A7
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 14:41:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747147186; cv=none; b=opoV6AdIyv6C66uhu3UIRwrgKFMT4q14q/wsQkLq88mpSZ+wPNTuiGqAqrNeYrQPpopDYkRCzYKu5AXZiM9EFiQ1rUVulP+jFg6ovPgqo6QEoP5aZGBedga2otfpYpQpqzD8GEl4+rTD7OFcDlX+JbavIGjw/zPciuKZFq4YzLg=
+	t=1747147281; cv=none; b=W947TmQ7t41/s7loJ46wweWXn4D4XfyZ35lRDAwQ+w3Ay6kHomcNlqegn+efOFC/H7NWF8rJNeqKQ66XXBmFgo3fwWfMhBGIag9VzqkiIqdMxiKZOklz1nFGKrvr1VuCrO4TirG+DpZpvDtrt4w+1EcQ0w/XOP7UnJMRFu8YWCk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747147186; c=relaxed/simple;
-	bh=PEDSbWPKZrAI4l87D8/IK5YIvcTjwzk9nO/2u32S7yc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T3pL9sEEO1o6uQkFMiVXd5E8ByiGs1n1cPRjKeTkeXDJCNtDR3MKq53dh16gWEJ+g3lQ+gAmI8DPpc4iuAN+oPKM53045WNau0r9pSDH59dAHhBqCxRJUHw3SJ0oDFuHxIGDVr38scmtcIwDy2g3C0tRrZSBl49vJxbd54Z86EM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o7/yAH93; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E6C8C4CEE4;
-	Tue, 13 May 2025 14:39:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747147186;
-	bh=PEDSbWPKZrAI4l87D8/IK5YIvcTjwzk9nO/2u32S7yc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o7/yAH93F/HJIQ0rlT28egWdPTGsssUyd8dLsTzcLU1JUd4bGH7FioygWll/ySvXm
-	 AI4eCyvBDg2aeuGS8xkWBog6ipdDOhpqNu1b6NX3SnPAXt4amlsnXfq0tXsAdhos0w
-	 Qt8zcgZsxIHbfZllTxPLPYQTzubAA4m7DkNplhHcgcbZp8WjhaWaIahzdWp/EBhNys
-	 GY2XVi4nH0x9m4u1srz+1Z/CfZNWtcMiHkbv/M17/3J5cy04tCdnH+1LyJqvllEn+x
-	 FPJiLeLlb4BoDR9+lLqMuzfhWjDjQXaP6o6AnINw0mCpgXN9p52R1gxWteWdPfefTH
-	 d2asXwNSB5sWA==
-Date: Tue, 13 May 2025 15:39:42 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add ROHM BD79100G
-Message-ID: <20250513-unpaid-detection-f45c9a06b4c6@spud>
-References: <cover.1747123883.git.mazziesaccount@gmail.com>
- <7deb4b69795c298ba51c9b198bc87000ad35cc9b.1747123883.git.mazziesaccount@gmail.com>
- <20250513-coconut-reconfirm-b90590efeb45@spud>
+	s=arc-20240116; t=1747147281; c=relaxed/simple;
+	bh=ut6UGx9BTGP3vooI//9Y/1sKQmIvapKk/GccAw1g3DA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Oa+cDmnXIVIEY+aoqbXu3XfRt6bZ7gDH7/kdbeR7BV596wxaImbMTRkzsfWgkQdAQFDwbVpZ+b3gZwVSzn1Xm2wcVuAii+zsiIecgazOPfxHi9l6492478n5GhPB8MVK/jKM6Enx8hWOXPlJTE+lGyOTMDjzthtV1xsMU33UkvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3ECA5113E;
+	Tue, 13 May 2025 07:41:08 -0700 (PDT)
+Received: from usa.arm.com (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id B98213F63F;
+	Tue, 13 May 2025 07:41:17 -0700 (PDT)
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Leo Yan <leo.yan@arm.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH v2] arm64: dts: fvp: Add ETE and TRBE nodes for Rev C model
+Date: Tue, 13 May 2025 15:41:10 +0100
+Message-Id: <174714724795.3607672.3411861765856358209.b4-ty@arm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250512151149.13111-1-leo.yan@arm.com>
+References: <20250512151149.13111-1-leo.yan@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ATzWI0fTp0b5znvq"
-Content-Disposition: inline
-In-Reply-To: <20250513-coconut-reconfirm-b90590efeb45@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+On Mon, 12 May 2025 16:11:49 +0100, Leo Yan wrote:
+> The FVP Rev C model includes CoreSight ETE and TRBE support.  These
+> features can be enabled by specifying parameters when launching the
+> model:
+> 
+>   -C cluster0.has_ete: 1
+>   -C cluster1.has_ete: 1
+>   -C cluster0.has_trbe: 1
+>   -C cluster1.has_trbe: 1
+> 
+> [...]
 
---ATzWI0fTp0b5znvq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to sudeep.holla/linux (for-next/juno/updates), thanks!
 
-On Tue, May 13, 2025 at 03:39:11PM +0100, Conor Dooley wrote:
-> On Tue, May 13, 2025 at 11:26:27AM +0300, Matti Vaittinen wrote:
-> > The ROHM BD79100G is a 12-bit ADC which can be read over SPI. Device has
-> > no MOSI pin. ADC results can be read from MISO by clocking in 16 bits.
-> > The 4 leading bits will be zero, last 12 containig the data.
->=20
-> I think it is probably worth mentioning why a rohm device is going into
-> this binding (clone?) and that the 12-bit thing is a differentiator that
-> is why you're not using a fallback.
+[1/1] arm64: dts: fvp: Add ETE and TRBE nodes for Rev C model
+      https://git.kernel.org/sudeep.holla/c/6332351622db
+--
+Regards,
+Sudeep
 
-Sent too soon, meant to say: with that
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
->=20
-> >=20
-> > Device has only VCC supply pin, which acts also as a VFS, determining t=
-he
-> > voltage for full 12-bits. Specifying it is mandatory.
-> >=20
-> > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml =
-b/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
-> > index 44c671eeda73..10fb6e14c2d0 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
-> > @@ -46,6 +46,7 @@ properties:
-> >        - ti,ads7867
-> >        - ti,ads7868
-> >        - lltc,ltc2314-14
-> > +      - rohm,bu79100g
-> > =20
-> >    reg:
-> >      maxItems: 1
-> > @@ -96,6 +97,7 @@ allOf:
-> >                - ti,adc121s
-> >                - ti,ads7866
-> >                - ti,ads7868
-> > +              - rohm,bu79100g
-> >      then:
-> >        required:
-> >          - vcc-supply
-> > --=20
-> > 2.49.0
-> >=20
->=20
->=20
-
-
-
---ATzWI0fTp0b5znvq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCNZrQAKCRB4tDGHoIJi
-0jJ+AQD8KIvz7dHXlcRaaMq7tYvBbLSTZqPSi6ZmY4VCGJ5gKAD+PD34qn/neQjb
-218u4O88q/9iICBLxkuwwJ6CipJVmgU=
-=vRFd
------END PGP SIGNATURE-----
-
---ATzWI0fTp0b5znvq--
 
