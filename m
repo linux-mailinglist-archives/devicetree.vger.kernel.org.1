@@ -1,104 +1,147 @@
-Return-Path: <devicetree+bounces-176715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1174EAB541D
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 13:49:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48BF9AB544B
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:08:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA8391B4634D
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 11:49:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76C8C1769C7
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 12:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4595925745A;
-	Tue, 13 May 2025 11:48:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F8428DEF4;
+	Tue, 13 May 2025 12:08:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fFbje9LC"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="RpMImA/s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5FCD80B;
-	Tue, 13 May 2025 11:48:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E181528DEE8;
+	Tue, 13 May 2025 12:08:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747136935; cv=none; b=pVX41OVbmzchZ7ZfqEFXBC70gWQgLVY90WHq2FXc9Ys1OINZCVBAGSteVCY64JtptsxDU5yNtTTSmnZLr9604sYB+FClSnrzagZrV3NgsmCkOh3JOM76+JewB+G1zeqW4MvP1ZRva3uDQYnT0H3oe2Ln2ncHloKuEFJzxuxrYhg=
+	t=1747138098; cv=none; b=LLn/GMbZjSPVDkkpZN46hrHXaeaYgPM0v9hrAAN78jx3nH3Zefkj6bOEVqvUK9B5Ar27vftr1Q0lk7DLXjZuMpRAcJHh8/UBNUvVcqS5EBv1TuMp1PmwNccBsQCChYute6HQJOPtx2gO4j9JxNPpSJIKgcThkate329Ire3VIUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747136935; c=relaxed/simple;
-	bh=PfHDASGae7GwzCjj5rJNhR8LKba7dyTry6KYd7MXJfo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Pz9MYgIqDYYwQwxnV78cCYdTIEonBWct0KpPhhOIm/s7OLPg8stutt1Q10K7WQ2UteVAVZe/F1cIzTGGnp5cJYYxemt9uNwsDwSbTQEanum1Zn9diTbMn7+Clz9ILFnswiBKJR9EciwPE4ulA7FuX6moaEjBx/MsebEdUrvTVZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fFbje9LC; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4BB8543224;
-	Tue, 13 May 2025 11:48:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1747136925;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PfHDASGae7GwzCjj5rJNhR8LKba7dyTry6KYd7MXJfo=;
-	b=fFbje9LCo6l6XU2zxFRW5hVpKZrp8WzQUh3eW+UpxYIan3ddHX1xVjmBw90aIIxFvKC/tp
-	nKoQCCddeRToqSi/ByA5DoYeL8SEqxlz6pKwPssNtTZI5ThN9vtZTxkwTJCr0Uw6uC+Svq
-	bAtETBQghcEAsuW0f6vBqorqw3Ms6/HmSbxtJPKV+gx0Ftrv7OtjsiQqeFfeUZ44xHdGvu
-	iuODVwB+44/tmcRpSjVdZKmtIwuMFKMpsozrJeW9z9DhS5WZ8LyZhSTmmqWOnXrJXHfUf6
-	ZZIJslOKFeN/fcH9iNmPbUTGbEIMZtBMDyhc9iHkPyjS+T862lsBs0mBHJG7Jg==
-Date: Tue, 13 May 2025 13:48:39 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Piotr Kubik <piotr.kubik@adtran.com>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 0/2] Add Si3474 PSE controller driver
-Message-ID: <20250513134813.579ff90e@kmaincent-XPS-13-7390>
-In-Reply-To: <bf9e5c77-512d-4efb-ad1d-f14120c4e06b@adtran.com>
-References: <bf9e5c77-512d-4efb-ad1d-f14120c4e06b@adtran.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1747138098; c=relaxed/simple;
+	bh=04IqMlrqp/WIYzuHaMiLU4ueA1GGHXFTtZcs+wvov0w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ys0Sz3h3KuRjcWfHxxHo6kVhowuhspoZ5+yzscxUz/hQR0MVJuADSZMSXLr06RRuv2kHkUgJ8m/jAPqcr3FMZk4OyRaVg43h9/Ahh+GG1rtRzP0JGmRtA/vh96wAcIQEs7dKz9M/1+Z6rOoX1NVxxizzGLhqIZhHQpIhxFCBvY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=RpMImA/s; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=N2H4cLPRbfUQFyPPzFfWWlyMCXtxohV6unCFbuukGGk=; b=RpMImA/s7eelZNYeI4DyjQj0Fu
+	A2r8G1uC7Bd6Q6sDeo2MRR4pWhndq21tbRnwuMawpPDgcI1Z1mBIwK7hrMu2KVaGk6NSjkVpxbboO
+	eREHDpiTLLp8fZv0L6WtuAblFXYoSIC/dv8OEGVhY9JLukEcEDsZVJOh/AMv1VuDWpyM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uEoQK-00CRpC-PS; Tue, 13 May 2025 14:07:52 +0200
+Date: Tue, 13 May 2025 14:07:52 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: kernel test robot <lkp@intel.com>,
+	FUJITA Tomonori <fujita.tomonori@gmail.com>
+Cc: Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Andrei Botila <andrei.botila@oss.nxp.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Michael Klein <michael@fossekall.de>,
+	Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, oe-kbuild-all@lists.linux.dev,
+	netdev@vger.kernel.org,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Subject: Re: [net-next PATCH v9 1/6] net: phy: pass PHY driver to
+ .match_phy_device OP
+Message-ID: <c097072b-af72-4d52-9f16-690b3ec3e75e@lunn.ch>
+References: <20250511183933.3749017-2-ansuelsmth@gmail.com>
+ <202505131337.ZjnU5fK1-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftdegtddvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudgrmeeiudemjehfkegtmehfjeekrgemfhelvghfmeekkegttdemieefsghfnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdurgemiedumeejfhektgemfhejkegrmehflegvfhemkeektgdtmeeifegsfhdphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudegpdhrtghpthhtohepphhiohhtrhdrkhhusghikhesrgguthhrrghnrdgtohhmpdhrtghpthhtohepohdrrhgvmhhpvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhop
- egrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202505131337.ZjnU5fK1-lkp@intel.com>
 
-On Mon, 12 May 2025 22:02:52 +0000
-Piotr Kubik <piotr.kubik@adtran.com> wrote:
+On Tue, May 13, 2025 at 02:09:12PM +0800, kernel test robot wrote:
+> Hi Christian,
 
-> From: Piotr Kubik <piotr.kubik@adtran.com>
->=20
-> These patch series provide support for Skyworks Si3474 I2C
-> Power Sourcing Equipment controller.
->=20
-> Based on the TPS23881 driver code.
->=20
-> Supported features of Si3474:
-> - get port status,
-> - get port admin state,
-> - get port power,
-> - get port voltage,
-> - enable/disable port power
+Adding FUJITA Tomonori <fujita.tomonori@gmail.com>.
 
-You forgot the series version in the subject like this: [PATCH net-next v2 =
-0/2]
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+> kernel test robot noticed the following build errors:
+> 
+> [auto build test ERROR on net-next/main]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/net-phy-pass-PHY-driver-to-match_phy_device-OP/20250512-024253
+> base:   net-next/main
+> patch link:    https://lore.kernel.org/r/20250511183933.3749017-2-ansuelsmth%40gmail.com
+> patch subject: [net-next PATCH v9 1/6] net: phy: pass PHY driver to .match_phy_device OP
+> config: x86_64-randconfig-r073-20250513 (https://download.01.org/0day-ci/archive/20250513/202505131337.ZjnU5fK1-lkp@intel.com/config)
+> compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
+> rustc: rustc 1.78.0 (9b00956e5 2024-04-29)
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250513/202505131337.ZjnU5fK1-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202505131337.ZjnU5fK1-lkp@intel.com/
+> 
+> All errors (new ones prefixed by >>):
+> 
+>    ***
+>    *** Rust bindings generator 'bindgen' < 0.69.5 together with libclang >= 19.1
+>    *** may not work due to a bug (https://github.com/rust-lang/rust-bindgen/pull/2824),
+>    *** unless patched (like Debian's).
+>    ***   Your bindgen version:  0.65.1
+>    ***   Your libclang version: 20.1.2
+>    ***
+>    ***
+>    *** Please see Documentation/rust/quick-start.rst for details
+>    *** on how to set up the Rust support.
+>    ***
+> >> error[E0308]: mismatched types
+>    --> rust/kernel/net/phy.rs:527:18
+>    |
+>    527 |             Some(Adapter::<T>::match_phy_device_callback)
+>    |             ---- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ incorrect number of function parameters
+>    |             |
+>    |             arguments to this enum variant are incorrect
+>    |
+>    = note: expected fn pointer `unsafe extern "C" fn(*mut bindings::phy_device, *const phy_driver) -> _`
+>    found fn item `unsafe extern "C" fn(*mut bindings::phy_device) -> _ {phy::Adapter::<T>::match_phy_device_callback}`
+>    help: the type constructed contains `unsafe extern "C" fn(*mut bindings::phy_device) -> i32 {phy::Adapter::<T>::match_phy_device_callback}` due to the type of the argument passed
+>    --> rust/kernel/net/phy.rs:527:13
+>    |
+>    527 |             Some(Adapter::<T>::match_phy_device_callback)
+>    |             ^^^^^---------------------------------------^
+>    |                  |
+>    |                  this argument influences the type of `Some`
+>    note: tuple variant defined here
+>    --> /opt/cross/rustc-1.78.0-bindgen-0.65.1/rustup/toolchains/1.78.0-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:580:5
+>    |
+>    580 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+>    |     ^^^^
+> 
+> -- 
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests/wiki
 
