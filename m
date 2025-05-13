@@ -1,129 +1,495 @@
-Return-Path: <devicetree+bounces-176825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 429F1AB5922
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:53:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 095A6AB5931
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:59:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8622386432E
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:53:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EC7446188B
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:59:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9EB52BE0ED;
-	Tue, 13 May 2025 15:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19A582BCF5A;
+	Tue, 13 May 2025 15:59:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="IkMrIhBn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kxI3NfAe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E32991A3A8D;
-	Tue, 13 May 2025 15:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB4A42EB1D;
+	Tue, 13 May 2025 15:59:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747151612; cv=none; b=XO1FpC+iA8cfZZ/xvJQOS5Kg11LAr38h+3SOp+UYpeNhPyJfYemYm/k7rv0raKK/wFauliyCWlH9XgtaP8Ybxa8UtY3GD7aRVllHWoLGeRguEh1LGa/rA/H1hRtdktK5eFTGLxuuNzcVtAP7Df8S2Oprhgp76r8ePeKWhe3OVWM=
+	t=1747151967; cv=none; b=QJHuMd8alcAqoUCshyy/phrVOUIfL4Lph903BRlfz4ai4RbfrYMOFR4NldUvWufLAhAW/T6t3PXYb6TxFGdA4aPCJI6sFV9KAx/WrznmULA21mzywBzYvQBW5MSRTgaLUMecTWMx5lLGEDAn6ENO6ubqM7BOBQCNB3HhTs1/vDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747151612; c=relaxed/simple;
-	bh=hu7KL6SGvQ91ChmM4dOxm/FwnmotCZDHZWO4BDpNTOU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jCQETMIs8lMfzNVHml3/TBxwWlSFXSzfDtViKdj9b9nbOTL6yRxvoUdKaeMdxkQgnnZg0IsHevAotFEddRbRe2zsOJzVOojbEqaAps/y5jZMJRM6KU86BwCIW4SL7QCjfo90kiO+mrS5wSLNEc0A4MaiYrwpTcw+r9rszYdHG/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=IkMrIhBn; arc=none smtp.client-ip=5.135.140.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CBEC8135653;
-	Tue, 13 May 2025 17:53:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1747151608; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=xuqyAAuoDMtQl7aHc6ogdkm/UKwvvmnE5+dcBd3QudM=;
-	b=IkMrIhBnJaCErPFw1yEBeZgaFvMO39PNrFDmmXYjXNLBaKjIzoJtB8wGIinVp1i4Yj3QH0
-	/aKR23//abEyMb0eAe/tWrVJ9qjo4gGwHrsE1QahL6HoGVYmXqTGGFFAMoDMFGu12nmghF
-	su6eAIAPrpv7DR9A/r/4SGsvKzJCnA2KIfQWH7vaQwV318LY9HfR80aCgZcvN9Sl/+bjLb
-	cOiPpxnWB2n+tBdvSXOgVW8dyDg6EGzYk7blIC1oMCL0Ux/+NQELPeIXMzFSicj4lQlGtI
-	Gq5waCU93MqwSSpb/jHufZOEqFgphhPRotzJOkuxqJfkvDsXP+Kq9+RsrtmM4Q==
-Message-ID: <927c8a59-ac1b-49dc-b889-22c3a65bb49c@cjdns.fr>
-Date: Tue, 13 May 2025 17:53:24 +0200
+	s=arc-20240116; t=1747151967; c=relaxed/simple;
+	bh=+aDJ36VsyLlU+J6XmuNFxIBmKrWqVCS4wZMDzLEjHfQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gCKU4Rq6qHaUgmtcVx1OrUqLOa/UicHjoNRopsA/hs6FjadTtml7XfUXDhu/+b2DyDrrzzfMFvrdGhk5CDycZ4WWTTYJkWHxr4wooT5by+pZhd0h3QwvMbdTs5CoXkpB1hm2DpbwIteoBDc9mO/U5EZoYMYhvDE6OQ8+hf8AWFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kxI3NfAe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0EDFC4CEE4;
+	Tue, 13 May 2025 15:59:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747151966;
+	bh=+aDJ36VsyLlU+J6XmuNFxIBmKrWqVCS4wZMDzLEjHfQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kxI3NfAemezlRaLG0a4JNZr4G9sVb2EgjFiwA7zYwJGuYLn2bnVdTzgk/sXDTiaKn
+	 pftFeUepoyeNscMVQ2dNNMJ4jdZHrgfFsocn8bIeaQZ1CG7TQDmiqcbsGbqsnxS05/
+	 WolKfki2lY114smi0OObUZkgyZvec/op01+pCvvfHff/GUbVM7/v5tMm7YgONC/iUH
+	 D4aOIiGTy/MP1a4FsLQ0r39CH6HDmcykPp+98CSqQilmUgNvPAeK0kkT4ytF9OSxJ1
+	 VnqO5YGRwNL5ycFStJtd+kLuvTat9IdX0T0hWUHthyEScjnXvlZH+jjevIFcnRT/hl
+	 YIzculzxquayQ==
+Date: Tue, 13 May 2025 16:59:20 +0100
+From: Lee Jones <lee@kernel.org>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v3 13/22] mfd: adp5585: add support for event handling
+Message-ID: <20250513155920.GQ2936510@google.com>
+References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
+ <20250512-dev-adp5589-fw-v3-13-092b14b79a88@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v5 0/7] Add EcoNet EN751221 MIPS platform support
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: linux-mips@vger.kernel.org, tglx@linutronix.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, tsbogend@alpha.franken.de,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- benjamin.larsson@genexis.eu, linux-mediatek@lists.infradead.org
-References: <20250507134500.390547-1-cjd@cjdns.fr>
- <aCNWM5Xq7wnHVCrc@mai.linaro.org>
- <45166de2-8504-484d-90f6-6ef97c650b61@cjdns.fr>
- <aCNkmCJK1wOLGmgy@mai.linaro.org>
-Content-Language: en-US
-From: Caleb James DeLisle <cjd@cjdns.fr>
-In-Reply-To: <aCNkmCJK1wOLGmgy@mai.linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250512-dev-adp5589-fw-v3-13-092b14b79a88@analog.com>
 
+On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
 
-On 13/05/2025 17:26, Daniel Lezcano wrote:
-> On Tue, May 13, 2025 at 04:31:05PM +0200, Caleb James DeLisle wrote:
->> On 13/05/2025 16:24, Daniel Lezcano wrote:
->>> On Wed, May 07, 2025 at 01:44:53PM +0000, Caleb James DeLisle wrote:
->>>> EcoNet MIPS SoCs are big endian machines based on 34Kc and 1004Kc
->>>> processors. They are found in xDSL and xPON modems, and contain PCM
->>>> (VoIP), Ethernet, USB, GPIO, I2C, SPI (Flash), UART, and PCIe.
->>>>
->>>> The EcoNet MIPS SoCs are divided broadly into two families, the
->>>> EN751221 family based on the 34Kc, and the EN751627 family based on
->>>> the 1004Kc. Individual SoCs within a family are very similar, only
->>>> with different peripherals.
->>>>
->>>> This patchset adds basic "boots to a console" support for the EN751221
->>>> family and adds SmartFiber XP8421-B, a low cost commercially available
->>>> board that is useful for testing and development.
->>>>
->>>> Note that Airoha (AN7523, AN7581) is similar to EcoNet in terms of
->>>> peripherals, and for historical reasons Airoha chips are sometimes
->>>> referred to with the EN75xx prefix. However this is a different
->>>> platform because Airoha chips are ARM based.
->>>>
->>>> This patchset is against mips-next.
->>>>
->>>> v4 -> v5
->>>> * 2/7 clocksource/drivers: Add EcoNet Timer HPT driver:
->>>>     * Improve explanation of HPT timer in changelog
->>>>     * Move pr_info to pr_debug per recommendation
->>>>     * Remove pointless debug on spurious interrupt
->>>>     * Small code-style change
->>> Shall I pick the clocksource + bindings changes through my tree ?
->>>
->> I'm new here so I don't know what that means for the merges which
->> will happen later, but I don't see any reason to do otherwise.
-> The series introduces a new platform. The patches are touching
-> different susystems managed by different maintainers.
->
-> Usually, the changes are per subsystem, except when they are
-> interdependant.
->
-> Here you can choose to merge all the patches through the mips tree or
-> let the different maintainers to pick the changes related to the
-> subsystems they handle. You should clarify that in the cover
-> letter. If you choose the first alternative, then before merging the
-> changes, all maintainer should have blessed the patches with their
-> acked-by.
->
-Thank you for the explanation, this patchset has already started to be
-taken piece-wise, and the only dependency that comes to mind
-is the econet vendor prefix which Rob Herring took few weeks ago.
+> From: Nuno Sá <nuno.sa@analog.com>
+> 
+> These devices are capable of generate FIFO based events based on KEY or
+> GPI presses. Add support for handling these events. This is in
+> preparation of adding full support for keymap and gpis based events.
+> 
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> ---
+>  drivers/mfd/adp5585.c       | 180 ++++++++++++++++++++++++++++++++++++++++++--
+>  include/linux/mfd/adp5585.h |  48 ++++++++++++
+>  2 files changed, 223 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+> index 8be7a76842f639cbe90ad0eb956a7a3eef43fa3d..5851ad30e7323bbb891878167d0786bc60ef5d90 100644
+> --- a/drivers/mfd/adp5585.c
+> +++ b/drivers/mfd/adp5585.c
+> @@ -154,10 +154,16 @@ static const struct regmap_config adp5585_regmap_config_template = {
+>  
+>  static const struct adp5585_regs adp5585_regs = {
+>  	.ext_cfg = ADP5585_PIN_CONFIG_C,
+> +	.int_en = ADP5585_INT_EN,
+> +	.gen_cfg = ADP5585_GENERAL_CFG,
+> +	.poll_ptime_cfg = ADP5585_POLL_PTIME_CFG,
+>  };
+>  
+>  static const struct adp5585_regs adp5589_regs = {
+>  	.ext_cfg = ADP5589_PIN_CONFIG_D,
+> +	.int_en = ADP5589_INT_EN,
+> +	.gen_cfg = ADP5589_GENERAL_CFG,
+> +	.poll_ptime_cfg = ADP5589_POLL_PTIME_CFG,
+>  };
+>  
+>  static int adp5585_fill_chip_configs(struct adp5585_dev *adp5585,
+> @@ -214,6 +220,8 @@ static int adp5585_parse_fw(struct device *dev, struct adp5585_dev *adp5585,
+>  {
+>  	unsigned int has_pwm = 0, has_gpio = 0, rc = 0;
+>  	const struct mfd_cell *cells;
+> +	unsigned int prop_val;
+> +	int ret;
+>  
+>  	if (device_property_present(dev, "#pwm-cells"))
+>  		has_pwm = 1;
+> @@ -224,6 +232,25 @@ static int adp5585_parse_fw(struct device *dev, struct adp5585_dev *adp5585,
+>  	if (!has_pwm && !has_gpio)
+>  		return -ENODEV;
+>  
+> +	ret = device_property_read_u32(dev, "poll-interval", &prop_val);
+> +	if (!ret) {
+> +		switch (prop_val) {
+> +		case 10:
+> +			fallthrough;
+> +		case 20:
+> +			fallthrough;
+> +		case 30:
+> +			fallthrough;
+> +		case 40:
+> +			adp5585->ev_poll_time = prop_val / 10 - 1;
+> +			break;
+> +		default:
+> +			return dev_err_probe(dev, -EINVAL,
+> +					     "Invalid value(%u) for poll-interval\n",
+> +					     prop_val);
+> +		}
+> +	}
 
-With that said, I see no reason not to continue taking it piece-wise.
+This all seems like a lot of code for:
 
-Thanks,
+	ev_poll_time = prop_val / 10 - 1;
+	if (ev_poll_time > 3 || ev_poll_time < 0)
+		return dev_err_probe();
 
-Caleb
+> +
+>  	*devs = devm_kcalloc(dev, has_pwm + has_gpio, sizeof(struct mfd_cell),
+>  			     GFP_KERNEL);
+>  	if (!*devs)
+> @@ -249,6 +276,135 @@ static void adp5585_osc_disable(void *data)
+>  	regmap_write(adp5585->regmap, ADP5585_GENERAL_CFG, 0);
+>  }
+>  
+> +static void adp5585_report_events(struct adp5585_dev *adp5585, int ev_cnt)
+> +{
+> +	struct adp5585_ev_handler *h;
+> +	unsigned int i;
+> +
+> +	guard(mutex)(&adp5585->ev_lock);
+> +
+> +	if (list_empty(&adp5585->ev_handlers)) {
+> +		dev_warn_ratelimited(adp5585->dev, "No event handlers registered\n");
+> +		return;
+> +	}
+> +
+> +	for (i = 0; i < ev_cnt; i++) {
+> +		unsigned int key, key_val, key_press;
+> +		int ret;
+> +
+> +		ret = regmap_read(adp5585->regmap, ADP5585_FIFO_1 + i, &key);
+> +		if (ret)
+> +			return;
+> +
+> +		key_val = FIELD_GET(ADP5585_KEY_EVENT_MASK, key);
+> +		key_press = FIELD_GET(ADP5585_KEV_EV_PRESS_MASK, key);
+> +
+> +		list_for_each_entry(h, &adp5585->ev_handlers, entry) {
+> +			ret = h->handler(h->dev, key_val, key_press);
 
+Rather than rolling your own call-back handler mechanism.  Are you sure
+the kernel doesn't provide a generic solution for this?  For instance,
+would a shared workqueue be better?  This way you could also exit IRQ
+context sooner as well.
+
+> +			if (!ret)
+> +				/* handled! */
+
+All comments should start with an upper case char.
+
+> +				break;
+> +		}
+> +	}
+> +}
+> +
+> +static irqreturn_t adp5585_irq(int irq, void *data)
+> +{
+> +	struct adp5585_dev *adp5585 = data;
+> +	unsigned int status, ev_cnt;
+> +	int ret;
+> +
+> +	ret = regmap_read(adp5585->regmap, ADP5585_INT_STATUS, &status);
+> +	if (ret)
+> +		return IRQ_HANDLED;
+> +
+> +	if (status & ADP5585_OVRFLOW_INT)
+> +		dev_err_ratelimited(adp5585->dev, "Event Overflow Error\n");
+
+Strange capitalisation.
+
+> +
+> +	if (!(status & ADP5585_EVENT_INT))
+> +		goto out_irq;
+> +
+> +	ret = regmap_read(adp5585->regmap, ADP5585_STATUS, &ev_cnt);
+> +	if (ret)
+> +		goto out_irq;
+> +
+> +	ev_cnt = FIELD_GET(ADP5585_EC_MASK, ev_cnt);
+> +	if (!ev_cnt)
+> +		goto out_irq;
+> +
+> +	adp5585_report_events(adp5585, ev_cnt);
+
+You don't want to propagate any errors?
+
+> +out_irq:
+> +	regmap_write(adp5585->regmap, ADP5585_INT_STATUS, status);
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int adp5585_setup(struct adp5585_dev *adp5585)
+> +{
+> +	const struct adp5585_regs *regs = adp5585->info->regs;
+> +	unsigned int reg_val, i;
+> +	int ret;
+
+The final version of this function needs some nice commentary to explain
+what each step is doing.  May as well start now.
+
+> +	for (i = 0; i < ADP5585_EV_MAX; i++) {
+> +		ret = regmap_read(adp5585->regmap, ADP5585_FIFO_1 + i, &reg_val);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = regmap_write(adp5585->regmap, regs->poll_ptime_cfg,
+> +			   adp5585->ev_poll_time);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(adp5585->regmap, regs->gen_cfg,
+> +			   ADP5585_OSC_FREQ_500KHZ | ADP5585_INT_CFG |
+> +			   ADP5585_OSC_EN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_add_action_or_reset(adp5585->dev, adp5585_osc_disable,
+> +					adp5585);
+> +}
+> +
+> +static void adp5585_irq_disable(void *data)
+> +{
+> +	struct adp5585_dev *adp5585 = data;
+> +
+> +	regmap_write(adp5585->regmap, adp5585->info->regs->int_en, 0);
+> +}
+> +
+> +static int adp5585_irq_enable(struct i2c_client *i2c,
+> +			      struct adp5585_dev *adp5585)
+> +{
+> +	const struct adp5585_regs *regs = adp5585->info->regs;
+> +	unsigned int stat;
+> +	int ret;
+> +
+> +	if (i2c->irq <= 0)
+> +		return 0;
+> +
+> +	ret = devm_request_threaded_irq(&i2c->dev, i2c->irq, NULL, adp5585_irq,
+> +					IRQF_ONESHOT, i2c->name, adp5585);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* clear any possible outstanding interrupt before enabling them... */
+
+Uppercase char (I won't report on this again) and now silly punctuation
+please...
+
+> +	ret = regmap_read(adp5585->regmap, ADP5585_INT_STATUS, &stat);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(adp5585->regmap, ADP5585_INT_STATUS, stat);
+> +	if (ret)
+> +		return ret;
+
+What does reading status values then writing them right back do?
+
+Commentary throughout please.
+
+> +	ret = regmap_write(adp5585->regmap, regs->int_en,
+> +			   ADP5585_OVRFLOW_IEN | ADP5585_EVENT_IEN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_add_action_or_reset(&i2c->dev, adp5585_irq_disable,
+> +					adp5585);
+
+Feel free to use 100-chars to help with these early line breaks.
+
+> +}
+> +
+>  static int adp5585_i2c_probe(struct i2c_client *i2c)
+>  {
+>  	struct regmap_config regmap_config;
+> @@ -282,16 +438,19 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+>  		return dev_err_probe(&i2c->dev, -ENODEV,
+>  				     "Invalid device ID 0x%02x\n", id);
+>  
+> +	adp5585->dev = &i2c->dev;
+> +	adp5585->irq = i2c->irq;
+> +	INIT_LIST_HEAD(&adp5585->ev_handlers);
+> +
+>  	n_devs = adp5585_parse_fw(&i2c->dev, adp5585, &devs);
+>  	if (n_devs < 0)
+>  		return n_devs;
+>  
+> -	ret = regmap_set_bits(adp5585->regmap, ADP5585_GENERAL_CFG,
+> -			      ADP5585_OSC_EN);
+> +	ret = adp5585_setup(adp5585);
+>  	if (ret)
+>  		return ret;
+>  
+> -	ret = devm_add_action_or_reset(&i2c->dev, adp5585_osc_disable, adp5585);
+> +	ret = devm_mutex_init(&i2c->dev, &adp5585->ev_lock);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -301,13 +460,16 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+>  		return dev_err_probe(&i2c->dev, ret,
+>  				     "Failed to add child devices\n");
+>  
+> -	return 0;
+> +	return adp5585_irq_enable(i2c, adp5585);
+>  }
+>  
+>  static int adp5585_suspend(struct device *dev)
+>  {
+>  	struct adp5585_dev *adp5585 = dev_get_drvdata(dev);
+>  
+> +	if (adp5585->irq)
+> +		disable_irq(adp5585->irq);
+> +
+>  	regcache_cache_only(adp5585->regmap, true);
+>  
+>  	return 0;
+> @@ -316,11 +478,19 @@ static int adp5585_suspend(struct device *dev)
+>  static int adp5585_resume(struct device *dev)
+>  {
+>  	struct adp5585_dev *adp5585 = dev_get_drvdata(dev);
+> +	int ret;
+>  
+>  	regcache_cache_only(adp5585->regmap, false);
+>  	regcache_mark_dirty(adp5585->regmap);
+>  
+> -	return regcache_sync(adp5585->regmap);
+> +	ret = regcache_sync(adp5585->regmap);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (adp5585->irq)
+> +		enable_irq(adp5585->irq);
+> +
+> +	return 0;
+>  }
+>  
+>  static DEFINE_SIMPLE_DEV_PM_OPS(adp5585_pm, adp5585_suspend, adp5585_resume);
+> diff --git a/include/linux/mfd/adp5585.h b/include/linux/mfd/adp5585.h
+> index 9a925a91c772722db559c9ec8ae334b2159ede79..218c56bed2e0304de8b81c7090386fb4e1b6c281 100644
+> --- a/include/linux/mfd/adp5585.h
+> +++ b/include/linux/mfd/adp5585.h
+> @@ -10,13 +10,23 @@
+>  #define __MFD_ADP5585_H_
+>  
+>  #include <linux/bits.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/device.h>
+> +#include <linux/list.h>
+> +#include <linux/mutex.h>
+>  
+>  #define ADP5585_ID			0x00
+>  #define		ADP5585_MAN_ID_VALUE		0x20
+>  #define		ADP5585_MAN_ID_MASK		GENMASK(7, 4)
+> +#define		ADP5585_REV_ID_MASK		GENMASK(3, 0)
+>  #define ADP5585_INT_STATUS		0x01
+> +#define		ADP5585_OVRFLOW_INT		BIT(2)
+> +#define		ADP5585_EVENT_INT		BIT(0)
+>  #define ADP5585_STATUS			0x02
+> +#define		ADP5585_EC_MASK			GENMASK(4, 0)
+>  #define ADP5585_FIFO_1			0x03
+> +#define		ADP5585_KEV_EV_PRESS_MASK	BIT(7)
+> +#define		ADP5585_KEY_EVENT_MASK		GENMASK(6, 0)
+>  #define ADP5585_FIFO_2			0x04
+>  #define ADP5585_FIFO_3			0x05
+>  #define ADP5585_FIFO_4			0x06
+> @@ -32,6 +42,7 @@
+>  #define ADP5585_FIFO_14			0x10
+>  #define ADP5585_FIFO_15			0x11
+>  #define ADP5585_FIFO_16			0x12
+> +#define		ADP5585_EV_MAX			(ADP5585_FIFO_16 - ADP5585_FIFO_1 + 1)
+>  #define ADP5585_GPI_INT_STAT_A		0x13
+>  #define ADP5585_GPI_INT_STAT_B		0x14
+>  #define ADP5585_GPI_STATUS_A		0x15
+> @@ -104,6 +115,8 @@
+>  #define		ADP5585_INT_CFG			BIT(1)
+>  #define		ADP5585_RST_CFG			BIT(0)
+>  #define ADP5585_INT_EN			0x3c
+> +#define		ADP5585_OVRFLOW_IEN		BIT(2)
+> +#define		ADP5585_EVENT_IEN		BIT(0)
+>  
+>  #define ADP5585_MAX_REG			ADP5585_INT_EN
+>  
+> @@ -121,7 +134,9 @@
+>  #define ADP5589_PWM_OFFT_LOW		0x3e
+>  #define ADP5589_PWM_ONT_LOW		0x40
+>  #define ADP5589_PWM_CFG			0x42
+> +#define ADP5589_POLL_PTIME_CFG		0x48
+>  #define ADP5589_PIN_CONFIG_D		0x4C
+> +#define ADP5589_GENERAL_CFG		0x4d
+>  #define ADP5589_INT_EN			0x4e
+>  #define ADP5589_MAX_REG			ADP5589_INT_EN
+>  
+> @@ -138,8 +153,18 @@ enum adp5585_regmap_type {
+>  	ADP5589_REGMAP_02,
+>  };
+>  
+> +struct adp5585_ev_handler {
+> +	struct list_head entry;
+> +	struct device *dev;
+> +	int (*handler)(struct device *dev, unsigned int key_val,
+> +		       unsigned int key_press);
+
+Pointer to functions outside of subsystem-level ops are generally
+frowned upon.  Are you sure there isn't a standard way to achieve your
+goal without them?
+
+> +};
+> +
+>  struct adp5585_regs {
+> +	unsigned int gen_cfg;
+>  	unsigned int ext_cfg;
+> +	unsigned int int_en;
+> +	unsigned int poll_ptime_cfg;
+>  };
+>  
+>  struct adp5585_info {
+> @@ -150,7 +175,30 @@ struct adp5585_info {
+>  
+>  struct adp5585_dev {
+>  	struct regmap *regmap;
+> +	struct device *dev;
+>  	const struct adp5585_info *info;
+> +	/* Used to synchronize the availability of the event handlers */
+> +	struct mutex ev_lock;
+> +	struct list_head ev_handlers;
+> +	int irq;
+> +	unsigned int ev_poll_time;
+>  };
+>  
+> +static inline void adp5585_ev_handler_remove(void *data)
+> +{
+> +	struct adp5585_ev_handler *handler = data;
+> +	struct adp5585_dev *adp5585 = dev_get_drvdata(handler->dev->parent);
+> +
+> +	guard(mutex)(&adp5585->ev_lock);
+> +	list_del(&handler->entry);
+> +}
+> +
+> +static inline int devm_adp5585_ev_handler_add(struct adp5585_dev *adp5585,
+> +					      struct adp5585_ev_handler *handler)
+> +{
+> +	guard(mutex)(&adp5585->ev_lock);
+> +	list_add_tail(&handler->entry, &adp5585->ev_handlers);
+> +	return devm_add_action_or_reset(handler->dev, adp5585_ev_handler_remove,
+> +					handler);
+> +}
+>  #endif
+> 
+> -- 
+> 2.49.0
+> 
+> 
+
+-- 
+Lee Jones [李琼斯]
 
