@@ -1,145 +1,123 @@
-Return-Path: <devicetree+bounces-176954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6CDDAB5EF2
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 00:01:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCDD1AB5EF9
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 00:01:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E81288C0427
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:00:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA52B170A83
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:01:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD92821B90F;
-	Tue, 13 May 2025 22:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D6DB20C009;
+	Tue, 13 May 2025 22:01:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xtoa2PHH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vo3x8pcQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8FEB217659;
-	Tue, 13 May 2025 22:00:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394E31AA1E0
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 22:00:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747173602; cv=none; b=tZiSIM1U9QLXMojF0XwX+vDSJ8E/lCY7bBk8JSPestBJPcHCNT0x+gVJNXPlcuMzWBzQsft9tZj4AcxOPpFpjELpHyiiJjUgTQme9bClVjkv87hHnu7n6PsDpuJ8hK5AWFRw53e7dEBNwTpK6eI6etwPNsj7HiBPfyB7HX28J8w=
+	t=1747173663; cv=none; b=g14J9APYhnI1pO/OftpNB+8977FNlepE1EAcpHEoHhkiE9dgg9iMb2vY+mUBL9K4GXuSOAiXBuVs2yO0dCZgRnSc7W+Ffz6UU7IGwSaZRtQCmnoSczfmr+fwPb8AAVZ/fZLAcmVVrw3Ue5kXk5tXz4CHrwvBVaqdCugaImO3aEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747173602; c=relaxed/simple;
-	bh=5EjVsjxBlzfUERFXjaKmvuV82xLSUkfyC7+UBqTb/04=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pwGZL0mPn6JxSeD86bcdx+S86EIFHHXLqIKwPa6ccbd7a3O5ghT35Y6U6bXjMSk35qT3awDmaJkcTctQxpy4/zfEXJ0Xl5sl9FtYdGokeW8QPV16e0ZsBcFJb7s2nhB2YrAaDS25Wi0L/2vPslLtfLmYXefWSe3OvZAs1esB8vg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xtoa2PHH; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54DLxaCl2431444;
-	Tue, 13 May 2025 16:59:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1747173576;
-	bh=PaXp3+Nc4om8rc2bk8qplk5oP4MocCsaSbkZb3DsCtw=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=xtoa2PHH8NNnlNIvxtJ0iTBfsGyJcMXfl8yIJK0einXWti5e0cubP7ZTzilM75ENp
-	 g2WwLiyouRLtfK6UkaueaGGSk1b3AZHHBwQM7Y+rMuzNGRq96l+5K/YBaqE/6HsIIO
-	 LVIxl45889/QWNR6mwFp38foUMwOC5bTRXUmKrHA=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54DLxZON1005889
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 13 May 2025 16:59:35 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
- May 2025 16:59:35 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 13 May 2025 16:59:35 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 54DLxYdI111031;
-	Tue, 13 May 2025 16:59:35 -0500
-From: Judith Mendez <jm@ti.com>
-To: Judith Mendez <jm@ti.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Santosh
- Shilimkar <ssantosh@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Bin Liu <b-liu@ti.com>,
-        Andy Shevchenko
-	<andriy.shevchenko@linux.intel.com>,
-        Andrew Davis <afd@ti.com>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH 7/7] DONOTMERGE: arm64: dts: ti: k3-am62x-sk: Enable PRU UART
-Date: Tue, 13 May 2025 16:59:34 -0500
-Message-ID: <20250513215934.933807-8-jm@ti.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250513215934.933807-1-jm@ti.com>
-References: <20250513215934.933807-1-jm@ti.com>
+	s=arc-20240116; t=1747173663; c=relaxed/simple;
+	bh=M8KwhjSS1RRu3vcmpn2SJ50X7pXkQM18VTy/pRaCHMs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jxYRAIc0vSc3OQ9/8DGrrbkjmIUeXBPTke3cmhkO1v4G5X1E/8SPCMo+lEhvfwTBE3YFTw6Pb1W8egHFh4eqR0Dw2qv85NjN35mfKaWgP+2StJ4Xvn/CDLR5NYad4NytQNWdzmuPRqGhBNl0zDF/nHTikWsj1HlhKpfks7dVsPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vo3x8pcQ; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-54e8e5d2cf0so6543764e87.2
+        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 15:00:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747173658; x=1747778458; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cBfy0IwztkKYuj0G9rqTe8PA4ZbPefuZXYlpy/l1Wu8=;
+        b=Vo3x8pcQZ2HFIPHzMA4ouSxGDci88uoAiujFtVopnbPUUOwvAckr+rIqapjT0Zdo/0
+         Wigf07pjgHY7g2PW7WKYcwG+xJv1hTw01zFO++o6MfyUNT68ZB4o0aJQNob+cWFm5fga
+         JJiQgxAQPeVBHpa+I9Hd4wLn7VXCgVmm25lqsNa2ZRcndZSQyCX7Mv2/DykEziiFuKAd
+         Q8VkNWUXIMgyYO+3e0zr+D1YjL9wtM98yAQGIQ6p3S2IufpwLDwFY42VzXTuuO0IE3KR
+         xmT+dGMAbtnLdpTJTa39t3EYGX1Qh6sqgCop3FFvQADTbKDMiY+Ho7HJoBNoyltCtOxr
+         OWLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747173658; x=1747778458;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cBfy0IwztkKYuj0G9rqTe8PA4ZbPefuZXYlpy/l1Wu8=;
+        b=RG9uWVm8o83vt8BQQjowcGGJCcXZLvsBA8z3Ozxc4u8V4sMqaUsLo1nOj9CF0ZnhNe
+         FOFzvdK+jP8TbizrATwJcWUlnC0jHCDZHkK2c03DZflYzRZo3D/2oXK1uF1sXEB3pA8j
+         AXO630uCgReP/JaacQmi6qpDn8Fr/fEn8dUV5IAMkFR94CbqMoXssFvD5zdgD5CTXeXs
+         zAhg/GEIdbeC1zZpQZAkMfB2GIiL7j3I+URoTcCjKSTRTbPMH+5Z2dkCrEVFyKPjXG5t
+         sXnB6cbzjo8MTzzWIB6etVvTwxOPX56MELunpp/ASifqr0bn4ShNHm/DnMR+GPrU7NwS
+         hVjw==
+X-Forwarded-Encrypted: i=1; AJvYcCV/Neg33A6h7Tuq0mKjGmyLxiyAsamcN0z1OjwV3pzmlKfC/7X+rdlzAcuoE4xgAQjrCRqpfRWfHf02@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1SUd+N/yBVbz7zlUS29TWC69jI9xBi+1RO8qIEALsKPXHFSqC
+	+a1iB0yeIUdMMv7xitGxpF/2gU2LJ8UiTZuxzaJP2eq0ZBHZguEp8MGJrFpwf62FS/IqhgWVeZs
+	iZWd5lSMxvhq9MktzUrj4s7M8d/BsDqz9SQFwPw==
+X-Gm-Gg: ASbGncsR4vxcF77dkdOu2eXnBVrytGiIVd/J3lhq2fUp9jR2eoExbBTSX3G5C0AufvQ
+	7UKIO0E3akaELcB5/bbOOgVc2BZMc2gVYCPaVSbFRYfo1jqWBMEWWTI2jEn6yXHvLKrcKdVi84e
+	EdFvmnFrOo0xkq947waby9dgKBYf/fuKzm
+X-Google-Smtp-Source: AGHT+IF6oQ8WY4oAI0j38NTw42hro7gIMITGeTqxvpzWEjohz93RMVVPR05oQB98ewc/+Rrp9dNkz0FCv7tTOl0hN8Y=
+X-Received: by 2002:a05:6512:3b86:b0:54e:a2f8:73e2 with SMTP id
+ 2adb3069b0e04-550d5f97caemr383042e87.18.1747173658262; Tue, 13 May 2025
+ 15:00:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250430-max77759-mfd-v9-0-639763e23598@linaro.org>
+ <20250430-max77759-mfd-v9-5-639763e23598@linaro.org> <CACRpkdY15L5PpV9ah_0R3ZPZVMh18OR+Dg2qXiBG=8Kq79-rjA@mail.gmail.com>
+ <20250513093414.GE2936510@google.com>
+In-Reply-To: <20250513093414.GE2936510@google.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 14 May 2025 00:00:47 +0200
+X-Gm-Features: AX0GCFuY7ZYIvbVu20D__GD0c9z8y0Fmgn47-CA055_0KC3QdyO02dOBRgGKdxc
+Message-ID: <CACRpkdZTB2NSZPYU=iMEFuH=rb3HWVu2A=8OY-sq6X00ZPq9wA@mail.gmail.com>
+Subject: Re: [PATCH v9 5/6] gpio: max77759: add Maxim MAX77759 gpio driver
+To: Lee Jones <lee@kernel.org>
+Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Srinivas Kandagatla <srini@kernel.org>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
+	kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-There is one PRU UART module in the PRU subsystem for am62 SoC.
+On Tue, May 13, 2025 at 11:34=E2=80=AFAM Lee Jones <lee@kernel.org> wrote:
+> On Tue, 13 May 2025, Linus Walleij wrote:
+> > On Wed, Apr 30, 2025 at 11:03=E2=80=AFAM Andr=C3=A9 Draszik <andre.dras=
+zik@linaro.org> wrote:
+> >
+> > > The Maxim MAX77759 is a companion PMIC for USB Type-C applications an=
+d
+> > > includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
+> > > Port Controller (TCPC), NVMEM, and a GPIO expander.
+> > >
+> > > This driver supports the GPIO functions using the platform device
+> > > registered by the core MFD driver.
+> > >
+> > > Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> >
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>
+> You're only 2 versions behind mate!  =3D;-)
 
-UART RX/TX signals for PRU UART in PRU subsystem can be routed from/to
-the user expansion header J3 (pins 10/8) on am62x SK, so enable
-pruss_uart by default and add pinmux node.
+Yeah I realized ... I'm walking up the backlog and there is occasionally
+these double acks...
 
-Signed-off-by: Judith Mendez <jm@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-index ee8337bfbbfd..c474e1d1a74d 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-@@ -15,6 +15,7 @@ aliases {
- 		serial0 = &wkup_uart0;
- 		serial1 = &mcu_uart0;
- 		serial2 = &main_uart0;
-+		serial3 = &pruss_uart;
- 		mmc0 = &sdhci0;
- 		mmc1 = &sdhci1;
- 		mmc2 = &sdhci2;
-@@ -181,6 +182,13 @@ AM62X_IOPAD(0x1b0, PIN_OUTPUT, 2) /* (A20/D16) MCASP0_ACLKR.UART1_TXD */
- 		>;
- 	};
- 
-+	pruss_uart_pins: pruss-uart-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x01d8, PIN_INPUT, 6) /* (C15) MCAN0_TX.PR0_UART0_RXD */
-+			AM62X_IOPAD(0x01dc, PIN_OUTPUT, 6) /* (E15) MCAN0_RX.PR0_UART0_TXD */
-+		>;
-+	};
-+
- 	main_i2c0_pins_default: main-i2c0-default-pins {
- 		pinctrl-single,pins = <
- 			AM62X_IOPAD(0x1e0, PIN_INPUT_PULLUP, 0) /* (B16/E12) I2C0_SCL */
-@@ -370,6 +378,12 @@ &main_uart1 {
- 	pinctrl-0 = <&main_uart1_pins_default>;
- };
- 
-+&pruss_uart {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pruss_uart_pins>;
-+	status = "okay";
-+};
-+
- &main_i2c0 {
- 	status = "okay";
- 	pinctrl-names = "default";
--- 
-2.49.0
-
+Linus Walleij
 
