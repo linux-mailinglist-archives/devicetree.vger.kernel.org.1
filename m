@@ -1,120 +1,141 @@
-Return-Path: <devicetree+bounces-176773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28314AB575F
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:40:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC9F6AB5759
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:39:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9ED8E4A617E
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:40:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F52B3AE824
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:39:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEEA0298991;
-	Tue, 13 May 2025 14:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE94720E03C;
+	Tue, 13 May 2025 14:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="enNVU0qa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o7/yAH93"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EB3828E56C;
-	Tue, 13 May 2025 14:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8194B1E5B9E;
+	Tue, 13 May 2025 14:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747147188; cv=none; b=DN7pxqcd55/VmxKxGB+LlsInF/ZGMTsRP7G+MJSzPxRkLTstxtjZMpju0IqBLLqRsIpNck6N4dncULMdgRTNm92x4G1HNsSxaE5DSnyGODaPJDWQ7fsKf+quYKd27MNkqmcQ5SP3TpZIEAnazMW0FUcWPfNESqqF35tBt+y5QK4=
+	t=1747147186; cv=none; b=opoV6AdIyv6C66uhu3UIRwrgKFMT4q14q/wsQkLq88mpSZ+wPNTuiGqAqrNeYrQPpopDYkRCzYKu5AXZiM9EFiQ1rUVulP+jFg6ovPgqo6QEoP5aZGBedga2otfpYpQpqzD8GEl4+rTD7OFcDlX+JbavIGjw/zPciuKZFq4YzLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747147188; c=relaxed/simple;
-	bh=HeSqpSWsc68+TjFPv1rKHS8+MgeUwgSQdJR++Dv0ce8=;
+	s=arc-20240116; t=1747147186; c=relaxed/simple;
+	bh=PEDSbWPKZrAI4l87D8/IK5YIvcTjwzk9nO/2u32S7yc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CVsZfw1OSJRySk+vn9BgFHo2CYBxW5//tGtr8ojcCm9+fNJ+c7XDw5cuutrCWTP308aHp8wp0B7I1fYdKprTZ8ohe9oSYgCBP/ODPrLY6NBS8rXMpOBAZ5UpP6p1bPAI+tFamXQrGa+VNRNedYISRAwXhknPwUcZICD2TtHiVBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=enNVU0qa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51ED1C4CEE9;
-	Tue, 13 May 2025 14:39:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=T3pL9sEEO1o6uQkFMiVXd5E8ByiGs1n1cPRjKeTkeXDJCNtDR3MKq53dh16gWEJ+g3lQ+gAmI8DPpc4iuAN+oPKM53045WNau0r9pSDH59dAHhBqCxRJUHw3SJ0oDFuHxIGDVr38scmtcIwDy2g3C0tRrZSBl49vJxbd54Z86EM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o7/yAH93; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E6C8C4CEE4;
+	Tue, 13 May 2025 14:39:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747147188;
-	bh=HeSqpSWsc68+TjFPv1rKHS8+MgeUwgSQdJR++Dv0ce8=;
+	s=k20201202; t=1747147186;
+	bh=PEDSbWPKZrAI4l87D8/IK5YIvcTjwzk9nO/2u32S7yc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=enNVU0qaSJG/zC6MdBMXA3DiINnOEJUraEv92iUVvNVVdFDW+5UNEBBdZFNcB0YX/
-	 OO8ZiE/8SKo9txgIn4SjsngXoS+7gHvbKyUeIMQGjJf6Oy8g9K0pUQo2aag0cwDDyq
-	 GfvYPLLaFoymCXBY44umm5Myli5k0PF/alJDWCKP9v0Y++wJ1oT6Ip9hRjTIE0VowO
-	 KBUTqSpKpFvDJPu0aaYV+YJWIJRa3gxaJ3IFaRs5tubF4a/DFhTvN9DbUimGxVup7S
-	 YyNk8bYyzMvqiUMJwECn/AKClnYcuKvCtdimhIsVjMbEoLwsdSzPIbPuCc+v+/+H//
-	 Q7LYBNwDV1edQ==
+	b=o7/yAH93F/HJIQ0rlT28egWdPTGsssUyd8dLsTzcLU1JUd4bGH7FioygWll/ySvXm
+	 AI4eCyvBDg2aeuGS8xkWBog6ipdDOhpqNu1b6NX3SnPAXt4amlsnXfq0tXsAdhos0w
+	 Qt8zcgZsxIHbfZllTxPLPYQTzubAA4m7DkNplhHcgcbZp8WjhaWaIahzdWp/EBhNys
+	 GY2XVi4nH0x9m4u1srz+1Z/CfZNWtcMiHkbv/M17/3J5cy04tCdnH+1LyJqvllEn+x
+	 FPJiLeLlb4BoDR9+lLqMuzfhWjDjQXaP6o6AnINw0mCpgXN9p52R1gxWteWdPfefTH
+	 d2asXwNSB5sWA==
 Date: Tue, 13 May 2025 15:39:42 +0100
-From: Lee Jones <lee@kernel.org>
-To: nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
+From: Conor Dooley <conor@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v3 05/22] mfd: adp5585: make use of MFD_CELL_NAME()
-Message-ID: <20250513143942.GN2936510@google.com>
-References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
- <20250512-dev-adp5589-fw-v3-5-092b14b79a88@analog.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add ROHM BD79100G
+Message-ID: <20250513-unpaid-detection-f45c9a06b4c6@spud>
+References: <cover.1747123883.git.mazziesaccount@gmail.com>
+ <7deb4b69795c298ba51c9b198bc87000ad35cc9b.1747123883.git.mazziesaccount@gmail.com>
+ <20250513-coconut-reconfirm-b90590efeb45@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ATzWI0fTp0b5znvq"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250512-dev-adp5589-fw-v3-5-092b14b79a88@analog.com>
+In-Reply-To: <20250513-coconut-reconfirm-b90590efeb45@spud>
 
-On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
 
-> From: Nuno Sá <nuno.sa@analog.com>
-> 
-> Use the helper macro. No functional change intended...
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> ---
->  drivers/mfd/adp5585.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> index d693b1ead05128e02f671ca465f9c72cab3b3395..19d4a0ab1bb4c261e82559630624059529765fbd 100644
-> --- a/drivers/mfd/adp5585.c
-> +++ b/drivers/mfd/adp5585.c
-> @@ -4,6 +4,7 @@
->   *
->   * Copyright 2022 NXP
->   * Copyright 2024 Ideas on Board Oy
-> + * Copyright 2025 Analog Devices Inc.
+--ATzWI0fTp0b5znvq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If you're going to sneak in irrelevant changes, at least mention it in
-passing in the change log.
+On Tue, May 13, 2025 at 03:39:11PM +0100, Conor Dooley wrote:
+> On Tue, May 13, 2025 at 11:26:27AM +0300, Matti Vaittinen wrote:
+> > The ROHM BD79100G is a 12-bit ADC which can be read over SPI. Device has
+> > no MOSI pin. ADC results can be read from MISO by clocking in 16 bits.
+> > The 4 leading bits will be zero, last 12 containig the data.
+>=20
+> I think it is probably worth mentioning why a rohm device is going into
+> this binding (clone?) and that the 12-bit thing is a differentiator that
+> is why you're not using a fallback.
 
->   */
->  
->  #include <linux/array_size.h>
-> @@ -24,8 +25,8 @@ enum {
->  };
->  
->  static const struct mfd_cell adp5585_devs[ADP5585_DEV_MAX] = {
-> -	{ .name = "adp5585-gpio", },
-> -	{ .name = "adp5585-pwm", },
-> +	MFD_CELL_NAME("adp5585-gpio"),
-> +	MFD_CELL_NAME("adp5585-pwm"),
->  };
->  
->  static const struct regmap_range adp5585_volatile_ranges[] = {
-> 
-> -- 
-> 2.49.0
-> 
-> 
+Sent too soon, meant to say: with that
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
--- 
-Lee Jones [李琼斯]
+>=20
+> >=20
+> > Device has only VCC supply pin, which acts also as a VFS, determining t=
+he
+> > voltage for full 12-bits. Specifying it is mandatory.
+> >=20
+> > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml =
+b/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
+> > index 44c671eeda73..10fb6e14c2d0 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
+> > @@ -46,6 +46,7 @@ properties:
+> >        - ti,ads7867
+> >        - ti,ads7868
+> >        - lltc,ltc2314-14
+> > +      - rohm,bu79100g
+> > =20
+> >    reg:
+> >      maxItems: 1
+> > @@ -96,6 +97,7 @@ allOf:
+> >                - ti,adc121s
+> >                - ti,ads7866
+> >                - ti,ads7868
+> > +              - rohm,bu79100g
+> >      then:
+> >        required:
+> >          - vcc-supply
+> > --=20
+> > 2.49.0
+> >=20
+>=20
+>=20
+
+
+
+--ATzWI0fTp0b5znvq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCNZrQAKCRB4tDGHoIJi
+0jJ+AQD8KIvz7dHXlcRaaMq7tYvBbLSTZqPSi6ZmY4VCGJ5gKAD+PD34qn/neQjb
+218u4O88q/9iICBLxkuwwJ6CipJVmgU=
+=vRFd
+-----END PGP SIGNATURE-----
+
+--ATzWI0fTp0b5znvq--
 
