@@ -1,161 +1,237 @@
-Return-Path: <devicetree+bounces-176785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817C4AB57A3
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:52:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6626AB57B3
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:55:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05FF719E34E3
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:52:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46B0A19E5381
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C191ACE0C;
-	Tue, 13 May 2025 14:52:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF04A1C84CE;
+	Tue, 13 May 2025 14:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M9/YyRDf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W1zlyvKX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC31D1A8412
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 14:52:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AA711C701A;
+	Tue, 13 May 2025 14:55:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747147962; cv=none; b=gCvGRhN+FFlBPQEHElsi49/6XEg94QzmChAqtjXGQhNrgsaolElEs8okFLiZbaI68o+gTM7ZgxA7AYpSxZspMzHyl3G4BNKB2sMwSFowFDhT/nVfQeaIj5zZ60o5QIs4wfclB+leGzf/sQMm6mfxdLw7fwjuqlHleNS/8FoYzV0=
+	t=1747148127; cv=none; b=gAoHXd8lwTlpyycAMXYPpDRCZTKa+Nkqw9GW7TQlgux0mZOARxmmLUuyMBSRg4ruloK/qtF+2jpBEjNVKWiAYXCRSma2z8TEd9KkuzM2RU0TPGto8szQMm3m/3VryZs918q+z0c9tz7deQ0l0SJ49z44WcFbLVH7//AQCVpxoAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747147962; c=relaxed/simple;
-	bh=7eTd/KlYKdNBE0gVtB8pRaG5SNHtwy49OeApK0fIKBo=;
+	s=arc-20240116; t=1747148127; c=relaxed/simple;
+	bh=Pyya90VltnrLC0B716Je0xNS94BZ+Qszup8DumxnMIQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I2JhWqeyORWxu3PftUvjLEXEELMndCYjanKSp3YSD0TfO48QoPKj0eh9fC8KFv4AE7uHbUNsar3Fv9cWCbNuf+s/tzApvVpXcuTeAn6pfHoKuZDXWgT3SlMQKF1bokuX1KpEHD91k3+6+PTUvY2Ynt00u10f7WR6Ba49ZtfMg1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M9/YyRDf; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3a0b646eff7so4913909f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 07:52:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747147959; x=1747752759; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NprQZFd0msRuigKqMDzXfWDuMemIh6oSVb1Z2bS8NyY=;
-        b=M9/YyRDfc3lZmZf078fLA06/K9MYKxFgXxCBxaa+mJIosp9HlH4Wy092cubEqd+qG0
-         1A1TgLrCLcug1t/nt2RmCeTyNCkusflDweFdarSpZ/EqeCEq/PAUgmvd8yxHVaVkvgxa
-         4oj5paQzNopFRBvLQ/R4AQl/9qGLZ07mUqtt1zFb7ROfb/i0/eHtTB2XwNy3ohYgsiVk
-         /UK5pP9sh8xqGR5Yfvz17YaU+AO1AU0fj6OAioExEm2qH219EUtpbhCLppIy53KciHcd
-         gM8dQJIMAs/Rs88kAxntiNvH6cnMHNx8kIFpTPKVriNIHdSxfFzcoeYgv530U+aNAdNN
-         fvhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747147959; x=1747752759;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NprQZFd0msRuigKqMDzXfWDuMemIh6oSVb1Z2bS8NyY=;
-        b=nE0/Uef1CUMewp7jv2c3Mzz1GuiCoqOTwlCst95mrj4Ico/HBQoVO1eHptWI9L6zLj
-         KSOxX4LqyykFRTDpL4rZd9RDzQxlJaXyK5J00uvZhopx063MR/2vfnR2xplNhj9TtZgf
-         JMZctHw+gIPX3BrxgHUo3qtGWypxiMV7KQb2U3qtwFQiD89cAPgEVZPYeWNH9QBWaTTd
-         pcVrwFMC7CkJjvkvigiv1cwR9uEahtfVczpImof3tF8WM+HsfKNWxmyzrg6HTBVfZyON
-         NOWuJflXtuOCoxqBdfw3GA8SSF4PYtmhbEmppFshvxZTlOcMU9JF0+e52OLU9CnZOZxy
-         K/xw==
-X-Forwarded-Encrypted: i=1; AJvYcCVIVwdusYnGOaLQFUu3xSlY+TQQeQDIhDz0bjjqOBb+xlscz4wmv3PB5CNRNjjV/GGLUEtSYFREZYdc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlEZMXoZw/3Q73EJRV7UKvhdgwLzAEUeaMrEEuUptEK0asOcdC
-	nP9WCDQMsMcVBTpxxUN+RGlHOgNmQdzojWHUFLpqb84R1McVD+8OZZqAKFTtNb0=
-X-Gm-Gg: ASbGncu+bwO7oDD5NwGz0HufO4SFusAWjXcmvK3LkSbdhR+nIGp7JV1o5eo0QC9Wl4G
-	P1WoDCMgYGGXSk9+TZGjIHEmx7dT1s1gUmZqvFu+ln3+iVLN7AOrOwXzG+TFYgeQ0Kj4YwrKCiq
-	TccOViRYnIJKFLxNmn2PDEXq/O4biH+nSN61qOhD8vZlFppoTkG3GD7jECTa2alnd8GJtnLUVyc
-	sppWhw6ivbivV4LK0rGjoTDxbcjrokZXOMDHlk73BMttfapu4J1Z4OoJM21nnjA3B2Ai60Mt8zS
-	A5L8iwKHWI5YW4Dul5DYJe5szsxpS+lZ1LsdQ4O3/jsNqLrbxJch62hR/u81CQy/vMe7ObsL+Wh
-	ezLJTrJ4hiaATZQ==
-X-Google-Smtp-Source: AGHT+IGYDcAG8pLfPmYFTyeqzeIaOvsHfnmcsUp0uHL3fXQ+4Wvxm5ZCV+BGXbRBT2JBatXikF9ENg==
-X-Received: by 2002:a5d:6a11:0:b0:3a1:faf3:b608 with SMTP id ffacd0b85a97d-3a1faf3b6c6mr10089134f8f.56.1747147959102;
-        Tue, 13 May 2025 07:52:39 -0700 (PDT)
-Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a2ce36sm16710394f8f.71.2025.05.13.07.52.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 May 2025 07:52:38 -0700 (PDT)
-Date: Tue, 13 May 2025 16:52:36 +0200
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: John Stultz <jstultz@google.com>
-Cc: Will McVicker <willmcvicker@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=pCWmDZ4Y3633emJSldlVdM3IfZ514n8XrGCgWlf7JtI2WrbsYrHt/2w2at4yJ7KUAueF/si4D3PR8aaMw5I14f4jZPmr38YXD0OAT05Yyb5PIjEx+oPA3vy2yz8HHGwoWpe86sPdFWfXAFAcmcEXUs6e4jQUrdlxndX1gIsvXNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W1zlyvKX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42CFFC4CEE4;
+	Tue, 13 May 2025 14:55:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747148127;
+	bh=Pyya90VltnrLC0B716Je0xNS94BZ+Qszup8DumxnMIQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W1zlyvKXRzhR/IYM6vzjs+fbY48Hz5qdZLLSGgn1TqDTYUSFAHLY4V2aRDfsvHNMG
+	 1ijUBTgtLiLnN7rL5KOU35SPi7cQuWH4h0dACKBFvjFMEZTmWasw8xyRuXEqU4c8l8
+	 Zm6Hwz8MJCbnAp8eaZOikKOee9bJvCjrfDhLXAYRlzQE0vHNw10LVeWqr+l2kac7tO
+	 AvX7AUuctKzSx09inTCdGRADssuXh9xlbNLM1y6kSMmGjqZ8flLDsONOjfEDxIHQyN
+	 9iLdR+oSooj7u+aYc2iJHrMmeALQXLIbjTQ4cK/VLyPajrf51dUT8LxpkAdrb5U0EL
+	 bLow5fI/yl3GA==
+Date: Tue, 13 May 2025 15:55:20 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>
+Cc: Michael Tretter <m.tretter@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Saravana Kannan <saravanak@google.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Donghoon Yu <hoony.yu@samsung.com>,
-	Hosung Kim <hosung0.kim@samsung.com>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Youngmin Nam <youngmin.nam@samsung.com>,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 6/7] clocksource/drivers/exynos_mct: Add module support
-Message-ID: <aCNctHq6K7uqFF05@mai.linaro.org>
-References: <20250402233407.2452429-1-willmcvicker@google.com>
- <20250402233407.2452429-7-willmcvicker@google.com>
- <Z_6OZHYfC0bC5289@mai.linaro.org>
- <CANDhNCodHATboF2=U2tTwdEkEJ+PsfB2F=fbBrs=J1UzZTEX8g@mail.gmail.com>
+	Michal Simek <michal.simek@amd.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>,
+	Aradhya Bhatia <a-bhatia1@ti.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Gaosheng Cui <cuigaosheng1@huawei.com>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
+	Ricardo Ribalda <ribalda@chromium.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [RESEND PATCH 3/5] dt-bindings: media: allegrodvt: add decoder
+ dt-bindings for Gen3 IP
+Message-ID: <20250513-earache-cesspool-6d08e2cfb73a@spud>
+References: <20250513083609.328422-1-yassine.ouaissa@allegrodvt.com>
+ <20250513083609.328422-4-yassine.ouaissa@allegrodvt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2i/8aIx86r3PFwP0"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANDhNCodHATboF2=U2tTwdEkEJ+PsfB2F=fbBrs=J1UzZTEX8g@mail.gmail.com>
+In-Reply-To: <20250513083609.328422-4-yassine.ouaissa@allegrodvt.com>
 
-On Tue, Apr 15, 2025 at 05:48:41PM -0700, John Stultz wrote:
-> On Tue, Apr 15, 2025 at 9:50 AM Daniel Lezcano
-> <daniel.lezcano@linaro.org> wrote:
-> > On Wed, Apr 02, 2025 at 04:33:57PM -0700, Will McVicker wrote:
-> > > From: Donghoon Yu <hoony.yu@samsung.com>
-> > >
-> > > On Arm64 platforms the Exynos MCT driver can be built as a module. On
-> > > boot (and even after boot) the arch_timer is used as the clocksource and
-> > > tick timer. Once the MCT driver is loaded, it can be used as the wakeup
-> > > source for the arch_timer.
-> >
-> > From a previous thread where there is no answer:
-> >
-> > https://lore.kernel.org/all/c1e8abec-680c-451d-b5df-f687291aa413@linaro.org/
-> >
-> > I don't feel comfortable with changing the clocksource / clockevent drivers to
-> > a module for the reasons explained in the aforementionned thread.
-> 
-> I wasn't CC'ed on that, but to address a few of your points:
-> 
-> > I have some concerns about this kind of changes:
-> >
-> >   * the core code may not be prepared for that, so loading / unloading
-> > the modules with active timers may result into some issues
-> 
-> That's a fair concern, but permanent modules (which are loaded but not
-> unloaded) shouldn't suffer this issue. I recognize having modules be
-> fully unloadable is generally cleaner and preferred, but I also see
-> the benefit of allowing permanent modules to be one-way loaded so a
-> generic/distro kernel shared between lots of different platforms
-> doesn't need to be bloated with drivers that aren't used everywhere.
-> Obviously any single driver doesn't make a huge difference, but all
-> the small drivers together does add up.
 
-Perhaps using module_platform_driver_probe() should do the trick with
-some scripts updated for my git hooks to check
-module_platform_driver() is not used.
+--2i/8aIx86r3PFwP0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[ ... ]
+On Tue, May 13, 2025 at 10:35:48AM +0200, Yassine Ouaissa wrote:
+> Add compatible for video decoder on allegrodvt Gen 3 IP.
+>=20
+> Signed-off-by: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>
+> ---
+>  .../bindings/media/allegrodvt,al300-vdec.yaml | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/allegrodvt,al=
+300-vdec.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/allegrodvt,al300-vde=
+c.yaml b/Documentation/devicetree/bindings/media/allegrodvt,al300-vdec.yaml
+> new file mode 100644
+> index 000000000000..4218892d6950
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/allegrodvt,al300-vdec.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/allegrodvt,al300-vdec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allegro DVT Video IP Decoder Gen 3
+> +
+> +maintainers:
+> +  - Yassine OUAISSA <yassine.ouaissa@allegrodvt.com>
+> +
+> +description:
+> +  The al300-vdec represents the latest generation of Allegro DVT IP deco=
+ding
+> +  technology, offering significant advancements over its predecessors.
+> +  This new decoder features enhanced processing capabilities with improv=
+ed
+> +  throughput and reduced latency.
+> +
+> +  Communication between the host driver software and the MCU is implemen=
+ted
+> +  through a specialized mailbox interface mechanism. This mailbox system
+> +  provides a structured channel for exchanging commands, parameters, and
+> +  status information between the host CPU and the MCU controlling the co=
+dec
+> +  engines.
+> +
+> +properties:
+> +  compatible:
+> +    const: allegrodvt,al300-vdec
 
--- 
+Other than the vendor prefix, this looks mostly okay - from the
+perspective of someone unaware of this type of this device.
+Just some minor comments from me.
 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+> +
+> +  reg:
+> +    items:
+> +      - description: The registers
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+The registers for what exactly?
+
+> +      - description: the MCU APB register
+
+0x80000 is rather a large space for a single register!
+
+> +
+> +  reg-names:
+> +    items:
+> +      - const: regs
+> +      - const: apb
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: MCU clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mcu_clk
+
+s/_clk//, since that part is obvious.
+
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  firmware-name:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: False
+> +
+> +examples:
+> +  - |
+> +    axi {
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+> +
+> +        ald300@a0120000 {
+
+The standard node name here I believe is "video-decoder".
+
+> +            compatible =3D "allegrodvt,al300-vdec";
+> +            reg =3D <0 0xa0120000 0 0x10000>,
+> +                  <1 0x80000000 0 0x80000>;
+
+Please keep things consistently in hex here please.
+
+> +            reg-names =3D "regs", "apb";
+> +            interrupts =3D <0 96 4>;
+
+If this is 3 different interrupts, format as "<0>, <96>, <4>".
+Otherwise, consider importing whatever header provides definitions for
+these things.
+
+> +            clocks =3D <&mcu_clock_dec>;
+> +            clock-names =3D "mcu_clk";
+> +            firmware-name =3D "al300_vdec.fw";
+> +        };
+> +    };
+> +
+> +...
+> --=20
+> 2.30.2
+>=20
+
+--2i/8aIx86r3PFwP0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCNdWAAKCRB4tDGHoIJi
+0pMqAQCxvmLsenCJpwac0iKVtQVMEpWT6ORRwFiX8dorea9EdwEAma4QR2QByMgU
+6q2ezL9VUKNRkqw2Ug7xP+MFydgZUAM=
+=55nJ
+-----END PGP SIGNATURE-----
+
+--2i/8aIx86r3PFwP0--
 
