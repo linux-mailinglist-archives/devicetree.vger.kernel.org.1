@@ -1,181 +1,77 @@
-Return-Path: <devicetree+bounces-176580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E93AB494F
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 04:12:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D74CEAB498D
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 04:38:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 422DB463900
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 02:12:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 620F17A99A5
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 02:36:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C5801A5B99;
-	Tue, 13 May 2025 02:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13921C862C;
+	Tue, 13 May 2025 02:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BOLRnVh3"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="YpVbdF6H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E07E19CC11;
-	Tue, 13 May 2025 02:12:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972B2189F57;
+	Tue, 13 May 2025 02:37:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747102337; cv=none; b=NMVT4Ck+oBdmU6RsWxnF2vnWCESMLceRztGbX3XJOsXkdAEpguAbfUyMEW6NVO2hCrItZNauCM6vC2Lg6Wlsms5hB3oEB+1YKMCidCVA5+28ajMFYCW8Yk2FYNYdZaufc7w3SE+pnhYvButMpwW1+avBYvDG0yHuZZBQmtclFWY=
+	t=1747103881; cv=none; b=XWHYqyKAepFrN1YTfHPVFO3E+VApAJ7t2WPb1j7rnAI2s3BZEiJGvLk11G/9T6HGCwGcjTkg88ODk9whYcdBRIXg+Lc/FGAqqQGFyAoNWT2nB1sITKLEECbLCEv8ShG6H4+uIq/pe4FOCl80cZYkzb/Qy8pseI9Nl9zSNKTAWEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747102337; c=relaxed/simple;
-	bh=msGACJxgZMAcYAO5uKeVaNtkgzsFsO88vG4SqG0T/Zc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=P9OgrOa6YLxjNOJR8LDNgJ13mVCxreYUW2RDbhyE1c3CvvgseRKBEMR/z1GovthIJ6iU67bG0XaZCKxXJ7YAhqJVl40zZ4bu2mz26kL6GJY5NmLFFA3vrwehy/AEb2G5MNGRaUp2IWDNBCXHDi4/3z4a4roQF9BoMYO4Q/0M5NY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BOLRnVh3; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54D0qQGx029118;
-	Tue, 13 May 2025 02:12:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8SUb8hEHEFHY95Bi7e51NdrMmosGRZtsBtm7SlwE1fg=; b=BOLRnVh30ACDx25x
-	RT7fyKUZhxWhJ0ShcXguAsVwfGzIVSSnQ+4uw0trCy1IlO4HlAa+TU9YoKOSPyT9
-	bLNSZIETvImotsAFWlyV413a3Bi3Xbm4ePpN32WQ/UrCd1beMzFs5NM/QnxUDPn3
-	AxhuanuguR1PRLjseg5EvfxQjfoM26+LR2cSIwyTl1LmDnAqQy/O2IAP8aX81U9y
-	xbzfcbAgFvbv8PIjCU85jtL3W7e3lwttykQWcQtKoUjAnmouDbz0JvjcT6V8cSZe
-	ENLBoJXxKeTNyZ4xG4kwSPNqVlfuhicYcb7TYcJIF6nIET7jIP4qRF86NAFGeHDa
-	xVUJgQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46hxvxe3ks-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 May 2025 02:12:11 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54D2CArC006497
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 May 2025 02:12:10 GMT
-Received: from [10.239.132.205] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 12 May
- 2025 19:12:03 -0700
-Message-ID: <76327ba4-a416-41b5-b6ab-d1f9c7b58126@quicinc.com>
-Date: Tue, 13 May 2025 10:12:01 +0800
+	s=arc-20240116; t=1747103881; c=relaxed/simple;
+	bh=04sUlt7UEnD/nP+0qjHBEGMb91iUpAU7gc7WHGsWIms=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lFWG2N3wOGr865JfCkhrE04Uevtov1rBlAFEiLslIdsT746uIzrpX8jygcQpF7rhdFIswgpeE2msuwE5EO49czzExdlGzAEao0US216d7L/rw3nLSJutWecbxthrKepnItMGuviFzI7Qcmcjlf3jHxp02h2H8ScP09jwmnRjZFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=YpVbdF6H; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=rgcGbGaKyPtbg1A+6vTuVFJps8xC1d4k/ycV/ilPRgI=; b=YpVbdF6HNfHhJd/xv4g2HI9N+F
+	58q94fDiqTHbzhi0KEG0Ht5oD3nuKen/Wzn94k71VAYKi+E8qStEg6NbuzyeTbZECKEIcOVnR2xKy
+	g94+GwSUfqBpLn6Hz6ju7vwZfp9vembLna5HkxdZB4t+bHYoftEeK1+KcUp6OTC2CWgs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uEfWl-00CPFa-Mi; Tue, 13 May 2025 04:37:55 +0200
+Date: Tue, 13 May 2025 04:37:55 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: cache: Convert
+ marvell,{feroceon,kirkwood}-cache to DT schema
+Message-ID: <3ef56602-2fc6-4e78-a749-e604da7b388d@lunn.ch>
+References: <20250513015252.1049409-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: qcs615: Add IMEM and PIL info
- region
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250507-add_qcs615_remoteproc_support-v2-0-52ac6cb43a39@quicinc.com>
- <20250507-add_qcs615_remoteproc_support-v2-4-52ac6cb43a39@quicinc.com>
- <64893588-544f-4cb0-8c0b-7eef588468d5@oss.qualcomm.com>
- <c0ab504c-2b27-45cd-be8f-1176230b8bfd@quicinc.com>
- <f81b3f81-b14d-41c1-9968-2d473e1f0947@oss.qualcomm.com>
- <2eb4606c-16f8-4e34-8084-039c9e57bbdd@quicinc.com>
- <3065cdb1-30ff-4be3-8959-45e4c4edc123@oss.qualcomm.com>
-From: Lijuan Gao <quic_lijuang@quicinc.com>
-In-Reply-To: <3065cdb1-30ff-4be3-8959-45e4c4edc123@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEzMDAxOSBTYWx0ZWRfXzxH3iEgCgX5S
- ReyIO82We46svPrFw4vHuB8LAsmmtJZoWT2Jts3Lu/hDkFzQRhphAAdc01E3ZokvCdEVCM3vaRj
- NScvuC9LFCkcu6/pRC+47HbssDAcBc2fR6BzQ7qOhJkfylkDuJFwPhzFKN05F8jlMUZJ7Icbn8Y
- n0jhPrJ5cHyK/5NN4MbeX5mlSkJzRMLiPT40X5CrhKo8PAVlQCwpPeE71SxCV6AyvOnlZyoH43s
- bYXplVP14IAGb1fnTJEFhDeS3E6PkEJ5hKtKuQvT/C2UbJStQQhy2HULOC9LLVYQYrBtnUYxb/t
- WD2R6fmaEnGhLkm4aiKyTaEvIb+arzMFgQEvs62geJIFQp9Yv8UCUf0FHyGvW8z8pcVsCq5DYXy
- ZIZxyHFb75u5m4zYfJ9Yh+4LbezFfN/5P+bOHGL8Zchk6SdPRQZKRsdZU82oQ7kXYC75IFXR
-X-Proofpoint-GUID: cRG15oF3Pb0sJNfQvcDa5U1fiBsN7Daf
-X-Authority-Analysis: v=2.4 cv=WMV/XmsR c=1 sm=1 tr=0 ts=6822aa7b cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=dHwnwrLdN51fry_tQmQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: cRG15oF3Pb0sJNfQvcDa5U1fiBsN7Daf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-12_07,2025-05-09_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 adultscore=0 lowpriorityscore=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 impostorscore=0 bulkscore=0
- spamscore=0 mlxscore=0 mlxlogscore=869 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2504070000 definitions=main-2505130019
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250513015252.1049409-1-robh@kernel.org>
 
-
-
-在 5/13/2025 3:10 AM, Konrad Dybcio 写道:
-> On 5/12/25 5:20 AM, Lijuan Gao wrote:
->>
->>
->> 在 5/9/2025 4:54 PM, Konrad Dybcio 写道:
->>> On 5/9/25 9:37 AM, Lijuan Gao wrote:
->>>>
->>>>
->>>> 在 5/8/2025 10:41 PM, Konrad Dybcio 写道:
->>>>> On 5/7/25 12:26 PM, Lijuan Gao wrote:
->>>>>> Add a simple-mfd representing IMEM on QCS615 and define the PIL
->>>>>> relocation info region as its child. The PIL region in IMEM is used to
->>>>>> communicate load addresses of remoteproc to post mortem debug tools, so
->>>>>> that these tools can collect ramdumps.
->>>>>>
->>>>>> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
->>>>>> ---
->>>>>>     arch/arm64/boot/dts/qcom/qcs615.dtsi | 14 ++++++++++++++
->>>>>>     1 file changed, 14 insertions(+)
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->>>>>> index 53661e3a852e..fefdb0fd66f7 100644
->>>>>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
->>>>>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
->>>>>> @@ -3266,6 +3266,20 @@ sram@c3f0000 {
->>>>>>                 reg = <0x0 0x0c3f0000 0x0 0x400>;
->>>>>>             };
->>>>>>     +        sram@146aa000 {
->>>>>> +            compatible = "qcom,qcs615-imem", "syscon", "simple-mfd";
->>>>>> +            reg = <0x0 0x146aa000 0x0 0x1000>;
->>>>>
->>>>> 0x14680000 0x2c000
->>>>
->>>> I checked the latest datasheet, the Shared IMEM address is 0x146aa000 and its size is 0x1000, 0x14680000 is the start address of IMEM layout. The shared IMEM is used for debugging purposes, while the others parts are dedicated.
->>>
->>> Even if we don't use the entirety of it, it's good to describe
->>> the whole block
->>>
->>> Konrad
->>
->> According to the definitions on all existing upstream platforms, this imem points to the shared imem. Should we stay consistent?
+On Mon, May 12, 2025 at 08:52:51PM -0500, Rob Herring (Arm) wrote:
+> Convert the Marvell Feroceon/Kirkwood Cache binding to DT schema format.
 > 
-> That is because everyone kept copying over whatever the downstream
-> kernel did ;)
+> Use "marvell,kirkwood-cache" for the filename instead as that's only
+> compatible used in a .dts upstream.
 > 
-> Let's describe the whole region - at best, it doesn't hurt
-> 
-> Konrad
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Understood, it will be updated in the next patch.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
--- 
-Thx and BRs
-Lijuan Gao
-
+    Andrew
 
