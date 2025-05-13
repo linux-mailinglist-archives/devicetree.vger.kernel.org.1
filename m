@@ -1,140 +1,129 @@
-Return-Path: <devicetree+bounces-176751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B326AB563A
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:36:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A125BAB5647
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:39:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D128A46715F
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 13:35:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BB581B46B19
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 13:39:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB5428ECFA;
-	Tue, 13 May 2025 13:35:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E+1MzgZQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5E528F538;
+	Tue, 13 May 2025 13:39:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE94218027;
-	Tue, 13 May 2025 13:35:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422C728640E;
+	Tue, 13 May 2025 13:39:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747143349; cv=none; b=ZbKlA6BEzXnVzpaixHkWgmUPHnHGoUF9Iomvr04hdJmDVkpwi+qPYkkmbHRzyMkwOmGdvRNMy1ojXGXdRRSybtScSIU4575PYkdXwMd77HdbSi8a0aRNseXA+xImXXf2NuGBILjghSLQVCucPDiZu226a5nR6HvOHGBa9SAjtpw=
+	t=1747143546; cv=none; b=B7ydVMG7tD93Q+bLo17AtgAMwwwfO7cn+ykGyDNRFYbIXc+EWVOpyrCdKeUGMY2U7sq7nZBmglZkBSl1FaNSnSt9EFW/EW/rvCZcimlUGOscOTvWc0nXJQNOVHmBnhuuy+EW7b20vj0ZF9CyNXMOmiYur4I/t9jVGHavQfJ3mDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747143349; c=relaxed/simple;
-	bh=vL40+R/Pc25k6Thm0RAgq45shA6v4r5ZeGAKMo3N5Ts=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fAdEzn5UC+eU86bQMptR31X5gRFnBmjZU3oAr9s5HwwaSK8k+UodzesZZkpQ9EmgFevuWPjea2KRrgmeVqBdzeuwRC55FgjHlxmqkTJzq/K5L3hQjkksYpEw+Culx/SryLwPudS4A4Uf1ILm5AKwRNxl5yf9VlqV+FHm3AQvBSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E+1MzgZQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1DD9C4CEE9;
-	Tue, 13 May 2025 13:35:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747143348;
-	bh=vL40+R/Pc25k6Thm0RAgq45shA6v4r5ZeGAKMo3N5Ts=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=E+1MzgZQYE+00S6hDLk6HAXBtOh8bA44jLq6TaLvZ0TP5cETT+yubk90h+6AqTfcy
-	 ud/MWzVwUw/lMDS3WQujtDxEAqxezUdWbA40xjOHq6NACjerB8p9luw7uB2wpJM173
-	 UF485v4rUoLGvgXPmf/FGqLWTsM75B84VM4wry+OrCXwLfOjDxsm+PVaOWi9TvY/rz
-	 ++/53VzMm1MozGLCiQ/UnGcdMbZoQOsnzb0BItouI+KqHvdpbskB5rblpNwo8oOv+e
-	 XZ6RMMJQveKZlOe65fNBV5NdkrmNS5Uff927mOyk0A7AcSbj5Vfl23nk1QqD6RAiqj
-	 aaH5Psh4J0ljA==
-Message-ID: <04b4cea3-6cd6-4764-b277-c2e9921b70dc@kernel.org>
-Date: Tue, 13 May 2025 15:35:43 +0200
+	s=arc-20240116; t=1747143546; c=relaxed/simple;
+	bh=w/zWZ92yzc6YUkiZeb6+MrsktIw7OQGZTLwAU32pCxo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YJSuf/Sg1I5bREko0MkBXoB1rNL9/zwjomq+bQHK68GmLMSyd51mSA6+iXLnmszXZemnV502raijZnwh5Siu50/TntYpotMxqHSxNJ5PSf33iSWgSnTiFJhmXOGLHMjvNqkBXYYINZ/ovb139YZEHCHqxbj+GK/mVlI+9+0IWUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-879ed601971so1363432241.1;
+        Tue, 13 May 2025 06:39:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747143542; x=1747748342;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=otMogSOyvc+azXfG2zQ9PW31C7giKBuO4YtLeGYVjBA=;
+        b=SqGGDyPLacpX72rLCoeLCPJg9F4qq2oSu6kkkYGuMd0jZpgOBgZ9HFvlkjxSpeWqRE
+         6e1ULszt+p04y4Hlo1BN06ULANgjNOF2rv/3xpD+9ZrazsRkFWGREWuE+m4DxCdR2Q88
+         pgAmQEzndr/buwaqd9IjXG5Qlh0ui4jeLJrri7gaUV+K8bCznJCVDy6ZuuXLeJrgSs75
+         aaufdmZT+kqdTMrGaQ1UgO02GQQ+Afmf7bT3bjGwxbVu8FY2rgelb+ZU/xO8NHrM67gG
+         hYHp43eKcwEEwDhZmYWz4hQ30ibW1hQsynAx8KP/o0RmjqosJ22hNHi5icWBY4QtnqZl
+         DOrw==
+X-Forwarded-Encrypted: i=1; AJvYcCVN/a6T8ePNUKQp7/VIDa9m4B+LH855PYdG8KQAAsx8TE5m1D2zbDme1Dm+JW/f4G/nwCf+sXeqMN1OZAmp@vger.kernel.org, AJvYcCWKrIlspR0nv1RVe91gHIYkSYHvT0e6AO4jHR8kCGGlBBy727MGG53hj0vUTZQKQW0mchCd3+xxer9YoNGVPVFKhbw=@vger.kernel.org, AJvYcCXISG+VUqWB5MEn8/2+NsXR6IfLnyHKDGXd7uOCn5GPJxsJ9iECUIsFxLQ/AANZyYtPMPFG/xpJH/Wn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxz8/MF1p7s8WzwX4Xhq8BpB9B/7LKNEB0a0tRcU96D1kfGAXpm
+	0flzt3KDU8HlIMvLVIUj5wu0TbdrcZjg6/Pgxp0oyaEKzSb/jLsSeL2WWgCS
+X-Gm-Gg: ASbGncs1xNnrx4wEiFcSWzJZWjGGEYP3km3hE++fHPlVY1rWpyNSuwTXtXjCL3sHkFx
+	r+pxIiw0xALyGLEOh2KlKHJZVZ/YEKzUSviMX536eYHXYdgnGksaYy0L9txyVcTrR3tDNrMvEb0
+	PfH/fwO+siyPkxPwWs5BcgIr932jqNrDyaU4BPxx0d+FNA1leJIvc8LgbYeC3CuUGTB/vDiO5us
+	fRswxkhRqtOWgKQlFDSZDQjvhMT7fGWC3EN5BxO0iaWyuIz8Y85Invw8mts+xkgvPUePektYqaN
+	5kel6LvdnEm7gG5gzQW5QQ05RLwJZHHDTWf82UpAf+p+R8Mzrs4gRIl4oUxenHtK58jtcivqU6z
+	y3LRbRuwI2tqhlA==
+X-Google-Smtp-Source: AGHT+IE/EhzF6TBjNH4i+Mqkn+GleNMj3ux/pNzFWLyvHinHSG31SQd/lhemIZBXjY1SFs5unwgGSw==
+X-Received: by 2002:a05:6102:4b19:b0:4c1:76a4:aee4 with SMTP id ada2fe7eead31-4deed3d366fmr15206965137.19.1747143542495;
+        Tue, 13 May 2025 06:39:02 -0700 (PDT)
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4dea857f73fsm6732930137.3.2025.05.13.06.39.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 May 2025 06:39:02 -0700 (PDT)
+Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4def2473a58so1493523137.2;
+        Tue, 13 May 2025 06:39:02 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUjuxD8wLOWI4tW2LKEsZlzh8BajIaj5Q4rhbFpNgQ37XR6M640T7YPpt71AM9bxSv/fAQPsyPreGxE3Ws/KOyqLnY=@vger.kernel.org, AJvYcCVr2Ara8s/YlI3skt7dnmM/yqGvwFkob3De+lktzFsQq1sSvbFCI7d5vB220shJUL0m0+Jj8iqhXc3u@vger.kernel.org, AJvYcCXiRrulHUUDPQJXZIa3QVM2tqYGtx23XlTxySwiFCFL7zoSH4XcZq4FXNfCdRLK9ksBVxFlRM+nuAEXBq3f@vger.kernel.org
+X-Received: by 2002:a05:6102:4a92:b0:4da:fc9d:f0c with SMTP id
+ ada2fe7eead31-4deed35dc84mr15321354137.12.1747143542024; Tue, 13 May 2025
+ 06:39:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 05/19] dt-bindings: clock: imx8m-anatop: add
- oscillators and PLLs
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
- linux-kernel@vger.kernel.org
-Cc: Peng Fan <peng.fan@nxp.com>, Stephen Boyd <sboyd@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, linux-amarula@amarulasolutions.com,
- Abel Vesa <abelvesa@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-References: <20250424062154.2999219-1-dario.binacchi@amarulasolutions.com>
- <20250424062154.2999219-6-dario.binacchi@amarulasolutions.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250424062154.2999219-6-dario.binacchi@amarulasolutions.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250429081956.3804621-1-thierry.bultel.yh@bp.renesas.com> <20250429081956.3804621-11-thierry.bultel.yh@bp.renesas.com>
+In-Reply-To: <20250429081956.3804621-11-thierry.bultel.yh@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 13 May 2025 15:38:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUw9GNv1_jtjnfjL1x38-Snhdie41s5=9DZhQA5NMjVtA@mail.gmail.com>
+X-Gm-Features: AX0GCFsLHBRN64p-uZIQMVjwi0yO7Y1WSMGqfYnyWXgWneRfxfyFamwGYreAKAE
+Message-ID: <CAMuHMdUw9GNv1_jtjnfjL1x38-Snhdie41s5=9DZhQA5NMjVtA@mail.gmail.com>
+Subject: Re: [PATCH v8 10/11] arm64: dts: renesas: Add initial support for
+ renesas RZ/T2H eval board
+To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+Cc: thierry.bultel@linatsea.fr, linux-renesas-soc@vger.kernel.org, 
+	paul.barker.ct@bp.renesas.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 24/04/2025 08:21, Dario Binacchi wrote:
-> Though adding clocks and clock-names properties will break the ABI,
-> it is required to accurately describe the hardware. Indeed, the anatop
-> module uses the input oscillators to generate various PLLs. In turn,
-> the Clock Control Module (CCM) receives clocks from the PLLs and
-> oscillators and generates clocks for on-chip peripherals.
-> 
-> Furthermore, as agreed in [1], this change represents the first step
-> toward the implementation of the anatop driver. Currently, in fact,
-> there is no dedicated anatop driver, but the CCM driver parses the
-> anatop node and registers the PLLs it produces.
-> 
-> [1] https://lore.kernel.org/imx/20241106090549.3684963-1-dario.binacchi@amarulasolutions.com/
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-For future version if it happens:
+Hi Thierry,
 
-Un-reviewed.
+On Tue, 29 Apr 2025 at 10:20, Thierry Bultel
+<thierry.bultel.yh@bp.renesas.com> wrote:
+> Add the initial device tree for the RZ/T2H evaluation board.
+>
+> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+> ---
+> Changes v7->v8:
+>   - removed loco clock
+>   - fixed checkpatch warning
 
-Best regards,
-Krzysztof
+Thanks for the update!
+
+> --- a/arch/arm64/boot/dts/renesas/Makefile
+> +++ b/arch/arm64/boot/dts/renesas/Makefile
+> @@ -152,6 +152,7 @@ dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
+>
+>  dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc.dtb
+>
+> +dtb-$(CONFIG_ARCH_R9A09G077) += r9a09g077m44-rzt2h-evk.dtb
+
+Please preserve alphabetical sort order.
+
+>  dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk.dtb
+>  dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h48-kakip.dtb
+
+The rest LGTM, so with the above fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
