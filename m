@@ -1,333 +1,150 @@
-Return-Path: <devicetree+bounces-176816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 555F8AB58C3
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:36:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC3FAAB58CB
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:37:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3493461AEB
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:36:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4264A189D7D8
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 665082BE0E2;
-	Tue, 13 May 2025 15:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038582BE103;
+	Tue, 13 May 2025 15:37:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="enlYaDoT"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="KIkS7YAC";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="HFuFRpRT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B011A3155;
-	Tue, 13 May 2025 15:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A48C2BDC09;
+	Tue, 13 May 2025 15:37:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747150617; cv=none; b=GnoAUdI0+jc38eUK/v03RbGy8VYieAVE4OObPV1Uae2+2fAuxHIVQz+RB6oKw2Ugtx9rzzBLeOetsm15u4elNwUcHV6TUu8unOmsKMQWxvKWK9AMrrkyX8DaykULkAnKhIyliU/cfdVmdnMrF85n29CxcThBeuEU7EWxUYVqC2U=
+	t=1747150669; cv=none; b=sjprl1n5pPn00pLQutwU0Qz45p54TnEheeoKrUUVygOcLRTtKz7HEXjS7a1BOch54qlAc2Nx3aFR+2uSJ6S6gcrPl9YRVcQkt+UNUSqhYaGKNKgaE02S4WvqL+ldRgILQOF8Cj9nSUb+gffcDCzKfsFfY32lZhAIxnlhf/tqsy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747150617; c=relaxed/simple;
-	bh=yP1ttW+zCCnWqP5eOaUzDlkOOwRGrs6bI6IwhXnG/I8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hx6OEe1K8RgANzRw5JX0B586qLFFNW7XySGnw0GgGQwpqO0SKevAaGqLTPQlCCDMW9czVPudvUDGa2n1FtFFRknt4uKUxDQ/CXLfJTCSQuKy6jecmFAotlW8AAy7t/hiCZMFjqB0jV+jjAiaEza/hkTdLEQuZ5Y7hzUjhs47T+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=enlYaDoT; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (unknown [146.0.27.149])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 617C34C9;
-	Tue, 13 May 2025 17:36:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1747150598;
-	bh=yP1ttW+zCCnWqP5eOaUzDlkOOwRGrs6bI6IwhXnG/I8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=enlYaDoTxTgn8eeEYUKfEeykzt63RZBNyGPOv9ewZVruk+Ovzbrr4B9f4ZjL9MoMX
-	 AksQgocKVdpFKs8+RB+1RbxhGnfXLax3qCRchLvb4K+zlIjD33Lxj46kYSy3E1HOEH
-	 jc3eEt3JDo0IvPpisz8GJ95cHrjCdW4mD/nVRYEs=
-Date: Tue, 13 May 2025 17:36:46 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, nuno.sa@analog.com,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v3 07/22] mfd: adp5585: refactor how regmap defaults are
- handled
-Message-ID: <20250513153646.GE23592@pendragon.ideasonboard.com>
-References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
- <20250512-dev-adp5589-fw-v3-7-092b14b79a88@analog.com>
- <20250513150029.GO2936510@google.com>
- <c2c32541c31376d90b938f6c3532e195243dadf2.camel@gmail.com>
+	s=arc-20240116; t=1747150669; c=relaxed/simple;
+	bh=KJS9CxnNPpheLNaZ7imhBbfapJj0YpC6MwYgWpp3x9s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BczZtaPmdNoOIuEwWHX/xfCzMdZFVSk6GsKi+tQdB+YTbnSZcxkDZw/aVJBs0kOOjeJGE16Rt6aTE/pCKVnCkgRD5qFyMDEmi2RnZv+Edu8R1OB3XDhheDozuvvTMJzgwDjMEXs7v0sclf+2GrvKPz/Dm//vSdN6ltTUlS2/O9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=KIkS7YAC; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=HFuFRpRT reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1747150666; x=1778686666;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=KJS9CxnNPpheLNaZ7imhBbfapJj0YpC6MwYgWpp3x9s=;
+  b=KIkS7YACYh2ZQWoE10sEKRuXGQCgPvT7YL2V4+XFRjHm7fT8OPxermad
+   eIOgajaldjj4eGdf/+TrNAmIauvE8Z0/FEzpU+OqOseMGTNDUFc20jeOd
+   jc39SAGajrwUDjz5rceE1MBJQ2S1vM2xbeXuRFf6p9P7fxjNizD5jZENt
+   cXos+YYu7Y3yx+uogSxeGBWikTPD2DCr6Nq5iTNBrpNrMW8F4NNom8Zrv
+   e28+vTomGrY1vXJo/xI0A1L+OtRbcZVgyjX+O/tf8q8n9tAZC99k3BGvc
+   pFRlDMjUsDm3IaX0KI0v5hyJkzLqhz38OKFU2DJz2QkioXf9JMeP2jhWh
+   Q==;
+X-CSE-ConnectionGUID: irKwGYMGTE2318TjCJsHnQ==
+X-CSE-MsgGUID: BXWXh5dpQIGK8etu1WtVMg==
+X-IronPort-AV: E=Sophos;i="6.15,285,1739833200"; 
+   d="scan'208";a="44052047"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 13 May 2025 17:37:42 +0200
+X-CheckPoint: {68236746-13-BF62DDF1-CB8BF55F}
+X-MAIL-CPID: 5B6CDACB2F8209EED8054BD55E19D0AC_1
+X-Control-Analysis: str=0001.0A006375.68236749.006B,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 46BD4160AF7;
+	Tue, 13 May 2025 17:37:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1747150658;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=KJS9CxnNPpheLNaZ7imhBbfapJj0YpC6MwYgWpp3x9s=;
+	b=HFuFRpRT09roncsuKn6WsddpIpCTW8yJlMynj4Wdev+hKN2OyOYgWCbAFjw2h3Ip/1h6I+
+	BksszSj8dEdQfTpeHKOl2yQANX2EH2M9zGZUb06HDc6qVwL5kSNXLqIZpovZJUgDhafjMF
+	ZCAXh9MuJl3Hhn3ODi3lJCTdO65eQu+S+blHfaSlG1bhfdyx/GHcn/j/sdtbjzqhuOsa+T
+	f7Jd5IuqFsw1ZiofwSl237aeBKcYcL341MXH/MBsHQ15PsVa81VdAoaQ1jzUDfSZVGiWnw
+	wL7lYzb+62ZZ0j1E1PGnN5+Ctvplw8TJedZ2+129YaR0P9o7fp3nNWSjsLsUvQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Peng Fan <peng.fan@oss.nxp.com>,
+ Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/1] dt-bindings: firmware: imx95-scmi: Allow linux,
+ code for protocol@81
+Date: Tue, 13 May 2025 17:37:36 +0200
+Message-ID: <2804473.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250409160029.GE27988@nxa18884-linux>
+References:
+ <20241104085622.177781-1-alexander.stein@ew.tq-group.com>
+ <20250409-heavenly-sceptical-ara-bceeb9@sudeepholla>
+ <20250409160029.GE27988@nxa18884-linux>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c2c32541c31376d90b938f6c3532e195243dadf2.camel@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, May 13, 2025 at 04:32:39PM +0100, Nuno Sá wrote:
-> On Tue, 2025-05-13 at 16:00 +0100, Lee Jones wrote:
-> > On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
-> > 
-> > > From: Nuno Sá <nuno.sa@analog.com>
-> > > 
-> > > The only thing changing between variants is the regmap default
-> > > registers. Hence, instead of having a regmap condig for every variant
-> > > (duplicating lots of fields), add a chip info type of structure with a
-> > > regmap id to identify which defaults to use and populate regmap_config
-> > > at runtime given a template plus the id. Also note that between
-> > > variants, the defaults can be the same which means the chip info
-> > > structure can be used in more than one compatible.
-> > > 
-> > > This will also make it simpler adding new chips with more variants.
-> > > 
-> > > Also note that the chip info structures are deliberately not const as
-> > > they will also contain lots of members that are the same between the
-> > > different devices variants and so we will fill those at runtime.
-> > > 
-> > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> > > ---
-> > >  drivers/mfd/adp5585.c       | 94 +++++++++++++++++++++++++-----------------
-> > > ---
-> > >  include/linux/mfd/adp5585.h | 11 ++++++
-> > >  2 files changed, 64 insertions(+), 41 deletions(-)
-> > > 
-> > > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> > > index
-> > > 19d4a0ab1bb4c261e82559630624059529765fbd..874aed7d7cfe052587720d899096c995c1
-> > > 9667af 100644
-> > > --- a/drivers/mfd/adp5585.c
-> > > +++ b/drivers/mfd/adp5585.c
-> > > @@ -81,41 +81,34 @@ static const u8
-> > > adp5585_regmap_defaults_04[ADP5585_MAX_REG + 1] = {
-> > >  	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00,
-> > >  };
-> > >  
-> > > -enum adp5585_regmap_type {
-> > > -	ADP5585_REGMAP_00,
-> > > -	ADP5585_REGMAP_02,
-> > > -	ADP5585_REGMAP_04,
-> > > +static const struct regmap_config adp5585_regmap_config_template = {
-> > > +	.reg_bits = 8,
-> > > +	.val_bits = 8,
-> > > +	.max_register = ADP5585_MAX_REG,
-> > > +	.volatile_table = &adp5585_volatile_regs,
-> > > +	.cache_type = REGCACHE_MAPLE,
-> > > +	.num_reg_defaults_raw = ADP5585_MAX_REG + 1,
-> > >  };
-> > >  
-> > > -static const struct regmap_config adp5585_regmap_configs[] = {
-> > > -	[ADP5585_REGMAP_00] = {
-> > > -		.reg_bits = 8,
-> > > -		.val_bits = 8,
-> > > -		.max_register = ADP5585_MAX_REG,
-> > > -		.volatile_table = &adp5585_volatile_regs,
-> > > -		.cache_type = REGCACHE_MAPLE,
-> > > -		.reg_defaults_raw = adp5585_regmap_defaults_00,
-> > > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_00),
-> > > -	},
-> > > -	[ADP5585_REGMAP_02] = {
-> > > -		.reg_bits = 8,
-> > > -		.val_bits = 8,
-> > > -		.max_register = ADP5585_MAX_REG,
-> > > -		.volatile_table = &adp5585_volatile_regs,
-> > > -		.cache_type = REGCACHE_MAPLE,
-> > > -		.reg_defaults_raw = adp5585_regmap_defaults_02,
-> > > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_02),
-> > > -	},
-> > > -	[ADP5585_REGMAP_04] = {
-> > > -		.reg_bits = 8,
-> > > -		.val_bits = 8,
-> > > -		.max_register = ADP5585_MAX_REG,
-> > > -		.volatile_table = &adp5585_volatile_regs,
-> > > -		.cache_type = REGCACHE_MAPLE,
-> > > -		.reg_defaults_raw = adp5585_regmap_defaults_04,
-> > > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_04),
-> > > -	},
-> > > -};
-> > > +static int adp5585_fill_regmap_config(const struct adp5585_dev *adp5585,
-> > > +				      struct regmap_config *regmap_config)
-> > 
-> > I like the general idea.  This is much more scaleable than before.
-> > 
-> > > +{
-> > > +	*regmap_config = adp5585_regmap_config_template;
-> > > +
-> > > +	switch (adp5585->info->regmap_type) {
-> > > +	case ADP5585_REGMAP_00:
-> > > +		regmap_config->reg_defaults_raw =
-> > > adp5585_regmap_defaults_00;
-> > > +		return 0;
-> > > +	case ADP5585_REGMAP_02:
-> > > +		regmap_config->reg_defaults_raw =
-> > > adp5585_regmap_defaults_02;
-> > > +		return 0;
-> > > +	case ADP5585_REGMAP_04:
-> > > +		regmap_config->reg_defaults_raw =
-> > > adp5585_regmap_defaults_04;
-> > 
-> > You could make this read a tiny bit nicer (as you do with the adp5585->info
-> > in a later patch) and make reg_defaults_raw a local variable.
-> 
-> I'm probably missing your point but what would be the benefit? The info is done
-> like that because I wanted the pointer to be 'const'. Here I do not think the
-> same applies...
-> 
-> > 
-> > > +		return 0;
-> > > +	default:
-> > > +		return -ENODEV;
-> > > +	}
-> > > +}
-> > >  
-> > >  static int adp5585_parse_fw(struct device *dev, struct adp5585_dev
-> > > *adp5585,
-> > >  			    struct mfd_cell **devs)
-> > > @@ -153,7 +146,7 @@ static void adp5585_osc_disable(void *data)
-> > >  
-> > >  static int adp5585_i2c_probe(struct i2c_client *i2c)
-> > >  {
-> > > -	const struct regmap_config *regmap_config;
-> > > +	struct regmap_config regmap_config;
-> > >  	struct adp5585_dev *adp5585;
-> > >  	struct mfd_cell *devs;
-> > >  	unsigned int id;
-> > > @@ -165,8 +158,15 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
-> > >  
-> > >  	i2c_set_clientdata(i2c, adp5585);
-> > >  
-> > > -	regmap_config = i2c_get_match_data(i2c);
-> > > -	adp5585->regmap = devm_regmap_init_i2c(i2c, regmap_config);
-> > > +	adp5585->info = i2c_get_match_data(i2c);
-> > > +	if (!adp5585->info)
-> > > +		return -ENODEV;
-> > > +
-> > > +	ret = adp5585_fill_regmap_config(adp5585, &regmap_config);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	adp5585->regmap = devm_regmap_init_i2c(i2c, &regmap_config);
-> > >  	if (IS_ERR(adp5585->regmap))
-> > >  		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
-> > >  				     "Failed to initialize register
-> > > map\n");
-> > > @@ -223,22 +223,34 @@ static int adp5585_resume(struct device *dev)
-> > >  
-> > >  static DEFINE_SIMPLE_DEV_PM_OPS(adp5585_pm, adp5585_suspend,
-> > > adp5585_resume);
-> > >  
-> > > +static struct adp5585_info adp5585_info = {
-> > > +	.regmap_type = ADP5585_REGMAP_00,
-> > 
-> > Instead of providing this enum, then later another one (id) which is a
-> > subset of the same thing, why not pass just ADP5585_REGMAP_00, etc
-> > through the DT .data attribute then match on those?  It will add a
-> > couple of lines to the switch(info->id) statement, but will save on a
-> > boat load of static structs and other complexity.
-> > 
-> > For instance:
-> > 
-> > switch (info->id) {
-> > 	case ADP5585_MAN_ID_VALUE:
-> > 
-> > Would simply become:
-> > 
-> > switch (info->id) {
-> > 	case ADP5585_REGMAP_00:
-> > 	case ADP5585_REGMAP_02:
-> > 	case ADP5585_REGMAP_04:
-> > 
-> > And that's it.
-> 
-> I get the general idea... We will also have to pack the regmap defaults into an
-> array so that we can easily reference it with 'info->id' which I don't like too
-> much tbh (but I do see that adp5585_fill_chip_configs() will become simpler) . I
-> guess I can also just move everything into the "main" struct as we will fill
-> everything during probe (no real reason for struct adp5585_info) 
-> 
-> Anyways, If you prefer the above I'm not going to argue against it...
-> 
-> > 
-> > > +};
-> > > +
-> > > +static struct adp5585_info adp5585_02_info = {
-> > > +	.regmap_type = ADP5585_REGMAP_02,
-> > > +};
-> > > +
-> > > +static struct adp5585_info adp5585_04_info = {
-> > > +	.regmap_type = ADP5585_REGMAP_04,
-> > > +};
-> > > +
-> > >  static const struct of_device_id adp5585_of_match[] = {
-> > >  	{
-> > >  		.compatible = "adi,adp5585-00",
-> > > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> > > +		.data = &adp5585_info,
-> > 
-> > 		.data = ADP5585_REGMAP_00,
-> 
-> I see, needs a cast but should work. I personally prefer valid pointers than
-> "encoding" integers in here. I know we can start the enum at 1 so that we can
-> still look for 0 for any possible issue but...
+Hi Sudeep,
 
-I also prefer pointers to structures, but won't fight for it.
+Am Mittwoch, 9. April 2025, 18:00:29 CEST schrieb Peng Fan:
+> Hi Sudeep,
+>=20
+> On Wed, Apr 09, 2025 at 01:31:58PM +0100, Sudeep Holla wrote:
+> >On Wed, Apr 09, 2025 at 08:18:29PM +0800, Peng Fan wrote:
+> >> + SCMI maintainer, Sudeep and Cristian
+> >>=20
+> >> On Wed, Apr 09, 2025 at 12:59:50PM +0200, Alexander Stein wrote:
+> >> >Hi,
+> >> >
+> >> >Am Montag, 4. November 2024, 09:56:21 CEST schrieb Alexander Stein:
+> >> >> BBM protocol supports a single power button, supported by driver
+> >> >> imx-sm-bbm-key.c. By default this is KEY_POWER, but can also be ove=
+rwritten
+> >> >> using linux,code. Add a reference to this schema and add linux,code=
+ as a
+> >> >> supported property.
+> >> >>=20
+> >> >> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> >> >
+> >> >Is there any other feedback or things to do here?
+> >>=20
+> >> I see Rob already gave R-b.
+> >>=20
+> >> Not sure this should go through Shawn's or Sudeep's tree.
+> >>=20
+> >
+> >I am fine either way. Peng, just let me know if you want to pick this up.
+>=20
+> Not my patch :)
+>=20
+> Since scmi driver changes go through your tree, the binding changes
+> should follow same.
+>=20
+> It would be good that if you could pick it up.=20
 
-> > >  	}, {
-> > >  		.compatible = "adi,adp5585-01",
-> > > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> > > +		.data = &adp5585_info,
-> > >  	}, {
-> > >  		.compatible = "adi,adp5585-02",
-> > > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_02],
-> > > +		.data = &adp5585_02_info,
-> > >  	}, {
-> > >  		.compatible = "adi,adp5585-03",
-> > > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> > > +		.data = &adp5585_info,
-> > >  	}, {
-> > >  		.compatible = "adi,adp5585-04",
-> > > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_04],
-> > > +		.data = &adp5585_04_info,
-> > >  	},
-> > >  	{ /* sentinel */ }
-> > >  };
-> > > diff --git a/include/linux/mfd/adp5585.h b/include/linux/mfd/adp5585.h
-> > > index
-> > > 016033cd68e46757aca86d21dd37025fd354b801..4b48614970a811a8a95116faa20e58ea4f
-> > > 19ede6 100644
-> > > --- a/include/linux/mfd/adp5585.h
-> > > +++ b/include/linux/mfd/adp5585.h
-> > > @@ -119,8 +119,19 @@
-> > >  
-> > >  struct regmap;
-> > >  
-> > > +enum adp5585_regmap_type {
-> > > +	ADP5585_REGMAP_00,
-> > > +	ADP5585_REGMAP_02,
-> > > +	ADP5585_REGMAP_04,
-> > > +};
-> > > +
-> > > +struct adp5585_info {
-> > > +	enum adp5585_regmap_type regmap_type;
-> > > +};
-> > > +
-> > >  struct adp5585_dev {
-> > >  	struct regmap *regmap;
-> > > +	const struct adp5585_info *info;
-> > >  };
-> > >  
-> > >  #endif
+A gentle ping.
 
--- 
-Regards,
+Best regards
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Laurent Pinchart
+
 
