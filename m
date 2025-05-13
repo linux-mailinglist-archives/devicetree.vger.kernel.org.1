@@ -1,142 +1,93 @@
-Return-Path: <devicetree+bounces-176667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 083DBAB5023
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 11:44:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48E14AB503C
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 11:49:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 931F217DDAD
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 09:44:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B66F162718
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 09:49:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9AF238C34;
-	Tue, 13 May 2025 09:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA8B226D19;
+	Tue, 13 May 2025 09:48:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Gb+AFHD/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S/+I40Fk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2601E9B12;
-	Tue, 13 May 2025 09:44:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238A2201278;
+	Tue, 13 May 2025 09:48:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747129463; cv=none; b=KAZJmjMpXeacp6noNX9ggRESHWo12rp6mt7Osl+Oh+R9vXqr8ttr6Ytp/PO21lapSs0IqH8vjiVb5IEyqRoodTrvDxM6/9YEc9I+jZ7AN9otpfE4zu8ybnSoZ0FLNfMdhcVHAOMYg2ZD9y/Nl360ItgASM/ilUfm8BgBa+0YrNc=
+	t=1747129735; cv=none; b=avXweAheWlqa3v52kVqCKiYgORrKAj8/paaQXRC7kulT1hR/ay9Z4B0kJMiHyY2bwpyjBFSsoRUHuQuElo8m6ZVHasZiJAG3DIfv7iOhuP7hGGeUAFebasUl+PK2n4qFYy9/2Pp5M793fhVyTdOkXQoOxKdhl0h1ukg2HgQOMls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747129463; c=relaxed/simple;
-	bh=FCLE3Sish6sJWT92hus12ytHM+hbiyV8B6C7X2tTk8o=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Q0SKZZqIIYsGfV4leKaQt9G8G1Cge3ZXC85u9u6t+DMPcaQhxvg57VB/iGcKyF9AD9JAiqLqDmSwcY3wqw3rZArdt9Eufkz9HQ+Yre7P82v8/rQ6OB1AnkLiOf6cpdaWkjHn2l1si0gm7hK+WxyPJFmRYIeq+d2elDPFXX2i8Xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Gb+AFHD/; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1D51D43AD2;
-	Tue, 13 May 2025 09:44:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1747129452;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mE82WGnbCCvrXYireTZju6owhNfokw4sOSCiM1zr2e0=;
-	b=Gb+AFHD/SQUWevkmVYSDlRjy1sAPR1xJFtl8IuFOYsKPvFDaGlLyRS/+edzz/eKYcNhqVa
-	XTZ/LnTmMSRlCk/JbadJLvCi4/8DvhJRO5zpIK3oCyK+9nJ/RSF7IuTKZ4u1tNpvPGBYjx
-	7zDV7gypVkZ0QKgfejatW4Reyf3/Ii2OeK7pWPd7Wy9cB6qwdpAcHXolibNz8QSOPkQNZs
-	BsPg8bY3eLUJM68KPbiPmM0nRdnKC38Yw2ZpRHj1IJgtxkbuos/Shn+AE+D48I1Vs1p1xn
-	/n6jcagI+T9Q7umwrQVduMCSm8cU5avN3pDHwS8Qd4DnjGiJ9DmEspk1FzBY3A==
-Date: Tue, 13 May 2025 11:44:09 +0200
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
- <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, Rob Herring
- <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman
- <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
- Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
- Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v10 02/13] net: pse-pd: Add support for
- reporting events
-Message-ID: <20250513114409.6aae3eb9@kmaincent-XPS-13-7390>
-In-Reply-To: <20250508201041.40566d3f@kernel.org>
-References: <20250506-feature_poe_port_prio-v10-0-55679a4895f9@bootlin.com>
-	<20250506-feature_poe_port_prio-v10-2-55679a4895f9@bootlin.com>
-	<20250508201041.40566d3f@kernel.org>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1747129735; c=relaxed/simple;
+	bh=gbVfdS0/+BxgEuIBvwOkx71HWIkUx+Hx9hoqvnXwFPA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=o4LwOcFnNjknhTce5R4X55Fmj79ms3YymXfl/dgKelK+ruQbvG/pRI9hA4+EDaADLSlNOAqnRe9hqxtY63rl4CkLlC8TPbgnzy1DpXWjaFpZm6WrttD/4SuuQquTA08ThUyxT3rEaEOF3VxcsFJXbSWRSurc5Wuq8mCXgS5WEcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S/+I40Fk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C84CBC4CEE4;
+	Tue, 13 May 2025 09:48:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747129734;
+	bh=gbVfdS0/+BxgEuIBvwOkx71HWIkUx+Hx9hoqvnXwFPA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=S/+I40Fk05pgWnOzsmYFqbsnS/EniPyQGsyIbpgbfd/Ae9mWx14ugARZOBDKLNZ0s
+	 d4O0KfAZcuwWoxOYpHRWzNBh+Amp5LNzvuSr/RToFgQyz2uqFs2eJoaHuZTpx+nHFc
+	 eP7sJz2NYuLVj1ZOzKAX1OF5FG2HVIpDvZJxh9yfYBkAJEC6Y5cjpKvSEdzJCQgXMH
+	 cG8vLh234IqS1VwKI29GL8Bo4nmWiwDpyMCE4YX8HdBsHx52dvJtRuqIhOmPte2adK
+	 /GXUnHuZuVMWGztFxhd6CCRWWV5Qf5AYxshexI3k23cUpHmgabjCbxALUCBHYXOVlE
+	 iulsnetrPEAtg==
+From: Lee Jones <lee@kernel.org>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Alexandre Mergnat <amergnat@baylibre.com>, 
+ Amjad Ouled-Ameur <aouledameur@baylibre.com>, 
+ =?utf-8?q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>, 
+ Fabien Parent <fparent@baylibre.com>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org
+In-Reply-To: <20250502-mt8365-infracfg-nao-compatible-v1-1-e40394573f98@collabora.com>
+References: <20250502-mt8365-infracfg-nao-compatible-v1-0-e40394573f98@collabora.com>
+ <20250502-mt8365-infracfg-nao-compatible-v1-1-e40394573f98@collabora.com>
+Subject: Re: (subset) [PATCH 1/2] dt-bindings: mfd: syscon: Add
+ mediatek,mt8365-infracfg-nao
+Message-Id: <174712973156.4137268.14056292856907058087.b4-ty@kernel.org>
+Date: Tue, 13 May 2025 10:48:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftdefkedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdejpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgri
- igvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvthdprhgtphhtthhopeguohhnrghlugdrhhhunhhtvghrsehgmhgrihhlrdgtohhm
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-b75d9
 
-On Thu, 8 May 2025 20:10:41 -0700
-Jakub Kicinski <kuba@kernel.org> wrote:
+On Fri, 02 May 2025 12:43:21 -0400, Nícolas F. R. A. Prado wrote:
+> The register space described by DT node of compatible
+> mediatek,mt8365-infracfg-nao exposes a variety of unrelated registers,
+> including registers for controlling bus protection on the MT8365 SoC,
+> which is used by the power domain controller through a syscon.
+> 
+> Add this compatible to the syscon binding.
+> 
+> [...]
 
-> On Tue, 06 May 2025 11:38:34 +0200 Kory Maincent wrote:
-> > diff --git a/Documentation/netlink/specs/ethtool.yaml
-> > b/Documentation/netlink/specs/ethtool.yaml index c650cd3dcb80..fbfd2939=
-87c1
-> > 100644 --- a/Documentation/netlink/specs/ethtool.yaml
-> > +++ b/Documentation/netlink/specs/ethtool.yaml
-> > @@ -98,6 +98,12 @@ definitions:
-> >      name: tcp-data-split
-> >      type: enum
-> >      entries: [ unknown, disabled, enabled ]
-> > +  -
-> > +    name: pse-events
-> > +    type: flags
-> > +    name-prefix: ethtool-pse-event-
-> > +    header: linux/ethtool.h
-> > +    entries: [ over-current, over-temp ] =20
->=20
-> please change this enum similarly to what I suggested on the hwts
-> source patch
+Applied, thanks!
 
-Ok.
-=20
-> >  attribute-sets:
-> >    -
-> > @@ -1528,6 +1534,18 @@ attribute-sets:
-> >          name: hwtstamp-flags
-> >          type: nest
-> >          nested-attributes: bitset
-> > +  -
-> > +    name: pse-ntf
-> > +    attr-cnt-name: __ethtool-a-pse-ntf-cnt =20
->=20
-> please use -- instead of underscores
+[1/2] dt-bindings: mfd: syscon: Add mediatek,mt8365-infracfg-nao
+      commit: cbb005b91726ea1024b6261bc1062bac19f6d059
 
-All the other attributes are using underscore in this property.
-Are you sure about this?
+--
+Lee Jones [李琼斯]
 
-> > +			phydev =3D psec->attached_phydev;
-> > +			if (phydev->attached_dev) {
-> > +				netdev =3D phydev->attached_dev;
-> > +				netdev_hold(netdev, tracker, GFP_ATOMIC); =20
->=20
-> GFP_KERNEL ?
-
-Oops indeed, small copy paste mistake.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
 
