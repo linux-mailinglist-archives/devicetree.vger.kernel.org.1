@@ -1,129 +1,149 @@
-Return-Path: <devicetree+bounces-176752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A125BAB5647
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:39:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D66E5AB5654
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:40:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BB581B46B19
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 13:39:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 213A13BBB54
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 13:40:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5E528F538;
-	Tue, 13 May 2025 13:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA218290BCD;
+	Tue, 13 May 2025 13:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="th3RCQuY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422C728640E;
-	Tue, 13 May 2025 13:39:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD432918FE
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 13:40:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747143546; cv=none; b=B7ydVMG7tD93Q+bLo17AtgAMwwwfO7cn+ykGyDNRFYbIXc+EWVOpyrCdKeUGMY2U7sq7nZBmglZkBSl1FaNSnSt9EFW/EW/rvCZcimlUGOscOTvWc0nXJQNOVHmBnhuuy+EW7b20vj0ZF9CyNXMOmiYur4I/t9jVGHavQfJ3mDw=
+	t=1747143631; cv=none; b=XLDMiu4oA9qFIAPKl8aHQNTSV5qAVgx4X89TMiqoHdJ6v8r7xui/TNvw/azLEBc3IuJSTVklLYAhzAyUFAXZsaWKlF0yjJLtoDNDxqJL31Jiw0tjXZum2S5zeqCliShOoUAsAuUpdbygAREMNJXDSsZ9ISPSnlXlTPz6g8lH6So=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747143546; c=relaxed/simple;
-	bh=w/zWZ92yzc6YUkiZeb6+MrsktIw7OQGZTLwAU32pCxo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YJSuf/Sg1I5bREko0MkBXoB1rNL9/zwjomq+bQHK68GmLMSyd51mSA6+iXLnmszXZemnV502raijZnwh5Siu50/TntYpotMxqHSxNJ5PSf33iSWgSnTiFJhmXOGLHMjvNqkBXYYINZ/ovb139YZEHCHqxbj+GK/mVlI+9+0IWUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-879ed601971so1363432241.1;
-        Tue, 13 May 2025 06:39:03 -0700 (PDT)
+	s=arc-20240116; t=1747143631; c=relaxed/simple;
+	bh=BGaQ93izMEe02Cti68Vyan303ZMORdMe2po+7g1Hqbs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YuaKA9rIaVhxSEy8EU0zmGsUjUgg/RP2PJ8+mDiY9KgrnGpoUBr/e2iZF9STZDgZaFA8rkbrrM6JhqXbI4NgffSA7W9aYiG0Ut2U6Tziipw0W5nBK5mG+ASviqi+mgc1tkocFJGtQmPFNhgGWYwVFVHUBxqR55jpa/OdQATMf9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=th3RCQuY; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso38368645e9.3
+        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 06:40:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747143628; x=1747748428; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xEU9Mo6/UKsuuLc31/10/BvFN8LdhjlBi5jmqi672+k=;
+        b=th3RCQuY7ZtXYMOkZX71S5H7omzWwsaWnSG6C4IgAt1C2gXQsO/k6Sxr2tqYWMdLas
+         xHDlGaddzadiZoZQkyYkHJIHBT+G7Wx3J+yhuPeEUB1FRX98GM3RrW9vOf4CRtzp9T/B
+         t4jU1nDM8AKs45Oxh83eNegOzC2tAyGT5IliFXhkj4RVC2SLrYIFVyke2m2ski1b6LNM
+         gMbT9F81ycWWPMaHIP/xcWuQKWSwjRqrDNuk24LE3Eu/OVzs2B1OHVGZvsZGrilHCWVz
+         ySHiDYGJRTJZ4K0euz6+wGv+2en88cFhxCbXkZX6A0AxRiaI25prJCUFp2EIfyW5KBb1
+         v2pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747143542; x=1747748342;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=otMogSOyvc+azXfG2zQ9PW31C7giKBuO4YtLeGYVjBA=;
-        b=SqGGDyPLacpX72rLCoeLCPJg9F4qq2oSu6kkkYGuMd0jZpgOBgZ9HFvlkjxSpeWqRE
-         6e1ULszt+p04y4Hlo1BN06ULANgjNOF2rv/3xpD+9ZrazsRkFWGREWuE+m4DxCdR2Q88
-         pgAmQEzndr/buwaqd9IjXG5Qlh0ui4jeLJrri7gaUV+K8bCznJCVDy6ZuuXLeJrgSs75
-         aaufdmZT+kqdTMrGaQ1UgO02GQQ+Afmf7bT3bjGwxbVu8FY2rgelb+ZU/xO8NHrM67gG
-         hYHp43eKcwEEwDhZmYWz4hQ30ibW1hQsynAx8KP/o0RmjqosJ22hNHi5icWBY4QtnqZl
-         DOrw==
-X-Forwarded-Encrypted: i=1; AJvYcCVN/a6T8ePNUKQp7/VIDa9m4B+LH855PYdG8KQAAsx8TE5m1D2zbDme1Dm+JW/f4G/nwCf+sXeqMN1OZAmp@vger.kernel.org, AJvYcCWKrIlspR0nv1RVe91gHIYkSYHvT0e6AO4jHR8kCGGlBBy727MGG53hj0vUTZQKQW0mchCd3+xxer9YoNGVPVFKhbw=@vger.kernel.org, AJvYcCXISG+VUqWB5MEn8/2+NsXR6IfLnyHKDGXd7uOCn5GPJxsJ9iECUIsFxLQ/AANZyYtPMPFG/xpJH/Wn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxz8/MF1p7s8WzwX4Xhq8BpB9B/7LKNEB0a0tRcU96D1kfGAXpm
-	0flzt3KDU8HlIMvLVIUj5wu0TbdrcZjg6/Pgxp0oyaEKzSb/jLsSeL2WWgCS
-X-Gm-Gg: ASbGncs1xNnrx4wEiFcSWzJZWjGGEYP3km3hE++fHPlVY1rWpyNSuwTXtXjCL3sHkFx
-	r+pxIiw0xALyGLEOh2KlKHJZVZ/YEKzUSviMX536eYHXYdgnGksaYy0L9txyVcTrR3tDNrMvEb0
-	PfH/fwO+siyPkxPwWs5BcgIr932jqNrDyaU4BPxx0d+FNA1leJIvc8LgbYeC3CuUGTB/vDiO5us
-	fRswxkhRqtOWgKQlFDSZDQjvhMT7fGWC3EN5BxO0iaWyuIz8Y85Invw8mts+xkgvPUePektYqaN
-	5kel6LvdnEm7gG5gzQW5QQ05RLwJZHHDTWf82UpAf+p+R8Mzrs4gRIl4oUxenHtK58jtcivqU6z
-	y3LRbRuwI2tqhlA==
-X-Google-Smtp-Source: AGHT+IE/EhzF6TBjNH4i+Mqkn+GleNMj3ux/pNzFWLyvHinHSG31SQd/lhemIZBXjY1SFs5unwgGSw==
-X-Received: by 2002:a05:6102:4b19:b0:4c1:76a4:aee4 with SMTP id ada2fe7eead31-4deed3d366fmr15206965137.19.1747143542495;
-        Tue, 13 May 2025 06:39:02 -0700 (PDT)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4dea857f73fsm6732930137.3.2025.05.13.06.39.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 May 2025 06:39:02 -0700 (PDT)
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4def2473a58so1493523137.2;
-        Tue, 13 May 2025 06:39:02 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUjuxD8wLOWI4tW2LKEsZlzh8BajIaj5Q4rhbFpNgQ37XR6M640T7YPpt71AM9bxSv/fAQPsyPreGxE3Ws/KOyqLnY=@vger.kernel.org, AJvYcCVr2Ara8s/YlI3skt7dnmM/yqGvwFkob3De+lktzFsQq1sSvbFCI7d5vB220shJUL0m0+Jj8iqhXc3u@vger.kernel.org, AJvYcCXiRrulHUUDPQJXZIa3QVM2tqYGtx23XlTxySwiFCFL7zoSH4XcZq4FXNfCdRLK9ksBVxFlRM+nuAEXBq3f@vger.kernel.org
-X-Received: by 2002:a05:6102:4a92:b0:4da:fc9d:f0c with SMTP id
- ada2fe7eead31-4deed35dc84mr15321354137.12.1747143542024; Tue, 13 May 2025
- 06:39:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747143628; x=1747748428;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xEU9Mo6/UKsuuLc31/10/BvFN8LdhjlBi5jmqi672+k=;
+        b=mUEh8DuHueM3ks8ICOcieklMBRbR8bN9QPiM6ayUWQdQJdUz1XujV3tiVH+mSbp5bl
+         GyImei/Qqs4bj0SnVNoPZ3ox83oIQfHPOq1ynvxodaXOYxOJ/rwVOqQZ9BkA4FOpSayZ
+         WAqvpaN2ds9KqzXsV6FRvPJ1mzUX/b2WnDUIS+SSk6qqgdW5RlRd68002TupHFWePBOx
+         Bce8IxUA1RwF8hzoRK/J4DZF6Qi13i8pv5SYi62VHbHRLVCRHUaV6TMmdtZFKEwPpHMG
+         2mE2OH/OapoxKAxm+OF4oi2bP5NqDfMpTZ8ZZsqobE+KDx5baHG5d65BEMV5li3G79wY
+         lh1w==
+X-Forwarded-Encrypted: i=1; AJvYcCUlu+geK+nH/yP5/vxbLHcwzan6kV30fn3knv0bcxa8Mkpj72Kq4nEBSE+ATm1W+4MVdxsoEJKLEN4R@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGZ3ZTiMhGDaMYVlepCElMqJd5Zt6yQ5UKH0zh7BS1rU4Ei0Xd
+	CU/gE5IJsyyTBF/jBS9fdeDsuHl7KFn/MOEenjj/SBv5BBm5Lhvd3BjzFBJudZE=
+X-Gm-Gg: ASbGncuXuUU089Ehr1zLvYMn48wKmFX1ku1W4Twg7mHh/U6Rj+9Z96/f58jMoOTz75A
+	uT4W2j/xuBLzVstOq2ekCj/lYaW6xWcpA9U/FaE6WMl0I9IiL24RYqav0bGnAZZxDmsB6HtzVa7
+	ZC5THit3WpO6oa9NxtwRjW3tjUkOtAa7zW+PFW+HFBUL5423OXj0Khs/QjpxyNWNTl9L0EHfVII
+	5RJj+NQYcMubiZcQOzHKr2o40g8k2zQZ3zOIyJCQ+DW6oMLPNaMi5AghVWDipk7Nx63zG9N/Ae8
+	KLtHMb2iDp+KLNR4sRV3lk3m25/+b1ohlyZpAs5TnHoGIa5QdOiy+P7r5KYHSFQcnPm7skF18iH
+	KhN5nmIfqijygJw==
+X-Google-Smtp-Source: AGHT+IEfBwQJXAJ0BaJ2PDlgayikP86FW2WlI8LpQoXcFz5Q+W2Tz3IsJRQQT5R4meXuclvg4ooRLQ==
+X-Received: by 2002:a05:600c:b85:b0:43d:fa58:700e with SMTP id 5b1f17b1804b1-442d6ddd22emr128512155e9.33.1747143628084;
+        Tue, 13 May 2025 06:40:28 -0700 (PDT)
+Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd3b7dd5sm209294255e9.35.2025.05.13.06.40.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 May 2025 06:40:27 -0700 (PDT)
+Date: Tue, 13 May 2025 15:40:25 +0200
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] clocksource/drivers/timer-vt8500: Add watchdog
+ functionality
+Message-ID: <aCNLyYtxmqqklBN8@mai.linaro.org>
+References: <20250507-vt8500-timer-updates-v2-0-65e5d1b0855e@gmail.com>
+ <20250507-vt8500-timer-updates-v2-3-65e5d1b0855e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250429081956.3804621-1-thierry.bultel.yh@bp.renesas.com> <20250429081956.3804621-11-thierry.bultel.yh@bp.renesas.com>
-In-Reply-To: <20250429081956.3804621-11-thierry.bultel.yh@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 13 May 2025 15:38:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUw9GNv1_jtjnfjL1x38-Snhdie41s5=9DZhQA5NMjVtA@mail.gmail.com>
-X-Gm-Features: AX0GCFsLHBRN64p-uZIQMVjwi0yO7Y1WSMGqfYnyWXgWneRfxfyFamwGYreAKAE
-Message-ID: <CAMuHMdUw9GNv1_jtjnfjL1x38-Snhdie41s5=9DZhQA5NMjVtA@mail.gmail.com>
-Subject: Re: [PATCH v8 10/11] arm64: dts: renesas: Add initial support for
- renesas RZ/T2H eval board
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: thierry.bultel@linatsea.fr, linux-renesas-soc@vger.kernel.org, 
-	paul.barker.ct@bp.renesas.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250507-vt8500-timer-updates-v2-3-65e5d1b0855e@gmail.com>
 
-Hi Thierry,
+On Wed, May 07, 2025 at 10:58:32AM +0400, Alexey Charkov wrote:
+> VIA/WonderMedia system timer IP can generate a watchdog reset when its
+> clocksource counter matches the value in the match register 0 and
+> watchdog function is enabled. For this to work, obvously the clock event
+> device must use a different match register (1~3) and respective interrupt.
+> 
+> Check if at least two interrupts are provided by the device tree, then use
+> match register 1 for system clock events and match register 0 for watchdog
+> respectively.
 
-On Tue, 29 Apr 2025 at 10:20, Thierry Bultel
-<thierry.bultel.yh@bp.renesas.com> wrote:
-> Add the initial device tree for the RZ/T2H evaluation board.
->
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+This code falls under the watchdog umbrella not in the clocksource. It
+is better to find a way to make the timer and the watchdog separated.
+
+The timer-gxp.c is dynamically allocating a watchdog platform device
+with the shared pointer to the timer counter. IMO, it is a good
+example to split this up.
+
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > ---
-> Changes v7->v8:
->   - removed loco clock
->   - fixed checkpatch warning
+>  drivers/clocksource/Kconfig        | 11 +++++++
+>  drivers/clocksource/timer-vt8500.c | 61 ++++++++++++++++++++++++++++++++++----
+>  2 files changed, 67 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+> index 487c8525996724fbf9c6e9726dabb478d86513b9..8f5e41ff23386d9ecb46b38603dae485db71cfc7 100644
+> --- a/drivers/clocksource/Kconfig
+> +++ b/drivers/clocksource/Kconfig
+> @@ -181,6 +181,17 @@ config VT8500_TIMER
+>  	help
+>  	  Enables support for the VT8500 driver.
+>  
+> +config VT8500_TIMER_WATCHDOG
+> +	bool "Enable VT8500 watchdog functionality"
+> +	depends on VT8500_TIMER
+> +	depends on WATCHDOG && WATCHDOG_CORE=y
 
-Thanks for the update!
+if WATCHDOG_CORE=y then WATCHDOG=y because the first one can be
+enabled only if the second one is enabled.
 
-> --- a/arch/arm64/boot/dts/renesas/Makefile
-> +++ b/arch/arm64/boot/dts/renesas/Makefile
-> @@ -152,6 +152,7 @@ dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
->
->  dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc.dtb
->
-> +dtb-$(CONFIG_ARCH_R9A09G077) += r9a09g077m44-rzt2h-evk.dtb
+[ ... ]
 
-Please preserve alphabetical sort order.
+-- 
 
->  dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk.dtb
->  dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h48-kakip.dtb
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-The rest LGTM, so with the above fixed:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
