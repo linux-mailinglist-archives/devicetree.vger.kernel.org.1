@@ -1,129 +1,113 @@
-Return-Path: <devicetree+bounces-176741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2FCBAB55DB
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:21:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFC53AB55EB
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:24:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF8B77A7253
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 13:19:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EEBF1B405F4
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 13:24:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF41528EA46;
-	Tue, 13 May 2025 13:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7A028ECF5;
+	Tue, 13 May 2025 13:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g7+h+o3t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DbwhB7RF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF2E28E612
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 13:20:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FF1728ECC8
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 13:24:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747142461; cv=none; b=ixYbPxyznVURvtrkeDCt/No2pzJLviC+hx/c1uER5II+gyHkWhZbUnFNM51ZpgMhXWLDAHI1k9HRmTixpdjUN9SWMEVnvjpMTNZo9oG49Azjbg/GKbYQhItwyaX+evr+mgXkspJdcv3/x7qFFuv5S523YHvCZtNAuGSUEB3o5E4=
+	t=1747142650; cv=none; b=R6IlKC85r6YoiYKDRlZDSyORodSQttqxetWq/k1Nfpy/opgR6HHPR7ZGNH+Kr0QokyGsI5ARXc+kfY+taIAgNYQeGU3aZOvFPW2oyMa6zC6qM6f9hVnYIROqigNLP7KqbmjyKaQGZsmug4vcvqT6D/9NcvBKTWm5C6+Jq/GDmK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747142461; c=relaxed/simple;
-	bh=a07HNvK2s/ifER9xOGcNCCEiUl0FR+rf5Vx8rLmQK6M=;
+	s=arc-20240116; t=1747142650; c=relaxed/simple;
+	bh=5eKxaIX3fw3jx/+XOFOXndB/4SjWjO6DJ61Rmj65mQw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M1A3gHfoIReAJa0HHUq3oxJyhsGSlYmkrHuyJ9b6rAOxk2kwDGhBda0RIHpjVvYlo1qJR6nONGRXmhjNMRCbBD3mr8ZeU6f6CzQcSUtLEXkJa1oUxDazrV5MLHRpFNgUiPf+ziDCI8DUhGjwlCs+Vs8E+rW/LK4XfBtNdEh7bmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g7+h+o3t; arc=none smtp.client-ip=209.85.167.49
+	 To:Cc:Content-Type; b=t1FsRd7Fvn8C5Avi6mUCe9RQMePaoj60JxWvoqdhWu5Osk1phCuCcnagV4fyc6R1fUoAw/MKQifidX4wxRLQkHCVL1vLo1U03ybz1lfl3VHK51Uq28i8ZHNPod5vVlFLRDo6zbKt1FzTA5E9cHwn6O3klVX0X0g5FFiXIe8sCpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DbwhB7RF; arc=none smtp.client-ip=209.85.167.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-54fc61b3ccaso5865445e87.1
-        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 06:20:59 -0700 (PDT)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54e9021d2b5so8190982e87.1
+        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 06:24:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747142458; x=1747747258; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1747142647; x=1747747447; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=a07HNvK2s/ifER9xOGcNCCEiUl0FR+rf5Vx8rLmQK6M=;
-        b=g7+h+o3teH0r1X4KOJVtZq8+gUr+VICHsaqiR5FoISDLP6PHQNnFpu/F8jFmVdGKEM
-         T1XEoZOnRd0IOcFoSRJsNNQiEGFWaHuM23Zaka68/N8SX7B5NRrIO4/7ItCKMyNdvfuq
-         dn7w+Oqxssf2HjZPIsuAgDRO7sM46IBlYYzx3wbY2ENG/7WmcjQZKTW5TPxjEZ0wY9hx
-         kEKd16lb9q2+42gqe3p4HPpbLAnL83VUoY8d4fYlU2XJXtmL9e/TjLm9XeYtcbSL3e7Y
-         ++LvoT3k07h/NniGzARU4hviKSj8cs/t8zjDmFTMxA+G5HcXUlzHP3Qny5f5gy7gXp5T
-         k39w==
+        bh=5eKxaIX3fw3jx/+XOFOXndB/4SjWjO6DJ61Rmj65mQw=;
+        b=DbwhB7RF1JQqu3Vx8YErtq3rTPzu9DrvuTZHBpumUlQ9Fqckpe1d5klxFnDVlvW9a0
+         mbStNuiJFw6GfBvu77Ue2MiUVYjGnhfDkvYoBPIMkNngWUkdhBZXjME64mxikNmE9Obl
+         Bx6okDN+VXaiokTpeMVKPodEUSYw7zYVqSwGTEaDg0KBuIMuEVTI8rbJ6jNHXfC0JJNX
+         dBwe8fYiS2PsBI2LA87kD88l/WduHaiVSySc6bJYyqGQwtAF0gt4vSo2bG7RupqrIt0i
+         P4v1bE3w+K2sqOjV/XJOYUMhzq9cJZChC3eoTF8Ug7CPfW77rOzm6g3EUgOlE3oJw2G8
+         PoGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747142458; x=1747747258;
+        d=1e100.net; s=20230601; t=1747142647; x=1747747447;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=a07HNvK2s/ifER9xOGcNCCEiUl0FR+rf5Vx8rLmQK6M=;
-        b=QaXXA54F0xBErZpDw+OeQnDPpta87Q55XahyWwp+T4OXg4MHV8HyOX6HzVyn8DHy1m
-         L/oBR8KfNp34mcJvUTwbqTzgyfPmj4DJyYC5gckc56BUI5xvH44RJZrvzLMOMzPFXOKj
-         kSNcI8h/oxQlJ1HhPNl0IcL8d9o+r0Sa0TW+lIoKDxfsNuNXbEodBK36CcywA7FGmFWb
-         FqUWN7sG6AayvCnhEYrkad473/gJGgHVcRIMxWiXKg2rKkutiKwz+Advp2vu1hSGh9Ga
-         QCfYaCEwi1Scg7i/0i1P4m68El7jJPrhDkeWz4T0wc4WIMPRR1xh8Fo5heudCRqDqjxa
-         aAcg==
-X-Forwarded-Encrypted: i=1; AJvYcCXsMRZFskN+GpHVkhZu4eLHQ2L9z2Ycs3qdSzCd8Hb+SBmrShhrHUJ7IY/R/7zOwTMbaQ/iTCSrad+R@vger.kernel.org
-X-Gm-Message-State: AOJu0YzE379vh6gkJpQCJ7pDzYswG7tndGZaRHJrwOVvrn21mQqa9OuE
-	0WyrWhyzLGR8gBMVKRnDKyMJ5SJ7Eg8wHVPvbcjjEHuqiUlE8A9UZB1pk8Mo4N/AwKtmjHH765K
-	N63c4x8uuMHFqBKZsf15v5QE7JEKXcY6kviiPZQ==
-X-Gm-Gg: ASbGnctrg5UeyE/lw/cPYZkHxdUb/KnnL/a/apJ8JROlJyD+dvPt1PRU+YsMrfn8vxY
-	5qwEND2xUZ27fKyDuMO2gDr3B9K6z8VLUlUYwmaHqRoYhzFJP2k+zyJKWcCfW4X26BUcGe3PW0u
-	7sZGWajlQbnyFhjYuqoMbHtNpEMoJIQAk9
-X-Google-Smtp-Source: AGHT+IGEAON4CqeWB7MIriXflZ3TKRdVPaHoB+BTW6X7JW4SlMZJHvBn+KzxohMwhUgzM+6fwnKvwVBVuufnBpAzy7A=
-X-Received: by 2002:a05:6512:3b88:b0:54f:c66b:8b78 with SMTP id
- 2adb3069b0e04-54fc67ecebbmr5256122e87.49.1747142457796; Tue, 13 May 2025
- 06:20:57 -0700 (PDT)
+        bh=5eKxaIX3fw3jx/+XOFOXndB/4SjWjO6DJ61Rmj65mQw=;
+        b=q7m6/L85PJL0DfOIiMVyqITKzg2bHFwnok+LjwVk7nUEjzomT5Ojlad35ODKkpoH+J
+         dA6/VPqvuS23dxle2VudqD0qYay5ngej2uOQBXnAD4Jr3FeED8zzygjFR2iHtu9uQayy
+         0haiqhyY0D7qq46TDshfxW9kxDk9mBn7WLxJQ0Zr4isZbDU/nb7IzoAr1KZPNG4IdGuJ
+         S0tQc3wzhqJ9g5u/6XFtPBfyWHnIleemEhVVfcNamiMhtvd5jioWWlp4jZKBFDinYQ+a
+         8caDvh/1AoSGAISPspxz0hpsQaDTAO3GlDQAbdZrnw9FE9M2gVEHMENyrIWBeARFz6ma
+         KDug==
+X-Forwarded-Encrypted: i=1; AJvYcCVT0dJmXskgAi3iZYcSIDVGH3n/YWCqYEL1E5kA6TVDi4MYjX2ISy/DSwKTQzFQZ0XN8XIdRZJ+SdjE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6jpw1Tern1lCyV3L7cAeMakKfFBpRLIRRHiTwKdyo4N96HgpB
+	4RhqW3CwgA6/2/S2KcvmqljMX8dRz6hjQvDwwEZylbgT7zBBvfcHrQd/2Vef5yXhDNU/CE99APf
+	qJi3nhJfrDeIz2WKbe/sfHBju/Gcysnfuf1ipCw==
+X-Gm-Gg: ASbGncucMwTZIDhurcx3dGdegbaXXhRWsA2O8+eGJgrXRLqVssBBoE/lcT0Qoon8s2D
+	lB7ns/dtW8nIJV468pdw3YCJzxBAhayFD6pVK73QV6f1z+tvbJM4laIg6S9WbyoelH0vn88H7v1
+	HzFdz0M3Z/DbCz2gTAqbxa4fNHBHQcIGQo
+X-Google-Smtp-Source: AGHT+IFQKowijPtKxWmuvEciX1nJf+TDzv0WZoqM/uKvRSmSrIT4h7hRJwXNUJZcQ/uYhV04L0dGE2029I5lSw65p/4=
+X-Received: by 2002:a05:6512:2586:b0:54a:cc10:1050 with SMTP id
+ 2adb3069b0e04-550d0bc78b3mr1158871e87.15.1747142647002; Tue, 13 May 2025
+ 06:24:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250512-pin-v1-0-d9f1555a55ad@nxp.com> <20250512-pin-v1-1-d9f1555a55ad@nxp.com>
- <20250512-mongoose-vacation-f81a56dd6c5d@spud> <20250513075532.GB14572@nxa18884-linux>
-In-Reply-To: <20250513075532.GB14572@nxa18884-linux>
+References: <20250509-max77759-mfd-v10-0-962ac15ee3ef@linaro.org> <20250509-max77759-mfd-v10-2-962ac15ee3ef@linaro.org>
+In-Reply-To: <20250509-max77759-mfd-v10-2-962ac15ee3ef@linaro.org>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 13 May 2025 15:20:44 +0200
-X-Gm-Features: AX0GCFuZNXL7sad4G9E3lsfZTN1DW6pieeaGbeQGotqOwvfnEpDnUcCktC-com4
-Message-ID: <CACRpkdYmupji8a0np0xzogjcvJ8YFstAgg_XwdxNczhQjBZOPg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: firmware: nxp,imx95-scmi-pinctrl:
- Introduce nxp,iomuxc-daisy-off
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+Date: Tue, 13 May 2025 15:23:55 +0200
+X-Gm-Features: AX0GCFvUasElVjJYv3I7eVQPe0A6FsXnY_zILsVN3taTVIhvI167ZdVbaeRULuk
+Message-ID: <CACRpkdZg0ZLcmGbFPqUmRpkw8DJYe5bY8yEDe5+KrnzTWxeXFQ@mail.gmail.com>
+Subject: Re: [PATCH v10 2/3] gpio: max77759: add Maxim MAX77759 gpio driver
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
-	NXP S32 Linux Team <s32@nxp.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+	Bartosz Golaszewski <brgl@bgdev.pl>, Srinivas Kandagatla <srini@kernel.org>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
+	kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 13, 2025 at 8:46=E2=80=AFAM Peng Fan <peng.fan@oss.nxp.com> wro=
-te:
+On Fri, May 9, 2025 at 3:22=E2=80=AFPM Andr=C3=A9 Draszik <andre.draszik@li=
+naro.org> wrote:
 
-> >Same comment here as was left on the driver.
-> >I also don't get why there's a property being introduced from something
-> >you can determine based on the soc.
-
-I agree with Conor's observation.
-
-> we are targeting a common pinctrl driver for i.MX SCMI based SoC.
-> So that means pinctrl-imx-scmi.c needs support i.MX95, i.MX94 and i.MX9[X=
-].
+> The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
+> includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
+> Port Controller (TCPC), NVMEM, and a GPIO expander.
 >
-> Each time we support a new SoC, we need to hardcode the register offset i=
-n
-> the driver. But if using DT here, no need to update the pinctrl driver an=
-ymore
-> when supporting a new i.MX SoC.
+> This driver supports the GPIO functions using the platform device
+> registered by the core MFD driver.
+>
+> Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 
-I understand that it is convenient, but that doesn't mean it is the right
-thing to do.
-
-I would advice you to keep this in the driver and use the SoC compatible
-to determine the offset, just as is done today.
-
-If information can be deduced from what is already present in the
-device tree it is redundant to add stuff like this, and it inevitably
-will create copy-paste errors where the wrong offset is used
-with the wrong SoC.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
