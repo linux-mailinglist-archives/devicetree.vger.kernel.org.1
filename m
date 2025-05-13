@@ -1,224 +1,133 @@
-Return-Path: <devicetree+bounces-176801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 941E2AB5869
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:22:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE4E9AB5883
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:25:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 385A27B4713
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:20:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DC39188F6A2
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:22:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162542BE10A;
-	Tue, 13 May 2025 15:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18539151985;
+	Tue, 13 May 2025 15:22:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Fhtj/8UV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HwiIT/Gp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11334E552;
-	Tue, 13 May 2025 15:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3208F1DDC37;
+	Tue, 13 May 2025 15:22:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747149601; cv=none; b=kM/RwWb956mlRnxknc/KxsFOUAdp/Z3Ceby3SRejyyxWESv70nZ2dCEVKvdvh9AWseJgUWLNdAns4bt59gTzV431aLCt0vUp+/B01ue0EUxRnwdIGgsFRKKPtko0ARVhmFiHXxtFXqm1SllmwIr9W00TgjAMrGfK3jidDdn9rDk=
+	t=1747149736; cv=none; b=OUhEFxUSOPWaCSPEYflfMLIVTldnLOIvbESNEUN1GY9LcogPdLdg0+4i1fUMpbnholFq0Lbvke2//708oowXEJjGuAXQUbz9LI3z0qUlBXeBp1tMC8/w0HKF7H+bj96iYflH0JN1QdFP2wPKGPotkvxI4hFmVWYgORapMj32RLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747149601; c=relaxed/simple;
-	bh=f1aHhmyioVFKbkY8CdahzJyEqA4BsgJMIKLn/n1wOpg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IyCxRM1NK53Us2/abO2cXHzamQw3Z0w0Hp2QpfcV/qGuro+tRWthoLUvPuhVSNV+CYxPwHZ6Zf0uoN/VJ1AmQgb6qQOE9AbkvpQfekw7W9MgAfieBmSSrlp54Qi4N3ZsFJVKDvf5U0bYM+gx8h8wLt345kspky3YIIM285UK0W0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Fhtj/8UV; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (unknown [146.0.27.149])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EB1E04C9;
-	Tue, 13 May 2025 17:19:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1747149581;
-	bh=f1aHhmyioVFKbkY8CdahzJyEqA4BsgJMIKLn/n1wOpg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Fhtj/8UVLWgqJatoAnist/8/F0/lPFu2pyBdk/cFtwYBZGu/RmYIyXLBYZfGJStA4
-	 ZBVLlqZzwBV6zLEjHcf7Av3d2eLVDR+VUFzU2LcJgYMOyR8OimRVgp4WIt+A5+eFMs
-	 AEiOZlQHXTX3ehIipnFLIJv14xiO4ibBicS59HZs=
-Date: Tue, 13 May 2025 17:19:48 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, nuno.sa@analog.com,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	s=arc-20240116; t=1747149736; c=relaxed/simple;
+	bh=XkVFIrVzXVaXc65hfYDgo0j/VX5OMcZI52m72KWvTtY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qUsRNTytrlly8uqLhj1X9OfEpbSFSc/4ZwMoq5CLinekY69LEiy1wgnS0kQ03Str6G4FpBCJqCrJ7rLfeLwkAc1PP8y3G15IPDRi5txrCzK2aIoZb6c+KTKqyu1M4OSMFNocwL9LHgUUJwGpkhGHpBd7iD12NMbYNh5kS47bdmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HwiIT/Gp; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-442ccf0e1b3so66217795e9.3;
+        Tue, 13 May 2025 08:22:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747149732; x=1747754532; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7HOlMAg4ITw5NVtu1FU2SCoRgaRsj5LUWrw5KUtfOSU=;
+        b=HwiIT/GpQcRV2iVctu4ejrBAT6ysX8VBE3Kyy+nRodbbhaV03/q2+6WGi+xaxgY4DJ
+         E+aH1OxFgfVoA2k5l5Wocy57i9Pbdbgye3YyqN8dttu84gkMX/D2fj65ML+x1xRM4c75
+         z2R7UvSNDHbrTYC+R2pAFjYTG+rVYdDgnm76LDPX0BHzNMSmgKChItnGSd+N9MxXS4NB
+         HriHYocsHimX6Fzyv3oh2ukHKSx+bPuX/FU4/rN3pN5BM3La/4TKcrzKY8Dvx1m6fHU/
+         HDQRSahKUCEni1CbDBKxEiC+KnyHly5jM8mBe38EuHWVS3zh9r4GGPNVPPWD9vIyzx7u
+         oEaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747149732; x=1747754532;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7HOlMAg4ITw5NVtu1FU2SCoRgaRsj5LUWrw5KUtfOSU=;
+        b=hu4kDno4LIjTmUwuASV4eKd5Tmmp1a74ZzfJh5fSzKaOYCuFQvhf+eJQ2Uyb8dAUs6
+         ZA9pg7A5KH4mM5gwBfLAzWIe7PP+6b6iHOn5PK6hnkmRTNOY4HzxVwnVDBEkyy5K+XaY
+         ubeCK1atxt6kYQpyHmaO09M8w7CxJG2UK+plrMubc/056JCT/Ljxd+hzlBgAVn1I9p8o
+         rbN9HtdEq0+GF/HzmFN5Vu6P8mPjc5KJC6KuOv1KJV/xaINxdC+o9bY4ReWMFBG5llWZ
+         jtJccPdj3aN+FZki9/BYiXnRxTqlWtP8Uxjs/HDTtn/VVCfcBp8XtekhdH/mypDJo1ii
+         dRgA==
+X-Forwarded-Encrypted: i=1; AJvYcCUBULh5h6Sh/TOGdFOig5QN6jZKCpPG8Qvmq2uUIvTJSj73ZYzO3QWOtggkO12qTxLzckHNLjc/NLij@vger.kernel.org, AJvYcCXxgT0n0/PVxZH8RtjOCrGh36aTb9L8nZugpMnoKCSTAXl5hQqHjR2w9A9unGqAYj1Drme/FNSR8am/Wywt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2MtfLizhTfwZ03DHXTKgGolASUn007neNDGibTJtBQjJpa21m
+	BSXWAe8yGBPoBkkhzYeyvOzv294WNz4S10pyKJzg6LwsW6lhvzFH
+X-Gm-Gg: ASbGncuLyMbLe4MYjlNu3tRm46uHcD15607LTX/Th0p0TGGDcJa6Wir3ZdQhj632ex0
+	8Yqqjdmoy/Kci5uJDS3QUQDt8NKV+G1QBJ9YWQrdWsmIL0ZYJiiQsSaeJ9nh4CS28tAZ35MP90P
+	5Mn1sSHnp0LA7s54szj3y/hPZogVSLUdLu9EsvBjXUTArL6Fdj1ENkl1RYO4Bp/8kweB38H55AP
+	Yf/mXKPmY6SdNGh8CNyxo92gNal+yLI4EfTodrPXCyWd1kIj9dgx5CM9sQAq9a+HDNHdVM4GV4e
+	+tYOTh0dSNnlAc9DO+wcpabCwzKmFx0OMr3V9aowMZRHS8KMoViNhzdwdR26l4PLUJcFUffX9G4
+	E/Rh4neUauR24V6z82NLTznpjjGjE763kP4lzRDCmMiK5FRwb9r25BjP8Vg==
+X-Google-Smtp-Source: AGHT+IEg6PWgzF4jLLpPihZcPfaWsfwoK2cBnNIZhlc1AU9QDfK1ahFTXtyBWf5ovWIPZUOzXx90cQ==
+X-Received: by 2002:a05:6000:1889:b0:3a2:377:500c with SMTP id ffacd0b85a97d-3a203775382mr9139211f8f.16.1747149732220;
+        Tue, 13 May 2025 08:22:12 -0700 (PDT)
+Received: from partp-nb.corp.toradex.com (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f58ec0e4sm16384170f8f.40.2025.05.13.08.22.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 May 2025 08:22:11 -0700 (PDT)
+From: Parth Pancholi <parth105105@gmail.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v3 02/22] mfd: adp5585: only add devices given in FW
-Message-ID: <20250513151948.GA23592@pendragon.ideasonboard.com>
-References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
- <20250512-dev-adp5589-fw-v3-2-092b14b79a88@analog.com>
- <20250513143450.GM2936510@google.com>
- <8863db9b433d4911abba4480bb6ac59f799ed5c5.camel@gmail.com>
+	Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: Parth Pancholi <parth.pancholi@toradex.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3] arm64: dts: ti: k3-j784s4-j742s2-main-common: Add ACSPCIE1 node
+Date: Tue, 13 May 2025 17:21:55 +0200
+Message-Id: <20250513152155.1590689-1-parth105105@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <8863db9b433d4911abba4480bb6ac59f799ed5c5.camel@gmail.com>
 
-On Tue, May 13, 2025 at 04:02:11PM +0100, Nuno Sá wrote:
-> On Tue, 2025-05-13 at 15:34 +0100, Lee Jones wrote:
-> > On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
-> > 
-> > > From: Nuno Sá <nuno.sa@analog.com>
-> > > 
-> > > Not all devices (features) of the adp5585 device are mandatory to be
-> > > used in all platforms. Hence, check what's given in FW and dynamically
-> > > create the mfd_cell array to be given to devm_mfd_add_devices().
-> > > 
-> > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> > > ---
-> > >  drivers/mfd/adp5585.c | 45 +++++++++++++++++++++++++++++++++++++++++----
-> > >  1 file changed, 41 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> > > index
-> > > 160e0b38106a6d78f7d4b7c866cb603d96ea673e..02f9e8c1c6a1d8b9516c060e0024d69886
-> > > e9fb7a 100644
-> > > --- a/drivers/mfd/adp5585.c
-> > > +++ b/drivers/mfd/adp5585.c
-> > > @@ -17,7 +17,13 @@
-> > >  #include <linux/regmap.h>
-> > >  #include <linux/types.h>
-> > >  
-> > > -static const struct mfd_cell adp5585_devs[] = {
-> > > +enum {
-> > > +	ADP5585_DEV_GPIO,
-> > > +	ADP5585_DEV_PWM,
-> > > +	ADP5585_DEV_MAX
-> > > +};
-> > > +
-> > > +static const struct mfd_cell adp5585_devs[ADP5585_DEV_MAX] = {
-> > >  	{ .name = "adp5585-gpio", },
-> > >  	{ .name = "adp5585-pwm", },
-> > >  };
-> > > @@ -110,12 +116,40 @@ static const struct regmap_config
-> > > adp5585_regmap_configs[] = {
-> > >  	},
-> > >  };
-> > >  
-> > > +static int adp5585_parse_fw(struct device *dev, struct adp5585_dev
-> > > *adp5585,
-> > > +			    struct mfd_cell **devs)
-> > > +{
-> > > +	unsigned int has_pwm = 0, has_gpio = 0, rc = 0;
-> > > +
-> > > +	if (device_property_present(dev, "#pwm-cells"))
-> > > +		has_pwm = 1;
-> > 
-> > This is a little sloppy.  Instead of using throwaway local variables, do
-> > what you're going to do in the if statement.
-> 
-> Then I would need to realloc my device cells... But as I realized below, this is
-> indeed not needed.
-> 
-> > > +	if (device_property_present(dev, "#gpio-cells"))
-> > > +		has_gpio = 1;
-> > > +
-> > > +	if (!has_pwm && !has_gpio)
-> > > +		return -ENODEV;
-> > 
-> > Are we really dictating which child devices to register based on random
-> > DT properties?  Why not register them anyway and have them fail if the
+From: Parth Pancholi <parth.pancholi@toradex.com>
 
-The properties are not random.
+The ACSPCIE1 module on TI's J784S4 SoC is capable of driving the reference
+clock required by the PCIe Endpoint device. It is an alternative to on-
+board and external reference clock generators.
+Add the device-tree node for the same.
 
-> > information they need is not available?  Missing / incorrect properties
-> > usually get a -EINVAL.
-> 
-> Well, this was something Laurent asked for... In the previous version I was
-> registering all the devices unconditionally.
+Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
+---
+v3: Split SoC support; board-specific changes to follow with Toradex Aquila AM69 upstream addition.
+v2: https://lore.kernel.org/all/20250404101234.2671147-1-parth105105@gmail.com/
+v1: https://lore.kernel.org/all/20250320122259.525613-1-parth105105@gmail.com/
+---
+ arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Registering them all means we'll get error messages in the kernel log
-when the corresponding drivers will probe, while nothing is actually
-wrong. That's fairly confusing for the user.
-
-In an ideal situation we would have child nodes in DT and only register
-child devices for existing child nodes. Unfortunately the DT bindings
-were not designed that way, so we have to live with the current
-situation.
-
-> > > +	*devs = devm_kcalloc(dev, has_pwm + has_gpio, sizeof(struct mfd_cell),
-> > > +			     GFP_KERNEL);
-> > > +	if (!*devs)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	if (has_pwm)
-> > > +		(*devs)[rc++] = adp5585_devs[ADP5585_DEV_PWM];
-> > > +	if (has_gpio)
-> > > +		(*devs)[rc++] = adp5585_devs[ADP5585_DEV_GPIO];
-> > 
-> > Passing around pointers to pointers for allocation (and later, pointer
-> > to functions) is not the way we wish to operate.  See how all of the
-> > other MFD drivers handle selective sub-drivers.
-> 
-> Any pointer from the top of your head (example driver)? Honestly, I do not see
-> this being that bad. Pretty much is a dynamic array of struct mfd_cel but
-> anyways, no strong feelings
-
-I don't find it that bad either. I don't think you should use
-devm_kcalloc() though, as the memory should be freed as soon as it's not
-needed anymore.
-
-> But... I was actually being very stupid. First I did looked at an API to only
-
-Occasionally overseeing a possible solution isn't being stupid. Or at
-least I hope it isn't, otherwise I would be very stupid too.
-
-> add one mfd device and failed to realize that I can use devm_mfd_add_devices()
-> with n_devs = 1
-> 
-> Nevermind, will refactor in v4
-> 
-> > > +	return rc;
-> > > +}
-> > > +
-> > >  static int adp5585_i2c_probe(struct i2c_client *i2c)
-> > >  {
-> > >  	const struct regmap_config *regmap_config;
-> > >  	struct adp5585_dev *adp5585;
-> > > +	struct mfd_cell *devs;
-> > >  	unsigned int id;
-> > > -	int ret;
-> > > +	int ret, n_devs;
-> > >  
-> > >  	adp5585 = devm_kzalloc(&i2c->dev, sizeof(*adp5585), GFP_KERNEL);
-> > >  	if (!adp5585)
-> > > @@ -138,9 +172,12 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
-> > >  		return dev_err_probe(&i2c->dev, -ENODEV,
-> > >  				     "Invalid device ID 0x%02x\n", id);
-> > >  
-> > > +	n_devs = adp5585_parse_fw(&i2c->dev, adp5585, &devs);
-> > > +	if (n_devs < 0)
-> > > +		return n_devs;
-> > > +
-> > >  	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO,
-> > > -				   adp5585_devs, ARRAY_SIZE(adp5585_devs),
-> > > -				   NULL, 0, NULL);
-> > > +				   devs, n_devs, NULL, 0, NULL);
-> > >  	if (ret)
-> > >  		return dev_err_probe(&i2c->dev, ret,
-> > >  				     "Failed to add child devices\n");
-> > > 
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+index 363d68fec387..d17f365947ed 100644
+--- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+@@ -131,6 +131,11 @@ acspcie0_proxy_ctrl: clock-controller@1a090 {
+ 			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
+ 			reg = <0x1a090 0x4>;
+ 		};
++
++		acspcie1_proxy_ctrl: clock-controller@1a094 {
++			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
++			reg = <0x1a094 0x4>;
++		};
+ 	};
+ 
+ 	main_ehrpwm0: pwm@3000000 {
 -- 
-Regards,
+2.34.1
 
-Laurent Pinchart
 
