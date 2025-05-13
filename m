@@ -1,104 +1,82 @@
-Return-Path: <devicetree+bounces-176947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31A07AB5EB6
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 23:55:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C94AAB5EF5
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 00:01:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 376F1189DBBE
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 21:55:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1AB34670EF
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:01:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B3B721ABC5;
-	Tue, 13 May 2025 21:54:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF10721C186;
+	Tue, 13 May 2025 22:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="dz3b6fUT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ERIPej2x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02D62215056
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 21:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 035DE21ADB0;
+	Tue, 13 May 2025 22:00:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747173242; cv=none; b=V9cQmWPE3GHSiX/19Y0E3roqVynCMwNLeF8+Gv20GIiKMWDlClgetZdoHMX1BjKvK2qlSPdWjf65Lx+lZWJ++5xyyJifVaWF4x/kESInmLmyx6Siuel0ZH7EFOI3D48py4CHDcY86a0JGTK6vPdp+0sSnqSvDgE2nzB3VP1xqiA=
+	t=1747173603; cv=none; b=b8LrPoYBUGcPERasZb2d+WVi+OpQNVEjJpJ8DwAfORjIO+NLK3+aklF2KVTEkSlsYcsRcbvy9W70xEXtlXQ/eUSXhxw1uLXaNlOSK7L5ISCpOvkVP6spHcmqb3DbSKQHuNnFZKTv1BH8EYuwZKS+nJGQuY+s5UY0AT5EhYFruig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747173242; c=relaxed/simple;
-	bh=ofhrWzbkHpmkRBFTa000gjfyL5s3fJzmMKuP+Rinp2c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ctwotnzui8bCtJem3Sh6JUOYckPaQmjsB/4yjaIizJHExyDZ2CkcmdHSVoO0vHZCsMPbqs6NSIJm/n3xyz7Yw5BlfGa35KNe8zGtapoVV6ve34OKzoY09EQYxpzTa5lWJOQEzG6TyuRdAFXIbucwn8Qk0wN/Cuwis2ZlFRyOBh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=dz3b6fUT; arc=none smtp.client-ip=209.85.166.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-85df99da233so632397639f.3
-        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 14:53:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1747173238; x=1747778038; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hXQ0rLrEsZDkkO0xDOFrK28pA119DtQt4oQHk7dYEkk=;
-        b=dz3b6fUT5Bo77jLbkE+xfWniAuHBX8z0tWvW7owyxF+9dDsJMVQE0OgcHl2Kxetltx
-         FDi7Z85hcahSYDWUKD1MoBFsQtEGV7yHxqhbL3CpsBVtu4cg3qVSaPLLlbEpP8DI57LG
-         FF/d8+0Zt0hVA1u73zeZCVqO3+kma+Yov7ygBJytTddSEXNZ4coQnDZrgYgE66pMIYPR
-         hu/5l1hGODg32/9wqudcrjRMJR1xX5JlXVPa1diWkU811Xj69heFefY389AWvKPQc3Ui
-         PXK0M0iwrRzd0bOISi+HNO6e3CM7VC7aHT/MT56ruOAhZ+6MRq54c9dJWSCNm5A1SSF5
-         NAnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747173238; x=1747778038;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hXQ0rLrEsZDkkO0xDOFrK28pA119DtQt4oQHk7dYEkk=;
-        b=VqiE0wQUuQvzsmNDKAo57fdpB8wboCascNZ4gclW0jSHuNszWQP5U5/1wl7WPpl6sc
-         YZtqjLAFY8AL39pldwtM/rvCLM/Zq/w3UeK7ATxozJE8TXqzQeGmQTXK6wrB5+6nYdl+
-         G+wuGDgucQnCkh1BpdptBtufpfQB04jcnA4cC/n75SfiYLIALhvzs2/SkkkTKzZrO11N
-         UV0JsAbhgK9qJyT6a40f7eN3NDCyFDg1KgQ0z/ZTxUrC8MEVrOrEiDH+mW0vnjll7/xf
-         NjhTQCkFE+j/un57VZ7H5bQ5/H5jN3WGyg1WaoQACV/igPFor8WLnWQmeULmHXOAF7k6
-         q7Ag==
-X-Forwarded-Encrypted: i=1; AJvYcCXQS/zKbPj8s8VtuqC0KurEMO4/b7fUN6G7XYZ0cseFVs5j9H7QgaOHgVEu5VIb93gJOqmTyjcH/rFf@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxfW9U0HVj2yt4/0cj+tHzAsqfKFQXlq1yFRVREmV3Yw3rnfMK
-	LX0cnYt7D7Ldo5Y1kS/5rhSUOcdbC2y0l4PS+VMf/35zKcNcKGdU+V87bmd92ds=
-X-Gm-Gg: ASbGncsTELMJd5Ap92JGF22huCJHhoOmKLAq4roeLSbN6qGNzZfMf3XRG+uXHgjgybw
-	qbMNfnSVdgyMCtffe+zCSQKPMRTey61nM1CjEn0tEHhhXdS7O+0u0UhurQpKIEaaJwBlDLeuvWR
-	F1EqAHQu+wTKAVNAKx0GYbJUk/LcYOantR6Uae0apD18D5PPJOhAnA4B4OPcXKbaBBfjlKh+9TZ
-	qa39OAVkuQ2yjOoUp7b7IVU+qJ6/4JiD5hwUAf9hW3RvQP7o11+lg2YVS82it6ls7oJ/MvYqw9X
-	os9r2uZ2U4LUJChoNm1m6bos+5JGLl238RBdWc8GwYETdugFDU1SxOUtXkBdkTHD7oSLaN+8pBP
-	89XaeEmYRHgUW2BQlDqbPBDWk
-X-Google-Smtp-Source: AGHT+IHAidM+Hnbk1eCF9zik0cgy840UdEyeKKKxABRP4OWyRlKVuC+CHVe97np7fF3lS1j5FvMYHQ==
-X-Received: by 2002:a05:6602:36c8:b0:85b:3885:1592 with SMTP id ca18e2360f4ac-86a08e40afemr117157839f.10.1747173238154;
-        Tue, 13 May 2025 14:53:58 -0700 (PDT)
-Received: from localhost.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-867636e0dedsm239622539f.32.2025.05.13.14.53.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 May 2025 14:53:57 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	p.zabel@pengutronix.de,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	dlan@gentoo.org
-Cc: heylenay@4d2.org,
-	inochiama@outlook.com,
-	guodong@riscstar.com,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v10 6/6] riscv: dts: spacemit: add reset support for the K1 SoC
-Date: Tue, 13 May 2025 16:53:44 -0500
-Message-ID: <20250513215345.3631593-7-elder@riscstar.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250513215345.3631593-1-elder@riscstar.com>
-References: <20250513215345.3631593-1-elder@riscstar.com>
+	s=arc-20240116; t=1747173603; c=relaxed/simple;
+	bh=KytDEG2rZK2nxmftE17Y9osIJn/dpALlYzKwo0Q8mDQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pg1QT+0ZyJQixK3cavVbWzMQSclNXFAvnKrq7uJVj8ttkDH8yCa/y+OWL1Ydyv7S+HuV/RJbDr0x5D9NFcG91VB+fBcaqKy2mhqaLzzduECEWMseDQtCWPZj6jmN+2kehVdRJAFyNhs1XGoM+1uVPIM90bG+GGige9xNgxaHNeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ERIPej2x; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 54DLxZs22431440
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 13 May 2025 16:59:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1747173575;
+	bh=jnHT8pxDxVP+7w5heuoy29BHYqRqmLa4rbZcp55hLz8=;
+	h=From:To:CC:Subject:Date;
+	b=ERIPej2xrbzviCKtULWnltF915ieOQyQ737wTjYJ3yrGmUpTP4MagUxPdM8O0F1Pt
+	 EbklfBSl+HoN5NdjbmKOLjpTXimwonpHNs1xOKiqdUj5SdD12gZFIeRATv9Jfavpnm
+	 2HmrTZKeOXO4CeBS5q2InDFhaOwDku6AnqMAYj5Y=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 54DLxZQb033002
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 13 May 2025 16:59:35 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
+ May 2025 16:59:34 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 13 May 2025 16:59:34 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 54DLxYdB111031;
+	Tue, 13 May 2025 16:59:34 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Santosh
+ Shilimkar <ssantosh@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Bin Liu <b-liu@ti.com>,
+        Andy Shevchenko
+	<andriy.shevchenko@linux.intel.com>,
+        Andrew Davis <afd@ti.com>, <linux-kernel@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH 0/7] Introduce PRU UART driver
+Date: Tue, 13 May 2025 16:59:27 -0500
+Message-ID: <20250513215934.933807-1-jm@ti.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,54 +84,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Define syscon nodes for the RCPU, RCPU2, and APBC2 SpacemiT CCUS, which
-currently support resets but not clocks in the SpacemiT K1.
+The PRU_ICSSG subsystems in am64x SoC, the PRU subsystem in am62 SoC, and
+PRU_ICSS subsystem in am335x SoC include a UART sub-module. This patch
+series introduces the driver and the corresponding binding documentation
+for this UART sub-module.
 
-Signed-off-by: Alex Elder <elder@riscstar.com>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-Reviewed-by: Yixun Lan <dlan@gentoo.org>
----
- arch/riscv/boot/dts/spacemit/k1.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+The DTS patches for adding PRU UART nodes and enabling PRU UART is added
+in this v1 version, but marked as DONOTMERGE since the patches only add
+context to this series.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index c0f8c5fca975d..de403bda2b878 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -346,6 +346,18 @@ soc {
- 		dma-noncoherent;
- 		ranges;
- 
-+		syscon_rcpu: system-controller@c0880000 {
-+			compatible = "spacemit,k1-syscon-rcpu";
-+			reg = <0x0 0xc0880000 0x0 0x2048>;
-+			#reset-cells = <1>;
-+		};
-+
-+		syscon_rcpu2: system-controller@c0888000 {
-+			compatible = "spacemit,k1-syscon-rcpu2";
-+			reg = <0x0 0xc0888000 0x0 0x28>;
-+			#reset-cells = <1>;
-+		};
-+
- 		syscon_apbc: system-controller@d4015000 {
- 			compatible = "spacemit,k1-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
-@@ -553,6 +565,12 @@ clint: timer@e4000000 {
- 					      <&cpu7_intc 3>, <&cpu7_intc 7>;
- 		};
- 
-+		syscon_apbc2: system-controller@f0610000 {
-+			compatible = "spacemit,k1-syscon-apbc2";
-+			reg = <0x0 0xf0610000 0x0 0x20>;
-+			#reset-cells = <1>;
-+		};
-+
- 		sec_uart1: serial@f0612000 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xf0612000 0x0 0x100>;
+This driver version has been tested on the following boards: am64x SK and
+am62x SK.
+
+The RFC version of this driver has been previously tested on am335x SK as
+well. DTS patches for enabling PRU UART for am335x SK will be sent as a
+separate series once this series is merged.
+
+Changes since RFC:
+- Add DTS patches 3-6
+- Fix include list
+- Switch to platform_get_resource & uart_read_port_properties
+- Remove custom speed hack in pruss8250_get_divisor
+- Use port->serial_out functions provided by core driver instead of
+  local writel() functions
+- Switch to UPIO_MEM32 since largest UART register is 18 bits in length
+- Cleanup whitspace, comments, variable/structure names, error paths
+  and GPL licensing
+
+Link to RFC:
+https://lore.kernel.org/all/20250501003113.1609342-1-jm@ti.com/
+
+Bin Liu (2):
+  dt-bindings: serial: add binding documentation for TI PRUSS UART
+  serial: 8250: Add PRUSS UART driver
+
+Judith Mendez (5):
+  dt-bindings: soc: ti: pruss: Add documentation for PRU UART support
+  DONOTMERGE: arm64: dts: ti: k3-am64-main: Add PRU UART nodes
+  DONOTMERGE: arm64: dts: ti: k3-am642-sk: Enable PRU UART
+  DONOTMERGE: arm64: dts: ti: k3-am62-main: Add PRU UART node
+  DONOTMERGE: arm64: dts: ti: k3-am62x-sk: Enable PRU UART
+
+ .../bindings/serial/ti,pruss-uart.yaml        |  54 ++++++
+ .../devicetree/bindings/soc/ti/ti,pruss.yaml  |   7 +
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi      |   9 +
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  14 ++
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |  18 ++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        |  16 ++
+ drivers/tty/serial/8250/8250_pruss.c          | 178 ++++++++++++++++++
+ drivers/tty/serial/8250/Kconfig               |  11 ++
+ drivers/tty/serial/8250/Makefile              |   1 +
+ 9 files changed, 308 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/ti,pruss-uart.yaml
+ create mode 100644 drivers/tty/serial/8250/8250_pruss.c
+
+
+base-commit: edef457004774e598fc4c1b7d1d4f0bcd9d0bb30
 -- 
-2.45.2
+2.49.0
 
 
