@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-176617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EF27AB4D0C
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 09:45:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B1E2AB4D5F
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 09:54:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B274E860765
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 07:44:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BC351B4251E
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 07:55:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC1E41F130E;
-	Tue, 13 May 2025 07:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932E41F153A;
+	Tue, 13 May 2025 07:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lv1IzLJS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tL+53eLl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A33CFEC5;
-	Tue, 13 May 2025 07:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 656191F151D;
+	Tue, 13 May 2025 07:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747122296; cv=none; b=gs2WkSTEAjxj6tPw8kx7aGaQobDEYUSd5xqWSp6H29LtIiEzf2XDThVMloRuqpjS1vtbxUnyGM2819Io2lLzMz/SXh0GATDzyZop3XzqhDhysvWjcLvZRJnVS9uz0a02eq52cFeOMNZEB6MFZoAl2SebRHYSpXzduUUnzskAI8Y=
+	t=1747122894; cv=none; b=qG2122zLzlHFt0EE1XMO8hnX281/dDHzx//jgLjUiKz3rgzGlgf1m2zIe5232W6bglPVzro74ounHIdXyQOsP/KY4g0YCDZBfohgn8ZO8Htlf2JrBTRtJiRepcSaPyi/j1VhBpkey5m7LAQhssEPjw6YdSwYp5K+sp1Lv76xqjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747122296; c=relaxed/simple;
-	bh=XhHpleA0OzZhqpa3rjrh6RL90cUK1WoFGX417izBmjg=;
+	s=arc-20240116; t=1747122894; c=relaxed/simple;
+	bh=0fM2jwnSRONZtSWcc8DZ0lOZ7VuCVOzeg9GA04YlTLg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mG4Hxsw5BeT1MG0l/VpODo5JwYfQt9DnCqRJb1L/GR1id+tiWwj5RabrzGgcxaSAOaA2FbXxasD4QHjRj6cmC7M1uvq6YTOlk0INEj9B/id+43cP9kYNoCoBLAK9LkF/yS8uauS4CzfW6mmL5t4sylNWxFCwSRYAvzBEBQnx/0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lv1IzLJS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82282C4CEE4;
-	Tue, 13 May 2025 07:44:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OtgPsG3br4l8Rmi5cq2QD2qIaADhDBqmuzMFEpLPqoYX3stDHbPe/eUUI0+4Inq9vi+LnFm/KSBYFPFt+jq5Y0yyCx0yRT2xJM+k1PK6hYBQJi5fcPTy9E96QBqo5sA/jTWyGd94JJqH8n7MmD789MroyCThqAYFLUNx/0BtaCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tL+53eLl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4C32C4CEE4;
+	Tue, 13 May 2025 07:54:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747122295;
-	bh=XhHpleA0OzZhqpa3rjrh6RL90cUK1WoFGX417izBmjg=;
+	s=k20201202; t=1747122893;
+	bh=0fM2jwnSRONZtSWcc8DZ0lOZ7VuCVOzeg9GA04YlTLg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Lv1IzLJSPASGDbptJtX+eiszvazDe2Hvhd8sSg/ePoxgJtrnBHWY+qdXM83MXEqFd
-	 tzsxvYbgClJ8I5f0oz9qZxuvnT+M8cAWhTFp5ybmUmFr8tBHj+QNAQYQNkeEJpMdQL
-	 nAEB2ernE4oCIfxUIG3AUYea8AGht/YR8fasEMx+D+KJ/Z4jhBAH1SW70VwrHWY8Jb
-	 fiRtwNZa+GCpiVNNuiJXBKmdJIQwykp9v+OCJZLn99wLCdG2HtaZt61SDUUk29TWaR
-	 LQq+N713ma/a0IvYyMHf+2E6Z7IZWWFzpcU6NxS1loiLtmm3bc4V+scia5oGc45tks
-	 e+vX9oiJVHTSg==
-Message-ID: <8199958e-fd77-4037-9909-181bfa21e92c@kernel.org>
-Date: Tue, 13 May 2025 09:44:50 +0200
+	b=tL+53eLlhaP8yiT2OSKBzU0rwGyuFFLyrhamX0VWie7QQdvJFqoy56YPdCmVt4zuD
+	 yteZdT5tU1LZXDomdRlkIL6aIrHi55dOtjk0Uhvtn9ynJbbT2tXt44VIW36HF146hq
+	 caVZnNC1q3+e1gJH+kUaL3wl1TrMSP6XF/IqfCCdarmK36XmHpX3z+IF35vJOf7yrG
+	 meXAEj8kM/WNwxuOXlNjv4VJmGMZyuW6yMX4uHuNw4RAi0KqQMq20iLDw4nPFmzVhS
+	 NIJPSZDNLM4OoWZae8p+y/MUNa4hjHTs8uMon8kwZgAENGas0kOtJLZa9ESP8VccZB
+	 Ddt3DxDktS0og==
+Message-ID: <cff1ddb5-b438-4287-80cf-3969f7b7b767@kernel.org>
+Date: Tue, 13 May 2025 09:54:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: add Meta Clemente board
-To: leo.jt.wang@gmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- george.kw.lee@fii-foxconn.com, leo.jt.wang@fii-foxconn.com
-References: <6822b830.050a0220.27a24d.d064@mx.google.com>
+Subject: Re: [PATCH v11 2/3] memory: Add STM32 Octo Memory Manager driver
+To: Dan Carpenter <dan.carpenter@linaro.org>,
+ Patrice Chotard <patrice.chotard@foss.st.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ christophe.kerello@foss.st.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250428-upstream_ospi_v6-v11-0-1548736fd9d2@foss.st.com>
+ <20250428-upstream_ospi_v6-v11-2-1548736fd9d2@foss.st.com>
+ <aB29hOrv0nU73RCn@stanley.mountain>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,39 +110,59 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <6822b830.050a0220.27a24d.d064@mx.google.com>
+In-Reply-To: <aB29hOrv0nU73RCn@stanley.mountain>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/05/2025 05:10, leo.jt.wang@gmail.com wrote:
-> From: Leo Wang <leo.jt.wang@fii-foxconn.com>
+On 09/05/2025 10:32, Dan Carpenter wrote:
+> On Mon, Apr 28, 2025 at 10:58:31AM +0200, Patrice Chotard wrote:
+>> +static int stm32_omm_toggle_child_clock(struct device *dev, bool enable)
+>> +{
+>> +	struct stm32_omm *omm = dev_get_drvdata(dev);
+>> +	int i, ret;
+>> +
+>> +	for (i = 0; i < omm->nb_child; i++) {
+>> +		if (enable) {
+>> +			ret = clk_prepare_enable(omm->clk_bulk[i + 1].clk);
+>> +			if (ret) {
+>> +				dev_err(dev, "Can not enable clock\n");
+>> +				goto clk_error;
+>> +			}
+>> +		} else {
+>> +			clk_disable_unprepare(omm->clk_bulk[i + 1].clk);
+>> +		}
+>> +	}
+>> +
+>> +	return 0;
+>> +
+>> +clk_error:
+>> +	while (i--)
+>> +		clk_disable_unprepare(omm->clk_bulk[i + 1].clk);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int stm32_omm_disable_child(struct device *dev)
+>> +{
+>> +	struct stm32_omm *omm = dev_get_drvdata(dev);
+>> +	struct reset_control *reset;
+>> +	int ret;
+>> +	u8 i;
+>> +
+>> +	ret = stm32_omm_toggle_child_clock(dev, true);
+>> +	if (!ret)
+>             ^^^^
+> I'm pretty sure this was intended to be if (ret) and the ! is a typo.
 > 
-> Document the new compatibles used on Meta Clemente.
+>> +		return ret;
 > 
-> Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
-> ---
->  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> If it's not a typo please write this as:
+> 
+> 	if (!ret)
+> 		return 0;
 
-<form letter>
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
-
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+For the record I consider this a bug report which still needs addressing
+by the authors.
 
 Best regards,
 Krzysztof
