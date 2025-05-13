@@ -1,197 +1,115 @@
-Return-Path: <devicetree+bounces-176593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87DA5AB4AA8
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 06:51:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DB6EAB4AAD
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 07:02:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A3571B422A9
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 04:51:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B35C46354E
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 05:02:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4450E1DF27D;
-	Tue, 13 May 2025 04:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0861A191F92;
+	Tue, 13 May 2025 05:02:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rclJIR89"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="h/kWoT6+";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="m3auRpyZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A68A2AD0B;
-	Tue, 13 May 2025 04:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80DC1F92A;
+	Tue, 13 May 2025 05:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747111860; cv=none; b=OIkNuN5gmEpFFYZz0npse3qilCPCf4pLOWy9mjT4+tRl5x5a+AW0X2IvPV7UeUKvIFrwXRbeWaRcOuDAHDxhohO+iRwU3xeE8NIYtxVN+jrabxQR5quv40MPFwO9m8L4mMZ55cqqOKbyDZV9RB/eZAehhr6FyrXYDczN8qebm/c=
+	t=1747112522; cv=none; b=KyLNTKqBKuH8lXoUf1Dq+pxxu4NuQiAoxKAcuZl1zW9HCydIKqgx7hldS0DlfBYM3Rwl7pQtYDVt38W4UOG7pF3Fr/som8gKO+4ghJKdGw61V0M2mcyFv4ZCxFeIYsWrGqAIZtvoe6yEEBtO3BuHQSLKz5DoM5gY5wTGHreWkP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747111860; c=relaxed/simple;
-	bh=Kj9y88vKMk6e9XGSAkxvceBrY7AAK8JqUjxUEgQTuL0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OgdFk21kQ2cDtzkgNP20xW3UMflRU7AS8DA/5PjYR2CbxP0k+UPFRQ/tUeKoIykgld5K/8SinU+vZXjad1S6a732lYycRfZrUVS3wcnQ5cbcnIkljCaluyUsGOumBhYTnJwh5B8ApalW9K5ff1kvyMdYpaU2LLs1BeWeksBW8t8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rclJIR89; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9554BC4CEE4;
-	Tue, 13 May 2025 04:50:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747111859;
-	bh=Kj9y88vKMk6e9XGSAkxvceBrY7AAK8JqUjxUEgQTuL0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=rclJIR89DkmG3lgyvIO1p7n9rryTDILBlzj0vZ+mD5ECLRzL76yH6kmgT3ur0Ob5b
-	 JAXGQD/ukixeC79W5P/mLPez4UJDLZMgWooDCUjM0wcKrAgW7JfQrd/tzHL2CuKXNw
-	 ZaNhGKeGS652M+KTGce9tZ/688Iv4E6PSyi8/GeHSE90llDFJcSclOPQj+LFjFRg6+
-	 D4FZJLPQwY2kZ2RoKx9K9ZzxVbMgV8/bTxD9VuEh1+h1FZX/jqnKQqNxLQZxZtjHek
-	 rj/XN/6spPE1ZDOltF/1OX5Vw7EtpcrnFkQ2L25yERKNAHUqNnpX2aSA5ppA2t8AzQ
-	 CDhkE860rANgw==
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-54fc61b3ccaso5287044e87.1;
-        Mon, 12 May 2025 21:50:59 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVwPaYv4kT3OeeFVz6WAbt9cSRyujfe23ns2XAQ+7gWmTCPH3uLKxHUmHbhFOo4iNZqMJ6nHbUxSxnrtcMz@vger.kernel.org, AJvYcCWCHZvnv8/U03KlISXrCUx2URantg+raQtMHxYPqcaPy3lbvvHBQRp0t45X41vOq9VQ7v8AFnrJGznX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzn4XOQyDLapKlM6h62W0FGK22x3taH6L3BiEadZM51R1R0gD1Y
-	a03E1xXwd5qRH2fAhzxcCq+08Hzko1LzkqGq46xd4Wu/M5TXoERBGSqsBv68P62364Dd5xb/ioG
-	AUza3XGdtEFITCzAp6ZHrQK3Xm44=
-X-Google-Smtp-Source: AGHT+IGK1g+taeuG7QrcEmqHow6t43QaMNZHDkqVlueTRCH2Gydah1Lc+hhFSbpP+PhvofrmpRRDvHZprff8AIjquqA=
-X-Received: by 2002:a2e:b8c9:0:b0:30b:efa3:b105 with SMTP id
- 38308e7fff4ca-326c45900ccmr65056151fa.19.1747111858293; Mon, 12 May 2025
- 21:50:58 -0700 (PDT)
+	s=arc-20240116; t=1747112522; c=relaxed/simple;
+	bh=+bxIO1TVXDAaN1B8C3jo1UC1Eipqnd36X95ZaU0RUig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z6RKiz3dbpbCMhbn0qrMxOqrhvd38+Y+xrZs7HmR1EWtnYPqIcBMRQe4nPxH6v9apJqkgY/xTnB5/ZgLJ5zs/IliUF/ZTz7Ix4MN++el30RZiil0rwVftMCvwWcOy3/6cy4RsaUzNlvRP0IRNq055/ze0r5eh8GRzDTKeDW3rZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=h/kWoT6+; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=m3auRpyZ; arc=none smtp.client-ip=155.254.16.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id DD6E312FB43C;
+	Mon, 12 May 2025 22:01:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1747112512; bh=+bxIO1TVXDAaN1B8C3jo1UC1Eipqnd36X95ZaU0RUig=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h/kWoT6+6lxuUSEFhgRknbBr309/qqIzCW2azuz5gLZ2rw3J5YV7WPTb/uJeF67WJ
+	 KEgjj5GEUo3ih1OSVWQEFvIHGrKIUvkedwjR2NorNmTImLdGNM+wAQ2xQOSPp2z3/m
+	 M/FmXVY1MwcxYQXrpFQ6eLLCr0kQWYULojparMGqbK5e1fCDxJcGQxTVM8ZG88OHPd
+	 /gVsfd9W/JWtDzzD+Bd5hMZiSY8sa91QRhzbywWPld0Rud6giXXr9NiHVZ7Z1KEDYR
+	 DXL7MLQCx8rZqd3nF8GKqnjpeLSfNIprL3sRyqs2wXrCisfGWABmoLkxFhH36sGe/l
+	 zMHb+6Ps+hkcw==
+X-Virus-Scanned: amavisd-new at 4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id W4uJWQCw1BHG; Mon, 12 May 2025 22:01:18 -0700 (PDT)
+Received: from ketchup (unknown [183.217.81.95])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id 5F6D012FB430;
+	Mon, 12 May 2025 22:01:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1747112478; bh=+bxIO1TVXDAaN1B8C3jo1UC1Eipqnd36X95ZaU0RUig=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m3auRpyZe2GfkrXIlMAnG9PEMU91B6GPaoPtLsih5ElnJJzQraBE9b5u9pK0gL9MA
+	 o4n/Ud1egen/FW/DTrf6AFdFmny9DnLc2U9eLmmgiW/lngex6DvmRfwzODDHXeU2Vu
+	 ax9Ma3rCsKCQkM136CndUq+IXkvLv3XABbRjJoFhkJ0bMJ5JzUMTDtDbrqEPde/kla
+	 34IVzg4IgUiyELv45EYbhYUtzqb4rF2UIwnYaKN7ALz3U8A0sftG9OmnE9ny6bxEIt
+	 nXzVnk1fyuzdc7R3MqLZKHFO+ylhfT48dVAYs3cLeZyFyodA3WGnzWtmFFUWmULFsI
+	 D9pHtf1BNEJbw==
+Date: Tue, 13 May 2025 05:01:10 +0000
+From: Haylen Chu <heylenay@4d2.org>
+To: Alex Elder <elder@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+	p.zabel@pengutronix.de, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	dlan@gentoo.org
+Cc: inochiama@outlook.com, guodong@riscstar.com, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 3/6] clk: spacemit: set up reset auxiliary devices
+Message-ID: <aCLSFmSXLUQYi6on@ketchup>
+References: <20250512183212.3465963-1-elder@riscstar.com>
+ <20250512183212.3465963-4-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250114181359.4192564-1-masahiroy@kernel.org>
- <20250114181359.4192564-4-masahiroy@kernel.org> <CAL_JsqJyNiUF8--wz2DsngUAuSUboq8oqZRxAzqY+iBRM7rkjQ@mail.gmail.com>
- <CAK7LNATCFFQFYenkY2F5HkXx_otub9ebuTHJOD_TLiqCDnYN0w@mail.gmail.com> <b211188e-6c31-49fd-96be-137d3fc3f7bb@monstr.eu>
-In-Reply-To: <b211188e-6c31-49fd-96be-137d3fc3f7bb@monstr.eu>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Tue, 13 May 2025 13:50:22 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQqR7rtuCSy895q-WeJR-uhVB_0UH1DrGPNLoz1_cRhtg@mail.gmail.com>
-X-Gm-Features: AX0GCFsWgAAx3-0dbj6FVKm9OU5vqHdXkH-KM7aRWeBmsq5D2OzLH-PHl7EZM_U
-Message-ID: <CAK7LNAQqR7rtuCSy895q-WeJR-uhVB_0UH1DrGPNLoz1_cRhtg@mail.gmail.com>
-Subject: Re: [PATCH 4/4] microblaze: remove unnecessary system.dts
-To: Michal Simek <monstr@monstr.eu>
-Cc: Rob Herring <robh@kernel.org>, "Simek, Michal" <michal.simek@amd.com>, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250512183212.3465963-4-elder@riscstar.com>
 
-On Mon, Feb 3, 2025 at 8:17=E2=80=AFPM Michal Simek <monstr@monstr.eu> wrot=
-e:
->
->
->
-> On 2/1/25 04:42, Masahiro Yamada wrote:
-> > On Sat, Feb 1, 2025 at 7:25=E2=80=AFAM Rob Herring <robh@kernel.org> wr=
-ote:
-> >>
-> >> On Tue, Jan 14, 2025 at 12:15=E2=80=AFPM Masahiro Yamada <masahiroy@ke=
-rnel.org> wrote:
-> >>>
-> >>> The default image linux.bin does not contain any DTB, but a separate
-> >>> system.dtb is compiled.
-> >>>
-> >>> Michal Simek clearly explained "system.dtb is really old dtb more for
-> >>> demonstration purpose and nothing else and likely it is not working o=
-n
-> >>> any existing board." [1]
-> >>>
-> >>> The system.dts is not necessary even for demonstration purposes. Ther=
-e
-> >>> is no need to compile out-of-tree *.dts under arch/microblaze/boot/dt=
-s/
-> >>> unless it is embedded into the kernel. Users can directly use dtc.
-> >>>
-> >>> [1]: https://lore.kernel.org/all/d2bdfbfd-3721-407f-991e-566d48392add=
-@amd.com/
-> >>>
-> >>> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> >>> ---
-> >>>
-> >>>   arch/microblaze/boot/dts/Makefile   |   3 +-
-> >>>   arch/microblaze/boot/dts/system.dts | 353 -------------------------=
----
-> >>>   2 files changed, 1 insertion(+), 355 deletions(-)
-> >>>   delete mode 100644 arch/microblaze/boot/dts/system.dts
-> >>>
-> >>> diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot=
-/dts/Makefile
-> >>> index 932dc7550a1b..fa0a6c0854ca 100644
-> >>> --- a/arch/microblaze/boot/dts/Makefile
-> >>> +++ b/arch/microblaze/boot/dts/Makefile
-> >>> @@ -1,8 +1,6 @@
-> >>>   # SPDX-License-Identifier: GPL-2.0
-> >>>   #
-> >>>
-> >>> -dtb-y :=3D system.dtb
-> >>> -
-> >>>   ifneq ($(DTB),)
-> >>>   obj-y +=3D linked_dtb.o
-> >>>
-> >>> @@ -11,6 +9,7 @@ $(obj)/linked_dtb.o: $(obj)/system.dtb
-> >>>
-> >>>   # Generate system.dtb from $(DTB).dtb
-> >>>   ifneq ($(DTB),system)
-> >>
-> >> Can't this be dropped as setting DTB=3Dsystem.dtb should work if there=
-'s
-> >> not an in-tree system.dts anymore.
-> >
-> > I believe this ifneq is necessary, just in case
-> > a user adds system.dtb to arch/microblaze/boot/dts/.
-> >
-> > 'system.dtb' is a special name because
-> > arch/microblaze/boot/dts/linked_dtb.S wraps it.
-> >
-> > So, $(DTB) is copied to system.dtb, and then
-> > it is wrapped by linked_dtb.S.
-> >
-> > If $(DTB) is already 'system',
-> > we cannot copy system.dtb to itself.
-> >
-> >
-> > See the definition of cmd_copy in scripts/Makefile.lib
-> >
-> > cmd_copy =3D cat $< > $@
-> >
-> >
-> > "cat system.dtb > system.dtb"
-> > would create an empty system.dtb
-> >
->
-> I have played with this and pretty much this patch is blocking
-> simpleImage.system build target.
->
-> I have no issue with patches 1-3 and I would keep system.dts as empty and=
- keep
-> it in the tree because users (including me) just rewrite system.dts with =
-proper
-> DTS and call make simpleImage.system.
+On Mon, May 12, 2025 at 01:32:08PM -0500, Alex Elder wrote:
+> Add a new reset_name field to the spacemit_ccu_data structure.  If it is
+> non-null, the CCU implements a reset controller, and the name will be
+> used in the name for the auxiliary device that implements it.
+> 
+> Define a new type to hold an auxiliary device as well as the regmap
+> pointer that will be needed by CCU reset controllers.  Set up code to
+> initialize and add an auxiliary device for any CCU that implements reset
+> functionality.
+> 
+> Make it optional for a CCU to implement a clock controller.  This
+> doesn't apply to any of the existing CCUs but will for some new ones
+> that will be added soon.
+> 
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> ---
+> v9: Use ida_alloc() to assign the unique auxiliary device ID
+> 
+>  drivers/clk/spacemit/Kconfig     |   1 +
+>  drivers/clk/spacemit/ccu-k1.c    | 104 ++++++++++++++++++++++++++++---
+>  include/soc/spacemit/k1-syscon.h |  12 ++++
+>  3 files changed, 107 insertions(+), 10 deletions(-)
 
-Why is "system" so special?
-
-You hard-code this line:
-    dtb-y :=3D system.dtb
-
-
-"make simpleImage.system" compiles system.dts to system.dtb
-
-
-However,
-
-"make simpleImage.foo" does not compile foo.dts to foo.dtb
-since "dtb-y :=3D foo.dtb" is missing.
-This works only if you drop-in a pre-compiled foo.dtb
-
-
-"make simpleImage.<name>" works only when <name> is "system".
-
-Is this what you mean?
-
-
-
-
-
-
-
---=20
-Best Regards
-Masahiro Yamada
+Reviewed-by: Haylen Chu <heylenay@4d2.org>
 
