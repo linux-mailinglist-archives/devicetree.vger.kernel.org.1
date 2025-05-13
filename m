@@ -1,156 +1,150 @@
-Return-Path: <devicetree+bounces-176924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC56AB5DB6
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:36:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02C21AB5DE3
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:41:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FA43464278
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 20:36:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E4FD19E6D15
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 20:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFCDB1F0E4B;
-	Tue, 13 May 2025 20:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B402C032E;
+	Tue, 13 May 2025 20:39:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="UdGKgdcu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IZxb9Nut"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFDC1E5B9C
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 20:36:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E6541A3A8D;
+	Tue, 13 May 2025 20:39:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747168573; cv=none; b=b6RNUILWhc0f67TbZx97eH4EXgpm74eG6TNxgmQTaG0QkAZPO7rhhtNYKCEVKF2OUtV0N6c0V/FOtZncZLon7DnRksH4HoB2TXFyv/2q77+mwXdJ9Hd1EV6K40wigEi4j4IE63ffXC4NrNMymidwpm5jN/pYGC8k2jh/yPCymXg=
+	t=1747168773; cv=none; b=pxjZZCwuG4MIUxoxjvsVwI31/xp1bMwdD3c+4TAm4iwTbpxRlzMKilFhxEwKzFZBiqYqL0l3XjGc4JdCxO24q26MT/4mBZJJM9RGNaGXUXDlBLwUwxS4dzEPbGWLsnlggiRiICNctPmaQlyhWdq7yAiBV8b5ekgn6NDwYGcLtHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747168573; c=relaxed/simple;
-	bh=5LLRBHA4RbQdiR5KNtH8yV15ZdswH3CB9WS90/GuQhs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BOYlOt2qldsjA7gG91gqgOi7+LxAe8TxZ5QcAF2CibuJrCorcUfMJkalOVbE7loUXEhkL/ukS+MN9kKLskU9X+O3I2wg/7qtjiJY6xsdYzY4ihpOGiBfYIbQy1jwG7VUbQEYzdAJZkBRtwwJ6zxuh+6xp1ojSb6W3jodS99i5Tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=UdGKgdcu; arc=none smtp.client-ip=209.85.166.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-85dac9728cdso182005239f.0
-        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 13:36:11 -0700 (PDT)
+	s=arc-20240116; t=1747168773; c=relaxed/simple;
+	bh=ksJNTH6X3RjYqiQL98SxXN351ndMYSr8GsRLN552Nlk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=F2+i6NSGxT//OCc/gO1RL9ZDfG5hD35fPRkEVcqqsU389+r/X5wlAwjVbj2XX8PZRglixb0YjEG58PE5DrB2Bz/Ga5rJXv/GnR3c6DFtyTwTbUnhpGG0e/+mD1kX8jQlEszqrZbXbYAqdsrfUc1U6ES+Pjv+JYyywBaHIAZenek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IZxb9Nut; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54fc9e3564cso6115319e87.2;
+        Tue, 13 May 2025 13:39:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1747168571; x=1747773371; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vQAC3le+BCYy2YLab53jAJm9W1rrEw9K9lEKqtin1Pk=;
-        b=UdGKgdcunwZ/zuEY61GV4LNkLq0ELW5aCgjrXOK4SPNZtF7TJ/Y5pja4oBlbbahJJc
-         3rJGBcUDMADfTzrVjqQ0Vjr/ZV/kIx8aT7Pp3ey5kmwJ2/LESTpyD7QQNKIv6ZCdhfGK
-         jrusSUhWs0Fnok6+gwZatKS35CLwotvtjeZ3AQ5eb7Qp0xQq5Ub02cjLQ5rWVTqCIzmB
-         cNwOgec7nCIvvzTBipPquSNYfTVOZsYC6xfcIxnTMHfTHomZBa2njToGH5T2z7vjFe9v
-         9GolDCzW0793noRi+iA5DKdDmht9LeEhP/t5cDkx2XOw5svxXcooSns0t6m//drjMtc+
-         Umhg==
+        d=gmail.com; s=20230601; t=1747168769; x=1747773569; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ksJNTH6X3RjYqiQL98SxXN351ndMYSr8GsRLN552Nlk=;
+        b=IZxb9Nutfz9AODA9O17hGZflonD1pgJz8EhFnMKUkF20mdxThKRpBufnuP/JbdSZXR
+         Wf8yIiZ6wYr31xmkKoyKFDdRcwGZ1um/51aOALjT4ynqMi5hyoc2oAf2ID3pDx0jS0iP
+         lCkkHg39yyB1hq9bCxOly2SwnQxIl/LgXqAlDJ8l5syDz4PeJArHntTybKenO0QaCz5F
+         46Mxx3Igtjt7RptpwRLp8J2sdLkzvrBjpGZnR0eTT6F/7KPAIwIhVRBx23M64lvWrPWA
+         UhN0u1q4jFShYCVu1NSVQOo7591ryAls8qcffBCm6GqiQlT8ONCoLkMBZjnFvMfYuiEs
+         Hyqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747168571; x=1747773371;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vQAC3le+BCYy2YLab53jAJm9W1rrEw9K9lEKqtin1Pk=;
-        b=n80uIbXUsMkACWsuVwUdhIYTJSUeD8Jh+qZGHKt/pHTxEDMtTqwNmYofZPF0HwmDd7
-         1iKz/Ac0/YqDdTwqf7QHpy0HHi1xfanyIpMIicHSWIkWH6CGXScOA2Nx4N0uNvrC7gKK
-         onlkrdqnkZpRJbZqe3805I20/gR4/JLl7Vu8b5elRl5EETGiPghVjqUUd9jV7uTBdFoH
-         kUbN5/6D7jQjfmsLZYGZwK2eDKVI3C0BGBK08f9/hYk+D3qW96r7jIAA1g+G5jsaV7gI
-         UsD8WpHO9SLPWbobEvHht1qCpqk/x8VZrMVwFORDYcYwjQ6j4h2V4RYmiqZeKksdQsjC
-         KnKw==
-X-Forwarded-Encrypted: i=1; AJvYcCUkFHuYEhBwyOzw+RGuHxhlr+ku2jt+09mQHiFJe5xNvvUcQpsQgPzdsW0soTOeQ8ZmkFWXdxxF+mVU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGrR8NM6vgc2e0Vu3oNdLyVnB0ObsmK8FqV2wY8u55F6B22TjZ
-	Dk+tkU0Vijh4eXLNJd+2WwoSfgo7kXz5bD2XpxqcVGdel9YRM9Wo6/1iICG9ngo=
-X-Gm-Gg: ASbGncsp8y25eYbRuMao1x6FHxeDrj+EbaH/I3P7d8hUck4OhHXWXrPCorUjoCNGg5O
-	0LUYjxdG8Ss6BRFXGWM8azWaxlYQkSt/qyx5g00QkXTUkAFjGj2JhszzK/BTfCfWAUA74p3wxdu
-	2i4K8Jb4hSnDR/KohsRsrUQj4ErjIv9fE6HJ4msucdguT6cNwV9Cj5sqWrJrAeI6+n0xDG4xDL2
-	fyEYbu0+wvqAm4+94H+5fKsmuuOrvp6nljHaA+xmsGXy7jMfNWoa8C9fLv/afy4iD3carVa6+oF
-	Aeu3w6mGM4ax/oxmkOgVuLbfs5od4Z7y6CYuCX+be0fdNNSAcKoGe99pL9GFjpqOccJpeTnBnlX
-	W+sWV0welK3tS23Y=
-X-Google-Smtp-Source: AGHT+IGmcYzrawJPrdx830TjmfHvKcMCTm3YWEkQZLVMVtIRd+wF9lEoF07B//54gt57mIaMgWnBSQ==
-X-Received: by 2002:a05:6602:6ccd:b0:867:237f:381e with SMTP id ca18e2360f4ac-86a08db2c12mr94293839f.2.1747168570986;
-        Tue, 13 May 2025 13:36:10 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4fa22524b94sm2255602173.63.2025.05.13.13.36.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 May 2025 13:36:10 -0700 (PDT)
-Message-ID: <62b44c17-442f-425b-bf9a-56c9d4eb2468@riscstar.com>
-Date: Tue, 13 May 2025 15:36:09 -0500
+        d=1e100.net; s=20230601; t=1747168769; x=1747773569;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ksJNTH6X3RjYqiQL98SxXN351ndMYSr8GsRLN552Nlk=;
+        b=T61BOV0JlYzArYQUMmuTXBWZ58pfL6fya5Veh9C0BU7deByzsB1LDvzzI0W8e994X/
+         DAQ5rsw2ZlmfJR5t1i/imImYfA8BfwkoyKjTtEuVZsFodDXuZSaRfJOB+N/wT46U3nto
+         /nJZCXZYTj5G+gYD6qnQHqSKjCJxWJ5gGkrrRjSh7Opt18d77oks2ChiDTxUnlyXo7Bh
+         GKnSSgU/X/HjIuwL4OSyzyWUnqJQ3NAtnibHb8MhyfjqRnF9qeitBlWjFvGClniEnIZK
+         KjeT2tRTTkOpZmvGCkTq4iyWo2C0VXMXveYE6BOdkq7Z1OZqZmYKqua5abQxLFa3o0Xv
+         2Lnw==
+X-Forwarded-Encrypted: i=1; AJvYcCUDLq2wuMfnqP5jrSi+c9sy+nwn8w4qDwrdhJzImRQipOBwYGb2qPFmeaTU0sVmyv/gbIRO/f3qmIgOIeA=@vger.kernel.org, AJvYcCV3uJt1UHs9RG2L+BVZQXfCq45FXJxoQwM2Mo8Txtw7jUF/5dpbpqUhCmKMMenagwvO9kpN5P9cBLti@vger.kernel.org, AJvYcCXxaiEDjl62iBQPk0bv8VMxqnXKOc2O8ZLnZ7z3MkGEY80OVM3cmelUo5Zfs+MeBB+QLthvLY44E91+3oaI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw12nvMPE6jAs2fU5JyIkcQW4KbfX06HhSBZhyed/xT3QetqnZK
+	4zkcrV5oZYEqygI1ojCFrb8eYYDtIQyQohvmzAPnrZCqiJJLD9Gp7sUXELg7rFfmKhQNeShPvDW
+	6XnRXanfU6s8MiR223qpAGogoo4c=
+X-Gm-Gg: ASbGnctt/8PTSrpyn6vZ8/fiMiKtBjFNOQQkmSsXe55JZ1HJIHmimfS+9h4M5mr0tyD
+	rbNsP7HnIjZBDrnR9VUvSy+xXwOUfVC91/7DubIJsTyOeX+O3kTS6TQ8i1A0Jr1Oh+InT//pF0t
+	q9gLkYY48NtSWH9UJje9fC6Cs2aVoW1RnYX6dbGIGhmEl5
+X-Google-Smtp-Source: AGHT+IHlpggsf7tSkuboEZ0qheweBkapVbaswPCdkm9Yrbizxks2RoZhVMlZXCMW3/Tb4Q46u2G/WrBPGHOaUq4KOGQ=
+X-Received: by 2002:a05:6512:31c3:b0:54b:117b:b54e with SMTP id
+ 2adb3069b0e04-550d61d9e53mr260629e87.57.1747168769279; Tue, 13 May 2025
+ 13:39:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 5/6] reset: spacemit: define three more CCUs
-To: Yixun Lan <dlan@gentoo.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, heylenay@4d2.org,
- inochiama@outlook.com, guodong@riscstar.com, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250512183212.3465963-1-elder@riscstar.com>
- <20250512183212.3465963-6-elder@riscstar.com>
- <ecf46fa3116690b85f51539edf7f6a47c612fca5.camel@pengutronix.de>
- <20250513201208-GYA518096@gentoo>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250513201208-GYA518096@gentoo>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250506-xusb-peripheral-v2-0-bfbe00671389@gmail.com> <660c781a-6923-4cc9-876a-f33ba782c923@nvidia.com>
+In-Reply-To: <660c781a-6923-4cc9-876a-f33ba782c923@nvidia.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Tue, 13 May 2025 15:39:15 -0500
+X-Gm-Features: AX0GCFsMkFZOvG05DFLEN3AoDVmlIMlL72GNOhp5XXXvhhtU4WwM20L8uFJicNQ
+Message-ID: <CALHNRZ9Li3KzS074dT0ytaEYx7NAMZHYYiuyeoFaBEOEKscR0w@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] phy: tegra: xusb: Default otg mode to peripheral
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: JC Kuo <jckuo@nvidia.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-phy@lists.infradead.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5/13/25 3:12 PM, Yixun Lan wrote:
-> Hi Philipp,
-> 
-> On 11:21 Tue 13 May     , Philipp Zabel wrote:
->> On Mo, 2025-05-12 at 13:32 -0500, Alex Elder wrote:
->>> Three more CCUs on the SpacemiT K1 SoC implement only resets, not clocks.
->>> Define these resets so they can be used.
->>>
->>> Signed-off-by: Alex Elder <elder@riscstar.com>
->>> ---
->>>   drivers/clk/spacemit/ccu-k1.c    | 24 +++++++++++++++
->>>   drivers/reset/reset-spacemit.c   | 51 ++++++++++++++++++++++++++++++++
->>>   include/soc/spacemit/k1-syscon.h | 30 +++++++++++++++++++
->>
->> Could you split this into clk: and reset: parts? The reset changes are
->>
-> Do you have suggestion how we should merge the patch series in future?
-> What I can think of
-> 1) take patch 1, 2, 3 via clock tree, and provide an immutable tag
-> 2) pull the tag, and take all driver/reset via reset tree, and provide an immutable tag back?
-> 3) take the split part of drivers/clock/ in this one via clock tree
+On Wed, May 7, 2025 at 5:48=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> wr=
+ote:
+>
+>
+> On 06/05/2025 18:09, Aaron Kling via B4 Relay wrote:
+> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > ---
+> > Changes in v2:
+> > - Add new patch to document role-switch-default-mode in xusb padctl
+> > - Simplify code change, per review
+> > - Comment in code why device mode is default
+> > - Link to v1: https://lore.kernel.org/r/20250404-xusb-peripheral-v1-1-9=
+9c184b9bf5f@gmail.com
+>
+>
+> I have been asking our team about this and this is the feedback I
+> received ...
+>
+> "By design, a port=E2=80=99s data role starts out as USB_ROLE_NONE.
+> It remains in that state until a dedicated role=E2=80=90switch driver, su=
+ch as
+> the GPIO-based driver, usb-conn-gpio, or a Type-C controller driver,
+> CCG, probes VBUS/ID or CC lines and tells the USB core whether to switch
+> to host or device.
+> The role-switch-default-mode DT property exists precisely for controlled
+> use cases where a board truly only ever needs one role and doesn=E2=80=99=
+t
+> include any role-detection hardware.
+> In that scenario, you=E2=80=99re effectively opting out of dynamic role s=
+witching.
+> In the general OTG case, though, we shouldn=E2=80=99t assume the data rol=
+e of an
+> OTG port.
+>
+> In his case, he should work out
+> 1. If his platform has a role-switch component, then he should enable it
+> rather than adding this change.
+> 2. If his platform doesn=E2=80=99t have a role-switch controller, add
+> role-switch-default-mode =3D "peripheral"; to the PHY node instead of
+> changing the core driver."
+>
+> So I guess the question is, does your platform have a role-switch
+> controller?
+>
+> The bottom line here is that we don't want to make this change by
+> default for all Tegra platforms.
 
-I discussed this with Philipp privately this morning.
+I wasn't familiar with role-switch controllers and that seems to have
+been my problem. I wasn't loading the usb-conn-gpio or ucsi_ccg
+modules which was why the current role wasn't being auto-detected.
+After loading those, the majority of the Jetson devkits and Shield
+devices I'm targeting worked as expected without this change. The only
+failure I've seen so far is p3509+p3636. And I've got a fix I'll push
+separately for that. So this series can be abandoned.
 
-This series builds on the clock code, which was accepted for this
-release.
-
-If I separate the clock from the reset code into two parts, we
-still have two header files that have updates, shared by both,
-so those headers need to be pulled in first.
-
-I think the easiest thing to do--if Stephen is OK with it--is
-to have the entire series go through the clock tree for this
-cycle.  It avoids any need for coordination and will just
-get things right.  I think there might be a trivial merge
-conflict, and I'll call attention to that when I send the
-patches.
-
-I will explain all this in my cover page for v10 of the series,
-which will have all the signoffs.  Philipp said he will give
-his ACK.  We'll then see what Stephen decides to do.
-
-					-Alex
-
-
-> 
->> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
->>
->> regards
->> Philipp
->>
-> 
-
+Sincerely,
+Aaron
 
