@@ -1,97 +1,72 @@
-Return-Path: <devicetree+bounces-176775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E42BAB5763
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:41:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA26CAB5772
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:43:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 488CB3A7F5B
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:41:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E2E71B4653F
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0293255E2B;
-	Tue, 13 May 2025 14:41:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nGfsG26f"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7F628DF0E;
+	Tue, 13 May 2025 14:42:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE14D1AF0A7;
-	Tue, 13 May 2025 14:41:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF8B19F40B
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 14:42:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747147288; cv=none; b=RI6yZvsHZtziQI7GRiS5XvB3l/owIgg8A0/IdXlWt9Qzc5GyxvP1CyDiSPZSd1xtoej7IqSemAJPSyYicJayXCcKUclsxyEHm/N1SiYIFPz8USDFakI2/ntsriJ/raZcwffSauNFePqsJ9DrvPA7JMAeAJFThxWYxECVhMY5ENM=
+	t=1747147334; cv=none; b=B6IpJi08WEY09LkPM0Lz9tOv1U82HsdNP3Ebhg1YZpMK4fS/esXBoDy+FF088xkRsVCli6pzZMmp2vNdpl+juLsCMw5iCiSZMauQctXsezcOI0Y1KkOJNnCYxnO3dxbH7BCQqn2gHikimN9g8LikXqYfxW6pJEmHJTv5HwxDsQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747147288; c=relaxed/simple;
-	bh=9rek26u3z9azmwOQJIZVAvbpbRZcwrSvVWLI/781IIk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nMWAzHnCwvR/orsu8NGLMwvSwlP7VICmepSf6sMEBw8Y1D5tQli+pBLYJk/NqJ56M6VkKV2ULGMZgBIUDqjGT2NIvUaf1VyvG6eiW4N4aMGqHd6UvbmWa+gDuO0NHjPIpbhC6GVWdXGzM7mDIVr+zYffEaRGE6xBHG9x6jJCpmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nGfsG26f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6E73C4CEE4;
-	Tue, 13 May 2025 14:41:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747147288;
-	bh=9rek26u3z9azmwOQJIZVAvbpbRZcwrSvVWLI/781IIk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=nGfsG26f/rgdzMXctx0MglLJybNp+KWifX6SJ136P6pW3LpTXKI6UHRPvbqdn8gCQ
-	 wsuGO387b9knuH5ITzA6E4CLjpKJPu7jZfh68e2JBLooX1Q0DefAfNKjtJt4ravwhn
-	 mCijz7ggSDagZH1eG9ETQmArV3xy00Y6TL/CMlZ9J1WQJ6eejFrdHRxvZy0bwN7H0H
-	 FUJqhmL2gHuKqOU7bgiyJDWwLJaaZh8FFhX2z1a+RYyjmImL8WNkrAHgNEK2KHWTZz
-	 EI49b7rHqPxyLgd7MPT8QENtb0FWgeudX+mmzO+QpuF61BxV1/nI5JeY4AtaK7ka6P
-	 b8ZJ9KuSJ2VVA==
-Date: Tue, 13 May 2025 07:41:27 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet
- <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, Rob Herring
- <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman
- <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
- Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
- Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v10 02/13] net: pse-pd: Add support for
- reporting events
-Message-ID: <20250513074127.5b64fc6e@kernel.org>
-In-Reply-To: <20250513114409.6aae3eb9@kmaincent-XPS-13-7390>
-References: <20250506-feature_poe_port_prio-v10-0-55679a4895f9@bootlin.com>
-	<20250506-feature_poe_port_prio-v10-2-55679a4895f9@bootlin.com>
-	<20250508201041.40566d3f@kernel.org>
-	<20250513114409.6aae3eb9@kmaincent-XPS-13-7390>
+	s=arc-20240116; t=1747147334; c=relaxed/simple;
+	bh=JdRhtTL20j+8deW+X1+dcb2tr569Ybi5HUPk1ZuddWE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bbXrBD64wrOGdKX7EKRdR2lp2JG5/S4ukSvaYwwLvBLpGMUsV2hTkXvzjF/52hjQK7PTRIfHgR8roEqEgI/vWZtKEUYrlizxOAUAztXhZgh9ZuvIVAcn8LVMdVol/SxhXSa/a+NK/EOqf18DQdr30sbU/u7ly8wp7Ylj2dI+Kzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 082E2113E;
+	Tue, 13 May 2025 07:42:02 -0700 (PDT)
+Received: from usa.arm.com (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id CC1723F63F;
+	Tue, 13 May 2025 07:42:11 -0700 (PDT)
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Sudeep Holla <sudeep.holla@arm.com>
+Cc: Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH] arm64: dts: arm: Drop the clock-frequency property from timer nodes
+Date: Tue, 13 May 2025 15:42:08 +0100
+Message-Id: <174714730381.3608105.12769749620212383258.b4-ty@arm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250512101132.1743920-1-sudeep.holla@arm.com>
+References: <20250512101132.1743920-1-sudeep.holla@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, 13 May 2025 11:44:09 +0200 Kory Maincent wrote:
-> > >  attribute-sets:
-> > >    -
-> > > @@ -1528,6 +1534,18 @@ attribute-sets:
-> > >          name: hwtstamp-flags
-> > >          type: nest
-> > >          nested-attributes: bitset
-> > > +  -
-> > > +    name: pse-ntf
-> > > +    attr-cnt-name: __ethtool-a-pse-ntf-cnt    
-> > 
-> > please use -- instead of underscores  
+On Mon, 12 May 2025 11:11:32 +0100, Sudeep Holla wrote:
+> Drop the clock-frequency property from the timer nodes, since it must be
+> configured by the boot/secure firmware.
 > 
-> All the other attributes are using underscore in this property.
-> Are you sure about this?
+> 
 
-yessir, we're trying to guide everyone to use -- these days.
-We should probably s/_/-/ all the existing cases which don't
-result in codegen changes.
+Applied to sudeep.holla/linux (for-next/juno/updates), thanks!
+
+[1/1] arm64: dts: arm: Drop the clock-frequency property from timer nodes
+      https://git.kernel.org/sudeep.holla/c/1fa3ed04ac55
+--
+Regards,
+Sudeep
+
 
