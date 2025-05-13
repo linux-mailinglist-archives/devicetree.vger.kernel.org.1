@@ -1,155 +1,126 @@
-Return-Path: <devicetree+bounces-176622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9973DAB4DBA
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 10:11:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D975CAB4DC9
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 10:13:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14AF53A7666
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 08:11:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AB5C19E7355
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 08:14:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D576A1F5424;
-	Tue, 13 May 2025 08:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C901F583D;
+	Tue, 13 May 2025 08:13:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mpxSmPI1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC7CA93D;
-	Tue, 13 May 2025 08:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C0F11F4C8B
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 08:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747123870; cv=none; b=W3vrwUMcCvo3v04eD2BLOp8xC5e1mNPm2oGqWUZk8YkW7/fSCTtWLMZrqWv/tjAYUH7CTJvsenSEUah6SOX+9GxzRrqEwjHHgCEAles+xUn4hwWO75cRjrOelAvoXczDJs4DOHjF6PG0VnE8EEiFGZGd58/ziVhv4j/Sejo3dhQ=
+	t=1747124034; cv=none; b=I3rS9jnlmNcDn22QBlN74R4pPza3MLXqdxi2cPfHLUUXzjNftlTgIwfE2xiq5YGLCLpKbVnIeGrDuNoJTXyFql/EHNFnWQWdtAHV0N5tv2nTyzRZdO0nNIzqNAwguOzqpViwxGmMG6ObrScenP88nuMEhYMSggKp6iarb/A+qgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747123870; c=relaxed/simple;
-	bh=MM1LpBhM1yC3INK9Qp+qRlKTzWYK6iqm4Jjmr9Ur1LM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IEoVd5kbYI5/ooph/BQG6HWjvMza8hKhU2iPv2zHdKpFIWo7kQgf1p9qe+RdcxkkIolfzEQ7U1PDpqoYdXvLh7sTEdWeaeMPDUks82TxPxASuRea4gZDd24XHSUhefTTlkXJGfKMI07W5+8/WOsGmrAa61kXmOxpDzC8h7h72mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7c9376c4dbaso600663485a.0;
-        Tue, 13 May 2025 01:11:08 -0700 (PDT)
+	s=arc-20240116; t=1747124034; c=relaxed/simple;
+	bh=OMO7uyKqiGXSdbBTRpMsGiPhXfiWRanx24fEA05hC4E=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=sA+9R8JEi04xU0fYnzdXYqmpsPFkBOBA7SY7adC1r/CFBXVabAUuvUTmaIAA1ZeqAGnFbFKERsJUOB8MLWswQVg6wQSv1ApS7YgxmBLxS5nbHQltXCP9L5K0ZcergxSLwbTAaH/hkP+wbY7tMlMQf/BjsI1vcxpHgtJwUiZWf2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mpxSmPI1; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-441c0d8eb3bso5155755e9.1
+        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 01:13:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747124031; x=1747728831; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gfD8KA5bfxaU+Q1NTIOmhw+vBh6gQYcxk5fcGmeOrhI=;
+        b=mpxSmPI11h3EKfIiLQkaiAISjzIZ8szj+stMXWAYDNeF53nobikOaDUlLF3CkU1po4
+         FYBbuCIvt20FF94FRmuSXuwTRggl2TtkQN+scQNPeJocCwJ8gvLZEVY6rcF6OfBLGMkR
+         Hl+UCYzU/QAHhXjjSaard7f+AHGsQ0Hsb0sc1gmGcM10OXS2bZJdUnl+KsqFt2/oT+Vg
+         V5z1GcxCQSU54G0NR0Hp4J2N7GrxwvC2rbkGqMPAvDANRLFsB0SuWt0RIA54g5xf76Zd
+         wCXJ7YiZ7V8iKNiNpLwaKYDkwSAJhlkFM7/Uz4dZpfJspADBvSkqLsW7xC0CKXUXZ3hn
+         a3QA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747123867; x=1747728667;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1747124031; x=1747728831;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5rCtnbZWFEyClftfNf+97GB/L/vNpKwxy5TFS7AwepY=;
-        b=VGbb9e2GYHripd9ylCCZSKlpsQXEngFvwO9SkrdBofjuWu3kErZP9R51WXdgYsIKhV
-         Dg24Cs5d3/Ud4+XsOcy6cvsOLwVlz8qotY63r6hJNeR5A6Jc6FF5a9OZtXeKKVvwQqw+
-         U75lLgFM1taoOyHt7/KqF4Q4yOZ365zkx/ynwuhQHOCMvY1QCL2Vup2xfFeu4/h7/DNX
-         5TtGImsFzLC3fuoU76pzYh9PUthynOXKOuWoM0v4EICnfb7LHFYn0kigxo/qLWg1VZiB
-         nZQdC/HR8fJImpIjV3PZ8q4dkX+MyidfGsHynbEL4rRV33rkx30kGsIzSPGcGFvpufX/
-         Ar6g==
-X-Forwarded-Encrypted: i=1; AJvYcCU7jVpf6cpQQ1O/+RYcLAhqSyFSzH+qkCfqaOm+kKGXNVoOeNQXHT+e5bUek+3ucro9rv/ZkLJsgxzL@vger.kernel.org, AJvYcCUNO51Rg2NKgbQ2pzPKu8DXQof/TCRTj+TZJlXMf9vS4/VwWxtSaN4bb4rjhL6ckfOwN5Z3g0MfVExk4kww@vger.kernel.org, AJvYcCXYUXKwpwbnBO6K3FiMq2/VSdXGy6mDV4liJZRRR8BLINj1TKHKKH+vaTC0S7vqmaSOkynrnBlkw1m8@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGFy5r5c+JVJBaPJv7D/6mR+Z56IIUoFhKaKuCsnCOqGTuBRQe
-	Qyw5+I7yvhcd+S3lCNUYCKRuMOFKdVHoytrXBGUnj68xhjw6ufZnwfeKDaLJ
-X-Gm-Gg: ASbGnctGVpmJ65ZSHRYD2RDjIJdsBpkIJRfTJujJazKe7p98lbbyciqEXGG5Z82WuID
-	SCDYG0sIX0Xlr7mjmlhNt/kiFdw5b7dij8oncGIIiqEPd6pp2ZT+u3Xeeh//vwz1ClfTNCN4QIU
-	3y560MMiAD/a9uKlu9JXsCY36hf4d6x+Aui49qHd8y0pM0g+Gpbxc7PHi7x7jhDFgH51npx31r1
-	oAglwh4U39gd12B32EHhfbQWvIMTA0os9t9Y9Ao9plZpcE98k0X6i7bDXDJYbkkLzCRqVlp+dcg
-	9rVQIdnklKKk383pUBE18i9S7XJEHQrjim+V76+aXaKNCTefAAW3iYkp7Hq8+c9NblYiu0dITLn
-	49zpev0iSJgrHPg==
-X-Google-Smtp-Source: AGHT+IHlXqUOWm0WgsbW/F9Ow1+qrr9RECUNiEfQy23xXhLmkGr5MkdPZjJB/+/S/sbA8kB+qoE8VA==
-X-Received: by 2002:a05:6122:1d02:b0:52a:654e:bd98 with SMTP id 71dfb90a1353d-52c8892c3c5mr2119092e0c.0.1747123856327;
-        Tue, 13 May 2025 01:10:56 -0700 (PDT)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52c65600d9csm4984631e0c.33.2025.05.13.01.10.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 May 2025 01:10:55 -0700 (PDT)
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-86d6fd581f4so4143545241.1;
-        Tue, 13 May 2025 01:10:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU/FbpUm7D9FanKDXa+bp+kcUxhTBKWT7DvSi/uBuSPHjDaljjwJFUauWJo870B1CQitsZY5KNy8Dq27s/N@vger.kernel.org, AJvYcCWIeGIhmUcPpDsnVTwFHiFoJO3+T2w9VynY4iQK8y4863iY0C8NIOzRMc55d3Q1sCiRC5ktdJsqCfH1@vger.kernel.org, AJvYcCX5g5lfbLtWbS9u2gYmOGxUitIQMrOkvT/iladJvRfsRY18zCy/kx8btvH6LyY/3kK31FUUjAYMnxEW@vger.kernel.org
-X-Received: by 2002:a05:6122:3207:b0:523:6eef:af62 with SMTP id
- 71dfb90a1353d-52c88afe8b8mr1778704e0c.4.1747123855105; Tue, 13 May 2025
- 01:10:55 -0700 (PDT)
+        bh=gfD8KA5bfxaU+Q1NTIOmhw+vBh6gQYcxk5fcGmeOrhI=;
+        b=b9d9WtdE/CU7hz2CFVtumf5Ossb//+/2XmIJQuC/KYBwM9ugLBgUdtStLiZmtJVsmd
+         bc+mGPBpkbut0di1teW3Ok6iD1EWIGQ0zUjhq7H3sY6O/j/pyo1VC6oae7Vt/5Pv88UT
+         cIrknr1YFNbRl+34B22fta1tGMfuUFF2y8sSV8wLDIVE66yICeH8rvdXiRXoPd6bseLB
+         LJFFluB5UtLgcxFgFyZxOWOYXHm2LO4J5+Ig09OjPWtum7I6VXwIvDoWsruT9iv2MffS
+         o9U0zdUhVXZNII8OxYvlmji8efciCb3ZKT22gJ+2pkdrpu0Nr55EuuBdzeqxwCLoWpKT
+         jzmw==
+X-Gm-Message-State: AOJu0YwcFdzKb5aOP0w14O5ELswiS2Bvc1lceTNgXmIJwPnCkI/atMXo
+	F3cXnB4OTMDwMUEumNgce9IK18X2mOKIsF/s6Lk7Y+oZs/vNxElEChQV1xyDm/8=
+X-Gm-Gg: ASbGncs6XhNc0PTDc1rGPWTdwiFAKqmsjqML8d2uNE/Y0OfqoziKTzG3CYh+dvP2rsY
+	8JNBosAISMMZpPcBcINjXUiaP+7yUkg3XfQwn4CHjx0cAJp49O2fRztZfruSW8YbfrUSbBlvG8q
+	wyaVVMuXNQHFXzjNQqg1WhtqobX+HAO9MnPAhNogMLApjofAcnM9iWngtKGN7NJ7gZjR05UXzp6
+	EQY8mLuty515K3ESQeyNidNgfZZI+T891Q/n11jl0f/jytQZEazWZ7yOgwyOb53b3ulqEuXF8go
+	X4AEPNGWgGvUMZl5QH0t0qzpdRnETZJ4cRtuFjluEMeAN167GfvAr8FNsLfYTonIV0SbZRl9yYG
+	iaSDqs+YCKeX+6NgFJA==
+X-Google-Smtp-Source: AGHT+IHI0BUvRWvY4Y2/8bHQXKFDvKBHupqbi0BQODrVBg+55fcuB5CxUmKYcrieaLRvHUYS/EkBCg==
+X-Received: by 2002:a05:600c:3490:b0:439:9b3f:2dd9 with SMTP id 5b1f17b1804b1-442d6ddd6a8mr47990065e9.7.1747124030617;
+        Tue, 13 May 2025 01:13:50 -0700 (PDT)
+Received: from [10.61.0.48] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442d687bdc0sm155170805e9.39.2025.05.13.01.13.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 May 2025 01:13:49 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ tudor.ambarus@linaro.org, andre.draszik@linaro.org, willmcvicker@google.com, 
+ kernel-team@android.com
+In-Reply-To: <20250506-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v4-0-9f64a2657316@linaro.org>
+References: <20250506-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v4-0-9f64a2657316@linaro.org>
+Subject: Re: [PATCH v4 0/5] Fix gs101 CPU hotplug support
+Message-Id: <174712402896.10876.6908975403195941350.b4-ty@linaro.org>
+Date: Tue, 13 May 2025 10:13:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <aCGPuKtfprIvwADa@smile.fi.intel.com> <20250512173800.6767-1-trannamatk@gmail.com>
-In-Reply-To: <20250512173800.6767-1-trannamatk@gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 13 May 2025 10:10:43 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWiTLbazxfe0joujONfLTQXT73WE=sq5F-4dwOq463b4g@mail.gmail.com>
-X-Gm-Features: AX0GCFvxUbYICZnIC49acrtXEhbKJaNQ34KnJ9GMWMjpL7F8L3vH5lZ8JuyNYOU
-Message-ID: <CAMuHMdWiTLbazxfe0joujONfLTQXT73WE=sq5F-4dwOq463b4g@mail.gmail.com>
-Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix
- LED driver
-To: Nam Tran <trannamatk@gmail.com>
-Cc: andy@kernel.org, lee@kernel.org, pavel@ucw.cz, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, christophe.jaillet@wanadoo.fr, 
-	corbet@lwn.net, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org, florian.fainelli@broadcom.com, 
-	bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-Hi Nam,
 
-On Mon, 12 May 2025 at 19:38, Nam Tran <trannamatk@gmail.com> wrote:
-> On Mon, 12 May 2025 Andy Shevchenko wrote:
-> > On Sat, May 10, 2025 at 02:48:02PM +0700, Nam Tran wrote:
-> > > On Thu, 8 May 2025 Lee Jones wrote:
-> > > > On Thu, 08 May 2025, Andy Shevchenko wrote:
-> > > > > On Thu, May 8, 2025 at 5:27=E2=80=AFPM Nam Tran <trannamatk@gmail=
-.com> wrote:
-> > > > > > On Thu, 8 May 2025 Lee Jones wrote:
-> > > > > > > On Thu, 08 May 2025, Andy Shevchenko wrote:
->
-> ...
->
-> > > I think setting PWM also same as brightness_set API. However, there a=
-re
-> > > many PWM config for a LED and it is one of other config to make auton=
-omous mode work.
-> > > Therefore, standard led API can use in some use cases only.
-> > >
-> > > Please see the link below for a better visualization of how to config=
-ure the LP5812.
-> > > https://dev.ti.com/gallery/view/LED/LP581x/ver/0.10.0/
-> >
-> > To me it sounds like you should start from the small steps, i.e. do not
-> > implement everything at once. And starting point of the 4 RGB LEDs soun=
-ds
-> > the best approach to me. Then, if needed, you can always move on with
-> > fancy features of this hardware on top of the existing code.
->
-> Thanks for the suggestion.
-> I understand your point and agree that starting with standard LED APIs is=
- the preferred approach.
+On Tue, 06 May 2025 21:57:26 +0100, Peter Griffin wrote:
+> As part of an effort to make suspend to RAM functional upstream on
+> Pixel 6 I noticed that CPU hotplug leads to a system hang.
+> 
+> After debugging and comparing with downstream drivers it became clear
+> that some extra register writes are required to make CPU hotplug
+> functional on these older devices which use a el3mon firmware.
+> 
+> [...]
 
-i.e. a drivers/leds/ driver.
+Applied, thanks!
 
-> However, the LP5812 hardware offers more advanced features, and I=E2=80=
-=99d like to support end users all
-> features as shown in the link: https://dev.ti.com/gallery/view/LED/LP581x=
-/ver/0.10.0/.
-> It is easy for end user to investigate and use driver.
->
-> If I want to keep the current driver interface to meet this expectation, =
-would it be acceptable
-> to move it to the misc subsystem to better support the hardware?
+[1/5] dt-bindings: soc: google: Add gs101-pmu-intr-gen binding documentation
+      https://git.kernel.org/krzk/linux/c/0475b0d8a1e0f80a47536dfb19c28dc4bb6adc05
+[2/5] dt-bindings: soc: samsung: exynos-pmu: gs101: add google,pmu-intr-gen phandle
+      https://git.kernel.org/krzk/linux/c/83b66cdb5d5b6aa4ed1f085b3b2f917af0c2890b
+[3/5] MAINTAINERS: Add google,gs101-pmu-intr-gen.yaml binding file
+      https://git.kernel.org/krzk/linux/c/20adeaca8bc6a084f2610e7c89a8601c9904a0e2
+[4/5] arm64: dts: exynos: gs101: add pmu-intr-gen syscon node
+      https://git.kernel.org/krzk/linux/c/aaf02428fdd50b818c77644bc0b8a0b282ce8ea4
+[5/5] soc: samsung: exynos-pmu: enable CPU hotplug support for gs101
+      https://git.kernel.org/krzk/linux/c/598995027b9181ada81789bf01fb8ef30d93c9dc
 
-I guess you can add custom sysfs controls for the advanced features
-on top of the drivers/leds/ driver?
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
