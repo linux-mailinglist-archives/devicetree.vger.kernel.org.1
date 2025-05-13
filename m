@@ -1,198 +1,108 @@
-Return-Path: <devicetree+bounces-176938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8992AB5E67
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 23:26:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A87EFAB5E72
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 23:34:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D82D46624F
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 21:26:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EADA23A9328
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 21:33:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9679202961;
-	Tue, 13 May 2025 21:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA49B1F2B90;
+	Tue, 13 May 2025 21:34:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="VLachtPy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QZw4cAGr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145E61FBE87
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 21:25:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D2951E9B34;
+	Tue, 13 May 2025 21:34:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747171558; cv=none; b=XU/TEl8ibj+Ur3XC0ewn+pCUXniFPPHE2zBKnabXypiqi+CCY9O+VGeTzeeb8dPBqyg9tnD8PN9JPxOstwD2hnG42DhwQ8hC693NAKzHNPmaJOZThIQk5+G/SvHg1EafjEREUDWmZmxW0KVZWgs6virDusQE6v0186xxGxDKwvI=
+	t=1747172047; cv=none; b=EOUBHEgX7kbaBOnuQ3fLDck69gRuSMfvZdERlXbaiZD6FoiJdhwijZC+wM5iuvmpAGZRZiJfQIBkMZjVYG6LLn1ypKTxVS3GVSoNzoOO/LmGdS07oIGbl7Sy3FKF+FiCGKqJYYOkyM+hTiinUy97juKdcbewKIu1jIwdQQsPVnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747171558; c=relaxed/simple;
-	bh=PONCw9RTCNN6nn6z1Uu6GiS7int2V5KAYeMXT763Scc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h1OJr77okn+SSMQGPhPJiKcCBMrQ8YEaew2SQRvwGemSKXvx2oIZ67DYoUnSpVeIVsDY/iFQs2/KrL4npSUfvr9yOuoEJK7+V8L8gt6Cg3yIk051xSdbIbJZ7D0I6I4T9wEKuMzHtN9WgWINuW1K0JtKIMwvzFk6XWXgrwbntoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=VLachtPy; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-22fb33898bbso76499915ad.3
-        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 14:25:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1747171556; x=1747776356; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=R3RlUrB9vsvdRLDB/WErlx/ApSJjbQf0jOu6HOFeS/w=;
-        b=VLachtPysKzCwAR7oT7ircwJnkpLJJ5i+i1J3jDabhxeMC1rgEBrWOsZkUQ7tkSHsg
-         uR2q2Upi1g33VweXCEj6H0RUFuuumikb/aJVleNWKy4m6CrgklQw9ZE3BSK6kvn1+CwS
-         FD/25z24M8awQv5Ruz6RWh/EGQlm90d7D8fEYkF3pG59YRmM0iIuaPJKHiCbqMpSTZ+n
-         JPw/tZ5arieOqIti4F08b3TsmEtcVH4Z++yBVSuVvUhAZ1wRxOTLHaKfsVfjzkB9g5cg
-         Y+aChwu43BACop23gKZ76+ZJV6BtRcQ5nZE9kXbFRit4pkpxLBPswwC+ojmFnyHMA2gP
-         uZqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747171556; x=1747776356;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R3RlUrB9vsvdRLDB/WErlx/ApSJjbQf0jOu6HOFeS/w=;
-        b=CeNXgNRZTaSNKsqHhV02/hWqRo3Q1rLOlFPU2iKh0AuRxITzVIBCXZUq835hwp5h2V
-         xT7JrifbyaIAtaBvU+VDJbSrUklv1P6BPZ2OkcvtkIhbWu2SkExZhscbylLc8ynmyn7I
-         DEYqY83QUtlFS474gYP95dU8PtaJ2od/jyxpTVSvHnTthGMzDyh738RsGDlgKVqEwaZ/
-         w/tYfbgQli0fqCvwsViHJK9djZiWi97vfFoe0Qu4VoGY9WGQ58n+MU+Yq5pjbWZlslZh
-         6qvH4kH9w1F5fm6ZDZ/l/uNW6HLZNi6gXepNwMEtv2naUIeypsF7CfYEXwvj70QmCwcb
-         dWcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV06KUWLSETbeRgQH8vpCTHM6UM0NjnkQi4vTW32Sq7JupAnwZUH7gJVzCdon7yW3D2smAXyu8hpPEj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/tg63ULgfOpVJPPJw/wvA9ePQkDaNkRBSUN6Q7xwaMyNtIBSd
-	NyJh0wIz/brm7eFN4rTIyeFHzDRDzi1pUs4+C134V7eA9TEO8zNpgCEZJNDAb4o=
-X-Gm-Gg: ASbGnctbaHNKAMwe+y6xLe1/BjzVL8vO1dh7Itt4t+k6XF+Lv6QV9NgbCTOOezj+bfm
-	QbFCEQxcXmBJgISoh8dyKMnXQ13KgSoI4zazrZa4PDMIZjpDI7T/2QWvpUwE20BOOGWYXkzOi7k
-	GZ72Crw1IFJCepPEQiqFNSQCBIWykuUzouFPKxi5pOmuwqm2r/TGLzjQZdUqQiX14oemyBlBVCI
-	waBz9MmBhQSSJUCRLPMD6R7LClg898blcLXoMAEhazpSvHErYo3QVKDUvBAEd2Dr3e5IMB2Dka/
-	4AeCRyQWaYvgq2lmgwmvC0Ra+Spdi01Rm4ZEAmhmCw==
-X-Google-Smtp-Source: AGHT+IFocb82Pc+xAg+z3CR+mX8T9Fb3IZ3K1KpdH6BlWRo7TmjZ95U0igx6DKwvn349WA6Uo5EwQA==
-X-Received: by 2002:a17:903:2f8d:b0:224:1ce1:a3f4 with SMTP id d9443c01a7336-23198116712mr13397695ad.1.1747171556281;
-        Tue, 13 May 2025 14:25:56 -0700 (PDT)
-Received: from ghost ([50.145.13.30])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc82a1965sm85249085ad.231.2025.05.13.14.25.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 May 2025 14:25:55 -0700 (PDT)
-Date: Tue, 13 May 2025 14:25:53 -0700
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Chen Wang <unicorn_wang@outlook.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] riscv: dts: sophgo: Add xtheadvector to the sg2042
- devicetree
-Message-ID: <aCO44SAoS2kIP61r@ghost>
-References: <cover.1746828006.git.rabenda.cn@gmail.com>
- <af839bc200637e4eae1cb327c95ac98c82bccd52.1746828006.git.rabenda.cn@gmail.com>
- <MA0P287MB22624E52A6647B43D53DCD2CFE96A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
- <CAAT7Ki9zCYZ7u+nmQgSkgWgv+QSVb=miLRtcNQRfJFcd8JgcJg@mail.gmail.com>
- <MA0P287MB2262FF6EFEC6D01796683DE6FE96A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
- <CAAT7Ki-vamEx2f+nTJbd=WeB815ZheJV=mm7ohzBoZrsoaQV+g@mail.gmail.com>
- <MA0P287MB22629B5A1F6238FBBF9E3609FE96A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1747172047; c=relaxed/simple;
+	bh=+88zOYnvDFvxjqE/Y5p6i3D0kIHC3vjAVXfBRRI6uC4=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Tr8uQHyUPFZbu5S/MA600cp2uPcLqBq1CmGVT/E1FlUyA18Eqc2jZEMOexETDqv02o5VY37WxnClc7aqyxwCVYJnHEW8rYHppI1BNUz0f99zQ6P+dMvstMR1eKUSreELCC2iz6W9ly5t+4cBj7uhC8SzSJ1hj0A1MH7e0jjnM8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QZw4cAGr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6A63C4CEE4;
+	Tue, 13 May 2025 21:34:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747172047;
+	bh=+88zOYnvDFvxjqE/Y5p6i3D0kIHC3vjAVXfBRRI6uC4=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=QZw4cAGrXnSwAKANm1o5Y3J0p5WweuPSkV8pVZxIJ56kIj32UTuTNkhFAlpCpCKXL
+	 rI/78bnkIYHbTh+gjaRfdIRC1U0HvvV+S+ongG0s3tJ9ABVpRzr7JDYP+tGkYVAIbd
+	 sWc4cKmIf8oiVyDjklHDAa5E2t0zgpFef2Z1xVaXQKik3ggcBNNHyrtmjBZ1qaPD11
+	 vI1rrJM5aL/PGlAPft+t0KDtAVLsOI8Zi9RF8IRggf0I30e5ncbFwJbQpv6YTxuNTa
+	 BOPn2i71dlKG2HoQiiUxwKJEbpeNf8o/gjIvG0hKpa/RJ3ALRxGaDrj3308rMPw/+7
+	 XwYeEN+euzrEg==
+Date: Tue, 13 May 2025 16:34:04 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <MA0P287MB22629B5A1F6238FBBF9E3609FE96A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Roger Quadros <rogerq@kernel.org>, 
+ linux-crypto@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, 
+ Tony Lindgren <tony@atomide.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Herbert Xu <herbert@gondor.apana.org.au>, 
+ Kevin Hilman <khilman@baylibre.com>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
+ Andreas Kemnade <andreas@kemnade.info>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+In-Reply-To: <20250513184148.3053317-1-robh@kernel.org>
+References: <20250513184148.3053317-1-robh@kernel.org>
+Message-Id: <174717204490.3717333.9556861729299597344.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: crypto: Convert ti,omap4-des to DT schema
 
-On Tue, May 13, 2025 at 06:05:20PM +0800, Chen Wang wrote:
-> Adding Charlie.
-> 
-> Hi, Charlie,
-> 
-> Can you please help confirm this? Is there something wrong with my
-> understanding? Copied here below for your quick reference:
-> 
-> > One more question is about writing value of "thead,vlenb". See bindings
-> > description in Documentation/devicetree/bindings/riscv/cpus.yaml:
-> > 
-> > ```
-> > 
-> >    thead,vlenb:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> >      description:
-> >        VLEN/8, the vector register length in bytes. This property is
-> > required on
-> >        thead systems where the vector register length is not identical
-> > on all harts, or
-> >        the vlenb CSR is not available.
-> > 
-> > ```
-> > 
-> > What I am not sure about is whether we should write 128 or 128/8=16?
-> > Assuming VLEN of C910 is 128bit.
-> 
-> 
-> Thanks, Chen
-> 
-> On 2025/5/13 17:13, Han Gao wrote:
-> > > Assuming VLEN of C910 is 128bit.
-> > I refer to the value of c906 because c906 and c910/c920v1 have the same value.
-> > 
-> > Link: https://lore.kernel.org/linux-riscv/20241113-xtheadvector-v11-3-236c22791ef9@rivosinc.com/
-> > [1]
-> > 
-> > On Tue, May 13, 2025 at 4:06 PM Chen Wang <unicorn_wang@outlook.com> wrote:
-> > > 
-> > > On 2025/5/13 14:45, Han Gao wrote:
-> > > > You can use xxd to convert it.
-> > > > 
-> > > > cat /sys/devices/system/cpu/cpu63/of_node/thead,vlenb | xxd
-> > > > 00000000: 0000 0080                                ....
-> > > > 
-> > > > Regards,
-> > > > Han
-> > > I can read this after disable ERRATA_THEAD_GHOSTWRITE.
 
-You can also pass "mitigations=off" as a kernel arg.
+On Tue, 13 May 2025 13:41:47 -0500, Rob Herring (Arm) wrote:
+> Convert the TI OMAP DES binding to DT schema format.
+> 
+> Drop "ti,hwmods" as it is not actually used for this binding. Only
+> OMAP2 platforms are using it.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/crypto/omap-des.txt   | 30 ---------
+>  .../bindings/crypto/ti,omap4-des.yaml         | 66 +++++++++++++++++++
+>  2 files changed, 66 insertions(+), 30 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/crypto/omap-des.txt
+>  create mode 100644 Documentation/devicetree/bindings/crypto/ti,omap4-des.yaml
+> 
 
-> > > 
-> > > I recommend adding some explanation notes in the commit message. For
-> > > example, when we need to enable xtheadvector, the prerequisite is to
-> > > turn off "ERRATA_THEAD_GHOSTWRITE".
-> > > I found the relevant patch is
-> > > https://lore.kernel.org/linux-riscv/20241113-xtheadvector-v11-0-236c22791ef9@rivosinc.com/,
-> > > also hope adding this will help later people quickly understand and
-> > > avoid my mistakes.
-> > > 
-> > > One more question is about writing value of "thead,vlenb". See bindings
-> > > description in Documentation/devicetree/bindings/riscv/cpus.yaml:
-> > > 
-> > > ```
-> > > 
-> > >     thead,vlenb:
-> > >       $ref: /schemas/types.yaml#/definitions/uint32
-> > >       description:
-> > >         VLEN/8, the vector register length in bytes. This property is
-> > > required on
-> > >         thead systems where the vector register length is not identical
-> > > on all harts, or
-> > >         the vlenb CSR is not available.
-> > > 
-> > > ```
-> > > 
-> > > What I am not sure about is whether we should write 128 or 128/8=16?
-> > > Assuming VLEN of C910 is 128bit.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-That's a bug. It should 16, but I had put it as 128 for the D1
-devicetree.
+yamllint warnings/errors:
 
-- Charlie
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/crypto/ti,omap4-des.example.dtb: des@480a5000 (ti,omap4-des): 'ti,hwmods' is a required property
+	from schema $id: http://devicetree.org/schemas/ti,omap4-des.yaml#
 
-> > > 
-> > > Thanks,
-> > > 
-> > > Chen
-> > > 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250513184148.3053317-1-robh@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
