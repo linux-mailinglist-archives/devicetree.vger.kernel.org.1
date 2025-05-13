@@ -1,264 +1,160 @@
-Return-Path: <devicetree+bounces-176598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CF54AB4B8C
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 07:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE8CAAB4BBA
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 08:10:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD0263A5C69
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 05:58:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87DB23B6751
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 06:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659C41E5B62;
-	Tue, 13 May 2025 05:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E66C01E98EA;
+	Tue, 13 May 2025 06:10:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="N74Jmfn3"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Tb7ReHc2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD191F5E6;
-	Tue, 13 May 2025 05:59:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A6371E8333;
+	Tue, 13 May 2025 06:10:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747115946; cv=none; b=geCbF9rks1NeYkyv20YIAedqA4OHWg7MCWpoq1cKqaDEsO14v+qOrHYjn5RbzfqjKxC0mfy9c/S4AI2uh9Ph+PJrJ21/qm8zcNbhQzFZz0Ql2grLA4HYIL1UJBs7r6b8QXbK05B01J0VXHOeaAn8WfBFSjWvdDwDPhjFa2wZZTI=
+	t=1747116624; cv=none; b=KfE29QciVSpSE5SeWodowFarIipTsdsfUddLHIsF1bdkEOdJ8nM7umPDwzShUkYQdZou3sAZV/7an6bKHV2ShJp3WA6m+Y1EhPUDYcyFKULkNwg95mmvZtDX4vmr9FUQFNOREEb/Hn/CNmz00aKMcES5sWaDEP1zb8RiDbguKio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747115946; c=relaxed/simple;
-	bh=TVLwvym3/aeVn56CFigfV5fSvkWJ7gX8ZKNcs9D7kS0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fumbzA6ISUg7MAnRGjw91Qdah3cM4xrxnwFkG5OS0Noy1W6NGZhV2Lp5+l61bK48j3nCZovzJQYXA8z3mOXfcD2Is+Jt1wOxBkNSjidyTSYpEUgSo/s6FrlVT9txBqtL9r4l3DDrOCo7P/1LLncvEAOair2whF8wd8/QvkBvK3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=N74Jmfn3; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54CJjj3i015336;
-	Tue, 13 May 2025 05:58:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PzWx5mdJE8aGGqbeuU1GMbdJ+i1PkQW3UbKqRtbnCL4=; b=N74Jmfn3wvRWHS32
-	Jf7wF+OewiI3sJW6lxAd3hBSB8lxol4OPsvo1CGx1bcBvl6vK8M3SY3uhQ7ucQvS
-	IOJtUDhU30L01V27ahjN/Ip9YcyqSkgHAOxgru1hLWzWGY2CFFzHMqpkMdkkFzyV
-	QztFZEU8uLI1hEgTNdaH100+H7jTAQo8lw5deOFlSZkVolHAtK5Rv7VoAJZzgomR
-	tDBgNeM7sXBohxkVqz5czC6GO7fY9jdrbh1YsWOz04qSXqFZamvhv+1QX20tOwak
-	B5HoUirTkmI6ppR8uUHTXTa4H9uV+ph4mz97QfesCU5/au1WA6qNMGVkKEgoNuth
-	yZOQ1A==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46hwt96m9p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 May 2025 05:58:59 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54D5wwRw014882
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 May 2025 05:58:58 GMT
-Received: from [10.204.65.175] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 12 May
- 2025 22:58:53 -0700
-Message-ID: <a21be690-4ff3-4b4a-84ec-f1da4a7b577d@quicinc.com>
-Date: Tue, 13 May 2025 11:28:51 +0530
+	s=arc-20240116; t=1747116624; c=relaxed/simple;
+	bh=QF7NoVWs9s4mtxHSKnQEUbnugHIa6+FV/FaaMB1Fj+4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tLc87+sdNWqFq92CVk91Z+LqnRpQgIPX+OCZGZO5RJGrx0nNN50Rfs/CtAu6YkJflABry4eD/9DzJ4igILzkYrdzpeDmKSyKbJM83HB4IgkNErxQoWFEZB+JPIyljt75+5Dy5ZPaZUbVTJ61ggrwBBOd91NGQ9eHFzPgPmcIAsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Tb7ReHc2; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747116623; x=1778652623;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QF7NoVWs9s4mtxHSKnQEUbnugHIa6+FV/FaaMB1Fj+4=;
+  b=Tb7ReHc2J8PAVJsUHxiZEmNSSEqgVFQaCoHfpxEIo59dZOnd1HaY65af
+   jF83G41yT4t9LPjYHtkidn5NAh3SmmXIGag6lqrLzcgUWySDGFszc2LR3
+   Fy6ta6shhZOW/QBGryBcLu8CxclENyj3AeLlvO/A5Y735GXDnuNA1fo1D
+   TkZe8NkxhLB8ybIAXlJKHIy//k6mBGbBa7nLALbjagv6z3BJdrGAO9hy7
+   tbwgMd/Sk0XliCZlvAYjfsCjBi/7OhW0iDp88DBp4YangY2JR+N7yLI+c
+   Y9oCQ2KqlWpRxSs3TvhnlPqqDTvIYEABc838aGTRYkB9VkgwE/8T0UmHM
+   w==;
+X-CSE-ConnectionGUID: Kg+vLpM9QeCtCG/fcfFE7w==
+X-CSE-MsgGUID: zkb67/tYTuaMaWlFDp3bsw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="74342404"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; 
+   d="scan'208";a="74342404"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2025 23:10:22 -0700
+X-CSE-ConnectionGUID: 2ZRKHzvuQjeytCkGuQE3/A==
+X-CSE-MsgGUID: SHAHOI7TSbOnGic5LP4cKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; 
+   d="scan'208";a="137461582"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 12 May 2025 23:10:15 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uEiqC-000FlR-1e;
+	Tue, 13 May 2025 06:10:12 +0000
+Date: Tue, 13 May 2025 14:09:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Andrei Botila <andrei.botila@oss.nxp.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Michael Klein <michael@fossekall.de>,
+	Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Subject: Re: [net-next PATCH v9 1/6] net: phy: pass PHY driver to
+ .match_phy_device OP
+Message-ID: <202505131337.ZjnU5fK1-lkp@intel.com>
+References: <20250511183933.3749017-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8750: Add adsp fastrpc support
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Ekansh Gupta
-	<ekansh.gupta@oss.qualcomm.com>
-CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Alexey Klimov
-	<alexey.klimov@linaro.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <srini@kernel.org>, <krzysztof.kozlowski@linaro.org>,
-        "Bharath Kumar (QUIC)"
-	<quic_bkumar@quicinc.com>,
-        "Chenna Kesava Raju (QUIC)"
-	<quic_chennak@quicinc.com>
-References: <20250502011539.739937-1-alexey.klimov@linaro.org>
- <10f69da3-6f94-4249-a8f3-459dc48fa5e1@oss.qualcomm.com>
- <D9R4NCKH46WP.14C8F7W4M58ZQ@linaro.org>
- <3c0fea8d-0715-40e6-bed9-e0961bf034e0@oss.qualcomm.com>
- <bb68da04-ef52-4172-8b6e-f4027bcc2786@oss.qualcomm.com>
- <pzlsbznxpfsbdsxlzvcbdy7wwba4z5hoya7fyoacwjadtpl7y4@qajecdvs3bho>
- <effea02f-6ffb-42e9-87df-081caafab728@oss.qualcomm.com>
- <ziko5cxt2cabyu4aimpqhbzcacudfhf3jtp23psobxtjdgi5vg@xcfeush5xlhm>
-Content-Language: en-US
-From: Ekansh Gupta <quic_ekangupt@quicinc.com>
-In-Reply-To: <ziko5cxt2cabyu4aimpqhbzcacudfhf3jtp23psobxtjdgi5vg@xcfeush5xlhm>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEzMDA1NCBTYWx0ZWRfX5rf4kle4AVtz
- W7WShxHc7pPzPYcTCRklUUDOFfoXPOkgkxf5H08a+Pjx4K36cX4mATAq/X3+LMNwqeg85YdrRYp
- 3ziUbbD7xRZ68nM4qQegXDGDdaJHX9b31u58b0jHo/g+hS0cTRleq5sFFmgx+sH1qaZgwA0Lf9R
- l5FNTIjrqbCtQo1DAr7U01BBjVWOeT3XsUG5etf72h5zgEkB5pYh/qh8eVPTI9X9lnLkkF1kKAg
- y3Oo4Hy92ehjBKdAUQ0uRqZMv55PlO5JtOHiGER7udNmi41txzH9V9PL+HRsuQ6GLjTCH8wenDw
- RUbV5VxcAMGlCTht1n7Zl5YOLTTY2g/L4bFx4G0xVIlaaSfwrtFRKJQI66vIbnFHi+GpgYB2RaD
- tzk4tRmJuGUU0DkNj5fmWWyDslIwkdibWAgEthPo9UzikGt4a1WhYpyGdEOaiL+FJ0sAF/qU
-X-Proofpoint-ORIG-GUID: 8wJJCaZjow0aV2xi5Gxm73KsZCA_2ywt
-X-Proofpoint-GUID: 8wJJCaZjow0aV2xi5Gxm73KsZCA_2ywt
-X-Authority-Analysis: v=2.4 cv=a58w9VSF c=1 sm=1 tr=0 ts=6822dfa3 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=HFRqob4Jp56kE4hCLf0A:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-12_07,2025-05-09_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 lowpriorityscore=0 mlxlogscore=999 malwarescore=0
- clxscore=1011 impostorscore=0 mlxscore=0 spamscore=0 bulkscore=0 adultscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
- definitions=main-2505130054
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250511183933.3749017-2-ansuelsmth@gmail.com>
 
+Hi Christian,
 
+kernel test robot noticed the following build errors:
 
-On 5/12/2025 9:25 PM, Dmitry Baryshkov wrote:
-> On Mon, May 12, 2025 at 09:25:13AM +0530, Ekansh Gupta wrote:
->>
->> On 5/10/2025 1:19 AM, Dmitry Baryshkov wrote:
->>> On Fri, May 09, 2025 at 09:12:30AM +0530, Ekansh Gupta wrote:
->>>> On 5/9/2025 4:27 AM, Konrad Dybcio wrote:
->>>>> On 5/9/25 12:20 AM, Alexey Klimov wrote:
->>>>>> On Fri May 2, 2025 at 10:38 AM BST, Konrad Dybcio wrote:
->>>>>>> On 5/2/25 3:15 AM, Alexey Klimov wrote:
->>>>>>>> While at this, also add required memory region for fastrpc.
->>>>>>>>
->>>>>>>> Tested on sm8750-mtp device with adsprpdcd.
->>>>>>>>
->>>>>>>> Cc: Ekansh Gupta <quic_ekangupt@quicinc.com>
->>>>>>>> Cc: Srinivas Kandagatla <srini@kernel.org>
->>>>>>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>>>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->>>>>>>> ---
->>>>>>>>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 70 ++++++++++++++++++++++++++++
->>>>>>>>  1 file changed, 70 insertions(+)
->>>>>>>>
->>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->>>>>>>> index 149d2ed17641..48ee66125a89 100644
->>>>>>>> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
->>>>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->>>>>>>> @@ -7,6 +7,7 @@
->>>>>>>>  #include <dt-bindings/clock/qcom,sm8750-gcc.h>
->>>>>>>>  #include <dt-bindings/clock/qcom,sm8750-tcsr.h>
->>>>>>>>  #include <dt-bindings/dma/qcom-gpi.h>
->>>>>>>> +#include <dt-bindings/firmware/qcom,scm.h>
->>>>>>>>  #include <dt-bindings/interconnect/qcom,icc.h>
->>>>>>>>  #include <dt-bindings/interconnect/qcom,sm8750-rpmh.h>
->>>>>>>>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>>>>>> @@ -523,6 +524,14 @@ llcc_lpi_mem: llcc-lpi@ff800000 {
->>>>>>>>  			reg = <0x0 0xff800000 0x0 0x800000>;
->>>>>>>>  			no-map;
->>>>>>>>  		};
->>>>>>>> +
->>>>>>>> +		adsp_rpc_remote_heap_mem: adsp-rpc-remote-heap {
->>>>>>>> +			compatible = "shared-dma-pool";
->>>>>>>> +			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
->>>>>>>> +			alignment = <0x0 0x400000>;
->>>>>>>> +			size = <0x0 0xc00000>;
->>>>>>>> +			reusable;
->>>>>>>> +		};
->>>>>>>>  	};
->>>>>>>>  
->>>>>>>>  	smp2p-adsp {
->>>>>>>> @@ -2237,6 +2246,67 @@ q6prmcc: clock-controller {
->>>>>>>>  						};
->>>>>>>>  					};
->>>>>>>>  				};
->>>>>>>> +
->>>>>>>> +				fastrpc {
->>>>>>>> +					compatible = "qcom,fastrpc";
->>>>>>>> +					qcom,glink-channels = "fastrpcglink-apps-dsp";
->>>>>>>> +					label = "adsp";
->>>>>>>> +					memory-region = <&adsp_rpc_remote_heap_mem>;
->>>>>>> IIUC the driver only considers this on the sensor DSP
->>>>>> Memory region is required for audio protection domain + adsprpdcd as far as I know.
->>>>> next-20250508
->>>>>
->>>>> rmem_node = of_parse_phandle(rdev->of_node, "memory-region", 0);
->>>>> if (domain_id == SDSP_DOMAIN_ID && rmem_node) {
->>>>> 	// ...
->>>>> }
->>>>>
->>>>> maybe some driver changes are still pending?
->>>> Would like to add some more details here:
->>>>
->>>> Memory region is required for audio PD for dynamic loading and remote heap memory
->>>> requirements. Some initial memory(~2MB) is allocated initially when audio daemon
->>>> is getting attached[1] and this memory is added to audio PD memory pool.
->>> How is being handled for the audio PD case? Could you please point it
->>> out in? Currently, as Konrad pointed out, it is only being used for
->>> Sensors domain (unless I miss some obvious usage handled by the core).
->> The reserved-memory support was actually first added for audio PD only[1].
-> Okay, so it uses an API which I missed, excuse me. But then... How does
-> it work? of_reserved_mem_device_init_by_idx() requires
-> rmem->ops->device_init() to be present, which is not set for a
-> reserved-memory nodes without a compat string. However on all two and a
-> half platforms where I see the ADSP remote heap, it is declared without
-> extra compat.
+[auto build test ERROR on net-next/main]
 
-Yes, of_reserved_mem_device_init_by_idx() will fail if the compat
-string is not included in the reserved-memory nodes. To understand
-this better, I tested the reserved-memory both with and without the
-compat string. Despite this, I did not observe any allocation
-failures in either case. The only difference was the appearance of
-the log message "no reserved DMA memory for FASTRPC" when the compat
-string was not added, although the allocation was still successful.
-The correct approach is to include the compat string, and it's
-unclear why it was omitted for existing platforms.
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/net-phy-pass-PHY-driver-to-match_phy_device-OP/20250512-024253
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20250511183933.3749017-2-ansuelsmth%40gmail.com
+patch subject: [net-next PATCH v9 1/6] net: phy: pass PHY driver to .match_phy_device OP
+config: x86_64-randconfig-r073-20250513 (https://download.01.org/0day-ci/archive/20250513/202505131337.ZjnU5fK1-lkp@intel.com/config)
+compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
+rustc: rustc 1.78.0 (9b00956e5 2024-04-29)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250513/202505131337.ZjnU5fK1-lkp@intel.com/reproduce)
 
-//Ekansh
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505131337.ZjnU5fK1-lkp@intel.com/
 
->
->> The usage of reserved-memory is audio PD:
->>
->> This memory is used by audio PD for it's dynamic loading and remote heap
->> requirements as I had mentioned earlier. I'll give more details here:
->> When audio PD starts, it expects some initial memory for it's dynamic
->> loading and other allocation requirements. To fulfill this, the audio
->> daemon allocates[2] some initial memory(~2MB) and moves the ownership to
->> the audio specific VMIDs that are configured in DT[3]. Audio PD then uses
->> this memory for it's initial operations. If there is any more memory
->> needed, audio PD makes a request to allocate memory from HLOS which is
->> again allocated from the same region[4] and then the ownership is moved
->> to the configured VMIDs[5].
->>
->> The sensors domain that you are pointing was an extension of this and as
->> pointed earlier, it was added to support SDSP use cases on some old platform
->> where there are no dedicated SDSP context banks.
->>
->> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/misc/fastrpc.c?id=1ce91d45ba77a4f6bf9209d142d5c89c42cf877a
->> [2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1274
->> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sa8775p.dtsi#n5334
->> [4] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1884
->> [5] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1927
->>
->> //Ekansh
->>
->>>> Additionally, if there is some additional memory requirement from audio PD, the
->>>> PD can request for more memory using remote heap request[2]
->>>>
->>>> The support for SDSP was added sometime back[3] to support SDSP usecases on some old
->>>> platform as there were no dedicated context banks for SDSP there. On recent platforms,
->>>> context banks are available wherever SDSP is supported. 
->>>>
->>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1273
->>>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n1884
->>>> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/misc/fastrpc.c?id=c3c0363bc72d4d0907a6d446d7424b3f022ce82a
->>>>
->>>> //Ekansh
->>>>
->>>>> Konrad
->>>>>
+All errors (new ones prefixed by >>):
 
+   ***
+   *** Rust bindings generator 'bindgen' < 0.69.5 together with libclang >= 19.1
+   *** may not work due to a bug (https://github.com/rust-lang/rust-bindgen/pull/2824),
+   *** unless patched (like Debian's).
+   ***   Your bindgen version:  0.65.1
+   ***   Your libclang version: 20.1.2
+   ***
+   ***
+   *** Please see Documentation/rust/quick-start.rst for details
+   *** on how to set up the Rust support.
+   ***
+>> error[E0308]: mismatched types
+   --> rust/kernel/net/phy.rs:527:18
+   |
+   527 |             Some(Adapter::<T>::match_phy_device_callback)
+   |             ---- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ incorrect number of function parameters
+   |             |
+   |             arguments to this enum variant are incorrect
+   |
+   = note: expected fn pointer `unsafe extern "C" fn(*mut bindings::phy_device, *const phy_driver) -> _`
+   found fn item `unsafe extern "C" fn(*mut bindings::phy_device) -> _ {phy::Adapter::<T>::match_phy_device_callback}`
+   help: the type constructed contains `unsafe extern "C" fn(*mut bindings::phy_device) -> i32 {phy::Adapter::<T>::match_phy_device_callback}` due to the type of the argument passed
+   --> rust/kernel/net/phy.rs:527:13
+   |
+   527 |             Some(Adapter::<T>::match_phy_device_callback)
+   |             ^^^^^---------------------------------------^
+   |                  |
+   |                  this argument influences the type of `Some`
+   note: tuple variant defined here
+   --> /opt/cross/rustc-1.78.0-bindgen-0.65.1/rustup/toolchains/1.78.0-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:580:5
+   |
+   580 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+   |     ^^^^
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
