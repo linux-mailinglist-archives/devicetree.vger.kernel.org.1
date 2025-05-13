@@ -1,126 +1,179 @@
-Return-Path: <devicetree+bounces-176623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D975CAB4DC9
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 10:13:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5282CAB4DF2
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 10:24:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AB5C19E7355
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 08:14:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA79A16AE5C
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 08:24:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C901F583D;
-	Tue, 13 May 2025 08:13:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0ACE202C49;
+	Tue, 13 May 2025 08:24:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mpxSmPI1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fzi6WdkS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C0F11F4C8B
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 08:13:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C144202987;
+	Tue, 13 May 2025 08:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747124034; cv=none; b=I3rS9jnlmNcDn22QBlN74R4pPza3MLXqdxi2cPfHLUUXzjNftlTgIwfE2xiq5YGLCLpKbVnIeGrDuNoJTXyFql/EHNFnWQWdtAHV0N5tv2nTyzRZdO0nNIzqNAwguOzqpViwxGmMG6ObrScenP88nuMEhYMSggKp6iarb/A+qgI=
+	t=1747124651; cv=none; b=mg5iih5/fDU0KEjXZIhiKBvigypPG2fqE0KbX7MjknIddN+CCicKp1I4UaKWWln7an4UCLkZYQbxFwswdRRfy09G7Hqes6A8lHCImvZiFfM/ZB8Mw8btQmaFL7xQh56K1S/KoXKAXx5c3OfuU3r2QEO/UQjTMh2/a4d7xmIirDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747124034; c=relaxed/simple;
-	bh=OMO7uyKqiGXSdbBTRpMsGiPhXfiWRanx24fEA05hC4E=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=sA+9R8JEi04xU0fYnzdXYqmpsPFkBOBA7SY7adC1r/CFBXVabAUuvUTmaIAA1ZeqAGnFbFKERsJUOB8MLWswQVg6wQSv1ApS7YgxmBLxS5nbHQltXCP9L5K0ZcergxSLwbTAaH/hkP+wbY7tMlMQf/BjsI1vcxpHgtJwUiZWf2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mpxSmPI1; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-441c0d8eb3bso5155755e9.1
-        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 01:13:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747124031; x=1747728831; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gfD8KA5bfxaU+Q1NTIOmhw+vBh6gQYcxk5fcGmeOrhI=;
-        b=mpxSmPI11h3EKfIiLQkaiAISjzIZ8szj+stMXWAYDNeF53nobikOaDUlLF3CkU1po4
-         FYBbuCIvt20FF94FRmuSXuwTRggl2TtkQN+scQNPeJocCwJ8gvLZEVY6rcF6OfBLGMkR
-         Hl+UCYzU/QAHhXjjSaard7f+AHGsQ0Hsb0sc1gmGcM10OXS2bZJdUnl+KsqFt2/oT+Vg
-         V5z1GcxCQSU54G0NR0Hp4J2N7GrxwvC2rbkGqMPAvDANRLFsB0SuWt0RIA54g5xf76Zd
-         wCXJ7YiZ7V8iKNiNpLwaKYDkwSAJhlkFM7/Uz4dZpfJspADBvSkqLsW7xC0CKXUXZ3hn
-         a3QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747124031; x=1747728831;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gfD8KA5bfxaU+Q1NTIOmhw+vBh6gQYcxk5fcGmeOrhI=;
-        b=b9d9WtdE/CU7hz2CFVtumf5Ossb//+/2XmIJQuC/KYBwM9ugLBgUdtStLiZmtJVsmd
-         bc+mGPBpkbut0di1teW3Ok6iD1EWIGQ0zUjhq7H3sY6O/j/pyo1VC6oae7Vt/5Pv88UT
-         cIrknr1YFNbRl+34B22fta1tGMfuUFF2y8sSV8wLDIVE66yICeH8rvdXiRXoPd6bseLB
-         LJFFluB5UtLgcxFgFyZxOWOYXHm2LO4J5+Ig09OjPWtum7I6VXwIvDoWsruT9iv2MffS
-         o9U0zdUhVXZNII8OxYvlmji8efciCb3ZKT22gJ+2pkdrpu0Nr55EuuBdzeqxwCLoWpKT
-         jzmw==
-X-Gm-Message-State: AOJu0YwcFdzKb5aOP0w14O5ELswiS2Bvc1lceTNgXmIJwPnCkI/atMXo
-	F3cXnB4OTMDwMUEumNgce9IK18X2mOKIsF/s6Lk7Y+oZs/vNxElEChQV1xyDm/8=
-X-Gm-Gg: ASbGncs6XhNc0PTDc1rGPWTdwiFAKqmsjqML8d2uNE/Y0OfqoziKTzG3CYh+dvP2rsY
-	8JNBosAISMMZpPcBcINjXUiaP+7yUkg3XfQwn4CHjx0cAJp49O2fRztZfruSW8YbfrUSbBlvG8q
-	wyaVVMuXNQHFXzjNQqg1WhtqobX+HAO9MnPAhNogMLApjofAcnM9iWngtKGN7NJ7gZjR05UXzp6
-	EQY8mLuty515K3ESQeyNidNgfZZI+T891Q/n11jl0f/jytQZEazWZ7yOgwyOb53b3ulqEuXF8go
-	X4AEPNGWgGvUMZl5QH0t0qzpdRnETZJ4cRtuFjluEMeAN167GfvAr8FNsLfYTonIV0SbZRl9yYG
-	iaSDqs+YCKeX+6NgFJA==
-X-Google-Smtp-Source: AGHT+IHI0BUvRWvY4Y2/8bHQXKFDvKBHupqbi0BQODrVBg+55fcuB5CxUmKYcrieaLRvHUYS/EkBCg==
-X-Received: by 2002:a05:600c:3490:b0:439:9b3f:2dd9 with SMTP id 5b1f17b1804b1-442d6ddd6a8mr47990065e9.7.1747124030617;
-        Tue, 13 May 2025 01:13:50 -0700 (PDT)
-Received: from [10.61.0.48] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442d687bdc0sm155170805e9.39.2025.05.13.01.13.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 May 2025 01:13:49 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Peter Griffin <peter.griffin@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- tudor.ambarus@linaro.org, andre.draszik@linaro.org, willmcvicker@google.com, 
- kernel-team@android.com
-In-Reply-To: <20250506-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v4-0-9f64a2657316@linaro.org>
-References: <20250506-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v4-0-9f64a2657316@linaro.org>
-Subject: Re: [PATCH v4 0/5] Fix gs101 CPU hotplug support
-Message-Id: <174712402896.10876.6908975403195941350.b4-ty@linaro.org>
-Date: Tue, 13 May 2025 10:13:48 +0200
+	s=arc-20240116; t=1747124651; c=relaxed/simple;
+	bh=k+N9xlBid0oFy+n9kqGpCtuRXnfGGRLWVaaP3qnR5Ro=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=ICcWfy5kgK3B3sG3DjItRLj8Hb8TOC0M8dGg27YpiNr/H8Sfs865MVmn+7uhKBORFbNyGoUAtVfFJoqMTNLHidYv1pqBgIevpmx94Mu7LYl/i1gSpgpPBhQd8Lisa5np+7zs4OKVqtpUAdL4Tkvjg3it5C3jcT3PJ4hJNyIEmyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fzi6WdkS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B81F7C4CEE4;
+	Tue, 13 May 2025 08:24:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747124650;
+	bh=k+N9xlBid0oFy+n9kqGpCtuRXnfGGRLWVaaP3qnR5Ro=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Fzi6WdkSfLlWyKMNqE1sOYEW781g7F+fKpWz1Kkyin2QRW4fEcuZAQQjUnlZuFcUi
+	 gidYJmEHt3WAubj/yPjL2BVUsCZGby/qK4x16E1ui8scmpVih3r6m8DyNnKt/mRmiJ
+	 e6UREunLsdSN5SSgoaAzbSUpI05Fv1gnU98JnOK/y4h2I6EWOb1UY7OEJvEVk1bnhE
+	 8d0ZjHFcKyVSQOwPif5etJetC2IGEv5N8YMlxchDG5vRm+oEIp3gKIc9nebGyc/Wwl
+	 0wWtLoY0i0qWdHHjaJy/yWEAaDC3IqUPlurSTkqfgQR639eGhFRn7Q1T8sEOO/fB5r
+	 VafLRpQ3vzq2A==
+Message-ID: <f8eb7131-5a5d-47ec-8f3b-d30cdb1364b5@kernel.org>
+Date: Tue, 13 May 2025 10:24:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: pse-pd: Add bindings for
+ Si3474 PSE controller
+To: Piotr Kubik <piotr.kubik@adtran.com>,
+ Oleksij Rempel <o.rempel@pengutronix.de>,
+ Kory Maincent <kory.maincent@bootlin.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <bf9e5c77-512d-4efb-ad1d-f14120c4e06b@adtran.com>
+ <259ad93b-9cc2-4b5d-8323-b427417af747@adtran.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <259ad93b-9cc2-4b5d-8323-b427417af747@adtran.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
 
+On 13/05/2025 00:05, Piotr Kubik wrote:
+> +
+> +maintainers:
+> +  - Piotr Kubik <piotr.kubik@adtran.com>
+> +
+> +allOf:
+> +  - $ref: pse-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - skyworks,si3474
+> +
+> +  reg-names:
+> +    items:
+> +      - const: main
+> +      - const: slave
 
-On Tue, 06 May 2025 21:57:26 +0100, Peter Griffin wrote:
-> As part of an effort to make suspend to RAM functional upstream on
-> Pixel 6 I noticed that CPU hotplug leads to a system hang.
-> 
-> After debugging and comparing with downstream drivers it became clear
-> that some extra register writes are required to make CPU hotplug
-> functional on these older devices which use a el3mon firmware.
-> 
-> [...]
+s/slave/secondary/ (or whatever is there in recommended names in coding
+style)
 
-Applied, thanks!
+> +
+> +  reg:
 
-[1/5] dt-bindings: soc: google: Add gs101-pmu-intr-gen binding documentation
-      https://git.kernel.org/krzk/linux/c/0475b0d8a1e0f80a47536dfb19c28dc4bb6adc05
-[2/5] dt-bindings: soc: samsung: exynos-pmu: gs101: add google,pmu-intr-gen phandle
-      https://git.kernel.org/krzk/linux/c/83b66cdb5d5b6aa4ed1f085b3b2f917af0c2890b
-[3/5] MAINTAINERS: Add google,gs101-pmu-intr-gen.yaml binding file
-      https://git.kernel.org/krzk/linux/c/20adeaca8bc6a084f2610e7c89a8601c9904a0e2
-[4/5] arm64: dts: exynos: gs101: add pmu-intr-gen syscon node
-      https://git.kernel.org/krzk/linux/c/aaf02428fdd50b818c77644bc0b8a0b282ce8ea4
-[5/5] soc: samsung: exynos-pmu: enable CPU hotplug support for gs101
-      https://git.kernel.org/krzk/linux/c/598995027b9181ada81789bf01fb8ef30d93c9dc
+First reg, then reg-names. Please follow other bindings/examples.
 
+> +    maxItems: 2
+> +
+> +  channels:
+> +    description: The Si3474 is a single-chip PoE PSE controller managing
+> +      8 physical power delivery channels. Internally, it's structured
+> +      into two logical "Quads".
+> +      Quad 0 Manages physical channels ('ports' in datasheet) 0, 1, 2, 3
+> +      Quad 1 Manages physical channels ('ports' in datasheet) 4, 5, 6, 7.
+> +      This parameter describes the relationship between the logical and
+> +      the physical power channels.
+
+How exactly this maps here logical and physical channels? You just
+listed channels one after another...
+
+> +
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +    patternProperties:
+> +      '^channel@[0-7]$':
+> +        type: object
+> +        additionalProperties: false
+> +
+> +        properties:
+> +          reg:
+> +            maxItems: 1
+> +
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Krzysztof
 
