@@ -1,179 +1,112 @@
-Return-Path: <devicetree+bounces-176624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5282CAB4DF2
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 10:24:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5669AB4E09
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 10:25:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA79A16AE5C
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 08:24:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CB95176195
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 08:25:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0ACE202C49;
-	Tue, 13 May 2025 08:24:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 099A2202F93;
+	Tue, 13 May 2025 08:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fzi6WdkS"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WxeALdY8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C144202987;
-	Tue, 13 May 2025 08:24:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D68E6202C5A;
+	Tue, 13 May 2025 08:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747124651; cv=none; b=mg5iih5/fDU0KEjXZIhiKBvigypPG2fqE0KbX7MjknIddN+CCicKp1I4UaKWWln7an4UCLkZYQbxFwswdRRfy09G7Hqes6A8lHCImvZiFfM/ZB8Mw8btQmaFL7xQh56K1S/KoXKAXx5c3OfuU3r2QEO/UQjTMh2/a4d7xmIirDg=
+	t=1747124751; cv=none; b=IZKQWnvanWmpnY7sDPgSg6VAQNddm6iNFKa1VAr80Qg3y9A2FVal14Fj/+bfRw+9rbKHmpSSg1mbyVi+uNM3YNGto8sCPOIsdnegXj2jFA33YhbQvg1TSGn5pwlgQxxU7w025lsp8Il+kL5YaGuSziOLupV/lWL0dqeoNGS4n84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747124651; c=relaxed/simple;
-	bh=k+N9xlBid0oFy+n9kqGpCtuRXnfGGRLWVaaP3qnR5Ro=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ICcWfy5kgK3B3sG3DjItRLj8Hb8TOC0M8dGg27YpiNr/H8Sfs865MVmn+7uhKBORFbNyGoUAtVfFJoqMTNLHidYv1pqBgIevpmx94Mu7LYl/i1gSpgpPBhQd8Lisa5np+7zs4OKVqtpUAdL4Tkvjg3it5C3jcT3PJ4hJNyIEmyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fzi6WdkS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B81F7C4CEE4;
-	Tue, 13 May 2025 08:24:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747124650;
-	bh=k+N9xlBid0oFy+n9kqGpCtuRXnfGGRLWVaaP3qnR5Ro=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Fzi6WdkSfLlWyKMNqE1sOYEW781g7F+fKpWz1Kkyin2QRW4fEcuZAQQjUnlZuFcUi
-	 gidYJmEHt3WAubj/yPjL2BVUsCZGby/qK4x16E1ui8scmpVih3r6m8DyNnKt/mRmiJ
-	 e6UREunLsdSN5SSgoaAzbSUpI05Fv1gnU98JnOK/y4h2I6EWOb1UY7OEJvEVk1bnhE
-	 8d0ZjHFcKyVSQOwPif5etJetC2IGEv5N8YMlxchDG5vRm+oEIp3gKIc9nebGyc/Wwl
-	 0wWtLoY0i0qWdHHjaJy/yWEAaDC3IqUPlurSTkqfgQR639eGhFRn7Q1T8sEOO/fB5r
-	 VafLRpQ3vzq2A==
-Message-ID: <f8eb7131-5a5d-47ec-8f3b-d30cdb1364b5@kernel.org>
-Date: Tue, 13 May 2025 10:24:05 +0200
+	s=arc-20240116; t=1747124751; c=relaxed/simple;
+	bh=KmyKHA+amWKsGoGT7dggZMj1WfmDBtdepYE+juYv7zg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:From:To:Subject:
+	 References:In-Reply-To; b=jQ7Eupk5582TWqYWOEGsg8S2dJPrMS12Z4ujKhk3OurHSvMk2gCl3sADC8LUmp8h2R1YaiUkoMuWTlbCMqNGijsGJci2dtf4NkhrBX5rmr+wYo/pKuEnxupGJLvFU3+MdwWoaHOFEmqF6mAbaCH2FJRPRkkXRuyQI2nw0PP01is=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WxeALdY8; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2DD114341A;
+	Tue, 13 May 2025 08:25:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1747124741;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QaYT2F+5JVMz3q6yy4S7Oj1Azgj0lWFgsw5T0hxiTco=;
+	b=WxeALdY8M10GpHf+0grO4hv46XBXpsMNoi2LtGiJI3QA0QA3r1ZeF3TmbCBgOx6RV+O+D7
+	3OJUfy+gVkbjBnfVDpIcqhDov/JVGPEKs+O22kEj5/Ojk4/ePSeTyRscQU9qY3wLSw9hri
+	kFGsLHN+0Sgd6bJ6ovUnA8vcXtIrTIhPUP0psPV/gNR3n4gYZFe8R9OMPbXwJwwKOqdTcX
+	V8W4ZeImyBwdw5BZHxroSQz5qZche5A8tUEwmQcLuHzAPF6UGMW+y5WVA5+KMgbz4WfcU9
+	yc8RuzAFCLhfjcjlDDodQ2GqXLEVxFQb1K8/J9PkSAR5off3+Wl7oS91jCWEGA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: pse-pd: Add bindings for
- Si3474 PSE controller
-To: Piotr Kubik <piotr.kubik@adtran.com>,
- Oleksij Rempel <o.rempel@pengutronix.de>,
- Kory Maincent <kory.maincent@bootlin.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <bf9e5c77-512d-4efb-ad1d-f14120c4e06b@adtran.com>
- <259ad93b-9cc2-4b5d-8323-b427417af747@adtran.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <259ad93b-9cc2-4b5d-8323-b427417af747@adtran.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Tue, 13 May 2025 10:25:38 +0200
+Message-Id: <D9UW14SJQ9HV.3BA1FYKMG9DE0@bootlin.com>
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
+Subject: Re: [PATCH v8 02/11] mfd: Add max7360 support
+X-Mailer: aerc 0.19.0-0-gadd9e15e475d
+References: <20250509-mdb-max7360-support-v8-0-bbe486f6bcb7@bootlin.com>
+ <20250509-mdb-max7360-support-v8-2-bbe486f6bcb7@bootlin.com>
+ <aCG9lyaCGchBsqLE@smile.fi.intel.com>
+In-Reply-To: <aCG9lyaCGchBsqLE@smile.fi.intel.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftdefieehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvefhvffuofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeftedvgfegteehjeejtdefgffhteevvddtvdejleeghfefuefgledtteduvdetkeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlr
+ dhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On 13/05/2025 00:05, Piotr Kubik wrote:
-> +
-> +maintainers:
-> +  - Piotr Kubik <piotr.kubik@adtran.com>
-> +
-> +allOf:
-> +  - $ref: pse-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - skyworks,si3474
-> +
-> +  reg-names:
-> +    items:
-> +      - const: main
-> +      - const: slave
+On Mon May 12, 2025 at 11:21 AM CEST, Andy Shevchenko wrote:
+> On Fri, May 09, 2025 at 11:14:36AM +0200, mathieu.dubois-briand@bootlin.c=
+om wrote:
+>
+>> +#define MAX7360_REG_GPIO_LAST		0x5F
+>
+>> +#define MAX7360_FIFO_EMPTY		0x3f
+>> +#define MAX7360_FIFO_OVERFLOW		0x7f
+>
+> Please, be consistent in style of the values.
 
-s/slave/secondary/ (or whatever is there in recommended names in coding
-style)
+Is your point about the alignment of the values? Most of these are
+aligned on column 41, including the ones above. I just have an exception
+with MAX7360_PORT_CFG_*, as they are a bit too long. But as we are using
+tabs here, indentation appears a bit broken in the patch.
 
-> +
-> +  reg:
+OK with all other points.
 
-First reg, then reg-names. Please follow other bindings/examples.
+Thanks for your review.
+Mathieu
 
-> +    maxItems: 2
-> +
-> +  channels:
-> +    description: The Si3474 is a single-chip PoE PSE controller managing
-> +      8 physical power delivery channels. Internally, it's structured
-> +      into two logical "Quads".
-> +      Quad 0 Manages physical channels ('ports' in datasheet) 0, 1, 2, 3
-> +      Quad 1 Manages physical channels ('ports' in datasheet) 4, 5, 6, 7.
-> +      This parameter describes the relationship between the logical and
-> +      the physical power channels.
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-How exactly this maps here logical and physical channels? You just
-listed channels one after another...
-
-> +
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      '^channel@[0-7]$':
-> +        type: object
-> +        additionalProperties: false
-> +
-> +        properties:
-> +          reg:
-> +            maxItems: 1
-> +
-Best regards,
-Krzysztof
 
