@@ -1,116 +1,197 @@
-Return-Path: <devicetree+bounces-176592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DC4FAB4AA3
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 06:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87DA5AB4AA8
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 06:51:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 390B51895B6A
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 04:48:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A3571B422A9
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 04:51:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2CF71E51E1;
-	Tue, 13 May 2025 04:48:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4450E1DF27D;
+	Tue, 13 May 2025 04:51:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AAoFhqjC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rclJIR89"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449021E503C;
-	Tue, 13 May 2025 04:48:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A68A2AD0B;
+	Tue, 13 May 2025 04:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747111683; cv=none; b=S/NDOlz+QmapboXfjtvWbNYkFz0KIVzKfVnmzQokKuhEoTTVeNH00i1BTg6J3ZY25WyVyQQyMoSdafLUuSuQh/Iaq+c3LvtjTYt5OmQfsmHsarrgkYla9a3rveE3p+jqxrldozSBZf1Sr9SNPNFmPJLtu7rnlygf2YXyRTh1ayM=
+	t=1747111860; cv=none; b=OIkNuN5gmEpFFYZz0npse3qilCPCf4pLOWy9mjT4+tRl5x5a+AW0X2IvPV7UeUKvIFrwXRbeWaRcOuDAHDxhohO+iRwU3xeE8NIYtxVN+jrabxQR5quv40MPFwO9m8L4mMZ55cqqOKbyDZV9RB/eZAehhr6FyrXYDczN8qebm/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747111683; c=relaxed/simple;
-	bh=/T5Wi2b5uYG0Q1em6Md1MYRW9HM0ILFKKyBKSuRChRQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jfJjW2FIP7BJevWMB/tq/J0g2FataSYsIDpO52BtHD4oxfBRypKlp6zRqoQGP+dGnly38wDMQLod1gPnWOfUYvyGeLSw6hEV9Djpbkwx+EZxqNwQ3fxM+v2/GuQJJ5xI1jVUmFJIHVq/yvUfeTgIdZnky40F/PVDTzj1YonrDR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AAoFhqjC; arc=none smtp.client-ip=209.85.219.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-6f544014883so27511766d6.0;
-        Mon, 12 May 2025 21:48:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747111681; x=1747716481; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KR7eKLJbwnrfCRgfL+syprkvAujQisMfVa8RFU773iE=;
-        b=AAoFhqjC/n7wrN90uep8QXi6DpNsOuDsTAlHyH12OtM7iE8qUoAOwbJVTCCXmJk87H
-         NDgTVkiBGugjFeYV1vnmxsDVUork4fMcxQ1Fax7+K/cm5nR/HdCWYXZINpGX95p3moVP
-         nsBM3hUNkxqAFo7BA70HHtitU9NNs7ul7690egx06NJxaTPAB2I+OwNi+7IWSH4bMVwj
-         qN9WlyxNpog3d6dg/Rn8gSRx1DgtP0zHFLFzFoa1Efrfc7FRRLCjYwOrbl7eOO0u48/z
-         95XhGj6iFuaRFPy8Im2C65hNnqrbXKsAAes8Sgtjm+uSllUtuG6XTan0CqAhSfwLz8Zx
-         hNmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747111681; x=1747716481;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KR7eKLJbwnrfCRgfL+syprkvAujQisMfVa8RFU773iE=;
-        b=OLKL8JyuDam/ETGBqBTjAZiVJaZjM3QkpOuVnOVaOlX4eILuQCnOT3OnwwLMHK8y/s
-         Qv6vkBryMvnwMflCBOSrMx/huHaNlYmeZv6mMe5Jd2JCUokNV1dTg0KDOLLvWuldFwNE
-         EU63HkCzq46ng0HZFWlTMi3ga1KLt/d0/lmCVYDOn1qE6qW3ZmhkNeZp6TFgZh50/RbA
-         YhAXZwWxtmGN1CcQ4CDRfDI5jux95N5hzq1PYGAXZn/lFZNF7eYllofT6iz005eoACY7
-         17XT1yzOzX2oaJ6fH69J4TwTYjk4g1+lY9PQmeCv0Gq/wN0VTvGd+bjFA7xvS3yhgpzR
-         gOuw==
-X-Forwarded-Encrypted: i=1; AJvYcCVCWaDd50G1u3JvyiC9h80AgCutJ9BQlpeYunfk6ZEOEqBPGcJBOdmGyxYN6dgfy5dLG21UpDspUqaiS2fO@vger.kernel.org, AJvYcCXPyvNa72q9Cm/ydkkXUNp4nz2XaopC2XQABv5ok8/i0m2TKkikh3KZSuUSEkd86juvLjF+Sqm4YjCH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhQsz7tRTUuQjvVnKaETaTn12uaEuJYPln8MOrMf8j24DPwGnK
-	mQCOex8IRN9K1gWQA346Pn3jmOnEKGJXYFy4caw7avrQTOwNnime
-X-Gm-Gg: ASbGncuBuqornXhvRlTPONcHlcasshAdCCapR/oNvBywmxfLixBAIrowKC/+zbYwtBa
-	tBoeL3mjod8eDJnLceVqhzPzpu+tURDEkuJ46WHrt/Nhuu3X4L1XUMpA5BZEWCrat1la9Yg6Mmh
-	HyKPrz+QTzSFl9iFhbNBrMj6hzmLs20+YQaAIIv0mCU5HgJ9veBpSHLT2UeuuP8IB5alvSAnTcP
-	1Hfkw/Qvyn0sADB/q3FsRSz2MKxMwjpf4bsFy+ZZ2juhuNYW6UFb/gHtGmBdJyBq7v9bGf+AKPD
-	WpEt4jpQ+zuhs4MWUNWLzkX/2aw5N8FIBROPbw==
-X-Google-Smtp-Source: AGHT+IGMMVWi5sUhGfqR5ppR5sw1BwP28UqLP+NhcalHnZR1zGlpwyPrB1d1heId/WN2/hYqgwmEjA==
-X-Received: by 2002:ad4:5d63:0:b0:6f6:e411:a050 with SMTP id 6a1803df08f44-6f6e47f6168mr249312916d6.26.1747111681132;
-        Mon, 12 May 2025 21:48:01 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6f6e3a47306sm62394856d6.89.2025.05.12.21.48.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 May 2025 21:48:00 -0700 (PDT)
-Date: Tue, 13 May 2025 12:47:30 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicorn_wang@outlook.com>, Han Gao <rabenda.cn@gmail.com>, 
-	devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Inochi Amaoto <inochiama@gmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] riscv: dts: sophgo: Add xtheadvector to the sg2042
- devicetree
-Message-ID: <iydi574treznfdvaibi7obxtyozs4b2sfiddpvckaovpgcpj6g@nyctqbjizxsc>
-References: <cover.1746828006.git.rabenda.cn@gmail.com>
- <af839bc200637e4eae1cb327c95ac98c82bccd52.1746828006.git.rabenda.cn@gmail.com>
- <MA0P287MB22624E52A6647B43D53DCD2CFE96A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1747111860; c=relaxed/simple;
+	bh=Kj9y88vKMk6e9XGSAkxvceBrY7AAK8JqUjxUEgQTuL0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OgdFk21kQ2cDtzkgNP20xW3UMflRU7AS8DA/5PjYR2CbxP0k+UPFRQ/tUeKoIykgld5K/8SinU+vZXjad1S6a732lYycRfZrUVS3wcnQ5cbcnIkljCaluyUsGOumBhYTnJwh5B8ApalW9K5ff1kvyMdYpaU2LLs1BeWeksBW8t8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rclJIR89; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9554BC4CEE4;
+	Tue, 13 May 2025 04:50:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747111859;
+	bh=Kj9y88vKMk6e9XGSAkxvceBrY7AAK8JqUjxUEgQTuL0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=rclJIR89DkmG3lgyvIO1p7n9rryTDILBlzj0vZ+mD5ECLRzL76yH6kmgT3ur0Ob5b
+	 JAXGQD/ukixeC79W5P/mLPez4UJDLZMgWooDCUjM0wcKrAgW7JfQrd/tzHL2CuKXNw
+	 ZaNhGKeGS652M+KTGce9tZ/688Iv4E6PSyi8/GeHSE90llDFJcSclOPQj+LFjFRg6+
+	 D4FZJLPQwY2kZ2RoKx9K9ZzxVbMgV8/bTxD9VuEh1+h1FZX/jqnKQqNxLQZxZtjHek
+	 rj/XN/6spPE1ZDOltF/1OX5Vw7EtpcrnFkQ2L25yERKNAHUqNnpX2aSA5ppA2t8AzQ
+	 CDhkE860rANgw==
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-54fc61b3ccaso5287044e87.1;
+        Mon, 12 May 2025 21:50:59 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVwPaYv4kT3OeeFVz6WAbt9cSRyujfe23ns2XAQ+7gWmTCPH3uLKxHUmHbhFOo4iNZqMJ6nHbUxSxnrtcMz@vger.kernel.org, AJvYcCWCHZvnv8/U03KlISXrCUx2URantg+raQtMHxYPqcaPy3lbvvHBQRp0t45X41vOq9VQ7v8AFnrJGznX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzn4XOQyDLapKlM6h62W0FGK22x3taH6L3BiEadZM51R1R0gD1Y
+	a03E1xXwd5qRH2fAhzxcCq+08Hzko1LzkqGq46xd4Wu/M5TXoERBGSqsBv68P62364Dd5xb/ioG
+	AUza3XGdtEFITCzAp6ZHrQK3Xm44=
+X-Google-Smtp-Source: AGHT+IGK1g+taeuG7QrcEmqHow6t43QaMNZHDkqVlueTRCH2Gydah1Lc+hhFSbpP+PhvofrmpRRDvHZprff8AIjquqA=
+X-Received: by 2002:a2e:b8c9:0:b0:30b:efa3:b105 with SMTP id
+ 38308e7fff4ca-326c45900ccmr65056151fa.19.1747111858293; Mon, 12 May 2025
+ 21:50:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <MA0P287MB22624E52A6647B43D53DCD2CFE96A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+References: <20250114181359.4192564-1-masahiroy@kernel.org>
+ <20250114181359.4192564-4-masahiroy@kernel.org> <CAL_JsqJyNiUF8--wz2DsngUAuSUboq8oqZRxAzqY+iBRM7rkjQ@mail.gmail.com>
+ <CAK7LNATCFFQFYenkY2F5HkXx_otub9ebuTHJOD_TLiqCDnYN0w@mail.gmail.com> <b211188e-6c31-49fd-96be-137d3fc3f7bb@monstr.eu>
+In-Reply-To: <b211188e-6c31-49fd-96be-137d3fc3f7bb@monstr.eu>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Tue, 13 May 2025 13:50:22 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQqR7rtuCSy895q-WeJR-uhVB_0UH1DrGPNLoz1_cRhtg@mail.gmail.com>
+X-Gm-Features: AX0GCFsWgAAx3-0dbj6FVKm9OU5vqHdXkH-KM7aRWeBmsq5D2OzLH-PHl7EZM_U
+Message-ID: <CAK7LNAQqR7rtuCSy895q-WeJR-uhVB_0UH1DrGPNLoz1_cRhtg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] microblaze: remove unnecessary system.dts
+To: Michal Simek <monstr@monstr.eu>
+Cc: Rob Herring <robh@kernel.org>, "Simek, Michal" <michal.simek@amd.com>, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 13, 2025 at 09:19:07AM +0800, Chen Wang wrote:
-> Hi，Han,
-> 
-> I tested with this patch and the machine can bootup. But I find when I run
-> "cat /sys/devices/system/cpu/cpu63/of_node/thead,vlenb", it print nothing,
-> though I expect to see 128.
-> 
-> Do you know why?
-> 
+On Mon, Feb 3, 2025 at 8:17=E2=80=AFPM Michal Simek <monstr@monstr.eu> wrot=
+e:
+>
+>
+>
+> On 2/1/25 04:42, Masahiro Yamada wrote:
+> > On Sat, Feb 1, 2025 at 7:25=E2=80=AFAM Rob Herring <robh@kernel.org> wr=
+ote:
+> >>
+> >> On Tue, Jan 14, 2025 at 12:15=E2=80=AFPM Masahiro Yamada <masahiroy@ke=
+rnel.org> wrote:
+> >>>
+> >>> The default image linux.bin does not contain any DTB, but a separate
+> >>> system.dtb is compiled.
+> >>>
+> >>> Michal Simek clearly explained "system.dtb is really old dtb more for
+> >>> demonstration purpose and nothing else and likely it is not working o=
+n
+> >>> any existing board." [1]
+> >>>
+> >>> The system.dts is not necessary even for demonstration purposes. Ther=
+e
+> >>> is no need to compile out-of-tree *.dts under arch/microblaze/boot/dt=
+s/
+> >>> unless it is embedded into the kernel. Users can directly use dtc.
+> >>>
+> >>> [1]: https://lore.kernel.org/all/d2bdfbfd-3721-407f-991e-566d48392add=
+@amd.com/
+> >>>
+> >>> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> >>> ---
+> >>>
+> >>>   arch/microblaze/boot/dts/Makefile   |   3 +-
+> >>>   arch/microblaze/boot/dts/system.dts | 353 -------------------------=
+---
+> >>>   2 files changed, 1 insertion(+), 355 deletions(-)
+> >>>   delete mode 100644 arch/microblaze/boot/dts/system.dts
+> >>>
+> >>> diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot=
+/dts/Makefile
+> >>> index 932dc7550a1b..fa0a6c0854ca 100644
+> >>> --- a/arch/microblaze/boot/dts/Makefile
+> >>> +++ b/arch/microblaze/boot/dts/Makefile
+> >>> @@ -1,8 +1,6 @@
+> >>>   # SPDX-License-Identifier: GPL-2.0
+> >>>   #
+> >>>
+> >>> -dtb-y :=3D system.dtb
+> >>> -
+> >>>   ifneq ($(DTB),)
+> >>>   obj-y +=3D linked_dtb.o
+> >>>
+> >>> @@ -11,6 +9,7 @@ $(obj)/linked_dtb.o: $(obj)/system.dtb
+> >>>
+> >>>   # Generate system.dtb from $(DTB).dtb
+> >>>   ifneq ($(DTB),system)
+> >>
+> >> Can't this be dropped as setting DTB=3Dsystem.dtb should work if there=
+'s
+> >> not an in-tree system.dts anymore.
+> >
+> > I believe this ifneq is necessary, just in case
+> > a user adds system.dtb to arch/microblaze/boot/dts/.
+> >
+> > 'system.dtb' is a special name because
+> > arch/microblaze/boot/dts/linked_dtb.S wraps it.
+> >
+> > So, $(DTB) is copied to system.dtb, and then
+> > it is wrapped by linked_dtb.S.
+> >
+> > If $(DTB) is already 'system',
+> > we cannot copy system.dtb to itself.
+> >
+> >
+> > See the definition of cmd_copy in scripts/Makefile.lib
+> >
+> > cmd_copy =3D cat $< > $@
+> >
+> >
+> > "cat system.dtb > system.dtb"
+> > would create an empty system.dtb
+> >
+>
+> I have played with this and pretty much this patch is blocking
+> simpleImage.system build target.
+>
+> I have no issue with patches 1-3 and I would keep system.dts as empty and=
+ keep
+> it in the tree because users (including me) just rewrite system.dts with =
+proper
+> DTS and call make simpleImage.system.
 
-Maybe this is a hex number? Do you try hexdump?
+Why is "system" so special?
 
-Regards,
-Inochi
+You hard-code this line:
+    dtb-y :=3D system.dtb
+
+
+"make simpleImage.system" compiles system.dts to system.dtb
+
+
+However,
+
+"make simpleImage.foo" does not compile foo.dts to foo.dtb
+since "dtb-y :=3D foo.dtb" is missing.
+This works only if you drop-in a pre-compiled foo.dtb
+
+
+"make simpleImage.<name>" works only when <name> is "system".
+
+Is this what you mean?
+
+
+
+
+
+
+
+--=20
+Best Regards
+Masahiro Yamada
 
