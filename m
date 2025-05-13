@@ -1,159 +1,181 @@
-Return-Path: <devicetree+bounces-176579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F32D2AB4947
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 04:10:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E93AB494F
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 04:12:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B92623A86B7
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 02:09:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 422DB463900
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 02:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F061B21AD;
-	Tue, 13 May 2025 02:09:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C5801A5B99;
+	Tue, 13 May 2025 02:12:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hp9k/4Ph"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BOLRnVh3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D7591A4F12;
-	Tue, 13 May 2025 02:09:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E07E19CC11;
+	Tue, 13 May 2025 02:12:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747102197; cv=none; b=lRIZmdn4bmjKNKCm7A4OTAIkhBCZjPRS6fZpfhvvZQmCDtM+sRSh+I+kVWZ0cKrbMQ5nb0uxBZKyR8dzyWcnGzZfwOM6MbDCsQQzgbfEoI/V56WQ37PlnXbNuat+FevL+qKBCX3jUDUL/PVwGz+rnwlSuIAFAmtvRYeLkOjb+58=
+	t=1747102337; cv=none; b=NMVT4Ck+oBdmU6RsWxnF2vnWCESMLceRztGbX3XJOsXkdAEpguAbfUyMEW6NVO2hCrItZNauCM6vC2Lg6Wlsms5hB3oEB+1YKMCidCVA5+28ajMFYCW8Yk2FYNYdZaufc7w3SE+pnhYvButMpwW1+avBYvDG0yHuZZBQmtclFWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747102197; c=relaxed/simple;
-	bh=jli27B/5jY90qrTVnL5B2hPffaX2OOJy3Y08w33Rh5k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FuN1kQ1lhNPiplEbd/L/jfkcqGuONW2jd0K9zXYGumPDxofO/Fz2kg2xfX/vTdMkRFE8UcTpRhHyi49NphpNVe5yx5NjWfk2+9PlhUG48fFBBjZU6yq16z3U7mRVW9Gf4NrWaE6BT1F0K+X3Fxhgh72DatQSNH2Ff6PpT0fpweE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hp9k/4Ph; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747102195; x=1778638195;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jli27B/5jY90qrTVnL5B2hPffaX2OOJy3Y08w33Rh5k=;
-  b=hp9k/4PhH6ghE1rnd/ara5/AxElT6QQCUyO7gmtydZvIoTvJLDkD8vJU
-   PTbx+BPAyNqFdfBL5kODfEvBX8+/WSOBg4UVTCp3hjIRu7rt157hfgY2W
-   0GVFdb2ReIsCJ/2sxdGTUBkjocQPtb6QxSk8sgC5lmBghP4BIVYYyhXiJ
-   zvOTfSHrBre94rQ0Brck8Wz79+2g05llqdyZS7exAdnFvxEwUjlAD+Jwn
-   tneFra/yQll+OP64dHBJSJlRT/u4dw1sol6iL/veXFEOVePaudlmJXkbn
-   gMAl9zsbBe76FSB8gY4tndiG+QZZ4HFJmmPMrklnsQeJ+H1uCJFL0xNYi
-   g==;
-X-CSE-ConnectionGUID: KGf8opHJRVedZndU3LAJBQ==
-X-CSE-MsgGUID: JAsDETEUQEiObh63foGZsw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="59929229"
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; 
-   d="scan'208";a="59929229"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 May 2025 19:09:55 -0700
-X-CSE-ConnectionGUID: 4KmA8ZP2Q1Kxb+NIqTdIWA==
-X-CSE-MsgGUID: 3YBxHFhgQvCuzV2Ed3pDKQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; 
-   d="scan'208";a="168642027"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 12 May 2025 19:09:51 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uEf5Z-000FaV-2Y;
-	Tue, 13 May 2025 02:09:49 +0000
-Date: Tue, 13 May 2025 10:09:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Binbin Zhou <zhoubinbin@loongson.cn>,
-	Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Cc: oe-kbuild-all@lists.linux.dev, Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] mmc: loongson2: Add Loongson-2K SD/SDIO
- controller driver
-Message-ID: <202505130918.uanOGxju-lkp@intel.com>
-References: <1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1747102337; c=relaxed/simple;
+	bh=msGACJxgZMAcYAO5uKeVaNtkgzsFsO88vG4SqG0T/Zc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=P9OgrOa6YLxjNOJR8LDNgJ13mVCxreYUW2RDbhyE1c3CvvgseRKBEMR/z1GovthIJ6iU67bG0XaZCKxXJ7YAhqJVl40zZ4bu2mz26kL6GJY5NmLFFA3vrwehy/AEb2G5MNGRaUp2IWDNBCXHDi4/3z4a4roQF9BoMYO4Q/0M5NY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BOLRnVh3; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54D0qQGx029118;
+	Tue, 13 May 2025 02:12:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8SUb8hEHEFHY95Bi7e51NdrMmosGRZtsBtm7SlwE1fg=; b=BOLRnVh30ACDx25x
+	RT7fyKUZhxWhJ0ShcXguAsVwfGzIVSSnQ+4uw0trCy1IlO4HlAa+TU9YoKOSPyT9
+	bLNSZIETvImotsAFWlyV413a3Bi3Xbm4ePpN32WQ/UrCd1beMzFs5NM/QnxUDPn3
+	AxhuanuguR1PRLjseg5EvfxQjfoM26+LR2cSIwyTl1LmDnAqQy/O2IAP8aX81U9y
+	xbzfcbAgFvbv8PIjCU85jtL3W7e3lwttykQWcQtKoUjAnmouDbz0JvjcT6V8cSZe
+	ENLBoJXxKeTNyZ4xG4kwSPNqVlfuhicYcb7TYcJIF6nIET7jIP4qRF86NAFGeHDa
+	xVUJgQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46hxvxe3ks-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 May 2025 02:12:11 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54D2CArC006497
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 May 2025 02:12:10 GMT
+Received: from [10.239.132.205] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 12 May
+ 2025 19:12:03 -0700
+Message-ID: <76327ba4-a416-41b5-b6ab-d1f9c7b58126@quicinc.com>
+Date: Tue, 13 May 2025 10:12:01 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin@loongson.cn>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: qcs615: Add IMEM and PIL info
+ region
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250507-add_qcs615_remoteproc_support-v2-0-52ac6cb43a39@quicinc.com>
+ <20250507-add_qcs615_remoteproc_support-v2-4-52ac6cb43a39@quicinc.com>
+ <64893588-544f-4cb0-8c0b-7eef588468d5@oss.qualcomm.com>
+ <c0ab504c-2b27-45cd-be8f-1176230b8bfd@quicinc.com>
+ <f81b3f81-b14d-41c1-9968-2d473e1f0947@oss.qualcomm.com>
+ <2eb4606c-16f8-4e34-8084-039c9e57bbdd@quicinc.com>
+ <3065cdb1-30ff-4be3-8959-45e4c4edc123@oss.qualcomm.com>
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+In-Reply-To: <3065cdb1-30ff-4be3-8959-45e4c4edc123@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEzMDAxOSBTYWx0ZWRfXzxH3iEgCgX5S
+ ReyIO82We46svPrFw4vHuB8LAsmmtJZoWT2Jts3Lu/hDkFzQRhphAAdc01E3ZokvCdEVCM3vaRj
+ NScvuC9LFCkcu6/pRC+47HbssDAcBc2fR6BzQ7qOhJkfylkDuJFwPhzFKN05F8jlMUZJ7Icbn8Y
+ n0jhPrJ5cHyK/5NN4MbeX5mlSkJzRMLiPT40X5CrhKo8PAVlQCwpPeE71SxCV6AyvOnlZyoH43s
+ bYXplVP14IAGb1fnTJEFhDeS3E6PkEJ5hKtKuQvT/C2UbJStQQhy2HULOC9LLVYQYrBtnUYxb/t
+ WD2R6fmaEnGhLkm4aiKyTaEvIb+arzMFgQEvs62geJIFQp9Yv8UCUf0FHyGvW8z8pcVsCq5DYXy
+ ZIZxyHFb75u5m4zYfJ9Yh+4LbezFfN/5P+bOHGL8Zchk6SdPRQZKRsdZU82oQ7kXYC75IFXR
+X-Proofpoint-GUID: cRG15oF3Pb0sJNfQvcDa5U1fiBsN7Daf
+X-Authority-Analysis: v=2.4 cv=WMV/XmsR c=1 sm=1 tr=0 ts=6822aa7b cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
+ a=dHwnwrLdN51fry_tQmQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: cRG15oF3Pb0sJNfQvcDa5U1fiBsN7Daf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-12_07,2025-05-09_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 adultscore=0 lowpriorityscore=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 impostorscore=0 bulkscore=0
+ spamscore=0 mlxscore=0 mlxlogscore=869 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2504070000 definitions=main-2505130019
 
-Hi Binbin,
 
-kernel test robot noticed the following build warnings:
 
-[auto build test WARNING on 9e12816f9a6195f1f5b7c5dc2e388c2458411b97]
+在 5/13/2025 3:10 AM, Konrad Dybcio 写道:
+> On 5/12/25 5:20 AM, Lijuan Gao wrote:
+>>
+>>
+>> 在 5/9/2025 4:54 PM, Konrad Dybcio 写道:
+>>> On 5/9/25 9:37 AM, Lijuan Gao wrote:
+>>>>
+>>>>
+>>>> 在 5/8/2025 10:41 PM, Konrad Dybcio 写道:
+>>>>> On 5/7/25 12:26 PM, Lijuan Gao wrote:
+>>>>>> Add a simple-mfd representing IMEM on QCS615 and define the PIL
+>>>>>> relocation info region as its child. The PIL region in IMEM is used to
+>>>>>> communicate load addresses of remoteproc to post mortem debug tools, so
+>>>>>> that these tools can collect ramdumps.
+>>>>>>
+>>>>>> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+>>>>>> ---
+>>>>>>     arch/arm64/boot/dts/qcom/qcs615.dtsi | 14 ++++++++++++++
+>>>>>>     1 file changed, 14 insertions(+)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>>>>>> index 53661e3a852e..fefdb0fd66f7 100644
+>>>>>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+>>>>>> @@ -3266,6 +3266,20 @@ sram@c3f0000 {
+>>>>>>                 reg = <0x0 0x0c3f0000 0x0 0x400>;
+>>>>>>             };
+>>>>>>     +        sram@146aa000 {
+>>>>>> +            compatible = "qcom,qcs615-imem", "syscon", "simple-mfd";
+>>>>>> +            reg = <0x0 0x146aa000 0x0 0x1000>;
+>>>>>
+>>>>> 0x14680000 0x2c000
+>>>>
+>>>> I checked the latest datasheet, the Shared IMEM address is 0x146aa000 and its size is 0x1000, 0x14680000 is the start address of IMEM layout. The shared IMEM is used for debugging purposes, while the others parts are dedicated.
+>>>
+>>> Even if we don't use the entirety of it, it's good to describe
+>>> the whole block
+>>>
+>>> Konrad
+>>
+>> According to the definitions on all existing upstream platforms, this imem points to the shared imem. Should we stay consistent?
+> 
+> That is because everyone kept copying over whatever the downstream
+> kernel did ;)
+> 
+> Let's describe the whole region - at best, it doesn't hurt
+> 
+> Konrad
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Binbin-Zhou/dt-bindings-mmc-Add-Loongson-2K-SD-SDIO-eMMC-controller-binding/20250507-153435
-base:   9e12816f9a6195f1f5b7c5dc2e388c2458411b97
-patch link:    https://lore.kernel.org/r/1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin%40loongson.cn
-patch subject: [PATCH v2 2/4] mmc: loongson2: Add Loongson-2K SD/SDIO controller driver
-config: csky-randconfig-r112-20250513 (https://download.01.org/0day-ci/archive/20250513/202505130918.uanOGxju-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 14.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20250513/202505130918.uanOGxju-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505130918.uanOGxju-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/mmc/host/loongson2-mmc.c:534:41: sparse: sparse: incorrect type in assignment (different base types) @@     expected unsigned int [usertype] @@     got restricted __be32 [usertype] @@
-   drivers/mmc/host/loongson2-mmc.c:534:41: sparse:     expected unsigned int [usertype]
-   drivers/mmc/host/loongson2-mmc.c:534:41: sparse:     got restricted __be32 [usertype]
-
-vim +534 drivers/mmc/host/loongson2-mmc.c
-
-   500	
-   501	static int loongson2_reorder_cmd_list[] = { SD_APP_SEND_SCR, SD_APP_SEND_NUM_WR_BLKS,
-   502						    SD_APP_SD_STATUS, MMC_SEND_WRITE_PROT,
-   503						    SD_SWITCH };
-   504	
-   505	/*
-   506	 * According to SD spec, ACMD13, ACMD22, ACMD51 and CMD30
-   507	 * response datas has different byte order with usual data packets.
-   508	 * However sdio controller will send these datas in usual data format,
-   509	 * so we need to adjust these datas to a protocol consistent byte order.
-   510	 */
-   511	static void loongson2_mmc_reorder_cmd_data(struct loongson2_mmc_host *host,
-   512						   struct mmc_command *cmd)
-   513	{
-   514		struct scatterlist *sg;
-   515		u32 *data;
-   516		int i, j;
-   517	
-   518		if (mmc_cmd_type(cmd) != MMC_CMD_ADTC)
-   519			return;
-   520	
-   521		for (i = 0; i < ARRAY_SIZE(loongson2_reorder_cmd_list); i++)
-   522			if (cmd->opcode == loongson2_reorder_cmd_list[i])
-   523				break;
-   524	
-   525		if (i == ARRAY_SIZE(loongson2_reorder_cmd_list))
-   526			return;
-   527	
-   528		for_each_sg(cmd->data->sg, sg, cmd->data->sg_len, i) {
-   529			data = sg_virt(&sg[i]);
-   530			for (j = 0; j < (sg_dma_len(&sg[i]) / 4); j++)
-   531				if (cmd->opcode == SD_SWITCH)
-   532					data[j] = bitrev8x4(data[j]);
-   533				else
- > 534					data[j] = cpu_to_be32(data[j]);
-   535		}
-   536	}
-   537	
+Understood, it will be updated in the next patch.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thx and BRs
+Lijuan Gao
+
 
