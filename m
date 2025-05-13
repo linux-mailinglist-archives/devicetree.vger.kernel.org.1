@@ -1,123 +1,144 @@
-Return-Path: <devicetree+bounces-176956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCDD1AB5EF9
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 00:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5FA0AB5F0C
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 00:09:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA52B170A83
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:01:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DAFF4A0DD3
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D6DB20C009;
-	Tue, 13 May 2025 22:01:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA1F2202983;
+	Tue, 13 May 2025 22:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vo3x8pcQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YlpvT5Ib"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394E31AA1E0
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 22:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E726B672;
+	Tue, 13 May 2025 22:09:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747173663; cv=none; b=g14J9APYhnI1pO/OftpNB+8977FNlepE1EAcpHEoHhkiE9dgg9iMb2vY+mUBL9K4GXuSOAiXBuVs2yO0dCZgRnSc7W+Ffz6UU7IGwSaZRtQCmnoSczfmr+fwPb8AAVZ/fZLAcmVVrw3Ue5kXk5tXz4CHrwvBVaqdCugaImO3aEk=
+	t=1747174190; cv=none; b=tDh3cZoHN1EqugUTcwL83nNj+uAl9jXq0fyJt6y/3LJp+vrKTqANdIMEyv/gJbbaZ6dHvQBG/NSyoiZWOqjbE4Pnm/q9BlHja8mlr4XKQtWYgGc2oUSDMivGTctA9N/kf13LKRa/wrCPGHC4BXuEg1Lu2zE9iACDZgpiVbF8szI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747173663; c=relaxed/simple;
-	bh=M8KwhjSS1RRu3vcmpn2SJ50X7pXkQM18VTy/pRaCHMs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jxYRAIc0vSc3OQ9/8DGrrbkjmIUeXBPTke3cmhkO1v4G5X1E/8SPCMo+lEhvfwTBE3YFTw6Pb1W8egHFh4eqR0Dw2qv85NjN35mfKaWgP+2StJ4Xvn/CDLR5NYad4NytQNWdzmuPRqGhBNl0zDF/nHTikWsj1HlhKpfks7dVsPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vo3x8pcQ; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-54e8e5d2cf0so6543764e87.2
-        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 15:00:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747173658; x=1747778458; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cBfy0IwztkKYuj0G9rqTe8PA4ZbPefuZXYlpy/l1Wu8=;
-        b=Vo3x8pcQZ2HFIPHzMA4ouSxGDci88uoAiujFtVopnbPUUOwvAckr+rIqapjT0Zdo/0
-         Wigf07pjgHY7g2PW7WKYcwG+xJv1hTw01zFO++o6MfyUNT68ZB4o0aJQNob+cWFm5fga
-         JJiQgxAQPeVBHpa+I9Hd4wLn7VXCgVmm25lqsNa2ZRcndZSQyCX7Mv2/DykEziiFuKAd
-         Q8VkNWUXIMgyYO+3e0zr+D1YjL9wtM98yAQGIQ6p3S2IufpwLDwFY42VzXTuuO0IE3KR
-         xmT+dGMAbtnLdpTJTa39t3EYGX1Qh6sqgCop3FFvQADTbKDMiY+Ho7HJoBNoyltCtOxr
-         OWLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747173658; x=1747778458;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cBfy0IwztkKYuj0G9rqTe8PA4ZbPefuZXYlpy/l1Wu8=;
-        b=RG9uWVm8o83vt8BQQjowcGGJCcXZLvsBA8z3Ozxc4u8V4sMqaUsLo1nOj9CF0ZnhNe
-         FOFzvdK+jP8TbizrATwJcWUlnC0jHCDZHkK2c03DZflYzRZo3D/2oXK1uF1sXEB3pA8j
-         AXO630uCgReP/JaacQmi6qpDn8Fr/fEn8dUV5IAMkFR94CbqMoXssFvD5zdgD5CTXeXs
-         zAhg/GEIdbeC1zZpQZAkMfB2GIiL7j3I+URoTcCjKSTRTbPMH+5Z2dkCrEVFyKPjXG5t
-         sXnB6cbzjo8MTzzWIB6etVvTwxOPX56MELunpp/ASifqr0bn4ShNHm/DnMR+GPrU7NwS
-         hVjw==
-X-Forwarded-Encrypted: i=1; AJvYcCV/Neg33A6h7Tuq0mKjGmyLxiyAsamcN0z1OjwV3pzmlKfC/7X+rdlzAcuoE4xgAQjrCRqpfRWfHf02@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1SUd+N/yBVbz7zlUS29TWC69jI9xBi+1RO8qIEALsKPXHFSqC
-	+a1iB0yeIUdMMv7xitGxpF/2gU2LJ8UiTZuxzaJP2eq0ZBHZguEp8MGJrFpwf62FS/IqhgWVeZs
-	iZWd5lSMxvhq9MktzUrj4s7M8d/BsDqz9SQFwPw==
-X-Gm-Gg: ASbGncsR4vxcF77dkdOu2eXnBVrytGiIVd/J3lhq2fUp9jR2eoExbBTSX3G5C0AufvQ
-	7UKIO0E3akaELcB5/bbOOgVc2BZMc2gVYCPaVSbFRYfo1jqWBMEWWTI2jEn6yXHvLKrcKdVi84e
-	EdFvmnFrOo0xkq947waby9dgKBYf/fuKzm
-X-Google-Smtp-Source: AGHT+IF6oQ8WY4oAI0j38NTw42hro7gIMITGeTqxvpzWEjohz93RMVVPR05oQB98ewc/+Rrp9dNkz0FCv7tTOl0hN8Y=
-X-Received: by 2002:a05:6512:3b86:b0:54e:a2f8:73e2 with SMTP id
- 2adb3069b0e04-550d5f97caemr383042e87.18.1747173658262; Tue, 13 May 2025
- 15:00:58 -0700 (PDT)
+	s=arc-20240116; t=1747174190; c=relaxed/simple;
+	bh=KkbSGaaqp8jSgFqgu1SEOqd6OF0O+xElkdV+bbcIil4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t20eg0s+2oIJNDjGRCNjhfQPsu7s7LKASg3UhHV7B1i8Y24LLqPpjqoxTCq9yRMq2eksCIZhZC8USRFbQxRYuo6soJXsEQnopntPfBfFt7sqZn069Y4eSZZsNGcKfoc2Ub7yLhFajMMPNiDjU//JyBjtcMprKEijUT4XcdIQdFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YlpvT5Ib; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747174189; x=1778710189;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=KkbSGaaqp8jSgFqgu1SEOqd6OF0O+xElkdV+bbcIil4=;
+  b=YlpvT5Ib8ZuMsXdQZClTNVGqTlTH9lk2DgwUYMBluedRKXEry52WJC8c
+   5V1LW9oZCTMIt0wdjuFTJmiwEoybhoxsCBnWUY9qGk8xkBrESS366X3bA
+   N6IItr85ozZMt/kXVtww3aSNZvvvlncaQZe3gO2UffK0/Nlf0g3A2RYhM
+   cJD8eRxYPQ8r8igV9X0Bb4wlw8QNi2FTICyj5K5bnXnkwCXe1Q3HO43OF
+   m/ur7517+dpm07zCPkhH0TMG8j24EKs5w2CXsoUZbCS/KYSxHaoUgs9Av
+   NTJ+LesO8mFAnO8+ciB8/fAi3930PV7XuSLKdVEsEXJathC2SimZY65J4
+   w==;
+X-CSE-ConnectionGUID: e9TcuRIgTImwaW8ETroW5g==
+X-CSE-MsgGUID: o1dZKRdZRrq3z+QO3a201w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11432"; a="71548759"
+X-IronPort-AV: E=Sophos;i="6.15,286,1739865600"; 
+   d="scan'208";a="71548759"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2025 15:09:48 -0700
+X-CSE-ConnectionGUID: An0NDBrZQse9QVSSeLPPdQ==
+X-CSE-MsgGUID: 5j1rMCa/RKOIqlFg7QemzQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,286,1739865600"; 
+   d="scan'208";a="142947639"
+Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
+  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2025 15:09:48 -0700
+Date: Tue, 13 May 2025 15:14:56 -0700
+From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, x86@kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org,
+	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
+	Ricardo Neri <ricardo.neri@intel.com>
+Subject: Re: [PATCH v3 06/13] dt-bindings: reserved-memory: Wakeup Mailbox
+ for Intel processors
+Message-ID: <20250513221456.GA2794@ranerica-svr.sc.intel.com>
+References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
+ <20250503191515.24041-7-ricardo.neri-calderon@linux.intel.com>
+ <20250504-original-leopard-of-vigor-5702ef@kuoka>
+ <20250506051610.GC25533@ranerica-svr.sc.intel.com>
+ <20250506-pompous-meaty-crane-97efce@kuoka>
+ <20250507032339.GA27243@ranerica-svr.sc.intel.com>
+ <20250512153224.GA3377771-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250430-max77759-mfd-v9-0-639763e23598@linaro.org>
- <20250430-max77759-mfd-v9-5-639763e23598@linaro.org> <CACRpkdY15L5PpV9ah_0R3ZPZVMh18OR+Dg2qXiBG=8Kq79-rjA@mail.gmail.com>
- <20250513093414.GE2936510@google.com>
-In-Reply-To: <20250513093414.GE2936510@google.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 14 May 2025 00:00:47 +0200
-X-Gm-Features: AX0GCFuY7ZYIvbVu20D__GD0c9z8y0Fmgn47-CA055_0KC3QdyO02dOBRgGKdxc
-Message-ID: <CACRpkdZTB2NSZPYU=iMEFuH=rb3HWVu2A=8OY-sq6X00ZPq9wA@mail.gmail.com>
-Subject: Re: [PATCH v9 5/6] gpio: max77759: add Maxim MAX77759 gpio driver
-To: Lee Jones <lee@kernel.org>
-Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Srinivas Kandagatla <srini@kernel.org>, Kees Cook <kees@kernel.org>, 
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
-	kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-hardening@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250512153224.GA3377771-robh@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 
-On Tue, May 13, 2025 at 11:34=E2=80=AFAM Lee Jones <lee@kernel.org> wrote:
-> On Tue, 13 May 2025, Linus Walleij wrote:
-> > On Wed, Apr 30, 2025 at 11:03=E2=80=AFAM Andr=C3=A9 Draszik <andre.dras=
-zik@linaro.org> wrote:
-> >
-> > > The Maxim MAX77759 is a companion PMIC for USB Type-C applications an=
-d
-> > > includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
-> > > Port Controller (TCPC), NVMEM, and a GPIO expander.
-> > >
-> > > This driver supports the GPIO functions using the platform device
-> > > registered by the core MFD driver.
-> > >
-> > > Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> >
-> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->
-> You're only 2 versions behind mate!  =3D;-)
+On Mon, May 12, 2025 at 10:32:24AM -0500, Rob Herring wrote:
+> On Tue, May 06, 2025 at 08:23:39PM -0700, Ricardo Neri wrote:
+> > On Tue, May 06, 2025 at 09:10:22AM +0200, Krzysztof Kozlowski wrote:
+> > > On Mon, May 05, 2025 at 10:16:10PM GMT, Ricardo Neri wrote:
+> > > > > If this is a device, then compatibles specific to devices. You do not
+> > > > > get different rules than all other bindings... or this does not have to
+> > > > > be binding at all. Why standard reserved-memory does not work for here?
+> > > > > 
+> > > > > Why do you need compatible in the first place?
+> > > > 
+> > > > Are you suggesting something like this?
+> > > > 
+> > > > reserved-memory {
+> > > > 	# address-cells = <2>;
+> > > > 	# size-cells = <1>;
+> > > > 
+> > > > 	wakeup_mailbox: wakeupmb@fff000 {
+> > > > 		reg = < 0x0 0xfff000 0x1000>
+> > > > 	}
+> > > > 
+> > > > and then reference to the reserved memory using the wakeup_mailbox
+> > > > phandle?
+> > > 
+> > > Yes just like every other, typical reserved memory block.
+> > 
+> > Thanks! I will take this approach and drop this patch.
+> 
+> If there is nothing else to this other than the reserved region, then 
+> don't do this. Keep it like you had. There's no need for 2 nodes.
 
-Yeah I realized ... I'm walking up the backlog and there is occasionally
-these double acks...
+Thank you for your feedback!
 
-Linus Walleij
+I was planning to use one reserved-memory node and inside of it a child
+node to with a `reg` property to specify the location and size of the
+mailbox. I would reference to that subnode from the kernel code.
+
+IIUC, the reserved-memory node is only the container and the actual memory
+regions are expressed as child nodes.
+
+I had it like that before, but with a `compatible` property that I did not
+need.
+
+Am I missing anything?
+
+Thanks and BR,
+Ricardo
 
