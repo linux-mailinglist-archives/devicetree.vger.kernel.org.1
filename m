@@ -1,140 +1,74 @@
-Return-Path: <devicetree+bounces-176847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48174AB59CD
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:26:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9060FAB59DC
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:29:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE78B4A5211
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:26:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1586A3B64EA
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1511A2BEC3E;
-	Tue, 13 May 2025 16:26:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ftbyYkUd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E49302BEC4A;
+	Tue, 13 May 2025 16:29:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D85212BEC2F;
-	Tue, 13 May 2025 16:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C324B2BEC2F;
+	Tue, 13 May 2025 16:29:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747153589; cv=none; b=lMbjigOUUV4gd8OBA7Y3wefWwkXQyY04z3lYFEltBysXrRNq46wMQ2VrFWcr14tSDmbZHXsGM2HJDtZwsUbrclm64jHgMxlbd0XVjBa9GAAuoS737Z5qEqxVCbHKKkJUtojBrnPEnIXy/jI97nO5cwGYJmOvgFJbUlTyN9ff21s=
+	t=1747153784; cv=none; b=QmrZ3Evd5kIB6mK4U2nXtZzTTAr9xghQInKbG0Dgw5OfDimCcupC9GwN8bz5lip1tHQMeAw5WR1oplBJgIEUrSsQAlk4nFdJgzRJ6+XhBRa7ZqPNPQxIV3r/dv9KCQDG0U2ERPzlTRUDE6iwTRbXDqHeCL1kv0W9HQV6ENuztpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747153589; c=relaxed/simple;
-	bh=fOF8sy8iZquy2qTBP2SKHak8+By98mcNoTi6gQlT5io=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l1q+A2gRd2NFI6tOFo6VJSQjIrt2p26xBU8TgEHnEGBT8rxn6rVgxpLOP9Z1o20NU35MAlPq8tWjrUxtaKVaGPQn6RMjrulx83xa/qIH3tRIE8XSPqL8Y76VahELPyCQPBFGjioekfR2UXH5wNaLSOwACur4LIE6Op6dM5SM4vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ftbyYkUd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BEB0C4CEE4;
-	Tue, 13 May 2025 16:26:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747153588;
-	bh=fOF8sy8iZquy2qTBP2SKHak8+By98mcNoTi6gQlT5io=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ftbyYkUduy5VmYwoOz29GNR4p//6oLXt5V/jN9fQNAMU5McYyZjWnEwn3s1ViWF+z
-	 5OVDIcoIf/a8uBnf4s5pN9rxzMDt4YJodc8gKpCFf9lRU3rCQ3mlQ2HAlBHrY/dDuT
-	 u7xI9+PWdXxymEahKHZiii83DSm2PnfqjKr2ToP1ANkXIm03+03N2/tW/i+D/mIAwg
-	 TQb9WQ/g70CLbyZJ5G/TvfBeZ8GDtiZnqhEAjOxaLmWjasULoE60mCdGNaIjamA1+3
-	 DV67M4279GOA8wgobOlTZ+SyYnMJoeuT/RsItIG6XvcfvZ9WIbilamCXM3I9dlzR6s
-	 qlWxJmZkBvH2w==
-Date: Tue, 13 May 2025 17:26:22 +0100
-From: Lee Jones <lee@kernel.org>
-To: nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v3 21/22] mfd: adp5585: add support for a reset pin
-Message-ID: <20250513162622.GW2936510@google.com>
-References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
- <20250512-dev-adp5589-fw-v3-21-092b14b79a88@analog.com>
+	s=arc-20240116; t=1747153784; c=relaxed/simple;
+	bh=5lS/wK/Auv2ix8gm981VAe7usX4SgPlY95Uk0PphiXA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=oC1AXHPEkkII5svRthJzbTpqNcGhdCdKvxxpcBZ2Yo3uAV5T5sJog0p9nVCMUUy1CORqNu5iClw+RZj16ifM+NiReXzN/IZcTkh7QEcAwAI8+hANQlbvN1HtYSehg2b8VeXil1OJNwnyioCxMMEKsFnWeGL1J9Qv3eh41/oQ2xQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BE0DC4CEE9;
+	Tue, 13 May 2025 16:29:44 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 917235FAC0;
+	Wed, 14 May 2025 00:29:41 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Michael Klein <michael@fossekall.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+In-Reply-To: <20250508173657.8695-1-michael@fossekall.de>
+References: <20250508173657.8695-1-michael@fossekall.de>
+Subject: Re: [PATCH v3] ARM: dts: bananapi: add support for PHY LEDs
+Message-Id: <174715378157.4016543.4493109479231149921.b4-ty@csie.org>
+Date: Wed, 14 May 2025 00:29:41 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250512-dev-adp5589-fw-v3-21-092b14b79a88@analog.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
-
-> From: Nuno Sá <nuno.sa@analog.com>
-> 
-> Make sure to perform an Hardware reset during probe  if the pin is given
-> in FW.
-> 
-> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> ---
->  drivers/mfd/adp5585.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> index 88401668f30e06ac201175470eeaf6216f3121d9..0fbe1f7f2582408b2e1b99f629182ceebce73fd7 100644
-> --- a/drivers/mfd/adp5585.c
-> +++ b/drivers/mfd/adp5585.c
-> @@ -11,6 +11,7 @@
->  #include <linux/device.h>
->  #include <linux/err.h>
->  #include <linux/i2c.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/mfd/adp5585.h>
->  #include <linux/mfd/core.h>
->  #include <linux/mod_devicetable.h>
-> @@ -712,6 +713,7 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
->  {
->  	struct regmap_config regmap_config;
->  	struct adp5585_dev *adp5585;
-> +	struct gpio_desc *gpio;
->  	struct mfd_cell *devs;
->  	unsigned int id;
->  	int ret, n_devs;
-> @@ -730,6 +732,20 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
->  	if (ret)
->  		return ret;
->  
-> +	gpio = devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(gpio))
-> +		return PTR_ERR(gpio);
-> +
-> +	/*
-> +	 * Note the timings are not documented anywhere in the DS. They are just
-
-It's okay, you can say "datasheet". :)
-
-> +	 * reasonable values that work...
-
-What does "..." mean in this context?
-
-> +	 */
-> +	if (gpio) {
-> +		fsleep(30);
-> +		gpiod_set_value_cansleep(gpio, 0);
-> +		fsleep(60);
-> +	}
-> +
->  	adp5585->regmap = devm_regmap_init_i2c(i2c, &regmap_config);
->  	if (IS_ERR(adp5585->regmap))
->  		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
-> 
-> -- 
-> 2.49.0
+On Thu, 08 May 2025 19:36:56 +0200, Michael Klein wrote:
+> The RTL8211E ethernet PHY driver has recently gained support for
+> controlling PHY LEDs via /sys/class/leds. The Bananapi M1 has three
+> LEDs connected to the RTL8211E PHY. Add the corresponding nodes to
+> the device tree.
 > 
 > 
 
+Applied to sunxi/dt-for-6.16 in sunxi/linux.git, thanks!
+
+[1/1] ARM: dts: bananapi: add support for PHY LEDs
+      https://git.kernel.org/sunxi/linux/c/d010f85f1acf
+
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Chen-Yu Tsai <wens@csie.org>
+
 
