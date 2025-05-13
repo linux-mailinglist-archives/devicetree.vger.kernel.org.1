@@ -1,75 +1,114 @@
-Return-Path: <devicetree+bounces-176731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16675AB5507
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:39:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40AA3AB554F
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:54:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4F641B46183
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 12:39:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA25E4A0494
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 12:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6729F28DF04;
-	Tue, 13 May 2025 12:38:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD9A28E570;
+	Tue, 13 May 2025 12:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NOQRx7XT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UXb9KiRK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A55EB23957D;
-	Tue, 13 May 2025 12:38:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 280E028DF5B
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 12:54:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747139914; cv=none; b=MXh8iXWIBt9pEoHikRvJrDLCAPsCbbPIMJnJstrzjFceo+Bb0bkUoCF2PawAUpf67ShgTRi9ZC8EucvCqgTLmcNfirByXu4sVnrq4brwWrjhu6gR0mdrkfb3IZJs4eJlFUX6lDhoVEmnQp0MTPUOBM/qamHe5L+TZHLr0EIbh7s=
+	t=1747140847; cv=none; b=pgRk2YZZ4s2bCRJ4iTFpKZ5FxBlmW/vamnAHvNsGdEysRoNr9NxycWWTr9jVvjFeHZbAjr77cI2ox29Bh2nsbTv+8F+k5iOBpAG0JYyx2s+JPcPj7LWu5pjC0feXpMohicGe0n0VmuORC4jQIOBThmagxA1hx0B2MpDJuZXSZgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747139914; c=relaxed/simple;
-	bh=lltMBHwdq1/L13SaJBhPOXp4jeaBDkH/p3zUYLQ1D38=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YgA40nrzMhnQJbKbBRqeSdCYX8C/3tcqriFj8vlldkRT+iF2fOyYvgcWunP4xV82uCzxg0ibTr4TRp4gYXfUafCJ8GyxeSNpf0gLijvIutomWuhydJp0Yp3MPSkHNEvFJD+l/Z3q8gS+6DaVcIIZKZxtCBZVtGgQ/BupUCly0EQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NOQRx7XT; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=IhcSVT0ilThLTEqD751qEwwwjKQxPdQ/g5IW8iOJnYo=; b=NOQRx7XTuoWUjZfRP5o5Wstmex
-	gr38zDZCcGap0v5IKV9arZyd1u8H0b/FM7OA43lGWEWAYIpM/SHW/D33/CJJ5Py6TbFMw3w5b/al2
-	a9yDwQIp8lgGHYABQ1Cv599sS1w0/trmB0ctEXHkrh+Qp4h9v9OqeAQlotRpN/POvPQI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uEotg-00CS3N-90; Tue, 13 May 2025 14:38:12 +0200
-Date: Tue, 13 May 2025 14:38:12 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: leo.jt.wang@gmail.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	george.kw.lee@fii-foxconn.com, leo.jt.wang@fii-foxconn.com
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: clemente: add Meta Clemente BMC
-Message-ID: <bebe4a75-0d7d-424e-a217-dfea710b3262@lunn.ch>
-References: <20250513031010.267994-1-LeoWang>
- <6822b851.050a0220.27a24d.d071@mx.google.com>
+	s=arc-20240116; t=1747140847; c=relaxed/simple;
+	bh=n5DNtYUI843g0yIiLjFDVuZwRILHtDU6heRbq8kkdJQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NR8YGhu4TVoB2fbpbIVdQBEJh8iQhAHdiDoID6nxB4oE1cez0gIhub76AcuETx09GT7q86pjq8xYevsRC6oaSrI+NO7k7HNUcMl6dUKlrxpOTje72BLZ8GQmh1B9GZ7ZJK8WEky/goltpxHk6VmA/WZCKFAjqr9D2NBTwh20Rg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UXb9KiRK; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-54b166fa41bso7218842e87.0
+        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 05:54:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747140843; x=1747745643; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n5DNtYUI843g0yIiLjFDVuZwRILHtDU6heRbq8kkdJQ=;
+        b=UXb9KiRK1Mtk9YdgOh+42d6H9idbQx84M1YAAZ5IzgtH2EZR8jVbedfnrWmmCwqHHk
+         9CDf/1dlixns3zmA7zJpRwgFp+x9kBwnPZC6TmVAVjnBKzGgeMkr+B8JjOoOTxheNJN2
+         A0/W7WRk4faW4QTxLTQSaWNoxanijP+LGRJfIej0VwubSkXh30WDHv0a7mNBCD23Vwmt
+         FDjJYL7JC/pr/sR1AOSk1ov3bhotZgrA16vU1aSmYvF8rZ31mx3/Y55voj0MzisrgJ8z
+         w8F4AMKHIviet5eKkB7jF/DPx3tnxrldK8roph7EXTUX9Yq5sjXcW3+arxw7oFo+zb3O
+         hhNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747140843; x=1747745643;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n5DNtYUI843g0yIiLjFDVuZwRILHtDU6heRbq8kkdJQ=;
+        b=OPbxIsahApXRlhr9svH58jucDYGe0ELLqyI0lvgt5/rFqPOgupebZh7u+dH2p9IHlb
+         5L5KUNTt+qTEVCer2rDdQsz0n0AfNwXI9XBRKCkDe1GNOa3l38UR8anE6P3lyFyDuUeG
+         z6SqgMXxCGUhaS0UKyKWw+voS5LOH2BGkP0CIlozZzIaHnJiryKJEL7wKFgEltfYU1mx
+         ApnZ1pGeWSrCozGysprWObjB7A3qLC9ZHcUTpMQQLhGntbY2mStkyE74nFqi2jSPBq5x
+         d9Nsrkgin46SNin0PzcjORHEbLMbBb5BK5xxGgnRmEiOGbFFr94NJ8jyJ4T7CXWTbxI8
+         2TRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXRXkyKXinCBXydIHEanSZambQUp2lU7M3cAYuRnBVQGar3d+WzLPkNvWEwy6o1vxGCaqmluSu6dUgE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBaXWTYnaW9UAouxgZ30BWo/i3Q6Mu2iPngyNOV3hAW0V3AVaC
+	ytvQ7ZMRpQsHdI0GhPXePQOLwOvaYi9ACZPRfZYnICP4BeyUqXfNaLDDASM7MNKwdIRNZQbTmFw
+	Xm9NbThurg+KSYsHI6yEQ06J9xMzEdJKbb5p98A==
+X-Gm-Gg: ASbGnctuDmdruheWvACLA6m8OtxjXsU/IdaeSD/EModk7E/eD3J8l5BfmZaGA6q96YO
+	r3AF2pq39+dwJcEwVIt62j76p9LjADGjEvEJjI6WPa8zjEQYgq+G9j8nhvfzCflqqZwqjfPwpwO
+	XSYUxDWNw0L2wCqPAaQ8bRiiCUNt9gZJmx
+X-Google-Smtp-Source: AGHT+IFZsPaNB7cQG5TO5oVxZDZD/YN8ybgCpE8L4Y5f1+vnu87em/ryPwHwzngIjpOkdu6PynjrJ2CQaef5h80Qtm0=
+X-Received: by 2002:a2e:be89:0:b0:30b:fd28:a771 with SMTP id
+ 38308e7fff4ca-326c43ed095mr69137661fa.0.1747140843144; Tue, 13 May 2025
+ 05:54:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6822b851.050a0220.27a24d.d071@mx.google.com>
+References: <20250506-correct_gpio_ranges-v3-0-49a7d292befa@quicinc.com>
+In-Reply-To: <20250506-correct_gpio_ranges-v3-0-49a7d292befa@quicinc.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 13 May 2025 14:53:51 +0200
+X-Gm-Features: AX0GCFvfxiAiOF97d_g8FaMONqLX8vuoL3GFla71xwbaspfDFQXlOOP7NTUarN0
+Message-ID: <CACRpkda57USe-6zkYKsOfKZcfZx-0DBa-dP2OxkoGsy+tLfHxA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/4] Correct the number of GPIOs in gpio-ranges for
+ QCS615 and QCS8300
+To: Lijuan Gao <quic_lijuang@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jingyi Wang <quic_jingyw@quicinc.com>, kernel@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> +&mac0 {
-> +	status = "disabled";
-> +	/* phy-mode = "rgmii-rxid"; */
+On Tue, May 6, 2025 at 8:23=E2=80=AFAM Lijuan Gao <quic_lijuang@quicinc.com=
+> wrote:
 
-Did i already say this is probably wrong?
+> The UFS_RESET pin on Qualcomm SoCs are controlled by TLMM and exposed
+> through the GPIO framework. It is expected to be wired to the reset pin
+> of the primary UFS memory so that the UFS driver can toggle it.
+>
+> The UFS_RESET pin is exported as GPIOs in addtion to the real GPIOs. The
+> QCS615 TLMM pin controller has GPIOs 0-122, so correct the gpio-rangs to
+> 124. The QCS8300 TLMM pin controller has GPIOs 0-132, so correct the
+> gpio-rangs to 134.
+>
+> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
 
-	Andrew
+Patches applied for v6.16!
+
+Yours,
+Linus Walleij
 
