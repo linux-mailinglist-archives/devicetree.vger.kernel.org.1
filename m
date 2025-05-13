@@ -1,152 +1,118 @@
-Return-Path: <devicetree+bounces-176712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10C93AB535A
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 13:00:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58298AB5399
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 13:14:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B532D189D6F2
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 11:01:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE7A84654CA
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 11:14:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 489D728C2D7;
-	Tue, 13 May 2025 11:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C4828C87E;
+	Tue, 13 May 2025 11:14:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="1SPvY58l"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="S1hyStrD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98FDC253F1B;
-	Tue, 13 May 2025 11:00:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECB1C1F1524;
+	Tue, 13 May 2025 11:14:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747134046; cv=none; b=C3ziGa45nvFwSeljw1+ydaS+IYmHJ5BlmtS3Qf6Qfhk9FMY/ahbflSMRq+lSRFPjy3HaTR66zzDu/EJCo4W74yh30759OjXcyZE6R+dvjcBKqZBQ8Di57iG+ypuJPwN9Jc+Y24VVVglgsDHVdzgVoICjWZuBVrQpF5oaugiPq3Q=
+	t=1747134867; cv=none; b=rLy8+waY/gE9sskRw6/fZ4CKKUG4xtQdKrDXsMz8AoZwHlPzf2kGPRffBjUYsrR8BkuQOq/0WUHypnv6En3Y/OfPDxESXtfBVTgxAzvQK1Mk1vsRfP3b+WiFcYSk4i9967tf6MOD4deVQJseeJSuC7G4gdUxrOOYU7c7ANFr1qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747134046; c=relaxed/simple;
-	bh=lvcch2mjqXy76M4SgxMLancG3LIVTkAgw1v67xAKb60=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gc4Riumk9Inw7yNENIp82p0uGGrXhpHR45aNqG/nAq4rQtjdGdU1d6wfl9PtrQkqnIQVNsQKsYlTv9jTILrwdwrIlqLH2ZoZWVDsiHjsbwjRXfT1wrvcdbiviq+zEi48uvNzY+2Z5iPXsDCnHW7Xpd2Qq8vTR6suyjgMWAtOOQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=1SPvY58l; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1747134044; x=1778670044;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lvcch2mjqXy76M4SgxMLancG3LIVTkAgw1v67xAKb60=;
-  b=1SPvY58lg6QaGq3tg5MKMEH0UOBJBAnn1tbJaQ7qZNh7lbO5vyfRQbMP
-   3uBOsM/rKg2W4Dq9QkvGwOlQTxnzPeRUARNUfVSYUWUBHPuKSjqI13WDK
-   GsnYroktT62HhIFX88+TzpRxw6LfEZGyiyqgbaseW6TMs/ZNxFBr/9K+a
-   uWCsA4sdKDNWMxXgX/JsV7w385tSFtDEY10w0NzW/s7J4p+rNlY9O9WcV
-   QzFMZnX5qnoYBP71FQJCnauBRKlCqqO0GIMyKL+TKfVlOuxmlbnlIPtW1
-   z/tL99GNL9MwzcotFCPBYHXhPYCzOo8oSCxKADrogQA4KeyVhcgQC0OB1
-   A==;
-X-CSE-ConnectionGUID: m/qCGXO7RluFvhk37YiHlQ==
-X-CSE-MsgGUID: Ef1fQOjqRNOhE8dLMRoNgA==
-X-IronPort-AV: E=Sophos;i="6.15,285,1739862000"; 
-   d="asc'?scan'208";a="42045275"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 May 2025 04:00:43 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 13 May 2025 04:00:41 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44 via Frontend
- Transport; Tue, 13 May 2025 04:00:38 -0700
-Date: Tue, 13 May 2025 11:59:38 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Jon Hunter <jonathanh@nvidia.com>
-CC: Conor Dooley <conor@kernel.org>, Vishwaroop A <va@nvidia.com>,
-	<krzk@kernel.org>, <broonie@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
-	<skomatineni@nvidia.com>, <ldewangan@nvidia.com>, <kyarlagadda@nvidia.com>,
-	<smangipudi@nvidia.com>, <bgriffis@nvidia.com>, <linux-spi@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH V3 RESEND 1/2] dt-bindings: spi: tegra: Document IOMMU
- property for Tegra234 QSPI
-Message-ID: <20250513-implode-half-0c3ffcf6d3f5@wendy>
-References: <20250509165409.311912-1-va@nvidia.com>
- <20250512-observant-rental-21927c85c709@spud>
- <904d3e89-a540-4edd-b748-15e13c431c17@nvidia.com>
+	s=arc-20240116; t=1747134867; c=relaxed/simple;
+	bh=PXJdoneHOMC99/uLU9ijBMdzBMKSPZ5UAMiFw3MgRyc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:From:To:Subject:
+	 References:In-Reply-To; b=VuyuREuCDK7kIVj90ykKIYMTPX9Xiyxdxs9DBGBXFxIUelWD9EwDXsUT4GvsJ7I0lJH/Q+Y7NNetARqe4kP6rAyQThI0dUkGfTta+jj01xZ2jMrdVnnMyJ8e6Rdg9ve7kFPC1OqZPGB8YiNaFgk81cu1zsm/sxVLrVRftTbws5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=S1hyStrD; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5E6AB4329D;
+	Tue, 13 May 2025 11:14:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1747134856;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LKTxS/Fgg/f7k8WlIimNhYf5mVWwyERbEyvE9wVS1HY=;
+	b=S1hyStrD27CAh44pTlyze9cf2t9bOIXFc3lhaVrzuJZAsNEGxNhYEdwkHIFfXlQlb9R0Jr
+	c9d8sH56RSm4PX/E6Bmqu+Y8iLrFpiNMHilR1FxCZZPNJc6ztREVTzW1OfijJYWkUQ9M1H
+	O3zYF87Obs/QWFC6vsrSIV9rUW2TVi5ZnIWj2afOO+zlBWd8jn4YzAuWJpq3O5aS+9f1Cy
+	nw+opP05ili8zmQIXZEELg8f0KpQ505J9+RJGZv7fgsyooFtcIS8ONKfxaXVuj+jJbs7M6
+	PoxTPf7l8OKsR/0ix/WdvHsegu8OISv0un1rCKpHIn/+DVrJzORHHiM5ZyWG9g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="SQ4dyVdvUUBL1DBR"
-Content-Disposition: inline
-In-Reply-To: <904d3e89-a540-4edd-b748-15e13c431c17@nvidia.com>
-
---SQ4dyVdvUUBL1DBR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 13 May 2025 13:14:14 +0200
+Message-Id: <D9UZM817JKQM.2CPWNUC1H2AJW@bootlin.com>
+Cc: "Andy Shevchenko" <andriy.shevchenko@intel.com>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>,
+ "Linus Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski"
+ <brgl@bgdev.pl>, "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Lee Jones" <lee@kernel.org>
+Subject: Re: [PATCH v8 02/11] mfd: Add max7360 support
+X-Mailer: aerc 0.19.0-0-gadd9e15e475d
+References: <20250509-mdb-max7360-support-v8-0-bbe486f6bcb7@bootlin.com>
+ <20250509-mdb-max7360-support-v8-2-bbe486f6bcb7@bootlin.com>
+ <aCG9lyaCGchBsqLE@smile.fi.intel.com>
+ <D9UW14SJQ9HV.3BA1FYKMG9DE0@bootlin.com>
+ <20250513093107.GC2936510@google.com>
+In-Reply-To: <20250513093107.GC2936510@google.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftdefleeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvefhvffuofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeftedvgfegteehjeejtdefgffhteevvddtvdejleeghfefuefgledtteduvdetkeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopehlvggvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlr
+ dgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On Tue, May 13, 2025 at 11:19:05AM +0100, Jon Hunter wrote:
+On Tue May 13, 2025 at 11:31 AM CEST, Lee Jones wrote:
+> On Tue, 13 May 2025, Mathieu Dubois-Briand wrote:
+>
+>> On Mon May 12, 2025 at 11:21 AM CEST, Andy Shevchenko wrote:
+>> > On Fri, May 09, 2025 at 11:14:36AM +0200, mathieu.dubois-briand@bootli=
+n.com wrote:
+>> >
+>> >> +#define MAX7360_REG_GPIO_LAST		0x5F
+>> >
+>> >> +#define MAX7360_FIFO_EMPTY		0x3f
+>> >> +#define MAX7360_FIFO_OVERFLOW		0x7f
+>> >
+>> > Please, be consistent in style of the values.
+>>=20
+>> Is your point about the alignment of the values? Most of these are
+>> aligned on column 41, including the ones above. I just have an exception
+>> with MAX7360_PORT_CFG_*, as they are a bit too long. But as we are using
+>> tabs here, indentation appears a bit broken in the patch.
+>
+> I believe the point was in reference to capitalisation.
 
-> > > +  - $ref: spi-controller.yaml#
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          const: nvidia,tegra234-qspi
-> >=20
-> > > +    then:
-> > > +      properties:
-> > > +        iommus: true
-> >=20
-> > This is a NOP, no?
-> > Just invert the case above and drop a clause.
->=20
->=20
-> Yes that's true. So just to confirm, your preference is this ...
->=20
-> diff --git a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.y=
-aml
-> b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> index 04d3b1a47392..c45511e9a9ed 100644
-> --- a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> +++ b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> @@ -74,11 +74,13 @@ allOf:
->    - if:
->        properties:
->          compatible:
-> -          const: nvidia,tegra234-qspi
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra210-qspi
-> +              - nvidia,tegra186-qspi
-> +              - nvidia,tegra194-qspi
-> +              - nvidia,tegra241-qspi
->      then:
-> -      properties:
-> -        iommus: true
-> -    else:
->        properties:
->          iommus: false
+Oh! Makes sense, I didn't saw that.
 
-You can just invert the condition directly with a not:,
-so "if: properties: compatible: not: contains:" should do the trick.
+Thanks!
 
---SQ4dyVdvUUBL1DBR
-Content-Type: application/pgp-signature; name="signature.asc"
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCMmGgAKCRB4tDGHoIJi
-0mpYAP9DLyt4yjrQ7chZQTnXz8nDNpruXL9jHhFsNskUDttvUgEAuMvvEbdUg9tK
-EZQ2UODgjqyj9QFYSS7svBf4/g1GjAM=
-=vXPi
------END PGP SIGNATURE-----
-
---SQ4dyVdvUUBL1DBR--
 
