@@ -1,72 +1,123 @@
-Return-Path: <devicetree+bounces-176582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C0FAB498F
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 04:39:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91735AB49E7
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 05:10:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 742A219E6B60
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 02:39:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 177407A7A78
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 03:09:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071BB1C862C;
-	Tue, 13 May 2025 02:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CAF81A8419;
+	Tue, 13 May 2025 03:10:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZQO1FWER"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ek/xfUdt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 257023FBA7;
-	Tue, 13 May 2025 02:39:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D5F64C6C;
+	Tue, 13 May 2025 03:10:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747103959; cv=none; b=Tp+dxAaNYThoy1QI4R6NN1B2SwgzuUmdHOC43x5t1a5k+KBZvSmP5dlSzKK0LNQJgrHTiWIHLo/ABLK/7YqHgrgX8hElSDikcYDCB7T+e1vTETeIKAT/fIPrf6ggYm4y8xjooH6pK36DQhhGUNSmwwFpTq26o4TXdj5CoUJXrm0=
+	t=1747105843; cv=none; b=Hw7A2QWtrQfl74Z27JVlg7RtsEjzinN6i4Pjc0pI2khwXy8vIrjjJWUfdaWHAdisGdSvmYNO3V1oh5hwSrQcuXm5SRFD5eFlHT0TH1XTZFEU/Wy7hgL6M10mXo7jCaMnF5o7H7yyEBPz2kMv7huP5K0sHvgTE4tCuJlG9HR2sCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747103959; c=relaxed/simple;
-	bh=WXduk0ugGpWqRD31yNyFHETulxE7dHDBVYREFNMzyrY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WnPjN+pRs6HEwrSawcKo+kg6HUB79jzEfoo2uLaxY0KwChgXi+3H76E9gvtBszSAkBG3UiiXpcGblPIJo4gU/C4uZ9XcohN4xr43oKJGK41sXAaOwAvb+tBXLHl/Fne9zjntXodGucSui01mJNre+rwf3sFlKsEEfLeadqcm9pg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ZQO1FWER; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=lBSJhl1yx3AmAEFtBBKymCRalsaZFFwbtUKFw8H5+bw=; b=ZQO1FWERFkqNxdtLIm6+FfBoBz
-	yPPw8jJN8C5Nv/Hub9QiqAYy14lDxa7Mtnv0vqpjHAX+F10Q2j+Ps96bFQyrkc6iIA2d/mv5luyA7
-	l+E3bI++oqMxy/Rg+1vR2hOkD/F4V/m6iCIJIV7OVF0NWM/nYKcST9Bw2sFRw1QXcUYM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uEfY1-00CPGA-UE; Tue, 13 May 2025 04:39:13 +0200
-Date: Tue, 13 May 2025 04:39:13 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>,
+	s=arc-20240116; t=1747105843; c=relaxed/simple;
+	bh=hh8W8SFL2O5tLYPxqifp5xrBtBcma9ivlfB8ylnUYQM=;
+	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=gWNXXCcAMiTIegWz44mio0OTh72ensIq/dGsZOr4WdCscovoiDFotoK2LmCZMzNw07sQT/WL1Je4+88ApKgQX1uqtWShLzpq6q48wxhzFx7UDl1cFjRBtLO1Hel/0AcZSVQrzVtrIyw3Gq1RaU4jWPXKZBUmtE0ABUVsqlK+m04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ek/xfUdt; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-30a9cd61159so4823925a91.1;
+        Mon, 12 May 2025 20:10:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747105841; x=1747710641; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:subject:cc:to:from
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=DcuJtm+iInMJ4xEpzdwpahbYr7IroCfNfGVeO9DKr0A=;
+        b=ek/xfUdtGnKCeCy5bEErt32CTQdQr3H7w5hBOg4xV2wf6FHm3zOde05wAePXUrYeuN
+         pbT7jzVKIjO0kZ1knYNhmlqo4pWUCIOz9VkjIRry4L+4HnQKTQ+jJnjtfY+eA14FKfq4
+         8b/FpsI4EX+p/PVBj52/1cy1Af2x/M1D0jaAiNcLy7ddi1q89gJj5jKvckFv/pEzJhz7
+         ExVZ3Pulb8zNbnKdqVzlUUKoIRGAJmM3Ur4fE9CEJ7JcxV/xpZoLR+bud1DWE1nWtuvJ
+         kv7rX6iet0GHxunp02a19Nv6M+zW4sZ0XaZxjeqa5ugbQy3eFKaxl5oLK5SAPyzwpnR7
+         M+6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747105841; x=1747710641;
+        h=content-transfer-encoding:mime-version:date:subject:cc:to:from
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DcuJtm+iInMJ4xEpzdwpahbYr7IroCfNfGVeO9DKr0A=;
+        b=b6pO2SNMjA3qLPOQYrqiEyJAAFT+e4QYspCiyfTmWriI84DdWmaqDrC/PKP6j/dcrz
+         jBN83Y4swhVSTnCT0zF6ZvgCH5gzUDnvHDB6vO/2CCNcXraigAhdJDhnjzYaVAp+hAEX
+         9Lgbg7qldPunUnP1rYlsAitxAmlVDhsbkFfFsEstuxSX8H7VIupvLmmzepkw4JCjv+4N
+         0h2OIGGIFq6CwTGc96BiUQdp/MjdRazo2Q0qHtEXl1rfkoG7SHInWO1sy2/T/vDpwTXQ
+         k+tIMv4ng6gJ/muB52meZkmkLuLcJhsqxm5bKl79bVOqR6H+BatiUe8Tu5M2HPiUgctY
+         Tbrg==
+X-Forwarded-Encrypted: i=1; AJvYcCVHr+ICtWdtmrA+IszRbpZcrAFYssqEeh5F8alFDY9vAQXlMgmy3IcAsVpMpoqb42ttAmbp6eP06P+Spk0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaE0uENH37dUacfGY6o/BNv95tBl3W3YBNB8S3ZjqPqjO9wS9b
+	cGdRa63eri5gEsd2CSQfvSVlvOOZnWCN3nsgcYH6csIBnrb9IWntxVpdag==
+X-Gm-Gg: ASbGncstSeTO/LCNK4lyr2OQ4CAjo14VuZ2LjxfGgBYgqnc2t+iTRyj/1alAH3/Uf8i
+	ijBAyyPHRdF3qTDjXBnSQ7cC0JR5wtPFBv80pvX+iQpxLKrpHCsR4ndOhdweVEDqjKl+FWrc4fH
+	4KzlC5Ea+AzyU1Z8mYvhmjuvdD+lJmm+sse8Cqcmbwq7LrlXC46Nt0/jPG6R90FuahxNvA078wJ
+	gpY5wpt11yvBTlHaO8U1uds1ftGY0kYU0/ndSb+EbHQYYKMlrp1ELwhgUuauJlKsAvpyR5CW0Li
+	BXTN1M/zJZPYkrfr4pV7QjHuctgM3KWvYhbJpRTINq82/Pvlie3pPeqqFx0TPA+uVTLLc+91
+X-Google-Smtp-Source: AGHT+IG1fT6TiYe3pTrZKUSJyBs6nE+x+ZjDtyWth+bx63s94p++vD/MoGUkW74HUXfleYGKFUeLcw==
+X-Received: by 2002:a17:90b:240c:b0:2ff:556f:bf9 with SMTP id 98e67ed59e1d1-30e0daf825bmr1697698a91.4.1747105840515;
+        Mon, 12 May 2025 20:10:40 -0700 (PDT)
+Received: from dea88b1475bb.. (125-227-29-20.hinet-ip.hinet.net. [125.227.29.20])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2453f50b67sm5082852a12.55.2025.05.12.20.10.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 May 2025 20:10:40 -0700 (PDT)
+Message-ID: <6822b830.050a0220.27a24d.d064@mx.google.com>
+X-Google-Original-Message-ID: <20250513031010.267994-1-LeoWang>
+From: leo.jt.wang@gmail.com
+X-Google-Original-From: LeoWang
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: cache: Convert marvell,tauros2-cache to DT
- schema
-Message-ID: <d8b74932-4b3e-49ac-9d55-cea29ff815b0@lunn.ch>
-References: <20250513015302.1049682-1-robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	george.kw.lee@fii-foxconn.com,
+	leo.jt.wang@fii-foxconn.com
+Subject: [PATCH 1/2] dt-bindings: arm: aspeed: add Meta Clemente board
+Date: Tue, 13 May 2025 11:10:09 +0800
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250513015302.1049682-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-On Mon, May 12, 2025 at 08:53:01PM -0500, Rob Herring (Arm) wrote:
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+From: Leo Wang <leo.jt.wang@fii-foxconn.com>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Document the new compatibles used on Meta Clemente.
 
-    Andrew
+Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
+---
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index a3736f134130..4416a40dcd86 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -81,6 +81,7 @@ properties:
+               - asus,x4tf-bmc
+               - facebook,bletchley-bmc
+               - facebook,catalina-bmc
++              - facebook,clemente-bmc
+               - facebook,cloudripper-bmc
+               - facebook,elbert-bmc
+               - facebook,fuji-bmc
+-- 
+2.43.0
+
 
