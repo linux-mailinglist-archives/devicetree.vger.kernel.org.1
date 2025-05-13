@@ -1,63 +1,51 @@
-Return-Path: <devicetree+bounces-176935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A1BDAB5E1F
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:48:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28EFBAB5E48
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 23:11:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1A7F465611
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 20:48:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF72A7B0005
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 21:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B13982C0335;
-	Tue, 13 May 2025 20:47:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1F1201261;
+	Tue, 13 May 2025 21:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HO94gk4Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hVDBKRTw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867B2202C3A;
-	Tue, 13 May 2025 20:47:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DFCF1FDA6D;
+	Tue, 13 May 2025 21:10:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747169238; cv=none; b=BcwRH59JeG0g8YgRo69qowJ1nzxKbKFLV52bmH8OdoCKiKeKZRoE99rRHblIQ312Tje/hodEFPBqNF0BN3l3Rawm44p4BeQRkBy7wd8GcHNQRZP+NIdDW5nlHAsbilJZeOwx38KjmUTv2jWzsuX4t0uHcdINO4KtqL9y+drnlYg=
+	t=1747170656; cv=none; b=MEVR8wJvsu7VWfpphiM2Urg05LYPch46qYG6xZSzOoBxMRs/lzQD84hZvcKxLU5riJhiNbChUnO1fks+nl6FmhZHEv6aosAmJVB5LyYFJY019eTCiQTBe/RUMbn7k2ay5EQuikBIIVIHLX7Dj6hvlSSC5fgbpCgcBan78rcoos0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747169238; c=relaxed/simple;
-	bh=WFkcdAog9uS7qjjo1kyQIavllnleuwDXLyC9TCbQIvs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rkFd9eKWrYXC2D1ZEAkOQ9Nfio7WeyM4uYzgD0tljwOndW6vPxOT0sMOIbomTbsKpWeYsZ41/vxAdDrMzAFuuvBubnqzZV5UNXM5Ci/Cz7tD9kOwEQ+cql/oy9NjHS6QotxVN5JdICcm55YVuKNcES4UgpSP+g+KcFZC0Sc9A7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HO94gk4Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22F5DC4CEE4;
-	Tue, 13 May 2025 20:47:15 +0000 (UTC)
+	s=arc-20240116; t=1747170656; c=relaxed/simple;
+	bh=Wf/ixVQdJTPDVD55FOEpkhxQFSA7AzSQGrf4Cv0eaLM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ewwKQ9dgFOLPnrxZ6aDtDYLGq7Q6/gCplDNyj/QgBzjjr3aNcv5QrTA+Yt+BiB8dyubONrebtaD5sU5uJVkLUDG3vks8nchn6y9JCyKwL+6bi/lr12LJHbULSKL6sTJOk+a1SFXhZtIAIic579nYYSIiSyz82lZ9QYr7fkcDoUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hVDBKRTw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9FD4EC4CEE4;
+	Tue, 13 May 2025 21:10:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747169238;
-	bh=WFkcdAog9uS7qjjo1kyQIavllnleuwDXLyC9TCbQIvs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=HO94gk4YAynf6VzTG09oh5klOkIxJKaHjiCmH8W+TCtsyEarUiMxuiDcyu/sLIiHp
-	 MzcQyNNdJL/iUP6G47SNlYvfandUYbOO0DY4YrfMjk7L9059SadaDtAGIe6Lio/bSH
-	 SnGd15Z1oEx7wJ2Bs1eht7xw6m+UQ01feu82hGLSL8r0qTIbljLPEQpzyXOYALRg18
-	 TZjd7hbQdZWbxL/6twCA8XczD4G8X+e5te2+7dBGP/f7wW/8CK5Q2HzXeQGz/hj7Nd
-	 E+YJ5LEak+3Skpq0Vb5pmSVDAMumOxewm+9zCXH/2Mbqw1Czh3jN56iAGjSzr+0GBi
-	 qr1mUIQV6z5Ag==
-From: Bjorn Andersson <andersson@kernel.org>
-To: konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Viken Dadhaniya <quic_vdadhani@quicinc.com>
-Cc: quic_msavaliy@quicinc.com,
-	quic_anupkulk@quicinc.com
-Subject: Re: [PATCH v4] arm64: dts: qcom: sa8775p: Add default pin configurations for QUP SEs
-Date: Tue, 13 May 2025 21:46:45 +0100
-Message-ID: <174716895371.39748.11271840586275593239.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250509090443.4107378-1-quic_vdadhani@quicinc.com>
-References: <20250509090443.4107378-1-quic_vdadhani@quicinc.com>
+	s=k20201202; t=1747170654;
+	bh=Wf/ixVQdJTPDVD55FOEpkhxQFSA7AzSQGrf4Cv0eaLM=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=hVDBKRTw39TzaMJ7yo8yJgaJUEWFTLjP/IoiD6gEKP9kumgIZqv3oFcPyywuZFoRn
+	 45sik049uWqFW5Zw+O/zltNJBqTON+GkOs2NaBly9jxatDtilyUCYKqW7sRAut90Gw
+	 tvaTuAfsYjhaq5ua8EgZog3MPfo9PxzKcGCcrRNgU+xolL+4AKJa/l6LtehciX32Cz
+	 xIYlMYqTUfruwRVkeyy6+E+9KaIkHKIByiZ1Amh+ZqIK2UYX+Zg6wa3fndz7Kjd8Hq
+	 DmRR4B/LX+bQruVKvBR9ybdWVW/fKfVFXICTewEslttIXfIIMxZna3HfZ9ogn+lz+C
+	 3FhER281wXw6w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9431EC3ABC9;
+	Tue, 13 May 2025 21:10:54 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Date: Tue, 13 May 2025 16:10:54 -0500
+Subject: [PATCH] arm64: tegra: Remove otg id gpio from Jetson TX2 NX
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,28 +53,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250513-tx2nx-role-switch-v1-1-d92ea1870ea5@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAF21I2gC/x3MTQqAIBBA4avErBtIZejnKtEibMqBsNAoQbp70
+ vJbvJchchCOMFQZAt8S5fAFqq7AutlvjLIUg240NaQMXkn7hOHYGeMjl3VoWrZEiybV9VC6M/A
+ q6X+O0/t+Swr4fWMAAAA=
+X-Change-ID: 20250513-tx2nx-role-switch-37ec55d25189
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747170654; l=1050;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=dPLaQNFWwpMQQvgTs6w9ooCG/dAXAgLZi0Ofjn262Is=;
+ b=nDqThMqWh8NwGliNuD0oqFzkcSF2nbocrM9K5SlN7Za/ys1VrdmEVOpaQD1t0XPMre3iuf/n7
+ Id7O4ix5Wg6CTAqdF5KnF7hEvlZYCO0CbeyKrteqKhRP4oqu0G4ECJh
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
 
+From: Aaron Kling <webgeek1234@gmail.com>
 
-On Fri, 09 May 2025 14:34:43 +0530, Viken Dadhaniya wrote:
-> Default pinctrl configurations for all QUP (Qualcomm Universal Peripheral)
-> Serial Engines (SEs) are missing in the SoC device tree. These
-> configurations are required by client teams when enabling any SEs as I2C,
-> SPI, or Serial protocols.
-> 
-> Add default pin configurations for Serial Engines (SEs) for all supported
-> protocols, including I2C, SPI, and UART, to the sa8775p device tree.  This
-> change facilitates slave device driver clients to enable usecase with
-> minimal modifications.
-> 
-> [...]
+The p3509 carrier board does not connect the id gpio. Prior to this, the
+gpio role switch driver could not detect the mode of the otg port.
 
-Applied, thanks!
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-[1/1] arm64: dts: qcom: sa8775p: Add default pin configurations for QUP SEs
-      commit: b03342697435996c0dd1bf598b4e71ae5c4f94d8
+diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
+index 26f71651933d1d8ef32bbd1645cac1820bd2e104..81f204e456409df355bbcb691ef99b0d0c9d504e 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
+@@ -669,7 +669,6 @@ connector {
+ 					vbus-gpios = <&gpio
+ 						      TEGRA186_MAIN_GPIO(L, 4)
+ 						      GPIO_ACTIVE_LOW>;
+-					id-gpios = <&pmic 0 GPIO_ACTIVE_HIGH>;
+ 				};
+ 			};
+ 
+
+---
+base-commit: 405e6c37c89ef0df2bfc7a988820a3df22dacb1b
+change-id: 20250513-tx2nx-role-switch-37ec55d25189
 
 Best regards,
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Aaron Kling <webgeek1234@gmail.com>
+
+
 
