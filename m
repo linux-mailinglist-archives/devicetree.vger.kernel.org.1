@@ -1,56 +1,50 @@
-Return-Path: <devicetree+bounces-176567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BA82AB48FC
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 03:53:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6418DAB490D
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 04:01:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C8777ADAD1
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 01:52:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA671464B1A
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 02:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA03198E75;
-	Tue, 13 May 2025 01:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44A9219D07A;
+	Tue, 13 May 2025 02:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m7MWu5Mq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iseWqNJ0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E1A19E98A;
-	Tue, 13 May 2025 01:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC62199252;
+	Tue, 13 May 2025 02:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747101188; cv=none; b=mfyqsD9aDSQc7tNdU41xEkQ1snXb/IlaBPoRjHV45IHOrEUdd+Y2mcvXlAO+B6vRXs38GJMhB3jeY+BMGe8O90ZHHA7V7Wo0ZKS0BCK+5x6WZzUuwtES1Mdi2/XDgxynu8e42JyzwWnwudXY4EbSmOFH37VpoG8fJGjTayGJT+s=
+	t=1747101611; cv=none; b=L27OqzA5LOPalcoyNNIVUxxXyBIIXdM5F+hSldYfDEFqhdxvaXIhVHI7TqKUHkow4jexlFHnm3nV6q+v7BK3VdKr/x8YhtwQuMuEj2xJIlNbso6oHTUVTFbq60QtWUlrpN7qqJTzQkyjZ/BkNTlB4NDZKhzIceNJRK6N7DlmTq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747101188; c=relaxed/simple;
-	bh=xH/n1xylllnKSsp2fCcJP15uxmoPNM6MP+NC2ALHIO4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AQNffy0NHpMXZDdibt+HiWFbGfPR0KNokpQ8DWM23w7+5j+xp/HOA7bzu+nRKdRvYHUvwoJsHtqHyWKd1H6lGogp8WXGfPN5GMlc8iKTYW33ThkkVZvJUeGL1MxZ1XQ1DL9cq0Ffs/buQOKzVHpem4J6E/jT/pSLjiP0viX9Ed0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m7MWu5Mq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA8D2C4CEE7;
-	Tue, 13 May 2025 01:53:07 +0000 (UTC)
+	s=arc-20240116; t=1747101611; c=relaxed/simple;
+	bh=Jm6O3oZnQBFnXFODoXYNlE6Cl4goHN+1GeltvukLXKM=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=aJrBeyldh18BNfnPK3BGlPV4R6OOIvwOSlkB4zN8k6PB+v9yUAk3JsTNCkfn7/X6p3OzS7o71p2AI+uW7L3NFk2+SxG85vyK1uGqzh1b6k+wqXMmkCHMAeIGFp/O59nEe7eSrh1JHdiFo5V62CrcAhYMw37gQ8sqkZQrhN1EDAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iseWqNJ0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 880C2C4CEE7;
+	Tue, 13 May 2025 02:00:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747101188;
-	bh=xH/n1xylllnKSsp2fCcJP15uxmoPNM6MP+NC2ALHIO4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=m7MWu5MqHjXeXf5EyRDnfEYieQSoSE4dENyjF+CsD8c1qCaNswduGhHaQA8QiA8sU
-	 keAlP7aunUEG4b2r2wkkm2iV83RjTRZxW64OoGtAe1QNY8NKb1SzI0xKQZk8X0EJB2
-	 QPDAu06IdJfnGxb+l6s7otvRyFM8kKtz0MJuhAOVMht1ICmm2G533IPUDDuPezzPWp
-	 hygfpVgptZTzqea4DWMifZt8SL5lmy8dK/dMi2ob+rMftfNJVxi1nctJk+gxrwvWUm
-	 YiljHua3dtU4nPiB2Nc9kDZZwATG8aTyQfWPTfi7hTnsMxZDg7778HN56JJ+gDzjqy
-	 V03b+rOcqjSqg==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: cache: Convert marvell,tauros2-cache to DT schema
-Date: Mon, 12 May 2025 20:53:01 -0500
-Message-ID: <20250513015302.1049682-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=k20201202; t=1747101610;
+	bh=Jm6O3oZnQBFnXFODoXYNlE6Cl4goHN+1GeltvukLXKM=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=iseWqNJ0yaXLH6jsViobGUL/7mVUIhy2lKeneECZZlxOJidks0+00W932SCTeIsrU
+	 IUu9TDQe6EhQaxhv/PRCxUaoME5zG2vSuCaLoyGS3w4KoKWblQOdS18BAbOmszEEno
+	 ccwvJkgC6bmZ/OVhQ6U0qoii4zVikF2CHHJoHNc4KeLysOKwcbVBpz/C6fTIxIxSyF
+	 Z8D4doSlGlsHPYNWc3hsHILkmizqr1Vop2O3Mg+AZz/1FDUGm9Pyg8CZAovF5wVVh6
+	 NufPtetBbNURZ8/v6DYV0ZHW6XgSuGgizD5klulF5A03qAEXlEzfYoYWJFo5Av0rFb
+	 FQo+yZRUHFcLA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 70E0039D60BB;
+	Tue, 13 May 2025 02:00:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,84 +52,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next V3 0/6] net: vertexcom: mse102x: Improve RX handling
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <174710164798.1142511.4752177124866760612.git-patchwork-notify@kernel.org>
+Date: Tue, 13 May 2025 02:00:47 +0000
+References: <20250509120435.43646-1-wahrenst@gmx.net>
+In-Reply-To: <20250509120435.43646-1-wahrenst@gmx.net>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/cache/marvell,tauros2-cache.txt  | 17 --------
- .../bindings/cache/marvell,tauros2-cache.yaml | 39 +++++++++++++++++++
- 2 files changed, 39 insertions(+), 17 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/cache/marvell,tauros2-cache.txt
- create mode 100644 Documentation/devicetree/bindings/cache/marvell,tauros2-cache.yaml
+Hello:
 
-diff --git a/Documentation/devicetree/bindings/cache/marvell,tauros2-cache.txt b/Documentation/devicetree/bindings/cache/marvell,tauros2-cache.txt
-deleted file mode 100644
-index 31af1cbb60bd..000000000000
---- a/Documentation/devicetree/bindings/cache/marvell,tauros2-cache.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--* Marvell Tauros2 Cache
--
--Required properties:
--- compatible : Should be "marvell,tauros2-cache".
--- marvell,tauros2-cache-features : Specify the features supported for the
--  tauros2 cache.
--  The features including
--    CACHE_TAUROS2_PREFETCH_ON       (1 << 0)
--    CACHE_TAUROS2_LINEFILL_BURST8   (1 << 1)
--  The definition can be found at
--  arch/arm/include/asm/hardware/cache-tauros2.h
--
--Example:
--	L2: l2-cache {
--		compatible = "marvell,tauros2-cache";
--		marvell,tauros2-cache-features = <0x3>;
--	};
-diff --git a/Documentation/devicetree/bindings/cache/marvell,tauros2-cache.yaml b/Documentation/devicetree/bindings/cache/marvell,tauros2-cache.yaml
-new file mode 100644
-index 000000000000..9f7f0d031631
---- /dev/null
-+++ b/Documentation/devicetree/bindings/cache/marvell,tauros2-cache.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/cache/marvell,tauros2-cache.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell Tauros2 Cache
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+  - Gregory Clement <gregory.clement@bootlin.com>
-+
-+properties:
-+  compatible:
-+    const: marvell,tauros2-cache
-+
-+  marvell,tauros2-cache-features:
-+    description: >
-+      Specify the features supported for the tauros2 cache. The features include:
-+
-+        - CACHE_TAUROS2_PREFETCH_ON (1 << 0)
-+        - CACHE_TAUROS2_LINEFILL_BURST8 (1 << 1)
-+
-+      The definition can be found at arch/arm/include/asm/hardware/cache-tauros2.h
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 0x3
-+
-+required:
-+  - compatible
-+  - marvell,tauros2-cache-features
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    l2-cache {
-+        compatible = "marvell,tauros2-cache";
-+        marvell,tauros2-cache-features = <0x3>;
-+    };
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Fri,  9 May 2025 14:04:29 +0200 you wrote:
+> This series is the second part of two series for the Vertexcom driver.
+> It contains some improvements for the RX handling of the Vertexcom MSE102x.
+> 
+> Changes in V3:
+> - Fix whitespace issue in patch 4
+> 
+> Changes in V2:
+> - Add Andrew's Reviewed-by to patch 1-2
+> - Fix build issue reported by Jakub & kernel test bot in patch 2
+> - Use Andrew's suggestion for netdev_warn_once in patch 2
+> - Improve commit logs for patch 3 & 5
+> - Add new patch 4 to compensate loss of invalid CMD counter
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,V3,1/6] dt-bindings: vertexcom-mse102x: Fix IRQ type in example
+    https://git.kernel.org/netdev/net-next/c/a29a72866616
+  - [net-next,V3,2/6] net: vertexcom: mse102x: Add warning about IRQ trigger type
+    https://git.kernel.org/netdev/net-next/c/fed56943a8ba
+  - [net-next,V3,3/6] net: vertexcom: mse102x: Drop invalid cmd stats
+    https://git.kernel.org/netdev/net-next/c/aeb90c40ee9a
+  - [net-next,V3,4/6] net: vertexcom: mse102x: Implement flag for valid CMD
+    https://git.kernel.org/netdev/net-next/c/6ce9348468c5
+  - [net-next,V3,5/6] net: vertexcom: mse102x: Return code for mse102x_rx_pkt_spi
+    https://git.kernel.org/netdev/net-next/c/4ecf56f4b660
+  - [net-next,V3,6/6] net: vertexcom: mse102x: Simplify mse102x_rx_pkt_spi
+    https://git.kernel.org/netdev/net-next/c/8ea6e51e54c5
+
+You are awesome, thank you!
 -- 
-2.47.2
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
