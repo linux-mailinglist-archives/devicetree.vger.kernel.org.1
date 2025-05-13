@@ -1,133 +1,140 @@
-Return-Path: <devicetree+bounces-176831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8FDAB5958
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56EE5AB595C
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:08:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA8D419E5259
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:07:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0F2A19E5825
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D27F52BE7A5;
-	Tue, 13 May 2025 16:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEA5E2BE0F4;
+	Tue, 13 May 2025 16:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gVRwQHpR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aSmSKq7G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93DF814A8B;
-	Tue, 13 May 2025 16:07:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 271BE14A8B;
+	Tue, 13 May 2025 16:08:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747152438; cv=none; b=Afp5Kmfwc9wcciTNNa6bUBVUQ2i4BiPxYHILR/A6LuEGWKyLZ7jwCJTgq5bq1t2DBgizTHZp0AcR0aXSJWKCieqM08LxSFj464xyE0FgXlXJsL7hcK57A58oMbnQVffI5dTYuWu2WnEo1QzSmoa9OuXnBLOyzh1anVwV9C4d3HU=
+	t=1747152509; cv=none; b=puJVGvhKYNFz6U/0EoC37VsfqnEOo88r7zVyc4XWOGNJqwaO8FaK4/PgdcrzCLen3dYSFDJ9RlFyWWu8lg4srtZEVGZEVeL04oi4BMQxvv2QoXK81l02T3zGsVX9cbk++LoVZ3bUSjn1qGpLTgMkxFRRTgnhcNCeI6feoXeGkL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747152438; c=relaxed/simple;
-	bh=F4oBU6YZM4f4oH4pP4Oqk4uFeV2QfLN5JGR0/4PM6iw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AtL2yaYN3UVYs6/mjPEIEIvkf+12CrLeltDLkXLYooHSlwbeUS3iHY6bbESgdxO/ewidI4MKalo84/cV5nSrVNRq1X/EdkVhQBOQ184Ou/y+wYiU1t/7/xm5Mh5NNC0tSAaGrS77606s4NgFDiM0yunc4ZChrzhSZsA43/YuYEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gVRwQHpR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34568C4CEE4;
-	Tue, 13 May 2025 16:07:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747152438;
-	bh=F4oBU6YZM4f4oH4pP4Oqk4uFeV2QfLN5JGR0/4PM6iw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gVRwQHpRbxeOMKv6EXZ0T17kHIoXoPhLBwSvH61VdDaVJbxDYk5LRnBvm7cTBC5cs
-	 NvLX488tozEjRLJaxtN5sWl9BjyVOwNCX3ZpTG7hThmqff4rqDy/GNqCg9CHzJSjFa
-	 nBa+qQOK7O67myz7t4w3lOkIumbbz8EvDy7UThIQKggof955yX1cNNgfvix3CdWnrF
-	 AF38sufSaruAzO1yHivhhNyqs8FQK+P6gmdkh5y6fxpovy//fN8AgZ9CQXTPdkOQA5
-	 dx5p1ytZMEEGEJ0f0zAePLEEduEYhaKESanMeMpoPjmrwRu2829GNZYva0jGssGXAy
-	 EHf50Q2b6tPyg==
-Date: Tue, 13 May 2025 17:07:12 +0100
-From: Lee Jones <lee@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v3 03/22] mfd: adp5585: enable oscilator during probe
-Message-ID: <20250513160712.GT2936510@google.com>
-References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
- <20250512-dev-adp5589-fw-v3-3-092b14b79a88@analog.com>
- <20250513142618.GL2936510@google.com>
- <12d73022533c250ecd5af696fbcb90dbad8fc88d.camel@gmail.com>
+	s=arc-20240116; t=1747152509; c=relaxed/simple;
+	bh=lXLXq0c3RiyAPCrSXiaOWb3qdU+9+Mzs8QTTwctlBuw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k/+gvrYDV6y/H6EnPHc7AYHofezG2vGhKKa4zIdfSghB3ldW65+i+1RpgyDB07KeDNsTMTllQ708W47wfvVAmKjtw/oOiU/L4rUKoAm9bLzKcxpngbE+CmTiXlgsrHaM2N0hwJ3p4nUOIm8rjOI8UrAHs0xTtHU/mgCMvM/qD4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aSmSKq7G; arc=none smtp.client-ip=209.85.160.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-47686580529so68622331cf.2;
+        Tue, 13 May 2025 09:08:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747152507; x=1747757307; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AN4mliRZzMBrbopGFJvTRuuBl/xk9aFHZyNZB0Spr1g=;
+        b=aSmSKq7Gn5T+G/axlq6j46rHRBgnUqAzxCuEsD5n0U/Uz6iH/cRQLL6ff5qBuKSs5X
+         5oDKbhIfREaSqOeVE7R8wOUKlc5f0UVX3YbZNV0qRrdGC0OMIUOLaqS5/UibBBGXxdwp
+         fWirI3akyBzblvAa6Ylgsu/rMv4nj/R3m42NsuqHy+MnkZ9jtdX97F0Vo1oGGTO+dVqk
+         ktSgniWvhePwnhP3Lr8NKcqqFNRTSUzquchncvS2SVU7iJCN8dkrq1I+2eP3HOr1584Q
+         sc8FTjIbj78pDyVNYe1WktQi4mJRRtS0IqB8M9J/Yyw1017loFkfO4z2VaVOjNYE27Zl
+         M5iQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747152507; x=1747757307;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AN4mliRZzMBrbopGFJvTRuuBl/xk9aFHZyNZB0Spr1g=;
+        b=s+uXS+EFU8eUAwKPvXXng722WEiGt33CALllXNqH+vYa73ackKuvyDLcpsdFxCHXTt
+         h8EfjhlJC3OCFyv2Mw1h+comHXKKC85hct1KWihBA5PS3z6cPulpYY4GM6DyEW+OtcTk
+         gJ8EqwuAXNnmvieQc8zj9M9g0tl4x/HxyCqvE/jKNoZfnvIb7ZoYaktjf+WiTLV9dEjT
+         LfGo4N6rlqv5c8Sl3fIwfRsF1hZl93avR2kW8C8qdVW9sI4DACF/s+eQpdcH85MZekm6
+         z2rs9hBAe8Po7DYUZ4vBJ/ndEV+rQ42MCPoNMtPEg5LH6snkJuspUrt+j6iTXEIDjkyk
+         9f6w==
+X-Forwarded-Encrypted: i=1; AJvYcCXQmO2bPJ0Wta+27rP9r8gQUJ5Mb93Db+fNCtO8HJWL+pthpa8m0q9vjIoxeyzEf5xnwRGlfOLddVZP@vger.kernel.org, AJvYcCXx80WUrHKLP0wQ77WgCKATtF5b8a5F6Jq0oc/PaSLRHHFzl+FLVvLCJwhJ50CNMWqu/7+NVVqn2Gwyc36r@vger.kernel.org
+X-Gm-Message-State: AOJu0YwjPodIsL/k/ZXi62v9tNgLi3pY1yXXVz2dTGyXyTXk6R1BFNAL
+	tTy2mb8vX0YU2myHlWFbjIT948gzMRtZWi4aDk0j5jRTSANqL2W6NRwsPHjTmnw7PhDmiq/AtDD
+	smVK1CU7oI/sVWTan8lTYfzE79I4=
+X-Gm-Gg: ASbGnctCB4rNNhPLQ7LT+//FHxLle/41emZGJGOuYTQhVf5QBtgf+zq5goT+wYffPml
+	6Qor/60DT+lvD3WLHICm3O4QkEEWXyUBA85ikc/GrvbHFuWJnHti9dDeV6MBhUrg6CJ4PXsUOsO
+	xUQ8jK73u9FYGNNvqa+PjdW2xVDiIJWwpQfdmmzm2qUnOTnIzHZrK4yjB9qHzf+PY9
+X-Google-Smtp-Source: AGHT+IE26qRcDzjLWk2tHG/kJHrPsKiSz2MOY61Ty7j3aEFGcynoA5b6w5pOfe5KgAmrxejxGAraPScNp/dww8vXp4w=
+X-Received: by 2002:a05:622a:2587:b0:476:98d6:141c with SMTP id
+ d75a77b69052e-49495c8eb2emr572421cf.18.1747152503726; Tue, 13 May 2025
+ 09:08:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <12d73022533c250ecd5af696fbcb90dbad8fc88d.camel@gmail.com>
+References: <20250506-via_vt8500_timer_binding-v3-1-88450907503f@gmail.com> <aCNqCrBqGSxRGMKd@mai.linaro.org>
+In-Reply-To: <aCNqCrBqGSxRGMKd@mai.linaro.org>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Tue, 13 May 2025 20:08:12 +0400
+X-Gm-Features: AX0GCFvMOIyMn5-4bO-1Iaea5F4lOX7lux6P---Bu9eSzNlomYJ5PbHB5oe4jbM
+Message-ID: <CABjd4YyQ1wg4Esd0ZGO-2+WGXkzrqfbhxLMWJ9N8eXTDr4BBgg@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: timer: via,vt8500-timer: Convert to YAML
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 13 May 2025, Nuno Sá wrote:
-> On Tue, 2025-05-13 at 15:26 +0100, Lee Jones wrote:
-> > On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
-> > 
-> > > From: Nuno Sá <nuno.sa@analog.com>
-> > > 
-> > > Make sure to enable the oscillator in the top device. This will allow to
-> > > not control this in the child PWM device as that would not work with
-> > > future support for keyboard matrix where the oscillator needs to be
-> > > always enabled (and so cannot be disabled by disabling PWM).
-> > > 
-> > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> > > ---
-> > >  drivers/mfd/adp5585.c | 16 ++++++++++++++++
-> > >  1 file changed, 16 insertions(+)
-> > > 
-> > > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> > > index
-> > > 02f9e8c1c6a1d8b9516c060e0024d69886e9fb7a..d693b1ead05128e02f671ca465f9c72cab
-> > > 3b3395 100644
-> > > --- a/drivers/mfd/adp5585.c
-> > > +++ b/drivers/mfd/adp5585.c
-> > > @@ -143,6 +143,13 @@ static int adp5585_parse_fw(struct device *dev, struct
-> > > adp5585_dev *adp5585,
-> > >  	return rc;
-> > >  }
-> > >  
-> > > +static void adp5585_osc_disable(void *data)
-> > > +{
-> > > +	const struct adp5585_dev *adp5585 = data;
-> > > +
-> > > +	regmap_write(adp5585->regmap, ADP5585_GENERAL_CFG, 0);
-> > > +}
-> > > +
-> > >  static int adp5585_i2c_probe(struct i2c_client *i2c)
-> > >  {
-> > >  	const struct regmap_config *regmap_config;
-> > > @@ -176,6 +183,15 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
-> > >  	if (n_devs < 0)
-> > >  		return n_devs;
-> > >  
-> > > +	ret = regmap_set_bits(adp5585->regmap, ADP5585_GENERAL_CFG,
-> > > +			      ADP5585_OSC_EN);
-> > 
-> > Nit: Consider unwrapping to 100-chars to avoid these simple line breaks.
-> > 
-> > Other than that, looks okay.
-> 
-> This topic is always hard as some other maintainers perfect the rule "keep the
-> 80 char and only go 100 if readability is hurt). Personally, I do prefer 100 so
-> happy to do it here.
+On Tue, May 13, 2025 at 7:49=E2=80=AFPM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
+>
+> On Tue, May 06, 2025 at 04:16:32PM +0400, Alexey Charkov wrote:
+> > Rewrite the textual description for the VIA/WonderMedia timer
+> > as YAML schema.
+> >
+> > The IP can generate up to four interrupts from four respective match
+> > registers, so reflect that in the schema.
+> >
+> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > ---
+> > Changes in v3:
+> > - Added Rob's review tag (thanks Rob)
+> > - Rebased on top of next-20250506 to pull in MAINTAINERS updates
+> > - Link to v2: https://lore.kernel.org/r/20250418-via_vt8500_timer_bindi=
+ng-v2-1-3c125568f028@gmail.com
+> >
+> > Changes in v2:
+> > - split out this binding change from the big series affecting multiple
+> >   subsystems unnecessarily (thanks Rob)
+> > - added description for the four possible interrupts (thanks Rob)
+> > - added overall description of the IC block
+> >
+> > Link to v1: https://lore.kernel.org/all/20250416-wmt-updates-v1-6-f9af6=
+89cdfc2@gmail.com/
+> > ---
+>
+> The patch does not apply.
+>
+> --- MAINTAINERS
+> +++ MAINTAINERS
+> @@ -3467,6 +3467,7 @@ F:        Documentation/devicetree/bindings/hwinfo/=
+via,vt8500-scc-id.yaml
+>  F:     Documentation/devicetree/bindings/i2c/i2c-wmt.txt
+>  F:     Documentation/devicetree/bindings/interrupt-controller/via,vt8500=
+-intc.yaml
+>  F:     Documentation/devicetree/bindings/pwm/via,vt8500-pwm.yaml
+>
+>         ^^^^^^ those bindings are not in my tree
 
-Yes, it like many things are subsystem / maintainer preference.
+This series is based on next-20250506. Happy to rebase onto 6.15-rc1,
+but these will result in a (trivial) conflict when merging the
+different trees into -next and to master. Please let me know if that's
+better.
 
-It's not the 1990's anymore - we have 4k monitors - they'll come around.
-
--- 
-Lee Jones [李琼斯]
+Best regards,
+Alexey
 
