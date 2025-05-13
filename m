@@ -1,159 +1,291 @@
-Return-Path: <devicetree+bounces-176828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CFEBAB5942
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:03:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA357AB5949
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:03:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C604219E2A2B
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:03:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10469188F2AF
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:03:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 190BA2BE110;
-	Tue, 13 May 2025 16:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07052BE0F0;
+	Tue, 13 May 2025 16:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BwEF/oUd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R7+5Xosm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6997A1DF27E;
-	Tue, 13 May 2025 16:02:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1AA422338;
+	Tue, 13 May 2025 16:03:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747152177; cv=none; b=GP8zy0NPZ5j4lAV7pfyj589dQd5RwgBeJikfBIXQtedQ6G1QTf+YUO59KiYYTWqDJs4xZ54F126DZK0VQkJ/yxKQhyOJNsnDFxWHOOfufJl7zeKN70M3r53VSc3sxC7V953Mzq8G7RuE7y8rym3cPAw/iGUHSJFRlT5Kvru7se0=
+	t=1747152217; cv=none; b=H/Vr7HF+DxqVUUDb1efGi9z/Y57GRTL6r6wF0n87Uj2uBnHTg2gEALDyjHvCdvEzRIoLuZ3lWpwJdolrfHjb/rf08P3mU8RystIsnyIjuUhhOB4hQnxRmsVKVzTeCDsjIyywK/8tNzy3ZcwHNzbbU9F0wsl0DcuFQntru6mxugQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747152177; c=relaxed/simple;
-	bh=nfcHJN9hQqqn/ozSJncMmWEv3YN9boG15TOlNeIMY8Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c8dxZXdx2fsr9Zr6RUwG65aoScQKHum40vRhQ/wAOEA3s9L1AS3CyhfCZ6aBlZiigkreQJRP4WJClT+76uZCJ9mPV6kuIichU5RB0Gn8cVn/Z9qpAFY9WeNAl6tNMXaeoytLHM03Mc/csSUPPXGoz8BB+wug7HKvLqHx6/O0tew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BwEF/oUd; arc=none smtp.client-ip=209.85.160.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-4769aef457bso72055191cf.2;
-        Tue, 13 May 2025 09:02:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747152174; x=1747756974; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MFlarGIZbuQORh2qgUeE8MEhV3Iu+lLbawRraNX6pWU=;
-        b=BwEF/oUdGJ9lfDcIzxhqVVzxzNsu/PB0BB9g6xUl+oeqLZ3aNk1GJ882IROXh9DKOB
-         V7W3yBXgraEffTWkyBjJEcbln0nxL3/U1tpWWXMRNM+ALRCAJ67BUbrSkUEiaT5de8Et
-         oANYZA40MRYkV9lhzK+sToX0ENJES61Gtz7bSNnXNdHDRFhaQ95vgDvmN6VTBMXXfLuz
-         Pj1ZvvCE3G4yXGemxhOm55gIWfQGkONMBlPgyRfZft5a3OHKxxNBDGFnAqKPJn7gZ13n
-         yOkpBrGT6ogCBLQiWcWXvg604wPgYVDlTzIj/6LyqH5O3wkgdCzVa3bR5oeSO//TWAS1
-         5DTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747152174; x=1747756974;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MFlarGIZbuQORh2qgUeE8MEhV3Iu+lLbawRraNX6pWU=;
-        b=kkY1qcZE0g54f20/F/fTgKYwquW18PTywFbKiwhdE36Kndwnn0qQtaqgTxbiFQqTov
-         DYLrlNpUggjlgivTdwbO7Fmu+AfTW0Udpzp2a6mm867qHkyRihSHTGsqtc0SZy/k2QEb
-         DPGw2e3RZMFJCe3FWl0QE6fT6dJ4iDz2WWPj14XSJiR89E+CFKpZZS1/Qip7cpDDLv13
-         KgiImsa0ZA5yXBUYYXD0JBblEUfQLP66QcSBWULY0xqiHQwPMDAUKm/RhjJ02Ury5eFW
-         YTL5UQKCPfDVlTKoSsLSkB8ilqn/Uk3SOj566W0eoERATcxzfCNCS6onP+CL01DjApaV
-         zILA==
-X-Forwarded-Encrypted: i=1; AJvYcCVNlxzZxjCAlQYhCgt1pbS4ku7igsz5+YMGZNvBsmYUUgt8wM3i929fKZzh4rKNX3mZ4f9ouYpZHqQ7ZzYO@vger.kernel.org, AJvYcCX06vnIat2bNDX/KuX+uvoCwU9dLzwMWqUhWmNUI0YgZ0+AiuwcX8PlMfUQXIPfuRa9p2MA+6RxT19h@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYSLw8MlowGtD+WvSa0zhA66rWqYkHJ+LXJB85DfGCFbWmcJkg
-	z4Q+zdDNojelV+Ti3H3EdDDyLxsLav1kFNvFGHA1juXJ8k5JYduq0mdCjbdQgqgMiFAHCB7TP1m
-	RFW1Xk3WiwlypQUf6AJjuZuzz/1w=
-X-Gm-Gg: ASbGncsRK7wCMlQ06reHF2l7XK2Zy3Onc75DJWTkMT8dA7sGtZsD7f4vn/OeINy/oJE
-	t8tlv7c/oRWe0u+vY4bqf0Az/EPNKqCLpcct1sowJRY8VXShCn+SPofARzKiLusgRdJ5e+apxYf
-	aR9MWsQvdk2oVPGKuFZtBFj6owHy4fIzM0YU33iv8bo8c8kTuL6gGwupGEe5UYuv7k
-X-Google-Smtp-Source: AGHT+IG3PLifiu+mZA2jPN3ZVpz43f/9SA9dmuLsIxO7VNUcUv7jPw9b194uMEzse2n5i4aBdHYhAEzotRLN5auThVs=
-X-Received: by 2002:ac8:7d51:0:b0:48b:77:800c with SMTP id d75a77b69052e-494527d4d3fmr320683691cf.32.1747152173923;
- Tue, 13 May 2025 09:02:53 -0700 (PDT)
+	s=arc-20240116; t=1747152217; c=relaxed/simple;
+	bh=WNcj1it742ElEqyjaYrff5xcdVt/92EDcg0/aIi+WPw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o5RQJOtRKxgFu6isrmGDxOp3jOXcJERSNKYkTZ/C2tDjGyZDvSMxAw/LML/CExghJiCWUOHTaap41+5S/gINMs6xAkGVzVK6YBkPceX4ThgshaeXgxNecCFXyB8YsgowuafCaCpeNZseGBkRCNzz+NvzoJdCK2yK0j7CPM9Zf68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R7+5Xosm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62D36C4CEE4;
+	Tue, 13 May 2025 16:03:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747152217;
+	bh=WNcj1it742ElEqyjaYrff5xcdVt/92EDcg0/aIi+WPw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R7+5XosmCpQeVYdivnx2272Er4X1BCSW4ypEabNfE6HVYjGay5wXHTyv5vmLEID1l
+	 3k5aHnK8pFlQZRHDZnrfXnxjRCqMjfd/CnWiAh45asCuGypSvxosCSnYvyLwYCj7Jz
+	 JWLJu6Z57M3xMzoH8IruAneKcKGTN9XNLJfp70EQdyxcbCUkHz2jMacQLc9Bjmw0Q6
+	 6mQ9HBEatfXUthhCeIvMV0eEk/b20CPypbwuOh+slVHaNHrm7ogozLc6/KnqLS0oKE
+	 ReUywp0w/pB8y3ZD02Ok3rks7giAm0OQUFBIMdaIXiFvUFsXMw68EDH9pTDlKZsgYh
+	 un7ds3k6ONGfg==
+Date: Tue, 13 May 2025 17:03:31 +0100
+From: Lee Jones <lee@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>, nuno.sa@analog.com,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v3 07/22] mfd: adp5585: refactor how regmap defaults are
+ handled
+Message-ID: <20250513160331.GR2936510@google.com>
+References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
+ <20250512-dev-adp5589-fw-v3-7-092b14b79a88@analog.com>
+ <20250513150029.GO2936510@google.com>
+ <c2c32541c31376d90b938f6c3532e195243dadf2.camel@gmail.com>
+ <20250513153646.GE23592@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250507-vt8500-timer-updates-v2-0-65e5d1b0855e@gmail.com>
- <20250507-vt8500-timer-updates-v2-3-65e5d1b0855e@gmail.com> <aCNLyYtxmqqklBN8@mai.linaro.org>
-In-Reply-To: <aCNLyYtxmqqklBN8@mai.linaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Tue, 13 May 2025 20:02:42 +0400
-X-Gm-Features: AX0GCFusUXlohpeDcpmxO9GVKlqTCKC41cu3fuI99zLLV2M8AmlIj0DSeXXVvbw
-Message-ID: <CABjd4YyX1nrM1qREm-dtzQUCM=TH1L8w7KeZ4ZUxg7tNH84TJg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] clocksource/drivers/timer-vt8500: Add watchdog functionality
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250513153646.GE23592@pendragon.ideasonboard.com>
 
-On Tue, May 13, 2025 at 5:40=E2=80=AFPM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->
-> On Wed, May 07, 2025 at 10:58:32AM +0400, Alexey Charkov wrote:
-> > VIA/WonderMedia system timer IP can generate a watchdog reset when its
-> > clocksource counter matches the value in the match register 0 and
-> > watchdog function is enabled. For this to work, obvously the clock even=
-t
-> > device must use a different match register (1~3) and respective interru=
-pt.
-> >
-> > Check if at least two interrupts are provided by the device tree, then =
-use
-> > match register 1 for system clock events and match register 0 for watch=
-dog
-> > respectively.
->
-> This code falls under the watchdog umbrella not in the clocksource. It
-> is better to find a way to make the timer and the watchdog separated.
->
-> The timer-gxp.c is dynamically allocating a watchdog platform device
-> with the shared pointer to the timer counter. IMO, it is a good
-> example to split this up.
+On Tue, 13 May 2025, Laurent Pinchart wrote:
 
-Thanks for the pointer Daniel!
+> On Tue, May 13, 2025 at 04:32:39PM +0100, Nuno Sá wrote:
+> > On Tue, 2025-05-13 at 16:00 +0100, Lee Jones wrote:
+> > > On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
+> > > 
+> > > > From: Nuno Sá <nuno.sa@analog.com>
+> > > > 
+> > > > The only thing changing between variants is the regmap default
+> > > > registers. Hence, instead of having a regmap condig for every variant
+> > > > (duplicating lots of fields), add a chip info type of structure with a
+> > > > regmap id to identify which defaults to use and populate regmap_config
+> > > > at runtime given a template plus the id. Also note that between
+> > > > variants, the defaults can be the same which means the chip info
+> > > > structure can be used in more than one compatible.
+> > > > 
+> > > > This will also make it simpler adding new chips with more variants.
+> > > > 
+> > > > Also note that the chip info structures are deliberately not const as
+> > > > they will also contain lots of members that are the same between the
+> > > > different devices variants and so we will fill those at runtime.
+> > > > 
+> > > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> > > > ---
+> > > >  drivers/mfd/adp5585.c       | 94 +++++++++++++++++++++++++-----------------
+> > > > ---
+> > > >  include/linux/mfd/adp5585.h | 11 ++++++
+> > > >  2 files changed, 64 insertions(+), 41 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+> > > > index
+> > > > 19d4a0ab1bb4c261e82559630624059529765fbd..874aed7d7cfe052587720d899096c995c1
+> > > > 9667af 100644
+> > > > --- a/drivers/mfd/adp5585.c
+> > > > +++ b/drivers/mfd/adp5585.c
+> > > > @@ -81,41 +81,34 @@ static const u8
+> > > > adp5585_regmap_defaults_04[ADP5585_MAX_REG + 1] = {
+> > > >  	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00,
+> > > >  };
+> > > >  
+> > > > -enum adp5585_regmap_type {
+> > > > -	ADP5585_REGMAP_00,
+> > > > -	ADP5585_REGMAP_02,
+> > > > -	ADP5585_REGMAP_04,
+> > > > +static const struct regmap_config adp5585_regmap_config_template = {
+> > > > +	.reg_bits = 8,
+> > > > +	.val_bits = 8,
+> > > > +	.max_register = ADP5585_MAX_REG,
+> > > > +	.volatile_table = &adp5585_volatile_regs,
+> > > > +	.cache_type = REGCACHE_MAPLE,
+> > > > +	.num_reg_defaults_raw = ADP5585_MAX_REG + 1,
+> > > >  };
+> > > >  
+> > > > -static const struct regmap_config adp5585_regmap_configs[] = {
+> > > > -	[ADP5585_REGMAP_00] = {
+> > > > -		.reg_bits = 8,
+> > > > -		.val_bits = 8,
+> > > > -		.max_register = ADP5585_MAX_REG,
+> > > > -		.volatile_table = &adp5585_volatile_regs,
+> > > > -		.cache_type = REGCACHE_MAPLE,
+> > > > -		.reg_defaults_raw = adp5585_regmap_defaults_00,
+> > > > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_00),
+> > > > -	},
+> > > > -	[ADP5585_REGMAP_02] = {
+> > > > -		.reg_bits = 8,
+> > > > -		.val_bits = 8,
+> > > > -		.max_register = ADP5585_MAX_REG,
+> > > > -		.volatile_table = &adp5585_volatile_regs,
+> > > > -		.cache_type = REGCACHE_MAPLE,
+> > > > -		.reg_defaults_raw = adp5585_regmap_defaults_02,
+> > > > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_02),
+> > > > -	},
+> > > > -	[ADP5585_REGMAP_04] = {
+> > > > -		.reg_bits = 8,
+> > > > -		.val_bits = 8,
+> > > > -		.max_register = ADP5585_MAX_REG,
+> > > > -		.volatile_table = &adp5585_volatile_regs,
+> > > > -		.cache_type = REGCACHE_MAPLE,
+> > > > -		.reg_defaults_raw = adp5585_regmap_defaults_04,
+> > > > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_04),
+> > > > -	},
+> > > > -};
+> > > > +static int adp5585_fill_regmap_config(const struct adp5585_dev *adp5585,
+> > > > +				      struct regmap_config *regmap_config)
+> > > 
+> > > I like the general idea.  This is much more scaleable than before.
+> > > 
+> > > > +{
+> > > > +	*regmap_config = adp5585_regmap_config_template;
+> > > > +
+> > > > +	switch (adp5585->info->regmap_type) {
+> > > > +	case ADP5585_REGMAP_00:
+> > > > +		regmap_config->reg_defaults_raw =
+> > > > adp5585_regmap_defaults_00;
+> > > > +		return 0;
+> > > > +	case ADP5585_REGMAP_02:
+> > > > +		regmap_config->reg_defaults_raw =
+> > > > adp5585_regmap_defaults_02;
+> > > > +		return 0;
+> > > > +	case ADP5585_REGMAP_04:
+> > > > +		regmap_config->reg_defaults_raw =
+> > > > adp5585_regmap_defaults_04;
+> > > 
+> > > You could make this read a tiny bit nicer (as you do with the adp5585->info
+> > > in a later patch) and make reg_defaults_raw a local variable.
+> > 
+> > I'm probably missing your point but what would be the benefit? The info is done
+> > like that because I wanted the pointer to be 'const'. Here I do not think the
+> > same applies...
+> > 
+> > > 
+> > > > +		return 0;
+> > > > +	default:
+> > > > +		return -ENODEV;
+> > > > +	}
+> > > > +}
+> > > >  
+> > > >  static int adp5585_parse_fw(struct device *dev, struct adp5585_dev
+> > > > *adp5585,
+> > > >  			    struct mfd_cell **devs)
+> > > > @@ -153,7 +146,7 @@ static void adp5585_osc_disable(void *data)
+> > > >  
+> > > >  static int adp5585_i2c_probe(struct i2c_client *i2c)
+> > > >  {
+> > > > -	const struct regmap_config *regmap_config;
+> > > > +	struct regmap_config regmap_config;
+> > > >  	struct adp5585_dev *adp5585;
+> > > >  	struct mfd_cell *devs;
+> > > >  	unsigned int id;
+> > > > @@ -165,8 +158,15 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+> > > >  
+> > > >  	i2c_set_clientdata(i2c, adp5585);
+> > > >  
+> > > > -	regmap_config = i2c_get_match_data(i2c);
+> > > > -	adp5585->regmap = devm_regmap_init_i2c(i2c, regmap_config);
+> > > > +	adp5585->info = i2c_get_match_data(i2c);
+> > > > +	if (!adp5585->info)
+> > > > +		return -ENODEV;
+> > > > +
+> > > > +	ret = adp5585_fill_regmap_config(adp5585, &regmap_config);
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > > +	adp5585->regmap = devm_regmap_init_i2c(i2c, &regmap_config);
+> > > >  	if (IS_ERR(adp5585->regmap))
+> > > >  		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
+> > > >  				     "Failed to initialize register
+> > > > map\n");
+> > > > @@ -223,22 +223,34 @@ static int adp5585_resume(struct device *dev)
+> > > >  
+> > > >  static DEFINE_SIMPLE_DEV_PM_OPS(adp5585_pm, adp5585_suspend,
+> > > > adp5585_resume);
+> > > >  
+> > > > +static struct adp5585_info adp5585_info = {
+> > > > +	.regmap_type = ADP5585_REGMAP_00,
+> > > 
+> > > Instead of providing this enum, then later another one (id) which is a
+> > > subset of the same thing, why not pass just ADP5585_REGMAP_00, etc
+> > > through the DT .data attribute then match on those?  It will add a
+> > > couple of lines to the switch(info->id) statement, but will save on a
+> > > boat load of static structs and other complexity.
+> > > 
+> > > For instance:
+> > > 
+> > > switch (info->id) {
+> > > 	case ADP5585_MAN_ID_VALUE:
+> > > 
+> > > Would simply become:
+> > > 
+> > > switch (info->id) {
+> > > 	case ADP5585_REGMAP_00:
+> > > 	case ADP5585_REGMAP_02:
+> > > 	case ADP5585_REGMAP_04:
+> > > 
+> > > And that's it.
+> > 
+> > I get the general idea... We will also have to pack the regmap defaults into an
+> > array so that we can easily reference it with 'info->id' which I don't like too
+> > much tbh (but I do see that adp5585_fill_chip_configs() will become simpler) . I
+> > guess I can also just move everything into the "main" struct as we will fill
+> > everything during probe (no real reason for struct adp5585_info) 
+> > 
+> > Anyways, If you prefer the above I'm not going to argue against it...
+> > 
+> > > 
+> > > > +};
+> > > > +
+> > > > +static struct adp5585_info adp5585_02_info = {
+> > > > +	.regmap_type = ADP5585_REGMAP_02,
+> > > > +};
+> > > > +
+> > > > +static struct adp5585_info adp5585_04_info = {
+> > > > +	.regmap_type = ADP5585_REGMAP_04,
+> > > > +};
+> > > > +
+> > > >  static const struct of_device_id adp5585_of_match[] = {
+> > > >  	{
+> > > >  		.compatible = "adi,adp5585-00",
+> > > > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
+> > > > +		.data = &adp5585_info,
+> > > 
+> > > 		.data = ADP5585_REGMAP_00,
+> > 
+> > I see, needs a cast but should work. I personally prefer valid pointers than
+> > "encoding" integers in here. I know we can start the enum at 1 so that we can
+> > still look for 0 for any possible issue but...
+> 
+> I also prefer pointers to structures, but won't fight for it.
 
-I guess in this case I'll need to pass the pointer to a full
-clocksource read function as platform data for the watchdog, as it's a
-bit more messy here than timer-gxp.c in that this hardware cannot do
-an atomic MMIO read of the counter and needs a synchronization request
-to be issued and cleared before reading the value.
+They can be nice to avoid any switch() matching, but here we have both
+anyway so it improves very little.
 
-The clocksource code will then only instantiate a platform device for
-the watchdog when it can ensure that nothing uses the first match
-register.
-
-> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > ---
-> >  drivers/clocksource/Kconfig        | 11 +++++++
-> >  drivers/clocksource/timer-vt8500.c | 61 ++++++++++++++++++++++++++++++=
-++++----
-> >  2 files changed, 67 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> > index 487c8525996724fbf9c6e9726dabb478d86513b9..8f5e41ff23386d9ecb46b38=
-603dae485db71cfc7 100644
-> > --- a/drivers/clocksource/Kconfig
-> > +++ b/drivers/clocksource/Kconfig
-> > @@ -181,6 +181,17 @@ config VT8500_TIMER
-> >       help
-> >         Enables support for the VT8500 driver.
-> >
-> > +config VT8500_TIMER_WATCHDOG
-> > +     bool "Enable VT8500 watchdog functionality"
-> > +     depends on VT8500_TIMER
-> > +     depends on WATCHDOG && WATCHDOG_CORE=3Dy
->
-> if WATCHDOG_CORE=3Dy then WATCHDOG=3Dy because the first one can be
-> enabled only if the second one is enabled.
-
-Noted, thanks. Will replace it with just WATCHDOG_CORE=3Dy in the next
-version. In fact, if the watchdog functionality becomes a separate
-platform driver then it could also potentially be built as a module,
-so "=3Dy" might also go.
-
-Best regards,
-Alexey
+-- 
+Lee Jones [李琼斯]
 
