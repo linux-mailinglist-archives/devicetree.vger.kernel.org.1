@@ -1,237 +1,192 @@
-Return-Path: <devicetree+bounces-176721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5312AB54D8
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:35:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB0F3AB54FC
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:38:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AAFFF4A0351
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 12:34:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C7537B5B72
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 12:35:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53DB2267F76;
-	Tue, 13 May 2025 12:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0668328DF05;
+	Tue, 13 May 2025 12:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="BFGZlNco"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="L+cplbNC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30B6328DB6C
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 12:34:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 473EB2580FD;
+	Tue, 13 May 2025 12:35:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747139682; cv=none; b=u0xS2cJVVlTJwR5yQlmz93tLMt/59WwhmQKUdoiksKCu3chXDjMug+jEmcCimGZOrD3ra3VjrmclYLlXRIimPCSjYzK0G1EKt+7cgmj0jNXS4rToXbSsm34bVa2KNGTDsUbtooogjo9bzPpiIv+YfFV1KhFbVsBDtk2LJGecMAQ=
+	t=1747139721; cv=none; b=TLGxS/A2aD2CntUcw5ZnjZGo2i1vTei9Bn26GAiU0Z9akcNrkU4/YgJsAYzkOPsl05+6i9tHlkFKj8hgoOuwb3EXDnjtpMqey4ju0lkSKPWxTGJWg7T7mse3K0+tECIKYAupHjllBrt4t4rAXIkaBCalgDkY9TOlg+XRedyCbwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747139682; c=relaxed/simple;
-	bh=C6g26+a8+4FWdWFM6DToFTTtYFPKxuXSuqUWlbI9vLk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HbobdHEqCG0ytXkIeB/Z727q2yZ0H+kai1sj9T0S+q4JFlK3nlNcBsSJf/vuVpLz1yJfx0KJ7XSA556PhlzDtPynqB8PDBjeqG7ZIdS9YCHIXEcM549LjTQAlRc3hIdrYjfbZxrlCxtAb1k+Tii2tydHe3H+n1we9+ysVq/b1vA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=BFGZlNco; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a1fb17a9beso2402982f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 05:34:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1747139678; x=1747744478; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tHvaWLNRQYIypczjqy5l/3kyXpFgu36gZsSsUPB0g3w=;
-        b=BFGZlNcodhFIGG95tBF8ZHeHAy1SwtQqzOgi4U3aLowrzUHuGkoZbFYFUltuPHYVdY
-         X2+7GfmurVn2WtjAqbdE8ASX93ptUroC1IidHL/GEOgoMQkXKNKZY8VFCkSA9Jlxy6Vl
-         BbUGIjUQcQr+43F+ez0AAcjJVBqyjDwO6p2zEoKhQxdfx0vnPpClilPDVFUkxfjUXPxG
-         jU5ATcSjOSd+VqeoNEqhTN2JrU+fVPGK8MJlOhh+eLhGZE98Z6SC2yq+pF36GRhowKpH
-         o56EvyfcdUMrpPml0fO7ULeDSAq0yBHb/cp0n1hnc5srfSAuyhSFt+HfDQUnEHXtEzOG
-         5U6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747139678; x=1747744478;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tHvaWLNRQYIypczjqy5l/3kyXpFgu36gZsSsUPB0g3w=;
-        b=IpP9PB18eSwshCvLUvN4Ve9vZmoaixpGJ3848W7Sq0zy0J63KRFLzA1idgo5g75ZDH
-         FKx2BU15syhtLNZvHnDnke8g+kLSR6oP7hEzfTzJ5evatPySpIP91VEoVh8/YZG1qsHR
-         JRI2CaCrKUgUXRe3ekdtLEhhBUKDqRCO8PDaDKuk0kM6tyqhAuqByFEfg+Rtfm4E2saN
-         hlXB4vbTRIFHZSwbuF9vm7krmPWXJHWGrio5QA8WocwVyRwe/wW4aG+NSXrpe5IqlC08
-         zpAXgRSUV/8/cV8HJd/nuhLqOgJk5uuYjjntM+UlZ/A44Z2qi39wLcgFLW3FezHPgEWH
-         9pNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXvelGC1oH0m7w1pmpUS6rctnXgeWfDMO8fvUPTR2h8CxFqlDsG5Q+ybS2GvndmQsurR1XdYuBhRsie@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4jcv+i9+a/RoO6JXFZOz9s8k3in0Sq2uwhpFZXb2PkY9XEVz2
-	kmZ+V5ZL9IfvgAHw90mAX9EZ3V2jra+0k7yw0HPu29bnwPFY5ysCDTe6ALXRXe0=
-X-Gm-Gg: ASbGncs8mrFKjzIdpRKtIPqKS/62hSzMtRKQOSVZH+8CNGGX9ghmrYUHztzrhmSt34g
-	xm5mt8Mm/A9J8hR+dthtd0o652VDXA+D6Yq/XPwIOGC9hx5cMvMJCzgqfIDkmt4LevE91hiyM6j
-	IpdCEQmkHB4Iq+N+2eeYBApecw7k+NAhdu6homTIGckvdShMUDeLpO8zEhv+G1dFduRe26U/N3/
-	0kX95aorymjVrrCi9WE0aJIKhoTZm/tfGRQFQmAAjN2oyJN2w0rYcZ5kOvWiuRgjTSxPXkdAETG
-	sCd3QMi6TpHGyOA4RF8WPxhJRYliwHglTtm/SC2b3qQI/97+k67rAxQoKzCGWZ0BwlY=
-X-Google-Smtp-Source: AGHT+IF0EETx+h4w6PCBRf8i2YG0WKTnteIW6fnBPI7UNFnIyzB7TOmxHpmZzzr0n8N9bYJM5uBJpg==
-X-Received: by 2002:a05:6000:4287:b0:3a0:b635:ea40 with SMTP id ffacd0b85a97d-3a1f64a3e3dmr14843773f8f.55.1747139677671;
-        Tue, 13 May 2025 05:34:37 -0700 (PDT)
-Received: from [192.168.157.194] ([213.233.104.159])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f57de087sm16321473f8f.16.2025.05.13.05.34.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 May 2025 05:34:36 -0700 (PDT)
-Message-ID: <53999471-277b-4621-abfd-b4c25761b3da@tuxon.dev>
-Date: Tue, 13 May 2025 15:34:34 +0300
+	s=arc-20240116; t=1747139721; c=relaxed/simple;
+	bh=zGg7o0AByn4EdPHDp/nX5exWXbLFjJ584UbITqi5ydM=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tPC53oaPkNzxttSmpJ2TlbgesPRPgU0aZ20KuEL6ni451bLs2gwXHgvWyFntvewLpoArsofciykyNNLupwVveMb8xo3V8jgUzR5XrM9HUfkhlFA/ay9QrMtevie4UO1wplxiwZzj+98W6RdLmOYEKuqCqkKFl+A5OvXHS0bJXD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=L+cplbNC; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54D9mZxC025002;
+	Tue, 13 May 2025 08:35:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=zbreg
+	+lph2fMuopB8ba+1C84A61YYcv+j3DhZpyOmVA=; b=L+cplbNCK75xhWgwg6m5o
+	LY5rWPNDSdAbh/JKLNf9kq/v7U7TcIf2TJtUloCb8rkeg53qgjeJiSBxpI61smPM
+	F2jj97qMVYT9TjE2ZLdFEHSLC2s352Q7NUXYGJl88IcICh6c0NuBuVDMPU4+wUaX
+	waY2lLr4tXtDbn3OWqfIRR9wunNRmeYhwZKJBb2crm7DB3WSoGVn8qVwIPtsClfD
+	rpJEaGToFUC46lh2NncULhxJUj64kzzIkuKpk8Pgcs5EVxv1lOVyJDt3x84G7ufj
+	MbcXLTkzVc/FfD96IdsuI2WJVZt7aeh/bmbyQ6Xyko+CcXXkT8uBuLUFLD4kDR8q
+	A==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 46m3s98spn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 May 2025 08:35:03 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 54DCZ2bf041030
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 13 May 2025 08:35:02 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 13 May 2025 08:35:02 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 13 May 2025 08:35:01 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 13 May 2025 08:35:01 -0400
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 54DCYirk007479;
+	Tue, 13 May 2025 08:34:46 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <jic23@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linus.walleij@linaro.org>, <brgl@bgdev.pl>,
+        <marcelo.schmitt1@gmail.com>
+Subject: [PATCH v3 04/10] iio: adc: ad4170: Add support for calibration bias
+Date: Tue, 13 May 2025 09:34:42 -0300
+Message-ID: <6213d7b7fb913520f1f143e7ccf8fe16b8579d0c.1747083143.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <cover.1747083143.git.marcelo.schmitt@analog.com>
+References: <cover.1747083143.git.marcelo.schmitt@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] clk: renesas: rzg2l-cpg: Add support for MSTOP in
- clock enable/disable API
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com,
- linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250410140628.4124896-1-claudiu.beznea.uj@bp.renesas.com>
- <20250410140628.4124896-4-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdUv6+KFuobDzzmKFOH6PvwU0RFzd1M9WrEZ-yzESBahkw@mail.gmail.com>
- <e77c85de-4542-44e1-af2e-f63f72602ff8@tuxon.dev>
- <CAMuHMdXFtBmjDu=1RS2MLNYzhZ0fmpT7+1QbA9p4LvoLHitOuw@mail.gmail.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <CAMuHMdXFtBmjDu=1RS2MLNYzhZ0fmpT7+1QbA9p4LvoLHitOuw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: 9tyFkPhOrUuBf3P-Yo9NCXin5PEqGoGg
+X-Authority-Analysis: v=2.4 cv=ZaUdNtVA c=1 sm=1 tr=0 ts=68233c77 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=dt9VzEwgFbYA:10 a=gAnH3GRIAAAA:8 a=1daVv4cnZmPfqeT0XEsA:9
+X-Proofpoint-GUID: 9tyFkPhOrUuBf3P-Yo9NCXin5PEqGoGg
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEzMDExNyBTYWx0ZWRfX6qiUWuaUTZqM
+ ZRhF6pXfDkYH9Xm8X7inNaak49xYwqPnaEjleJuqQw04xIWkITpvi3MxbW7yFynCVow8ZxCCmCT
+ 9sis0q9q5lzW+DZbOaU9g2A3kYE6EB6FtGg/QeCu3UD0ld95zRHXL5chpqRn/uPvnwS8UI0mGBP
+ bfe75bu4NTp93SyullXgwKA11T+Ivhlzjats0uTu4g9H2OyJloaXGz591SWoTgFVzZ4DuWnObvD
+ wRUE4YzpFGRgjbbEI8CCNVWB6nBkE3ZjCZm+q4kva6/9/8bNIhCOLkWFxBK53UG4kFidL+TX/gx
+ 9m2uZtdozFuYDgAfM8j8hGpoH4v63C3DQ65DsYWFvZOvwDuSbphli6+BpEJwFhTNIpHv4Em9aIr
+ 1w954rmQ4pE5xgbayvn6hSjkt42WR+t8P2eFrxZG6hkMedj2rmZrGNLVUINQXdBO15IBaZYd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-13_01,2025-05-09_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 phishscore=0 clxscore=1011
+ mlxscore=0 impostorscore=0 suspectscore=0 mlxlogscore=999 adultscore=0
+ spamscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505130117
 
-Hi, Geert,
+Add support for ADC calibration bias/offset configuration.
 
-On 09.05.2025 15:34, Geert Uytterhoeven wrote:
-> Hi Claudiu,
-> 
-> On Fri, 9 May 2025 at 12:54, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
->> On 07.05.2025 18:42, Geert Uytterhoeven wrote:
->>> On Thu, 10 Apr 2025 at 16:06, Claudiu <claudiu.beznea@tuxon.dev> wrote:
->>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>
->>>> The RZ/{G2L, V2L, G3S} CPG versions support a feature called MSTOP. Each
->>>> module has one or more MSTOP bits associated with it, and these bits need
->>>> to be configured along with the module clocks. Setting the MSTOP bits
->>>> switches the module between normal and standby states.
->>>>
->>>> Previously, MSTOP support was abstracted through power domains
->>>> (struct generic_pm_domain::{power_on, power_off} APIs). With this
->>>> abstraction, the order of setting the MSTOP and CLKON bits was as follows:
->>>>
->>>> Previous Order:
->>>> A/ Switching to Normal State (e.g., during probe):
->>>> 1/ Clear module MSTOP bits
->>>> 2/ Set module CLKON bits
->>>>
->>>> B/ Switching to Standby State (e.g., during remove):
->>>> 1/ Clear CLKON bits
->>>> 2/ Set MSTOP bits
->>>>
->>>> However, in some cases (when the clock is disabled through devres), the
->>>> order may have been (due to the issue described in link section):
->>>>
->>>> 1/ Set MSTOP bits
->>>> 2/ Clear CLKON bits
->>>>
->>>> Recently, the hardware team has suggested that the correct order to set
->>>> the MSTOP and CLKON bits is:
->>>>
->>>> Updated Order:
->>>> A/ Switching to Normal State (e.g., during probe):
->>>> 1/ Set CLKON bits
->>>> 2/ Clear MSTOP bits
->>>>
->>>> B/ Switching to Standby State (e.g., during remove):
->>>> 1/ Set MSTOP bits
->>>> 2/ Clear CLKON bits
->>>>
->>>> To prevent future issues due to incorrect ordering, the MSTOP setup has
->>>> now been implemented in rzg2l_mod_clock_endisable(), ensuring compliance
->>>> with the sequence suggested in Figure 41.5: Module Standby Mode Procedure
->>>> from the RZ/G3S HW manual.
->>>>
->>>> Additionally, since multiple clocks of a single module may be mapped to a
->>>> single MSTOP bit, MSTOP setup is reference-counted.
->>>>
->>>> Furthermore, as all modules start in the normal state after reset, if the
->>>> module clocks are disabled, the module state is switched to standby. This
->>>> prevents keeping the module in an invalid state, as recommended by the
->>>> hardware team.
->>>>
->>>> Link: https://lore.kernel.org/all/20250215130849.227812-1-claudiu.beznea.uj@bp.renesas.com/
->>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>
->>> Thanks for your patch!
->>>
->>>> --- a/drivers/clk/renesas/rzg2l-cpg.c
->>>> +++ b/drivers/clk/renesas/rzg2l-cpg.c
-> 
->>>> +/* Need to be called with a lock held to avoid concurrent access to mstop->refcnt. */
->>>> +static void rzg2l_mod_clock_module_set_state(struct mstp_clock *clock,
->>>> +                                            bool standby)
->>>> +{
->>>> +       struct rzg2l_cpg_priv *priv = clock->priv;
->>>> +       struct mstop *mstop = clock->mstop;
->>>> +       bool update = false;
->>>> +       u32 value;
->>>> +
->>>> +       if (!mstop)
->>>> +               return;
->>>> +
->>>> +       value = MSTOP_MASK(mstop->conf) << 16;
->>>> +
->>>> +       if (standby) {
->>>> +               unsigned int criticals = 0;
->>>> +
->>>> +               for (u8 i = 0; i < clock->num_shared_mstop_clks; i++) {
->>>
->>> unsigned int
->>>
->>>> +                       struct mstp_clock *clk = clock->shared_mstop_clks[i];
->>>> +
->>>> +                       if (clk->critical)
->>>> +                               criticals++;
->>>> +               }
->>>> +
->>>> +               /* Increment if clock is critical, too. */
->>>> +               if (clock->critical)
->>>> +                       criticals++;
->>>
->>> If clock->shared_mstop_clks[] would include the current clock, then
->>> (a) this test would not be needed, and
->>
->> Agree!
->>
->>> (b) all clocks sharing the same mstop could share a single
->>>     clock->shared_mstop_clks[] array.
->>
->> I'll look into this but I'm not sure how should I do it w/o extra
->> processing at the end of registering all the clocks. FWICT, that would
->> involve freeing some shared_mstop_clks arrays and using a single reference
->> as the shared_mstop_clks[] is updated after every clock is registered. Can
->> you please let me know if this what you are thinking about?
-> 
-> Currently, when detecting two clocks share the same mstop,
-> you (re)allocate each clock's shared_mstop_clks[], and add the
-> other clock:
-> 
->     rzg2l_cpg_add_shared_mstop_clock(priv->dev, clock, clk);
->     rzg2l_cpg_add_shared_mstop_clock(priv->dev, clk, clock);
-> 
-> Instead, call rzg2l_cpg_add_shared_mstop_clock() once, and modify
-> rzg2l_cpg_add_shared_mstop_clock() to not only realloc the target's
-> shared_mstop_clks[], but also loop over all its existing entries,
-> and update their shared_mstop_clks[] pointers.
-I tried this approach but w/o complicated further the code I can't keep
-track of whether the "to be updated" (not reallocated) shared_mstop_clks[]
-pointers were previously updated pointers or devm_krealloc()'ed ones. I
-need this to properly free the unused arrays. Calling devm_kfree() on a
-non-devres resource triggers a WARN_ON() for each call.
+Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+---
+Change log v2 -> v3
+- New patch spun out of the base driver patch.
 
-Because of this I prepared a new version where the duplicated lists are
-freed after all the mod clocks were initialized. I'll publish it soon.
+ drivers/iio/adc/ad4170.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-Thank you,
-Claudiu
+diff --git a/drivers/iio/adc/ad4170.c b/drivers/iio/adc/ad4170.c
+index 1df214f7fdec..b02fdd25b4c8 100644
+--- a/drivers/iio/adc/ad4170.c
++++ b/drivers/iio/adc/ad4170.c
+@@ -643,6 +643,7 @@ static const struct iio_chan_spec ad4170_channel_template = {
+ 	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+ 			      BIT(IIO_CHAN_INFO_SCALE) |
+ 			      BIT(IIO_CHAN_INFO_OFFSET) |
++			      BIT(IIO_CHAN_INFO_CALIBBIAS) |
+ 			      BIT(IIO_CHAN_INFO_CALIBSCALE),
+ 	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),
+ 	.scan_type = {
+@@ -954,6 +955,9 @@ static int ad4170_read_raw(struct iio_dev *indio_dev,
+ 		pga = FIELD_GET(AD4170_AFE_PGA_GAIN_MSK, setup->afe);
+ 		*val = chan_info->offset_tbl[pga];
+ 		return IIO_VAL_INT;
++	case IIO_CHAN_INFO_CALIBBIAS:
++		*val = setup->offset;
++		return IIO_VAL_INT;
+ 	case IIO_CHAN_INFO_CALIBSCALE:
+ 		*val = setup->gain;
+ 		return IIO_VAL_INT;
+@@ -1083,6 +1087,25 @@ static int ad4170_set_pga(struct ad4170_state *st,
+ 	return 0;
+ }
+ 
++static int ad4170_set_calib_offset(struct ad4170_state *st,
++				   struct iio_chan_spec const *chan, int val)
++{
++	struct ad4170_chan_info *chan_info = &st->chan_infos[chan->address];
++	struct ad4170_setup *setup = &chan_info->setup;
++	u32 old_offset;
++	int ret;
++
++	guard(mutex)(&st->lock);
++	old_offset = setup->offset;
++	setup->offset = val;
++
++	ret = ad4170_write_channel_setup(st, chan->address, false);
++	if (ret)
++		setup->offset = old_offset;
++
++	return ret;
++}
++
+ static int ad4170_set_calib_gain(struct ad4170_state *st,
+ 				 struct iio_chan_spec const *chan, int val)
+ {
+@@ -1111,6 +1134,8 @@ static int __ad4170_write_raw(struct iio_dev *indio_dev,
+ 	switch (info) {
+ 	case IIO_CHAN_INFO_SCALE:
+ 		return ad4170_set_pga(st, chan, val, val2);
++	case IIO_CHAN_INFO_CALIBBIAS:
++		return ad4170_set_calib_offset(st, chan, val);
+ 	case IIO_CHAN_INFO_CALIBSCALE:
+ 		return ad4170_set_calib_gain(st, chan, val);
+ 	default:
+@@ -1139,6 +1164,7 @@ static int ad4170_write_raw_get_fmt(struct iio_dev *indio_dev,
+ 	switch (info) {
+ 	case IIO_CHAN_INFO_SCALE:
+ 		return IIO_VAL_INT_PLUS_NANO;
++	case IIO_CHAN_INFO_CALIBBIAS:
+ 	case IIO_CHAN_INFO_CALIBSCALE:
+ 		return IIO_VAL_INT;
+ 	default:
+-- 
+2.47.2
+
 
