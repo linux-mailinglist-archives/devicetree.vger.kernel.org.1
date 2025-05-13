@@ -1,97 +1,94 @@
-Return-Path: <devicetree+bounces-176891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CB44AB5BE8
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 19:55:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF128AB5D05
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 21:19:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D7608650CB
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:53:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61A2B179F55
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 19:19:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E97F2C2FBD;
-	Tue, 13 May 2025 17:50:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mx9WIApj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72C7728E5E3;
+	Tue, 13 May 2025 19:19:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 379762C0861;
-	Tue, 13 May 2025 17:50:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FDEF1CD0C;
+	Tue, 13 May 2025 19:19:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747158630; cv=none; b=OoPZXsxrLwKulanUCn6CTxg1+BOES8lo9FFT0wiErpBVWg/PSye23KboGujmlYkCzxfNMvQX564r58SRDbNmdJnmkyY8sebAdCBy8Dbi9+K3zHzwpNkE29fW9QRabUPsNcyYxgjkIsiqx4i+k1k8D/Rv6tQhE4FSkzysN3WEmF4=
+	t=1747163966; cv=none; b=ZaChw4lJUPnl7abn74jCFvXzMrn1owm0os7lgjOoXOnT/KKWxGqQAtGV+ztfU/gPPbuvkPAk8g3kIERNE5uUgmpc3pQcVCsGg5jKjHNRotgQ2f17HFFEOmgHhqUh99DHhIMfnrfZvhktKYP7UOIXRq5hgMD4S15BZm7M96Q62Hs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747158630; c=relaxed/simple;
-	bh=Dhr0rsx9WpeMa8aspdbgl7YO+d4d6KcEE2+waQCoYbI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iUpzFMrCrucKkY3N7fdSTAkJrzyJ08SYfCCBVnx//AueeKPcKV1X2QEfFtfCem4UPrpUi1zuiYM5HynWIGkFAyaBASOAkd83+QQkaOl5WAereBQ1E2HEdOKSWFayXKflcmIpF1pM+jqrhRgY/J8CbhoqDRA3kno+WWr8gjrqCIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mx9WIApj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47E23C4CEEB;
-	Tue, 13 May 2025 17:50:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747158629;
-	bh=Dhr0rsx9WpeMa8aspdbgl7YO+d4d6KcEE2+waQCoYbI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Mx9WIApjEVmPhH5F185IKRqIGyWwA3dV6NvRXTmivOsfbP1MoHXf1rzIECrRuJCeh
-	 sKZisWOzwMSzmu/i5k8BoJB4GW3WgBzwTi36Ue7AS9uPS51rT1430OO2PGwB0ge+Jc
-	 atpJQS3stUmP871lQ4zz8tt1ALjd9BLuUPa1ZtUPinjF2+Gjt8UwxeucewV5eFuBxS
-	 qS316/4AN1W4WLHleRVkXd7bkAEHJeaMqa9XFSR3J4Di2i/8WMCqHGnlSCH1LfaEPv
-	 zTlF5flnLb2J9awHq9uoFqY9uYONpOXB5mLjo5vSoOy4Fl4IHs4GISk5mBNvNvh6DO
-	 vo01EgHBlvHGg==
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Date: Tue, 13 May 2025 19:48:19 +0200
-Subject: [PATCH v4 26/26] arm64: Kconfig: Enable GICv5
+	s=arc-20240116; t=1747163966; c=relaxed/simple;
+	bh=q9uhQ69sMkdZ4u7RzMocjUphcOGlyx+dW/ynSSI77hQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U9mid27OYQ8oaAl3qPcU46XYHYtXU1kJKXPhc1vziw8E3jCzOyGBCuDmZ/IiHWPNJKOTOahC1hoaDvLy+B9PacvVNq+CUttDcBcYFtocvqlHBhvkj3mny2ABEF7GCcavgqw6n3a/tYp96naHdaFIYN3kFBvX8edNtjAxF8TXyhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1uEv9i-0002eV-00; Tue, 13 May 2025 21:19:10 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 45646C0895; Tue, 13 May 2025 17:12:23 +0200 (CEST)
+Date: Tue, 13 May 2025 17:12:23 +0200
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Caleb James DeLisle <cjd@cjdns.fr>, linux-mips@vger.kernel.org,
+	tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, benjamin.larsson@genexis.eu,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v5 0/7] Add EcoNet EN751221 MIPS platform support
+Message-ID: <aCNhVw7oMRhHQNq_@alpha.franken.de>
+References: <20250507134500.390547-1-cjd@cjdns.fr>
+ <aCNWM5Xq7wnHVCrc@mai.linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250513-gicv5-host-v4-26-b36e9b15a6c3@kernel.org>
-References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
-In-Reply-To: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
-To: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, 
- Sascha Bischoff <sascha.bischoff@arm.com>, 
- Timothy Hayes <timothy.hayes@arm.com>, 
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Mark Rutland <mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Lorenzo Pieralisi <lpieralisi@kernel.org>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aCNWM5Xq7wnHVCrc@mai.linaro.org>
 
-Enable GICv5 driver code for the ARM64 architecture.
+On Tue, May 13, 2025 at 04:24:51PM +0200, Daniel Lezcano wrote:
+> On Wed, May 07, 2025 at 01:44:53PM +0000, Caleb James DeLisle wrote:
+> > EcoNet MIPS SoCs are big endian machines based on 34Kc and 1004Kc
+> > processors. They are found in xDSL and xPON modems, and contain PCM
+> > (VoIP), Ethernet, USB, GPIO, I2C, SPI (Flash), UART, and PCIe.
+> > 
+> > The EcoNet MIPS SoCs are divided broadly into two families, the
+> > EN751221 family based on the 34Kc, and the EN751627 family based on
+> > the 1004Kc. Individual SoCs within a family are very similar, only
+> > with different peripherals.
+> > 
+> > This patchset adds basic "boots to a console" support for the EN751221
+> > family and adds SmartFiber XP8421-B, a low cost commercially available
+> > board that is useful for testing and development.
+> > 
+> > Note that Airoha (AN7523, AN7581) is similar to EcoNet in terms of
+> > peripherals, and for historical reasons Airoha chips are sometimes
+> > referred to with the EN75xx prefix. However this is a different
+> > platform because Airoha chips are ARM based.
+> > 
+> > This patchset is against mips-next.
+> > 
+> > v4 -> v5
+> > * 2/7 clocksource/drivers: Add EcoNet Timer HPT driver:
+> >   * Improve explanation of HPT timer in changelog
+> >   * Move pr_info to pr_debug per recommendation
+> >   * Remove pointless debug on spurious interrupt
+> >   * Small code-style change
+> 
+> Shall I pick the clocksource + bindings changes through my tree ?
 
-Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Will Deacon <will@kernel.org>
-Cc: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Marc Zyngier <maz@kernel.org>
----
- arch/arm64/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+please do, I'll take the remaining patches.
 
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index a182295e6f08bfa0f3e6f630dc4adfe797a4d273..f1b3c695b376717979ae864865238ae12ad65ca2 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -128,6 +128,7 @@ config ARM64
- 	select ARM_GIC_V2M if PCI
- 	select ARM_GIC_V3
- 	select ARM_GIC_V3_ITS if PCI
-+	select ARM_GIC_V5
- 	select ARM_PSCI_FW
- 	select BUILDTIME_TABLE_SORT
- 	select CLONE_BACKWARDS
+Thomas.
 
 -- 
-2.48.0
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
