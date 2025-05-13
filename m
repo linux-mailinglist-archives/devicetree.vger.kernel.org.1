@@ -1,145 +1,159 @@
-Return-Path: <devicetree+bounces-176827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9C9AB5938
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:00:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CFEBAB5942
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:03:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02D297A6249
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:58:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C604219E2A2B
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:03:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B402BE7BA;
-	Tue, 13 May 2025 16:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 190BA2BE110;
+	Tue, 13 May 2025 16:02:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="T+6grY7a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BwEF/oUd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7CAA2BE7B1;
-	Tue, 13 May 2025 16:00:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6997A1DF27E;
+	Tue, 13 May 2025 16:02:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747152004; cv=none; b=oI04mRplrkMCW3ySSjI62YaE0gSrwjV3cf7+l/7R3uuG8yKXhhridReLW3X0VgdsEy13/0BSA496SbJ71YJ9fhps7HUdRxZ8vEelhCyHhWoQtpGK0seY+hS5yFPcxJH/8jBs4hUXVohNI3MfxkVoWzU8QsrYXYiYqyOdTigbsbM=
+	t=1747152177; cv=none; b=GP8zy0NPZ5j4lAV7pfyj589dQd5RwgBeJikfBIXQtedQ6G1QTf+YUO59KiYYTWqDJs4xZ54F126DZK0VQkJ/yxKQhyOJNsnDFxWHOOfufJl7zeKN70M3r53VSc3sxC7V953Mzq8G7RuE7y8rym3cPAw/iGUHSJFRlT5Kvru7se0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747152004; c=relaxed/simple;
-	bh=mohnBTgRq5hJWAWvTrGhcgzyELjLPTMvvBK794EokQc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=X0dbZB2KWYuj+Zg+wvNZxVpBrIG4Qd2d6VUmQZac559zOnySllWz2se/sELvAFX0v25JFnd4Xfh1m7qg+TxSYQPQpb6CKSEkkWYvtyR8IfXHaes9zInAiMslUuWsy0EcwMXp3aMGOdx31s4eoZmgw1bA1WH8LgsHOr93ANpGLvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=T+6grY7a; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1747152000;
-	bh=mohnBTgRq5hJWAWvTrGhcgzyELjLPTMvvBK794EokQc=;
-	h=From:Date:Subject:To:Cc:From;
-	b=T+6grY7a9XfRcjaFcnPMsUcs5C6Z9b3mtTVCsTePn04YoYMG7E/xf+SCeJCuhc1W6
-	 /WgbF5sNpeO7qBqxBwcJ6rGGg5eNyuH7KE3NaiesSpscGRuujV7Gld6nvZL7I2HW39
-	 FM6ANw7tULThKMndMSgmA4059gGj8joRhOuaHINIXVS8bXE60O13h90/MIxcUc3r7M
-	 Y+9xaEeSgUtazEZGGjnVBrZqFxXILE2gAiG/GCF0TufU1pIhkTE7ypKDIQ+uZvQNkE
-	 QBJOyZT1taAT/VIFt7jzNqqU9+8/2Z0JR03joJcc9CtFPni3JLaCEuZlMyhmoT/NyL
-	 b+eca/gbUm5iw==
-Received: from [192.168.1.63] (unknown [70.107.117.78])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7700217E0858;
-	Tue, 13 May 2025 17:59:58 +0200 (CEST)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Tue, 13 May 2025 11:59:53 -0400
-Subject: [PATCH] arm64: dts: mediatek: mt8395-genio-1200-evk: Describe CPU
- supplies
+	s=arc-20240116; t=1747152177; c=relaxed/simple;
+	bh=nfcHJN9hQqqn/ozSJncMmWEv3YN9boG15TOlNeIMY8Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=c8dxZXdx2fsr9Zr6RUwG65aoScQKHum40vRhQ/wAOEA3s9L1AS3CyhfCZ6aBlZiigkreQJRP4WJClT+76uZCJ9mPV6kuIichU5RB0Gn8cVn/Z9qpAFY9WeNAl6tNMXaeoytLHM03Mc/csSUPPXGoz8BB+wug7HKvLqHx6/O0tew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BwEF/oUd; arc=none smtp.client-ip=209.85.160.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-4769aef457bso72055191cf.2;
+        Tue, 13 May 2025 09:02:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747152174; x=1747756974; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MFlarGIZbuQORh2qgUeE8MEhV3Iu+lLbawRraNX6pWU=;
+        b=BwEF/oUdGJ9lfDcIzxhqVVzxzNsu/PB0BB9g6xUl+oeqLZ3aNk1GJ882IROXh9DKOB
+         V7W3yBXgraEffTWkyBjJEcbln0nxL3/U1tpWWXMRNM+ALRCAJ67BUbrSkUEiaT5de8Et
+         oANYZA40MRYkV9lhzK+sToX0ENJES61Gtz7bSNnXNdHDRFhaQ95vgDvmN6VTBMXXfLuz
+         Pj1ZvvCE3G4yXGemxhOm55gIWfQGkONMBlPgyRfZft5a3OHKxxNBDGFnAqKPJn7gZ13n
+         yOkpBrGT6ogCBLQiWcWXvg604wPgYVDlTzIj/6LyqH5O3wkgdCzVa3bR5oeSO//TWAS1
+         5DTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747152174; x=1747756974;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MFlarGIZbuQORh2qgUeE8MEhV3Iu+lLbawRraNX6pWU=;
+        b=kkY1qcZE0g54f20/F/fTgKYwquW18PTywFbKiwhdE36Kndwnn0qQtaqgTxbiFQqTov
+         DYLrlNpUggjlgivTdwbO7Fmu+AfTW0Udpzp2a6mm867qHkyRihSHTGsqtc0SZy/k2QEb
+         DPGw2e3RZMFJCe3FWl0QE6fT6dJ4iDz2WWPj14XSJiR89E+CFKpZZS1/Qip7cpDDLv13
+         KgiImsa0ZA5yXBUYYXD0JBblEUfQLP66QcSBWULY0xqiHQwPMDAUKm/RhjJ02Ury5eFW
+         YTL5UQKCPfDVlTKoSsLSkB8ilqn/Uk3SOj566W0eoERATcxzfCNCS6onP+CL01DjApaV
+         zILA==
+X-Forwarded-Encrypted: i=1; AJvYcCVNlxzZxjCAlQYhCgt1pbS4ku7igsz5+YMGZNvBsmYUUgt8wM3i929fKZzh4rKNX3mZ4f9ouYpZHqQ7ZzYO@vger.kernel.org, AJvYcCX06vnIat2bNDX/KuX+uvoCwU9dLzwMWqUhWmNUI0YgZ0+AiuwcX8PlMfUQXIPfuRa9p2MA+6RxT19h@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYSLw8MlowGtD+WvSa0zhA66rWqYkHJ+LXJB85DfGCFbWmcJkg
+	z4Q+zdDNojelV+Ti3H3EdDDyLxsLav1kFNvFGHA1juXJ8k5JYduq0mdCjbdQgqgMiFAHCB7TP1m
+	RFW1Xk3WiwlypQUf6AJjuZuzz/1w=
+X-Gm-Gg: ASbGncsRK7wCMlQ06reHF2l7XK2Zy3Onc75DJWTkMT8dA7sGtZsD7f4vn/OeINy/oJE
+	t8tlv7c/oRWe0u+vY4bqf0Az/EPNKqCLpcct1sowJRY8VXShCn+SPofARzKiLusgRdJ5e+apxYf
+	aR9MWsQvdk2oVPGKuFZtBFj6owHy4fIzM0YU33iv8bo8c8kTuL6gGwupGEe5UYuv7k
+X-Google-Smtp-Source: AGHT+IG3PLifiu+mZA2jPN3ZVpz43f/9SA9dmuLsIxO7VNUcUv7jPw9b194uMEzse2n5i4aBdHYhAEzotRLN5auThVs=
+X-Received: by 2002:ac8:7d51:0:b0:48b:77:800c with SMTP id d75a77b69052e-494527d4d3fmr320683691cf.32.1747152173923;
+ Tue, 13 May 2025 09:02:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250513-genio-1200-evk-cpu-supplies-v1-1-6f0066bb93db@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAHhsI2gC/x3MQQqAIBAAwK/EnltYNaH6SnQI22opTJQkiP6ed
- JzLPJA4CifoqwciZ0ly+gJVV+C2ya+MMheDJm3JKoMrezlRaSLkvKMLF6YrhKMk2LrGWKfJzG0
- HZQiRF7n/fRjf9wNg0uZxbQAAAA==
-X-Change-ID: 20250513-genio-1200-evk-cpu-supplies-8c435c203d89
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Macpaul Lin <macpaul.lin@mediatek.com>, Ben Lok <ben.lok@mediatek.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.14.2
+References: <20250507-vt8500-timer-updates-v2-0-65e5d1b0855e@gmail.com>
+ <20250507-vt8500-timer-updates-v2-3-65e5d1b0855e@gmail.com> <aCNLyYtxmqqklBN8@mai.linaro.org>
+In-Reply-To: <aCNLyYtxmqqklBN8@mai.linaro.org>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Tue, 13 May 2025 20:02:42 +0400
+X-Gm-Features: AX0GCFusUXlohpeDcpmxO9GVKlqTCKC41cu3fuI99zLLV2M8AmlIj0DSeXXVvbw
+Message-ID: <CABjd4YyX1nrM1qREm-dtzQUCM=TH1L8w7KeZ4ZUxg7tNH84TJg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] clocksource/drivers/timer-vt8500: Add watchdog functionality
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The Genio 1200 EVK board has the big and little CPU clusters fed by the
-same regulators as MT8195-Cherry boards, so describe them in the same
-way as commit 17b33dd9e4a3 ("arm64: dts: mediatek: cherry: Describe CPU
-supplies").
+On Tue, May 13, 2025 at 5:40=E2=80=AFPM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
+>
+> On Wed, May 07, 2025 at 10:58:32AM +0400, Alexey Charkov wrote:
+> > VIA/WonderMedia system timer IP can generate a watchdog reset when its
+> > clocksource counter matches the value in the match register 0 and
+> > watchdog function is enabled. For this to work, obvously the clock even=
+t
+> > device must use a different match register (1~3) and respective interru=
+pt.
+> >
+> > Check if at least two interrupts are provided by the device tree, then =
+use
+> > match register 1 for system clock events and match register 0 for watch=
+dog
+> > respectively.
+>
+> This code falls under the watchdog umbrella not in the clocksource. It
+> is better to find a way to make the timer and the watchdog separated.
+>
+> The timer-gxp.c is dynamically allocating a watchdog platform device
+> with the shared pointer to the timer counter. IMO, it is a good
+> example to split this up.
 
-This prevents the system from hanging during boot in the case that the
-cpufreq-mediatek-hw driver tries to probe before the drivers for the
-regulators have probed (which happens when using the current defconfig).
+Thanks for the pointer Daniel!
 
-Fixes: f2b543a191b6 ("arm64: dts: mediatek: add device-tree for Genio 1200 EVK board")
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
- .../boot/dts/mediatek/mt8395-genio-1200-evk.dts    | 32 ++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+I guess in this case I'll need to pass the pointer to a full
+clocksource read function as platform data for the watchdog, as it's a
+bit more messy here than timer-gxp.c in that this hardware cannot do
+an atomic MMIO read of the counter and needs a synchronization request
+to be issued and cleared before reading the value.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-index be5e5f339e811728e91b1ffec45ada25f9b0208b..a71f1b70b0fd61792ac29e9568c30f723ed7c162 100644
---- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-@@ -179,6 +179,38 @@ wifi_fixed_3v3: regulator-2 {
- 	};
- };
- 
-+&cpu0 {
-+	cpu-supply = <&mt6359_vcore_buck_reg>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&mt6359_vcore_buck_reg>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&mt6359_vcore_buck_reg>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&mt6359_vcore_buck_reg>;
-+};
-+
-+&cpu4 {
-+	cpu-supply = <&mt6315_6_vbuck1>;
-+};
-+
-+&cpu5 {
-+	cpu-supply = <&mt6315_6_vbuck1>;
-+};
-+
-+&cpu6 {
-+	cpu-supply = <&mt6315_6_vbuck1>;
-+};
-+
-+&cpu7 {
-+	cpu-supply = <&mt6315_6_vbuck1>;
-+};
-+
- &disp_pwm0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&disp_pwm0_pins>;
+The clocksource code will then only instantiate a platform device for
+the watchdog when it can ensure that nothing uses the first match
+register.
 
----
-base-commit: edef457004774e598fc4c1b7d1d4f0bcd9d0bb30
-change-id: 20250513-genio-1200-evk-cpu-supplies-8c435c203d89
+> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > ---
+> >  drivers/clocksource/Kconfig        | 11 +++++++
+> >  drivers/clocksource/timer-vt8500.c | 61 ++++++++++++++++++++++++++++++=
+++++----
+> >  2 files changed, 67 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+> > index 487c8525996724fbf9c6e9726dabb478d86513b9..8f5e41ff23386d9ecb46b38=
+603dae485db71cfc7 100644
+> > --- a/drivers/clocksource/Kconfig
+> > +++ b/drivers/clocksource/Kconfig
+> > @@ -181,6 +181,17 @@ config VT8500_TIMER
+> >       help
+> >         Enables support for the VT8500 driver.
+> >
+> > +config VT8500_TIMER_WATCHDOG
+> > +     bool "Enable VT8500 watchdog functionality"
+> > +     depends on VT8500_TIMER
+> > +     depends on WATCHDOG && WATCHDOG_CORE=3Dy
+>
+> if WATCHDOG_CORE=3Dy then WATCHDOG=3Dy because the first one can be
+> enabled only if the second one is enabled.
+
+Noted, thanks. Will replace it with just WATCHDOG_CORE=3Dy in the next
+version. In fact, if the watchdog functionality becomes a separate
+platform driver then it could also potentially be built as a module,
+so "=3Dy" might also go.
 
 Best regards,
--- 
-Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
+Alexey
 
