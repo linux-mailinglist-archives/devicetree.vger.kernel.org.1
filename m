@@ -1,84 +1,106 @@
-Return-Path: <devicetree+bounces-176848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34B89AB59DB
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:29:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 849EEAB5A56
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:41:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E7A71B64A68
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:30:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 661DC1891A5A
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:40:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF7D92BEC40;
-	Tue, 13 May 2025 16:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 325F22BF3F6;
+	Tue, 13 May 2025 16:37:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32BD2BEC3E;
-	Tue, 13 May 2025 16:29:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A6882BF3ED;
+	Tue, 13 May 2025 16:37:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747153784; cv=none; b=ie27qk7DmeaNKc4gmjRM+zS5DHA/eI8v7JCn9YHAG+QLkD1hwnNarWJFfE4P1FaN+c/+iSxmLqOeRYCNPF0c4PKwkGZYsTUSvHP87R/f/BN4hfwlCMRRcUadkYRrgggDeiwFMO+D1Y0oc6xU8WNj6dTm0ZhVFyI17Vip5Q4seHc=
+	t=1747154233; cv=none; b=AFfyVEg/ZOTXTwBiK1o7c9uYXTqigiYIUxyLsNG+ENfJMmVz05vtD2Se0wUEdzYXiWoO/+NTYsEmXfn2mNKQQNzkuN5xT35Hkmp4OnejxMYy7zTabKBGcc0ALfKzrCM6B+idPzwbG+q2PgNB8m5IL7XusaCGCvj9tWBS5MSAPkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747153784; c=relaxed/simple;
-	bh=vz7Pn/6EL4wk60dEMYxwC6EfPtUwu20ENGHawZQo4qg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=XwT4yLCIjAuJ+8fw3l2AfcBck1PCNPEDWCfiQsCK+pFzMHfHKh7UMN67cQ4OLeh3P8t4E25GFQSRE9ws0T+KnSkMpaLpjWpKF4OIb6J6RKv9Aw3Y2SSpJUlTW+vAQd7sX6S6MCR/JR4wZdlL5e+I+svCBHkYDATDGdSkzBrE0Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F7DFC4CEEF;
-	Tue, 13 May 2025 16:29:44 +0000 (UTC)
-Received: from wens.tw (localhost [127.0.0.1])
-	by wens.tw (Postfix) with ESMTP id AB3345FEDD;
-	Wed, 14 May 2025 00:29:41 +0800 (CST)
-From: Chen-Yu Tsai <wens@csie.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Andre Przywara <andre.przywara@arm.com>
-Cc: Cody Eksal <masterr3c0rd@epochal.quest>, 
- Philippe Simons <simons.philippe@gmail.com>, devicetree@vger.kernel.org, 
- linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20250505164729.18175-1-andre.przywara@arm.com>
-References: <20250505164729.18175-1-andre.przywara@arm.com>
-Subject: Re: [PATCH 0/3] arm64: dts: sunxi: Add Liontron H-A133L support
-Message-Id: <174715378169.4016543.2717785306714546784.b4-ty@csie.org>
-Date: Wed, 14 May 2025 00:29:41 +0800
+	s=arc-20240116; t=1747154233; c=relaxed/simple;
+	bh=6xJchB9Ej9qCTPrteESID4+eHPSThGpusksbi+f5Jmg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=t2y8++uqVT2pc3no7YvI1XfUocAdNP/YeoPSaadZaM2HJfe/sjVUJfQHCXXF5yj4nu50Tfrok+4pMiKCT3rU20I8V+Xy9facG7VQrtN+0NQkduPruOafB6DsbpL3mG5GdqD/FfhJgD2MCMrYLw/vFN+0pOm0BQxuilVoZdxIwnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn; spf=none smtp.mailfrom=chainsx.cn; arc=none smtp.client-ip=54.254.200.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=chainsx.cn
+X-QQ-mid: esmtpgz12t1747154119t284e3be7
+X-QQ-Originating-IP: 8uXPQpioheAdZ3NtmZqvxBvM7bPXQlo+Ap4Eyie6yeA=
+Received: from chainsx-ubuntu-server.lan ( [182.245.65.132])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 14 May 2025 00:35:16 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 15007006065327461002
+EX-QQ-RecipientCnt: 11
+From: Hsun Lai <i@chainsx.cn>
+To: Fred Bloggs <f.blogs@napier.co.nz>
+Cc: Hsun Lai <i@chainsx.cn>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Rothwell <sfr@canb.auug.org.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH v1 0/3] Add support for Sakura Pi RK3308B
+Date: Wed, 14 May 2025 00:35:11 +0800
+Message-Id: <20250513163515.177472-1-i@chainsx.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:chainsx.cn:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: OPHbpUvlYj5kf0/5CT50sV+o2xrXMSEOlMIgbWi/qgk/jTnkcFi0kikR
+	PuVgCyJUI95hyFK+dOcHIhToK/OBmJdTvowawbFQ261bXXw1tFASOT606U6p/7baKtTYssa
+	ZuLJxa29ul8FsiQ6Y4alyRBrxfX/Ahh4CRKseiHu3T/Dc3aSdbVoUOh8NmOg917GYB1+rvC
+	rj3Ya2Us/FDBVB/UEDZ6E+vzw/YdnjflGNo5kTu6MhX8yz+00g00ndnaz0tidqVy6gOlRl/
+	Q7JQm3JUI5KAOuky+IV7X2lAE2sIvEXpxAIt80vr66gb2bQs59F9f/CA+Lqgj3pV4+ZUqQF
+	F6Ck9HfuJ8/4GgORxAlkdYcBkAnmll1a14PMNQM0fZt/yeYqKPrp0egPceQH3IXqZjO5cdY
+	Z5qzrAQ+K6vMTEh/6fhI4jFTRKj3UaIhZn3RF+X9Q/e48LAXM8lqNDdLB7DeYzW3+oytd23
+	Cs1nq2/Vk3vvzA42G9K+flTc+KAvtRpPxMEW3IJC8O8BMjhCGsFAp4H0W23f74IM5LqUqnM
+	ldUWzGwJAbicAVpj4k7XEdD5JP1hCSpuOoXPdSXDIueHG7QmdhDuDw/yye9zat0sqC63Oqk
+	lLvQZhb0zZP0y3Gi7NgETUYr0rI4HCIaQfpGB4DE4Rh931af/8EtxUn6svDF886DY7J2J73
+	4BxVt8YTURCjK5eFHaJ/1Y0Xy2BXnerAlGSr76Qna/LkzVQROHzyFL7lPnyyXUygUof0p4Y
+	mncdBpv3/QYykFR0vplHgJB7XvUClkne2x/Rv57/Lq1kC8vRVB/3gcHOVWNdSvV5/lJ8odQ
+	gx2IO7I8KCBLFQ9fgDQ5QkRDGCey359OYyD8pRq3ShHx31oGmMbcbdJYeKz/JMVIXFvyb7W
+	AGO3pAXASqkGOzDyKcAdVMfJsHQiDp4J0FSDZvHEZYNNA3FkxfprmjHBJVodJTldaH44nid
+	nmt/w5ZNdIa5ILv0tuTYSKA2U036dI5Ir+zA=
+X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
+X-QQ-RECHKSPAM: 0
 
-On Mon, 05 May 2025 17:47:26 +0100, Andre Przywara wrote:
-> The Liontron H-A133L is an industrial development board featuring the
-> Allwinner A133 SoC.
-> Alongside the usual standard connectors like USB and Ethernet ports,
-> it contains a number of dedicated JST connectors, to connect external
-> peripherals.
-> 
-> Add support for that board with the usual patch trinity: vendor prefix,
-> board name binding, board .dts file.
-> 
-> [...]
+This series add support for Sakura Pi RK3308B.
 
-Applied to sunxi/dt-for-6.16 in sunxi/linux.git, thanks!
+Info of device can be found at:
+https://docs.sakurapi.org/article/sakurapi-rk3308b/introduce
 
-[1/3] dt-bindings: vendor-prefixes: Add Liontron name
-      https://git.kernel.org/sunxi/linux/c/9baa27a2e9fc
-[2/3] dt-bindings: arm: sunxi: Add Liontron H-A133L board name
-      https://git.kernel.org/sunxi/linux/c/d26382bb852c
-[3/3] arm64: dts: allwinner: a100: add Liontron H-A133L board support
-      https://git.kernel.org/sunxi/linux/c/b631b0bf7648
+Changes in v1:
+- Add support for Sakura Pi RK3308B
 
-Best regards,
+Hsun Lai (3):
+  dt-bindings: vendor-prefixes: Add SakuraPi prefix
+  dt-bindings: arm: rockchip: Add Sakura Pi RK3308B
+  arm64: dts: rockchip: add DTs for Sakura Pi RK3308B
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3308-sakurapi-rk3308b.dts  | 295 ++++++++++++++++++
+ 4 files changed, 303 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3308-sakurapi-rk3308b.dts
+
 -- 
-Chen-Yu Tsai <wens@csie.org>
+2.34.1
 
 
