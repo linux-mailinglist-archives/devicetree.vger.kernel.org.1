@@ -1,257 +1,152 @@
-Return-Path: <devicetree+bounces-176711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B353AB5328
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 12:48:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C93AB535A
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 13:00:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EE28188D600
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 10:48:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B532D189D6F2
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 11:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00AAB27F195;
-	Tue, 13 May 2025 10:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 489D728C2D7;
+	Tue, 13 May 2025 11:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="DDWA8xRU"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="1SPvY58l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D0627E7F3
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 10:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98FDC253F1B;
+	Tue, 13 May 2025 11:00:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747133287; cv=none; b=bu93noVySazjrydydwuJULaS9A6vqRU8gjpRUgzxnbcLKHc2RPOLVw6tdslb699l3yfRIK/WL0dkRY5TpLNAQD5XkATIoqNvNJrOXPZG7G+beEWsRtz5uZyldjSjhRKNdjMWZD8/e8kAKpGvIIe6x0vU8Mf7kDPGcmYtQkGaWQk=
+	t=1747134046; cv=none; b=C3ziGa45nvFwSeljw1+ydaS+IYmHJ5BlmtS3Qf6Qfhk9FMY/ahbflSMRq+lSRFPjy3HaTR66zzDu/EJCo4W74yh30759OjXcyZE6R+dvjcBKqZBQ8Di57iG+ypuJPwN9Jc+Y24VVVglgsDHVdzgVoICjWZuBVrQpF5oaugiPq3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747133287; c=relaxed/simple;
-	bh=8lNXhQlFgeQ+7nrfwX45y0yjpZCb+NXoHunbbiU7Y48=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TiB0b3OKfIFu8d9kPbjeQbWdiAIzWwMUhRFsAd6mRgYwzra6ActPUi4H2i4y0dIjv/S3LQmQdqV56fftR/ebcbIqotiBe2/2R8FuXit0Fj3k7cIU/PpBKmJ8CK4ICorATW0+MlHEBs4weW0Awg07SEHzqPyxTJ+Gll8v2xd+u6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=DDWA8xRU; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1747133285;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=f+wm1PKfRti2xGR/oblakeMEtVNw1jI8kFg4UxnuaZg=;
-	b=DDWA8xRU8QsiZNsbSGoyc7e0VZESkYgCG6zgGhc7QQ8v/eKpecpjA2FeQtyWrmAwP2JkWt
-	wwHWRRUPGrNuTIwosS9keScWZdKJNxh2BBvWRru9H55Fg2LejaPCNFnOZKlQzJIgzWMNkQ
-	Yo1UgL5HFQQBHmpd2x/ItCPERKqLPE0=
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-678-9EQRBOt-PaaVixkLmsDEpA-1; Tue,
- 13 May 2025 06:48:00 -0400
-X-MC-Unique: 9EQRBOt-PaaVixkLmsDEpA-1
-X-Mimecast-MFC-AGG-ID: 9EQRBOt-PaaVixkLmsDEpA_1747133278
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 7F0DD1955DA2;
-	Tue, 13 May 2025 10:47:57 +0000 (UTC)
-Received: from [10.44.34.49] (unknown [10.44.34.49])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 1BBDE180087C;
-	Tue, 13 May 2025 10:47:51 +0000 (UTC)
-Message-ID: <6f693bb5-da3c-4363-895f-58a267e52a18@redhat.com>
-Date: Tue, 13 May 2025 12:47:50 +0200
+	s=arc-20240116; t=1747134046; c=relaxed/simple;
+	bh=lvcch2mjqXy76M4SgxMLancG3LIVTkAgw1v67xAKb60=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gc4Riumk9Inw7yNENIp82p0uGGrXhpHR45aNqG/nAq4rQtjdGdU1d6wfl9PtrQkqnIQVNsQKsYlTv9jTILrwdwrIlqLH2ZoZWVDsiHjsbwjRXfT1wrvcdbiviq+zEi48uvNzY+2Z5iPXsDCnHW7Xpd2Qq8vTR6suyjgMWAtOOQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=1SPvY58l; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1747134044; x=1778670044;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lvcch2mjqXy76M4SgxMLancG3LIVTkAgw1v67xAKb60=;
+  b=1SPvY58lg6QaGq3tg5MKMEH0UOBJBAnn1tbJaQ7qZNh7lbO5vyfRQbMP
+   3uBOsM/rKg2W4Dq9QkvGwOlQTxnzPeRUARNUfVSYUWUBHPuKSjqI13WDK
+   GsnYroktT62HhIFX88+TzpRxw6LfEZGyiyqgbaseW6TMs/ZNxFBr/9K+a
+   uWCsA4sdKDNWMxXgX/JsV7w385tSFtDEY10w0NzW/s7J4p+rNlY9O9WcV
+   QzFMZnX5qnoYBP71FQJCnauBRKlCqqO0GIMyKL+TKfVlOuxmlbnlIPtW1
+   z/tL99GNL9MwzcotFCPBYHXhPYCzOo8oSCxKADrogQA4KeyVhcgQC0OB1
+   A==;
+X-CSE-ConnectionGUID: m/qCGXO7RluFvhk37YiHlQ==
+X-CSE-MsgGUID: Ef1fQOjqRNOhE8dLMRoNgA==
+X-IronPort-AV: E=Sophos;i="6.15,285,1739862000"; 
+   d="asc'?scan'208";a="42045275"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 May 2025 04:00:43 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 13 May 2025 04:00:41 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44 via Frontend
+ Transport; Tue, 13 May 2025 04:00:38 -0700
+Date: Tue, 13 May 2025 11:59:38 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Jon Hunter <jonathanh@nvidia.com>
+CC: Conor Dooley <conor@kernel.org>, Vishwaroop A <va@nvidia.com>,
+	<krzk@kernel.org>, <broonie@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
+	<skomatineni@nvidia.com>, <ldewangan@nvidia.com>, <kyarlagadda@nvidia.com>,
+	<smangipudi@nvidia.com>, <bgriffis@nvidia.com>, <linux-spi@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH V3 RESEND 1/2] dt-bindings: spi: tegra: Document IOMMU
+ property for Tegra234 QSPI
+Message-ID: <20250513-implode-half-0c3ffcf6d3f5@wendy>
+References: <20250509165409.311912-1-va@nvidia.com>
+ <20250512-observant-rental-21927c85c709@spud>
+ <904d3e89-a540-4edd-b748-15e13c431c17@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 8/8] mfd: zl3073x: Register DPLL sub-device
- during init
-To: Lee Jones <lee@kernel.org>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, netdev@vger.kernel.org,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20250507124358.48776-1-ivecera@redhat.com>
- <20250507124358.48776-9-ivecera@redhat.com>
- <CAHp75Ven0i05QhKz2djYx0UU9E9nipb7Qw3mm4e+UN+ZSF_enA@mail.gmail.com>
- <2e3eb9e3-151d-42ef-9043-998e762d3ba6@redhat.com>
- <aBt1N6TcSckYj23A@smile.fi.intel.com> <20250507152609.GK3865826@google.com>
- <b095ffb9-c274-4520-a45e-96861268500b@redhat.com>
- <20250513094126.GF2936510@google.com>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <20250513094126.GF2936510@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="SQ4dyVdvUUBL1DBR"
+Content-Disposition: inline
+In-Reply-To: <904d3e89-a540-4edd-b748-15e13c431c17@nvidia.com>
 
-On 13. 05. 25 11:41 dop., Lee Jones wrote:
-> On Mon, 12 May 2025, Ivan Vecera wrote:
-> 
->> On 07. 05. 25 5:26 odp., Lee Jones wrote:
->>> On Wed, 07 May 2025, Andy Shevchenko wrote:
->>>
->>>> On Wed, May 07, 2025 at 03:56:37PM +0200, Ivan Vecera wrote:
->>>>> On 07. 05. 25 3:41 odp., Andy Shevchenko wrote:
->>>>>> On Wed, May 7, 2025 at 3:45 PM Ivan Vecera <ivecera@redhat.com> wrote:
->>>>
->>>> ...
->>>>
->>>>>>> +static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
->>>>>>> +       { .channel = 0, },
->>>>>>> +       { .channel = 1, },
->>>>>>> +       { .channel = 2, },
->>>>>>> +       { .channel = 3, },
->>>>>>> +       { .channel = 4, },
->>>>>>> +};
->>>>>>
->>>>>>> +static const struct mfd_cell zl3073x_devs[] = {
->>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 0),
->>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 1),
->>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 2),
->>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 3),
->>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 4),
->>>>>>> +};
->>>>>>
->>>>>>> +#define ZL3073X_MAX_CHANNELS   5
->>>>>>
->>>>>> Btw, wouldn't be better to keep the above lists synchronised like
->>>>>>
->>>>>> 1. Make ZL3073X_CELL() to use indexed variant
->>>>>>
->>>>>> [idx] = ...
->>>>>>
->>>>>> 2. Define the channel numbers
->>>>>>
->>>>>> and use them in both data structures.
->>>>>>
->>>>>> ...
->>>>>
->>>>> WDYM?
->>>>>
->>>>>> OTOH, I'm not sure why we even need this. If this is going to be
->>>>>> sequential, can't we make a core to decide which cell will be given
->>>>>> which id?
->>>>>
->>>>> Just a note that after introduction of PHC sub-driver the array will look
->>>>> like:
->>>>> static const struct mfd_cell zl3073x_devs[] = {
->>>>>          ZL3073X_CELL("zl3073x-dpll", 0),  // DPLL sub-dev for chan 0
->>>>>          ZL3073X_CELL("zl3073x-phc", 0),   // PHC sub-dev for chan 0
->>>>>          ZL3073X_CELL("zl3073x-dpll", 1),  // ...
->>>>>          ZL3073X_CELL("zl3073x-phc", 1),
->>>>>          ZL3073X_CELL("zl3073x-dpll", 2),
->>>>>          ZL3073X_CELL("zl3073x-phc", 2),
->>>>>          ZL3073X_CELL("zl3073x-dpll", 3),
->>>>>          ZL3073X_CELL("zl3073x-phc", 3),
->>>>>          ZL3073X_CELL("zl3073x-dpll", 4),
->>>>>          ZL3073X_CELL("zl3073x-phc", 4),   // PHC sub-dev for chan 4
->>>>> };
->>>>
->>>> Ah, this is very important piece. Then I mean only this kind of change
->>>>
->>>> enum {
->>>> 	// this or whatever meaningful names
->>>> 	..._CH_0	0
->>>> 	..._CH_1	1
->>>> 	...
->>>> };
->>>>
->>>> static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
->>>>          { .channel = ..._CH_0, },
->>>>          ...
->>>> };
->>>>
->>>> static const struct mfd_cell zl3073x_devs[] = {
->>>>          ZL3073X_CELL("zl3073x-dpll", ..._CH_0),
->>>>          ZL3073X_CELL("zl3073x-phc", ..._CH_0),
->>>>          ...
->>>> };
->>>
->>> This is getting hectic.  All for a sequential enumeration.  Seeing as
->>> there are no other differentiations, why not use IDA in the child
->>> instead?
->>
->> For that, there have to be two IDAs, one for DPLLs and one for PHCs...
-> 
-> Sorry, can you explain a bit more.  Why is this a problem?
-> 
-> The IDA API is very simple.
-> 
-> Much better than building your own bespoke MACROs.
+--SQ4dyVdvUUBL1DBR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I will try to explain this in more detail... This MFD driver handles
-chip family ZL3073x where the x == number of DPLL channels and can
-be from <1, 5>.
+On Tue, May 13, 2025 at 11:19:05AM +0100, Jon Hunter wrote:
 
-The driver creates 'x' DPLL sub-devices during probe and has to pass
-channel number that should this sub-device use. Here can be used IDA
-in DPLL sub-driver:
-e.g. ida_alloc_max(zldev->channels, zldev->max_channels, GFP_KERNEL);
+> > > +  - $ref: spi-controller.yaml#
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          const: nvidia,tegra234-qspi
+> >=20
+> > > +    then:
+> > > +      properties:
+> > > +        iommus: true
+> >=20
+> > This is a NOP, no?
+> > Just invert the case above and drop a clause.
+>=20
+>=20
+> Yes that's true. So just to confirm, your preference is this ...
+>=20
+> diff --git a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.y=
+aml
+> b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+> index 04d3b1a47392..c45511e9a9ed 100644
+> --- a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+> +++ b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+> @@ -74,11 +74,13 @@ allOf:
+>    - if:
+>        properties:
+>          compatible:
+> -          const: nvidia,tegra234-qspi
+> +          contains:
+> +            enum:
+> +              - nvidia,tegra210-qspi
+> +              - nvidia,tegra186-qspi
+> +              - nvidia,tegra194-qspi
+> +              - nvidia,tegra241-qspi
+>      then:
+> -      properties:
+> -        iommus: true
+> -    else:
+>        properties:
+>          iommus: false
 
-This way the DPLL sub-device get its own unique channel ID to use.
+You can just invert the condition directly with a not:,
+so "if: properties: compatible: not: contains:" should do the trick.
 
-The situation is getting more complicated with PHC sub-devices because
-the chip can provide UP TO 'x' PHC sub-devices depending on HW
-configuration. To handle this the MFD driver has to check this HW config
-for particular channel if it is capable to provide PHC functionality.
+--SQ4dyVdvUUBL1DBR
+Content-Type: application/pgp-signature; name="signature.asc"
 
-E.g. ZL30735 chip has 5 channels, in this case the MFD driver should
-create 5 DPLL sub-devices. And then lets say channel 0, 2 and 4 are
-PHC capable. Then the MFD driver should create 3 PHC sub-devices and
-pass 0, 2 resp. 4 for them.
+-----BEGIN PGP SIGNATURE-----
 
-In that case IDA cannot be simply used as the allocation is not
-sequential.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCMmGgAKCRB4tDGHoIJi
+0mpYAP9DLyt4yjrQ7chZQTnXz8nDNpruXL9jHhFsNskUDttvUgEAuMvvEbdUg9tK
+EZQ2UODgjqyj9QFYSS7svBf4/g1GjAM=
+=vXPi
+-----END PGP SIGNATURE-----
 
-So yes, for DPLL sub-devices IDA could be used but for the PHCs another
-approach (platform data) has to be used.
-
-There could be a hacky way to use IDA for PHCs: MFD would create PHC
-sub-devices for all channels and PHC sub-driver would check the channel
-config during probe and if the channel is not capable then returns
--ENODEV. But I don't think this is good idea to create MFD cells this
-way.
-
-Thanks for advices.
-
-Ivan
-
->> The approach in my second reply in this thread is simpler and taken
->> in v8.
->>
->> <cite>
->> +#define ZL3073X_PDATA(_channel)			\
->> +	(&(const struct zl3073x_pdata) {	\
->> +		.channel = _channel,		\
->> +	})
->> +
->> +#define ZL3073X_CELL(_name, _channel)				\
->> +	MFD_CELL_BASIC(_name, NULL, ZL3073X_PDATA(_channel),	\
->> +		       sizeof(struct zl3073x_pdata), 0)
->> +
->> +static const struct mfd_cell zl3073x_devs[] = {
->> +	ZL3073X_CELL("zl3073x-dpll", 0),
->> +	ZL3073X_CELL("zl3073x-dpll", 1),
->> +	ZL3073X_CELL("zl3073x-dpll", 2),
->> +	ZL3073X_CELL("zl3073x-dpll", 3),
->> +	ZL3073X_CELL("zl3073x-dpll", 4),
->> +};
->> </cite>
->>
->> Lee, WDYT?
->>
->> Thanks,
->> Ivan
->>
-> 
-
+--SQ4dyVdvUUBL1DBR--
 
