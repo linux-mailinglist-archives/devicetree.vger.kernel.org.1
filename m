@@ -1,63 +1,90 @@
-Return-Path: <devicetree+bounces-176804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A26BAB5888
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:26:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B495DAB5891
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:27:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85C82189E5D3
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:24:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF86B164931
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:26:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F26928CF5F;
-	Tue, 13 May 2025 15:24:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63216298991;
+	Tue, 13 May 2025 15:26:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="K07QE/8t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KTbJ858B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B603244669;
-	Tue, 13 May 2025 15:24:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7540B1C84CE
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 15:26:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747149877; cv=none; b=R5LejQeik17wRqq52jGyQXzW3q0sP8SYBMGO4EsXDOPyBjiuyzKRPq/dcqIYhINC7Fruint0TwjdE8/0mGqLqghLpnAvKGpgHBLH5dPQJKaaEYGd0aA+H5MSSXx40EabjYThoWYmW2CiZAmH+M95SU7vqt4a8P2SSRdRBrYPVOQ=
+	t=1747149982; cv=none; b=f/ROG//Dzi+ybwJFeH/+uZVW4bII65z/fE/7w8dO4sIeOoOntBjAna/rrdxNfTS5Ep1J28kqp6hmM5E0I832vuqj6hDzwaxDXjvTVmYhUfyC/k73fEwDWhGIs5cWHWkG9Sl/YEZF1PQpQOGmYv6eO69HquEESZ5qPq1RIfcdFak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747149877; c=relaxed/simple;
-	bh=aFq16nXJjpFPukEYgCucZUBi1M4RbuhTwFDtXPLmAvA=;
+	s=arc-20240116; t=1747149982; c=relaxed/simple;
+	bh=oSLfTwOfebog646sA1mZSi8+62TCjVHZ4DLwUTc/jjo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Os8Ee77hx/jCk/XETV41praPfEt3pcfhAB4dP9Ry1LVpLHfsQHm91yzUHbP7mFGzxnYDV2X7rDgRg7s4pAq+UG3ZDOP26MZ+Ahyk5+9gbPhh5yzHWDqlzmrf5+w0W0FoeNhDxhtdxsMs2eeYbPBiozbHFFlNE+GO48a3ZznPBkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=K07QE/8t; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (unknown [146.0.27.149])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 08D564C9;
-	Tue, 13 May 2025 17:24:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1747149856;
-	bh=aFq16nXJjpFPukEYgCucZUBi1M4RbuhTwFDtXPLmAvA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K07QE/8tmNIoBoEFqG9vYAVbypmRPBShuXJXU4A48ybrUVkvCxoBhiUOPQ/LVepbo
-	 EMKcBkL/WgDtx59Cck9kaNH5XBwKG12oBqH5oMm/uM8RzdsuCxGuVhOiVbumTNOfLz
-	 q6oNYU5W+O4o9murCcjI4uI8zKT3knapia7YHKpg=
-Date: Tue, 13 May 2025 17:24:23 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v3 03/22] mfd: adp5585: enable oscilator during probe
-Message-ID: <20250513152423.GB23592@pendragon.ideasonboard.com>
-References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
- <20250512-dev-adp5589-fw-v3-3-092b14b79a88@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DcFiTpUikjH7qUYalXQNlZsPZYPJ3Cws3QoRIgUOFFRjFHuGbF7/rXF1rPwCDRfJOCPsE1XXx2xeswGVFF2DBC7RTqpxPxAP0RMKogAfTypVVsy+LPpi0R63rZ7UQAaGljNT1XX+tEgCs1R3EpUY2hV69XefWFQwKabvpQ3sV94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KTbJ858B; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43cf3192f3bso61466275e9.1
+        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 08:26:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747149979; x=1747754779; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xmcB8gQFyNIvg8JURKk+JEi5mx8snrvYRFBE7I8p0T0=;
+        b=KTbJ858BOYYlAm2Z/Ut9+WgmqNdrcWVhkBAscfNvhMAmph5LaQA4GOlDmAQJOhIYMF
+         mXnmNlDQoz9CVQfGKRsIrfGBkHclroK4WQgJyeF6cxYtHzPCusCi8oB3xNW8sQTd2RII
+         tPdhxP51LvYwt4fPYIteAe/xBRE5iv/AedU3eu4qJo0XZaijj3IgDAKQTkDtrQyljU+3
+         Jx/cCDtghfjj+qJQe+7Bs4klp1dK3bzYF2SUHnCEbVTMm0nnquloUJgqTqCO1lpzBvn/
+         yhoMKltDO6aNRb824GvTZbwC299w1OfOanyZp9Tjfbs+OrhTJG/BPVmAwwq4fUyILsDy
+         Mr8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747149979; x=1747754779;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xmcB8gQFyNIvg8JURKk+JEi5mx8snrvYRFBE7I8p0T0=;
+        b=qBeMixK9hubzWJC33h4BVojiHOgxlnpDc+WCXArF4bPsVRXL9xo5kyIiyF+9gYRj9h
+         hGp2wsfhfIQhgN28jIo5IXumr3dnkQM2PqaPTGbqq4HONkkK6Oc5sC+01L5kdT0jVvOG
+         rvuOspOOC50iDdc0++Bm13f5kDi2SA6Fh/ij+semNJWzC9fuXKNvAs65lhFz2cxwTQwB
+         eORrDB817dqMJamYmFGCb79eoNoiYT3mezBl9cu18HtoW9CKEE94ZHUjga6e6KX3euHn
+         Kig2C70cVTlcBu5Qu/uGDGnwF5u793AZ7vfmQhr4nVLisgflEedap1nbFxa55/G+ab5o
+         ca7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVB4KVu5Hw4ZtrbZ79X+vpvO1ftiV7gM/wrhhh8QbSNalbqZ4us0hxWKispGADdYHghoE3Ee/qvHp8N@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwQKBLEPbJmW/mc8VkpiE7ibS5yuJuBQFYV0AQ0Q9tvtG0iib6
+	gEvf06+/B3sa5wAsITft0bGFf2rjBZWHFSYFwdtxZijv+BPC+YKsP5lOpcvPt2M=
+X-Gm-Gg: ASbGnctu0JCVySBQ03u8fbqK4W7FuzNUKZC+8bR2nGv3k15K1CZsYLUADWsQPRE9hNR
+	AXrKhCgk2e+qcWtNFMJItxD2p0wti5J2ABtE0cUTKJHMfgrqVmUelgJY+NGqha9Qblyjxzcgand
+	HFVwHZxL46QwMULDYT1U91r4g8zhSVa8K5YNSKpOeLjcHepiJehoC2RcfCEg+t2MRmWL/INXi2p
+	Pu2v+0Nv4bfum8KLbHJa41uYgGgDuetTkLqTqPQvS4Q8nTwZHkw781tjJc/qGlJhR2L6Ia5YpEh
+	GKejVzvhaWGiLRbFYcq2LWbpGNEBGk1IgjOE7Kdf1Nyga3O9EClj7lZeJccdeZtDJm8/sktYngC
+	BouAGhdc/osphvA==
+X-Google-Smtp-Source: AGHT+IHATfn9TRTLOTAhavKu9D+jbJzqaZe2/6qO1pPzjKVbpE+un6V0tEdk13nda5FV4+6YBmrqUA==
+X-Received: by 2002:a05:600c:34d5:b0:441:b19c:96fe with SMTP id 5b1f17b1804b1-442d6d3e243mr178053375e9.10.1747149978722;
+        Tue, 13 May 2025 08:26:18 -0700 (PDT)
+Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442d687ac8csm167068485e9.33.2025.05.13.08.26.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 May 2025 08:26:18 -0700 (PDT)
+Date: Tue, 13 May 2025 17:26:16 +0200
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Caleb James DeLisle <cjd@cjdns.fr>
+Cc: linux-mips@vger.kernel.org, tglx@linutronix.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, tsbogend@alpha.franken.de,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	benjamin.larsson@genexis.eu, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v5 0/7] Add EcoNet EN751221 MIPS platform support
+Message-ID: <aCNkmCJK1wOLGmgy@mai.linaro.org>
+References: <20250507134500.390547-1-cjd@cjdns.fr>
+ <aCNWM5Xq7wnHVCrc@mai.linaro.org>
+ <45166de2-8504-484d-90f6-6ef97c650b61@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,79 +94,62 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250512-dev-adp5589-fw-v3-3-092b14b79a88@analog.com>
+In-Reply-To: <45166de2-8504-484d-90f6-6ef97c650b61@cjdns.fr>
 
-Hi Nuno,
-
-Thank you for the patch.
-
-On Mon, May 12, 2025 at 01:38:55PM +0100, Nuno Sá via B4 Relay wrote:
-> From: Nuno Sá <nuno.sa@analog.com>
+On Tue, May 13, 2025 at 04:31:05PM +0200, Caleb James DeLisle wrote:
 > 
-> Make sure to enable the oscillator in the top device. This will allow to
-> not control this in the child PWM device as that would not work with
-> future support for keyboard matrix where the oscillator needs to be
-> always enabled (and so cannot be disabled by disabling PWM).
-> 
-> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> ---
->  drivers/mfd/adp5585.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> index 02f9e8c1c6a1d8b9516c060e0024d69886e9fb7a..d693b1ead05128e02f671ca465f9c72cab3b3395 100644
-> --- a/drivers/mfd/adp5585.c
-> +++ b/drivers/mfd/adp5585.c
-> @@ -143,6 +143,13 @@ static int adp5585_parse_fw(struct device *dev, struct adp5585_dev *adp5585,
->  	return rc;
->  }
->  
-> +static void adp5585_osc_disable(void *data)
-> +{
-> +	const struct adp5585_dev *adp5585 = data;
-> +
-> +	regmap_write(adp5585->regmap, ADP5585_GENERAL_CFG, 0);
-> +}
-> +
->  static int adp5585_i2c_probe(struct i2c_client *i2c)
->  {
->  	const struct regmap_config *regmap_config;
-> @@ -176,6 +183,15 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
->  	if (n_devs < 0)
->  		return n_devs;
->  
+> On 13/05/2025 16:24, Daniel Lezcano wrote:
+> > On Wed, May 07, 2025 at 01:44:53PM +0000, Caleb James DeLisle wrote:
+> > > EcoNet MIPS SoCs are big endian machines based on 34Kc and 1004Kc
+> > > processors. They are found in xDSL and xPON modems, and contain PCM
+> > > (VoIP), Ethernet, USB, GPIO, I2C, SPI (Flash), UART, and PCIe.
+> > > 
+> > > The EcoNet MIPS SoCs are divided broadly into two families, the
+> > > EN751221 family based on the 34Kc, and the EN751627 family based on
+> > > the 1004Kc. Individual SoCs within a family are very similar, only
+> > > with different peripherals.
+> > > 
+> > > This patchset adds basic "boots to a console" support for the EN751221
+> > > family and adds SmartFiber XP8421-B, a low cost commercially available
+> > > board that is useful for testing and development.
+> > > 
+> > > Note that Airoha (AN7523, AN7581) is similar to EcoNet in terms of
+> > > peripherals, and for historical reasons Airoha chips are sometimes
+> > > referred to with the EN75xx prefix. However this is a different
+> > > platform because Airoha chips are ARM based.
+> > > 
+> > > This patchset is against mips-next.
+> > > 
+> > > v4 -> v5
+> > > * 2/7 clocksource/drivers: Add EcoNet Timer HPT driver:
+> > >    * Improve explanation of HPT timer in changelog
+> > >    * Move pr_info to pr_debug per recommendation
+> > >    * Remove pointless debug on spurious interrupt
+> > >    * Small code-style change
+> > Shall I pick the clocksource + bindings changes through my tree ?
+> > 
+> I'm new here so I don't know what that means for the merges which
+> will happen later, but I don't see any reason to do otherwise.
 
-Could you add a comment here to explain what's going on ? Something
-along the lines of
+The series introduces a new platform. The patches are touching
+different susystems managed by different maintainers.
 
-	/*
-	 * Enable the internal oscillator, as it's shared between multiple
-	 * functions.
-	 *
-	 * As a future improvement, power consumption could possibly be
-	 * decreased in some use cases by enabling and disabling the oscillator
-	 * dynamically based on the needs of the child drivers.
-	 */
+Usually, the changes are per subsystem, except when they are
+interdependant.
 
-With that,
+Here you can choose to merge all the patches through the mips tree or
+let the different maintainers to pick the changes related to the
+subsystems they handle. You should clarify that in the cover
+letter. If you choose the first alternative, then before merging the
+changes, all maintainer should have blessed the patches with their
+acked-by.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +	ret = regmap_set_bits(adp5585->regmap, ADP5585_GENERAL_CFG,
-> +			      ADP5585_OSC_EN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_add_action_or_reset(&i2c->dev, adp5585_osc_disable, adp5585);
-> +	if (ret)
-> +		return ret;
-> +
->  	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO,
->  				   devs, n_devs, NULL, 0, NULL);
->  	if (ret)
 
 -- 
-Regards,
 
-Laurent Pinchart
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
