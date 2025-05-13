@@ -1,142 +1,102 @@
-Return-Path: <devicetree+bounces-176605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23163AB4C49
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 08:49:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 853FAAB4CD4
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 09:34:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71D253A16D9
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 06:48:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13D2B16A7EF
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 07:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 765481EB5DB;
-	Tue, 13 May 2025 06:48:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KDQJFI03"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C91AA1E9B37;
+	Tue, 13 May 2025 07:34:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [195.130.132.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D751D1CA84;
-	Tue, 13 May 2025 06:48:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF3721DE8AE
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 07:34:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747118939; cv=none; b=p9nRBgge9NGtt1DYBfw6A35+OXTAy1PVe6G3I3FHpt7GKymNmsZh7i4xkmVY1eyvtvioSIsXqa1zfpyjxuVX6QKdhX2HVauMbbaeCWfUlRK4p5oN2IJLo4APRnMhNlhmCX/q9YTXJ1fx2L3zTWO69oc1rubbBkVm2yut3m8917Q=
+	t=1747121648; cv=none; b=eNOWUezP4BSpLzn/cmkS2+yT6h16b2lCamUL54HaMnWm4HOZHcD7ZJeq11kT8mnH1DRFWNZ2CSr0ImPZwxO9EI5GGkM+ZJVvJyIpUFnMGZQpKKbuB/HZNmrQ6+2ZiDonl99/dRJEDReiY615CHsoUsr4JeicbaAQfxFZLLwDCZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747118939; c=relaxed/simple;
-	bh=iOjQPZ3jBEH+A7GPIhAofmRc4XXAqWG0KCzvFh/YLMQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ghce+s8EUnGosFtm7qTB0C3e+X7cWVuN2DE/jdIjEsMkInDNbIPOFwxjZrcnasHXSa47WH8xen4Lac9tdTz6iWpfqwnjLvLSv1X2ttB3Bsr1IZFpRcsA+5fDrLKrKXhc/zrigJ/99WTqkOBe5YZhpzDQBaBMSvM2h6VT3pe3+LA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KDQJFI03; arc=none smtp.client-ip=209.85.217.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4ddb03095d3so2154186137.0;
-        Mon, 12 May 2025 23:48:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747118937; x=1747723737; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FYk4j7CxjdKvx7rPEEhNb+Rwax5vZxTzKDR9+UW9Ueo=;
-        b=KDQJFI03vd2Dm/QFmh1FED62EBwdHgLZOihBvv29PB2WS7qUOkdRO6zEsFM1cm3+3k
-         AQktq65hjMb9kTQ4CFNzrR5twM2GL8tjJs6R70Pw2wndIbAwuHE5k9CnGL5san3TGIvY
-         nRYQQo0TS/igJtJ0CQ03DQlOESd/ivFPIAIO/OdYYhr8tW3KQ+Tit84Bcs59xBI3nJwU
-         ewjWZypl0233TaeYTWvwxVm4LwF1CJ3WX3gRx8S5EB3xPuBke29h6SIQoPcI0Ubkzs6N
-         v0EDX83Yeqsj0Db0HO0+fYq0hhzm/JVot76QQMAfG0H8pOfBQPVSfFLUCVJPQeYWmzAw
-         hUfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747118937; x=1747723737;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FYk4j7CxjdKvx7rPEEhNb+Rwax5vZxTzKDR9+UW9Ueo=;
-        b=bVqMsp/CwqYbnkRC8K9SeODXnHpNBp22F5I3CTSL5V2V2OK4ciMydbKnaAvoYLGF0H
-         Ni+agHheyZe4YUKR0Ld6kiLYyjpbRalg1Rr124oLcFoDdGaxMlez9bMzWBpss5wdheIX
-         e2lwVPhOKzvs/rPRfxx6YO0M0L0yH2s1NVvxsw99vUEjXeIU9rJ4+JGSIhjrNoVgs8VD
-         THL9iJYZTNpafJjSRixRwxi/zGSaqjYC92rdbweEm2O0qbFUCX0+ZBKum9mrvOFnx9o2
-         aELgNjwv4KSO4xCy1ALYNMnOpP9DVcL4SaL8aL0xsvSY5vExzDZ1fOW6bniLroYRkWrw
-         0BzA==
-X-Forwarded-Encrypted: i=1; AJvYcCVf2Yqtz4hXT72wtjshJkKyJ0w5E8BB1yKqlJxR0AofUhThaX7xrPoaf1E+RT76JTAAaBD8+rN0Noe3@vger.kernel.org, AJvYcCWusZXtQwMfG4lLAz1k6QpeiUTA51aPeZzoO6cNuOsVp+fVYwfjLoSdBsBBYQMZjoEZLtsfHbWsx5MMnAyI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxT1f0J0Nf75kD/QoCXSW0RiT95kc/GV11sD6+YZbyS4r9YN1uZ
-	2jjwurq0ztWMKFHEv1GCVQx48QHTYR5zVl5whSfnfAJ/8ZXMijH8iYDbSUK4DzSaqbQ/dstSAfZ
-	8pP833CGTbpFBZsJkMMCXNyf3Lts=
-X-Gm-Gg: ASbGnctomV5GMguXb2O3Zp3xsXF4/2wycMJx8QUredd9URPG9rjx8C5BEBn3RM4xbcd
-	ded7DuHZ7+qqO0lNhsHVHqAD+BXyURfoUXPSAf2XiGRXi/mAb6u/rq2r6N9FZBMcII5AAe/w0Pc
-	ZchJMJX0yNoNKuYeBvUrs36boye406Z8E=
-X-Google-Smtp-Source: AGHT+IG1Lfo3qRxxG+d06P2OThy1PUAW+HmTxa7XW23ERubEx5mp17bOS5Sq9QFl3olPcQ5JCsTf6WYuihxd2eQtVjs=
-X-Received: by 2002:a05:6102:3c9f:b0:4dc:81c9:13b1 with SMTP id
- ada2fe7eead31-4deed227f12mr14095269137.0.1747118936072; Mon, 12 May 2025
- 23:48:56 -0700 (PDT)
+	s=arc-20240116; t=1747121648; c=relaxed/simple;
+	bh=ECQSLHs8DNloR189my8SriGedu+36Q1D621A4mDdlr4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=goYzjmvxzuj6CZdf1xCqaZfk4r8YJizOfeS1UTyR0PZVsR4rUKs5mBGi/4YC2Ttgo1P6pT20mNbWqYSKXZcw+Yx3UGnx5YSukbB48ERRCm0WZ2L3g8+9sWCEaDQvdpIxWQSwostPrgGW0pysj95pXJz7GK0q1KlkZ88Z4BW5hOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:e731:371c:7707:a2ae])
+	by baptiste.telenet-ops.be with cmsmtp
+	id oXZx2E00W4HZolA01XZxtQ; Tue, 13 May 2025 09:34:03 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.97)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1uEk95-00000001VdU-0En0;
+	Tue, 13 May 2025 09:33:57 +0200
+Received: from geert by rox.of.borg with local (Exim 4.97)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1uEk9F-00000000AK3-3Pu8;
+	Tue, 13 May 2025 09:33:57 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: net: snps,dwmac: Align mdio node in example with bindings
+Date: Tue, 13 May 2025 09:33:56 +0200
+Message-ID: <308d72c2fe8e575e6e137b99743329c2d53eceea.1747121550.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1746811744.git.rabenda.cn@gmail.com> <59c175c7bccbd4b5ad241c39b66b0303e0facf81.1746811744.git.rabenda.cn@gmail.com>
- <MA0P287MB22621824B2FD5E2A64006174FE97A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
-In-Reply-To: <MA0P287MB22621824B2FD5E2A64006174FE97A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
-From: Han Gao <rabenda.cn@gmail.com>
-Date: Tue, 13 May 2025 14:48:44 +0800
-X-Gm-Features: AX0GCFsgKP3_L5fxA6GXcGzKEQ8-JYRcBHDQtkNoE5k7A3nhuftzT0fylh2dtec
-Message-ID: <CAAT7Ki9=ROP47hsugf3BS1nXr9oOPHWgjQoGfjAZiwHnXS19Pw@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: riscv: add Sophgo x8 EVB bindings
-To: Chen Wang <unicorn_wang@outlook.com>, devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Guo Ren <guoren@kernel.org>, 
-	Chao Wei <chao.wei@sophgo.com>, sophgo@lists.linux.dev, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-I hope it is sg2042-x8evb.
+According to the bindings, the MDIO subnode should be called "mdio".
+Update the example to match this.
 
-Sophgo is also making EVB boards for sg2044.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+For dwc-qos-ethernet-4.10, the Linux driver insists on "mdio".
+For other devices, the Linux driver does not seem to care, and just
+looks for subnodes that are compatible with "snps,dwmac-mdio":
+https://elixir.bootlin.com/linux/v6.14.6/source/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c#L302
 
-I think a distinction needs to be made here.
+Lots of DTS files are using "mdio0" (copied from the example?).
+---
+ Documentation/devicetree/bindings/net/snps,dwmac.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Regards,
-Han
+diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+index b525eca5385067d8..90b79283e228b037 100644
+--- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+@@ -710,7 +710,7 @@ examples:
+             };
+         };
+ 
+-        mdio0 {
++        mdio {
+             #address-cells = <1>;
+             #size-cells = <0>;
+             compatible = "snps,dwmac-mdio";
+-- 
+2.43.0
 
-On Tue, May 13, 2025 at 7:35=E2=80=AFAM Chen Wang <unicorn_wang@outlook.com=
-> wrote:
->
->
-> On 2025/5/10 2:13, Han Gao wrote:
-> > Add DT binding documentation for the Sophgo x8 EVB board [1].
-> >
-> > Link: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG20=
-42-x8-EVB [1]
-> >
-> > Signed-off-by: Han Gao <rabenda.cn@gmail.com>
-> > ---
-> >   Documentation/devicetree/bindings/riscv/sophgo.yaml | 1 +
-> >   1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Docu=
-mentation/devicetree/bindings/riscv/sophgo.yaml
-> > index a14cb10ff3f0..ee244c9f75cc 100644
-> > --- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
-> > @@ -34,6 +34,7 @@ properties:
-> >         - items:
-> >             - enum:
-> >                 - milkv,pioneer
-> > +              - sophgo,sg2042-x8evb
->
-> I wonder the product name is x8evb or sg2042-x8evb?
->
-> The same question to x4evb.
->
-> Regards,
->
-> Chen
->
-> >             - const: sophgo,sg2042
-> >
-> >   additionalProperties: true
 
