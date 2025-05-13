@@ -1,161 +1,140 @@
-Return-Path: <devicetree+bounces-176859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3796AB5AC0
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 19:07:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48174AB59CD
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:26:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F09033B80C6
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:07:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE78B4A5211
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:26:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2EE12BE7D5;
-	Tue, 13 May 2025 17:07:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1511A2BEC3E;
+	Tue, 13 May 2025 16:26:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="Kwycc4Hv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ftbyYkUd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 857781DFD96;
-	Tue, 13 May 2025 17:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D85212BEC2F;
+	Tue, 13 May 2025 16:26:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747156024; cv=none; b=sZNLGdjUpxiCtPANkJSaBPVBgisH8CJM8aWYukt0KkDf6Pc/K4yrvkm4RIGx4Q/ZwhQcXCAwlfXfRaqfR4x+YGA+BDI3L2e/p/M8PvPB8UR9Y3+0fGdXSI9GtMTVdW4VPgXKPiNMB0oqbONeB6nUua3ociVdM0gUpSxz4Yh3bQw=
+	t=1747153589; cv=none; b=lMbjigOUUV4gd8OBA7Y3wefWwkXQyY04z3lYFEltBysXrRNq46wMQ2VrFWcr14tSDmbZHXsGM2HJDtZwsUbrclm64jHgMxlbd0XVjBa9GAAuoS737Z5qEqxVCbHKKkJUtojBrnPEnIXy/jI97nO5cwGYJmOvgFJbUlTyN9ff21s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747156024; c=relaxed/simple;
-	bh=/wx5j8F6+tuBTmZMB/pfI/6kvL1TBAhK4iTOk5f+lKA=;
-	h=From:To:Cc:Date:Message-Id:MIME-Version:Subject; b=EBao2Lw9xoGpK3e2i4HcDzvF1Kod4szv15P85uc7/bSRXBZGRT8gV0xMy7YPnssMMA1Y8I224NaWGiA8bB+9/3gSlHoCR+zrfNy4uwSyC+DIAYDmkwcznLJVRU2cu6isyDxzUdYLxUk1/aXbdOrdcuhi9LkZ3Sg/nX8WoKGojUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=Kwycc4Hv; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
-	:From:subject:date:message-id:reply-to;
-	bh=2LurGoPkc6Eg3ZIhwGtbJARXq0QoaSbCX/2p8hC7Mh4=; b=Kwycc4HvYwfW25ZlZaLRjNIj07
-	MrX5/qkDmTwo0FTrnj1sgOu/+s8mhaKH/33RMER9ZSw/wgkBoRr2J01wfylJZt79Fg7F4m3QeA9Do
-	LQX7C+c+OtUvlMLTZO6kHDyFqAd0yxHAiA3ZaT0DBW/hiFIg7x3sVs+vZu6NB9EB6tMw=;
-Received: from [70.80.174.168] (port=43212 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1uEsPH-000211-BD; Tue, 13 May 2025 12:23:04 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	s=arc-20240116; t=1747153589; c=relaxed/simple;
+	bh=fOF8sy8iZquy2qTBP2SKHak8+By98mcNoTi6gQlT5io=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l1q+A2gRd2NFI6tOFo6VJSQjIrt2p26xBU8TgEHnEGBT8rxn6rVgxpLOP9Z1o20NU35MAlPq8tWjrUxtaKVaGPQn6RMjrulx83xa/qIH3tRIE8XSPqL8Y76VahELPyCQPBFGjioekfR2UXH5wNaLSOwACur4LIE6Op6dM5SM4vo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ftbyYkUd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BEB0C4CEE4;
+	Tue, 13 May 2025 16:26:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747153588;
+	bh=fOF8sy8iZquy2qTBP2SKHak8+By98mcNoTi6gQlT5io=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ftbyYkUduy5VmYwoOz29GNR4p//6oLXt5V/jN9fQNAMU5McYyZjWnEwn3s1ViWF+z
+	 5OVDIcoIf/a8uBnf4s5pN9rxzMDt4YJodc8gKpCFf9lRU3rCQ3mlQ2HAlBHrY/dDuT
+	 u7xI9+PWdXxymEahKHZiii83DSm2PnfqjKr2ToP1ANkXIm03+03N2/tW/i+D/mIAwg
+	 TQb9WQ/g70CLbyZJ5G/TvfBeZ8GDtiZnqhEAjOxaLmWjasULoE60mCdGNaIjamA1+3
+	 DV67M4279GOA8wgobOlTZ+SyYnMJoeuT/RsItIG6XvcfvZ9WIbilamCXM3I9dlzR6s
+	 qlWxJmZkBvH2w==
+Date: Tue, 13 May 2025 17:26:22 +0100
+From: Lee Jones <lee@kernel.org>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>
-Cc: hugo@hugovil.com,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Date: Tue, 13 May 2025 12:23:00 -0400
-Message-Id: <20250513162300.532693-1-hugo@hugovil.com>
-X-Mailer: git-send-email 2.39.5
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v3 21/22] mfd: adp5585: add support for a reset pin
+Message-ID: <20250513162622.GW2936510@google.com>
+References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
+ <20250512-dev-adp5589-fw-v3-21-092b14b79a88@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-Subject: [PATCH] dt-bindings: display: bridge: renesas,dsi: allow properties from dsi-controller
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+In-Reply-To: <20250512-dev-adp5589-fw-v3-21-092b14b79a88@analog.com>
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
 
-Allow to inherit valid properties from the dsi-controller. This fixes the
-following warning when adding a panel property:
+> From: Nuno Sá <nuno.sa@analog.com>
+> 
+> Make sure to perform an Hardware reset during probe  if the pin is given
+> in FW.
+> 
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> ---
+>  drivers/mfd/adp5585.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+> index 88401668f30e06ac201175470eeaf6216f3121d9..0fbe1f7f2582408b2e1b99f629182ceebce73fd7 100644
+> --- a/drivers/mfd/adp5585.c
+> +++ b/drivers/mfd/adp5585.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/device.h>
+>  #include <linux/err.h>
+>  #include <linux/i2c.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/mfd/adp5585.h>
+>  #include <linux/mfd/core.h>
+>  #include <linux/mod_devicetable.h>
+> @@ -712,6 +713,7 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+>  {
+>  	struct regmap_config regmap_config;
+>  	struct adp5585_dev *adp5585;
+> +	struct gpio_desc *gpio;
+>  	struct mfd_cell *devs;
+>  	unsigned int id;
+>  	int ret, n_devs;
+> @@ -730,6 +732,20 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+>  	if (ret)
+>  		return ret;
+>  
+> +	gpio = devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(gpio))
+> +		return PTR_ERR(gpio);
+> +
+> +	/*
+> +	 * Note the timings are not documented anywhere in the DS. They are just
 
-rzg2lc.dtb: dsi@10850000: '#address-cells', '#size-cells', 'panel@0' do not
-    match any of the regexes: 'pinctrl-[0-9]+'
-    from schema $id:
-        http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
+It's okay, you can say "datasheet". :)
 
-Also add a panel property to the example.
+> +	 * reasonable values that work...
 
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
----
- .../bindings/display/bridge/renesas,dsi.yaml  | 21 +++++++++++++++++--
- 1 file changed, 19 insertions(+), 2 deletions(-)
+What does "..." mean in this context?
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-index e08c24633926b..e0906a46fb118 100644
---- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-@@ -128,14 +128,17 @@ required:
-   - power-domains
-   - ports
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/gpio/gpio.h>
-     #include <dt-bindings/clock/r9a07g044-cpg.h>
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
-     dsi0: dsi@10850000 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-         compatible = "renesas,r9a07g044-mipi-dsi", "renesas,rzg2l-mipi-dsi";
-         reg = <0x10850000 0x20000>;
-         interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-@@ -160,6 +163,20 @@ examples:
-         reset-names = "rst", "arst", "prst";
-         power-domains = <&cpg>;
- 
-+        panel@0 {
-+            compatible = "rocktech,jh057n00900";
-+            reg = <0>;
-+            vcc-supply = <&reg_2v8_p>;
-+            iovcc-supply = <&reg_1v8_p>;
-+            reset-gpios = <&gpio3 13 GPIO_ACTIVE_LOW>;
-+
-+            port {
-+                panel_in: endpoint {
-+                    remote-endpoint = <&dsi0_out>;
-+                };
-+            };
-+        };
-+
-         ports {
-             #address-cells = <1>;
-             #size-cells = <0>;
-@@ -175,7 +192,7 @@ examples:
-                 reg = <1>;
-                 dsi0_out: endpoint {
-                     data-lanes = <1 2 3 4>;
--                    remote-endpoint = <&adv7535_in>;
-+                    remote-endpoint = <&panel_in>;
-                 };
-             };
-         };
+> +	 */
+> +	if (gpio) {
+> +		fsleep(30);
+> +		gpiod_set_value_cansleep(gpio, 0);
+> +		fsleep(60);
+> +	}
+> +
+>  	adp5585->regmap = devm_regmap_init_i2c(i2c, &regmap_config);
+>  	if (IS_ERR(adp5585->regmap))
+>  		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
+> 
+> -- 
+> 2.49.0
+> 
+> 
 
-base-commit: e9565e23cd89d4d5cd4388f8742130be1d6f182d
 -- 
-2.39.5
-
+Lee Jones [李琼斯]
 
