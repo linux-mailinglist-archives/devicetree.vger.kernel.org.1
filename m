@@ -1,229 +1,949 @@
-Return-Path: <devicetree+bounces-176653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A715CAB4ECD
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 11:04:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61FB9AB4EE9
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 11:13:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D6A9188C912
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 09:04:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A46E93A8896
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 09:13:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17A821FE478;
-	Tue, 13 May 2025 09:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EE77212FA2;
+	Tue, 13 May 2025 09:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="KdkATB7z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H0EtTU5m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013063.outbound.protection.outlook.com [40.107.162.63])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5225E1C8639;
-	Tue, 13 May 2025 09:04:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.63
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747127059; cv=fail; b=sKAyIUfsXaFCyGI7ZnH/41Q7ziDK/Oz5CoToBu/KJ/F8VZQAmKJmWWItFEJacEgsCW012kUAbNsBwrlQ+VrZPyrPiGWo0S4XVuQA4nc5+9b5FiM0hw6POR/8MjOPJnUx1BMWPKtmuc5MC+kzAUeDpITJPv4CA6t9Oire6o0JD2s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747127059; c=relaxed/simple;
-	bh=LDBq2uECUzSVqAFznDBHXNAuWS/nZ0UifWEdbwrbVt0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=tmNfwjejHabuMQRLnd3V/q7u9uew48yRaSFtc4ESIEddJ71lDyrciWgNdKACPtKvFxOChURIf1WZsuv6Ht5dOGxN27K/wK6E4StNaogmLhyDrqwK5VLnTGWppXtKaRwO6hZSy4Lgsl+z4bZSbD2z4yMvWP3UKXQoFyesrv4cs6M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=KdkATB7z; arc=fail smtp.client-ip=40.107.162.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ujBNSzrNlCCqJ/JI+HmQaQWrmnnDZAZJjQ+O+qa9qpiQ4RFtwZfd2ezpBPcmxzRAov1gHNRscIcMX9feC/ct96rCRz4kAtpyqpYSdKOBE6ocTc6sNAgEEES90egxKYO0Z5Exao+x7rmszqRQ1Q8E+vLeJTjBS3HZboIUw43c1emhqm9SvEJnrbzTjVl2NantDUVfCjKEDvfD6xeRnrFjIMgGYObWHlWHRlgrZztK7h3aWDnDuJPKW68JwmSbg1mXSZg7fLrDDc59CqYYiEcERFk9862CmStlkkkBvuAaFzk/ehzdf7w4P9Tk/RQ1pwpNKnATAPzOZGJP22jh3nyifA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CmNJOkQcYCX5p0gnmgWlSPPtaG8Mp0iYnoT03r6c+Iw=;
- b=CFwJCz9IBqhjHNDpBhrFcxrH+rY+2EIuzebYq2tSQwII+/xZGP3eRYMWrClneNDM4/cActLIq7gPII5qXLc54DXdeGEuZ089VHgYmfrV/q83c9+pHSs8cUcaAwTob815BIWQBYOK4FsAw/pT2Sfd7Q9dgo8iIWgqqACTAkdoqajXq5o1oHSjNBmPFGW0JcUnyuyz80a80rdut3N5HHIRZy7hLmZCbzLDTdun/4rSqgH8/q+Yw3hrP8WF9egBXraqo2y3fS6jTLVmhQz3PrA/VKZz2d+bgG722LiAMKKKYzHNMar5IL9BiKID/kKY4FSmb6uDjzWzseRR8tu5zKGetg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CmNJOkQcYCX5p0gnmgWlSPPtaG8Mp0iYnoT03r6c+Iw=;
- b=KdkATB7zy9DdsEUDaIPs2e2VLgQiVlnvmXuUHvQ0hPRyPO/2YlAaCipsfswhwf7MaFy64xg8Sm+p6tHFQ6JkAM55ly94F8LeEeDq0h/0hht5FRiVMB/yqcnm9VU3HO4dXWbTPc4IzPdjOSPcxt/lY8/zoLX5XYcNra0irNeRshm7BmV6/Xj3D7kI+0EivUYH+lXsJG9yVbyZKDKTaX+b3J0KYuWoH2mkssAhKN7tjV+IFxLYgOmIb4Fw9UPgNdXGo1xNm0OJSh7TL+tdS2CT2PQoxp4ifNL4nGbRhW0IjHhnmBzukaSK3gopS2f1hSjTznxJ3TVA123Fe94yo9Fo1A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com (2603:10a6:20b:42f::6)
- by PA1PR04MB10673.eurprd04.prod.outlook.com (2603:10a6:102:480::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.29; Tue, 13 May
- 2025 09:04:12 +0000
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b317:9c26:147f:c06e]) by AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b317:9c26:147f:c06e%3]) with mapi id 15.20.8722.027; Tue, 13 May 2025
- 09:04:12 +0000
-Date: Tue, 13 May 2025 12:04:09 +0300
-From: Ioana Ciornei <ioana.ciornei@nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, shawnguo@kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, vladimir.oltean@nxp.com
-Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: add bindings for QIXIS CPLD
-Message-ID: <3xpk6nzqku57i56tzuqsc546rp66upht5wyrcdl7xxnqud2wvf@evakkcowm2it>
-References: <20250509152940.2004660-1-ioana.ciornei@nxp.com>
- <20250509152940.2004660-2-ioana.ciornei@nxp.com>
- <20250512-festive-aquamarine-junglefowl-572f90@kuoka>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250512-festive-aquamarine-junglefowl-572f90@kuoka>
-X-ClientProxiedBy: AM0PR07CA0018.eurprd07.prod.outlook.com
- (2603:10a6:208:ac::31) To AS8PR04MB8868.eurprd04.prod.outlook.com
- (2603:10a6:20b:42f::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895261E1E06;
+	Tue, 13 May 2025 09:13:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747127617; cv=none; b=Yv8PCaSyVJX+2cBWrmf7VDFsAIdRz2zjFu9U9RX4dq9iCkxwPFXUg4JzLs+Cv8i9RyIVPI0kLT9Pnu3bYdq0u/9Zq5Grb+gPq0pc/P9UwQGofxUShq5Db+x+Qde2HTv6crMuqryX41xExLgBQEhUrn+U2TXh+v8pppPMOpqkzwY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747127617; c=relaxed/simple;
+	bh=LlprKhN+AilXnXDyxav5FvT8PGF6kkzfxfy9hSgb3QY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WObM7xlSoiItUNvDD8X4+pBSSOVjcjYL0UH4UuJLcH5UWOL9TnFTdwVlPVl3OnjpO0SlTLAVix/8QlVf9Obsf8DBNSNKmyhcSNs4X1kpaxbzja9WSUuW+LpaPHvflc3OSgaYN2nqbtN10qlLsQDIxEtjZR+qw8Lp2KkKtL16Fgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H0EtTU5m; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-70960e0b4d5so40913607b3.0;
+        Tue, 13 May 2025 02:13:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747127614; x=1747732414; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vkXouFzwmDRkn92ZDpU6k/AgKEmTC3GMKA0kHI2pwA8=;
+        b=H0EtTU5msggTK0FqUaGFV2hKxJ0jAV5f/E7lOi0KGIDmzr3ftESpOMoeRn5VbeU8Dj
+         Yg2NiT+MaLkhkr/oCTx6gYoh3sXPmz5J4CzIBio82z/16WJdHKCeG76t8y5S/jc4oU4z
+         4o7t0QPG2K8Utj0xQrvq1riCMgezZ+UKYJguZFHTpngp/WqznngdsEcDEmn7801q1bhN
+         hhstu3olZf3VgD5jkSNMLEpu4YEkX0QqV4GRwKJRTjWlYAxZf3EURxuL/L27JFjfvoAS
+         +cx/qpSp/KcN+cToBM/gCXY8nInD7FlQ1Ii3W4i0BjkH3QLCylVfQ+83JG/vphfhRC7x
+         kg6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747127614; x=1747732414;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vkXouFzwmDRkn92ZDpU6k/AgKEmTC3GMKA0kHI2pwA8=;
+        b=lyOWjeWUmu1IgzxDC7fKUIB7aPlW5gIBI02dAlCq8GDWd2KxPj50DN6JQ3Zg8xw77e
+         JyuiusrsMwi6sPY6DWJHv+w2jGE3l6SmLTaiIrCbuUnNjjqhsTrk/b7BSkNyOAi5VDIx
+         FrD3PFbSQc/rocOxiBpTg31jxm/ZBHvi15O0ZJGFAPHh7TDBopQhYxU9ydLDy+tQNX+V
+         RFsWdd4edHrIlNDmDVOwFYoMNM8HJJlv5yuvhzJpRsZsyYjKoUpoNtFEVcfbPa/PxbWx
+         tTytk+qrZXQQQL3TxfHE1UGp139ffOa6i4UHdeYRo//ZxOvYSMakM49oPuhWTWMVDGme
+         Rovw==
+X-Forwarded-Encrypted: i=1; AJvYcCUaIf/F5seYNPQqcqt8HiUiytorIfkKWL7Md7spa5v9uQ077OSccUgfTxmsti2yCWoerkYauOwezaLVOVCr@vger.kernel.org, AJvYcCV44ktNho55hNmZxOKDadyOruQWJBZCsa1mXEB6eO/byLCEF9bJk56L80oX9tPQk8hEqXF+rJd07ooh@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwFGlqYl9EpLyOLvxpUTw24OWrtPdbfnfCyPyXzIt+PWolO7W2
+	sBDN8lOZmpSviUWnmVuscNTXqbYnc9q5dYam+kezJPhjkCbOdu24CaDCwqrGPy8KBiumHmuonZR
+	+7reDgdK9AV09ogsKSPbaJvzq2cI=
+X-Gm-Gg: ASbGnctimxVjehjoJX16w2SpCbUrXYvOGuIwK7lUShE2EEXzyXxscZRJxIXWi63jvmA
+	2wH2BO5veXgDFgJjEPc7STtlRwN2pvymx66PVLwkxQV4VfExAaSH/ZjpF1S17jYo9fDcA+2qXHl
+	GeVONSVfyRYOTNluIEOvaVZlsjNBni4T0=
+X-Google-Smtp-Source: AGHT+IF2dyBqwMcNFDQVfz1AneyXkHsRfMYrAW+q4QxLbm16qDElEiG9xqjz+D7onwsimK7JPYU55S0EuBSgvcf5VjQ=
+X-Received: by 2002:a05:690c:3342:b0:708:15dd:712 with SMTP id
+ 00721157ae682-70a3fb75b05mr227163277b3.32.1747127613648; Tue, 13 May 2025
+ 02:13:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8868:EE_|PA1PR04MB10673:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5dcd07dd-47a5-46f2-93c8-08dd91fd2127
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?5LygYKxKmAzz7a8gAZosXULRq2VeVtiY0uPyl7DN8Wo5LtEp97Hh6HczRDaw?=
- =?us-ascii?Q?heCEMs/z+mVcrKxWXEr1V/sqvTOBeG+enh51jvF7rlhzfZjXqxFWptO50qdi?=
- =?us-ascii?Q?drWRUI8O7nhip1oANr8F9jU9WAP3k43IFoiReT59J10YHtXWdCiNmelAuN9l?=
- =?us-ascii?Q?k5321G4Wu3fIOwdnG147WAHuEPBLiOG2MqE87cujF6gKE8QnoGMFsJ+tBoTy?=
- =?us-ascii?Q?qJH+tCa6zPs0Xvmsa7t5tFldt2X8WV+0kli14ZuLecw/N9q3N3oMJtZkXxbY?=
- =?us-ascii?Q?KSJt2P9pqYdXiK15m0Vev58xYniHoaqaHccR5/hd/3VcO5jZdo4VQke3SFBD?=
- =?us-ascii?Q?onLkY7nCPRb+zHsLG1zVzOVmXhnly8GdphtaHbqUqkjyzpHMu/Gb01ckPJFt?=
- =?us-ascii?Q?gRYMlqDDHWWuBg5nwK1pVhrlquR29QkwYUBFWWa5q/9h/O/uOyGa32uPhlhR?=
- =?us-ascii?Q?9LnHcpNC4NZYHv6jEDBLrJuk63KA8XjJzv6BjirtW8in1BPPu4YltEvuI54B?=
- =?us-ascii?Q?rsgDs1K86wU2pa4tNnC4V3GhgbTGbbcCeryIrL8SGoFk5zbbTy6Ffy+OqtbZ?=
- =?us-ascii?Q?eOWDecu5F+IH6DytvPKv9tVbXElpkaCav2w8JUzVBnYzRA9ONcAIOA/RCeku?=
- =?us-ascii?Q?UECzvAdFZFgfIi+6RJnBseaTFYpr/SYpf7exdpzzqvetWak1SyHfF0+MOEwx?=
- =?us-ascii?Q?0Io4usxS00BSIRQzsHA8bNIsEiscW3OvXJxtw9yxNO6Rs1EHJIK/wRz7L4wK?=
- =?us-ascii?Q?4IXhpp/n2FcpjwGosldU5icNXXyoEjJIBvxPvPpyv5R2CYH8b9JFmDsjCYTC?=
- =?us-ascii?Q?s3RYAh4/wFkxM+5R0iMtGhIckPDOzAdgJWdaP3b7Cw676QcwXbP1mvAOfQMe?=
- =?us-ascii?Q?jzYRex56AViyTDyLeUBrrw/tdm3pxp+Q1fNn+NYFmhM2H5O+9Bf1MrpkQ0oJ?=
- =?us-ascii?Q?Bzth8GBWSyqlOUgGAX18DFQNE/x2RillpYBxmowoXv9URqrkTwWq7EgvuibM?=
- =?us-ascii?Q?5MHSU6BliONdP8Es33NlboMbdN5jPTww4uCTLmthtAkIsNipqMLjoVhkZ514?=
- =?us-ascii?Q?K8MlDzl8o9VnYV2ZGe3V1MYyiKWIDyIh62lra4dkSZVixLrZ01Y80/dqhDPK?=
- =?us-ascii?Q?NtFvI5amh4Be+Tdj7cEvjJb4+2RilE4rx8mpcH01QRW1bDbpB0OYojH9sLW/?=
- =?us-ascii?Q?p0E9VG7IWBYEc5mzQsn2Q4hnwdcuLF1xdcsLhZx6OWj4MMhe1FlrpIUtIYpC?=
- =?us-ascii?Q?28IGmL6YPuTnS8zsJSTAJmxkJjCqru4Em2v3kcIcssggG/YTUhvYC7nrSTXc?=
- =?us-ascii?Q?W+FsBKptGD0Jiynlf3zHD+cMA1NpuZJ36M8sb8q8diM430FPKKFNxv2orOEF?=
- =?us-ascii?Q?daYug+0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8868.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?4GHbMa7Q2kQUZgyZe1jbAWfEQvzd4m8BxcvC523rCwT3rTcsVW5BeO6b1JiH?=
- =?us-ascii?Q?nCcjYb85UF+VxqdC46kyg/W01CrlBb04ttIt+0v1CmxIbv4a4pWUViwzBbSI?=
- =?us-ascii?Q?LNRYZuPGo0wxa0MoWkVmMOpOJFz8IuWFhf4dypvMqSKIcbTTuRMPkzvvr+D+?=
- =?us-ascii?Q?sGu+7AWz1TyWaKKTYZAzItnEnYXCSAhPN3zHqqCN78H21bcN4OCTi0R3NORa?=
- =?us-ascii?Q?jtEgDlr41JUS+SatloQ898YBCUm6at4uFZ8l7psE1Tem/HBu8Epv2BhIWegj?=
- =?us-ascii?Q?1ECm87HVVeMbFXGCZuQ8flXcEyRlrXohF8urxeCFm2nfxEDScruKGRGCtZOy?=
- =?us-ascii?Q?yjAn3TSHpUwi4rVqWROX8KakqtK0q4jRTpJFGd8AeS1womsjq1ZfnzAtUpQq?=
- =?us-ascii?Q?zav+fWZyEoMfOlZruwiiMEJQ5TPSSnLS74cF56Tq76wggaTvjeJU2eSMB764?=
- =?us-ascii?Q?6n5LvZTe3wczmb3oNaIQdne5euGbbf+RZY0edb2wEcp9Ks2KaZwpE71xtHUw?=
- =?us-ascii?Q?yuk7UgX/qBdjRPjxp5dgBrdnELEmbn/60KLX7vjLQoyescPLUOPGsrNSwrss?=
- =?us-ascii?Q?ieyL0yve6+MEZVIasFdWZJsAaWlkNazA1NGGIPgaMkPA8IUZSfSq3LTIGHCi?=
- =?us-ascii?Q?2kp6CfXZ4yDF0qhKCgTvZEKUWvHT26Ekp9XnjdSNXCyiKIkjosTXmq2SboEc?=
- =?us-ascii?Q?ZEaXG9ad0grEJ8Q2OZgvcF7DXjh4xZwAl5n0ITYWzjSEOwvUFgXpv/Q7LiIH?=
- =?us-ascii?Q?/98PTSRvLLayabqFC2ovflRcF22fim8LYlDO2dd2fQBeVNtf2i/3mVgHStLm?=
- =?us-ascii?Q?IiZ3ojKeUXINte+e4G3VCuL1/DHWXiMwOlEUrNSNBF2YG6Lg+qt3IpUgaIsA?=
- =?us-ascii?Q?kRq6/rmNmrfazH9FxHuLUvzLHvCuy8Cnr2mzl71O7Hi6piMKcRInkSGRAXl6?=
- =?us-ascii?Q?B1T1I9siF59kWV9NTZjyoGChgEyklnNGsP+pkyPZsoHHWJNgMjlKAotDp/gl?=
- =?us-ascii?Q?hx7n815Hi5XIrz8xQXwSo3NjC/oA9e2smyOgTo+IZempTo0dtgel1Uyk0mtI?=
- =?us-ascii?Q?3WyYRxZILaPll8btX9aPdsVFpLWBhrb4sPjMBXq5YT/iEV3v6mEidsOv6UA5?=
- =?us-ascii?Q?ZwO1NcLxJHkMjCoFAmpfgn3jpdbgsyHkZSO0dEhOyY6GNzTR2GFPecN/HD/o?=
- =?us-ascii?Q?CRjXaLVCJJyrxJ8KZtLUn9Fh6rM2mBNhaVbWPyynZfz90ynfoGbvANmqL3J1?=
- =?us-ascii?Q?qISIsXQ0KKC8eUcKWdjEpMg+X49WfsOjdxFSrshFKKpf/zuAxsJc90irFn1L?=
- =?us-ascii?Q?HYEZNvZqaeih7uyUJ8nOI6mBbS2lq927UHKwGzTf8xVtUFyQiFiJnc2HqkpC?=
- =?us-ascii?Q?OHmV9KzlsgR+xnrNLKq9q3FX1x7DVCir1RCL4/28rs+AWtE6WNvLRkyXtGgO?=
- =?us-ascii?Q?Yv23gTTrJKEjsZE6tp4SSk5eoZh8f5FXl6AjXZ8d4SJ1j7pwriF1GkjeJU3Q?=
- =?us-ascii?Q?FnAdYtsv9J9H/HY53gU8uXJvnCFqV2u+BHr8u163vLlMWbWaGh3tyxRqjdb8?=
- =?us-ascii?Q?UV1j1XkQENatE32dTCJRnlDN3OJroZ65Kje8TIWe?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5dcd07dd-47a5-46f2-93c8-08dd91fd2127
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8868.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2025 09:04:12.7351
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LYHZmcfqRqswgObw6B5IBVmi1K0/455HxNMCsbWjX9wl+d2u3VQ5oVY+TELMReHE9DjwBxGy6e3W5/Ggj3TRbg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10673
+References: <cover.1746828006.git.rabenda.cn@gmail.com> <af839bc200637e4eae1cb327c95ac98c82bccd52.1746828006.git.rabenda.cn@gmail.com>
+ <MA0P287MB22624E52A6647B43D53DCD2CFE96A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+ <CAAT7Ki9zCYZ7u+nmQgSkgWgv+QSVb=miLRtcNQRfJFcd8JgcJg@mail.gmail.com> <MA0P287MB2262FF6EFEC6D01796683DE6FE96A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+In-Reply-To: <MA0P287MB2262FF6EFEC6D01796683DE6FE96A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+From: Han Gao <rabenda.cn@gmail.com>
+Date: Tue, 13 May 2025 17:13:21 +0800
+X-Gm-Features: AX0GCFvmmUamUsHx314F-8Mysd2vCnthzRo0ooI53N_ossjmj5FlXjqPyy1A3-4
+Message-ID: <CAAT7Ki-vamEx2f+nTJbd=WeB815ZheJV=mm7ohzBoZrsoaQV+g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] riscv: dts: sophgo: Add xtheadvector to the sg2042 devicetree
+To: Chen Wang <unicorn_wang@outlook.com>, devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, sophgo@lists.linux.dev, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 12, 2025 at 06:54:39PM +0200, Krzysztof Kozlowski wrote:
-> On Fri, May 09, 2025 at 06:29:35PM GMT, Ioana Ciornei wrote:
-> > This adds device tree bindings for the board management controller -
-> 
-> "Add devicetree bindings...."
-> 
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> 
+> Assuming VLEN of C910 is 128bit.
 
-Ok, sure. Will fix.
+I refer to the value of c906 because c906 and c910/c920v1 have the same val=
+ue.
 
-> > QIXIS CPLD - found on some Layerscape based boards such as LX2162A-QDS,
-> > LX2160AQDS, LS1028AQDS etc.
-> > 
-> 
-> ...
-> 
-> > +title: NXP's QIXIS CPLD board management controller
-> > +
-> > +maintainers:
-> > +  - Ioana Ciornei <ioana.ciornei@nxp.com>
-> > +
-> > +description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
+Link: https://lore.kernel.org/linux-riscv/20241113-xtheadvector-v11-3-236c2=
+2791ef9@rivosinc.com/
+[1]
 
-Ok.
-
-> 
-> > +  The board management controller found on some Layerscape boards contains
-> > +  different IP blocks like GPIO controllers, interrupt controllers, reg-muxes
-> > +  etc. The QIXIS CPLD on these boards presents itself as an I2C device.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,ls1028a-qds-qixis-cpld
-> > +      - fsl,lx2160a-qds-qixis-cpld
-> > +      - fsl,lx2162a-qds-qixis-cpld
-> 
-> I think my question why existing compatibles cannot work is still valid.
-> If you responded to that and I missed reply, please point me, but I see
-> I replied on 7th May and you sent it later - on 9th May.
-
-Sorry, I was under the impression that this message from Vladimir
-responded to the question why the compatibles are changed:
-	https://lore.kernel.org/all/20250507153811.ukkficut2f3jm2hg@skbuf/
-
-> 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> > +
-> > +patternProperties:
-> > +  '^mux-controller(@[a-f0-9]+)?$':
-> 
-> Either children have bus addressing or not. This should not be flexible,
-> because rarely devices differ. If devices differ, then you need separate
-> schema most likely.
-
-Agreed, the intention is to have children with bus addressing only. I
-will remove the '?' character from the regex so that it is clear.
-
-Ioana
-
+On Tue, May 13, 2025 at 4:06=E2=80=AFPM Chen Wang <unicorn_wang@outlook.com=
+> wrote:
+>
+>
+> On 2025/5/13 14:45, Han Gao wrote:
+> > You can use xxd to convert it.
+> >
+> > cat /sys/devices/system/cpu/cpu63/of_node/thead,vlenb | xxd
+> > 00000000: 0000 0080                                ....
+> >
+> > Regards,
+> > Han
+>
+> I can read this after disable ERRATA_THEAD_GHOSTWRITE.
+>
+> I recommend adding some explanation notes in the commit message. For
+> example, when we need to enable xtheadvector, the prerequisite is to
+> turn off "ERRATA_THEAD_GHOSTWRITE".
+> I found the relevant patch is
+> https://lore.kernel.org/linux-riscv/20241113-xtheadvector-v11-0-236c22791=
+ef9@rivosinc.com/,
+> also hope adding this will help later people quickly understand and
+> avoid my mistakes.
+>
+> One more question is about writing value of "thead,vlenb". See bindings
+> description in Documentation/devicetree/bindings/riscv/cpus.yaml:
+>
+> ```
+>
+>    thead,vlenb:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+>        VLEN/8, the vector register length in bytes. This property is
+> required on
+>        thead systems where the vector register length is not identical
+> on all harts, or
+>        the vlenb CSR is not available.
+>
+> ```
+>
+> What I am not sure about is whether we should write 128 or 128/8=3D16?
+> Assuming VLEN of C910 is 128bit.
+>
+> Thanks,
+>
+> Chen
+>
+> >
+> > On Tue, May 13, 2025 at 9:19=E2=80=AFAM Chen Wang <unicorn_wang@outlook=
+.com> wrote:
+> >> Hi=EF=BC=8CHan,
+> >>
+> >> I tested with this patch and the machine can bootup. But I find when I
+> >> run "cat /sys/devices/system/cpu/cpu63/of_node/thead,vlenb", it print
+> >> nothing, though I expect to see 128.
+> >>
+> >> Do you know why?
+> >>
+> >> Regards,
+> >>
+> >> Chen
+> >>
+> >> On 2025/5/10 6:11, Han Gao wrote:
+> >>> The sg2042 SoCs support xtheadvector so it can be included in the
+> >>> devicetree. Also include vlenb for the cpu.
+> >>>
+> >>> Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+> >>> ---
+> >>>    arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi | 192 +++++++++++++---=
+----
+> >>>    1 file changed, 128 insertions(+), 64 deletions(-)
+> >>>
+> >>> diff --git a/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi b/arch/riscv=
+/boot/dts/sophgo/sg2042-cpus.dtsi
+> >>> index b136b6c4128c..927e0260acbd 100644
+> >>> --- a/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
+> >>> +++ b/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
+> >>> @@ -260,7 +260,8 @@ cpu0: cpu@0 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <0>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -285,7 +286,8 @@ cpu1: cpu@1 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <1>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -310,7 +312,8 @@ cpu2: cpu@2 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <2>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -335,7 +338,8 @@ cpu3: cpu@3 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <3>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -360,7 +364,8 @@ cpu4: cpu@4 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <4>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -385,7 +390,8 @@ cpu5: cpu@5 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <5>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -410,7 +416,8 @@ cpu6: cpu@6 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <6>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -435,7 +442,8 @@ cpu7: cpu@7 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <7>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -460,7 +468,8 @@ cpu8: cpu@8 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <8>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -485,7 +494,8 @@ cpu9: cpu@9 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <9>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -510,7 +520,8 @@ cpu10: cpu@10 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <10>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -535,7 +546,8 @@ cpu11: cpu@11 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <11>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -560,7 +572,8 @@ cpu12: cpu@12 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <12>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -585,7 +598,8 @@ cpu13: cpu@13 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <13>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -610,7 +624,8 @@ cpu14: cpu@14 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <14>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -635,7 +650,8 @@ cpu15: cpu@15 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <15>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -660,7 +676,8 @@ cpu16: cpu@16 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <16>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -685,7 +702,8 @@ cpu17: cpu@17 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <17>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -710,7 +728,8 @@ cpu18: cpu@18 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <18>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -735,7 +754,8 @@ cpu19: cpu@19 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <19>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -760,7 +780,8 @@ cpu20: cpu@20 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <20>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -785,7 +806,8 @@ cpu21: cpu@21 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <21>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -810,7 +832,8 @@ cpu22: cpu@22 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <22>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -835,7 +858,8 @@ cpu23: cpu@23 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <23>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -860,7 +884,8 @@ cpu24: cpu@24 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <24>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -885,7 +910,8 @@ cpu25: cpu@25 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <25>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -910,7 +936,8 @@ cpu26: cpu@26 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <26>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -935,7 +962,8 @@ cpu27: cpu@27 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <27>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -960,7 +988,8 @@ cpu28: cpu@28 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <28>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -985,7 +1014,8 @@ cpu29: cpu@29 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <29>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1010,7 +1040,8 @@ cpu30: cpu@30 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <30>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1035,7 +1066,8 @@ cpu31: cpu@31 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <31>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1060,7 +1092,8 @@ cpu32: cpu@32 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <32>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1085,7 +1118,8 @@ cpu33: cpu@33 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <33>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1110,7 +1144,8 @@ cpu34: cpu@34 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <34>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1135,7 +1170,8 @@ cpu35: cpu@35 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <35>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1160,7 +1196,8 @@ cpu36: cpu@36 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <36>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1185,7 +1222,8 @@ cpu37: cpu@37 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <37>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1210,7 +1248,8 @@ cpu38: cpu@38 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <38>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1235,7 +1274,8 @@ cpu39: cpu@39 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <39>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1260,7 +1300,8 @@ cpu40: cpu@40 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <40>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1285,7 +1326,8 @@ cpu41: cpu@41 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <41>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1310,7 +1352,8 @@ cpu42: cpu@42 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <42>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1335,7 +1378,8 @@ cpu43: cpu@43 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <43>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1360,7 +1404,8 @@ cpu44: cpu@44 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <44>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1385,7 +1430,8 @@ cpu45: cpu@45 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <45>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1410,7 +1456,8 @@ cpu46: cpu@46 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <46>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1435,7 +1482,8 @@ cpu47: cpu@47 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <47>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1460,7 +1508,8 @@ cpu48: cpu@48 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <48>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1485,7 +1534,8 @@ cpu49: cpu@49 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <49>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1510,7 +1560,8 @@ cpu50: cpu@50 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <50>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1535,7 +1586,8 @@ cpu51: cpu@51 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <51>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1560,7 +1612,8 @@ cpu52: cpu@52 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <52>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1585,7 +1638,8 @@ cpu53: cpu@53 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <53>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1610,7 +1664,8 @@ cpu54: cpu@54 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <54>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1635,7 +1690,8 @@ cpu55: cpu@55 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <55>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1660,7 +1716,8 @@ cpu56: cpu@56 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <56>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1685,7 +1742,8 @@ cpu57: cpu@57 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <57>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1710,7 +1768,8 @@ cpu58: cpu@58 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <58>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1735,7 +1794,8 @@ cpu59: cpu@59 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <59>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1760,7 +1820,8 @@ cpu60: cpu@60 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <60>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1785,7 +1846,8 @@ cpu61: cpu@61 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <61>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1810,7 +1872,8 @@ cpu62: cpu@62 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <62>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
+> >>> @@ -1835,7 +1898,8 @@ cpu63: cpu@63 {
+> >>>                        riscv,isa-base =3D "rv64i";
+> >>>                        riscv,isa-extensions =3D "i", "m", "a", "f", "=
+d", "c",
+> >>>                                               "zicntr", "zicsr", "zif=
+encei",
+> >>> -                                            "zihpm";
+> >>> +                                            "zihpm", "xtheadvector";
+> >>> +                     thead,vlenb =3D <128>;
+> >>>                        reg =3D <63>;
+> >>>                        i-cache-block-size =3D <64>;
+> >>>                        i-cache-size =3D <65536>;
 
