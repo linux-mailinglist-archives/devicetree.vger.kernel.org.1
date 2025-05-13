@@ -1,177 +1,140 @@
-Return-Path: <devicetree+bounces-176629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6ECCAB4E16
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 10:27:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BE07AB4E34
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 10:35:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A8E746794F
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 08:27:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DA413B0DFB
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 08:35:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06E5D205AD0;
-	Tue, 13 May 2025 08:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698BA20D500;
+	Tue, 13 May 2025 08:35:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UR5ALdJm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cKRyHWXQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA8082045B5
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 08:27:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C1D020CCE4;
+	Tue, 13 May 2025 08:35:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747124824; cv=none; b=VFQR648mJDtPaM7/Sr3t+VrcfoIP73fQyrCPpMVgiNqe0eEfFV3hFbhyXbXu6WGwIPPiu6wa9fDkGfEeXy6M2xo2uuAHxq7g569ww7315d2sKMQzzERzXZKFdYZIzU4149jn3hYTsZPDjxfk6mK+uwd0woSKhGW3cklwwZ2mZmE=
+	t=1747125336; cv=none; b=gdHlSbOwVF0R2PKPmO0HXHKgH81HPknSvMFrcMWBRvMcfAmCfFb9VozryvWCsnSmbCeaoIUkj7TNOE4CtiFT+09DO2/rVxiJwBBs5fOGdVkkdxB88o6VoUGsOMI+wl2ULuCMFMjuOlumiWbuKpDois9pwXQbJjp12d15UcXWWmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747124824; c=relaxed/simple;
-	bh=hDrNoWg7CCh+sR0t0fQYCj4B4U2zTq67sVCEwpS0Gqw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oKg4D1B6wuEvF0pmrXXEeHMYQGAi2mJ7lpr9jDIjso4bWj6GBoNzIkyiDFkbAwirlsFRuLRG/4xECtVmh8lx6cFinhG9TH+NE+Zn64KjCy6GAf7/NTrNGL9cpvaAfFqB8JHLX+MKUHF/bh1I7KfNEh7l7KbcEcH3Zc3Knf5v5FA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UR5ALdJm; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-442ea0b3a9fso515315e9.3
-        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 01:27:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747124821; x=1747729621; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=MbTnUPeR7Iz+CpAFr62CWUvcUVj9FN7w4eong+YEA3A=;
-        b=UR5ALdJmtp5wShfXNS8SY+O6qDmufXIIo6nDWyxsyyKcFOf7VkCC/INrT/LL+pjpud
-         p1o7fFvpwa0PWCYH00zYkmktCQUW79t00M+VVpgDCgKMCZ21A3vmEqHYqXz9JYZcrOwz
-         iqTWJitcnX46KYeHuZqoxmMmanRp8mcQI3EM9aF5btqeRNgF3oye5V7PJCqwaduUQO/t
-         Dwv66hAKP8/wodiBMb38vBSt5RD+XdqjTPCejFjcjn147Ma4K4CVBd21hY1N/KYsxj0p
-         nxVktlhrA1WHIBJ4Qk+ifdwIcN0+/oJrgfVIX76XMprnwCJnTjY/DMPXecyrkpo8t28q
-         VRVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747124821; x=1747729621;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MbTnUPeR7Iz+CpAFr62CWUvcUVj9FN7w4eong+YEA3A=;
-        b=bRN83VqdTumVMDynJGOy+i4SqNG4EMufVPf0P/x5uqK6c96ID8i3k6BCKWQRA7Ke82
-         qA9krw7yOoCOGgAiyFYt0Sw9i0bqHOL98Bma9l2pq1Hu51S6GDImqOqVwW5oRrc2HmYu
-         Eu794sAQqemCk7jprKDJVYr7p/sxEs1P8LtvCnkvSGhwmBuOT2KkWGOvILtFRfE4fV3W
-         Wboy/4BGb7BOU204/RuzmYVzYBtQjIPYM4hnKxavU69gxi01qRr2VMBxmLQ3ampk8elE
-         mFSiGiQUW2PaLAl4NpSEHU8HAU7XqOso4DjJ4IH/YWwKY4GTsHRb499QOwznhhwo4lGY
-         0lyA==
-X-Forwarded-Encrypted: i=1; AJvYcCV5NyETMl5PdJasCCs9OvGdpUo4Tn0+O4OalPOQqhO57vu2Y14IC/zEIYwDBCzquR0gXS3et0SCRNOm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRdgkcdngtBykDpUf5ydaJmtdP4ccBpoW+O74LnZi4tZtf3mUc
-	WWHoXRGxXqN0its2Gv+2aYuP6FcHhboDKtFynZUL93CJTlCE6n3+gzPF+WfBdAw=
-X-Gm-Gg: ASbGnctZ7RlS9MyYcPz7wysam2YLrZmlGSOFTJN5aZ3BPf51Hng3z6uLBEwB4v4KXLL
-	5xyoqomgxDI6/aO6pakdL6amUvHEc9P39bf+8jFTS4PVSYsBsuGo4m9eiT/1gcEmwX05bMy4Cg+
-	QKdx+Vu0HjaYpozFfGfzpVraNeBGtd7hRGqlo7QgZq9vU4KOrzo142ong1ED9TeBAK/h+6+v9Ti
-	UwDXCdquVfyRDPVk5gr1NRY6+YEXLuI4kWsy53YpbNjtJxcByenoQyJa9aDJqqr53NVGPi1p1bH
-	ihun9gTrRI+YU2mjNTRzKNUlnXIWd7XPA8SqQOIUH5BWNy9WHfO0ecyWvGhsnokiWroUZpZ40vC
-	7i3It2DyaxGwBWkYb/Q==
-X-Google-Smtp-Source: AGHT+IGUKMvBJKd7PANc60nJlG4rsBMpTKFeF8I2cB/B+QgVvTq/m0yEDY4TpV2AzYax1U6zEhzySg==
-X-Received: by 2002:a05:600c:3513:b0:43b:ca39:a9b8 with SMTP id 5b1f17b1804b1-442d9c8e883mr48072765e9.2.1747124821247;
-        Tue, 13 May 2025 01:27:01 -0700 (PDT)
-Received: from [10.61.0.48] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442cd3285e0sm198858195e9.5.2025.05.13.01.26.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 May 2025 01:27:00 -0700 (PDT)
-Message-ID: <17b9649d-b788-4a13-b7eb-bf54b7a83b0f@linaro.org>
-Date: Tue, 13 May 2025 10:26:58 +0200
+	s=arc-20240116; t=1747125336; c=relaxed/simple;
+	bh=AQsw6m7iH5by6TnMCmB9Fcyzck4JqC+iM5hS4GjSXTY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F9DPGdZaZuCf6UNBk6+6cYaqVbuMIWJbS9kPFz/pbl8cawf6WKjn8Pcss1YOHN+apNTI98C7C8r8RB2uV3uKknf1q5OE28sWcwNnu1TvM+wDaoSq42gN7P1c9hl9m9+zc6fXkLJN2oh3FucMTHFRLf7ElktgHyxkeWku5P4UgpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cKRyHWXQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E58DC4CEE4;
+	Tue, 13 May 2025 08:35:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747125334;
+	bh=AQsw6m7iH5by6TnMCmB9Fcyzck4JqC+iM5hS4GjSXTY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cKRyHWXQ1Ci63Evz8Btig3gSKZnRJ2oQPD64QOiVjNS+aHTHvyJl0XrXNKlyfag/Y
+	 IOstQmBNvqBol0UBuLeiZXhJsF6MuKwK3FCYmxTd32Mk949NRR06rKkdajNsXLQdVf
+	 DTDnPFDBRc43DaZei1QMHRjFhEqlRL+OMwqK+lD7RSfACwPhji6Jn4leHixc+tJRoS
+	 fSddiK2SDvfnC/3HTBT8vqH/QOxksGWXHnqrBU1fC9DqiSlYdlCF98SDSQ/yg4Pq6n
+	 8XCbpE4CUONrW8BvlicrLpW9NF7IEHcHI5pNnKFalA/D/eC2XYsD1s9nqqom+jMMuD
+	 bfxYFaLd9LTiw==
+Date: Tue, 13 May 2025 09:35:28 +0100
+From: Lee Jones <lee@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Nam Tran <trannamatk@gmail.com>, andy@kernel.org, geert@linux-m68k.org,
+	pavel@ucw.cz, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, christophe.jaillet@wanadoo.fr, corbet@lwn.net,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v8 0/5] auxdisplay: add support for TI LP5812 4x3 Matrix
+ LED driver
+Message-ID: <20250513083528.GA2936510@google.com>
+References: <aCGPuKtfprIvwADa@smile.fi.intel.com>
+ <20250512173800.6767-1-trannamatk@gmail.com>
+ <CAHp75VcXmOByVsuwm0m0+FYXoaxBc1CLKtofGgHfB4sMDg+T2A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8750: Add Soundwire nodes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250424-sm8750-audio-part-2-v1-0-50133a0ec35f@linaro.org>
- <20250424-sm8750-audio-part-2-v1-1-50133a0ec35f@linaro.org>
- <e83b58ea-0124-4619-82a5-35134dc0a935@oss.qualcomm.com>
- <afda790f-0b5e-4569-a92b-904df936df85@linaro.org>
- <1a0be977-39b8-4089-a37e-dd378c03e476@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <1a0be977-39b8-4089-a37e-dd378c03e476@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VcXmOByVsuwm0m0+FYXoaxBc1CLKtofGgHfB4sMDg+T2A@mail.gmail.com>
 
-On 12/05/2025 21:38, Konrad Dybcio wrote:
->>>>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 122 +++++++++++++++++++++++++++++++++++
->>>>  1 file changed, 122 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->>>> index 149d2ed17641a085d510f3a8eab5a96304787f0c..1e7aa25c675e76ce6aa571e04d7117b8c2ab25f8 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->>>> @@ -2257,6 +2257,36 @@ lpass_wsa2macro: codec@6aa0000 {
->>>>  			#sound-dai-cells = <1>;
->>>>  		};
->>>>  
->>>> +		swr3: soundwire@6ab0000 {
->>>> +			compatible = "qcom,soundwire-v2.0.0";
->>>
->>> They're v2.1.0, same on 8650, there's a number of new registers
->>
->> Sorry, but no. This the "generic" compatible and it is correct. Devices
->> expose versions, which is perfectly usable, thus changing compatible to
->> different one is not useful. We could go with soc specific compatibles
->> and new generic one, but what would that solve? This one is generic
->> enough - the device is compatible with v2.0.
+On Mon, 12 May 2025, Andy Shevchenko wrote:
+
+> On Mon, May 12, 2025 at 8:38 PM Nam Tran <trannamatk@gmail.com> wrote:
+> > On Mon, 12 May 2025 Andy Shevchenko wrote:
+> > > On Sat, May 10, 2025 at 02:48:02PM +0700, Nam Tran wrote:
+> > > > On Thu, 8 May 2025 Lee Jones wrote:
+> > > > > On Thu, 08 May 2025, Andy Shevchenko wrote:
+> > > > > > On Thu, May 8, 2025 at 5:27 PM Nam Tran <trannamatk@gmail.com> wrote:
+> > > > > > > On Thu, 8 May 2025 Lee Jones wrote:
+> > > > > > > > On Thu, 08 May 2025, Andy Shevchenko wrote:
 > 
-> Well, I'd expect a "2.1.0", "2.0.0" fallback there..
+> ...
+> 
+> > > > I think setting PWM also same as brightness_set API. However, there are
+> > > > many PWM config for a LED and it is one of other config to make autonomous mode work.
+> > > > Therefore, standard led API can use in some use cases only.
+> > > >
+> > > > Please see the link below for a better visualization of how to configure the LP5812.
+> > > > https://dev.ti.com/gallery/view/LED/LP581x/ver/0.10.0/
+> > >
+> > > To me it sounds like you should start from the small steps, i.e. do not
+> > > implement everything at once. And starting point of the 4 RGB LEDs sounds
+> > > the best approach to me. Then, if needed, you can always move on with
+> > > fancy features of this hardware on top of the existing code.
+> >
+> > Thanks for the suggestion.
+> > I understand your point and agree that starting with standard LED APIs is the preferred approach.
+> >
+> > However, the LP5812 hardware offers more advanced features, and I’d like to support end users all
+> > features as shown in the link: https://dev.ti.com/gallery/view/LED/LP581x/ver/0.10.0/.
+> > It is easy for end user to investigate and use driver.
+> 
+> I see. Good luck then!
+> 
+> > If I want to keep the current driver interface to meet this expectation, would it be acceptable
+> > to move it to the misc subsystem to better support the hardware?
+> 
+> Don't ask me, I don't know what you want at the end and I have not so
+> much time to invest in this anymore. Only what I'm sure about I
+> already expressed in the previous replies and emails.
 
-OK, let's see if any DT maintainer will ack such thing. :)
+Briefly spoke to Greg (now Cc:ed).  We can all discuss this together.
 
-Best regards,
-Krzysztof
+My 2c, whilst falling short of deep-diving, is as follows:
+
+1. No one is going to enjoy reviewing a 3k line submission!
+
+   - Instead, submit the smallest driver you can whilst still retaining
+     functionality.  It is not good practice to fully enable a
+     complicated driver such as this in a single submission - let alone
+     a single patch.
+
+2. Hand-rolling your own API from scratch is to be highly discouraged.
+
+   - There seems to be quite a bit of overlap in functionality between
+     your bespoke API and LED's.  The LED subsystem already supports a
+     lot of what's being implemented here.  Instead of letting the user
+     configure the device directly, why not offer some high level
+     options and attempt to infer the rest.  If possible, the complexity
+     of the device should be handed by driver, rather than placing the
+     onus on the user.
+
+3. Shoving this into Misc because you don't want to use the APIs that
+   are already offered to you is not a good approach.
+
+-- 
+Lee Jones [李琼斯]
 
