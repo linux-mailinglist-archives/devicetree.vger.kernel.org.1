@@ -1,199 +1,154 @@
-Return-Path: <devicetree+bounces-176834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E0D7AB5975
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:12:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53C6EAB5978
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:13:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9448C3AC368
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:12:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00D3E19E4F31
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D4DE2BE10A;
-	Tue, 13 May 2025 16:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA99B2BE7CB;
+	Tue, 13 May 2025 16:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MOJg0nk8"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="CDUZIWTZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A92A1DED77;
-	Tue, 13 May 2025 16:12:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FD961A9B40;
+	Tue, 13 May 2025 16:12:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747152737; cv=none; b=D65lUNIPfxWCP1i8KhxAYwZUd4/4kWt9cAK1VOdXmR1PTbBPIuK14B91kdjFo6YiOEnMEkncMKc1WNDrA863yGPN72/PqhamWhvKZ5Zki+tQJKhqJCXrScUxMy7JGF67O/RRarxTghN+PujsyR2Zrj7lLOL8KiDZFO5sxjhAHQI=
+	t=1747152780; cv=none; b=MEjQLxClcmVu2YFs6kVYQZOAbdVTs/ntZ/yT9Ghj2ui5qnS0sb+t/QnjNTksS+sg/ykjeXimpvo2TY+gEg7GvGiYbsTSzEiCTzwQyAxaRa5Sbh/yhWOHlYtwwL3CZXH4tBCGdj/zBqFeea/596FpzKA6jFXC+VrokQcaDa1lyAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747152737; c=relaxed/simple;
-	bh=2aefmjxyDnxDNO6OiVmrY5fkLYtKdsDEmGqLPj3AGsk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ptkeA1bclxV6CAu2WOnSUN2HXdWTV02fPxtORpiJ601jWQQFl+bFQk0T/W1taLr1OmZRWxrVkdnKQ7GBZHu+EnrgiKXEAFA8xp+HnKmN/X/V7At9l48H2XgBcL/6N1z4AWE81dBXSAt0Ohtx/ii1nzRt/9n8O+DwMXlQaFWbgVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MOJg0nk8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01E30C4CEE4;
-	Tue, 13 May 2025 16:12:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747152735;
-	bh=2aefmjxyDnxDNO6OiVmrY5fkLYtKdsDEmGqLPj3AGsk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MOJg0nk8Ne4r9d9FmEiwMg94QVPKbqC3+018ihTKNGP1v04C1SfZEVXYEWhWHKa+W
-	 I5NHsK9e5jOYtE0NekO+anjZvYcI+AFXStDBLWVwE1oq6vXYf8N16mTUUqcDjFvPik
-	 /kMWzyZvHdZL7bG1nzR1NfIxO0nFvyrqFP4GhZM8V1H6T+DleIfrxnlp0K9ug11d4P
-	 +opzvIkAqvv7sis65NnKbY8mZ1cbmi6MJx71aVpik+CRKiGQn/vLAFj8+1tWvS4pjY
-	 uc0ZMULC298N2HoBr/PLteGzXkIvGNXQbwOzVqSsOqYfVbPXIGqpRC1XjqEFFhWH1m
-	 9hTnrcCEKpm3A==
-Date: Tue, 13 May 2025 17:12:10 +0100
-From: Lee Jones <lee@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>, nuno.sa@analog.com,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v3 02/22] mfd: adp5585: only add devices given in FW
-Message-ID: <20250513161210.GU2936510@google.com>
-References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
- <20250512-dev-adp5589-fw-v3-2-092b14b79a88@analog.com>
- <20250513143450.GM2936510@google.com>
- <8863db9b433d4911abba4480bb6ac59f799ed5c5.camel@gmail.com>
- <20250513151948.GA23592@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1747152780; c=relaxed/simple;
+	bh=BEF7Lj89eM93n8UkSe0nnAWQ1qs1inZ4rbgozwL9E9I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MTpa/7MfM6MD+dSIK6HpaOsQYMN/8/36JSiWC5wn+uh0XT51LXz0bFtDYdpHp3Bri5f9Z/S75WnrEdsiO1WhBV6XkuKXYlCDdlpPWeSJX9SALlv9t7n2mZCzcHbESfNBJ7QUIf6KioyHlmJfnfT4wOP/BwPLp0f6/Rya0AsB56E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=CDUZIWTZ; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=yDS9tO3ad7hmn2izTyW+Vt2trGV6W8nXY+0cUczUfFk=; b=CDUZIWTZ8iV9z1vn5NZhf+dsJZ
+	AbKY0wgyt8Oj4xHVMmjBVaH06DIx9JvBRRbWGiZc9BYwkuYOpawrp799rRkal1rqEJyIwGAyfXzg9
+	RmHWCTQtJM31w51y111FTNoYVkd5aCaM6ra7mSIKL06993wDw/OIglQSGfEKoVc7Ou1pRKIvR/l8V
+	D6W5vz5mv22m5PH4UVwMNtd8msAg3ioQrsIea8Lonwok8btQ4sjAP3toMWs5xWLLTub1Y8N6awwxu
+	npSWtVaCVmwlaxPNqM+xeZmVCdYWMbDO3e/mutonXgdzyCDPPlIAtEjimP8ZdhgUoZssx/XLNqoLi
+	qC7Ist8Q==;
+Received: from i53875a50.versanet.de ([83.135.90.80] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uEsFM-0001AW-Td; Tue, 13 May 2025 18:12:48 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Matthias Kaehlcke <mka@chromium.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Benjamin Bara <benjamin.bara@skidata.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Klaus Goger <klaus.goger@theobroma-systems.com>,
+ Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org,
+ Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, stable@vger.kernel.org
+Subject:
+ Re: [PATCH v2 1/5] usb: misc: onboard_usb_dev: fix support for Cypress HX3
+ hubs
+Date: Tue, 13 May 2025 18:12:47 +0200
+Message-ID: <2058366.PIDvDuAF1L@diego>
+In-Reply-To: <20250425-onboard_usb_dev-v2-1-4a76a474a010@thaumatec.com>
+References:
+ <20250425-onboard_usb_dev-v2-0-4a76a474a010@thaumatec.com>
+ <20250425-onboard_usb_dev-v2-1-4a76a474a010@thaumatec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250513151948.GA23592@pendragon.ideasonboard.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Tue, 13 May 2025, Laurent Pinchart wrote:
+Am Freitag, 25. April 2025, 17:18:06 Mitteleurop=C3=A4ische Sommerzeit schr=
+ieb Lukasz Czechowski:
+> The Cypress HX3 USB3.0 hubs use different PID values depending
+> on the product variant. The comment in compatibles table is
+> misleading, as the currently used PIDs (0x6504 and 0x6506 for
+> USB 3.0 and USB 2.0, respectively) are defaults for the CYUSB331x,
+> while CYUSB330x and CYUSB332x variants use different values.
+> Based on the datasheet [1], update the compatible usb devices table
+> to handle different types of the hub.
+> The change also includes vendor mode PIDs, which are used by the
+> hub in I2C Master boot mode, if connected EEPROM contains invalid
+> signature or is blank. This allows to correctly boot the hub even
+> if the EEPROM will have broken content.
+> Number of vcc supplies and timing requirements are the same for all
+> HX variants, so the platform driver's match table does not have to
+> be extended.
+>=20
+> [1] https://www.infineon.com/dgdl/Infineon-HX3_USB_3_0_Hub_Consumer_Indus=
+trial-DataSheet-v22_00-EN.pdf?fileId=3D8ac78c8c7d0d8da4017d0ecb53f644b8
+>     Table 9. PID Values
+>=20
+> Fixes: b43cd82a1a40 ("usb: misc: onboard-hub: add support for Cypress HX3=
+ USB 3.0 family")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
 
-> On Tue, May 13, 2025 at 04:02:11PM +0100, Nuno Sá wrote:
-> > On Tue, 2025-05-13 at 15:34 +0100, Lee Jones wrote:
-> > > On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
-> > > 
-> > > > From: Nuno Sá <nuno.sa@analog.com>
-> > > > 
-> > > > Not all devices (features) of the adp5585 device are mandatory to be
-> > > > used in all platforms. Hence, check what's given in FW and dynamically
-> > > > create the mfd_cell array to be given to devm_mfd_add_devices().
-> > > > 
-> > > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> > > > ---
-> > > >  drivers/mfd/adp5585.c | 45 +++++++++++++++++++++++++++++++++++++++++----
-> > > >  1 file changed, 41 insertions(+), 4 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> > > > index
-> > > > 160e0b38106a6d78f7d4b7c866cb603d96ea673e..02f9e8c1c6a1d8b9516c060e0024d69886
-> > > > e9fb7a 100644
-> > > > --- a/drivers/mfd/adp5585.c
-> > > > +++ b/drivers/mfd/adp5585.c
-> > > > @@ -17,7 +17,13 @@
-> > > >  #include <linux/regmap.h>
-> > > >  #include <linux/types.h>
-> > > >  
-> > > > -static const struct mfd_cell adp5585_devs[] = {
-> > > > +enum {
-> > > > +	ADP5585_DEV_GPIO,
-> > > > +	ADP5585_DEV_PWM,
-> > > > +	ADP5585_DEV_MAX
-> > > > +};
-> > > > +
-> > > > +static const struct mfd_cell adp5585_devs[ADP5585_DEV_MAX] = {
-> > > >  	{ .name = "adp5585-gpio", },
-> > > >  	{ .name = "adp5585-pwm", },
-> > > >  };
-> > > > @@ -110,12 +116,40 @@ static const struct regmap_config
-> > > > adp5585_regmap_configs[] = {
-> > > >  	},
-> > > >  };
-> > > >  
-> > > > +static int adp5585_parse_fw(struct device *dev, struct adp5585_dev
-> > > > *adp5585,
-> > > > +			    struct mfd_cell **devs)
-> > > > +{
-> > > > +	unsigned int has_pwm = 0, has_gpio = 0, rc = 0;
-> > > > +
-> > > > +	if (device_property_present(dev, "#pwm-cells"))
-> > > > +		has_pwm = 1;
-> > > 
-> > > This is a little sloppy.  Instead of using throwaway local variables, do
-> > > what you're going to do in the if statement.
-> > 
-> > Then I would need to realloc my device cells... But as I realized below, this is
-> > indeed not needed.
-> > 
-> > > > +	if (device_property_present(dev, "#gpio-cells"))
-> > > > +		has_gpio = 1;
-> > > > +
-> > > > +	if (!has_pwm && !has_gpio)
-> > > > +		return -ENODEV;
-> > > 
-> > > Are we really dictating which child devices to register based on random
-> > > DT properties?  Why not register them anyway and have them fail if the
-> 
-> The properties are not random.
-> 
-> > > information they need is not available?  Missing / incorrect properties
-> > > usually get a -EINVAL.
-> > 
-> > Well, this was something Laurent asked for... In the previous version I was
-> > registering all the devices unconditionally.
-> 
-> Registering them all means we'll get error messages in the kernel log
-> when the corresponding drivers will probe, while nothing is actually
-> wrong. That's fairly confusing for the user.
-> 
-> In an ideal situation we would have child nodes in DT and only register
-> child devices for existing child nodes. Unfortunately the DT bindings
-> were not designed that way, so we have to live with the current
-> situation.
-> 
-> > > > +	*devs = devm_kcalloc(dev, has_pwm + has_gpio, sizeof(struct mfd_cell),
-> > > > +			     GFP_KERNEL);
-> > > > +	if (!*devs)
-> > > > +		return -ENOMEM;
-> > > > +
-> > > > +	if (has_pwm)
-> > > > +		(*devs)[rc++] = adp5585_devs[ADP5585_DEV_PWM];
-> > > > +	if (has_gpio)
-> > > > +		(*devs)[rc++] = adp5585_devs[ADP5585_DEV_GPIO];
-> > > 
-> > > Passing around pointers to pointers for allocation (and later, pointer
-> > > to functions) is not the way we wish to operate.  See how all of the
-> > > other MFD drivers handle selective sub-drivers.
-> > 
-> > Any pointer from the top of your head (example driver)? Honestly, I do not see
-> > this being that bad. Pretty much is a dynamic array of struct mfd_cel but
-> > anyways, no strong feelings
-> 
-> I don't find it that bad either. I don't think you should use
-> devm_kcalloc() though, as the memory should be freed as soon as it's not
-> needed anymore.
-> 
-> > But... I was actually being very stupid. First I did looked at an API to only
-> 
-> Occasionally overseeing a possible solution isn't being stupid. Or at
-> least I hope it isn't, otherwise I would be very stupid too.
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-Yes, likewise.  Never worry about that.
+@GregKH: I'd assume you pick patches 1+2 (dt-binding + driver) and I pick t=
+he
+Rockchip arm64-dts patches afterwards, after the first two look good to you?
 
-In general let's try to simplify things by not using pointers to
-pointers and pointers to functions.  There are usually much nicer,
-cleaner and simpler solutions.
+Thanks a lot
+Heiko
 
-IMHO, the above is C-hackery at its best.
+> ---
+>  drivers/usb/misc/onboard_usb_dev.c | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboar=
+d_usb_dev.c
+> index 75ac3c6aa92d0d925bb9488d1e6295548446bf98..f5372dfa241a9cee09fea95fd=
+14b72727a149b2e 100644
+> --- a/drivers/usb/misc/onboard_usb_dev.c
+> +++ b/drivers/usb/misc/onboard_usb_dev.c
+> @@ -569,8 +569,14 @@ static void onboard_dev_usbdev_disconnect(struct usb=
+_device *udev)
+>  }
+> =20
+>  static const struct usb_device_id onboard_dev_id_table[] =3D {
+> -	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6504) }, /* CYUSB33{0,1,2}x/CYUSB230x=
+ 3.0 HUB */
+> -	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6506) }, /* CYUSB33{0,1,2}x/CYUSB230x=
+ 2.0 HUB */
+> +	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6500) }, /* CYUSB330x 3.0 HUB */
+> +	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6502) }, /* CYUSB330x 2.0 HUB */
+> +	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6503) }, /* CYUSB33{0,1}x 2.0 HUB, Ve=
+ndor Mode */
+> +	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6504) }, /* CYUSB331x 3.0 HUB */
+> +	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6506) }, /* CYUSB331x 2.0 HUB */
+> +	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6507) }, /* CYUSB332x 2.0 HUB, Vendor=
+ Mode */
+> +	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6508) }, /* CYUSB332x 3.0 HUB */
+> +	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x650a) }, /* CYUSB332x 2.0 HUB */
+>  	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6570) }, /* CY7C6563x 2.0 HUB */
+>  	{ USB_DEVICE(VENDOR_ID_GENESYS, 0x0608) }, /* Genesys Logic GL850G USB =
+2.0 HUB */
+>  	{ USB_DEVICE(VENDOR_ID_GENESYS, 0x0610) }, /* Genesys Logic GL852G USB =
+2.0 HUB */
+>=20
+>=20
 
-Let's see where v4 takes us.
 
--- 
-Lee Jones [李琼斯]
+
+
 
