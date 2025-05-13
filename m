@@ -1,125 +1,154 @@
-Return-Path: <devicetree+bounces-176854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CC1FAB5A95
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 18:54:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80800AB5AAB
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 19:01:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08C301889851
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:55:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C63017AF3B
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04EF1E22FC;
-	Tue, 13 May 2025 16:54:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84ACE24E01D;
+	Tue, 13 May 2025 17:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hTlZZBix"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="Otc68QU8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C9401DE3CB;
-	Tue, 13 May 2025 16:54:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5531828F501
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 17:01:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.185
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747155292; cv=none; b=iOGJoT/HwRhJfgdrNKB5OuxabbsDcAv00k6Ni1jGJSSTuiU+NkoF5qfSLKO5bD8bxt8nBiz0ougMonj5P+IunvvTssreRn/Ka8HAeQlfABZH/sVyTbE+LyqHs01NI+JI53VDhk/QCsbNs3eHxcV+Rzdpb3+CllhgSpA3RJrSCYo=
+	t=1747155688; cv=none; b=oTe8o6Zthq5G0l6c3gvQoelaan0y+MAwtMSFl/ZAiBDw9jQP002kDnKXR8G/RDkX5k30yPUHc+3ls1tATGORAayZEbfWiggHlwf817y20YF3GuioVW+qjroH1nLC6kpmKrdYOyLrTTVmElOMTHDth/LAH0T0P/uxws6W+WB+ScA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747155292; c=relaxed/simple;
-	bh=YpxeMsclx/cfQojbduR8BOC1erNUrwzSXsBKptYtpqY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UZpjkKa8v3Tr4mDbKrS7OaMXQOqugxu8kFDDPLCXAycm+e9q7GebQ2TaUl/99lpquN6hCN7sdyVupYOWHfi7FcpCfsHcxXDMybeCUZIKu6jGkIZMfOCw1n7YwG5aNAsbDcWtaT1qqVP156aNDGpO3bbbt12fZQoE2hqwMHsllPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hTlZZBix; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-30a93d80a80so4748364a91.3;
-        Tue, 13 May 2025 09:54:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747155290; x=1747760090; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YpxeMsclx/cfQojbduR8BOC1erNUrwzSXsBKptYtpqY=;
-        b=hTlZZBixFpwqqlgapIGFuRACt7AKxC1saHyYDj53LDjLo5vYxlvj85w5jDaQWehILF
-         Z/4bwRvswZqv5ojgA7jhu4Jtm8KS5r502cE0dPTBfcjBdl3hPsm3KNdZWSuVBJJVHWuA
-         3HHBHppdGN5JFkGv67ppvC5belEspliXS2L5Y3BJ/K2gaC4pY+i6rQiR9osEvsHRclya
-         bcJ0SOGEZSR87FpQ4R1keqYy9qC5lpgJHI7TxrjroWXqU7paQLWxWe/1NonEt0jWejWH
-         qfnfVRenCD1z6ENhcvQ7F7YSAhlu+6r/sXJmVzyvB+BS2eww/HdZFJG7iVWO7zYM4wki
-         DW1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747155290; x=1747760090;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YpxeMsclx/cfQojbduR8BOC1erNUrwzSXsBKptYtpqY=;
-        b=GTQJrcAltj82aW9xe8hSw8/qHxYBWqpLsD9koL2w3lYYsHiL1kLodyxgl+oEET276S
-         wIpmC4hq1MSjo9Of6EfWztylbJ1Ht1OlyA3+EFU9dEtG78JweOrlnbdqneXeMdRdzobQ
-         g0nA6E7ivNQ0kjg+XYWtELmjtEDn+TdG21r9DKccv3aVb90pHBrkHhiA0Iphq7gTwS41
-         1XkPBHqEJTJ8Q2AiyafqgqAIFYEzTm8VcoT96KDBo7MvjCgj6u/3arGE2GFHkr+NwGCo
-         ekl3VydW11EkzhWDOu26IJP+mZv0cvyRmz7Cqwn1INEqaznbE1a6NiRLFNQbOXSrGGxT
-         ISXw==
-X-Forwarded-Encrypted: i=1; AJvYcCX+M8TYT2Bm7vDhab0LSNc/XuJOBwjJrnSaIZaL8filX0Vz6rqHF+6SDtmvb58IQYu60KGOrZ9dXOrT@vger.kernel.org, AJvYcCXxyqKcdo3EgL2OQmi00vPI6YMSTJkzIcsMtNSzrO6UNmYTj+6RzXTeiYioQbllH3cZhHqOcCk4NtprGTJ3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+vRTdni2A6UPaKLdTi/I0jKqxXlZfX+dJSdDeh6rqokS+cEAK
-	vzV+BavYA45CDRZ5BNm5YB546FQF5p+LBAD9DR6smn4DTknxwI2Sk/Ez5R0i/UOmvRo6xo5/vE0
-	eVmGG10A+Ud0cUd6yeLOFhjt9Ex66Hw==
-X-Gm-Gg: ASbGnctR5//Q8hJ1yjONaE0uANw4ESsHCjvyRgWmjnVLkY2H9xSAKIQxT0Jn9lTwQpV
-	ED2gmMNlqoQHry2TzQTHcZoQBUHXrcI9eWL+4WO7RDRORBRofY8rNuHmsRxIByBuy7ZPqrohd7q
-	2GacbCCNTRYTTChM/DGl/Fk6pvbBmpm/g=
-X-Google-Smtp-Source: AGHT+IGpcBwCTyylzCB1E+/M0SUM/SN2419X676QPWEq491uYxj4BxNUdMxOkKFuz465fKh8cprvCMOXU8NpGolHRkU=
-X-Received: by 2002:a17:90b:180b:b0:2fe:8902:9ecd with SMTP id
- 98e67ed59e1d1-30e2e5d6393mr348466a91.1.1747155290132; Tue, 13 May 2025
- 09:54:50 -0700 (PDT)
+	s=arc-20240116; t=1747155688; c=relaxed/simple;
+	bh=szT5c7yJzLi5b7IM3Uiz+loSlGaMIvgDJwNDOS4+2D8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kvau4ZiyejFUyjADtVdARDTXticgX6XNOOcrPqRqr3Bqp0BumADqHDAXE9cC3Aai7PlPdEvXBFugrJKQFZCECbc+9IWokRUlL/VFzV0R+7IfjaCBKlJwxA/GZ6ePbB7iWW3oPrbfk4GqFBR+ISFDW2PaA1dBFBBbh2LWBiXALFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=Otc68QU8; arc=none smtp.client-ip=91.218.175.185
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1747155674;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=zxp5saJ00M0V4HD55ygHhJp7ySrhrAQhBKVNcX+nZcA=;
+	b=Otc68QU84N5ZqYJGbMPb31Z9ICWeBRz9p/HX0/+qKkt37fDhjWsr9FQCOwbDW/cyICpCMU
+	vYdzQ7SzmLwNmd5/MSwXmAZmaS9J0AZ6q435rWS7Zq6lLuX3XL+0tx3GRj850YH8QxG3Sv
+	+ZnjrzgbEprC5Hf+82AMa4JaAZkHkaECyd4adpcMrLJnzRl0qXN3eeNB1cfQSxXmaeZvBV
+	15xh8kPFVeq36oS+lOsPgT9DrD4a3Wt+/aCPiFQ7sprgNrJeSlQaGIurXD38flngsr4LEs
+	UdgT0fSwAfKanyXq9LA47m56u42KjID6Ag8p/QV0sNkWnK/5neWrwBdxiQoiqg==
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Dragan Simic <dsimic@manjaro.org>,
+	Vasily Khoruzhick <anarsoul@gmail.com>,
+	Tianling Shen <cnsztl@gmail.com>,
+	Diederik de Haas <didi.debian@cknow.org>
+Subject: [PATCH] arm64: dts: rockchip: Improve LED config for NanoPi R5S
+Date: Tue, 13 May 2025 18:57:27 +0200
+Message-ID: <20250513170056.96259-1-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241222002957.2582212-1-masahiroy@kernel.org>
- <CAK7LNATVrJLPQSCVTxKARm_4wk=Piem1ZHMA-8c8CfaZPs0H7Q@mail.gmail.com>
- <CAMo8BfKgLgWiTVre_zSy3SMm-tJySgmJpVDphtE7C1kFZsuwZw@mail.gmail.com> <CAK7LNATT0=TOT0jjC_vfS5Wi+oaenutRnVair5rbCqfPmRDpDw@mail.gmail.com>
-In-Reply-To: <CAK7LNATT0=TOT0jjC_vfS5Wi+oaenutRnVair5rbCqfPmRDpDw@mail.gmail.com>
-From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Tue, 13 May 2025 09:54:38 -0700
-X-Gm-Features: AX0GCFuymEaQEkOEg1g62dnFn6PvofrXfFQUkK1xmbap6w7MVBn7c6If6VfAG6k
-Message-ID: <CAMo8BfJbMfw04+Ex5dnRjaB6+9K_fEp3BXkzr37UvtCxg0L+kA@mail.gmail.com>
-Subject: Re: [PATCH] xtensa: migrate to the generic rule for built-in DTB
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: Chris Zankel <chris@zankel.net>, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-On Mon, May 12, 2025 at 9:32=E2=80=AFPM Masahiro Yamada <masahiroy@kernel.o=
-rg> wrote:
-> On Mon, Mar 17, 2025 at 1:27=E2=80=AFPM Max Filippov <jcmvbkbc@gmail.com>=
- wrote:
-> > On Sun, Mar 16, 2025 at 1:37=E2=80=AFPM Masahiro Yamada <masahiroy@kern=
-el.org> wrote:
-> > > On Sun, Dec 22, 2024 at 9:30=E2=80=AFAM Masahiro Yamada <masahiroy@ke=
-rnel.org> wrote:
-> > > >
-> > > > Commit 654102df2ac2 ("kbuild: add generic support for built-in boot
-> > > > DTBs") introduced generic support for built-in DTBs.
-> > > >
-> > > > Select GENERIC_BUILTIN_DTB to use the generic rule.
-> > > >
-> > > > To keep consistency across architectures, this commit also renames
-> > > > CONFIG_BUILTIN_DTB_SOURCE to CONFIG_BUILTIN_DTB_NAME.
-> > > >
-> > > > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> > >
-> > > Ping?
-> >
-> > Thanks, applied to my xtensa tree.
-> > Sorry for the delay.
->
-> This has not been available in Linus' tree yet.
-> Will you send a pull request in the next merge window?
+The NanoPi R5S has 4 GPIO LEDs, a RED one for SYStem power and 3 green
+LEDs meant to indicate that a cable is connected to either of the
+2.5GbE LAN ports or the 1GbE WAN port.
 
-I will.
+In the NanoPi R5S schematic (2204; page 19) as well as on the PCB and on
+the case, SYS is used and not POWER. So replace 'power' with 'sys'.
+But keep the 'power_led' label/phandle even though the kernel doesn't
+use it, but it may be used outside of it.
 
---=20
-Thanks.
--- Max
+The SYStem LED already had "heartbeat" as its default-trigger.
+Set the default-trigger to "netdev" for the NICs so they will show when
+LAN1/LAN2/WAN is connected and set their default-state to "off".
+
+Also assign labels as close as possible to the labels on the case, while
+still being descriptive enough in their own right.
+
+Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+---
+ .../boot/dts/rockchip/rk3568-nanopi-r5s.dts    | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
+index 4cb8df1129c0..3b31f0dd8f3b 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dts
+@@ -20,33 +20,43 @@ aliases {
+ 	gpio-leds {
+ 		compatible = "gpio-leds";
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&lan1_led_pin>, <&lan2_led_pin>, <&power_led_pin>, <&wan_led_pin>;
++		pinctrl-0 = <&lan1_led_pin>, <&lan2_led_pin>, <&sys_led_pin>, <&wan_led_pin>;
+ 
+ 		led-lan1 {
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "off";
+ 			function = LED_FUNCTION_LAN;
+ 			function-enumerator = <1>;
+ 			gpios = <&gpio3 RK_PD6 GPIO_ACTIVE_HIGH>;
++			label = "LAN-1";
++			linux,default-trigger = "netdev";
+ 		};
+ 
+ 		led-lan2 {
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "off";
+ 			function = LED_FUNCTION_LAN;
+ 			function-enumerator = <2>;
+ 			gpios = <&gpio3 RK_PD7 GPIO_ACTIVE_HIGH>;
++			label = "LAN-2";
++			linux,default-trigger = "netdev";
+ 		};
+ 
+-		power_led: led-power {
++		power_led: led-sys {
+ 			color = <LED_COLOR_ID_RED>;
+ 			function = LED_FUNCTION_POWER;
+-			linux,default-trigger = "heartbeat";
+ 			gpios = <&gpio4 RK_PD2 GPIO_ACTIVE_HIGH>;
++			label = "SYS";
++			linux,default-trigger = "heartbeat";
+ 		};
+ 
+ 		led-wan {
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "off";
+ 			function = LED_FUNCTION_WAN;
+ 			gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
++			label = "WAN";
++			linux,default-trigger = "netdev";
+ 		};
+ 	};
+ };
+@@ -126,7 +136,7 @@ lan2_led_pin: lan2-led-pin {
+ 			rockchip,pins = <3 RK_PD7 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 
+-		power_led_pin: power-led-pin {
++		sys_led_pin: sys-led-pin {
+ 			rockchip,pins = <4 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 
+-- 
+2.49.0
+
 
