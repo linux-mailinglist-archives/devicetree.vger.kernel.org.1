@@ -1,150 +1,89 @@
-Return-Path: <devicetree+bounces-176925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02C21AB5DE3
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:41:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A8BAB5DEC
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:42:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E4FD19E6D15
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 20:41:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00A99189E90B
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 20:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B402C032E;
-	Tue, 13 May 2025 20:39:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C691F4608;
+	Tue, 13 May 2025 20:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IZxb9Nut"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fzPkkMBy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E6541A3A8D;
-	Tue, 13 May 2025 20:39:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15451E9B34;
+	Tue, 13 May 2025 20:42:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747168773; cv=none; b=pxjZZCwuG4MIUxoxjvsVwI31/xp1bMwdD3c+4TAm4iwTbpxRlzMKilFhxEwKzFZBiqYqL0l3XjGc4JdCxO24q26MT/4mBZJJM9RGNaGXUXDlBLwUwxS4dzEPbGWLsnlggiRiICNctPmaQlyhWdq7yAiBV8b5ekgn6NDwYGcLtHI=
+	t=1747168942; cv=none; b=i8jJq/mNAac5mIbEMRobOH7+rKRdB7YpK92W8f2lDb7CZBSuQyovsEXNrNr4FGS4TORp+BzBAuo8h1a1O1dTGH1G0wuSif4jDBPYCm3syc2Hj+cIl7O74TIe3hRjJFj0NC715Iuu48urt4k/3bDpuEKiGiotwWgCpku3o5lfo3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747168773; c=relaxed/simple;
-	bh=ksJNTH6X3RjYqiQL98SxXN351ndMYSr8GsRLN552Nlk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=F2+i6NSGxT//OCc/gO1RL9ZDfG5hD35fPRkEVcqqsU389+r/X5wlAwjVbj2XX8PZRglixb0YjEG58PE5DrB2Bz/Ga5rJXv/GnR3c6DFtyTwTbUnhpGG0e/+mD1kX8jQlEszqrZbXbYAqdsrfUc1U6ES+Pjv+JYyywBaHIAZenek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IZxb9Nut; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54fc9e3564cso6115319e87.2;
-        Tue, 13 May 2025 13:39:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747168769; x=1747773569; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ksJNTH6X3RjYqiQL98SxXN351ndMYSr8GsRLN552Nlk=;
-        b=IZxb9Nutfz9AODA9O17hGZflonD1pgJz8EhFnMKUkF20mdxThKRpBufnuP/JbdSZXR
-         Wf8yIiZ6wYr31xmkKoyKFDdRcwGZ1um/51aOALjT4ynqMi5hyoc2oAf2ID3pDx0jS0iP
-         lCkkHg39yyB1hq9bCxOly2SwnQxIl/LgXqAlDJ8l5syDz4PeJArHntTybKenO0QaCz5F
-         46Mxx3Igtjt7RptpwRLp8J2sdLkzvrBjpGZnR0eTT6F/7KPAIwIhVRBx23M64lvWrPWA
-         UhN0u1q4jFShYCVu1NSVQOo7591ryAls8qcffBCm6GqiQlT8ONCoLkMBZjnFvMfYuiEs
-         Hyqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747168769; x=1747773569;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ksJNTH6X3RjYqiQL98SxXN351ndMYSr8GsRLN552Nlk=;
-        b=T61BOV0JlYzArYQUMmuTXBWZ58pfL6fya5Veh9C0BU7deByzsB1LDvzzI0W8e994X/
-         DAQ5rsw2ZlmfJR5t1i/imImYfA8BfwkoyKjTtEuVZsFodDXuZSaRfJOB+N/wT46U3nto
-         /nJZCXZYTj5G+gYD6qnQHqSKjCJxWJ5gGkrrRjSh7Opt18d77oks2ChiDTxUnlyXo7Bh
-         GKnSSgU/X/HjIuwL4OSyzyWUnqJQ3NAtnibHb8MhyfjqRnF9qeitBlWjFvGClniEnIZK
-         KjeT2tRTTkOpZmvGCkTq4iyWo2C0VXMXveYE6BOdkq7Z1OZqZmYKqua5abQxLFa3o0Xv
-         2Lnw==
-X-Forwarded-Encrypted: i=1; AJvYcCUDLq2wuMfnqP5jrSi+c9sy+nwn8w4qDwrdhJzImRQipOBwYGb2qPFmeaTU0sVmyv/gbIRO/f3qmIgOIeA=@vger.kernel.org, AJvYcCV3uJt1UHs9RG2L+BVZQXfCq45FXJxoQwM2Mo8Txtw7jUF/5dpbpqUhCmKMMenagwvO9kpN5P9cBLti@vger.kernel.org, AJvYcCXxaiEDjl62iBQPk0bv8VMxqnXKOc2O8ZLnZ7z3MkGEY80OVM3cmelUo5Zfs+MeBB+QLthvLY44E91+3oaI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw12nvMPE6jAs2fU5JyIkcQW4KbfX06HhSBZhyed/xT3QetqnZK
-	4zkcrV5oZYEqygI1ojCFrb8eYYDtIQyQohvmzAPnrZCqiJJLD9Gp7sUXELg7rFfmKhQNeShPvDW
-	6XnRXanfU6s8MiR223qpAGogoo4c=
-X-Gm-Gg: ASbGnctt/8PTSrpyn6vZ8/fiMiKtBjFNOQQkmSsXe55JZ1HJIHmimfS+9h4M5mr0tyD
-	rbNsP7HnIjZBDrnR9VUvSy+xXwOUfVC91/7DubIJsTyOeX+O3kTS6TQ8i1A0Jr1Oh+InT//pF0t
-	q9gLkYY48NtSWH9UJje9fC6Cs2aVoW1RnYX6dbGIGhmEl5
-X-Google-Smtp-Source: AGHT+IHlpggsf7tSkuboEZ0qheweBkapVbaswPCdkm9Yrbizxks2RoZhVMlZXCMW3/Tb4Q46u2G/WrBPGHOaUq4KOGQ=
-X-Received: by 2002:a05:6512:31c3:b0:54b:117b:b54e with SMTP id
- 2adb3069b0e04-550d61d9e53mr260629e87.57.1747168769279; Tue, 13 May 2025
- 13:39:29 -0700 (PDT)
+	s=arc-20240116; t=1747168942; c=relaxed/simple;
+	bh=jEpF9ihSqNrPk+Kb/LgpGFisCYE5gfKBufeLSpId8zs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NShK/ekLwaVWmxphdpfAQP5DmvM+sJDJe+Se5CXxB51pQ7I/mjwF0sI06QtFKVsowEDxBreRA9I292mGQVnK2zvxP3D4S+J3AtPy1D2aI6riHjCPRoPaTGBI9N1rnukjfkgKqnVbKQJ9Plw1mHsek3ZEXUroLlF8A91Iv1dtHn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fzPkkMBy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84955C4CEEB;
+	Tue, 13 May 2025 20:42:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747168941;
+	bh=jEpF9ihSqNrPk+Kb/LgpGFisCYE5gfKBufeLSpId8zs=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=fzPkkMByGS/ip2DnX/kypqZQ7eSWFSVFOxF70i8mO2pR1VzQfz6S3Vwi6DrfSyfDw
+	 yoUcn8tzOg9PwvDZM3+UIMcf9DCjwU3xUuyg9MccT0Stir8DSFKWwuXBY0IUZSlBC2
+	 mYMDUlAD6zjEl/czZ9M4fLnPC1iSk1LuxWgO1rW+pYTNpzyRLcXUGcVp62p+WR81x9
+	 AZIBkpPyqjejzmMQ6830qTRxqyUVYgWOPQVZEzCppMrH4qOTZNBHYhVZv/dtiUjc9W
+	 WERRp0TbgKOKmFjFQvQz3CSFrccWPsCsqrcAysvJs+xAz0orcENaPdYjai0041oqJs
+	 WWKIa3I7ZxUkw==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH 0/3] SC8280XP SLPI
+Date: Tue, 13 May 2025 15:42:10 -0500
+Message-ID: <174716891497.3696994.10916942446361805328.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250503-topic-8280_slpi-v1-0-9400a35574f7@oss.qualcomm.com>
+References: <20250503-topic-8280_slpi-v1-0-9400a35574f7@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250506-xusb-peripheral-v2-0-bfbe00671389@gmail.com> <660c781a-6923-4cc9-876a-f33ba782c923@nvidia.com>
-In-Reply-To: <660c781a-6923-4cc9-876a-f33ba782c923@nvidia.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Tue, 13 May 2025 15:39:15 -0500
-X-Gm-Features: AX0GCFsMkFZOvG05DFLEN3AoDVmlIMlL72GNOhp5XXXvhhtU4WwM20L8uFJicNQ
-Message-ID: <CALHNRZ9Li3KzS074dT0ytaEYx7NAMZHYYiuyeoFaBEOEKscR0w@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] phy: tegra: xusb: Default otg mode to peripheral
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: JC Kuo <jckuo@nvidia.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-phy@lists.infradead.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, May 7, 2025 at 5:48=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> wr=
-ote:
->
->
-> On 06/05/2025 18:09, Aaron Kling via B4 Relay wrote:
-> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > ---
-> > Changes in v2:
-> > - Add new patch to document role-switch-default-mode in xusb padctl
-> > - Simplify code change, per review
-> > - Comment in code why device mode is default
-> > - Link to v1: https://lore.kernel.org/r/20250404-xusb-peripheral-v1-1-9=
-9c184b9bf5f@gmail.com
->
->
-> I have been asking our team about this and this is the feedback I
-> received ...
->
-> "By design, a port=E2=80=99s data role starts out as USB_ROLE_NONE.
-> It remains in that state until a dedicated role=E2=80=90switch driver, su=
-ch as
-> the GPIO-based driver, usb-conn-gpio, or a Type-C controller driver,
-> CCG, probes VBUS/ID or CC lines and tells the USB core whether to switch
-> to host or device.
-> The role-switch-default-mode DT property exists precisely for controlled
-> use cases where a board truly only ever needs one role and doesn=E2=80=99=
-t
-> include any role-detection hardware.
-> In that scenario, you=E2=80=99re effectively opting out of dynamic role s=
-witching.
-> In the general OTG case, though, we shouldn=E2=80=99t assume the data rol=
-e of an
-> OTG port.
->
-> In his case, he should work out
-> 1. If his platform has a role-switch component, then he should enable it
-> rather than adding this change.
-> 2. If his platform doesn=E2=80=99t have a role-switch controller, add
-> role-switch-default-mode =3D "peripheral"; to the PHY node instead of
-> changing the core driver."
->
-> So I guess the question is, does your platform have a role-switch
-> controller?
->
-> The bottom line here is that we don't want to make this change by
-> default for all Tegra platforms.
 
-I wasn't familiar with role-switch controllers and that seems to have
-been my problem. I wasn't loading the usb-conn-gpio or ucsi_ccg
-modules which was why the current role wasn't being auto-detected.
-After loading those, the majority of the Jetson devkits and Shield
-devices I'm targeting worked as expected without this change. The only
-failure I've seen so far is p3509+p3636. And I've got a fix I'll push
-separately for that. So this series can be abandoned.
+On Sat, 03 May 2025 00:37:58 +0200, Konrad Dybcio wrote:
+> SC8280XP features a SLPI, much like its distant relative, SM8350.
+> 
+> This series adds the bindings and dt node for it (also cleaning up the
+> DTSI in meantime)
+> 
+> 
 
-Sincerely,
-Aaron
+Applied, thanks!
+
+[1/3] dt-bindings: remoteproc: qcom,sm8350-pas: Add SC8280XP
+      commit: 6a4adb7349241c00cefde8c765c1f64382b17563
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
