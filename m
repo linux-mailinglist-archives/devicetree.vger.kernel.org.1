@@ -1,110 +1,258 @@
-Return-Path: <devicetree+bounces-176793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7544AB57E5
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:03:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3C17AB57EA
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:03:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C53604A51E0
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:03:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 755C81B42675
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:03:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B4C1E5B72;
-	Tue, 13 May 2025 15:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99D281ACEC7;
+	Tue, 13 May 2025 15:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="utYb/EL4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CMmXhb8t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE131A83E8;
-	Tue, 13 May 2025 15:02:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A76A14B07A;
+	Tue, 13 May 2025 15:02:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747148581; cv=none; b=jpVtL5Evwik+c1UkRuCa4DGDDeIMjPYHr3Rp3Xe2cdS6YAlQ/wjOwQ+LQ2UVm3hC4Q+62lFy+7tFw7br2qasuRdEdJy+HCZtWj9GElNCE6nt4eWNZldnCPo6XfKqDSl4MSx+YDBd6vUHxEWU71vN1dBzHLMm1wyM03hrFwDC+FM=
+	t=1747148555; cv=none; b=F9VGymYXk/JRmxZhpdXIep8jGF2ChtCZK7jjBR0EVJ3xi3rvtRGcvm4WAzMzvraePaOACcNZQLv0KkBLNVrAZNZgbcO1Vhv1nwFUqE9op2/GFLBSaY5hwsyiV1uXdrYYYUMCCb+0sqKUx9DdV7Up7cyJzovsW+kqLUmyAmp+cpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747148581; c=relaxed/simple;
-	bh=v5YY0SZ0PYpJOc41X3mbWN+7Qhji612T5TVNWtMUFmM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eFxe2OfPC5W9U4rp2ooEaGZmqQAn2QU+cp7b3hwgMeIjoBg9WbT80RU07yOjSBiseVenuDbSEBsSRYHl7wP+hi7GF9TzRfwEtEKwHsXHNqFB7O4qfCPtwvOvalth9RtEaiWSneC192V2i7PIoUkEjDYTBk21XX7mS8x1JdKbWrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=utYb/EL4; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=RV3QvTlWfQTkDjPmndYOu91G7Myw8NKGakZkfON1fQE=; b=utYb/EL4RvDbKkhKrPXOMrbWto
-	MmdWPsTo7RL3nrPSkz3EBwx392PRrk1tIbgAuFDm5cqJ5YI2NQmmCJehGz0G2XOsnacsJPshdf4OG
-	ay3NeuQAAjxl7ZrPyvvwX9zIVRgxN5F0+R/gYMplzDE3Nb87RtLRdUyPScqYc1bImWnemp028jEGn
-	Pq2wUcrPIJa1fVOtJxLy2IxQV/0UQG6d/bVeVrNiC3g3r0fJHkHyTa8NF+GgNXNcEumX1OFjtTIVS
-	8UdOgzRzlmSZu/Eki7gx8Lg3morJCwkjLbqqY6+HNytDtEeXFGI8qwBpz2noUo6cc4Co2NloI0dhz
-	XMqE54xA==;
-Received: from i53875a50.versanet.de ([83.135.90.80] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uEr9a-0008L7-VI; Tue, 13 May 2025 17:02:47 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: heiko@sntech.de
-Cc: quentin.schulz@cherry.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: [PATCH v2 1/6] arm64: dts: rockchip: add basic mdio node to px30
-Date: Tue, 13 May 2025 17:02:29 +0200
-Message-ID: <20250513150234.2331221-2-heiko@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250513150234.2331221-1-heiko@sntech.de>
-References: <20250513150234.2331221-1-heiko@sntech.de>
+	s=arc-20240116; t=1747148555; c=relaxed/simple;
+	bh=B6maNZsDXYpgi8hdTJ1yNHPcZvQHZ0yC8G1V7BxTUcM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qHtkP6xiHFwhAasacbeRb6NdLBloibiHiKCOY4CcCZ7WcXT0erbFhMI3M7ZnvOhJtqSbp5BAAXvGTnQNW5SwOa6RyllHYelYr2i5gEM3msMX84QI6W3sP0Xcc7VW3s0hahxmIyWv8d/oKyrVBp4ksCdM9O9/OIc4pB+G4NYT91U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CMmXhb8t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 883A7C4CEE4;
+	Tue, 13 May 2025 15:02:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747148555;
+	bh=B6maNZsDXYpgi8hdTJ1yNHPcZvQHZ0yC8G1V7BxTUcM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CMmXhb8tfXjR6fC+HXBHvpJPeomnetyyeRM/uI86YyL1z+pUwAAsAtSWck5ER/xwu
+	 FGwEZ4hXxCZB/nWC83Wt4jtyhAm53A8KakGT0A7EkeOQT93gjf8QzhNynwYf6Yg8q9
+	 OKn+bMxJ5lO2aoF3P+JWABjewQCTfTTGImFlr66VDv1eSf0L2JjTCTbZGkXb/uH0Ln
+	 hcYgfzyqPnSK7Mo/2EbA4hzOsOqBXjF+lVSqW12IFneH1sjzK8wBxEJ0RyWf9Bswyi
+	 QhE+57Svm766pPu+WYghVYVQt8swYhVubsTDD0ctqSB3zBXXku1p7wnmCb8XCd7c5y
+	 nfmALqJJUenuA==
+Date: Tue, 13 May 2025 16:02:29 +0100
+From: Lee Jones <lee@kernel.org>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v3 07/22] mfd: adp5585: refactor how regmap defaults are
+ handled
+Message-ID: <20250513150229.GP2936510@google.com>
+References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
+ <20250512-dev-adp5589-fw-v3-7-092b14b79a88@analog.com>
+ <20250513150029.GO2936510@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250513150029.GO2936510@google.com>
 
-From: Heiko Stuebner <heiko.stuebner@cherry.de>
+On Tue, 13 May 2025, Lee Jones wrote:
 
-Using snps,reset-* properties for handling the phy-reset is deprecated
-and instead a real phy node should be defined that then contains the
-reset-gpios handling.
+> On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
+> 
+> > From: Nuno Sá <nuno.sa@analog.com>
+> > 
+> > The only thing changing between variants is the regmap default
+> > registers. Hence, instead of having a regmap condig for every variant
+> > (duplicating lots of fields), add a chip info type of structure with a
+> > regmap id to identify which defaults to use and populate regmap_config
+> > at runtime given a template plus the id. Also note that between
+> > variants, the defaults can be the same which means the chip info
+> > structure can be used in more than one compatible.
+> > 
+> > This will also make it simpler adding new chips with more variants.
+> > 
+> > Also note that the chip info structures are deliberately not const as
+> > they will also contain lots of members that are the same between the
+> > different devices variants and so we will fill those at runtime.
+> > 
+> > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> > ---
+> >  drivers/mfd/adp5585.c       | 94 +++++++++++++++++++++++++--------------------
+> >  include/linux/mfd/adp5585.h | 11 ++++++
+> >  2 files changed, 64 insertions(+), 41 deletions(-)
+> > 
+> > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+> > index 19d4a0ab1bb4c261e82559630624059529765fbd..874aed7d7cfe052587720d899096c995c19667af 100644
+> > --- a/drivers/mfd/adp5585.c
+> > +++ b/drivers/mfd/adp5585.c
+> > @@ -81,41 +81,34 @@ static const u8 adp5585_regmap_defaults_04[ADP5585_MAX_REG + 1] = {
+> >  	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00,
+> >  };
+> >  
+> > -enum adp5585_regmap_type {
+> > -	ADP5585_REGMAP_00,
+> > -	ADP5585_REGMAP_02,
+> > -	ADP5585_REGMAP_04,
+> > +static const struct regmap_config adp5585_regmap_config_template = {
+> > +	.reg_bits = 8,
+> > +	.val_bits = 8,
+> > +	.max_register = ADP5585_MAX_REG,
+> > +	.volatile_table = &adp5585_volatile_regs,
+> > +	.cache_type = REGCACHE_MAPLE,
+> > +	.num_reg_defaults_raw = ADP5585_MAX_REG + 1,
+> >  };
+> >  
+> > -static const struct regmap_config adp5585_regmap_configs[] = {
+> > -	[ADP5585_REGMAP_00] = {
+> > -		.reg_bits = 8,
+> > -		.val_bits = 8,
+> > -		.max_register = ADP5585_MAX_REG,
+> > -		.volatile_table = &adp5585_volatile_regs,
+> > -		.cache_type = REGCACHE_MAPLE,
+> > -		.reg_defaults_raw = adp5585_regmap_defaults_00,
+> > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_00),
+> > -	},
+> > -	[ADP5585_REGMAP_02] = {
+> > -		.reg_bits = 8,
+> > -		.val_bits = 8,
+> > -		.max_register = ADP5585_MAX_REG,
+> > -		.volatile_table = &adp5585_volatile_regs,
+> > -		.cache_type = REGCACHE_MAPLE,
+> > -		.reg_defaults_raw = adp5585_regmap_defaults_02,
+> > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_02),
+> > -	},
+> > -	[ADP5585_REGMAP_04] = {
+> > -		.reg_bits = 8,
+> > -		.val_bits = 8,
+> > -		.max_register = ADP5585_MAX_REG,
+> > -		.volatile_table = &adp5585_volatile_regs,
+> > -		.cache_type = REGCACHE_MAPLE,
+> > -		.reg_defaults_raw = adp5585_regmap_defaults_04,
+> > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_04),
+> > -	},
+> > -};
+> > +static int adp5585_fill_regmap_config(const struct adp5585_dev *adp5585,
+> > +				      struct regmap_config *regmap_config)
+> 
+> I like the general idea.  This is much more scaleable than before.
+> 
+> > +{
+> > +	*regmap_config = adp5585_regmap_config_template;
+> > +
+> > +	switch (adp5585->info->regmap_type) {
+> > +	case ADP5585_REGMAP_00:
+> > +		regmap_config->reg_defaults_raw = adp5585_regmap_defaults_00;
+> > +		return 0;
+> > +	case ADP5585_REGMAP_02:
+> > +		regmap_config->reg_defaults_raw = adp5585_regmap_defaults_02;
+> > +		return 0;
+> > +	case ADP5585_REGMAP_04:
+> > +		regmap_config->reg_defaults_raw = adp5585_regmap_defaults_04;
+> 
+> You could make this read a tiny bit nicer (as you do with the adp5585->info
+> in a later patch) and make reg_defaults_raw a local variable.
+> 
+> > +		return 0;
+> > +	default:
+> > +		return -ENODEV;
+> > +	}
+> > +}
+> >  
+> >  static int adp5585_parse_fw(struct device *dev, struct adp5585_dev *adp5585,
+> >  			    struct mfd_cell **devs)
+> > @@ -153,7 +146,7 @@ static void adp5585_osc_disable(void *data)
+> >  
+> >  static int adp5585_i2c_probe(struct i2c_client *i2c)
+> >  {
+> > -	const struct regmap_config *regmap_config;
+> > +	struct regmap_config regmap_config;
+> >  	struct adp5585_dev *adp5585;
+> >  	struct mfd_cell *devs;
+> >  	unsigned int id;
+> > @@ -165,8 +158,15 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+> >  
+> >  	i2c_set_clientdata(i2c, adp5585);
+> >  
+> > -	regmap_config = i2c_get_match_data(i2c);
+> > -	adp5585->regmap = devm_regmap_init_i2c(i2c, regmap_config);
+> > +	adp5585->info = i2c_get_match_data(i2c);
+> > +	if (!adp5585->info)
+> > +		return -ENODEV;
+> > +
+> > +	ret = adp5585_fill_regmap_config(adp5585, &regmap_config);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	adp5585->regmap = devm_regmap_init_i2c(i2c, &regmap_config);
+> >  	if (IS_ERR(adp5585->regmap))
+> >  		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
+> >  				     "Failed to initialize register map\n");
+> > @@ -223,22 +223,34 @@ static int adp5585_resume(struct device *dev)
+> >  
+> >  static DEFINE_SIMPLE_DEV_PM_OPS(adp5585_pm, adp5585_suspend, adp5585_resume);
+> >  
+> > +static struct adp5585_info adp5585_info = {
+> > +	.regmap_type = ADP5585_REGMAP_00,
+> 
+> Instead of providing this enum, then later another one (id) which is a
+> subset of the same thing, why not pass just ADP5585_REGMAP_00, etc
+> through the DT .data attribute then match on those?  It will add a
+> couple of lines to the switch(info->id) statement, but will save on a
+> boat load of static structs and other complexity.
+> 
+> For instance:
+> 
+> switch (info->id) {
+> 	case ADP5585_MAN_ID_VALUE:
+> 
+> Would simply become:
+> 
+> switch (info->id) {
+> 	case ADP5585_REGMAP_00:
+> 	case ADP5585_REGMAP_02:
+> 	case ADP5585_REGMAP_04:
+> 
+> And that's it.
+> 
+> > +};
+> > +
+> > +static struct adp5585_info adp5585_02_info = {
+> > +	.regmap_type = ADP5585_REGMAP_02,
+> > +};
+> > +
+> > +static struct adp5585_info adp5585_04_info = {
+> > +	.regmap_type = ADP5585_REGMAP_04,
+> > +};
+> > +
+> >  static const struct of_device_id adp5585_of_match[] = {
+> >  	{
+> >  		.compatible = "adi,adp5585-00",
+> > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
+> > +		.data = &adp5585_info,
+> 
+> 		.data = ADP5585_REGMAP_00,
 
-To facilitate this, add the core mdio node under the px30's gmac, similar
-to how the other Rockchip socs already do this.
+It goes without saying that the defines would have to become more
+generic as well, since they will be expanded to describe more than just
+'REGMAP'.
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
----
- arch/arm64/boot/dts/rockchip/px30.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
-index 9137dd76e72c..feabdadfa440 100644
---- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-@@ -985,6 +985,12 @@ gmac: ethernet@ff360000 {
- 		resets = <&cru SRST_GMAC_A>;
- 		reset-names = "stmmaceth";
- 		status = "disabled";
-+
-+		mdio: mdio {
-+			compatible = "snps,dwmac-mdio";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
- 	};
- 
- 	sdmmc: mmc@ff370000 {
 -- 
-2.47.2
-
+Lee Jones [李琼斯]
 
