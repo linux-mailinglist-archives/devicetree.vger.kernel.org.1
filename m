@@ -1,66 +1,63 @@
-Return-Path: <devicetree+bounces-176927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C824BAB5DF8
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:42:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB6D9AB5E09
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 22:47:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4751165CED
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 20:42:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 446E91899CEB
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 20:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5335B2BE7C5;
-	Tue, 13 May 2025 20:42:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9DA1EB1B5;
+	Tue, 13 May 2025 20:46:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="npmR1eXW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V9cLBUoE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208641FCFE2;
-	Tue, 13 May 2025 20:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 718211B4227;
+	Tue, 13 May 2025 20:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747168943; cv=none; b=IP/uX8ErMoPVMiz7/ZF/fTvjs+ocbQpvoE1CUyYqt8HKA2NUIpQDZGLLHMOZxX9N4Ff/b6N35bMLaD3KwbmGjFbqYFZMxv7UZdUMbSFqaHtCiPgvfa9yMdC69NSoclCKPwlZicGvulihV7qMZLl9wppqFu3LAzoukQxYq6UFLUg=
+	t=1747169215; cv=none; b=ewZrBt25KDCrdQKVeBm3bFl/bAlCI7b1gci4hu/4jBE0DHPXmXMDAo+eIfnIsrggR95XZF+BecIFf3mHBjr9oUn2keLKazzXTGvQuyQ/BR5KOxKZ3DSGpP+AxuXQBn9ioqy9Q8Ygs6nIunCM9Z2ZiU5YB6CCZtNYsnm4bskdedY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747168943; c=relaxed/simple;
-	bh=VsYhnwU3HDJy156Q7aQk2LJpAChRBes3GR8H7yXnH6M=;
+	s=arc-20240116; t=1747169215; c=relaxed/simple;
+	bh=4rS8kIjpSaUs/I/PlN++Dg/CWce8A2ho3C7mZqqX7As=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=izEf1x2VkQIdC6u0AGT4Wk0qChiMdueVtc6hhRB90ZcmvSPaXuGqtgwGhkR3fzIrIrY8E5hDj7pi0qm0maO9Aka4vUYGQaQ8pik0UVjWuG0Sk2Mq7syzCpeYSARfvuVqc1H6/m9dnXR7pLziemx2hif5OABRWh42BdBYxq0kcvU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=npmR1eXW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A451AC4CEEF;
-	Tue, 13 May 2025 20:42:21 +0000 (UTC)
+	 MIME-Version:Content-Type; b=FFM4NYVmDpRjcszJameN+X3+O6JYi9qJtok3hDlzl6xYGwIj9dE2RdGdrQv0RLrAoOR3d7BZAUEldb0D+X7UiXPYdabv2gg8EV3QZnCg0/glWE9TKfj8IwPMJ5DRL7cb9c5wjuL54qg/jW8w6StSO/Q/HW126ApIRGub9Jua0mQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V9cLBUoE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F499C4CEE4;
+	Tue, 13 May 2025 20:46:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747168942;
-	bh=VsYhnwU3HDJy156Q7aQk2LJpAChRBes3GR8H7yXnH6M=;
+	s=k20201202; t=1747169213;
+	bh=4rS8kIjpSaUs/I/PlN++Dg/CWce8A2ho3C7mZqqX7As=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=npmR1eXWa9VMN9VX2yYW0Dw7sE0Leb1h4nsvmiuV9Y6QJsJIW74+P64d7PEhGmftA
-	 gsXNsANKDdJbpqznBHXpsbomBIRgVASBAmxVQS/1BQ80Uhu0r/3kEkvXydPa6Yj6rG
-	 qtwLgQGVLFAj0j8+48K9iCRl8Plbf1uoIlzsATGn9vwXQxyCMBjUPD6lBEhBugZpyp
-	 HPsECq2Q/GWcDJu5vztsax0iMi7AdcV2EctSvIHq4GrF2c37lIPtxFX/XKaJ2JAnJ4
-	 3yTucw7VbUtqilwEohIHsY+qmAHC2rA+4+By9GHpYT1D+hvWyUdqeHrH3uIpiLAiyq
-	 D8kIg+YVONXqg==
+	b=V9cLBUoEdGU740Kf84wUc+E0Jkxd76wBBGSNyYr9cyjroV47RUdEVEljzRJDUgLP4
+	 /RWXqLlKTVkMn9c8+EMiGwSH7XKoY+yItu1t1sfDOPzlLWAIzkYmzJ95fitxfKJRUn
+	 p3JwHCW5mXd28P9+snEONt0B02RbGRqrUCDeiXyq3OJMwCvbAGjTfZebdjLEeuvkDv
+	 O3JjyYKB/i1hvP/QV5BSIBwsIOdR8ofMbZZqcFRns6639rqTKBNE8Vo5F/+wO8HZfX
+	 g71xkQFOxW2DMiOCc3rwlhtnrfs1UMAG89H1t5LsT70c5FTn4L3BQA9lIjLjfxJrgI
+	 UYrgeCNGWEtYw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>,
+To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Abel Vesa <abel.vesa@linaro.org>
+Cc: Johan Hovold <johan@kernel.org>,
 	linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: stable@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: remoteproc: qcom,sm8150-pas: Add missing SC8180X compatible
-Date: Tue, 13 May 2025 15:42:11 -0500
-Message-ID: <174716891498.3696994.12462267803258694149.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: x1e001de-devkit: USB retimers related fixes
+Date: Tue, 13 May 2025 21:46:38 +0100
+Message-ID: <174716895383.39748.703153321484020943.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250428075243.44256-2-krzysztof.kozlowski@linaro.org>
-References: <20250428075243.44256-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250318-x1e001de-devkit-dts-fix-retimer-gpios-v1-0-1c092f630b0c@linaro.org>
+References: <20250318-x1e001de-devkit-dts-fix-retimer-gpios-v1-0-1c092f630b0c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,18 +68,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 28 Apr 2025 09:52:44 +0200, Krzysztof Kozlowski wrote:
-> Commit 4b4ab93ddc5f ("dt-bindings: remoteproc: Consolidate SC8180X and
-> SM8150 PAS files") moved SC8180X bindings from separate file into this
-> one, but it forgot to add actual compatibles in top-level properties
-> section making the entire binding un-selectable (no-op) for SC8180X PAS.
+On Tue, 18 Mar 2025 17:50:33 +0200, Abel Vesa wrote:
+> These fixes align all the USB retimer related nodes on the Devkit with the
+> CRD and T14s.
+> 
+> This patchset is based on Johan's:
+> https://lore.kernel.org/all/20250318074907.13903-1-johan+linaro@kernel.org/
 > 
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: remoteproc: qcom,sm8150-pas: Add missing SC8180X compatible
-      commit: b278981b5ac109e6f6986b20a5cb19654aba8f68
+[1/2] arm64: dts: qcom: x1e001de-devkit: Describe USB retimers resets pin configs
+      commit: f76fdcd2550991c854a698a9f881b1579455fc0a
+[2/2] arm64: dts: qcom: x1e001de-devkit: Fix pin config for USB0 retimer vregs
+      commit: 635d0c8edf26994dc1dcbc09add9423aa61869b0
 
 Best regards,
 -- 
