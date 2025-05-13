@@ -1,301 +1,281 @@
-Return-Path: <devicetree+bounces-176814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32635AB58BC
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:36:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16EA1AB58C0
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 17:36:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE5213A2273
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:35:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CB6A3A6BA9
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 15:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C020E298991;
-	Tue, 13 May 2025 15:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144522BE0EA;
+	Tue, 13 May 2025 15:36:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="u/mKwGCw"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="V8x/SrQP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C16B4227586;
-	Tue, 13 May 2025 15:36:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBFE5298991
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 15:36:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747150571; cv=none; b=UpFRbeAAFeoJLr6qlVy1Jx4agPQoFjnmwO3B1mqW3BHjIclbn3pWAoeBxcc60IYkhJ2Mvxbl1Cby/HpBddpJ+yzb/hrd02NepK6ewSo5ZF3jAaOOMzf1Gv3RtwlJNFInl6Ee9gzjdoNkMY99BXfyZJohHa5gN3FibG1GwOQvl1Q=
+	t=1747150603; cv=none; b=bm2CJhEryeuD151EXIwBNa1VkiusMANAt+b7QRfJ+y9KPQJvrYvUcgZyA4GHDmyFyLHZcVOBvdfUX0jiABBZPoZNNchNcJh6COFg+1s1ZGNNjGVOlztbJzO39ZkA/4PwoI0UfYMqSniog7klwQ5vHbZzfJSoyKZjdyzVhWcTTl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747150571; c=relaxed/simple;
-	bh=XDhjP9g95eEB1fOFVjdYU9odDGlFGPRtUGZtVRU7W8w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jGJw5RIMgiQo+WIIpIjXzLp1mA18hQd627RExWkgoSvozTM43uIlrw4/DLMbmZh6D9LjoUdCU/eeodm0UEtlf6CMNJtPOPFC8nCA8F+hb95ehpy7FwJ6O/TcfcqHYrHU3fBF2cE4gbYMfm6QF7zISkFl1TPslyh/9rj5Hg/DDZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=u/mKwGCw; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (unknown [146.0.27.149])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0A9A84C9;
-	Tue, 13 May 2025 17:35:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1747150552;
-	bh=XDhjP9g95eEB1fOFVjdYU9odDGlFGPRtUGZtVRU7W8w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u/mKwGCw4YZun0sa7iGY8rfVc0uF9s5JftpXotc+vDEL1vBwq51laTPK2HW6MerBw
-	 ZAIFx1jgA47TWO4DAqtLNOcADnhSbIzk5PP21/FAzHyDpSBXPLiLTV2cpMxonvXxNF
-	 i/0/i16gsfT+9sbY0aBBY1uUStx3ud4MAAlo9PUg=
-Date: Tue, 13 May 2025 17:35:59 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Lee Jones <lee@kernel.org>
-Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v3 07/22] mfd: adp5585: refactor how regmap defaults are
- handled
-Message-ID: <20250513153559.GD23592@pendragon.ideasonboard.com>
-References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
- <20250512-dev-adp5589-fw-v3-7-092b14b79a88@analog.com>
- <20250513150029.GO2936510@google.com>
+	s=arc-20240116; t=1747150603; c=relaxed/simple;
+	bh=g8+164MWQnwm/Yvz9p3c3pVZTgk5x0kJhrCBitVwXJg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hbSzOwTMOcaZ7zLtCyYO8KYLWjQXBkFjatDKigwlBeuQ97sa20GGcRjjAGnFka1VdSNYG++4vNVBzP3oIcyC9LhWHf/FbenUnQ/YZDGEPQdPJYtmR+KDNFMOJUlX3DfxJ5T5i2rq2xZCcH0VRJXP8tGfxrGQ+nNBMtyhTp05MoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=V8x/SrQP; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso39369925e9.3
+        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 08:36:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1747150599; x=1747755399; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L57om844kxS3HDPApKIBPPD4O1jfgBmX7JYFvjM39sM=;
+        b=V8x/SrQPZxRnMnsHiB438NwCSZj0RCPgkyzK8+wWjLkWOs9+EtSoiVN9yDdeyOBNgi
+         nGuQutR8jC7fhdCuDAF0v1RFiUCzU30tfRMf5+GgMZyuTXRzz7AbYVvnXZbl/2lPHSXQ
+         pcKf2KodxzqTJgga+v7AnbYzQhqHAWSc2oy78R7e6jWSzp3nSvVgzXxbKJ2mYbZWkuT3
+         Ou224kIHF/mNA244zMJCMu5G/I831oi0mgKBiM2XTGu6JjTQ77EOWSVJFmjO/nmzo/+T
+         95qOeL1+RW+s5443TPpLEItNM8wu8RZwXQW5FZtG6Hc9B3l4+FpaPlJTplp0NZwtr3zD
+         arQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747150599; x=1747755399;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L57om844kxS3HDPApKIBPPD4O1jfgBmX7JYFvjM39sM=;
+        b=aEIMAYIGO5b2bWleLOPGphWFPaHt6gdS76I4rBQNXVvIt3QXUL1TskuF4oclgX5vVz
+         JbqKECo60h/m7U0o9bMvGplu64dhxYckNHpTDY5JMeGrpzzdPd4RfFXWtve+T94YaGYG
+         gJGsHzk5Dgs8cw3evXNWOX/Nfeatbd0sMxNSJbR6qYzkGZrFGzQ9QaxCSO6dUp2u7xGb
+         oebfVkElSoqLe3vLwUj+YqAYNEBJ2Yr+SNH15bqmxGKFxCkUfdCvo0kNq3kpIxRprT/b
+         5VArchXBpo7oz57FZ41yFI9b9qMecCY1FIZkC3lQjzSNOT1OdCqBYe1kOua5QYFXlAmi
+         LT2g==
+X-Forwarded-Encrypted: i=1; AJvYcCU6wf/kwyhwsv5tVsoa9sKbLM//A37GQqAzR8ACKZdqhRMpBp1BoQ6fEWGPULCzWQ5aczUVGhM5ZdnE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/eXZ6syavIIMOPg9DMuJhMirL9hvL//NC+eIghAYs1hrl0V25
+	oaBPJjfj4OyG4SWFNNjqWBbd8jaufeEjA+r7/WxTGIdsgn77+Z4kMhtrHf5jG0c=
+X-Gm-Gg: ASbGncumX3wh/Hs9OKWzUfsR9RS9mnt41/7keGJTY9jHp/K/LGfhPichAg4VNIKRYsl
+	gqzRUFOutaHTqSZYOQPcDESazW8IDW7scsLLCvRRg8jta97h9hOw/nCcelvdFV19xpzena4RK3H
+	LgdFZeQL+Q4tbquEvTov5vwPJRquUyudI0Aa2tnBUX9mhlKLOzbi2YhA6/zANLyXT24nk/ArytG
+	jqQrV9zmNOSppS0Y0OyMvsZbex6EwzVz/8aFLAb8P1xSzPfUTljtqjganzZgKhPRydoenBfhSPr
+	ld9AoAVQXzsacUjb0eqt+LhcQHHNzQ2Rw8nNfTcTlMW9mrXzOK0PI9YChIn//Ze7W04=
+X-Google-Smtp-Source: AGHT+IFml+AzNYNXdPMsjKRnKr8SIqb9NPuxRgmuQY6V1E11Gk6Rx5OhkWkHEuPN0PEic9EHObJEdA==
+X-Received: by 2002:a05:600c:a44:b0:43c:ec4c:25b1 with SMTP id 5b1f17b1804b1-442d6dc5328mr136024405e9.23.1747150598818;
+        Tue, 13 May 2025 08:36:38 -0700 (PDT)
+Received: from [192.168.157.194] ([213.233.104.159])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442d5cf5d6bsm176202005e9.1.2025.05.13.08.36.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 May 2025 08:36:38 -0700 (PDT)
+Message-ID: <433f188f-054d-4f22-86bf-74b8c38f11f5@tuxon.dev>
+Date: Tue, 13 May 2025 18:36:35 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250513150029.GO2936510@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/7] clk: renesas: rzg2l-cpg: Add support for MSTOP in
+ clock enable/disable API
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com,
+ linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20250410140628.4124896-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250410140628.4124896-4-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdUv6+KFuobDzzmKFOH6PvwU0RFzd1M9WrEZ-yzESBahkw@mail.gmail.com>
+ <e77c85de-4542-44e1-af2e-f63f72602ff8@tuxon.dev>
+ <CAMuHMdXFtBmjDu=1RS2MLNYzhZ0fmpT7+1QbA9p4LvoLHitOuw@mail.gmail.com>
+ <53999471-277b-4621-abfd-b4c25761b3da@tuxon.dev>
+ <CAMuHMdWa_GuHmw0wRjMJi8ydcn-YTapruWKfoX96FBZHhveQHg@mail.gmail.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <CAMuHMdWa_GuHmw0wRjMJi8ydcn-YTapruWKfoX96FBZHhveQHg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, May 13, 2025 at 04:00:29PM +0100, Lee Jones wrote:
-> On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
-> 
-> > From: Nuno Sá <nuno.sa@analog.com>
-> > 
-> > The only thing changing between variants is the regmap default
-> > registers. Hence, instead of having a regmap condig for every variant
-> > (duplicating lots of fields), add a chip info type of structure with a
-> > regmap id to identify which defaults to use and populate regmap_config
-> > at runtime given a template plus the id. Also note that between
-> > variants, the defaults can be the same which means the chip info
-> > structure can be used in more than one compatible.
-> > 
-> > This will also make it simpler adding new chips with more variants.
-> > 
-> > Also note that the chip info structures are deliberately not const as
-> > they will also contain lots of members that are the same between the
-> > different devices variants and so we will fill those at runtime.
-> > 
-> > Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> > ---
-> >  drivers/mfd/adp5585.c       | 94 +++++++++++++++++++++++++--------------------
-> >  include/linux/mfd/adp5585.h | 11 ++++++
-> >  2 files changed, 64 insertions(+), 41 deletions(-)
-> > 
-> > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> > index 19d4a0ab1bb4c261e82559630624059529765fbd..874aed7d7cfe052587720d899096c995c19667af 100644
-> > --- a/drivers/mfd/adp5585.c
-> > +++ b/drivers/mfd/adp5585.c
-> > @@ -81,41 +81,34 @@ static const u8 adp5585_regmap_defaults_04[ADP5585_MAX_REG + 1] = {
-> >  	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00,
-> >  };
-> >  
-> > -enum adp5585_regmap_type {
-> > -	ADP5585_REGMAP_00,
-> > -	ADP5585_REGMAP_02,
-> > -	ADP5585_REGMAP_04,
-> > +static const struct regmap_config adp5585_regmap_config_template = {
-> > +	.reg_bits = 8,
-> > +	.val_bits = 8,
-> > +	.max_register = ADP5585_MAX_REG,
-> > +	.volatile_table = &adp5585_volatile_regs,
-> > +	.cache_type = REGCACHE_MAPLE,
-> > +	.num_reg_defaults_raw = ADP5585_MAX_REG + 1,
-> >  };
-> >  
-> > -static const struct regmap_config adp5585_regmap_configs[] = {
-> > -	[ADP5585_REGMAP_00] = {
-> > -		.reg_bits = 8,
-> > -		.val_bits = 8,
-> > -		.max_register = ADP5585_MAX_REG,
-> > -		.volatile_table = &adp5585_volatile_regs,
-> > -		.cache_type = REGCACHE_MAPLE,
-> > -		.reg_defaults_raw = adp5585_regmap_defaults_00,
-> > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_00),
-> > -	},
-> > -	[ADP5585_REGMAP_02] = {
-> > -		.reg_bits = 8,
-> > -		.val_bits = 8,
-> > -		.max_register = ADP5585_MAX_REG,
-> > -		.volatile_table = &adp5585_volatile_regs,
-> > -		.cache_type = REGCACHE_MAPLE,
-> > -		.reg_defaults_raw = adp5585_regmap_defaults_02,
-> > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_02),
-> > -	},
-> > -	[ADP5585_REGMAP_04] = {
-> > -		.reg_bits = 8,
-> > -		.val_bits = 8,
-> > -		.max_register = ADP5585_MAX_REG,
-> > -		.volatile_table = &adp5585_volatile_regs,
-> > -		.cache_type = REGCACHE_MAPLE,
-> > -		.reg_defaults_raw = adp5585_regmap_defaults_04,
-> > -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_04),
-> > -	},
-> > -};
-> > +static int adp5585_fill_regmap_config(const struct adp5585_dev *adp5585,
-> > +				      struct regmap_config *regmap_config)
-> 
-> I like the general idea.  This is much more scaleable than before.
-> 
-> > +{
-> > +	*regmap_config = adp5585_regmap_config_template;
-> > +
-> > +	switch (adp5585->info->regmap_type) {
-> > +	case ADP5585_REGMAP_00:
-> > +		regmap_config->reg_defaults_raw = adp5585_regmap_defaults_00;
-> > +		return 0;
-> > +	case ADP5585_REGMAP_02:
-> > +		regmap_config->reg_defaults_raw = adp5585_regmap_defaults_02;
-> > +		return 0;
-> > +	case ADP5585_REGMAP_04:
-> > +		regmap_config->reg_defaults_raw = adp5585_regmap_defaults_04;
-> 
-> You could make this read a tiny bit nicer (as you do with the adp5585->info
-> in a later patch) and make reg_defaults_raw a local variable.
+Hi, Geert,
 
-And as ADP585_REGMAP_* is an enum and we have to handle all values, you
-can replace the switch with a static const array lookup.
+On 13.05.2025 17:07, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> On Tue, 13 May 2025 at 14:34, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
+>> On 09.05.2025 15:34, Geert Uytterhoeven wrote:
+>>> On Fri, 9 May 2025 at 12:54, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
+>>>> On 07.05.2025 18:42, Geert Uytterhoeven wrote:
+>>>>> On Thu, 10 Apr 2025 at 16:06, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>>>
+>>>>>> The RZ/{G2L, V2L, G3S} CPG versions support a feature called MSTOP. Each
+>>>>>> module has one or more MSTOP bits associated with it, and these bits need
+>>>>>> to be configured along with the module clocks. Setting the MSTOP bits
+>>>>>> switches the module between normal and standby states.
+>>>>>>
+>>>>>> Previously, MSTOP support was abstracted through power domains
+>>>>>> (struct generic_pm_domain::{power_on, power_off} APIs). With this
+>>>>>> abstraction, the order of setting the MSTOP and CLKON bits was as follows:
+>>>>>>
+>>>>>> Previous Order:
+>>>>>> A/ Switching to Normal State (e.g., during probe):
+>>>>>> 1/ Clear module MSTOP bits
+>>>>>> 2/ Set module CLKON bits
+>>>>>>
+>>>>>> B/ Switching to Standby State (e.g., during remove):
+>>>>>> 1/ Clear CLKON bits
+>>>>>> 2/ Set MSTOP bits
+>>>>>>
+>>>>>> However, in some cases (when the clock is disabled through devres), the
+>>>>>> order may have been (due to the issue described in link section):
+>>>>>>
+>>>>>> 1/ Set MSTOP bits
+>>>>>> 2/ Clear CLKON bits
+>>>>>>
+>>>>>> Recently, the hardware team has suggested that the correct order to set
+>>>>>> the MSTOP and CLKON bits is:
+>>>>>>
+>>>>>> Updated Order:
+>>>>>> A/ Switching to Normal State (e.g., during probe):
+>>>>>> 1/ Set CLKON bits
+>>>>>> 2/ Clear MSTOP bits
+>>>>>>
+>>>>>> B/ Switching to Standby State (e.g., during remove):
+>>>>>> 1/ Set MSTOP bits
+>>>>>> 2/ Clear CLKON bits
+>>>>>>
+>>>>>> To prevent future issues due to incorrect ordering, the MSTOP setup has
+>>>>>> now been implemented in rzg2l_mod_clock_endisable(), ensuring compliance
+>>>>>> with the sequence suggested in Figure 41.5: Module Standby Mode Procedure
+>>>>>> from the RZ/G3S HW manual.
+>>>>>>
+>>>>>> Additionally, since multiple clocks of a single module may be mapped to a
+>>>>>> single MSTOP bit, MSTOP setup is reference-counted.
+>>>>>>
+>>>>>> Furthermore, as all modules start in the normal state after reset, if the
+>>>>>> module clocks are disabled, the module state is switched to standby. This
+>>>>>> prevents keeping the module in an invalid state, as recommended by the
+>>>>>> hardware team.
+>>>>>>
+>>>>>> Link: https://lore.kernel.org/all/20250215130849.227812-1-claudiu.beznea.uj@bp.renesas.com/
+>>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>>
+>>>>> Thanks for your patch!
+>>>>>
+>>>>>> --- a/drivers/clk/renesas/rzg2l-cpg.c
+>>>>>> +++ b/drivers/clk/renesas/rzg2l-cpg.c
+>>>
+>>>>>> +/* Need to be called with a lock held to avoid concurrent access to mstop->refcnt. */
+>>>>>> +static void rzg2l_mod_clock_module_set_state(struct mstp_clock *clock,
+>>>>>> +                                            bool standby)
+>>>>>> +{
+>>>>>> +       struct rzg2l_cpg_priv *priv = clock->priv;
+>>>>>> +       struct mstop *mstop = clock->mstop;
+>>>>>> +       bool update = false;
+>>>>>> +       u32 value;
+>>>>>> +
+>>>>>> +       if (!mstop)
+>>>>>> +               return;
+>>>>>> +
+>>>>>> +       value = MSTOP_MASK(mstop->conf) << 16;
+>>>>>> +
+>>>>>> +       if (standby) {
+>>>>>> +               unsigned int criticals = 0;
+>>>>>> +
+>>>>>> +               for (u8 i = 0; i < clock->num_shared_mstop_clks; i++) {
+>>>>>
+>>>>> unsigned int
+>>>>>
+>>>>>> +                       struct mstp_clock *clk = clock->shared_mstop_clks[i];
+>>>>>> +
+>>>>>> +                       if (clk->critical)
+>>>>>> +                               criticals++;
+>>>>>> +               }
+>>>>>> +
+>>>>>> +               /* Increment if clock is critical, too. */
+>>>>>> +               if (clock->critical)
+>>>>>> +                       criticals++;
+>>>>>
+>>>>> If clock->shared_mstop_clks[] would include the current clock, then
+>>>>> (a) this test would not be needed, and
+>>>>
+>>>> Agree!
+>>>>
+>>>>> (b) all clocks sharing the same mstop could share a single
+>>>>>     clock->shared_mstop_clks[] array.
+>>>>
+>>>> I'll look into this but I'm not sure how should I do it w/o extra
+>>>> processing at the end of registering all the clocks. FWICT, that would
+>>>> involve freeing some shared_mstop_clks arrays and using a single reference
+>>>> as the shared_mstop_clks[] is updated after every clock is registered. Can
+>>>> you please let me know if this what you are thinking about?
+>>>
+>>> Currently, when detecting two clocks share the same mstop,
+>>> you (re)allocate each clock's shared_mstop_clks[], and add the
+>>> other clock:
+>>>
+>>>     rzg2l_cpg_add_shared_mstop_clock(priv->dev, clock, clk);
+>>>     rzg2l_cpg_add_shared_mstop_clock(priv->dev, clk, clock);
+>>>
+>>> Instead, call rzg2l_cpg_add_shared_mstop_clock() once, and modify
+>>> rzg2l_cpg_add_shared_mstop_clock() to not only realloc the target's
+>>> shared_mstop_clks[], but also loop over all its existing entries,
+>>> and update their shared_mstop_clks[] pointers.
+>> I tried this approach but w/o complicated further the code I can't keep
+>> track of whether the "to be updated" (not reallocated) shared_mstop_clks[]
+>> pointers were previously updated pointers or devm_krealloc()'ed ones. I
+>> need this to properly free the unused arrays. Calling devm_kfree() on a
+>> non-devres resource triggers a WARN_ON() for each call.
+>>
+>> Because of this I prepared a new version where the duplicated lists are
+>> freed after all the mod clocks were initialized. I'll publish it soon.
+> 
+> What about using in rzg2l_cpg_update_shared_mstop_clocks():
+> 
+>     for (i = 0; i < priv->num_mod_clks; i++) {
+>         clk = ...[i];
+> 
+>         if (clk->mstop != clock->mstop)
+>                 continue;
+> 
+>         n = clk->num_shared_mstop_clks;
+>         if (!n) {
+>             new_clks = devm_kmalloc(dev, 2 * sizeof(...), GFP_KERNEL);
+>             new_clks[n++] = clk;
+>         } else {
+>             new_clks = devm_krealloc(dev, clk->shared_mstop_clks,
+>                                      (n + 1) * sizeof(...), GFP_KERNEL);
+>         }
+>         new_clks[n++] = clock;
+> 
+>         /* update all matching clocks */
+>         for (j = 0; j < n; j++) {
+>             priv->clks[new_clks[j]]->shared_mstop_clks = new_clks;
+>             priv->clks[new_clks[j]]->num_shared_mstop_clks = n;
+>         }
+> 
+>         break;
+>     }
+> 
+> The above is an oversimplification, as it does not take care of
+> converting between mstp_clock and clk_hw pointers where needed.
+> 
+> Does that make sense?
 
-> > +		return 0;
-> > +	default:
-> > +		return -ENODEV;
-> > +	}
-> > +}
-> >  
-> >  static int adp5585_parse_fw(struct device *dev, struct adp5585_dev *adp5585,
-> >  			    struct mfd_cell **devs)
-> > @@ -153,7 +146,7 @@ static void adp5585_osc_disable(void *data)
-> >  
-> >  static int adp5585_i2c_probe(struct i2c_client *i2c)
-> >  {
-> > -	const struct regmap_config *regmap_config;
-> > +	struct regmap_config regmap_config;
-> >  	struct adp5585_dev *adp5585;
-> >  	struct mfd_cell *devs;
-> >  	unsigned int id;
-> > @@ -165,8 +158,15 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
-> >  
-> >  	i2c_set_clientdata(i2c, adp5585);
-> >  
-> > -	regmap_config = i2c_get_match_data(i2c);
-> > -	adp5585->regmap = devm_regmap_init_i2c(i2c, regmap_config);
-> > +	adp5585->info = i2c_get_match_data(i2c);
-> > +	if (!adp5585->info)
-> > +		return -ENODEV;
-> > +
-> > +	ret = adp5585_fill_regmap_config(adp5585, &regmap_config);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	adp5585->regmap = devm_regmap_init_i2c(i2c, &regmap_config);
-> >  	if (IS_ERR(adp5585->regmap))
-> >  		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
-> >  				     "Failed to initialize register map\n");
-> > @@ -223,22 +223,34 @@ static int adp5585_resume(struct device *dev)
-> >  
-> >  static DEFINE_SIMPLE_DEV_PM_OPS(adp5585_pm, adp5585_suspend, adp5585_resume);
-> >  
-> > +static struct adp5585_info adp5585_info = {
-> > +	.regmap_type = ADP5585_REGMAP_00,
-> 
-> Instead of providing this enum, then later another one (id) which is a
-> subset of the same thing, why not pass just ADP5585_REGMAP_00, etc
-> through the DT .data attribute then match on those?  It will add a
-> couple of lines to the switch(info->id) statement, but will save on a
-> boat load of static structs and other complexity.
-> 
-> For instance:
-> 
-> switch (info->id) {
-> 	case ADP5585_MAN_ID_VALUE:
-> 
-> Would simply become:
-> 
-> switch (info->id) {
-> 	case ADP5585_REGMAP_00:
-> 	case ADP5585_REGMAP_02:
-> 	case ADP5585_REGMAP_04:
-> 
-> And that's it.
-> 
-> > +};
-> > +
-> > +static struct adp5585_info adp5585_02_info = {
-> > +	.regmap_type = ADP5585_REGMAP_02,
-> > +};
-> > +
-> > +static struct adp5585_info adp5585_04_info = {
-> > +	.regmap_type = ADP5585_REGMAP_04,
-> > +};
-> > +
-> >  static const struct of_device_id adp5585_of_match[] = {
-> >  	{
-> >  		.compatible = "adi,adp5585-00",
-> > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> > +		.data = &adp5585_info,
-> 
-> 		.data = ADP5585_REGMAP_00,
-> 
-> >  	}, {
-> >  		.compatible = "adi,adp5585-01",
-> > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> > +		.data = &adp5585_info,
-> >  	}, {
-> >  		.compatible = "adi,adp5585-02",
-> > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_02],
-> > +		.data = &adp5585_02_info,
-> >  	}, {
-> >  		.compatible = "adi,adp5585-03",
-> > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> > +		.data = &adp5585_info,
-> >  	}, {
-> >  		.compatible = "adi,adp5585-04",
-> > -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_04],
-> > +		.data = &adp5585_04_info,
-> >  	},
-> >  	{ /* sentinel */ }
-> >  };
-> > diff --git a/include/linux/mfd/adp5585.h b/include/linux/mfd/adp5585.h
-> > index 016033cd68e46757aca86d21dd37025fd354b801..4b48614970a811a8a95116faa20e58ea4f19ede6 100644
-> > --- a/include/linux/mfd/adp5585.h
-> > +++ b/include/linux/mfd/adp5585.h
-> > @@ -119,8 +119,19 @@
-> >  
-> >  struct regmap;
-> >  
-> > +enum adp5585_regmap_type {
-> > +	ADP5585_REGMAP_00,
-> > +	ADP5585_REGMAP_02,
-> > +	ADP5585_REGMAP_04,
-> > +};
-> > +
-> > +struct adp5585_info {
-> > +	enum adp5585_regmap_type regmap_type;
-> > +};
-> > +
-> >  struct adp5585_dev {
-> >  	struct regmap *regmap;
-> > +	const struct adp5585_info *info;
-> >  };
-> >  
-> >  #endif
+I see it now. It make sense. Thank you for sharing.
 
--- 
-Regards,
+Claudiu
 
-Laurent Pinchart
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+
 
