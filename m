@@ -1,121 +1,134 @@
-Return-Path: <devicetree+bounces-176759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9725AAB56F0
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:23:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8092AB5704
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 16:25:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCFF67AA0E1
-	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:22:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A23F3A5199
+	for <lists+devicetree@lfdr.de>; Tue, 13 May 2025 14:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4E0E28EA72;
-	Tue, 13 May 2025 14:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7071E2BCF72;
+	Tue, 13 May 2025 14:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SLe4pJ/p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GbbiUOd0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10FC728F538
-	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 14:23:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A04C91917C2
+	for <devicetree@vger.kernel.org>; Tue, 13 May 2025 14:24:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747146224; cv=none; b=Evi3Af7hTV+0Iw42XsePTvatytqCmcvHdqM/yByqjveLau2GvPfVqlQeY1/QtB3kwhixkfDzL5qDuxbUh7RQC3qlOro456b6sJ6W0wyemBNNAEYyu7nONlI9I0CsTeZsnEPNh1Y93x3LTseYSSQvu/S91JtHPxGSJvwpiSuFclY=
+	t=1747146297; cv=none; b=Pia+rZ1xuzV7hFyitpyr7+rADfP0XCqsKqFxZMEIhvPjhUQcqaRWjC94AmSXO6iX8hA9QTtpH2H5ZvRXUvTLo4wPJ3HRn5ITCVz/HazTmmAZvP/qpFhvFoHDEuXZW89CBhu9w3YeOPVrJqHYOYx9S1QU8Rwfus41mVGaufh8svw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747146224; c=relaxed/simple;
-	bh=oT6XNM77B8+ium9Cx4cc7TioAAenrUX/vpKuFTyATHM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=me02ZnieokyUiql1/t1YASWnbgPJxtsBCcntyrSUrYKuJgOjv2C+SRDXNmfe9I/+WCuCbMDdUHM0BQN0nAykerUxleQ+xSap3mh7d+XqNowO4hSn6u88MS+ikMO+BO83eR5S3vZzGZJdY+IlTzz7KoPrTQ/7DlLGtIZ7V7fkz7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SLe4pJ/p; arc=none smtp.client-ip=209.85.222.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-8783b2cbce3so1417661241.3
-        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 07:23:42 -0700 (PDT)
+	s=arc-20240116; t=1747146297; c=relaxed/simple;
+	bh=GxwcSYNe2p0XJBrJx4bSenouSf2vBwH0LKTpfUMyLn0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N4jF+zKd+gP1Pv/kf4jKpy8wERMchJAfaLiTOvC88POcpHgC5j45b+7FxnYYTA/KwtBysG0P3Ms/mylvdeIIus2m3jihoBVDcMH1k0NwjkgsGypoit74jmq4rOIGSI+OFJJ1sjYOUFrBCK3m3xpFUFEPdy0o0Gv1OO83SJqGF1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GbbiUOd0; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43cfebc343dso38015545e9.2
+        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 07:24:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747146222; x=1747751022; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0l36qpCnDAhRnaTWedEaUZwbfvZPD7EM2qytUdMEXlk=;
-        b=SLe4pJ/pC8eL/PTTWmSppqoCXh0k0uB0mBOn5HFhsnjcfjThq9iNkOQ9477WO4luXW
-         fKIo3XywTwl2MXI99htwnzQeIe4FA3ek8HkUrwxw1074gZWytHhBxX74kzS5EyVoiug3
-         yD59uOg1+tJFGmcopMXzHmBX2L7RLAJFKKf9e3pJudOK26mb5NKCauEMOjzS+PW0zYOQ
-         J3HIef6si/INrWMjYtk6Wr6n7h2TVB8OMpCmPgTkoXFj7ROfOxpSoE/6GJ63wkvRXghQ
-         p9/MI2s45T/DlI07QjXLaak++/LGImS7J8MlXsnxQo357zLHBu9q5APqKJL25TI2tgLY
-         6C5Q==
+        d=linaro.org; s=google; t=1747146294; x=1747751094; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/NWh098gqRLftvvY4dIkjtdvgIAwUVSrP7NdWik+NTk=;
+        b=GbbiUOd0zktufQFK9LZO0f6IqfSKNNyks3R+IYGWOLbDrfHJeJ3WqDzARkp3llsvLB
+         iL1wnox3ggk7x9CUZXYGf5iNRZFT4qf3BvPxOFwWWoKLTXBpwF14g/iyI6oQ2McqM3xf
+         jMXov9f1UtvHF6v9DCYlbrZmOOpPHPiuZ3lDa439MgtgDTD1KgHkp9lrJCAlLcXHyAVz
+         2HdpIcPVmWIOc+thpXTvBmqKxgHl8NCby9wHY7vQhsHf8S4Xw9zdE+ztu8Fuf7LvMLZS
+         /MSnKxyLDv8XxtytFJ4l4wwM/YibtWaVobNTnkB9d0gzZguceEaSuKubnrLJ/H54bmNC
+         mT0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747146222; x=1747751022;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0l36qpCnDAhRnaTWedEaUZwbfvZPD7EM2qytUdMEXlk=;
-        b=a8sOW0h4Z8Y7TpobV0wisYh/EkVhDq6Hm2PJ+vA2jo4KFRAuttIE7oDhms2MCzrlgI
-         0a8HMdwcasnyDiTQZ17kuwbgWhQiEYijdNlxK2/f8wIEVrwcbcSEW2jGwSK7gZr3vJjx
-         CnrFNszhSeC/6BsUcMjx96nBHDN2uIWAr8jlZSp7eW03Oul5Oo82ON8eXQ94hc739x4i
-         Wjw02wS7TMR0jRZdMWn+XZ4FZXOhygASdgrTe/q+DIc0brWR+yBlTE9IEpgRmXw6bRD5
-         MwQufxS79xrS9yykTml/olb/NUSO11HaZUaDjG7ofnIBN8ESTIQnhG3XUV2iVuIp2nRs
-         CAoA==
-X-Forwarded-Encrypted: i=1; AJvYcCWobAXTx3tDpOZAhhAtv0oIHAfsF06I7T6kKEhKEn8dCqAwieJYfUY2WxFSsUOnJk0oVqV2uIAqtLkZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeJxAst3y1+pkoXQRvDkoTgHeMDQ4xeVduulyHxWr1tM80IZmm
-	1bTs8dRuT99anqBAj479uftK56YLC6ZK0ivcUuNo8OiBKn2g+oJ14r1JAA==
-X-Gm-Gg: ASbGncvsSwFLL1WoWuv5RYI8OleEaWvokkj3ll+iSuPiIHbDDsne7a02XkyAvE9upcq
-	TGudbTgTOKDiGYvpbuWIMoc6IRhhOfyX+Pi157UfJSu0b019303ds1QIGFJApUQtjAOTpdBmVnY
-	Fp5BU0zEJ40U2OFttfeeEtePTOLxenEVFeory0pARPyftr7YxWKI4Sc75PDeoMSR67QaPTSwQo3
-	ULosiEo/r+ZH/e8z2yDkvGAdCpaBGDOgJWz/QvQ7IsufYE8lF82zdrdfBxcjC8DtVBOVHO8lCOh
-	1qULDGHfqn0cSR3QtobjYun48KYHSytvPvcpR/AdChR4RVJW9F4EJuzeaCuhZ9TadQ==
-X-Google-Smtp-Source: AGHT+IEPnMB4IboXCa/1FdqFHavEmkJxVozv+Io0Cs9hnebsXUci5GmVrdypDMhC+ZsSI0YngK2PIg==
-X-Received: by 2002:a67:e7cc:0:b0:4dd:ab6c:765a with SMTP id ada2fe7eead31-4deed36dc90mr14572810137.12.1747146221656;
-        Tue, 13 May 2025 07:23:41 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:5c18:acd6:b894:dc8f])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4deb203c26bsm6630965137.27.2025.05.13.07.23.38
+        d=1e100.net; s=20230601; t=1747146294; x=1747751094;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/NWh098gqRLftvvY4dIkjtdvgIAwUVSrP7NdWik+NTk=;
+        b=W+TF5N3elvR27acxEfrhgPBo8XDy+vYKYtHPdrckOevFPMeW6ZYe5Noa5CkpbmiKhw
+         RKf3e+MXmS5ciTXEtiqQt+DL5JHoNANNujnBCLMqbe7qY/jFIISKa77BN0LFJr8IEBS7
+         L5djYV4ucnVilTVB1rBZY/pEvJ1V+qThki8V55CQ7joHhk61QqzweF8hiAUBroez/Ahp
+         5qpwZKNMbgcssmDW/xYw4GomwACj7XR5nPmqE9RG97tW+NdyGqIb8MQNpxW8ZQxf9gHx
+         exMPb7cVjqDai9U+cBIYbriX3dSmGqTu8YLEDPJ6ufhSzO3VpY+Pnt/vdFhCDx1LWar/
+         GFeA==
+X-Forwarded-Encrypted: i=1; AJvYcCVDsxO9CZl9cFa3B6xUbk1ShtFCSXS3ODce04YpWbB1JuL0OvK8H5MrpF6o3u1saXZ2VRbhwIUsw8SF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbGej7LUCEXlai8v3tsMX5cDcvumx2/Q3M/rklt0OIXR/2Akyw
+	b8a2ZK7xLhEwXrsMBNAaJ6IzxRUE1zIUkkBR2LE8OHRDntZf3n2IfzCQsXfmKyw=
+X-Gm-Gg: ASbGncuQPMOM+E54qQaKwu4nm1Lyhntfqy6kF3vdrVMQwkdy4L9zuw1XQJLZq+qHAIK
+	TCm9sWFNgnNWGVfk3PPgScPADSfwmtMflvgjcN6KPmHFoyObvSR1nzuV3xlCiSNYJZubJzl0/Mp
+	WyzwMnjnhnh0hf1+b/ILIB+xU2DnsWxq7wALTwG153oMb19gvFDpCnI0UwGBb3beLXO/zWzsEXu
+	hYqc+d7n/yVr6YKEpOXxEow2SWEumV5DMXDes3Db4cJnWTytbjN8sEBeJr1J+gtqGQZRAdhjaCw
+	GQoSYL9bl0uX+XjorIUyYZuGhs2mBk7JKfDCaHQlsJ22zfeVOcaFCehWvb9go3DROE+b0iHKTLg
+	A/O9ny510Z79d0A==
+X-Google-Smtp-Source: AGHT+IHHlX9t4nfJ+7hHMCJoNaC1yXBW+lGGwra9RnsLEfJITmGfdfvMv/X1F4SEEmKSiUDfR77dIg==
+X-Received: by 2002:a05:600c:4e44:b0:439:8c80:6af4 with SMTP id 5b1f17b1804b1-442d6d6b603mr171874205e9.19.1747146293972;
+        Tue, 13 May 2025 07:24:53 -0700 (PDT)
+Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442ed666dc7sm23697575e9.18.2025.05.13.07.24.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 May 2025 07:23:41 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev,
-	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH 3/3] ARM: imx_v6_v7_defconfig: Select BT_HCIUART_BCM
-Date: Tue, 13 May 2025 11:23:20 -0300
-Message-Id: <20250513142320.4036324-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250513142320.4036324-1-festevam@gmail.com>
-References: <20250513142320.4036324-1-festevam@gmail.com>
+        Tue, 13 May 2025 07:24:53 -0700 (PDT)
+Date: Tue, 13 May 2025 16:24:51 +0200
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Caleb James DeLisle <cjd@cjdns.fr>
+Cc: linux-mips@vger.kernel.org, tglx@linutronix.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, tsbogend@alpha.franken.de,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	benjamin.larsson@genexis.eu, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v5 0/7] Add EcoNet EN751221 MIPS platform support
+Message-ID: <aCNWM5Xq7wnHVCrc@mai.linaro.org>
+References: <20250507134500.390547-1-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250507134500.390547-1-cjd@cjdns.fr>
 
-Select BT_HCIUART_BCM so that Bluetooth can work by default on a
-imx7s-warp board with a BCM43455 Wifi/Bluetooth chip.
+On Wed, May 07, 2025 at 01:44:53PM +0000, Caleb James DeLisle wrote:
+> EcoNet MIPS SoCs are big endian machines based on 34Kc and 1004Kc
+> processors. They are found in xDSL and xPON modems, and contain PCM
+> (VoIP), Ethernet, USB, GPIO, I2C, SPI (Flash), UART, and PCIe.
+> 
+> The EcoNet MIPS SoCs are divided broadly into two families, the
+> EN751221 family based on the 34Kc, and the EN751627 family based on
+> the 1004Kc. Individual SoCs within a family are very similar, only
+> with different peripherals.
+> 
+> This patchset adds basic "boots to a console" support for the EN751221
+> family and adds SmartFiber XP8421-B, a low cost commercially available
+> board that is useful for testing and development.
+> 
+> Note that Airoha (AN7523, AN7581) is similar to EcoNet in terms of
+> peripherals, and for historical reasons Airoha chips are sometimes
+> referred to with the EN75xx prefix. However this is a different
+> platform because Airoha chips are ARM based.
+> 
+> This patchset is against mips-next.
+> 
+> v4 -> v5
+> * 2/7 clocksource/drivers: Add EcoNet Timer HPT driver:
+>   * Improve explanation of HPT timer in changelog
+>   * Move pr_info to pr_debug per recommendation
+>   * Remove pointless debug on spurious interrupt
+>   * Small code-style change
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- arch/arm/configs/imx_v6_v7_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Shall I pick the clocksource + bindings changes through my tree ?
 
-diff --git a/arch/arm/configs/imx_v6_v7_defconfig b/arch/arm/configs/imx_v6_v7_defconfig
-index 062c1eb8dd60..6f62d2e96239 100644
---- a/arch/arm/configs/imx_v6_v7_defconfig
-+++ b/arch/arm/configs/imx_v6_v7_defconfig
-@@ -68,6 +68,7 @@ CONFIG_BT=y
- CONFIG_BT_BNEP=m
- CONFIG_BT_HCIUART=y
- CONFIG_BT_HCIUART_LL=y
-+CONFIG_BT_HCIUART_BCM=y
- CONFIG_BT_NXPUART=m
- CONFIG_CFG80211=y
- CONFIG_CFG80211_WEXT=y
 -- 
-2.34.1
 
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
