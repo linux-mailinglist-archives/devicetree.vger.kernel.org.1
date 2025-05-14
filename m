@@ -1,137 +1,143 @@
-Return-Path: <devicetree+bounces-177127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F086AB67E0
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 805B9AB6834
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:58:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 116F54A592B
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:46:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45A204C1B46
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:57:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB13F25333F;
-	Wed, 14 May 2025 09:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F7EC21B9D9;
+	Wed, 14 May 2025 09:54:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp134-86.sina.com.cn (smtp134-86.sina.com.cn [180.149.134.86])
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1742251796
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:45:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9CCF265CC2
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:54:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747215958; cv=none; b=dzfY2YWr31W4DWZoS0SgGjFZbk2iUM0SY0tvsoi9ff6tWU/qYviP6jFjz5n6pPPs6NMRaXokUD9sODs9l3N2/Q5yrqeCfNz4WYfUG1rAxbaDkHqJG26f3GIArr0W37f/WZwknjS7LrDH8W7EjR1XzKrbxW2VrNV+LWY4bqd3e48=
+	t=1747216498; cv=none; b=oOmbd05nXXKD85oO/1b4nYfXvZvx7C9KPgUVhTYt3hEEJpQILwOYMeMnxBI6FcelQ6TZz38HuQjhUj1j3Kp/EPdYXzTPeLpSMYkzGbgjrOvR18hL2mQiUfHmw//FL4Lq3eBdFNOehLBCqqJ1d/7x01Eailk9K4BbTiod927FFmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747215958; c=relaxed/simple;
-	bh=PXbUnxFt7FBOT03i5/ZnmE7HiyjiR44UpKUEak4TapI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=CkVy5Va9fcYx5pucIeeocU21rEt37f6NgU6Ni9UyO+NfjVQ00PQ7O7Hw8KURgIdAohneLCTNLynMZ8Vll/SWPLWcAMOziLytISJ4ah/Q2u6BUrurUk9g9BUpLQjY9mfXUtRJKwnhtTEYCt0Dp0xzw0XXbOJ8CkmdBuo0cxVd+2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([180.172.39.205])
-	by sina.net (10.185.250.30) with ESMTP
-	id 6824664C000067F7; Wed, 14 May 2025 17:45:51 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: 9FA1D59BA44C4EA28094645689CAA8E3
-X-SMAIL-UIID: 9FA1D59BA44C4EA28094645689CAA8E3-20250514-174551
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: broonie@kernel.org,
-	robh@kernel.org,
-	tiwai@suse.com,
-	devicetree@vger.kernel.org,
-	conor+dt@kernel.org,
-	lgirdwood@gmail.com,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	perex@perex.cz,
-	krzk+dt@kernel.org
-Cc: amadeuszx.slawinski@linux.intel.com,
-	krzk@kernel.org,
-	Zhang Yi <zhangyi@everest-semi.com>
-Subject: [PATCH v8 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-Date: Wed, 14 May 2025 17:45:46 +0800
-Message-Id: <20250514094546.35508-3-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250514094546.35508-1-zhangyi@everest-semi.com>
-References: <20250514094546.35508-1-zhangyi@everest-semi.com>
+	s=arc-20240116; t=1747216498; c=relaxed/simple;
+	bh=+ZMUYISTfTwcrj64ss9VlyTDNjFku1NDAD9TnAW5WL0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qVLmbKvucrCxyTMDnUzoscnqtTFuuUGvE3QOUFpqi6AgU9qrMl1CDc4kFX+kBV9GySoF0kbSzcqUR3nF56kzEthcSdFL2OwS96kvVwoi+7k0BW6pRxmhIpsKnQZJAD2x+Zdfv3eqh9p0TjOE0addTXZeMZd1bODAtb9OLw5vQdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
+	by Atcsqr.andestech.com with ESMTPS id 54E9rpkt092294
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 14 May 2025 17:53:51 +0800 (+08)
+	(envelope-from ben717@andestech.com)
+Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS31.andestech.com
+ (10.0.1.89) with Microsoft SMTP Server id 14.3.498.0; Wed, 14 May 2025
+ 17:53:51 +0800
+From: Ben Zong-You Xie <ben717@andestech.com>
+To:
+CC: <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+        <alex@ghiti.fr>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <tglx@linutronix.de>,
+        <daniel.lezcano@linaro.org>, <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        <geert+renesas@glider.be>, <magnus.damm@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <tim609@andestech.com>,
+        Ben Zong-You Xie <ben717@andestech.com>
+Subject: [PATCH v4 0/9] add Voyager board support
+Date: Wed, 14 May 2025 17:53:41 +0800
+Message-ID: <20250514095350.3765716-1-ben717@andestech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 54E9rpkt092294
 
-Add device tree binding documentation for Everest ES8389 which
-is different from ES8388
+The Voyager is a 9.6” x 9.6” Micro ATX form factor development board
+including Andes QiLai SoC. This patch series adds minimal device tree
+files for the QiLai SoC and the Voyager board [1].
 
-Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Now only support basic uart drivers to boot up into a basic console. Other
+features will be added later.
+
+[1] https://www.andestech.com/en/products-solutions/andeshape-platforms/qilai-chip/
 ---
- .../bindings/sound/everest,es8389.yaml        | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/everest,es8389.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/everest,es8389.yaml b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-new file mode 100644
-index 000000000..a673df485
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/everest,es8389.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Everest ES8389 audio CODEC
-+
-+maintainers:
-+  - Michael Zhang <zhangyi@everest-semi.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: everest,es8389
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: clock for master clock (MCLK)
-+
-+  clock-names:
-+    items:
-+      - const: mclk
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#sound-dai-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      es8389: codec@10 {
-+        compatible = "everest,es8389";
-+        reg = <0x10>;
-+        #sound-dai-cells = <0>;
-+      };
-+    };
--- 
-2.17.1
+Changelog from v3 to v4:
+  - Restore the modification to cache-sets and cache-size in patch 6
+  - Do not constrain renesas,r9a07g043f-ax45mp-cache since it's independent to
+    this series.
+  - Delete the redundant example added by patch 6
 
+v3: https://lore.kernel.org/all/20250513094933.1631493-1-ben717@andestech.com/
+
+Changelog from v2 to v3:
+  - Rebase the series on Conor/riscv-soc-for-next
+  - Reform patch 6 as suggested by Conor
+  - Modify l2_cache's compatible in qilai.dtsi due to patch 6
+  - Add Conor's Acked-by tag to patch 4
+  - Add Conor's Acked-by tag to patch 5
+  - Add Conor's Acked-by tag to patch 9
+
+v2: https://lore.kernel.org/all/20250503151829.605006-5-ben717@andestech.com/
+
+Changelog from v1 to v2:
+  - Add detailed descriptions to PLIC_SW and PLMT0
+  - Move the aliases node and memory node from qilai.dtsi to qilai-voyager.dts
+  - Drop "status = okay" in each CPU node since the status property is by
+    default "okay"
+  - Reorder the nodes in qilai.dtsi by unit address in ascending order
+  - Add myself as the maintainer of Andes's SoC tree
+  - Add Rob's Reviewed-by tag to patch 2
+  - Add Rob's Acked-by tag to patch 3
+  - Add Rob's Acked-by tag to patch 6.
+
+v1: https://lore.kernel.org/all/20250407104937.315783-1-ben717@andestech.com/
+
+---
+Ben Zong-You Xie (9):
+  riscv: add Andes SoC family Kconfig support
+  dt-bindings: riscv: add Andes QiLai SoC and the Voyager board bindings
+  dt-bindings: interrupt-controller: add Andes QiLai PLIC
+  dt-bindings: interrupt-controller: add Andes machine-level software
+    interrupt controller
+  dt-bindings: timer: add Andes machine timer
+  dt-bindings: cache: add QiLai compatible to ax45mp
+  riscv: dts: andes: add QiLai SoC device tree
+  riscv: dts: andes: add Voyager board device tree
+  riscv: defconfig: enable Andes SoC
+
+ .../cache/andestech,ax45mp-cache.yaml         |  18 +-
+ .../andestech,plicsw.yaml                     |  54 +++++
+ .../sifive,plic-1.0.0.yaml                    |   1 +
+ .../devicetree/bindings/riscv/andes.yaml      |  25 +++
+ .../bindings/timer/andestech,plmt0.yaml       |  53 +++++
+ MAINTAINERS                                   |   9 +
+ arch/riscv/Kconfig.errata                     |   2 +-
+ arch/riscv/Kconfig.socs                       |   9 +
+ arch/riscv/boot/dts/Makefile                  |   1 +
+ arch/riscv/boot/dts/andes/Makefile            |   2 +
+ arch/riscv/boot/dts/andes/qilai-voyager.dts   |  28 +++
+ arch/riscv/boot/dts/andes/qilai.dtsi          | 186 ++++++++++++++++++
+ arch/riscv/configs/defconfig                  |   1 +
+ 13 files changed, 387 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml
+ create mode 100644 Documentation/devicetree/bindings/riscv/andes.yaml
+ create mode 100644 Documentation/devicetree/bindings/timer/andestech,plmt0.yaml
+ create mode 100644 arch/riscv/boot/dts/andes/Makefile
+ create mode 100644 arch/riscv/boot/dts/andes/qilai-voyager.dts
+ create mode 100644 arch/riscv/boot/dts/andes/qilai.dtsi
+
+--
+2.34.1
 
