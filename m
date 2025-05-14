@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-177094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8990DAB66C9
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:05:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A454AB66CC
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:05:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 796C97A6B3F
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:03:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 928791B6503D
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E72C2253B5;
-	Wed, 14 May 2025 09:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D68922577D;
+	Wed, 14 May 2025 09:04:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="jtUDPFa/"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Iz2+4r4E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9E2224240
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:04:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 676122222DE
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:04:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747213467; cv=none; b=fNhcY9wyov1eW0fI65qEl6KeUDYscpPHqVNyKMmrCSt/bR11JMC/I6miOkKmHitgjWB7RCRGaLvD40o1iJIFOPR6YBy13YBHZh8nMdznjqtfJ0t+pC8nZwpIcc2XRldTLVj4CdcODR1rf+19U3xXz3c1zEfuwyDLjyGOfA/J8y4=
+	t=1747213469; cv=none; b=A97uPj0E6p2LMM8f34a3KpnJ62+1jkOcMnCn+wD5UwbWQ9gSN/3V9IFpMGaU1u2mQ60M7CtR/KdOZlZGnUuwKijvEuCVuXEAxvavsgzJCtHSR0i2CYU4duCV4e/C5Z2Bsgq1CAaPUpXDzzfguBeml58z9loatJ9HEN2I3UP9VnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747213467; c=relaxed/simple;
-	bh=JnHdWEIPeM0wK2Ula9jh9MnaUM824531+Pq5OYIHFp4=;
+	s=arc-20240116; t=1747213469; c=relaxed/simple;
+	bh=z+fJpQEL5tFLNSD56mZ7hzkqnnnTts2E8ZIBSo41csY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=k/MCb7a/LCk4aWeogbhdKrR4sZUpdJxHFDjE5edpoWg+0gzb4i5MXBTluLfqUmYyz/nY8kR1W4ZMkr7BAUslkoUmqXRniYMkA7+/U6Mvow1ilirezNcfrmCju8oTGR3+aDxUuq4rg432NuCpEHOlx/blG2XogzMNeyFq/jVUj9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=jtUDPFa/; arc=none smtp.client-ip=209.85.221.48
+	 MIME-Version; b=C7ecC6b+DdBnu6Dc+jg9C/ohDL3PnTlDtH4UIrmhUhnpcUB9X/hR+skYAABQR36PoMgmFrZBz4ImdmJXGZNWoKrGFUGEk0BBwQSBbm65ltYq590/q3v7w1+cfv0qO/hFb5BiVbWg+PoiEwyTpcccbD5Borpf19xur2IVlvfqojk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Iz2+4r4E; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3a20257c815so3595378f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 02:04:24 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3a0b6773f8dso5360580f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 02:04:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1747213463; x=1747818263; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1747213465; x=1747818265; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7K4j572MT7sI790Ze+eK+i3Uz5b16gmlTqgWUGftrXM=;
-        b=jtUDPFa/9Ql69jiYYVOviU7HYphSdOgrCUe+jrgzlzBI3DsL5reLSyvmAYj02UuQWl
-         dTSujW6NhFwoLVU1S+/sqvYAKAFHx8jYRlpl+21r2meNs3a/52PvCqWkysXdLtUS9cea
-         E/Xfv0sd9348LKvdcnHBTTALf2xU/P2eNPfq7mx6IvWp8l043q2P+C3wOGsKaC5szH9Z
-         RdyL1HnUAUM5lHPux6WCw1yW2qJsPogGWhBCn1K5WY7IjRtxjOBpC6t/sdyjIzUoDrdA
-         L1qvusUJkBobl/S8V9mVeFi3ZDeGv2SGyDdLAByntSQVSEcmn1ee51jhfSGszs1vM2AC
-         wosw==
+        bh=0z4P+OmufwJtvHe7VRG9Qw6SM4vHtxH+ac7R9RSX0Wc=;
+        b=Iz2+4r4Eu5V/lFqPnHj4frmkf/324unyRDZJJaUygSEgSf2AOhtmGF0WsEkriLFWqk
+         kJMDOMO1beyR4oZOMhDHdH30r6GRzJcdnXlvfy5pGSsXOMPXM172ThBUg6wnNlw78EgC
+         7UqvrCoJ+aTwAgkh65S0xVH2pSH8DftaiCnJmKeu41pSd1y970jDd6bTh34hHmB/sHoa
+         2EKTzeA57MfSqFwH9rk2UOkFPlAhBadcGYk2vBSyuT9c6LJ+us1VjybBI2oPa89EfMhh
+         3kbN9CRQPvMrLuMjG/+D+VVnIfMMe7r4hR9D4AvmbGYyBXjzNqf9oVJ9rrcr7AFyBVE8
+         9uFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747213463; x=1747818263;
+        d=1e100.net; s=20230601; t=1747213465; x=1747818265;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7K4j572MT7sI790Ze+eK+i3Uz5b16gmlTqgWUGftrXM=;
-        b=E1trfWTZ7pCHL36W2T1DFl40Am4PyZnb3BRms7irKGTqodOuvD2R9SfOzglEWqYZ1q
-         g/xRJhl1mi5Fj0let9TrItIlbMuvd4sGZorjEIDSdhVGCSrz9toaFTOGtpw3sklEgV2c
-         bwbTFSvMg8rx2xXRUmPVPotGlJO8xD24+jRv/PNYsmjest477Oir/ky38HzOoB2E9sfy
-         rK8Kw6f13lO3KMF19EVlZPI1LgEH+mpozVntgSriwxu1JMYRsySwHk1H/JlqYT20qKPR
-         DdAWidg7/+Xs/BxQFaZLg2Ql9GNIJj9oTO41Iw8TmozQDDoD5gXIXWZ2VWQqy4A5XLP1
-         yvRA==
-X-Forwarded-Encrypted: i=1; AJvYcCXy7WO5x10gXeM8QOwcPSqDrTZHS17NoZS9NMy3D8Lqoz2v5I0zuqBxgRP7ycVFS5m4C/rx0pSpBkMU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmJTubKl4MrrliLEkOrEMZv+FzVX7hsP0Eh3dS+Kl4yfhEd+U5
-	cM70q0M+0hYLS3ur11JV3DPqJyQEibS16bDxQuhoxmV+GV5QaV/pReIee3pErao=
-X-Gm-Gg: ASbGncvIzZnHDyb6Estggs91EYC4mgzI0msSRc9vBgB+9hNJVuZGqVzy/Q0mU+tjC9I
-	p5juw/1xjYV6YeTn2cfHxvOyzOg0QMluQB3CXd+5F2DN/BcRypWCBfZ5Sxr2W0xpFw0xsOudtmB
-	01VexMCPZ1t+C2aJoGvsL42VZshS/4ArNlzsz/pMpvdr06G0/kDPvVkZQmvMgSIV07VJdRWA9rd
-	J/h+hVNL+Z7N27C4qtjletUAB4HNF/xkrh7botVnnYxDaEtCn3PSEFbeGCMirtJ1eOIxl7Mn99Y
-	mKt7i8EppOTzY6jGoAvx3sCLQ5Kkczx5Djtv0D4eBFSvMTE/jbfzpV/hd8BU7rc6lI2uq7fz5lq
-	byI2c
-X-Google-Smtp-Source: AGHT+IGdaeJMKgGTg/Sc7hL1ltOR8m+B42VrjYSEhJIqNaP+mgKdctUxgZHq2QuUEOmWT9ML+hI28A==
-X-Received: by 2002:a05:6000:2503:b0:391:3049:d58d with SMTP id ffacd0b85a97d-3a3493d7b80mr2348215f8f.0.1747213463319;
-        Wed, 14 May 2025 02:04:23 -0700 (PDT)
+        bh=0z4P+OmufwJtvHe7VRG9Qw6SM4vHtxH+ac7R9RSX0Wc=;
+        b=tqUDxADTPkMeatg9fNG9fEsm4iCTsTIUocIZAM6wOUho/FtiUFHXzBvm+Y8GAoNYek
+         GtYXAGkHsk17ltsw8wWywjH52q/xwWudIJJb2FWBK7MQdXqI64tZtohYj/FoYabcHgs7
+         5yFxjK9QFLZgpRS1yuaE1Pgt/7ii4iya0T/XoBgsdOwgU6Lbw482pdoETu+Vi8bWRYEe
+         f8iP5KfbgGiJnhB6lhBjywcHtZzxNK7J4BnCXZnGE/q/4/hEjLJufC+7s6Lpbamq0Hd6
+         EvosqsO3WLvZy4djJ+U8k6/Zr9F8hC0zVQkrAIpaGemgMqL81NF9k7h33a2BSJrGgiXY
+         W+Rw==
+X-Forwarded-Encrypted: i=1; AJvYcCX6CxYR4XWd3Tp8FeDHFt5fbcAE/DR8W+2HPbG4X6WA61dlfnZ470lTsIedD5UEqhqtkKVHf+vwRDOV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxrlz+RH3AKukqtj1mRhLMx3++DgSQk55KRlcEA5i4IZi7j5HoD
+	dG3i/kGozy3AlZTf09/Cz33UuxQWJw4cOzXqHG1nvZegXqu29a6pg0wshykKlis=
+X-Gm-Gg: ASbGncsgg4TvGwTePNyNx2Z3CGWmbtSM7kdDS6qk7pMiCL19NHeiJejZGjobZaVFfNU
+	ctUzGgAqwD8gYpJBWW8L6SXQab2Qt21EvrM4JDuZutO2+tGvmhB8Z8ogW+IcBSuU39TAqWUZpRX
+	q3axdk3iDC4o+a5JKonxCMU3+Q2wG/AyR2LXrR3vvo1jCzhNgFDENvg0so6uHVtUIagMngJyjc6
+	guD5rFQYStNSoB6Cg+xMnFdIQNFEBNbztJkKn+q/yR0JS4n4PLjHfy8NBgSkODj+/ST0Za0vgLh
+	EppKLBhOZMk1i7UFI5VWqDgmor3HuRWonkU0PYkzDJhOa04nkfQEZ+AKEto/FtQEDsfCvrpJEGt
+	S61p7
+X-Google-Smtp-Source: AGHT+IH/xnJf8OhD2UyddPs9fn8NZYZRYKnhkQGnPGNMx5KbE3arsLz1J4F7/4sXv5p5DqIDl26u5w==
+X-Received: by 2002:a05:6000:381:b0:3a2:229:2a4d with SMTP id ffacd0b85a97d-3a3496a49fdmr1851225f8f.22.1747213464674;
+        Wed, 14 May 2025 02:04:24 -0700 (PDT)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.58])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f57ddfbesm19286561f8f.10.2025.05.14.02.04.22
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f57ddfbesm19286561f8f.10.2025.05.14.02.04.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 May 2025 02:04:22 -0700 (PDT)
+        Wed, 14 May 2025 02:04:24 -0700 (PDT)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: geert+renesas@glider.be,
@@ -88,9 +88,9 @@ Cc: claudiu.beznea@tuxon.dev,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v2 1/8] clk: renesas: rzg2l-cpg: Postone updating priv->clks[]
-Date: Wed, 14 May 2025 12:04:08 +0300
-Message-ID: <20250514090415.4098534-2-claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v2 2/8] clk: renesas: rzg2l-cpg: Move pointers after hw member
+Date: Wed, 14 May 2025 12:04:09 +0300
+Message-ID: <20250514090415.4098534-3-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250514090415.4098534-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20250514090415.4098534-1-claudiu.beznea.uj@bp.renesas.com>
@@ -104,48 +104,51 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Since the sibling data is filled after the priv->clks[] array entry is
-populated, the first clock that is probed and has a sibling will
-temporarily behave as its own sibling until its actual sibling is
-populated. To avoid any issues, postpone updating priv->clks[] until after
-the sibling is populated.
+Reorder the pointer members in struct mstp_clock so they appear immediately
+after the hw member. This helps avoid potential padding and eliminates the
+need for any calculations in the to_mod_clock() macro. As struct clk_hw
+currently contains only pointers, placing it first also avoids padding.
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
 
 Changes in v2:
-- postpone the update of priv->clks[id] as suggested in review process
+- moved pointers after hw member
 - updated the patch title and description to reflect the new approach
+- collected tags
 
  drivers/clk/renesas/rzg2l-cpg.c | 8 ++++----
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/clk/renesas/rzg2l-cpg.c b/drivers/clk/renesas/rzg2l-cpg.c
-index a8628f64a03b..c87ad5a972b7 100644
+index c87ad5a972b7..767da288b0f7 100644
 --- a/drivers/clk/renesas/rzg2l-cpg.c
 +++ b/drivers/clk/renesas/rzg2l-cpg.c
-@@ -1389,10 +1389,6 @@ rzg2l_cpg_register_mod_clk(const struct rzg2l_mod_clk *mod,
- 		goto fail;
- 	}
+@@ -1185,19 +1185,19 @@ rzg2l_cpg_register_core_clk(const struct cpg_core_clk *core,
+  * struct mstp_clock - MSTP gating clock
+  *
+  * @hw: handle between common and hardware-specific interfaces
++ * @priv: CPG/MSTP private data
++ * @sibling: pointer to the other coupled clock
+  * @off: register offset
+  * @bit: ON/MON bit
+  * @enabled: soft state of the clock, if it is coupled with another clock
+- * @priv: CPG/MSTP private data
+- * @sibling: pointer to the other coupled clock
+  */
+ struct mstp_clock {
+ 	struct clk_hw hw;
++	struct rzg2l_cpg_priv *priv;
++	struct mstp_clock *sibling;
+ 	u16 off;
+ 	u8 bit;
+ 	bool enabled;
+-	struct rzg2l_cpg_priv *priv;
+-	struct mstp_clock *sibling;
+ };
  
--	clk = clock->hw.clk;
--	dev_dbg(dev, "Module clock %pC at %lu Hz\n", clk, clk_get_rate(clk));
--	priv->clks[id] = clk;
--
- 	if (mod->is_coupled) {
- 		struct mstp_clock *sibling;
- 
-@@ -1404,6 +1400,10 @@ rzg2l_cpg_register_mod_clk(const struct rzg2l_mod_clk *mod,
- 		}
- 	}
- 
-+	clk = clock->hw.clk;
-+	dev_dbg(dev, "Module clock %pC at %lu Hz\n", clk, clk_get_rate(clk));
-+	priv->clks[id] = clk;
-+
- 	return;
- 
- fail:
+ #define to_mod_clock(_hw) container_of(_hw, struct mstp_clock, hw)
 -- 
 2.43.0
 
