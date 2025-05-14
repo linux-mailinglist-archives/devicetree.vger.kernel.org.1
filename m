@@ -1,200 +1,144 @@
-Return-Path: <devicetree+bounces-177250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AA87AB6D39
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:49:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19B09AB6D4F
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:52:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1EC74A389B
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:49:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C74A93BCCBF
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:52:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A509A192580;
-	Wed, 14 May 2025 13:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DE6527978D;
+	Wed, 14 May 2025 13:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="nlO/tXi+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VaW0tDVl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6E817A2EE;
-	Wed, 14 May 2025 13:49:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592DC27B51E
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 13:52:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747230550; cv=none; b=DxlOEH60+miOPDS0vxtRJpmuL7C93iBSu6S3PtQqoeVo/G+mYoY7BwZMfw263tD6Gb7aq7O/k7BDp1mUj7vrXZ1+94xNSG9yVJqLasPZMiOLm304zi2Y70dCXEKi01/lq22EqVNoecjQ+TA5G79TILkCL703nIsvmzmi1ObBM0Y=
+	t=1747230725; cv=none; b=rxWP1o+ab3tXeQV3YOvmcxTRaL7TIqxnoaKIHhQlfcUEAo1HflLwcRolXhK9knWBjrjWa4VVx3gvQMzyqBQCBIx5ScTGFDuJ8Qj3ON1nmacZvofEAn1Sp832oknKw6kdUws0//Ls5C6PRamJ8EC9Iqz9sqcVUpTmpemFGwZz2Oc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747230550; c=relaxed/simple;
-	bh=Q2lysS+vPrBbSnzAngAUoZI9AHWABvjETg1sMcy+DaA=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=hQ1QHWHDv0pkSY1lP2RJibTPF2H7VCZ1YhTxGiYKMbQ+R+lEOZJ2V7vlzKwUegiwSSlU5zUnmrCo60EjN/GLyvWbUVHb9hrxqBBcjffb1+Qj5FcUVlMwEujQk/obbe7B93TVYdGus+UWdG3VLN7TyKDkX3UC8vsPQaJ1iiten7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=nlO/tXi+; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=QWmKFyTdeYapSnvQ2+VDkbzoBuqd/kCMCtd+ENn7Edc=; b=nlO/tXi+4LdaKeE5cMwrSoB6xm
-	69/CangaQN8haMBtee8rzItO8EGV2fx1zgoQBEANv52vu8x7sDbeeWZEPdCJyGECJL/Omce0KfY2T
-	7kTGER9RSAzwYY0pwwpqeBBLE7QL0e/ih4AM77UtpjMSDVQNykCGe3TbSBin0igd2Jd0=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:56048 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1uFCTb-0002EM-EZ; Wed, 14 May 2025 09:48:52 -0400
-Date: Wed, 14 May 2025 09:48:49 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- laurent.pinchart <laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
- Damm <magnus.damm@gmail.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Message-Id: <20250514094849.cac2bd27d047fbc1ae6ba74f@hugovil.com>
-In-Reply-To: <TY3PR01MB11346612A2A298818D0787B028691A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20250513162300.532693-1-hugo@hugovil.com>
-	<TY3PR01MB11346612A2A298818D0787B028691A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1747230725; c=relaxed/simple;
+	bh=yAktS0IcTttm+5igPEE95jdF3S5CsNJvlNvqBV1C72Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G+Z1Lp7TBbnJXhReV9Gf7OHvutLCb8mNNFBO6WjRHblvGXMreZZ9RsuA/1YyOlffAjzhczOyn0O+HgGnmZdv3Zud/o8bSlMGks0flSoAx9yLTRCCc+e3QRUECUTIUyLx2IWhGcyvp08IPanMII7N9eLqvciVNQjMptIrZyF06HY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VaW0tDVl; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43cfa7e7f54so7224265e9.1
+        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 06:52:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747230721; x=1747835521; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pzH7d+l+7UapIjPhhBZ1DFv41GO7ARQVP3TgvTdkaus=;
+        b=VaW0tDVlP2msl6IIsUXEtC8x98BfNSvU3VSAzkOw60lY9q0y65L7QadJqVMUUS9PeL
+         tvXyRLgygl21IwiN2uBrRA1RWDG8YWRpnUQNV1CtFr5302IkFjUhzoFKqK+IIaVK3203
+         DueEoMRm0XK060JhlGh5XZbYAWlUqo5t2JXaDR7+CCUsBkaN61nQBr693Mw1pltkSXK1
+         K+rXvpyIMKlSUk7N1vz2Dc/jBl9jkqTDyxi/X+py/dT8AAamunczXDDuAEr0nac4ZA7K
+         GL+bsp4e4rmTsnZoLN4pnCdQa7m3eWkrJZvlxEJpq3UdjFeQ7xYw/r/miWsKCs2ckMkq
+         wEZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747230721; x=1747835521;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pzH7d+l+7UapIjPhhBZ1DFv41GO7ARQVP3TgvTdkaus=;
+        b=CyCPvsnzsmPvr61hH5ZO8SQla04S7SeKgpXlarkvB8YrE2Qb2IYWx25v4kMkCMiz0A
+         6GtvFtbJfjvDG0imlr9ddXGwMGW1bI3fL14F4+7mMxC87TfDbxrW4s3tft5OzCsG1+6T
+         U+Tu+4wcRVC1f7hdtTLDM8SQL2ScxdFrxlVmbT0EC6kickw2ODd82vcDy8xwFFyJ4Rce
+         5cXnChKr50/wkYpBqcDMrq+GOSmLxaKRzeHHMCaMTdxGRJGwXfWNbbcCl/xlMy3m9yJw
+         2LuKiCA/sKtvyMKHawkuYN9DNL6KtA0tKOMrLO3G8Dl+PEDGi+1CgLOXnDuVMXKSCfb5
+         9kJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWxYn7SD+jCxrTkWp+ez6LQToJjvtYO6QZ9P3NpYmpt57f41+3ha54ep6ZCL8mBuBPdwRor7bNZ7+DI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/eDIXGkdfiPhOjAHwdWbr2dH9hQOROBWviMk7a3CGq7OFxZ02
+	q0li1p7A7qH9XUNJKOwmvFeb5omhj/bfhTjW6FxDIeaiNuPOO4Tcco+2dlbg5js=
+X-Gm-Gg: ASbGnctIFlX7dSsJwTAnJs8Hlv7NEQ2ucWB96EAQeUmGdIJt7U40oi6tlxC1TwPAj3h
+	/g8nHBhHvYnWcPV76Swfa66Cg8ThUFJn4Ounslb9EgEeZyhXkLPfAb2abSRzXwe1+puvvp5ngPZ
+	LliH2xWJGDAV8TNtHtc8jIfKLRs37BybWubhDGHCJE626c6MQdcsRAymHCGA6wgOhRvs4igzeKY
+	8aLJeQQKkHlD2dty8V5znChQ5+F+bAvRyYJ6tWT804uRP+zf6GSWWdy6reCfSTgleTiNX3PF4g8
+	pwXlPnvFwWPvBQSXRIfmWdA+Md1BjEtQ6El+cRaTpEaL13WyCNmbXOMgd6PmGSlP3Fz4iYzlWxT
+	0ls4xCHAqtGAX
+X-Google-Smtp-Source: AGHT+IFj9i5QTyKcpRv7+tejxsKkLmxlMRzgDUG9rJki22dIq9ouqJs9twLL4571+qHl8gfmhK4eAA==
+X-Received: by 2002:a05:600c:8707:b0:439:9434:4f3b with SMTP id 5b1f17b1804b1-442f1a42318mr38467255e9.8.1747230721455;
+        Wed, 14 May 2025 06:52:01 -0700 (PDT)
+Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-442f397b6fbsm31591395e9.39.2025.05.14.06.51.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 May 2025 06:52:00 -0700 (PDT)
+Message-ID: <b4c704d9-c94e-4e89-b3ed-f715bef4e379@linaro.org>
+Date: Wed, 14 May 2025 15:51:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	*  0.1 URIBL_CSS_A Contains URL's A record listed in the Spamhaus CSS
-	*      blocklist
-	*      [URIs: hugovil.com]
-	*  0.1 URIBL_CSS Contains an URL's NS IP listed in the Spamhaus CSS
-	*      blocklist
-	*      [URIs: hugovil.com]
-	* -2.1 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH] dt-bindings: display: bridge: renesas,dsi: allow
- properties from dsi-controller
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/7] Add EcoNet EN751221 MIPS platform support
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Caleb James DeLisle <cjd@cjdns.fr>, linux-mips@vger.kernel.org,
+ tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, benjamin.larsson@genexis.eu,
+ linux-mediatek@lists.infradead.org
+References: <20250507134500.390547-1-cjd@cjdns.fr>
+ <aCNWM5Xq7wnHVCrc@mai.linaro.org> <aCNhVw7oMRhHQNq_@alpha.franken.de>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <aCNhVw7oMRhHQNq_@alpha.franken.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, 14 May 2025 06:00:28 +0000
-Biju Das <biju.das.jz@bp.renesas.com> wrote:
-
-> Hi Hugo Villeneuve,
+On 5/13/25 17:12, Thomas Bogendoerfer wrote:
+> On Tue, May 13, 2025 at 04:24:51PM +0200, Daniel Lezcano wrote:
+>> On Wed, May 07, 2025 at 01:44:53PM +0000, Caleb James DeLisle wrote:
+>>> EcoNet MIPS SoCs are big endian machines based on 34Kc and 1004Kc
+>>> processors. They are found in xDSL and xPON modems, and contain PCM
+>>> (VoIP), Ethernet, USB, GPIO, I2C, SPI (Flash), UART, and PCIe.
+>>>
+>>> The EcoNet MIPS SoCs are divided broadly into two families, the
+>>> EN751221 family based on the 34Kc, and the EN751627 family based on
+>>> the 1004Kc. Individual SoCs within a family are very similar, only
+>>> with different peripherals.
+>>>
+>>> This patchset adds basic "boots to a console" support for the EN751221
+>>> family and adds SmartFiber XP8421-B, a low cost commercially available
+>>> board that is useful for testing and development.
+>>>
+>>> Note that Airoha (AN7523, AN7581) is similar to EcoNet in terms of
+>>> peripherals, and for historical reasons Airoha chips are sometimes
+>>> referred to with the EN75xx prefix. However this is a different
+>>> platform because Airoha chips are ARM based.
+>>>
+>>> This patchset is against mips-next.
+>>>
+>>> v4 -> v5
+>>> * 2/7 clocksource/drivers: Add EcoNet Timer HPT driver:
+>>>    * Improve explanation of HPT timer in changelog
+>>>    * Move pr_info to pr_debug per recommendation
+>>>    * Remove pointless debug on spurious interrupt
+>>>    * Small code-style change
+>>
+>> Shall I pick the clocksource + bindings changes through my tree ?
 > 
-> Thanks for your patch.
-> 
-> > -----Original Message-----
-> > From: Hugo Villeneuve <hugo@hugovil.com>
-> > Sent: 13 May 2025 17:23
-> > Subject: [PATCH] dt-bindings: display: bridge: renesas,dsi: allow properties from dsi-controller
-> > 
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > Allow to inherit valid properties from the dsi-controller. This fixes the following warning when
-> > adding a panel property:
-> > 
-> > rzg2lc.dtb: dsi@10850000: '#address-cells', '#size-cells', 'panel@0' do not
-> >     match any of the regexes: 'pinctrl-[0-9]+'
-> >     from schema $id:
-> >         http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
-> > 
-> > Also add a panel property to the example.
-> > 
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > ---
-> >  .../bindings/display/bridge/renesas,dsi.yaml  | 21 +++++++++++++++++--
-> >  1 file changed, 19 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > index e08c24633926b..e0906a46fb118 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > @@ -128,14 +128,17 @@ required:
-> >    - power-domains
-> >    - ports
-> > 
-> > -additionalProperties: false
-> > +unevaluatedProperties: false
-> > 
-> >  examples:
-> >    - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> >      #include <dt-bindings/clock/r9a07g044-cpg.h>
-> >      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > 
-> >      dsi0: dsi@10850000 {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> >          compatible = "renesas,r9a07g044-mipi-dsi", "renesas,rzg2l-mipi-dsi";
-> >          reg = <0x10850000 0x20000>;
-> >          interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>, @@ -160,6 +163,20 @@ examples:
-> >          reset-names = "rst", "arst", "prst";
-> >          power-domains = <&cpg>;
-> > 
-> > +        panel@0 {
-> > +            compatible = "rocktech,jh057n00900";
-> > +            reg = <0>;
-> > +            vcc-supply = <&reg_2v8_p>;
-> > +            iovcc-supply = <&reg_1v8_p>;
-> > +            reset-gpios = <&gpio3 13 GPIO_ACTIVE_LOW>;
-> > +
-> > +            port {
-> > +                panel_in: endpoint {
-> > +                    remote-endpoint = <&dsi0_out>;
-> > +                };
-> > +            };
-> > +        };
-> > +
-> >          ports {
-> >              #address-cells = <1>;
-> >              #size-cells = <0>;
-> > @@ -175,7 +192,7 @@ examples:
-> >                  reg = <1>;
-> >                  dsi0_out: endpoint {
-> >                      data-lanes = <1 2 3 4>;
-> > -                    remote-endpoint = <&adv7535_in>;
-> > +                    remote-endpoint = <&panel_in>;
-> 
-> Can we make panel example as separate one?
-> 
-> 1) One example for using bridge device
-> 2) One example for using direct panel.
-
-Hi Biju,
-sure, will do in V2.
-
-Thank you,
-Hugo.
+> please do, I'll take the remaining patches.
 
 
-> 
-> Cheers,
-> Biju
-> 
-> >                  };
-> >              };
-> >          };
-> > 
-> > base-commit: e9565e23cd89d4d5cd4388f8742130be1d6f182d
-> > --
-> > 2.39.5
-> 
-> 
+Applied patch 1 et 2, thanks!
 
 
 -- 
-Hugo Villeneuve
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
