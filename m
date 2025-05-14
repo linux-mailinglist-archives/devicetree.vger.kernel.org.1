@@ -1,98 +1,66 @@
-Return-Path: <devicetree+bounces-177417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E27FAB7741
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 22:42:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14E9AB7744
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 22:42:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 734B41BA69CB
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 20:42:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A09FB1891187
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 20:42:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2666F29617D;
-	Wed, 14 May 2025 20:41:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C421129670F;
+	Wed, 14 May 2025 20:42:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fUb7GOAh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TgX7UJ0O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90551296159
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 20:41:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 957421D7E4A;
+	Wed, 14 May 2025 20:42:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747255312; cv=none; b=LHNLGProrwApfYPOxiM1c0r4jO2Z6p2KKNM3uzs0MluVdsuwqX+PqAMSb2Q2fMgO+RgqjIaQU7WJo/BQTu24mWV4/uBxuLDvBHdhCaWn8whKF7DXF2Fsy/AKCciTijCZ9hmXjzkNa89C/SYloqRotp2FqfUHZqVoD7dMFOKfrlk=
+	t=1747255321; cv=none; b=HRDIEAY50E4kZ9dU28/8/Ut2fXwUzEocDZVxTX6/8kxlqqIzrpLBI6HsJ8SSvutSXZYjrsFxbRUfFprsoDTndF1p4abEok3JT4GoXFGOm38jYvbQQRuUrBb49HAn95CY2FsLzXRbLm0s08Ndh63ai3eUaLCFzi9NyP5hzMkyQ7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747255312; c=relaxed/simple;
-	bh=rUK4scPkzZakFgDXHbi8BfoYHgboRKWeDbAQdsEl4zI=;
+	s=arc-20240116; t=1747255321; c=relaxed/simple;
+	bh=1nE6gDM710mArLvk8E1p58a4DYvORFAG2fv7jv7gJYk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ajOEkpRBKmVkQBI0eXBLJmDaTsnqMo36tXUFBAtsbLlg6+s0CoQTFGkY07a+zf2YQSOJcFGyIMrvq/UTVwp4e1RhsQZ0J5U9x4t62k3CYJ3uc2iLEhE35FE73xv4lrn8TYeS+99oQvt90V0qQ/RircooLuUDQ7A3OzAiJwHIPWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fUb7GOAh; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54EJDpiL003408
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 20:41:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Mjtp2bpakb8zijMOh2vfgyB1
-	1iNvN+koMsm1Lt3WJgA=; b=fUb7GOAhZV2NpdRKbTaWEDI5KuVpmLWMoYGqJqy/
-	pBtd4TeJ5uWbj/95o4bpffcNXZTqRLrUtRlKKdVt0ghSl93kyHSdR496clxjSSPU
-	FrzJXx75Dn/u7A6m4GAoWWLVKTcuBeUrZTk1ETww8r/guLZT6X3JaETba9w0u51L
-	vaH8LHxSAfTGy/CdS7VvfD+XzicvcsLnU1qLbCxueshdrf4K+KWso+ihGXP+Qrw4
-	9o8IQV1Cn2MP9hkif0I9UXTHALEJMe1UjVGnpbx03isCpSJQUPWmAzwAywr9ZOWQ
-	wy2C64awwjjO9dV3X6lYBaUV0i/iI+qIGkUM8XwE6aTK6A==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcpc0vh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 20:41:49 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5f3b94827so35369785a.0
-        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 13:41:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747255308; x=1747860108;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Mjtp2bpakb8zijMOh2vfgyB11iNvN+koMsm1Lt3WJgA=;
-        b=tyaRYMK/ZOtaFC80k+m7ykFNj14nD7DLvlh+kuYjfllk5MRKtI8ai7ehGO2vjTVy0c
-         Rn/A/Xal/kPaXz4HoNPElFlps9jVjF+IjJ2SZ4UpCsZdsT4ipukeLJLKOAko+f2Gp/tS
-         N/MAVERUcnO99lSSBOU8v5yE8sAKnpgt9dBLwZjau10+J7S3KcvkNcZsu1r7gpaxbezE
-         djO/GNkbu8WffgtZ0LQPQWvPOTrWVv+Tj9sr2t71O7rqj1Ps5R8OfU/xkiZGsRVkT7m4
-         cpouPt1H50vYxjFDf0r6/90Yq8aN6wJKEAWNWTDP9E5JTSFccWnof9xpR+JAgcTtVqHF
-         mqcA==
-X-Forwarded-Encrypted: i=1; AJvYcCUebTrVSiqvxdTK1RaEJhqsbcEP21UmJTGMlKLXnOlFHGFwiLc2SpDGQA3YetZQHrMIEZ6KCuMTgUAR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6RMAq4dJ76U8npNBzJmqVzDA3y0B+EnsvghuRcMeLLOVJopmT
-	3xgyUghanCyLuNiO6O1G0fPwQylqWeAZsiK1pRkld96mk6FNADAgSRnX9sT7RHYi/tonJjP+V3f
-	OYAQBltfg81q+DZqq9vwoqgp9BPZUE2blbJkkKfP1EW75fWb4taV2KheLS8VR
-X-Gm-Gg: ASbGncvBjo8IE9hWCx89eygvlGGwBuglkIN8QvHuGMxOYMAcKbBQkCQrILOtkno+rtO
-	d6OOXE1OR57EO53s+9qGJWSW+rx5COD8IgFR0a7LqxAtrmJ4eJHvKYMxYpj5ShCkhNhUPRrxQcv
-	Y7Fc70hY+XAAa3B5sFonIwAMxHGVBnpy0PxliSLSnVJbh52BlYd4bYhKEZpd3vjBb3Wr0yyS1C7
-	oSUslevy3YtT8PRh8MEbYhLXzl5qzveWeHBhIvov7jpoEyhc6x4F0WRK5v3HQKRt4xe5G9HFhcY
-	/j8HeFI0JIyCoqFYl+LnFwQTFrHsSEt0nRXCecfA4/rPBCWNR/n4coxjqBbFTNYF/PpiscNX7W4
-	=
-X-Received: by 2002:a05:620a:2904:b0:7cc:7704:bf87 with SMTP id af79cd13be357-7cd28847321mr718008285a.42.1747255308100;
-        Wed, 14 May 2025 13:41:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFIv0FZP5V22QFAaqy0UmracF7uLbzENjoAZw0LJM2m+3CM+j1fWH7H1eegN8tzKPugcHv6GA==
-X-Received: by 2002:a05:620a:2904:b0:7cc:7704:bf87 with SMTP id af79cd13be357-7cd28847321mr718005185a.42.1747255307745;
-        Wed, 14 May 2025 13:41:47 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54fc64b700dsm2396390e87.130.2025.05.14.13.41.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 May 2025 13:41:46 -0700 (PDT)
-Date: Wed, 14 May 2025 23:41:45 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND] arm64: dts: qcom: x1e001de-devkit: Enable support
- for both Type-A USB ports
-Message-ID: <knljchftq4rl7ve735jmqso2lhybjrmz2axgd2xrqr3k64g6zy@f2fx6auvb4bj>
-References: <20250514-x1e001de-devkit-dts-enable-usb-a-ports-v1-1-8322ca898314@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=li56WdVennGJbGJ8m2tfPjIovZqOgVNa6dnV/31SQf/11y28mxRb9mb+3vdBVsqKKvk7FesfKoRdp6Avq8URUxbioD+4kOtuaCQOHoLx80EHSJBFjS8Aqk1Iwilr9goHWzH+4A9GdQo3AUiZJiflUpWXDjW4kvTa02azN6C4vsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TgX7UJ0O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF31FC4CEE3;
+	Wed, 14 May 2025 20:42:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747255321;
+	bh=1nE6gDM710mArLvk8E1p58a4DYvORFAG2fv7jv7gJYk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TgX7UJ0ORV80PdKWdTiVaSKiLqiJu8KEgd1oOECl94udYTE+vNMVKO5p1LwC6znmp
+	 l+NzChA2KQUGy394FcGExuTm+J19Kh7o2NS7gFbsUIkrFpSXCXjswnBagsNxWF+M3r
+	 k9QwzPaOs46gYBBpUsJozyfWY/nAnBr6rWhUIJXhV5Jz290HA1ZaTaPHZFQztZ7AhP
+	 9Py47ERmQVc3xHHs/2UCqhcpytDcjoosUJc7u6cqRE+h5JACDZVCq8B+vexn7ppDf8
+	 LYRlWkjcZmM12lV+GYRYjZHs4jGHm2ewRANAofA9ZQNLFSFFomlBCeptXiCDBBEB5e
+	 cXu+FW0R+FoAA==
+Date: Wed, 14 May 2025 15:41:59 -0500
+From: Rob Herring <robh@kernel.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: spi: Add VIA/WonderMedia serial flash
+ controller
+Message-ID: <20250514204159.GA2988411-robh@kernel.org>
+References: <20250510-wmt-sflash-v1-0-02a1ac6adf12@gmail.com>
+ <20250510-wmt-sflash-v1-1-02a1ac6adf12@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,49 +69,183 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250514-x1e001de-devkit-dts-enable-usb-a-ports-v1-1-8322ca898314@linaro.org>
-X-Proofpoint-GUID: Zt9OWkXQSJe1mq9jLH9gph8f1xdz7urT
-X-Proofpoint-ORIG-GUID: Zt9OWkXQSJe1mq9jLH9gph8f1xdz7urT
-X-Authority-Analysis: v=2.4 cv=cO7gskeN c=1 sm=1 tr=0 ts=6825000d cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=-ogRkZ1lWjz2smMNko0A:9
- a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE0MDE5MSBTYWx0ZWRfX7Ct1VKI6MTn6
- J2zwOeAmpPbsufspFllLRfjZEr+R0Na6vOgFH7G6ysIyfKlUFoxC5s8Cr5C0uzt31R5vBO8cKCY
- h37mFUzV26HM7GD+bjKfNHwxCsorNSk84/4zxb7ND2+HbIinqP0uuFIeVJcJEe8qf9HOocMYp3K
- oxVOAXaZknpWGkVajcwn9kQ2tRwAYbepvSPb28ZYK+RfMGCpK0neiB8lxMAan6OQcHf9Wr/pEal
- SYEOr8Cb4AyjizOo12uciNPXvvGoeqxHKdVaWDLrJan0Wc6g4aJYcSuXH6X9Zojfq5uT7LoFYr9
- k87VzfHDuqfhK4NLnYqLgWpgmc3QOrOIyLVU3KdxSNZixP6LEXWlPDgLnjh48BhrZqfLCghpTZa
- JIJ1388uzNUzPgrpLp9pj54rb5J8PJAI7koPqPKmcDhwcSRzlq0XEk9kqii/YBEfSjjMScSs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-14_04,2025-05-14_03,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=381 spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
- adultscore=0 bulkscore=0 malwarescore=0 impostorscore=0 clxscore=1015
- priorityscore=1501 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505140191
+In-Reply-To: <20250510-wmt-sflash-v1-1-02a1ac6adf12@gmail.com>
 
-On Wed, May 14, 2025 at 11:14:30PM +0300, Abel Vesa wrote:
-> The Qualcomm X Elite Devkit has 2 USB-A ports, both connected to the USB
-> multiport controller, each one via a separate NXP PTN3222 eUSB2-to-USB2
-> redriver to the eUSB2 PHY for High-Speed support, with a dedicated QMP
-> PHY for SuperSpeed support.
+On Sat, May 10, 2025 at 11:42:21PM +0400, Alexey Charkov wrote:
+> Add a binding for the serial flash controller found on VIA/WonderMedia
+> SoCs, which provides semi-transparent access to SPI NOR chips by
+> mapping their contents to the physical CPU address space.
 > 
-> Describe each redriver and then enable each pair of PHYs and the
-> USB controller itself, in order to enable support for the 2 USB-A ports.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/x1e001de-devkit.dts | 86 ++++++++++++++++++++++++++++
->  1 file changed, 86 insertions(+)
+>  .../devicetree/bindings/spi/via,vt8500-sflash.yaml | 122 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 123 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/spi/via,vt8500-sflash.yaml b/Documentation/devicetree/bindings/spi/via,vt8500-sflash.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..d2ea0dacdd56118c0cb5a1cb510ceb7591e1e5ca
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/via,vt8500-sflash.yaml
+> @@ -0,0 +1,122 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/via,vt8500-sflash.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: VIA/WonderMedia serial flash controller
+> +
+> +description:
+> +  This controller is used on VIA/WonderMedia SoCs such as VIA VT8500,
+> +  WonderMedia WM8850 and similar. It provides a semi-transparent interface
+> +  for reading and writing SPI NOR chip contents via a physical memory map,
+> +  abstracting away all SPI communication, while also providing a direct
+> +  mechanism for issuing "programmable commands" to the underlying SPI chip
+> +
+> +maintainers:
+> +  - Alexey Charkov <alchark@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - via,vt8500-sflash
+> +      - wm,wm8505-sflash
+> +      - wm,wm8650-sflash
+> +      - wm,wm8750-sflash
+> +      - wm,wm8850-sflash
+> +
+> +  reg:
+> +    items:
+> +      - description: MMIO registers region of the controller
+> +      - description:
+> +          Physical memory region within which the controller will map the
+> +          flash contents of chip 0 for reading and writing. If the flash
+> +          size is smaller than this region, it will be mapped at its end.
+> +          Note that if this chip is used as the boot device (as is most
+> +          often the case), the boot ROM maps it at the very end of the
+> +          CPU address space (i.e. ending at 0xffffffff)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Period needed on the end.
+
+> +      - description:
+> +          Physical memory region within which the controller will map the
+> +          flash contents of chip 1 for reading and writing. If the flash
+> +          size is smaller than this region, it will be mapped at its end
+
+Period needed on the end.
+
+> +
+> +  reg-names:
+> +    items:
+> +      - const: io
+> +      - const: chip0-mmap
+> +      - const: chip1-mmap
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+
+This follows the SPI binding, right? Drop these 2 and add a $ref to 
+spi-controller.yaml.
+
+> +
+> +patternProperties:
+> +  "^flash@[0-1]$":
+> +    type: object
+> +    additionalProperties: true
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    sflash: spi-nor-controller@d8002000 {
+
+spi@...
+
+> +        compatible = "wm,wm8850-sflash";
+> +        reg = <0xd8002000 0x400>,
+> +              <0xff800000 0x800000>,
+> +              <0xef800000 0x800000>;
+> +        reg-names = "io", "chip0-mmap", "chip1-mmap";
+> +        clocks = <&clksf>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        flash@0 {
+> +            compatible = "jedec,spi-nor";
+> +            reg = <0>;
+> +
+> +            partitions {
+> +                compatible = "fixed-partitions";
+> +                #address-cells = <1>;
+> +                #size-cells = <1>;
+> +
+> +                partition@0 {
+> +                    label = "U-boot";
+
+The somewhat standard value here is 'u-boot'.
+
+> +                    reg = <0 0x50000>;
+> +                    read-only;
+> +                };
+> +
+> +                partition@1 {
+> +                    label = "U-boot environment 1";
+
+u-boot-env
+
+> +                    reg = <0x50000 0x10000>;
+> +                };
+> +
+> +                partition@2 {
+> +                    label = "U-boot environment 2";
+
+alt-u-boot-env or u-boot-env-backup?
+
+> +                    reg = <0x60000 0x10000>;
+> +                };
+> +
+> +                partition@3 {
+> +                    label = "W-load";
+> +                    reg = <0x70000 0x10000>;
+> +                    read-only;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6dbdf02d6b0c9357ad1da520a0f6c16b7f38f879..f09c457bbfc5ef71a3f8379c111bac52b767cbbc 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3475,6 +3475,7 @@ F:	Documentation/devicetree/bindings/hwinfo/via,vt8500-scc-id.yaml
+>  F:	Documentation/devicetree/bindings/i2c/wm,wm8505-i2c.yaml
+>  F:	Documentation/devicetree/bindings/interrupt-controller/via,vt8500-intc.yaml
+>  F:	Documentation/devicetree/bindings/pwm/via,vt8500-pwm.yaml
+> +F:	Documentation/devicetree/bindings/spi/via,vt8500-sflash.yaml
+>  F:	arch/arm/boot/dts/vt8500/
+>  F:	arch/arm/mach-vt8500/
+>  F:	drivers/clocksource/timer-vt8500.c
 > 
-
--- 
-With best wishes
-Dmitry
+> -- 
+> 2.49.0
+> 
 
