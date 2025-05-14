@@ -1,325 +1,172 @@
-Return-Path: <devicetree+bounces-177365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69E2DAB7153
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 18:27:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47D2EAB71A9
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 18:39:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 026A48C6267
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:26:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9463A163AE2
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBCCF17A31F;
-	Wed, 14 May 2025 16:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A8927F165;
+	Wed, 14 May 2025 16:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="tW6KXxWl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sW83iroB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B686270EC5
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 16:26:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2909B27EC78
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 16:38:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747240013; cv=none; b=vGNb6g/qzLsk9o2y1rPoW7F00W/TB57oSteHzpcnqsPmo40dWbyf6ViY62FGAcHCNt6yuyyoJS00fVNUBOnXXybAy5YcTE3w9YF9L8YNCi2C53CkZTFXYH3J0e60GAS8LL3e2GyI+e8809vsIRtZ6VBXnPClPNUdAaNwUggO0hU=
+	t=1747240733; cv=none; b=j5dQNubMqinKfVvY7YrBZ85jbhPAxuiw/lsPHjXe3pg4P2UOLBoYcGRNDymAuMarV7sH7KK/HM0vjCgDyycAiudwlsBUSdd0af8xxtPg5KPHR+9o1nqtapXCTgZQss6ZeuSg14qYDCL6Yl20vC6fzqatHTIraiPy+L25tm4jsbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747240013; c=relaxed/simple;
-	bh=9QOQNm1DtryVnoeSN7DGC61nsEhaIMM2YYX27XDU2u4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=laRVroHSXN6RQNEfDjnCr85A2ocAaZkDPCMq4l2aWGVhFq5etWek300UmDlfC6XJ3+lOMNS5YGZhW4AUFt2zxnOqYGlFnl7VpDwjqZOcU9JjH/7pfShaOF3BidkewMz+e02/MJWzN1pee8+qIxVuqgZQnFJYIYbnD2NQ7vIl+oQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=tomeuvizoso.net; dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b=tW6KXxWl; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-70900a80907so60809697b3.0
-        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:26:50 -0700 (PDT)
+	s=arc-20240116; t=1747240733; c=relaxed/simple;
+	bh=dXpnZ6HRybe9ZHnb0gl+9DoZpwf4gIs/LTIwEUxBnN8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=OEpvCpN6oWQIWRjJtwaHdrPJQFn6p8ZkTlQdBcBiTP5ChYhxuIOB+FiDSRI6qDij8RL2PfiZoNGC20cjOWKhQRLBAkrTaBMWEik8zO/LrmHpklm8b9A7Bg0KTL7fUrKDwubVTMwqe6cH3e4QmpXlD7R8VubznXkYpTC2twNbOLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sW83iroB; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-442ccf0e1b3so163105e9.3
+        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:38:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1747240010; x=1747844810; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gJ0AzCyNbBw7LmTlYnlYRUZRvc6BiWujoVO60kyzOiU=;
-        b=tW6KXxWljaiMmR2np+P1joBCEqM4CtD+NZd0mrqRmHRWzXS828ZOSDtNmgq4vBxlMh
-         +yJfIY98WIpc7m8RNjqvDRv3fAJunQRYFGUL2QEdxfliDqkG+t8q6eKdeJ5iotFAbfOB
-         g6dKFfqVbNLxXZlpPifyHJPGWhg122FRdGhA2D6Iadw1fY85506ZM0tnTGsvTUgaDBaY
-         zuP5k1vmEkGdzyX9WerwK4ePCv2i+Ff5juHT0AYHiRHoUbz6Bd5kghDTl6/obqQcRfVy
-         ZOStTNr6eW/y01sdLU9P4zFgHolRPuO52CPlgSP0hll7RaRAujd4WzU6gGrNFoMowqoD
-         MtnQ==
+        d=linaro.org; s=google; t=1747240728; x=1747845528; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+dP5YcbeqpFYvCKe+8FnH1GIVDVz3AECYHXjeJJujU4=;
+        b=sW83iroBO8TwjntS6U4g1IxbESl/D/U+yIzc7tCwt/esnNt5gAshkN4sFQESAg/lot
+         b9LpVGGKMH3QYIel09Vb1W//cERBSDvzgxe3oz/u2+AS9uFY8Ydz7mMn2RWYEIPWLobp
+         SeeKj2+MEREODg/0EeAiCDyGrdCvJW7zItqnLXlukzgBZunGCUsFGL8psYiacwcfawz9
+         3T/efd6oE2Ay3or+cBzYyyuGMucbHxLgG1yuSejODhj5rtUTMkT9ojS6EjwLRkM7pZ1M
+         xPnTAeVKjRqpZ3R4+dyyhBhkCrHF/WrwaPo14lYpD3qIkEgiDP9N/4Fq9iBGzZBMBiwa
+         KS2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747240010; x=1747844810;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gJ0AzCyNbBw7LmTlYnlYRUZRvc6BiWujoVO60kyzOiU=;
-        b=ARKVfn3r3/kkQFPITIFPKblhmIrEA1CUNMXD/jwUojteFSvH1wUNazPhyf0RqfRwcu
-         R9Sk49EQIeAguP3GFYXGopKv5PM7qvnLWp7IHHrHfli8fOXRR5YLd0U5zTi4ttcooFDd
-         GNFYagy1El2mir8LtcdEfkCU50zAa1Wmlu0udiy48PGq1uuApMu8K2olvxR438Sh5PUO
-         PdQEJUKxCrnFGoLGpsK9NzAQJSE5gMkWayoCvJJXmKghgDJv6LLNHsH7w3V2gMK6wkig
-         AdsztQotlDLLNeE+gNsibz7oCluUNjVVQ+OZ0P6ewgfsUD6r7DzfiKkV/F0Siou/c4oM
-         Deng==
-X-Forwarded-Encrypted: i=1; AJvYcCUBb0WIpNtlA0slyuojIiXvv3tbWHgMntbvokiS7+vTyd30bIc3nm3iTwePyD4O2ufK71zuGWkamrT/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyX7Z1p3nfDq9PChb1uiHW/zga/Nz5Tx8lOwoniKplh3hrGJY+j
-	/NuqxGbabxtOIyd61Z5U6wXNssS/bD66BoKgWY900xERj60BOAE+geq/pN+zDeUv0yLAJIb+QlI
-	M+krZWA==
-X-Gm-Gg: ASbGncunRYtGkNy3qq9YeQlWMOkc2M0s2kY0LCNovu5tNh2fqrBjEB9O1p/xXy+RFR5
-	nmaPSvvTV2ZZrPtac7s6i4oJd1t2/NyOcviFLiNCTh4xesudZYpHBTizwPgCZgXTGgq2wi4fzpY
-	Rc9Eubu/Ga9ubIlgrQUmYqIddqOrmS8Yq0mSyo1fju1LvcbBzzLWcyYCEmoFOOAGLc6jhVC/P9v
-	kCX24AmSOYUhmZixdOtz0B/ly1Z/aHp2CBDEsrJVcYCJIRYo/fm4y1hqOcY9GokS+kyRGH7CWzb
-	XK2KoeQ0SOplMfntfKK3Tox3UDTMCAMqBDtz5qAaSY2klDU+mwJfknMqjIc3t2YsqIGpX6JCbQm
-	IXtaTOndbdCWokghv+wA=
-X-Google-Smtp-Source: AGHT+IG+uTH2mFy8MPlKHWxCcLd2xL3H9qSutUTXT/habpIlOeQQg0fLL94X9rKsK/xpDtOCZ5yThg==
-X-Received: by 2002:a05:690c:3341:b0:6ef:94db:b208 with SMTP id 00721157ae682-70c7f221d1amr55077777b3.24.1747240010102;
-        Wed, 14 May 2025 09:26:50 -0700 (PDT)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-70a3d9cb5ccsm29779187b3.90.2025.05.14.09.26.49
+        d=1e100.net; s=20230601; t=1747240728; x=1747845528;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=+dP5YcbeqpFYvCKe+8FnH1GIVDVz3AECYHXjeJJujU4=;
+        b=ngk9rAbHHhXfoab8aM6DVBQhaY8GOljN8359zqNySBF6hXvQ/Vx8AA/5q1lgAoMBBW
+         5qBTORutN3lbmH26tlOWxuD33/0ZvhdD5LQ2n1sDYK4HjZff/UKHm8u2taElPxv810OH
+         KwKj3BatpQEJJrQBfUb8iSXi3DYol+WakeMAYUra6IKdO3whnLSaaWEPp9DkLVqqeJsV
+         YeADOJUerum4GAcNAvpvNvdpBc4fruZCtI6av7TsfcZLwSr4UAAJnWoZWPe9l8qjOwvt
+         ZxMOVsfQOeZJ+HjCszvmOsqC+tOgGE1/ZFkBiGhQLesEEDrcN0mHGK/4wiS604OfTkK1
+         QpPw==
+X-Forwarded-Encrypted: i=1; AJvYcCVDlOKqMhjRTZ850Tq2VbE5z7xLad+kLfuBIR4Pg64UjChwKRovf/eTD+4AtsxY/BcCdsJxjRcqY+DR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLlIZH4w6HwgKh1AxgVdi4P6TSgecQPuLjtvUsNKzq+k/bux0S
+	/b0wH+2ElxfzOFyHmEuEodmG6a0EL5ol/AeOqaxUiFF39u4TmNfKjsvGmPtcrGw=
+X-Gm-Gg: ASbGnctauxXminiflN6vyZih9VYuEiiUJtxQKPDKNfwwessFWz8Pm8LgpGR120l7TUW
+	6HDU6SE18lwQ/UXhtF9hZHb19Mlz0CHvu8pWArfCaVUsND4YrGlLAvooKVRy0MRw55Ni+8Qp+SH
+	XRcfs6D/C+IXqXOtspP6yOdYwcPk32fAeX6fi8aC9vKxgQi9mV7zY4moB9LAhCc8iiJZ3tmC8Zl
+	rhtkuoND5Rk56ynQYo/ISSoX07J/aRuKG+kvatkYWIVqD82wHZq6IdMHu4pshLYnv8oBt7Tc7K2
+	g6kSF+5k0SHrrExp0pRkfkjK2dKN8aOv/V5lYafQB0bBF8tWDqm3OVmynrzXDdrO4vEiKoZyw5P
+	lzPDwgHQT6ejY
+X-Google-Smtp-Source: AGHT+IEAkwKKEEQ70f0VyhVcMUc6RQxJdEmZDC90di0ICcfqr62LT/lvi+L8lcGRQvc66pK/aI2j2Q==
+X-Received: by 2002:a05:600c:1385:b0:43d:b32:40aa with SMTP id 5b1f17b1804b1-442f20baa06mr44937335e9.3.1747240728450;
+        Wed, 14 May 2025 09:38:48 -0700 (PDT)
+Received: from [10.61.1.139] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a4c76dsm20425558f8f.92.2025.05.14.09.38.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 May 2025 09:26:49 -0700 (PDT)
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e78f528aa8eso6069068276.3;
-        Wed, 14 May 2025 09:26:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUQL6ZUqYR60/mjV7HZhQEUUW3dKH/vXljeyx4HVQPs53n/4gdMFXJA60weEhzFTn9PbJPN0f/vY2QqEHr3@vger.kernel.org, AJvYcCUkiGgBr2jDg+RYBsWsC6RF+sbXYhchzxbvXkmUid1KIu74NSQ52V5i1zj7LZBhXSQfJuuLC9kFnYIj@vger.kernel.org, AJvYcCUrtu+y4sofV1DOlWAtNJKGYdJdeQ3kPSMCaDUI7en2vDddYaeBCRz6BMixfN+3/ZPvzdwY0o3SchsGZq0=@vger.kernel.org, AJvYcCVcOXqOIpGd59hPHSY2ywtDrnJ3+QTcI6Kis0KdjT/oMPW7lFkqx5un/W9UnT9spgVJRek7n+8cQRbW@vger.kernel.org
-X-Received: by 2002:a05:6902:1202:b0:e6d:f160:bbdf with SMTP id
- 3f1490d57ef6-e7b3d59ae2fmr4832866276.36.1747240009056; Wed, 14 May 2025
- 09:26:49 -0700 (PDT)
+        Wed, 14 May 2025 09:38:48 -0700 (PDT)
+Message-ID: <8ba99df8-012b-4883-af6a-970dd9f877f6@linaro.org>
+Date: Wed, 14 May 2025 18:38:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250225-6-10-rocket-v2-0-d4dbcfafc141@tomeuvizoso.net>
- <20250225-6-10-rocket-v2-1-d4dbcfafc141@tomeuvizoso.net> <20250225160248.GA2563229-robh@kernel.org>
-In-Reply-To: <20250225160248.GA2563229-robh@kernel.org>
-From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Date: Wed, 14 May 2025 18:26:38 +0200
-X-Gmail-Original-Message-ID: <CAAObsKD01rdYf0E6Vev6oFRZEf1f006oi+ghgVUn+h=aRx-hmQ@mail.gmail.com>
-X-Gm-Features: AX0GCFvDEBwxCoW2ZGLJEEIKb_2H5q_lCEI2NWi7ZFVAMNUkSoshPa20AanOMV0
-Message-ID: <CAAObsKD01rdYf0E6Vev6oFRZEf1f006oi+ghgVUn+h=aRx-hmQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] dt-bindings: npu: rockchip,rknn: Add bindings
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, Jeffrey Hugo <quic_jhugo@quicinc.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sa8775p: Remove max link speed
+ property for PCIe EP
+To: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com,
+ quic_nayiluri@quicinc.com, quic_ramkri@quicinc.com,
+ quic_nitegupt@quicinc.com, Mrinmay Sarkar <quic_msarkar@quicinc.com>
+References: <20250514-update_phy-v2-0-d4f319221474@quicinc.com>
+ <20250514-update_phy-v2-2-d4f319221474@quicinc.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250514-update_phy-v2-2-d4f319221474@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Rob,
+On 14/05/2025 13:37, Mrinmay Sarkar wrote:
+> From: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+> 
+> The maximum link speed was previously restricted to Gen3 due to the
+> absence of Gen4 equalization support in the driver.
+> 
+> Add change to remove max link speed property, Since Gen4 equalization
+> support has already been added into the driver.
 
-On Tue, Feb 25, 2025 at 5:02=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Tue, Feb 25, 2025 at 08:55:47AM +0100, Tomeu Vizoso wrote:
-> > Add the bindings for the Neural Processing Unit IP from Rockchip.
-> >
-> > v2:
-> > - Adapt to new node structure (one node per core, each with its own
-> >   IOMMU)
-> > - Several misc. fixes from Sebastian Reichel
-> >
-> > Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  .../bindings/npu/rockchip,rknn-core.yaml           | 152 +++++++++++++=
-++++++++
-> >  1 file changed, 152 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/npu/rockchip,rknn-core.y=
-aml b/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..e8d0afe4a7d1c4f166cf13a=
-9f4aa7c1901362a3f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml
-> > @@ -0,0 +1,152 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Neural Processing Unit IP from Rockchip
-> > +
-> > +maintainers:
-> > +  - Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> > +
-> > +description:
-> > +  Rockchip IP for accelerating inference of neural networks, based on =
-NVIDIA's
-> > +  open source NVDLA IP.
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: '^npu-core@[a-f0-9]+$'
-> > +
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - rockchip,rk3588-rknn-core-top
-> > +          - const: rockchip,rknn-core-top
->
-> Drop the fallbacks unless you have some evidence that the IP is the
-> same across a lot of SoCs. If you don't, then
-> rockchip,rk3588-rknn-core-top can be the fallback whenever there are
-> more compatible SoCs.
->
-> Or if there's version/feature registers that otherwise make it
-> discoverable, then a common compatible is fine.
->
-> > +      - items:
-> > +          - enum:
-> > +              - rockchip,rk3588-rknn-core
-> > +          - const: rockchip,rknn-core
->
-> I don't understand the difference between core and core-top. That needs
-> to be explained in the top-level description.
->
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    minItems: 2
-> > +    maxItems: 4
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: aclk
-> > +      - const: hclk
-> > +      - const: npu
-> > +      - const: pclk
-> > +    minItems: 2
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  iommus:
-> > +    maxItems: 1
-> > +
-> > +  npu-supply: true
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 2
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: srst_a
-> > +      - const: srst_h
-> > +
-> > +  sram-supply: true
->
-> Group supply properties together
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - interrupts
-> > +  - iommus
-> > +  - npu-supply
-> > +  - power-domains
-> > +  - resets
-> > +  - reset-names
-> > +  - sram-supply
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - rockchip,rknn-core-top
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 4
-> > +
-> > +        clock-names:
-> > +          minItems: 4
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - rockchip,rknn-core
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          maxItems: 2
-> > +        clock-names:
-> > +          maxItems: 2
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/power/rk3588-power.h>
-> > +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-> > +
-> > +    bus {
-> > +      #address-cells =3D <2>;
-> > +      #size-cells =3D <2>;
-> > +
-> > +      rknn_core_top: npu-core@fdab0000 {
->
-> npu@...
+Which driver, PHY or Controller ? does this change depends on the patch 1 PHY settings update ?
 
-Can you extend on why you would prefer to have npu@? As each node
-corresponds to a core inside the NPU, I went with npu-core@.
+> 
+> Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 2 --
+>   1 file changed, 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> index 5bd0c03476b143444543c68cd1c1d475c3302555..b001e9a30e863d8964219c8bd61bc328be71b256 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -6462,7 +6462,6 @@ pcie0_ep: pcie-ep@1c00000 {
+>   		power-domains = <&gcc PCIE_0_GDSC>;
+>   		phys = <&pcie0_phy>;
+>   		phy-names = "pciephy";
+> -		max-link-speed = <3>; /* FIXME: Limiting the Gen speed due to stability issues */
+>   		num-lanes = <2>;
+>   		linux,pci-domain = <0>;
+>   
+> @@ -6620,7 +6619,6 @@ pcie1_ep: pcie-ep@1c10000 {
+>   		power-domains = <&gcc PCIE_1_GDSC>;
+>   		phys = <&pcie1_phy>;
+>   		phy-names = "pciephy";
+> -		max-link-speed = <3>; /* FIXME: Limiting the Gen speed due to stability issues */
+>   		num-lanes = <4>;
+>   		linux,pci-domain = <1>;
+>   
+> 
 
-Thanks,
-
-Tomeu
-
-> > +        compatible =3D "rockchip,rk3588-rknn-core-top", "rockchip,rknn=
--core-top";
-> > +        reg =3D <0x0 0xfdab0000 0x0 0x9000>;
-> > +        assigned-clocks =3D <&scmi_clk SCMI_CLK_NPU>;
-> > +        assigned-clock-rates =3D <200000000>;
-> > +        clocks =3D <&cru ACLK_NPU0>, <&cru HCLK_NPU0>,
-> > +                 <&scmi_clk SCMI_CLK_NPU>, <&cru PCLK_NPU_ROOT>;
-> > +        clock-names =3D "aclk", "hclk", "npu", "pclk";
-> > +        interrupts =3D <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +        iommus =3D <&rknn_mmu_top>;
-> > +        npu-supply =3D <&vdd_npu_s0>;
-> > +        power-domains =3D <&power RK3588_PD_NPUTOP>;
-> > +        resets =3D <&cru SRST_A_RKNN0>, <&cru SRST_H_RKNN0>;
-> > +        reset-names =3D "srst_a", "srst_h";
-> > +        sram-supply =3D <&vdd_npu_mem_s0>;
-> > +      };
-> > +
-> > +      rknn_core_1: npu-core@fdac0000 {
-> > +        compatible =3D "rockchip,rk3588-rknn-core", "rockchip,rknn-cor=
-e";
-> > +        reg =3D <0x0 0xfdac0000 0x0 0x9000>;
-> > +        clocks =3D <&cru ACLK_NPU1>, <&cru HCLK_NPU1>;
-> > +        clock-names =3D "aclk", "hclk";
-> > +        interrupts =3D <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +        iommus =3D <&rknn_mmu_1>;
-> > +        npu-supply =3D <&vdd_npu_s0>;
-> > +        power-domains =3D <&power RK3588_PD_NPU1>;
-> > +        resets =3D <&cru SRST_A_RKNN1>, <&cru SRST_H_RKNN1>;
-> > +        reset-names =3D "srst_a", "srst_h";
-> > +        sram-supply =3D <&vdd_npu_mem_s0>;
-> > +      };
-> > +    };
-> > +...
-> >
-> > --
-> > 2.48.1
-> >
 
