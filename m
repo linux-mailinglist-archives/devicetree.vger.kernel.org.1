@@ -1,240 +1,161 @@
-Return-Path: <devicetree+bounces-176987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B571EAB6249
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 07:24:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 354D8AB6252
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 07:28:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A955F7A9C06
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 05:23:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AFA33B18E0
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 05:28:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E0E1FC0FA;
-	Wed, 14 May 2025 05:23:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8748A1F3FC6;
+	Wed, 14 May 2025 05:28:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Fymf30Y+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dVihJdk+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 104B01FAC37;
-	Wed, 14 May 2025 05:23:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DFD21E7C07
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 05:28:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747200233; cv=none; b=TtKPtT9E3YeKeMgyTy9jVWoR6M/i3oq6pn/fbIKKRdhEoWsCchjQUGG8mCnouk8yvPJ5fwbOaFp0PHcehDxBbR8QWofas3X+j9WerZSW4105iV7asyqvGdMHc9bdrfzrLNQntSryslGwjqSeL+v5YYgeqQ6LQF2vJ8rd6NXXldI=
+	t=1747200509; cv=none; b=cbbkZiluM8ncVPEkTxDRmwgxKVdJI2stOTNfgaVN+/bU2JxrBbsRc5rMsYRgZ7oblReKpGpVHy9ef0zH4ynkQy4h4Irqca4QaCepCx9XlrDGvNVSUPBKmAWDJmISi5KQplOxbAWwUfYqrAEsb9tP9oeU0LfKzCgqxzayVUaagu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747200233; c=relaxed/simple;
-	bh=cQFHF5F7P56XN/iCZLl6Pf7jip2JKshjr/SiqU/xVB4=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nf0FTA6Or6tyKlhSJbVvwuaooz7osJEs9dacQxR29rMlzvgqXG+cUC6pLjypbQ4Dnbqf7GWcN2FwVYehBdUT8toVD5yBaus50Ve4YN+lAeiNtS+JausvIn50ZXfXk78hhdL8iPmLu39DAlhwO8vbgpsmoDgCLEI2ZnkGPDzNEvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Fymf30Y+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54E1Rx4Y014839;
-	Wed, 14 May 2025 05:23:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	M2PrUTUf7NVyuNkFMxsrUUFds+eG0GDC0ScEBPnMEiU=; b=Fymf30Y+c/6O0Ygh
-	ox9MCdOP9WEI/dydV5wsElQ+stM/sFEq+57NzkFFBMOCRy2j53vHkzujMKTt1iJr
-	rAMUshktLLdLg8WdG5w05B92rEw7D/yshLUoJzDgn4RCGrsB4+V+jfE1MOjHavPY
-	uHNy08Yzaecq1L5a9CMNeGtHDwoSQrz6Qqvb6FeDrL8abV+CuwIWvWeERbAXEPuo
-	kiujFtcBTBSJ9HH4oy2OP/52NkEi5h64PdurBor0orT8yK3A1JL/cA0piE06OUxw
-	7EGz4wIJioyRuQdUW0BXjdkp/OJ//VEJt00PeNEubpnQfaVkOI0gTr7SyjXdaceU
-	jdrTcA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcmhew9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 May 2025 05:23:48 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54E5NmKV004847
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 May 2025 05:23:48 GMT
-Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 13 May 2025 22:23:45 -0700
-From: Ling Xu <quic_lxu5@quicinc.com>
-To: <cros-qcom-dts-watchers@chromium.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_lxu5@quicinc.com>, <ekansh.gupta@oss.qualcomm.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: sc7280: Add dma-coherent property for fastrpc nodes
-Date: Wed, 14 May 2025 10:53:23 +0530
-Message-ID: <20250514052323.3881600-4-quic_lxu5@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250514052323.3881600-1-quic_lxu5@quicinc.com>
-References: <20250514052323.3881600-1-quic_lxu5@quicinc.com>
+	s=arc-20240116; t=1747200509; c=relaxed/simple;
+	bh=JkeFk5JvtELodwEn2MQCcvDJk93HA88o+taJ9J75Wvc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W1ipJ6uJpc08fFV1tmIvXmi6m9kB0qnLbk/AnWjXjSvGxCun1JesSEZH+GuxUPsolTgvhK5jtL+0zPZHeN64lLNAQtI3rIaWALzeYKVh4yIXVnomVHrrow4idhgdgkSj9ngzMNWl3pZ6QZDIkIjErqrcHy12Gkn27x1z616J9Ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dVihJdk+; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a1fb17bb8cso4051844f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 13 May 2025 22:28:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747200506; x=1747805306; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Fu+kToH5ynZZEiBVPI1+qje7yD+2OfrJbW9noNa4CNg=;
+        b=dVihJdk+ifDgF3QyP8rRJJzBytMIYTapriOYoM6ZnyTuWmSF9CQhG4Y58jNjQKeI7f
+         XvjQ3XBLfV3pq2TG9L7oFn91xIfnX5ijcey5ajzes8LcebC0CPRlziYwkdp+E2Ya7P2U
+         OivLsOZeUx6v+eTBFXLwSIaZwi1gU/AjeKeqc6k87HbEnID4mlPTdGvpg874bzXh1XXP
+         npceKV8lSYqFWgdu0afboQMPVWMfoFOwN02kNhOKp+kifGZWOsPMFWDHJkdC5uXaFLAQ
+         RAlNBR1BOF3Q/2bSLJIZda0z7LqT3SkqFqwiYt4lE4ROWzDyNpYP25K5hgUby7suEnti
+         jaDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747200506; x=1747805306;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Fu+kToH5ynZZEiBVPI1+qje7yD+2OfrJbW9noNa4CNg=;
+        b=qXeMsI8MnxHggNHxz6u+MLqUpq15wSQGetQeWmMBanLjbI3W1bZ1AjYfdZ1JUfcP9Q
+         sVlSJWOQbNNgSIiu04BeE75gfAvVq+4HnIULvA8ghRPlXXSOr9SoX4AvNOuExibsGqoa
+         HC8o6HpyeKHsHp5o4Z465cDUTNlNzqcaYsHj+QE7QxRAgT5iajcYfvxhq9ahBWiRbm0s
+         6jjlHzKK4B9ojVBCNd33hr2pQ3LF9TWc6rCkY1uNtlwmzWG68zW3PHMjKFDTRPsLw7ZS
+         2Mt/Zk3Uuur68uAEmhD1R84/FWPUzHwa6Vp7FGmJP7aWyxJ1HpNs69gez05JBhPuY58O
+         jbBw==
+X-Forwarded-Encrypted: i=1; AJvYcCXoO4yKi6ou2zeEMea2GcQavFUjDFVucF9rp4Hw861LWSyXbA3auUNkf3vK77jaZ3gCNA2GNj0WIjjV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyxn0fTolCaZa+JpfK2KP6F8B1sl2aJ+EUvAs5uhVNdHswmqMiS
+	daNhyt0MNmXrVEJTHQ5/CsktlGvqG9z/rz9TLWRDEHE23DR1G2RfK3dlzzAaIyI=
+X-Gm-Gg: ASbGnctrY72HfeCwMLI0CUEkUxoOWjP3g2Kk6KJo8QI1G+dmdTD1+6WoJ9HgHV9nmc+
+	MFgcwvD2nKqwJEkbX2XO4nI2WbJCLltsar36u11FuDJJn6BCsQAejaQjWQ/y/pEGGZPxddQ0txy
+	upIedFuy32u7S5uizNkt5VNy/tcM+2KzlpBY1y6eGGQXUvf3K5zP9RHmf+cAjs6jkkC3/jwjQG0
+	wtnL1azfUXX6qQbLJJlOdQuEDYmgcueSqJYqPajDhfmGb+t3TOYdUDo7B2qrQklqCEU/kU7EIUG
+	cQpXnFBC847H9H9zxzrNE6kH/3XM2HhlQ5AQd4VAC2z+u+OQt9nvQr1s6547s+rLKGC6qYHLMYb
+	rCPC73S5OLf8I
+X-Google-Smtp-Source: AGHT+IGR8fcXwr8UrIba7uq3uRKgiVAoO7flrB6Ax66vVZKivN1s8Mt+EFttdNMqYIyUx78KHccYtQ==
+X-Received: by 2002:a05:6000:381:b0:3a2:229:2a4d with SMTP id ffacd0b85a97d-3a3496a49fdmr1286717f8f.22.1747200505555;
+        Tue, 13 May 2025 22:28:25 -0700 (PDT)
+Received: from [10.61.1.70] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a2d2e9sm18279823f8f.75.2025.05.13.22.28.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 May 2025 22:28:25 -0700 (PDT)
+Message-ID: <017682c3-76c6-47fc-81f2-1da2a22a9d34@linaro.org>
+Date: Wed, 14 May 2025 06:28:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE0MDA0NSBTYWx0ZWRfXyrEGWJC746KJ
- wbElJtGClg5UwxaP2sV2fhkDKYP/7KAigm/6A2XSfy7PXFCN/u9nmGYyFinWCiz5fklOX7EI/Yu
- pR9IEW4eiTp+I2Y+M+Wim1e2zH9VHO5FMfEfCA2r0PIqsb+G8t9ix/y/wnKkngn/SQSLuJnvzBl
- pbIHOvN2DRux/gB96u1lVtRIBR/T9iGOvsTyaeDXI23itcI28/HMpQNX+Qa31SLc/hlNL0zaWFk
- pjX3TINc4rSiD8Y+EmJpp/6vvVgZuSp24x0kMmCcwIOO27eZW3oMZ2igIjOtwhgnzKY2ACOBmk8
- 1DNK9koPQLbIMY8hFTm8KHSNhfmJBhM0YOoBvG53hnx5/h4MYg215R3dkAdnJcthGjJgHdmt46W
- /ePbqElPQxs8cEH6BXFs2X2xajo/WX1otarrZ9AF+A+negVvoeq4nZanKjqf+jueuzby3sI+
-X-Authority-Analysis: v=2.4 cv=G5scE8k5 c=1 sm=1 tr=0 ts=682428e4 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=YsOEayTiMQgu7miS1LcA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: JkXYPA0pP8maoZLXMzpdpnKkmuJSWwY6
-X-Proofpoint-ORIG-GUID: JkXYPA0pP8maoZLXMzpdpnKkmuJSWwY6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-14_01,2025-05-09_01,2025-02-21_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 mlxlogscore=733 clxscore=1015 phishscore=0 bulkscore=0
- suspectscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0 mlxscore=0
- malwarescore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505140045
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: media: camss: Add supplies for
+ qcom,sa8775p-camss binding
+To: Wenmeng Liu <quic_wenmliu@quicinc.com>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vikram Sharma <quic_vikramsa@quicinc.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org
+References: <20250514-rb8_camera-v1-0-bf4a39e304e9@quicinc.com>
+ <20250514-rb8_camera-v1-1-bf4a39e304e9@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250514-rb8_camera-v1-1-bf4a39e304e9@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add dma-cherent property to fastrpc context bank nodes to ensure that
-the DMA operations for these nodes are coherent.
+On 14/05/2025 03:40, Wenmeng Liu wrote:
+> Add supplies bindings for qcom,sa8775p-camss.
+> 
+> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
+> ---
+>   .../devicetree/bindings/media/qcom,sa8775p-camss.yaml       | 13 +++++++++++++
+>   1 file changed, 13 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
+> index 083e1193c474265edb445dd30717360de57ff986..aba46c0bc11faa062199f563602494bd2f62367c 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
+> @@ -125,6 +125,14 @@ properties:
+>       items:
+>         - const: top
+>   
+> +  vdda-phy-supply:
+> +    description:
+> +      Phandle to a regulator supply to PHY core block.
+> +
+> +  vdda-pll-supply:
+> +    description:
+> +      Phandle to 1.8V regulator supply to PHY refclk pll block.
+> +
+>     ports:
+>       $ref: /schemas/graph.yaml#/properties/ports
+>   
+> @@ -164,6 +172,8 @@ required:
+>     - iommus
+>     - power-domains
+>     - power-domain-names
+> +  - vdda-phy-supply
+> +  - vdda-pll-supply
+>   
+>   additionalProperties: false
+>   
+> @@ -343,6 +353,9 @@ examples:
+>               power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
+>               power-domain-names = "top";
+>   
+> +            vdda-phy-supply = <&vreg_l4a_0p88>;
+> +            vdda-pll-supply = <&vreg_l1c_1p2>;
+> +
+>               ports {
+>                   #address-cells = <1>;
+>                   #size-cells = <0>;
+> 
 
-Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+You can drop this from your next submission.
+
+We are fixing the PHY schema to give a 1:1 relationship between PHYs and 
+their associated rails.
+
 ---
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 8c04f3471554..70ca57f94624 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -3880,12 +3880,14 @@ compute-cb@3 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <3>;
- 						iommus = <&apps_smmu 0x1803 0x0>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@4 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <4>;
- 						iommus = <&apps_smmu 0x1804 0x0>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@5 {
-@@ -3893,6 +3895,7 @@ compute-cb@5 {
- 						reg = <5>;
- 						iommus = <&apps_smmu 0x1805 0x0>;
- 						qcom,nsessions = <5>;
-+						dma-coherent;
- 					};
- 				};
- 			};
-@@ -4120,6 +4123,7 @@ compute-cb@1 {
- 						reg = <1>;
- 						iommus = <&apps_smmu 0x11a1 0x0420>,
- 							 <&apps_smmu 0x1181 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@2 {
-@@ -4127,6 +4131,7 @@ compute-cb@2 {
- 						reg = <2>;
- 						iommus = <&apps_smmu 0x11a2 0x0420>,
- 							 <&apps_smmu 0x1182 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@3 {
-@@ -4134,6 +4139,7 @@ compute-cb@3 {
- 						reg = <3>;
- 						iommus = <&apps_smmu 0x11a3 0x0420>,
- 							 <&apps_smmu 0x1183 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@4 {
-@@ -4141,6 +4147,7 @@ compute-cb@4 {
- 						reg = <4>;
- 						iommus = <&apps_smmu 0x11a4 0x0420>,
- 							 <&apps_smmu 0x1184 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@5 {
-@@ -4148,6 +4155,7 @@ compute-cb@5 {
- 						reg = <5>;
- 						iommus = <&apps_smmu 0x11a5 0x0420>,
- 							 <&apps_smmu 0x1185 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@6 {
-@@ -4155,6 +4163,7 @@ compute-cb@6 {
- 						reg = <6>;
- 						iommus = <&apps_smmu 0x11a6 0x0420>,
- 							 <&apps_smmu 0x1186 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@7 {
-@@ -4162,6 +4171,7 @@ compute-cb@7 {
- 						reg = <7>;
- 						iommus = <&apps_smmu 0x11a7 0x0420>,
- 							 <&apps_smmu 0x1187 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@8 {
-@@ -4169,6 +4179,7 @@ compute-cb@8 {
- 						reg = <8>;
- 						iommus = <&apps_smmu 0x11a8 0x0420>,
- 							 <&apps_smmu 0x1188 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					/* note: secure cb9 in downstream */
-@@ -4178,6 +4189,7 @@ compute-cb@11 {
- 						reg = <11>;
- 						iommus = <&apps_smmu 0x11ab 0x0420>,
- 							 <&apps_smmu 0x118b 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@12 {
-@@ -4185,6 +4197,7 @@ compute-cb@12 {
- 						reg = <12>;
- 						iommus = <&apps_smmu 0x11ac 0x0420>,
- 							 <&apps_smmu 0x118c 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@13 {
-@@ -4192,6 +4205,7 @@ compute-cb@13 {
- 						reg = <13>;
- 						iommus = <&apps_smmu 0x11ad 0x0420>,
- 							 <&apps_smmu 0x118d 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@14 {
-@@ -4199,6 +4213,7 @@ compute-cb@14 {
- 						reg = <14>;
- 						iommus = <&apps_smmu 0x11ae 0x0420>,
- 							 <&apps_smmu 0x118e 0x0420>;
-+						dma-coherent;
- 					};
- 				};
- 			};
--- 
-2.34.1
-
+bod
 
