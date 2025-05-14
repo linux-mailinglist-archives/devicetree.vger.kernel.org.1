@@ -1,109 +1,89 @@
-Return-Path: <devicetree+bounces-177421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 208A1AB776B
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 22:56:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CF08AB7782
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 23:04:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D9007AC230
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 20:55:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9AD716AA8D
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 21:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6DB29670C;
-	Wed, 14 May 2025 20:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E46F224B12;
+	Wed, 14 May 2025 21:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VKjA/3US"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p9Lvw5BA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0674AE55B;
-	Wed, 14 May 2025 20:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6208D220696;
+	Wed, 14 May 2025 21:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747256182; cv=none; b=lI+LP7OxvXbB43uQRERH+009bpk9KQR4x1hH5AUu6PrEkVncRVrtCT+yFHDPpbrACFD/ZBVSCLF/Y5kro/qyh/yyZry3nXz8M6bdV5ZZiuojleTqfAeWvsq5F7pqrIvuiRdCd3IKeW/7rkj1S33FXMkcGwabxxcammXDy9Hu9cY=
+	t=1747256639; cv=none; b=MX0L9AMMGxf24wNHRboTRJaX2gkZZm1w3F3or8fSYWjTGwUGEZ/tgUmyDCEpWFhYNmj1+JKf8y62Tg8WcZxpGYgiQToAMfAsbcp+V23GQ2XqnQXSrazGvDuDtkiHF0M10vpu1CZWMuEWCcAZzVl/PGw1QtA67CkL6mmqPmNENsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747256182; c=relaxed/simple;
-	bh=LzcztWerU4pmt8hh0TJh4jLsvk6/oUYWuswSfEQJhA0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HAgjP9MKjYjEZcSxokYeUhEMwcilyzDnTRnB8JN1bHn1R355xk1mrVsVmgZXOArXqrc5owDAfUaJeojzXJSfdQGSIoB+O8604tPtZsbgoqyOFrFrvQpyxGTIQvvlusEg7a8I9Z5mKQb33kqI94LDKrhDr7zfiz784kl264wk/Kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VKjA/3US; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A225C4CEE3;
-	Wed, 14 May 2025 20:56:19 +0000 (UTC)
+	s=arc-20240116; t=1747256639; c=relaxed/simple;
+	bh=Ia3J08FH2T+LAOJIpdIZspeG4Yy/3bA929n8wPkubF0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GTXfu9EdplkpPodh0jUMX6JbQz/ERM/WvRpv7Z13UOcQ1LfjXpRhoa8VXKj6frIYpBjIpfe0I5CRrQpkgxMozZzhtnO5G4fclnQ2rI+lTn1H5557dWTT6+7bnkurhRjR/zitsP3OV/AYfsC35FKBuAndAt+rhCyyLptQF2S6L8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p9Lvw5BA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEFDFC4CEE3;
+	Wed, 14 May 2025 21:03:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747256179;
-	bh=LzcztWerU4pmt8hh0TJh4jLsvk6/oUYWuswSfEQJhA0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VKjA/3US6VvMiYWEFfxUTPcVRsgkq/fkEDd1FECDu3ML/8zXXjCtRGVqsgM8wCUH5
-	 +ly2bPAmH0DwK6dNZL892QlHnLHhFjDitrtw52TwhPFYhT+LUEv5yuC7EW/yskCSy2
-	 eNJNgCzxtKIuXEoYdQyC00fVdaiCxVlLuYEM1mvp5kXyJEcPNzlZJs92pnXqpwijHT
-	 MqAKCgjWf+09vWbdG9ViS23iPDY5zWJnOCJwri1XSKRIhmd23wvZWVmMQ/vyJPgI9L
-	 Sz6X2Oiqd7Iy9MO31pjPyE+UlaqzGmrWv5IASpHjm7eqrfGR6ceJ9sxNHOUTvroicT
-	 TSbs3g75uA6lg==
-Date: Wed, 14 May 2025 15:56:17 -0500
-From: Rob Herring <robh@kernel.org>
-To: Sven Peter <sven@svenpeter.dev>
-Cc: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Hector Martin <marcan@marcan.st>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
+	s=k20201202; t=1747256638;
+	bh=Ia3J08FH2T+LAOJIpdIZspeG4Yy/3bA929n8wPkubF0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=p9Lvw5BAZHJK049wlfUFR53MSCs0czEqilbkgxlvaEBwQDsq96V3WA6wSmrcfFDzl
+	 45DP8vGD4BWHul6T5A4v8iOj+shXCyV/akJChLt2puHKGy8DHG0Gp+/7hIcePiXJR0
+	 d4s2nT2D7E0UwK3j174u7dJ/o7A+/a8HDtho9593nZq+bYKPuTndNJ6z6FnHZ7Bntg
+	 kfcPtBDAKy0zGfg/QI3NunZ6QbkEnecGM7tDyedjScBhdxaNvLbDMGiMXOlSWvRudN
+	 LpvBxH6oy/5eYOBIIs4sqIUqF9+vz2SukRJU540IjfRVaIhn3rbbEMmMq+2ShSR5SL
+	 x1qdqc4LYQzcA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
-	Marc Zyngier <maz@kernel.org>,
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v5 02/10] dt-bindings: power: reboot: Add Apple Mac SMC
- Reboot Controller
-Message-ID: <20250514205617.GA3020430-robh@kernel.org>
-References: <20250511-smc-6-15-v5-0-f5980bdb18bd@svenpeter.dev>
- <20250511-smc-6-15-v5-2-f5980bdb18bd@svenpeter.dev>
+	Abel Vesa <abel.vesa@linaro.org>
+Cc: Johan Hovold <johan@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e001de-devkit: Enable support for both Type-A USB ports
+Date: Wed, 14 May 2025 22:03:41 +0100
+Message-ID: <174725663051.90041.6844870543853100903.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250324-x1e001de-devkit-dts-enable-usb-a-ports-v1-1-81153b2d1edf@linaro.org>
+References: <20250324-x1e001de-devkit-dts-enable-usb-a-ports-v1-1-81153b2d1edf@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250511-smc-6-15-v5-2-f5980bdb18bd@svenpeter.dev>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Sun, May 11, 2025 at 08:18:37AM +0000, Sven Peter wrote:
-> On Apple Silicon machines a clean shutdown or reboot requires
-> talking to SMC and writing to NVMEM cells. Add a binding for
-> this MFD sub-device.
+
+On Mon, 24 Mar 2025 16:08:19 +0200, Abel Vesa wrote:
+> The Qualcomm X Elite Devkit has 2 USB-A ports, both connected to the USB
+> multiport controller, each one via a separate NXP PTN3222 eUSB2-to-USB2
+> redriver to the eUSB2 PHY for High-Speed support, with a dedicated QMP
+> PHY for SuperSpeed support.
 > 
-> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> ---
->  .../bindings/power/reset/apple,smc-reboot.yaml     | 52 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 53 insertions(+)
+> Describe each redriver and then enable each pair of PHYs and the
+> USB controller itself, in order to enable support for the 2 USB-A ports.
 > 
-> diff --git a/Documentation/devicetree/bindings/power/reset/apple,smc-reboot.yaml b/Documentation/devicetree/bindings/power/reset/apple,smc-reboot.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..e55e524914c2f57f7acf239fdefcbdc7a993b69f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/reset/apple,smc-reboot.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/reset/apple,smc-reboot.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Apple SMC Reboot Controller
-> +
-> +description: |
+> [...]
 
-Don't need '|' here.
+Applied, thanks!
 
-> +  The Apple System Management Controller (SMC) provides reboot functionality
-> +  on Apple Silicon SoCs. It uses NVMEM cells to store and track various
-> +  system state information related to boot, shutdown, and panic events.
+[1/1] arm64: dts: qcom: x1e001de-devkit: Enable support for both Type-A USB ports
+      commit: d12fbd11c5a3e98c2f6372252bf84b0e10dd91cc
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
