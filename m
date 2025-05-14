@@ -1,114 +1,116 @@
-Return-Path: <devicetree+bounces-177064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD143AB65C0
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:20:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 042C9AB65E7
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:27:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87ADF1B64D52
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:21:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 937BD4A4F12
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4121F22157F;
-	Wed, 14 May 2025 08:20:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7654421C9F9;
+	Wed, 14 May 2025 08:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FbIksy41"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="pMGlMrFN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56A8521D3CD;
-	Wed, 14 May 2025 08:20:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2F821B9C8;
+	Wed, 14 May 2025 08:26:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747210814; cv=none; b=YK0+JuBHCLul9UMkedTOnscQpD2hLu2UhINEmDStfkgyP1nvBtzsbt3E2qk8gyK6+I0H0BhY/54RcnmglINYR00DtHKTNCpfjw8zySTwfYuXA556RbkC/FQVdT8vXDe4zhMaHgFIBQJFf78toLW/+KQlSdwyGa0m5wHUpqd/hRo=
+	t=1747211218; cv=none; b=KT/RK1ayLMwwKr5EOhkp6pfxRa7lX/1eelXqnE9keNVA5p+vFWU4gwuR5cJOL/VGsPyH4zAGjsCiWwfT7bAyxVEQkbR56xzfMz+J3Om4HmtLpyIp1VeZqhvSlVV2vEwUJM6tc9vG6AbhknEkcrVEw5x1fHztEiKzY58UQuaIoPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747210814; c=relaxed/simple;
-	bh=Zu2ghSu2kt9/8uiiXqMjSaX/ZzpuEjE3fucBPzK/Mh8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Xn0Mxw9wMyrnz5P+WjJXhC6TQBVr0/J+evjd53TUZdB6HWMK3RuYrpLA4r67ci0SxVjRQzUMqZm1wq+8bmoFl6AIg5j9anNzgN8DchTSp/JHb0+6uqVjuDaaaOC1T75oMQR0tGvbGd6F5/f11VK41dhF1oWnZHaRqmmO8hjq7k0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FbIksy41; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1747210810;
-	bh=Zu2ghSu2kt9/8uiiXqMjSaX/ZzpuEjE3fucBPzK/Mh8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=FbIksy41gayjGfbnDbwUgJ+VWVum8h3wOBQf5wn6CT0+RkA6RtNGoEIoyARNVoT9f
-	 aY2uJHsQpxCoXJ2cl2Gz9BB7zh/VYW6LaF+ISC36AtiB3isxMeYFew++lgGjf/wYyF
-	 Ea5XT71ZmbC9dMIQFN9X2W5DbOYbfWvb44TXZkmKsKzifZ3O17pAlnNTOfIH9OqDRu
-	 zKa47yzPfoO/8vHu+FDKulWmJKI0ZiLFP65rEMjr1v6RfX6fYy1PEHRDEvrStTpQh7
-	 eDBdWVnEb9VuBr57i6QwzsX9Cl8J98BJUeaqlT0QUSRReiZ0dmQ2WrmFtcmSh+aRUk
-	 /6xZMFokYMTeQ==
-Received: from apertis-1.home (2a01cb0892F2D600c8F85Cf092d4AF51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8B75117E361D;
-	Wed, 14 May 2025 10:20:09 +0200 (CEST)
-From: Julien Massot <julien.massot@collabora.com>
-Date: Wed, 14 May 2025 10:19:58 +0200
-Subject: [PATCH v2 3/3] arm64: dts: mt6359: Rename RTC node to match
- binding expectations
+	s=arc-20240116; t=1747211218; c=relaxed/simple;
+	bh=pazwyUs7Ot0cc4KDotDE+lY96H0cEXZeAVpbnhs/JgU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rYOKDUfZIa8ts7xm9ya/hsnS2XI4ypX9tvMynBphnnsFR3LBNSMed+KgB76LUwF39/ZMU41BFqgzk4hgZp3KTHWAh+fZ2J+8zpEXNK8r3WF7pjR901YaZX5NY0SuVUuX8CzIodYBIPZKqy2VpIG2qtwb2N/di9ddRh7LkGmRiVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=pMGlMrFN; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54E7vtKW023076;
+	Wed, 14 May 2025 10:26:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	ds5+8iM4sRf0Jo4IyqmV53NfBcmFz2cJwNiJZ/wCrmk=; b=pMGlMrFN7CKCc5l+
+	/xUdEV5gxnTpRkg4FOuwGXS51BtuZ1kYDbW2LqiQMA2nhQSxwBFpjwLYCC2AhmDk
+	msfLU+TozS7alcR8HZhZhXZb623TTILmwa7sKOnjfrj5H6LqzSSBzRZvyWS96QXC
+	IWewdZXh737I31ekESxstCKDAXVXyOg1jGM5JpXfULiVEi+6tUDx4AHPQbn9ke2c
+	LGDbfmqBSsPHm40wvkDE9bbbYeAJlHl5fGiH4T7HQpRId+2j7ux8/eK9Vy/8e4s8
+	2DWJq5H67SsCDvyIICQi6YLh8xDI53BVvYN7sh5Yup55vf0X5feVmbg0IB1O8w3z
+	+IM2dA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46mbdxtj5k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 May 2025 10:26:24 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id C8B5240044;
+	Wed, 14 May 2025 10:25:13 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1C3FDB3A736;
+	Wed, 14 May 2025 10:24:03 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 14 May
+ 2025 10:24:02 +0200
+Message-ID: <7f79af9a-2b42-48c0-98c5-6bf2afc61206@foss.st.com>
+Date: Wed, 14 May 2025 10:24:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset)[PATCH v6 0/7] Add STM32MP25 LPTIM support: MFD, PWM,
+ IIO, counter, clocksource
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>, <daniel.lezcano@linaro.org>,
+        <lee@kernel.org>, <tglx@linutronix.de>
+CC: <ukleinek@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <jic23@kernel.org>, <robh@kernel.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <devicetree@vger.kernel.org>, <wbg@kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <olivier.moysan@foss.st.com>
+References: <20250429125133.1574167-1-fabrice.gasnier@foss.st.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20250429125133.1574167-1-fabrice.gasnier@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250514-mt8395-dtb-errors-v2-3-d67b9077c59a@collabora.com>
-References: <20250514-mt8395-dtb-errors-v2-0-d67b9077c59a@collabora.com>
-In-Reply-To: <20250514-mt8395-dtb-errors-v2-0-d67b9077c59a@collabora.com>
-To: kernel@collabora.com, Sen Chu <sen.chu@mediatek.com>, 
- Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, 
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>, 
- Hui Liu <hui.liu@mediatek.com>, Yong Wu <yong.wu@mediatek.com>, 
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, 
- Tinghan Shen <tinghan.shen@mediatek.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, iommu@lists.linux.dev, 
- Julien Massot <julien.massot@collabora.com>
-X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-14_02,2025-05-14_02,2025-02-21_01
 
-Rename the node 'mt6359rtc' to 'rtc', as required by the binding.
+Hi Fabrice
 
-Fix the following dtb-check error:
+On 4/29/25 14:51, Fabrice Gasnier wrote:
+> This series adds support for STM32MP25 to MFD PWM, IIO, counter and
+> clocksource low-power timer (LPTIM) drivers.
+> This new variant is managed by using a new DT compatible string, hardware
+> configuration and version registers.
+> It comes with a slightly updated register set, some new features and new
+> interconnect signals inside the SoC.
+> Same feature list as on STM32MP1x is supported currently.
+> The device tree files add all instances in stm32mp251 dtsi file.
+> 
 
-mediatek/mt8395-radxa-nio-12l.dtb: pmic: 'mt6359rtc' do not match
-any of the regexes: 'pinctrl-[0-9]+'
+Following patches are applied on stm32-next:
 
-Fixes: 3b7d143be4b7 ("arm64: dts: mt6359: add PMIC MT6359 related nodes")
-Signed-off-by: Julien Massot <julien.massot@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt6359.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[PATCH v6 5/7] arm64: defconfig: enable STM32 LP timer clockevent driver
+[PATCH v6 6/7] arm64: dts: st: add low-power timer nodes on stm32mp251
+[PATCH v6 7/7] arm64: dts: st: use lptimer3 as tick broadcast source on 
+stm32mp257f-ev1
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6359.dtsi b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-index 0c479404b3fe3adc9789386e34bda4dc580b5abd..467d8a4c2aa7f16ade92a287ecdeed5089302045 100644
---- a/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
-@@ -300,7 +300,7 @@ mt6359_vsram_others_sshub_ldo: ldo_vsram_others_sshub {
- 			};
- 		};
- 
--		mt6359rtc: mt6359rtc {
-+		mt6359rtc: rtc {
- 			compatible = "mediatek,mt6358-rtc";
- 		};
- 	};
 
--- 
-2.49.0
-
+Thanks
+Alex
 
