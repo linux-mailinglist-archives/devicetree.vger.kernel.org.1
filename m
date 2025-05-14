@@ -1,129 +1,131 @@
-Return-Path: <devicetree+bounces-177232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64986AB6C05
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:02:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE65BAB6C26
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:07:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40D187B28F5
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:01:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1C648C443C
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 645242797A6;
-	Wed, 14 May 2025 13:02:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="AB56yxbE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00BC8262D27;
+	Wed, 14 May 2025 13:07:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A092276037;
-	Wed, 14 May 2025 13:02:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28FB025D550
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 13:07:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747227763; cv=none; b=Y3sbv36dtMrcbesiEWslOLaQEc1uArOpbCmNVFrRN5Uk+Bb5Z82HYxpxFEkHV8oXAdisPev+MR2dsuWdKs0fedZod2DFT9k88PgAJYIAYi4jCNtLWlB0y90lneKMBxDI0S6E/fWKMg4x4Hvoqkt297jwhXNMQ4W4HJ0moctYL5A=
+	t=1747228031; cv=none; b=jGPGJMXhTQpbgtE6Rgvhq3/vOvu4ENQGXHh7K/QRAz2SByfsrP6pvL8jg3Ft+nfdbzyOsqP5FATga9p4zS1cO5MAt0IMjh62f0e+OmxoDePJU9z6NYGoYYqiJzjcNNxSlq3kOxA434b5ATgoFvWika/Anh3sFNKkpfOKqh1RCKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747227763; c=relaxed/simple;
-	bh=/qgL9c72UjfK/aScb//liTBZpBmD9llnpoWSPimdNJU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UW2ueG9cw9SuvX4g+uEPZmmC49hwu2A03d67lRpEASn97UDTVLXKRroH6z4JEhS1H+2zA1ZbTJVMB9HtoSd+q6kUX41eu1aUXB+Y09PIdU/HHkv7B+9IcEISQSNP4y1RXwcGA0lyG3BHag7IjzuTHUhc1U7xTOrXNuaJruVuak0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AB56yxbE; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1747227759;
-	bh=/qgL9c72UjfK/aScb//liTBZpBmD9llnpoWSPimdNJU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AB56yxbEJYn0H4B4CgSrglHvjNBBLYJTQw+pf4JzTL5dEQN/zruyvWMOrPRn4YQ6M
-	 LSZrnkND0Rgs8VxCBy85DAi6tBnPo0weRB8hfDLI2YGEbE6ObujIDWj3wzsaZDZpBm
-	 4YcrTZ7Jk+IpYed2/Rb8AGfHHSxnTgMpuVgF3WDgoBBSuLVn4NE9RQmDpVkaWOw07F
-	 INpOC1hvLH1rUVVcBDo80bGCmCa+kaRB8FyolRSeIz+7ex3uByepG2bElkiVMVicY9
-	 90heWpuyL/lFesm7zVzTybdU5rHiQl7Q2KapWjzPFbRduc2sBfhMb6CaL5Er2H1eq1
-	 whDJRvQd4wEsg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B818017E0509;
-	Wed, 14 May 2025 15:02:38 +0200 (CEST)
-Message-ID: <0d530e65-1c22-4538-9234-802541e5326a@collabora.com>
-Date: Wed, 14 May 2025 15:02:38 +0200
+	s=arc-20240116; t=1747228031; c=relaxed/simple;
+	bh=BMWCTnrbswhAIoIlD9yTM51haeoisElLrndTygbZ+aA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=UrjNNqgl8uXJhz6BahYJuKHy6L669bcINDjq5zxIg2gDFdhQd4GnHj4jhoevsjcyml6OBWa4GMdgyDlSGlVbpk83+Tmz31DepPHf1LgRIia+U6yFfUAQ6+HnpMlNlO0OEaB7PB93hQZ5OmQaagOBgHAB2EM2Du1Gctdwjc1UI5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uFBos-0005kf-Gu; Wed, 14 May 2025 15:06:46 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uFBop-002iQl-34;
+	Wed, 14 May 2025 15:06:44 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1uFBoq-000Bls-10;
+	Wed, 14 May 2025 15:06:44 +0200
+Message-ID: <0197d176fa7a6498bdc138dca6ba881648a7e30d.camel@pengutronix.de>
+Subject: Re: [PATCH v2 4/4] phy: spacemit: add USB3 support for K1 PCIe/USB3
+ combo PHY
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Ze Huang <huangze@whut.edu.cn>, Vinod Koul <vkoul@kernel.org>, Kishon
+ Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+ <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Date: Wed, 14 May 2025 15:06:44 +0200
+In-Reply-To: <20250418-b4-k1-usb3-phy-v2-v2-4-b69e02da84eb@whut.edu.cn>
+References: <20250418-b4-k1-usb3-phy-v2-v2-0-b69e02da84eb@whut.edu.cn>
+	 <20250418-b4-k1-usb3-phy-v2-v2-4-b69e02da84eb@whut.edu.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: mediatek: mt8188: Add all Multimedia
- Data Path 3 nodes
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, Nicolas Dufresne
- <nicolas.dufresne@collabora.com>, Chun-Kuang Hu <chunkuang.hu@mediatek.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20250514092259.47035-1-angelogioacchino.delregno@collabora.com>
- <20250514092259.47035-3-angelogioacchino.delregno@collabora.com>
- <439db3ea-4fb7-4944-b182-222663c09b3d@collabora.com>
- <CAL_JsqLwXwmt5Smutvv+V-HfLzgYCqb-YRVx9ydD7rfmkiWoeA@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAL_JsqLwXwmt5Smutvv+V-HfLzgYCqb-YRVx9ydD7rfmkiWoeA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Il 14/05/25 14:56, Rob Herring ha scritto:
-> On Wed, May 14, 2025 at 4:26 AM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 14/05/25 11:22, AngeloGioacchino Del Regno ha scritto:
->>> Add all of the Multimedia Data Path 3 (MDP3) related nodes
->>> including its Mutex instances, one for each VPPSYS block, and
->>> all of its DMA controllers, Film Grain (FG), HDR, Adaptive Ambient
->>> Light (AAL), Frame Resizer (RSZ), Tone Curve Conversion (TCC),
->>> Two-Dimensional Sharpness (TDSHP), and others, enabling the entire
->>> MDP3 macro-block.
->>>
->>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> 
->> Rob, sorry again for missing your previous email about the warnings
->> generated by this commit.
->>
->> I ran a dtbs_check on this and I didn't see any warning - can you please urgently
->> check and confirm that I didn't miss anything on this one so that I can pull it in
->> the MediaTek trees for a fixed up PR?
->>
->> If anything else is wrong with this one, I'll have to just drop it and delay this
->> for the next cycle as it's really too late (my bad, though).
-> 
-> Thanks for fixing.
+On Fr, 2025-04-18 at 21:19 +0800, Ze Huang wrote:
+> Add support for USB 3.0 mode on the K1 PCIe/USB3 combo PHY. Currently,
+> only USB mode is supported; PCIe support is not included in this change.
+>=20
+> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+> ---
+>  drivers/phy/spacemit/Kconfig          |   8 ++
+>  drivers/phy/spacemit/Makefile         |   1 +
+>  drivers/phy/spacemit/phy-k1-combphy.c | 251 ++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 260 insertions(+)
+>=20
+[...]
+> diff --git a/drivers/phy/spacemit/phy-k1-combphy.c b/drivers/phy/spacemit=
+/phy-k1-combphy.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..a291b7a78fae2f4072b74c1d2=
+cc65847ed821bec
+> --- /dev/null
+> +++ b/drivers/phy/spacemit/phy-k1-combphy.c
+> @@ -0,0 +1,251 @@
+[...]
+> +static int spacemit_combphy_probe(struct platform_device *pdev)
+> +{
+> +	struct spacemit_combphy_priv *priv;
+> +	struct phy_provider *phy_provider;
+> +	struct device *dev =3D &pdev->dev;
+> +
+> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->phy_ctrl =3D devm_platform_ioremap_resource_byname(pdev, "ctrl");
+> +	if (IS_ERR(priv->phy_ctrl))
+> +		return PTR_ERR(priv->phy_ctrl);
+> +
+> +	priv->phy_sel =3D devm_platform_ioremap_resource_byname(pdev, "sel");
+> +	if (IS_ERR(priv->phy_sel))
+> +		return PTR_ERR(priv->phy_sel);
+> +
+> +	priv->lfps_threshold =3D COMBPHY_USB_LFPS_THRES_DEFAULT;
+> +	device_property_read_u8(&pdev->dev, "spacemit,lfps-threshold", &priv->l=
+fps_threshold);
+> +
+> +	priv->rx_always_on =3D device_property_read_bool(&pdev->dev, "spacemit,=
+rx-always-on");
+> +	priv->type =3D PHY_NONE;
+> +	priv->dev =3D dev;
+> +
+> +	priv->phy_rst =3D devm_reset_control_get(dev, NULL);
 
-Thank you for the very fast ack, highly appreciated.
+Please use devm_reset_control_get_exclusive() directly.
 
-I have just learnt that Arnd accidentally pulled the branch anyway, so I will
-have to resend this as a fix on top - it will be just a diff between the current
-one and this commit that you acked.
-
-I guess I can retain your ack on the diff-only commit, as the result will be
-exactly the same as this v2.
-
-> FYI, Linus' and next trees are tested daily here:
-> 
-> https://gitlab.com/robherring/linux-dt/-/jobs
-> 
-> platform-warnings.log has the top warnings and undocumented
-> compatibles by platform family.
-> 
-That's very useful! Didn't know about it - thanks, that'll make my maintainer
-life easier. Bookmarked!
-
-Cheers,
-Angelo
-
-
+regards
+Philipp
 
