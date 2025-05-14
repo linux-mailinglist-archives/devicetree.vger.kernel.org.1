@@ -1,167 +1,88 @@
-Return-Path: <devicetree+bounces-177280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA03AB6E9E
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:56:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E829CAB6EAD
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:01:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 880E24C090E
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 14:56:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 206543ABB6F
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:00:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3087170A37;
-	Wed, 14 May 2025 14:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FB1119341F;
+	Wed, 14 May 2025 15:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="LHWtmkWW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nns+7qTe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49E2F1624EA;
-	Wed, 14 May 2025 14:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3570F125B2;
+	Wed, 14 May 2025 15:01:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747234586; cv=none; b=n5tOa3lR10KQHJleD4ojCxxA/0sx+W3iLPGYWeAHLkOtcUsMjGvRpo3tpqiK0KoJUFYLNgmPeG0iZaLUpePXYKdm/VA0/7vjPNGCKBBoVchb7YekL5YRI2eJ4Sz7WUTQipr8yUxo6Ql6P1js6DN2jkzMRtvXkwmvTcEISkMIrmY=
+	t=1747234865; cv=none; b=JVtVQ+9nGNibcJzOD2rGmj7knc1CzOV7iw90wygedlw8RV6Kltj8DUmw8ZKEftJL3hpikUSdY77fR6vH4IvvNG7bz+rfXqHLu2jQoWpcN7MhDUvIIzad/iFU05IRmRkORFAVgcMkWp46SeDvqcqJLejvzaboZgHofvHD/VzBe8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747234586; c=relaxed/simple;
-	bh=vqOW1WuEtnGSH0H1EDi7EaJBHJtwR6S8ZbdbfjGrhwo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cbr+V0wKxuwhNThLIwSxc184ZQQz+u6IfqUm/rSAbMiP2gWVxbvUoeL5ubMcPEGdIE//zuM2rtW5EFuzKhei41WM2FFYSiDF7eKePooT7ToJsdWArMmRRpdAoNPD/ug6Pvqcvx3yJAJugI9LxM59ZiHqtt0eqhrBbQBq4qSGK2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=LHWtmkWW; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=5p9FTy7AYLJTuOgTYlyr5CXgIB8ZTMo/qUcqJKJ+R2A=; b=LHWtmkWWW0cgvOXeSkW5bnE2fg
-	fF8OFmRs3E23GBjNKjvlIhsDPzL4M7H/qMbzMMjXCcPnTlWz1yItm8KGVjDHobIUgfQrByyOqovtS
-	P1kfJUHIV4vmrDFCHRHT/VuGRnMkpvLmUaNB2YbaxnZDovY9paCznZm6mNeuPN96BbIMF6ZYmuDsi
-	G7SWWK7P9TmzuWdnOzkdfeWbx21aGkzSy03eKU3E27JB7vEMUyG2x2+gNqpOgEciZtmzbayRmcyGM
-	ia4gSsIt7Qc2FxQNEbWP6LYkYzM7+lV9dUeYX+cqvdJbTO3DN2qTOcOalkDVyajAcGiOVegtL6w37
-	B4yiBFMA==;
-Received: from i53875a50.versanet.de ([83.135.90.80] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uFDWs-0006q0-Jr; Wed, 14 May 2025 16:56:18 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>
-Cc: quentin.schulz@cherry.de, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject:
- Re: [PATCH v2 4/6] arm64: dts: rockchip: add px30-cobra base dtsi and board
- variants
-Date: Wed, 14 May 2025 16:56:17 +0200
-Message-ID: <38830328.XM6RcZxFsP@diego>
-In-Reply-To: <20250514133951.GA1975151-robh@kernel.org>
-References:
- <20250513150234.2331221-1-heiko@sntech.de>
- <20250513150234.2331221-5-heiko@sntech.de>
- <20250514133951.GA1975151-robh@kernel.org>
+	s=arc-20240116; t=1747234865; c=relaxed/simple;
+	bh=hMW/9Y28Z+06nftGC1bUDaDU9DIvJvhegAW2nq4TGEk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ARXLIAWlVfVD0gSb2cceMqsQ+PgwSKy06R1qqMFnJsXa/8cK2qE/pPjmzgmbux7DJjmaA1KtWnzn0XNsXKWj4u/xyM/kxcfZ2FNOxwWEwtuyXPuk21tO2BWjsZfh6lm+CoVlM7j5wGo5pUU08OJh5vjLJr4+eq5dH/D5npQYPJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nns+7qTe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D3DAC4CEE3;
+	Wed, 14 May 2025 15:01:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747234864;
+	bh=hMW/9Y28Z+06nftGC1bUDaDU9DIvJvhegAW2nq4TGEk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nns+7qTeY5x1nrD1T9+9IMc2mtan3fVsg82mGiiYg0BgDoRIncUTy1JgzhNR5xrTv
+	 S5vBoK3/O2gwZiX4/gf1ak8uGTO6Wkc5CUM/8rs1v1psUWuCm+P7iUX5T13oXToozx
+	 nMyPwPo/f8E0OUp33jPceNulQo5PkeN429WLMdTLFLMnjTt5hdHMYh0b6HhV23j0sa
+	 Sf6HwQngpk1ljrutHG5zCEa0+Ln4JEt4Ry97CxtoOUwEfQzOVa+6pKNErco+7G8hDr
+	 5D09WQhhyeLSLdrrbU8eyhiFZHr9yphKbsNFAx22Nqr1xuuysHrM27Qv2UhATHAKPX
+	 6jMNLua9mcMxQ==
+Date: Wed, 14 May 2025 10:01:02 -0500
+From: Rob Herring <robh@kernel.org>
+To: Ben Zong-You Xie <ben717@andestech.com>
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, krzk+dt@kernel.org, conor+dt@kernel.org,
+	tglx@linutronix.de, daniel.lezcano@linaro.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, geert+renesas@glider.be,
+	magnus.damm@gmail.com, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	tim609@andestech.com, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v4 4/9] dt-bindings: interrupt-controller: add Andes
+ machine-level software interrupt controller
+Message-ID: <20250514150102.GA2180131-robh@kernel.org>
+References: <20250514095350.3765716-1-ben717@andestech.com>
+ <20250514095350.3765716-5-ben717@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250514095350.3765716-5-ben717@andestech.com>
 
-Am Mittwoch, 14. Mai 2025, 15:39:51 Mitteleurop=C3=A4ische Sommerzeit schri=
-eb Rob Herring:
-> On Tue, May 13, 2025 at 05:02:32PM +0200, Heiko Stuebner wrote:
-> > From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> >=20
-> > Cobra are Touchscreen devices built around the PX30 SoC using
-> > a variety of display options.
-> >=20
-> > The devices feature an EMMC, network port, usb host + OTG ports and
-> > a 720x1280 display with a touchscreen.
-> >=20
-> > Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/Makefile         |   4 +
-> >  .../rockchip/px30-cobra-ltk050h3146w-a2.dts   |  39 ++
-> >  .../dts/rockchip/px30-cobra-ltk050h3146w.dts  |  39 ++
-> >  .../dts/rockchip/px30-cobra-ltk050h3148w.dts  |  39 ++
-> >  .../dts/rockchip/px30-cobra-ltk500hd1829.dts  |  73 +++
-> >  arch/arm64/boot/dts/rockchip/px30-cobra.dtsi  | 566 ++++++++++++++++++
-> >  6 files changed, 760 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146=
-w-a2.dts
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146=
-w.dts
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3148=
-w.dts
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk500hd182=
-9.dts
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra.dtsi
-> >=20
-> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dt=
-s/rockchip/Makefile
-> > index 3e8771ef69ba..8151e8bb1cd3 100644
-> > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > @@ -1,4 +1,8 @@
-> >  # SPDX-License-Identifier: GPL-2.0
-> > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D px30-cobra-ltk050h3146w-a2.dtb
-> > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D px30-cobra-ltk050h3146w.dtb
-> > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D px30-cobra-ltk050h3148w.dtb
-> > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D px30-cobra-ltk500hd1829.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D px30-evb.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D px30-engicam-px30-core-ctouch2.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D px30-engicam-px30-core-ctouch2-of10.d=
-tb
-> > diff --git a/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w-a2.dt=
-s b/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w-a2.dts
-> > new file mode 100644
-> > index 000000000000..1d26164be7b8
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w-a2.dts
-> > @@ -0,0 +1,39 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright (c) 2025 Cherry Embedded Solutions GmbH
-> > + */
-> > +
-> > +/dts-v1/;
-> > +#include "px30-cobra.dtsi"
-> > +
-> > +/ {
-> > +	model =3D "Theobroma Systems Cobra with LTK050H3146W-A2 Display";
-> > +	compatible =3D "tsd,px30-cobra-ltk050h3146w-a2", "tsd,px30-cobra", "r=
-ockchip,px30";
-> > +};
-> > +
-> > +&dsi {
-> > +	status =3D "okay";
-> > +
-> > +	panel@0 {
-> > +		compatible =3D "leadtek,ltk050h3146w-a2";
-> > +		reg =3D <0>;
-> > +		backlight =3D <&backlight>;
-> > +		iovcc-supply =3D <&vcc_1v8>;
-> > +		pinctrl-names =3D "default";
-> > +		pinctrl-0 =3D <&dsp_rst>;
-> > +		reset-gpios =3D <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
-> > +		vci-supply =3D <&vcc_2v8>;
-> > +
-> > +		port {
->=20
-> 'port' is not allowed by this binding.
+On Wed, May 14, 2025 at 05:53:45PM +0800, Ben Zong-You Xie wrote:
+> Add the DT binding documentation for Andes machine-level software
+> interrupt controller.
+> 
+> In the Andes platform such as QiLai SoC, the PLIC module is instantiated a
+> second time with all interrupt sources tied to zero as the software
+> interrupt controller (PLICSW). PLICSW can generate machine-level software
+> interrupts through programming its registers.
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
+> ---
+>  .../andestech,plicsw.yaml                     | 54 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
 
-It is since last week [0], because the Leadtek displays got their port
-property added.
+This won't apply for me due to MAINTAINERS conflict with this series. So 
+apply the bindings patches with the dts files.
 
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/com=
-mit/?id=3Dbf0636f4348e098e2338eebbe42d7780c58a1195
-
-
-
+Rob
 
