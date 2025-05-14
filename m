@@ -1,146 +1,239 @@
-Return-Path: <devicetree+bounces-177209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF631AB6AC2
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:59:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B33EDAB6ADE
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 14:01:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6702E17A4A3
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:59:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB1BE7AEA6E
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:00:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BABDD2750E7;
-	Wed, 14 May 2025 11:59:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pS5ClvLR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F977253958;
+	Wed, 14 May 2025 12:01:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90DDD2750E3;
-	Wed, 14 May 2025 11:59:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 621251F4639;
+	Wed, 14 May 2025 12:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747223961; cv=none; b=YLqrcZi0pXi/avniqVzOzSibS8hIQe/9eTCqDjeLUVHPolOxMR+iwHr9+0TGrQOukJpNwiPwErXMxGtyCcC0FJfKYPCh6/ZTB+KTfOUS/HYxLF8/wEe8AJXDdCsYiUaZkg3H0Y6PuoCir9RsBMbZSYPaPYGvPP50o1CIHKW80d8=
+	t=1747224085; cv=none; b=FA/wfhPNAs30ymA5bJj/VNU5WjEhNSLv799gBgPjHU+nie0FL1tVseoW4j5d7LIbkwbYm1WKV+2DBojMRAfjWbsXz1/O532rP+jBgmI/231rf6sX5MzUxAMKCmSExmSiiyhdWGNc+82j4vWDhzbaYm5gmVBQCgm6aIkML02JuWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747223961; c=relaxed/simple;
-	bh=KhTRneUkTX9EBKW+iyOoaMIrQvNJC+gMVHEHh8UDj+I=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Subject:Cc:
-	 References:In-Reply-To; b=CukK4xw6VHrRrTjSb8Rsg1DNxaYaM9RXPOpJS3KQMwqpXx7pEhMa0vA6HnNTffrVqLZU+06AF4akUFLUxR6Simh2s++xOeAyy06I4LyqAvVzTvXMTiaHMNNpDXPuWJ29QwzaEOw85mDDi5xh6Z/YUbCpQ1e7nUaWDT9ZfFbvL7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=pS5ClvLR; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E2F5243AE1;
-	Wed, 14 May 2025 11:59:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1747223955;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Hx8hZadhPLNPdx/ZVIFSoWCGdjdrp3mSlEudiBBNUXQ=;
-	b=pS5ClvLRuSk+5kUEP9oDRWUgPmmp8md/PBTinyu9u263y7Y1aVN/ZEV7mJtFy5tfDw0NG5
-	MHF7WB/EloSufQwNR/UK5323cmQt6RnHWFqrD0tuVV0DPKX+Ex6yVGQ5SYyHyOsepJUECV
-	xhh7xiBblKace48GK8/7uILLtbF85iqMUdVvr/LUUcaw+/qkcqXlOWGfLpYT/a5I83nVx6
-	i//NYXHuS1DZ/yFar21QR381M6oJhsjaqEgfjLadkUMBiGIENvJJXFG0AQWfwKLkEutaUF
-	d/61eZwhBkc9tOEDkZKLYKoQVeG4E8Hp+nZM+X8h0PRI/GWS/9FepiH+IlW/gg==
+	s=arc-20240116; t=1747224085; c=relaxed/simple;
+	bh=sNOBhPsNu5uN3QG+pzL5WuBSB/PwDT1RXFryXSkgpkM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=YH+Gc/9HH8EWWWZKwHLeGmvzgzvSV3vxO/I0Svg1P9kMSVe01DnnWDJzFAifQESNyRakcZ0ZucGSUVbPzkqDzx5pYedanqeqAJnoAGnIULfj5T9yQWghLEeJCUmehJoJr9m2jvxRAobClqnCaks3yiuyDS2v3SPF3+0t3W64SDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.215.244])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 15068bee2;
+	Wed, 14 May 2025 20:01:18 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: chainsx@foxmail.com
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH v1 2/2] arm64: dts: rockchip: add DTs for Firefly ROC-RK3588S-PC
+Date: Wed, 14 May 2025 20:00:24 +0800
+Message-Id: <20250514120024.609948-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <tencent_9922367945B45D45C938B0B947EEFFCE1808@qq.com>
+References: <tencent_9922367945B45D45C938B0B947EEFFCE1808@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 14 May 2025 13:59:11 +0200
-Message-Id: <D9VV76MU61HW.XEELOHWXFW3Q@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Mark Brown" <broonie@kernel.org>
-Subject: Re: [PATCH v8 05/11] regmap: irq: Add support for chips without
- separate IRQ status
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
- <mwalle@kernel.org>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, "Danilo Krummrich"
- <dakr@kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
- <linux-input@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
- <andriy.shevchenko@intel.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Andy Shevchenko"
- <andriy.shevchenko@linux.intel.com>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250509-mdb-max7360-support-v8-0-bbe486f6bcb7@bootlin.com>
- <20250509-mdb-max7360-support-v8-5-bbe486f6bcb7@bootlin.com>
- <aCRph9Qo7BbtTjIR@finisterre.sirena.org.uk>
-In-Reply-To: <aCRph9Qo7BbtTjIR@finisterre.sirena.org.uk>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftdeileefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkhffvufevofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeehvedtkeffueelheektddvjefhiefhgedtudevgeehvdevlefgveetkeevleelteenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtdegmegtvggttdemfhdtheefmegvfhegmeefjeefjeemfeeijeejmegvvgdtieemugelvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtdegmegtvggttdemfhdtheefmegvfhegmeefjeefjeemfeeijeejmegvvgdtieemugelvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlvggvsehkvghrnhgvlhdrohhrghdprhgtphhtt
- hhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrghmvghlrdgsohhuhhgrrhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhgpdhrtghpthhtohepsghrghhlsegsghguvghvrdhplh
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZQksZVk5LGR9ITR1OQktDTlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVJT09ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE5VSktLVU
+	pCS0tZBg++
+X-HM-Tid: 0a96ceaba7c903a2kunm15068bee2
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OCI6Ajo5LzE3ED44CE4WFTQu
+	FClPFD5VSlVKTE9MSUlPS0xCSktIVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpOVUlPT1lXWQgBWUFPSU5JNwY+
 
-On Wed May 14, 2025 at 11:59 AM CEST, Mark Brown wrote:
-> On Fri, May 09, 2025 at 11:14:39AM +0200, Mathieu Dubois-Briand wrote:
->> Some GPIO chips allow to rise an IRQ on GPIO level changes but do not
->> provide an IRQ status for each separate line: only the current gpio
->> level can be retrieved.
->
-> This doesn't build in a wide range of configurations (none at all
-> AFAICT):
->
-> /build/stage/linux/drivers/base/regmap/regmap-irq.c: In function =E2=80=
-=98regmap_add_irq
-> _chip_fwnode=E2=80=99:
-> /build/stage/linux/drivers/base/regmap/regmap-irq.c:914:88: error: macro =
-"array_
-> size" requires 2 arguments, but only 1 given
->   914 |                 memcpy(d->prev_status_buf, d->status_buf, array_s=
-ize(d->
-> prev_status_buf));
->       |                                                                  =
-      =20
->                ^
-> In file included from /build/stage/linux/include/linux/string.h:13,
->                  from /build/stage/linux/include/linux/bitmap.h:13,
->                  from /build/stage/linux/include/linux/cpumask.h:12,
->                  from /build/stage/linux/include/linux/smp.h:13,
->                  from /build/stage/linux/include/linux/lockdep.h:14,
->                  from /build/stage/linux/include/linux/spinlock.h:63,
->                  from /build/stage/linux/include/linux/sched.h:2213,
->                  from /build/stage/linux/include/linux/ratelimit.h:6,
->                  from /build/stage/linux/include/linux/dev_printk.h:16,
->                  from /build/stage/linux/include/linux/device.h:15,
->                  from /build/stage/linux/drivers/base/regmap/regmap-irq.c=
-:10:
-> /build/stage/linux/include/linux/overflow.h:327:9: note: macro "array_siz=
-e" defined here
->   327 | #define array_size(a, b)        size_mul(a, b)
->       |         ^~~~~~~~~~
-> /build/stage/linux/drivers/base/regmap/regmap-irq.c:914:59: error: =E2=80=
-=98array_size=E2=80=99 undeclared (first use in this function)
->   914 |                 memcpy(d->prev_status_buf, d->status_buf, array_s=
-ize(d->prev_status_buf));
->       |                                                           ^~~~~~~=
-~~~
-> /build/stage/linux/drivers/base/regmap/regmap-irq.c:914:59: note: each un=
-declared identifier is reported only once for each function it appears in
+Hi,
 
-My bad, I somehow ended with this commit introducing bad code but having
-the next patch of the series fixing it. I will take care of that. Thanks
-for pointing this.
+> <snip>
+> +	leds: leds {
 
-Thanks for your review.
-Mathieu
+No aliases needed.
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&leds_gpio>;
+> +
+> +		power_led: power {
+> +			label = ":power";
+
+Please use standard LED binding.
+e.g.
+```
+color = <LED_COLOR_ID_BLUE>;
+function = LED_FUNCTION_POWER;
+```
+
+> +			linux,default-trigger = "heartbeat";
+> +			default-state = "on";
+
+default-state is not needed.
+
+> +			gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		user_led: user {
+> +			label = ":user";
+> +			linux,default-trigger = "ir-user-click";
+
+This LED should be user-defined?
+
+> +			default-state = "off";
+> +			gpios = <&gpio3 RK_PB2 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		user1_led: user1 {
+> +			label = ":user1";
+> +			default-state = "off";
+> +			gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_HIGH>;
+> +		};
+> +	};
+
+> <snip>
+> +	vcc3v3_pcie20: regulator-vcc3v3-pcie20 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3_pcie20";
+> +		regulator-always-on;
+
+Why does this regulator require always-on?
+
+> <snip>
+> +	vcc5v0_host: regulator-vcc5v0-host {
+> +		regulator-name = "vcc5v0_host";
+> +		regulator-boot-on;
+> +		regulator-always-on;
+
+Why does this regulator require always-on and boot-on?
+
+> +		vin-supply = <&vcc5v0_sys>;
+
+The vendor dts says it's from vcc5v0_usb?
+
+> +	vbus5v0_typec_pwr_en: vbus5v0-typec-pwr-en-regulator {
+> +		regulator-name = "vbus5v0_typec_pwr_en";
+
+Please use the name from schematics.
+
+> +		regulator-boot-on;
+> +		regulator-always-on;
+
+Why does this regulator require always-on and boot-on?
+
+> +		vin-supply = <&vcc5v0_sys>;
+
+The vendor dts says it's from vcc5v0_usb?
+
+> <snip>
+> +&cpu_l0 {
+> +	cpu-supply = <&vdd_cpu_lit_s0>;
+> +};
+> +
+> +&cpu_b0 {
+> +	cpu-supply = <&vdd_cpu_big0_s0>;
+> +};
+> +
+> +&cpu_b2 {
+> +	cpu-supply = <&vdd_cpu_big1_s0>;
+> +};
+
+Please add other cpu nodes: cpu_l1-l3, cpu_b1-b3
+
++&gmac1 {
++	clock_in_out = "output";
++	phy-handle = <&rgmii_phy1>;
++	phy-mode = "rgmii-rxid";
++	tx_delay = <0x43>;
+
+Please try using rgmii-id and remove the delay.
+
+> <snip>
+> +&i2c2 {
+> +	status = "okay";
+> +	pinctrl-0 = <&i2c2m0_xfer>;
+
+status should be placed behind.
+
+> +	hym8563: rtc@51 {
+> +		compatible = "haoyu,hym8563";
+> +		reg = <0x51>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
+> +		#clock-cells = <0>;
+> +		clock-output-names = "hym8563";
+
+clock should be placed before interrupt.
+
+> +	usbc0: usb-typec@22 {
+
+This node should be placed before vdd_npu_s0.
+
+> <snip>
+> +&mdio1 {
+> +	rgmii_phy1: ethernet-phy@1 {
+> +		compatible = "ethernet-phy-id001c.c916";
+
+The phy used in this board is RTL8211FVD, not RTL8211F.
+Please use "ethernet-phy-ieee802.3-c22" instead of hardcoding.
+
+> <snip>
+> +&sdhci {
+> +	bus-width = <8>;
+> +	max-frequency = <200000000>;
+
+max-frequency is already defined in rk3588-base.dtsi
+
+> <snip>
+> +&sdmmc {
+> +	bus-width = <4>;
+> +	cap-mmc-highspeed;
+> +	no-sdio;
+> +	no-mmc;
+
+The sdmmc controller supports sdio devices.
+If no-mmc is defined, cap-mmc-highspeed is useless.
+
+> <snip>
+> +&spi2 {
+> +	status = "okay";
+
+status should be placed behind.
+
+> +		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
+> +				<&rk806_dvs2_null>, <&rk806_dvs3_null>;
+
+Align Indent.
+
+> <snip>
+> +&uart7 {
+> +	pinctrl-0 = <&uart7m2_xfer>;
+> +	status = "okay";
+> +};
+
+It seems that uart2 (default serial port) is missing?
+
+--
+2.25.1
 
 
