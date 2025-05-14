@@ -1,99 +1,99 @@
-Return-Path: <devicetree+bounces-177318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A8F5AB704F
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:50:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E1D8AB708C
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:58:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07250167441
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:50:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CF311885D32
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:57:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850271DF254;
-	Wed, 14 May 2025 15:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B93F427978D;
+	Wed, 14 May 2025 15:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yw6lBK8w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y78eKOdR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 563BE282ED;
-	Wed, 14 May 2025 15:50:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C4FF282ED;
+	Wed, 14 May 2025 15:53:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747237845; cv=none; b=mdyqPxdB7/pqh2E12JjKGiWxAWdz8Zfi8pFJfIiC6BtqhPlQ3oyUqzF34u1nRFvBD9g9LSUOaimbMh5LJ/r4o8x93MLzvmAGabSWTHiof9lf2y4fdY5BVEMLNwGg/ui6hJXGXmpXKR6jZwguvZJru3BdZkox5SHVY9Y6xnfC6Is=
+	t=1747238026; cv=none; b=Bd0LXW8FPfFhG6oLX3J7Q9vv+2moqDUaAHN33iXhyAeoUaC8wlvri/D6j4GPVNdQF9cpijHd/5/cNgI9mTzBZX6/w0SbhSMDDlJH3EyEf1INeHMP5UNGmt2jXVL09ie3PW53VBMpl7RhMbRUaLwkHW9eZkb5vEG4rAD1uD+6jK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747237845; c=relaxed/simple;
-	bh=M3woz04Pv9OqB7s5d5XN3SM8aX7++vAPSKJ2i0HXWMg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h0pYopvBnRyZ/ICWS+i8oxB6Hz+XNfyHokXzhj2dKZEbNXaqhqws8CFmCxp1aV6ydv3V9I+SzcriLYY53m5EqxOoUAKxw7+3M+z9WPdubunLbnSmTlb5si2OZzOX+FM+U1Z9NdCDpgCCs97OZANTC/W9Bpbu7MWfTVqEKpA6DnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yw6lBK8w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05264C4CEED;
-	Wed, 14 May 2025 15:50:39 +0000 (UTC)
+	s=arc-20240116; t=1747238026; c=relaxed/simple;
+	bh=vUJao5RA1FECEfxSWQAdWVDba5icQlbRNS/+nM7I1XA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=P8v1D9t+r/Qw//9rej7zlM8jSMWm5LZ3rrcjR8uBhVrCSvTH0C4dCEW3bKw0WjX2zzGAcwgEP3zjivn3nO+FWAe3bKw3lN3Uw9HzN5iapGXRLnWVVireHmhhRVU0rD00Igh24smMKM1GBbGLDBeghWjAVvkpbv4C5/iXz2SutyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y78eKOdR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE2EDC4CEE3;
+	Wed, 14 May 2025 15:53:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747237842;
-	bh=M3woz04Pv9OqB7s5d5XN3SM8aX7++vAPSKJ2i0HXWMg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yw6lBK8wkLDW8v1I/JLiN8afunRJZg5PZW9nhqlzybGETE51+sgaGZ7d+tcW7cMhI
-	 nBTtxybN9FYVZowX+ODaqGqHiOrst8TO03GFRjiQk4nzyC6TonnBVgF5egMU11XGtP
-	 9YsDB3MeNHgg/5LJ0Ex4/cUtzS2/OBSboIB9gh/Qp6Q8okW8W6GgnlZG/kEDxmwOR2
-	 m2Jvh3omi5R2w0y4+WNRNytT+TZvZ3P+4f1oXVfi+UFg1TJv49bVNdw+r1zHmSVCxl
-	 1VZ+yfF4ymBVTewvnNpfX+2Zj3ONBRtMiNpMq65+xRmQxDyeA/NF8A7UsHkVRyxlW1
-	 YUxHqc7A/EPww==
-Date: Wed, 14 May 2025 16:50:37 +0100
+	s=k20201202; t=1747238025;
+	bh=vUJao5RA1FECEfxSWQAdWVDba5icQlbRNS/+nM7I1XA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Y78eKOdRFrLUEiUBM1SjlXL7oRujznCCqxO9wf2G2oOD9TN2Ebo6oDaN8UqBIfxeb
+	 aWnLSJptIzyb6deKVSSSaG88mP/gOk6blsI0ixxK0+ugCcbLT1sTUEH+wPSqqoFCzd
+	 NrDwhODn1LHwSSlOcsHP+Z2yBK+YWGzd3S51vCqksTihqk7j4GjdvM6dfDYLosMJQC
+	 XgEAIne+vE4btJf6fvGkPkSjMIwj7l1TtRocV9S04g7Jz/aJY1+DhtiW03cOXkXjxc
+	 sJZ9LtUJAz42jN4OnviELHlaWXL/q9M6Lhuf6E6+CxlrrIShttRlcoaJckbAksStvY
+	 mbWRrlg51jbGA==
 From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Trevor Wu <trevor.wu@mediatek.com>,
-	Jiaxin Yu <jiaxin.yu@mediatek.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] ASoC: dt-bindings: mediatek: Simplify
- mediatek,clk-provider
-Message-ID: <20250514-stir-porridge-b52d88b50ae1@spud>
-References: <20250514105702.28622-2-krzysztof.kozlowski@linaro.org>
+To: Ben Zong-You Xie <ben717@andestech.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	tglx@linutronix.de,
+	daniel.lezcano@linaro.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	tim609@andestech.com
+Subject: Re: (subset) [PATCH v4 0/9] add Voyager board support
+Date: Wed, 14 May 2025 16:53:34 +0100
+Message-ID: <20250514-spherical-spindle-0315375167ea@spud>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250514095350.3765716-1-ben717@andestech.com>
+References: <20250514095350.3765716-1-ben717@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5CRYNW3obN/3u7l6"
-Content-Disposition: inline
-In-Reply-To: <20250514105702.28622-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=566; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=o01yVTTzZFhpDmtQ1GzGggNP3iMTUpd+Z6Ki8ySZNTY=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDBkqe2plgqcGXXx24ZJRo7eKQ0z/e+93Vx9a5G6+3NHcd vhTz3+OjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAExkzURGhpvcXafWN5TLGk0V kuDQE2MseHjPKVR0cfSi1uzww2WX5zEyHFtzLcn4jujdLJevx6ZcnXtsso5DEvskM7Fwjw8iR5f 1cgEA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
---5CRYNW3obN/3u7l6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 14 May 2025 17:53:41 +0800, Ben Zong-You Xie wrote:
+> The Voyager is a 9.6” x 9.6” Micro ATX form factor development board
+> including Andes QiLai SoC. This patch series adds minimal device tree
+> files for the QiLai SoC and the Voyager board [1].
+> 
+> Now only support basic uart drivers to boot up into a basic console. Other
+> features will be added later.
+> 
+> [...]
 
-On Wed, May 14, 2025 at 12:57:03PM +0200, Krzysztof Kozlowski wrote:
-> "mediatek,clk-provider" property is a string, not an string array, thus
-> "items" is not really correct.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Applied to riscv-cache-for-next, thanks!
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+[6/9] dt-bindings: cache: add QiLai compatible to ax45mp
+      https://git.kernel.org/conor/c/51b081cdb923
 
---5CRYNW3obN/3u7l6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCS7zQAKCRB4tDGHoIJi
-0vucAP0ZLj98/0xHcsnZq3ruzOd9P3Y0Z5wyirXAYCFjg+5G2QEA92rfx6Wpafbl
-JUg58i+SRsWf56f7tK0VKcHUSIbJPAk=
-=KTct
------END PGP SIGNATURE-----
-
---5CRYNW3obN/3u7l6--
+Thanks,
+Conor.
 
