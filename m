@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-177226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4CF9AB6B8B
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 14:38:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAD92AB6BA0
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 14:43:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 917964A382F
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:38:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C8F04C408A
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:43:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55BF72777ED;
-	Wed, 14 May 2025 12:38:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4568927979A;
+	Wed, 14 May 2025 12:43:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b1h+8wh4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wlm2+c1W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 282CB277038;
-	Wed, 14 May 2025 12:38:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 187F125C71A;
+	Wed, 14 May 2025 12:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747226318; cv=none; b=MxJeaaLrtoCoDkgDhH+HvaEMGCvDPhWg/IKGfEcmXMGN/qbpA04c0EgNoi8kUIMfKNY7m1Rau8K1HdyzvAV23d5j7kfPCJ/e1yqgo+dnRFX7zJWoOO6Fdu9iG/WSx3gfH3rX7PPMfwrdoW7uhQAu1BFGuSl09S1Xooi684M3ZPE=
+	t=1747226599; cv=none; b=uiTOU/flSlSFOgiMXFZMGHrPCYlRoVHL8GCbqbxhbGNrDpzW0poa908Puc0FrNH0EdK2lyPaJxKKuhHXH8naEo6aMGelkwhJTNuDyjDWFUvI8caKz3EgNT4ulD4fqu/ULFh0ki9sstYgkvneTd7P0p2098c7QL2KG6EQtb9u3Yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747226318; c=relaxed/simple;
-	bh=ZRAbtDLU7nP6o3LdOmMc3nAAyiNgbM8NKuOVKfOJ8W8=;
+	s=arc-20240116; t=1747226599; c=relaxed/simple;
+	bh=D/UhFncoTOD+fb3+ydS2upDmu7EB98QPAuGaj00u5jo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ji46UF2tUg3bgIm2v0d5PmIRnX8z15bP4VVBeJ7dvlH/UQSt/vx/2YhIm6FhPFPyDswO3P6CRU9NxWIWJTwKGO5E4xHQlNTL3R853A7k6MGQLvhqt1iQN8lEyDPcPAqknb9VuSUlrzIEGX0CLcE8NDON+LIO6nTJrYwFrgsMtVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b1h+8wh4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E945C4CEE9;
-	Wed, 14 May 2025 12:38:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=k80sEwtRUqq0cKZyja7EQ86FHB4Eh6C4m4xsWJn1BUe1kqH80n6tp0/lXh5cR+L6IM/UGbVq1dx0PFIE8Ex9lSVMd+E9R5N4UGQdlldQZ30wabLDQCdeX19Bm1AbtLEFUBNapr12Q5o942LwDQuBh1rD2rEVDPCAw8W0WQV04RE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wlm2+c1W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AEA3C4CEF2;
+	Wed, 14 May 2025 12:43:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747226317;
-	bh=ZRAbtDLU7nP6o3LdOmMc3nAAyiNgbM8NKuOVKfOJ8W8=;
+	s=k20201202; t=1747226596;
+	bh=D/UhFncoTOD+fb3+ydS2upDmu7EB98QPAuGaj00u5jo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b1h+8wh4M9WYHlvQBBJt8UhjWW7n06dcTRpU2HcbXxZEwu9RwNhTKVPC+yneJNMZB
-	 x3ZjUS+ohxAGqbDVY3NbF/kh9sr/2xDsubiKpuNayqz6l20/BnBiIxw+eyB7K0yohf
-	 BtMf3re71j5ozdb66cSmRypL8rn4FvcMbLJRv6vLZqO2BD4lIe3MAbvavBmqQ/5nyL
-	 VfiavAY79QjbnoEzqpIxCcJI1KS/54rXt3Ze7KeZcTSmC5emLahMzJp4C1Ok28JZHu
-	 wuWOAN2cqHoz1SYrTYFS5/BLqqhx+gHCZVuOA2DiOzEPNDaUbwwudf5onaHfoExTNe
-	 yTPDuje/sgJ8A==
-Date: Wed, 14 May 2025 07:38:35 -0500
+	b=Wlm2+c1WoBARvxNkE2J1kIKh0KgE/rWg6Li4Br2uQjHmtItBVy2zt4/IUKcFs3W00
+	 F2GBZQAsjxI9SDdJ35sVDM0u4uJ4/BgahzwXyRDH/wqRSjM73wUPEHWJj6bL36E0/S
+	 TB95yXaRj5rnjesp/8I3aDcHBQM+dwVW+AUjbr7+ETW6QciXU6haseIO+BJzuTJZt/
+	 gCECTsv78TsN00uUeTmbjK6siPuSAdzWWyt5vIsM4K/5k+o7SjTUPwNHXlzcMRYJEZ
+	 R6t9+rXvS7jAxHMvcZyPv7J3gcSECd1BbBOnwTsuKDzZ5qMpxE49fnHfoL6usQkr8t
+	 PclJojWMhXjnw==
+Date: Wed, 14 May 2025 07:43:14 -0500
 From: Rob Herring <robh@kernel.org>
-To: Markus Burri <markus.burri@mt.com>
-Cc: linux-kernel@vger.kernel.org,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manuel Traut <manuel.traut@mt.com>, Marek Vasut <marex@denx.de>,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	Markus Burri <markus.burri@bbv.ch>
-Subject: Re: [PATCH v3 6/7] dt-bindings: rtc-rv8803: add tamper detection
- property node
-Message-ID: <20250514123835.GA1729201-robh@kernel.org>
-References: <20250513161922.4064-1-markus.burri@mt.com>
- <20250513161922.4064-7-markus.burri@mt.com>
+To: dongxuyang@eswincomputing.com
+Cc: mturquette@baylibre.com, sboyd@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com
+Subject: Re: [PATCH 1/2] dt-bindings: clock: eswin: Documentation for eic7700
+ SoC
+Message-ID: <20250514124314.GA1770882-robh@kernel.org>
+References: <20250514002233.187-1-dongxuyang@eswincomputing.com>
+ <20250514002516.290-1-dongxuyang@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,104 +62,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250513161922.4064-7-markus.burri@mt.com>
+In-Reply-To: <20250514002516.290-1-dongxuyang@eswincomputing.com>
 
-On Tue, May 13, 2025 at 06:19:21PM +0200, Markus Burri wrote:
-> Document tamper detection property for epson,rx8901 rtc chip.
-
-Looks like a lot more than 1 property. Explain the feature and why it is 
-needed. What the change is is obvious reading the diff.
-
+On Wed, May 14, 2025 at 08:25:16AM +0800, dongxuyang@eswincomputing.com wrote:
+> From: Xuyang Dong <dongxuyang@eswincomputing.com>
 > 
-> Signed-off-by: Markus Burri <markus.burri@mt.com>
+> Add device tree binding documentation and header file for
+> the ESWIN EIC7700 clock controller module.
+> 
+> Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
+> Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
 > ---
->  .../devicetree/bindings/rtc/epson,rx8900.yaml | 40 +++++++++++++++++--
->  1 file changed, 37 insertions(+), 3 deletions(-)
+>  .../bindings/clock/eswin,eic7700-clock.yaml   |  43 ++
+>  .../dt-bindings/clock/eswin,eic7700-clock.h   | 588 ++++++++++++++++++
+>  2 files changed, 641 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+>  create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml b/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml
-> index 03af81754482..c2e542c9bdc6 100644
-> --- a/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml
-> @@ -9,9 +9,6 @@ title: EPSON RX8900 / Microcrystal RV8803 Real-Time Clock
->  maintainers:
->    - Marek Vasut <marex@denx.de>
->  
-> -allOf:
-> -  - $ref: rtc.yaml#
-> -
->  properties:
->    compatible:
->      enum:
-> @@ -33,6 +30,43 @@ properties:
->  
->    wakeup-source: true
->  
-> +  tamper:
-> +    description: Subnode for tamper configuration. This
-> +      subnode is only available for epson,rx8901.
+> diff --git a/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+> new file mode 100644
+> index 000000000000..c39fa99b503c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/eswin,eic7700-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Eswin EIC7700 SoC clock controller
+> +
+> +maintainers:
+> +  - Yifeng Huang <huangyifeng@eswincomputing.com>
+> +  - Xuyang Dong <dongxuyang@eswincomputing.com>
+> +
+> +description: |
 
-Wrap at 80 char.
+Don't need '|'.
 
-> +    type: object
-> +    additionalProperties: false
+> +  The clock controller registers are part of the syscrg block on
+> +  eic7700 SoC.
 
-blank line
-
-> +    properties:
-> +      buffer-mode:
-> +        description: Set the buffer mode to inhibit (0) or overwrite (1).
-> +        minimum: 0
-> +        maximum: 1
-
-Could be boolean?
-
-blank line
-
-> +    patternProperties:
-> +      "^evin-[0-3]$":
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        minItems: 3
-> +        maxItems: 3
-> +        description: |
-> +          Event input pin configuration.
-> +          The configuration is an array of tree values and contains
-> +          "pull-resistore", "trigger" and "filter".
-
-pull-resistor
-
-> +          For a detaild description, see epson-rx8901 datasheet.
-
-detailed
-
-blank line between paragraphs.
+Wrap at 80
 
 > +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - epson,rx8901
-> +    then:
-> +      properties:
-> +        tamper: true
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: eswin,eic7700-clock
 
-Don't need this. It is allowed by default. Invert the if.
+Drop 'oneOf' and 'items'.
 
-> +    else:
-> +      # property is not allowed:
-
-Drop comment
-
-> +      properties:
-> +        tamper: false
 > +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.39.5
-> 
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/eswin,eic7700-clock.h>
+> +
+> +    sys_crg: sys-crg@51828000 {
+> +        compatible = "syscon", "simple-mfd";
+
+Must have a specific compatible for the block.
+
+> +        reg = <0x000000 0x51828000 0x000000 0x80000>;
+> +        clock: clock-controller {
+> +            compatible = "eswin,eic7700-clock";
+> +            #clock-cells = <1>;
+
+There's no need for a child node here. Just add '#clock-cells' to the 
+parent node.
+
+> +        };
+> +    };
 
