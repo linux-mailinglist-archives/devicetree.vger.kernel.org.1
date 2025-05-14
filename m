@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-176969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48F54AB606A
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 03:20:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A3E2AB6079
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 03:35:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D114A4A2740
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 01:20:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05C3E463A8A
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 01:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C656C13CA9C;
-	Wed, 14 May 2025 01:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D1A170A26;
+	Wed, 14 May 2025 01:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LVnbcZ6I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FdnemOgK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961223C465;
-	Wed, 14 May 2025 01:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1331DFF7;
+	Wed, 14 May 2025 01:35:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747185618; cv=none; b=jDTb6sr8bSVR9cRrBfOZa5n1kJ/SJUsbhsPg4HQNVgarRJMU8RsI0RHzuhRjEz6jxKnprlRh8J2YzMKzvON3K08RzjZSkupX6+nFvpriq0pgFsrVJkiSAXh2UFipTJoUAD9ItKU0sOHncEmRPHM1DMVpDECf2RMZ0Srv+lhWrys=
+	t=1747186524; cv=none; b=bbofwORvwdDyAl267SQtRZoESHd0aA4IQdGdQc1H6QVF8kjdE+Wct9dOMIZ5OBZMWKnpbFyQlXq+lvYWi82bgvfcng1ydDtyhdwezk+Go5ya0bbfBuHLfDl6/ZlchS5NaBAfel6todMIU+nyCM+p0qvvx8ErYbx09J2ZoyDP3m8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747185618; c=relaxed/simple;
-	bh=KdGOJpWhkG5aCZovyVjlPOMdNid9TydX7NrAFCJGDjA=;
+	s=arc-20240116; t=1747186524; c=relaxed/simple;
+	bh=Im7N0oKWDU/sVPmXcPmyEfKbD0S7NlMA6kBuG2IflwM=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=MsHY4h0b4ZklZvUO2Z4R5rptfNVHyKrZZQKopEndbaHf3Qxrn1us/ws1YEuZI8yRt0gSPUqW3zsV2VlSewMdOiwlAHwb/BHCz1lwMmr9l7EvgBq+V3AQ+SYIxxP0d+Zr1pSg1rdIXvCTdJMPb+7tiZg5FFak5FNhfYOFaV60ipI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LVnbcZ6I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD5AAC4CEE4;
-	Wed, 14 May 2025 01:20:15 +0000 (UTC)
+	 Message-Id:Subject; b=DCbwOWGRws9aTg5fBy2+PeEhuofaHeqP7WPJ2w2ToecaIEpg7x8Bf2jetGkZNkCLzJEEvzviTeluqyghtk41HpBpqZCdn9gI4pvdQ7vVd3Plgy+yI4uU0T4V51dFUu6hKbWVVg/PYEBwHmqBJuZ62OFBUARhOuPi3WDQrq0npvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FdnemOgK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1D1AC4CEED;
+	Wed, 14 May 2025 01:35:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747185616;
-	bh=KdGOJpWhkG5aCZovyVjlPOMdNid9TydX7NrAFCJGDjA=;
+	s=k20201202; t=1747186523;
+	bh=Im7N0oKWDU/sVPmXcPmyEfKbD0S7NlMA6kBuG2IflwM=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=LVnbcZ6IbRsHUSEP7DCi6RcHJn+aTvvSA/QNWMkyu/yQljQafO0gJg06ArLlE3uXf
-	 vr7pH3yiSTi+MBX4S6NhkmnwjjDGMAVMY0ik5RckJDjuhP6cw0BLhqXzjklQf54lZW
-	 ZU4b/3URTI4BLp9WNhqDJrUKWxg0Sz27IdmTCCBgvaO6pmvnynHHDbjZYoWfxgl5X8
-	 U9FYlt1eyFgZF/T0rwdffNVbrX4W06dYnVB4xpbRGv7SiAgU3s9ED/sVnPorqoOYTH
-	 zDPI2bsOFyqL0bs1MhDknacjGPQnq0315sQ1Lzt8nFd/Pc/bZX3/ykNAF9ZLyM6aEX
-	 oU91Dk1w4e7RA==
-Date: Tue, 13 May 2025 20:20:14 -0500
+	b=FdnemOgK87ktFsdK4vpGVK27n1qyCGaFCflx8j1ynsUIdzmLcJZ8Zve7+PP/Y/YRb
+	 GAaF3dLuzZw8wxKEnp5nx17q72ELJ6MVXCCNBzyG4P585sl0N4wcXUZcYhVdUwQ4jZ
+	 utWUMucYu6fHtE6IxoV989HfWf+2dX+FPXRLU7zKHJQoX7OSEMOiCI6A6KRYMvS+OK
+	 VhfV1Qs9gsLb/0OiEwxNhqi1N6ZSmbZ9/T5ueNVEHDA/NO47OUvFpivgmTStTDNOGF
+	 6QrkDEJAsq9Y90M63wgX4/yNTT8Er/8Sfnf9f1/t0ZwdKDeTtNdgGLpRcPGvR0syIz
+	 V5mjoR+gtIrfg==
+Date: Tue, 13 May 2025 20:35:21 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,34 +51,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linmin@eswincomputing.com, krzk+dt@kernel.org, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- mturquette@baylibre.com, sboyd@kernel.org, ningyu@eswincomputing.com, 
- conor+dt@kernel.org, devicetree@vger.kernel.org, 
- huangyifeng@eswincomputing.com
+Cc: krzk+dt@kernel.org, huangyifeng@eswincomputing.com, 
+ p.zabel@pengutronix.de, ningyu@eswincomputing.com, 
+ devicetree@vger.kernel.org, conor+dt@kernel.org, 
+ linux-kernel@vger.kernel.org, linmin@eswincomputing.com
 To: dongxuyang@eswincomputing.com
-In-Reply-To: <20250514002516.290-1-dongxuyang@eswincomputing.com>
-References: <20250514002233.187-1-dongxuyang@eswincomputing.com>
- <20250514002516.290-1-dongxuyang@eswincomputing.com>
-Message-Id: <174718561404.161129.10398945158829194944.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: eswin: Documentation for
+In-Reply-To: <20250514003121.473-1-dongxuyang@eswincomputing.com>
+References: <20250514002945.415-1-dongxuyang@eswincomputing.com>
+ <20250514003121.473-1-dongxuyang@eswincomputing.com>
+Message-Id: <174718652184.181383.530303771736709791.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: reset: eswin: Documentation for
  eic7700 SoC
 
 
-On Wed, 14 May 2025 08:25:16 +0800, dongxuyang@eswincomputing.com wrote:
+On Wed, 14 May 2025 08:31:21 +0800, dongxuyang@eswincomputing.com wrote:
 > From: Xuyang Dong <dongxuyang@eswincomputing.com>
 > 
-> Add device tree binding documentation and header file for
-> the ESWIN EIC7700 clock controller module.
+> Add device tree binding documentation and header file for the ESWIN
+> eic7700 reset controller module.
 > 
 > Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
 > Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
 > ---
->  .../bindings/clock/eswin,eic7700-clock.yaml   |  43 ++
->  .../dt-bindings/clock/eswin,eic7700-clock.h   | 588 ++++++++++++++++++
->  2 files changed, 641 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
->  create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
+>  .../bindings/reset/eswin,eic7700-reset.yaml   |  47 +++
+>  .../dt-bindings/reset/eswin,eic7700-reset.h   | 460 ++++++++++++++++++
+>  2 files changed, 517 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/eswin,eic7700-reset.yaml
+>  create mode 100644 include/dt-bindings/reset/eswin,eic7700-reset.h
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -86,14 +85,14 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.example.dtb: sys-crg@51828000 (syscon): compatible: ['syscon', 'simple-mfd'] is too short
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/reset/eswin,eic7700-reset.example.dtb: sys-crg@51828000 (syscon): compatible: ['syscon', 'simple-mfd'] is too short
 	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.example.dtb: sys-crg@51828000 (syscon): reg: [[0, 1367506944], [0, 524288]] is too long
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/reset/eswin,eic7700-reset.example.dtb: sys-crg@51828000 (syscon): reg: [[0, 1367506944], [0, 524288]] is too long
 	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250514002516.290-1-dongxuyang@eswincomputing.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250514003121.473-1-dongxuyang@eswincomputing.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
