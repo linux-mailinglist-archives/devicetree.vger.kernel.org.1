@@ -1,48 +1,79 @@
-Return-Path: <devicetree+bounces-177159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4987FAB68BC
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:26:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21082AB68C8
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:29:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA4E21659CE
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:26:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC1CC1B41BE3
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:29:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA93C227563;
-	Wed, 14 May 2025 10:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7EC222F16E;
+	Wed, 14 May 2025 10:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mupcZquT"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="NjgICSIA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1D71E04BD;
-	Wed, 14 May 2025 10:25:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A255D25E461
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 10:29:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747218358; cv=none; b=PMrRZPlU4RBINiAuYEFIJ39GuhPWzveUsA0G2eTZVKtoSmyvP0/Ibf53NLkUmRHrVVOzE4cw/j8ZJ/JSNwCqPjCZZvSHZHdXDfu23NwNHKwegx0TTv1CqvSgy4Quh//0olJ7dNrWELOZYi5O0N34gDgqZfEAMbt34d27B5aCazU=
+	t=1747218563; cv=none; b=upUgVC6VhcbQtHF5zYqyeoAHEO1o3VLecvxdKXkhejHAtjgiDnl1T+iesT3zug7He09eJeyCTsiLPYsz+MZvDrNtg2DFNsoTypiQidAJ3rhf5Frw0vghV2llih9MfuPSHyhBbOS3pj11paHOmldG39GNkfmO6erPr/l51v+48xQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747218358; c=relaxed/simple;
-	bh=e26ACJaJd+Lb8VHz4EGlqdJKjr9bE0sx5UJsIIUHXrE=;
+	s=arc-20240116; t=1747218563; c=relaxed/simple;
+	bh=xV5TGWtAjUBbAlGh1TG217UQBJWDrrfWO3odDFRTQMQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TPHyPawhFSOVqWbVMHJehHl8tsbonUHLwxTQVsNCm2iEAiYll1kBfCZE013h16JUTCtgxMjpybxH0O1ctBeSIgoEkLGxEboBLBVDUXiJx5ruTMw+QFXJDTb7SMyAD9sDNLzOl7Ath0Mkt2O1uKac7F4lk2JxdwuyvjvSsuXXyQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mupcZquT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC044C4CEE9;
-	Wed, 14 May 2025 10:25:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747218358;
-	bh=e26ACJaJd+Lb8VHz4EGlqdJKjr9bE0sx5UJsIIUHXrE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mupcZquTAfWOxZ7NZTtaL/C93N60F+0IdLb9ZOd8V1D4sdelIiVdAIs1dlrbkndbR
-	 NHv/ejTbEVzON3MvAnMXLTdX6Jqgi4UNKA2QKXJlg2DCYKE+6n3prRuhM4kCe9VlQ+
-	 FdqynHRCN747EBR79S38TdVGmrn/q/qgQtfI6Xfy8KwcjOoZuqD+pyT25r50jxvS47
-	 VbMpEujzMrOKa+ew3R/7phuAZZR+kjpmE/xf9DOcpLp+QPuU78t7yD2NJKqio2ofh2
-	 oA0xCBr0ZktbeNlfwHJD0E7zJaTawA7YTuH4Zd5KkHoav0tiIKS4jqRf63W/9zqbNO
-	 1GymqPNI5oT6A==
-Message-ID: <959b9c65-50d7-426d-9c2a-64e143e28ded@kernel.org>
-Date: Wed, 14 May 2025 12:25:52 +0200
+	 In-Reply-To:Content-Type; b=C13nBvsJ5jCBFxgr4MIGUrPq07vd4hVMrMOFdMEO/OMNhLwVY9Lcpo9/oPUeHjFypOQdZldQRoGVouY719dqrZmO4q5ehOVqLtoqq3R0YCtAG+wOoFw/qOTn1vF4WqxEMzYqjzUxkDsPVcpTvDKIbuhLmPsHpdlTM9BZPEOaZR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=NjgICSIA; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a0b646eff7so5724645f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 03:29:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1747218560; x=1747823360; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fU4PVewcc9MxNH8+f8DwyzdamtEdKDmr83HGRbxUgQA=;
+        b=NjgICSIAzJ3DZL16X7USYlyLMHxqOLroHevQkmeuCpl+Ri0TdDcsqqISaAdt1riMMI
+         tXYarZgGlKGQ/gRyh4tz4pJAuqe4SCnkPY4sYgu3hqGpqC97V2FQiAJh2thHjp81rcuu
+         YXVPNL/XSLemYI7XE51XVwIZawukvPw8kYKQBliwoKSTeMO5io2tTNC3NEMqIsQgg01U
+         u2rHNkOKmBkY5fvyr8QOkLja9EXaMzxr3GPGGL527BI2IT2lP34CR6gGCcfhlS6M8AUF
+         em3ObpaBU79igYBcesgDsbpXp3YSkOyyLoJRJVXK1a5WIw7f0LttpNoYxuEyodAM7nLZ
+         SicQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747218560; x=1747823360;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fU4PVewcc9MxNH8+f8DwyzdamtEdKDmr83HGRbxUgQA=;
+        b=BiPutm8UD6+oMbrA2ywYnIPkRy/dNi8o19TCImNZMzQa6lZT6ShfhBxKYu2BB2i1/F
+         76gJ56R2QoJOzULGdSWNXLFB72bg9npZ5Urn2QXGK+32dor2nhbMRoQ1Kx2CPVjvcME6
+         HA7wty7dNPCFA4h8LEFOe33/DRUv3pxWdBHwo71nJi3Vy5ylamprweFNNX/kJJSHMTta
+         MZxDg79PJVjkrQhF936Jm2Q3zG9ry0JSD6z+a0YppH8oVNtReTNyOUJgEMgFehAVpcVJ
+         yvTAI6k4EaueBsmUiIsdlDA0tjGnoZxtwvkcRmwedICBLyH53ikJfwRQNj3SF6ys9XVv
+         NHdA==
+X-Forwarded-Encrypted: i=1; AJvYcCU9nrRO0AW4Ll4BJWEOqskQy0V6Mto/XhrBaO86MUhPltq2dII+cHbK4IuQ41nQVWbQ6b0OME4m1Dz6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKFAGAoDEjw9+VCW57dMYn++cu8R//VFTnzjgZWkepDfA5JGA7
+	yeuNDpTV/MY96XSy9zaQiUkxKeMMGlxM2UHDt3HaxzLinJ6LBXPkvajqVNObx4o=
+X-Gm-Gg: ASbGncsai0+wAR8/X+aAI81ZR39YSp2UCvbfRkWeQ/6kKIbQyNAlv/oNTyuskl0Fy2r
+	EMwP0isJ7vfGwvONHCoHYAYh/sbIiANaNGymFOaCkbfFrNZS3hpSdiqItlhUb1KVzowWxgEOeeT
+	AVtUB6+GA14n4SSBi0BLdRgDq5yt3hZafQpDmTx6PbQrZBAZTjV5yN5xr4kQ3uqX0vS5lAq3p3f
+	3zzYPKelUw9LBOpXWWi5Bj/SWJ5OsJGY4Ygt0BWvAkyvzGthL7ZcLJschnvHTnGwRe7njLre7tx
+	1B4ty5UzQRexYMxPc44MBjr1Yh21r4jwZrfScGSWrMkGssrur+1shkKk2Mk=
+X-Google-Smtp-Source: AGHT+IGyw3NxozgVzbMrkAVh72sdE2V/yiO6fwgF41eG84LxNtgGijn9Y7vFEYBwAZhyZjVRwxqXEQ==
+X-Received: by 2002:a05:6000:400c:b0:3a0:aeba:23b1 with SMTP id ffacd0b85a97d-3a349946a98mr1835187f8f.49.1747218559944;
+        Wed, 14 May 2025 03:29:19 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.58])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a22ea7a53asm7334492f8f.23.2025.05.14.03.29.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 May 2025 03:29:19 -0700 (PDT)
+Message-ID: <e470715b-6f76-4b65-b1af-7a24e0432a30@tuxon.dev>
+Date: Wed, 14 May 2025 13:29:17 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,195 +81,112 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] dt-bindings: phy: Add Qualcomm MIPI C-/D-PHY schema
- for CSIPHY IPs
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hans.verkuil@cisco.com>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-References: <20250513143918.2572689-1-vladimir.zapolskiy@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 5/8] PCI: rzg3s-host: Add Initial PCIe Host Driver for
+ Renesas RZ/G3S SoC
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+ manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+ mturquette@baylibre.com, sboyd@kernel.org, saravanak@google.com,
+ p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20250512203851.GA1127434@bhelgaas>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250513143918.2572689-1-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250512203851.GA1127434@bhelgaas>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 13/05/2025 16:39, Vladimir Zapolskiy wrote:
-> Add dt-binding schema for the CAMSS CSIPHY IPs, which provides
-> MIPI C-/D-PHY interfaces on Qualcomm SoCs.
+Hi, Bjorn,
+
+On 12.05.2025 23:38, Bjorn Helgaas wrote:
+> On Fri, May 09, 2025 at 01:29:40PM +0300, Claudiu Beznea wrote:
+>> On 05.05.2025 14:26, Claudiu Beznea wrote:
+>>> On 01.05.2025 23:12, Bjorn Helgaas wrote:
+>>>> On Wed, Apr 30, 2025 at 01:32:33PM +0300, Claudiu wrote:
+>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>>
+>>>>> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
+>>>>> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
+>>>>> only as a root complex, with a single-lane (x1) configuration. The
+>>>>> controller includes Type 1 configuration registers, as well as IP
+>>>>> specific registers (called AXI registers) required for various adjustments.
+>>>>>
+>>>>> Other Renesas RZ SoCs (e.g., RZ/G3E, RZ/V2H) share the same AXI registers
+>>>>> but have both Root Complex and Endpoint capabilities. As a result, the PCIe
+>>>>> host driver can be reused for these variants with minimal adjustments.
+>> ...
 > 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->  .../devicetree/bindings/phy/qcom,csiphy.yaml  | 110 ++++++++++++++++++
->  1 file changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/qcom,csiphy.yaml
-
-
-Looks like not tested, so limited review follows.
-
-Filename matching compatible.
-
+>>>>> +static void rzg3s_pcie_update_bits(void __iomem *base, u32 offset, u32 mask, u32 val)
+>>>>> +{
+>>>>> +	u32 tmp;
+>>>>> +
+>>>>> +	tmp = readl(base + offset);
+>>>>> +	tmp &= ~mask;
+>>>>> +	tmp |= val & mask;
+>>>>> +	writel(tmp, base + offset);
+>>>>> +}
+>>>>
+>>>> Nothing rzg3s-specific here.
+>>>>
+>>>> I think u32p_replace_bits() (include/linux/bitfield.h) is basically this.
+>>>
+>>> I wasn't aware of it. I'll use it in the next version. Thank for pointing it.
+>>
+>> I look into changing to u32p_replace_bits() but this one needs a mask that
+>> can be verified at build time. It cannot be used directly in this function.
+>> Would you prefer me to replace all the calls to rzg3s_pcie_update_bits() with:
+>>
+>> tmp = readl();
+>> u32p_replace_bits(&tmp, ...)
+>> writel(tmp);
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,csiphy.yaml b/Documentation/devicetree/bindings/phy/qcom,csiphy.yaml
-> new file mode 100644
-> index 000000000000..ef712c5442ec
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/qcom,csiphy.yaml
+> It seems like this is the prevailing way it's used.
+> 
+> You have ~20 calls, so it seems like it might be excessive to replace
+> each with readl/u32p_replace_bits/writel.
+> 
+> But maybe you could use u32p_replace_bits() inside
+> rzg3s_pcie_update_bits().
 
-Please post the driver or any other user. Or explain why this is RFC or
-what you expect here from us.
+I tried it like:
 
+#define rzg3s_pcie_update_bits(base, offset, mask, val)	\
+	do {						\
+		u32 tmp = readl((base) + (offset));	\
+		u32p_replace_bits(&tmp, (val), (mask));	\
+		writel(tmp, (base) + (offset));		\
+	} while (0)
 
-> @@ -0,0 +1,110 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/qcom,csiphy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm CSI PHY
+But the mask may still depend on runtime variable. E.g. there is this call
+in the driver (and other similar):
 
-SM8250 ?
+static void rzg3s_pcie_msi_irq_mask(struct irq_data *d)
+{
+        struct rzg3s_pcie_msi *msi = irq_data_get_irq_chip_data(d);
+        struct rzg3s_pcie_host *host = rzg3s_msi_to_host(msi);
+        u8 reg_bit = d->hwirq % RZG3S_PCI_MSI_INT_PER_REG;
+        u8 reg_id = d->hwirq / RZG3S_PCI_MSI_INT_PER_REG;
 
-> +
-> +maintainers:
-> +  - Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> +
-> +description: |
+        guard(raw_spinlock_irqsave)(&host->hw_lock);
 
-Do not need '|' unless you need to preserve formatting.
+        rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_MSIRM(reg_id),
+                               BIT(reg_bit), BIT(reg_bit));
 
-> +  Qualcomm SoCs equipped with a number of MIPI CSI PHY IPs, which
-> +  supports D-PHY or C-PHY interfaces to camera sensors.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sm8250-csiphy
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 2
+}
 
-Need to list the items instead
+reg_id is a runtime variable and cannot be checked at compile time thus the
+compilation of u32p_replace_bits() fails with:
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  vdda-csi-0p9-supply:
-> +    description: Voltage supply, 0.9V
-> +
-> +  vdda-csi-1p2-supply:
-> +    description: Voltage supply, 1.2V
-> +
-> +  '#phy-cells':
-> +    const: 0
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    description: CAMSS CSIPHY input port
-> +
-> +    patternProperties:
-> +      "^endpoint@[0-1]$":
+../include/linux/bitfield.h:166:3: error: call to ‘__bad_mask’ declared
+with attribute error: bad bitfield mask
+  166 |   __bad_mask();
+      |   ^~~~~~~~~~~~
 
-Keep consistent quotes, either " or '
+Please let me know if you have other suggestions.
 
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            minItems: 1
-> +            maxItems: 4
-> +
-> +          bus-type:
-> +            enum:
-> +              - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
-> +              - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
-> +
-> +        required:
-> +          - data-lanes
-> +
-> +    oneOf:
-> +      - required:
-> +          - endpoint
-> +      - required:
-> +          - endpoint@0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - interrupts
-> +  - '#phy-cells'
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sm8250-csiphy
-> +    then:
-> +      required:
-> +        - vdda-csi-0p9-supply
-> +        - vdda-csi-1p2-supply
-
-This makes no sense - it is only sm8250 - so this if is always true.
-
-
-Best regards,
-Krzysztof
+Thank you,
+Claudiu
 
