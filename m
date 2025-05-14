@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-177366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47D2EAB71A9
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 18:39:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA4C4AB71CB
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 18:43:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9463A163AE2
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:39:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42B68162242
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A8927F165;
-	Wed, 14 May 2025 16:38:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919B728136E;
+	Wed, 14 May 2025 16:40:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sW83iroB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MNymLfdW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2909B27EC78
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 16:38:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5B727E7C6
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 16:40:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747240733; cv=none; b=j5dQNubMqinKfVvY7YrBZ85jbhPAxuiw/lsPHjXe3pg4P2UOLBoYcGRNDymAuMarV7sH7KK/HM0vjCgDyycAiudwlsBUSdd0af8xxtPg5KPHR+9o1nqtapXCTgZQss6ZeuSg14qYDCL6Yl20vC6fzqatHTIraiPy+L25tm4jsbo=
+	t=1747240809; cv=none; b=Lt9+PJY5CjYWd2Dj2BMetnxXdk2HzqcAqtvKXcT/NIRphh2l+HqFJSYBmWxyzjc6/oKZjagHOuSgvyvCdWtBfwTQCOJKxgyB+lhhhCrHUvuuV+28Jf/8CfHUCEFqtpY2A9ySfaEXXXMRDhVjI7CDq5m78duo+HZPRHCgx5zruWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747240733; c=relaxed/simple;
-	bh=dXpnZ6HRybe9ZHnb0gl+9DoZpwf4gIs/LTIwEUxBnN8=;
+	s=arc-20240116; t=1747240809; c=relaxed/simple;
+	bh=qsRC4rtpzeZl/HCQxJZ/jiHUAZWLUGs7TC++Y1ifxbs=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=OEpvCpN6oWQIWRjJtwaHdrPJQFn6p8ZkTlQdBcBiTP5ChYhxuIOB+FiDSRI6qDij8RL2PfiZoNGC20cjOWKhQRLBAkrTaBMWEik8zO/LrmHpklm8b9A7Bg0KTL7fUrKDwubVTMwqe6cH3e4QmpXlD7R8VubznXkYpTC2twNbOLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sW83iroB; arc=none smtp.client-ip=209.85.128.47
+	 In-Reply-To:Content-Type; b=HR0Jgu01f+0l+zqAkjUUU/uMmwpEemeeaJ0Ty50qyYZh/dGYEX45KBuzXg3pLCrbywDrzZNJMT70vz3u5FyZRUtfup0i2XS3PsrlHaRlxZD01i6O/CTPpqmMUACEPv2dYfPgVQRsmT8Scjq3etmb0sHu+5FBlgbfNqrfAWmebQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MNymLfdW; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-442ccf0e1b3so163105e9.3
-        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:38:49 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a1fb18420aso5155119f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:40:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747240728; x=1747845528; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1747240806; x=1747845606; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+dP5YcbeqpFYvCKe+8FnH1GIVDVz3AECYHXjeJJujU4=;
-        b=sW83iroBO8TwjntS6U4g1IxbESl/D/U+yIzc7tCwt/esnNt5gAshkN4sFQESAg/lot
-         b9LpVGGKMH3QYIel09Vb1W//cERBSDvzgxe3oz/u2+AS9uFY8Ydz7mMn2RWYEIPWLobp
-         SeeKj2+MEREODg/0EeAiCDyGrdCvJW7zItqnLXlukzgBZunGCUsFGL8psYiacwcfawz9
-         3T/efd6oE2Ay3or+cBzYyyuGMucbHxLgG1yuSejODhj5rtUTMkT9ojS6EjwLRkM7pZ1M
-         xPnTAeVKjRqpZ3R4+dyyhBhkCrHF/WrwaPo14lYpD3qIkEgiDP9N/4Fq9iBGzZBMBiwa
-         KS2A==
+        bh=Z8WZ1b2439ywq9jfEuQpDBO1suID2dCRujieJMdn7yE=;
+        b=MNymLfdWywwCMD3mwZeiObXjVQ3vpq9Bh0G9RTErj3NGj5K4LQke9kKt8huzcg4/ws
+         AOp9sKusNTzGnkfBzL8Jd3bGMftfuT1LtcFHDrgvB2FlEsPIpw0UmXPuYShlzcJ5IyeL
+         u5JN+3wE2PPuReT5dUATNGZiD+bu2E48zXWaSqWYo6pDxMm53WIB4/5UETfYrJ3EfL3L
+         SO2V3yDmc8nnlYesFtqv2f+ZlXRRf8JFMGKsN48OXJqdUfafBOdivq7g7t1rtZeJYHZG
+         TF6hEjqT4k4d9TDJ89aq9qdr+giXtmK0vVeW8L2Ng8qGDs+AnV8BeFjdOmEIh/QplHqh
+         kVMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747240728; x=1747845528;
+        d=1e100.net; s=20230601; t=1747240806; x=1747845606;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=+dP5YcbeqpFYvCKe+8FnH1GIVDVz3AECYHXjeJJujU4=;
-        b=ngk9rAbHHhXfoab8aM6DVBQhaY8GOljN8359zqNySBF6hXvQ/Vx8AA/5q1lgAoMBBW
-         5qBTORutN3lbmH26tlOWxuD33/0ZvhdD5LQ2n1sDYK4HjZff/UKHm8u2taElPxv810OH
-         KwKj3BatpQEJJrQBfUb8iSXi3DYol+WakeMAYUra6IKdO3whnLSaaWEPp9DkLVqqeJsV
-         YeADOJUerum4GAcNAvpvNvdpBc4fruZCtI6av7TsfcZLwSr4UAAJnWoZWPe9l8qjOwvt
-         ZxMOVsfQOeZJ+HjCszvmOsqC+tOgGE1/ZFkBiGhQLesEEDrcN0mHGK/4wiS604OfTkK1
-         QpPw==
-X-Forwarded-Encrypted: i=1; AJvYcCVDlOKqMhjRTZ850Tq2VbE5z7xLad+kLfuBIR4Pg64UjChwKRovf/eTD+4AtsxY/BcCdsJxjRcqY+DR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLlIZH4w6HwgKh1AxgVdi4P6TSgecQPuLjtvUsNKzq+k/bux0S
-	/b0wH+2ElxfzOFyHmEuEodmG6a0EL5ol/AeOqaxUiFF39u4TmNfKjsvGmPtcrGw=
-X-Gm-Gg: ASbGnctauxXminiflN6vyZih9VYuEiiUJtxQKPDKNfwwessFWz8Pm8LgpGR120l7TUW
-	6HDU6SE18lwQ/UXhtF9hZHb19Mlz0CHvu8pWArfCaVUsND4YrGlLAvooKVRy0MRw55Ni+8Qp+SH
-	XRcfs6D/C+IXqXOtspP6yOdYwcPk32fAeX6fi8aC9vKxgQi9mV7zY4moB9LAhCc8iiJZ3tmC8Zl
-	rhtkuoND5Rk56ynQYo/ISSoX07J/aRuKG+kvatkYWIVqD82wHZq6IdMHu4pshLYnv8oBt7Tc7K2
-	g6kSF+5k0SHrrExp0pRkfkjK2dKN8aOv/V5lYafQB0bBF8tWDqm3OVmynrzXDdrO4vEiKoZyw5P
-	lzPDwgHQT6ejY
-X-Google-Smtp-Source: AGHT+IEAkwKKEEQ70f0VyhVcMUc6RQxJdEmZDC90di0ICcfqr62LT/lvi+L8lcGRQvc66pK/aI2j2Q==
-X-Received: by 2002:a05:600c:1385:b0:43d:b32:40aa with SMTP id 5b1f17b1804b1-442f20baa06mr44937335e9.3.1747240728450;
-        Wed, 14 May 2025 09:38:48 -0700 (PDT)
+        bh=Z8WZ1b2439ywq9jfEuQpDBO1suID2dCRujieJMdn7yE=;
+        b=LJDcf3uptdYxdyOqKxZqJYmXxTiNwkld8IX/2lg7bPOt7+GeLmj+iOKKWIHaANh+o1
+         pwYJ9X1LWqoPR78GvWLKYfiL99z0b3XqM/npynilulerE9FAw5ACN98V6qUcA/ITyp9x
+         mViaLx1dmmbVPxVARN/lkg2zNikFxIefmXspTicdUjyzsvgvy/vdxuKYMI94iUruJJfF
+         enzBhB7AGavnfhHPE0vPQCLE/v1YuvxGjLvIHTLaHXHBaSpLlIVI4NJe9Lt3nM/VzSKq
+         kE5OfoXVTu1xHX+zeLClsu6Pb/v0e8PPQBXg8wTYfIln5EQ7QrefFwx9oNU3M3nO+kGY
+         cpgA==
+X-Forwarded-Encrypted: i=1; AJvYcCVJSH2EHPPOMpjxX0IdVmABi5zjSs0rDECDPPc1EdNDVrsUsiWLE2JmXBRpoYGOo0zBTpopZyTD2qc/@vger.kernel.org
+X-Gm-Message-State: AOJu0YysojXBrMjW8C8+SxXBDdbxcrJgxApWHkug+W98D4Hh0/zj+us+
+	L6//Uu22rGAZyt5ZJlcyjK4SHlvD5SkGkWFGxEnqW5fn/p+Mxe9tzBJPWi+9clk=
+X-Gm-Gg: ASbGnctXK8tXmkL7p6k9cM7OPYeHDjJbM40aA+yFLjQRdmD5ltjWKsdqtV3iG/U3NC1
+	5xGfIzYQxshe4aX38ttPuuVVxBrbFXjYBNurU0sFzsJeH3IAtASd/8n7A5Wr3SboOmpqiQMt9E7
+	aM/krX8xBRAQrYwRkMygkOWv+yKz23K5wx0I8nstCLIKUWrl3Hn0NFPbr2DECplw8jm8xcw/Iqn
+	ZCNAB9n+KiPo8CzqCQMYqEfC5nEx7XzaTsdddD6S5vVpQjG1SaUxXCE9h6FOwcPpiYkDkFDRnia
+	Ng/wYTxr2nJrtvYCgLSB+W8IxzGreouqsCfAcCHxgTtHSXKpwVyvuHs998eqTwSRs6SAb+zKPnf
+	4O5M0YGDiFzOUEM1Id70ODgg=
+X-Google-Smtp-Source: AGHT+IEPbAF4Q3bMuaTmqRM9qQbhF4Gz5x0v56o5JMbzAafCu6BVNra2bXvw9299wzIEP0EieOV7oA==
+X-Received: by 2002:a05:6000:2088:b0:3a1:f5c6:2bd with SMTP id ffacd0b85a97d-3a3496c36d5mr3666848f8f.31.1747240805928;
+        Wed, 14 May 2025 09:40:05 -0700 (PDT)
 Received: from [10.61.1.139] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a4c76dsm20425558f8f.92.2025.05.14.09.38.46
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a2ce36sm20542941f8f.71.2025.05.14.09.40.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 May 2025 09:38:48 -0700 (PDT)
-Message-ID: <8ba99df8-012b-4883-af6a-970dd9f877f6@linaro.org>
-Date: Wed, 14 May 2025 18:38:45 +0200
+        Wed, 14 May 2025 09:40:05 -0700 (PDT)
+Message-ID: <43aac8b0-1fec-4b2a-8046-c26f96ca532e@linaro.org>
+Date: Wed, 14 May 2025 18:40:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,8 +86,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sa8775p: Remove max link speed
- property for PCIe EP
+Subject: Re: [PATCH v2 1/2] phy: qcom: qmp-pcie: Update PHY settings for
+ SA8775P
 To: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>,
  Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -99,7 +99,7 @@ Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
  quic_nayiluri@quicinc.com, quic_ramkri@quicinc.com,
  quic_nitegupt@quicinc.com, Mrinmay Sarkar <quic_msarkar@quicinc.com>
 References: <20250514-update_phy-v2-0-d4f319221474@quicinc.com>
- <20250514-update_phy-v2-2-d4f319221474@quicinc.com>
+ <20250514-update_phy-v2-1-d4f319221474@quicinc.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -126,47 +126,39 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250514-update_phy-v2-2-d4f319221474@quicinc.com>
+In-Reply-To: <20250514-update_phy-v2-1-d4f319221474@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+
+Hi,
 
 On 14/05/2025 13:37, Mrinmay Sarkar wrote:
 > From: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
 > 
-> The maximum link speed was previously restricted to Gen3 due to the
-> absence of Gen4 equalization support in the driver.
+> Make changes to update the PHY settings to align with the latest
+> PCIe PHY Hardware Programming Guide for both PCIe controllers
+> on the SA8775P platform.
 > 
-> Add change to remove max link speed property, Since Gen4 equalization
-> support has already been added into the driver.
-
-Which driver, PHY or Controller ? does this change depends on the patch 1 PHY settings update ?
-
+> Add the ln_shrd region for SA8775P, incorporating new register
+> writes as specified in the updated Hardware Programming Guide.
+> 
+> Update pcs table for QCS8300, since both QCS8300 and SA8775P are
+> closely related and share same pcs settings.
 > 
 > Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
 > ---
->   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 2 --
->   1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 5bd0c03476b143444543c68cd1c1d475c3302555..b001e9a30e863d8964219c8bd61bc328be71b256 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -6462,7 +6462,6 @@ pcie0_ep: pcie-ep@1c00000 {
->   		power-domains = <&gcc PCIE_0_GDSC>;
->   		phys = <&pcie0_phy>;
->   		phy-names = "pciephy";
-> -		max-link-speed = <3>; /* FIXME: Limiting the Gen speed due to stability issues */
->   		num-lanes = <2>;
->   		linux,pci-domain = <0>;
->   
-> @@ -6620,7 +6619,6 @@ pcie1_ep: pcie-ep@1c10000 {
->   		power-domains = <&gcc PCIE_1_GDSC>;
->   		phys = <&pcie1_phy>;
->   		phy-names = "pciephy";
-> -		max-link-speed = <3>; /* FIXME: Limiting the Gen speed due to stability issues */
->   		num-lanes = <4>;
->   		linux,pci-domain = <1>;
->   
-> 
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 89 ++++++++++++----------
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h |  2 +
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcs-v5_20.h      |  4 +
+>   .../phy/qualcomm/phy-qcom-qmp-qserdes-ln-shrd-v5.h | 11 +++
+>   drivers/phy/qualcomm/phy-qcom-qmp.h                |  1 +
+>   5 files changed, 66 insertions(+), 41 deletions(-
 
+I think the subject should be "Update PHY settings for QCS8300 & SA8775P".
+
+As my comment on patch 2, what's the relationship ? does those PHY settings fix
+the "Gen4 stability issues" or are needed for the Gen4 equalization ?
+
+Thanks,
+Neil
 
