@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-177137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 271A3AB6833
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:58:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA94BAB6830
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:57:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B627D18992BB
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:57:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06B683B6441
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757F425F7A6;
-	Wed, 14 May 2025 09:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 035D725E46E;
+	Wed, 14 May 2025 09:55:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F85F268FD5
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41261265CCC
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:54:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747216503; cv=none; b=OA51iyHiQ78CEl6p52Dan5EDVtKUT4wIEY0n6WZXcXRXJqOesIyZztxXtT+EDcKE7dvpdbkUNgkj/OdRCaSEhQ6IRe/L3iXkdwmZ7FC3UXS6z0hU15FL3EIu+SKGCT6Wui9EEj+8Nz8YJgd8zDEBLeefRP+GEtymLl3KZF0HIDs=
+	t=1747216499; cv=none; b=pUyvrydVR3lcWOKog+kgsQda9IlEEMR+zP5bF2+jh3LFRQeKMKGYABKMZ7t9wp7nLUmEOm1cy0wMXYzLZPx20JLPA5hFp6PFBynJzfylhfBb5BfVRKHsJsij5HSI3TNo5Fqf5JW3vnzqIwYJz2pzwq9GqfLqrsCKrU+B6wY+H1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747216503; c=relaxed/simple;
-	bh=2YncXzplbke0CiVuENDEMM/YVb58EgApc++U9eqskQA=;
+	s=arc-20240116; t=1747216499; c=relaxed/simple;
+	bh=pE00uCTIvhPmghgm1yPqWBS0KhYlBMQjtjn/MUMREMo=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T0r3L25ZVL9p/1wVS2eXWVEZY+KwK/L7jd4QbW8XBIILmdSgxORhN6u5Sw+YAECi0eJVczJiWwg2YAhSnMJ5jZJ+qM1UbNbHRJL20i/RWngnO5BDMgQE6DfIxFpI/Z6OUor6I1eBp8iirzbfojlcfDxohDLYUeeP1tuRthyFBso=
+	 MIME-Version:Content-Type; b=BnonYcyrN9lFNd/RZ+WpoxT7te05xBFJLNcmL4+1BDRUDWA2KLLQVFf3PrwWVHBylTYD8QeelsVQt7yfvJ53h1V0w5WyPSXsbvEoXH/XqvQ3f5P5j2D9sJjI4Vi8aRyQa3Li1OYyw+2QhdoZPFVi0vjlrsKkuzIbEqK/VDRdFcE=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
 Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
-	by Atcsqr.andestech.com with ESMTPS id 54E9rwwi092359
+	by Atcsqr.andestech.com with ESMTPS id 54E9rxEx092397
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 14 May 2025 17:53:58 +0800 (+08)
+	Wed, 14 May 2025 17:53:59 +0800 (+08)
 	(envelope-from ben717@andestech.com)
 Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS31.andestech.com
  (10.0.1.89) with Microsoft SMTP Server id 14.3.498.0; Wed, 14 May 2025
- 17:53:58 +0800
+ 17:53:59 +0800
 From: Ben Zong-You Xie <ben717@andestech.com>
 To:
 CC: <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
@@ -49,9 +49,9 @@ CC: <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
         Ben Zong-You Xie <ben717@andestech.com>,
         Conor Dooley
 	<conor.dooley@microchip.com>
-Subject: [PATCH v4 4/9] dt-bindings: interrupt-controller: add Andes machine-level software interrupt controller
-Date: Wed, 14 May 2025 17:53:45 +0800
-Message-ID: <20250514095350.3765716-5-ben717@andestech.com>
+Subject: [PATCH v4 5/9] dt-bindings: timer: add Andes machine timer
+Date: Wed, 14 May 2025 17:53:46 +0800
+Message-ID: <20250514095350.3765716-6-ben717@andestech.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250514095350.3765716-1-ben717@andestech.com>
 References: <20250514095350.3765716-1-ben717@andestech.com>
@@ -66,46 +66,43 @@ Content-Type: text/plain
 X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
 X-DNSRBL: 
 X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 54E9rwwi092359
+X-MAIL:Atcsqr.andestech.com 54E9rxEx092397
 
-Add the DT binding documentation for Andes machine-level software
-interrupt controller.
+Add the DT binding documentation for Andes machine timer.
 
-In the Andes platform such as QiLai SoC, the PLIC module is instantiated a
-second time with all interrupt sources tied to zero as the software
-interrupt controller (PLICSW). PLICSW can generate machine-level software
-interrupts through programming its registers.
+The RISC-V architecture defines a machine timer that provides a real-time
+counter and generates timer interrupts. Andes machiner timer (PLMT0) is
+the implementation of the machine timer, and it contains memory-mapped
+registers (mtime and mtimecmp). This device supports up to 32 cores.
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
 ---
- .../andestech,plicsw.yaml                     | 54 +++++++++++++++++++
+ .../bindings/timer/andestech,plmt0.yaml       | 53 +++++++++++++++++++
  MAINTAINERS                                   |  1 +
- 2 files changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml
+ 2 files changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/andestech,plmt0.yaml
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml b/Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml
+diff --git a/Documentation/devicetree/bindings/timer/andestech,plmt0.yaml b/Documentation/devicetree/bindings/timer/andestech,plmt0.yaml
 new file mode 100644
-index 000000000000..eb2eb611ac09
+index 000000000000..90b612096004
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml
-@@ -0,0 +1,54 @@
++++ b/Documentation/devicetree/bindings/timer/andestech,plmt0.yaml
+@@ -0,0 +1,53 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/interrupt-controller/andestech,plicsw.yaml#
++$id: http://devicetree.org/schemas/timer/andestech,plmt0.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Andes machine-level software interrupt controller
++title: Andes machine-level timer
 +
 +description:
-+  In the Andes platform such as QiLai SoC, the PLIC module is instantiated a
-+  second time with all interrupt sources tied to zero as the software interrupt
-+  controller (PLIC_SW). PLIC_SW directly connects to the machine-mode
-+  inter-processor interrupt lines of CPUs, so RISC-V per-CPU local interrupt
-+  controller is the parent interrupt controller for PLIC_SW. PLIC_SW can
-+  generate machine-mode inter-processor interrupts through programming its
-+  registers.
++  The Andes machine-level timer device (PLMT0) provides machine-level timer
++  functionality for a set of HARTs on a RISC-V platform. It has a single
++  fixed-frequency monotonic time counter (MTIME) register and a time compare
++  register (MTIMECMP) for each HART connected to the PLMT0. A timer interrupt is
++  generated if MTIME >= MTIMECMP.
 +
 +maintainers:
 +  - Ben Zong-You Xie <ben717@andestech.com>
@@ -114,18 +111,19 @@ index 000000000000..eb2eb611ac09
 +  compatible:
 +    items:
 +      - enum:
-+          - andestech,qilai-plicsw
-+      - const: andestech,plicsw
++          - andestech,qilai-plmt
++      - const: andestech,plmt0
 +
 +  reg:
 +    maxItems: 1
 +
 +  interrupts-extended:
 +    minItems: 1
-+    maxItems: 15872
++    maxItems: 32
 +    description:
-+      Specifies which harts are connected to the PLIC_SW. Each item must points
-+      to a riscv,cpu-intc node, which has a riscv cpu node as parent.
++      Specifies which harts are connected to the PLMT0. Each item must points
++      to a riscv,cpu-intc node, which has a riscv cpu node as parent. The
++      PLMT0 supports 1 hart up to 32 harts.
 +
 +additionalProperties: false
 +
@@ -136,26 +134,26 @@ index 000000000000..eb2eb611ac09
 +
 +examples:
 +  - |
-+    interrupt-controller@400000 {
-+      compatible = "andestech,qilai-plicsw", "andestech,plicsw";
-+      reg = <0x400000 0x400000>;
-+      interrupts-extended = <&cpu0intc 3>,
-+                            <&cpu1intc 3>,
-+                            <&cpu2intc 3>,
-+                            <&cpu3intc 3>;
++    interrupt-controller@100000 {
++      compatible = "andestech,qilai-plmt", "andestech,plmt0";
++      reg = <0x100000 0x100000>;
++      interrupts-extended = <&cpu0intc 7>,
++                            <&cpu1intc 7>,
++                            <&cpu2intc 7>,
++                            <&cpu3intc 7>;
 +    };
 diff --git a/MAINTAINERS b/MAINTAINERS
-index a0ccac1cca29..645d7137cb07 100644
+index 645d7137cb07..d1e1b98dfe7b 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -20728,6 +20728,7 @@ F:	include/linux/irqchip/riscv-imsic.h
- RISC-V ANDES SoC Support
- M:	Ben Zong-You Xie <ben717@andestech.com>
+@@ -20730,6 +20730,7 @@ M:	Ben Zong-You Xie <ben717@andestech.com>
  S:	Maintained
-+F:	Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml
+ F:	Documentation/devicetree/bindings/interrupt-controller/andestech,plicsw.yaml
  F:	Documentation/devicetree/bindings/riscv/andes.yaml
++F:	Documentation/devicetree/bindings/timer/andestech,plmt0.yaml
 
  RISC-V ARCHITECTURE
+ M:	Paul Walmsley <paul.walmsley@sifive.com>
 --
 2.34.1
 
