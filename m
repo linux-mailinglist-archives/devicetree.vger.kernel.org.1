@@ -1,63 +1,57 @@
-Return-Path: <devicetree+bounces-177283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F7E7AB6EC2
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:03:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2EA3AB6EC9
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61BDA8C0E32
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:02:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E03C68C2FAC
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288601B5EB5;
-	Wed, 14 May 2025 15:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0FF31F78E0;
+	Wed, 14 May 2025 15:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L6x5PZt/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UTb7jo6w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE90D194A44;
-	Wed, 14 May 2025 15:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C26691DED5D;
+	Wed, 14 May 2025 15:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747234976; cv=none; b=MhV2uG8h1hmmk4WnCms06IcamCqayX7UM5Of0Je+jtYnGMXLg216QhHDinUeJdoxivCDo4czbjbUG9k8Yu+tFNw9Evknm22wa0O/Zgn/tW1g5A4+eDcdCUM/VhSut8h/s9H7Vo3R/Q/DkEL+E4zJP9TxWofYcOsWvkDjo/raYcY=
+	t=1747234980; cv=none; b=iQOZT2UU9PLJu8lyx1FlhV9cz4Jsthaw/fMZUuT9PaBiIgMyB6B356D6blUtBNEIYXMvyCuNkwoCM1JvYs/mkdccmYAnqiR7hQt+FEJouzm2c4oGxRBrZwEnkytPciiwZHtxmPb2CtX68UuPHMSzYeMuPIAdMnV/DDkKLh9J4uM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747234976; c=relaxed/simple;
-	bh=iR7Lb9hQDeqA8HuTsx6n4WKA1nTEaMPSviN3JG5WKI4=;
+	s=arc-20240116; t=1747234980; c=relaxed/simple;
+	bh=15Etcu4xfg85YZbJ8Ox9B4ke3VtIDNM5//5H62ElP5Y=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=jq7Kg1USDeT+OYb5yZbIFjxlaJT074yLuA3x+FA9fSOClmu5SMwlhUz/e17SdPkEK2z4WAOBijvxdlTc74pYM6h1SIwXEB6Mz2HtoKwRafVh1/p1EbSRQOEnBDt/GXGia03iwDJJ3XQKQVrQ9HLYru+2QRVEh0rrfkjmdDogCDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L6x5PZt/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06454C4CEE3;
-	Wed, 14 May 2025 15:02:51 +0000 (UTC)
+	 MIME-Version:Content-Type; b=srVrsI+Zt9QmDxZxnnGVHMNDU+5KHhMcXIqZPkLHXpA69VbUumU7guX8ItSjra7FVrpZmkfeRXh04P3ZqAyzD67fd+T1Nfie69BMd8u3Oy6fhmrj8KxoKZXGMHcQ2H++hsiJKy/xqyAYZEwBFrcKdf+/07eviNgLnoZ4o3oiqR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UTb7jo6w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDB8AC4CEE3;
+	Wed, 14 May 2025 15:02:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747234975;
-	bh=iR7Lb9hQDeqA8HuTsx6n4WKA1nTEaMPSviN3JG5WKI4=;
+	s=k20201202; t=1747234980;
+	bh=15Etcu4xfg85YZbJ8Ox9B4ke3VtIDNM5//5H62ElP5Y=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=L6x5PZt/CXC8i+BJp0BTxgk3XeVkVMhc8o9i0VqsGL0B6aZU8J2EPcqAgSbA7ugVD
-	 3wO9NM9+cUePYzw6AD7FhkMEWSjbBzzBb2KSTAgpzqYwxQslPLYmgWJ3pNx8M6QDRE
-	 GzuucBQuEGkUMzpd/hTdPsO9yrQhVKYRKjG/itOUkfNRimm5OYjWsk0+JOF3V8UU8A
-	 T2LpIcUIO8uOyPX+wCD6A78+827qgw71gp6SylN/2ApFg2G6LwI51v4jnR5kl8tqJy
-	 JpsncNFeKsGjh34Mbv+G48dGRyWsE+GWhrH2K5xVkzenwY95aWFNHKgCzecWYJ3yYN
-	 tdF73HzawBzhw==
+	b=UTb7jo6w30T8CfHLjPZc3AtxTyqT+WAeYMjDfjy9sbvmeAy4/uN2vH2W6hR79Q6af
+	 fJMnFMQz5JyUfVmi6JMHBTTK+d9LDhPxuY3hlp27QlnorQYH2/a0G70IPGeA09sSuv
+	 eU2gChFMELFg06Br5BPHfk4osa7O9X4sN6lrB8w4MyuTBrJnEB1ywTiNbmzVsSncsU
+	 E4mdRpTEoC1/AqsNS4QuT8t5vBTgbZd5zBltT1efs+jaZfi9yiA+b5JYNIfrLLiqiH
+	 E70up5Ri8Jlzj9DvRXn7LCZkk5Q/PBHkakRUVGH7oXWtosZJKRUdLfNk4fs9DYWS2u
+	 XN/dcfhPtvFXA==
 From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- Biju Das <biju.das.jz@bp.renesas.com>, 
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ "Sheetal ." <sheetal@nvidia.com>
+Cc: thierry.reding@gmail.com, jonathanh@nvidia.com, ldewangan@nvidia.com, 
  dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-In-Reply-To: <20250422173937.3722875-1-fabrizio.castro.jz@renesas.com>
-References: <20250422173937.3722875-1-fabrizio.castro.jz@renesas.com>
-Subject: Re: (subset) [PATCH v6 0/6] Add DMAC support to the RZ/V2H(P)
-Message-Id: <174723497166.115803.2774078282550893427.b4-ty@kernel.org>
-Date: Wed, 14 May 2025 16:02:51 +0100
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20250512050010.1025259-1-sheetal@nvidia.com>
+References: <20250512050010.1025259-1-sheetal@nvidia.com>
+Subject: Re: [PATCH v2 0/2] Add Tegra264 support in ADMA driver
+Message-Id: <174723497746.115803.4058332926629460459.b4-ty@kernel.org>
+Date: Wed, 14 May 2025 16:02:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,41 +63,26 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Tue, 22 Apr 2025 18:39:31 +0100, Fabrizio Castro wrote:
-> This series adds DMAC support for the Renesas RZ/V2H(P) SoC.
+On Mon, 12 May 2025 05:00:08 +0000, Sheetal . wrote:
+> The patch series includes the necessary changes to enable
+> support for the Tegra264 platforms in ADMA drivers.
 > 
-> Cheers,
-> Fab
+> Changelog
+> =========
 > 
-> v5->v6:
-> * Reworked the RZ/V2H specific dt-bindings patch as per Geert's
->   comments.
-> * Collected tags throughout.
-> v4->v5:
-> * Clock patch queued up for v6.15, therefore dropped from this
->   version of the series
-> * Adjusted the dmac cell specification according to Geert's
->   comments
-> * Removed registration of ACK No. throughout
-> * Reworked DMAC driver as per Geert's comments
-> v3->v4:
-> * Fixed an issue with mid_rid/req_no/ack_no initialization
-> v2->v3:
-> * Replaced rzv2h_icu_register_dma_req_ack with
->   rzv2h_icu_register_dma_req_ack() in ICU patch changelog
-> * Added dummy for rzv2h_icu_register_dma_req_ack()
-> * Reworked DMAC driver as per Geert's suggestions.
-> v1->v2:
-> * Improved macros in ICU driver
-> * Shared new macros between ICU driver and DMAC driver
-> * Improved dt-bindings
+> v1 -> v2:
+> ---------
+>  - Patch 1/2: Update commit message and Tegra264 bindings properly.
+>  - Patch 2/2: No header update.
 > 
 > [...]
 
 Applied, thanks!
 
-[2/6] dt-bindings: dma: rz-dmac: Document RZ/V2H(P) family of SoCs
-      commit: 22228b933ce2639d67168fd35423c1be196edab0
+[1/2] dt-bindings: Document Tegra264 ADMA support
+      commit: b81cd165e4a5599bd96c11adf40872fcbc5fa54f
+[2/2] dmaengine: tegra210-adma: Add Tegra264 support
+      commit: 21e12738779f74d9ae63faa995f5743656eadc07
 
 Best regards,
 -- 
