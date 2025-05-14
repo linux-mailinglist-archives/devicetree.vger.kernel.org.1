@@ -1,276 +1,222 @@
-Return-Path: <devicetree+bounces-176997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA66AB62AD
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:00:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC52AB6302
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:25:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 136CA7A8B1F
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 05:59:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E4CF3A35C2
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 06:25:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24EEF1F4C8D;
-	Wed, 14 May 2025 06:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D857A1FCFFC;
+	Wed, 14 May 2025 06:25:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="i0rwXhr7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lHxnYFdU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010004.outbound.protection.outlook.com [52.101.229.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 426417483;
-	Wed, 14 May 2025 06:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.4
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747202447; cv=fail; b=iDZS/vCvrcRejPLTq5ui8ZboRtRRV3tPxqJ+DgRAAiL95jEdP2NLrTn78dsMl7Orioz8v3vKoZku/8AaGoVFemrsOQGUjYZqFIcOBJ9JeqyxTothgN8wCwCUezwmh5zRF047hlAybLNsutfSKea0OnpiMgTTIbdYMpQ6vy9hUdE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747202447; c=relaxed/simple;
-	bh=dFIbGU1G83bO2V354zIiDBsTvXuFCfCvFO9srWCC3ks=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=IKVrmYnX2sIdl30gUgkOLVYw3HXiGFkzVnyfKJEyRq26quQfhmFr9B7hAJgvnlBdc6hUbv27vUvIja2xykdtnjewtTmQn2P9pB9bcj81nb9yvzdNRO5hpH6b6RTOLhj3hYAZ7rF+AjssCwsAW8OdNsWEDkR94wC13G0kgh5J254=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=i0rwXhr7; arc=fail smtp.client-ip=52.101.229.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=onOIvHX4QM/TyFjIK5279vaZEMhJgjNcBUs6kjlVU0YaNFWv3eT5EeR2mZNomgQtF4KgXjnOajyXtz1i9bLruutqMmyw+C720FXsgHmigywua1g52QM/S/NzTPL5B2DnXdWkiwnJTpSObFr5UZEPlgF7vE9PHPmcMt/jpnTF3D/+IL3E8e6WeIp4flZF987Je6IXO3VWaBHCsCCoqT5+HjK3iEuEv1Xpb1wK1IFmp0+RaTqo7EcRAsB9xzSQHEKrtznb18v0rbWtUuIyJ34VfDIPcBbEsg+NRbhRjYHN/1NUfmR+DwVwMZ6BmoevoGP1/Oe0PcAGj+JHe0qbPsMylg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vwr2l10hT7vj7n9Qor48UPQH4duDjrsr2oximSIwkz0=;
- b=ogaizgS13qA+iLWZrgvYbmJuAHHl388k/U16Z6atvZ9fUqEpwS4CC2GP1RSXPQT0pGQLWjUEq2dZOuslMn2C1vukptFt6R9eDZAn/76uU/Bz6GKqrAP3c6Idg0eWe9RUtGc7hGsvuObHzrpfp/aoe3QGdENklP75ghanHvlU5/GtOI6hW62wLcdprsUcIaB8tNKPBn/jCjCHS3qcET8ZIQiZdluBmC39NSuJKEAVezbuF03m+sStONVYPe+oUqnBzu/x4BOUp3Yo/yNHtICjcOvLL3mSeqF+yasbb68QRe0Jpp9NM5ZOwSJoHUNIb9ZUTjziJ7h9Y1KUGnsaoEzSyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vwr2l10hT7vj7n9Qor48UPQH4duDjrsr2oximSIwkz0=;
- b=i0rwXhr7X0X1ep4JfBn+WcS2zNdT1Qpacstz2ir36WX6s8WuaOnv8xdFtpsaCdHWE0NiW6S4DqQyCa7Zd1FkPK/yJThZh2ZVCEZDEu93v3sQsYMHFwZIFLgpVn/Q7l/0TY2NlDLnNXXtfZoBLJtzqNvmnZw5QTJUFGqQP0zbrqk=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TYWPR01MB9389.jpnprd01.prod.outlook.com (2603:1096:400:1a4::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.30; Wed, 14 May
- 2025 06:00:34 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%4]) with mapi id 15.20.8722.027; Wed, 14 May 2025
- 06:00:28 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Hugo Villeneuve <hugo@hugovil.com>, Andrzej Hajda
-	<andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, Robert
- Foss <rfoss@kernel.org>, laurent.pinchart
-	<laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
-	<magnus.damm@gmail.com>
-CC: Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH] dt-bindings: display: bridge: renesas,dsi: allow
- properties from dsi-controller
-Thread-Topic: [PATCH] dt-bindings: display: bridge: renesas,dsi: allow
- properties from dsi-controller
-Thread-Index: AQHbxCNbbj/vqXhFv0qNrozmJU7P7rPRojhw
-Date: Wed, 14 May 2025 06:00:28 +0000
-Message-ID:
- <TY3PR01MB11346612A2A298818D0787B028691A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20250513162300.532693-1-hugo@hugovil.com>
-In-Reply-To: <20250513162300.532693-1-hugo@hugovil.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYWPR01MB9389:EE_
-x-ms-office365-filtering-correlation-id: 316e2c4c-ac53-4740-721c-08dd92aca0b7
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018|921020;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?kvKZvYmmJAYh3QAGv2QqGxz7El0qO3S3QCNM/PwjoqaUOd/wDGpwe6vj3D7r?=
- =?us-ascii?Q?/Gh3pOTRQZy7530wHVHhUfQYjao3cZnsTWmN7DXmGviMGjwYp9lvGDmZMmIJ?=
- =?us-ascii?Q?MltjEq4w2WGZNWqVAcVP37/cEp/mZV7mQKxTWw6oL+JVLyjyT+VEK7oISkJk?=
- =?us-ascii?Q?6yAjc8OwoWqfIdlfUJwlMWIIUZjEUMFEx7UvJ6jk9CjAW8ydIBlHMv/VdjmA?=
- =?us-ascii?Q?NDlqMvBKu/9ocwWyFeLaxahdU7CkC6nQOLr+WhtpJ1BuGIisPdajr19pMrIc?=
- =?us-ascii?Q?E7tTpUyS5gj7BunVF/giKFX4AiU8TVakaxQwgu9jgIlaXi14CDYx+7Rc4o8I?=
- =?us-ascii?Q?aEcpqJRca8MYJb8Bkd1oj2rB3nYog8nWN0PSVkmvD4+/CMuTnoSMsgZOaxmB?=
- =?us-ascii?Q?SD1mf8kGqNIpmrMUb9dr6zJxurbK9ceDpGLbprlbE1FZtRsqEupoXfLQGlnc?=
- =?us-ascii?Q?wkohHSjnGjZx7imNwOdI/fWH1e+UBc+CCbbX1opo+Zwi3lp0ibV6vs89UAlE?=
- =?us-ascii?Q?lbO3wZ2WFcra/WSG3jbD/V92Zia2zh6Zj0e36jXaWi72StUQ+Uk7plGvPf/f?=
- =?us-ascii?Q?+C3wIRU8ezqujvL1X2Q96hIxJjsKXku63d5GMP3fr1swcJ1YtJyNrYAmIcFs?=
- =?us-ascii?Q?okQuRJsz1DRH0Gcyfampw7LtXGHMncPpypcuU2Bvs4e/fCpqSTpNONd91C+o?=
- =?us-ascii?Q?pwL2yCnmTzG9nw7y4tTi2w2264TT0ze7VRu3iSqIPTmmqdy79yRwKpWC1RDn?=
- =?us-ascii?Q?x2fDRM9I7kx6f2EvCtVq834iSbv3LHCWwcc9R3D7TYT9WmOBBOk7Rui2P9yD?=
- =?us-ascii?Q?DUzR3ZI7T3DeublLrgs1K/awcWMF9QR45vUGNt3RFtNKkENTjRy/bn+WLked?=
- =?us-ascii?Q?UFB3Toulvs15d9mtav1xsLdY2bzEWVWMG3XQrTA0GTl3Fiz3QJidr5Kdc30o?=
- =?us-ascii?Q?V5zyEZuHbzfofXfdWBfQNOwq0mrry3t4aM6tYL65xQn6Movz1NY1VWAadnHu?=
- =?us-ascii?Q?t5HV4i2B12u3s68o+v1EUPx2b+vzNhnZQ3Z8bwFIVgyy8O16bGZpFG+5gFuy?=
- =?us-ascii?Q?P9vyN7PZ/iFJt8AEeQyX3bzyqhJuLiZwW3DwfhyNX5VdKSzg+aIyDaTTME12?=
- =?us-ascii?Q?vHuDA2UsuuTgGWroQUkU9pa4I2LVRazkKbTi/kaNykYj2ZfUvHDPFbMvat2V?=
- =?us-ascii?Q?B+VCahqHZI2t0+LFJNCQmh3XeeKBZ51UljKt0An7h+joaTts4T15nYGH1t8s?=
- =?us-ascii?Q?23L51mfQQ0034tqSdYMMPToEzJR5JeVFGpJPZv9YuuisLZ3D9wPcnxpnveCY?=
- =?us-ascii?Q?maamE6GMMd7yZzqJAoIo8yIX8p8tk4hlnx16M5wYlEXkp7FRsg9B+6PJJHFa?=
- =?us-ascii?Q?Ccemw5N2pxLGAvcn/OaCpjXeAHJOiaQI2anr1XMo7dMg2lVgJNyRdhwqXZKi?=
- =?us-ascii?Q?9gKcbq9jHtS4I8xfwoMtFqhILh+nMVGP?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?rk88DTxyCo3fF88MThFw1HwfUDcFQfLgRqUnz8+UO9leCCRsDXPQ2brEWdik?=
- =?us-ascii?Q?RfqYvvUBpnnH2CGnXq6vNVwqHQGGhiPhgvi1gsMO0LQl5M1R+RFQeQsuDno1?=
- =?us-ascii?Q?Q9vg1XHnBQKd1HhbPLVXPPRx8d79jiCM+bzFnDXk00NjieOkGg60KvhIAKdY?=
- =?us-ascii?Q?rr+annaQJRYKzY6p6B3DLSliHwXE06u0KugndNheuzXDzrxos3RbmznaOrrn?=
- =?us-ascii?Q?h8duIVFaOUoUxCSaeUXNwZkgv9iLQ7O3Qj4oFsQNyAhmCRVsxjURfDRfcqMb?=
- =?us-ascii?Q?IjWYb31QVxWt1fU3TGEypecdPpa9hj1sKJ0NN19LfrqfOTCG7Z5REawMStXz?=
- =?us-ascii?Q?FtGM/0AXytHMCNAe7hb5l4UkDZVsr1J674po9n4LfGbU6lpmHLskjJTRl2tu?=
- =?us-ascii?Q?b5mJCfnEjVK83ICQBCpzFcQDCatPA3enyN10yzd78sA5o4CtkYk8TgWlhCPG?=
- =?us-ascii?Q?ATJ+4Y9rbSGMyH9K/gXaajnBC+wRJ9WXeDQ5hvrSfM/S/V9MdBf9+L9ocZt7?=
- =?us-ascii?Q?jKZzOxktE/Mq+nhj8lyMWcrUgDfGvtHFY5aFCDIi+dNo4HLRFFVdG6fQ+kwh?=
- =?us-ascii?Q?xJoKORfXUlpJgfecLZ0w9A5P3RzITzeDcXN2VSLiQBYOn3sDKU5dpMyCvW5/?=
- =?us-ascii?Q?5EwKXHlcLUvPb5rgHoKtqbhQZWWGGO4bTeovTI6i01id9QwSkxyGuToa3heY?=
- =?us-ascii?Q?yhB4FbUTFOgwszNh+YNdS8Tkz2UNyfIo/dS7bjJCdYEJ7ATG2HFGQVcCX9B2?=
- =?us-ascii?Q?DSHq8XMwXnOC1BL7yY4OvlGT3Ev3QUPmY8OkHy5QqV9x8K1j71v6Kw9s03tZ?=
- =?us-ascii?Q?X2rsuRPp3FW2GwswFjClRfG6Cf+xw9rkF+RV+yqea1XJpF37M6XNM2QQwal9?=
- =?us-ascii?Q?ojYPRwF3/gCVgjI/+pBLcOpU95CYOeKpp4Ci7A8PbOIAuFLpMWW7otTK9fPe?=
- =?us-ascii?Q?V84NWTqlLA/dH13TBDAZuKQgaigV/qNvYMwCxzNnPa3+ayJ59iEui04Ct/rc?=
- =?us-ascii?Q?gXP/XyTLaRkQNwRqeTBcZgkF/0ey2HnQEPezoZ0qMrKHZTLs4yiS+MIKU5HH?=
- =?us-ascii?Q?v0NUKDJ6+eImKlFDPWWVyNSG26QPaUft4s/hAVwCJPDqsEqsvdVRDwVHLpHn?=
- =?us-ascii?Q?7KMti+u8qckq3e5PPfRVWoTmjsOiS0EtK796mjNZqpD89E8/EwlCdnvUBxvE?=
- =?us-ascii?Q?RKaqhQ/C1b4Vp7wEkfDksbqpgwabRCo18F6vkaXAIfsYn4I1UBbVzmQbu0cC?=
- =?us-ascii?Q?B+jcGDSlABEcBccMkxnCRDUBRwAzUHDW398mahznGkdzAYoPD7a9x8WUrtWJ?=
- =?us-ascii?Q?4uqK+DRAkPYnG5z6vfkvr2mfQsI/Y+M2KWt5gKvBW8kZAygvpsj/Ylkl5PbJ?=
- =?us-ascii?Q?yQqy3K7cql/YFbtRt02dMOZFCaSBJEByF4TSKwf+1BnL9VIGr0oaoEbpVaDl?=
- =?us-ascii?Q?xfN+eXbnu+zkHp0ehGLQ9qCG2J5V7gCKJofd4bkIlItuMEGAjAIrocGZ0X0E?=
- =?us-ascii?Q?GU4qIbKBGPtMok8VQW5nQydhJ/dZKKxku9eSti8+/fDAPPofvbbtsO1mrlrT?=
- =?us-ascii?Q?eOIpNJliUnMCNdMDCKS3RAS5bXXlGEpqYn+EqPu+KazJnUP0w4+W57ebWzXC?=
- =?us-ascii?Q?uQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D98C1FC7E7;
+	Wed, 14 May 2025 06:25:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747203922; cv=none; b=OekSpb45sErmAUEVx70q5aF2ok2uUqm1sNy02JVU1100I9XbPJwHmnOrj2TYXupwuIRUUA/UtH540/Tyc4NJmzqoJpMFKZeoll/+w5mqNO/evkeY8UwxcainbR/ICq2YQ9X6bytbPl0MtNXheyR+y+RNEycBPlahpdhDohzB4ig=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747203922; c=relaxed/simple;
+	bh=SxFtNj3A/V71eVMZQHnVZ4xd0hC12ZVeGOedJhpQlmA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=ln1AdlHjndCMthIv01RJFYw/tlm23jXnHMDbC5cWbUhuo3uu2sIeLZ5yEfHPNAwA37a2h87p9EgygAbx7ew8tcfMc0aQjro3tRkuUUOkfLWjj2diuhcPKGi1/UhIW8R27WofaYnjSPzGtaA+aoUIfl+RSMRuNjjIUZ3h9fswU2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lHxnYFdU; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-326cd354cf3so18126301fa.1;
+        Tue, 13 May 2025 23:25:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747203919; x=1747808719; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/GlegKmII1NP1WUaApvwkeaPmRs0nyMlhrzEpWMeltc=;
+        b=lHxnYFdU+NUHldhQ8DBSnDaypY9R5urduNGJjnaAsD6Vwnz3tcQ20Hb1WVCXBRrJSi
+         xLb5R/5osepxyz3Zl+0AMF/TlneG36d+STYNnKLgBQADj5B/qtYRjFymPwucJnPyYJbb
+         bZA7G/uunhjGrOzStwNUnjkMXqIS1+pnCiaj4OLe0+TUNHvbjKcf3m7ReBKCgC7j2rfD
+         fLl2AyzAQnT3fXNkSqRZ0eksB4m+qCh3uy3h6vwVAFlzmTBt1K5jP4+Sz5+SFX2dTPb/
+         ALxuvXLW/SLMB+5Hk7PIv1hzm4m7tb1LguPUwKh86U7UWwWc7NMA3vws5hUtVjhhw6d4
+         DrRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747203919; x=1747808719;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/GlegKmII1NP1WUaApvwkeaPmRs0nyMlhrzEpWMeltc=;
+        b=gSemEWsMGDAXkWoI/LRzCwMcvkLhNjkcHKL5sTvUvd6cP0GzgALWpdZq1WXwNsnHov
+         r/qLyaC2fjwhyBruVT1uEPVWsOq5tQTNjf3UJ3CjTLTPSkGW8GAsMElCz3t0ZJ7fsjyb
+         9mg8E7iGJk9eH9JMOs6x8JvOecEwb1gP2208Ng8U3TwqQg8MBjiWMkZY2PhcBf4tEnRO
+         0VxyWR9LQJfpeGR6RZon+A1bFr/RSjWyCT2oPsBppzkg61F49nlF7wciQBeHRCifoo8z
+         +kRf+Vd4ooHAbi38FL1+yymLRhfT+NYOY3Vd1YR4+y0/uj/tGjyijUXbtrCNTfJSXGZu
+         gwtg==
+X-Forwarded-Encrypted: i=1; AJvYcCU914gKrvCtFbUb2KWNXC9iLY9dNyUJienjxP+ze+Js4okSH4CGxvaZokAW76notEw0j5SMdwkUHOwsJjQv@vger.kernel.org, AJvYcCWPR+IFQ/sS2GIa2XTm5aJ+8Y+T6VUHjAOoh/S5UWKWb0VrZdmAvJfTNuI+8Ab1WWT9bteOtyM5XslV@vger.kernel.org, AJvYcCXB+tSo2id2rDw1LkIhlZu+jF39dhhPsL9KiZILlfmcfXSC9xo0jEGjR8NdsgMBaOe1ALy+CmXb3oOy@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhWwIiH/SKZswfxB/nDE1SMMVwlWCxJcbZxkl/1n/L+5O1DfGc
+	H2nOgfXOE8dR+HZ9qLvWfIP8qWaXfKTw4Kco4zFqVTS2z7qpuNOJ
+X-Gm-Gg: ASbGncvsTGj0wbNn54V2mLw9HHpDmETyt88Wd07vS3MNpTI0qaoUyRHXp1auXab7dfp
+	ADrjPzkn9FP7JhI0QsxsMUgri3X9fzFAbKDNRyzqqrMZCoqsWeuDgYHvrfxo8zUKi5k4BEkAuXY
+	rbQuYO1I3eu/83+rHCouHCy+IA1/ksfTUe9N2otB69+JkULPkso4eVZySvY8PNiuE/ixH90Dum4
+	A8T5ZpJC7GKml7CPja+S95ekZcvhPjB4pXn2++Ja+s7856y9XR4SZwoTSvz4kwafUO0kofyqwax
+	zOFw6p1ZmGi9bSvg1AGVvya23YXQ0TA1+x85zSs8B6S8OzGSrn4R2vBTsg==
+X-Google-Smtp-Source: AGHT+IHoB6FO6g2Ohune4q/gbUojXZCtKJpNzYPO/vslgLH49xlJeujPpeKYHdJgKT8/e9+l7ZVjwg==
+X-Received: by 2002:a2e:b88a:0:b0:30b:f775:bae0 with SMTP id 38308e7fff4ca-327ed22671fmr7294321fa.36.1747203918906;
+        Tue, 13 May 2025 23:25:18 -0700 (PDT)
+Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-326c358ba95sm18713261fa.110.2025.05.13.23.25.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 May 2025 23:25:17 -0700 (PDT)
+Date: Wed, 14 May 2025 09:25:13 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: iio: adc: Add ROHM BD79100G
+Message-ID: <4907a096eee1f54afae834213cf721b551382d4e.1747203712.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 316e2c4c-ac53-4740-721c-08dd92aca0b7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2025 06:00:28.4746
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Ga8CrhkCneFBm+mYSp2BeNL6jjgFSY+/1gb6AjYBmt6rZ8/FzbEqoQmfZtL+aWBKzH0JnFm7a0L+snTLJuCIJEno/KQlXCdU51zzNKoUvjo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB9389
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="D+TIE2Xv0NKK201S"
+Content-Disposition: inline
 
-Hi Hugo Villeneuve,
 
-Thanks for your patch.
+--D+TIE2Xv0NKK201S
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: Hugo Villeneuve <hugo@hugovil.com>
-> Sent: 13 May 2025 17:23
-> Subject: [PATCH] dt-bindings: display: bridge: renesas,dsi: allow propert=
-ies from dsi-controller
->=20
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
->=20
-> Allow to inherit valid properties from the dsi-controller. This fixes the=
- following warning when
-> adding a panel property:
->=20
-> rzg2lc.dtb: dsi@10850000: '#address-cells', '#size-cells', 'panel@0' do n=
-ot
->     match any of the regexes: 'pinctrl-[0-9]+'
->     from schema $id:
->         http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
->=20
-> Also add a panel property to the example.
->=20
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> ---
->  .../bindings/display/bridge/renesas,dsi.yaml  | 21 +++++++++++++++++--
->  1 file changed, 19 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi=
-.yaml
-> b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> index e08c24633926b..e0906a46fb118 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> @@ -128,14 +128,17 @@ required:
->    - power-domains
->    - ports
->=20
-> -additionalProperties: false
-> +unevaluatedProperties: false
->=20
->  examples:
->    - |
-> +    #include <dt-bindings/gpio/gpio.h>
->      #include <dt-bindings/clock/r9a07g044-cpg.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->=20
->      dsi0: dsi@10850000 {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
->          compatible =3D "renesas,r9a07g044-mipi-dsi", "renesas,rzg2l-mipi=
--dsi";
->          reg =3D <0x10850000 0x20000>;
->          interrupts =3D <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>, @@ -160,6 +163=
-,20 @@ examples:
->          reset-names =3D "rst", "arst", "prst";
->          power-domains =3D <&cpg>;
->=20
-> +        panel@0 {
-> +            compatible =3D "rocktech,jh057n00900";
-> +            reg =3D <0>;
-> +            vcc-supply =3D <&reg_2v8_p>;
-> +            iovcc-supply =3D <&reg_1v8_p>;
-> +            reset-gpios =3D <&gpio3 13 GPIO_ACTIVE_LOW>;
-> +
-> +            port {
-> +                panel_in: endpoint {
-> +                    remote-endpoint =3D <&dsi0_out>;
-> +                };
-> +            };
-> +        };
-> +
->          ports {
->              #address-cells =3D <1>;
->              #size-cells =3D <0>;
-> @@ -175,7 +192,7 @@ examples:
->                  reg =3D <1>;
->                  dsi0_out: endpoint {
->                      data-lanes =3D <1 2 3 4>;
-> -                    remote-endpoint =3D <&adv7535_in>;
-> +                    remote-endpoint =3D <&panel_in>;
+The ROHM BD79100G is a 12-bit ADC which can be read over SPI. Device has
+no MOSI pin. ADC results can be read from MISO by clocking in 16 bits.
+The 4 leading bits will be zero, last 12 containig the data.
 
-Can we make panel example as separate one?
+Device has only VCC supply pin, which acts also as a VFS, determining the
+voltage for full 12-bits. Specifying it is mandatory.
 
-1) One example for using bridge device
-2) One example for using direct panel.
+This seems identical to the ti,ads7866.
 
-Cheers,
-Biju
+Support ROHM BU79100G using ti,ads7866 as a fallback.
 
->                  };
->              };
->          };
->=20
-> base-commit: e9565e23cd89d4d5cd4388f8742130be1d6f182d
-> --
-> 2.39.5
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+---
+Revision history:
+v1 =3D> v2:
+ - Support BU79100G using ti,ads7866 as a fallback to avoid duplicated
+   driver code.
 
+v1 link:
+https://lore.kernel.org/all/cover.1747123883.git.mazziesaccount@gmail.com/
+
+ .../bindings/iio/adc/adi,ad7476.yaml          | 63 ++++++++++---------
+ 1 file changed, 34 insertions(+), 29 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml b/Do=
+cumentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
+index 44c671eeda73..d0cb32f136e5 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7476.yaml
+@@ -17,35 +17,40 @@ description: |
+=20
+ properties:
+   compatible:
+-    enum:
+-      - adi,ad7091
+-      - adi,ad7091r
+-      - adi,ad7273
+-      - adi,ad7274
+-      - adi,ad7276
+-      - adi,ad7277
+-      - adi,ad7278
+-      - adi,ad7466
+-      - adi,ad7467
+-      - adi,ad7468
+-      - adi,ad7475
+-      - adi,ad7476
+-      - adi,ad7476a
+-      - adi,ad7477
+-      - adi,ad7477a
+-      - adi,ad7478
+-      - adi,ad7478a
+-      - adi,ad7495
+-      - adi,ad7910
+-      - adi,ad7920
+-      - adi,ad7940
+-      - ti,adc081s
+-      - ti,adc101s
+-      - ti,adc121s
+-      - ti,ads7866
+-      - ti,ads7867
+-      - ti,ads7868
+-      - lltc,ltc2314-14
++    oneOf:
++      - items:
++          - enum:
++              - adi,ad7091
++              - adi,ad7091r
++              - adi,ad7273
++              - adi,ad7274
++              - adi,ad7276
++              - adi,ad7277
++              - adi,ad7278
++              - adi,ad7466
++              - adi,ad7467
++              - adi,ad7468
++              - adi,ad7475
++              - adi,ad7476
++              - adi,ad7476a
++              - adi,ad7477
++              - adi,ad7477a
++              - adi,ad7478
++              - adi,ad7478a
++              - adi,ad7495
++              - adi,ad7910
++              - adi,ad7920
++              - adi,ad7940
++              - ti,adc081s
++              - ti,adc101s
++              - ti,adc121s
++              - ti,ads7866
++              - ti,ads7867
++              - ti,ads7868
++              - lltc,ltc2314-14
++      - items:
++          - const: rohm,bu79100g
++          - const: ti,ads7866
+=20
+   reg:
+     maxItems: 1
+
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+--=20
+2.49.0
+
+
+--D+TIE2Xv0NKK201S
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmgkNz8ACgkQeFA3/03a
+ocVIhggAkUcDwTET84K8Jpgp1axDZyw34ScLv1pecnLENUK6WOUud4BMZSMBV/eQ
+oEcHKdrYw/Rsjni09OsAMd+295/LmIMrSdPY3v9K2R6FEH/CRBLn1wWeZz98IW7v
+rr77xRXxu1DS6p3teZCUDT9e0aomfLkRvh6mFp6Eh7C0eEfbP0lMifaaT6Qsticj
+/qm16JFeFbD7gNP3ixrCNj84x9FswUitlOF0H+2IQ/a7+n/++ylocGMLISgo8Q3S
+RL9pKrG2mmgTMEKnbSwE0C/f0Kgd6WNpVCxXHV5gqrgNtZhqQjF21Eqmmhq3lIlP
+yu940QZgWsjxDFJOSc7dUVaVibVLsg==
+=e3t3
+-----END PGP SIGNATURE-----
+
+--D+TIE2Xv0NKK201S--
 
