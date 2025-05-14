@@ -1,57 +1,64 @@
-Return-Path: <devicetree+bounces-177317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2463AB704B
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:49:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A8F5AB704F
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:50:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C3C516CA31
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:49:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07250167441
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:50:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF361DF254;
-	Wed, 14 May 2025 15:49:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850271DF254;
+	Wed, 14 May 2025 15:50:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RNrZ6LtO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yw6lBK8w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71BF91DE3CA;
-	Wed, 14 May 2025 15:49:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 563BE282ED;
+	Wed, 14 May 2025 15:50:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747237745; cv=none; b=Bi9g2fyG1thpRUk6xVoLItdBTuONTitD+/xNUzyUAQfZH7jF0aedpj4HTifiHE28A8yUkWB5CvuI7aaQK7CJIgXzc8aKZl3dMClBgB/CcecPrfogMsmP3eI84C2ZgBVPdCDlqs/B1z4tsIWvvxUPXZnbvqU2H6geG52U22bWtKU=
+	t=1747237845; cv=none; b=mdyqPxdB7/pqh2E12JjKGiWxAWdz8Zfi8pFJfIiC6BtqhPlQ3oyUqzF34u1nRFvBD9g9LSUOaimbMh5LJ/r4o8x93MLzvmAGabSWTHiof9lf2y4fdY5BVEMLNwGg/ui6hJXGXmpXKR6jZwguvZJru3BdZkox5SHVY9Y6xnfC6Is=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747237745; c=relaxed/simple;
-	bh=SKmt1mAVtkHxv4u0VHCdD95wFq6S1wRh+vDolEBNZFE=;
+	s=arc-20240116; t=1747237845; c=relaxed/simple;
+	bh=M3woz04Pv9OqB7s5d5XN3SM8aX7++vAPSKJ2i0HXWMg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JELLfNp+zXbymVFML7y/0vTJXypaEptJd8V/Dv7ELi2o9RIeVy0POoTgbucYi834cWS5J4YqgpTlGqlgqPoLGA8Hj4gq55BeIz9vDsCxKztGT5XlpdUVF5EiXJChLeaTdnihgAlw5D11vR5QoNmbwqMRe1xwwc36V9gcDBixdKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RNrZ6LtO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C868AC4CEE3;
-	Wed, 14 May 2025 15:49:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=h0pYopvBnRyZ/ICWS+i8oxB6Hz+XNfyHokXzhj2dKZEbNXaqhqws8CFmCxp1aV6ydv3V9I+SzcriLYY53m5EqxOoUAKxw7+3M+z9WPdubunLbnSmTlb5si2OZzOX+FM+U1Z9NdCDpgCCs97OZANTC/W9Bpbu7MWfTVqEKpA6DnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yw6lBK8w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05264C4CEED;
+	Wed, 14 May 2025 15:50:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747237745;
-	bh=SKmt1mAVtkHxv4u0VHCdD95wFq6S1wRh+vDolEBNZFE=;
+	s=k20201202; t=1747237842;
+	bh=M3woz04Pv9OqB7s5d5XN3SM8aX7++vAPSKJ2i0HXWMg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RNrZ6LtO/ScYKrzGDvkWK25EBLAAhKDoAwebupsEAcWapNw4gzvoUyWGhjnu5ydG3
-	 zhdiP3wgGdtzdZf3Oonrm+VUqmBniaJJ/IFGN+LiLm3Jl155CIwWGFFTpaT4ao5dux
-	 BhUFFVYrmWqchN3SIhZXvLiiN4FEhtZszJSfKquL9aCe5xvzpblcshl6FGgwyI1uwJ
-	 zjnDIqZon0btZOIBrqTR1gFV0hlaD0XjzDTeduY5947WezxbwzEjjUXcAJHMa7y++7
-	 y1ePKoiHqKbNDNhEY3ozrVkx2K5lKWNzXIUzmJYXT1X/MP+I77kpbW5ZlzHFVw2gl5
-	 bb1du5UUdPvPQ==
-Date: Wed, 14 May 2025 16:49:01 +0100
+	b=Yw6lBK8wkLDW8v1I/JLiN8afunRJZg5PZW9nhqlzybGETE51+sgaGZ7d+tcW7cMhI
+	 nBTtxybN9FYVZowX+ODaqGqHiOrst8TO03GFRjiQk4nzyC6TonnBVgF5egMU11XGtP
+	 9YsDB3MeNHgg/5LJ0Ex4/cUtzS2/OBSboIB9gh/Qp6Q8okW8W6GgnlZG/kEDxmwOR2
+	 m2Jvh3omi5R2w0y4+WNRNytT+TZvZ3P+4f1oXVfi+UFg1TJv49bVNdw+r1zHmSVCxl
+	 1VZ+yfF4ymBVTewvnNpfX+2Zj3ONBRtMiNpMq65+xRmQxDyeA/NF8A7UsHkVRyxlW1
+	 YUxHqc7A/EPww==
+Date: Wed, 14 May 2025 16:50:37 +0100
 From: Conor Dooley <conor@kernel.org>
-To: alejandroe1@geotab.com
-Cc: Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] riscv: dts: sophgo: add zfh for sg2042
-Message-ID: <20250514-saggy-shifter-e4ac7152f823@spud>
-References: <20250514-ubx-m9-v1-0-193973a4f3ca@geotab.com>
- <20250514-ubx-m9-v1-1-193973a4f3ca@geotab.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Trevor Wu <trevor.wu@mediatek.com>,
+	Jiaxin Yu <jiaxin.yu@mediatek.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] ASoC: dt-bindings: mediatek: Simplify
+ mediatek,clk-provider
+Message-ID: <20250514-stir-porridge-b52d88b50ae1@spud>
+References: <20250514105702.28622-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,60 +66,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="goZOyUDMUt08Zz71"
+	protocol="application/pgp-signature"; boundary="5CRYNW3obN/3u7l6"
 Content-Disposition: inline
-In-Reply-To: <20250514-ubx-m9-v1-1-193973a4f3ca@geotab.com>
+In-Reply-To: <20250514105702.28622-2-krzysztof.kozlowski@linaro.org>
 
 
---goZOyUDMUt08Zz71
+--5CRYNW3obN/3u7l6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 14, 2025 at 01:55:54PM +0200, Alejandro Enrique via B4 Relay wr=
-ote:
-> From: Alejandro Enrique <alejandroe1@geotab.com>
+On Wed, May 14, 2025 at 12:57:03PM +0200, Krzysztof Kozlowski wrote:
+> "mediatek,clk-provider" property is a string, not an string array, thus
+> "items" is not really correct.
 >=20
-> Add compatible for u-blox NEO-9M GPS module.
->=20
-> Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
-> ---
->  Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/=
-Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-> index 7d4b6d49e5eea2201ac05ba6d54b1c1721172f26..cf5ff051b9ab03e5bfed8156a=
-72170965929bb7e 100644
-> --- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-> +++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-> @@ -22,6 +22,7 @@ properties:
->        - u-blox,neo-6m
->        - u-blox,neo-8
->        - u-blox,neo-m8
-> +      - u-blox,neo-m9
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-No match data in the driver, why is a fallback not sufficient?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> =20
->    reg:
->      description: >
->=20
-> --=20
-> 2.34.1
->=20
->=20
-
---goZOyUDMUt08Zz71
+--5CRYNW3obN/3u7l6
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCS7bQAKCRB4tDGHoIJi
-0p1zAPY30m1WH+2JdjY1OGSDatx8EC3zsr3vbXw3fb61z0k0AP9GqvaLCQEJ31jd
-uS2k7jiaVxz+CxWXRxmbq2ubfK4UAQ==
-=H2EF
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCS7zQAKCRB4tDGHoIJi
+0vucAP0ZLj98/0xHcsnZq3ruzOd9P3Y0Z5wyirXAYCFjg+5G2QEA92rfx6Wpafbl
+JUg58i+SRsWf56f7tK0VKcHUSIbJPAk=
+=KTct
 -----END PGP SIGNATURE-----
 
---goZOyUDMUt08Zz71--
+--5CRYNW3obN/3u7l6--
 
