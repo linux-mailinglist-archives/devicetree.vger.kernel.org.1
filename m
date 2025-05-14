@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-177125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2AE6AB67D9
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:44:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D11C4AB67DF
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:45:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA1103A18D2
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:44:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59BBF4A04BB
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:45:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26ACB22A4E4;
-	Wed, 14 May 2025 09:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0942251790;
+	Wed, 14 May 2025 09:45:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail78-39.sinamail.sina.com.cn (mail78-39.sinamail.sina.com.cn [219.142.78.39])
+Received: from mail78-50.sinamail.sina.com.cn (mail78-50.sinamail.sina.com.cn [219.142.78.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DEE1F2BAD
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:44:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.39
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A75892512C9
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:45:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747215884; cv=none; b=KuSZaFLvy+twJqzYBsvJPgOxrlCWINTAGDpAekbDottWITXSNf48RcWrbQCKmiUnvIodF4FXROJ6y3MJXnyWFmJavmIz8n7gT8GDjXFNeF0CHrpG95i3CEv0WT9sxqEuO/zuqkPaDCvW6qCEDxHtYbytzT9KZvIzrjMCfj71pmA=
+	t=1747215955; cv=none; b=m3OSDQ4A4roDFPFGOUR+gbVNuRTUsCh6l+AOJYjRjf9U6N7tmKdiAbc42TWDgZnqxWSCAGvvAKSc6+zZDam8E+AhxGLI5uwi9oM2FwKioEWDI/+c4QI/OD+cNBOEl/QRaVVG7pJZ4I3ej3/xNmpDiPMu4587adOQOjnsfdzUF5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747215884; c=relaxed/simple;
-	bh=UW9TWzR4IEpFi/vAQCG6kyviN4RyQJrEkeAu+4eu2ak=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=Z89pzqsLbpu5GJpYOAjF5reo/u+ho23+oHLE3ECrL5AZVU0vRqoF16bsrI6SUHJDeTNztiVWM/uKIaxpoukGm7i/0ZjIL+iF5dglNYkjUhpuSDJDQQyjqElWZ5bIk4xUdrFemHHf/+S/lgjDjfL6j8Ad7ZVn0+bUj3WdXj+fjhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.39
+	s=arc-20240116; t=1747215955; c=relaxed/simple;
+	bh=mtY0bTVm5VhXr+TTF+qVqJJr9B0vaykavLfKF0/XCPI=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=bFIKGbTwvWqvBHyzRzlXmPUCx7ikNMFKrer1PlqTgUliNqZjzlumsAbdFBmJrFlJaqdEOi1fyYNDgy3CfS1X8h5agSIAIDMlZumsaiBaDKjx4Z9leTf+7uChUWMGrKGzXCVf3tF4fnC1dhDkYabeilHJohdI1JChmS8CF6/1bDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
 Received: from unknown (HELO zy-virtual-machine.localdomain)([180.172.39.205])
-	by sina.net (10.185.250.31) with ESMTP
-	id 6824657300007345; Wed, 14 May 2025 17:42:12 +0800 (CST)
+	by sina.net (10.185.250.30) with ESMTP
+	id 6824664C000067F7; Wed, 14 May 2025 17:45:49 +0800 (CST)
 X-Sender: zhangyi@everest-semi.com
 X-Auth-ID: zhangyi@everest-semi.com
 Authentication-Results: sina.net;
 	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
 	 dkim=none header.i=none;
 	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: 8FEA5EF899F0429C9EE7B213D637B2FC
-X-SMAIL-UIID: 8FEA5EF899F0429C9EE7B213D637B2FC-20250514-174212
+X-SMAIL-MID: EE9984FD0F324F48970E86E80AD22A0C
+X-SMAIL-UIID: EE9984FD0F324F48970E86E80AD22A0C-20250514-174549
 From: Zhang Yi <zhangyi@everest-semi.com>
-To: broonie@kernel.org
-Cc: robh@kernel.org,
+To: broonie@kernel.org,
+	robh@kernel.org,
 	tiwai@suse.com,
 	devicetree@vger.kernel.org,
 	conor+dt@kernel.org,
@@ -49,12 +49,13 @@ Cc: robh@kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-sound@vger.kernel.org,
 	perex@perex.cz,
-	krzk+dt@kernel.org,
-	amadeuszx.slawinski@linux.intel.com,
-	krzk@kernel.org
-Subject: RE: [RESEND v7 0/2] ASoC: codecs: add support for ES8389
-Date: Wed, 14 May 2025 17:42:11 +0800
-Message-Id: <20250514094211.35394-1-zhangyi@everest-semi.com>
+	krzk+dt@kernel.org
+Cc: amadeuszx.slawinski@linux.intel.com,
+	krzk@kernel.org,
+	Zhang Yi <zhangyi@everest-semi.com>
+Subject: [PATCH v8 0/2] ASoC: codecs: add support for ES8389
+Date: Wed, 14 May 2025 17:45:44 +0800
+Message-Id: <20250514094546.35508-1-zhangyi@everest-semi.com>
 X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -62,20 +63,64 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-> That's not my tree, that's linux-next.  MAINTAINERS shows:
-> 
-> SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEMENT (ASoC)
-> M:      Liam Girdwood <lgirdwood@gmail.com>
-> M:      Mark Brown <broonie@kernel.org>
-> L:      linux-sound@vger.kernel.org
-> S:      Supported
-> W:      http://alsa-project.org/main/index.php/ASoC
-> T:      git git://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git
-> 
-> and note that above git is saying it's not got a useful SHA1 in your
-> patch so either there's a formatting issue or it's not quite -next (the
-> repo I apply to has -next so would see -next commits).  For things
-> targetting 6.16 you want for-6.16.
+The driver is for codec ES8389 of everest-semi.
 
-Thank you for your reply. I will check my next-branch.
+v8 -> v7: Modifying apply error issue
+
+v7 -> v6:
+          - Modify the order in the Kconfig and Makefile
+          - Remove ES8390 in description of codec driver
+          - Romove unused variable in the codec driver
+          - Modify notation for declaring variables
+
+v6 -> v5: add "Reviewed-by" at v6 2/2
+
+v5 -> v4:
+          - Modify kcontrol on DMIC in the codec driver
+          - Modify the way to set the slot and add es8389_set_tdm_slot
+           in the codec driver
+          - Modify the problem ablout making the use of a MCLK depend on
+           the configuration of a TDM slot in the codec driver
+          - Remove the "everest,adc-slot", "everest,dac-slot" and
+           "everest,dmic-enabled" in the codec driver and the yaml file,
+           because they are unnecessary. 
+          - Remove the "prefix_name" in the yaml file.
+
+v4 -> v3:
+          - Remove simple probe enter/exit debugs in the codec driver
+          - Modify the problem about double free in i2c_probe
+          - Modify the problem about coding style and wrapping
+          - Modify the problem about Bindings are before the user
+          - Modify the ref of "everest,adc-slot" and "everest,dac-slot"
+             in the yaml file
+          - Add description of "prefix_name" and "everest,dmic-enabled"
+             in the yaml file
+
+v3 -> v2: Modify the format of examples in the yaml file
+
+v2 -> v1:
+          - Remove a empty switch in the codec driver
+          - Modify the format of examples in the yaml file
+
+v1 -> v0:
+          - Modify the register names in the codec driver 
+          - Use yaml instead of txt to describe dts
+
+Zhang Yi (2):
+  ASoC: codecs: add support for ES8389
+  ASoC: dt-bindings: Add Everest ES8389 audio CODEC
+
+ .../bindings/sound/everest,es8389.yaml        |  50 +
+ sound/soc/codecs/Kconfig                      |   5 +
+ sound/soc/codecs/Makefile                     |   4 +-
+ sound/soc/codecs/es8389.c                     | 962 ++++++++++++++++++
+ sound/soc/codecs/es8389.h                     | 140 +++
+ 5 files changed, 1160 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/everest,es8389.yaml
+ create mode 100644 sound/soc/codecs/es8389.c
+ create mode 100644 sound/soc/codecs/es8389.h
+
+-- 
+2.17.1
+
 
