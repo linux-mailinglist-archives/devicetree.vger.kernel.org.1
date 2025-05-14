@@ -1,116 +1,203 @@
-Return-Path: <devicetree+bounces-177017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2C1CAB6407
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:21:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22C6BAB6411
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:23:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 113047AB3DA
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 07:20:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F6507B3DBE
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 07:21:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B2012185BD;
-	Wed, 14 May 2025 07:21:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B808320C47F;
+	Wed, 14 May 2025 07:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="X3IxxpRU"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="OJBazy+c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A2F2101AE;
-	Wed, 14 May 2025 07:21:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714B420CCD9
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 07:22:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747207276; cv=none; b=WmtfEompaDiWWXmV/DrE9Fuj2sOUlXVuKTn1NRjfegUi5GWzOFHST3APutlZBptT09luhI03aBcYh6ce/lPgK7qf6ctGT4UOzj8NDjzPGF64KzN/Y13v28waBPtFGDq/L9HkmWjLaA2qrvkW9fGME6PXG5E1FNy+feCx9NxVNuc=
+	t=1747207331; cv=none; b=nuxj0mpMAypfehTz9nVvf1na/z6kGRg9t0flZJHa/2tFJhXxlPIJ2X85JJbgPr/mBtINVOiPDAbOI6j/cn12s059pqdifM8UI9nFbJjStUoErm2dGckBr2ps+amgmYbHxDWmuq7EpnzUgqlADvKCkb91VlRrejzQSRwRthM6TlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747207276; c=relaxed/simple;
-	bh=QnLTjP1mvY1cdvlWVNyTq5t2nui5AUpNjQrDQwIUihs=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XxUQYDDjTESe5Scm5mVlewjgasQJVIXNU9egAk0aRYIRlrscyv61bSNeRYSkcKl+ice4WVO2sQaNpxbQ2mseg36CMpbOse6+teNW+ylOajwDmwclHYLZECHXihjN6yeiEp/XQLmy0V1erTWq0G2rb8zOSoe1pqApYJ+KSYSOiSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=X3IxxpRU; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54E7L89s3072419;
-	Wed, 14 May 2025 02:21:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1747207268;
-	bh=EkmrUstDFM3IQIJ4SrYBdgA6FK0mSkuMvNrxI3Ghhsc=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=X3IxxpRUK4Qel1kAGcAPP5G3xDOdgcsig7Y6uup/jtIMa8lt1YqDV5QMOSPnBhqQu
-	 wCXnpZypdd0UyD6UvGy8LnMpou89TGn8u5UEKhiC5FNVTOqQPMDNu/18UnQVUb1ZsU
-	 Jo+ltBCCmwsEze013Hi3UJFgDsNh2A/3scyBIdT0=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54E7L8Va3101555
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 14 May 2025 02:21:08 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
- May 2025 02:21:07 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 14 May 2025 02:21:07 -0500
-Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [10.24.69.37] (may be forged))
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 54E7Kueb082928;
-	Wed, 14 May 2025 02:21:04 -0500
-From: Neha Malcom Francis <n-francis@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <n-francis@ti.com>
-Subject: [PATCH v3 2/2] arm64: dts: ti: k3-j784s4-main: Add PBIST_14 node
-Date: Wed, 14 May 2025 12:50:56 +0530
-Message-ID: <20250514072056.639346-3-n-francis@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250514072056.639346-1-n-francis@ti.com>
-References: <20250514072056.639346-1-n-francis@ti.com>
+	s=arc-20240116; t=1747207331; c=relaxed/simple;
+	bh=xsIXzxcogPEj7WI1OQx1l9ITv7ODZeAyB0f4aMhmg0k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tOalvROUb2v3Dvv6790HCks0vNq/UrV3MyOppG/lontP9zaicCZslOx/yfaEmjbO2ws0zuNxcRBP+iwqC/+sTmhJ5/jdj2jWt46py8U4Wt02XgUo7v0afYuq9WNU1JME214Jym8lId2kQ37eX/GiXSITnMtkLJnzZ+7uFPkRFkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=OJBazy+c; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ad1b94382b8so1044463166b.0
+        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 00:22:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1747207327; x=1747812127; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tcbw5sLrHE1qbiw4ucHwavhVf9qACz67c1w54poiYio=;
+        b=OJBazy+c3+gEW5HW4kB/WltiOBKafN68yV1O4L8vwACBYd26ud99VGXZPIxIQcocKt
+         /Ex5DKanYGbYSrqz+G3NYcdm1SS94pkXfrj57y8WflSHslm5V3oiHYtkdKVx2ikuTNiI
+         Hwo7DhqTkVTS8i6VURaZWKuBGEW8kYfVqLa7UQ+BpqQXYnLzObqTWaOK5wRsRiaNtwIK
+         dqEf/7OjGLlgxQEyZW7GKkKnz3o91LsJg0aBylI3ijscxPW3GtmRUhEiPjroNO8au4It
+         MwxIP82yFosa4fGK3MAJ48iB6sx8oN492j29U3J64RHwqQSOMSAaH1NVyokLeM9/DWZk
+         uXqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747207327; x=1747812127;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tcbw5sLrHE1qbiw4ucHwavhVf9qACz67c1w54poiYio=;
+        b=upLWoFpPFpDZML5TX0rvhxlzlzGM6sg8EX0jn/ZVV3A5a2hlQFGtUhCkkk3iVVJ19V
+         dSB3VZOy5L05Y/S23q+1wO7OrjkG4LtgH0JhRAqV+AIP15/yBdUUmofaVtP8iWacCZjd
+         1G/4M+pQpGOPGDlp6XRFf3+17Gikf1OW9DhmflUUu1SGBrHDhwoO3vutEW30KCwxTL5u
+         fZfaawMcNyGZyVpSgrXVgrLXcO+I4GMNyAei0WFTrvSH0TY8EYDhazCY7xLEWWhawR4f
+         VHj9bM4CvQ3HQ6HELSYKV5ggOwFkCKI9xYGl+mA5xBp4muZ5ZB8+nCuaxtBvl0h16TcS
+         V/oQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWLblgHSE4J+0n9iWhtTeiHN+E3OwaQe+mRIxUpZPcmAmzd6D7h1sbiiRAmu9zrT27mzHRxMxt6hk1T@vger.kernel.org
+X-Gm-Message-State: AOJu0YzItsL/iGimzdOCEnIoIwytEu27ErzbzZKMj+UdC1enGiMGLP9C
+	y0GqiG+Wf+HCyxy3BV9pU/0ewSHyZuoLiJT6QoD0Yf/dSAcTR7sN8FnmhL8ER4Z7TM7Lu3cGik5
+	sOvZPP1WbPWg157ybUWFf8i1nZPfmcRtILobEGA==
+X-Gm-Gg: ASbGncuxB5s+JXtDa43TCl7NT5JK9sHHM/CAM1lQOO34CIKjNfaGNFvwgEy5SQlGAd2
+	NLJthqPAQqng5ulqqXoU5rEz7GoL66JP2oC2HGAqEok7pqix6fwuEhLYJhh1+YUFH4TOU6WRSUC
+	C1WyGmPQzJMfNwY56t3IKrvDr+QqayeiM=
+X-Google-Smtp-Source: AGHT+IHqsMqx3BaDCWn45qMLaOEYvPW7XUqjv7SdJvzZ3hWp+AKyoxb4KrcmHMVJwGZocnpesHw3un4CM8pfyBJnatc=
+X-Received: by 2002:a17:907:7f94:b0:acb:b1be:4873 with SMTP id
+ a640c23a62f3a-ad4f70f6129mr261521866b.2.1747207326486; Wed, 14 May 2025
+ 00:22:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250429085048.1310409-1-guodong@riscstar.com>
+In-Reply-To: <20250429085048.1310409-1-guodong@riscstar.com>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Wed, 14 May 2025 15:21:53 +0800
+X-Gm-Features: AX0GCFscwF3i-VATg9tXixD2-TDlOGgy-oyXk_jgaiYVherKFdQgiFo0yj7WIAw
+Message-ID: <CAH1PCMai91WjooaF8HzY=rJWpFT4Drnx7fcs4+NCsLT4pGEKUA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] pwm: Update PWM_PXA driver for SpacemiT K1
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, conor+dt@kernel.org, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, alex@ghiti.fr, Yixun Lan <dlan@gentoo.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, drew@pdp7.com, Inochi Amaoto <inochiama@gmail.com>, 
+	geert+renesas@glider.be, heylenay@4d2.org, tglx@linutronix.de, 
+	hal.feng@starfivetech.com, unicorn_wang@outlook.com, duje.mihanovic@skole.hr, 
+	heikki.krogerus@linux.intel.com
+Cc: Alex Elder <elder@riscstar.com>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add DT node for PBIST_14 that is responsible for triggering the PBIST
-self-tests for the MAIN_R5_2_x cores.
+Hi, All
 
-Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
----
-Changes since v2:
-- remove ti,bist-under-test property and use ti,sci-dev-id
+On Tue, Apr 29, 2025 at 4:51=E2=80=AFPM Guodong Xu <guodong@riscstar.com> w=
+rote:
+>
+> This patchset adds support for the SpacemiT K1 SoC in the PWM_PXA driver
+> and updates related device tree bindings. The changes enable PWM
+> functionality on the K1 platform through driver enhancements,
+> configuration updates, and device tree additions.
+>
 
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Gentle ping, any comments or concerns on this patchset?
+Any feedback would be greatly appreciated.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index 0160fe0da983..fd098aac3989 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -113,6 +113,17 @@ serdes2: serdes@5020000 {
- 			status = "disabled";
- 		};
- 	};
-+
-+	bist_main14: bist@33c0000 {
-+		compatible = "ti,j784s4-bist";
-+		reg = <0x00 0x033c0000 0x00 0x400>,
-+		      <0x00 0x0010c1a0 0x00 0x01c>;
-+		reg-names = "cfg", "ctrl_mmr";
-+		clocks = <&k3_clks 237 7>;
-+		power-domains = <&k3_pds 237 TI_SCI_PD_EXCLUSIVE>;
-+		bootph-pre-ram;
-+		ti,sci-dev-id = <234>;
-+	};
- };
- 
- &scm_conf {
--- 
-2.34.1
+Thanks in advance!
+Best regards,
+Guodong
 
+> Functionality has been verified on the Banana Pi BPI-F3 board using PWM14=
+,
+> configured as a pwm-backlight. Per community feedback, the actual
+> pwm-backlight node is not included in this patchset but can be found in
+> patch 7 of the v1 series, with modification of pwms property to 4-cell
+> format to match updated binding (#pwm-cells =3D <3>) since v3.
+>
+> +               pwms =3D <&pwm14 0 2000 0>;
+>
+> This patchset is based on [spacemit/for-next]
+>   base: https://github.com/spacemit-com/linux for-next
+>
+> Plus the following dependencies:
+> 1. Clock controller driver, posted by Heylen Chu (v8), with most of it ha=
+s
+>    been accepted:
+> https://lore.kernel.org/all/20250416135406.16284-1-heylenay@4d2.org/
+> 2. Reset controller driver, posted by Alex Elder (v5):
+> https://lore.kernel.org/all/20250418145401.2603648-1-elder@riscstar.com/
+>
+> Major differences between v3 and v2:
+>  - Patch 1:
+>     - Added: Reviewed-by: Rob Herring (Arm) <robh@kernel.org> # v2.
+>     - When compatible string contains "spacemit,k1-pwm",
+>       #pwm-cells must be 3.
+>  - Patch 2:
+>     - Dropped the addition of a reset_control field to struct pxa_pwm_chi=
+p.
+>     - Using a local variable in pwm_probe() instead.
+>  - Patch 3:
+>     - In k1.dtsi, changed #pwm-cells =3D <1> to <3>.
+>
+> Major differences between v2 and v1:
+>  - Dropped the addition of spacemit,k1-pwm as a compatible string in the
+>    PWM_PXA driver; instead, it now falls back to marvell,pxa910-pwm.
+>  - Removed pinctrl settings for all PWM nodes (pwm0-pwm14); only the
+>    pwm14_1 configuration is included in this version.
+>  - Changed PWM_PXA from built-in to a loadable module (=3Dm) in the
+>    riscv defconfig.
+>
+> v2 consists of the following patches:
+> Patch 1: Add spacemit,k1-pwm compatible string (with fallback to
+>            marvell,pxa910-pwm) and support optional resets property.
+> Patch 2: Add reset controller support to the PWM_PXA driver.
+> Patch 3: Add device tree nodes for all 20 PWM instances on K1.
+> Patch 4: Add pinctrl settings for PWM14.
+> Patch 5: Add ARCH_SPACEMIT dependency to the PWM_PXA Kconfig entry.
+> Patch 6: Enable PWM and PWM_PXA in riscv defconfig for SpacemiT K1.
+>
+> v2:
+> https://lore.kernel.org/all/20250420070251.378950-1-guodong@riscstar.com/
+>
+> v1:
+> https://lore.kernel.org/all/20250411131423.3802611-1-guodong@riscstar.com=
+/
+>
+> Best regards,
+> Guodong Xu
+>
+> Guodong Xu (6):
+>   dt-bindings: pwm: marvell,pxa-pwm: Add SpacemiT K1 PWM support
+>   pwm: pxa: add optional reset control
+>   riscv: dts: spacemit: add PWM support for K1 SoC
+>   riscv: dts: spacemit: add pwm14_1 pinctrl setting
+>   pwm: Kconfig: add depends on ARCH_SPACEMIT to PWM_PXA
+>   riscv: defconfig: Enable PWM support for SpacemiT K1 SoC
+>
+>  .../bindings/pwm/marvell,pxa-pwm.yaml         |  35 +++-
+>  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |   7 +
+>  arch/riscv/boot/dts/spacemit/k1.dtsi          | 180 ++++++++++++++++++
+>  arch/riscv/configs/defconfig                  |   2 +
+>  drivers/pwm/Kconfig                           |   2 +-
+>  drivers/pwm/pwm-pxa.c                         |   7 +
+>  6 files changed, 225 insertions(+), 8 deletions(-)
+>
+>
+> base-commit: cb9c3aeae509b36afbdf46942a7a0a0dfc856ce7
+> prerequisite-patch-id: a5d2fb43fd88525fa6c8ee767c31adfee87f1012
+> prerequisite-patch-id: 8a8d0eefd0b4423d87f3c093b451a0fa60622ec4
+> prerequisite-patch-id: 30f92f93e5b3577bde61424303f21c709a715ec5
+> prerequisite-patch-id: d774b8281b5c6a822445365ee94925e1ab6c7a93
+> prerequisite-patch-id: 54a4f5d065eb9f212fd99efec6e7e06abbb9bad8
+> prerequisite-patch-id: 93962be60d1b58a98d947edf51b4af9edf513785
+> prerequisite-patch-id: 5f53f8bf16fb067628092daebc4831293261aa01
+> --
+> 2.43.0
+>
 
