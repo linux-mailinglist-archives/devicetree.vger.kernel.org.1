@@ -1,290 +1,120 @@
-Return-Path: <devicetree+bounces-177083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84BEFAB6672
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:51:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4A8AAB667C
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:52:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46B0319E6A90
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:51:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BB044A367A
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8C2221F0A;
-	Wed, 14 May 2025 08:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C35E221719;
+	Wed, 14 May 2025 08:52:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BUaL+BYq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uijrsK5M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806F7221F06;
-	Wed, 14 May 2025 08:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D82221541;
+	Wed, 14 May 2025 08:52:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747212671; cv=none; b=P/8TT3aJjTncLt2XufLaod5VZytQ+AuEyqE7X9MVWsNnh8Ry3HUDAlr2W5VA5SA8jdbale/OPn1NPau7dgu4kJea+p9rHXUX0mqaJWqEqAWFVODwuT3S/PTehcRycjrYH63zekronj+mPIuaHfo7waRE9JNT7fgEo1xNi7z2/VM=
+	t=1747212743; cv=none; b=qK9JRVpX2kAUGOUMTf8fynuhRyk/YbEvBu/XWwR2NTqABPEMR6hIJvsutjTw8/x/LtDNwlTiDCcKwkUyiAzlty+sLZRQp78HoDLHn/4oCdIWdt9mBJVg0siwAbrKzVoNLxPT443kEl194oEMN5sAcsMbC6ZSZeUkhS6skyTXmfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747212671; c=relaxed/simple;
-	bh=7KkDWWcRgm3PmtJK+aAn5sYt/3mOneubs8iEDFWHSlw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aDWkKa39JH0VXDrMWL7/T3ocf+iRcfTcy6SEdbXZ/LKzDpuJvpFlv9QgRhCv0d7+8q7cByGIfZ4NPdSL2oiuuwSam1MbXSmVz8htxS8Tjt6QuBdrrxPjwO1qJTzluWZrm5wPIxudq9y60o2wr2fPOYkzI/3uePKBygiyX1Yb/h0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BUaL+BYq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B2F6C4CEE9;
-	Wed, 14 May 2025 08:51:10 +0000 (UTC)
+	s=arc-20240116; t=1747212743; c=relaxed/simple;
+	bh=pn79s5/J/P9TNe+3hLy3s/qDtoOXGxNKcDbvTKLxHq0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GYYSSuDZBVfLhc+dFoNo9wdfMbuBioIC+oFf5PIVuFSupYgVEcEHEA4OicSj+OOjLDMDUMJm5ABfoi7m0Zl/wuR0qEF/i1QotnvslQrVaBxF7bUlEaiqCK1aIckRsYUCT9UlKi35guI2ijXkaYt2CJ53NVx5ptW4ZXH/1ApcHOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uijrsK5M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4E000C4CEE9;
+	Wed, 14 May 2025 08:52:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747212671;
-	bh=7KkDWWcRgm3PmtJK+aAn5sYt/3mOneubs8iEDFWHSlw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BUaL+BYqtavrlWK7oaPX9f9VX6ZNq2MCaHFZVwDEBX0ZVbc1y3fBnWgUwVyar16B6
-	 27vDATl7HWckbintyT8CV5pEy7oRPiVciKPhFkrTgHnLYLXTb+gfDGLy3b5Df54FBa
-	 dozLnwYpFG6hoFQV50g+bgVwMsd5hD9ClBDmPa4gr/mBpldS7l6qMwgs1bPnh33frx
-	 0m/fswXLpdkBIzXDIcXrH/fSy+GXMLyb+l5tV+ig8MX30dlhM2y+g7rco97s7RKIea
-	 EEwalUG4jBCZvv5JMQE3axxI55kY8ebKvADCF1TnQ+13eYg3X8ykzandtXchVRlQ7w
-	 WLY7c1ndb1wSA==
-Date: Wed, 14 May 2025 09:51:08 +0100
-From: Vinod Koul <vkoul@kernel.org>
-To: Ze Huang <huangze@whut.edu.cn>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] phy: spacemit: support K1 USB2.0 PHY controller
-Message-ID: <aCRZfOQS0JTWKUdX@vaman>
-References: <20250418-b4-k1-usb3-phy-v2-v2-0-b69e02da84eb@whut.edu.cn>
- <20250418-b4-k1-usb3-phy-v2-v2-3-b69e02da84eb@whut.edu.cn>
+	s=k20201202; t=1747212743;
+	bh=pn79s5/J/P9TNe+3hLy3s/qDtoOXGxNKcDbvTKLxHq0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=uijrsK5MXZDqv5WghHiK0XdMjDfGlSwTTmKDKeXTdeHHnZLCQdV7oV7tpcI+wcP6h
+	 gxvNrKPAPRQE0N6JQ93jMB7xwIN2N8kCA1UIdllwoq3Px4d38feOv7lAdI+pqe43Yg
+	 cMk6xiP2RcnfrXNeLyBB7cjcG8eO49STacoteMoAnCpsHcydpCDal5zkTOUaeY1Ptt
+	 2/pnj170IpHuiUlRO50cj31kV+ajfGHZvvjZWgJFsNYN5I97LnpQmfRYWsnQ9Ug2zq
+	 njXIPoARiY1yiPMIRUWCUi3LtPq+g6rOnYslOC7lk1sTFGsDVUGRoO0cSLEiYFYN2B
+	 tDVOdwsvNFafg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D326C3ABD9;
+	Wed, 14 May 2025 08:52:23 +0000 (UTC)
+From: Aleksa Paunovic via B4 Relay <devnull+aleksa.paunovic.htecgroup.com@kernel.org>
+Subject: [PATCH v4 0/2] Use GCR.U timer device as clocksource
+Date: Wed, 14 May 2025 10:51:49 +0200
+Message-Id: <20250514-riscv-time-mmio-v4-0-cb0cf2922d66@htecgroup.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250418-b4-k1-usb3-phy-v2-v2-3-b69e02da84eb@whut.edu.cn>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKVZJGgC/x3MQQqAIBBA0avIrBsQ0ZCuEi3ExpqFGhoShHdPW
+ r7F/y9UKkwVFvFCocaVcxrQkwB/unQQ8j4MSiojtdJYuPqGN0fCGDmjmZUlGbyzLsCorkKBn/+
+ 4br1/N1+qi2EAAAA=
+X-Change-ID: 20250424-riscv-time-mmio-5628e0fca8af
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, 
+ Djordje Todorovic <djordje.todorovic@htecgroup.com>, 
+ Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747212741; l=1393;
+ i=aleksa.paunovic@htecgroup.com; s=20250514; h=from:subject:message-id;
+ bh=pn79s5/J/P9TNe+3hLy3s/qDtoOXGxNKcDbvTKLxHq0=;
+ b=rlPq6swwSQfvouul8tW+SJQHbhgJ9bLJXKSNximZEzgFJegjutl9e61P7ng8+xa0j9c7BERNl
+ peYI8pd6S8tAMlHpGC/INhUOvEzV/JOrTCoHCBvvxYC+8x1rhWP5QuQ
+X-Developer-Key: i=aleksa.paunovic@htecgroup.com; a=ed25519;
+ pk=gFVSVYLKAgJiS5qCnDyUMGOFuczv8C6o0UmRs+fgisA=
+X-Endpoint-Received: by B4 Relay for aleksa.paunovic@htecgroup.com/20250514
+ with auth_id=403
+X-Original-From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+Reply-To: aleksa.paunovic@htecgroup.com
 
-Hi,
+This series adds bindings for the GCR.U timer device and corresponding
+driver support. Accessing the memory mapped mtime register in the GCR.U
+region should be faster than trapping to M mode each time the timer
+needs to be read.
 
-On 18-04-25, 21:19, Ze Huang wrote:
-> Add support for SpacemiT K1 USB2.0 PHY.
+Changes in v4:
+- Remove "select" from mti,gcru.yaml.
+- Refactor the driver to use function pointers instead of static keys.
 
-Can you please add more details of this device, which SoC is this, and
-what are the capablities of this phy
+Previous versions:
+v1: https://lore.kernel.org/lkml/20241227150056.191794-1-arikalo@gmail.com/#t
+v2: https://lore.kernel.org/linux-riscv/20250409143816.15802-1-aleksa.paunovic@htecgroup.com/
+v3: https://lore.kernel.org/linux-riscv/DU0PR09MB61968695A2A3146EE83B7708F6BA2@DU0PR09MB6196.eurprd09.prod.outlook.com/
 
-> 
-> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
-> ---
->  drivers/phy/Kconfig                |   1 +
->  drivers/phy/Makefile               |   1 +
->  drivers/phy/spacemit/Kconfig       |  13 ++++
->  drivers/phy/spacemit/Makefile      |   2 +
->  drivers/phy/spacemit/phy-k1-usb2.c | 131 +++++++++++++++++++++++++++++++++++++
->  5 files changed, 148 insertions(+)
-> 
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index 8d58efe998ec5fd50054eed2c90d6ecce6bd5dd8..fca589aa7926eb5bce14e99785cf32cf0395202e 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -114,6 +114,7 @@ source "drivers/phy/renesas/Kconfig"
->  source "drivers/phy/rockchip/Kconfig"
->  source "drivers/phy/samsung/Kconfig"
->  source "drivers/phy/socionext/Kconfig"
-> +source "drivers/phy/spacemit/Kconfig"
->  source "drivers/phy/st/Kconfig"
->  source "drivers/phy/starfive/Kconfig"
->  source "drivers/phy/sunplus/Kconfig"
-> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> index e281442acc752820fe0bd638dfe38986a37c2a78..05993ff8a15daf7e2583b5f9b9b37ac584a30609 100644
-> --- a/drivers/phy/Makefile
-> +++ b/drivers/phy/Makefile
-> @@ -34,6 +34,7 @@ obj-y					+= allwinner/	\
->  					   rockchip/	\
->  					   samsung/	\
->  					   socionext/	\
-> +					   spacemit/	\
->  					   st/		\
->  					   starfive/	\
->  					   sunplus/	\
-> diff --git a/drivers/phy/spacemit/Kconfig b/drivers/phy/spacemit/Kconfig
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..0136aee2e8a2f5f484da136b26f80130794b992c
-> --- /dev/null
-> +++ b/drivers/phy/spacemit/Kconfig
-> @@ -0,0 +1,13 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +# Phy drivers for SpacemiT platforms
-> +#
-> +config PHY_SPACEMIT_K1_USB2
-> +	tristate "SpacemiT K1 USB 2.0 PHY support"
-> +	depends on (ARCH_SPACEMIT || COMPILE_TEST) && OF
-> +	depends on COMMON_CLK
-> +	depends on USB_COMMON
-> +	select GENERIC_PHY
-> +	help
-> +	  Enable this to support K1 USB 2.0 PHY driver. This driver takes care of
-> +	  enabling and clock setup and will be used by K1 udc/ehci/otg/xhci driver.
-> diff --git a/drivers/phy/spacemit/Makefile b/drivers/phy/spacemit/Makefile
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..fec0b425a948541b39b814caef0b05e1e002d92f
-> --- /dev/null
-> +++ b/drivers/phy/spacemit/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_PHY_SPACEMIT_K1_USB2)		+= phy-k1-usb2.o
-> diff --git a/drivers/phy/spacemit/phy-k1-usb2.c b/drivers/phy/spacemit/phy-k1-usb2.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..4a5684f3185f61f9d865b0fb52644bb280756d00
-> --- /dev/null
-> +++ b/drivers/phy/spacemit/phy-k1-usb2.c
-> @@ -0,0 +1,131 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * SpacemiT K1 USB 2.0 PHY driver
-> + *
-> + * Copyright (C) 2025 SpacemiT (Hangzhou) Technology Co. Ltd
-> + * Copyright (C) 2025 Ze Huang <huangze@whut.edu.cn>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/usb/of.h>
-> +
-> +#define USB2_PHY_REG01			0x04
-> +#define  USB2_PHY_REG01_VAL		0x60ef
-> +#define  USB2_PHY_REG01_PLL_IS_READY	BIT(0)
-> +#define USB2_PHY_REG04			0x10
-> +#define  USB2_PHY_REG04_AUTO_CLEAR_DIS	BIT(2)
-> +#define USB2_PHY_REG0D			0x34
-> +#define  USB2_PHY_REG0D_VAL		0x1c
-> +#define USB2_PHY_REG26			0x98
-> +#define  USB2_PHY_REG26_VAL		0xbec4
+Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+---
+Aleksa Paunovic (2):
+      dt-bindings: timer: mti,gcru
+      Allow for riscv-clock to pick up mmio address.
 
-What are these values referred to, why are you defining fixed values for
-driver to use and not set the register bits?
-> +
-> +#define USB2D_CTRL_RESET_TIME_MS	50
-> +
-> +struct spacemit_usb2phy {
-> +	struct phy	*phy;
-> +	struct clk	*clk;
-> +	void __iomem	*base;
-> +};
-> +
-> +static int spacemit_usb2phy_init(struct phy *phy)
-> +{
-> +	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
-> +	void __iomem *base = sphy->base;
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(sphy->clk);
-> +	if (ret) {
-> +		dev_err(&phy->dev, "failed to enable clock\n");
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * make sure the usb controller is not under reset process before
-> +	 * any configuration
-> +	 */
-> +	usleep_range(150, 200);
-> +	writel(USB2_PHY_REG26_VAL, base + USB2_PHY_REG26); /* 24M ref clk */
-> +
-> +	ret = read_poll_timeout(readl, val, (val & USB2_PHY_REG01_PLL_IS_READY),
-> +				500, USB2D_CTRL_RESET_TIME_MS * 1000, true,
-> +				base + USB2_PHY_REG01);
-> +	if (ret) {
-> +		dev_err(&phy->dev, "wait PHY_REG01[PLLREADY] timeout\n");
-> +		return ret;
-> +	}
-> +
-> +	/* release usb2 phy internal reset and enable clock gating */
-> +	writel(USB2_PHY_REG01_VAL, base + USB2_PHY_REG01);
-> +	writel(USB2_PHY_REG0D_VAL, base + USB2_PHY_REG0D);
-> +
-> +	/* auto clear host disc */
-> +	val = readl(base + USB2_PHY_REG04);
-> +	val |= USB2_PHY_REG04_AUTO_CLEAR_DIS;
-> +	writel(val, base + USB2_PHY_REG04);
-> +
-> +	return 0;
-> +}
-> +
-> +static int spacemit_usb2phy_exit(struct phy *phy)
-> +{
-> +	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
-> +
-> +	clk_disable_unprepare(sphy->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops spacemit_usb2phy_ops = {
-> +	.init = spacemit_usb2phy_init,
-> +	.exit = spacemit_usb2phy_exit,
-> +	.owner = THIS_MODULE,
-> +};
-> +
-> +static int spacemit_usb2phy_probe(struct platform_device *pdev)
-> +{
-> +	struct phy_provider *phy_provider;
-> +	struct device *dev = &pdev->dev;
-> +	struct spacemit_usb2phy *sphy;
-> +
-> +	sphy = devm_kzalloc(dev, sizeof(*sphy), GFP_KERNEL);
-> +	if (!sphy)
-> +		return -ENOMEM;
-> +
-> +	sphy->clk = devm_clk_get_prepared(&pdev->dev, NULL);
-> +	if (IS_ERR(sphy->clk))
-> +		return dev_err_probe(dev, PTR_ERR(sphy->clk), "Failed to get clock\n");
-> +
-> +	sphy->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(sphy->base))
-> +		return PTR_ERR(sphy->base);
-> +
-> +	sphy->phy = devm_phy_create(dev, NULL, &spacemit_usb2phy_ops);
-> +	if (IS_ERR(sphy->phy))
-> +		return dev_err_probe(dev, PTR_ERR(sphy->phy), "Failed to create phy\n");
-> +
-> +	phy_set_drvdata(sphy->phy, sphy);
-> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +
-> +	return PTR_ERR_OR_ZERO(phy_provider);
-> +}
-> +
-> +static const struct of_device_id spacemit_usb2phy_dt_match[] = {
-> +	{ .compatible = "spacemit,k1-usb2-phy", },
-> +	{ /* sentinal */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, spacemit_usb2phy_dt_match);
-> +
-> +static struct platform_driver spacemit_usb2_phy_driver = {
-> +	.probe	= spacemit_usb2phy_probe,
-> +	.driver = {
-> +		.name   = "spacemit-usb2-phy",
-> +		.of_match_table = spacemit_usb2phy_dt_match,
-> +	},
-> +};
-> +module_platform_driver(spacemit_usb2_phy_driver);
-> +
-> +MODULE_DESCRIPTION("Spacemit USB 2.0 PHY driver");
-> +MODULE_LICENSE("GPL");
-> 
-> -- 
-> 2.49.0
-> 
-> 
-> -- 
-> linux-phy mailing list
-> linux-phy@lists.infradead.org
-> https://lists.infradead.org/mailman/listinfo/linux-phy
+ .../devicetree/bindings/timer/mti,gcru.yaml        | 38 ++++++++++++++
+ arch/riscv/include/asm/timex.h                     | 48 ++++++-----------
+ drivers/clocksource/Kconfig                        | 12 +++++
+ drivers/clocksource/timer-riscv.c                  | 61 ++++++++++++++++++++++
+ 4 files changed, 126 insertions(+), 33 deletions(-)
+---
+base-commit: 9c32cda43eb78f78c73aee4aa344b777714e259b
+change-id: 20250424-riscv-time-mmio-5628e0fca8af
 
+Best regards,
 -- 
-~Vinod
+Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+
+
 
