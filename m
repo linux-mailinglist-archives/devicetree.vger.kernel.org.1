@@ -1,156 +1,246 @@
-Return-Path: <devicetree+bounces-177038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D9CAB6524
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:03:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD97FAB6533
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:05:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F9344A4466
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:03:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 646C3188E3E4
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:05:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAC54216386;
-	Wed, 14 May 2025 08:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB172185AB;
+	Wed, 14 May 2025 08:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CR8c1GvN"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ZvOfvrcb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2082.outbound.protection.outlook.com [40.92.21.82])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88AB520766C;
-	Wed, 14 May 2025 08:03:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747209805; cv=none; b=WK6Gy6Tk4b3uLnVQE/QO+hb6n6GHIfmaP7rJPVzgTBKj9Pjam0suEIwyQUmovxVT4c9EedM5l6lbl9Ozn+3Pr0or/BAsfwWXlxgozQM+560wSA1BPcecA1UzEI5SHWHBm32T+aaE3VW4RMDCsT99vzEAb8Q/qrBHCR0SFrUX5II=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747209805; c=relaxed/simple;
-	bh=qm8PV3PH6unPEQOBCfftpe16OlT8Y+sf9OEKT+SUt0c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=EM9ojJfnb5ABOT5IjsbcnzV2Dn3uo0beT4vlqQAoBjZiWCvJDo59oHHK8EjzlJ5UVE/vVejGWqeS6yS6SL7vP6mJOz38XYS23kQP9UI7fFtEWtSp+/8DFe2WygEcg+CfnL3wzj60/yJjp/yaldL7gWx4fOSPQ4rN0w6qL0RIbJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CR8c1GvN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6207DC4CEEB;
-	Wed, 14 May 2025 08:03:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747209805;
-	bh=qm8PV3PH6unPEQOBCfftpe16OlT8Y+sf9OEKT+SUt0c=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=CR8c1GvN220X/iGnvit8WaTOACbewCoM51G+RW2SfANm8k7EOR/aRRymm9/6cDfny
-	 0DbMfkmD/f9sGz6sc6J18YGzjEbtf8yJh/5yK62CS/XTzKaKTocB02aygzLfpHXzds
-	 xym2cvAPxVQc+FdSDBo+dnyTOu7Tgp6cF0Dgxp0MXYDgZWYPnmqPMJMZfOGEJYNryt
-	 pZfIRRgcxsTcb4HMWLcTILlkprSDZp3cxKdHR2aiRpxmZ8hOyrWR0T0bCaGO90Zb5B
-	 CuI+s28koE+v+QnYeulk7rUImm/oCznhe/FYP8WjmPZIgoAV2EgYdqWlewAhxISmlP
-	 8QsQlmMo6w6qg==
-Message-ID: <78dd8b8c-6762-4dc5-8984-52e19c4453bd@kernel.org>
-Date: Wed, 14 May 2025 10:03:17 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4318520766C;
+	Wed, 14 May 2025 08:04:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.21.82
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747209900; cv=fail; b=NxNNSIcgtXZ1mtFHqu2IDJQ8I1LV6IMN4lkHBtWbk9rzXf3tmMSo8ontxb0ZLqv7vesr7HudZHeavWjJfADMZ3r5DqtsQaPEK8bzI6j7ExGnmMtTkCthY7bWHfH49SWk2cIZMIOgnMUyqmT8BkD7M/FTyzcZfqxCVttuRt3d1DY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747209900; c=relaxed/simple;
+	bh=ZrwBV7+fJwhaJq2pY8xFukuA7IPheoa4wArqNdN/tlc=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=P6w730aJ4MVPaoL5+atPCIHH5WPOqyzyFOmWb8Pkw/cy/6trzwnZpFG/KxzSzrfgal5e8E3J8yGmaaQQ3Q9hhZzF9rtM4AH9bh9ycKG764DUbLzaUu1qj4rjgjZi+lgawADVosgWRsWUpDPimaCKxDucXtcnM0BeCVhx3RBAglY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ZvOfvrcb; arc=fail smtp.client-ip=40.92.21.82
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gXWCLt7kbxKm6EcyKRBKlK1Awayzfji4PH+QapPQ1cNNwxNPXvCehhYcVZ8DTZLF8Zk1FdlH/WNtu8w4s9W1WsT/Vcuuv5Donvc0EGXSRncCnsWisDqOJgrhka1ygspWzLzYECUKe7D5Wf4CMKyew9vFxV3jMRbTiFJIoX7MxlA77t3pFxCWe6jD4rTOP/ueElpfq7z8ytEzwtmV8IB5nR6Y++iUbthgNPbpTlW3hXo1+/fRhoi9uSs07idHVAvQ9Tq1+WzV69jY/Wt+5q/Y8MFy3fmgSFpU0MwSTFz49uElRMu8FO7C2EQcT3u+tc0L3pIZIc0+maYuf3VrZrmR9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JaOtvWUxyuJZFu6C4zZXXIDgvBV6OOIbkFyQRgsZyHk=;
+ b=tKa2ztcSK23XU9y8m7ysZhwGSMLf3M9N6sEsyUxL7YkqPAQyofO2GKxqYQj8yeBIGRwiCmFWFAy7/tdDHoFvc1aZvI4pmzMrXMxXUivu0fzs9rxH1kp1ApA3TAaD4H96iYI2M0M71adaLEermNBnmnRboxxofARKkwyVRH00iNV8aIt6RfrV9NubU2rVYa2Jvj6iX3kYKJqwrOV5B6p0Y+z5aNHQISUAXKFQ/VqPXuEVHrEghpAILh3fPjn/zAxgJLaxZy5j3WcI7jfTDL8zhjuA1P68EWS8a9i6ItesIliRA5rTryhnIdbh/PkTm+qiIyKEbIIOjgr2hVyHqZbXrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JaOtvWUxyuJZFu6C4zZXXIDgvBV6OOIbkFyQRgsZyHk=;
+ b=ZvOfvrcbk/EyrbhfuFZAyU35ZGVuQktEIhInnp4+DELAddERVR5QUL2qAgQYup+cNJau56KEca0P6Ea4NpzA6tRtzQ030FK0jdwri43IIBFbBnMJUvsL2wNyDmyvEf32aouXJUKEEe+vZALCgdJb/vBVAzvJ6ct88vyM2K3LP+1dkvV3JuSM02qekeWzzCgpZmfZVPv8i8Ok/B92X2ge2t9sXKloRz2FHEexRUPh39qgi2KxUkREtrqoNlB08xkS49rqrio/vVdqGC//vlxXcJSH5/vOMldE7bMBT02HxJMvWHdfy8T0fHGA99140Ugu+9EJpVErrK1Rdf21i21AaA==
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
+ by DM6PR19MB3947.namprd19.prod.outlook.com (2603:10b6:5:249::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.28; Wed, 14 May
+ 2025 08:04:55 +0000
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305%4]) with mapi id 15.20.8722.021; Wed, 14 May 2025
+ 08:04:55 +0000
+Message-ID:
+ <DS7PR19MB888370ACC69E0A1ABC46D3BB9D91A@DS7PR19MB8883.namprd19.prod.outlook.com>
+Date: Wed, 14 May 2025 12:04:45 +0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] clk: qcom: ipq5018: keep XO clock always on
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
+ Lee Jones <lee@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250506-ipq5018-cmn-pll-v2-0-c0a9fcced114@outlook.com>
+ <20250506-ipq5018-cmn-pll-v2-1-c0a9fcced114@outlook.com>
+ <a3c3dbe8-b73e-40a4-b86f-ff9f371b1a46@oss.qualcomm.com>
+Content-Language: en-US
+From: George Moussalem <george.moussalem@outlook.com>
+In-Reply-To: <a3c3dbe8-b73e-40a4-b86f-ff9f371b1a46@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DX0P273CA0088.AREP273.PROD.OUTLOOK.COM
+ (2603:1086:300:5d::8) To DS7PR19MB8883.namprd19.prod.outlook.com
+ (2603:10b6:8:253::16)
+X-Microsoft-Original-Message-ID:
+ <64c4019f-2817-4968-b4a2-93927acb5864@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH 4/5] MAINTAINERS: Add entry for allegrodvt Gen 3
- drivers
-To: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>,
- Michael Tretter <m.tretter@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Heiko Stuebner
- <heiko@sntech.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Aradhya Bhatia <a-bhatia1@ti.com>, Junhao Xie <bigfoot@classfun.cn>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Kever Yang <kever.yang@rock-chips.com>, Hans Verkuil <hverkuil@xs4all.nl>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Gaosheng Cui <cuigaosheng1@huawei.com>,
- Ricardo Ribalda <ribalda@chromium.org>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250513083609.328422-1-yassine.ouaissa@allegrodvt.com>
- <20250513083609.328422-5-yassine.ouaissa@allegrodvt.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250513083609.328422-5-yassine.ouaissa@allegrodvt.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|DM6PR19MB3947:EE_
+X-MS-Office365-Filtering-Correlation-Id: eafd84a0-39b9-4a3a-c264-08dd92be02c9
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|8060799009|15080799009|461199028|6090799003|7092599006|19110799006|5072599009|3412199025|440099028;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?M0ZtRXloWjBVTTRvTmJLRHo0NmFraHlBMWs1NFc5eGVWTjRkQmxWalNtN1FX?=
+ =?utf-8?B?WXNUNEs1T0NrdlZDTGRRSlFQcStob3hMOVpXdXlHTExUaE52Zm9BT3RFNWho?=
+ =?utf-8?B?VnhqTXBzNnpTdVFoTmdYTUJyZks5SkRzU0NoL2hlUVBrRUhXemNSUDlabXJZ?=
+ =?utf-8?B?dnRaTDI4UEQwenMxTlVZN2p2SVc1aVdueGV3dVJMRXVuZ2tYV1ZGOEF2ZVRS?=
+ =?utf-8?B?TE5XK3MwanFrSitvRVVXMThIczF2ZU5GT3l5eU9kdUhNT0EzdzVVN09BLzU3?=
+ =?utf-8?B?VkxsaDdqTFB5Yk5SeFJVbThNNk9qTTArN3BjZUg4L05KbVpTMkJrTzVEWVBi?=
+ =?utf-8?B?QXlFd0FZRmQ0QXAyK3hOOTlRRU05cmdlWHFySXJmSmI3aUYySWVkbElYUGlS?=
+ =?utf-8?B?TDFxbWxDTlNRdXg2K2JLR0ZLMGQ1dWFvVUhJdEJqS21CY0RKYWNmSXcvY1V5?=
+ =?utf-8?B?dy9GUmh0VW9XcHBNejB5a21lOEVwUlpPOTVRSmxsL0pURWhKWTVIY0Y5RXV2?=
+ =?utf-8?B?Y3daL0FkWWxwWW5scXFRQ3c2QnNHSjQvZW8yZnk5WVRjRFlHQ2tHdmhhN1BJ?=
+ =?utf-8?B?TEdOT1JCR3ZCWS9OdFdqc1VwcFBpYTh6NWM5Tk1RV0pqWlpRZ24zWUJWUUlo?=
+ =?utf-8?B?RTRtZjNNT0w2cVRtYkd3Tmh1WjFWUFpBMlZ5ZXgzZHhoZXR3Rms4a3lmNDBV?=
+ =?utf-8?B?cHppK0JDZ1VJb20vaEI5aVJ2TWZoNCtJVDUvOWI4a1RvREJFSmV6QzhFaE5Q?=
+ =?utf-8?B?eWQ0WkN2anMwKzRLT2FlWHErNHlyMUVtMHBDd3dWcWFFYWpjNUJQZ1VaMFJY?=
+ =?utf-8?B?MlZwYWw2SUxIeDNvclpmQTIyak41OE5zNzB1Y2orK1dZVDF3OVJYNWcwQjY0?=
+ =?utf-8?B?RThnVGdTZXBpdURlOUZid3BrZjF3NHpFZENVd1EvdGdzQ1NyVVVWSWEvNjZi?=
+ =?utf-8?B?YzE1bDF4NjdkM2ZDMmJDNEY3QmtsWnBQbUhUaHBlYTBGQ3Ard0tMTUU5SFlK?=
+ =?utf-8?B?Z1NkM1RMTVl1V2RneE10emo4RTlDelB0UTdYRkNOQVlWVmFiK2VqaWF4dVZR?=
+ =?utf-8?B?SUFUSnl2SjJycmVUakR4dmxFdEJKaWhjclg3NHNvMUsrWnJOM2FET1M3bHFr?=
+ =?utf-8?B?VkV6RFNBSHhiOUpad1V2MlhPcm53Ny9Senh0eHpBYS9ReTd0SkttNzlCNTVD?=
+ =?utf-8?B?SDRQcFJsWFMvOVUvVWJ5MkNSVHpaeFpSWWpUQzNhTmhmN3FydlRkNXNHK3JY?=
+ =?utf-8?B?MEwyUTV5N3JVYW5rUzN6RnNjeWg2VXM0eGc5cjU5UStSRE42M3Z2OGk4c2t3?=
+ =?utf-8?B?R3hkMlZSMmxmZGVqdFdlYTFZT29EWEF0TjRTa2NMaG9hcVFpOE5MNmdQYlRN?=
+ =?utf-8?B?QktWcUFzdGVUcEczWlJkL1VVTk42MnN1dXcvSGJGeUhNVXBlZ2VDNTMyenJk?=
+ =?utf-8?B?K1FVZnpJb080ZitYOG9wRkVFZlRMN1JRRHdwQlBCNUhpL3FVRzVVdERJMW0y?=
+ =?utf-8?B?bzZ6V3RCZE1HbGxUME9oT1k1WnNsQ3BRV3AwUldYLzRDd0FWV0p3SWkwWXhr?=
+ =?utf-8?B?SzIvdz09?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?cTZMWDIweHZsZWcvOFVudVhZK05Wb29oWmsyUmxlRkxpSGpFc1AwSXF2cTlr?=
+ =?utf-8?B?d0hnRHppTmp0dTBtZUQ1WSsrN3FTNElVV0g5N295TWhHalZBU3dXRnhaK1Jr?=
+ =?utf-8?B?dEx0cm9iQ1g3ZGdYVk13WGxxaEdJbEVUL1d0bGhYQXNHSVd2R1pDV0sxd2dY?=
+ =?utf-8?B?TW00aENOZ202TWpOSkJhRm9BcFJkWmRXUHY5R1pDazA1TlkydEk4SDUzZG5t?=
+ =?utf-8?B?bWFPR0h6eGpSeXFIVVhKUHhoRmxaYUNUdW51aUdQQmh2Q29lTFI0L01FME5l?=
+ =?utf-8?B?T0doUWJzRHpCMDNJQm5LUWxYT1dIRkZBcmZwalF0Q21mTGp1UGV2NFhsUU8y?=
+ =?utf-8?B?RXR6a0NSVUdwaTg3M2NibHFRWktXVmh0Y3l5dDB5ZzJkZFhUWjh2T0VwN0JS?=
+ =?utf-8?B?ZkpGbE8xK2ExamRxR2JKZTNMSnVCd0krUHJVMVN2VklKd043UWRKNGpYOEFE?=
+ =?utf-8?B?OWxlY04zVTI2QmhZUnlWbDhuU2JuMm5lU0ZYbUQxb01SblRrM1B4NUlIcElm?=
+ =?utf-8?B?V21QVk5jYjB5RmN4MlczdUJnS3dlK01PdDEvTWNxRTFwMzR0WmhPMlRZalIw?=
+ =?utf-8?B?bXRHb0NLZTBLZERqVUR2MlVvYi9RdkY3SU5GemFWdTZCdVBoMWhXSDBrSWpL?=
+ =?utf-8?B?cWMwNWFwY3NLbWFCTWZFR0NBQWI5cE4vRU1HTHRWRWtkbUs5dFM4UXlrV1Ju?=
+ =?utf-8?B?Qlp2a3hVWTE3aE94OElQNUx3aUNocXBSaTRDZ29jR2RVYzBNWlI3bnBWZnRi?=
+ =?utf-8?B?eUU2KzRXNDBRdTNIaUdjblpQRzRTVmxjT1RQWm1UK2J0VXp6WmN5bElvMmd1?=
+ =?utf-8?B?Z1J3bjhaZVRsZS83Y2JPeldEZXpleW4vVkNTQnZxRnk4VVVodk5xTUFmRkdl?=
+ =?utf-8?B?bGtpaldyVTRZWlM3U3RwR1Jtazl4dERHT2RNekkvdzFDYXZLdmtodGFIenBU?=
+ =?utf-8?B?czB6N1o2TUV1K1NoUlRvbTQ5eDJta2duQWVXWGt1OXY1VDBKNFJVMUJTWnEv?=
+ =?utf-8?B?ZnhlcXdJNno0cUlXSitJN2ZEWXkrTFVmRUIra3E4bTBHNUxXYzNpUU14ZCtC?=
+ =?utf-8?B?bEt6THhXYVIrNTIydFZGS3lSWWFJMlgvMnl2OE9TbFd0K0hKcWIzRk1OZUx3?=
+ =?utf-8?B?SC80YTVjaHBuQkVjei9kVkZrekhuR0tTOGR3M0ppQjdES2hmUzdFRTlCN1ZS?=
+ =?utf-8?B?d3oybjdCVnc4ZldRTk56c0JJVkhCN1owNHhyeFE2QXlhN0N0L3JlazB6dVZm?=
+ =?utf-8?B?ZnNIYWZidmFKVU9JYURMY1NkdHQ0NGwzd2c1NThnTDhMekpMVURHMVVnTjJ1?=
+ =?utf-8?B?S3N1SXMvZlFoMm1uTDdTNklTMUxKK2x2a1BoMHY3aHcvbHBXUXR2RmZFdnk4?=
+ =?utf-8?B?RVJwcW5VQUpXQ2dSQ053MGt2VFBYbzMrVXJUa3VkaW43V3h4UUU3UU5yaWhL?=
+ =?utf-8?B?WC9EUVBJRzZrMmRKT2hxdytQa0ZvTHE0bHZRQkt6QklXanRhRlR1QzNXVDda?=
+ =?utf-8?B?d29SRWROdkhjR1NTbUt4aGVCb1dmdmNZWGgxanFpL2E1NTluVnJRTzBmSjJV?=
+ =?utf-8?B?YkFaOS9YT05kQlZ3V2loM1VkL1Z0NEx2Q3JSVEk3ZWxOMXRxZ2pmZ2ZKMzBk?=
+ =?utf-8?B?SEJXSHFhNXdFdzF3elNlMzR1cUxpenRpUDJMaDdhdzkwOUUrMk0vWVJnZzZ5?=
+ =?utf-8?Q?MY3l2StAe1JBMI+j+t6I?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eafd84a0-39b9-4a3a-c264-08dd92be02c9
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2025 08:04:55.4460
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR19MB3947
 
-On 13/05/2025 10:35, Yassine Ouaissa wrote:
-> Add my self as maintainer of the allegrodvt Gen drivers
+
+
+On 5/10/25 01:47, Konrad Dybcio wrote:
+> On 5/6/25 7:43 AM, George Moussalem via B4 Relay wrote:
+>> From: George Moussalem <george.moussalem@outlook.com>
+>>
+>> The XO clock must not be disabled to avoid the kernel trying to disable
+>> the it (when parenting it under the CMN PLL reference clock), else the
+>> kernel will panic and the below message will appear in the kernel logs.
+>> So let's enable the XO and its source CLK and keep them always on.
+>>
+>> [    0.916515] ------------[ cut here ]------------
+>> [    0.918890] gcc_xo_clk_src status stuck at 'on'
+>> [    0.918944] WARNING: CPU: 0 PID: 8 at drivers/clk/qcom/clk-branch.c:86 clk_branch_wait+0x114/0x124
+>> [    0.927926] Modules linked in:
+>> [    0.936945] CPU: 0 PID: 8 Comm: kworker/0:0 Not tainted 6.6.74 #0
+>> [    0.939982] Hardware name: Linksys MX2000 (DT)
+>> [    0.946151] Workqueue: pm pm_runtime_work
+>> [    0.950489] pstate: 604000c5 (nZCv daIF +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+>> [    0.954566] pc : clk_branch_wait+0x114/0x124
+>> [    0.961335] lr : clk_branch_wait+0x114/0x124
+>> [    0.965849] sp : ffffffc08181bb50
+>> [    0.970101] x29: ffffffc08181bb50 x28: 0000000000000000 x27: 61c8864680b583eb
+>> [    0.973317] x26: ffffff801fec2168 x25: ffffff800000abc0 x24: 0000000000000002
+>> [    0.980437] x23: ffffffc0809f6fd8 x22: 0000000000000000 x21: ffffffc08044193c
+>> [    0.985276] loop: module loaded
+>> [    0.987554] x20: 0000000000000000 x19: ffffffc081749278 x18: 000000000000007c
+>> [    0.987573] x17: 0000000091706274 x16: 000000001985c4f7 x15: ffffffc0816bbdf0
+>> [    0.987587] x14: 0000000000000174 x13: 000000000000007c x12: 00000000ffffffea
+>> [    0.987601] x11: 00000000ffffefff x10: ffffffc081713df0 x9 : ffffffc0816bbd98
+>> [    0.987615] x8 : 0000000000017fe8 x7 : c0000000ffffefff x6 : 0000000000057fa8
+>> [    1.026268] x5 : 0000000000000fff x4 : 0000000000000000 x3 : ffffffc08181b950
+>> [    1.033385] x2 : ffffffc0816bbd30 x1 : ffffffc0816bbd30 x0 : 0000000000000023
+>> [    1.040507] Call trace:
+>> [    1.047618]  clk_branch_wait+0x114/0x124
+>> [    1.049875]  clk_branch2_disable+0x2c/0x3c
+>> [    1.054043]  clk_core_disable+0x60/0xac
+>> [    1.057948]  clk_core_disable+0x68/0xac
+>> [    1.061681]  clk_disable+0x30/0x4c
+>> [    1.065499]  pm_clk_suspend+0xd4/0xfc
+>> [    1.068971]  pm_generic_runtime_suspend+0x2c/0x44
+>> [    1.072705]  __rpm_callback+0x40/0x1bc
+>> [    1.077392]  rpm_callback+0x6c/0x78
+>> [    1.081038]  rpm_suspend+0xf0/0x5c0
+>> [    1.084423]  pm_runtime_work+0xf0/0xfc
+>> [    1.087895]  process_one_work+0x17c/0x2f8
+>> [    1.091716]  worker_thread+0x2e8/0x4d4
+>> [    1.095795]  kthread+0xdc/0xe0
+>> [    1.099440]  ret_from_fork+0x10/0x20
+>> [    1.102480] ---[ end trace 0000000000000000 ]---
+>>
+>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+>> ---
 > 
-> Signed-off-by: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>
-> ---
->  MAINTAINERS | 3 +++
->  1 file changed, 3 insertions(+)
+> [...]
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d81d2756cb2e..8912fabab6ed 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -802,10 +802,13 @@ F:	drivers/platform/x86/dell/alienware-wmi*
->  
->  ALLEGRO DVT VIDEO IP CORE DRIVER
->  M:	Michael Tretter <m.tretter@pengutronix.de>
-> +M:	Yassine OUAISSA <yassine.ouaissa@allegrodvt.com>
->  R:	Pengutronix Kernel Team <kernel@pengutronix.de>
->  L:	linux-media@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/media/allegro,al5e.yaml
-> +F:	Documentation/devicetree/bindings/media/allegrodvt,al300-vdec.yaml
+>> +	/* Keep some clocks always-on */
+>> +	qcom_branch_set_clk_en(regmap, 0x30018); /* GCC_XO_CLK_SRC */
+> 
+> this clock is not a clk_branch2 - its control register is different and
+> this call is incorrect - you can drop it altogether, as if the XO source
+> clock isn't running, the system is dead
+> 
+>> +	qcom_branch_set_clk_en(regmap, 0x30030); /* GCC_XO_CLK */
+> 
+> This one actually is likely supposed to be always-on too - does removing
+> these two lines do any harm?
 
-Before adding yourself as a maintainer, can you please read the
-submitting patches and other kernel process documents? You just bypassed
-previous discussion by sending the same which is not acceptable for me.
-It duplicates review work and hides previous talk.
+removing these lines AND the clock structs works AND updating the 
+parents for clocks that reference the xo_clk_src works. There kernel is 
+not complaining about anything. The other option is setting the 
+CLK_IS_CRITICAL flag. What would your preference be?
 
-Best regards,
-Krzysztof
+> 
+> Konrad
+
+Thanks,
+George
 
