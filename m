@@ -1,108 +1,114 @@
-Return-Path: <devicetree+bounces-177075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8BD2AB65E5
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:27:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ED4BAB661C
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:35:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 839A34A4F85
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:27:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A12146315B
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698BF22157B;
-	Wed, 14 May 2025 08:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307FF21C190;
+	Wed, 14 May 2025 08:35:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnS+CFTX"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="dz80wl+v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356F521E0BD;
-	Wed, 14 May 2025 08:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A9E621B195;
+	Wed, 14 May 2025 08:35:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747211161; cv=none; b=XWBHTXunR1UKcr/5qjSvaC/0YcW6slb2g7UHsijB8ftnroPSyYhEVqyUR6ASBAO54zcI+sYgX/gYtYvWqlyYj91eqHdorouK7pKX26+qk2WrSx3j2sgMnBa7AMPtcnd+1PIjx8x6eQWG60pITSnet9S29ydCi3M3Iqy4rgZsvDg=
+	t=1747211731; cv=none; b=tegCXXWG3QdCUK8sVq6eyKCTcELHizhqbxmmcJrtaACONFFtspuLSSaiBU5Kfk8p7LhCyu0qEXl6KFEqANX6YNEgGu4iWQ85HHKV1ykhs04tncgRtND1xgZ8X3tvy4pyp4i4SgnXycE8+LPNJnUFui1OOxuudB8IIJjgokX/w1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747211161; c=relaxed/simple;
-	bh=EQlzhgK8hYT+vlKLW5TJxTbodWSCb22tA9s2LNb3ffQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QErHPNooPCO5ckC0c6AgJxbChyKz4ngrwb3zMnGStTNNjPm6LAQpG6VkSjRzs088pCntjSxFBJoAC+/XbnVn1NPykxjTeRYuWMGZO1bQFb0MvSuq2aybsdKgJHZki9JQKJgbe4UM8Xyih9VlZ21Mh7gY75kxCzhKshDu50yo1a4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnS+CFTX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84094C4CEE9;
-	Wed, 14 May 2025 08:25:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747211160;
-	bh=EQlzhgK8hYT+vlKLW5TJxTbodWSCb22tA9s2LNb3ffQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BnS+CFTXcJXpm4tPPGgnhaaB6YgFzpNZ/mS6Bp9Lr9Qk9lVQuxAakxWZCMYQApL2J
-	 pnBUHS69xG3KTj+caAZXFGU7PkFSwCRx+jX/oAhrEdlAK0Cs2uJMTWxEZeBGlR35o+
-	 ty36NBSL68aFHLnhP1Yjdcx4wmBzEr39mR4icO1+f/rtzXsIdUp90ztyFiz0EE/bZL
-	 Bn3R5ZEzmv6thYasOGsYdSK2mLkZpyqBVtg0EY706q9gK4ZUzuZUhGJ2p51Zs1+kGW
-	 Y6cIPuZVmtklvUbVi8OyGGeGrE73TNjMenbmDlU8RPh37IJcsUTctiN9UpkSoFp8wB
-	 6+F8GG1aQk6lQ==
-Date: Wed, 14 May 2025 09:25:54 +0100
-From: Lee Jones <lee@kernel.org>
-To: nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 00/22] mfd: adp5585: support keymap events and drop
- legacy Input driver
-Message-ID: <20250514082554.GY2936510@google.com>
-References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
+	s=arc-20240116; t=1747211731; c=relaxed/simple;
+	bh=tyHS19Jo+iP3Lquv30HuR8SaMuhl3ZrpELRb1028Wj4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=UubdvUA0qChdz44pIVO0y8zf4TP1beoApYFGheNk6hwnd2+G4W3HXaejXuIGdxAkobOTO9g96+t7YQlOBzf55rUo8LTEQquz2fhUEpwJT81sHtk9fLXogN7gQ+k7CnpIVxJliAIXMZUS0bJ/KYTsUVMDXOUGf3QrZ+2+WaRSmBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=dz80wl+v; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54E7w1Jx022967;
+	Wed, 14 May 2025 10:35:18 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	zTYcnTgzrTSARrdRyGgDqevHWfgdqMFkurpjm2teTzU=; b=dz80wl+vuCkp60ij
+	7FaCb6Y6rODPhEpIjDoGI+ijqilMSRtvYWm7EnQx9GskOVNIsUs1uVfmNsv+G5Ay
+	cRSz2iiBT5+l55aIFj3fJr7kRNWkgkQ6RZTQpTRwMb7D5OIhDBOrxfd0O/ry0klN
+	3Mt8OA2itjnWurK3iiNcG5oq/w8l+I+4J7E/hI4RhD0v38DQ/pTJrvE1ppDKxczQ
+	VOzgCkLMnebXGBJnI7fdiqdSUm+jWCaGP/DRZENCfrUbqLpFuo8yNS96tbUAzTCE
+	s5R9cyuwQKvkhwUI4wPqL7TMC6IEwiyx+sY4DtQdnp0IzufcwdAa3Al16bjuR/O2
+	pdndOw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46mbds2h27-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 May 2025 10:35:18 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8AEA64004D;
+	Wed, 14 May 2025 10:34:14 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D13E2B3CFAB;
+	Wed, 14 May 2025 10:33:33 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 14 May
+ 2025 10:33:33 +0200
+Message-ID: <8e25c2e3-fbc6-4d60-8362-2b0fb3066821@foss.st.com>
+Date: Wed, 14 May 2025 10:33:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/4] ARM: dts: stm32: add initial support for
+ stm32mp157-ultra-fly-sbc board
+To: =?UTF-8?B?R29yYW4gUmHEkWVub3ZpxIc=?= <goran.radni@gmail.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        =?UTF-8?B?QsO2cmdlIFN0csO8bXBmZWw=?=
+	<boerge.struempfel@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250508143818.2574558-1-goran.radni@gmail.com>
+ <20250508143818.2574558-5-goran.radni@gmail.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20250508143818.2574558-5-goran.radni@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-14_02,2025-05-14_02,2025-02-21_01
 
-On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
+Hi Goran
 
-> Hi all,
+On 5/8/25 16:38, Goran Rađenović wrote:
+> Add support for Ultratronik's stm32mp157c fly board. This board embeds
+> a STM32MP157c SOC and 1GB of DDR3. Several connections are available on
+> this boards: 2*USB2.0, 1*USB2.0 MiniUSB, Debug UART, 1*UART, 1*USART,
+> SDcard, RJ45, ...
 > 
-> Here it goes v3. There was some major refactoring in this version due to
-> Lee's and Laurent's feedback. There are some splits (and some explicit
-> requests) resulting in new patches being added. The biggest change is the
-> effort in trying to minimize the usage of specific child device bits in
-> the top level device (mainly stuff related to the keymap). I think now
-> it's fairly self contained and the only thing that we really need to
-> handle in the top device are the unlock and reset events as those can be
-> supported through both the input and gpio devices (via gpio_keys). This
-> results in a bit of more runtime complexity but well, that's life...
+> This patch enables basic support for a kernel boot - SD-card or eMMC.
 > 
-> Another change is Lee's suggestion of making use of templates (for
-> regmap and chip specific data) and fill things up at probe.
+> Signed-off-by: Goran Rađenović <goran.radni@gmail.com>
 > 
-> I also refactored a bit the event handling so it's more generic now.
-> There were lot's of changes so odds are that I might have forgotten some
-> feedback and so, my apologies in advance :).
-> 
-> I also dropped the tags in:
-> 
-> patch 16/22 ("gpio: adp5585: support gpi events") as it has some
-> significant changes (replacing .init_valid_masks() with .request() and
-> .free())
 
-Please run this set through checkpatch.pl before submitting again.
+Series applied on stm32-next.
 
-Not sure if we've discussed this, but W=1 wouldn't hurt either.
-
--- 
-Lee Jones [李琼斯]
+regards
+alex
 
