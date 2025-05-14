@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-177407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8135AAB7644
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 21:59:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DCC9AB764A
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 22:02:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8EBB27A0875
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 19:58:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A65A47ABE1D
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 20:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D2A293746;
-	Wed, 14 May 2025 19:59:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB6F9293746;
+	Wed, 14 May 2025 20:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dJ5EplJJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DS8qB7Gs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1E5229372F;
-	Wed, 14 May 2025 19:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92E0C288C37;
+	Wed, 14 May 2025 20:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747252778; cv=none; b=B/xM5beBCbrbGoq1LhWRqzfw0ex9p7++IoAdnLbitm8W8pBzifHX9gUk6beYIsHxFUycBNZTMrrHhyORhZyvSNaiNOzsqAL7VQpKDeFk2hFq4y2UKZsl8aEhTRcrfcsIPjz0flgPolGsFP238LpgptAbqYPpSBTeOtNeqJWpiVc=
+	t=1747252921; cv=none; b=CfPfbV65p9eQYXfutlkrdjPOV7l4h5VW0afwiWEny+PsUSPr2x5HyEq9EHHPbAS23zpWKJfAx2i82m3B5pXhMHAiSAYCrtAF1t8SYS5dOZcXsswR/Knm86LpLluXp4xzaJ6u45+SUpoPbDZBkmG/HRUxJ6/RDm4qF0dF00SSZFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747252778; c=relaxed/simple;
-	bh=qW5rFOZIUMIBxccZW3o6GhkmgWY42f309svVpKLhFmo=;
+	s=arc-20240116; t=1747252921; c=relaxed/simple;
+	bh=JI+ICFrIj/b5sZpzyiGA9sjL2/dMeBAEF1D8xL1cHyw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u5PyWajFOTtZbioXIap3r4pLJEkeUAp8aV2N3ULBKo/fg7dhD6PADRrU1mKYBzGOMykHkkl9rb4nN2LPQYhG30HQ5RN/uhhunrpertS4OrRzzbHH6oGm+J/3vT2RsWaeBJ7CdG5mW5N3tCgWD+hoF+6YTxcfZqYDhScINgDpOdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dJ5EplJJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F253CC4CEED;
-	Wed, 14 May 2025 19:59:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EKGPVDf90KAc6ef+wNYOxgezQi5udT/bO1dR2t+IpBo2tNEq0AWcyWpbisAQnzrPwp0kGtZThtjLvRelWPcMZNWsqUoHxf3/Q70EQTGukeg0LoJ1jdPQqCTqPgn7XExAdLcLnEfLwPSiHYuI9zuDR0h7qexTp+R+v4w5HpanXkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DS8qB7Gs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF13DC4CEE3;
+	Wed, 14 May 2025 20:02:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747252778;
-	bh=qW5rFOZIUMIBxccZW3o6GhkmgWY42f309svVpKLhFmo=;
+	s=k20201202; t=1747252921;
+	bh=JI+ICFrIj/b5sZpzyiGA9sjL2/dMeBAEF1D8xL1cHyw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dJ5EplJJPn6Tz9O3+AZuZXh4X+8zgKjmalug+lEd66Vad5lxOacniJp6hmODD01TM
-	 Osq9ifdXaEYW+x4jYXSK338ObxTf7SQMmlhEySuRcaByx88caBfm02Z7GGHw6pHpPR
-	 gqfL5mOlMSKJoMuya+QV0YRpEuc3jQxhN6IY9HIRNkvGB2DqM2J7eSTU4SpKu0rUnQ
-	 FXpNuqO/4i6ZlU/2vhh/bBiKwhYPSz+HSjrXeZSnDETm7cEmqlW9FDsPabO2+K45Rw
-	 SmZ4+HfqrDDrRT1Np7xc7Z9EMX63iFm4MmJEm+CCTvPHaDaLflRgkqG34Q7SOtRl5h
-	 P8J5MNzz9FIPw==
-Date: Wed, 14 May 2025 14:59:36 -0500
+	b=DS8qB7GszMeZwaTsOn5bMQUgTXXqXoSV1llRN0P5/k3ZjPTDamqG+QBpdyWJ4wK8t
+	 g0CRoNAZG7e3VmXe+jaeIQeWvim2xg+hRtlsq2Zkm2/AX/Jn/wJFC/JUfUzJBmz1av
+	 FOZeXAiICnAcK2a25WZlz2lLu3U8Q92B9PbDXpcAMZwT1OcV8kag115miQs5MoareB
+	 STha8oSD3UJAWfHDsp+ywKhH5BNDgAYo1k6RhDPkcNjwjPgJKCvWWjbRJlkAUgR33D
+	 pNaX+98OBhRgZJzhjukqGXeFUIgZ3H08ldpc/w+aEC/0IhBVy+JvQB6Pdcfhy49zRX
+	 05Sj0JC93Xuaw==
+Date: Wed, 14 May 2025 15:01:59 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: bhelgaas@google.com, p.zabel@pengutronix.de,
-	manivannan.sadhasivam@linaro.org, kw@linux.com,
-	linux-pci@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	krzk+dt@kernel.org, johan+linaro@kernel.org, conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org, cassel@kernel.org,
-	thippeswamy.havalige@amd.com, shradha.t@samsung.com,
-	devicetree@vger.kernel.org, lpieralisi@kernel.org,
-	mcoquelin.stm32@gmail.com, quic_schintav@quicinc.com,
-	linux-arm-kernel@lists.infradead.org, alexandre.torgue@foss.st.com
-Subject: Re: [PATCH v10 3/9] dt-bindings: PCI: Add STM32MP25 PCIe Endpoint
- bindings
-Message-ID: <174725276905.2927216.8851775897003421959.robh@kernel.org>
-References: <20250514144428.3340709-1-christian.bruel@foss.st.com>
- <20250514144428.3340709-4-christian.bruel@foss.st.com>
+To: John Clark <inindev@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>, Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH RESEND v4 2/3] dt-bindings: arm: rockchip: Add Luckfox
+ Omni3576 and Core3576 bindings
+Message-ID: <174725291822.2934315.15782059306366204305.robh@kernel.org>
+References: <20250509122637.26674-1-inindev@gmail.com>
+ <20250509122637.26674-3-inindev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +65,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250514144428.3340709-4-christian.bruel@foss.st.com>
+In-Reply-To: <20250509122637.26674-3-inindev@gmail.com>
 
 
-On Wed, 14 May 2025 16:44:22 +0200, Christian Bruel wrote:
-> STM32MP25 PCIe Controller is based on the DesignWare core configured as
-> end point mode from the SYSCFG register.
+On Fri, 09 May 2025 08:26:36 -0400, John Clark wrote:
+> This patch adds device tree binding support for Luckfox Core3576 Module
+> based boards, specifically the Luckfox Omni3576, with compatibility for the
+> Rockchip RK3576 SoC.
 > 
-> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
+> Signed-off-by: John Clark <inindev@gmail.com>
 > ---
->  .../bindings/pci/st,stm32-pcie-ep.yaml        | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
