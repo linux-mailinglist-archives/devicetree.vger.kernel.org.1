@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-177189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 411F2AB6A1E
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:37:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1C49AB6A28
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:38:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 126063AC65F
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:37:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBFA81B6488F
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D7E42749E5;
-	Wed, 14 May 2025 11:37:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A1C27702B;
+	Wed, 14 May 2025 11:37:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G9dyxvtH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C1Tc2Fsm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72FE221F20;
-	Wed, 14 May 2025 11:37:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 382D0276057;
+	Wed, 14 May 2025 11:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747222637; cv=none; b=WX6MfBo8vf/DbaCAvR0Osq0AHcECc7U0U4PFZUMW31Mygbdr6XsaCJK6nhJf2EcbVTpCHDX3Tiq1kN4VHLawYR1rs6D/HDoHhGfb9C0lbse+8uvVyH74aeV1QJfl0rfgrqkA8XO4DUeyWvEm3xvkk+mf2RPiKXvZqRwaujf428c=
+	t=1747222645; cv=none; b=vDMhJPnQDGuftavpBkvRiZ/sp37raonNOaTFxuj6w9LN8by65ebkD2VbCLDmrOv8sCjZiUgr/lZ3+dNVj+4EDNnialrMZRPByL3q46TkVq7daFZNi40SXxNrB8xgQwiGeBCSuP0VWVscRjBYZwvU7EDxCu+9ZMJi9e+UmxkXFpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747222637; c=relaxed/simple;
-	bh=IT/rqqrN2B02eom0BK/jGdQZGK6p0WHtvFi4frRfS/8=;
+	s=arc-20240116; t=1747222645; c=relaxed/simple;
+	bh=whRcHaYLmRc/wgTuZhRzziRr5/mx4mKqhn1YvlOKatU=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Gt3/nKSzPw7OPJEIjtE1ZzFJ1bzzsMMx/VenEm6Rq8pvmPv2zOc7C7vALtTAo9ECyQwhl8uaooESmiWLtuIwKvwV0sB5D+n3kKR7HDp2yArLdugOak6FYveU6TZXHVlR9X/EhLdEGyZwoSpqkzpG7zTZ3quQbwvXhOjZ4Vg2XqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G9dyxvtH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0020CC4CEF2;
-	Wed, 14 May 2025 11:37:13 +0000 (UTC)
+	 MIME-Version:Content-Type; b=BmjJYxsSGQEF3JWDy2CgQJEcwv/81/J819CyHE751qknCyFmDEELp2J3WVCWP0QB44UnKonakhfoiQ4J/SHs0NEDfnBDIPsKMi0wArhU98eKANIPiZmt73LXIf9PzgIPeicdgKiKQ8wOtWwIvYctmTsazkCntH3R/e0x9M1iMjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C1Tc2Fsm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50175C4CEE9;
+	Wed, 14 May 2025 11:37:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747222636;
-	bh=IT/rqqrN2B02eom0BK/jGdQZGK6p0WHtvFi4frRfS/8=;
+	s=k20201202; t=1747222644;
+	bh=whRcHaYLmRc/wgTuZhRzziRr5/mx4mKqhn1YvlOKatU=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=G9dyxvtHbzkDZp37KAkz/bk9eZrJuA4owLh1i0aK7CCyKTwVbSIa/hmSbYRCuI8mK
-	 H4awQBdyBtq8MsSxrJw3EO0X3dzioCUT0kc0oCUZomfrT70yFrF3aTraEyUgg8zfMr
-	 O8AeU9F11KMojNH+jHg7N4V6HH5uUHZ7jZcNQg7e558Vhc9XC/ljwLQswKCAaPCb48
-	 gpRoZdVgCcJ6CrMjFTJFodr6Mjll3O6w1ulintDW8sje5eG/LntgU406ON6LlnerJb
-	 I7ccDsDCcWDvUYtt5yd7Uj16dsJaGwMbst0k0u3XuDDaW/PJqeQxd2LBBzDNaJ661f
-	 I1jLaMQJkD3Zg==
+	b=C1Tc2Fsmdztc7wrkLG8g4Qw1VjJzyv6ONkGp80F7mHpl9kJgjuB8d/P+ffsdAblyY
+	 GzB/W49Ykc52JGnYcw0p6YUUBZ+mWI6Rw/W8cYfCBvfbejIifts5rvSGBzFVweflkf
+	 wgJBO8psGajac9THxdwmFu831I/7OUtnYm5KyT9lL+FdMMk03kBgiSKAbxhG+Upml1
+	 mtK9gD1SI0kZ8sPhNQMB5RvkORgO64tWIIWuXBEEsAlVmrzTakzlKv98ajvMxRvjCA
+	 +gGCLJuoNg6gr8F5tKjy0r8yiKApWw1uvevZgBmydn9gL2j30gx0Tp0YfMTZB8qZUQ
+	 p6AaWgtiverFQ==
 From: Vinod Koul <vkoul@kernel.org>
-To: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, sjakhade@cadence.com, yamonkar@cadence.com, 
- Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- srk@ti.com
-In-Reply-To: <20250411055743.623135-1-s-vadapalli@ti.com>
-References: <20250411055743.623135-1-s-vadapalli@ti.com>
-Subject: Re: [PATCH] dt-bindings: phy: cadence-torrent: enable
- PHY_TYPE_USXGMII
-Message-Id: <174722263362.85510.16134406396198337787.b4-ty@kernel.org>
-Date: Wed, 14 May 2025 12:37:13 +0100
+To: Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+In-Reply-To: <20250416202419.3836688-1-robh@kernel.org>
+References: <20250416202419.3836688-1-robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: phy: rockchip: Convert RK3399 Type-C
+ PHY to schema
+Message-Id: <174722264197.85510.7578170417818621392.b4-ty@kernel.org>
+Date: Wed, 14 May 2025 12:37:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,18 +67,21 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Fri, 11 Apr 2025 11:27:43 +0530, Siddharth Vadapalli wrote:
-> The Cadence Torrent SERDES supports USXGMII protocol. Hence, update the
-> bindings to allow PHY_TYPE_USXGMII. Since PHY_TYPE_USXGMII has the value
-> of "12" while the existing maximum allowed PHY TYPE is "9", switch back to
-> using "enum" property in the bindings to account for this discontinuity.
+On Wed, 16 Apr 2025 15:24:17 -0500, Rob Herring (Arm) wrote:
+> Convert the Rockchip RK3399 Type-C PHY to DT schema format. Add the
+> missing "power-domains" property and "port" and "orientation-switch"
+> properties in the child nodes.
 > 
+> Omit the previously deprecated properties as they aren't used anywhere.
 > 
+> Drop the 2nd example which was pretty much identical to the 1st example.
+> 
+> [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: phy: cadence-torrent: enable PHY_TYPE_USXGMII
-      commit: e00c9aea31035f46b04a13effaa801f8b3419d2a
+[1/1] dt-bindings: phy: rockchip: Convert RK3399 Type-C PHY to schema
+      commit: 2063eedf3c9c4449fbf417c9b84ecd08251c3b34
 
 Best regards,
 -- 
