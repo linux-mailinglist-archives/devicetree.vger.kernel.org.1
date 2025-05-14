@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-177337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEAA2AB7097
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 18:00:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26CB7AB70A2
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 18:02:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94BD83BB45D
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:58:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A73AD188B616
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 429AC2741B7;
-	Wed, 14 May 2025 15:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF6A4253933;
+	Wed, 14 May 2025 15:59:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kp4dsLU0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OqRXpvtM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 194202701C5;
-	Wed, 14 May 2025 15:58:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87019161310;
+	Wed, 14 May 2025 15:59:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747238331; cv=none; b=ulBJZ+fKVE/kEm2czRHozhNg0buFQTvl4vIMPxKQ/cGtzR++p9vSRCi2SaqGCQeXf+v0+KIHOdEoxfCJ8XbemP1qetbtrVnkISwHmE+x+D1KCQji2D/c9VjGzif14vovFU9fI9cjTDsEp9Zc+Z6fzVZwDHcMZZ9WeIQX9hhaJwY=
+	t=1747238382; cv=none; b=gpHbkppp74w2iwVPk/WVCaDAZBeNw29ZEzD+se7nuhwqL+x4SOc8cqEFCHB027JDJbJk6jN7Mv86yZ+icGVXsMcJcrkqkC7p2aq+K0QF7CytlzK+xh7tlXjzAbjKQSzKglmEbzh3M5jT45NRrrX7Zit/ohmDiIs6zwOp8fRlgCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747238331; c=relaxed/simple;
-	bh=DSf6fgAJPEt/aB96YuwhOZof99etbHcJvpC8hw67anY=;
+	s=arc-20240116; t=1747238382; c=relaxed/simple;
+	bh=y7lI/EUSb1UnQsHiI7dhsmMP7inV1Q2tEA9azOkLIHo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pXOoatfZgZIdTVXuh3X2QeHWvEN+Zo1w30llMolF6vA8jp1o9fRvUacx8UiqprBSopZ5e2RmQcdwO1Jrne/tVkpLDoAW8JSuNgb6ZohR1WIRsgk88MAroAYz3OKNWulOCRH/UVUHEGi2Lz1+oYYhlnDdtu9L5+2tp36ZB9duuOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kp4dsLU0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0CEEC4CEE3;
-	Wed, 14 May 2025 15:58:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PWzHtKsSi2wsBS6Hlqhrsfnrta15aO2cQvApQLvEwNQ6N5YECvETC5IZts4B/XqWoO2WkzNixgAUFvSx2pWb8/RMD1Vvzl0h4xRG8CgV+r+gIPTkZ+mceCqgGSZ45vyqq/FrLE3gDjRHVL9TW4DRSDd44yCcTAl9ZJnRa1eHN3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OqRXpvtM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D71BAC4CEF2;
+	Wed, 14 May 2025 15:59:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747238330;
-	bh=DSf6fgAJPEt/aB96YuwhOZof99etbHcJvpC8hw67anY=;
+	s=k20201202; t=1747238381;
+	bh=y7lI/EUSb1UnQsHiI7dhsmMP7inV1Q2tEA9azOkLIHo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Kp4dsLU0VanD4e33v8AkFmQGIz6asUN7iZP7tr8C0MFMSLPgm77AjW95C1REu6B+9
-	 DnzOoxHmkwatWB2kifBGKdOcmo5mRg5Y0O8HZSW1MpRBHS0py5IiYy87Q076gIm577
-	 fTEb48QTccoVWaAQ6FG4WZ1e/tLjMFy7rdcGUTz7+thmXLHqXd2ZE8EjiyzeCPqdqR
-	 XsPIKV63EtBATSgTlm0EVCl6vR4KRZJ6nE4D6b5qeo6urTUnYNa+9XZ5mVHrcou+22
-	 obKT7rBh4q8euVpMW8oPViRup8KJStzfLM8aL25oBrPwZ+eZ5dPnFLAtJEjmC9ACX0
-	 lJxpKKpdKzlMw==
-Date: Wed, 14 May 2025 16:58:46 +0100
+	b=OqRXpvtM+aCchvhVgaI8UPqSbyWxbqOeyJxTrq+aZZRQIZBMoOo8tdKEuTIo95M/s
+	 Pn40frK80HCGWRFgwNWfsQ1mJTucCSOlpmlHb654blx/t70VWNyls9hUxPjhTjDtBf
+	 dyRaaUxX/gwGwORRA04plJL1qFaWJdEbijEcEjIsw6ligpJS+mJGj8aZQbiO0mZH8q
+	 KTA274Fj0EO3iWdhSNCjlJRQING53jUy5AGAsDRBu2buOu5/g1QCH9ZSEKWf8L86v7
+	 xNTmqZ57D5t9gx2MibL7ccuQRoNDt0jq0T+mh+3QwP6zHSf3R7me7/S+R2UWwfQSV4
+	 M0BofCvxDEERA==
+Date: Wed, 14 May 2025 16:59:36 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Hsun Lai <i@chainsx.cn>
 Cc: Fred Bloggs <f.blogs@napier.co.nz>, Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Stephen Rothwell <sfr@canb.auug.org.au>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: vendor-prefixes: Add SakuraPi prefix
-Message-ID: <20250514-starship-hula-8bdf775ebe99@spud>
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v1 2/3] dt-bindings: arm: rockchip: Add Sakura Pi RK3308B
+Message-ID: <20250514-affair-reentry-8e444e692da7@spud>
 References: <20250513163515.177472-1-i@chainsx.cn>
- <20250513163515.177472-2-i@chainsx.cn>
+ <20250513163515.177472-3-i@chainsx.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,62 +62,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="D6jM8BuA+oADXsbS"
+	protocol="application/pgp-signature"; boundary="ACMaEZG5UXjrJyTL"
 Content-Disposition: inline
-In-Reply-To: <20250513163515.177472-2-i@chainsx.cn>
+In-Reply-To: <20250513163515.177472-3-i@chainsx.cn>
 
 
---D6jM8BuA+oADXsbS
-Content-Type: text/plain; charset=iso-8859-1
+--ACMaEZG5UXjrJyTL
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 14, 2025 at 12:35:12AM +0800, Hsun Lai wrote:
-> Add vendor prefix for SakuraPi.org, which produces
-
-This website does not exist? Think you should mention that
-https://docs.sakurapi.org/en/ is the site (in a Link: tag).
-
-> development boards like the SakuraPi-RK3308B.
+On Wed, May 14, 2025 at 12:35:13AM +0800, Hsun Lai wrote:
+> This patch adds device tree binding support for
+> Sakura Pi RK3308B, with compatibility for the
+> Rockchip RK3308 SoC.
+>=20
+> Link: https://docs.sakurapi.org/article/sakurapi-rk3308b/introduce
 >=20
 > Signed-off-by: Hsun Lai <i@chainsx.cn>
-> ---
->=20
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-> index 3e7450c3f..744d01a76 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1299,6 +1299,8 @@ patternProperties:
->    "^rve,.*":
->      description: Recharge V=E9hicule =C9lectrique (RVE) inc.
 
->    "^saef,.*":
-> +    description: SakuraPi.org
-> +  "^sakurapi,.*":
->      description: Saef Technology Limited
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-You've added your entry in the middle of the Saef one.
-
->    "^samsung,.*":
->      description: Samsung Semiconductor
-> --=20
-> 2.34.1
->=20
-
---D6jM8BuA+oADXsbS
+--ACMaEZG5UXjrJyTL
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCS9tgAKCRB4tDGHoIJi
-0q8QAP9tNCMpApYlgZi+aeED8eLOGgKb5hjN/+SCXPB6O/y9FgD8CJmz2GXl+RKW
-ppMsUotzTNA4d0ZHlowv8DqWDntvqAs=
-=yovm
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCS96AAKCRB4tDGHoIJi
+0rvrAP9oquino9oJcGaDDnOhQt80+WydCtQhZ8xc6BuMGbI1RgD9Fo88RXe8PJsi
+2YQ6plMxSYt78zIfs/wnXeFYBl0wegw=
+=QJPp
 -----END PGP SIGNATURE-----
 
---D6jM8BuA+oADXsbS--
+--ACMaEZG5UXjrJyTL--
 
