@@ -1,86 +1,65 @@
-Return-Path: <devicetree+bounces-177255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C910AB6D67
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:54:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2897DAB6B12
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 14:09:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7554C3AC30F
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:53:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D8B57A60B7
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:08:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A48727F74B;
-	Wed, 14 May 2025 13:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008B327702D;
+	Wed, 14 May 2025 12:09:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="PWHXu7GU"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="V1Eq/MMn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F3CC27E7F0
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 13:52:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBD3227510A;
+	Wed, 14 May 2025 12:09:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747230766; cv=none; b=buBvRiKOB0nVeZtt71Cg8pLMPUIaJac4neq97vvRhGXXhafJBD5W2eKIKehpvL3AkIjUaJufg0fj2Mr5bQzOb0GKyVkYq8B/dkjh4zbms6+QWn1y8etQfbhB5uMBGmFQ+hk5fgovGUEDMdjw6jsRwj+wf1qpKFNTPYj1Og7uLns=
+	t=1747224567; cv=none; b=IPXHFRdULAwlXFcG55ThOd03GRQYzMdr2ujvAL6aVBgragzHGis2lDKbUyRneR2AB4yRZmUHirwb1IKV/njm22e2RtOwgsG+Wj6gQoNGIpTX7OMlRYjvVYW46DPsui+EEWwYw0SLVRpsA/FMPMpnkLXzbkPIgvt/0YP0avZluUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747230766; c=relaxed/simple;
-	bh=yBKN8id0e8i0mID56sBX04JKOMEpNFcKtfCE5gt4YyQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=kY+28LRPUu1c63UlF5RLVWdorna41Xz09K2xswrq5x2um0GSJYS3pNleGkVCd72+nWJl8t1bXCz8kocWNc3UCTOeD3CvzWKx5pGUBJt4VbNXwpmjGoWU52FA9VgR2iNij4PwNy7gU78APlM031bpNBhylG6kd2vTrvinTU8Ro9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=PWHXu7GU; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250514135242epoutp03e61d61d29623b0c8d647f555a1fe5484~-aR8DKW3p2841628416epoutp03P
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 13:52:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250514135242epoutp03e61d61d29623b0c8d647f555a1fe5484~-aR8DKW3p2841628416epoutp03P
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1747230762;
-	bh=gCzfbZekv4htNUijIC+SbkqBGyLEFOMaleFjXJEgatk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PWHXu7GU4DodhpP21c0owWh81IqdK3akqHsSTo555BlTK6RSln4LIHHSVH0bVf+FJ
-	 0b+/niCp/EE4DH/Nslvd0KkURVvHgenmh3kfh5NIywxvPsmHACnlF+nfYTAl1I+aL4
-	 DtyVhBBhJ+QoUc4L1LJC3fBMg7CyNtAhLWvO1kLg=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250514135241epcas5p1c532029629ae732c7dd6c2ed2db26353~-aR7f6P0V0362903629epcas5p13;
-	Wed, 14 May 2025 13:52:41 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.178]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4ZyFCW6JtDz6B9m5; Wed, 14 May
-	2025 13:52:39 +0000 (GMT)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250514095242epcas5p43aab99ca456684f1689d3e37a44b0c88~-XAZkOEZN1927219272epcas5p4H;
-	Wed, 14 May 2025 09:52:42 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250514095242epsmtrp1cf1ae3b2305367497a64be3bf5ea5ed6~-XAZi_ipV1927519275epsmtrp1a;
-	Wed, 14 May 2025 09:52:42 +0000 (GMT)
-X-AuditID: b6c32a29-55afd7000000223e-73-682467eac1b0
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	11.9B.08766.AE764286; Wed, 14 May 2025 18:52:42 +0900 (KST)
-Received: from bose.samsungds.net (unknown [107.108.83.9]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250514095239epsmtip24e9d87979a0f3e94d227111f61c1db9a~-XAWwEijB1817318173epsmtip2M;
-	Wed, 14 May 2025 09:52:39 +0000 (GMT)
-From: Raghav Sharma <raghav.s@samsung.com>
-To: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
-	alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
-	robh@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
-	sunyeal.hong@samsung.com, shin.son@samsung.com
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	dev.tailor@samsung.com, chandan.vn@samsung.com, karthik.sun@samsung.com,
-	Raghav Sharma <raghav.s@samsung.com>
-Subject: [PATCH v2 3/3] arm64: dts: exynosautov920: add CMU_HSI2 clock DT
- nodes
-Date: Wed, 14 May 2025 15:32:14 +0530
-Message-Id: <20250514100214.2479552-4-raghav.s@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250514100214.2479552-1-raghav.s@samsung.com>
+	s=arc-20240116; t=1747224567; c=relaxed/simple;
+	bh=ERUx06SGj0f1N8GLFSdIeCyIDUKnc9FjJIF8FnYn4WA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Cr3zqnBUp4iCP/cs36t4Raoz9yXATVTRyDELgLSNLhLhydB3Vr2S+yUlirU7SH0e2i+Sz0acC/VISGvRRfeJ1qXQFUtcp4UqsAF68qVM/lYe4sqbVXXilefuLVySBz2rCDrIUpUj9qs8NU1UhPJtWHK8C20BjHUWyzKGL/Le3UI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=V1Eq/MMn; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=H/2ChNLYeohTfTXoFO/V8FY8XoAsUs4cwYgU4hy+IFg=; b=V1Eq/MMnCq6CGVprIyYS/3T1Wg
+	Z63mwLDUbn4cOkg0FznmkJ40wdmhEdahPXSR0oB9KZ/gDG0TmotUhe/lIOKFWgnFstD4t2VZFP520
+	uskyu/iS1w4kyGANmGnip90G/6/2CC72VAfsDfCWVk91GrwKna3AXuxJbihzlKMz0ITKqunkKOM/l
+	4Aj6kx+8r1hOvEFfl9g6CsSfYvJrkdDHyHp1uH+9+ih/Bbbko3cm3FGbSdFu0IFy4PWWa7hmdXc9g
+	FmoT44PWd5wTrzDQMiKIrWJA/mweJEBQpp5sPsBodoow6etEtPCFkQpxkqIWWrfKYwYDCTLxLMU+s
+	+ihXqBAA==;
+Received: from i53875a50.versanet.de ([83.135.90.80] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uFAvI-0005f9-2h; Wed, 14 May 2025 14:09:20 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: heiko@sntech.de
+Cc: quentin.schulz@cherry.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/6] Add two board-families from Theobroma-Systems
+Date: Wed, 14 May 2025 14:09:00 +0200
+Message-ID: <20250514120906.2412588-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,69 +67,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupjkeLIzCtJLcpLzFFi42LZdlhJXvdVukqGQet/E4sH87axWUz4EmGx
-	Zu85JovrX56zWtzbsYzdYv6Rc6wWjTPeMFmcP7+B3WLT42usFh977rFaXN41h81ixvl9TBYX
-	T7laHFsgZvF95R1GiyNnXjBb/N+zg93i8Jt2Vot/1zayWEw+vpbVomnZeiYHUY/3N1rZPXbO
-	usvusWlVJ5vH5iX1Hn1bVjF6fN4kF8AWxWWTkpqTWZZapG+XwJWxf3InW8EDzoqrvVvYGxjf
-	sncxcnJICJhI3Nk9jbGLkYtDSGA3o8T2PU+ZIRISEvv+/2aEsIUlVv57DtYgJPCWUWLFixwQ
-	m01AS+LK9ndsIM0iAl1MEuf+vWIBSTAL7GSSWLleAsQWFvCX2Lj8MFicRUBVYt32PlYQm1fA
-	WmL9zC8sEAvkJfYfPAu2mFPARuLri8vMEMusJVpezWGCqBeUODnzCdR8eYnmrbOZJzAKzEKS
-	moUktYCRaRWjZGpBcW56brFhgWFearlecWJucWleul5yfu4mRnCUaWnuYNy+6oPeIUYmDsZD
-	jBIczEoivNezlDOEeFMSK6tSi/Lji0pzUosPMUpzsCiJ84q/6E0REkhPLEnNTk0tSC2CyTJx
-	cEo1MK3b/HpX2G6R0pszorWnbry2MKH1zKIbQQ9WiE7tsorvD/4puyXq89sc/wtdNiHThDel
-	Wu1++33dg0XKsU7LNWRWdkrft9meu/oo+z+rllnXFwQ/P9+7dOW7mVz8tzZJZ+Ye8BNebPaw
-	/qO4nUT+vGuSfwRiZiuozcgzUz5XJN/vtvFp3WGh+eK/ru2XS0+YtuKb7Xcd05ZnzE9/aTlv
-	Fbi2bWpJq8oiRq7983rkWxWzOd5G/Tntbt33zsvzuETqbq4e89vAuCp++6eRz/f3g5hF9aLt
-	QtY3Gn9vFKheONP6Eee77+8+nQv7s4J1yS+1XS8m972YJHvnpZy9x8PuzVuv1VuFfdZcvusN
-	41sPvTlKLMUZiYZazEXFiQD/aOo/IQMAAA==
-X-CMS-MailID: 20250514095242epcas5p43aab99ca456684f1689d3e37a44b0c88
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-543,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250514095242epcas5p43aab99ca456684f1689d3e37a44b0c88
-References: <20250514100214.2479552-1-raghav.s@samsung.com>
-	<CGME20250514095242epcas5p43aab99ca456684f1689d3e37a44b0c88@epcas5p4.samsung.com>
 
-Add required dt node for CMU_HSI2 block, which
-provides clocks to ufs and ethernet IPs
+Both the Cobra and PP1516 boards are based around the PX30 SoC and can be
+found with a variety of display options.
 
-Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
----
- arch/arm64/boot/dts/exynos/exynosautov920.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+As new boards should not use the deprecated snps,reset-* properties
+in the gmac node, I also added a core mdio-node for the gmac and
+converted the Theobroma Ringneck board over.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index 2cb8041c8a9f..7890373f5da0 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -1048,6 +1048,23 @@ pinctrl_hsi1: pinctrl@16450000 {
- 			interrupts = <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		cmu_hsi2: clock-controller@16b00000 {
-+			compatible = "samsung,exynosautov920-cmu-hsi2";
-+			reg = <0x16b00000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&xtcxo>,
-+				 <&cmu_top DOUT_CLKCMU_HSI2_NOC>,
-+				 <&cmu_top DOUT_CLKCMU_HSI2_NOC_UFS>,
-+				 <&cmu_top DOUT_CLKCMU_HSI2_UFS_EMBD>,
-+				 <&cmu_top DOUT_CLKCMU_HSI2_ETHERNET>;
-+			clock-names = "oscclk",
-+				      "noc",
-+				      "ufs",
-+				      "embd",
-+				      "ethernet";
-+		};
-+
- 		pinctrl_hsi2: pinctrl@16c10000 {
- 			compatible = "samsung,exynosautov920-pinctrl";
- 			reg = <0x16c10000 0x10000>;
+Testing with the new node both before and after converting Ringneck
+showed the board finding its network both when booting locally and
+from the tftp/nfs.
+
+changes in v3:
+- more sorting
+- more Reviewed-bys
+- pull-down for dsp-rst
+- pp1516 accel pinctrl group
+
+changes in v2:
+- add received Acks/Reviews
+- drop "rockchip" prefix from system-power-controller (Diederik)
+- split out prototype-pins to prototype variant
+- address Quentin's review comments
+  - ethernet0 alias for Cobra
+  - a number more pinctrl entries for gpios
+  - drop unused slp pinctrl entries
+  - additional comments
+  - use gpio-constants for pmic int
+  - ordering (nodes + properties)
+  - clarify vccio_sd more
+  - interrupt line for pp1516 accelerometer
+
+Heiko Stuebner (6):
+  arm64: dts: rockchip: add basic mdio node to px30
+  arm64: dts: rockchip: move reset to dedicated eth-phy node on ringneck
+  dt-bindings: arm: rockchip: add PX30-Cobra boards from Theobroma
+    Systems
+  arm64: dts: rockchip: add px30-cobra base dtsi and board variants
+  dt-bindings: arm: rockchip: add PX30-PP1516 boards from Theobroma
+    Systems
+  arm64: dts: rockchip: add px30-pp1516 base dtsi and board variants
+
+ .../devicetree/bindings/arm/rockchip.yaml     |  18 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   6 +
+ .../rockchip/px30-cobra-ltk050h3146w-a2.dts   |  39 ++
+ .../dts/rockchip/px30-cobra-ltk050h3146w.dts  |  39 ++
+ .../dts/rockchip/px30-cobra-ltk050h3148w.dts  |  39 ++
+ .../dts/rockchip/px30-cobra-ltk500hd1829.dts  |  73 +++
+ arch/arm64/boot/dts/rockchip/px30-cobra.dtsi  | 566 ++++++++++++++++
+ .../rockchip/px30-pp1516-ltk050h3146w-a2.dts  |  39 ++
+ .../dts/rockchip/px30-pp1516-ltk050h3148w.dts |  39 ++
+ arch/arm64/boot/dts/rockchip/px30-pp1516.dtsi | 602 ++++++++++++++++++
+ .../boot/dts/rockchip/px30-ringneck.dtsi      |  22 +-
+ arch/arm64/boot/dts/rockchip/px30.dtsi        |   6 +
+ 12 files changed, 1485 insertions(+), 3 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w-a2.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3146w.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk050h3148w.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra-ltk500hd1829.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-cobra.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3146w-a2.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-pp1516-ltk050h3148w.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-pp1516.dtsi
+
 -- 
-2.34.1
+2.47.2
 
 
