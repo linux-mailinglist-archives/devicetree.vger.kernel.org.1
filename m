@@ -1,160 +1,129 @@
-Return-Path: <devicetree+bounces-176978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-176979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1850AB610A
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 05:01:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A671AB612B
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 05:26:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0AC4B7B092C
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 03:00:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F2141B44694
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 03:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C2B8156C69;
-	Wed, 14 May 2025 03:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D056A18C011;
+	Wed, 14 May 2025 03:26:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dashgXX8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 431E51EB36;
-	Wed, 14 May 2025 03:01:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C18E2260C;
+	Wed, 14 May 2025 03:26:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747191673; cv=none; b=GcAzN5P7l8E0WpO4j08i8ROAT/MigjqI+z5Lva+IDkV2SIskH4DBUMY8BBpJ2pLZp59rPXOYPRZpRCUvyXmy+Rgr658ga3UnaOzFfSHMw8BEPCwaJc1d0byeDQpSFnAMfAiWuNipsJZuT6KinLU+dbwPBMYvaWf8dVOkxS1JdCk=
+	t=1747193162; cv=none; b=kCay3ON9YxnOxH2s3c+RpK4V3jx/6e+kAZpm77g3HixaPEaThWzFnI0omuRiQL6GjiEYxwBps+saWI0eW5EslpSe3oU6wTRkX4VyZe0K/0vLhr9//1sL0RqiQo5IuwwX+oO4rg5xtIiF5oXEGTN8hzmGN8aDh9+zd/5q9p8YgYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747191673; c=relaxed/simple;
-	bh=xA22KYLVW5DEbA9JJRwxFbXTmSmySKyThBXCXBOEf3g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LVbxmXuWhKpQFzvynBYuTUJRFvUgum/aHAwNqbIlskcY1wtraAD/fInU66dQPRBfRUSmNlyYPi1ermYZ5DYRHLB3GISZov1haLVoKRzqkQeDzgKMnKwKDLq4wPKhf4RyWaFrYUtEK4pWB0DSxVXjc/FlrAdbYdmMw5cnLvg0Nz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1uF2Gt-000000000IX-1uz7;
-	Wed, 14 May 2025 03:00:59 +0000
-Date: Wed, 14 May 2025 04:00:54 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1747193162; c=relaxed/simple;
+	bh=ijzwnnI/HGCOYp81pOseMCjlmDojsIOrtfsqtslA87M=;
+	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
+	 MIME-Version; b=IvWm28YS9zBM+247/2imk7rwiXBpEm/DMMtWqmM5v2mDqpew7pjVEs+qZvaoi4YgwLwY7cxiB9OaRXlA3FpKKt4o80BykBoo2aRJKfk1uW7pKVDhs+rkKvgf+zQeC+HZrB+e2ys2pq3WuV2OrC+Y+KGBNKUAnY6E2cfzAH50bZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dashgXX8; arc=none smtp.client-ip=209.85.216.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-306b6ae4fb2so5943335a91.3;
+        Tue, 13 May 2025 20:26:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747193160; x=1747797960; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to:date
+         :subject:cc:to:from:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TcDZQwTmMdtyKKt05qTa4r45+8RvNA2opPyhd5OidXw=;
+        b=dashgXX81pwxSGYVdJceiil9kod+EZRv4R2iTfJRHqp5RHS8QvvQ0OD1ThNxtSzfPM
+         F0lL/Gf79uJCMM/y+LU7UmUMl0sCU1LsWVDYcC8Kc+VrpMob2IyirsYQ5DIb8oAuRhiB
+         yKRPMRkRf351yFyHG3XzvFPwZrrFfMJYqhoKYsQ3pOrpKQNnWUksFXxeKpuasKgy3pVI
+         uyaoZLWcvziA79mUaCkfOekEcZ1Had6TTZKNiivAqab2pgGHEeWfRDC8RP2/7UfQFxC9
+         Pbq6HV+ZAwRgCflF1xotLpKiXPjS9xe9t/zsYwFCnJkOigD1e+pC1EgPnAgB/7AS85Xa
+         qJ8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747193160; x=1747797960;
+        h=content-transfer-encoding:mime-version:references:in-reply-to:date
+         :subject:cc:to:from:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=TcDZQwTmMdtyKKt05qTa4r45+8RvNA2opPyhd5OidXw=;
+        b=Z8yPbDNAvJpz8mQ0s9qZ9KSgE72EPyo8alxZ1DmTCJdP6gS+3VuJJM2Rd9nrBVdxt1
+         Jx5tx5D5sC7+nQ2T0mawasix7DIQU8GBFe/AYJpFz5D71ewUQRE6gEQAtq/oomxQgdkH
+         aTB0BA6BPFjGzvWXyBa+FrcMLykkG9mEEo/oDyhLevD5Kt1AtfVLE/azJomWLEf85sM+
+         S4JdLyURG8KiTalYJgeUmODQYzZKxg+GgtwFzSlk7JjqqZrqMSyMAWgHbsDmJ4vBhag+
+         ogvTDV1tMo24uYuodgVFR8fc51mQkvUQGSFxrO2ya0ZsAJIBgL5SkHnpsgvByGmARiJX
+         94/w==
+X-Forwarded-Encrypted: i=1; AJvYcCUEvlWUGGl/FYlfPBaUXa6iwWZp2KHn0yPqnZDSNSDwL2gci+hfmcfG/6nOc/FHex5mU/GKv3p+DpI71SA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkY9zQEZoV0E5EMX/uCsaypPdrgM/0bgF7DHazX9Br3+X6+iNl
+	KYv7LmltERXoivagxNhD1dfqqNZTAR6oz7SPUhqQURnlem98zUq3
+X-Gm-Gg: ASbGncu0P6PgPmncPzfTuS72pM04jrQ7AUJwbD4+erE4mz8R/X1zyZYLMtb6yLsWMRF
+	e/BO9Pkw3G16ExbdIHOpacRvECvWJYlvF1fHf2ui6LIVf5hzgJB7lj1zk+3oKCj7kBzZVt4x0CA
+	9YJgbeXRTw7zvZ79vfIk6Aha5ckkLf3cb8pKzEzpb35/fWf0KfgsiYSTozi5uYh2rirGdfWGkV1
+	6FcHWt7J1iTEdeniPwieDvyUQrxTy6l+Wn+8Zeij2wak5m7gcRiElsAmEcv34zxoq3DScVTmSh7
+	VFDtUev9Vm/XOiGQ3cNdQZDg5QVgOLRdMaUPyF4NDoNIvLS3oQbtzQ5fCxatE3BkFQtFCYdb
+X-Google-Smtp-Source: AGHT+IFgFmbcbTy2fzroMryy0JD+lhC7K5WXE5pPjhmZCsckNBHxwrPKsqyWRirO1mBQ4wl5Y94zsA==
+X-Received: by 2002:a17:90b:3b4e:b0:30a:4906:c20c with SMTP id 98e67ed59e1d1-30e2e644d17mr3039146a91.35.1747193160314;
+        Tue, 13 May 2025 20:26:00 -0700 (PDT)
+Received: from dea88b1475bb.. (125-227-29-20.hinet-ip.hinet.net. [125.227.29.20])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30e33451e6bsm414599a91.22.2025.05.13.20.25.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 May 2025 20:25:59 -0700 (PDT)
+Message-ID: <68240d47.170a0220.ba589.0feb@mx.google.com>
+X-Google-Original-Message-ID: <20250514032452.275855-1-LeoWang>
+From: leo.jt.wang@gmail.com
+X-Google-Original-From: LeoWang
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, llvm@lists.linux.dev
-Subject: Re: [net-next PATCH v4 03/11] net: phylink: introduce internal
- phylink PCS handling
-Message-ID: <aCQHZnAstBXbYzgy@makrotopia.org>
-References: <20250511201250.3789083-1-ansuelsmth@gmail.com>
- <20250511201250.3789083-4-ansuelsmth@gmail.com>
- <5d004048-ef8f-42ad-8f17-d1e4d495f57f@linux.dev>
- <aCOXfw-krDZo9phk@makrotopia.org>
- <7b50d202-e7f6-41cb-b868-6e6b33d4a2b9@linux.dev>
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	george.kw.lee@fii-foxconn.com,
+	leo.jt.wang@fii-foxconn.com,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH 1/2] dt-bindings: arm: aspeed: add Meta Clemente board
+Date: Wed, 14 May 2025 11:24:52 +0800
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <6822b830.050a0220.27a24d.d064@mx.google.com>
+References: <6822b830.050a0220.27a24d.d064@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7b50d202-e7f6-41cb-b868-6e6b33d4a2b9@linux.dev>
+Content-Transfer-Encoding: 8bit
 
-On Tue, May 13, 2025 at 03:23:32PM -0400, Sean Anderson wrote:
-> On 5/13/25 15:03, Daniel Golle wrote:
-> > just instead of having many
-> > more or less identical implementations of .mac_select_pcs, this
-> > functionality is moved into phylink. As a nice side-effect that also
-> > makes managing the life-cycle of the PCS more easy, so we won't need all
-> > the wrappers for all the PCS OPs.
-> 
-> I think the wrapper approach is very obviously correct. This way has me
-> worried about exciting new concurrency bugs.
+From: Leo Wang <leo.jt.wang@fii-foxconn.com>
 
-You may not be surprised to read that this was also our starting point 2
-months ago, I had implemented support for standalone PCS very similar to
-the approach you have published now, using refcnt'ed instances and
-locked wrapper functions for all OPs. My approach, like yours, was to
-create a new subsystem for standalone PCS drivers which is orthogonal to
-phylink and only requires very few very small changes to phylink itself.
-It was a draft and not as complete and well-documented like your series
-now, of course.
+Document the new compatibles used on Meta Clemente.
 
-I've then shared that implementation with Christian and some other
-experienced OpenWrt developers and we concluded that having phylink handle
-the PCS lifecycle and PCS selection would be the better and more elegant
-approach for multiple reasons:
- - The lifetime management of the wrapper instances becomes tricky:
-   We would either have to live with them being allocated by the
-   MAC-driver (imagine test-case doing unbind and then bind in a loop
-   for a while -- we would end up oom). Or we need some kind of garbage
-   collecting mechanism which frees the wrapper once refcnt is zero --
-   and as .select_pcs would 'get' the PCS (ie. bump refcnt) we'd need a
-   'put' equivalent (eg. a .pcs_destroy() OP) in phylink.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
+---
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-   Russell repeatedly pointed me to the possibility of a PCS
-   "disappearing" (and potentially "reappearing" some time later), and
-   in this case it is unclear who would then ever call pcs_put(), or
-   even notify the Ethernet driver or phylink about the PCS now being
-   available (again). Using device_link_add(), like it is done in
-   pcs-rzn1-miic.c, prevents the worst (ie. use-after-free), but also
-   impacts all other netdevs exposed by the same Ethernet driver
-   instance, and has a few other rather ugly implications.
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index a3736f134130..4416a40dcd86 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -81,6 +81,7 @@ properties:
+               - asus,x4tf-bmc
+               - facebook,bletchley-bmc
+               - facebook,catalina-bmc
++              - facebook,clemente-bmc
+               - facebook,cloudripper-bmc
+               - facebook,elbert-bmc
+               - facebook,fuji-bmc
+-- 
+2.43.0
 
- - phylink currently expects .mac_select_pcs to never fail. But we may
-   need a mechanism similar to probe deferral in case the PCS is not
-   yet available.
-   Your series partially solves this in patch 11/11 "of: property: Add
-   device link support for PCS", but also that still won't make the link
-   come back in case of a PCS showing up late to the party, eg. due to
-   constraints such as phy drivers (drivers/phy, not drivers/net/phy)
-   waiting for nvmem providers, or PCS instances "going away" and
-   "coming back" later.
-
- - removal of a PCS instance (eg. via sysfs unbind) would still
-   require changes to phylink. there is no phylink function to
-   impair the link in this case, and using dev_close() is a bit ugly,
-   and also won't bring the link back up once the PCS (re-)appears.
-
- - phylink anyway is the only user of PCS drivers, and will very likely
-   always be. So why create another subsystem?
-
-All that being said I also see potential problems with Christians
-current implementation as it doesn't prevent the Ethernet driver to
-still store a pointer to struct phylink_pcs (returned eg. from
-fwnode_pcs_get()).
-
-Hence I would like to see an even more tight integration with phylink,
-in the sense that pointers to 'struct phylink_pcs' should never be
-exposed to the MAC driver, as only in that way we can be sure that
-phylink, and only phylink, is responsible for reacting to a PCS "going
-away".
-
-Ie. instead of fwnode_phylink_pcs_parse() handing pointers to struct
-phylink_pcs to the Ethernet driver, so it can use it to populate struct
-phylink_config available_pcs member, this should be the responsibility
-of phylink alltogether, directly populating the list of available PCS in
-phylink's private structure.
-
-Similarly, there should not be fwnode_pcs_get() but rather phylink
-providing a function fwnode_phylink_pcs_register(phylink, fwnode) which
-directly adds the PCS referenced to the internal list of available PCS.
-
-I hope we can pick the best of all the suggested implementations, and
-together come up with something even better.
 
