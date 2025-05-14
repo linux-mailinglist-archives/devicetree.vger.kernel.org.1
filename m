@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-177408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DCC9AB764A
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 22:02:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 750A4AB7669
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 22:08:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A65A47ABE1D
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 20:00:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88148866F7B
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 20:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB6F9293746;
-	Wed, 14 May 2025 20:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68DD72951BE;
+	Wed, 14 May 2025 20:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DS8qB7Gs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j3TDn86s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92E0C288C37;
-	Wed, 14 May 2025 20:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FBDA1E9B0C;
+	Wed, 14 May 2025 20:08:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747252921; cv=none; b=CfPfbV65p9eQYXfutlkrdjPOV7l4h5VW0afwiWEny+PsUSPr2x5HyEq9EHHPbAS23zpWKJfAx2i82m3B5pXhMHAiSAYCrtAF1t8SYS5dOZcXsswR/Knm86LpLluXp4xzaJ6u45+SUpoPbDZBkmG/HRUxJ6/RDm4qF0dF00SSZFw=
+	t=1747253301; cv=none; b=hkehWmH9cIEjip9QSWP3w0ODKyk7g5UJv8UWa/8tt/kis7WVW/RWS56yf5ZpcOqiVQWTJjUdw5gEPkH6LxL8UQ0cOdUPmR0S/RhdtK3BlOnhII8eIjSwXyBdQqWPZwaDlPgYllD/RWrSXWtFLs2XBlu/U+l+rfEyPC4+8FbDDK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747252921; c=relaxed/simple;
-	bh=JI+ICFrIj/b5sZpzyiGA9sjL2/dMeBAEF1D8xL1cHyw=;
+	s=arc-20240116; t=1747253301; c=relaxed/simple;
+	bh=3WUxiz74QfrEkVVFQDowE0+qUL29wRFq5sAQpUVQaOI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EKGPVDf90KAc6ef+wNYOxgezQi5udT/bO1dR2t+IpBo2tNEq0AWcyWpbisAQnzrPwp0kGtZThtjLvRelWPcMZNWsqUoHxf3/Q70EQTGukeg0LoJ1jdPQqCTqPgn7XExAdLcLnEfLwPSiHYuI9zuDR0h7qexTp+R+v4w5HpanXkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DS8qB7Gs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF13DC4CEE3;
-	Wed, 14 May 2025 20:02:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pkDk3fVYfEbSW1gEPujeQ9f+aW6jiXoIqOWSG67W4HR2lv9/d4rK1iLgbxHpqDsN9xkohw+jmdK8ScSnnmMwInxKCZ+W29rKWIhe2hNGAOFUCQoiyLrF3NjDbxPj5TaZfWO0Iz7BY9GOC8pCJvDcilL++IszYbUvuohs+kct5RQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j3TDn86s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C649C4CEE3;
+	Wed, 14 May 2025 20:08:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747252921;
-	bh=JI+ICFrIj/b5sZpzyiGA9sjL2/dMeBAEF1D8xL1cHyw=;
+	s=k20201202; t=1747253298;
+	bh=3WUxiz74QfrEkVVFQDowE0+qUL29wRFq5sAQpUVQaOI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DS8qB7GszMeZwaTsOn5bMQUgTXXqXoSV1llRN0P5/k3ZjPTDamqG+QBpdyWJ4wK8t
-	 g0CRoNAZG7e3VmXe+jaeIQeWvim2xg+hRtlsq2Zkm2/AX/Jn/wJFC/JUfUzJBmz1av
-	 FOZeXAiICnAcK2a25WZlz2lLu3U8Q92B9PbDXpcAMZwT1OcV8kag115miQs5MoareB
-	 STha8oSD3UJAWfHDsp+ywKhH5BNDgAYo1k6RhDPkcNjwjPgJKCvWWjbRJlkAUgR33D
-	 pNaX+98OBhRgZJzhjukqGXeFUIgZ3H08ldpc/w+aEC/0IhBVy+JvQB6Pdcfhy49zRX
-	 05Sj0JC93Xuaw==
-Date: Wed, 14 May 2025 15:01:59 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: John Clark <inindev@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Heiko Stuebner <heiko@sntech.de>,
+	b=j3TDn86sJuOiIpUlS3N/aQHf1Vundgo9YCoc+bwdDkKux/jkXJacNmbXRTiW7WvdO
+	 DjSdaW+j2jJcRyK+RUx9PiHIZ0gdg90lmLKjTeaLslXtsqlPvzTTE0IG9rhB5rgot4
+	 pChbLMyxVHy46X/c90eDi5gqQ/DIz7IBBSe3bmtOl+LN9hnkJJfIWISIkmnuRMQ+Eb
+	 kuhYO8iXV1cjbYmyl55NeBqz818v1WYcoyPdGGACtrksGSMZsfSyUFiLMHoJD6HA9m
+	 aJbU1sh4FbaTyCUC7756UVtI5klo1RjldtCXLaj6gvWgtLam3ar89RAdL3oOpvvEau
+	 9wu/mJwzdA+zA==
+Date: Wed, 14 May 2025 15:08:16 -0500
+From: Rob Herring <robh@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>, Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH RESEND v4 2/3] dt-bindings: arm: rockchip: Add Luckfox
- Omni3576 and Core3576 bindings
-Message-ID: <174725291822.2934315.15782059306366204305.robh@kernel.org>
-References: <20250509122637.26674-1-inindev@gmail.com>
- <20250509122637.26674-3-inindev@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: airoha: Add EN7581
+ memory-region property
+Message-ID: <20250514200816.GA2934563-robh@kernel.org>
+References: <20250509-airopha-desc-sram-v2-0-9dc3d8076dfb@kernel.org>
+ <20250509-airopha-desc-sram-v2-1-9dc3d8076dfb@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,20 +66,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250509122637.26674-3-inindev@gmail.com>
+In-Reply-To: <20250509-airopha-desc-sram-v2-1-9dc3d8076dfb@kernel.org>
 
+On Fri, May 09, 2025 at 04:51:33PM +0200, Lorenzo Bianconi wrote:
+> Introduce the memory-region and memory-region-names properties for the
+> ethernet node available on EN7581 SoC. In order to improve performances,
+> EN7581 SoC supports allocating buffers for hw forwarding queues in SRAM
+> instead of DRAM if available on the system.
 
-On Fri, 09 May 2025 08:26:36 -0400, John Clark wrote:
-> This patch adds device tree binding support for Luckfox Core3576 Module
-> based boards, specifically the Luckfox Omni3576, with compatibility for the
-> Rockchip RK3576 SoC.
+But 'reserved-memory' is generally for system memory which is DRAM 
+though we unfortunately don't enforce that. For small onchip SRAM, you 
+should be using the mmio-sram binding and the 'sram' property.
+
 > 
-> Signed-off-by: John Clark <inindev@gmail.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../devicetree/bindings/net/airoha,en7581-eth.yaml          | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
+> index 0fdd1126541774acacc783d98e4c089b2d2b85e2..6d22131ac2f9e28390b9e785ce33e8d983eafd0f 100644
+> --- a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
+> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
+> @@ -57,6 +57,16 @@ properties:
+>        - const: hsi-mac
+>        - const: xfp-mac
+>  
+> +  memory-region:
+> +    items:
+> +      - description: QDMA0 buffer memory
+> +      - description: QDMA1 buffer memory
+> +
+> +  memory-region-names:
+> +    items:
+> +      - const: qdma0-buf
+> +      - const: qdma1-buf
+> +
+>    "#address-cells":
+>      const: 1
+>  
+> @@ -140,6 +150,9 @@ examples:
+>                       <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
+>                       <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
+>  
+> +        memory-region = <&qdma0_buf>, <&qdma1_buf>;
+> +        memory-region-names = "qdma0-buf", "qdma1-buf";
+> +
+>          airoha,npu = <&npu>;
+>  
+>          #address-cells = <1>;
+> 
+> -- 
+> 2.49.0
+> 
 
