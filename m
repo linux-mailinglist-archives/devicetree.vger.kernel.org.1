@@ -1,179 +1,175 @@
-Return-Path: <devicetree+bounces-177312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45FA6AB6FC0
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:29:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1DBFAB6FDD
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:32:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE4431BA0057
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:29:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2864166A87
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07B71A7044;
-	Wed, 14 May 2025 15:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 870C3214A81;
+	Wed, 14 May 2025 15:30:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UXDgCZfV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zo1rjdwM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1BF319D880;
-	Wed, 14 May 2025 15:28:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 764AB1E0DD9
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 15:30:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747236537; cv=none; b=Vb0w22pU9t0p0xhd0HQVsuVuhBXWV3vGeAMcyCOYTl8L8ugcEehUl/XAp8opBUMeWp9IPZ5narfEVIgg5QlxPm4x5E+OxhusEYZ1t2Cbz88L5EqzZ2aXnqUFdBjTBr+vA0Aj3dyB/VyrHyPAFJKT1m9sSMkyQ738mOMpcRPXeow=
+	t=1747236631; cv=none; b=fHlVkEf6XddeoRNAZ7f4O3zBGov20DzAORkpBIZkgc8Brf8gzUMV79RxsCgeJEF+PX4G0eHsD7QvWkvH0HU/Sr/zcwOSjIT8W+TVpfx2tAS31apr9r1t6C4MvDOHCn+ua4/8bd8GwW+XbqD3pkwathplFUaN+MKGL+9WySWgXYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747236537; c=relaxed/simple;
-	bh=n267JmLeNs0lXlBCr+bj7ApMfDHUYHHdfIIKKiuXCcI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tQCd9Bl3wggiIK5kGkiUvvA8z402WMz87eEwKW3+1KGaAAy8kkoMj1ys11xJgCQWCO3QlCflZjsn5QfJyLo0vfDXAM58uy1mV71uV2nEQDQoS5zJ5FgZuyM1Li7fVtka95KsqPJfHpCIqaNIP5Fr+tRkqWtvtnvbcHRMVnBpC6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UXDgCZfV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A38AC4CEE3;
-	Wed, 14 May 2025 15:28:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747236537;
-	bh=n267JmLeNs0lXlBCr+bj7ApMfDHUYHHdfIIKKiuXCcI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UXDgCZfV/Bkx2sROlz8IP8HNpT6sX+8dfPZqPSq+oiB1Oatq7lY2FGdRNUEo6WPQ6
-	 yDWZVCKdxM9MkhoD/WN5vGRBJDgjxoNxvMG5nzwyi9Rk5quOa5xikViqYE5sdQc61z
-	 xiBoBSPJvRCF0zZVWXKz3g649w/ylPIkUGABO8nPFPWMCaprOB/9/ydazEPHB3JzTH
-	 CEuIwlsFGziWVX3hXX/SFieumb4wFrQMmbUlm7bjVw5CdfCXdge+Chx27CnEgmntYf
-	 LkQ+C/rytxXkV017MiW8D9A+/T06Wts8Db/KENnq+5xTSle3WhlRvGAVC3oMrtTKS9
-	 zBVfJscXfdi7Q==
-Date: Wed, 14 May 2025 16:28:52 +0100
-From: Lee Jones <lee@kernel.org>
-To: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Pavel Machek <pavel@kernel.org>,
-	linux-leds <linux-leds@vger.kernel.org>
-Subject: Re: [PATCH v3] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe
- Debug LEDs
-Message-ID: <20250514152852.GA2936510@google.com>
-References: <20250417093256.40390-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdWN-QDrmogJ+7x8sdc6UmDAoF+0z0hZ3SQ7ajN2V2+mSw@mail.gmail.com>
- <aBxjvofZCEi_1Fna@shikoro>
- <20250508134930.GM3865826@google.com>
- <18b78845-3f01-444d-835a-aa39f84a2689@gmail.com>
- <CAMuHMdW1Hn51R-6MstS1Ojuu-CR0eNs504YEruPbe2L-H_zBHA@mail.gmail.com>
- <ebb257c6-33f9-4841-b9af-c2744b59e513@gmail.com>
+	s=arc-20240116; t=1747236631; c=relaxed/simple;
+	bh=moZFEINmCupMyzsdUOqHVB3JKm+jOMrn4fBI7Ik9468=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=TW2E2Ar96pTW6We8bjdaUJD4JTsoJ+JFRDknwJbFxFoLm/Vtskarf9MjyE9mTlbbcnrRYSx5VmqiPm0+1rmvER/l0tIF2J1GT5QEdaDQDj5X5LM5wS5K7hRI21mVZsrFFFsVqh1DqFCR3+U/iYSpMrBSs8TxJfrejjmHEZQVSeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zo1rjdwM; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43cf628cb14so8563935e9.1
+        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 08:30:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747236628; x=1747841428; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nycOpyBxI5sRC+H1LR7ey+jyRhRD4iCs0HcWJtxwtvU=;
+        b=zo1rjdwMWVdUfHn0DPJL2RiafHIcfHF1pyTtVUPGCApTtGkNU+K2QRtfk68+B0TgPV
+         aod01e7J8yAiBTBpAFH8dL4PYOn7KI5RstxdaEgOhACd0S/uolb+NYgLIKGCMJxoxane
+         qZFU7/Zf1yBj/xxfbzig5EpoIUyPQqrMJO5xSCUEo3qF/Y1DiBA4PdAhLU8qduMI6VJG
+         VaAIUKkiRsa8XMTRSUDwM9XDxHLQnqYgotwwZR03w0/tBW5VsYejn0pkLrgz0engiLMY
+         r4TrWT35P3tC+znhTFSVbluC83y1+5XuNA4iRsVn1LtfArZ6Kt2n6P+z8I0OvcO5Q5Vy
+         ygGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747236628; x=1747841428;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nycOpyBxI5sRC+H1LR7ey+jyRhRD4iCs0HcWJtxwtvU=;
+        b=e58NL4YnNRSjYQgHchwHpQ27hV5EoAc5EDBwnKgJuxubFWUwHFXa8jbemepNzl/cgf
+         7AeNb7N7/lTktNyBTXJxZRxum35Os7xudPhyRuqgy6GWCSg+eHVnszMS/SIfXP9PsFpC
+         f54e0YTFXG3TCF7KcFNpMv1LPbITzdDPFXqxOFcPvFrJhpSM0ETqAqnjmTEo0jkCJi/h
+         A6dKOlmCbjRDN+62II7n6CrIQ/7Db9zmGyjF6/wvPMwJCPlJkLgB8zhUMelCH/He+Iin
+         3eK7/1rjwhOtaK3sEvqpW9GxXLcCfHYLW6OjMkJYQGt6aIvHwxnUOBGJJi0MX83o5Bj5
+         d5Nw==
+X-Forwarded-Encrypted: i=1; AJvYcCVuA816fd14VXTp6SKmF+h6wY/yFSRMOBASrJfzRESmndeIW654uZEwPApBa5g9uS1ph/zGHWOcU0/i@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7++NWHzMBNogfZFXvG6pv7HM9FviE4QwDO8IJLSytv9RkdJTS
+	pU1MXuaZleXPIvw+KdO3EOhK7clt8oIzsfCLIzSRcYPFzRfoE9q9mtGADZBuQJ0=
+X-Gm-Gg: ASbGncvdoLFGft+qnliEeidoDl8PS9WTb4HK6VCLE6wWXdPAk91MnKsgAwFI99aFcSG
+	tL7vovhC0BxTV42CVOyK8nbfwfNmUCixtsWUP76k6DfcazLMFdXLGGfwCnNxWIDp/GwhZXLbR45
+	kE35KFz4Ji9y7VN9gnYplEyLLXGrXJmDpFQvqacHCZfAze1wNWGzXbj1tHKcNPMk9m7g2ujpy1o
+	aAUBtqOSh6NJmiON6B9nB9i+yQH7NvSw/0zPzIha5VsJYwrUs01AWsjhj6a+hMr5XyX6O/XpaJ0
+	SsnppVnmgiUWaxG7MJWF2DfYGgDG8GtTJq3SsTbQijBxDidzy4eaUrutjIWTqpcKeGKFCYgwrFB
+	iVWiUQVCO5BUEB1iMG9/0OYQ=
+X-Google-Smtp-Source: AGHT+IHTYDs/TaBgsdW3hxCoxJZWvcRCJr5SkxDS89aSiJtpbn9D4/TYDukFeKcnbKmAmLbDJRJzOg==
+X-Received: by 2002:a05:6000:2486:b0:3a0:92d9:da4 with SMTP id ffacd0b85a97d-3a340d159e1mr7054344f8f.6.1747236627686;
+        Wed, 14 May 2025 08:30:27 -0700 (PDT)
+Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a1f5a4c599sm20435689f8f.94.2025.05.14.08.30.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 May 2025 08:30:26 -0700 (PDT)
+Message-ID: <650c336b-a698-42f5-ad59-7dcdf24667f4@linaro.org>
+Date: Wed, 14 May 2025 17:30:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/2] Add the NXP S32 Watchdog
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: wim@linux-watchdog.org
+Cc: linux@roeck-us.net, linux-watchdog@vger.kernel.org,
+ linux-kernel@vger.kernel.org, S32@nxp.com, ghennadi.procopciuc@nxp.com,
+ thomas.fossati@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ alexandru-catalin.ionita@nxp.com
+References: <20250410082616.1855860-1-daniel.lezcano@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20250410082616.1855860-1-daniel.lezcano@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ebb257c6-33f9-4841-b9af-c2744b59e513@gmail.com>
 
-On Mon, 12 May 2025, Jacek Anaszewski wrote:
+On 4/10/25 10:26, Daniel Lezcano wrote:
+> The NXP S32 watchdog, referenced in the documentation as the Software
+> Watchdog Timer is actually a hardware watchdog. The system has one
+> watchdog per core but an assertation does not directly reset the
+> system as this behavior relies on a particular setup and another
+> component which is not part of these changes. However the first
+> watchdog on the system, tied with the Cortex-M4 #0 is a particular
+> case where it will reset the system directly. This is enough for the
+> watchdog purpose on Linux.
+> 
+> The watchdog relies on the default timeout described in the device
+> tree but if another timeout is needed at boot time, it can be changed
+> with the module parameter.
+> 
+> If the kernel has to service the watchdog in place of the userspace,
+> it can specify the 'early-enable' option at boot time.
+> 
+> And finally, if starting the watchdog has no wayback then the option
+> 'nowayout' can be also specified in the boot option.
+> 
+> Changelog:
+> 
+>   - v4:
+>      - Update the watchdog timeout when the callback is called (Alexandru-Catalin Ionita)
+>      - Fix the clocks bindings to have all the clocks described (Krzysztof Kozlowski)
+> 
+>   - v3:
+>      - Add the clocks for the module and the register (Ghennadi Procopciuc)
+>      - Use the clock name from the driver
+>      - Removed Review-by tag from Krzysztof Kozlowski as the bindings changed
+> 
+>   - v2:
+>      - Removed debugfs code as considered pointless for a such simple
+>        driver (Arnd Bergmann)
+>      - Replaced __raw_readl / __raw_writel by readl and writel (Arnd Bergmann)
+>      - Reordered alphabetically the headers (Guenter Roeck)
+>      - Enclosed macro parameter into parenthesis (Guenter Roeck)
+>      - Fixed checkpatch reported errors (Guenter Roeck)
+>      - Clarified a ping on a stopped timer does not affect it (Guenter Roeck)
+>      - Used wdt_is_running() to save an extra IO (Guenter Roeck)
+>      - Fixed a misleading comment about starting the watchdog at boot time (Guenter Roeck)
+>      - Replaced allocation size sizeof(struct ...) by sizeof(*var) (Krzysztof Kozlowski)
+>      - Drop old way of describing the module and use table module device (Krzysztof Kozlowski)
+>      - Replaced additionalProperties by unevaluatedProperties (Rob Herring)
+>      - Removed the DT bindings description as it is obvious (Ghennadi Procopciuc)
+>      - Fixed DT bindings compatible string (Krzysztof Kozlowski)
+> 
+>   - v1: initial posting
+> 
+> Daniel Lezcano (2):
+>    dt-bindings: watchdog: Add NXP Software Watchdog Timer
+>    watchdog: Add the Watchdog Timer for the NXP S32 platform
+> 
+>   .../bindings/watchdog/nxp,s32g2-swt.yaml      |  54 +++
+>   drivers/watchdog/Kconfig                      |   9 +
+>   drivers/watchdog/Makefile                     |   1 +
+>   drivers/watchdog/s32g_wdt.c                   | 315 ++++++++++++++++++
+>   4 files changed, 379 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/watchdog/nxp,s32g2-swt.yaml
+>   create mode 100644 drivers/watchdog/s32g_wdt.c
 
-> Hi Geert,
-> 
-> On 5/12/25 09:13, Geert Uytterhoeven wrote:
-> > Hi Jacek,
-> > 
-> > Thanks for your answer!
-> 
-> You're welcome.
-> 
-> > On Sat, 10 May 2025 at 14:43, Jacek Anaszewski
-> > <jacek.anaszewski@gmail.com> wrote:
-> > > On 5/8/25 15:49, Lee Jones wrote:
-> > > > On Thu, 08 May 2025, Wolfram Sang wrote:
-> > > > > On Thu, Apr 17, 2025 at 01:39:14PM +0200, Geert Uytterhoeven wrote:
-> > > > > > On Thu, 17 Apr 2025 at 11:33, Wolfram Sang
-> > > > > > <wsa+renesas@sang-engineering.com> wrote:
-> > > > > > > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> > > > > > > ---
-> > > > > > > 
-> > > > > > > Changes since v2:
-> > > > > > > * using function, color, function-enumerator properties now
-> > > > > > > 
-> > > > > > > Honestly, this is better than using node names? With V2, the LEDs were
-> > > > > > > named as in the schematics, now they are called:
-> > > > > > > 
-> > > > > > > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-0 -> ../../devices/platform/leds/leds/green:programming-0
-> > > > > > > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-1 -> ../../devices/platform/leds/leds/green:programming-1
-> > > > > > > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-2 -> ../../devices/platform/leds/leds/green:programming-2
-> > > > > > > ...
-> > > > > > > 
-> > > > > > > Which gets even more confusing if we might later add LEDs not on this
-> > > > > > > board, but on the expansion board. 'green:programming-8' sits where?
-> > > > > > > 
-> > > > > > > I really wonder, but if this is the official way now...
-> > > > > > 
-> > > > > > Good point!  So I'm inclined to take v2...
-> > > > > > 
-> > > > > > Let's raise this with the LED people. I don't want to fight Pavel when
-> > > > > > v2 hits the CiP tree ;-)
-> > > > > 
-> > > > > So, if there is no other opinion here, can we remove function, color,
-> > > > > function-enumerator and just use the node names which match the
-> > > > > schematics? Basically apply V2?
-> > > > 
-> > > > I didn't author the semantics nor the rules surrounding them, but I am
-> > > > obliged to enforce them.  Therefore "LED people" say, please stick to
-> > > > convention as stated in the present documentation:
-> > > > 
-> > > > https://docs.kernel.org/leds/leds-class.html#led-device-naming
-> > > > 
-> > > > Please note that a "debug" (LED_FUNCTION_DEBUG) option already exists if
-> > > > that is more appropriate to your use-case.
-> > > > 
-> > > > Let's also bring Jacek into the conversion, since I know that he did a
-> > > > bunch of work around this topic.
-> > > 
-> > > The question is if the LED name from the schematics tells anything to
-> > > the user of the equipment?
-> > 
-> > As this is a development board and not a finished product, I would
-> > answer yes.
-> 
-> OK.
-> 
-> > > The idea behind LED naming is to facilitate matching the LED class
-> > > device name as reported by the system with the LED location on the
-> > > equipment.
-> > > 
-> > > The LED naming standardization intended to enforce consistent
-> > > LED naming, and not allowing to add multiple interchangeable
-> > > names like wifi/wlan. It also helps to keep LED name sections order in
-> > > accordance with Linux documentation, which before had been often
-> > > abused by allowing to assign anything to the now deprecated 'label'
-> > > DT property.
-> > 
-> > I agree this all makes perfect sense for a final product, where the
-> > purpose of each LED is clear, and sometimes indicated by an icon
-> > on the case.
-> > For a development board, some LEDs may have a fixed purpose.
-> > But typically there is also a collection of generic user LEDs, which
-> > do not have a fixed purpose, and are identified by a label on the
-> > schematics.  Imposing an arbitrary numbering scheme on the latter is
-> > confusing for the user (developer).
-> 
-> Using DT child node name for LED class device name is only
-> a last resort fallback. However if it is devboard and we want to have
-> a reference to the schematics then I'd say it makes sense to take
-> LED names from DT nodes. What about the colors? Are the LEDs replaceable
-> or soldered?
+Hi,
 
-Looks like this option does what you want:
+Gentle ping, we are close to the merge window.
 
-https://github.com/torvalds/linux/blob/master/drivers/leds/led-core.c#L578
+Thanks!
 
-For this to execute you need to provide init_data when calling
-*led_classdev_register*(), omit the; label, function, color_present DT
-properties and also init_data's default_label attribute.  At which point
-the DT node name should be taken as the LED class name.
+   -- Daniel
+
 
 -- 
-Lee Jones [李琼斯]
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
