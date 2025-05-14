@@ -1,373 +1,376 @@
-Return-Path: <devicetree+bounces-177263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC98EAB6DD9
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:10:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B284AB6DE2
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12ED04C113E
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 14:10:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E6091B68173
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 14:15:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABCC81A2389;
-	Wed, 14 May 2025 14:09:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k+/PTnFx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE8331A2396;
+	Wed, 14 May 2025 14:15:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B8F1199FAB;
-	Wed, 14 May 2025 14:09:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B86A19AD89
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 14:15:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747231799; cv=none; b=BFZboAavWLhGPNweP31tRaDUawYKqlVbN7m6H2kA1fIGKCmp5NgMKDsALF0QGR8G8lr7hnS+q7PRacTkJ66mwyy/OTQvZkJoHQRN6KX+N59MuXrCMBQPXhdWbmmbvNGFvuO1hkTGzLemWeFeNDvglLYUU9oB2oe2krFqOua/ZPg=
+	t=1747232105; cv=none; b=XnM/GmWrn+Raazt+rJufkLugJL4iNoP2WQ9xcW+q8eqqP2SBsjWAeU4RmyOQcYhdvpNZklXcURMxQc3a6tm3/Wbl5OV1xYvCrg8B5tm+NyauISkUwr2IZRlPIb6sAaaxbEp57qjPDE9Bzz5reYKgY6VW7Vaj78ThmtUcehrSf3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747231799; c=relaxed/simple;
-	bh=OhmavDCHy1k6lDJhugGir92mjOwdOw63nJrZTQmSt/k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=i5HvWdrOlL/UzCGTVzpzaQ6M1gGgueeucpkYLeeXrAOIpkFsBCEVdT8TAqjAkzi74u9ws4ZK6NxqFqWCA4jsiP4rlSwaaU3T5t/A20MdBcwuN1gh/BacuwZDXo6YeKUuLe1V4TXgTVpNzQ/ctmJoIdoQ2t21A0AGae4dX6aFSt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k+/PTnFx; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1747232105; c=relaxed/simple;
+	bh=EbyCQ5AHPeCih6N7y2V6YS2flWMU/9MNAC+enpw901w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EO6o0btFYAWrND0LXH49OMKl3XnCLADlxHFR9aflUDpLADYhKHm/IdJgDDrrTK1yXJsMeyQjdgvL2PofXxTI31+y+xeGzbzRzu/kr8AyN6NHUKLrQjX+jYgdfdkpCsaNxjsMf5C9zuoDUPMqr+UOFK6UfdU0yPvj9DaRdEUkbVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-22e033a3a07so75399155ad.0;
-        Wed, 14 May 2025 07:09:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747231797; x=1747836597; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1rdKmRSuyPb6NIx8nY+1zDs9F4SWcGDkRxiLAkC20C8=;
-        b=k+/PTnFxSbicmVBGeGgo1KWZlbMSDi4IAu0ghS+hGfRAQqjzv0s1sR3tpRZ3lAVO31
-         lf5ugd1WEpBt0SC+L+fcBlMhPXeM2UzwKFcuPWUszRZWbktaV1UuQvOWE1oSYKrxRtFC
-         NrSJgdzU0L6e/1viVKkCsdsHhaaZy4s6bxeI69ckDtmVA+Fi6GiqId3hwtWTWTuxBC6f
-         7gP2k+mQ3pmm1zgruApnql2QHQMVi+ubfkYyJXeQ/KDIqG6riTZVlD1w/rRwEVgO35I3
-         RSbNIuiVo/07GTHjAhhaw+NtRnnUjHj3U+QoT0Dtb4Dslth4oq3mEa4j/yBIOpe/sPbA
-         YvcQ==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-54b1095625dso8239667e87.0
+        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 07:15:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747231797; x=1747836597;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1rdKmRSuyPb6NIx8nY+1zDs9F4SWcGDkRxiLAkC20C8=;
-        b=FsSiCLGNAtLu/MYfP+e+9b+ZUH+HfhflYRaui3T3ZIqy7Lu/oLCJcdiSVKiQI0jyzn
-         /LKDJP6i/gTdAmbReuSKcxiJ5XBM3SdYfQvZzkl4Q2IVo8XWBTVBd2t0laMS/WTQovNd
-         YqguQX3EY+seY3zwDadDKMtLkcVz2PlE5Wg64kY44inC8ZCYXOQQTDiadv9KzuNHl7k3
-         d08+cON6tBRHpB3tNSEaLC+fK80gazXAuRtNBcEy1pNEqfOpNpusKVig7KdLj0eyLI02
-         hjn8QdkKfrlun3DKOK2f0zuCc2T8EEhCsK+TyXDDkwPeBGw6UNp50C/aUddmYxyxZ0ty
-         ObVw==
-X-Forwarded-Encrypted: i=1; AJvYcCU02t8NsoWfELW7toPyz6klXsBKX86GM1Ws1H9C+MKAUu3NmYKIwnPLvLARx2U0c8/dcLJ8CZDGP72daUc=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgENa56JpKc1nf1TQvQxJJ1ds16YndlgUAUxVMqaB6WfGSxUYa
-	iTipyUujDTfBQfuD18VJr7IytuuGQXUQAj5+oaj1fsXQzyFqIYCkTnMO+YzchvWv2w==
-X-Gm-Gg: ASbGncuK0ZlOCDG0/82tJXEFCqa0fqAZqcF0BR5oFB/fKN6npeyNbFDg03lT9iq/5MP
-	2u6kk/W1w5vyIpBOSlb/NHAhfKC7g6n0QV0AAvAry+1pCM8HkiLkgH7rJHRnJHYvy65QnyYlNCQ
-	iNx94iZHcU3TWcvTYvqgVKsYQrN00t9Sg4RY+vkZxmI1D4VK9XgYeUOCBqLmljuD1L3SH4xbYnJ
-	HRzyxGN7Y5ZDlC4J7hPQ/VsN6Vb4Gym8B8NXsVwMcsSay86X+8UuonILTfuq3qU/LODtaKOl+zq
-	fgq0NuNOgWZBswiy8sd0HPB1U5gFK+tsnjebDtoL/Onoli1NTjUanhx1XjOXZg==
-X-Google-Smtp-Source: AGHT+IGqfxH9wcWonGS/XzWU03rDStXfIqzHF3ukgWS0gRVxFE/c9T2Pr76UvBAkI0eaUZGD7u71uw==
-X-Received: by 2002:a17:903:1cd:b0:220:e156:63e0 with SMTP id d9443c01a7336-231980ce4b4mr46290725ad.8.1747231796258;
-        Wed, 14 May 2025 07:09:56 -0700 (PDT)
-Received: from localhost.localdomain ([119.8.44.69])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc8271ae0sm100407975ad.128.2025.05.14.07.09.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 May 2025 07:09:55 -0700 (PDT)
-From: Han Gao <rabenda.cn@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Han Gao <rabenda.cn@gmail.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Guo Ren <guoren@kernel.org>,
-	Chao Wei <chao.wei@sophgo.com>,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] riscv: dts: sophgo: add Sophgo SG2042_EVB_V2.0 board device tree
-Date: Wed, 14 May 2025 22:09:02 +0800
-Message-ID: <53a9a794641af697be9170e6d0af464a39d862ae.1747231254.git.rabenda.cn@gmail.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <cover.1747231254.git.rabenda.cn@gmail.com>
-References: <cover.1747231254.git.rabenda.cn@gmail.com>
+        d=1e100.net; s=20230601; t=1747232099; x=1747836899;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MHI9+PzW39sul+i6E/EGeNmor59j/M/+OWEp6c+V/+U=;
+        b=AkYRCOeE1bhpnWhEKqsX28EHFiEDJz8rwk7AmlAEJo4JiacRq0912BzoMBRbjJDuXh
+         pxpzTC9+4ZvFZIeXfQMe+isZD8fXaa/XyvLvR/eQaf8fq+8LYnKPXaXjCc4DL5EP8IFM
+         OzF/VqNYBHkJaRHkvtsHzCF3wJIoL1lQDh0lgHxSdE8OWC2243Yk27It0pRzMACa1jmi
+         /WsMmjpwWNXA0IXalSDk/LbinIFh0IxAuY+QDz+xpecFqVTqUxC9rK1jhsjVLGR2VbOU
+         YlONPILoBkxStE6YWHytbhQJosmB2dIAycHemRkeLEZapYxBbMtSNyi/jVQ7t0YlV4oA
+         HBwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUXX3Ik4EJT+IaeuEfT0nVMS78eZK4HCi/T9yFwdKccemV/73uqWQOxbM4AQnfozw6RDiy6Blk8/Oo7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3cnv5++R1rKmm8qfcZRp6GxON4wiOwoYPdajEprWiSZOQXslg
+	Rjwb9j8TvmBUVGdP8CA1kOm7g2HcQ66RNkWawJT+VjID1wDR54QdMwKIck6T
+X-Gm-Gg: ASbGncv4tqHzfUz8K0a/SCS3KuvNL1c+Yf779PIaMGw+ZlIMuFqP6MjxZLLY6BA7sdz
+	/kQkQCPoYlq+mRKdvYV+/r+GKBVWRk9EAh+1vzC61hE0x+SwhG+I3v6MP9D1t7JVkC76nlnSpkR
+	EfpWKUDTOZnuA9FogmB+3i0aqHc7BW6mkeL479xePUVxWcn4achxR4mNe9YNRiCPqbAlfq0jyMx
+	pksnEE2DAE5Q7K9kUqlQKUTg6gJmYbDb1i/A94I/k0hq1UvLCy9WQoK4aBKfcPFzl7Burk0MU3t
+	Woz3Sd1YyXT3Yu1t+CMXF1y7vXXCbpQ3HqJUDyMLuS4RXcHjDhHLsp0UQdP8wRfUSseqEU3sak+
+	aHhEEnqP8
+X-Google-Smtp-Source: AGHT+IHhJW5p8+C5J+PvA3IgMHiaGpHQJdDAs0R0AvVV0j/0l3WaRzqPw2ZFHitoucnkBS5qYvqkkQ==
+X-Received: by 2002:a05:6512:3c8d:b0:549:74a7:12da with SMTP id 2adb3069b0e04-550d5fe3f39mr1645578e87.51.1747232099034;
+        Wed, 14 May 2025 07:14:59 -0700 (PDT)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54fc64bf250sm2273801e87.174.2025.05.14.07.14.58
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 May 2025 07:14:58 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-326ca53a7f1so53572871fa.2
+        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 07:14:58 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVfsL2z62DDwkvskl1XoGGs6+5lbl3Q3dMihIbKXuzziLm7mgh1N94LSZFl+asyIR/ubVG8BU6xMUla@vger.kernel.org
+X-Received: by 2002:a05:651c:144b:b0:326:db50:fa71 with SMTP id
+ 38308e7fff4ca-327ed11ecccmr16248041fa.23.1747232097790; Wed, 14 May 2025
+ 07:14:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250505164729.18175-1-andre.przywara@arm.com> <20250505164729.18175-4-andre.przywara@arm.com>
+In-Reply-To: <20250505164729.18175-4-andre.przywara@arm.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Wed, 14 May 2025 22:14:42 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67JGbTgsNcqn4TZ74s_U1+9xGj_a7kYkmfGVxeygQ_Ydw@mail.gmail.com>
+X-Gm-Features: AX0GCFuDYucYLLpLUlhwE2czLbkwqRJZoUBu4cwQtabqLqc0JUaJT_1nWb9P4eE
+Message-ID: <CAGb2v67JGbTgsNcqn4TZ74s_U1+9xGj_a7kYkmfGVxeygQ_Ydw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: allwinner: a100: add Liontron H-A133L
+ board support
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Cody Eksal <masterr3c0rd@epochal.quest>, 
+	Philippe Simons <simons.philippe@gmail.com>, devicetree@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Sophgo SG2042_EVB_V2.0 [1] is a prototype development board based on SG2042
+On Tue, May 6, 2025 at 12:48=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+>
+> The H-A133L board is an industrial development board made by Liontron.
+> It contains a number of dedicated JST connectors, to connect external
+> peripherals. It features:
+>
+> - Allwinner A133 SoC (4 * Arm Cortex-A53 cores at up to 1.6 GHz)
+> - 1 GiB, 2 GiB or 4 GiB of LPDDR4 DRAM
+> - between 16 and 128 GiB eMMC flash
+> - AXP707 PMIC (compatible to AXP803)
+> - 100 Mbit/s RJ45 Ethernet socket, using an JLSemi JL1101 PHY
+> - XR829 WIFI+Bluetooth chip
+> - 2 * USB 2.0 USB-A ports, plus three sets of USB pins on connectors
+>   (connected via a USB hub connected to USB1 on the SoC)
+> - microSD card slot
+> - 3.5mm A/V port
+> - 12V power supply
+> - connectors for an LVDS or MIPI-DSI panel
+>
+> Add the devicetree describing the board's peripherals and their
+> connections.
+>
+> Despite being a devboard, the manufacturer does not publish a schematic
+> (I asked), so the PMIC rail assignments were bases on BSP dumps,
+> educated guesses and some experimentation. Dropping the always-on
+> property from any of the rails carrying it will make the board hang as
+> soon as the kernel turns off unused regulators.
+>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+>  .../sun50i-a133-liontron-h-a133l.dts          | 214 ++++++++++++++++++
+>  2 files changed, 215 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-=
+a133l.dts
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts=
+/allwinner/Makefile
+> index 790aad3a91e86..773cc02a13d04 100644
+> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> @@ -18,6 +18,7 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-sopine-baseboa=
+rd.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-teres-i.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h64-remix-mini-pc.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a100-allwinner-perf1.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a133-liontron-h-a133l.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h5-bananapi-m2-plus.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h5-bananapi-m2-plus-v1.2.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h5-emlid-neutis-n5-devboard.dtb
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.d=
+ts b/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts
+> new file mode 100644
+> index 0000000000000..682ed15d84854
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a133-liontron-h-a133l.dts
+> @@ -0,0 +1,211 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2025 Arm Ltd.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sun50i-a100.dtsi"
+> +#include "sun50i-a100-cpu-opp.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/{
+> +       model =3D "Liontron H-A133L";
+> +       compatible =3D "liontron,h-a133l", "allwinner,sun50i-a100";
+> +
+> +       aliases {
+> +               serial0 =3D &uart0;
+> +       };
+> +
+> +       chosen {
+> +               stdout-path =3D "serial0:115200n8";
+> +       };
+> +
+> +       leds {
+> +               compatible =3D "gpio-leds";
+> +
+> +               led {
+> +                       function =3D LED_FUNCTION_POWER;
+> +                       color =3D <LED_COLOR_ID_BLUE>;
+> +                       gpios =3D <&pio 7 16 GPIO_ACTIVE_LOW>; /* PH16 */
+> +               };
+> +       };
+> +
+> +       reg_vcc5v: vcc5v {
+> +               /* board wide 5V supply from a 12V->5V regulator */
+> +               compatible =3D "regulator-fixed";
+> +               regulator-name =3D "vcc-5v";
+> +               regulator-min-microvolt =3D <5000000>;
+> +               regulator-max-microvolt =3D <5000000>;
+> +               regulator-always-on;
+> +       };
+> +
+> +       reg_usb1_vbus: regulator-usb1-vbus {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-name =3D "usb1-vbus";
+> +               regulator-min-microvolt =3D <5000000>;
+> +               regulator-max-microvolt =3D <5000000>;
+> +               vin-supply =3D <&reg_vcc5v>;
+> +               enable-active-high;
+> +               gpio =3D <&r_pio 0 8 GPIO_ACTIVE_HIGH>; /* PL8 */
+> +       };
+> +};
+> +
+> +&cpu0 {
+> +       cpu-supply =3D <&reg_dcdc2>;
+> +};
+> +
+> +&ehci0 {
+> +       status =3D "okay";
+> +};
+> +
+> +&ehci1 {
+> +       status =3D "okay";
+> +};
+> +
+> +&mmc0 {
+> +       vmmc-supply =3D <&reg_dcdc1>;
+> +       cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
+> +       bus-width =3D <4>;
+> +       status =3D "okay";
+> +};
+> +
+> +&mmc2 {
+> +       vmmc-supply =3D <&reg_dcdc1>;
+> +       vqmmc-supply =3D <&reg_eldo1>;
+> +       cap-mmc-hw-reset;
+> +       non-removable;
+> +       bus-width =3D <8>;
+> +       mmc-ddr-1_8v;
+> +       mmc-hs200-1_8v;
+> +       status =3D "okay";
+> +};
+> +
+> +&ohci0 {
+> +       status =3D "okay";
+> +};
+> +
+> +&ohci1 {
+> +       status =3D "okay";
+> +};
+> +
+> +&pio {
+> +       vcc-pb-supply =3D <&reg_dcdc1>;
+> +       vcc-pc-supply =3D <&reg_eldo1>;
+> +       vcc-pf-supply =3D <&reg_dcdc1>;
+> +       vcc-ph-supply =3D <&reg_dcdc1>;
+> +};
+> +
+> +&r_i2c0 {
+> +       status =3D "okay";
+> +
+> +       axp803: pmic@34 {
+> +               compatible =3D "x-powers,axp803";
+> +               reg =3D <0x34>;
+> +               interrupt-parent =3D <&r_intc>;
+> +               interrupts =3D <0 IRQ_TYPE_LEVEL_LOW>;
+> +       };
+> +};
+> +
+> +#include "axp803.dtsi"
+> +
+> +&ac_power_supply {
+> +       status =3D "okay";
+> +};
+> +
+> +&reg_aldo1 {
+> +       regulator-always-on;
+> +       regulator-min-microvolt =3D <1800000>;
+> +       regulator-max-microvolt =3D <1800000>;
+> +       regulator-name =3D "vcc-codec-avcc";
+> +};
+> +
+> +&reg_aldo2 {
+> +       regulator-always-on;
+> +       regulator-min-microvolt =3D <1800000>;
+> +       regulator-max-microvolt =3D <1800000>;
+> +       regulator-name =3D "vcc-dram-1";
+> +};
+> +
+> +&reg_aldo3 {
+> +       regulator-always-on;
+> +       regulator-min-microvolt =3D <3300000>;
+> +       regulator-max-microvolt =3D <3300000>;
+> +       regulator-name =3D "vcc-usb-pl";
+> +};
+> +
+> +&reg_dcdc1 {
+> +       regulator-always-on;
+> +       regulator-min-microvolt =3D <3300000>;
+> +       regulator-max-microvolt =3D <3300000>;
+> +       regulator-name =3D "vcc-io-usb-pd-emmc";
+> +};
+> +
+> +&reg_dcdc2 {
+> +       regulator-always-on;
+> +       regulator-min-microvolt =3D <810000>;
+> +       regulator-max-microvolt =3D <1200000>;
+> +       regulator-name =3D "vdd-cpux";
+> +};
+> +
+> +&reg_dcdc3 {
+> +       regulator-always-on;
+> +       regulator-min-microvolt =3D <900000>;
+> +       regulator-max-microvolt =3D <900000>;
+> +       regulator-name =3D "vdd-usb-cpus";
+> +};
+> +
+> +&reg_dcdc4 {
+> +       regulator-always-on;
+> +       regulator-min-microvolt =3D <950000>;
+> +       regulator-max-microvolt =3D <950000>;
+> +       regulator-name =3D "vdd-sys";
+> +};
+> +
+> +&reg_dcdc5 {
+> +       regulator-always-on;
+> +       regulator-min-microvolt =3D <1100000>;
+> +       regulator-max-microvolt =3D <1100000>;
+> +       regulator-name =3D "vcc-dram";
+> +};
+> +
+> +/* DCDC6 unused */
+> +/* DLDO3 unused */
+> +/* DLDO4 unused */
+> +
+> +&reg_eldo1 {
+> +       regulator-min-microvolt =3D <1800000>;
+> +       regulator-max-microvolt =3D <1800000>;
+> +       regulator-name =3D "vcc-pc-emmc";
+> +};
+> +
+> +/* ELDO2 unused */
+> +/* ELDO3 unused */
+> +
+> +&reg_fldo1 {
+> +       regulator-always-on;
+> +       regulator-min-microvolt =3D <900000>;
+> +       regulator-max-microvolt =3D <900000>;
+> +       regulator-name =3D "vdd-cpus-usb";
+> +};
+> +
+> +/* reg_drivevbus unused */
+> +/* dc1sw unused */
+> +
+> +&uart0 {
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&uart0_pb_pins>;
+> +       status =3D "okay";
+> +};
+> +
+> +&usb_otg {
+> +       dr_mode =3D "host";       /* USB A type receptacle, always powere=
+d */
 
-Currently supports serial port, sdcard/emmc, pwm, fan speed control.
+                                                noticed a typo here.
 
-Link: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG2042-x4-EVB [1]
+> +       status =3D "okay";
+> +};
+> +
+> +&usbphy {
+> +       status =3D "okay";
+> +       usb1_vbus-supply =3D <&reg_usb1_vbus>;
 
-Signed-off-by: Han Gao <rabenda.cn@gmail.com>
----
- arch/riscv/boot/dts/sophgo/Makefile          |   1 +
- arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts | 235 +++++++++++++++++++
- 2 files changed, 236 insertions(+)
- create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
+Just noticed that these two were out of order, so I fixed both of
+them and re-pushed.
 
-diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-index 2470e30ae901..31fa46ef3bf6 100644
---- a/arch/riscv/boot/dts/sophgo/Makefile
-+++ b/arch/riscv/boot/dts/sophgo/Makefile
-@@ -4,3 +4,4 @@ dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-licheerv-nano-b.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-evb-v1.dtb
-+dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-evb-v2.dtb
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts b/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
-new file mode 100644
-index 000000000000..8eba1a4ab1ee
---- /dev/null
-+++ b/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
-@@ -0,0 +1,235 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2025 Sophgo Technology Inc. All rights reserved.
-+ */
-+
-+#include "sg2042.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "Sophgo SG2042 EVB V2.0";
-+	compatible = "sophgo,sg2042-evb-v2", "sophgo,sg2042";
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+};
-+
-+&cgi_main {
-+	clock-frequency = <25000000>;
-+};
-+
-+&cgi_dpll0 {
-+	clock-frequency = <25000000>;
-+};
-+
-+&cgi_dpll1 {
-+	clock-frequency = <25000000>;
-+};
-+
-+&emmc {
-+	pinctrl-0 = <&emmc_cfg>;
-+	pinctrl-names = "default";
-+	bus-width = <4>;
-+	no-sdio;
-+	no-sd;
-+	non-removable;
-+	wp-inverted;
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	pinctrl-0 = <&i2c1_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	mcu: syscon@17 {
-+		compatible = "sophgo,sg2042-hwmon-mcu";
-+		reg = <0x17>;
-+		#thermal-sensor-cells = <1>;
-+	};
-+};
-+
-+&gmac0 {
-+	phy-handle = <&phy0>;
-+	phy-mode = "rgmii-id";
-+	status = "okay";
-+
-+	mdio {
-+		phy0: phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			reset-gpios = <&port0a 27 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <100000>;
-+			reset-deassert-us = <100000>;
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	emmc_cfg: sdhci-emmc-cfg {
-+		sdhci-emmc-wp-pins {
-+			pinmux = <PINMUX(PIN_EMMC_WP, 0)>;
-+			bias-disable;
-+			drive-strength-microamp = <26800>;
-+			input-schmitt-disable;
-+		};
-+
-+		sdhci-emmc-cd-pins {
-+			pinmux = <PINMUX(PIN_EMMC_CD, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <26800>;
-+			input-schmitt-enable;
-+		};
-+
-+		sdhci-emmc-rst-pwr-pins {
-+			pinmux = <PINMUX(PIN_EMMC_RST, 0)>,
-+				 <PINMUX(PIN_EMMC_PWR_EN, 0)>;
-+			bias-disable;
-+			drive-strength-microamp = <26800>;
-+			input-schmitt-disable;
-+		};
-+	};
-+
-+	i2c1_cfg: i2c1-cfg {
-+		i2c1-pins {
-+			pinmux = <PINMUX(PIN_IIC1_SDA, 0)>,
-+				 <PINMUX(PIN_IIC1_SCL, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <26800>;
-+			input-schmitt-enable;
-+		};
-+	};
-+
-+	sd_cfg: sdhci-sd-cfg {
-+		sdhci-sd-cd-wp-pins {
-+			pinmux = <PINMUX(PIN_SDIO_CD, 0)>,
-+				 <PINMUX(PIN_SDIO_WP, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <26800>;
-+			input-schmitt-enable;
-+		};
-+
-+		sdhci-sd-rst-pwr-pins {
-+			pinmux = <PINMUX(PIN_SDIO_RST, 0)>,
-+				 <PINMUX(PIN_SDIO_PWR_EN, 0)>;
-+			bias-disable;
-+			drive-strength-microamp = <26800>;
-+			input-schmitt-disable;
-+		};
-+	};
-+
-+	uart0_cfg: uart0-cfg {
-+		uart0-rx-pins {
-+			pinmux = <PINMUX(PIN_UART0_TX, 0)>,
-+				 <PINMUX(PIN_UART0_RX, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <26800>;
-+			input-schmitt-enable;
-+		};
-+	};
-+};
-+
-+&sd {
-+	pinctrl-0 = <&sd_cfg>;
-+	pinctrl-names = "default";
-+	bus-width = <4>;
-+	no-sdio;
-+	no-mmc;
-+	wp-inverted;
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-0 = <&uart0_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+/ {
-+	pwmfan: pwm-fan {
-+		compatible = "pwm-fan";
-+		cooling-levels = <103 128 179 230 255>;
-+		pwms = <&pwm 0 40000 0>;
-+		#cooling-cells = <2>;
-+	};
-+
-+	thermal-zones {
-+		soc-thermal {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&mcu 0>;
-+
-+			trips {
-+				soc_active1: soc-active1 {
-+					temperature = <30000>;
-+					hysteresis = <8000>;
-+					type = "active";
-+				};
-+
-+				soc_active2: soc-active2 {
-+					temperature = <58000>;
-+					hysteresis = <12000>;
-+					type = "active";
-+				};
-+
-+				soc_active3: soc-active3 {
-+					temperature = <70000>;
-+					hysteresis = <10000>;
-+					type = "active";
-+				};
-+
-+				soc_hot: soc-hot {
-+					temperature = <80000>;
-+					hysteresis = <5000>;
-+					type = "hot";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&soc_active1>;
-+					cooling-device = <&pwmfan 0 1>;
-+				};
-+
-+				map1 {
-+					trip = <&soc_active2>;
-+					cooling-device = <&pwmfan 1 2>;
-+				};
-+
-+				map2 {
-+					trip = <&soc_active3>;
-+					cooling-device = <&pwmfan 2 3>;
-+				};
-+
-+				map3 {
-+					trip = <&soc_hot>;
-+					cooling-device = <&pwmfan 3 4>;
-+				};
-+			};
-+		};
-+
-+		board-thermal {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&mcu 1>;
-+
-+			trips {
-+				board_active: board-active {
-+					temperature = <75000>;
-+					hysteresis = <8000>;
-+					type = "active";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map4 {
-+					trip = <&board_active>;
-+					cooling-device = <&pwmfan 3 4>;
-+				};
-+			};
-+		};
-+	};
-+};
--- 
-2.47.2
+ChenYu
 
+> +};
+> --
+> 2.46.3
+>
 
