@@ -1,132 +1,118 @@
-Return-Path: <devicetree+bounces-177316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32B0EAB702B
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:43:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2463AB704B
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:49:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B22B1BA41D1
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:43:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C3C516CA31
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:49:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 616EC221721;
-	Wed, 14 May 2025 15:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF361DF254;
+	Wed, 14 May 2025 15:49:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zo1ZHMXs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RNrZ6LtO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C4E17C21E;
-	Wed, 14 May 2025 15:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71BF91DE3CA;
+	Wed, 14 May 2025 15:49:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747237370; cv=none; b=GBvRYeqE5RoKj0Cc9Cjtws6X3y6K8QJIR+iItA62R6u/sClSWeerfYpu/sUDhdqcHdLum7jZTEtmgI6EprQukDgFFbzmNxIbbjv6/L7BolOMb/4Dmrgz/A5Lwaeexcd3eNfV18VN7nK2I8188Wi2ZsP5DTbNxr1alYcoJFKElU4=
+	t=1747237745; cv=none; b=Bi9g2fyG1thpRUk6xVoLItdBTuONTitD+/xNUzyUAQfZH7jF0aedpj4HTifiHE28A8yUkWB5CvuI7aaQK7CJIgXzc8aKZl3dMClBgB/CcecPrfogMsmP3eI84C2ZgBVPdCDlqs/B1z4tsIWvvxUPXZnbvqU2H6geG52U22bWtKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747237370; c=relaxed/simple;
-	bh=8Q3GS/cE2O7eBZLJtN9ohT0WUIQHA1/8U9DTHoGBJJc=;
+	s=arc-20240116; t=1747237745; c=relaxed/simple;
+	bh=SKmt1mAVtkHxv4u0VHCdD95wFq6S1wRh+vDolEBNZFE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VfySq7Qheib5LTwwET/q5fK4Pa/VRCGP9jWpQuE+nqh5AbJKpy9eSxCeS6ZsBFpf0dfZp3KHRXy1o3VS4xDSBeUQO6lfUX4qJ2Yvwsc3wmh3r6rcQnFzNAKmlr7VODHavBddFrZDRKWzl+XiD0SeTnpu6n5J0U/nCQOhyAnbdp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zo1ZHMXs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCA13C4CEE9;
-	Wed, 14 May 2025 15:42:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JELLfNp+zXbymVFML7y/0vTJXypaEptJd8V/Dv7ELi2o9RIeVy0POoTgbucYi834cWS5J4YqgpTlGqlgqPoLGA8Hj4gq55BeIz9vDsCxKztGT5XlpdUVF5EiXJChLeaTdnihgAlw5D11vR5QoNmbwqMRe1xwwc36V9gcDBixdKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RNrZ6LtO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C868AC4CEE3;
+	Wed, 14 May 2025 15:49:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747237370;
-	bh=8Q3GS/cE2O7eBZLJtN9ohT0WUIQHA1/8U9DTHoGBJJc=;
+	s=k20201202; t=1747237745;
+	bh=SKmt1mAVtkHxv4u0VHCdD95wFq6S1wRh+vDolEBNZFE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zo1ZHMXsl/mnIRjo1/GoEKeVZnQbzs/Px88YCiU+xh4ZOfyIlr6SuUJoep8Uig7EW
-	 foBSaYrx5t5xYbveMW33lIB66H3d98EnZz+R/Ut7GgNwV8EJM5irr0/6JVfs4f1Rv2
-	 9Yg6t56nf8s6vt4SfTY6lR4uR0P0DpUQAJod5KH/03denAqUOPGlUTfzZH4ssiTeI0
-	 Asveuu4/hSeuyeYG6F6mejeeYzjB/BgdjQnmeVqS1NXZggxYW5v9VgxuOFjbjiUCzP
-	 4DBy1HEHwgav8vB+n1tr6QTw1v9aZrLfNSx7JnUSNiK7qLJRoq/FI8aj3cRKJARNR1
-	 qrFdasRN+QBDA==
-Date: Wed, 14 May 2025 10:42:48 -0500
-From: Rob Herring <robh@kernel.org>
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, x86@kernel.org,
+	b=RNrZ6LtO/ScYKrzGDvkWK25EBLAAhKDoAwebupsEAcWapNw4gzvoUyWGhjnu5ydG3
+	 zhdiP3wgGdtzdZf3Oonrm+VUqmBniaJJ/IFGN+LiLm3Jl155CIwWGFFTpaT4ao5dux
+	 BhUFFVYrmWqchN3SIhZXvLiiN4FEhtZszJSfKquL9aCe5xvzpblcshl6FGgwyI1uwJ
+	 zjnDIqZon0btZOIBrqTR1gFV0hlaD0XjzDTeduY5947WezxbwzEjjUXcAJHMa7y++7
+	 y1ePKoiHqKbNDNhEY3ozrVkx2K5lKWNzXIUzmJYXT1X/MP+I77kpbW5ZlzHFVw2gl5
+	 bb1du5UUdPvPQ==
+Date: Wed, 14 May 2025 16:49:01 +0100
+From: Conor Dooley <conor@kernel.org>
+To: alejandroe1@geotab.com
+Cc: Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org,
-	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
-	Ricardo Neri <ricardo.neri@intel.com>
-Subject: Re: [PATCH v3 06/13] dt-bindings: reserved-memory: Wakeup Mailbox
- for Intel processors
-Message-ID: <20250514154248.GA2375202-robh@kernel.org>
-References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
- <20250503191515.24041-7-ricardo.neri-calderon@linux.intel.com>
- <20250504-original-leopard-of-vigor-5702ef@kuoka>
- <20250506051610.GC25533@ranerica-svr.sc.intel.com>
- <20250506-pompous-meaty-crane-97efce@kuoka>
- <20250507032339.GA27243@ranerica-svr.sc.intel.com>
- <20250512153224.GA3377771-robh@kernel.org>
- <20250513221456.GA2794@ranerica-svr.sc.intel.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] riscv: dts: sophgo: add zfh for sg2042
+Message-ID: <20250514-saggy-shifter-e4ac7152f823@spud>
+References: <20250514-ubx-m9-v1-0-193973a4f3ca@geotab.com>
+ <20250514-ubx-m9-v1-1-193973a4f3ca@geotab.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="goZOyUDMUt08Zz71"
+Content-Disposition: inline
+In-Reply-To: <20250514-ubx-m9-v1-1-193973a4f3ca@geotab.com>
+
+
+--goZOyUDMUt08Zz71
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250513221456.GA2794@ranerica-svr.sc.intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 13, 2025 at 03:14:56PM -0700, Ricardo Neri wrote:
-> On Mon, May 12, 2025 at 10:32:24AM -0500, Rob Herring wrote:
-> > On Tue, May 06, 2025 at 08:23:39PM -0700, Ricardo Neri wrote:
-> > > On Tue, May 06, 2025 at 09:10:22AM +0200, Krzysztof Kozlowski wrote:
-> > > > On Mon, May 05, 2025 at 10:16:10PM GMT, Ricardo Neri wrote:
-> > > > > > If this is a device, then compatibles specific to devices. You do not
-> > > > > > get different rules than all other bindings... or this does not have to
-> > > > > > be binding at all. Why standard reserved-memory does not work for here?
-> > > > > > 
-> > > > > > Why do you need compatible in the first place?
-> > > > > 
-> > > > > Are you suggesting something like this?
-> > > > > 
-> > > > > reserved-memory {
-> > > > > 	# address-cells = <2>;
-> > > > > 	# size-cells = <1>;
-> > > > > 
-> > > > > 	wakeup_mailbox: wakeupmb@fff000 {
-> > > > > 		reg = < 0x0 0xfff000 0x1000>
-> > > > > 	}
-> > > > > 
-> > > > > and then reference to the reserved memory using the wakeup_mailbox
-> > > > > phandle?
-> > > > 
-> > > > Yes just like every other, typical reserved memory block.
-> > > 
-> > > Thanks! I will take this approach and drop this patch.
-> > 
-> > If there is nothing else to this other than the reserved region, then 
-> > don't do this. Keep it like you had. There's no need for 2 nodes.
-> 
-> Thank you for your feedback!
-> 
-> I was planning to use one reserved-memory node and inside of it a child
-> node to with a `reg` property to specify the location and size of the
-> mailbox. I would reference to that subnode from the kernel code.
-> 
-> IIUC, the reserved-memory node is only the container and the actual memory
-> regions are expressed as child nodes.
-> 
-> I had it like that before, but with a `compatible` property that I did not
-> need.
-> 
-> Am I missing anything?
+On Wed, May 14, 2025 at 01:55:54PM +0200, Alejandro Enrique via B4 Relay wr=
+ote:
+> From: Alejandro Enrique <alejandroe1@geotab.com>
+>=20
+> Add compatible for u-blox NEO-9M GPS module.
+>=20
+> Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
+> ---
+>  Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/=
+Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> index 7d4b6d49e5eea2201ac05ba6d54b1c1721172f26..cf5ff051b9ab03e5bfed8156a=
+72170965929bb7e 100644
+> --- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> +++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> @@ -22,6 +22,7 @@ properties:
+>        - u-blox,neo-6m
+>        - u-blox,neo-8
+>        - u-blox,neo-m8
+> +      - u-blox,neo-m9
 
-Without a compatible, how do you identify which reserved region is the 
-wakeup mailbox? Before you say node name, those are supposed to be 
-generic though we failed to enforce anything for /reserved-memory child 
-nodes.
+No match data in the driver, why is a fallback not sufficient?
 
-Rob
+> =20
+>    reg:
+>      description: >
+>=20
+> --=20
+> 2.34.1
+>=20
+>=20
+
+--goZOyUDMUt08Zz71
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCS7bQAKCRB4tDGHoIJi
+0p1zAPY30m1WH+2JdjY1OGSDatx8EC3zsr3vbXw3fb61z0k0AP9GqvaLCQEJ31jd
+uS2k7jiaVxz+CxWXRxmbq2ubfK4UAQ==
+=H2EF
+-----END PGP SIGNATURE-----
+
+--goZOyUDMUt08Zz71--
 
