@@ -1,65 +1,55 @@
-Return-Path: <devicetree+bounces-177345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48EB5AB70C7
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 18:08:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50C3BAB70D4
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 18:10:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 749F5862B38
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:08:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A40A5188E2EB
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:09:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0279D1F428F;
-	Wed, 14 May 2025 16:08:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5AD1E7C11;
+	Wed, 14 May 2025 16:09:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X8uRb7z1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k/fSFZRO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5E1A1E3762;
-	Wed, 14 May 2025 16:08:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5CA21DF27C;
+	Wed, 14 May 2025 16:09:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747238923; cv=none; b=mkJF473ltfHKpiEvEhgWt0ooe6Qrt7A43twjNqH954IhUOkBQ25ErAe3B8jf1ji1CnhlqLHBAHmppJ0dqmiZOlMebdHjxqBczkirZFLFbbHw94zviOePpEt6BMuHjL6PVGLfKhav8aQjHDXsURU5cbJKjSRUhIkf+COX6/42kbE=
+	t=1747238973; cv=none; b=sx4RxGbxl07jqxE6nCTRXP2RlOM/W43HooTmXO4HT6uxmQm2LZDz4E9oMwJDVkSuDPH0sJd/d6v9nhVEqFS3VUfjQVJiwBsRG9qGKUzqlZLu7ERSfkxRyyP6ihgxn7i9aE+pz11gTZQC+mbZ2MpE+OE/rqNlNomaTSgWKkwkg4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747238923; c=relaxed/simple;
-	bh=hGOUe2xSoGL9oXowpjGUL9c1Ap2l3UhYWn76o1uRYSE=;
+	s=arc-20240116; t=1747238973; c=relaxed/simple;
+	bh=brXOYswinxGc9zNxJS+g8Vd8CqyPeWaUnE83d41Ku18=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=keZ8ULmuUzb6e+2eR/gi0h90Ety7KrLab9hFqEcMjmhimOHw1Gj+h/CEglvXMG4FsiFpqLbjIqjrus1abMzyeWCPSP7zk68w2cHpfybSYcSS05noimDtQRtaKOssTqoSnSCgUPi8i/JTvh9xl1Qa9qbVVAKWvpLCJOLUgZhsgTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X8uRb7z1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E61FC4CEE3;
-	Wed, 14 May 2025 16:08:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tp1xn4tscYlOTLBKk/i6MVgee26mFYowayATe/3nRCs71hwqy2fwjEQX4UsjXw4vDTUY86yk2GOnk3pn1eHCRLpul0W7Okta4HHdgPMSEJTAmIgvUuWnGu3jWs58eVyO5YPYq3OAUsxMJx9YJj4ee388xeKN3iK1dRnBfJpGnik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k/fSFZRO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11CA3C4CEE3;
+	Wed, 14 May 2025 16:09:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747238923;
-	bh=hGOUe2xSoGL9oXowpjGUL9c1Ap2l3UhYWn76o1uRYSE=;
+	s=k20201202; t=1747238973;
+	bh=brXOYswinxGc9zNxJS+g8Vd8CqyPeWaUnE83d41Ku18=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X8uRb7z1GWP22+I2dXUrFBGSE7xdYgRUBQrit6b2xTY2KWEoAk0DGNhUefhtYCY6X
-	 J24fzQj0vxVuuNZvQFctlJJuMuV+dUWB9dcMS0ThxLxPk/ZjMyD+kkPvTJ2BamajE+
-	 b6CA1ThkzukP4wqbDUruCiAp+LRjEMwKvubELh4VRPWLGDmtamyl66grw7rl6g3jt7
-	 0kCqWY/Pf4hFESUJH0elOFD+lSgu4PBeT6QAMkYFQ3luovFvG2Xc8kQI2/ymuMuWMY
-	 zAhMFK57lv7YxLzXQEXXVFylFbTTwkNWYM7qzD/5CekHuVPk0GWdGncXDyMj7NSMWM
-	 un8qvC4OwQiog==
-Date: Wed, 14 May 2025 11:08:41 -0500
-From: Rob Herring <robh@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org, Georgi Djakov <djakov@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH 1/4] dt-bindings: mailbox: qcom,apcs: Add separate node
- for clock-controller
-Message-ID: <20250514160841.GA2427890-robh@kernel.org>
-References: <20250506-qcom-apcs-mailbox-cc-v1-0-b54dddb150a5@linaro.org>
- <20250506-qcom-apcs-mailbox-cc-v1-1-b54dddb150a5@linaro.org>
- <7vszdea2djl43oojvw3vlrip23f7cfyxkyn6jw3wc2f7yowht5@bgsc2pqscujc>
- <aCNGSwL7043GoJBz@linaro.org>
+	b=k/fSFZRORoFBup1Snyn+SeKDGYCEECWw363pSW6gBLqgOP9PjK/r1+S+j+S+WrkIu
+	 YpZ3zgNdHBWvupgf9o5hIcut2OLbkyRXXAlyzcZiPqcx7LSNEzprV+mVSv9sK9yEUo
+	 tAqHQNhJ4/fzQ0tFkZRkY46cEbYIyQoX3P9Xq7k7OKtYekOp+1oN+qUdTt0a8V3t5C
+	 jENl7ykzfKl24NETgb53UsoZs8YIRNWSHrxahyx3+N+cDOlomXwtUixe/aGIWUUFQU
+	 Y6oEdyZnT3dXP2Bzr7FzJHEVgRsoBPYbdau2fA4xlSXnUf57/nOdAU2aTakaNZ8sGd
+	 Q1dIzM5rMJJtQ==
+Date: Wed, 14 May 2025 11:09:31 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 01/11] dt-bindings: tegra: pmc: Add Tegra264 compatible
+Message-ID: <174723897079.2456289.5773292846282460106.robh@kernel.org>
+References: <20250506133118.1011777-1-thierry.reding@gmail.com>
+ <20250506133118.1011777-2-thierry.reding@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,58 +58,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aCNGSwL7043GoJBz@linaro.org>
+In-Reply-To: <20250506133118.1011777-2-thierry.reding@gmail.com>
 
-On Tue, May 13, 2025 at 02:16:59PM +0100, Stephan Gerhold wrote:
-> On Sun, May 11, 2025 at 05:48:11PM -0500, Bjorn Andersson wrote:
-> > On Tue, May 06, 2025 at 03:10:08PM +0200, Stephan Gerhold wrote:
-> > > APCS "global" is sort of a "miscellaneous" hardware block that combines
-> > > multiple registers inside the application processor subsystem. Two distinct
-> > > use cases are currently stuffed together in a single device tree node:
-> > > 
-> > >  - Mailbox: to communicate with other remoteprocs in the system.
-> > >  - Clock: for controlling the CPU frequency.
-> > > 
-> > > These two use cases have unavoidable circular dependencies: the mailbox is
-> > > needed as early as possible during boot to start controlling shared
-> > > resources like clocks and power domains, while the clock controller needs
-> > > one of these shared clocks as its parent. Currently, there is no way to
-> > > distinguish these two use cases for generic mechanisms like fw_devlink.
-> > > 
-> > > This is currently blocking conversion of the deprecated custom "qcom,ipc"
-> > > properties to the standard "mboxes", see e.g. commit d92e9ea2f0f9
-> > > ("arm64: dts: qcom: msm8939: revert use of APCS mbox for RPM"):
-> > >   1. remoteproc &rpm needs mboxes = <&apcs1_mbox 8>;
-> > >   2. The clock controller inside &apcs1_mbox needs
-> > >      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>.
-> > >   3. &rpmcc is a child of remoteproc &rpm
-> > > 
-> > > The mailbox itself does not need any clocks and should probe early to
-> > > unblock the rest of the boot process. The "clocks" are only needed for the
-> > > separate clock controller. In Linux, these are already two separate drivers
-> > > that can probe independently.
-> > > 
-> > 
-> > Why does this circular dependency need to be broken in the DeviceTree
-> > representation?
-> > 
-> > As you describe, the mailbox probes and register the mailbox controller
-> > and it registers the clock controller. The mailbox device isn't affected
-> > by the clock controller failing to find rpmcc...
-> > 
+
+On Tue, 06 May 2025 15:31:08 +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> That's right, but the problem is that the probe() function of the
-> mailbox driver won't be called at all. The device tree *looks* like the
-> mailbox depends on the clock, so fw_devlink tries to defer probing until
-> the clock is probed (which won't ever happen, because the mailbox is
-> needed to make the clock available).
+> The PMC found on Tegra264 is similar to the version in earlier chips but
+> some of the register offsets and bitfields differ, so add a specific
+> compatible string for this new generation.
 > 
-> I'm not sure why fw_devlink doesn't detect this cycle and tries to probe
-> them anyway, but fact is that we need to split this up in order to avoid
-> warnings and have the supplies/consumers set up properly. Those device
-> links are created based on the device tree and not the drivers.
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  .../devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Does "post-init-providers" providers solve your problem?
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
