@@ -1,125 +1,146 @@
-Return-Path: <devicetree+bounces-177258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F5A2AB6D71
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:56:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8C44AB6DD0
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:09:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CCA88C35C3
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:54:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 670384A50DF
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 14:09:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED04127A928;
-	Wed, 14 May 2025 13:55:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E727018FDD5;
+	Wed, 14 May 2025 14:09:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BoqAsDdr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VOaqiXUa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4C4E27A465;
-	Wed, 14 May 2025 13:55:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4668817A318;
+	Wed, 14 May 2025 14:09:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747230901; cv=none; b=KhJElvqM1+bkzYzz30I4ffCMKTuI0urecsXXPKmfBpqmjJtHBs8jbU/4Xb4tSGrbq+dFq9PawHVZrkjblBpuesGwlsC6rLyHSEqlwBxAFo0CZ3sa6N8Qs2n2ncxxv6sArY+mfWhpZsR/4gN1r4q8SdKkbGoILKcSM1MEDjQGDck=
+	t=1747231778; cv=none; b=fV1krrgG2qW9+zcv6XX8kFePpl9hzMfepaZAcd8g+2XYzutNbLki6TCgnzn9ouevAHr1tqYKeuiipj1Jc//4xJDy+l027alrwRMAWhcQXFt/x0ypLjY3GdAc7yAoLoe2xg3qmSOSYrBerTQfDet7Y/nJ6wA+3MpCcKGwVH4Phdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747230901; c=relaxed/simple;
-	bh=Wt37B1Xcw25zg2r3NantMYnvPFJ2++GMoo1FMzBQxB4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JPjDNrvAtjBGrym5veTJ5OTzLsjyp3fI6VO085MlHSEeKAMDE5apxaHA+TMk8e24DplDHauXszp++NrFOdMOUalH5XEgR6JKFJ6TXjRr87eccYT6ZfWPe0JB5Izeyff3Py1yBQQoXxYpnreVXRG3hxgOWl9HCpwmV0MAOlD6NJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BoqAsDdr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 22DE1C4CEED;
-	Wed, 14 May 2025 13:55:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747230901;
-	bh=Wt37B1Xcw25zg2r3NantMYnvPFJ2++GMoo1FMzBQxB4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=BoqAsDdr3EOOJ3DNgTZIOB4AlN2n+KPdYemMkX1lgsYwPbkJiO8CIwyGliOx34wLF
-	 WiL4fdGBFfQ65JmLz839+kzqBHzsJsd+d1ERIxgPAeQHlFPnfwbnk/NNjBxtp/+sCm
-	 /OKU0LyCoavRVWsnUaC2Di2ujrY+Q3jFTzM7Ysi2Cd8VWMKjwv4X9AqLvaFL2fHmml
-	 t1MJw7IWHpgkSn0vIq9QVHeiMBb+29uSk2+V2f+3EaCoMhou7niAQo/vgXiYHKEGtI
-	 FJJXHafTZFwmH+zdRqHdwI/B8Mw3F/jqEXKP6WeUU/YUc00/nxddFc8vQ9Wvg0vdRI
-	 1xPpAwlLZzfIg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1228DC3ABDE;
-	Wed, 14 May 2025 13:55:01 +0000 (UTC)
-From: Alejandro Enrique via B4 Relay <devnull+alejandroe1.geotab.com@kernel.org>
-Date: Wed, 14 May 2025 15:54:42 +0200
-Subject: [PATCH 2/2] gnss: ubx: add support for the safeboot gpio
+	s=arc-20240116; t=1747231778; c=relaxed/simple;
+	bh=ayohP8fLe//c57DmTo1TugkicS31ny495LrOOlyv+xg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Y7BpX+kPoV3SaCwLLrZcIf9jAN3kjHZCgY8uAmRaKtkXpi7jHNdvLnGRULYkfdEWEK/r7Et/xCLXHMvTRgtNGXXurn3dhjgwtXoCCJ09HSjJwRRNHwdtdReBRDeA/UKMP1+tqvBBbyCRlIOao4KaazZJz4v1ePVz7SW4OZrNNas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VOaqiXUa; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-22e6880d106so47680715ad.1;
+        Wed, 14 May 2025 07:09:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747231776; x=1747836576; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nn73ykHloddZuPbAEU3+QOc70jop2fReDsUopGcz0T8=;
+        b=VOaqiXUaFnvLPYQUfxbXw3sQ8Ommtj9sEBrifGPeHKh9Ag1ZkpCOnnEAZb5p4SZOU4
+         xBkU5gkcbN/8ZJzVjdZqQfkz46YaHEYc81SlTgYNYmNnFiQEN9nvOHaRm74kxJks/vYW
+         K1mq+ZUqm3MbT3EuM7IJOqQ+hNPheYVlD6CLLZ7aMqZesuUN/gctwtTUUtS8vT31Wudb
+         AVSwdvlaJSB6f4QwcsS+EG2jqq99FwdRGssQWSWDqgS3hdazncVgIVbxTuvll/1sx5rH
+         bTaSCUfQ1k+1zeH/WHR3nL3FHGZWROJWxFCsdes2Z/JOUj/CN3rl1HqRrJQSESi2jpN4
+         FWdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747231776; x=1747836576;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Nn73ykHloddZuPbAEU3+QOc70jop2fReDsUopGcz0T8=;
+        b=R7wqVR0gz0um+U3wlxpveUduFQNs0yTCfVhHlR/hCf7Szfrtxm1oxl1HME79b5h7UL
+         AugfDrNeWh43nR0DofohJi4LUO+Ow44wGuwmRhHleBeeyHOT1Yc3InoiolL61P6GoowZ
+         Fp6tpMd3TBK/uod35LlNrro4WGq939Yw6trA1yfjjsAFZ3n1yTgG4NvTRv6zE9bbQdjg
+         RmiXassKYDNPAjwMaKweitG1CFodh97JNMUhjllzRHjmjXleMkbyexRDtXX+v/pMLNou
+         JjQcs8dJTlnLFEF52D09K+qcpfKfXDHe8YX2fXc0YHbhKBDg+m0RcZ3HhB44U1rVRdqe
+         CO5A==
+X-Forwarded-Encrypted: i=1; AJvYcCWR/k7ETVGkWprJjXZgj+fChKhj9GRFpm+9F6F2+ZAZ1sN/EM3fy7v2LkzZee2Xj5T29Cx+hw/PhSrYY6k=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNSEyPEPqp1agAewkczxSUS+eZSe369xmGI7jmtfKCMnjIpHG3
+	n2mUKWUK7z4VEiobD5M8PB60NQrjxJmYb3x1dN8S0rcHcfItR3eEUBNgbniDGUJrgw==
+X-Gm-Gg: ASbGncvlZ296Ydyb6Ux2LEBmAv7IbIKz2hQoocC9ucmjsp/lEq0w98PAXxFnaYmK1nF
+	h2dgNMPc42ZaMF3iwcJWEpV1Rh2ZFbUba/ji3z9gcHtgdHNiTGSSoRP3nL99KfZfBAQ0b3dXLj7
+	8JkuZr5GH6muintZJnRvf9sQmPuXtBpj6Eav0WLrfzuFEHMYBonOI7oyKTJBT51kRLZ+EyNDvU6
+	ZK6P9msjOnXlYkWA2SdYw6qKQdaub9CLBnUhpQSsuQvKcfz4uWcLPH8FJ11NvRniIPTM1dKUb+y
+	Q1nhRGgWEZYzqz/NZK11cMsMZ3KIByfZyS0XwOIWFes8dzLrFYGIkjrClOPWqA==
+X-Google-Smtp-Source: AGHT+IGYPQ7AEh2PEScl/20vslZRXfRKA3Io3uLpuFyktZVo/du/cwLIS5UZo4wt53W5E1XOpkOfgw==
+X-Received: by 2002:a17:902:e545:b0:224:26f2:97d6 with SMTP id d9443c01a7336-2319816e59bmr61090345ad.28.1747231775439;
+        Wed, 14 May 2025 07:09:35 -0700 (PDT)
+Received: from localhost.localdomain ([119.8.44.69])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22fc8271ae0sm100407975ad.128.2025.05.14.07.09.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 May 2025 07:09:34 -0700 (PDT)
+From: Han Gao <rabenda.cn@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Han Gao <rabenda.cn@gmail.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Guo Ren <guoren@kernel.org>,
+	Chao Wei <chao.wei@sophgo.com>,
+	sophgo@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] Add Sophgo EVB V1/V2 Board support
+Date: Wed, 14 May 2025 22:08:58 +0800
+Message-ID: <cover.1747231254.git.rabenda.cn@gmail.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250514-ubx-safeboot-v1-2-1ae771335356@geotab.com>
-References: <20250514-ubx-safeboot-v1-0-1ae771335356@geotab.com>
-In-Reply-To: <20250514-ubx-safeboot-v1-0-1ae771335356@geotab.com>
-To: Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Alejandro Enrique <alejandroe1@geotab.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747230900; l=1333;
- i=alejandroe1@geotab.com; s=20250514; h=from:subject:message-id;
- bh=b7rVQ595EWL+GpArVm/oRzrPGJVMa9hRhI22PNK/1BQ=;
- b=8SRteBjQGaPBbZxMBkkHQCpbZMPGK48jm7FUm3U0WFuHwV/mmeZE5qh6Tf7FFWfQrShWVx1bh
- r6f2ZELSJa4Dw8MxM13e5/WjBcB3KGY3nKxa+CQLfi4R95f992SC0lE
-X-Developer-Key: i=alejandroe1@geotab.com; a=ed25519;
- pk=xzHMPbqczL/tMsjXr26iLoHwIzLveHVnT+GIU4p1k38=
-X-Endpoint-Received: by B4 Relay for alejandroe1@geotab.com/20250514 with
- auth_id=404
-X-Original-From: Alejandro Enrique <alejandroe1@geotab.com>
-Reply-To: alejandroe1@geotab.com
+Content-Transfer-Encoding: 8bit
 
-From: Alejandro Enrique <alejandroe1@geotab.com>
+Sophgo EVB V1/V2 [1][2] is a prototype board based on SOPHON SG2042 [3].
+There are many of these two boards in the hands of developers.
 
-U-Blox M8/M9 chip have a pin to start it in safeboot mode, to be used
-to recover from situations where the flash content has become
-corrupted and needs to be restored. If this pin is asserted at power
-up/reset, the receiver starts in safeboot mode and GNSS operation is
-disabled.
+Currently supports serial port, sdcard/emmc, pwm, fan speed control.
 
-Deassert the safeboot pin when probing this driver.
+Added ethernet support based on [4].
 
-Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
----
- drivers/gnss/ubx.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Changed from v1:
+1. replace "sophgo,sg2042-x8/4-evb" with "sophgo,sg2042-evb-v1/2".
+2. replace "Sophgo SG2042 X8/X4 EVB" with "Sophgo SG2042 EVB V1.X/V2.0".
+v1: https://lore.kernel.org/linux-riscv/cover.1746811744.git.rabenda.cn@gmail.com/
 
-diff --git a/drivers/gnss/ubx.c b/drivers/gnss/ubx.c
-index 92402f6082c415c7b9051338eef5406b09e09455..1d6acace84f76f8d5d2eacdbbf5ab7a934b33486 100644
---- a/drivers/gnss/ubx.c
-+++ b/drivers/gnss/ubx.c
-@@ -67,6 +67,7 @@ static int ubx_probe(struct serdev_device *serdev)
- {
- 	struct gnss_serial *gserial;
- 	struct gpio_desc *reset;
-+	struct gpio_desc *safeboot;
- 	struct ubx_data *data;
- 	int ret;
- 
-@@ -82,6 +83,13 @@ static int ubx_probe(struct serdev_device *serdev)
- 
- 	data = gnss_serial_get_drvdata(gserial);
- 
-+	/* Deassert safeboot */
-+	safeboot = devm_gpiod_get_optional(&serdev->dev, "safeboot", GPIOD_OUT_LOW);
-+	if (IS_ERR(safeboot)) {
-+		ret = PTR_ERR(safeboot);
-+		goto err_free_gserial;
-+	}
-+
- 	data->vcc = devm_regulator_get(&serdev->dev, "vcc");
- 	if (IS_ERR(data->vcc)) {
- 		ret = PTR_ERR(data->vcc);
+Thanks,
+Han
 
+[1]: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG2042-x8-EVB
+[2]: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG2042-x4-EVB
+[3]: https://en.sophgo.com/product/introduce/sg2042.html
+[4]: https://lore.kernel.org/all/20250506093256.1107770-5-inochiama@gmail.com/
+
+Han Gao (4):
+  dt-bindings: riscv: add Sophgo SG2042_EVB_V1.X bindings
+  riscv: dts: sophgo: add Sophgo SG2042_EVB_V1.X board device tree
+  dt-bindings: riscv: add Sophgo SG2042_EVB_V2.0 bindings
+  riscv: dts: sophgo: add Sophgo SG2042_EVB_V2.0 board device tree
+
+ .../devicetree/bindings/riscv/sophgo.yaml     |   2 +
+ arch/riscv/boot/dts/sophgo/Makefile           |   2 +
+ arch/riscv/boot/dts/sophgo/sg2042-evb-v1.dts  | 247 ++++++++++++++++++
+ arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts  | 235 +++++++++++++++++
+ 4 files changed, 486 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-evb-v1.dts
+ create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
+
+
+base-commit: 550de367614f7a9a0c1d40d7e19764aa9305009a
+prerequisite-patch-id: 7a82e319b011e5d0486a6ef4216d931d671c9f53
+prerequisite-patch-id: 5a30fb99ec483c1f5a8dca97df862c3a042c9027
+prerequisite-patch-id: e0da79790a934916d9fc39c18e8e98c9596d27ab
+prerequisite-patch-id: 84d1e1637549f632729eaeb7cf935ca78a642fe3
 -- 
-2.34.1
-
+2.47.2
 
 
