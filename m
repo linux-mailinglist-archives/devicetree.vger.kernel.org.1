@@ -1,59 +1,66 @@
-Return-Path: <devicetree+bounces-177355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A3B9AB7111
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 18:19:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED0F6AB7120
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 18:22:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 512B21B63794
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:19:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C50C17FAD5
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 16:22:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A758C27A139;
-	Wed, 14 May 2025 16:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA3E32797A0;
+	Wed, 14 May 2025 16:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Va79Lqq/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="irMGuZYD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A7B2797AB;
-	Wed, 14 May 2025 16:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5781F1931;
+	Wed, 14 May 2025 16:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747239572; cv=none; b=Tg/9uk74lPF+cdMSStfdFSHnV25ZYqE7q//NjigaMHdPnEhDmmqi5iC5/riGsWGGb6VRffyGGnDmUV9vW0uO2gw+6q+mZsx0dINR9JovZyB5GXndiNHZ35U7hoUB7BORU8vNktYhNaNGi9t7Or+N5bdTVgxDP7hctDZ0NpjYCLo=
+	t=1747239741; cv=none; b=jHFWM/irtlWsSsADMjChLRv6AkKnvzcvS0Z+7KZi1r5FH0PoLDLxchFXy5HJeK1pwTomCVY4lQGRrBHLiLXvRGj/e6/5U9I3fpY91lShUC2L+50lPwLl17g9oFkDLv6YZWBr0bNYIkAGdjD4quWuuf+SJEn5Z16H6FaCQMLcv1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747239572; c=relaxed/simple;
-	bh=TkcKReooaX7BWS/X7043yb29DlAjrU6sVJsBD2so59o=;
+	s=arc-20240116; t=1747239741; c=relaxed/simple;
+	bh=mkPxsxNPjzzx9i9GVPi5vlxhW8vk9V43kD1RHRJzCCg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cFkxG69A4TujyYv/IRtZH5+cnIV6YNNFjnRH94XSjJT/QKv25q1NloRVsNuePXvkx2AleJoJz3J1HN7gAntqi9iTRVaHUVPmch/T5+9YttSS9x79zOOI5iS9xZcTtbw4LsyG16vcOBUgEdKQiQ7H5nWddabzfNRAF6D8L1yMxLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Va79Lqq/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 496F9C4CEE3;
-	Wed, 14 May 2025 16:19:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KNpGmlGOZzKpud6lHBeC2Z25rIrlYCYxX+6fSrMRQxQ/l89ASxoPoVPkzriYvCezsQFqlu5YvadTcDTClH5WgP+pBcXOMV/PrlsNj28Uxn3o1/BgZ1bgNFPh09OkFLlbz4SpVWM0yLBt3MkfAMNy7jAMQ9DQGQ2jCe+gByqS5bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=irMGuZYD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 073E5C4CEE3;
+	Wed, 14 May 2025 16:22:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747239571;
-	bh=TkcKReooaX7BWS/X7043yb29DlAjrU6sVJsBD2so59o=;
+	s=k20201202; t=1747239741;
+	bh=mkPxsxNPjzzx9i9GVPi5vlxhW8vk9V43kD1RHRJzCCg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Va79Lqq/yhvHgFZ6MuuLDL2mVIHmbUPKMAmBOSwLwdT7Whr7v5fwOvh+ASzXy1k8I
-	 P7liWHi43ooRWLnCbZtmNWyBUDYPr+TnacRvr2xO6ZlMSK5Zy1aXiEjgTQla9A3E46
-	 wbTURDIBcs1q3/v8wuKJWgrzaT94YJJkL5H2TI3mNMqw/s2C63yVvkYQ/qiqnWS50I
-	 aaW+OcwoxFQiBEW+ZkO6OpRZG4JHeAt7sZculNzaDhMUmJtSgdQHbrjlfqe+/j80ir
-	 wcczzQM+oKa8Xax/hLgt5M/ddgH2mtuubMJTypAGzxyVrwGzbN6TBHwdwaw5DMIcLT
-	 XsuMgeMYpiErA==
-Date: Wed, 14 May 2025 17:19:27 +0100
+	b=irMGuZYDd8bvJ1e00U0sTewWC269gAOA7L2o/hmAuJ+vrDvYHWVas34bxJ93/Qexb
+	 WTaZMwgP/DXON86Ph1hM8ylwVtdWksG/93craHsfcjfM0mmJjfZKGjEfVJIuYyPlZs
+	 Ea3T4IavXBAv7gHBeUKuuRFepZE5pocjw8tXKJFNkWGZ6j97k/mNkHYbiUn1SI5UC2
+	 BbmUJ96O06jMYw7plE9yXNpO9xTtI963QRy1qVKKfmJbscYsO9BC3vjX9Uq0uioBlC
+	 Bl2s6blzkfGXlLkj+k5+GE1kMoskdPAtAF2wLtR/QFOh92Zq/Rk69najYeIArse+1g
+	 qSoSE7zGYCn5Q==
+Date: Wed, 14 May 2025 17:22:15 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Jianping.Shen@de.bosch.com
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dima.fedrau@gmail.com,
-	marcelo.schmitt1@gmail.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Christian.Lorenz3@de.bosch.com, Ulrike.Frauendorf@de.bosch.com,
-	Kai.Dolde@de.bosch.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: imu: smi330: Add binding
-Message-ID: <20250514-deserve-marina-224bef5b2db3@spud>
-References: <20250513150028.42775-1-Jianping.Shen@de.bosch.com>
- <20250513150028.42775-2-Jianping.Shen@de.bosch.com>
+To: Han Gao <rabenda.cn@gmail.com>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Guo Ren <guoren@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: riscv: add Sophgo SG2042_EVB_V1.X
+ bindings
+Message-ID: <20250514-showplace-yahoo-e3c306355288@spud>
+References: <cover.1747231254.git.rabenda.cn@gmail.com>
+ <b538e2b24eab8b740091d80ca76b20ef6014a4e5.1747231254.git.rabenda.cn@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,37 +68,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4s1uKMatRE6dYioR"
+	protocol="application/pgp-signature"; boundary="7UDxVnWJGD0g3CFl"
 Content-Disposition: inline
-In-Reply-To: <20250513150028.42775-2-Jianping.Shen@de.bosch.com>
+In-Reply-To: <b538e2b24eab8b740091d80ca76b20ef6014a4e5.1747231254.git.rabenda.cn@gmail.com>
 
 
---4s1uKMatRE6dYioR
+--7UDxVnWJGD0g3CFl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 13, 2025 at 05:00:27PM +0200, Jianping.Shen@de.bosch.com wrote:
-> From: Jianping Shen <Jianping.Shen@de.bosch.com>
->=20
-> Add devicetree binding for Bosch imu smi330.
-> The smi330 is a combined three axis angular rate and
-> three axis acceleration sensor module.
->=20
-> Signed-off-by: Jianping Shen <Jianping.Shen@de.bosch.com>
+On Wed, May 14, 2025 at 10:08:59PM +0800, Han Gao wrote:
+> Add DT binding documentation for the Sophgo SG2042_EVB_V1.X board [1].
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+1.x? Is the v1.0 something people can get their hands on, or just the
+v1.1?
+What differences do the boards have that are minimal enough that
+specific compatibles would not be required?
 
---4s1uKMatRE6dYioR
+>=20
+> Link: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG2042=
+-x8-EVB [1]
+>=20
+> Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/sophgo.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Docume=
+ntation/devicetree/bindings/riscv/sophgo.yaml
+> index a14cb10ff3f0..6c82f89b56ca 100644
+> --- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> @@ -34,6 +34,7 @@ properties:
+>        - items:
+>            - enum:
+>                - milkv,pioneer
+> +              - sophgo,sg2042-evb-v1
+>            - const: sophgo,sg2042
+> =20
+>  additionalProperties: true
+> --=20
+> 2.47.2
+>=20
+
+--7UDxVnWJGD0g3CFl
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCTCjwAKCRB4tDGHoIJi
-0lSKAP9XoBcsBcAdPPriU4TgFQX92hjMfjGf7mekfhfTPRNkrgD8D00B/qrlj8XA
-7fmpWz5WiL9b0XbGEhRbFScC7dmT0Qs=
-=jlLn
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCTDNwAKCRB4tDGHoIJi
+0vXPAP9Ud347xUYL9mWkLJDvlSeTXN7R4fK2+cr+R2ZRLEzdBgEA5r5sTsY1liH7
+8/Xr/3/P985Z4HyLF3wA7ywP/WYoiAY=
+=scVY
 -----END PGP SIGNATURE-----
 
---4s1uKMatRE6dYioR--
+--7UDxVnWJGD0g3CFl--
 
