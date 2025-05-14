@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-177027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C7B5AB64E4
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:53:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4CEFAB64F9
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:58:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC20A3A60F4
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 07:53:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A73DF188BF73
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 07:59:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A92E202C48;
-	Wed, 14 May 2025 07:53:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39BCB214A7B;
+	Wed, 14 May 2025 07:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JcKG4F2I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QCWqqDjQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF56C83A14;
-	Wed, 14 May 2025 07:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B497214202;
+	Wed, 14 May 2025 07:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747209206; cv=none; b=H1304IoZ0xPZD/PrO298yAp6ZbsKg8niSSoqkLaO8V0rNHbwND5uq5WBPaJTYOPCDeGPkLEObJD9oVkYTSy3vypzrfFeIjG9WedB+Lla+OWCF01wGCXngngu7oJny4gA1Git8Fcz1tJuuxaKC204zFrTHhphyHgTWsWDYzR8L9E=
+	t=1747209527; cv=none; b=pCkDxEQ9kGnvGEk5mDouvecYkppx3EnVLV6km2JN4fLVD19agd2Dd+1FfhjV9p6kbVrVcwcWGqx42w9EcrLGp+SRO0VdReJyyNQNW371t98PG6S15TQ4OQ20BVKdJZNW/2+Var/BeNRfNLfYSqv726LbHvJVyyfN23gCsSyfaXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747209206; c=relaxed/simple;
-	bh=oT7hxr/wD5m8n+rvu9J4tvnekTFUNd2V2+qGVpNFN7I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RWn/1udXcxx58HauQIj8YmYb/cJlzganCZDJ7+ySQtmbxqrAnNBzMAbU+Nno+0KjhE44cZ9bj/nfEW6K25Jpy9W0tnSjEaI6xlZUHPtb+TKomgZ93EsH0v+TuAaaOmYBD1FPiyrJf3VO/kmIvGTcHu+ksnozABsJRltn0CU94pI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JcKG4F2I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 331A8C4CEE9;
-	Wed, 14 May 2025 07:53:23 +0000 (UTC)
+	s=arc-20240116; t=1747209527; c=relaxed/simple;
+	bh=6tM6IvYJ+UJwErZFj2ILocGq36fJgFxr2ZEBz5WWSCg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=U8HVFQEEr4z1kYTjo8nAM3Bcz4vYiUpS5ycWS0aDSUBkkHCC9dNYNY2W7D1nG+UmUnVvnrKU4f2wVhvCgAAG4gRXgL+xBKkGYSiJ0NVGqjCDZzhWUq+rsawfpCsmO95kRY9IPUVx6Fdwd1XcW4r5sQZOnKgnO2tnLkqZiMDAX9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QCWqqDjQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D513DC4CEE9;
+	Wed, 14 May 2025 07:58:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747209206;
-	bh=oT7hxr/wD5m8n+rvu9J4tvnekTFUNd2V2+qGVpNFN7I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JcKG4F2IWhY6/FI60SaIDQv3Bus06dL7pt5ajtpJ4NpxsRj3qNm2X8lnAaWQBCwK4
-	 +24G84KhF65eVKSpEPPYvoTjTkdHVFJZT5VD1viKkf4eLZShyLEeAgN6zIlE3L/eDW
-	 5C7B84ca2WwEHaMs2X6ojLqwLvke4gBEfz8volOlQtGeo3iMKt2COpPHaRzAIjO57q
-	 RfLYDo16ekEAsYe16Ajph3FetOkeKTACK4jIK3IaN0kv5Yu3KuB3fSu2+GXwzyUNnn
-	 gj/RGd4EnFtbEydBcMtC6hSrvqkaKhb4qxoT3LmFM85Y2U0g+9HDGJ2Jw6xdYhYtOJ
-	 UZ12IAG8dNfLQ==
-Message-ID: <8728195a-6861-4f90-9edb-d73fe03909a8@kernel.org>
-Date: Wed, 14 May 2025 09:53:22 +0200
+	s=k20201202; t=1747209526;
+	bh=6tM6IvYJ+UJwErZFj2ILocGq36fJgFxr2ZEBz5WWSCg=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=QCWqqDjQJGp4+GtEMpwBpBJeJri1buuxkh2vT6h+qKn+WBBpQPZ91Y8skd0TUhBWt
+	 cF3cmslw8xMzAaM7lb50sQ2Mh4YgXiFmGcCA2tDG3CvhyhJwJRriPVJcdzUO5u6llq
+	 pq/vE07SDfNeQjGO9lw7Ui8M6hf0IbjW34io2ur1yzqZ6hkDbsgaVIAYvmUO1HKUjy
+	 lFC6SggYHzscyo8OBrHW7LQ7mX3IUvPcuUxeIaPJ4t+GYSXJrlcjylxNd7eMbvInb7
+	 VyNgJtvyRzkZRvZb+Jg6UlnWScYBJRL776cLNGfR2cRVpmuD03nzCy1pbxGiul09SF
+	 5uPhX8pxLVOcw==
+Message-ID: <ae19e684-4f46-42b7-bb4e-fc6bb13ed153@kernel.org>
+Date: Wed, 14 May 2025 09:58:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: crypto: Convert axis,artpec6-crypto to DT
- schema
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>,
+Subject: Re: [RESEND PATCH 3/5] dt-bindings: media: allegrodvt: add decoder
+ dt-bindings for Gen3 IP
+To: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>,
+ Michael Tretter <m.tretter@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lars Persson <lars.persson@axis.com>
-Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250513184057.3051854-1-robh@kernel.org>
+ <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Heiko Stuebner
+ <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>,
+ Aradhya Bhatia <a-bhatia1@ti.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Manivannan Sadhasivam
+ <manivannan.sadhasivam@linaro.org>, Kever Yang <kever.yang@rock-chips.com>,
+ Hans Verkuil <hverkuil@xs4all.nl>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Gaosheng Cui <cuigaosheng1@huawei.com>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
+ Ricardo Ribalda <ribalda@chromium.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250513083609.328422-1-yassine.ouaissa@allegrodvt.com>
+ <20250513083609.328422-4-yassine.ouaissa@allegrodvt.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,18 +120,79 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250513184057.3051854-1-robh@kernel.org>
+In-Reply-To: <20250513083609.328422-4-yassine.ouaissa@allegrodvt.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/05/2025 20:40, Rob Herring (Arm) wrote:
-> Convert the Axis Crypto engine binding to DT schema format. It's a
-> straight forward conversion.
+On 13/05/2025 10:35, Yassine Ouaissa wrote:
+> Add compatible for video decoder on allegrodvt Gen 3 IP.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
+> Signed-off-by: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+How is this resend? You already sent patches, so this is v2 or v3.
+Version your patches correctly or just use b4 for that.
+
+
+> ---
+>  .../bindings/media/allegrodvt,al300-vdec.yaml | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/allegrodvt,al300-vdec.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/allegrodvt,al300-vdec.yaml b/Documentation/devicetree/bindings/media/allegrodvt,al300-vdec.yaml
+> new file mode 100644
+> index 000000000000..4218892d6950
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/allegrodvt,al300-vdec.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/allegrodvt,al300-vdec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allegro DVT Video IP Decoder Gen 3
+> +
+> +maintainers:
+> +  - Yassine OUAISSA <yassine.ouaissa@allegrodvt.com>
+> +
+> +description:
+> +  The al300-vdec represents the latest generation of Allegro DVT IP decoding
+> +  technology, offering significant advancements over its predecessors.
+> +  This new decoder features enhanced processing capabilities with improved
+> +  throughput and reduced latency.
+> +
+> +  Communication between the host driver software and the MCU is implemented
+> +  through a specialized mailbox interface mechanism. This mailbox system
+> +  provides a structured channel for exchanging commands, parameters, and
+> +  status information between the host CPU and the MCU controlling the codec
+> +  engines.
+> +
+> +properties:
+> +  compatible:
+> +    const: allegrodvt,al300-vdec
+> +
+> +  reg:
+> +    items:
+> +      - description: The registers
+> +      - description: the MCU APB register
+> +
+> +  reg-names:
+> +    items:
+> +      - const: regs
+> +      - const: apb
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: MCU clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mcu_clk
+
+Nothing improved.
 
 Best regards,
 Krzysztof
