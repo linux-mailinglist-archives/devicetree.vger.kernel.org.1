@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-177191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B08A8AB6A2B
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:38:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2BC1AB6A3E
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:40:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F03C11B63B22
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:38:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 042688C3CB0
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE098277819;
-	Wed, 14 May 2025 11:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A5D427C879;
+	Wed, 14 May 2025 11:37:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T7WeLSqN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GneZh8ED"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE84A277818;
-	Wed, 14 May 2025 11:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D669F275858;
+	Wed, 14 May 2025 11:37:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747222648; cv=none; b=QbZ1VPwEeC9Kw7Vacj1NoZHQ4GXxNVfXka9irpoSBSR4P2asNxua8JfhYWaruf1oYmgqsfgcCAp2oLY9rTZLsPb+JNzOo7XgPaMhEBnHccOZsjuTBtYdEgW+9kj3RaJv1GbyUsZUGBfFx6Xum+GTmJ7CfmVk9EznC1RdahtqpCk=
+	t=1747222664; cv=none; b=jUC2QqvwiJ6qdd7s45MwgdKju1E92EL31yVaUAQMD56ECgwq6q1bCJZ1mcz7H/6M59OHcHAjUVfX89y84B6VP4tm1i8IRTMUF+VGAjGvXqzsQkIMkAbG3j2QJ257V/UQpOJ550tG0vxH9JEKSJJaMdZprB7Y89poAdyEM1ukPoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747222648; c=relaxed/simple;
-	bh=QBZg9ajvmrl3SpUn5aZzbOp5nzqEVoNIB4YA06ESVQs=;
+	s=arc-20240116; t=1747222664; c=relaxed/simple;
+	bh=jISERuaY9qmDFJKtUygAy794V54ed8Ao4JMN9t4+FHo=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=OWXaJTpXTHLmRH7Ja5GP8k+Z4Lq1qXjhBwlrwW0K2j7c9+KG+K2V8gICqrERpDt01Skjk2y7zNgVgZrpiE05HFmDVN7NJSGkZcSlxBGAsPGZtfj6bhTHvzzOR5Jh4kh367b7gAQ1fP6alMa3EF1nD7aOVjy5KBKYYtraKodSd9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T7WeLSqN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FF1FC4CEEB;
-	Wed, 14 May 2025 11:37:25 +0000 (UTC)
+	 MIME-Version:Content-Type; b=J/Lkz9D7JexuBlu1CKy66V9MGaf5+P6doHHCb3FRVKkgGmhTpR+DiihKy+G5c0TdUu1Jdqa4tg2unpHIUVIaGbMMt2PZLuCsVRnpTNVwu/sI+K22TNWHK50NYvIXF4efp1l0QV3C6PHBUsr/vKwhyL6t34eUeCY7dA2XxDoPNUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GneZh8ED; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53B04C4CEE9;
+	Wed, 14 May 2025 11:37:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747222648;
-	bh=QBZg9ajvmrl3SpUn5aZzbOp5nzqEVoNIB4YA06ESVQs=;
+	s=k20201202; t=1747222664;
+	bh=jISERuaY9qmDFJKtUygAy794V54ed8Ao4JMN9t4+FHo=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=T7WeLSqNOdHzt4AbmZhuc1tD0i4CAtVNQ8HjgGVnFn7UGSdetiaAcZ691NtRjOoPc
-	 /OKootVEK0361QHSVwDGD812DW865qfS7q6iaqhC6EAxjBGNMEO6Zj04eMaHtNU0B+
-	 hpULSQAyeOrWdwHfRxumHrefUABj54bXRw7rnFozYHN1WIsTp2tPTAb+kCASImYKhU
-	 GWCJve/M6LPq8K/VtNlm2klNY5lnPIf+LWAR+FbeoxXs29NfTirR8sc7RBZpHlqKFh
-	 6vzTu454sK4z9f2FuXE/cMbBA+je/4VA6aEr4oYMbyBvNbSwXBV9NpA3NBIe/ucp4/
-	 x6eZeyxIcKQlg==
+	b=GneZh8EDbYt1L15AvpZL1bcBLJpsVedS7VpuI6NCooz2TVTqGippouQ9pExUkvLW4
+	 7oYUAjaZhvpUm5J6tBTopqIzFS6BOgVqYdMBncmrgI3XiUU5vHFlXXVMKEurMTOX/6
+	 fZ62xwSO1DiUUXvZ/QKCnZprUeHXyEH3pcicoCR52muQS0/U9jkZCPOVISFRyhVFNh
+	 j6hfgL230YzdDe8GmdBJ9tUrClQf/cHmXQLAiNnzqiBrW4HBQ/6/fayw71OKA44jWr
+	 5SY+w/AUv9n4sb+czqZBfORyS5Yv5GGiVahLVtAr9zm1ev74yt6Cvu3ndbckBDiGcO
+	 CGRhshx5Axzdg==
 From: Vinod Koul <vkoul@kernel.org>
-To: chunfeng.yun@mediatek.com, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, matthias.bgg@gmail.com, chunkuang.hu@kernel.org, 
- p.zabel@pengutronix.de, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel@collabora.com
-In-Reply-To: <20250416120220.147798-1-angelogioacchino.delregno@collabora.com>
-References: <20250416120220.147798-1-angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: mediatek,dsi-phy: Add support
- for MT6893
-Message-Id: <174722264485.85510.16108514718041133697.b4-ty@kernel.org>
-Date: Wed, 14 May 2025 12:37:24 +0100
+To: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+ kernel@pengutronix.de, festevam@gmail.com, Xu Yang <xu.yang_2@nxp.com>
+Cc: jun.li@nxp.com, alexander.stein@ew.tq-group.com, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20250430094502.2723983-1-xu.yang_2@nxp.com>
+References: <20250430094502.2723983-1-xu.yang_2@nxp.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: phy: imx8mq-usb: fix
+ fsl,phy-tx-vboost-level-microvolt property
+Message-Id: <174722266099.85510.8742771363116122058.b4-ty@kernel.org>
+Date: Wed, 14 May 2025 12:37:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +65,26 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Wed, 16 Apr 2025 14:02:19 +0200, AngeloGioacchino Del Regno wrote:
-> Add support for the MediaTek Dimensity 1200 (MT6893) SoC: the DSI
-> PHY found in this chip is fully compatible with the one found in
-> the MT8183 SoC.
+On Wed, 30 Apr 2025 17:44:59 +0800, Xu Yang wrote:
+> The ticket TKT0676370 shows the description of TX_VBOOST_LVL is wrong in
+> register PHY_CTRL3 bit[31:29].
 > 
+>   011: Corresponds to a launch amplitude of 1.12 V.
+>   010: Corresponds to a launch amplitude of 1.04 V.
+>   000: Corresponds to a launch amplitude of 0.88 V.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: phy: mediatek,dsi-phy: Add support for MT6893
-      commit: fe750a871d90e081c52ce1988e1fbc85576152a3
-[2/2] dt-bindings: phy: mediatek,tphy: Add support for MT6893
-      commit: 1b1e949924fb59e98d9401681b139e92e75686ac
+[1/4] dt-bindings: phy: imx8mq-usb: fix fsl,phy-tx-vboost-level-microvolt property
+      commit: 5b3a91b207c00a8d27f75ce8aaa9860844da72c8
+[2/4] dt-bindings: phy: imx8mq-usb: add imx95 tuning support
+      commit: 7325e0995f414af1cfa38be965dc47248cb4ec45
+[3/4] phy: fsl-imx8mq-usb: fix phy_tx_vboost_level_from_property()
+      commit: b15ee09ddb987a122e74fb0fdf1bd6e864959fd3
+[4/4] phy: fsl-imx8mq-usb: add i.MX95 tuning support
+      commit: e75d564f64661086fcd65ed07268590259893448
 
 Best regards,
 -- 
