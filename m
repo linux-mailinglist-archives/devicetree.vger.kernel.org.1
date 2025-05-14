@@ -1,134 +1,108 @@
-Return-Path: <devicetree+bounces-177074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEFE1AB65E0
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:27:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8BD2AB65E5
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:27:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08812188EE28
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:27:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 839A34A4F85
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 08:27:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8053022424E;
-	Wed, 14 May 2025 08:25:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698BF22157B;
+	Wed, 14 May 2025 08:26:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="hJsmYaRW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnS+CFTX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F4322371B
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 08:25:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356F521E0BD;
+	Wed, 14 May 2025 08:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747211127; cv=none; b=KwnXeAjKZ7gAN+Z4tX6DVe3gprGiRbQmuCnkP1kW81BH3kyGcE1NpZhOtiB4oZvGFYWGIYmkXoXWpT7XJTUX4++xGhP+ijtsa1haiuiB+Yd4I8G+l8LvG1gxMOu/dgFS4PNrljCTVy5jU8V9ly9rQ7zX+KQEehbFPNj07zneDzs=
+	t=1747211161; cv=none; b=XWBHTXunR1UKcr/5qjSvaC/0YcW6slb2g7UHsijB8ftnroPSyYhEVqyUR6ASBAO54zcI+sYgX/gYtYvWqlyYj91eqHdorouK7pKX26+qk2WrSx3j2sgMnBa7AMPtcnd+1PIjx8x6eQWG60pITSnet9S29ydCi3M3Iqy4rgZsvDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747211127; c=relaxed/simple;
-	bh=v1lj6aIoiBJtVUQdgMlwatZDrIj+3w6BOUH1TvFoWTc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oxSER6a490313qKtmTpUsb+QJhLOcOJmBkIL7pwUufrk0nZwad/W/nAyTj9aCV7ms1oaYQX8Mt2liZNrucH+gjeiuUsgb8rO3pZcU3zftJgOMAzq8erukJSLb5RygLoFlkXW1djRFq6SAMw0FcOKYjIdBjX163bFgCd4rRvT9jA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=hJsmYaRW; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso43640775e9.3
-        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 01:25:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1747211124; x=1747815924; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OhlcmOITgWC0ZjhzH5YcAyhWpu7bV5qwJnw5n2FjucQ=;
-        b=hJsmYaRW7HNHK0L2Zdi3JE5rzMq2I+0EsbEVC+0WExVXn5R4heh8PJFniZwhcEXIu4
-         6TLK7cpM2A8tkJpQFPo5SKFaY4MNt5Bw/TR/vWTUcfzhlz42tjlZTbbraaUIXxO6lKmR
-         RId5Lz6j4RaIVAJF2oAslm7iB6CaQhryhnrZY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747211124; x=1747815924;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OhlcmOITgWC0ZjhzH5YcAyhWpu7bV5qwJnw5n2FjucQ=;
-        b=C4LD9iU47zRnTGLtTCrrX2EC3bpC3OfWwb/xJSYuimkYfPQowvdvVHg2FEQpDX97wF
-         O697KTWhYfJcBrx5Myamn9PYW+ozx050Xa9ZC7M4mSMCV4PEKUQ6ReOMWfPSWZVzWU2w
-         4oFT7Shb9kYg4linJJCAUAXTBYPC2fH7sy2Z6Lpmll3EXFp6z3cl6kQ/KvTGCqoGvtK7
-         CdvvwkDhzbTglcLKJfFCM4tjot0ZGAdZ/E3hL9j5LXKDEclPM0+IVHx71DIjag+oparK
-         Hhw+U69vzOacTKEnNCHIgOrdN8diB8Fo5eX+622nXWJ1pKS+HIyMnnAlrFqxbccivliG
-         81sA==
-X-Forwarded-Encrypted: i=1; AJvYcCWNXXgazV4DfZPdfHBoqvka9rv6b8pfSXDgxuIu3r4foG32XiGOTsR0oxvEVAWrzHp/2MGBCf7F02MH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0KnFfXkZa2EnTYUsBswZuMedDIiD64nfArrp8g3v6iH87/DnU
-	47vR096VtZcP3NKdtQalZ4gJQFg3freoDunD6SngukAeE/wBymYIccaSDK9bMCM=
-X-Gm-Gg: ASbGncuVgrPI4g5XUsyKyuz9hY2Lcp+Mmm3YzvkCdOa29J4FRyEwIuwyTCfNkezdhRJ
-	3DmCxwzNLjokwJ9Frfqq12UOqAdGcKKMb77INhHMa8pGvGlV1+ZgGPt/Nw4FCFtcE8SlPaNoFcZ
-	lSgDYz2XsYSS1BnQ79ZmBQcc1DDiIwIGTpLqmspZUTNGjL3gGeDDx6vjErProJ+33/LJI24S/+7
-	d/pocbXpnYDhIhAtpPrXT/nHbGVGw1nL0oPQuBcGS2+7t2qFei8eef2l2JZhmNv9PLh+C5cecdY
-	73z/ws0F2SyHToBprQD4ywm3LhhzBt+VNrCqExVDZKW71wrekL4PaGsLvNG5SgwJXfZQtI+BpZR
-	ZGcTDcXqxVz+sDGsvudbQ+90LLC68U2kUip+j0w54dCM=
-X-Google-Smtp-Source: AGHT+IGAQQ9NlUKuvedZ7pLG0Sc9I8RQwhVN2gN0j3XvRSIGwZgxGrZPudb3M0+2G9JZsIqwK0mXVQ==
-X-Received: by 2002:a05:600d:d:b0:442:f44f:65b with SMTP id 5b1f17b1804b1-442f44f09a9mr11192865e9.32.1747211124008;
-        Wed, 14 May 2025 01:25:24 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.client.m3-hotspots.de ([46.189.28.43])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442ebda7d2csm30987365e9.3.2025.05.14.01.25.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 May 2025 01:25:23 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: Simon Holesch <simon.holesch@bshg.com>,
-	Karthikdatt Anantharamrao <karthikdatt.anantharamrao@in.bosch.com>,
-	michael@amarulasolutions.com,
-	linux-amarula@amarulasolutions.com,
-	Wolfgang Birkner <wolfgang.birkner@bshg.com>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	s=arc-20240116; t=1747211161; c=relaxed/simple;
+	bh=EQlzhgK8hYT+vlKLW5TJxTbodWSCb22tA9s2LNb3ffQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QErHPNooPCO5ckC0c6AgJxbChyKz4ngrwb3zMnGStTNNjPm6LAQpG6VkSjRzs088pCntjSxFBJoAC+/XbnVn1NPykxjTeRYuWMGZO1bQFb0MvSuq2aybsdKgJHZki9JQKJgbe4UM8Xyih9VlZ21Mh7gY75kxCzhKshDu50yo1a4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnS+CFTX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84094C4CEE9;
+	Wed, 14 May 2025 08:25:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747211160;
+	bh=EQlzhgK8hYT+vlKLW5TJxTbodWSCb22tA9s2LNb3ffQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BnS+CFTXcJXpm4tPPGgnhaaB6YgFzpNZ/mS6Bp9Lr9Qk9lVQuxAakxWZCMYQApL2J
+	 pnBUHS69xG3KTj+caAZXFGU7PkFSwCRx+jX/oAhrEdlAK0Cs2uJMTWxEZeBGlR35o+
+	 ty36NBSL68aFHLnhP1Yjdcx4wmBzEr39mR4icO1+f/rtzXsIdUp90ztyFiz0EE/bZL
+	 Bn3R5ZEzmv6thYasOGsYdSK2mLkZpyqBVtg0EY706q9gK4ZUzuZUhGJ2p51Zs1+kGW
+	 Y6cIPuZVmtklvUbVi8OyGGeGrE73TNjMenbmDlU8RPh37IJcsUTctiN9UpkSoFp8wB
+	 6+F8GG1aQk6lQ==
+Date: Wed, 14 May 2025 09:25:54 +0100
+From: Lee Jones <lee@kernel.org>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 9/9] arm64: dts: imx8mn-bsh-smm-s2-common: Disable PMIC SNVS reset target state
-Date: Wed, 14 May 2025 10:25:03 +0200
-Message-ID: <20250514082507.1983849-10-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250514082507.1983849-1-dario.binacchi@amarulasolutions.com>
-References: <20250514082507.1983849-1-dario.binacchi@amarulasolutions.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 00/22] mfd: adp5585: support keymap events and drop
+ legacy Input driver
+Message-ID: <20250514082554.GY2936510@google.com>
+References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
 
-From: Wolfgang Birkner <wolfgang.birkner@bshg.com>
+On Mon, 12 May 2025, Nuno Sá via B4 Relay wrote:
 
-VDD_DRAM was disabled on standby, therefore the reference hardware did not
-wake up reliable. Use PMIC reset target state READY instead of SNVS, to
-keep VDD_DRAM active during standby.
+> Hi all,
+> 
+> Here it goes v3. There was some major refactoring in this version due to
+> Lee's and Laurent's feedback. There are some splits (and some explicit
+> requests) resulting in new patches being added. The biggest change is the
+> effort in trying to minimize the usage of specific child device bits in
+> the top level device (mainly stuff related to the keymap). I think now
+> it's fairly self contained and the only thing that we really need to
+> handle in the top device are the unlock and reset events as those can be
+> supported through both the input and gpio devices (via gpio_keys). This
+> results in a bit of more runtime complexity but well, that's life...
+> 
+> Another change is Lee's suggestion of making use of templates (for
+> regmap and chip specific data) and fill things up at probe.
+> 
+> I also refactored a bit the event handling so it's more generic now.
+> There were lot's of changes so odds are that I might have forgotten some
+> feedback and so, my apologies in advance :).
+> 
+> I also dropped the tags in:
+> 
+> patch 16/22 ("gpio: adp5585: support gpi events") as it has some
+> significant changes (replacing .init_valid_masks() with .request() and
+> .free())
 
-Signed-off-by: Wolfgang Birkner <wolfgang.birkner@bshg.com>
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Please run this set through checkpatch.pl before submitting again.
 
----
+Not sure if we've discussed this, but W=1 wouldn't hurt either.
 
- arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-index ea8d741c6904..633874b3bf66 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-@@ -94,7 +94,6 @@ bd71847: pmic@4b {
- 		pinctrl-0 = <&pinctrl_pmic>;
- 		interrupt-parent = <&gpio1>;
- 		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
--		rohm,reset-snvs-powered;
- 
- 		#clock-cells = <0>;
- 		clocks = <&osc_32k>;
 -- 
-2.43.0
-
+Lee Jones [李琼斯]
 
