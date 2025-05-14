@@ -1,114 +1,186 @@
-Return-Path: <devicetree+bounces-177102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA759AB6707
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:12:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E4C5AB6727
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:19:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED9773B895E
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:12:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C72E419E6F3D
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2104021D583;
-	Wed, 14 May 2025 09:12:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0030A225A50;
+	Wed, 14 May 2025 09:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TtqkZjSl"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="R8qmEiQV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6E9A1E04BD;
-	Wed, 14 May 2025 09:12:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1963F225A32;
+	Wed, 14 May 2025 09:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747213939; cv=none; b=tstAbT6uV/W7sycMSj2yHnAH9PfhveFn7pV6XWgi8vYb1Cv3m+1rv0UJh2/CvBSQKtJtUgTAOywge2tX7Vg/V5Z7y0G+2SHzXMk9mxAQC7vhk8/R5GTKolI01srwOJ9vUiH4zLt6rH2AErXmR3yRPLlUgdMWbAlzT+daebB9rJE=
+	t=1747214380; cv=none; b=jWoJH1qf91VPYW/1mV5EV25+Wm7ZNwDN85O7DnRhsvnv5qZEohbabo8ZSBk+4K+F1khJyCArAgAeImrqhNCaNX3o0Hqc0S5y6hN159s7unZbpfNQTrU3JqGULudnd3s9i542f5egRAh2c8E1xKdTMNG3gHuCHSKGz98e1cT8NVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747213939; c=relaxed/simple;
-	bh=hU2OlZFgidacH6mqtYbQqCg+lm4nvVeVYSGqJE5uNSQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k+yCFbbFMFFSbIF89GEBkAwPd9qmaMzLIgUzuob249qitY90ACQdbrUtiTnXKOcV5OD/sFe+vOgM1nGlyuQkEZhDCk7/HgsbqMzUcHuFT6mcIpmFDVTKaT3yB+4P6wBAt+u2xT9fAOLsZlfrwYBqORG2eoyvBfsLDHZpTXZFhSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TtqkZjSl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67B2AC4CEEB;
-	Wed, 14 May 2025 09:12:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747213939;
-	bh=hU2OlZFgidacH6mqtYbQqCg+lm4nvVeVYSGqJE5uNSQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TtqkZjSlnrz/6Sl0DZD8iGpy2ooUOZrc+aYsOM4cD4fwuLHLOAehLL5uSNAN4VCrA
-	 4iNcPMX67bYdH3Ih9hVIbi9VJo+2Ujd30f8m8D0VP82q2tkwfXoNDChXHrEk3wgWPr
-	 TRLaqjZsIdQeHc77MmAY1pu4uExjccOUleZJ2ByVHEQwwn8r5pnUbklsRI1zgD86Xs
-	 VQi76r/xX2wnTKt/jYOD4QNYixDwhOIluHqVT8YGeXy+8a/GLJ/jS0hfjUSpuVwqOd
-	 k5MSomCZyWPif0s9/ybVZD45nHgm4anMUq/N5NJstN1ebmuYNasCIJDbejrnvciUEX
-	 Gkbfckhqo11UQ==
-Date: Wed, 14 May 2025 11:12:14 +0200
-From: Mark Brown <broonie@kernel.org>
-To: Zhang Yi <zhangyi@everest-semi.com>
-Cc: robh@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, lgirdwood@gmail.com,
-	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-	perex@perex.cz, krzk+dt@kernel.org,
-	amadeuszx.slawinski@linux.intel.com, krzk@kernel.org
-Subject: Re: [RESEND v7 0/2] ASoC: codecs: add support for ES8389
-Message-ID: <aCRebl_L2db3ZJsj@finisterre.sirena.org.uk>
-References: <20250514090257.34585-1-zhangyi@everest-semi.com>
+	s=arc-20240116; t=1747214380; c=relaxed/simple;
+	bh=XfJDfDjV8rQ+L03xS3i2Q0xG0ZpZdIXUG6MNi+Y37eo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KEzYJVOG02RTJGirL1hKm0uG5KwkWvGSwjkz6iOlMh1F6ewFpXzpvY0tt3eMxSlsEHsnRDyUfpmJAMbGEtSYV9EZDWsE71QYmxLA0F54XRt/6fZz7gvLhGoQL21gN23jvt/E4L/6OZWNwRVevShGK7h9LW8Vl0R9RN9WqjSIVhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=R8qmEiQV; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54E7wArm013217;
+	Wed, 14 May 2025 11:18:59 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=r1a+Jd1mXikhLLAztwlCME
+	IW/Owqmg6EjmP4qjavAao=; b=R8qmEiQVSrLNiSQdVDH4qte/3nM3EBjSnabKos
+	J2pUwU63NM/AeBqq2Ff16HrzRoDAF6bXq8HHoPawB87lOu562oaKreznxYrdQ8UK
+	p5gUsFG9Q+fR6siqXVKRPlnD/NTvMsvPEkUix/e9/VWAN7lY3kYns7mWGrrCvaO1
+	FJZyqF2sANNHyXJZWT98O//LLgpOUN4OGg8o8KO1H9xuOhhyd4biiEu2onyPqou/
+	oWaT4S6uVak2nexQK65RQCLPduUYO2X3MGDWT4M6bQGbrtgFZ42S9SNWxqiJMNjI
+	HvXysMPKW+owgoPPvh2zoqQrMLbSErxbPHf8nPT+8hxJLjxQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46mbdw2rx8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 May 2025 11:18:59 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id C0E7C40050;
+	Wed, 14 May 2025 11:17:31 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A5977B41E02;
+	Wed, 14 May 2025 11:16:20 +0200 (CEST)
+Received: from localhost (10.130.77.120) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 14 May
+ 2025 11:16:20 +0200
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <christian.bruel@foss.st.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <thippeswamy.havalige@amd.com>,
+        <shradha.t@samsung.com>, <quic_schintav@quicinc.com>,
+        <cassel@kernel.org>, <johan+linaro@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v9 0/9] Add STM32MP25 PCIe drivers
+Date: Wed, 14 May 2025 11:15:21 +0200
+Message-ID: <20250514091530.3249364-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="waxfeb911tkDjUUl"
-Content-Disposition: inline
-In-Reply-To: <20250514090257.34585-1-zhangyi@everest-semi.com>
-X-Cookie: Well begun is half done.
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-14_03,2025-05-14_02,2025-02-21_01
 
+Changes in v9:
+   - Describe atu and dbi2 shadowed registers in pcie_ep node
+   Address RC and EP drivers comments from Manivanna:
+   - Use dev_error_probe() for pm_runtime_enable() calls
+   - Reword Kconfig help message
+   - Move pm_runtime_get_noresume() before devm_pm_runtime_enable()
 
---waxfeb911tkDjUUl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Changes in v8:
+   - Whitespace in comment
+   
+Changes in v7:
+   - Use device_init_wakeup to enable wakeup
+   - Fix comments (Bjorn)
 
-On Wed, May 14, 2025 at 05:02:57PM +0800, Zhang Yi wrote:
+Changes in v6:
+   - Call device_wakeup_enable() to fix WAKE# wakeup.
+   Address comments from Manivanna:
+   - Fix/Add Comments
+   - Fix DT indents
+   - Remove dw_pcie_ep_linkup() in EP start link
+   - Add PCIE_T_PVPERL_MS delay in RC PERST# deassert
+   
+Changes in v5:
+   Address driver comments from Manivanna:
+   - Use dw_pcie_{suspend/resume}_noirq instead of private ones.
+   - Move dw_pcie_host_init() to probe
+   - Add stm32_remove_pcie_port cleanup function
+   - Use of_node_put in stm32_pcie_parse_port
+   - Remove wakeup-source property
+   - Use generic dev_pm_set_dedicated_wake_irq to support wake# irq
+   
+Changes in v4:
+   Address bindings comments Rob Herring
+   - Remove phy property form common yaml
+   - Remove phy-name property
+   - Move wake_gpio and reset_gpio to the host root port
+   
+Changes in v3:
+   Address comments from Manivanna, Rob and Bjorn:
+   - Move host wakeup helper to dwc core (Mani)
+   - Drop num-lanes=<1> from bindings (Rob)
+   - Fix PCI address of I/O region (Mani)
+   - Moved PHY to a RC rootport subsection (Bjorn, Mani)
+   - Replaced dma-limit quirk by dma-ranges property (Bjorn)
+   - Moved out perst assert/deassert from start/stop link (Mani)
+   - Drop link_up test optim (Mani)
+   - DT and comments rephrasing (Bjorn)
+   - Add dts entries now that the combophy entries has landed
+   - Drop delaying Configuration Requests
 
-> > Applying: ASoC: codecs: add support for ES8389
-> > error: sha1 information is lacking or useless (sound/soc/codecs/Kconfig).
-> > error: could not build fake ancestor
-> > Patch failed at 0001 ASoC: codecs: add support for ES8389
+Changes in v2:
+   - Fix st,stm32-pcie-common.yaml dt_binding_check	
 
-> I'm confused as to why this happened.
-> I made the patch based on the following branch
-> https://web.git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/?h=next-20250513
+Changes in v1:
+   Address comments from Rob Herring and Bjorn Helgaas:
+   - Drop st,limit-mrrs and st,max-payload-size from this patchset
+   - Remove single reset and clocks binding names and misc yaml cleanups
+   - Split RC/EP common bindings to a separate schema file
+   - Use correct PCIE_T_PERST_CLK_US and PCIE_T_RRS_READY_MS defines
+   - Use .remove instead of .remove_new
+   - Fix bar reset sequence in EP driver
+   - Use cleanup blocks for error handling
+   - Cosmetic fixes
 
-That's not my tree, that's linux-next.  MAINTAINERS shows:
+Christian Bruel (9):
+  dt-bindings: PCI: Add STM32MP25 PCIe Root Complex bindings
+  PCI: stm32: Add PCIe host support for STM32MP25
+  dt-bindings: PCI: Add STM32MP25 PCIe Endpoint bindings
+  PCI: stm32: Add PCIe Endpoint support for STM32MP25
+  MAINTAINERS: add entry for ST STM32MP25 PCIe drivers
+  arm64: dts: st: add PCIe pinctrl entries in stm32mp25-pinctrl.dtsi
+  arm64: dts: st: Add PCIe Root Complex mode on stm32mp251
+  arm64: dts: st: Add PCIe Endpoint mode on stm32mp251
+  arm64: dts: st: Enable PCIe on the stm32mp257f-ev1 board
 
-SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEMENT (ASoC)
-M:      Liam Girdwood <lgirdwood@gmail.com>
-M:      Mark Brown <broonie@kernel.org>
-L:      linux-sound@vger.kernel.org
-S:      Supported
-W:      http://alsa-project.org/main/index.php/ASoC
-T:      git git://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git
+ .../bindings/pci/st,stm32-pcie-common.yaml    |  33 ++
+ .../bindings/pci/st,stm32-pcie-ep.yaml        |  67 +++
+ .../bindings/pci/st,stm32-pcie-host.yaml      | 112 +++++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  20 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  57 +++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  21 +
+ drivers/pci/controller/dwc/Kconfig            |  24 +
+ drivers/pci/controller/dwc/Makefile           |   2 +
+ drivers/pci/controller/dwc/pcie-stm32-ep.c    | 411 ++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-stm32.c       | 364 ++++++++++++++++
+ drivers/pci/controller/dwc/pcie-stm32.h       |  16 +
+ 12 files changed, 1134 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32-ep.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32.h
 
-and note that above git is saying it's not got a useful SHA1 in your
-patch so either there's a formatting issue or it's not quite -next (the
-repo I apply to has -next so would see -next commits).  For things
-targetting 6.16 you want for-6.16.
+-- 
+2.34.1
 
---waxfeb911tkDjUUl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmgkXm0ACgkQJNaLcl1U
-h9BMMAf6A6b2CHOuIDWn53GFuWNZsPvP4hNSexS8K/i2/GjQTRwc4fAkxzdhMOgY
-qAuYJqxMqTh4OUzDn+Z7RILcoZfHvUYi4rrEJ8EaZqabT1el6a1uPMaKbY/tn40h
-z46NRr/gbOv3yg98BjGYjvhgOuGW1nIdU5ZFk2rPqU67+6OpJmcuFGVRlHo0q3JE
-Ujj6k8HNQMtPuqPkU7HC6aGseXCd73TNilYiKB85gln/rbznhksFmOp9YgYfFxL3
-DDvMTZhgbvT0wsfhFw8aidC+F0uNWHiEGp+Jy/W54b2nlVqqjuPfSeWaZP0qxU/7
-Ks4A5PSvkYXCXDcUqad5eCRxLnFXtg==
-=nIwU
------END PGP SIGNATURE-----
-
---waxfeb911tkDjUUl--
 
