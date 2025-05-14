@@ -1,173 +1,162 @@
-Return-Path: <devicetree+bounces-177210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26B9DAB6AD6
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 14:00:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E6F7AB6D51
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:52:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4297C7A647A
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:59:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D12C4C12EF
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 13:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39BD52144B1;
-	Wed, 14 May 2025 12:00:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDE6D27A916;
+	Wed, 14 May 2025 13:52:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="lLkhrenp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562781F4639;
-	Wed, 14 May 2025 12:00:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D521F2701C5
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 13:52:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747224039; cv=none; b=IZkNJubLpsAD3GTpcbk6lhp3JAraFunMv74u6tW+aE/GUU4g4RntgUXYZp3snxqltQulhNRAxM/aiP1EG5smxaaGJJAPOvOnn06JhXt2akPuTaE5lnDrhsaRjoXG6LaXmIvRfQrQI9U3iJTXCspYLxYunI7MQyUYOwlsnbxsBRk=
+	t=1747230759; cv=none; b=AzVS5+17G9Yps7ba7VcUcbOSN8FyZOy7WTAjkP0BW1iEcfIxn5//AFh+fkoqGVfgXCK6LN9WkyG6utHDNVtJTzBJKeiQc6IE1xowhlDyE2GfLK0xinGrwT1e4kUex8RTecpdUx/7QECAtfXlBLcyDVabtsdX5oDmf/1/zOOQqfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747224039; c=relaxed/simple;
-	bh=BRdK1AqEALeuZ0gpOwCRAmQEE/PckQb5XKypwfnHhs8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y2PTXmePvyg3Yupci1o3nTK+aJW9Qq+u6qvv657jTTmcNXzw7zyTDdGZTRLIxUIbg3Db+5dTy/TSNtVZFIZ6JA9jJCbsB8I7TnPd7NLGPl5xDJZZy2m5JDunQskL45mbNhsBuKlz2GqbmFTXyJ86KNpEDlYrg+opiHppdIoxQWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
-Received: from [198.18.0.1] (gy-adaptive-ssl-proxy-1-entmail-virt204.gy.ntes [27.18.99.44])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 150636c0b;
-	Wed, 14 May 2025 20:00:28 +0800 (GMT+08:00)
-Message-ID: <95e8f8fd-d7ea-4d78-a794-72f73a3e19f3@whut.edu.cn>
-Date: Wed, 14 May 2025 20:00:28 +0800
+	s=arc-20240116; t=1747230759; c=relaxed/simple;
+	bh=sk9+Hmx76K9353/YSJ7f5CerbKr8aapCJIG+K320SkM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=D2PayljLWBTS0T2/+OUw3OUGtBHV1P1APV0Rj3VwPI2DlQOZhKbGlzJYYxWD6t1JG5IxGCo9EIXavIiNvuKZY8EuCvbinok7jYy6lbs5W3bLgoa+ah/nS9QLW+//DcCmoeMRX0PQwb5FDS8KLuNfoq/UZHAAGg3Owf0oqBYWEGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=lLkhrenp; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250514135234epoutp04c15a1611394b7f7ad21a33c9c061bf79~-aR054Tld1272812728epoutp04h
+	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 13:52:34 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250514135234epoutp04c15a1611394b7f7ad21a33c9c061bf79~-aR054Tld1272812728epoutp04h
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1747230754;
+	bh=fS6WP64nxk5RGLAeXo0j9rsjSAjpHA9bB1CIdrtYv24=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=lLkhrenpf4Ang8OJcMujjFvGUsmln4m5a0oWv9u2tKHHC8Q+egyTspbQWDmdF0+iX
+	 ZG2sijOPbFyVC0MAD4gfvJG5qqJrnqOBvgggrIh+RQSVkoGt3q2lN9Xrx1vsecUSwd
+	 qJLNgnGpZgebvt0EJedbmnQecu88JePj0s30AGEU=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250514135233epcas5p2cd9c912a0768e52b0bb584a54b97caca~-aR0NkYDl1501215012epcas5p2p;
+	Wed, 14 May 2025 13:52:33 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.178]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4ZyFCN0GBvz3hhT3; Wed, 14 May
+	2025 13:52:32 +0000 (GMT)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250514095233epcas5p3f51037e71e60a1e690709f8497606385~-XAQ6OqjD2612726127epcas5p3Q;
+	Wed, 14 May 2025 09:52:33 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250514095233epsmtrp1fbfec6ef430e6f4547e13f7a873b93dd~-XAQ3FzyG1927519275epsmtrp1D;
+	Wed, 14 May 2025 09:52:33 +0000 (GMT)
+X-AuditID: b6c32a52-40bff70000004c16-01-682467e1cbba
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	5E.35.19478.1E764286; Wed, 14 May 2025 18:52:33 +0900 (KST)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250514095230epsmtip2a60aed22479ca7753f78aa377417c155~-XAOEOn-v1808418084epsmtip2i;
+	Wed, 14 May 2025 09:52:30 +0000 (GMT)
+From: Raghav Sharma <raghav.s@samsung.com>
+To: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
+	alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
+	robh@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
+	sunyeal.hong@samsung.com, shin.son@samsung.com
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	dev.tailor@samsung.com, chandan.vn@samsung.com, karthik.sun@samsung.com,
+	Raghav Sharma <raghav.s@samsung.com>
+Subject: [PATCH v2 0/3] Add clock support for CMU_HSI2
+Date: Wed, 14 May 2025 15:32:11 +0530
+Message-Id: <20250514100214.2479552-1-raghav.s@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] phy: spacemit: add USB3 support for K1 PCIe/USB3
- combo PHY
-To: Vinod Koul <vkoul@kernel.org>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20250418-b4-k1-usb3-phy-v2-v2-0-b69e02da84eb@whut.edu.cn>
- <20250418-b4-k1-usb3-phy-v2-v2-4-b69e02da84eb@whut.edu.cn>
- <aCRaAEJSphC7uWY0@vaman>
-Content-Language: en-US
-From: Ze Huang <huangze@whut.edu.cn>
-In-Reply-To: <aCRaAEJSphC7uWY0@vaman>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCH0tJVkhDGUIaSEIaSh0ZGVYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJTFVKQ1VCQlVPT1lXWRYaDxIVHRRZQVlPS0hVSktISUxCS1VKS0tVSkJLS1
-	kG
-X-HM-Tid: 0a96ceaae7d903a1kunm150636c0b
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NCo6Thw5CTEzPj4YTikiSTAq
-	LywKCS1VSlVKTE9MSUlPS0hITUNDVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
-	TFVKQ1VCQlVPT1lXWQgBWUFIQ01JNwY+
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrELMWRmVeSWpSXmKPExsWy7bCSvO7DdJUMgztrFC0ezNvGZjHhS4TF
+	mr3nmCyuf3nOanFvxzJ2i/lHzrFaNM54w2Rx/vwGdotNj6+xWnzsucdqcXnXHDaLGef3MVlc
+	POVqcWyBmMX3lXcYLY6cecFs8X/PDnaLw2/aWS3+XdvIYjH5+FpWi6Zl65kcRD3e32hl99g5
+	6y67x6ZVnWwem5fUe/RtWcXo8XmTXABbFJdNSmpOZllqkb5dAlfGu8ehBW/4Kv6v2MzewLie
+	p4uRk0NCwESib/Vi1i5GLg4hge2MEl8+HWSBSEhI7Pv/mxHCFpZY+e85O0TRW0aJ9xMPMoMk
+	2AS0JK5sf8cGkhAR6GKSOPfvFVg3s8BOJomV6yVAbGEBM4llV9aCxVkEVCV6zs9kArF5Bawl
+	blzvhdomL7H/4FlmiLigxMmZT6DmyEs0b53NPIGRbxaS1CwkqQWMTKsYRVMLinPTc5MLDPWK
+	E3OLS/PS9ZLzczcxgqNFK2gH47L1f/UOMTJxMB5ilOBgVhLhvZ6lnCHEm5JYWZValB9fVJqT
+	WnyIUZqDRUmcVzmnM0VIID2xJDU7NbUgtQgmy8TBKdXANN8ieoat3X+PUqv5T9+yX46yWOGQ
+	HnJvxnfP13qP5IzEJe/kK+f3/F///LV+1ifVnjIPhzCxxTLMK9SX9TXuvsniW7i4ckb8HKfE
+	Td86dlj5++1SFDu6+a/woY5o3qppWdyC0u81d2gvYZSza7n7jnH/qbSjniEbeZ7f35G7YF/7
+	p2/PL+kuedCfdav5q/LXxqdVj/YWdeY0fWnxEDEXFYv3ndwz4+LiymKez22RUyNr/I13rutf
+	1MDjXnJD59acx2p/9l2ds+f+kbNq9SLOZj6vGdxv5jkk7xVpqNRpU2Y+nbFso6zfW3aZFrb9
+	LAl/XhxrrO29qHsj3n5DiczR48tvRj4ofSe7yYJp9dY5SizFGYmGWsxFxYkAP1DrSAUDAAA=
+X-CMS-MailID: 20250514095233epcas5p3f51037e71e60a1e690709f8497606385
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-543,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250514095233epcas5p3f51037e71e60a1e690709f8497606385
+References: <CGME20250514095233epcas5p3f51037e71e60a1e690709f8497606385@epcas5p3.samsung.com>
 
-On 5/14/25 4:53 PM, Vinod Koul wrote:
-> On 18-04-25, 21:19, Ze Huang wrote:
->> Add support for USB 3.0 mode on the K1 PCIe/USB3 combo PHY. Currently,
->> only USB mode is supported; PCIe support is not included in this change.
->>
->> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
->> ---
-...
->> +#define COMBPHY_USB_LFPS_REG		0x58
->> +#define  COMBPHY_USB_LFPS_MASK		0x700
->> +#define  COMBPHY_USB_LFPS_THRES_DEFAULT	0x03
-> Same comment as other patch
+This series adds clock support for the CMU_HSI2 block.
 
->> +
->> +#define COMBPHY_MODE_SEL	BIT(3)
->> +#define COMBPHY_WAIT_TIMEOUT	1000
->> +
->> +struct spacemit_combphy_priv {
->> +	struct device *dev;
->> +	struct phy *phy;
->> +	struct reset_control *phy_rst;
->> +	void __iomem *phy_ctrl;
->> +	void __iomem *phy_sel;
->> +	bool rx_always_on;
->> +	u8 lfps_threshold;
->> +	u8 type;
->> +};
->> +
->> +static void spacemit_reg_update(void __iomem *reg, u32 offset, u32 mask, u32 val)
->> +{
->> +	u32 tmp;
->> +
->> +	tmp = readl(reg + offset);
->> +	tmp = (tmp & ~(mask)) | val;
->> +	writel(tmp, reg + offset);
->> +}
->> +
->> +static int spacemit_combphy_wait_ready(struct spacemit_combphy_priv *priv,
->> +				       u32 offset, u32 mask, u32 val)
->> +{
->> +	u32 reg_val;
->> +	int ret = 0;
-> Superfluous init, drop it pls
+Patch[1/3]: dt-bindings: clock: exynosautov920: add hsi2 clock definitions
+        - Adds DT binding for CMU_HSI2 and clock definitions
 
-OK
+Patch[2/3]: clk: samsung: exynosautov920: add block hsi2 clock support
+        - Adds CMU_HSI2 clock driver support
 
->
->> +
->> +	ret = read_poll_timeout(readl, reg_val, (reg_val & mask) == val,
->> +				1000, COMBPHY_WAIT_TIMEOUT * 1000, false,
->> +				priv->phy_ctrl + offset);
->> +
->> +	return ret;
-> why use local variable?
+Patch[3/3]: arm64: dts: exynosautov920: add CMU_HSI2 clock DT nodes
+        - Adds dt node for CMU_HSI2
 
-Will drop it.
+Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
+---
+Changes in v2:
+- Added cover letter with the patches
+- Submit the patches as a series as they are inter-dependent
+  as pointed by Krzysztof Kozlowski
 
->
->> +}
->> +
->> +static int spacemit_combphy_set_mode(struct spacemit_combphy_priv *priv)
->> +{
->> +	int ret = 0;
->> +
->> +	switch (priv->type) {
->> +	case PHY_TYPE_USB3:
->> +		spacemit_reg_update(priv->phy_sel, 0, 0, COMBPHY_MODE_SEL);
->> +		break;
->> +	default:
->> +		dev_err(priv->dev, "PHY type %x not supported\n", priv->type);
->> +		ret = -EINVAL;
->> +		break;
->> +	}
->> +
->> +	return ret;
->> +}
-...
->> +static const struct of_device_id spacemit_combphy_of_match[] = {
->> +	{ .compatible = "spacemit,k1-combphy", },
->> +	{ /* sentinel */ }
->> +};
->> +MODULE_DEVICE_TABLE(of, spacemit_combphy_of_match);
->> +
->> +static struct platform_driver spacemit_combphy_driver = {
->> +	.probe	= spacemit_combphy_probe,
->> +	.driver = {
->> +		.name = "spacemit-k1-combphy",
->> +		.of_match_table = spacemit_combphy_of_match,
->> +	},
->> +};
->> +module_platform_driver(spacemit_combphy_driver);
->> +
->> +MODULE_DESCRIPTION("Spacemit PCIE/USB3.0 COMBO PHY driver");
->> +MODULE_LICENSE("GPL");
-> Could this be single driver with different init register sequences?
+Links to v1:
+[1/3]: https://lore.kernel.org/all/20250509132414.3752159-1-raghav.s@samsung.com/
+[2/3]: https://lore.kernel.org/all/20250509131210.3192208-1-raghav.s@samsung.com/
+[3/3]: https://lore.kernel.org/all/20250509125646.2727393-1-raghav.s@samsung.com/
 
-Yes, on K1 SoC, the USB3 and PCIe Port A share the same COMBO PHY hardware.
+I also got warning about build failure from robot
+Link: https://lore.kernel.org/all/202505100814.gnMY3LoZ-lkp@intel.com/ 
 
-PHY can be initialized for PCIe as well via a different init sequence.
-In the future, we can extend the driver to support both modes based on 
-the DT property.
+As the fix is  just a new version of
+the same patch/commit, there is NO need to add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505100814.gnMY3LoZ-lkp@intel.com/
+
+So for now, not adding Reported-by: tag
+
+Raghav Sharma (3):
+  dt-bindings: clock: exynosautov920: add hsi2 clock definitions
+  clk: samsung: exynosautov920: add block hsi2 clock support
+  arm64: dts: exynosautov920: add cmu_hsi2 clock DT nodes
+
+ .../clock/samsung,exynosautov920-clock.yaml   | 29 +++++++-
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi | 17 +++++
+ drivers/clk/samsung/clk-exynosautov920.c      | 72 +++++++++++++++++++
+ .../clock/samsung,exynosautov920.h            |  9 +++
+ 4 files changed, 125 insertions(+), 2 deletions(-)
+
+
+base-commit: aa94665adc28f3fdc3de2979ac1e98bae961d6ca
+-- 
+2.34.1
 
 
