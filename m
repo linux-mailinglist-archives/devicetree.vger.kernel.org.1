@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-177158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A382AB68AD
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:19:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4987FAB68BC
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:26:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 752CB16F37B
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:19:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA4E21659CE
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC8F625C70C;
-	Wed, 14 May 2025 10:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA93C227563;
+	Wed, 14 May 2025 10:25:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TaGRya/5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mupcZquT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83C55221F21;
-	Wed, 14 May 2025 10:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1D71E04BD;
+	Wed, 14 May 2025 10:25:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747217931; cv=none; b=AtgNoVx0sHb3IJA5iYUCBuGzbYyLGP4nuICHCdcYw0pEqNkreEpotJUAEQHbPgPBSujjl0Is8+Hkr+V95ejxeFRWcBW7Zgar2WyDIYJrwV/JWpTi6YIHj1z4gSMqd1os3q/rN1mXPDe+cT9DHqmPqA6ahlBOgdTf6qqpxmtivFk=
+	t=1747218358; cv=none; b=PMrRZPlU4RBINiAuYEFIJ39GuhPWzveUsA0G2eTZVKtoSmyvP0/Ibf53NLkUmRHrVVOzE4cw/j8ZJ/JSNwCqPjCZZvSHZHdXDfu23NwNHKwegx0TTv1CqvSgy4Quh//0olJ7dNrWELOZYi5O0N34gDgqZfEAMbt34d27B5aCazU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747217931; c=relaxed/simple;
-	bh=ozqOihwEm/L/AqRHw/cHmpHz1o2exQrXdOlOljcsmRc=;
+	s=arc-20240116; t=1747218358; c=relaxed/simple;
+	bh=e26ACJaJd+Lb8VHz4EGlqdJKjr9bE0sx5UJsIIUHXrE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Lcoh17TqFWJMqPbbrlSAeFjVcDH5QzS2UTWzn7oopjrbI/3N4v17vE6p+B17zyy2/f2UPqk/xt4gJvvhVfUtanCGhU/AF2GOhcikD0bUNbDJSpRyXU2U2v2YUtM1DqwoLibqVWgczHRI4gKCkCdhTpxJ8GzzSI+QRVgS49pBcUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TaGRya/5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C867C4CEE9;
-	Wed, 14 May 2025 10:18:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=TPHyPawhFSOVqWbVMHJehHl8tsbonUHLwxTQVsNCm2iEAiYll1kBfCZE013h16JUTCtgxMjpybxH0O1ctBeSIgoEkLGxEboBLBVDUXiJx5ruTMw+QFXJDTb7SMyAD9sDNLzOl7Ath0Mkt2O1uKac7F4lk2JxdwuyvjvSsuXXyQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mupcZquT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC044C4CEE9;
+	Wed, 14 May 2025 10:25:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747217931;
-	bh=ozqOihwEm/L/AqRHw/cHmpHz1o2exQrXdOlOljcsmRc=;
+	s=k20201202; t=1747218358;
+	bh=e26ACJaJd+Lb8VHz4EGlqdJKjr9bE0sx5UJsIIUHXrE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TaGRya/5Uo8oiq90snReL0/kSyCzQUXQhFDH7FNsrg2Xrpiac8AdBvuV1MY0jdeEU
-	 O6AtzwujXA4xr1PWoWkZ5TVn1e6BrhAGf03zLGRJFn4zPPFB1F40XvvBP0MNZylNak
-	 Ec8niYdbhfr+CYnMMKcP0SzS/xT04yU5eXP6ObBHuvBy7NHGOLsIWZFfbcTyWiRrpP
-	 MVlsKrZOcjjrt99nJys21ot0Yt+bqSTR1RQ7CjOI5W8CV/huZ5HFRfTHOafq+AWmO7
-	 bEiVOq9MNhpY3LKP9LaK0m7bXzDchyV/L2ee6a0nsRT0Hh8owU2S0zukRWC6wxvFvd
-	 i7edmsrUiw/yQ==
-Message-ID: <18d6951a-860e-4479-837e-9edc90adeaea@kernel.org>
-Date: Wed, 14 May 2025 12:18:46 +0200
+	b=mupcZquTAfWOxZ7NZTtaL/C93N60F+0IdLb9ZOd8V1D4sdelIiVdAIs1dlrbkndbR
+	 NHv/ejTbEVzON3MvAnMXLTdX6Jqgi4UNKA2QKXJlg2DCYKE+6n3prRuhM4kCe9VlQ+
+	 FdqynHRCN747EBR79S38TdVGmrn/q/qgQtfI6Xfy8KwcjOoZuqD+pyT25r50jxvS47
+	 VbMpEujzMrOKa+ew3R/7phuAZZR+kjpmE/xf9DOcpLp+QPuU78t7yD2NJKqio2ofh2
+	 oA0xCBr0ZktbeNlfwHJD0E7zJaTawA7YTuH4Zd5KkHoav0tiIKS4jqRf63W/9zqbNO
+	 1GymqPNI5oT6A==
+Message-ID: <959b9c65-50d7-426d-9c2a-64e143e28ded@kernel.org>
+Date: Wed, 14 May 2025 12:25:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXT] Re: [PATCH v2 1/2] dt-bindings: i3c: Add NXP P3H2x4x
- i3c-hub support
-To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
- "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc: Vikash Bansal <vikash.bansal@nxp.com>,
- Priyanka Jain <priyanka.jain@nxp.com>,
- Shashank Rebbapragada <shashank.rebbapragada@nxp.com>,
- Frank Li <frank.li@nxp.com>
-References: <20250508045711.2810207-1-aman.kumarpandey@nxp.com>
- <17145d2f-5d07-4939-8381-74e27cde303c@kernel.org>
- <GVXPR04MB9778335A5DFAB37CC8D011FC9997A@GVXPR04MB9778.eurprd04.prod.outlook.com>
+Subject: Re: [RFC PATCH] dt-bindings: phy: Add Qualcomm MIPI C-/D-PHY schema
+ for CSIPHY IPs
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hans.verkuil@cisco.com>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+References: <20250513143918.2572689-1-vladimir.zapolskiy@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,18 +108,136 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <GVXPR04MB9778335A5DFAB37CC8D011FC9997A@GVXPR04MB9778.eurprd04.prod.outlook.com>
+In-Reply-To: <20250513143918.2572689-1-vladimir.zapolskiy@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/05/2025 13:45, Aman Kumar Pandey wrote:
->>
+On 13/05/2025 16:39, Vladimir Zapolskiy wrote:
+> Add dt-binding schema for the CAMSS CSIPHY IPs, which provides
+> MIPI C-/D-PHY interfaces on Qualcomm SoCs.
 > 
-> These are not vender specific properties. all these properties are as per i3c hub specification.
->  What should I change for above properties ?
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>  .../devicetree/bindings/phy/qcom,csiphy.yaml  | 110 ++++++++++++++++++
+>  1 file changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,csiphy.yaml
 
-BTW, if this was I3C spec, then I would also expect all of such
-spec-related-properties to be in shared schema.
+
+Looks like not tested, so limited review follows.
+
+Filename matching compatible.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,csiphy.yaml b/Documentation/devicetree/bindings/phy/qcom,csiphy.yaml
+> new file mode 100644
+> index 000000000000..ef712c5442ec
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/qcom,csiphy.yaml
+
+Please post the driver or any other user. Or explain why this is RFC or
+what you expect here from us.
+
+
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/qcom,csiphy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm CSI PHY
+
+SM8250 ?
+
+> +
+> +maintainers:
+> +  - Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  Qualcomm SoCs equipped with a number of MIPI CSI PHY IPs, which
+> +  supports D-PHY or C-PHY interfaces to camera sensors.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,sm8250-csiphy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 2
+
+Need to list the items instead
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vdda-csi-0p9-supply:
+> +    description: Voltage supply, 0.9V
+> +
+> +  vdda-csi-1p2-supply:
+> +    description: Voltage supply, 1.2V
+> +
+> +  '#phy-cells':
+> +    const: 0
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    description: CAMSS CSIPHY input port
+> +
+> +    patternProperties:
+> +      "^endpoint@[0-1]$":
+
+Keep consistent quotes, either " or '
+
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 4
+> +
+> +          bus-type:
+> +            enum:
+> +              - 1 # MEDIA_BUS_TYPE_CSI2_CPHY
+> +              - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
+> +
+> +        required:
+> +          - data-lanes
+> +
+> +    oneOf:
+> +      - required:
+> +          - endpoint
+> +      - required:
+> +          - endpoint@0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - interrupts
+> +  - '#phy-cells'
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sm8250-csiphy
+> +    then:
+> +      required:
+> +        - vdda-csi-0p9-supply
+> +        - vdda-csi-1p2-supply
+
+This makes no sense - it is only sm8250 - so this if is always true.
+
 
 Best regards,
 Krzysztof
