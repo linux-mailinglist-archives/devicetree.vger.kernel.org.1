@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-177129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D63B4AB6827
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:57:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0DF6AB682C
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 11:57:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 722C77AE517
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:56:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1997A862825
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 09:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AE82225404;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6849426656D;
 	Wed, 14 May 2025 09:54:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA9C25E823
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9D425DCE0
 	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 09:54:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747216497; cv=none; b=bbNBaf+Yl2iA4Boidor6kt7B/CFkcDhHEkh/87waWF+z4X3xJvNx5aayF32JotNxWCJ+bw2CbUN67vx+9UwCaA7htseC/WNlOYChCfR1YaMQL66A/wmqjxJkipZY6iNdjuir+zihsBU1x7YJxk9lTzDuqUCBVbJXegi4mnqbaeI=
+	t=1747216497; cv=none; b=RncJCdky5uDaTiIJOtMWQxVNixCzQt4ySPFFAx7hj1TZIZj+SaoL1l5Q+YzD9f5nzCU3RVOB4knMWgwS788vxct1ArTaS0xBPOOpf1cjy4CcpUnRUYotGHy1yaawecsqWL0KehA+gVs4+O5JLDBSCHhKEBV/zdnCOBa8ONQ4mbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1747216497; c=relaxed/simple;
-	bh=VbnAmLxBB+9ni3Y9B/gXoAlfLtNObeur1VJCWbvyhdM=;
+	bh=yzqm8sYUzNx5OEOtx6mbvv3KN216jilVVat1M/ReGHY=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FVpqE2JnDnkMEd0N5N0M3x1q09AYIz/B7enCbt9yk1Hh/H/ykX7qYkdUDS0/iCm0aGatyXGsFjm3OwG/hb/fI/Ee3eIu1fvJZFnaTWmv53/50ulghgrdViv1uAr4FgQUeuzNg6E35/WdRNnqyMgY/2U5BrHLxJZpRWAxCdu7gak=
+	 MIME-Version:Content-Type; b=bX/8yDuoVswkdFyxkksZDRT671ukmstxleKYXB6W+OFYUbuxCeNTKNGcKdA3l6PfJLWYXK2AJQRhaaqZQtubCG1EZ1AlMqqKAVRQP50tbxTFJVUHnQzgFZGKkM1ra8e4OCcE2DyUiNA9Cta2uBfv/Kki5sU/2eAZdCv4io7aRMQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
 Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
-	by Atcsqr.andestech.com with ESMTPS id 54E9rrw0092296
+	by Atcsqr.andestech.com with ESMTPS id 54E9rsDD092331
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 14 May 2025 17:53:53 +0800 (+08)
+	Wed, 14 May 2025 17:53:54 +0800 (+08)
 	(envelope-from ben717@andestech.com)
 Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS31.andestech.com
  (10.0.1.89) with Microsoft SMTP Server id 14.3.498.0; Wed, 14 May 2025
- 17:53:53 +0800
+ 17:53:54 +0800
 From: Ben Zong-You Xie <ben717@andestech.com>
 To:
 CC: <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
@@ -47,9 +47,9 @@ CC: <paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
         <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>, <tim609@andestech.com>,
         Ben Zong-You Xie <ben717@andestech.com>
-Subject: [PATCH v4 1/9] riscv: add Andes SoC family Kconfig support
-Date: Wed, 14 May 2025 17:53:42 +0800
-Message-ID: <20250514095350.3765716-2-ben717@andestech.com>
+Subject: [PATCH v4 2/9] dt-bindings: riscv: add Andes QiLai SoC and the Voyager board bindings
+Date: Wed, 14 May 2025 17:53:43 +0800
+Message-ID: <20250514095350.3765716-3-ben717@andestech.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250514095350.3765716-1-ben717@andestech.com>
 References: <20250514095350.3765716-1-ben717@andestech.com>
@@ -64,54 +64,66 @@ Content-Type: text/plain
 X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
 X-DNSRBL: 
 X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 54E9rrw0092296
+X-MAIL:Atcsqr.andestech.com 54E9rsDD092331
 
-The first SoC in the Andes series is QiLai. It includes a high-performance
-quad-core RISC-V AX45MP cluster and one NX27V vector processor.
+Add DT binding documentation for the Andes QiLai SoC and the
+Voyager development board.
 
-For further information, refer to [1].
-
-[1] https://www.andestech.com/en/products-solutions/andeshape-platforms/qilai-chip/
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
 ---
- arch/riscv/Kconfig.errata | 2 +-
- arch/riscv/Kconfig.socs   | 9 +++++++++
- 2 files changed, 10 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/riscv/andes.yaml      | 25 +++++++++++++++++++
+ MAINTAINERS                                   |  5 ++++
+ 2 files changed, 30 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/riscv/andes.yaml
 
-diff --git a/arch/riscv/Kconfig.errata b/arch/riscv/Kconfig.errata
-index e318119d570d..be76883704a6 100644
---- a/arch/riscv/Kconfig.errata
-+++ b/arch/riscv/Kconfig.errata
-@@ -12,7 +12,7 @@ config ERRATA_ANDES
- 
- config ERRATA_ANDES_CMO
- 	bool "Apply Andes cache management errata"
--	depends on ERRATA_ANDES && ARCH_R9A07G043
-+	depends on ERRATA_ANDES && (ARCH_R9A07G043 || ARCH_ANDES)
- 	select RISCV_DMA_NONCOHERENT
- 	default y
- 	help
-diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-index a9c3d2f6debc..1bf5637f2601 100644
---- a/arch/riscv/Kconfig.socs
-+++ b/arch/riscv/Kconfig.socs
-@@ -1,5 +1,14 @@
- menu "SoC selection"
- 
-+config ARCH_ANDES
-+	bool "Andes SoCs"
-+	depends on MMU && !XIP_KERNEL
-+	select ERRATA_ANDES
-+	select ERRATA_ANDES_CMO
-+	select AX45MP_L2_CACHE
-+	help
-+	  This enables support for Andes SoC platform hardware.
+diff --git a/Documentation/devicetree/bindings/riscv/andes.yaml b/Documentation/devicetree/bindings/riscv/andes.yaml
+new file mode 100644
+index 000000000000..aa1edf1fdec7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/riscv/andes.yaml
+@@ -0,0 +1,25 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/riscv/andes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- config ARCH_MICROCHIP_POLARFIRE
- 	def_bool ARCH_MICROCHIP
- 
--- 
-2.34.1
++title: Andes SoC-based boards
++
++maintainers:
++  - Ben Zong-You Xie <ben717@andestech.com>
++
++description:
++  Andes SoC-based boards
++
++properties:
++  $nodename:
++    const: '/'
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - andestech,voyager
++          - const: andestech,qilai
++
++additionalProperties: true
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 96b827049501..a0ccac1cca29 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20725,6 +20725,11 @@ F:	drivers/irqchip/irq-riscv-intc.c
+ F:	include/linux/irqchip/riscv-aplic.h
+ F:	include/linux/irqchip/riscv-imsic.h
 
++RISC-V ANDES SoC Support
++M:	Ben Zong-You Xie <ben717@andestech.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/riscv/andes.yaml
++
+ RISC-V ARCHITECTURE
+ M:	Paul Walmsley <paul.walmsley@sifive.com>
+ M:	Palmer Dabbelt <palmer@dabbelt.com>
+--
+2.34.1
 
