@@ -1,200 +1,167 @@
-Return-Path: <devicetree+bounces-177225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35DCBAB6B81
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 14:36:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4CF9AB6B8B
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 14:38:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E2434A1384
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:36:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 917964A382F
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:38:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB92C275855;
-	Wed, 14 May 2025 12:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55BF72777ED;
+	Wed, 14 May 2025 12:38:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZAGp3nc+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b1h+8wh4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F2D1F582C;
-	Wed, 14 May 2025 12:36:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 282CB277038;
+	Wed, 14 May 2025 12:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747226192; cv=none; b=ri4rRuMTRZoqPcCo1sa1qZ4zEQB83HocAmLb0DyMn50Hs5RJghxc7l0ujqEgzmvANqdfbdyClLRwmxrNOjwlu7VOqrvJtSVW/wjb9NyWvuZ/uVwo6vfV5DR1ycFbzlCNiRCw12rZl/M9sXJdQDfr0FLTPFU5dKhqRL5YnWzdtrg=
+	t=1747226318; cv=none; b=MxJeaaLrtoCoDkgDhH+HvaEMGCvDPhWg/IKGfEcmXMGN/qbpA04c0EgNoi8kUIMfKNY7m1Rau8K1HdyzvAV23d5j7kfPCJ/e1yqgo+dnRFX7zJWoOO6Fdu9iG/WSx3gfH3rX7PPMfwrdoW7uhQAu1BFGuSl09S1Xooi684M3ZPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747226192; c=relaxed/simple;
-	bh=wvsdiJsKD6QmRj9PJvvy8ci556EOSrI0fkrAAdKIOKw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=PngAyhmSt34RGlSZh6rsNjfp/poD9tcT35dCYu95c8zV9bB5P82uPm1igENfNfAM0cuKxs5gOC7CO4bs0QSOyGI01ymJm0MqiWv6mnqkLkcPkPQwwNA1iewrxNRr+2RobKuKtFS3UaKcnwHk8lJeLit4DH5Q2fX69x09VdomVGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZAGp3nc+; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1747226188;
-	bh=wvsdiJsKD6QmRj9PJvvy8ci556EOSrI0fkrAAdKIOKw=;
-	h=From:Date:Subject:To:Cc:From;
-	b=ZAGp3nc+C+oM1pLvBZf1p1hJ50zvG+FWZ2DUD1ve3bBQIqFDmdBdNPaimrjLxr+XA
-	 FoIb2Nfubsbu35iLBy2PMx7JNFL0dxqI5boaMh5GUCoS5lHlPLnnZOWWKnIMK5jdML
-	 b/Nsrf/V1a+DJhA0QzVJ2XJYIerYfHPiQTQJVdSg8Vx9sdMwb0scKCIzUlLJQQVRxx
-	 f9OYr9Vb5q2Oppo8JhTMpwGJVkYEFJ1rcdkfmIRRHHTjWfV3e6Y1TOLMTVdF9hU5PO
-	 Ynt2WZmumt8xQrEk1hVLyCARePli78UyZDa8TnErutCk7x7OlgZLORL1vmM0rDl3ND
-	 ZdR5Lxa819lJA==
-Received: from [192.168.1.63] (unknown [70.107.117.78])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0B10217E090E;
-	Wed, 14 May 2025 14:36:24 +0200 (CEST)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Wed, 14 May 2025 08:36:06 -0400
-Subject: [PATCH] regulator: dt-bindings: mt6357: Drop fixed compatible
- requirement
+	s=arc-20240116; t=1747226318; c=relaxed/simple;
+	bh=ZRAbtDLU7nP6o3LdOmMc3nAAyiNgbM8NKuOVKfOJ8W8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ji46UF2tUg3bgIm2v0d5PmIRnX8z15bP4VVBeJ7dvlH/UQSt/vx/2YhIm6FhPFPyDswO3P6CRU9NxWIWJTwKGO5E4xHQlNTL3R853A7k6MGQLvhqt1iQN8lEyDPcPAqknb9VuSUlrzIEGX0CLcE8NDON+LIO6nTJrYwFrgsMtVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b1h+8wh4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E945C4CEE9;
+	Wed, 14 May 2025 12:38:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747226317;
+	bh=ZRAbtDLU7nP6o3LdOmMc3nAAyiNgbM8NKuOVKfOJ8W8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b1h+8wh4M9WYHlvQBBJt8UhjWW7n06dcTRpU2HcbXxZEwu9RwNhTKVPC+yneJNMZB
+	 x3ZjUS+ohxAGqbDVY3NbF/kh9sr/2xDsubiKpuNayqz6l20/BnBiIxw+eyB7K0yohf
+	 BtMf3re71j5ozdb66cSmRypL8rn4FvcMbLJRv6vLZqO2BD4lIe3MAbvavBmqQ/5nyL
+	 VfiavAY79QjbnoEzqpIxCcJI1KS/54rXt3Ze7KeZcTSmC5emLahMzJp4C1Ok28JZHu
+	 wuWOAN2cqHoz1SYrTYFS5/BLqqhx+gHCZVuOA2DiOzEPNDaUbwwudf5onaHfoExTNe
+	 yTPDuje/sgJ8A==
+Date: Wed, 14 May 2025 07:38:35 -0500
+From: Rob Herring <robh@kernel.org>
+To: Markus Burri <markus.burri@mt.com>
+Cc: linux-kernel@vger.kernel.org,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manuel Traut <manuel.traut@mt.com>, Marek Vasut <marex@denx.de>,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	Markus Burri <markus.burri@bbv.ch>
+Subject: Re: [PATCH v3 6/7] dt-bindings: rtc-rv8803: add tamper detection
+ property node
+Message-ID: <20250514123835.GA1729201-robh@kernel.org>
+References: <20250513161922.4064-1-markus.burri@mt.com>
+ <20250513161922.4064-7-markus.burri@mt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250514-mt6357-regulator-fixed-compatibles-removal-bindings-v1-1-2421e9cc6cc7@collabora.com>
-X-B4-Tracking: v=1; b=H4sIADWOJGgC/xWNywqDMBBFf0Vm3QGjRkt/pbiIZkwH8pBJKgXx3
- xuXh8u554RMwpTh1ZwgdHDmFCuoRwPrx0RHyLYydG2nW616DGXs9YRC7utNSYIb/8jimsJuCi+
- ect1COozHhaPl6DJqGtVmBtLPYYL6vAvd1l19z9f1B4DEtDqFAAAA
-X-Change-ID: 20250513-mt6357-regulator-fixed-compatibles-removal-bindings-5e61fa4e5847
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chen Zhong <chen.zhong@mediatek.com>, 
- Fabien Parent <fabien.parent@linaro.org>, 
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250513161922.4064-7-markus.burri@mt.com>
 
-Some of the regulators on the MT6357 PMIC currently reference the
-fixed-regulator dt-binding, which enforces the presence of a
-regulator-fixed compatible. However since all regulators on the MT6357
-PMIC are handled by a single mt6357-regulator driver, probed through
-MFD, the compatibles don't serve any purpose. In fact they cause
-failures in the DT kselftest since they aren't probed by the fixed
-regulator driver as would be expected. Furthermore this is the only
-dt-binding in this family like this: mt6359-regulator and
-mt6358-regulator don't require those compatibles.
+On Tue, May 13, 2025 at 06:19:21PM +0200, Markus Burri wrote:
+> Document tamper detection property for epson,rx8901 rtc chip.
 
-Commit d77e89b7b03f ("arm64: dts: mediatek: mt6357: Drop regulator-fixed
-compatibles") removed the compatibles from Devicetree, but missed
-updating the binding, which still requires them, introducing dt-binding
-errors. Remove the compatible requirement by referencing the plain
-regulator dt-binding instead to fix the dt-binding errors.
+Looks like a lot more than 1 property. Explain the feature and why it is 
+needed. What the change is is obvious reading the diff.
 
-Fixes: d77e89b7b03f ("arm64: dts: mediatek: mt6357: Drop regulator-fixed compatibles")
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
- .../bindings/regulator/mediatek,mt6357-regulator.yaml        | 12 +-----------
- 1 file changed, 1 insertion(+), 11 deletions(-)
+> 
+> Signed-off-by: Markus Burri <markus.burri@mt.com>
+> ---
+>  .../devicetree/bindings/rtc/epson,rx8900.yaml | 40 +++++++++++++++++--
+>  1 file changed, 37 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml b/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml
+> index 03af81754482..c2e542c9bdc6 100644
+> --- a/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml
+> @@ -9,9 +9,6 @@ title: EPSON RX8900 / Microcrystal RV8803 Real-Time Clock
+>  maintainers:
+>    - Marek Vasut <marex@denx.de>
+>  
+> -allOf:
+> -  - $ref: rtc.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -33,6 +30,43 @@ properties:
+>  
+>    wakeup-source: true
+>  
+> +  tamper:
+> +    description: Subnode for tamper configuration. This
+> +      subnode is only available for epson,rx8901.
 
-diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml
-index 6327bb2f6ee080a178ff3e982768c5eb0595e771..698266c09e25359a516d969a0487cc94444b842d 100644
---- a/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml
-@@ -33,7 +33,7 @@ patternProperties:
- 
-   "^ldo-v(camio18|aud28|aux18|io18|io28|rf12|rf18|cn18|cn28|fe28)$":
-     type: object
--    $ref: fixed-regulator.yaml#
-+    $ref: regulator.yaml#
-     unevaluatedProperties: false
-     description:
-       Properties for single fixed LDO regulator.
-@@ -112,7 +112,6 @@ examples:
-           regulator-enable-ramp-delay = <220>;
-         };
-         mt6357_vfe28_reg: ldo-vfe28 {
--          compatible = "regulator-fixed";
-           regulator-name = "vfe28";
-           regulator-min-microvolt = <2800000>;
-           regulator-max-microvolt = <2800000>;
-@@ -125,14 +124,12 @@ examples:
-           regulator-enable-ramp-delay = <110>;
-         };
-         mt6357_vrf18_reg: ldo-vrf18 {
--          compatible = "regulator-fixed";
-           regulator-name = "vrf18";
-           regulator-min-microvolt = <1800000>;
-           regulator-max-microvolt = <1800000>;
-           regulator-enable-ramp-delay = <110>;
-         };
-         mt6357_vrf12_reg: ldo-vrf12 {
--          compatible = "regulator-fixed";
-           regulator-name = "vrf12";
-           regulator-min-microvolt = <1200000>;
-           regulator-max-microvolt = <1200000>;
-@@ -157,14 +154,12 @@ examples:
-           regulator-enable-ramp-delay = <264>;
-         };
-         mt6357_vcn28_reg: ldo-vcn28 {
--          compatible = "regulator-fixed";
-           regulator-name = "vcn28";
-           regulator-min-microvolt = <2800000>;
-           regulator-max-microvolt = <2800000>;
-           regulator-enable-ramp-delay = <264>;
-         };
-         mt6357_vcn18_reg: ldo-vcn18 {
--          compatible = "regulator-fixed";
-           regulator-name = "vcn18";
-           regulator-min-microvolt = <1800000>;
-           regulator-max-microvolt = <1800000>;
-@@ -183,7 +178,6 @@ examples:
-           regulator-enable-ramp-delay = <264>;
-         };
-         mt6357_vcamio_reg: ldo-vcamio18 {
--          compatible = "regulator-fixed";
-           regulator-name = "vcamio";
-           regulator-min-microvolt = <1800000>;
-           regulator-max-microvolt = <1800000>;
-@@ -212,28 +206,24 @@ examples:
-           regulator-always-on;
-         };
-         mt6357_vaux18_reg: ldo-vaux18 {
--          compatible = "regulator-fixed";
-           regulator-name = "vaux18";
-           regulator-min-microvolt = <1800000>;
-           regulator-max-microvolt = <1800000>;
-           regulator-enable-ramp-delay = <264>;
-         };
-         mt6357_vaud28_reg: ldo-vaud28 {
--          compatible = "regulator-fixed";
-           regulator-name = "vaud28";
-           regulator-min-microvolt = <2800000>;
-           regulator-max-microvolt = <2800000>;
-           regulator-enable-ramp-delay = <264>;
-         };
-         mt6357_vio28_reg: ldo-vio28 {
--          compatible = "regulator-fixed";
-           regulator-name = "vio28";
-           regulator-min-microvolt = <2800000>;
-           regulator-max-microvolt = <2800000>;
-           regulator-enable-ramp-delay = <264>;
-         };
-         mt6357_vio18_reg: ldo-vio18 {
--          compatible = "regulator-fixed";
-           regulator-name = "vio18";
-           regulator-min-microvolt = <1800000>;
-           regulator-max-microvolt = <1800000>;
+Wrap at 80 char.
 
----
-base-commit: edef457004774e598fc4c1b7d1d4f0bcd9d0bb30
-change-id: 20250513-mt6357-regulator-fixed-compatibles-removal-bindings-5e61fa4e5847
+> +    type: object
+> +    additionalProperties: false
 
-Best regards,
--- 
-Nícolas F. R. A. Prado <nfraprado@collabora.com>
+blank line
 
+> +    properties:
+> +      buffer-mode:
+> +        description: Set the buffer mode to inhibit (0) or overwrite (1).
+> +        minimum: 0
+> +        maximum: 1
+
+Could be boolean?
+
+blank line
+
+> +    patternProperties:
+> +      "^evin-[0-3]$":
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        minItems: 3
+> +        maxItems: 3
+> +        description: |
+> +          Event input pin configuration.
+> +          The configuration is an array of tree values and contains
+> +          "pull-resistore", "trigger" and "filter".
+
+pull-resistor
+
+> +          For a detaild description, see epson-rx8901 datasheet.
+
+detailed
+
+blank line between paragraphs.
+
+> +
+> +allOf:
+> +  - $ref: rtc.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - epson,rx8901
+> +    then:
+> +      properties:
+> +        tamper: true
+
+Don't need this. It is allowed by default. Invert the if.
+
+> +    else:
+> +      # property is not allowed:
+
+Drop comment
+
+> +      properties:
+> +        tamper: false
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.39.5
+> 
 
