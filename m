@@ -1,153 +1,132 @@
-Return-Path: <devicetree+bounces-177333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BC4DAB706B
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:53:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32B0EAB702B
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:43:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBCCB17A09D
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:53:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B22B1BA41D1
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C71627F182;
-	Wed, 14 May 2025 15:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 616EC221721;
+	Wed, 14 May 2025 15:42:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NDYxrNeQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zo1ZHMXs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFD627CCC7;
-	Wed, 14 May 2025 15:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C4E17C21E;
+	Wed, 14 May 2025 15:42:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747237984; cv=none; b=YLlgZNz+I6VA/L/qq6ER49fJZlPzlBEm/UFwjDPk1aqq+yO0JEkzhgw+QXxPCpeLB+MoOwjagyiHj6gTzE+i1RCHgs1ReX2GQWT4xNGjh6XJl/kWYnH+3m2b5gho1ryuZz+wd5Z9hxrZtDx5eRuGVm9yb8vcsLaFrsE41axxes0=
+	t=1747237370; cv=none; b=GBvRYeqE5RoKj0Cc9Cjtws6X3y6K8QJIR+iItA62R6u/sClSWeerfYpu/sUDhdqcHdLum7jZTEtmgI6EprQukDgFFbzmNxIbbjv6/L7BolOMb/4Dmrgz/A5Lwaeexcd3eNfV18VN7nK2I8188Wi2ZsP5DTbNxr1alYcoJFKElU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747237984; c=relaxed/simple;
-	bh=N6fkCiwtMq7cQFfPuTVHOCQOjaRR0eDS9lPzo9y3LvA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aEq/l5h1n6srf6sTsEBqrV2flD2C0p3IXEnSU4ELgqnptrP1N8Bi9K3MlszGRSMgMyxeo+P5V9oVx1XNJL/Lycx3pmF4xY2iwrERed7j0HbPxS/MdEB+3wU6rBMEM9jwy5B8tVHEjClsiheBS+7JGUT36RbqnCD69MTEqaZ8nGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NDYxrNeQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9B4C0C2BCF4;
-	Wed, 14 May 2025 15:53:03 +0000 (UTC)
+	s=arc-20240116; t=1747237370; c=relaxed/simple;
+	bh=8Q3GS/cE2O7eBZLJtN9ohT0WUIQHA1/8U9DTHoGBJJc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VfySq7Qheib5LTwwET/q5fK4Pa/VRCGP9jWpQuE+nqh5AbJKpy9eSxCeS6ZsBFpf0dfZp3KHRXy1o3VS4xDSBeUQO6lfUX4qJ2Yvwsc3wmh3r6rcQnFzNAKmlr7VODHavBddFrZDRKWzl+XiD0SeTnpu6n5J0U/nCQOhyAnbdp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zo1ZHMXs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCA13C4CEE9;
+	Wed, 14 May 2025 15:42:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747237983;
-	bh=N6fkCiwtMq7cQFfPuTVHOCQOjaRR0eDS9lPzo9y3LvA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=NDYxrNeQd+PQJJ10SCmzIJW3TVZqfkEWJxxWjuUkzZuzWq3qy/ixbll1SbHZLJpq5
-	 APYrEh1ZyU8OzExZWK9prEG49wV2+/rO2N9e/AGJYobUyEPaBjwCAvV163bonvk2O0
-	 DufTZ5j0jgJPSi0ZrsSm6SUiC10kqD2EFM6gkNaAJkOliKuwfeYCFOjBdkiCl2ZE5D
-	 5J2jsGeyIsv+PJ/V+WMVQLDhQFD21n3JPWh86fWZZKQlfeZU2S/mXfy/IJTxkqV9eo
-	 tqmez9aNHF4eKKqaVvK4xBCOsRPf/k4QEZcQbvsBcCx3meGXhR4EXU5WJe/4zaaSsZ
-	 /ZU57RtKBTpqg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E0ACC54755;
-	Wed, 14 May 2025 15:53:03 +0000 (UTC)
-From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
-Date: Wed, 14 May 2025 17:41:15 +0200
-Subject: [PATCH v7 14/14] arm64: dts: rockchip: enable vicap dvp on
- wolfvision pf5 io expander
+	s=k20201202; t=1747237370;
+	bh=8Q3GS/cE2O7eBZLJtN9ohT0WUIQHA1/8U9DTHoGBJJc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zo1ZHMXsl/mnIRjo1/GoEKeVZnQbzs/Px88YCiU+xh4ZOfyIlr6SuUJoep8Uig7EW
+	 foBSaYrx5t5xYbveMW33lIB66H3d98EnZz+R/Ut7GgNwV8EJM5irr0/6JVfs4f1Rv2
+	 9Yg6t56nf8s6vt4SfTY6lR4uR0P0DpUQAJod5KH/03denAqUOPGlUTfzZH4ssiTeI0
+	 Asveuu4/hSeuyeYG6F6mejeeYzjB/BgdjQnmeVqS1NXZggxYW5v9VgxuOFjbjiUCzP
+	 4DBy1HEHwgav8vB+n1tr6QTw1v9aZrLfNSx7JnUSNiK7qLJRoq/FI8aj3cRKJARNR1
+	 qrFdasRN+QBDA==
+Date: Wed, 14 May 2025 10:42:48 -0500
+From: Rob Herring <robh@kernel.org>
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, x86@kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org,
+	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
+	Ricardo Neri <ricardo.neri@intel.com>
+Subject: Re: [PATCH v3 06/13] dt-bindings: reserved-memory: Wakeup Mailbox
+ for Intel processors
+Message-ID: <20250514154248.GA2375202-robh@kernel.org>
+References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
+ <20250503191515.24041-7-ricardo.neri-calderon@linux.intel.com>
+ <20250504-original-leopard-of-vigor-5702ef@kuoka>
+ <20250506051610.GC25533@ranerica-svr.sc.intel.com>
+ <20250506-pompous-meaty-crane-97efce@kuoka>
+ <20250507032339.GA27243@ranerica-svr.sc.intel.com>
+ <20250512153224.GA3377771-robh@kernel.org>
+ <20250513221456.GA2794@ranerica-svr.sc.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240220-rk3568-vicap-v7-14-7581fd96a33a@collabora.com>
-References: <20240220-rk3568-vicap-v7-0-7581fd96a33a@collabora.com>
-In-Reply-To: <20240220-rk3568-vicap-v7-0-7581fd96a33a@collabora.com>
-To: Mehdi Djait <mehdi.djait@linux.intel.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Gerald Loacker <gerald.loacker@wolfvision.net>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Markus Elfring <Markus.Elfring@web.de>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Collabora Kernel Team <kernel@collabora.com>, 
- Paul Kocialkowski <paulk@sys-base.io>, 
- Alexander Shiyan <eagle.alexander923@gmail.com>, 
- Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, 
- Michael Riesch <michael.riesch@wolfvision.net>, 
- Michael Riesch <michael.riesch@collabora.com>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747237265; l=1541;
- i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
- bh=A46w67oMbroxqAcXCMQ9mjlreHO/teIN06ITNLENh64=;
- b=rHlRlv7WVUb+EsRcrImyjmJ8M57AwpV3gcaGXLTszDDggm0UGb8f63kbLyvTPDoUoj0Hm3BTl
- 7B46p2AwCsmDTuEgFU/rN2z5z+d3BqfyxnmPc49B4hG2jMyG7r2b5e+
-X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
- pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
-X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
- with auth_id=371
-X-Original-From: Michael Riesch <michael.riesch@collabora.com>
-Reply-To: michael.riesch@collabora.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250513221456.GA2794@ranerica-svr.sc.intel.com>
 
-From: Michael Riesch <michael.riesch@wolfvision.net>
+On Tue, May 13, 2025 at 03:14:56PM -0700, Ricardo Neri wrote:
+> On Mon, May 12, 2025 at 10:32:24AM -0500, Rob Herring wrote:
+> > On Tue, May 06, 2025 at 08:23:39PM -0700, Ricardo Neri wrote:
+> > > On Tue, May 06, 2025 at 09:10:22AM +0200, Krzysztof Kozlowski wrote:
+> > > > On Mon, May 05, 2025 at 10:16:10PM GMT, Ricardo Neri wrote:
+> > > > > > If this is a device, then compatibles specific to devices. You do not
+> > > > > > get different rules than all other bindings... or this does not have to
+> > > > > > be binding at all. Why standard reserved-memory does not work for here?
+> > > > > > 
+> > > > > > Why do you need compatible in the first place?
+> > > > > 
+> > > > > Are you suggesting something like this?
+> > > > > 
+> > > > > reserved-memory {
+> > > > > 	# address-cells = <2>;
+> > > > > 	# size-cells = <1>;
+> > > > > 
+> > > > > 	wakeup_mailbox: wakeupmb@fff000 {
+> > > > > 		reg = < 0x0 0xfff000 0x1000>
+> > > > > 	}
+> > > > > 
+> > > > > and then reference to the reserved memory using the wakeup_mailbox
+> > > > > phandle?
+> > > > 
+> > > > Yes just like every other, typical reserved memory block.
+> > > 
+> > > Thanks! I will take this approach and drop this patch.
+> > 
+> > If there is nothing else to this other than the reserved region, then 
+> > don't do this. Keep it like you had. There's no need for 2 nodes.
+> 
+> Thank you for your feedback!
+> 
+> I was planning to use one reserved-memory node and inside of it a child
+> node to with a `reg` property to specify the location and size of the
+> mailbox. I would reference to that subnode from the kernel code.
+> 
+> IIUC, the reserved-memory node is only the container and the actual memory
+> regions are expressed as child nodes.
+> 
+> I had it like that before, but with a `compatible` property that I did not
+> need.
+> 
+> Am I missing anything?
 
-The Digital Video Port (DVP, the 16-bit variant) of the RK3568 VICAP
-is broken out to the PF5 mainboard expansion header.
-Enable it in the device tree overlay for the WolfVision PF5 IO
-Expander board.
+Without a compatible, how do you identify which reserved region is the 
+wakeup mailbox? Before you say node name, those are supposed to be 
+generic though we failed to enforce anything for /reserved-memory child 
+nodes.
 
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
----
- .../rockchip/rk3568-wolfvision-pf5-io-expander.dtso  | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
-index 048933de2943..8cfce71dd318 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
-@@ -11,6 +11,7 @@
- #include <dt-bindings/clock/rk3568-cru.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/media/video-interfaces.h>
- #include <dt-bindings/pinctrl/rockchip.h>
- 
- &{/} {
-@@ -134,3 +135,22 @@ &usb2phy0_host {
- 	phy-supply = <&usb_host_vbus>;
- 	status = "okay";
- };
-+
-+&vicap {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cif_clk &cif_dvp_clk &cif_dvp_bus16>;
-+	status = "okay";
-+};
-+
-+&vicap_dvp {
-+	vicap_dvp_input: endpoint {
-+		bus-type = <MEDIA_BUS_TYPE_BT656>;
-+		bus-width = <16>;
-+		pclk-sample = <MEDIA_PCLK_SAMPLE_DUAL_EDGE>;
-+		rockchip,dvp-clk-delay = <10>;
-+	};
-+};
-+
-+&vicap_mmu {
-+	status = "okay";
-+};
-
--- 
-2.39.5
-
-
+Rob
 
