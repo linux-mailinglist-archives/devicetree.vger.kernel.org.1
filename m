@@ -1,121 +1,203 @@
-Return-Path: <devicetree+bounces-177169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74616AB6916
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:44:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 579CBAB6939
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 12:52:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 354D23B6EDC
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:44:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18F8A86135A
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 10:51:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C14272E68;
-	Wed, 14 May 2025 10:43:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6106270ECD;
+	Wed, 14 May 2025 10:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ee+kKI1V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mjJ4jl/X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DE822A1E5
-	for <devicetree@vger.kernel.org>; Wed, 14 May 2025 10:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A31B346426;
+	Wed, 14 May 2025 10:51:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747219412; cv=none; b=NbIdxOdl7JFeVZtq1DNyXmd9z9f4gDLGxS7SGNZrZgPfwSFTNct+X92Dsnh1EezHvbxW77QonsiS4ge1GRTtnks8hAiA1lvPMl8ZtkAFRv7VfH/pQmK5tOLlEKv4jrnHul3372UbMA77iypSUSLbaU1K7SaSnvazOP2inPuLpPA=
+	t=1747219905; cv=none; b=XXGiGAldaRUj0DwkCzyx6BC6sY8epqBID+G5gn2M1OT6UWdCDh1yq7nApWbirH0ycNweKFAPe3P5f8OkZS22PmhnEShvKcUBaTZ9gJzL3UPIXlCYRD4ULYSltLwdjECzJCH/qUTTZRNeCZ2l6/G6jt472w9bIHiYlYaus+g0v+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747219412; c=relaxed/simple;
-	bh=icczPrIZYGv2B6Fk9mhsXabLOVp132e36d3tOVpTinM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pN2VKXPvBiX7GOR9tfJRnH4s5ZmWEcweFAAd/X7w6jdJ4/j+1L5QlZHuSDIXfic2rhsZmrjbe4zUIJegUx4ASF9eyqcjWxzo7WPAzufO0QluVfMKCKBz/hbajwAGCZy60t1qJuqAu83qtJP0XuC5Xv2fX+qaGo7XnBD05l1Ai80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ee+kKI1V; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-442ccf0e1b3so76421095e9.3
-        for <devicetree@vger.kernel.org>; Wed, 14 May 2025 03:43:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747219408; x=1747824208; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0KB+309i4RxjvcykFikT0JnK/+6UeZWOdqeF0dxsBa8=;
-        b=Ee+kKI1V8Ie7cwPlwgEgEXL8958RQNtMbuyDHfqDse4KK6A5TNQEdv9YRspPThzwbo
-         2wyt+ExFSSHFlp26WXuB0daF/T5Td9Yat50Ut799M3HY0h4FblDxfDW/RAzbqZgF+59o
-         uvWhYocUNrif9iGnUKlcYPHqkYfXLqmNQ8axGx+nRYUABgP4j2kLdD1bdbVdJELzM1cq
-         lMKvbcPvLWzFGMyrf5pEV+HmpIoXhwJktNBSHmzyBxUoUX79D7vFJjc47VN2tfy6D6sM
-         GTT/lJoUlvMbNPwMB2+F3jy4eXkNWxJisFLhyXOBYd37pEXHqwbYjsjUSUWyQM8DO45B
-         zH4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747219408; x=1747824208;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0KB+309i4RxjvcykFikT0JnK/+6UeZWOdqeF0dxsBa8=;
-        b=Jh+Jilr3z1BprssacM1FUJsm5/n7M0rT/XtHXgFrzydVBlVx8mQRLrUJ9jp+wnCN/b
-         ZSzea5DajKABLGQnBDk2otvKXyJlCav9/gehKe+9AlWv0B+WvTbfc7jrDHXXQ5a8qiWI
-         0s4osLQ2tmckgxR2CsI1+gbL4JLlmm2tXePKPNjXRnoswbgU6PRdESNBLMcgvAvGpuot
-         AcXTmdPoM/AqA92uD2a6YlHvS2jIULe0I9nr6CajOVfUum5xz06vLGI9G9U9sXPgOMcv
-         tpfZo9nsDwMMbD5tdH/ub4QxQBH5HwkrQInQjiwQ4rWBoY4rmcp3A4eQhLLAr9d+2ts0
-         0diA==
-X-Forwarded-Encrypted: i=1; AJvYcCUHl4/MkotsCyZLa7peF248N8Gw3qF4w/DDTcXyxsuxl4T85MoTdR4y2LzOFF8tPYgrVTql10C4dLaB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3qa7AW48AeYLNozBQAF8lD+LbSWGYzY0kB3ZtaiN2H5c0kaAn
-	bRxTJFZEWWWS4mjRckdlJtnkTzNQ/MgLiC55X9zqmi5i6qtcR7izYiq2W0CyGSY=
-X-Gm-Gg: ASbGncsSFVmzxBKuH1D+gFB+Q7d8jJG59jkee3+5RlGui8/ygNCaLM1m51rLV3iIen9
-	aGo/x80T9OVVKfVkCFF3yXCy+JNZAidlAQ7DFsUcftE1/byWgStrLOZ+6U16VxEKco9+Iss6ZjY
-	Ld44xvTjYNbDxxwTtCsSQTJs43w8xryu85u764dfjRgiXN7qvYmNW7GvpQC+HA8C92U6CKidW99
-	q9gAg57/u8M/AKDb8PxU0F7Bv2fahh8d8a9dtauK7uubVsPsIiYszt8g1LsFiWhORCCMdla0xZZ
-	d89+P9g3vkagBdbIk/MElBMpwIEfN5TUH/igksXPjGssVKRcymR+YCUmE2tye5eXFuYkWp0oeet
-	2A9MnR6jcaOsuOPYbRaVrZw9P
-X-Google-Smtp-Source: AGHT+IGDzh2lHF9+tgixSkp4osRxuBf88vHe1okOKr+0ee4IX09GyQKbdwfBSUBsbvD4311dkhuxWg==
-X-Received: by 2002:a05:600c:1553:b0:43d:45a:8fbb with SMTP id 5b1f17b1804b1-442f2168bd3mr17922085e9.22.1747219408117;
-        Wed, 14 May 2025 03:43:28 -0700 (PDT)
-Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442f397b6fbsm24822375e9.39.2025.05.14.03.43.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 May 2025 03:43:27 -0700 (PDT)
-Date: Wed, 14 May 2025 12:43:25 +0200
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: George Moussalem <george.moussalem@outlook.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, rafael@kernel.org, amitk@kernel.org,
-	thara.gopinath@gmail.com, dmitry.baryshkov@linaro.org,
-	robh@kernel.org, krzk+dt@kernel.org, quic_srichara@quicinc.com
-Subject: Re: [PATCH v9 0/6] Add support for IPQ5018 tsens
-Message-ID: <aCRzzXkd_qWuN3Fo@mai.linaro.org>
-References: <20250228051521.138214-1-george.moussalem@outlook.com>
- <DS7PR19MB88836DC6965515E12D70BB2C9DCC2@DS7PR19MB8883.namprd19.prod.outlook.com>
+	s=arc-20240116; t=1747219905; c=relaxed/simple;
+	bh=PrGh9SpMA5/9+J5Zgu002byi2m9ghtEE/SkkLqqxAos=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=guwmgXmBQkIeNZSmMcXgANBIV5+uiJDa6XrgjgSjCd244ErNGzUJVDZ3ja9uXPcLc3d4J6gNOIgsH4MElWZzi9TeCZuYVWzm0bPxAjuwLMHP6OxmEE4+S7q38r3BP3vhbmCbMLgLZJGHLNNtRFt1+q2KYNUTMLwNrJIFKOdOZNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mjJ4jl/X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A083C4CEEB;
+	Wed, 14 May 2025 10:51:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747219905;
+	bh=PrGh9SpMA5/9+J5Zgu002byi2m9ghtEE/SkkLqqxAos=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mjJ4jl/XAE9SvGEQOmGm3+Zk9ABaavs2siKdRbt7xZ/ijhAtIrLYkAnc1GddJGLze
+	 5FztE931bpZ7x+Zw8orsfC3x+lwm4kdUGQZl5hfIjHAPFTQDb26T4GDn3ECIUEwD/I
+	 5P74AcAxx7/ZE/GeFNLWIabsddi5McWO5DASPuwNqt+/SZ98S/v+U+9l+bq9q4YgK4
+	 sQkSIH6D9mwe/xyw0eKOHKZ0ey+dqMphrvTdapMAk1DYTgz2A+tn6yzq1u+Md4oJ94
+	 ieAv4d7d2VvBIioUM8RpeD30sYY3dTER3NEfeaL6uYS4WUu9iRGJVj/aSMEaBGJgnl
+	 48/rGyNEidBWw==
+Message-ID: <67a7343b-fd1e-4276-83b0-baa28d19f207@kernel.org>
+Date: Wed, 14 May 2025 12:51:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DS7PR19MB88836DC6965515E12D70BB2C9DCC2@DS7PR19MB8883.namprd19.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 10/10] ASoC: dt-bindings: mediatek,mt8196-nau8825: add
+ mt8196-nau8825 document
+To: "Darren.Ye" <darren.ye@mediatek.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org
+References: <20250514081125.24475-1-darren.ye@mediatek.com>
+ <20250514081125.24475-11-darren.ye@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250514081125.24475-11-darren.ye@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Feb 28, 2025 at 09:11:33AM +0400, George Moussalem wrote:
-> IPQ5018 has tsens V1.0 IP with 5 sensors, of which 4 are in use,
-> and 1 interrupt. There is no RPM present in the soc to do tsens early
-> enable. Adding support for the same here.
-> 
-> Last patch series sent by Qualcomm dates back to Sep 22, 2023.
-> Since I'm working on OpenWrt support for IPQ5018 based boards (routers)
-> and Sricharan Ramabadhran <quic_srichara@quicinc.com> in below email
-> confirmed this SoC is still active, I'm continuing the efforts to send
-> patches upstream for Linux kernel support.
-> https://lore.kernel.org/all/63dc4054-b1e2-4e7a-94e7-643beb26a6f3@quicinc.com/
+On 14/05/2025 10:11, Darren.Ye wrote:
 
-Applied, patches 2,3,4,5
 
-Thanks!
+A nit, subject: drop second/last, redundant "document". The
+"dt-bindings" prefix is already stating that this is a document.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
--- 
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8196-nau8825-sound
+> +      - mediatek,mt8196-rt5682s-sound
+> +      - mediatek,mt8196-rt5650-sound
+> +
+> +  audio-routing:
+> +    description:
+> +      Valid names could be the input or output widgets of audio components,
+> +      power supplies, MicBias of codec and the software switch.
 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Nothing improved. I asked to drop the property. Why do you need it?
+> +
+> +  mediatek,platform:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: The phandle of MT8188 ASoC platform.
+> +
+> +  mediatek,adsp:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the MT8188 ADSP platform, which is the optional Audio DSP
+> +      hardware that provides additional audio functionalities if present.
+> +      The AFE will link to ADSP when the phandle is provided.
+> +
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+...
+
+> +      codec:
+> +        description: Holds subnode which indicates codec dai.
+> +        type: object
+> +        additionalProperties: false
+> +        properties:
+> +          sound-dai:
+> +            minItems: 1
+> +            maxItems: 2
+> +        required:
+> +          - sound-dai
+> +
+> +      dai-format:
+> +        description: audio format.
+> +        items:
+> +          enum:
+> +            - i2s
+> +            - right_j
+> +            - left_j
+> +            - dsp_a
+> +            - dsp_b
+> +
+> +      mediatek,clk-provider:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description: Indicates dai-link clock master.
+> +        items:
+
+Drop items
+
+> +          enum:
+> +            - cpu
+> +            - codec
+> +
+> +    additionalProperties: false
+> +
+> +    required:
+> +      - link-name
+> +
+> +unevaluatedProperties: false
+
+This goes after required: block.
+
+> +
+> +required:
+> +  - compatible
+> +  - mediatek,platform
+
+
+Best regards,
+Krzysztof
 
