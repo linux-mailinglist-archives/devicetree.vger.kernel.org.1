@@ -1,127 +1,392 @@
-Return-Path: <devicetree+bounces-177286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD70AB6EDE
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:07:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFB61AB6F00
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 17:10:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C6028C406C
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:04:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 744B03AA698
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 15:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A4921C8632;
-	Wed, 14 May 2025 15:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D439A1C4A20;
+	Wed, 14 May 2025 15:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VoaE+ovG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ihpLhnzv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E022E27E7C0;
-	Wed, 14 May 2025 15:03:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A56FC1A23B0;
+	Wed, 14 May 2025 15:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747234996; cv=none; b=gvV1t5BYCXh/UJTyJFHtG+A4tnSha18/Z0lBnQbtceuSk+zcvA/F7gLbXEBG6bEYAyGvMC+VPsZBhvg+9XZZN+AR4qKBs1hOFPBpTYuQ/DZU0gTGy+j933erSzhVR/lDDKlAmTWXgdMwCQ1NCPJbVXzpq9oYDgz73vWYzlos/6k=
+	t=1747235254; cv=none; b=si81tvnA29zgWBRT61W4zLuY/oNnBdZ7v/3TTTrrUdf+fjzr6ZVzsr5FURbvGdSQffjnPXRBW0qTljCPqpP0poEJWVcUMeLLo9qOeKe47hgGG36Q5u5ZYsearLHfy5j2qSnUD2wXZt9wgYUhKhu+V3t4Jzwt1PtXYRPnyMDzJ0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747234996; c=relaxed/simple;
-	bh=m5xFf1VaS/qFqzTFJku5dhlZM/YKpT/P+Ikykc9C8I0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=l7hV1+ZCe/ypLrc1eVuZSEjgAeRbewbZsei48QpMr+LWrNL3Fo9LK1k99dYqpgEqELegT87PJPeLFVWoipHdVrjvp93pr+UKly+cfb0U6ATCbnJPH8U87DRI6gCvK1QBOoZaDj7rjagtvsStjL3uvodCM5Ci4xeZgkyWYzLTLYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VoaE+ovG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EEBCC4CEED;
-	Wed, 14 May 2025 15:03:12 +0000 (UTC)
+	s=arc-20240116; t=1747235254; c=relaxed/simple;
+	bh=hNTh5N5lXn9QrHGBRwJrp+J9t/VSGvHvfw9vMqyzwSU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o7AE8Kouz+MYRWCLcKV3aBuE658vShXMbj8s0PSYEXmYnCToIVxS2MpdieeV9I46i2WT0N+CqPibKSh0usRL4b9ct7T/z+Wh3YzgEIMtAxYmlB2nT4eqDzKSVUx3FUK4ZLoRHN5+fLcGbYvUNDK1L4LzL6j5wPrTmt3IkPqzlTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ihpLhnzv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF009C4CEE9;
+	Wed, 14 May 2025 15:07:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747234995;
-	bh=m5xFf1VaS/qFqzTFJku5dhlZM/YKpT/P+Ikykc9C8I0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=VoaE+ovGzsNijwqfZdX/jEeuQYTcJWGDbvwMZTzRxfWxS7z8d5dsaOSPaDJAbbKor
-	 HO94fV94Om2HGf8M3lRa7io9q2u26fyQMXdt98M4ApaUb5CPNfp3EKCdb5x0XlcGtk
-	 L2QQW01m82XMLzlzKIlhtwW2T+D8TEBzNXs/gbMs90yAB8a1DnCPkDFOZAx3ZKubba
-	 4xrJoor/ORRk7IXm8z80yyWsdqtS0NokgHeEw3JGYDRalut3A/kaB140S/cAWegCWJ
-	 dObCqFVpky1l8gsFkU3NsfsuiMb+GytkWYan7CLZNS7F2P2B2JgnMENT1SK0IFv8p/
-	 63WdZoFWDyNKw==
-From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- Biju Das <biju.das.jz@bp.renesas.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-In-Reply-To: <20250423143422.3747702-1-fabrizio.castro.jz@renesas.com>
-References: <20250423143422.3747702-1-fabrizio.castro.jz@renesas.com>
-Subject: Re: [PATCH v7 0/6] Add DMAC support to the RZ/V2H(P)
-Message-Id: <174723499195.115803.16616657624244333565.b4-ty@kernel.org>
-Date: Wed, 14 May 2025 16:03:11 +0100
+	s=k20201202; t=1747235254;
+	bh=hNTh5N5lXn9QrHGBRwJrp+J9t/VSGvHvfw9vMqyzwSU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ihpLhnzvP6+f8Bnnfrq42RA6TKUceEUVN1+NqW075ucReOVCir+OHBtHNdhZXQO2S
+	 TrNu1qvtGiOLHqus0tNmCuS5N5mFoeyn+Y/9fCiihN9E19te4GTV1eTDfdYlIjGM4t
+	 TaP/dVKEGOZ9sGSGOQ4O475zJ2Jolndn7OlpIbizs09TpuMV1RMlE3ksfQ/JfMdmCN
+	 0mhn6mjJXzlM61jWlb+dENNQSa/yYbEACvn3mDH3ZA4O0/vmwzvpXI6pe7jpnw7A0M
+	 /irE71rouyy/Uh20daZ6AXxxVWXwX5ZUUQ83g+PICn5A5lzCmFsSb4xk3b66yFn6lN
+	 MmshBrDgN8LYA==
+Date: Wed, 14 May 2025 17:07:30 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Chen-Yu Tsai <wens@csie.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
+	Chris Morgan <macroalpha82@gmail.com>, Hironori KIKUCHI <kikuchan98@gmail.com>, 
+	Philippe Simons <simons.philippe@gmail.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v10 10/11] drm: sun4i: de33: mixer: add Display Engine
+ 3.3 (DE33) support
+Message-ID: <nze2olzqtgagrkiws2dt3uptehyvcgw7kai5ceycroaroin7jb@xeoddccn5uqh>
+References: <20250511104042.24249-1-ryan@testtoast.com>
+ <20250511104042.24249-11-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="nuzs5zhgui5fpegk"
+Content-Disposition: inline
+In-Reply-To: <20250511104042.24249-11-ryan@testtoast.com>
 
 
-On Wed, 23 Apr 2025 15:34:16 +0100, Fabrizio Castro wrote:
-> This series adds DMAC support for the Renesas RZ/V2H(P) SoC.
-> 
-> Cheers,
-> Fab
-> 
-> v6->v7:
-> * Final touches to the RZ/V2H specific dt-bindings patch as per
->   Geert's comments.
-> * Collected tags.
-> v5->v6:
-> * Reworked the RZ/V2H specific dt-bindings patch as per Geert's
->   comments.
-> * Collected tags throughout.
-> v4->v5:
-> * Clock patch queued up for v6.15, therefore dropped from this
->   version of the series
-> * Adjusted the dmac cell specification according to Geert's
->   comments
-> * Removed registration of ACK No. throughout
-> * Reworked DMAC driver as per Geert's comments
-> v3->v4:
-> * Fixed an issue with mid_rid/req_no/ack_no initialization
-> v2->v3:
-> * Replaced rzv2h_icu_register_dma_req_ack with
->   rzv2h_icu_register_dma_req_ack() in ICU patch changelog
-> * Added dummy for rzv2h_icu_register_dma_req_ack()
-> * Reworked DMAC driver as per Geert's suggestions.
-> v1->v2:
-> * Improved macros in ICU driver
-> * Shared new macros between ICU driver and DMAC driver
-> * Improved dt-bindings
-> 
-> [...]
+--nuzs5zhgui5fpegk
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v10 10/11] drm: sun4i: de33: mixer: add Display Engine
+ 3.3 (DE33) support
+MIME-Version: 1.0
 
-Applied, thanks!
+On Sun, May 11, 2025 at 10:31:19PM +1200, Ryan Walklin wrote:
+> From: Jernej Skrabec <jernej.skrabec@gmail.com>
+>=20
+> The DE33 is a newer version of the Allwinner Display Engine IP block,
+> found in the H616, H618, H700 and T507 SoCs. DE2 and DE3 are already
+> supported by the mainline driver.
+>=20
+> Notable features (from the H616 datasheet and implemented):
+> - 4096 x 2048 (4K) output support
+>=20
+> Other features (implemented but not in this patchset):
+> - AFBC ARM Frame Buffer Compression support
+> - YUV pipeline support
+>=20
+> The DE2 and DE3 engines have a blender register range within the
+> mixer engine register map, whereas the DE33 separates this out into
+> a separate display group, and adds a top register map.
+>=20
+> The DE33 also appears to remove the global double buffer control
+> register, present in the DE2 and DE3.
+>=20
+> Extend the mixer to support the DE33.
+>=20
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> ---
+> Changelog v4..v5:
+> - Whitespace fixes
+> - Correct strict mode warnings from checkpatch.pl
+>=20
+> Changelog v7..v8:
+> - Add top/disp regmaps to mixer for DE33
+> - Remove YUV-specific code
+> - Remove use of global double buffer
+> - Remove unneeded if/then parentheses and fix an alignment issue as sugge=
+sted by checkpatch.pl
+>=20
+> Changelog v9..v10:
+> - Use names from vendor BSP kernel for register blocks.
+> ---
+>  drivers/gpu/drm/sun4i/sun8i_mixer.c | 82 +++++++++++++++++++++++++----
+>  drivers/gpu/drm/sun4i/sun8i_mixer.h | 22 ++++++--
+>  2 files changed, 90 insertions(+), 14 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.c b/drivers/gpu/drm/sun4i/=
+sun8i_mixer.c
+> index cc4da11e2c10..0d4695132dae 100644
+> --- a/drivers/gpu/drm/sun4i/sun8i_mixer.c
+> +++ b/drivers/gpu/drm/sun4i/sun8i_mixer.c
+> @@ -318,8 +318,9 @@ static void sun8i_mixer_commit(struct sunxi_engine *e=
+ngine,
+>  	regmap_write(bld_regs, SUN8I_MIXER_BLEND_PIPE_CTL(bld_base),
+>  		     pipe_en | SUN8I_MIXER_BLEND_PIPE_CTL_FC_EN(0));
+> =20
+> -	regmap_write(engine->regs, SUN8I_MIXER_GLOBAL_DBUFF,
+> -		     SUN8I_MIXER_GLOBAL_DBUFF_ENABLE);
+> +	if (mixer->cfg->de_type !=3D sun8i_mixer_de33)
+> +		regmap_write(engine->regs, SUN8I_MIXER_GLOBAL_DBUFF,
+> +			     SUN8I_MIXER_GLOBAL_DBUFF_ENABLE);
+>  }
+> =20
+>  static struct drm_plane **sun8i_layers_init(struct drm_device *drm,
+> @@ -368,25 +369,31 @@ static void sun8i_mixer_mode_set(struct sunxi_engin=
+e *engine,
+>  				 const struct drm_display_mode *mode)
+>  {
+>  	struct sun8i_mixer *mixer =3D engine_to_sun8i_mixer(engine);
+> +	struct regmap *bld_regs;
+>  	u32 bld_base, size, val;
+>  	bool interlaced;
+> =20
+>  	bld_base =3D sun8i_blender_base(mixer);
+> +	bld_regs =3D sun8i_blender_regmap(mixer);
+>  	interlaced =3D !!(mode->flags & DRM_MODE_FLAG_INTERLACE);
+>  	size =3D SUN8I_MIXER_SIZE(mode->hdisplay, mode->vdisplay);
+> =20
+>  	DRM_DEBUG_DRIVER("Updating global size W: %u H: %u\n",
+>  			 mode->hdisplay, mode->vdisplay);
+> =20
+> -	regmap_write(engine->regs, SUN8I_MIXER_GLOBAL_SIZE, size);
+> -	regmap_write(engine->regs, SUN8I_MIXER_BLEND_OUTSIZE(bld_base), size);
+> +	if (mixer->cfg->de_type =3D=3D sun8i_mixer_de33)
+> +		regmap_write(mixer->top_regs, SUN50I_MIXER_GLOBAL_SIZE, size);
+> +	else
+> +		regmap_write(mixer->engine.regs, SUN8I_MIXER_GLOBAL_SIZE, size);
+> +
+> +	regmap_write(bld_regs, SUN8I_MIXER_BLEND_OUTSIZE(bld_base), size);
+> =20
+>  	if (interlaced)
+>  		val =3D SUN8I_MIXER_BLEND_OUTCTL_INTERLACED;
+>  	else
+>  		val =3D 0;
+> =20
+> -	regmap_update_bits(engine->regs, SUN8I_MIXER_BLEND_OUTCTL(bld_base),
+> +	regmap_update_bits(bld_regs, SUN8I_MIXER_BLEND_OUTCTL(bld_base),
+>  			   SUN8I_MIXER_BLEND_OUTCTL_INTERLACED, val);
+> =20
+>  	DRM_DEBUG_DRIVER("Switching display mixer interlaced mode %s\n",
+> @@ -400,12 +407,29 @@ static const struct sunxi_engine_ops sun8i_engine_o=
+ps =3D {
+>  };
+> =20
+>  static const struct regmap_config sun8i_mixer_regmap_config =3D {
+> +	.name		=3D "layers",
+>  	.reg_bits	=3D 32,
+>  	.val_bits	=3D 32,
+>  	.reg_stride	=3D 4,
+>  	.max_register	=3D 0xffffc, /* guessed */
+>  };
+> =20
+> +static const struct regmap_config sun8i_top_regmap_config =3D {
+> +	.name		=3D "top",
+> +	.reg_bits	=3D 32,
+> +	.val_bits	=3D 32,
+> +	.reg_stride	=3D 4,
+> +	.max_register	=3D 0x3c,
+> +};
+> +
+> +static const struct regmap_config sun8i_disp_regmap_config =3D {
+> +	.name		=3D "display",
+> +	.reg_bits	=3D 32,
+> +	.val_bits	=3D 32,
+> +	.reg_stride	=3D 4,
+> +	.max_register	=3D 0x20000,
+> +};
+> +
+>  static int sun8i_mixer_of_get_id(struct device_node *node)
+>  {
+>  	struct device_node *ep, *remote;
+> @@ -428,33 +452,45 @@ static int sun8i_mixer_of_get_id(struct device_node=
+ *node)
+> =20
+>  static void sun8i_mixer_init(struct sun8i_mixer *mixer)
+>  {
+> +	struct regmap *top_regs, *disp_regs;
+>  	unsigned int base =3D sun8i_blender_base(mixer);
+>  	int plane_cnt, i;
+> =20
+> +	if (mixer->cfg->de_type =3D=3D sun8i_mixer_de33) {
+> +		top_regs =3D mixer->top_regs;
+> +		disp_regs =3D mixer->disp_regs;
+> +	} else {
+> +		top_regs =3D mixer->engine.regs;
+> +		disp_regs =3D mixer->engine.regs;
+> +	}
+> +
+>  	/* Enable the mixer */
+> -	regmap_write(mixer->engine.regs, SUN8I_MIXER_GLOBAL_CTL,
+> +	regmap_write(top_regs, SUN8I_MIXER_GLOBAL_CTL,
+>  		     SUN8I_MIXER_GLOBAL_CTL_RT_EN);
+> =20
+> +	if (mixer->cfg->de_type =3D=3D sun8i_mixer_de33)
+> +		regmap_write(top_regs, SUN50I_MIXER_GLOBAL_CLK, 1);
+> +
+>  	/* Set background color to black */
+> -	regmap_write(mixer->engine.regs, SUN8I_MIXER_BLEND_BKCOLOR(base),
+> +	regmap_write(disp_regs, SUN8I_MIXER_BLEND_BKCOLOR(base),
+>  		     SUN8I_MIXER_BLEND_COLOR_BLACK);
+> =20
+>  	/*
+>  	 * Set fill color of bottom plane to black. Generally not needed
+>  	 * except when VI plane is at bottom (zpos =3D 0) and enabled.
+>  	 */
+> -	regmap_write(mixer->engine.regs, SUN8I_MIXER_BLEND_PIPE_CTL(base),
+> +	regmap_write(disp_regs, SUN8I_MIXER_BLEND_PIPE_CTL(base),
+>  		     SUN8I_MIXER_BLEND_PIPE_CTL_FC_EN(0));
+> -	regmap_write(mixer->engine.regs, SUN8I_MIXER_BLEND_ATTR_FCOLOR(base, 0),
+> +	regmap_write(disp_regs, SUN8I_MIXER_BLEND_ATTR_FCOLOR(base, 0),
+>  		     SUN8I_MIXER_BLEND_COLOR_BLACK);
+> =20
+>  	plane_cnt =3D mixer->cfg->vi_num + mixer->cfg->ui_num;
+>  	for (i =3D 0; i < plane_cnt; i++)
+> -		regmap_write(mixer->engine.regs,
+> +		regmap_write(disp_regs,
+>  			     SUN8I_MIXER_BLEND_MODE(base, i),
+>  			     SUN8I_MIXER_BLEND_MODE_DEF);
+> =20
+> -	regmap_update_bits(mixer->engine.regs, SUN8I_MIXER_BLEND_PIPE_CTL(base),
+> +	regmap_update_bits(disp_regs, SUN8I_MIXER_BLEND_PIPE_CTL(base),
+>  			   SUN8I_MIXER_BLEND_PIPE_CTL_EN_MSK, 0);
+>  }
+> =20
+> @@ -526,6 +562,30 @@ static int sun8i_mixer_bind(struct device *dev, stru=
+ct device *master,
+>  		return PTR_ERR(mixer->engine.regs);
+>  	}
+> =20
+> +	if (mixer->cfg->de_type =3D=3D sun8i_mixer_de33) {
+> +		regs =3D devm_platform_ioremap_resource_byname(pdev, "top");
+> +		if (IS_ERR(regs))
+> +			return PTR_ERR(regs);
+> +
+> +		mixer->top_regs =3D devm_regmap_init_mmio(dev, regs,
+> +							&sun8i_top_regmap_config);
+> +		if (IS_ERR(mixer->top_regs)) {
+> +			dev_err(dev, "Couldn't create the top regmap\n");
+> +			return PTR_ERR(mixer->top_regs);
+> +		}
+> +
+> +		regs =3D devm_platform_ioremap_resource_byname(pdev, "display");
+> +		if (IS_ERR(regs))
+> +			return PTR_ERR(regs);
+> +
+> +		mixer->disp_regs =3D devm_regmap_init_mmio(dev, regs,
+> +							 &sun8i_disp_regmap_config);
+> +		if (IS_ERR(mixer->disp_regs)) {
+> +			dev_err(dev, "Couldn't create the disp regmap\n");
+> +			return PTR_ERR(mixer->disp_regs);
+> +		}
+> +	}
+> +
+>  	mixer->reset =3D devm_reset_control_get(dev, NULL);
+>  	if (IS_ERR(mixer->reset)) {
+>  		dev_err(dev, "Couldn't get our reset line\n");
+> diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.h b/drivers/gpu/drm/sun4i/=
+sun8i_mixer.h
+> index 43c413052a22..d87d197610e1 100644
+> --- a/drivers/gpu/drm/sun4i/sun8i_mixer.h
+> +++ b/drivers/gpu/drm/sun4i/sun8i_mixer.h
+> @@ -21,6 +21,9 @@
+>  #define SUN8I_MIXER_GLOBAL_DBUFF		0x8
+>  #define SUN8I_MIXER_GLOBAL_SIZE			0xc
+> =20
+> +#define SUN50I_MIXER_GLOBAL_SIZE		0x8
+> +#define SUN50I_MIXER_GLOBAL_CLK			0xc
+> +
+>  #define SUN8I_MIXER_GLOBAL_CTL_RT_EN		BIT(0)
+> =20
+>  #define SUN8I_MIXER_GLOBAL_DBUFF_ENABLE		BIT(0)
+> @@ -151,6 +154,12 @@ enum {
+>  	CCSC_D1_MIXER0_LAYOUT,
+>  };
+> =20
+> +enum sun8i_mixer_type {
+> +	sun8i_mixer_de2,
+> +	sun8i_mixer_de3,
+> +	sun8i_mixer_de33,
+> +};
 
-[1/6] dt-bindings: dma: rz-dmac: Restrict properties for RZ/A1H
-      commit: ec52f10a31dc69c1ded30812bd17335ac23b1c60
-[2/6] dt-bindings: dma: rz-dmac: Document RZ/V2H(P) family of SoCs
-      commit: 22228b933ce2639d67168fd35423c1be196edab0
-[3/6] irqchip/renesas-rzv2h: Add rzv2h_icu_register_dma_req()
-      commit: 9002b75aa8e6f034ffbd1c1ccac46927a1cf0f12
-[4/6] dmaengine: sh: rz-dmac: Allow for multiple DMACs
-      commit: 056a8aac1fce52da9ad0b6488eb074e3846f37c0
-[5/6] dmaengine: sh: rz-dmac: Add RZ/V2H(P) support
-      commit: 7de873201c44bff5b42f2e560098d463843b8a4c
-[6/6] arm64: dts: renesas: r9a09g057: Add DMAC nodes
-      commit: 7d33e0ee5f98b3fc74566fa00d0926bc5deb8174
+enum variants typically have their name in upper-case.
 
-Best regards,
--- 
-~Vinod
+With that fixed,
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
+Maxime
 
+>  /**
+>   * struct sun8i_mixer_cfg - mixer HW configuration
+>   * @vi_num: number of VI channels
+> @@ -171,8 +180,9 @@ struct sun8i_mixer_cfg {
+>  	int		scaler_mask;
+>  	int		ccsc;
+>  	unsigned long	mod_rate;
+> -	unsigned int	is_de3 : 1;
+> +	unsigned int	de_type;
+>  	unsigned int	scanline_yuv;
+> +	unsigned int	map[6];
+>  };
+> =20
+>  struct sun8i_mixer {
+> @@ -184,6 +194,9 @@ struct sun8i_mixer {
+> =20
+>  	struct clk			*bus_clk;
+>  	struct clk			*mod_clk;
+> +
+> +	struct regmap			*top_regs;
+> +	struct regmap			*disp_regs;
+>  };
+> =20
+>  enum {
+> @@ -220,13 +233,16 @@ sun8i_blender_base(struct sun8i_mixer *mixer)
+>  static inline struct regmap *
+>  sun8i_blender_regmap(struct sun8i_mixer *mixer)
+>  {
+> -	return mixer->engine.regs;
+> +	return mixer->cfg->de_type =3D=3D sun8i_mixer_de33 ?
+> +		mixer->disp_regs : mixer->engine.regs;
+>  }
+> =20
+>  static inline u32
+>  sun8i_channel_base(struct sun8i_mixer *mixer, int channel)
+>  {
+> -	if (mixer->cfg->is_de3)
+> +	if (mixer->cfg->de_type =3D=3D sun8i_mixer_de33)
+> +		return mixer->cfg->map[channel] * 0x20000 + DE2_CH_SIZE;
+> +	else if (mixer->cfg->de_type =3D=3D sun8i_mixer_de3)
+>  		return DE3_CH_BASE + channel * DE3_CH_SIZE;
+>  	else
+>  		return DE2_CH_BASE + channel * DE2_CH_SIZE;
+> --=20
+> 2.49.0
+>=20
+
+--nuzs5zhgui5fpegk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaCSxsgAKCRAnX84Zoj2+
+dkRiAYDo7nX2ItTCe0pf3Z1XdARQNaGktkYXB0zUcB6/1NH1ixm0hPLo4c7hq8hc
+W98Ln8EBgJxniTtSYsPRfs39kMjdE81dS0/lcPKPY639DgGw8xplbyC++TxqGCtZ
+1uyrKcVjtg==
+=SFVX
+-----END PGP SIGNATURE-----
+
+--nuzs5zhgui5fpegk--
 
