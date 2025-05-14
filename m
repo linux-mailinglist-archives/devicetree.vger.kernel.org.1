@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-177451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC420AB7834
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 23:52:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E9BAB7838
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 23:54:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 539EF4A72FF
-	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 21:52:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 100714A7555
+	for <lists+devicetree@lfdr.de>; Wed, 14 May 2025 21:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76CF52236EE;
-	Wed, 14 May 2025 21:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE4372236FB;
+	Wed, 14 May 2025 21:54:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pLRT5WO5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ozfqu7Fk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43DC3215067;
-	Wed, 14 May 2025 21:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAB201FC7CB;
+	Wed, 14 May 2025 21:54:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747259527; cv=none; b=n7aWnd1PDVM5M/Qef2VPeV9dU8nSZAAIkFirA7d9mK+zNL/2iIc8cpxeLxrjkIHLroz63yGJvAt0grWREx3f79UPIJk9kXn5mUygWqYx7a4eDG2obzrNk+alsiKiwMocWX9j9k5OEiVg0NJHvfsPGFWxNYaxuIqlKtwCMWGAJE8=
+	t=1747259692; cv=none; b=P9Whx6dHIy2yGkZEE5dILmwR5/YdpdGsQU2n0r965743XgNq4vISyW7DfCEPiKcEFXC51phsaBj6EnfJC/T4YBlLNd4d+0EM1bXu5vHYtRf5lZVMLjQN7xlyJZ+oo9/Ps3QUeYSzY6IPgIJrMeiVY/C0k/8yi+gvev4vQIHPrKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747259527; c=relaxed/simple;
-	bh=uP6ECvuLzjkEvyy0LlPR8ssZUXSIF+C9102LZ8ocYJ8=;
+	s=arc-20240116; t=1747259692; c=relaxed/simple;
+	bh=ufp36USMm3AYvRgWJhupIDmwZhopTTam+PAek9DV0Ss=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lywdJ4IR/JKJ4OV/026wk17fy6r1fRyPtjthEQFv9/UG/5m79qLTvNQhQa3r1lC3LCFIAQDnzoXMhnrKjhIBMZ1/c9eUe6UyKSJ5PM5xJdGqeTzbT9Z+cKTrTaLfmBSOi5800q5fSfezdoGmUNRScaMAicpqYW45jA/qNUsq1xk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pLRT5WO5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98B50C4CEE3;
-	Wed, 14 May 2025 21:52:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pqEoWA5iTSZFmZ+Gq2nAkmrQy4hyX/41itHSKbIicoIEhcKgxUw9Ih3Cl/7tYtg9E3Vge0sRMLyT7EzJ6aS7iRAegEXqVWqNSOmS6Uqs7fP8BvLAMVnPuUYMIkl62+3gg6UmqFfH8KH9RA7Z5akRbZ8zdQJbQvuRX0M1cjf7uqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ozfqu7Fk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E507DC4CEE3;
+	Wed, 14 May 2025 21:54:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747259526;
-	bh=uP6ECvuLzjkEvyy0LlPR8ssZUXSIF+C9102LZ8ocYJ8=;
+	s=k20201202; t=1747259692;
+	bh=ufp36USMm3AYvRgWJhupIDmwZhopTTam+PAek9DV0Ss=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pLRT5WO5iPJCiqN6shJXPldHXPrgrDboP5Ne5g8Cu53qnvLf7qrnjCMQVPaDCzNkS
-	 5Bb9jRl7wLhewx0pRkbiAynVaCChTOL/KowYwOX6XECTPicMaoOKU27tPKANTeiSWU
-	 Uvil7wk9/OzZ4HWbT6WnrA7WdnqgSpZSNMJ+FRrvWfO0UII3+zXC+HkyMvOtx+M4f8
-	 5IylwZRKxNf75VEJmyo6IO3bFgbSiqa6nLGifg6gxtraH1bEmZnP71BQ1Z/d74MLJc
-	 nttcnyFkcUo18fnueLuJdOeKrD5GlsGm5H95VeNPL9+X5mEc26/wDjiRhgUdBLsCYl
-	 cJWgUkE/Q+ffg==
-Date: Wed, 14 May 2025 16:52:04 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Sheetal ." <sheetal@nvidia.com>
-Cc: linux-sound@vger.kernel.org, broonie@kernel.org, krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	thierry.reding@gmail.com, jonathanh@nvidia.com, perex@perex.cz,
-	conor+dt@kernel.org, lgirdwood@gmail.com,
-	linux-tegra@vger.kernel.org, tiwai@suse.com
-Subject: Re: [PATCH 2/3] dt-bindings: Document Tegra264 HDA Support
-Message-ID: <174725952441.3101271.15433560346114148625.robh@kernel.org>
-References: <20250512064258.1028331-1-sheetal@nvidia.com>
- <20250512064258.1028331-3-sheetal@nvidia.com>
+	b=Ozfqu7Fkt1fTAvYxhaOfdlXba9aTBc+IB3j0tvrpUl1Mys6LZ8kj04vCvAYPecOXv
+	 rDly7Kr3WRDgS1hfNcobKgclOe5uHzGQ8zNz9fDdbowcxTSgyc2aHy68WJp+wN3/cx
+	 bevY6PxqpeFkjw07lccSgavyalD/f61BsDse5S9GRb7X4ACkG0JALsd7skBxZTtxD5
+	 ZE+HHGjWGUe+EVfFJyiMVnV5oEUIRnYNv1lF5aXOTypepQnMpkN33FAAdVqmWjnooN
+	 ZflerT1ZVMDk6YVhShQCqU5iOceGKeewBytq5jBW6CHJx2iRMOUM+4Si/CMcJU7AWR
+	 pH7830MBR3eww==
+Date: Wed, 14 May 2025 16:54:50 -0500
+From: Rob Herring <robh@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	George Moussalem <george.moussalem@outlook.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 0/2] Add the download mode support for IPQ5018
+Message-ID: <20250514215450.GA3101794-robh@kernel.org>
+References: <20250512-ipq5018-syscon-v1-0-eb1ad2414c3c@outlook.com>
+ <174725663047.90041.16492317619640781307.b4-ty@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,23 +62,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250512064258.1028331-3-sheetal@nvidia.com>
+In-Reply-To: <174725663047.90041.16492317619640781307.b4-ty@kernel.org>
 
-
-On Mon, 12 May 2025 06:42:57 +0000, Sheetal . wrote:
-> From: Sheetal <sheetal@nvidia.com>
+On Wed, May 14, 2025 at 10:03:45PM +0100, Bjorn Andersson wrote:
 > 
-> For Tegra264 device there is one clock, two resets and no power-domain.
-> Add the Tegra264 compatible and necessary logic to the binding doc to
-> determine appropriate clocks, resets and power-domain properties based
-> on the compatible string.
+> On Mon, 12 May 2025 18:36:45 +0400, George Moussalem wrote:
+> > Enable support for download mode to collect the RAM dumps in case of
+> > system crashes, to perform post mortem analysis.
+> > 
+> > 
 > 
-> Signed-off-by: Sheetal <sheetal@nvidia.com>
-> ---
->  .../bindings/sound/nvidia,tegra30-hda.yaml    | 25 +++++++++++++++++--
->  1 file changed, 23 insertions(+), 2 deletions(-)
+> Applied, thanks!
 > 
+> [2/2] arm64: dts: qcom: ipq5018: enable the download mode support
+>       commit: 43fefd6c71291b5793e7c4052b6e3e54d1d87715
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+You should really either wait a bit for the binding to be applied or 
+just take the binding patch when it is trivial. Then we're not getting 
+temporary warnings added which seems to happen a lot on QCom platforms.
 
+Rob
 
