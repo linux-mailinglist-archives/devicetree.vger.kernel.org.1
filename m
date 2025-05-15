@@ -1,109 +1,140 @@
-Return-Path: <devicetree+bounces-177583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 336CEAB825F
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:20:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 655B0AB8263
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:20:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0034D1B63C41
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:20:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1A874C51C6
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:20:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25EF296D09;
-	Thu, 15 May 2025 09:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A46EA29670A;
+	Thu, 15 May 2025 09:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MZOSz8X4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d1ipIkpy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8857529614F;
-	Thu, 15 May 2025 09:20:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EA8295DB5;
+	Thu, 15 May 2025 09:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747300806; cv=none; b=iLx0RzVZswvEoWEs4KZZHxlmA8VOkIgtfWdoVhRZn1Q5w4rD6j5Y5SiBwJ6QulyIxiY4yfyErmoVWE28k9Fe44r01uHiOzBc15plzz3SGfD1B+mBpcHFN/tyXiMgbe23w5du0z2/eNH+fTrNvfYRVZ+nBUxRuxzrIkxm1gekBRQ=
+	t=1747300834; cv=none; b=KMQtmw4x6WHhuz8Zlmg19SZfy4TP/bIARGtUdN8s0l4hOnOYc/yN77R07/WRgZ/NHLgdlbmA+Rnqj7efSgTVaI7qLdjR12/2SYJzeWSL+vbGCiSE/0HDIqnRHCtBYOa3OjYPC0qXifft+OF5O6qiDBczYysq3J8k5zxGxX0LZn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747300806; c=relaxed/simple;
-	bh=rm618sxDeCiPbi8y8NEmx3FDI0gdJMROpy9V3fCDMDQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cCqZ2LU458bHuR53oJuL8ZX1yHjaJ4MQ9t3TVYTm22aconVhdp3j5RmrSPxOEhmJ0daG6OB1B09ukCK6g3MZIarl8FoJuHm7jjdPbTLt2IsdEuFC2Liy6A9S+GutEQWGGpeikSDuKqne/cE2NoP/ygt08/5x4WJxJxlvwBhVon4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MZOSz8X4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 226EAC4CEE7;
-	Thu, 15 May 2025 09:20:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747300806;
-	bh=rm618sxDeCiPbi8y8NEmx3FDI0gdJMROpy9V3fCDMDQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MZOSz8X4ZqAwZlE2i4UNV3piIuYOa7FOuUZiETU8K1rG+qkCBfajGh9vnIF6NhVMj
-	 pgJsy4tLUzSAkZMM2u34obTByikyyOHn/D4XfZx6DuOaHoeLzrktc8DB6uJebYtOLw
-	 71RYOtNxXT0hBXSkQl5PjSt2HZZoBnkAVNmvIj2Uh+qvX1GP6+bWG35Em0ysD0H8Eq
-	 UsVg6nz1/2H7HunM2n3XZia+LuZCqlhI4pFKPGprfyeQ8TYmEiEMT62FkRd1OKOjY+
-	 3/HgEyi2ngq4aQgnJSecO5Pk+h9VQzQc8vZv+5okj2CKDIbMKdjsTaXgpwChXrxzPT
-	 EL2k2gcGKk7Xg==
-Date: Thu, 15 May 2025 10:20:00 +0100
-From: Lee Jones <lee@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stanislav Jakubek <stano.jakubek@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v8 4/9] mfd: bcm590xx: Add support for multiple device
- types + BCM59054 compatible
-Message-ID: <20250515092000.GF2936510@google.com>
-References: <20250430-bcm59054-v8-0-e4cf638169a4@gmail.com>
- <20250430-bcm59054-v8-4-e4cf638169a4@gmail.com>
- <20250509140957.GD2492385@google.com>
- <aCRZzwW0w8oVWLUp@finisterre.sirena.org.uk>
- <20250515071357.GD2936510@google.com>
- <aCWfre2-n_PSuhxR@finisterre.sirena.org.uk>
+	s=arc-20240116; t=1747300834; c=relaxed/simple;
+	bh=T0xIs53YyMGsPIFPEWuTJKQwtqyUkFoPGQIbHPbvpOc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e0cJIIgt9SnaPiknhbNppDyTYMCVwIaUse+P5URRnlmt4bupP7Z6f8QCGCKLs2tiGYg8mqEn7eziGzorBExRa3hlAEp/S6FYTzHUt9cW8u5P1XCZNmokFoykMRLTbCLXakw2wydQfPodCplMzA0uuyuQcxebN6xFuyF0Pmbm1XA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d1ipIkpy; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-54d3ee30af1so744623e87.0;
+        Thu, 15 May 2025 02:20:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747300831; x=1747905631; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gr8YDjeShMs5Dbf0Xg1ibXjoeWLBh6KvIWOpPkgrAjM=;
+        b=d1ipIkpyvfr3cPvSkw8MWolysLm9zavbxJfieEfSDgT4sFOik+sJ1WHFOwp2C55N3c
+         jgOjtedqdy1MiLzITNgifK89Hjr+c2agepVLSRtO1JCOL4XxGGYdNpNoL32Ge0E+J3KX
+         0tHuFE3A+0gkl1qPH0xLQDHZImp4rs21Kd4Iw/2OyNcaOt4fYmDoAISrPq1lKi2YM+EN
+         xRGVRW0gjwrFJVlxCY99oq9sYuevEh1DFwXCPUfGIyM1GPEk1o6jOU5FN2XS4p53i0AQ
+         qZ2mIfAlv04zxO4I06J+99JwwNPHnLqrygpvQ0RX/HB9KXfos0o6D4wMI/2URiOFCKLE
+         c5LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747300831; x=1747905631;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gr8YDjeShMs5Dbf0Xg1ibXjoeWLBh6KvIWOpPkgrAjM=;
+        b=E2F1L0QsYF933U+4fbqtGZX0yOvx3SseWRO4GESlfgLi/Jf0qGCnVZK8jK7bwHAxzB
+         Wxk18rWcQIcL8WB/kdJTn0BVhiQFn94fdJ82KK0juVnxrXJcN0N5KXp7h0DfKtkKof8l
+         eZMmjwW/epN2x8tXM3AeUBXOrcDZI/SC4zVseoDrDpC9wF0k/SEznvCFPapnVibyHazo
+         fCvP5G3d599+w7X0dTT3ATdej6Wr57Mla2ngVBfTVMNCKeWQokXB4O08q36JFldPlFOZ
+         MZurvBXBRwKBjod9Kp5qHA4SNA/s5ljn/BfybwgKTAoNzzLxqEhhgRcncE3U9xnXUbT5
+         z1Aw==
+X-Forwarded-Encrypted: i=1; AJvYcCWN/ICEFVbDbD4r+4XHqBubSM0hE4hdI5/d4Wi84I1HW9kbZlFxzHdjF3j1cF/HE6Gy36H66N4/fyst9bTG@vger.kernel.org, AJvYcCX80N0H6lIREN62/9KO45Lct4wmVwOSQ90S3/sh+W0LCcwJw/A9UNCgC8HQPGRwGugLwEecEhfi0D8Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgzTYRbPgxvCm3WzVjgLQbddrw9EenJl5ESePBtDCMqnlUiqqh
+	/dNpmzLopAq6HKAQRcxtfQqu5BDXATfsQ4rOV+zqlQ+BWUG0W1hk
+X-Gm-Gg: ASbGnctjCeiKJ0Sq+cCVPMigcEU1xc0QsD9Kf1+/JTaXiliHpbMjgmk7QZU5DLsghYu
+	Y3WlTUyBFRJSHPSIkFaW0qVQ+ebEDFyjVs0Xb1moKU3tlg7tnxT0cuzkiTm1BrvfPzP2rjYFez6
+	jLXfSgVRII4hAq1WVD9SjqYoxd/N5A64dJBeDror5X4OBjRnNJRBnPt8HDd5E8EUgva5YmjWliq
+	KuLGnZsZJWnQUcixgL3L6ATPNvPjx98Z3qVub6e+ePciVX6Pj2axsAUJD7vqoWvBpWxQif8AlsQ
+	lFx3p7p4UyZpQtkgth7XxvYNI+MJ6nO4es+FgZDPuWljKYujFMhRYeSYVD6+mkzqfdFQQS2Ixe7
+	BHnPbMifY4Gnx4CFLUpQbcPDVnhIMEufzC3nJIXvQHkU=
+X-Google-Smtp-Source: AGHT+IF1K2xmstWUKqRXQKvNfbx1fHA8kSSO7L0hXYxzd9u70VeGhf6RRP23AYcOT1vimL6BWWt6aw==
+X-Received: by 2002:a05:6512:2392:b0:545:944:aae1 with SMTP id 2adb3069b0e04-550dcffc298mr627839e87.12.1747300830765;
+        Thu, 15 May 2025 02:20:30 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54fc645d082sm2579696e87.76.2025.05.15.02.20.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 May 2025 02:20:30 -0700 (PDT)
+Message-ID: <a44cad65-1f23-43cd-83b7-bc128e9f858f@gmail.com>
+Date: Thu, 15 May 2025 12:20:29 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aCWfre2-n_PSuhxR@finisterre.sirena.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/9] arm64: dts: imx8mn-bsh-smm-s2-common: Set minimum
+ value for VDD_3V3
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+ linux-kernel@vger.kernel.org
+Cc: Simon Holesch <simon.holesch@bshg.com>,
+ Karthikdatt Anantharamrao <karthikdatt.anantharamrao@in.bosch.com>,
+ michael@amarulasolutions.com, linux-amarula@amarulasolutions.com,
+ Wolfgang Birkner <wolfgang.birkner@bshg.com>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20250514082507.1983849-1-dario.binacchi@amarulasolutions.com>
+ <20250514082507.1983849-8-dario.binacchi@amarulasolutions.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20250514082507.1983849-8-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 15 May 2025, Mark Brown wrote:
+On 14/05/2025 11:25, Dario Binacchi wrote:
+> From: Wolfgang Birkner <wolfgang.birkner@bshg.com>
+> 
+> Buck4 is called Buck6 in the BD71847 datasheet. This buck supports
+> 2.6...3.3V. Set the minimum allowed value.
 
-> On Thu, May 15, 2025 at 08:13:57AM +0100, Lee Jones wrote:
-> > On Wed, 14 May 2025, Mark Brown wrote:
-> 
-> > > Could you be more explicit what you're looking for here, the diffstat is
-> > > entirely MFD?
-> 
-> > Okay, more explicitly, I can merge this and MFD will have no issue.
-> > However, the Regulator commits make use of 'pmu_id' introduced in this
-> > change and would therefore cause a compile break.  So we could:
-> 
-> >   1. Apply this now and merge the dependents next cycle
-> >   2. Apply this now and provide an IB
-> >   3. Wait for all Acks and apply as a unified set
-> 
-> > We usually choose 3, hence my assumptions above.
-> 
-> Well, you choose 3 - I do think it'd be a lot easier to go with option
-> 2, or with applying the rest to your tree as acks come in.  There seemed
-> to still be a reasonable amount of discussion on the MFD bits (eg,
-> there's some formatting comments still) so I was expecting this series
-> to churn some more and was waiting for a resend.
+Same comment as for 6/9. Please provide better rationale than the PMIC's 
+limits.
 
-Yes, I expected to apply v9 with your Ack.
+> 
+> Signed-off-by: Wolfgang Birkner <wolfgang.birkner@bshg.com>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> ---
+> 
+>   arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+> index 81fa0a8767e2..04112a83b1d3 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+> @@ -144,7 +144,7 @@ buck3_reg: BUCK3 {
+>   			buck4_reg: BUCK4 {
+>   				/* PMIC_BUCK6 - VDD_3V3 */
+>   				regulator-name = "buck4";
+> -				regulator-min-microvolt = <3000000>;
+> +				regulator-min-microvolt = <2600000>;
+>   				regulator-max-microvolt = <3300000>;
+>   				regulator-boot-on;
+>   				regulator-always-on;
 
-I can go with 2 in this case.  Applying in dribs-and-drabs as Acks come
-in would be sub-optimal and would likely end up in a mess.
-
--- 
-Lee Jones [李琼斯]
+Yours,
+	-- Matti
 
