@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-177645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6221DAB85F8
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:14:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5900AB85EF
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:13:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C06F3AECB7
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:12:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D25167B9C59
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:11:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E883529AAF8;
-	Thu, 15 May 2025 12:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87FBF29DB9A;
+	Thu, 15 May 2025 12:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PZPeyM7U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bqo+yoYW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC76A299944;
-	Thu, 15 May 2025 12:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2E129ACE2;
+	Thu, 15 May 2025 12:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747310917; cv=none; b=C68mi6yw+WHmFP/kGubkxZf9HB6g5ORh5iGMBATiAP6CS4KYAT0vC+wI9v5mgK/nF+mTDXyOwI1wXMiXrOrDhx3kjC3Lt0/Sbla6L/nMFezRsvY5pnIAdg4u3A4ipk3aAmxsoxr9Cj2Iz2QxHPkgKA3XmAL1cPzAfuzg3mzws70=
+	t=1747310924; cv=none; b=FH6l+gbxgq6/HGYxt2KF1TEc5m06Gz2Ejil/zZuMWO3WgGZii9PfwzDKiLHeRzJKXnqpRqtNtZwTPv25uywisDJ0Od1RfbfL0e9RuAVwsldNpiw8s1LwGB54CCFYxKRrfY2faSY1bXDr3RPtcDTMb3Bhj345v/KIHnXKAh6GCQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747310917; c=relaxed/simple;
-	bh=PIYHx6tgc2AqldiAsYmqybFCMZ0RxWnj6Ah6FftuVmI=;
+	s=arc-20240116; t=1747310924; c=relaxed/simple;
+	bh=o6Yo9ffZe8vls+XOaSwAXVdrRoKLr/juPqgg+0PvdX0=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=igF/xZtv+CqqA1DKDRMsVuXyYWLEipcg1puMxkQYtRQDEVjZuUKL0hmTOjDYPTWYCQSBHpP700lRZ7q9zWWa3TXNNQJhTredgQHw9Q075X4YtBx6DqZAwLV6eJaVdt9AOc4h8Wh8ae/1NYuMjEwEeZoNa2zi++RGXTlGB+hluIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PZPeyM7U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21243C4CEE7;
-	Thu, 15 May 2025 12:08:32 +0000 (UTC)
+	 MIME-Version:Content-Type; b=evdci05j6760JffhkhDwkgRFE8ZxHHMKesnSlMZjvcpS8B0UsLMThUd5EP0LQCQFMczOAaPiePRAD1MaYfIEFYE3C/vfoduPpGSmci3xY1mfcV+/eCj/W/9+fcDGP8waKo+ikxd+Wfei4O53PWj5BBBIwhk5I61MzDPF8o5P+70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bqo+yoYW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E067C4CEE7;
+	Thu, 15 May 2025 12:08:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747310917;
-	bh=PIYHx6tgc2AqldiAsYmqybFCMZ0RxWnj6Ah6FftuVmI=;
+	s=k20201202; t=1747310924;
+	bh=o6Yo9ffZe8vls+XOaSwAXVdrRoKLr/juPqgg+0PvdX0=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=PZPeyM7U4SZXGSMIBKxExSFu7cErfHfl8jcvxfK26ThswAkhQv+54W7NhGsL1yMpA
-	 c25PFbIv4HSDWedWqD0Eqos1GdtOaXcTYPZI2rih9BUE3oVNUmxFu9K0D4G6bJ26xU
-	 197+zqxdjqLQEh7d1vSuqC7J43nml1mCT1xaXF10eIsLWAe/YU8gtDIFbROQKa1kcT
-	 0CS7xM29G28VbH7oj/0yXIO1aimkPiso8619+xdHS5xPZgCnFZ7i44FNUrjhd2h3SC
-	 tMsR5EPMcYa+sb+h58LHBERkS85etX42WcR6ZJG6xn5LYxKI6QWWBBNNvlGFV0XI2P
-	 7/hTphyQgxH6w==
+	b=bqo+yoYWmnQ8aLtTYE8fM6eJQrohVECcFco+1TAIKTPADWVm7oFXW7zn8j0wtJ+WD
+	 KI1atVJtISFq07mf6TmtuG/ZWk0l+vZqPBbk8zscy4ibbcYUwjG9saT/yw2w1d2WHr
+	 EkqdbIHxBiE8izHqW3LS3Sl96+a6hG8pfEvgogTePRON5I/lyAUGfJ7mW3hLFXTR8u
+	 orBTs9NBnDw2FFNTmI72+CruqPHqiMVNQKlaaiW+UHIxzQike/OSQt8LTNBymipelv
+	 alNTPEAV9315lEqipKJgMyY4DBOvLro2WlpV6ujP55cLuIzUhcbcZvev3y1f8/cr0z
+	 VoRzLmhIyh3tA==
 From: Mark Brown <broonie@kernel.org>
 To: robh@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org, 
  conor+dt@kernel.org, lgirdwood@gmail.com, linux-kernel@vger.kernel.org, 
  linux-sound@vger.kernel.org, perex@perex.cz, krzk+dt@kernel.org, 
  Zhang Yi <zhangyi@everest-semi.com>
 Cc: amadeuszx.slawinski@linux.intel.com, krzk@kernel.org
-In-Reply-To: <20250514033327.32641-1-zhangyi@everest-semi.com>
-References: <20250514033327.32641-1-zhangyi@everest-semi.com>
-Subject: Re: [RESEND v7 0/2] ASoC: codecs: add support for ES8389
-Message-Id: <174731091258.350483.11584969721868310645.b4-ty@kernel.org>
-Date: Thu, 15 May 2025 14:08:32 +0200
+In-Reply-To: <20250514094546.35508-1-zhangyi@everest-semi.com>
+References: <20250514094546.35508-1-zhangyi@everest-semi.com>
+Subject: Re: [PATCH v8 0/2] ASoC: codecs: add support for ES8389
+Message-Id: <174731091956.350483.2947360703784632396.b4-ty@kernel.org>
+Date: Thu, 15 May 2025 14:08:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,8 +62,10 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-c25d1
 
-On Wed, 14 May 2025 11:33:25 +0800, Zhang Yi wrote:
+On Wed, 14 May 2025 17:45:44 +0800, Zhang Yi wrote:
 > The driver is for codec ES8389 of everest-semi.
+> 
+> v8 -> v7: Modifying apply error issue
 > 
 > v7 -> v6:
 >           - Modify the order in the Kconfig and Makefile
