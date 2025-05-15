@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-177581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EADEAB8245
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:16:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4156AB8259
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:19:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCBE8189E5C0
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:16:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58A504C29BD
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:19:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BA228D857;
-	Thu, 15 May 2025 09:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D9729373E;
+	Thu, 15 May 2025 09:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nChMabBi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BT7x78ik"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B394B1E4F;
-	Thu, 15 May 2025 09:16:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B361C289E03;
+	Thu, 15 May 2025 09:19:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747300574; cv=none; b=NrpcHhcb/vDfjejhFsN5id2TYd/o81UgeUlijTYEXYkfTYu+YAT35Gb4n2p0xd/QsgjOUcW+qc+sV6sAKK1lAnJanMpFYo/4C4JaYTlwqJY03jhvtdpCq+MN7g4I1FGItTaB2e9ZyyLI0dxh4OxJYIrXCwXFFmWJHrmpauuJR0M=
+	t=1747300781; cv=none; b=n0Uy5Vn6sV70iIvgMRLRNagMYuble1mzTKRxWVstbD0+jMvlskFu49vmDJZc3J9urJ7vSioY5Bf627hkP/Aqb2dnoSbb80MQNFWiP7zlviExAuuD0SMMNbhzeQn86JCPBoc7kahapQzAx7iUbYHNihfL9fx/Q6fzRgFEk7JjAjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747300574; c=relaxed/simple;
-	bh=2cxVKcrNNEM+bbBxTTu9WCaQD4Cu+LZbQ3Po3bJ/PPI=;
+	s=arc-20240116; t=1747300781; c=relaxed/simple;
+	bh=f/hB+uXDPj6LiR+Uzv74ybboCFBBl/dQRkcdkfTtDF4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RuKMBynjEiJPzE0Gzv8UNl0K/L+CXmZg8Xk2c3thwqFBbADk7+i0udh4ElPu4zxybFVc86ONOw7TbplJ65ngi5V4A5WPfbQRHxmeQ+6cYqLTqMbvZ40IoLrUhfnoVrUurqeThDQ8qOd44NKWyDtWKAd68WabfW6wtkdvEnRkLc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nChMabBi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5246C4CEE7;
-	Thu, 15 May 2025 09:16:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747300573;
-	bh=2cxVKcrNNEM+bbBxTTu9WCaQD4Cu+LZbQ3Po3bJ/PPI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nChMabBiZWB/vzcBdtKROHFOzcrINKhn0Rh4O0WaSf7pFhR0W/UjbSgZJPG1UaAz9
-	 6riJhySIBZPadz8nwNuFvi48zw0IZ+VoNujWYGaT13is8VCw5MS5Gpe+5rgNJUzGZE
-	 yIhgoJRXPBzvRi/Ff9IRZdaC0zuIauVAy+EpFgU6HlXLFfRDB1pDNIktFYfk617T+F
-	 WAtRrS86mdb4n5z/5f18jrCpURPoimnA4umTzL6n5bKe7RYiz5ZZY4p2GQF+0RQ3+q
-	 SsY/YVAedlBPgaKAr9Jfxznlgw1xdo/usITdSAealumPcf3OVgeNhLYsTUoguyfFv3
-	 1cib2jl62vGbA==
-Message-ID: <078d86d1-1a67-49c8-b604-5d0231007cf9@kernel.org>
-Date: Thu, 15 May 2025 11:16:08 +0200
+	 In-Reply-To:Content-Type; b=iy/7WqY8wP15dCy/2/A0eyAJr81oj6qNkI80CL+6bP+4kUCluwGt2I9ULydf9DY+eifvn5bSJy70EQzJb73/V9jp2MQFDYcGv4MBHucuBZXZotUTl9ZhsVdNb6UGhUCw1fCUJ6WP2O+wnKIcEsOGVdGFUeIhsE8pTInfpfUYw8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BT7x78ik; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54c0fa6d455so711067e87.1;
+        Thu, 15 May 2025 02:19:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747300778; x=1747905578; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tAVVRaIfque3EwxDjB599VKRD3lH9ncgbq2DZrrZMJ0=;
+        b=BT7x78ikq/EON3VR896BNSzl/NjLy+gfe1e4gb+6QxFyt8EcENSILo0PIRO1wJ+X0A
+         Yoa0yCkCYTdDWPaDRkKn+SLqAeXxLP+sijCam4a2bVG4H4xRU6UxkMxjNvDga2Qg0VOd
+         jTg8TdUGLjv60C9jtZRTj/lWEggX1R12TvGYdxza+DLYvG1thgSO92Bxxxo4S813xBKT
+         FFkvw/evohR4Ksl2hX6HrqvOELYsrWNCQqqNL9pP3Bgu7MlfiF7m+IBWKtEZNcgUvuTV
+         bVdkbIYVjo7ALw5KI+IGevcPSxJUoI90YiRUHBnjEN/cE1kAFB+BS02/c91h+6tEfGOx
+         qM3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747300778; x=1747905578;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tAVVRaIfque3EwxDjB599VKRD3lH9ncgbq2DZrrZMJ0=;
+        b=dX41mujzMnAajtHg2ByZirpht7bvjfACjI3oVyeXtYUi6DEku6SuBANsFVpHMbDJFF
+         Vj2V+K8fkC6ErECUXHchwiDXORc+jTXBgmVegED7oOI1n6V84q+5uTDaDEaBcJcSLeIf
+         +zMb/eniKkKQGhkLqE2SvYzwlZtS58tUwgqSREHCfLa1AY02psR00YBNcdiYND61CqKL
+         230PvzGwOZJTj8XXM4xvm+Y6Px0/KZ5gWUyUqff4pGfzzV5qjCcdMdbHzEjKyJ9PHzqh
+         Vzl8WDWjPU5K4faWp4n4CFKjQdaRtBKXhuQ0D71sPxlj5w5LiR4nAS/dHJ/hC/vUN0xu
+         AmCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUGIamhZso3PZfQiRljd7T8wXouueEBra8UdzvO5efWneJXJqobq75GVAto0k4nFLcLy3fvmS1IQ4rx@vger.kernel.org, AJvYcCXj8gGeqW93I0a9Wc0j27AxaisXXdLxDcC3seDL71n30//Erq/6624L54Mxu6R1+23gSC9m67jpeVeEhBBN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyy7ECs2lRY5pu6gr7dc0/q1CLfuwb5FhiSGXDsgOizvQkc2N8d
+	ynYDjnxKOxoLeWxLI1fEmKjzTUTPXb3EWpaCldtED4yRc1khh3Fera2tdQ==
+X-Gm-Gg: ASbGncuTaMmzSyHNTQxTKn7A79hUszn6beYhFozPGnf6LhS9acZutWOwGIuYR6sa5LT
+	EteDfiPCWEGzDa1kkQ+jLMp5hN3n6rUrRAC9UtvgAGf78VV2QArLzeDcOOkgU0voyh52//jVwaI
+	dlBAw/ITWMPEjAV1HzlguG4NEU1k/3p5jJXHdw3eFVFfwA9d+/2BRe79wiS91QQJ2EYyFwiDDqC
+	wlOAMPfXpxfE7eSygOp1RbPf+ojneoNFGIhwuC7W/XMO3JJh9b+L7xk6qxkGXdbI213RgkXEVPV
+	JpmbDd9TMdtlH7CgpLwcTO7cNQTN9QrlqlA5EwNmPuOKBl3XAezTsQ57+qOyfXrAuYf5S1EYJEO
+	tDOIJMuhR3rPnejSNgkF6eoiCuiLkJEmV
+X-Google-Smtp-Source: AGHT+IFBcq4DqfKlxPbw1MrLx0fBSBJx/jI1yd+Z2wbPyp9w0D8IUldy1X/cWkz4tAEtuvuqupGZyw==
+X-Received: by 2002:a05:6512:228c:b0:545:f4b:ed58 with SMTP id 2adb3069b0e04-550d5f94684mr2399058e87.18.1747300777581;
+        Thu, 15 May 2025 02:19:37 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54fc645cee9sm2562141e87.75.2025.05.15.02.19.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 May 2025 02:19:36 -0700 (PDT)
+Message-ID: <7b23de30-06e3-4f02-a8a5-90791628ceed@gmail.com>
+Date: Thu, 15 May 2025 12:19:35 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,140 +82,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] dt-bindings: phy: Add Qualcomm MIPI C-/D-PHY schema
- for CSIPHY IPs
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hans.verkuil@cisco.com>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-References: <20250513143918.2572689-1-vladimir.zapolskiy@linaro.org>
- <959b9c65-50d7-426d-9c2a-64e143e28ded@kernel.org>
- <634e9d0d-fbab-4101-b968-d335b656e099@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <634e9d0d-fbab-4101-b968-d335b656e099@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 6/9] arm64: dts: imx8mn-bsh-smm-s2-common: Set minimum
+ value for VDD_DRAM_VPU_GPU
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+ linux-kernel@vger.kernel.org
+Cc: Simon Holesch <simon.holesch@bshg.com>,
+ Karthikdatt Anantharamrao <karthikdatt.anantharamrao@in.bosch.com>,
+ michael@amarulasolutions.com, linux-amarula@amarulasolutions.com,
+ Wolfgang Birkner <wolfgang.birkner@bshg.com>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20250514082507.1983849-1-dario.binacchi@amarulasolutions.com>
+ <20250514082507.1983849-7-dario.binacchi@amarulasolutions.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20250514082507.1983849-7-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 14/05/2025 21:30, Vladimir Zapolskiy wrote:
-> Hello Krzysztof.
+On 14/05/2025 11:25, Dario Binacchi wrote:
+> From: Wolfgang Birkner <wolfgang.birkner@bshg.com>
 > 
-> On 5/14/25 13:25, Krzysztof Kozlowski wrote:
->> On 13/05/2025 16:39, Vladimir Zapolskiy wrote:
->>> Add dt-binding schema for the CAMSS CSIPHY IPs, which provides
->>> MIPI C-/D-PHY interfaces on Qualcomm SoCs.
->>>
->>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->>> ---
->>>   .../devicetree/bindings/phy/qcom,csiphy.yaml  | 110 ++++++++++++++++++
->>>   1 file changed, 110 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/phy/qcom,csiphy.yaml
->>
->>
->> Looks like not tested, so limited review follows.
->>
->> Filename matching compatible.
->>
-> 
-> Thank you for the review, the change is deliberately tagged as RFC.
-> 
-> I read this review comment as the displayed generic compatible 'qcom,csiphy'
-> shall be added to the list of compatibles.
+> Buck3 is called Buck5 in the BD71847 datasheet. This buck supports
+> 0.55...1.35V. Set the minimum allowed value.
 
-No. The comment is about filename. You must rename the filename to match
-the compatible. How this could mean anything else?
+Setting this to PMIC's minimum value has little benefits because the 
+voltage can't be set lower than it anyways.
+
+AFICS, the idea of the regulator-min-microvolt and the 
+regulator-max-microvolt is to protect a system which can't tolerate 
+lower/higher than NNN voltage. So, basically, these properties are 
+meaningful when PMIC can go higher / lower than the system design 
+tolerates. In these cases the constrains set in device tree should be 
+strictier than the PMIC's range.
+
+The existing regulator-min-microvolt = <700000>; could have resulted 
+from the knowledge that the minimum voltage devices connected to the 
+BUCK3 (5 in data-sheet) can survive is 700 mV. Dropping this to 500mV 
+just because PMIC can go there might be plain wrong, and in some case 
+get the device(s) connected to BUCK3/5 upset..
+
+So, please provide better (more) rationale for this change.
 
 > 
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/qcom,csiphy.yaml b/Documentation/devicetree/bindings/phy/qcom,csiphy.yaml
->>> new file mode 100644
->>> index 000000000000..ef712c5442ec
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/phy/qcom,csiphy.yaml
->>
->> Please post the driver or any other user. Or explain why this is RFC or
->> what you expect here from us.
->>
+> Signed-off-by: Wolfgang Birkner <wolfgang.birkner@bshg.com>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> ---
 > 
-> The CSIPHY driver agnostic CAMSS changes are on the linux-media list [1], the CSIPHY
-> driver specific changes will be added on top of these changes, however I believe
-> it makes sense to review these two different CAMSS changesets independently.
-
-Do not introduce your own rules. It is ALWAYS expected to post binding
-and its driver user together.
-
+>   arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Here the RFC tag is given explicitly to get change reviews for the dt binding
-> documentation part, and the first user is the example embedded into the change.
-> 
->>> @@ -0,0 +1,110 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/phy/qcom,csiphy.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Qualcomm CSI PHY
->>
->> SM8250 ?
->>
-> 
-> It's supposed to be a generic device tree binding, and it covers SM8250
-> CAMSS CSIPHY IP as well, which could be quite handly for testing/review.
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+> index fd12b97525d1..81fa0a8767e2 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+> @@ -135,7 +135,7 @@ buck2_reg: BUCK2 {
+>   			buck3_reg: BUCK3 {
+>   				/* PMIC_BUCK5 - VDD_DRAM_VPU_GPU */
+>   				regulator-name = "buck3";
+> -				regulator-min-microvolt = <700000>;
+> +				regulator-min-microvolt = <550000>;
+>   				regulator-max-microvolt = <1350000>;
+>   				regulator-boot-on;
+>   				regulator-always-on;
 
-It's not generic. It's specific to SM8250.
+Yours,
+	-- Matti
 
-
-
-Best regards,
-Krzysztof
 
