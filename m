@@ -1,160 +1,130 @@
-Return-Path: <devicetree+bounces-177699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D10BAAB8A5E
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 17:15:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 373D0AB8A6C
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 17:17:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FC723A77D3
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 15:09:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C925A3B229B
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 15:11:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E87B20C000;
-	Thu, 15 May 2025 15:09:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF5D2135DE;
+	Thu, 15 May 2025 15:11:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="bkAFMqMH";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="gsNWknRE"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LReNZ4m2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642251A0B08;
-	Thu, 15 May 2025 15:09:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4EDF13B7A3;
+	Thu, 15 May 2025 15:11:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747321777; cv=none; b=aOAk+vTsYFq1Muit3WiTaDnDktFFf4ZGMvl2F2Yf9KDlpztCyMoMA/T00aLpo13CJju4Ws4qIE6+WZszNLiQf5Run0KRzyQY3zIbk05b0U9fiMWJK286zi3SWIzcaPczr17MZi3CN5rL2Kf8P8EIrf9ZgUqGxO7K3x41wGeJgIE=
+	t=1747321880; cv=none; b=Q6Efo/wFT0Ua3PSg6EFpMkOwVJYoRYgoxkbGa2ArhtAeRy1L/DLFXFKPK+KVbNXLb47GsHpn+vzuji0wXtfrJhyPXy7SWcZ2zbmgxk9jJm6oc1gh4g6LsrVDbX7Mm8lw3ZlzJsKUoSjO20zS3Jihda9CAHmn6w1wD0mp6hFwmOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747321777; c=relaxed/simple;
-	bh=w44A4dLjrd4Yidtbmwllfd+kSKFs/nM/K7Ucl6ZDugA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S4AiFx7DgfFcg3mn/vQE1R68jH6WjyUjClLaow5EHnwh8FmavngPcbGJzol2lMgkR54G1m+wzQF+CiNgE5ikjGk0zTbNd4ZxV/TAp7B5c/t1zw1/Ye8JLqBiOAlj8feTt+QFSWcQxy+6fviqLh7Slwdh4rc51TPukMkY1Pl7hvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=bkAFMqMH; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=gsNWknRE reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1747321774; x=1778857774;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=OKO1o7AXgboNWVrjuNu0zS6tMTQ0M3cqjX6LCKpPtBs=;
-  b=bkAFMqMHT1cttXb40o5NdJsLUXvOCO8vHvoSkcWaAVc2Wn9aFPIOkCy0
-   NfN1kiMtuj9o77lYULu+Ithw0Jd/o32pUILVrvHzWXBds9Ymh9Jm7v1CH
-   No9+tfOzs6AEcwEISAKf5ZENIlihacO5yfzR/WUn0BQC2aUCBpDQo9/Bd
-   dUW4/kq4G/rHb2NfmWWq/gGTZfoiZotyfKtEm9jDUextO10H/LCQxWqtd
-   ioa8anWwew8qUzKBmRQqxeM+P+/B0+4sH04hwXm2yBMDQ1B6J1H5wIY8C
-   t9jYfJifDshn5onAZFh9i+ssmok0E8WZb4h9HJzlZCQjIRNNc2FC6v9iI
-   g==;
-X-CSE-ConnectionGUID: 6W4+I+s4QBeJAKSgWpMqVA==
-X-CSE-MsgGUID: OborI3dyS9yfad95ooZ86Q==
-X-IronPort-AV: E=Sophos;i="6.15,291,1739833200"; 
-   d="scan'208";a="44103160"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 15 May 2025 17:09:30 +0200
-X-CheckPoint: {682603A9-32-BF62DDF1-CB8BF55F}
-X-MAIL-CPID: F957553CC4C182DE8056D3848055452E_1
-X-Control-Analysis: str=0001.0A006377.682603AC.003A,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5E0F2169B79;
-	Thu, 15 May 2025 17:09:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1747321765;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=OKO1o7AXgboNWVrjuNu0zS6tMTQ0M3cqjX6LCKpPtBs=;
-	b=gsNWknREq/+YpiCH7AfQW36IRqv/5SjPHth37HoJcFvYvI10tDQMO8NIuLhx80nZHG+XoC
-	VTVwcCbauyVxlQ6uGKXVmFTPpvR0yI56JBzxb2wRoa4PaSYX4yNn9ffvUrR9j1mARRa4Rt
-	rNkswIyAHY9syxarsQ3n7LfYSEoWApbcM/NRLaBp1eUXe62ouj5T89P5b2hHaqTErpne3k
-	GaPdC20+aSeGbs2VS1emFa/FoupHBNwkafpnPoYlYUN0KpG9M5HTz2EboVFMU8wk2tFgMk
-	rw5KlLwTYyoSutqTCGDq9E4HVlqtdGqGR4cl6NXfnt+MVD3g0aBqXUshJ2vcvg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Conor Dooley <conor+dt@kernel.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] media: dt-bindings: sony,
- imx219: Allow props from video-interface-devices
-Date: Thu, 15 May 2025 17:09:24 +0200
-Message-ID: <2247039.irdbgypaU6@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <174732159526.2108882.8905658469049267620@selene>
-References:
- <20250515142945.1348722-1-alexander.stein@ew.tq-group.com>
- <174732159526.2108882.8905658469049267620@selene>
+	s=arc-20240116; t=1747321880; c=relaxed/simple;
+	bh=X3Dg1aIIyiODeevYtcoMV/eCFObvTdGT9GPFfSk5gis=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dmSMILOBxZiIwl+Lx3A+HEc5zWT+I5TnqgNzl15XvWnsUVHemScKOsu5Vj4pmzEcvWlANRh1ZjRd+PFu9AXs0ypSQt7R1BbUv8hgnzV0CiJQmXAJSHXXctFlZ+Hfd9mykBBG9ZbdXmqXRAe2PFUqc1A/TVYl2ptFzU6gtNzRcQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=LReNZ4m2; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1747321874;
+	bh=X3Dg1aIIyiODeevYtcoMV/eCFObvTdGT9GPFfSk5gis=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LReNZ4m2ieD9KPscuI37q3qPeSnhXB4sbnjqzBI/3cDxVPK/OQysaTXJDNqBiJc4W
+	 0BEQFt6ssqmEaErwYOisMATNcuGkLR1HPkDXBvGIYrCiLtGj2lZQafz89Gki3zGPOv
+	 sXmPiJ+vun1YCBkKx+u2Uia+Gbuhrz7oMu32w8b35uqORf7m8Tt7+vHHwGA2au58vO
+	 uKse1vMMbCFyWnmuCIu1BoGrV+10ijkAl8/8CxBd+87cT/m4RYFfm+yBCGA1581zwi
+	 8JzZvjt3abMvkOC1ABtbPQOfj/qFfRKq5wEwdXIkjn0s2eimCNMzXyTIxglNdGxySi
+	 /Dgg9YyEY0vEA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BFAF017E05F0;
+	Thu, 15 May 2025 17:11:13 +0200 (CEST)
+Message-ID: <cbd170a3-cbfe-4b4f-a059-efe33fed0e5d@collabora.com>
+Date: Thu, 15 May 2025 17:11:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: clock: mediatek: Add #reset-cells
+ property for MT8188
+To: Conor Dooley <conor@kernel.org>,
+ Julien Massot <julien.massot@collabora.com>
+Cc: kernel@collabora.com, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Garmin Chang <garmin.chang@mediatek.com>,
+ Friday Yang <friday.yang@mediatek.com>,
+ Conor Dooley <conor.dooley@microchip.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20250515-dtb-check-mt8188-v1-0-cda383cbeb4f@collabora.com>
+ <20250515-dtb-check-mt8188-v1-1-cda383cbeb4f@collabora.com>
+ <20250515-playpen-dislodge-80245fb8b7a9@spud>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250515-playpen-dislodge-80245fb8b7a9@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+Il 15/05/25 17:03, Conor Dooley ha scritto:
+> On Thu, May 15, 2025 at 03:31:43PM +0200, Julien Massot wrote:
+>> The '#reset-cells' property is required for some of the MT8188
+>> clock controllers, but not listed as a valid property.
+> 
+> "required for some" but not marked required on those platforms.
+> Why not?
+> 
 
-Am Donnerstag, 15. Mai 2025, 17:06:35 CEST schrieb Jai Luthra:
-> Quoting Alexander Stein (2025-05-15 16:29:42)
-> > Allow properties from video-interface-devices. The change is identical =
-to
-> > commit b6339ecfd0865 ("media: dt-bindings: sony,imx290: Allow props from
-> > video-interface-devices")
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->=20
-> Reviewed-by: Jai Luthra <jai.luthra@ideasonboard.com>
->=20
-> Are there any driver changes coming for the new properties?
+Yeah now that I read that for the third time, the wording is a bit incorrect.
 
-No. This is a standard property and is already handled in v4l2_fwnode_devic=
-e_parse(),
-same as orientation.
+It's not "required", some clock controllers do have reset controllers, but it
+is facultative to actually use the latter.
 
-Best regards,
-Alexander
+I'm not sure if the ones that do have reset controllers inside should have the
+#reset-cells property as required...
 
-> > ---
-> >  Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml | 5 ++++-
-> >  1 file changed, 4 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx219.ya=
-ml b/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
-> > index 8b23e5fc6a24f..38c3759bcd9f5 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
-> > @@ -16,6 +16,9 @@ description: |-
-> >    Image data is sent through MIPI CSI-2, which is configured as either=
- 2 or
-> >    4 data lanes.
-> > =20
-> > +allOf:
-> > +  - $ref: /schemas/media/video-interface-devices.yaml#
-> > +
-> >  properties:
-> >    compatible:
-> >      const: sony,imx219
-> > @@ -79,7 +82,7 @@ required:
-> >    - VDDL-supply
-> >    - port
-> > =20
-> > -additionalProperties: false
-> > +unevaluatedProperties: false
-> > =20
-> >  examples:
-> >    - |
-> >
->=20
+Conor, what do you think?
 
+Cheers,
+Angelo
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+>>
+>> Fixes: 9a5cd59640ac ("dt-bindings: clock: mediatek: Add SMI LARBs reset for MT8188")
+>> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+>> ---
+>>   Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
+>> index 2985c8c717d72888dd49f1f6249a9e2594d8a38d..5403242545ab12a7736ed4fbac26008aa955c724 100644
+>> --- a/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
+>> @@ -52,6 +52,9 @@ properties:
+>>     '#clock-cells':
+>>       const: 1
+>>   
+>> +  '#reset-cells':
+>> +    const: 1
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>>
+>> -- 
+>> 2.49.0
+>>
 
 
