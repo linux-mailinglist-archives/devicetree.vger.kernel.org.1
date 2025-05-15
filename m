@@ -1,89 +1,145 @@
-Return-Path: <devicetree+bounces-177740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13350AB8D3A
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 19:10:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEE0CAB8D42
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 19:10:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A21453A9517
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 17:08:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA2B33B0319
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 17:09:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E05C253F2D;
-	Thu, 15 May 2025 17:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFB7254864;
+	Thu, 15 May 2025 17:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="obQG2N9J"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="L0tCFLJ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA91253F1E;
-	Thu, 15 May 2025 17:09:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69B0B253F35
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 17:09:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747328947; cv=none; b=hVCx6MYev+2YmfV9fXbMkP/82hisyGcNpxaEEyej7+IXBfWdjv9DESgKO0I+EwylIq9yRA3EGdqG5ImaSCGwtVrdkR9pyJibD5XyZOOlTpKF4VMNL4yZ2RunrEK5MIilfa6R7Mx2wSbBRpvr8xAqkGKJjlwBCqZDMfRBcIuu8uo=
+	t=1747328957; cv=none; b=axgGc22hD9UIoM1XJjNoFMLDsm0NGxKHHsaiwqI0yIeuO0WKMZh6Hcqatn2aBNCRXnXrTOacyWqpY7X+m9Mjcg3b5ovY0L6sqcN3zRTDB9LK/Pz0DTpug5QkudNs+6Nyz0aE8lja4Gw0eUM7c8wEoc9u6pvk9cvFsZzeTbDnKnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747328947; c=relaxed/simple;
-	bh=hN2Noi86IAlCVFjZkLH+RLk6d2Ee/tO3RghkfloQNU0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KaAepbA5lcp1Ndokvdbzq5UfprSHkf0+ZdDZZJMLpwMFW18xyOxvD65cAEgiMMluozqE4m2GItSxnLpfeecPQvi2qe0iqQHm6VWx4oCwU8MI0sGbgY/85bWxfvOvrLaZlpdZLbCilj4XWdgqvPvL8iCysOGt5aC1F5YgpT/f9Mo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=obQG2N9J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FD85C4CEEB;
-	Thu, 15 May 2025 17:09:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747328945;
-	bh=hN2Noi86IAlCVFjZkLH+RLk6d2Ee/tO3RghkfloQNU0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=obQG2N9JroZvsrHz3tRBhEkmS9Dy1TPK2qfOr7wIUbJFbSCmPyALpdJpfqPrZSmg5
-	 CzF90ybHTnhHq3FzDQv6mjbk7+bB0Slc7xiT6CbDYWS38oYsh+VA7bN/RF2hnEDE+K
-	 rGFAqKq15/49lZanC3ANYttCtczP8HCRZydMIaxkYxVPObURVsvDpmHyhC8ffLr91a
-	 wcDat7adJG5ClPfUMILj6Xmydgc1meJfZTD7PKspFwd3LILSik8fHFmmq/WivsRHbQ
-	 xhdYtjEEzFu6xkZ+HgL421hYqVOE64pl+V5Hjfrp+6ooMdlg0oQPerkXfPA3hK9GR8
-	 FexMGPAbSPFYQ==
-Date: Thu, 15 May 2025 18:08:58 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen
- <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: iio: adc: Add ROHM BD79100G
-Message-ID: <20250515180858.0934b45f@jic23-huawei>
-In-Reply-To: <20250514-elope-ultimate-0c44ed3be88b@spud>
-References: <4907a096eee1f54afae834213cf721b551382d4e.1747203712.git.mazziesaccount@gmail.com>
-	<20250514-elope-ultimate-0c44ed3be88b@spud>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1747328957; c=relaxed/simple;
+	bh=Z4ZyZX2UQL8KgyCkQWoLfIXDLEkXT0dEt8Xlszm0SQM=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fqSEvBHQO5NMBVlE2q8DJOcj2y91JAN6MW0wg+L4ugZVZE1CyE24RB1LaYxGaj34yORejZ5UJEd/IMuiNOpl1xOa1oPC6ZVmAJq8+i6zFGOaudeWeZw5KMSb1f/SckbKVm99yNc9yDfHau/peJg/U7iX0MteLw6d+HVmBNo8aIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=L0tCFLJ2; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com [209.85.161.70])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 0A4A3497A5
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 17:09:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1747328946;
+	bh=EAHU3J18eD31/ymgQS39ucRDzPTjYOdwY+kBoX2CB8c=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=L0tCFLJ2xW6AJrOM0IUDvN9no0tqyGX1hi12PNoncmbvjKJs4feQ0o+PO6FtCGH2N
+	 UYxANrNuprBJgH99/1B6BW73DT9BxkRABiTkK11Utir1oGUMwoRlI/AHnocKqyPNtD
+	 vjCaks2f/a0dQlMHpYpqQKvgQtaORsflrlrrkdWCsGKb6BbcCE3AQgjx/QkpLEvqeD
+	 ffpiX1PyC+33Wf1nGs6FtWvqBZdsJS+TEds5VF7MoRNEpqtN5Xes0RfCOR6By/t5jF
+	 J3tmtTKwwFh/p6s0VftG0LyldC4vuggAcgTjfDiIO3/sN8MAXdym9ZLpfHbSaLfS6a
+	 HZSC3b8dvcGdg==
+Received: by mail-oo1-f70.google.com with SMTP id 006d021491bc7-6048c82f61fso572724eaf.0
+        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 10:09:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747328944; x=1747933744;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EAHU3J18eD31/ymgQS39ucRDzPTjYOdwY+kBoX2CB8c=;
+        b=gcUVb4/Y7lXsTHvEkwRreKL2lrBaVNRytGlQuCpq8nrMuy4e4QTKrnBSnJMNRgYcUd
+         YqUDtg8uniDQa8Fji40+xbyVMEzpX5fZQk1b6guJaLc3+AKBgZBaJTszTLfRHdJPFkQe
+         9jV5QfTFUzuaBiipePPLaCTUkqmFAtI+6jrwp2anKq5eSPX+N928UFLEkdHyhTikH72d
+         hFJ8Rg0jz8Vj34JVkH0ZXliRk2g6nIwo6d168V7/EiAAgZ1Nq+LGwgjk5lYa2YFAynyp
+         181QmG5xFJjtvhJmpMxD0vqG1PzsHYkiHrWFiVOfZt8+gqPs0igNqZpY9gFPY2Hrk31v
+         A2sQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWnPoU5HiBgipi1CBWFbag9OyOraHkZLhN5iDu2tsHi5vEivmO0Jh9f8YARv5vhuTbp3OdujCU/V76N@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuPEwwv9E1piPOokDh3LM97G2nzSIh4om/qFR6UKfS2L4B2UrL
+	ZMC1nLgrTQCCy9yIfn0xJMQ1KA6EQpXu4B24Lq4vdo4ywmR0PwhhT/AIdhzY9Tu4vbrpYd0qEcb
+	ZcSE6mP/UkjzMJR59RsCHSxc8IMWjFUahBr9zX1o5TvAkbPwaxqNa66VyhwCe9IRV+mXexTBI/T
+	X0v16eUPnm6xsC++DLPseXBq6eA3SC+qWrJtAZGUhpcLJ0K3VHwLdqLg==
+X-Gm-Gg: ASbGncs4s8WzZoeLPW9akxdATqhVAr0134tGKaf0bbY6MY11fn8ZiDCK1ahycFrwqsy
+	q8F8/bHy5nQypvRa0uaZi50THUNpyN+PQEnPj23HyZZBm/xW2LnOZSA5+zshH2osroQMG+g==
+X-Received: by 2002:a05:6820:210d:b0:606:8579:4c5b with SMTP id 006d021491bc7-609f36bf4bamr161417eaf.1.1747328944560;
+        Thu, 15 May 2025 10:09:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHFLlaIpBSb50nrAEfKwrzW44A+wmRkrahI+IsmV1VZdoth2sU4ipKUE23o6HxNeOl35A87CWuYdetvBF/REIc=
+X-Received: by 2002:a05:6820:210d:b0:606:8579:4c5b with SMTP id
+ 006d021491bc7-609f36bf4bamr161396eaf.1.1747328944263; Thu, 15 May 2025
+ 10:09:04 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 15 May 2025 10:09:03 -0700
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 15 May 2025 10:09:03 -0700
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20250502103101.957016-2-e@freeshell.de>
+References: <20250502103101.957016-1-e@freeshell.de> <20250502103101.957016-2-e@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Date: Thu, 15 May 2025 10:09:03 -0700
+X-Gm-Features: AX0GCFs9vd2gnAh-5tFs89i_vEFOodBVMxQaK2XBrUlr3f41ZlKWfMl944u5vOQ
+Message-ID: <CAJM55Z9g=YKZmdkq7BserR4hR-MxsvDLexUkf4u+L53m3vAtzA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] riscv: dts: starfive: jh7110-common: add CPU BUS
+ PERH QSPI clocks to syscrg
+To: E Shattow <e@freeshell.de>, Conor Dooley <conor@kernel.org>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 14 May 2025 17:23:54 +0100
-Conor Dooley <conor@kernel.org> wrote:
+E Shattow wrote:
+> Add syscrg clock assignments for CPU, BUS, PERH, and QSPI as required by
+> boot loader before kernel.
+>
+> Signed-off-by: E Shattow <e@freeshell.de>
 
-> On Wed, May 14, 2025 at 09:25:13AM +0300, Matti Vaittinen wrote:
-> > The ROHM BD79100G is a 12-bit ADC which can be read over SPI. Device has
-> > no MOSI pin. ADC results can be read from MISO by clocking in 16 bits.
-> > The 4 leading bits will be zero, last 12 containig the data.
-> > 
-> > Device has only VCC supply pin, which acts also as a VFS, determining the
-> > voltage for full 12-bits. Specifying it is mandatory.
-> > 
-> > This seems identical to the ti,ads7866.
-> > 
-> > Support ROHM BU79100G using ti,ads7866 as a fallback.
-> > 
-> > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>  
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Thanks!
 
-This is obviously fine, even if the ongoing conversation around
-SPI driver autoloading needs to continue.  So Applied.
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> index c2f70f5e2918..f1489e9bb83e 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> @@ -353,9 +353,17 @@ &spi0 {
+>  };
+>
+>  &syscrg {
+> -	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>,
+> +	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_ROOT>,
+> +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
+> +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
+> +			  <&syscrg JH7110_SYSCLK_QSPI_REF>,
+> +			  <&syscrg JH7110_SYSCLK_CPU_CORE>,
+>  			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
+> -	assigned-clock-rates = <500000000>, <1500000000>;
+> +	assigned-clock-parents = <&pllclk JH7110_PLLCLK_PLL0_OUT>,
+> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+> +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
+> +	assigned-clock-rates = <0>, <0>, <0>, <0>, <500000000>, <1500000000>;
+>  };
+>
+>  &sysgpio {
+> --
+> 2.49.0
+>
 
