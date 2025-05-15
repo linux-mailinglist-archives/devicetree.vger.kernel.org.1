@@ -1,108 +1,129 @@
-Return-Path: <devicetree+bounces-177646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5900AB85EF
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:13:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3AE8AB864E
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:26:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D25167B9C59
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:11:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0F181881F57
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87FBF29DB9A;
-	Thu, 15 May 2025 12:08:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D7029994F;
+	Thu, 15 May 2025 12:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bqo+yoYW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vkwlCqZ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2E129ACE2;
-	Thu, 15 May 2025 12:08:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB412989B8
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 12:20:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747310924; cv=none; b=FH6l+gbxgq6/HGYxt2KF1TEc5m06Gz2Ejil/zZuMWO3WgGZii9PfwzDKiLHeRzJKXnqpRqtNtZwTPv25uywisDJ0Od1RfbfL0e9RuAVwsldNpiw8s1LwGB54CCFYxKRrfY2faSY1bXDr3RPtcDTMb3Bhj345v/KIHnXKAh6GCQw=
+	t=1747311649; cv=none; b=Uf3URq2NZnuQZX+5pce1kYMCMFP4bCC8HBC+4wlO078qJ8K96TQZjxF0lEe60kPSXKHOHtORS76f6F/Zp4EIaP22M9aVrhhEbLuhZvItVAZu1GDppTPKjGep81/jSt1+11CPv5leR19h06UpgxSNjXETX873oZoI6k6BgUzAkpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747310924; c=relaxed/simple;
-	bh=o6Yo9ffZe8vls+XOaSwAXVdrRoKLr/juPqgg+0PvdX0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=evdci05j6760JffhkhDwkgRFE8ZxHHMKesnSlMZjvcpS8B0UsLMThUd5EP0LQCQFMczOAaPiePRAD1MaYfIEFYE3C/vfoduPpGSmci3xY1mfcV+/eCj/W/9+fcDGP8waKo+ikxd+Wfei4O53PWj5BBBIwhk5I61MzDPF8o5P+70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bqo+yoYW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E067C4CEE7;
-	Thu, 15 May 2025 12:08:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747310924;
-	bh=o6Yo9ffZe8vls+XOaSwAXVdrRoKLr/juPqgg+0PvdX0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=bqo+yoYWmnQ8aLtTYE8fM6eJQrohVECcFco+1TAIKTPADWVm7oFXW7zn8j0wtJ+WD
-	 KI1atVJtISFq07mf6TmtuG/ZWk0l+vZqPBbk8zscy4ibbcYUwjG9saT/yw2w1d2WHr
-	 EkqdbIHxBiE8izHqW3LS3Sl96+a6hG8pfEvgogTePRON5I/lyAUGfJ7mW3hLFXTR8u
-	 orBTs9NBnDw2FFNTmI72+CruqPHqiMVNQKlaaiW+UHIxzQike/OSQt8LTNBymipelv
-	 alNTPEAV9315lEqipKJgMyY4DBOvLro2WlpV6ujP55cLuIzUhcbcZvev3y1f8/cr0z
-	 VoRzLmhIyh3tA==
-From: Mark Brown <broonie@kernel.org>
-To: robh@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org, 
- conor+dt@kernel.org, lgirdwood@gmail.com, linux-kernel@vger.kernel.org, 
- linux-sound@vger.kernel.org, perex@perex.cz, krzk+dt@kernel.org, 
- Zhang Yi <zhangyi@everest-semi.com>
-Cc: amadeuszx.slawinski@linux.intel.com, krzk@kernel.org
-In-Reply-To: <20250514094546.35508-1-zhangyi@everest-semi.com>
-References: <20250514094546.35508-1-zhangyi@everest-semi.com>
-Subject: Re: [PATCH v8 0/2] ASoC: codecs: add support for ES8389
-Message-Id: <174731091956.350483.2947360703784632396.b4-ty@kernel.org>
-Date: Thu, 15 May 2025 14:08:39 +0200
+	s=arc-20240116; t=1747311649; c=relaxed/simple;
+	bh=ySi+0M+CVuWfwFeLu3PPC0j4nsW75CVo4AF4TCbTxnI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CuZNQc/9QOCh1NjwBTxDSdWgnxtY4TTqJbJ4toELzr7wRxVPiB30/c8554xMZ5nPaFagvzTm9/WtO1SFjIjLQQyKJIuebPm2o0Auo+6NKorSj5KwF/Nj+TbdeUqfhm+wm1qoeXDJx+SD8RyGbJkB5En/1aEIEJXYkQpr+e5XqzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vkwlCqZ0; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43d04dc73b7so9142285e9.3
+        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 05:20:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747311645; x=1747916445; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UYYmwpP0MAwsA931NniE7DuDU5H48aT0XrSHju++1ic=;
+        b=vkwlCqZ0SwyVN+cPtAK9kv43zZeGM4qFKReGHN7DGwZd7emjYjPH1vUi8xhrbRCcAw
+         kJ6Q4FsCxiwN/HMxHllvoG4N532uzrQQnYf3ubwNePu6lqcMxgjxrA3KEcq3TSudUtW9
+         E5Hpvls5kJA3DfCmjyES1anB5cVdKL7JbvZzdn4iqVUuWibMPnqFcBtMoGzqOsfscvAT
+         an0nxyeZ4ogjVTZKCbU7T7J6xyu1WwqKLjcI8UXRTruBHPslrHRNILhZZqMiQEW+HLvY
+         EoqE8Mg32OKjtoEWCzdmDazHkkWymizXLq7/Y/U6L69aTTthnV/gDj3QDFY8z7r09lzK
+         QLLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747311645; x=1747916445;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UYYmwpP0MAwsA931NniE7DuDU5H48aT0XrSHju++1ic=;
+        b=n+99bKL7j4Dnivr7haGv2zXauo7kS9FLPcwJARR8eGoDXA/aMJbxJ0zje2dAfzdFdo
+         i3k7+Zkq1LmR0pWTnQ73VKYN78QltB4MXDfxzNvYTLTsJjPuGwsvYIwkZnrv+7rydjcQ
+         yqIl3bXKy7R/ZZ/Ngr2+Ywn+PS5c5mgGaK+xPSyp8UiMkYAgTwDzFzNpC+R7SR+2VaiH
+         Qr6bonHzTvhM2beF+srQBa5LNK7H53DARG8AAPuy3OCYavMjIKQD77p897wDeOAODsDi
+         rNn8yReBhtH3m7xqvxdwljYG63avliCDsnGVFGEqWHRnIkvi6J5S894v9rwT+utJPF/e
+         5Isw==
+X-Forwarded-Encrypted: i=1; AJvYcCWYCMdB15rjBFjKbFdjoIjfXHz3fIGvwoWFqYyw+nwCyzDj/kqKXORkWA7tOqfV+etR+UFcxiaPN7R7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxO6c4xzmMCyZgaaWL47aDRM67KI67PPLPrSteucu3KuL3PnkmO
+	IpWEVdPD/Uk+nI7AoDathGENYE47UGrz7LGfJTIb/NX6ul2cI5ECkIqSxnUri10=
+X-Gm-Gg: ASbGncv6kZzxNWV0a4KLn5eJL5ewVyIWzUWVVBK6BkuqOPchl5rIkW+Y6jfZWyXl1Bg
+	DKaP0i9OTgL9pEZI+Srii1avvT+QC9f6F+56QFcnIxxALJc/tBnWNwzDUNSFAk9fWFuDiv4wRwC
+	nhlCMFHQredWJ4QiuGQ9T8OCTNtTcEjKgvhF/xZ8NDYq0SFM+je1ZmO9cIcteJPM7LQzRjXZYWI
+	oZUmVpsIdpv56hIsYasvnuxffmIEpS1ZQESyBJInQht44C3V84/8BBlWnC5wHeQja1mXofiEW3d
+	iWIqFogeYTtjKkckJXRkwgrittoeYj9eKSfwUyA777mPO3PUvh59y7lFAEj22bQFL6h23dswuEz
+	lZO5zvSPr
+X-Google-Smtp-Source: AGHT+IFf5pIVLw9OgzawdBaBFW6KZvXprzzPf2JHeKzZZEBmezUo1iUF8T/ujeptaHHKPw8LeA0tyA==
+X-Received: by 2002:a05:600c:3e88:b0:43c:fb95:c76f with SMTP id 5b1f17b1804b1-442f20e33b0mr74335285e9.9.1747311644763;
+        Thu, 15 May 2025 05:20:44 -0700 (PDT)
+Received: from [10.61.2.175] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f57dde01sm22985463f8f.15.2025.05.15.05.20.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 May 2025 05:20:44 -0700 (PDT)
+Message-ID: <586c877d-0d0a-48bf-9c55-97bd24e86638@linaro.org>
+Date: Thu, 15 May 2025 13:20:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 10/14] spi: spi-fsl-dspi: Enable modified transfer
+ protocol
+To: Mark Brown <broonie@kernel.org>
+Cc: Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+ NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, larisa.grigore@nxp.com, arnd@linaro.org,
+ andrei.stefanescu@nxp.com, dan.carpenter@linaro.org,
+ linux-spi@vger.kernel.org, imx@lists.linux.dev,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Andra-Teodora Ilie
+ <andra.ilie@nxp.com>, Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+References: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
+ <20250509-james-nxp-spi-v1-10-32bfcd2fea11@linaro.org>
+ <aB6pa9m0emX2vMH8@finisterre.sirena.org.uk>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <aB6pa9m0emX2vMH8@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
 
-On Wed, 14 May 2025 17:45:44 +0800, Zhang Yi wrote:
-> The driver is for codec ES8389 of everest-semi.
+
+
+On 10/05/2025 02:18, Mark Brown wrote:
+> On Fri, May 09, 2025 at 12:05:57PM +0100, James Clark wrote:
+>> From: Andra-Teodora Ilie <andra.ilie@nxp.com>
+>>
+>> Set MTFE bit in MCR register for frequencies higher than 25MHz.
 > 
-> v8 -> v7: Modifying apply error issue
-> 
-> v7 -> v6:
->           - Modify the order in the Kconfig and Makefile
->           - Remove ES8390 in description of codec driver
->           - Romove unused variable in the codec driver
->           - Modify notation for declaring variables
-> 
-> [...]
+> Is this a bug fix?
 
-Applied to
+Not this one as it's only supported for s32g which isn't enabled until 
+later. The commit message is lacking though so I will elaborate.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+For the other bug fixes it looks like they are, so I'll put them at the 
+beginning and add fixes tags.
 
-Thanks!
-
-[1/2] ASoC: codecs: add support for ES8389
-      commit: dd4eb861d0521acca1b7e07683a7e90b2e01f66a
-[2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-      commit: c8e7d528284a0bb1cd462b994c464bf31d24a0ce
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Thanks
+James
 
