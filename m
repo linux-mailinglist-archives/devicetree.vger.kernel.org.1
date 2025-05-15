@@ -1,156 +1,163 @@
-Return-Path: <devicetree+bounces-177683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF4CAAB8946
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 16:22:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56A66AB895B
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 16:25:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8CCD1BC6301
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:21:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DA1AA072AE
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:23:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867631C7013;
-	Thu, 15 May 2025 14:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122751C7013;
+	Thu, 15 May 2025 14:24:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cnwrIOft"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="Kx1lSGbe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01E934CF9;
-	Thu, 15 May 2025 14:19:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16131D88BE
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 14:24:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747318794; cv=none; b=G+yOVmauTPmRzrTbqoJLYwh25066x0vu86zr9hxFDQeKkGjB+di7ifFEyZaVrLs3J3jiP1JzLH99K3v93ox8o7gDU2MlHHLhZWXbYJyGPV60Mr2WP4HgMkvqqH1GHBvJ10yhLMuuKE1p/GXaPAJfaDZjujvnnPJR4LY+b6ziZDY=
+	t=1747319049; cv=none; b=RnIt7/rF6dhpxuRYQoNSBAaV9dGWxMxeWeuitlWpfb0QKVUgxqyQgnJ/RF1iOiGuVEsuMXWvKn4BQPycAgFP4JpxdcfBJWhSU2x6cRcXLrdpMVEzLrJOlxxdFjZ8SmiTqjPreI4UX8Bl2DuWpfF6sV9nDybvaNj5mKXsjY/4CAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747318794; c=relaxed/simple;
-	bh=GC6txoSymvE2eUpWMhcc5bo2fCFfhQdksJuOhmz5BVU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=P51TK+6g0q8ukpCKAyIvGW2p2Jij5jYw6Y8xkAr3X2sU5mgOZcXkqnLbRKzzDM5hc4Bh7B1M9IvO5HPcB24lsgW391zfqwfUyCyKg2BO2/j+wExmrtBa5rohDE0892tFrL4mhyDARW9+rThQH5bfR2oApedUaK+q2CIYLAp3XUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cnwrIOft; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54FEFQNr014911;
-	Thu, 15 May 2025 14:19:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	urkFCRXDRbwtEJDT1agZIO0oufUimI07N+gUnsi8KV4=; b=cnwrIOftSEWIY7pZ
-	+Mgw7T/Yzd3TuK0D6AoUFj1/7fq+3TTsjvGMvLNeLUAOl6Wiwk786fLk9no6wctd
-	ZrkwLPdCKRYPR10i4zyf6lv960YuvNB7PdxLKzGyNt+qYO69L0dii+g5jbIDLMoJ
-	2m3a8mLpdvk0d6MgTYg82zFlNI6IeoosoYA/6/7Lf11sws/TtIiF5T8RoVTVBwxi
-	OUk30vNGbZc+IBISX2C3JV9LCkr4e0xjppWjBKvJECPFz3DRutCn9f7ABjiF1r/J
-	HvFnODgGgB080i7maVfrmgsbC2kY52ePq1u1SePM37nqimAgFXJWcUP3Cn7cgyjG
-	fiVOGA==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcpeha7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 May 2025 14:19:23 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54FEJMUx025602
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 May 2025 14:19:22 GMT
-Received: from [10.253.77.60] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 15 May
- 2025 07:19:14 -0700
-Message-ID: <27cf4b47-2ded-4a37-9717-1ede521d8639@quicinc.com>
-Date: Thu, 15 May 2025 22:19:11 +0800
+	s=arc-20240116; t=1747319049; c=relaxed/simple;
+	bh=VZtLi41nrdrlH0WLSGh9zP7FBrQwt7KlH8yLUw1Qss4=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dtyCaC47Rc4Cwe6ucLPxQN4qcGwgR/JeOPchbSnHRSYYOEA8VVAA0gHmyyvwSYANR7+DMejXGBZfWUDTi6Oal+jnl3Glf2fNT95JOSApw3EBpIQg+khJNAAQraWim9aWfJqrvPpX2VA9VVqWeQQzPa5QPCYen8yfqAg/pIiotgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=Kx1lSGbe; arc=none smtp.client-ip=185.125.188.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com [209.85.161.70])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id A53663F82C
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 14:24:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1747319043;
+	bh=xlwQ+aA+muSzpaYiE0SvHYS1AnyEjU4h0g/olbACMZ4=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=Kx1lSGbeYRWzql7+1L0lsUGA48SYZO7Rox+I1pEGPZUUFYPQ1S5nQH3ycD46NqsrY
+	 DdiQ53zTH+YxhK8U2Z1jckqDTSUUBkj7tv9bOb5VlaXqoDoKnpUQmqq91BQA+i/PYR
+	 M3wArJNXDg99LVVZ5m/iL+L8DeaXNnQi9nHsXijD9bh2FsgRjQGiFtMQoT5pfGeYsB
+	 fBkswJbRg0FXMbzx5QMfBwX0wwcGpXc0vccHeDfnNRCcfQzL2aaTdteSjGY5F/aSkd
+	 gqiRI5KG3qSTfT/NHS/7tQmUDaq7TM1srqmoXCYMjsQfpCDUjEQ346Q2bsY41rFdlA
+	 KOgRNa8MYmPuQ==
+Received: by mail-oo1-f70.google.com with SMTP id 006d021491bc7-6064d0103f8so1822076eaf.2
+        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 07:24:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747319042; x=1747923842;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xlwQ+aA+muSzpaYiE0SvHYS1AnyEjU4h0g/olbACMZ4=;
+        b=tDnfcVtHffwfM1U3aBUgz/1Ir4T8prCXHs2JPu1+pcNNY6vqw7P1/aqvPFoiDhzlZ6
+         Yic9eNOgpt5FQBPE58sIKSf4HdTKbtlEzApk3pDy0vP5PR71zrOjkyUWpW3CjIKf0Fkk
+         uQAJmlz7L71dPpbgIvhk8fKYqdCiLIJsmZd60YAcjgMjWtwbZu0ikcWOYNH1K6VLU2nC
+         Cy9GePIn9wQktBdlNZesCkBkTQAmddsacYbAHbfOAH6gjsx8JJ1IF+BbIOhbyqvhcaER
+         1Bmg/nVVk7eM5yiC4DyXVjZpPkEVC64PSBgwtqF3g7EIniyXQABZ8KaUnN/PWNC1p8z4
+         zs3g==
+X-Forwarded-Encrypted: i=1; AJvYcCVtwqjRQ1aR4ztxh8Mx1Vi2hNCI2Q0DMjTl0v7lEET4jpm7Pgg8693bqfceba9rTK9JMarKlmV1t2XR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIIBjkfsR58+sFPTGV9EAxaK/+6XlLel6OXZWmHSSJAnFjgy3R
+	+BI+CgQnsvgu4txyC8+VuopZLYNwLfepsTv+rbr5ed+rJazQfN8wQslipyl7eP4kTJBxyVV+/AE
+	l8D4ivfgsoi0KyHG6IEeYFwLKTMCXzdtd2PHyRz/B7YfQUjzX0xYuEwDnGJoMv3pNbEAOv1W5ah
+	C4JuxPbw0KmhcgmMQaVGhGmmhSn4/Tk9/2PASFpVJyOX119lcGCw==
+X-Gm-Gg: ASbGnctZh5xza9MVz1wT7rSjPiIVDGtF+BZg7lk+jQRtbHox52w/Lazk898jJigqPZh
+	cb3Gtgb3ZhaSLnYOFGH09SvTMkz+nGKnpvxEN3cFcwj1ASnReefVakIYcPAL0TcgWUo9YGg==
+X-Received: by 2002:a05:6870:e994:b0:2d6:246:dbe0 with SMTP id 586e51a60fabf-2e32b05a78bmr4002223fac.1.1747319042098;
+        Thu, 15 May 2025 07:24:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH68dbr1tbLB515+jsbfah2xc7Zu3SzKVdWkjm3J29LlL6eUYcwXlX8tIrhIm/6dFYUiLHb9w4URfADfddYLgE=
+X-Received: by 2002:a05:6870:e994:b0:2d6:246:dbe0 with SMTP id
+ 586e51a60fabf-2e32b05a78bmr4002200fac.1.1747319041629; Thu, 15 May 2025
+ 07:24:01 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 15 May 2025 07:24:00 -0700
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 15 May 2025 07:24:00 -0700
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20250409-pulsate-buccaneer-ae996b6ff98e@spud>
+References: <20250324020958.2235802-1-sandie.cao@deepcomputing.io> <20250409-pulsate-buccaneer-ae996b6ff98e@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 00/14] Add PPE driver for Qualcomm IPQ9574 SoC
-To: Jakub Kicinski <kuba@kernel.org>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Paolo Abeni
-	<pabeni@redhat.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lei Wei
-	<quic_leiwei@quicinc.com>,
-        Suruchi Agarwal <quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
-        "Gustavo A. R.
- Silva" <gustavoars@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <john@phrozen.org>
-References: <20250513-qcom_ipq_ppe-v4-0-4fbe40cbbb71@quicinc.com>
- <20250514195821.56df5c60@kernel.org>
-Content-Language: en-US
-From: Luo Jie <quic_luoj@quicinc.com>
-In-Reply-To: <20250514195821.56df5c60@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zCNPpK9Wj48CpCbuzAioSutd55ac6o-C
-X-Proofpoint-ORIG-GUID: zCNPpK9Wj48CpCbuzAioSutd55ac6o-C
-X-Authority-Analysis: v=2.4 cv=cO7gskeN c=1 sm=1 tr=0 ts=6825f7eb cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=9R54UkLUAAAA:8
- a=1jNZuGh9AS1TBxJ8eMIA:9 a=QEXdDO2ut3YA:10 a=YTcpBFlVQWkNscrzJ_Dz:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE1MDE0MSBTYWx0ZWRfX7QCwf30M9hvR
- zgAae22HTtqhOrhMvWSby5cIFay8CChrA08LtRBV8jGcGQVql4W77pNgX/7NtG094YJE5fzjev3
- Y/+YXYaOX6OPxwAU+SlHQDytXUVl8RaAybpUD5WhES7gByIiZjuhNcXmndN95mlPPsD7Xs3bW5y
- ikLjTBGMdOsRVWPQ9d1VT5/hbPpb8f6VjXG2jRTcXRitd4PThzT3HhNhc3wMrVGB59C1jRfUBaz
- WBpPbClCKc5T4Zh1Q5Rzn09TuObWniawQzp3jhWYLgr58CCTDNdckwyTaQU8KefGztsH1/xlH8a
- uWEkiNJbRF5umZiHioYCWG/Y085Dzw0mgqbJrLASDW07buQRwyj+vfN5AxMzKipc1DDBnss5hqk
- 8IB6rHY38zlUKPSiLyA2hzzyPj1tYYA2GbsI8FDFALfhb1KkbO4+/KvUK0KB+CicGAl3E/lI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-15_06,2025-05-14_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999 spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
- adultscore=0 bulkscore=0 malwarescore=0 impostorscore=0 clxscore=1015
- priorityscore=1501 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505150141
+Mime-Version: 1.0
+Date: Thu, 15 May 2025 07:24:00 -0700
+X-Gm-Features: AX0GCFsniAbL8_iKhnPgXtKsmiLymV-zKuO-sYpzDWWvy82kMaCJo5ZnWZlRl1A
+Message-ID: <CAJM55Z8J49VBr0WWcwBJvDnxnfX2UjGcC5egqjNu-oqqAjHcnA@mail.gmail.com>
+Subject: Re: [PATCH v2 RESEND] riscv: dts: starfive: fml13v01: enable USB 3.0 port
+To: Conor Dooley <conor@kernel.org>, Sandie Cao <sandie.cao@deepcomputing.io>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Maud Spierings <maud_spierings@hotmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
+Conor Dooley wrote:
+> On Mon, Mar 24, 2025 at 10:09:58AM +0800, Sandie Cao wrote:
+> > Add usb_cdns3 and usb0_pins configuration to support super speed USB
+> > device on the FML13V01 board.
+> >
+> > Signed-off-by: Sandie Cao <sandie.cao@deepcomputing.io>
+> > Tested-by: Maud Spierings <maud_spierings@hotmail.com>
+>
+> Emil, can I grab this one?
 
+Yes, please do.
 
-On 5/15/2025 10:58 AM, Jakub Kicinski wrote:
-> On Tue, 13 May 2025 17:58:20 +0800 Luo Jie wrote:
->> The PPE (packet process engine) hardware block is available in Qualcomm
->> IPQ chipsets that support PPE architecture, such as IPQ9574 and IPQ5332.
->> The PPE in the IPQ9574 SoC includes six ethernet ports (6 GMAC and 6
->> XGMAC), which are used to connect with external PHY devices by PCS. The
->> PPE also includes packet processing offload capabilities for various
->> networking functions such as route and bridge flows, VLANs, different
->> tunnel protocols and VPN. It also includes an L2 switch function for
->> bridging packets among the 6 ethernet ports and the CPU port. The CPU
->> port enables packet transfer between the ethernet ports and the ARM
->> cores in the SoC, using the ethernet DMA.
-> 
-> Please make sure the code builds cleanly with W=1.
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-Yes, the patch series is successfully built with W=1 for ARM and ARM64
-on my local workspace.
-make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm W=1
-make CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64 W=1
-
-However, from the patchwork result as below, it seems the dependent
-patch series (for FIELD_MODIFY() macro) did not get picked to validate
-the PPE driver patch series together. This dependency is mentioned in
-the cover letter. Could you advise what could be wrong here, which is
-preventing the dependent patch to be picked up? Thanks.
-
-https://netdev.bots.linux.dev/static/nipa/962354/14086331/build_32bit/stderr
-
+>
+> > ---
+> >
+> > Changes in v2:
+> > - Remove space to pass checkpatch.pl.
+> > - Add usb0_pins and pass test on board.
+> >
+> >  .../jh7110-deepcomputing-fml13v01.dts         | 19 +++++++++++++++++++
+> >  1 file changed, 19 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> > index 8d9ce8b69a71..f2857d021d68 100644
+> > --- a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> > +++ b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
+> > @@ -43,9 +43,28 @@ GPOEN_DISABLE,
+> >  			slew-rate = <0>;
+> >  		};
+> >  	};
+> > +
+> > +	usb0_pins: usb0-0 {
+> > +		vbus-pins {
+> > +			pinmux = <GPIOMUX(25,  GPOUT_SYS_USB_DRIVE_VBUS,
+> > +					       GPOEN_ENABLE,
+> > +					       GPI_NONE)>;
+> > +			bias-disable;
+> > +			input-disable;
+> > +			input-schmitt-disable;
+> > +			slew-rate = <0>;
+> > +		};
+> > +	};
+> >  };
+> >
+> >  &usb0 {
+> >  	dr_mode = "host";
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&usb0_pins>;
+> >  	status = "okay";
+> >  };
+> > +
+> > +&usb_cdns3 {
+> > +	phys = <&usbphy0>, <&pciephy0>;
+> > +	phy-names = "cdns3,usb2-phy", "cdns3,usb3-phy";
+> > +};
+> >
+> > base-commit: 38818f7c9c179351334b1faffc4d40bd28cc9c72
+> > --
+> > 2.34.1
 
