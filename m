@@ -1,118 +1,160 @@
-Return-Path: <devicetree+bounces-177634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A57AB84FE
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:33:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CA22AB851D
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:44:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 076334E291D
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:32:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3388E1B6295B
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:44:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E6A429A9D3;
-	Thu, 15 May 2025 11:30:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5F862980B7;
+	Thu, 15 May 2025 11:44:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OGtrEPQ+"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="geJHtel/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17DD4297B60;
-	Thu, 15 May 2025 11:30:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA4626AD0;
+	Thu, 15 May 2025 11:44:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747308634; cv=none; b=X7SpzmWlXlK+mLtAVFyV5784Yl0sc3jqbSA8Vg9pT5n5BtfdQdUTDzHIwyBo4HQQyAKXu1PbEtVHmzI/SWk2OKBxP6/nzoWVSq4PztDbwQP7AfUuaFo159iFL6CbHf4SSxlXwGEx7dfk1uQXzP1QcCnzopv6nGZgTBCSit9A8BA=
+	t=1747309450; cv=none; b=fATB9+YNk/lZdWH7MsdSVL7jl/xgZkOpU5lmAXrSqsGUC1GtTXuMLKMKUGsiZ+cdwpN0WcveBsc6R/LZPCOkh9vUgGTEDCnkFZ/dRyA3WjLTRjAsUZt/9C9hNAcGTOCGmlKy+Qw1X8S1TZwkqSUz5PiGJz0Jc5m64sPeV3ZpTf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747308634; c=relaxed/simple;
-	bh=qs/HCp/tuPqxoIZBhL/5F24zhipN07IbjkxVJVKrgz0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RUICd+rYl96X6NMZOkQ6E49n3GTsBUhH77yMNy6uTqsHsesMeA+GXTMgUyknf00oNgz7CsjDXDagA6dAekCPzCyfUq7TIKNeC4PGrkaXDKvpJBotcFngBYa3M3V+QzDyPZwDf/y88SXslsVJSYmJ7uMh0lpzf70t7qhwB5oXghM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OGtrEPQ+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BE78C4CEF1;
-	Thu, 15 May 2025 11:30:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747308631;
-	bh=qs/HCp/tuPqxoIZBhL/5F24zhipN07IbjkxVJVKrgz0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OGtrEPQ+qNi7DwYEWf9t2kIgX0yUK9xH93+d7phxdg0AhZpJL8Q23vTkPWBpbdZcQ
-	 bXze78eHqzJvcVEJvTQ2pj8RI/dkYek4k8UgyOEAIX8Xuw9EC425OWr8HuwHsmonBH
-	 nHp80i5JXzG4g5CyMBuV1HhHd3ml37j7IsdMZWVTt8G+QEtWmOhbj8nlE8lTFZT5BE
-	 DT6MEcUk901uV5LINbw5MeQPPKiGMt1wcItLUgErooF2+a+BCOFi9bFR7ZwcoTHpJq
-	 ydt825eVVBdziEPDl5HSeK+IsiheqlUYUprKVeLYqZxZDhVs3c9t7zixf4Au5pU6pG
-	 P73SeOiIC+Mig==
-Date: Thu, 15 May 2025 13:30:26 +0200
-From: Mark Brown <broonie@kernel.org>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stanislav Jakubek <stano.jakubek@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v8 4/9] mfd: bcm590xx: Add support for multiple device
- types + BCM59054 compatible
-Message-ID: <aCXQUu97HL_yrH89@finisterre.sirena.org.uk>
-References: <20250430-bcm59054-v8-0-e4cf638169a4@gmail.com>
- <20250430-bcm59054-v8-4-e4cf638169a4@gmail.com>
- <20250509140957.GD2492385@google.com>
- <aCRZzwW0w8oVWLUp@finisterre.sirena.org.uk>
- <20250515071357.GD2936510@google.com>
- <aCWfre2-n_PSuhxR@finisterre.sirena.org.uk>
- <20250515092000.GF2936510@google.com>
- <aCW0822BVpfKV2NL@finisterre.sirena.org.uk>
- <8beeddcf-1dc7-4af8-b287-4c896852b258@gmail.com>
+	s=arc-20240116; t=1747309450; c=relaxed/simple;
+	bh=2H5KIqNQmBmyDV57fqFZKvELSZdXowmg5XqoG7ZDEIA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Jkatl/wiUWH/JPOGID4arqTs7HP10wOP3dZA53dUg7RhBlTkg6g1JZVF3QkyMhy0MAziDabtzVq4TA2fJRyZUnIwaMlOkN0amrQIDJGE8ElsBEENxMFOoOkezrj3tHJ0o4hADGOe4BxuZdT+GT8T/CeRRLdnWnLKlqBzlMS1J2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=geJHtel/; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=4EIg5oOs7ULbz83N09ZfXxoK0Xg+DnktC4ZDSGogzJ0=; b=geJHtel/NTEFLCETukj4rEru8f
+	DTcZfviPipN15Ne5XDBQH8OUbGglWEzeo30JTmc/NxYBd8B2Jwg8Z/YMY2mo32dq6LSJbjG4ZHShg
+	zAYen0uU7oRU1wdt+XxzqVn9F3dQhLqF8lGawb/3OV2F7wpAXttMVVieGreabNCKeuB/UlmrUrGKG
+	rTkkNogBaE54a2XY0j95OxPeMmyOxcdC4Cueiy5aSACulINIA2cd2msTbgKF7YcSPRVfpVvBcNqmD
+	a04Hn7lckIgU5AdmUTdV7BGlD6jNOOkwCsI4NacH0Mk0v7WF42ooxarWhvnl0/fc5TUjl5i1S4D5e
+	wiQIqPUg==;
+Received: from i53875a50.versanet.de ([83.135.90.80] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uFX0K-0003eK-ND; Thu, 15 May 2025 13:44:00 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Matthias Kaehlcke <mka@chromium.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Benjamin Bara <benjamin.bara@skidata.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Klaus Goger <klaus.goger@theobroma-systems.com>,
+ Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org,
+ Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, stable@vger.kernel.org
+Subject:
+ Re: [PATCH v2 2/5] dt-bindings: usb: cypress,hx3: Add support for all
+ variants
+Date: Thu, 15 May 2025 13:43:59 +0200
+Message-ID: <3784948.RUnXabflUD@diego>
+In-Reply-To: <20250425-onboard_usb_dev-v2-2-4a76a474a010@thaumatec.com>
+References:
+ <20250425-onboard_usb_dev-v2-0-4a76a474a010@thaumatec.com>
+ <20250425-onboard_usb_dev-v2-2-4a76a474a010@thaumatec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="EfsCzTWB3diViB+9"
-Content-Disposition: inline
-In-Reply-To: <8beeddcf-1dc7-4af8-b287-4c896852b258@gmail.com>
-X-Cookie: Well begun is half done.
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+Am Freitag, 25. April 2025, 17:18:07 Mitteleurop=C3=A4ische Sommerzeit schr=
+ieb Lukasz Czechowski:
+> The Cypress HX3 hubs use different default PID value depending
+> on the variant. Update compatibles list.
+> Becasuse all hub variants use the same driver data, allow the
+> dt node to have two compatibles: leftmost which matches the HW
+> exactly, and the second one as fallback.
+>=20
+> Fixes: 1eca51f58a10 ("dt-bindings: usb: Add binding for Cypress HX3 USB 3=
+=2E0 family")
+> Cc: stable@vger.kernel.org # 6.6
+> Cc: stable@vger.kernel.org # Backport of the patch ("dt-bindings: usb: us=
+b-device: relax compatible pattern to a contains") from list: https://lore.=
+kernel.org/linux-usb/20250418-dt-binding-usb-device-compatibles-v2-1-b3029f=
+14e800@cherry.de/
+> Cc: stable@vger.kernel.org # Backport of the patch in this series fixing =
+product ID in onboard_dev_id_table in drivers/usb/misc/onboard_usb_dev.c dr=
+iver
+> Signed-off-by: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
+
+Looking at linux-next, it seems like patch1 of this series was applied [0].
+The general convention would be for the binding (this patch) also going
+through a driver tree.
+
+I guess I _could_ apply it together with the board-level patches, but
+for that would need an Ack from Greg .
+
+@Greg, do you want to merge this patch ?
 
 
---EfsCzTWB3diViB+9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thanks a lot
+Heiko
 
-On Thu, May 15, 2025 at 01:28:15PM +0200, Artur Weber wrote:
-> On 5/15/25 11:33, Mark Brown wrote:
-> > On Thu, May 15, 2025 at 10:20:00AM +0100, Lee Jones wrote:
 
-> > > I can go with 2 in this case.  Applying in dribs-and-drabs as Acks come
-> > > in would be sub-optimal and would likely end up in a mess.
 
-> > Well, then just going a head and applying them on a branch with a tag
-> > seems easier than delaying then.
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/com=
+mit/?id=3D9f657a92805cfc98e11cf5da9e8f4e02ecff2260
 
-> I can split the patchset into two parts (one for MFD, one for regulator)
-> if it helps.
+> ---
+>  .../devicetree/bindings/usb/cypress,hx3.yaml          | 19 +++++++++++++=
++++---
+>  1 file changed, 16 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml b/Doc=
+umentation/devicetree/bindings/usb/cypress,hx3.yaml
+> index 1033b7a4b8f953424cc3d31d561992c17f3594b2..d6eac1213228d2acb50ebc959=
+d1ff15134c5a91c 100644
+> --- a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+> @@ -14,9 +14,22 @@ allOf:
+> =20
+>  properties:
+>    compatible:
+> -    enum:
+> -      - usb4b4,6504
+> -      - usb4b4,6506
+> +    oneOf:
+> +      - enum:
+> +          - usb4b4,6504
+> +          - usb4b4,6506
+> +      - items:
+> +          - enum:
+> +              - usb4b4,6500
+> +              - usb4b4,6508
+> +          - const: usb4b4,6504
+> +      - items:
+> +          - enum:
+> +              - usb4b4,6502
+> +              - usb4b4,6503
+> +              - usb4b4,6507
+> +              - usb4b4,650a
+> +          - const: usb4b4,6506
+> =20
+>    reg: true
+> =20
+>=20
+>=20
 
-There's still a dependency on the MFD bits whatever happens.
 
---EfsCzTWB3diViB+9
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmgl0FIACgkQJNaLcl1U
-h9CRQQf/Wx34agRsQjJ2L7RzP4M/Z0iU+/Xw0es0YHN1eDqCFQ7368/GShTJ7J4U
-utqRkkzJTWqNvk0DQeHY4GsMCk6yPIrIR6cOENq8gUciYHzdm66JombPUN2mnqFs
-z89Yg5kvAjbqoMjMAvppNzwgkTfMH/TtGFByO8+C8AdgXiepwJuNWKQTvMELoJ6A
-Uy3wTygq9HlCCgguqG4p0CZJF+f3wNbDaRc2J9aes3GifYM95AOa46rdaUhz4EhV
-2hDqSxBUnFIMHpFnWKaMr2o8nfWf29UY2TsqjOvoDhXnCsKSKuGvzIgZSk0FxCpG
-v+6XIegFtSG6KQfjGQKcIH3V7sGk9w==
-=G2Oh
------END PGP SIGNATURE-----
-
---EfsCzTWB3diViB+9--
 
