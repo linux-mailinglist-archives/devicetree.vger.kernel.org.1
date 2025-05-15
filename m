@@ -1,90 +1,88 @@
-Return-Path: <devicetree+bounces-177564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8186EAB80F2
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:39:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A33AB8105
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:41:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D43501700C3
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 08:37:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5DF818973FC
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 08:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3553028C852;
-	Thu, 15 May 2025 08:35:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73C3B288C34;
+	Thu, 15 May 2025 08:37:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pyMAA+tf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fus1si1P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 620D128C5AE
-	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 08:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F39A482FF
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 08:37:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747298124; cv=none; b=j0Y4vNpY/6NasKW4kOAmDR0nnU1IslZcNRCqldJLPY2TkAYFWXVfczsFZhvsrVkc8UJLcxVhMN1DALigLUOZoNzjMuivcL8cQn0rl+TvKDc5NMAy6OZ6sf5rMw1XRrsetpF8NoNIzG70sQsy9yuqryJb8EMK6KRqV2LMRxec81w=
+	t=1747298230; cv=none; b=h5p2Dmw8r2lCekcqvtLd7BEC3lpmXMqkBU+BKxlHKaPLGaXyhe8+cd2DAvpKui01eOo4vBE7lZYoYkPpVEynqavyjt/0GgX1Q2NH8wZ6vSzpBuWdGlX+uwA/iSMz/FuPDMFkNejQWw2eRW6h8+MQ90pa6mqaXA8so/+A8SxwCA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747298124; c=relaxed/simple;
-	bh=9pbatmL7aL/vj8ZUFAV6MU/4LtyoSBW0BcKNN8jXnCM=;
+	s=arc-20240116; t=1747298230; c=relaxed/simple;
+	bh=pfZEqn7xS5lSMrZ8BWmE+kx91wUR5qeBCgiElHGM9kk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oXbdpFUngCER8zkwu7pxkY830KoMZFJgdQT+W+oZSxFNqtJvFfaYQCZMkFXSpbojMO7+8PyBi7x2nEoXMX5Y9K916jRwM8IC2n4l7FmsFNfThhfxnlcrXK6xgvWpyLtfRR3xDphlZMzF4KOfu8cehhvbA2RKCKNxJI/5An86sxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pyMAA+tf; arc=none smtp.client-ip=209.85.128.41
+	 Content-Type:Content-Disposition:In-Reply-To; b=jCYXMcwaTFUIiuMtMgPR30WvTJGlS899v34Z3U8U9paAATsf0AgGE7oP36EFao6bw4W6y/Jz03A11XOK+WqkcGj4E1Fhl3cZ+Z3OcJheyNJ1zN7AQG04HmXq/cWeN7qtrygwgJNbbfWrI4Qz3z3MEPzltEsVpSg7ctzkSfNFlT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fus1si1P; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-442ed8a275fso7229505e9.2
-        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 01:35:22 -0700 (PDT)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-441ab63a415so6798355e9.3
+        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 01:37:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747298120; x=1747902920; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1747298227; x=1747903027; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=06fYRQosONYXgKhGU9k/rO3oNTjga5PPDQkysxE6Iro=;
-        b=pyMAA+tf4Jfw/LMBzsN2hYO2y0UsNgxojDpw3cX2zyLNmBfDxe2HgHsRwE7iQDpo7c
-         D66gx9GD3wIJgUhwR0so5EaQtNqVPo31cWLBRFzesrpKDQHqcEyDVttBATAkpuDPtEF1
-         gO6cct/M44rOGONA9JKESjBEWzZyFRHNaKls7eKHaLjcPElGvsReCGQy+4OAj/V4K+Hb
-         zd74JE6GhVc3Pz0xBjFQG9Y4x221kwo2dxkEZIE28v7GgteWvIdSf3wZrlLhHHnCqHU6
-         CzRbrjQmpnWDlP7RQhSxJS45NqbwV9KQVn9jqNq6BBKtmj9JPkPXXq/gzQ1Kg01ORVKs
-         awTw==
+        bh=BIzrdar4Xr4Yn7VJnhohVXle0hMXzlUPEm7nDd/YT8M=;
+        b=fus1si1Pi0hyoEVHP3FCUGmD79gWURkYafihm72nZLhYkuqxV34yN95Xm39PrjVrZQ
+         3aE+zBacuVXNZB73FGknc8DMQ6M6wAJ3b451bMKcGCgLZEDYGzrLV3uYYM1fZXyPh4BS
+         k0T/3DxmidAPbYjAWrQ0gPCQpDXe9RHonhQ/MD7Xk5buxbrk4JThqXr8xBXYxdVSp161
+         U1jqIOpWpnDcYzcMZ1lZcheQuZLu+fDEQ6dVT4NNrWiQOCHKFaNBBa9KOjKojdbjYEDW
+         7ZbOdsr+uRN/Bl27GYkyFdHRkIjjxhzcDYRRSqTNr2cV9Cu6UcYsz4qjOsjkwoGaOX+e
+         eKdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747298120; x=1747902920;
+        d=1e100.net; s=20230601; t=1747298227; x=1747903027;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=06fYRQosONYXgKhGU9k/rO3oNTjga5PPDQkysxE6Iro=;
-        b=pL5D9R0wUDpTLWSPQNPRJgWieC4RkIV3RtF+/qGzdGqquUQa5pi9P4+7PO1KQ4JHh0
-         T0q1BVIlNausNcJSSLbBwkIjZx266rjF3eL5wSoSFojmbaUWgL8XIRharLJDmuThfdb+
-         wF8FEtYfaj7CO7mBDdgZ16dQsTLLc2EqzZCHekZYoLwsJYYHsi9PXbQk83Y0IOI4Koqf
-         82f06MutNBJ4djjuc0IEAb5El/+lhjpVKSvNLj3TBKr6MJPfy8s0B5TSVv8vS9eQYNO5
-         3bVTjhh98Qug93SQn8FcHTckZD3TWPGbQYdkx+yt2LDHUZgOioL7bMsU6jjzN1YlqVWY
-         UcgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXOnPkcerChrPdYNGninTQKLs3XtP8iYk7jBEz9iNj1bHeKkddAurjmpHMsWrs+ODjr9jBPMmkbq9n0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIDISUlt07ruHzJ8ZuxSAt0ERqrIZMkNlbeHZ+55UilQJICqEk
-	eKRpxrnnEtQDEKMcZG9hoUij6Ve1+Vuxhj/EvDZ8Ir5NRksRVE5Nfx+BlD3k7S4=
-X-Gm-Gg: ASbGncssJVk3WIGOhU7/MoQ8qWhGXKoVTbq0st3ICbCyTBmQQvycA2e3Wu4tQ5Uzh2u
-	MJkwWoOgP3BCaHhKlLpGl8CxNa8YOwbot18AXdOSWk87XFSa/EPsqmgcx+nvJeU+O4DhKX6DnaN
-	thnSV4L7wTwep2r4G2T2bJFexZYTSqmJqos24j21SSonhUeNvQMiL468sNUqgXHDPYrmucCaxMs
-	8S0TDhki8O8WefSKn03j32mNDw/VpZb1slle/DJSVB07UR7QcqJRoVLNqF3kmiSz6po6FBjeK4s
-	kuar99OABAynbnm37srhI+YRxAyfK6o8uRNViCTRr7B3cuCwD6sN1G5YIbEfl9urWzrMXk0nfNX
-	53DPLMjS73+5VXg==
-X-Google-Smtp-Source: AGHT+IHu2s9sa92qmesl5veI+oAS03nFjtQ47vH11ArCbrSF0HDjcyh6IGTJen7CR8wkKp03sRpn5g==
-X-Received: by 2002:a05:600c:c0f:b0:43c:fbbf:7bf1 with SMTP id 5b1f17b1804b1-442f2179271mr73566765e9.30.1747298120445;
-        Thu, 15 May 2025 01:35:20 -0700 (PDT)
+        bh=BIzrdar4Xr4Yn7VJnhohVXle0hMXzlUPEm7nDd/YT8M=;
+        b=ZYiAYfOO6MVKT8HhCw2ie66v+FhsOss6bL0hDHK7l9A5MevGJ5JsoBpxZ2xl25vbMo
+         DKwRYVxgIW9R2GjDGIYdJpuzlv03vJ4t7TMjgv7kadRWAM1zeYup3t7Pq3X65JFt7t7q
+         b+xqedjcLOslADydXjvpOmqRe4ZxM/kmks5ssR6qhzncPNGEyjfic5Ydx8GX2c4Dwetn
+         nO7GoAT9LkHc9uRy+9wUy2K2OP4AHsTmgBVvLbQu7EoV1RcIdO/MF1LWp47wvH+j1qEc
+         PJxWluSYeBYVOHYW+vBzfzMhSzWTzBOGw3oftyGcYAzcQygJTM3ZuFT0RN6/XCzmfyx0
+         ngMA==
+X-Forwarded-Encrypted: i=1; AJvYcCWPD1n/4LB8eUB1PIVtTqAwgzHxasxz9/dsIWnBxrfB+Au7S4ntq75V6Qc8/Jb224OvENHw0sQl/ZON@vger.kernel.org
+X-Gm-Message-State: AOJu0YyF1hyi93aCzcQb3NzZCa2BsM/P0zrBEOz4qynM+HGLLawB4zI+
+	I1THtp95K0Z7CIwV7vag1sUNMUmoLjqnC+Mf+2R5cjdObEdHIBNugt8+4lXrQtk=
+X-Gm-Gg: ASbGncsPVIU8voFsg8/oTcqxLA6+DodWLuUF5Gr1N9+Yy+dQVl8mbzA6X8jrOZj5owi
+	a0EoEQPuqTZwC5A7wZ89u4HHRqbE3+NjrBvGm/lHKMtSTu7KYbXtf4bjpTZbu5dKlG9nVp1Ya63
+	QrwL7uPKwT/HqkRt0FdqAawM3u1IuSrdJ750le1Slxcq/1Ld56tZhSFXjYynTtg9TT5zMHSx67a
+	CTSDj3/+/zmjxuHwAxWdbPlUdOZjz1IoNRYq0bXUS4Eoyq2QasqBn9gP+wfUttR5kUNm0j862db
+	2bfk8JPD/iegQu8c/fhNJHmnz1ae5h1WrkL7qh3743dWYuB4GH9MsCpzKuXY12LsUKXGfmNk85D
+	3uUaj9YXty9uFbQ==
+X-Google-Smtp-Source: AGHT+IEKNMiZ/Dao4WCMOpQoN5MHi4xf5XJixRA3rQXwHPXJ4hB04Gl/HkzVD/DYYMWEmopMe9nRTg==
+X-Received: by 2002:a05:600c:4ecf:b0:442:e011:7eb with SMTP id 5b1f17b1804b1-442f2179993mr74502955e9.30.1747298226647;
+        Thu, 15 May 2025 01:37:06 -0700 (PDT)
 Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a2cf0esm22131999f8f.79.2025.05.15.01.35.19
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442f397926asm59378265e9.36.2025.05.15.01.37.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 May 2025 01:35:20 -0700 (PDT)
-Date: Thu, 15 May 2025 10:35:18 +0200
+        Thu, 15 May 2025 01:37:06 -0700 (PDT)
+Date: Thu, 15 May 2025 10:37:04 +0200
 From: Daniel Lezcano <daniel.lezcano@linaro.org>
 To: "Rob Herring (Arm)" <robh@kernel.org>
 Cc: Thomas Gleixner <tglx@linutronix.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: Convert marvell,armada-370-timer to
- DT schema
-Message-ID: <aCWnRtoXHfDKqOSP@mai.linaro.org>
-References: <20250506022301.2588282-1-robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: Convert fsl,gtm to DT schema
+Message-ID: <aCWnsIpMal8_m9Y8@mai.linaro.org>
+References: <20250506022245.2587662-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,17 +92,127 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250506022301.2588282-1-robh@kernel.org>
+In-Reply-To: <20250506022245.2587662-1-robh@kernel.org>
 
-On Mon, May 05, 2025 at 09:23:00PM -0500, Rob Herring wrote:
-> Convert the Marvell Armada 37x/380/XP Timer binding to DT schema format.
-> Update the compatible entries to match what is in use.
-> "marvell,armada-380-timer" in particular was missing.
+On Mon, May 05, 2025 at 09:22:43PM -0500, Rob Herring wrote:
+> Convert the Freescale General Purpose Timer binding to DT schema format.
+> Add the specific compatibles in use. Drop the "fsl,cpm2-gtm" compatible
+> which is not used. The examples are all similar, so just leave 1
+> example.
 > 
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
 
-Applied, thanks
+I'm not applying this one, it was already converted by patch:
+
+https://lore.kernel.org/r/20250412-gtm-yaml-v2-1-e4d2292ffefc@posteo.net
+
+>  .../devicetree/bindings/timer/fsl,gtm.txt     | 30 ----------
+>  .../devicetree/bindings/timer/fsl,gtm.yaml    | 55 +++++++++++++++++++
+>  2 files changed, 55 insertions(+), 30 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/timer/fsl,gtm.txt
+>  create mode 100644 Documentation/devicetree/bindings/timer/fsl,gtm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/fsl,gtm.txt b/Documentation/devicetree/bindings/timer/fsl,gtm.txt
+> deleted file mode 100644
+> index fc1c571f7412..000000000000
+> --- a/Documentation/devicetree/bindings/timer/fsl,gtm.txt
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -* Freescale General-purpose Timers Module
+> -
+> -Required properties:
+> -  - compatible : should be
+> -    "fsl,<chip>-gtm", "fsl,gtm" for SOC GTMs
+> -    "fsl,<chip>-qe-gtm", "fsl,qe-gtm", "fsl,gtm" for QE GTMs
+> -    "fsl,<chip>-cpm2-gtm", "fsl,cpm2-gtm", "fsl,gtm" for CPM2 GTMs
+> -  - reg : should contain gtm registers location and length (0x40).
+> -  - interrupts : should contain four interrupts.
+> -  - clock-frequency : specifies the frequency driving the timer.
+> -
+> -Example:
+> -
+> -timer@500 {
+> -	compatible = "fsl,mpc8360-gtm", "fsl,gtm";
+> -	reg = <0x500 0x40>;
+> -	interrupts = <90 8 78 8 84 8 72 8>;
+> -	interrupt-parent = <&ipic>;
+> -	/* filled by u-boot */
+> -	clock-frequency = <0>;
+> -};
+> -
+> -timer@440 {
+> -	compatible = "fsl,mpc8360-qe-gtm", "fsl,qe-gtm", "fsl,gtm";
+> -	reg = <0x440 0x40>;
+> -	interrupts = <12 13 14 15>;
+> -	interrupt-parent = <&qeic>;
+> -	/* filled by u-boot */
+> -	clock-frequency = <0>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/timer/fsl,gtm.yaml b/Documentation/devicetree/bindings/timer/fsl,gtm.yaml
+> new file mode 100644
+> index 000000000000..31d8534ac868
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/timer/fsl,gtm.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/timer/fsl,gtm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale General-purpose Timers Module
+> +
+> +maintainers:
+> +  - Rob Herring <robh@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - fsl,mpc8308-gtm
+> +              - fsl,mpc8313-gtm
+> +              - fsl,mpc8315-gtm
+> +          - const: fsl,gtm
+> +      - items:
+> +          - enum:
+> +              - fsl,mpc8569-qe-gtm
+> +              - fsl,mpc8360-qe-gtm
+> +          - const: fsl,qe-gtm
+> +          - const: fsl,gtm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 4
+> +    description:
+> +      One interrupt for each timer
+> +
+> +  clock-frequency:
+> +    description: Specifies the frequency driving the timer.
+> +    default: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clock-frequency
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    timer@440 {
+> +        compatible = "fsl,mpc8360-qe-gtm", "fsl,qe-gtm", "fsl,gtm";
+> +        reg = <0x440 0x40>;
+> +        interrupts = <12>, <13>, <14>, <15>;
+> +        clock-frequency = <0>;
+> +    };
+> -- 
+> 2.47.2
+> 
 
 -- 
 
