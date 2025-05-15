@@ -1,174 +1,115 @@
-Return-Path: <devicetree+bounces-177615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB85BAB843C
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A94BAB8446
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:49:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52324178A22
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:48:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B4B716117F
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:49:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 471C3297A45;
-	Thu, 15 May 2025 10:48:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F398E2980AD;
+	Thu, 15 May 2025 10:48:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="W19INCcK";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="r1ZTN2ys";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="zLyRDf5b";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="lkp2QJLL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u7DeagEU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1F3224B04
-	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 10:48:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C95E72980A3;
+	Thu, 15 May 2025 10:48:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747306095; cv=none; b=cUm5QkP5jNOn/S9T28D4R0q60RzQtQtJty24/IrO29eNZCOFMSDGt+6h2MxyWCqvyLBcvAgUm5UcSXgvz5fFU7+F752cb5fX3XmyjivEQ06UyKWebci3vEdqe2Y8tMFyu+qGjTl5rYGpb2L5fbaoOaK8SNzvPOhUDbW+yRCBnfE=
+	t=1747306112; cv=none; b=FKZ46Kz1RfGjmZifeKTptO/Q8jPyDjAtJ1E38PYbsACt9KJ+rgrD49x4UT0+EZQE/eayGj9Q+HBYUrPCWkVSjEOjp0VJrRibiujumuSUZV7iH76hWb5omjEm7s0n4z7LFqKiTiy0fVhGfLZjrizSNdtd+Ho9NlGI40BFjW/N+Ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747306095; c=relaxed/simple;
-	bh=HSHAc1esZ7JGsghsuy8H2Bqb4SKoBoPV4DVt5e5AQzY=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tsxihwP/1C9m1HN2oRg7EexrclmUbrPqds+r8+LunGDtWK31PyLXXZ8tzJtv8z7E6ccgzoGp4nq5r3eaR5HBDD7tUmcBQCvueceNDpg0OzfWYC5vLsmd6miMcBJKg++58W2Zs0uFQHeiJxYHjbEFCerxLyMKqb9BURK2/ffZclY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=W19INCcK; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=r1ZTN2ys; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=zLyRDf5b; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=lkp2QJLL; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 8E659211EB;
-	Thu, 15 May 2025 10:48:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1747306091; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HxihgeIkFF/rHdS4s6GW49xNqzW9yrSrX50YJnkKkME=;
-	b=W19INCcKMU0cm1jbKIcq3MNJwuidUTyN6mqfMl4C4sHfkDXbIDop1030mBRAVj+kWEQREt
-	UlP2HALnjEmIObe3G1opjfrKaUM3rdy5srgBXoOVaR/GVwPPGeDUjV20fsPTNwyujEwtIm
-	GJMGb0VgpxO9eB93YxQa6u18WwN+OGg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1747306091;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HxihgeIkFF/rHdS4s6GW49xNqzW9yrSrX50YJnkKkME=;
-	b=r1ZTN2ysZtn+sQTHBpO2VA81MsO4mL2VZ5KYluF+/HzOb8P8mEL8QR7MwaR3o8RYgtlT6c
-	qqITH2vUydsrdbBg==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=zLyRDf5b;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=lkp2QJLL
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1747306090; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HxihgeIkFF/rHdS4s6GW49xNqzW9yrSrX50YJnkKkME=;
-	b=zLyRDf5barxYam1WigUEvSI4oBX5+kb04uTjPyO3LkFBt6gcc36dNuxDym7d4aP0QqXchs
-	30X+tixwai45imR5yoKXdwoW2GMmuwcNY2zJ6ag208/vqkXUTS49ODVeuZ6AsLKXLFFxjG
-	MBkY1kJWSdAqJ1V42QEpVr4xhytJ9c8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1747306090;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HxihgeIkFF/rHdS4s6GW49xNqzW9yrSrX50YJnkKkME=;
-	b=lkp2QJLLaQ7SBT8+8MqXoC9dcranJYUti3dAGzkSUYYuyZNd6CgPbDdD+IdElLE/MRXPWe
-	J5ksK9zkW+nkavBg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 2A3B8137E8;
-	Thu, 15 May 2025 10:48:10 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id +igNCWrGJWjRZwAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Thu, 15 May 2025 10:48:10 +0000
-Date: Thu, 15 May 2025 12:48:09 +0200
-Message-ID: <87msbervyu.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: "Sheetal ." <sheetal@nvidia.com>
-Cc: <lgirdwood@gmail.com>,
-	<broonie@kernel.org>,
-	<robh@kernel.org>,
-	<krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>,
-	<linux-sound@vger.kernel.org>,
-	<devicetree@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>,
-	<thierry.reding@gmail.com>,
-	<jonathanh@nvidia.com>,
-	<perex@perex.cz>,
-	<tiwai@suse.com>
-Subject: Re: [PATCH 0/2] HDA: Add Tegra264 support
-In-Reply-To: <20250512064258.1028331-1-sheetal@nvidia.com>
-References: <20250512064258.1028331-1-sheetal@nvidia.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+	s=arc-20240116; t=1747306112; c=relaxed/simple;
+	bh=adxalg7H3lV44b62vZBcg+BCmQflj5misd5wybzAhrk=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=tb2gZ1PSFoIxQU+c0fD98fHVx3E8rhkdlUBVjrru/9pxJ1zyiSU5vkC5AK+VLgIGTLMth8IeETHfGo5FUlj8KG64pwSqBltXrrkbzxK2Zb/PIvx0LcyPgmAnbtfW1OuM/UfV8qK+pxvQj3UBkwPYctwNvxe+OwqqtBoLB+h4zzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u7DeagEU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2176DC4CEE7;
+	Thu, 15 May 2025 10:48:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747306112;
+	bh=adxalg7H3lV44b62vZBcg+BCmQflj5misd5wybzAhrk=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=u7DeagEUEiexQGncuTRbIUiVohH0r9Yv/kmqm+EZaKWZsCoK4Cfh43a3y4gqdXWtx
+	 lG6aDJSr5GlY/zwP4+xtCu2IF3yYaRcpqqFQ7pEP2YbEMl9tafTCc3Wbg1T3ZetDx+
+	 S7Dr07ViBTwbdcoPp3xMI+BYPcipOz9cYhdVQzdlCZycbA4WVjGWgZVPctUru/smxt
+	 rsHP4HksXSkcOoNoA5LazlUNOsY+b/bD3A1t5cctBTq/wTVSXxaS4xITr1QLGQBs+v
+	 cD7aJmx+dm7h97l6Jlh/aeIifn55CJmfS8E2QMtqOB7wrnd21eRq0VP1ZOklrxxBgr
+	 4Vy7hhIETPFYw==
+Date: Thu, 15 May 2025 05:48:30 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Rspamd-Queue-Id: 8E659211EB
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-2.01 / 50.00];
-	BAYES_HAM(-3.00)[99.99%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	MIME_TRACE(0.00)[0:+];
-	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,nvidia.com,perex.cz,suse.com];
-	RCVD_TLS_ALL(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	DKIM_TRACE(0.00)[suse.de:+];
-	ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:dkim,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,nvidia.com:email]
-X-Spam-Score: -2.01
+MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: fshao@chromium.org, devicetree@vger.kernel.org, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, 
+ xiandong.wang@mediatek.com, krzk+dt@kernel.org, 
+ dri-devel@lists.freedesktop.org, nancy.lin@mediatek.com, 
+ linux-mediatek@lists.infradead.org, sirius.wang@mediatek.com, 
+ singo.chang@mediatek.com, linux-arm-kernel@lists.infradead.org, 
+ p.zabel@pengutronix.de, treapking@chromium.org, jason-jh.lin@mediatek.com, 
+ linux-kernel@vger.kernel.org, matthias.bgg@gmail.com, conor+dt@kernel.org, 
+ chunkuang.hu@kernel.org, angelogioacchino.delregno@collabora.com, 
+ sunny.shen@mediatek.com
+To: "paul-pl.chen" <paul-pl.chen@mediatek.com>
+In-Reply-To: <20250515093454.1729720-3-paul-pl.chen@mediatek.com>
+References: <20250515093454.1729720-1-paul-pl.chen@mediatek.com>
+ <20250515093454.1729720-3-paul-pl.chen@mediatek.com>
+Message-Id: <174730611044.164934.18396756831118218280.robh@kernel.org>
+Subject: Re: [PATCH v3 02/17] dt-bindings: display: mediatek: add EXDMA
+ yaml for MT8196
 
-On Mon, 12 May 2025 08:42:55 +0200,
-Sheetal . wrote:
+
+On Thu, 15 May 2025 17:34:14 +0800, paul-pl.chen wrote:
+> From: Paul-pl Chen <paul-pl.chen@mediatek.com>
 > 
-> From: Sheetal <sheetal@nvidia.com>
+> Add mediatek,exdma.yaml to support EXDMA for MT8196.
+> The MediaTek display overlap extended DMA engine, namely
+> OVL_EXDMA or EXDMA, primarily functions as a DMA engine
+> for reading data from DRAM with various DRAM footprints
+> and data formats.
 > 
-> The patch series is to add support for Tegra264 in HDA driver.
+> Signed-off-by: Nancy Lin <nancy.lin@mediatek.com>
+> Signed-off-by: Paul-pl Chen <paul-pl.chen@mediatek.com>
+> ---
+>  .../bindings/dma/mediatek,exdma.yaml          | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/mediatek,exdma.yaml
 > 
-> Mohan Kumar D (1):
->   ALSA: hda/tegra: Add Tegra264 support
-> 
-> Sheetal (2):
->   dt-bindings: hda: Update Tegra compatible requirements
->   dt-bindings: Document Tegra264 HDA Support
 
-Applied all patches now to for-next branch.
+My bot found errors running 'make dt_binding_check' on your patch:
 
+yamllint warnings/errors:
 
-thanks,
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/mediatek,exdma.example.dtb: dma-controller@32850000 (mediatek,mt8196-exdma): 'mediatek,larb' is a required property
+	from schema $id: http://devicetree.org/schemas/dma/mediatek,exdma.yaml#
 
-Takashi
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250515093454.1729720-3-paul-pl.chen@mediatek.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
