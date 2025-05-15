@@ -1,139 +1,127 @@
-Return-Path: <devicetree+bounces-177786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57CC6AB91EE
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 23:49:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB80AB921A
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 00:04:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E57454A49E5
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 21:49:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C4487A5551
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 22:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B0B02882CA;
-	Thu, 15 May 2025 21:49:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C47288C96;
+	Thu, 15 May 2025 22:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f9Nb5ngX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MbwBTVo2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7245B1922C4;
-	Thu, 15 May 2025 21:49:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D382192EB;
+	Thu, 15 May 2025 22:04:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747345777; cv=none; b=IenKieU1f44EwsQqqXRVAYMi96tyddkXCxqQ31KZWGhPhw96WWFXrC8WzjZLb/vqT44z7DLr4hKtYzrO9U9esFQaMp0SskSiZORqCyxCoxAOhy5A+Yl45MtNFtFCGPMShJMJZtrXxDBMaA8WBTL317xDg5KxJAa909MVSq+CLF4=
+	t=1747346642; cv=none; b=AXCs4a5FiSQLTngTloisBf5HrW5KN2+zQCPbDXPi6njk7XDbkdWH7dJDVPBeJ94RfoLt9MQi6ny3m5VR3pNQXKJXy67Hr7TabsoZzBArDKtHvx9dE4nIJos5Eb1KmOevDZzWh7YlKpGt62FcF5UJC6lfQAscxgFzrf9WDik5Qh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747345777; c=relaxed/simple;
-	bh=RoCc345vfJVENvuSRJcrRZFcN774itnQr3aMxr0Fyfw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qN6nCkos7VZdINS0crEAa7Q3gpnIF6cd4UfUPR9HZPKzbA6W/2d6ZMPITCJumyA12FkTUe0UujYKx2v6BuZK/Y3UHekO3TTmIUMyhe5vzcc9Oq7M+evyQaOCT1Xa1ze5nxJkLp3Lk7Wbtgs4sIBwVosA59PLAzlEKqENr8HIgWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f9Nb5ngX; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747345774; x=1778881774;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RoCc345vfJVENvuSRJcrRZFcN774itnQr3aMxr0Fyfw=;
-  b=f9Nb5ngXL/wiTgmTqa6TuthzoRW9ZoUr0BAX7Ljw4dSC9EkDc/2zThVf
-   QSCChxqVVeNFLoXrLAfdSiDD7emUOGo9s7PaGdtr8FKyUJMfsvTwMfBvg
-   KDoCqaWOFu+RiDGcK5HtnwdUKXGy0DL+MF4OAxx18hU+1gbuX8B4IP2Dd
-   1ISoKfpMcXl6qysPCwqSsTwCRuzEwzcSgyAWaXRcINYLb3S4+mWR4ALA1
-   9760Zkx7c9h5nioV/ZPXfQDtgbjNhuN6+9JGevZlBK7s7DZEmY5EfQU20
-   XOJHjqQ7pAed/U62RS3qW36ADJzV7lm4UxnGxW5tTqhNbv5R0VaUHjSrF
-   Q==;
-X-CSE-ConnectionGUID: oSFqGRcoTEeyu9Pd3NSRjA==
-X-CSE-MsgGUID: Ls/q8E1hTyKc69FAV3wvwQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="74706554"
-X-IronPort-AV: E=Sophos;i="6.15,292,1739865600"; 
-   d="scan'208";a="74706554"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 May 2025 14:49:33 -0700
-X-CSE-ConnectionGUID: gPxS+KsDQICu4S9djjz6WA==
-X-CSE-MsgGUID: lV50IQaLQZ+PFDXaZT8Gcg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,292,1739865600"; 
-   d="scan'208";a="138895866"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 15 May 2025 14:49:27 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uFgSD-000Ilz-07;
-	Thu, 15 May 2025 21:49:25 +0000
-Date: Fri, 16 May 2025 05:48:39 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gerald Loacker <gerald.loacker@wolfvision.net>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Markus Elfring <Markus.Elfring@web.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	s=arc-20240116; t=1747346642; c=relaxed/simple;
+	bh=myqbMmuISLBc8NWdxpmMnZmTWdPoef+ZJQqAK75OSMA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dEUEdJYD/k5Tcjie3mr3F8wOPet648kTIGMarhcqVzL9aTDSXv0V7rjH0yk8qigYeZQY68mBWHQNEx/leNEM8Pcz9ISygf48B80Pw37QriNQyu+3SNdKJMgwRqFAybetuqZa8T7nWtniw5xEX3vvOotJe+MzSAqP2PIP8q1G3hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MbwBTVo2; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-73bf5aa95e7so1539367b3a.1;
+        Thu, 15 May 2025 15:04:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747346640; x=1747951440; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CLZVl59i+cLGSuNYnHKizgt3XCFfJAE/Fk11Cib4KvY=;
+        b=MbwBTVo2euxlb1eP0FC6kpidutOfrlXMq1ntuG50B/bT9u/86NMGbdqWg1RxE+yMMV
+         2Yvje8OoMRXghWUqp0hK4t64VJgP0u6ZXC43/K/VkEZfjpEoq+rmcOh6ELkqvKjfzNPT
+         1neISC9snX/siowBR/BG6vqIj6ZTvML0iVgAoTQP1C7GVZJYNk5GLWm53/3CB6FKjaWQ
+         ISEgOyRTS/VDL+qCoo43/n7hHF9Wi7zcBR9J+L2IxxhCfiPYQryIoGir0xhADD3t3fh9
+         vxCzORCDZ0gh5i6vsXctsbYLQYkPRiCf//JK//JAvtCVmmMJQf8UOTZdCe6qdcngADtc
+         j0kA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747346640; x=1747951440;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CLZVl59i+cLGSuNYnHKizgt3XCFfJAE/Fk11Cib4KvY=;
+        b=t8Qo76/QEPoN/mPBOtkn7Er5p1qrVwoqoL56P8Xkscil9Qpk7AQCOFfcjBRJU7CR7y
+         Q/24ky0koRHulVhEZSBiB33XjL5cwuv+6q0p6+fP2qsw4PNr8oPP4be5MFfuAHJSce8L
+         nO6/+gShA3CUSuE7uwFhcqz8kq6wm2Xu9pvqWFHEQCVCNCkFyY299xJ/FMgnbHBUPxPX
+         8YVIL38bX5Bth3MDIXXapfB+I1/sfY+6ADpf3byKjX1VHvgxw25KNj7RjtSHTstymiWX
+         lnjsZ00Q0QH32eZnwN2LYXXhmIY+HsGxc3KxW+zQkYe6xouzxTUHQ3SosGHtqKcBqv1v
+         eHUg==
+X-Forwarded-Encrypted: i=1; AJvYcCUvyLfdgDEh8fd7jCYul78LmOj7er5DqZE6Md7SLNO6T74ExGB9Wwr9rMqV51hxR5YHjzSGfnUwDE40XLA5@vger.kernel.org, AJvYcCW7IiIDS+sBMfdoy+FNhJHqW5/5zf5SYIc6aDIh6XyNCd4HH6e6ekAyL76MuB/Y+Z07/X9dHOT+aarG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxesha33Xz5lt3OfHJNB8kZGuXZRccX6e6kufekwghH9Urf/ZcU
+	ZaNOhlXRo5u2pRjADiKf2CCpKfLtx9dNhJHhm7JdI5wJwd+duSHhsK0A
+X-Gm-Gg: ASbGnctwjrtiU5Qz72/excR280G26u96zrwII9rb0UbEom977dg6nKWx2Z4QTIlV5D1
+	YrgI6IAgcJp180QT50l62Cs7ouW5lFfOEBSuvPbkJaNXsndtXSWg9fvuUC801SuWX3ji3M2/bqG
+	CoBIGpyCGAnXsncA6uowp4yUxZ4KPM3cDSUL15vD5u+1pDoHjSxakZIB2htzHiJkancjn4H+LM6
+	CWnS/Vu1rPaNMRKAllTUGypvEyYqWSxIGkbHPMvf5p8iSt5tWyBq/bwHyOoUPRmlg/RimUXvBIB
+	CwVl1yxmTGO+02g900W7RT3omphZppSWhX4ZMlStKkGIuRX/qMTm4cZisfpUfB9KrA==
+X-Google-Smtp-Source: AGHT+IFBtph9fv+7fKDEC6nUWw7uIsIzzIOwz1cYir/tCyC84UZwVDLtqukgWlfF7ed346exY4Vk/g==
+X-Received: by 2002:a05:6a00:21c3:b0:73e:10ea:b1e9 with SMTP id d2e1a72fcca58-742a979672dmr1193531b3a.6.1747346640178;
+        Thu, 15 May 2025 15:04:00 -0700 (PDT)
+Received: from localhost.localdomain ([50.46.184.91])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a986d8d7sm284352b3a.130.2025.05.15.15.03.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 May 2025 15:03:59 -0700 (PDT)
+From: Joseph Kogut <joseph.kogut@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Val Packett <val@packett.cool>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
-	Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH v7 07/14] media: rockchip: add driver for mipi csi-2
- receiver
-Message-ID: <202505160513.MZRCAdXI-lkp@intel.com>
-References: <20240220-rk3568-vicap-v7-7-7581fd96a33a@collabora.com>
+	linux-kernel@vger.kernel.org,
+	Steve deRosier <derosier@cal-sierra.com>,
+	Joseph Kogut <joseph.kogut@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: arm: rockchip: Add Radxa CM5 IO board
+Date: Thu, 15 May 2025 15:00:33 -0700
+Message-ID: <20250515220034.393303-1-joseph.kogut@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240220-rk3568-vicap-v7-7-7581fd96a33a@collabora.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Michael,
+Add device tree binding for the Radxa CM5 IO board.
 
-kernel test robot noticed the following build warnings:
+This board is based on the rk3588s.
 
-[auto build test WARNING on 82f2b0b97b36ee3fcddf0f0780a9a0825d52fec3]
+Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Michael-Riesch-via-B4-Relay/Documentation-admin-guide-media-add-rockchip-camera-interface/20250514-235450
-base:   82f2b0b97b36ee3fcddf0f0780a9a0825d52fec3
-patch link:    https://lore.kernel.org/r/20240220-rk3568-vicap-v7-7-7581fd96a33a%40collabora.com
-patch subject: [PATCH v7 07/14] media: rockchip: add driver for mipi csi-2 receiver
-config: i386-kismet-CONFIG_VIDEO_V4L2_SUBDEV_API-CONFIG_VIDEO_ROCKCHIP_CSI-0-0 (https://download.01.org/0day-ci/archive/20250516/202505160513.MZRCAdXI-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20250516/202505160513.MZRCAdXI-lkp@intel.com/reproduce)
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 650fb833d96e..d9ca282c0b4f 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -840,6 +840,13 @@ properties:
+           - const: radxa,cm3
+           - const: rockchip,rk3566
+ 
++      - description: Radxa Compute Module 5 (CM5)
++        items:
++          - enum:
++            - radxa,cm5-io
++          - const: radxa,cm5
++          - const: rockchip,rk3588s
++
+       - description: Radxa CM3 Industrial
+         items:
+           - enum:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505160513.MZRCAdXI-lkp@intel.com/
-
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for VIDEO_V4L2_SUBDEV_API when selected by VIDEO_ROCKCHIP_CSI
-   WARNING: unmet direct dependencies detected for VIDEO_V4L2_SUBDEV_API
-     Depends on [n]: MEDIA_SUPPORT [=y] && VIDEO_DEV [=n] && MEDIA_CONTROLLER [=y]
-     Selected by [y]:
-     - VIDEO_ROCKCHIP_CSI [=y] && MEDIA_SUPPORT [=y] && MEDIA_PLATFORM_SUPPORT [=y] && MEDIA_PLATFORM_DRIVERS [=y] && (ARCH_ROCKCHIP || COMPILE_TEST [=y]) && V4L_PLATFORM_DRIVERS [=y] && PM [=y] && COMMON_CLK [=y]
-
+base-commit: c94d59a126cb9a8d1f71e3e044363d654dcd7af8
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.49.0
+
 
