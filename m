@@ -1,223 +1,156 @@
-Return-Path: <devicetree+bounces-177751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28AB8AB8F22
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 20:32:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BAE5AB8F6A
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 20:55:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1187E50505B
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 18:31:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76F513A8615
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 18:55:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 342E42868AE;
-	Thu, 15 May 2025 18:31:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E6E269B07;
+	Thu, 15 May 2025 18:55:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lYyzODzj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fS0JwnXx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA8128469D;
-	Thu, 15 May 2025 18:31:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D71425A2B2;
+	Thu, 15 May 2025 18:55:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747333880; cv=none; b=Jr1bKmeaMw8DJt0R4+vZODEthjdqOigndzI75ELjaf/fYR2jyes+4zENyUNucIFas0Y0gMZ1A9OkRV0yguT04z+o+j8B2UX4smh/ukBU1lK8p52IEqgtfNUW7TTygl+024P5zvGQtaBJavoQjPl1JGo+WNMAD6X7NxsQDgvof3k=
+	t=1747335333; cv=none; b=rRneFmcZ4mN2Cb2MP0fV8CYvHsJ7I/SAEeER02czRDa1+aH2Mme+Q5pWzE4w6krWzq2kuqdoVnZHBGHpWMX3cCakVSZ1J0xb1vtrX89cc8lAqiVUkaj5MoxG/2hDXW/uSFpZm/ZSwnqBYfGCpG3Q7hM0tbfczFlFPVl5s/hsvtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747333880; c=relaxed/simple;
-	bh=T7eon4OpgUttbHvJTaWhUuGKzckIsIXy0biLoHvltqM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fNzMbunX65zMCJr+abIsv3PUS176MfuPiItpSheg5b13vceDY6nF3ker1Mk+8PReWLAY1wllIHD+TROtCv+v9nCWzwW6Xo8GOskkHdM9kJ+Uj1SMDKYUEm/S+cGyLORKRVW5zV4tIhxdSS0z/qkQGeA/6OWqcH2wHpTqXqGQFmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lYyzODzj; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1747335333; c=relaxed/simple;
+	bh=av7MD4mMWbcjnIPPFXuPllDbb3VzklZsHYR89QcuN3s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=C8ASKZlFAs/YJd30EppLYsM0pbgGCIbJmeXSmt4Cr9XL2nLv/5BFXabe/EZ7BWm3Y/eQkjN6hrDID96NSsOEgMUHzofvpPz50xk+eNIA9aPSuaVVmKfypg30Bi50s7hAiSauqbYlX255DpuUP+Fl01uGjFBNL4++psbq24dUDlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fS0JwnXx; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-442ea95f738so9717155e9.3;
-        Thu, 15 May 2025 11:31:17 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54ea69e9352so1748224e87.2;
+        Thu, 15 May 2025 11:55:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747333876; x=1747938676; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sgt+UqRbzQMYGZ9gSa6/MNRvDv4gCtP0dLlpl9oMdxU=;
-        b=lYyzODzjidl5n4xqfCPOstJCPFARyQ5iIot5DT705g++KTfwfh+ZQjhhbZIxsWyeTg
-         Bkf3VwfEBo41CH5NEO3ufXzQ+I0yFBKCBDxTp0yZU7cc9foce+ykps0tYN+iwDZiNSwn
-         15QDwiy5AkgtYkW/9kv4DgvTcJYlS0qH6hRcBfi5+Y/p6xozdRYZc46I5QkZbviF2bWm
-         xadcR4rFIdZQg9PUyZD3zIC7kMcOB0vbfm1Rbburdbo16HciUVRxzedmx3+eZVygUaNB
-         L2vRJJ4/apU3PhafX+OMnxFFj+j2vYTnhkxg/i3zVpX60cOesC+qdyS6gInduwVO6JSF
-         D6MQ==
+        d=gmail.com; s=20230601; t=1747335329; x=1747940129; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DfRo6ELKt4x2198NEXG1xb6DF2p0UDmeagAQl2snfz4=;
+        b=fS0JwnXx/s7QNyl/xZwawJ9A82uD7PbKRrNaM74lt7HSbwL0Vs4QfuD8ShZ0JSI5O3
+         ZSHD92i/muN/VZFjjSm01cSQmborBJ4G9sMPiqPN1abYncH7i0OU3G7K0RrUpoD/MId6
+         gEkN0mL/sJzeG+quySZHFf2G0fmpq+kqBdAiOkVU3Jowbbg4z4n5fRbF7YExtZkBmbQU
+         psSLq/Nni0zPsux8Jbk6fT+qxuKA3ieemSGjE6XuF+XWp7VXeESQ3Ef0ZcRdiGmLe/6C
+         la/bwknpZv8NCMPSUVTnAHQ/svrIJcawusz7ZexHtX1YyWT+O3+/KpKYWOXX4PR1BG1x
+         9YQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747333876; x=1747938676;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sgt+UqRbzQMYGZ9gSa6/MNRvDv4gCtP0dLlpl9oMdxU=;
-        b=sgXmVnHHVh6LH/+olL+OKqzSJZuIy8D7BiHHvjnfbdRvWZ2/ZmCJfCwysOKxNNol47
-         6TjNCrRr4eVfm7HzsXueb2+KPPmTS4xa40ZxEV2QgEt8dscskW7INLNoLT27yYaFE86n
-         c+yAth2PHdsxRc7OsDCqEcuc7LJK0ocXru5LD5yxtUk5NN0HTpzM+r47DY8s5Hm+jwFQ
-         nICEnrpxPmE+ev5iqNhfuv2aAJPHkpnRexB8weFm5fGvySlZYwcYesCf25czhvGUSQPW
-         bS+eD0rw7HSXZ/tq8/UsSUl1hrharcicHwtJFv0BKs3Bwl+ZwiH5Amxz6n3UvL1dc5wo
-         ldNg==
-X-Forwarded-Encrypted: i=1; AJvYcCUHrEKzw3i74npmfVjvoB0zjSHBlsS+UkcuqSyyYpBBLSuavntc5JQ52G8vuhdzGrXtb7ORCFEJd60o2QYB@vger.kernel.org, AJvYcCUgl0Sx23Ph4Un7ZTQ9Fv3tEStDpbjxivGy8zXiPT+2QxziVQm7Ms01xSsKL1Pa4beK2hhaZE7Q+n2q@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAVfftKob00vWgKpNsGqk/dEhjsiAZyAQLID0LbggqOLWBqAv3
-	uFQbqXvowu3K6lbsNkyu45M18G9609itCcdcS3L2ULnnhWwdS8owx7PtE9gD2xim
-X-Gm-Gg: ASbGncvU1C+nvHOKj9Ec3RqHSzrHXfkpNYc+VA+VdaIVF7WxDEL1B5qPIghkCcmrphV
-	D2M4aC8W5sZMRgFgR72fSwH8GIRHuL4+V15QwRO7feV/5tWzI0tPdFvQjwWsRpv8FCtPtpIvmaQ
-	TONmShok58/qmn95Wz7bItwE6vMapZwxv8Bzen5dliTNkseSokFG1LGlIYbIh+wlw6AeRmJiFcq
-	Vfs1Kca+8MqHFny90DUoXA6G+bTwupr2mUf8S+PIkaJLahh7mfmUE967jpoAb0g6qHSM/8Fe/W1
-	Sq9GaZ7uimPrQeWezEYnAk2cj5/p6ZPJAFx2q4dkLzxqzC9AFYsVM2yCOYeBtyeCEyArl9cIexa
-	AvidJiajzeC2clwj8WUk=
-X-Google-Smtp-Source: AGHT+IFE1OED2DfyrW1jYUdMwIboP6aR2gFb3LSJGdiiT5aKCIvAaLzAEz24Bc0+RwRLD4qqK7nUOw==
-X-Received: by 2002:a5d:5b8a:0:b0:38f:2678:d790 with SMTP id ffacd0b85a97d-3a35c845d64mr647489f8f.33.1747333876438;
-        Thu, 15 May 2025 11:31:16 -0700 (PDT)
-Received: from iku.example.org ([2a06:5906:61b:2d00:7b5:b9aa:961b:d080])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca8d012sm262816f8f.94.2025.05.15.11.31.15
+        d=1e100.net; s=20230601; t=1747335329; x=1747940129;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DfRo6ELKt4x2198NEXG1xb6DF2p0UDmeagAQl2snfz4=;
+        b=n6r0lpZAwXrkGCnlyYX5eFDMwM5FFXlhdzL30IKIaBKta9/xi9ACEp7gyksgPAO+hK
+         IjNTydEeKkzWR19Nk6Zmog8lKBNUt/61WZLruaJ4Z9iD4LKeiclUVED+D4Nr0EYvcjAt
+         lsSKUaAoVWkh4qaA0+6PGLWBdD80VVkQRrZNLFGSmzx4R9AjBZiIXhk8KxdivfsuZkIY
+         wWG9MwoAam/VagnsBXM1V3mhO6I0oveIEMGXMAswi0LZUHmBjp8uMqWCZE2lHxUZFSgJ
+         DMVSmphiDlic2AOJ13L4DS5DJAtJK3shNVjR18Lox5I3CxNaTLCA/0kxzLYSyIb56LCx
+         YgGw==
+X-Forwarded-Encrypted: i=1; AJvYcCULTmnRL1NK0ADgnSJG3QGtBQvR+rRWiYWmW6eB0xyHDihxpPMGqfLmNw3p5Tm7VudFdKdDGkkseVuslqLPHLM=@vger.kernel.org, AJvYcCWfTiRyepjnmR9BvmKQNmFscJBGGlK/mYYhBnVE6pvFmZigAQtAK71moTNPRbG7cHZIUH1c3J2phFJh@vger.kernel.org, AJvYcCXqC7hYPkvOr5gYR0kUXdMN9jk8v+GmPPyTzJzFPKNz9DxZgo5MPKI56mv2XKCVB2XME8L3BNgnSyBkHyBm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4vZ3Z+dfEtgN6LcQQeLuPYW1ytzCA2LPqKjD6SeLUwoYH2ADg
+	EU9rOg3JHCg4bFsQifEFsAwQWhathsm0rPXb4NOpuaKRTgCndF0Ce8/m
+X-Gm-Gg: ASbGncvvllMH9RMs0aVKB6l/5G3BmzU89m7KTK/APIU62xYh63UuCUInBw/G8nUwJgR
+	9/UyknIvtGB9Z8yZ59hBX+X2kFC2tccD1979n5N131ZNPaxnwL2VEbtJiTKU3yjRTpmi9MA8ODP
+	GSoI4Yk/lSfs/y3002sddSV+zK0ggVAV4aWXmUd82m+09h7FHNEshTqkfZxFC/G+Qxt2V/MqzJo
+	/CeSNaVOhxfEeoaJmO5iXiRblSfVFNXHnShEgPWxKLMMe1Xifi6A66hv1Tt7KCJ1f8AuSPwft5W
+	zcoFixjQo5qyn5D6meOgQ4g7J+ajMEz92I0S0kT3juab5BBOoWVta6zy9SdS9HMt
+X-Google-Smtp-Source: AGHT+IGpHuxeyZPQUJiZA8Fyu6hdqyCtqrox5jsyjBCnoFL0xTxnzkYFiQFU+a64vXBUjStPlPqvfw==
+X-Received: by 2002:a05:6512:10c3:b0:54f:c505:5c66 with SMTP id 2adb3069b0e04-550e71dd5cfmr147301e87.29.1747335329158;
+        Thu, 15 May 2025 11:55:29 -0700 (PDT)
+Received: from NB-GIGA003.letovo.school ([95.167.212.10])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e702dd8asm60389e87.196.2025.05.15.11.55.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 May 2025 11:31:15 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable USB2.0 support
-Date: Thu, 15 May 2025 19:31:04 +0100
-Message-ID: <20250515183104.330964-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250515183104.330964-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250515183104.330964-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Thu, 15 May 2025 11:55:28 -0700 (PDT)
+From: Alexey Charkov <alchark@gmail.com>
+Subject: [PATCH v3 0/4] clocksource/drivers/timer-vt8500: clean up and add
+ watchdog function
+Date: Thu, 15 May 2025 21:55:25 +0300
+Message-Id: <20250515-vt8500-timer-updates-v3-0-2197a1b062bd@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ04JmgC/43NTQqDMBCG4atI1k0Zo0mkK+9Ruohm1IH6Q5KGF
+ vHujUKhiy66fD+YZ1bm0RF6dslW5jCSp3lKUZwy1g5m6pGTTc0ECAkSFI+hkgA80IiOPxZrAnp
+ elgasEK3VAlg6XRx29DzY6y31QD7M7nV8ifm+fkD9G4w5B64arTrdFSUYVfejofu5nUe2g1H8g
+ 4gdkSht3kAlJX4j27a9AX+V8l79AAAA
+X-Change-ID: 20250506-vt8500-timer-updates-44a0d22cd720
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747335328; l=2195;
+ i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
+ bh=av7MD4mMWbcjnIPPFXuPllDbb3VzklZsHYR89QcuN3s=;
+ b=T29UCHGZkm/bweDhSqGMd/581k+VXd9wCK0LoUIMbTOR9DhmWr9ylFIVEFSc8Uw1bd6xcOk69
+ 1i26DIxiQ7xBa1MSuxhyAoBzDfmHQ/Z6y8PR38sDWmzxGt6SIhgtjS0
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Add named defines for all registers and bits in timer-vt8500.
+Move the system events timer from channel 0 to channel 1 when enough
+information is provided by the device tree (i.e. more than one IRQ).
+Use channel 0 for the system watchdog
 
-Enable USB2.0 support on the RZ/V2H EVK board, CN3 supports
-host only operation and CN2 supports host/function operation.
-
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
 ---
- .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
+Changes in v3:
+- Dropped the DTS patch already applied by Krzysztof
+- Rebased onto v6.15-rc5 as requested by Daniel
+- Split out the watchdog code into a dedicated platform driver, like
+  timer-gxp does (thanks Daniel)
+- Link to v2: https://lore.kernel.org/r/20250507-vt8500-timer-updates-v2-0-65e5d1b0855e@gmail.com
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-index d6d2f689b875..f4203e7cdc6b 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
-@@ -80,6 +80,15 @@ &audio_extal_clk {
- 	clock-frequency = <22579200>;
- };
- 
-+&ehci0 {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
- &eth0 {
- 	pinctrl-0 = <&eth0_pins>;
- 	pinctrl-names = "default";
-@@ -101,6 +110,11 @@ &gpu {
- 	mali-supply = <&reg_0p8v>;
- };
- 
-+&hsusb {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	pinctrl-0 = <&i2c0_pins>;
- 	pinctrl-names = "default";
-@@ -195,6 +209,15 @@ phy1: ethernet-phy@1 {
- 	};
- };
- 
-+&ohci0 {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
- &ostm0 {
- 	status = "okay";
- };
-@@ -303,6 +326,28 @@ sd1_cd {
- 			pinmux = <RZV2H_PORT_PINMUX(9, 4, 14)>; /* SD1_CD */
- 		};
- 	};
-+
-+	usb20_pins: usb20 {
-+		vbus {
-+			pinmux = <RZV2H_PORT_PINMUX(9, 5, 14)>; /* VBUS */
-+		};
-+
-+		ovc {
-+			pinmux =  <RZV2H_PORT_PINMUX(9, 6, 14)>; /* OVC */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	usb21_pins: usb21 {
-+		vbus {
-+			pinmux = <RZV2H_PORT_PINMUX(6, 6, 14)>; /* VBUS */
-+		};
-+
-+		ovc {
-+			pinmux = <RZV2H_PORT_PINMUX(6, 7, 14)>; /* OVC */
-+			bias-pull-up;
-+		};
-+	};
- };
- 
- &qextal_clk {
-@@ -332,6 +377,28 @@ &sdhi1 {
- 	status = "okay";
- };
- 
-+&usb20phyrst {
-+	status = "okay";
-+};
-+
-+&usb21phyrst {
-+	status = "okay";
-+};
-+
-+&usb2_phy0 {
-+	pinctrl-0 = <&usb20_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&usb2_phy1 {
-+	pinctrl-0 = <&usb21_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
- &wdt1 {
- 	status = "okay";
- };
+Changes in v2:
+- Included the previously reviewed binding change that is directly related
+  to this series as the first patch here (thanks Krzysztof)
+- Created a separate config symbol for the watchdog function to let users
+  build a kernel without forcing watchdog functionality upon them
+  (thanks Krzysztof)
+- Link to the previous binding submission: https://lore.kernel.org/all/20250506-via_vt8500_timer_binding-v3-1-88450907503f@gmail.com/
+- Link to v1: https://lore.kernel.org/r/20250507-vt8500-timer-updates-v1-0-6b76f7f340a6@gmail.com
+
+---
+Alexey Charkov (4):
+      dt-bindings: timer: via,vt8500-timer: Convert to YAML
+      clocksource/drivers/timer-vt8500: Add defines for magic constants
+      clocksource/drivers/timer-vt8500: Prepare for watchdog functionality
+      watchdog: Add support for VIA/WonderMedia SoC watchdog functionality
+
+ .../devicetree/bindings/timer/via,vt8500-timer.txt |  15 ---
+ .../bindings/timer/via,vt8500-timer.yaml           |  51 +++++++++
+ MAINTAINERS                                        |   2 +
+ drivers/clocksource/timer-vt8500.c                 | 125 +++++++++++++++++----
+ drivers/watchdog/Kconfig                           |  14 +++
+ drivers/watchdog/Makefile                          |   1 +
+ drivers/watchdog/vt8500-wdt.c                      | 116 +++++++++++++++++++
+ 7 files changed, 285 insertions(+), 39 deletions(-)
+---
+base-commit: 92a09c47464d040866cf2b4cd052bc60555185fb
+change-id: 20250506-vt8500-timer-updates-44a0d22cd720
+
+Best regards,
 -- 
-2.49.0
+Alexey Charkov <alchark@gmail.com>
 
 
