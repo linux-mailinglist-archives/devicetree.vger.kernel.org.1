@@ -1,140 +1,130 @@
-Return-Path: <devicetree+bounces-177544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24FBCAB7FDC
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:10:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90280AB8047
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:22:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A286F4C6967
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 08:10:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB9463A3E7D
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 08:22:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC1B283FDA;
-	Thu, 15 May 2025 08:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E3ED28643D;
+	Thu, 15 May 2025 08:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GiC4dWdg"
+	dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b="fRYIDk/5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD69F1A704B;
-	Thu, 15 May 2025 08:10:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED56283FDE
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 08:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747296649; cv=none; b=gE2+5ZAqOBUTiZ1KrsirJJqdNcaRlPB5bZyF0rGB+u+3bQGszEhpTKJrLTBdSc0jyJDHyRqJ27jvRwUxjGtCFq1EucrxzXDZx7FwTHb1TU4bsD84KX228xzZZoS9n8JbyydCnTt5MsK9uCzPhgDTfDB3IZubAMuPpM4adq1xrp0=
+	t=1747297360; cv=none; b=PKqiRPggJDWVORLEQyfsTjilUB5hjdDLzZ2Up2Kj23W53kGBp0tWeBJsF/5bEN2+RFMqIudYGI/3/xQWbPrSFACS/1OIgj2bs2wlZ3BEUObIQl5OfX1XD3IKXMG4MRu8Q1kVf6hH6CJzXYznJW8BbrmsB3uqvO26dH2DOs+9P7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747296649; c=relaxed/simple;
-	bh=gnZyYamsKRs1mXWJmt8R1pUvw1fIQ115hLDfkIZy6e8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AXOBF5GnMro/Jpa3g3MOsBb6Xna0mh+m6KanaNrt8Y8VSS85vqCYH+3W306vw2cI+9+gCBv+IHjYpbi8Y9QrGrSxT36IoxsI3xno+YDMZTqgsMgGhktEIgcxiLXaechm5/jWl4XgVW13yetSz+qjPacSv6iS4HaeaMnChrsYT2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GiC4dWdg; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43d2d952eb1so4788765e9.1;
-        Thu, 15 May 2025 01:10:47 -0700 (PDT)
+	s=arc-20240116; t=1747297360; c=relaxed/simple;
+	bh=zMrdY85vTW7AjrdO/rgWi/3gl5aBB4d3jxsiKmIX+C0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=OEGpHcOxel6fMB6FRbccjEKZciCjKChRXqnyLP/vHOCe9C8ss0BwfVP+bbL2LhmwpuqivLZwvKU5ZKnnpMHYiHVv0ostZYo1kwDoDW5dEXVuQ7MFZGFRnoqICSV/vGizkvAvY4DCafxoTSUvY51c1wfpPQyM1jtj3CUrWBXfZh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com; spf=pass smtp.mailfrom=inventec.com; dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b=fRYIDk/5; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inventec.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-3081fe5987eso553245a91.3
+        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 01:22:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747296646; x=1747901446; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hy2qXGW5KXMzxxjud7orCi4omTEJipbX7lKkxc7gJx8=;
-        b=GiC4dWdg+9SY9bTRUOiiViuG/z5ieGAPra8r7S/hnapt8MzoudL/O09L6/KwLFl0jL
-         Z0Ppbgeyue5XNWwfCw2cGvq+30wRXl+wH+jtWEZN3HlSAq7GrgpkGkhMWxZ7SGTmQHn6
-         3R/0ERyTY/vFwdZeKF6B7Jus3nFnaX7w4W18oxg5VhYYr8LzSRfST9qU+RGZU/yktWxK
-         u6Wa83UMItY1VqjSzyZO4emY5wiFYoSccqhyT7LgJ86o/m3yCHS3KZv2/ENMkGDbwYHX
-         4sX1dkszJuwbzd+/q5/PKFq4kYpfnkbzjinjHklQ+Z+d1CAaNm/1ZIHpW1WGr8w3e5yq
-         iR6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747296646; x=1747901446;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=inventec.com; s=google; t=1747297357; x=1747902157; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hy2qXGW5KXMzxxjud7orCi4omTEJipbX7lKkxc7gJx8=;
-        b=TMYEZpI1wbCSd9xlEoVatiCdGIlYZasfH1cyQeWq0xoDAtRyawHTA4o++xWn0PAKHl
-         tKcxrN6HGKn2V+blxo9q3CqJeJHZ/mAnyJpb+bhNg7XAZRda5eydCJf5Y+igKF1BB/Zs
-         eMaMt8OE2dOLFfhJWSpp5cV9CtX4ObrfK9wZmJXOdM2lIv/CwBZymU8Rpk8JRI1/GJFJ
-         0GKDCgbi/p0613BmBANBfRfaWE9QErRcGWkqqx53eTHMVYQwS1bxD0xFSfeTmPJxO4WH
-         YtUIE6UzlZOXygQ55OMqcYWIv3ua7CZcN+1eXJmafGSaBWx91bJZOdZS+GJDAfOGgN0a
-         xmaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU4opqsAc+Em5ytvKFKTZa6N6d+l9IcJB3CzoVzfFh+6kyi+hXuEoLkQH9EemF80jg5k+xMwoYIqsDsY0Q=@vger.kernel.org, AJvYcCVS2FXCQcXnYfWPdXWkDnLtLFzwXjhGs9sN7dGaO2wGGMilMRNFPHN/prXTjaKSrxlUMB36WZjUq6ZJ@vger.kernel.org, AJvYcCViM/rY11jHgGD6/Mdu56tdil1jXvcQGFJ1mu8eSEKY8xcz+HInpJnBuDxCZoiiz98xyT5hxyqSASW26qDX@vger.kernel.org, AJvYcCVkBp8n3vZsgqthKPxmktZAZ7whv472vjrZSBS5K8R+XeJPvQAWMpXoBdc9dqV4Utsaze7fPoELaaCE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHzY9q42k/2m6RzODyzHj2lrC4o/pR49ZaPTaLxCK11jR6fdl5
-	r9su4jvPfFa+8cdX1rZvWEEOKsa4Jzaco/ZsVoganz2pWU1yaDxEmZtORA==
-X-Gm-Gg: ASbGncvdiN92vfAkBcOb5Dl+LhM+cMq9a53dMsQtkTG/2cW08GH63x5djojKDDja1/a
-	6n1SdXj5nGKVlWhXgmdrOUsjY20zZGdPb3xPi4i/tybE9qPMm+I4zUbheLfjjBgE0ves7lejrOm
-	PbhrYEHG6Uiy2oy0jpMMg2SW/In1kVAWG64lgrye1Y+lkdOewtYQDtXP9MuGWSJtnL3Bt3pIBIP
-	Mj5QwIDY8KxCxOFSWNGeD/ZuXyFhhF7sXJGyAAY3/UMJOAr9vP4+hycK/fAcAapTG1dLFU4uHv8
-	a1wTcsPcS0W2Gn3rXqKmenUZ52+RXIQ/frdqTJ/w3lepxSk1Dqf28Vjv1q/s/5ZbLktjD1GomMi
-	aievL4iBwxNX45ohPW64rGpAINQJ0M/zsLAi6hXlQdleO3qI1
-X-Google-Smtp-Source: AGHT+IEGyyG/LNEAKuRtS2A62/7HsPhFAX86kklkRBv74EAtipUbgt7otHFs31JFx7YXeS0Ae+rpWA==
-X-Received: by 2002:a05:600c:609a:b0:43c:e70d:4504 with SMTP id 5b1f17b1804b1-442f210f700mr57426795e9.19.1747296645706;
-        Thu, 15 May 2025 01:10:45 -0700 (PDT)
-Received: from orome (p200300e41f281b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1b00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442f8ab839esm21120775e9.17.2025.05.15.01.10.43
+        bh=RjF4WIlhUumHwR0LyuhyQYbCxkjlUl+il1BderSLi1Q=;
+        b=fRYIDk/5jBjKZ9akqevwnDrwdnanqkHi6W4KiH2Kmg+Qg4Q6aqaT4g7M74PGZh+Uws
+         DNYGElEZyP6HPRTxpPeT8/Fqq0a5/s1gjVM1OW8/YqmsDdFB1zThpkwG8TC+aJmO86ic
+         voY30NZFNjS+8xxum0A3DuAMW4a9U/qD12y4bb9B5H3Hf7XLNbsN8PLriEO8a52mItoV
+         z+zEiFq/Fur9kzFLO6dRTEf+PyFBN9hbcqp4gB5dBHNCnM+MWntgGue5DrG/+EXUNgGP
+         mugpFeS7bvXdoXRX9tl1KX2SqUV8OCapYusZow2JzC8nyHHfZ2dI3m71ddM6VruHgsUK
+         VbZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747297357; x=1747902157;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RjF4WIlhUumHwR0LyuhyQYbCxkjlUl+il1BderSLi1Q=;
+        b=EQ774+GnAdtQgzXyk8uxOduq76dhM7jqTwTMEZlGCNV9vIJR8RN6otZ9jQq+XtenEE
+         bpyqPVc9J/NowkJPTAzApt1ffsO3bd2DHSODZxAEzQtCz2h/8O5R/LXWI9ZhBhLtXDWU
+         nE+CyYvWWaqRUS7hhvoTlaFEKCdFgyc+uY9phhvVAJrixEnZGKFXNgd73f+iDMG+khL7
+         jFFGMEoWExbQ2Ur+Hy8qlkub7TqROiFg8FlRWAqfBPAakqcSQH4UgtgvLR9+SKXzSUyP
+         VfCJCPR0OagIa7frYmjuX4FU/1uR2fnC9o78a/5rxmO7UfanpMwbChCOFQeLTxEjBqoK
+         6b0g==
+X-Forwarded-Encrypted: i=1; AJvYcCUMypCCoCtuxm66AK8OwNQp5Yfeda70k4XQoHJoR/QvqM0kprjkSOQTWOwNKxg2XHZ3JU4q0uaHMkYt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyruxb3o2EA14YNNY/Nb7xiaRYcJbij4oQoRoJ8irKXAae330Fc
+	dNw/C6NseoL3Ljwc6WWBlakRejwyROEVfkAxWUi6znhglin91wfQoGS4xiR2y48=
+X-Gm-Gg: ASbGncsyTUT/HgTNZzXmaWW7r3w0UjR4z1ZxCy8Senh2Vm64TFLNnpaiDArE2NVCMGh
+	z7/mbz/6V2hdbu++/41qBJLJF/tUdI84TEkRj3mkd3EJ9KDi04DQNR7XL5GTWIssy2ysFkZ12Ul
+	hzFpA43Vtd6d8BpEn/4RFSBmRizJUQSEG0+srajpr4i0YaF++MtpJ1qXIujR7LcNWxGBUU9xouU
+	243HIiOMGFMJdYde1lx0NdYBJcTSItvs0x17ha5KbPZewx0yNaJr+IekUz+fYPykkuPeIgA/XAJ
+	odyc2dYhzQYEwQjPCPMVkl8muI2BC8AzUcQwljbTz+06IztciP4wlOoqtIFIODujI6r8p0zLm/a
+	+r/lPhumNBA0ZHvnKqMUK9NlVQLnG91Cq
+X-Google-Smtp-Source: AGHT+IHOxDStraajciuLyI4J7kcSxLAVxYjblykyEsVhvb9CDyVTj6T8upo7h85qFEQd+SEWUbif/w==
+X-Received: by 2002:a17:90b:3c4a:b0:30a:255c:9d10 with SMTP id 98e67ed59e1d1-30e51586fdcmr2384038a91.8.1747297356694;
+        Thu, 15 May 2025 01:22:36 -0700 (PDT)
+Received: from localhost.localdomain (59-120-179-172.hinet-ip.hinet.net. [59.120.179.172])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30e33451e97sm2909715a91.25.2025.05.15.01.22.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 May 2025 01:10:44 -0700 (PDT)
-Date: Thu, 15 May 2025 10:10:42 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Vishwaroop A <va@nvidia.com>
-Cc: krzk@kernel.org, broonie@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, jonathanh@nvidia.com, 
-	skomatineni@nvidia.com, ldewangan@nvidia.com, kyarlagadda@nvidia.com, 
-	smangipudi@nvidia.com, bgriffis@nvidia.com, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V4 2/2] spi: tegra210-quad: Add support for internal DMA
-Message-ID: <abbrh34e5ysybbijdyyxut6af4to5mlzbd5idxjj65gtuldnnl@3jqotvz765lg>
-References: <20250513200043.608292-1-va@nvidia.com>
- <20250513200043.608292-2-va@nvidia.com>
+        Thu, 15 May 2025 01:22:36 -0700 (PDT)
+From: Chiang Brian <chiang.brian@inventec.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Chiang Brian <chiang.brian@inventec.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: trivial: Add tps53685 support
+Date: Thu, 15 May 2025 16:14:38 +0800
+Message-Id: <20250515081449.1433772-2-chiang.brian@inventec.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250515081449.1433772-1-chiang.brian@inventec.com>
+References: <20250515081449.1433772-1-chiang.brian@inventec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xha6jhnwhahixu33"
-Content-Disposition: inline
-In-Reply-To: <20250513200043.608292-2-va@nvidia.com>
+Content-Transfer-Encoding: 8bit
+
+Add device type support for tps53685
+
+Signed-off-by: Chiang Brian <chiang.brian@inventec.com>
+---
+
+v2 -> v3:
+	1. Fix the order of patches
+	- Link to v2: https://lore.kernel.org/all/20250424132538.2004510-3-chiang.brian@inventec.corp-partner.google.com/
+
+v1 -> v2:
+	1. Correct the subject and commit message
+	- Link to v1: https://lore.kernel.org/all/20250314032802.3187097-1-chiang.brian@inventec.com/
 
 
---xha6jhnwhahixu33
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH V4 2/2] spi: tegra210-quad: Add support for internal DMA
-MIME-Version: 1.0
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On Tue, May 13, 2025 at 08:00:43PM +0000, Vishwaroop A wrote:
-> Add support for internal DMA in Tegra234 devices. Tegra234 has an
-> internal DMA controller, while Tegra241 continues to use an external
-> DMA controller (GPCDMA). This patch adds support for both internal
-> and external DMA controllers.
->=20
-> Signed-off-by: Vishwaroop A <va@nvidia.com>
-> ---
->  drivers/spi/spi-tegra210-quad.c | 225 +++++++++++++++++++-------------
->  1 file changed, 131 insertions(+), 94 deletions(-)
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 8da408107e55..e0017ba594dd 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -392,6 +392,8 @@ properties:
+           - ti,tps53679
+             # TI Dual channel DCAP+ multiphase controller TPS53681
+           - ti,tps53681
++            # TI Dual channel DCAP+ multiphase controller TPS53685 with AMD-SVI3
++          - ti,tps53685
+             # TI Dual channel DCAP+ multiphase controller TPS53688
+           - ti,tps53688
+             # TI DC-DC converters on PMBus
+-- 
+2.43.0
 
-Acked-by: Thierry Reding <treding@nvidia.com>
-
---xha6jhnwhahixu33
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmgloYEACgkQ3SOs138+
-s6E9/Q//VNWMZH6vwHGacDuSUg00hKDi7gl3PJ0AYCQiBgDDJCF8JDvDLQ+Vs6EY
-sYjT1OcyHjjStOKsHWUCuCvnmvdRnRx+fzMMqqG9EnuYdKmPns+yxYcoJ06FcWq5
-0rzo7vlUdWWU/Jdy303cHALCxzFjSgJy64k5YWMLwMKHszjYdsM3Td+SANJQecNO
-yvI7CuSyw95OsK5zax4skuCYMRbit8clJK1mjvhbxdwGoBRVU+VevJNp28/dArL9
-Sib4Ue1HGyaV6Qf5hIID9OdjTEt04+cGdrotaIzpmpMP91FtJ14hlGCwXg9tHSpw
-24xytSZIxlfuvtcwlza87ezZgVSncli0OmMaOIagsR+9KgCtqXYycj7mklUrTgDe
-wmgR71PayVSWKPzUpJx/du8zrEIy4oheY0tbgf+gIOuLn1khzzJ2O9jABdDDKmBs
-4hB9Pi7FLsV5FFD5eeGhVGcxDvpbwEJ2huNx770kAoBCk8xnsTK3SolNV1Ws3B6x
-6UD8pohC/vXrNf5OkJ8jrgkVYfRLxNGGn1Snhu+acdoSt9RELBCQJlEf9Qy+mzdV
-JqcIu8ew+zbgbilDJZbssPg8Em/tf2Vcq73t8UNDcfzj1frR1i0FiZMuPskpBDSN
-mzkC2lELFs2XjcHyrXPERYj61dwsBn1FMO3ajF4J2c5N4x9O/os=
-=oqYJ
------END PGP SIGNATURE-----
-
---xha6jhnwhahixu33--
 
