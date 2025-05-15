@@ -1,135 +1,163 @@
-Return-Path: <devicetree+bounces-177697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CD01AB8A51
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 17:10:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E43D9AB8A5A
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 17:14:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6C93501019
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 15:07:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09B173B8615
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 15:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777A0217F54;
-	Thu, 15 May 2025 15:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9521020C487;
+	Thu, 15 May 2025 15:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="COsK1glW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hxiXMnls"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 519D220B80D;
-	Thu, 15 May 2025 15:06:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E06820A5D8;
+	Thu, 15 May 2025 15:07:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747321608; cv=none; b=dcIYZArl9QLh4mmAEYRUBP49WvIWvmK9mC3004CTlVmKzCAQ18CIN3/tMOaEjqCOtYINZ77c6A7np3S8XEa1Oc9zDDI9X2CtzGCF3jGoFv0ERng+HqT7hQEXCwW6VLNdZdMyadEv1dUtVD38skHAFhyxW1c7FpxnPGmYvNkiC/o=
+	t=1747321650; cv=none; b=VsHHRJwCgzjS0xwAqAFK5wTMob1iYs2jdtAGQrZhmLM4J5QXMeOIdJsIP+BtMiT9/gWtMv6DuzW4H3ai4Ud1zMDpy1E2JAguz2+FznThm13U2/Ay0S8JcABtsmFLbzVpRh6e4lemt2oLfoV7ijsXJ3gUIDCiEU11Yz/SH5SzSFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747321608; c=relaxed/simple;
-	bh=oEnth8bjUONr3DIKUUQwEbQ+/XvAP1CP6xRsYJyF4aI=;
-	h=Content-Type:MIME-Version:Content-Disposition:In-Reply-To:
-	 References:Subject:From:Cc:To:Date:Message-ID; b=aJPFahczWkWxFPscSgMB6bDsDT/ULT+mGin/tFy3re1VhDNBk4BSvnEBMwEv28/o1X4iU01A1waKbNflqy7SPgNSrEjG4y7SF7MRPrjBy07EDZaacnOZidccytbtq1QwAztPbtyFXI50f6mlB7SUnmDOz9whdzM8VP8edfeXzpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=COsK1glW; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:7a1b:96fc:ca34:4316:6e64:be11])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3D202886;
-	Thu, 15 May 2025 17:06:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1747321587;
-	bh=oEnth8bjUONr3DIKUUQwEbQ+/XvAP1CP6xRsYJyF4aI=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=COsK1glWWlt55c4C4BhybNEkGbuISlUEnvHf0PiyVijfHRhYXbS0W1vEO++QsQ+Wq
-	 en5x2MN0KhEtwZNZqG6HcSeHSQVm1SWoQq6WQZKwfU9+fBWz9c7XTW0VOZcXieBWaB
-	 7R2AEJA1Fh4SnpGkxk08Fk3BowLjcvxAl2bh2k7s=
-Content-Type: multipart/signed; micalg="pgp-sha512"; protocol="application/pgp-signature"; boundary="===============7026641472008806453=="
+	s=arc-20240116; t=1747321650; c=relaxed/simple;
+	bh=NVnU3EXlKhcA1buxaPfe5O18xcLQiBuKx4mM07IagEE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HPXc8nn+2vEDPpSjr58jo6nRuiAdAPQhLnwWHl6w28p+eX1jxm6WVqsvqqjKlbbZTwmpbnin7+fPPAzhYK+3KAV5EiCa+2GNwYlw0bHs7ISxm5wd7/PQ/GKSykDH4BVkPMSug1rgv/oJKGXuP+IseLa/Hh4jkhP3JnGh2A/Nfi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hxiXMnls; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC609C4CEE7;
+	Thu, 15 May 2025 15:07:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747321649;
+	bh=NVnU3EXlKhcA1buxaPfe5O18xcLQiBuKx4mM07IagEE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hxiXMnlsIBdlJpTna4XVl4yd+LIHBATurggzh1gAwCvCiEltU8DzI/Npq3OdlKRKZ
+	 GKZiKlUI18UwxeyRKxIAdkxLSPr8krEUTkXzgMEItGQKXCRWjw6qFGqImPKtWJhA9a
+	 iNQ/USp2IYiv9tYezwSsca83juoSQqrZZeuEWYJOQ1YFUULVHZEButC68OLzVG0sxv
+	 hJOmtcI0HPAh3G9VLQm4Wkprc3hlcPByga66I/CQ33bgULosMJ9XbDtZsaY6ekkSH4
+	 IFrtvwA4hik9gsdQtkpLtTJ7cKOxppxpc7kbsQOPDqWKYBJFLHQ+0ooqT4Wceqfh9v
+	 qMiPRpi/rqpKw==
+Date: Thu, 15 May 2025 16:07:25 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Manikandan Muralidharan <manikandan.m@microchip.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: microchip: rename spi-cs-setup-ns property to
+ spi-cs-setup-delay-ns
+Message-ID: <20250515-laptop-unfixable-85dca20d1b57@spud>
+References: <20250515103251.210468-1-manikandan.m@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="YNVVBp6SZFwNB2lg"
 Content-Disposition: inline
-In-Reply-To: <20250515142945.1348722-1-alexander.stein@ew.tq-group.com>
-References: <20250515142945.1348722-1-alexander.stein@ew.tq-group.com>
-Subject: Re: [PATCH 1/1] media: dt-bindings: sony,imx219: Allow props from video-interface-devices
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To: Alexander Stein <alexander.stein@ew.tq-group.com>, Conor Dooley <conor+dt@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>
-Date: Thu, 15 May 2025 17:06:35 +0200
-Message-ID: <174732159526.2108882.8905658469049267620@selene>
-User-Agent: alot/0.12.dev11+g1dd20f1f
+In-Reply-To: <20250515103251.210468-1-manikandan.m@microchip.com>
 
---===============7026641472008806453==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+
+--YNVVBp6SZFwNB2lg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Quoting Alexander Stein (2025-05-15 16:29:42)
-> Allow properties from video-interface-devices. The change is identical to
-> commit b6339ecfd0865 ("media: dt-bindings: sony,imx290: Allow props from
-> video-interface-devices")
+On Thu, May 15, 2025 at 04:02:51PM +0530, Manikandan Muralidharan wrote:
+> The naming scheme for delay properties includes "delay" in the name,
+> so renaming spi-cs-setup-ns property to spi-cs-setup-delay-ns to keep
+> that consistent.
+
+"to keep that consistent" sounds like some nice cleanup, but these
+properties appear nowhere in kernel code and therefore just do not work?
+I think the wording should reflect that and there should be a Fixes tag
+to the broken commit.
+
 >=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-
-Reviewed-by: Jai Luthra <jai.luthra@ideasonboard.com>
-
-Are there any driver changes coming for the new properties?
-
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
 > ---
->  Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  arch/arm/boot/dts/microchip/at91-sam9x60ek.dts        | 2 +-
+>  arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi   | 2 +-
+>  arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi | 2 +-
+>  arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts      | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml=
- b/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
-> index 8b23e5fc6a24f..38c3759bcd9f5 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
-> @@ -16,6 +16,9 @@ description: |-
->    Image data is sent through MIPI CSI-2, which is configured as either 2=
- or
->    4 data lanes.
-> =20
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
->  properties:
->    compatible:
->      const: sony,imx219
-> @@ -79,7 +82,7 @@ required:
->    - VDDL-supply
->    - port
-> =20
-> -additionalProperties: false
-> +unevaluatedProperties: false
-> =20
->  examples:
->    - |
+> diff --git a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts b/arch/arm/bo=
+ot/dts/microchip/at91-sam9x60ek.dts
+> index cdc56b53299d..c1ff3248bd8f 100644
+> --- a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
+> +++ b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
+> @@ -609,7 +609,7 @@ flash@0 {
+>  		compatible =3D "jedec,spi-nor";
+>  		reg =3D <0>;
+>  		spi-max-frequency =3D <104000000>;
+> -		spi-cs-setup-ns =3D <7>;
+> +		spi-cs-setup-delay-ns =3D <7>;
+>  		spi-tx-bus-width =3D <4>;
+>  		spi-rx-bus-width =3D <4>;
+>  		m25p,fast-read;
+> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi b/arch/a=
+rm/boot/dts/microchip/at91-sama5d27_som1.dtsi
+> index 8ac85dac5a96..13c28e92b17e 100644
+> --- a/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
+> +++ b/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
+> @@ -44,7 +44,7 @@ flash@0 {
+>  					compatible =3D "jedec,spi-nor";
+>  					reg =3D <0>;
+>  					spi-max-frequency =3D <104000000>;
+> -					spi-cs-setup-ns =3D <7>;
+> +					spi-cs-setup-delay-ns =3D <7>;
+>  					spi-tx-bus-width =3D <4>;
+>  					spi-rx-bus-width =3D <4>;
+>  					m25p,fast-read;
+> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi b/arch=
+/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
+> index ef11606a82b3..9543214adc9f 100644
+> --- a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
+> +++ b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
+> @@ -234,7 +234,7 @@ qspi1_flash: flash@0 {
+>  		compatible =3D "jedec,spi-nor";
+>  		reg =3D <0>;
+>  		spi-max-frequency =3D <104000000>;
+> -		spi-cs-setup-ns =3D <7>;
+> +		spi-cs-setup-delay-ns =3D <7>;
+>  		spi-rx-bus-width =3D <4>;
+>  		spi-tx-bus-width =3D <4>;
+>  		m25p,fast-read;
+> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts b/arch/arm/=
+boot/dts/microchip/at91-sama5d2_icp.dts
+> index 9fa6f1395aa6..fbae6a9af6c3 100644
+> --- a/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts
+> +++ b/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts
+> @@ -714,7 +714,7 @@ flash@0 {
+>  		compatible =3D "jedec,spi-nor";
+>  		reg =3D <0>;
+>  		spi-max-frequency =3D <104000000>;
+> -		spi-cs-setup-ns =3D <7>;
+> +		spi-cs-setup-delay-ns =3D <7>;
+>  		spi-tx-bus-width =3D <4>;
+>  		spi-rx-bus-width =3D <4>;
+>  		m25p,fast-read;
 > --=20
-> 2.43.0
+> 2.25.1
 >=20
->
---===============7026641472008806453==
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Description: signature
-Content-Type: application/pgp-signature; name="signature.asc"; charset="us-ascii"
+
+--YNVVBp6SZFwNB2lg
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmgmAvoACgkQQ96R+SSa
-cUWmdg/+O//yk9DsUF6kBlI/j3zM9DieGhBLoptflIfGtB7CLBh92lZhHBzvBOJ2
-+7iYLGiifh1J81hdFMPq04e5/iGTlefuv2P8l9XpKu25eCGyTJyjJG6RWZ7SZJUh
-TqGdxxyAZCdiuTRHoLpp5goTl4mIFcm1wGuF2n8lpxpUV02h40XCbYqwSrMSVeGP
-teDAn4jbUFgQsoF4IE2kq9v3ah4PsMbG1omdomAYrWrkc9Dzcenl2JLCGBSeMMvD
-unlQ/+ybbh6ytTIEDhc6uXpI7O25Oi5n+jasxUawqFZikowy8npXgBRPYUqQ5D2W
-V0aK1DlA9u44aJZbs5r5ortYdI2y+cOY1tdvBwbp2H+7VrjLLUpeW56g9wSyrKrZ
-y+EYtFoAaHyuZEsaMfdmbAB+0MepcebIo9QNtYCsgpVtwIi8YccTROsyFkn39PTl
-d8RcacHkwwlnSafMUWv73Iw4mFXaeQwI0h8U4L8ckYIT8+aWiFlSwNj34BCD+Ycw
-UgkcsCz3Y0KIblRld3XbE1qvzBrM0hgbiynayLA5Is4qlqv5I14EP1UUWUZ0kqCL
-JqkYLzo57pTfA332ucgD0of26zp1/tD4Xwah9kJXSCb2YjEagpBHSNfQbZ4svk/N
-ZHoZist6wjNWh86LLr3BUx9SrsLxvlCd0K8u+hujP0B854GqjIw=
-=+Wns
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCYDLQAKCRB4tDGHoIJi
+0uu/AQCsh2Rrf0aLS5+M+Dn41EcWua9fjg/EU6tZYdeV5+YuvwD/cSVJLXH4dMCp
+Yo8NyZ3cszL9S8dlEsdTv2vQ6t1V3AU=
+=AvJj
 -----END PGP SIGNATURE-----
 
---===============7026641472008806453==--
+--YNVVBp6SZFwNB2lg--
 
