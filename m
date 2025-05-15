@@ -1,146 +1,174 @@
-Return-Path: <devicetree+bounces-177614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2F33AB83F0
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:33:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB85BAB843C
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:48:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69EDA7A9C49
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:32:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52324178A22
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:48:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FBC7296713;
-	Thu, 15 May 2025 10:33:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 471C3297A45;
+	Thu, 15 May 2025 10:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="SK+GnLaa"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="W19INCcK";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="r1ZTN2ys";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="zLyRDf5b";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="lkp2QJLL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C9035970;
-	Thu, 15 May 2025 10:33:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1F3224B04
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 10:48:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747305222; cv=none; b=HLWHHwhGXHGNoNU59wGBzH2xtDpikIklGiIyilxYzjNi2qCc5otMS5GLXClLqK97fNsHkrRT9/BFEUF2bINYmuyMII/acMY1l0iME+8yRVkEUXIT1SxMgMe8mnGNwlnjAQ9fG6usriGPZGCvgDZV4ab9HRDaMXdLnCs8v6UbQKw=
+	t=1747306095; cv=none; b=cUm5QkP5jNOn/S9T28D4R0q60RzQtQtJty24/IrO29eNZCOFMSDGt+6h2MxyWCqvyLBcvAgUm5UcSXgvz5fFU7+F752cb5fX3XmyjivEQ06UyKWebci3vEdqe2Y8tMFyu+qGjTl5rYGpb2L5fbaoOaK8SNzvPOhUDbW+yRCBnfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747305222; c=relaxed/simple;
-	bh=jOy+gdB5snTg+AWaYBwU4zrEGtaSgqQCzCFFbsWkaZ4=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HDWrW7X7dOCs2SXd2SNsR/yXz0AKkaF0MbDnIVV8TeiRA+2RQYAJqzKvlMSmzWUYBh2fEMGDcOuvorJiuUlBvJbLgPFnu/3gN60xzAHDzwMGYpRBQZbUMPpX93/+AVAdt+JZ7rPjsaVtaXBHCTSXGqtGT69NAkY9gkDv+qoX8Qg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=SK+GnLaa; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1747305220; x=1778841220;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=jOy+gdB5snTg+AWaYBwU4zrEGtaSgqQCzCFFbsWkaZ4=;
-  b=SK+GnLaaH07XxhL8iGW5yt/cXtd+Lr8IboOxqctj0X/ujAW5j3gogUrV
-   /W5LpNLRVa63MrSfBuNyJhhRwHldp3vnklRqAFNV063ruyhfKJSdc9vbz
-   7/lJH8TV2WujghT3bEbpeGQYbCMBOWyLAbHwf8JFN9PCFArP/SqFkRqts
-   t/A/tjtCsLNKXekQ3L7gX/2uEMJEgyLCKPlxfw73kWGZO2+NdeiUwmdld
-   o6dF4E0y7SMo+mZjQ7FK+1Fl7eG4YhDNU3zfekU8JIdFAmQu9YpZ5PZhF
-   FCQ0N/YPezAgVZ5MHB+lVPvDIF4nq3TTxjaTEkfS8xNeSncaDk+jvBKfR
-   A==;
-X-CSE-ConnectionGUID: YDYKtXNcQOipD744zTQ15A==
-X-CSE-MsgGUID: ZMEcAudjRRmAFgfZqoRjuQ==
-X-IronPort-AV: E=Sophos;i="6.15,290,1739862000"; 
-   d="scan'208";a="209126771"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 May 2025 03:33:39 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 15 May 2025 03:33:08 -0700
-Received: from che-lt-i67131.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.44 via Frontend Transport; Thu, 15 May 2025 03:33:04 -0700
-From: Manikandan Muralidharan <manikandan.m@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: Manikandan Muralidharan <manikandan.m@microchip.com>
-Subject: [PATCH] ARM: dts: microchip: rename spi-cs-setup-ns property to spi-cs-setup-delay-ns
-Date: Thu, 15 May 2025 16:02:51 +0530
-Message-ID: <20250515103251.210468-1-manikandan.m@microchip.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1747306095; c=relaxed/simple;
+	bh=HSHAc1esZ7JGsghsuy8H2Bqb4SKoBoPV4DVt5e5AQzY=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tsxihwP/1C9m1HN2oRg7EexrclmUbrPqds+r8+LunGDtWK31PyLXXZ8tzJtv8z7E6ccgzoGp4nq5r3eaR5HBDD7tUmcBQCvueceNDpg0OzfWYC5vLsmd6miMcBJKg++58W2Zs0uFQHeiJxYHjbEFCerxLyMKqb9BURK2/ffZclY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=W19INCcK; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=r1ZTN2ys; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=zLyRDf5b; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=lkp2QJLL; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 8E659211EB;
+	Thu, 15 May 2025 10:48:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1747306091; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HxihgeIkFF/rHdS4s6GW49xNqzW9yrSrX50YJnkKkME=;
+	b=W19INCcKMU0cm1jbKIcq3MNJwuidUTyN6mqfMl4C4sHfkDXbIDop1030mBRAVj+kWEQREt
+	UlP2HALnjEmIObe3G1opjfrKaUM3rdy5srgBXoOVaR/GVwPPGeDUjV20fsPTNwyujEwtIm
+	GJMGb0VgpxO9eB93YxQa6u18WwN+OGg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1747306091;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HxihgeIkFF/rHdS4s6GW49xNqzW9yrSrX50YJnkKkME=;
+	b=r1ZTN2ysZtn+sQTHBpO2VA81MsO4mL2VZ5KYluF+/HzOb8P8mEL8QR7MwaR3o8RYgtlT6c
+	qqITH2vUydsrdbBg==
+Authentication-Results: smtp-out1.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=zLyRDf5b;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=lkp2QJLL
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1747306090; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HxihgeIkFF/rHdS4s6GW49xNqzW9yrSrX50YJnkKkME=;
+	b=zLyRDf5barxYam1WigUEvSI4oBX5+kb04uTjPyO3LkFBt6gcc36dNuxDym7d4aP0QqXchs
+	30X+tixwai45imR5yoKXdwoW2GMmuwcNY2zJ6ag208/vqkXUTS49ODVeuZ6AsLKXLFFxjG
+	MBkY1kJWSdAqJ1V42QEpVr4xhytJ9c8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1747306090;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HxihgeIkFF/rHdS4s6GW49xNqzW9yrSrX50YJnkKkME=;
+	b=lkp2QJLLaQ7SBT8+8MqXoC9dcranJYUti3dAGzkSUYYuyZNd6CgPbDdD+IdElLE/MRXPWe
+	J5ksK9zkW+nkavBg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 2A3B8137E8;
+	Thu, 15 May 2025 10:48:10 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id +igNCWrGJWjRZwAAD6G6ig
+	(envelope-from <tiwai@suse.de>); Thu, 15 May 2025 10:48:10 +0000
+Date: Thu, 15 May 2025 12:48:09 +0200
+Message-ID: <87msbervyu.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: "Sheetal ." <sheetal@nvidia.com>
+Cc: <lgirdwood@gmail.com>,
+	<broonie@kernel.org>,
+	<robh@kernel.org>,
+	<krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>,
+	<linux-sound@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>,
+	<thierry.reding@gmail.com>,
+	<jonathanh@nvidia.com>,
+	<perex@perex.cz>,
+	<tiwai@suse.com>
+Subject: Re: [PATCH 0/2] HDA: Add Tegra264 support
+In-Reply-To: <20250512064258.1028331-1-sheetal@nvidia.com>
+References: <20250512064258.1028331-1-sheetal@nvidia.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Level: 
+X-Spam-Flag: NO
+X-Rspamd-Queue-Id: 8E659211EB
+X-Rspamd-Action: no action
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-2.01 / 50.00];
+	BAYES_HAM(-3.00)[99.99%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	MIME_TRACE(0.00)[0:+];
+	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,nvidia.com,perex.cz,suse.com];
+	RCVD_TLS_ALL(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	DKIM_TRACE(0.00)[suse.de:+];
+	ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:dkim,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,nvidia.com:email]
+X-Spam-Score: -2.01
 
-The naming scheme for delay properties includes "delay" in the name,
-so renaming spi-cs-setup-ns property to spi-cs-setup-delay-ns to keep
-that consistent.
+On Mon, 12 May 2025 08:42:55 +0200,
+Sheetal . wrote:
+> 
+> From: Sheetal <sheetal@nvidia.com>
+> 
+> The patch series is to add support for Tegra264 in HDA driver.
+> 
+> Mohan Kumar D (1):
+>   ALSA: hda/tegra: Add Tegra264 support
+> 
+> Sheetal (2):
+>   dt-bindings: hda: Update Tegra compatible requirements
+>   dt-bindings: Document Tegra264 HDA Support
 
-Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
----
- arch/arm/boot/dts/microchip/at91-sam9x60ek.dts        | 2 +-
- arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi   | 2 +-
- arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi | 2 +-
- arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts      | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+Applied all patches now to for-next branch.
 
-diff --git a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
-index cdc56b53299d..c1ff3248bd8f 100644
---- a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
-@@ -609,7 +609,7 @@ flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <104000000>;
--		spi-cs-setup-ns = <7>;
-+		spi-cs-setup-delay-ns = <7>;
- 		spi-tx-bus-width = <4>;
- 		spi-rx-bus-width = <4>;
- 		m25p,fast-read;
-diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
-index 8ac85dac5a96..13c28e92b17e 100644
---- a/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
-+++ b/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
-@@ -44,7 +44,7 @@ flash@0 {
- 					compatible = "jedec,spi-nor";
- 					reg = <0>;
- 					spi-max-frequency = <104000000>;
--					spi-cs-setup-ns = <7>;
-+					spi-cs-setup-delay-ns = <7>;
- 					spi-tx-bus-width = <4>;
- 					spi-rx-bus-width = <4>;
- 					m25p,fast-read;
-diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-index ef11606a82b3..9543214adc9f 100644
---- a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-+++ b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
-@@ -234,7 +234,7 @@ qspi1_flash: flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <104000000>;
--		spi-cs-setup-ns = <7>;
-+		spi-cs-setup-delay-ns = <7>;
- 		spi-rx-bus-width = <4>;
- 		spi-tx-bus-width = <4>;
- 		m25p,fast-read;
-diff --git a/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts b/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts
-index 9fa6f1395aa6..fbae6a9af6c3 100644
---- a/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts
-@@ -714,7 +714,7 @@ flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <104000000>;
--		spi-cs-setup-ns = <7>;
-+		spi-cs-setup-delay-ns = <7>;
- 		spi-tx-bus-width = <4>;
- 		spi-rx-bus-width = <4>;
- 		m25p,fast-read;
--- 
-2.25.1
 
+thanks,
+
+Takashi
 
