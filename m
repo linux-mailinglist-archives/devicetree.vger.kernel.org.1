@@ -1,140 +1,127 @@
-Return-Path: <devicetree+bounces-177584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 655B0AB8263
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:20:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B15DAB8274
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:25:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1A874C51C6
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:20:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D79331B66870
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A46EA29670A;
-	Thu, 15 May 2025 09:20:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14F1529673D;
+	Thu, 15 May 2025 09:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d1ipIkpy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A7mU282L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EA8295DB5;
-	Thu, 15 May 2025 09:20:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7F2D221296;
+	Thu, 15 May 2025 09:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747300834; cv=none; b=KMQtmw4x6WHhuz8Zlmg19SZfy4TP/bIARGtUdN8s0l4hOnOYc/yN77R07/WRgZ/NHLgdlbmA+Rnqj7efSgTVaI7qLdjR12/2SYJzeWSL+vbGCiSE/0HDIqnRHCtBYOa3OjYPC0qXifft+OF5O6qiDBczYysq3J8k5zxGxX0LZn4=
+	t=1747301097; cv=none; b=E3XVRriMAD8lsLgYCd30CCZzqiG1+knGIo9Fw6f9zRLF+Q86oWM0m5Ej8Qtj7xrtAXi8PCWpoaPt+yRZfugpRH0LYkwyZl5aTLrBwlQcG41Xh29SBIVbPMAwDE+jGC8zXjncAVlb62lWRpmpNf8mKlImGJbxTYOPClfhwMJRvtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747300834; c=relaxed/simple;
-	bh=T0xIs53YyMGsPIFPEWuTJKQwtqyUkFoPGQIbHPbvpOc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e0cJIIgt9SnaPiknhbNppDyTYMCVwIaUse+P5URRnlmt4bupP7Z6f8QCGCKLs2tiGYg8mqEn7eziGzorBExRa3hlAEp/S6FYTzHUt9cW8u5P1XCZNmokFoykMRLTbCLXakw2wydQfPodCplMzA0uuyuQcxebN6xFuyF0Pmbm1XA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d1ipIkpy; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-54d3ee30af1so744623e87.0;
-        Thu, 15 May 2025 02:20:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747300831; x=1747905631; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gr8YDjeShMs5Dbf0Xg1ibXjoeWLBh6KvIWOpPkgrAjM=;
-        b=d1ipIkpyvfr3cPvSkw8MWolysLm9zavbxJfieEfSDgT4sFOik+sJ1WHFOwp2C55N3c
-         jgOjtedqdy1MiLzITNgifK89Hjr+c2agepVLSRtO1JCOL4XxGGYdNpNoL32Ge0E+J3KX
-         0tHuFE3A+0gkl1qPH0xLQDHZImp4rs21Kd4Iw/2OyNcaOt4fYmDoAISrPq1lKi2YM+EN
-         xRGVRW0gjwrFJVlxCY99oq9sYuevEh1DFwXCPUfGIyM1GPEk1o6jOU5FN2XS4p53i0AQ
-         qZ2mIfAlv04zxO4I06J+99JwwNPHnLqrygpvQ0RX/HB9KXfos0o6D4wMI/2URiOFCKLE
-         c5LA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747300831; x=1747905631;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gr8YDjeShMs5Dbf0Xg1ibXjoeWLBh6KvIWOpPkgrAjM=;
-        b=E2F1L0QsYF933U+4fbqtGZX0yOvx3SseWRO4GESlfgLi/Jf0qGCnVZK8jK7bwHAxzB
-         Wxk18rWcQIcL8WB/kdJTn0BVhiQFn94fdJ82KK0juVnxrXJcN0N5KXp7h0DfKtkKof8l
-         eZMmjwW/epN2x8tXM3AeUBXOrcDZI/SC4zVseoDrDpC9wF0k/SEznvCFPapnVibyHazo
-         fCvP5G3d599+w7X0dTT3ATdej6Wr57Mla2ngVBfTVMNCKeWQokXB4O08q36JFldPlFOZ
-         MZurvBXBRwKBjod9Kp5qHA4SNA/s5ljn/BfybwgKTAoNzzLxqEhhgRcncE3U9xnXUbT5
-         z1Aw==
-X-Forwarded-Encrypted: i=1; AJvYcCWN/ICEFVbDbD4r+4XHqBubSM0hE4hdI5/d4Wi84I1HW9kbZlFxzHdjF3j1cF/HE6Gy36H66N4/fyst9bTG@vger.kernel.org, AJvYcCX80N0H6lIREN62/9KO45Lct4wmVwOSQ90S3/sh+W0LCcwJw/A9UNCgC8HQPGRwGugLwEecEhfi0D8Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgzTYRbPgxvCm3WzVjgLQbddrw9EenJl5ESePBtDCMqnlUiqqh
-	/dNpmzLopAq6HKAQRcxtfQqu5BDXATfsQ4rOV+zqlQ+BWUG0W1hk
-X-Gm-Gg: ASbGnctjCeiKJ0Sq+cCVPMigcEU1xc0QsD9Kf1+/JTaXiliHpbMjgmk7QZU5DLsghYu
-	Y3WlTUyBFRJSHPSIkFaW0qVQ+ebEDFyjVs0Xb1moKU3tlg7tnxT0cuzkiTm1BrvfPzP2rjYFez6
-	jLXfSgVRII4hAq1WVD9SjqYoxd/N5A64dJBeDror5X4OBjRnNJRBnPt8HDd5E8EUgva5YmjWliq
-	KuLGnZsZJWnQUcixgL3L6ATPNvPjx98Z3qVub6e+ePciVX6Pj2axsAUJD7vqoWvBpWxQif8AlsQ
-	lFx3p7p4UyZpQtkgth7XxvYNI+MJ6nO4es+FgZDPuWljKYujFMhRYeSYVD6+mkzqfdFQQS2Ixe7
-	BHnPbMifY4Gnx4CFLUpQbcPDVnhIMEufzC3nJIXvQHkU=
-X-Google-Smtp-Source: AGHT+IF1K2xmstWUKqRXQKvNfbx1fHA8kSSO7L0hXYxzd9u70VeGhf6RRP23AYcOT1vimL6BWWt6aw==
-X-Received: by 2002:a05:6512:2392:b0:545:944:aae1 with SMTP id 2adb3069b0e04-550dcffc298mr627839e87.12.1747300830765;
-        Thu, 15 May 2025 02:20:30 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54fc645d082sm2579696e87.76.2025.05.15.02.20.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 May 2025 02:20:30 -0700 (PDT)
-Message-ID: <a44cad65-1f23-43cd-83b7-bc128e9f858f@gmail.com>
-Date: Thu, 15 May 2025 12:20:29 +0300
+	s=arc-20240116; t=1747301097; c=relaxed/simple;
+	bh=JZp32cGnARt5v5SngWT8bwZW1Jh8iJC7PUvH3dlXTsI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R4liFbo1pr/73dqUtm8X9RXRpJjn3vWj8OSzJVS03J9TxvgHKN/9zyWl7uwxvqGfa3Wv21o5FGVnkedyHXfWsltCXnKhbEb+Hg1s5MxMHQ8syCfaqHs74xIkqgnGLOWGMzweo0nY+yn4FtxEQvo5kD5doTKPyhU+Ae4KjVS7vRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A7mU282L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C28A3C4CEE7;
+	Thu, 15 May 2025 09:24:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747301096;
+	bh=JZp32cGnARt5v5SngWT8bwZW1Jh8iJC7PUvH3dlXTsI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=A7mU282LSWsGdpwJ5DOiLTIAyqVyxqrlhiVc/v/e9xV8IF8oplET2K7F1vaW9ndS9
+	 Tlas2OXmX6IsN+pRPlTSwvSVtCP/Cw8hsCLXnTBqvAPakVN7aP6hBug3Z5jAfSXubn
+	 ZZrk7AA4uR2EeRexTRs3IkByDiF4sfYVO8tBjoHvFYBpCuapOsYHAbkzEnbptayKPG
+	 MaoK0JqisvSZA0NJiNex8WCJ8Q3RnsW2nI/+VLG9cLM4obd3XEaUHaDi8QTplnEc1M
+	 321EnbfQT9BLZhjy61zQ22mIKJpakf9bnmHCgr0tDdiOLD7gc8Vv4jdSy+oggRK3O8
+	 BkvdzdvjkhAOg==
+Date: Thu, 15 May 2025 11:24:53 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	wbg@kernel.org, jic23@kernel.org, catalin.marinas@arm.com, will@kernel.org, 
+	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, olivier.moysan@foss.st.com, lee@kernel.org, 
+	alexandre.torgue@foss.st.com
+Subject: Re: [PATCH v3 4/8] pwm: stm32: add support for stm32mp25
+Message-ID: <5ui74qlssllgn4h34by5jcpi5g6rknziclcsh4w27tjvznynsv@lcjtjxn6rovl>
+References: <20250110091922.980627-1-fabrice.gasnier@foss.st.com>
+ <20250110091922.980627-5-fabrice.gasnier@foss.st.com>
+ <4b641513-ff2e-43ab-8074-ba6b521875e2@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/9] arm64: dts: imx8mn-bsh-smm-s2-common: Set minimum
- value for VDD_3V3
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
- linux-kernel@vger.kernel.org
-Cc: Simon Holesch <simon.holesch@bshg.com>,
- Karthikdatt Anantharamrao <karthikdatt.anantharamrao@in.bosch.com>,
- michael@amarulasolutions.com, linux-amarula@amarulasolutions.com,
- Wolfgang Birkner <wolfgang.birkner@bshg.com>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20250514082507.1983849-1-dario.binacchi@amarulasolutions.com>
- <20250514082507.1983849-8-dario.binacchi@amarulasolutions.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250514082507.1983849-8-dario.binacchi@amarulasolutions.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="dxezo4t7v65ydh54"
+Content-Disposition: inline
+In-Reply-To: <4b641513-ff2e-43ab-8074-ba6b521875e2@foss.st.com>
 
-On 14/05/2025 11:25, Dario Binacchi wrote:
-> From: Wolfgang Birkner <wolfgang.birkner@bshg.com>
-> 
-> Buck4 is called Buck6 in the BD71847 datasheet. This buck supports
-> 2.6...3.3V. Set the minimum allowed value.
 
-Same comment as for 6/9. Please provide better rationale than the PMIC's 
-limits.
+--dxezo4t7v65ydh54
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 4/8] pwm: stm32: add support for stm32mp25
+MIME-Version: 1.0
 
-> 
-> Signed-off-by: Wolfgang Birkner <wolfgang.birkner@bshg.com>
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> ---
-> 
->   arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-> index 81fa0a8767e2..04112a83b1d3 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-> @@ -144,7 +144,7 @@ buck3_reg: BUCK3 {
->   			buck4_reg: BUCK4 {
->   				/* PMIC_BUCK6 - VDD_3V3 */
->   				regulator-name = "buck4";
-> -				regulator-min-microvolt = <3000000>;
-> +				regulator-min-microvolt = <2600000>;
->   				regulator-max-microvolt = <3300000>;
->   				regulator-boot-on;
->   				regulator-always-on;
+Hello Fabrice,
 
-Yours,
-	-- Matti
+On Wed, May 14, 2025 at 11:30:26AM +0200, Fabrice Gasnier wrote:
+> On 1/10/25 10:19, Fabrice Gasnier wrote:
+> > Add support for STM32MP25 SoC. Use newly introduced compatible to handle
+> > new features along with registers and bits diversity.
+> > The MFD part of the driver fills in ipidr, so it is used to check the
+> > hardware configuration register, when available to gather the number
+> > of PWM channels and complementary outputs.
+> >=20
+> > Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> > ---
+> > Changes in v2:
+> > Address Uwe review comments:
+> > - Make MAX_PWM_OUTPUT definition less generic: STM32_PWM_MAX_OUTPUT
+> > - No need to initialize 'npwm'
+> > - refactor code, for *num_enabled to use same code path
+> > ---
+> >  drivers/pwm/pwm-stm32.c | 42 ++++++++++++++++++++++++++++++++++-------
+> >  1 file changed, 35 insertions(+), 7 deletions(-)
+>=20
+> Hi Uwe,
+>=20
+> I think this patch still miss some reviews.
+> The first patches of this series have been merged.
+>=20
+> Is it ok for you to merge, or shall I resend separately ?
+
+I have it still on my radar, no need to resend. I just have to find the
+time to look into it in more detail.
+
+Best regards
+Uwe
+
+--dxezo4t7v65ydh54
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmglstgACgkQj4D7WH0S
+/k7tvQgAr0tuQYW7a8kZHG4D+r8Ju5Etk+73ekoD+5NJcmpwe6C8Nye8E3mKfgS6
+bWCXuQS9aBsBvnmwFzIV9jkcwJrdeejQfv46EJ0IOZZFloj7b/vB3K/L/dzS3Ray
+XkPiy+M1R1rGt5B5X1U2gyUK6QRCE4KOMquhXMRCQxO7zqXlozUOk2rcmcAzgGMV
+tpQY/lDPoA9V6k4R6WL4yGAzwybvl+ASbzdrDmsjuIcW9On5Y5xDzkeVH9RSU5P0
+apvIu6hfS3bj3LvTF8QiT9emDOMQJAMU0J5t2YOeazfw/A7rFfqFQl7FA4Z2nDGZ
+wxTfL+UCcOGnVPHKb0fByZ5OKLMqrA==
+=ZB/v
+-----END PGP SIGNATURE-----
+
+--dxezo4t7v65ydh54--
 
