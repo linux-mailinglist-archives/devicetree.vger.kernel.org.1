@@ -1,116 +1,127 @@
-Return-Path: <devicetree+bounces-177686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF2E6AB8972
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 16:28:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE13AB8979
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 16:30:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5EF418835CA
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:27:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65D953A6F02
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC7AD18FC91;
-	Thu, 15 May 2025 14:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B3D1F5849;
+	Thu, 15 May 2025 14:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="ZFZILwmD"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="C3eS4PNw";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="fTAV4Lfs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27CB817B4EC
-	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 14:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D1C21DE4C2;
+	Thu, 15 May 2025 14:30:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747319251; cv=none; b=qDRPRGAAry5AYN6n9f2wNp0EMYTUaBPigd5GO+vS2Cvo2M8sr4J1hoELjx1u0CpBMStaUxh6gfbFNNSQqsidIIgobmWUqAk51iuOJh2wtecWl0z3HUJXIZEHNzn4cXCEpvEjFWmMNiR9zKzxfHE7NFU9Y7T1ENZEvBPZPaU5LBU=
+	t=1747319407; cv=none; b=NTYGMfSSto5HrsKlogk3WK/844ZyKIrQTb5ebA2btRGNA4AZxm2mZxy6g8WTF1q8KZ7ZYpfoefQs9EtX053c02ASCgy3uHuy8DQQwGK5xT732UDVMCFxeiJfmv/oXaCJ4Y6GIv6A1Rh+jTd1+jI1d6YQnVjbp7qZvHU89+0deO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747319251; c=relaxed/simple;
-	bh=4pgWXPFF4dO5j5XyrOv14vAHpJ4O49nfm35Y0Nv32ko=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=HECCh0Nmgv/Mi3Bg48Zvv0F/PGkGPw3uh5RPfTzjK3FifRaPaGblNhm+HGCQJftpHnubnK8Z8NQ4ij96dEd8B9iQHm6TibhPpoaAD/3B0y9rjHue+S8PilSmkq2ZXBX4wpRxWXRt0Ulf7M1ctJn0z/m2yTmjsotchahK6TV7mJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=ZFZILwmD; arc=none smtp.client-ip=34.202.193.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
-DKIM-Signature: a=rsa-sha256; b=ZFZILwmD7YC334uJWUSSaoozvnAwB/bun/UY/j4LOLszgSK7nHJHQv5OWtnsgllixenYRk9hnWg8nMlTXhGqtTh0cLgvDYwBceYvZdCPcMMBsZkQWGM4aLSfp+KHoPkcyJC/WP9LPp0Gu9b+lTP/qCKs81AWEMZUAzCwdDBlDo3zqO1teVBRUTU2hCagpLUl/jCUk5pBPZxZQNXSdjTJzuZlGtK0JBwFgkNEd/YR5CpElj31YM00Mw1sGjJ4I56jp+tNZQ7yf33ugvNPxxsJREEY9bvrR7zRqm12VM/BLoTtKRw/Xb0/C8aVOZhzx+t2ZS7+Ecrww4fd3pdzmEJt9g==; s=purelymail1; d=purelymail.com; v=1; bh=4pgWXPFF4dO5j5XyrOv14vAHpJ4O49nfm35Y0Nv32ko=; h=Feedback-ID:Received:Date:Subject:From:To;
-Feedback-ID: 68247:10037:null:purelymail
-X-Pm-Original-To: devicetree@vger.kernel.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1592338441;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Thu, 15 May 2025 14:26:53 +0000 (UTC)
+	s=arc-20240116; t=1747319407; c=relaxed/simple;
+	bh=yx80i3ss/njcwOPYKpAMbsSUwMCd96dYzPK4X7KLZMM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mb7G6pRjCJanOkKp6K4CLxHae2281983OCNaFVJ75EeLAwtRrRLjQ4dSD8yzbd016CGAU5XxyonrooLd3W03ZL72xKOkTqHM1uHqhlbro4uk86EZPoYY6klWpAt8gVzYx9mBy60/aouPNzV1Svl3vof9VpQeHveol+NI2b+vgJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=C3eS4PNw; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=fTAV4Lfs reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1747319403; x=1778855403;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=b0tlbhLxSAEmnsveQS8FGSEE3bwObFXqb/3UCcwAnPI=;
+  b=C3eS4PNwG9J/kdRo66Bx+VLJiWr4BQeIojmHH0Z7OYI9DKSZZlq4S+yv
+   n7dJ4PfBNDOOB+2u9QZa3vfjQdGzUROpCrMDx8VFwGISJsdFIaQ1ZAiUU
+   85NRnlw/I5bvDSog6CXOPqjnW4mrOuhTIOLUtRLFmgqsxc6XfRQpObuNi
+   KylH++ftkJlIA8KHGwQjb4UH7o7xV3N9nkT9XoiNctjOSaVRqUnuvsdTm
+   rZ9ZEjfl5JIq1F0IJzWLlpo/7FPjcRetjhZFVkUY6Mqr7wePQYMOBVccE
+   cKkFQsQBdP63rm4bdYQmvvTAmoGKnCAzhdBvotSEicjPmo03wKwGof1y9
+   g==;
+X-CSE-ConnectionGUID: ifQO2kpWT6iGHzb89wHLHw==
+X-CSE-MsgGUID: fskjUjC/TveuJCG2KldNMA==
+X-IronPort-AV: E=Sophos;i="6.15,291,1739833200"; 
+   d="scan'208";a="44102182"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 15 May 2025 16:29:59 +0200
+X-CheckPoint: {6825FA67-20-C7E25413-F4312D34}
+X-MAIL-CPID: 282EDE4D20DD297041C25D142FD40109_4
+X-Control-Analysis: str=0001.0A006368.6825FA7B.0013,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 468C816A011;
+	Thu, 15 May 2025 16:29:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1747319395;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=b0tlbhLxSAEmnsveQS8FGSEE3bwObFXqb/3UCcwAnPI=;
+	b=fTAV4LfsxM8jq31QLG9bsTHnjTM2R1Ydftfm+t52ujoCupSJqa8L12p9ijgRKipWnMr7tq
+	aZECbz7plNdc5DV7cVIC64ITpMpW51S+QoPqK1HO9DWNDJO3aQOYt//ykfYjLSJw4zK+Hf
+	qSBFL9JEZaW3O4fDFqoMmaIXVBknHnlq4W8V0Dgu4TK9AA3xfkVpYrpLbj44lBsjIB1vql
+	uZbr1rwqb90Xl9uuj+ELAp6mPBQe0dYf/jELUDXpQ3HZFdyDCHmIkfoItcym/YCj2Wxx7L
+	ipXva2eJuTBvNLxD0b2Rr4wsMYTKVaIbojLC4ahOeany/mwTib82TVw20yE0+A==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] media: dt-bindings: sony,imx219: Allow props from video-interface-devices
+Date: Thu, 15 May 2025 16:29:42 +0200
+Message-ID: <20250515142945.1348722-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 15 May 2025 16:26:48 +0200
-Message-Id: <D9WSYR0CJUC1.3RCB16LZ3S6P7@mentallysanemainliners.org>
-Cc: "Kishon Vijay Abraham I" <kishon@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Marek Szyprowski"
- <m.szyprowski@samsung.com>, "Sylwester Nawrocki" <s.nawrocki@samsung.com>,
- "Alim Akhtar" <alim.akhtar@samsung.com>, <linux-phy@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-samsung-soc@vger.kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 0/2] USB PHY support for Exynos990 SoCs
-From: "Igor Belwon" <igor.belwon@mentallysanemainliners.org>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Vinod Koul" <vkoul@kernel.org>
-X-Mailer: aerc 0.20.0
-References: <20250420-usb-resends-april-v2-0-25dc7d2e6dd4@mentallysanemainliners.org> <aCRXgpD0Ld2W4lHE@vaman> <D9VYC98LJTR0.LJXYC1H0BAKA@mentallysanemainliners.org> <aCWj4cn4y+RyfGiZ@vaman> <ea1a7a37-031f-4f81-ba09-eaa523f70761@kernel.org>
-In-Reply-To: <ea1a7a37-031f-4f81-ba09-eaa523f70761@kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Thu May 15, 2025 at 11:14 AM CEST, Krzysztof Kozlowski wrote:
-> On 15/05/2025 10:20, Vinod Koul wrote:
->> On 14-05-25, 16:26, Igor Belwon wrote:
->>> On Wed May 14, 2025 at 10:42 AM CEST, Vinod Koul wrote:
->>>> On 20-04-25, 21:28, Igor Belwon wrote:
->>>>> Hi all!
->>>>>
->>>>> This patchset adds support for the USB 2.0 PHY of the Exynos990 SoC.
->>>>> This SoC has a combo PHY that supports highspeed, superspeed USB and
->>>>> DisplayPort, however due to my inability to test the superspeed part =
-of
->>>>> the combo phy (device always enumerated as high-speed, even on the
->>>>> vendor kernels/bootloaders) only the highspeed part is brought up.
->>>>>
->>>>> These changes have been tested and confirmed working (with the USB_ET=
-H
->>>>> gadget and telnet/ssh in a ramdisk) on a device from the hubble famil=
-y
->>>>> (x1s) and also a device from the canvas family (c1s).
->>>>
->>>> I am missing the dt patch, can you pls report the whole series if you
->>>> would like me to review and apply this
->>>
->>> Hi Vinod,
->>>
->>> I've sent the DT series a while back (before resending). Usually I
->>> propose DT changes through Krzysztof's tree. The patches are=20
->>> unchanged (they will be resent unchanged when all usb and wdt=20
->>> changes are merged).
->>=20
->> It makes sense to post bindings and driver togther and mostly these go
->> thru subsystem trees!
->>=20
-> I don't think you both speak about the same thing. DT is ambiguous here,
-> so always use DTS or DT bindings... that said bindings were here in this
-> patchset so if Vinod misses them, this has to be resent.
->
-> Best regards,
-> Krzysztof
+Allow properties from video-interface-devices. The change is identical to
+commit b6339ecfd0865 ("media: dt-bindings: sony,imx290: Allow props from
+video-interface-devices")
 
-Hi Krzysztof, Vinod.
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Krzysztof: Thank you for the clarification. I assumed somehow the
-devicetree changes were necessary for the revies. Bad judgment on my part.
-Sorry.
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
+index 8b23e5fc6a24f..38c3759bcd9f5 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
+@@ -16,6 +16,9 @@ description: |-
+   Image data is sent through MIPI CSI-2, which is configured as either 2 or
+   4 data lanes.
+ 
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
+ properties:
+   compatible:
+     const: sony,imx219
+@@ -79,7 +82,7 @@ required:
+   - VDDL-supply
+   - port
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.43.0
 
-Vinod: Sorry for the misunderstanding. I'll resend the patchset shortly.
-
-Regards,
-Igor
 
