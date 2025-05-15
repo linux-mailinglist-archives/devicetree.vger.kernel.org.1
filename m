@@ -1,104 +1,131 @@
-Return-Path: <devicetree+bounces-177660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 586B2AB8794
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 15:13:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CDDCAB87FB
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 15:32:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C8917B71D7
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:12:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D25C7B9A3A
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1288929A9DC;
-	Thu, 15 May 2025 13:13:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921287260B;
+	Thu, 15 May 2025 13:31:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwdgySrB"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UUpIT/pF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFD2629A9CC;
-	Thu, 15 May 2025 13:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 685804B1E41;
+	Thu, 15 May 2025 13:31:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747314808; cv=none; b=oCFNOuQY8gaKihjyJ5PdwPPKn5Y5f3y6Mk/aLIDuPutEOb1+rEVErn9vwWJ/ZyRcdh+j3DcMHtt44DkFoAExPZsfe/TscCK8ReRRsFmAuf42nHyznUz8nonXSlPsKoXaAVw4X6fjDxciP0XAwWdaHy3VJxFdYF5ICuuRGvKxvZk=
+	t=1747315910; cv=none; b=SNRL4tIyCNzdlomRKxZKwLJoMNvQ27ZU3MReNIGFbKISUHXuebf39BPQFz7qe3XnjFq3YaFcEYK76VxV+N6DrEPYUayma07UallRyGSMaYANfTJwHvopm45CfYqFRL4Q5pgVMhfu72MU248lUgxc0qJWg18Y1FRRKhF9A6Bfmik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747314808; c=relaxed/simple;
-	bh=Y5x0Q5wwhg5x4WNJLlfJSj3Na3CIMpE00k8kQT2PRPI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VkCCj0VGqXviD5VQjJ8HjLFb7qzK1YDyIRy38Re2wUwIHD4nW8Xex4R0j2GUys0kNhCPt117z9MiFZ16v5H5+7mkRy+MZBoogBYqimT1vlXI79PpiWAU3H3t6x8eO9jBWVyfkNhdvsyH7079m3IAOxia94JbcVnK8eo4Zj/f88Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwdgySrB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79970C4CEE7;
-	Thu, 15 May 2025 13:13:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747314807;
-	bh=Y5x0Q5wwhg5x4WNJLlfJSj3Na3CIMpE00k8kQT2PRPI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CwdgySrBFpBknjowQX5Hoxv6LObSUmuFtYmiMRQUWj5s+X6Oy28kwmAvXM9dgeFUh
-	 aMypFFt2AEPp2VpYL84MmhfFffQ/5mBFY4/cVxpYuBxhdiHpsZ0EcTn2DhcDowf1ub
-	 qmUW/bBpIMjI2vN/rIBFu8dEt9FgLc5HUQwIBkumjALsrJLzuK4EeqFya30Fpn17c6
-	 zLBIDd5DOyFcuLW5bNPAiNaGxfyDxX3X45eFzAQWxZtUtXk3YN8u1ZeJqeNKWv9LwL
-	 9rPgr6PcheBYjnKRyQ71wIieMzBIChgrPx17FUGtbor72kdQ3ci2DtM5UZWXKSRH6n
-	 sbolT6KimcIaQ==
-Date: Thu, 15 May 2025 14:13:21 +0100
-From: Lee Jones <lee@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stanislav Jakubek <stano.jakubek@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v8 4/9] mfd: bcm590xx: Add support for multiple device
- types + BCM59054 compatible
-Message-ID: <20250515131321.GG2936510@google.com>
-References: <20250430-bcm59054-v8-0-e4cf638169a4@gmail.com>
- <20250430-bcm59054-v8-4-e4cf638169a4@gmail.com>
- <20250509140957.GD2492385@google.com>
- <aCRZzwW0w8oVWLUp@finisterre.sirena.org.uk>
- <20250515071357.GD2936510@google.com>
- <aCWfre2-n_PSuhxR@finisterre.sirena.org.uk>
- <20250515092000.GF2936510@google.com>
- <aCW0822BVpfKV2NL@finisterre.sirena.org.uk>
- <8beeddcf-1dc7-4af8-b287-4c896852b258@gmail.com>
- <aCXQUu97HL_yrH89@finisterre.sirena.org.uk>
+	s=arc-20240116; t=1747315910; c=relaxed/simple;
+	bh=+qZaWRvZ9Dgx+EpqRZQgSt4qBnNCWnJbJUmOtKwdjgE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Y97VzUp4Y48GFy8hOx5bGAg2iAKgfUvs/jVAE/kJ3jc1gUvGuGkrXItzybWZ82UCDQa0waokod3xJQoMuGQLBPBJLJKmX9BczRuI7PmQHMIbOSVlJbnthXs72EXcBjPAsYSXVtrObBuxgtdkS/BqvdPxnjcxxzwdaUdEOWRii4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UUpIT/pF; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1747315906;
+	bh=+qZaWRvZ9Dgx+EpqRZQgSt4qBnNCWnJbJUmOtKwdjgE=;
+	h=From:Subject:Date:To:Cc:From;
+	b=UUpIT/pFbKME4d3DBPwv84lQlVe92KlvTuedp+1qewWET30JdynRQQ8oehrCBQOZH
+	 LpEPzxP1uMK7Q8aGd4yQTzsJmrXkyM39iT9EPn78NVcpJBwM1/O0nO5uX59pFl5+44
+	 us/b6QjAOPK3rRTd+upxGroPb9TWqEmX2uktlApbUxw8ykdjpzuz+jDcK0YVJuFaye
+	 sfYZOtc8jrDfxims7Q/2TT/ESVwRNZUgmjn7+4sTpMzELv+j10AXzv1ofd0030S/T5
+	 S+/zrf0h6HXo3XFDMbC2tTeoTnVjcRXcbZpAsNnni6vRBZmE9PvG/YXu/0VciQsy+h
+	 iAYHGqkVeIMMg==
+Received: from apertis-1.home (2a01cb0892f2D600c8F85cf092D4Af51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id AEB6417E02BE;
+	Thu, 15 May 2025 15:31:45 +0200 (CEST)
+From: Julien Massot <julien.massot@collabora.com>
+Subject: [PATCH 0/3] mt8188: Fix missing reset and clock-names DT
+ properties
+Date: Thu, 15 May 2025 15:31:42 +0200
+Message-Id: <20250515-dtb-check-mt8188-v1-0-cda383cbeb4f@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aCXQUu97HL_yrH89@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL7sJWgC/x3MQQqAIBBA0avErBvQYsC6SrQonXKILDQiCO+et
+ HyL/19IHIUT9NULkW9JcoQCXVdg/RRWRnHF0KiGFGlCd81oPdsN98toY5CmhZQjR7ZroWRn5EW
+ efzmMOX+RhBF7YgAAAA==
+X-Change-ID: 20250515-dtb-check-mt8188-5af50d5d5c93
+To: kernel@collabora.com, Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Garmin Chang <garmin.chang@mediatek.com>, 
+ Friday Yang <friday.yang@mediatek.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Julien Massot <julien.massot@collabora.com>
+X-Mailer: b4 0.14.2
 
-On Thu, 15 May 2025, Mark Brown wrote:
+Hi all,
 
-> On Thu, May 15, 2025 at 01:28:15PM +0200, Artur Weber wrote:
-> > On 5/15/25 11:33, Mark Brown wrote:
-> > > On Thu, May 15, 2025 at 10:20:00AM +0100, Lee Jones wrote:
-> 
-> > > > I can go with 2 in this case.  Applying in dribs-and-drabs as Acks come
-> > > > in would be sub-optimal and would likely end up in a mess.
-> 
-> > > Well, then just going a head and applying them on a branch with a tag
-> > > seems easier than delaying then.
-> 
-> > I can split the patchset into two parts (one for MFD, one for regulator)
-> > if it helps.
-> 
-> There's still a dependency on the MFD bits whatever happens.
+This patch series addresses some issues found in the MediaTek MT8188 device tree
+and its corresponding bindings:
 
-Right.  That won't help since you need to describe the deps.  Submitting
-them as a set was the correct thing to do.
+The #reset-cells property was missing in the MT8188 clock controller binding and
+device tree nodes. This causes DT validation errors.
 
+The clock-names property was missing from the Global Command Engine (GCE) mailbox node,
+which also triggers a dtb-check failure.
+
+Patch 1 updates the binding to declare #reset-cells as a valid property.
+Patch 2 adds #reset-cells to all affected nodes in mt8188.dtsi.
+Patch 3 fixes the missing clock-names property in the GCE node.
+
+To: kernel@collabora.com
+To: Michael Turquette <mturquette@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Garmin Chang <garmin.chang@mediatek.com>
+To: Friday Yang <friday.yang@mediatek.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>
+Cc: linux-clk@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mediatek@lists.infradead.org
+
+Signed-off-by: Julien Massot <julien.massot@collabora.com>
+---
+Julien Massot (3):
+      dt-bindings: clock: mediatek: Add #reset-cells property for MT8188
+      arm64: dts: mediatek: mt8188: Add missing #reset-cells property
+      arm64: dts: mediatek: mt8188: gce: add missing 'clock-names'
+
+ .../devicetree/bindings/clock/mediatek,mt8188-clock.yaml     |  3 +++
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi                     | 12 ++++++++++++
+ 2 files changed, 15 insertions(+)
+---
+base-commit: bdd609656ff5573db9ba1d26496a528bdd297cf2
+change-id: 20250515-dtb-check-mt8188-5af50d5d5c93
+
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Julien Massot <julien.massot@collabora.com>
+
 
