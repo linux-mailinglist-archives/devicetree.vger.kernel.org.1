@@ -1,175 +1,87 @@
-Return-Path: <devicetree+bounces-177540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6FA3AB7F47
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:51:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BED6FAB7F5A
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:54:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 944424C4946
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 07:51:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA40817CDCF
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 07:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC3C27C15A;
-	Thu, 15 May 2025 07:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2FDC280CCD;
+	Thu, 15 May 2025 07:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="MRRE2jpO"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="CmEh/BHM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35B3F283FD9;
-	Thu, 15 May 2025 07:50:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABF528030E;
+	Thu, 15 May 2025 07:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747295457; cv=none; b=DXmOYo71gDEwlQiga+wKrKzG5RAUh4CeTknD0vCwKotC4cBr7BHtXwVpoBdIt2C42SdEda/FI2V7NzLcSdqDo+wxntGh8KURxjOKP/67SE2RvHjkRSPk3OsDX9FaADSiTfSEvrBZrR/a9H7J+j4VW7P+kadycFiGVYEHxM2kM3c=
+	t=1747295659; cv=none; b=gT2pZ2erYi38MUY/oX3qlXBQO39ij8Q/oK4snGA86myU1a+AwoyAhLDdRD/D3OK5CNFCBSbvXoLP+X3ywkg0h+6UbrxtEMiOD/3M81HLvPcMiBM5ZxEzKl9eueywT2F+Y+sZ4me5mpfBqByR/h/KygLdHOKZhtlwdM0vKrYbNKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747295457; c=relaxed/simple;
-	bh=tpCTD5xGme/qPS7vcmDRv0oeU5Y1eIoub1iwPCyoqhU=;
+	s=arc-20240116; t=1747295659; c=relaxed/simple;
+	bh=sxdO7aNfLSfO5lmZl2v3RLakD6ynfpy2GeysNMPD2ns=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GXcSODXCBv/33c2oHpUTXZ37hxijuwFPmy3Kl75O8CUtwjQQxbbtmoMqYw4x3/3SkCKslYk5V+eBl3cOHdGYll8W5WHlqeJwMEGvPvt16js+mnYDwkR2zFmWkTPql4s/P+HAr/aK5EbPTZ/djmBofzgKes4e9nL6eM+H/zMmzFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=MRRE2jpO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E490DC4CEED;
-	Thu, 15 May 2025 07:50:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mQ+mgKGDXxXG5zG869Drwyn9B/L+zOu3KSlOry1+KOTiyu/Cf1oMYvxquzT/4q4Ea/9goLfpNXClqWxBr4xo1KvcoTV/s1bjlX1fBo/12vq56jP/jMlFUGnl2+nLwUBoaknIlb/idzSj9WNFEeK+B0Hcid3i0G2FO0SoR7ov71Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=CmEh/BHM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 870C6C4CEE9;
+	Thu, 15 May 2025 07:54:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1747295456;
-	bh=tpCTD5xGme/qPS7vcmDRv0oeU5Y1eIoub1iwPCyoqhU=;
+	s=korg; t=1747295658;
+	bh=sxdO7aNfLSfO5lmZl2v3RLakD6ynfpy2GeysNMPD2ns=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MRRE2jpO51015SkZlpUH3dWOOmZ4ntJR8HlDtRS/JqOFD8nOw3UUPf2yukSld8ns4
-	 2ZCBTFaZ58lndbcxSgd+4XeTtMolz41FMjGHFB/OFyorz3NbHkWHYLNPV0bAO8gc4C
-	 VszQq7SNr0gaR0zgZmCoMWXesIZW/ZRWdPYkO2Js=
-Date: Thu, 15 May 2025 09:49:01 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Damien =?iso-8859-1?Q?Ri=E9gel?= <damien.riegel@silabs.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Silicon Labs Kernel Team <linux-devel@silabs.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
-	Alex Elder <elder@kernel.org>, greybus-dev@lists.linaro.org
-Subject: Re: [RFC net-next 00/15] Add support for Silicon Labs CPC
-Message-ID: <2025051551-rinsing-accurate-1852@gregkh>
-References: <20250512012748.79749-1-damien.riegel@silabs.com>
- <6fea7d17-8e08-42c7-a297-d4f5a3377661@lunn.ch>
- <D9VCEGBQWBW8.3MJCYYXOZHZNX@silabs.com>
- <f1a4ab5a-f2ce-4c94-91eb-ab81aea5b413@lunn.ch>
- <D9W93CSVNNM0.F14YDBPZP64O@silabs.com>
+	b=CmEh/BHMAicg6wnOnpRVmP+34GYGs6UYV01rIJggKEaIsQ63IWGRh03e6I5MZA+7d
+	 b6Hhcq4t87IyL4vnn1Iunszh98uV+gv7hzPZdO3rJYsYSD0nmhTK+rGh6/BAUewd4a
+	 hPUu6y97GohjyRZKhtXidic04erQglwvHK+yjfgw=
+Date: Thu, 15 May 2025 09:52:29 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Linux-Kernel <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
+	shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	goda <yusuke.goda.sx@renesas.com>,
+	Kurokawa <harunobu.kurokawa.dn@renesas.com>,
+	Kihara <takeshi.kihara.df@renesas.com>,
+	kazuya.mizuguchi.ks@renesas.com, takamitsu.honda.pv@renesas.com
+Subject: Re: Question about UIO vs DT
+Message-ID: <2025051549-flannels-lively-a46d@gregkh>
+References: <87o6vutrbw.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <D9W93CSVNNM0.F14YDBPZP64O@silabs.com>
+In-Reply-To: <87o6vutrbw.wl-kuninori.morimoto.gx@renesas.com>
 
-On Wed, May 14, 2025 at 06:52:27PM -0400, Damien Riégel wrote:
-> On Tue May 13, 2025 at 5:53 PM EDT, Andrew Lunn wrote:
-> > On Tue, May 13, 2025 at 05:15:20PM -0400, Damien Riégel wrote:
-> >> On Mon May 12, 2025 at 1:07 PM EDT, Andrew Lunn wrote:
-> >> > On Sun, May 11, 2025 at 09:27:33PM -0400, Damien Riégel wrote:
-> >> >> Hi,
-> >> >>
-> >> >>
-> >> >> This patchset brings initial support for Silicon Labs CPC protocol,
-> >> >> standing for Co-Processor Communication. This protocol is used by the
-> >> >> EFR32 Series [1]. These devices offer a variety for radio protocols,
-> >> >> such as Bluetooth, Z-Wave, Zigbee [2].
-> >> >
-> >> > Before we get too deep into the details of the patches, please could
-> >> > you do a compare/contrast to Greybus.
-> >>
-> >> Thank you for the prompt feedback on the RFC. We took a look at Greybus
-> >> in the past and it didn't seem to fit our needs. One of the main use
-> >> case that drove the development of CPC was to support WiFi (in
-> >> coexistence with other radio stacks) over SDIO, and get the maximum
-> >> throughput possible. We concluded that to achieve this we would need
-> >> packet aggregation, as sending one frame at a time over SDIO is
-> >> wasteful, and managing Radio Co-Processor available buffers, as sending
-> >> frames that the RCP is not able to process would degrade performance.
-> >>
-> >> Greybus don't seem to offer these capabilities. It seems to be more
-> >> geared towards implementing RPC, where the host would send a command,
-> >> and then wait for the device to execute it and to respond. For Greybus'
-> >> protocols that implement some "streaming" features like audio or video
-> >> capture, the data streams go to an I2S or CSI interface, but it doesn't
-> >> seem to go through a CPort. So it seems to act as a backbone to connect
-> >> CPorts together, but high-throughput transfers happen on other types of
-> >> links. CPC is more about moving data over a physical link, guaranteeing
-> >> ordered delivery and avoiding unnecessary transmissions if remote
-> >> doesn't have the resources, it's much lower level than Greybus.
-> >
-> > As is said, i don't know Greybus too well. I hope its Maintainers can
-> > comment on this.
-> >
-> >> > Also, this patch adds Bluetooth, you talk about Z-Wave and Zigbee. But
-> >> > the EFR32 is a general purpose SoC, with I2C, SPI, PWM, UART. Greybus
-> >> > has support for these, although the code is current in staging. But
-> >> > for staging code, it is actually pretty good.
-> >>
-> >> I agree with you that the EFR32 is a general purpose SoC and exposing
-> >> all available peripherals would be great, but most customers buy it as
-> >> an RCP module with one or more radio stacks enabled, and that's the
-> >> situation we're trying to address. Maybe I introduced a framework with
-> >> custom bus, drivers and endpoints where it was unnecessary, the goal is
-> >> not to be super generic but only to support coexistence of our radio
-> >> stacks.
-> >
-> > This leads to my next problem.
-> >
-> > https://www.nordicsemi.com/-/media/Software-and-other-downloads/Product-Briefs/nRF5340-SoC-PB.pdf
-> > Nordic Semiconductor has what appears to be a similar device.
-> >
-> > https://www.microchip.com/en-us/products/wireless-connectivity/bluetooth-low-energy/microcontrollers
-> > Microchip has a similar device as well.
-> >
-> > https://www.ti.com/product/CC2674R10
-> > TI has a similar device.
-> >
-> > And maybe there are others?
-> >
-> > Are we going to get a Silabs CPC, a Nordic CPC, a Microchip CPC, a TI
-> > CPC, and an ACME CPC?
-> >
-> > How do we end up with one implementation?
-> >
-> > Maybe Greybus does not currently support your streaming use case too
-> > well, but it is at least vendor neutral. Can it be extended for
-> > streaming?
+On Thu, May 15, 2025 at 04:45:23AM +0000, Kuninori Morimoto wrote:
 > 
-> I get the sentiment that we don't want every single vendor to push their
-> own protocols that are ever so slightly different. To be honest, I don't
-> know if Greybus can be extended for that use case, or if it's something
-> they are interested in supporting. I've subscribed to greybus-dev so
-> hopefully my email will get through this time (previous one is pending
-> approval).
+> Hi Greg / UIO / DT
 > 
-> Unfortunately, we're deep down the CPC road, especially on the firmware
-> side. Blame on me for not sending the RFC sooner and getting feedback
-> earlier, but if we have to massively change our course of action we need
-> some degree of confidence that this is a viable alternative for
-> achieving high-throughput for WiFi over SDIO. I would really value any
-> input from the Greybus folks on this.
+> I would like to ask about UIO vs DT.
+> 
+> If my understanding was correct, current UIO can use 1 IRQ / 1 reg per 1 UIO,
+> but some device needs multi-IRQ/reg. In such case, we need to use
+> multi-UIO. But it is not good much to DT rule. For example in case of
+> the device which needs "2 regs 3 irqs". it will be
+> 
+> (A)	[1 reg, 1 IRQ] UIO
+> (B)	[1 reg, 1 IRQ] UIO
+> (C)	[0 reg, 1 IRQ] UIO
+> 
+> and (C) will be DT error. Is this known issue ? Do we have better solution ?
 
-So what you are looking for is a standard way to "tunnel" SDIO over some
-other physical transport, right?  If so, then yes, please use Greybus as
-that is exactly what it was designed for.
+Yes, write a real driver for the device as obviously it is a complex one
+and UIO shouldn't be used for it :)
 
-If there is a throughput issue with the sdio implementation on Greybus,
-we can address it by fixing up the code to go faster, I don't recall
-there ever being any real benchmarking happening for that protocol in
-the past as the physical layer that we were using for Greybus at the
-time (MIPI) was very fast, the bottleneck was usually either the host
-controller we were using for Greybus, OR on the firmware side in the
-device itself (i.e. turning Greybus packets into SDIO commands, as SDIO
-was pretty slow.)
+What type of device is this that requires this type of hardware control
+and why do you feel that UIO is the proper solution?
 
 thanks,
 
