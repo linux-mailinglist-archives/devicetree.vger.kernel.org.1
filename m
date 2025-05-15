@@ -1,158 +1,121 @@
-Return-Path: <devicetree+bounces-177542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0797DAB7F7E
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:00:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0174AB7F91
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:03:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F9E04C4F8C
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 08:00:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C2F11B66309
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 08:03:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 459E238DD8;
-	Thu, 15 May 2025 08:00:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B742C21ADB7;
+	Thu, 15 May 2025 08:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ECdt2NVr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2840A163;
-	Thu, 15 May 2025 08:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8D912CD96;
+	Thu, 15 May 2025 08:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747296036; cv=none; b=L9RAdaBg7QMLrA8ZN37vZMTP6u6QqSHI1M2EYrwzs0kl4OFEhZ7MHX73ky+orohSehITKVJa+pzA0TYSb1hMiSY7WkzpqTGJ0hSflpBdDkKuOv3V3cYLq6S75Zds5DJ21pDVEkGwgTPjF1BuJXWdnmlELnf16KaA5SaAxCCIvVM=
+	t=1747296179; cv=none; b=T41DybavB5v3np6i/BiQ55/olTltu26Krdi42il4PZW7QhOoLaKvsi1OgGmPeV21Q7FHiPmXPc3LFiQSvtBzdgEWmChBoC4OlvsQJnxNvOhZrlc0z5ZvlyPe2OStpTmq0FVJ1xqquZKDuIafNDm0N2QCqQh6CbI5JhRCMUHJeZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747296036; c=relaxed/simple;
-	bh=tk/XDQLggBW/cCd7GmHTdtwt/QcoAPS1/He9RNjMpkw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NRKIyJ4MAYnacCC7KK8tYLgdGsKE7b4Sfy/yl9cP1VbKoSlGXlwIXZaFAwKfeWveSte6s1uz3EZ2X/Vz18FxeTBxCyOr3tagV30AFsoW0YnoJ+GkTKkzAboRiwMA2GpdGEwVZclihJ4hlqns3rI16Lp5kCJttLHNyKjyxOr/DH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-54b0d638e86so724059e87.1;
-        Thu, 15 May 2025 01:00:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747296030; x=1747900830;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=83/6bruci8d3XeppjMMQIod4VG9vV6e31bosgCEHfPA=;
-        b=ap8YsQ9xMO6eIMoO3OZKIpXHPS4wKuYBs9sJ47E/BMY4+Fz2e08R+zOSPvUJlee/2d
-         Z28UaKYTHN9ihfTGLAZO2y0pPdSF+nZbTXAI2bG0lVFpr1JQ/22zM6DxxBrqaZRE6pRq
-         eoSfAPBaumPThlH0zg6TKCs0sJs+XAZEIEdcK9vuCmSz5wXg8Zbhjrd8oWEMxjj4RdPe
-         fZoVhU5w6/jXKNKslqUTW2fk9QcsU+1bn1vPB+7Cyql0v03L0u4+DMlbT28qcM9n7Wh7
-         qniJM9LnraO7UjmCOyJVv18svlX5eNavoIY5AOOp/CYKtfdYbeEcy8C9TYfx5TKDPm1D
-         uvOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUl8DDtT15STpSKTiMJ4bTx1ymkyOohSX8kT7Wt8d6GMaPT8SFG5X6iR3IRoovqD5wJIIUra+N3BQ8y@vger.kernel.org, AJvYcCWp7KocdeaKfx4K8gQe9OKAAezPjaQ5QhuTplCOJ09g/j295ZvY3O2OooeT3xN5IQbURjQ4/3BRQHEC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7zI8wwGND7MCyBERAFS4YWaatqf08+GCgMbVYdnf7TSfdpvr3
-	WTcgUVb8RtdJc5huWSiWPTP2mfMjXbb3CCmCRDA9bUloeC8GblZxJaLM2aqh
-X-Gm-Gg: ASbGncv9VL2jSmTk9Tv9bsd5EVyguhw++6jTi8gzC2PEOvB6ptr6kCoYyyHbKH1Pnvg
-	ayylVz6o1tkTpLsPWxjSXjDqdocG5zx/RArosGjmg7QHXtcPZTUJJcRQH9NS3lW8//LE2JLQaUU
-	i6yy46NmqWgJoOoKQKvY51ifk7h3eGUX7yZLbI3WIQ4owsMb2uk1U+aM3R3aMtGI8YelM4lUAyi
-	iP5Tk4UnGTex3HCDQOIvtIC5BeRYQ0RkwOp4PE7gY64ZLKigV6hZYb6zD4CAvhXwZ3I92jUs0Pe
-	aBYmlwdxSmlNQpBh7k2aMcjiW7EvCTNCoE7Sf4A5+5dILH/KhLdGGtDAf1K9mv0oWs6loDJa2Ak
-	I+uUcOgDl
-X-Google-Smtp-Source: AGHT+IFrgMyHuGUNc7pWg2b8Kysy6ExLNDEgUINC92Q6+tz5XzyLLM2XoKzMQCYEdBzGiCMSbCY2XQ==
-X-Received: by 2002:a05:6512:31cd:b0:54d:6e19:ba9b with SMTP id 2adb3069b0e04-550dd11db61mr486080e87.34.1747296029901;
-        Thu, 15 May 2025 01:00:29 -0700 (PDT)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54fc645cdb5sm2549371e87.57.2025.05.15.01.00.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 May 2025 01:00:29 -0700 (PDT)
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-326cf24aa35so7054181fa.2;
-        Thu, 15 May 2025 01:00:29 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV4yrdIZNTabDvp1VSymbNms8X3MXizY+SNhBw/9YJ/EjUYaMnWpf4fhqO7wkE6ogGLyTgEsH2F3Yc1@vger.kernel.org, AJvYcCVPnLW8EgD43MnWwTU9vCqxwqVAn7qOQlN4C9IvkxqJRGcn/OwVTv3UIac1SWg11+KuzfcJU4/9uNtz@vger.kernel.org
-X-Received: by 2002:a05:651c:1477:b0:30b:f2d6:8aab with SMTP id
- 38308e7fff4ca-327fac55a0amr5702491fa.32.1747296029090; Thu, 15 May 2025
- 01:00:29 -0700 (PDT)
+	s=arc-20240116; t=1747296179; c=relaxed/simple;
+	bh=bDjuUuhDO1eKs8zJQ8OSPWNjfdrBghRphQ/ti3Qq3yw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IV3AukY6k1rmF7Ujyjq0Cvt2ykn3A6a8f6p/cJ1Ekq7P/AA1ubIckpU1IM1MHFt3V8Scpj7Dr9xmH7CRlWjT8ZGVyNtAoi2oZgk+NdhlQx5v9Af5b6ZEBS1VdymrAvZJIZqZgjVXKhcfqvhDpehDdaS1VtF9i8FvgnOtBbZSnW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ECdt2NVr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB71EC4CEE7;
+	Thu, 15 May 2025 08:02:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747296179;
+	bh=bDjuUuhDO1eKs8zJQ8OSPWNjfdrBghRphQ/ti3Qq3yw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ECdt2NVrLK4F2ha+dMk5ZykvFmtwjx+CpHviKSOzucKfOyBZJSN50/VtCRIdom59g
+	 tOMkWWi4eTJUQLB16cn1bigliKv9vH10OUDFhFXT9gEfQQNaiG91DDONVViomJEIee
+	 8LxUMfJI0ZYf3vxD1BuOn3M893502sFR5TU++erM+j+ypxqaKe13hJcP4AhfRJ8T+I
+	 yrQVKUVaKdvYtDwX6rD3DzEcxPyCMjwVpTsMmdw2u5u0iGP+ifCNlN4oNEHAHVwkAm
+	 CWdfxDCbAiX1snrVLsyUcOLxRL+4OPRCVxYOesWMoyh/K3bdcsKeo55cMQIl8WLslD
+	 V2tYibkVzlX3Q==
+Date: Thu, 15 May 2025 10:02:53 +0200
+From: Mark Brown <broonie@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Stanislav Jakubek <stano.jakubek@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v8 4/9] mfd: bcm590xx: Add support for multiple device
+ types + BCM59054 compatible
+Message-ID: <aCWfre2-n_PSuhxR@finisterre.sirena.org.uk>
+References: <20250430-bcm59054-v8-0-e4cf638169a4@gmail.com>
+ <20250430-bcm59054-v8-4-e4cf638169a4@gmail.com>
+ <20250509140957.GD2492385@google.com>
+ <aCRZzwW0w8oVWLUp@finisterre.sirena.org.uk>
+ <20250515071357.GD2936510@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250511104042.24249-1-ryan@testtoast.com> <20250511104042.24249-6-ryan@testtoast.com>
-In-Reply-To: <20250511104042.24249-6-ryan@testtoast.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Thu, 15 May 2025 16:00:16 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64BY+8ZkoxG82MCP+-5BZAFiYMRcm4LXeke9uVfpZX2bA@mail.gmail.com>
-X-Gm-Features: AX0GCFtQJojOkTJDrh1Srsp9NZ6Emv-AQGyH6XtcUh5xrCVbMWvLF3It26XNdqM
-Message-ID: <CAGb2v64BY+8ZkoxG82MCP+-5BZAFiYMRcm4LXeke9uVfpZX2bA@mail.gmail.com>
-Subject: Re: [PATCH v10 05/11] dt-bindings: allwinner: add H616 DE33 bus binding
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Maxime Ripard <mripard@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Andre Przywara <andre.przywara@arm.com>, Chris Morgan <macroalpha82@gmail.com>, 
-	Hironori KIKUCHI <kikuchan98@gmail.com>, Philippe Simons <simons.philippe@gmail.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>, Chris Morgan <macromorgan@hotmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3+iDnWdstEN1hguV"
+Content-Disposition: inline
+In-Reply-To: <20250515071357.GD2936510@google.com>
+X-Cookie: Well begun is half done.
 
-On Sun, May 11, 2025 at 6:42=E2=80=AFPM Ryan Walklin <ryan@testtoast.com> w=
-rote:
->
-> The Allwinner H616 and variants have a new display engine revision
-> (DE33).
->
-> Add a display engine bus binding for the DE33.
->
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->
-> ---
 
-Since this just falls back to the A64 compatible, there's no matching
-driver change. Can you send this together with the DT changes instead?
+--3+iDnWdstEN1hguV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Otherwise it goes unused.
+On Thu, May 15, 2025 at 08:13:57AM +0100, Lee Jones wrote:
+> On Wed, 14 May 2025, Mark Brown wrote:
 
-ChenYu
+> > Could you be more explicit what you're looking for here, the diffstat is
+> > entirely MFD?
 
-> Changelog v1..v2:
-> - Correct DE2 bus enum to reflect fallback devices accurately.
->
-> Changelog v2..v3:
-> - Separate content into three patches for three separate subsystems
->
-> Changelog v5..v6:
-> - Increase reg maxItems to 3.
->
-> Changelog v9..v10:
-> - Remove maxItems, this was added in error to the bus binding (rather tha=
-n the mixer binding) when it was split from the other bindings in an earlie=
-r revision.
-> ---
->  .../devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml     | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-d=
-e2.yaml b/Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-de2.ya=
-ml
-> index 9845a187bdf6..ea7ee89158c6 100644
-> --- a/Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml
-> +++ b/Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml
-> @@ -24,7 +24,9 @@ properties:
->      oneOf:
->        - const: allwinner,sun50i-a64-de2
->        - items:
-> -          - const: allwinner,sun50i-h6-de3
-> +          - enum:
-> +              - allwinner,sun50i-h6-de3
-> +              - allwinner,sun50i-h616-de33
->            - const: allwinner,sun50i-a64-de2
->
->    reg:
-> --
-> 2.49.0
->
+> Okay, more explicitly, I can merge this and MFD will have no issue.
+> However, the Regulator commits make use of 'pmu_id' introduced in this
+> change and would therefore cause a compile break.  So we could:
+
+>   1. Apply this now and merge the dependents next cycle
+>   2. Apply this now and provide an IB
+>   3. Wait for all Acks and apply as a unified set
+
+> We usually choose 3, hence my assumptions above.
+
+Well, you choose 3 - I do think it'd be a lot easier to go with option
+2, or with applying the rest to your tree as acks come in.  There seemed
+to still be a reasonable amount of discussion on the MFD bits (eg,
+there's some formatting comments still) so I was expecting this series
+to churn some more and was waiting for a resend.
+
+--3+iDnWdstEN1hguV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmgln6wACgkQJNaLcl1U
+h9Ccawf/eQQDUsNgS0TKYfGdBLq2g0QMIhInBoBlUy7l3xZbRm5WP2U9ZBbH5/2f
+dxkSlwAkqIR29ii+atAZqTqbxdZxBMrcEkt4VergJxL0bXFZtmGxpRWq6vJ2w8gh
+d5RBAd+2TKRlb/Augai+XkjI9sFVe4pt3Xpj4CiIx7zUHI31ZH0UJ7dGiCyvE4On
+OWtn0GQ30jDyPKEfnFdMnkEM6WBFq+5GRvXcGba8qa6xTlwWYB/nQ30czLuz4yxA
+PvvKw5KMT8aj9STkWj/Nqbbc6RyojjiPK6XrnPzkK/QaF6Pv1Lmo6D1Fim1ri82N
+7mGSZ21WJB9/+4JRRFc6NBONqJvzKw==
+=0NJf
+-----END PGP SIGNATURE-----
+
+--3+iDnWdstEN1hguV--
 
