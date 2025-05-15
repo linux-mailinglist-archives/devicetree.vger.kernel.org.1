@@ -1,114 +1,183 @@
-Return-Path: <devicetree+bounces-177573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E45DAB81AF
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:57:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DC39AB81C1
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:00:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4FC99E56DF
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 08:54:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADE79188625F
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 08:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AAA4293B69;
-	Thu, 15 May 2025 08:55:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gkmu0CWP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D6D2980C7;
+	Thu, 15 May 2025 08:57:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B60028F95B;
-	Thu, 15 May 2025 08:55:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from zg8tmja2lje4os43os4xodqa.icoremail.net (zg8tmja2lje4os43os4xodqa.icoremail.net [206.189.79.184])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C735F297B80;
+	Thu, 15 May 2025 08:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.79.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747299302; cv=none; b=L3HxVEgQY6hrpmSEVhpD6c7Nz0VDexLNzCgSrI9mUkv3Z2m/f2VdB8NwHM8xPZh3TUBp1dRHgUac5yJO2d2NCB8iFqt38Q7Wd2qVxhxi12jm7kQXo+FkX2n0bAJVuyvGed3eU0DTUThqY0fcZKTRBeVCB/IitDfqh09TOiuPSyY=
+	t=1747299468; cv=none; b=SwE7ePcjrfrXhUfbcdMQuS/yIrDe53ODiwMg5z0iGOyUmgheXMKqY6GGezEM8MLhWu6M75xsr3cgDof9ILdXPGm0kciFK9zhGtOyUpL+2vx2AIyRvVa9wM4xoqYVO3soHnya0fWrrhvdtVY8DK3oiMS2Lo3cTI7Qdb4RZOLm7pM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747299302; c=relaxed/simple;
-	bh=LBRCYx6yEYw3JtcZjfSpiVcbjCjzsGhvOmR/nBYptGc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GXby/bQ/Q5HVWpm4qH9oO7lBiFjdr0qw3+1vAVzk1v0uT7aQSi3z5vqrEXCs0IeMORgsgSaboBUqs3eQbPBuLJ252MIsWZNNUOOmsGDMFHiAEoS3jJx0ssqnXVjVJT8jpJw8MXKwX6f19FwJUJFMoypl0V5vl+YUUOCBuSTgG24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gkmu0CWP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8211DC4CEE7;
-	Thu, 15 May 2025 08:55:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747299301;
-	bh=LBRCYx6yEYw3JtcZjfSpiVcbjCjzsGhvOmR/nBYptGc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gkmu0CWPpNp86K/Euz/Dm/e9t+19BBJ4AZWRaMDphQEk3US7k8Zey8c0olpWuVXM8
-	 ZnipbUJLdpq/d4XbppKnYptDpShQmqzMqaVK5fY3RwEryRp3G5m9N4FilTcq2v6NdY
-	 lHL3ByJ8wjGe5fczpts9EydsGOjjRTsoaCPg3MbVoJuxHxi8bHCU6UmUi9xFGatMpk
-	 xpqNDhskY4sklfMIIaL8ZTog9/30KFvuwS5UnvetQqGl5imNwCKyP/8XEr6hsugkgp
-	 76AIm57wcqumpg2zAvGvdj5vSm+PdbKgoAEtmK1/qWx43HX9XpxVHmu4Q5k4F/ULmu
-	 XxNmuiDI4VUVQ==
-Date: Thu, 15 May 2025 10:54:56 +0200
-From: Mark Brown <broonie@kernel.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"Darren.Ye" <darren.ye@mediatek.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 03/10] ASoC: mediatek: mt8196: support audio clock
- control
-Message-ID: <aCWr4HDpEOr_jn3C@finisterre.sirena.org.uk>
-References: <20250514081125.24475-1-darren.ye@mediatek.com>
- <20250514081125.24475-4-darren.ye@mediatek.com>
- <be75ac83-5421-4bb0-a28a-57be639f427c@collabora.com>
- <CAGXv+5Hj358gOBomY=KdwYojgpwxFP-tiM38Z18b63ie=922mg@mail.gmail.com>
+	s=arc-20240116; t=1747299468; c=relaxed/simple;
+	bh=Uacy/T85NjrYqwsVAcBXza0n7x8SpTrfY2clvu2Ph4c=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=YQIFdpIJJRPOPeLse3h7RU3XQGYWx0LRbQQXMgQH+ygJiyHZS/RXd0pPT7biBAh+gi12Bt6bDoCV98Iy8MEke64hiDpQcm96B1ccfwMBn/+aMUEoUnJ8t6gq/Xwvai94RB/3rJ9aGgo8YWjsNqDPHlGZWjsOAsgZnzo3sHi0cL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.79.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005154LT.eswin.cn (unknown [10.12.96.103])
+	by app1 (Coremail) with SMTP id TAJkCgAXOxF3rCVoMDV8AA--.55791S2;
+	Thu, 15 May 2025 16:57:29 +0800 (CST)
+From: hehuan1@eswincomputing.com
+To: dlemoal@kernel.org,
+	cassel@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-ide@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	p.zabel@pengutronix.de
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	luyulin@eswincomputing.com,
+	Huan He <hehuan1@eswincomputing.com>
+Subject: [PATCH v1 1/2] dt-bindings: sata: eswin: Document for EIC7700 SoC
+Date: Thu, 15 May 2025 16:57:23 +0800
+Message-ID: <20250515085723.1706-1-hehuan1@eswincomputing.com>
+X-Mailer: git-send-email 2.49.0.windows.1
+In-Reply-To: <20250515085114.1692-1-hehuan1@eswincomputing.com>
+References: <20250515085114.1692-1-hehuan1@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="pqANQ8hKcxHdPm61"
-Content-Disposition: inline
-In-Reply-To: <CAGXv+5Hj358gOBomY=KdwYojgpwxFP-tiM38Z18b63ie=922mg@mail.gmail.com>
-X-Cookie: Well begun is half done.
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgAXOxF3rCVoMDV8AA--.55791S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxGw4UuF1DWF1UCw4fXF4rGrg_yoW5Xw13pF
+	4kGryDJF4fXr17Wa17XF10kF13Xan7uF1Ykrn2qF15twn0ga4Yqw4akF15Ca4UCr1xXa43
+	WF4Fg343Aw47AaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUXJ5wUUUUU=
+X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
 
+From: Huan He <hehuan1@eswincomputing.com>
 
---pqANQ8hKcxHdPm61
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add eic7700 AHCI SATA controller device with single port support.
+For the eic7700 SATA registers, it supports AHCI standard interface,
+interrupt modes (INTx/MSI/PME), APB reset control,
+and HSP_SP_CSR register configuration.
 
-On Thu, May 15, 2025 at 04:50:33PM +0800, Chen-Yu Tsai wrote:
-> On Thu, May 15, 2025 at 4:40=E2=80=AFPM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
-> >
-> > Il 14/05/25 10:11, Darren.Ye ha scritto:
-> > > From: Darren Ye <darren.ye@mediatek.com>
-> > >
-> > > Add audio clock wrapper and audio tuner control.
+Co-developed-by: Yulin Lu <luyulin@eswincomputing.com>
+Signed-off-by: Yulin Lu <luyulin@eswincomputing.com>
+Signed-off-by: Huan He <hehuan1@eswincomputing.com>
+---
+ .../bindings/ata/eswin,eic7700-sata.yaml      | 80 +++++++++++++++++++
+ 1 file changed, 80 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/ata/eswin,eic7700-sata.yaml
 
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
+diff --git a/Documentation/devicetree/bindings/ata/eswin,eic7700-sata.yaml b/Documentation/devicetree/bindings/ata/eswin,eic7700-sata.yaml
+new file mode 100644
+index 000000000000..71e1b865ed2a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/ata/eswin,eic7700-sata.yaml
+@@ -0,0 +1,80 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/ata/eswin,eic7700-sata.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Eswin EIC7700 SoC SATA Controller
++
++maintainers:
++  - Yulin Lu <luyulin@eswincomputing.com>
++  - Huan He <hehuan1@eswincomputing.com>
++
++description: |
++  This binding describes the SATA controller integrated in the Eswin EIC7700 SoC.
++  The controller is compatible with the AHCI (Advanced Host Controller Interface)
++  specification and supports up to 1 port.
++
++properties:
++  compatible:
++    const: eswin,eic7700-ahci
++
++  reg:
++    maxItems: 1
++    description: Address range of the SATA registers
++
++  interrupt-names:
++    items:
++      - const: intrq
++      - const: msi
++      - const: pme
++
++  interrupts:
++    maxItems: 3
++    description: The SATA interrupt numbers
++
++  ports-implemented:
++    maximum: 0x1
++
++  resets:
++    maxItems: 1
++    description: resets to be used by the controller.
++
++  reset-names:
++    const: apb
++
++  '#address-cells':
++    const: 2
++
++  '#size-cells':
++    const: 2
++
++  eswin,hsp_sp_csr:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description: hsp_sp_csr regs to be used by the controller.
++
++required:
++  - compatible
++  - reg
++  - interrupt-names
++  - interrupts
++  - resets
++  - reset-names
++  - eswin,hsp_sp_csr
++
++additionalProperties: false
++
++examples:
++  - |
++    sata: sata@50420000 {
++      compatible = "eswin,eic7700-ahci";
++      reg = <0x50420000 0x10000>;
++      interrupt-parent = <&plic>;
++      interrupt-names = "intrq", "msi", "pme";
++      interrupts = <58>, <59>, <60>;
++      ports-implemented = <0x1>;
++      resets = <&reset 7 (1 << 27)>;
++      reset-names = "apb";
++      #size-cells = <2>;
++      eswin,hsp_sp_csr = <&hsp_sp_csr 0x1050>;
++    };
+-- 
+2.25.1
 
---pqANQ8hKcxHdPm61
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmglq98ACgkQJNaLcl1U
-h9B/xQf/WCgax1XZIrHI7sRyhwZ6FlzcWWzC/96GoahlhlHRo6AwJ7ves1riScIY
-iWfySDDylRMd2YfjjtoaKosS1N3/jAK8cHbUwFhap4h1WSGltSq+V55v17AzaO+k
-tn1SDdLEjA2pMy5+fatN3uVR2PheWLbi5mjxhXzxYTJW/lxfZ22kPl67IGqCFkpu
-uh9U74kyhK2m7NnZvjAdwW8is3GrihqtIS7zoqcT3R4DLc3hYEQbJdFTjXzUFyZm
-gG/cWOUHko4BbpK5jXfBEgFSDiOT6bzhnHZ1uE4S8ckah7tmctIdVZZ19mwZ5UWI
-QAnFFOIaD+7/KimjanojcgHqkusz3g==
-=hJfD
------END PGP SIGNATURE-----
-
---pqANQ8hKcxHdPm61--
 
