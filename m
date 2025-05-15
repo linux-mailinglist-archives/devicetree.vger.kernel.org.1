@@ -1,362 +1,171 @@
-Return-Path: <devicetree+bounces-177567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B7EAB811B
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:43:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50941AB8164
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:50:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44B1016AA77
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 08:43:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF8643A327F
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 08:48:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2856428688B;
-	Thu, 15 May 2025 08:43:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F13228C010;
+	Thu, 15 May 2025 08:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="pSNuqexB"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="I+o+mqOr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D43B27FB16;
-	Thu, 15 May 2025 08:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CCA52882D7
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 08:48:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747298601; cv=none; b=p0qB3bLMs6dp7xc9eSHaQig+s2eqvlypLjoDVrUHvDpHgk/LmgBGxyyT4PNyWSRZogDhSbFW+Cv1741c6R4XXOfrAnmHVV2lE9FcV6qqdfYhLat+8mb2rJPeyJ90JxEx9uLJWydLay9XhwbT0kyl9N4u1txbBXajvmmd5Pl+gG4=
+	t=1747298920; cv=none; b=FtcLWQxPPg8gF9HlTWOMKw/55H5Ryd6BOGuT2WgTJbEmGg0GJz6gNfEdQ26ST40F9cB/1P8XASbe6bCXaK9zK5p5/T1aWvTZBLtGjOxYFVqHSBQ3Ux547TOZeha1o+ys+d3k8xiD8TETwYP9p1FnRlpcUKic8j9kMTOJW9TCS3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747298601; c=relaxed/simple;
-	bh=RpaXVrQbnvYUQk3Hnump1P4stXQ7wnDT+auZbBi9P3M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CVsmn5LzgEj6BGy5YEPUlkMhkTj86EgzLRtmURw6WJVzlsMu3alKNFHg1HNRwk6LhdKdVTGM80gvqufCOxAVV7Yuk+670GHZrcx6WlY7Q+N+weJicnbFWWjruZW9tVlRKywp2xswGaZTxt1+uge/uFVZ5MWoehnjtJsVR44nbUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=pSNuqexB; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=T0GxpaCjXWr2g+O57YadYwZFJK7Y/BlqdjhClDZbjhc=; b=pSNuqexBq/FXf2OxGgcHCOFraQ
-	6VyRXdhiDXRY30HfbBt+g9lcAcUtVeX/tqBMfOZa0yrXnADiuOlVXIKlfuZXhXyaoy/lnKF7W1eC8
-	/ZNyhoTT6JvY3cu4UnHep2a2ixZL0Dreyb/RySUI4+1KpEb3+Q9TGGCzpW38hGX/jx9jlAyLGXIgn
-	m9N3mVwcRPN5cCTrxYR74ahxBk0J3oz1STLPzlteDCvhjHaa3dS/NxdJ5M1m4mi58tOb1mgEetkXi
-	eYxGcBDPJvugNR6k2B4kghTRMB5EvTMAiaMT+ViVAjsz2ZndSoTrrPB81cC0WUMHUS86Gjo/LNbNt
-	KfdJbzyA==;
-Received: from i53875a50.versanet.de ([83.135.90.80] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uFUBM-0000Do-EH; Thu, 15 May 2025 10:43:12 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Joseph Kogut <joseph.kogut@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joseph Kogut <joseph.kogut@gmail.com>,
- Steve deRosier <derosier@cal-sierra.com>
-Subject: Re: [RFC PATCH 1/1] arm64: dts: rockchip: add Radxa CM5 and IO board
-Date: Thu, 15 May 2025 10:43:11 +0200
-Message-ID: <9103406.VV5PYv0bhD@diego>
-In-Reply-To: <20250514173856.3677454-1-joseph.kogut@gmail.com>
-References: <20250514173856.3677454-1-joseph.kogut@gmail.com>
+	s=arc-20240116; t=1747298920; c=relaxed/simple;
+	bh=uafTKsLt5Y6vI+2YJVWbCoVLU1+w6d1TN41/6GcJe8w=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=PuqnDwql+kJs77QHgkm/I+tsLUSclujk9gGX+Q3Y5i4Xdt5c51TX0KISpjslwQb42VQVLOTLGXBiAZrnVhV58W2iuywhyfUCY05nJNsxwZXIaRtFfVahm/zkaB1aswUbsemRIG/OQ3iSFngDmzJD2j0cVW9ihZywo3dIj4vRIPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=I+o+mqOr; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a0b3f62d1aso92967f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 01:48:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1747298916; x=1747903716; darn=vger.kernel.org;
+        h=in-reply-to:references:from:to:cc:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bdVLI+IKJQCwIaBP/4ipGt86DAIuj3sOKMK9lc4aqFc=;
+        b=I+o+mqOrLwb6wAy3fZ6S3zjKPSqaM3CwDCRIeUdIay3/UdKVnn2nqClHp2i280eIJo
+         tZyO0jy8xMq7nzDk/AqEDzGLQA6Av8h5IUIrV+E9571R5E2Zid8XpZXo6RayFQu3J9Et
+         F/GBqCB1+3SvxUlFk0JZ8KNMo3Pt8iiTg8MJGPAZ2Y7gQJZL9F5OGqKptUTpV1kwK24L
+         EOlzSCCEVIi2oevOVj9yLa8GrSIWcCDBU4NLrVldY0U3XkdWSWI2ytaUJ8Sq3ZQqb4cs
+         u1f0G8OtL1VTWuMsykX7Bwk74nyGnyworNNU6w3awX+4DK4SlJeRIYuANTsjnT//Pq4q
+         lnrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747298916; x=1747903716;
+        h=in-reply-to:references:from:to:cc:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bdVLI+IKJQCwIaBP/4ipGt86DAIuj3sOKMK9lc4aqFc=;
+        b=Z1s72TiuS/K2x1Wx4SZaFhOWqpvujxZOLZA3fLZi247Ujzt6XrIucCgm/2JWEUr5Xw
+         dCTyXW35upbvAzIGbkb/uD+Rv3md0nrfb1LgKVZoKbJ8UkbVXKA+PAhRfOG92W3lqWWh
+         3ogUE0kRza7V43n+VzQ2FdYu9Ko/8pzfGfPC9cqW7ts5yPY3TgmL16xjuVAvnsaX1l2W
+         vplbLK9e9oyY+xKL99+2JFz+irp+JqZC77R6InxCZkCvQbiUGgmTEUtcqt4aWR/ldkPY
+         zvWE+NjgZavl3ThWY0l7JEvp0/YWXoC2IYuPPLaKGdB41U0yZLgP76Mm619iG6sdojsH
+         N07g==
+X-Forwarded-Encrypted: i=1; AJvYcCV/gZ7fT+NtM+joDTAFACsvcIUWY1IiCM4s8QnNbDbNNiH3jXf93xhZifHbiVD7V1WlKx3YWZnMgyea@vger.kernel.org
+X-Gm-Message-State: AOJu0YzifrOT35lZKABcVqmVY/L2yNJBqbmvlnCOB91pEb6E1FwYt1K1
+	ujfv1fc7SlVYtJHkUGUK4eQSN5AHeTMwlvQhZ7lD+XVkSCu7CCztGOHiljh4qhU=
+X-Gm-Gg: ASbGncsgvy5Q/2aeAlu2U4/vpDRjp07UxWtznvroUtM4ydDwHgAdPxVW/d+nhw8onr0
+	pFxAQ/nU2nkXX38+Dv5dFPhnpANlkAR01SGhXQ7/VoqC/C2FZWxcrwcT+1W6+nrcbvIsui1jwo2
+	sTsm3he8Ve6Z/o+E+gPBq7G79vMAKLKrPTZR9X3O+ngzUkaZi4pi5/zhW3QEL/q9Nai0Zn+GaEm
+	uJaSDr13g1yhNuOtPDvz77wdsaNYB6t6d2D1bpvsnMfu298Bstk2vcyED5pKAwTmUxL/wOqgWck
+	j9eBW0RISfSXCo3scr+rl0hknZo3SS5pThAI84gJlnPVNoxP2+8XE8ixqPHIuBLAzNVWT2iBly7
+	k8BFSzTtu36s=
+X-Google-Smtp-Source: AGHT+IFl5ofT8H2ymocVMBID7uffI6yQBoHWwntFgE3AOdsNMnKtMdzBwHwHlEbKzThnIcYnf09dKg==
+X-Received: by 2002:a5d:4311:0:b0:3a3:55b4:1abb with SMTP id ffacd0b85a97d-3a355b41b8emr294033f8f.12.1747298916300;
+        Thu, 15 May 2025 01:48:36 -0700 (PDT)
+Received: from localhost (ip-89-103-73-235.bb.vodafone.cz. [89.103.73.235])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a2cf2bsm21822557f8f.80.2025.05.15.01.48.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 May 2025 01:48:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 15 May 2025 10:48:35 +0200
+Message-Id: <D9WLRSAB63M5.3DZD4ND3WVZ6F@ventanamicro.com>
+Subject: Re: [PATCH v15 05/27] riscv: usercfi state for task and
+ save/restore of CSR_SSP on trap entry/exit
+Cc: <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
+ <linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
+ <alistair.francis@wdc.com>, <richard.henderson@linaro.org>,
+ <jim.shu@sifive.com>, <andybnac@gmail.com>, <kito.cheng@sifive.com>,
+ <charlie@rivosinc.com>, <atishp@rivosinc.com>, <evan@rivosinc.com>,
+ <cleger@rivosinc.com>, <alexghiti@rivosinc.com>, <samitolvanen@google.com>,
+ <broonie@kernel.org>, <rick.p.edgecombe@intel.com>,
+ <rust-for-linux@vger.kernel.org>, "Zong Li" <zong.li@sifive.com>,
+ "linux-riscv" <linux-riscv-bounces@lists.infradead.org>
+To: "Alexandre Ghiti" <alex@ghiti.fr>, "Deepak Gupta" <debug@rivosinc.com>,
+ "Thomas Gleixner" <tglx@linutronix.de>, "Ingo Molnar" <mingo@redhat.com>,
+ "Borislav Petkov" <bp@alien8.de>, "Dave Hansen"
+ <dave.hansen@linux.intel.com>, <x86@kernel.org>, "H. Peter Anvin"
+ <hpa@zytor.com>, "Andrew Morton" <akpm@linux-foundation.org>, "Liam R.
+ Howlett" <Liam.Howlett@oracle.com>, "Vlastimil Babka" <vbabka@suse.cz>,
+ "Lorenzo Stoakes" <lorenzo.stoakes@oracle.com>, "Paul Walmsley"
+ <paul.walmsley@sifive.com>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
+ Ou" <aou@eecs.berkeley.edu>, "Conor Dooley" <conor@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Arnd Bergmann" <arnd@arndb.de>, "Christian Brauner" <brauner@kernel.org>,
+ "Peter Zijlstra" <peterz@infradead.org>, "Oleg Nesterov" <oleg@redhat.com>,
+ "Eric Biederman" <ebiederm@xmission.com>, "Kees Cook" <kees@kernel.org>,
+ "Jonathan Corbet" <corbet@lwn.net>, "Shuah Khan" <shuah@kernel.org>, "Jann
+ Horn" <jannh@google.com>, "Conor Dooley" <conor+dt@kernel.org>, "Miguel
+ Ojeda" <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun
+ Feng" <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <benno.lossin@proton.me>, "Andreas Hindborg" <a.hindborg@kernel.org>,
+ "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>
+From: =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>
+References: <20250502-v5_user_cfi_series-v15-0-914966471885@rivosinc.com>
+ <20250502-v5_user_cfi_series-v15-5-914966471885@rivosinc.com>
+ <D9OZVNOGLU4T.2XOUPX27HN0W8@ventanamicro.com>
+ <122fc6cd-2e21-4fca-979d-bcf558107b81@ghiti.fr>
+In-Reply-To: <122fc6cd-2e21-4fca-979d-bcf558107b81@ghiti.fr>
 
-Hi Joseph,
+2025-05-15T09:28:25+02:00, Alexandre Ghiti <alex@ghiti.fr>:
+> On 06/05/2025 12:10, Radim Kr=C4=8Dm=C3=A1=C5=99 wrote:
+>> 2025-05-02T16:30:36-07:00, Deepak Gupta <debug@rivosinc.com>:
+>>> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
+>>> @@ -91,6 +91,32 @@
+>>> +.macro restore_userssp tmp
+>>> +	ALTERNATIVE("nops(2)",
+>>> +		__stringify(				\
+>>> +		REG_L \tmp, TASK_TI_USER_SSP(tp);	\
+>>> +		csrw CSR_SSP, \tmp),
+>>> +		0,
+>>> +		RISCV_ISA_EXT_ZICFISS,
+>>> +		CONFIG_RISCV_USER_CFI)
+>>> +.endm
+>> Do we need to emit the nops when CONFIG_RISCV_USER_CFI isn't selected?
+>>
+>> (Why not put #ifdef CONFIG_RISCV_USER_CFI around the ALTERNATIVES?)
+>
+> The alternatives are used to create a generic kernel that contains the=20
+> code for a large number of extensions and only enable it at runtime=20
+> depending on the platform capabilities. This way distros can ship a=20
+> single kernel that works on all platforms.
 
-Am Mittwoch, 14. Mai 2025, 19:38:56 Mitteleurop=C3=A4ische Sommerzeit schri=
-eb Joseph Kogut:
-> Add initial support for the Radxa CM5 and the accompanying IO board,
-> including ethernet, USB 2.0/3.0, PCIe 2.0, HDMI output, UART2 console,
-> SD/eMMC, PMIC.
->=20
-> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-> Reviewed-by: Steve deRosier <derosier@cal-sierra.com>
+Yup, and if a kernel is compiled without CONFIG_RISCV_USER_CFI, the nops
+will only enlarge the binary and potentially slow down execution.
+In other words, why we don't do something like this
 
-please don't add "offline" reviews to initial patch submissions.
+ (!CONFIG_RISCV_USER_CFI ? "" :
+   (RISCV_ISA_EXT_ZICFISS ? __stringify(...) : "nops(x)"))
 
-Review should happen in public, so I'd expect an actual mail from Steve
-as a reply to this patch, stating his Reviewed-by tag.
+instead of the current
 
-After that, you'd add it to a possible v2.
+ (CONFIG_RISCV_USER_CFI &&
+    RISCV_ISA_EXT_ZICFISS ? __stringify(...) : "nops(x)")
 
-> ---
-> This is my first attempt at submitting a new device tree upstream.
-> Feedback is welcome on DT conventions, naming, or anything I may have
-> missed.
->=20
-> This is largely reversed from the Radxa kernel sources as a reference.
->=20
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 448 ++++++++++++++++++
->  .../boot/dts/rockchip/rk3588s-radxa-cm5.dtsi  | 151 ++++++
+It could be a new preprocessor macro in case we wanted to make it nice,
+but it's probably not a common case, so an ifdef could work as well.
 
-You'll need a 2nd patch to add the board compatible to the binding in
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Doc=
-umentation/devicetree/bindings/arm/rockchip.yaml
+Do we just generally not care about such minor optimizations?
 
-You can take a look at the CM3-variant for how to do system-on-module
-plus baseboard variants.
+(If we wanted to go an extra mile, we could also keep the nops when both
+ CONFIG_RISCV_USER_CFI and RISCV_ISA_EXT_ZICFISS are present, but
+ command line riscv_nousercfi disabled backward cfi.)
 
-
->  3 files changed, 600 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/=
-rockchip/Makefile
-> index 3e8771ef69ba..6bbd506808a3 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -175,6 +175,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-khadas-edge2=
-=2Edtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-nanopi-r6s.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-nanopi-r6c.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-odroid-m2.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-radxa-cm5-io.dtb
-
-please sort alphabetically
-
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-orangepi-5.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-orangepi-5b.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-rock-5a.dtb
-
-[...]
-
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts b/arch=
-/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
-> new file mode 100644
-> index 000000000000..e3c2e00d0fa6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
-> @@ -0,0 +1,448 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +
-> +/dts-v1/;
-
-some authorship / copyright thingy here maybe?
-
-> +&i2c6 {
-> +	status =3D "okay";
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&i2c6m3_xfer>;
-
-status as last property - aka here
-
-
-> +&pinctrl {
-> +	fusb302 {
-> +		vbus5v0_typec_en: vbus5v0-typec-en {
-> +			rockchip,pins =3D <0 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +
-> +		usbc0_int: usbc0-int {
-> +			rockchip,pins =3D <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +	};
-> +
-> +	usb {
-> +		vcc5v0_host_en: vcc5v0-host-en {
-> +			rockchip,pins =3D <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +};
-> +
-> +
-
-double empty line
-
-> +&sdhci {
-> +	status =3D "okay";
-> +};
-> +
-> +&u2phy0 {
-> +	status =3D "okay";
-> +};
-> +
-> +&u2phy0_otg {
-> +	rockchip,typec-vbus-det;
-
-I don't think this property exists in mainline ;-) .
-
-Please run something like=20
-  make ARCH=3Darm64 CHECK_DTBS=3Dy rockchip/rk3588s-radxa-cm5-io.dtb
-to make sure
-
-
-> +	status =3D "okay";
-> +};
-> +
-> +&u2phy2 {
-> +	status =3D "okay";
-> +};
-> +
-> +&u2phy2_host {
-> +	status =3D "okay";
-> +};
-> +
-> +&u2phy3 {
-> +	status =3D "okay";
-> +};
-> +
-> +&u2phy3_host {
-> +	status =3D "okay";
-> +};
-> +
-> +&uart2 {
-> +	status =3D "okay";
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&uart2m0_xfer>;
-
-status here please
-
-> +};
-> +
-> +&usb_host0_ehci {
-> +	status =3D "okay";
-> +};
-> +
-> +&usb_host0_ohci {
-> +	status =3D "okay";
-> +};
-> +
-> +&usb_host0_xhci {
-> +	dr_mode =3D "otg";
-> +	usb-role-switch;
-> +	status =3D "okay";
-> +
-> +	port {
-> +		usb_host0_xhci_role_switch: endpoint {
-> +			remote-endpoint =3D <&usbc0_role_switch>;
-> +		};
-> +	};
-> +};
-> +
-> +&usb_host1_ehci {
-> +	status =3D "okay";
-> +};
-> +
-> +&usb_host1_ohci {
-> +	status =3D "okay";
-> +};
-> +
-> +&usbdp_phy0 {
-> +	status =3D "okay";
-> +	mode-switch;
-> +	orientation-switch;
-> +	sbu1-dc-gpios =3D <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
-> +	sbu2-dc-gpios =3D <&gpio3 RK_PD4 GPIO_ACTIVE_HIGH>;
-> +
-> +	port {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		usbdp_phy0_orientation_switch: endpoint@0 {
-> +			reg =3D <0>;
-> +			remote-endpoint =3D <&usbc0_orientation_switch>;
-> +		};
-> +
-> +		usbdp_phy0_dp_altmode_mux: endpoint@1 {
-> +			reg =3D <1>;
-> +			remote-endpoint =3D <&usbc0_dp_altmode_mux>;
-> +		};
-> +	};
-> +};
-> +
-> +&vop {
-> +	status =3D "okay";
-> +};
-> +
-> +&vop_mmu {
-> +	status =3D "okay";
-> +};
-> +
-> +&vp0 {
-> +	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-> +		reg =3D <ROCKCHIP_VOP2_EP_HDMI0>;
-> +		remote-endpoint =3D <&hdmi0_in_vp0>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi b/arch/a=
-rm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
-> new file mode 100644
-> index 000000000000..ca208fa42347
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
-> @@ -0,0 +1,151 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-
-again copyright/authorship thingy?
-
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/soc/rockchip,vop2.h>
-> +#include <dt-bindings/usb/pd.h>
-> +
-> +/ {
-> +	compatible =3D "radxa,cm5", "rockchip,rk3588s";
-> +
-> +	aliases {
-> +		mmc0 =3D &sdmmc;
-> +		mmc1 =3D &sdhci;
-> +		mmc2 =3D &sdio;
-> +	};
-> +
-> +	leds {
-> +		compatible =3D "gpio-leds";
-> +		pinctrl-names =3D "default";
-> +
-> +		led_sys: led-0 {
-> +			color =3D <LED_COLOR_ID_BLUE>;
-> +			default-state =3D "on";
-> +			function =3D LED_FUNCTION_HEARTBEAT;
-> +			gpios =3D <&gpio4 RK_PB4 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger =3D "heartbeat";
-> +		};
-> +	};
-> +};
-> +
-
-> +
-> +&gmac1 {
-> +	clock_in_out =3D "output";
-> +	phy-handle =3D <&rgmii_phy1>;
-> +	phy-mode =3D "rgmii-id";
-> +	phy-supply =3D <&vcc_3v3_s0>;
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&gmac1_miim
-> +		     &gmac1_tx_bus2
-> +		     &gmac1_rx_bus2
-> +		     &gmac1_rgmii_clk
-> +		     &gmac1_rgmii_bus
-> +		     &gmac1_clkinout>;
-> +	tx_delay =3D <0x41>;
-> +	rx_delay =3D <0x3a>;
-
-doing rgmii-id should not need those delays
-
-> +	status =3D "okay";
-> +};
-> +
-> +&gpu {
-> +	mali-supply =3D <&vdd_gpu_s0>;
-> +	status =3D "okay";
-> +};
-> +
-> +&hdmi0 {
-> +	status =3D "okay";
-> +};
-> +
-
-
-Heiko
-
-
+Thanks.
 
