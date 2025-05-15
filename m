@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-177537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60B77AB7EE7
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:35:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A52BAB7F0E
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:43:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 163958639AC
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 07:35:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 054BB1BA287E
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 07:43:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 145ED27E7D1;
-	Thu, 15 May 2025 07:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 854242749DC;
+	Thu, 15 May 2025 07:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JKbDu/ls"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K+Jk8h+d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69891A275;
-	Thu, 15 May 2025 07:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA282222CB;
+	Thu, 15 May 2025 07:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747294528; cv=none; b=Dk+dqfm1eFaPFYn66IC7djWbHSVHowWQqMJOm79LidHij/7Yp/ERiRpVDsrVIfFT1LODeu/SBe0WdEHgp+41Yaf996owrWrUR4MAPevExPIcSDXTLyv5s7WDMqrpfUj9hdQTrSvGi61GmFNNjzW218jY7T83HGZzLY6+uaYXeHY=
+	t=1747295000; cv=none; b=uHbB1b5yC3SOvi6wE/mOsekPPRIcAHIzcnOOyKZhQ1D6du4ZmpquRSnJ+10xj70wi6WTQG1BRL1sF/WUYEloGQkwCtdwmADvUdaxzQw7mq1bU8JNQGAwfCDGU0AwW98c4uAaYOrcuTt+5iDyC/14/U1zsX2Jt92WzNgPNJdfN/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747294528; c=relaxed/simple;
-	bh=+KJy2T+MNcXBlOneJXLi8WasNvcgLEUfdbqlEhlSagM=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=nyZS9yaSGW/nhx0ZP+Kf5GdZPjifwmlXQBauPx5Cww8YMSYGNttRYxcBMzdX7tSIUrW1cO7g2Nj/7kr6nI8XltEHjhdB61FvU8z2V98egleQ0OczmyODdSSNmiFH8D49arPYR9rpIQc5Cn7WVicrr5Keb8BhMauSohYGiMuLrLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JKbDu/ls; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1552C4CEE9;
-	Thu, 15 May 2025 07:35:21 +0000 (UTC)
+	s=arc-20240116; t=1747295000; c=relaxed/simple;
+	bh=h1lP/XXLGAF1oDoLpaZY+0OrHUGsOnllqHLKbDeAURg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=egNDjJKporwJbHDCtArrXb/EcYTfJ2dkjgaOdOT0tP+PkryzsLd4N9Ff/in2LBN5C5ddgz53yBTT5jqlPuHzw8KY/Jq1Ju5graxGVJFxIuF+l47HTO+OEN/rP9JIWWQK3YctXCJH3bBZihfEXoJ8GJE4UX8Z//xT2fUeqB+/cb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K+Jk8h+d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67F06C4CEE7;
+	Thu, 15 May 2025 07:43:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747294527;
-	bh=+KJy2T+MNcXBlOneJXLi8WasNvcgLEUfdbqlEhlSagM=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=JKbDu/lsaSuMyXHGr2FudR7ulPXsrvfo4wdjpQGWb40M5hyCSuNzLRqWhKfL3jCNB
-	 SA4P/flssGjW1tQmY+EUl7Jf9ONe4Dok49kDy2GOkdjFiQTZeH6EqtDZM5NgSwxL8y
-	 R8rD8UklimLrAcj7OgWntQz1L4OcNcej2RuNQLhGIeEVXfTG40bxiuDdKD5+Ju3yjT
-	 gyMARGGAm8VfyCLpm58mtBALD5rdXy2DMGUL9EkrtbNJNmRGnjwHLo4pWQimy9dtTL
-	 64XH8YUmGIauPMQl01yOPGmmiyNe4b7TXScDHsgv1B6cQ/xVzIi435hjY6qcgRC/7g
-	 xYScWXQONwQYw==
+	s=k20201202; t=1747294997;
+	bh=h1lP/XXLGAF1oDoLpaZY+0OrHUGsOnllqHLKbDeAURg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=K+Jk8h+dtlENycXrCf9xiGgBIODRP64nCCyfmd5mwwfFiuecBzNt+8y17DbOE/Xgd
+	 WFXCvPM75xcNZQ0kk7VgG2G4G5SFydPF305XY7Z4Ox8eUI7gvz4o8JPsuRdz8iyzy/
+	 HfjxbEchRRi1LpfvbNkjZguOlrlGf+bYUzR69nbCal7J2DV5h+SqEZDN15n2iFy0PF
+	 NQ5v2LSL0DAO1d8yw2Bzh8wyUMnllANDiMc+IQ4WwVhkvzcKYctr9suI2rKjCnXhGz
+	 2P3Pa3QDBNrDFkgpnuiSfo9Htlo8zTHTmiN3BWLsN1Rt8smb1LhsGrhW8+6RpDc+4K
+	 ef6n8aMEtKYvA==
 From: Mark Brown <broonie@kernel.org>
 To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Matthias Brugger <matthias.bgg@gmail.com>, 
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Trevor Wu <trevor.wu@mediatek.com>, Jiaxin Yu <jiaxin.yu@mediatek.com>, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250514105702.28622-2-krzysztof.kozlowski@linaro.org>
-References: <20250514105702.28622-2-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: mediatek: Simplify
- mediatek,clk-provider
-Message-Id: <174729452159.272498.16252204109859942609.b4-ty@kernel.org>
-Date: Thu, 15 May 2025 09:35:21 +0200
+ Chen Zhong <chen.zhong@mediatek.com>, 
+ Fabien Parent <fabien.parent@linaro.org>, 
+ Alexandre Mergnat <amergnat@baylibre.com>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org
+In-Reply-To: <20250514-mt6357-regulator-fixed-compatibles-removal-bindings-v1-1-2421e9cc6cc7@collabora.com>
+References: <20250514-mt6357-regulator-fixed-compatibles-removal-bindings-v1-1-2421e9cc6cc7@collabora.com>
+Subject: Re: [PATCH] regulator: dt-bindings: mt6357: Drop fixed compatible
+ requirement
+Message-Id: <174729499095.280025.830867783307923858.b4-ty@kernel.org>
+Date: Thu, 15 May 2025 09:43:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,23 +67,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.15-dev-c25d1
 
-On Wed, 14 May 2025 12:57:03 +0200, Krzysztof Kozlowski wrote:
-> "mediatek,clk-provider" property is a string, not an string array, thus
-> "items" is not really correct.
+On Wed, 14 May 2025 08:36:06 -0400, Nícolas F. R. A. Prado wrote:
+> Some of the regulators on the MT6357 PMIC currently reference the
+> fixed-regulator dt-binding, which enforces the presence of a
+> regulator-fixed compatible. However since all regulators on the MT6357
+> PMIC are handled by a single mt6357-regulator driver, probed through
+> MFD, the compatibles don't serve any purpose. In fact they cause
+> failures in the DT kselftest since they aren't probed by the fixed
+> regulator driver as would be expected. Furthermore this is the only
+> dt-binding in this family like this: mt6359-regulator and
+> mt6358-regulator don't require those compatibles.
 > 
-> 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/1] ASoC: dt-bindings: mediatek: Simplify mediatek,clk-provider
-      commit: 0e4e9d75899cae4e7f379c50fa3d0121eff9641f
+[1/1] regulator: dt-bindings: mt6357: Drop fixed compatible requirement
+      commit: 9cfdd7752ba5f8cc9b8191e8c9aeeec246241fa4
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
