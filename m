@@ -1,46 +1,47 @@
-Return-Path: <devicetree+bounces-177689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 326BAAB89A9
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 16:44:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0201BAB89AC
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 16:44:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69CDE7AAF6D
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:42:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BFF41BC2EF1
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A58CF1F5413;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7312B1F4285;
 	Thu, 15 May 2025 14:43:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="OyS5encP"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="0OduLDql"
 X-Original-To: devicetree@vger.kernel.org
 Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109281F418F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A5F4174A
 	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 14:43:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747320228; cv=none; b=e3CmzZ/+BMOqqWj9EKbX4NB3NDQM9sRpByKtTUFk4wR3ZNbsGIQ0PDPeeUKdhyyeBP+sX3vVgFrsfvESD09TXLsyyl5hGzGAeT/gPOqWj94d/SbI47s94cf/DV+fSdn9DNjbn3WqJffpmzTfW0epyHUerH7xgZEJaRBMhDMCKPk=
+	t=1747320228; cv=none; b=SxpQj1xh2pJ4qncIVg2og0TIreo5Tt0YOvg/inpEOOeFsRog4V5t/eVTnX5gnDuIylIK2ksNra29XaU3XQ/TvOaCbrrM9bel8mHE0baY7nth/Nq9S9xqRqa3EQXz12aefid+xqBFUV1KKc09e7k7tqZvYnImm3nfJjzwcquon9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1747320228; c=relaxed/simple;
-	bh=7KnyBf6no0fpHB5ZlMQW0sPJAgngdx7mnb4tL9CM37I=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=s4S5dTrYP0MBKZHpK/fhLx7/hg5FgYOrgaL5bWEeDYGwmQZTDX3/Hfkw2NCHo0m56dBIOqkHfERZ1wwmvXQXv1tRDUlxOcyEVGnYb8NX5XcsokhPvWuTJWNZtdVlOVHd0htu7SKB5Dq5M0Fif8QSJqd5qrVzk2xKbHlM3J7SHkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=OyS5encP; arc=none smtp.client-ip=34.202.193.197
+	bh=2/cGZtwwaQu+YHcCE3TqjM1V5QCsE+O2q7sflQ8Skes=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=SZz+TlGMKZYZQrggQ9HoYn627AhAExg/k4Du365TCm6+Ax/NNF6Fn89H94nG2zpwp+Ye8SoAc17PcgzvCWfUcl+ArBSrY4MABGKVIPFmCGtUrbnC+WCM2Fx/bjVNOmQ9We+n8QVTVEqGn6NejunJPv5rRDNP0web/E8+zxR2xVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=0OduLDql; arc=none smtp.client-ip=34.202.193.197
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
 Authentication-Results: purelymail.com; auth=pass
-DKIM-Signature: a=rsa-sha256; b=OyS5encPWeSpjfQSDR8d5+1EwUrba2JUY/JgWBvF1jJl9kZdsTqHg+FmHHNGYGzl8jDjOTQlZA063MIFup08AJBxfmRXaxxf47s4+0apX5wVF67Ys5Q8DGhQ2X/s4krTytK8/ADxZJdgx6fW2YZDRKbMPRxwIb7PGB/1mQVe/pMeCiLWaYtZZLDsvNnCkNDXFbK5dEJgrQIA4XP+ayjG1Nkr2VuG5SfC2ix0LNdlhwrBKE3ZNroUjuUu6AUCwhkZroeMuaTTASzfEb4yxvXC7u9C+hpeuAQnTmkyOSHVukgVEFz6bGdHu20a2pxTgubPmFyGIF9mH5BSphG/mmslJg==; s=purelymail1; d=purelymail.com; v=1; bh=7KnyBf6no0fpHB5ZlMQW0sPJAgngdx7mnb4tL9CM37I=; h=Feedback-ID:Received:From:Subject:Date:To;
+DKIM-Signature: a=rsa-sha256; b=0OduLDqlvmEYjRfnrz9Jj1+yFnUaeyDE/SDc3GvkGtQofEuYUMXEFTmSIVI0rCxxDDMfq1+JDKPf5Qla9HHR12vBYJKmhvq5dEDSDWOw+4TGccW+WsFGdum1ki8rbMFxcZ9hnoHPAERaYpDoe8DriojXLRn3e5k8cmtW8Crz74ufF3TP8a2IiinkcPkpTJXEYwwu/pIfuIJUXRIe4mIQm6s0GM8aSBDBnC/jf4bE0VtauoIGFzxqlqh2TKQqQ2iWqSYIBfdIWgyHhaW56ZTnSP6TcpOTH0HE13R7Hp0oL067si/jBkC0rLew9Jux6LS/uWB+o1s47X3JA0bViaSXKQ==; s=purelymail1; d=purelymail.com; v=1; bh=2/cGZtwwaQu+YHcCE3TqjM1V5QCsE+O2q7sflQ8Skes=; h=Feedback-ID:Received:From:Date:Subject:To;
 Feedback-ID: 68247:10037:null:purelymail
 X-Pm-Original-To: devicetree@vger.kernel.org
 Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1985443548;
           (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Thu, 15 May 2025 14:43:06 +0000 (UTC)
+          Thu, 15 May 2025 14:43:09 +0000 (UTC)
 From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
-Subject: [PATCH v3 0/2] USB PHY support for Exynos990 SoCs
-Date: Thu, 15 May 2025 16:43:00 +0200
-Message-Id: <20250515-usb-resends-may-15-v3-0-ad33a85b6cee@mentallysanemainliners.org>
+Date: Thu, 15 May 2025 16:43:01 +0200
+Subject: [PATCH v3 1/2] dt-bindings: phy: samsung,usb3-drd-phy: Add
+ exynos990 compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,10 +50,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHT9JWgC/x2MQQqAIBAAvxJ7bsEMM/pKdDDdag9ZuBRF9Pek4
- wzMPCCUmAS64oFEJwtvMUNdFuAXF2dCDplBK22UqQweMmIioRgEV3djVt4H1zZGt9bWkMM90cT
- XP+2H9/0AeyV35WQAAAA=
-X-Change-ID: 20250515-usb-resends-may-15-ccda86528773
+Message-Id: <20250515-usb-resends-may-15-v3-1-ad33a85b6cee@mentallysanemainliners.org>
+References: <20250515-usb-resends-may-15-v3-0-ad33a85b6cee@mentallysanemainliners.org>
+In-Reply-To: <20250515-usb-resends-may-15-v3-0-ad33a85b6cee@mentallysanemainliners.org>
 To: Vinod Koul <vkoul@kernel.org>, 
  Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -66,50 +66,45 @@ Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-phy@lists.infradead.org,
  Igor Belwon <igor.belwon@mentallysanemainliners.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747320182; l=1423;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747320182; l=1286;
  i=igor.belwon@mentallysanemainliners.org; s=20241206;
- h=from:subject:message-id; bh=7KnyBf6no0fpHB5ZlMQW0sPJAgngdx7mnb4tL9CM37I=;
- b=IJKR9zCW6SXgST6KqPgmHhLcdPwUDoyGtSq7TqaZGp8/rwJy1kT0pxDa0FC/nr8cvODAiJv7a
- Gfd9Hmoz7HuCbajakjvOqL/BBIH4pZO705lr0ZiBm6X64ySktCAfgdl
+ h=from:subject:message-id; bh=2/cGZtwwaQu+YHcCE3TqjM1V5QCsE+O2q7sflQ8Skes=;
+ b=IFpvQcMNLGhVIGVMxkwkcOJEhsgCa6xS4YXYhcKbT7+BkFZWHG/d/F9tdP0Pt2GiW0xSLHMJ+
+ 3hkft3rI6B/AT/pLwaCvIKBaE7NtuYb7q9v7pvSEhHBe7mM3Ts2K0oq
 X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
  pk=qKAuSTWKTaGQM0vwBxV0p6hPKMN4vh0CwZ+bozrG5lY=
 
-Hi all!
+Add a compatible for the exynos990-usbdrd-phy. The PHY is compatible with
+the older exynos5420 design (two clocks) when running in highspeed mode.
 
-This patchset adds support for the USB 2.0 PHY of the Exynos990 SoC.
-This SoC has a combo PHY that supports highspeed, superspeed USB and
-DisplayPort, however due to my inability to test the superspeed part of
-the combo phy (device always enumerated as high-speed, even on the
-vendor kernels/bootloaders) only the highspeed part is brought up.
-
-These changes have been tested and confirmed working (with the USB_ETH
-gadget and telnet/ssh in a ramdisk) on a device from the hubble family
-(x1s) and also a device from the canvas family (c1s).
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
 ---
-Changes in v3:
-- rebase patch to apply cleanly again
+ Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Changes in v2:
-- rebase patch to apply cleanly after Exynos7870 merge
-- collect Reviewed-by tags by Krzysztof Kozlowski (thanks!)
+diff --git a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+index cc60d2f6f70e32ea745d523c8a74022e4fb747d2..e906403208c02951ff2bf5ed8420d53ad70eb29c 100644
+--- a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+@@ -33,6 +33,7 @@ properties:
+       - samsung,exynos7-usbdrd-phy
+       - samsung,exynos7870-usbdrd-phy
+       - samsung,exynos850-usbdrd-phy
++      - samsung,exynos990-usbdrd-phy
+ 
+   clocks:
+     minItems: 1
+@@ -217,6 +218,7 @@ allOf:
+               - samsung,exynos5420-usbdrd-phy
+               - samsung,exynos7870-usbdrd-phy
+               - samsung,exynos850-usbdrd-phy
++              - samsung,exynos990-usbdrd-phy
+     then:
+       properties:
+         clocks:
 
----
-Igor Belwon (2):
-      dt-bindings: phy: samsung,usb3-drd-phy: Add exynos990 compatible
-      phy: exynos5-usbdrd: Add support for the Exynos990 usbdrd phy
-
- .../bindings/phy/samsung,usb3-drd-phy.yaml         |  2 ++
- drivers/phy/samsung/phy-exynos5-usbdrd.c           | 32 ++++++++++++++++++++++
- include/linux/soc/samsung/exynos-regs-pmu.h        |  3 ++
- 3 files changed, 37 insertions(+)
----
-base-commit: 484803582c77061b470ac64a634f25f89715be3f
-change-id: 20250515-usb-resends-may-15-ccda86528773
-
-Best regards,
 -- 
-Igor Belwon <igor.belwon@mentallysanemainliners.org>
+2.47.2
 
 
