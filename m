@@ -1,137 +1,214 @@
-Return-Path: <devicetree+bounces-177631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A1BCAB84ED
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:31:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321C4AB84F7
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:32:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 078301672E1
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:31:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F80416FF11
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:32:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426812989AE;
-	Thu, 15 May 2025 11:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51112299925;
+	Thu, 15 May 2025 11:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S/Jd2wzm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nHZKEuMx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC042989AB;
-	Thu, 15 May 2025 11:28:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2509C298253
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 11:29:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747308502; cv=none; b=XuhkdEQA6MBAq20YFb6R7ZRlCdVNkFFjgEeJ/yioBa6yEVEQu0bNfkWEYMxP7n29oDh50Xk0kSRDiSU+L+Rw/2GloXugl+i4g8/4E+UWkvZARBYQsLpwlpykEqs+BpL0kIHkRiZ3j6Ec+BUNvSEKTHD8Hqt+tDq3NDzF/9yM4hg=
+	t=1747308569; cv=none; b=po0gy1aPOSkSwgB9R9kYPU7PZTBvE+j8AhszSH2t9ELdT0XgXjI93hQNfFODRIUpyQPpbpZ4Z41pC5jwMQUzXfVRQZeOQHDoj0OkW1jr3iUDq4LiJe27YDabrwK/JwX5UTYKd6TYDWWPw4xozi0n08pnOhbpUdeBNAb1WShEfOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747308502; c=relaxed/simple;
-	bh=4MT/DLTi7niUGZGCsKqI5kYWYDZiwVQCm5tQvlHebZg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OGtSuzjjN/2AAOiBSUzsMIjfBfr2YSBRb5VduATFILJuURM45E1BkrO/J7EcV+g79fJU/NuufUpcVhOZhYEyE4+ol7g+uF/l8nSMt0oOd7QN9ujOc64tema1Qap6ujkpOgfWFWE0v1O53rIuEjm8VbWPckw8CNNhk4Ah9q9MwkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S/Jd2wzm; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5fbdf6973e7so999303a12.2;
-        Thu, 15 May 2025 04:28:19 -0700 (PDT)
+	s=arc-20240116; t=1747308569; c=relaxed/simple;
+	bh=nFtmckRpB0dUuxCAVojM9JULBIGVkNwbMXUo38KSfV4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nbwJeyUcas9zIokaAcEo8jLcl5qMdn0xouqX/SuM1JRoqYIQUUxR6uCjsnQFCEeIe9K6D8MCd9zHTMg7Quqo2Ew7PNVKPcKi73LLPTUHcmanB9BkdJosyMMSAkkaNByn8QlEpRVQhTbjlh/S37vxUgq2Bht2V/WMQ63L3+UV8LY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nHZKEuMx; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a1f5d2d91eso477008f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 04:29:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747308498; x=1747913298; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WJL0KPlMp6DZzpx4wyF8HL/lXswTHi9cEl/RHcvMRDg=;
-        b=S/Jd2wzmHALJtwX/6XRTk312otdP4f5Rvzgk0e1LIdSt0rB6t8T8td9MyM4/E1XjKV
-         bZYLgHUBysKaU9xDmQAvKlhPVhoFBeP+rGWHBRYXSndjiZGYsnP9khYLHn3+jGMsLJF7
-         DngEbigABuMC8cpsPO4ObIC+zbAbq/5WsAa6fIOdHA6YnECxhWg7cA9UEuS3wOukV9A/
-         14dGF50RjM3P/9jmzBLbq+rX8yFLQvVTNHDzzMjZSjTxHMh1z/ReDd+1aZ/zqAMQarbG
-         g4m9A1Q0lq7urrZCuCccgiBHq6d8L4mSrUV1+XoywDAV05ddAMhUXcziOtQUuAs8Xh1l
-         gKmQ==
+        d=linaro.org; s=google; t=1747308565; x=1747913365; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=sFdj64C/cdI5aMQcMm0++S9r7ta1roUULL87nRUbXCo=;
+        b=nHZKEuMxJU/c3U2mQ8QPSi8pwfpIdA9nhKPZTu3BI0/8pJhTTAJwHdT0N7n/woL5po
+         03UW9gu4ZoRGdZSihjjULzDjcwhI8XYqCH+L9mFT27IO9jCmqc2pV8/UAr38gKPr9rUk
+         JSaXcRbiJk/KC0cSz8RPayUBt8mqZp9ijW2+w7209+u299wjkx5MtIdYsE0TOp8wquJh
+         HIq6C6gv1uSqjOUU9L57IbVCTfyV8PwRsdc/JljrzRl9yNfic35/1C4y0mYcNtdbblQh
+         LKKrbUPpiwWrb7YvM+0MW63Crhp2JRe8PsA8gihqpo01uBykJnRdAqrAMpLtRTxl5E5K
+         bI2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747308498; x=1747913298;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1747308565; x=1747913365;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WJL0KPlMp6DZzpx4wyF8HL/lXswTHi9cEl/RHcvMRDg=;
-        b=j2w0n19bizaI+FTmdNQGrXcbMaS4UpzwL+8OAxOqMXSdOGM129e4h/chldjWRz+QVx
-         2wE2U6N8Lw2/H+nkiYpkXO/udLf6zIVEL8OGyh7svtziKkF98p2cME6ktmrXRuHQvojo
-         fWKnuflnwpEAaAcsYqjViAmgFnfihPuBkBQ7nS2qL/WgdjdKhFZKzEeUpZepQ/PnJye5
-         G2LmUp5kINcQ9ufxAAA6eHa0X26PuoO1JG+1McgEVVCBn4TJwbtE+KUYfDsL2yqrl2fg
-         SuY/R+gOBw2dp3X5zHd/Q7KgWWS3Yfa3TXsiaRld+TRK1p+PfpUWKY/6QzyZPdhw/6l3
-         US+A==
-X-Forwarded-Encrypted: i=1; AJvYcCVtneUiexKtG2IylVa9eTV8HEYlHCsyiI/vQhjHV03YOm7W6A052+G350CVItkXTautovpDm2sY/RTh@vger.kernel.org, AJvYcCWEjPafRxSQrXBPKTnbTbWpFLuC75xti1l6dtXtwr0Vdz8/Qrx6KEzEUS/D3HrImA2XkujI+fh/TG6nkbHN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMrfd1saNS/Ohf/VFpsmw8Xu3K4mvV1WnB5Onqhek7ILf/+mnv
-	N7193MjWettf9OKOhB0fLJdJ6hmfaTZ1AZ15+yYnQ3ARtDs/n4AZ
-X-Gm-Gg: ASbGncsuVX+Q/Uld7C5i6cZKOGRDTBuvCY8k7R0DNQkN5ZTY/lDJ6zuaKUrKjWynwjz
-	g/hkhu8TKcj8Uos0zDIZ9GBbE54PJkG2OvHGulpU3kK0oE3uaHvIxATzkaw6WWRtB05AkpRvizC
-	hSyJwIr5AWR/L1eJiFMALlseF0c9ZZf1xa4mcP4ukps+cfpPWrH/yxL2LJx9RerxW0cGCob3JqP
-	Lm3Oivlkza5/TEl/BmNGTCLp0Jrj5CrwdORA9Po9KWyIXmmavsUOsOVb8LueoFEgMaLDgbTtZcv
-	q8rC6t7E10rI8lsRKofetAauOyZZePNyHSGehDqVlM23x/JnVMsjhrqoKvggk26V4cQYBEU8TVI
-	cENixFDIxGBJd/rdpoHcu/hkE5A==
-X-Google-Smtp-Source: AGHT+IFhJS8thqNyc4H03aabnDsTjQOnAfvBj670xwICkIM30ExHIQVJjpRwvQeCLIt5Heh5jZmXuQ==
-X-Received: by 2002:a17:906:99cd:b0:ad5:2907:eeb6 with SMTP id a640c23a62f3a-ad529080dd0mr2896966b.38.1747308497559;
-        Thu, 15 May 2025 04:28:17 -0700 (PDT)
-Received: from [192.168.50.244] (83.11.178.15.ipv4.supernova.orange.pl. [83.11.178.15])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad23ad2b386sm909023366b.104.2025.05.15.04.28.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 May 2025 04:28:17 -0700 (PDT)
-Message-ID: <8beeddcf-1dc7-4af8-b287-4c896852b258@gmail.com>
-Date: Thu, 15 May 2025 13:28:15 +0200
+        bh=sFdj64C/cdI5aMQcMm0++S9r7ta1roUULL87nRUbXCo=;
+        b=RSr/I0/HOPI28UukIwCDLSB3nSk3tCluv4Nq4NyCKSrutH663EXV+AurbaczvLHYVk
+         6xz6E5oHj/bzzWZHpFuNSpr+02UeBgJEel0BD6mlfTyeoRbDBrU+DCSNKZlvdzAWUQdz
+         eSz2iqx/tmIOkESmxI/AtWkpPIEuPadVSChs7tO9wnaM2ilJ16psZeo+m1/frxuJ4Utf
+         F7vmV4XyWbIt0kvQ8EXWKzUk5WT1uAzE/VYt98v0bj8M3h/tlQo5Ed1ErjNojatLRjgR
+         D2dHakhDnWLLfYvBmJYy/UiOQIvuwQL8kgMLoIqJ4AuZLjkVmLCYt8Olpfe3wIHtcqAA
+         XnaA==
+X-Forwarded-Encrypted: i=1; AJvYcCUCaiW4RZMZE7pGjwOEnAkpZstGG5DdnHzUeHU3jgMSgW2I2kSSiMSY8ESU/4NOnoFO+r3Sz3XNxy6v@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZLP23JsLdWdtAudv5yVjZdtEjcOxOgfCTtkf0C50+0KRp0EvR
+	E8ygX5zxwugSnf55N/d8a1v2YyWkoSaTJfH7j10RGzfHF9SxL/VKhyC1Dv1C1Q==
+X-Gm-Gg: ASbGncu72P8rT0xeldFkUzExIwnsgKkK9JUbH9tqnK8xjNGb7OikwJWdr4fzqZJ+QPd
+	lmCDf6UoB9oiqU6Kj77RzNSnIle4Nu0J2WXgWxOOvuvoPebkctWJSJj9K/dSbkcIEq5FupB9Bpe
+	MtZK4XstBOsTnOaPFvq7jpDdJd2eur0dyG1GlKZiQ5yRsBqbjSoz7boUlbs2c8PbL15arXsaQbb
+	h5m8rrPD2h1DVoFw/M303nuUd1TtJ8Qp0lN4YUExY1jnBjc7K1x2GDrY6fotkNZMhEwa2oYRHEV
+	Vc/fdXkOwIj54Pj/RTg5JN8TBcao6SIL+0LXBWHRDq+JxMDm04JRJ1BWJdxPiSCscjX7TqmrlRG
+	Nh3bOHzHBcqCILsKXpPfLcpM1
+X-Google-Smtp-Source: AGHT+IFamW2RPKGKJfE+U6UvXP5DVtS58juDRGBK81mdENW8tAkGVKABiwtzg+vRMFYjw66L5CqtcA==
+X-Received: by 2002:a05:6000:2088:b0:3a3:55e6:eaaf with SMTP id ffacd0b85a97d-3a355e72142mr1087194f8f.24.1747308565358;
+        Thu, 15 May 2025 04:29:25 -0700 (PDT)
+Received: from thinkpad (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f57de087sm22731199f8f.16.2025.05.15.04.29.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 May 2025 04:29:24 -0700 (PDT)
+Date: Thu, 15 May 2025 12:29:21 +0100
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Christian Bruel <christian.bruel@foss.st.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, 
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, p.zabel@pengutronix.de, 
+	thippeswamy.havalige@amd.com, shradha.t@samsung.com, quic_schintav@quicinc.com, 
+	cassel@kernel.org, johan+linaro@kernel.org, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/9] PCI: stm32: Add PCIe host support for STM32MP25
+Message-ID: <ec33uuugief45swij7eu3mbx7htfxov6qa5miucqsrdp36z7qe@svpbhliveks4>
+References: <20250423090119.4003700-1-christian.bruel@foss.st.com>
+ <20250423090119.4003700-3-christian.bruel@foss.st.com>
+ <gzw3rcuwuu7yswljzde2zszqlzkfsilozdfv2ebrcxjpvngpkk@hvzqb5wbjalb>
+ <c01d0d72-e43c-4e10-b298-c8ed4f5d1942@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 4/9] mfd: bcm590xx: Add support for multiple device
- types + BCM59054 compatible
-To: Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20250430-bcm59054-v8-0-e4cf638169a4@gmail.com>
- <20250430-bcm59054-v8-4-e4cf638169a4@gmail.com>
- <20250509140957.GD2492385@google.com>
- <aCRZzwW0w8oVWLUp@finisterre.sirena.org.uk>
- <20250515071357.GD2936510@google.com>
- <aCWfre2-n_PSuhxR@finisterre.sirena.org.uk>
- <20250515092000.GF2936510@google.com>
- <aCW0822BVpfKV2NL@finisterre.sirena.org.uk>
-Content-Language: en-US
-From: Artur Weber <aweber.kernel@gmail.com>
-In-Reply-To: <aCW0822BVpfKV2NL@finisterre.sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c01d0d72-e43c-4e10-b298-c8ed4f5d1942@foss.st.com>
 
-On 5/15/25 11:33, Mark Brown wrote:
-> On Thu, May 15, 2025 at 10:20:00AM +0100, Lee Jones wrote:
->> On Thu, 15 May 2025, Mark Brown wrote:
+On Mon, May 12, 2025 at 05:08:13PM +0200, Christian Bruel wrote:
+> Hi Manivannan,
 > 
->>> Well, you choose 3 - I do think it'd be a lot easier to go with option
->>> 2, or with applying the rest to your tree as acks come in.  There seemed
->>> to still be a reasonable amount of discussion on the MFD bits (eg,
->>> there's some formatting comments still) so I was expecting this series
->>> to churn some more and was waiting for a resend.
+> On 4/30/25 09:30, Manivannan Sadhasivam wrote:
+> > On Wed, Apr 23, 2025 at 11:01:12AM +0200, Christian Bruel wrote:
+> > > Add driver for the STM32MP25 SoC PCIe Gen1 2.5 GT/s and Gen2 5GT/s
+> > > controller based on the DesignWare PCIe core.
+> > > 
+> > > Supports MSI via GICv2m, Single Virtual Channel, Single Function
+> > > 
+> > > Supports WAKE# GPIO.
+> > > 
+> > 
+> > Mostly looks good. Just a couple of comments below.
+> > 
+> > > Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
+> > > ---
+> > >   drivers/pci/controller/dwc/Kconfig      |  12 +
+> > >   drivers/pci/controller/dwc/Makefile     |   1 +
+> > >   drivers/pci/controller/dwc/pcie-stm32.c | 368 ++++++++++++++++++++++++
+> > >   drivers/pci/controller/dwc/pcie-stm32.h |  15 +
+> > >   4 files changed, 396 insertions(+)
+> > >   create mode 100644 drivers/pci/controller/dwc/pcie-stm32.c
+> > >   create mode 100644 drivers/pci/controller/dwc/pcie-stm32.h
+> > > 
+> > 
+> > [...]
+> > 
+> > > +static int stm32_pcie_probe(struct platform_device *pdev)
+> > > +{
+> > > +	struct stm32_pcie *stm32_pcie;
+> > > +	struct device *dev = &pdev->dev;
+> > > +	int ret;
+> > > +
+> > > +	stm32_pcie = devm_kzalloc(dev, sizeof(*stm32_pcie), GFP_KERNEL);
+> > > +	if (!stm32_pcie)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	stm32_pcie->pci.dev = dev;
+> > > +	stm32_pcie->pci.ops = &dw_pcie_ops;
+> > > +	stm32_pcie->pci.pp.ops = &stm32_pcie_host_ops;
+> > > +
+> > > +	stm32_pcie->regmap = syscon_regmap_lookup_by_compatible("st,stm32mp25-syscfg");
+> > > +	if (IS_ERR(stm32_pcie->regmap))
+> > > +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->regmap),
+> > > +				     "No syscfg specified\n");
+> > > +
+> > > +	stm32_pcie->clk = devm_clk_get(dev, NULL);
+> > > +	if (IS_ERR(stm32_pcie->clk))
+> > > +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->clk),
+> > > +				     "Failed to get PCIe clock source\n");
+> > > +
+> > > +	stm32_pcie->rst = devm_reset_control_get_exclusive(dev, NULL);
+> > > +	if (IS_ERR(stm32_pcie->rst))
+> > > +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->rst),
+> > > +				     "Failed to get PCIe reset\n");
+> > > +
+> > > +	ret = stm32_pcie_parse_port(stm32_pcie);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	platform_set_drvdata(pdev, stm32_pcie);
+> > > +
+> > > +	ret = pm_runtime_set_active(dev);
+> > > +	if (ret < 0) {
+> > > +		dev_err(dev, "Failed to activate runtime PM %d\n", ret);
+> > 
+> > Please use dev_err_probe() here and below.
 > 
->> Yes, I expected to apply v9 with your Ack.
+> OK, will report this in the EP driver also.
 > 
-> OK, that's about where I was expecting - at least one more respin before
-> the MFD bits are stable.
+> > 
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	ret = devm_pm_runtime_enable(dev);
+> > > +	if (ret < 0) {
+> > > +		dev_err(dev, "Failed to enable runtime PM %d\n", ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	pm_runtime_get_noresume(dev);
+> > > +
+> > 
+> > I know that a lot of the controller drivers do this for no obvious reason. But
+> > in this case, I believe you want to enable power domain or genpd before
+> > registering the host bridge. Is that right?
 > 
->> I can go with 2 in this case.  Applying in dribs-and-drabs as Acks come
->> in would be sub-optimal and would likely end up in a mess.
+> We call pm_runtime_enable() before stm32_add_pcie_port() and
+> dw_pcie_host_init(). This ensures that PCIe is active during the PERST#
+> sequence and before accessing the DWC registers.
 > 
-> Well, then just going a head and applying them on a branch with a tag
-> seems easier than delaying then.
 
-I can split the patchset into two parts (one for MFD, one for regulator)
-if it helps.
+What do you mean by 'PCIe is active'? Who is activating it other than this
+driver?
 
-Best regards
-Artur
+> > And the fact that you are not
+> > decrementing the runtime usage count means, you want to keep it ON all the time?
+> > Beware that your system suspend/resume calls would never get executed.
+> 
+> We do not support PM runtime autosuspend, so we must notify PM runtime that
+> PCIe is always active. Without invoking pm_runtime_get_noresume(), PCIe
+> would mistakenly be marked as suspended.
+
+This cannot happen unless the child devices are also suspended? Or if there are
+no child devices connected.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
