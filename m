@@ -1,87 +1,80 @@
-Return-Path: <devicetree+bounces-177722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99D19AB8B61
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 17:50:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 981A4AB8B35
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 17:46:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97B84A240CB
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 15:42:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB6D14E08E5
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 15:46:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F1A221ABC6;
-	Thu, 15 May 2025 15:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E4741F7580;
+	Thu, 15 May 2025 15:46:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="P78DGP8h"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G6PWtJPl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC62421A42F
-	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 15:42:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F7AE12A177;
+	Thu, 15 May 2025 15:46:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747323777; cv=none; b=fTKScKF5QcWnEaHWxB2Q9qb3kiKQGlDiKn5fzYvPX4uOGX94wu6+lSw/Z9hmlBHSzjddR4i3N8+ijPtUQeLrw9HriTNgb13LqNEJbsO6aa0+2X+OBnPfCS0mAH4u1naDy0mpvCduSYgrbk2zj/MtXyYfoWuZaFl8zhE3sQ6sHII=
+	t=1747324009; cv=none; b=Cs2omyt2PHVqELPH6vlShFLqfWw0dkqVy1XXhMQO8Q/lkiGDat/Ee38i2m5L0s9TA6HZg5AMp2AS1ABTGlPI1T0ZHUNYGl1ycCW1iosdI7owttcipQcVQ8L2bUYYGjmHov9lEQCIF+AUyPvD0p5iXBZQBHjq/GQnh2qAAdz9txc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747323777; c=relaxed/simple;
-	bh=JVbvGVI7vr7SKk/Dz3SUZ0JXpDRQsX+JcZVvFlgYb5Q=;
+	s=arc-20240116; t=1747324009; c=relaxed/simple;
+	bh=SUEKNm9uRa4lUy1fcLGEByG18LLT8O3tbtOZ0DsbLy4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F4Y6JW3j+UEHx6MUKCvEHIs/aGQByoU2p8DREEulAqtU6U003lDqLS3kNK7n/6nNYKBfymwx3E1G5j29FshMJU05JY9vNqm/JX52C7JSSF833jXMkX3l14xAqESaD0IAzUNmEDk8EW6dbOhrTV0Gtk2Oau/fWUuOzTKs+vuZK8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=P78DGP8h; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54FEFWcc002119
-	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 15:42:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XA2Ckgb1A92R72wK/xiF3TiinHUJne130PivAkUoja4=; b=P78DGP8hI4UwuJsM
-	9/31wNhbDcv4OGgarg9AGfZR9+i6tbOYdRa3ANCne39ds6UHtjWdnZJVgjfwbC0j
-	SPMXPa/iMqhhTGQiZrHYKHAlyfjOq+Bo7kRXu85gOgCSEibkA20rdmGJxaRNARVc
-	u0o19mrWhUYdiovADs4v6PxDVIc6vzx8vRqgRAVs/73pft0FjqpnOdTk8DkYVxsT
-	Y20dwHxi9urOnzI8hKTBm61SQBxg5j7fIqdfKQlDF98DlZ/rILjHa1i7DOv7D0XD
-	ahlblFFtaBI0mr4ilXdNbxpHxLjwLb596XZMCY+/RNY1esLMonq1KcGTmxcHYJHV
-	xcfq1A==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcrekde-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 15:42:54 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c76062c513so24930785a.3
-        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 08:42:54 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=qLcefpjz/eiuloLpkn9AC9g8k9z0APmZRvqbrbvp5BSIlE13Kr+RVqGT4vpaFxXzusbmNc/XNHTPuvfH8sZwILUdHRbq4WHp30cFqPExuwfmYVwbpCTO1cSaHXE9Y2IzQXJRazLyZsJyO0f3hox98hSBqD6xVZo5UNUCCdur0LI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G6PWtJPl; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-550d6e7c563so1274955e87.3;
+        Thu, 15 May 2025 08:46:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747324005; x=1747928805; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iefSatW6oFGrk0hCOerOc6+Pe+Fjn+g47KmLI+MHu+s=;
+        b=G6PWtJPlU823fAA/GAy4CZ/KXmBJo+efVvgzPIlB1TN7vnyQ76aoOpLqeYHeXdbaq2
+         CmaJNMKkbZmWbsgnbNsl1CV7ydm1SMWzFsyM0wl35+rjOCj3EfeiXs3OHivjxCeeOkk9
+         4qtfyOjACr57pGBvB3IX/fhMYXJ6ymSYO4ppulHa5/tprLY5QtcqtgH3ToPl7ZMUGlOf
+         Ub1pP3N8FHVCnE+egdmjY7bG0hnruLdcY0V0Vn8sALwMdDO8yaJa67sen+zSrr+a0z8A
+         eMMfSNvmpya6OGvvAi2IlzBgBUpMnuhyt3YYfVLMEYNoGehRQgQtaLzrTIlqfO0kVTcv
+         LKbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747323774; x=1747928574;
+        d=1e100.net; s=20230601; t=1747324005; x=1747928805;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XA2Ckgb1A92R72wK/xiF3TiinHUJne130PivAkUoja4=;
-        b=pX+ExC2zIXeaPrFXAQI11pEoAQFNC/2Ziw9yhdY7Co0Mv5ihVbXsui88r4tT/ncuOT
-         i1otZDCo5/Nj5SQjnB9MTCO4tEO7Z1W49lBq52X7RyxCuIL0IMD/SvhxfuMSi/nW8jXA
-         cAWC+NpnAGFRF/OvalSwpo0zVgkWo0zo3SuN/WGhVJNS2iW0Wgt8BxyO5T59uAEZyS7U
-         7T4d6QCoq/WwbN04fb17LM6GwB+m5FoiLc5tYN9KQHO9oScWuSsz5OoaICK91+2DzMEK
-         60RStP1YKPANu5yx/szAMVHVR7XnrO0dcMQOOBE4n8pKCSBRYn7wXBW8+dFUp+UwqFty
-         /8Lw==
-X-Forwarded-Encrypted: i=1; AJvYcCWd47GI7GkW9I56GgEQHsm7cRXdM3F9zZ8o8JOKnJ+sKCnceHm8qZaqmOmqq3O4AGNm+jDFCe0LaiC7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKOA+DFVrH+XBtiIK1sTfmlnb7hL7s4ZynqCvpFUyc/zUShJIr
-	ITd74Peg+FKxbhDgBOzzcEupTX0V6qdwRbiK4xHoddafCdXCHa8QeMx+3RET/a8r9+JXAyKRP1R
-	XNNyPeu93piR8I2Tl+GXhyKhzQeHKMjft5fH2I12rQOT0m3ohqfNJ1VJca9ja
-X-Gm-Gg: ASbGncuvXIiHYafFZGidTDhz/ogxKUs85e7lIO3BXKmBf1Y/4MSMInE5ElU8pLiuIxQ
-	M/pJ5m4ZlE5oGd1K1eUYvUTJaXXL+/OJlsRw02M+XT7P/k1g5Tr61jWEl+FKAKQvKpzmGkMdfjY
-	4Djd5KfHOs9gTmWNGMIpZwUc2KZPGC0QDO/GHKZpPJIxOc40lCIjE5AQpLktKHCj2nYCKwdVK3Y
-	pLF++USYawwm3SaoNlugu0wJbkbk6Vvkf9EV9PCH/xtaVUrFBkNBdJVKlYhyJVqlmieh1wFHzIl
-	tbd22xB51y5nRZDUDhZJ+6fh6mqSh2uEqr988eXVmDb0xhmDzCeP6pav7+wkbYtHhA==
-X-Received: by 2002:a05:620a:2811:b0:7c0:c024:d5 with SMTP id af79cd13be357-7cd287f8075mr543663085a.8.1747323773899;
-        Thu, 15 May 2025 08:42:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGT4fxs45M5zKmI/an/xseNIdZWlRHxwm3i9EJcr/D08ltlthN8UWO9YUVu81PT/6ZHnHRi4Q==
-X-Received: by 2002:a05:620a:2811:b0:7c0:c024:d5 with SMTP id af79cd13be357-7cd287f8075mr543658585a.8.1747323773413;
-        Thu, 15 May 2025 08:42:53 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d047c30sm7074666b.6.2025.05.15.08.42.51
+        bh=iefSatW6oFGrk0hCOerOc6+Pe+Fjn+g47KmLI+MHu+s=;
+        b=XOt2BbdZLeuTNjKaxC4P1q1iaRjxGSrIWq0/JWvW3DXqUkhgSHOoMgx3diBwElTrdR
+         JoUfDU4x1Aqu/djy9yk7zzxCPrOTkdAapfXmPXVY36AXVjWiVTJwGfvi7EM6XFhgZF9P
+         AkHaEphzfxmdCsEA6JtSRyd2Up6/+qMYe1wOs8ttqxKQSVxKPC7sGdFK7+Hk+Zg2LXvI
+         El5xtxXiBe4C/zsqDq9O6aEegxBFAgfP7AmDlohcBRY3iNRK5n6KGGHSgnEhpe0Z7v9u
+         XlvShIFegKYj936Lndmn37Do3mM7Sb7FUJQqb0V5bopzQ04ydorSbTA2LSuKQ4sEtVIe
+         CguQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUwB+FiTeiGWrjhLy+tVL77eQDWWK+IqVSRK8gFVu5y3svgrVoQVXSpHh1Ivy/RmHX222xsfSHhATKS@vger.kernel.org, AJvYcCWCDaYcVXeJqQUjkTZrlhxnuCQRIIvl7VrEqGwAhrjGxRZjQixOigbSMtn/iWDARTHpdny0xoX5WzDa8l5c@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmEhdAPVSoGGKcBM5bdqUYikhp4tx0N9fYm35JOhCRYm0yxFTW
+	4tIjTq/0NG2bgW8A5/pGNat6tho044yip4v62gkNFOxVLsiO5QwN
+X-Gm-Gg: ASbGncv51nUaTXe1Ap60Xk6s7p1B3+3PxnTXwQmKX2iDTVdCjOVCWFSsYMntNd4cuu0
+	Kt7y9ZjTMtmLKHnETTrRKqRZDVfebM3D4OceJ+Og3y46wbx1j92uNtNuH71We76ddoPaMdLEXXr
+	u6yQ3wsxZS+HjpYB1crOmU68QfbRDYq0TryaNj74oo64I0nOiV6Rk2qt29vsW9vkxzzAdh4oquz
+	GkUhfEeBjwotmiR8EixnJsEGiAQ8lK/j8O0DVW1mrAd6+geFQaoc2LfAiL4Kxay77EueSxQiOXB
+	awYSkk6XBnnNzUXHZHdJVqGVQlJZmYVNW/NRP7HhWq+Ud0Ct28LkG3RxcybSnjxVhec+AGe2SaP
+	Famv26wnOVHPrSi88rH6F7emt8x47OvbWM+HO
+X-Google-Smtp-Source: AGHT+IEVKM7oG9wZtg8KET+lsroz9mMvLkh8FdUs5mQMfI0T7TH03Y4MtAKf9+PYXbfxDliE50H8dA==
+X-Received: by 2002:a05:6512:6099:b0:545:6fa:bf5f with SMTP id 2adb3069b0e04-550d5f7a8aamr3118415e87.2.1747324005372;
+        Thu, 15 May 2025 08:46:45 -0700 (PDT)
+Received: from [192.168.50.244] (83.11.178.15.ipv4.supernova.orange.pl. [83.11.178.15])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e704041csm699e87.254.2025.05.15.08.46.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 May 2025 08:42:52 -0700 (PDT)
-Message-ID: <7f167ba1-5367-49a2-8d00-08fe7a44a022@oss.qualcomm.com>
-Date: Thu, 15 May 2025 17:42:50 +0200
+        Thu, 15 May 2025 08:46:45 -0700 (PDT)
+Message-ID: <6fd5ad47-8f01-43a4-aa92-e067c25ff195@gmail.com>
+Date: Thu, 15 May 2025 17:46:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,69 +82,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 15/18] arm64: dts: qcom: sm8650: Additionally manage
- MXC power domain in videocc
-To: Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Dmitry Baryshkov <lumag@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20250515-videocc-pll-multi-pd-voting-v4-0-571c63297d01@quicinc.com>
- <20250515-videocc-pll-multi-pd-voting-v4-15-571c63297d01@quicinc.com>
+Subject: Re: [PATCH v8 4/9] mfd: bcm590xx: Add support for multiple device
+ types + BCM59054 compatible
+To: Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20250430-bcm59054-v8-0-e4cf638169a4@gmail.com>
+ <20250430-bcm59054-v8-4-e4cf638169a4@gmail.com>
+ <20250509140957.GD2492385@google.com>
+ <aCRZzwW0w8oVWLUp@finisterre.sirena.org.uk>
+ <20250515071357.GD2936510@google.com>
+ <aCWfre2-n_PSuhxR@finisterre.sirena.org.uk>
+ <20250515092000.GF2936510@google.com>
+ <aCW0822BVpfKV2NL@finisterre.sirena.org.uk>
+ <8beeddcf-1dc7-4af8-b287-4c896852b258@gmail.com>
+ <aCXQUu97HL_yrH89@finisterre.sirena.org.uk>
+ <20250515131321.GG2936510@google.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250515-videocc-pll-multi-pd-voting-v4-15-571c63297d01@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Artur Weber <aweber.kernel@gmail.com>
+In-Reply-To: <20250515131321.GG2936510@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: -B314nJzl7_FQrBTsuqvak46UN5T-jRc
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE1MDE1NiBTYWx0ZWRfX46vrAH6/Dkt+
- t5JhlXgVKDKOot5llX7HGeJUKs36wjjcvlqGGSO2ULHZaQmnf1x29U1MKZ5L/QauhrwQX2MWnp/
- 2afhH4zziOXt8btnhhYAq6cyL1nwg9ciXj/4USPWzIJhwy+2Ay4VSoh9axFpU2vIZYqzsybEW4I
- JMb65Ce33tSboFDjrqA95RsmfzYcHm9aN2BKranpiqMjxIx/yLwfl3KTDRl72mW+IxKXHUTPZnE
- i7sz59mEGlm76AZQkQgnKUJ3tYwoKJSmVzWt337JKeF/Hd5dgs4ITAFaZ6RCL2lkkiPQu1CVQ37
- 0HwoOF30DodOqMe5YZ8+f3n2et5Mzzrto8fzPYa3IGnpCG+AtaWa7uyQFuil9it8AMbXaUVFCCB
- s7vTTetGdENY9QE9ieHmnfOf5Y2TdXUl0bPcBSEoFKrThjdXOqrSfxJrDVW4Fo53wUmIhB+p
-X-Authority-Analysis: v=2.4 cv=K7UiHzWI c=1 sm=1 tr=0 ts=68260b7e cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8
- a=EUspDBNiAAAA:8 a=fvWm4ETZ9MensVEMrR8A:9 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: -B314nJzl7_FQrBTsuqvak46UN5T-jRc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-15_06,2025-05-15_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 mlxscore=0 suspectscore=0 malwarescore=0
- phishscore=0 mlxlogscore=701 clxscore=1015 bulkscore=0 impostorscore=0
- lowpriorityscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505150156
 
-On 5/14/25 9:09 PM, Jagadeesh Kona wrote:
-> Videocc requires both MMCX and MXC rails to be powered ON to configure
-> the video PLLs on SM8650 platform. Hence add MXC power domain to videocc
-> node on SM8650.
+On 5/15/25 15:13, Lee Jones wrote:
+> On Thu, 15 May 2025, Mark Brown wrote:
 > 
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
+>> On Thu, May 15, 2025 at 01:28:15PM +0200, Artur Weber wrote:
+>>> On 5/15/25 11:33, Mark Brown wrote:
+>>>> On Thu, May 15, 2025 at 10:20:00AM +0100, Lee Jones wrote:
+>>
+>>>>> I can go with 2 in this case.  Applying in dribs-and-drabs as Acks come
+>>>>> in would be sub-optimal and would likely end up in a mess.
+>>
+>>>> Well, then just going a head and applying them on a branch with a tag
+>>>> seems easier than delaying then.
+>>
+>>> I can split the patchset into two parts (one for MFD, one for regulator)
+>>> if it helps.
+>>
+>> There's still a dependency on the MFD bits whatever happens.
+> 
+> Right.  That won't help since you need to describe the deps.  Submitting
+> them as a set was the correct thing to do.
+> 
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+OK then. I submitted a new version, v9, with the style nitpick
+addressed:
 
-Konrad
+https://lore.kernel.org/lkml/20250515-bcm59054-v9-0-14ba0ea2ea5b@gmail.com/
+
+Best regards
+Artur
 
