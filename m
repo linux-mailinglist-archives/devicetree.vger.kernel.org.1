@@ -1,88 +1,116 @@
-Return-Path: <devicetree+bounces-177685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E27FAB8959
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 16:25:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF2E6AB8972
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 16:28:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D28317AE0BF
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:23:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5EF418835CA
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:27:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCB11DE88A;
-	Thu, 15 May 2025 14:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC7AD18FC91;
+	Thu, 15 May 2025 14:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h6uy7Ivw"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="ZFZILwmD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321211DDE9;
-	Thu, 15 May 2025 14:24:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27CB817B4EC
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 14:27:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747319100; cv=none; b=Syth4tfcNizRQgbX1VNYR144NKfXpwc3l3dvrUy0IMdcofDQkBbvKxhv1UtYa4fOMQDmD6QXYQ7WrJojXIQcQJGAiNgYPPS7miJDxdCAWOLe4FGJMVrhXQ6sVUvsZ6f7P3pUHkwoz87uawAWz1ngfMG4KnL0dhIsWcOWC7FvwZY=
+	t=1747319251; cv=none; b=qDRPRGAAry5AYN6n9f2wNp0EMYTUaBPigd5GO+vS2Cvo2M8sr4J1hoELjx1u0CpBMStaUxh6gfbFNNSQqsidIIgobmWUqAk51iuOJh2wtecWl0z3HUJXIZEHNzn4cXCEpvEjFWmMNiR9zKzxfHE7NFU9Y7T1ENZEvBPZPaU5LBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747319100; c=relaxed/simple;
-	bh=tWrm7BPeedjVfZdi0Xy9LN5h23eDVe5370ORyn81HXc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JU05EXzUrr5JwtJzIlOe8UVe64XwzEL0abUBq8TiXY3EirVPguzpBV9PqjdEyTSY78linNdmCjJobZS2a9iER4q8O/UYG7+rVf4OfLsCb4UlyDYa/rI53aE22vMzXCG131JG9q+Q5PmFWyR3SaOfecoFDh1aNAx+V0qz31FtXFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h6uy7Ivw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A35D7C4CEE7;
-	Thu, 15 May 2025 14:24:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747319099;
-	bh=tWrm7BPeedjVfZdi0Xy9LN5h23eDVe5370ORyn81HXc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=h6uy7Ivw5uVytRpIjUIapvQr1UD2XRbIsnpYepOmDyjGJSONCl9xg6X30Lc4WLpE/
-	 6TTtIZS9zF1sZvEdhJzHunjHuZH785SmkJmy3v1NqHt3H6NjpIfvbulcA2J8auFvYu
-	 pb+PMmaNroSKboOgr51QHqBWXVvzjlIoytD+Gtr6bPWvq0JzIftul78PgRL0R21Y3c
-	 VT8HouAaLACD5E8B8OJ9hY6trABjNKSTRN399UDi99SDHBdhjXHRNwy8OROapf3vrF
-	 tx6KhQTltmhJ8XfrFn7GwpVBbbSN5dP/CfRfrRt4fyPdoMI/W33QSbxJzSi9djnln8
-	 efBh8+ND6CwXg==
-Date: Thu, 15 May 2025 07:24:57 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lei Wei
- <quic_leiwei@quicinc.com>, Suruchi Agarwal <quic_suruchia@quicinc.com>,
- Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>, "Gustavo A.
- R. Silva" <gustavoars@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
- <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
- <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
- <john@phrozen.org>
-Subject: Re: [PATCH net-next v4 00/14] Add PPE driver for Qualcomm IPQ9574
- SoC
-Message-ID: <20250515072457.55902bfd@kernel.org>
-In-Reply-To: <27cf4b47-2ded-4a37-9717-1ede521d8639@quicinc.com>
-References: <20250513-qcom_ipq_ppe-v4-0-4fbe40cbbb71@quicinc.com>
-	<20250514195821.56df5c60@kernel.org>
-	<27cf4b47-2ded-4a37-9717-1ede521d8639@quicinc.com>
+	s=arc-20240116; t=1747319251; c=relaxed/simple;
+	bh=4pgWXPFF4dO5j5XyrOv14vAHpJ4O49nfm35Y0Nv32ko=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=HECCh0Nmgv/Mi3Bg48Zvv0F/PGkGPw3uh5RPfTzjK3FifRaPaGblNhm+HGCQJftpHnubnK8Z8NQ4ij96dEd8B9iQHm6TibhPpoaAD/3B0y9rjHue+S8PilSmkq2ZXBX4wpRxWXRt0Ulf7M1ctJn0z/m2yTmjsotchahK6TV7mJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=ZFZILwmD; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+DKIM-Signature: a=rsa-sha256; b=ZFZILwmD7YC334uJWUSSaoozvnAwB/bun/UY/j4LOLszgSK7nHJHQv5OWtnsgllixenYRk9hnWg8nMlTXhGqtTh0cLgvDYwBceYvZdCPcMMBsZkQWGM4aLSfp+KHoPkcyJC/WP9LPp0Gu9b+lTP/qCKs81AWEMZUAzCwdDBlDo3zqO1teVBRUTU2hCagpLUl/jCUk5pBPZxZQNXSdjTJzuZlGtK0JBwFgkNEd/YR5CpElj31YM00Mw1sGjJ4I56jp+tNZQ7yf33ugvNPxxsJREEY9bvrR7zRqm12VM/BLoTtKRw/Xb0/C8aVOZhzx+t2ZS7+Ecrww4fd3pdzmEJt9g==; s=purelymail1; d=purelymail.com; v=1; bh=4pgWXPFF4dO5j5XyrOv14vAHpJ4O49nfm35Y0Nv32ko=; h=Feedback-ID:Received:Date:Subject:From:To;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1592338441;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Thu, 15 May 2025 14:26:53 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 15 May 2025 16:26:48 +0200
+Message-Id: <D9WSYR0CJUC1.3RCB16LZ3S6P7@mentallysanemainliners.org>
+Cc: "Kishon Vijay Abraham I" <kishon@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Marek Szyprowski"
+ <m.szyprowski@samsung.com>, "Sylwester Nawrocki" <s.nawrocki@samsung.com>,
+ "Alim Akhtar" <alim.akhtar@samsung.com>, <linux-phy@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-samsung-soc@vger.kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 0/2] USB PHY support for Exynos990 SoCs
+From: "Igor Belwon" <igor.belwon@mentallysanemainliners.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Vinod Koul" <vkoul@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250420-usb-resends-april-v2-0-25dc7d2e6dd4@mentallysanemainliners.org> <aCRXgpD0Ld2W4lHE@vaman> <D9VYC98LJTR0.LJXYC1H0BAKA@mentallysanemainliners.org> <aCWj4cn4y+RyfGiZ@vaman> <ea1a7a37-031f-4f81-ba09-eaa523f70761@kernel.org>
+In-Reply-To: <ea1a7a37-031f-4f81-ba09-eaa523f70761@kernel.org>
 
-On Thu, 15 May 2025 22:19:11 +0800 Luo Jie wrote:
-> However, from the patchwork result as below, it seems the dependent
-> patch series (for FIELD_MODIFY() macro) did not get picked to validate
-> the PPE driver patch series together. This dependency is mentioned in
-> the cover letter. Could you advise what could be wrong here, which is
-> preventing the dependent patch to be picked up? Thanks.
+On Thu May 15, 2025 at 11:14 AM CEST, Krzysztof Kozlowski wrote:
+> On 15/05/2025 10:20, Vinod Koul wrote:
+>> On 14-05-25, 16:26, Igor Belwon wrote:
+>>> On Wed May 14, 2025 at 10:42 AM CEST, Vinod Koul wrote:
+>>>> On 20-04-25, 21:28, Igor Belwon wrote:
+>>>>> Hi all!
+>>>>>
+>>>>> This patchset adds support for the USB 2.0 PHY of the Exynos990 SoC.
+>>>>> This SoC has a combo PHY that supports highspeed, superspeed USB and
+>>>>> DisplayPort, however due to my inability to test the superspeed part =
+of
+>>>>> the combo phy (device always enumerated as high-speed, even on the
+>>>>> vendor kernels/bootloaders) only the highspeed part is brought up.
+>>>>>
+>>>>> These changes have been tested and confirmed working (with the USB_ET=
+H
+>>>>> gadget and telnet/ssh in a ramdisk) on a device from the hubble famil=
+y
+>>>>> (x1s) and also a device from the canvas family (c1s).
+>>>>
+>>>> I am missing the dt patch, can you pls report the whole series if you
+>>>> would like me to review and apply this
+>>>
+>>> Hi Vinod,
+>>>
+>>> I've sent the DT series a while back (before resending). Usually I
+>>> propose DT changes through Krzysztof's tree. The patches are=20
+>>> unchanged (they will be resent unchanged when all usb and wdt=20
+>>> changes are merged).
+>>=20
+>> It makes sense to post bindings and driver togther and mostly these go
+>> thru subsystem trees!
+>>=20
+> I don't think you both speak about the same thing. DT is ambiguous here,
+> so always use DTS or DT bindings... that said bindings were here in this
+> patchset so if Vinod misses them, this has to be resent.
+>
+> Best regards,
+> Krzysztof
 
-Please try to read more about kernel development process.
-These patches are not in Linus's tree or the networking tree.
-If you want to use them you have to wait with your submission
-until after the next merge window.
+Hi Krzysztof, Vinod.
+
+Krzysztof: Thank you for the clarification. I assumed somehow the
+devicetree changes were necessary for the revies. Bad judgment on my part.
+Sorry.
+
+Vinod: Sorry for the misunderstanding. I'll resend the patchset shortly.
+
+Regards,
+Igor
 
