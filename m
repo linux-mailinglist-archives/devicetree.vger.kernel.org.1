@@ -1,129 +1,380 @@
-Return-Path: <devicetree+bounces-177647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3AE8AB864E
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:26:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E153AAB866F
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 14:33:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0F181881F57
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:21:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 086DA4E005D
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:33:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D7029994F;
-	Thu, 15 May 2025 12:20:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BAA1298CA1;
+	Thu, 15 May 2025 12:33:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vkwlCqZ0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cKyllz0k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB412989B8
-	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 12:20:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A482989A8;
+	Thu, 15 May 2025 12:33:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747311649; cv=none; b=Uf3URq2NZnuQZX+5pce1kYMCMFP4bCC8HBC+4wlO078qJ8K96TQZjxF0lEe60kPSXKHOHtORS76f6F/Zp4EIaP22M9aVrhhEbLuhZvItVAZu1GDppTPKjGep81/jSt1+11CPv5leR19h06UpgxSNjXETX873oZoI6k6BgUzAkpY=
+	t=1747312421; cv=none; b=PIln5NhYHUNECg2jbSEZ+VT547XZMyvoqScIVdniEhXKZuRhC2F3mNcHka2EzssORlXuthFZGE9oZvLbYl9TQg4bfX2QVKU70hZSQe22ELnAh4x89is19dzOAtkHa9BGTspgQTwbQ1Dw7rwu7pohDXY5fuGJsR9HKvn4RxsGAkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747311649; c=relaxed/simple;
-	bh=ySi+0M+CVuWfwFeLu3PPC0j4nsW75CVo4AF4TCbTxnI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CuZNQc/9QOCh1NjwBTxDSdWgnxtY4TTqJbJ4toELzr7wRxVPiB30/c8554xMZ5nPaFagvzTm9/WtO1SFjIjLQQyKJIuebPm2o0Auo+6NKorSj5KwF/Nj+TbdeUqfhm+wm1qoeXDJx+SD8RyGbJkB5En/1aEIEJXYkQpr+e5XqzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vkwlCqZ0; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43d04dc73b7so9142285e9.3
-        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 05:20:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747311645; x=1747916445; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UYYmwpP0MAwsA931NniE7DuDU5H48aT0XrSHju++1ic=;
-        b=vkwlCqZ0SwyVN+cPtAK9kv43zZeGM4qFKReGHN7DGwZd7emjYjPH1vUi8xhrbRCcAw
-         kJ6Q4FsCxiwN/HMxHllvoG4N532uzrQQnYf3ubwNePu6lqcMxgjxrA3KEcq3TSudUtW9
-         E5Hpvls5kJA3DfCmjyES1anB5cVdKL7JbvZzdn4iqVUuWibMPnqFcBtMoGzqOsfscvAT
-         an0nxyeZ4ogjVTZKCbU7T7J6xyu1WwqKLjcI8UXRTruBHPslrHRNILhZZqMiQEW+HLvY
-         EoqE8Mg32OKjtoEWCzdmDazHkkWymizXLq7/Y/U6L69aTTthnV/gDj3QDFY8z7r09lzK
-         QLLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747311645; x=1747916445;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UYYmwpP0MAwsA931NniE7DuDU5H48aT0XrSHju++1ic=;
-        b=n+99bKL7j4Dnivr7haGv2zXauo7kS9FLPcwJARR8eGoDXA/aMJbxJ0zje2dAfzdFdo
-         i3k7+Zkq1LmR0pWTnQ73VKYN78QltB4MXDfxzNvYTLTsJjPuGwsvYIwkZnrv+7rydjcQ
-         yqIl3bXKy7R/ZZ/Ngr2+Ywn+PS5c5mgGaK+xPSyp8UiMkYAgTwDzFzNpC+R7SR+2VaiH
-         Qr6bonHzTvhM2beF+srQBa5LNK7H53DARG8AAPuy3OCYavMjIKQD77p897wDeOAODsDi
-         rNn8yReBhtH3m7xqvxdwljYG63avliCDsnGVFGEqWHRnIkvi6J5S894v9rwT+utJPF/e
-         5Isw==
-X-Forwarded-Encrypted: i=1; AJvYcCWYCMdB15rjBFjKbFdjoIjfXHz3fIGvwoWFqYyw+nwCyzDj/kqKXORkWA7tOqfV+etR+UFcxiaPN7R7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxO6c4xzmMCyZgaaWL47aDRM67KI67PPLPrSteucu3KuL3PnkmO
-	IpWEVdPD/Uk+nI7AoDathGENYE47UGrz7LGfJTIb/NX6ul2cI5ECkIqSxnUri10=
-X-Gm-Gg: ASbGncv6kZzxNWV0a4KLn5eJL5ewVyIWzUWVVBK6BkuqOPchl5rIkW+Y6jfZWyXl1Bg
-	DKaP0i9OTgL9pEZI+Srii1avvT+QC9f6F+56QFcnIxxALJc/tBnWNwzDUNSFAk9fWFuDiv4wRwC
-	nhlCMFHQredWJ4QiuGQ9T8OCTNtTcEjKgvhF/xZ8NDYq0SFM+je1ZmO9cIcteJPM7LQzRjXZYWI
-	oZUmVpsIdpv56hIsYasvnuxffmIEpS1ZQESyBJInQht44C3V84/8BBlWnC5wHeQja1mXofiEW3d
-	iWIqFogeYTtjKkckJXRkwgrittoeYj9eKSfwUyA777mPO3PUvh59y7lFAEj22bQFL6h23dswuEz
-	lZO5zvSPr
-X-Google-Smtp-Source: AGHT+IFf5pIVLw9OgzawdBaBFW6KZvXprzzPf2JHeKzZZEBmezUo1iUF8T/ujeptaHHKPw8LeA0tyA==
-X-Received: by 2002:a05:600c:3e88:b0:43c:fb95:c76f with SMTP id 5b1f17b1804b1-442f20e33b0mr74335285e9.9.1747311644763;
-        Thu, 15 May 2025 05:20:44 -0700 (PDT)
-Received: from [10.61.2.175] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f57dde01sm22985463f8f.15.2025.05.15.05.20.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 May 2025 05:20:44 -0700 (PDT)
-Message-ID: <586c877d-0d0a-48bf-9c55-97bd24e86638@linaro.org>
-Date: Thu, 15 May 2025 13:20:42 +0100
+	s=arc-20240116; t=1747312421; c=relaxed/simple;
+	bh=NZbDm6oKwxvb56qxwgfd2yxt9f0BrfJ12RFFjIbb7RY=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=uK7Q50s9csj9P2ksxpVGPMwCc4aVwiXjBjS5ToPUc3tn61X1BzbVsxOWFrp5/fPkKT9/U8VYGH9ocXrKAfe/nHCVfHUQt7VVXaajYADf/CwP/cq+waDNTu5sBHk4n2ySYGRzxtbPtESGseT75CuLZFGNZqzE81fwxcIu2/E3gxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cKyllz0k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91C5DC4CEF0;
+	Thu, 15 May 2025 12:33:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747312420;
+	bh=NZbDm6oKwxvb56qxwgfd2yxt9f0BrfJ12RFFjIbb7RY=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=cKyllz0kah8+nLH/VTLW2tMROQ/8gf8qM7t1LKNAeba1mDP+kv6HPIGw0zifZRqwn
+	 50EhB0xUpWbgVT/6x8nytWZUIQ4EdLYBHeRxrYRHqkR6GXBVnYVswy/sOgFLtOEVLf
+	 PyWxKX25yP5W4WXnybxYHp/1YfAS3Z8Ldf+hiDY5AhVollbekCSc0YHfht8d+0qas5
+	 11xuZJqW0o0SSoc5mKYy3gbrq0w7N/mBxOjFTPrT4eI0U52tmZ1r641cEkiZ16Uehe
+	 n9T6Yxbsw8kr2R7JiVsuyYyslI81/G9zEJNb4rtXhDexUpaIBqV4ULB9+7eZNBACvI
+	 NGSmGGOOeNqSw==
+Date: Thu, 15 May 2025 07:33:38 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/14] spi: spi-fsl-dspi: Enable modified transfer
- protocol
-To: Mark Brown <broonie@kernel.org>
-Cc: Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>,
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, larisa.grigore@nxp.com, arnd@linaro.org,
- andrei.stefanescu@nxp.com, dan.carpenter@linaro.org,
- linux-spi@vger.kernel.org, imx@lists.linux.dev,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Andra-Teodora Ilie
- <andra.ilie@nxp.com>, Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
-References: <20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org>
- <20250509-james-nxp-spi-v1-10-32bfcd2fea11@linaro.org>
- <aB6pa9m0emX2vMH8@finisterre.sirena.org.uk>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <aB6pa9m0emX2vMH8@finisterre.sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Steve deRosier <derosier@cal-sierra.com>, devicetree@vger.kernel.org, 
+ Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-rockchip@lists.infradead.org
+To: Joseph Kogut <joseph.kogut@gmail.com>
+In-Reply-To: <20250514173856.3677454-1-joseph.kogut@gmail.com>
+References: <20250514173856.3677454-1-joseph.kogut@gmail.com>
+Message-Id: <174731113340.409185.748543902950099048.robh@kernel.org>
+Subject: Re: [RFC PATCH 1/1] arm64: dts: rockchip: add Radxa CM5 and IO
+ board
 
 
-
-On 10/05/2025 02:18, Mark Brown wrote:
-> On Fri, May 09, 2025 at 12:05:57PM +0100, James Clark wrote:
->> From: Andra-Teodora Ilie <andra.ilie@nxp.com>
->>
->> Set MTFE bit in MCR register for frequencies higher than 25MHz.
+On Wed, 14 May 2025 10:38:56 -0700, Joseph Kogut wrote:
+> Add initial support for the Radxa CM5 and the accompanying IO board,
+> including ethernet, USB 2.0/3.0, PCIe 2.0, HDMI output, UART2 console,
+> SD/eMMC, PMIC.
 > 
-> Is this a bug fix?
+> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+> Reviewed-by: Steve deRosier <derosier@cal-sierra.com>
+> ---
+> This is my first attempt at submitting a new device tree upstream.
+> Feedback is welcome on DT conventions, naming, or anything I may have
+> missed.
+> 
+> This is largely reversed from the Radxa kernel sources as a reference.
+> 
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 448 ++++++++++++++++++
+>  .../boot/dts/rockchip/rk3588s-radxa-cm5.dtsi  | 151 ++++++
+>  3 files changed, 600 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
+> 
 
-Not this one as it's only supported for s32g which isn't enabled until 
-later. The commit message is lacking though so I will elaborate.
 
-For the other bug fixes it looks like they are, so I'll put them at the 
-beginning and add fixes tags.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Thanks
-James
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/v6.15-rc5-760-g9934ab180511 (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250514173856.3677454-1-joseph.kogut@gmail.com:
+
+arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dtb: / (radxa,cm5-io): compatible: 'oneOf' conditional failed, one must be fixed:
+	['radxa,cm5-io', 'radxa,cm5', 'rockchip,rk3588s'] is too long
+	['radxa,cm5-io', 'radxa,cm5', 'rockchip,rk3588s'] is too short
+	'vamrs,ficus' was expected
+	'vamrs,rock960' was expected
+	'amarula,vyasa-rk3288' was expected
+	'radxa,cm5-io' is not one of ['anbernic,rg351m', 'anbernic,rg351v']
+	'radxa,cm5-io' is not one of ['anbernic,rg353p', 'anbernic,rg353ps', 'anbernic,rg353v', 'anbernic,rg353vs', 'anbernic,rg503', 'anbernic,rg-arc-d', 'anbernic,rg-arc-s']
+	'ariaboard,photonicat' was expected
+	'armsom,sige5' was expected
+	'armsom,sige7' was expected
+	'radxa,cm5-io' is not one of ['armsom,w3']
+	'asus,rk3288-tinker' was expected
+	'asus,rk3288-tinker-s' was expected
+	'azw,beelink-a1' was expected
+	'bigtreetech,cb2-manta' was expected
+	'bigtreetech,pi2' was expected
+	'mundoreader,bq-curie2' was expected
+	'mundoreader,bq-edison2qc' was expected
+	'chipspark,popmetal-rk3288' was expected
+	'chipspark,rayeager-px2' was expected
+	'radxa,cm5-io' is not one of ['coolpi,pi-cm5-evb']
+	'radxa,cm5-io' is not one of ['coolpi,pi-cm5-genbook']
+	'coolpi,pi-4b' was expected
+	'edgeble,neural-compute-module-2-io' was expected
+	'edgeble,neural-compute-module-6a-io' was expected
+	'elgin,rv1108-r1' was expected
+	'embedfire,lubancat-1' was expected
+	'embedfire,lubancat-2' was expected
+	'engicam,px30-core-ctouch2' was expected
+	'engicam,px30-core-ctouch2-of10' was expected
+	'engicam,px30-core-edimm2.2' was expected
+	'radxa,cm5-io' is not one of ['mntre,reform2-rcore']
+	'radxa,cm5-io' is not one of ['firefly,itx-3588j']
+	'firefly,px30-jd4-core-mb' was expected
+	'radxa,cm5-io' is not one of ['firefly,firefly-rk3288', 'firefly,firefly-rk3288-beta']
+	'firefly,firefly-rk3288-reload' was expected
+	'firefly,firefly-rk3399' was expected
+	'firefly,roc-rk3308-cc' was expected
+	'firefly,roc-rk3328-cc' was expected
+	'firefly,roc-rk3328-pc' was expected
+	'radxa,cm5-io' is not one of ['firefly,roc-rk3399-pc', 'firefly,roc-rk3399-pc-mezzanine']
+	'radxa,cm5-io' is not one of ['firefly,roc-rk3399-pc-plus']
+	'firefly,roc-rk3576-pc' was expected
+	'firefly,rk3566-roc-pc' was expected
+	'firefly,rk3568-roc-pc' was expected
+	'radxa,cm5-io' is not one of ['forlinx,ok3588-c']
+	'radxa,cm5-io' is not one of ['friendlyarm,nanopi-r2c', 'friendlyarm,nanopi-r2c-plus', 'friendlyarm,nanopi-r2s', 'friendlyarm,nanopi-r2s-plus']
+	'friendlyarm,nanopi-r3s' was expected
+	'radxa,cm5-io' is not one of ['friendlyarm,nanopc-t4', 'friendlyarm,nanopi-m4', 'friendlyarm,nanopi-m4b', 'friendlyarm,nanopi-neo4', 'friendlyarm,nanopi-r4s', 'friendlyarm,nanopi-r4s-enterprise']
+	'radxa,cm5-io' is not one of ['friendlyarm,nanopi-r5c', 'friendlyarm,nanopi-r5s']
+	'radxa,cm5-io' is not one of ['friendlyarm,nanopi-r6c', 'friendlyarm,nanopi-r6s']
+	'radxa,cm5-io' is not one of ['friendlyarm,nanopc-t6', 'friendlyarm,nanopc-t6-lts']
+	'radxa,cm5-io' is not one of ['friendlyarm,cm3588-nas']
+	'gameforce,ace' was expected
+	'gameforce,chi' was expected
+	'geekbuying,geekbox' was expected
+	'geniatech,xpi-3128' was expected
+	'google,bob-rev13' was expected
+	'google,veyron-brain-rev0' was expected
+	'google,veyron-fievel-rev8' was expected
+	'google,gru-rev15' was expected
+	'google,veyron-jaq-rev5' was expected
+	'google,veyron-jerry-rev15' was expected
+	'google,kevin-rev15' was expected
+	'google,veyron-mickey-rev8' was expected
+	'google,veyron-mighty-rev5' was expected
+	'google,veyron-minnie-rev4' was expected
+	'google,veyron-pinky-rev2' was expected
+	'google,scarlet-rev15-sku0' was expected
+	'google,scarlet-rev15-sku7' was expected
+	'google,scarlet-rev15-sku2' was expected
+	'google,veyron-speedy-rev9' was expected
+	'google,veyron-tiger-rev8' was expected
+	'haochuangyi,h96-max-v58' was expected
+	'haoyu,marsboard-rk3066' was expected
+	'hardkernel,rk3326-odroid-go2' was expected
+	'hardkernel,rk3326-odroid-go2-v11' was expected
+	'hardkernel,rk3326-odroid-go3' was expected
+	'hardkernel,odroid-m1' was expected
+	'hardkernel,odroid-m1s' was expected
+	'hardkernel,odroid-m2' was expected
+	'hugsun,x99' was expected
+	'indiedroid,nova' was expected
+	'radxa,cm5-io' is not one of ['khadas,edge', 'khadas,edge-captain', 'khadas,edge-v']
+	'khadas,edge2' was expected
+	'kobol,helios64' was expected
+	'mecer,xms6' was expected
+	'leez,p710' was expected
+	'lckfb,tspi-rk3566' was expected
+	'radxa,cm5-io' is not one of ['lunzn,fastrhino-r66s', 'lunzn,fastrhino-r68s']
+	'mqmaker,miqi' was expected
+	'neardi,lba3368' was expected
+	'netxeon,r89' was expected
+	'openailab,eaidk-610' was expected
+	'xunlong,rk3399-orangepi' was expected
+	'phytec,rk3288-pcm-947' was expected
+	'pine64,pinebook-pro' was expected
+	'radxa,cm5-io' is not one of ['pine64,pinenote-v1.1', 'pine64,pinenote-v1.2']
+	'pine64,pinephone-pro' was expected
+	'radxa,cm5-io' is not one of ['pine64,pinetab2-v0.1', 'pine64,pinetab2-v2.0']
+	'pine64,rock64' was expected
+	'radxa,cm5-io' is not one of ['pine64,rockpro64-v2.1', 'pine64,rockpro64-v2.0']
+	'radxa,cm5-io' is not one of ['pine64,quartz64-a', 'pine64,quartz64-b']
+	'pine64,quartzpro64' was expected
+	'radxa,cm5-io' is not one of ['pine64,soquartz-blade', 'pine64,soquartz-cm4io', 'pine64,soquartz-model-a']
+	'radxa,cm5-io' is not one of ['powkiddy,rgb10max3', 'powkiddy,rgb20sx', 'powkiddy,rgb30', 'powkiddy,rk2023', 'powkiddy,x55']
+	'prt,mecsbc' was expected
+	'qnap,ts433' was expected
+	'radxa,cm5-io' is not one of ['radxa,cm3-io']
+	'radxa,cm5-io' is not one of ['radxa,e25']
+	'radxa,e20c' was expected
+	'radxa,e52c' was expected
+	'radxa,rock' was expected
+	'radxa,cm5-io' is not one of ['radxa,rockpi4a', 'radxa,rockpi4a-plus', 'radxa,rockpi4b', 'radxa,rockpi4b-plus', 'radxa,rockpi4c']
+	'radxa,rock-4c-plus' was expected
+	'radxa,rock-4d' was expected
+	'radxa,rock-4se' was expected
+	'radxa,rockpi-e' was expected
+	'radxa,rockpi-n8' was expected
+	'radxa,rockpi-n10' was expected
+	'radxa,rockpis' was expected
+	'radxa,rock2-square' was expected
+	'radxa,rock3a' was expected
+	'radxa,rock-3b' was expected
+	'radxa,rock-3c' was expected
+	'radxa,rock-5-itx' was expected
+	'radxa,rock-5a' was expected
+	'radxa,rock-5b' was expected
+	'radxa,rock-5c' was expected
+	'radxa,rock-s0' was expected
+	'radxa,cm5-io' is not one of ['radxa,zero-3e', 'radxa,zero-3w']
+	'relfor,saib' was expected
+	'rikomagic,mk808' was expected
+	'rockchip,rk3036-kylin' was expected
+	'rockchip,px3-evb' was expected
+	'rockchip,px30-evb' was expected
+	'rockchip,px5-evb' was expected
+	'rockchip,r88' was expected
+	'rockchip,rk3036-evb' was expected
+	'rockchip,rk3128-evb' was expected
+	'rockchip,rk3228-evb' was expected
+	'rockchip,rk3229-evb' was expected
+	'radxa,cm5-io' is not one of ['rockchip,rk3288-evb-act8846', 'rockchip,rk3288-evb-rk808']
+	'rockchip,rk3308-evb' was expected
+	'rockchip,rk3328-evb' was expected
+	'rockchip,rk3368-evb-act8846' was expected
+	'rockchip,rk3399-evb' was expected
+	'rockchip,rk3399-sapphire' was expected
+	'rockchip,rk3399-sapphire-excavator' was expected
+	'rockchip,rk3566-box-demo' was expected
+	'rockchip,rk3568-evb1-v10' was expected
+	'rockchip,rk3576-evb1-v10' was expected
+	'rockchip,rk3588-evb1-v10' was expected
+	'rockchip,rk3588s-evb1-v10' was expected
+	'rockchip,rv1108-evb' was expected
+	'rockchip,rk3588-toybrick-x0' was expected
+	'sinovoip,rk3308-bpi-p2pro' was expected
+	'sinovoip,rk3568-bpi-r2pro' was expected
+	'itead,sonoff-ihost' was expected
+	'tsd,px30-ringneck-haikou' was expected
+	'tsd,rk3368-lion-haikou' was expected
+	'tsd,rk3399-puma-haikou' was expected
+	'tsd,rk3588-jaguar' was expected
+	'tsd,rk3588-tiger-haikou' was expected
+	'tronsmart,orion-r68-meta' was expected
+	'turing,rk1' was expected
+	'wolfvision,rk3568-pf5' was expected
+	'radxa,cm5-io' is not one of ['xunlong,orangepi-3b-v1.1', 'xunlong,orangepi-3b-v2.1']
+	'radxa,cm5-io' is not one of ['xunlong,orangepi-5-max', 'xunlong,orangepi-5-plus', 'xunlong,orangepi-5-ultra']
+	'radxa,cm5-io' is not one of ['xunlong,orangepi-r1-plus', 'xunlong,orangepi-r1-plus-lts']
+	'radxa,cm5-io' is not one of ['xunlong,orangepi-5', 'xunlong,orangepi-5b']
+	'zkmagic,a95x-z2' was expected
+	'rockchip,rk3399' was expected
+	'rockchip,rk3288' was expected
+	'rockchip,rk3326' was expected
+	'rockchip,rk3566' was expected
+	'rockchip,rk3568' was expected
+	'rockchip,rk3576' was expected
+	'rockchip,rk3588' was expected
+	'armsom,lm7' was expected
+	'rockchip,rk3328' was expected
+	'bigtreetech,cb2' was expected
+	'rockchip,rk3066a' was expected
+	'rockchip,rk3188' was expected
+	'coolpi,pi-cm5' was expected
+	'rockchip,rk3588s' was expected
+	'edgeble,neural-compute-module-2' was expected
+	'radxa,cm5' is not one of ['edgeble,neural-compute-module-6a', 'edgeble,neural-compute-module-6b']
+	'rockchip,rv1108' was expected
+	'engicam,px30-core' was expected
+	'firefly,icore-3588q' was expected
+	'firefly,core-3588j' was expected
+	'firefly,px30-jd4-core' was expected
+	'rockchip,rk3308' was expected
+	'forlinx,fet3588-c' was expected
+	'friendlyarm,cm3588' was expected
+	'rockchip,rk3368' was expected
+	'rockchip,rk3128' was expected
+	'google,bob-rev12' was expected
+	'google,veyron-brain' was expected
+	'google,veyron-fievel-rev7' was expected
+	'google,gru-rev14' was expected
+	'google,veyron-jaq-rev4' was expected
+	'google,veyron-jerry-rev14' was expected
+	'google,kevin-rev14' was expected
+	'google,veyron-mickey-rev7' was expected
+	'google,veyron-mighty-rev4' was expected
+	'google,veyron-minnie-rev3' was expected
+	'google,veyron-pinky' was expected
+	'google,scarlet-rev15' was expected
+	'google,scarlet-rev15-sku4' was expected
+	'google,veyron-speedy-rev8' was expected
+	'google,veyron-tiger-rev7' was expected
+	'rockchip,rk3229' was expected
+	'phytec,rk3288-phycore-som' was expected
+	'pine64,pinenote' was expected
+	'pine64,pinetab2' was expected
+	'pine64,rockpro64' was expected
+	'pine64,soquartz' was expected
+	'radxa,cm3' was expected
+	'radxa,cm3i' was expected
+	'rockchip,rk3528' was expected
+	'rockchip,rk3582' was expected
+	'radxa,rockpi4' was expected
+	'vamrs,rk3288-vmarc-som' was expected
+	'vamrs,rk3399pro-vmarc-som' was expected
+	'rockchip,rv1109' was expected
+	'rockchip,rk3036' was expected
+	'rockchip,px3' was expected
+	'rockchip,px30' was expected
+	'rockchip,px5' was expected
+	'rockchip,rk3228' was expected
+	'radxa,cm5' is not one of ['rockchip,rv1126', 'rockchip,rv1109']
+	'tsd,rk3588-tiger' was expected
+	'xunlong,orangepi-3b' was expected
+	'rockchip,rk3318' was expected
+	'rockchip,rv1126' was expected
+	'google,bob-rev11' was expected
+	'google,veyron' was expected
+	'google,veyron-fievel-rev6' was expected
+	'google,gru-rev13' was expected
+	'google,veyron-jaq-rev3' was expected
+	'google,veyron-jerry-rev13' was expected
+	'google,kevin-rev13' was expected
+	'google,veyron-mickey-rev6' was expected
+	'google,veyron-mighty-rev3' was expected
+	'google,veyron-minnie-rev2' was expected
+	'google,scarlet-rev14-sku0' was expected
+	'google,scarlet-rev14-sku7' was expected
+	'google,scarlet-rev15-sku6' was expected
+	'google,veyron-speedy-rev7' was expected
+	'google,veyron-tiger-rev6' was expected
+	'rockchip,rk3399pro' was expected
+	from schema $id: http://devicetree.org/schemas/arm/rockchip.yaml#
+arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dtb: /: failed to match any schema with compatible: ['radxa,cm5-io', 'radxa,cm5', 'rockchip,rk3588s']
+arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dtb: /: failed to match any schema with compatible: ['radxa,cm5-io', 'radxa,cm5', 'rockchip,rk3588s']
+arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dtb: syscon@fd5d0000 (rockchip,rk3588-usb2phy-grf): usb2phy@0:otg-port: 'rockchip,typec-vbus-det' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
+arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dtb: usb2phy@0 (rockchip,rk3588-usb2phy): otg-port: 'rockchip,typec-vbus-det' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/phy/rockchip,inno-usb2phy.yaml#
+arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dtb: leds (gpio-leds): 'pinctrl-0' is a dependency of 'pinctrl-names'
+	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-consumer.yaml#
+
+
+
+
+
 
