@@ -1,68 +1,57 @@
-Return-Path: <devicetree+bounces-177733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0379AAB8C24
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 18:18:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58003AB8C2F
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 18:20:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CA46A063CD
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 16:17:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2983A05A65
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 16:19:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5264021B185;
-	Thu, 15 May 2025 16:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE7721B9F2;
+	Thu, 15 May 2025 16:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ryqXIRZ8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VeBzh+lr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26303208994;
-	Thu, 15 May 2025 16:17:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A1714B092;
+	Thu, 15 May 2025 16:19:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747325839; cv=none; b=LLFKeTawsXPcGbHgJcgKR14FDpz/xP2s8yqaMs+mvSNgrbDIVgkaM+qlF1FQPLghVDeNKrFz1Ets/WiuHe/Ndd+UkI4Zf54xvUBOXSYxcV7Nkh5k3GXIyLvvq6bFO1zQ1ewSQnVye5H0f9Ozr+UlmXZpkPgdZgstUpUq1M7eFSQ=
+	t=1747325978; cv=none; b=NmSOCAJKIBo6ZsSKT5o+Yob7Kqm2/4GXq0F3cGm9cruSMxoaRp8NVRGDMltUWIndf4ZkD09BReGVcKDYydwPdOR/tsmVK0HIa4OHzJ8Cg9cuc6t6ukwJ5JEHqdP+SZDZ4y7eE0eqOLpHlPJXh9kwku52KtCw0ssy53SUGPFF4bM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747325839; c=relaxed/simple;
-	bh=+7X2Q8vkZvMJYGv9ciX4cmhh08fK2Atxda6qD5FINaY=;
+	s=arc-20240116; t=1747325978; c=relaxed/simple;
+	bh=ez8MDEMttK1bKnzmq0rF96I9JAzIFJFaCU/dUgP+Cck=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mICI+92QnCNlwXHWpHYmGRVj1th+AV96Li5aT4MDq3c4KjyhEPI8ysY4WwNFM529zy+XwD79p6oTU1Y9QulONrUrLrZC7ZOfbQgvDIXinAABQQc3feYIT57q/l9pGhhEl2lnWEtMu0pYGtdGu56Fgw4g4SSU6dcDRsIrWV/svlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ryqXIRZ8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D39FC4CEE7;
-	Thu, 15 May 2025 16:17:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=r4tnFieuPFLQXOrFtfpr2TeJYv03cHdc01MeaeWVHEK/IUVX0Gdwp5dyhl0W+tqk9bqpQPp5F9NV3WeaSfW98MSRnJ/Yid8wd5Zf+X6aKuXSZzsYksMtAGT8iQWHIWsClnv5JXHAvjqil4JjqrqahA1Dy4eBtUtak7Ux/uft8zo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VeBzh+lr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD526C4CEE7;
+	Thu, 15 May 2025 16:19:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747325837;
-	bh=+7X2Q8vkZvMJYGv9ciX4cmhh08fK2Atxda6qD5FINaY=;
+	s=k20201202; t=1747325977;
+	bh=ez8MDEMttK1bKnzmq0rF96I9JAzIFJFaCU/dUgP+Cck=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ryqXIRZ8aIXBIsQZvIgxJPgFs1PncN+KvVDOmH+uoUHwdtEis7LKTx666Igqb9l2+
-	 w1X27KWHDdIFCyQrq+463y+yUdygIWW57hYvVsGtpTLH9SfqD00bTQ+QoqxLVLjOAi
-	 nF0KFM5qUzEBkTF1G9hTdIz9B9MyKrNrf4BqVhmtOgzJHC1hqLj69mViwj9Kg0nS+Z
-	 YPdbnxJwADXSe5w0jxQygGJzwfP8crEIkwEgIh3m4JMn8a19IflzA6O6W5V2md6HFN
-	 MtztHWOafakuUYJawrzRhTHqJv508PJLXBMzBuZ4PC9nD9ZMeGM3PJ4VSbcK9+G4v9
-	 GA5OS5DGSlKmA==
-Date: Thu, 15 May 2025 17:17:11 +0100
+	b=VeBzh+lrBIbeKThUB5IeGMJGIKY0nhucsk/YQ07ctm2jRgYEcuyBZTXDrD9Hb9PXt
+	 6OZLEmJMSS83/BxSYC6+57P63d9cDoz1lqF55xPe4ZC/VxQWOVV6IEyJn4Uwm6rkMN
+	 DhRFAnrZG8qlUmfaUTalicqu6Ur9Y8bsndzsaeMFY3f2drvfE70uZMBMSsjy/p69Vu
+	 Aw1JhuWPKVEDW7EbVrJhEYAOBu66+BNkwoivyKEjlPc5eKvJS2bfFjaQ9mh2cOjjeR
+	 Nx+ZlZPJq0OByDYPCKLmenk5E1YwvyWSljufgys4910IBTK/6WD4sp6PBzAykQGV0/
+	 7FDLMnMOLLdJA==
+Date: Thu, 15 May 2025 17:19:33 +0100
 From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Julien Massot <julien.massot@collabora.com>, kernel@collabora.com,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Garmin Chang <garmin.chang@mediatek.com>,
-	Friday Yang <friday.yang@mediatek.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: clock: mediatek: Add #reset-cells
- property for MT8188
-Message-ID: <20250515-deploy-wiring-5829acc3d82e@spud>
-References: <20250515-dtb-check-mt8188-v1-0-cda383cbeb4f@collabora.com>
- <20250515-dtb-check-mt8188-v1-1-cda383cbeb4f@collabora.com>
- <20250515-playpen-dislodge-80245fb8b7a9@spud>
- <cbd170a3-cbfe-4b4f-a059-efe33fed0e5d@collabora.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com,
+	andy@kernel.org, ~lkcamp/patches@lists.sr.ht,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings:iio:gyroscope:invensense,itg3200: add binding
+Message-ID: <20250515-tingling-perkiness-4d686d8da695@spud>
+References: <20250515002817.81863-1-rodrigo.gobbi.7@gmail.com>
+ <81b2a499-1927-4fb3-b581-a533c64507a6@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,54 +59,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RlwhVrUT8qkuHwJd"
+	protocol="application/pgp-signature"; boundary="1/nZIj7icH+isTOz"
 Content-Disposition: inline
-In-Reply-To: <cbd170a3-cbfe-4b4f-a059-efe33fed0e5d@collabora.com>
+In-Reply-To: <81b2a499-1927-4fb3-b581-a533c64507a6@baylibre.com>
 
 
---RlwhVrUT8qkuHwJd
+--1/nZIj7icH+isTOz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 15, 2025 at 05:11:13PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 15/05/25 17:03, Conor Dooley ha scritto:
-> > On Thu, May 15, 2025 at 03:31:43PM +0200, Julien Massot wrote:
-> > > The '#reset-cells' property is required for some of the MT8188
-> > > clock controllers, but not listed as a valid property.
-> >=20
-> > "required for some" but not marked required on those platforms.
-> > Why not?
-> >=20
+On Thu, May 15, 2025 at 09:04:57AM -0500, David Lechner wrote:
 >=20
-> Yeah now that I read that for the third time, the wording is a bit incorr=
-ect.
+>            gyro@68
 >=20
-> It's not "required", some clock controllers do have reset controllers, bu=
-t it
-> is facultative to actually use the latter.
+> Generic names are preferred.
 
-I don't think I've ever seen this word before.
+Which probably just means "gyroscope" in this case.
 
-> I'm not sure if the ones that do have reset controllers inside should hav=
-e the
-> #reset-cells property as required...
->=20
-> Conor, what do you think?
 
-If "required for some" in the OP was meant as "permitted for some",
-change the wording to that and it is fine.
-
---RlwhVrUT8qkuHwJd
+--1/nZIj7icH+isTOz
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCYThwAKCRB4tDGHoIJi
-0norAQDSFIsJjHNXBCFJoJMHtI6qdNl7hLx+3jLSQS7DWgzSaQEA6lRLOyGnQfXt
-JBr7hEiXgg6X68diSAm5cGHvgBzY4Ag=
-=g5hp
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCYUFQAKCRB4tDGHoIJi
+0jdMAQCYvamjDz2ct+JZw1O5+MAQWSTiivkZhfMgOiC/RDchVgEAj6J4GewJM5VW
+3hLnB84CEk8KmiNkQvhMh+Ok7i3xBwI=
+=KCPy
 -----END PGP SIGNATURE-----
 
---RlwhVrUT8qkuHwJd--
+--1/nZIj7icH+isTOz--
 
