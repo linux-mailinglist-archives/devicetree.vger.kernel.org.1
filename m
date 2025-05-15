@@ -1,139 +1,146 @@
-Return-Path: <devicetree+bounces-177613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C42B0AB83B2
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:23:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2F33AB83F0
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 12:33:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 907851BA1655
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:24:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69EDA7A9C49
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 10:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4EB6297B62;
-	Thu, 15 May 2025 10:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FBC7296713;
+	Thu, 15 May 2025 10:33:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MjU6e95W"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="SK+GnLaa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5328E1AAE13;
-	Thu, 15 May 2025 10:23:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C9035970;
+	Thu, 15 May 2025 10:33:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747304622; cv=none; b=EjQ+zKUbG7+W5iShTz1sOGB/c4xwt6A1JwhUloiU9kxAjNMOu5nikZOqL/BQiOfE9VL0cXNePaPqRl8NzLE8am9UlGuTfPvbLsk/4N+9189XEVo2LLvhjZ/0euKB9BlqhaTsWpOdPUpSbaEzlMh6D0SrxLE+M1tvRVYVmcrRGmY=
+	t=1747305222; cv=none; b=HLWHHwhGXHGNoNU59wGBzH2xtDpikIklGiIyilxYzjNi2qCc5otMS5GLXClLqK97fNsHkrRT9/BFEUF2bINYmuyMII/acMY1l0iME+8yRVkEUXIT1SxMgMe8mnGNwlnjAQ9fG6usriGPZGCvgDZV4ab9HRDaMXdLnCs8v6UbQKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747304622; c=relaxed/simple;
-	bh=LPn993xnWWkvwlm5rudsJA0BQo0qu2yihgm1xOxvsW0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VSHLRqjl+JDSd5fBYQP1EHM5Jt4dBJdIl+KMhD85N4M1cydNT4ansepgMGGjlr4N7O0PE5wewkbiyI2+u5zNGOAxHN/R+RmgFxWHiLH2Z/aoYv9dl3PpFRtFpFv5QFkjsOHgjqoATsVRnJk6gJFMe3ac1r/25Wl1Y8fI/XdsJ/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MjU6e95W; arc=none smtp.client-ip=209.85.166.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-86135ad7b4cso34344639f.1;
-        Thu, 15 May 2025 03:23:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747304620; x=1747909420; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zJZrSFBkNbM1G4hOj8s/L4+l2f6c8+4aH2wqD19Gqc0=;
-        b=MjU6e95Wr2BTHeJzY+bQZIjb5rdR1nJ0Vex1U64iYdI+2uXKtMourAMFn+Vh2HsFUM
-         vc63ofqdHVTH6jUeKbxi2gBEAhoaGtl0lSS03qqEQDEZpVpNw4nxXvHOJjYSPgjZH+ku
-         2s/xqUn29w5Lm1EOkcGEb/TWwf15CbhScRfkXS3DN5l6e4yOs5gbBIGT4g4KyCXz9Aoo
-         TVsxcve4AHBQS8qsbiplkJJLX9K4ut3gU8Vb+i0v0igFk8HlLUD03Xe4d/ciB8QT2NZX
-         TT9D8nvxW8OKP9tr5R8jHDuIw+zCghZILwaQOefcR7UXdgR4kM0v9X9RxxU5efOYR1M5
-         P08g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747304620; x=1747909420;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zJZrSFBkNbM1G4hOj8s/L4+l2f6c8+4aH2wqD19Gqc0=;
-        b=AlfBmRZu7IpkKkG8II9PUEawqpCZOn+NPLHoZcM/xzgHryXCxa0ZZYOFtefP4aW6Su
-         G4cwOLUNeaCMeiiGfWfnS2/5bGXvyu8dAWS1pZqCxy+1k7ZA2/ngIbwlFuZcqeVlg4Qf
-         Kslxc+f8LgknFbQ/Jgy+hv4i/iuPqaANQGLhhV0CSVUDYQIfXKJe6dJH2ws7fzaf6Bxl
-         6coXvCa3Ym7Vh+8jTKKZp9gwJOvdmGF7jetrQOyaNX232uLv+6Nzffvu6++yHCVqwkeW
-         6UUPRPRSlaiM4Jtf35WF5F/sxtGOQaRmXH38PX0yO3eGVolxhyuTpa/fy/LHnSnL8umb
-         Hz2w==
-X-Forwarded-Encrypted: i=1; AJvYcCUO/oI0Rjd7zH4s3OvNzfKQTivCuGbefHjCklj1jy3PyH41OGTtRmWcu78gSdeC2tLJezBtedezneTJ@vger.kernel.org, AJvYcCUlqT9q1S36H6r3uiVEg2KD4s78M7Q0WU+G2yQc4rPpnRswIqr3x+UxVykqS+gq2B95hK4OkmAt4Y4JR2W8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhaYkvPLAIrP0aZmPw409g8RTCchSKxBqtGmxgn/YHJpnsmjyy
-	3acDXQ3LDg6nm3IMz0gj78iNIpkuNx6xvTgcz+sTIjZlE3i4I4AjHn5ZNOe5Ht/NqVfsn1gp/1R
-	7qdNkIflIhLg/HR1G5oWY51xfXM4=
-X-Gm-Gg: ASbGncvq4lU/Avk0nFXxdWbQliMb+85gYzdfbPFaLx7AQttoWJUba7PLIQLVX9b3XPh
-	EWYG5DA74oew/StKRJe6KCWmPd5jPPhffw8swgZfelQ+bQPVOi2BzXNCHilTQa7JdsDQ1uA7+zV
-	CU2dRJ59yfKa2sRcD9wdIn2nhxWjwcv3qE
-X-Google-Smtp-Source: AGHT+IHO5NjvG7NPaTx/Wk84Xf6YXEN9rB+dPDyiQnC6Nqm2qSNMD7m/f1k9O8ljI/qF9B+KJKVTOxllmfRsmBxkeqU=
-X-Received: by 2002:a05:6e02:2186:b0:3db:75e6:80d5 with SMTP id
- e9e14a558f8ab-3db75e68272mr38100995ab.14.1747304620350; Thu, 15 May 2025
- 03:23:40 -0700 (PDT)
+	s=arc-20240116; t=1747305222; c=relaxed/simple;
+	bh=jOy+gdB5snTg+AWaYBwU4zrEGtaSgqQCzCFFbsWkaZ4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HDWrW7X7dOCs2SXd2SNsR/yXz0AKkaF0MbDnIVV8TeiRA+2RQYAJqzKvlMSmzWUYBh2fEMGDcOuvorJiuUlBvJbLgPFnu/3gN60xzAHDzwMGYpRBQZbUMPpX93/+AVAdt+JZ7rPjsaVtaXBHCTSXGqtGT69NAkY9gkDv+qoX8Qg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=SK+GnLaa; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1747305220; x=1778841220;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=jOy+gdB5snTg+AWaYBwU4zrEGtaSgqQCzCFFbsWkaZ4=;
+  b=SK+GnLaaH07XxhL8iGW5yt/cXtd+Lr8IboOxqctj0X/ujAW5j3gogUrV
+   /W5LpNLRVa63MrSfBuNyJhhRwHldp3vnklRqAFNV063ruyhfKJSdc9vbz
+   7/lJH8TV2WujghT3bEbpeGQYbCMBOWyLAbHwf8JFN9PCFArP/SqFkRqts
+   t/A/tjtCsLNKXekQ3L7gX/2uEMJEgyLCKPlxfw73kWGZO2+NdeiUwmdld
+   o6dF4E0y7SMo+mZjQ7FK+1Fl7eG4YhDNU3zfekU8JIdFAmQu9YpZ5PZhF
+   FCQ0N/YPezAgVZ5MHB+lVPvDIF4nq3TTxjaTEkfS8xNeSncaDk+jvBKfR
+   A==;
+X-CSE-ConnectionGUID: YDYKtXNcQOipD744zTQ15A==
+X-CSE-MsgGUID: ZMEcAudjRRmAFgfZqoRjuQ==
+X-IronPort-AV: E=Sophos;i="6.15,290,1739862000"; 
+   d="scan'208";a="209126771"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 May 2025 03:33:39 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Thu, 15 May 2025 03:33:08 -0700
+Received: from che-lt-i67131.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.44 via Frontend Transport; Thu, 15 May 2025 03:33:04 -0700
+From: Manikandan Muralidharan <manikandan.m@microchip.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: Manikandan Muralidharan <manikandan.m@microchip.com>
+Subject: [PATCH] ARM: dts: microchip: rename spi-cs-setup-ns property to spi-cs-setup-delay-ns
+Date: Thu, 15 May 2025 16:02:51 +0530
+Message-ID: <20250515103251.210468-1-manikandan.m@microchip.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250515051900.2353627-1-shengjiu.wang@nxp.com>
- <20250515051900.2353627-2-shengjiu.wang@nxp.com> <CAEnQRZBJgJpyE-K6fn3_s61-Q7j=mXk5FGMggpaBhnH62w+ACQ@mail.gmail.com>
-In-Reply-To: <CAEnQRZBJgJpyE-K6fn3_s61-Q7j=mXk5FGMggpaBhnH62w+ACQ@mail.gmail.com>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Thu, 15 May 2025 18:23:26 +0800
-X-Gm-Features: AX0GCFs1HwaoDdoFbQAbv3WJV20f_7O_khUEi6c3pJChsc5rxc9dD7nQQ1yVecY
-Message-ID: <CAA+D8APSQK8FqGYYmAygF-dhM7N_54Zw-jSz4xWrr5ToGfUKmw@mail.gmail.com>
-Subject: Re: [PATCH 1/6] arm64: dts: imx94: Add micfil and mqs device nodes
-To: Daniel Baluta <daniel.baluta@gmail.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, carlos.song@nxp.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Thu, May 15, 2025 at 6:19=E2=80=AFPM Daniel Baluta <daniel.baluta@gmail.=
-com> wrote:
->
-> On Thu, May 15, 2025 at 8:21=E2=80=AFAM Shengjiu Wang <shengjiu.wang@nxp.=
-com> wrote:
-> >
-> > Add micfil and mqs device nodes
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx94.dtsi | 30 ++++++++++++++++++++++++
-> >  1 file changed, 30 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx94.dtsi b/arch/arm64/boot=
-/dts/freescale/imx94.dtsi
-> > index 3661ea48d7d2..77297dde5c95 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx94.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx94.dtsi
-> > @@ -108,6 +108,16 @@ scmi_misc: protocol@84 {
-> >                 };
-> >         };
-> >
-> > +       mqs1: mqs1 {
-> > +               compatible =3D "fsl,imx943-aonmix-mqs";
-> > +               status =3D "disabled";
-> > +       };
-> > +
-> > +       mqs2: mqs2 {
-> > +               compatible =3D "fsl,imx943-wakeupmix-mqs";
-> > +               status =3D "disabled";
-> > +       };
->
-> Node names should be somehow generic.
->
-> So here, we need to have something like:
->
-> mqs1: mqs@<ip_addr>
->
-> similar for mqs2.
+The naming scheme for delay properties includes "delay" in the name,
+so renaming spi-cs-setup-ns property to spi-cs-setup-delay-ns to keep
+that consistent.
 
-There is no ip address for mqs module.  The only control register is
-in BLK_CTRL.
+Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+---
+ arch/arm/boot/dts/microchip/at91-sam9x60ek.dts        | 2 +-
+ arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi   | 2 +-
+ arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi | 2 +-
+ arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts      | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-best regards
-Shengjiu Wang
+diff --git a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
+index cdc56b53299d..c1ff3248bd8f 100644
+--- a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
++++ b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
+@@ -609,7 +609,7 @@ flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <104000000>;
+-		spi-cs-setup-ns = <7>;
++		spi-cs-setup-delay-ns = <7>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>;
+ 		m25p,fast-read;
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
+index 8ac85dac5a96..13c28e92b17e 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
++++ b/arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi
+@@ -44,7 +44,7 @@ flash@0 {
+ 					compatible = "jedec,spi-nor";
+ 					reg = <0>;
+ 					spi-max-frequency = <104000000>;
+-					spi-cs-setup-ns = <7>;
++					spi-cs-setup-delay-ns = <7>;
+ 					spi-tx-bus-width = <4>;
+ 					spi-rx-bus-width = <4>;
+ 					m25p,fast-read;
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
+index ef11606a82b3..9543214adc9f 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
++++ b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi
+@@ -234,7 +234,7 @@ qspi1_flash: flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <104000000>;
+-		spi-cs-setup-ns = <7>;
++		spi-cs-setup-delay-ns = <7>;
+ 		spi-rx-bus-width = <4>;
+ 		spi-tx-bus-width = <4>;
+ 		m25p,fast-read;
+diff --git a/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts b/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts
+index 9fa6f1395aa6..fbae6a9af6c3 100644
+--- a/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts
++++ b/arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts
+@@ -714,7 +714,7 @@ flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <104000000>;
+-		spi-cs-setup-ns = <7>;
++		spi-cs-setup-delay-ns = <7>;
+ 		spi-tx-bus-width = <4>;
+ 		spi-rx-bus-width = <4>;
+ 		m25p,fast-read;
+-- 
+2.25.1
+
 
