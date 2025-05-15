@@ -1,144 +1,105 @@
-Return-Path: <devicetree+bounces-177536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E0BAB7ECB
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:29:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B77AB7EE7
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:35:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B320716A2CC
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 07:29:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 163958639AC
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 07:35:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 059E62798F4;
-	Thu, 15 May 2025 07:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 145ED27E7D1;
+	Thu, 15 May 2025 07:35:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JKbDu/ls"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13AD71FDE1E;
-	Thu, 15 May 2025 07:28:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69891A275;
+	Thu, 15 May 2025 07:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747294133; cv=none; b=b4Xes3SqPltlGbkrFg7OdSzN0ZQKxM0BRtPtIckF3Z+gGQ2x2WrRD7VR8kqjy+CoosFeJ3jF+HmAN29h/8T5OTpnQv9MI/dn6uD6e8u5qYdNQ0nK58ME22epng8LQqT2gR1MbrHI8T2kkL1/Ww5WA0SL/tVvbXmMGTNfmfPxi+A=
+	t=1747294528; cv=none; b=Dk+dqfm1eFaPFYn66IC7djWbHSVHowWQqMJOm79LidHij/7Yp/ERiRpVDsrVIfFT1LODeu/SBe0WdEHgp+41Yaf996owrWrUR4MAPevExPIcSDXTLyv5s7WDMqrpfUj9hdQTrSvGi61GmFNNjzW218jY7T83HGZzLY6+uaYXeHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747294133; c=relaxed/simple;
-	bh=nglzcgSSePNXWyINmtN9UWa6zBcKeqo8R3tUcJJt4P4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GtRwi9fK1UhFjeislLwQk/yHbZMZ5K5BJhmLf0LUAhFNsrwkOOBJTjqp6UcsKagPriT/R5StadhgGesLtnYQ9iHFLp4wQgWkThLTFWdJz+VoJG5jFB8CFhm9zMUjuzl/AdzVTc0YXsbhIgGf/+UsBc1EH7i7zKXlt8yG9uNXKZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CB84144380;
-	Thu, 15 May 2025 07:28:26 +0000 (UTC)
-Message-ID: <122fc6cd-2e21-4fca-979d-bcf558107b81@ghiti.fr>
-Date: Thu, 15 May 2025 09:28:25 +0200
+	s=arc-20240116; t=1747294528; c=relaxed/simple;
+	bh=+KJy2T+MNcXBlOneJXLi8WasNvcgLEUfdbqlEhlSagM=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=nyZS9yaSGW/nhx0ZP+Kf5GdZPjifwmlXQBauPx5Cww8YMSYGNttRYxcBMzdX7tSIUrW1cO7g2Nj/7kr6nI8XltEHjhdB61FvU8z2V98egleQ0OczmyODdSSNmiFH8D49arPYR9rpIQc5Cn7WVicrr5Keb8BhMauSohYGiMuLrLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JKbDu/ls; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1552C4CEE9;
+	Thu, 15 May 2025 07:35:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747294527;
+	bh=+KJy2T+MNcXBlOneJXLi8WasNvcgLEUfdbqlEhlSagM=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=JKbDu/lsaSuMyXHGr2FudR7ulPXsrvfo4wdjpQGWb40M5hyCSuNzLRqWhKfL3jCNB
+	 SA4P/flssGjW1tQmY+EUl7Jf9ONe4Dok49kDy2GOkdjFiQTZeH6EqtDZM5NgSwxL8y
+	 R8rD8UklimLrAcj7OgWntQz1L4OcNcej2RuNQLhGIeEVXfTG40bxiuDdKD5+Ju3yjT
+	 gyMARGGAm8VfyCLpm58mtBALD5rdXy2DMGUL9EkrtbNJNmRGnjwHLo4pWQimy9dtTL
+	 64XH8YUmGIauPMQl01yOPGmmiyNe4b7TXScDHsgv1B6cQ/xVzIi435hjY6qcgRC/7g
+	 xYScWXQONwQYw==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Trevor Wu <trevor.wu@mediatek.com>, Jiaxin Yu <jiaxin.yu@mediatek.com>, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250514105702.28622-2-krzysztof.kozlowski@linaro.org>
+References: <20250514105702.28622-2-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: mediatek: Simplify
+ mediatek,clk-provider
+Message-Id: <174729452159.272498.16252204109859942609.b4-ty@kernel.org>
+Date: Thu, 15 May 2025 09:35:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 05/27] riscv: usercfi state for task and save/restore
- of CSR_SSP on trap entry/exit
-Content-Language: en-US
-To: =?UTF-8?B?UmFkaW0gS3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>,
- Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Christian Brauner <brauner@kernel.org>, Peter Zijlstra
- <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
- Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
- Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <benno.lossin@proton.me>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>
-Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
- andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
- atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
- alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
- rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
- Zong Li <zong.li@sifive.com>,
- linux-riscv <linux-riscv-bounces@lists.infradead.org>
-References: <20250502-v5_user_cfi_series-v15-0-914966471885@rivosinc.com>
- <20250502-v5_user_cfi_series-v15-5-914966471885@rivosinc.com>
- <D9OZVNOGLU4T.2XOUPX27HN0W8@ventanamicro.com>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <D9OZVNOGLU4T.2XOUPX27HN0W8@ventanamicro.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeftdelvdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpedvleeivdevgeekudefjeeigeeuvdekueeiuedufeethffhiedvleeileduuddtgfenucffohhmrghinhepvghnthhrhidrshgspdhinhhfrhgruggvrggurdhorhhgnecukfhppedvtddtudemkeeiudemfeefkedvmegvfheltdemgegsjedumeegvggtieemjehfhegsmeejsgdtudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvtddtudemkeeiudemfeefkedvmegvfheltdemgegsjedumeegvggtieemjehfhegsmeejsgdtuddphhgvlhhopeglkffrggeimedvtddtudemkeeiudemfeefkedvmegvfheltdemgegsjedumeegvggtieemjehfhegsmeejsgdtudgnpdhmrghilhhfrhhomheprghlvgigsehghhhithhirdhfrhdpnhgspghrtghpthhtohepiedupdhrtghpthhtoheprhhkrhgtmhgrrhesvhgvnhhtrghnrghmihgtrhhordgtohhmpdhrtghpthhtohepuggvsghughesrhhivhhoshhinhgtr
- dgtohhmpdhrtghpthhtohepthhglhigsehlihhnuhhtrhhonhhigidruggvpdhrtghpthhtohepmhhinhhgohesrhgvughhrghtrdgtohhmpdhrtghpthhtohepsghpsegrlhhivghnkedruggvpdhrtghpthhtohepuggrvhgvrdhhrghnshgvnheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopeigkeeisehkvghrnhgvlhdrohhrghdprhgtphhtthhopehhphgrseiihihtohhrrdgtohhm
-X-GND-Sasl: alex@ghiti.fr
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-c25d1
 
-Hi Radim,
+On Wed, 14 May 2025 12:57:03 +0200, Krzysztof Kozlowski wrote:
+> "mediatek,clk-provider" property is a string, not an string array, thus
+> "items" is not really correct.
+> 
+> 
 
-On 06/05/2025 12:10, Radim Krčmář wrote:
-> [Ah, I missed v13 and v14, feel free to Cc me on next versions.]
->
-> 2025-05-02T16:30:36-07:00, Deepak Gupta <debug@rivosinc.com>:
->> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
->> @@ -91,6 +91,32 @@
->> +.macro save_userssp tmp, status
->> +	ALTERNATIVE("nops(4)",
->> +		__stringify(				\
->> +		andi \tmp, \status, SR_SPP;		\
->> +		bnez \tmp, skip_ssp_save;		\
->> +		csrrw \tmp, CSR_SSP, x0;		\
->> +		REG_S \tmp, TASK_TI_USER_SSP(tp);	\
->> +		skip_ssp_save:),
->> +		0,
->> +		RISCV_ISA_EXT_ZICFISS,
->> +		CONFIG_RISCV_USER_CFI)
->> +.endm
->> +
->> +.macro restore_userssp tmp
->> +	ALTERNATIVE("nops(2)",
->> +		__stringify(				\
->> +		REG_L \tmp, TASK_TI_USER_SSP(tp);	\
->> +		csrw CSR_SSP, \tmp),
->> +		0,
->> +		RISCV_ISA_EXT_ZICFISS,
->> +		CONFIG_RISCV_USER_CFI)
->> +.endm
-> Do we need to emit the nops when CONFIG_RISCV_USER_CFI isn't selected?
->
-> (Why not put #ifdef CONFIG_RISCV_USER_CFI around the ALTERNATIVES?)
+Applied to
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-The alternatives are used to create a generic kernel that contains the 
-code for a large number of extensions and only enable it at runtime 
-depending on the platform capabilities. This way distros can ship a 
-single kernel that works on all platforms.
+Thanks!
 
-Thanks for your reviews on this series,
+[1/1] ASoC: dt-bindings: mediatek: Simplify mediatek,clk-provider
+      commit: 0e4e9d75899cae4e7f379c50fa3d0121eff9641f
 
-Alex
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
->
-> Thanks.
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
