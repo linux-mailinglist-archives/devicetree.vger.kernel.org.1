@@ -1,144 +1,186 @@
-Return-Path: <devicetree+bounces-177494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87423AB7CCD
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 07:04:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97262AB7CEA
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 07:21:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2236716B1BC
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 05:04:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FB2D1BA2524
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 05:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D290204F99;
-	Thu, 15 May 2025 05:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302AD1DB148;
+	Thu, 15 May 2025 05:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kDLGb+W2"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="SkyYSq2D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2060.outbound.protection.outlook.com [40.107.249.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F40610FD;
-	Thu, 15 May 2025 05:04:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747285445; cv=none; b=djyKaS1DfwopvOOwigpsIDp9qQOo+Z2INc+qgHE8eJ9IgLlBBGUJDmfiHH6uPr9r89LPQ8ZeMkC4IwQn0JAGXdu7oHf5vO3S7iYUOw0AZWWujOs5IerOaoNr6w9cvWCA6usmR6jDMZLpQTN06+wGRg+ptW15usW4s3FumCxtlfg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747285445; c=relaxed/simple;
-	bh=A1DT69l4hCTQvl+W6lgZGKWwC2Lyi1FbgKgW9qNW6d0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b569JsmIQpZl51jryv4k7UN0VtCPDSEVjCTYZNlVAJ4D4FejD62xaCciUef3eKdaH8E5SE2oSbx6qm922/wcVFh6AQ243katlF+XwctpEORVacgONo+R+8yDWwwuqsP9Mtd22GNxXzjMqTTA11w8U3mc2ZjctM03uZSKlx9bozw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kDLGb+W2; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747285443; x=1778821443;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=A1DT69l4hCTQvl+W6lgZGKWwC2Lyi1FbgKgW9qNW6d0=;
-  b=kDLGb+W2qX7YnzT2+JTHmndxFxHMFE5sII2nXdGIYmnTBcho/iq+TJda
-   PMGxTv8gOch0mDyFo5SnwHhwvP4VKXe53aqkgRCTtlwOnK3Uc25bqCFe1
-   eL+HQoO4eOtdCAv4BoQu8A2hRdAaK/nOOAUuCN6v78L0ZAZ1UdbV3L5ZF
-   +ddznUaX3Pni9pFFUHv64OLveANWGyFDniRzxqlRU6P5uAlsAEwA068bL
-   YeaugYHIK3hKiK8LpTVu+pFnwqEst6UthMD45IXKMSGAXpNLdvAojUWne
-   cvZ+3xCqyUkbtNswTeqQSO1dApJwyWOkmtQOp7Iczy3tL+MpaOpgWHxD7
-   Q==;
-X-CSE-ConnectionGUID: ppP16AqiQj6NdMc26YEUHw==
-X-CSE-MsgGUID: 8i+GVE7uTIeACnQg9pIR3g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="66759275"
-X-IronPort-AV: E=Sophos;i="6.15,290,1739865600"; 
-   d="scan'208";a="66759275"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 May 2025 22:04:02 -0700
-X-CSE-ConnectionGUID: pHVw2Ts6Ta6UMMsXsSi9uQ==
-X-CSE-MsgGUID: +zLoQS0sS7ia7mtfmnifEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,290,1739865600"; 
-   d="scan'208";a="138754815"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 14 May 2025 22:03:58 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uFQl9-000Hwd-1P;
-	Thu, 15 May 2025 05:03:55 +0000
-Date: Thu, 15 May 2025 13:03:07 +0800
-From: kernel test robot <lkp@intel.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Chris Brandt <chris.brandt@renesas.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AA6D191;
+	Thu, 15 May 2025 05:21:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747286470; cv=fail; b=FuAi5EIyLh3MEBWTZ8U2edRZT/E3wZRfMA2Lgsgq20kDLU8JtcQYyp5jm3vUITXpNRhuFC+0vQayUm6oVWMK33DLin+qTMvD0fFUskKnHhQ+LQmrhaZ2MywvEA4vODkFi+GPadEOCpVfq2n55ACYvCVKohoNcmEsDhxcr0fyX9o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747286470; c=relaxed/simple;
+	bh=AazVoDDtQiQUsGZGZUkzpalnlkTggSq1AL4iqdI9w5A=;
+	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=tNP4CIh8IGCFvs945fc8zm3E5wKmZeEN7HdVHnNbVEsa3D7qWXnDRD8tQpckANrc4iTx3V0+JuO1hZEz4YOFxvxuU0jBnKzxmFt8fRFQyfQ05TIHnNC08S0kc/VCRFaEVI/5XqXG/qtAtjLb4UPk570u64peL9XZUnUpKjKRtSM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=SkyYSq2D; arc=fail smtp.client-ip=40.107.249.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H5FQoQWJ4K4vEGzQMQEGYsy7c/4ORwYtgfr/wQvi+RH4uIiVP9dsNQR9KBcuKoV5U4GYZGB2vGLW6ylbI3TSQNq20wANMSTE8mR2GSH3IfZZLNuN5Hr9g6B7Ixs6ZPtnGum4KSjahy70kXiM1ePwWEfWLx+2ONHY/QNCWrNeuOedEVqqZMxQedcE7d0CsCT8rnvEIg7CZx9aNZLycpYOF9+Ygc+oYeAOYdehf0S6qvmy2tl/TbOUiKAb/d2t7G9gehgowjMYcstOj/avL4TtXIyn5qdH6PFq4TBaN7/lOOQc3guu83fglKZLYaS1MKzouQ033t723EM7P0s5lfMesg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UWIYowIf3xsj4ByiwvJpeqB69YjCsMK357Txuwo2iu8=;
+ b=s4RxPBVq3kClxBVNjMBHC1Z59an+3zN7eRygzCEb6byARW4I9+BNUqv4p9+beb1TyEG+qRZMJaWuYnbaCioUkmzotHy44frzDT4CxuM9+IQrJ3YL7gPgXfIUyuuq6G3EKCC5CEuq3NGJbHmgp0v31jgG1luARPl2S8yJUT2ptBX9KHa+ANXeAW3aU2rZYFk6FQjdJo++W/rGEqf/WyxutXo4sv4TOKmVqo8fkpeEUf+CD60BlUZMN/3uEJSme+KfExnRWd6OQ2QEVjqyPzReDhGtutonyEjeu0mvebk1Ye2gxp5x9XXabODdi949Vx0s2A/s6f1+AlX+UkmTzDT2Tg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UWIYowIf3xsj4ByiwvJpeqB69YjCsMK357Txuwo2iu8=;
+ b=SkyYSq2DEunelWY1uWIUrcOVJiu8+xKBJKQY2GydY1FEgS3nD16WBOc1/o6ZSN0rszQsk8hL82+PIzyK45nYhr+Q+67g5j7l0DoQPd9fUg0LDulBWuMMHMJjWqt0NKXkUjXvytJsoCPZUlI9PYvd0GA/phpNsAC46okaej9gf6lCA2RnJ1w52Ua+CYlevwzbGHhZG5As4NDZUd3YhV8L2k3l2pOiLChN+rb+aDaFO71C1tD3CQbyPvgZoW2j0F7rjLtkUth4Wggd9ZrVX2i0azwvOHONbBmB4GIQhO8uHNKQqtx3rz3X6ntMz6sGVKZCErg9hnNwyT/591zO0931Kg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB7044.eurprd04.prod.outlook.com (2603:10a6:208:191::20)
+ by PA1PR04MB10914.eurprd04.prod.outlook.com (2603:10a6:102:480::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.29; Thu, 15 May
+ 2025 05:21:04 +0000
+Received: from AM0PR04MB7044.eurprd04.prod.outlook.com
+ ([fe80::7be0:296:768c:e891]) by AM0PR04MB7044.eurprd04.prod.outlook.com
+ ([fe80::7be0:296:768c:e891%4]) with mapi id 15.20.8722.027; Thu, 15 May 2025
+ 05:21:04 +0000
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v3 2/2] clocksource/drivers/renesas-ostm: Unconditionally
- enable reprobe support
-Message-ID: <202505151255.rCHp8Bvu-lkp@intel.com>
-References: <20250506103152.109525-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	linux-kernel@vger.kernel.org,
+	shengjiu.wang@gmail.com,
+	carlos.song@nxp.com
+Subject: [PATCH 0/6] arm64: dts: imx943: Add sound card support
+Date: Thu, 15 May 2025 13:18:54 +0800
+Message-Id: <20250515051900.2353627-1-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR04CA0184.apcprd04.prod.outlook.com
+ (2603:1096:4:14::22) To AM0PR04MB7044.eurprd04.prod.outlook.com
+ (2603:10a6:208:191::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250506103152.109525-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB7044:EE_|PA1PR04MB10914:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6a9f08a7-78f3-4622-4510-08dd93704994
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?LiS8RfPK+ouslZpEHAQcIVnFWlWWbKeZnkp7ek2Kq376EbjKdX2erJAxIf+H?=
+ =?us-ascii?Q?X443iu9XSnotIHdAQhk49Xac/8TgU0Dm3U3ygYPaefiHskjtH6WQsW8oS7oR?=
+ =?us-ascii?Q?W3qXqojPztu6czfBbhTt20aTLChaqnxQpAQ9ifemCAFGC7hI9xu8vo+VNZ4T?=
+ =?us-ascii?Q?LTBadaTxdi/I/t70vFAucbeuKbKXfIDTh/alUbij744yoy96pn3JB1ptoQPA?=
+ =?us-ascii?Q?Z08TFv6xok9cq9yDZ2cAgi0DYoYbnrAgCvqnpseyGlGLQyA73PYYxCDWrybd?=
+ =?us-ascii?Q?enFQ1tohjDJU/HqLT2q495qkztk9n3D4cBU+1xIInvNU2D6aPMpVkeczaE5C?=
+ =?us-ascii?Q?yNCSetUkWulWEVZCHJIPI2h6tRcL4YNL+XRAYpefiAzmoE82ERfr8TYAsecx?=
+ =?us-ascii?Q?6b/xS7xGyg1XEDYMvGADdHJNuRcur2LUWN0eIFCkEjJ3erPYAm1t0OfkWBbh?=
+ =?us-ascii?Q?JEIMRhN76+EisEZ5jHKCtk0DbMZFhcjpRd9Sk5hTDqiDCB+wJ83p70RiZdV9?=
+ =?us-ascii?Q?X+cO6hCjuYonVcwqnOYXYAG9m6KZUFRonCANPw0oviiE6kalZ21WqnI2K9jl?=
+ =?us-ascii?Q?p/zE5r7Rzh6kkxG1aoChoXvLj1gIAIj6gimV4jDTnc75Hy892An24R5CB8Yj?=
+ =?us-ascii?Q?zw7JLIjIkPSjUPgn4YiRRKdn7XM868KqgWKaoZLB12zE9MLbecT1GCZcbXaz?=
+ =?us-ascii?Q?qyat0AdXD1YVxvh3XYSoFTUXMd/lWNABY4o6Wf6HCJ6KVCeGgFCrS6jAGI6v?=
+ =?us-ascii?Q?R+KtMYo5qLB6ud5Y8l5C28r3dRsiGQUaVgDUIVqvk6p2iy5+oSqAIEoxTC9Y?=
+ =?us-ascii?Q?fFaWX6ajZcGTuPjr3TNb2mxZfJOJMlYLvQZdLQicgH6Qy2ha7onKFmlAjBXd?=
+ =?us-ascii?Q?vUkXI2uKH+laWobAIfO3O52BHA/mzeJZfzhwl4lO15SvjFQP8QuJBcpkI9dI?=
+ =?us-ascii?Q?LJjhVLz/CB3+JMFpCiHXMaKX6xoiH0tv3wEgb6qlgYN8elY2ExkKrAMzZcVr?=
+ =?us-ascii?Q?OzdDbUknFZ/qewd7qlGxDr+aqIsInEDMuFNLISO+/IR8f8aZfTw4uMdUmbhp?=
+ =?us-ascii?Q?j5udxwiOOaEFTF8wSyx7serz9GAHdKXo3bS3mHWzjw4Cvvlmm3ZUcSzxVR3D?=
+ =?us-ascii?Q?ReOBT3gfy4ZYW2zV1qPfDS6mNfidb60DyoBWnWBO1jmeD8SJAzMm2F3qgqya?=
+ =?us-ascii?Q?CqMw3OyAD2DTQCMFtcnTLCaS7joJy+mOHixl+mcKmHHMQAmVa6icIoZLspbg?=
+ =?us-ascii?Q?n4wWgPrNRsI9mDSUf414ZMJC467jo4BgHl2OJYc1avDb74rsDRlpriWuSv3Z?=
+ =?us-ascii?Q?FrASQASyaCBrpn/iaOs7h0u1IkHPrso+8jrGGV6sK9jEIWUIXsNbfToau8JF?=
+ =?us-ascii?Q?6GM2uES71JqLRS9jQ0pwDfnMepbcLvkVxcRoXdiDAbdhNl3Isz3qDYnw2bno?=
+ =?us-ascii?Q?kMcAMXSInvChaDPqB/2azJdI6BZMEfNe2L4j93WMITLnh6gSL77H5cfzmBZy?=
+ =?us-ascii?Q?sUipSQN7ORqVL90=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB7044.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Isg48EC5ybzBTXychhnYIPg71eRfPUXwaSfd8XGTttDFrNFLKlVoG/cwLHyY?=
+ =?us-ascii?Q?nj7KIZBSdMgkQvLwo5ttcd1ZQmFplEv4B3psaGAcdInYSCr2sjL8A81/uJ4k?=
+ =?us-ascii?Q?lZSYJgWLZD/WlWDKA+GySrORexhqqs1PsjcKj3vw2f3r/RqylLKejxVYQtBc?=
+ =?us-ascii?Q?ygUZxazg4Di0JFMaHpEj+T4fjfGoaE7lYOxZxFLoVjHEDchfRExsRqBtd8RV?=
+ =?us-ascii?Q?v3uPff6EO/3MIvWw7wEyN9j7gBBUAwom2+gVMUjNv+14R+s6MAeX3KRjzCdi?=
+ =?us-ascii?Q?ud1H3DLr4ZECXGn+cc86JSP6AZKJq2cRuzxOw1vmOHTusHp1+crTFaD3JMBG?=
+ =?us-ascii?Q?LChEb0LoBm4XXMhlOiEqEijNPHa3IrEtpaxD+U6EbxSopm+MtRC64N5XGAVi?=
+ =?us-ascii?Q?j1O0CCs0Jbpjkdjw8ZaH7/spPwpeSRBYQUHPopYuAUhaipV9TfAyyD3SEv0Y?=
+ =?us-ascii?Q?sHQgKxQCPmuCrsNNTpJvXbwOF1grAjUNsZEFJUI3mvNiqargUrCr7LtM6egZ?=
+ =?us-ascii?Q?R3afLBQjc87VKAQQSukuwZoHGxZuishIv63W/TgkNjYJjo8GWka4UQZ47hnE?=
+ =?us-ascii?Q?HxSymtMmMmlzzbCYJaJd5uKnnpPfA2c+dBY2wJVrtWNv5XcKG6w24tz9Njwe?=
+ =?us-ascii?Q?ugPAZlle4PfrQFVN7gOATwVMdfoqCrGumqL+Ssvjh8J2zvj6rjRiZinQJZ9Z?=
+ =?us-ascii?Q?wVbZKM9jgwMXAc+dG7Vwb6e+ynCT0Hn01Z5OF3WDfknV/YhytvEB51xDRwgu?=
+ =?us-ascii?Q?klKPd7HfsYm6eob4Nsw7drxBQYEJdb7PJZ8dIyiknM4+kULthBboLTSKAjDj?=
+ =?us-ascii?Q?ZPeSCMji+6CYB1TZXj0sWn6tHsQbIXmxNdBB3+Bz0c2pTjMu+aa/qIf8YyiS?=
+ =?us-ascii?Q?PrHg5+zsGKAiKrP4h7RmLvy93qdHVdoU6na3fpIgHUh9mcvGAo/jfd1tBw4L?=
+ =?us-ascii?Q?0Fs3dXoJITFsW2MWpXlW2zyf/qK0iaO6NEXuujtNmIraN6I7Apk8U4Bxr7KG?=
+ =?us-ascii?Q?0FrroKsfLQx61xCdP3FjrHyzi3JF9fPjYhFnGYD4w2Xz65xLfaiuCwbr6RcO?=
+ =?us-ascii?Q?/7loBm5R/dWPSp13woaxUeNYpC6vAEcBXYlRi4wITXONcRSUwI1IFWaYZzR5?=
+ =?us-ascii?Q?mgwWnBo9H0OzwDUjVb4GUoEuPoMAUGaYhAoVYGCJJ7sVSh3KZKR8MBoogYMX?=
+ =?us-ascii?Q?NyjFgvns906UJp65OhPSm1vvgsqGrs4PG4KUGoA2EmeuK+UiKXj5rQnqWy9M?=
+ =?us-ascii?Q?4kJe/tOE2gxLgMhf8TZpmAqL2no+tMzOewRXX+7udDelRlSRNgz2TSxaPKts?=
+ =?us-ascii?Q?D1tnC+8JuI+f/lQYV5MPyqiGMZ13XHy1T6Zo+z2q+Iqw5pNl1GqRGEkJkAkn?=
+ =?us-ascii?Q?siMNcn1i8ajZ5e9WKbgCByLAkTxH+dRF9ov90lm4w+3lH1wOPQ5V+caacr4z?=
+ =?us-ascii?Q?TtqqM/EswC+AxR3/XB+wHRUbRZBJEod/tYmxi/tUtsZ3DsTG5SURFkhLtcrV?=
+ =?us-ascii?Q?DCWtF1fFLLQIIkcbTnKLVu9VC6AegnxkkqO9OaVo6xbEjCEsXJ16IILyO/Xm?=
+ =?us-ascii?Q?xx68VbUBDqBDJatZEBYBrFKlwzCxEIMI1aJLrvPZ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a9f08a7-78f3-4622-4510-08dd93704994
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB7044.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2025 05:21:03.9985
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NgvBraaC5okaqJk6ugfltMCtxGW6GmCJOxJOohRJpASYip8AyOh+p21l/9juASBWwajt4OgDbuh9GxSpM13aMQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10914
 
-Hi Prabhakar,
+Add sound card and related i2c device support
+- micfil
+- bt-sco
+- wm8962
 
-kernel test robot noticed the following build warnings:
+Carlos Song (2):
+  arm64: dts: imx943-evk: add lpi2c support
+  arm64: dts: imx943-evk: add i2c io expander support
 
-[auto build test WARNING on tip/timers/core]
-[also build test WARNING on robh/for-next linus/master v6.15-rc6 next-20250514]
-[cannot apply to daniel-lezcano/clockevents/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Shengjiu Wang (4):
+  arm64: dts: imx94: Add micfil and mqs device nodes
+  arm64: dts: imx943-evk: add sound-wm8962 support
+  arm64: dts: imx943-evk: add bt-sco sound card support
+  arm64: dts: imx943-evk: Add PDM microphone sound card support
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Prabhakar/dt-bindings-timer-renesas-ostm-Document-RZ-V2N-R9A09G056-support/20250506-223636
-base:   tip/timers/core
-patch link:    https://lore.kernel.org/r/20250506103152.109525-3-prabhakar.mahadev-lad.rj%40bp.renesas.com
-patch subject: [PATCH v3 2/2] clocksource/drivers/renesas-ostm: Unconditionally enable reprobe support
-config: hexagon-randconfig-001-20250513 (https://download.01.org/0day-ci/archive/20250515/202505151255.rCHp8Bvu-lkp@intel.com/config)
-compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250515/202505151255.rCHp8Bvu-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505151255.rCHp8Bvu-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/clocksource/renesas-ostm.c:235:34: warning: unused variable 'ostm_of_table' [-Wunused-const-variable]
-     235 | static const struct of_device_id ostm_of_table[] = {
-         |                                  ^~~~~~~~~~~~~
-   1 warning generated.
-
-
-vim +/ostm_of_table +235 drivers/clocksource/renesas-ostm.c
-
-3a3e9f23c2cae9 Biju Das 2021-11-12  234  
-3a3e9f23c2cae9 Biju Das 2021-11-12 @235  static const struct of_device_id ostm_of_table[] = {
-3a3e9f23c2cae9 Biju Das 2021-11-12  236  	{ .compatible = "renesas,ostm", },
-3a3e9f23c2cae9 Biju Das 2021-11-12  237  	{ /* sentinel */ }
-3a3e9f23c2cae9 Biju Das 2021-11-12  238  };
-3a3e9f23c2cae9 Biju Das 2021-11-12  239  
+ arch/arm64/boot/dts/freescale/imx94.dtsi     |  30 ++
+ arch/arm64/boot/dts/freescale/imx943-evk.dts | 432 +++++++++++++++++++
+ 2 files changed, 462 insertions(+)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
