@@ -1,138 +1,258 @@
-Return-Path: <devicetree+bounces-177618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65ABAAB848E
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:12:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA6F9AB84B2
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:24:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44F061890572
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:12:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24AFD4C01E9
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:24:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC22298246;
-	Thu, 15 May 2025 11:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260362980C0;
+	Thu, 15 May 2025 11:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jrE7mMQi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b9xzFHwd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7DCE297B8F;
-	Thu, 15 May 2025 11:12:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C36297A57
+	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 11:24:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747307520; cv=none; b=CcQay3Of1uw5BayOQWBmZswRL6znbrmUXWm8C6l7PamYGkvhLBcWTgUMOUNsfAdbNhFfKODi0kM+kMQMABMF/koPn7UAyBNAC+HceTYQJBRWqIaiMFPyBwCCqOJDmadotolkSJzaRB9i2B+aaTBgNhF26qltCv7RU6yeQAmSgwU=
+	t=1747308270; cv=none; b=loDuZE8YHKy3G2MwdaeGp6qVC7qeXgC5HgSg118WGS0YpRrCdzop5lBeiHTJld8PYfhRopAtWQCTld0sM2lBgWsmK3OsJgodpsrr09glxsRcfOlRcLKngAWjiDoVrGGKuJzpEMJqYRa+R+0Gwky2mjAzHM+IbotppHfX8A90WFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747307520; c=relaxed/simple;
-	bh=XPgp+L0xynTMhQdAzvCt1qZX2mlUrGAkjD9kQfYs8lQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fq22bH9vzJCz8lUfc7BugI7aUKwMU4aUY8NZCMyZ5vDXOOJ6703CUtJ6Jfgdx5EHHrUd2hcOOPW3sAtw9tHQbKghHuGyTjEBPIRzgCxfsC5bxNiipIspyBNF3rG4Qgvn+FuRBuifOoCMAt3DEUyxRxaEkA5IsPRYo81NqspJGRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jrE7mMQi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A40CEC4CEE7;
-	Thu, 15 May 2025 11:11:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747307520;
-	bh=XPgp+L0xynTMhQdAzvCt1qZX2mlUrGAkjD9kQfYs8lQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jrE7mMQifMc13Y+3ygYR6Ksx18KYg211bivTIiBnDb4Dq745anxWHzyhyG5eK8lYV
-	 4ZbaoTVzZQ8CYY9jqpashkR9z2Jmm67I0wF+PN/3ntuUbbD2OgUra3UD+vxQCCHdJ/
-	 Fr4BxbpIGmwUCf9Hxy+gc6ScMs+3zO0wNAnisOPsWnsPxJgZ/SPV//+j/lMTl8u7EX
-	 7/4g1PVfrifnQqPZ1XhDLpmL2VKoogXaEtZ7iOpFa91UrvjqxQFaztivEW9LY3o01b
-	 O9Dp0Kd8jACC3UOLApN8mIZ/RsJhAFTjuQ4DLZYL+p+l5pGTIKc+YPdc36bFEb+vLH
-	 c4eKN6dj0XcUg==
-Message-ID: <daf58379-ea55-468d-9174-8a04677550e2@kernel.org>
-Date: Thu, 15 May 2025 13:11:54 +0200
+	s=arc-20240116; t=1747308270; c=relaxed/simple;
+	bh=ImtyEelXTfk5GFXydBAucagBXjdcQTTFKMCCmtAc0PY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=onO3yeU3wptGdfNZYk5pcabac3MMkVkvG895IRsUP3cp492yaoH9A1wovr0xVgqhtwLoU+ifxKU8rdyTPMOnkNYZIHXWGyXGUfAylzdtE0LVvX8Z8dKAAChNOD7QGOl51A+kS3iHVVvFxOSIRVKCisb9b5E7Lu94ZbbyleZG+jE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b9xzFHwd; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-441d1ed82dbso8245605e9.0
+        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 04:24:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747308266; x=1747913066; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Oq3luUbNQrh4sO37NnuDYHxjHPc8/KBLQt1bSPbX55c=;
+        b=b9xzFHwdS+cqvBRrtbDl7d9CEMiaj9Z2oze/nL/Lax8YgcMjbZOQ1sevfOqL+5aqAf
+         fKV7KIzkT1l3ezSGZVKRS5kEjYhkrlJcs5O3QfiqFLdsFagTqbCSAmzvuMQAzW+uiivr
+         df4SidGUbehEi7+j4PPH39S4bioEtBeHA0CC/fAfPpQqt7wInLPVvhj3GmoVTHwVGynd
+         MZ1pBXw0CPNgcy2+0B+m+rU6UhyyoUgjNJxq5kJp36YuYco7cqQjLovCyX9Q09XTcUVy
+         XwBqlanTDplsue7KiSEMbSjrDtopGypaA4JLXEm6CVMW/6wxQD3yCuUby8LQjaGC4jUB
+         qXJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747308266; x=1747913066;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Oq3luUbNQrh4sO37NnuDYHxjHPc8/KBLQt1bSPbX55c=;
+        b=g1gaG9DAyHTStvG/yuVNYUIVygNLYDosvNGU951AFyvpC1/hgoBgrAnWeawsDB9jx2
+         vWPqUlDq+FVJCx5op1d1qLQHsWCfhlvv1liuRvyNF25ozlfybaB+1Kgxt9f0ONg+1hy6
+         5P49L9MWwgnN3eFrLcguakGcUSIIiO7qGxGfe33nRyQLTa36ESyFQys+Wi8uWNE61fnL
+         gKVRUK5R2QXF1TGL4Lc4Z7l2MVcwTWVbyQ2h0c1RMy+Cb+hD8XMKyf74Z9/J717Zkpa5
+         wz+ghb3DI+N0GZUjl3q7jOO/nGBI9dL1jtTIVLP6B3HS91kY9VpVeDrGYZS7YRzlMajW
+         IV0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVWgOXMcwXuR3UtyKKVBGz2AOTCC2l7lgRbZm7Dc+gSat2SnWxCCH40y/6hdubZ4Iy2TRwRv3db+WGR@vger.kernel.org
+X-Gm-Message-State: AOJu0YyckXdv34LmQfYZnPeyDjzSPmyQQ5cDpFgJhuQ4ZkXV7xbhb++O
+	PxRABMeQ1uZb/7uPFEc9YXJ+GNCyguS2yWrvbhEyvIKgVDTt5n1mi7iXYzN6EPY=
+X-Gm-Gg: ASbGnctDMjC7oVH8bSa5DzfGGXA0Ny9rrFKrotuEimrBmVp0cuwZCwnh53T9nh74m5J
+	zpFnZIfHJ4Iqp5Sp/U26rfzHNgAf6NVamFZiMloircfNCPUI66Lb2tUgFnBY57ObGiDYs2BoWV2
+	oGG2cbllqOfxhQ5svn9altqeYqWn9Np5HBot11gQtIOyF/4YCn5ROoWKTJ+SWwX0BOFP35nW5Q3
+	EHuLRvAMpUQAGflFrgw1/p85owQxfDHMaPgxXKKxgzPVOYOiC+sFCXm3NQN4Tyw6PPUvBqmrwg2
+	vd8V7gR6nAfwtCgzUl3nNinMt8exMGU47SFamPSLe+TQezk32qHRI0IilfICm/cec2avzmF+tEC
+	zhnE3wLH0GXKYkEwQA2E8
+X-Google-Smtp-Source: AGHT+IHewJ1yK2km4hF4XJnukjwH9B+t5DFAbmZFcOJDYUefiqQ+fuKodfexjRPHQzwg8kOClUt6eg==
+X-Received: by 2002:a05:600c:4691:b0:43d:40b0:5b with SMTP id 5b1f17b1804b1-442f2168cc3mr58378255e9.25.1747308265655;
+        Thu, 15 May 2025 04:24:25 -0700 (PDT)
+Received: from [10.61.0.59] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442ebd47d39sm62595095e9.1.2025.05.15.04.24.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 May 2025 04:24:25 -0700 (PDT)
+Message-ID: <7cb062aefa6f8287b30c95bb12274c83ff6df34e.camel@linaro.org>
+Subject: Re: [PATCH 2/2] phy: exyons5-usbdrd: support HS phy for
+ ExynosAutov920
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Pritam Manohar Sutar <pritam.sutar@samsung.com>, vkoul@kernel.org, 
+	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, 	alim.akhtar@samsung.com, peter.griffin@linaro.org,
+ kauschluss@disroot.org, 	m.szyprowski@samsung.com, s.nawrocki@samsung.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
+ dev.tailor@samsung.com, 	faraz.ata@samsung.com, muhammed.ali@samsung.com,
+ selvarasu.g@samsung.com
+Date: Thu, 15 May 2025 12:24:23 +0100
+In-Reply-To: <20250514134813.380807-3-pritam.sutar@samsung.com>
+References: <20250514134813.380807-1-pritam.sutar@samsung.com>
+		<CGME20250514133847epcas5p41a1c413aecefa2fab32357c6c69e999c@epcas5p4.samsung.com>
+	 <20250514134813.380807-3-pritam.sutar@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.55.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/2] ESWIN EIC7700 pinctrl driver
-To: Yulin Lu <luyulin@eswincomputing.com>, linus.walleij@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kees@kernel.org, gustavoars@kernel.org,
- brgl@bgdev.pl, linux-hardening@vger.kernel.org
-Cc: ningyu@eswincomputing.com, zhengyu@eswincomputing.com,
- linmin@eswincomputing.com, huangyifeng@eswincomputing.com,
- fenglin@eswincomputing.com, lianghujun@eswincomputing.com
-References: <20250515054524.390-1-luyulin@eswincomputing.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250515054524.390-1-luyulin@eswincomputing.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 15/05/2025 07:45, Yulin Lu wrote:
->   Implements support for the Eswin eic7700 SoC pinctrl controller.
->   Provides API to manage pinctrl for the eic7700 SoC.
->   Integration with the Linux pinctrl subsystem for consistency and
->   scalability.
-> 
->   Supported chips:
->     Eswin eic7700 SoC.
-> 
->   Test:
->     Tested this patch on the Sifive HiFive Premier P550 (which uses
->     the EIC7700 SoC), including system boot, networking, EMMC, display,
->     and other peripherals. The drivers for these modules all use the
->     pinctrl module, so this verifies that this pinctrl driver
->     patch is working properly.
-> 
+Hi,
+
+On Wed, 2025-05-14 at 19:18 +0530, Pritam Manohar Sutar wrote:
+> This SoC has a single USB 3.1 DRD combo phy and three USB2.0
+> DRD HS phy controllers those only support the UTMI+ interface.
+>=20
+> Support only UTMI+ for this SoC which is very similar to what
+> the existing Exynos850 supports.
+>=20
+> The combo phy supports both UTMI+ (HS) and PIPE3 (SS) and is
+> out of scope of this commit.
+>=20
+> Add required change in phy driver to support HS phy for this SoC.
+>=20
+> Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
 > ---
-> Changes since V3:
-> - Added "Reviewed-by" tag of "Krzysztof Kozlowski"
-> - Corrected some incorrect spaces and blank lines in the YAML file.
-> - Link: https://lore.kernel.org/all/20250514080928.385-1-luyulin@eswincomputing.com/
+> =C2=A0drivers/phy/samsung/phy-exynos5-usbdrd.c | 85 +++++++++++++++++++++=
++++
+> =C2=A01 file changed, 85 insertions(+)
+>=20
+> diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsu=
+ng/phy-exynos5-usbdrd.c
+> index 634c4310c660..7b4b80319c5c 100644
+> --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> @@ -177,6 +177,9 @@
+> =C2=A0#define HSPHYPLLTUNE_PLL_P_TUNE			GENMASK(3, 0)
+> =C2=A0
+> =C2=A0/* Exynos850: USB DRD PHY registers */
+> +#define EXYNOSAUTOv920_DRD_CTRL_VER		0x00
+> +#define GET_CTRL_MAJOR_VERSION(_x)		(((_x) >> 24) & 0xff)
 
-Start using b4 so you will not introduce such errors like here.
+I suggest using standard GENMASK() and FIELD_GET() for the version bits ins=
+tead.
 
-Best regards,
-Krzysztof
+Cheers,
+A.
+
+> +
+> =C2=A0#define EXYNOS850_DRD_LINKCTRL			0x04
+> =C2=A0#define LINKCTRL_FORCE_RXELECIDLE		BIT(18)
+> =C2=A0#define LINKCTRL_FORCE_PHYSTATUS		BIT(17)
+> @@ -1772,6 +1775,10 @@ static const char * const exynos5_regulator_names[=
+] =3D {
+> =C2=A0	"vbus", "vbus-boost",
+> =C2=A0};
+> =C2=A0
+> +static const char * const exynosautov920_clk_names[] =3D {
+> +	"ext_xtal",
+> +};
+> +
+> =C2=A0static const struct exynos5_usbdrd_phy_drvdata exynos5420_usbdrd_ph=
+y =3D {
+> =C2=A0	.phy_cfg		=3D phy_cfg_exynos5,
+> =C2=A0	.phy_ops		=3D &exynos5_usbdrd_phy_ops,
+> @@ -1847,6 +1854,81 @@ static const struct exynos5_usbdrd_phy_drvdata exy=
+nos850_usbdrd_phy =3D {
+> =C2=A0	.n_regulators		=3D ARRAY_SIZE(exynos5_regulator_names),
+> =C2=A0};
+> =C2=A0
+> +static void exynosautov920_usbdrd_utmi_init(struct exynos5_usbdrd_phy *p=
+hy_drd)
+> +{
+> +	u32 version;
+> +
+> +	version =3D readl(phy_drd->reg_phy + EXYNOSAUTOv920_DRD_CTRL_VER);
+> +	dev_info(phy_drd->dev, "usbphy: version:0x%x\n", version);
+> +
+> +	if (GET_CTRL_MAJOR_VERSION(version) =3D=3D 0x3)
+> +		/* utmi init for exynosautov920 HS phy */
+> +		exynos850_usbdrd_utmi_init(phy_drd);
+> +}
+> +
+> +static int exynosautov920_usbdrd_phy_init(struct phy *phy)
+> +{
+> +	struct phy_usb_instance *inst =3D phy_get_drvdata(phy);
+> +	struct exynos5_usbdrd_phy *phy_drd =3D to_usbdrd_phy(inst);
+> +	int ret =3D 0;
+> +
+> +	ret =3D clk_bulk_prepare_enable(phy_drd->drv_data->n_clks, phy_drd->clk=
+s);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* UTMI or PIPE3 specific init */
+> +	inst->phy_cfg->phy_init(phy_drd);
+> +
+> +	clk_bulk_disable_unprepare(phy_drd->drv_data->n_clks, phy_drd->clks);
+> +
+> +	return 0;
+> +}
+> +
+> +static void exynosautov920_v3p1_phy_dis(struct phy *phy)
+> +{
+> +	struct phy_usb_instance *inst =3D phy_get_drvdata(phy);
+> +	struct exynos5_usbdrd_phy *phy_drd =3D to_usbdrd_phy(inst);
+> +	void __iomem *reg_phy =3D phy_drd->reg_phy;
+> +	u32 version;
+> +
+> +	version =3D readl(reg_phy + EXYNOSAUTOv920_DRD_CTRL_VER);
+> +
+> +	if (GET_CTRL_MAJOR_VERSION(version) =3D=3D 0x3)
+> +		exynos850_usbdrd_phy_exit(phy);
+> +}
+> +
+> +static int exynosautov920_usbdrd_phy_exit(struct phy *phy)
+> +{
+> +	struct phy_usb_instance *inst =3D phy_get_drvdata(phy);
+> +
+> +	if (inst->phy_cfg->id =3D=3D EXYNOS5_DRDPHY_UTMI)
+> +		exynosautov920_v3p1_phy_dis(phy);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct phy_ops exynosautov920_usbdrd_phy_ops =3D {
+> +	.init		=3D exynosautov920_usbdrd_phy_init,
+> +	.exit		=3D exynosautov920_usbdrd_phy_exit,
+> +	.owner		=3D THIS_MODULE,
+> +};
+> +
+> +static const struct exynos5_usbdrd_phy_config phy_cfg_exynosautov920[] =
+=3D {
+> +	{
+> +		.id		=3D EXYNOS5_DRDPHY_UTMI,
+> +		.phy_init	=3D exynosautov920_usbdrd_utmi_init,
+> +	},
+> +};
+> +
+> +static const struct exynos5_usbdrd_phy_drvdata exynosautov920_usb31drd_p=
+hy =3D {
+> +	.phy_cfg		=3D phy_cfg_exynosautov920,
+> +	.phy_ops		=3D &exynosautov920_usbdrd_phy_ops,
+> +	.clk_names		=3D exynosautov920_clk_names,
+> +	.n_clks			=3D ARRAY_SIZE(exynosautov920_clk_names),
+> +	.core_clk_names		=3D exynos5_core_clk_names,
+> +	.n_core_clks		=3D ARRAY_SIZE(exynos5_core_clk_names),
+> +};
+> +
+> =C2=A0static const struct exynos5_usbdrd_phy_config phy_cfg_gs101[] =3D {
+> =C2=A0	{
+> =C2=A0		.id		=3D EXYNOS5_DRDPHY_UTMI,
+> @@ -2047,6 +2129,9 @@ static const struct of_device_id exynos5_usbdrd_phy=
+_of_match[] =3D {
+> =C2=A0	}, {
+> =C2=A0		.compatible =3D "samsung,exynos850-usbdrd-phy",
+> =C2=A0		.data =3D &exynos850_usbdrd_phy
+> +	}, {
+> +		.compatible =3D "samsung,exynosautov920-usb31drd-phy",
+> +		.data =3D &exynosautov920_usb31drd_phy
+> =C2=A0	},
+> =C2=A0	{ },
+> =C2=A0};
+
 
