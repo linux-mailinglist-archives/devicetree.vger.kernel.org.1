@@ -1,156 +1,109 @@
-Return-Path: <devicetree+bounces-177582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4156AB8259
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:19:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 336CEAB825F
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:20:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58A504C29BD
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:19:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0034D1B63C41
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:20:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D9729373E;
-	Thu, 15 May 2025 09:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25EF296D09;
+	Thu, 15 May 2025 09:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BT7x78ik"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MZOSz8X4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B361C289E03;
-	Thu, 15 May 2025 09:19:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8857529614F;
+	Thu, 15 May 2025 09:20:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747300781; cv=none; b=n0Uy5Vn6sV70iIvgMRLRNagMYuble1mzTKRxWVstbD0+jMvlskFu49vmDJZc3J9urJ7vSioY5Bf627hkP/Aqb2dnoSbb80MQNFWiP7zlviExAuuD0SMMNbhzeQn86JCPBoc7kahapQzAx7iUbYHNihfL9fx/Q6fzRgFEk7JjAjY=
+	t=1747300806; cv=none; b=iLx0RzVZswvEoWEs4KZZHxlmA8VOkIgtfWdoVhRZn1Q5w4rD6j5Y5SiBwJ6QulyIxiY4yfyErmoVWE28k9Fe44r01uHiOzBc15plzz3SGfD1B+mBpcHFN/tyXiMgbe23w5du0z2/eNH+fTrNvfYRVZ+nBUxRuxzrIkxm1gekBRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747300781; c=relaxed/simple;
-	bh=f/hB+uXDPj6LiR+Uzv74ybboCFBBl/dQRkcdkfTtDF4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iy/7WqY8wP15dCy/2/A0eyAJr81oj6qNkI80CL+6bP+4kUCluwGt2I9ULydf9DY+eifvn5bSJy70EQzJb73/V9jp2MQFDYcGv4MBHucuBZXZotUTl9ZhsVdNb6UGhUCw1fCUJ6WP2O+wnKIcEsOGVdGFUeIhsE8pTInfpfUYw8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BT7x78ik; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54c0fa6d455so711067e87.1;
-        Thu, 15 May 2025 02:19:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747300778; x=1747905578; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tAVVRaIfque3EwxDjB599VKRD3lH9ncgbq2DZrrZMJ0=;
-        b=BT7x78ikq/EON3VR896BNSzl/NjLy+gfe1e4gb+6QxFyt8EcENSILo0PIRO1wJ+X0A
-         Yoa0yCkCYTdDWPaDRkKn+SLqAeXxLP+sijCam4a2bVG4H4xRU6UxkMxjNvDga2Qg0VOd
-         jTg8TdUGLjv60C9jtZRTj/lWEggX1R12TvGYdxza+DLYvG1thgSO92Bxxxo4S813xBKT
-         FFkvw/evohR4Ksl2hX6HrqvOELYsrWNCQqqNL9pP3Bgu7MlfiF7m+IBWKtEZNcgUvuTV
-         bVdkbIYVjo7ALw5KI+IGevcPSxJUoI90YiRUHBnjEN/cE1kAFB+BS02/c91h+6tEfGOx
-         qM3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747300778; x=1747905578;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tAVVRaIfque3EwxDjB599VKRD3lH9ncgbq2DZrrZMJ0=;
-        b=dX41mujzMnAajtHg2ByZirpht7bvjfACjI3oVyeXtYUi6DEku6SuBANsFVpHMbDJFF
-         Vj2V+K8fkC6ErECUXHchwiDXORc+jTXBgmVegED7oOI1n6V84q+5uTDaDEaBcJcSLeIf
-         +zMb/eniKkKQGhkLqE2SvYzwlZtS58tUwgqSREHCfLa1AY02psR00YBNcdiYND61CqKL
-         230PvzGwOZJTj8XXM4xvm+Y6Px0/KZ5gWUyUqff4pGfzzV5qjCcdMdbHzEjKyJ9PHzqh
-         Vzl8WDWjPU5K4faWp4n4CFKjQdaRtBKXhuQ0D71sPxlj5w5LiR4nAS/dHJ/hC/vUN0xu
-         AmCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUGIamhZso3PZfQiRljd7T8wXouueEBra8UdzvO5efWneJXJqobq75GVAto0k4nFLcLy3fvmS1IQ4rx@vger.kernel.org, AJvYcCXj8gGeqW93I0a9Wc0j27AxaisXXdLxDcC3seDL71n30//Erq/6624L54Mxu6R1+23gSC9m67jpeVeEhBBN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyy7ECs2lRY5pu6gr7dc0/q1CLfuwb5FhiSGXDsgOizvQkc2N8d
-	ynYDjnxKOxoLeWxLI1fEmKjzTUTPXb3EWpaCldtED4yRc1khh3Fera2tdQ==
-X-Gm-Gg: ASbGncuTaMmzSyHNTQxTKn7A79hUszn6beYhFozPGnf6LhS9acZutWOwGIuYR6sa5LT
-	EteDfiPCWEGzDa1kkQ+jLMp5hN3n6rUrRAC9UtvgAGf78VV2QArLzeDcOOkgU0voyh52//jVwaI
-	dlBAw/ITWMPEjAV1HzlguG4NEU1k/3p5jJXHdw3eFVFfwA9d+/2BRe79wiS91QQJ2EYyFwiDDqC
-	wlOAMPfXpxfE7eSygOp1RbPf+ojneoNFGIhwuC7W/XMO3JJh9b+L7xk6qxkGXdbI213RgkXEVPV
-	JpmbDd9TMdtlH7CgpLwcTO7cNQTN9QrlqlA5EwNmPuOKBl3XAezTsQ57+qOyfXrAuYf5S1EYJEO
-	tDOIJMuhR3rPnejSNgkF6eoiCuiLkJEmV
-X-Google-Smtp-Source: AGHT+IFBcq4DqfKlxPbw1MrLx0fBSBJx/jI1yd+Z2wbPyp9w0D8IUldy1X/cWkz4tAEtuvuqupGZyw==
-X-Received: by 2002:a05:6512:228c:b0:545:f4b:ed58 with SMTP id 2adb3069b0e04-550d5f94684mr2399058e87.18.1747300777581;
-        Thu, 15 May 2025 02:19:37 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54fc645cee9sm2562141e87.75.2025.05.15.02.19.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 May 2025 02:19:36 -0700 (PDT)
-Message-ID: <7b23de30-06e3-4f02-a8a5-90791628ceed@gmail.com>
-Date: Thu, 15 May 2025 12:19:35 +0300
+	s=arc-20240116; t=1747300806; c=relaxed/simple;
+	bh=rm618sxDeCiPbi8y8NEmx3FDI0gdJMROpy9V3fCDMDQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cCqZ2LU458bHuR53oJuL8ZX1yHjaJ4MQ9t3TVYTm22aconVhdp3j5RmrSPxOEhmJ0daG6OB1B09ukCK6g3MZIarl8FoJuHm7jjdPbTLt2IsdEuFC2Liy6A9S+GutEQWGGpeikSDuKqne/cE2NoP/ygt08/5x4WJxJxlvwBhVon4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MZOSz8X4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 226EAC4CEE7;
+	Thu, 15 May 2025 09:20:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747300806;
+	bh=rm618sxDeCiPbi8y8NEmx3FDI0gdJMROpy9V3fCDMDQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MZOSz8X4ZqAwZlE2i4UNV3piIuYOa7FOuUZiETU8K1rG+qkCBfajGh9vnIF6NhVMj
+	 pgJsy4tLUzSAkZMM2u34obTByikyyOHn/D4XfZx6DuOaHoeLzrktc8DB6uJebYtOLw
+	 71RYOtNxXT0hBXSkQl5PjSt2HZZoBnkAVNmvIj2Uh+qvX1GP6+bWG35Em0ysD0H8Eq
+	 UsVg6nz1/2H7HunM2n3XZia+LuZCqlhI4pFKPGprfyeQ8TYmEiEMT62FkRd1OKOjY+
+	 3/HgEyi2ngq4aQgnJSecO5Pk+h9VQzQc8vZv+5okj2CKDIbMKdjsTaXgpwChXrxzPT
+	 EL2k2gcGKk7Xg==
+Date: Thu, 15 May 2025 10:20:00 +0100
+From: Lee Jones <lee@kernel.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Artur Weber <aweber.kernel@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Stanislav Jakubek <stano.jakubek@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v8 4/9] mfd: bcm590xx: Add support for multiple device
+ types + BCM59054 compatible
+Message-ID: <20250515092000.GF2936510@google.com>
+References: <20250430-bcm59054-v8-0-e4cf638169a4@gmail.com>
+ <20250430-bcm59054-v8-4-e4cf638169a4@gmail.com>
+ <20250509140957.GD2492385@google.com>
+ <aCRZzwW0w8oVWLUp@finisterre.sirena.org.uk>
+ <20250515071357.GD2936510@google.com>
+ <aCWfre2-n_PSuhxR@finisterre.sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/9] arm64: dts: imx8mn-bsh-smm-s2-common: Set minimum
- value for VDD_DRAM_VPU_GPU
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
- linux-kernel@vger.kernel.org
-Cc: Simon Holesch <simon.holesch@bshg.com>,
- Karthikdatt Anantharamrao <karthikdatt.anantharamrao@in.bosch.com>,
- michael@amarulasolutions.com, linux-amarula@amarulasolutions.com,
- Wolfgang Birkner <wolfgang.birkner@bshg.com>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20250514082507.1983849-1-dario.binacchi@amarulasolutions.com>
- <20250514082507.1983849-7-dario.binacchi@amarulasolutions.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250514082507.1983849-7-dario.binacchi@amarulasolutions.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aCWfre2-n_PSuhxR@finisterre.sirena.org.uk>
 
-On 14/05/2025 11:25, Dario Binacchi wrote:
-> From: Wolfgang Birkner <wolfgang.birkner@bshg.com>
+On Thu, 15 May 2025, Mark Brown wrote:
+
+> On Thu, May 15, 2025 at 08:13:57AM +0100, Lee Jones wrote:
+> > On Wed, 14 May 2025, Mark Brown wrote:
 > 
-> Buck3 is called Buck5 in the BD71847 datasheet. This buck supports
-> 0.55...1.35V. Set the minimum allowed value.
-
-Setting this to PMIC's minimum value has little benefits because the 
-voltage can't be set lower than it anyways.
-
-AFICS, the idea of the regulator-min-microvolt and the 
-regulator-max-microvolt is to protect a system which can't tolerate 
-lower/higher than NNN voltage. So, basically, these properties are 
-meaningful when PMIC can go higher / lower than the system design 
-tolerates. In these cases the constrains set in device tree should be 
-strictier than the PMIC's range.
-
-The existing regulator-min-microvolt = <700000>; could have resulted 
-from the knowledge that the minimum voltage devices connected to the 
-BUCK3 (5 in data-sheet) can survive is 700 mV. Dropping this to 500mV 
-just because PMIC can go there might be plain wrong, and in some case 
-get the device(s) connected to BUCK3/5 upset..
-
-So, please provide better (more) rationale for this change.
-
+> > > Could you be more explicit what you're looking for here, the diffstat is
+> > > entirely MFD?
 > 
-> Signed-off-by: Wolfgang Birkner <wolfgang.birkner@bshg.com>
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> ---
+> > Okay, more explicitly, I can merge this and MFD will have no issue.
+> > However, the Regulator commits make use of 'pmu_id' introduced in this
+> > change and would therefore cause a compile break.  So we could:
 > 
->   arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> >   1. Apply this now and merge the dependents next cycle
+> >   2. Apply this now and provide an IB
+> >   3. Wait for all Acks and apply as a unified set
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-> index fd12b97525d1..81fa0a8767e2 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-> @@ -135,7 +135,7 @@ buck2_reg: BUCK2 {
->   			buck3_reg: BUCK3 {
->   				/* PMIC_BUCK5 - VDD_DRAM_VPU_GPU */
->   				regulator-name = "buck3";
-> -				regulator-min-microvolt = <700000>;
-> +				regulator-min-microvolt = <550000>;
->   				regulator-max-microvolt = <1350000>;
->   				regulator-boot-on;
->   				regulator-always-on;
+> > We usually choose 3, hence my assumptions above.
+> 
+> Well, you choose 3 - I do think it'd be a lot easier to go with option
+> 2, or with applying the rest to your tree as acks come in.  There seemed
+> to still be a reasonable amount of discussion on the MFD bits (eg,
+> there's some formatting comments still) so I was expecting this series
+> to churn some more and was waiting for a resend.
 
-Yours,
-	-- Matti
+Yes, I expected to apply v9 with your Ack.
 
+I can go with 2 in this case.  Applying in dribs-and-drabs as Acks come
+in would be sub-optimal and would likely end up in a mess.
+
+-- 
+Lee Jones [李琼斯]
 
