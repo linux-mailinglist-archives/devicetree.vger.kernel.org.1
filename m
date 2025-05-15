@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-177578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17425AB822F
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:13:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72E35AB823B
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:14:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A5FF3B413B
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:11:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F7A7862F80
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D3329373E;
-	Thu, 15 May 2025 09:12:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED76F28C00D;
+	Thu, 15 May 2025 09:14:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jJv3vwR0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Aq68XiLN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B830E28D840
-	for <devicetree@vger.kernel.org>; Thu, 15 May 2025 09:12:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE4BD1DF97C;
+	Thu, 15 May 2025 09:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747300325; cv=none; b=rSGHcvdeo6b6pWwq3nW6AgEvwIL+qpr4mmTG+iZIR8D0cGq5KeEBAa5Oil4QqW7NcDHv3krhENDTxcGd+IbemuqXqWwiSCiC15ae0Lbgh660aM1YMsjMPkpty6jLBL7GK5n0Npji79CrEY/5nblpku5KUe05H2VvXi2m+Jqhrso=
+	t=1747300451; cv=none; b=mkv/gf6M3fNPJ3my4OPe83+ugYgKhmmeLswQ35QIoqCO3T0lCeOmCRgJBmTKtac9vUKLwLfRD8QAhBClDFGmTR4SvBHaPw0gf6vSuFwLrxQKVdIwyAdK8SlY2hS1kRrExjFqNFLwvQyQ9LlEPOrr2L1Yig79+34HKQ2R7EltvmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747300325; c=relaxed/simple;
-	bh=Y8fh0ydbwDFuT4JP0Uktyo5VIuBqssqojenovaU59/E=;
+	s=arc-20240116; t=1747300451; c=relaxed/simple;
+	bh=TYpngpH9wek5rVMicagLihZR2ENnqZib7zF2664AZ5M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RO7y30XUVZDXudll4mBXuldNRn08cIjUxeWXVSdP1eTARvT3i3EojEMZ7294BYw2vHb6pWiJrHSNRW1Z57YaSk7cNOBz3/xHQYggsqBSBB75k1CeDm+iO0VuZHVzdZ3DHQpy+8m2mrug5FZJprbFayAILQte2e1nYEU+NmWxkPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jJv3vwR0; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43ede096d73so4868305e9.2
-        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 02:12:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747300322; x=1747905122; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CAE9bz2isgxzUGbrKGqqEdeq1PEN+8OwnZGGftLgteU=;
-        b=jJv3vwR0aSTmk0oZeJL61m/SKSS731rgOU+85WuPrAwyCrQspNh4lPIk3tIJKmWaYD
-         u3zp9d2VeDqo/yRrfPqotiW+R5Jzvu+J386ew48fRkQOEiFKEXrwP05CHUgDflCFgS1S
-         bAlh2Cvx1MXcvEE1v4ENNQGy0adlfxzQDXMJ4Ucug9W3v1FXX3STo9cpedj1XwgUII/f
-         B4yO/3D0sP4PVAiDBL0iNqWf2eVVGdkauG/LMQkow1Ny/vU6jysg7uK17qJ+6ZyngIIo
-         n59n+6/2j13DMfRym3MC6S/QwAmi+XuJb+TKLAxSZ8URqSJvFgdE7WTH4YGU9Z/VqDmz
-         RO7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747300322; x=1747905122;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CAE9bz2isgxzUGbrKGqqEdeq1PEN+8OwnZGGftLgteU=;
-        b=XOuwRJo/yeTocKGjPN9SvNPNK8ZBR1UXejcQcCc7daNq6vwuvALBM7HPpu6NrNy93M
-         Rb0K6hxh7IXd3jRRmGgCmHRjylDXsJXT79DPggDRicRK8k+cvzSoAJZFo5XLGpiAtGKD
-         vrVeuF4K6xTR9WGSZotVwCQnIJZNKhHwm5+6GFlj2eFsjIqTKUB15HgXAcBZNUvjAUhJ
-         Ukw2EvtrQA3hQ6lccSr/R8YwLvj5+DUBA5sIEHJXpzLDGgaS54SAoGloaJzaj/xrRkv3
-         cDxdqKy20OKo5l/+umyW1kHR3HdzliseEW9Z+xocg7jj6BJzO2ho+3NWpHDmEznZ6Euf
-         AgBw==
-X-Forwarded-Encrypted: i=1; AJvYcCWtqTXdRnD44GZJekWyG0lX6aXdI/sElMkAFQT9z40yJCMIZHp99VWXBVvly22AKvYHVaL8+tQIR6Xi@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHLOnOpcLIAT//37BrjVl6EHW+Tcm4aU3hQBU/GanhVh6PoStR
-	d7Jvwl/HV0vxrLxP96WYnzRb96vAjbXWj9Oxn7MooBh0yyxKiKahbEgeoeZ5e7c=
-X-Gm-Gg: ASbGncug3u99kZEO75cSSA7ygpHoLq5/A7c6APqs6DQFz1TGkjNXvjjaK9Vu1OP54ue
-	44oUv3N+x4JEk8vujoTqMgdElwxtKVbqvx73ThpavDk0I9DyeF/3XLz0IKz5S4aEq8HzpRQ+iuX
-	s7WX1i9GdGh+iZVWfLghP8KTB+mQycKGtigHqq7osF9DBSQvRfyh1ZsUDN7niwGYoq55ydnRkRo
-	G1oaLUjFV/UfV63/wdPRMhzZ3oJbZSe2DIqABWnYUcwEkDtKNsIvbrfoTS8yd2xNiLyoAIbnWkG
-	FtsBhRd3SFxVdu7nw/cZIiIdiL+Ag5fP2IobcssNt3fEMQObymX59uVSCmeDpPM8WwvgSxIvGs4
-	YGAFK7R1bYxbG
-X-Google-Smtp-Source: AGHT+IEiWqZK+wIF0dIQPPNEPiVIMFChIw3pA6T9sTYgeSc0xYst5cv/piO7TsYycRsa/pH81nx0gg==
-X-Received: by 2002:a05:600c:b91:b0:43c:f597:d589 with SMTP id 5b1f17b1804b1-442f2177567mr56412345e9.27.1747300321871;
-        Thu, 15 May 2025 02:12:01 -0700 (PDT)
-Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a1f57de100sm21837759f8f.2.2025.05.15.02.11.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 May 2025 02:12:01 -0700 (PDT)
-Message-ID: <726e96bd-d4c9-450b-9161-241f05d3d82f@linaro.org>
-Date: Thu, 15 May 2025 11:11:56 +0200
+	 In-Reply-To:Content-Type; b=ZW2xJjfO+m9dLZ7Tb0Odd/HBpTXZu7FZn6DGiUNEawvH+1/qNSWU7MC3j+N54zda6g4u8AtT5F0zsAxWyUCPZ6Fva7/t+4bMBp87pQdycKy/1hU9UTTPcawuXsEtw/AcdTZGUPXvE11VjKhuar3VceFC9O/3bElik/rLSt3UiHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Aq68XiLN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE238C4CEE7;
+	Thu, 15 May 2025 09:14:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747300451;
+	bh=TYpngpH9wek5rVMicagLihZR2ENnqZib7zF2664AZ5M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Aq68XiLNPqNdboVpmBRC3g6z4Euv9NO2rVneCHmdZNaOnZYLe1lia8RINo5qL1Sdv
+	 eeIQ8XkJqY96IaHUwpUbXpVJ8hnf4useOm7mqOWsRSLCeDdVMKxfdEgcvnSPIMIQj/
+	 /T9r0Vhujtk1xJDnSKk+GhyAge86mBtVg72wGMqDIhwJ8LSHE9ua2zXY4jqG2qpOvR
+	 CwWEwv9vo2SknClvm9Qr0yOSwR3E4zKKO9lCStLyGYTQTJGFQ4XxhPotn+dMjRcf8J
+	 hXqSCxcja/ligL+Cufz1ewbn5FrtVUPUf0nAsbpcNYUX0zuxibwhd1nfc7bsM8LAUK
+	 jFL1/nIsJ2+HQ==
+Message-ID: <ea1a7a37-031f-4f81-ba09-eaa523f70761@kernel.org>
+Date: Thu, 15 May 2025 11:14:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,73 +50,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/9] dt-bindings: timer: Add Sophgo SG2044 ACLINT timer
-To: Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
- <inochiama@gmail.com>, Andi Shyti <andi.shyti@kernel.org>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Philipp Zabel
- <p.zabel@pengutronix.de>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>, ghost
- <2990955050@qq.com>, Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- Jisheng Zhang <jszhang@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-mmc@vger.kernel.org, Yixun Lan <dlan@gentoo.org>,
- Longbin Li <looong.bin@gmail.com>
-References: <20250407010616.749833-1-inochiama@gmail.com>
- <20250407010616.749833-2-inochiama@gmail.com>
- <aCSmNRTVXQ51xj0m@mai.linaro.org>
- <MA0P287MB2262A447A98778BF4BC3DB2BFE90A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH v2 0/2] USB PHY support for Exynos990 SoCs
+To: Vinod Koul <vkoul@kernel.org>,
+ Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250420-usb-resends-april-v2-0-25dc7d2e6dd4@mentallysanemainliners.org>
+ <aCRXgpD0Ld2W4lHE@vaman>
+ <D9VYC98LJTR0.LJXYC1H0BAKA@mentallysanemainliners.org>
+ <aCWj4cn4y+RyfGiZ@vaman>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <MA0P287MB2262A447A98778BF4BC3DB2BFE90A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <aCWj4cn4y+RyfGiZ@vaman>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 5/15/25 02:03, Chen Wang wrote:
-> Hi, Daniel,
-> 
-> Just a kindly reminder. There is a v2 of this patcheset [1], and I see 
-> [1/9] of v2 has been picked by Andi [2].
-> 
-> Please double check if anything wrong or conflicted.
-
-Thanks for the heads up
-
-I think it is ok, I have the right version in my tree.
-
-If you want to double check, it is here:
-
-https://git.linaro.org/plugins/gitiles/people/daniel.lezcano/linux/+/refs/heads/timers/drivers/next
-
-
-> Link: https://lore.kernel.org/linux-riscv/20250413223507.46480-1- 
-> inochiama@gmail.com/ [1]
-> 
-> Link: https://lore.kernel.org/linux-riscv/ 
-> egkwz23tyr3psl3eaqhzdhmvxlufem5vqdlwvl4y6henyeazuz@ch3oflv4ekw7/ [2]
-> 
-> 
-> On 2025/5/14 22:18, Daniel Lezcano wrote:
->> On Mon, Apr 07, 2025 at 09:06:06AM +0800, Inochi Amaoto wrote:
->>> Like SG2042, SG2044 implements an enhanced ACLINT, so add necessary
->>> compatible string for SG2044 SoC.
+On 15/05/2025 10:20, Vinod Koul wrote:
+> On 14-05-25, 16:26, Igor Belwon wrote:
+>> On Wed May 14, 2025 at 10:42 AM CEST, Vinod Koul wrote:
+>>> On 20-04-25, 21:28, Igor Belwon wrote:
+>>>> Hi all!
+>>>>
+>>>> This patchset adds support for the USB 2.0 PHY of the Exynos990 SoC.
+>>>> This SoC has a combo PHY that supports highspeed, superspeed USB and
+>>>> DisplayPort, however due to my inability to test the superspeed part of
+>>>> the combo phy (device always enumerated as high-speed, even on the
+>>>> vendor kernels/bootloaders) only the highspeed part is brought up.
+>>>>
+>>>> These changes have been tested and confirmed working (with the USB_ETH
+>>>> gadget and telnet/ssh in a ramdisk) on a device from the hubble family
+>>>> (x1s) and also a device from the canvas family (c1s).
 >>>
->>> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
->>> ---
->> Applied, thanks
+>>> I am missing the dt patch, can you pls report the whole series if you
+>>> would like me to review and apply this
+>>
+>> Hi Vinod,
+>>
+>> I've sent the DT series a while back (before resending). Usually I
+>> propose DT changes through Krzysztof's tree. The patches are 
+>> unchanged (they will be resent unchanged when all usb and wdt 
+>> changes are merged).
+> 
+> It makes sense to post bindings and driver togther and mostly these go
+> thru subsystem trees!
+> 
+I don't think you both speak about the same thing. DT is ambiguous here,
+so always use DTS or DT bindings... that said bindings were here in this
+patchset so if Vinod misses them, this has to be resent.
 
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Best regards,
+Krzysztof
 
