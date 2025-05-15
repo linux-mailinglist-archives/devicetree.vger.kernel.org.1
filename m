@@ -1,105 +1,137 @@
-Return-Path: <devicetree+bounces-177625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53BA5AB84D0
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:28:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A1BCAB84ED
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:31:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFB854E0E92
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:28:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 078301672E1
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:31:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74BCF298CB7;
-	Thu, 15 May 2025 11:27:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426812989AE;
+	Thu, 15 May 2025 11:28:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oCAoqxMF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S/Jd2wzm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 414A9298CAB;
-	Thu, 15 May 2025 11:27:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC042989AB;
+	Thu, 15 May 2025 11:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747308475; cv=none; b=GaqJiLPB8+f/1geJYy8K7WcoZ1HLW/sBXj57Z4LEOnsfm11BYfRBaswjV1Asq9+tIuiXDJRVYL+iiEL4A8JWr9o/ZfjEb75zlsnFt/xSRuGRLfOa6UqhEFdMAPnPZHCy9i2i7wNbARsIDGC/g1jt99FhX7Js6w9bisskwiKrHso=
+	t=1747308502; cv=none; b=XuhkdEQA6MBAq20YFb6R7ZRlCdVNkFFjgEeJ/yioBa6yEVEQu0bNfkWEYMxP7n29oDh50Xk0kSRDiSU+L+Rw/2GloXugl+i4g8/4E+UWkvZARBYQsLpwlpykEqs+BpL0kIHkRiZ3j6Ec+BUNvSEKTHD8Hqt+tDq3NDzF/9yM4hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747308475; c=relaxed/simple;
-	bh=hEdn/KMFnQYxoJkipPDpMMQgvm9AX3Cj0DehCIJCKdU=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=XORt4Kgy5m/HPNUCfyzVyH2Mc/MJqdbsWA8o8+AXEb4ltz0JpNbKxfqJ9uFSbi8K3OxqTBwUJPsSalN6TtujOqTp+9LdMWk2fyWMH8c6CKjfDjkX72BI78Clh+OeCFG0/3OLls+MBENHbMfBw/d881blk7QjiL37x+JDevJRHO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oCAoqxMF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1596C4CEE7;
-	Thu, 15 May 2025 11:27:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747308474;
-	bh=hEdn/KMFnQYxoJkipPDpMMQgvm9AX3Cj0DehCIJCKdU=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=oCAoqxMFxd3Bx0asZewMNTXIS25QhnO6ODsfMvFLIsmjndLHZ7bdSw4BcsK5RsZut
-	 2sekFmetTmFFinIZgtukwnC2uuDACqJbdvglxitv/sXMGz1mhduwLxXRZBjfAM7l7n
-	 UQCAxHkAyBRBYkURCkBxKAtIWU7iZe72b62NQAGOP9eSie6PB9y7iE/xcze8OKWmgT
-	 GNELujMQ/fr41mmdOGVMhbCSM8ZPWhIi7R7K523m8qtGd3yhiECpYSSUgRCufLAirA
-	 j4Oh6jAR62jNmPgmLLkhq3lNJZQQJwnd5C1oc8EbN8CwiAT28aMmI15y3BcIT6F6ml
-	 iDEx4J4OXR7dA==
-From: Mark Brown <broonie@kernel.org>
-To: krzk@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com, 
- skomatineni@nvidia.com, ldewangan@nvidia.com, kyarlagadda@nvidia.com, 
- smangipudi@nvidia.com, bgriffis@nvidia.com, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Vishwaroop A <va@nvidia.com>
-In-Reply-To: <20250513200043.608292-1-va@nvidia.com>
-References: <20250513200043.608292-1-va@nvidia.com>
-Subject: Re: [PATCH V4 1/2] dt-bindings: spi: tegra: Document IOMMU
- property for Tegra234 QSPI
-Message-Id: <174730846801.345421.6379001926087017421.b4-ty@kernel.org>
-Date: Thu, 15 May 2025 13:27:48 +0200
+	s=arc-20240116; t=1747308502; c=relaxed/simple;
+	bh=4MT/DLTi7niUGZGCsKqI5kYWYDZiwVQCm5tQvlHebZg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OGtSuzjjN/2AAOiBSUzsMIjfBfr2YSBRb5VduATFILJuURM45E1BkrO/J7EcV+g79fJU/NuufUpcVhOZhYEyE4+ol7g+uF/l8nSMt0oOd7QN9ujOc64tema1Qap6ujkpOgfWFWE0v1O53rIuEjm8VbWPckw8CNNhk4Ah9q9MwkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S/Jd2wzm; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5fbdf6973e7so999303a12.2;
+        Thu, 15 May 2025 04:28:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747308498; x=1747913298; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WJL0KPlMp6DZzpx4wyF8HL/lXswTHi9cEl/RHcvMRDg=;
+        b=S/Jd2wzmHALJtwX/6XRTk312otdP4f5Rvzgk0e1LIdSt0rB6t8T8td9MyM4/E1XjKV
+         bZYLgHUBysKaU9xDmQAvKlhPVhoFBeP+rGWHBRYXSndjiZGYsnP9khYLHn3+jGMsLJF7
+         DngEbigABuMC8cpsPO4ObIC+zbAbq/5WsAa6fIOdHA6YnECxhWg7cA9UEuS3wOukV9A/
+         14dGF50RjM3P/9jmzBLbq+rX8yFLQvVTNHDzzMjZSjTxHMh1z/ReDd+1aZ/zqAMQarbG
+         g4m9A1Q0lq7urrZCuCccgiBHq6d8L4mSrUV1+XoywDAV05ddAMhUXcziOtQUuAs8Xh1l
+         gKmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747308498; x=1747913298;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WJL0KPlMp6DZzpx4wyF8HL/lXswTHi9cEl/RHcvMRDg=;
+        b=j2w0n19bizaI+FTmdNQGrXcbMaS4UpzwL+8OAxOqMXSdOGM129e4h/chldjWRz+QVx
+         2wE2U6N8Lw2/H+nkiYpkXO/udLf6zIVEL8OGyh7svtziKkF98p2cME6ktmrXRuHQvojo
+         fWKnuflnwpEAaAcsYqjViAmgFnfihPuBkBQ7nS2qL/WgdjdKhFZKzEeUpZepQ/PnJye5
+         G2LmUp5kINcQ9ufxAAA6eHa0X26PuoO1JG+1McgEVVCBn4TJwbtE+KUYfDsL2yqrl2fg
+         SuY/R+gOBw2dp3X5zHd/Q7KgWWS3Yfa3TXsiaRld+TRK1p+PfpUWKY/6QzyZPdhw/6l3
+         US+A==
+X-Forwarded-Encrypted: i=1; AJvYcCVtneUiexKtG2IylVa9eTV8HEYlHCsyiI/vQhjHV03YOm7W6A052+G350CVItkXTautovpDm2sY/RTh@vger.kernel.org, AJvYcCWEjPafRxSQrXBPKTnbTbWpFLuC75xti1l6dtXtwr0Vdz8/Qrx6KEzEUS/D3HrImA2XkujI+fh/TG6nkbHN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMrfd1saNS/Ohf/VFpsmw8Xu3K4mvV1WnB5Onqhek7ILf/+mnv
+	N7193MjWettf9OKOhB0fLJdJ6hmfaTZ1AZ15+yYnQ3ARtDs/n4AZ
+X-Gm-Gg: ASbGncsuVX+Q/Uld7C5i6cZKOGRDTBuvCY8k7R0DNQkN5ZTY/lDJ6zuaKUrKjWynwjz
+	g/hkhu8TKcj8Uos0zDIZ9GBbE54PJkG2OvHGulpU3kK0oE3uaHvIxATzkaw6WWRtB05AkpRvizC
+	hSyJwIr5AWR/L1eJiFMALlseF0c9ZZf1xa4mcP4ukps+cfpPWrH/yxL2LJx9RerxW0cGCob3JqP
+	Lm3Oivlkza5/TEl/BmNGTCLp0Jrj5CrwdORA9Po9KWyIXmmavsUOsOVb8LueoFEgMaLDgbTtZcv
+	q8rC6t7E10rI8lsRKofetAauOyZZePNyHSGehDqVlM23x/JnVMsjhrqoKvggk26V4cQYBEU8TVI
+	cENixFDIxGBJd/rdpoHcu/hkE5A==
+X-Google-Smtp-Source: AGHT+IFhJS8thqNyc4H03aabnDsTjQOnAfvBj670xwICkIM30ExHIQVJjpRwvQeCLIt5Heh5jZmXuQ==
+X-Received: by 2002:a17:906:99cd:b0:ad5:2907:eeb6 with SMTP id a640c23a62f3a-ad529080dd0mr2896966b.38.1747308497559;
+        Thu, 15 May 2025 04:28:17 -0700 (PDT)
+Received: from [192.168.50.244] (83.11.178.15.ipv4.supernova.orange.pl. [83.11.178.15])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad23ad2b386sm909023366b.104.2025.05.15.04.28.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 May 2025 04:28:17 -0700 (PDT)
+Message-ID: <8beeddcf-1dc7-4af8-b287-4c896852b258@gmail.com>
+Date: Thu, 15 May 2025 13:28:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 4/9] mfd: bcm590xx: Add support for multiple device
+ types + BCM59054 compatible
+To: Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20250430-bcm59054-v8-0-e4cf638169a4@gmail.com>
+ <20250430-bcm59054-v8-4-e4cf638169a4@gmail.com>
+ <20250509140957.GD2492385@google.com>
+ <aCRZzwW0w8oVWLUp@finisterre.sirena.org.uk>
+ <20250515071357.GD2936510@google.com>
+ <aCWfre2-n_PSuhxR@finisterre.sirena.org.uk>
+ <20250515092000.GF2936510@google.com>
+ <aCW0822BVpfKV2NL@finisterre.sirena.org.uk>
+Content-Language: en-US
+From: Artur Weber <aweber.kernel@gmail.com>
+In-Reply-To: <aCW0822BVpfKV2NL@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
 
-On Tue, 13 May 2025 20:00:42 +0000, Vishwaroop A wrote:
-> Add the 'iommus' property to the Tegra QSPI device tree binding.
-> The property is needed for Tegra234 when using the internal DMA
-> controller, and is not supported on other Tegra chips, as DMA is
-> handled by an external controller.
+On 5/15/25 11:33, Mark Brown wrote:
+> On Thu, May 15, 2025 at 10:20:00AM +0100, Lee Jones wrote:
+>> On Thu, 15 May 2025, Mark Brown wrote:
 > 
+>>> Well, you choose 3 - I do think it'd be a lot easier to go with option
+>>> 2, or with applying the rest to your tree as acks come in.  There seemed
+>>> to still be a reasonable amount of discussion on the MFD bits (eg,
+>>> there's some formatting comments still) so I was expecting this series
+>>> to churn some more and was waiting for a resend.
 > 
+>> Yes, I expected to apply v9 with your Ack.
+> 
+> OK, that's about where I was expecting - at least one more respin before
+> the MFD bits are stable.
+> 
+>> I can go with 2 in this case.  Applying in dribs-and-drabs as Acks come
+>> in would be sub-optimal and would likely end up in a mess.
+> 
+> Well, then just going a head and applying them on a branch with a tag
+> seems easier than delaying then.
 
-Applied to
+I can split the patchset into two parts (one for MFD, one for regulator)
+if it helps.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/2] dt-bindings: spi: tegra: Document IOMMU property for Tegra234 QSPI
-      commit: 4614fd6342ab69feebb067d5db84a9bfb9aada9f
-[2/2] spi: tegra210-quad: Add support for internal DMA
-      commit: 017f1b0bae08e8b456cf35cbdaae93ec19b50f0a
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Best regards
+Artur
 
