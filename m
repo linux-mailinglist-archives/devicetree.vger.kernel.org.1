@@ -1,114 +1,59 @@
-Return-Path: <devicetree+bounces-177640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F798AB854D
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:51:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12BE2AB8567
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 13:56:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3C664C4F2A
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:51:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E679D7B6325
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 11:55:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4865C298994;
-	Thu, 15 May 2025 11:51:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1397C29899B;
+	Thu, 15 May 2025 11:56:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XQJfvRO6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fG2aEzmo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB42298275;
-	Thu, 15 May 2025 11:51:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB898298271;
+	Thu, 15 May 2025 11:56:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747309887; cv=none; b=jtYheQbg6oAN4a6JpUojtGeLnXmOH+KXMBm8RHqS7zpMhvK+SNdsjP6ZOp5Gemab2uMqP+9UdS6/1PRkNiW4JL/NURLiCK4/hkBXgpqmG6BRFVDQQXFN49uC+BCm4LxE/0NSN0luK1tDmzCo5vOG6ba4PwnW69wo80s2mQnPUdI=
+	t=1747310192; cv=none; b=J07h3NrVbK4ZgMcHMrJ1Mb2GWdcERgJngDFpbkKo6OzlGfCD5vIjoiH6mpC6FOqajVfC+Q71L3y1Mg7Bg2kBoM7l/73vILZR8b8r4R4E6iYQ9F8orRyBSVA6eZ8sPxq36QnK8fZbX0ymZToI4ajTZCEArY+fX3S00yLMNiIJxfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747309887; c=relaxed/simple;
-	bh=Pn1x88vt8t8XfQnNFYh2BMvM4VJhxms399YKeJqiN9w=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z7FgGXISuUpq13XxjQuTHI0K0RGz3S+Dvf4GRbFX+fNKidaBncxuI0h8+T1zdAPU0ysMBj3tnsMC2+idLgTqN/o2IosIxZ0t0HaYc9AntZb7K7ZkRphE1EG9U8BfttQ/4RomOKpEVJQ8rw5xNh7whPd9LEBzhn0ebpwewvq7SBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XQJfvRO6; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3a1fb17a9beso453817f8f.3;
-        Thu, 15 May 2025 04:51:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747309884; x=1747914684; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=9zmgkesflJuPhSQoDyK0piIEMqShbw1zJHD67ef6Uo0=;
-        b=XQJfvRO6AnzpTSEq9C50jzQUU96DQfNvDM4lZMjJIvK/7CCA7pwQ11SkaZW2RmGJQK
-         IVdbD+Z6lg/IVIK+ouaogggE+s8z/HTgVqf3aRX7IjYjjtpEh4h2hRMEqOfgqi+LDMFH
-         fBlwhzg/YBbDVgvU6tmxbcQr72wDxOymGmiTJP3sGokrEKXxWdgxsZWAAsaDLxn6X0Qv
-         +CDUuPJMD7eDBYzisKxKUCQ1OSXOThiijjNHzzJw+YYJrpuBSPK0UrUeDh2G/Ejk88ZM
-         j6bSNeoLdk2mORm4GSccFEB13k2Hek6ZQ/6m/tKaGaYszGAlL3o6xtVdA97HpeZBGR2l
-         Lv7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747309884; x=1747914684;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9zmgkesflJuPhSQoDyK0piIEMqShbw1zJHD67ef6Uo0=;
-        b=UiHb9GQKc7hmFV0Y8JPfP8nql/WncT6eCpnibLL5ALOo0GKL2mU8sfdaJXbdSxHpcu
-         F+Xr0neyHBQiPSbk/jqi6cV6Bxej0f0NqKGvD1cQCI8Lbhalwh43DuAcLjNe5qHEwo02
-         oHM+TsyAE+Hfn5Ekzwm0pxir+Ei7NNRDuJHIiq9vM5In2s8oGd+uI+qJrPKZ7pBbnlPD
-         jy2QV5GFFml5Yn0xtMj6HV/fqYhjde2Wk81ykrm7I0lP3p8pme0qwfkcTUqy8FAz7nLJ
-         WN6II0GEecA9zEPfkSB3amaeQjRyH1LFEg4UqwXzoML+Z8f/W6rxVwDKMwglSYBKJ5dV
-         eZ6g==
-X-Forwarded-Encrypted: i=1; AJvYcCWg4+SWjXGKFHo0E4uKbioX7m2yupIwO3Is8GMoisrAyE6FE7Lknb1MLktx/ADvfzqskvjGVif4@vger.kernel.org, AJvYcCX+yo+lNhKE6H7PAj025EtT60aEwfFoCbC5uLuyOulUQ9ONDnYK9TZqYXpqmR9BLXcskOmcMRyYph71X2l6zZo=@vger.kernel.org, AJvYcCXm/teM+qFVD4VfZy36p5prADvDiVkAOTZznsU6iQNG5aLCx9Pk8hYFiXY4mkK7D8TVKNwEFE8vxgFAo/dJ@vger.kernel.org, AJvYcCXpRH+sASS7g8Y+/HZsBcUTIPvCaJSYpXapVD1yYmpbtC6PbjfFzYPWXUhHNy5ng0QxX8J4IlQe8x5H@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7XLH2EcqYtgrm348tql/H+XZrv4XRMvlsJV/DXufYgK2XptSD
-	yzNOnmiB4YuKyIgImgGuagjHaVBvvf3eA9ceNaSOoqoKK0jLgXFD
-X-Gm-Gg: ASbGncuDKp4zZiCQq8vaC0e5lQqKjfDu1q3LrEQkqT5tym2Yq5cyI6/zU1FfzDAJ/zs
-	4VXnVEN87Eajs8+NWHUAdEqPuFkYcst0W6as+v99kX8iyAqE8I5YkVpPeuGIx99jTgF8zCScJsl
-	A4iWUn4wH9yX9UV1uaAiEK+dRHj4XbV7Rj3U6M44X5KGVxmB/rj8jFpTnk18QAFUMlHS3hHpcgy
-	UQ0IMC6Rx9jerI/V2kudrP+2a9Dd8fd/79NLf6KbvceOujlK71GVPf38MgrgoOLYItlhvp/vj6i
-	XVy3sxQWKvo+LqjnDGrni/JhijcflGkUqYLd2EB4EJirIggFlrs0vDw/qchyeUV0jopATKYxaUs
-	SuNgsFV0=
-X-Google-Smtp-Source: AGHT+IF3jsOfCZneijOp46ln4kPwgCR9XEGZEt5wYBYyy5vj+5Nx02qSVZ0ccOg63iO5n6plZVjWvg==
-X-Received: by 2002:a05:6000:3103:b0:3a1:f537:9064 with SMTP id ffacd0b85a97d-3a3496c0063mr6676871f8f.25.1747309883581;
-        Thu, 15 May 2025 04:51:23 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a1f5a4cc2esm23060948f8f.90.2025.05.15.04.51.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 May 2025 04:51:23 -0700 (PDT)
-Message-ID: <6825d53b.df0a0220.36755a.ca22@mx.google.com>
-X-Google-Original-Message-ID: <aCXVOBnQUc8WkzbM@Ansuel-XPS.>
-Date: Thu, 15 May 2025 13:51:20 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Benno Lossin <lossin@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Andrei Botila <andrei.botila@oss.nxp.com>,
-	FUJITA Tomonori <fujita.tomonori@gmail.com>,
-	Trevor Gross <tmgross@umich.edu>, Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Sabrina Dubroca <sd@queasysnail.net>,
-	Michael Klein <michael@fossekall.de>,
-	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
+	s=arc-20240116; t=1747310192; c=relaxed/simple;
+	bh=AodoqcXXPrd9Uq7N0GICLhOSesKv5xDG9mZyaNSIxJQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r/bqmV+uLTKiPWj2MyoebUoL7YMgc9bkUW2kWh9mXaRGZMsWo71PZ7ioyO49hf54RQmiIu2/buK2fB2pCEW96lAmbnV9zOqwcOyR9l3umBDLl2+j/cJYc3ByRZWfg1sqCnps9APCR95n3s4WNq/xMJ3ZmyDZiP/5GracdjGxSTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fG2aEzmo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B53E7C4CEE7;
+	Thu, 15 May 2025 11:56:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747310191;
+	bh=AodoqcXXPrd9Uq7N0GICLhOSesKv5xDG9mZyaNSIxJQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fG2aEzmoeJ3fShuvio2BxZWQI3JHHtBzcrE5rF6F2NEM4Vh2VMOnVE6up6RRQP6Fh
+	 hP51QcZfxZJJlA0w3cbAtt54rUDmoknOF2Azk2SCHyZqzuWiaRMuPmYbBsaZCXVrou
+	 f9pgItdV7SA62hdkg/BzJBVtFeicyQeWZBFLl1HyCwXi52ekKRWAwQZmZQRdK4rdkM
+	 nVl9qu+BeaoWWAHuK7lTfE0Pk7rn2wyj4p3kp3e6uuAK+zoZevUC0nENnEPSEja2+v
+	 Zb7vLL4GcN65caUWBa5on5OXEpKCXH1xMjv3yZ2k6eBIWNayeeWzSBGTO5nEr78Qe3
+	 A30xd4s7D9YPg==
+Date: Thu, 15 May 2025 13:56:26 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: hehuan1@eswincomputing.com
+Cc: dlemoal@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-ide@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org
-Subject: Re: [net-next PATCH v10 7/7] rust: net::phy sync with
- match_phy_device C changes
-References: <20250515112721.19323-1-ansuelsmth@gmail.com>
- <20250515112721.19323-8-ansuelsmth@gmail.com>
- <D9WPMD7Q4XRN.32LF8UDPK1IBI@kernel.org>
+	p.zabel@pengutronix.de, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, luyulin@eswincomputing.com,
+	Serge Semin <fancer.lancer@gmail.com>
+Subject: Re: [PATCH v1 2/2] sata: eswin: Add eic7700 sata driver
+Message-ID: <aCXWalhB7dQmsN8K@ryzen>
+References: <20250515085114.1692-1-hehuan1@eswincomputing.com>
+ <20250515090018.1720-1-hehuan1@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -117,30 +62,327 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <D9WPMD7Q4XRN.32LF8UDPK1IBI@kernel.org>
+In-Reply-To: <20250515090018.1720-1-hehuan1@eswincomputing.com>
 
-On Thu, May 15, 2025 at 01:49:35PM +0200, Benno Lossin wrote:
-> On Thu May 15, 2025 at 1:27 PM CEST, Christian Marangi wrote:
-> > Sync match_phy_device callback wrapper in net:phy rust with the C
-> > changes where match_phy_device also provide the passed PHY driver.
-> >
-> > As explained in the C commit, this is useful for match_phy_device to
-> > access the PHY ID defined in the PHY driver permitting more generalized
-> > functions.
-> >
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  rust/kernel/net/phy.rs | 26 +++++++++++++++++++++++---
-> >  1 file changed, 23 insertions(+), 3 deletions(-)
+Hello Huan He,
+
+On Thu, May 15, 2025 at 05:00:18PM +0800, hehuan1@eswincomputing.com wrote:
+> From: Huan He <hehuan1@eswincomputing.com>
 > 
-> You probably should do this in the same commit as the C changes,
-> otherwise the in-between commits will error.
+> Add support for the AHCI SATA controller in Eswin's eic7700 soc,
+> which supports SATA PHY initialization, reset control,
+> and power management.
 > 
+> Co-developed-by: Yulin Lu <luyulin@eswincomputing.com>
+> Signed-off-by: Yulin Lu <luyulin@eswincomputing.com>
+> Signed-off-by: Huan He <hehuan1@eswincomputing.com>
+> ---
+>  drivers/ata/Kconfig        |  12 ++
+>  drivers/ata/Makefile       |   1 +
+>  drivers/ata/ahci_eic7700.c | 248 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 261 insertions(+)
+>  create mode 100644 drivers/ata/ahci_eic7700.c
+> 
+> diff --git a/drivers/ata/Kconfig b/drivers/ata/Kconfig
+> index e00536b49552..474c09543006 100644
+> --- a/drivers/ata/Kconfig
+> +++ b/drivers/ata/Kconfig
+> @@ -185,6 +185,18 @@ config AHCI_DWC
+>  
+>  	  If unsure, say N.
+>  
+> +config AHCI_EIC7700
+> +	tristate "Eswin AHCI SATA support"
+> +	depends on ARCH_ESWIN || COMPILE_TEST
+> +	select SATA_HOST
+> +	help
+> +	  This enables the AHCI SATA controller driver for Eswin SoCs. This driver
+> +	  is specific to Eswin SoCs and should only be enabled if using such hardware.
+> +	  The driver supports eic7700 series chips. The controller supports up
+> +	  to 1 port.
+> +
+> +	  If unsure, say N.
+> +
+>  config AHCI_ST
+>  	tristate "ST AHCI SATA support"
+>  	depends on ARCH_STI || COMPILE_TEST
+> diff --git a/drivers/ata/Makefile b/drivers/ata/Makefile
+> index 20e6645ab737..af00e55fa593 100644
+> --- a/drivers/ata/Makefile
+> +++ b/drivers/ata/Makefile
+> @@ -18,6 +18,7 @@ obj-$(CONFIG_AHCI_CEVA)		+= ahci_ceva.o libahci.o libahci_platform.o
+>  obj-$(CONFIG_AHCI_DA850)	+= ahci_da850.o libahci.o libahci_platform.o
+>  obj-$(CONFIG_AHCI_DM816)	+= ahci_dm816.o libahci.o libahci_platform.o
+>  obj-$(CONFIG_AHCI_DWC)		+= ahci_dwc.o libahci.o libahci_platform.o
+> +obj-$(CONFIG_AHCI_EIC7700)	+= ahci_eic7700.o libahci.o libahci_platform.o
+>  obj-$(CONFIG_AHCI_IMX)		+= ahci_imx.o libahci.o libahci_platform.o
+>  obj-$(CONFIG_AHCI_MTK)		+= ahci_mtk.o libahci.o libahci_platform.o
+>  obj-$(CONFIG_AHCI_MVEBU)	+= ahci_mvebu.o libahci.o libahci_platform.o
+> diff --git a/drivers/ata/ahci_eic7700.c b/drivers/ata/ahci_eic7700.c
+> new file mode 100644
+> index 000000000000..d2b7cafbfdd7
+> --- /dev/null
+> +++ b/drivers/ata/ahci_eic7700.c
+> @@ -0,0 +1,248 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * ESWIN EIC7700 AHCI SATA Driver
+> + *
+> + * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+> + *
+> + * Authors: Yulin Lu <luyulin@eswincomputing.com>
+> + *          Huan He <hehuan1@eswincomputing.com>
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/pm.h>
+> +#include <linux/device.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/libata.h>
+> +#include <linux/ahci_platform.h>
+> +#include <linux/acpi.h>
+> +#include <linux/pci_ids.h>
+> +#include <linux/iommu.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset.h>
+> +#include "ahci.h"
+> +
+> +#define DRV_NAME "ahci"
+> +
+> +/* Register Definitions */
+> +#define SATA_REF_CTRL1                0x338
+> +#define SATA_PHY_CTRL0                0x328
+> +#define SATA_PHY_CTRL1                0x32c
+> +#define SATA_LOS_IDEN                 0x33c
+> +#define SATA_AXI_LP_CTRL              0x308
+> +#define SATA_REG_CTRL                 0x334
+> +#define SATA_MPLL_CTRL                0x320
+> +#define SATA_RESET_CTRL               0x340
+> +#define SATA_RESET_CTRL_ASSERT        0x3
+> +#define SATA_RESET_CTRL_DEASSERT      0x0
+> +#define SATA_PHY_RESET                BIT(0)
+> +#define SATA_P0_RESET                 BIT(1)
+> +#define SATA_LOS_LEVEL                0x9
+> +#define SATA_LOS_BIAS                 (0x02 << 16)
+> +#define SATA_REF_REPEATCLK_EN         BIT(0)
+> +#define SATA_REF_USE_PAD              BIT(20)
+> +#define SATA_P0_AMPLITUDE_GEN1        0x42
+> +#define SATA_P0_AMPLITUDE_GEN2        (0x46 << 8)
+> +#define SATA_P0_AMPLITUDE_GEN3        (0x73 << 16)
+> +#define SATA_P0_PHY_TX_PREEMPH_GEN1   0x05
+> +#define SATA_P0_PHY_TX_PREEMPH_GEN2   (0x05 << 8)
+> +#define SATA_P0_PHY_TX_PREEMPH_GEN3   (0x23 << 16)
+> +#define SATA_MPLL_MULTIPLIER          (0x3c << 16)
+> +#define SATA_M_CSYSREQ                BIT(0)
+> +#define SATA_S_CSYSREQ                BIT(16)
+> +
+> +struct eswin_ahci_plat {
+> +	struct reset_control *apb_rst;
+> +};
+> +
+> +static const struct ata_port_info ahci_port_info = {
+> +	.flags		= AHCI_FLAG_COMMON,
+> +	.pio_mask	= ATA_PIO4,
+> +	.udma_mask	= ATA_UDMA6,
+> +	.port_ops	= &ahci_platform_ops,
+> +};
+> +
+> +static const struct ata_port_info ahci_port_info_nolpm = {
+> +	.flags		= AHCI_FLAG_COMMON | ATA_FLAG_NO_LPM,
+> +	.pio_mask	= ATA_PIO4,
+> +	.udma_mask	= ATA_UDMA6,
+> +	.port_ops	= &ahci_platform_ops,
+> +};
+> +
+> +static struct scsi_host_template ahci_platform_sht = {
+> +	AHCI_SHT(DRV_NAME),
+> +};
+> +
+> +static int eswin_sata_init(struct device *dev)
+> +{
+> +	struct regmap *regmap;
+> +
+> +	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "eswin,hsp_sp_csr");
+> +	if (IS_ERR(regmap)) {
+> +		dev_dbg(dev, "No hsp_sp_csr phandle specified\n");
+> +		return -1;
+> +	}
+> +
+> +	regmap_write(regmap, SATA_REF_CTRL1, 0x1);
+> +	regmap_write(regmap, SATA_PHY_CTRL0, (SATA_P0_AMPLITUDE_GEN1 |
+> +						 SATA_P0_AMPLITUDE_GEN2 |
+> +						 SATA_P0_AMPLITUDE_GEN3));
+> +	regmap_write(regmap, SATA_PHY_CTRL1, (SATA_P0_PHY_TX_PREEMPH_GEN1 |
+> +						 SATA_P0_PHY_TX_PREEMPH_GEN2 |
+> +						 SATA_P0_PHY_TX_PREEMPH_GEN3));
+> +	regmap_write(regmap, SATA_LOS_IDEN, SATA_LOS_LEVEL | SATA_LOS_BIAS);
+> +	regmap_write(regmap, SATA_AXI_LP_CTRL, SATA_M_CSYSREQ | SATA_S_CSYSREQ);
+> +	regmap_write(regmap, SATA_REG_CTRL, SATA_REF_REPEATCLK_EN | SATA_REF_USE_PAD);
+> +	regmap_write(regmap, SATA_MPLL_CTRL, SATA_MPLL_MULTIPLIER);
+> +	regmap_write(regmap, SATA_RESET_CTRL, 0x0);
+> +
+> +	return 0;
+> +}
 
-You are right, I will fix this in v11 but I would really want to know if
-the Rust changes are correct. It's not my main language so it's all
-discovering new stuff :D
+As I wrote in patch 1/2, I can't help to wonder if these shouldn't be in a
+PHY driver instead.
 
--- 
-	Ansuel
+If it were, you probably wouldn't need this file, as most of it looks like
+is it already handled by ahci_dwc.c / libahci_platform.c.
+
+(phy_init() is called from ahci_platform_enable_phys(), which is called
+from ahci_platform_enable_resources() which is called from
+ahci_dwc_init_host() which is called from ahci_dwc_probe().)
+
+
+> +
+> +static int eswin_ahci_platform_resets(struct ahci_host_priv *hpriv,
+> +				 struct device *dev)
+> +{
+> +	struct eswin_ahci_plat *plat = hpriv->plat_data;
+> +	struct regmap *regmap;
+> +	int ret;
+> +
+> +	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "eswin,hsp_sp_csr");
+> +	if (IS_ERR(regmap)) {
+> +		dev_dbg(dev, "No hsp_sp_csr phandle specified\n");
+> +		return -1;
+> +	}
+> +
+> +	plat->apb_rst = devm_reset_control_get_optional(dev, "apb");
+> +	if (PTR_ERR(plat->apb_rst) == -EPROBE_DEFER)
+> +		return PTR_ERR(plat->apb_rst);
+> +
+> +	ret = reset_control_assert(plat->apb_rst);
+> +	if (ret) {
+> +		dev_err(dev, "failed to assert apb_rst\n");
+> +		return ret;
+> +	}
+> +	regmap_write(regmap, SATA_RESET_CTRL, SATA_RESET_CTRL_ASSERT);
+> +
+> +	regmap_write(regmap, SATA_RESET_CTRL, SATA_RESET_CTRL_DEASSERT);
+> +	ret = reset_control_deassert(plat->apb_rst);
+> +	if (ret) {
+> +		dev_err(dev, "failed to deassert apb_rst\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ahci_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct ahci_host_priv *hpriv;
+> +	struct eswin_ahci_plat *plat;
+> +	const struct ata_port_info *port;
+> +	int ret;
+> +
+> +	plat = devm_kzalloc(dev, sizeof(*plat), GFP_KERNEL);
+> +	if (!plat)
+> +		return -ENOMEM;
+> +
+> +	hpriv = ahci_platform_get_resources(pdev, 0);
+> +	if (IS_ERR(hpriv))
+> +		return PTR_ERR(hpriv);
+> +
+> +	hpriv->plat_data = plat;
+> +	ret = eswin_ahci_platform_resets(hpriv, dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ahci_platform_enable_resources(hpriv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	eswin_sata_init(dev);
+> +
+> +	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(41));
+
+This looks wrong.
+If I'm not mistaken, the proper way is that the bus which your device
+(in this case an AHCI controller) is located on in device tree should
+specify 'dma-ranges', and that will set the DMA mask for the devices
+on that bus automatically.
+
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	of_property_read_u32(dev->of_node, "ports-implemented", &hpriv->saved_port_map);
+> +
+> +	if (of_device_is_compatible(dev->of_node, "hisilicon,hisi-ahci"))
+> +		hpriv->flags |= AHCI_HFLAG_NO_FBS | AHCI_HFLAG_NO_NCQ;
+
+"hisilicon,hisi-ahci" seems copy pasted from ahci_platform.c, and seems unwanted.
+
+
+> +
+> +	port = acpi_device_get_match_data(dev);
+> +	if (!port)
+> +		port = &ahci_port_info;
+> +
+> +	ret = ahci_platform_init_host(pdev, hpriv, port, &ahci_platform_sht);
+> +	if (ret)
+> +		goto disable_resources;
+> +
+> +	return 0;
+> +
+> +disable_resources:
+> +	ahci_platform_disable_resources(hpriv);
+> +	return ret;
+> +}
+> +
+> +static void ahci_remove(struct platform_device *pdev)
+> +{
+> +	ata_platform_remove_one(pdev);
+> +}
+> +
+> +static int eswin_ahci_suspend(struct device *dev)
+> +{
+> +	int ret;
+> +
+> +	ret = ahci_platform_suspend(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int eswin_ahci_resume(struct device *dev)
+> +{
+> +	int ret;
+> +
+> +	ret = ahci_platform_resume(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(ahci_pm_ops, eswin_ahci_suspend, eswin_ahci_resume);
+> +
+> +static const struct of_device_id ahci_of_match[] = {
+> +	{ .compatible = "eswin,eic7700-ahci", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, ahci_of_match);
+> +
+> +static const struct acpi_device_id ahci_acpi_match[] = {
+> +	{ "APMC0D33", (unsigned long)&ahci_port_info_nolpm },
+> +	{ ACPI_DEVICE_CLASS(PCI_CLASS_STORAGE_SATA_AHCI, 0xffffff) },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(acpi, ahci_acpi_match);
+
+This table seems copy pasted from ahci_platform.c, and seems unwanted.
+(I assume that your platform does not support ACPI.)
+
+
+Kind regards,
+Niklas
 
