@@ -1,206 +1,139 @@
-Return-Path: <devicetree+bounces-177785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC089AB916C
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 23:15:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57CC6AB91EE
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 23:49:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93CAE18874AC
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 21:15:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E57454A49E5
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 21:49:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED7429B8FC;
-	Thu, 15 May 2025 21:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B0B02882CA;
+	Thu, 15 May 2025 21:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="M+1elNIu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f9Nb5ngX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA0A729B8F2;
-	Thu, 15 May 2025 21:14:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7245B1922C4;
+	Thu, 15 May 2025 21:49:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747343697; cv=none; b=Mr3/ux2iTLpGBEeJhfrhxSXwNYg/oeh93rozAipRPX+GFud34PSCS9ie/1i5CttpVxTtF0dfckZRrNHr+AWvhhJPZzFXDJsrruI1YJY4/cg7KBzZ7hUpNLg+8aRx3+75xYvPIMhJC6bnbAL5ZAWioAlz65Q/aNSFfuD7TuyntKk=
+	t=1747345777; cv=none; b=IenKieU1f44EwsQqqXRVAYMi96tyddkXCxqQ31KZWGhPhw96WWFXrC8WzjZLb/vqT44z7DLr4hKtYzrO9U9esFQaMp0SskSiZORqCyxCoxAOhy5A+Yl45MtNFtFCGPMShJMJZtrXxDBMaA8WBTL317xDg5KxJAa909MVSq+CLF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747343697; c=relaxed/simple;
-	bh=RAyngCPq2peFM0V0FTaA8Fr/E0TLSEJxlAFs8iBQIjE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=k76U90+4+b1BQD0rrAeRntJipERLPKEUPcnWS/0Fz7ZpfZMuZOKVRvMxk9EWZ9HV2GFKxVNUly/aib3nhRyUL4TiSGPGK3HRApN3lWehemIYb45mnaR3ZpLVWeuPdDQa3dVmOz4zlMnpxGMGH3wz6v0YbCHCjN7YE/WB+rKcVBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=M+1elNIu; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54FK2uZ1016353;
-	Thu, 15 May 2025 17:14:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=w0lbf
-	dYGBStOV8QFtlF1ozKaiKDqJdzZMS+uaLk8ATg=; b=M+1elNIuZV+SCalyaegWE
-	AjGBwCSh+pKEwyXLguERf+Yr//ZfrY/leqQvt0M4K4GfxmBvdqL6JE0jnUmVrHSk
-	4IuL+2fN/NJCJzZA9IFcehma5qTBxoh4d+ijei50IH3thN9u/0wEjgR8C51t23ZQ
-	l09WYr0KvZTifNytDT9n/d5+M9G9r3ertPPo/kz0L22wRmc2S50yZ9Dx/IEcapmt
-	1g2c8qRN8G/L2DbFt2JR5ncl6uDIctfpmWBnxLyPhLR/yZ7ODFRxLzWEjbafRDNG
-	Y2dC7xas6jpI3jsQCsLl0dVFmllE0ebE0VwJ06q6Ie36XaBHPdefWKhIXGcuW2bF
-	Q==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 46mn65295x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 May 2025 17:14:49 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 54FLEmR0038370
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 15 May 2025 17:14:48 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Thu, 15 May
- 2025 17:14:48 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Thu, 15 May 2025 17:14:48 -0400
-Received: from JSANTO12-L01.ad.analog.com ([10.65.60.206])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 54FLEYOU018893;
-	Thu, 15 May 2025 17:14:36 -0400
-From: Jonathan Santos <Jonathan.Santos@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
-CC: Jonathan Santos <Jonathan.Santos@analog.com>, <andy@kernel.org>,
-        <nuno.sa@analog.com>, <Michael.Hennerich@analog.com>,
-        <marcelo.schmitt@analog.com>, <jic23@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <marcelo.schmitt1@gmail.com>, <linus.walleij@linaro.org>,
-        <brgl@bgdev.pl>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <jonath4nns@gmail.com>, <dlechner@baylibre.com>
-Subject: [PATCH v8 11/11] iio: adc: ad7768-1: add low pass -3dB cutoff attribute
-Date: Thu, 15 May 2025 18:14:33 -0300
-Message-ID: <42dc4d7722996a8d64a1bbafd8848609c9e435d8.1747175187.git.Jonathan.Santos@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1747175187.git.Jonathan.Santos@analog.com>
-References: <cover.1747175187.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1747345777; c=relaxed/simple;
+	bh=RoCc345vfJVENvuSRJcrRZFcN774itnQr3aMxr0Fyfw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qN6nCkos7VZdINS0crEAa7Q3gpnIF6cd4UfUPR9HZPKzbA6W/2d6ZMPITCJumyA12FkTUe0UujYKx2v6BuZK/Y3UHekO3TTmIUMyhe5vzcc9Oq7M+evyQaOCT1Xa1ze5nxJkLp3Lk7Wbtgs4sIBwVosA59PLAzlEKqENr8HIgWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f9Nb5ngX; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747345774; x=1778881774;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RoCc345vfJVENvuSRJcrRZFcN774itnQr3aMxr0Fyfw=;
+  b=f9Nb5ngXL/wiTgmTqa6TuthzoRW9ZoUr0BAX7Ljw4dSC9EkDc/2zThVf
+   QSCChxqVVeNFLoXrLAfdSiDD7emUOGo9s7PaGdtr8FKyUJMfsvTwMfBvg
+   KDoCqaWOFu+RiDGcK5HtnwdUKXGy0DL+MF4OAxx18hU+1gbuX8B4IP2Dd
+   1ISoKfpMcXl6qysPCwqSsTwCRuzEwzcSgyAWaXRcINYLb3S4+mWR4ALA1
+   9760Zkx7c9h5nioV/ZPXfQDtgbjNhuN6+9JGevZlBK7s7DZEmY5EfQU20
+   XOJHjqQ7pAed/U62RS3qW36ADJzV7lm4UxnGxW5tTqhNbv5R0VaUHjSrF
+   Q==;
+X-CSE-ConnectionGUID: oSFqGRcoTEeyu9Pd3NSRjA==
+X-CSE-MsgGUID: Ls/q8E1hTyKc69FAV3wvwQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="74706554"
+X-IronPort-AV: E=Sophos;i="6.15,292,1739865600"; 
+   d="scan'208";a="74706554"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 May 2025 14:49:33 -0700
+X-CSE-ConnectionGUID: gPxS+KsDQICu4S9djjz6WA==
+X-CSE-MsgGUID: lV50IQaLQZ+PFDXaZT8Gcg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,292,1739865600"; 
+   d="scan'208";a="138895866"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 15 May 2025 14:49:27 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uFgSD-000Ilz-07;
+	Thu, 15 May 2025 21:49:25 +0000
+Date: Fri, 16 May 2025 05:48:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gerald Loacker <gerald.loacker@wolfvision.net>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Markus Elfring <Markus.Elfring@web.de>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Collabora Kernel Team <kernel@collabora.com>,
+	Paul Kocialkowski <paulk@sys-base.io>,
+	Alexander Shiyan <eagle.alexander923@gmail.com>,
+	Val Packett <val@packett.cool>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH v7 07/14] media: rockchip: add driver for mipi csi-2
+ receiver
+Message-ID: <202505160513.MZRCAdXI-lkp@intel.com>
+References: <20240220-rk3568-vicap-v7-7-7581fd96a33a@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: Nf6WrU6mVAOs3TL9TXjXNciIWz9wkxb-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE1MDIwNyBTYWx0ZWRfX50d/hI6k38Zb
- MDqgFqD49L8jStu6rX4r+ketHa093hPZ/06yPgbU6xENwqASH3LOW6rkZp9Aj61sCd5705G+9uZ
- N5T1YibZzUdu5r9OLY+IF5WqHRIFvamkzVx14cBwnPV/G8mGvGwBKHIkGc//3uH1eK/DS35GM7p
- +jwE0YSDo1ixyCDC5QcMls5CofFUIcAOgxrqsqfSgYEN7t7aAjqU+jUAFV7RhrXeY4xXMVSImlA
- /+tGAqrNRPd9BdWiqClu5H8haBPh8xpoaMELGEYPtQWgW05wqNtjyi0l1pEQ6FLgp0z7yBtpguV
- 5EArlYfhS7fDOkL3fNuGoHX28S5jUttaISR+FMmCoFQV7UvUapvVFQkQ+nFmLaRcCJx9g6vPGky
- ylufgDlMKO1uCB/NNS+ppxdATCbMExkqoPj/GUoC8cxWDwn7oKc5/xy9YprrhibsBAGamAfA
-X-Authority-Analysis: v=2.4 cv=SZL3duRu c=1 sm=1 tr=0 ts=68265949 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=dt9VzEwgFbYA:10 a=gAnH3GRIAAAA:8 a=IpJZQVW2AAAA:8 a=ZkoTrUv0hqWFqrPu6skA:9
- a=IawgGOuG5U0WyFbmm1f5:22
-X-Proofpoint-ORIG-GUID: Nf6WrU6mVAOs3TL9TXjXNciIWz9wkxb-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-15_09,2025-05-15_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 mlxlogscore=999 adultscore=0
- priorityscore=1501 mlxscore=0 suspectscore=0 malwarescore=0 spamscore=0
- clxscore=1015 phishscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505070000 definitions=main-2505150207
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240220-rk3568-vicap-v7-7-7581fd96a33a@collabora.com>
 
-Ad7768-1 has a different -3db frequency multiplier depending on
-the filter type configured. The cutoff frequency also varies according
-to the current ODR.
+Hi Michael,
 
-Add a readonly low pass -3dB frequency cutoff attribute to clarify to
-the user which bandwidth is being allowed depending on the filter
-configurations.
+kernel test robot noticed the following build warnings:
 
-Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Reviewed-by: David Lechner <dlechner@baylibre.com>
-Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
----
-v8 Changes:
-* None
+[auto build test WARNING on 82f2b0b97b36ee3fcddf0f0780a9a0825d52fec3]
 
-v7 Changes:
-* None
+url:    https://github.com/intel-lab-lkp/linux/commits/Michael-Riesch-via-B4-Relay/Documentation-admin-guide-media-add-rockchip-camera-interface/20250514-235450
+base:   82f2b0b97b36ee3fcddf0f0780a9a0825d52fec3
+patch link:    https://lore.kernel.org/r/20240220-rk3568-vicap-v7-7-7581fd96a33a%40collabora.com
+patch subject: [PATCH v7 07/14] media: rockchip: add driver for mipi csi-2 receiver
+config: i386-kismet-CONFIG_VIDEO_V4L2_SUBDEV_API-CONFIG_VIDEO_ROCKCHIP_CSI-0-0 (https://download.01.org/0day-ci/archive/20250516/202505160513.MZRCAdXI-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20250516/202505160513.MZRCAdXI-lkp@intel.com/reproduce)
 
-v6 Changes:
-* None
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505160513.MZRCAdXI-lkp@intel.com/
 
-v5 Changes:
-* None
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for VIDEO_V4L2_SUBDEV_API when selected by VIDEO_ROCKCHIP_CSI
+   WARNING: unmet direct dependencies detected for VIDEO_V4L2_SUBDEV_API
+     Depends on [n]: MEDIA_SUPPORT [=y] && VIDEO_DEV [=n] && MEDIA_CONTROLLER [=y]
+     Selected by [y]:
+     - VIDEO_ROCKCHIP_CSI [=y] && MEDIA_SUPPORT [=y] && MEDIA_PLATFORM_SUPPORT [=y] && MEDIA_PLATFORM_DRIVERS [=y] && (ARCH_ROCKCHIP || COMPILE_TEST [=y]) && V4L_PLATFORM_DRIVERS [=y] && PM [=y] && COMMON_CLK [=y]
 
-v4 Changes:
-* None
-
-v3 Changes:
-* None
-
-v2 Changes:
-* New patch in v2.
----
- drivers/iio/adc/ad7768-1.c | 22 ++++++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
-index caa76f526d4c..4cfea6f12f69 100644
---- a/drivers/iio/adc/ad7768-1.c
-+++ b/drivers/iio/adc/ad7768-1.c
-@@ -152,6 +152,17 @@ enum ad7768_scan_type {
- 	AD7768_SCAN_TYPE_HIGH_SPEED,
- };
- 
-+/*
-+ * -3dB cutoff frequency multipliers (relative to ODR) for
-+ * each filter type. Values are multiplied by 1000.
-+ */
-+static const int ad7768_filter_3db_odr_multiplier[] = {
-+	[AD7768_FILTER_SINC5] = 204,
-+	[AD7768_FILTER_SINC3] = 262,
-+	[AD7768_FILTER_SINC3_REJ60] = 262,
-+	[AD7768_FILTER_WIDEBAND] = 433,
-+};
-+
- static const int ad7768_mclk_div_rates[] = {
- 	16, 8, 4, 2,
- };
-@@ -748,7 +759,8 @@ static const struct iio_chan_spec ad7768_channels[] = {
- 		.type = IIO_VOLTAGE,
- 		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
- 		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |
--					    BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+					    BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO) |
-+					    BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),
- 		.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
- 		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),
- 		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),
-@@ -768,7 +780,7 @@ static int ad7768_read_raw(struct iio_dev *indio_dev,
- {
- 	struct ad7768_state *st = iio_priv(indio_dev);
- 	const struct iio_scan_type *scan_type;
--	int scale_uv, ret;
-+	int scale_uv, ret, temp;
- 
- 	scan_type = iio_get_current_scan_type(indio_dev, chan);
- 	if (IS_ERR(scan_type))
-@@ -806,6 +818,12 @@ static int ad7768_read_raw(struct iio_dev *indio_dev,
- 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
- 		*val = st->oversampling_ratio;
- 
-+		return IIO_VAL_INT;
-+
-+	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-+		temp = st->samp_freq * ad7768_filter_3db_odr_multiplier[st->filter_type];
-+		*val = DIV_ROUND_CLOSEST(temp, 1000);
-+
- 		return IIO_VAL_INT;
- 	}
- 
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
