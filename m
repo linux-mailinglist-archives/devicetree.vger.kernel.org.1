@@ -1,114 +1,177 @@
-Return-Path: <devicetree+bounces-177538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A52BAB7F0E
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:43:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6FA3AB7F47
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 09:51:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 054BB1BA287E
-	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 07:43:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 944424C4946
+	for <lists+devicetree@lfdr.de>; Thu, 15 May 2025 07:51:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 854242749DC;
-	Thu, 15 May 2025 07:43:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC3C27C15A;
+	Thu, 15 May 2025 07:50:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K+Jk8h+d"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="MRRE2jpO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA282222CB;
-	Thu, 15 May 2025 07:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35B3F283FD9;
+	Thu, 15 May 2025 07:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747295000; cv=none; b=uHbB1b5yC3SOvi6wE/mOsekPPRIcAHIzcnOOyKZhQ1D6du4ZmpquRSnJ+10xj70wi6WTQG1BRL1sF/WUYEloGQkwCtdwmADvUdaxzQw7mq1bU8JNQGAwfCDGU0AwW98c4uAaYOrcuTt+5iDyC/14/U1zsX2Jt92WzNgPNJdfN/A=
+	t=1747295457; cv=none; b=DXmOYo71gDEwlQiga+wKrKzG5RAUh4CeTknD0vCwKotC4cBr7BHtXwVpoBdIt2C42SdEda/FI2V7NzLcSdqDo+wxntGh8KURxjOKP/67SE2RvHjkRSPk3OsDX9FaADSiTfSEvrBZrR/a9H7J+j4VW7P+kadycFiGVYEHxM2kM3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747295000; c=relaxed/simple;
-	bh=h1lP/XXLGAF1oDoLpaZY+0OrHUGsOnllqHLKbDeAURg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=egNDjJKporwJbHDCtArrXb/EcYTfJ2dkjgaOdOT0tP+PkryzsLd4N9Ff/in2LBN5C5ddgz53yBTT5jqlPuHzw8KY/Jq1Ju5graxGVJFxIuF+l47HTO+OEN/rP9JIWWQK3YctXCJH3bBZihfEXoJ8GJE4UX8Z//xT2fUeqB+/cb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K+Jk8h+d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67F06C4CEE7;
-	Thu, 15 May 2025 07:43:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747294997;
-	bh=h1lP/XXLGAF1oDoLpaZY+0OrHUGsOnllqHLKbDeAURg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=K+Jk8h+dtlENycXrCf9xiGgBIODRP64nCCyfmd5mwwfFiuecBzNt+8y17DbOE/Xgd
-	 WFXCvPM75xcNZQ0kk7VgG2G4G5SFydPF305XY7Z4Ox8eUI7gvz4o8JPsuRdz8iyzy/
-	 HfjxbEchRRi1LpfvbNkjZguOlrlGf+bYUzR69nbCal7J2DV5h+SqEZDN15n2iFy0PF
-	 NQ5v2LSL0DAO1d8yw2Bzh8wyUMnllANDiMc+IQ4WwVhkvzcKYctr9suI2rKjCnXhGz
-	 2P3Pa3QDBNrDFkgpnuiSfo9Htlo8zTHTmiN3BWLsN1Rt8smb1LhsGrhW8+6RpDc+4K
-	 ef6n8aMEtKYvA==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chen Zhong <chen.zhong@mediatek.com>, 
- Fabien Parent <fabien.parent@linaro.org>, 
- Alexandre Mergnat <amergnat@baylibre.com>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org
-In-Reply-To: <20250514-mt6357-regulator-fixed-compatibles-removal-bindings-v1-1-2421e9cc6cc7@collabora.com>
-References: <20250514-mt6357-regulator-fixed-compatibles-removal-bindings-v1-1-2421e9cc6cc7@collabora.com>
-Subject: Re: [PATCH] regulator: dt-bindings: mt6357: Drop fixed compatible
- requirement
-Message-Id: <174729499095.280025.830867783307923858.b4-ty@kernel.org>
-Date: Thu, 15 May 2025 09:43:10 +0200
+	s=arc-20240116; t=1747295457; c=relaxed/simple;
+	bh=tpCTD5xGme/qPS7vcmDRv0oeU5Y1eIoub1iwPCyoqhU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GXcSODXCBv/33c2oHpUTXZ37hxijuwFPmy3Kl75O8CUtwjQQxbbtmoMqYw4x3/3SkCKslYk5V+eBl3cOHdGYll8W5WHlqeJwMEGvPvt16js+mnYDwkR2zFmWkTPql4s/P+HAr/aK5EbPTZ/djmBofzgKes4e9nL6eM+H/zMmzFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=MRRE2jpO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E490DC4CEED;
+	Thu, 15 May 2025 07:50:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1747295456;
+	bh=tpCTD5xGme/qPS7vcmDRv0oeU5Y1eIoub1iwPCyoqhU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MRRE2jpO51015SkZlpUH3dWOOmZ4ntJR8HlDtRS/JqOFD8nOw3UUPf2yukSld8ns4
+	 2ZCBTFaZ58lndbcxSgd+4XeTtMolz41FMjGHFB/OFyorz3NbHkWHYLNPV0bAO8gc4C
+	 VszQq7SNr0gaR0zgZmCoMWXesIZW/ZRWdPYkO2Js=
+Date: Thu, 15 May 2025 09:49:01 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Damien =?iso-8859-1?Q?Ri=E9gel?= <damien.riegel@silabs.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Silicon Labs Kernel Team <linux-devel@silabs.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
+	Alex Elder <elder@kernel.org>, greybus-dev@lists.linaro.org
+Subject: Re: [RFC net-next 00/15] Add support for Silicon Labs CPC
+Message-ID: <2025051551-rinsing-accurate-1852@gregkh>
+References: <20250512012748.79749-1-damien.riegel@silabs.com>
+ <6fea7d17-8e08-42c7-a297-d4f5a3377661@lunn.ch>
+ <D9VCEGBQWBW8.3MJCYYXOZHZNX@silabs.com>
+ <f1a4ab5a-f2ce-4c94-91eb-ab81aea5b413@lunn.ch>
+ <D9W93CSVNNM0.F14YDBPZP64O@silabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-c25d1
+In-Reply-To: <D9W93CSVNNM0.F14YDBPZP64O@silabs.com>
 
-On Wed, 14 May 2025 08:36:06 -0400, NÃ­colas F. R. A. Prado wrote:
-> Some of the regulators on the MT6357 PMIC currently reference the
-> fixed-regulator dt-binding, which enforces the presence of a
-> regulator-fixed compatible. However since all regulators on the MT6357
-> PMIC are handled by a single mt6357-regulator driver, probed through
-> MFD, the compatibles don't serve any purpose. In fact they cause
-> failures in the DT kselftest since they aren't probed by the fixed
-> regulator driver as would be expected. Furthermore this is the only
-> dt-binding in this family like this: mt6359-regulator and
-> mt6358-regulator don't require those compatibles.
+On Wed, May 14, 2025 at 06:52:27PM -0400, Damien Riégel wrote:
+> On Tue May 13, 2025 at 5:53 PM EDT, Andrew Lunn wrote:
+> > On Tue, May 13, 2025 at 05:15:20PM -0400, Damien Riégel wrote:
+> >> On Mon May 12, 2025 at 1:07 PM EDT, Andrew Lunn wrote:
+> >> > On Sun, May 11, 2025 at 09:27:33PM -0400, Damien Riégel wrote:
+> >> >> Hi,
+> >> >>
+> >> >>
+> >> >> This patchset brings initial support for Silicon Labs CPC protocol,
+> >> >> standing for Co-Processor Communication. This protocol is used by the
+> >> >> EFR32 Series [1]. These devices offer a variety for radio protocols,
+> >> >> such as Bluetooth, Z-Wave, Zigbee [2].
+> >> >
+> >> > Before we get too deep into the details of the patches, please could
+> >> > you do a compare/contrast to Greybus.
+> >>
+> >> Thank you for the prompt feedback on the RFC. We took a look at Greybus
+> >> in the past and it didn't seem to fit our needs. One of the main use
+> >> case that drove the development of CPC was to support WiFi (in
+> >> coexistence with other radio stacks) over SDIO, and get the maximum
+> >> throughput possible. We concluded that to achieve this we would need
+> >> packet aggregation, as sending one frame at a time over SDIO is
+> >> wasteful, and managing Radio Co-Processor available buffers, as sending
+> >> frames that the RCP is not able to process would degrade performance.
+> >>
+> >> Greybus don't seem to offer these capabilities. It seems to be more
+> >> geared towards implementing RPC, where the host would send a command,
+> >> and then wait for the device to execute it and to respond. For Greybus'
+> >> protocols that implement some "streaming" features like audio or video
+> >> capture, the data streams go to an I2S or CSI interface, but it doesn't
+> >> seem to go through a CPort. So it seems to act as a backbone to connect
+> >> CPorts together, but high-throughput transfers happen on other types of
+> >> links. CPC is more about moving data over a physical link, guaranteeing
+> >> ordered delivery and avoiding unnecessary transmissions if remote
+> >> doesn't have the resources, it's much lower level than Greybus.
+> >
+> > As is said, i don't know Greybus too well. I hope its Maintainers can
+> > comment on this.
+> >
+> >> > Also, this patch adds Bluetooth, you talk about Z-Wave and Zigbee. But
+> >> > the EFR32 is a general purpose SoC, with I2C, SPI, PWM, UART. Greybus
+> >> > has support for these, although the code is current in staging. But
+> >> > for staging code, it is actually pretty good.
+> >>
+> >> I agree with you that the EFR32 is a general purpose SoC and exposing
+> >> all available peripherals would be great, but most customers buy it as
+> >> an RCP module with one or more radio stacks enabled, and that's the
+> >> situation we're trying to address. Maybe I introduced a framework with
+> >> custom bus, drivers and endpoints where it was unnecessary, the goal is
+> >> not to be super generic but only to support coexistence of our radio
+> >> stacks.
+> >
+> > This leads to my next problem.
+> >
+> > https://www.nordicsemi.com/-/media/Software-and-other-downloads/Product-Briefs/nRF5340-SoC-PB.pdf
+> > Nordic Semiconductor has what appears to be a similar device.
+> >
+> > https://www.microchip.com/en-us/products/wireless-connectivity/bluetooth-low-energy/microcontrollers
+> > Microchip has a similar device as well.
+> >
+> > https://www.ti.com/product/CC2674R10
+> > TI has a similar device.
+> >
+> > And maybe there are others?
+> >
+> > Are we going to get a Silabs CPC, a Nordic CPC, a Microchip CPC, a TI
+> > CPC, and an ACME CPC?
+> >
+> > How do we end up with one implementation?
+> >
+> > Maybe Greybus does not currently support your streaming use case too
+> > well, but it is at least vendor neutral. Can it be extended for
+> > streaming?
 > 
-> [...]
+> I get the sentiment that we don't want every single vendor to push their
+> own protocols that are ever so slightly different. To be honest, I don't
+> know if Greybus can be extended for that use case, or if it's something
+> they are interested in supporting. I've subscribed to greybus-dev so
+> hopefully my email will get through this time (previous one is pending
+> approval).
+> 
+> Unfortunately, we're deep down the CPC road, especially on the firmware
+> side. Blame on me for not sending the RFC sooner and getting feedback
+> earlier, but if we have to massively change our course of action we need
+> some degree of confidence that this is a viable alternative for
+> achieving high-throughput for WiFi over SDIO. I would really value any
+> input from the Greybus folks on this.
 
-Applied to
+So what you are looking for is a standard way to "tunnel" SDIO over some
+other physical transport, right?  If so, then yes, please use Greybus as
+that is exactly what it was designed for.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+If there is a throughput issue with the sdio implementation on Greybus,
+we can address it by fixing up the code to go faster, I don't recall
+there ever being any real benchmarking happening for that protocol in
+the past as the physical layer that we were using for Greybus at the
+time (MIPI) was very fast, the bottleneck was usually either the host
+controller we were using for Greybus, OR on the firmware side in the
+device itself (i.e. turning Greybus packets into SDIO commands, as SDIO
+was pretty slow.)
 
-Thanks!
+thanks,
 
-[1/1] regulator: dt-bindings: mt6357: Drop fixed compatible requirement
-      commit: 9cfdd7752ba5f8cc9b8191e8c9aeeec246241fa4
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+greg k-h
 
