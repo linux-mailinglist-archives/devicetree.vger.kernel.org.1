@@ -1,269 +1,155 @@
-Return-Path: <devicetree+bounces-178041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DE1AABA1BF
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 19:15:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 322D1ABA1F0
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 19:37:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 295E33A6993
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 17:15:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C98C017D05B
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 17:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 211311DD88F;
-	Fri, 16 May 2025 17:15:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76AB247293;
+	Fri, 16 May 2025 17:37:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="rBEQq7WQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="X0ksiJY4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011018.outbound.protection.outlook.com [40.107.130.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF6FA31;
-	Fri, 16 May 2025 17:15:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.18
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747415734; cv=fail; b=CYQWI84p3mL6dzI1Wv3Q/fqPkZ1onMvwH1mqs4k97MjrHM5Tkb7wGKTy7bgDnlmsbms0mjapuTc+dM9mxOsfJK4IiS8+Hgxv8mMz2b0Pi8hO8sYxHppelIab3CPCek5bwZJxDXhI4iRDLq7cg5VLXnhc+4zdqfK9Aby5L7086i0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747415734; c=relaxed/simple;
-	bh=fJ09g9IykD1Zh61pmhideoy/eYo8+PWkCIWghOC89f0=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=cw4gqoEgdnzb9qyk04pZzzaeBGMW9xoihuNb6gtp1mDa6lrKBpQlkDNLmE6H8rEBa4skDNTqSWFqjXy55luIQHCdLhCKI14F1ZuXwbdK/Lz5F3tsJU4PNSWadMGgC9m3LKqWmZg6VXDbyFjeQC74DLpgDNY/LxkoeSLZVZ65jlU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=rBEQq7WQ; arc=fail smtp.client-ip=40.107.130.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ycWMPxpgu/n2/ZzlrLbPbkIjLEyj4FyhshkQXimmRa7vL/RxfVa8+TtCAPxpb0YcW00kj4urybGQhNT0wFqbn0korBSge3tmqs1GCh2IrLCp+aCbJdmafuueaK4I4CrPbctomGdpsbpv4S7ABTuVde5laOT4rGx25Oi5SpARaR4EGH7niH4yCxiWQxQ1ZYICN4poYmwcKlsZYzLPMuyTaFbeNk/K3u/Yn9ZVyU8iuzApJXtWJmDwAICqnVgIJIeAmX71M+o4M/2WF4pXZVsffIX8OVu0/xQaN6nD/1H4au83QQsAqf9iUapenC4t4nspWhMPIZ5lCE9G3nzCFDqL4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XKD6H0v/vIaM3f4lZkLX6m3B5AuVOm/qSD63udP0nm8=;
- b=B627o5KaScJqjnkQZfJhPqb2Rcw3HrsSYI0pWQLaUcY0mCLc6c6ICGbZ22pyXHHoj+Mqun9wJ5gXswS5lW/wYbri3L9BQjR1HN60kqNKBmLqWjEm9Qi+ZxCzeDsO9UNlnzcEewQYR9nKMz0zsnfKcKGpFBS3hXE49JKFsYJXVVRldc/3qf+UP+60Y9TLnoxc2ijkxi/CFiIW6zSmE8em2e4oQXLmiFjTcB8OnpHztB6/F6cKt0B7H6MMxcmzsTSNAEGVDADSH4DgUXcCzlJH5P+AX4ctUljpgzM2xcy3xr2300iVMzpYhempAnstR8xhaA2TZvjMKIB96dI6USOcDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XKD6H0v/vIaM3f4lZkLX6m3B5AuVOm/qSD63udP0nm8=;
- b=rBEQq7WQ7hcocQgp6lqEgnV1DnPJ9yd3rLnvXP9Hjx8RWzumGk1Mh/kbO45hB70kDdOYHKMP9Tm41sTGfxU77W0HMjBGTg8/Aex5+VG6qQSJoSlcsb78c+DmVDyRJP4e7adYT6XdQ0g2hLtgey4DhEqZtgrvDivDFyKutz9+P2s=
-Received: from DU7P190CA0005.EURP190.PROD.OUTLOOK.COM (2603:10a6:10:550::22)
- by VI1PR02MB6239.eurprd02.prod.outlook.com (2603:10a6:800:199::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.26; Fri, 16 May
- 2025 17:15:23 +0000
-Received: from DU6PEPF0000A7E4.eurprd02.prod.outlook.com
- (2603:10a6:10:550:cafe::fe) by DU7P190CA0005.outlook.office365.com
- (2603:10a6:10:550::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8746.21 via Frontend Transport; Fri,
- 16 May 2025 17:15:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- DU6PEPF0000A7E4.mail.protection.outlook.com (10.167.8.43) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8746.27 via Frontend Transport; Fri, 16 May 2025 17:15:23 +0000
-Received: from pc52311-2249 (10.4.0.13) by se-mail01w.axis.com (10.20.40.7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 16 May
- 2025 19:15:22 +0200
-From: Waqar Hameed <waqar.hameed@axis.com>
-To: Krzysztof Koowski <krzk@kernel.org>
-CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <kernel@axis.com>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/3] dt-bindings: iio: proximity: Add Nicera D3-323-AA
- PIR sensor
-In-Reply-To: <02b0dbc2-e8fd-419a-b546-5910b3fd0e0c@kernel.org> (Krzysztof
-	Kozlowski's message of "Fri, 9 May 2025 17:06:56 +0200")
-References: <c57675d505e93549bfca5f9909d67822ab304a44.1746802541.git.waqar.hameed@axis.com>
-	<02b0dbc2-e8fd-419a-b546-5910b3fd0e0c@kernel.org>
-User-Agent: a.out
-Date: Fri, 16 May 2025 19:15:22 +0200
-Message-ID: <pndtt5kiij9.fsf@axis.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3404B21D5BD;
+	Fri, 16 May 2025 17:37:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747417034; cv=none; b=XL5vvbLeX1tlzPZ0Ll2UB4ULikZMyQKRnvpgty2S1zKTzqHqC4Q66gmYiT8I6iRclUOB1od/JrdHdQJrVFbOf1N9onCUlbrLTxA7fzDpe5lAuc17eM7VyBVtzA71oS4yvHPtqpTzq/lm9zrekLOIlyVAQGDX1N+RJ5lCG/nPocs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747417034; c=relaxed/simple;
+	bh=40Ng1e/p4FwwPbVoNfstSAWKg1bujMa4nNE3yHR1Pk0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gdcmsVG9IZUqwIpGVtN8jE6/SPQKrPLmvwPtrpOhwFllHag1HfQ0C7u9Pt0LAXbwlEAKzISkC/xE1k+s7oWdV4VtMg+AUnSTNrd4kOdq2dsFBEbKpwVWJh5DNk44q34WMntU/QET5PP6VauxZo7qbzQXGNh7qwzmvSgp+WsBpGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=X0ksiJY4; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747417034; x=1778953034;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=40Ng1e/p4FwwPbVoNfstSAWKg1bujMa4nNE3yHR1Pk0=;
+  b=X0ksiJY4e3LWhSHkCOphewb2C/d/1B/oClRaJ9X5KJaOUgjnAuZxfQx/
+   9kGl0ju2xww8aEvpBcDZJjUFkib6dXn2EDgBdaHRkJdwV8DHIeWJocSYS
+   rKpfmIqc9D/t5OnuCQ3wsu0jlL+IqbzXqL537OwtXrEtfc9YVG+EyQpsK
+   oB4XIcnJcvY93i4CSLy+Gd8ijgkotd3dLK0izb/3Hqd2axM7j68uuzbvt
+   RWDdYU9t+TWTNyz2vfz6R3TrlfDuqhg1G2pm+Y4eniC/AIHirPSs9xm0z
+   d+CCVGYeYJ6KOovvEUMhKY6bHzcEgvjYgqfQKj2ShEMR8PyTTHqKe6PJU
+   A==;
+X-CSE-ConnectionGUID: YMZBz6NXQYmFbBlWrNAD0g==
+X-CSE-MsgGUID: dS/6wdhGQtKFW2Db5ugYJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="49274108"
+X-IronPort-AV: E=Sophos;i="6.15,294,1739865600"; 
+   d="scan'208";a="49274108"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2025 10:37:13 -0700
+X-CSE-ConnectionGUID: Fb8DaDi4TDS9m/QhyjBuwA==
+X-CSE-MsgGUID: SaeIarkDQrKTAl9YgaptnA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,294,1739865600"; 
+   d="scan'208";a="138490538"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 16 May 2025 10:37:10 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uFyzb-000Ja7-1k;
+	Fri, 16 May 2025 17:37:07 +0000
+Date: Sat, 17 May 2025 01:36:26 +0800
+From: kernel test robot <lkp@intel.com>
+To: adrianhoyin.ng@altera.com, dinguyen@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	Eugeniy.Paltsev@synopsys.com, vkoul@kernel.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, adrianhoyin.ng@altera.com,
+	Matthew Gerlach <matthew.gerlach@altrera.com>
+Subject: Re: [PATCH 4/4] dma: dw-axi-dmac: Add support for dma-bit-mask
+ property
+Message-ID: <202505170152.aOv0x3eD-lkp@intel.com>
+References: <a10c000b7c8301018eb2b0a20fbf2d2d10e74a02.1747367749.git.adrianhoyin.ng@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: se-mail02w.axis.com (10.20.40.8) To se-mail01w.axis.com
- (10.20.40.7)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU6PEPF0000A7E4:EE_|VI1PR02MB6239:EE_
-X-MS-Office365-Filtering-Correlation-Id: e159b666-60e3-4d2a-9053-08dd949d3e4d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ODwOCH+jSJxou1Vxw159uuHOIfKLbBCKHM2il+3aTkLYzWu9gdcGgcVGvX4i?=
- =?us-ascii?Q?YJpBF2i5uDEdPLWdVVi74th1Rl3wGTZjZpzvQf5NxRwJbVjKBdfaS6aaGKkz?=
- =?us-ascii?Q?CRvaZUAtzGRSWnYtS8hDXD8Pct2X4bKGC+ItXgUfSIXq7RU9eSXyX5TfVG+K?=
- =?us-ascii?Q?O/pF8oz9FZoreQc2IzYB3snAQnmUzZf1Eq0GahOFNOwk0dPNsHztF+jiwHJd?=
- =?us-ascii?Q?V0FGbNQ8qe0MYnSALTb74L+L/FaUZdcxXcidi+3C945Rr2PlDedtCZYqwGxJ?=
- =?us-ascii?Q?yTq3ds+e7BksfTXC6sxEaqpzvkZV7mm2RPzRs5L5H0XzdC5Wx+wM/B+E3E5j?=
- =?us-ascii?Q?By+nwXTnkPSCM9nxsjAkh/SZoZ2fSSQryWtCHAJzRpysV5Mi9k0vlnQUrZRp?=
- =?us-ascii?Q?RbEl06L0p/H4dkf+qnaz4quwYuYjJ7BIZkn63QJZ/I13qpaygs1n7VHVEfB4?=
- =?us-ascii?Q?o7JznRXPnpBm2mC/cHs5OYXphcF6aLb+e8V59C3HydDyo2MdugJPMYeuVW+C?=
- =?us-ascii?Q?fc4zXHZaeNvaylwTZPttcrSKNSXjw2vYe3F/vA6Wf1swFnC5DHsPCeVh2zio?=
- =?us-ascii?Q?7tOQlCdL0qccuIZDIWFiBx7hHhetqmARsAheH8+w4hSdOC35gKxePRfxBdQb?=
- =?us-ascii?Q?XCS7BM4vJN5pYv9LDPDOhZl2/Vr83mRPUcPWNuwI8tS4GCIjz+WMOKb1B+0W?=
- =?us-ascii?Q?DTBv35k/xZh+6RZ4yUjaT4n1efNlEC/3/4vEDIV0VPuK1PbXGHWxjbMynfsp?=
- =?us-ascii?Q?IRyTlV6auwefKu0r6PSlJT9nDmCKGkyTvI0ywwWSO9IYknK8nRVtyrn4zslj?=
- =?us-ascii?Q?ZsF/K/+M4MavqdjmJCsqzrpiANb6kZnKz0xuikKxAFXDGrW1Gq3vdI1MD8Ww?=
- =?us-ascii?Q?5HV7dhs2BwU7P9DSIV5Jr5jBICGVZZU/Mjt1pbu6HhRfYU/p2Y8pgOvjoYCq?=
- =?us-ascii?Q?tKrnRwdj/IcBRVr2f4DF5jDIg21ErD81AHOkKdGlsTS3ZIeBd8dudOi5l9qS?=
- =?us-ascii?Q?HIQlSM/mFTS5DV1Jg+1LtcltKO61xc5j+yu8LOgJwwM/cRQyK9ExAwXcK03i?=
- =?us-ascii?Q?mk8uxJTLTdD2xX/n8y/jK/Tjz2XpwQYMkMYH9gGG4qY/r3fbZupU1iQ7IhLz?=
- =?us-ascii?Q?YRB5/p3cQU7wcz8vHIZ5+rNdA75dUj1biJN1roFjJY7PwGyV4hPj5R18gv0S?=
- =?us-ascii?Q?GLbvkXbQu29AEMICjOLqQRCqENyinQmp9nE6xDCnsP98jYH/xxP8aZmDbcbs?=
- =?us-ascii?Q?jI+BMHDboVGlGV0sPE85m1oRL2kOmdLL898SC/f2yoOQOdINch6Lzhwnqg3c?=
- =?us-ascii?Q?xrVJjp/iLHUucxg/hil+Tm2Ph7Sv96DuzOGJZNCPFH7hjxpmgqf9Rlij2nA4?=
- =?us-ascii?Q?lF4AdYeGn+/ErHvbo7MUPBFrNDQGJNGRN2o87sQVOvrGNiBd/Tmu+dQU2FUz?=
- =?us-ascii?Q?7SlJQEJ8mv1eDLtNxGGKbF/++dvqpo08SY9DzFu2BBRuS4IBeK62tmzTrDr/?=
- =?us-ascii?Q?zMZ4iatuU6HQwPvkImGqAMr1W84xxOez4X7D?=
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2025 17:15:23.1978
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e159b666-60e3-4d2a-9053-08dd949d3e4d
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU6PEPF0000A7E4.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR02MB6239
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a10c000b7c8301018eb2b0a20fbf2d2d10e74a02.1747367749.git.adrianhoyin.ng@altera.com>
 
-On Fri, May 09, 2025 at 17:06 +0200 Krzysztof Kozlowski <krzk@kernel.org> wrote:
+Hi,
 
-> On 09/05/2025 17:03, Waqar Hameed wrote:
->> Nicera D3-323-AA is a PIR sensor for human detection. It has support for
->> raw data measurements and detection notification. The communication
->> protocol is custom made and therefore needs to be GPIO bit banged.
->> 
->> Add devicetree bindings requiring the compatible string and the various
->> GPIOs needed for operation. Some of the GPIOs have multiple use-cases
->> depending on device state. Describe these thoroughly.
->
->
-> Drop redundant parts of description. Describe the hardware. 
+kernel test robot noticed the following build warnings:
 
-I'll reformulate and incorporate some information of the pins and how it
-is used in the hardware.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on vkoul-dmaengine/next mtd/mtd/next mtd/mtd/fixes linus/master v6.15-rc6]
+[cannot apply to next-20250516]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> Entire last paragraph is pretty pointless.
+url:    https://github.com/intel-lab-lkp/linux/commits/adrianhoyin-ng-altera-com/dt-bindings-dma-snps-dw-axi-dmac-Add-iommus-dma-coherent-and-dma-bit-mask-quirk/20250516-120810
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/a10c000b7c8301018eb2b0a20fbf2d2d10e74a02.1747367749.git.adrianhoyin.ng%40altera.com
+patch subject: [PATCH 4/4] dma: dw-axi-dmac: Add support for dma-bit-mask property
+config: arc-randconfig-001-20250517 (https://download.01.org/0day-ci/archive/20250517/202505170152.aOv0x3eD-lkp@intel.com/config)
+compiler: arc-linux-gcc (GCC) 10.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250517/202505170152.aOv0x3eD-lkp@intel.com/reproduce)
 
-I'll remove it then. (Some sub-system maintainers want a description of
-what the patch does, in imperative form. But I can see why it might not
-add any value when it comes to dt-bindings.)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505170152.aOv0x3eD-lkp@intel.com/
 
->
->> +
->> +properties:
->> +  compatible:
->> +    const: nicera,d3323aa
->> +
->> +  vdd-gpio:
->> +    maxItems: 1
->> +    description:
->> +      GPIO for supply voltage (1.8 to 5.5 V).
->
-> This is not how pins are represented in the kernel. Either you have here
-> regulator (supply) or reset gpios. 
+All warnings (new ones prefixed by >>):
 
-I'll change it to `vdd-supply`.
+   drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c: In function 'axi_dma_hw_init':
+   drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c:275:33: error: 'dev' undeclared (first use in this function); did you mean 'cdev'?
+     275 |  ret = device_property_read_u32(dev, "snps,dma-bit-mask", &tmp);
+         |                                 ^~~
+         |                                 cdev
+   drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c:275:33: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c:279:23: warning: left shift count >= width of type [-Wshift-count-overflow]
+     279 |   if (tmp == 0 || tmp << 32 || tmp > 64)
+         |                       ^~
 
-> Plus 'gpio' suffix is not valid, btw.
 
-I actually `grep`ed before writing this to see if there were other
-dt-bindings with this suffix. Because the GPIO framework supports both
-`gpio` and `gpios` as suffixes (see `gpio_suffixes[]` in `gpiolib.c`).
-However, since `-gpios` are clearly in majority, we should go for that.
+vim +279 drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 
-[...]
+   264	
+   265	static void axi_dma_hw_init(struct axi_dma_chip *chip)
+   266	{
+   267		int ret;
+   268		u32 i, tmp;
+   269	
+   270		for (i = 0; i < chip->dw->hdata->nr_channels; i++) {
+   271			axi_chan_irq_disable(&chip->dw->chan[i], DWAXIDMAC_IRQ_ALL);
+   272			axi_chan_disable(&chip->dw->chan[i]);
+   273		}
+   274	
+   275		ret = device_property_read_u32(dev, "snps,dma-bit-mask", &tmp);
+   276		if (ret)
+   277			ret = dma_set_mask_and_coherent(chip->dev, DMA_BIT_MASK(64));
+   278		else {
+ > 279			if (tmp == 0 || tmp << 32 || tmp > 64)
+   280				dev_err(chip->dev, "Invalid dma bit mask\n");
+   281	
+   282			ret = dma_set_mask_and_coherent(chip->dev, DMA_BIT_MASK(tmp));
+   283		}
+   284	
+   285		if (ret)
+   286			dev_warn(chip->dev, "Unable to set coherent mask\n");
+   287	}
+   288	
 
->> +      This GPIO will be driven low by the driver in order to cut the supply and
->> +      reset the device (driving it then back to high to power it on).
->> +
->> +  clk-vout-gpio:
->
-> No, for the similar reasons. Which pin is this?
-
-This pin is a little weird actually. As described below, right after
-power on, it is used as an interrupt to signal "ready for
-configuration". Then, it used as a bit banged clock signal for
-configuration. Finally, it is back as interrupt pin for threshold PIR
-sensor detections.
-
-So, I'm not really sure what to call this (just opted for what it's
-called in the data sheet: "Vout (CLK)"). Just `clk-gpios` wouldn't be
-correct either, right? Should we prefix it with the vendor `nicera,`? Or
-any other suggestions?
-
->
->> +    maxItems: 1
->> +    description:
->> +      GPIO for clock and detection.
->> +      After reset, the device signals with two falling edges on this pin that it
->> +      is ready for configuration (within 1.2 s), which the driver listens for as
->> +      interrupts.
->> +      During configuration, it is used as clock for data reading and writing (on
->> +      data-gpio). The driver drives this pin with the frequency of 1 kHz (bit
->> +      banging).
->> +      After all this, the device is now in operational mode and signals on this
->> +      pin for any detections. The driver listens for this as interrupts.
->> +
->> +  data-gpio:
->
-> There is no such pin.
-
-You mean to change it to `data-gpios`? (There are some using that, e.g.
-`sensirion,sht15.yaml`).
-
->
->> +    maxItems: 1
->> +    description:
->> +      GPIO for data reading and writing.
->> +      During configuration, configuration data will be written and read back
->> +      with bit banging (together with clk-vout-gpio as clock).
->> +      After this, during operational mode, the device will output serial data on
->> +      this GPIO. However, the driver currently doesn't read this.
->> +
->> +required:
->> +  - compatible
->> +  - vdd-gpio
->> +  - clk-vout-gpio
->> +  - data-gpio
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
->
-> So you included that header
->
->> +
->> +    proximity {
->> +        compatible = "nicera,d3323aa";
->> +        vdd-gpio = <&gpio 73 0>;
->> +        clk-vout-gpio = <&gpio 78 0>;
->> +        data-gpio = <&gpio 76 0>;
->
-> But where are you using it?
-
-True, I'll add `GPIO_ACTIVE_*` to the properties.
-
-[...]
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
