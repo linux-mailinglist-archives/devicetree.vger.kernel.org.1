@@ -1,145 +1,169 @@
-Return-Path: <devicetree+bounces-178065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97E05ABA47C
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 22:10:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6936CABA48F
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 22:16:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3ABA0504FAD
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 20:10:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BE751BA1EC4
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 20:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E56E25E80D;
-	Fri, 16 May 2025 20:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C50727FD50;
+	Fri, 16 May 2025 20:16:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="2uDmcFx2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pwqCmEeo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E0B022C356;
-	Fri, 16 May 2025 20:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63BA427CCC4;
+	Fri, 16 May 2025 20:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747426215; cv=none; b=LFEVrwGALzL5UWPwsct6SNfpIM0iv9SVziNkg9Qe8JJyy19dwOyJkMxIQtUKZWym5TuUBdcRd8VtTHAoKKOk6JKEAYxoCqZhBH+jw3b9tRgWhppkSn2DQ+ASHpH+vz3qbq+fjTTT+YTeV86NNx9NBesyKwV7l1gBOWIVK7HkgRM=
+	t=1747426590; cv=none; b=sJZPhKQhALlh2k3PIRRBS05Xvs3/CSfwODlDXD1Ju6s0MZpzpcQTSamX6Z9dqgh+o6sJFb3OMcu39n+h+lHWrnSAjGHpxfaCF0VXFiDecfqmi34TC/O4J8Hb+zhMBQyVRe/ihLnsyaWuibb+zJQT2KIEVGcSKSQ+4GJ5ZKrsa0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747426215; c=relaxed/simple;
-	bh=2e/6iUxTrx5nSFpVgyz1b/DK7YLQxC4kUUQt9HxsL/A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BNfmHtYb05T7YnWY4iiBElM+piTZ5cVIgXAc/J5h8UnCS4RrUXs9EwoXEUPAHpPIGrpElljsf4mv5o53PsPP5OXQN80imkUilyJSCzKFo4yAAY3xwHXukOWnmJeoiJkb9qbZHoNquf/mCIafm0GQwLzJ9yq7Q0QDh8PnMKy3Fc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=2uDmcFx2; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=4GWgmLyTl8Gk7HWPKH3auqn15uG60IPCLLC27zlld+U=; b=2uDmcFx2iH0atwEuyZslnoA/0e
-	BBye0RDnqTqbtAf/uz2jOx/Sp3HaZw+uRLNPW0iyEdjqf5pxj1qDrr86wmaKkAFyePPnhwYeDjoOt
-	J549FxwSNA8sb49hmXVkgFBiIwJwFiPozl4XJiJwW/Ys2beQgjsALDx5kB9v9er8o6Zk6hMcHGzN2
-	jcBZ50uwE/375RfFcHFie5E/vOWoCsz1qTkacLLRB0JiAtkqxGKVMRdriEFQSdyu+Wg1RDmYhgyvK
-	2Zq7dnAXP6iFICbdX2060oMBO2qXfRM2rrY2JsfGsDghYFZKQ3M+74/zlMQAEn1xJv/Edlob9B3NS
-	ZkdUb5Ww==;
-Received: from i53875a50.versanet.de ([83.135.90.80] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uG1Nc-0007aP-NQ; Fri, 16 May 2025 22:10:04 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Finley Xiao <finley.xiao@rock-chips.com>,
- kernel test robot <lkp@intel.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, Kever Yang <kever.yang@rock-chips.com>
-Subject:
- Re: [linux-next:master 9473/11093]
- arch/arm64/boot/dts/rockchip/rk3562.dtsi:624.26-675.5: Warning
- (simple_bus_reg): /soc/pcie@ff500000: simple-bus unit address format error,
- expected "fe000000"
-Date: Fri, 16 May 2025 22:10:03 +0200
-Message-ID: <3983362.fW5hKsROvD@diego>
-In-Reply-To: <202505150745.PQT9TLYX-lkp@intel.com>
-References: <202505150745.PQT9TLYX-lkp@intel.com>
+	s=arc-20240116; t=1747426590; c=relaxed/simple;
+	bh=D1Z5w9AYGSfUlSKYqF+jgYYMgx9eNNsKAADS1moCkaw=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=dqbP0DcAA4DEhI+WCAWCKgx/gaZUHgYzzpkbv0akLuM8T8wwwthzmNqBiei/xU7AOlyxSDnnDVGWeXjbQcwFaO/jZ+Gsq4reUumUxZMe9QPBXHdmQNzrMnm13+xN1eOuu/5vEuGHbK5HzdwlfEKpMTh3U9Qi4kd5tPNO0AhUWtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pwqCmEeo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D593C4CEE4;
+	Fri, 16 May 2025 20:16:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747426589;
+	bh=D1Z5w9AYGSfUlSKYqF+jgYYMgx9eNNsKAADS1moCkaw=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
+	b=pwqCmEeonx6ZXsuHmxwr0Jq+QDCCSpFRxtVtCeFnTCGBowrq1J/0iVNS+DlBi8lT5
+	 3086VLUmQPO+HjhKKoeuLvHgdKJNjYW7tV11djgzhOesw81NxW4b83xfLL3WK+fRcG
+	 eoA0LtBJgkrc++Tk0L9/C0/IKi3IZLSLwS5Ogyy9RATr+JzkQILJug8DFmCe85v5d/
+	 8XGn6o4w1ZgJD4uipVfaCJAiGijIyz+xLxm1S6/Bve61cO+RXpK5PlweNjUVxB2JOf
+	 7uWXhI4oCgWfRPAAcVHr7rz+6EB7ASHt6F+9GLxKvqQmu4ZJUKxDbASAGOUK2f58Z1
+	 ieYD1QT0BfbYw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 16 May 2025 22:16:23 +0200
+Message-Id: <D9XV0Y22JHU5.3T51FVQONVERC@kernel.org>
+Cc: "FUJITA Tomonori" <fujita.tomonori@gmail.com>, <andrew+netdev@lunn.ch>,
+ <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+ <pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+ <florian.fainelli@broadcom.com>, <bcm-kernel-feedback-list@broadcom.com>,
+ <kabel@kernel.org>, <andrei.botila@oss.nxp.com>, <tmgross@umich.edu>,
+ <ojeda@kernel.org>, <alex.gaynor@gmail.com>, <boqun.feng@gmail.com>,
+ <gary@garyguo.net>, <bjorn3_gh@protonmail.com>, <benno.lossin@proton.me>,
+ <a.hindborg@kernel.org>, <aliceryhl@google.com>, <dakr@kernel.org>,
+ <sd@queasysnail.net>, <michael@fossekall.de>, <daniel@makrotopia.org>,
+ <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <rust-for-linux@vger.kernel.org>
+Subject: Re: [net-next PATCH v10 7/7] rust: net::phy sync with
+ match_phy_device C changes
+From: "Benno Lossin" <lossin@kernel.org>
+To: "Christian Marangi" <ansuelsmth@gmail.com>
+X-Mailer: aerc 0.20.1
+References: <20250515112721.19323-1-ansuelsmth@gmail.com>
+ <20250515112721.19323-8-ansuelsmth@gmail.com>
+ <20250516.213005.1257508224493103119.fujita.tomonori@gmail.com>
+ <D9XO2721HEQI.3BGSHJXCHPTL@kernel.org>
+ <682755d8.050a0220.3c78c8.a604@mx.google.com>
+In-Reply-To: <682755d8.050a0220.3c78c8.a604@mx.google.com>
 
-Am Donnerstag, 15. Mai 2025, 16:04:20 Mitteleurop=C3=A4ische Sommerzeit sch=
-rieb kernel test robot:
-> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.g=
-it master
-> head:   bdd609656ff5573db9ba1d26496a528bdd297cf2
-> commit: ceb6ef1ea9002669afc0e1ef258e530d3c05d91a [9473/11093] arm64: dts:=
- rockchip: Add RK3562 evb2 devicetree
-> config: arm64-randconfig-2052-20250513 (https://download.01.org/0day-ci/a=
-rchive/20250515/202505150745.PQT9TLYX-lkp@intel.com/config)
-> compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f=
-819f46284f2a79790038e1f6649172789734ae8)
-> dtschema version: 2025.3.dev27+g32749b3
-> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
-ve/20250515/202505150745.PQT9TLYX-lkp@intel.com/reproduce)
->=20
-> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
-ion of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202505150745.PQT9TLYX-lkp=
-@intel.com/
->=20
-> dtcheck warnings: (new ones prefixed by >>)
-> >> arch/arm64/boot/dts/rockchip/rk3562.dtsi:624.26-675.5: Warning (simple=
-_bus_reg): /soc/pcie@ff500000: simple-bus unit address format error, expect=
-ed "fe000000"
-> >> arch/arm64/boot/dts/rockchip/rk3562.dtsi:1115.20-1181.5: Warning (simp=
-le_bus_reg): /soc/pinctrl: missing or empty reg/ranges property
+On Fri May 16, 2025 at 5:12 PM CEST, Christian Marangi wrote:
+> On Fri, May 16, 2025 at 04:48:53PM +0200, Benno Lossin wrote:
+>> On Fri May 16, 2025 at 2:30 PM CEST, FUJITA Tomonori wrote:
+>> > On Thu, 15 May 2025 13:27:12 +0200
+>> > Christian Marangi <ansuelsmth@gmail.com> wrote:
+>> >> @@ -574,6 +577,23 @@ pub const fn create_phy_driver<T: Driver>() -> D=
+riverVTable {
+>> >>  /// This trait is used to create a [`DriverVTable`].
+>> >>  #[vtable]
+>> >>  pub trait Driver {
+>> >> +    /// # Safety
+>> >> +    ///
+>> >> +    /// For the duration of `'a`,
+>> >> +    /// - the pointer must point at a valid `phy_driver`, and the ca=
+ller
+>> >> +    ///   must be in a context where all methods defined on this str=
+uct
+>> >> +    ///   are safe to call.
+>> >> +    unsafe fn from_raw<'a>(ptr: *const bindings::phy_driver) -> &'a =
+Self
+>> >> +    where
+>> >> +        Self: Sized,
+>> >> +    {
+>> >> +        // CAST: `Self` is a `repr(transparent)` wrapper around `bin=
+dings::phy_driver`.
+>> >> +        let ptr =3D ptr.cast::<Self>();
+>> >> +        // SAFETY: by the function requirements the pointer is valid=
+ and we have unique access for
+>> >> +        // the duration of `'a`.
+>> >> +        unsafe { &*ptr }
+>> >> +    }
+>> >
+>> > We might need to update the comment. phy_driver is const so I think
+>> > that we can access to it any time.
+>>=20
+>> Why is any type implementing `Driver` a transparent wrapper around
+>> `bindings::phy_driver`?
+>>=20
+>
+> Is this referred to a problem with using from_raw or more of a general
+> question on how the rust wrapper are done for phy code?
 
-hmm, I don't really understand this error message.
+I looked at the `phy.rs` file again and now I'm pretty sure the above
+code is wrong. `Self` can be implemented on any type (even types like
+`Infallible` that do not have any valid bit patterns, since it's an
+empty enum). The abstraction for `bindings::phy_driver` is
+`DriverVTable` not an object of type `Self`, so you should cast to that
+pointer instead.
 
-=46rom a practical point, the dtschema-version I have installed is
-2025.3.dev27+g32749b3, which is the topmost commit from
-may-13th.
+>> >>      /// Defines certain other features this PHY supports.
+>> >>      /// It is a combination of the flags in the [`flags`] module.
+>> >>      const FLAGS: u32 =3D 0;
+>> >> @@ -602,7 +622,7 @@ fn get_features(_dev: &mut Device) -> Result {
+>> >> =20
+>> >>      /// Returns true if this is a suitable driver for the given phyd=
+ev.
+>> >>      /// If not implemented, matching is based on [`Driver::PHY_DEVIC=
+E_ID`].
+>> >> -    fn match_phy_device(_dev: &Device) -> bool {
+>> >> +    fn match_phy_device<T: Driver>(_dev: &mut Device, _drv: &T) -> b=
+ool {
+>> >>          false
+>> >>      }
+>> >
+>> > I think that it could be a bit simpler:
+>> >
+>> > fn match_phy_device(_dev: &mut Device, _drv: &Self) -> bool
+>> >
+>> > Or making it a trait method might be more idiomatic?
+>> >
+>> > fn match_phy_device(&self, _dev: &mut Device) -> bool
+>>=20
+>> Yeah that would make most sense.
+>>
+>
+> I think
+>
+> fn match_phy_device(_dev: &mut Device, _drv: &Self) -> bool
+>
+> more resemble the C parallel function so I think this suite the best,
+> should make it easier to port if ever (am I wrong?)
 
-Running the dtbscheck on the rk3562-evb-v10.dtb on the full
-linux-next from today, yields no errors.
+I don't understand what you mean by "easier to port if ever". From a
+Rust perspective, it makes much more sense to use the `&self` receiver,
+since the driver is asked if it can take care of the device. If you want
+to keep the order how it is in C that is also fine, but if I were to
+write it, I'd use the receiver.
 
-Checking out the specific commit ceb6ef1ea90026 brings up the
-errors from below [1], because they come from different trees.
-
-
-But in no cases does dtbscheck complain about the PCI memory regions.
-
-
-The PCIe controller in question of course has 3 memory regions
-	reg =3D <0x0 0xfe000000 0x0 0x400000>,
-	      <0x0 0xff500000 0x0 0x10000>,
-	      <0x0 0xfc000000 0x0 0x100000>;
-	reg-names =3D "dbi", "apb", "config";
-
-and currently the node-name mimics the "apb" memory region.
-Should it always use the first one?
-
-
-[1]
->    arch/arm64/boot/dts/rockchip/rk3562-evb2-v10.dtb: /soc/power-managemen=
-t@ff258000/power-controller: failed to match any schema with compatible: ['=
-rockchip,rk3562-power-controller']
->    arch/arm64/boot/dts/rockchip/rk3562-evb2-v10.dtb: pcie@ff500000 (rockc=
-hip,rk3562-pcie): interrupt-names:5: 'dma0' was expected
->    	from schema $id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.y=
-aml#
->    arch/arm64/boot/dts/rockchip/rk3562-evb2-v10.dtb: pcie@ff500000 (rockc=
-hip,rk3562-pcie): compatible: 'oneOf' conditional failed, one must be fixed:
->    	['rockchip,rk3562-pcie', 'rockchip,rk3568-pcie'] is too long
->    	'rockchip,rk3568-pcie' was expected
->=20
-
-
-
+---
+Cheers,
+Benno
 
