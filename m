@@ -1,136 +1,179 @@
-Return-Path: <devicetree+bounces-177827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3B2AB9478
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 05:10:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9953DAB94AA
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 05:28:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B77B917B221
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 03:10:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59DFE7AD7D0
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 03:26:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0124628A702;
-	Fri, 16 May 2025 03:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6ABB1FE47B;
+	Fri, 16 May 2025 03:27:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="kdLzOVWa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TSvm+F0O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1AB28A415
-	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 03:06:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2777187332;
+	Fri, 16 May 2025 03:27:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747364774; cv=none; b=B9+SPjWOcOA9wR/C7S1/gJn+c2W8tnLZyDtx62y+4+P/l559olH/YjEfO8xpvHztTYWXeUEPk8E7z6BDl4ZdqGKoL5Da75YDKCxTSHymf+uOCIKFsE6V8Dr/Sk042W0jbMvNjzRa7/A2tf9DDOcsb6ipvViYNqHINqI1tyALV2g=
+	t=1747366074; cv=none; b=JsBGuCBpvSiSXmXhP8Aw0Wm9mm2SJsTr0k/MiOqRdlDS21XEVtf0RAl+bcnFOAej6BGY56VvzQm6h+YGqWmuOVXwXuUCEQr22EBH12kDbnHhKC2+v5tc6QBGWBR4c2KYZDj1pGNXtp02XyNlsLRsG7znDr+P+G4Im5JR84TSNDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747364774; c=relaxed/simple;
-	bh=6AgqMNboe7B8nPvHCdPBbiCcZOlfMl0j+JQ0fzt3kCA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qGvRXd+QVEINKK085WAOit6vqkNtj/A+z+RY9fFNBmb9IbWlhApcsj2UFZKbAl8Kiw9bmEPpwWtnIfgUGoEL8f+v8UTLzEj2pTcDDwivRM2Q8zja/QIeO2jvqmb9c5EQRU+XnUCydhfnbKZuFwJlB5Nv4KrbC01uIkvV9wVdK/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=kdLzOVWa; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-af908bb32fdso1334671a12.1
-        for <devicetree@vger.kernel.org>; Thu, 15 May 2025 20:06:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1747364772; x=1747969572; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YHR6GhsJ93bX5ZzvrljhM09iosbdwKgwllH+L65tMJE=;
-        b=kdLzOVWa4lmFScmzu8JE/CI37NGHUAL8PVucyWf+pzf9XoNeHqlKL7AOjaJ7fAWRcl
-         hyorLWnFAJzk+yW4eiKjfgsknmQZ0iOahwD1JcJQyWGt5WuT1iTG8s1WcyvvR1Y+8KNo
-         xPognUujFu5UVqwp/AyTIF7DMkpRumQd1gOJ5NRJrcPHJCWifNHtuGkJSOhGNHI5Ni5Y
-         kfNJEcqUna00pQR0Ga1DzHr4g/9OBLvow2Tr1Oa9reNUmyEYy6+NnFg1og5Foyl5NK3Y
-         Ek5HVV4cx8MFVpUSmiZwtOX5IjHvffkdFBkmVhCQ+TM3jbmmMvsvpoIUjV9Vka7XyXsG
-         +ddQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747364772; x=1747969572;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YHR6GhsJ93bX5ZzvrljhM09iosbdwKgwllH+L65tMJE=;
-        b=MRwkmSxjjTYYK52w9fkSssgzomnRjiBCZkpsGsqAHisWnKCNzyVT7njuOxB3X4J5Z0
-         uMCCoCHRdNOTU1OMqHDrlEKlW6o7PslOfkyuxt7A9PyEVfCJMs8L4NzHl+kYjabjXXqh
-         TT5If4f4Lf6VAE11A43qRYh/GnvzBt+e6lej+x8EvFFI0p5xuiweuXY3D0m0oQEI2ohc
-         YxqLV0JKsNAijbGiRKfSKZnlLaSR+x9oOeEpJ25Snb3kpF7ysejpacTTEMhSD2yRjzjf
-         JapP/Q+Rl7TYNVf8ijp/v4f9HOXuXYBrrsAHP+PQiK0IE7QsaVSAyqS1AUJxbsNie7dz
-         9ifA==
-X-Forwarded-Encrypted: i=1; AJvYcCXCDpUxKACiGzLWb0OnZn2688+ptbBXeugzKwS0WrSua5PSl+xyqj+ObEHYAVl90SF176+pEMUuRjg5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxozT++ekV2qBnzabqKe2F8vXobooxHZdX1TolQOZPUMBFwLaYG
-	4GrwKSJ+ci138k62NQB5NwcWZy8cfgZ55/+UiooZMD90WMjyl2wkHRJ4UgIE/sXIKwI=
-X-Gm-Gg: ASbGncuAxSlfILdwmVTJvfEzWGDSV8OxR1wlyxLkot1GmKe11gb115NBetjCE/AMw5o
-	yxi1+FNX6Y8f7N7JclecnFJv8H+unCQFgtggiOw6ELylH6DsMQ4CIC+m34KCxgDcCJiO6VTH6yr
-	CVqyEqWw4QDUWhBtZIhlyH/utInNKPDcQmIV/83CXUDVXhsGWGkyfXdWWOMiD8JMXc5EhUCSNAs
-	LgmiAmSwC+jcKWJib2R+wjy6009xYENiAqK4ItnfD7kIqEMaL1kSYlJ8bprU2mhT7EPnKei1sDz
-	P9KBiuk5vZV8t9giEBUhDK5c9NCxOgrUm24Hb8tgnSedAImyQyGd0itbabJiA5R8QeNp+kDjTp1
-	VLd7A/senPIA=
-X-Google-Smtp-Source: AGHT+IGrzLhyAYfRZnDxkA+4hDDWDsptQiEhouC6msgaCuEbtNMMMwi7Lg79hIno1E+iRF7n6KqiwA==
-X-Received: by 2002:a17:902:da91:b0:215:a303:24e9 with SMTP id d9443c01a7336-231d4ae1de4mr19300975ad.3.1747364772565;
-        Thu, 15 May 2025 20:06:12 -0700 (PDT)
-Received: from cyan-mbp.internal.sifive.com ([136.226.240.168])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4ebb084sm4804405ad.201.2025.05.15.20.06.09
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Thu, 15 May 2025 20:06:11 -0700 (PDT)
-From: Cyan Yang <cyan.yang@sifive.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	samuel.holland@sifive.com
-Cc: linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Cyan Yang <cyan.yang@sifive.com>
-Subject: [PATCH v2 12/12] riscv: hwprobe: Add SiFive xsfvfwmaccqqq vendor extension
-Date: Fri, 16 May 2025 11:03:10 +0800
-Message-Id: <20250516030310.16950-13-cyan.yang@sifive.com>
-X-Mailer: git-send-email 2.39.5 (Apple Git-154)
-In-Reply-To: <20250516030310.16950-1-cyan.yang@sifive.com>
-References: <20250516030310.16950-1-cyan.yang@sifive.com>
+	s=arc-20240116; t=1747366074; c=relaxed/simple;
+	bh=JyZW1Cxzaw1r7YuxagGQU7MxHIA9QmEfNg9oJ//91wg=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=rhoDC7eKpQe41HhtCqNH/fO6dhkTlEHMKhECW5rONUvEBj9BWBzKO4yhNyGq/dou2dEzNjn1K2fMya6q5hoM/2j76+5BTtpZvveZzCwZ5zSSYzJTAPEY86jljIZnN6uQMaif69+AaIJ3w4g+u6Wxvx2Sgpg91+dpeUWQ3A2M6Q0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TSvm+F0O; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54FLURHT025636;
+	Fri, 16 May 2025 03:27:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=a/drtQ/nJYpUA5OfXfYqwm
+	u4bq2l/AVDnsaBMZDy4oY=; b=TSvm+F0ONd+qjsAuTH/byrJdQOKwURCj7hnZRI
+	3/9+hZU91Uf9FipOOcTo9Zjg6tYO2a8vvVuKPPdqQHUrtZ1HoGpDSaaxMt4kjNL7
+	rDQsXZW2vR472gS/o0qLRNR8Hlcc5/OKVEtHz9dCc+ydooldtx5dxCZvm4yC7k/R
+	JjkiJU2Ut4m7P8NTNU9n7uTMKdTgKQljvdde7yOrvpWSj3dFdOmgzr73twvT5nrk
+	w5HqMmEc+G0xCKvTNl03yatG68xc0GoxWKi5aU/Ab43rS+N6DiSMZit8IhhjqjnP
+	OktMNKwNFfcug/LD4OmY8aKY4MWhd6oTycYD26g3GbSCDyOw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcq0d4u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 May 2025 03:27:48 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54G3RkME018484
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 May 2025 03:27:47 GMT
+Received: from lijuang3-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 15 May 2025 20:27:39 -0700
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+Subject: [PATCH v3 0/6] arm64: dts: qcom: qcs615: enable remoteprocs - ADSP
+ and CDSP
+Date: Fri, 16 May 2025 11:27:01 +0800
+Message-ID: <20250516-add_qcs615_remoteproc_support-v3-0-ad12ceeafdd0@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIawJmgC/x3MSwqDMBAA0KvIrBuIn4TQq5QSYjK2s6hJZ1QE8
+ e4Gl2/zDhBkQoFncwDjRkJ5rugfDcRvmD+oKFVDpzujTWtVSMn/o9jWeMZfXrBwjl7WUjIvanQ
+ mBqtxcMFBPQrjRPv9v97neQHxlJ1tbwAAAA==
+X-Change-ID: 20250516-add_qcs615_remoteproc_support-b85ca60e48a8
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Lijuan Gao <quic_lijuang@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kyle Deng
+	<quic_chunkaid@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747366059; l=2297;
+ i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
+ bh=JyZW1Cxzaw1r7YuxagGQU7MxHIA9QmEfNg9oJ//91wg=;
+ b=uTXg2MhxtRZNolzc+UcknoaEhax+2YN+IAgZaKw/QlNBoIIgoCiI6/kqGQOzd8XBnsxRiU2e7
+ d6a0jTU7MF2AvynI99/kYOt18psLnc+mk6ubaOp1wMwNgJLFr0MduE9
+X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
+ pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PsXAk9mtwXWMpSwbbsnsmuE1JUTflhsw
+X-Proofpoint-ORIG-GUID: PsXAk9mtwXWMpSwbbsnsmuE1JUTflhsw
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDAzMSBTYWx0ZWRfX3TzZO79QNpnO
+ yczeJC29xI7mtSb3namggz29HByW43tY4+CwlY3kz7+m6Gy7YD6gun7aP9V8AeMz5C2h8SRfrg0
+ PVvM8hYOgyUbdxVY4DpOOvjX2brvVEZpfBKRgHck6Heby4B6f+FXa6C4jO1Wn4uSJPo9g7xB4EW
+ bT5ib3m5xhPH9HVOwsc/nqIOzSk3z43O/rYuwot5MK+hw+LhKUgTWhmkh+uEA1NoSuW2izborof
+ Kmq4ngz4wujmGRFwC85pcUryIjW2bB68z23iB4XldqITfNG+5qLP1D2jEWLkVSJKt0bag6wleIu
+ 506P1G9JZ6p/GGfktDoMhm105VGAKp87/n8OY2Kj/v39cgc8fBilEFPk5krhIvMbqKQpnxv0dKt
+ KzZ74BVWqSiV/4cj9x4+VaKH9PuMJrimJYKBe3ar9RtJDU9EZ19G4itk1h1URVlKe0PugpO4
+X-Authority-Analysis: v=2.4 cv=KcvSsRYD c=1 sm=1 tr=0 ts=6826b0b4 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=rOYcFei1Rj9JNN2iA38A:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-16_01,2025-05-15_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 bulkscore=0 clxscore=1015 adultscore=0 phishscore=0
+ lowpriorityscore=0 mlxlogscore=869 spamscore=0 malwarescore=0 impostorscore=0
+ mlxscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
+ definitions=main-2505160031
 
-Add hwprobe for SiFive "xsfvfwmaccqqq" vendor extension.
+Enable the remote processor PAS loader for QCS615 ADSP and CDSP
+processors. This allows different platforms/architectures to control
+(power on, load firmware, power off) those remote processors while
+abstracting the hardware differences. Additionally, and add a PIL region
+in IMEM so that post mortem debug tools can collect ramdumps.
 
-Signed-off-by: Cyan Yang <cyan.yang@sifive.com>
+Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
 ---
- arch/riscv/include/uapi/asm/vendor/sifive.h          | 1 +
- arch/riscv/kernel/vendor_extensions/sifive_hwprobe.c | 1 +
- 2 files changed, 2 insertions(+)
+Changes in v3:
+- Update base-commit to tag: next-20250515.
+- Collected Reviewed-by: tag.
+- Add a comment for SLPI 26 in the smp2p-adsp node.
+- Update the IMEM address to the starting address of the IMEM layout,
+  and also update the offset address of pil-reloc.
+- Link to v1: https://lore.kernel.org/r/20250507-add_qcs615_remoteproc_support-v2-0-52ac6cb43a39@quicinc.com
 
-diff --git a/arch/riscv/include/uapi/asm/vendor/sifive.h b/arch/riscv/include/uapi/asm/vendor/sifive.h
-index b772d4631284..9f3278a4b298 100644
---- a/arch/riscv/include/uapi/asm/vendor/sifive.h
-+++ b/arch/riscv/include/uapi/asm/vendor/sifive.h
-@@ -3,3 +3,4 @@
- #define	RISCV_HWPROBE_VENDOR_EXT_XSFVQMACCDOD		(1 << 0)
- #define	RISCV_HWPROBE_VENDOR_EXT_XSFVQMACCQOQ		(1 << 1)
- #define	RISCV_HWPROBE_VENDOR_EXT_XSFVFNRCLIPXFQF		(1 << 2)
-+#define	RISCV_HWPROBE_VENDOR_EXT_XSFVFWMACCQQQ		(1 << 3)
-diff --git a/arch/riscv/kernel/vendor_extensions/sifive_hwprobe.c b/arch/riscv/kernel/vendor_extensions/sifive_hwprobe.c
-index 2b9505079a9f..1f77f6309763 100644
---- a/arch/riscv/kernel/vendor_extensions/sifive_hwprobe.c
-+++ b/arch/riscv/kernel/vendor_extensions/sifive_hwprobe.c
-@@ -17,5 +17,6 @@ void hwprobe_isa_vendor_ext_sifive_0(struct riscv_hwprobe *pair, const struct cp
- 		VENDOR_EXT_KEY(XSFVQMACCDOD);
- 		VENDOR_EXT_KEY(XSFVQMACCQOQ);
- 		VENDOR_EXT_KEY(XSFVFNRCLIPXFQF);
-+		VENDOR_EXT_KEY(XSFVFWMACCQQQ);
- 	});
- }
+Changes in v2:
+- Remove the qcom prefix from smp2p node name.
+- Remove the unnecessary property qcom,ipc from smp2p node.
+- Remove the unused node apcs: syscon.
+- Remove the unused nodes from smp2p node, such as
+  sleepstate_smp2p_out/in, smp2p_rdbg2_out/in, smp2p_rdbg5_out/in.
+- Update the commit message for IMEM PIL info region.
+- Update the remoteproc node names.
+- Correct the size of register for remoteproc nodes.
+- Add empty line before status properties.
+- Link to v1: https://lore.kernel.org/r/20250423-add_qcs615_remoteproc_support-v1-0-a94fe8799f14@quicinc.com
+
+---
+Kyle Deng (1):
+      arm64: dts: qcom: qcs615: Add mproc node for SEMP2P
+
+Lijuan Gao (5):
+      dt-bindings: remoteproc: qcom,sm8150-pas: Document QCS615 remoteproc
+      dt-bindings: soc: qcom: add qcom,qcs615-imem compatible
+      arm64: dts: qcom: qcs615: Add IMEM and PIL info region
+      arm64: dts: qcom: qcs615: add ADSP and CDSP nodes
+      arm64: dts: qcom: qcs615-ride: enable remoteprocs
+
+ .../bindings/remoteproc/qcom,sm8150-pas.yaml       |  65 ++++++----
+ .../devicetree/bindings/sram/qcom,imem.yaml        |   1 +
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           |  12 ++
+ arch/arm64/boot/dts/qcom/qcs615.dtsi               | 144 +++++++++++++++++++++
+ 4 files changed, 195 insertions(+), 27 deletions(-)
+---
+base-commit: 484803582c77061b470ac64a634f25f89715be3f
+change-id: 20250516-add_qcs615_remoteproc_support-b85ca60e48a8
+
+Best regards,
 -- 
-2.39.5 (Apple Git-154)
+Lijuan Gao <quic_lijuang@quicinc.com>
 
 
