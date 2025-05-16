@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-177976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 457ABAB9CA6
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:53:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D1F1AB9CBB
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:56:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C8741B631DF
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:53:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FEA01B62E65
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE60523FC74;
-	Fri, 16 May 2025 12:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C4CC23F421;
+	Fri, 16 May 2025 12:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VAQvjyw2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d3/ZUFQI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EDA423C8AA;
-	Fri, 16 May 2025 12:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BE66235069;
+	Fri, 16 May 2025 12:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747399986; cv=none; b=TEpqymJVZjpIfbcQCLxd+ENcO7JJ4FjDaGxewif4YAgmMynaeoUg4VBJp2Lxg7E6m8Yl+YQXwB6+1pQa1rb8zFANQg9G/6muAs61Y7c6ck4Jj5ht4493uTVtQ8OQSbufUmBjlAuKfGICOvs6IH7vxGWF+EAltx0hvsxB2Y0pWYA=
+	t=1747400161; cv=none; b=N8af68H9GRBBFFO2K21IjlVfxfylLhgvEEp+1djVwDg1wXVAYrGXJCdL1bgGzihwS7O4ZCwi4k5BpF9DOk02FpdvRkosOwc3opBWoI48BoxXtubmG0BBN5HlaC1pZaa+uuwkoT0Fm6w4pcdhs9O+9NwoBKTNM41bk396MPaONkc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747399986; c=relaxed/simple;
-	bh=dzuiRq21ALwM6MTldxavm7mgWxjTHhj05kGsdxVsYOU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=HwwLaVxgTbH3OV5nHyw1gfZHxr4Syy+oPZFr1MOgDp3TV29vEdQJFS/cgIZg9/wG+rSvWyeUtRAvNX1MWucJq9UZt/HU9rCQo+kCoddmT/ISCEo4Dg/bEZ9qyzTzdxm8CUD8SeJE6N337KczVaAbtA2hUXfeQCVLW8OXgkJ3Vk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VAQvjyw2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06B38C4CEE4;
-	Fri, 16 May 2025 12:53:02 +0000 (UTC)
+	s=arc-20240116; t=1747400161; c=relaxed/simple;
+	bh=35T8hI2tRF7pIOtlKuLnScRi9cOm0aWdJQGAqF4pEPg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=odp2BsanJ+HbvcktvVzrCwemh9zUiyjXWX/7q+ECSIfYCbpRpO7eOE/+hSpp0vHjUefc2AdvtrVfJCWJZvPsYfTvVQjZzpZqANHMxtjuhoWqK8zre+dDUOjr4o17elcxt3u1WqXzhadP2FN5K4TvOO2Of2q3D4OSpZtI0CgwdAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d3/ZUFQI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7174CC4CEE4;
+	Fri, 16 May 2025 12:55:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747399986;
-	bh=dzuiRq21ALwM6MTldxavm7mgWxjTHhj05kGsdxVsYOU=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=VAQvjyw2D3kxrGgWyZHJMOj2Y6EkhITZKAau5RYIVbSSJIKGlD5JU6fRIdMpFW+rZ
-	 C6EyFTWh57FkN/UKKa1K5ZYmLN3q4kfr3hQgZt9Th58h3Fv8skw/Qk8/GsfC9DDL1x
-	 +6cA2qbB4mkBC9M41gHPNZV1FBIaMe5JhELyqnN4ZMrmBWDenfVsNTHJ7NRaXG/3j3
-	 o8aWhYp3O+kJfBKGc4LuDUyKwwki1a5xJP1nuqgQZd/nxhBnlDyBt0WjT659/gsdWf
-	 N/D0IDWaE85pl85bRFGxxkYEOp5H/7mC7P9COEwbWWel4ioIf/eA/DhW9Bw6f9X7ho
-	 cX4OHIdlZeing==
-Message-ID: <31cf95ec-ef19-4f87-a27b-9ff183f5d257@kernel.org>
-Date: Fri, 16 May 2025 14:53:01 +0200
+	s=k20201202; t=1747400160;
+	bh=35T8hI2tRF7pIOtlKuLnScRi9cOm0aWdJQGAqF4pEPg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=d3/ZUFQIWu1K3dI+L0Bz3XZO2xZPD5oV2ESWzsSx3mIj7ODASu3hMNQ7Bk/f40q/i
+	 dL1DvQak9kHu7e+K8MX+e7TYLwkaZ4sS2tL76q3Uo3QWgXgb/X9ggmlEsZX5TKUMmH
+	 ZKX8ebQ3lPkL7Gg9Oz1ByCKyuY9NE9as9lBbddkR47net5aToxgiqjpHX+iqqvdRSC
+	 zb5Bw9TtxTfkyIDJ4iJPHYd+Js80Ot93v3pgyJki0ZaKJmIkY44Qb5s5uv9G9p+7SQ
+	 X/OV2I3+mCO3K/ISsgeMo2zVdrA84UjQA3cmMkThsegztkFAux/eo/m+8DVhvlFWAj
+	 lahCPtmReLx/g==
+Message-ID: <cafba18a-5391-4d9d-aa4c-2f06f93af0f8@kernel.org>
+Date: Fri, 16 May 2025 14:55:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: Add required properties
-To: Akhil R <akhilrajeev@nvidia.com>, andi.shyti@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
- ldewangan@nvidia.com, digetx@gmail.com, p.zabel@pengutronix.de,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250516124349.58318-1-akhilrajeev@nvidia.com>
+Subject: Re: [PATCH v2 2/8] dt-bindings: media: nxp: Add Wave6 video codec
+ device
+To: Nas Chung <nas.chung@chipsnmedia.com>
+Cc: "mchehab@kernel.org" <mchehab@kernel.org>,
+ "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
+ "sebastian.fricke@collabora.com" <sebastian.fricke@collabora.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-imx@nxp.com" <linux-imx@nxp.com>, "marex@denx.de" <marex@denx.de>,
+ "jackson.lee" <jackson.lee@chipsnmedia.com>,
+ "lafley.kim" <lafley.kim@chipsnmedia.com>
+References: <20250422093119.595-1-nas.chung@chipsnmedia.com>
+ <20250422093119.595-3-nas.chung@chipsnmedia.com>
+ <20250425-romantic-truthful-dove-3ef949@kuoka>
+ <SL2P216MB124656A87931B153F815820BFB8AA@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
+ <f1073f21-0885-486f-80c8-00f91dfd7448@kernel.org>
+ <SL2P216MB1246002B8EFD5CBE69E447ACFB96A@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,66 +115,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250516124349.58318-1-akhilrajeev@nvidia.com>
+In-Reply-To: <SL2P216MB1246002B8EFD5CBE69E447ACFB96A@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/05/2025 14:43, Akhil R wrote:
-> Add required DT properties for Tegra I2C controllers.
-
-Why? Required by whom/what? Some context or any justification is needed
-here. Are you breaking the ABI (means: prove that you are not).
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
+On 13/05/2025 09:39, Nas Chung wrote:
+>>
+>> All of above are wrong for the SoC...
+>>
+>>>
+>>>         #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>         #include <dt-bindings/clock/nxp,imx95-clock.h>
+>>>
+>>>         soc {
+>>>           #address-cells = <2>;
+>>>           #size-cells = <2>;
+>>>
+>>>           vpu: video-codec {
+>>>             compatible = "nxp,imx95-vpu", "cnm,wave633c";
+>>
+>> What does this device represent? It is not "ctrl", because you made ctrl
+>> separate device node. Your binding description suggests that is the VPU
+>> control region.
 > 
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> ---
-> v1->v2:
->   * Added all required properties
-> 
->  .../bindings/i2c/nvidia,tegra20-i2c.yaml      | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml b/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
-> index 19aefc022c8b..0717f2304cfc 100644
-> --- a/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
-> @@ -118,6 +118,13 @@ properties:
->        - const: rx
->        - const: tx
->  
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
->  allOf:
->    - $ref: /schemas/i2c/i2c-controller.yaml
->    - if:
-> @@ -171,6 +178,18 @@ allOf:
->        properties:
->          power-domains: false
->  
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - nvidia,tegra194-i2c
-> +    then:
-> +        required:
+> My intention was to represent the MMIO VPU device, which includes
+> both the core and control nodes.
 
-Never tested, so quite dissapointing.
+Then what is the VPU device if not CTRL? What is the CTRL device?
 
-Test your patches before sending, not after.
 
 Best regards,
 Krzysztof
