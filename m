@@ -1,101 +1,183 @@
-Return-Path: <devicetree+bounces-177903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33A5FAB9906
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 11:38:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 568C7AB992F
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 11:45:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 207FB1BC19D3
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:38:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B262EA215C1
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B15B230BE3;
-	Fri, 16 May 2025 09:38:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 674F72116FE;
+	Fri, 16 May 2025 09:45:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lfJPf49d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 772B11922FA;
-	Fri, 16 May 2025 09:38:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B192422DA1F
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 09:45:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747388318; cv=none; b=cINEnA/5T5yEmkCptiBGWI7VtSgf8P5MPvxCM2H4PRxSf92AMzvSadKgYrlXDg8dcu+2fMRddPMMJYBn0ku/WHa73vJrdV+orz5xyYFmxS92njW+ayJ3dEaFVlckjgrwY+lfwpd3QtIvlssY4yQIKx+iGFu3Cxje9k4YztSAnbc=
+	t=1747388712; cv=none; b=BIz7BdC3LbEMBA5O1K5Zyj+iR/JDQq1Q57c3MxKGl1qJIzqxlI9PqGg5oMkH0F2g9cPD1SpsHOo65Lrf4gr3OHlZZOpgApgdTYSxiOJJtJKTtto1oUukoQrIo+6hrn/0PwEGotoK0YjyYTdZcAp4+xZmVFTw32WXMykzOx+MHl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747388318; c=relaxed/simple;
-	bh=59zsdEdxzDy5BJsnQBMJMTL7R201gGm0SirPB3vYRN0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jE+cc84TALqYbcx3hj26FilxP1bHcG/tLcMTwS76t+bdeSsk0To5nIVsHXl1E2/vrkuVprEgAOaaAgHHdccMboUTgyUmsLzGOAQrDF1vtlu7BJhil13dYIdH0kk4sgdskFgH0MnmIygQqUv+VLUv/bTqArEwNwaXSAswZ8+uD9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: tDLSnDDwQ4+OqZHOx26gug==
-X-CSE-MsgGUID: jVNW1K6pQSeaFk/7c1Qm8w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="71860039"
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; 
-   d="scan'208";a="71860039"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2025 02:38:36 -0700
-X-CSE-ConnectionGUID: NBuM9J3uT5C+jmHiOau6Gw==
-X-CSE-MsgGUID: A80O8IrXTmWSyJF9zXKB8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; 
-   d="scan'208";a="143527551"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2025 02:38:31 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1uFrWO-000000026GK-188w;
-	Fri, 16 May 2025 12:38:28 +0300
-Date: Fri, 16 May 2025 12:38:28 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	nuno.sa@analog.com, Michael.Hennerich@analog.com,
-	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
-	linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
-	broonie@kernel.org, jonath4nns@gmail.com, dlechner@baylibre.com
-Subject: Re: [PATCH v8 11/11] iio: adc: ad7768-1: add low pass -3dB cutoff
- attribute
-Message-ID: <aCcHlAE8LvO_fLxQ@smile.fi.intel.com>
-References: <cover.1747175187.git.Jonathan.Santos@analog.com>
- <42dc4d7722996a8d64a1bbafd8848609c9e435d8.1747175187.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1747388712; c=relaxed/simple;
+	bh=HzsJEBiPWk6eDqzxwMfoGQye5xmzJYeJbdlBljOdl/w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=huqxUb6e8iTBX1LxIWiwCRqgym+0JZanRaHGHx3fqAhO06EjML/3KkV2mUKktuNX0yFxilCK/r3AzFVNjQ11WOXcxaOTqRUJ0mR0+31cpYX7DzrGMYR73Ml6XAxPMKMQiAENz4BYUT2pa9V1qseKiolGx7erudRV6ctcgyIkXfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lfJPf49d; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54G3nTu0001818
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 09:45:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LDr4B1qSjg7htBqhVvqZsGzbBvRV/mFJiETbhY1xHpE=; b=lfJPf49d1DxmhEWS
+	LZJ7IQPMhbQ16lyV+EJjNmmffXafF32XfqSTf5vvDnXjsnas/GCa3KRv5tFE3kKv
+	TmpzvmSaDw9wyQ/VZ/It7wmk6Jup3WK0cE5wDPNmO/dUXsHAMHI6iMamb+1nWE60
+	BCI5RyNrcwTsRbBhqSlPeJLvtSjMVKgfcCyJX66ZpUGd83AtIrRtwe/EckTS7ijm
+	Hoqam4ndvtYS47qvK+Q4n14rZcrlB+mqUEFxBzHrtuu64veQAAta4u0HsHmEadnv
+	0Ikm3/kgTI3AOJDWQ0XMGo/Uwqva3MBw3572du0aBHhGl1iLZLyD7v18R0TK46sx
+	WPWQcw==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcrhbsr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 09:45:08 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6f8b297c78aso1632606d6.0
+        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 02:45:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747388707; x=1747993507;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LDr4B1qSjg7htBqhVvqZsGzbBvRV/mFJiETbhY1xHpE=;
+        b=hCw8vJepZ98w8w6KaWcpfv0j3jsIlOgzwv7mDRpt6PYLv1Oh+DuFrD4yEU/4QLaqpq
+         zST93cgXC28RUG8OY7Wb8dJQjTy7J9hEpRZcVEWlRjE7GYvlVoVOvoGcEmbw5SEzaZYx
+         L2szUilL+D9ut1gTnFr/w0MpvryN01VYDZ0wBIdDi5YUUdjNssx3GD5szsjhJeG7ith2
+         6OGaZ6Q0l+/8728Fy68HAvlAMDKgJTeEcfSqqTGzF3WrjD5WcSczsjj+kAoj/4os4RHc
+         dJXTVNNJFH5SSRhelrirS7sjvN3kOeHkPGfunUKAqsUXem3+oaSGnR0c2tQMuNtmzOib
+         WNeg==
+X-Forwarded-Encrypted: i=1; AJvYcCWjLbdeEYkirv3c3QPgu6iYFoIgV1GFjxynX/4hl6A6GO/3STa4O2C11VHewpWKIcwBhYe2v8WqgS0J@vger.kernel.org
+X-Gm-Message-State: AOJu0Yylj3qm9aGkOiVKQzGqayN4ugGA8+LCmaKAKNViUU207jHqvfsY
+	o+Wlhs2DSYXIpMkezOF+ue8pgcO3BmkdR1t3X7D09f2IwOMD1mJJcvNT1LK7qfAvOPO9KLl8GWl
+	F+HR/aC27ac7yhj0FlWFnwkUqmomgycZGwiYKzzVUjgAvv8LHUb+4Xf41pm4+Shb7
+X-Gm-Gg: ASbGncuxutKQ5eiyoSfQz/XW3SoUrrdmm9FelC2Ridw/VXpCqu/7tuB4rdI91Rrt+sD
+	L4/PN7QBwmt26KB8LpU5Xj135tnudC0wLS/m6A/Yl1hAOeFx4FeLvR65jHE8DRnfHFohmbawBvp
+	9ewPDF+QZaw4MT1bcpVra5w3mnF9XpAMNqgeWKVHJuXP+5/HokmHEpCUFe9aIUqozPb/EK/SWPW
+	whkQMqcyN575Vu064gFnSwNjE1UKtbPJOPii66KJsbDR9C9XuffWD1wMyQctas4ZjNlCFSldbbS
+	uuI422ku5sYdSGLrBs3P4mgpTyWmxcyuuGmiU2VKlTu8Xv3zu7EgXBeVD4PWOMmyjg==
+X-Received: by 2002:a05:6214:1c09:b0:6f2:c10b:db04 with SMTP id 6a1803df08f44-6f8b0835130mr18906446d6.1.1747388707532;
+        Fri, 16 May 2025 02:45:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGukMfVX+YRjpGaoj2TadFrM/2CD6zQuISXBA2V8u8zEJ5cpewzlRZSW1tBbMSTsJkqcx5YSA==
+X-Received: by 2002:a05:6214:1c09:b0:6f2:c10b:db04 with SMTP id 6a1803df08f44-6f8b0835130mr18906246d6.1.1747388707101;
+        Fri, 16 May 2025 02:45:07 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d06eab7sm127556766b.58.2025.05.16.02.45.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 May 2025 02:45:06 -0700 (PDT)
+Message-ID: <0097b07c-3a58-4b28-abca-3e6de70ecf25@oss.qualcomm.com>
+Date: Fri, 16 May 2025 11:45:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <42dc4d7722996a8d64a1bbafd8848609c9e435d8.1747175187.git.Jonathan.Santos@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/6] arm64: dts: qcom: qcs615: Add IMEM and PIL info
+ region
+To: Lijuan Gao <quic_lijuang@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250516-add_qcs615_remoteproc_support-v3-0-ad12ceeafdd0@quicinc.com>
+ <20250516-add_qcs615_remoteproc_support-v3-4-ad12ceeafdd0@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250516-add_qcs615_remoteproc_support-v3-4-ad12ceeafdd0@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: Sc4zk5Xq7Se0EDaR8DqnaGBGOt1l5vj6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDA5MSBTYWx0ZWRfX085R8NJrZ3SV
+ XyuBaZSLVdlxBQplYq7FHqZivpYOoVrA+Ute6r0D/fEa8xKZpcQKdyPrcb/SbIETNZov074DjRJ
+ rkl012BbwDUvccQx3PpBEUbBYk2QyYfc4v0LhpYuLUDS4LZsCw2jppnY46zo9/I3Aig23EcOxf9
+ oYm2AKMifcltJwk7tkWN3b90n9LbctgspaOrtM4So0KPHSQDjiXRkb8LFuKPDaIF/J0Mi/82reG
+ F3r07sfhiXsUDSyj0pwwj2Xe2Nf5JNcCLS6UPFwoZlZTAQr8Ugty/k7Lo9cE+uXod2/UGggXrVB
+ yV+jfeWDm0+r0A+m9UcV1y19fPICHhaT38ngHhm0fdKjSHsOADSHkt2SCKkVc1e2I7ZsVmtTfq+
+ r8xJwkEJ9sByVL0ET2nBcIs583ZtnuTagLHFlXOVUTDFU74XimaMDlmYckX9FKvCUVcBWzs7
+X-Authority-Analysis: v=2.4 cv=K7UiHzWI c=1 sm=1 tr=0 ts=68270924 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=O_pLmbuslcfqJQTE_gUA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: Sc4zk5Xq7Se0EDaR8DqnaGBGOt1l5vj6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-16_04,2025-05-15_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 mlxscore=0 suspectscore=0 malwarescore=0
+ phishscore=0 mlxlogscore=875 clxscore=1015 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
+ definitions=main-2505160091
 
-On Thu, May 15, 2025 at 06:14:33PM -0300, Jonathan Santos wrote:
-> Ad7768-1 has a different -3db frequency multiplier depending on
-> the filter type configured. The cutoff frequency also varies according
-> to the current ODR.
+On 5/16/25 5:27 AM, Lijuan Gao wrote:
+> Add a simple-mfd representing IMEM on QCS615 and define the PIL
+> relocation info region as its child. The PIL region in IMEM is used to
+> communicate load addresses of remoteproc to post mortem debug tools, so
+> that these tools can collect ramdumps.
 > 
-> Add a readonly low pass -3dB frequency cutoff attribute to clarify to
-> the user which bandwidth is being allowed depending on the filter
-> configurations.
+> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> index f922349758d11ec7fda1c43736a4bf290916e67f..dd54cfe7b7a6f03c1aa658ce3014d50478df5931 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> @@ -3290,6 +3290,20 @@ sram@c3f0000 {
+>  			reg = <0x0 0x0c3f0000 0x0 0x400>;
+>  		};
+>  
+> +		sram@146aa000 {
 
-...
+Please also update this unit address
 
->  		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
->  		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |
-> -					    BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-> +					    BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO) |
-> +					    BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),
+with that
 
-You can make the diff looking better and easier to review if squeeze the new
-bit in between of the existing one, this will remove +- LoC here.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
--- 
-With Best Regards,
-Andy Shevchenko
+Konrad
 
-
+> +			compatible = "qcom,qcs615-imem", "syscon", "simple-mfd";
+> +			reg = <0x0 0x14680000 0x0 0x2c000>;
+> +			ranges = <0 0 0x14680000 0x2c000>;
+> +
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			pil-reloc@2a94c {
+> +				compatible = "qcom,pil-reloc-info";
+> +				reg = <0x2a94c 0xc8>;
+> +			};
+> +		};
+> +
+>  		apps_smmu: iommu@15000000 {
+>  			compatible = "qcom,qcs615-smmu-500", "qcom,smmu-500", "arm,mmu-500";
+>  			reg = <0x0 0x15000000 0x0 0x80000>;
+> 
 
