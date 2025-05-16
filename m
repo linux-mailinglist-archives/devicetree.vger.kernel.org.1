@@ -1,145 +1,145 @@
-Return-Path: <devicetree+bounces-178082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21E87ABA562
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 23:40:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97E05ABA47C
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 22:10:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 487937B3036
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 21:38:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3ABA0504FAD
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 20:10:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640612857F7;
-	Fri, 16 May 2025 21:36:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E56E25E80D;
+	Fri, 16 May 2025 20:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OqExve53"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="2uDmcFx2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2032857D7;
-	Fri, 16 May 2025 21:36:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E0B022C356;
+	Fri, 16 May 2025 20:10:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747431367; cv=none; b=FkjBdjO0IS1CFqr4jK6Wmlwob2wQ4cdWbMYTtb6wNEKbviEbcutNCsrH81UE1sySb4seKOXgTUCkHpU7IHEXt9e/WSwQsnbF8ZdhpSGlOCjfgNdXGOrRveD/w74d1ciBKGk2FEprQcyYmSI8Ith7ay/1lH7YLD1vhVhcttNtTNk=
+	t=1747426215; cv=none; b=LFEVrwGALzL5UWPwsct6SNfpIM0iv9SVziNkg9Qe8JJyy19dwOyJkMxIQtUKZWym5TuUBdcRd8VtTHAoKKOk6JKEAYxoCqZhBH+jw3b9tRgWhppkSn2DQ+ASHpH+vz3qbq+fjTTT+YTeV86NNx9NBesyKwV7l1gBOWIVK7HkgRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747431367; c=relaxed/simple;
-	bh=9YGGE1TGeazcVqzIHxmvNTlfgSH6mcicVrtP9HboPiE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c+0wwpzTRu+YCQAVl07dPDCbCJJEmKMVNa59w9TxIf5ggemiaU7Rz8oXV3jUiipYEc3drGiAYFK0wuYRBEV9Cvd2kuHSbFiig6FnymEZCYJr/NWB71aSZv3byBkMVSSkodTVFVE9pLQDpJwQd3YZySe0E1rehE8AXqKT1mO01u8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OqExve53; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25692C4CEE4;
-	Fri, 16 May 2025 21:36:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747431366;
-	bh=9YGGE1TGeazcVqzIHxmvNTlfgSH6mcicVrtP9HboPiE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OqExve53AUId7CcYAYsq3yvOShvbSRMnWurpBIqDQ9be8HuLhEhq72gZNMsbkVvXf
-	 Hz2seqzq5p6okMtoXWw/oAkxH1yJ26ou+r+3MF+xzEkv1GkxK/FKdfTEvm1nIb5Whp
-	 Lk/epm6eCpoE6NK++0eogoFO0Cui0u7gECK160Af7SKOKTxkI5AMYrZclRU3of70nt
-	 MRiQlSvY/y183DbFxHHO+iUrkhSmOlE9y61hRjcxXrrN719y+EoZHDB/QaYb/bKXlV
-	 jp/7kcZ1V+lqSTXz/XGGAQnHYQAkKTc5C11x2GZ7GHQJzpgPumSNR3AtFr13Yj42j1
-	 XoM4lZM3uCmJQ==
-Message-ID: <4a55adff-7d68-47fe-9995-afa30b9857a6@kernel.org>
-Date: Fri, 16 May 2025 21:49:55 +0200
+	s=arc-20240116; t=1747426215; c=relaxed/simple;
+	bh=2e/6iUxTrx5nSFpVgyz1b/DK7YLQxC4kUUQt9HxsL/A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BNfmHtYb05T7YnWY4iiBElM+piTZ5cVIgXAc/J5h8UnCS4RrUXs9EwoXEUPAHpPIGrpElljsf4mv5o53PsPP5OXQN80imkUilyJSCzKFo4yAAY3xwHXukOWnmJeoiJkb9qbZHoNquf/mCIafm0GQwLzJ9yq7Q0QDh8PnMKy3Fc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=2uDmcFx2; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=4GWgmLyTl8Gk7HWPKH3auqn15uG60IPCLLC27zlld+U=; b=2uDmcFx2iH0atwEuyZslnoA/0e
+	BBye0RDnqTqbtAf/uz2jOx/Sp3HaZw+uRLNPW0iyEdjqf5pxj1qDrr86wmaKkAFyePPnhwYeDjoOt
+	J549FxwSNA8sb49hmXVkgFBiIwJwFiPozl4XJiJwW/Ys2beQgjsALDx5kB9v9er8o6Zk6hMcHGzN2
+	jcBZ50uwE/375RfFcHFie5E/vOWoCsz1qTkacLLRB0JiAtkqxGKVMRdriEFQSdyu+Wg1RDmYhgyvK
+	2Zq7dnAXP6iFICbdX2060oMBO2qXfRM2rrY2JsfGsDghYFZKQ3M+74/zlMQAEn1xJv/Edlob9B3NS
+	ZkdUb5Ww==;
+Received: from i53875a50.versanet.de ([83.135.90.80] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uG1Nc-0007aP-NQ; Fri, 16 May 2025 22:10:04 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Finley Xiao <finley.xiao@rock-chips.com>,
+ kernel test robot <lkp@intel.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, Kever Yang <kever.yang@rock-chips.com>
+Subject:
+ Re: [linux-next:master 9473/11093]
+ arch/arm64/boot/dts/rockchip/rk3562.dtsi:624.26-675.5: Warning
+ (simple_bus_reg): /soc/pcie@ff500000: simple-bus unit address format error,
+ expected "fe000000"
+Date: Fri, 16 May 2025 22:10:03 +0200
+Message-ID: <3983362.fW5hKsROvD@diego>
+In-Reply-To: <202505150745.PQT9TLYX-lkp@intel.com>
+References: <202505150745.PQT9TLYX-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: arm: rockchip: Add Sakura Pi RK3308B
-To: Hsun Lai <i@chainsx.cn>, robh@kernel.org
-Cc: conor+dt@kernel.org, heiko@sntech.de, krzk+dt@kernel.org,
- sfr@canb.auug.org.au, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20250514075914.194651-1-i@chainsx.cn>
- <20250514075914.194651-3-i@chainsx.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250514075914.194651-3-i@chainsx.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 14/05/2025 09:59, Hsun Lai wrote:
-> This patch adds device tree binding support for
-> Sakura Pi RK3308B, with compatibility for the
-> Rockchip RK3308 SoC.
-> 
-> Link: https://docs.sakurapi.org/article/sakurapi-rk3308b/introduce
-> 
-> Signed-off-by: Hsun Lai <i@chainsx.cn>
-> ---
-> 
-> (no changes since v1)
-Really? And the tag?
+Am Donnerstag, 15. Mai 2025, 16:04:20 Mitteleurop=C3=A4ische Sommerzeit sch=
+rieb kernel test robot:
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.g=
+it master
+> head:   bdd609656ff5573db9ba1d26496a528bdd297cf2
+> commit: ceb6ef1ea9002669afc0e1ef258e530d3c05d91a [9473/11093] arm64: dts:=
+ rockchip: Add RK3562 evb2 devicetree
+> config: arm64-randconfig-2052-20250513 (https://download.01.org/0day-ci/a=
+rchive/20250515/202505150745.PQT9TLYX-lkp@intel.com/config)
+> compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f=
+819f46284f2a79790038e1f6649172789734ae8)
+> dtschema version: 2025.3.dev27+g32749b3
+> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
+ve/20250515/202505150745.PQT9TLYX-lkp@intel.com/reproduce)
+>=20
+> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
+ion of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202505150745.PQT9TLYX-lkp=
+@intel.com/
+>=20
+> dtcheck warnings: (new ones prefixed by >>)
+> >> arch/arm64/boot/dts/rockchip/rk3562.dtsi:624.26-675.5: Warning (simple=
+_bus_reg): /soc/pcie@ff500000: simple-bus unit address format error, expect=
+ed "fe000000"
+> >> arch/arm64/boot/dts/rockchip/rk3562.dtsi:1115.20-1181.5: Warning (simp=
+le_bus_reg): /soc/pinctrl: missing or empty reg/ranges property
 
-<form letter>
-This is a friendly reminder during the review process.
+hmm, I don't really understand this error message.
 
-It looks like you received a tag and forgot to add it.
+=46rom a practical point, the dtschema-version I have installed is
+2025.3.dev27+g32749b3, which is the topmost commit from
+may-13th.
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
+Running the dtbscheck on the rk3562-evb-v10.dtb on the full
+linux-next from today, yields no errors.
 
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+Checking out the specific commit ceb6ef1ea90026 brings up the
+errors from below [1], because they come from different trees.
 
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
 
-Best regards,
-Krzysztof
+But in no cases does dtbscheck complain about the PCI memory regions.
+
+
+The PCIe controller in question of course has 3 memory regions
+	reg =3D <0x0 0xfe000000 0x0 0x400000>,
+	      <0x0 0xff500000 0x0 0x10000>,
+	      <0x0 0xfc000000 0x0 0x100000>;
+	reg-names =3D "dbi", "apb", "config";
+
+and currently the node-name mimics the "apb" memory region.
+Should it always use the first one?
+
+
+[1]
+>    arch/arm64/boot/dts/rockchip/rk3562-evb2-v10.dtb: /soc/power-managemen=
+t@ff258000/power-controller: failed to match any schema with compatible: ['=
+rockchip,rk3562-power-controller']
+>    arch/arm64/boot/dts/rockchip/rk3562-evb2-v10.dtb: pcie@ff500000 (rockc=
+hip,rk3562-pcie): interrupt-names:5: 'dma0' was expected
+>    	from schema $id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.y=
+aml#
+>    arch/arm64/boot/dts/rockchip/rk3562-evb2-v10.dtb: pcie@ff500000 (rockc=
+hip,rk3562-pcie): compatible: 'oneOf' conditional failed, one must be fixed:
+>    	['rockchip,rk3562-pcie', 'rockchip,rk3568-pcie'] is too long
+>    	'rockchip,rk3568-pcie' was expected
+>=20
+
+
+
 
