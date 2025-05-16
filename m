@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-177988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50874AB9D1D
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:20:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B96ADAB9D2D
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:23:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41DDA3BCFBC
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:19:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 678FC9E5320
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:23:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D818156CA;
-	Fri, 16 May 2025 13:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F0DB1C2BD;
+	Fri, 16 May 2025 13:23:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f7KYZOki"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o6DQGbyU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F84911CAF;
-	Fri, 16 May 2025 13:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 285F229D0D;
+	Fri, 16 May 2025 13:23:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747401600; cv=none; b=AQqXsrOgAjX0XVy/ezCCUwDzsioJfXuxIHBS8qyedGqOBXU8qK+FK+lgNLdHOW9hNwprSLscLQhcqDOBfk2nGxSabc70hwRjtfvTAUfKKAptcfTw9DLT8rb1vfp1lOWkFnzdxZQq/Z3Y0Yf8Z/RBcGCX4LsRGEVjuh5n0BidrEI=
+	t=1747401812; cv=none; b=ucxCNCx17Wp2sbVVs37FRFdz6Ox7uqJWmjYMTzzOJi1tsSwz2aHfGX14eDGLJk5VzquhubENcdpcHhdkEiN1IZBgaFlMfYWvV1GYhuKk3eMoSIElyTK0thVxgpO9TEliT8rkna+WzqF8w2HuFjYLbvejBqYIyWkceUF1I4cy2Z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747401600; c=relaxed/simple;
-	bh=Zxq4lQIG5sIEJG3iSRSF3Y91Onwf6xfW2l+nu/OgvR4=;
+	s=arc-20240116; t=1747401812; c=relaxed/simple;
+	bh=1WGiAyi1VggTs5EVy+F+lMhO7W2LFZXYjPZjOFDcxtU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZJCphhu3IjGeAa+WRBzBoQsW+FvSkfVAcbE7kXfsAq1vJ7HRzmEyGr4oF49YJLN7xINKMe+QfTk3Vj+PBRv0n5B66Zf09DlVV2XQrBmfXiFCq0/xby7447FW4VDpAee5XYtYrtrYjlaGyPKx0Lr6Cp1wjxHuZtnCD2wc1gW4AIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f7KYZOki; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCCC7C4CEED;
-	Fri, 16 May 2025 13:19:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=D0l9DxcLf7SPe3bHHuwf3ZY20R3WHvp1DT780/2o7lxzzDxsaE5Ydlyb5T/Vvh3kaXjxoRBsP0efTkoPebFbQUobLdvIxtyiNBy2Iz4V4OXdNq5F7/FHWOxxhL8bFG30DDuTg4QC5IVyvTMUov3HQ9GaEjJrZKjKBE/TxPUfIcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o6DQGbyU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC883C4CEE4;
+	Fri, 16 May 2025 13:23:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747401599;
-	bh=Zxq4lQIG5sIEJG3iSRSF3Y91Onwf6xfW2l+nu/OgvR4=;
+	s=k20201202; t=1747401811;
+	bh=1WGiAyi1VggTs5EVy+F+lMhO7W2LFZXYjPZjOFDcxtU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=f7KYZOkiciLVxL06Wz9xBn/s0o2ikDE83HLLpIFwkA3pI/YvVIC+hVNbD1Q0ZqvCe
-	 4YVwXxDzjCXKAZG6feMNdvJHw2lKynyuY0sZg79cYbCbdQ6JOMuNhsZRoPNOLmn25Y
-	 4PiM0cBxMLklZc7JjFsRkl4tL5Y3c3R27pyAdVHKghxQQfnkYoxSZjvnAT3ZZegrdt
-	 NyYl1p79htzJiUzSNhe+t2bfIiOpQ5ODH6N2z+pMysiij/t+E5vew9oVGJRSzxTGsM
-	 D4ntUuDXGqBPOUKYxhxsg2XTDC4HSIDhaipH94NDDk8U4tCoyGDafps7q23FlPNEh+
-	 iRbN9zb42gamQ==
-Message-ID: <01f97fcc-1b6a-41f3-8a62-67fac9f5bae0@kernel.org>
-Date: Fri, 16 May 2025 15:19:52 +0200
+	b=o6DQGbyUwYPrSflbMh3XV3p5exWnilAbwB8JJU2OjAuysT2tqRggYvwMQRkwooFl1
+	 iXA6QFaUOmbR1b5cpGf3pw7+G3AQCzIwasegzJ2a2bTm6ov8poIO1mOkVF/mGkPAWR
+	 f0jmJjsD01DyUF0bhQyvzOonWjZiJDlFZwH10c/yRNnf9fl9QEs4RjMu15ICTCxeUO
+	 3QcE7NMlX0qReYBoHf8hUOg3R8wU/b2SNZhbOEH3e3FL/eqZJUprXKhQi3DkfdiWti
+	 XQG8Eh3BhMCbHpc1Jzbp9lw88p29K5GqX06k5XSKyGYtnuWzOoSQv98+uye/vgzxYF
+	 /taoSeZDCSzZQ==
+Message-ID: <87874bd2-2fcb-42b3-9e92-cccaa4eaa148@kernel.org>
+Date: Fri, 16 May 2025 15:23:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] ethernet: eswin: Document for eic7700 SoC
-To: weishangjuan@eswincomputing.com, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- richardcochran@gmail.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- p.zabel@pengutronix.de, yong.liang.choong@linux.intel.com,
- rmk+kernel@armlinux.org.uk, jszhang@kernel.org, inochiama@gmail.com,
- jan.petrous@oss.nxp.com, dfustini@tenstorrent.com, 0x1207@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] clock: eswin: Add eic7700 clock driver
+To: dongxuyang@eswincomputing.com, mturquette@baylibre.com, sboyd@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- lizhi2@eswincomputing.com
-References: <20250516010849.784-1-weishangjuan@eswincomputing.com>
- <20250516011040.801-1-weishangjuan@eswincomputing.com>
+ huangyifeng@eswincomputing.com
+References: <20250514002233.187-1-dongxuyang@eswincomputing.com>
+ <20250514002626.348-1-dongxuyang@eswincomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,101 +104,167 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250516011040.801-1-weishangjuan@eswincomputing.com>
+In-Reply-To: <20250514002626.348-1-dongxuyang@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/05/2025 03:10, weishangjuan@eswincomputing.com wrote:
-> From: Shangjuan Wei <weishangjuan@eswincomputing.com>
-> 
-> Add ESWIN EIC7700 Ethernet controller, supporting
-> multi-rate (10M/100M/1G) auto-negotiation, PHY LED configuration,
-> clock/reset control, and AXI bus parameter optimization.
-> 
-> Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
-> Signed-off-by: Shangjuan Wei <weishangjuan@eswincomputing.com>
+On 14/05/2025 02:26, dongxuyang@eswincomputing.com wrote:
+>> +static int eswin_cpu_clk_init(struct platform_device *pdev)
+> +{
+> +	struct clk *cpu_clk;
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	u32 default_freq;
+> +	int ret = 0;
+> +	int numa_id;
+> +	char name[128] = { 0 };
+> +
+> +	ret = of_property_read_u32(np, "cpu-default-frequency", &default_freq);
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+NAK, undocumented ABI.
+
+You already got such comments. All your patches repeat the same mistakes.
+
+> +	if (ret) {
+> +		dev_info(dev, "cpu-default-frequency not set\n");
+> +		return ret;
+> +	}
+> +	numa_id = dev_to_node(dev->parent);
+> +	if (numa_id < 0)
+> +		sprintf(name, "%s", "clk_cpu_ext_src_core_clk_0");
+> +	else
+> +		sprintf(name, "d%d_%s", numa_id, "clk_cpu_ext_src_core_clk_0");
+> +
+> +	cpu_clk = __clk_lookup(name);
+> +	if (!cpu_clk) {
+> +		dev_err(dev, "Failed to lookup CPU clock\n");
+> +		return -EINVAL;
+> +	}
+> +	ret = clk_set_rate(cpu_clk, default_freq);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to set CPU frequency: %d\n", ret);
+> +		return ret;
+> +	}
+> +	dev_info(dev, "CPU frequency set to %u Hz\n", default_freq);
+
+Drop, this is supposed to be silent.
+
+> +	return 0;
+> +}
+> +
+> +static int eswin_clk_probe(struct platform_device *pdev)
+> +{
+> +	struct eswin_clock_data *clk_data;
+> +
+> +	clk_data = eswin_clk_init(pdev, EIC7700_NR_CLKS);
+> +	if (!clk_data)
+> +		return -EAGAIN;
+> +
+> +	special_div_table_init(u_3_bit_special_div_table,
+> +			       ARRAY_SIZE(u_3_bit_special_div_table));
+> +	special_div_table_init(u_4_bit_special_div_table,
+> +			       ARRAY_SIZE(u_4_bit_special_div_table));
+> +	special_div_table_init(u_6_bit_special_div_table,
+> +			       ARRAY_SIZE(u_6_bit_special_div_table));
+> +	special_div_table_init(u_7_bit_special_div_table,
+> +			       ARRAY_SIZE(u_7_bit_special_div_table));
+> +	special_div_table_init(u_8_bit_special_div_table,
+> +			       ARRAY_SIZE(u_8_bit_special_div_table));
+> +	special_div_table_init(u_11_bit_special_div_table,
+> +			       ARRAY_SIZE(u_11_bit_special_div_table));
+> +	special_div_table_init(u_16_bit_special_div_table,
+> +			       ARRAY_SIZE(u_16_bit_special_div_table));
+> +
+> +	eswin_clk_register_fixed_rate(eic7700_fixed_rate_clks,
+> +				      ARRAY_SIZE(eic7700_fixed_rate_clks),
+> +				      clk_data);
+> +	eswin_clk_register_pll(eic7700_pll_clks, ARRAY_SIZE(eic7700_pll_clks),
+> +			       clk_data, &pdev->dev);
+> +
+> +	eswin_clk_register_fixed_factor(eic7700_fixed_factor_clks,
+> +					ARRAY_SIZE(eic7700_fixed_factor_clks),
+> +					clk_data);
+> +	eswin_clk_register_mux(eic7700_mux_clks, ARRAY_SIZE(eic7700_mux_clks),
+> +			       clk_data);
+> +	eswin_clk_register_clk(eic7700_clks_early_0,
+> +			       ARRAY_SIZE(eic7700_clks_early_0), clk_data);
+> +	eswin_clk_register_divider(eic7700_div_clks,
+> +				   ARRAY_SIZE(eic7700_div_clks), clk_data);
+> +	eswin_clk_register_clk(eic7700_clks_early_1,
+> +			       ARRAY_SIZE(eic7700_clks_early_1), clk_data);
+> +	eswin_clk_register_gate(eic7700_gate_clks,
+> +				ARRAY_SIZE(eic7700_gate_clks), clk_data);
+> +	eswin_clk_register_clk(eic7700_clks, ARRAY_SIZE(eic7700_clks),
+> +			       clk_data);
+> +
+> +	eswin_cpu_clk_init(pdev);
+> +
+> +	return 0;
 
 
-> ---
->  .../bindings/net/eswin,eic7700-eth.yaml       | 142 ++++++++++++++++++
->  1 file changed, 142 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+
+...
+
+> +int eswin_clk_register_clk(const struct eswin_clock *clks, int nums,
+> +			   struct eswin_clock_data *data)
+> +{
+> +	struct clk *clk;
+> +	int i;
+> +
+> +	for (i = 0; i < nums; i++) {
+> +		char *name = kzalloc(strlen(clks[i].name) + 2 * sizeof(char) +
+> +					     sizeof(int),
+> +				     GFP_KERNEL);
+> +		char *parent_name =
+> +			kzalloc(strlen(clks[i].parent_name) + 2 * sizeof(char) +
+> +					sizeof(int),
+> +				GFP_KERNEL);
+> +		if (data->numa_id < 0) {
+> +			sprintf(name, "%s", clks[i].name);
+> +			sprintf(parent_name, "%s", clks[i].parent_name);
+> +		} else {
+> +			sprintf(name, "d%d_%s", data->numa_id, clks[i].name);
+> +			sprintf(parent_name, "d%d_%s", data->numa_id,
+> +				clks[i].parent_name);
+> +		}
+> +		clk = eswin_register_clk(data, NULL, name, parent_name,
+> +					 clks[i].flags, &data->lock);
+> +		if (IS_ERR(clk)) {
+> +			pr_err("%s: failed to register clock %s\n", __func__,
+
+Same comments apply as for all other patches.
+
+> +			       clks[i].name);
+> +			kfree(name);
+> +			kfree(parent_name);
+> +			goto err;
+> +		}
+> +
+> +		if (clks[i].alias)
+> +			clk_register_clkdev(clk, clks[i].alias, NULL);
+> +
+> +		data->clk_data.clks[clks[i].id] = clk;
+> +		kfree(name);
+> +		kfree(parent_name);
+> +	}
+> +	return 0;
+> +err:
+> +	while (i--)
+> +		clk_unregister_gate(data->clk_data.clks[clks[i].id]);
+> +
+> +	return PTR_ERR(clk);
+> +}
+> +EXPORT_SYMBOL_GPL(eswin_clk_register_clk);
+
+That's not a module.
+
+> diff --git a/drivers/clk/eswin/clk.h b/drivers/clk/eswin/clk.h
 > new file mode 100644
-> index 000000000000..6cb9c109c036
+> index 000000000000..1c0d0b771229
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-> @@ -0,0 +1,142 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/eswin,eic7700-eth.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Eswin EIC7700 SOC Eth Controller
-> +
-> +maintainers:
-> +  - Shuang Liang <liangshuang@eswincomputing.com>
-> +  - Zhi Li <lizhi2@eswincomputing.com>
-> +  - Shangjuan Wei <weishangjuan@eswincomputing.com>
-> +
-> +description: |
-
-Same comments apply as for all of your patches.
-
-> +  The eth controller registers are part of the syscrg block on
-> +  the EIC7700 SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: eswin,eic7700-qos-eth
-> +
-> +  reg:
-> +    minItems: 1
-> +    items:
-> +      - description: Base address and size
-> +      - description: Extension region (optional)
-
-How it can be optional? This is SoC. It is strictly defined, isn't it?
-
-> +
-> +  interrupt-names:
-> +    const: macirq
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  phy-mode:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [mii, gmii, rgmii, rmii, sgmii]
-> +
-> +  id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Controller instance ID
-
-No, drop. IDs are not allowed.
-
-> +
-> +  clocks:
-> +    minItems: 3
-> +    maxItems: 7
-
-No.
-
-I am supposed to repeat the same comments... So no.
-
-All my comments apply to all eswin patches. For driver, bindings,
-everything. I suggest to slow down and learn from one review.
-
-I finish review here.
-
+> +++ b/drivers/clk/eswin/clk.h
+> @@ -0,0 +1,209 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 Best regards,
 Krzysztof
 
