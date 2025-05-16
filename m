@@ -1,169 +1,231 @@
-Return-Path: <devicetree+bounces-178066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6936CABA48F
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 22:16:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 151CDABA50A
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 23:24:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BE751BA1EC4
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 20:16:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0194A248FC
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 21:24:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C50727FD50;
-	Fri, 16 May 2025 20:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC06280021;
+	Fri, 16 May 2025 21:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pwqCmEeo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DMPSzhVc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63BA427CCC4;
-	Fri, 16 May 2025 20:16:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D76A726B0B3;
+	Fri, 16 May 2025 21:24:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747426590; cv=none; b=sJZPhKQhALlh2k3PIRRBS05Xvs3/CSfwODlDXD1Ju6s0MZpzpcQTSamX6Z9dqgh+o6sJFb3OMcu39n+h+lHWrnSAjGHpxfaCF0VXFiDecfqmi34TC/O4J8Hb+zhMBQyVRe/ihLnsyaWuibb+zJQT2KIEVGcSKSQ+4GJ5ZKrsa0c=
+	t=1747430666; cv=none; b=MCbxa/z3Wu+xVTqrusr8ALU6rcfiwpAc8oqivT5Fd4SV/erme8IHioGTJhEfLgHUmN3yqHLkiBLBhCoTSvnzNRMsT1TSg2gZQQ8b0mmZ4FSqwtcLwMvvp2t2BSI+T5JyfcA7lya6HyDuz86vrYJIB00uGlsndZsPVt9hH60YDpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747426590; c=relaxed/simple;
-	bh=D1Z5w9AYGSfUlSKYqF+jgYYMgx9eNNsKAADS1moCkaw=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=dqbP0DcAA4DEhI+WCAWCKgx/gaZUHgYzzpkbv0akLuM8T8wwwthzmNqBiei/xU7AOlyxSDnnDVGWeXjbQcwFaO/jZ+Gsq4reUumUxZMe9QPBXHdmQNzrMnm13+xN1eOuu/5vEuGHbK5HzdwlfEKpMTh3U9Qi4kd5tPNO0AhUWtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pwqCmEeo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D593C4CEE4;
-	Fri, 16 May 2025 20:16:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747426589;
-	bh=D1Z5w9AYGSfUlSKYqF+jgYYMgx9eNNsKAADS1moCkaw=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=pwqCmEeonx6ZXsuHmxwr0Jq+QDCCSpFRxtVtCeFnTCGBowrq1J/0iVNS+DlBi8lT5
-	 3086VLUmQPO+HjhKKoeuLvHgdKJNjYW7tV11djgzhOesw81NxW4b83xfLL3WK+fRcG
-	 eoA0LtBJgkrc++Tk0L9/C0/IKi3IZLSLwS5Ogyy9RATr+JzkQILJug8DFmCe85v5d/
-	 8XGn6o4w1ZgJD4uipVfaCJAiGijIyz+xLxm1S6/Bve61cO+RXpK5PlweNjUVxB2JOf
-	 7uWXhI4oCgWfRPAAcVHr7rz+6EB7ASHt6F+9GLxKvqQmu4ZJUKxDbASAGOUK2f58Z1
-	 ieYD1QT0BfbYw==
+	s=arc-20240116; t=1747430666; c=relaxed/simple;
+	bh=6JWtqOHadcjsUf5CIy4bEylZn9nAVubWr6zqmBXJYRw=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=BGT28E/x0ZVsHGt1uckoHHf7UthSFRwuNZUInpEdV4gTeI+sMtIWx0SYDB22C2SNnhvY8KEiSCzszuoFQLrUPlGvF4OX9a2gFT4svK2Ozx7LmvCYqCj86iAg5ZCIrB3+FkKt+KluZWrdoXKGhhgVgbLeDK0QMUHElojThSHQXSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DMPSzhVc; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-442eb5d143eso23417445e9.0;
+        Fri, 16 May 2025 14:24:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747430663; x=1748035463; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=l1Hta4W1dPFUTar/rJllAxygYiLl+WXDAdv6ahBc1HM=;
+        b=DMPSzhVceuuerH/+YBrHMae9vv8uE9S/D0mj8/TFLF/6KzW214RYw4saf74VxuhIWy
+         EN+Ph4GbfNA7FLnUfAc+C6RovC5KXDltX857kWrZHsX77PYl2hNXuVa98CsEGYWBWe3s
+         CFUPKRR/qkhGXmfz4E1ZJCtrJlViuooM6k8qQTmu8Z29113kd+sdVZ8qaSS2Yjrogolb
+         0x0u8I7uOVWykWXh/9xclWXy5mGRsYTuqQoqqRpTs8adCgM+as0e4O9msIvXqL9l2q5a
+         jAFrCHcWeGthY0cK1N1TC+aN0t+kAK+28RFXp3IHh+F9VPwU+ziLdvQauQSn2f4rXAyr
+         +meQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747430663; x=1748035463;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l1Hta4W1dPFUTar/rJllAxygYiLl+WXDAdv6ahBc1HM=;
+        b=kfTfiELJg/4+cjenwA6GgeESSHHO/opYDzAFJ/q+KUm22YLAqoE8gu55hd19Qsx72O
+         vRVLAVa2Sjcf9h0yZXENZLOUy7G1GsKsbgRwJAaJnUTuKCEgTR49zVkla2VPwN9ZzSNF
+         mZOPPEU9dJKXIhaUgwzFfUi5NDuLWVp6S+Uvj9wnJCCfjkNdfXPhsMN4hK8oM0VgehNS
+         5UjGGzV/640iBRRAz85JWSYsucImLt55GUdE+RhH2L2fAeBigJ0GwXU40EjUUCPP1DeM
+         aRSoyeJPpyUHhxv+ImOKjuSYjR8H3pcuRbBbtlYKiOltrO8Z4CoMDMS/s3SLKehLMGsV
+         +IaA==
+X-Forwarded-Encrypted: i=1; AJvYcCUGR7ncu2aGEh6X3wUyUvjRxPMuNcR0zCpG4pWYf4CHj5A40TBMTc3S/qJSwljdtF2iuzhsn4lSGU15hfrl@vger.kernel.org, AJvYcCUOx4suIc59hbbb9NtxleVk/u+8MNxTSzZxN/gKGSvtG4oqpq8z1umaOAXPBaNk4oM8xGaJI+Yd@vger.kernel.org, AJvYcCVTEUheFYdbL5z13/PUyMyo/L16jlBPzAWn97sVHyTYDkDB2H5Mrkd7UDrtc/O9QdaSBRrFvqz42j1KwUS4AYM=@vger.kernel.org, AJvYcCXEIx7G7sHDPDob269h5HtpazlIyiz2YNbc3ZmZpqncjlpLCe/syfIxS4VbynPj6sWXTGe/lsF6i6JC@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUvelwp2L5rmDU9J14ELECL6zNk+ABTtQBCMq9n9BkuztY8Wrl
+	X3OD0dJ8dkfkCcctqI8TrOBXhKds65TflIyQg85ndywkiVdKp9Pd/D+G
+X-Gm-Gg: ASbGncunTIQ+XvcxORD3lR4LYEmE4Z/iFY1jr1OCdsN0Tf3/wkJfb8ATXH12uFIkbBU
+	3Oj4sN/32Fb5OZElTWKMYjEU0zJN5goct8vh4s/1laeyaN6BhrBPp430K7runGPbJe41pELcACz
+	IbtxNSF0jTNAQ7PlHoN4Z2mVabeUxkxAAvfpMODaIxJXc9wLv08OoKjvwJF0jFN5wh8lJUKahRH
+	xrnpImDOekYchAzSJh+vKkp7M/KAFf7mOfuAn3S27cYeYSPgTtqbNljKAu8E63BzGIGHIS1PgMn
+	S+37yA3Ff0TMryw+/My0Fy+clDaXUajlbEr472obL/2GhSwbO9pwMbNeWsCcEytCHzBz2bnncQs
+	o8zQIGT6zEhLAx/EdEkGR
+X-Google-Smtp-Source: AGHT+IEo0u5x2s8Yof4YAfr0AOlCc9AbwKoIkjnv3htsZOGqLDBbTKC7E7kYNwS4cOoUxYSIeGylDw==
+X-Received: by 2002:a05:600c:4592:b0:43d:45a:8fbb with SMTP id 5b1f17b1804b1-442fd6649d0mr43553545e9.22.1747430662720;
+        Fri, 16 May 2025 14:24:22 -0700 (PDT)
+Received: from localhost.localdomain (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-442f39e84d3sm126293555e9.32.2025.05.16.14.24.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 May 2025 14:24:22 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+	Andrei Botila <andrei.botila@oss.nxp.com>,
+	FUJITA Tomonori <fujita.tomonori@gmail.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Michael Klein <michael@fossekall.de>,
+	Daniel Golle <daniel@makrotopia.org>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org
+Subject: [net-next PATCH v11 0/6] net: phy: Add support for new Aeonsemi PHYs
+Date: Fri, 16 May 2025 23:23:25 +0200
+Message-ID: <20250516212354.32313-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 16 May 2025 22:16:23 +0200
-Message-Id: <D9XV0Y22JHU5.3T51FVQONVERC@kernel.org>
-Cc: "FUJITA Tomonori" <fujita.tomonori@gmail.com>, <andrew+netdev@lunn.ch>,
- <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
- <pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
- <florian.fainelli@broadcom.com>, <bcm-kernel-feedback-list@broadcom.com>,
- <kabel@kernel.org>, <andrei.botila@oss.nxp.com>, <tmgross@umich.edu>,
- <ojeda@kernel.org>, <alex.gaynor@gmail.com>, <boqun.feng@gmail.com>,
- <gary@garyguo.net>, <bjorn3_gh@protonmail.com>, <benno.lossin@proton.me>,
- <a.hindborg@kernel.org>, <aliceryhl@google.com>, <dakr@kernel.org>,
- <sd@queasysnail.net>, <michael@fossekall.de>, <daniel@makrotopia.org>,
- <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <rust-for-linux@vger.kernel.org>
-Subject: Re: [net-next PATCH v10 7/7] rust: net::phy sync with
- match_phy_device C changes
-From: "Benno Lossin" <lossin@kernel.org>
-To: "Christian Marangi" <ansuelsmth@gmail.com>
-X-Mailer: aerc 0.20.1
-References: <20250515112721.19323-1-ansuelsmth@gmail.com>
- <20250515112721.19323-8-ansuelsmth@gmail.com>
- <20250516.213005.1257508224493103119.fujita.tomonori@gmail.com>
- <D9XO2721HEQI.3BGSHJXCHPTL@kernel.org>
- <682755d8.050a0220.3c78c8.a604@mx.google.com>
-In-Reply-To: <682755d8.050a0220.3c78c8.a604@mx.google.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Fri May 16, 2025 at 5:12 PM CEST, Christian Marangi wrote:
-> On Fri, May 16, 2025 at 04:48:53PM +0200, Benno Lossin wrote:
->> On Fri May 16, 2025 at 2:30 PM CEST, FUJITA Tomonori wrote:
->> > On Thu, 15 May 2025 13:27:12 +0200
->> > Christian Marangi <ansuelsmth@gmail.com> wrote:
->> >> @@ -574,6 +577,23 @@ pub const fn create_phy_driver<T: Driver>() -> D=
-riverVTable {
->> >>  /// This trait is used to create a [`DriverVTable`].
->> >>  #[vtable]
->> >>  pub trait Driver {
->> >> +    /// # Safety
->> >> +    ///
->> >> +    /// For the duration of `'a`,
->> >> +    /// - the pointer must point at a valid `phy_driver`, and the ca=
-ller
->> >> +    ///   must be in a context where all methods defined on this str=
-uct
->> >> +    ///   are safe to call.
->> >> +    unsafe fn from_raw<'a>(ptr: *const bindings::phy_driver) -> &'a =
-Self
->> >> +    where
->> >> +        Self: Sized,
->> >> +    {
->> >> +        // CAST: `Self` is a `repr(transparent)` wrapper around `bin=
-dings::phy_driver`.
->> >> +        let ptr =3D ptr.cast::<Self>();
->> >> +        // SAFETY: by the function requirements the pointer is valid=
- and we have unique access for
->> >> +        // the duration of `'a`.
->> >> +        unsafe { &*ptr }
->> >> +    }
->> >
->> > We might need to update the comment. phy_driver is const so I think
->> > that we can access to it any time.
->>=20
->> Why is any type implementing `Driver` a transparent wrapper around
->> `bindings::phy_driver`?
->>=20
->
-> Is this referred to a problem with using from_raw or more of a general
-> question on how the rust wrapper are done for phy code?
+Add support for new Aeonsemi 10G C45 PHYs. These PHYs intergate an IPC
+to setup some configuration and require special handling to sync with
+the parity bit. The parity bit is a way the IPC use to follow correct
+order of command sent.
 
-I looked at the `phy.rs` file again and now I'm pretty sure the above
-code is wrong. `Self` can be implemented on any type (even types like
-`Infallible` that do not have any valid bit patterns, since it's an
-empty enum). The abstraction for `bindings::phy_driver` is
-`DriverVTable` not an object of type `Self`, so you should cast to that
-pointer instead.
+Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
+AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
+AS21210PB1 that all register with the PHY ID 0x7500 0x7500
+before the firmware is loaded.
 
->> >>      /// Defines certain other features this PHY supports.
->> >>      /// It is a combination of the flags in the [`flags`] module.
->> >>      const FLAGS: u32 =3D 0;
->> >> @@ -602,7 +622,7 @@ fn get_features(_dev: &mut Device) -> Result {
->> >> =20
->> >>      /// Returns true if this is a suitable driver for the given phyd=
-ev.
->> >>      /// If not implemented, matching is based on [`Driver::PHY_DEVIC=
-E_ID`].
->> >> -    fn match_phy_device(_dev: &Device) -> bool {
->> >> +    fn match_phy_device<T: Driver>(_dev: &mut Device, _drv: &T) -> b=
-ool {
->> >>          false
->> >>      }
->> >
->> > I think that it could be a bit simpler:
->> >
->> > fn match_phy_device(_dev: &mut Device, _drv: &Self) -> bool
->> >
->> > Or making it a trait method might be more idiomatic?
->> >
->> > fn match_phy_device(&self, _dev: &mut Device) -> bool
->>=20
->> Yeah that would make most sense.
->>
->
-> I think
->
-> fn match_phy_device(_dev: &mut Device, _drv: &Self) -> bool
->
-> more resemble the C parallel function so I think this suite the best,
-> should make it easier to port if ever (am I wrong?)
+The big special thing about this PHY is that it does provide
+a generic PHY ID in C45 register that change to the correct one
+one the firmware is loaded.
 
-I don't understand what you mean by "easier to port if ever". From a
-Rust perspective, it makes much more sense to use the `&self` receiver,
-since the driver is asked if it can take care of the device. If you want
-to keep the order how it is in C that is also fine, but if I were to
-write it, I'd use the receiver.
+In practice:
+- MMD 0x7 ID 0x7500 0x9410 -> FW LOAD -> ID 0x7500 0x9422
 
----
-Cheers,
-Benno
+To handle this, we operate on .match_phy_device where
+we check the PHY ID, if the ID match the generic one,
+we load the firmware and we return 0 (PHY driver doesn't
+match). Then PHY core will try the next PHY driver in the list
+and this time the PHY is correctly filled in and we register
+for it.
+
+To help in the matching and not modify part of the PHY device
+struct, .match_phy_device is extended to provide also the
+current phy_driver is trying to match for. This add the
+extra benefits that some other PHY can simplify their
+.match_phy_device OP.
+
+Changes v11:
+- Move rust changes to patch 1 (improve bisectability)
+- Improve rust binding with suggested format
+Changes v10:
+- Add rust patch
+Changes v9:
+- Reorder AS21XXX_PHY kconfig before Airoha
+- Add Reviewed-by tag from Andrew
+Changes v8:
+- Move IPC ready condition to dedicated function for poll
+  timeout
+- Fix typo aeon_ipcs_wait_cmd -> aeon_ipc_wait_cmd
+- Merge aeon_ipc_send_msg and aeon_ipc_rcv_msg to
+  correctly handle locking
+- Fix AEON_MAX_LDES typo
+Changes v7:
+- Make sure fw_version is NULL terminated
+- Better describe logic for .match_phy_device
+Changes v6:
+- Out of RFC
+- Add Reviewed-by tag from Russell
+Changes v5:
+- Add Reviewed-by tag from Rob
+- Fix subject in DT patch
+- Fix wrong Suggested-by tag in patch 1
+- Rework nxp patch to 80 column
+Changes v4:
+- Add Reviewed-by tag
+- Better handle PHY ID scan in as21xxx
+- Also simplify nxp driver and fix .match_phy_device
+Changes v3:
+- Correct typo intergate->integrate
+- Try to reduce to 80 column (where possible... define become
+  unreasable if split)
+- Rework to new .match_phy_device implementation
+- Init active_low_led and fix other minor smatch war
+- Drop inline tag (kbot doesn't like it but not reported by checkpatch???)
+Changes v2:
+- Move to RFC as net-next closed :(
+- Add lock for IPC command
+- Better check size values from IPC
+- Add PHY ID for all supported PHYs
+- Drop .get_feature (correct values are exported by standard
+  regs)
+- Rework LED event to enum
+- Update .yaml with changes requested (firmware-name required
+  for generic PHY ID)
+- Better document C22 in C45
+- Document PHY name logic
+- Introduce patch to load PHY 2 times
+
+Christian Marangi (6):
+  net: phy: pass PHY driver to .match_phy_device OP
+  net: phy: bcm87xx: simplify .match_phy_device OP
+  net: phy: nxp-c45-tja11xx: simplify .match_phy_device OP
+  net: phy: introduce genphy_match_phy_device()
+  net: phy: Add support for Aeonsemi AS21xxx PHYs
+  dt-bindings: net: Document support for Aeonsemi PHYs
+
+ .../bindings/net/aeonsemi,as21xxx.yaml        |  122 ++
+ MAINTAINERS                                   |    7 +
+ drivers/net/phy/Kconfig                       |   12 +
+ drivers/net/phy/Makefile                      |    1 +
+ drivers/net/phy/as21xxx.c                     | 1087 +++++++++++++++++
+ drivers/net/phy/bcm87xx.c                     |   14 +-
+ drivers/net/phy/icplus.c                      |    6 +-
+ drivers/net/phy/marvell10g.c                  |   12 +-
+ drivers/net/phy/micrel.c                      |    6 +-
+ drivers/net/phy/nxp-c45-tja11xx.c             |   41 +-
+ drivers/net/phy/nxp-tja11xx.c                 |    6 +-
+ drivers/net/phy/phy_device.c                  |   52 +-
+ drivers/net/phy/realtek/realtek_main.c        |   27 +-
+ drivers/net/phy/teranetics.c                  |    3 +-
+ include/linux/phy.h                           |    6 +-
+ rust/kernel/net/phy.rs                        |   22 +-
+ 16 files changed, 1355 insertions(+), 69 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+ create mode 100644 drivers/net/phy/as21xxx.c
+
+-- 
+2.48.1
+
 
