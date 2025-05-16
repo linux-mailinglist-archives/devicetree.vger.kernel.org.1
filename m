@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-178019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 442C6AB9FAE
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 17:17:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C39DAB9FF1
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 17:34:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA6C54A0F24
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:16:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 268AB1BA3697
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:34:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2AC1C6FE7;
-	Fri, 16 May 2025 15:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 577501C3BF7;
+	Fri, 16 May 2025 15:34:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="GQfsSeGy"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="aNHk+Il8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDFAC1B0F23
-	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 15:16:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E131B87C0
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 15:34:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747408578; cv=none; b=uC9lTsN+wicsnoimZKU54Plk0Elxv7acwYSp7jJjxihtUUEwT3n7n3GR5jaOcYjVhlxyXrDaRDW5QcX9DKpjZRKUpItb8wled1LsuzEAO1nXAJwWQd6X6pa17US4dsoUQFQARKTrs1JXe7cmHlKRZy5hiDeetrZ5jz/Z4n3kMIk=
+	t=1747409672; cv=none; b=jiFY46KPDInSqBmcayqAfHREfIWEK7X8/1z9npeJT2kqtJuZbOShUYlPOO96gAy7YBxqZ9xbUrWXKEsDhhLi40D+z7FeKz4rFZsa4+zA3tsGy7MlFaHDM1L1PFHo9pxsCGQQs/49oJLPZQSBM9G6YOv6pXA2PnlxTFaNm3UDsQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747408578; c=relaxed/simple;
-	bh=t+2Gst9xAi5hlIwYx/cxza1UHimWoYdHPusTdQrrccY=;
+	s=arc-20240116; t=1747409672; c=relaxed/simple;
+	bh=s7M35uwjD+aYg6o9dTgcW1bTJu8deexw+cwFb2Q66d8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tr8C6i9sO7TFpspITT6FyXLYhBUeEtTfbdGtbr5QCiV4+Hg30Yc50eSVO46A7IpHDvkZnF+grWEyY+Au/LW9ovHHSZ07Opv24gGZPKI2exPMh6B/dVggwknBQsCxANdSYtKIIcpG6ta+AWiHeG7nIi06biBArvr7cBIbMeoXV7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=GQfsSeGy; arc=none smtp.client-ip=209.85.214.180
+	 Content-Type:Content-Disposition:In-Reply-To; b=YIR52hyzPXRxVs05gf/Ym36uB6ckcxIWcF0xsnhOKAmt5HA5B6OYkTvn/c5CV93n3x9aG0myzBeWW25NG1ZajxOmcuG9CC5qJulqRO2LUHFpvw2OjAIq95tDQyfjH/ZS6yPmu7AT3zkZvseKFxf83/w73nCnH45O79wocJSlZAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=aNHk+Il8; arc=none smtp.client-ip=209.85.214.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-22fbbf9c01bso19667415ad.3
-        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 08:16:14 -0700 (PDT)
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-22fa47d6578so20899405ad.2
+        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 08:34:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1747408574; x=1748013374; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1747409669; x=1748014469; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=0GNirFBXfZksDmcLkIx7giCST3II4UpjpZdHFvaex5s=;
-        b=GQfsSeGyAB7JAoCVcMbV98hs3mI84XNwIJHFtrgZ90GXZKudh64JoDvi+O3SUidgzX
-         wiBkIPz47Q97T6sfusCfCzh0Dk5lLz3omyUJigHsvb/MvSSSToZxSPeDs55kTmN+Dje6
-         Ki0sQL/oLrJp6rWPCpfIOTDzB9OS/ZWkGpE4op+b3+LdLJw9FuUA61krpV1YlMV3tJPq
-         sjiDQ/w1EIWBYEb6Q1/yCANfG3KI4kwTvTy0TolvE/EhUPFv+EAYz+RSaAjDs5FwXb24
-         QgtLTuDiBW3kzQCZJyeDIGKyfXtcikj3A4LntFRTfkmy/zOIk4iF1Nso18z8PWPcJ3sj
-         3wIg==
+        bh=VTPOMqT5C2feU2knCk6fA/APYFa11AZmawpB2cqaoDc=;
+        b=aNHk+Il8tY3wKlYMt8MKNZwFti/luK9M6uD2PQ9xQyLCJ7vcDjw+Wm7wBS2XdpfWpx
+         KoKTdTtSvvxRzxBne9UFxCgPm/Iy49WKNu5yLRr0R3MJKgV75/6SmCD6a6E1AMcwpswu
+         etbcgE59S7n6ZSjhDUCiZbdLQOYRPse4bgKHsAfDLRrmOzlLTSlgtzsS7/ckO2yiYzB5
+         g2adbQQxOrSxb9ZFDXSNYbYeKjMQGP3ta60NYFjtxLTRW3qg/fVMeFT7nfEv8JJn0hUQ
+         coACE1nXsn/3uSg1AtNGtRpja+tGJeajxJ0IApyD2tUvF6kZ7h7BRTqBWIKs704bpsI7
+         HhzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747408574; x=1748013374;
+        d=1e100.net; s=20230601; t=1747409669; x=1748014469;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0GNirFBXfZksDmcLkIx7giCST3II4UpjpZdHFvaex5s=;
-        b=Y9IOHw5e4eTlSoEB6ot18E6OzPcgsW9VPYo4sCAEDCA03Stk0lmZCDEKCrLBBnupWu
-         koYXFoDSwDoAq7G64cxCV8E6rRh8ohiFFK2M1zHypNwbqDWQoSWtFMO3ZTWsJ7FSeFf/
-         qpVpHhlyfSwqhqfOf6x45Qfmu+43HBoLxlpxbHHWAgulnp24zw3nPY5hLfanEb6eHP9I
-         l+qSsBDtglAN3An33EomIlpIn1LBBN2XaWmQwXL35CcEF6oMAUCdTNnXiXgdM8lm+JQR
-         Yi1QXMhEoAuOZMkFresvAt9Y+Suq6iFCqmyIMv1y+lIoYtwKa3FlHidk6i3nSMMtu7lM
-         /DDg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4+YK5detWfYz3HbLIxAfwb0Cvbzev+3gFnlFWb/ZVxGjuo+qXlnVTtwtMTl+tNd5ihOSbsTJHqGDH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1Dv8aOJPcEmz1f0SnIzHVpcSWpigFuSfin7BkyQ3bRAYDKI4r
-	yhLadUKGaVVjhZ8kqv3GMMPdwuQygTgSZ2vmzTMTYLx7kXrKKwcm37GJOtqjA2T+4GE=
-X-Gm-Gg: ASbGnctvDcxI5paMfOXsncMTzdMazFGVB+p5OwNaOIAUEDJwJaVoytVip5V+n2bgzuF
-	Dhrk0cqvD//5yhu0mqujsGVwT7QM5roh6FnIDE2H9eyTegJrR2x7oDulGm9zHZiZOelz8mTU4GJ
-	U3Yn4iHPoFrdyERsgMOF0hyzM+r3Tk+kalMrwSOkiyGJ9Q0Jvd2GdNgDuGBAYVwvw9mt+uHYdJf
-	/tr0cBhdywYZ07nenfovMeFtF3Scrw1CZdxir/Py89dBvlRtNaOW/72twJFLPtrPVHV6mVmReHR
-	5IQQDCQKE54L1mc8OabPbHXU4HZUD8AU+CGLViR1AJyvImofwxI/JDOzio7LEw==
-X-Google-Smtp-Source: AGHT+IHSSRQv6UaVUp1uY7YxcQ7Fp0Nkh/iVwU/C9R2BEes+S1JYlxj3SIRdl94BDLGOoJJBYixrLQ==
-X-Received: by 2002:a17:903:faf:b0:224:c46:d167 with SMTP id d9443c01a7336-231d44e7049mr42573705ad.16.1747408573939;
-        Fri, 16 May 2025 08:16:13 -0700 (PDT)
+        bh=VTPOMqT5C2feU2knCk6fA/APYFa11AZmawpB2cqaoDc=;
+        b=BxI9qaQIfqzwexitL/prZtZxzJjBmWAgwnEzCJRwiEh8XDi3V8XlXrw0uD7rd9nwOL
+         4Tc5movw4HXuJbh5lWIfTHmTf1DZsQAG9U7mv8zq5Sq9FU/NFIHVPAkxHPmEF8FG/rOr
+         JSdVp+WJUjYrQovDLxe1kZucZNiROZJ1LeH9HrvxKgPjYT0o8scGp7SYBos1r+bly1hT
+         ExeJEHIHZSsTT+pMTH4vgYQaZ6xwoAJUHuvLhWL0fvDI5c/LcJTcOyY7FmcMJ4R8f1XE
+         ngLjP/OYHFdVJ/NKR6KmrJyjGsV/AMdmBWzXp/cKFqi9gANoysYT33lccPs5VCdOdMql
+         ZtsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV6h/5yIzTVU+ZKLxH9gEG8Ihv+OO1MgAY7D//BFdkhWlbucizHlxBzYT/VctxizJKtYBxdeBQON9WS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxupAU4o+Po9HaFD79da/xd5gm9SvDtaKRgev1hPd6YYqKS4XM7
+	XodC30HjNWLuC8vWbLSoSfFU9BVhdyn0DOVWGQQhpIGthDOl2vzXRvn7yySyz9aLrKA=
+X-Gm-Gg: ASbGncssmOHH6WALG2matXLKoWUdfl3A5evzfVGyGzbOuBkEFHHu60ro+0iPlb8y3Fn
+	erDBB1mFKztHl7WdXwpwzRJV6pYjyh2LMx+QqfcVcrOtLGEx7Xh4REwwtcl5j8YjrK1nzoGk5Kl
+	oJNNholcS8IeyLo11Je2lC7ysPHHUbY/wiRIZjHfkLzkpJeVpz6mdkEBdzmiD1woDi6oHypF/aC
+	LYWARGd6Bpes3/MjFREiKLhzInQu6eWwOfQykNHD4qvjNiseYDsC0MazaJwLQHY1IO5BlZFiAly
+	rHXbYNgjsEAsJ4K9HIThHM0oWuVf74Hkb367mFRptspH28Xys5OmRB5+AyijHw==
+X-Google-Smtp-Source: AGHT+IFZckSqO5+1mOJ5q3W7tqhvvuTMvoIraIWCKDFfhzREKyJxJcIAzKyffAUquxEcLFZdJvL5nQ==
+X-Received: by 2002:a17:902:f60a:b0:22e:17ee:aa69 with SMTP id d9443c01a7336-231d45740d0mr41158275ad.50.1747409669319;
+        Fri, 16 May 2025 08:34:29 -0700 (PDT)
 Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4ebb0d4sm15446025ad.195.2025.05.16.08.16.10
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4ac944esm15870145ad.49.2025.05.16.08.34.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 May 2025 08:16:13 -0700 (PDT)
-Date: Fri, 16 May 2025 08:16:09 -0700
+        Fri, 16 May 2025 08:34:28 -0700 (PDT)
+Date: Fri, 16 May 2025 08:34:25 -0700
 From: Deepak Gupta <debug@rivosinc.com>
-To: Alexandre Ghiti <alex@ghiti.fr>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
+To: Radim =?utf-8?B?S3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>
+Cc: Alexandre Ghiti <alex@ghiti.fr>, Thomas Gleixner <tglx@linutronix.de>,
+	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
 	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
 	"H. Peter Anvin" <hpa@zytor.com>,
 	Andrew Morton <akpm@linux-foundation.org>,
@@ -112,140 +112,80 @@ Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
 	cleger@rivosinc.com, alexghiti@rivosinc.com,
 	samitolvanen@google.com, broonie@kernel.org,
 	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
-	Zong Li <zong.li@sifive.com>
-Subject: Re: [PATCH v15 22/27] riscv: enable kernel access to shadow stack
- memory via FWFT sbi call
-Message-ID: <aCdWueNaGeru4CRW@debug.ba.rivosinc.com>
+	Zong Li <zong.li@sifive.com>,
+	linux-riscv <linux-riscv-bounces@lists.infradead.org>
+Subject: Re: [PATCH v15 05/27] riscv: usercfi state for task and save/restore
+ of CSR_SSP on trap entry/exit
+Message-ID: <aCdbASlCyqhid82c@debug.ba.rivosinc.com>
 References: <20250502-v5_user_cfi_series-v15-0-914966471885@rivosinc.com>
- <20250502-v5_user_cfi_series-v15-22-914966471885@rivosinc.com>
- <c911eead-30c4-497d-8a56-1450792b24bd@ghiti.fr>
+ <20250502-v5_user_cfi_series-v15-5-914966471885@rivosinc.com>
+ <D9OZVNOGLU4T.2XOUPX27HN0W8@ventanamicro.com>
+ <122fc6cd-2e21-4fca-979d-bcf558107b81@ghiti.fr>
+ <D9WLRSAB63M5.3DZD4ND3WVZ6F@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c911eead-30c4-497d-8a56-1450792b24bd@ghiti.fr>
+In-Reply-To: <D9WLRSAB63M5.3DZD4ND3WVZ6F@ventanamicro.com>
 
-On Thu, May 15, 2025 at 09:10:08AM +0200, Alexandre Ghiti wrote:
->Hi Deepak,
->
->On 03/05/2025 01:30, Deepak Gupta wrote:
->>Kernel will have to perform shadow stack operations on user shadow stack.
->>Like during signal delivery and sigreturn, shadow stack token must be
->>created and validated respectively. Thus shadow stack access for kernel
->>must be enabled.
+On Thu, May 15, 2025 at 10:48:35AM +0200, Radim KrÄmÃ¡Å™ wrote:
+>2025-05-15T09:28:25+02:00, Alexandre Ghiti <alex@ghiti.fr>:
+>> On 06/05/2025 12:10, Radim KrÄmÃ¡Å™ wrote:
+>>> 2025-05-02T16:30:36-07:00, Deepak Gupta <debug@rivosinc.com>:
+>>>> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
+>>>> @@ -91,6 +91,32 @@
+>>>> +.macro restore_userssp tmp
+>>>> +	ALTERNATIVE("nops(2)",
+>>>> +		__stringify(				\
+>>>> +		REG_L \tmp, TASK_TI_USER_SSP(tp);	\
+>>>> +		csrw CSR_SSP, \tmp),
+>>>> +		0,
+>>>> +		RISCV_ISA_EXT_ZICFISS,
+>>>> +		CONFIG_RISCV_USER_CFI)
+>>>> +.endm
+>>> Do we need to emit the nops when CONFIG_RISCV_USER_CFI isn't selected?
+>>>
+>>> (Why not put #ifdef CONFIG_RISCV_USER_CFI around the ALTERNATIVES?)
 >>
->>In future when kernel shadow stacks are enabled for linux kernel, it must
->>be enabled as early as possible for better coverage and prevent imbalance
->>between regular stack and shadow stack. After `relocate_enable_mmu` has
->>been done, this is as early as possible it can enabled.
->>
->>Reviewed-by: Zong Li <zong.li@sifive.com>
->>Signed-off-by: Deepak Gupta <debug@rivosinc.com>
->>---
->>  arch/riscv/kernel/asm-offsets.c |  4 ++++
->>  arch/riscv/kernel/head.S        | 27 +++++++++++++++++++++++++++
->>  2 files changed, 31 insertions(+)
->>
->>diff --git a/arch/riscv/kernel/asm-offsets.c b/arch/riscv/kernel/asm-offsets.c
->>index f33945432f8f..7ab41f01aa17 100644
->>--- a/arch/riscv/kernel/asm-offsets.c
->>+++ b/arch/riscv/kernel/asm-offsets.c
->>@@ -514,4 +514,8 @@ void asm_offsets(void)
->>  	DEFINE(FREGS_A6,	    offsetof(struct __arch_ftrace_regs, a6));
->>  	DEFINE(FREGS_A7,	    offsetof(struct __arch_ftrace_regs, a7));
->>  #endif
->>+	DEFINE(SBI_EXT_FWFT, SBI_EXT_FWFT);
->>+	DEFINE(SBI_EXT_FWFT_SET, SBI_EXT_FWFT_SET);
->>+	DEFINE(SBI_FWFT_SHADOW_STACK, SBI_FWFT_SHADOW_STACK);
->>+	DEFINE(SBI_FWFT_SET_FLAG_LOCK, SBI_FWFT_SET_FLAG_LOCK);
+>> The alternatives are used to create a generic kernel that contains the
+>> code for a large number of extensions and only enable it at runtime
+>> depending on the platform capabilities. This way distros can ship a
+>> single kernel that works on all platforms.
 >
+>Yup, and if a kernel is compiled without CONFIG_RISCV_USER_CFI, the nops
+>will only enlarge the binary and potentially slow down execution.
+>In other words, why we don't do something like this
 >
->kernel test robot reported errors when !RV64 and !SBI, the following 
->diff fixes it:
+> (!CONFIG_RISCV_USER_CFI ? "" :
+>   (RISCV_ISA_EXT_ZICFISS ? __stringify(...) : "nops(x)"))
 >
->diff --git a/arch/riscv/kernel/asm-offsets.c 
->b/arch/riscv/kernel/asm-offsets.c
->index 7fc085d27ca79..3aa5f56a84e9a 100644
->--- a/arch/riscv/kernel/asm-offsets.c
->+++ b/arch/riscv/kernel/asm-offsets.c
->@@ -532,8 +532,10 @@ void asm_offsets(void)
->        DEFINE(FREGS_A6,            offsetof(struct 
->__arch_ftrace_regs, a6));
->        DEFINE(FREGS_A7,            offsetof(struct 
->__arch_ftrace_regs, a7));
-> #endif
->+#ifdef CONFIG_RISCV_SBI
->        DEFINE(SBI_EXT_FWFT, SBI_EXT_FWFT);
->        DEFINE(SBI_EXT_FWFT_SET, SBI_EXT_FWFT_SET);
->        DEFINE(SBI_FWFT_SHADOW_STACK, SBI_FWFT_SHADOW_STACK);
->        DEFINE(SBI_FWFT_SET_FLAG_LOCK, SBI_FWFT_SET_FLAG_LOCK);
->+#endif
-> }
+>instead of the current
 >
->No need to resend the whole series, I'll squash it.
+> (CONFIG_RISCV_USER_CFI &&
+>    RISCV_ISA_EXT_ZICFISS ? __stringify(...) : "nops(x)")
+>
+>It could be a new preprocessor macro in case we wanted to make it nice,
+>but it's probably not a common case, so an ifdef could work as well.
+>
+>Do we just generally not care about such minor optimizations?
 
-Thanks.
+On its own just for this series, I am not sure if I would call it even a
+minor optimization.
+
+But sure, it may (or may not) have noticeable effect if someone were
+to go around and muck with ALTERNATIVES macro and emit `old_c` only
+if config were selected. That should be a patch set on its own with
+data providing benefits from it.
+
 >
->Thanks,
+>(If we wanted to go an extra mile, we could also keep the nops when both
+> CONFIG_RISCV_USER_CFI and RISCV_ISA_EXT_ZICFISS are present, but
+> command line riscv_nousercfi disabled backward cfi.)
 >
->Alex
->
->
->>  }
->>diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
->>index 356d5397b2a2..7eae9a172351 100644
->>--- a/arch/riscv/kernel/head.S
->>+++ b/arch/riscv/kernel/head.S
->>@@ -15,6 +15,7 @@
->>  #include <asm/image.h>
->>  #include <asm/scs.h>
->>  #include <asm/xip_fixup.h>
->>+#include <asm/usercfi.h>
->>  #include "efi-header.S"
->>  __HEAD
->>@@ -164,6 +165,19 @@ secondary_start_sbi:
->>  	call relocate_enable_mmu
->>  #endif
->>  	call .Lsetup_trap_vector
->>+#if defined(CONFIG_RISCV_SBI) && defined(CONFIG_RISCV_USER_CFI)
->>+	li a7, SBI_EXT_FWFT
->>+	li a6, SBI_EXT_FWFT_SET
->>+	li a0, SBI_FWFT_SHADOW_STACK
->>+	li a1, 1 /* enable supervisor to access shadow stack access */
->>+	li a2, SBI_FWFT_SET_FLAG_LOCK
->>+	ecall
->>+	beqz a0, 1f
->>+	la a1, riscv_nousercfi
->>+	li a0, CMDLINE_DISABLE_RISCV_USERCFI_BCFI
->>+	REG_S a0, (a1)
->>+1:
->>+#endif
->>  	scs_load_current
->>  	call smp_callin
->>  #endif /* CONFIG_SMP */
->>@@ -320,6 +334,19 @@ SYM_CODE_START(_start_kernel)
->>  	la tp, init_task
->>  	la sp, init_thread_union + THREAD_SIZE
->>  	addi sp, sp, -PT_SIZE_ON_STACK
->>+#if defined(CONFIG_RISCV_SBI) && defined(CONFIG_RISCV_USER_CFI)
->>+	li a7, SBI_EXT_FWFT
->>+	li a6, SBI_EXT_FWFT_SET
->>+	li a0, SBI_FWFT_SHADOW_STACK
->>+	li a1, 1 /* enable supervisor to access shadow stack access */
->>+	li a2, SBI_FWFT_SET_FLAG_LOCK
->>+	ecall
->>+	beqz a0, 1f
->>+	la a1, riscv_nousercfi
->>+	li a0, CMDLINE_DISABLE_RISCV_USERCFI_BCFI
->>+	REG_S a0, (a1)
->>+1:
->>+#endif
->>  	scs_load_current
->>  #ifdef CONFIG_KASAN
->>
+>Thanks.
 
