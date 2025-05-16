@@ -1,127 +1,141 @@
-Return-Path: <devicetree+bounces-177917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF208AB99EB
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:15:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 171B9AB9A0A
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:23:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B32216835F
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:15:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C14B4A7C28
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847B3227E83;
-	Fri, 16 May 2025 10:15:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m6P3fYOj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7331322E414;
+	Fri, 16 May 2025 10:23:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D051EBFE0
-	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 10:15:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637D7231C9F
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 10:23:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747390554; cv=none; b=r2MjCA8zLh3MbF3Cmnw3UaxDXBKfAoJf/YMUFsPf55DXsJMlkx84kjILXst1wOBc/qK/9uuHWIWFdZMyHJshK7pR8WQt3ekJ19dpc11tEt+E3jN13LYkyV9oFlYGoY+Uidi+eVfoCoJ9PQeuTSenaGTTy7xNfSZTcPbj6xgaZew=
+	t=1747391023; cv=none; b=Mg5bWu8WclJsrTpA9ZPveKq0vdsaVR7UaVsB6/Tgx1a9LlLPLKX+z5Bf7qs+g9hPrFX/GGCz84M8cpL57vINou4CeZw9YEpmy4vgeVSik8QLmo+ralJyKHyjZSvCcyEXbegmG9zhR2DJSPuiyqz9Ovu4CIQWAU7UweXw727at0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747390554; c=relaxed/simple;
-	bh=QA7w+JQP1X41RoztXYe1wBWPs6Q/cQ0RamgdfI5nt5o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g24YxxI/gmQtL3o5IZ7jurmv4SndkRQMDTXsNZN1ZShhuvVE705gyxXJW5Fh54WNh43kNAZm9T6tYYjuEzBprkIezO/OpjgVXQExmF9xmZURJaEZ2A6PaLFt6Cym4oq8S/CF3swVF+HlM4KFAYcBYYShPiMAHMYMUWGtHfjuzEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m6P3fYOj; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a35b7e60cbso926325f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 03:15:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747390551; x=1747995351; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hf9JUffKXEnurX0H5ucC/QRAQlUyAYzPYXVgjENoyR8=;
-        b=m6P3fYOjAN/nQnftkKb8T75OTFJiTS65g7wnxVMaA0W1tdE800dH4ZB7OnvDEiTSMr
-         S11aPrC0kfEZqCEE+3KvIvnB9h/WwW8xdZaTNzcschMm0ji48CjSMJhM6slZtJDpxCT9
-         qvUQrb6tc5T/qP3AYrCtCTfrjbY07XPs9LmdwCnNjGKZGS6eD8enAafOkqVQx5aXFPue
-         MbYrcLFkP/HlcqOiiWKqYLZCoNNn3DWeJT5cPyvkBNSK4k0C2uEQtLo8EtiFl4n2lEq/
-         m6UfwWA4bsHOCsIsoqossIoIZ9jT24YZtMBVC6RNUfWGv46kdvkhJyhCYTrE55dAKP8C
-         nf/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747390551; x=1747995351;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hf9JUffKXEnurX0H5ucC/QRAQlUyAYzPYXVgjENoyR8=;
-        b=NUhnrTxf0Sc6TUDb5O/vTBZH9nl0JUAdax4YIwhyIeflMCxyO1mXkm7eVYHpIrKduY
-         i8NNjKk6s5S5hGttFLuFqMaohzE/sGvQcmIyyfAIoHc2NGz/fH4j+tJ/1iroyhcKdrDX
-         YEfF4xnkKWFRefxB/00ZLgflaZRh6RN/Lw/8V58eOT5dhoISB41QozdMb8x4rDkMp7o7
-         ojKUL7uQjF5W9c6jZ7heNgl2HP0Vn9BSTYinykp5eeWjJNpIb+Xo9bjFGU9vAVBwCyHm
-         SgW8C+fGTxPVULvLtSQCbJNsdQLpAvc9n0KvXOQMXSCtlwQcSQfzDmZk1KI2vv+N6vj3
-         A+1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWvh3+aLf3rKSJ515GnHK71VuFidImCS7ja8ngg6eGxZ9Ie45sgQ3fU8cPlkl44M5dZNhZqs6U0x+NI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlB4ANhEJg3E1E+0420XFYyfsP2iUX+1Sp5V/8l83+IRC3grt7
-	0ExDO5+/12lZrQy0GOhkpc4AV+e8bgeHtj2wUZdydnI+t0QnZ+861uFGyOaj9by9VoU=
-X-Gm-Gg: ASbGnctCfQrMTTCpfXd7zUotq2Y6xRr7TINsUPJ7KyKPxzWK3fQJXP6r3uRuN6YpDwy
-	9jark5S7/HRA2pNP71xj+vreX4IcKJhYav07qEhZrBdnDjc6eR0xjmRYPzwNWOArjgtY+gcugZX
-	R3Oo37ADVXCH+h6NN/4285ctq37QY6u8oEnWlLnbCBe120Enpa1fN3vLF2xELQru/Tg/LdXbw0G
-	5weou/Kugq81BDVQLXzgO8wLRB41U50FXtATtA24kgEBjS2DfWYcYNdugJClBVRO4nYaJUGk3ZO
-	DZWplE0yn2BjwsCZbzL6VOqk31H3XZ1A7xaMdAHLvgRdXRyDRJDmVU1ZbDS1F6wbpVnJLRSzw7x
-	ENxBCkjxIzgrk
-X-Google-Smtp-Source: AGHT+IFhNRLORL0s3WapKxF1HYgMEShdvKo3BGr0+F77ZeAxJEMvDNCLG/bxou1DJVtfsgYa4Ni5yg==
-X-Received: by 2002:a5d:4e0d:0:b0:3a3:6434:5d34 with SMTP id ffacd0b85a97d-3a364345dc6mr22238f8f.17.1747390550909;
-        Fri, 16 May 2025 03:15:50 -0700 (PDT)
-Received: from [10.61.1.70] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a3622b8a3esm1222224f8f.14.2025.05.16.03.15.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 May 2025 03:15:50 -0700 (PDT)
-Message-ID: <36f02ed8-b440-4760-8d08-b633406ce92a@linaro.org>
-Date: Fri, 16 May 2025 11:15:49 +0100
+	s=arc-20240116; t=1747391023; c=relaxed/simple;
+	bh=O62hwLD99pjENKaFOtAe4SzABf05kZaTfZAi8O/Xa/w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QAJLaHmMNgqFNU1ZyGXe+8RUVzb8WOMydNtLPK+x1BFOll50Q72gCeLWXTLD8FqdR+WF+VkayWPdQUVTeDvIKT5XKmpVZfyOQsK4heiyAEUAO7PvhHFY+JyLU8u+15s1P5X3sxfS2I/zSJOoO0xB5vX6PO4SDh6QsS85mc1W7fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uFsDs-0002TA-Kk; Fri, 16 May 2025 12:23:24 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uFsDr-0031Py-0C;
+	Fri, 16 May 2025 12:23:23 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1uFsDr-008SsJ-0x;
+	Fri, 16 May 2025 12:23:23 +0200
+Date: Fri, 16 May 2025 12:23:23 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Bryan Brattlof <bb@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] arm64: dts: ti: k3-am62l: add initial
+ infrastructure
+Message-ID: <aCcSG5ah12N0yOwi@pengutronix.de>
+References: <20250507-am62lx-v5-0-4b57ea878e62@ti.com>
+ <20250507-am62lx-v5-2-4b57ea878e62@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Add support for camss
-To: Wenmeng Liu <quic_wenmliu@quicinc.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Depeng Shao <quic_depengs@quicinc.com>
-References: <20250415-sm8550_camss-v1-1-d4b7daa168ac@quicinc.com>
- <wOxjiEBKO2XU-PikPlT8IMpSGOrP4ocgZEIj_zNhLzzBjySkhGQzupjmJAFhUHcnknLKSASwk33LjBI6WrZ9vg==@protonmail.internalid>
- <1ee8587b-2bf6-418a-9834-8f8cbf1e94d8@oss.qualcomm.com>
- <4e81a1fe-3ee5-4f5f-b958-13e6cf9138f7@linaro.org>
- <db059233-523d-420b-81a7-73b02beef4d1@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <db059233-523d-420b-81a7-73b02beef4d1@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250507-am62lx-v5-2-4b57ea878e62@ti.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 16/05/2025 08:34, Wenmeng Liu wrote:
->> This should be 689 yes
->>
->> ---
->> bod
-> 
-> Hi Bryan,Konrad,
-> 
-> I confirmed that the value is 688 instead of 689. The documentation 
-> incorrectly listed it as 689. To CC linux-media, I have resent the patch:
-> https://lore.kernel.org/linux-arm-msm/20250516072707.388332-1- 
-> quic_wenmliu@quicinc.com/
+Hi All,
 
-Do you mean the documentation in the kernel or the documentation inside 
-of qcom ?
+On Wed, May 07, 2025 at 10:09:20PM -0500, Bryan Brattlof wrote:
+> +	rti0: watchdog@e000000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x0e000000 0x00 0x100>;
+> +		clocks = <&scmi_clk 273>;
+> +		power-domains = <&scmi_pds 60>;
+> +		assigned-clocks = <&scmi_clk 273>;
+> +		assigned-clock-parents = <&scmi_clk 1>;
+> +	};
+> +
+> +	rti1: watchdog@e010000 {
+> +		compatible = "ti,j7-rti-wdt";
+> +		reg = <0x00 0x0e010000 0x00 0x100>;
+> +		clocks = <&scmi_clk 279>;
+> +		power-domains = <&scmi_pds 61>;
+> +		assigned-clocks = <&scmi_clk 279>;
+> +		assigned-clock-parents = <&scmi_clk 1>;
+> +	};
 
-I checked the internal silicon definition, I think Konrad did also.
+In the TI downstream TF-A we have this in the readme:
 
-Which documentation do you mean here ?
+| AM62L Clock SCMI ID List:
+| =========================
+| 
+| **Note:** For using the clock parents, the scmi clock ID will not be the actual number itself,
+| rather will be starting with 0 for respective parents similar to how it's being done in TI SCI
+| Documentation: https://software-dl.ti.com/tisci/esd/09_02_07/5_soc_doc/am62ax/clocks.html
+| 
+| For eg. for AM62LX_DEV_MCASP0_AUX_CLK device, clock ID will be 192, however if we require the parent
+| to be AM62LX_DEV_MCASP0_AUX_CLK_PARENT_HSDIV4_16FFT_WKUP_0_HSDIVOUT1_CLK then we would represent in
+| the device tree as:
+| 
+| ```
+| assigned-clocks = <&scmi_clk 192>;
+| assigned-clock-parents = <&scmi_clk 1>;
 
----
-bod
+This doesn't work. It's not conforming to the SCMI specification and it
+also doesn't work with the Linux SCMI clk driver which will hang on a
+cat /sys/kernel/debug/clk/clk_summary. This is because all clock
+parents will be the SCMI clocks with the lowest ids including the clocks
+with the lowest ids which will expose themselves as parents.
+
+It also prevents the userspace from being able to make a tree structure
+from the clock tree.
+
+The corresponding TF-A code is requested for upstreaming here [1] where
+I also commented on with the same issue.
+
+Please stop spreading this further. The parents must be the actual
+clk_id, not numbers from 0..n.
+
+Sascha
+
+[1] https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/34834
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
