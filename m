@@ -1,191 +1,140 @@
-Return-Path: <devicetree+bounces-178038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA8DABA161
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 18:58:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F7B1ABA1B4
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 19:12:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E9CAA268C5
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 16:55:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C88E21B648A7
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 17:12:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D9721147B;
-	Fri, 16 May 2025 16:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2288D26D4CF;
+	Fri, 16 May 2025 17:12:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BopuGbPF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05BE020D4E9;
-	Fri, 16 May 2025 16:53:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79050253326;
+	Fri, 16 May 2025 17:11:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747414431; cv=none; b=pc/R+pBl0Yt6prm8AutVZQQvKGbJe9mgA6FvRYKGuFFNPaPvsECwqWeVORBLocJ77xpgmd8QYmO/qXeQ/UmbDGxVp30nVeY1j9VD3Ai24x4dvvxlzAQtrCJMQT+ZyuWWhqWignNVKZRnpvbW4ISVx0v+mzy6IS66D5m2fPBs42A=
+	t=1747415521; cv=none; b=U2aosPYcuTlQtckg2GcZtOzb1PHWvJ7GsAzivGOEnCssIVcGjovVQW/N1/rCgMsCtz/LuyZf+ea+X+VRFnDvbJPuThPK82ye938dyG2acYUj6BjYM0m18DsBkDHu/PBIhSQHyfeMEkx5PtDoPqDOi/KyYncBKGEkDfnpkTq4EsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747414431; c=relaxed/simple;
-	bh=qcLANFQYB6F1aTadtJclYNPeTflXqceuvsxjG9tl5Gg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=J9sGmrIxaXtFe/uSKg+AjwQNjc45Ad+YT3eQn/AycI+Uiaqfw/0FH/VMjhWcF9iArlHI0UC81O2iPQ/rgDVgW8IHvo78AXb9cvS3W+zGOY5xPLD4NZ+Bn6XPT01fuX/U7/sL61EtNsGSn14HXOvgd8qjmgbNV7YIku3w22Ql6iM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+	s=arc-20240116; t=1747415521; c=relaxed/simple;
+	bh=OmRKj2XGoYIJqcdUtZTOASiF24tdoRUpWqZw3F4eErU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X3RZczD6hCPTEEDiDFxQcqM3dloB5gH8yLOkA3PPRhcS8x+GpEbY6GwArM9DIEpZ+4CGBh6AXAX3eamk0lPH/qTVBsaw5MmYmgBIFFD8WH5ZWAle8At0evySwoTMfkgjX1efqdvh/UCOG03GURjdQak4FtEiww0zwhKA+Khez9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BopuGbPF; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43cfa7e7f54so17783365e9.1;
-        Fri, 16 May 2025 09:53:49 -0700 (PDT)
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-525b44ec88aso738955e0c.3;
+        Fri, 16 May 2025 10:11:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747415518; x=1748020318; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fhDH5x31OY0sDQlP+75NDdLaYCVS3MYscT17OHcsFQo=;
+        b=BopuGbPFTLlqlIfVBz4M700OKK2/P/ufWpcABv4UqaCd9OTyZukuaK/6ksm2poMicD
+         WoaIJRpdvqeDJnUo4In7EqPU1Ps8Cy9CCarWwot1Y0o1rlUvhG5/3qCzM8xKnPEwkVJ6
+         8O2q6ztPbK9Ot85SeQIwjOtsaVutB2RXcbDgPDmJHtzPbB0kDObW/+aHndM1bU+w7Loq
+         FocmcbDpgzWr3f++Un1deOjeO8MnAAdc3Ca43A6dBAI5dOBOohSTEiNXP9GJ2Rk++5Ca
+         1lUJr7QDMqgkjttExD3ZGmbG3/swApKm9WcTN+4mzGqYC2YD1/eqp5TuW3pHWyqgA+7J
+         yEqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747414428; x=1748019228;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1747415518; x=1748020318;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=anhtEfC+aYWJeJvUly60jdWH8rm+sVcW8pcF9vb2eMk=;
-        b=KCt5o+7X+Hens7w2Ctq/xlpM5IvaUTYOCHqgMFkEhA3+bBZDDuPetdrqLhj1eRJ4QO
-         0dSjxb1xN645F0Goo4pJ81zrSjxYKu6SwypDXdT3CBzUYmzDJ/TsGShI1nlXVm2JOFKy
-         6jsdDprL+2pqCwvCwjQyMhVsbSHMc2Umxm1G/YnfUBmJzN5AJO9ebl5X9SJBRJ7zTR+H
-         Pvm7IACd3TZY3RlJCDJIQxtSIhC6wm0c91jiTZI3mj9e1i3IFlgZ3Zdqh2Fni+hVsAP7
-         Eyp5ClKGg+AubYWrGcQuCMqBStPk7PhfJirme91Rwc+TJ5WRgYCoexkXF9pg6pfMPBJU
-         2qfw==
-X-Forwarded-Encrypted: i=1; AJvYcCVcPoUOpgmy2cPa7W9zUpjQ2d5oldDVuS317eNP6gQHqUv6uEoEKOWVQ+C3sS+MnqI5Brm8+Di4uymA2R0=@vger.kernel.org, AJvYcCVg8hCcsb/zpyERzRZwVE+zifspg3MBvSo3nGzks1s8D7qCdexd6O7htRYGQdfpPn+UOiZJ/+KPhpE=@vger.kernel.org, AJvYcCXTPkjrtGjBn6Fj1OdwAA+M3zbzvQN/qks3hFAZOXrybSUx5I2cpG0Bc0e9sYEGosw4X58kmZWS3g4rCNSw@vger.kernel.org
-X-Gm-Message-State: AOJu0YyaQcQS2Qq3b7CwrjuqJ7wKVy+mT5u1XgWJfcxHNLwUzo4q4v8c
-	X4jDPN8z8vNLCKFj8bNaq8nxRne4n3xbCGwJSJ/7saep/Myym/fBchxY
-X-Gm-Gg: ASbGnct12pEknxqQUGQCTKe/7tx8ZypUtJymM4Kb8/kN/iwcFDuhrHT2DKoDu88Gnwl
-	3FWuDm7Ni1NMrLO8oVzpsK1OA8hF3h7JfWxPMbg0I6+WSLilhw2jm8Cd92nqlTEUYq/SmTBRRlf
-	d8jaOmJCafKUvS2gGzeMu8AVY0xniNC6YaQG1tKThh0jjBzZIPtagE09F3jgIPNwssongco0Fgx
-	Q+lnfvkymoCImgm6A8iASHJmOEvRi3hMha6b7aZEyDF2zb+kQOfTULfEouJpqHPPAavAFkhUF0s
-	SMe+6I6AKiS5lmkalfp3hOoiUAFIdrhBu1v7HMacwmkd4vRMGCBI6D/PaKcuy1gunkIfaKWIsdu
-	7dpwkwGqdIw==
-X-Google-Smtp-Source: AGHT+IEYfDmifEa0iTxLazrxFoXXzBf3KmDVOnp4+FnO5DW5ap6WM75YN8wmhjMrbGLA/7/G7xIfqw==
-X-Received: by 2002:a05:600c:5012:b0:440:69f5:f179 with SMTP id 5b1f17b1804b1-442f84d5511mr89042655e9.7.1747414428190;
-        Fri, 16 May 2025 09:53:48 -0700 (PDT)
-Received: from [10.42.0.1] (cst-prg-46-162.cust.vodafone.cz. [46.135.46.162])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442f3380498sm116511755e9.11.2025.05.16.09.53.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 May 2025 09:53:46 -0700 (PDT)
-From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Date: Fri, 16 May 2025 18:53:24 +0200
-Subject: [PATCH v3 10/10] arm64: dts: rockchip: enable NPU on ROCK 5B
+        bh=fhDH5x31OY0sDQlP+75NDdLaYCVS3MYscT17OHcsFQo=;
+        b=exVW9gB765Zt6N2T8c/FNKjyY1CK+SylYgS/yW7GjOjetboGXRU9cJSJASSDe+xjMy
+         EFjDIMxZYTt1L1OXsYGf5YXftuaAaiJQg0P1pg4/N4L+e47fUs9AWpCppTbvT1kiagVf
+         VJPvGVV5DXRRruwUDhutjl/WpQFJ3sF/hpowt1RDwCMw6sMiQ85Pg3NAxMHEn8fQY7u5
+         8yE8qxYcu5lGmdz0YFD0w9QhJQOriZrxOs+NGg0qFlz//oM38yG6sa7v3hAno91OtzDK
+         nFpvXHHrSH8QZ5UXdskz3m3pmwODlsY3Iv7hF9TVXpfg4k5z2tOfsTw2jS4frjjU+dgO
+         STSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUQPWtYOUIEa6hlI3fvcnEh9QchjI6a3fYfgWWWRSMlo9tb304TqDl4IiOifY7Gc6VBBwS/o+gvTNnqDzA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkMrRx4oQuwu3dM2BxYXcsZD5MJsxlD9ElpSZ8dX72adtGUR+Y
+	KIoAX3zxlMqrT6Lj8zs8OS5toPerXmZ0NdXTm6ZsNyQvCX/AuKbetHL0zCNYW6exxanmRvpBRQ8
+	KeDz57juWYGCxGVr1txfGUL64HeHtJtE=
+X-Gm-Gg: ASbGncul6glSVmb/5/SBqAkRggUqIFQWxInoaJuVzE+qhDOde5cGDTt6aoYSTfLO1sP
+	m/SIatOVpFQztPRAbkPzCsStiWM2vmUAb7JExrsl9lKJXbzmtEgg7zCfjmsC5qg24ncqaEpoSgK
+	SaFlgwOWDvGQDKw6v+/LuTUOx8KZWL/XI=
+X-Google-Smtp-Source: AGHT+IGCHH91w5aLLk2zhH1OD0M76Qr/hbRf+ItmTxpc3fxs9gNjUQOKE6DSW7gfQpTUGMqdAkdbaP7RWiKhTiRaV/Y=
+X-Received: by 2002:a05:6122:221d:b0:520:61ee:c814 with SMTP id
+ 71dfb90a1353d-52dba7fe312mr4755074e0c.1.1747415517612; Fri, 16 May 2025
+ 10:11:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250516-6-10-rocket-v3-10-7051ac9225db@tomeuvizoso.net>
-References: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
-In-Reply-To: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Sumit Semwal <sumit.semwal@linaro.org>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
- Tomeu Vizoso <tomeu@tomeuvizoso.net>
-X-Mailer: b4 0.14.2
+References: <cover.1747231254.git.rabenda.cn@gmail.com> <b538e2b24eab8b740091d80ca76b20ef6014a4e5.1747231254.git.rabenda.cn@gmail.com>
+ <20250514-showplace-yahoo-e3c306355288@spud>
+In-Reply-To: <20250514-showplace-yahoo-e3c306355288@spud>
+From: Han Gao <rabenda.cn@gmail.com>
+Date: Sat, 17 May 2025 01:11:46 +0800
+X-Gm-Features: AX0GCFvBGlC7lcpTFlf3PZ0KsWEj3nP-8_pPYriZOyvUH2LtrlBI49XleAD1C_M
+Message-ID: <CAAT7Ki9Fw0+Ntv+oFqr2R=EHnFZrT6KmyTPN2MCDDGvSn-Wi8A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: riscv: add Sophgo SG2042_EVB_V1.X bindings
+To: Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Guo Ren <guoren@kernel.org>, 
+	Chao Wei <chao.wei@sophgo.com>, sophgo@lists.linux.dev, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+On Thu, May 15, 2025 at 12:22=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Wed, May 14, 2025 at 10:08:59PM +0800, Han Gao wrote:
+> > Add DT binding documentation for the Sophgo SG2042_EVB_V1.X board [1].
+>
+> 1.x? Is the v1.0 something people can get their hands on, or just the
+> v1.1?
+> What differences do the boards have that are minimal enough that
+> specific compatibles would not be required?
+>
 
-The NPU on the ROCK5B uses the same regulator for both the sram-supply
-and the npu's supply. Add this regulator, and enable all the NPU bits.
-Also add the regulator as a domain-supply to the pd_npu power domain.
+First of all, v1.1 and v1.0 are compatible boards.
+There is no difference between v1.1 and v1.0 from dts.
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 56 +++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+Both v1.1 and v1.0 have been discontinued.
+About 80 pieces of v1.1 are in the hands of community developers.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index d22068475c5dc6cb885f878f3f527a66edf1ba70..49500f7cbcb14af4919a6c1997e9e53a01d84973 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -316,6 +316,28 @@ regulator-state-mem {
- 	};
- };
- 
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1m2_xfer>;
-+	status = "okay";
-+
-+	vdd_npu_s0: regulator@42 {
-+		compatible = "rockchip,rk8602";
-+		reg = <0x42>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_npu_s0";
-+		regulator-boot-on;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <950000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
- &i2c6 {
- 	status = "okay";
- 
-@@ -440,6 +462,10 @@ &pd_gpu {
- 	domain-supply = <&vdd_gpu_s0>;
- };
- 
-+&pd_npu {
-+	domain-supply = <&vdd_npu_s0>;
-+};
-+
- &pinctrl {
- 	hdmirx {
- 		hdmirx_hpd: hdmirx-5v-detection {
-@@ -500,6 +526,36 @@ &pwm1 {
- 	status = "okay";
- };
- 
-+&rknn_core_top {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_core_1 {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_core_2 {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_mmu_top {
-+	status = "okay";
-+};
-+
-+&rknn_mmu_1 {
-+	status = "okay";
-+};
-+
-+&rknn_mmu_2 {
-+	status = "okay";
-+};
-+
- &saradc {
- 	vref-supply = <&avcc_1v8_s0>;
- 	status = "okay";
-
--- 
-2.49.0
-
+> >
+> > Link: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG20=
+42-x8-EVB [1]
+> >
+> > Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/riscv/sophgo.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Docu=
+mentation/devicetree/bindings/riscv/sophgo.yaml
+> > index a14cb10ff3f0..6c82f89b56ca 100644
+> > --- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> > @@ -34,6 +34,7 @@ properties:
+> >        - items:
+> >            - enum:
+> >                - milkv,pioneer
+> > +              - sophgo,sg2042-evb-v1
+> >            - const: sophgo,sg2042
+> >
+> >  additionalProperties: true
+> > --
+> > 2.47.2
+> >
 
