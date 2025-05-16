@@ -1,48 +1,87 @@
-Return-Path: <devicetree+bounces-177974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65381AB9C97
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:50:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A68ECAB9CAC
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:53:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7D864E1C1B
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:50:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46A089E21D0
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:52:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F3323C507;
-	Fri, 16 May 2025 12:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1446241662;
+	Fri, 16 May 2025 12:52:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cIEDDkLd"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KnetjtkJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86ABC2367C4;
-	Fri, 16 May 2025 12:50:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18446235069
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 12:52:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747399837; cv=none; b=e1HXXhgasdhEER+VXwaKASjgTFyB3qPi5R4/QFBNHFYtd9VCBg7ASudGqWr0nLUwJ0f9sW9VBJ7I+T6rK0qdC5exT1HqkX6zG0Fr+dF4NIiHen6+OvO9GRsR4H+upa6pBK9K5Z+rvKC2hByFaIaf2M558fMcaV5g1++e/SvI7ok=
+	t=1747399947; cv=none; b=s1Cw0P+IPa81+iUARcI/zat7TeT7kmSKcqQEavbvCU4r98OYu807T1hK993gV6CV6T/VaXNWabwkULvnPSvoMsICUAIDvUxg1nui8c08frFAqwxcm1R0WTdAtyV+b+HToGi5MAYPcIxjfkXfMNrUBs39c/w09XJtw0kQlx7TQck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747399837; c=relaxed/simple;
-	bh=EIeNaMhAQEKBU5kfqSd6zp7mh+1oorSEUk+so/0Y3jY=;
+	s=arc-20240116; t=1747399947; c=relaxed/simple;
+	bh=uKhICCuk0zTYgGsjguAvEIXXEbAvO6LehqtVILPdKRA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GN3SAhrTKEiwc++4bpZpLH69ZMtuNIkht8h7RluCF4QJK2YgrqATnyVAwfT4nNoemSyR86HK5jDwJiE7Z28rOaCMKKWHaOZjB6kPCVUnfHkRXTiUi1yAVlVb/BLkEQrnPwtvzFjp+p88WkQdd+hbftW+4hsOL0ha7tY7Jq4Wd1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cIEDDkLd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9CC1C4CEE4;
-	Fri, 16 May 2025 12:50:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747399837;
-	bh=EIeNaMhAQEKBU5kfqSd6zp7mh+1oorSEUk+so/0Y3jY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cIEDDkLd2GN9wC6gw62OtkCQ4AmdaKiNtCQK4aQQZjJCMCww6XGBE9JHmqee3Pne2
-	 Mv2sHZpSRJZ9dcEjE6MNytZviH2DMQVRCXALbo++IBD+npUOE97SyRHXxGpi8hxw8E
-	 +vhA6anJ8Cl/IMAJsbRBawmqKDoivpvqgZ5tpent1bcXulIomFlBWj0WSUGfaadEgh
-	 1ZQCWmgI/nKmV6xEx1yO66aeHSjdmZ6DWqpEey1Tzf5AL1TZjmOxY08M2V2u/YQHLF
-	 MXnGRMvLmxuwYrbKjwArq5hwQPbc03daP5tvjsORLxCy4hpX3qb7X3+oLd3BjfjFtH
-	 LyJW82YoBSHzw==
-Message-ID: <5e35d79b-06e7-4b19-87fc-a2087a3434c2@kernel.org>
-Date: Fri, 16 May 2025 14:50:32 +0200
+	 In-Reply-To:Content-Type; b=Pryp8VlKxvdeOjZQssMM4rn4bAKDvJ0tmnSXx9ZMG1w/bVPpYZlC/tb9csnFLCspCcxMZ1mY+i1TehF0Uqh3DlrfscRUnRQppyFpdtnOSiUBB/tiz1EKht1jJcWY5U9Xt6ro4Y0NsM+tWOSnLjjdsggBDrREcJMukVhzcRIP+6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KnetjtkJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54GBU20U026181
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 12:52:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2V/BUr7ZXr0lhQ+QdHNR/34NUNiNJwz+Ra2V6/Brrso=; b=KnetjtkJCYDxiUPt
+	fhSA/JC+TupadgIGlq6bl46qq5XxA+rkLlp174BOWeAU3OhfZuv3m9O22kUM4KKW
+	73uQY4KbwTta9m9GWvcdkr3LBaC12Ff9vBRZC7SkXuOnj5qoOrElpXFY3zMBDVbM
+	Opiyp6qdsM1V/xdp/dc7KZLyVi0ApI05My2a/YkxJnnJFtFooul48A2GI7BOPzHZ
+	+lbWTlizeLwvKaIyAyCuO1adFdmCpFpO7OEBDo4UJFPcW4b4u3S0l2JBkBWChMPe
+	2fDQePc4QQTMHstqcc6sXXzyCl4RRFaTn3wTRkvclCXXY+vFoLjF555iBF7FPgee
+	EQLWBA==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcyt5vm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 12:52:25 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7401179b06fso1728754b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 05:52:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747399944; x=1748004744;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2V/BUr7ZXr0lhQ+QdHNR/34NUNiNJwz+Ra2V6/Brrso=;
+        b=RL4XWKPtDoEpKVWtZw4KRNRlSutwvTY+B1re8hfPHHyj3Uk0ED5CYmTtoFEYGnybZ0
+         6fAv4OJXM+exQQZhxXU0BMl80qPsI7Bt79i+c+kikNCSVDUztKKRDvwKPMP36RqEKuQH
+         CO9qrU/cepdY73kBG4fuwZ20kL7XKXExp2TZ4+mAs7189IoL1aFFfcqDh8evsO4eYLVl
+         VFoMOcmZW21XBrAIzyedrOuUShwIi01H2Gt0bax1+9igN0iGg+dgarJPCiWaZUXApv5X
+         BEIj2DrgPV9tkSU1/qz67lviD92oi3Z2nh+hZS4qmKVSLD1r7GJdS8d7DqZjAnMK6bak
+         A1OQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX9UBkiylYgS3tZxAGJBiPmnaQ2NHcC9F4e9JMU+oyVLaHlNLdIztwMPnHERtfksGl6wqrF/yBs55Pr@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOM4+jS98rnQ6aGOBctAZeLoyMGHostDEoxWsQIlDTsTQtfrg2
+	2JJnNY6n4W8o2AJgm3cPV+fKKoci56tjcSi6AD18QH+jUKJixvlW2edVhMuvvqVj2F/vHsEcTme
+	vwpNrLBUCmWfg4GiRZqE8M46KJGfbLD6eCDIf1zNcXKjpeCYggaMqM6nrm2YgiVpl
+X-Gm-Gg: ASbGncvPxTsDQbIs3U/mDVe3yFSdw5zW09kNOIh99fN4KfFq7C0DgY2s9v4094t9h/I
+	hj2CbMAwI6yThTUYoiLOtT4Ri9DrlmMwgtyoeTAoNuTtsgIcBwRRNMWSsUbSrT8VUfsaabrlUFK
+	oiFf4MOuAUTBq0V56s1pWQkH2TEtqYY7o2nfUZ4kmFIqX0E+QtcTgJbKxj9Iv3kUxpcbfIr0ypK
+	mXR2+j6p3T51F31WHsiZP/dB3p+BLk+rejShDKKtYxIQN1SKCtUKqWw1WgW1UgqPcMHTPNkY9zJ
+	eJABgzCFKaCcIhMGKrd7uGn0W48owFjoLS5byBdMHmJCM0oVc7/W
+X-Received: by 2002:a05:6a20:9f43:b0:1f3:40a9:2c36 with SMTP id adf61e73a8af0-216218c3e5amr4376688637.10.1747399944133;
+        Fri, 16 May 2025 05:52:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEzCWQn+x5MwV9MAlN0kJn7a3Uyg2pwQjt2HdaQjQuLi16hEehwK+dqDOyCULfIHpBaR7lccw==
+X-Received: by 2002:a05:6a20:9f43:b0:1f3:40a9:2c36 with SMTP id adf61e73a8af0-216218c3e5amr4376660637.10.1747399943696;
+        Fri, 16 May 2025 05:52:23 -0700 (PDT)
+Received: from [192.168.1.4] ([122.164.85.132])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a98a2550sm1427482b3a.167.2025.05.16.05.52.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 May 2025 05:52:23 -0700 (PDT)
+Message-ID: <0a73989f-b018-473c-872a-5cbc2e7d1783@oss.qualcomm.com>
+Date: Fri, 16 May 2025 18:22:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,619 +89,121 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] usb: dwc3: eic7700: Add EIC7700 usb driver
-To: zhangsenchuan@eswincomputing.com, gregkh@linuxfoundation.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Thinh.Nguyen@synopsys.com, p.zabel@pengutronix.de
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- yangwei1@eswincomputing.com
-References: <20250516095237.1516-1-zhangsenchuan@eswincomputing.com>
- <20250516095408.704-1-zhangsenchuan@eswincomputing.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 4/4] watchdog: qcom: add support to read the restart
+ reason from IMEM
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck
+ <linux@roeck-us.net>, bod.linux@nxsw.ie,
+        Srinivas Kandagatla <srini@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20250502-wdt_reset_reason-v3-0-b2dc7ace38ca@oss.qualcomm.com>
+ <20250502-wdt_reset_reason-v3-4-b2dc7ace38ca@oss.qualcomm.com>
+ <2036ef2f-c7ef-4f42-858d-8d95c430c21a@oss.qualcomm.com>
+ <68d280db-f7df-48c8-821d-f7d408c302ad@oss.qualcomm.com>
+ <8a763c70-adcf-4a14-bb68-72ddc61fa045@oss.qualcomm.com>
+ <8c2a53c2-c11b-4d49-bfb5-b948767ba6c7@oss.qualcomm.com>
+ <1e871aed-705f-4142-b72d-4232ae729a37@oss.qualcomm.com>
+ <6274641a-7366-41cd-a0a7-a9e9cc41b8e6@oss.qualcomm.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250516095408.704-1-zhangsenchuan@eswincomputing.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 16/05/2025 11:54, zhangsenchuan@eswincomputing.com wrote:
-> +static ssize_t dwc3_mode_store(struct device *device,
-> +			       struct device_attribute *attr, const char *buf,
-> +			       size_t count)
-> +{
-> +	struct dwc3_eswin *eswin = dev_get_drvdata(device);
-> +	struct dwc3 *dwc = eswin->dwc;
-> +	enum usb_role new_role;
-> +	struct usb_role_switch *role_sw = dwc->role_sw;
-> +
-> +	if (!strncmp(buf, "1", 1) || !strncmp(buf, "host", 4)) {
-> +		new_role = USB_ROLE_HOST;
-> +	} else if (!strncmp(buf, "0", 1) || !strncmp(buf, "peripheral", 10)) {
-> +		new_role = USB_ROLE_DEVICE;
-> +	} else {
-> +		dev_info(eswin->dev, "illegal dr_mode\n");
-> +		return count;
-> +	}
-> +	eswin->force_mode = true;
-> +
-> +	mutex_lock(&eswin->lock);
-> +	usb_role_switch_set_role(role_sw, new_role);
-> +	mutex_unlock(&eswin->lock);
-> +
-> +	return count;
-> +}
-> +
-> +static DEVICE_ATTR_RW(dwc3_mode);
-
-Missing ABI documentation. Anyway, unlikely this will be accepted.
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+In-Reply-To: <6274641a-7366-41cd-a0a7-a9e9cc41b8e6@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: ektjFqf7qDQBBxbcz2lO01BNX1eTHq73
+X-Proofpoint-ORIG-GUID: ektjFqf7qDQBBxbcz2lO01BNX1eTHq73
+X-Authority-Analysis: v=2.4 cv=JszxrN4C c=1 sm=1 tr=0 ts=68273509 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=P+HiGktFAnQmcg2NW2se+w==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=FpJc--pfKuwgGcmHpKQA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDEyNCBTYWx0ZWRfX+RExfKyIt3E9
+ RiAnd8HI1gi8XRSifEuxf0hNS1tmjb0kklyqJXB5EhmCHG33ocnbHm4Rz2gl5yyagDhRgGZxZ/g
+ pJw3zDz8qSafai5qd9CKNxFuH5aVillTmQdN9SCiV2vLS8LB7hFctef4YYAWa3pfRhqYvEQpEbo
+ 6KL5/DKOz5PImbmoCnO8FL4Rd6C6KhcXMDRNPe2RAMGuG3Yu027hfVoOd21zHllxEDN0E2uTu0B
+ x49cinOqIe9J/1/Z3lCJjQUWc3kUM6siyaTRAc2MP3XLrj1DZeMcZiTdmPhbz83/AFA37KpdKT2
+ eGFZfcUuaT87NBUwGtTdu5BPQGySdy4vvCA5o5jXTYGEl4enVlUPQmCjm1b2A7u9v3/yrfEwEYE
+ VDRuXWE+Cm+A/w6gQ41uugR5dDfLb6ANpqFkEIXCYhBLeLAy+UPGGPNVZ3UabEl5zj2tdVBP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-16_05,2025-05-16_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 priorityscore=1501 suspectscore=0 mlxlogscore=999 bulkscore=0
+ malwarescore=0 mlxscore=0 adultscore=0 phishscore=0 spamscore=0
+ lowpriorityscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505070000 definitions=main-2505160124
 
 
-> +
-> +static ssize_t dwc3_hub_rst_show(struct device *device,
-> +				 struct device_attribute *attr, char *buf)
-> +{
-> +	struct dwc3_eswin *eswin = dev_get_drvdata(device);
-> +
-> +	if (!IS_ERR(eswin->hub_gpio))
-> +		return sprintf(buf, "%d", gpiod_get_raw_value(eswin->hub_gpio));
-> +
-> +	return sprintf(buf, "UNKONWN");
-> +}
-> +
-> +static ssize_t dwc3_hub_rst_store(struct device *device,
-> +				  struct device_attribute *attr,
-> +				  const char *buf, size_t count)
-> +{
-> +	struct dwc3_eswin *eswin = dev_get_drvdata(device);
-> +
-> +	if (!IS_ERR(eswin->hub_gpio)) {
-> +		if (!strncmp(buf, "0", 1))
-> +			gpiod_set_raw_value(eswin->hub_gpio, 0);
-> +		else
-> +			gpiod_set_raw_value(eswin->hub_gpio, 1);
-> +	}
-> +
-> +	return count;
-> +}
-> +
-> +static DEVICE_ATTR_RW(dwc3_hub_rst);
-> +
-> +static struct attribute *dwc3_eswin_attrs[] = {
-> +	&dev_attr_dwc3_mode.attr,
-> +	&dev_attr_dwc3_hub_rst.attr,
-> +	NULL,
-> +};
-> +
-> +static struct attribute_group dwc3_eswin_attr_group = {
-> +	.name = NULL, /* we want them in the same directory */
-> +	.attrs = dwc3_eswin_attrs,
-> +};
-> +
-> +static int dwc3_eswin_device_notifier(struct notifier_block *nb,
-> +				      unsigned long event, void *ptr)
-> +{
-> +	struct dwc3_eswin *eswin =
-> +		container_of(nb, struct dwc3_eswin, device_nb);
-> +
-> +	mutex_lock(&eswin->lock);
-> +	eswin->new_usb_role = USB_ROLE_DEVICE;
-> +	mutex_unlock(&eswin->lock);
-> +	if (!eswin->suspended)
-> +		schedule_work(&eswin->otg_work);
-> +
-> +	return NOTIFY_DONE;
-> +}
-> +
-> +static int dwc3_eswin_host_notifier(struct notifier_block *nb,
-> +				    unsigned long event, void *ptr)
-> +{
-> +	struct dwc3_eswin *eswin = container_of(nb, struct dwc3_eswin, host_nb);
-> +
-> +	mutex_lock(&eswin->lock);
-> +	eswin->new_usb_role = USB_ROLE_HOST;
-> +	mutex_unlock(&eswin->lock);
-> +	if (!eswin->suspended)
-> +		schedule_work(&eswin->otg_work);
-> +
-> +	return NOTIFY_DONE;
-> +}
-> +
-> +static void dwc3_eswin_otg_extcon_evt_work(struct work_struct *work)
-> +{
-> +	struct dwc3_eswin *eswin =
-> +		container_of(work, struct dwc3_eswin, otg_work);
-> +	struct usb_role_switch *role_sw = eswin->dwc->role_sw;
-> +
-> +	if (true == eswin->force_mode)
-> +		return;
-> +	mutex_lock(&eswin->lock);
-> +	usb_role_switch_set_role(role_sw, eswin->new_usb_role);
-> +	mutex_unlock(&eswin->lock);
-> +}
-> +
-> +static int dwc3_eswin_get_extcon_dev(struct dwc3_eswin *eswin)
-> +{
-> +	struct device *dev = eswin->dev;
-> +	struct extcon_dev *edev;
-> +	s32 ret = 0;
-> +
-> +	if (device_property_read_bool(dev, "extcon")) {
-
-extcon is not a bool. This is just wrong... plus undocumented ABI.
+On 5/16/2025 4:48 PM, Konrad Dybcio wrote:
+> On 5/14/25 3:15 PM, Kathiravan Thirumoorthy wrote:
+>> On 5/6/2025 4:31 PM, Kathiravan Thirumoorthy wrote:
+>>> On 5/3/2025 3:53 AM, Konrad Dybcio wrote:
+>>>> On 5/2/25 6:28 PM, Kathiravan Thirumoorthy wrote:
+>>>>> On 5/2/2025 7:33 PM, Konrad Dybcio wrote:
+>>>>>>> +static int qcom_wdt_get_restart_reason(struct qcom_wdt *wdt,
+>>>>>>> +                    const struct qcom_wdt_match_data *data)
+>>>>>>> +{
+>>>>>>> +    struct regmap *imem;
+>>>>>>> +    unsigned int val;
+>>>>>>> +    int ret;
+>>>>>>> +
+>>>>>>> +    imem = syscon_regmap_lookup_by_compatible(data->imem_compatible);
+>>>>>> Try syscon_regmap_lookup_by_phandle_args() and pass a phandle, see e.g.
+>>>>>> drivers/phy/qualcomm/phy-qcom-qmp-pcie.c & phy@1bfc000 in x1e80100.dtsi
+>>>>>>
+>>>>>> That way all platform specifics will live in the DT, requiring no
+>>>>>> hardcode-y driver changes on similar platforms
+>>>>> Thanks. I thought about this API but it didn't strike that I can use the args to fetch and match the value.
+>>>>>
+>>>>> I need a suggestion here. There is a plan to extend this feature to other IPQ targets and also support WDIOF_POWERUNDER and WDIOF_OVERHEAT cause as well. For IPQ5424, all 3 cause will support and for other IPQ platforms, we are exploring how to integrate WDIOF_OVERHEAT. In any case, can I define the DT entry like below
+>>>>>
+>>>>>           imem,phandle = <&imem 0x7b0 <Non secure WDT value> <Power Under value> <Overheat value>>;
+>>>>>
+>>>>> and store these in values args[1], args[2] and args[3] respectively and use it for manipulation? If any of the platform doesn't support all 3, I can update the bindings and define the number of args as required.
+>>>> Let's call the property qcom,restart-reason and only pass the register value
+>>>>
+>>>> Because we may have any number of crazy combinations of various restart
+>>>> reasons, we can go two paths:
+>>>>
+>>>> 1. promise really really really hard we won't be too crazy with the number
+>>>>      of possible values and put them in the driver
+>>>> 2. go all out on DT properties (such as `bootstatus-overheat`,
+>>>> `bootstatus-fanfault` etc.
+>>>
+>>> Thanks Konrad for the suggestions and the offline discussions.
+>>>
+>>> @Guenter, I need a suggestion here. Currently as part of this series, we are planning to expose WDIOF_CARDRESET, WDIOF_POWERUNDER, WDIOF_OVERHEAT reasons.
+>>>
+>>> Once this is done, we do have the custom reason codes like Kernel Panic, Secure Watchdog Bite, Bus error timeout, Bus error access and few many. Is it okay to expose these values also via the bootstatus sysFS by extending the current list of reasons? Since these are outside the scope of watchdog, need your thoughts on this.
+>>
+>> Konrad / Guenter,
+>>
+>> We had a further discussion on this internally. Outcome is, it wouldn't be ideal to hook the custom restart reason codes in watchdog framework, since there is no involvement of watchdog in such cases. Also I don't find any references to hook the custom values in watchdog's bootstatus.
+>>
+>> If this is fine, I'm planning to resend the series to handle only the non secure watchdog timeout case. In that case, as suggested by Konrad, everything will be handled in DT like below to avoid the device data.
+>>
+>> imem,phandle = <&phandle <imem_offset> <value>>;
+> the part before the comma is a vendor prefix, so that must be qcom,xyz
 
 
-> +		edev = extcon_get_edev_by_phandle(dev, 0);
-> +		if (IS_ERR(edev)) {
-> +			if (PTR_ERR(edev) != -EPROBE_DEFER)
-> +				dev_err(dev, "couldn't get extcon device\n");
-> +			return PTR_ERR(edev);
+Sure, will name it as qcom,imem-phandle. Hope this name is fine.
 
-Do not open code dev_err_probe.
 
-> +		}
-> +		eswin->edev = edev;
-> +		eswin->device_nb.notifier_call = dwc3_eswin_device_notifier;
-> +		ret = devm_extcon_register_notifier(dev, edev, EXTCON_USB,
-> +						    &eswin->device_nb);
-> +		if (ret < 0)
-> +			dev_err(dev, "failed to register notifier for USB\n");
-> +
-> +		eswin->host_nb.notifier_call = dwc3_eswin_host_notifier;
-> +		ret = devm_extcon_register_notifier(dev, edev, EXTCON_USB_HOST,
-> +						    &eswin->host_nb);
-> +		if (ret < 0)
-> +			dev_err(dev,
-> +				"failed to register notifier for USB-HOST\n");
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int __init dwc3_eswin_deassert(struct dwc3_eswin *eswin)
+>
+> what are your plans for the other reboot reasons? are we scrapping them?
 
-That's wrong annotation. You did not build your kernel with DEBUG
-SECTION MISMATCH.
 
-> +{
-> +	int rc;
-> +
-> +	if (eswin->vaux_rst) {
-> +		rc = reset_control_deassert(eswin->vaux_rst);
-> +		WARN_ON(rc != 0);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int dwc3_eswin_assert(struct dwc3_eswin *eswin)
-> +{
-> +	int rc = 0;
-> +
-> +	if (eswin->vaux_rst) {
-> +		rc = reset_control_assert(eswin->vaux_rst);
-> +		WARN_ON(rc != 0);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int dwc_usb_clk_init(struct device *dev)
-> +{
-> +	struct regmap *regmap;
-> +	u32 hsp_usb_bus;
-> +	u32 hsp_usb_axi_lp;
-> +	u32 hsp_usb_vbus_freq;
-> +	u32 hsp_usb_mpll;
-> +	int ret;
-> +
-> +	regmap = syscon_regmap_lookup_by_phandle(dev->of_node,
-> +						 "eswin,hsp_sp_csr");
-> +	if (IS_ERR(regmap)) {
-> +		dev_dbg(dev, "No hsp_sp_csr phandle specified\n");
-> +		return -1;
-> +	}
-> +	ret = of_property_read_u32_index(dev->of_node, "eswin,hsp_sp_csr", 1,
-> +					 &hsp_usb_bus);
-> +	if (ret) {
-> +		dev_err(dev, "can't get usb sid cfg reg offset (%d)\n", ret);
-> +		return ret;
-> +	}
-> +	ret = of_property_read_u32_index(dev->of_node, "eswin,hsp_sp_csr", 2,
-> +					 &hsp_usb_axi_lp);
-> +	if (ret) {
-> +		dev_err(dev, "can't get usb sid cfg reg offset (%d)\n", ret);
-> +		return ret;
-> +	}
-> +	ret = of_property_read_u32_index(dev->of_node, "eswin,hsp_sp_csr", 3,
-> +					 &hsp_usb_vbus_freq);
-> +	if (ret) {
-> +		dev_err(dev, "can't get usb sid cfg reg offset (%d)\n", ret);
-> +		return ret;
-> +	}
-> +	ret = of_property_read_u32_index(dev->of_node, "eswin,hsp_sp_csr", 4,
-> +					 &hsp_usb_mpll);
-> +	if (ret) {
-> +		dev_err(dev, "can't get usb sid cfg reg offset (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * usb1 clock init
-> +	 * ref clock is 24M, below need to be set to satisfy usb phy requirement(125M)
-> +	 */
-> +	regmap_write(regmap, hsp_usb_vbus_freq, HSP_USB_VBUS_FSEL);
-> +	regmap_write(regmap, hsp_usb_mpll, HSP_USB_MPLL_DEFAULT);
-> +	/*
-> +	 * reset usb core and usb phy
-> +	 */
-> +	regmap_write(regmap, hsp_usb_bus,
-> +		     HSP_USB_BUS_FILTER_EN | HSP_USB_BUS_CLKEN_GM |
-> +			     HSP_USB_BUS_CLKEN_GS | HSP_USB_BUS_SW_RST |
-> +			     HSP_USB_BUS_CLK_EN);
-> +	regmap_write(regmap, hsp_usb_axi_lp,
-> +		     HSP_USB_AXI_LP_XM_CSYSREQ | HSP_USB_AXI_LP_XS_CSYSREQ);
-> +
-> +	return 0;
-> +}
-> +
-> +static int dwc3_eswin_probe(struct platform_device *pdev)
-> +{
-> +	struct dwc3_eswin *eswin;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node, *child;
-> +	struct platform_device *child_pdev;
-> +	unsigned int count;
-> +	int ret;
-> +	int i;
-> +	int err_desc = 0;
-> +
-> +	eswin = devm_kzalloc(dev, sizeof(*eswin), GFP_KERNEL);
-> +	if (!eswin)
-> +		return -ENOMEM;
-> +	eswin->hub_gpio = devm_gpiod_get(dev, "hub-rst", GPIOD_OUT_HIGH);
-> +	err_desc = IS_ERR(eswin->hub_gpio);
-> +
-> +	if (!err_desc)
-> +		gpiod_set_raw_value(eswin->hub_gpio, 1);
-> +
-> +	count = of_clk_get_parent_count(np);
-> +	if (!count)
-> +		return -ENOENT;
-> +
-> +	eswin->num_clocks = count;
-> +	eswin->force_mode = false;
-> +	eswin->clks = devm_kcalloc(dev, eswin->num_clocks, sizeof(struct clk *),
-> +				   GFP_KERNEL);
-> +	if (!eswin->clks)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, eswin);
-> +
-> +	mutex_init(&eswin->lock);
-> +
-> +	eswin->dev = dev;
-> +
-> +	mutex_lock(&eswin->lock);
+No, we are not scrapping it. We are exploring further on where to put 
+this. May be we can put those logic in some simple driver named as 
+ipq-restart-reason.c under drivers/soc/qcom/?
 
-I don't understand the point of it. Explain me, what are you protecting
-here from what? How is it possible?
 
-> +
-> +	for (i = 0; i < eswin->num_clocks; i++) {
-> +		struct clk *clk;
-> +
-> +		clk = of_clk_get(np, i);
-
-No, use devm_clk_Get
-
-> +		if (IS_ERR(clk)) {
-> +			ret = PTR_ERR(clk);
-> +			goto err0;
-> +		}
-> +		ret = clk_prepare_enable(clk);
-> +		if (ret < 0) {
-> +			clk_put(clk);
-> +			goto err0;
-> +		}
-> +
-> +		eswin->clks[i] = clk;
-
-Use get_enabled and bulk api.
-
-> +	}
-> +
-> +	eswin->vaux_rst = devm_reset_control_get(dev, "vaux");
-> +	if (IS_ERR_OR_NULL(eswin->vaux_rst)) {
-
-OR_NULL? Why?
-
-> +		dev_err(dev, "Failed to asic0_rst handle\n");
-
-Syntax is always: retrun dev_err_probe
-
-> +		return -EFAULT;
-
-No, return proper error codes.
-
-> +	}
-> +
-> +	dwc3_eswin_deassert(eswin);
-> +	dwc_usb_clk_init(dev);
-> +
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_enable(dev);
-> +	ret = pm_runtime_get_sync(dev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "get_sync failed with err %d\n", ret);
-> +		goto err1;
-> +	}
-> +
-> +	child = of_get_child_by_name(np, "dwc3");
-> +	if (!child) {
-> +		dev_err(dev, "failed to find dwc3 core node\n");
-> +		ret = -ENODEV;
-> +		goto err1;
-> +	}
-> +	/* Allocate and initialize the core */
-> +	ret = of_platform_populate(np, NULL, NULL, dev);
-> +	if (ret) {
-> +		dev_err(dev, "failed to create dwc3 core\n");
-> +		goto err1;
-> +	}
-> +
-> +	INIT_WORK(&eswin->otg_work, dwc3_eswin_otg_extcon_evt_work);
-> +	child_pdev = of_find_device_by_node(child);
-> +	if (!child_pdev) {
-> +		dev_err(dev, "failed to find dwc3 core device\n");
-> +		ret = -ENODEV;
-> +		goto err2;
-> +	}
-> +	eswin->dwc = platform_get_drvdata(child_pdev);
-> +	if (!eswin->dwc) {
-> +		dev_err(dev, "failed to get drvdata dwc3\n");
-> +		ret = -EPROBE_DEFER;
-> +		goto err2;
-> +	}
-> +	eswin->child_dev = &child_pdev->dev;
-> +	ret = dwc3_eswin_get_extcon_dev(eswin);
-> +	if (ret < 0)
-> +		dev_err(dev, "couldn't get extcon device: %d\n", ret);
-> +
-> +	mutex_unlock(&eswin->lock);
-> +	ret = sysfs_create_group(&dev->kobj, &dwc3_eswin_attr_group);
-> +	if (ret)
-> +		dev_err(dev, "failed to create sysfs group: %d\n", ret);
-> +
-> +	return ret;
-> +err2:
-> +	cancel_work_sync(&eswin->otg_work);
-> +	of_platform_depopulate(dev);
-> +
-> +err1:
-> +	pm_runtime_put_sync(dev);
-> +	pm_runtime_disable(dev);
-> +	dwc3_eswin_assert(eswin);
-> +err0:
-> +	for (i = 0; i < eswin->num_clocks && eswin->clks[i]; i++) {
-> +		if (!pm_runtime_status_suspended(dev))
-> +			clk_disable(eswin->clks[i]);
-> +		clk_unprepare(eswin->clks[i]);
-> +		clk_put(eswin->clks[i]);
-> +	}
-> +
-> +	mutex_unlock(&eswin->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static void dwc3_eswin_remove(struct platform_device *pdev)
-> +{
-> +	struct dwc3_eswin *eswin = platform_get_drvdata(pdev);
-> +	struct device *dev = &pdev->dev;
-> +	int i = 0;
-> +
-> +	cancel_work_sync(&eswin->otg_work);
-> +
-> +	sysfs_remove_group(&dev->kobj, &dwc3_eswin_attr_group);
-> +
-> +	/* Restore hcd state before unregistering xhci */
-> +	if (eswin->edev && !eswin->connected) {
-> +		struct usb_hcd *hcd = dev_get_drvdata(&eswin->dwc->xhci->dev);
-> +
-> +		pm_runtime_get_sync(dev);
-> +
-> +		/*
-> +		 * The xhci code does not expect that HCDs have been removed.
-> +		 * It will unconditionally call usb_remove_hcd() when the xhci
-> +		 * driver is unloaded in of_platform_depopulate(). This results
-> +		 * in a crash if the HCDs were already removed. To avoid this
-> +		 * crash, add the HCDs here as dummy operation.
-> +		 * This code should be removed after pm runtime support
-> +		 * has been added to xhci.
-> +		 */
-> +		if (hcd->state == HC_STATE_HALT) {
-> +			usb_add_hcd(hcd, hcd->irq, IRQF_SHARED);
-> +			usb_add_hcd(hcd->shared_hcd, hcd->irq, IRQF_SHARED);
-> +		}
-> +	}
-> +
-> +	of_platform_depopulate(dev);
-> +
-> +	pm_runtime_put_sync(dev);
-> +	pm_runtime_disable(dev);
-> +
-> +	dwc3_eswin_assert(eswin);
-> +	for (i = 0; i < eswin->num_clocks; i++) {
-> +		if (!pm_runtime_status_suspended(dev))
-> +			clk_disable(eswin->clks[i]);
-> +		clk_unprepare(eswin->clks[i]);
-> +		clk_put(eswin->clks[i]);
-> +	}
-> +}
-> +
-> +#ifdef CONFIG_PM
-> +static int dwc3_eswin_runtime_suspend(struct device *dev)
-> +{
-> +	struct dwc3_eswin *eswin = dev_get_drvdata(dev);
-> +	int i;
-> +
-> +	for (i = 0; i < eswin->num_clocks; i++)
-> +		clk_disable(eswin->clks[i]);
-> +
-> +	device_init_wakeup(dev, false);
-> +
-> +	return 0;
-> +}
-> +
-> +static int dwc3_eswin_runtime_resume(struct device *dev)
-> +{
-> +	struct dwc3_eswin *eswin = dev_get_drvdata(dev);
-> +	int i;
-> +
-> +	for (i = 0; i < eswin->num_clocks; i++)
-> +		clk_enable(eswin->clks[i]);
-> +
-> +	device_init_wakeup(dev, true);
-
-This feels odd. What is the point of wakeup if you disable it for the
-sleeping periods?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused dwc3_eswin_suspend(struct device *dev)
-> +{
-> +	struct dwc3_eswin *eswin = dev_get_drvdata(dev);
-> +	struct dwc3 *dwc = eswin->dwc;
-> +
-> +	eswin->suspended = true;
-> +	cancel_work_sync(&eswin->otg_work);
-> +
-> +	/*
-> +	 * The flag of is_phy_on is only true if
-> +	 * the DWC3 is in Host mode.
-> +	 */
-> +	if (eswin->is_phy_on) {
-> +		phy_power_off(dwc->usb2_generic_phy[0]);
-> +
-> +		/*
-> +		 * If link state is Rx.Detect, it means that
-> +		 * no usb device is connecting with the DWC3
-> +		 * Host, and need to power off the USB3 PHY.
-> +		 */
-> +		dwc->link_state = dwc3_gadget_get_link_state(dwc);
-> +		if (dwc->link_state == DWC3_LINK_STATE_RX_DET)
-> +			phy_power_off(dwc->usb3_generic_phy[0]);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused dwc3_eswin_resume(struct device *dev)
-> +{
-> +	struct dwc3_eswin *eswin = dev_get_drvdata(dev);
-> +	struct dwc3 *dwc = eswin->dwc;
-> +
-> +	eswin->suspended = false;
-> +
-> +	if (eswin->is_phy_on) {
-> +		phy_power_on(dwc->usb2_generic_phy[0]);
-> +
-> +		if (dwc->link_state == DWC3_LINK_STATE_RX_DET)
-> +			phy_power_on(dwc->usb3_generic_phy[0]);
-> +	}
-> +
-> +	if (eswin->edev)
-> +		schedule_work(&eswin->otg_work);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops dwc3_eswin_dev_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(dwc3_eswin_suspend, dwc3_eswin_resume)
-> +		SET_RUNTIME_PM_OPS(dwc3_eswin_runtime_suspend,
-> +				   dwc3_eswin_runtime_resume, NULL)
-> +};
-> +
-> +#define DEV_PM_OPS (&dwc3_eswin_dev_pm_ops)
-> +#else
-> +#define DEV_PM_OPS NULL
-> +#endif /* CONFIG_PM */
-> +
-> +static const struct of_device_id eswin_dwc3_match[] = {
-> +	{ .compatible = "eswin,eic7700-dwc3" },
-> +	{ /* Sentinel */ }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, eswin_dwc3_match);
-> +
-> +static struct platform_driver dwc3_eswin_driver = {
-> +	.probe = dwc3_eswin_probe,
-> +	.remove = dwc3_eswin_remove,
-> +	.driver = {
-> +		.name = "eic7700-dwc3",
-> +		.pm = DEV_PM_OPS,
-> +		.of_match_table = eswin_dwc3_match,
-> +	},
-> +};
-> +
-> +module_platform_driver(dwc3_eswin_driver);
-> +
-> +MODULE_ALIAS("platform:eic7700-dwc3");
-
-Drop. You should not need MODULE_ALIAS() in normal cases. If you need
-it, usually it means your device ID table is wrong (e.g. misses either
-entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-for incomplete ID table.
-
-Both of your drivers - this and PCI - are in very poor shape. I suggest
-redoing them based on latest upstream drivers, not pushing to us your
-downstream code.
-
-Best regards,
-Krzysztof
+>
+> Konrad
 
