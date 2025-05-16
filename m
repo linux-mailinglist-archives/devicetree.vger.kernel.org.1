@@ -1,118 +1,112 @@
-Return-Path: <devicetree+bounces-177912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06B3AAB9985
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 11:57:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CABCDAB9996
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:00:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9A3A1BC6E43
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:56:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 974863A63FA
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9E2231838;
-	Fri, 16 May 2025 09:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC7CB23184F;
+	Fri, 16 May 2025 10:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OQaiVqgc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VSx8XvD4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FE622F77D;
-	Fri, 16 May 2025 09:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8722AE8D;
+	Fri, 16 May 2025 10:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747389387; cv=none; b=O3k/qlkO4ist8jk00lHz2o66jDfHYtiA+ETsr+wt0pBfYjm/XtXcpuFsGkuvjow+QzXNq6ydMZZmeHTZBdO7/gAVce7+AlZ6/i0DwXn8bSnWl5a63YLn5FXZqnKpsiiCo6Ki/A5UO0tYTJWWIDRV7wpKJIPni+Tnwvqr8kNdBL0=
+	t=1747389619; cv=none; b=UeA5yxuuuvM5DPwdT9Kx/Z/rQoP/p1tUA/sgP3z9SvZFlkDJbx/T+A2uc8XJqOuhZj+6oYjbAHz4000ligjByXOOsZoEtJAUski/nmH0axbjoDIBFeqIdYhgRNJZ6Dh2oa/wGC3OGfz1egMWCDZvDS2jNPBPfhXuDBvHE7tLgMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747389387; c=relaxed/simple;
-	bh=6qeyCCT7zpD3fvBMzDh5PQih0K0gpp9zF5Ci9QuAQKU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=j6zqHdszEPoKWDOsLD1oNfh74L9VvYip1pyfB1iX9GyHR/rzhC3jxt3lTSahjGO7uNlVCTLI8lVX8bBEiOFx6IZ94trFku+zLRwjR7paFJ3quzjAAfyW4XbCqFRAAUCBO360YCXitVbx+Q8X+T6I7yJjRF0tqi1hXyAOjlGDbbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OQaiVqgc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5FFDC4CEE4;
-	Fri, 16 May 2025 09:56:26 +0000 (UTC)
+	s=arc-20240116; t=1747389619; c=relaxed/simple;
+	bh=5gBmY6Zk+Ryoef5Q5jQQugVJJObL7Jg/Otn27Xfx+H8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NQV3oTW2inuxWcwnoP1aWgM7l2UBgUyRjKfzTUgWacwGNibQFi4my2aoeFEmTown/2gGrUw4tj64Va5PpEDubGW1imk1yQOj/cH95354EPAznUGnGllRxpYE6bCif7yeKcRDBrZGRaEpCY1vwkV9Vr9ADUrr8T3V6BLPS+VzT1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VSx8XvD4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBF03C4CEE4;
+	Fri, 16 May 2025 10:00:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747389387;
-	bh=6qeyCCT7zpD3fvBMzDh5PQih0K0gpp9zF5Ci9QuAQKU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=OQaiVqgcB4Yu1+5FQF3O+JYdhQOUxOL6ue+z9lgTS/63FWdwt5JKcjGthvKHTelL5
-	 TYjZ2XGort85qrI+rPdUCj8Q3qSh/keXgZA3DHr11CyS0Bq29vB3m4+gJej5K7FMbe
-	 Itl5Wkwu4n+sUioWXy+vOpUpbqq7AFlRRAYuLJfcqsowHRpiojOwyWTlnA44AHzH/I
-	 dE2nIpCf5drU842wxWPDW4iZpBQAztXf7VHzLBgclkDOunJJ579HZJLYmRT+N0bWaW
-	 rPUzRJtCNGFz0uDL6VS1Z7UOASHz6QpDPbHytF6TmyuPT+R9c3Y8Bs7yjGfEWHtnjC
-	 jbZDXoW9puzpQ==
-Date: Fri, 16 May 2025 04:56:25 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1747389619;
+	bh=5gBmY6Zk+Ryoef5Q5jQQugVJJObL7Jg/Otn27Xfx+H8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=VSx8XvD4L3DRtchGh9gq++02KQtnShOLeYGZ7ch9CAbebcnQtg7Jk8J9jHU41wEVp
+	 wMpRPxUCauKCBiVgz7BD9HVQhZupWTqXR3dEvwPQaGXK3H3XL5ZJ5Cf5GRq065j4M4
+	 /JYU7bV+k/s5oGYr73DRfrrq6wPPSTCGkHFwANEgQ6jszgKZbaMpYnV6UB60gpOVWt
+	 nIqvnKCGwQW6Kj2WgY7YB0aRwX8kcZfEE6UP3nRh1t0QDGVSRVFLwoLlE+kMm/PuSV
+	 RIaeJL3q83gvYF77uQV9u1yQ4X+5WS/2hMIxeUmjXWgs/ljpoPtexsKnnbgCEcDyj2
+	 6LvbSjYmsUu9g==
+From: Conor Dooley <conor@kernel.org>
+To: linux-pci@vger.kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] dt-bindings: PCI: microchip,pcie-host: fix dma coherency property
+Date: Fri, 16 May 2025 10:59:39 +0100
+Message-ID: <20250516-datebook-senator-ff7a1c30cbd5@spud>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
- linux-clk@vger.kernel.org, Tero Kristo <kristo@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Andreas Kemnade <andreas@kemnade.info>, 
- devicetree@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>
-To: Sukrut Bellary <sbellary@baylibre.com>
-In-Reply-To: <20250516081612.767559-2-sbellary@baylibre.com>
-References: <20250516081612.767559-1-sbellary@baylibre.com>
- <20250516081612.767559-2-sbellary@baylibre.com>
-Message-Id: <174738938517.2667160.10906175729020548648.robh@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: ti: Convert autoidle
- binding to yaml
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1569; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=kx7hE+1jGLWfA9X6Bwyb2haBWtsA8+rtUy5OmaCwQdc=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDBnqPN0/mbbyiVTk71zjNSupn+nhry1TFJJP7L48+fCrs xnbD1XkdZSyMIhxMMiKKbIk3u5rkVr/x2WHc89bmDmsTCBDGLg4BWAiZ2IY/hm+nJUe9Gld8wLf 7CnWB6b/vbbZyba/dNqUW8yepffZxMoZ/ofZF6yoTZrN8VlGquy85/MuPq0Fsa5dXTYtvUG7HY7 l8gIA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On Fri, 16 May 2025 01:16:10 -0700, Sukrut Bellary wrote:
-> Autoidle clock is not an individual clock; it is always a derivate of some
-> basic clock like a gate, divider, or fixed-factor. This binding will be
-> referred in ti,divider-clock.yaml, and ti,fixed-factor-clock.yaml.
-> 
-> As all clocks don't support the autoidle feature e.g.,
-> in DRA77xx/AM57xx[1], dpll_abe_x2* and dpll_per_x2 don't have
-> autoidle, remove required properties from the binding.
-> 
-> Add the creator of the original binding as a maintainer.
-> 
-> [1] https://www.ti.com/lit/ug/spruhz6l/spruhz6l.pdf
-> 
-> Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
-> ---
->  .../devicetree/bindings/clock/ti/autoidle.txt | 37 -------------------
->  .../bindings/clock/ti/ti,autoidle.yaml        | 34 +++++++++++++++++
->  2 files changed, 34 insertions(+), 37 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/ti/autoidle.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,autoidle.yaml
-> 
+PolarFire SoC may be configured in a way that requires non-coherent DMA
+handling. On RISC-V, buses are coherent by default & the dma-noncoherent
+property is required to denote buses or devices that are non-coherent.
+For some reason, instead of adding dma-noncoherent to the binding
+the pointless, NOP, property dma-coherent was. Swap dma-coherent for
+dma-noncoherent.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Fixes: 04aa999eb96fd ("dt-bindings: PCI: microchip,pcie-host: Allow dma-noncoherent")
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Bjorn Helgaas <bhelgaas@google.com>
+CC: Lorenzo Pieralisi <lpieralisi@kernel.org>
+CC: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: linux-pci@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+---
+ Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt references a file that doesn't exist: Documentation/devicetree/bindings/clock/ti/autoidle.txt
-Warning: Documentation/devicetree/bindings/clock/ti/ti,divider-clock.yaml references a file that doesn't exist: Documentation/devicetree/bindings/clock/ti/autoidle.txt
-Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt: Documentation/devicetree/bindings/clock/ti/autoidle.txt
-Documentation/devicetree/bindings/clock/ti/ti,divider-clock.yaml: Documentation/devicetree/bindings/clock/ti/autoidle.txt
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250516081612.767559-2-sbellary@baylibre.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+index 103574d18dbc2..56397df2a6eec 100644
+--- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
++++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+@@ -50,7 +50,7 @@ properties:
+     items:
+       pattern: '^fic[0-3]$'
+ 
+-  dma-coherent: true
++  dma-noncoherent: true
+ 
+   ranges:
+     minItems: 1
+-- 
+2.45.2
 
 
