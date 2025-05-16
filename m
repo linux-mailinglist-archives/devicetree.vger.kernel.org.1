@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-177990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D5C8AB9D36
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C58CAB9D40
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:27:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37A3A1BC54D5
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:26:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72D95188F49D
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:27:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD399219E0;
-	Fri, 16 May 2025 13:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AA0219E0;
+	Fri, 16 May 2025 13:27:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DKkkJtjr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H8jGqE6/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943711B808;
-	Fri, 16 May 2025 13:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF51235975;
+	Fri, 16 May 2025 13:27:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747401963; cv=none; b=ZqOPWtscfz/QAbO31tCvoN95S458V5Z6Yf9LSqlEEoHpgHgunQ7bt4/AH7J76H8OimZPnFK8yeDDAmWsD39LVHyui7osMIxGpg+gHa/Dr6SR3dgRAMMkRG5X8RO0Xj5JzBmdOFC3foYrhunpKBR377IitFgg0cSfl3H8g/X/1JU=
+	t=1747402050; cv=none; b=dP0Xu7SocuvWEufvGYFh+VBFl/mD/xkedXGu0kJcTy+MgyUio3OVlzpukGTdX3L0/TxbUhQDqyodffEuwzdwEKjtUrWtqOFp78jRi7wFQjomwMAzOBMwcrf9rLqs+X6pMEYXvvcgNiucaAUOEz1ltobBD4Sdsc2SDqZnLJTZmx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747401963; c=relaxed/simple;
-	bh=nQjE6Jrz6civm7hI/KIbRAh1jWVqVEKXTY2SoGHgjwI=;
+	s=arc-20240116; t=1747402050; c=relaxed/simple;
+	bh=GQH4vjzbq/e3q06rdz3MkAysTEwVc8CsqS1cU11LWMY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=As6uSklauIuG9zxFDPwa5/2dtM4IwQ13jRUgGwjJwUS5yFtS/aICUEQwlrkmpZO4uNckhi0tU/iHL96fIm8dPx1F2w/5AQoEOgZG73LprEmbzbm4HQaEpDWAeJX0BaZoGhU0g5Mk6mM0pkwWgpbSfMmIe0L6WFnvmSAbhWdm7Jg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DKkkJtjr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1C3CC4CEE4;
-	Fri, 16 May 2025 13:26:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OUrXDEjhIZe8+dY1714LMAJ4lbyiI93wVK2zjNlWEV1u6g/c4fSa8PD4+U1CpubvwDy4dB2ub584IcNU7BztwADH+qr/s0mfRHnMB7mJIPcXrze+/GTb0gCrxnnd4FyTG2q/2VHZ3AKqdFC8EHnZwqyY9YAm/qS+gjwdsxNDBLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H8jGqE6/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2101C4CEE4;
+	Fri, 16 May 2025 13:27:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747401963;
-	bh=nQjE6Jrz6civm7hI/KIbRAh1jWVqVEKXTY2SoGHgjwI=;
+	s=k20201202; t=1747402050;
+	bh=GQH4vjzbq/e3q06rdz3MkAysTEwVc8CsqS1cU11LWMY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DKkkJtjruqUo8MNo4SqVVqfMunKCjkcOBB90zoGmRoMSj87RA+Ccv7FbwakEJqvQn
-	 33zrju6gHjzV+x8YJvRVFfHSJKyzbCvFW/YE4D5bMOPG4rxz5iWkUqFQwGXlI7JRij
-	 0gGz9rJQbxDEM/4HUIgKw4aicl2pAfRPkvf0i3XYRElPY0vHMHfBQyZ4Kaf/wpLcRU
-	 LOD9PwGdxmF+qbfmXMVclq2xIZKvX8Ky5hkZH1o6aaAqzRUvTpVmVqt0GRDs5qgD0H
-	 HEAzkL3/1K5X2YvxJNUF5Y2VslfJwGUqv+8v6NR3vaw97V6Wg0UZsOfQ0xG9zD5xJU
-	 K9TcsnbcfDJmQ==
-Message-ID: <f6fbc6f6-aaba-4303-9c2f-fc985a2a3c83@kernel.org>
-Date: Fri, 16 May 2025 15:25:58 +0200
+	b=H8jGqE6/RU8FID9CdY+1PxxTwwfZlhsnz+701bzBzDybJIxzNDM2Md2xA7HKkmqNO
+	 iqrsPtWAEgPRkNJV4RcNPTBXI0p893dZNQTCxOMgQLC3JwhK4uMr9iyvS4pvy2Ufbz
+	 tS9Ac6k2JMwpmnQ6ipHLp3am+dzgFnrmN85021yWLrbH7RL0L01lihVlZFWPLaj0dO
+	 mD9m33cOBWX2IwAC9lg6fpe/G/a+EQJvoJAVDnvMudX+rM4tmBYaIDO2BQWRUyT+ly
+	 Ow8GZe28t5K+OaJ6RLA+SSjaVVmXNZrhB5uiMIqCPWRapKfzhYXBtjko7Fuvp3BNq3
+	 EhHeYNFKSwUzQ==
+Message-ID: <43341d97-e6fc-4b09-82cf-ea81d9f877bb@kernel.org>
+Date: Fri, 16 May 2025 15:27:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] reset: eswin: Add eic7700 reset driver
+Subject: Re: [PATCH 1/2] dt-bindings: reset: eswin: Documentation for eic7700
+ SoC
 To: dongxuyang@eswincomputing.com, p.zabel@pengutronix.de, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
  huangyifeng@eswincomputing.com
 References: <20250514002945.415-1-dongxuyang@eswincomputing.com>
- <20250514003209.531-1-dongxuyang@eswincomputing.com>
+ <20250514003121.473-1-dongxuyang@eswincomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,136 +104,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250514003209.531-1-dongxuyang@eswincomputing.com>
+In-Reply-To: <20250514003121.473-1-dongxuyang@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/05/2025 02:32, dongxuyang@eswincomputing.com wrote:
-> From: Xuyang Dong <dongxuyang@eswincomputing.com>
-> 
-> Add support for reset controller in eic7700 series chips.
-> Provide functionality for asserting and deasserting resets
-> on the chip.
-> 
-> Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
-> Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
-> ---
->  drivers/reset/Kconfig         |   9 ++
->  drivers/reset/Makefile        |   1 +
->  drivers/reset/reset-eic7700.c | 249 ++++++++++++++++++++++++++++++++++
->  3 files changed, 259 insertions(+)
->  create mode 100644 drivers/reset/reset-eic7700.c
-> 
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 99f6f9784e68..d6eef5358e13 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -350,6 +350,15 @@ config RESET_ZYNQMP
->  	help
->  	  This enables the reset controller driver for Xilinx ZynqMP SoCs.
->  
-> +config RESET_EIC7700
-
-E is not after Z. Don't add your entries to the end. This applies to all
-your patches.
-
-> +	bool "Reset controller driver for Eswin SoCs"
-> +	default ARCH_ESWIN
-> +	help
-> +	  This enables the reset controller driver for Eswin SoCs. This driver is
-> +	  specific to Eswin SoCs and should only be enabled if using such hardware.
-> +	  The driver supports eic7700 series chips and provides functionality for
-> +	  asserting and deasserting resets on the chip.
+On 14/05/2025 02:31, dongxuyang@eswincomputing.com wrote:
+> diff --git a/include/dt-bindings/reset/eswin,eic7700-reset.h b/include/dt-bindings/reset/eswin,eic7700-reset.h
+> new file mode 100644
+> index 000000000000..fcf004620db9
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/eswin,eic7700-reset.h
+> @@ -0,0 +1,460 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+> + *
+> + * Device Tree binding constants for EIC7700 reset controller.
+> + *
+> + * Authors:
+> + *	Yifeng Huang <huangyifeng@eswincomputing.com>
+> + *	Xuyang Dong <dongxuyang@eswincomputing.com>
+> + */
 > +
->  source "drivers/reset/amlogic/Kconfig"
->  source "drivers/reset/starfive/Kconfig"
->  source "drivers/reset/sti/Kconfig"
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 31f9904d13f9..2210c4e55834 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -44,3 +44,4 @@ obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
->  obj-$(CONFIG_RESET_UNIPHIER_GLUE) += reset-uniphier-glue.o
->  obj-$(CONFIG_RESET_ZYNQ) += reset-zynq.o
->  obj-$(CONFIG_RESET_ZYNQMP) += reset-zynqmp.o
-> +obj-$(CONFIG_RESET_EIC7700) += reset-eic7700.o
+> +#ifndef __DT_ESWIN_EIC7700_RESET_H__
+> +#define __DT_ESWIN_EIC7700_RESET_H__
+> +
+> +#define SNOC_RST_CTRL 0X00
 
-E is not after Z.
+No, IDs are abstract, decimal numbers going from 0. Not hex.
 
+...
 
-> +static int eswin_reset_probe(struct platform_device *pdev)
-> +{
-> +	struct eswin_reset_data *data;
-> +	struct device *parent;
-> +
-> +	parent = pdev->dev.parent;
-> +	if (!parent) {
-> +		dev_err(&pdev->dev, "no parent\n");
+> +#define SW_NOC_NSP_RSTN (1 << 0)
 
-Not possible. Fix your DTS otherwise.
-
-> +		return -ENODEV;
-> +	}
-> +
-> +	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->regmap = syscon_node_to_regmap(parent->of_node);
-> +	if (IS_ERR(data->regmap)) {
-> +		dev_err(&pdev->dev, "failed to get parent regmap\n");
-> +		return PTR_ERR(data->regmap);
-
-Syntax is always: return dev_err_probe. You already got such comment.
-All your patches repeat the same issues.
-
-> +	}
-> +
-> +	platform_set_drvdata(pdev, data);
-> +
-> +	data->rcdev.owner = THIS_MODULE;
-> +	data->rcdev.ops = &eswin_reset_ops;
-> +	data->rcdev.of_node = pdev->dev.of_node;
-> +	data->rcdev.of_reset_n_cells = 2;
-> +	data->rcdev.of_xlate = eswin_reset_of_xlate;
-> +	data->rcdev.dev = &pdev->dev;
-> +	data->dev = &pdev->dev;
-> +	idr_init(&data->idr);
-> +
-> +	/*clear boot flag so u84 and scpu could be reseted by software*/
-> +	regmap_set_bits(data->regmap, SYSCRG_CLEAR_BOOT_INFO_OFFSET,
-> +			CLEAR_BOOT_FLAG_BIT);
-> +	msleep(50);
-> +	platform_set_drvdata(pdev, data);
-
-Drop, no need to do it twice.
-
-
-> +
-> +	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
-> +}
-> +
-> +static void eswin_reset_remove(struct platform_device *pdev)
-> +{
-> +	struct eswin_reset_data *data = platform_get_drvdata(pdev);
-> +
-> +	idr_destroy(&data->idr);
-> +}
-> +
-> +static struct platform_driver eswin_reset_driver = {
-> +	.probe	= eswin_reset_probe,
-> +	.remove = eswin_reset_remove,
-> +	.driver = {
-> +		.name		= "eswin-reset",
-> +		.of_match_table	= eswin_reset_dt_ids,
-> +	},
-> +};
-> +
-> +static int __init eswin_reset_init(void)
-> +{
-> +	return platform_driver_register(&eswin_reset_driver);
-> +}
-> +arch_initcall(eswin_reset_init);
+All these are not really bindings IDs either. This all should be 0, 1, 2
+etc. Do not treat hardware numbers as bindings, because it is not needed
+and it does not bring any benefits.
 
 
 Best regards,
