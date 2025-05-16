@@ -1,140 +1,115 @@
-Return-Path: <devicetree+bounces-177994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCD4BAB9DD1
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:47:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7399BAB9E0E
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:57:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDD0F16A2BA
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:46:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 358957B6911
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:55:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23B98199237;
-	Fri, 16 May 2025 13:42:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C552AEFE;
+	Fri, 16 May 2025 13:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="H4R6vJaT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NRxZMWQR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B87E149DFF;
-	Fri, 16 May 2025 13:42:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF4B200A3;
+	Fri, 16 May 2025 13:57:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747402961; cv=none; b=Eh82vTNpiOc+uNI4hL5V2jpS3ODfHudX9IzsPm1LWluVg8pKHtiZCO9vB1qYMrafXRwpuyVpucZnCrsN7nlkqb+RWeBPDMOQ/G6+2eE73ocGhIqncr1CBigQRvNQ2mOc/g9XD46nzIzsu4zUzjwwERw/EIbCkIQc3a/FvDDboHI=
+	t=1747403825; cv=none; b=RfLEIY7ibOtzUB9/bhemivS14tNZwLBaxjUEULJuZpNrfU6QuhpB0l8B2dbKrEWJ5rIiVqVDmQkipjlsDEbIGgS5G8DdhCCtkKBszt9XPRWpuLrWfzuBPrsMiFl1UWZQHRoJqMZvBr5FKjgAnvIqcFJcFzyIlTWhLHoB00Rt/JY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747402961; c=relaxed/simple;
-	bh=0bUIUe4Sx2DWxLW1yYo6Ms1yEOIpi/0LQIRHc31B0Ik=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XLLq4mxw1KKSQVPzezRvnUgcwarhV8EpbF3vgI0IXpPMUPlJ8ropBlZOuSQTtEi0p44ZkfnJnZwE878qUeGVMuH393SWS9yYA7oUwbYaSpoc42q24AAguT5HfMZDJLXchOi22mQDUetnKGgMEDIFChgO4yCaNlmeRkrIuddB5pw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=H4R6vJaT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54GC6QOd018190;
-	Fri, 16 May 2025 13:42:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=oW5TDyB0lDxwJpPJULvDTcBi
-	kCCDI6hqCKTXY32JOKM=; b=H4R6vJaTK73tW5Cyn7NFCclwh8hfLxS7T3S9ld1R
-	sj9hOeZpIKX24PWFdtF5zofuDtQ/stOEk4loRhcvjLZ0QrhJHW+Ghrwb/Hvmxa07
-	w/IGpehkBawkyo4Mr08LhG2qc2L1hCJtt+GEunxiRIu4sYaWsWlZskE+FA6MAfBg
-	FmXiX4ZcfZJgUKBnUZtfhQ9AWPgYOsE/L0Rej61YF+zpzcFMOz1UW4bcKFGtpLRq
-	zovC6+d+/zbnOOZHn0D/wC4BFGGUAzPjwjkRRdpBqT5ydqWntZ7MnX8i3DSW7yG6
-	Sjpks/V1cO9kQN3M/rRuvDlNDJLXC2g4I14jQFQGm2q89Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcnt18s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 May 2025 13:42:34 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54GDgXdd021142
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 May 2025 13:42:33 GMT
-Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 16 May 2025 06:42:27 -0700
-Date: Fri, 16 May 2025 19:12:17 +0530
-From: Wasim Nazir <quic_wasimn@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Richard Cochran
-	<richardcochran@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <kernel@quicinc.com>, <kernel@oss.qualcomm.com>
-Subject: Re: [PATCH 5/8] dt-bindings: arm: qcom: Add bindings for qam8775p SOM
-Message-ID: <aCdAuTS4pg7arxwC@hu-wasimn-hyd.qualcomm.com>
-References: <20250507065116.353114-1-quic_wasimn@quicinc.com>
- <20250507065116.353114-6-quic_wasimn@quicinc.com>
- <55d11250-75b1-4606-a110-84cdc0592c33@kernel.org>
+	s=arc-20240116; t=1747403825; c=relaxed/simple;
+	bh=opHjacfTqHep/g5AemKpA/gLp+hKeJDPhfb7AxFAjk0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n+dRkbsusjJiiPJf5B7pu3GQcjwDI15V7/vThD3v40XsUe2gERASJLU+W/HYMmsujom+FPo3YOsWaAYDhDPrHCg3FPnJPRfOuWrge9Rs0kNHJLFRp/NFKLV2GI4Z06/0BEWjl47r5MMGbkhuwM8bTcwotH1jyOIPxMGk1CsWjm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NRxZMWQR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21AA4C4CEE4;
+	Fri, 16 May 2025 13:57:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747403824;
+	bh=opHjacfTqHep/g5AemKpA/gLp+hKeJDPhfb7AxFAjk0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NRxZMWQRDYnisU86gqiiEFLlNPpInW3q/hFfmN373ShBt4x+3vRDGsx3jhFyA+tPH
+	 FWDRAGvT6yWHLw7jzPzUyRp6pt2S4WTBVObaN4iuPlDulqN9j2Wyhx8A8GpZqcw+9w
+	 EiQ2k39tUnWXLsVFklilzCqy31gho5lUXpGs3YsZz3i0hrHpuEiy/CR9NGwlXrFajE
+	 uY8rrQhYAcMnv8bNf3jkKlL0kPnMNRLNceTFyexMMfLA/bJT8X0y9T+9P/CTrcm4tD
+	 LwhuosOgpwmjEewHuzlsUbPWld9KktIITg+DpI46XWmBLMh9af4+RNO9/icBH9ZOT2
+	 HbAePxBTB5Y4A==
+Date: Fri, 16 May 2025 14:56:59 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+Cc: linux-pci@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: PCI: microchip,pcie-host: fix dma
+ coherency property
+Message-ID: <20250516-freely-squabble-a2162b60f9c1@spud>
+References: <20250516-datebook-senator-ff7a1c30cbd5@spud>
+ <20250516130659.GA2084811@rocinante>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="m6QYV8gsGIBd0Ejt"
 Content-Disposition: inline
-In-Reply-To: <55d11250-75b1-4606-a110-84cdc0592c33@kernel.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: I-jYnTPIFCLUrKBmxL999qlgodyVDq99
-X-Authority-Analysis: v=2.4 cv=aIbwqa9m c=1 sm=1 tr=0 ts=682740ca cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=x0sF0_AxRbDvk2FnIs8A:9 a=CjuIK1q_8ugA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: I-jYnTPIFCLUrKBmxL999qlgodyVDq99
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDEzMiBTYWx0ZWRfX8qDYzt0ATIZz
- 5ATZwk+WybOWYTcnX7jap2+XdKeCmS2fZyqNG8CmER1uZpra+PPEBsAMrjNx97wYVfyW7Mp1MXH
- AdlvycoYN0vGdRpyxMjXtH3QZy4mmmNgVXayjDDmF+jO5tDAsPypum2UYy0j2IHC/pFdbpBgAqU
- y6Hb4G3ki9HiTbE0dHAnaAzrVm+7srFSm4GCjxKQwCgZ+Nsl7yyHXQcSQaP96ga92UnuT80/jdf
- bFJiKH8keQ/2bBIFQigb/gI/NZHcnzMzDIgtr6U/1kQnaRQdyT13GfoP691DtjjXuhB4kCsvV0N
- 8CkQEIwjLiW+7rwIIZRWtv23oufcHh/sXF0yBD0RyOri3HuAnA9kVHiL5VLjFRm1/luelq4Tbs4
- KVfRNKqyZdVhTOXyDh+1e9X35H49rne2WXHK1NDjZIVXLJyHW6zrVph7NAXWSUHzQxWF4q4q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-16_05,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxlogscore=572 malwarescore=0 bulkscore=0 impostorscore=0
- clxscore=1015 phishscore=0 suspectscore=0 mlxscore=0 spamscore=0
- lowpriorityscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505070000 definitions=main-2505160132
+In-Reply-To: <20250516130659.GA2084811@rocinante>
 
-On Wed, May 07, 2025 at 09:00:18AM +0200, Krzysztof Kozlowski wrote:
-> On 07/05/2025 08:51, Wasim Nazir wrote:
-> > Add devicetree bindings for QAM8775p SOM which is based on sa8775p SOC.
-> 
-> You do not add new bindings. You instead change existing ones without
-> explanation why making that change.
-> 
 
-I understand your concern. We thought of adding it to define the SOM HW
-which was not done earlier.
-I will drop all the SOM bindings and maintain only SOM DT structure on
-IQ9 target (qcs9100), which we need it to add memory-map updates.
+--m6QYV8gsGIBd0Ejt
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Also, I will drop similar change from IQ-9075-evk series [1] for maintaining
-similar dt-bindings for IQ9 (qcs9100 & qcs9075) series of targets.
+On Fri, May 16, 2025 at 10:06:59PM +0900, Krzysztof Wilczy=C5=84ski wrote:
+> Hello,
+>=20
+> > PolarFire SoC may be configured in a way that requires non-coherent DMA
+> > handling. On RISC-V, buses are coherent by default & the dma-noncoherent
+> > property is required to denote buses or devices that are non-coherent.
+> > For some reason, instead of adding dma-noncoherent to the binding
+> > the pointless, NOP, property dma-coherent was. Swap dma-coherent for
+> > dma-noncoherent.
+>=20
+> I have favour to ask.  Can you capitalise (so-called "title case") the
+> subject when submitting patches that are PCI-specific DT bindings?
 
-[1]
-https://lore.kernel.org/all/20250429054906.113317-1-quic_wasimn@quicinc.com/
+Sure, I can add that to my list of things I try to remember while
+submitting for PCI.
 
-> 
-> 
-> Best regards,
-> Krzysztof
+>=20
+> This is the preferred style for PCI, at least at the moment.
+>=20
+> Also, it would save us the need to do it every time. :)
+>=20
+> Thank you!
+>=20
+> 	Krzysztof
 
-Regards,
-Wasim
+--m6QYV8gsGIBd0Ejt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCdEKwAKCRB4tDGHoIJi
+0hTMAQDAZQzK1N2h2CxLKFwPFQOEG/6Q/hMHQQx5O3STBCg2owD/atVvB8y/e5C/
+Qx0eMK5xtmsDax/lNuuqRfnkFgbqQAs=
+=yelw
+-----END PGP SIGNATURE-----
+
+--m6QYV8gsGIBd0Ejt--
 
