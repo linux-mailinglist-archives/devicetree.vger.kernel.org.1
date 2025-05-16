@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-177991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C58CAB9D40
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:27:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD0B7AB9D60
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:31:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72D95188F49D
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:27:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 426B47AE986
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:29:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AA0219E0;
-	Fri, 16 May 2025 13:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B2E71E48A;
+	Fri, 16 May 2025 13:30:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H8jGqE6/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NyrndIXr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF51235975;
-	Fri, 16 May 2025 13:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009F68F6C;
+	Fri, 16 May 2025 13:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747402050; cv=none; b=dP0Xu7SocuvWEufvGYFh+VBFl/mD/xkedXGu0kJcTy+MgyUio3OVlzpukGTdX3L0/TxbUhQDqyodffEuwzdwEKjtUrWtqOFp78jRi7wFQjomwMAzOBMwcrf9rLqs+X6pMEYXvvcgNiucaAUOEz1ltobBD4Sdsc2SDqZnLJTZmx8=
+	t=1747402254; cv=none; b=G2XDkKF996UIplx4WnS8KQZqkYkRktsWG7loLmiDEtqZf7oq2kFnHeSpPSWd3JM+9eMXHXrXEU335OzwaArOOkobAnJ6dIK/hM2KWox5Mv3ZJj4/rTmc/jovqBaJLkov0Q00zRn4coVB1b91hN6aMXtJHc985KVZpJJWjgIoT/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747402050; c=relaxed/simple;
-	bh=GQH4vjzbq/e3q06rdz3MkAysTEwVc8CsqS1cU11LWMY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OUrXDEjhIZe8+dY1714LMAJ4lbyiI93wVK2zjNlWEV1u6g/c4fSa8PD4+U1CpubvwDy4dB2ub584IcNU7BztwADH+qr/s0mfRHnMB7mJIPcXrze+/GTb0gCrxnnd4FyTG2q/2VHZ3AKqdFC8EHnZwqyY9YAm/qS+gjwdsxNDBLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H8jGqE6/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2101C4CEE4;
-	Fri, 16 May 2025 13:27:27 +0000 (UTC)
+	s=arc-20240116; t=1747402254; c=relaxed/simple;
+	bh=QAn6oY1ndhlOR/BpQNIMi0vIWRm7eyDLSPPh3kNhCfs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=qfjWBv+0W1sSzQMQ8sYQiPjRa5nt7DmsYDFdg1/9RtEV2Ib6ysHWigqRR70RFkiiRH9FEmDIW3w51BW8gNtbzrzIn5S40Ez1T5ldbY0ejkeStP+LcSg81iRa/EQTcden6QaW52GxZRjy0rz+X2q6brUme3AURJFdnJUhMYbRscQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NyrndIXr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23A50C4CEE4;
+	Fri, 16 May 2025 13:30:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747402050;
-	bh=GQH4vjzbq/e3q06rdz3MkAysTEwVc8CsqS1cU11LWMY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=H8jGqE6/RU8FID9CdY+1PxxTwwfZlhsnz+701bzBzDybJIxzNDM2Md2xA7HKkmqNO
-	 iqrsPtWAEgPRkNJV4RcNPTBXI0p893dZNQTCxOMgQLC3JwhK4uMr9iyvS4pvy2Ufbz
-	 tS9Ac6k2JMwpmnQ6ipHLp3am+dzgFnrmN85021yWLrbH7RL0L01lihVlZFWPLaj0dO
-	 mD9m33cOBWX2IwAC9lg6fpe/G/a+EQJvoJAVDnvMudX+rM4tmBYaIDO2BQWRUyT+ly
-	 Ow8GZe28t5K+OaJ6RLA+SSjaVVmXNZrhB5uiMIqCPWRapKfzhYXBtjko7Fuvp3BNq3
-	 EhHeYNFKSwUzQ==
-Message-ID: <43341d97-e6fc-4b09-82cf-ea81d9f877bb@kernel.org>
-Date: Fri, 16 May 2025 15:27:26 +0200
+	s=k20201202; t=1747402253;
+	bh=QAn6oY1ndhlOR/BpQNIMi0vIWRm7eyDLSPPh3kNhCfs=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=NyrndIXrT2F54tXajQ/zVFqnvgRy82fBTKhucLENL/5/xqUetlmfiZkH3fKR++YBv
+	 2Ruv8R4l3x2dk1xRxOcuLaB46AAl7FoNmQC9eyERRK7X1vGA3LopvTfpLS6AJABczo
+	 Pzk8dlcPEmjQz1ZOFJ+ZPGICrJLbEuHk3LkkzdGARjaAP8lfdPxk/4kac9GDdiRjGH
+	 DEYOoMkSOukEOXE+AUl2AMzzYunI6aP9sJbE4+YSgftNEZAkx7lvbI+adBMbiFzcBP
+	 1Z/etCz91Likf1FQUdiP8VC/2eu9ghFN9I3HlVh4AJCAwAoT2bXDEhomPRt4tGjOfT
+	 9sK8rEFMhdG4Q==
+Message-ID: <acc244a7-54e8-49d0-848e-6eafb850c93b@kernel.org>
+Date: Fri, 16 May 2025 15:30:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: reset: eswin: Documentation for eic7700
- SoC
-To: dongxuyang@eswincomputing.com, p.zabel@pengutronix.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- huangyifeng@eswincomputing.com
-References: <20250514002945.415-1-dongxuyang@eswincomputing.com>
- <20250514003121.473-1-dongxuyang@eswincomputing.com>
+Subject: Re: [EXTERNAL]Re: [PATCH net-next 2/2] net: pse-pd: Add Si3474 PSE
+ controller driver
+To: Piotr Kubik <piotr.kubik@adtran.com>,
+ Oleksij Rempel <o.rempel@pengutronix.de>,
+ Kory Maincent <kory.maincent@bootlin.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <bf9e5c77-512d-4efb-ad1d-f14120c4e06b@adtran.com>
+ <036e6a6c-ba45-4288-bc2a-9fd8d860ade6@adtran.com>
+ <4783c1aa-d918-4194-90d7-ebc69ddbb789@kernel.org>
+ <45525374-413a-4381-8c73-4f708c72ad15@adtran.com>
+ <1305689f-1673-4118-935c-f91705d17863@kernel.org>
+ <c23d2b2e-6ebb-4a44-bd23-5a66b2cb4e38@adtran.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,43 +114,82 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250514003121.473-1-dongxuyang@eswincomputing.com>
+In-Reply-To: <c23d2b2e-6ebb-4a44-bd23-5a66b2cb4e38@adtran.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/05/2025 02:31, dongxuyang@eswincomputing.com wrote:
-> diff --git a/include/dt-bindings/reset/eswin,eic7700-reset.h b/include/dt-bindings/reset/eswin,eic7700-reset.h
-> new file mode 100644
-> index 000000000000..fcf004620db9
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/eswin,eic7700-reset.h
-> @@ -0,0 +1,460 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
-> + *
-> + * Device Tree binding constants for EIC7700 reset controller.
-> + *
-> + * Authors:
-> + *	Yifeng Huang <huangyifeng@eswincomputing.com>
-> + *	Xuyang Dong <dongxuyang@eswincomputing.com>
-> + */
-> +
-> +#ifndef __DT_ESWIN_EIC7700_RESET_H__
-> +#define __DT_ESWIN_EIC7700_RESET_H__
-> +
-> +#define SNOC_RST_CTRL 0X00
-
-No, IDs are abstract, decimal numbers going from 0. Not hex.
-
-...
-
-> +#define SW_NOC_NSP_RSTN (1 << 0)
-
-All these are not really bindings IDs either. This all should be 0, 1, 2
-etc. Do not treat hardware numbers as bindings, because it is not needed
-and it does not bring any benefits.
-
+On 15/05/2025 17:58, Piotr Kubik wrote:
+> On 5/15/25 17:40, Krzysztof Kozlowski wrote:
+>> On 15/05/2025 17:20, Piotr Kubik wrote:
+>>> Thanks Krzysztof for your review,
+>>>
+>>>> On 13/05/2025 00:06, Piotr Kubik wrote:
+>>>>> +/* Parse pse-pis subnode into chan array of si3474_priv */
+>>>>> +static int si3474_get_of_channels(struct si3474_priv *priv)
+>>>>> +{
+>>>>> +  struct device_node *pse_node, *node;
+>>>>> +  struct pse_pi *pi;
+>>>>> +  u32 pi_no, chan_id;
+>>>>> +  s8 pairset_cnt;
+>>>>> +  s32 ret = 0;
+>>>>> +
+>>>>> +  pse_node = of_get_child_by_name(priv->np, "pse-pis");
+>>>>> +  if (!pse_node) {
+>>>>> +          dev_warn(&priv->client[0]->dev,
+>>>>> +                   "Unable to parse DT PSE power interface matrix, no pse-pis node\n");
+>>>>> +          return -EINVAL;
+>>>>> +  }
+>>>>> +
+>>>>> +  for_each_child_of_node(pse_node, node) {
+>>>>
+>>>> Use scoped variant. One cleanup less.
+>>>
+>>> good point
+>>>
+>>>>
+>>>>
+>>>>> +          if (!of_node_name_eq(node, "pse-pi"))
+>>>>> +                  continue;
+>>>>
+>>>> ...
+>>>>
+>>>>> +
+>>>>> +  ret = i2c_smbus_read_byte_data(client, FIRMWARE_REVISION_REG);
+>>>>> +  if (ret < 0)
+>>>>> +          return ret;
+>>>>> +  fw_version = ret;
+>>>>> +
+>>>>> +  ret = i2c_smbus_read_byte_data(client, CHIP_REVISION_REG);
+>>>>> +  if (ret < 0)
+>>>>> +          return ret;
+>>>>> +
+>>>>> +  dev_info(dev, "Chip revision: 0x%x, firmware version: 0x%x\n",
+>>>>
+>>>> dev_dbg or just drop. Drivers should be silent on success.
+>>>
+>>> Is there any rule for this I'm not aware of?
+>>> I'd like to know that device is present and what versions it runs just by looking into dmesg.
+>>> This approach is similar to other drivers, all current PSE drivers log it this way.
+>>>
+>> And now I noticed that you already sent it, you got review:
+>> https://lore.kernel.org/all/6ee047d4-f3de-4c25-aaae-721221dc3003@kernel.org/
+>>
+>> and you ignored it completely sending the same again.
+>>
+>> Sending the same over and over and asking us to do the same review over
+>> and over is really waste of our time.
+>>
+>> Go back to v1, implement entire review. Then start versioning your patches.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> 
+> I didn't ignore, I replied to your comment, since there was no answer I assumed you agree.
+> https://lore.kernel.org/all/38b02e2d-7935-4a23-b351-d23941e781b0@adtran.com/
+> 
+> Thanks for a reference and explanation, I'll change it.
+Coding style has it pretty explicit as well.
 
 Best regards,
 Krzysztof
