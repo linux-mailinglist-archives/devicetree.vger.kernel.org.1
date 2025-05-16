@@ -1,149 +1,138 @@
-Return-Path: <devicetree+bounces-178010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E232AB9EAA
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 16:34:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1659EAB9EEB
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 16:49:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51EF51BC3250
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:34:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D979175EF8
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:49:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827B118DB03;
-	Fri, 16 May 2025 14:33:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B1D81A3178;
+	Fri, 16 May 2025 14:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Loa/pVCD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g0qkjECU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D2514884C;
-	Fri, 16 May 2025 14:33:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D955E1A0730;
+	Fri, 16 May 2025 14:49:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747406036; cv=none; b=kDeY1zaEqkZG77hiIczx2vddIIWBLBuUTRGn6GX6Vn6zHzxLs3a3kD0jFUWjhO2YqZB5hJ3NTZUoNPWsZgVw5nyXyHreSU/83305GPac1wFZlIhzSFbrEJgeRkpJ7hhh1bCyO4M2g5y7HAG1Y6aQqM0dXcXdVeYvuihjdwwYO0k=
+	t=1747406948; cv=none; b=GRV0yePYxe/iunN7PFVvtA2ZguhySZlnxlJCeOQEqVTv9qoM2rsJ+77Rdqg97FNurOaflXeH5+uZNxQx7PBw/ImO7EOO75lgwYOYXyC8jy4+WmmV3rZDRbJuWbAT7Jn5HLEOWTWNE461M+VnoA3L+Cr+7Op9QQNIGq4mAaEUklg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747406036; c=relaxed/simple;
-	bh=Xd2ewTryFT54YmHxelw/SYdFHABh+lnf5nXNyKAWRpA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X1AL/PuBCsNn4vuM+hZGEwrCdr72d3Kc/DIIIRCpHWjKyVlbo0Bf3jHr3/bU9MMMKzbOrEzw6u1A7tP6o7CwBarsl8IDoCz8ur5vOh6KTqTapBqpqZ9bFWt07IGhm/hQyhrJS+wCxaQOy0jXZA2A3RYdV5bJoBvbrxll7ceNl3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Loa/pVCD; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747406034; x=1778942034;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Xd2ewTryFT54YmHxelw/SYdFHABh+lnf5nXNyKAWRpA=;
-  b=Loa/pVCDxk8CkUNK329onsoCzisJ+HpztNYro8VnX5RuE6qRwwlMgvIQ
-   /k+GNtFKAkwxeBzP1CBkeD+b9/TahpChNsI3TvqAA+giAkPePDrQV0YMZ
-   706ReK97OIfgzyBJgK5RfnKhW0aYVm30Ps+t15q/f46ymQCL7RGeDKrgk
-   1rxj48ZropY5CsVjgaqhviSAEI/6gwm3iUfsy4+DhYKVelbUbKs8pVous
-   9Ox3Y4SvPyfaD2DWpX788rRLNXSi0UVktQzvPjsN22t5mfbfPX6HL8KoK
-   0aSYFneK3AFOwzNehH0rAGEhN4DYEev9VkZwvqicRpd0BgOgvu3bEZXtJ
-   A==;
-X-CSE-ConnectionGUID: tdHyGEvlThCh+oWXFRvdwg==
-X-CSE-MsgGUID: nM0oHVTsQzqhXj8sT2of4g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="49486315"
-X-IronPort-AV: E=Sophos;i="6.15,294,1739865600"; 
-   d="scan'208";a="49486315"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2025 07:33:53 -0700
-X-CSE-ConnectionGUID: dFyUi+U7QZWinDUfA4SXEg==
-X-CSE-MsgGUID: xPA9VdCZQEa74+kZi1r9aA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,294,1739865600"; 
-   d="scan'208";a="162021416"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 16 May 2025 07:33:51 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uFw8C-000JQF-26;
-	Fri, 16 May 2025 14:33:48 +0000
-Date: Fri, 16 May 2025 22:33:00 +0800
-From: kernel test robot <lkp@intel.com>
-To: hehuan1@eswincomputing.com, dlemoal@kernel.org, cassel@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de
-Cc: oe-kbuild-all@lists.linux.dev, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, luyulin@eswincomputing.com,
-	Huan He <hehuan1@eswincomputing.com>
-Subject: Re: [PATCH v1 2/2] sata: eswin: Add eic7700 sata driver
-Message-ID: <202505162248.OhCrILxm-lkp@intel.com>
-References: <20250515090018.1720-1-hehuan1@eswincomputing.com>
+	s=arc-20240116; t=1747406948; c=relaxed/simple;
+	bh=D1CGvBnQQz/JZMACaTEpjRYHJ6/5pcLjYTQPBYt2h5I=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=Wt8rVL8tjQzT7uQAMivYyNVZEjXx5KKAe5NJY7iKzRx8h+SVZnqYdxXpx6dh2YQ1AGEkYLMDW26gWy+ycBaCff/OMBcheJiazCON1NTJWblMzhCDSSXAXVod1PJrS/frcL4IZtHnUDGizJGRC7F4A79e6jCqzZQcx7IJuzTJgrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g0qkjECU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39BEFC4CEE4;
+	Fri, 16 May 2025 14:49:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747406947;
+	bh=D1CGvBnQQz/JZMACaTEpjRYHJ6/5pcLjYTQPBYt2h5I=;
+	h=Date:To:Cc:Subject:From:References:In-Reply-To:From;
+	b=g0qkjECUdimjT1pLQ3tvce+3Qwde2SMfsbsVRmEzVuBvdIWxY1MzSE6z8UqVx3j7X
+	 jKOQIuAnmfFP5mk51dRJLcTV2rpGii66ymdiQtZzrcvpYE6vT+qMvOOfwqNtxoldOY
+	 z2iW1SF7frqvOKzswhCSziinTE0A66UMs9j2P3zao3yX6KyyTUdOpjHHytHQDHer+y
+	 hb17S4TlPEQyzQ6udKp0J68TJ/tWUH9rHIoP5LIBhgZy/WujkiOenR2T6d0XU3GGxS
+	 mNrxUY5vS5enZpfk4k+4DI+tylFUTCxohROUGVqsEnCeDFoaoocsTibDSZjQxb83/A
+	 rk+P+Rp/rvH5w==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250515090018.1720-1-hehuan1@eswincomputing.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 16 May 2025 16:48:53 +0200
+Message-Id: <D9XO2721HEQI.3BGSHJXCHPTL@kernel.org>
+To: "FUJITA Tomonori" <fujita.tomonori@gmail.com>, <ansuelsmth@gmail.com>
+Cc: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+ <kuba@kernel.org>, <pabeni@redhat.com>, <robh@kernel.org>,
+ <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <hkallweit1@gmail.com>,
+ <linux@armlinux.org.uk>, <florian.fainelli@broadcom.com>,
+ <bcm-kernel-feedback-list@broadcom.com>, <kabel@kernel.org>,
+ <andrei.botila@oss.nxp.com>, <tmgross@umich.edu>, <ojeda@kernel.org>,
+ <alex.gaynor@gmail.com>, <boqun.feng@gmail.com>, <gary@garyguo.net>,
+ <bjorn3_gh@protonmail.com>, <benno.lossin@proton.me>,
+ <a.hindborg@kernel.org>, <aliceryhl@google.com>, <dakr@kernel.org>,
+ <sd@queasysnail.net>, <michael@fossekall.de>, <daniel@makrotopia.org>,
+ <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <rust-for-linux@vger.kernel.org>
+Subject: Re: [net-next PATCH v10 7/7] rust: net::phy sync with
+ match_phy_device C changes
+From: "Benno Lossin" <lossin@kernel.org>
+X-Mailer: aerc 0.20.1
+References: <20250515112721.19323-1-ansuelsmth@gmail.com>
+ <20250515112721.19323-8-ansuelsmth@gmail.com>
+ <20250516.213005.1257508224493103119.fujita.tomonori@gmail.com>
+In-Reply-To: <20250516.213005.1257508224493103119.fujita.tomonori@gmail.com>
 
-Hi,
+On Fri May 16, 2025 at 2:30 PM CEST, FUJITA Tomonori wrote:
+> On Thu, 15 May 2025 13:27:12 +0200
+> Christian Marangi <ansuelsmth@gmail.com> wrote:
+>> @@ -574,6 +577,23 @@ pub const fn create_phy_driver<T: Driver>() -> Driv=
+erVTable {
+>>  /// This trait is used to create a [`DriverVTable`].
+>>  #[vtable]
+>>  pub trait Driver {
+>> +    /// # Safety
+>> +    ///
+>> +    /// For the duration of `'a`,
+>> +    /// - the pointer must point at a valid `phy_driver`, and the calle=
+r
+>> +    ///   must be in a context where all methods defined on this struct
+>> +    ///   are safe to call.
+>> +    unsafe fn from_raw<'a>(ptr: *const bindings::phy_driver) -> &'a Sel=
+f
+>> +    where
+>> +        Self: Sized,
+>> +    {
+>> +        // CAST: `Self` is a `repr(transparent)` wrapper around `bindin=
+gs::phy_driver`.
+>> +        let ptr =3D ptr.cast::<Self>();
+>> +        // SAFETY: by the function requirements the pointer is valid an=
+d we have unique access for
+>> +        // the duration of `'a`.
+>> +        unsafe { &*ptr }
+>> +    }
+>
+> We might need to update the comment. phy_driver is const so I think
+> that we can access to it any time.
 
-kernel test robot noticed the following build warnings:
+Why is any type implementing `Driver` a transparent wrapper around
+`bindings::phy_driver`?
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.15-rc6 next-20250516]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>>      /// Defines certain other features this PHY supports.
+>>      /// It is a combination of the flags in the [`flags`] module.
+>>      const FLAGS: u32 =3D 0;
+>> @@ -602,7 +622,7 @@ fn get_features(_dev: &mut Device) -> Result {
+>> =20
+>>      /// Returns true if this is a suitable driver for the given phydev.
+>>      /// If not implemented, matching is based on [`Driver::PHY_DEVICE_I=
+D`].
+>> -    fn match_phy_device(_dev: &Device) -> bool {
+>> +    fn match_phy_device<T: Driver>(_dev: &mut Device, _drv: &T) -> bool=
+ {
+>>          false
+>>      }
+>
+> I think that it could be a bit simpler:
+>
+> fn match_phy_device(_dev: &mut Device, _drv: &Self) -> bool
+>
+> Or making it a trait method might be more idiomatic?
+>
+> fn match_phy_device(&self, _dev: &mut Device) -> bool
 
-url:    https://github.com/intel-lab-lkp/linux/commits/hehuan1-eswincomputing-com/dt-bindings-sata-eswin-Document-for-EIC7700-SoC/20250515-170607
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250515090018.1720-1-hehuan1%40eswincomputing.com
-patch subject: [PATCH v1 2/2] sata: eswin: Add eic7700 sata driver
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250516/202505162248.OhCrILxm-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250516/202505162248.OhCrILxm-lkp@intel.com/reproduce)
+Yeah that would make most sense.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505162248.OhCrILxm-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/ata/ahci_eic7700.c:206:12: warning: 'eswin_ahci_resume' defined but not used [-Wunused-function]
-     206 | static int eswin_ahci_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~
->> drivers/ata/ahci_eic7700.c:195:12: warning: 'eswin_ahci_suspend' defined but not used [-Wunused-function]
-     195 | static int eswin_ahci_suspend(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~
-
-
-vim +/eswin_ahci_resume +206 drivers/ata/ahci_eic7700.c
-
-   194	
- > 195	static int eswin_ahci_suspend(struct device *dev)
-   196	{
-   197		int ret;
-   198	
-   199		ret = ahci_platform_suspend(dev);
-   200		if (ret)
-   201			return ret;
-   202	
-   203		return 0;
-   204	}
-   205	
- > 206	static int eswin_ahci_resume(struct device *dev)
-   207	{
-   208		int ret;
-   209	
-   210		ret = ahci_platform_resume(dev);
-   211		if (ret)
-   212			return ret;
-   213	
-   214		return 0;
-   215	}
-   216	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+---
+Cheers,
+Benno
 
