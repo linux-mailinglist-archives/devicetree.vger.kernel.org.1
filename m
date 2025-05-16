@@ -1,197 +1,188 @@
-Return-Path: <devicetree+bounces-177867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A596AB96D9
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:50:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0386AB96EC
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:53:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28144502B87
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 07:49:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3025D17CE2D
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 07:53:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6AE22B5AD;
-	Fri, 16 May 2025 07:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85D6922AE6B;
+	Fri, 16 May 2025 07:53:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="QHA+B7uE"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Q99XguMI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2079.outbound.protection.outlook.com [40.107.247.79])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 180BE22B8B8;
-	Fri, 16 May 2025 07:49:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.79
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747381769; cv=fail; b=Yzj27CmuExO2BaUo4uklvLBdyTwKf05PiAl7ZEmsJvRjO0WbMJmZc5mLQb1R/ZKo7I1dvmPYy/0QW+Qtga+Xf2Dy6iXaf7tUBSCBaxOjbo6369sf6IpCg9aZ+NHrOJ0b41cqTqDuUHH6pBfgKHxLW2kjPzTAHk1U0r0lH9Z0Kqs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747381769; c=relaxed/simple;
-	bh=WEqm0/Z0A/c+qrgHm9xErD5CjNNkfIiINUZCHtkHNT0=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Z5KLQfdiqea3QeR431nVCdRlPEQOE+tYTSKzKXAth0HkWwYdc14qvvPESlrxAok+EzqJz0LZWV47+q1wNHwhChGDQB+5PAjGAAK7Exr7gGSYOSYsdB619Jx/qopAwR3/iUwmvsXmsVNRiXfx5yBPecASTDV3O0/bt1+yfxa58vk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=QHA+B7uE; arc=fail smtp.client-ip=40.107.247.79
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nTwl8WUjAG16G5hnbUSCmWuvBikK6UHBam0Yp91IYbLioF/tVY5+NcHx3tyMEXv/gaYLt86YTbODM43EUwf6pGO1bA0RxpsFYlMfc651DCW/bZ+hQbTNMDOGbbeuMMWhliu7EKnuRCOagZMZXtC/tr3NB32/Ftd9SbaO9sPqz8kdda6yIMM+PNSemWoOC+XvHoGUqbMg2Uj4saiiigjtaKrIZpGvOK8tW+voMh00/hdTn4upfIMp36FPQwKGZG+BKKvMCVBOMUxHU6E/tockGHYNj20Nr/mTv8LmGRO5hKaeufL7xgAoyvy052SQjgzrFqTSVflVQ7yulk0JC94kBQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QWEgz1eB73PAeaObDxeIB6nAeBsdiFC5JYv1CTXx+d0=;
- b=hRrgMoQIgSnTkcEjf09m/x+1d2IV2lEu3FZ7uSs6M26jM7aaR5dyyEp6VF3dxrikM2RWcM6pb37CBAB16Ex5afWHXont8PQx07GZBXyoqpLHMsNcWE2qjmmubyiPgMsafZQFFmLlcki7D2s03E4KJpbwQEGgtJ+U2sy7qc36SsR3C+WNmL6y13o/0oC1f0/vKTYFDVTLl/zoYCTKQAjeNhg9mJRbL32XC5Dqk9lzRQlHzoVRQIPIcSK8a3knijRFHz575fSMm+DxJsWyYPe1k7m2uyKQ0EgZAGfpxhGIZCoygMb51VIXPZ8JpNe6Zsdp6Pn2Q0KvmQNYKWrXF3ecBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QWEgz1eB73PAeaObDxeIB6nAeBsdiFC5JYv1CTXx+d0=;
- b=QHA+B7uENIZ8zDyiW9GUOMQlW+ICQLsogZzeNG7VhPhc/5lYnsQFGHmLM+yA9yFD50Yhi1QePu9ZcafLB3VURDfdd4yhEdwTeB8hx8WjZKza5kj23tyKha3iMqpp96wcBquRAqGAG+M96xo77iQsg+U+p9B41TijERFTqnwDTR0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by PA4PR04MB9710.eurprd04.prod.outlook.com (2603:10a6:102:268::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.29; Fri, 16 May
- 2025 07:49:21 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a%4]) with mapi id 15.20.8722.031; Fri, 16 May 2025
- 07:49:20 +0000
-Message-ID: <1c0a947a-c634-494f-b544-852e877e1677@cherry.de>
-Date: Fri, 16 May 2025 09:49:18 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: vendor-prefixes: Add luckfox prefix
-To: John Clark <inindev@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Jonas Karlman <jonas@kwiboo.se>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250516002713.145026-1-inindev@gmail.com>
- <20250516002713.145026-2-inindev@gmail.com>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <20250516002713.145026-2-inindev@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0317.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:eb::10) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4008722A819;
+	Fri, 16 May 2025 07:53:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747382005; cv=none; b=qDw//hB9wla2h/hnmOdwIAFi4l5egoRBmUqliEl6+7EQmMbb47XrrVmMSPKXunszhd6IYPkcC2UoXWMxMhqpiMpYq4qvkecUeCYXCQe59hwtroSYXyCPYQaiyAKU6JmHSZtAogoeD5cTeokrsyKMOJbpAdpi/zMI/dcbjDPzm94=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747382005; c=relaxed/simple;
+	bh=VRYwJvlS/oPkw7h+ANDW8F6S+GBF6RqtdD8q4vdqTUc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iPaPofko1L1/AarAH2IOISfstEl7sX5vZvsB98D707hwH/nI5msHUenLSaT6Z6fjMI7HNRXZnRf0QXR6uwHZrO5a+q5rlNOIoIYyuo5j3UjZaXJQIi+v/ZMc6/PyobeLnE1ThVE7ojSzxEd/6b1m9MVhBoUdsqzjH+3GhQmaChw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Q99XguMI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D40DC4CEE4;
+	Fri, 16 May 2025 07:53:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1747382004;
+	bh=VRYwJvlS/oPkw7h+ANDW8F6S+GBF6RqtdD8q4vdqTUc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Q99XguMIv33Z+vPyHpN5RT4ep5fNuBUeC0la/By8sXhmPU4UPHIuetCrS4xpRLADt
+	 q5knwOmgErP4/Z9JhapU2SZLQWVSAeemiix+yqfSa+CVyCCBN/McF+mnieciyGBhdJ
+	 f+nKzCKL6ZazHPm4LN7bTRJ6H/q69zUWyI2dOmbc=
+Date: Fri, 16 May 2025 09:51:36 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Damien =?iso-8859-1?Q?Ri=E9gel?= <damien.riegel@silabs.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Silicon Labs Kernel Team <linux-devel@silabs.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
+	Alex Elder <elder@kernel.org>, greybus-dev@lists.linaro.org
+Subject: Re: [RFC net-next 00/15] Add support for Silicon Labs CPC
+Message-ID: <2025051612-stained-wasting-26d3@gregkh>
+References: <20250512012748.79749-1-damien.riegel@silabs.com>
+ <6fea7d17-8e08-42c7-a297-d4f5a3377661@lunn.ch>
+ <D9VCEGBQWBW8.3MJCYYXOZHZNX@silabs.com>
+ <f1a4ab5a-f2ce-4c94-91eb-ab81aea5b413@lunn.ch>
+ <D9W93CSVNNM0.F14YDBPZP64O@silabs.com>
+ <2025051551-rinsing-accurate-1852@gregkh>
+ <D9WTONSVOPJS.1DNQ703ATXIN1@silabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|PA4PR04MB9710:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45b278df-cec3-4081-cba9-08dd944e2aca
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|7416014|376014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?bTNmdE4yZnl5ckx5bmd0QzZVRUR3Q0xXVVZYOTY2TFZSMDRCNnpvQUx1a3lr?=
- =?utf-8?B?bnZTNGx2bndQRGFrdzlvQThNbWNNcFBNb1kwajB5NGdiTHVTaTdTcERoNHBX?=
- =?utf-8?B?V0h0c0NFVTJLYkpIMk9xZG53ZEJtaXVVNUJOMS9aWGFKTDJVTnJHbTl1VFRV?=
- =?utf-8?B?Tmo0MTBNQmo4SVJvcmJPVzdXL1M4dkxhTXU3RFJ5UGQ5RFlOdVJhK1Boa3pG?=
- =?utf-8?B?U3NtOVVDci8wWGxFOTlHWHh6Z00zQ1RaMXAvd3Rwb0tidSs1WEoyNFRucVVW?=
- =?utf-8?B?RDRpbStrSGRHSldoZHlmRS8vSSs3RytVYU9TNkYrUml6Y0FFM3d3NjNmeDZD?=
- =?utf-8?B?UHBmTXNIWGpLb0ppcVoxSGtGUzhOSEdVRlk4bGE1OUpGQkVHN2Y2Zitac1hj?=
- =?utf-8?B?eTBYU3NFdTZyZXhxVnVwVjlHcDM4aFczWXFyNEEvSXk1dFFBUW9uTDU2dWY1?=
- =?utf-8?B?akZuZExPUnNRWGpBOGhTb2dka0NVckU1SmpvN0Vyd0VXL3Z1ZzQwNlhUK2cz?=
- =?utf-8?B?MTh2cFNJYlRZMEhmcDcxL25yc3F0aE9QZ21jL3dhY2ZUK215TXgyRWtSWUNa?=
- =?utf-8?B?NFRNU0I4OVk0dTltdklMTjkvWXhYRGpqZXJMaWM3RnF1aE1relVpK24zM3Fm?=
- =?utf-8?B?R2RMazFobzJ4djkwMkRTeHlVaWFablNMQWhiUG4xZ2JIOG9JR2FNaWdzNnRN?=
- =?utf-8?B?OU5lbFhMU1V1N1BJSmxHVzlVZEsyeDNnUzFTZlpRVmtKQXFkZExxYTVXUHRZ?=
- =?utf-8?B?ZElCbTdZbGZJMy8xTGVVRVo1bnVPZzlqaUQxZmVCemZGNlFOcXpCOXpnQldI?=
- =?utf-8?B?N2Zsa1lOWjNlbVBnSGJzdS8xMXB3aW15VU5BdHNWNmIyYkluOWNxd1hjMWlq?=
- =?utf-8?B?RVZJa1VaMU9DcWNXWU5PLzhqc0FtbUY5ZVVrWlQrWXFmQkVKUFJFNXdERzhM?=
- =?utf-8?B?R2x4TEhSWmN5eXBaNUUwV2NMYVVMVFQyck5PUmR6d0E1SGVEbFZlamQ5Vm9K?=
- =?utf-8?B?OUFqSHhGbGhYSFBhTkw4ZERRNkhYL3pER25VdExlL2JsTDhHbWlzeEt5Q2pV?=
- =?utf-8?B?L2daOGJhZk5NUExqVjlpVDJtbk50SUJBSjB1d2hjYXJQbWphR3NoRXp5S1VO?=
- =?utf-8?B?V29PRGFYQ3Zwd1VYUVBjM3FLeGN4Vm1tUkV4d0VaQVhUZHFZWXVjR2RGTDdC?=
- =?utf-8?B?MGM2SnhSNEdRMXVOSkpoNm1ZUkNtRjVORWhLMlF6cnhDU3BlOTdQL0F4TjFD?=
- =?utf-8?B?dEJ5aVJ3SWVHV2RRWlhZQTR2YUo5MUhORXhwK1dGYzFjRjU5U21HeFk2NnJK?=
- =?utf-8?B?bE9HWUpoYXpBM3BWUjVqV3hrWTlLUEQ4ZVIzWnMwMXlwTDFUbFYyZkxMeFdU?=
- =?utf-8?B?QWs0MnVQY0NsR1VmaEFqN0VJL2tCL3JTUUlPcnBJSkNsR1czN3g2d3ExRUZl?=
- =?utf-8?B?czhhaWxBQUJBOE5kNzU4bFhpbnA5VXBYV3ZKVVgxTi9pVWNDdjg4YlNlRlA3?=
- =?utf-8?B?L1IvZitiaDdkWkgxRUs2Vm1xNzF0cE5uQmpJZm5oRWNBeE9yTExrSWVHbVdV?=
- =?utf-8?B?T2svNS9WN1hvQ2k5ZjNPSGhMcmZJRXNNQThVbkgrcHpoVmpXVTVrejAyQ0t4?=
- =?utf-8?B?ZlFBclRBeFJRbTd2NVJqOWRJSmlJUGdaK29nenBRbEdRcG9vcEhhV1NjTHUr?=
- =?utf-8?B?WFdjNkZxTyt1bWlIZXhKc3MrS3Vwc2tHWHMvNUdMYUNYUE03OGZ6enlqdjJU?=
- =?utf-8?B?d2ZPNXVHczcwMWNIYkh1MjAydkhuQmpFcllYdm1lL1EvUjl5MmxCNmNyWEZI?=
- =?utf-8?B?cTYvQ05udXlwWE5xV2MyelE0aGR2VTQ2a20rT013VGRJZ1Fad2J4bW53RlZC?=
- =?utf-8?B?eXkxNmpqTFRCMGM1Q050emVQcnhGRDFwcmlMSHhnWUZiMkVzSitTTkdVTDcy?=
- =?utf-8?Q?MjNxayiSWag=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NGZvUzdMejROa0ZBU01rY0VPclArZXpkazAyNlJEMXc4MHdCbmJvZ0NnNkpP?=
- =?utf-8?B?WGdmT1pUVGRwTFZJZGVPQjBNNW9iQmE0K1BodFVUOGxGWmt1STVGaEd6ZDFR?=
- =?utf-8?B?TjVYNUZZNWJNMlJtOTIzVmo4a0tUZXJ5ajlvVHJ1Y1k2MkZaYzFEWUh6MG4v?=
- =?utf-8?B?b283bzM2dmdoMHBub01RZEhoM1FlckFUKzJFcHYySnAwMm1iblBmUTJOSWlC?=
- =?utf-8?B?ZVRZdUttSEdaV1U4cEY0eklUdHJ2S1JzVzR4eGJXcG8rTjM5Nk4wUVlEU1Ey?=
- =?utf-8?B?Znp5N3BkTGVzRTh4OG9qOU1aZnJxd3RQSGU4NlRBU0lUSnlJYVdZdzErOGk5?=
- =?utf-8?B?eEZ4c2FvdTV3RmFiaHRueHJDWEF3aldOTml1aExlbXErYTV1QVdqOTEvZk1h?=
- =?utf-8?B?T1pHYVlIY2s4bFdXZUZsb1pvK2wwa3VlT0lMZWNYWHRySFpkbXR2aDh4Sm5t?=
- =?utf-8?B?Rk5mN1JFRlpkWUtlQU1VMDMzSDdtZ1FGVWlUU0pDOFIwZnphMHNwNVplU21S?=
- =?utf-8?B?MnBMZ3ZZbjNnWmlOaEVYakNlMzIrZzFLUGRJOFYzb1YyTU55TUhpdTFWNnpB?=
- =?utf-8?B?ZWJkcEkranc4VzY4KytkUHpYYjJSOFIxQkJZZ3NIVXhzVE4vQ2J6cEtjY0dG?=
- =?utf-8?B?L3RZYXRsZWUvblFJaFZrZWhjZ3pBS0lPVHVrQ3dmQnBLU3lmZnRwNUlINzVE?=
- =?utf-8?B?Rm50cTNyNEZhR2hiSXJ3ai85M1RXeXU5eGhudVRTSHdGbFgrQ0thY0ZNSHBi?=
- =?utf-8?B?dnZvZVdOdkRGL0xPWXZnUWYzNkN0VXN0YktaZFNncjZaNjlZdnRsaVJDTXgw?=
- =?utf-8?B?QllSZ0MreFVRZnMvcnd5Z1RPMlI5ajA0MGxjeGtKeGMwMU9Qc2t2bS9GSGF2?=
- =?utf-8?B?Wk1IaTMvd214ZnFITFQyNUR1U09RNnh5TGI3UEhLd3lsMFFYL1hUQVVjQ0J0?=
- =?utf-8?B?ZkJIMEVNazR5eElsdC9Eai9MZmZPclhkcjhPRDVseU9FeXdsTWhOa2pzcW54?=
- =?utf-8?B?am52VkRXcldNRzhEVWplVlpxRFo2Nkp3cEZVNlNPdDk1WEp6U2UrdG90MlFR?=
- =?utf-8?B?Q2FpSmJsd3dDUWQ2VjlxMXhrZ1d5VXFybXI0eTQ3Y3p3SXZtNzF0SmJ2cHlE?=
- =?utf-8?B?Uy9OcnM1N0F3TnQ0a0h4ajNoY3lZcGhJam9EVlZuUkd5TkEyUU5FVXJXeTV4?=
- =?utf-8?B?ZmpYbmU3SWROMFVsbzhSQXpSNUZjWWdEZW41WS9xbXNqQkNlbnNkb2JrVDFS?=
- =?utf-8?B?dG5HRk5rR1J4djFQTmZmQmI4bkhJWmhwbWVQK2NFQUhQNmRNbHJLcG5aazFo?=
- =?utf-8?B?VW9sZmRoYjNOTThBb25wdEhvbjRvWm8zQkZPVjZldW9uT29zWUpFVkduYy9s?=
- =?utf-8?B?YVVaRURlaXNnZVk3TUsrWVpQVWJjYTM0djlDS3VYclVRUllaL3ltL21MMUUx?=
- =?utf-8?B?emFuajZXRy9OTDVoY3VITHRzcjNkU0oya29nSXkvYXZpdGxpa2l1cll6bmsv?=
- =?utf-8?B?YktKZmFIeVRGTGUrd05HMGNoZnBMVmQrTkUyYjdQRVpOMnVGaldFdXNqN05K?=
- =?utf-8?B?UEZoUXFuaUJ6SHA5V21PNWJWYlZDNmJTYmZRL1VKTjVobHZ2Q29XOGd2NE5r?=
- =?utf-8?B?Q0JSemkzT2tUYVBzdmx2R1pjSE1aL2hvb3hLSGFhZXMzQjFzODUyZThjOXBy?=
- =?utf-8?B?cEsrZWtrZEtmVVFDTjJzNkhVUmZZcWlkTTFJbEFRc293YUUzNXM5YThhQUE0?=
- =?utf-8?B?Q3VsVkxOVkJ0OGZjTFRVZGNUR3JpOUkrekZhNHZyalZDR0l6SDN1QXFmZUFV?=
- =?utf-8?B?d0IrRWtRZTJKWnljZGplOG5SOTFRWlB6YWxyTVVaRUM2c1BCcGxMVTA3cnRZ?=
- =?utf-8?B?WEJ4amxybGNaQ2hqUlFiT2hPZjY2elptQmJrVFgyM2VJQW13SGxKd0F0ZDFh?=
- =?utf-8?B?b0o3cW1Qb2Z3WjNhdHVXQlA5TWR5dVpqSDVWekliSVRRbzdzemphQlZNazJz?=
- =?utf-8?B?c0JySUVZYzFuTkxmNjhlRS9mVWVvNUhYYVU0Tkhkb3FyMzNIL3JsRUlvbjNr?=
- =?utf-8?B?aXU5T0pac0tocXltT2ZOSnpwQTNtOFBsUHlsMHVQUmhrSXIrR2lDQkcrSVdv?=
- =?utf-8?B?ZW5BY2NBdndCRkc5OGJ2VXNKYlBVTUJZbWk5VzVCUkV5V0xLQnhRMTZhcWNP?=
- =?utf-8?B?emc9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45b278df-cec3-4081-cba9-08dd944e2aca
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2025 07:49:20.6638
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xcMFBIvqydwQbl/wcdSxnv8nZuFF3iHdI0yOyfQ+SfK/3YDjcuA+C0AVBADq5tgSMsUKtx/R9OmvlalUZKlYbGW1ADCgQlWrz29rIsnLR5E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9710
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <D9WTONSVOPJS.1DNQ703ATXIN1@silabs.com>
 
-Hi John,
-
-On 5/16/25 2:27 AM, John Clark wrote:
-> Add vendor prefix for Shenzhen Luckfox Technology Co., Ltd., which
-> produces development boards like the Luckfox Omni3576.
+On Thu, May 15, 2025 at 11:00:39AM -0400, Damien Riégel wrote:
+> On Thu May 15, 2025 at 3:49 AM EDT, Greg Kroah-Hartman wrote:
+> > On Wed, May 14, 2025 at 06:52:27PM -0400, Damien Riégel wrote:
+> >> On Tue May 13, 2025 at 5:53 PM EDT, Andrew Lunn wrote:
+> >> > On Tue, May 13, 2025 at 05:15:20PM -0400, Damien Riégel wrote:
+> >> >> On Mon May 12, 2025 at 1:07 PM EDT, Andrew Lunn wrote:
+> >> >> > On Sun, May 11, 2025 at 09:27:33PM -0400, Damien Riégel wrote:
+> >> >> >> Hi,
+> >> >> >>
+> >> >> >>
+> >> >> >> This patchset brings initial support for Silicon Labs CPC protocol,
+> >> >> >> standing for Co-Processor Communication. This protocol is used by the
+> >> >> >> EFR32 Series [1]. These devices offer a variety for radio protocols,
+> >> >> >> such as Bluetooth, Z-Wave, Zigbee [2].
+> >> >> >
+> >> >> > Before we get too deep into the details of the patches, please could
+> >> >> > you do a compare/contrast to Greybus.
+> >> >>
+> >> >> Thank you for the prompt feedback on the RFC. We took a look at Greybus
+> >> >> in the past and it didn't seem to fit our needs. One of the main use
+> >> >> case that drove the development of CPC was to support WiFi (in
+> >> >> coexistence with other radio stacks) over SDIO, and get the maximum
+> >> >> throughput possible. We concluded that to achieve this we would need
+> >> >> packet aggregation, as sending one frame at a time over SDIO is
+> >> >> wasteful, and managing Radio Co-Processor available buffers, as sending
+> >> >> frames that the RCP is not able to process would degrade performance.
+> >> >>
+> >> >> Greybus don't seem to offer these capabilities. It seems to be more
+> >> >> geared towards implementing RPC, where the host would send a command,
+> >> >> and then wait for the device to execute it and to respond. For Greybus'
+> >> >> protocols that implement some "streaming" features like audio or video
+> >> >> capture, the data streams go to an I2S or CSI interface, but it doesn't
+> >> >> seem to go through a CPort. So it seems to act as a backbone to connect
+> >> >> CPorts together, but high-throughput transfers happen on other types of
+> >> >> links. CPC is more about moving data over a physical link, guaranteeing
+> >> >> ordered delivery and avoiding unnecessary transmissions if remote
+> >> >> doesn't have the resources, it's much lower level than Greybus.
+> >> >
+> >> > As is said, i don't know Greybus too well. I hope its Maintainers can
+> >> > comment on this.
+> >> >
+> >> >> > Also, this patch adds Bluetooth, you talk about Z-Wave and Zigbee. But
+> >> >> > the EFR32 is a general purpose SoC, with I2C, SPI, PWM, UART. Greybus
+> >> >> > has support for these, although the code is current in staging. But
+> >> >> > for staging code, it is actually pretty good.
+> >> >>
+> >> >> I agree with you that the EFR32 is a general purpose SoC and exposing
+> >> >> all available peripherals would be great, but most customers buy it as
+> >> >> an RCP module with one or more radio stacks enabled, and that's the
+> >> >> situation we're trying to address. Maybe I introduced a framework with
+> >> >> custom bus, drivers and endpoints where it was unnecessary, the goal is
+> >> >> not to be super generic but only to support coexistence of our radio
+> >> >> stacks.
+> >> >
+> >> > This leads to my next problem.
+> >> >
+> >> > https://www.nordicsemi.com/-/media/Software-and-other-downloads/Product-Briefs/nRF5340-SoC-PB.pdf
+> >> > Nordic Semiconductor has what appears to be a similar device.
+> >> >
+> >> > https://www.microchip.com/en-us/products/wireless-connectivity/bluetooth-low-energy/microcontrollers
+> >> > Microchip has a similar device as well.
+> >> >
+> >> > https://www.ti.com/product/CC2674R10
+> >> > TI has a similar device.
+> >> >
+> >> > And maybe there are others?
+> >> >
+> >> > Are we going to get a Silabs CPC, a Nordic CPC, a Microchip CPC, a TI
+> >> > CPC, and an ACME CPC?
+> >> >
+> >> > How do we end up with one implementation?
+> >> >
+> >> > Maybe Greybus does not currently support your streaming use case too
+> >> > well, but it is at least vendor neutral. Can it be extended for
+> >> > streaming?
+> >>
+> >> I get the sentiment that we don't want every single vendor to push their
+> >> own protocols that are ever so slightly different. To be honest, I don't
+> >> know if Greybus can be extended for that use case, or if it's something
+> >> they are interested in supporting. I've subscribed to greybus-dev so
+> >> hopefully my email will get through this time (previous one is pending
+> >> approval).
+> >>
+> >> Unfortunately, we're deep down the CPC road, especially on the firmware
+> >> side. Blame on me for not sending the RFC sooner and getting feedback
+> >> earlier, but if we have to massively change our course of action we need
+> >> some degree of confidence that this is a viable alternative for
+> >> achieving high-throughput for WiFi over SDIO. I would really value any
+> >> input from the Greybus folks on this.
+> >
+> > So what you are looking for is a standard way to "tunnel" SDIO over some
+> > other physical transport, right?  If so, then yes, please use Greybus as
+> > that is exactly what it was designed for.
 > 
-> Signed-off-by: John Clark <inindev@gmail.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> No, we want to use SDIO as physical transport. To use the Greybus
+> terminology, our MCUs would act as modules with a single interface, and
+> that interface would have "radio" bundles for each of the supported
+> stack.
+> 
+> So we want to expose our radio stacks in Linux and Greybus doesn't
+> define protocols for that, so that's kind of uncharted territories and
+> we were wondering if Greybus would be the right tool for that. I hope
+> the situation is a bit clearer now.
 
-Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
+Yes, greybus does not expose a "wifi" protocol as that is way too device
+specific, sorry.
 
-Thanks!
-Quentin
+So this just would be like any other normal SDIO wifi device then,
+shouldn't be anything special, right?
+
+thanks,
+
+greg k-h
 
