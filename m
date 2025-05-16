@@ -1,141 +1,143 @@
-Return-Path: <devicetree+bounces-177918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 171B9AB9A0A
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:23:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E07B5AB9A11
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:24:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C14B4A7C28
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:23:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A36009E781E
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7331322E414;
-	Fri, 16 May 2025 10:23:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5686F231C9F;
+	Fri, 16 May 2025 10:24:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=geotab.com header.i=@geotab.com header.b="ZA0e54sf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637D7231C9F
-	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 10:23:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A11227E83
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 10:23:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747391023; cv=none; b=Mg5bWu8WclJsrTpA9ZPveKq0vdsaVR7UaVsB6/Tgx1a9LlLPLKX+z5Bf7qs+g9hPrFX/GGCz84M8cpL57vINou4CeZw9YEpmy4vgeVSik8QLmo+ralJyKHyjZSvCcyEXbegmG9zhR2DJSPuiyqz9Ovu4CIQWAU7UweXw727at0Q=
+	t=1747391040; cv=none; b=OZmtLNpWiDOCIqTcHI+JIU/pYeR2rtart6gXrSoHAKAxFFPe+W9rPuq1Iiws/0nx58osWIySOIf4x627aDmUDpfpCK7PbTGTGWoI/cGqM7K4eKopheGd9IxRxJLA/LQlumFLJbF4zrqJuqRzZ9JdmogEsAl8bZk03c/anSjxZ9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747391023; c=relaxed/simple;
-	bh=O62hwLD99pjENKaFOtAe4SzABf05kZaTfZAi8O/Xa/w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QAJLaHmMNgqFNU1ZyGXe+8RUVzb8WOMydNtLPK+x1BFOll50Q72gCeLWXTLD8FqdR+WF+VkayWPdQUVTeDvIKT5XKmpVZfyOQsK4heiyAEUAO7PvhHFY+JyLU8u+15s1P5X3sxfS2I/zSJOoO0xB5vX6PO4SDh6QsS85mc1W7fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uFsDs-0002TA-Kk; Fri, 16 May 2025 12:23:24 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uFsDr-0031Py-0C;
-	Fri, 16 May 2025 12:23:23 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uFsDr-008SsJ-0x;
-	Fri, 16 May 2025 12:23:23 +0200
-Date: Fri, 16 May 2025 12:23:23 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Bryan Brattlof <bb@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] arm64: dts: ti: k3-am62l: add initial
- infrastructure
-Message-ID: <aCcSG5ah12N0yOwi@pengutronix.de>
-References: <20250507-am62lx-v5-0-4b57ea878e62@ti.com>
- <20250507-am62lx-v5-2-4b57ea878e62@ti.com>
+	s=arc-20240116; t=1747391040; c=relaxed/simple;
+	bh=kX8C4riqmdvhNYzjXAN9FBLZqrBSEMscQB6yaApzJbU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GL2o8feBI8mbN/m+zlucKvHCRSKmIthVjJRkFagwVavbwJ1uozAUqZKHskHBAnKsZGiv5NGWuW5YgaPSTQ4UiliK7SaZDQLt6n+OKCC2rT5gMkfRj3RmxI8R4DaEe7zfdkPi1BXEXIs5eGm1VChfdB9F62ieev22WYvCYMkdjv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geotab.com; spf=pass smtp.mailfrom=geotab.com; dkim=pass (2048-bit key) header.d=geotab.com header.i=@geotab.com header.b=ZA0e54sf; arc=none smtp.client-ip=209.85.160.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geotab.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geotab.com
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-476a720e806so18495811cf.0
+        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 03:23:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=geotab.com; s=google; t=1747391037; x=1747995837; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sSWKgyvnroR1BW7IVNgVxry/JzplDnRtvXjCHt5HFJ8=;
+        b=ZA0e54sfjtjVZGf35GlYUaPnuIgf15Yltg1VpNcck2kvTnRLeAGopt39UlVuEz0+pp
+         s7+YyVA+OsQo8nVq9W3UoGBNYp7FLJa5gWsY/IEkmUnK9aSAULNU2cmxPXz2SOfG6FBv
+         mNSjf6Bju5L5/qx+wrSaq3zXFZuKj9AyiQiz3T20lQo41kG1cLgZ89Q2ZD8ohtMV2Q72
+         Y+6vkcLXfutnxPpNjwRmAdlYoj4Qr117WEDB4JCeaxjZw/eJ/guYfAmCt68Bmian7kLj
+         BL5qBMvh01CTIPTQ7dg5bZJDwxodCwL3hk0RyBSaDjMXz/HMTPCx4VKyOV+tUSRDum/h
+         HJvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747391037; x=1747995837;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sSWKgyvnroR1BW7IVNgVxry/JzplDnRtvXjCHt5HFJ8=;
+        b=Ph2hQo9aS4rucLFR9qdUdLJVaSssFI4+3eDS+Xyc/THdoqIPIrC6UCH0II7WxMa4RA
+         F3Rfrpf9RSfcSVoErRgBou2ljySgk8QwcSj4V0enDkb4s0TmjDQrQ0UzxWyrfsUbrr2f
+         +OZhfySUjdL0eWw5Wji2Tm+wQopbm6V/1q2EjMu9UuHkbQGn4FzG/5YCKINSPSxIujY9
+         RDA+pIWp8/m57t2OB5GU7O9YtP6ucq1e5G8gWinWWC9GBMsuIqY3WUKyES8/CGeuDUG7
+         QWeyus4fJgXmJ5w7fG0ZAqHEw/N6AII3N+EsL1zw5IMkkCQ2q4y7t5U8R/g9rBNyBxAm
+         hlJw==
+X-Forwarded-Encrypted: i=1; AJvYcCXLfnD4+IpDXb7/GNs5BKqbNdtLIQ8MVPV2uayof+wN7JoaitRSrsn1gq98LdPQ8WnXHqC70IzU8kaF@vger.kernel.org
+X-Gm-Message-State: AOJu0YyERhIOKVno35XT0qLxAz+wlUIj+GfC4QJCV2pbR7NspmZln3u8
+	D4baB58PFhZC/VIvRBstJIq/MnAwEY52EA7T6ADTBaN3mVZqUigmCITD9gKiylL8TTcHJl0r87U
+	otR7vkIqf1X0MWMQwij5M7Z8U6f0AyNWa8qgridbfp1et7XezevcN2+VRRQ==
+X-Gm-Gg: ASbGncucGPMUbhSW7GslbcSV15MdRcbHZ2lNbcGfuK1AfYSCNBvaF+gAviIkJq+MWPV
+	+pyPn9KsaeeLLihToYbXY/w++cK3Mm0hfGqYDXGf6R6arwB7BIX7UWRi0N64CfV1uaVOT74DUYJ
+	l3V5SV0bQnRKanZfDkz1SQ/T9evYFqNP+BR1mZNrmke5vI9eRt4JnStMjmHniimbL/1Q==
+X-Google-Smtp-Source: AGHT+IFh8efmf9PRAMrZc4K2Z8Gvs4gsieCI9x444infnsCJARCipPRL4wFTODnmENO1rPgK7fNUDGBrvA0uGWbk5LM=
+X-Received: by 2002:a05:6602:3a81:b0:867:3889:45e2 with SMTP id
+ ca18e2360f4ac-86a2322a6cfmr379802039f.10.1747391026352; Fri, 16 May 2025
+ 03:23:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250507-am62lx-v5-2-4b57ea878e62@ti.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20250514-ubx-m9-v1-0-193973a4f3ca@geotab.com> <20250514-ubx-m9-v1-1-193973a4f3ca@geotab.com>
+ <20250514-saggy-shifter-e4ac7152f823@spud> <CAN=L63qsjEAvfocgP0tGrpe-x6Rx1gvTAkPE9i99Ai2zJj6ssA@mail.gmail.com>
+ <20250515-varying-swan-31ca63615b43@spud>
+In-Reply-To: <20250515-varying-swan-31ca63615b43@spud>
+From: Alejandro Enrique <alejandroe1@geotab.com>
+Date: Fri, 16 May 2025 12:23:35 +0200
+X-Gm-Features: AX0GCFuBOqb1SIowingiNrMQQe0Y70xsdgvTHYHt-8V_ptqMp7MjogQl5JSOXCY
+Message-ID: <CAN=L63oc7a6+_e+nhiyCkttX-TSbcjcwBmSzPsSk94m1ebGt4w@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] riscv: dts: sophgo: add zfh for sg2042
+To: Conor Dooley <conor@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi All,
+On Thu, May 15, 2025 at 5:02=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Wed, May 14, 2025 at 06:53:25PM +0200, Alejandro Enrique wrote:
+> > On Wed, May 14, 2025 at 5:49=E2=80=AFPM Conor Dooley <conor@kernel.org>=
+ wrote:
+> >
+> > > On Wed, May 14, 2025 at 01:55:54PM +0200, Alejandro Enrique via B4 Re=
+lay
+> > > wrote:
+> > > > From: Alejandro Enrique <alejandroe1@geotab.com>
+> > > >
+> > > > Add compatible for u-blox NEO-9M GPS module.
+> > > >
+> > > > Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.y=
+aml
+> > > b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> > > > index
+> > > 7d4b6d49e5eea2201ac05ba6d54b1c1721172f26..cf5ff051b9ab03e5bfed8156a72=
+170965929bb7e
+> > > 100644
+> > > > --- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> > > > +++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> > > > @@ -22,6 +22,7 @@ properties:
+> > > >        - u-blox,neo-6m
+> > > >        - u-blox,neo-8
+> > > >        - u-blox,neo-m8
+> > > > +      - u-blox,neo-m9
+> > >
+> > > No match data in the driver, why is a fallback not sufficient?
+> > >
+> >
+> > I added the match data in the driver in the PATCH 2/2 of this series
+> > in the same fashion as previously supported modules.
+>
+> Did you? When I looked, there was just a compatible and no match data.
 
-On Wed, May 07, 2025 at 10:09:20PM -0500, Bryan Brattlof wrote:
-> +	rti0: watchdog@e000000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x0e000000 0x00 0x100>;
-> +		clocks = <&scmi_clk 273>;
-> +		power-domains = <&scmi_pds 60>;
-> +		assigned-clocks = <&scmi_clk 273>;
-> +		assigned-clock-parents = <&scmi_clk 1>;
-> +	};
-> +
-> +	rti1: watchdog@e010000 {
-> +		compatible = "ti,j7-rti-wdt";
-> +		reg = <0x00 0x0e010000 0x00 0x100>;
-> +		clocks = <&scmi_clk 279>;
-> +		power-domains = <&scmi_pds 61>;
-> +		assigned-clocks = <&scmi_clk 279>;
-> +		assigned-clock-parents = <&scmi_clk 1>;
-> +	};
+You are right. I just added a compatible string, no match data. Sorry,
+I was not following.
+I just added the neo-m9 compatible the same way the neo-6m was previously
+added.
 
-In the TI downstream TF-A we have this in the readme:
-
-| AM62L Clock SCMI ID List:
-| =========================
-| 
-| **Note:** For using the clock parents, the scmi clock ID will not be the actual number itself,
-| rather will be starting with 0 for respective parents similar to how it's being done in TI SCI
-| Documentation: https://software-dl.ti.com/tisci/esd/09_02_07/5_soc_doc/am62ax/clocks.html
-| 
-| For eg. for AM62LX_DEV_MCASP0_AUX_CLK device, clock ID will be 192, however if we require the parent
-| to be AM62LX_DEV_MCASP0_AUX_CLK_PARENT_HSDIV4_16FFT_WKUP_0_HSDIVOUT1_CLK then we would represent in
-| the device tree as:
-| 
-| ```
-| assigned-clocks = <&scmi_clk 192>;
-| assigned-clock-parents = <&scmi_clk 1>;
-
-This doesn't work. It's not conforming to the SCMI specification and it
-also doesn't work with the Linux SCMI clk driver which will hang on a
-cat /sys/kernel/debug/clk/clk_summary. This is because all clock
-parents will be the SCMI clocks with the lowest ids including the clocks
-with the lowest ids which will expose themselves as parents.
-
-It also prevents the userspace from being able to make a tree structure
-from the clock tree.
-
-The corresponding TF-A code is requested for upstreaming here [1] where
-I also commented on with the same issue.
-
-Please stop spreading this further. The parents must be the actual
-clk_id, not numbers from 0..n.
-
-Sascha
-
-[1] https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/34834
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+What do you mean by using a fallback? Using one of the existent
+compatibles (none have match data) or adding a new fallback
+compatible, something like just "u-blox,neo"?
 
