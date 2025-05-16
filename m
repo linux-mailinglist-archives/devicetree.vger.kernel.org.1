@@ -1,189 +1,423 @@
-Return-Path: <devicetree+bounces-177933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27E85AB9A8F
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:52:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43444AB9A99
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:56:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D593C1BA3550
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:53:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5106171C6D
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEE0E236443;
-	Fri, 16 May 2025 10:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC26236457;
+	Fri, 16 May 2025 10:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="V8cO4/4j";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="NYjJvXj7"
+	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="da+2tWSO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b8-smtp.messagingengine.com (fhigh-b8-smtp.messagingengine.com [202.12.124.159])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57684235C17;
-	Fri, 16 May 2025 10:52:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.159
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6089236431
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 10:56:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747392764; cv=none; b=TkbcbdfiZGjjIKDRdD9WkgoHIDdpDCgoRzG8bVy+iH058E56yQatFajfiD7VcpT4x4EwVPDYdt19spdWWAxVgXjVe1dd2c7+DV0jK4q5wnyE63LGoO7Y93/B+vTVuEHXwnaI/uOfxsMiJ5X5XJPmEAy04MuPXCCCTYnco/8wwo4=
+	t=1747392978; cv=none; b=kmveZm21ZlBj/9ASANg8tNtINbkhkh1+0BFoJv0bs9MBRvoy04x1g4TiIFqjuXwR8Fp9WX3bDM7VRTKWaEuMZoAhB4cszwhhjtEauP731T+FvQEx1tfkT1YFkMICWDuG8c4eC38h9v3hxoPfbkTriEhh5nUZu8oXAhoYyZRU8kI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747392764; c=relaxed/simple;
-	bh=XHtoSZNO4OHqLoyTnSPOxT1scq2W0Zbg7ZyFA+t4Z1k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lraJMRl8uwmkhijpdaT3glEFqyz1/Y0aExWYXSUM8Qdk0zkHzwMDaAoqkN/s5Ni5bcfpHdTU2mLSVb8cjy69sOn+4tqo71FYQK2IfVFs/LAhKIX9/6mL59Ojf/xkuWp/tJrQ6LqoB6smI+hyGpfLrfaD4J/ratZrxPqspOnguIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=V8cO4/4j; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=NYjJvXj7; arc=none smtp.client-ip=202.12.124.159
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-06.internal (phl-compute-06.phl.internal [10.202.2.46])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id E0110254009B;
-	Fri, 16 May 2025 06:52:41 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-06.internal (MEProxy); Fri, 16 May 2025 06:52:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1747392761; x=
-	1747479161; bh=SPH/wuuGSMdDk2e/1NsetZyGIDEN5dTgWZ7weWTf6ag=; b=V
-	8cO4/4jd1Oo2Gyyy4YdH3j4kYVAXb5UvJKM6HcuI8GXNgiyTrUSn+c2xvvFHm4UE
-	pEClPzdI8o9T6Bk46WMb3XljNsYRmEXRVJwX5nuTA3yfCKTLx1jAsMsOTOxPSxCD
-	HLD7A028rx/q0p3yzQYGrOB6dZHhqErUbTZ95/cUyUMYh4gTKBRQNdyBtd7LMNG3
-	cbUC9aoGW1D6NgBVGN9aui+EGUTu2Rfc2EzDIpmyEvC2PcB9fRcIw/vb1g2IDg2W
-	1imbUbyFmkLgMHDq2jH4fguTbM+COMuu06yHQdw0RWlhDXZEB5D9FHEkm4WDs1YC
-	lysUraTdFALc1vMyVi1rQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1747392761; x=1747479161; bh=S
-	PH/wuuGSMdDk2e/1NsetZyGIDEN5dTgWZ7weWTf6ag=; b=NYjJvXj7K1BE/DYBb
-	u6BLWi/bE64JsV6kiHSMX56MACqtZG04d4YXfb3GCgsPngMBHoGoCyI+bsxNu5L3
-	kARfCDrgq6/hcAZEGOpX20tPKcSVioQmcVFMuux2oagpE24WHJI0BeJpgUpOiDCk
-	qG+tNz6i+fjc5sTXJizQheZlykBSH/Q1typXKzI6Z1vTBurm8zB7iw5SkMV7DWqw
-	G49qWaHkiAKTLNgCsU6ZlypRlfDPqyALE9Qw2OhGxOBndAvCHCwPza6k5FFiZ+i/
-	/5rX8A4IWnfgoXlFun8wm1vBGGl6LPBf7aXpAN9Jtyv5S2yvNuzVJp3IwQ4DUMeO
-	wzG5Q==
-X-ME-Sender: <xms:-RgnaHz_HMZZYk6M6myIyrPfgni-vaSMk4R1ZjpXDkpWBI3IDf4Hyw>
-    <xme:-RgnaPRLKL5qcgsM2RTrxp9F94ufCAgzLAr9fqB13Zmoo9MsIvNPsg7USx3vR_XkG
-    RtE-qFR_GIzwpFl4A>
-X-ME-Received: <xmr:-RgnaBXntb_rnGp0IU4zTXor5pk9OU7AOGdS7ZvMrtWlCOX1RXLUBpeyef0kEU60NVsHq80rE6IaEONn7QW4S4UtYMACn2lIMoHjrGy78D9a>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefuddvheehucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredt
-    tdenucfhrhhomheptfihrghnucghrghlkhhlihhnuceorhihrghnsehtvghsthhtohgrsh
-    htrdgtohhmqeenucggtffrrghtthgvrhhnpeffheeiffegtdfgffejteevgeefkeelieel
-    keevueetffetteduffevgeeiieehteenucevlhhushhtvghrufhiiigvpedunecurfgrrh
-    grmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgspghr
-    tghpthhtohepvdegpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehmrhhiphgrrh
-    gusehkvghrnhgvlhdrohhrghdprhgtphhtthhopeifvghnshestghsihgvrdhorhhgpdhr
-    tghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidrihhnthgvlh
-    drtghomhdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghp
-    thhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopegurghnihgvlh
-    esfhhffihllhdrtghhpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgr
-    ihhlrdgtohhmpdhrtghpthhtohepshgrmhhuvghlsehshhholhhlrghnugdrohhrghdprh
-    gtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:-RgnaBiuT5D7c82SZbe9Hv1PVZ_ub9B3K4UbC2n5Ga-eIprm41RjVg>
-    <xmx:-RgnaJB0upJvoVTtfHZFgU_muHgb8llwE8QvOGha_bYMnrKffH1rZA>
-    <xmx:-RgnaKKdw9OzykW46A2UIAES9fUP1N69mafKzHAL8O7a2chNeASk2w>
-    <xmx:-RgnaIA73yl5Ih0axGp3IsaV6tN1PEIttC_7le2z5rH0ChslkCmi5Q>
-    <xmx:-RgnaGqs6-aWhtdXRoxRf59iPMtTSnJRKPIaX-Rkr8viAnS_2rVyDjd_>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 16 May 2025 06:52:35 -0400 (EDT)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Maxime Ripard <mripard@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH v11 8/8] drm: sun4i: de33: mixer: add mixer configuration for the H616
-Date: Fri, 16 May 2025 22:44:25 +1200
-Message-ID: <20250516105101.11650-9-ryan@testtoast.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250516105101.11650-1-ryan@testtoast.com>
-References: <20250516105101.11650-1-ryan@testtoast.com>
+	s=arc-20240116; t=1747392978; c=relaxed/simple;
+	bh=IRrrSdP2uqh02wzXH9M7KBTL5iRQN9j2xYfXsWMp6OY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GhJEUWoxqvFG8+vqcSOozSQSvt7hvmpJPlg7smXP0AlZphqQrnLZ9TBetce66Iu9PaKXNhTT+XBgfIqfHKfROKATUY/Gp3fmPFOmVh/nckFxPmxxtAg2VJa0NZ013iqVnGafkRnQ5+nsu2tYYwUARkA2R6WQD0BOBROmDt/PWbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=tomeuvizoso.net; dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b=da+2tWSO; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e7b3410e122so1941835276.2
+        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 03:56:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1747392973; x=1747997773; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wvq8SJtHkSgAHowZhDbqFL61WnW2AkvgYvOEybV9RGs=;
+        b=da+2tWSOUAhNemGjnnnD6vW4hmbI12RH9aHIHucBuqdkBC4kt/79aBjXGvxZahRE/v
+         gB/o8wBPsjCUU6NLhhSZ7jqFFySlgtZrTZEjqzMKU12vOlIfVtCsNf2viZnv7A453k8z
+         O5o6+fYdTLvRGL2yJH87ZTzlwCqrq6l0yVqr1DBsctKUso+aNSrGE72GA2NeCwalEKpg
+         8H64krw3xwQZRjetUcbCDpIrfOh3qS24p6BWGLaYE3+X3/BtDUIOhn9H6VFa2IuHrNux
+         hLlB7aVpafatt41OI/txl6EkhXoC7ZQKZ0j2Hof1yGIm3DXOQmimZlfhBplvy3IeSrwb
+         C/dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747392973; x=1747997773;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wvq8SJtHkSgAHowZhDbqFL61WnW2AkvgYvOEybV9RGs=;
+        b=Cy82dwwnt8L7KOTpcVY5xIYTzJpfdTkCiVKEQz6tT7gIfdtAvg0d8die+1u2XI4bFJ
+         9fY5pwlrb1YdVnuwAMA1NmlYtW3oiA3+Z7f10sdptAz/cAk5Xr5k/G2BQgl5r6z39mNX
+         Nun2GJj2cgSYxciHqdZef7G4hLOcRXt4FuPA7hcgHLscMNmyrWJyJ2OJ+bsBAdJSmvwH
+         JDBLpQO0v97um8Ivgb7iMro41d54hDIdbfP36O2id/ssZtAP8ijs4ibydwjr4Rl9aoL5
+         /oFJutTpOZlVzvCjDeWkRjRWbf2Yk7krZo0gdaUOVEa1IXmMQ5wpc3BVUaNZnE7Gt7RP
+         b/yw==
+X-Forwarded-Encrypted: i=1; AJvYcCXYGH/c5v0sjqo4Ey+NrEsEkxmSXTU7iTKueU62TOMp1SInBc9ZFtuiL9K6xtqkqRhb8eZfl4ryrPIV@vger.kernel.org
+X-Gm-Message-State: AOJu0YylGXfFAaFwoi3KjO0fKD0rq4OIaE4gzXzZ2e9C1OTN6/uhE76D
+	LqQ9I/RVvFnjBcecli79sbm8MTUfvMkbYoAeSrQ2Rs9A+leYM6O4QiAcZgpPmPl1AkxLF4RKAlc
+	7bXIzaRA=
+X-Gm-Gg: ASbGncuZULLxL7/o8j1hAyYxBWBZ+hrwr95vMPRAhhMynVoIhXn2TtI3mvS57/8oF5y
+	JvFIPrHcMzxj+vhVaF4vsTZgLonVCN8Z7cHAEqemlZo/eyL9f695Q7z6ohpdMH9MERbRpt2+lIy
+	MGdmoAWT8CoGqgcKT/geEsMQVL88mxE4vVo7medWDZMDYV/OlrKz63HYWP7cx58gbW92UkLorVU
+	jsxm4B66jothpLUORKSKojYu71nFxdCwvhjGm79CMVxZBSKEV9b200zGftWcU0A/dev8oo9Jx6h
+	ZJ062UpAoNvKOdGlZ6mYOPmi+P4neP7NEwIo977xyMeMrtd4clf4kTwvJfUNHjetvMwUabROpIR
+	znJJh4SF78/BXimcVtS0=
+X-Google-Smtp-Source: AGHT+IE0BSzctv3wwMpozhnU80k69/QXe6M6bale5k7Ttq3u4RvTeq2L5ZQTyobpec4KDJitemoZ9Q==
+X-Received: by 2002:a05:690c:6e06:b0:70c:a34b:5288 with SMTP id 00721157ae682-70ca7a572cfmr49865157b3.27.1747392973681;
+        Fri, 16 May 2025 03:56:13 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-70ca852d942sm3386897b3.102.2025.05.16.03.56.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 May 2025 03:56:13 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e733cd55f9eso1914228276.1;
+        Fri, 16 May 2025 03:56:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUKGGOW50hj+LvpQsxSol/h7BR/Ijctm34OdZFhAeGIItG1IpS1VlrrVTUBb08ZcIt9WRcg4qQHTHT0@vger.kernel.org, AJvYcCUpn2+Iweqju9CICYxMxQmqXCOnP7UYy9TgHzyvV5Q1mCUxQrOkEJRdloHqsgI6w3vAdGTU2yPJ/UT5@vger.kernel.org, AJvYcCUwOOpBG/J8ND67/4O8sSAK9Nh1Yp1LrWNv5pRpK+low3GcjHjvLjPK2TayftuZQz8BcqTVFUzT4rYSzj8=@vger.kernel.org, AJvYcCXbYOJNiIW43VaJaVcPEpciZDXGCuNe3M9Pz6rn9BgwLBi1IzicELvTBPFyh9KxoOIqhKQ0qfd68DogvifO@vger.kernel.org
+X-Received: by 2002:a05:6902:1890:b0:e6d:e962:f317 with SMTP id
+ 3f1490d57ef6-e7b69d5b0d2mr3967716276.10.1747392973185; Fri, 16 May 2025
+ 03:56:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250225-6-10-rocket-v2-0-d4dbcfafc141@tomeuvizoso.net>
+ <3628015.iIbC2pHGDl@workhorse> <CAAObsKDYpDt15NePk7DZbfwXnn5uaJxCu-pwZd-+PDEi56C73A@mail.gmail.com>
+ <6549034.lOV4Wx5bFT@workhorse>
+In-Reply-To: <6549034.lOV4Wx5bFT@workhorse>
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Date: Fri, 16 May 2025 12:56:02 +0200
+X-Gmail-Original-Message-ID: <CAAObsKC_h2iQWsjeTQm71Q2Vp4yTne+xP5_zc+X2u-_sP8_CDg@mail.gmail.com>
+X-Gm-Features: AX0GCFvfyIhbJSWWie1awNYiOYU4KhI_m0n6kxRk7hmgZ7cUnrZxeaiTgoKbzoU
+Message-ID: <CAAObsKC_h2iQWsjeTQm71Q2Vp4yTne+xP5_zc+X2u-_sP8_CDg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: npu: rockchip,rknn: Add bindings
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Oded Gabbay <ogabbay@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, Jeffrey Hugo <quic_jhugo@quicinc.com>, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Jernej Skrabec <jernej.skrabec@gmail.com>
+On Fri, May 16, 2025 at 12:25=E2=80=AFPM Nicolas Frattaroli
+<nicolas.frattaroli@collabora.com> wrote:
+>
+> On Thursday, 15 May 2025 10:30:14 Central European Summer Time Tomeu Vizo=
+so wrote:
+> > On Wed, May 14, 2025 at 7:50=E2=80=AFPM Nicolas Frattaroli
+> > <nicolas.frattaroli@collabora.com> wrote:
+> > >
+> > > On Wednesday, 14 May 2025 17:18:22 Central European Summer Time Tomeu=
+ Vizoso wrote:
+> > > > Hi Nicolas,
+> > > >
+> > > > Thanks for looking at this. Some thoughts below:
+> > > >
+> > > > On Fri, Apr 25, 2025 at 8:50=E2=80=AFPM Nicolas Frattaroli
+> > > > <nicolas.frattaroli@collabora.com> wrote:
+> > > > >
+> > > > > On Tuesday, 25 February 2025 08:55:47 Central European Summer Tim=
+e Tomeu Vizoso wrote:
+> > > > > > Add the bindings for the Neural Processing Unit IP from Rockchi=
+p.
+> > > > > >
+> > > > > > v2:
+> > > > > > - Adapt to new node structure (one node per core, each with its=
+ own
+> > > > > >   IOMMU)
+> > > > > > - Several misc. fixes from Sebastian Reichel
+> > > > > >
+> > > > > > Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> > > > > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.c=
+om>
+> > > > > > ---
+> > > > > >  .../bindings/npu/rockchip,rknn-core.yaml           | 152 +++++=
+++++++++++++++++
+> > > > > >  1 file changed, 152 insertions(+)
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/npu/rockchip,rkn=
+n-core.yaml b/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml
+> > > > > > new file mode 100644
+> > > > > > index 0000000000000000000000000000000000000000..e8d0afe4a7d1c4f=
+166cf13a9f4aa7c1901362a3f
+> > > > > > --- /dev/null
+> > > > > > +++ b/Documentation/devicetree/bindings/npu/rockchip,rknn-core.=
+yaml
+> > > > > > @@ -0,0 +1,152 @@
+> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > +%YAML 1.2
+> > > > > > +---
+> > > > > > +$id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml=
+#
+> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > +
+> > > > > > +title: Neural Processing Unit IP from Rockchip
+> > > > > > +
+> > > > > > +maintainers:
+> > > > > > +  - Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> > > > > > +
+> > > > > > +description:
+> > > > > > +  Rockchip IP for accelerating inference of neural networks, b=
+ased on NVIDIA's
+> > > > > > +  open source NVDLA IP.
+> > > > > > +
+> > > > > > +properties:
+> > > > > > +  $nodename:
+> > > > > > +    pattern: '^npu-core@[a-f0-9]+$'
+> > > > > > +
+> > > > > > +  compatible:
+> > > > > > +    oneOf:
+> > > > > > +      - items:
+> > > > > > +          - enum:
+> > > > > > +              - rockchip,rk3588-rknn-core-top
+> > > > > > +          - const: rockchip,rknn-core-top
+> > > > > > +      - items:
+> > > > > > +          - enum:
+> > > > > > +              - rockchip,rk3588-rknn-core
+> > > > > > +          - const: rockchip,rknn-core
+> > > > > > +
+> > > > > > +  reg:
+> > > > > > +    maxItems: 1
+> > > > >
+> > > > > Hi Tomeu,
+> > > > >
+> > > > > as you probably know, RK3576 has quite a similar NPU. This is why=
+ I'm currently
+> > > > > poking at this patch series. One of the differences I ran into wa=
+s that the
+> > > > > IOMMU of each NPU core now sits within the reg address space rang=
+e of the core
+> > > > > as described by the single reg item binding and assumed by the dr=
+iver.
+> > > >
+> > > > But this is not a difference, right?
+> > >
+> > > It is. E.g. on RK3588, you use reg =3D <0x0 0xfdab0000 0x0 0x9000>; f=
+or
+> > > rknn_core_top, and rknn_mmu_top then sits at 0xfdab9000, which is jus=
+t
+> > > outside the reg range of the rknn_core_top node. That means acquiring=
+ the
+> > > iomem as a resource succeeds for you, whereas for me it fails.
+> >
+> > Ah, got it now, thanks.
+> >
+> > > >
+> > > > > This seemed weird to me at first, since I would've guessed the co=
+res would be
+> > > > > exactly the same, but I noticed that they kind of still are; the =
+RK3588's NPU
+> > > > > also has a "hole" between 0x2000 and 0x2fff on each core, which i=
+s where RK3576
+> > > > > put its IOMMU.
+> > > >
+> > > > So this is the same in both RK3576 and RK3588, right?
+> > >
+> > > Yes, both RK3576 and RK3588 have a hole in the same area. RK3562 also=
+ has
+> > > the same hole. RK3568 doesn't have the offsets for the individual par=
+ts of
+> > > the NPU in the TRM, making all the relative register offsets the TRM =
+then
+> > > goes on to document completely pointless as it omits what those offse=
+ts
+> > > are based on, so we don't know if it has a hole there. I vaguely reca=
+ll
+> > > that it has the IOMMU either before or past the global range (not sur=
+e if
+> > > I wrote these findings down anywhere?), so if it has a hole at 0x2000
+> > > then it's unused like on the RK3588. I don't have access to the RV110=
+6
+> > > Part 2 TRM where the NPU is described, so I don't know whether that h=
+as a
+> > > hole there unless we dig into the downstream code.
+> > >
+> > > >
+> > > > > This is some information I gleaned from the RK3588 TRM, specifica=
+lly section
+> > > > > 36.4.1 "Internal Address Mapping", which shows where each "part" =
+of the NPU core
+> > > > > has its address space.
+> > > > >
+> > > > > Right now we just represent this as a single reg item per core. I=
+'ve played
+> > > > > with the idea of splitting this up into the distinct ranges the T=
+RM lists and
+> > > > > giving each a reg-names entry, but this would require a major rew=
+ork of the
+> > > > > driver from what I can tell, including to the auto-generated regi=
+ster header.
+> > > > >
+> > > > > For now, my hack on RK3576 is to just ioremap the range defined b=
+y resource
+> > > > > start to resource end inside rocket manually if I get -EBUSY tryi=
+ng to ioremap
+> > > > > the resource proper. This is quite an ugly hack though, it means =
+the IOMMU node
+> > > > > still has its address overlapping with another node in the DT, an=
+d it also means
+> > > > > we have an unavoidable error message printed into the kernel log.=
+ This is also
+> > > > > what the vendor driver seems to do.
+> > > > >
+> > > > > What do you reckon is a reg setup in the binding that is both rea=
+sonable to
+> > > > > implement in the driver while accurately describing the hardware?
+> > > >
+> > > > Guess we could go with some smaller granularity and have 3 register
+> > > > areas per core, instead of 10:
+> > > >
+> > > > - CORE: PC+CNA (0x0000 ~ 0x1fff)
+> > > > - AUX: CORE+DPU+PPU+DDMA+SDMA (0x3000 ~ 0x9fff)
+> > > > - GLOBAL (0xf000 ~ 0xf004)
+> > > >
+> > > > So the IOMMU on all the known SoCs can have its own regmap. I have
+> > > > chosen to call the first one CORE because these are the components
+> > > > that are absolutely needed in any NPU that is oriented towards
+> > > > convolutional networks (convolutions, basically). I have named the
+> > > > second AUX because it contains hardware units that are optional and
+> > > > are used to implement operations that may be common but that aren't=
+ as
+> > > > computational expensive as convolutions and thus might be skipped i=
+n
+> > > > lower-end versions of the IP.
+> > > >
+> > > > What do you think?
+> > >
+> > > I'm personally fine with this approach. I've floated a two-area appro=
+ach
+> > > to Sebastian Reichel before who, as far as I can recall, expressed hi=
+s
+> > > distaste for  it as it seemed like an arbitrary division. I do concur=
+ in
+> > > that, it seems very arbitrary, so it's hard to say whether the bindin=
+gs
+> > > maintainers would let us get away with it if they get wind of it.
+> > > Unfortunately they are Cc'd on this E-Mail, so the cat is out of the =
+bag
+> > > in this regard.
+> >
+> > Actually, after thinking a bit more about it I'm leaning towards only
+> > having the PC, CNA and CORE areas in the DT, as those are the only
+> > ones that should be accessible from the CPU.
+>
+> That does make sense to me. I've just checked the RK3576 specific reg
+> fiddling code I hacked in and it doesn't appear to be writing to any
+> other areas either.
 
-The H616 (and related SoC packages sharing the same die) carry the new
-DE33 display engine.
+Cool.
 
-Add the mixer configuration and a compatible string for the H616 to the
-mixer.
+> >
+> > The registers for the other units should be set by the PC, as it reads
+> > the command stream.
+> >
+> > So three register areas that can be set to wherever Rockchip has
+> > placed them, and we just ignore the others in the kernel, as we don't
+> > have any business messing with them ourselves.
+> >
+> > What do you think?
+>
+> This seems like a good solution. Any further reg ranges that are used in
+> other variants (e.g. RK3562/RK3576 and maybe RV1106) introduce something
+> called "CBUF" and I'm not yet sure if that'll need any writes to its regs
+> from the driver, but if it does then it's easy to add another range for i=
+t
+> in the binding for just those compatibles.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-Acked-by: Maxime Ripard <mripard@kernel.org>
+Do you have any further info on those CBUF regs? In the NVDLA
+documentation, CBUF is the block that handles the Convolution Buffer,
+but on the RK3588 it is part of the CNA block.
 
---
-Changelog v7..v8:
-- Separate DE33 support and H616 enablement in the mixer.
+In any case, I don't think the kernel will have to do anything about it.
 
-Changelog v10..v11:
-- Convert de_type enum to uppercase
----
- drivers/gpu/drm/sun4i/sun8i_mixer.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Cheers,
 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.c b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-index 13e712382010..31a8409b98f4 100644
---- a/drivers/gpu/drm/sun4i/sun8i_mixer.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_mixer.c
-@@ -799,6 +799,17 @@ static const struct sun8i_mixer_cfg sun50i_h6_mixer0_cfg = {
- 	.vi_num		= 1,
- };
- 
-+static const struct sun8i_mixer_cfg sun50i_h616_mixer0_cfg = {
-+	.ccsc		= CCSC_MIXER0_LAYOUT,
-+	.de_type	= SUN8I_MIXER_DE33,
-+	.mod_rate	= 600000000,
-+	.scaler_mask	= 0xf,
-+	.scanline_yuv	= 4096,
-+	.ui_num		= 3,
-+	.vi_num		= 1,
-+	.map		= {0, 6, 7, 8},
-+};
-+
- static const struct of_device_id sun8i_mixer_of_table[] = {
- 	{
- 		.compatible = "allwinner,sun8i-a83t-de2-mixer-0",
-@@ -844,6 +855,10 @@ static const struct of_device_id sun8i_mixer_of_table[] = {
- 		.compatible = "allwinner,sun50i-h6-de3-mixer-0",
- 		.data = &sun50i_h6_mixer0_cfg,
- 	},
-+	{
-+		.compatible = "allwinner,sun50i-h616-de33-mixer-0",
-+		.data = &sun50i_h616_mixer0_cfg,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, sun8i_mixer_of_table);
--- 
-2.49.0
+Tomeu
 
+> >
+> > Thanks,
+> >
+> > Tomeu
+>
+> Kind regards,
+> Nicolas Frattaroli
+>
+> >
+> > > What speaks for the 3 register area split is that anything that bring=
+s
+> > > more holes and doubly mapped things into the AUX area is probably goi=
+ng
+> > > to be so radically different it'll ideally have its own binding anywa=
+y,
+> > > or needs more than just a compatible added to the binding.
+> > >
+> > > I think as far as arbitrary splits goes, the one you propose is proba=
+bly
+> > > the one most closely aligned with reality. Certain register areas do
+> > > seem like something they'd never move away from its corresponding
+> > > companion, whereas adding parts to the AUX area or removing from it i=
+s
+> > > probably going to be quite common. So it can essentially be treated a=
+s
+> > > the area where optional things will most likely land as you pointed o=
+ut,
+> > > which then don't need more bindings fiddling to add those optional th=
+ings
+> > > as explicitly named areas in the bindings as long as we treat it as j=
+ust
+> > > one opaque area s far as the binding is concerned.
+> > >
+> > > Also, unless there's some virtual combined sparse iomem API in the ke=
+rnel
+> > > that I'm not aware of, that's probably the easiest path forward for t=
+he
+> > > driver as well.
+> > >
+> > > >
+> > > > Regards,
+> > > >
+> > > > Tomeu
+> > >
+> > > Kind regards,
+> > > Nicolas Frattaroli
+> > >
+> > > >
+> > > > > The RK3568, which uses a similar NPU design has the IOMMU at an o=
+ffset of 0xb000
+> > > > > from the core's start of PC, so probably after any core specifics=
+ but before the
+> > > > > global registers if I hazard a guess.
+> > > > >
+> > > > > For those without access to the TRM: splitting this up into multi=
+ple reg items
+> > > > > per core precisely the way the TRM does it would result in no les=
+s than 10 reg
+> > > > > items on RK3588, if I count correctly.
+> > > > >
+> > > > > Kind regards,
+> > > > > Nicolas Frattaroli
+> > > > >
+> > > > >
+> > > >
+> > >
+> > >
+> > >
+> > >
+> >
+>
+>
+>
+>
 
