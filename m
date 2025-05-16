@@ -1,429 +1,127 @@
-Return-Path: <devicetree+bounces-177915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B38FEAB99D4
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:12:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF208AB99EB
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:15:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F0594E7EC1
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:12:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B32216835F
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9526C2356D2;
-	Fri, 16 May 2025 10:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847B3227E83;
+	Fri, 16 May 2025 10:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WZ6TgyDN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m6P3fYOj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EBF923536E;
-	Fri, 16 May 2025 10:11:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D051EBFE0
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 10:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747390319; cv=none; b=LYNCDVrr2Lv4Yr5ddzd3zM/2O+kRPvCvgUee2E7N3+OW8r5qGwQgox5fezS3XudjZxx3ygCzXypxoVobsKstfoCyLB1l8gva7SBUHRSnou83ZEeX/up3RkRmciDHEnVzUwsnY6w1L31iN+n0nbCehV1OiqMvCJKaSBbAqfPTzOY=
+	t=1747390554; cv=none; b=r2MjCA8zLh3MbF3Cmnw3UaxDXBKfAoJf/YMUFsPf55DXsJMlkx84kjILXst1wOBc/qK/9uuHWIWFdZMyHJshK7pR8WQt3ekJ19dpc11tEt+E3jN13LYkyV9oFlYGoY+Uidi+eVfoCoJ9PQeuTSenaGTTy7xNfSZTcPbj6xgaZew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747390319; c=relaxed/simple;
-	bh=R20/4fb1Xb5ziJT95mIbUUzOyLqHmV7GI85TVQT4+8k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WOiO4OaF9+kFPruX1z7ISKoz56Lff99riXrxL6f7cjI4Le8DPFmfqYP3C38QUPWNJKPethsrk7kNDsvgeo6zqSrpTjDEiFoHmg4xyFpuZELRxupx7e/7kZAhOOPxhnPi04bhKQ6Rk77GzktRDIwjwKkwI81MlypNy2gQQWRbSHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WZ6TgyDN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D95E0C4CEE4;
-	Fri, 16 May 2025 10:11:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747390319;
-	bh=R20/4fb1Xb5ziJT95mIbUUzOyLqHmV7GI85TVQT4+8k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WZ6TgyDNxjwjdhf6k6M7sVMUTURuIpVaHwR243Qd0i767J/dC7b2G+Pa9j4UJWC59
-	 A8zPzu8SlrqtHkUCwijFBqWt03ylKhHTAqcxWlzQxzGWdJMgMDymQKLo8y3V/AOaPE
-	 lfzfwSJ6UVLaApdEQ5B5cAmrkrVjTQHVKDNT8Pxcvk5fT/lhvofyagd0cL6vnQ1dtY
-	 DOBAvIkvJ82Ms6B7AqaH6EhdZ33cgVtfBGs6UUSj0D01bkaY1PJb/Q+bIAM8Pw9jWt
-	 d3xinY7T38yqWCDkPDHDpq1kLHQtuGUxilzprnTvz135Gz4A2G4yq3yTOpgig+QRjm
-	 LPdsHKA9f5vDw==
-Date: Fri, 16 May 2025 12:11:56 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Jorge Marques <jorge.marques@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v2 5/5] iio: adc: add support for ad4052
-Message-ID: <6zn53fgyiwtm5ad5piyt32uxcwenwgkhwhantizsjytwbf42ts@4pg6hkna3yah>
-References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
- <20250422-iio-driver-ad4052-v2-5-638af47e9eb3@analog.com>
+	s=arc-20240116; t=1747390554; c=relaxed/simple;
+	bh=QA7w+JQP1X41RoztXYe1wBWPs6Q/cQ0RamgdfI5nt5o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g24YxxI/gmQtL3o5IZ7jurmv4SndkRQMDTXsNZN1ZShhuvVE705gyxXJW5Fh54WNh43kNAZm9T6tYYjuEzBprkIezO/OpjgVXQExmF9xmZURJaEZ2A6PaLFt6Cym4oq8S/CF3swVF+HlM4KFAYcBYYShPiMAHMYMUWGtHfjuzEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m6P3fYOj; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a35b7e60cbso926325f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 03:15:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747390551; x=1747995351; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hf9JUffKXEnurX0H5ucC/QRAQlUyAYzPYXVgjENoyR8=;
+        b=m6P3fYOjAN/nQnftkKb8T75OTFJiTS65g7wnxVMaA0W1tdE800dH4ZB7OnvDEiTSMr
+         S11aPrC0kfEZqCEE+3KvIvnB9h/WwW8xdZaTNzcschMm0ji48CjSMJhM6slZtJDpxCT9
+         qvUQrb6tc5T/qP3AYrCtCTfrjbY07XPs9LmdwCnNjGKZGS6eD8enAafOkqVQx5aXFPue
+         MbYrcLFkP/HlcqOiiWKqYLZCoNNn3DWeJT5cPyvkBNSK4k0C2uEQtLo8EtiFl4n2lEq/
+         m6UfwWA4bsHOCsIsoqossIoIZ9jT24YZtMBVC6RNUfWGv46kdvkhJyhCYTrE55dAKP8C
+         nf/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747390551; x=1747995351;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hf9JUffKXEnurX0H5ucC/QRAQlUyAYzPYXVgjENoyR8=;
+        b=NUhnrTxf0Sc6TUDb5O/vTBZH9nl0JUAdax4YIwhyIeflMCxyO1mXkm7eVYHpIrKduY
+         i8NNjKk6s5S5hGttFLuFqMaohzE/sGvQcmIyyfAIoHc2NGz/fH4j+tJ/1iroyhcKdrDX
+         YEfF4xnkKWFRefxB/00ZLgflaZRh6RN/Lw/8V58eOT5dhoISB41QozdMb8x4rDkMp7o7
+         ojKUL7uQjF5W9c6jZ7heNgl2HP0Vn9BSTYinykp5eeWjJNpIb+Xo9bjFGU9vAVBwCyHm
+         SgW8C+fGTxPVULvLtSQCbJNsdQLpAvc9n0KvXOQMXSCtlwQcSQfzDmZk1KI2vv+N6vj3
+         A+1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWvh3+aLf3rKSJ515GnHK71VuFidImCS7ja8ngg6eGxZ9Ie45sgQ3fU8cPlkl44M5dZNhZqs6U0x+NI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlB4ANhEJg3E1E+0420XFYyfsP2iUX+1Sp5V/8l83+IRC3grt7
+	0ExDO5+/12lZrQy0GOhkpc4AV+e8bgeHtj2wUZdydnI+t0QnZ+861uFGyOaj9by9VoU=
+X-Gm-Gg: ASbGnctCfQrMTTCpfXd7zUotq2Y6xRr7TINsUPJ7KyKPxzWK3fQJXP6r3uRuN6YpDwy
+	9jark5S7/HRA2pNP71xj+vreX4IcKJhYav07qEhZrBdnDjc6eR0xjmRYPzwNWOArjgtY+gcugZX
+	R3Oo37ADVXCH+h6NN/4285ctq37QY6u8oEnWlLnbCBe120Enpa1fN3vLF2xELQru/Tg/LdXbw0G
+	5weou/Kugq81BDVQLXzgO8wLRB41U50FXtATtA24kgEBjS2DfWYcYNdugJClBVRO4nYaJUGk3ZO
+	DZWplE0yn2BjwsCZbzL6VOqk31H3XZ1A7xaMdAHLvgRdXRyDRJDmVU1ZbDS1F6wbpVnJLRSzw7x
+	ENxBCkjxIzgrk
+X-Google-Smtp-Source: AGHT+IFhNRLORL0s3WapKxF1HYgMEShdvKo3BGr0+F77ZeAxJEMvDNCLG/bxou1DJVtfsgYa4Ni5yg==
+X-Received: by 2002:a5d:4e0d:0:b0:3a3:6434:5d34 with SMTP id ffacd0b85a97d-3a364345dc6mr22238f8f.17.1747390550909;
+        Fri, 16 May 2025 03:15:50 -0700 (PDT)
+Received: from [10.61.1.70] (110.8.30.213.rev.vodafone.pt. [213.30.8.110])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a3622b8a3esm1222224f8f.14.2025.05.16.03.15.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 May 2025 03:15:50 -0700 (PDT)
+Message-ID: <36f02ed8-b440-4760-8d08-b633406ce92a@linaro.org>
+Date: Fri, 16 May 2025 11:15:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hlofdy26eqw7ig5c"
-Content-Disposition: inline
-In-Reply-To: <20250422-iio-driver-ad4052-v2-5-638af47e9eb3@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Add support for camss
+To: Wenmeng Liu <quic_wenmliu@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Depeng Shao <quic_depengs@quicinc.com>
+References: <20250415-sm8550_camss-v1-1-d4b7daa168ac@quicinc.com>
+ <wOxjiEBKO2XU-PikPlT8IMpSGOrP4ocgZEIj_zNhLzzBjySkhGQzupjmJAFhUHcnknLKSASwk33LjBI6WrZ9vg==@protonmail.internalid>
+ <1ee8587b-2bf6-418a-9834-8f8cbf1e94d8@oss.qualcomm.com>
+ <4e81a1fe-3ee5-4f5f-b958-13e6cf9138f7@linaro.org>
+ <db059233-523d-420b-81a7-73b02beef4d1@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <db059233-523d-420b-81a7-73b02beef4d1@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 16/05/2025 08:34, Wenmeng Liu wrote:
+>> This should be 689 yes
+>>
+>> ---
+>> bod
+> 
+> Hi Bryan,Konrad,
+> 
+> I confirmed that the value is 688 instead of 689. The documentation 
+> incorrectly listed it as 689. To CC linux-media, I have resent the patch:
+> https://lore.kernel.org/linux-arm-msm/20250516072707.388332-1- 
+> quic_wenmliu@quicinc.com/
 
---hlofdy26eqw7ig5c
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v2 5/5] iio: adc: add support for ad4052
-MIME-Version: 1.0
+Do you mean the documentation in the kernel or the documentation inside 
+of qcom ?
 
-Hello,
+I checked the internal silicon definition, I think Konrad did also.
 
-On Tue, Apr 22, 2025 at 01:34:50PM +0200, Jorge Marques wrote:
-> +static int ad4052_set_sampling_freq(struct ad4052_state *st, unsigned int freq)
-> +{
-> +	struct pwm_state pwm_st;
-> +
-> +	if (freq <= 0 || freq > AD4052_MAX_RATE(st->grade))
-> +		return -EINVAL;
-> +
-> +	pwm_get_state(st->cnv_pwm, &pwm_st);
-> +	pwm_st.period = DIV_ROUND_UP_ULL(NSEC_PER_SEC, freq);
-> +	return pwm_apply_might_sleep(st->cnv_pwm, &pwm_st);
+Which documentation do you mean here ?
 
-Is it clear that pwm_st.duty_cycle isn't greater than
-DIV_ROUND_UP_ULL(NSEC_PER_SEC, freq);
-
-I'm not a big fan of pwm_get_state() because the semantic is a bit
-strange. My preferred alternative would be to either use pwm_init_state
-and initialize all fields, or maintain a struct pwm_state in struct
-ad4052_state.
-
-> +}
-> +
-> +static int ad4052_soft_reset(struct ad4052_state *st)
-> +{
-> +	int ret;
-> +
-> +	memset(st->buf_reset_pattern, 0xFF, sizeof(st->buf_reset_pattern));
-> +	for (int i = 0; i < 3; i++)
-> +		st->buf_reset_pattern[6 * (i + 1) - 1] = 0xFE;
-> +
-> +	ret = spi_write(st->spi, st->buf_reset_pattern,
-> +			sizeof(st->buf_reset_pattern));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Wait AD4052 reset delay */
-> +	fsleep(5000);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad4052_setup(struct iio_dev *indio_dev,
-> +			struct iio_chan_spec const *chan)
-> +{
-> +	struct ad4052_state *st = iio_priv(indio_dev);
-> +	const struct iio_scan_type *scan_type;
-> +
-> +	scan_type = iio_get_current_scan_type(indio_dev, chan);
-> +
-> +	if (IS_ERR(scan_type))
-> +		return PTR_ERR(scan_type);
-> +
-> +	u8 val = FIELD_PREP(AD4052_GP_CONF_MODE_MSK_0, AD4052_GP_INTR) |
-> +		 FIELD_PREP(AD4052_GP_CONF_MODE_MSK_1, AD4052_GP_DRDY);
-> +	int ret;
-> +
-> +	ret = regmap_update_bits(st->regmap, AD4052_REG_GP_CONF,
-> +				 AD4052_GP_CONF_MODE_MSK_1 | AD4052_GP_CONF_MODE_MSK_0,
-> +				 val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = FIELD_PREP(AD4052_INTR_CONF_EN_MSK_0, (AD4052_INTR_EN_EITHER)) |
-> +	      FIELD_PREP(AD4052_INTR_CONF_EN_MSK_1, (AD4052_INTR_EN_NEITHER));
-> +
-> +	ret = regmap_update_bits(st->regmap, AD4052_REG_INTR_CONF,
-> +				 AD4052_INTR_CONF_EN_MSK_0 | AD4052_INTR_CONF_EN_MSK_1,
-> +				 val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = 0;
-> +	if (scan_type->sign == 's')
-> +		val |= AD4052_ADC_MODES_DATA_FORMAT;
-> +
-> +	st->data_format = val;
-> +
-> +	if (st->grade == AD4052_500KSPS) {
-> +		ret = regmap_write(st->regmap, AD4052_REG_TIMER_CONFIG,
-> +				   FIELD_PREP(AD4052_TIMER_CONFIG_FS_MASK,
-> +					      AD4052_TIMER_CONFIG_300KSPS));
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return regmap_write(st->regmap, AD4052_REG_ADC_MODES, val);
-> +}
-> +
-> +static irqreturn_t ad4052_irq_handler_thresh(int irq, void *private)
-> +{
-> +	struct iio_dev *indio_dev = private;
-> +
-> +	iio_push_event(indio_dev,
-> +		       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE, 0,
-> +					    IIO_EV_TYPE_THRESH,
-> +					    IIO_EV_DIR_EITHER),
-> +		       iio_get_time_ns(indio_dev));
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static irqreturn_t ad4052_irq_handler_drdy(int irq, void *private)
-> +{
-> +	struct ad4052_state *st = private;
-> +
-> +	complete(&st->completion);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int ad4052_request_irq(struct iio_dev *indio_dev)
-> +{
-> +	struct ad4052_state *st = iio_priv(indio_dev);
-> +	struct device *dev = &st->spi->dev;
-> +	int ret = 0;
-> +
-> +	ret = fwnode_irq_get_byname(dev_fwnode(&st->spi->dev), "gp0");
-> +	if (ret <= 0)
-> +		return ret ? ret : -EINVAL;
-> +
-> +	ret = devm_request_threaded_irq(dev, ret, NULL,
-> +					ad4052_irq_handler_thresh,
-> +					IRQF_ONESHOT, indio_dev->name,
-> +					indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = fwnode_irq_get_byname(dev_fwnode(&st->spi->dev), "gp1");
-> +	if (ret <= 0)
-> +		return ret ? ret : -EINVAL;
-> +
-> +	st->gp1_irq = ret;
-> +	return devm_request_threaded_irq(dev, ret, NULL,
-> +					 ad4052_irq_handler_drdy,
-> +					 IRQF_ONESHOT, indio_dev->name,
-> +					 st);
-> +}
-> +
-> +static const int ad4052_oversampling_avail[] = {
-> +	1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096,
-> +};
-> +
-> +static int ad4052_read_avail(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan, const int **vals,
-> +			     int *type, int *len, long mask)
-> +{
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		*vals = ad4052_oversampling_avail;
-> +		*len = ARRAY_SIZE(ad4052_oversampling_avail);
-> +		*type = IIO_VAL_INT;
-> +
-> +		return IIO_AVAIL_LIST;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int __ad4052_read_chan_raw(struct ad4052_state *st, int *val)
-> +{
-> +	struct spi_device *spi = st->spi;
-> +	int ret;
-> +	struct spi_transfer t_cnv = {
-> +		.len = 0
-> +	};
-> +
-> +	reinit_completion(&st->completion);
-> +
-> +	if (st->cnv_gp) {
-> +		gpiod_set_value_cansleep(st->cnv_gp, 1);
-> +		gpiod_set_value_cansleep(st->cnv_gp, 0);
-> +	} else {
-> +		ret = spi_sync_transfer(spi, &t_cnv, 1);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +	/*
-> +	 * Single sample read should be used only for oversampling and
-> +	 * sampling frequency pairs that take less than 1 sec.
-> +	 */
-> +	ret = wait_for_completion_timeout(&st->completion,
-> +					  msecs_to_jiffies(1000));
-> +	if (!ret)
-> +		return -ETIMEDOUT;
-> +
-> +	ret = spi_sync_transfer(spi, &st->xfer, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (st->xfer.len == 2) {
-> +		*val = be16_to_cpu(st->d16);
-> +		if (st->data_format & AD4052_ADC_MODES_DATA_FORMAT)
-> +			*val = sign_extend32(*val, 15);
-> +	} else {
-> +		*val = be32_to_cpu(st->d32);
-> +		if (st->data_format & AD4052_ADC_MODES_DATA_FORMAT)
-> +			*val = sign_extend32(*val, 23);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int ad4052_read_chan_raw(struct iio_dev *indio_dev, int *val)
-> +{
-> +	struct ad4052_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(&st->spi->dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad4052_set_operation_mode(st, st->mode);
-> +	if (ret)
-> +		goto out_error;
-> +
-> +	ret = __ad4052_read_chan_raw(st, val);
-> +	if (ret)
-> +		goto out_error;
-> +
-> +	ret = ad4052_exit_command(st);
-> +
-> +out_error:
-> +	pm_runtime_mark_last_busy(&st->spi->dev);
-> +	pm_runtime_put_autosuspend(&st->spi->dev);
-> +	return ret;
-> +}
-> +
-> +static int ad4052_read_raw(struct iio_dev *indio_dev,
-> +			   struct iio_chan_spec const *chan,
-> +			   int *val, int *val2, long mask)
-> +{
-> +	struct ad4052_state *st = iio_priv(indio_dev);
-> +	struct pwm_state pwm_st;
-> +	int ret;
-> +
-> +	if (!iio_device_claim_direct(indio_dev))
-> +		return -EBUSY;
-> +
-> +	if (st->wait_event) {
-> +		iio_device_release_direct(indio_dev);
-> +		return -EBUSY;
-> +	}
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		ret = ad4052_read_chan_raw(indio_dev, val);
-> +		if (ret)
-> +			goto out_release;
-> +		ret = IIO_VAL_INT;
-> +		break;
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		ret = ad4052_get_oversampling_ratio(st, val);
-> +		if (ret)
-> +			goto out_release;
-> +		ret = IIO_VAL_INT;
-> +		break;
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		ret = pwm_get_state_hw(st->cnv_pwm, &pwm_st);
-> +		if (ret)
-> +			goto out_release;
-> +
-> +		if (!pwm_st.enabled)
-> +			pwm_get_state(st->cnv_pwm, &pwm_st);
-> +
-> +		*val = DIV_ROUND_UP_ULL(NSEC_PER_SEC, pwm_st.period);
-
-Is this the expected semantic? I.e. if the PWM isn't running report
-sample freq assuming the last set period (or if the pwm wasn't set
-before the configured period length set by the bootloader, or the value
-specified in the device tree)?
-
-> +
-> +		ret = IIO_VAL_INT;
-> +		break;
-> +	default:
-> +		ret = -EINVAL;
-> +	}
-> +
-> [...]
-> +static int ad4052_buffer_postenable(struct iio_dev *indio_dev)
-> +{
-> +	struct ad4052_state *st = iio_priv(indio_dev);
-> +	struct spi_offload_trigger_config config = {
-> +		.type = SPI_OFFLOAD_TRIGGER_DATA_READY,
-> +	};
-> +	int ret;
-> +
-> +	if (st->wait_event)
-> +		return -EBUSY;
-> +
-> +	ret = pm_runtime_resume_and_get(&st->spi->dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad4052_set_operation_mode(st, st->mode);
-> +	if (ret)
-> +		goto out_error;
-> +
-> +	ret = ad4052_update_xfer_offload(indio_dev, indio_dev->channels);
-> +	if (ret)
-> +		goto out_error;
-> +
-> +	/* SPI Offload handles the data ready irq */
-> +	disable_irq(st->gp1_irq);
-> +
-> +	ret = spi_offload_trigger_enable(st->offload, st->offload_trigger,
-> +					 &config);
-> +	if (ret)
-> +		goto out_offload_error;
-> +
-> +	ret = pwm_enable(st->cnv_pwm);
-> +	if (ret)
-> +		goto out_pwm_error;
-
-pwm_enable() is another disguised pwm_get_state().
-
-> +
-> +	return 0;
-> +
-> +out_pwm_error:
-> +	spi_offload_trigger_disable(st->offload, st->offload_trigger);
-> +out_offload_error:
-> +	enable_irq(st->gp1_irq);
-> +	spi_unoptimize_message(&st->offload_msg);
-> +	ad4052_exit_command(st);
-> +out_error:
-> +	pm_runtime_mark_last_busy(&st->spi->dev);
-> +	pm_runtime_put_autosuspend(&st->spi->dev);
-> +
-> +	return ret;
-> +}
-
-Best regards
-Uwe
-
---hlofdy26eqw7ig5c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgnD2kACgkQj4D7WH0S
-/k4ETwf/cJI4IIJ6RfYiR3k8fnuzzdH8y4vmcG990vOHofKCHH1GIgPW5JMuMgJF
-O5hcrYEJcq53HiNN+xZNL8UyP4nyFfpuig1byINnMVLKDO1fo7ApmC8tRsHRJl65
-iCvHMN68H1z4PalMwVTksjrvXmJ8aox+gvZO18an6HDSDlQhmSSxyTZDJY8VeNxz
-NNWljTK2GT/6l2AstlNesekXPcWbRvJ8jeXz5EwlQ3PpnxgzvysUpoBHTHA46q+V
-SJTbdQPd6NJnu5yp4/39zLzLNLc5ow/bRAdotOJnbT9B4a2aF8tzZ/R+B9AQG1s0
-hw2MmSZ+6SLfTRwuWBGK1+aLRmPXDg==
-=gSg7
------END PGP SIGNATURE-----
-
---hlofdy26eqw7ig5c--
+---
+bod
 
