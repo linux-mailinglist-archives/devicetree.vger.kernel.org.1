@@ -1,139 +1,142 @@
-Return-Path: <devicetree+bounces-178061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BF5DABA284
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 20:09:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E00CABA2E3
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 20:33:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E583D173EA8
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 18:09:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C58A50632E
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 18:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD17325D54A;
-	Fri, 16 May 2025 18:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797E3278743;
+	Fri, 16 May 2025 18:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="helmUN14"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NpfJnmbW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA9526AA99;
-	Fri, 16 May 2025 18:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 354511A255C;
+	Fri, 16 May 2025 18:30:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747418971; cv=none; b=ONscfmKZSlpUsimeH7X2+KKY9Yu5wQ9WSLvZVD9grrySH6p2Reg2qNBPak9vHqbaMcZRyP1lyb30sO3Uq0psuUuTR4pcIoJxo64JdlKAn/A7bBKMow8+xGEIbN9FB0wEyX1w3faOz8I47lkFi9DkZiFVIsp5Q0T9tCfUMLlnbTs=
+	t=1747420253; cv=none; b=BlQNVICVp0N774qwE7iVwboqw98XtgfZY0RZ9yvKpguYylfO2slQ/gYqwiC4OVjwkaMrFeNTidZjiSIi8uY6Fccdz6yHX5Y+bfyKh76X4TQcY1wFxkmyog1/CHveWEawrpApucALaDBq7NRUphjSlVqLPLwc1eqKJW31zkxvJrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747418971; c=relaxed/simple;
-	bh=uZBemo+s9tZ46ZmMNSJ1HzqwmHJHgZnXJ/eHEboAgD8=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=o/WyLKzeBEaPQwVvsHQ257rMjy+1Pwq6FGxrQTpCKlQxUQ08lNU6agSrnWjxD2w5TKckJUtvxWTy3z8ZdoR5bF2Lo19iS5Jq6Z3WThbTWAsDFoxjOGTKRtQqe2AdIeteAD+K+FKkeVou6BRi/zAI3evEFiwNFQAOrZorkJPtLHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=helmUN14; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1747418936; x=1748023736; i=frank-w@public-files.de;
-	bh=uZBemo+s9tZ46ZmMNSJ1HzqwmHJHgZnXJ/eHEboAgD8=;
-	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
-	 References:Message-ID:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=helmUN14BNEhxRiuRj6yN+bIO+rDByJrAXQ/f5TDptyWjLNN7+atqaQn/E/xV9qP
-	 +MVciHX/RZ0NEYQFqG2l3eOsPlUJeKRaNldi0qz4qVS0gjY8lY/BRVPHAPBZ9pP25
-	 OlBsVEBLo/HDOMLDYvBoKlUE6Kzu20tnUA5lZsZ5/NFkvZHp35iz2BSul2SHFZncV
-	 2ewD3jzua4Z7zQewXld2UAHOepT4b7j61oa3nZ3nW1hnxY76nXcDs87t7D1kAzsRH
-	 DeInImnLsFKbPA1XccjFNKV4ndqzxsxmxfAeh8KPmhS74KYZzdaxfm2HtLQhhXDvs
-	 FvtJ3LEDpuo8rS3RbQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [127.0.0.1] ([157.180.226.139]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mkpex-1ugkeV1kCN-00oC6a; Fri, 16
- May 2025 20:08:56 +0200
-Date: Fri, 16 May 2025 20:08:47 +0200
-From: Frank Wunderlich <frank-w@public-files.de>
-To: Frank Wunderlich <linux@fw-web.de>, Andrew Lunn <andrew@lunn.ch>,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Daniel Golle <daniel@makrotopia.org>, Qingfang Deng <dqfext@gmail.com>,
- SkyLake Huang <SkyLake.Huang@mediatek.com>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
-CC: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Landen Chao <Landen.Chao@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_=5Bnet-next=2C_PATCH_v2?=
- =?US-ASCII?Q?=5D_net=3A_phy=3A_mediatek=3A_do?=
- =?US-ASCII?Q?_not_require_syscon_compatible_for_pio_property?=
-User-Agent: K-9 Mail for Android
-Reply-to: frank-w@public-files.de
-In-Reply-To: <20250516180147.10416-3-linux@fw-web.de>
-References: <20250516180147.10416-1-linux@fw-web.de> <20250516180147.10416-3-linux@fw-web.de>
-Message-ID: <D997C4DB-1B03-4AFD-B48C-BFA19AB6194D@public-files.de>
+	s=arc-20240116; t=1747420253; c=relaxed/simple;
+	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=qXdX4bCN7HtaX8bdLkO2Ylkgz83iURTt2fDqokY4W11shuWeKdr9wU7cZQ2pcC6YDgiHEpEvtWR2iS2P5vD8yw+7vEmJ0WiiOUHDI13I7npUYoE/YZ2be+hXWjLye7U+QUCBW9DKfemXJuTjqY2o07kwMD9cQntac0/GTSAdP9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NpfJnmbW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F32DC4CEE4;
+	Fri, 16 May 2025 18:30:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747420252;
+	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=NpfJnmbWyUqyMYoLy35vtxm0N29rgijba7ENUDqS7YmsKZUjUSF9tmwKOrEJMV3sh
+	 BOJ+AttBuVq8cSt48iOr9mkb3Lh54y/rA743ERhn9bavTxA66G9K4nY+vqUMYyvrUq
+	 pMuoisg9g1acwcd2Ohpqspyw4DZ3Bs72y9MVjchH2UnMlcG7PCQmnOvi7ptszJrLzd
+	 6loH1rBQKNyR4iKiDuf1m96yLUTX/I7GK7ZCZF7FTeW+XK5ihU9YtAH7p8jresWjGY
+	 FFvdQ3mTfy2XP+gLjQR2Cvrb6Xai9RjaFlkRc6wAgftsA5qwcTnVWIpNoT5D17ix6a
+	 YQGHmGwBWpsNw==
+Date: Fri, 16 May 2025 13:30:50 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:yKB+wisqAoqC+shOlsR18tKggjY0Rri/wFlIaCyYrcMn3BzYE4e
- rzKlBHCP7BX+tjmmmPQ2rh+EYtwn0Av3aNaXLhZBcprxfPD3keeBxqTPwwiOD/IRqFxrIU1
- FxI/jkv+kQDufhR1eP7RaaTcPuGSMFBvL98095LYi0CX5aYacAg7V8FLXDMJ8/G48J6hwaC
- qmu9AybK8uLe8VXOk2LgA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:F6B7f3YTBPk=;DNKu0wTMKuEZDh31C6ZmpJWxjwj
- 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
- PO8UnZtQriHGhiUV3ghD30=
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Jonathan Corbet <corbet@lwn.net>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Simona Vetter <simona@ffwll.ch>, linux-rockchip@lists.infradead.org, 
+ linux-doc@vger.kernel.org
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+In-Reply-To: <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
+References: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
+ <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
+Message-Id: <174742024812.3649303.12389396177218408388.robh@kernel.org>
+Subject: Re: [PATCH v3 01/10] dt-bindings: npu: rockchip,rknn: Add bindings
 
-Sorry, resent it by accident while sending v2 of my dts series=2E
-regards Frank
+
+On Fri, 16 May 2025 18:53:15 +0200, Tomeu Vizoso wrote:
+> Add the bindings for the Neural Processing Unit IP from Rockchip.
+> 
+> v2:
+> - Adapt to new node structure (one node per core, each with its own
+>   IOMMU)
+> - Several misc. fixes from Sebastian Reichel
+> 
+> v3:
+> - Split register block in its constituent subblocks, and only require
+>   the ones that the kernel would ever use (Nicolas Frattaroli)
+> - Group supplies (Rob Herring)
+> - Explain the way in which the top core is special (Rob Herring)
+> 
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  .../bindings/npu/rockchip,rknn-core.yaml           | 162 +++++++++++++++++++++
+>  1 file changed, 162 insertions(+)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml: properties:reg-names: 'oneOf' conditional failed, one must be fixed:
+	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too long
+	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too short
+	False schema does not allow 3
+	1 was expected
+	3 is greater than the maximum of 2
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3588-rknn-core-top', 'rockchip,rknn-core-top'] is too long
+	'rockchip,rk3588-rknn-core-top' is not one of ['rockchip,rk3588-rknn-core']
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): reg: [[0, 4255842304, 0, 36864]] is too short
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3588-rknn-core', 'rockchip,rknn-core'] is too long
+	'rockchip,rk3588-rknn-core' is not one of ['rockchip,rk3588-rknn-core-top']
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): reg: [[0, 4255907840, 0, 36864]] is too short
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
