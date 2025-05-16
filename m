@@ -1,164 +1,212 @@
-Return-Path: <devicetree+bounces-177863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D777EAB969A
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:35:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6081CAB969D
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:35:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 707DB4E7FC8
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 07:35:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1D754E7FA6
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 07:35:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A1F22617F;
-	Fri, 16 May 2025 07:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 353DF22617F;
+	Fri, 16 May 2025 07:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kxQVDB3G"
+	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="Bm84IcrC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F712C9A;
-	Fri, 16 May 2025 07:35:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E5032C9A;
+	Fri, 16 May 2025 07:35:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747380908; cv=none; b=IBTihGq3OrhqD8b2kFNMZexkeCPkR6/D5sENm4rsLZY5X81dzVVR85m/NA5QnIpEZ4cJjUx+tu6ZBooL2Ee0i5e9VbY2bxu8eeRvVx7+x2GyYKw2cU2LG0SDNqQMnIG3JvxWjKg1ISl0tGGfHHnCGWhhlxioi/IKn2RAXcuisUU=
+	t=1747380954; cv=none; b=AHagMWMHjGnQCnWvST/fWNTn4iY/ILOSjrT9gXcvhPHqVBfHyP113HO6uB1Fb3p/vGFuiEPb7oNnafX5U/wILV0EY/b6Eb8Pe8/mT6yOAeA9lIvbAG4hBah6Z/DgGxcnjuEcGCN/gHUPlnBIHpGG6mNfVH8szo2TD3A5tqHmt/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747380908; c=relaxed/simple;
-	bh=fHMu131eeC4O5t5ae3yEgP2HF3PgHSd4g5RekRTUeWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KFgVBWMkwgY7AGkPezOgWSnfytvIjlPfjdsv95MPHyHD7oiJDRFh/5Nw8flmeQfAobOSbyM+wL7BeoVvvXnW+W3Z7yPNzUj0RNYy208i3HC46nUNfzMqkfnKEQk3BtC+W8qy6dIcQfJmPgCPOoR68IS+S2BnP+LOzdBdPMPSjVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kxQVDB3G; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54G3ExiW020897;
-	Fri, 16 May 2025 07:35:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	u1JbgsRbFNEarkGxDwy5O4rayeHmdGplE+POraV2bwk=; b=kxQVDB3G8LswSYkc
-	sql/AE4/A0m8VL3bA0S+h+tuNk8F85YmrR98aY3xybAABD5dwxpwbMJZ3Wx53Ppc
-	veEzwcAuBcXRVarHHYAaLzKmIbzU/QhQwT7qtzfb9QHgfQ04bidUFxGnt9++ar8F
-	kmD+WfWzh925JtnHW0qtSbXhExW7Xkkm+aLFyUINOz+Z8+340K+Qgfg6/RLaV8le
-	08VXdXKlO6VktppPo1ln66F9Fsm7X15YV8dpy1nxP19H7XoxwpwTG27epTwPXimI
-	ugCqXQgJNl0gmpi6Yc8xHBjWR0uh8sRntTQOdjaQOFunLtXSM1a2HxXvesJVHvzw
-	jEZ/bQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbew8y1s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 May 2025 07:35:02 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54G7Z1xD029131
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 May 2025 07:35:01 GMT
-Received: from [10.253.78.92] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 16 May
- 2025 00:34:57 -0700
-Message-ID: <db059233-523d-420b-81a7-73b02beef4d1@quicinc.com>
-Date: Fri, 16 May 2025 15:34:28 +0800
+	s=arc-20240116; t=1747380954; c=relaxed/simple;
+	bh=1e2xtFXEPaPp9GMaGKThPETZb4pOiT8CFXf0wz0rJss=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AxrkVSaDKEL4JAjRlskaYxOA414g6ZmxR9l4Tzk2yVH4jr3sAZyamaTWbYCaJR8XVnfXbQEFXM7Ang62cGrtvriMEUIlP+oTUn6JBTWoRyogzpRL3SkFHew325isXt/zoY/JRu4XRfWQ6FWEor16x4I9ot40ifGYb5wDUarcXtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=Bm84IcrC; arc=none smtp.client-ip=217.92.40.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 17DB51480139;
+	Fri, 16 May 2025 09:35:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
+	t=1747380941; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=RPlDE3SESAb1KytQ9rzvzkVVF/heV7prKhtxffESNBg=;
+	b=Bm84IcrClyS89h2sDLrgDwI5ZDXYEr8nYrlcl2NWaJ0WlqpLcHfKMkWJ/3UACKe/mYhXrs
+	fVnziJj9N26Uo7KUrTPdh2YKuW+pLEzr1YrhQpcHjTD7dgHtbTqGYisGlVJ/pfPh3KTVMh
+	8/GnJeJ1Lk2qcVNcoJ9gCQcc2ewa6pvkqyV9NlvviYMEUgdqsMIEmlj/XTFNvMqWpmwBu6
+	1GqijVzJ7Zi4dpC32kPSUMiXUqqv1qYtLx4z4Dc1p9ZVU+hmHUHTwjlIXKjpmlc6tf7Ywv
+	deHYaEkKdXudFL5Xkh0LbL+SJ9lnUrwEB1W4AbHGsI7LbGf2MoKre/F9Tzm03w==
+Date: Fri, 16 May 2025 09:35:34 +0200
+From: Alexander Dahl <ada@thorsis.com>
+To: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc: Lee Jones <lee@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	linux-renesas-soc@vger.kernel.org,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Pavel Machek <pavel@kernel.org>,
+	linux-leds <linux-leds@vger.kernel.org>
+Subject: Re: [PATCH v3] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe
+ Debug LEDs
+Message-ID: <20250516-plating-early-c5f8017b7466@thorsis.com>
+Mail-Followup-To: Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Lee Jones <lee@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	linux-renesas-soc@vger.kernel.org,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Pavel Machek <pavel@kernel.org>,
+	linux-leds <linux-leds@vger.kernel.org>
+References: <20250417093256.40390-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdWN-QDrmogJ+7x8sdc6UmDAoF+0z0hZ3SQ7ajN2V2+mSw@mail.gmail.com>
+ <aBxjvofZCEi_1Fna@shikoro>
+ <20250508134930.GM3865826@google.com>
+ <18b78845-3f01-444d-835a-aa39f84a2689@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Add support for camss
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Depeng Shao <quic_depengs@quicinc.com>
-References: <20250415-sm8550_camss-v1-1-d4b7daa168ac@quicinc.com>
- <wOxjiEBKO2XU-PikPlT8IMpSGOrP4ocgZEIj_zNhLzzBjySkhGQzupjmJAFhUHcnknLKSASwk33LjBI6WrZ9vg==@protonmail.internalid>
- <1ee8587b-2bf6-418a-9834-8f8cbf1e94d8@oss.qualcomm.com>
- <4e81a1fe-3ee5-4f5f-b958-13e6cf9138f7@linaro.org>
-Content-Language: en-US
-From: Wenmeng Liu <quic_wenmliu@quicinc.com>
-In-Reply-To: <4e81a1fe-3ee5-4f5f-b958-13e6cf9138f7@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: JfCYi8Cyns4Qnjr4tAGPjJ56VDuktMaY
-X-Proofpoint-ORIG-GUID: JfCYi8Cyns4Qnjr4tAGPjJ56VDuktMaY
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDA3MCBTYWx0ZWRfX0fM2xuQlMEyf
- HXct4P+bLbW/GcumwqRBf3vGFL+32Np/NPFKgvQbJNo6NNzS9r4uoRg+XXVAS1CsV1CNp7GQjNo
- +oqbF8UZXo6OL3e6JEe2i8PPd25BMNtc0C6kuJjlx+JmCnqXM3gCxdrmzCXydEOUSF9OKmdyQbD
- oCkZI78GK5MOA9IBCkuFDzDPNBRo1qxPHv6FtzacGU66T3n6HIoYRJeJ48PS1ajobyB6I0A2Meo
- FmBWfU2VMevXi1BfihspehZVxmcdW3Fk3G24oeDxMsNlQx3nhxBJtAiVlrs/wjalYNobjPqaq1t
- SDD9RTyuN1OpinhuB1CSP2i93dpTy8ErMlVkEj7MlB7gWXfqdsugeUvamzMjwkS+4bHkf6/l0Th
- 4OOX9BjRaYYVziaHbLHbTKNx0P0VNIjN/Eloj4OTo0joddQDwmL3rlNJjkKdRpTjERAlZi08
-X-Authority-Analysis: v=2.4 cv=LOFmQIW9 c=1 sm=1 tr=0 ts=6826eaa6 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=42mon1cdF7M_iQiDyuAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-16_03,2025-05-15_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 spamscore=0 adultscore=0 priorityscore=1501 suspectscore=0
- mlxscore=0 malwarescore=0 mlxlogscore=503 impostorscore=0 bulkscore=0
- clxscore=1011 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505160070
+In-Reply-To: <18b78845-3f01-444d-835a-aa39f84a2689@gmail.com>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-Last-TLS-Session-Version: TLSv1.3
 
+Hei hei,
 
+just wanted to create a new thread on a similar topic, but this is so
+close, just hooking in here …
 
-On 2025/5/1 9:15, Bryan O'Donoghue wrote:
-> On 30/04/2025 12:11, Konrad Dybcio wrote:
->> On 4/15/25 9:38 AM, Wenmeng Liu wrote:
->>> Add support for the camera subsystem on the SM8550 Qualcomm SoC. This
->>> includes bringing up the CSIPHY, CSID, VFE/RDI interfaces.
->>>
->>> SM8550 provides
->>> - 3 x VFE, 3 RDI per VFE
->>> - 2 x VFE Lite, 4 RDI per VFE
->>> - 3 x CSID
->>> - 2 x CSID Lite
->>> - 8 x CSI PHY
->>>
->>> Co-developed-by: Depeng Shao <quic_depengs@quicinc.com>
->>> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
->>> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
->>> ---
->>
->> [...]
->>
->>> +                     <GIC_SPI 604 IRQ_TYPE_EDGE_RISING>,
->>> +                     <GIC_SPI 688 IRQ_TYPE_EDGE_RISING>,
->>
->> It *may* be 689 instead but I'm not 100% sure
->>
->> Otherwise the numbers look good
->>
->> Bryan, Vlad, please also take a look
->>
->> Konrad
->>
+Am Sat, May 10, 2025 at 02:43:45PM +0200 schrieb Jacek Anaszewski:
+> Hi all,
 > 
-> +                     <GIC_SPI 688 IRQ_TYPE_EDGE_RISING>,
-> This should be 689 yes
+> On 5/8/25 15:49, Lee Jones wrote:
+> > On Thu, 08 May 2025, Wolfram Sang wrote:
+> > 
+> > > On Thu, Apr 17, 2025 at 01:39:14PM +0200, Geert Uytterhoeven wrote:
+> > > > Hi Wolfram,
+> > > > 
+> > > > CC leds
+> > > > 
+> > > > On Thu, 17 Apr 2025 at 11:33, Wolfram Sang
+> > > > <wsa+renesas@sang-engineering.com> wrote:
+> > > > > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> > > > > ---
+> > > > > 
+> > > > > Changes since v2:
+> > > > > * using function, color, function-enumerator properties now
+> > > > > 
+> > > > > Honestly, this is better than using node names? With V2, the LEDs were
+> > > > > named as in the schematics, now they are called:
+> > > > > 
+> > > > > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-0 -> ../../devices/platform/leds/leds/green:programming-0
+> > > > > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-1 -> ../../devices/platform/leds/leds/green:programming-1
+> > > > > lrwxrwxrwx    1 root     root             0 May 12 12:10 green:programming-2 -> ../../devices/platform/leds/leds/green:programming-2
+> > > > > ...
+> > > > > 
+> > > > > Which gets even more confusing if we might later add LEDs not on this
+> > > > > board, but on the expansion board. 'green:programming-8' sits where?
+> > > > > 
+> > > > > I really wonder, but if this is the official way now...
+> > > > 
+> > > > Good point!  So I'm inclined to take v2...
+> > > > 
+> > > > Let's raise this with the LED people. I don't want to fight Pavel when
+> > > > v2 hits the CiP tree ;-)
+> > > 
+> > > So, if there is no other opinion here, can we remove function, color,
+> > > function-enumerator and just use the node names which match the
+> > > schematics? Basically apply V2?
+> > 
+> > I didn't author the semantics nor the rules surrounding them, but I am
+> > obliged to enforce them.  Therefore "LED people" say, please stick to
+> > convention as stated in the present documentation:
+> > 
+> > https://docs.kernel.org/leds/leds-class.html#led-device-naming
+> > 
+> > Please note that a "debug" (LED_FUNCTION_DEBUG) option already exists if
+> > that is more appropriate to your use-case.
+> > 
+> > Let's also bring Jacek into the conversion, since I know that he did a
+> > bunch of work around this topic.
 > 
-> ---
-> bod
+> The question is if the LED name from the schematics tells anything to
+> the user of the equipment?
+> 
+> The idea behind LED naming is to facilitate matching the LED class
+> device name as reported by the system with the LED location on the
+> equipment.
+> 
+> The LED naming standardization intended to enforce consistent
+> LED naming, and not allowing to add multiple interchangeable
+> names like wifi/wlan. It also helps to keep LED name sections order in
+> accordance with Linux documentation, which before had been often
+> abused by allowing to assign anything to the now deprecated 'label'
+> DT property.
 
-Hi Bryan,Konrad,
+You see devicetree changes frequently which change the sysfs path of
+existing LEDs, last example I saw today:
 
-I confirmed that the value is 688 instead of 689. The documentation 
-incorrectly listed it as 689. To CC linux-media, I have resent the patch:
-https://lore.kernel.org/linux-arm-msm/20250516072707.388332-1-quic_wenmliu@quicinc.com/
+https://lore.kernel.org/linux-devicetree/20250513170056.96259-1-didi.debian@cknow.org/
 
-Thanks,
-wenmeng
+Consider this change:
+
+ 		led-lan1 {
+ 			color = <LED_COLOR_ID_GREEN>;
++			default-state = "off";
+ 			function = LED_FUNCTION_LAN;
+ 			function-enumerator = <1>;
+ 			gpios = <&gpio3 RK_PD6 GPIO_ACTIVE_HIGH>;
++			label = "LAN-1";
++			linux,default-trigger = "netdev";
+ 		};
+
+Before the sysfs path probably was /sys/class/leds/green:lan-1 and
+with the addition of the label property now it's probably
+/sys/class/leds/LAN-1 … so it changed.  This might break userspace,
+which relies on certain sysfs paths, maybe.
+
+The main question is: Is that sysfs path considered to be a stable
+interface for accessing a particular LED or not?
+
+I've seen this pattern also the other way round, were an old dts only
+has the node name determing the sysfs path, people change the node
+name or add color/function properties, gone is the supposedly stable
+path.
+
+New idea: what about making this somewhat more flexible and less
+suprising by _always_ creating the standardized sysfs entry based on
+color/function by default, and let label only create an additional
+symlink linking to that?
+
+So in the above example /sys/class/leds/green:lan-1 would be the
+canonical name/path of that LED, and /sys/class/leds/LAN-1 would only
+be a symlink on it?
+
+Or would that be too confusing?
+
+Greets
+Alex
+
+> Regarding expansion boards - we never have control over what
+> LED names DT overlays will define, thus LED core adds numeric suffix to
+> the LED class device name in case of the name clash.
+> 
+> -- 
+> Best regards,
+> Jacek Anaszewski
+> 
 
