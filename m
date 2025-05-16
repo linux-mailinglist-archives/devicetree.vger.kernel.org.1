@@ -1,209 +1,132 @@
-Return-Path: <devicetree+bounces-178026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ECDBABA0D4
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 18:35:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53038ABA0DA
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 18:38:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C3323A94F7
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 16:35:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE638500810
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 16:38:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8461CEADB;
-	Fri, 16 May 2025 16:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 534A91C84B8;
+	Fri, 16 May 2025 16:38:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lzZKB86H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VjsGOQj3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F7681B423B
-	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 16:35:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AF1B224F6;
+	Fri, 16 May 2025 16:38:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747413323; cv=none; b=QrL99rDRy1Ab+jZX4KvY+yvcXHlrdseCzVaXTZe43IRt18ziVED4WhSg2cJSoXgh/BxN1Ajv+hD+Xu5Gw08AR3mUjxjYYODD794WnBvS+nFEV2x03QmFNJnUHRFRfKpxDU48OgPbGkES90ylZvgGl5JGo1ht5yhFUugX/xiiLmA=
+	t=1747413534; cv=none; b=Hbx8wA1PxzryA9mN8wBVFDYnnjVnIc4jRXVw297VIMsjUqN9+oIv4RjPS6EJA6WhyhOntG19/QfmHoXIsDE2On8VI/nN2n/C/8ql/utg0UCF907FPJZTgM+zBNGdNk6CtNXmbN45hmG3laT4HOr/aIZ+5wmJW/uej5qUZkakuYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747413323; c=relaxed/simple;
-	bh=es/iLpQ7h491Bm1ao/ZtHs92YEBYb8fiiply/JOiIR8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G9jAThNMOVAFEq9rkdqjygnV/VdZZEpVD1r4mH9fudfQQbRexMNaZNBbTs0NB7sX9X4GSPIRaGpvGsKoOSIF0kG5yKarUtIuCBEd1F8n1BD8Ac9dbOkSWKM6A9uY9lQA0922I1YXtWYRwWPEQpNpC2gDeBP240DNyOUd3jDKS7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lzZKB86H; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54GAkL9W014970
-	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 16:35:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BTmwEqQ8XcBgL6KMnmGn0Js5nNwnbxm2fJwGxsiwNzw=; b=lzZKB86Hz1wJz1yL
-	SCH9OoTzfYdnDjPGW1XLSuIF1HEvwIcANflxs80nIOLJiWiXIqv5iXpHTy/MepnY
-	ofN4THVwZ4he4iZGIQpcgXnjIbcwYB5FATPK3DILd+0qeQVeH9OzJbjup0V97+UG
-	6HYodvtDQm2qgxlXK5JZNBTFhd3mi3SYFCTbL4+gxemvmETLA5j8VI8uvZWmmMsJ
-	kTlxHqSxnfQNyhQxOFA7hEX3hk3OqIEspRbTisvEEuy/Yq9SyRji4P1uGLgZRYei
-	Uk4jYSogWz+9g9YH9EuA/FNZh6myfh29qTVtm+S9omoqDUEPg/FTC5StCuC7e9ES
-	KXzX4w==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcpjqm0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 16:35:21 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6f89a2df0deso5834136d6.0
-        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 09:35:20 -0700 (PDT)
+	s=arc-20240116; t=1747413534; c=relaxed/simple;
+	bh=9i4TZO7F0sCGxwzDZyBytVinqtnKHLmyapBFsMMaK7M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gIO3is8YpuES0g1hmNN5sjPwG0OUpem+rPvuEQewuAFT4ibJQJsLRrV23KyKAQ63fZqOsIB4Pmi/jvRbdeiIZBQ77K43+caOidDatsQQX7B2WkcfwEY44I1J5s5ccBbGrL8izJLLs9V1MWJOP8C4gCK0xp48pfqNN1sgE0oGxc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VjsGOQj3; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a0b9af89f2so1535329f8f.3;
+        Fri, 16 May 2025 09:38:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747413531; x=1748018331; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9i4TZO7F0sCGxwzDZyBytVinqtnKHLmyapBFsMMaK7M=;
+        b=VjsGOQj3YVY1fcx0i+ifn6FNqBrQr3420wqTMSmas/t+YVE73vySuKlcfP9XfHv2Wn
+         yIQq6FRxRFt5brRu7zUxvxJiyfX9wIqCQrKQVspIRPodtIigvNzayXeafQzUjPdKDRHC
+         4Z08hVYQn8E/c9oO2cxQpFvu112Ta7Aj0rC6vjvcILmWPAJYyB6VG5alecPTX05RnROE
+         buCbNNzzihm7jV6j25tf1/TiXl0+cZKTXlYrK0fbRCCXLoneSPjv+/Jb91o1ogaTzgWk
+         uOi7POSdTMzj5bciF9zblNTJKv7sBNkpRCCpjhFTzYwQPjLhW0FJ6H9db1U0vEXAgi6o
+         zQJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747413320; x=1748018120;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BTmwEqQ8XcBgL6KMnmGn0Js5nNwnbxm2fJwGxsiwNzw=;
-        b=v0gQR4hRSjL/aCoBStEOxbaGklTr0p4rY3U+tjaTSA3HijBWCG5/jA9grWkS65y3ZG
-         nkOl+x28+XphKuBtWACyZvH7Qt2AW7tr7+MvdEqaUNmR1XJnfGVVEoDjrMohV8TPwms2
-         gVW0BBhh4zFWuo4nb+DXKMBwhD8bluCj9vuRWoJFgEGHEOfVfzb7l1CBN4Fhe7nwrZOp
-         GWzYX5Zg6xdD8hsPDyW6wWOh454I6CWqhxAkVxL4j0N1MZKNKSnV921EXsH2XhnBqQYz
-         B/EPyHfsizFi+hEsvxIUUi5l6BSdXTUZLHTwN9LlfDZmDYGB1oH7DkKrh/RXUdLjPkvE
-         Hj1w==
-X-Forwarded-Encrypted: i=1; AJvYcCXkIMhuwg+D22mvgEcnZH2hzchMsm/cLLfq60CLP/CURQ/vhTH0LODTpQGXTKw8DBmq/mr1AzKzT2mx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUYBiI3z9Nj+vHKW4RfyU+KzmzaXqXmJaUigLPk5s03IGNp1WF
-	+Wybx88M1PPR2SrsbG/UNDoTjdx0kdebGl8d2t2PCRR+1AOtbIhFumZHkqGEmzkJNVNnrPglnbs
-	oPpheRjmzhptgrzWGIoQbedjSW78vNtEet6QT6DNcOVkuiicf6gVZnluuyt2vGeo+
-X-Gm-Gg: ASbGnctgGh5w40bfEpuKJ4yQIS7u8ZJtXM84GVcGj552EivWyXwc/iGKV8HdWpyZz+X
-	0kGPxS++LJtIhUBgQbTnJs3bEf7JfPj09qBURUIZatMzQCNpC+5Vk4aWuXBgCm7Yn4efWiB747H
-	+MbwTgdKIrVtw/k+/bv9Arsop4h771L3Y7kky1EnDtAfFeKGo8ovxsbw1WpHey9kbG2PYJZLn0E
-	2Mvc8/clUaEjNlw4oC/nyXq/eUFdvuqn2zqCHVET1R1YDyokwG97yzswWXSBwW6ZkaGCpV1wngs
-	PAdeejpzEvIJUdpe8fcEOg9QgBfq2GuGuE0YM3Hxxr6HQNyHdCUjneCW3F7m0dNHuA==
-X-Received: by 2002:a05:6214:21e8:b0:6d8:99b2:63c7 with SMTP id 6a1803df08f44-6f8b09029a2mr22550076d6.9.1747413319519;
-        Fri, 16 May 2025 09:35:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFrejNuXm5xcNzQ2NQrSkT0Ek+i35JQqkBQixmZL/6pvDp3di/K8cA/Ni3c15xUoOUfouZokg==
-X-Received: by 2002:a05:6214:21e8:b0:6d8:99b2:63c7 with SMTP id 6a1803df08f44-6f8b09029a2mr22549896d6.9.1747413319075;
-        Fri, 16 May 2025 09:35:19 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d4909e1sm178126666b.125.2025.05.16.09.35.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 May 2025 09:35:18 -0700 (PDT)
-Message-ID: <21bd89b9-9f6e-42d0-bcd3-b6476cf91705@oss.qualcomm.com>
-Date: Fri, 16 May 2025 18:35:15 +0200
+        d=1e100.net; s=20230601; t=1747413531; x=1748018331;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9i4TZO7F0sCGxwzDZyBytVinqtnKHLmyapBFsMMaK7M=;
+        b=HEE/BRdkdspqL0ClOt/EVmwZUlBujYgbH8yew1MynjhODcanCjX2YzXMuREiot8WFL
+         FhpExCrZi7v1tKuNozUFHv/51NoQ8u6KU1i+1hvZYMrBmIwMUQiWRShMV2QGGnhI79oG
+         +ZAPgYBQfYatQd24atkmLn3QLOm/0/1hm62B2WcadbMbnaFUCSrHwJbT45EgvjLLedvS
+         TTB/GmmKA+TKC0OKKOKD5PJH9+WiahI7YV0bIB2NE42ZOm/ZeyQr25yYLSL6567RqioY
+         f2aOcBQ2SqI0jbKBJoFPM02hFvu38QaBrFKHicztkcFGA+NknXEWZOwtvpJUxybiuRVk
+         Jl5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUnuKRzmw87ahUlpuDQvXncVRzjRCL4b4xfH19NGL1O/ZIIlydNR3icGwc0Dii5iue3A/L1kIrAwJ7A@vger.kernel.org, AJvYcCWDjPFMa3Ps70HFpHFj1kGxOQ4mdxoZ3jxuw3EHT3PtUxR7nR6i9H+acMke+rsvN2uLV8J9InPayJQLzZ4D@vger.kernel.org, AJvYcCXx1RrzFfuLijB0bfRkXcc7Pt653xbr5SjXL0bPwGsuSQ5yq1DKGBZb12sGcYt00QCRE6tyTgtVcHYGdsEcO42dTio=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyACBWrlyAv5YeJAXD6va4A26cCXV3hiqsi9qeRYlziKY95LAg4
+	3cLCVEclydfNXT7mdqzUMJinZ1uAAsU3MAWIhHGXobyQjNX/99JLBHlspLYul5EbQPOo5UqHFm6
+	bWBiwgOybAIHSL2gXotKi82dKpq/3asY=
+X-Gm-Gg: ASbGncv2lfJKFL6HUoPOX+HwHvmEiRRjtLGfAaQWx08TRw9ASijL633jL5LCpMurGef
+	9XnzPoE16BsQhJ8MjiRv9ciNkUGI6IKn9qLsdbdJniYA9dxZ60gfZtHRdXHCEjValhg6AWLjq2L
+	M5LyO6kqH5/daoVNkZFkGnfHcdff84Fni0yfQ=
+X-Google-Smtp-Source: AGHT+IFu3W4K0n/Mx4JzypNg+2pWPRluhOQNdIAWcHtnFpVY55yVyhej0EVxD5ThFx9fCHELb0vQDWAFNFt4Z6KOzag=
+X-Received: by 2002:a5d:64e3:0:b0:39e:f641:c43 with SMTP id
+ ffacd0b85a97d-3a3600dc224mr3444012f8f.53.1747413530485; Fri, 16 May 2025
+ 09:38:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] watchdog: qcom: add support to read the restart
- reason from IMEM
-To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck
- <linux@roeck-us.net>, bod.linux@nxsw.ie,
-        Srinivas Kandagatla <srini@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20250502-wdt_reset_reason-v3-0-b2dc7ace38ca@oss.qualcomm.com>
- <20250502-wdt_reset_reason-v3-4-b2dc7ace38ca@oss.qualcomm.com>
- <2036ef2f-c7ef-4f42-858d-8d95c430c21a@oss.qualcomm.com>
- <68d280db-f7df-48c8-821d-f7d408c302ad@oss.qualcomm.com>
- <8a763c70-adcf-4a14-bb68-72ddc61fa045@oss.qualcomm.com>
- <8c2a53c2-c11b-4d49-bfb5-b948767ba6c7@oss.qualcomm.com>
- <1e871aed-705f-4142-b72d-4232ae729a37@oss.qualcomm.com>
- <6274641a-7366-41cd-a0a7-a9e9cc41b8e6@oss.qualcomm.com>
- <0a73989f-b018-473c-872a-5cbc2e7d1783@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <0a73989f-b018-473c-872a-5cbc2e7d1783@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: PZMg7DQDuu4mZZ64aa6bsaZ3go6xm1a1
-X-Proofpoint-ORIG-GUID: PZMg7DQDuu4mZZ64aa6bsaZ3go6xm1a1
-X-Authority-Analysis: v=2.4 cv=cO7gskeN c=1 sm=1 tr=0 ts=68276949 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VNoyoka1EbeTPVikYY0A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDE2MiBTYWx0ZWRfX6Ca3T+Q0VgPs
- eb6Um0TrdN9Yvxuvo1YVMcTctMZtWc88ldSfhZXyi/2ZiZYsvh2NHzh116ANN8IlbZlHtx+JBpm
- onySrT6dfwO99ua6gIARJdQsQ78ZzusATP1M6LaWDlXR/3j9RDCtWShrSTAnPLzRjgbly60Cu/5
- 60I+27G5o/rPYVYkbrXO4j1EdRilE7sX4p9UaXSwForax5+ZZ00uwM+w5lGX6F3WN00Qf1+ZHOV
- UPOlp7hBtoS0/soSmIuEbWPL+zUTSMLcOIbZSAJ2lYYb1VZEdhiHUBT3nC2kFfpeRRvhL2mnn2v
- Vn4vx/5hpb3nC/MTi+RSak/fSO58kT58sLQJ+RGNRSiSgb063y34jjYpBDliUi9BMXzct/sjHk8
- D8eAK/aecq38bD/hViPKN+V73eDNbnhbA6L8Dpfldib7B7zeb5wJcF1jAu5U27T8Dgce8EbJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-16_05,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999 spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
- adultscore=0 bulkscore=0 malwarescore=0 impostorscore=0 clxscore=1015
- priorityscore=1501 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505160162
+References: <20250515182207.329176-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250515182207.329176-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250516-unpaid-reexamine-922bbecd4cbb@spud>
+In-Reply-To: <20250516-unpaid-reexamine-922bbecd4cbb@spud>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 16 May 2025 17:38:24 +0100
+X-Gm-Features: AX0GCFvbvHI08lkzI43pAPo_nT6eNQFUgPjKydnuIxTd1HtqoDzP-qRe6UAojcM
+Message-ID: <CA+V-a8v64jcDhdtSvqE4UTuCnL9mvjXOwtKyiZJQUeEtLmMFNA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: timer: renesas,ostm: Document RZ/V2N
+ (R9A09G056) support
+To: Conor Dooley <conor@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Chris Brandt <chris.brandt@renesas.com>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5/16/25 2:52 PM, Kathiravan Thirumoorthy wrote:
-> 
-> On 5/16/2025 4:48 PM, Konrad Dybcio wrote:
->> On 5/14/25 3:15 PM, Kathiravan Thirumoorthy wrote:
->>> On 5/6/2025 4:31 PM, Kathiravan Thirumoorthy wrote:
->>>> On 5/3/2025 3:53 AM, Konrad Dybcio wrote:
->>>>> On 5/2/25 6:28 PM, Kathiravan Thirumoorthy wrote:
->>>>>> On 5/2/2025 7:33 PM, Konrad Dybcio wrote:
->>>>>>>> +static int qcom_wdt_get_restart_reason(struct qcom_wdt *wdt,
->>>>>>>> +                    const struct qcom_wdt_match_data *data)
->>>>>>>> +{
->>>>>>>> +    struct regmap *imem;
->>>>>>>> +    unsigned int val;
->>>>>>>> +    int ret;
->>>>>>>> +
->>>>>>>> +    imem = syscon_regmap_lookup_by_compatible(data->imem_compatible);
->>>>>>> Try syscon_regmap_lookup_by_phandle_args() and pass a phandle, see e.g.
->>>>>>> drivers/phy/qualcomm/phy-qcom-qmp-pcie.c & phy@1bfc000 in x1e80100.dtsi
->>>>>>>
->>>>>>> That way all platform specifics will live in the DT, requiring no
->>>>>>> hardcode-y driver changes on similar platforms
->>>>>> Thanks. I thought about this API but it didn't strike that I can use the args to fetch and match the value.
->>>>>>
->>>>>> I need a suggestion here. There is a plan to extend this feature to other IPQ targets and also support WDIOF_POWERUNDER and WDIOF_OVERHEAT cause as well. For IPQ5424, all 3 cause will support and for other IPQ platforms, we are exploring how to integrate WDIOF_OVERHEAT. In any case, can I define the DT entry like below
->>>>>>
->>>>>>           imem,phandle = <&imem 0x7b0 <Non secure WDT value> <Power Under value> <Overheat value>>;
->>>>>>
->>>>>> and store these in values args[1], args[2] and args[3] respectively and use it for manipulation? If any of the platform doesn't support all 3, I can update the bindings and define the number of args as required.
->>>>> Let's call the property qcom,restart-reason and only pass the register value
->>>>>
->>>>> Because we may have any number of crazy combinations of various restart
->>>>> reasons, we can go two paths:
->>>>>
->>>>> 1. promise really really really hard we won't be too crazy with the number
->>>>>      of possible values and put them in the driver
->>>>> 2. go all out on DT properties (such as `bootstatus-overheat`,
->>>>> `bootstatus-fanfault` etc.
->>>>
->>>> Thanks Konrad for the suggestions and the offline discussions.
->>>>
->>>> @Guenter, I need a suggestion here. Currently as part of this series, we are planning to expose WDIOF_CARDRESET, WDIOF_POWERUNDER, WDIOF_OVERHEAT reasons.
->>>>
->>>> Once this is done, we do have the custom reason codes like Kernel Panic, Secure Watchdog Bite, Bus error timeout, Bus error access and few many. Is it okay to expose these values also via the bootstatus sysFS by extending the current list of reasons? Since these are outside the scope of watchdog, need your thoughts on this.
->>>
->>> Konrad / Guenter,
->>>
->>> We had a further discussion on this internally. Outcome is, it wouldn't be ideal to hook the custom restart reason codes in watchdog framework, since there is no involvement of watchdog in such cases. Also I don't find any references to hook the custom values in watchdog's bootstatus.
->>>
->>> If this is fine, I'm planning to resend the series to handle only the non secure watchdog timeout case. In that case, as suggested by Konrad, everything will be handled in DT like below to avoid the device data.
->>>
->>> imem,phandle = <&phandle <imem_offset> <value>>;
->> the part before the comma is a vendor prefix, so that must be qcom,xyz
-> 
-> 
-> Sure, will name it as qcom,imem-phandle. Hope this name is fine.
+Hi Conor,
 
-just qcom,imem is fine, phandle is a datatype described in dt-bindings
+On Fri, May 16, 2025 at 3:21=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Thu, May 15, 2025 at 07:22:06PM +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Document support for the Renesas OS Timer (OSTM) found on the Renesas
+> > RZ/V2N (R9A09G056) SoC. The OSTM IP on RZ/V2N is identical to that on
+> > other RZ families, so no driver changes are required as `renesas,ostm`
+> > will be used as fallback compatible.
+> >
+> > Also update the bindings to require the "resets" property for RZ/V2N
+> > by inverting the logic: all SoCs except RZ/A1 and RZ/A2 now require
+> > the "resets" property.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > v3->v4:
+> > - No changes in this version.
+> >
+> > v2->v3:
+> > - Added Acked-by tag from Conor.
+>
+> But v3 -> v4 doesn't mention why it was dropped?
+>
+Sorry I missed adding it. Please can you re-ack it.
 
->> what are your plans for the other reboot reasons? are we scrapping them?
-> 
-> 
-> No, we are not scrapping it. We are exploring further on where to put this. May be we can put those logic in some simple driver named as ipq-restart-reason.c under drivers/soc/qcom/?
-
-I see drivers/power/reset/at91-reset.c does something like this
-
-Konrad
+Cheers,
+Prabhakar
 
