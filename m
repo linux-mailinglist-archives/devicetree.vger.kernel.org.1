@@ -1,344 +1,164 @@
-Return-Path: <devicetree+bounces-177862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CD3BAB968B
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:28:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D777EAB969A
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:35:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97F5317DF9A
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 07:28:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 707DB4E7FC8
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 07:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28F31227B94;
-	Fri, 16 May 2025 07:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A1F22617F;
+	Fri, 16 May 2025 07:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lRccnhuY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kxQVDB3G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5019D1F4727;
-	Fri, 16 May 2025 07:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F712C9A;
+	Fri, 16 May 2025 07:35:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747380526; cv=none; b=MYsm+DNEFW0Wnx++Bd5ZuPd0mUw1sOWopqQ8RMPPbhQivAUdkDc7gn1eSJbM5KamzsRKwlGE3STk6YBcZ9mBGSF7oXJ6yEwM4W1KV8y7tpnbFZs0LBZwR+v5UhXYd4gj9qTNncy46jQ7EdSDZIQ1u+NaQ3UafJk6slsT9vJiQNY=
+	t=1747380908; cv=none; b=IBTihGq3OrhqD8b2kFNMZexkeCPkR6/D5sENm4rsLZY5X81dzVVR85m/NA5QnIpEZ4cJjUx+tu6ZBooL2Ee0i5e9VbY2bxu8eeRvVx7+x2GyYKw2cU2LG0SDNqQMnIG3JvxWjKg1ISl0tGGfHHnCGWhhlxioi/IKn2RAXcuisUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747380526; c=relaxed/simple;
-	bh=vbamsRClycmD0AcVt/iAvz202RrKFcQ4I4wdT1HanSY=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sanMUPN2zO5QsA3VHkRfquB129TWg78Mdq61ZddVa9oxXzBuSpDvq/ZRWUEnf1Wsrd9jhT+YZWfyG+UZgh3ZxMw9hVS8wE/89Y5ROsA2qRCyA/7EM/JdOhntJlM6MeW9YoWdYCoUK/ubWrsNm5+wRoqy1aHhGtBFPgDmJz3vmdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lRccnhuY; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1747380908; c=relaxed/simple;
+	bh=fHMu131eeC4O5t5ae3yEgP2HF3PgHSd4g5RekRTUeWM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KFgVBWMkwgY7AGkPezOgWSnfytvIjlPfjdsv95MPHyHD7oiJDRFh/5Nw8flmeQfAobOSbyM+wL7BeoVvvXnW+W3Z7yPNzUj0RNYy208i3HC46nUNfzMqkfnKEQk3BtC+W8qy6dIcQfJmPgCPOoR68IS+S2BnP+LOzdBdPMPSjVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kxQVDB3G; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54G3R3Um007950;
-	Fri, 16 May 2025 07:28:38 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54G3ExiW020897;
+	Fri, 16 May 2025 07:35:03 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=qkhnsikbRoTEbIXyNpd9ac
-	mVIdj7l4Am8uh2qrLrri4=; b=lRccnhuY6cH4ipChmMn3K9qgDGFKfVP6ZBaHKw
-	0TGhIAv3Nv4CopGLROyApVOkr4Kva7EndWOS9vozesUgcSJf2UCIN+gxrWeQW86i
-	rvi0pKRpCheo5lWOLnSTb/DE5xVay2af5qP53Z/HvdoHOQQ4icOQiSHnIIaxr9x5
-	05SGDoMizjzYG8CHXDj09wc84WwxZWx2+q8ym8bSwu3UNK919V4LOczvcmS0gejX
-	uPEvzftOdZcH2tte/5STOEurg7z3wC043DC8Ne/v72a1yNZNWnJfKNXHdBdft8Eg
-	jLkFfDw/2LnmGrOCRus9wPIeAiGUnQbS+CeFutPebhVWEQhA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcq1223-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	u1JbgsRbFNEarkGxDwy5O4rayeHmdGplE+POraV2bwk=; b=kxQVDB3G8LswSYkc
+	sql/AE4/A0m8VL3bA0S+h+tuNk8F85YmrR98aY3xybAABD5dwxpwbMJZ3Wx53Ppc
+	veEzwcAuBcXRVarHHYAaLzKmIbzU/QhQwT7qtzfb9QHgfQ04bidUFxGnt9++ar8F
+	kmD+WfWzh925JtnHW0qtSbXhExW7Xkkm+aLFyUINOz+Z8+340K+Qgfg6/RLaV8le
+	08VXdXKlO6VktppPo1ln66F9Fsm7X15YV8dpy1nxP19H7XoxwpwTG27epTwPXimI
+	ugCqXQgJNl0gmpi6Yc8xHBjWR0uh8sRntTQOdjaQOFunLtXSM1a2HxXvesJVHvzw
+	jEZ/bQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbew8y1s-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 May 2025 07:28:38 +0000 (GMT)
+	Fri, 16 May 2025 07:35:02 +0000 (GMT)
 Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54G7SanY014625
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54G7Z1xD029131
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 May 2025 07:28:37 GMT
-Received: from cse-cd01-lnx.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 16 May 2025 00:28:33 -0700
-From: Wenmeng Liu <quic_wenmliu@quicinc.com>
-To: <rfoss@kernel.org>, <bryan.odonoghue@linaro.org>, <todor.too@gmail.com>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <quic_depengs@quicinc.com>, <quic_wenmliu@quicinc.com>
-Subject: [PATCH RESEND] arm64: dts: qcom: sm8550: Add support for camss
-Date: Fri, 16 May 2025 15:27:07 +0800
-Message-ID: <20250516072707.388332-1-quic_wenmliu@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	Fri, 16 May 2025 07:35:01 GMT
+Received: from [10.253.78.92] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 16 May
+ 2025 00:34:57 -0700
+Message-ID: <db059233-523d-420b-81a7-73b02beef4d1@quicinc.com>
+Date: Fri, 16 May 2025 15:34:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Add support for camss
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Depeng Shao <quic_depengs@quicinc.com>
+References: <20250415-sm8550_camss-v1-1-d4b7daa168ac@quicinc.com>
+ <wOxjiEBKO2XU-PikPlT8IMpSGOrP4ocgZEIj_zNhLzzBjySkhGQzupjmJAFhUHcnknLKSASwk33LjBI6WrZ9vg==@protonmail.internalid>
+ <1ee8587b-2bf6-418a-9834-8f8cbf1e94d8@oss.qualcomm.com>
+ <4e81a1fe-3ee5-4f5f-b958-13e6cf9138f7@linaro.org>
+Content-Language: en-US
+From: Wenmeng Liu <quic_wenmliu@quicinc.com>
+In-Reply-To: <4e81a1fe-3ee5-4f5f-b958-13e6cf9138f7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01c.na.qualcomm.com (10.47.97.35)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: br1k9fbd3Z6UNgOSv5LXjm6xJysRzL2I
-X-Proofpoint-ORIG-GUID: br1k9fbd3Z6UNgOSv5LXjm6xJysRzL2I
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDA2OSBTYWx0ZWRfXwbQ36jKvU6VR
- v1UYVUjVqNnpBvawWLG7ZBwrSIy1x91lMGrMp++/YYe6vL4HWcaWywfQ6FLPI6+Gy3YBvDR0XAI
- qwS4BGIIcYmEQUbvp6JIJ6Bvmtl6VkwIE4oopwFkyPIEfwO/bYQhoW8+uJUtfbqxdLkm/TGjRVH
- mtr25MDQnAL7F3fQbt4dUjb5/meWwIyuTKjFsFgs1bluPPhjBssODXXSFbwPmyS9+NbcHRQhVPc
- T9ooROLXWDSb/3fVLo35T6kJ0rH8v6sQS0bg83qdoMtFikHmocByopPs7KdDNeWa8/dNrYXl82l
- 9Gi0JH/WF848EjR5CvpUr7pYADwI1NaiKlNcRQxhwYEwJNoLOPSjtyUEQehTADSqBdz5L5M9XbW
- yLQKDfutmWIgsL6iOMyepeYrghJJrUDkQ52m03Sy1wakaEjpjiZq3nU26DFXnbClh4i3SBKN
-X-Authority-Analysis: v=2.4 cv=KcvSsRYD c=1 sm=1 tr=0 ts=6826e926 cx=c_pps
+X-Proofpoint-GUID: JfCYi8Cyns4Qnjr4tAGPjJ56VDuktMaY
+X-Proofpoint-ORIG-GUID: JfCYi8Cyns4Qnjr4tAGPjJ56VDuktMaY
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDA3MCBTYWx0ZWRfX0fM2xuQlMEyf
+ HXct4P+bLbW/GcumwqRBf3vGFL+32Np/NPFKgvQbJNo6NNzS9r4uoRg+XXVAS1CsV1CNp7GQjNo
+ +oqbF8UZXo6OL3e6JEe2i8PPd25BMNtc0C6kuJjlx+JmCnqXM3gCxdrmzCXydEOUSF9OKmdyQbD
+ oCkZI78GK5MOA9IBCkuFDzDPNBRo1qxPHv6FtzacGU66T3n6HIoYRJeJ48PS1ajobyB6I0A2Meo
+ FmBWfU2VMevXi1BfihspehZVxmcdW3Fk3G24oeDxMsNlQx3nhxBJtAiVlrs/wjalYNobjPqaq1t
+ SDD9RTyuN1OpinhuB1CSP2i93dpTy8ErMlVkEj7MlB7gWXfqdsugeUvamzMjwkS+4bHkf6/l0Th
+ 4OOX9BjRaYYVziaHbLHbTKNx0P0VNIjN/Eloj4OTo0joddQDwmL3rlNJjkKdRpTjERAlZi08
+X-Authority-Analysis: v=2.4 cv=LOFmQIW9 c=1 sm=1 tr=0 ts=6826eaa6 cx=c_pps
  a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=-Dqg9KxjyIUy_Lgdb-YA:9
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=42mon1cdF7M_iQiDyuAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
  a=TjNXssC_j7lpFel5tvFf:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-05-16_03,2025-05-15_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 clxscore=1015 adultscore=0 phishscore=0
- lowpriorityscore=0 mlxlogscore=665 spamscore=0 malwarescore=0 impostorscore=0
- mlxscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ lowpriorityscore=0 spamscore=0 adultscore=0 priorityscore=1501 suspectscore=0
+ mlxscore=0 malwarescore=0 mlxlogscore=503 impostorscore=0 bulkscore=0
+ clxscore=1011 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505160069
+ definitions=main-2505160070
 
-Add support for the camera subsystem on the SM8550 Qualcomm SoC. This
-includes bringing up the CSIPHY, CSID, VFE/RDI interfaces.
 
-SM8550 provides
-- 3 x VFE, 3 RDI per VFE
-- 2 x VFE Lite, 4 RDI per VFE
-- 3 x CSID
-- 2 x CSID Lite
-- 8 x CSI PHY
 
-Co-developed-by: Depeng Shao <quic_depengs@quicinc.com>
-Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
-Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 210 +++++++++++++++++++++++++++
- 1 file changed, 210 insertions(+)
+On 2025/5/1 9:15, Bryan O'Donoghue wrote:
+> On 30/04/2025 12:11, Konrad Dybcio wrote:
+>> On 4/15/25 9:38 AM, Wenmeng Liu wrote:
+>>> Add support for the camera subsystem on the SM8550 Qualcomm SoC. This
+>>> includes bringing up the CSIPHY, CSID, VFE/RDI interfaces.
+>>>
+>>> SM8550 provides
+>>> - 3 x VFE, 3 RDI per VFE
+>>> - 2 x VFE Lite, 4 RDI per VFE
+>>> - 3 x CSID
+>>> - 2 x CSID Lite
+>>> - 8 x CSI PHY
+>>>
+>>> Co-developed-by: Depeng Shao <quic_depengs@quicinc.com>
+>>> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
+>>> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
+>>> ---
+>>
+>> [...]
+>>
+>>> +                     <GIC_SPI 604 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 688 IRQ_TYPE_EDGE_RISING>,
+>>
+>> It *may* be 689 instead but I'm not 100% sure
+>>
+>> Otherwise the numbers look good
+>>
+>> Bryan, Vlad, please also take a look
+>>
+>> Konrad
+>>
+> 
+> +                     <GIC_SPI 688 IRQ_TYPE_EDGE_RISING>,
+> This should be 689 yes
+> 
+> ---
+> bod
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index e9bb077aa9f0..722521496a2d 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -3326,6 +3326,216 @@ cci2_i2c1: i2c-bus@1 {
- 			};
- 		};
- 
-+		isp: isp@acb7000 {
-+			compatible = "qcom,sm8550-camss";
-+
-+			reg = <0x0 0x0acb7000 0x0 0x0d00>,
-+			      <0x0 0x0acb9000 0x0 0x0d00>,
-+			      <0x0 0x0acbb000 0x0 0x0d00>,
-+			      <0x0 0x0acca000 0x0 0x0a00>,
-+			      <0x0 0x0acce000 0x0 0x0a00>,
-+			      <0x0 0x0acb6000 0x0 0x1000>,
-+			      <0x0 0x0ace4000 0x0 0x2000>,
-+			      <0x0 0x0ace6000 0x0 0x2000>,
-+			      <0x0 0x0ace8000 0x0 0x2000>,
-+			      <0x0 0x0acea000 0x0 0x2000>,
-+			      <0x0 0x0acec000 0x0 0x2000>,
-+			      <0x0 0x0acee000 0x0 0x2000>,
-+			      <0x0 0x0acf0000 0x0 0x2000>,
-+			      <0x0 0x0acf2000 0x0 0x2000>,
-+			      <0x0 0x0ac62000 0x0 0xf000>,
-+			      <0x0 0x0ac71000 0x0 0xf000>,
-+			      <0x0 0x0ac80000 0x0 0xf000>,
-+			      <0x0 0x0accb000 0x0 0x1800>,
-+			      <0x0 0x0accf000 0x0 0x1800>;
-+			reg-names = "csid0",
-+				    "csid1",
-+				    "csid2",
-+				    "csid_lite0",
-+				    "csid_lite1",
-+				    "csid_wrapper",
-+				    "csiphy0",
-+				    "csiphy1",
-+				    "csiphy2",
-+				    "csiphy3",
-+				    "csiphy4",
-+				    "csiphy5",
-+				    "csiphy6",
-+				    "csiphy7",
-+				    "vfe0",
-+				    "vfe1",
-+				    "vfe2",
-+				    "vfe_lite0",
-+				    "vfe_lite1";
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_LITE_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_0_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_1_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_2_CLK>,
-+				 <&camcc CAM_CC_CSID_CLK>,
-+				 <&camcc CAM_CC_CSIPHY0_CLK>,
-+				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY1_CLK>,
-+				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY2_CLK>,
-+				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY3_CLK>,
-+				 <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY4_CLK>,
-+				 <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY5_CLK>,
-+				 <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY6_CLK>,
-+				 <&camcc CAM_CC_CSI6PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY7_CLK>,
-+				 <&camcc CAM_CC_CSI7PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSID_CSIPHY_RX_CLK>,
-+				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CLK>,
-+				 <&camcc CAM_CC_IFE_0_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CLK>,
-+				 <&camcc CAM_CC_IFE_1_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_2_CLK>,
-+				 <&camcc CAM_CC_IFE_2_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
-+			clock-names = "camnoc_axi",
-+				      "cpas_ahb",
-+				      "cpas_fast_ahb_clk",
-+				      "cpas_ife_lite",
-+				      "cpas_vfe0",
-+				      "cpas_vfe1",
-+				      "cpas_vfe2",
-+				      "csid",
-+				      "csiphy0",
-+				      "csiphy0_timer",
-+				      "csiphy1",
-+				      "csiphy1_timer",
-+				      "csiphy2",
-+				      "csiphy2_timer",
-+				      "csiphy3",
-+				      "csiphy3_timer",
-+				      "csiphy4",
-+				      "csiphy4_timer",
-+				      "csiphy5",
-+				      "csiphy5_timer",
-+				      "csiphy6",
-+				      "csiphy6_timer",
-+				      "csiphy7",
-+				      "csiphy7_timer",
-+				      "csiphy_rx",
-+				      "gcc_axi_hf",
-+				      "vfe0",
-+				      "vfe0_fast_ahb",
-+				      "vfe1",
-+				      "vfe1_fast_ahb",
-+				      "vfe2",
-+				      "vfe2_fast_ahb",
-+				      "vfe_lite",
-+				      "vfe_lite_ahb",
-+				      "vfe_lite_cphy_rx",
-+				      "vfe_lite_csid";
-+
-+			interrupts = <GIC_SPI 601 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 603 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 431 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 605 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 376 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 448 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 122 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 89 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 278 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 277 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 602 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 604 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 688 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 606 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 377 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "csid0",
-+					  "csid1",
-+					  "csid2",
-+					  "csid_lite0",
-+					  "csid_lite1",
-+					  "csiphy0",
-+					  "csiphy1",
-+					  "csiphy2",
-+					  "csiphy3",
-+					  "csiphy4",
-+					  "csiphy5",
-+					  "csiphy6",
-+					  "csiphy7",
-+					  "vfe0",
-+					  "vfe1",
-+					  "vfe2",
-+					  "vfe_lite0",
-+					  "vfe_lite1";
-+
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_CAMERA_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&mmss_noc MASTER_CAMNOC_HF QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "ahb",
-+					     "hf_0_mnoc";
-+
-+			iommus = <&apps_smmu 0x800 0x20>;
-+
-+			power-domains = <&camcc CAM_CC_IFE_0_GDSC>,
-+					<&camcc CAM_CC_IFE_1_GDSC>,
-+					<&camcc CAM_CC_IFE_2_GDSC>,
-+					<&camcc CAM_CC_TITAN_TOP_GDSC>;
-+			power-domain-names = "ife0",
-+					     "ife1",
-+					     "ife2",
-+					     "top";
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+				};
-+
-+				port@4 {
-+					reg = <4>;
-+				};
-+
-+				port@5 {
-+					reg = <5>;
-+				};
-+
-+				port@6 {
-+					reg = <6>;
-+				};
-+
-+				port@7 {
-+					reg = <7>;
-+				};
-+			};
-+		};
-+
- 		camcc: clock-controller@ade0000 {
- 			compatible = "qcom,sm8550-camcc";
- 			reg = <0 0x0ade0000 0 0x20000>;
--- 
-2.34.1
+Hi Bryan,Konrad,
 
+I confirmed that the value is 688 instead of 689. The documentation 
+incorrectly listed it as 689. To CC linux-media, I have resent the patch:
+https://lore.kernel.org/linux-arm-msm/20250516072707.388332-1-quic_wenmliu@quicinc.com/
+
+Thanks,
+wenmeng
 
