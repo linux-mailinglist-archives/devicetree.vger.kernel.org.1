@@ -1,236 +1,99 @@
-Return-Path: <devicetree+bounces-177848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B468AB95B2
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 07:54:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE848AB95C2
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 08:05:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F2CAA05EBD
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 05:54:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 833CD7A83C0
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 06:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79244221F04;
-	Fri, 16 May 2025 05:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6169B220F43;
+	Fri, 16 May 2025 06:05:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="L+lVcNK2"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="n96Sx2Ok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A5021CC79;
-	Fri, 16 May 2025 05:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367843D69;
+	Fri, 16 May 2025 06:05:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747374859; cv=none; b=uQsGt32udfrdReukCs4LLMHBgDkRndR6lAPt/bjmkXarlMWGzipYaXhrs8VlYZ8pYC5UCLZGDbylHFBQCUJu4EqogEpxLnjdNpZtAozAcQ4olDCL2GfDGTNAOt7DY3z7J1vRnsgcHwcAbJ/joM8WnT+bbFDpYSXY6zTVPCGp8mo=
+	t=1747375516; cv=none; b=V8ESPRoYk+sbhFBHBUK2VBJy7rffIGqQjVStHI3AMfL8PLvSIt06eVqCAfols/7P1DXFgszpxoX1sBAV8e67s9KUatNj+VkAu2MPRXEYd8pA+bGl4jhh0kZ8DZHIRavFZjj+IRpf+5QBZAETFUkuBQoencS5nhOzqB+SbzX6FM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747374859; c=relaxed/simple;
-	bh=hE/2RZ1PYyTSAjwfUMOIzb+0X8Tc/g40NO/t/GM1M2g=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T0VjSC/Er5NJnBcURGX5+Z3BdmPjcX8UWvt8RCai0SJcvfbxQfT+6hSSwAOHk1ijBPeaHbyMVExX/PCfH5OWtTub8fzvASenet5sg+SdzJJGbAXCCiVAaO/zyABQB/YDrPpXc8JsHdtJlDF//JvCyl6A7CNQC53Ld0akvUtZ/ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=L+lVcNK2; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4E9EE10397281;
-	Fri, 16 May 2025 07:54:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1747374847; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=npw7oUOa65omh2AfzcTC00iOX1CPSJ9Fh+nCscZc5Qw=;
-	b=L+lVcNK2s55ncmt8CcZOpWwgETi+D4+e9Q492CJjTyHaxO3Lbj+ZxgebA7H1rfoNlYpaPH
-	+l1IIIgb4wJruB3r8NWRzqWoxeMEV7meEznD71Lppv3BgMOJG8wY5nZuE/LkqSVyJS5JOE
-	S5FXcErYtg2hiLD8BJT4a2LelygYHAKhVemONn/kvlllsS5IGUJREfGqZr2nk/Gbz31Q/l
-	wvX1mhR7FbSD2+dl9xiSvSwUna5vLEQC9RQRX2t2isuA5soeVoyCR1EYcVI6zwiF3r6zKz
-	zaQ8j9maRTqo2EKYnwJZ/DaTnrcakhzaxLVEIgh+MpGolmiWj+g5NslaPAgXSg==
-Date: Fri, 16 May 2025 07:54:02 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Paolo Abeni <pabeni@redhat.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Richard Cochran
- <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
- <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
- <andrew@lunn.ch>
-Subject: Re: [net-next v11 4/7] net: mtip: The L2 switch driver for imx287
-Message-ID: <20250516075402.5104a0b6@wsk>
-In-Reply-To: <20250513073109.485fec95@wsk>
-References: <20250504145538.3881294-1-lukma@denx.de>
-	<20250504145538.3881294-5-lukma@denx.de>
-	<61ebe754-d895-47cb-a4b2-bb2650b9ff7b@redhat.com>
-	<20250513073109.485fec95@wsk>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1747375516; c=relaxed/simple;
+	bh=bW/BSRnMonxJF09QI4JenGAMerZbgvhvGxO91qgyG40=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VOphZKlnLgw/79GV3Lph1Hi+BciqmXwL6mfNqhkTrN+B/SXFicW6oUW63qqhlrGTmvRno6m+uIfpTvOgzeJ8ACkD9Ft0xrD5wxgmlUu8O7nt4+MK3HVasU7/Yi3SgnvOLaahmPdto2UaQgMEUIjHa5//w/IVD7WDFrPKdxPLqHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=n96Sx2Ok; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48F3CC4CEE4;
+	Fri, 16 May 2025 06:05:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1747375515;
+	bh=bW/BSRnMonxJF09QI4JenGAMerZbgvhvGxO91qgyG40=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=n96Sx2OkenwE0kt3YDNfJZlohnuKTqmaWZNUPaZ6CW9WiQIYMcAet01BF7Nfw3kVN
+	 lOe4k+swNbvlzFY+wtcQDBtvSfiaHZFM9SHTbiH/S2Xt53BToRxnP4jbJiE6g/IUD0
+	 wo3hmk8y+YdB/EGpRIQ112qAOTUPNhzYaOs8yXBE=
+Date: Fri, 16 May 2025 08:03:27 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Linux-Kernel <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
+	shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	goda <yusuke.goda.sx@renesas.com>,
+	Kurokawa <harunobu.kurokawa.dn@renesas.com>,
+	Kihara <takeshi.kihara.df@renesas.com>,
+	kazuya.mizuguchi.ks@renesas.com, takamitsu.honda.pv@renesas.com
+Subject: Re: Question about UIO vs DT
+Message-ID: <2025051649-commode-brussels-1034@gregkh>
+References: <87o6vutrbw.wl-kuninori.morimoto.gx@renesas.com>
+ <2025051549-flannels-lively-a46d@gregkh>
+ <871pspti1t.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/ex0Iw2w7PZxxqHuvJIb/PVl";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <871pspti1t.wl-kuninori.morimoto.gx@renesas.com>
 
---Sig_/ex0Iw2w7PZxxqHuvJIb/PVl
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Fri, May 16, 2025 at 02:18:07AM +0000, Kuninori Morimoto wrote:
+> 
+> Hi Greg
+> 
+> Thank you for the reply
+> 
+> > > For example in case of
+> > > the device which needs "2 regs 3 irqs". it will be
+> > > 
+> > > (A)	[1 reg, 1 IRQ] UIO
+> > > (B)	[1 reg, 1 IRQ] UIO
+> > > (C)	[0 reg, 1 IRQ] UIO
+> > > 
+> > > and (C) will be DT error. Is this known issue ? Do we have better solution ?
+> > 
+> > Yes, write a real driver for the device as obviously it is a complex one
+> > and UIO shouldn't be used for it :)
+> > 
+> > What type of device is this that requires this type of hardware control
+> > and why do you feel that UIO is the proper solution?
+> 
+> One of big reason is license.
+> Because it needs to be proprietary licensed driver, we can't create
+> real driver.
 
-Hi Paolo,
+That is not a valid reason at all, sorry.  So much so that I, and many
+others, have argued that you can not have UIO drivers in userspace that
+are NOT also released under the GPLv2.
 
-> Hi Paolo,
->=20
-> > On 5/4/25 4:55 PM, Lukasz Majewski wrote: =20
-> > > +		/* This does 16 byte alignment, exactly what we
-> > > need.
-> > > +		 * The packet length includes FCS, but we don't
-> > > want to
-> > > +		 * include that when passing upstream as it
-> > > messes up
-> > > +		 * bridging applications.
-> > > +		 */
-> > > +		skb =3D netdev_alloc_skb(pndev, pkt_len +
-> > > NET_IP_ALIGN);
-> > > +		if (unlikely(!skb)) {
-> > > +			dev_dbg(&fep->pdev->dev,
-> > > +				"%s: Memory squeeze, dropping
-> > > packet.\n",
-> > > +				pndev->name);
-> > > +			pndev->stats.rx_dropped++;
-> > > +			goto err_mem;
-> > > +		} else {
-> > > +			skb_reserve(skb, NET_IP_ALIGN);
-> > > +			skb_put(skb, pkt_len);      /* Make room
-> > > */
-> > > +			skb_copy_to_linear_data(skb, data,
-> > > pkt_len);
-> > > +			skb->protocol =3D eth_type_trans(skb,
-> > > pndev);
-> > > +			napi_gro_receive(&fep->napi, skb);
-> > > +		}
-> > > +
-> > > +		bdp->cbd_bufaddr =3D
-> > > dma_map_single(&fep->pdev->dev, data,
-> > > +
-> > > bdp->cbd_datlen,
-> > > +
-> > > DMA_FROM_DEVICE);
-> > > +		if (unlikely(dma_mapping_error(&fep->pdev->dev,
-> > > +
-> > > bdp->cbd_bufaddr))) {
-> > > +			dev_err(&fep->pdev->dev,
-> > > +				"Failed to map descriptor rx
-> > > buffer\n");
-> > > +			pndev->stats.rx_errors++;
-> > > +			pndev->stats.rx_dropped++;
-> > > +			dev_kfree_skb_any(skb);
-> > > +			goto err_mem;
-> > > +		}   =20
-> >=20
-> > This is doing the mapping and ev. dropping the skb _after_ pushing
-> > the skb up the stack, you must attempt the mapping first. =20
->=20
-> I've double check it - the code seems to be correct.
->=20
-> This code is a part of mtip_switch_rx() function, which handles
-> receiving data.
->=20
-> First, on probe, the initial dma memory is mapped for MTIP received
-> data.
->=20
-> When we receive data, it is processed and afterwards it is "pushed" up
-> to the network stack.
->=20
-> As a last step we do map memory for next, incoming data and leave the
-> function.
->=20
-> Hence, IMHO, the order is OK and this part shall be left as is.
+Go work with your lawyers please, there's nothing I can now do to help
+you out with this due to the expectation that you are attempting to
+evade the license requirements here.
 
-Is the explanation sufficient?
-
->=20
-> >  =20
-> > > +static void mtip_free_buffers(struct net_device *dev)
-> > > +{
-> > > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
-> > > +	struct switch_enet_private *fep =3D priv->fep;
-> > > +	struct sk_buff *skb;
-> > > +	struct cbd_t *bdp;
-> > > +	int i;
-> > > +
-> > > +	bdp =3D fep->rx_bd_base;
-> > > +	for (i =3D 0; i < RX_RING_SIZE; i++) {
-> > > +		skb =3D fep->rx_skbuff[i];
-> > > +
-> > > +		if (bdp->cbd_bufaddr)
-> > > +			dma_unmap_single(&fep->pdev->dev,
-> > > bdp->cbd_bufaddr,
-> > > +					 MTIP_SWITCH_RX_FRSIZE,
-> > > +					 DMA_FROM_DEVICE);
-> > > +		if (skb)
-> > > +			dev_kfree_skb(skb);   =20
-> >=20
-> > I suspect that on error paths mtip_free_buffers() can be invoked
-> > multiple consecutive times with any successful allocation in
-> > between: skb will be freed twice. Likely you need to clear
-> > fep->rx_skbuff[i] here. =20
->=20
-> +1 - I will add it with v12.
->=20
-> >=20
-> > Side note: this patch is way too big for a proper review: you need
-> > to break it in multiple smaller ones, introducing the basic features
-> > separately.
-> >=20
-> > Cheers,
-> >=20
-> > Paolo
-> >  =20
->=20
->=20
->=20
->=20
-> Best regards,
->=20
-> Lukasz Majewski
->=20
-> --
->=20
-> DENX Software Engineering GmbH,      Managing Director: Erika Unter
-> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-> Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email:
-> lukma@denx.de
-
-
-
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/ex0Iw2w7PZxxqHuvJIb/PVl
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmgm0voACgkQAR8vZIA0
-zr1KMwf+LbqivlaOayX4KF7BX15t/6+4VtMYl0vfPvtkhJUk16KHiMdq8jOJgd1a
-mEMSCZbdP79VOHquqMUl4dhBBt5pxa9HvHNEprTYncHrAGptXNbLkXtYzW0FCa4g
-p9/ajwh6N/Q7vl1sc41w5b48sTt1inLufkbRnSZqrW+J4eTLIzXmjJCCpot2zKgr
-nN8j4gzHwd+auHQkCP3yGhWb9Vxu+F1OAKcw5ChUuMYHw7IuJfTG5EF335HyPY2D
-NZXKP56M+xsXOdGd4jLXKrr56wiBogIThnfvaBIJBDI8mjAJN23QWsIh/RuNz5FG
-0gaOjQiU1Jb2i6tJC4Vk7PP6CGVDJQ==
-=2uYa
------END PGP SIGNATURE-----
-
---Sig_/ex0Iw2w7PZxxqHuvJIb/PVl--
+greg k-h
 
