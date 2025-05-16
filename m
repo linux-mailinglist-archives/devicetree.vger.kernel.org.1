@@ -1,74 +1,69 @@
-Return-Path: <devicetree+bounces-178007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D65AAB9E7F
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 16:19:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FD3FAB9E87
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 16:20:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87F0116639C
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:19:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 632DF1BC27A6
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:21:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C580D184524;
-	Fri, 16 May 2025 14:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79F331898FB;
+	Fri, 16 May 2025 14:20:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SWXG33jt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N1d2aH/Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9844A1632DD;
-	Fri, 16 May 2025 14:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2C6176AC5;
+	Fri, 16 May 2025 14:20:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747405113; cv=none; b=ruvBkkgK3UJ29487jWHqVUMkItZYJLBb+wV1rxa2e1Mzv7Hrt+Ji6gKPbi3mTNIgVX6m8ldJMIUODL83ZNVvCtMKbfICB4NsFcJs3xumexN1iYsXA76Dan06GJx4euElafRFrFexmSk7ZcHrlHQK/A0ovZiiRNx2qiQwSy7HfEI=
+	t=1747405255; cv=none; b=WXJVh+HTipelQxXhX8YXrYqFnk4P1dvxs8OgrKuTvjEMaVJ1A6QLqqLoeCkvLUKPe8lvEmQH3EoTmrC2kcADfoWdzTSSIe3J3dOLVFBA/eDJBUuyHlWDQy8qREW1eQ4qSU5h91HMfOW4lXGB5KcobZ68Uf63M3L0LGcD6SfK9V8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747405113; c=relaxed/simple;
-	bh=wJC6zw4ize8YvwX8KINR0uybINw/Jty0tJPjNkm1idc=;
+	s=arc-20240116; t=1747405255; c=relaxed/simple;
+	bh=R7IzZ+E4n4fy5bHk20LY8LFQxi9liKPZf9W5SmiiXgY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kSaxyY/RULiVrdXI8Ler8aPust1Wqef6qQ03+aVZ6tMJrlgNBwwCoWSE9vrxa9ZlX3FhGwxg+XG1gOD8ef6M1XBOEan+Dloy7XSLH7bS/4zxzAhWOkHn03/75fwLljhaINsQAjVqi8kyS6L1uXFIP3KCcjpIUc43t4N3EL/WTyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SWXG33jt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD18FC4CEE4;
-	Fri, 16 May 2025 14:18:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=prCUYCVYupyTMoN54Uo0OlsWw+yBi7aWW1P1wvNKoEDXQIwiF0ek8p2X5i3eWTFd2d1P2V+KktOpi7tXE8et2J7Jbp+/ywez7pbyyIqrB5eC77Tidj1tfVF/8ifTNK0ik++1750UG4s1tClablrATP6VDCsHRX1Ecap18K76mhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N1d2aH/Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D105C4CEE4;
+	Fri, 16 May 2025 14:20:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747405113;
-	bh=wJC6zw4ize8YvwX8KINR0uybINw/Jty0tJPjNkm1idc=;
+	s=k20201202; t=1747405254;
+	bh=R7IzZ+E4n4fy5bHk20LY8LFQxi9liKPZf9W5SmiiXgY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SWXG33jt+z9gQJKbLLztRaIhXu3GxC1mAa0ZSlSKQm4IUJrXys/tLQgoGbEyVpyzM
-	 Qkm/KgG7O9POchBxw24pZSWhDuSVXN8Uq3SJ6t/fpj/U+LZY4DBL6KVdey57i1t107
-	 Wz8m0xxe5beLiFlhw50FKELh6evnhdQeRWIez/HvjJe4JM7SMKb41KReJ1EKkgDVa5
-	 ON3tGUogQzuKCn/x+F8hSYJdrXps3pXqwKiyMCyd74KSJf1heyoHdnUXD1v58AxsAq
-	 DRPJ10U3WnmwNAeUyRM2bJwlqTeCfAfRS9jybP5N90hW04pb0QPs2twM8qtkGgiElS
-	 vgs7yd6MmjdKw==
-Date: Fri, 16 May 2025 15:18:26 +0100
+	b=N1d2aH/ZymXUKtVmEKSo0wq/ORTu4b3Z+Dhp1bhYh+zsh1gNxbCqUBz9vnksrDNSn
+	 zD5Q/KVGDOZYelp1UYVIMEgWEU1t4uWjLP7H8nat1u/1BGELXdI7e736GPSoxs3ZXC
+	 0uvGxNPm+rvEUn0vyWZZGECywZZGM7SwMMphzzAwsr3G/6rKgD45IdUL/OF5hWKyHW
+	 6tfhHt6/M4vGnZ2mAEZFT7a1+tTUy3gIBpNk2BO39VqaBnNeekm+DUIGR3xlPtQo+w
+	 mstQydv5a9GdB1QRZy4zC+DyIXJ4ZX8NVQf0a0FXkmNZ0NjQont4rBPFERjX0oxxAe
+	 Ta6IkMlTRbaSw==
+Date: Fri, 16 May 2025 15:20:49 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
-	Dragos Bogdan <dragos.bogdan@analog.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] dt-bindings: iio: adc: add ad7405
-Message-ID: <20250516-moonshine-engine-006e72665702@spud>
-References: <20250516105810.3028541-1-pop.ioan-daniel@analog.com>
- <20250516105810.3028541-4-pop.ioan-daniel@analog.com>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Chris Brandt <chris.brandt@renesas.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: timer: renesas,ostm: Document RZ/V2N
+ (R9A09G056) support
+Message-ID: <20250516-unpaid-reexamine-922bbecd4cbb@spud>
+References: <20250515182207.329176-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250515182207.329176-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,118 +71,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zCsU3JcOku4xXmfF"
+	protocol="application/pgp-signature"; boundary="88xPX6GY1mTCQwI+"
 Content-Disposition: inline
-In-Reply-To: <20250516105810.3028541-4-pop.ioan-daniel@analog.com>
+In-Reply-To: <20250515182207.329176-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
 
---zCsU3JcOku4xXmfF
-Content-Type: text/plain; charset=utf-8
+--88xPX6GY1mTCQwI+
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 16, 2025 at 01:58:03PM +0300, Pop Ioan Daniel wrote:
-> Add devicetree bindings for ad7405/adum770x family.
+On Thu, May 15, 2025 at 07:22:06PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >=20
-> Signed-off-by: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
+> Document support for the Renesas OS Timer (OSTM) found on the Renesas
+> RZ/V2N (R9A09G056) SoC. The OSTM IP on RZ/V2N is identical to that on
+> other RZ families, so no driver changes are required as `renesas,ostm`
+> will be used as fallback compatible.
+>=20
+> Also update the bindings to require the "resets" property for RZ/V2N
+> by inverting the logic: all SoCs except RZ/A1 and RZ/A2 now require
+> the "resets" property.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> changes in v2:
->  - fix properties: clocks issue
->  .../bindings/iio/adc/adi,ad7405.yaml          | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7405.=
-yaml
+> v3->v4:
+> - No changes in this version.
 >=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7405.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad7405.yaml
-> new file mode 100644
-> index 000000000000..939de3bd6f26
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7405.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2025 Analog Devices Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7405.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7405 family
-> +
-> +maintainers:
-> +  - Dragos Bogdan <dragos.bogdan@analog.com>
-> +  - Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-> +
-> +description: |
-> +  Analog Devices AD7405 is a high performance isolated ADC, 1-channel,
-> +  16-bit with a second-order =CE=A3-=CE=94 modulator that converts an an=
-alog input signal
-> +  into a high speed, single-bit data stream.
-> +
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
-7405.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
-um7701.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
-um7702.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD=
-uM7703.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7405
-> +      - adi,adum7701
-> +      - adi,adum7702
-> +      - adi,adum7703
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  vdd1-supply: true
-> +
-> +  vdd2-supply: true
-> +
-> +  io-backends:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - vdd1-supply
-> +  - vdd2-supply
-> +  - io-backends
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    adc {
-> +        compatible =3D "adi,ad7405";
-> +        clocks =3D <&axi_clk_gen 0>;
+> v2->v3:
+> - Added Acked-by tag from Conor.
 
-No reg here, how do you actually access this device?
-Is it entirely via the backend?
+But v3 -> v4 doesn't mention why it was dropped?
 
-> +        vdd1-supply =3D <&vdd1>;
-> +        vdd2-supply =3D <&vdd2>;
-> +        io-backends =3D <&iio_backend>;
-> +    };
-> +...
+>=20
+> v1->v2:
+> - Inveted the logic in the dt-bindings to require the "resets" property
+> - Updated commit message
+> - Added a Reviewed-by tag from Geert.
+> ---
+>  .../devicetree/bindings/timer/renesas,ostm.yaml      | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml b/=
+Documentation/devicetree/bindings/timer/renesas,ostm.yaml
+> index 9ba858f094ab..0983c1efec80 100644
+> --- a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
+> +++ b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
+> @@ -26,6 +26,7 @@ properties:
+>            - renesas,r9a07g043-ostm # RZ/G2UL and RZ/Five
+>            - renesas,r9a07g044-ostm # RZ/G2{L,LC}
+>            - renesas,r9a07g054-ostm # RZ/V2L
+> +          - renesas,r9a09g056-ostm # RZ/V2N
+>            - renesas,r9a09g057-ostm # RZ/V2H(P)
+>        - const: renesas,ostm        # Generic
+> =20
+> @@ -54,12 +55,11 @@ required:
+>  if:
+>    properties:
+>      compatible:
+> -      contains:
+> -        enum:
+> -          - renesas,r9a07g043-ostm
+> -          - renesas,r9a07g044-ostm
+> -          - renesas,r9a07g054-ostm
+> -          - renesas,r9a09g057-ostm
+> +      not:
+> +        contains:
+> +          enum:
+> +            - renesas,r7s72100-ostm
+> +            - renesas,r7s9210-ostm
+>  then:
+>    required:
+>      - resets
 > --=20
-> 2.34.1
+> 2.49.0
 >=20
 
---zCsU3JcOku4xXmfF
+--88xPX6GY1mTCQwI+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCdJMgAKCRB4tDGHoIJi
-0ttWAQCZHPR/d5g4pOwzwPU+IPLwJ/U2F1ULaSQn8yETrxSQWAD+ONIA7VlcVA3U
-hsAHlnrxHmukjdGZA9cYEdL/iJeBug8=
-=hq22
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCdJwQAKCRB4tDGHoIJi
+0mvIAQDauy3Hd/nBGPUcMQK3MebaA9RozB2H7bmL2zx8VKNLSAEAgRw7hsp/2Rjh
+5C8Wbm9MLFseOKB6HArt1synqePz2wA=
+=uGiL
 -----END PGP SIGNATURE-----
 
---zCsU3JcOku4xXmfF--
+--88xPX6GY1mTCQwI+--
 
