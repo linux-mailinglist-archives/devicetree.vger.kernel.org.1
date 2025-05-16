@@ -1,104 +1,101 @@
-Return-Path: <devicetree+bounces-177859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3CC7AB9656
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:01:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6819AB965E
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:04:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88AB44E441C
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 07:01:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0E511B68AAE
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 07:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1669619D07E;
-	Fri, 16 May 2025 07:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4069C21C9ED;
+	Fri, 16 May 2025 07:03:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N+Dv1/8Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E397442C;
-	Fri, 16 May 2025 07:01:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4F1442C;
+	Fri, 16 May 2025 07:03:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747378888; cv=none; b=LUXcJAJz4TUvGoTXPKvMk72ZxTt7+fgcabV+QYU9en1Dw9U99F3PMf1cm+3kUor6wovAdSY1GONkRWKr+lIKseNfY9qVIxjUt++EKesiFDeO3OV1NOgQ7AcGpl1MqWU8hBpsFf6trulm3apdOChc5pYTaewqGKx4C2UWk0FgMzU=
+	t=1747379037; cv=none; b=OL/79/XXgKU+eCtynVEujYgxoLmOBo/Ar8G+5yp2jVnEKJfIY5zZTgft/xSR0lt7FoQ5giUUpXzTpE+HvLvYOJJzVn2S4uxHonheOeLUAWp8fFkcEyGU1xevlrQqZ0gvLZdpoTgAyS7GrbPUzw9NC9EnUxg03i62Fv1yGsoM7CA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747378888; c=relaxed/simple;
-	bh=1N5jwTXEg+BGFZFpJAscn66ihhhPz8zD1yN3bMEpZaY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dNNRymFPZ8/hBeKUAV/aon13VNOSTmsB4QVwcKCNgsdTsWj2nznSjCWXuAafAU9le0MbBLwJLQqklxnaRq7wrf8ADtFaZwU+MhR27ChmGaTocywhkjqp6V8E+s0wtKIgjU8Rn7gwslS2dNRQdIIn8JtLS1Gc8GM8g+t/jNHBNTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.215.244])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 15416c95d;
-	Fri, 16 May 2025 15:01:13 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: kever.yang@rock-chips.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	finley.xiao@rock-chips.com,
-	heiko@sntech.de,
+	s=arc-20240116; t=1747379037; c=relaxed/simple;
+	bh=BSOuz0Sa7NnM27jLiJyPK8CIt/5UN80833LDwnsMzN8=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=epGPn9fylTnMgQqb/f/6n8v7cGtHIU34PDPXnSTZ6zNKiTeMh5boXzfWo75ELYm4/uKD1BTsCgqZgO/1YtaeusOEhuZH8t+1wjlpZSnVgdiDzG8d21vqGdDyprtNhsPqnhWeUpZYz15/BZxvPzsOgaMxIdYuKmnpP43yWUoJbAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N+Dv1/8Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78D05C4CEE4;
+	Fri, 16 May 2025 07:03:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747379036;
+	bh=BSOuz0Sa7NnM27jLiJyPK8CIt/5UN80833LDwnsMzN8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=N+Dv1/8Q1cgZN/Y++AHMGsWADynJKYdRP8jW01IKZ6dz3QrY9iC6aNokjBOa8iC6l
+	 /04aAzMecEWdquyQtHN8u2sL6c6nEE+NW+lvWw+os9sPeu2YBFPG19TeXY0DXq3zYf
+	 tPybNfh1OU/VNQMN8WNoDRWuSxcILXxK1LZ7NfByw2LLLvtwe/GQBLNSsN0QVF8a2h
+	 oG6XQahOhUEGS56gl8iI6NLCSo6pRFMklCccjeFVnH0erxDkunfbf2z53rJkMT/y+u
+	 O7mL0V1vgYPqDw1Wzz3O+nFAARBvnhMpWqHR7DHpXhFaFln8VjPrH2F4n8Oz8tsSAU
+	 U5LT5sy3KXyEA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1uFp6o-00FTKu-4X;
+	Fri, 16 May 2025 08:03:54 +0100
+Date: Fri, 16 May 2025 08:03:53 +0100
+Message-ID: <86h61lf352.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: adrianhoyin.ng@altera.com
+Cc: dinguyen@kernel.org,
+	robh@kernel.org,
 	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	tglx@linutronix.de,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: Re: [PATCH v7 4/5] arm64: dts: rockchip: add core dtsi for RK3562 SoC
-Date: Fri, 16 May 2025 15:01:06 +0800
-Message-Id: <20250516070106.653870-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250509102308.761424-5-kever.yang@rock-chips.com>
-References: <20250509102308.761424-5-kever.yang@rock-chips.com>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] Add quirk to support address bus size limitation
+In-Reply-To: <cover.1747368554.git.adrianhoyin.ng@altera.com>
+References: <cover.1747368554.git.adrianhoyin.ng@altera.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaTR5NVh5KSh5DSkpOS09CTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVJT09ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSEJVSktLVU
-	pCS0tZBg++
-X-HM-Tid: 0a96d7e5a5d103a2kunm15416c95d
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NRg6Pio5LTE9PjYhLzMYOgxL
-	Tk5PChFVSlVKTE9MSExDQ0xPTUhIVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	QlVKSUlVSUpOVUlPT1lXWQgBWUFJS0pJNwY+
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: adrianhoyin.ng@altera.com, dinguyen@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-Hi,
+On Fri, 16 May 2025 05:13:31 +0100,
+adrianhoyin.ng@altera.com wrote:
+> 
+> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+> 
+> This patch set adds support for the address bus size limitation by
+> allocating buffers with in a 32 bit address range.
+> 
+> -Add device tree binding to enable a quirk to support a limited address
+> bus size.
+> -Update ITS node for Agilex5 with dma_32bit_quirk.
+> -Add implementation to configure gfp flags to allocate buffers within
+> 32 bit addressable range when quirk is set.
 
-I posted to the wrong thread before, so I resent this.
-Sorry for the noise.
+No. Please join the pack of other totally broken integrations and
+reuse the *existing* infrastructure. You'll be in good company.
 
-> <snip>
-> +		pcie2x1: pcie@ff500000 {
-> +			compatible = "rockchip,rk3562-pcie", "rockchip,rk3568-pcie";
-> +			bus-range = <0x0 0xff>;
-> <snip>
-> +			interrupt-names = "sys", "pmc", "msg", "legacy", "err", "msi";
+	M.
 
-I noticed that the bsp 5.10 kernel said that pcie only has 8 MSI vectors,
-[1][2] but in the bsp 6.1 kernel it changed to 32 MSI vectors [3].
-
-The rockchip documentation also says there are only 8 MSI vectors:
-
-[4] Page37 8.8 "RK3528/RK3562/RK3576可分配的MSI或者MSI-X总数是8个"
-Translate into English: "The total number of MSI or MSI-X that
-can be allocated by RK3528/RK3562/RK3576 is 8"
-
-We noticed this when supporting rk3528, so which one is correct?
-
-[1] https://github.com/rockchip-linux/kernel/commit/4f0c9ccc79c373aa97084b3b1ab0651ca4248227
-[2] https://github.com/rockchip-linux/kernel/commit/afb85c759cfadc4051c42a9703860071a9877f2e
-[3] https://github.com/coolpi-george/coolpi-kernel/commit/522b94122ec797760dcd466851250cbdfafff50f
-[4] https://github.com/ArmSoM/rk3506-rkr4.2-sdk/blob/main/docs/cn/Common/PCIe/Rockchip_Developer_Guide_PCIe_CN.pdf
-
-Thanks,
-Chukun
-
---
-2.25.1
-
+-- 
+Without deviation from the norm, progress is not possible.
 
