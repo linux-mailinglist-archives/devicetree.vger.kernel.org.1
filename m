@@ -1,187 +1,137 @@
-Return-Path: <devicetree+bounces-177978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B952DAB9CC0
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:57:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B21FAB9CD5
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:02:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76DCA1BA5C3A
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:57:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 475441BC28C8
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:02:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43AC323FC6B;
-	Fri, 16 May 2025 12:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7D7323FC74;
+	Fri, 16 May 2025 13:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XejH1wUs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E2nr14y1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F2F1DFDE;
-	Fri, 16 May 2025 12:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4942D22F776;
+	Fri, 16 May 2025 13:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747400257; cv=none; b=fREKBLvyN2zEzMO/XlxbQUaTrxIAZ2mbVrbQaJCPmongB68YOFFfYRad3aP3APN/RgZehxL377WY8KI1eeSeWUhtd6jfewnyQtQr8roQeuHRe15kZYgwlD2GYdBWA/eHz1Mnz3bLqraeTAsznq/xm863/Z0aP6mXRwO2Dll9Wfs=
+	t=1747400547; cv=none; b=GQqf+p8JfRedO6E6y4BKU5ixUlw4HRP385kE8nQHezrCIxVGrmr7kkke33JydDLFOaL904gONMqcM0msAVbOYiPocBeGqTUiV2cHgHdq1IDzGiDxvboj9aUfkdWmfyBaoiOUpXGlAwxsgiAd50+A+kDuiTJjxUaS1ymh9CGXcHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747400257; c=relaxed/simple;
-	bh=2Nhkkr+NBSjiX+DhesPVuuxmubLd2IevuaM+ryVlwQk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=mavj7XkrUlhQd9TTKzCDIcrkgMflZZVOvFaju35IzHmAGM6/Uf/GooKZce0cGxxJznsqdbQeGtXxQGGHM7ku/USZNZDGEG2jtpM/SxCXMH6iWkWP3/EENORzinJMxs1znKWs31SfPTGNkzZeKnW8KRLoG3N0tCRqu89CldVaABU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=XejH1wUs; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 696A843304;
-	Fri, 16 May 2025 12:57:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1747400251;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=c09Kcb+nc6PjrVGBJxZRFaPWlKLpHHJR4nMu3xnQS8A=;
-	b=XejH1wUslvd9ND/yhbTmla3Fld18HuBsHogfyim0s2u6xIJFLLMcM3+HAt4292eDYluH/9
-	GsPPmOajrfgdojMTwQQ7O6FoWtHb73bSD/UjPBBwK6kFKok/iJOaQU1VOE17yaaP49Zdhy
-	gumqPlshlxErPS+/r/amjFQtCUgLlsuJsDkG/t36MWCgDxu3A6okk+M6ia48ZsJqd94NaM
-	pAJlvYpUmgOYD+KHaqStsd6HJihGWutdoVEJbQBtnRpLlvnLqdW055iaeAjJ4gkSFbgW+a
-	+7jTPf4jZOJWgJzijfi7unt/oc9t9BVmCnpuxkWcbexNaNmC+neRbE0qiTO8sw==
+	s=arc-20240116; t=1747400547; c=relaxed/simple;
+	bh=KVS47/XoSWd+fNXjULjdUBqXz+ZFamPMM11G3krrkqA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iG6le0y0eLe01mizk9gwayCY/COdZ6x4wm3ap28AmEkvxUbq9jr9re6XSO1FZbe3BPke6J8276jk4h0SCE61mo5dAcRg6xnVcm8L4/sviB6Dwp3xM230zhEvA0JuA+H4lL5WyVWiGkka0wCHbCyPxmcJyyDXHzKZCAmjAbgWhvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E2nr14y1; arc=none smtp.client-ip=209.85.160.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4769aef457bso25868051cf.2;
+        Fri, 16 May 2025 06:02:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747400545; x=1748005345; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8EAaXCcBODOqPPRNoOnVtfPFAMjr1gPjPXMHsuSlMuo=;
+        b=E2nr14y1g1Lz/4z7YUukoAjnZgKb8b25fCNOYcHTzzHx2kN2C5X684cWPHDEVz9Tyf
+         K6Q5pZWQvRk7qHd9rDgJSLUSOCmrnkgt/Q3AOO4jTSgLT4Fs0RovchS9R8MAPIpOwnhV
+         cBVZ/Cmib6swuxrQvqxAvdbJC2BgxJjI55ILTdXECyZRRJoerC0l0OfjtQpXW2YpzLWh
+         cs1hPBT7X70WEMQz+aEMaqKDeNYmP9SiGN8BZoCysMEZz6FhNIqHblV+RX5GesEBxTI1
+         0Ge2Ua9njXlATNNuS7i3ZDSAvBpthhtA8Leyn0XEUzRvNR55CTn0iZ1W5qDnyFzFoztJ
+         scBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747400545; x=1748005345;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8EAaXCcBODOqPPRNoOnVtfPFAMjr1gPjPXMHsuSlMuo=;
+        b=HyHnjiAxXSs2jZ9P+2FHD4oBrhet+d267HRIhWvOEWNviWuViWr5+e82NLY7APZzby
+         QS+l7iXF8AfEPxFcZPjCXU2Ruq0aTLODvOPZTGugucwNroyPR2bNY8mrHNNBEBlTtycE
+         rO9Ct1OihbGJViqm5uPbxt7gSaGIN6SkuUX+6AMZ+LueEzmTlaL/VCUrAQ5mY4rUn68V
+         dpP3FNVzzlLDAYIAMkYAQv1inv8OXjMkC6H066qghCJN625hh5d8bjFbf1VTZm4HUHrX
+         MDsnjX2b14gZ/vtZk2xE4TidIm14Of3cH5W1+0xBr3aNbdtPISlcMnl/l5eZdYeD9uuu
+         SnUA==
+X-Forwarded-Encrypted: i=1; AJvYcCVc965D/XG0d42qoacOnDWVDYFi3rC+DUCcudUQuaGn3T4XL/6HZpdsJx9DUfop0QDucqbG0YavRbSw@vger.kernel.org, AJvYcCVwtyDgCW1ZcpP2IRTI2Rgg3OCTmNdgawohNwVgl1Ai0B+f74EN19pZs80Lq8R4JPpGPyl7Z7QkERQMn06Z@vger.kernel.org, AJvYcCWQ2VBHUSSjWZjenNnza9o54n+b79G1hfLMs/zTdWvPF9Q2ZB3DRDfZheGxmNqa8+uedZNBJZn+KolaazTBH+Y=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0drwebIekIbu2qK7g6KlE7RhR9YTdMRXn4mAaxIYMBRW2Xq2e
+	ds0qOLxv5EPR+pyPi1DP4Z9n+LRG/V+ONAH7CpVgYUYiWClR7FbdKVX0dnEtsS/40V9Z/ekhBz5
+	qbG3U1/16sWM3A1PistxPTPifi1QprAk=
+X-Gm-Gg: ASbGncu8XG6vKkNrhJs4dPa4N+nkrtalOpxKg/7HN11wC9glgAqWYTYhyCw7uwysdKk
+	Ew9a3zFButJ2BJbIojgUVmLCY+jWfQeVTsGC9pDTCgGDR8/3oe350atVzV96kAd4XtbGMfmrIv8
+	xy9LR0J8E5aXwhJHIR4JSsXoievqWMc0Fbd/gB5gTcpKk=
+X-Google-Smtp-Source: AGHT+IHZyJqid//wCBlVNP3pcnUuvkjajKER+xeFHB1o8i8ij6OKhPHYHUDAmLQb9yNNQCp7v0lXFOO9XZFKzyx4pHM=
+X-Received: by 2002:ac8:6f1b:0:b0:48b:5656:bb01 with SMTP id
+ d75a77b69052e-494ae352f98mr41415291cf.10.1747400544544; Fri, 16 May 2025
+ 06:02:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20250515-vt8500-timer-updates-v3-4-2197a1b062bd@gmail.com> <202505161430.wdURc0TG-lkp@intel.com>
+In-Reply-To: <202505161430.wdURc0TG-lkp@intel.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Fri, 16 May 2025 16:02:13 +0300
+X-Gm-Features: AX0GCFuUyfeKPyuuQKwLTH_a0JHlANkAjiXIiU8TmkAt1AD4XrUds-vQSs5nQng
+Message-ID: <CABjd4YykcZckQFfyuSpMtCJybq2nQuj9TYAP2S7RfivPLYPUnw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] watchdog: Add support for VIA/WonderMedia SoC
+ watchdog functionality
+To: kernel test robot <lkp@intel.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	oe-kbuild-all@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 16 May 2025 14:57:29 +0200
-Message-Id: <D9XLOWTZPRC4.EHVI8W16H3J9@bootlin.com>
-Subject: Re: [PATCH v8 04/11] pwm: max7360: Add MAX7360 PWM support
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>, "Michael Walle"
- <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250509-mdb-max7360-support-v8-0-bbe486f6bcb7@bootlin.com>
- <20250509-mdb-max7360-support-v8-4-bbe486f6bcb7@bootlin.com>
- <5eb7xqo7bfzath3xy7i6v5fep7qwfeg4z3rtzifmgnyvlc3o5b@yi6hzur52hl3>
- <D9WJRVV500O3.GUV0MKHRGTH2@bootlin.com>
-In-Reply-To: <D9WJRVV500O3.GUV0MKHRGTH2@bootlin.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefuddvkeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevhffvofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekhfekieeftefhjeetveefudehuddvvdeuvddvudfgfffhveekffethfeuffdtudenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopehukhhlvghinhgvkheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpt
- hhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On Thu May 15, 2025 at 9:14 AM CEST, Mathieu Dubois-Briand wrote:
-> On Tue May 13, 2025 at 12:08 PM CEST, Uwe Kleine-K=C3=B6nig wrote:
->> Hello,
->>
->> On Fri, May 09, 2025 at 11:14:38AM +0200, mathieu.dubois-briand@bootlin.=
-com wrote:
->>> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
->>> ...
->>>
->>> +
->>> +static int max7360_pwm_request(struct pwm_chip *chip, struct pwm_devic=
-e *pwm)
->>> +{
->>> +	struct regmap *regmap =3D pwmchip_get_drvdata(chip);
->>> +	int ret;
->>> +
->>> +	ret =3D regmap_write_bits(regmap, MAX7360_REG_PWMCFG(pwm->hwpwm),
->>> +				MAX7360_PORT_CFG_COMMON_PWM, 0);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	return regmap_write_bits(regmap, MAX7360_REG_PORTS, BIT(pwm->hwpwm), =
-BIT(pwm->hwpwm));
->>
->> What is the effect of these writes? It doesn't need to be undone in a
->> matching .free()?
->>
+On Fri, May 16, 2025 at 9:56=E2=80=AFAM kernel test robot <lkp@intel.com> w=
+rote:
 >
-> The first one (MAX7360_PORT_CFG_COMMON_PWM) asks to use a specific duty
-> cycle for this PWM output and not a value shared across all PWMs. I
-> believe this one have no reason to be ever reverted.
+> Hi Alexey,
 >
-> About the second one, it does switch the output value. Reading the
-> datasheet, it's not clear if and why setting this here is required. I
-> will make some tests on the hardware a bit later this week. Still, I
-> believe there is no need to revert it later.
+> kernel test robot noticed the following build warnings:
 >
+> [auto build test WARNING on 92a09c47464d040866cf2b4cd052bc60555185fb]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Alexey-Charkov/dt-=
+bindings-timer-via-vt8500-timer-Convert-to-YAML/20250516-025729
+> base:   92a09c47464d040866cf2b4cd052bc60555185fb
+> patch link:    https://lore.kernel.org/r/20250515-vt8500-timer-updates-v3=
+-4-2197a1b062bd%40gmail.com
+> patch subject: [PATCH v3 4/4] watchdog: Add support for VIA/WonderMedia S=
+oC watchdog functionality
+> config: sparc-allmodconfig (https://download.01.org/0day-ci/archive/20250=
+516/202505161430.wdURc0TG-lkp@intel.com/config)
+> compiler: sparc64-linux-gcc (GCC) 14.2.0
+> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
+ve/20250516/202505161430.wdURc0TG-lkp@intel.com/reproduce)
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
+ion of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202505161430.wdURc0TG-lkp=
+@intel.com/
+>
+> All warnings (new ones prefixed by >>):
+>
+>    drivers/watchdog/vt8500-wdt.c: In function 'vt8500_wdt_probe':
+> >> drivers/watchdog/vt8500-wdt.c:98:44: warning: conversion from 'long un=
+signed int' to 'unsigned int' changes value from '6148914691236517' to '328=
+7081637' [-Woverflow]
+>       98 |         drvdata->wdd.max_hw_heartbeat_ms =3D -1UL / (VT8500_TI=
+MER_HZ / 1000);
 
-I just tested it, I confirm we can remove the second one.
-
->>> +}
->>>
->>> ...
->>>
->>> +static int max7360_pwm_write_waveform(struct pwm_chip *chip,
->>> +				      struct pwm_device *pwm,
->>> +				      const void *_wfhw)
->>> +{
->>> +	struct regmap *regmap =3D pwmchip_get_drvdata(chip);
->>> +	const struct max7360_pwm_waveform *wfhw =3D _wfhw;
->>> +	unsigned int val;
->>> +	int ret;
->>> +
->>> +	val =3D wfhw->enabled ? BIT(pwm->hwpwm) : 0;
->>> +	ret =3D regmap_write_bits(regmap, MAX7360_REG_GPIOCTRL, BIT(pwm->hwpw=
-m), val);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	if (wfhw->duty_steps)
->>> +		return regmap_write(regmap, MAX7360_REG_PWM(pwm->hwpwm), wfhw->duty_=
-steps);
->>
->> Would it make sense to first write duty_steps and only then enable?
->> Otherwise it might happen that you enable and still have a wrong duty
->> configuration in the MAX7360_REG_PWM register and emit a wrong period?
->>
->
-> Yes, I believe it does make sense: I will try to invert them.
->
-
-Also tested, and everything seems to be working fine: I will go this
-way.
-
->> Do you need to write duty_steps =3D 0 if enabled is false?
->>
->
-> No, this is not needed: output will be in hi-Z mode. As we have
-> "wfhw->enabled =3D !!wf->duty_length_ns", this should be correct here. Bu=
-t
-> reading this, I believe I could modify above code to be more clear with:
->
-> if (wfhw->enabled)
-> 	return regmap_write(regmap, MAX7360_REG_PWM(pwm->hwpwm), wfhw->duty_step=
-s);
->
->
->>> +	return 0;
->>> +}
->>
->> Best regards
->> Uwe
+Will change to U32_MAX in the next version.
 
 Best regards,
-Mathieu
-
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Alexey
 
