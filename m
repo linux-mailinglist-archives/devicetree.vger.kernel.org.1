@@ -1,112 +1,269 @@
-Return-Path: <devicetree+bounces-177913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CABCDAB9996
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:00:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 092D4AB99A7
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:03:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 974863A63FA
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:00:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 893307A1CEF
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC7CB23184F;
-	Fri, 16 May 2025 10:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36611231821;
+	Fri, 16 May 2025 10:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VSx8XvD4"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bKX+u9di"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8722AE8D;
-	Fri, 16 May 2025 10:00:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89C75381C4
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 10:03:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747389619; cv=none; b=UeA5yxuuuvM5DPwdT9Kx/Z/rQoP/p1tUA/sgP3z9SvZFlkDJbx/T+A2uc8XJqOuhZj+6oYjbAHz4000ligjByXOOsZoEtJAUski/nmH0axbjoDIBFeqIdYhgRNJZ6Dh2oa/wGC3OGfz1egMWCDZvDS2jNPBPfhXuDBvHE7tLgMI=
+	t=1747389826; cv=none; b=e5EM19wC6KeBDuQSaJayzFk5AYgtX0R8N20uQoQQH805yr7ty3uUKvIqAZ6jYsWeBC+Cz7asH+Qs2ySMzBj2x3Ip16ozOW8cD9W1tdNRjY2VQYVAcVirH6PXExPj0RHUaP+9ZjbZsfBns3b+JN/O5JSQm4kJukeMIwgALwE/iI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747389619; c=relaxed/simple;
-	bh=5gBmY6Zk+Ryoef5Q5jQQugVJJObL7Jg/Otn27Xfx+H8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NQV3oTW2inuxWcwnoP1aWgM7l2UBgUyRjKfzTUgWacwGNibQFi4my2aoeFEmTown/2gGrUw4tj64Va5PpEDubGW1imk1yQOj/cH95354EPAznUGnGllRxpYE6bCif7yeKcRDBrZGRaEpCY1vwkV9Vr9ADUrr8T3V6BLPS+VzT1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VSx8XvD4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBF03C4CEE4;
-	Fri, 16 May 2025 10:00:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747389619;
-	bh=5gBmY6Zk+Ryoef5Q5jQQugVJJObL7Jg/Otn27Xfx+H8=;
-	h=From:To:Cc:Subject:Date:From;
-	b=VSx8XvD4L3DRtchGh9gq++02KQtnShOLeYGZ7ch9CAbebcnQtg7Jk8J9jHU41wEVp
-	 wMpRPxUCauKCBiVgz7BD9HVQhZupWTqXR3dEvwPQaGXK3H3XL5ZJ5Cf5GRq065j4M4
-	 /JYU7bV+k/s5oGYr73DRfrrq6wPPSTCGkHFwANEgQ6jszgKZbaMpYnV6UB60gpOVWt
-	 nIqvnKCGwQW6Kj2WgY7YB0aRwX8kcZfEE6UP3nRh1t0QDGVSRVFLwoLlE+kMm/PuSV
-	 RIaeJL3q83gvYF77uQV9u1yQ4X+5WS/2hMIxeUmjXWgs/ljpoPtexsKnnbgCEcDyj2
-	 6LvbSjYmsUu9g==
-From: Conor Dooley <conor@kernel.org>
-To: linux-pci@vger.kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] dt-bindings: PCI: microchip,pcie-host: fix dma coherency property
-Date: Fri, 16 May 2025 10:59:39 +0100
-Message-ID: <20250516-datebook-senator-ff7a1c30cbd5@spud>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1747389826; c=relaxed/simple;
+	bh=lrexQhvrSA4eIFS/2VzVR5zjJAl/8AXo6hFi8KANLc4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QXyrBGTVt/fmJtSCUq4oKEeXGh46bc5EnCUzz3goJwXYoHmlbIoTAZnCEUtXqFOSRFUb58Mizvor2C1lse1U2GTyoqSN0WVAKn1UW3+3iZE/gDBQgaQyrKuVftc9izxHJ7n9eJPgreIS0xYCSZXCiK7RAZv89wH+swHZRKEJSbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bKX+u9di; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54G3N2hm007940
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 10:03:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7TaqrocneNA5gHeHz1uqPfsZCpYggCy4KBggZedF+E8=; b=bKX+u9diBlt/bTm0
+	DMiuM4/aS4bEWDLoReBGhfix4+3ifA6T8qqudzXS4PMbeHDfYbQFYmJOVae0BgNO
+	gYCKFTDZ2hpGC1ugwc9Cyxq79AM9I8uZspGuGzxvPbK4qVfu/695sM5axwCl1l/7
+	v26Yxvl/tfKa7BV5sShvkGjigIxN/bgudB4uOq7RWpYBE1bGNorBOWaJ3/U7Gvd8
+	DYd4s7dEakZdY326ciZuZ+uxz+l8TiVyqu6c0ksAJhbmgcyuJ3SPy/6oP45vpuVv
+	+lZCFHpXJIAcPXyuXjdvXOPaS9tFihQdKBcHvQ/mMvW29BX/RA1nw2ERGXtiMiXq
+	9fC6sw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcq1gx6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 10:03:43 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-49452798bd4so4945341cf.1
+        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 03:03:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747389822; x=1747994622;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7TaqrocneNA5gHeHz1uqPfsZCpYggCy4KBggZedF+E8=;
+        b=PkFG2yX9JLQ8SlQiiTUMDaHoz7J0ZGXzjg9EjxsjBUkOTNGnsUmEXEq0kdletDokZt
+         HCjrKuLfoCVsQ0bxY4ehm1meeNugCK1qvEtSVU3oEnU3DFYfulKGrjWzK6U5H4zQwyd0
+         li09plhx7LUuW8w9UvP6g5ckhJ8umtpkWnOYPgs+ZINyMNWQqG6+fr/jQSZ/wvDXEpBj
+         9WJMM/JG8X0x+kYK+JRrNbzud8lEj31gN2BI433ZHhG/HC8jQwN7VPWT/vKDarP+jEWX
+         pfko/TjMiIl3n9DzHCX+qhjoL7Na+DV2MkdLKWEztrruiml7ZU79/bQ7U/VLMpYKsOQ8
+         6YIg==
+X-Forwarded-Encrypted: i=1; AJvYcCVNwtPPTpRvvl9C/+5slRk+CHo+rwnLnuxbJeOAgC+NFuwsnTaoZtUa2mXqXFFlDv7h+HjlghKUATCs@vger.kernel.org
+X-Gm-Message-State: AOJu0YxB5HioJhZEY4r7THsa01FXM9lKk7TsJr02JoUmiWtE2keJYIgq
+	QuZThywDmAJETPl/DOV4spngOHReRMiHa8I7zlrlOexmbWZ6kfAgdlrWuSmbozRVQK29/B7CPjF
+	fLuNOI+CrJVa7h5qdoNvi8YtqwGCs4+XoQQ9ancbVSLkqS/vrYbwtIeS3lp8636MK
+X-Gm-Gg: ASbGncsUNZONs6qFqreb28PcDDS63ZVp1p7FYFIvAEpMD0ex67IignZE7LNUeyHXI9C
+	0XaxfybhBg+d8zmgHmsZBpY2BN4BhF3uRSV7Otlb/eodi2jeG1mlEb1a5icnt5QqSD6laIp/xOO
+	YDYhgJ83Lk0rv84frKbW8ynFV5Esq8fR/JQOeUxKSSBrYeigmgWA80QWuSCYS/WKfltQrXD8ntN
+	Nc/QT2QHpfztu4K4Hc1qDwgvTxv8lhIREAEAA0oDUpsfpKPrOq5KFv/YCIL/mk6DjjQm4zgKajt
+	S0fe0oXjfAPIpH+QeJOFAo7Xgd/07MVc86wJ9HhS3og8cnKwbr7ivcTKyOBdEqJVuA==
+X-Received: by 2002:ad4:5765:0:b0:6f6:d4a8:1a6c with SMTP id 6a1803df08f44-6f8b0806decmr18880786d6.1.1747389822302;
+        Fri, 16 May 2025 03:03:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEu4NBQ3Up5uG6/MJvur9vd8EnZx0WKlMAcJY8MkzmIHbw9TDd6bcUnooWcu1VHN8Nyj5f92w==
+X-Received: by 2002:ad4:5765:0:b0:6f6:d4a8:1a6c with SMTP id 6a1803df08f44-6f8b0806decmr18880586d6.1.1747389821846;
+        Fri, 16 May 2025 03:03:41 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6005ac35e33sm1148539a12.60.2025.05.16.03.03.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 May 2025 03:03:41 -0700 (PDT)
+Message-ID: <b9cc6e1f-9a20-4091-9071-4d6673a44fac@oss.qualcomm.com>
+Date: Fri, 16 May 2025 12:03:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1569; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=kx7hE+1jGLWfA9X6Bwyb2haBWtsA8+rtUy5OmaCwQdc=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDBnqPN0/mbbyiVTk71zjNSupn+nhry1TFJJP7L48+fCrs xnbD1XkdZSyMIhxMMiKKbIk3u5rkVr/x2WHc89bmDmsTCBDGLg4BWAiZ2IY/hm+nJUe9Gld8wLf 7CnWB6b/vbbZyba/dNqUW8yepffZxMoZ/ofZF6yoTZrN8VlGquy85/MuPq0Fsa5dXTYtvUG7HY7 l8gIA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: Add Lenovo ThinkBook 16 device
+ tree
+To: jens.glathe@oldschoolsolutions.biz,
+        Bjorn Andersson
+ <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>,
+        Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+References: <20250516-tb16-dt-v2-0-7c4996d58ed6@oldschoolsolutions.biz>
+ <20250516-tb16-dt-v2-4-7c4996d58ed6@oldschoolsolutions.biz>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250516-tb16-dt-v2-4-7c4996d58ed6@oldschoolsolutions.biz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: MSq6MjypM80x0oAWVpIb5hm58mE1dRBv
+X-Proofpoint-ORIG-GUID: MSq6MjypM80x0oAWVpIb5hm58mE1dRBv
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDA5NSBTYWx0ZWRfX67cedeyEyeUX
+ UA0bW7zBuJ8oeh9IxJXvgpGYf2a1mtJ0AHC5fvyC0D1iIr8B0kVfSg2BjxsIQZ6ISt98Zgz8cL5
+ /YsURepRnOVIzeI8Nfp9qC0rDlnb74ZqY/NjC4mV0nvQ+RcK3+V5qk3Ti1H31QXgbYysG1oJi7s
+ 0V2C9oAPVLnYQQWeSCBq+MTdI0htb1te0erRJlCd8XbP43Wd7m6R6ajAR6dkWJ6NXX64yn9A3fz
+ GsDcdHSYYYmdIcYwr85W5wAYnbUmVIMq7bu1AFiKgRNN53jl2SQaNq9oPtxzQ7ceroprvn4RzLK
+ 3HV79APGbgaLHUVgupVX0ZLqBS5xI18pC3BIaDH6kbg48EjW6Jcg/uA1unj15WuBZusY32ig+1h
+ 1xENMZva62LyNJI33CfZA0ku6Z92tIobzp3+Z7UlNL9O3+DdsLYdNLBl/QK3tHkAptUB5/7v
+X-Authority-Analysis: v=2.4 cv=KcvSsRYD c=1 sm=1 tr=0 ts=68270d7f cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=gxl3bz0cAAAA:8 a=umWwXBIl-rVG75nBen4A:9
+ a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22 a=kiRiLd-pWN9FGgpmzFdl:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-16_04,2025-05-15_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 bulkscore=0 clxscore=1015 adultscore=0 phishscore=0
+ lowpriorityscore=0 mlxlogscore=999 spamscore=0 malwarescore=0 impostorscore=0
+ mlxscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
+ definitions=main-2505160095
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On 5/16/25 8:43 AM, Jens Glathe via B4 Relay wrote:
+> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> 
+> Device tree for the Lenovo Thinkbook 16 G7 QOY
 
-PolarFire SoC may be configured in a way that requires non-coherent DMA
-handling. On RISC-V, buses are coherent by default & the dma-noncoherent
-property is required to denote buses or devices that are non-coherent.
-For some reason, instead of adding dma-noncoherent to the binding
-the pointless, NOP, property dma-coherent was. Swap dma-coherent for
-dma-noncoherent.
+[...]
 
-Fixes: 04aa999eb96fd ("dt-bindings: PCI: microchip,pcie-host: Allow dma-noncoherent")
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-CC: Daire McNamara <daire.mcnamara@microchip.com>
-CC: Bjorn Helgaas <bhelgaas@google.com>
-CC: Lorenzo Pieralisi <lpieralisi@kernel.org>
-CC: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: Conor Dooley <conor+dt@kernel.org>
-CC: linux-pci@vger.kernel.org
-CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
----
- Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> - SDHC card reader is based on the on-chip sdhc_2 controller, but the driver from
+> the Snapdragon Dev Kit is only a partial match. It can do normal slow sd cards,
+> but not the faster ones.
 
-diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-index 103574d18dbc2..56397df2a6eec 100644
---- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-+++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-@@ -50,7 +50,7 @@ properties:
-     items:
-       pattern: '^fic[0-3]$'
- 
--  dma-coherent: true
-+  dma-noncoherent: true
- 
-   ranges:
-     minItems: 1
--- 
-2.45.2
+Please list which kinds work and which don't, maybe we can work it out
 
+> (X1-45, apparently A730).
+
+No.
+
+> The SoC has 2 instead of 3 thermal sensor banks. I have disabled all sensors on
+> the 3rd bank to get rid of dmesg errors. Many of these sensor nodes have a place
+> on the remaining 2 banks, but I don't know which. So the thermal management is
+> clearly incomplete, but the firmware monitoring the chip does a power off before
+> overheating (not experienced yet). For the Thinkbook, it has a pretty decent fan
+> that can develop some air flow, so maybe this has prevented the emergency cutoff.
+> As a result of these unknowns, I had to modify x1e80100.dtsi and x1p42100.dtsi to
+> delete the non-existend nodes.
+
+Please remove these changes, the sensors are reassigned on the SoC, I'll send a
+patch to fix that.
+
+[...]
+
+> +	pmic-glink {
+> +		compatible = "qcom,x1e80100-pmic-glink",
+> +			     "qcom,sm8550-pmic-glink",
+> +			     "qcom,pmic-glink";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
+> +							<&tlmm 123 GPIO_ACTIVE_HIGH>;
+
+broken indentation, please make sure you tab width is 8
+
+[...]
+
+> +	sound {
+> +		compatible = "qcom,x1e80100-sndcard";
+> +		model = "X1E80100-LENOVO-ThinkBook-16";
+
+I believe this one only comes in the P flavor
+
+> +		audio-routing = "SpkrLeft IN", "WSA WSA_SPK1 OUT",
+> +				"SpkrRight IN", "WSA WSA_SPK2 OUT",
+> +				"IN1_HPHL", "HPHL_OUT",
+> +				"IN2_HPHR", "HPHR_OUT",
+> +				"AMIC2", "MIC BIAS2",
+> +				"VA DMIC0", "MIC BIAS3",
+> +				"VA DMIC1", "MIC BIAS3",
+> +				"VA DMIC2", "MIC BIAS1",
+> +				"VA DMIC3", "MIC BIAS1",
+> +				"VA DMIC0", "VA MIC BIAS3",
+> +				"VA DMIC1", "VA MIC BIAS3",
+> +				"VA DMIC2", "VA MIC BIAS1",
+> +				"VA DMIC3", "VA MIC BIAS1",
+> +				"TX SWR_INPUT1", "ADC2_OUTPUT";
+> +
+> +		wcd-playback-dai-link {
+> +			link-name = "WCD Playback";
+> +
+> +			cpu {
+> +				sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
+> +			};
+> +
+> +			codec {
+> +				sound-dai = <&wcd938x 0>, <&swr1 0>, <&lpass_rxmacro 0>;
+> +			};
+'co'dec < 'cp'u
+
+[...]
+
+> +	vreg_cam_5p0: regulator-cam-5p0 {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_CAM_5P0";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +
+> +		gpio = <&tlmm 44 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-0 = <&cam_reg_en>;
+> +		pinctrl-names = "default";
+> +
+> +		regulator-boot-on;
+> +		regulator-always-on;
+
+always-on for camera.. spooky..
+
+[...]
+
+> +&gpu {
+> +	status = "okay";
+> +
+> +	zap-shader {
+> +		firmware-name = "qcom/x1e80100/LENOVO/21NH/qcdxkmsuc8380.mbn";
+
+This file won't work
+
+[...]
+
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	clock-frequency = <400000>;
+> +
+> +	pinctrl-0 = <&qup_i2c2_data_clk>, <&tpad_default>, <&kybd_default>;
+
+Please assign the pins to their specific users
+
+[...]
+
+> +&sdhc_2 {
+> +	cd-gpios = <&tlmm 71 GPIO_ACTIVE_LOW>;
+> +	pinctrl-0 = <&sdc2_default &sdc2_card_det_n>;
+> +	pinctrl-1 = <&sdc2_sleep &sdc2_card_det_n>;
+> +	pinctrl-names = "default", "sleep";
+> +	vmmc-supply = <&vreg_l9b_2p9>;
+> +	vqmmc-supply = <&vreg_l6b_1p8>;
+> +//	bus-width = <4>;
+> +//	no-sdio;
+> +//	no-mmc;
+
+bus width is set in the SoC dt, please either uncomment or drop the
+other ones
+
+Konrad
 
