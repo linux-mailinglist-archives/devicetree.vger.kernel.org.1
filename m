@@ -1,118 +1,116 @@
-Return-Path: <devicetree+bounces-178004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16702AB9E67
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 16:15:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CABBDAB9E6A
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 16:16:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B88F97A52C4
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:13:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F6724E11A4
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:16:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD20149C64;
-	Fri, 16 May 2025 14:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7F6C14884C;
+	Fri, 16 May 2025 14:16:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LfOh5ag5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nu4aWrEU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D06A13FD86;
-	Fri, 16 May 2025 14:14:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F6B3209;
+	Fri, 16 May 2025 14:16:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747404899; cv=none; b=ZwUEYL/6Rm4kIQ94hS2IspetPBPKay4eHBYrQ+A9hOxkYTNDTxrMHy1NfANiNLTVbbw1oVINfwYQrXwxXUt6L9JNE6bA5fqMIrrt9Mvt6UmZ1pwQU6z+BazYo9MaJqRphLs4l3kkovzsrJ4I/7+eaiIJnF7kSgj7pQc5fdxmVkU=
+	t=1747404967; cv=none; b=hf3sxXjWyqyG13OEleBetbmM/kj6to82+WkAj/g7C9h8HPr5BEN5jco+G1630P8PNeaAsSLWOTyqhYU6z/9jX/Ml9A0gZ/jkGQNP1rVX38wHQf+mNomxedtX/xeYoRW3Vz3sAc6JBmaT10FCJbM4Ryfpx5KiMKSBH8UaAf2nfI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747404899; c=relaxed/simple;
-	bh=xoNEu7nlqt0Uzf5QdINb8sbgrCfpe8hWPCqdZRSYtDM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=srlZdRpCHg/TstENFAqpcF31CWVEaSNCWMZcXxYehLwYEuqORHS86btzQLIzicJqeaIazAbPPT0QO/grEz+R3wt8shOHk3X567fJqqFukaAYrjF6GsCP0J0OOJTAgwfKoorGym+AYpwMykeFe/qTFjm2wHpgYDpDWLLDIDAaqIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=LfOh5ag5; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1747404895;
-	bh=xoNEu7nlqt0Uzf5QdINb8sbgrCfpe8hWPCqdZRSYtDM=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=LfOh5ag5Xzifqx/OH6UpSuEIMv+WLdumB0zh3Y8sZcRVu9KUkf2UsHDl56iTm3jrZ
-	 xplKT+L8HgbIOmX9NE3nzuuMtsrBpsNJ/SphLX3CvFk6B21YkB0dVDossIQwNGt7oP
-	 NEjYSV4NnnzO58Wv7TsBORQTJRZc9EQhMFDvjbtjJ1Jpn8u+JCy/rHAcdck88u4UP4
-	 Qi5QzkLa8QiX9GhugT3h+n6jyGGR06EMumjbOmVIZJKOk49M9HD+aK0vCPyL4JR0Rk
-	 QxLYu8hEPz/Wgo2cntM/mC2nPIGa8i0YeM2ZBhwxrhaIiXzecmNzlAenL7vF19cHn3
-	 bKXnMLbPOo6Yg==
-Received: from 2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr (2a01cb0892f2D600C8F85cF092d4af51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C921317E07E4;
-	Fri, 16 May 2025 16:14:54 +0200 (CEST)
-Message-ID: <dcc085b131ec0b8769630bee6ee89ca0b6eacc73.camel@collabora.com>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: mediatek: Add #reset-cells
- property for MT8188
-From: Julien Massot <julien.massot@collabora.com>
-To: Conor Dooley <conor@kernel.org>, AngeloGioacchino Del Regno
-	 <angelogioacchino.delregno@collabora.com>
-Cc: kernel@collabora.com, Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Garmin Chang	
- <garmin.chang@mediatek.com>, Friday Yang <friday.yang@mediatek.com>, Conor
- Dooley <conor.dooley@microchip.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 	linux-mediatek@lists.infradead.org
-Date: Fri, 16 May 2025 16:14:54 +0200
-In-Reply-To: <20250515-deploy-wiring-5829acc3d82e@spud>
-References: <20250515-dtb-check-mt8188-v1-0-cda383cbeb4f@collabora.com>
-	 <20250515-dtb-check-mt8188-v1-1-cda383cbeb4f@collabora.com>
-	 <20250515-playpen-dislodge-80245fb8b7a9@spud>
-	 <cbd170a3-cbfe-4b4f-a059-efe33fed0e5d@collabora.com>
-	 <20250515-deploy-wiring-5829acc3d82e@spud>
-Organization: Collabora Ltd.
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 (3.56.1-1.fc42) 
+	s=arc-20240116; t=1747404967; c=relaxed/simple;
+	bh=Ir57TohQL0KRns31TnG4/ir/T9F377bTIMsPI537Qvo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nX0xQKzclwlRfIu3p0XTWTnnoSdBO8wrUR3jg0wFXMkRFasiNedr5dR6i/tg1uNQ3Z7gabR/XYGXS3xCrBFOSQ7YqhqLu6lif4BL9S2wakPh7rHUWCQjKGf7tJFcSHfdpR+q4rOG/74cBnZQAWlRh3V4ehCVRztxNBW6E8InWdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nu4aWrEU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE996C4CEEF;
+	Fri, 16 May 2025 14:16:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747404967;
+	bh=Ir57TohQL0KRns31TnG4/ir/T9F377bTIMsPI537Qvo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Nu4aWrEUI/5uqe3wKQxK2G6ddxYztWjS/tlakBcslFmqlFhuQN5AyNPn9DzFhqYzM
+	 ay2//QXgJHaZg1ZxRohNy+0nkyXTzH/WvIhyse573PEawRazrkmsEiETzNQSo4Q+Ew
+	 QhMH+ZaTf7WhesfSL3ZHBc8SKs5k3BeAznCujNNgcPvj2G4JQGxnlMh3JXxxCzxap3
+	 Q73YUlGBAMfg+FzSiqqzMQDGqdVYtaGAVpEJLCenbTwomlPfpm5hrfngsdkOBL/fh8
+	 rCbu5moP6gIhSchaimz5vKWCoV4pcr1PMKr60iFgQhiasQInQJmGHrnynyfqmIEfxM
+	 GTvu0t7jA9+cg==
+Date: Fri, 16 May 2025 15:16:02 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, michal.simek@amd.com,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	git@amd.com
+Subject: Re: [PATCH] dt-bindings: usb: dwc3-xilinx: allow dma-coherent
+Message-ID: <20250516-exclusion-suffocate-94a1c87c1262@spud>
+References: <1747401516-286356-1-git-send-email-radhey.shyam.pandey@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="++J8wUPqIH71Ph6D"
+Content-Disposition: inline
+In-Reply-To: <1747401516-286356-1-git-send-email-radhey.shyam.pandey@amd.com>
 
 
-Hi Conor, Angelo,
-On Thu, 2025-05-15 at 17:17 +0100, Conor Dooley wrote:
-> On Thu, May 15, 2025 at 05:11:13PM +0200, AngeloGioacchino Del Regno wrot=
-e:
-> > Il 15/05/25 17:03, Conor Dooley ha scritto:
-> > > On Thu, May 15, 2025 at 03:31:43PM +0200, Julien Massot wrote:
-> > > > The '#reset-cells' property is required for some of the MT8188
-> > > > clock controllers, but not listed as a valid property.
-> > >=20
-> > > "required for some" but not marked required on those platforms.
-> > > Why not?
-> > >=20
-> >=20
-> > Yeah now that I read that for the third time, the wording is a bit inco=
-rrect.
-> >=20
-> > It's not "required", some clock controllers do have reset controllers, =
-but it
-> > is facultative to actually use the latter.
->=20
-> I don't think I've ever seen this word before.
->=20
-> > I'm not sure if the ones that do have reset controllers inside should h=
-ave the
-> > #reset-cells property as required...
-> >=20
-> > Conor, what do you think?
->=20
-> If "required for some" in the OP was meant as "permitted for some",
-> change the wording to that and it is fine.
-Changed 'required' by 'permitted' in v2.
+--++J8wUPqIH71Ph6D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Julien
+On Fri, May 16, 2025 at 06:48:36PM +0530, Radhey Shyam Pandey wrote:
+> On Versal Gen 2 SoC the LPD USB DMA controller is coherent with the CPU
+> so allow specifying the information.
+
+Sounds like it should actually be marked required on this platform, no?
+
+>=20
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> ---
+>  Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml b/Doc=
+umentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> index 379dacacb526..36f5c644d959 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> @@ -26,6 +26,8 @@ properties:
+> =20
+>    ranges: true
+> =20
+> +  dma-coherent: true
+> +
+>    power-domains:
+>      description: specifies a phandle to PM domain provider node
+>      maxItems: 1
+>=20
+> base-commit: 8566fc3b96539e3235909d6bdda198e1282beaed
+> --=20
+> 2.34.1
+>=20
+
+--++J8wUPqIH71Ph6D
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCdIogAKCRB4tDGHoIJi
+0iOiAQDWypdVROV/PgOlz0vB9+pT8ItFOLzc373ZCWhYPG4v9wEAs590WVLjPkDS
+zFLXLiN0iThggG8xi6fqQW6pQFIthgs=
+=2pq7
+-----END PGP SIGNATURE-----
+
+--++J8wUPqIH71Ph6D--
 
