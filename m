@@ -1,140 +1,183 @@
-Return-Path: <devicetree+bounces-178039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F7B1ABA1B4
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 19:12:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42701ABA1BC
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 19:15:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C88E21B648A7
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 17:12:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4A3E7B8E01
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 17:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2288D26D4CF;
-	Fri, 16 May 2025 17:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3F327054F;
+	Fri, 16 May 2025 17:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BopuGbPF"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="fakFOUFx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2065.outbound.protection.outlook.com [40.107.20.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79050253326;
-	Fri, 16 May 2025 17:11:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747415521; cv=none; b=U2aosPYcuTlQtckg2GcZtOzb1PHWvJ7GsAzivGOEnCssIVcGjovVQW/N1/rCgMsCtz/LuyZf+ea+X+VRFnDvbJPuThPK82ye938dyG2acYUj6BjYM0m18DsBkDHu/PBIhSQHyfeMEkx5PtDoPqDOi/KyYncBKGEkDfnpkTq4EsM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747415521; c=relaxed/simple;
-	bh=OmRKj2XGoYIJqcdUtZTOASiF24tdoRUpWqZw3F4eErU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X3RZczD6hCPTEEDiDFxQcqM3dloB5gH8yLOkA3PPRhcS8x+GpEbY6GwArM9DIEpZ+4CGBh6AXAX3eamk0lPH/qTVBsaw5MmYmgBIFFD8WH5ZWAle8At0evySwoTMfkgjX1efqdvh/UCOG03GURjdQak4FtEiww0zwhKA+Khez9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BopuGbPF; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-525b44ec88aso738955e0c.3;
-        Fri, 16 May 2025 10:11:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747415518; x=1748020318; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fhDH5x31OY0sDQlP+75NDdLaYCVS3MYscT17OHcsFQo=;
-        b=BopuGbPFTLlqlIfVBz4M700OKK2/P/ufWpcABv4UqaCd9OTyZukuaK/6ksm2poMicD
-         WoaIJRpdvqeDJnUo4In7EqPU1Ps8Cy9CCarWwot1Y0o1rlUvhG5/3qCzM8xKnPEwkVJ6
-         8O2q6ztPbK9Ot85SeQIwjOtsaVutB2RXcbDgPDmJHtzPbB0kDObW/+aHndM1bU+w7Loq
-         FocmcbDpgzWr3f++Un1deOjeO8MnAAdc3Ca43A6dBAI5dOBOohSTEiNXP9GJ2Rk++5Ca
-         1lUJr7QDMqgkjttExD3ZGmbG3/swApKm9WcTN+4mzGqYC2YD1/eqp5TuW3pHWyqgA+7J
-         yEqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747415518; x=1748020318;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fhDH5x31OY0sDQlP+75NDdLaYCVS3MYscT17OHcsFQo=;
-        b=exVW9gB765Zt6N2T8c/FNKjyY1CK+SylYgS/yW7GjOjetboGXRU9cJSJASSDe+xjMy
-         EFjDIMxZYTt1L1OXsYGf5YXftuaAaiJQg0P1pg4/N4L+e47fUs9AWpCppTbvT1kiagVf
-         VJPvGVV5DXRRruwUDhutjl/WpQFJ3sF/hpowt1RDwCMw6sMiQ85Pg3NAxMHEn8fQY7u5
-         8yE8qxYcu5lGmdz0YFD0w9QhJQOriZrxOs+NGg0qFlz//oM38yG6sa7v3hAno91OtzDK
-         nFpvXHHrSH8QZ5UXdskz3m3pmwODlsY3Iv7hF9TVXpfg4k5z2tOfsTw2jS4frjjU+dgO
-         STSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUQPWtYOUIEa6hlI3fvcnEh9QchjI6a3fYfgWWWRSMlo9tb304TqDl4IiOifY7Gc6VBBwS/o+gvTNnqDzA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkMrRx4oQuwu3dM2BxYXcsZD5MJsxlD9ElpSZ8dX72adtGUR+Y
-	KIoAX3zxlMqrT6Lj8zs8OS5toPerXmZ0NdXTm6ZsNyQvCX/AuKbetHL0zCNYW6exxanmRvpBRQ8
-	KeDz57juWYGCxGVr1txfGUL64HeHtJtE=
-X-Gm-Gg: ASbGncul6glSVmb/5/SBqAkRggUqIFQWxInoaJuVzE+qhDOde5cGDTt6aoYSTfLO1sP
-	m/SIatOVpFQztPRAbkPzCsStiWM2vmUAb7JExrsl9lKJXbzmtEgg7zCfjmsC5qg24ncqaEpoSgK
-	SaFlgwOWDvGQDKw6v+/LuTUOx8KZWL/XI=
-X-Google-Smtp-Source: AGHT+IGCHH91w5aLLk2zhH1OD0M76Qr/hbRf+ItmTxpc3fxs9gNjUQOKE6DSW7gfQpTUGMqdAkdbaP7RWiKhTiRaV/Y=
-X-Received: by 2002:a05:6122:221d:b0:520:61ee:c814 with SMTP id
- 71dfb90a1353d-52dba7fe312mr4755074e0c.1.1747415517612; Fri, 16 May 2025
- 10:11:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21961200B9F;
+	Fri, 16 May 2025 17:14:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747415695; cv=fail; b=BpZa6CksVEFuiXe4Ht6qGsxHQSzWSGtcPFpn9hrkaORFUYul3hPnrpvY48klPnlfz5ToJqjH5wcl7W6Hs2Q5S0bg1a65jscFt7FRUpa93iy/o+0SE1KRISl33m8mz4hFSttCeEOxa5aTZ8XAHjkvZq0sgEMBWpkcCJJOtKNRfqI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747415695; c=relaxed/simple;
+	bh=WUxfJaDt2qXcrIy9GEy7rYm3renJppwdcsu7JgC9ABo=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=kXj5cJSjsrEijV/vlP6KUaeP2YqXvLeZM9QgQJpKkknNjKFq9DwWS0KDLv1oiSvQfVg8Q2ethjYazHMTSGtqms93Ou9skdICNL96tqApPAp8aB84ZkgiH3bYlWKs8+3JpqQP4shTpF2va0WChTDJcNx2CcECi8dYxgt8cNDg+BE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=fakFOUFx; arc=fail smtp.client-ip=40.107.20.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=afzQfpmh/2ZjgxojIwrkRzxHw83IB4NBssv7LIWXkVN1qOHmlAVHAk44BnkFK8TxfouPDdMGVXH1RDJbQo9duNN0HSyCBFIszppZetXbgxa885Zl4naktLEf0R19m+R/QDnq8GSTEil3lpGoMPBOSoZsCuccVC4JvFJjOjyq+BEkYYljxV9OPy+e3hTul/vzyBW+8eommIntH/F06i19CIUXPkLqmeBUO6XrqMywlz8YNfUqlw8SmFCTiqk8GoZiGuUwiL0MCvJzZP5grFdYy4CnT3pZokcB0/NSqx063E/WktdSerIF7KNDh7Zh/0M7YwV56GhrOUamPZmevMOMZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PIKruRSl+R5BwzEiGwq09qr1+SzBBonX+Q0RT4nwH1w=;
+ b=Vibe7Ci9wj3Vx42QxesUzrcJtFfivqBx/3BicldrrTEYYVepv/6U8ohsJMWtweKXe5U7ToEaZkMnTxK4dCBUuPiSTg/bH4xDz++uXubVlEyuzRBd43JT0a3zwkaOfRfZnF1W1aSu9WDkNece3pxKHrM4OnJ5k90VF575AcPkh1vWm05njRfZQ78n8Kiz01WM5uwpnqs/790/X7/ykNcpNeE0tFC4G5mKrLDONDGdV6fg6HWu4GFTQ8YVmtkaO9YprL90hjyrWiLN5PrZnB3QSmMncFyG4Yqus4dcEoeK4oflpLZV4MirP+BrYpFUnskHQyU2eipqDmPIF9qSencP9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PIKruRSl+R5BwzEiGwq09qr1+SzBBonX+Q0RT4nwH1w=;
+ b=fakFOUFxRXsq7QC14avcN2gvlvua/YmExW0L0Y8WCPBUA3hBo3i88VAhtnMYCZZB4dkd5SZFhY8SgXWnZVqe9nP/BMnfgT9WYZaVckJy6Sd+589VEr3FmpeHyDtI6YjrgS4TnFjFoy/AAo9K+6l3AdqmTSRP1dRp2LcE0Xv71FU=
+Received: from DUZPR01CA0345.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4b8::28) by DU0PR02MB10016.eurprd02.prod.outlook.com
+ (2603:10a6:10:444::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.28; Fri, 16 May
+ 2025 17:14:47 +0000
+Received: from DU6PEPF0000A7E1.eurprd02.prod.outlook.com
+ (2603:10a6:10:4b8:cafe::5d) by DUZPR01CA0345.outlook.office365.com
+ (2603:10a6:10:4b8::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8746.24 via Frontend Transport; Fri,
+ 16 May 2025 17:14:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ DU6PEPF0000A7E1.mail.protection.outlook.com (10.167.8.40) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8746.27 via Frontend Transport; Fri, 16 May 2025 17:14:47 +0000
+Received: from pc52311-2249 (10.4.0.13) by se-mail01w.axis.com (10.20.40.7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 16 May
+ 2025 19:14:45 +0200
+From: Waqar Hameed <waqar.hameed@axis.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	<kernel@axis.com>, <linux-kernel@vger.kernel.org>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 0/3] Add driver for Nicera D3-323-AA PIR sensor
+In-Reply-To: <d746c1b4-4794-498d-9a6c-a1ac1c58357c@kernel.org> (Krzysztof
+	Kozlowski's message of "Fri, 9 May 2025 17:09:17 +0200")
+References: <cover.1746802541.git.waqar.hameed@axis.com>
+	<d746c1b4-4794-498d-9a6c-a1ac1c58357c@kernel.org>
+User-Agent: a.out
+Date: Fri, 16 May 2025 19:14:45 +0200
+Message-ID: <pndy0uwiika.fsf@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1747231254.git.rabenda.cn@gmail.com> <b538e2b24eab8b740091d80ca76b20ef6014a4e5.1747231254.git.rabenda.cn@gmail.com>
- <20250514-showplace-yahoo-e3c306355288@spud>
-In-Reply-To: <20250514-showplace-yahoo-e3c306355288@spud>
-From: Han Gao <rabenda.cn@gmail.com>
-Date: Sat, 17 May 2025 01:11:46 +0800
-X-Gm-Features: AX0GCFvBGlC7lcpTFlf3PZ0KsWEj3nP-8_pPYriZOyvUH2LtrlBI49XleAD1C_M
-Message-ID: <CAAT7Ki9Fw0+Ntv+oFqr2R=EHnFZrT6KmyTPN2MCDDGvSn-Wi8A@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: riscv: add Sophgo SG2042_EVB_V1.X bindings
-To: Conor Dooley <conor@kernel.org>
-Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Guo Ren <guoren@kernel.org>, 
-	Chao Wei <chao.wei@sophgo.com>, sophgo@lists.linux.dev, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ClientProxiedBy: se-mail02w.axis.com (10.20.40.8) To se-mail01w.axis.com
+ (10.20.40.7)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU6PEPF0000A7E1:EE_|DU0PR02MB10016:EE_
+X-MS-Office365-Filtering-Correlation-Id: c369234e-5e0c-48d1-6aac-08dd949d2936
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?6VR+5EHRhQkOlWiaXzHbmqF2RzepOIzKqGosHglBd1t02e2B104cSiN597SX?=
+ =?us-ascii?Q?9tlm3j+TH+nmkQO/b4WjZ37Ck4o1wJGla/zXyyrd9yF+/Bbj/gmA5hOIb3gD?=
+ =?us-ascii?Q?uOkodSTPVgyiAdP3MJDcvowRJ6VzcS/uY2iiL+bLdMlKFEslGEMDgM1Ajdvw?=
+ =?us-ascii?Q?AWDH3xwtXNkQwH6HnIBlkkEh1U5ShnNfkfwatKofM0Ider0VMSKDx0p55dEM?=
+ =?us-ascii?Q?ekXjJYstdjpIJxVoNJMaCJeCDiHE0IUrc4hAY7G2516W7uIZ4ogsdILr4s7F?=
+ =?us-ascii?Q?O5vaTReZRg7GhqcKIT+GUXJ2+ucuBR2rliw9q/AOW0OoQYUxlofm8IEO6WTq?=
+ =?us-ascii?Q?OSKIInIU9RnLe227QNIsFfNUR6eN0jhPNnd9X2amj0cBI/623y+9bGg1uqmB?=
+ =?us-ascii?Q?9MpEt6hiHg1MMZZ7AMwWdhaCnXwexIzKYOuSvV8c0tLesprMv+Woue/KkFAJ?=
+ =?us-ascii?Q?YMoCcAl54fEtGf6MpmMbCoVg/ewbCwLIqxY2N6s+tEBU1G4r09yo8tcC4+sH?=
+ =?us-ascii?Q?qB2n6EvidORCeBPXSFE7j/fj1ggnBkaapXV1H3le2gRGIypYATzUXJFKCD7n?=
+ =?us-ascii?Q?iuIVfBAXTVLB3gD3gDmqFweMw54BG//V3bt8FXpbxa0+h/nz39/Uh/yeoC/G?=
+ =?us-ascii?Q?hFQk+9yMF0dSJPlik5VTHLms0SYNsSNq3aKnILKDINaTYPgc5/d2RhMLOrsJ?=
+ =?us-ascii?Q?e9GdlX+FfWvirgotW/wSHV+bo5SShPFihahB8YLduRrmesMla4Eu2eRTR6q/?=
+ =?us-ascii?Q?4B81IqvlzSr3IRSPNKYY12kYkOU9EBWzZ76C5xM6760MPlSSWJ8hzKXEYvts?=
+ =?us-ascii?Q?Zi85pg210GFzwjw0HEN4F35+klKmt7y2gKSXTok1x+lxABoeMIPmLVARsHoO?=
+ =?us-ascii?Q?MiScE01/7KwKtx58+eqO3YKQlE/0Jlo7Sd9EI+Y/CrCXEl9/aHIHhSZVpOCs?=
+ =?us-ascii?Q?oeP1/GzFvpa3XJ58Tjgv80Tq+h5+Gf5bLDcKhZ4Qahx7YtcR6UGStXJmhTjU?=
+ =?us-ascii?Q?Yg56XxOEtKomO/GvFO78/56QhmdfG/6PVueU0x/9m2kQ202wZSi4WF/wAxQ4?=
+ =?us-ascii?Q?6lPhYsdY0Lh2SpidMsxF+pROd05e4DmTrgG5gQwUddyoGLqjEWR48/m4LPEF?=
+ =?us-ascii?Q?RYMbtufp0zHpXLZw+E45h96kBaSAU4kqghovAbtS3GRVSK+N7V/2HencyVjv?=
+ =?us-ascii?Q?2KP8hiijix9eK/N3KEdwMky3AnDHtujeg2/hYPQIrtYqy2WSB7ujbd1R1CxN?=
+ =?us-ascii?Q?pMRsDALgfev/i26MBcJkfd2eF0aLefPTEV5c8ft0KT+ZL19CmAwwTBhwzP4g?=
+ =?us-ascii?Q?AEto5WRKiwPgB8czMnKxSvofAmBgX3h1+JT0DzhyemChr0Wx43pEMgyCf1WT?=
+ =?us-ascii?Q?Irt/ZUMcG1+xuledZ33W6TMcD7BFlWJfLfdBCTez6q91+OdWlOiXr22JZLIz?=
+ =?us-ascii?Q?dxl98SzH/ifBUBGel9SiTOf/BuY+1cruvLDTB7dIzyjjTrAM5HmU9iTWYeyz?=
+ =?us-ascii?Q?nCcjriXwRd3kP95EaL4c73VsuPyCBCKt59hq?=
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013)(13003099007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2025 17:14:47.8156
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c369234e-5e0c-48d1-6aac-08dd949d2936
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU6PEPF0000A7E1.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR02MB10016
 
-On Thu, May 15, 2025 at 12:22=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
+On Fri, May 09, 2025 at 17:09 +0200 Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+> On 09/05/2025 17:03, Waqar Hameed wrote:
+>> Nicera D3-323-AA is a PIR sensor for human detection. It has support for
+>> raw data measurements and detection notification. The communication
+>> protocol is custom made and therefore needs to be GPIO bit banged.
+>> 
+>> Previously, there has been an attempt to add a driver for this device
+>> [1]. However, that driver was written for the wrong sub-system. `hwmon`
 >
-> On Wed, May 14, 2025 at 10:08:59PM +0800, Han Gao wrote:
-> > Add DT binding documentation for the Sophgo SG2042_EVB_V1.X board [1].
+> So that's a v2. Mark your patches correctly.
+
+I figured that since it was a complete rewrite (and from another
+author), I'd start a new series. But I also understand your point.
+
+To not confuse others, I'll mark the next one as V2 instead (if that's
+fine with you).
+
 >
-> 1.x? Is the v1.0 something people can get their hands on, or just the
-> v1.1?
-> What differences do the boards have that are minimal enough that
-> specific compatibles would not be required?
+>> is clearly not a suitable framework for a proximity device.
+>> 
+>> In this series, we add a driver for support for event notification for
+>> detections through IIO (the more appropriate sub-system!). The various
+>> settings have been mapped to existing `sysfs` ABIs in the IIO framework.
+>> 
+>> The public datasheet [2] is quite sparse. A more detailed version can be
+>> obtained through the company.
+>> 
+>> [1] https://lore.kernel.org/lkml/20241212042412.702044-2-Hermes.Zhang@axis.com/
+> Read the comments given in that review:
+> https://lore.kernel.org/lkml/wy7nyg3cztixe5y5rg4kbsbbly32h547hwumwwvrfme4fdgsj5@znfpypleebrb/
 >
+> You repeated same mistakes, which means I did same review second time
+> which is waste of my time.
 
-First of all, v1.1 and v1.0 are compatible boards.
-There is no difference between v1.1 and v1.0 from dts.
+I'm really sorry! I actually completely missed your response there. 
 
-Both v1.1 and v1.0 have been discontinued.
-About 80 pieces of v1.1 are in the hands of community developers.
-
-> >
-> > Link: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG20=
-42-x8-EVB [1]
-> >
-> > Signed-off-by: Han Gao <rabenda.cn@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/riscv/sophgo.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Docu=
-mentation/devicetree/bindings/riscv/sophgo.yaml
-> > index a14cb10ff3f0..6c82f89b56ca 100644
-> > --- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
-> > @@ -34,6 +34,7 @@ properties:
-> >        - items:
-> >            - enum:
-> >                - milkv,pioneer
-> > +              - sophgo,sg2042-evb-v1
-> >            - const: sophgo,sg2042
-> >
-> >  additionalProperties: true
-> > --
-> > 2.47.2
-> >
+Thank you again for reviewing! I know it's a lot of work sometimes...
 
