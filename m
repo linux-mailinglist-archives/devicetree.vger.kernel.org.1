@@ -1,144 +1,102 @@
-Return-Path: <devicetree+bounces-177956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39666AB9B5E
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:43:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E22AB9B8A
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:56:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2898B1BA3F2D
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 11:43:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C51923B027B
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 11:56:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE2F23D288;
-	Fri, 16 May 2025 11:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC7E2376EF;
+	Fri, 16 May 2025 11:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cf73/0jB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kmiZuIeh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ABF523C50B;
-	Fri, 16 May 2025 11:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14780227EBF;
+	Fri, 16 May 2025 11:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747395788; cv=none; b=hzwswlPOa+mkJA3ik6cSciXo61SgeCw5FrLwbMefPgElFn+LzYjigtzFv4+CQHPMX/YTiKot9zrOcaW+21QAOG12bBkOFt5bWOI/53xp+061SlmoxyqPJhIpYr5izkb6FtIdG10IR/tKnc1VBMlXUq5CWYHHB0bwNAd3w9MzCiA=
+	t=1747396605; cv=none; b=PJR3Yb5FZcnC/+cHwyiLjYTtA39uU9f7SCmcYgyqn6yOfxgc1ON1o2kChTwxuoqkmO+A1efQKQLJ211TZXyrbnSoZf92CILZ2uMe9aFzLicPF0Ttr1ulFmydg1WGjvHL+m2M7zalLI8yjKnLihtrWTQ+LIT7wS7vNtFhkTLtO9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747395788; c=relaxed/simple;
-	bh=37F8XH+GAKZ//Tj61nrwPRcylir/pNEVzfMJfqa3dVI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uATQq50tPELjBmZ2f0nuV/fVx6w0ZOJSjk2UNY6aC7bUgd+TApoqHuyvfoSjySK6MBlQ+3DKVPZ4cYdVN09SRM1X8Rn42QWGiZNAOIAd8rlSzZbAyTAJSx2n5rfkMGzfbvCF9pJTmLCH6Yge4rKmr3lMmrtzfK+0aBa8C4CzDfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cf73/0jB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 97792C4AF1B;
-	Fri, 16 May 2025 11:43:07 +0000 (UTC)
+	s=arc-20240116; t=1747396605; c=relaxed/simple;
+	bh=2AqmGqN5e9uC85s7uORYRVeMii5+2Yzv/IhwZ4KrwIU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VM3czLoDa0hSVS16g09T5f9TsLB+ktvmG7SPInva7oQKvyxhQPo8rIfAFnAfRyJ2uPYnz2lZnnOWu7SNLWWKaZRsX6R7Hj82G7fGjGFMUQIMUH6Coq9Tbw2XzHgF88d4RaXBnMeIDXpEVNMwpDOxPCQrhuGid0PGu2q3OWzWyFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kmiZuIeh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFA2EC4CEE4;
+	Fri, 16 May 2025 11:56:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747395787;
-	bh=37F8XH+GAKZ//Tj61nrwPRcylir/pNEVzfMJfqa3dVI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=cf73/0jBEXl0G0qXWNj2P5vV9DisDxxfBC+NfDvScoSxDB7Mb3shrXx1aFpVJ2Wwg
-	 +z6MGwv2kYUld1l9CMEX+0OcYMCIKXG3I7pI1odT5o+RYle3QZCrN01fFQl/W5z65B
-	 UwiwK0U4blRKDtwxXeYBQVjoOc+PC596r3cfvfR/QsRBSHnwf93wwJW/imDc39MRCa
-	 hpECFOHaPgCTylVGCmqqGlcHoOZ2V+S0hkUKT83hvJM4UQRQ8TzpfLAsQcGFJhweLh
-	 ojkOmfcAlLKvRoYlkB2p3adNs/nE/35cOjeZnrxguhdVnIkqALOs1IT9rLNmrF6qBj
-	 M1BPHjWAtZTDg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D692C3ABD8;
-	Fri, 16 May 2025 11:43:07 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Fri, 16 May 2025 15:43:08 +0400
-Subject: [PATCH v3 5/5] arm64: dts: qcom: Update IPQ5018 xo_board_clk to
- use fixed factor clock
+	s=k20201202; t=1747396604;
+	bh=2AqmGqN5e9uC85s7uORYRVeMii5+2Yzv/IhwZ4KrwIU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kmiZuIehGhZXjIhOYRSZT6vMgdgMmBTy8kx1fGSxOvvtXIUteyeTc5zPjmb8vTl2A
+	 84A/Rwuh22taieqtQ4NgToC6gs635fvRsRohHCEa09i0ouB8aA7p7r5iNzQM4WIzhl
+	 BCGW7B0U0LVAJW1hXbnvRaenPTC3z+vanNuQ+AcBU5s5jl9Vl/MMI2+kBXpQeVciWl
+	 qxSqXL0EIbIMizBIhzHmddZNE2ZvHmwkQMsekoVbeOYeZDVFBf9qBgNorPNWOfhvhK
+	 0X0BXRgoBpH1Hk8RO3u5szvzNeN4hbLi1xJvPTH/90I21Xkq67a8RI7MC9pUdFqL/h
+	 iE1StynY83otA==
+Date: Fri, 16 May 2025 13:56:41 +0200
+From: Mark Brown <broonie@kernel.org>
+To: Artur Weber <aweber.kernel@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Stanislav Jakubek <stano.jakubek@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v9 5/8] regulator: bcm590xx: Use dev_err_probe for
+ regulator register error
+Message-ID: <aCcn-aaY6TBGszSZ@finisterre.sirena.org.uk>
+References: <20250515-bcm59054-v9-0-14ba0ea2ea5b@gmail.com>
+ <20250515-bcm59054-v9-5-14ba0ea2ea5b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250516-ipq5018-cmn-pll-v3-5-f3867c5a2076@outlook.com>
-References: <20250516-ipq5018-cmn-pll-v3-0-f3867c5a2076@outlook.com>
-In-Reply-To: <20250516-ipq5018-cmn-pll-v3-0-f3867c5a2076@outlook.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Luo Jie <quic_luoj@quicinc.com>, 
- Lee Jones <lee@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
- Arnd Bergmann <arnd@arndb.de>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747395784; l=2156;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=Kavlla7VqPYVz8RPprQ6zbDxT2pqDYQ1B/kyLZsoD2U=;
- b=VFJNeLuEWwF+md2+fD/y3r4F6cnclXmET2DLsNq5Zi2l8RPBeJ82mK/NpVIATCI0RX2LNURaO
- psPl7qt5+zvCJLA+pWBkpSNbY44FHwAlkYbT2V0BlRThD5V7f3DZ+BA
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
-
-From: George Moussalem <george.moussalem@outlook.com>
-
-The xo_board_clk is fixed to 24 MHZ, which is routed from WiFi output
-clock 96 MHZ (also being the reference clock of CMN PLL) divided by 4
-to the analog block routing channel. Update the xo_board_clk nodes in
-the board DTS files to use clock-div/clock-mult accordingly.
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts             | 3 ++-
- arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts | 3 ++-
- arch/arm64/boot/dts/qcom/ipq5018.dtsi                      | 3 ++-
- 3 files changed, 6 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-index 43def95e9275258041e7522ba4098a3767be3df1..df3cbb7c79c4e6c58cba7695691827fb8b84e451 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-@@ -120,5 +120,6 @@ &usbphy0 {
- };
- 
- &xo_board_clk {
--	clock-frequency = <24000000>;
-+	clock-div = <4>;
-+	clock-mult = <1>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts b/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
-index 5bb021cb29cd39cb95035bfac1bdbc976439838b..7a25af57749c8e8c9a6a185437886b04b0d99e8e 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5018-tplink-archer-ax55-v1.dts
-@@ -124,5 +124,6 @@ uart_pins: uart-pins-state {
- };
- 
- &xo_board_clk {
--	clock-frequency = <24000000>;
-+	clock-div = <4>;
-+	clock-mult = <1>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-index 6d33cc196f8e61e30deb485b0715255c5e833e38..36429730815d4b740511a2ec1b50f823a730262b 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-@@ -31,7 +31,8 @@ sleep_clk: sleep-clk {
- 		};
- 
- 		xo_board_clk: xo-board-clk {
--			compatible = "fixed-clock";
-+			compatible = "fixed-factor-clock";
-+			clocks = <&ref_96mhz_clk>;
- 			#clock-cells = <0>;
- 		};
- 
-
--- 
-2.49.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="aOx5XsQqjeptAaq9"
+Content-Disposition: inline
+In-Reply-To: <20250515-bcm59054-v9-5-14ba0ea2ea5b@gmail.com>
+X-Cookie: Well begun is half done.
 
 
+--aOx5XsQqjeptAaq9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Thu, May 15, 2025 at 04:16:32PM +0200, Artur Weber wrote:
+> Instead of calling dev_err() and returning PTR_ERR(...) separately, use
+> a single "return dev_err_probe" statement.
+
+Reviewed-by: Mark Brown <broonie@kernel.org>
+
+--aOx5XsQqjeptAaq9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmgnJ/gACgkQJNaLcl1U
+h9BpQQf/VH7x+cuXZKUB2cbpP1PbxJTGJt+ciMTQ94KrX/8CMGvxkA8DivhPILpY
+xKQJ8MTXtyLQSJSS+6rVvRFQgIvmo1d29OMiPRGzzCoAxlnktD4hRRxcThDNvCLX
+OpIehzCFyyFlAERk8mIUs6MW3RuZ2+55uMmQ7c0FTMF8MwwI2wBYzrFkp4nvlDMx
+sceTQ3OvR4qQYf60tx7UlqRM1xLpQHGwULjSwFPMsEjGRMyxbHYibZMqlN8hOtlK
+Dt0j70x0QGtJI2WppmPqmCKIE3dAwcgItDoS511aE1/0WuIFHn9OfHlUNnjN4uCf
+7MZv5A6k3QLDYcuEibOxYCb3N+VT5g==
+=Hcs7
+-----END PGP SIGNATURE-----
+
+--aOx5XsQqjeptAaq9--
 
