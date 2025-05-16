@@ -1,220 +1,668 @@
-Return-Path: <devicetree+bounces-177973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 652F7AB9C7F
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:45:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65381AB9C97
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 14:50:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92A1D7ABDB2
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:43:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7D864E1C1B
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 12:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 524EE2405EB;
-	Fri, 16 May 2025 12:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F3323C507;
+	Fri, 16 May 2025 12:50:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="OPkJ+B2s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cIEDDkLd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2085.outbound.protection.outlook.com [40.107.236.85])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8180423E354;
-	Fri, 16 May 2025 12:44:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.85
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747399496; cv=fail; b=FjaY1/BBLywLmcsqfj75WG28fq/rggjVt6uihVtFTOl53m7Jx7oXL+A2asBNsvz5jeVK1hR1xb+vtfV87n1q1jELKcyGAO98KhjS/l/T0y3duNGxVc/uesFx7UccegpdSpOfIxFZ1tJ2Cw7yx5wtrF+gqLcqj1pD24NYv2KK3rk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747399496; c=relaxed/simple;
-	bh=Wl8ddtkaiF3TZwrGGltnWpCq2jkRIYXweolHlEMReFk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iJdapsKM9Ttrn4dCnrX1axM9qMVDwiqEN9qNkSWQk9crxn+D27IN8kOlLI+cFaF8s2QydsbVimiYNjt6LJuevWR57u/N2k8fz9dmPk5hQIY68dX9MC6x62ujsEL6oPh/Wjt6WnWkbfEmZRgB/WIS6it9l/iJubP/QC0HYJZuioU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=OPkJ+B2s; arc=fail smtp.client-ip=40.107.236.85
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YptOymmU1+EVO9FJ238ib00GoBj0/Cfz1xxE9JkaNqp3MDfAcEkIcd4A/mowF4Nc8tRh3Ay9bEvyaiG4E2VgOFfx66GJqCqU9OKbAg/Jw86SEYDmEit9WyzI4Fh1NzJT3EApdeVW9VDFfQIRDky46Jj+IOeGSL65qODDsU+r/oRT6gkGGNKc61781tiUXt3QzWyexpAMFvEtqVqeFout2eQFpPC2wxi5VFZUVgyBD8mQPeVR4BnlzqX/GQbN0o1vvJt575UWuQdWk5Fh7UBcBX0lu6pYX4Z9KuYI/+LZTGf+K38we/BlFCQ8AP7g5F9AIcYnGvuTdq+nv9hA50jGwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eC2TfgCWMqZ0Xa/+HnfL5fHJIKJJYTu9zn4awYIqKcQ=;
- b=eWTwxB4MSQSDcW1QyMMLX0wiWVdg7Wxpy9Zi2daRVDXvxEGbgCSI1N17kV90xnUE4N4/TsJBviyIc5WyVG5uMcmWmiTm55CWzkVFgELgjcGgsSVx7QIMmcBfkYgDcrVleqfQuBg9IRwqUOJZQXaVxcVs/kzjRbIb1TR41M7XiAAfIsdaVNqAOo8R5Nz2WlNE+UXhUU+2zulf31z3OfvndNTGA9HpPVmxcQ9VGzH0t3yxfH3yo5Uozjo636BkQEesdCuTJFMzDHUsM/8citKe9D3xMv9iQnxDY3SsXn3vLqkk36itiZ3eiGiFUYaM0ONKbycuOaVmQeXBQr09hGvTLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eC2TfgCWMqZ0Xa/+HnfL5fHJIKJJYTu9zn4awYIqKcQ=;
- b=OPkJ+B2s55u7UPOU7G4qwLbI+WtDnr0Yi1OhHaFFgoZHya0Vl2woBYwX7/tIezMp7LT9QCjdNRFmMf8lydFWWYLdds1EFrJX0Ps9h/jt0Af1hSGHlW2moONAJbcOzNocD8xiix8e6Z4wd+HfFV6r3tIE4BL6m5Jjdv1RgA9JHUAYCda3qefcaMINST16Aukx7GpSHhNseLo2OyP8t+vRfUJEE8vHCQz+JucrTmxGkWmcCjjmRVpTWCB36nULYu+9fLmdsjpN//mTx09nUEbJc682kKCT3Gwb1sZmmX/m9z+AmYtgyS+uHhsdinfX4pIk21T1WiD0v6wgIFLSRICX1Q==
-Received: from CH5PR03CA0014.namprd03.prod.outlook.com (2603:10b6:610:1f1::16)
- by SJ0PR12MB8091.namprd12.prod.outlook.com (2603:10b6:a03:4d5::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.32; Fri, 16 May
- 2025 12:44:49 +0000
-Received: from CH1PEPF0000AD74.namprd04.prod.outlook.com
- (2603:10b6:610:1f1:cafe::16) by CH5PR03CA0014.outlook.office365.com
- (2603:10b6:610:1f1::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8746.20 via Frontend Transport; Fri,
- 16 May 2025 12:44:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- CH1PEPF0000AD74.mail.protection.outlook.com (10.167.244.52) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8722.18 via Frontend Transport; Fri, 16 May 2025 12:44:48 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Fri, 16 May
- 2025 05:44:36 -0700
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Fri, 16 May
- 2025 05:44:36 -0700
-Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.129.68.7) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
- Transport; Fri, 16 May 2025 05:44:32 -0700
-From: Akhil R <akhilrajeev@nvidia.com>
-To: <andi.shyti@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<onor+dt@kernel.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-	<ldewangan@nvidia.com>, <digetx@gmail.com>, <p.zabel@pengutronix.de>,
-	<linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Akhil R <akhilrajeev@nvidia.com>, Robin Murphy <robin.murphy@arm.com>
-Subject: [PATCH v2 3/3] i2c: tegra: Remove dma_sync_*() calls
-Date: Fri, 16 May 2025 18:13:49 +0530
-Message-ID: <20250516124349.58318-3-akhilrajeev@nvidia.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20250516124349.58318-1-akhilrajeev@nvidia.com>
-References: <20250516124349.58318-1-akhilrajeev@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86ABC2367C4;
+	Fri, 16 May 2025 12:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747399837; cv=none; b=e1HXXhgasdhEER+VXwaKASjgTFyB3qPi5R4/QFBNHFYtd9VCBg7ASudGqWr0nLUwJ0f9sW9VBJ7I+T6rK0qdC5exT1HqkX6zG0Fr+dF4NIiHen6+OvO9GRsR4H+upa6pBK9K5Z+rvKC2hByFaIaf2M558fMcaV5g1++e/SvI7ok=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747399837; c=relaxed/simple;
+	bh=EIeNaMhAQEKBU5kfqSd6zp7mh+1oorSEUk+so/0Y3jY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GN3SAhrTKEiwc++4bpZpLH69ZMtuNIkht8h7RluCF4QJK2YgrqATnyVAwfT4nNoemSyR86HK5jDwJiE7Z28rOaCMKKWHaOZjB6kPCVUnfHkRXTiUi1yAVlVb/BLkEQrnPwtvzFjp+p88WkQdd+hbftW+4hsOL0ha7tY7Jq4Wd1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cIEDDkLd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9CC1C4CEE4;
+	Fri, 16 May 2025 12:50:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747399837;
+	bh=EIeNaMhAQEKBU5kfqSd6zp7mh+1oorSEUk+so/0Y3jY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cIEDDkLd2GN9wC6gw62OtkCQ4AmdaKiNtCQK4aQQZjJCMCww6XGBE9JHmqee3Pne2
+	 Mv2sHZpSRJZ9dcEjE6MNytZviH2DMQVRCXALbo++IBD+npUOE97SyRHXxGpi8hxw8E
+	 +vhA6anJ8Cl/IMAJsbRBawmqKDoivpvqgZ5tpent1bcXulIomFlBWj0WSUGfaadEgh
+	 1ZQCWmgI/nKmV6xEx1yO66aeHSjdmZ6DWqpEey1Tzf5AL1TZjmOxY08M2V2u/YQHLF
+	 MXnGRMvLmxuwYrbKjwArq5hwQPbc03daP5tvjsORLxCy4hpX3qb7X3+oLd3BjfjFtH
+	 LyJW82YoBSHzw==
+Message-ID: <5e35d79b-06e7-4b19-87fc-a2087a3434c2@kernel.org>
+Date: Fri, 16 May 2025 14:50:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD74:EE_|SJ0PR12MB8091:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45107a37-b72c-42e5-ba91-08dd947771d8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|82310400026|376014|36860700013|13003099007|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?tzGaO8MoJONFL89xS0iezLLGfx0r+sbDTQ4LxVAYXLmCv0q8oB6DPaIUizod?=
- =?us-ascii?Q?5ekUM1G4FuWGEuv8qkLv8Lcw7JmrITi1+ViLFm1numhQKHkL/C3DAFVPHLgY?=
- =?us-ascii?Q?DXdTDRM3J/Sf+hbdbZcditN4rsoDcBOQuO9jBuv+3OqHknYzW4kf1cJDrBux?=
- =?us-ascii?Q?SHmbc3xv6L1E6eaSf2BsepEinmR214QmR59XcminiR2k07IwkV02agOx5bFc?=
- =?us-ascii?Q?Ha5JnkzvIN+xyfjeDRQFjKpIxH7uBLufhcaWKd3vcUPlxYJHSPFZtDoFRX+o?=
- =?us-ascii?Q?kmL7CJVqdHiguIDcryN8Zplbxldju6SxQQWYtSjsLjqoH1IqzBg8LuYC9KFT?=
- =?us-ascii?Q?d9EYfSQ/buT0N1Nfeifpc0ftn8W6PccglYi1IVpOoe8ACvacViYgMX5kc3ro?=
- =?us-ascii?Q?FZxeiFJa9OD3Plkvq/5FdrmeKQjrzANeMTsBlSP1Q7AFr5A6vUDLIIUquhSe?=
- =?us-ascii?Q?JEwgmYmh8zuMS5Iicw9qsZAkVbDTPasH5zbvuz5hlvEUI1i4Py8XXw2eYLYm?=
- =?us-ascii?Q?+tRPv6cRkPk8hXk4zkbboR9L7TY9qX/Nzz/KqKvF01UqfbZQqIqILHLkLgq1?=
- =?us-ascii?Q?fL7L3GuRDM/zTl0U8F9VmbwzCB+5bkYZQmiw2Qnkt+G3w5N36puzJQcrNlLQ?=
- =?us-ascii?Q?LLVewTpXULmJz5aLjAPZwu2P9gtK5qHgv2+Su/UhvVih11wi6nF9V6n19Cdg?=
- =?us-ascii?Q?vvmOBbpbZBRcgcrmvY48h/csnptvH/l271VdpFpBzWGzOeh3h2KpXSoFQ+Qp?=
- =?us-ascii?Q?C+4gBQaduKKuFkW/uso4bI85cYnWlE8IXr9CmF67B0ZQ3nD5hD9DyG1uMX4u?=
- =?us-ascii?Q?PO+SypBp95SCmBL3XI8f2JSdkDxiY6zbiZvc9a60jcS27ZzCczOsbc9CjZeT?=
- =?us-ascii?Q?mgVDIlveyuUoRyfB8Hzh7yZAyLVubl1fyQdvrW7CIHrX6BR2c2/utgVTKmM3?=
- =?us-ascii?Q?kwDwDDEx5I9sJAFKFk9VQJHGdLuICBYnuI9CrpIHmy4C0FzwDLSb3zt6tcUL?=
- =?us-ascii?Q?UZpepwle3jD6ORzoIy5W//R18JLY8JYzhQi1VuswBp8tcKJhk7KfImtO2n3d?=
- =?us-ascii?Q?xiErl+tRxHcoL7GZCNAF03afyx+MLGatuxZWFmkQ/lHCxHBS3SZzeqbiOH7D?=
- =?us-ascii?Q?3V3sn7Xqi+kqCSuyobO3deJODdIZnuTJboED4NGvL+4KLh6kh79F2n+6Fulg?=
- =?us-ascii?Q?wbVpQ1x4N+tKQK5y77ornCYCX6C28IBUlpCsfpcy1tpYivgZPGphXUs5DSrG?=
- =?us-ascii?Q?E8q84VrDNZheSraUAu7jL37V9ZbbXB7uiMDZfvmWctBvX91dpO57KEmlk9Pq?=
- =?us-ascii?Q?kLFmu2jX093DgYBoUEJmTRfqifHgSJ1DA/eZYHSN7m2do/YuHKlYsvWlfNo1?=
- =?us-ascii?Q?a2P9vv1csC0VE6HasKSZcIyuZqOTmZipdf/r3lMtX3o2jwtthPbpNYwFFnsk?=
- =?us-ascii?Q?kBONWpOdRP8HqarIMph4vzS+gy1sv09vFQooGmYa3PtLt8TjBHZEfBhh8RKJ?=
- =?us-ascii?Q?/mYQzbVI6wRFOQbZrcGR6l+7mzUm9k4so2nmsgSePolweMA4eO6zSU/M2Q?=
- =?us-ascii?Q?=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(82310400026)(376014)(36860700013)(13003099007)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2025 12:44:48.7410
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45107a37-b72c-42e5-ba91-08dd947771d8
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH1PEPF0000AD74.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8091
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] usb: dwc3: eic7700: Add EIC7700 usb driver
+To: zhangsenchuan@eswincomputing.com, gregkh@linuxfoundation.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Thinh.Nguyen@synopsys.com, p.zabel@pengutronix.de
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ yangwei1@eswincomputing.com
+References: <20250516095237.1516-1-zhangsenchuan@eswincomputing.com>
+ <20250516095408.704-1-zhangsenchuan@eswincomputing.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250516095408.704-1-zhangsenchuan@eswincomputing.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Calling dma_sync_*() on a buffer from dma_alloc_coherent() is pointless.
-The driver should not be doing its own bounce-buffering if the buffer is
-allocated through dma_alloc_coherent()
+On 16/05/2025 11:54, zhangsenchuan@eswincomputing.com wrote:
+> +static ssize_t dwc3_mode_store(struct device *device,
+> +			       struct device_attribute *attr, const char *buf,
+> +			       size_t count)
+> +{
+> +	struct dwc3_eswin *eswin = dev_get_drvdata(device);
+> +	struct dwc3 *dwc = eswin->dwc;
+> +	enum usb_role new_role;
+> +	struct usb_role_switch *role_sw = dwc->role_sw;
+> +
+> +	if (!strncmp(buf, "1", 1) || !strncmp(buf, "host", 4)) {
+> +		new_role = USB_ROLE_HOST;
+> +	} else if (!strncmp(buf, "0", 1) || !strncmp(buf, "peripheral", 10)) {
+> +		new_role = USB_ROLE_DEVICE;
+> +	} else {
+> +		dev_info(eswin->dev, "illegal dr_mode\n");
+> +		return count;
+> +	}
+> +	eswin->force_mode = true;
+> +
+> +	mutex_lock(&eswin->lock);
+> +	usb_role_switch_set_role(role_sw, new_role);
+> +	mutex_unlock(&eswin->lock);
+> +
+> +	return count;
+> +}
+> +
+> +static DEVICE_ATTR_RW(dwc3_mode);
 
-Suggested-by: Robin Murphy <robin.murphy@arm.com>
-Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
----
-v1->v2: No changes
+Missing ABI documentation. Anyway, unlikely this will be accepted.
 
-Related thread - https://lore.kernel.org/all/acdbf49c-1a73-a0b9-a10d-42d544be3117@arm.com/
 
- drivers/i2c/busses/i2c-tegra.c | 20 +-------------------
- 1 file changed, 1 insertion(+), 19 deletions(-)
+> +
+> +static ssize_t dwc3_hub_rst_show(struct device *device,
+> +				 struct device_attribute *attr, char *buf)
+> +{
+> +	struct dwc3_eswin *eswin = dev_get_drvdata(device);
+> +
+> +	if (!IS_ERR(eswin->hub_gpio))
+> +		return sprintf(buf, "%d", gpiod_get_raw_value(eswin->hub_gpio));
+> +
+> +	return sprintf(buf, "UNKONWN");
+> +}
+> +
+> +static ssize_t dwc3_hub_rst_store(struct device *device,
+> +				  struct device_attribute *attr,
+> +				  const char *buf, size_t count)
+> +{
+> +	struct dwc3_eswin *eswin = dev_get_drvdata(device);
+> +
+> +	if (!IS_ERR(eswin->hub_gpio)) {
+> +		if (!strncmp(buf, "0", 1))
+> +			gpiod_set_raw_value(eswin->hub_gpio, 0);
+> +		else
+> +			gpiod_set_raw_value(eswin->hub_gpio, 1);
+> +	}
+> +
+> +	return count;
+> +}
+> +
+> +static DEVICE_ATTR_RW(dwc3_hub_rst);
+> +
+> +static struct attribute *dwc3_eswin_attrs[] = {
+> +	&dev_attr_dwc3_mode.attr,
+> +	&dev_attr_dwc3_hub_rst.attr,
+> +	NULL,
+> +};
+> +
+> +static struct attribute_group dwc3_eswin_attr_group = {
+> +	.name = NULL, /* we want them in the same directory */
+> +	.attrs = dwc3_eswin_attrs,
+> +};
+> +
+> +static int dwc3_eswin_device_notifier(struct notifier_block *nb,
+> +				      unsigned long event, void *ptr)
+> +{
+> +	struct dwc3_eswin *eswin =
+> +		container_of(nb, struct dwc3_eswin, device_nb);
+> +
+> +	mutex_lock(&eswin->lock);
+> +	eswin->new_usb_role = USB_ROLE_DEVICE;
+> +	mutex_unlock(&eswin->lock);
+> +	if (!eswin->suspended)
+> +		schedule_work(&eswin->otg_work);
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+> +static int dwc3_eswin_host_notifier(struct notifier_block *nb,
+> +				    unsigned long event, void *ptr)
+> +{
+> +	struct dwc3_eswin *eswin = container_of(nb, struct dwc3_eswin, host_nb);
+> +
+> +	mutex_lock(&eswin->lock);
+> +	eswin->new_usb_role = USB_ROLE_HOST;
+> +	mutex_unlock(&eswin->lock);
+> +	if (!eswin->suspended)
+> +		schedule_work(&eswin->otg_work);
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+> +static void dwc3_eswin_otg_extcon_evt_work(struct work_struct *work)
+> +{
+> +	struct dwc3_eswin *eswin =
+> +		container_of(work, struct dwc3_eswin, otg_work);
+> +	struct usb_role_switch *role_sw = eswin->dwc->role_sw;
+> +
+> +	if (true == eswin->force_mode)
+> +		return;
+> +	mutex_lock(&eswin->lock);
+> +	usb_role_switch_set_role(role_sw, eswin->new_usb_role);
+> +	mutex_unlock(&eswin->lock);
+> +}
+> +
+> +static int dwc3_eswin_get_extcon_dev(struct dwc3_eswin *eswin)
+> +{
+> +	struct device *dev = eswin->dev;
+> +	struct extcon_dev *edev;
+> +	s32 ret = 0;
+> +
+> +	if (device_property_read_bool(dev, "extcon")) {
 
-diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
-index 22ddbae9d847..b10a4bc9cb34 100644
---- a/drivers/i2c/busses/i2c-tegra.c
-+++ b/drivers/i2c/busses/i2c-tegra.c
-@@ -1292,17 +1292,9 @@ static int tegra_i2c_xfer_msg(struct tegra_i2c_dev *i2c_dev,
- 
- 	if (i2c_dev->dma_mode) {
- 		if (i2c_dev->msg_read) {
--			dma_sync_single_for_device(i2c_dev->dma_dev,
--						   i2c_dev->dma_phys,
--						   xfer_size, DMA_FROM_DEVICE);
--
- 			err = tegra_i2c_dma_submit(i2c_dev, xfer_size);
- 			if (err)
- 				return err;
--		} else {
--			dma_sync_single_for_cpu(i2c_dev->dma_dev,
--						i2c_dev->dma_phys,
--						xfer_size, DMA_TO_DEVICE);
- 		}
- 	}
- 
-@@ -1312,11 +1304,6 @@ static int tegra_i2c_xfer_msg(struct tegra_i2c_dev *i2c_dev,
- 		if (i2c_dev->dma_mode) {
- 			memcpy(i2c_dev->dma_buf + I2C_PACKET_HEADER_SIZE,
- 			       msg->buf, i2c_dev->msg_len);
--
--			dma_sync_single_for_device(i2c_dev->dma_dev,
--						   i2c_dev->dma_phys,
--						   xfer_size, DMA_TO_DEVICE);
--
- 			err = tegra_i2c_dma_submit(i2c_dev, xfer_size);
- 			if (err)
- 				return err;
-@@ -1357,13 +1344,8 @@ static int tegra_i2c_xfer_msg(struct tegra_i2c_dev *i2c_dev,
- 			return -ETIMEDOUT;
- 		}
- 
--		if (i2c_dev->msg_read && i2c_dev->msg_err == I2C_ERR_NONE) {
--			dma_sync_single_for_cpu(i2c_dev->dma_dev,
--						i2c_dev->dma_phys,
--						xfer_size, DMA_FROM_DEVICE);
--
-+		if (i2c_dev->msg_read && i2c_dev->msg_err == I2C_ERR_NONE)
- 			memcpy(i2c_dev->msg_buf, i2c_dev->dma_buf, i2c_dev->msg_len);
--		}
- 	}
- 
- 	time_left = tegra_i2c_wait_completion(i2c_dev, &i2c_dev->msg_complete,
--- 
-2.43.2
+extcon is not a bool. This is just wrong... plus undocumented ABI.
 
+
+> +		edev = extcon_get_edev_by_phandle(dev, 0);
+> +		if (IS_ERR(edev)) {
+> +			if (PTR_ERR(edev) != -EPROBE_DEFER)
+> +				dev_err(dev, "couldn't get extcon device\n");
+> +			return PTR_ERR(edev);
+
+Do not open code dev_err_probe.
+
+> +		}
+> +		eswin->edev = edev;
+> +		eswin->device_nb.notifier_call = dwc3_eswin_device_notifier;
+> +		ret = devm_extcon_register_notifier(dev, edev, EXTCON_USB,
+> +						    &eswin->device_nb);
+> +		if (ret < 0)
+> +			dev_err(dev, "failed to register notifier for USB\n");
+> +
+> +		eswin->host_nb.notifier_call = dwc3_eswin_host_notifier;
+> +		ret = devm_extcon_register_notifier(dev, edev, EXTCON_USB_HOST,
+> +						    &eswin->host_nb);
+> +		if (ret < 0)
+> +			dev_err(dev,
+> +				"failed to register notifier for USB-HOST\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int __init dwc3_eswin_deassert(struct dwc3_eswin *eswin)
+
+That's wrong annotation. You did not build your kernel with DEBUG
+SECTION MISMATCH.
+
+> +{
+> +	int rc;
+> +
+> +	if (eswin->vaux_rst) {
+> +		rc = reset_control_deassert(eswin->vaux_rst);
+> +		WARN_ON(rc != 0);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int dwc3_eswin_assert(struct dwc3_eswin *eswin)
+> +{
+> +	int rc = 0;
+> +
+> +	if (eswin->vaux_rst) {
+> +		rc = reset_control_assert(eswin->vaux_rst);
+> +		WARN_ON(rc != 0);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int dwc_usb_clk_init(struct device *dev)
+> +{
+> +	struct regmap *regmap;
+> +	u32 hsp_usb_bus;
+> +	u32 hsp_usb_axi_lp;
+> +	u32 hsp_usb_vbus_freq;
+> +	u32 hsp_usb_mpll;
+> +	int ret;
+> +
+> +	regmap = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +						 "eswin,hsp_sp_csr");
+> +	if (IS_ERR(regmap)) {
+> +		dev_dbg(dev, "No hsp_sp_csr phandle specified\n");
+> +		return -1;
+> +	}
+> +	ret = of_property_read_u32_index(dev->of_node, "eswin,hsp_sp_csr", 1,
+> +					 &hsp_usb_bus);
+> +	if (ret) {
+> +		dev_err(dev, "can't get usb sid cfg reg offset (%d)\n", ret);
+> +		return ret;
+> +	}
+> +	ret = of_property_read_u32_index(dev->of_node, "eswin,hsp_sp_csr", 2,
+> +					 &hsp_usb_axi_lp);
+> +	if (ret) {
+> +		dev_err(dev, "can't get usb sid cfg reg offset (%d)\n", ret);
+> +		return ret;
+> +	}
+> +	ret = of_property_read_u32_index(dev->of_node, "eswin,hsp_sp_csr", 3,
+> +					 &hsp_usb_vbus_freq);
+> +	if (ret) {
+> +		dev_err(dev, "can't get usb sid cfg reg offset (%d)\n", ret);
+> +		return ret;
+> +	}
+> +	ret = of_property_read_u32_index(dev->of_node, "eswin,hsp_sp_csr", 4,
+> +					 &hsp_usb_mpll);
+> +	if (ret) {
+> +		dev_err(dev, "can't get usb sid cfg reg offset (%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * usb1 clock init
+> +	 * ref clock is 24M, below need to be set to satisfy usb phy requirement(125M)
+> +	 */
+> +	regmap_write(regmap, hsp_usb_vbus_freq, HSP_USB_VBUS_FSEL);
+> +	regmap_write(regmap, hsp_usb_mpll, HSP_USB_MPLL_DEFAULT);
+> +	/*
+> +	 * reset usb core and usb phy
+> +	 */
+> +	regmap_write(regmap, hsp_usb_bus,
+> +		     HSP_USB_BUS_FILTER_EN | HSP_USB_BUS_CLKEN_GM |
+> +			     HSP_USB_BUS_CLKEN_GS | HSP_USB_BUS_SW_RST |
+> +			     HSP_USB_BUS_CLK_EN);
+> +	regmap_write(regmap, hsp_usb_axi_lp,
+> +		     HSP_USB_AXI_LP_XM_CSYSREQ | HSP_USB_AXI_LP_XS_CSYSREQ);
+> +
+> +	return 0;
+> +}
+> +
+> +static int dwc3_eswin_probe(struct platform_device *pdev)
+> +{
+> +	struct dwc3_eswin *eswin;
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev->of_node, *child;
+> +	struct platform_device *child_pdev;
+> +	unsigned int count;
+> +	int ret;
+> +	int i;
+> +	int err_desc = 0;
+> +
+> +	eswin = devm_kzalloc(dev, sizeof(*eswin), GFP_KERNEL);
+> +	if (!eswin)
+> +		return -ENOMEM;
+> +	eswin->hub_gpio = devm_gpiod_get(dev, "hub-rst", GPIOD_OUT_HIGH);
+> +	err_desc = IS_ERR(eswin->hub_gpio);
+> +
+> +	if (!err_desc)
+> +		gpiod_set_raw_value(eswin->hub_gpio, 1);
+> +
+> +	count = of_clk_get_parent_count(np);
+> +	if (!count)
+> +		return -ENOENT;
+> +
+> +	eswin->num_clocks = count;
+> +	eswin->force_mode = false;
+> +	eswin->clks = devm_kcalloc(dev, eswin->num_clocks, sizeof(struct clk *),
+> +				   GFP_KERNEL);
+> +	if (!eswin->clks)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, eswin);
+> +
+> +	mutex_init(&eswin->lock);
+> +
+> +	eswin->dev = dev;
+> +
+> +	mutex_lock(&eswin->lock);
+
+I don't understand the point of it. Explain me, what are you protecting
+here from what? How is it possible?
+
+> +
+> +	for (i = 0; i < eswin->num_clocks; i++) {
+> +		struct clk *clk;
+> +
+> +		clk = of_clk_get(np, i);
+
+No, use devm_clk_Get
+
+> +		if (IS_ERR(clk)) {
+> +			ret = PTR_ERR(clk);
+> +			goto err0;
+> +		}
+> +		ret = clk_prepare_enable(clk);
+> +		if (ret < 0) {
+> +			clk_put(clk);
+> +			goto err0;
+> +		}
+> +
+> +		eswin->clks[i] = clk;
+
+Use get_enabled and bulk api.
+
+> +	}
+> +
+> +	eswin->vaux_rst = devm_reset_control_get(dev, "vaux");
+> +	if (IS_ERR_OR_NULL(eswin->vaux_rst)) {
+
+OR_NULL? Why?
+
+> +		dev_err(dev, "Failed to asic0_rst handle\n");
+
+Syntax is always: retrun dev_err_probe
+
+> +		return -EFAULT;
+
+No, return proper error codes.
+
+> +	}
+> +
+> +	dwc3_eswin_deassert(eswin);
+> +	dwc_usb_clk_init(dev);
+> +
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
+> +	ret = pm_runtime_get_sync(dev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "get_sync failed with err %d\n", ret);
+> +		goto err1;
+> +	}
+> +
+> +	child = of_get_child_by_name(np, "dwc3");
+> +	if (!child) {
+> +		dev_err(dev, "failed to find dwc3 core node\n");
+> +		ret = -ENODEV;
+> +		goto err1;
+> +	}
+> +	/* Allocate and initialize the core */
+> +	ret = of_platform_populate(np, NULL, NULL, dev);
+> +	if (ret) {
+> +		dev_err(dev, "failed to create dwc3 core\n");
+> +		goto err1;
+> +	}
+> +
+> +	INIT_WORK(&eswin->otg_work, dwc3_eswin_otg_extcon_evt_work);
+> +	child_pdev = of_find_device_by_node(child);
+> +	if (!child_pdev) {
+> +		dev_err(dev, "failed to find dwc3 core device\n");
+> +		ret = -ENODEV;
+> +		goto err2;
+> +	}
+> +	eswin->dwc = platform_get_drvdata(child_pdev);
+> +	if (!eswin->dwc) {
+> +		dev_err(dev, "failed to get drvdata dwc3\n");
+> +		ret = -EPROBE_DEFER;
+> +		goto err2;
+> +	}
+> +	eswin->child_dev = &child_pdev->dev;
+> +	ret = dwc3_eswin_get_extcon_dev(eswin);
+> +	if (ret < 0)
+> +		dev_err(dev, "couldn't get extcon device: %d\n", ret);
+> +
+> +	mutex_unlock(&eswin->lock);
+> +	ret = sysfs_create_group(&dev->kobj, &dwc3_eswin_attr_group);
+> +	if (ret)
+> +		dev_err(dev, "failed to create sysfs group: %d\n", ret);
+> +
+> +	return ret;
+> +err2:
+> +	cancel_work_sync(&eswin->otg_work);
+> +	of_platform_depopulate(dev);
+> +
+> +err1:
+> +	pm_runtime_put_sync(dev);
+> +	pm_runtime_disable(dev);
+> +	dwc3_eswin_assert(eswin);
+> +err0:
+> +	for (i = 0; i < eswin->num_clocks && eswin->clks[i]; i++) {
+> +		if (!pm_runtime_status_suspended(dev))
+> +			clk_disable(eswin->clks[i]);
+> +		clk_unprepare(eswin->clks[i]);
+> +		clk_put(eswin->clks[i]);
+> +	}
+> +
+> +	mutex_unlock(&eswin->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static void dwc3_eswin_remove(struct platform_device *pdev)
+> +{
+> +	struct dwc3_eswin *eswin = platform_get_drvdata(pdev);
+> +	struct device *dev = &pdev->dev;
+> +	int i = 0;
+> +
+> +	cancel_work_sync(&eswin->otg_work);
+> +
+> +	sysfs_remove_group(&dev->kobj, &dwc3_eswin_attr_group);
+> +
+> +	/* Restore hcd state before unregistering xhci */
+> +	if (eswin->edev && !eswin->connected) {
+> +		struct usb_hcd *hcd = dev_get_drvdata(&eswin->dwc->xhci->dev);
+> +
+> +		pm_runtime_get_sync(dev);
+> +
+> +		/*
+> +		 * The xhci code does not expect that HCDs have been removed.
+> +		 * It will unconditionally call usb_remove_hcd() when the xhci
+> +		 * driver is unloaded in of_platform_depopulate(). This results
+> +		 * in a crash if the HCDs were already removed. To avoid this
+> +		 * crash, add the HCDs here as dummy operation.
+> +		 * This code should be removed after pm runtime support
+> +		 * has been added to xhci.
+> +		 */
+> +		if (hcd->state == HC_STATE_HALT) {
+> +			usb_add_hcd(hcd, hcd->irq, IRQF_SHARED);
+> +			usb_add_hcd(hcd->shared_hcd, hcd->irq, IRQF_SHARED);
+> +		}
+> +	}
+> +
+> +	of_platform_depopulate(dev);
+> +
+> +	pm_runtime_put_sync(dev);
+> +	pm_runtime_disable(dev);
+> +
+> +	dwc3_eswin_assert(eswin);
+> +	for (i = 0; i < eswin->num_clocks; i++) {
+> +		if (!pm_runtime_status_suspended(dev))
+> +			clk_disable(eswin->clks[i]);
+> +		clk_unprepare(eswin->clks[i]);
+> +		clk_put(eswin->clks[i]);
+> +	}
+> +}
+> +
+> +#ifdef CONFIG_PM
+> +static int dwc3_eswin_runtime_suspend(struct device *dev)
+> +{
+> +	struct dwc3_eswin *eswin = dev_get_drvdata(dev);
+> +	int i;
+> +
+> +	for (i = 0; i < eswin->num_clocks; i++)
+> +		clk_disable(eswin->clks[i]);
+> +
+> +	device_init_wakeup(dev, false);
+> +
+> +	return 0;
+> +}
+> +
+> +static int dwc3_eswin_runtime_resume(struct device *dev)
+> +{
+> +	struct dwc3_eswin *eswin = dev_get_drvdata(dev);
+> +	int i;
+> +
+> +	for (i = 0; i < eswin->num_clocks; i++)
+> +		clk_enable(eswin->clks[i]);
+> +
+> +	device_init_wakeup(dev, true);
+
+This feels odd. What is the point of wakeup if you disable it for the
+sleeping periods?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused dwc3_eswin_suspend(struct device *dev)
+> +{
+> +	struct dwc3_eswin *eswin = dev_get_drvdata(dev);
+> +	struct dwc3 *dwc = eswin->dwc;
+> +
+> +	eswin->suspended = true;
+> +	cancel_work_sync(&eswin->otg_work);
+> +
+> +	/*
+> +	 * The flag of is_phy_on is only true if
+> +	 * the DWC3 is in Host mode.
+> +	 */
+> +	if (eswin->is_phy_on) {
+> +		phy_power_off(dwc->usb2_generic_phy[0]);
+> +
+> +		/*
+> +		 * If link state is Rx.Detect, it means that
+> +		 * no usb device is connecting with the DWC3
+> +		 * Host, and need to power off the USB3 PHY.
+> +		 */
+> +		dwc->link_state = dwc3_gadget_get_link_state(dwc);
+> +		if (dwc->link_state == DWC3_LINK_STATE_RX_DET)
+> +			phy_power_off(dwc->usb3_generic_phy[0]);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused dwc3_eswin_resume(struct device *dev)
+> +{
+> +	struct dwc3_eswin *eswin = dev_get_drvdata(dev);
+> +	struct dwc3 *dwc = eswin->dwc;
+> +
+> +	eswin->suspended = false;
+> +
+> +	if (eswin->is_phy_on) {
+> +		phy_power_on(dwc->usb2_generic_phy[0]);
+> +
+> +		if (dwc->link_state == DWC3_LINK_STATE_RX_DET)
+> +			phy_power_on(dwc->usb3_generic_phy[0]);
+> +	}
+> +
+> +	if (eswin->edev)
+> +		schedule_work(&eswin->otg_work);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops dwc3_eswin_dev_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(dwc3_eswin_suspend, dwc3_eswin_resume)
+> +		SET_RUNTIME_PM_OPS(dwc3_eswin_runtime_suspend,
+> +				   dwc3_eswin_runtime_resume, NULL)
+> +};
+> +
+> +#define DEV_PM_OPS (&dwc3_eswin_dev_pm_ops)
+> +#else
+> +#define DEV_PM_OPS NULL
+> +#endif /* CONFIG_PM */
+> +
+> +static const struct of_device_id eswin_dwc3_match[] = {
+> +	{ .compatible = "eswin,eic7700-dwc3" },
+> +	{ /* Sentinel */ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, eswin_dwc3_match);
+> +
+> +static struct platform_driver dwc3_eswin_driver = {
+> +	.probe = dwc3_eswin_probe,
+> +	.remove = dwc3_eswin_remove,
+> +	.driver = {
+> +		.name = "eic7700-dwc3",
+> +		.pm = DEV_PM_OPS,
+> +		.of_match_table = eswin_dwc3_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(dwc3_eswin_driver);
+> +
+> +MODULE_ALIAS("platform:eic7700-dwc3");
+
+Drop. You should not need MODULE_ALIAS() in normal cases. If you need
+it, usually it means your device ID table is wrong (e.g. misses either
+entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
+for incomplete ID table.
+
+Both of your drivers - this and PCI - are in very poor shape. I suggest
+redoing them based on latest upstream drivers, not pushing to us your
+downstream code.
+
+Best regards,
+Krzysztof
 
