@@ -1,117 +1,87 @@
-Return-Path: <devicetree+bounces-178092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47419ABA5F5
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 00:36:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D27FABA698
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 01:31:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31BF91B6310D
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 22:36:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05682A003EF
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 23:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6137527054F;
-	Fri, 16 May 2025 22:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9059272E63;
+	Fri, 16 May 2025 23:31:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="L4d1Vxmv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n1gO6Z3Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38811231841;
-	Fri, 16 May 2025 22:36:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9291216EB7C;
+	Fri, 16 May 2025 23:31:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747434973; cv=none; b=iFMCv7PEs7RM3sN0nNrEKw157yyQdS8QoWwyBZUJkVbZOltH+5/eLP+iVZuxLFoh54acePl+nim6oUb5V685VeP3h/qqfsPtfZWj19co8WZOd/9YiZteGcKFmtnIyk1+I9+0NyjSSs8AGLvtN/SOEy5q5rv3AyCs090TOJv9TmA=
+	t=1747438267; cv=none; b=htHxiSeSnYjLcqP/PPOJCeE8bW3lyhuuBeorMzddUuD/37QEqxl7+ntqyn8OIC8TrWkKxa9ED7xRDQSgzuW74Y+1wZsv9ynXRXinWOW1Iaz2oV7D3IzxWzBzV9fVtEx0T5iPq+90tiJsybZ4L7oUWgEIdBmpK5hvJyfb0Clitrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747434973; c=relaxed/simple;
-	bh=S8VqnsRWmVgpbWGtGj+EFiFExcvjj76012BsLEMWG8A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SjTcEFHmGNUFzuJOGM1WlqsjeKBzNRD1Spy9B1JSCVj0JFcAb3SKY9na8ng3JR7yPEyXE7/jUlSKP5+Ppp+IXz0mUEHDoJceahAN9NrO3y3U71WU1BYzyj6heUr+1dTFLcFHNyFJuDgLrorsoiyfoFDzdhxtVm+FglPBSLNv7Bs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=L4d1Vxmv; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54GMa3UZ419051;
-	Fri, 16 May 2025 17:36:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1747434963;
-	bh=ApFBcOWG2ieHiTUYXnkfHS3k7Kt6Hoxe9udfT1lGPaU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=L4d1VxmvTUJDq2EFONO7jt0pi7rMHt/MtBucl1TBizYEbCt5qBh1Ed/qJQ3pAlUh1
-	 WV82mGPqYzhrHz0MC8CDOnqm2ExeiP1iRCVnGLovZIDf7Tu3uSOSYA4ENCVmX8Jjyk
-	 tEv7iZVfGPro3+ckEuRsZgNN3UyYxU94e63Pyn0o=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54GMa3PX202875
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 16 May 2025 17:36:03 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 16
- May 2025 17:36:03 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 16 May 2025 17:36:02 -0500
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 54GMa2EU095804;
-	Fri, 16 May 2025 17:36:02 -0500
-Message-ID: <5cede33c-664c-488a-aef7-4619368c24d6@ti.com>
-Date: Fri, 16 May 2025 17:36:02 -0500
+	s=arc-20240116; t=1747438267; c=relaxed/simple;
+	bh=LLXZH8CcZsv0YcixDzRJ1c9l0A1zuk/pzjDX3m7p/V4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YQxfxJD2wbTdVNPjVG+v/UDqd/rSIarAgEy4AuJU50fbbjLrIZsdUca2blehRJrV9H0EKtGXCoeHuNc3vgU8ZtugYXUUhDa+Vxz6NP4ro4Ks3pg+z2XR2OlpqjIPwTWfOU04D3BHm+jt6Om87RvjRbf2Vu/HXMNPWxAHYCZ02Hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n1gO6Z3Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A050C4CEE4;
+	Fri, 16 May 2025 23:31:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747438267;
+	bh=LLXZH8CcZsv0YcixDzRJ1c9l0A1zuk/pzjDX3m7p/V4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=n1gO6Z3Z7Gvk7LqDSlLPRSu67oFEX4V2NsGLnIODlWsQ4jO8W67/4of9MJ0Sx83hL
+	 kKC0+Iw5vXgsbLF34bNv2ldP2cVTmhtQKcdwNuqdmo31jBt0UVS3Ge+x2efjTc1LfH
+	 gv8XzD+AlIONXgYcBIPgpaGFOHgQQQEAUc4pzHO6vCsUqxGBcYaDBslRQ3CpyC1Ql4
+	 U/D003bt41MLHJQLF6UyM5rXoypEP0EhD8z2lxx+wo8DOKR8bttJIlhzv18CVFTRsC
+	 3G6tmIQBuM+VrQOf6ahcpWVbPhjtQZFa9m/E/JzvVceNe/piLrOBAk0DAcNXTAr5vn
+	 X8T4EYfANuXuQ==
+Date: Fri, 16 May 2025 16:31:05 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Frank Wunderlich <frank-w@public-files.de>
+Cc: Frank Wunderlich <linux@fw-web.de>, Andrew Lunn <andrew@lunn.ch>,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Daniel Golle
+ <daniel@makrotopia.org>, Qingfang Deng <dqfext@gmail.com>, SkyLake Huang
+ <SkyLake.Huang@mediatek.com>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?=
+ <arinc.unal@arinc9.com>, Landen Chao <Landen.Chao@mediatek.com>, Sean Wang
+ <sean.wang@mediatek.com>, Lorenzo Bianconi <lorenzo@kernel.org>, Felix
+ Fietkau <nbd@nbd.name>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Subject: Re: [net-next, PATCH v2] net: phy: mediatek: do not require syscon
+ compatible for pio property
+Message-ID: <20250516163105.12088849@kernel.org>
+In-Reply-To: <D997C4DB-1B03-4AFD-B48C-BFA19AB6194D@public-files.de>
+References: <20250516180147.10416-1-linux@fw-web.de>
+	<20250516180147.10416-3-linux@fw-web.de>
+	<D997C4DB-1B03-4AFD-B48C-BFA19AB6194D@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] serial: 8250: Add PRUSS UART driver
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC: Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Bin Liu
-	<b-liu@ti.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Andrew
- Davis <afd@ti.com>, <linux-kernel@vger.kernel.org>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250513215934.933807-1-jm@ti.com>
- <20250513215934.933807-4-jm@ti.com>
- <2025051408-discolor-backwash-5574@gregkh>
-Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <2025051408-discolor-backwash-5574@gregkh>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Greg,
+On Fri, 16 May 2025 20:08:47 +0200 Frank Wunderlich wrote:
+> Sorry, resent it by accident while sending v2 of my dts series.
+> regards Frank
 
-On 5/14/25 2:36 AM, Greg Kroah-Hartman wrote:
-> On Tue, May 13, 2025 at 04:59:30PM -0500, Judith Mendez wrote:
->> From: Bin Liu <b-liu@ti.com>
->>
->> This adds a new serial 8250 driver that supports the UART in PRUSS or
->> PRU_ICSS*.
->>
->> The UART sub-module is based on the industry standard TL16C550 UART
->> controller, which has 16-bytes FIFO and supports 16x and 13x over
->> samplings.
-> 
-> If it is based on an existing controller, why do we need a new driver
-> for this?  Please explain in detail why this code is needed at all, and
-> not just a new "quirk" for the existing driver?
+Unfortunately patchwork thought this is patch 1 of the series instead
+of the bindings patch :(
 
-This was explained in RFC [0] but the patch description can be improved
-so will fix for v2.
-
-[0] https://lore.kernel.org/all/ba88a5c0-a8b8-4e48-9752-76881fa8e94e@ti.com/
-
-Thanks
-~ Judith
+Let's wait for binding reviews and maybe you could repost patches 1-3
+for net-next without the dts ones? 
 
