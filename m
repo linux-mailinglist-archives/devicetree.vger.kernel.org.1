@@ -1,129 +1,154 @@
-Return-Path: <devicetree+bounces-177876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50DC2AB9762
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:19:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C070AB97AD
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 10:29:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67C2CA219B3
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 08:18:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7694E1BC5D13
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 08:29:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BC0E231A37;
-	Fri, 16 May 2025 08:16:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8196322DA15;
+	Fri, 16 May 2025 08:27:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YSJX8yJk"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="YWB6fLey"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB05231838;
-	Fri, 16 May 2025 08:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC20422DA09;
+	Fri, 16 May 2025 08:27:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747383399; cv=none; b=Xb+Msiihpilnce9A26JIdRdLHfkgXrWJSVcIl0LQ1PhIPqAeHRt2x9LDFwSruIUdWxvFjKSVqKIBRQW58wfkrU89kGB39wQJqCJlhvZZD2TaFUUDYRgrYoBrTFUu9ODrpfxn2D12tr1jjf1GAxybJWU90qfeIcCMOLWYsQiiK4U=
+	t=1747384041; cv=none; b=biUbuf1W01jj0jwOGAwNYix+Hom7Ij8Ie0pyOylarnV8jQRsVdV+vU3ZpZixThYphlGlfpKKDAH9Asb6m+YWMShEDRavgqQ3SucQcnXEF6ugZ6hVC8Jx7BY29df4aQvW8NPjcAhNELC16apC8iXhQ0F9Fjd8ilid5IendSl7vJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747383399; c=relaxed/simple;
-	bh=+hZAqH08xCVXK8kytHytBGpF9HetP+6wRwFHX9OnASY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nmAgjr26sDngyhIoTbyRLd/rvWhuusewbsNAkAA7Gus8tuHUcZPVRhPFpXobwmBufWqFcFomiAtVxzJfu4g9lFFiyxdOHkSoVeNp9RF2aoJSNy3U/2a8MRzmwiri45wooPYu/WVETJGP1wIabKSl77v3mJ7RxoPv7deAOl6jHHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YSJX8yJk; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ad24b7e0331so285091566b.0;
-        Fri, 16 May 2025 01:16:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747383396; x=1747988196; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=p5uMs6FkdhW0yuPSJiF5IsCQmeoDxyXFi4ZKMZV6l28=;
-        b=YSJX8yJkGJipwbEhJqwW8U50h21QpaAZIqtzVWOZoJZMar0AkEq0h8QcUcfdduTXaQ
-         hZNkbYwOo11aJI1l+04W1K1+ICu8+5qPQu+BFJq7soyW/kCX2++A4Hto1g/jpYCshN8d
-         MokGEEkfSC4JGbVCPwJWZVkfmjqETnFcEkeZsKT8Iwu3jbwHYDEhbpWCUvzRjSET/eNu
-         NQ6EcJesJ2rC0oem092bpjBB/XNHqcIZULJOg+f7UvNlT3xxx3UYArMdzbO/xdFTk3dg
-         AcWl0GGmkvXjHS0OSvaFxDtBep3yYK3JNeJnMzL4mY3N0NmKl3r9L8TZibonxGj7k6RQ
-         ghjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747383396; x=1747988196;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p5uMs6FkdhW0yuPSJiF5IsCQmeoDxyXFi4ZKMZV6l28=;
-        b=ZbnGS+tds9lEng8HUmXR1T8TEbME+W7Aq59JMYRGtmqt6M4sKnUNAxMIizQfFuFF94
-         61Cby69vtoMVTkgMLhgUWmXCZLsBwLOmO0gtD46sdv92QGlRhTpAR4nbDvs8ONyPDWEX
-         cGCgoY7vQTKGMzkhyizr60Fgfe+46/Q9aWLG64fk4+U88V4UpNrrT1KTGvpNz4yu96h1
-         QvOMg/cd9ENnU1gfIZBjP6ICrLBDFFZl9pvpkWoXrMqUiB1KCHMyuQZJzSYgM8HpV8Eu
-         jYJcyxgdLkFNztChZtfKzQ5KwUT9x5Sx7lS7B0/LgYIf6gFe2dZsjhOs7DHqVH5uIrgm
-         M3RA==
-X-Forwarded-Encrypted: i=1; AJvYcCWcz8qZdv3fqC7kqdnBYUYfaWWo9Z1QVM1eOLfbEWxV3qCSrQ50kto4HT7GL0Js2p1jlclL6+rr/Rlb2pM=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6LuKkoW0a+XJ8OAVTXQaamaLYHwFsmBi0r0dRwCNppJxMSiYH
-	5JCSufQYFrux9kGYd47GfVkEVbmVRGgvu7uIJTYWxzDx+2CWeyt0vh/a
-X-Gm-Gg: ASbGncvQAPi2H7s8zHGvC4J3TGSC7f9UYtyY2KsZ0iTYtEbKp3+MUbYGuwLjXKKb1+P
-	pNO3A1Om08oXk4LZjDMbGQN7qG8eyMT45r1pdps2dLBQKpwvYMukNqaeO42PPF6MfqxZC2VcT7m
-	kUU18agEQ79kIw/O09NUJIO45GtEhWXMu/9Rc8KMFt2cE11ouxEE23KjdfL2JCEyQh+kNiH40NP
-	3I6dWxTiQxyy76jf44UT4wzK9r5vNNW7L/OL+jlP1Q3iyCUI1Ll3nE/bbA9XosuCq+qzsX+HDsx
-	p+8vSjxLn1hvLDjOAJo7T9v89yoWfPn6aiik+eF82Ihk5mrXqozBmtw9IoHu
-X-Google-Smtp-Source: AGHT+IGUyQ4WvvI8Y54HOBmPIQUwWgTnB7hUofnygJIB5iOp5HSMPI4dclX6JAUQZWevtotWc6mVOA==
-X-Received: by 2002:a17:907:9811:b0:ad2:3371:55cd with SMTP id a640c23a62f3a-ad52d46ae67mr221922866b.5.1747383395358;
-        Fri, 16 May 2025 01:16:35 -0700 (PDT)
-Received: from [192.168.1.130] ([188.193.103.108])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6004d4f1c90sm1016490a12.12.2025.05.16.01.16.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 May 2025 01:16:34 -0700 (PDT)
-Message-ID: <e53f54ad-df31-4b1e-a2a5-2d14a138c9eb@gmail.com>
-Date: Fri, 16 May 2025 10:16:33 +0200
+	s=arc-20240116; t=1747384041; c=relaxed/simple;
+	bh=UtR1DqMS1k3wSay4wJdxZB8iljHT9i5AeMOjluG12mQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Vyla9gn95JvfmFNcE4GBqIs3sx+6cePnplpGwACGtZHj1VmW1CGgNAwKP95P5AFmGY20G20B01kzZnGWWxdzFR0k+yKCuVmEYnmGr7pTD3OM9yI1gvIfvIn4cuc5C4ossp1Kit1Rkltf7jqIBMm2l8DwxGyZzwsMQjiNRGQxGH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=YWB6fLey; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54G6Xg1J010012;
+	Fri, 16 May 2025 04:27:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=9rIP9xVeUvRrmO4Kz0BbQfSJpOe
+	KkI9QLLX2BtSSIDA=; b=YWB6fLeyhm278LGLYSwwxwcHhY1/wAaCjUF+SyjnqcC
+	OI5sNiftNDZMXNng+1G1/1lffT0lzXbo4dQZsqRbM3Vhb3foYRF3ZL7cf5SbDygf
+	wMwywbgEAoqCU1yLpPhy35PwVzO2LvJrumK054GY2qG0JlGvItge9uWkwnSsMbum
+	u1bcjbyp+Akf75chryL6sVdaABnuIGSdtux+G60LbtO6Z+Wcs9BjalaZ9fhsfjrR
+	2BFwjTLtxrvfiePpjBzf9KhXpXhnJyBaCIJrMXQSMiT/wlQpc2flINmtHrYqs4VU
+	F88Je+r/YIjqzbvTE4S4xF+QWLCEbow/RVydncE/QLA==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 46p070retr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 May 2025 04:27:15 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 54G8QjKx033595
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 16 May 2025 04:26:45 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 16 May 2025 04:26:45 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 16 May 2025 04:26:45 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 16 May 2025 04:26:45 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.120])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 54G8QZwe031549;
+	Fri, 16 May 2025 04:26:38 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v6 00/10] Add support for AD4080 ADC
+Date: Fri, 16 May 2025 11:26:20 +0300
+Message-ID: <20250516082630.8236-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/4] ARM: dts: stm32: add initial support for
- stm32mp157-ultra-fly-sbc board
-To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- =?UTF-8?B?QsO2cmdlIFN0csO8bXBmZWw=?= <boerge.struempfel@gmail.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250508143818.2574558-1-goran.radni@gmail.com>
- <20250508143818.2574558-5-goran.radni@gmail.com>
- <8e25c2e3-fbc6-4d60-8362-2b0fb3066821@foss.st.com>
-Content-Language: en-US
-From: Goran Radenovic <goran.radni@gmail.com>
-In-Reply-To: <8e25c2e3-fbc6-4d60-8362-2b0fb3066821@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: reOcnSfSbtYsURgzsmuMeC2NC9Y7aXip
+X-Proofpoint-GUID: reOcnSfSbtYsURgzsmuMeC2NC9Y7aXip
+X-Authority-Analysis: v=2.4 cv=A/9sP7WG c=1 sm=1 tr=0 ts=6826f6e3 cx=c_pps
+ a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
+ a=dt9VzEwgFbYA:10 a=HubKl35eoKcbRmig0ccA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDA3OSBTYWx0ZWRfX2fdAE6zTxuBY
+ TrBpNG2vJgRIl0azmIAuCKCOW8+5Ss2gfa3ai3eoeB7YIQwyeb9yT0Bov6aeZG/NV1q6Aev+OCz
+ EQxyfX17DggkiZtktp0GBn2NuNugE9KBWGmsa9hxTmVocD7dSSTmkOT5RFhqpL0fjeeo4teEhvr
+ ZDpnqIinn+4Wncvcg7UjYZBG64sexEOgaUYsqBxhaTVlNw/4iMVgIw+U+CbY+T3kn1UxF17oSf9
+ eoSKRlS04aw/TtdLm5+XEgdVmCW/CZCvskYEjX5/FLLiJfFf5eYPnSHawyYF1saP2IoBII5M9Q8
+ tHu+Yb7tqiVAEsKZwOUS5pjWE6CjXP8g4+7A2w4vFV5QzR8ZZqj2w1PW2Z3QwRLajc1hGfuzeLi
+ 8kNgG/wCfbkJYPsrBJVa9a8InRy2i/4l03yQEWoAS3XqbXJ1okfxlVHwajf37BC60dQ3hQ2t
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-16_03,2025-05-15_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 malwarescore=0 mlxlogscore=999 priorityscore=1501 mlxscore=0
+ impostorscore=0 clxscore=1015 adultscore=0 phishscore=0 lowpriorityscore=0
+ bulkscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
+ definitions=main-2505160079
 
-Hi Alex
+The AD4080 is a high-speed, low noise, low distortion, 20-bit, Easy
+Drive, successive approximation register (SAR) analog-to-digital
+converter (ADC). Maintaining high performance (signal-to-noise and
+distortion (SINAD) ratio > 90 dBFS) at signal frequencies in excess
+of 1 MHz enables the AD4080 to service a wide variety of precision,
+wide bandwidth data acquisition applications.
 
-that is great. Thank You!
+This driver aims to be extended in the future to support multiple parts that are
+not released yet:
+    AD4081
+    AD4082
+    AD4083
+    AD4084
+    AD4085
+    AD4086
+    AD4087
+    AD4088
 
-Best regards
-Goran
+Antoniu Miclaus (10):
+  iio: backend: add support for filter config
+  iio: backend: add support for data alignment
+  iio: backend: add support for number of lanes
+  dt-bindings: iio: adc: add ad408x axi variant
+  iio: adc: adi-axi-adc: add filter type config
+  iio: adc: adi-axi-adc: add data align process
+  iio: adc: adi-axi-adc: add num lanes support
+  dt-bindings: iio: adc: add ad4080
+  iio: adc: ad4080: add driver support
+  Documetation: ABI: add sinc1 and sinc5+pf1 filter
 
-Alexandre TORGUE wrote:
-> Hi Goran
-> 
-> On 5/8/25 16:38, Goran Rađenović wrote:
->> Add support for Ultratronik's stm32mp157c fly board. This board embeds
->> a STM32MP157c SOC and 1GB of DDR3. Several connections are available on
->> this boards: 2*USB2.0, 1*USB2.0 MiniUSB, Debug UART, 1*UART, 1*USART,
->> SDcard, RJ45, ...
->>
->> This patch enables basic support for a kernel boot - SD-card or eMMC.
->>
->> Signed-off-by: Goran Rađenović <goran.radni@gmail.com>
->>
-> 
-> Series applied on stm32-next.
-> 
-> regards
-> alex
+ Documentation/ABI/testing/sysfs-bus-iio       |   4 +
+ .../bindings/iio/adc/adi,ad4080.yaml          |  96 +++
+ .../bindings/iio/adc/adi,axi-adc.yaml         |   2 +
+ MAINTAINERS                                   |   8 +
+ drivers/iio/adc/Kconfig                       |  14 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ad4080.c                      | 620 ++++++++++++++++++
+ drivers/iio/adc/adi-axi-adc.c                 |  77 +++
+ drivers/iio/industrialio-backend.c            |  58 ++
+ include/linux/iio/backend.h                   |  19 +
+ 10 files changed, 899 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
+ create mode 100644 drivers/iio/adc/ad4080.c
+
+-- 
+2.49.0
 
 
