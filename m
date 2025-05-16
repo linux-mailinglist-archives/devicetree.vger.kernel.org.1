@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-177989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B96ADAB9D2D
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:23:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D5C8AB9D36
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:26:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 678FC9E5320
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:23:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37A3A1BC54D5
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F0DB1C2BD;
-	Fri, 16 May 2025 13:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD399219E0;
+	Fri, 16 May 2025 13:26:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o6DQGbyU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DKkkJtjr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 285F229D0D;
-	Fri, 16 May 2025 13:23:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943711B808;
+	Fri, 16 May 2025 13:26:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747401812; cv=none; b=ucxCNCx17Wp2sbVVs37FRFdz6Ox7uqJWmjYMTzzOJi1tsSwz2aHfGX14eDGLJk5VzquhubENcdpcHhdkEiN1IZBgaFlMfYWvV1GYhuKk3eMoSIElyTK0thVxgpO9TEliT8rkna+WzqF8w2HuFjYLbvejBqYIyWkceUF1I4cy2Z0=
+	t=1747401963; cv=none; b=ZqOPWtscfz/QAbO31tCvoN95S458V5Z6Yf9LSqlEEoHpgHgunQ7bt4/AH7J76H8OimZPnFK8yeDDAmWsD39LVHyui7osMIxGpg+gHa/Dr6SR3dgRAMMkRG5X8RO0Xj5JzBmdOFC3foYrhunpKBR377IitFgg0cSfl3H8g/X/1JU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747401812; c=relaxed/simple;
-	bh=1WGiAyi1VggTs5EVy+F+lMhO7W2LFZXYjPZjOFDcxtU=;
+	s=arc-20240116; t=1747401963; c=relaxed/simple;
+	bh=nQjE6Jrz6civm7hI/KIbRAh1jWVqVEKXTY2SoGHgjwI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D0l9DxcLf7SPe3bHHuwf3ZY20R3WHvp1DT780/2o7lxzzDxsaE5Ydlyb5T/Vvh3kaXjxoRBsP0efTkoPebFbQUobLdvIxtyiNBy2Iz4V4OXdNq5F7/FHWOxxhL8bFG30DDuTg4QC5IVyvTMUov3HQ9GaEjJrZKjKBE/TxPUfIcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o6DQGbyU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC883C4CEE4;
-	Fri, 16 May 2025 13:23:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=As6uSklauIuG9zxFDPwa5/2dtM4IwQ13jRUgGwjJwUS5yFtS/aICUEQwlrkmpZO4uNckhi0tU/iHL96fIm8dPx1F2w/5AQoEOgZG73LprEmbzbm4HQaEpDWAeJX0BaZoGhU0g5Mk6mM0pkwWgpbSfMmIe0L6WFnvmSAbhWdm7Jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DKkkJtjr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1C3CC4CEE4;
+	Fri, 16 May 2025 13:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747401811;
-	bh=1WGiAyi1VggTs5EVy+F+lMhO7W2LFZXYjPZjOFDcxtU=;
+	s=k20201202; t=1747401963;
+	bh=nQjE6Jrz6civm7hI/KIbRAh1jWVqVEKXTY2SoGHgjwI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=o6DQGbyUwYPrSflbMh3XV3p5exWnilAbwB8JJU2OjAuysT2tqRggYvwMQRkwooFl1
-	 iXA6QFaUOmbR1b5cpGf3pw7+G3AQCzIwasegzJ2a2bTm6ov8poIO1mOkVF/mGkPAWR
-	 f0jmJjsD01DyUF0bhQyvzOonWjZiJDlFZwH10c/yRNnf9fl9QEs4RjMu15ICTCxeUO
-	 3QcE7NMlX0qReYBoHf8hUOg3R8wU/b2SNZhbOEH3e3FL/eqZJUprXKhQi3DkfdiWti
-	 XQG8Eh3BhMCbHpc1Jzbp9lw88p29K5GqX06k5XSKyGYtnuWzOoSQv98+uye/vgzxYF
-	 /taoSeZDCSzZQ==
-Message-ID: <87874bd2-2fcb-42b3-9e92-cccaa4eaa148@kernel.org>
-Date: Fri, 16 May 2025 15:23:27 +0200
+	b=DKkkJtjruqUo8MNo4SqVVqfMunKCjkcOBB90zoGmRoMSj87RA+Ccv7FbwakEJqvQn
+	 33zrju6gHjzV+x8YJvRVFfHSJKyzbCvFW/YE4D5bMOPG4rxz5iWkUqFQwGXlI7JRij
+	 0gGz9rJQbxDEM/4HUIgKw4aicl2pAfRPkvf0i3XYRElPY0vHMHfBQyZ4Kaf/wpLcRU
+	 LOD9PwGdxmF+qbfmXMVclq2xIZKvX8Ky5hkZH1o6aaAqzRUvTpVmVqt0GRDs5qgD0H
+	 HEAzkL3/1K5X2YvxJNUF5Y2VslfJwGUqv+8v6NR3vaw97V6Wg0UZsOfQ0xG9zD5xJU
+	 K9TcsnbcfDJmQ==
+Message-ID: <f6fbc6f6-aaba-4303-9c2f-fc985a2a3c83@kernel.org>
+Date: Fri, 16 May 2025 15:25:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] clock: eswin: Add eic7700 clock driver
-To: dongxuyang@eswincomputing.com, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH 2/2] reset: eswin: Add eic7700 reset driver
+To: dongxuyang@eswincomputing.com, p.zabel@pengutronix.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
  huangyifeng@eswincomputing.com
-References: <20250514002233.187-1-dongxuyang@eswincomputing.com>
- <20250514002626.348-1-dongxuyang@eswincomputing.com>
+References: <20250514002945.415-1-dongxuyang@eswincomputing.com>
+ <20250514003209.531-1-dongxuyang@eswincomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,167 +103,138 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250514002626.348-1-dongxuyang@eswincomputing.com>
+In-Reply-To: <20250514003209.531-1-dongxuyang@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/05/2025 02:26, dongxuyang@eswincomputing.com wrote:
->> +static int eswin_cpu_clk_init(struct platform_device *pdev)
+On 14/05/2025 02:32, dongxuyang@eswincomputing.com wrote:
+> From: Xuyang Dong <dongxuyang@eswincomputing.com>
+> 
+> Add support for reset controller in eic7700 series chips.
+> Provide functionality for asserting and deasserting resets
+> on the chip.
+> 
+> Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
+> Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
+> ---
+>  drivers/reset/Kconfig         |   9 ++
+>  drivers/reset/Makefile        |   1 +
+>  drivers/reset/reset-eic7700.c | 249 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 259 insertions(+)
+>  create mode 100644 drivers/reset/reset-eic7700.c
+> 
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index 99f6f9784e68..d6eef5358e13 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -350,6 +350,15 @@ config RESET_ZYNQMP
+>  	help
+>  	  This enables the reset controller driver for Xilinx ZynqMP SoCs.
+>  
+> +config RESET_EIC7700
+
+E is not after Z. Don't add your entries to the end. This applies to all
+your patches.
+
+> +	bool "Reset controller driver for Eswin SoCs"
+> +	default ARCH_ESWIN
+> +	help
+> +	  This enables the reset controller driver for Eswin SoCs. This driver is
+> +	  specific to Eswin SoCs and should only be enabled if using such hardware.
+> +	  The driver supports eic7700 series chips and provides functionality for
+> +	  asserting and deasserting resets on the chip.
+> +
+>  source "drivers/reset/amlogic/Kconfig"
+>  source "drivers/reset/starfive/Kconfig"
+>  source "drivers/reset/sti/Kconfig"
+> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> index 31f9904d13f9..2210c4e55834 100644
+> --- a/drivers/reset/Makefile
+> +++ b/drivers/reset/Makefile
+> @@ -44,3 +44,4 @@ obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
+>  obj-$(CONFIG_RESET_UNIPHIER_GLUE) += reset-uniphier-glue.o
+>  obj-$(CONFIG_RESET_ZYNQ) += reset-zynq.o
+>  obj-$(CONFIG_RESET_ZYNQMP) += reset-zynqmp.o
+> +obj-$(CONFIG_RESET_EIC7700) += reset-eic7700.o
+
+E is not after Z.
+
+
+> +static int eswin_reset_probe(struct platform_device *pdev)
 > +{
-> +	struct clk *cpu_clk;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	u32 default_freq;
-> +	int ret = 0;
-> +	int numa_id;
-> +	char name[128] = { 0 };
+> +	struct eswin_reset_data *data;
+> +	struct device *parent;
 > +
-> +	ret = of_property_read_u32(np, "cpu-default-frequency", &default_freq);
+> +	parent = pdev->dev.parent;
+> +	if (!parent) {
+> +		dev_err(&pdev->dev, "no parent\n");
 
-NAK, undocumented ABI.
+Not possible. Fix your DTS otherwise.
 
-You already got such comments. All your patches repeat the same mistakes.
-
-> +	if (ret) {
-> +		dev_info(dev, "cpu-default-frequency not set\n");
-> +		return ret;
+> +		return -ENODEV;
 > +	}
-> +	numa_id = dev_to_node(dev->parent);
-> +	if (numa_id < 0)
-> +		sprintf(name, "%s", "clk_cpu_ext_src_core_clk_0");
-> +	else
-> +		sprintf(name, "d%d_%s", numa_id, "clk_cpu_ext_src_core_clk_0");
 > +
-> +	cpu_clk = __clk_lookup(name);
-> +	if (!cpu_clk) {
-> +		dev_err(dev, "Failed to lookup CPU clock\n");
-> +		return -EINVAL;
-> +	}
-> +	ret = clk_set_rate(cpu_clk, default_freq);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to set CPU frequency: %d\n", ret);
-> +		return ret;
-> +	}
-> +	dev_info(dev, "CPU frequency set to %u Hz\n", default_freq);
+> +	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->regmap = syscon_node_to_regmap(parent->of_node);
+> +	if (IS_ERR(data->regmap)) {
+> +		dev_err(&pdev->dev, "failed to get parent regmap\n");
+> +		return PTR_ERR(data->regmap);
 
-Drop, this is supposed to be silent.
+Syntax is always: return dev_err_probe. You already got such comment.
+All your patches repeat the same issues.
 
-> +	return 0;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, data);
+> +
+> +	data->rcdev.owner = THIS_MODULE;
+> +	data->rcdev.ops = &eswin_reset_ops;
+> +	data->rcdev.of_node = pdev->dev.of_node;
+> +	data->rcdev.of_reset_n_cells = 2;
+> +	data->rcdev.of_xlate = eswin_reset_of_xlate;
+> +	data->rcdev.dev = &pdev->dev;
+> +	data->dev = &pdev->dev;
+> +	idr_init(&data->idr);
+> +
+> +	/*clear boot flag so u84 and scpu could be reseted by software*/
+> +	regmap_set_bits(data->regmap, SYSCRG_CLEAR_BOOT_INFO_OFFSET,
+> +			CLEAR_BOOT_FLAG_BIT);
+> +	msleep(50);
+> +	platform_set_drvdata(pdev, data);
+
+Drop, no need to do it twice.
+
+
+> +
+> +	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
 > +}
 > +
-> +static int eswin_clk_probe(struct platform_device *pdev)
+> +static void eswin_reset_remove(struct platform_device *pdev)
 > +{
-> +	struct eswin_clock_data *clk_data;
+> +	struct eswin_reset_data *data = platform_get_drvdata(pdev);
 > +
-> +	clk_data = eswin_clk_init(pdev, EIC7700_NR_CLKS);
-> +	if (!clk_data)
-> +		return -EAGAIN;
-> +
-> +	special_div_table_init(u_3_bit_special_div_table,
-> +			       ARRAY_SIZE(u_3_bit_special_div_table));
-> +	special_div_table_init(u_4_bit_special_div_table,
-> +			       ARRAY_SIZE(u_4_bit_special_div_table));
-> +	special_div_table_init(u_6_bit_special_div_table,
-> +			       ARRAY_SIZE(u_6_bit_special_div_table));
-> +	special_div_table_init(u_7_bit_special_div_table,
-> +			       ARRAY_SIZE(u_7_bit_special_div_table));
-> +	special_div_table_init(u_8_bit_special_div_table,
-> +			       ARRAY_SIZE(u_8_bit_special_div_table));
-> +	special_div_table_init(u_11_bit_special_div_table,
-> +			       ARRAY_SIZE(u_11_bit_special_div_table));
-> +	special_div_table_init(u_16_bit_special_div_table,
-> +			       ARRAY_SIZE(u_16_bit_special_div_table));
-> +
-> +	eswin_clk_register_fixed_rate(eic7700_fixed_rate_clks,
-> +				      ARRAY_SIZE(eic7700_fixed_rate_clks),
-> +				      clk_data);
-> +	eswin_clk_register_pll(eic7700_pll_clks, ARRAY_SIZE(eic7700_pll_clks),
-> +			       clk_data, &pdev->dev);
-> +
-> +	eswin_clk_register_fixed_factor(eic7700_fixed_factor_clks,
-> +					ARRAY_SIZE(eic7700_fixed_factor_clks),
-> +					clk_data);
-> +	eswin_clk_register_mux(eic7700_mux_clks, ARRAY_SIZE(eic7700_mux_clks),
-> +			       clk_data);
-> +	eswin_clk_register_clk(eic7700_clks_early_0,
-> +			       ARRAY_SIZE(eic7700_clks_early_0), clk_data);
-> +	eswin_clk_register_divider(eic7700_div_clks,
-> +				   ARRAY_SIZE(eic7700_div_clks), clk_data);
-> +	eswin_clk_register_clk(eic7700_clks_early_1,
-> +			       ARRAY_SIZE(eic7700_clks_early_1), clk_data);
-> +	eswin_clk_register_gate(eic7700_gate_clks,
-> +				ARRAY_SIZE(eic7700_gate_clks), clk_data);
-> +	eswin_clk_register_clk(eic7700_clks, ARRAY_SIZE(eic7700_clks),
-> +			       clk_data);
-> +
-> +	eswin_cpu_clk_init(pdev);
-> +
-> +	return 0;
-
-
-
-...
-
-> +int eswin_clk_register_clk(const struct eswin_clock *clks, int nums,
-> +			   struct eswin_clock_data *data)
-> +{
-> +	struct clk *clk;
-> +	int i;
-> +
-> +	for (i = 0; i < nums; i++) {
-> +		char *name = kzalloc(strlen(clks[i].name) + 2 * sizeof(char) +
-> +					     sizeof(int),
-> +				     GFP_KERNEL);
-> +		char *parent_name =
-> +			kzalloc(strlen(clks[i].parent_name) + 2 * sizeof(char) +
-> +					sizeof(int),
-> +				GFP_KERNEL);
-> +		if (data->numa_id < 0) {
-> +			sprintf(name, "%s", clks[i].name);
-> +			sprintf(parent_name, "%s", clks[i].parent_name);
-> +		} else {
-> +			sprintf(name, "d%d_%s", data->numa_id, clks[i].name);
-> +			sprintf(parent_name, "d%d_%s", data->numa_id,
-> +				clks[i].parent_name);
-> +		}
-> +		clk = eswin_register_clk(data, NULL, name, parent_name,
-> +					 clks[i].flags, &data->lock);
-> +		if (IS_ERR(clk)) {
-> +			pr_err("%s: failed to register clock %s\n", __func__,
-
-Same comments apply as for all other patches.
-
-> +			       clks[i].name);
-> +			kfree(name);
-> +			kfree(parent_name);
-> +			goto err;
-> +		}
-> +
-> +		if (clks[i].alias)
-> +			clk_register_clkdev(clk, clks[i].alias, NULL);
-> +
-> +		data->clk_data.clks[clks[i].id] = clk;
-> +		kfree(name);
-> +		kfree(parent_name);
-> +	}
-> +	return 0;
-> +err:
-> +	while (i--)
-> +		clk_unregister_gate(data->clk_data.clks[clks[i].id]);
-> +
-> +	return PTR_ERR(clk);
+> +	idr_destroy(&data->idr);
 > +}
-> +EXPORT_SYMBOL_GPL(eswin_clk_register_clk);
+> +
+> +static struct platform_driver eswin_reset_driver = {
+> +	.probe	= eswin_reset_probe,
+> +	.remove = eswin_reset_remove,
+> +	.driver = {
+> +		.name		= "eswin-reset",
+> +		.of_match_table	= eswin_reset_dt_ids,
+> +	},
+> +};
+> +
+> +static int __init eswin_reset_init(void)
+> +{
+> +	return platform_driver_register(&eswin_reset_driver);
+> +}
+> +arch_initcall(eswin_reset_init);
 
-That's not a module.
 
-> diff --git a/drivers/clk/eswin/clk.h b/drivers/clk/eswin/clk.h
-> new file mode 100644
-> index 000000000000..1c0d0b771229
-> --- /dev/null
-> +++ b/drivers/clk/eswin/clk.h
-> @@ -0,0 +1,209 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
 Best regards,
 Krzysztof
 
