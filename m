@@ -1,169 +1,211 @@
-Return-Path: <devicetree+bounces-177987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA27AAB9D16
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:18:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50874AB9D1D
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 15:20:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDBB61BC2867
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:19:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41DDA3BCFBC
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 13:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 035D811CAF;
-	Fri, 16 May 2025 13:18:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D818156CA;
+	Fri, 16 May 2025 13:20:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="AZPrsUlj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f7KYZOki"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2045.outbound.protection.outlook.com [40.107.223.45])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30B3AEEBA;
-	Fri, 16 May 2025 13:18:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747401532; cv=fail; b=lipd4VwaHmc61hcmd5qNxvfnkOWKXU/V/Z2DkSbnRwqaVG6vNHjR3nuLRQpZ67xWIzD9p2iVUMJxWh+4TJ2AubvR7FJmWbqaWxVwmMfp/cT3fYTLFAug/q37ajvoSxWmvsYdKo/13aieJzLLB7VWNUiyicpWvcgptaT7hPHoy/Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747401532; c=relaxed/simple;
-	bh=cLJeKTMZb/042FIDRfVOCVNliEf4yj56qdbAIqmKht8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=paCKNqes2D64QGzBh+BQYNrv84JCfYkS6HYoYdbpMGZtkRmbHUgon6QnMb66MGj6mzWxSkLNw3+vFNxFBgz7933JqFJatp7t7Y6mCciejziIORMI+Qby6dHcdMy1ucX9stRR4ejTH0UidhLVvZwaHFvP1GArQONxKxt/9w4EpSY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=AZPrsUlj; arc=fail smtp.client-ip=40.107.223.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Lvrug3sWQKGuX3ZRTwnDy8ywPD/y3hOU1I1mkArglzFmigFBfom8i9dj9/1nCmUBaCbnZpikmL/XiA2xPBTsWZj2PZ2c5yXSDJExFgJ8y/UO3fsNN2LnuYB8KABMYO0W77sYTM8a1YGpioO7xRyMoC9Ap0t4cxDSdZOWAfHQqeFTl6Vhy/GxgEOjywiao9oSVwz7uuNwlI35FjydIsq8LxcnjFxpD1kGaiukouRJaGhf/fFmVH4gjFJeJXNgXiRThfJ+LM/UxfLFCInrc6FGNVh2fvMfsBINkL3pfvjX+EtJZJpnIMEiOm5ix8XE3R1IyTpkBXo88jLQC4HftrsDcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nldWU/45iTLx/bZoTf91LYvS5/UOc9lwkYED0YnKrNk=;
- b=Ux+qGTcwy0v7rcZexuvRR1N5VLkw2+WlUPqRoBJNvaWnOoe4c7DldhgXG4cy5t9pZ6OTZL1DTwbm/eCQOHTZ9mZDV8BYsV0Tg8EKUqm+K/lBcC+x0Ssj4U/A5muHU5UYs4tC6HUnYmw9dUaZY7jj535erNzsv/PoJnGFUa9M945mfRpEIJvlig2ogqBVFxFFIbhi0QiyYOLGo/65Ymbz7FJWENeA3GjDQjseqbEFTEWJDCjF65vmLm1s+DfWS51G5Xu4JaNf3skbZg98XfcLASOfWXTIaNjXeTrEdR1mbQ+L1ik7Bb6UDCfo+UtbX7wvkJ0AP3dokXh/UxEt8FHWAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nldWU/45iTLx/bZoTf91LYvS5/UOc9lwkYED0YnKrNk=;
- b=AZPrsUlj5u/sCWdP/lDMhgZoLgmP9Xlqwetitfy6B8HU09LzzQc1zgbzluhZEV3vd2OdWuY/Qpk2dXlY39Qn7qYSjE2qi540hV/TVroRLQZXij1fmkLEZ3mz7vA+qjVP/AfqyLwhe4dBzEknXdF9oxgynhQuwp/1UTk1DPYFKmw=
-Received: from BN8PR12CA0017.namprd12.prod.outlook.com (2603:10b6:408:60::30)
- by SJ5PPF6D27E3EA3.namprd12.prod.outlook.com (2603:10b6:a0f:fc02::998) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.27; Fri, 16 May
- 2025 13:18:48 +0000
-Received: from BN3PEPF0000B371.namprd21.prod.outlook.com
- (2603:10b6:408:60:cafe::e3) by BN8PR12CA0017.outlook.office365.com
- (2603:10b6:408:60::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8699.33 via Frontend Transport; Fri,
- 16 May 2025 13:18:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN3PEPF0000B371.mail.protection.outlook.com (10.167.243.168) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8769.1 via Frontend Transport; Fri, 16 May 2025 13:18:47 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 16 May
- 2025 08:18:45 -0500
-Received: from xhdradheys41.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Fri, 16 May 2025 08:18:42 -0500
-From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-To: <gregkh@linuxfoundation.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <michal.simek@amd.com>
-CC: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<git@amd.com>, Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-Subject: [PATCH] dt-bindings: usb: dwc3-xilinx: allow dma-coherent
-Date: Fri, 16 May 2025 18:48:36 +0530
-Message-ID: <1747401516-286356-1-git-send-email-radhey.shyam.pandey@amd.com>
-X-Mailer: git-send-email 2.1.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F84911CAF;
+	Fri, 16 May 2025 13:19:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747401600; cv=none; b=AQqXsrOgAjX0XVy/ezCCUwDzsioJfXuxIHBS8qyedGqOBXU8qK+FK+lgNLdHOW9hNwprSLscLQhcqDOBfk2nGxSabc70hwRjtfvTAUfKKAptcfTw9DLT8rb1vfp1lOWkFnzdxZQq/Z3Y0Yf8Z/RBcGCX4LsRGEVjuh5n0BidrEI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747401600; c=relaxed/simple;
+	bh=Zxq4lQIG5sIEJG3iSRSF3Y91Onwf6xfW2l+nu/OgvR4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZJCphhu3IjGeAa+WRBzBoQsW+FvSkfVAcbE7kXfsAq1vJ7HRzmEyGr4oF49YJLN7xINKMe+QfTk3Vj+PBRv0n5B66Zf09DlVV2XQrBmfXiFCq0/xby7447FW4VDpAee5XYtYrtrYjlaGyPKx0Lr6Cp1wjxHuZtnCD2wc1gW4AIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f7KYZOki; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCCC7C4CEED;
+	Fri, 16 May 2025 13:19:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747401599;
+	bh=Zxq4lQIG5sIEJG3iSRSF3Y91Onwf6xfW2l+nu/OgvR4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=f7KYZOkiciLVxL06Wz9xBn/s0o2ikDE83HLLpIFwkA3pI/YvVIC+hVNbD1Q0ZqvCe
+	 4YVwXxDzjCXKAZG6feMNdvJHw2lKynyuY0sZg79cYbCbdQ6JOMuNhsZRoPNOLmn25Y
+	 4PiM0cBxMLklZc7JjFsRkl4tL5Y3c3R27pyAdVHKghxQQfnkYoxSZjvnAT3ZZegrdt
+	 NyYl1p79htzJiUzSNhe+t2bfIiOpQ5ODH6N2z+pMysiij/t+E5vew9oVGJRSzxTGsM
+	 D4ntUuDXGqBPOUKYxhxsg2XTDC4HSIDhaipH94NDDk8U4tCoyGDafps7q23FlPNEh+
+	 iRbN9zb42gamQ==
+Message-ID: <01f97fcc-1b6a-41f3-8a62-67fac9f5bae0@kernel.org>
+Date: Fri, 16 May 2025 15:19:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: radhey.shyam.pandey@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B371:EE_|SJ5PPF6D27E3EA3:EE_
-X-MS-Office365-Filtering-Correlation-Id: 04a53e5e-4366-4538-c87f-08dd947c30ce
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?VQe/4XJ0pikDohDCtQOg09Yjjf9jgzIyoiT4QnJOK4b5OPorX+7gabyGqqyq?=
- =?us-ascii?Q?RP2lYsopC1W9lZoRW3MUwnpdTqB9QHBI7ptwbkPihvdR0iu2DRsuMkivsO/o?=
- =?us-ascii?Q?6J7Zez0bMSUAqRhMZL0XnyT4lPsZ1+e01WeUDzVjAray274VuCE5EdaLL2pT?=
- =?us-ascii?Q?G3rWc8b1muzTM3V16KH9aoPhlIdt40CaiLtBbx+zUJTVvPOkRybqqGIIfqBC?=
- =?us-ascii?Q?+CD1vps/JSHYMCreZYMSQZjlmleR4NDGjlDpnMTR0NRp6TdsO7n6zbTShwRb?=
- =?us-ascii?Q?AhPuBckpg2XrNoLe63M9UWCfSm2ZxBkm69v7kRlTcqZujykA2EU4c8zIy5LX?=
- =?us-ascii?Q?mnztbuVIHe3Mntm+BbwAFtnMploTv0xl6rccu7vxSHymCodv7H8MVA288Jit?=
- =?us-ascii?Q?kJBo+Cf22r46nkni16Xofo+3+t7EjVqs7eRoj2/ls/vUYOGQ+/IwCXINygAK?=
- =?us-ascii?Q?O2gB2A4ShsFeCpemG+z5dvK69qr/G1vIjZtJt4t60hz9JY52v+ZRVVkhhfis?=
- =?us-ascii?Q?A+f3ud4YKAWIbZbBVPfi4avcoRhFU9/kso9iuhJi/w8b4ZZca2KwnmA6EWRa?=
- =?us-ascii?Q?H0MHDOl3dJX0k83CHqSija42xTtPoMUY31tyxAz44oCZhqcy+VNGhty/etVj?=
- =?us-ascii?Q?obvT2sN1V7p9LvhGM8ktqziwo8HSw1/UxTWoeEK3c98NtTOtWbBycQc8+D5p?=
- =?us-ascii?Q?wbFy7XTZdb/qWF/8keuFeC4nDEKfWz0sw8pdCkw0SAkID7O4zmWjCcjRI690?=
- =?us-ascii?Q?gE3QRFpDHZ0ZSh8LzOdoKpj1x5uNwlTF03HIUzQ2J9FvqSOEiAcu5gvpL8Cy?=
- =?us-ascii?Q?61IJK/3T8epNLCzsWo81AgChAeXptURRyDJRf0Ss92TddtTtcdEWMFUcOpQF?=
- =?us-ascii?Q?fM8x4ihPYCp2lttffRd3IvLPfTWXZ1RykwPfOCkHQYnE2JeO0TttXp6ux1Mu?=
- =?us-ascii?Q?9I4n6nDy51yFoSGIDBauqwv6iguinSV6wkYCUNI133BvoGMgTl5kTju6r11J?=
- =?us-ascii?Q?4KjmxU+oew64gkpiEuZUsRheKPF3jFN3llgVZm/09FTYwnBMGtzFGueddXwU?=
- =?us-ascii?Q?iBZMtT3mESNUohC+HgT8Jv1/uTOdDrs/ba7f0DwRuX1GgO3tIe6R4iA96MAj?=
- =?us-ascii?Q?+qiFm47thd6isl2UILLUg0EyHEDOP+4iTtHhLyA2f+AsrFXEc+e//SBUyhmf?=
- =?us-ascii?Q?m+bZjZ3UtRWOAcMaHaDU9qv2PjNXhSy6GsyBwX80MTSY0gmYXYiEgOxs5QEs?=
- =?us-ascii?Q?ZUswPju8IAEz7ZjjecXwny/QXJ9AYcHo44zq5tCloLQDqpuyZa9jwGi04gyt?=
- =?us-ascii?Q?tKO94fyK5y+j85tlVn/y82uNaxHbuKCtBIicgcetCv7opvY2dKimXY2XLmYr?=
- =?us-ascii?Q?43AG2Pd6aYmEwlWxAi5RHqHZ4sAaA5esFI4LBVQLNE6plmCbHWS+MuNEgWs6?=
- =?us-ascii?Q?p07FX0O6ld/l9HTOZdCEqVhCLlUVVKUnFIJ9P1EWlIhkhZkAvyMLGdF6mS2M?=
- =?us-ascii?Q?VWCuISwDfOpuEQRwFO4Tm0CttQrdu+53Hdk2?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2025 13:18:47.1753
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04a53e5e-4366-4538-c87f-08dd947c30ce
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN3PEPF0000B371.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF6D27E3EA3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] ethernet: eswin: Document for eic7700 SoC
+To: weishangjuan@eswincomputing.com, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ richardcochran@gmail.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ p.zabel@pengutronix.de, yong.liang.choong@linux.intel.com,
+ rmk+kernel@armlinux.org.uk, jszhang@kernel.org, inochiama@gmail.com,
+ jan.petrous@oss.nxp.com, dfustini@tenstorrent.com, 0x1207@gmail.com,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ lizhi2@eswincomputing.com
+References: <20250516010849.784-1-weishangjuan@eswincomputing.com>
+ <20250516011040.801-1-weishangjuan@eswincomputing.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250516011040.801-1-weishangjuan@eswincomputing.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Versal Gen 2 SoC the LPD USB DMA controller is coherent with the CPU
-so allow specifying the information.
+On 16/05/2025 03:10, weishangjuan@eswincomputing.com wrote:
+> From: Shangjuan Wei <weishangjuan@eswincomputing.com>
+> 
+> Add ESWIN EIC7700 Ethernet controller, supporting
+> multi-rate (10M/100M/1G) auto-negotiation, PHY LED configuration,
+> clock/reset control, and AXI bus parameter optimization.
+> 
+> Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
+> Signed-off-by: Shangjuan Wei <weishangjuan@eswincomputing.com>
 
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
----
- Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-index 379dacacb526..36f5c644d959 100644
---- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-+++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-@@ -26,6 +26,8 @@ properties:
- 
-   ranges: true
- 
-+  dma-coherent: true
-+
-   power-domains:
-     description: specifies a phandle to PM domain provider node
-     maxItems: 1
 
-base-commit: 8566fc3b96539e3235909d6bdda198e1282beaed
--- 
-2.34.1
+> ---
+>  .../bindings/net/eswin,eic7700-eth.yaml       | 142 ++++++++++++++++++
+>  1 file changed, 142 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+> new file mode 100644
+> index 000000000000..6cb9c109c036
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+> @@ -0,0 +1,142 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/eswin,eic7700-eth.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Eswin EIC7700 SOC Eth Controller
+> +
+> +maintainers:
+> +  - Shuang Liang <liangshuang@eswincomputing.com>
+> +  - Zhi Li <lizhi2@eswincomputing.com>
+> +  - Shangjuan Wei <weishangjuan@eswincomputing.com>
+> +
+> +description: |
 
+Same comments apply as for all of your patches.
+
+> +  The eth controller registers are part of the syscrg block on
+> +  the EIC7700 SoC.
+> +
+> +properties:
+> +  compatible:
+> +    const: eswin,eic7700-qos-eth
+> +
+> +  reg:
+> +    minItems: 1
+> +    items:
+> +      - description: Base address and size
+> +      - description: Extension region (optional)
+
+How it can be optional? This is SoC. It is strictly defined, isn't it?
+
+> +
+> +  interrupt-names:
+> +    const: macirq
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  phy-mode:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [mii, gmii, rgmii, rmii, sgmii]
+> +
+> +  id:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Controller instance ID
+
+No, drop. IDs are not allowed.
+
+> +
+> +  clocks:
+> +    minItems: 3
+> +    maxItems: 7
+
+No.
+
+I am supposed to repeat the same comments... So no.
+
+All my comments apply to all eswin patches. For driver, bindings,
+everything. I suggest to slow down and learn from one review.
+
+I finish review here.
+
+Best regards,
+Krzysztof
 
