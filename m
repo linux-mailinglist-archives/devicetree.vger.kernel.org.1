@@ -1,144 +1,223 @@
-Return-Path: <devicetree+bounces-178086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E13CABA584
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 23:48:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92614ABA58D
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 23:51:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 633A11B6698A
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 21:48:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72C7C3B90A4
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 21:51:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5080A27FB09;
-	Fri, 16 May 2025 21:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73F6928002D;
+	Fri, 16 May 2025 21:51:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Jhcd1Mgo"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="LzClBFob"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4C3818E025
-	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 21:48:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D59C22DFF3
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 21:51:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747432103; cv=none; b=C77CZMGIppJ3nMvGXxDAkIFCC4NG29vHhEjJ05FPiG0F5/e/LZ585rF9mI3GdXGH/DnVSrs01e+Bj2M5y2Du0YUKk2ijR6QkF34X8ik2tO7Su4Z2H5ILvuckDtW+KyrRs8b+rj0SveShgmvWZIBi+Yq2MykMFFJbyXwBxhCqDZs=
+	t=1747432304; cv=none; b=WmwECswkptqVwyB8eo2jjOu5lcGPZ8ak/gB7HS0blMvTuD0YzeJFWd43z2awuW6tmXTMYw3Z5aBXvLfFDqQ75BMmHI0JspDJdepCMIzjOt6ojELjHGLSntl8jaZsHbDcjcDZ0KCeMNOTwJVedlqHV/rWp3JRlKSQeQMxY/nFg7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747432103; c=relaxed/simple;
-	bh=Didp6KrFIhV1S/h6o9Ujxwv09t3ChwJ1oYFKdnaTwZc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KfxrX9tfEimo4i/fbSseyFEMb9Kf86vlVrCtp6DJxqNaAijBZd/YBXO8Fvq/jy7fQg/1nK/nnWp46qjLgY3CRaQcvYjJSK3bpVKrkoPXRv17UnkqIvghtCZVOJXoDolXNJe/0wJ01WHy8maNRYR4MR1JtWd6u+npiHalP2LbEHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Jhcd1Mgo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54GBRd6K022998
-	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 21:48:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=qbltmRM7JlrmyGCBxvVyTbdV
-	Ddga8Hd+DhpsvKXmjA0=; b=Jhcd1MgoHumhHtK9GCdBmVgx3RF/S0f7YchRDPqK
-	P4UxFbbmIj1ZsYbNrl3YQue4BTy5Zwa+vmnRpEGJW9YADQVznGSh+LWOP57gKFZE
-	PO10/VtiBZ9eibJ+MHNGwmn7YESnyfhz+vbfHh5JGOaY/0mCg53A+On3WiPbxGF8
-	lhQa5ZRPGCaOKHCzYnSC57RY1Za6b73vniFO47QHjzN5+5ZqFCRbuvBW9u3DvMBG
-	bjSFSExONikZWqEaWXxju+bBGe8x9Y3GXYFmA5UZmfC2SNuEbXCz3dyhKq5+zvoA
-	GxPBVDThrXwjAouRXwL65R+jAa3E0C3YBhiDiHUTXhFFyA==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46p4gq9h66-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 21:48:21 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6f6e59df2f3so49213496d6.3
-        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 14:48:20 -0700 (PDT)
+	s=arc-20240116; t=1747432304; c=relaxed/simple;
+	bh=oaDfWKsASxhJf+NuV4CXKGZ7xYJqNvlkIqEiMy5YKpc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KGebNjSRlMJ6vCURKo5fcCGWn4GXQuKU3tKMIzYWVxC1Chu8lkdtZQ9Q77M+OMDEJpSmrutvIciv604VLsKum/tkTDsC05L0DAeD6HLaEGXGamK1hjBkPma7cEj+6Wj+43Ohw71r92GTHjKP4og1ReEv0nLiMtLAh3erUB1ggII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=LzClBFob; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30effbfaf4aso27159241fa.3
+        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 14:51:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1747432300; x=1748037100; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cq4sf37HVbSI0FLmuR9JYnHF/+C8RG0wusSfirR4bB4=;
+        b=LzClBFobvjN3X0TR3LBNeG/t7ezg+sxBU3N1aCbt+0fPLXyBSf1QxkPF3JZQR6meei
+         XAjEduffqMseODNBiDJLL4Co8GZOPEBieoTdVYzflzo/rLaCXAORfFgU/zFXKCwr0bRb
+         86mWsNw8rYvbDPdtl1awPFC6v4uUvxWe+uSIA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747432100; x=1748036900;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qbltmRM7JlrmyGCBxvVyTbdVDdga8Hd+DhpsvKXmjA0=;
-        b=MdTRU7eBUnhq383EhXkTO86dsvvcrW9OwHwLLKZMATneA3m4FV+fmRKei0Vs+9+Zlp
-         kYuZJms/UhxDqHDdhk6dJFuH6qFHb/q/xZAHuPAUjnngp9xDxDtxr0dTgypEDqV1aY4l
-         IrTEJZ64/CHzF+U/BNcDs9IadEqfkN5gTg2+iWd2qcWYqJssqmkua1t+8UqyBginwZFM
-         n2zLl0T//LaM7hPKzQyx7h2bFs2hsVoJkIA9Ii7TtZXcIfBV9LE1WeXHLSMCUELgpZ7n
-         y5hSHTQdWcXnlmEn4cxj746HwXoqruAb+FO4pVDQocTfLDE6NNUdw7l6qP0+C0dhnRND
-         5ADw==
-X-Forwarded-Encrypted: i=1; AJvYcCXNeZNOAhixGH9DnFLOjYtBShNas8hP0gqb77ofpEcFadyB7h0dDxVCLRdh6dm6WBYIz8Czy5FaqOJf@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrpsKNxrB9H2u9jM2XK2KLrbVj8As52OgX+5ILzNj0OR+CvmDD
-	mPKCWm0YiRon1/1vW2735IC2gWSUnfhXU3dr0AePTQhtFrQ6I7CtxDgaaBGMbYC5zzHonakSqPC
-	I4fuZaYkI0EbOFiovlvt7pCXv8Q/LF/QIFFeWQm0ZcKAGjsdJEeYXbFt3/ZF3ELih
-X-Gm-Gg: ASbGnct9iNIofrwOF9OmKzzrQm5iOdRVU5uzHFg/HarilUM4x00n1vPHI+5B0O7Mjw4
-	2/6OHdgqqMapMM2FTAMUVBVo8k5klL1PP1BiTOg7fGv0DpVAdfTbi1Ps4Mg0TvbFbJd+KLobqIg
-	FX0M1Azymoob+FmjbCrIKzLZzQD4uzQ8v1qftwe4FjfF229jSqwZTv0049+zV32voV+4gIs6CJw
-	fhQJoW91OWLQFkOstxOTdOYB3TebtJ5qwzj84X5PCqjg8IZS77XooVgcPkROzqOHyD7amLiFw5O
-	V9UjhuMEiNm0U1mtzGk+0qbE222/mpfzMEm6cSlOM4e7Xl13MwxaCBslbuywfLejWz/dqaTXa+w
-	=
-X-Received: by 2002:ad4:5aa3:0:b0:6e8:f3af:ed59 with SMTP id 6a1803df08f44-6f8b0881b41mr81864536d6.22.1747432099687;
-        Fri, 16 May 2025 14:48:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFAhaI3E9/IjY0nDQWubM4B54dueY0af/V9BHfJW4rhaZu/IU/g3HCb9iJtPMbh6FEdJl7WzQ==
-X-Received: by 2002:ad4:5aa3:0:b0:6e8:f3af:ed59 with SMTP id 6a1803df08f44-6f8b0881b41mr81864296d6.22.1747432099355;
-        Fri, 16 May 2025 14:48:19 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e703e7a6sm606380e87.218.2025.05.16.14.48.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 May 2025 14:48:18 -0700 (PDT)
-Date: Sat, 17 May 2025 00:48:15 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ling Xu <quic_lxu5@quicinc.com>
-Cc: cros-qcom-dts-watchers@chromium.org, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ekansh.gupta@oss.qualcomm.com
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc7280: Add dma-coherent
- property for fastrpc nodes
-Message-ID: <isvo4c2taozzlovqwqvgfu2v2tbvntkaw4bdpzmiuir64avojl@3utwffmzmhq4>
-References: <20250516110029.1637270-1-quic_lxu5@quicinc.com>
- <20250516110029.1637270-4-quic_lxu5@quicinc.com>
+        d=1e100.net; s=20230601; t=1747432300; x=1748037100;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Cq4sf37HVbSI0FLmuR9JYnHF/+C8RG0wusSfirR4bB4=;
+        b=WuAjr2tPhQ6kulSG3HLSHt9g3Ca4iM9FjkQJDpLqNssXudYVJVoH658Pa3b9C59Gli
+         SGP0JZeWJOK0pGMKrDB+4zVob1gCiVb02ouiYGDIEmBQPYMQdTk0AWR0Uwy+u0p0J19X
+         IULNe6J+XkiKCE1uyPxq27S7HiWuhHK4P8AByRPTV3YUkgnRJei6uaO+/LXyXK7u31ia
+         MEP+AW08twZJHCQ3Q1ehd/qfGIUlrA+gSfBzvEWxSBV05Us3H0WcU9TZKBhb525T61/I
+         mcoo3xbh0M9/cdo8dsGnvOWyUJGm9vRSPJTGaWkgGuBj/sWcav5Q8IQ2C1LYNMN+qgBu
+         e/gw==
+X-Forwarded-Encrypted: i=1; AJvYcCWvhlZFfnj+pj21ntS9qAYRMlgY6tEtt1bNxdJL54hABni/AcYtDC5j9DNc1o42ZmS+ql/IpxdSeCvG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZAFSatjgoBAp3a6xXMUglBdS4Qmjt3m/Qtq7jHmh2J/i+HjpL
+	WWrZGWGtSuVIAzSqzLXa4NoUjYPdu5TlAxHv//MzOE79xFGvh8uN7Kv/TWudNU1U7jOt41JapLn
+	LtacUPxYaU3TtzoHwSPeD1T0oTfbwaM4QO1DvQZ3M
+X-Gm-Gg: ASbGncumATfbsNXiZK7frN8Zs6bupnKnUX+dMJRdTjrpTmgBMWEeVjfaMyz7ge17xZE
+	zsLuTh2M7AomRbbgKIWP8AtCUkZHVBF4cDL3w8rAu2rxEFAM0Ofm3ZyoDBcTfaQY8gG0cW4vuU1
+	YQ7QzKI9Z2hQuCIk0ccU3AVyG27cs93hpMqW2bYlP9swXJ
+X-Google-Smtp-Source: AGHT+IFuoYnN5OBYoFANwcPh92u2qh+Itp2teX15olGcInqyqHgwf/quKFGhgRIP2odtF08rPEydsheH7CYp2iyn4TQ=
+X-Received: by 2002:a05:651c:221f:b0:30b:b908:ce1e with SMTP id
+ 38308e7fff4ca-3280974cb56mr18065841fa.29.1747432300073; Fri, 16 May 2025
+ 14:51:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250516110029.1637270-4-quic_lxu5@quicinc.com>
-X-Proofpoint-ORIG-GUID: arO1SqvrvHxhBnfi8e4sS9DON3s3vs9z
-X-Authority-Analysis: v=2.4 cv=KulN2XWN c=1 sm=1 tr=0 ts=6827b2a5 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=X77NXM8zCmOlsI4LSM8A:9 a=CjuIK1q_8ugA:10
- a=1HOtulTD9v-eNWfpl4qZ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDIxMyBTYWx0ZWRfX7iaxQxP8YYVl
- qiMicmTi87PjuqkVXjfgOZR8PgMxs9QIrzQnnx8AmDzuUQG+mopvvQbLMSpryRtIyS812G/b46+
- iDSSCvqV5vF+28wOE+Q8neKhIJWbtshY4ADQFhzMrI8+2k1/wX8cCFuNE7JC4SpcCOrZqqTuMLd
- 62m9elH7V20S60eEiQKQ97u3oqRUG+Im01SoNmePlvNHxeCxhtIqUyEpY+27H7o17eZBzSvx8Li
- PQm/TXYAXvg0CE8KkeMUA9OuzIhKZKRyMnR/j9M4/PlmcOeDkijGlOOfkmkbxlY0SNmJmIuui6y
- rRS5elhLnD8PI1jWkaE+yD3wCbx7szIeo0Nss6H1u9jl/3qDS4wnSCaZ19N5Q+yDdQrwLjxbj6K
- 77l+9qnu9LmqDRPEnnZbZG58Qop3dslr5Y7mjxTih4icBwZGlMBhg/uCsB7y6x+wxoa7Dh17
-X-Proofpoint-GUID: arO1SqvrvHxhBnfi8e4sS9DON3s3vs9z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-16_07,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 mlxscore=0 suspectscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=809 clxscore=1015 bulkscore=0 lowpriorityscore=0 phishscore=0
- impostorscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505160213
+References: <20250509222815.7082-1-james.quinlan@broadcom.com>
+ <20250509222815.7082-2-james.quinlan@broadcom.com> <CAL_JsqKrbCtiMdxCusBwX8-xewQbi1_X6V8rTN+2vfxh4e=Hjw@mail.gmail.com>
+In-Reply-To: <CAL_JsqKrbCtiMdxCusBwX8-xewQbi1_X6V8rTN+2vfxh4e=Hjw@mail.gmail.com>
+From: Jim Quinlan <james.quinlan@broadcom.com>
+Date: Fri, 16 May 2025 17:51:27 -0400
+X-Gm-Features: AX0GCFvk2R9ahHqE8lkxXkNsZ0D7Xf8uCRwO-1rTvP3yEx5jzXizVhwI9wXlw58
+Message-ID: <CA+-6iNxA7MocUPE5hjAFQcLQ8eUmc+Pnrk4o6-5YxLPBmLTzMg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: brcm,stb-pcie: Add num-lanes property
+To: Rob Herring <robh@kernel.org>
+Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
+	bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="0000000000008aa0f0063547c935"
 
-On Fri, May 16, 2025 at 04:30:29PM +0530, Ling Xu wrote:
-> Add dma-cherent property to fastrpc context bank nodes to ensure that
-> the DMA operations for these nodes are coherent.
+--0000000000008aa0f0063547c935
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Does it apply to all firmware versions?
+On Mon, May 12, 2025 at 11:01=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Fri, May 9, 2025 at 5:28=E2=80=AFPM Jim Quinlan <james.quinlan@broadco=
+m.com> wrote:
+> >
+> > Add optional num-lanes property Broadcom STB PCIe host controllers.
+> >
+> > Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> > ---
+> >  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b=
+/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > index 29f0e1eb5096..f31d654ac3a0 100644
+> > --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > @@ -107,6 +107,8 @@ properties:
+> >        - const: bridge
+> >        - const: swinit
+> >
+> > +  num-lanes: true
+>
+> Why do you need this? It is already allowed by the referenced schemas.
+> Though maybe you don't support 16 lanes and need to limit this to
+> something less? I would also set 'default' if you do that.
 
-> 
-> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
 
--- 
-With best wishes
-Dmitry
+I just thought that if our driver actually did something with
+"num-lanes" -- most drivers do not --  then it should be mentioned  in
+the YAML, even if "num-lanes" is pre-defined.
+
+At any rate we cannot handle 16 lanes so I will add a "default" and "maximu=
+m".
+
+Regards,
+Jim Quinlan
+Broadcom STB
+>
+>
+> Rob
+
+--0000000000008aa0f0063547c935
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
+uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
+AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
+c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
+AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
+TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
+bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
+L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
+BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
+VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
+z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
+b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
++R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
+AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
+75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICYDCC
+AlwCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
+AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
+MA0GCWCGSAFlAwQCAQUAoIHHMC8GCSqGSIb3DQEJBDEiBCDpI8gelfv1gg5h7WSLVSc3k4b0LDQ5
+7OFlVKqRpHQSljAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNTA1
+MTYyMTUxNDBaMFwGCSqGSIb3DQEJDzFPME0wCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
+hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0B
+AQEFAASCAQAzx1ahXnuDw8dXEalkFHLNpD0CMiSYmghHYmxpvACRA2xBgRE3NQ3iz1xbJqUYL8bv
+mO9xMj2XeSnUQni6tcWMO1PeEJs00V8Wft3N+ACwXxgC1VqTOw/HUG0QmnopGR08dDInmk5smPeL
+LeeCtXTsNDQkicTJ7I7QGt2rYi1ntsIuzX0HMk9/6XFSsS4T4S5vJ176+vb+HYcvpaSf5IcnZlKi
+4w7RYoIg5ZAGZZ+IgXdkaVr29eHfhWC5eU/bP54Nv4rkm8tLORcCNOBQYJxC1GNdNZ33hwqY/1vq
+KUBl9dGI11Fsg4ZITsnSJ25HdDsMR3H1ZEsWRY9m2cfhDw8k
+--0000000000008aa0f0063547c935--
 
