@@ -1,184 +1,209 @@
-Return-Path: <devicetree+bounces-178058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91384ABA26B
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 20:05:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E870ABA27C
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 20:08:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAEC1A23DE5
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 18:04:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 347D418924FB
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 18:07:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F8F27FB04;
-	Fri, 16 May 2025 18:02:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="AEBfa2Dy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F1327703E;
+	Fri, 16 May 2025 18:02:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
+Received: from smtp-8fab.mail.infomaniak.ch (smtp-8fab.mail.infomaniak.ch [83.166.143.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F363427AC4D;
-	Fri, 16 May 2025 18:02:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECAE0277021
+	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 18:02:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.166.143.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747418530; cv=none; b=KDEr3oE/JiD4IzHtQ3NpOGORkaQofYT/3Jm+PVajCHpguUQuKPEK7pFF7B66adUpk11tshhxm+f3qCwAkdR26HX8e6bXJpyUIbG7Qf0T7c9GpYOm3jsVn+C6fV34WiI/sDujCeoo8rTJpjGusmd5yTgrDetKsRdm9Wv+21b1bIM=
+	t=1747418546; cv=none; b=Qt82H9N9iuS7H8FaF4EPUnsaIHu3/Uurj0qFaKXRgHUhFnuIGob1fgGSF08VY5Wdlen4ix1oM6V/TnwL6bcO5vkCpf6Oh980D5zOi6bdOsvC7Uc64XGCKlAUVtXOEGYcKdPGZTedYjlxTfoaxkw7buUQHxN3r6F9mj0AOLTEK+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747418530; c=relaxed/simple;
-	bh=2Q3Lh8RzFPt5G0ZmLhPVEopmeU5KWn/0EC2Iut2Gi+c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WLX4CMMnZzNaIQY+kydZ+iVKzAXerpVR3Cwy1dOPWdPuMohF3SYTs/9P4ZuG+Awpn1AQZdbT44ks+rtQVYzf7diTVw78ppT4rN4oE5neI7RZ+75B94/0/DMUARnqYCqpnNs+8aBLsAFrVTigMu19cfqLoMFyxXKfSUEgJMiqVHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=AEBfa2Dy; arc=none smtp.client-ip=134.0.28.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-	by mxout4.routing.net (Postfix) with ESMTP id 43CF11007D9;
-	Fri, 16 May 2025 18:02:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1747418520;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qDKwXO4W7gl7E+DfM+kKfgbEcodSxNbRXwjNIlU84So=;
-	b=AEBfa2DyrBYvNlT632AR13bSsOAc33Wx8Cos7GJIi9ttjOZe/InxjRTNRBeGNriqggZpMH
-	YqwXfgPdJRoiNYzUUTGyS6HctDezfsouaXCHJH9aO7zD9AEMj7s9UQ1Mh0s+PlHcc+9qfW
-	GqhtOTCOloPflj9RMEknhYZ9jtjcUcg=
-Received: from frank-u24.. (fttx-pool-157.180.226.139.bambit.de [157.180.226.139])
-	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id E91C71226F2;
-	Fri, 16 May 2025 18:01:59 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	=?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Felix Fietkau <nbd@nbd.name>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 14/14] arm64: dts: mediatek: mt7988a-bpi-r4: configure switch phys and leds
-Date: Fri, 16 May 2025 20:01:45 +0200
-Message-ID: <20250516180147.10416-16-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250516180147.10416-1-linux@fw-web.de>
-References: <20250516180147.10416-1-linux@fw-web.de>
+	s=arc-20240116; t=1747418546; c=relaxed/simple;
+	bh=kzzMtAkAvsHpI2Azo0/w0vdO+w4bqLIgLNTR4fkASTU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=XY6g0Yq9cXwPikiCkjAQe5KOlwIEGWxl27j+wM/r3y+mFM3ebQZCtuB92TDOSRhFsJcFUQ7od2yoqsOaUeWnjm6nsirbipXvU4VpQYTYngnMqJnVoIs1+OtA7s4lPgiGp36jX/6l8LRhue+RAxtrdo4iHIixMz/nun2Ig9JGBpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=83.166.143.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-4-0001.mail.infomaniak.ch (smtp-4-0001.mail.infomaniak.ch [10.7.10.108])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4ZzYsb3nGKzK1R;
+	Fri, 16 May 2025 19:26:43 +0200 (CEST)
+Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4ZzYsZ1yphzSdm;
+	Fri, 16 May 2025 19:26:42 +0200 (CEST)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Date: Fri, 16 May 2025 19:26:10 +0200
+Subject: [PATCH] arm64: dts: rockchip: support camera module on Haikou
+ Video Demo on PX30 Ringneck
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250516-ringneck-haikou-video-demo-cam-v1-1-fff23160395f@cherry.de>
+X-B4-Tracking: v=1; b=H4sIADF1J2gC/x3NTQqAIBBA4avErBswyf6uEi1MxxoiDaUIorsnL
+ b/New8kikwJhuKBSBcnDj6jKgswq/YLIdtskEIqoaoGI/vFk9lw1byFEy+2FNDSHtDoHWspmk6
+ 5uXW9gxw5Ijm+/8E4ve8HLcFN+HAAAAA=
+X-Change-ID: 20250516-ringneck-haikou-video-demo-cam-420685fb7f9f
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>
+X-Mailer: b4 0.14.2
+X-Infomaniak-Routing: alpha
 
-From: Frank Wunderlich <frank-w@public-files.de>
+From: Quentin Schulz <quentin.schulz@cherry.de>
 
-Assign pinctrl to switch phys and leds.
+The Haikou Video Demo adapter has a proprietary connector for a camera
+module which has an OV5675 camera sensor and a companion DW9714 focus
+lens driver.
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+This adds support for the camera module on PX30 Ringneck module fitted
+on a Haikou devkit with the Haikou Video Demo adapter.
+
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 ---
-v2:
-- add labels and led-function and include after dropping from soc dtsi
----
- .../dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
+This adapter is also used with RK3588 Tiger, but there's currently no
+camera stack at all on RK3588, and RK3399 Puma, but:
+ - 19.2MHz is not achievable exactly, so need to patch the driver to
+   support 24MHz for example, this will come later,
+ - The camera clk is on an IO domain at 1.8V but configured at boot at
+   3.3V, and until the IO domain is properly configured, the camera
+   won't receive a clock. Based on the probe order, it is possible (and
+   empirically very likely) that the camera won't be detected at all.
+   A Linux kernel solution was attempted multiple times in the past,
+   c.f.
+   https://lore.kernel.org/linux-gpio/20230904115816.1237684-1-s.hauer@pengutronix.de/
+   https://lore.kernel.org/lkml/20220802095252.2486591-1-foss+kernel@0leil.net/
+   We'll need to figure something out this time as I won't be able to
+   upstream camera support without it :)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-index d40c8dbcd18e..9e4ae4c4ea17 100644
---- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi
-@@ -4,6 +4,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/regulator/richtek,rt5190a-regulator.h>
-+#include <dt-bindings/leds/common.h>
- 
- #include "mt7988a.dtsi"
- 
-@@ -126,6 +127,66 @@ &gmac2 {
- 	phy-mode = "usxgmii";
+To test, install libcamera on Debian Bookworm (or more recent I guess)
+add a file at /usr/share/libcamera/ipa/rkisp1/ov5675.yaml whose content
+is (remove one leading whitespace):
+
+ # SPDX-License-Identifier: CC0-1.0
+ %YAML 1.1
+ ---
+ version: 1
+ algorithms:
+   - Agc:
+   - Awb:
+   - BlackLevelCorrection:
+   - ColorProcessing:
+ ...
+
+then call
+
+qcam -platform eglfs -c /base/i2c@ff190000/camera@36
+
+While this is running, control the focus lens driver with:
+
+v4l2-ctl -d /dev/v4l-subdev5 -c focus_absolute=150
+
+and change the focus_absolute value to see the lens moving and the focus
+change.
+
+I'll try to have a look at libcamera's config file so I can send a
+proper one to the project instead of this dummy one.
+---
+ .../rockchip/px30-ringneck-haikou-video-demo.dtso  | 56 ++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou-video-demo.dtso b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou-video-demo.dtso
+index 7d9ea5aa598486680191d52e4c87af59f7b0e579..1e3f43bbe1734e5c88d1f76f8f7a545d881df88d 100644
+--- a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou-video-demo.dtso
++++ b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou-video-demo.dtso
+@@ -94,6 +94,15 @@ video-adapter-led {
+ 	};
  };
  
-+&gsw_phy0 {
-+	pinctrl-names = "gbe-led";
-+	pinctrl-0 = <&gbe0_led0_pins>;
++&cif_clkout_m0 {
++	rockchip,pins =
++		<2 RK_PB3 1 &pcfg_pull_none_12ma>;
 +};
 +
-+&gsw_phy0_led0 {
++&csi_dphy {
 +	status = "okay";
-+	function = LED_FUNCTION_WAN;
-+	color = <LED_COLOR_ID_GREEN>;
 +};
 +
-+&gsw_port0 {
-+	label = "wan";
+ &display_subsystem {
+ 	status = "okay";
+ };
+@@ -135,6 +144,12 @@ &i2c1 {
+ 	/* OV5675, GT911, DW9714 are limited to 400KHz */
+ 	clock-frequency = <400000>;
+ 
++	focus: focus@c {
++		compatible = "dongwoon,dw9714";
++		reg = <0xc>;
++		vcc-supply = <&cam_afvdd_2v8>;
++	};
++
+ 	touchscreen@14 {
+ 		compatible = "goodix,gt911";
+ 		reg = <0x14>;
+@@ -157,6 +172,47 @@ pca9670: gpio@27 {
+ 		pinctrl-names = "default";
+ 		reset-gpios = <&gpio0 RK_PA2 GPIO_ACTIVE_LOW>;
+ 	};
++
++	camera@36 {
++		compatible = "ovti,ov5675";
++		reg = <0x36>;
++		clocks = <&cru SCLK_CIF_OUT>;
++		assigned-clocks = <&cru SCLK_CIF_OUT>;
++		/* Only parent to get exactly 19.2MHz */
++		assigned-clock-parents = <&cru USB480M>;
++		assigned-clock-rates = <19200000>;
++		avdd-supply = <&cam_avdd_2v8>;
++		dvdd-supply = <&cam_dvdd_1v2>;
++		dovdd-supply = <&cam_dovdd_1v8>;
++		lens-focus = <&focus>;
++		orientation = <0>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&cif_clkout_m0>;
++		reset-gpios = <&pca9670 6 GPIO_ACTIVE_LOW>;
++		rotation = <180>;
++
++		port {
++			cam_out: endpoint {
++				data-lanes = <1 2>;
++				link-frequencies = /bits/ 64 <450000000>;
++				remote-endpoint = <&mipi_in_cam>;
++			};
++		};
++	};
 +};
 +
-+&gsw_phy1 {
-+	pinctrl-names = "gbe-led";
-+	pinctrl-0 = <&gbe1_led0_pins>;
-+};
-+
-+&gsw_phy1_led0 {
++&isp {
 +	status = "okay";
-+	function = LED_FUNCTION_LAN;
-+	color = <LED_COLOR_ID_GREEN>;
-+};
 +
-+&gsw_port1 {
-+	label = "lan1";
-+};
-+
-+&gsw_phy2 {
-+	pinctrl-names = "gbe-led";
-+	pinctrl-0 = <&gbe2_led0_pins>;
-+};
-+
-+&gsw_phy2_led0 {
-+	status = "okay";
-+	function = LED_FUNCTION_LAN;
-+	color = <LED_COLOR_ID_GREEN>;
-+};
-+
-+&gsw_port2 {
-+	label = "lan2";
-+};
-+
-+&gsw_phy3 {
-+	pinctrl-names = "gbe-led";
-+	function = LED_FUNCTION_LAN;
-+	pinctrl-0 = <&gbe3_led0_pins>;
-+};
-+
-+&gsw_phy3_led0 {
-+	status = "okay";
-+	color = <LED_COLOR_ID_GREEN>;
-+};
-+
-+&gsw_port3 {
-+	label = "lan3";
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0_pins>;
++	ports {
++		port@0 {
++			mipi_in_cam: endpoint@0 {
++				reg = <0>;
++				data-lanes = <1 2>;
++				remote-endpoint = <&cam_out>;
++			};
++		};
++	};
+ };
+ 
+ &pinctrl {
+
+---
+base-commit: fee3e843b309444f48157e2188efa6818bae85cf
+change-id: 20250516-ringneck-haikou-video-demo-cam-420685fb7f9f
+
+Best regards,
 -- 
-2.43.0
+Quentin Schulz <quentin.schulz@cherry.de>
 
 
