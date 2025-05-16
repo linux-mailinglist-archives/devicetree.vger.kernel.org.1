@@ -1,244 +1,232 @@
-Return-Path: <devicetree+bounces-177896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-177897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFC65AB9870
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 11:15:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1C36AB9885
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 11:18:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 267221BC1597
-	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:16:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60F381886C40
+	for <lists+devicetree@lfdr.de>; Fri, 16 May 2025 09:17:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6120722FF35;
-	Fri, 16 May 2025 09:15:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="hmz29LSx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4ECF22E40E;
+	Fri, 16 May 2025 09:17:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7560922FF4E
-	for <devicetree@vger.kernel.org>; Fri, 16 May 2025 09:15:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+Received: from azure-sdnproxy.icoremail.net (l-sdnproxy.icoremail.net [20.188.111.126])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D3722CBC9;
+	Fri, 16 May 2025 09:17:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=20.188.111.126
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747386946; cv=none; b=uKETxrX8lgwlAwbhZ1rUJDmCybcZvBfjWrIzVcTqm5M6fFZM8MNslu6D0CHGYElCKDPaiLpNzZm/i/XS51pJg7Esq4NeepzJi5KIld8a9Ej1BUDN+K4pleodLtf8kAFtNof0e2YztUqiejNXpgS9qLspHpuhpwNa13qr83LzyhI=
+	t=1747387041; cv=none; b=U7tnjCNgtOrp60Qu+hPJC4U2j59q5qBJ2G2c6pSadz14vc/UtIXzd1KmlgZGIqFG2nsC3mJ/H7J1ruPPmcyZBONUW/tDO/8+mL6X8/ZXEli2mcEGlinsDClig+NfHa3Ij8X07r2hGbDCmE8XVdJ5xVHfEgJAZ8sz+h3vNi8xa60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747386946; c=relaxed/simple;
-	bh=7k6aUMabXJr7fbD+8HWrZmO15OPQOClyQSVsosQh4rg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PmuGe4yMqiChYVLQ6idt9lTi1piVACpTeA9SaInyKsDy3AsjDrW/7deuRlhIkOmoWEZ9Uo+u33LOvs36PY00eMdjBL1R/Bj9p/RqfJGLw4vqxEMrJ4B+XluXBOCjCeC2rqRnW9PSsOSdG+sub/fapDoTXC8OyG/gSWJzCxVzVU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=tomeuvizoso.net; dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b=hmz29LSx; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-70a1f2eb39aso17259547b3.1
-        for <devicetree@vger.kernel.org>; Fri, 16 May 2025 02:15:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1747386942; x=1747991742; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ghCVBFohCqPYMNm54QVPyhJ+LtBlN+TIFH3Qtc52S1A=;
-        b=hmz29LSxgD/MsB1wUZor7Qrw69h3GHRxm+CsSwBCV1KYj5xcG+0vxreK9qLRcEMhzy
-         1AHQCxojvgyJfXJfiSCEVdJAvcS1Nu5FE7prZCZ0oKuvLtF9+LMIr1XnccUn/7BLnZi/
-         9sxDyZhdEdlrsm4ZTB3TAqz+Lb5rGnvTfhviZNb6A4r+DetDDxdvWM1xiy+a9q9ni2RO
-         qNEzF3HvCbbXMdeGPW39bAUUiXY1EglHMGHfQe4KjxpXG+b6yiedb2emK+h/FhCb0Stt
-         RPotN/f85ZQUTRC1EgbDmWc0pr3WSf1ZmzPD1QsVwvRs6DRcpqu8vs+52fHr0E54Rbwz
-         7jZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747386942; x=1747991742;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ghCVBFohCqPYMNm54QVPyhJ+LtBlN+TIFH3Qtc52S1A=;
-        b=fUdG2duTxwUGmKnCitxLpN1LNpe9bJ/Y7HJd5xUTlzlKIfyy2k4hTfNARtq+kbVsov
-         rap2BSKyfYsYWT5s/RHAqTRgsSYlQfL0rJWI7d8OKD0QtW2N7l/24kukFIsHCn9EN0kj
-         suOwlcWdNWMv5ekPkQDIYB1Pnt90SfuObtJw5colyL/ReYV3+MyPH7XXsM/yXZkAfaRB
-         UiwYoWCVoeCkWyWkQwgW/hDRrUF/IBB3BpPsbcdzybT1r47mdREVnp6sJPuvM/edwXhs
-         E/wYj3NEnSj3I2r0rtXO2hU5uBu3/3YZ+9nM7AInckiLzEImHwOiJr+cXxllkH9hcwjS
-         6Lhg==
-X-Forwarded-Encrypted: i=1; AJvYcCWvKabZnmJds7wziWBHYC1R3XF/FxLeBsjxMYSv8V7cyo+IRQekS48Tvj/t58T8kiitPttnIyyOjBWr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3gIVKzGieDOrshVS0DQVvcIj4L/OIG5hbYcD3pNg2kNm3b7U6
-	ehK5PT2fvD+FdzrfS6Gb/jojWCpJmyMV17XaGTjl66O6FFAGy++4HyAm9XVnuMc8sD7FWbr7QpQ
-	CB8j2D5ZSvg==
-X-Gm-Gg: ASbGncsrLnz3H57trs66yDaqIBkTWjMX2s1UMgDxARgXG1/31jaS9myevnxoGmH3AFX
-	UXj+k8la0c5fqaZaHzgCKC4jlzgcweTBRe7xK7VSd9krqkAV8bd85v8EXamTrU07ewq6RlvUEn4
-	OiR2gUjQoQjtCo86y36VreONgt4BIwiAaUJbEd7MMA4VT8rVx72rd/4zN+sHnckQHgbYmtK81T2
-	0fsTAJhfW2ZDcDUTTrXILBrWKFoC70M8R8k4MeFH9R254i/EpeJ80qlhAqQoWeDfoJJzXGcHLtV
-	GVj8HfiYHQn7WoKkXcRN81ihQTpqv/KxACU0MvRis278wDhfsX7QmW4Ghq6L/jH1+cHWWzN1tex
-	2mMMQSvA/cScqGzFAm8l26TL+E9jzJQ==
-X-Google-Smtp-Source: AGHT+IFXRvGO07uW3KpLAS7lsCzMgVKTZR23v8sqD38aoO8MtZDk2+43PJXwza6uDAUP5GjSEj73Tw==
-X-Received: by 2002:a05:690c:600a:b0:700:b01b:5ea2 with SMTP id 00721157ae682-70ca7bbdbdamr42010647b3.34.1747386942400;
-        Fri, 16 May 2025 02:15:42 -0700 (PDT)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-70ca8323efbsm3139887b3.40.2025.05.16.02.15.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 May 2025 02:15:41 -0700 (PDT)
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e7b51381445so1713631276.0;
-        Fri, 16 May 2025 02:15:41 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUeWU9E1yFWsHq1dcjd8qpC719p5jJ/Xn1zRhF872kZHu6MYe3KFsBAU2sRZwr2GXB7JuFf18Bxk1Yh@vger.kernel.org, AJvYcCW5obE7q6zs5LR1se3/eztl0J9Wx7mB7XSYGV2Wg+jG2P+DM8kXj6yhlimkfkeU7JaoJ2PX6KJT3sHg@vger.kernel.org, AJvYcCWfIW4OnSKCqhkF7J2OgC7AKpPx4buUyiCoBYABrKomGloFUJbCoYORYfaS2DVcwmKhtKB+RGfzqfX07N4=@vger.kernel.org, AJvYcCXSobm2jZQ7fF02zQ21ZgoJI2XVheePBOC0omY/UMymygrknrU56UVo6lLToRwCIS+rpGJIcTw78SlbQ2S+@vger.kernel.org
-X-Received: by 2002:a05:6902:4888:b0:e7a:b59a:e99 with SMTP id
- 3f1490d57ef6-e7b6a08f866mr3989501276.22.1747386940957; Fri, 16 May 2025
- 02:15:40 -0700 (PDT)
+	s=arc-20240116; t=1747387041; c=relaxed/simple;
+	bh=xJfQfSHH/0PyHDRDTuD+QGC9oCH7IyYYHmP0zFExXzg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=PGqgEbVlZyYcBlQQt2zfH1UvDWOPge6djZ7OUt1g/YpML8OBI+Qhu7hcCuMAnpgxrsTVhz33sL7U2Wr+6wonQFgQtjmVb1tI2+yzI7fRNAJmXUWOHXAQRrlK6qoWShNBGzqZJkEv//H2xb4aE9E77oKuKAPH7O7VEqXVqetUwbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=20.188.111.126
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app2 (Coremail) with SMTP id TQJkCgAXqZKEAidohNF8AA--.49748S2;
+	Fri, 16 May 2025 17:16:54 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: ulf.hansson@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	adrian.hunter@intel.com,
+	p.zabel@pengutronix.de,
+	shanchun1218@gmail.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	xuxiang@eswincomputing.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: [PATCH v1 1/2] dt-bindings: sdhci: eswin: Documentation for eic7700 SoC
+Date: Fri, 16 May 2025 17:16:50 +0800
+Message-Id: <20250516091650.832-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
+In-Reply-To: <20250516091259.774-1-dongxuyang@eswincomputing.com>
+References: <20250516091259.774-1-dongxuyang@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250225-6-10-rocket-v2-0-d4dbcfafc141@tomeuvizoso.net>
- <20250225-6-10-rocket-v2-4-d4dbcfafc141@tomeuvizoso.net> <2950819.ElGaqSPkdT@workhorse>
-In-Reply-To: <2950819.ElGaqSPkdT@workhorse>
-From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Date: Fri, 16 May 2025 11:15:29 +0200
-X-Gmail-Original-Message-ID: <CAAObsKBrXZscvhjYnSb2DBL1KGsaMHpPVfB_QrFUPihd2+srdw@mail.gmail.com>
-X-Gm-Features: AX0GCFs7JNRTyA51Mp_5c2sfGP8DF36VD9y5YcZK4C0Caod07VePTbyWDenldvk
-Message-ID: <CAAObsKBrXZscvhjYnSb2DBL1KGsaMHpPVfB_QrFUPihd2+srdw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/7] accel/rocket: Add a new driver for Rockchip's NPU
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Oded Gabbay <ogabbay@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, Jeffrey Hugo <quic_jhugo@quicinc.com>, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgAXqZKEAidohNF8AA--.49748S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxAF1UKFWfJF48Kr17Gw17Wrg_yoWrWFyDpF
+	4xGw1UAr1fXF1fua1rKw10kF1agan8GF1IyrnrXw1Yy3WYgFy0qw1ayFy5Ga4UAr1xZay3
+	XFyY934xAa17AF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUXJ5wUUUUU=
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
 
-On Fri, Apr 25, 2025 at 8:22=E2=80=AFPM Nicolas Frattaroli
-<nicolas.frattaroli@collabora.com> wrote:
->
-> On Tuesday, 25 February 2025 08:55:50 Central European Summer Time Tomeu =
-Vizoso wrote:
-> > This initial version supports the NPU as shipped in the RK3588 SoC and
-> > described in the first part of its TRM, in Chapter 36.
-> >
-> > This NPU contains 3 independent cores that the driver can submit jobs
-> > to.
-> >
-> > This commit adds just hardware initialization and power management.
-> >
-> > v2:
-> > - Split cores and IOMMUs as independent devices (Sebastian Reichel)
-> > - Add some documentation (Jeffrey Hugo)
-> > - Be more explicit in the Kconfig documentation (Jeffrey Hugo)
-> > - Remove resets, as these haven't been found useful so far (Zenghui Yu)
-> > - Repack structs (Jeffrey Hugo)
-> > - Use DEFINE_DRM_ACCEL_FOPS (Jeffrey Hugo)
-> > - Use devm_drm_dev_alloc (Jeffrey Hugo)
-> > - Use probe log helper (Jeffrey Hugo)
-> > - Introduce UABI header in a later patch (Jeffrey Hugo)
-> >
-> > Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> > ---
-> >  Documentation/accel/index.rst           |    1 +
-> >  Documentation/accel/rocket/index.rst    |   19 +
-> >  MAINTAINERS                             |    8 +
-> >  drivers/accel/Kconfig                   |    1 +
-> >  drivers/accel/Makefile                  |    1 +
-> >  drivers/accel/rocket/Kconfig            |   25 +
-> >  drivers/accel/rocket/Makefile           |    8 +
-> >  drivers/accel/rocket/rocket_core.c      |   71 +
-> >  drivers/accel/rocket/rocket_core.h      |   29 +
-> >  drivers/accel/rocket/rocket_device.c    |   29 +
-> >  drivers/accel/rocket/rocket_device.h    |   29 +
-> >  drivers/accel/rocket/rocket_drv.c       |  273 ++
-> >  drivers/accel/rocket/rocket_drv.h       |   13 +
-> >  drivers/accel/rocket/rocket_registers.h | 4425 +++++++++++++++++++++++=
-++++++++
-> >  14 files changed, 4932 insertions(+)
-> >
-> > [...]
-> > diff --git a/drivers/accel/rocket/rocket_drv.c b/drivers/accel/rocket/r=
-ocket_drv.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..c22d965f20f1239a36b1d82=
-3d5fe5f372713555d
-> > --- /dev/null
-> > +++ b/drivers/accel/rocket/rocket_drv.c
-> > @@ -0,0 +1,273 @@
-> > [...]
-> > +static int rocket_probe(struct platform_device *pdev)
-> > +{
-> > +     struct component_match *match =3D NULL;
-> > +     struct device_node *core_node;
-> > +
-> > +     if (fwnode_device_is_compatible(pdev->dev.fwnode, "rockchip,rk358=
-8-rknn-core"))
-> > +             return component_add(&pdev->dev, &rocket_core_ops);
-> > +
-> > +     for_each_compatible_node(core_node, NULL, "rockchip,rk3588-rknn-c=
-ore") {
-> > +             if (!of_device_is_available(core_node))
-> > +                     continue;
-> > +
-> > +             drm_of_component_match_add(&pdev->dev, &match,
-> > +                                        component_compare_of, core_nod=
-e);
-> > +     }
-> > +
-> > +     return component_master_add_with_match(&pdev->dev, &rocket_drm_op=
-s, match);
-> > +}
->
-> Hi Tomeu,
->
-> something I've noticed while playing with this: currently, it doesn't see=
-m like
-> it's possible to support 1-core NPUs. rknn-core-top is a real core, but i=
-f no
-> rknn-core is enabled beside it, it'll call component_master_add_with_matc=
-h with
-> match being NULL. This causes a kernel Oops.
->
-> I'm not sure what the proper fix is, since the component API doesn't seem=
- to
-> really have a consideration for a master with no other components.
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-Yeah, I think we could add a code path for single-core NPUs that
-doesn't make use of the component API at all.
+Add device tree binding documentation for the ESWIN
+eic7700 sdhci controller module.
 
-> I ran into this when I was trying to debug why I get job timeouts followe=
-d by
-> a full SoC lock-up on RK3576 by running with only one of the two cores en=
-abled.
->
-> As an aside note, my throwaway rocket-on-RK3576-hacking-branch is at [1] =
-and
-> contains some changes you may want to consider for v3, e.g. [2] and [3]+[=
-4]. In
-> [4], specifically the `domain-supply` part which means the NPU regulators=
- don't
-> have to be always-on. Though feel free to pull in my entire ROCK 5B enabl=
-ement
-> patch.
+Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
+Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
+---
+ .../bindings/mmc/eswin,sdhci-eic7700.yaml     | 131 ++++++++++++++++++
+ 1 file changed, 131 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/eswin,sdhci-eic7700.yaml
 
-Ok, [2] I already had in my WIP branch. Will pick up [3] and [4],
-though I cannot test them myself.
+diff --git a/Documentation/devicetree/bindings/mmc/eswin,sdhci-eic7700.yaml b/Documentation/devicetree/bindings/mmc/eswin,sdhci-eic7700.yaml
+new file mode 100644
+index 000000000000..d4826f2aa619
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/eswin,sdhci-eic7700.yaml
+@@ -0,0 +1,131 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/eswin,sdhci-eic7700.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ESWIN EIC7700 SoC SDHCI controller
++
++maintainers:
++  - Shuang Liang <liangshuang@eswincomputing.com>
++  - Xuyang Dong <dongxuyang@eswincomputing.com>
++
++allOf:
++  - $ref: /schemas/mmc/mmc-controller.yaml#
++
++properties:
++  compatible:
++    const: eswin,eic7700-emmc-sdhci
++
++  reg:
++    maxItems: 1
++    description: Common configuration registers
++  "#address-cells":
++    const: 1
++  "#size-cells":
++    const: 1
++
++  interrupts:
++    maxItems: 1
++
++  assigned-clocks:
++    maxItems: 1
++    description: should contain "core_clk" phandle + clock-specifier pairs.
++
++  assigned-clock-rates:
++    maxItems: 1
++
++  clocks:
++    minItems: 2
++    description: handles to clock for the sdhci controller.
++
++  clock-names:
++    minItems: 2
++    description: the name of each clock.
++
++  clock-output-names:
++    maxItems: 1
++
++  '#clock-cells':
++    enum: [0]
++    description:
++      With this property in place we will export one clock
++      representing the Card Clock. These clocks are expected to be
++      consumed by our PHY.
++
++  resets:
++    description: resets to be used by the controller.
++
++  reset-names:
++    description: names of the resets listed in resets property in the same order.
++
++  bus-width:
++    enum: [4, 8]
++    description: for emmc bus-width is 8, for sdio bus-width is 4.
++
++  eswin,hsp_sp_csr:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description: hsp_sp_csr regs to be used by the controller.
++    items:
++      - description: phandle to HSP_SP_CSR register block
++      - description: status register offset
++      - description: control register offset
++      - description: configuration register offset
++
++  eswin,syscrg_csr:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description: syscrg_csr regs to be used by the controller.
++    items:
++      - description: phandle to SYS_CRG_CSR register block
++      - description: status register offset
++      - description: control register offset
++      - description: configuration register offset
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - assigned-clocks
++  - assigned-clock-rates
++  - clocks
++  - clock-names
++  - clock-output-names
++  - resets
++  - reset-names
++  - bus-width
++  - eswin,hsp_sp_csr
++  - eswin,syscrg_csr
++
++unevaluatedProperties: false
++
++examples:
++  - |
++
++    sdhci_emmc: mmc@50450000 {
++      compatible = "eswin,eic7700-emmc-sdhci";
++      reg = <0x50450000 0x10000>;
++      interrupt-parent = <&plic>;
++      interrupts = <79>;
++      clocks = <&clock 554>, <&clock 546>;
++      clock-names = "clk_xin", "clk_ahb";
++      assigned-clocks = <&clock 554>;
++      assigned-clock-rates = <200000000>;
++      clock-output-names = "emmc_cardclock";
++      #clock-cells = <0>;
++
++      resets = <&reset 7 (1 << 6)>,
++        <&reset 7 (1 << 3)>,
++        <&reset 7 (1 << 19)>,
++        <&reset 7 (1 << 23)>;
++      reset-names = "txrx_rst", "phy_rst", "prstn", "arstn";
++
++      core-clk-reg = <0x51828160>;
++      disable-cqe-dcmd;
++      bus-width = <8>;
++      non-removable;
++      mmc-hs400-1_8v;
++      max-frequency = <200000000>;
++      eswin,hsp_sp_csr = <&hsp_sp_csr 0x1038 0x508 0x50c>;
++      eswin,syscrg_csr = <&sys_crg 0x160 0x148 0x14c>;
++      status = "disabled";
++    };
+-- 
+2.17.1
 
-Regards,
-
-Tomeu
-
-> Kind regards,
-> Nicolas Frattaroli, who discovered that his cat is apparently 5% space he=
-ater
-> according to mobilenet while playing with this patch series.
->
-> [1]: https://gitlab.collabora.com/fratti/linux/-/commits/tomeu-npu?ref_ty=
-pe=3Dheads
-> [2]: https://gitlab.collabora.com/fratti/linux/-/commit/73aba31a00b34c254=
-be575b524da568e115d985d
-> [3]: https://gitlab.collabora.com/fratti/linux/-/commit/bd3a7bf5054c54c29=
-15a9dc0396730d0f24b3b7c
-> [4]: https://gitlab.collabora.com/fratti/linux/-/commit/5da44d61b09c34530=
-9f76159574d447d071c295d
->
->
->
 
