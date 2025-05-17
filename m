@@ -1,142 +1,83 @@
-Return-Path: <devicetree+bounces-178099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDAF4ABA7FE
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 05:33:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93602ABA870
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 07:57:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EBAAA06497
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 03:33:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7351C3BE0A2
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 05:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA1C15A848;
-	Sat, 17 May 2025 03:33:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16DF19D080;
+	Sat, 17 May 2025 05:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HmJ8yckV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DL6QLoFQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B14A8F6F;
-	Sat, 17 May 2025 03:33:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFB574C97;
+	Sat, 17 May 2025 05:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747452819; cv=none; b=NRHfNaEwOFRM2U7K5tmklKRIzHl13HS7nPL/3Ek/+j1P0HhmxeykZE3yTGfgiV9VkVdiCu6KGRdchGJp57Yu2b0X6BdpxU8/Cs6SwH1EKVvoQOsR9bBGmgHZP7aG7hpQRn3W1tvyvfPtJKEma0iyj1vZ3RLbIAM3wp6xpXRP6dQ=
+	t=1747461440; cv=none; b=hGVMtbcskIDLoiBWx5RD0JwTYWG0t+yP8By2Xtte/3Xp/CBZh44cdf5JDamk5kTZRZDn4nmT0egMKupkUUxQ4QjOhz28cIBhY0D+2u6cnSgJMWO8ut6haB6ha1IcyfmYoU9RFxWU2kt1Wty4OnGbYj4obAnp7N36FaU5tEF4nHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747452819; c=relaxed/simple;
-	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=TLJ5Iqo1Wa0Mlb4yLSUhra4839rkZlri5eUHItgMQAoitAfSj23Z01qfjSW0u5qEaMDxFhU5FapvQT/8aaeRGoQTDGTC4FncDZbjJmuyXHyvzhcxw2ASbL2QBtMo//5PWUFYKyDh7PTzATUmlICS3puUyTsLnX6YwR7s57xFV4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HmJ8yckV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71CC6C4CEE4;
-	Sat, 17 May 2025 03:33:38 +0000 (UTC)
+	s=arc-20240116; t=1747461440; c=relaxed/simple;
+	bh=0dxFOYigYkWsCXOb8FWDLm7oUp1TyQVnV0QtPsmuE7o=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qkUyY2DBkplNuidBtVq3k0ThRE+KddEg9A3dsZ0X1K5Jx8CbxWRDmikg8mFArl/jpy9vRdCMmi0AWyrluiEQitcEDCWPRfbiDFGA+wW9ErOaz3ugA6cSw0BWPRJUfgVmZ981fQSUnBAT4lpIqWzgnfrfrkDzJhLhajTuCmEYkZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DL6QLoFQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10563C4CEE3;
+	Sat, 17 May 2025 05:57:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747452818;
-	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=HmJ8yckV02na2BlMCmeVWnJjkGQj3zmQIiH34ixgqwRY4AhiFG48HX9ludo2KuTnq
-	 okvf4QqPNMVvOAQ9ptKll0delkhvBYl/9h+8W+fs+8U4b7PwXeZFtWBghG8+nzEvK5
-	 NQXEfG6uQ4XPkiLSNCq98xCbYGj6WugNRJ2yTFi32x2lBJuKrfo5W22QRz111O46M/
-	 qo9z9IYxdwV7t8fFTP7ichoBu1WP5EXFpAT0MbbJkPEvt7fuI9Fn4vrv+JbfTbeuXI
-	 MqxyVRTeIaQQvoG3oS07JNGfE8c/49/ehsjzjhcKCkfE3ecb6c/ljTDkFDwUl3YJf/
-	 HzjrAh0sYgUDQ==
-Date: Fri, 16 May 2025 22:33:37 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1747461440;
+	bh=0dxFOYigYkWsCXOb8FWDLm7oUp1TyQVnV0QtPsmuE7o=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=DL6QLoFQUxPEZMw7EOUKoC/3e9Bl1z0v6y/tdCn+HdsXWcCLerdFSpl+Rzmxi0zZR
+	 ZE69OLR+pPlDv+8dnR5ud/EZDQOMCnWR73polvOxmO8IRjB4Jht+Osy6xivJb1Iwmg
+	 0PMqr38U1IUZEkUTS7D9E9DVO4eb0HjM1iihT8lSNmvhig0iMMnHKhIw0NLeQ4TEIj
+	 qTUWw2FtqvWHhXy0RF5EMlyvHf2jXjY3YHyRW9jQWuTZA8mKOV3d9OvD2TsxPiAV1M
+	 //ozQpX7T2IHD93HyJsTTQ03o+FnZricyEu4a5x78lVGWqd3W1Od44VIr4eM/cdlp4
+	 XMR/HAm+16+/w==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dennis Gilmore <dgilmore@redhat.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e78100-t14s: enable SDX62 modem
+Date: Sat, 17 May 2025 06:57:12 +0100
+Message-ID: <174746143134.152010.4166315048765927187.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250327081427.19693-1-johan+linaro@kernel.org>
+References: <20250327081427.19693-1-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org, 
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Oded Gabbay <ogabbay@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Jonathan Corbet <corbet@lwn.net>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
- Sumit Semwal <sumit.semwal@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Simona Vetter <simona@ffwll.ch>, linux-rockchip@lists.infradead.org, 
- linux-doc@vger.kernel.org
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-In-Reply-To: <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
-References: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
- <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
-Message-Id: <174742024812.3649303.12389396177218408388.robh@kernel.org>
-Subject: Re: [PATCH v3 01/10] dt-bindings: npu: rockchip,rknn: Add bindings
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 
-On Fri, 16 May 2025 18:53:15 +0200, Tomeu Vizoso wrote:
-> Add the bindings for the Neural Processing Unit IP from Rockchip.
+On Thu, 27 Mar 2025 09:14:27 +0100, Johan Hovold wrote:
+> Enable PCIe5 and the SDX62 modem present on some T14s.
 > 
-> v2:
-> - Adapt to new node structure (one node per core, each with its own
->   IOMMU)
-> - Several misc. fixes from Sebastian Reichel
-> 
-> v3:
-> - Split register block in its constituent subblocks, and only require
->   the ones that the kernel would ever use (Nicolas Frattaroli)
-> - Group supplies (Rob Herring)
-> - Explain the way in which the top core is special (Rob Herring)
-> 
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  .../bindings/npu/rockchip,rknn-core.yaml           | 162 +++++++++++++++++++++
->  1 file changed, 162 insertions(+)
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Applied, thanks!
 
-yamllint warnings/errors:
+[1/1] arm64: dts: qcom: x1e78100-t14s: enable SDX62 modem
+      commit: 03026046589d9baca0d24348faa76c72899de48f
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml: properties:reg-names: 'oneOf' conditional failed, one must be fixed:
-	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too long
-	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too short
-	False schema does not allow 3
-	1 was expected
-	3 is greater than the maximum of 2
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): compatible: 'oneOf' conditional failed, one must be fixed:
-	['rockchip,rk3588-rknn-core-top', 'rockchip,rknn-core-top'] is too long
-	'rockchip,rk3588-rknn-core-top' is not one of ['rockchip,rk3588-rknn-core']
-	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): reg: [[0, 4255842304, 0, 36864]] is too short
-	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): compatible: 'oneOf' conditional failed, one must be fixed:
-	['rockchip,rk3588-rknn-core', 'rockchip,rknn-core'] is too long
-	'rockchip,rk3588-rknn-core' is not one of ['rockchip,rk3588-rknn-core-top']
-	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): reg: [[0, 4255907840, 0, 36864]] is too short
-	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
