@@ -1,294 +1,119 @@
-Return-Path: <devicetree+bounces-178094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEDB8ABA6EF
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 02:09:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF5EDABA77A
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 03:15:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D1D73BAE42
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 00:08:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9ED95A21717
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 01:15:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E3BC10F9;
-	Sat, 17 May 2025 00:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D020C1BC5C;
+	Sat, 17 May 2025 01:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UYJSOIm9"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L/SBOHUi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975C98F6F;
-	Sat, 17 May 2025 00:09:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F06C05680;
+	Sat, 17 May 2025 01:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747440546; cv=none; b=DYQq5wkJL2CIX0GjJys4/vp9bh3eVq5CqwLVShXhO6d/+ibQ+JqXl6QlH8V15LKICBIykfnpRVTlwmgbDV4DqXYisoprba6J5r7PGUscMc91chzT9cOWovTIfBAxLIFt6Yd1rsS/FPUCKLoNjKrv+8HQ3gMeQESZBmgCvp09560=
+	t=1747444552; cv=none; b=aQBAzZEaEpBdzDQr7686G3WU8aOqxj48WbyHwR2t6F9bR3IZJQfesbo2djUIs2VhendcdneyyFf+dqeXTlZG/yaqwRTcVGwjKd6iD0vu/kf6USGgb7Sxbn5t9RE8r2KMrJ0QwYLcm8C2uB81lpHEJZJ44+uUJpl2QVaqTTP05/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747440546; c=relaxed/simple;
-	bh=FfZgdD0f9yr2um86emLIcU/HVdPM4XRKywowsvCWmEY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WzCoNX42UyrksTl4Rcoflz7G84ZNZDFFOXi+kbaRiTw1hcKIRe0sZ224h9Z+oc40ubxJHppKSFjuI7yH3PYi38dpXXmUuDuj9S+lmCKomgJ4IZOp4Viujf1aPgqRskQXjUlQ1eW2fyApAmMN3HYeTrX+YRk8XjexsEgFIJB5V6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UYJSOIm9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54GCHouU002120;
-	Sat, 17 May 2025 00:08:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kTk7xRffMswbzTXuCCq8zid0YNK/PoGynlrIilTSHtQ=; b=UYJSOIm9XrMznxGv
-	PKX5+m2/91QCG52MSgmxGrifK2NCdeqGD9rDMyIhxvccV80N442w39RfVsbaoG5a
-	K5K+xX2MwGmblyN4zAIQZwuaui5+hagJ1N82o0fFLDDzqUnMxKH1P/xS5ZEW+Tqz
-	79YWjwgo+vBsn7N6ORkpTCAMZL9I/VRR9zVDIQi+xl69YnjFgLevQzr1iRNGw6q7
-	+GffuUqQfHPxoY+stGEhzwchYXpoXBsenBz/QOw6QxURwV3TqTK78hWvJYI+y8Jo
-	A0mNH18wxnvinCxGZ4q2AJUuBo1liaFyiB3euOKiZvXCgyJbS+ZWAV3scSACL4E/
-	Obss8g==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46mbcrk93c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 17 May 2025 00:08:30 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54H08TBm016475
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 17 May 2025 00:08:29 GMT
-Received: from [10.134.71.99] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 16 May
- 2025 17:08:28 -0700
-Message-ID: <75f503ea-e8cf-48f3-b39e-388ac456821f@quicinc.com>
-Date: Fri, 16 May 2025 17:08:28 -0700
+	s=arc-20240116; t=1747444552; c=relaxed/simple;
+	bh=XEliipcAij5i/dpOQOsz2I+6Dbet09GKfYxkCjvWp68=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bkAcW9BjUZ7dCFosSa/aiQgD5LX72xhIpMia2BwcnUZ5T5b4g+BD0GtJC7JAJdIsyxna+gEseD0HJ3KH1RlGUOq4xJA6FcP72NdzCWX21g9t7Ub5/Ane60Kqo2x6Cqc6C289JhMPXDC1XIuMe9JtGO9MPuabNCXVt5Ojqttdb60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L/SBOHUi; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747444551; x=1778980551;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XEliipcAij5i/dpOQOsz2I+6Dbet09GKfYxkCjvWp68=;
+  b=L/SBOHUipxE1jM/Mgb06s7lcB/gvjiFv08YePH3eYRWpXQ/RfsPTfY8w
+   SEF6F3B61+Z75U07tKxwNVmpKTk/70GylO4XUlrs8hV7btqPHqK3AdZN9
+   wNAYo1ohh/h4TmNI7dIGna54RBM/l3MeMKzNsngNk9FCKP2yq0Af0uRIm
+   JaCSVK2KVB6IGacCBaNMm6TVs/O1ob4fWpjgbTH3xukDTSJFOgIDoOeTe
+   T/9jtmNM2v5s7jlqy/sN3TNE9q6FaRCOOW24m13JIbXlsv+w5uzknpKP6
+   3pHbxbNKSXet58k/L3fTophpo/txAJ3UDPRczhnSKBG4xFLZPndlCuXzg
+   Q==;
+X-CSE-ConnectionGUID: ywZ2y5NUTuq1KUHhXnKA1A==
+X-CSE-MsgGUID: KZtgTwsKRL+eeV3NNfaphw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="49329587"
+X-IronPort-AV: E=Sophos;i="6.15,295,1739865600"; 
+   d="scan'208";a="49329587"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2025 18:15:50 -0700
+X-CSE-ConnectionGUID: 65PPEcbGRyiYqMAWDp2HvQ==
+X-CSE-MsgGUID: +cHO9/wNSZuZSymM+wcWsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,295,1739865600"; 
+   d="scan'208";a="143721661"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 16 May 2025 18:15:47 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uG69Q-000Jq3-1a;
+	Sat, 17 May 2025 01:15:44 +0000
+Date: Sat, 17 May 2025 09:15:09 +0800
+From: kernel test robot <lkp@intel.com>
+To: zhangsenchuan@eswincomputing.com, gregkh@linuxfoundation.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Thinh.Nguyen@synopsys.com,
+	p.zabel@pengutronix.de
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	yangwei1@eswincomputing.com,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Subject: Re: [PATCH v1 2/2] usb: dwc3: eic7700: Add EIC7700 usb driver
+Message-ID: <202505170848.MGykwPlY-lkp@intel.com>
+References: <20250516095408.704-1-zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 00/24] drm/msm: Add support for SM8750
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jonathan Marek
-	<jonathan@marek.ca>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Dmitry Baryshkov <lumag@kernel.org>, Rob Clark
-	<robdclark@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Michael
- Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Rob Clark <robdclark@chromium.org>,
-        <linux-clk@vger.kernel.org>, Srinivas Kandagatla <srini@kernel.org>,
-        "Dmitry
- Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
-Content-Language: en-US
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: qHZxSWgUZHAJEnbr4A_2uY0OfozDuEx9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE2MDIzNSBTYWx0ZWRfX8++ol42qIIV8
- PXzgLMQuPf6306r81xIAqfBTAdYXO6UmdhZQxPc7oSOu9WeisyuCQJsE1gvbWLz8G4HxuYqYjv1
- a2otz8Ay1NjWTyGXtHpHUZE71o2N58r8vzFRdAnoI9zchrIFfFxqmeCTKTj3/QtyVXzM1OG9Abc
- 6+SQ/q0jWmKperUPLbFid3uG/J9VZ3VHlroFg3eIt1S8IzmqAKHUaig6nTu5ywWR1KWiANMTQEc
- qRNimJVIWXA+ml0Mu8eFjCVpt9Mu8h84x9Wvlr59QOY/OC10NyfgYEycYTcpsMPoVgLspe1+l2x
- HJBmX4ErHh/2U8jeymUnkf1Kvl2azfdCPWiO8qs2GJIf3XxcEcpB09R8L8Z+MqZAwc76zfiVw04
- FGbw44RN7dMklaQwPWNklJCkTByt6O2DQXx7qoWq3+CbW9yN+tCTK/Jfrgk2Vysn7G7/iBIj
-X-Authority-Analysis: v=2.4 cv=K7UiHzWI c=1 sm=1 tr=0 ts=6827d37e cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
- a=KKAkSRfTAAAA:8 a=e5mUnYsNAAAA:8 a=k5wYIqEnLEkAo4cnzkIA:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22 a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-GUID: qHZxSWgUZHAJEnbr4A_2uY0OfozDuEx9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-16_08,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 mlxscore=0 suspectscore=0 malwarescore=0
- phishscore=0 mlxlogscore=999 clxscore=1011 bulkscore=0 impostorscore=0
- lowpriorityscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505160235
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250516095408.704-1-zhangsenchuan@eswincomputing.com>
 
+Hi,
 
+kernel test robot noticed the following build warnings:
 
-On 4/30/2025 6:00 AM, Krzysztof Kozlowski wrote:
-> Hi,
-> 
-> Dependency / Rabased on top of
-> ==============================
-> https://lore.kernel.org/all/20241214-dpu-drop-features-v1-0-988f0662cb7e@linaro.org/
+[auto build test WARNING on usb/usb-testing]
+[also build test WARNING on usb/usb-next usb/usb-linus robh/for-next westeri-thunderbolt/next linus/master v6.15-rc6 next-20250516]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Hey Krzysztof,
+url:    https://github.com/intel-lab-lkp/linux/commits/zhangsenchuan-eswincomputing-com/dt-bindings-usb-Add-Eswin-EIC7700-Usb-controller/20250516-175800
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+patch link:    https://lore.kernel.org/r/20250516095408.704-1-zhangsenchuan%40eswincomputing.com
+patch subject: [PATCH v1 2/2] usb: dwc3: eic7700: Add EIC7700 usb driver
+config: arm-randconfig-004-20250517 (https://download.01.org/0day-ci/archive/20250517/202505170848.MGykwPlY-lkp@intel.com/config)
+compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250517/202505170848.MGykwPlY-lkp@intel.com/reproduce)
 
-JFYI, I think there was some discussion on IRC (specifically #linux-msm) 
-about having the feature bit dependency back in February.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505170848.MGykwPlY-lkp@intel.com/
 
-I believe both Abhinav and Dmitry agreed that you can keep the changes 
-to do version checks and drop this dependency.
+All warnings (new ones prefixed by >>, old ones prefixed by <<):
 
-There are still some ongoing discussions regarding the feature bit 
-series, so this way your series isn't blocked by that.
+>> WARNING: modpost: vmlinux: section mismatch in reference: dwc3_eswin_probe+0x3c4 (section: .text) -> dwc3_eswin_deassert (section: .init.text)
 
-Thanks,
-
-Jessica Zhang
-
-> 
-> Merging
-> =======
-> DSI works! With the fixes here and debugging help from Jessica and
-> Abhinav, the DSI panel works properly.
-> 
-> The display clock controller patch can go separately.
-> 
-> Changes in v5:
-> =============
-> - Add ack/rb tags
-> - New patches:
->    #6: clk: qcom: dispcc-sm8750: Fix setting rate byte and pixel clocks
->    #14: drm/msm/dsi/phy: Toggle back buffer resync after preparing PLL
->    #15: drm/msm/dsi/phy: Define PHY_CMN_CTRL_0 bitfields
->    #16: drm/msm/dsi/phy: Fix reading zero as PLL rates when unprepared
->    #17: drm/msm/dsi/phy: Fix missing initial VCO rate
-> 
-> - Patch drm/msm/dsi: Add support for SM8750:
->    - Only reparent byte and pixel clocks while PLLs is prepared. Setting
->      rate works fine with earlier DISP CC patch for enabling their parents
->      during rate change.
-> 
-> - Link to v4: https://lore.kernel.org/r/20250311-b4-sm8750-display-v4-0-da6b3e959c76@linaro.org
-> 
-> Changes in v4
-> =============
-> - Add ack/rb tags
-> - Implement Dmitry's feedback (lower-case hex, indentation, pass
->    mdss_ver instead of ctl), patches:
->    drm/msm/dpu: Implement 10-bit color alpha for v12.0 DPU
->    drm/msm/dpu: Implement CTL_PIPE_ACTIVE for v12.0 DPU
-> 
-> - Rebase on latest next
-> - Drop applied two first patches
-> - Link to v3: https://lore.kernel.org/r/20250221-b4-sm8750-display-v3-0-3ea95b1630ea@linaro.org
-> 
-> Changes in v3
-> =============
-> - Add ack/rb tags
-> - #5: dt-bindings: display/msm: dp-controller: Add SM8750:
->    Extend commit msg
-> 
-> - #7: dt-bindings: display/msm: qcom,sm8750-mdss: Add SM8750:
->    - Properly described interconnects
->    - Use only one compatible and contains for the sub-blocks (Rob)
-> 
-> - #12: drm/msm/dsi: Add support for SM8750:
->    Drop 'struct msm_dsi_config sm8750_dsi_cfg' and use sm8650 one.
-> - drm/msm/dpu: Implement new v12.0 DPU differences
->    Split into several patches
-> - Link to v2: https://lore.kernel.org/r/20250217-b4-sm8750-display-v2-0-d201dcdda6a4@linaro.org
-> 
-> Changes in v2
-> =============
-> - Implement LM crossbar, 10-bit alpha and active layer changes:
->    New patch: drm/msm/dpu: Implement new v12.0 DPU differences
-> - New patch: drm/msm/dpu: Add missing "fetch" name to set_active_pipes()
-> - Add CDM
-> - Split some DPU patch pieces into separate patches:
->    drm/msm/dpu: Drop useless comments
->    drm/msm/dpu: Add LM_7, DSC_[67], PP_[67] and MERGE_3D_5
->    drm/msm/dpu: Add handling of LM_6 and LM_7 bits in pending flush mask
-> - Split DSI and DSI PHY patches
-> - Mention CLK_OPS_PARENT_ENABLE in DSI commit
-> - Mention DSI PHY PLL work:
->    https://patchwork.freedesktop.org/patch/542000/?series=119177&rev=1
-> - DPU: Drop SSPP_VIG4 comments
-> - DPU: Add CDM
-> - Link to v1: https://lore.kernel.org/r/20250109-b4-sm8750-display-v1-0-b3f15faf4c97@linaro.org
-> 
-> Best regards,
-> Krzysztof
-> 
-> ---
-> Krzysztof Kozlowski (24):
->        dt-bindings: display/msm: dsi-phy-7nm: Add SM8750
->        dt-bindings: display/msm: dsi-controller-main: Add SM8750
->        dt-bindings: display/msm: dp-controller: Add SM8750
->        dt-bindings: display/msm: qcom,sm8650-dpu: Add SM8750
->        dt-bindings: display/msm: qcom,sm8750-mdss: Add SM8750
->        clk: qcom: dispcc-sm8750: Fix setting rate byte and pixel clocks
->        drm/msm/dpu: Add missing "fetch" name to set_active_pipes()
->        drm/msm/dpu: Clear CTL_FETCH_PIPE_ACTIVE on mixer reset
->        drm/msm/dpu: Clear CTL_FETCH_PIPE_ACTIVE on ctl_path reset
->        drm/msm/dpu: Clear CTL_FETCH_PIPE_ACTIVE before blend setup
->        drm/msm/dpu: Drop useless comments
->        drm/msm/dpu: Add LM_7, DSC_[67], PP_[67] and MERGE_3D_5
->        drm/msm/dpu: Add handling of LM_6 and LM_7 bits in pending flush mask
->        drm/msm/dsi/phy: Toggle back buffer resync after preparing PLL
->        drm/msm/dsi/phy: Define PHY_CMN_CTRL_0 bitfields
->        drm/msm/dsi/phy: Fix reading zero as PLL rates when unprepared
->        drm/msm/dsi/phy: Fix missing initial VCO rate
->        drm/msm/dsi/phy: Add support for SM8750
->        drm/msm/dsi: Add support for SM8750
->        drm/msm/dpu: Add support for SM8750
->        drm/msm/dpu: Implement 10-bit color alpha for v12.0 DPU
->        drm/msm/dpu: Implement CTL_PIPE_ACTIVE for v12.0 DPU
->        drm/msm/dpu: Implement LM crossbar for v12.0 DPU
->        drm/msm/mdss: Add support for SM8750
-> 
->   .../bindings/display/msm/dp-controller.yaml        |   4 +
->   .../bindings/display/msm/dsi-controller-main.yaml  |  54 ++-
->   .../bindings/display/msm/dsi-phy-7nm.yaml          |   1 +
->   .../bindings/display/msm/qcom,sm8650-dpu.yaml      |   1 +
->   .../bindings/display/msm/qcom,sm8750-mdss.yaml     | 470 +++++++++++++++++++
->   drivers/clk/qcom/dispcc-sm8750.c                   |   4 +-
->   .../drm/msm/disp/dpu1/catalog/dpu_12_0_sm8750.h    | 496 +++++++++++++++++++++
->   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c           |  58 ++-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c        |  12 +
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |  35 +-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c         |  71 ++-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h         |  19 +-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c          | 210 ++++++++-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.h          |  18 +
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h        |   6 +
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
->   drivers/gpu/drm/msm/dsi/dsi.h                      |   2 +
->   drivers/gpu/drm/msm/dsi/dsi_cfg.c                  |  14 +
->   drivers/gpu/drm/msm/dsi/dsi_cfg.h                  |   1 +
->   drivers/gpu/drm/msm/dsi/dsi_host.c                 |  81 ++++
->   drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              |   2 +
->   drivers/gpu/drm/msm/dsi/phy/dsi_phy.h              |   2 +
->   drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c          | 157 ++++++-
->   drivers/gpu/drm/msm/msm_mdss.c                     |  33 ++
->   drivers/gpu/drm/msm/msm_mdss.h                     |   1 +
->   .../gpu/drm/msm/registers/display/dsi_phy_7nm.xml  |  25 +-
->   27 files changed, 1730 insertions(+), 49 deletions(-)
-> ---
-> base-commit: 4ec6605d1f7e5df173ffa871cce72567f820a9c2
-> change-id: 20250109-b4-sm8750-display-6ea537754af1
-> 
-> Best regards,
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
